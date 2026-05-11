@@ -5,10 +5,11 @@
 		"light": {
 			"primary": "oklch(0.6211 0.1686 43.12)",
 			"primary-accent": "oklch(0.9602 0.0221 49.93)",
-			"primary-focus": "oklch(0.9372 0.0353 49.24)",
+			"primary-focus": "oklch(0.9372 0.035253 49.2368)",
 			"primary-border": "oklch(0.6842 0.185 43.27)",
 			"primary-hover": "oklch(0.6842 0.185 43.27)",
-			"primary-text": "oklch(0.5381 0.1375 43.87)"
+			"primary-text": "oklch(0.5381 0.1375 43.87)",
+			"primary-fg": "oklch(0.9764 0.0013 286.38)"
 		},
 		"dark": {
 			"primary": "oklch(0.6211 0.1686 43.12)",
@@ -16,7 +17,8 @@
 			"primary-focus": "oklch(0.3313 0.069 46.31)",
 			"primary-border": "oklch(0.5008 0.126 44.4)",
 			"primary-hover": "oklch(0.6842 0.185 43.27)",
-			"primary-text": "oklch(0.737 0.1512 45.95)"
+			"primary-text": "oklch(0.737 0.1512 45.95)",
+			"primary-fg": "oklch(0.9764 0.0013 286.38)"
 		}
 	}
 }

@@ -26,6 +26,19 @@ export const FONTS = [
 		},
 	},
 	{
+		value: "architects-daughter",
+		name: "Architects Daughter",
+		type: "registry:font",
+		font: {
+			family: "'Architects Daughter', sans-serif",
+			provider: "google",
+			subsets: ["latin"],
+			import: "Architects_Daughter",
+			googleFontsUrl:
+				"https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap",
+		},
+	},
+	{
 		value: "abel",
 		name: "Abel",
 		type: "registry:font",

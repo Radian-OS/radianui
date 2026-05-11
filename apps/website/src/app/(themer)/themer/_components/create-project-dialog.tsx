@@ -187,13 +187,15 @@ export function CreateProjectDialog() {
 
 						{/* Theme summary */}
 						<div className="border-border mx-5 flex flex-wrap gap-1.5 rounded-lg border-t pt-4">
-							{selectedColor && params.theme === "default" && (
-								<ThemeSummaryPill
-									label="Color"
-									value={selectedColor.name}
-									colorSwatch={selectedColor.cssVars.light["--color-primary"]}
-								/>
-							)}
+							{selectedColor &&
+								(params.theme === "default" ||
+									params.primaryColor !== null) && (
+									<ThemeSummaryPill
+										label="Color"
+										value={selectedColor.name}
+										colorSwatch={selectedColor.cssVars.light["--color-primary"]}
+									/>
+								)}
 							{selectedHeadingFont && (
 								<ThemeSummaryPill
 									label="Heading"
@@ -207,7 +209,7 @@ export function CreateProjectDialog() {
 								<ThemeSummaryPill label="Radius" value={selectedRadius.name} />
 							)}
 							{selectedTheme && selectedTheme.value !== "default" && (
-								<ThemeSummaryPill label="Theme" value={selectedTheme.label} />
+								<ThemeSummaryPill label="Theme" value={selectedTheme.name} />
 							)}
 							<ThemeSummaryPill
 								label="Src Dir"

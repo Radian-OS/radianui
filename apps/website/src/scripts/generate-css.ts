@@ -25,7 +25,7 @@ function generate(): void {
 		content = ""
 	}
 
-	// Remove unwanted imports
+	//  Remove unwanted imports
 	content = content.replace(/@import\s+["']\.\/website\.css["'];?\n?/g, "")
 	content = content.replace(
 		/@import\s+["'][^"']*registry\/styles\/style-[^"']+["'][^;\n]*;?\n?/g,
@@ -38,8 +38,8 @@ function generate(): void {
 		""
 	)
 
-	// Remove leftover blank lines
-	content = content.replace(/^\s*\n/gm, "")
+	// Collapse multiple blank lines into a single blank line
+	content = content.replace(/\n{3,}/g, "\n\n")
 
 	fs.mkdirSync(DEST_DIR, { recursive: true })
 	fs.writeFileSync(DEST_CSS, content, "utf-8")

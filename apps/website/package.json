@@ -21,6 +21,7 @@
 		"generate-css": "tsx src/scripts/generate-css.ts",
 		"generate-styles": "tsx src/scripts/generate-styles.ts",
 		"generate-styles-json": "tsx src/scripts/generate-styles-json.ts",
+		"generate-colors": "tsx src/scripts/generate-colors.ts",
 		"update-icon-slot": "tsx src/scripts/update-icon-slot.ts",
 		"generate-icon": "tsx src/scripts/generate-icon.ts"
 	},

@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useMemo, useRef, useState } from "react"
-import { Check, ChevronDown } from "lucide-react"
+import { Check, ChevronDown, Lock, LockOpen } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { FONTS } from "@/registry/fonts"
 import {
@@ -18,6 +18,11 @@ import {
 	PopoverTrigger,
 } from "@/styles/default/ui/popover"
 import { Spinner } from "@/styles/default/ui/spinner"
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipTrigger,
+} from "@/styles/default/ui/tooltip"
 
 const FONT_PAGE_SIZE = 30
 
@@ -25,10 +30,14 @@ export function FontCombobox({
 	label,
 	value,
 	onValueChange,
+	isLocked,
+	onToggleLock,
 }: {
 	label: string
 	value: string
 	onValueChange: (value: string) => void
+	isLocked?: boolean
+	onToggleLock?: () => void
 }) {
 	const [open, setOpen] = useState(false)
 	const [searchTerm, setSearchTerm] = useState("")
@@ -96,17 +105,51 @@ export function FontCombobox({
 
 	return (
 		<Popover open={open} onOpenChange={setOpen}>
-			<PopoverTrigger asChild>
-				<button className="border-border hover:border-fg-disabled bg-elevation-level2 flex w-full items-center justify-between gap-2 rounded-lg border px-3 py-2 text-sm transition-colors">
-					<div className="flex flex-col items-start gap-0.5">
-						<span className="text-fg-tertiary text-[11px]">{label}</span>
-						<span className="text-fg font-medium">
-							{selectedFont?.name ?? value}
-						</span>
-					</div>
-					<ChevronDown className="text-fg-tertiary size-3.5 shrink-0" />
-				</button>
-			</PopoverTrigger>
+			<div
+				className={cn(
+					"border-border bg-elevation-level2 flex w-full overflow-hidden rounded-lg border transition-colors",
+					!isLocked && "hover:border-fg-disabled",
+					isLocked && "border-primary/25"
+				)}>
+				<PopoverTrigger asChild>
+					<button className="flex min-w-0 flex-1 items-center justify-between gap-2 px-3 py-2 text-sm">
+						<div className="flex min-w-0 flex-col items-start gap-0.5">
+							<span className="text-fg-tertiary text-[11px]">{label}</span>
+							<span className="text-fg truncate font-medium">
+								{selectedFont?.name ?? value}
+							</span>
+						</div>
+						<ChevronDown className="text-fg-tertiary size-3.5 shrink-0" />
+					</button>
+				</PopoverTrigger>
+				{onToggleLock && (
+					<Tooltip>
+						<TooltipTrigger asChild>
+							<button
+								type="button"
+								aria-label={`${isLocked ? "Unlock" : "Lock"} ${label}`}
+								aria-pressed={isLocked}
+								onClick={onToggleLock}
+								className={cn(
+									"border-border relative flex w-10 shrink-0 items-center justify-center border-l transition-colors",
+									"focus-visible:ring-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset",
+									isLocked
+										? "bg-primary-accent text-primary"
+										: "text-fg-tertiary hover:bg-fill1 hover:text-fg"
+								)}>
+								{isLocked ? (
+									<Lock className="size-3.5" />
+								) : (
+									<LockOpen className="size-3.5" />
+								)}
+							</button>
+						</TooltipTrigger>
+						<TooltipContent side="top">
+							{isLocked ? `${label} locked` : `Lock ${label}`}
+						</TooltipContent>
+					</Tooltip>
+				)}
+			</div>
 			<PopoverContent side="right" className="w-56 p-0">
 				<Command>
 					<CommandInput
