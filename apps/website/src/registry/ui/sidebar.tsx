@@ -4,6 +4,7 @@ import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { type VariantProps, cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"
+import { IconSlot } from "@/registry/icon-library"
 import { Badge } from "@/registry/ui/badge"
 import { IconButton } from "@/registry/ui/button"
 import {
@@ -17,7 +18,6 @@ import { Drawer, DrawerContent } from "@/registry/ui/drawer"
 import { Input } from "@/registry/ui/input"
 import { Skeleton } from "@/registry/ui/skeleton"
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/registry/ui/tooltip"
-import { IconSlot } from "../icon-library"
 
 const SIDEBAR_COOKIE_NAME = "sidebar_state"
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7

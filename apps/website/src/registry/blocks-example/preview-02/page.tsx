@@ -328,9 +328,7 @@ function ClaimableBalanceCard() {
 				<CardDescription>Claimable Balance</CardDescription>
 				<div className="mt-1 flex items-center gap-3">
 					<p className="text-4xl font-bold tracking-tight">$0.00</p>
-					<Badge
-						variant="outline"
-						className="gap-1.5 border-yellow-400 bg-yellow-50 text-yellow-600">
+					<Badge variant="outline" className="gap-1.5">
 						<span className="inline-block h-1.5 w-1.5 rounded-full bg-yellow-400" />
 						Pending Setup
 					</Badge>
@@ -923,7 +921,7 @@ function ScheduleCard() {
 // ──────────────────────────────────────────────
 export default function DashboardPage() {
 	return (
-		<div className="bg-muted/30 min-h-screen p-6">
+		<div className="min-h-screen bg-red-500 p-6">
 			<div className="mx-auto max-w-6xl space-y-6">
 				<h1 className="text-2xl font-bold tracking-tight">
 					Financial Dashboard

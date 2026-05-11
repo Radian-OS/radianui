@@ -3,7 +3,7 @@
 import React from "react"
 import { type ChevronProps, DayPicker } from "react-day-picker"
 import { cn } from "@/lib/utils"
-import { IconSlot } from "../icon-library"
+import { IconSlot } from "@/registry/icon-library"
 
 export type CalendarProps = React.ComponentProps<typeof DayPicker>
 

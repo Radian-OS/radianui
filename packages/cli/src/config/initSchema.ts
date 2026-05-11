@@ -1,5 +1,10 @@
 import { z } from "zod"
-import { STYLES, Style } from "@/registry/constants"
+import {
+	ICON_LIBRARIES,
+	IconLibrary,
+	STYLES,
+	Style,
+} from "@/registry/constants"
 import { type Preset } from "@/registry/schema"
 import { type FrameworkName } from "@/utils/frameworks"
 import { type Color, type Font } from "@/utils/registry"
@@ -20,6 +25,7 @@ export type PartialInitConfig = {
 	isExistingProject?: boolean
 	hasComponentsJson?: boolean
 	style?: Style
+	iconLibrary?: IconLibrary
 }
 
 /**
@@ -37,6 +43,7 @@ export const initConfigSchema = z.object({
 	isExistingProject: z.boolean(),
 	hasComponentsJson: z.boolean(),
 	style: z.enum(STYLES),
+	iconLibrary: z.enum(ICON_LIBRARIES.map((lib) => lib.value)),
 })
 
 export type InitConfig = z.infer<typeof initConfigSchema>

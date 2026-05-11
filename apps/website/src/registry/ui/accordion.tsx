@@ -4,7 +4,7 @@ import React from "react"
 import * as AccordionPrimitive from "@radix-ui/react-accordion"
 import { type VariantProps, cva } from "class-variance-authority"
 import { cn as classNames } from "@/lib/utils"
-import { IconSlot } from "../icon-library"
+import { IconSlot } from "@/registry/icon-library"
 
 export type AccordionContextType = {
 	size?: VariantProps<typeof accordionVariants>["size"]

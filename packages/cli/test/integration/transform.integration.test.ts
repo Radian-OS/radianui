@@ -5,6 +5,7 @@ import { transform } from "@/utils/transformers/transform"
 
 const config: RawConfig = {
 	$schema: "",
+	iconLibrary: "lucide",
 	aliases: {
 		components: "@/components",
 		utils: "@/lib/utils",

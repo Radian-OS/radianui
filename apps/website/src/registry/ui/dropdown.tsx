@@ -3,7 +3,7 @@
 import React from "react"
 import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu"
 import { cn } from "@/lib/utils"
-import { IconSlot } from "../icon-library"
+import { IconSlot } from "@/registry/icon-library"
 
 export type DropdownContextType = {
 	indicatorPosition?: "left" | "right"

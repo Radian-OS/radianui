@@ -9,6 +9,7 @@ import {
 	CommandSeparator as CmdkSeparator,
 } from "cmdk"
 import { cn } from "@/lib/utils"
+import { IconSlot } from "@/registry/icon-library"
 import {
 	Dialog,
 	DialogContent,
@@ -16,7 +17,6 @@ import {
 	DialogHeader,
 	DialogTitle,
 } from "@/registry/ui/dialog"
-import { IconSlot } from "../icon-library"
 
 type CommandProps = React.ComponentProps<typeof Cmdk>
 

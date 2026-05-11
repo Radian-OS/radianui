@@ -1,5 +1,5 @@
 import z from "zod"
-import { ICON_LIBRARIES } from "../lib/icon-libraries"
+import { ICON_LIBRARIES, IconLibrary } from "../lib/icon-libraries"
 import { FONTS } from "./fonts"
 import { PRIMARY_COLORS } from "./primary-colors"
 import { RADIUS } from "./radius"
@@ -12,6 +12,11 @@ const radiusValues = RADIUS.map((radius) => radius.value)
 const styleValues = STYLES.map((style) => style.value)
 
 const cssValueSchema = z.union([z.string(), z.record(z.string(), z.string())])
+
+const ICON_DEPENDENCIES: Record<IconLibrary, string[]> = {
+	lucide: ["lucide-react"],
+	hugeicons: ["@hugeicons/react", "@hugeicons/core-free-icons"],
+}
 
 export const registryConfigSchema = z.object({
 	name: z.string(),
@@ -315,7 +320,7 @@ export function buildRegistryConfig(config: ThemerConfig): RegistryConfig {
 		"class-variance-authority",
 		"tw-animate-css",
 		"radix-ui",
-		"lucide-react",
+		...ICON_DEPENDENCIES[config.iconLibrary],
 	]
 
 	const registryDependencies = ["button"]
@@ -380,8 +385,7 @@ export function buildRegistryConfig(config: ThemerConfig): RegistryConfig {
 		dependencies,
 		registryDependencies,
 		config: {
-			iconLibrary:
-				config.iconLibrary === "hugeicons" ? "hugeicons" : "lucide-react",
+			iconLibrary: config.iconLibrary,
 			template: config.template,
 			useSrcDir: config.useSrcDir,
 			style: config.style,

@@ -1,7 +1,11 @@
 import { SourceFile } from "ts-morph"
 import { RawConfig } from "@/utils/getConfig"
+import type { Transformer } from "@/utils/transformers/types"
 
-export function transformImport(sourceFile: SourceFile, config: RawConfig): string {
+export function transformImport(
+	sourceFile: SourceFile,
+	config: RawConfig
+): string {
 	if (![".tsx", ".ts", ".jsx", ".js"].includes(sourceFile.getExtension())) {
 		return sourceFile.getText()
 	}
@@ -9,7 +13,10 @@ export function transformImport(sourceFile: SourceFile, config: RawConfig): stri
 	const importDeclarations = sourceFile.getImportDeclarations()
 
 	for (const importDeclaration of importDeclarations) {
-		const moduleSpecifier = updateImportAliases(importDeclaration.getModuleSpecifierValue(), config)
+		const moduleSpecifier = updateImportAliases(
+			importDeclaration.getModuleSpecifierValue(),
+			config
+		)
 
 		importDeclaration.setModuleSpecifier(moduleSpecifier)
 
@@ -26,24 +33,50 @@ export function transformImport(sourceFile: SourceFile, config: RawConfig): stri
 	return sourceFile.getText()
 }
 
-function updateImportAliases(moduleSpecifier: string, config: RawConfig): string {
+export const transformImportTransformer: Transformer = {
+	name: "transform-import",
+	transform: ({ sourceFile, config }) => transformImport(sourceFile, config),
+}
+
+function updateImportAliases(
+	moduleSpecifier: string,
+	config: RawConfig
+): string {
 	if (moduleSpecifier.match(/^@\/styles\/[^\/]+\/ui/)) {
-		return moduleSpecifier.replace(/^@\/styles\/[^\/]+\/ui/, config.aliases.ui ?? `${config.aliases.components}/ui`)
+		return moduleSpecifier.replace(
+			/^@\/styles\/[^\/]+\/ui/,
+			config.aliases.ui ?? `${config.aliases.components}/ui`
+		)
 	}
 
-	if (config.aliases.components && moduleSpecifier.match(/^@\/registry\/components/)) {
-		return moduleSpecifier.replace(/^@\/registry\/components/, config.aliases.components)
+	if (
+		config.aliases.components &&
+		moduleSpecifier.match(/^@\/registry\/components/)
+	) {
+		return moduleSpecifier.replace(
+			/^@\/registry\/components/,
+			config.aliases.components
+		)
 	}
 
-	if (config.aliases.animated && moduleSpecifier.match(/^@\/registry\/animated/)) {
-		return moduleSpecifier.replace(/^@\/registry\/animated/, config.aliases.animated)
+	if (
+		config.aliases.animated &&
+		moduleSpecifier.match(/^@\/registry\/animated/)
+	) {
+		return moduleSpecifier.replace(
+			/^@\/registry\/animated/,
+			config.aliases.animated
+		)
 	}
 
 	if (config.aliases.lib && moduleSpecifier.match(/^@\/registry\/lib/)) {
 		return moduleSpecifier.replace(/^@\/registry\/lib/, config.aliases.lib)
 	}
 
-	if (config.aliases.hooks && moduleSpecifier.match(/^@\/registry\/(.+)\/hooks/)) {
+	if (
+		config.aliases.hooks &&
+		moduleSpecifier.match(/^@\/registry\/(.+)\/hooks/)
+	) {
 		return moduleSpecifier.replace(/^@\/registry\/hooks/, config.aliases.hooks)
 	}
 
@@ -51,8 +84,14 @@ function updateImportAliases(moduleSpecifier: string, config: RawConfig): string
 		return moduleSpecifier.replace(/^.\/components/, config.aliases.components)
 	}
 
-	if (config.aliases.components && moduleSpecifier.match(/^@\/app\/registry\/(.+)\/components/)) {
-		return moduleSpecifier.replace(/^@\/app\/registry\/(.+)\/components/, config.aliases.components)
+	if (
+		config.aliases.components &&
+		moduleSpecifier.match(/^@\/app\/registry\/(.+)\/components/)
+	) {
+		return moduleSpecifier.replace(
+			/^@\/app\/registry\/(.+)\/components/,
+			config.aliases.components
+		)
 	}
 
 	return moduleSpecifier

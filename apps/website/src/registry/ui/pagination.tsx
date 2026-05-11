@@ -1,6 +1,6 @@
 import * as React from "react"
 import { cn } from "@/lib/utils"
-import { IconSlot } from "../icon-library"
+import { IconSlot } from "@/registry/icon-library"
 
 export type PaginationProps = React.ComponentProps<"nav">
 export type PaginationContentProps = React.ComponentProps<"ul">

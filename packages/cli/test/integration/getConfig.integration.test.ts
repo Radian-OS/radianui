@@ -38,10 +38,11 @@ describe("integration > getConfig", () => {
 		})
 
 		it("createComponentsJson + getConfig round-trips with src=true", async () => {
-			await createComponentsJson(tempDir, true, "default")
+			await createComponentsJson(tempDir, true, "default", "lucide")
 			const config = await getConfig(tempDir)
 			expect(config.hasSrcDir).toBe(true)
 			expect(config.style).toBe("default")
+			expect(config.iconLibrary).toBe("lucide")
 			expect(config.aliases.components).toBe("@/components")
 			expect(config.aliases.utils).toBe("@/lib/utils")
 			expect(config.aliases.ui).toBe("@/components/ui")
@@ -51,10 +52,11 @@ describe("integration > getConfig", () => {
 		})
 
 		it("createComponentsJson + getConfig round-trips with src=false", async () => {
-			await createComponentsJson(tempDir, false, "default")
+			await createComponentsJson(tempDir, false, "default", "lucide")
 			const config = await getConfig(tempDir)
 			expect(config.hasSrcDir).toBe(false)
 			expect(config.style).toBe("default")
+			expect(config.iconLibrary).toBe("lucide")
 		})
 
 		it("getRawConfig returns null when no config is found", async () => {
