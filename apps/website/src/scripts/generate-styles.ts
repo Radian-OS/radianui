@@ -212,11 +212,7 @@ async function main() {
 			})
 
 			const outputPath = path.join(targetDir, componentFile)
-			const changed = await writeIfChanged(outputPath, transformed)
-
-			if (changed) {
-				console.log(`   ✅ Generated ${styleName}/ui/${componentFile}`)
-			}
+			await writeIfChanged(outputPath, transformed)
 		}
 	}
 

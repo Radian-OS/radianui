@@ -90,16 +90,18 @@ function cleanIconSlotImport(source: string): string {
 	// If <IconSlot is still used somewhere, leave the import alone
 	if (source.includes("<IconSlot")) return source
 
+	// Match any import that imports from a module path ending with /icon-library
+	// Capture the imports list and the module path so we can rebuild the import
 	return source.replace(
-		/^import\s+\{([^}]*)\}\s+from\s+"@\/styles\/icon-library"\n/gm,
-		(_, imports: string) => {
+		/^import\s+\{([^}]*)\}\s+from\s+(["'])([^"']*\/icon-library)\2\n/gm,
+		(_, imports: string, _quote: string, modulePath: string) => {
 			const remainingImports = imports
 				.split(",")
 				.map((s) => s.trim())
 				.filter((s) => s && s !== "IconSlot")
 
 			if (remainingImports.length === 0) return ""
-			return `import { ${remainingImports.join(", ")} } from "@/styles/icon-library"\n`
+			return `import { ${remainingImports.join(", ")} } from "${modulePath}"\n`
 		}
 	)
 }
@@ -134,7 +136,11 @@ function mergeLucideImports(source: string, iconNames: Set<string>): string {
 async function processFile(filePath: string): Promise<boolean> {
 	const source = await readFileIfExists(filePath)
 	if (!source) return false
-	if (!source.includes("<IconSlot")) return false
+
+	// Process if file has <IconSlot tags OR imports from any */icon-library (absolute or relative)
+	const hasIconSlotTags = source.includes("<IconSlot")
+	const hasIconSlotImports = /from\s+["'][^"']*\/icon-library["']/m.test(source)
+	if (!hasIconSlotTags && !hasIconSlotImports) return false
 
 	const isClientComponent =
 		source.trim().startsWith('"use client"') ||
@@ -195,11 +201,7 @@ async function main() {
 
 		for (const componentFile of componentFiles) {
 			const filePath = path.join(uiDir, componentFile)
-			const changed = await processFile(filePath)
-
-			if (changed) {
-				console.log(`   ✅ Updated ${styleName}/ui/${componentFile}`)
-			}
+			await processFile(filePath)
 		}
 	}
 
