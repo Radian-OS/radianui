@@ -97,7 +97,7 @@ function ThemerPage() {
 	}, [params.radius])
 
 	return (
-		<div className="flex h-screen w-full bg-red-500">
+		<div className="bg-fill2 flex h-screen w-full">
 			<ThemerSidebar
 				selectedComponent={selectedComponent}
 				setSelectedComponent={setSelectedComponent}
@@ -105,7 +105,7 @@ function ThemerPage() {
 
 			{/* Preview Area */}
 			<main className="flex flex-1 flex-col overflow-hidden p-5">
-				<div className="border-border flex flex-1 overflow-hidden rounded-xl border bg-red-500 shadow-sm">
+				<div className="border-border flex flex-1 overflow-hidden rounded-xl border shadow-sm">
 					<iframe ref={iframeRef} src={iframeSrc} className="h-full w-full" />
 				</div>
 			</main>
