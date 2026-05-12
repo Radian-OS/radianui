@@ -1,9 +1,10 @@
 import { z } from "zod"
-import { STYLES, Style } from "./constants"
+import { ICON_LIBRARIES, IconLibrary, STYLES, Style } from "./constants"
 
 export const rawConfigSchema = z.object({
 	$schema: z.string(),
 	style: z.enum(STYLES),
+	iconLibrary: z.enum(ICON_LIBRARIES.map((lib) => lib.value)),
 	hasSrcDir: z.coerce.boolean().default(false).optional(),
 	aliases: z.object({
 		components: z.string(),
@@ -80,7 +81,7 @@ export interface Preset {
 		dependencies: string[]
 		registryDependencies: string[]
 		config: {
-			iconLibrary: string
+			iconLibrary: IconLibrary
 			template: string
 			useSrcDir: boolean
 			style: Style

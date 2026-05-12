@@ -7,8 +7,14 @@ import {
 	COLORS,
 	DEFAULT_BRAND_COLOR,
 	DEFAULT_FONT,
+	DEFAULT_FRAMEWORK,
+	DEFAULT_ICON_LIBRARY,
 	DEFAULT_PROJECT_NAME,
+	DEFAULT_STYLE,
+	DEFAULT_USE_SRC_DIR,
 	FONTS,
+	ICON_LIBRARIES,
+	IconLibrary,
 	MAX_PROJECT_NAME_LENGTH,
 	STYLES,
 	Style,
@@ -33,11 +39,12 @@ export async function promptForMissing(
 		return {
 			cwd: partial.cwd,
 			projectName: (partial.projectName as string) ?? DEFAULT_PROJECT_NAME,
-			framework: partial.framework ?? "next-app",
-			useSrcDir: partial.useSrcDir ?? true,
+			framework: partial.framework ?? DEFAULT_FRAMEWORK,
+			useSrcDir: partial.useSrcDir ?? DEFAULT_USE_SRC_DIR,
 			brandColor: partial.brandColor ?? DEFAULT_BRAND_COLOR,
-			style: partial.style ?? "default",
+			style: partial.style ?? DEFAULT_STYLE,
 			font: partial.font ?? DEFAULT_FONT,
+			iconLibrary: partial.iconLibrary ?? DEFAULT_ICON_LIBRARY,
 			preset: partial.preset,
 			isExistingProject: partial.isExistingProject ?? false,
 			hasComponentsJson: partial.hasComponentsJson ?? false,
@@ -172,6 +179,28 @@ export async function promptForMissing(
 				).font
 	}
 
+	// Icon Library (skip if preset provides theme)
+	if (!config.iconLibary && !partial.preset) {
+		config.iconLibrary = opts.skipPrompts
+			? DEFAULT_ICON_LIBRARY
+			: (
+					await prompts(
+						{
+							type: "select",
+							name: "iconLibrary",
+							message:
+								"Which icon library would you like to use for your project?",
+							choices: ICON_LIBRARIES.map((lib) => ({
+								title: lib.title,
+								value: lib.value,
+							})),
+							initial: 0,
+						},
+						{ onCancel: () => handlePromptCancel() }
+					)
+				).iconLibrary
+	}
+
 	// Existing project CSS override warning (only when no preset)
 	if (partial.isExistingProject && !partial.preset) {
 		const confirmation = opts.skipPrompts
@@ -193,9 +222,10 @@ export async function promptForMissing(
 		projectName: config.projectName as string | undefined,
 		framework: config.framework as InitConfig["framework"],
 		useSrcDir: config.useSrcDir as boolean,
-		brandColor: (config.brandColor as string) ?? DEFAULT_BRAND_COLOR,
-		style: (config.style as Style) ?? "default",
-		font: (config.font as string) ?? DEFAULT_FONT,
+		brandColor: config.brandColor as string,
+		style: config.style as Style,
+		font: config.font as string,
+		iconLibrary: config.iconLibrary as IconLibrary,
 		preset: partial.preset,
 		isExistingProject: partial.isExistingProject ?? false,
 		hasComponentsJson: partial.hasComponentsJson ?? false,

@@ -3,6 +3,11 @@
 import { useEffect, useState } from "react"
 import { ChevronDown, MoonIcon, Palette, SunIcon, Type } from "lucide-react"
 import { useTheme } from "next-themes"
+import {
+	ICON_LIBRARIES,
+	ICON_LIBRARY_LABELS,
+	IconLibrary,
+} from "@/lib/icon-libraries"
 import { useThemerLocks } from "@/lib/themer-locks"
 import { useThemerPreset } from "@/lib/themer-preset"
 import { DEFAULT_CONFIG, PRESETS } from "@/registry/config"
@@ -243,6 +248,35 @@ export function ThemerSidebar({
 										value={name.toLowerCase().replace(/\s+/g, "-")}
 										onSelect={(e) => e.preventDefault()}>
 										{name}
+									</DropdownRadioItem>
+								))}
+							</DropdownRadioGroup>
+						</DropdownContent>
+					</Dropdown>
+				</div>
+
+				{/* Icon Library */}
+				<div className="flex flex-col gap-3">
+					<SectionLabel>Icons</SectionLabel>
+					<Dropdown>
+						<DropdownTrigger className="border-border hover:border-fg-disabled bg-elevation-level2 flex w-full items-center justify-between gap-2 rounded-lg border px-3 py-2 text-sm transition-colors">
+							<span className="text-fg font-medium">
+								{ICON_LIBRARY_LABELS[params.iconLibrary]}
+							</span>
+							<ChevronDown className="text-fg-tertiary size-3.5 shrink-0" />
+						</DropdownTrigger>
+						<DropdownContent side="left" className="max-h-96 w-56">
+							<DropdownRadioGroup
+								value={params.iconLibrary}
+								onValueChange={(value) =>
+									setParams({ iconLibrary: value as IconLibrary })
+								}>
+								{ICON_LIBRARIES.map((iconLibrary) => (
+									<DropdownRadioItem
+										key={iconLibrary}
+										value={iconLibrary}
+										onSelect={(e) => e.preventDefault()}>
+										{ICON_LIBRARY_LABELS[iconLibrary]}
 									</DropdownRadioItem>
 								))}
 							</DropdownRadioGroup>

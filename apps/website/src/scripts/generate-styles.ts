@@ -105,10 +105,14 @@ async function transformComponentFile({
 	styleMap,
 }: {
 	styleName: string
-	filePath: string // basename, e.g. "button.tsx"
+	filePath: string
 	source: string
 	styleMap: StyleMap
 }): Promise<string> {
+	const isClientComponent =
+		source.trim().startsWith('"use client"') ||
+		source.trim().startsWith("'use client'")
+
 	// transformStyle() replaces cn-* tokens with real Tailwind classes
 	let transformedContent = await transformStyle(source, { styleMap })
 
@@ -121,6 +125,18 @@ async function transformComponentFile({
 
 	// Format with prettier
 	transformedContent = await formatGeneratedSource(transformedContent, filePath)
+
+	// Ensure "use client" is at the very top if it was present
+	if (
+		isClientComponent &&
+		!transformedContent.trim().startsWith('"use client"')
+	) {
+		transformedContent = transformedContent.replace(
+			/^;?\(?["']use client["']\)?;?\s*/m,
+			""
+		)
+		transformedContent = `"use client"\n\n${transformedContent}`
+	}
 
 	return transformedContent
 }
@@ -196,11 +212,7 @@ async function main() {
 			})
 
 			const outputPath = path.join(targetDir, componentFile)
-			const changed = await writeIfChanged(outputPath, transformed)
-
-			if (changed) {
-				console.log(`   ✅ Generated ${styleName}/ui/${componentFile}`)
-			}
+			await writeIfChanged(outputPath, transformed)
 		}
 	}
 

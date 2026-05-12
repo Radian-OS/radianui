@@ -8,8 +8,19 @@
 		},
 		"style": {
 			"type": "string",
-			"enum": ["default", "sera"],
+			"enum": [
+				"default",
+				"sera"
+			],
 			"description": "Style of the components"
+		},
+		"iconLibrary": {
+			"type": "string",
+			"enum": [
+				"lucide",
+				"hugeicons"
+			],
+			"description": "Icon library used in the project"
 		},
 		"aliases": {
 			"type": "object",
@@ -34,12 +45,20 @@
 					"type": "string"
 				}
 			},
-			"required": ["utils", "components", "ui"]
+			"required": [
+				"utils",
+				"components",
+				"ui"
+			]
 		},
 		"hasSrcDir": {
 			"type": "boolean",
 			"description": "Whether the project uses a src directory."
 		}
 	},
-	"required": ["aliases", "hasSrcDir", "style"]
+	"required": [
+		"aliases",
+		"hasSrcDir",
+		"style"
+	]
 }

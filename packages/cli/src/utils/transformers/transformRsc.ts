@@ -1,9 +1,16 @@
 import { SourceFile, SyntaxKind } from "ts-morph"
 import { ProjectInfo } from "@/utils/getProjectInfo"
+import type { Transformer } from "@/utils/transformers/types"
 
 const directiveRegex = /^["']use client["'];?$/
 
-export const transformRsc = ({ sourceFile, projectInfo }: { sourceFile: SourceFile; projectInfo: ProjectInfo }): string => {
+export const transformRsc = ({
+	sourceFile,
+	projectInfo,
+}: {
+	sourceFile: SourceFile
+	projectInfo: ProjectInfo
+}): string => {
 	if (projectInfo.isRSC) {
 		return sourceFile.getFullText()
 	}
@@ -25,7 +32,9 @@ export const transformRsc = ({ sourceFile, projectInfo }: { sourceFile: SourceFi
 	}
 
 	// 3. Replace <Image /> with <img />
-	const imageJsx = sourceFile.getDescendantsOfKind(SyntaxKind.JsxSelfClosingElement)
+	const imageJsx = sourceFile.getDescendantsOfKind(
+		SyntaxKind.JsxSelfClosingElement
+	)
 	for (const node of imageJsx) {
 		if (node.getTagNameNode().getText() === "Image") {
 			node.replaceWithText((writer) => {
@@ -38,8 +47,12 @@ export const transformRsc = ({ sourceFile, projectInfo }: { sourceFile: SourceFi
 		}
 	}
 
-	const imageJsxOpen = sourceFile.getDescendantsOfKind(SyntaxKind.JsxOpeningElement)
-	const imageJsxClose = sourceFile.getDescendantsOfKind(SyntaxKind.JsxClosingElement)
+	const imageJsxOpen = sourceFile.getDescendantsOfKind(
+		SyntaxKind.JsxOpeningElement
+	)
+	const imageJsxClose = sourceFile.getDescendantsOfKind(
+		SyntaxKind.JsxClosingElement
+	)
 
 	for (const node of imageJsxOpen) {
 		if (node.getTagNameNode().getText() === "Image") {
@@ -53,9 +66,15 @@ export const transformRsc = ({ sourceFile, projectInfo }: { sourceFile: SourceFi
 	}
 
 	// 4. Replace <Link> with <a>
-	const linkJsxOpen = sourceFile.getDescendantsOfKind(SyntaxKind.JsxOpeningElement)
-	const linkJsxClose = sourceFile.getDescendantsOfKind(SyntaxKind.JsxClosingElement)
-	const linkJsxSelf = sourceFile.getDescendantsOfKind(SyntaxKind.JsxSelfClosingElement)
+	const linkJsxOpen = sourceFile.getDescendantsOfKind(
+		SyntaxKind.JsxOpeningElement
+	)
+	const linkJsxClose = sourceFile.getDescendantsOfKind(
+		SyntaxKind.JsxClosingElement
+	)
+	const linkJsxSelf = sourceFile.getDescendantsOfKind(
+		SyntaxKind.JsxSelfClosingElement
+	)
 
 	for (const node of linkJsxOpen) {
 		if (node.getTagNameNode().getText() === "Link") {
@@ -80,4 +99,14 @@ export const transformRsc = ({ sourceFile, projectInfo }: { sourceFile: SourceFi
 	}
 
 	return sourceFile.getFullText()
+}
+
+export const transformRscTransformer: Transformer = {
+	name: "transform-rsc",
+	enabled: ({ projectInfo }) => projectInfo.framework.name === "vite",
+	transform: ({ sourceFile, projectInfo }) =>
+		transformRsc({
+			sourceFile,
+			projectInfo,
+		}),
 }

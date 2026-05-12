@@ -3,6 +3,7 @@ import path from "path"
 import prompts from "prompts"
 import { addComponentsToProject } from "@/commands/add"
 import { type InitConfig } from "@/config/initSchema"
+import { ICON_DEPENDENCIES } from "@/registry/constants"
 import {
 	getTemplateForFramework,
 	resolveTemplate,
@@ -39,7 +40,12 @@ export async function executeInitFromConfig(config: InitConfig) {
 
 	// ── Step 2: Create components.json (if needed) ────────────────────────
 	if (!config.hasComponentsJson) {
-		await createComponentsJson(projectPath, config.useSrcDir, config.style)
+		await createComponentsJson(
+			projectPath,
+			config.useSrcDir,
+			config.style,
+			config.iconLibrary
+		)
 	}
 
 	// ── Step 3: Apply CSS ─────────────────────────────────────────────────
@@ -48,13 +54,19 @@ export async function executeInitFromConfig(config: InitConfig) {
 	configSpinner.succeed()
 
 	// ── Step 4: Install dependencies ──────────────────────────────────────
-	if (config.preset?.config.dependencies?.length) {
-		await installDependencies(
-			projectPath,
-			config.preset.config.dependencies,
-			"Installing preset dependencies"
-		)
-	}
+	const dependencies = config.preset?.config.dependencies?.length
+		? config.preset.config.dependencies
+		: [
+				"class-variance-authority",
+				"tw-animate-css",
+				"radix-ui",
+				...ICON_DEPENDENCIES[config.iconLibrary!],
+			]
+	await installDependencies(
+		projectPath,
+		dependencies,
+		"Installing dependencies"
+	)
 
 	// ── Step 5: Install components ────────────────────────────────────────
 	await installComponents(config, projectPath)

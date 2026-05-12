@@ -3,8 +3,8 @@
 import * as React from "react"
 import * as CheckboxPrimitive from "@radix-ui/react-checkbox"
 import { type VariantProps, cva } from "class-variance-authority"
-import { Check, Minus } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { IconSlot } from "@/registry/icon-library"
 
 type CheckboxProps = React.ComponentProps<typeof CheckboxPrimitive.Root> &
 	VariantProps<typeof checkboxVariants> & {
@@ -40,9 +40,12 @@ function Checkbox({ className, size, icon, ...props }: CheckboxProps) {
 				data-slot="checkbox-indicator"
 				className="cn-checkbox-indicator">
 				<div className="group-data-[state=indeterminate]:hidden">
-					{icon || <Check />}
+					{icon || <IconSlot slot="check" />}
 				</div>
-				<Minus className="hidden group-data-[state=indeterminate]:block" />
+				<IconSlot
+					slot="minus"
+					className="hidden group-data-[state=indeterminate]:block"
+				/>
 			</CheckboxPrimitive.Indicator>
 		</CheckboxPrimitive.Root>
 	)

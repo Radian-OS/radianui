@@ -7,6 +7,7 @@ import {
 	parseAsBoolean,
 	parseAsStringLiteral,
 } from "nuqs/server"
+import { ICON_LIBRARIES, IconLibrary } from "@/lib/icon-libraries"
 import { DEFAULT_CONFIG } from "@/registry/config"
 import { FONTS, FontValue } from "@/registry/fonts"
 import { PRIMARY_COLORS, PrimaryColorValue } from "@/registry/primary-colors"
@@ -38,6 +39,9 @@ const designSystemSearchParams = {
 	theme: parseAsStringLiteral<ThemeValue>(
 		THEMES.map((theme) => theme.value)
 	).withDefault(DEFAULT_CONFIG.theme),
+	iconLibrary: parseAsStringLiteral<IconLibrary>(ICON_LIBRARIES).withDefault(
+		DEFAULT_CONFIG.iconLibrary
+	),
 }
 
 export type DesignSystemSearchParams = inferParserType<
@@ -65,6 +69,7 @@ function resolvePresetParams(
 		style: searchParams.get("style") ?? rawParams.style,
 		useSrcDir: searchParams.get("useSrcDir") ?? rawParams.useSrcDir,
 		theme,
+		iconLibrary: searchParams.get("iconLibrary") ?? rawParams.iconLibrary,
 	} as DesignSystemSearchParams
 	return mergedParams
 }

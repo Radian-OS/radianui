@@ -80,6 +80,13 @@ function ThemerPage() {
 	}, [params.theme])
 
 	useEffect(() => {
+		postToIframe({
+			type: "icon-library-change",
+			iconLibrary: params.iconLibrary,
+		})
+	}, [params.iconLibrary])
+
+	useEffect(() => {
 		const iframe = iframeRef.current
 		if (!iframe?.contentWindow) return
 
@@ -90,7 +97,7 @@ function ThemerPage() {
 	}, [params.radius])
 
 	return (
-		<div className="bg-fill1 flex h-screen w-full">
+		<div className="bg-fill2 flex h-screen w-full">
 			<ThemerSidebar
 				selectedComponent={selectedComponent}
 				setSelectedComponent={setSelectedComponent}
@@ -98,7 +105,7 @@ function ThemerPage() {
 
 			{/* Preview Area */}
 			<main className="flex flex-1 flex-col overflow-hidden p-5">
-				<div className="border-border bg-elevation-level1 flex flex-1 overflow-hidden rounded-xl border shadow-sm">
+				<div className="border-border flex flex-1 overflow-hidden rounded-xl border shadow-sm">
 					<iframe ref={iframeRef} src={iframeSrc} className="h-full w-full" />
 				</div>
 			</main>

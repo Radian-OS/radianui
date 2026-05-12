@@ -2,10 +2,10 @@
 
 import { useRef, useState } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { EyeIcon, EyeOffIcon } from "lucide-react"
 import Link from "next/link"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
+import { IconSlot } from "@/registry/icon-library"
 import { Button } from "@/registry/ui/button"
 import { Divider } from "@/registry/ui/divider"
 import {
@@ -51,7 +51,7 @@ export default function Page() {
 		setShowPassword(!showPassword)
 	}
 
-	const IconComponent = showPassword ? EyeOffIcon : EyeIcon
+	const iconSlot = showPassword ? "eyeoff" : "eye"
 
 	const form = useForm<z.infer<typeof FormSchema>>({
 		resolver: zodResolver(FormSchema),
@@ -160,7 +160,8 @@ export default function Page() {
 													className="peer"
 													type={showPassword ? "text" : "password"}
 												/>
-												<IconComponent
+												<IconSlot
+													slot={iconSlot}
 													className="hover:text-fg peer-disabled:text-fg-disabled hidden cursor-pointer peer-focus:block peer-disabled:pointer-events-none"
 													onMouseDown={togglePasswordVisibility}
 												/>

@@ -4,6 +4,7 @@ import { useEffect, useLayoutEffect, useMemo, useState } from "react"
 import { useThemerPreset } from "@/lib/themer-preset"
 import { buildRegistryConfig } from "@/registry/config"
 import { FONTS } from "@/registry/fonts"
+import { IconLibraryProvider } from "@/registry/icon-library"
 import { RADIUS } from "@/registry/radius"
 
 const MANAGED_BODY_CLASS_PREFIXES = ["style-"] as const
@@ -160,6 +161,9 @@ export function PreviewClient({ children }: { children: React.ReactNode }) {
 			if (event.data.type === "theme-change") {
 				setParams({ theme: event.data.theme })
 			}
+			if (event.data.type === "icon-library-change") {
+				setParams({ iconLibrary: event.data.iconLibrary })
+			}
 		}
 
 		window.addEventListener("message", handleMessage)
@@ -171,5 +175,9 @@ export function PreviewClient({ children }: { children: React.ReactNode }) {
 
 	if (!isReady) return null
 
-	return children
+	return (
+		<IconLibraryProvider value={params.iconLibrary}>
+			{children}
+		</IconLibraryProvider>
+	)
 }

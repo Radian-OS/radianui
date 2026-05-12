@@ -1,19 +1,8 @@
 "use client"
 
 import { useState } from "react"
-import {
-	AlertCircle,
-	Eye,
-	EyeOff,
-	Lock,
-	LogOut,
-	Mail,
-	Plus,
-	Search,
-	Settings,
-	User,
-} from "lucide-react"
-import { Badge } from "@/registry/ui/badge"
+import { IconSlot } from "@/registry/icon-library"
+import { Badge, BadgeDot } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
 import {
 	Card,
@@ -41,7 +30,7 @@ import {
 	DropdownSubTrigger,
 	DropdownTrigger,
 } from "@/registry/ui/dropdown"
-import { Input } from "@/registry/ui/input"
+import { Input, InputWrapper } from "@/registry/ui/input"
 import { Label } from "@/registry/ui/label"
 import { Progress } from "@/registry/ui/progress"
 import { RadioGroup, RadioGroupItem } from "@/registry/ui/radio-group"
@@ -65,8 +54,6 @@ import { TextArea } from "@/registry/ui/text-area"
 export function InputShowcaseCard() {
 	const [showPassword, setShowPassword] = useState(false)
 	const [search, setSearch] = useState("")
-	const [email, setEmail] = useState("")
-	const hasError = email.length > 0 && !email.includes("@")
 
 	return (
 		<Card>
@@ -85,71 +72,56 @@ export function InputShowcaseCard() {
 				{/* With icon prefix */}
 				<div className="space-y-1.5">
 					<Label htmlFor="input-search">With icon</Label>
-					<div className="relative">
-						<Search className="text-muted-foreground absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2" />
+					<InputWrapper>
+						<IconSlot slot="search" className="text-fg-tertiary h-4 w-4" />
 						<Input
 							id="input-search"
-							className="pl-9"
 							placeholder="Search..."
 							value={search}
 							onChange={(e) => setSearch(e.target.value)}
 						/>
-					</div>
+					</InputWrapper>
 				</div>
 
 				{/* Password toggle */}
-				<div className="space-y-1.5">
+				<div className="w-full space-y-1.5">
 					<Label htmlFor="input-password">Password</Label>
-					<div className="relative">
-						<Lock className="text-muted-foreground absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2" />
+					<InputWrapper className="w-full">
+						<IconSlot slot="lock" className="text-fg-tertiary h-4 w-4" />
 						<Input
 							id="input-password"
 							type={showPassword ? "text" : "password"}
-							className="px-9"
 							placeholder="••••••••"
 						/>
 						<button
 							type="button"
 							onClick={() => setShowPassword((v) => !v)}
-							className="text-muted-foreground hover:text-foreground absolute right-3 top-1/2 -translate-y-1/2 transition-colors">
+							className="text-fg-tertiary hover:text-fg transition-colors">
 							{showPassword ? (
-								<EyeOff className="h-4 w-4" />
+								<IconSlot slot="eyeoff" className="h-4 w-4" />
 							) : (
-								<Eye className="h-4 w-4" />
+								<IconSlot slot="eye" className="h-4 w-4" />
 							)}
 						</button>
-					</div>
+					</InputWrapper>
 				</div>
 
 				{/* Error state */}
-				<div className="space-y-1.5">
-					<Label
-						htmlFor="input-email"
-						className={hasError ? "text-destructive" : ""}>
-						Email
-					</Label>
-					<div className="relative">
-						<Mail className="text-muted-foreground absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2" />
+				<div className="w-full space-y-1.5">
+					<Label htmlFor="input-email">Email</Label>
+					<InputWrapper className="w-full">
+						<IconSlot slot="mail" className="text-fg-tertiary h-4 w-4" />
 						<Input
-							id="input-email"
 							type="email"
-							className={`pl-9 ${hasError ? "border-destructive focus-visible:ring-destructive" : ""}`}
-							placeholder="you@example.com"
-							value={email}
-							onChange={(e) => setEmail(e.target.value)}
+							placeholder="info@radianos.com"
+							id="input-email"
 						/>
-					</div>
-					{hasError && (
-						<p className="text-destructive flex items-center gap-1.5 text-xs">
-							<AlertCircle className="h-3 w-3" />
-							Please enter a valid email address.
-						</p>
-					)}
+					</InputWrapper>
 				</div>
 
 				{/* Disabled */}
 				<div className="space-y-1.5">
-					<Label htmlFor="input-disabled" className="text-muted-foreground">
+					<Label htmlFor="input-disabled" className="text-fg-tertiary">
 						Disabled
 					</Label>
 					<Input id="input-disabled" placeholder="Not editable" disabled />
@@ -173,7 +145,7 @@ export function BadgeShowcaseCard() {
 			<CardContent className="space-y-5">
 				{/* Variants */}
 				<div className="space-y-2">
-					<p className="text-muted-foreground text-[10px] font-medium uppercase tracking-widest">
+					<p className="text-fg-tertiary text-[10px] font-medium uppercase tracking-widest">
 						Variants
 					</p>
 					<div className="flex flex-wrap gap-2">
@@ -187,37 +159,28 @@ export function BadgeShowcaseCard() {
 
 				{/* Semantic colors */}
 				<div className="space-y-2">
-					<p className="text-muted-foreground text-[10px] font-medium uppercase tracking-widest">
+					<p className="text-fg-tertiary text-[10px] font-medium uppercase tracking-widest">
 						Semantic
 					</p>
 					<div className="flex flex-wrap gap-2">
-						<Badge
-							variant="outline"
-							className="border-emerald-300 bg-emerald-50 text-emerald-700">
-							<span className="mr-1.5 inline-block h-1.5 w-1.5 rounded-full bg-emerald-500" />
+						<Badge variant="outline" color="success">
+							<BadgeDot />
 							Active
 						</Badge>
-						<Badge
-							variant="outline"
-							className="border-yellow-300 bg-yellow-50 text-yellow-700">
-							<span className="mr-1.5 inline-block h-1.5 w-1.5 rounded-full bg-yellow-500" />
+						<Badge variant="outline" color="warning">
+							<BadgeDot />
 							Pending
 						</Badge>
-						<Badge
-							variant="outline"
-							className="border-red-300 bg-red-50 text-red-700">
-							<span className="mr-1.5 inline-block h-1.5 w-1.5 rounded-full bg-red-500" />
+						<Badge variant="outline" color="error">
+							<BadgeDot />
 							Failed
 						</Badge>
-						<Badge
-							variant="outline"
-							className="border-blue-300 bg-blue-50 text-blue-700">
-							<span className="mr-1.5 inline-block h-1.5 w-1.5 rounded-full bg-blue-500" />
+						<Badge variant="outline" color="info">
+							<BadgeDot />
 							Info
 						</Badge>
-						<Badge
-							variant="outline"
-							className="border-zinc-300 bg-zinc-50 text-zinc-600">
+						<Badge variant="outline" color="neutral">
+							<BadgeDot />
 							Archived
 						</Badge>
 					</div>
@@ -227,26 +190,24 @@ export function BadgeShowcaseCard() {
 
 				{/* Sizes */}
 				<div className="space-y-2">
-					<p className="text-muted-foreground text-[10px] font-medium uppercase tracking-widest">
+					<p className="text-fg-tertiary text-[10px] font-medium uppercase tracking-widest">
 						In context
 					</p>
 					<div className="flex items-center gap-3">
 						<p className="text-sm font-medium">Invoice #1042</p>
-						<Badge variant="soft" className="text-[10px]">
+						<Badge variant="soft" size="20">
 							Paid
 						</Badge>
 					</div>
 					<div className="flex items-center gap-3">
 						<p className="text-sm font-medium">Deploy v2.4.1</p>
-						<Badge
-							variant="outline"
-							className="border-yellow-300 bg-yellow-50 text-[10px] text-yellow-700">
+						<Badge variant="outline" color="warning" size="20">
 							In Progress
 						</Badge>
 					</div>
 					<div className="flex items-center gap-3">
 						<p className="text-sm font-medium">Plan: Pro</p>
-						<Badge className="text-[10px]">Upgraded</Badge>
+						<Badge size="20">Upgraded</Badge>
 					</div>
 				</div>
 			</CardContent>
@@ -313,7 +274,7 @@ export function SelectShowcaseCard() {
 						</SelectContent>
 					</Select>
 					{timezone && (
-						<p className="text-muted-foreground text-xs">
+						<p className="text-fg-tertiary text-xs">
 							Selected: {timezone.toUpperCase()}
 						</p>
 					)}
@@ -337,7 +298,7 @@ export function SelectShowcaseCard() {
 
 				{/* Disabled */}
 				<div className="space-y-1.5">
-					<Label className="text-muted-foreground">Disabled</Label>
+					<Label className="text-fg-tertiary">Disabled</Label>
 					<Select disabled>
 						<SelectTrigger>
 							<SelectValue placeholder="Not available" />
@@ -393,9 +354,9 @@ export function TextAreaShowcaseCard() {
 							className={`text-xs tabular-nums ${
 								bio.length > MAX * 0.9
 									? bio.length >= MAX
-										? "text-destructive"
-										: "text-yellow-600"
-									: "text-muted-foreground"
+										? "text-error"
+										: "text-warning"
+									: "text-fg-tertiary"
 							}`}>
 							{bio.length} / {MAX}
 						</span>
@@ -411,17 +372,16 @@ export function TextAreaShowcaseCard() {
 						id="ta-error"
 						placeholder="Share your feedback..."
 						rows={2}
-						className="border-destructive focus-visible:ring-destructive"
 					/>
-					<p className="text-destructive flex items-center gap-1.5 text-xs">
-						<AlertCircle className="h-3 w-3" />
+					<p className="flex items-center gap-1.5 text-xs">
+						<IconSlot slot="alert" className="h-3 w-3" />
 						This field is required.
 					</p>
 				</div>
 
 				{/* Disabled */}
 				<div className="space-y-1.5">
-					<Label className="text-muted-foreground">Disabled</Label>
+					<Label className="text-fg-tertiary">Disabled</Label>
 					<TextArea
 						disabled
 						rows={2}
@@ -475,11 +435,11 @@ export function CheckboxShowcaseCard() {
 			<CardContent className="space-y-5">
 				{/* Select all with indeterminate */}
 				<div className="space-y-2">
-					<p className="text-muted-foreground text-[10px] font-medium uppercase tracking-widest">
+					<p className="text-fg-tertiary text-[10px] font-medium uppercase tracking-widest">
 						Group with select-all
 					</p>
 					<div className="divide-y overflow-hidden rounded-md border">
-						<label className="hover:bg-muted/40 flex cursor-pointer items-center gap-3 px-4 py-3 transition-colors">
+						<label className="hover:bg-fill1/40 flex cursor-pointer items-center gap-3 px-4 py-3 transition-colors">
 							<Checkbox
 								checked={
 									allChecked ? true : isIndeterminate ? "indeterminate" : false
@@ -493,7 +453,7 @@ export function CheckboxShowcaseCard() {
 						{(Object.keys(features) as (keyof typeof features)[]).map((key) => (
 							<label
 								key={key}
-								className="hover:bg-muted/40 flex cursor-pointer items-center gap-3 px-4 py-3 pl-7 transition-colors">
+								className="hover:bg-fill1/40 flex cursor-pointer items-center gap-3 px-4 py-3 pl-7 transition-colors">
 								<Checkbox
 									checked={features[key]}
 									onCheckedChange={() =>
@@ -512,7 +472,7 @@ export function CheckboxShowcaseCard() {
 
 				{/* Standalone */}
 				<div className="space-y-3">
-					<p className="text-muted-foreground text-[10px] font-medium uppercase tracking-widest">
+					<p className="text-fg-tertiary text-[10px] font-medium uppercase tracking-widest">
 						Standalone
 					</p>
 					<label className="flex cursor-pointer items-start gap-3">
@@ -526,7 +486,7 @@ export function CheckboxShowcaseCard() {
 							<p className="select-none text-sm font-medium leading-tight">
 								I agree to the Terms of Service
 							</p>
-							<p className="text-muted-foreground mt-0.5 select-none text-xs">
+							<p className="text-fg-tertiary mt-0.5 select-none text-xs">
 								By checking this box you accept our privacy policy and terms.
 							</p>
 						</div>
@@ -599,14 +559,12 @@ export function SwitchShowcaseCard() {
 					{items.map((item) => (
 						<div
 							key={item.key}
-							className="hover:bg-muted/40 flex items-center justify-between gap-4 px-4 py-3 transition-colors">
+							className="hover:bg-fill1/40 flex items-center justify-between gap-4 px-4 py-3 transition-colors">
 							<div>
 								<p className="text-sm font-medium leading-tight">
 									{item.label}
 								</p>
-								<p className="text-muted-foreground mt-0.5 text-xs">
-									{item.desc}
-								</p>
+								<p className="text-fg-tertiary mt-0.5 text-xs">{item.desc}</p>
 							</div>
 							<Switch
 								checked={settings[item.key]}
@@ -620,7 +578,7 @@ export function SwitchShowcaseCard() {
 
 				{/* Inline simple */}
 				<div className="space-y-2">
-					<p className="text-muted-foreground text-[10px] font-medium uppercase tracking-widest">
+					<p className="text-fg-tertiary text-[10px] font-medium uppercase tracking-widest">
 						Inline & disabled
 					</p>
 					<div className="flex items-center gap-3">
@@ -685,7 +643,7 @@ export function RadioGroupShowcaseCard() {
 			<CardContent className="space-y-6">
 				{/* Card-style */}
 				<div className="space-y-2">
-					<p className="text-muted-foreground text-[10px] font-medium uppercase tracking-widest">
+					<p className="text-fg-tertiary text-[10px] font-medium uppercase tracking-widest">
 						Card style
 					</p>
 					<RadioGroup
@@ -698,7 +656,7 @@ export function RadioGroupShowcaseCard() {
 								className={`cursor-pointer p-0 transition-colors ${
 									plan === p.value
 										? "border-primary bg-primary/5"
-										: "hover:bg-muted/40"
+										: "hover:bg-fill1/40"
 								}`}>
 								<Label
 									htmlFor={`plan-${p.value}`}
@@ -708,7 +666,7 @@ export function RadioGroupShowcaseCard() {
 										<span className="text-sm font-semibold">{p.label}</span>
 									</div>
 									<p className="pl-6 text-[11px] font-bold">{p.price}</p>
-									<p className="text-muted-foreground pl-6 text-[10px] leading-tight">
+									<p className="text-fg-tertiary pl-6 text-[10px] leading-tight">
 										{p.desc}
 									</p>
 								</Label>
@@ -721,7 +679,7 @@ export function RadioGroupShowcaseCard() {
 
 				{/* Vertical list */}
 				<div className="space-y-2">
-					<p className="text-muted-foreground text-[10px] font-medium uppercase tracking-widest">
+					<p className="text-fg-tertiary text-[10px] font-medium uppercase tracking-widest">
 						Vertical list
 					</p>
 					<RadioGroup
@@ -732,7 +690,7 @@ export function RadioGroupShowcaseCard() {
 							<label
 								key={opt.value}
 								htmlFor={`del-${opt.value}`}
-								className="hover:bg-muted/40 flex cursor-pointer items-center gap-3 rounded-md px-3 py-2.5 transition-colors">
+								className="hover:bg-fill1/40 flex cursor-pointer items-center gap-3 rounded-md px-3 py-2.5 transition-colors">
 								<RadioGroupItem id={`del-${opt.value}`} value={opt.value} />
 								<span className="select-none text-sm">{opt.label}</span>
 							</label>
@@ -776,7 +734,7 @@ export function SliderShowcaseCard() {
 						onValueChange={setVolume}>
 						<SliderThumb />
 					</Slider>
-					<div className="text-muted-foreground flex justify-between text-xs">
+					<div className="text-fg-tertiary flex justify-between text-xs">
 						<span>Mute</span>
 						<span>Max</span>
 					</div>
@@ -801,7 +759,7 @@ export function SliderShowcaseCard() {
 						<SliderThumb />
 						<SliderThumb />
 					</Slider>
-					<div className="text-muted-foreground flex justify-between text-xs">
+					<div className="text-fg-tertiary flex justify-between text-xs">
 						<span>$0</span>
 						<span>$1,000</span>
 					</div>
@@ -825,7 +783,7 @@ export function SliderShowcaseCard() {
 						onValueChange={setOpacity}>
 						<SliderThumb />
 					</Slider>
-					<div className="text-muted-foreground flex justify-between text-xs">
+					<div className="text-fg-tertiary flex justify-between text-xs">
 						{[0, 25, 50, 75, 100].map((v) => (
 							<span key={v}>{v}</span>
 						))}
@@ -836,7 +794,7 @@ export function SliderShowcaseCard() {
 
 				{/* Disabled */}
 				<div className="space-y-3 opacity-50">
-					<Label className="text-muted-foreground">Disabled</Label>
+					<Label className="text-fg-tertiary">Disabled</Label>
 					<Slider min={0} max={100} step={1} value={[40]} disabled>
 						<SliderThumb />
 					</Slider>
@@ -851,10 +809,10 @@ export function SliderShowcaseCard() {
 // ──────────────────────────────────────────────
 export function ProgressShowcaseCard() {
 	const tasks = [
-		{ label: "Design", value: 100, color: "bg-emerald-500" },
-		{ label: "Development", value: 68, color: "bg-blue-500" },
-		{ label: "QA Testing", value: 35, color: "bg-yellow-500" },
-		{ label: "Deployment", value: 10, color: "bg-red-400" },
+		{ label: "Design", value: 100 },
+		{ label: "Development", value: 68 },
+		{ label: "QA Testing", value: 35 },
+		{ label: "Deployment", value: 10 },
 	]
 
 	return (
@@ -867,12 +825,12 @@ export function ProgressShowcaseCard() {
 			<CardContent className="space-y-6">
 				{/* Default */}
 				<div className="space-y-2">
-					<p className="text-muted-foreground text-[10px] font-medium uppercase tracking-widest">
+					<p className="text-fg-tertiary text-[10px] font-medium uppercase tracking-widest">
 						Default
 					</p>
 					<div className="space-y-1.5">
 						<div className="flex justify-between text-xs">
-							<span className="text-muted-foreground">Overall completion</span>
+							<span className="text-fg-tertiary">Overall completion</span>
 							<span className="font-semibold">53%</span>
 						</div>
 						<Progress value={53} />
@@ -883,13 +841,13 @@ export function ProgressShowcaseCard() {
 
 				{/* Colored per task */}
 				<div className="space-y-3">
-					<p className="text-muted-foreground text-[10px] font-medium uppercase tracking-widest">
+					<p className="text-fg-tertiary text-[10px] font-medium uppercase tracking-widest">
 						Task breakdown
 					</p>
 					{tasks.map((t) => (
 						<div key={t.label} className="space-y-1.5">
 							<div className="flex justify-between text-xs">
-								<span className="text-muted-foreground">{t.label}</span>
+								<span className="text-fg-tertiary">{t.label}</span>
 								<span className="font-semibold">{t.value}%</span>
 							</div>
 							<Progress value={t.value} className="h-1.5" />
@@ -901,7 +859,7 @@ export function ProgressShowcaseCard() {
 
 				{/* Sizes */}
 				<div className="space-y-3">
-					<p className="text-muted-foreground text-[10px] font-medium uppercase tracking-widest">
+					<p className="text-fg-tertiary text-[10px] font-medium uppercase tracking-widest">
 						Sizes
 					</p>
 					<Progress value={60} className="h-1" />
@@ -914,14 +872,12 @@ export function ProgressShowcaseCard() {
 
 				{/* Empty and full */}
 				<div className="space-y-2">
-					<p className="text-muted-foreground text-[10px] font-medium uppercase tracking-widest">
+					<p className="text-fg-tertiary text-[10px] font-medium uppercase tracking-widest">
 						Edge cases
 					</p>
 					<div className="flex items-center gap-3">
 						<Progress value={0} className="flex-1" />
-						<span className="text-muted-foreground w-8 text-right text-xs">
-							0%
-						</span>
+						<span className="text-fg-tertiary w-8 text-right text-xs">0%</span>
 					</div>
 					<div className="flex items-center gap-3">
 						<Progress value={100} className="flex-1" />
@@ -944,10 +900,10 @@ const SCROLL_ITEMS = Array.from({ length: 20 }, (_, i) => ({
 }))
 
 const statusColor: Record<string, string> = {
-	Approved: "text-emerald-600",
-	Pending: "text-yellow-600",
-	Rejected: "text-red-500",
-	"In Review": "text-blue-600",
+	Approved: "text-success",
+	Pending: "text-warning",
+	Rejected: "text-error",
+	"In Review": "text-info",
 }
 
 export function ScrollAreaShowcaseCard() {
@@ -963,7 +919,7 @@ export function ScrollAreaShowcaseCard() {
 			<CardContent className="space-y-5">
 				{/* Vertical */}
 				<div className="space-y-2">
-					<p className="text-muted-foreground text-[10px] font-medium uppercase tracking-widest">
+					<p className="text-fg-tertiary text-[10px] font-medium uppercase tracking-widest">
 						Vertical — 20 items
 					</p>
 					<ScrollArea className="h-52 rounded-md border">
@@ -992,7 +948,7 @@ export function ScrollAreaShowcaseCard() {
 
 				{/* Horizontal */}
 				<div className="space-y-2">
-					<p className="text-muted-foreground text-[10px] font-medium uppercase tracking-widest">
+					<p className="text-fg-tertiary text-[10px] font-medium uppercase tracking-widest">
 						Horizontal — wide content
 					</p>
 					<ScrollArea className="rounded-md border">
@@ -1013,8 +969,8 @@ export function ScrollAreaShowcaseCard() {
 							].map((month, i) => (
 								<div
 									key={month}
-									className="bg-muted flex h-20 w-20 shrink-0 flex-col items-center justify-center rounded-lg">
-									<span className="text-muted-foreground text-xs">{month}</span>
+									className="bg-fill1 flex h-20 w-20 shrink-0 flex-col items-center justify-center rounded-lg">
+									<span className="text-fg-tertiary text-xs">{month}</span>
 									<span className="text-lg font-bold">{(i + 1) * 8}%</span>
 								</div>
 							))}
@@ -1040,7 +996,7 @@ export function DividerShowcaseCard() {
 			<CardContent className="space-y-6">
 				{/* Plain */}
 				<div className="space-y-2">
-					<p className="text-muted-foreground text-[10px] font-medium uppercase tracking-widest">
+					<p className="text-fg-tertiary text-[10px] font-medium uppercase tracking-widest">
 						Plain
 					</p>
 					<div className="space-y-3">
@@ -1052,14 +1008,14 @@ export function DividerShowcaseCard() {
 
 				{/* With label */}
 				<div className="space-y-2">
-					<p className="text-muted-foreground text-[10px] font-medium uppercase tracking-widest">
+					<p className="text-fg-tertiary text-[10px] font-medium uppercase tracking-widest">
 						With label
 					</p>
 					<div className="space-y-3">
 						<p className="text-sm">Primary login</p>
 						<div className="relative flex items-center">
 							<Divider className="flex-1" />
-							<span className="text-muted-foreground bg-card mx-3 shrink-0 text-xs">
+							<span className="text-fg-tertiary bg-card mx-3 shrink-0 text-xs">
 								or
 							</span>
 							<Divider className="flex-1" />
@@ -1072,20 +1028,20 @@ export function DividerShowcaseCard() {
 
 				{/* In a summary breakdown */}
 				<div className="space-y-2">
-					<p className="text-muted-foreground text-[10px] font-medium uppercase tracking-widest">
+					<p className="text-fg-tertiary text-[10px] font-medium uppercase tracking-widest">
 						Order summary
 					</p>
 					<div className="space-y-2 text-sm">
 						<div className="flex justify-between">
-							<span className="text-muted-foreground">Subtotal</span>
+							<span className="text-fg-tertiary">Subtotal</span>
 							<span>$240.00</span>
 						</div>
 						<div className="flex justify-between">
-							<span className="text-muted-foreground">Shipping</span>
+							<span className="text-fg-tertiary">Shipping</span>
 							<span>$12.00</span>
 						</div>
 						<div className="flex justify-between">
-							<span className="text-muted-foreground">Tax</span>
+							<span className="text-fg-tertiary">Tax</span>
 							<span>$19.20</span>
 						</div>
 						<Divider />
@@ -1121,23 +1077,23 @@ export function DropdownShowcaseCard() {
 					<Dropdown>
 						<DropdownTrigger asChild>
 							<Button variant="smooth">
-								Open Menu <Settings className="ml-2 h-4 w-4" />
+								Open Menu <IconSlot slot="setting" className="ml-2 h-4 w-4" />
 							</Button>
 						</DropdownTrigger>
 						<DropdownContent className="w-80">
 							<DropdownLabel>My Account</DropdownLabel>
 							<DropdownItem>
-								<User className="mr-2 h-4 w-4" />
+								<IconSlot slot="user" className="mr-2 h-4 w-4" />
 								<span>Profile</span>
 								<DropdownShortcut>⇧⌘P</DropdownShortcut>
 							</DropdownItem>
 							<DropdownItem>
-								<Mail className="mr-2 h-4 w-4" />
+								<IconSlot slot="mail" className="mr-2 h-4 w-4" />
 								<span>Billing</span>
 								<DropdownShortcut>⌘B</DropdownShortcut>
 							</DropdownItem>
 							<DropdownItem>
-								<Settings className="mr-2 h-4 w-4" />
+								<IconSlot slot="setting" className="mr-2 h-4 w-4" />
 								<span>Settings</span>
 								<DropdownShortcut>⌘S</DropdownShortcut>
 							</DropdownItem>
@@ -1146,22 +1102,22 @@ export function DropdownShowcaseCard() {
 
 							<DropdownSub>
 								<DropdownSubTrigger>
-									<User className="mr-2 h-4 w-4" />
+									<IconSlot slot="user" className="mr-2 h-4 w-4" />
 									<span>Invite users</span>
 								</DropdownSubTrigger>
 								<DropdownPortal>
 									<DropdownSubContent>
 										<DropdownItem>
-											<Mail className="mr-2 h-4 w-4" />
+											<IconSlot slot="mail" className="mr-2 h-4 w-4" />
 											<span>Email</span>
 										</DropdownItem>
 										<DropdownItem>
-											<Mail className="mr-2 h-4 w-4" />
+											<IconSlot slot="mail" className="mr-2 h-4 w-4" />
 											<span>Message</span>
 										</DropdownItem>
 										<DropdownDivider />
 										<DropdownItem>
-											<Plus className="mr-2 h-4 w-4" />
+											<IconSlot slot="plus" className="mr-2 h-4 w-4" />
 											<span>More...</span>
 										</DropdownItem>
 									</DropdownSubContent>
@@ -1187,8 +1143,8 @@ export function DropdownShowcaseCard() {
 
 							<DropdownDivider />
 
-							<DropdownItem className="text-red-500 focus:bg-red-50 focus:text-red-600">
-								<LogOut className="mr-2 h-4 w-4" />
+							<DropdownItem className="text-error">
+								<IconSlot slot="logout" className="mr-2 h-4 w-4" />
 								<span>Log out</span>
 								<DropdownShortcut>⇧⌘Q</DropdownShortcut>
 							</DropdownItem>
@@ -1205,13 +1161,13 @@ export function DropdownShowcaseCard() {
 // ──────────────────────────────────────────────
 export default function ShowcasePage() {
 	return (
-		<div className="bg-muted/30 min-h-screen p-6">
+		<div className="bg-elevation-negative min-h-screen p-6">
 			<div className="mx-auto max-w-6xl space-y-6">
 				<div>
 					<h1 className="text-2xl font-bold tracking-tight">
 						Component Showcase
 					</h1>
-					<p className="text-muted-foreground mt-1 text-sm">
+					<p className="text-fg-tertiary mt-1 text-sm">
 						All missing components — each in a dedicated card.
 					</p>
 				</div>

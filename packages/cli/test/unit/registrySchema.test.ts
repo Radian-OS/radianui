@@ -11,11 +11,13 @@ describe("rawConfigSchema", () => {
 			$schema: "https://radianos.com/schema.json",
 			style: "default",
 			aliases: { components: "@/components", utils: "@/lib/utils" },
+			iconLibrary: "lucide",
 		})
 		expect(parsed.aliases.components).toBe("@/components")
 		expect(parsed.aliases.utils).toBe("@/lib/utils")
 		expect(parsed.hasSrcDir).toBe(false)
 		expect(parsed.style).toBe("default")
+		expect(parsed.iconLibrary).toBe("lucide")
 	})
 
 	it("coerces hasSrcDir to a boolean", () => {
@@ -24,6 +26,7 @@ describe("rawConfigSchema", () => {
 			style: "default",
 			aliases: { components: "@/components", utils: "@/lib/utils" },
 			hasSrcDir: "true",
+			iconLibrary: "lucide",
 		})
 		expect(parsed.hasSrcDir).toBe(true)
 	})

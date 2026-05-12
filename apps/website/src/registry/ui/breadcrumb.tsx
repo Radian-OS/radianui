@@ -1,7 +1,7 @@
 import * as React from "react"
 import * as SlotPrimitive from "@radix-ui/react-slot"
-import { ChevronRight, MoreHorizontal } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { IconSlot } from "@/registry/icon-library"
 
 export type BreadcrumbType = React.ComponentProps<"nav"> & {
 	separator?: React.ReactNode
@@ -83,7 +83,7 @@ function BreadcrumbSeparator({
 			aria-hidden="true"
 			className={cn("cn-breadcrumb-separator", className)}
 			{...props}>
-			{children ?? <ChevronRight className="rtl:rotate-180" />}
+			{children ?? <IconSlot slot="right" className="rtl:rotate-180" />}
 		</li>
 	)
 }
@@ -97,7 +97,7 @@ function BreadcrumbEllipsis({ className, ...props }: BreadcrumbEllipsisType) {
 			aria-hidden="true"
 			className={cn("flex size-9 items-center justify-center", className)}
 			{...props}>
-			<MoreHorizontal className="size-4" />
+			<IconSlot slot="threeDot" className="size-4" />
 			<span className="sr-only">More</span>
 		</span>
 	)

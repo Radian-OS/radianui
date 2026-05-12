@@ -7,7 +7,7 @@ import { type Style } from "@/registry/constants"
 import { handleError } from "@/utils/handleError"
 import { spinner } from "@/utils/spinner"
 import { RawConfig } from "./getConfig"
-import { ProjectInfo } from "./getProjectInfo"
+import { IconMapping } from "./transformers/transformIcon"
 
 const stripTrailingSlash = (url: string) => url.replace(/\/+$/, "")
 
@@ -287,4 +287,10 @@ export async function resolveComponents(
 		(component, index, self) =>
 			self.findIndex((c) => c.name === component.name) === index
 	)
+}
+
+export async function fetchIconMappings(): Promise<IconMapping[]> {
+	const res = await fetch(new URL("/r/icon/icon.json", WEBSITE_URL).toString())
+	if (!res.ok) throw new Error(`Failed to fetch icon mappings: ${res.status}`)
+	return res.json() as Promise<IconMapping[]>
 }

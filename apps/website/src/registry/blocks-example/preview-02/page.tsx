@@ -1,17 +1,9 @@
 "use client"
 
 import { useState } from "react"
-import {
-	Car,
-	Coffee,
-	CreditCard,
-	Plus,
-	ShoppingCart,
-	Tv,
-	X,
-} from "lucide-react"
 import { cn } from "@/lib/utils"
-import { Badge } from "@/registry/ui/badge"
+import { IconSlot } from "@/registry/icon-library"
+import { Badge, BadgeDot } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
 import { Calendar } from "@/registry/ui/calendar"
 import {
@@ -71,7 +63,7 @@ function ContributionHistoryCard() {
 							className="bg-foreground/80 w-full rounded-sm"
 							style={{ height: `${m.value}%` }}
 						/>
-						<span className="text-muted-foreground text-[10px]">{m.label}</span>
+						<span className="text-fg-tertiary text-[10px]">{m.label}</span>
 					</div>
 				))}
 			</CardContent>
@@ -80,18 +72,18 @@ function ContributionHistoryCard() {
 
 			<CardContent className="grid grid-cols-2 gap-4 pt-0">
 				<div>
-					<p className="text-muted-foreground mb-0.5 text-[10px] uppercase tracking-widest">
+					<p className="text-fg-tertiary mb-0.5 text-[10px] uppercase tracking-widest">
 						Upcoming
 					</p>
 					<p className="text-sm font-bold">May 25, 2024</p>
-					<p className="text-muted-foreground text-xs">$1,000 scheduled</p>
+					<p className="text-fg-tertiary text-xs">$1,000 scheduled</p>
 				</div>
 				<div>
-					<p className="text-muted-foreground mb-0.5 text-[10px] uppercase tracking-widest">
+					<p className="text-fg-tertiary mb-0.5 text-[10px] uppercase tracking-widest">
 						Auto-Save Plan
 					</p>
 					<p className="text-sm font-bold">Accelerated</p>
-					<p className="text-muted-foreground text-xs">Recurring weekly</p>
+					<p className="text-fg-tertiary text-xs">Recurring weekly</p>
 				</div>
 			</CardContent>
 
@@ -112,8 +104,8 @@ function PayoutThresholdCard() {
 
 	return (
 		<Card className="relative">
-			<button className="text-muted-foreground hover:text-foreground absolute right-4 top-4 transition-colors">
-				<X className="h-4 w-4" />
+			<button className="text-fg-tertiary hover:text-fg absolute right-4 top-4 transition-colors">
+				<IconSlot slot="cross" className="h-4 w-4" />
 			</button>
 
 			<CardHeader className="pr-10">
@@ -154,7 +146,7 @@ function PayoutThresholdCard() {
 						value={amount}
 						onValueChange={setAmount}
 					/>
-					<div className="text-muted-foreground flex justify-between text-xs">
+					<div className="text-fg-tertiary flex justify-between text-xs">
 						<span>$50 (MIN)</span>
 						<span>$10,000 (MAX)</span>
 					</div>
@@ -213,21 +205,21 @@ function SavingsTargetsCard() {
 			<CardContent className="space-y-6">
 				{targets.map((t) => (
 					<div key={t.label} className="space-y-2">
-						<p className="text-muted-foreground text-[10px] font-medium uppercase tracking-widest">
+						<p className="text-fg-tertiary text-[10px] font-medium uppercase tracking-widest">
 							{t.label}
 						</p>
 						<p className="text-3xl font-bold tracking-tight">
 							${t.goal.toLocaleString()}
 						</p>
 						<Progress value={t.pct} className="h-1.5" />
-						<div className="text-muted-foreground flex justify-between text-xs">
+						<div className="text-fg-tertiary flex justify-between text-xs">
 							<span>{t.pct}% achieved</span>
 							<span>${t.achieved.toLocaleString()}</span>
 						</div>
 					</div>
 				))}
 
-				<p className="text-muted-foreground border-t pt-4 text-xs">
+				<p className="text-fg-tertiary border-t pt-4 text-xs">
 					You have not met your targets for this year.
 				</p>
 			</CardContent>
@@ -253,7 +245,7 @@ function BuyInvestmentCard() {
 				<div className="space-y-1.5">
 					<Label htmlFor="invest-amount">Amount to Invest</Label>
 					<div className="relative">
-						<span className="text-muted-foreground absolute left-3 top-1/2 -translate-y-1/2 text-sm">
+						<span className="text-fg-tertiary absolute left-3 top-1/2 -translate-y-1/2 text-sm">
 							$
 						</span>
 						<Input
@@ -270,7 +262,7 @@ function BuyInvestmentCard() {
 					<Card className="px-2 py-2">
 						<CardContent className="space-y-2 px-1">
 							<p className="text-sm font-medium">Market Order</p>
-							<p className="text-muted-foreground mt-0.5 text-xs">
+							<p className="text-fg-tertiary mt-0.5 text-xs">
 								Market orders execute at the current price.
 							</p>
 						</CardContent>
@@ -279,13 +271,11 @@ function BuyInvestmentCard() {
 
 				<div className="grid grid-cols-2 gap-3 text-sm">
 					<div>
-						<p className="text-muted-foreground mb-0.5 text-xs">
-							Estimated Shares
-						</p>
+						<p className="text-fg-tertiary mb-0.5 text-xs">Estimated Shares</p>
 						<p className="font-semibold">—</p>
 					</div>
 					<div>
-						<p className="text-muted-foreground mb-0.5 text-xs">Buying Power</p>
+						<p className="text-fg-tertiary mb-0.5 text-xs">Buying Power</p>
 						<p className="font-semibold">—</p>
 					</div>
 				</div>
@@ -293,7 +283,7 @@ function BuyInvestmentCard() {
 
 			<CardFooter className="flex-col gap-2">
 				<Button className="w-full">Review Order</Button>
-				<p className="text-muted-foreground text-center text-[10px]">
+				<p className="text-fg-tertiary text-center text-[10px]">
 					Trades are typically executed within market hours.
 				</p>
 			</CardFooter>
@@ -308,12 +298,12 @@ function DistributeTrackCard() {
 	return (
 		<Card className="flex flex-col items-center text-center">
 			<CardContent className="flex flex-col items-center gap-3 pb-4 pt-8">
-				<div className="border-muted-foreground/40 flex h-10 w-10 items-center justify-center rounded-full border-2 border-dashed">
-					<Plus className="text-muted-foreground h-5 w-5" />
+				<div className="border-border flex h-10 w-10 items-center justify-center rounded-full border-2 border-dashed">
+					<IconSlot slot="plus" className="text-fg-tertiary h-5 w-5" />
 				</div>
 				<div>
 					<p className="text-sm font-semibold">Distribute Track</p>
-					<p className="text-muted-foreground mt-1 text-xs">
+					<p className="text-fg-tertiary mt-1 text-xs">
 						Upload your first master to start reaching listeners on Spotify,
 						Apple Music, and more.
 					</p>
@@ -336,10 +326,8 @@ function ClaimableBalanceCard() {
 				<CardDescription>Claimable Balance</CardDescription>
 				<div className="mt-1 flex items-center gap-3">
 					<p className="text-4xl font-bold tracking-tight">$0.00</p>
-					<Badge
-						variant="outline"
-						className="gap-1.5 border-yellow-400 bg-yellow-50 text-yellow-600">
-						<span className="inline-block h-1.5 w-1.5 rounded-full bg-yellow-400" />
+					<Badge variant="outline">
+						<BadgeDot />
 						Pending Setup
 					</Badge>
 				</div>
@@ -352,7 +340,7 @@ function ClaimableBalanceCard() {
 					{ label: "Processing Fee", value: "-$0.00", positive: false },
 				].map((row) => (
 					<div key={row.label} className="flex justify-between text-sm">
-						<span className="text-muted-foreground">{row.label}</span>
+						<span className="text-fg-tertiary">{row.label}</span>
 						<span>{row.value}</span>
 					</div>
 				))}
@@ -361,7 +349,7 @@ function ClaimableBalanceCard() {
 					<span>Total Ready to Claim</span>
 					<span>$0.00 USD</span>
 				</div>
-				<p className="text-muted-foreground pt-2 text-xs">
+				<p className="text-fg-tertiary pt-2 text-xs">
 					Once your bank is connected, balances over $10.00 are automatically
 					eligible for monthly payouts.
 				</p>
@@ -375,7 +363,7 @@ function ClaimableBalanceCard() {
 // ──────────────────────────────────────────────
 const transactions = [
 	{
-		icon: Coffee,
+		icon: "coffee",
 		name: "Blue Bottle Coffee",
 		category: "Food & Drink",
 		date: "Today, 10:24 AM",
@@ -383,7 +371,7 @@ const transactions = [
 		positive: false,
 	},
 	{
-		icon: ShoppingCart,
+		icon: "cart",
 		name: "Whole Foods Market",
 		category: "Groceries",
 		date: "Yesterday",
@@ -391,7 +379,7 @@ const transactions = [
 		positive: false,
 	},
 	{
-		icon: CreditCard,
+		icon: "card",
 		name: "Stripe Payout",
 		category: "Income",
 		date: "Oct 12",
@@ -399,7 +387,7 @@ const transactions = [
 		positive: true,
 	},
 	{
-		icon: Car,
+		icon: "car",
 		name: "Uber Technologies",
 		category: "Transport",
 		date: "Oct 11",
@@ -407,7 +395,7 @@ const transactions = [
 		positive: false,
 	},
 	{
-		icon: Tv,
+		icon: "coffee",
 		name: "Netflix Subscription",
 		category: "Entertainment",
 		date: "Oct 10",
@@ -431,19 +419,22 @@ function RecentTransactionsCard() {
 					<div className="divide-y">
 						{transactions.map((tx) => (
 							<div key={tx.name} className="flex items-center gap-3 px-6 py-3">
-								<div className="bg-muted flex h-9 w-9 shrink-0 items-center justify-center rounded-full">
-									<tx.icon className="text-muted-foreground h-4 w-4" />
+								<div className="bg-fill1 flex h-9 w-9 shrink-0 items-center justify-center rounded-full">
+									<IconSlot
+										slot={tx.icon as any}
+										className="text-fg-tertiary h-4 w-4"
+									/>
 								</div>
 								<div className="min-w-0 flex-1">
 									<p className="truncate text-sm font-medium">{tx.name}</p>
-									<p className="text-muted-foreground text-xs">{tx.category}</p>
+									<p className="text-fg-tertiary text-xs">{tx.category}</p>
 								</div>
 								<div className="shrink-0 text-right">
 									<p
-										className={`text-sm font-semibold ${tx.positive ? "text-emerald-600" : ""}`}>
+										className={`text-sm font-semibold ${tx.positive ? "text-success" : ""}`}>
 										{tx.amount}
 									</p>
-									<p className="text-muted-foreground text-[10px]">{tx.date}</p>
+									<p className="text-fg-tertiary text-[10px]">{tx.date}</p>
 								</div>
 							</div>
 						))}
@@ -460,29 +451,28 @@ function RecentTransactionsCard() {
 function RiskAllocationCard() {
 	const [risk, setRisk] = useState([40])
 
-	const level =
+	const level: {
+		label: string
+		badgeColor: "info" | "success" | "warning" | "error"
+	} =
 		risk[0] <= 25
 			? {
 					label: "Conservative",
-					color: "text-blue-600",
-					bg: "bg-blue-50 border-blue-200",
+					badgeColor: "info",
 				}
 			: risk[0] <= 50
 				? {
 						label: "Moderate",
-						color: "text-emerald-600",
-						bg: "bg-emerald-50 border-emerald-200",
+						badgeColor: "success",
 					}
 				: risk[0] <= 75
 					? {
 							label: "Aggressive",
-							color: "text-orange-600",
-							bg: "bg-orange-50 border-orange-200",
+							badgeColor: "warning",
 						}
 					: {
 							label: "Very Aggressive",
-							color: "text-red-600",
-							bg: "bg-red-50 border-red-200",
+							badgeColor: "error",
 						}
 
 	const stocks = risk[0]
@@ -500,10 +490,8 @@ function RiskAllocationCard() {
 
 			<CardContent className="space-y-5">
 				<div className="flex items-center justify-between">
-					<span className="text-muted-foreground text-sm">Risk Level</span>
-					<Badge
-						variant="outline"
-						className={`${level.bg} ${level.color} border font-medium`}>
+					<span className="text-fg-tertiary text-sm">Risk Level</span>
+					<Badge variant="outline" color={level.badgeColor}>
 						{level.label}
 					</Badge>
 				</div>
@@ -517,9 +505,9 @@ function RiskAllocationCard() {
 						onValueChange={setRisk}>
 						<SliderThumb />
 					</Slider>
-					<div className="text-muted-foreground flex justify-between text-xs">
+					<div className="text-fg-tertiary flex justify-between text-xs">
 						<span>Low Risk</span>
-						<span className="text-foreground font-semibold">{risk[0]}%</span>
+						<span className="text-fg font-semibold">{risk[0]}%</span>
 						<span>High Risk</span>
 					</div>
 				</div>
@@ -527,7 +515,7 @@ function RiskAllocationCard() {
 				<Divider />
 
 				<div className="space-y-2.5">
-					<p className="text-muted-foreground text-xs font-medium uppercase tracking-widest">
+					<p className="text-fg-tertiary text-xs font-medium uppercase tracking-widest">
 						Suggested Allocation
 					</p>
 					{[
@@ -541,10 +529,10 @@ function RiskAllocationCard() {
 					].map((item) => (
 						<div key={item.label} className="space-y-1">
 							<div className="flex justify-between text-xs">
-								<span className="text-muted-foreground">{item.label}</span>
+								<span className="text-fg-tertiary">{item.label}</span>
 								<span className="font-semibold">{item.value}%</span>
 							</div>
-							<div className="bg-muted h-1.5 w-full overflow-hidden rounded-full">
+							<div className="bg-fill1 h-1.5 w-full overflow-hidden rounded-full">
 								<div
 									className={`h-full rounded-full ${item.barColor} transition-all duration-300`}
 									style={{ width: `${item.value}%` }}
@@ -635,7 +623,7 @@ function NotificationPreferencesCard() {
 			<CardContent className="space-y-6">
 				{/* Checkboxes */}
 				<div className="space-y-1.5">
-					<p className="text-muted-foreground mb-3 text-xs font-medium uppercase tracking-widest">
+					<p className="text-fg-tertiary mb-3 text-xs font-medium uppercase tracking-widest">
 						Alert Types
 					</p>
 					<Card className="gap-0 divide-y overflow-hidden py-1">
@@ -643,7 +631,7 @@ function NotificationPreferencesCard() {
 							<label
 								key={item.key}
 								htmlFor={`chk-${item.key}`}
-								className="hover:bg-muted/40 flex cursor-pointer items-start gap-3 px-4 py-3 transition-colors">
+								className="hover:bg-fill1/40 flex cursor-pointer items-start gap-3 px-4 py-3 transition-colors">
 								<Checkbox
 									id={`chk-${item.key}`}
 									checked={alerts[item.key]}
@@ -654,7 +642,7 @@ function NotificationPreferencesCard() {
 									<p className="select-none text-sm font-medium leading-tight">
 										{item.label}
 									</p>
-									<p className="text-muted-foreground mt-0.5 select-none text-xs">
+									<p className="text-fg-tertiary mt-0.5 select-none text-xs">
 										{item.desc}
 									</p>
 								</div>
@@ -674,7 +662,7 @@ function NotificationPreferencesCard() {
 
 				{/* Radio Group */}
 				<div className="space-y-3">
-					<p className="text-muted-foreground text-xs font-medium uppercase tracking-widest">
+					<p className="text-fg-tertiary text-xs font-medium uppercase tracking-widest">
 						Delivery Frequency
 					</p>
 					<RadioGroup
@@ -688,7 +676,7 @@ function NotificationPreferencesCard() {
 									"p-0",
 									frequency === f.value
 										? "border-primary bg-primary/5"
-										: "border-border hover:bg-muted/40"
+										: "border-border hover:bg-fill1/40"
 								)}>
 								<Label
 									htmlFor={`freq-${f.value}`}
@@ -699,7 +687,7 @@ function NotificationPreferencesCard() {
 											{f.label}
 										</span>
 									</div>
-									<p className="text-muted-foreground select-none pl-6 text-xs">
+									<p className="text-fg-tertiary select-none pl-6 text-xs">
 										{f.desc}
 									</p>
 								</Label>
@@ -810,19 +798,19 @@ function PrivacySettingsCard() {
 			<CardContent className="space-y-6">
 				{Object.entries(grouped).map(([category, items]) => (
 					<div key={category} className="space-y-1">
-						<p className="text-muted-foreground mb-3 text-[10px] font-medium uppercase tracking-widest">
+						<p className="text-fg-tertiary mb-3 text-[10px] font-medium uppercase tracking-widest">
 							{category}
 						</p>
 						<div className="divide-y overflow-hidden rounded-md border">
 							{items.map((item) => (
 								<div
 									key={item.key}
-									className="hover:bg-muted/40 flex items-center justify-between gap-4 px-4 py-3 transition-colors">
+									className="hover:bg-fill1/40 flex items-center justify-between gap-4 px-4 py-3 transition-colors">
 									<div className="min-w-0">
 										<p className="text-sm font-medium leading-tight">
 											{item.label}
 										</p>
-										<p className="text-muted-foreground mt-0.5 text-xs">
+										<p className="text-fg-tertiary mt-0.5 text-xs">
 											{item.desc}
 										</p>
 									</div>
@@ -855,14 +843,14 @@ function PrivacySettingsCard() {
 }
 
 // ──────────────────────────────────────────────
-// Schedule Card (shadcn Calendar)
+// Schedule Card
 // ──────────────────────────────────────────────
 function ScheduleCard() {
 	const [date] = useState<Date | undefined>(new Date())
 
 	const events: Record<string, { name: string; color: string }[]> = {
 		[new Date().toDateString()]: [
-			{ name: "Payout Scheduled", color: "bg-violet-500" },
+			{ name: "Payout Scheduled", color: "bg-primary" },
 		],
 		[new Date(new Date().setDate(new Date().getDate() + 3)).toDateString()]: [
 			{ name: "Savings Review", color: "bg-emerald-500" },
@@ -890,7 +878,7 @@ function ScheduleCard() {
 				/>
 
 				<div className="w-full space-y-1 px-6">
-					<p className="text-muted-foreground mb-2 text-[10px] font-medium uppercase tracking-widest">
+					<p className="text-fg-tertiary mb-2 text-[10px] font-medium uppercase tracking-widest">
 						{date
 							? date.toLocaleDateString("default", {
 									weekday: "long",
@@ -907,9 +895,7 @@ function ScheduleCard() {
 							</div>
 						))
 					) : (
-						<p className="text-muted-foreground text-sm">
-							No events scheduled.
-						</p>
+						<p className="text-fg-tertiary text-sm">No events scheduled.</p>
 					)}
 				</div>
 			</CardContent>
@@ -928,7 +914,7 @@ function ScheduleCard() {
 // ──────────────────────────────────────────────
 export default function DashboardPage() {
 	return (
-		<div className="bg-muted/30 min-h-screen p-6">
+		<div className="bg-elevation-negative min-h-screen p-6">
 			<div className="mx-auto max-w-6xl space-y-6">
 				<h1 className="text-2xl font-bold tracking-tight">
 					Financial Dashboard

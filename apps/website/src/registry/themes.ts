@@ -1,4 +1,5 @@
 export const THEMES = [
+	// MARK: default
 	{
 		value: "default",
 		name: "Default",
@@ -14,6 +15,7 @@ export const THEMES = [
 			theme: {},
 		},
 	},
+	// MARK: bubblegum
 	{
 		value: "bubblegum",
 		name: "Bubblegum",
@@ -182,6 +184,7 @@ export const THEMES = [
 			},
 		},
 	},
+	// MARK: matcha
 	{
 		value: "matcha",
 		name: "Matcha",
@@ -350,6 +353,7 @@ export const THEMES = [
 			},
 		},
 	},
+	// MARK: noir
 	{
 		value: "noir",
 		name: "Noir",
@@ -436,10 +440,9 @@ export const THEMES = [
 				"--color-popover": "var(--color-elevation-level2)",
 
 				"--color-sidebar": "oklch(0.12 0.015 250)",
-				"--color-sidebar-fg": "oklch(0.94 0.004 250)",
+				"--color-sidebar-fg": "oklch(0.16 0.012 250)",
 				"--color-sidebar-accent":
 					"color-mix(in srgb, oklch(0.78 0.2 128), transparent 86%)",
-				"--color-sidebar-accent-fg": "oklch(0.92 0.12 126)",
 				"--color-sidebar-border": "oklch(0.25 0.018 250)",
 				"--color-sidebar-ring": "oklch(0.78 0.2 128)",
 
@@ -527,6 +530,7 @@ export const THEMES = [
 			},
 		},
 	},
+	// MARK: sketchbook
 	{
 		value: "sketchbook",
 		name: "Sketchbook",

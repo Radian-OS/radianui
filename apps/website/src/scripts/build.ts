@@ -9,6 +9,7 @@ const commands = [
 	"pnpm run generate-css",
 	"pnpm run generate-styles-json",
 	"pnpm run generate-colors",
+	"pnpm run update-icon-slot",
 	"next build",
 ]
 

@@ -1,6 +1,7 @@
 {
 	"$schema": "https://radianos.com/schema.json",
 	"style": "default",
+	"iconLibrary": "lucide",
 	"aliases": {
 		"components": "@/components",
 		"utils": "@/lib/utils",
