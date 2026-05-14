@@ -2,12 +2,9 @@
 
 import { useState } from "react"
 import { Check, ChevronDown, Clipboard, Maximize } from "lucide-react"
+import dynamic from "next/dynamic"
 import Link from "next/link"
 import { toast } from "sonner"
-import PasswordReset from "@/app/blocks/password-reset/page"
-import Signin from "@/app/blocks/signin/page"
-import Signup from "@/app/blocks/signup/page"
-import Verification from "@/app/blocks/verification/page"
 import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
 import {
@@ -23,32 +20,45 @@ const PAGES = [
 	{
 		value: "signin",
 		label: "Sign In",
-		component: <Signin fullScreen={false} />,
 		command: "pnpm dlx radianui@latest add signin-09",
 		link: "/blocks/signin",
 	},
 	{
 		value: "signup",
 		label: "Sign Up",
-		component: <Signup fullScreen={false} />,
 		command: "pnpm dlx radianui@latest add signup-02",
 		link: "/blocks/signup",
 	},
 	{
 		value: "verification",
 		label: "Verification",
-		component: <Verification fullScreen={false} />,
 		command: "pnpm dlx radianui@latest add verification-01",
 		link: "/blocks/verification",
 	},
 	{
 		value: "password-reset",
 		label: "Password Reset",
-		component: <PasswordReset fullScreen={false} />,
 		command: "pnpm dlx radianui@latest add password-reset-01",
 		link: "/blocks/password-reset",
 	},
 ] as const
+
+type PageValue = (typeof PAGES)[number]["value"]
+
+const PAGE_COMPONENTS = {
+	signin: dynamic(() => import("@/app/blocks/signin/page"), {
+		loading: () => null,
+	}),
+	signup: dynamic(() => import("@/app/blocks/signup/page"), {
+		loading: () => null,
+	}),
+	verification: dynamic(() => import("@/app/blocks/verification/page"), {
+		loading: () => null,
+	}),
+	"password-reset": dynamic(() => import("@/app/blocks/password-reset/page"), {
+		loading: () => null,
+	}),
+} as const
 
 const HomeInteractive = () => {
 	function useCopyPaste() {
@@ -69,17 +79,29 @@ const HomeInteractive = () => {
 
 		return { copied, copy }
 	}
-	const [activeTab, setActiveTab] =
-		useState<(typeof PAGES)[number]["value"]>("signin")
+	const [activeTab, setActiveTab] = useState<PageValue>("signin")
+	const [loadedTabs, setLoadedTabs] = useState<Record<PageValue, boolean>>({
+		signin: true,
+		signup: false,
+		verification: false,
+		"password-reset": false,
+	})
 	const { copy, copied } = useCopyPaste()
+
+	const handleTabChange = (value: string) => {
+		const nextTab = value as PageValue
+
+		setActiveTab(nextTab)
+		setLoadedTabs((current) =>
+			current[nextTab] ? current : { ...current, [nextTab]: true }
+		)
+	}
 
 	return (
 		<div className="bg-bg/60 border-soft relative z-30 h-full rounded-xl border p-3 backdrop-blur-[45px]">
 			<Tabs
 				value={activeTab}
-				onValueChange={(value) =>
-					setActiveTab(value as (typeof PAGES)[number]["value"])
-				}
+				onValueChange={handleTabChange}
 				className="h-full">
 				<div className="flex justify-between">
 					<div className="flex items-center gap-1.5 pl-3">
@@ -164,9 +186,7 @@ const HomeInteractive = () => {
 							<DropdownContent align="end">
 								<DropdownRadioGroup
 									value={activeTab}
-									onValueChange={(value) =>
-										setActiveTab(value as (typeof PAGES)[number]["value"])
-									}>
+									onValueChange={handleTabChange}>
 									{PAGES.map((p) => (
 										<DropdownRadioItem key={p.value} value={p.value}>
 											{p.label}
@@ -177,14 +197,20 @@ const HomeInteractive = () => {
 						</Dropdown>
 					</div>
 				</div>
-				{PAGES.map((page) => (
-					<TabsContent
-						key={page.value}
-						value={page.value}
-						className="border-soft h-full w-full overflow-clip rounded-lg border">
-						{page.component}
-					</TabsContent>
-				))}
+				{PAGES.map((page) => {
+					const PageComponent = PAGE_COMPONENTS[page.value]
+
+					return (
+						<TabsContent
+							key={page.value}
+							value={page.value}
+							className="border-soft h-full w-full overflow-clip rounded-lg border">
+							{loadedTabs[page.value] ? (
+								<PageComponent fullScreen={false} />
+							) : null}
+						</TabsContent>
+					)
+				})}
 			</Tabs>
 		</div>
 	)
