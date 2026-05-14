@@ -30,19 +30,19 @@ export function SidebarFooterUser() {
 	const { isMobile } = useSidebar()
 
 	return (
-		<SidebarMenu>
-			<SidebarMenuItem className="p-2 group-data-[state=collapsed]:p-3.5">
+		<SidebarMenu className="p-3 group-data-[state=collapsed]:p-3.5">
+			<SidebarMenuItem>
 				<Dropdown>
 					<DropdownTrigger asChild>
-						<SidebarMenuButton size="52">
+						<SidebarMenuButton size="48">
 							<Avatar size="32">
 								<AvatarImage src="/media/male-3.jpg" />
 								<AvatarFallback>JS</AvatarFallback>
 							</Avatar>
-							<div className="flex flex-1 flex-col">
+							<div className="flex flex-1 flex-col truncate">
 								<span className="font-medium">Jim Simmons</span>
 								<span className="text-fg-secondary text-xs font-normal">
-									simmons@radianos.com
+									jim@radianos.com
 								</span>
 							</div>
 							<ChevronsUpDown />

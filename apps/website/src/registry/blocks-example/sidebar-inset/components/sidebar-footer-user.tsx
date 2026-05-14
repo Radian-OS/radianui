@@ -30,11 +30,11 @@ export function SidebarFooterUser() {
 	const { isMobile } = useSidebar()
 
 	return (
-		<SidebarMenu>
-			<SidebarMenuItem className="group-data-[state=collapsed]:pl-6.5 p-2 group-data-[state=collapsed]:p-3.5">
+		<SidebarMenu className="p-3 group-data-[state=collapsed]:p-3.5">
+			<SidebarMenuItem>
 				<Dropdown>
 					<DropdownTrigger asChild>
-						<SidebarMenuButton size="52">
+						<SidebarMenuButton size="48">
 							<Avatar size="32">
 								<AvatarImage src="/media/male-3.jpg" />
 								<AvatarFallback>JS</AvatarFallback>
