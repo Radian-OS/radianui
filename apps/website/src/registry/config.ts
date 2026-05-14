@@ -1,6 +1,6 @@
 import z from "zod"
-import { ICON_LIBRARIES, IconLibrary } from "../lib/icon-libraries"
 import { FONTS } from "./fonts"
+import { ICON_LIBRARIES, IconLibrary } from "./icon-libraries"
 import { PRIMARY_COLORS } from "./primary-colors"
 import { RADIUS } from "./radius"
 import { STYLES } from "./styles"
