@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import { AspectRatio } from "@/registry/ui/aspect-ratio"
 import {
 	Dialog,
@@ -14,19 +14,66 @@ import {
 
 export default function VideoDialogPreview() {
 	const backgroundVideoRef = useRef<HTMLVideoElement>(null)
+	const triggerRef = useRef<HTMLButtonElement>(null)
+	const isDialogOpenRef = useRef(false)
+	const [shouldLoadPreviewVideo, setShouldLoadPreviewVideo] = useState(false)
+
+	useEffect(() => {
+		const trigger = triggerRef.current
+
+		if (!trigger || shouldLoadPreviewVideo) return
+
+		if (!("IntersectionObserver" in window)) {
+			setShouldLoadPreviewVideo(true)
+			return
+		}
+
+		const observer = new IntersectionObserver(
+			([entry]) => {
+				if (entry.isIntersecting) {
+					setShouldLoadPreviewVideo(true)
+					observer.disconnect()
+				}
+			},
+			{ rootMargin: "400px" }
+		)
+
+		observer.observe(trigger)
+
+		return () => observer.disconnect()
+	}, [shouldLoadPreviewVideo])
+
+	useEffect(() => {
+		const video = backgroundVideoRef.current
+
+		if (!video || !shouldLoadPreviewVideo) return
+
+		video.load()
+
+		if (!isDialogOpenRef.current) {
+			void video.play().catch(() => {})
+		}
+	}, [shouldLoadPreviewVideo])
 
 	return (
 		<Dialog
 			onOpenChange={(open) => {
-				if (backgroundVideoRef.current) {
-					if (open)
-						backgroundVideoRef.current.pause() // pause background video
-					else backgroundVideoRef.current.play() // resume when dialog closes
+				isDialogOpenRef.current = open
+
+				const video = backgroundVideoRef.current
+
+				if (video) {
+					if (open) video.pause()
+					else if (shouldLoadPreviewVideo) void video.play().catch(() => {})
 				}
 			}}>
 			{/* Trigger */}
 			<DialogTrigger asChild>
-				<div className="border-soft bg-bg z-20 w-full max-w-[1440px] cursor-pointer rounded-2xl p-0 sm:border sm:p-3">
+				<button
+					ref={triggerRef}
+					type="button"
+					aria-label="Play Radian OS demo"
+					className="border-soft bg-bg z-20 w-full max-w-[1440px] cursor-pointer appearance-none rounded-2xl border-0 p-0 text-left sm:border sm:p-3">
 					<AspectRatio
 						ratio={16 / 9}
 						className="bg-bg border-soft overflow-hidden rounded-2xl border">
@@ -36,24 +83,28 @@ export default function VideoDialogPreview() {
 							muted
 							autoPlay
 							playsInline
-							preload="auto"
+							preload={shouldLoadPreviewVideo ? "metadata" : "none"}
 							poster="/video/Radian-OS-poster.jpg"
 							disablePictureInPicture
 							className="h-full w-full rounded-2xl object-cover">
-							<source src="/video/Radian-OS-WEBM.webm" type="video/webm" />
-							<source src="/video/Radian-OS-MP4.mp4" type="video/mp4" />
+							{shouldLoadPreviewVideo ? (
+								<>
+									<source src="/video/Radian-OS-WEBM.webm" type="video/webm" />
+									<source src="/video/Radian-OS-MP4.mp4" type="video/mp4" />
+								</>
+							) : null}
 						</video>
 					</AspectRatio>
-				</div>
+				</button>
 			</DialogTrigger>
 
 			{/* Dialog Content */}
 			<DialogContent
 				backdrop="overlay"
 				className="mx-auto max-w-[1440px] overflow-hidden p-0">
-				<DialogHeader className="hidden">
-					<DialogTitle></DialogTitle>
-					<DialogDescription></DialogDescription>
+				<DialogHeader className="sr-only">
+					<DialogTitle>Radian OS demo</DialogTitle>
+					<DialogDescription>Watch the Radian OS demo video.</DialogDescription>
 				</DialogHeader>
 
 				<DialogBody className="p-0">

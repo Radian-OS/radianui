@@ -19,6 +19,10 @@ const nextConfig = {
 				],
 			},
 			{
+				source: "/blocks/:path*",
+				headers: [{ key: "Access-Control-Allow-Origin", value: "*" }],
+			},
+			{
 				source: "/docs/:path*",
 				headers: [
 					{
@@ -148,7 +152,6 @@ const nextConfig = {
 		removeConsole: false,
 	},
 	env: {
-		RESEND_API_KEY: process.env.RESEND_API_KEY,
 		RESEND_FROM_EMAIL: process.env.RESEND_FROM_EMAIL,
 	},
 	experimental: {

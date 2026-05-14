@@ -49,6 +49,6 @@
     "POSTHOG"
   ],
   "[xml]": {
-    "editor.defaultFormatter": "j69.ejs-beautify"
+    "editor.defaultFormatter": "redhat.vscode-xml"
   }
 }
