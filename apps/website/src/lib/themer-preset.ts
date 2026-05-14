@@ -8,6 +8,7 @@ import {
 	parseAsStringLiteral,
 } from "nuqs/server"
 import { ICON_LIBRARIES, IconLibrary } from "@/lib/icon-libraries"
+import { BASE_COLORS, BaseColorValue } from "@/registry/base-colors"
 import { DEFAULT_CONFIG } from "@/registry/config"
 import { FONTS, FontValue } from "@/registry/fonts"
 import { PRIMARY_COLORS, PrimaryColorValue } from "@/registry/primary-colors"
@@ -19,6 +20,9 @@ import { THEMES, ThemeValue } from "@/registry/themes"
 const designSystemSearchParams = {
 	primaryColor: parseAsStringLiteral<PrimaryColorValue>(
 		PRIMARY_COLORS.map((color) => color.value)
+	),
+	baseColor: parseAsStringLiteral<BaseColorValue>(
+		BASE_COLORS.map((color) => color.value)
 	),
 	headingFont: parseAsStringLiteral<FontValue>(
 		FONTS.map((font) => font.value)
@@ -59,9 +63,14 @@ function resolvePresetParams(
 		searchParams.get("primaryColor") ??
 		rawParams.primaryColor ??
 		(theme === "default" ? DEFAULT_CONFIG.primaryColor : null)
+	const baseColor =
+		searchParams.get("baseColor") ??
+		rawParams.baseColor ??
+		(theme === "default" ? DEFAULT_CONFIG.baseColor : null)
 
 	const mergedParams = {
 		primaryColor,
+		baseColor,
 		headingFont: searchParams.get("headingFont") ?? rawParams.headingFont,
 		bodyFont: searchParams.get("bodyFont") ?? rawParams.bodyFont,
 		radius: searchParams.get("radius") ?? rawParams.radius,

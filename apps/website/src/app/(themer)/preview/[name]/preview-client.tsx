@@ -143,6 +143,9 @@ export function PreviewClient({ children }: { children: React.ReactNode }) {
 			if (event.data.type === "primary-color-change") {
 				setParams({ primaryColor: event.data.primaryColor })
 			}
+			if (event.data.type === "base-color-change") {
+				setParams({ baseColor: event.data.baseColor })
+			}
 			if (event.data.type === "heading-font-change") {
 				setParams({ headingFont: event.data.headingFont })
 			}

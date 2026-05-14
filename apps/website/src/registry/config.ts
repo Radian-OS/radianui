@@ -1,5 +1,6 @@
 import z from "zod"
 import { ICON_LIBRARIES, IconLibrary } from "../lib/icon-libraries"
+import { BASE_COLORS } from "./base-colors"
 import { FONTS } from "./fonts"
 import { PRIMARY_COLORS } from "./primary-colors"
 import { RADIUS } from "./radius"
@@ -45,6 +46,10 @@ export const themerConfigSchema = z
 			.enum(PRIMARY_COLORS.map((color) => color.value))
 			.nullable()
 			.default(null),
+		baseColor: z
+			.enum(BASE_COLORS.map((color) => color.value))
+			.nullable()
+			.default(null),
 		headingFont: z
 			.enum(fontValues, {
 				error: "Invalid font value",
@@ -85,6 +90,7 @@ export const DEFAULT_CONFIG: ThemerConfig = {
 	useSrcDir: true,
 	theme: "default",
 	iconLibrary: "lucide",
+	baseColor: "default",
 }
 
 export type Preset = ThemerConfig & {
@@ -107,6 +113,7 @@ export const PRESETS: Preset[] = [
 		useSrcDir: true,
 		theme: "default",
 		iconLibrary: "lucide",
+		baseColor: "default",
 	},
 	{
 		name: "sera",
@@ -121,6 +128,7 @@ export const PRESETS: Preset[] = [
 		useSrcDir: true,
 		theme: "default",
 		iconLibrary: "lucide",
+		baseColor: "default",
 	},
 ]
 
@@ -288,6 +296,31 @@ function normalizePrimaryColorVars(
 	return result
 }
 
+const baseColorVarMap: Record<string, string> = {
+	"--color-bg-base": "--color-bg",
+	"--color-bg-fill1": "--color-fill1",
+	"--color-bg-fill2": "--color-fill2",
+	"--color-bg-fill3": "--color-fill3",
+	"--color-bg-fill4": "--color-fill4",
+	"--color-border-soft": "--color-soft",
+	"--color-border-soft-alpha": "--color-soft-alpha",
+	"--color-border-alpha": "--color-alpha",
+}
+
+function normalizeBaseColorVars(
+	vars?: Readonly<Record<string, string>>
+): Record<string, string> {
+	if (!vars) return {}
+	const result: Record<string, string> = {}
+
+	for (const [key, value] of Object.entries(vars)) {
+		if (!value) continue
+		result[baseColorVarMap[key] ?? key] = value
+	}
+
+	return result
+}
+
 export function buildRegistryConfig(config: ThemerConfig): RegistryConfig {
 	const primaryColor =
 		config.primaryColor ??
@@ -298,6 +331,10 @@ export function buildRegistryConfig(config: ThemerConfig): RegistryConfig {
 
 	const themeEntry = THEMES.find((t) => t.value === config.theme)
 	const themeCssVars = themeEntry?.cssVars
+
+	const baseColorEntry = BASE_COLORS.find((c) => c.value === config.baseColor)
+	const baseLightVars = normalizeBaseColorVars(baseColorEntry?.cssVars.light)
+	const baseDarkVars = normalizeBaseColorVars(baseColorEntry?.cssVars.dark)
 
 	const theme: Record<string, string> = {}
 
@@ -332,11 +369,13 @@ export function buildRegistryConfig(config: ThemerConfig): RegistryConfig {
 				...BASE_THEME.light,
 				...(themeCssVars?.light || {}),
 				...(lightVars || {}),
+				...baseLightVars,
 			},
 			dark: {
 				...BASE_THEME.dark,
 				...(themeCssVars?.dark || {}),
 				...(darkVars || {}),
+				...baseDarkVars,
 			},
 			theme: {
 				...theme,

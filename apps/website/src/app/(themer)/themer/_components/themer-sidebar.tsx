@@ -10,6 +10,7 @@ import {
 } from "@/lib/icon-libraries"
 import { useThemerLocks } from "@/lib/themer-locks"
 import { useThemerPreset } from "@/lib/themer-preset"
+import { BASE_COLORS, BaseColorValue } from "@/registry/base-colors"
 import { DEFAULT_CONFIG, PRESETS } from "@/registry/config"
 import { FontValue } from "@/registry/fonts"
 import { PRIMARY_COLORS, PrimaryColorValue } from "@/registry/primary-colors"
@@ -70,6 +71,7 @@ export function ThemerSidebar({
 		setParams({
 			theme: value,
 			primaryColor: value === "default" ? DEFAULT_CONFIG.primaryColor : null,
+			baseColor: value === "default" ? DEFAULT_CONFIG.baseColor : null,
 			...(!locked.headingFont && {
 				headingFont: theme?.fonts.heading,
 			}),
@@ -221,6 +223,31 @@ export function ThemerSidebar({
 								onClick={() =>
 									setParams({
 										primaryColor: color.value as PrimaryColorValue,
+									})
+								}
+							/>
+						))}
+					</div>
+				</div>
+
+				{/* Base Color Section */}
+				<div className="flex flex-col gap-3">
+					<SectionLabel>Base Color</SectionLabel>
+					<div className="flex flex-wrap gap-2">
+						{params.theme !== "default" && (
+							<ThemeColorSwatch
+								isSelected={params.baseColor === null}
+								onClick={() => setParams({ baseColor: null })}
+							/>
+						)}
+						{BASE_COLORS.map((color) => (
+							<ColorSwatch
+								key={color.value}
+								color={color}
+								isSelected={params.baseColor === color.value}
+								onClick={() =>
+									setParams({
+										baseColor: color.value as BaseColorValue,
 									})
 								}
 							/>
