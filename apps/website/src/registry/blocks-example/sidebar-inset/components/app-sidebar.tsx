@@ -15,21 +15,21 @@ import {
 	TvMinimal,
 	Users2,
 } from "lucide-react"
-import { Badge } from "@/styles/default/ui/badge"
-import { IconButton } from "@/styles/default/ui/button"
+import { Badge } from "@/registry/ui/badge"
+import { IconButton } from "@/registry/ui/button"
 import {
 	Dropdown,
 	DropdownContent,
 	DropdownItem,
 	DropdownLabel,
 	DropdownTrigger,
-} from "@/styles/default/ui/dropdown"
+} from "@/registry/ui/dropdown"
 import {
 	HoverCard,
 	HoverCardContent,
 	HoverCardTrigger,
-} from "@/styles/default/ui/hover-card"
-import { Input, InputWrapper } from "@/styles/default/ui/input"
+} from "@/registry/ui/hover-card"
+import { Input, InputWrapper } from "@/registry/ui/input"
 import {
 	Sidebar,
 	SidebarCollapsible,
@@ -50,7 +50,7 @@ import {
 	SidebarSeparator,
 	SidebarTrigger,
 	useSidebar,
-} from "@/styles/default/ui/sidebar"
+} from "@/registry/ui/sidebar"
 import { InfoCard } from "./info-card"
 import {
 	AcmeLogo,

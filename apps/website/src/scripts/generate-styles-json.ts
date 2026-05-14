@@ -1,7 +1,13 @@
 import fs from "fs-extra"
 import path from "path"
 import { Project, SourceFile } from "ts-morph"
-import { formatCode } from "@/lib/format-code"
+
+function formatCode(code: string) {
+	code = code
+		.replaceAll("@/styles/default", "@/registry")
+		.replaceAll("@/styles/sera", "@/registry")
+	return code
+}
 
 export type RegistryType = "ui" | "component" | "page" | "hook" | "animated"
 

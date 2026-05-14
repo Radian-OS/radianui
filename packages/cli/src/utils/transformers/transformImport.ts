@@ -42,9 +42,9 @@ function updateImportAliases(
 	moduleSpecifier: string,
 	config: RawConfig
 ): string {
-	if (moduleSpecifier.match(/^@\/styles\/[^\/]+\/ui/)) {
+	if (moduleSpecifier.match(/^@\/registry\/ui/)) {
 		return moduleSpecifier.replace(
-			/^@\/styles\/[^\/]+\/ui/,
+			/^@\/registry\/ui/,
 			config.aliases.ui ?? `${config.aliases.components}/ui`
 		)
 	}

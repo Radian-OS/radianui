@@ -126,8 +126,8 @@ export default function SigninForm() {
 							render={({ field }) => (
 								<FormItem>
 									<div className="flex items-center justify-between">
-										<FormLabel>Password</FormLabel>
-										<Button variant="link" asChild color="primary">
+										<FormLabel htmlFor="password">Password</FormLabel>
+										<Button variant="link" asChild color="primary" size="28">
 											<Link href="#">Forgot Password?</Link>
 										</Button>
 									</div>
@@ -135,7 +135,7 @@ export default function SigninForm() {
 										<InputWrapper>
 											<Input
 												{...field}
-												id="toggle-visible-password"
+												id="password"
 												ref={inputRef}
 												className="peer"
 												type={showPassword ? "text" : "password"}
