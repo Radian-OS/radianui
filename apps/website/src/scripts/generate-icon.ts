@@ -11,12 +11,7 @@ if (!fs.existsSync(dir)) {
 	console.log("📁 Created directory:", dir)
 }
 
-const leftPanelIndex = ICON_SLOT_REPLACEMENTS.findIndex(
-	({ slot }) => slot === "left-panel"
-)
-const data = ICON_SLOT_REPLACEMENTS.slice(0, leftPanelIndex + 1)
-
 // write JSON
-fs.writeFileSync(outputPath, JSON.stringify(data, null, 2))
+fs.writeFileSync(outputPath, JSON.stringify(ICON_SLOT_REPLACEMENTS, null, 2))
 
-console.log("✅ Extracted & saved JSON at:", outputPath)
+console.log("Saved IconJSON at:", outputPath)

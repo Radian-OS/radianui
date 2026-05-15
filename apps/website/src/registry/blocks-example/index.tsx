@@ -27,6 +27,18 @@ export const Index: Record<string, RegistryItem> = {
 				target: "",
 			},
 			{
+				path: "registry/blocks-example/new-password/components/github-icon.tsx",
+				name: "github-icon.tsx",
+				type: "components",
+				target: "",
+			},
+			{
+				path: "registry/blocks-example/new-password/components/google-icon.tsx",
+				name: "google-icon.tsx",
+				type: "components",
+				target: "",
+			},
+			{
 				path: "registry/blocks-example/new-password/components/new-password-form.tsx",
 				name: "new-password-form.tsx",
 				type: "components",
@@ -485,8 +497,8 @@ export const Index: Record<string, RegistryItem> = {
 				target: "",
 			},
 			{
-				path: "registry/blocks-example/signup/components/signup-form.tsx",
-				name: "signup-form.tsx",
+				path: "registry/blocks-example/signup/components/sign-up-form.tsx",
+				name: "sign-up-form.tsx",
 				type: "components",
 				target: "",
 			},

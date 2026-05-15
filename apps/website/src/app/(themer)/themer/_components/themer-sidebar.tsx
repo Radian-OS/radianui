@@ -3,16 +3,16 @@
 import { useEffect, useState } from "react"
 import { ChevronDown, MoonIcon, Palette, SunIcon, Type } from "lucide-react"
 import { useTheme } from "next-themes"
-import {
-	ICON_LIBRARIES,
-	ICON_LIBRARY_LABELS,
-	IconLibrary,
-} from "@/lib/icon-libraries"
 import { useThemerLocks } from "@/lib/themer-locks"
 import { useThemerPreset } from "@/lib/themer-preset"
 import { BASE_COLORS, BaseColorValue } from "@/registry/base-colors"
 import { PRESETS } from "@/registry/config"
 import { FontValue } from "@/registry/fonts"
+import {
+	ICON_LIBRARIES,
+	ICON_LIBRARY_LABELS,
+	IconLibrary,
+} from "@/registry/icon-libraries"
 import { PRIMARY_COLORS, PrimaryColorValue } from "@/registry/primary-colors"
 import { RadiusValue } from "@/registry/radius"
 import { STYLES, StyleValue } from "@/registry/styles"
