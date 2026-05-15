@@ -76,7 +76,7 @@ export default async function BlogPage({ params }: BlogListPageProps) {
 						Learn more about Radian OS, updates, and reads from our team and
 						industry leading experts
 					</p>
-					<EmailSubscribeBlog subscribeAction={subscribe} />
+					<EmailSubscribeBlog subscribe={subscribe} />
 				</section>
 				<div className="hidden items-center md:flex">
 					<svg
