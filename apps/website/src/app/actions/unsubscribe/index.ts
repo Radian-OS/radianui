@@ -1,9 +1,11 @@
 "use server"
 
-import { resend } from "@/lib/resend"
+import { getResend } from "@/lib/resend"
 
 export async function unsubscribe(id: string) {
 	try {
+		const resend = getResend()
+
 		await resend.contacts.update({
 			id,
 			unsubscribed: true,

@@ -1,12 +1,14 @@
 "use server"
 
 import WelcomeEmailTemplate from "@/components/email/welcome-email-template"
-import { resend } from "@/lib/resend"
+import { getResend } from "@/lib/resend"
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 
 export async function subscribe(email: string) {
 	try {
+		const resend = getResend()
+
 		const { data: existing_contact_data } = await resend.contacts.get({ email })
 
 		if (existing_contact_data) {
