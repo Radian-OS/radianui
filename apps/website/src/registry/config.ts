@@ -1,5 +1,4 @@
 import z from "zod"
-import { ICON_LIBRARIES, IconLibrary } from "../lib/icon-libraries"
 import { BASE_COLORS } from "./base-colors"
 import { FONTS } from "./fonts"
 import { ICON_LIBRARIES, IconLibrary } from "./icon-libraries"

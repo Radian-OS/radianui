@@ -7,7 +7,6 @@ import {
 	parseAsBoolean,
 	parseAsStringLiteral,
 } from "nuqs/server"
-import { ICON_LIBRARIES, IconLibrary } from "@/lib/icon-libraries"
 import { BASE_COLORS, BaseColorValue } from "@/registry/base-colors"
 import { DEFAULT_CONFIG } from "@/registry/config"
 import { FONTS, FontValue } from "@/registry/fonts"

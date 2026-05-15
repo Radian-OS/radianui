@@ -225,7 +225,7 @@ export function ThemerSidebar({
 					<Dropdown>
 						<DropdownTrigger className="border-border hover:border-fg-disabled bg-elevation-level2 flex w-full items-center justify-between gap-2 rounded-lg border px-3 py-2 text-sm transition-colors">
 							<span className="text-fg font-medium">
-								{ICON_LIBRARY_LABELS[params.iconLibrary]}
+								{ICON_LIBRARY_LABELS[params.iconLibrary as IconLibrary]}
 							</span>
 							<ChevronDown className="text-fg-tertiary size-3.5 shrink-0" />
 						</DropdownTrigger>
