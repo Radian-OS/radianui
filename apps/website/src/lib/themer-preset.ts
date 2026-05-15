@@ -15,15 +15,14 @@ import { PRIMARY_COLORS, PrimaryColorValue } from "@/registry/primary-colors"
 import { RADIUS, RadiusValue } from "@/registry/radius"
 import { STYLES, StyleValue } from "@/registry/styles"
 import { TEMPLATES, Template } from "@/registry/templates"
-import { THEMES, ThemeValue } from "@/registry/themes"
 
 const designSystemSearchParams = {
 	primaryColor: parseAsStringLiteral<PrimaryColorValue>(
 		PRIMARY_COLORS.map((color) => color.value)
-	),
+	).withDefault(DEFAULT_CONFIG.primaryColor),
 	baseColor: parseAsStringLiteral<BaseColorValue>(
 		BASE_COLORS.map((color) => color.value)
-	),
+	).withDefault(DEFAULT_CONFIG.baseColor),
 	headingFont: parseAsStringLiteral<FontValue>(
 		FONTS.map((font) => font.value)
 	).withDefault(DEFAULT_CONFIG.headingFont),
@@ -40,9 +39,6 @@ const designSystemSearchParams = {
 		STYLES.map((style) => style.value)
 	).withDefault(DEFAULT_CONFIG.style),
 	useSrcDir: parseAsBoolean.withDefault(DEFAULT_CONFIG.useSrcDir),
-	theme: parseAsStringLiteral<ThemeValue>(
-		THEMES.map((theme) => theme.value)
-	).withDefault(DEFAULT_CONFIG.theme),
 	iconLibrary: parseAsStringLiteral<IconLibrary>(ICON_LIBRARIES).withDefault(
 		DEFAULT_CONFIG.iconLibrary
 	),
@@ -56,28 +52,15 @@ function resolvePresetParams(
 	rawParams: DesignSystemSearchParams,
 	searchParams: ReadonlyURLSearchParams
 ) {
-	// Merge rawParams and searchParams, searchParams takes precedence
-	// Extract searchParams first
-	const theme = searchParams.get("theme") ?? rawParams.theme
-	const primaryColor =
-		searchParams.get("primaryColor") ??
-		rawParams.primaryColor ??
-		(theme === "default" ? DEFAULT_CONFIG.primaryColor : null)
-	const baseColor =
-		searchParams.get("baseColor") ??
-		rawParams.baseColor ??
-		(theme === "default" ? DEFAULT_CONFIG.baseColor : null)
-
 	const mergedParams = {
-		primaryColor,
-		baseColor,
+		primaryColor: searchParams.get("primaryColor") ?? rawParams.primaryColor,
+		baseColor: searchParams.get("baseColor") ?? rawParams.baseColor,
 		headingFont: searchParams.get("headingFont") ?? rawParams.headingFont,
 		bodyFont: searchParams.get("bodyFont") ?? rawParams.bodyFont,
 		radius: searchParams.get("radius") ?? rawParams.radius,
 		template: searchParams.get("template") ?? rawParams.template,
 		style: searchParams.get("style") ?? rawParams.style,
 		useSrcDir: searchParams.get("useSrcDir") ?? rawParams.useSrcDir,
-		theme,
 		iconLibrary: searchParams.get("iconLibrary") ?? rawParams.iconLibrary,
 	} as DesignSystemSearchParams
 	return mergedParams

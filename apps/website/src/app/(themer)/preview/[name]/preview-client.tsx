@@ -161,9 +161,6 @@ export function PreviewClient({ children }: { children: React.ReactNode }) {
 			if (event.data.type === "style-change") {
 				setParams({ style: event.data.style })
 			}
-			if (event.data.type === "theme-change") {
-				setParams({ theme: event.data.theme })
-			}
 			if (event.data.type === "icon-library-change") {
 				setParams({ iconLibrary: event.data.iconLibrary })
 			}

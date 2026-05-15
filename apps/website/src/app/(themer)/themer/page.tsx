@@ -35,7 +35,6 @@ function ThemerPage() {
 			template: params.template,
 			style: params.style,
 			useSrcDir: String(params.useSrcDir),
-			theme: params.theme,
 			iconLibrary: params.iconLibrary,
 		})
 
@@ -86,10 +85,6 @@ function ThemerPage() {
 	useEffect(() => {
 		postToIframe({ type: "template-change", template: params.template })
 	}, [params.template])
-
-	useEffect(() => {
-		postToIframe({ type: "theme-change", theme: params.theme })
-	}, [params.theme])
 
 	useEffect(() => {
 		postToIframe({
