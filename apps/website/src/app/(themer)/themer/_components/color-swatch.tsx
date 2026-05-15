@@ -23,9 +23,8 @@ export function ColorSwatch({
 }) {
 	const backgroundColor =
 		color.cssVars.light["--color-primary"] ??
+		color.cssVars.light["--color-fill1"] ??
 		color.cssVars.light["--color-bg"] ??
-		color.cssVars.light["--color-bg-base"] ??
-		color.cssVars.light["--color-bg-fill1"] ??
 		"transparent"
 
 	return (
