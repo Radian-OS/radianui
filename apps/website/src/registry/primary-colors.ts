@@ -424,31 +424,6 @@ export const PRIMARY_COLORS = [
 			},
 		},
 	},
-	{
-		value: "neutral",
-		name: "Neutral",
-		type: "registry:color",
-		cssVars: {
-			light: {
-				"--color-primary": "oklch(0.2314 0.0078 274.6)",
-				"--color-primary-accent": "oklch(0.9677 0.0027 286.35)",
-				"--color-primary-focus": "oklch(0.9527 0.0027 286.35)",
-				"--color-primary-border": "oklch(0.902 0.0068 286.26)",
-				"--color-primary-hover": "oklch(0.311 0.0125 279.19)",
-				"--color-primary-text": "oklch(0.4515 0.0243 285.39)",
-				"--color-primary-fg": "oklch(0.9764 0.0013 286.38)",
-			},
-			dark: {
-				"--color-primary": "oklch(1 0 0)",
-				"--color-primary-accent": "oklch(0.2314 0.0078 274.6)",
-				"--color-primary-focus": "oklch(0.2738 0.0093 276.77)",
-				"--color-primary-border": "oklch(0.2738 0.0093 276.77)",
-				"--color-primary-hover": "oklch(0.9349 0.004 286.32)",
-				"--color-primary-text": "oklch(0.6619 0.0235 285.74)",
-				"--color-primary-fg": "oklch(0.2764 0.0079 264.44)",
-			},
-		},
-	},
 ] as const
 
 export type PrimaryColor = (typeof PRIMARY_COLORS)[number]
