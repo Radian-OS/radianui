@@ -14,7 +14,7 @@ const buttonContent = `export function Button() {\n  return null;\n}\n`
 
 describe("e2e | add happy path", () => {
   let projectDir: string
-  let server: RegistryServerHandle
+  let server: RegistryServerHandle | undefined
 
   beforeEach(async () => {
     server = await startRegistryServer({
@@ -35,7 +35,7 @@ describe("e2e | add happy path", () => {
   })
 
   afterEach(async () => {
-    await server.close()
+    await server?.close()
     if (projectDir) await cleanup(projectDir)
   })
 
@@ -45,8 +45,8 @@ describe("e2e | add happy path", () => {
     const { exitCode, combined } = await cli.run(["add", "button", "-y"], {
       cwd: projectDir,
       env: {
-        RADIANUI_WEBSITE_URL: server.url,
-        RADIANUI_BLOCKS_URL: server.url,
+        RADIANUI_WEBSITE_URL: server!.url,
+        RADIANUI_BLOCKS_URL: server!.url,
         RADIANUI_SKIP_INSTALL: "1",
       },
     })
@@ -65,8 +65,8 @@ describe("e2e | add happy path", () => {
     const { exitCode, combined } = await cli.run(["add", "nope", "-y"], {
       cwd: projectDir,
       env: {
-        RADIANUI_WEBSITE_URL: server.url,
-        RADIANUI_BLOCKS_URL: server.url,
+        RADIANUI_WEBSITE_URL: server!.url,
+        RADIANUI_BLOCKS_URL: server!.url,
         RADIANUI_SKIP_INSTALL: "1",
       },
     })

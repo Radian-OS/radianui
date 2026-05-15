@@ -12,8 +12,8 @@ describe("transform import", () => {
 		// Arrange
 		const fileContent = `import React, { useEffect, useRef, useState } from "react"
     import { cn } from "@/lib/utils"
-    import { DateRangeShortcut, DateRangeShortcutValues, mockMouseClick } from "@/styles/default/ui/date-picker"
-    import { Select, SelectItem } from "@/styles/default/ui/select"
+    import { DateRangeShortcut, DateRangeShortcutValues, mockMouseClick } from "@/registry/ui/date-picker"
+    import { Select, SelectItem } from "@/registry/ui/select"
     import { AnimatedList } from "@/registry/animated/animated-list"
     `
 		const sourceFile = project.createSourceFile("test1.tsx", fileContent)
@@ -49,8 +49,8 @@ describe("transform import", () => {
 	it("should transform import path correctly when given correct config 2", () => {
 		const fileContent = `import React, { useEffect, useRef, useState } from "react"
     import { cn } from "@/lib/utils"
-    import { DateRangeShortcut, DateRangeShortcutValues, mockMouseClick } from "@/styles/default/ui/date-picker"
-    import { Select, SelectItem } from "@/styles/default/ui/select"
+    import { DateRangeShortcut, DateRangeShortcutValues, mockMouseClick } from "@/registry/ui/date-picker"
+    import { Select, SelectItem } from "@/registry/ui/select"
     import { AnimatedList } from "@/registry/animated/animated-list"
     `
 		const sourceFile = project.createSourceFile("test1.tsx", fileContent)

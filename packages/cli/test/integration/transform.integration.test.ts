@@ -1,7 +1,16 @@
-import { describe, expect, it } from "vitest"
+import { describe, expect, it, vi } from "vitest"
 import type { RawConfig } from "@/utils/getConfig"
 import type { ProjectInfo } from "@/utils/getProjectInfo"
 import { transform } from "@/utils/transformers/transform"
+
+vi.mock("@/utils/registry", async (importOriginal) => {
+	const actual = await importOriginal<typeof import("@/utils/registry")>()
+
+	return {
+		...actual,
+		fetchIconMappings: vi.fn().mockResolvedValue([]),
+	}
+})
 
 const config: RawConfig = {
 	$schema: "",
@@ -44,7 +53,7 @@ const viteProjectInfo: ProjectInfo = {
 
 describe("integration > transform", () => {
 	it("rewrites @/registry/ui imports for next-app", async () => {
-		const content = `import { Button } from "@/styles/default/ui/button"\n`
+		const content = `import { Button } from "@/registry/ui/button"\n`
 		const out = await transform(nextProjectInfo, "test.tsx", content, config)
 		expect(out).toContain(`from "@/components/ui/button"`)
 	})

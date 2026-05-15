@@ -19,6 +19,11 @@ export type StubComponent = {
 export type StubRegistry = {
 	components?: StubComponent[]
 	blocks?: StubComponent[]
+	iconMappings?: Array<{
+		slot: string
+		lucideIcon: string
+		hugeiconsIcon: string
+	}>
 	themes?: Record<string, unknown>
 	fonts?: Record<string, unknown>
 	presets?: Record<string, unknown>
@@ -58,6 +63,9 @@ export const startRegistryServer = async (
 		}
 		if (url.pathname === "/api/blocks") {
 			return json(res, 200, registry.blocks ?? [])
+		}
+		if (url.pathname === "/r/icon/icon.json") {
+			return json(res, 200, registry.iconMappings ?? [])
 		}
 		if (url.pathname === "/api/assets") {
 			res.statusCode = 404
