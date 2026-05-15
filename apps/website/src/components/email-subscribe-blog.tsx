@@ -26,10 +26,14 @@ const formSchema = z.object({
 type FormData = z.infer<typeof formSchema>
 
 type EmailSubscriptionProps = {
-	subscribe: (email: string) => Promise<{ message: string; status: number }>
+	subscribeAction: (
+		email: string
+	) => Promise<{ message: string; status: number }>
 }
 
-export const EmailSubscribeBlog = ({ subscribe }: EmailSubscriptionProps) => {
+export const EmailSubscribeBlog = ({
+	subscribeAction,
+}: EmailSubscriptionProps) => {
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues: { email: "" },
@@ -54,7 +58,7 @@ export const EmailSubscribeBlog = ({ subscribe }: EmailSubscriptionProps) => {
 	const onSubmit = async (data: FormData) => {
 		setSubscriptionResult(null)
 		try {
-			const result = await subscribe(data.email)
+			const result = await subscribeAction(data.email)
 			setSubscriptionResult(result)
 			if (result.status < 400) {
 				form.reset()

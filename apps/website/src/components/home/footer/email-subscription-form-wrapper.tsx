@@ -1,13 +1,6 @@
-"use client"
-
-import dynamic from "next/dynamic"
 import { subscribe } from "@/app/actions/subscribe"
-
-const EmailSubscription = dynamic(
-	() => import("@/components/home/footer/email-subscription-form"),
-	{ ssr: false }
-)
+import EmailSubscription from "@/components/home/footer/email-subscription-form"
 
 export default function EmailSubscriptionFormWrapper() {
-	return <EmailSubscription subscribe={subscribe} />
+	return <EmailSubscription subscribeAction={subscribe} />
 }

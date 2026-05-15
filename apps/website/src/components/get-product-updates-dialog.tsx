@@ -6,7 +6,6 @@ import Image from "next/image"
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-import { subscribe } from "@/app/actions/subscribe"
 import { cn } from "@/lib/utils"
 import { Button } from "@/registry/ui/button"
 import {
@@ -35,10 +34,17 @@ const formSchema = z.object({
 
 type FormData = z.infer<typeof formSchema>
 
-export function GetProductUpdatesDialog() {
-	const [subscriptionResult, setSubscriptionResult] = useState<Awaited<
-		ReturnType<typeof subscribe>
-	> | null>(null)
+type SubscribeResult = { message: string; status: number }
+
+type GetProductUpdatesDialogProps = {
+	subscribeAction: (email: string) => Promise<SubscribeResult>
+}
+
+export function GetProductUpdatesDialog({
+	subscribeAction,
+}: GetProductUpdatesDialogProps) {
+	const [subscriptionResult, setSubscriptionResult] =
+		useState<SubscribeResult | null>(null)
 
 	const form = useForm<FormData>({
 		resolver: zodResolver(formSchema),
@@ -59,7 +65,7 @@ export function GetProductUpdatesDialog() {
 	const onSubmit = async (data: FormData) => {
 		setSubscriptionResult(null)
 		try {
-			const result = await subscribe(data.email)
+			const result = await subscribeAction(data.email)
 			setSubscriptionResult(result)
 			if (result.status < 400) {
 				form.reset()
