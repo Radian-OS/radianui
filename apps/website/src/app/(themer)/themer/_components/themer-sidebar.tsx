@@ -5,7 +5,8 @@ import { ChevronDown, MoonIcon, Palette, SunIcon, Type } from "lucide-react"
 import { useTheme } from "next-themes"
 import { useThemerLocks } from "@/lib/themer-locks"
 import { useThemerPreset } from "@/lib/themer-preset"
-import { DEFAULT_CONFIG, PRESETS } from "@/registry/config"
+import { BASE_COLORS, BaseColorValue } from "@/registry/base-colors"
+import { PRESETS } from "@/registry/config"
 import { FontValue } from "@/registry/fonts"
 import {
 	ICON_LIBRARIES,
@@ -15,7 +16,6 @@ import {
 import { PRIMARY_COLORS, PrimaryColorValue } from "@/registry/primary-colors"
 import { RadiusValue } from "@/registry/radius"
 import { STYLES, StyleValue } from "@/registry/styles"
-import { THEMES } from "@/registry/themes"
 import {
 	Dropdown,
 	DropdownContent,
@@ -24,7 +24,7 @@ import {
 	DropdownTrigger,
 } from "@/styles/default/ui/dropdown"
 import { Tabs, TabsList, TabsTrigger } from "@/styles/default/ui/tabs"
-import { ColorSwatch, ThemeColorSwatch } from "./color-swatch"
+import { ColorSwatch } from "./color-swatch"
 import { CreateProjectDialog } from "./create-project-dialog"
 import { FontCombobox } from "./font-combobox"
 import { RADII, RadiusLockPill, RadiusPill } from "./radius-pill"
@@ -64,21 +64,6 @@ export function ThemerSidebar({
 		) ?? selectedComponent
 	const selectedStyle = STYLES.find((t) => t.value === params.style)
 
-	const handleThemeChange = (value: typeof params.theme) => {
-		const theme = THEMES.find((theme) => theme.value === value)
-
-		setParams({
-			theme: value,
-			primaryColor: value === "default" ? DEFAULT_CONFIG.primaryColor : null,
-			...(!locked.headingFont && {
-				headingFont: theme?.fonts.heading,
-			}),
-			...(!locked.bodyFont && {
-				bodyFont: theme?.fonts.body,
-			}),
-		})
-	}
-
 	return (
 		<aside className="bg-elevation-level1 border-border flex w-80 shrink-0 flex-col border-r">
 			{/* Header */}
@@ -114,39 +99,6 @@ export function ThemerSidebar({
 						</Tabs>
 					)}
 				</div>
-				{/* Theme Section */}
-				<div className="flex flex-col gap-3">
-					<SectionLabel>Theme</SectionLabel>
-					<Dropdown>
-						<DropdownTrigger className="border-border hover:border-fg-disabled bg-elevation-level2 flex w-full items-center justify-between gap-2 rounded-lg border px-3 py-2 text-sm transition-colors">
-							<span className="text-fg font-medium">
-								{params.theme.charAt(0).toUpperCase() + params.theme.slice(1)}
-							</span>
-							<ChevronDown className="text-fg-tertiary size-3.5 shrink-0" />
-						</DropdownTrigger>
-						<DropdownContent side="right" className="max-h-96 w-56">
-							<DropdownRadioGroup
-								value={params.theme}
-								onValueChange={(value) =>
-									handleThemeChange(value as typeof params.theme)
-								}>
-								{THEMES.map((theme) => (
-									<DropdownRadioItem
-										key={theme.value}
-										value={theme.value}
-										onSelect={(e) => e.preventDefault()}>
-										<div className="flex flex-col gap-1">
-											<span className="text-fg font-medium">{theme.name}</span>
-											<span className="text-fg-tertiary text-xs leading-snug">
-												{theme.description}
-											</span>
-										</div>
-									</DropdownRadioItem>
-								))}
-							</DropdownRadioGroup>
-						</DropdownContent>
-					</Dropdown>
-				</div>
 
 				{/* Style Section */}
 
@@ -171,7 +123,6 @@ export function ThemerSidebar({
 											template: preset.template,
 											useSrcDir: preset.useSrcDir,
 										}),
-										theme: params.theme,
 										primaryColor: params.primaryColor,
 										...(locked.headingFont && {
 											headingFont: params.headingFont,
@@ -207,12 +158,6 @@ export function ThemerSidebar({
 				<div className="flex flex-col gap-3">
 					<SectionLabel>Primary Color</SectionLabel>
 					<div className="flex flex-wrap gap-2">
-						{params.theme !== "default" && (
-							<ThemeColorSwatch
-								isSelected={params.primaryColor === null}
-								onClick={() => setParams({ primaryColor: null })}
-							/>
-						)}
 						{PRIMARY_COLORS.map((color) => (
 							<ColorSwatch
 								key={color.value}
@@ -221,6 +166,25 @@ export function ThemerSidebar({
 								onClick={() =>
 									setParams({
 										primaryColor: color.value as PrimaryColorValue,
+									})
+								}
+							/>
+						))}
+					</div>
+				</div>
+
+				{/* Base Color Section */}
+				<div className="flex flex-col gap-3">
+					<SectionLabel>Base Color</SectionLabel>
+					<div className="flex flex-wrap gap-2">
+						{BASE_COLORS.map((color) => (
+							<ColorSwatch
+								key={color.value}
+								color={color}
+								isSelected={params.baseColor === color.value}
+								onClick={() =>
+									setParams({
+										baseColor: color.value as BaseColorValue,
 									})
 								}
 							/>

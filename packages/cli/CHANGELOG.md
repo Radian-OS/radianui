@@ -1,5 +1,11 @@
 # radianui
 
+## 0.2.2-alpha.4
+
+### Patch Changes
+
+- Let users choose icon library
+
 ## 0.2.2-alpha.3
 
 ### Patch Changes

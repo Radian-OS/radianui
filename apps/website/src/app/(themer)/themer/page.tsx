@@ -35,11 +35,15 @@ function ThemerPage() {
 			template: params.template,
 			style: params.style,
 			useSrcDir: String(params.useSrcDir),
-			theme: params.theme,
+			iconLibrary: params.iconLibrary,
 		})
 
 		if (params.primaryColor) {
 			searchParams.set("primaryColor", params.primaryColor)
+		}
+
+		if (params.baseColor) {
+			searchParams.set("baseColor", params.baseColor)
 		}
 
 		return `/preview/${selectedComponent}?${searchParams.toString()}`
@@ -55,6 +59,13 @@ function ThemerPage() {
 			primaryColor: params.primaryColor,
 		})
 	}, [params.primaryColor])
+
+	useEffect(() => {
+		postToIframe({
+			type: "base-color-change",
+			baseColor: params.baseColor,
+		})
+	}, [params.baseColor])
 
 	useEffect(() => {
 		postToIframe({ type: "style-change", style: params.style })
@@ -74,10 +85,6 @@ function ThemerPage() {
 	useEffect(() => {
 		postToIframe({ type: "template-change", template: params.template })
 	}, [params.template])
-
-	useEffect(() => {
-		postToIframe({ type: "theme-change", theme: params.theme })
-	}, [params.theme])
 
 	useEffect(() => {
 		postToIframe({

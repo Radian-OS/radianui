@@ -143,6 +143,9 @@ export function PreviewClient({ children }: { children: React.ReactNode }) {
 			if (event.data.type === "primary-color-change") {
 				setParams({ primaryColor: event.data.primaryColor })
 			}
+			if (event.data.type === "base-color-change") {
+				setParams({ baseColor: event.data.baseColor })
+			}
 			if (event.data.type === "heading-font-change") {
 				setParams({ headingFont: event.data.headingFont })
 			}
@@ -157,9 +160,6 @@ export function PreviewClient({ children }: { children: React.ReactNode }) {
 			}
 			if (event.data.type === "style-change") {
 				setParams({ style: event.data.style })
-			}
-			if (event.data.type === "theme-change") {
-				setParams({ theme: event.data.theme })
 			}
 			if (event.data.type === "icon-library-change") {
 				setParams({ iconLibrary: event.data.iconLibrary })

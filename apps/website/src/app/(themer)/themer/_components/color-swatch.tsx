@@ -1,20 +1,32 @@
 import { cn } from "@/lib/utils"
-import { PRIMARY_COLORS } from "@/registry/primary-colors"
 import {
 	Tooltip,
 	TooltipContent,
 	TooltipTrigger,
 } from "@/styles/default/ui/tooltip"
 
+type SwatchColor = {
+	name: string
+	cssVars: {
+		light: Readonly<Record<string, string>>
+	}
+}
+
 export function ColorSwatch({
 	color,
 	isSelected,
 	onClick,
 }: {
-	color: (typeof PRIMARY_COLORS)[number]
+	color: SwatchColor
 	isSelected: boolean
 	onClick: () => void
 }) {
+	const backgroundColor =
+		color.cssVars.light["--color-primary"] ??
+		color.cssVars.light["--color-fill1"] ??
+		color.cssVars.light["--color-bg"] ??
+		"transparent"
+
 	return (
 		<Tooltip>
 			<TooltipTrigger asChild>
@@ -27,7 +39,7 @@ export function ColorSwatch({
 							? "border-fg scale-110 ring-2 ring-white"
 							: "hover:border-border border-transparent hover:scale-110"
 					)}
-					style={{ backgroundColor: color.cssVars.light["--color-primary"] }}
+					style={{ backgroundColor }}
 				/>
 			</TooltipTrigger>
 			<TooltipContent side="top">{color.name}</TooltipContent>

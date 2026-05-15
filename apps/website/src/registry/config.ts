@@ -1,11 +1,12 @@
 import z from "zod"
+import { ICON_LIBRARIES, IconLibrary } from "../lib/icon-libraries"
+import { BASE_COLORS } from "./base-colors"
 import { FONTS } from "./fonts"
 import { ICON_LIBRARIES, IconLibrary } from "./icon-libraries"
 import { PRIMARY_COLORS } from "./primary-colors"
 import { RADIUS } from "./radius"
 import { STYLES } from "./styles"
 import { TEMPLATES } from "./templates"
-import { THEMES } from "./themes"
 
 const fontValues = FONTS.map((font) => font.value)
 const radiusValues = RADIUS.map((radius) => radius.value)
@@ -38,39 +39,34 @@ export const registryConfigSchema = z.object({
 
 export type RegistryConfig = z.infer<typeof registryConfigSchema>
 
-export const themerConfigSchema = z
-	.object({
-		name: z.string().optional(),
-		primaryColor: z
-			.enum(PRIMARY_COLORS.map((color) => color.value))
-			.nullable()
-			.default(null),
-		headingFont: z
-			.enum(fontValues, {
-				error: "Invalid font value",
-			})
-			.default("geist"),
-		bodyFont: z
-			.enum(fontValues, { error: "Invalid font value" })
-			.default("inter"),
-		template: z.enum(TEMPLATES).default("next"),
-		radius: z
-			.enum(radiusValues, {
-				error: "Invalid radius value",
-			})
-			.default("medium"),
-		style: z
-			.enum(styleValues, {
-				error: "Invalid style valiue",
-			})
-			.default("default"),
-		useSrcDir: z.boolean().default(true),
-		theme: z.enum(THEMES.map((theme) => theme.value)).default("default"),
-		iconLibrary: z.enum(ICON_LIBRARIES).default("lucide"),
-	})
-	.refine((data) => data.theme !== null || data.primaryColor !== null, {
-		message: "Either theme or primaryColor must be present",
-	})
+export const themerConfigSchema = z.object({
+	name: z.string().optional(),
+	primaryColor: z
+		.enum(PRIMARY_COLORS.map((color) => color.value))
+		.default("violet-blue"),
+	baseColor: z.enum(BASE_COLORS.map((color) => color.value)).default("default"),
+	headingFont: z
+		.enum(fontValues, {
+			error: "Invalid font value",
+		})
+		.default("geist"),
+	bodyFont: z
+		.enum(fontValues, { error: "Invalid font value" })
+		.default("inter"),
+	template: z.enum(TEMPLATES).default("next"),
+	radius: z
+		.enum(radiusValues, {
+			error: "Invalid radius value",
+		})
+		.default("medium"),
+	style: z
+		.enum(styleValues, {
+			error: "Invalid style valiue",
+		})
+		.default("default"),
+	useSrcDir: z.boolean().default(true),
+	iconLibrary: z.enum(ICON_LIBRARIES).default("lucide"),
+})
 
 export type ThemerConfig = z.infer<typeof themerConfigSchema>
 
@@ -83,8 +79,8 @@ export const DEFAULT_CONFIG: ThemerConfig = {
 	style: "default",
 	name: "my-project",
 	useSrcDir: true,
-	theme: "default",
 	iconLibrary: "lucide",
+	baseColor: "default",
 }
 
 export type Preset = ThemerConfig & {
@@ -105,8 +101,8 @@ export const PRESETS: Preset[] = [
 		radius: "medium",
 		style: "default",
 		useSrcDir: true,
-		theme: "default",
 		iconLibrary: "lucide",
+		baseColor: "default",
 	},
 	{
 		name: "sera",
@@ -119,8 +115,8 @@ export const PRESETS: Preset[] = [
 		radius: "medium",
 		style: "sera",
 		useSrcDir: true,
-		theme: "default",
 		iconLibrary: "lucide",
+		baseColor: "default",
 	},
 ]
 
@@ -289,15 +285,14 @@ function normalizePrimaryColorVars(
 }
 
 export function buildRegistryConfig(config: ThemerConfig): RegistryConfig {
-	const primaryColor =
-		config.primaryColor ??
-		(config.theme === "default" ? DEFAULT_CONFIG.primaryColor : null)
+	const primaryColor = config.primaryColor ?? DEFAULT_CONFIG.primaryColor
 	const colorEntry = PRIMARY_COLORS.find((c) => c.value === primaryColor)
 	const lightVars = normalizePrimaryColorVars(colorEntry?.cssVars.light)
 	const darkVars = normalizePrimaryColorVars(colorEntry?.cssVars.dark)
 
-	const themeEntry = THEMES.find((t) => t.value === config.theme)
-	const themeCssVars = themeEntry?.cssVars
+	const baseColorEntry = BASE_COLORS.find((c) => c.value === config.baseColor)
+	const baseLightVars = baseColorEntry?.cssVars.light
+	const baseDarkVars = baseColorEntry?.cssVars.dark
 
 	const theme: Record<string, string> = {}
 
@@ -330,17 +325,16 @@ export function buildRegistryConfig(config: ThemerConfig): RegistryConfig {
 		cssVars: {
 			light: {
 				...BASE_THEME.light,
-				...(themeCssVars?.light || {}),
 				...(lightVars || {}),
+				...baseLightVars,
 			},
 			dark: {
 				...BASE_THEME.dark,
-				...(themeCssVars?.dark || {}),
 				...(darkVars || {}),
+				...baseDarkVars,
 			},
 			theme: {
 				...theme,
-				...(themeCssVars?.theme || {}),
 			},
 		},
 		css: {
