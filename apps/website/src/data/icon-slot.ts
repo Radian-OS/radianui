@@ -157,7 +157,7 @@ export const ICON_SLOT_REPLACEMENTS = [
 	{
 		slot: "lightbulb",
 		lucideIcon: "Lightbulb",
-		hugeiconsIcon: "LightbulbIcon",
+		hugeiconsIcon: "LightbulbOffIcon",
 	},
 	{
 		slot: "pencil",
@@ -182,28 +182,29 @@ export const ICON_SLOT_REPLACEMENTS = [
 	{
 		slot: "smartphone",
 		lucideIcon: "Smartphone",
-		hugeiconsIcon: "Phone01Icon",
+		hugeiconsIcon: "SmartPhone01Icon",
 	},
 	{
 		slot: "monitor",
 		lucideIcon: "Monitor",
-		hugeiconsIcon: "Monitor01Icon",
+		hugeiconsIcon: "MonitorDotIcon",
 	},
 	{
 		slot: "dashboard",
 		lucideIcon: "LayoutDashboard",
-		hugeiconsIcon: "Dashboard01Icon",
+		hugeiconsIcon: "DashboardCircleIcon",
 	},
 	{
 		slot: "globe",
 		lucideIcon: "Globe",
-		hugeiconsIcon: "Globe01Icon",
+		hugeiconsIcon: "GlobeIcon",
 	},
 	{
 		slot: "scroll",
 		lucideIcon: "Scroll",
-		hugeiconsIcon: "Scroll01Icon",
+		hugeiconsIcon: "ScrollIcon",
 	},
+
 	// additional slots used in registry view
 	{
 		slot: "home",
@@ -223,12 +224,12 @@ export const ICON_SLOT_REPLACEMENTS = [
 	{
 		slot: "inbox",
 		lucideIcon: "Inbox",
-		hugeiconsIcon: "Inbox01Icon",
+		hugeiconsIcon: "InboxIcon",
 	},
 	{
 		slot: "send",
 		lucideIcon: "Send",
-		hugeiconsIcon: "Send01Icon",
+		hugeiconsIcon: "MailSendIcon",
 	},
 	{
 		slot: "notebook",
@@ -238,32 +239,32 @@ export const ICON_SLOT_REPLACEMENTS = [
 	{
 		slot: "blocks",
 		lucideIcon: "Blocks",
-		hugeiconsIcon: "Blocks01Icon",
+		hugeiconsIcon: "DashboardSquare01Icon",
 	},
 	{
 		slot: "lifebuoy",
 		lucideIcon: "LifeBuoy",
-		hugeiconsIcon: "Lifebuoy01Icon",
+		hugeiconsIcon: "LifebuoyIcon",
 	},
 	{
 		slot: "external-link",
 		lucideIcon: "ExternalLink",
-		hugeiconsIcon: "ExternalLink01Icon",
+		hugeiconsIcon: "LinkSquare01Icon",
 	},
 	{
 		slot: "info",
 		lucideIcon: "Info",
-		hugeiconsIcon: "Info01Icon",
+		hugeiconsIcon: "InformationCircleIcon",
 	},
 	{
 		slot: "headset",
 		lucideIcon: "Headset",
-		hugeiconsIcon: "Headset01Icon",
+		hugeiconsIcon: "HeadsetIcon",
 	},
 	{
 		slot: "badge-check",
 		lucideIcon: "BadgeCheck",
-		hugeiconsIcon: "VerificationBadgeIcon",
+		hugeiconsIcon: "Certificate01Icon",
 	},
 	{
 		slot: "bell",
@@ -313,17 +314,17 @@ export const ICON_SLOT_REPLACEMENTS = [
 	{
 		slot: "flask",
 		lucideIcon: "FlaskConical",
-		hugeiconsIcon: "LabIcon",
+		hugeiconsIcon: "EcoLabIcon",
 	},
 	{
 		slot: "scroll-text",
 		lucideIcon: "ScrollText",
-		hugeiconsIcon: "ScrollTextIcon",
+		hugeiconsIcon: "Note01Icon",
 	},
 	{
 		slot: "alert-triangle",
 		lucideIcon: "TriangleAlert",
-		hugeiconsIcon: "AlertTriangleIcon",
+		hugeiconsIcon: "Alert01Icon",
 	},
 	{
 		slot: "cog",
@@ -368,17 +369,17 @@ export const ICON_SLOT_REPLACEMENTS = [
 	{
 		slot: "truck",
 		lucideIcon: "Truck",
-		hugeiconsIcon: "Truck01Icon",
+		hugeiconsIcon: "DeliveryTruck01Icon",
 	},
 	{
 		slot: "receipt",
 		lucideIcon: "ReceiptText",
-		hugeiconsIcon: "Receipt01Icon",
+		hugeiconsIcon: "Invoice01Icon",
 	},
 	{
 		slot: "badge-percent",
 		lucideIcon: "BadgePercent",
-		hugeiconsIcon: "Percent01Icon",
+		hugeiconsIcon: "PercentIcon",
 	},
 	{
 		slot: "ticket",
@@ -418,7 +419,7 @@ export const ICON_SLOT_REPLACEMENTS = [
 	{
 		slot: "bar-chart",
 		lucideIcon: "BarChart3",
-		hugeiconsIcon: "BarChart01Icon",
+		hugeiconsIcon: "BarChartIcon",
 	},
 	{
 		slot: "clock",
@@ -428,7 +429,7 @@ export const ICON_SLOT_REPLACEMENTS = [
 	{
 		slot: "calendar-check",
 		lucideIcon: "CalendarCheck",
-		hugeiconsIcon: "CalendarCheck01Icon",
+		hugeiconsIcon: "CalendarCheckIn01Icon",
 	},
 	{
 		slot: "heart",
@@ -443,7 +444,7 @@ export const ICON_SLOT_REPLACEMENTS = [
 	{
 		slot: "file-question",
 		lucideIcon: "FileQuestion",
-		hugeiconsIcon: "FileQuestionIcon",
+		hugeiconsIcon: "FileQuestionMarkIcon",
 	},
 	{
 		slot: "zap",
@@ -458,7 +459,7 @@ export const ICON_SLOT_REPLACEMENTS = [
 	{
 		slot: "clipboard-check",
 		lucideIcon: "ClipboardCheck",
-		hugeiconsIcon: "ClipboardCheckIcon",
+		hugeiconsIcon: "ClipboardIcon",
 	},
 	{
 		slot: "door",
@@ -468,12 +469,12 @@ export const ICON_SLOT_REPLACEMENTS = [
 	{
 		slot: "file-text",
 		lucideIcon: "FileText",
-		hugeiconsIcon: "FileAttachment01Icon",
+		hugeiconsIcon: "FileAttachmentIcon",
 	},
 	{
 		slot: "file-warning",
 		lucideIcon: "FileWarning",
-		hugeiconsIcon: "FileShieldIcon",
+		hugeiconsIcon: "Shield01Icon",
 	},
 	{
 		slot: "megaphone",
@@ -503,12 +504,12 @@ export const ICON_SLOT_REPLACEMENTS = [
 	{
 		slot: "git-branch",
 		lucideIcon: "GitBranch",
-		hugeiconsIcon: "GitBranch01Icon",
+		hugeiconsIcon: "GitBranchIcon",
 	},
 	{
 		slot: "headphones",
 		lucideIcon: "Headphones",
-		hugeiconsIcon: "Headphones01Icon",
+		hugeiconsIcon: "HeadphonesIcon",
 	},
 	{
 		slot: "messages-square",
@@ -523,7 +524,7 @@ export const ICON_SLOT_REPLACEMENTS = [
 	{
 		slot: "check-square",
 		lucideIcon: "SquareCheck",
-		hugeiconsIcon: "SquareCheck01Icon",
+		hugeiconsIcon: "TaskDone01Icon",
 	},
 	{
 		slot: "users-2",
@@ -543,12 +544,12 @@ export const ICON_SLOT_REPLACEMENTS = [
 	{
 		slot: "contrast",
 		lucideIcon: "Contrast",
-		hugeiconsIcon: "Contrast01Icon",
+		hugeiconsIcon: "Sun01Icon",
 	},
 	{
 		slot: "shapes",
 		lucideIcon: "Shapes",
-		hugeiconsIcon: "ShapeIcon",
+		hugeiconsIcon: "ShapeCollectionIcon",
 	},
 	{
 		slot: "arrow-left",
@@ -558,7 +559,7 @@ export const ICON_SLOT_REPLACEMENTS = [
 	{
 		slot: "quote",
 		lucideIcon: "Quote",
-		hugeiconsIcon: "QuoteIcon",
+		hugeiconsIcon: "QuoteUpIcon",
 	},
 	{
 		slot: "trash",

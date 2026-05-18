@@ -5,7 +5,11 @@ import { ChevronDown, MoonIcon, Palette, SunIcon, Type } from "lucide-react"
 import { useTheme } from "next-themes"
 import { useThemerLocks } from "@/lib/themer-locks"
 import { useThemerPreset } from "@/lib/themer-preset"
-import { BASE_COLORS, BaseColorValue } from "@/registry/base-colors"
+import {
+	BASE_COLORS,
+	BASE_COLORS_MAP,
+	BaseColorValue,
+} from "@/registry/base-colors"
 import { PRESETS } from "@/registry/config"
 import { FontValue } from "@/registry/fonts"
 import {
@@ -176,7 +180,7 @@ export function ThemerSidebar({
 				{/* Base Color Section */}
 				<div className="flex flex-col gap-3">
 					<SectionLabel>Base Color</SectionLabel>
-					<div className="flex flex-wrap gap-2">
+					{/* <div className="flex flex-wrap gap-2">
 						{BASE_COLORS.map((color) => (
 							<ColorSwatch
 								key={color.value}
@@ -189,7 +193,31 @@ export function ThemerSidebar({
 								}
 							/>
 						))}
-					</div>
+					</div> */}
+					<Dropdown>
+						<DropdownTrigger className="border-border hover:border-fg-disabled bg-elevation-level2 flex w-full items-center justify-between gap-2 rounded-lg border px-3 py-2 text-sm transition-colors">
+							<span className="text-fg font-medium">
+								{BASE_COLORS_MAP[params.baseColor].name}
+							</span>
+							<ChevronDown className="text-fg-tertiary size-3.5 shrink-0" />
+						</DropdownTrigger>
+						<DropdownContent side="left" className="max-h-96 w-56">
+							<DropdownRadioGroup
+								value={params.baseColor}
+								onValueChange={(value) =>
+									setParams({ baseColor: value as BaseColorValue })
+								}>
+								{BASE_COLORS.map((baseColor) => (
+									<DropdownRadioItem
+										key={baseColor.value}
+										value={baseColor.value}
+										onSelect={(e) => e.preventDefault()}>
+										{baseColor.name}
+									</DropdownRadioItem>
+								))}
+							</DropdownRadioGroup>
+						</DropdownContent>
+					</Dropdown>
 				</div>
 
 				{/* Component Preview */}
