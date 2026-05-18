@@ -4,7 +4,7 @@ import { getResend } from "@/lib/resend"
 
 export async function unsubscribe(id: string) {
 	try {
-		const resend = getResend()
+		const resend = await getResend()
 
 		await resend.contacts.update({
 			id,
