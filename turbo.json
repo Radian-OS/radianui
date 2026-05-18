@@ -27,7 +27,15 @@
 		},
 		"start": {
 			"cache": false,
-			"persistent": true
+			"persistent": true,
+			"env": [
+				"DATABASE_URL",
+				"HOST",
+				"NEXT_PUBLIC_*",
+				"PORT",
+				"RESEND_API_KEY",
+				"RESEND_FROM_EMAIL"
+			]
 		},
 		"format:check": {
 			"cache": false,
