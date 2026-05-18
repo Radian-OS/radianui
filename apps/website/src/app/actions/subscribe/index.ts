@@ -1,13 +1,14 @@
 "use server"
 
 import WelcomeEmailTemplate from "@/components/email/welcome-email-template"
-import { getResend } from "@/lib/resend"
+import { EmailConfigError, getEmailConfig, getResend } from "@/lib/resend"
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 
 export async function subscribe(email: string) {
 	try {
-		const resend = await getResend()
+		const { apiKey, fromEmail, websiteUrl } = getEmailConfig()
+		const resend = await getResend(apiKey)
 
 		const { data: existing_contact_data } = await resend.contacts.get({ email })
 
@@ -38,15 +39,15 @@ export async function subscribe(email: string) {
 		await delay(1000)
 
 		const { error: email_send_error } = await resend.emails.send({
-			from: process.env.RESEND_FROM_EMAIL!,
+			from: fromEmail,
 			to: email,
 			subject: "Welcome to RadianOS",
 			react: WelcomeEmailTemplate({
-				baseUrl: process.env.NEXT_PUBLIC_WEBSITE_URL!,
+				baseUrl: websiteUrl,
 				id: new_contact_data.id,
 			}),
 			headers: {
-				"List-Unsubscribe": `<${process.env.NEXT_PUBLIC_WEBSITE_URL!}/api/unsubscribe?id=${encodeURIComponent(new_contact_data.id)}>`,
+				"List-Unsubscribe": `<${websiteUrl}/api/unsubscribe?id=${encodeURIComponent(new_contact_data.id)}>`,
 				"List-Unsubscribe-Post": "List-Unsubscribe=One-Click",
 			},
 		})
@@ -61,6 +62,12 @@ export async function subscribe(email: string) {
 		return { message: "Email subscribed successfully", status: 201 }
 	} catch (error) {
 		console.error("Failed to subscribe email:", error)
+		if (error instanceof EmailConfigError) {
+			return {
+				message: "Email subscriptions are not configured yet.",
+				status: 503,
+			}
+		}
 		return {
 			message: "Something went wrong. Please try again later.",
 			status: 500,

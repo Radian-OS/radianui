@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { FieldValues, useForm } from "react-hook-form"
 import { z } from "zod"
+import { subscribeToNewsletter } from "@/lib/newsletter"
 import { cn } from "@/lib/utils"
 import { Button } from "@/registry/ui/button"
 import { Divider } from "@/registry/ui/divider"
@@ -26,13 +27,7 @@ const formSchema = z.object({
 
 type FormData = z.infer<typeof formSchema>
 
-type EmailSubscriptionProps = {
-	subscribe: (email: string) => Promise<{ message: string; status: number }>
-}
-
-export default function EmailSubscription({
-	subscribe,
-}: EmailSubscriptionProps) {
+export default function EmailSubscription() {
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues: { email: "" },
@@ -57,7 +52,7 @@ export default function EmailSubscription({
 	const onSubmit = async (data: FormData) => {
 		setSubscriptionResult(null)
 		try {
-			const result = await subscribe(data.email)
+			const result = await subscribeToNewsletter(data.email)
 			setSubscriptionResult(result)
 			if (result.status < 400) {
 				form.reset()
