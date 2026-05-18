@@ -7,7 +7,7 @@ const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 
 export async function subscribe(email: string) {
 	try {
-		const resend = getResend()
+		const resend = await getResend()
 
 		const { data: existing_contact_data } = await resend.contacts.get({ email })
 

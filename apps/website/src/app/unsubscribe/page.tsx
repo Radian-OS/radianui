@@ -29,7 +29,7 @@ export default async function UnsubscribePage({
 		return notFound()
 	}
 
-	const resend = getResend()
+	const resend = await getResend()
 	const { error: contact_error } = await resend.contacts.get({ id })
 
 	if (contact_error) {
