@@ -151,9 +151,6 @@ const nextConfig = {
 	compiler: {
 		removeConsole: false,
 	},
-	env: {
-		RESEND_FROM_EMAIL: process.env.RESEND_FROM_EMAIL,
-	},
 	experimental: {
 		optimizePackageImports: ["lucide-react"],
 	},

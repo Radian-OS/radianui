@@ -3,7 +3,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import { unsubscribe } from "@/app/actions/unsubscribe"
-import { resend } from "@/lib/resend"
+import { getResend } from "@/lib/resend"
 import { Button } from "@/registry/ui/button"
 import { Card } from "@/registry/ui/card"
 import {
@@ -29,6 +29,7 @@ export default async function UnsubscribePage({
 		return notFound()
 	}
 
+	const resend = await getResend()
 	const { error: contact_error } = await resend.contacts.get({ id })
 
 	if (contact_error) {
