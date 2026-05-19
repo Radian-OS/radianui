@@ -16,7 +16,7 @@ import {
 	ICON_LIBRARIES,
 	ICON_LIBRARY_LABELS,
 	IconLibrary,
-} from "@/registry/icon-libraries"
+} from "@/registry/icon/icon-libraries"
 import { PRIMARY_COLORS, PrimaryColorValue } from "@/registry/primary-colors"
 import { RadiusValue } from "@/registry/radius"
 import { STYLES, StyleValue } from "@/registry/styles"

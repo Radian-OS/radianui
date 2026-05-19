@@ -1,7 +1,7 @@
 import z from "zod"
 import { BASE_COLORS } from "./base-colors"
 import { FONTS } from "./fonts"
-import { ICON_LIBRARIES, IconLibrary } from "./icon-libraries"
+import { ICON_LIBRARIES, IconLibrary } from "./icon/icon-libraries"
 import { PRIMARY_COLORS } from "./primary-colors"
 import { RADIUS } from "./radius"
 import { STYLES } from "./styles"

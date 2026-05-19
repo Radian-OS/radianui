@@ -1,4 +1,4 @@
-import { ICON_SLOT_REPLACEMENTS } from "@/data/icon-slot"
+import { ICON_SLOT_REPLACEMENTS } from "@/registry/icon/icon-slot"
 
 export const ICON_LIBRARIES = ["lucide", "hugeicons"] as const
 

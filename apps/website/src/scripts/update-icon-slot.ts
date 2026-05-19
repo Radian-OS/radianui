@@ -16,7 +16,7 @@
 import { promises as fs } from "fs"
 import path from "path"
 import prettier from "prettier"
-import { ICON_SLOT_REPLACEMENTS } from "@/data/icon-slot"
+import { ICON_SLOT_REPLACEMENTS } from "@/registry/icon/icon-slot"
 
 // ---------------------------------------------------------------------------
 // Constants

@@ -1,6 +1,6 @@
 import fs from "fs"
 import path from "path"
-import { ICON_SLOT_REPLACEMENTS } from "@/data/icon-slot"
+import { ICON_SLOT_REPLACEMENTS } from "@/registry/icon/icon-slot"
 
 const outputPath = "public/r/icon/icon.json"
 
