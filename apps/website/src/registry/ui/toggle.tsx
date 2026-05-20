@@ -211,9 +211,9 @@ const toggleVariants = cva(
 
 function Toggle({
 	className,
-	variant = "ghost",
-	size = "36",
-	color = "primary",
+	variant = "outline",
+	size = "28",
+	color = "neutral",
 	...props
 }: React.ComponentProps<typeof TogglePrimitive.Root> &
 	VariantProps<typeof toggleVariants>) {
