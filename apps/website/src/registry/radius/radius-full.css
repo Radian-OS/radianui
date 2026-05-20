@@ -1,0 +1,48 @@
+.style-sera .style-default {
+	/* MARK: Button */
+
+	/* Size rounded tokens — all flat */
+	.cn-btn-size-28-r {
+		@apply rounded-full;
+	}
+	.cn-btn-size-32-r {
+		@apply rounded-full;
+	}
+	.cn-btn-size-36-r {
+		@apply rounded-full;
+	}
+	.cn-btn-size-40-r {
+		@apply rounded-full;
+	}
+	.cn-btn-size-44-r {
+		@apply rounded-full;
+	}
+	.cn-btn-size-48-r {
+		@apply rounded-full;
+	}
+
+	/* CompactButton base */
+	.cn-compact-btn-r {
+		@apply rounded-full;
+	}
+
+	/* IconButton size variants — all flat */
+	.cn-icon-btn-size-28-r {
+		@apply rounded-full;
+	}
+	.cn-icon-btn-size-32-r {
+		@apply rounded-full;
+	}
+	.cn-icon-btn-size-36-r {
+		@apply rounded-full;
+	}
+	.cn-icon-btn-size-40-r {
+		@apply rounded-full;
+	}
+	.cn-icon-btn-size-44-r {
+		@apply rounded-full;
+	}
+	.cn-icon-btn-size-48-r {
+		@apply rounded-full;
+	}
+}
