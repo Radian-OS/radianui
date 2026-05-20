@@ -937,6 +937,18 @@ const registry: Record<
 	"text-area-preview": React.lazy(
 		() => import("@/registry/example/text-area/text-area-preview")
 	),
+	"toggle-colors": React.lazy(
+		() => import("@/registry/example/toggle/toggle-colors")
+	),
+	"toggle-preview": React.lazy(
+		() => import("@/registry/example/toggle/toggle-preview")
+	),
+	"toggle-sizes": React.lazy(
+		() => import("@/registry/example/toggle/toggle-sizes")
+	),
+	"toggle-variants": React.lazy(
+		() => import("@/registry/example/toggle/toggle-variants")
+	),
 	"tooltip-align": React.lazy(
 		() => import("@/registry/example/tooltip/tooltip-align")
 	),

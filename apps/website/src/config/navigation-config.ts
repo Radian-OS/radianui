@@ -96,6 +96,7 @@ const COMPONENTS_DATA = [
 	"Table",
 	"Tabs",
 	"Text Area",
+	"Toggle",
 	"Tooltip",
 ]
 
