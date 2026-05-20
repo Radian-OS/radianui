@@ -1,4 +1,4 @@
-import { IconSlot } from "@/registry/icon-library"
+import { IconSlot } from "@/registry/icon/icon-library"
 
 export function InfoCard() {
 	return (

@@ -4,7 +4,7 @@ import { useEffect, useLayoutEffect, useMemo, useState } from "react"
 import { useThemerPreset } from "@/lib/themer-preset"
 import { buildRegistryConfig } from "@/registry/config"
 import { FONTS } from "@/registry/fonts"
-import { IconLibraryProvider } from "@/registry/icon-library"
+import { IconLibraryProvider } from "@/registry/icon/icon-library"
 import { RADIUS } from "@/registry/radius"
 
 const MANAGED_BODY_CLASS_PREFIXES = ["style-"] as const

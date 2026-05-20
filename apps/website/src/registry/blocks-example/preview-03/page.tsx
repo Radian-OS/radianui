@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { IconSlot } from "@/registry/icon-library"
+import { IconSlot } from "@/registry/icon/icon-library"
 import { Badge, BadgeDot } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
 import {

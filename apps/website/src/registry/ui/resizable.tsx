@@ -3,7 +3,7 @@
 import * as React from "react"
 import * as ResizablePrimitive from "react-resizable-panels"
 import { cn } from "@/lib/utils"
-import { IconSlot } from "@/registry/icon-library"
+import { IconSlot } from "@/registry/icon/icon-library"
 
 export type ResizablePanelGroupProps = React.ComponentProps<
 	typeof ResizablePrimitive.PanelGroup

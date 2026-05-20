@@ -5,7 +5,7 @@ import useEmblaCarousel, {
 	type UseEmblaCarouselType,
 } from "embla-carousel-react"
 import { cn } from "@/lib/utils"
-import { IconSlot } from "@/registry/icon-library"
+import { IconSlot } from "@/registry/icon/icon-library"
 import { IconButton } from "@/registry/ui/button"
 
 type CarouselApi = UseEmblaCarouselType[1]

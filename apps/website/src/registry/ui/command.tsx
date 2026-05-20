@@ -9,7 +9,7 @@ import {
 	CommandSeparator as CmdkSeparator,
 } from "cmdk"
 import { cn } from "@/lib/utils"
-import { IconSlot } from "@/registry/icon-library"
+import { IconSlot } from "@/registry/icon/icon-library"
 import {
 	Dialog,
 	DialogContent,
