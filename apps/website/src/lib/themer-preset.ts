@@ -10,7 +10,7 @@ import {
 import { BASE_COLORS, BaseColorValue } from "@/registry/base-colors"
 import { DEFAULT_CONFIG } from "@/registry/config"
 import { FONTS, FontValue } from "@/registry/fonts"
-import { ICON_LIBRARIES, IconLibrary } from "@/registry/icon-libraries"
+import { ICON_LIBRARIES, IconLibrary } from "@/registry/icon/icon-libraries"
 import { PRIMARY_COLORS, PrimaryColorValue } from "@/registry/primary-colors"
 import { RADIUS, RadiusValue } from "@/registry/radius"
 import { STYLES, StyleValue } from "@/registry/styles"

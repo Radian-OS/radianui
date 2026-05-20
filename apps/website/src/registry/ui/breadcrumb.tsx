@@ -1,7 +1,7 @@
 import * as React from "react"
 import * as SlotPrimitive from "@radix-ui/react-slot"
 import { cn } from "@/lib/utils"
-import { IconSlot } from "@/registry/icon-library"
+import { IconSlot } from "@/registry/icon/icon-library"
 
 export type BreadcrumbType = React.ComponentProps<"nav"> & {
 	separator?: React.ReactNode

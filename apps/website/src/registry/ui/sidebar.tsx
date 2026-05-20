@@ -4,7 +4,7 @@ import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { type VariantProps, cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"
-import { IconSlot } from "@/registry/icon-library"
+import { IconSlot } from "@/registry/icon/icon-library"
 import { Badge } from "@/registry/ui/badge"
 import { IconButton } from "@/registry/ui/button"
 import {

@@ -4,7 +4,7 @@ import * as React from "react"
 import * as RadioGroupPrimitive from "@radix-ui/react-radio-group"
 import { type VariantProps, cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"
-import { IconSlot } from "../icon-library"
+import { IconSlot } from "@/registry/icon/icon-library"
 
 type RadioGroupContextType = {
 	size?: VariantProps<typeof radioItemVariants>["size"]

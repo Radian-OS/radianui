@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import Link from "next/link"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-import { IconSlot } from "@/registry/icon-library"
+import { IconSlot } from "@/registry/icon/icon-library"
 import { Button } from "@/registry/ui/button"
 import { Divider } from "@/registry/ui/divider"
 import {

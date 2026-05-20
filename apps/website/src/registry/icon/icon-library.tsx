@@ -6,11 +6,11 @@ import { HugeiconsIcon } from "@hugeicons/react"
 import type { IconSvgElement } from "@hugeicons/react"
 import * as LucideIcons from "lucide-react"
 import { type LucideIcon } from "lucide-react"
-import { ICON_SLOT_REPLACEMENTS } from "@/data/icon-slot"
 import type {
 	IconLibrary,
 	IconSlot as IconSlotName,
-} from "@/registry/icon-libraries"
+} from "@/registry/icon/icon-libraries"
+import { ICON_SLOT_REPLACEMENTS } from "./icon-slot"
 
 export type ThemedIconProps = Omit<
 	React.SVGProps<SVGSVGElement>,

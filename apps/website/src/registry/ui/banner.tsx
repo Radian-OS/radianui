@@ -1,7 +1,7 @@
 import * as React from "react"
 import { type VariantProps, cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"
-import { IconSlot } from "@/registry/icon-library"
+import { IconSlot } from "@/registry/icon/icon-library"
 
 export type BannerProps = Omit<React.HTMLAttributes<HTMLDivElement>, "color"> &
 	VariantProps<typeof bannerVariants> & {

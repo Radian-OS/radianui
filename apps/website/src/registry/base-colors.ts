@@ -123,65 +123,12 @@ export const BASE_COLORS = [
 			},
 		},
 	},
-	{
-		value: "neutral-gray",
-		name: "Neutral Gray",
-		type: "registry:color",
-		cssVars: {
-			light: {
-				"--color-bg": "oklch(1 0 0)",
-				"--color-fill1": "oklch(0.9731 0 0)",
-				"--color-fill2": "oklch(0.9551 0 0)",
-				"--color-fill3": "oklch(0.9401 0 0)",
-				"--color-fill4": "oklch(0.9067 0 0)",
-				"--color-fg": "oklch(0.2809 0 0)",
-				"--color-secondary": "oklch(0.4748 0 0)",
-				"--color-tertiary": "oklch(0.5452 0 0)",
-				"--color-disabled": "oklch(0.7155 0 0)",
-				"--color-inverse": "oklch(1 0 0)",
-				"--color-border": "oklch(0.9067 0 0)",
-				"--color-soft": "oklch(0.9401 0 0)",
-				"--color-soft-alpha": "",
-				"--color-alpha": "",
-				"--color-elevation-negative": "oklch(0.9731 0 0)",
-				"--color-elevation-level1": "oklch(1 0 0)",
-				"--color-elevation-level2": "oklch(1 0 0)",
-				"--color-white-inverse": "oklch(1 0 0)",
-				"--color-black-inverse": "oklch(0.1448 0 0)",
-				"--color-fill1-alpha": "",
-				"--color-fill2-alpha": "",
-				"--color-fill3-alpha": "",
-				"--color-fill4-alpha": "",
-			},
-			dark: {
-				"--color-bg": "oklch(0.1448 0 0)",
-				"--color-fill1": "oklch(0.1913 0 0)",
-				"--color-fill2": "oklch(0.2393 0 0)",
-				"--color-fill3": "oklch(0.2809 0 0)",
-				"--color-fill4": "oklch(0.3211 0 0)",
-				"--color-fg": "oklch(0.9731 0 0)",
-				"--color-secondary": "oklch(0.8452 0 0)",
-				"--color-tertiary": "oklch(0.7155 0 0)",
-				"--color-disabled": "oklch(0.5103 0 0)",
-				"--color-inverse": "oklch(0.2393 0 0)",
-				"--color-border": "oklch(0.2809 0 0)",
-				"--color-soft": "oklch(0.2393 0 0)",
-				"--color-soft-alpha": "",
-				"--color-alpha": "",
-				"--color-elevation-negative": "oklch(0 0 0)",
-				"--color-elevation-level1": "oklch(0.1913 0 0)",
-				"--color-elevation-level2": "oklch(0.2393 0 0)",
-				"--color-white-inverse": "oklch(0.1448 0 0)",
-				"--color-black-inverse": "oklch(1 0 0)",
-				"--color-fill1-alpha": "",
-				"--color-fill2-alpha": "",
-				"--color-fill3-alpha": "",
-				"--color-fill4-alpha": "",
-			},
-		},
-	},
 ] as const
 
 export type BaseColor = (typeof BASE_COLORS)[number]
 export type BaseColorName = BaseColor["name"]
 export type BaseColorValue = BaseColor["value"]
+
+export const BASE_COLORS_MAP = Object.fromEntries(
+	BASE_COLORS.map((c) => [c.value, c])
+) as Record<BaseColorValue, BaseColor>
