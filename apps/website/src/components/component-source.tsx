@@ -45,10 +45,7 @@ async function ComponentSource({
 		}
 
 		if (src) {
-			code = await fs.readFile(
-				path.join(process.cwd(), "src", "registry", "example", `${src}.tsx`),
-				"utf-8"
-			)
+			code = await fs.readFile(path.join(process.cwd(), "src", src), "utf-8")
 		}
 
 		if (!code) {
@@ -56,10 +53,10 @@ async function ComponentSource({
 		}
 	}
 
-	code = await formatCode(code)
+	code = formatCode(code)
 
 	const lang = language ?? title?.split(".").pop() ?? "tsx"
-	const highlightedCode = await highlightCode(code)
+	const highlightedCode = await highlightCode(code, lang)
 
 	if (!collapsible) {
 		return (
