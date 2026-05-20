@@ -1,6 +1,9 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+@import "../registry/radius/radius-full.css" layer(base);
+@import "../registry/radius/radius-medium.css" layer(base);
+
 @custom-variant dark (&:is(.dark *));
 
 @theme {

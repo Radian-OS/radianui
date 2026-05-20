@@ -1,48 +1,48 @@
-.style-sera .style-default {
+.radius-full {
 	/* MARK: Button */
 
 	/* Size rounded tokens — all flat */
-	.cn-btn-size-28-r {
+	.r-btn-size-28 {
 		@apply rounded-full;
 	}
-	.cn-btn-size-32-r {
+	.r-btn-size-32 {
 		@apply rounded-full;
 	}
-	.cn-btn-size-36-r {
+	.r-btn-size-36 {
 		@apply rounded-full;
 	}
-	.cn-btn-size-40-r {
+	.r-btn-size-40 {
 		@apply rounded-full;
 	}
-	.cn-btn-size-44-r {
+	.r-btn-size-44 {
 		@apply rounded-full;
 	}
-	.cn-btn-size-48-r {
+	.r-btn-size-48 {
 		@apply rounded-full;
 	}
 
 	/* CompactButton base */
-	.cn-compact-btn-r {
+	.r-compact-btn {
 		@apply rounded-full;
 	}
 
 	/* IconButton size variants — all flat */
-	.cn-icon-btn-size-28-r {
+	.r-icon-btn-size-28 {
 		@apply rounded-full;
 	}
-	.cn-icon-btn-size-32-r {
+	.r-icon-btn-size-32 {
 		@apply rounded-full;
 	}
-	.cn-icon-btn-size-36-r {
+	.r-icon-btn-size-36 {
 		@apply rounded-full;
 	}
-	.cn-icon-btn-size-40-r {
+	.r-icon-btn-size-40 {
 		@apply rounded-full;
 	}
-	.cn-icon-btn-size-44-r {
+	.r-icon-btn-size-44 {
 		@apply rounded-full;
 	}
-	.cn-icon-btn-size-48-r {
+	.r-icon-btn-size-48 {
 		@apply rounded-full;
 	}
 }

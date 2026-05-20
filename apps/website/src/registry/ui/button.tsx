@@ -66,12 +66,12 @@ export const buttonVariants = cva(
 				"smooth-inverted": "",
 			},
 			size: {
-				"28": "[&>svg]:size-4 text-[13px] leading-4.5 px-1 cn-btn-size-28",
-				"32": "[&>svg]:size-4.5 text-sm px-1 cn-btn-size-32",
-				"36": "[&>svg]:size-5 text-sm px-1 cn-btn-size-36",
-				"40": "[&>svg]:size-5 text-sm px-1 cn-btn-size-40",
-				"44": "[&>svg]:size-5 text-base px-1 cn-btn-size-44",
-				"48": "[&>svg]:size-6 text-base px-1 cn-btn-size-48",
+				"28": "r-btn-size-28 [&>svg]:size-4 text-[13px] leading-4.5 px-1 cn-btn-size-28",
+				"32": "r-btn-size-32 [&>svg]:size-4.5 text-sm px-1 cn-btn-size-32",
+				"36": "r-btn-size-36 [&>svg]:size-5 text-sm px-1 cn-btn-size-36",
+				"40": "r-btn-size-40 [&>svg]:size-5 text-sm px-1 cn-btn-size-40",
+				"44": "r-btn-size-44 [&>svg]:size-5 text-base px-1 cn-btn-size-44",
+				"48": "r-btn-size-48 [&>svg]:size-6 text-base px-1 cn-btn-size-48",
 			},
 			loading: {
 				true: "",

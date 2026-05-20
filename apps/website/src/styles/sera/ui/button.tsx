@@ -66,7 +66,7 @@ export const buttonVariants = cva(
 				"smooth-inverted": "",
 			},
 			size: {
-				"28": "[&>svg]:size-4 text-[13px] leading-4.5 px-1 rounded-none",
+				"28": "btn-size-28-r [&>svg]:size-4 text-[13px] leading-4.5 px-1 rounded-none",
 				"32": "[&>svg]:size-4.5 text-sm px-1 rounded-none",
 				"36": "[&>svg]:size-5 text-sm px-1 rounded-none",
 				"40": "[&>svg]:size-5 text-sm px-1 rounded-none",

@@ -325,7 +325,7 @@
       },
       {
         "name": "button/button-example-preview",
-        "content": "import React from \"react\"\nimport { Button } from \"@/styles/default/ui/button\"\n\nfunction ButtonExamplePreview() {\n\treturn (\n\t\t<div className=\"flex flex-col items-center justify-center gap-3 sm:flex-row\">\n\t\t\t<Button variant=\"outline\" color=\"neutral\">\n\t\t\t\tCancel\n\t\t\t</Button>\n\t\t\t<Button>Save Changes</Button>\n\t\t</div>\n\t)\n}\n\nexport default ButtonExamplePreview\n"
+        "content": "import React from \"react\"\nimport { Button } from \"@/components/ui/button\"\n\nfunction ButtonExamplePreview() {\n\treturn (\n\t\t<div className=\"flex flex-col items-center justify-center gap-3 sm:flex-row\">\n\t\t\t<Button variant=\"outline\" color=\"neutral\">\n\t\t\t\tCancel\n\t\t\t</Button>\n\t\t\t<Button>Save Changes</Button>\n\t\t</div>\n\t)\n}\n\nexport default ButtonExamplePreview\n"
       },
       {
         "name": "button/button-example-rounded",

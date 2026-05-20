@@ -313,9 +313,11 @@ export function ThemerSidebar({
 								key={radius.value}
 								radius={radius}
 								isSelected={params.radius === radius.value}
-								onClick={() =>
+								onClick={() => {
+									if (radius.value === "large") {
+									}
 									setParams({ radius: radius.value as RadiusValue })
-								}
+								}}
 							/>
 						))}
 						<RadiusLockPill

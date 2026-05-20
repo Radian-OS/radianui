@@ -71,7 +71,7 @@ export default async function RootLayout({
 		alternateName: ["RadianUI", "RadianOS", "Radianos"],
 		description:
 			"Open-source React component library with Tailwind CSS. Install with radianui CLI.",
-		url: process.env.NEXT_PUBLIC_WEBSITE_URL, // ✅ Evaluated here
+		url: process.env.NEXT_PUBLIC_WEBSITE_URL,
 		applicationCategory: "DeveloperApplication",
 		operatingSystem: "Web",
 		offers: {

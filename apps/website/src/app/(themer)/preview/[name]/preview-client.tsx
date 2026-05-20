@@ -128,6 +128,8 @@ export function PreviewClient({ children }: { children: React.ReactNode }) {
 		document.body.classList.add(`style-${params.style}`)
 		setIsReady(true)
 
+		if (params.radius === "large") document.body.classList.add("radius-full")
+
 		return () => {
 			if (style && document.head.contains(style)) {
 				document.head.removeChild(style)
