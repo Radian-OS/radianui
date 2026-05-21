@@ -1,484 +1,484 @@
 .radius-full {
 	/* MARK: Accordion */
 
-	.cn-accordion-item-variant-box {
+	.r-accordion-item-variant-box {
 		@apply rounded-full;
 	}
 
-	.cn-accordion-item-variant-table {
+	.r-accordion-item-variant-table {
 		@apply rounded-full; 
 	}
 
 	/* MARK: Alert Dialog */
 
-	.cn-alert-dialog-content {
+	.r-alert-dialog-content {
 		@apply rounded-full;
 	}
 
 	/* MARK: Avatar */
 
-	.cn-avatar-rounded-circle {
+	.r-avatar-rounded-circle {
 		@apply rounded-full;
 	}
 
-	.cn-avatar-square-16 {
+	.r-avatar-square-16 {
 		@apply rounded-full;
 	}
-	.cn-avatar-square-20 {
+	.r-avatar-square-20 {
 		@apply rounded-full;
 	}
-	.cn-avatar-square-24 {
+	.r-avatar-square-24 {
 		@apply rounded-full;
 	}
-	.cn-avatar-square-32 {
+	.r-avatar-square-32 {
 		@apply rounded-full;
 	}
-	.cn-avatar-square-36 {
+	.r-avatar-square-36 {
 		@apply rounded-full;
 	}
-	.cn-avatar-square-40 {
+	.r-avatar-square-40 {
 		@apply rounded-full;
 	}
-	.cn-avatar-square-48 {
+	.r-avatar-square-48 {
 		@apply rounded-full;
 	}
-	.cn-avatar-square-64 {
+	.r-avatar-square-64 {
 		@apply rounded-full;
 	}
-	.cn-avatar-square-80 {
+	.r-avatar-square-80 {
 		@apply rounded-full;
 	}
 
 	/* MARK: Badge */
 
-	.cn-badge-size-20 {
+	.r-badge-size-20 {
 		@apply rounded-full;
 	}
-	.cn-badge-size-24 {
+	.r-badge-size-24 {
 		@apply rounded-full;
 	}
-	.cn-badge-size-28 {
+	.r-badge-size-28 {
 		@apply rounded-full;
 	}
 
 	/* MARK: Button */
 
 	/* Size rounded tokens */
-	.cn-btn-size-28 {
+	.r-btn-size-28 {
 		@apply rounded-full;
 	}
-	.cn-btn-size-32 {
+	.r-btn-size-32 {
 		@apply rounded-full;
 	}
-	.cn-btn-size-36 {
+	.r-btn-size-36 {
 		@apply rounded-full;
 	}
-	.cn-btn-size-40 {
+	.r-btn-size-40 {
 		@apply rounded-full;
 	}
-	.cn-btn-size-44 {
+	.r-btn-size-44 {
 		@apply rounded-full;
 	}
-	.cn-btn-size-48 {
+	.r-btn-size-48 {
 		@apply rounded-full;
 	}
 
 	/* Link variants */
-	.cn-btn-link-primary {
+	.r-btn-link-primary {
 		@apply focus-visible:rounded-full;
 	}
-	.cn-btn-link-info {
+	.r-btn-link-info {
 		@apply focus-visible:rounded-full;
 	}
-	.cn-btn-link-success {
+	.r-btn-link-success {
 		@apply focus-visible:rounded-full;
 	}
-	.cn-btn-link-error {
+	.r-btn-link-error {
 		@apply focus-visible:rounded-full;
 	}
-	.cn-btn-link-warning {
+	.r-btn-link-warning {
 		@apply focus-visible:rounded-full;
 	}
-	.cn-btn-link-neutral {
+	.r-btn-link-neutral {
 		@apply focus-visible:rounded-full;
 	}
 
 	/* CompactButton base */
-	.cn-compact-btn {
+	.r-compact-btn {
 		@apply rounded-full;
 	}
 
 	/* IconButton size variants */
-	.cn-icon-btn-size-28 {
+	.r-icon-btn-size-28 {
 		@apply rounded-full;
 	}
-	.cn-icon-btn-size-32 {
+	.r-icon-btn-size-32 {
 		@apply rounded-full;
 	}
-	.cn-icon-btn-size-36 {
+	.r-icon-btn-size-36 {
 		@apply rounded-full;
 	}
-	.cn-icon-btn-size-40 {
+	.r-icon-btn-size-40 {
 		@apply rounded-full;
 	}
-	.cn-icon-btn-size-44 {
+	.r-icon-btn-size-44 {
 		@apply rounded-full;
 	}
-	.cn-icon-btn-size-48 {
+	.r-icon-btn-size-48 {
 		@apply rounded-full;
 	}
 
 	/* MARK: Calendar */
 
-	.cn-calendar {
+	.r-calendar {
 		@apply rounded-full;
 	}
 
-	.cn-calendar-day-button {
+	.r-calendar-day-button {
 		@apply rounded-full;
 	}
 
-	.cn-calendar-button-previous,
-	.cn-calendar-button-next {
+	.r-calendar-button-previous,
+	.r-calendar-button-next {
 		@apply rounded-full;
 	}
 
 	/* MARK: Card */
 
-	.cn-card {
+	.r-card {
 		@apply rounded-full;
 	}
 
 	/* MARK: Carousel */
 
-	.cn-carousel-previous {
+	.r-carousel-previous {
 		@apply rounded-full;
 	}
 
-	.cn-carousel-next {
+	.r-carousel-next {
 		@apply rounded-full;
 	}
 
 	/* MARK: Checkbox */
 
-	.cn-checkbox-sm {
+	.r-checkbox-sm {
 		@apply rounded-full;
 	}
 
-	.cn-checkbox-md {
+	.r-checkbox-md {
 		@apply rounded-full;
 	}
 
-	.cn-checkbox-lg {
+	.r-checkbox-lg {
 		@apply rounded-full;
 	}
 
 	/* MARK: Code Area */
 
-	.cn-code-area {
+	.r-code-area {
 		@apply rounded-full;
 	}
 
 	/* MARK: Command */
 
-	.cn-command {
+	.r-command {
 		@apply rounded-full;
 	}
 
-	.cn-command-item {
+	.r-command-item {
 		@apply rounded-full;
 	}
 
-	.cn-command-checkbox-item {
+	.r-command-checkbox-item {
 		@apply rounded-full;
 	}
 
-	.cn-command-radio-item {
+	.r-command-radio-item {
 		@apply rounded-full;
 	}
 
-	.cn-command-sub-trigger {
+	.r-command-sub-trigger {
 		@apply rounded-full;
 	}
 
-	.cn-command-sub-content {
+	.r-command-sub-content {
 		@apply rounded-full;
 	}
 
 	/* MARK: Dialog */
 
-	.cn-dialog-content {
+	.r-dialog-content {
 		@apply rounded-full;
 	}
 
-	.cn-dialog-close-button {
+	.r-dialog-close-button {
 		@apply rounded-full;
 	}
 
 	/* MARK: Drawer */
 
-	.cn-drawer-variant-float {
+	.r-drawer-variant-float {
 		@apply rounded-full;
 	}
 
-	.cn-drawer-variant-rounded {
+	.r-drawer-variant-rounded {
 		@apply rounded-full;
 	}
 
-	.cn-drawer-rounded-top {
+	.r-drawer-rounded-top {
 		@apply rounded-full;
 	}
-	.cn-drawer-rounded-bottom {
+	.r-drawer-rounded-bottom {
 		@apply rounded-full;
 	}
-	.cn-drawer-rounded-left {
+	.r-drawer-rounded-left {
 		@apply rounded-full;
 	}
-	.cn-drawer-rounded-right {
+	.r-drawer-rounded-right {
 		@apply rounded-full;
 	}
 
 	/* MARK: Dropdown */
 
-	.cn-dropdown-content {
+	.r-dropdown-content {
 		@apply rounded-full;
 	}
 
-	.cn-dropdown-item {
+	.r-dropdown-item {
 		@apply rounded-full;
 	}
 
-	.cn-dropdown-checkbox-item {
+	.r-dropdown-checkbox-item {
 		@apply rounded-full;
 	}
 
-	.cn-dropdown-radio-item {
+	.r-dropdown-radio-item {
 		@apply rounded-full;
 	}
 
-	.cn-dropdown-sub-trigger {
+	.r-dropdown-sub-trigger {
 		@apply rounded-full;
 	}
 
-	.cn-dropdown-sub-content {
+	.r-dropdown-sub-content {
 		@apply rounded-full;
 	}
 
 	/* MARK: HoverCard */
 
-	.cn-hover-card-content {
+	.r-hover-card-content {
 		@apply rounded-full;
 	}
 
 	/* MARK: Input */
 
-	.cn-input-28 {
+	.r-input-28 {
 		@apply rounded-full;
 	}
-	.cn-input-32 {
+	.r-input-32 {
 		@apply rounded-full;
 	}
-	.cn-input-36 {
+	.r-input-36 {
 		@apply rounded-full;
 	}
-	.cn-input-40 {
+	.r-input-40 {
 		@apply rounded-full;
 	}
-	.cn-input-44 {
+	.r-input-44 {
 		@apply rounded-full;
 	}
-	.cn-input-48 {
+	.r-input-48 {
 		@apply rounded-full;
 	}
 
-	.cn-input-addon-28 {
+	.r-input-addon-28 {
 		@apply rounded-full;
 	}
-	.cn-input-addon-32 {
+	.r-input-addon-32 {
 		@apply rounded-full;
 	}
-	.cn-input-addon-36 {
+	.r-input-addon-36 {
 		@apply rounded-full;
 	}
-	.cn-input-addon-40 {
+	.r-input-addon-40 {
 		@apply rounded-full;
 	}
-	.cn-input-addon-44 {
+	.r-input-addon-44 {
 		@apply rounded-full;
 	}
-	.cn-input-addon-48 {
+	.r-input-addon-48 {
 		@apply rounded-full;
 	}
 
 	/* MARK: OTPField */
 
-	.cn-otp-input {
+	.r-otp-input {
 		@apply rounded-full;
 	}
 
-	.cn-otp-input-28 {
+	.r-otp-input-28 {
 		@apply rounded-full;
 	}
-	.cn-otp-input-32 {
+	.r-otp-input-32 {
 		@apply rounded-full;
 	}
-	.cn-otp-input-36 {
+	.r-otp-input-36 {
 		@apply rounded-full;
 	}
-	.cn-otp-input-40 {
+	.r-otp-input-40 {
 		@apply rounded-full;
 	}
-	.cn-otp-input-44 {
+	.r-otp-input-44 {
 		@apply rounded-full;
 	}
-	.cn-otp-input-48 {
+	.r-otp-input-48 {
 		@apply rounded-full;
 	}
 
 	/* MARK: Popover */
 
-	.cn-popover-content {
+	.r-popover-content {
 		@apply rounded-full;
 	}
 
 	/* MARK: Progress */
 
-	.cn-progress {
+	.r-progress {
 		@apply rounded-full;
 	}
 
 	/* MARK: Resizable */
 
-	.cn-resizable-handle-grip {
+	.r-resizable-handle-grip {
 		@apply rounded-full;
 	}
 
 	/* MARK: ScrollArea */
 
-	.cn-scrollbar-thumb {
+	.r-scrollbar-thumb {
 		@apply rounded-full;
 	}
 
 	/* MARK: Select */
 
-	.cn-select-trigger-28 {
+	.r-select-trigger-28 {
 		@apply rounded-full;
 	}
-	.cn-select-trigger-32 {
+	.r-select-trigger-32 {
 		@apply rounded-full;
 	}
-	.cn-select-trigger-36 {
+	.r-select-trigger-36 {
 		@apply rounded-full;
 	}
-	.cn-select-trigger-40 {
+	.r-select-trigger-40 {
 		@apply rounded-full;
 	}
-	.cn-select-trigger-44 {
+	.r-select-trigger-44 {
 		@apply rounded-full;
 	}
-	.cn-select-trigger-48 {
-		@apply rounded-full;
-	}
-
-	.cn-select-content {
+	.r-select-trigger-48 {
 		@apply rounded-full;
 	}
 
-	.cn-select-item {
+	.r-select-content {
+		@apply rounded-full;
+	}
+
+	.r-select-item {
 		@apply rounded-full;
 	}
 
 	/* MARK: Slider */
 
-	.cn-slider-track {
+	.r-slider-track {
 		@apply rounded-full;
 	}
 
-	.cn-slider-thumb {
+	.r-slider-thumb {
 		@apply rounded-full;
 	}
 
 	/* MARK: Switch */
 
-	.cn-switch-shape-pill {
+	.r-switch-shape-pill {
 		@apply rounded-full;
 	}
 
-	.cn-switch-shape-square {
+	.r-switch-shape-square {
 		@apply rounded-full;
 	}
 
-	.cn-switch-thumb-shape-pill {
+	.r-switch-thumb-shape-pill {
 		@apply rounded-full;
 	}
 
-	.cn-switch-thumb-shape-square {
+	.r-switch-thumb-shape-square {
 		@apply rounded-full;
 	}
 
 	/* MARK: Tabs */
 
-	.cn-tabs-list-rounded-md {
+	.r-tabs-list-rounded-md {
 		@apply rounded-full;
 	}
 
-	.cn-tabs-list-rounded-lg {
+	.r-tabs-list-rounded-lg {
 		@apply rounded-full;
 	}
 
-	.cn-tabs-trigger-default-sm {
+	.r-tabs-trigger-default-sm {
 		@apply rounded-full;
 	}
 
-	.cn-tabs-trigger-default-md {
+	.r-tabs-trigger-default-md {
 		@apply rounded-full;
 	}
 
-	.cn-tabs-trigger-default-lg {
+	.r-tabs-trigger-default-lg {
 		@apply rounded-full;
 	}
 
-	.cn-tabs-trigger-outline-sm {
+	.r-tabs-trigger-outline-sm {
 		@apply rounded-full;
 	}
 
-	.cn-tabs-trigger-outline-md {
+	.r-tabs-trigger-outline-md {
 		@apply rounded-full;
 	}
 
-	.cn-tabs-trigger-outline-lg {
+	.r-tabs-trigger-outline-lg {
 		@apply rounded-full;
 	}
 
-	.cn-tabs-trigger-ghost-sm {
+	.r-tabs-trigger-ghost-sm {
 		@apply data-[state=active]:rounded-full;
 	}
 
-	.cn-tabs-trigger-ghost-md {
+	.r-tabs-trigger-ghost-md {
 		@apply data-[state=active]:rounded-full;
 	}
 
-	.cn-tabs-trigger-ghost-lg {
+	.r-tabs-trigger-ghost-lg {
 		@apply data-[state=active]:rounded-full;
 	}
 
 	/* MARK: TextArea */
 
-	.cn-textarea-rounded {
+	.r-textarea-rounded {
 		@apply rounded-full;
 	}
 
-	.cn-textarea-square {
+	.r-textarea-square {
 		@apply rounded-full;
 	}
 
 	/* MARK: Tooltip */
 
-	.cn-tooltip-content {
+	.r-tooltip-content {
 		@apply rounded-full;
 	}
 
-	.cn-tooltip-arrow {
+	.r-tooltip-arrow {
 		@apply rounded-full;
 	}
 }
