@@ -5,7 +5,7 @@
 	"private": true,
 	"scripts": {
 		"dev": "next dev --port 3001",
-		"build": "contentlayer2 build && pnpm run generate-component-json && pnpm run generate-examples-json && pnpm run generate-example-registry && pnpm run generate-blocks-index && next build",
+		"build": "contentlayer2 build && pnpm run generate-component-json && pnpm run generate-examples-json && pnpm run build:llms && pnpm run generate-example-registry && pnpm run generate-blocks-index && next build",
 		"start": "next start",
 		"db:generate": "drizzle-kit generate",
 		"db:migrate": "drizzle-kit migrate",
@@ -17,7 +17,8 @@
 		"generate-examples-json": "tsx src/scripts/generate-examples-json.ts",
 		"generate-registry": "tsx src/scripts/generate-registry.ts",
 		"generate-example-registry": "tsx src/scripts/generate-example-registry.ts",
-		"generate-blocks-index": "tsx src/scripts/generate-blocks-index.ts"
+		"generate-blocks-index": "tsx src/scripts/generate-blocks-index.ts",
+		"build:llms": "tsx src/scripts/generate-llms.ts"
 	},
 	"dependencies": {
 		"@dnd-kit/core": "^6.3.1",
