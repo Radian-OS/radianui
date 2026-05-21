@@ -97,6 +97,7 @@ const COMPONENTS_DATA = [
 	"Tabs",
 	"Text Area",
 	"Toggle",
+	"Toggle Group",
 	"Tooltip",
 ]
 

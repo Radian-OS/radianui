@@ -6,19 +6,11 @@ import { Toggle } from "@/registry/ui/toggle"
 export default function ToggleVariants() {
 	return (
 		<div className="flex flex-wrap items-center gap-2">
-			<Toggle
-				color="neutral"
-				variant="outline"
-				size="28"
-				aria-label="Toggle italic">
+			<Toggle variant="outline" aria-label="Toggle italic">
 				<ItalicIcon />
 				Italic
 			</Toggle>
-			<Toggle
-				color="neutral"
-				variant="ghost"
-				size="28"
-				aria-label="Toggle bold">
+			<Toggle variant="ghost" aria-label="Toggle bold">
 				<BoldIcon />
 				Bold
 			</Toggle>

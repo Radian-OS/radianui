@@ -937,8 +937,17 @@ const registry: Record<
 	"text-area-preview": React.lazy(
 		() => import("@/registry/example/text-area/text-area-preview")
 	),
-	"toggle-colors": React.lazy(
-		() => import("@/registry/example/toggle/toggle-colors")
+	"toggle-disabled": React.lazy(
+		() => import("@/registry/example/toggle/toggle-disabled")
+	),
+	"toggle-favorite": React.lazy(
+		() => import("@/registry/example/toggle/toggle-favorite")
+	),
+	"toggle-formatting-toolbar": React.lazy(
+		() => import("@/registry/example/toggle/toggle-formatting-toolbar")
+	),
+	"toggle-notification": React.lazy(
+		() => import("@/registry/example/toggle/toggle-notification")
 	),
 	"toggle-preview": React.lazy(
 		() => import("@/registry/example/toggle/toggle-preview")
@@ -948,6 +957,24 @@ const registry: Record<
 	),
 	"toggle-variants": React.lazy(
 		() => import("@/registry/example/toggle/toggle-variants")
+	),
+	"toggle-group-disabled": React.lazy(
+		() => import("@/registry/example/toggle-group/toggle-group-disabled")
+	),
+	"toggle-group-ghost-variant": React.lazy(
+		() => import("@/registry/example/toggle-group/toggle-group-ghost-variant")
+	),
+	"toggle-group-outline-variant": React.lazy(
+		() => import("@/registry/example/toggle-group/toggle-group-outline-variant")
+	),
+	"toggle-group-preview": React.lazy(
+		() => import("@/registry/example/toggle-group/toggle-group-preview")
+	),
+	"toggle-group-spacing": React.lazy(
+		() => import("@/registry/example/toggle-group/toggle-group-spacing")
+	),
+	"toggle-group-vertical": React.lazy(
+		() => import("@/registry/example/toggle-group/toggle-group-vertical")
 	),
 	"tooltip-align": React.lazy(
 		() => import("@/registry/example/tooltip/tooltip-align")

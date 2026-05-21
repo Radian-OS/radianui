@@ -1,0 +1,130 @@
+---
+title: Toggle Group
+description: A group of toggle buttons that can be used to select multiple options.
+links:
+  github:
+    href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/toggle.tsx
+  externalReference:
+    - label: Radix  UI
+      href: https://www.radix-ui.com/primitives/docs/components/toggle-group
+---
+
+<ComponentPreview path="toggle/toggle-group-preview" />
+
+## Installation
+
+<InstallationTabs>
+	<InstallTabsList>
+		<InstallTabsTrigger value="cli">CLI</InstallTabsTrigger>
+		<InstallTabsTrigger value="manual">Manual</InstallTabsTrigger>
+	</InstallTabsList>
+	<InstallTabsContent value="cli">
+		```bash
+		npx radianui@latest add toggle-group
+		```
+	</InstallTabsContent>
+	<InstallTabsContent value="manual" className="p-0">
+	<Steps>
+	    <Step>Install the following dependencies:</Step>
+		```bash
+		npm install @radix-ui/react-toggle-group
+		```
+    	<Step>Copy and paste the following code into your project.</Step>
+    	<ComponentSource name="toggle-group" title="components/ui/toggle-group.tsx" collapsible />
+
+    	<Step>Update the import paths as per your project structure.</Step>
+    </Steps>
+    </InstallTabsContent>
+
+</InstallationTabs>
+
+## Usage
+
+### Imports
+
+```tsx showLineNumbers title="/components/ui/toggle-group.tsx"
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
+```
+
+### Code
+
+```tsx showLineNumbers title="/components/ui/toggle-group.tsx"
+<ToggleGroup>
+	<ToggleGroupItem value="bold">Bold</ToggleGroupItem>
+	<ToggleGroupItem value="italic">Italic</ToggleGroupItem>
+	<ToggleGroupItem value="underline">Underline</ToggleGroupItem>
+</ToggleGroup>
+```
+
+---
+
+## Examples
+
+### Outline Variant
+
+<ComponentPreview path="toggle/toggle-group-outline-variant" />
+
+### Ghost Variant
+
+<ComponentPreview path="toggle/toggle-group-ghost-variant" />
+
+### Custom Spacing
+
+<ComponentPreview path="toggle/toggle-group-spacing" />
+
+### Vertical Toggle Group
+
+<ComponentPreview path="toggle/toggle-group-vertical" />
+
+### Disabled State
+
+<ComponentPreview path="toggle/toggle-group-disabled" />
+
+---
+
+## Props
+
+<PropsTableWrapper>
+	<PropsTable
+		title="ToggleGroup"
+		data={[
+			{
+				name: "variant",
+				defaultValue: "outline",
+				values: ["ghost", "outline"],
+				required: false,
+				description: "Defines the visual style of the toggle-group",
+			},
+			{
+				name: "size",
+				defaultValue: "36",
+				values: ["28", "32", "36", "40", "44", "48"],
+				required: false,
+				description: "Sets the size of the toggle",
+			},
+			{
+				name: "disabled",
+				defaultValue: "false",
+				values: ["boolean"],
+				required: false,
+				description:
+					"Disables interaction with the toggle-group when set to true",
+			},
+			{
+				name: "orientation",
+				defaultValue: "horizontal",
+				values: ["horizontal", "vertical"],
+				required: false,
+				description: "Defines the orientation of the toggle-group",
+			},
+			{
+				name: "spacing",
+				defaultValue: "0",
+				values: ["integer"],
+				required: false,
+				description: "Defines the spacing between toggle items in the group",
+			},
+		]}
+		externalReference="https://www.radix-ui.com/primitives/docs/components/toggle-group#root"
+	/>
+</PropsTableWrapper>
