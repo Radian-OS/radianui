@@ -1479,7 +1479,7 @@
       },
       {
         "name": "toggle/toggle-formatting-toolbar",
-        "content": "\"use client\"\n\nimport { BoldIcon, ItalicIcon, UnderlineIcon } from \"lucide-react\"\nimport { Toggle } from \"@/components/ui/toggle\"\n\nexport default function ToggleFormattingToolbar() {\n\treturn (\n\t\t<div className=\"border-border bg-bg flex items-center rounded-md border p-1\">\n\t\t\t<Toggle variant=\"ghost\" size=\"32\" aria-label=\"Toggle bold\">\n\t\t\t\t<BoldIcon />\n\t\t\t</Toggle>\n\t\t\t<Toggle\n\t\t\t\tdefaultPressed\n\t\t\t\tvariant=\"ghost\"\n\t\t\t\tsize=\"32\"\n\t\t\t\taria-label=\"Toggle italic\">\n\t\t\t\t<ItalicIcon />\n\t\t\t</Toggle>\n\t\t\t<Toggle variant=\"ghost\" size=\"32\" aria-label=\"Toggle underline\">\n\t\t\t\t<UnderlineIcon />\n\t\t\t</Toggle>\n\t\t</div>\n\t)\n}\n"
+        "content": "\"use client\"\n\nimport { BoldIcon, ItalicIcon, UnderlineIcon } from \"lucide-react\"\nimport { Toggle } from \"@/components/ui/toggle\"\n\nexport default function ToggleFormattingToolbar() {\n\treturn (\n\t\t<div className=\"border-border bg-bg flex items-center justify-center gap-1 rounded-md border p-1\">\n\t\t\t<Toggle variant=\"ghost\" size=\"32\" aria-label=\"Toggle bold\">\n\t\t\t\t<BoldIcon />\n\t\t\t</Toggle>\n\t\t\t<Toggle\n\t\t\t\tdefaultPressed\n\t\t\t\tvariant=\"ghost\"\n\t\t\t\tsize=\"32\"\n\t\t\t\taria-label=\"Toggle italic\">\n\t\t\t\t<ItalicIcon />\n\t\t\t</Toggle>\n\t\t\t<Toggle variant=\"ghost\" size=\"32\" aria-label=\"Toggle underline\">\n\t\t\t\t<UnderlineIcon />\n\t\t\t</Toggle>\n\t\t</div>\n\t)\n}\n"
       },
       {
         "name": "toggle/toggle-notification",
@@ -1496,6 +1496,35 @@
       {
         "name": "toggle/toggle-variants",
         "content": "\"use client\"\n\nimport { BoldIcon, ItalicIcon } from \"lucide-react\"\nimport { Toggle } from \"@/components/ui/toggle\"\n\nexport default function ToggleVariants() {\n\treturn (\n\t\t<div className=\"flex flex-wrap items-center gap-2\">\n\t\t\t<Toggle variant=\"outline\" aria-label=\"Toggle italic\">\n\t\t\t\t<ItalicIcon />\n\t\t\t\tItalic\n\t\t\t</Toggle>\n\t\t\t<Toggle variant=\"ghost\" aria-label=\"Toggle bold\">\n\t\t\t\t<BoldIcon />\n\t\t\t\tBold\n\t\t\t</Toggle>\n\t\t</div>\n\t)\n}\n"
+      }
+    ]
+  },
+  {
+    "name": "toggle-group",
+    "files": [
+      {
+        "name": "toggle-group/toggle-group-disabled",
+        "content": "import { Bold, Italic, Underline } from \"lucide-react\"\nimport { ToggleGroup, ToggleGroupItem } from \"@/components/ui/toggle-group\"\n\nexport default function ToggleGroupDisabled() {\n\treturn (\n\t\t<ToggleGroup disabled type=\"multiple\">\n\t\t\t<ToggleGroupItem value=\"bold\" aria-label=\"Toggle bold\">\n\t\t\t\t<Bold />\n\t\t\t</ToggleGroupItem>\n\t\t\t<ToggleGroupItem value=\"italic\" aria-label=\"Toggle italic\">\n\t\t\t\t<Italic />\n\t\t\t</ToggleGroupItem>\n\t\t\t<ToggleGroupItem value=\"strikethrough\" aria-label=\"Toggle strikethrough\">\n\t\t\t\t<Underline />\n\t\t\t</ToggleGroupItem>\n\t\t</ToggleGroup>\n\t)\n}\n"
+      },
+      {
+        "name": "toggle-group/toggle-group-ghost-variant",
+        "content": "import { AlignCenter, AlignJustify, AlignLeft, AlignRight } from \"lucide-react\"\nimport { ToggleGroup, ToggleGroupItem } from \"@/components/ui/toggle-group\"\n\nexport default function ToggleGroupGhostVariant() {\n\treturn (\n\t\t<div className=\"flex items-center justify-center\">\n\t\t\t<ToggleGroup\n\t\t\t\ttype=\"single\"\n\t\t\t\tvariant=\"ghost\"\n\t\t\t\tdefaultValue=\"left\"\n\t\t\t\tspacing={1}>\n\t\t\t\t<ToggleGroupItem value=\"left\" aria-label=\"Align left\">\n\t\t\t\t\t<AlignLeft />\n\t\t\t\t</ToggleGroupItem>\n\t\t\t\t<ToggleGroupItem value=\"center\" aria-label=\"Align center\">\n\t\t\t\t\t<AlignCenter />\n\t\t\t\t</ToggleGroupItem>\n\t\t\t\t<ToggleGroupItem value=\"right\" aria-label=\"Align right\">\n\t\t\t\t\t<AlignRight />\n\t\t\t\t</ToggleGroupItem>\n\t\t\t\t<ToggleGroupItem value=\"justify\" aria-label=\"Justify\">\n\t\t\t\t\t<AlignJustify />\n\t\t\t\t</ToggleGroupItem>\n\t\t\t</ToggleGroup>\n\t\t</div>\n\t)\n}\n"
+      },
+      {
+        "name": "toggle-group/toggle-group-outline-variant",
+        "content": "import { ToggleGroup, ToggleGroupItem } from \"@/components/ui/toggle-group\"\n\nexport default function ToggleOutlineVariant() {\n\treturn (\n\t\t<div className=\"flex items-center justify-center\">\n\t\t\t<ToggleGroup type=\"single\" defaultValue=\"active\" variant=\"outline\">\n\t\t\t\t<ToggleGroupItem value=\"all\">All</ToggleGroupItem>\n\t\t\t\t<ToggleGroupItem value=\"active\">Active</ToggleGroupItem>\n\t\t\t\t<ToggleGroupItem value=\"completed\">Completed</ToggleGroupItem>\n\t\t\t\t<ToggleGroupItem value=\"archived\">Archived</ToggleGroupItem>\n\t\t\t</ToggleGroup>\n\t\t</div>\n\t)\n}\n"
+      },
+      {
+        "name": "toggle-group/toggle-group-preview",
+        "content": "import { Computer, Moon, SunMedium } from \"lucide-react\"\nimport { ToggleGroup, ToggleGroupItem } from \"@/components/ui/toggle-group\"\n\nexport default function ToggleGroupPreview() {\n\treturn (\n\t\t<div className=\"flex items-center justify-center\">\n\t\t\t<ToggleGroup\n\t\t\t\tspacing={0}\n\t\t\t\ttype=\"single\"\n\t\t\t\tdefaultValue=\"light\"\n\t\t\t\tvariant=\"outline\">\n\t\t\t\t<ToggleGroupItem value=\"light\" aria-label=\"Light theme\">\n\t\t\t\t\t<SunMedium />\n\t\t\t\t\tLight\n\t\t\t\t</ToggleGroupItem>\n\t\t\t\t<ToggleGroupItem value=\"dark\" aria-label=\"Dark theme\">\n\t\t\t\t\t<Moon />\n\t\t\t\t\tDark\n\t\t\t\t</ToggleGroupItem>\n\t\t\t\t<ToggleGroupItem value=\"system\" aria-label=\"System theme\">\n\t\t\t\t\t<Computer />\n\t\t\t\t\tSystem\n\t\t\t\t</ToggleGroupItem>\n\t\t\t</ToggleGroup>\n\t\t</div>\n\t)\n}\n"
+      },
+      {
+        "name": "toggle-group/toggle-group-spacing",
+        "content": "import { ToggleGroup, ToggleGroupItem } from \"@/components/ui/toggle-group\"\n\nexport default function ToggleGroupSpacing() {\n\treturn (\n\t\t<div className=\"flex items-center justify-center\">\n\t\t\t<ToggleGroup\n\t\t\t\ttype=\"single\"\n\t\t\t\tvariant=\"outline\"\n\t\t\t\tspacing={2}\n\t\t\t\tdefaultValue=\"week\">\n\t\t\t\t<ToggleGroupItem value=\"day\">Day</ToggleGroupItem>\n\t\t\t\t<ToggleGroupItem value=\"week\">Week</ToggleGroupItem>\n\t\t\t\t<ToggleGroupItem value=\"month\">Month</ToggleGroupItem>\n\t\t\t</ToggleGroup>\n\t\t</div>\n\t)\n}\n"
+      },
+      {
+        "name": "toggle-group/toggle-group-vertical",
+        "content": "import { Bluetooth, MapPin, Plane, Wifi } from \"lucide-react\"\nimport { ToggleGroup, ToggleGroupItem } from \"@/components/ui/toggle-group\"\n\nexport default function ToggleGroupVertical() {\n\treturn (\n\t\t<div className=\"flex items-center justify-center\">\n\t\t\t<ToggleGroup\n\t\t\t\ttype=\"multiple\"\n\t\t\t\torientation=\"vertical\"\n\t\t\t\tspacing={1}\n\t\t\t\tdefaultValue={[\"wifi\", \"bluetooth\"]}>\n\t\t\t\t<ToggleGroupItem value=\"wifi\" aria-label=\"Wi-Fi\" className=\"w-full\">\n\t\t\t\t\t<Wifi />\n\t\t\t\t\tWi-Fi\n\t\t\t\t</ToggleGroupItem>\n\t\t\t\t<ToggleGroupItem\n\t\t\t\t\tvalue=\"bluetooth\"\n\t\t\t\t\taria-label=\"Bluetooth\"\n\t\t\t\t\tclassName=\"w-full\">\n\t\t\t\t\t<Bluetooth />\n\t\t\t\t\tBluetooth\n\t\t\t\t</ToggleGroupItem>\n\t\t\t\t<ToggleGroupItem\n\t\t\t\t\tvalue=\"airplane\"\n\t\t\t\t\taria-label=\"Airplane Mode\"\n\t\t\t\t\tclassName=\"w-full\">\n\t\t\t\t\t<Plane />\n\t\t\t\t\tAirplane Mode\n\t\t\t\t</ToggleGroupItem>\n\t\t\t\t<ToggleGroupItem\n\t\t\t\t\tvalue=\"location\"\n\t\t\t\t\taria-label=\"Location\"\n\t\t\t\t\tclassName=\"w-full\">\n\t\t\t\t\t<MapPin />\n\t\t\t\t\tLocation\n\t\t\t\t</ToggleGroupItem>\n\t\t\t</ToggleGroup>\n\t\t</div>\n\t)\n}\n"
       }
     ]
   },
