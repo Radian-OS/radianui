@@ -10,15 +10,15 @@
 	}
 
 	.cn-accordion-variant-table {
-		@apply border-border rounded-none border;
+		@apply border-border border;
 	}
 
 	.cn-accordion-item-variant-box {
-		@apply border-border rounded-none border shadow-none last:mb-0;
+		@apply border-border border shadow-none last:mb-0;
 	}
 
 	.cn-accordion-item-variant-table {
-		@apply border-b first:rounded-none last:rounded-none last:border-b-0;
+		@apply border-b last:border-b-0;
 	}
 
 	.cn-accordion-item-variant-open {
@@ -102,7 +102,7 @@
 
 	/* Base */
 	.cn-alert {
-		@apply gap-4 rounded-none p-4;
+		@apply gap-4 p-4;
 		@apply [&>[data-slot=alert-title]]:font-medium;
 		@apply [&>[data-slot=alert-title]]:text-sm;
 		@apply [&>[data-slot=alert-title]]:mt-0.75;
@@ -244,7 +244,7 @@
 	}
 
 	.cn-alert-dialog-content {
-		@apply bg-bg border-alpha gap-6 rounded-none border p-8 shadow-none;
+		@apply bg-bg border-alpha gap-6 border p-8 shadow-none;
 	}
 
 	.cn-alert-dialog-header {
@@ -305,47 +305,14 @@
 	}
 
 	/* Rounded — Sera flattens all radii to none */
-	.cn-avatar-rounded-circle {
-		@apply rounded-none;
-	}
 
 	/* Square compound variants — all flat */
-	.cn-avatar-square-16 {
-		@apply rounded-none;
-	}
-	.cn-avatar-square-20 {
-		@apply rounded-none;
-	}
-	.cn-avatar-square-24 {
-		@apply rounded-none;
-	}
-	.cn-avatar-square-32 {
-		@apply rounded-none;
-	}
-	.cn-avatar-square-36 {
-		@apply rounded-none;
-	}
-	.cn-avatar-square-40 {
-		@apply rounded-none;
-	}
-	.cn-avatar-square-48 {
-		@apply rounded-none;
-	}
-	.cn-avatar-square-64 {
-		@apply rounded-none;
-	}
-	.cn-avatar-square-80 {
-		@apply rounded-none;
-	}
 
 	/* Image */
-	.cn-avatar-image {
-		@apply rounded-[inherit];
-	}
 
 	/* Fallback */
 	.cn-avatar-fallback {
-		@apply bg-primary-focus text-primary-text rounded-[inherit];
+		@apply bg-primary-focus text-primary-text;
 	}
 
 	/* Status base */
@@ -410,13 +377,13 @@
 
 	/* Size variants — rounded-none, bumped padding */
 	.cn-badge-size-20 {
-		@apply h-5 rounded-none px-2 text-xs [&_svg]:size-3.5;
+		@apply h-5 px-2 text-xs [&_svg]:size-3.5;
 	}
 	.cn-badge-size-24 {
-		@apply h-6 rounded-none px-2.5 text-[13px] [&_svg]:size-3.5;
+		@apply h-6 px-2.5 text-[13px] [&_svg]:size-3.5;
 	}
 	.cn-badge-size-28 {
-		@apply h-7 rounded-none px-3 text-sm [&_svg]:size-4;
+		@apply h-7 px-3 text-sm [&_svg]:size-4;
 	}
 
 	/* Color base (neutral only) */
@@ -486,7 +453,7 @@
 
 	/* Dot */
 	.cn-badge-dot {
-		@apply rounded-full bg-[currentColor];
+		@apply bg-[currentColor];
 	}
 
 	/* MARK: Banner */
@@ -618,24 +585,6 @@
 	/* MARK: Button */
 
 	/* Size rounded tokens — all flat */
-	.cn-btn-size-28 {
-		@apply rounded-none;
-	}
-	.cn-btn-size-32 {
-		@apply rounded-none;
-	}
-	.cn-btn-size-36 {
-		@apply rounded-none;
-	}
-	.cn-btn-size-40 {
-		@apply rounded-none;
-	}
-	.cn-btn-size-44 {
-		@apply rounded-none;
-	}
-	.cn-btn-size-48 {
-		@apply rounded-none;
-	}
 
 	/* Strong — colors unchanged */
 	.cn-btn-strong-primary {
@@ -719,22 +668,22 @@
 
 	/* Link */
 	.cn-btn-link-primary {
-		@apply text-primary-text focus-visible:ring-primary h-auto gap-1 bg-transparent px-0 py-0 font-medium hover:underline focus-visible:rounded-none;
+		@apply text-primary-text focus-visible:ring-primary h-auto gap-1 bg-transparent px-0 py-0 font-medium hover:underline;
 	}
 	.cn-btn-link-info {
-		@apply text-info-text focus-visible:ring-info h-auto gap-1 bg-transparent px-0 py-0 font-medium hover:underline focus-visible:rounded-none;
+		@apply text-info-text focus-visible:ring-info h-auto gap-1 bg-transparent px-0 py-0 font-medium hover:underline;
 	}
 	.cn-btn-link-success {
-		@apply text-success-text focus-visible:ring-success h-auto gap-1 bg-transparent px-0 py-0 font-medium hover:underline focus-visible:rounded-none;
+		@apply text-success-text focus-visible:ring-success h-auto gap-1 bg-transparent px-0 py-0 font-medium hover:underline;
 	}
 	.cn-btn-link-error {
-		@apply text-error-text focus-visible:ring-error h-auto gap-1 bg-transparent px-0 py-0 font-medium hover:underline focus-visible:rounded-none;
+		@apply text-error-text focus-visible:ring-error h-auto gap-1 bg-transparent px-0 py-0 font-medium hover:underline;
 	}
 	.cn-btn-link-warning {
-		@apply text-warning-text focus-visible:ring-warning h-auto gap-1 bg-transparent px-0 py-0 font-medium hover:underline focus-visible:rounded-none;
+		@apply text-warning-text focus-visible:ring-warning h-auto gap-1 bg-transparent px-0 py-0 font-medium hover:underline;
 	}
 	.cn-btn-link-neutral {
-		@apply text-black-inverse focus-visible:ring-black-inverse h-auto gap-1 bg-transparent px-0 py-0 font-medium hover:underline focus-visible:rounded-none;
+		@apply text-black-inverse focus-visible:ring-black-inverse h-auto gap-1 bg-transparent px-0 py-0 font-medium hover:underline;
 	}
 
 	/* Glossy — shadow/gradient effects unchanged, rounded removed */
@@ -779,48 +728,45 @@
 
 	/* Smooth */
 	.cn-btn-smooth-primary {
-		@apply focus-visible:ring-primary bg-primary after:from-primary-hover after:to-primary before:border-white/16 before:mask-b-from-98% text-primary-fg relative overflow-hidden font-medium shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-primary)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border after:absolute after:inset-0 after:-z-10 after:rounded-[inherit] after:bg-gradient-to-b hover:brightness-110;
+		@apply focus-visible:ring-primary bg-primary after:from-primary-hover after:to-primary before:border-white/16 before:mask-b-from-98% text-primary-fg relative overflow-hidden font-medium shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-primary)] before:pointer-events-none before:absolute before:inset-0 before:border after:absolute after:inset-0 after:-z-10 after:bg-gradient-to-b hover:brightness-110;
 	}
 	.cn-btn-smooth-info {
-		@apply focus-visible:ring-info bg-info after:from-info-hover after:to-info before:border-white/16 before:mask-b-from-98% relative overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-info)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border after:absolute after:inset-0 after:-z-10 after:rounded-[inherit] after:bg-gradient-to-b hover:brightness-110;
+		@apply focus-visible:ring-info bg-info after:from-info-hover after:to-info before:border-white/16 before:mask-b-from-98% relative overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-info)] before:pointer-events-none before:absolute before:inset-0 before:border after:absolute after:inset-0 after:-z-10 after:bg-gradient-to-b hover:brightness-110;
 	}
 	.cn-btn-smooth-success {
-		@apply focus-visible:ring-success bg-success after:from-success-hover after:to-success before:border-white/16 before:mask-b-from-98% relative overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-success)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border after:absolute after:inset-0 after:-z-10 after:rounded-[inherit] after:bg-gradient-to-b hover:brightness-110;
+		@apply focus-visible:ring-success bg-success after:from-success-hover after:to-success before:border-white/16 before:mask-b-from-98% relative overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-success)] before:pointer-events-none before:absolute before:inset-0 before:border after:absolute after:inset-0 after:-z-10 after:bg-gradient-to-b hover:brightness-110;
 	}
 	.cn-btn-smooth-warning {
-		@apply focus-visible:ring-warning bg-warning after:from-warning-hover after:to-warning before:border-white/16 before:mask-b-from-98% relative overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-warning)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border after:absolute after:inset-0 after:-z-10 after:rounded-[inherit] after:bg-gradient-to-b hover:brightness-110;
+		@apply focus-visible:ring-warning bg-warning after:from-warning-hover after:to-warning before:border-white/16 before:mask-b-from-98% relative overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-warning)] before:pointer-events-none before:absolute before:inset-0 before:border after:absolute after:inset-0 after:-z-10 after:bg-gradient-to-b hover:brightness-110;
 	}
 	.cn-btn-smooth-error {
-		@apply focus-visible:ring-error bg-error after:from-error-hover after:to-error before:border-white/16 before:mask-b-from-98% relative overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-error)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border after:absolute after:inset-0 after:-z-10 after:rounded-[inherit] after:bg-gradient-to-b hover:brightness-110;
+		@apply focus-visible:ring-error bg-error after:from-error-hover after:to-error before:border-white/16 before:mask-b-from-98% relative overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-error)] before:pointer-events-none before:absolute before:inset-0 before:border after:absolute after:inset-0 after:-z-10 after:bg-gradient-to-b hover:brightness-110;
 	}
 	.cn-btn-smooth-neutral {
-		@apply text-white-inverse focus-visible:ring-black-inverse bg-black-inverse after:to-black-inverse before:border-white-inverse/16 before:mask-b-from-98% relative overflow-hidden font-medium shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-white-inverse)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border after:absolute after:inset-0 after:-z-10 after:rounded-[inherit] after:bg-gradient-to-b after:from-white/20 hover:opacity-95;
+		@apply text-white-inverse focus-visible:ring-black-inverse bg-black-inverse after:to-black-inverse before:border-white-inverse/16 before:mask-b-from-98% relative overflow-hidden font-medium shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-white-inverse)] before:pointer-events-none before:absolute before:inset-0 before:border after:absolute after:inset-0 after:-z-10 after:bg-gradient-to-b after:from-white/20 hover:opacity-95;
 	}
 
 	/* Smooth-inverted */
 	.cn-btn-smooth-inverted-primary {
-		@apply focus-visible:ring-primary bg-primary after:from-primary after:to-primary-hover before:border-white/16 before:mask-b-from-98% text-primary-fg relative overflow-hidden font-medium shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-primary)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border after:absolute after:inset-0 after:-z-10 after:rounded-[inherit] after:bg-gradient-to-b hover:brightness-110;
+		@apply focus-visible:ring-primary bg-primary after:from-primary after:to-primary-hover before:border-white/16 before:mask-b-from-98% text-primary-fg relative overflow-hidden font-medium shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-primary)] before:pointer-events-none before:absolute before:inset-0 before:border after:absolute after:inset-0 after:-z-10 after:bg-gradient-to-b hover:brightness-110;
 	}
 	.cn-btn-smooth-inverted-info {
-		@apply focus-visible:ring-info bg-info after:from-info after:to-info-hover before:border-white/16 before:mask-b-from-98% relative overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-info)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border after:absolute after:inset-0 after:-z-10 after:rounded-[inherit] after:bg-gradient-to-b hover:brightness-110;
+		@apply focus-visible:ring-info bg-info after:from-info after:to-info-hover before:border-white/16 before:mask-b-from-98% relative overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-info)] before:pointer-events-none before:absolute before:inset-0 before:border after:absolute after:inset-0 after:-z-10 after:bg-gradient-to-b hover:brightness-110;
 	}
 	.cn-btn-smooth-inverted-success {
-		@apply focus-visible:ring-success bg-success after:from-success after:to-success-hover before:border-white/16 before:mask-b-from-98% relative overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-success)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border after:absolute after:inset-0 after:-z-10 after:rounded-[inherit] after:bg-gradient-to-b hover:brightness-110;
+		@apply focus-visible:ring-success bg-success after:from-success after:to-success-hover before:border-white/16 before:mask-b-from-98% relative overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-success)] before:pointer-events-none before:absolute before:inset-0 before:border after:absolute after:inset-0 after:-z-10 after:bg-gradient-to-b hover:brightness-110;
 	}
 	.cn-btn-smooth-inverted-warning {
-		@apply focus-visible:ring-warning bg-warning after:from-warning after:to-warning-hover before:border-white/16 before:mask-b-from-98% relative overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-warning)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border after:absolute after:inset-0 after:-z-10 after:rounded-[inherit] after:bg-gradient-to-b hover:brightness-110;
+		@apply focus-visible:ring-warning bg-warning after:from-warning after:to-warning-hover before:border-white/16 before:mask-b-from-98% relative overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-warning)] before:pointer-events-none before:absolute before:inset-0 before:border after:absolute after:inset-0 after:-z-10 after:bg-gradient-to-b hover:brightness-110;
 	}
 	.cn-btn-smooth-inverted-error {
-		@apply focus-visible:ring-error bg-error after:from-error after:to-error-hover before:border-white/16 before:mask-b-from-98% relative overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-error)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border after:absolute after:inset-0 after:-z-10 after:rounded-[inherit] after:bg-gradient-to-b hover:brightness-110;
+		@apply focus-visible:ring-error bg-error after:from-error after:to-error-hover before:border-white/16 before:mask-b-from-98% relative overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-error)] before:pointer-events-none before:absolute before:inset-0 before:border after:absolute after:inset-0 after:-z-10 after:bg-gradient-to-b hover:brightness-110;
 	}
 	.cn-btn-smooth-inverted-neutral {
-		@apply text-white-inverse focus-visible:ring-black-inverse bg-black-inverse after:from-black-inverse before:border-white-inverse/16 before:mask-b-from-98% relative overflow-hidden font-medium shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-white-inverse)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border after:absolute after:inset-0 after:-z-10 after:rounded-[inherit] after:bg-gradient-to-b after:to-white/20 hover:opacity-95;
+		@apply text-white-inverse focus-visible:ring-black-inverse bg-black-inverse after:from-black-inverse before:border-white-inverse/16 before:mask-b-from-98% relative overflow-hidden font-medium shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-white-inverse)] before:pointer-events-none before:absolute before:inset-0 before:border after:absolute after:inset-0 after:-z-10 after:bg-gradient-to-b after:to-white/20 hover:opacity-95;
 	}
 
 	/* CompactButton base */
-	.cn-compact-btn {
-		@apply rounded-none;
-	}
 
 	/* CompactButton variants — identical colors to default, compact prefix only */
 	.cn-compact-btn-strong-primary {
@@ -900,99 +846,99 @@
 	}
 
 	.cn-compact-btn-glossy-primary {
-		@apply before:border-white/44 bg-primary hover:bg-primary-hover focus-visible:ring-primary before:mask-b-from-0% overflow-hidden font-medium text-white shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-primary),0_3px_4px_-1px_var(--color-primary-border)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border before:bg-gradient-to-b before:from-white/20 before:to-transparent hover:brightness-110;
+		@apply before:border-white/44 bg-primary hover:bg-primary-hover focus-visible:ring-primary before:mask-b-from-0% overflow-hidden font-medium text-white shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-primary),0_3px_4px_-1px_var(--color-primary-border)] before:pointer-events-none before:absolute before:inset-0 before:border before:bg-gradient-to-b before:from-white/20 before:to-transparent hover:brightness-110;
 	}
 	.cn-compact-btn-glossy-info {
-		@apply before:border-white/44 bg-info hover:bg-info-hover focus-visible:ring-info before:mask-b-from-0% overflow-hidden font-medium text-white shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-info),0_3px_4px_-1px_var(--color-info-border)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border before:bg-gradient-to-b before:from-white/20 before:to-transparent hover:brightness-110;
+		@apply before:border-white/44 bg-info hover:bg-info-hover focus-visible:ring-info before:mask-b-from-0% overflow-hidden font-medium text-white shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-info),0_3px_4px_-1px_var(--color-info-border)] before:pointer-events-none before:absolute before:inset-0 before:border before:bg-gradient-to-b before:from-white/20 before:to-transparent hover:brightness-110;
 	}
 	.cn-compact-btn-glossy-success {
-		@apply before:border-white/44 bg-success hover:bg-success-hover focus-visible:ring-success before:mask-b-from-0% overflow-hidden font-medium text-white shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-success),0_3px_4px_-1px_var(--color-success-border)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border before:bg-gradient-to-b before:from-white/20 before:to-transparent hover:brightness-110;
+		@apply before:border-white/44 bg-success hover:bg-success-hover focus-visible:ring-success before:mask-b-from-0% overflow-hidden font-medium text-white shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-success),0_3px_4px_-1px_var(--color-success-border)] before:pointer-events-none before:absolute before:inset-0 before:border before:bg-gradient-to-b before:from-white/20 before:to-transparent hover:brightness-110;
 	}
 	.cn-compact-btn-glossy-warning {
-		@apply before:border-white/44 bg-warning hover:bg-warning-hover focus-visible:ring-warning before:mask-b-from-0% overflow-hidden font-medium text-white shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-warning),0_3px_4px_-1px_var(--color-warning-border)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border before:bg-gradient-to-b before:from-white/20 before:to-transparent hover:brightness-110;
+		@apply before:border-white/44 bg-warning hover:bg-warning-hover focus-visible:ring-warning before:mask-b-from-0% overflow-hidden font-medium text-white shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-warning),0_3px_4px_-1px_var(--color-warning-border)] before:pointer-events-none before:absolute before:inset-0 before:border before:bg-gradient-to-b before:from-white/20 before:to-transparent hover:brightness-110;
 	}
 	.cn-compact-btn-glossy-error {
-		@apply before:border-white/44 bg-error hover:bg-error-hover focus-visible:ring-error before:mask-b-from-0% overflow-hidden font-medium text-white shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-error),0_3px_4px_-1px_var(--color-error-border)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border before:bg-gradient-to-b before:from-white/20 before:to-transparent hover:brightness-110;
+		@apply before:border-white/44 bg-error hover:bg-error-hover focus-visible:ring-error before:mask-b-from-0% overflow-hidden font-medium text-white shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-error),0_3px_4px_-1px_var(--color-error-border)] before:pointer-events-none before:absolute before:inset-0 before:border before:bg-gradient-to-b before:from-white/20 before:to-transparent hover:brightness-110;
 	}
 	.cn-compact-btn-glossy-neutral {
-		@apply focus-visible:ring-black-inverse before:border-white-inverse/16 before:mask-b-from-0% bg-black-inverse bg-linear-to-t text-white-inverse overflow-hidden from-white/0 to-white/20 font-medium shadow-[0_0_0_1px_var(--color-black-inverse),0_3px_4px_-1px_var(--color-black-inverse)] before:absolute before:inset-0 before:rounded-[inherit] before:border hover:opacity-90;
+		@apply focus-visible:ring-black-inverse before:border-white-inverse/16 before:mask-b-from-0% bg-black-inverse bg-linear-to-t text-white-inverse overflow-hidden from-white/0 to-white/20 font-medium shadow-[0_0_0_1px_var(--color-black-inverse),0_3px_4px_-1px_var(--color-black-inverse)] before:absolute before:inset-0 before:border hover:opacity-90;
 	}
 
 	.cn-compact-btn-glossy-inverted-primary {
-		@apply focus-visible:ring-primary hover:bg-primary-hover bg-primary before:border-white/44 before:mask-b-from-0% overflow-hidden font-medium text-white shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-primary),0_3px_4px_-1px_var(--color-primary-border)] before:absolute before:inset-0 before:rounded-[inherit] before:border before:bg-gradient-to-b before:from-transparent before:to-white/20;
+		@apply focus-visible:ring-primary hover:bg-primary-hover bg-primary before:border-white/44 before:mask-b-from-0% overflow-hidden font-medium text-white shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-primary),0_3px_4px_-1px_var(--color-primary-border)] before:absolute before:inset-0 before:border before:bg-gradient-to-b before:from-transparent before:to-white/20;
 	}
 	.cn-compact-btn-glossy-inverted-info {
-		@apply focus-visible:ring-info hover:bg-info-hover bg-info before:border-white/44 before:mask-b-from-0% overflow-hidden font-medium text-white shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-info),0_3px_4px_-1px_var(--color-info-border)] before:absolute before:inset-0 before:rounded-[inherit] before:border before:bg-gradient-to-b before:from-transparent before:to-white/20;
+		@apply focus-visible:ring-info hover:bg-info-hover bg-info before:border-white/44 before:mask-b-from-0% overflow-hidden font-medium text-white shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-info),0_3px_4px_-1px_var(--color-info-border)] before:absolute before:inset-0 before:border before:bg-gradient-to-b before:from-transparent before:to-white/20;
 	}
 	.cn-compact-btn-glossy-inverted-success {
-		@apply focus-visible:ring-success hover:bg-success-hover bg-success before:border-white/44 before:mask-b-from-0% overflow-hidden font-medium text-white shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-success),0_3px_4px_-1px_var(--color-success-border)] before:absolute before:inset-0 before:rounded-[inherit] before:border before:bg-gradient-to-b before:from-transparent before:to-white/20;
+		@apply focus-visible:ring-success hover:bg-success-hover bg-success before:border-white/44 before:mask-b-from-0% overflow-hidden font-medium text-white shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-success),0_3px_4px_-1px_var(--color-success-border)] before:absolute before:inset-0 before:border before:bg-gradient-to-b before:from-transparent before:to-white/20;
 	}
 	.cn-compact-btn-glossy-inverted-warning {
-		@apply focus-visible:ring-warning hover:bg-warning-hover bg-warning before:border-white/44 before:mask-b-from-0% overflow-hidden font-medium text-white shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-warning),0_3px_4px_-1px_var(--color-warning-border)] before:absolute before:inset-0 before:rounded-[inherit] before:border before:bg-gradient-to-b before:from-transparent before:to-white/20;
+		@apply focus-visible:ring-warning hover:bg-warning-hover bg-warning before:border-white/44 before:mask-b-from-0% overflow-hidden font-medium text-white shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-warning),0_3px_4px_-1px_var(--color-warning-border)] before:absolute before:inset-0 before:border before:bg-gradient-to-b before:from-transparent before:to-white/20;
 	}
 	.cn-compact-btn-glossy-inverted-error {
-		@apply focus-visible:ring-error hover:bg-error-hover bg-error before:border-white/44 before:mask-b-from-0% overflow-hidden font-medium text-white shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-error),0_3px_4px_-1px_var(--color-error-border)] before:absolute before:inset-0 before:rounded-[inherit] before:border before:bg-gradient-to-b before:from-transparent before:to-white/20;
+		@apply focus-visible:ring-error hover:bg-error-hover bg-error before:border-white/44 before:mask-b-from-0% overflow-hidden font-medium text-white shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-error),0_3px_4px_-1px_var(--color-error-border)] before:absolute before:inset-0 before:border before:bg-gradient-to-b before:from-transparent before:to-white/20;
 	}
 	.cn-compact-btn-glossy-inverted-neutral {
-		@apply focus-visible:ring-black-inverse before:border-white-inverse/16 before:mask-b-from-0% bg-black-inverse bg-linear-to-t text-white-inverse overflow-hidden from-white/20 to-white/0 font-medium shadow-[0_0_0_1px_var(--color-black-inverse),0_3px_4px_-1px_var(--color-black-inverse)] before:absolute before:inset-0 before:rounded-[inherit] before:border hover:opacity-90;
+		@apply focus-visible:ring-black-inverse before:border-white-inverse/16 before:mask-b-from-0% bg-black-inverse bg-linear-to-t text-white-inverse overflow-hidden from-white/20 to-white/0 font-medium shadow-[0_0_0_1px_var(--color-black-inverse),0_3px_4px_-1px_var(--color-black-inverse)] before:absolute before:inset-0 before:border hover:opacity-90;
 	}
 
 	.cn-compact-btn-smooth-primary {
-		@apply before:from-primary-hover before:to-primary before:mask-b-from-98% bg-primary focus-visible:ring-primary before:border-white/16 overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0px_0px_1px_var(--color-primary)] before:absolute before:inset-0 before:-z-10 before:rounded-[inherit] before:border before:bg-gradient-to-b hover:brightness-110;
+		@apply before:from-primary-hover before:to-primary before:mask-b-from-98% bg-primary focus-visible:ring-primary before:border-white/16 overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0px_0px_1px_var(--color-primary)] before:absolute before:inset-0 before:-z-10 before:border before:bg-gradient-to-b hover:brightness-110;
 	}
 	.cn-compact-btn-smooth-info {
-		@apply before:from-info-hover before:to-info before:mask-b-from-98% bg-info focus-visible:ring-info before:border-white/16 overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0px_0px_1px_var(--color-info)] before:absolute before:inset-0 before:-z-10 before:rounded-[inherit] before:border before:bg-gradient-to-b hover:brightness-110;
+		@apply before:from-info-hover before:to-info before:mask-b-from-98% bg-info focus-visible:ring-info before:border-white/16 overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0px_0px_1px_var(--color-info)] before:absolute before:inset-0 before:-z-10 before:border before:bg-gradient-to-b hover:brightness-110;
 	}
 	.cn-compact-btn-smooth-success {
-		@apply before:from-success-hover before:to-success before:mask-b-from-98% bg-success focus-visible:ring-success before:border-white/16 overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0px_0px_1px_var(--color-success)] before:absolute before:inset-0 before:-z-10 before:rounded-[inherit] before:border before:bg-gradient-to-b hover:brightness-110;
+		@apply before:from-success-hover before:to-success before:mask-b-from-98% bg-success focus-visible:ring-success before:border-white/16 overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0px_0px_1px_var(--color-success)] before:absolute before:inset-0 before:-z-10 before:border before:bg-gradient-to-b hover:brightness-110;
 	}
 	.cn-compact-btn-smooth-warning {
-		@apply before:from-warning-hover before:to-warning before:mask-b-from-98% bg-warning focus-visible:ring-warning before:border-white/16 overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0px_0px_1px_var(--color-warning)] before:absolute before:inset-0 before:-z-10 before:rounded-[inherit] before:border before:bg-gradient-to-b hover:brightness-110;
+		@apply before:from-warning-hover before:to-warning before:mask-b-from-98% bg-warning focus-visible:ring-warning before:border-white/16 overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0px_0px_1px_var(--color-warning)] before:absolute before:inset-0 before:-z-10 before:border before:bg-gradient-to-b hover:brightness-110;
 	}
 	.cn-compact-btn-smooth-error {
-		@apply before:from-error-hover before:to-error before:mask-b-from-98% bg-error focus-visible:ring-error before:border-white/16 overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0px_0px_1px_var(--color-error)] before:absolute before:inset-0 before:-z-10 before:rounded-[inherit] before:border before:bg-gradient-to-b hover:brightness-110;
+		@apply before:from-error-hover before:to-error before:mask-b-from-98% bg-error focus-visible:ring-error before:border-white/16 overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0px_0px_1px_var(--color-error)] before:absolute before:inset-0 before:-z-10 before:border before:bg-gradient-to-b hover:brightness-110;
 	}
 	.cn-compact-btn-smooth-neutral {
-		@apply focus-visible:ring-black-inverse before:border-white-inverse/16 before:mask-b-from-98% bg-black-inverse bg-linear-to-t text-white-inverse hover:before:bg-black-inverse/30 overflow-hidden from-white/0 to-white/20 font-medium before:absolute before:inset-px before:rounded-[inherit] before:border;
+		@apply focus-visible:ring-black-inverse before:border-white-inverse/16 before:mask-b-from-98% bg-black-inverse bg-linear-to-t text-white-inverse hover:before:bg-black-inverse/30 overflow-hidden from-white/0 to-white/20 font-medium before:absolute before:inset-px before:border;
 	}
 
 	.cn-compact-btn-smooth-inverted-primary {
-		@apply before:from-primary before:to-primary-hover before:mask-b-from-98% bg-primary focus-visible:ring-primary before:border-white/16 overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0px_0px_1px_var(--color-primary)] before:absolute before:inset-0 before:-z-10 before:rounded-[inherit] before:border before:bg-gradient-to-b hover:brightness-110;
+		@apply before:from-primary before:to-primary-hover before:mask-b-from-98% bg-primary focus-visible:ring-primary before:border-white/16 overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0px_0px_1px_var(--color-primary)] before:absolute before:inset-0 before:-z-10 before:border before:bg-gradient-to-b hover:brightness-110;
 	}
 	.cn-compact-btn-smooth-inverted-info {
-		@apply before:from-info before:to-info-hover before:mask-b-from-98% bg-info focus-visible:ring-info before:border-white/16 overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0px_0px_1px_var(--color-info)] before:absolute before:inset-0 before:-z-10 before:rounded-[inherit] before:border before:bg-gradient-to-b hover:brightness-110;
+		@apply before:from-info before:to-info-hover before:mask-b-from-98% bg-info focus-visible:ring-info before:border-white/16 overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0px_0px_1px_var(--color-info)] before:absolute before:inset-0 before:-z-10 before:border before:bg-gradient-to-b hover:brightness-110;
 	}
 	.cn-compact-btn-smooth-inverted-success {
-		@apply before:from-success before:to-success-hover before:mask-b-from-98% bg-success focus-visible:ring-success before:border-white/16 overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0px_0px_1px_var(--color-success)] before:absolute before:inset-0 before:-z-10 before:rounded-[inherit] before:border before:bg-gradient-to-b hover:brightness-110;
+		@apply before:from-success before:to-success-hover before:mask-b-from-98% bg-success focus-visible:ring-success before:border-white/16 overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0px_0px_1px_var(--color-success)] before:absolute before:inset-0 before:-z-10 before:border before:bg-gradient-to-b hover:brightness-110;
 	}
 	.cn-compact-btn-smooth-inverted-warning {
-		@apply before:from-warning before:to-warning-hover before:mask-b-from-98% bg-warning focus-visible:ring-warning before:border-white/16 overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0px_0px_1px_var(--color-warning)] before:absolute before:inset-0 before:-z-10 before:rounded-[inherit] before:border before:bg-gradient-to-b hover:brightness-110;
+		@apply before:from-warning before:to-warning-hover before:mask-b-from-98% bg-warning focus-visible:ring-warning before:border-white/16 overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0px_0px_1px_var(--color-warning)] before:absolute before:inset-0 before:-z-10 before:border before:bg-gradient-to-b hover:brightness-110;
 	}
 	.cn-compact-btn-smooth-inverted-error {
-		@apply before:from-error before:to-error-hover before:mask-b-from-98% bg-error focus-visible:ring-error before:border-white/16 overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0px_0px_1px_var(--color-error)] before:absolute before:inset-0 before:-z-10 before:rounded-[inherit] before:border before:bg-gradient-to-b hover:brightness-110;
+		@apply before:from-error before:to-error-hover before:mask-b-from-98% bg-error focus-visible:ring-error before:border-white/16 overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0px_0px_1px_var(--color-error)] before:absolute before:inset-0 before:-z-10 before:border before:bg-gradient-to-b hover:brightness-110;
 	}
 	.cn-compact-btn-smooth-inverted-neutral {
-		@apply focus-visible:ring-black-inverse before:border-white-inverse/16 before:mask-b-from-98% bg-black-inverse bg-linear-to-b text-white-inverse hover:before:bg-black-inverse/30 overflow-hidden from-white/0 to-white/20 font-medium before:absolute before:inset-px before:rounded-[inherit] before:border;
+		@apply focus-visible:ring-black-inverse before:border-white-inverse/16 before:mask-b-from-98% bg-black-inverse bg-linear-to-b text-white-inverse hover:before:bg-black-inverse/30 overflow-hidden from-white/0 to-white/20 font-medium before:absolute before:inset-px before:border;
 	}
 
 	/* IconButton size variants — all flat */
 	.cn-icon-btn-size-28 {
-		@apply size-7 rounded-none p-1.5;
+		@apply size-7 p-1.5;
 	}
 	.cn-icon-btn-size-32 {
-		@apply p-1.75 size-8 rounded-none;
+		@apply p-1.75 size-8;
 	}
 	.cn-icon-btn-size-36 {
-		@apply size-9 rounded-none p-2;
+		@apply size-9 p-2;
 	}
 	.cn-icon-btn-size-40 {
-		@apply size-10 rounded-none p-2.5;
+		@apply size-10 p-2.5;
 	}
 	.cn-icon-btn-size-44 {
-		@apply size-11 rounded-none p-3;
+		@apply size-11 p-3;
 	}
 	.cn-icon-btn-size-48 {
-		@apply size-12 rounded-none p-3;
+		@apply size-12 p-3;
 	}
 
 	/* IconButton outline padding overrides — bumped slightly */
@@ -1018,7 +964,7 @@
 	/* MARK: Calendar */
 
 	.cn-calendar {
-		@apply bg-card border-border rounded-none border p-4;
+		@apply bg-card border-border border p-4;
 	}
 
 	.cn-calendar-month-caption {
@@ -1038,7 +984,7 @@
 	}
 
 	.cn-calendar-day-button {
-		@apply text-fg rounded-none text-sm font-medium;
+		@apply text-fg text-sm font-medium;
 		@apply hover:bg-fill1-alpha;
 		@apply hover:group-data-selected:bg-primary;
 		@apply group-data-disabled:line-through;
@@ -1064,7 +1010,7 @@
 		@apply hover:bg-fill1-alpha focus-visible:ring-border;
 		@apply hover:before:bg-fill2-alpha relative before:absolute before:inset-0;
 		@apply aria-disabled:opacity-50;
-		@apply rounded-none p-2;
+		@apply p-2;
 	}
 
 	.cn-calendar-chevron {
@@ -1074,7 +1020,7 @@
 	/* MARK: Card */
 
 	.cn-card {
-		@apply bg-card border-border gap-8 rounded-none border py-8 shadow-none;
+		@apply bg-card border-border gap-8 border py-8 shadow-none;
 	}
 
 	.cn-card-header {
@@ -1115,14 +1061,6 @@
 		@apply pt-4;
 	}
 
-	.cn-carousel-previous {
-		@apply rounded-none;
-	}
-
-	.cn-carousel-next {
-		@apply rounded-none;
-	}
-
 	/* MARK: Checkbox */
 
 	.cn-checkbox {
@@ -1134,22 +1072,10 @@
 		@apply [[data-invalid=true]_&]:border-error [[data-invalid=true]_&]:ring-error;
 	}
 
-	.cn-checkbox-sm {
-		@apply rounded-none;
-	}
-
-	.cn-checkbox-md {
-		@apply rounded-none;
-	}
-
-	.cn-checkbox-lg {
-		@apply rounded-none;
-	}
-
 	/* MARK: Code Area */
 
 	.cn-code-area {
-		@apply rounded-none text-sm;
+		@apply text-sm;
 	}
 
 	/* MARK: Collapsible */
@@ -1161,7 +1087,7 @@
 	/* MARK: Command */
 
 	.cn-command {
-		@apply bg-bg text-fg border-border rounded-none border;
+		@apply bg-bg text-fg border-border border;
 	}
 
 	.cn-command-dialog-cmdk {
@@ -1210,7 +1136,7 @@
 	.cn-command-item {
 		@apply data-[selected=true]:bg-fill2-alpha data-[selected=true]:text-fg-secondary;
 		@apply [&_svg:not([class*='text-'])]:text-fg-tertiary;
-		@apply rounded-none px-3 py-2 text-sm;
+		@apply px-3 py-2 text-sm;
 		@apply [&_svg:not([class*='size-'])]:size-4;
 	}
 
@@ -1238,12 +1164,12 @@
 
 	/* Content */
 	.cn-dialog-content {
-		@apply bg-bg border-alpha gap-6 rounded-none border p-6 shadow-none;
+		@apply bg-bg border-alpha gap-6 border p-6 shadow-none;
 	}
 
 	/* Close button */
 	.cn-dialog-close-button {
-		@apply focus-visible:ring-offset-bg text-fg-tertiary hover:bg-fill2 focus-visible:ring-border rounded-none bg-transparent focus-visible:ring-offset-2;
+		@apply focus-visible:ring-offset-bg text-fg-tertiary hover:bg-fill2 focus-visible:ring-border bg-transparent focus-visible:ring-offset-2;
 	}
 
 	.cn-dialog-close-button-hover {
@@ -1288,25 +1214,13 @@
 		@apply outline-border outline;
 	}
 	.cn-drawer-variant-float {
-		@apply outline-border rounded-none shadow-none outline;
+		@apply outline-border shadow-none outline;
 	}
 	.cn-drawer-variant-rounded {
-		@apply outline-border rounded-none outline;
+		@apply outline-border outline;
 	}
 
 	/* Rounded directional overrides — all flat in Sera */
-	.cn-drawer-rounded-top {
-		@apply rounded-none;
-	}
-	.cn-drawer-rounded-bottom {
-		@apply rounded-none;
-	}
-	.cn-drawer-rounded-left {
-		@apply rounded-none;
-	}
-	.cn-drawer-rounded-right {
-		@apply rounded-none;
-	}
 
 	/* No-handle padding */
 	.cn-drawer-padding {
@@ -1370,11 +1284,11 @@
 	}
 
 	.cn-dropdown-content {
-		@apply border-border bg-popover min-w-[var(--radix-dropdown-menu-trigger-width)] gap-1 rounded-none border p-2 shadow-none;
+		@apply border-border bg-popover min-w-[var(--radix-dropdown-menu-trigger-width)] gap-1 border p-2 shadow-none;
 	}
 
 	.cn-dropdown-item {
-		@apply text-fg gap-3 rounded-none px-3 py-2 text-sm;
+		@apply text-fg gap-3 px-3 py-2 text-sm;
 		@apply focus:bg-fill1-alpha;
 		@apply data-disabled:text-fg-disabled data-disabled:[&_*]:text-fg-disabled;
 		@apply [&_svg]:text-fg-secondary [&_svg:not([class*='size-'])]:size-4;
@@ -1385,7 +1299,7 @@
 	}
 
 	.cn-dropdown-checkbox-item {
-		@apply gap-3 rounded-none py-2 text-sm;
+		@apply gap-3 py-2 text-sm;
 		@apply focus:bg-fill2-alpha;
 		@apply [&_svg]:text-fg-secondary [&_svg:not([class*='size-'])]:size-5;
 	}
@@ -1399,7 +1313,7 @@
 	}
 
 	.cn-dropdown-radio-item {
-		@apply gap-3 rounded-none py-2 text-sm;
+		@apply gap-3 py-2 text-sm;
 		@apply focus:bg-fill2-alpha;
 		@apply [&_svg]:text-fg-secondary [&_svg:not([class*='size-'])]:size-5;
 	}
@@ -1433,7 +1347,7 @@
 	}
 
 	.cn-dropdown-sub-trigger {
-		@apply gap-3 rounded-none px-3 py-2 text-sm;
+		@apply gap-3 px-3 py-2 text-sm;
 		@apply data-[state=open]:bg-fill1-alpha focus:bg-fill2-alpha;
 		@apply [&_svg]:text-fg-secondary [&_svg:not([class*='size-'])]:size-4;
 	}
@@ -1443,7 +1357,7 @@
 	}
 
 	.cn-dropdown-sub-content {
-		@apply border-border bg-popover min-w-36 rounded-none border p-2 shadow-none;
+		@apply border-border bg-popover min-w-36 border p-2 shadow-none;
 	}
 
 	.cn-dropdown-label {
@@ -1465,7 +1379,7 @@
 	/* MARK: HoverCard */
 
 	.cn-hover-card-content {
-		@apply bg-popover text-fg border-soft rounded-none border p-6 shadow-none;
+		@apply bg-popover text-fg border-soft border p-6 shadow-none;
 	}
 
 	/* MARK: Input */
@@ -1476,27 +1390,27 @@
 	}
 
 	.cn-input-28 {
-		@apply rounded-none px-3 text-[13px];
+		@apply px-3 text-[13px];
 	}
 
 	.cn-input-32 {
-		@apply rounded-none px-3 text-sm;
+		@apply px-3 text-sm;
 	}
 
 	.cn-input-36 {
-		@apply rounded-none px-3.5 text-sm;
+		@apply px-3.5 text-sm;
 	}
 
 	.cn-input-40 {
-		@apply rounded-none px-4 text-sm;
+		@apply px-4 text-sm;
 	}
 
 	.cn-input-44 {
-		@apply rounded-none px-4 text-base;
+		@apply px-4 text-base;
 	}
 
 	.cn-input-48 {
-		@apply px-4.5 rounded-none text-base;
+		@apply px-4.5 text-base;
 	}
 
 	/* InputAddon base */
@@ -1506,27 +1420,27 @@
 
 	/* InputAddon sizes */
 	.cn-input-addon-28 {
-		@apply rounded-none px-3 text-[13px];
+		@apply px-3 text-[13px];
 	}
 
 	.cn-input-addon-32 {
-		@apply rounded-none px-3 text-sm;
+		@apply px-3 text-sm;
 	}
 
 	.cn-input-addon-36 {
-		@apply rounded-none px-3.5 text-sm;
+		@apply px-3.5 text-sm;
 	}
 
 	.cn-input-addon-40 {
-		@apply rounded-none px-4 text-sm;
+		@apply px-4 text-sm;
 	}
 
 	.cn-input-addon-44 {
-		@apply rounded-none px-4 text-base;
+		@apply px-4 text-base;
 	}
 
 	.cn-input-addon-48 {
-		@apply px-4.5 rounded-none text-base;
+		@apply px-4.5 text-base;
 	}
 
 	/* InputWrapper sizes */
@@ -1566,7 +1480,7 @@
 	}
 
 	.cn-otp-input {
-		@apply bg-bg text-fg border-alpha focus-visible:border-primary-hover group-has-disabled:cursor-not-allowed group-has-disabled:text-fg-disabled group-has-disabled:bg-fill2-alpha group-has-disabled:placeholder:text-fg-disabled placeholder:text-fg-tertiary rounded-none border-b font-semibold shadow-none;
+		@apply bg-bg text-fg border-alpha focus-visible:border-primary-hover group-has-disabled:cursor-not-allowed group-has-disabled:text-fg-disabled group-has-disabled:bg-fill2-alpha group-has-disabled:placeholder:text-fg-disabled placeholder:text-fg-tertiary border-b font-semibold shadow-none;
 	}
 
 	.cn-otp-input-28 {
@@ -1596,12 +1510,12 @@
 	/* MARK: Popover */
 
 	.cn-popover-content {
-		@apply text-fg bg-popover rounded-none border p-6 shadow-none;
+		@apply text-fg bg-popover border p-6 shadow-none;
 	}
 
 	/* MARK: Progress */
 	.cn-progress {
-		@apply bg-fill3 h-3 rounded-none;
+		@apply bg-fill3 h-3;
 	}
 
 	.cn-progress-indicator {
@@ -1615,7 +1529,7 @@
 	}
 
 	.cn-resizable-handle-grip {
-		@apply bg-border rounded-none border;
+		@apply bg-border border;
 	}
 
 	/* MARK: ScrollArea */
@@ -1632,7 +1546,7 @@
 	}
 
 	.cn-scrollbar-thumb {
-		@apply bg-border rounded-none;
+		@apply bg-border;
 	}
 
 	/* MARK: Select */
@@ -1641,27 +1555,27 @@
 	}
 
 	.cn-select-trigger-28 {
-		@apply h-7 rounded-none px-3 py-1.5 text-[13px];
+		@apply h-7 px-3 py-1.5 text-[13px];
 	}
 
 	.cn-select-trigger-32 {
-		@apply h-8 rounded-none px-3 py-1.5 text-sm;
+		@apply h-8 px-3 py-1.5 text-sm;
 	}
 
 	.cn-select-trigger-36 {
-		@apply h-9 rounded-none px-3.5 py-2 text-sm;
+		@apply h-9 px-3.5 py-2 text-sm;
 	}
 
 	.cn-select-trigger-40 {
-		@apply h-10 rounded-none px-4 py-2.5 text-sm;
+		@apply h-10 px-4 py-2.5 text-sm;
 	}
 
 	.cn-select-trigger-44 {
-		@apply h-11 rounded-none px-4 py-2.5 text-base;
+		@apply h-11 px-4 py-2.5 text-base;
 	}
 
 	.cn-select-trigger-48 {
-		@apply px-4.5 h-12 rounded-none py-3 text-base;
+		@apply px-4.5 h-12 py-3 text-base;
 	}
 
 	.cn-select-scroll-button {
@@ -1669,7 +1583,7 @@
 	}
 
 	.cn-select-content {
-		@apply border-border bg-popover text-fg min-w-[8rem] rounded-none border shadow-none;
+		@apply border-border bg-popover text-fg min-w-[8rem] border shadow-none;
 	}
 
 	.cn-select-viewport {
@@ -1681,7 +1595,7 @@
 	}
 
 	.cn-select-item {
-		@apply focus:bg-fill2-alpha data-disabled:pointer-events-none data-disabled:opacity-50 rounded-none py-2 text-sm;
+		@apply focus:bg-fill2-alpha data-disabled:pointer-events-none data-disabled:opacity-50 py-2 text-sm;
 	}
 
 	.cn-select-divider {
@@ -1694,7 +1608,7 @@
 	}
 
 	.cn-slider-track {
-		@apply bg-fill3 h-1 rounded-none;
+		@apply bg-fill3 h-1;
 	}
 
 	.cn-slider-range {
@@ -1702,21 +1616,13 @@
 	}
 
 	.cn-slider-thumb {
-		@apply bg-primary rounded-none drop-shadow-none;
+		@apply bg-primary drop-shadow-none;
 	}
 
 	/* MARK: Switch */
 
 	.cn-switch {
 		@apply bg-fill2-alpha;
-	}
-
-	.cn-switch-shape-pill {
-		@apply rounded-none;
-	}
-
-	.cn-switch-shape-square {
-		@apply rounded-none;
 	}
 
 	.cn-switch-permanent {
@@ -1729,14 +1635,6 @@
 
 	.cn-switch-thumb {
 		@apply data-[state=checked]:bg-primary-fg bg-white shadow-none;
-	}
-
-	.cn-switch-thumb-shape-pill {
-		@apply rounded-none;
-	}
-
-	.cn-switch-thumb-shape-square {
-		@apply rounded-none;
 	}
 
 	.cn-switch-indicator-on {
@@ -1808,14 +1706,6 @@
 		@apply p-1;
 	}
 
-	.cn-tabs-list-rounded-md {
-		@apply rounded-none;
-	}
-
-	.cn-tabs-list-rounded-lg {
-		@apply rounded-none;
-	}
-
 	.cn-tabs-list-open-gap-sm {
 		@apply data-[orientation=horizontal]:gap-4 data-[orientation=vertical]:gap-3;
 	}
@@ -1847,15 +1737,15 @@
 
 	/* Trigger default size compounds */
 	.cn-tabs-trigger-default-sm {
-		@apply rounded-none px-2 py-1;
+		@apply px-2 py-1;
 	}
 
 	.cn-tabs-trigger-default-md {
-		@apply rounded-none px-3 py-1.5;
+		@apply px-3 py-1.5;
 	}
 
 	.cn-tabs-trigger-default-lg {
-		@apply rounded-none px-4 py-2;
+		@apply px-4 py-2;
 	}
 
 	/* Trigger outline/ghost/outline-ghost size compounds */
@@ -1885,47 +1775,17 @@
 	}
 
 	/* Trigger outline rounded compounds */
-	.cn-tabs-trigger-outline-sm {
-		@apply rounded-none;
-	}
-
-	.cn-tabs-trigger-outline-md {
-		@apply rounded-none;
-	}
-
-	.cn-tabs-trigger-outline-lg {
-		@apply rounded-none;
-	}
 
 	/* Trigger ghost/outline-ghost active rounded */
-	.cn-tabs-trigger-ghost-sm {
-		@apply data-[state=active]:rounded-none;
-	}
-
-	.cn-tabs-trigger-ghost-md {
-		@apply data-[state=active]:rounded-none;
-	}
-
-	.cn-tabs-trigger-ghost-lg {
-		@apply data-[state=active]:rounded-none;
-	}
 
 	/* MARK: TextArea */
 	.cn-textarea {
 		@apply text-fg border-alpha focus:border-primary-hover aria-invalid:ring-error aria-invalid:border-error focus:ring-primary-hover/30 disabled:border-soft disabled:text-fg-disabled border-b bg-transparent px-2 py-3 text-sm font-normal drop-shadow-none placeholder:text-sm disabled:cursor-not-allowed disabled:resize-none;
 	}
 
-	.cn-textarea-rounded {
-		@apply rounded-none;
-	}
-
-	.cn-textarea-square {
-		@apply rounded-none;
-	}
-
 	/* MARK: Tooltip */
 	.cn-tooltip-content {
-		@apply max-w-70 rounded-none px-3 py-2.5 text-[13px]/4 shadow-none;
+		@apply max-w-70 px-3 py-2.5 text-[13px]/4 shadow-none;
 	}
 
 	.cn-tooltip-theme-light {
@@ -1937,6 +1797,6 @@
 	}
 
 	.cn-tooltip-arrow {
-		@apply data-[theme=light]:fill-elevation-level1 data-[theme=default]:fill-black-inverse -mt-0.5 rounded-none data-[theme=light]:drop-shadow-[0_1px_0_var(--color-border)];
+		@apply data-[theme=light]:fill-elevation-level1 data-[theme=default]:fill-black-inverse -mt-0.5 data-[theme=light]:drop-shadow-[0_1px_0_var(--color-border)];
 	}
 }

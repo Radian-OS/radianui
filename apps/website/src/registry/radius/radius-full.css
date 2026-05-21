@@ -1,48 +1,484 @@
 .radius-full {
+	/* MARK: Accordion */
+
+	.cn-accordion-item-variant-box {
+		@apply rounded-full;
+	}
+
+	.cn-accordion-item-variant-table {
+		@apply rounded-full; 
+	}
+
+	/* MARK: Alert Dialog */
+
+	.cn-alert-dialog-content {
+		@apply rounded-full;
+	}
+
+	/* MARK: Avatar */
+
+	.cn-avatar-rounded-circle {
+		@apply rounded-full;
+	}
+
+	.cn-avatar-square-16 {
+		@apply rounded-full;
+	}
+	.cn-avatar-square-20 {
+		@apply rounded-full;
+	}
+	.cn-avatar-square-24 {
+		@apply rounded-full;
+	}
+	.cn-avatar-square-32 {
+		@apply rounded-full;
+	}
+	.cn-avatar-square-36 {
+		@apply rounded-full;
+	}
+	.cn-avatar-square-40 {
+		@apply rounded-full;
+	}
+	.cn-avatar-square-48 {
+		@apply rounded-full;
+	}
+	.cn-avatar-square-64 {
+		@apply rounded-full;
+	}
+	.cn-avatar-square-80 {
+		@apply rounded-full;
+	}
+
+	/* MARK: Badge */
+
+	.cn-badge-size-20 {
+		@apply rounded-full;
+	}
+	.cn-badge-size-24 {
+		@apply rounded-full;
+	}
+	.cn-badge-size-28 {
+		@apply rounded-full;
+	}
+
 	/* MARK: Button */
 
-	/* Size rounded tokens — all flat */
-	.r-btn-size-28 {
+	/* Size rounded tokens */
+	.cn-btn-size-28 {
 		@apply rounded-full;
 	}
-	.r-btn-size-32 {
+	.cn-btn-size-32 {
 		@apply rounded-full;
 	}
-	.r-btn-size-36 {
+	.cn-btn-size-36 {
 		@apply rounded-full;
 	}
-	.r-btn-size-40 {
+	.cn-btn-size-40 {
 		@apply rounded-full;
 	}
-	.r-btn-size-44 {
+	.cn-btn-size-44 {
 		@apply rounded-full;
 	}
-	.r-btn-size-48 {
+	.cn-btn-size-48 {
 		@apply rounded-full;
+	}
+
+	/* Link variants */
+	.cn-btn-link-primary {
+		@apply focus-visible:rounded-full;
+	}
+	.cn-btn-link-info {
+		@apply focus-visible:rounded-full;
+	}
+	.cn-btn-link-success {
+		@apply focus-visible:rounded-full;
+	}
+	.cn-btn-link-error {
+		@apply focus-visible:rounded-full;
+	}
+	.cn-btn-link-warning {
+		@apply focus-visible:rounded-full;
+	}
+	.cn-btn-link-neutral {
+		@apply focus-visible:rounded-full;
 	}
 
 	/* CompactButton base */
-	.r-compact-btn {
+	.cn-compact-btn {
 		@apply rounded-full;
 	}
 
-	/* IconButton size variants — all flat */
-	.r-icon-btn-size-28 {
+	/* IconButton size variants */
+	.cn-icon-btn-size-28 {
 		@apply rounded-full;
 	}
-	.r-icon-btn-size-32 {
+	.cn-icon-btn-size-32 {
 		@apply rounded-full;
 	}
-	.r-icon-btn-size-36 {
+	.cn-icon-btn-size-36 {
 		@apply rounded-full;
 	}
-	.r-icon-btn-size-40 {
+	.cn-icon-btn-size-40 {
 		@apply rounded-full;
 	}
-	.r-icon-btn-size-44 {
+	.cn-icon-btn-size-44 {
 		@apply rounded-full;
 	}
-	.r-icon-btn-size-48 {
+	.cn-icon-btn-size-48 {
+		@apply rounded-full;
+	}
+
+	/* MARK: Calendar */
+
+	.cn-calendar {
+		@apply rounded-full;
+	}
+
+	.cn-calendar-day-button {
+		@apply rounded-full;
+	}
+
+	.cn-calendar-button-previous,
+	.cn-calendar-button-next {
+		@apply rounded-full;
+	}
+
+	/* MARK: Card */
+
+	.cn-card {
+		@apply rounded-full;
+	}
+
+	/* MARK: Carousel */
+
+	.cn-carousel-previous {
+		@apply rounded-full;
+	}
+
+	.cn-carousel-next {
+		@apply rounded-full;
+	}
+
+	/* MARK: Checkbox */
+
+	.cn-checkbox-sm {
+		@apply rounded-full;
+	}
+
+	.cn-checkbox-md {
+		@apply rounded-full;
+	}
+
+	.cn-checkbox-lg {
+		@apply rounded-full;
+	}
+
+	/* MARK: Code Area */
+
+	.cn-code-area {
+		@apply rounded-full;
+	}
+
+	/* MARK: Command */
+
+	.cn-command {
+		@apply rounded-full;
+	}
+
+	.cn-command-item {
+		@apply rounded-full;
+	}
+
+	.cn-command-checkbox-item {
+		@apply rounded-full;
+	}
+
+	.cn-command-radio-item {
+		@apply rounded-full;
+	}
+
+	.cn-command-sub-trigger {
+		@apply rounded-full;
+	}
+
+	.cn-command-sub-content {
+		@apply rounded-full;
+	}
+
+	/* MARK: Dialog */
+
+	.cn-dialog-content {
+		@apply rounded-full;
+	}
+
+	.cn-dialog-close-button {
+		@apply rounded-full;
+	}
+
+	/* MARK: Drawer */
+
+	.cn-drawer-variant-float {
+		@apply rounded-full;
+	}
+
+	.cn-drawer-variant-rounded {
+		@apply rounded-full;
+	}
+
+	.cn-drawer-rounded-top {
+		@apply rounded-full;
+	}
+	.cn-drawer-rounded-bottom {
+		@apply rounded-full;
+	}
+	.cn-drawer-rounded-left {
+		@apply rounded-full;
+	}
+	.cn-drawer-rounded-right {
+		@apply rounded-full;
+	}
+
+	/* MARK: Dropdown */
+
+	.cn-dropdown-content {
+		@apply rounded-full;
+	}
+
+	.cn-dropdown-item {
+		@apply rounded-full;
+	}
+
+	.cn-dropdown-checkbox-item {
+		@apply rounded-full;
+	}
+
+	.cn-dropdown-radio-item {
+		@apply rounded-full;
+	}
+
+	.cn-dropdown-sub-trigger {
+		@apply rounded-full;
+	}
+
+	.cn-dropdown-sub-content {
+		@apply rounded-full;
+	}
+
+	/* MARK: HoverCard */
+
+	.cn-hover-card-content {
+		@apply rounded-full;
+	}
+
+	/* MARK: Input */
+
+	.cn-input-28 {
+		@apply rounded-full;
+	}
+	.cn-input-32 {
+		@apply rounded-full;
+	}
+	.cn-input-36 {
+		@apply rounded-full;
+	}
+	.cn-input-40 {
+		@apply rounded-full;
+	}
+	.cn-input-44 {
+		@apply rounded-full;
+	}
+	.cn-input-48 {
+		@apply rounded-full;
+	}
+
+	.cn-input-addon-28 {
+		@apply rounded-full;
+	}
+	.cn-input-addon-32 {
+		@apply rounded-full;
+	}
+	.cn-input-addon-36 {
+		@apply rounded-full;
+	}
+	.cn-input-addon-40 {
+		@apply rounded-full;
+	}
+	.cn-input-addon-44 {
+		@apply rounded-full;
+	}
+	.cn-input-addon-48 {
+		@apply rounded-full;
+	}
+
+	/* MARK: OTPField */
+
+	.cn-otp-input {
+		@apply rounded-full;
+	}
+
+	.cn-otp-input-28 {
+		@apply rounded-full;
+	}
+	.cn-otp-input-32 {
+		@apply rounded-full;
+	}
+	.cn-otp-input-36 {
+		@apply rounded-full;
+	}
+	.cn-otp-input-40 {
+		@apply rounded-full;
+	}
+	.cn-otp-input-44 {
+		@apply rounded-full;
+	}
+	.cn-otp-input-48 {
+		@apply rounded-full;
+	}
+
+	/* MARK: Popover */
+
+	.cn-popover-content {
+		@apply rounded-full;
+	}
+
+	/* MARK: Progress */
+
+	.cn-progress {
+		@apply rounded-full;
+	}
+
+	/* MARK: Resizable */
+
+	.cn-resizable-handle-grip {
+		@apply rounded-full;
+	}
+
+	/* MARK: ScrollArea */
+
+	.cn-scrollbar-thumb {
+		@apply rounded-full;
+	}
+
+	/* MARK: Select */
+
+	.cn-select-trigger-28 {
+		@apply rounded-full;
+	}
+	.cn-select-trigger-32 {
+		@apply rounded-full;
+	}
+	.cn-select-trigger-36 {
+		@apply rounded-full;
+	}
+	.cn-select-trigger-40 {
+		@apply rounded-full;
+	}
+	.cn-select-trigger-44 {
+		@apply rounded-full;
+	}
+	.cn-select-trigger-48 {
+		@apply rounded-full;
+	}
+
+	.cn-select-content {
+		@apply rounded-full;
+	}
+
+	.cn-select-item {
+		@apply rounded-full;
+	}
+
+	/* MARK: Slider */
+
+	.cn-slider-track {
+		@apply rounded-full;
+	}
+
+	.cn-slider-thumb {
+		@apply rounded-full;
+	}
+
+	/* MARK: Switch */
+
+	.cn-switch-shape-pill {
+		@apply rounded-full;
+	}
+
+	.cn-switch-shape-square {
+		@apply rounded-full;
+	}
+
+	.cn-switch-thumb-shape-pill {
+		@apply rounded-full;
+	}
+
+	.cn-switch-thumb-shape-square {
+		@apply rounded-full;
+	}
+
+	/* MARK: Tabs */
+
+	.cn-tabs-list-rounded-md {
+		@apply rounded-full;
+	}
+
+	.cn-tabs-list-rounded-lg {
+		@apply rounded-full;
+	}
+
+	.cn-tabs-trigger-default-sm {
+		@apply rounded-full;
+	}
+
+	.cn-tabs-trigger-default-md {
+		@apply rounded-full;
+	}
+
+	.cn-tabs-trigger-default-lg {
+		@apply rounded-full;
+	}
+
+	.cn-tabs-trigger-outline-sm {
+		@apply rounded-full;
+	}
+
+	.cn-tabs-trigger-outline-md {
+		@apply rounded-full;
+	}
+
+	.cn-tabs-trigger-outline-lg {
+		@apply rounded-full;
+	}
+
+	.cn-tabs-trigger-ghost-sm {
+		@apply data-[state=active]:rounded-full;
+	}
+
+	.cn-tabs-trigger-ghost-md {
+		@apply data-[state=active]:rounded-full;
+	}
+
+	.cn-tabs-trigger-ghost-lg {
+		@apply data-[state=active]:rounded-full;
+	}
+
+	/* MARK: TextArea */
+
+	.cn-textarea-rounded {
+		@apply rounded-full;
+	}
+
+	.cn-textarea-square {
+		@apply rounded-full;
+	}
+
+	/* MARK: Tooltip */
+
+	.cn-tooltip-content {
+		@apply rounded-full;
+	}
+
+	.cn-tooltip-arrow {
 		@apply rounded-full;
 	}
 }
