@@ -1,2 +1,484 @@
-.radius-none {
+.radius-full {
+	/* MARK: Accordion */
+
+	.r-accordion-item-variant-box {
+		@apply rounded-none;
+	}
+
+	.r-accordion-item-variant-table {
+		@apply rounded-none;
+	}
+
+	/* MARK: Alert Dialog */
+
+	.r-alert-dialog-content {
+		@apply rounded-none;
+	}
+
+	/* MARK: Avatar */
+
+	.r-avatar-rounded-circle {
+		@apply rounded-full;
+	}
+
+	.r-avatar-square-16 {
+		@apply rounded-none;
+	}
+	.r-avatar-square-20 {
+		@apply rounded-none;
+	}
+	.r-avatar-square-24 {
+		@apply rounded-none;
+	}
+	.r-avatar-square-32 {
+		@apply rounded-none;
+	}
+	.r-avatar-square-36 {
+		@apply rounded-none;
+	}
+	.r-avatar-square-40 {
+		@apply rounded-none;
+	}
+	.r-avatar-square-48 {
+		@apply rounded-none;
+	}
+	.r-avatar-square-64 {
+		@apply rounded-none;
+	}
+	.r-avatar-square-80 {
+		@apply rounded-none;
+	}
+
+	/* MARK: Badge */
+
+	.r-badge-size-20 {
+		@apply rounded-none;
+	}
+	.r-badge-size-24 {
+		@apply rounded-none;
+	}
+	.r-badge-size-28 {
+		@apply rounded-none;
+	}
+
+	/* MARK: Button */
+
+	/* Size rounded tokens */
+	.r-btn-size-28 {
+		@apply rounded-none;
+	}
+	.r-btn-size-32 {
+		@apply rounded-none;
+	}
+	.r-btn-size-36 {
+		@apply rounded-none;
+	}
+	.r-btn-size-40 {
+		@apply rounded-none;
+	}
+	.r-btn-size-44 {
+		@apply rounded-none;
+	}
+	.r-btn-size-48 {
+		@apply rounded-none;
+	}
+
+	/* Link variants */
+	.r-btn-link-primary {
+		@apply focus-visible:rounded-none;
+	}
+	.r-btn-link-info {
+		@apply focus-visible:rounded-none;
+	}
+	.r-btn-link-success {
+		@apply focus-visible:rounded-none;
+	}
+	.r-btn-link-error {
+		@apply focus-visible:rounded-none;
+	}
+	.r-btn-link-warning {
+		@apply focus-visible:rounded-none;
+	}
+	.r-btn-link-neutral {
+		@apply focus-visible:rounded-none;
+	}
+
+	/* CompactButton base */
+	.r-compact-btn {
+		@apply rounded-none;
+	}
+
+	/* IconButton size variants */
+	.r-icon-btn-size-28 {
+		@apply rounded-none;
+	}
+	.r-icon-btn-size-32 {
+		@apply rounded-none;
+	}
+	.r-icon-btn-size-36 {
+		@apply rounded-none;
+	}
+	.r-icon-btn-size-40 {
+		@apply rounded-none;
+	}
+	.r-icon-btn-size-44 {
+		@apply rounded-none;
+	}
+	.r-icon-btn-size-48 {
+		@apply rounded-none;
+	}
+
+	/* MARK: Calendar */
+
+	.r-calendar {
+		@apply rounded-none;
+	}
+
+	.r-calendar-day-button {
+		@apply rounded-none;
+	}
+
+	.r-calendar-button-previous,
+	.r-calendar-button-next {
+		@apply rounded-none;
+	}
+
+	/* MARK: Card */
+
+	.r-card {
+		@apply rounded-none;
+	}
+
+	/* MARK: Carousel */
+
+	.r-carousel-previous {
+		@apply rounded-none;
+	}
+
+	.r-carousel-next {
+		@apply rounded-none;
+	}
+
+	/* MARK: Checkbox */
+
+	.r-checkbox-sm {
+		@apply rounded-none;
+	}
+
+	.r-checkbox-md {
+		@apply rounded-none;
+	}
+
+	.r-checkbox-lg {
+		@apply rounded-none;
+	}
+
+	/* MARK: Code Area */
+
+	.r-code-area {
+		@apply rounded-none;
+	}
+
+	/* MARK: Command */
+
+	.r-command {
+		@apply rounded-none;
+	}
+
+	.r-command-item {
+		@apply rounded-none;
+	}
+
+	.r-command-checkbox-item {
+		@apply rounded-none;
+	}
+
+	.r-command-radio-item {
+		@apply rounded-none;
+	}
+
+	.r-command-sub-trigger {
+		@apply rounded-none;
+	}
+
+	.r-command-sub-content {
+		@apply rounded-none;
+	}
+
+	/* MARK: Dialog */
+
+	.r-dialog-content {
+		@apply rounded-none;
+	}
+
+	.r-dialog-close-button {
+		@apply rounded-none;
+	}
+
+	/* MARK: Drawer */
+
+	.r-drawer-variant-float {
+		@apply rounded-none;
+	}
+
+	.r-drawer-variant-rounded {
+		@apply rounded-none;
+	}
+
+	.r-drawer-rounded-top {
+		@apply rounded-none;
+	}
+	.r-drawer-rounded-bottom {
+		@apply rounded-none;
+	}
+	.r-drawer-rounded-left {
+		@apply rounded-none;
+	}
+	.r-drawer-rounded-right {
+		@apply rounded-none;
+	}
+
+	/* MARK: Dropdown */
+
+	.r-dropdown-content {
+		@apply rounded-none;
+	}
+
+	.r-dropdown-item {
+		@apply rounded-none;
+	}
+
+	.r-dropdown-checkbox-item {
+		@apply rounded-none;
+	}
+
+	.r-dropdown-radio-item {
+		@apply rounded-none;
+	}
+
+	.r-dropdown-sub-trigger {
+		@apply rounded-none;
+	}
+
+	.r-dropdown-sub-content {
+		@apply rounded-none;
+	}
+
+	/* MARK: HoverCard */
+
+	.r-hover-card-content {
+		@apply rounded-none;
+	}
+
+	/* MARK: Input */
+
+	.r-input-28 {
+		@apply rounded-none;
+	}
+	.r-input-32 {
+		@apply rounded-none;
+	}
+	.r-input-36 {
+		@apply rounded-none;
+	}
+	.r-input-40 {
+		@apply rounded-none;
+	}
+	.r-input-44 {
+		@apply rounded-none;
+	}
+	.r-input-48 {
+		@apply rounded-none;
+	}
+
+	.r-input-addon-28 {
+		@apply rounded-none;
+	}
+	.r-input-addon-32 {
+		@apply rounded-none;
+	}
+	.r-input-addon-36 {
+		@apply rounded-none;
+	}
+	.r-input-addon-40 {
+		@apply rounded-none;
+	}
+	.r-input-addon-44 {
+		@apply rounded-none;
+	}
+	.r-input-addon-48 {
+		@apply rounded-none;
+	}
+
+	/* MARK: OTPField */
+
+	.r-otp-input {
+		@apply rounded-none;
+	}
+
+	.r-otp-input-28 {
+		@apply rounded-none;
+	}
+	.r-otp-input-32 {
+		@apply rounded-none;
+	}
+	.r-otp-input-36 {
+		@apply rounded-none;
+	}
+	.r-otp-input-40 {
+		@apply rounded-none;
+	}
+	.r-otp-input-44 {
+		@apply rounded-none;
+	}
+	.r-otp-input-48 {
+		@apply rounded-none;
+	}
+
+	/* MARK: Popover */
+
+	.r-popover-content {
+		@apply rounded-none;
+	}
+
+	/* MARK: Progress */
+
+	.r-progress {
+		@apply rounded-none;
+	}
+
+	/* MARK: Resizable */
+
+	.r-resizable-handle-grip {
+		@apply rounded-none;
+	}
+
+	/* MARK: ScrollArea */
+
+	.r-scrollbar-thumb {
+		@apply rounded-none;
+	}
+
+	/* MARK: Select */
+
+	.r-select-trigger-28 {
+		@apply rounded-none;
+	}
+	.r-select-trigger-32 {
+		@apply rounded-none;
+	}
+	.r-select-trigger-36 {
+		@apply rounded-none;
+	}
+	.r-select-trigger-40 {
+		@apply rounded-none;
+	}
+	.r-select-trigger-44 {
+		@apply rounded-none;
+	}
+	.r-select-trigger-48 {
+		@apply rounded-none;
+	}
+
+	.r-select-content {
+		@apply rounded-none;
+	}
+
+	.r-select-item {
+		@apply rounded-none;
+	}
+
+	/* MARK: Slider */
+
+	.r-slider-track {
+		@apply rounded-none;
+	}
+
+	.r-slider-thumb {
+		@apply rounded-none;
+	}
+
+	/* MARK: Switch */
+
+	.r-switch-shape-pill {
+		@apply rounded-none;
+	}
+
+	.r-switch-shape-square {
+		@apply rounded-none;
+	}
+
+	.r-switch-thumb-shape-pill {
+		@apply rounded-none;
+	}
+
+	.r-switch-thumb-shape-square {
+		@apply rounded-none;
+	}
+
+	/* MARK: Tabs */
+
+	.r-tabs-list-rounded-md {
+		@apply rounded-none;
+	}
+
+	.r-tabs-list-rounded-lg {
+		@apply rounded-none;
+	}
+
+	.r-tabs-trigger-default-sm {
+		@apply rounded-none;
+	}
+
+	.r-tabs-trigger-default-md {
+		@apply rounded-none;
+	}
+
+	.r-tabs-trigger-default-lg {
+		@apply rounded-none;
+	}
+
+	.r-tabs-trigger-outline-sm {
+		@apply rounded-none;
+	}
+
+	.r-tabs-trigger-outline-md {
+		@apply rounded-none;
+	}
+
+	.r-tabs-trigger-outline-lg {
+		@apply rounded-none;
+	}
+
+	.r-tabs-trigger-ghost-sm {
+		@apply data-[state=active]:rounded-none;
+	}
+
+	.r-tabs-trigger-ghost-md {
+		@apply data-[state=active]:rounded-none;
+	}
+
+	.r-tabs-trigger-ghost-lg {
+		@apply data-[state=active]:rounded-none;
+	}
+
+	/* MARK: TextArea */
+
+	.r-textarea-rounded {
+		@apply rounded-none;
+	}
+
+	.r-textarea-square {
+		@apply rounded-none;
+	}
+
+	/* MARK: Tooltip */
+
+	.r-tooltip-content {
+		@apply rounded-none;
+	}
+
+	.r-tooltip-arrow {
+		@apply rounded-none;
+	}
 }
