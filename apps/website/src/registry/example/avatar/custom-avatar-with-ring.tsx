@@ -1,5 +1,5 @@
 import React from "react"
-import { Avatar, AvatarFallback, AvatarImage } from "@/styles/default/ui/avatar"
+import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
 
 export default function RingAvatarPreview() {
 	return (

@@ -3,14 +3,10 @@
 import * as React from "react"
 import { format } from "date-fns"
 import { Calendar as CalendarIcon } from "lucide-react"
-import { Button } from "@/styles/default/ui/button"
-import { Calendar } from "@/styles/default/ui/calendar"
-import { Label } from "@/styles/default/ui/label"
-import {
-	Popover,
-	PopoverContent,
-	PopoverTrigger,
-} from "@/styles/default/ui/popover"
+import { Button } from "@/registry/ui/button"
+import { Calendar } from "@/registry/ui/calendar"
+import { Label } from "@/registry/ui/label"
+import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
 
 export default function DatePickerDemo() {
 	const [open, setOpen] = React.useState(false)

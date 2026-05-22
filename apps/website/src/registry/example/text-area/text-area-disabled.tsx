@@ -1,8 +1,8 @@
 "use client"
 
 import { useId } from "react"
-import { Label } from "@/styles/default/ui/label"
-import { TextArea } from "@/styles/default/ui/text-area"
+import { Label } from "@/registry/ui/label"
+import { TextArea } from "@/registry/ui/text-area"
 
 export default function TextAreaDisabled() {
 	const id = useId()

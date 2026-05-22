@@ -19,6 +19,7 @@ import {
 } from "@/registry/icon/icon-libraries"
 import { PRIMARY_COLORS, PrimaryColorValue } from "@/registry/primary-colors"
 import { RadiusValue } from "@/registry/radius"
+import { registryExampleGroups } from "@/registry/registry-map"
 import { STYLES, StyleValue } from "@/registry/styles"
 import {
 	Dropdown,
@@ -39,7 +40,13 @@ interface ThemerSidebarProps {
 	setSelectedComponent: (value: string) => void
 }
 
-const COMPONENTS_DATA = [
+const humanizeName = (name: string) =>
+	name
+		.split("-")
+		.map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+		.join(" ")
+
+const BLOCK_PREVIEWS = [
 	"preview-02",
 	"preview-03",
 	"signin",
@@ -47,7 +54,19 @@ const COMPONENTS_DATA = [
 	"new-password",
 	"reset-email",
 	"sidebar-inset",
-]
+].map((name) => ({
+	value: name,
+	label: humanizeName(name),
+	description: "Block preview",
+}))
+
+const COMPONENT_PREVIEWS = registryExampleGroups.map((group) => ({
+	value: group.name,
+	label: humanizeName(group.name),
+	description: `${group.examples.length} examples`,
+}))
+
+const PREVIEW_ITEMS = [...BLOCK_PREVIEWS, ...COMPONENT_PREVIEWS]
 
 export function ThemerSidebar({
 	selectedComponent,
@@ -63,9 +82,8 @@ export function ThemerSidebar({
 	}, [])
 
 	const selectedComponentName =
-		COMPONENTS_DATA.find(
-			(name) => name.toLowerCase().replace(/\s+/g, "-") === selectedComponent
-		) ?? selectedComponent
+		PREVIEW_ITEMS.find((item) => item.value === selectedComponent)?.label ??
+		humanizeName(selectedComponent)
 	const selectedStyle = STYLES.find((t) => t.value === params.style)
 
 	return (
@@ -234,12 +252,17 @@ export function ThemerSidebar({
 							<DropdownRadioGroup
 								value={selectedComponent}
 								onValueChange={setSelectedComponent}>
-								{COMPONENTS_DATA.map((name) => (
+								{PREVIEW_ITEMS.map((item) => (
 									<DropdownRadioItem
-										key={name}
-										value={name.toLowerCase().replace(/\s+/g, "-")}
+										key={item.value}
+										value={item.value}
 										onSelect={(e) => e.preventDefault()}>
-										{name}
+										<div className="flex flex-col gap-0.5">
+											<span>{item.label}</span>
+											<span className="text-fg-tertiary text-xs">
+												{item.description}
+											</span>
+										</div>
 									</DropdownRadioItem>
 								))}
 							</DropdownRadioGroup>

@@ -2,14 +2,14 @@
 
 import * as React from "react"
 import { DropdownNavProps, DropdownProps } from "react-day-picker"
-import { Calendar } from "@/styles/default/ui/calendar"
+import { Calendar } from "@/registry/ui/calendar"
 import {
 	Select,
 	SelectContent,
 	SelectItem,
 	SelectTrigger,
 	SelectValue,
-} from "@/styles/default/ui/select"
+} from "@/registry/ui/select"
 
 export default function CalendarWithYearMonthSelectorExample() {
 	const [date, setDate] = React.useState<Date | undefined>(new Date())

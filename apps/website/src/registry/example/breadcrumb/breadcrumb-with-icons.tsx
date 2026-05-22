@@ -6,7 +6,7 @@ import {
 	BreadcrumbList,
 	BreadcrumbPage,
 	BreadcrumbSeparator,
-} from "@/styles/default/ui/breadcrumb"
+} from "@/registry/ui/breadcrumb"
 
 function BreadCrumbWithIcons() {
 	return (

@@ -1,13 +1,13 @@
 import React from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import Link from "next/link"
-import { Button, IconButton } from "@/styles/default/ui/button"
+import { Button, IconButton } from "@/registry/ui/button"
 import {
 	Pagination,
 	PaginationContent,
 	PaginationEllipsis,
 	PaginationItem,
-} from "@/styles/default/ui/pagination"
+} from "@/registry/ui/pagination"
 
 const PaginationTextExample = () => {
 	return (

@@ -1,6 +1,6 @@
 import React from "react"
 import Link from "next/link"
-import { Button } from "@/styles/default/ui/button"
+import { Button } from "@/registry/ui/button"
 
 function LinkButtonExample() {
 	return (

@@ -3,9 +3,9 @@
 import React from "react"
 import { format, setHours, setMinutes, setSeconds } from "date-fns"
 import { ClockIcon } from "lucide-react"
-import { Calendar } from "@/styles/default/ui/calendar"
-import { Input } from "@/styles/default/ui/input"
-import { Label } from "@/styles/default/ui/label"
+import { Calendar } from "@/registry/ui/calendar"
+import { Input } from "@/registry/ui/input"
+import { Label } from "@/registry/ui/label"
 
 export default function CalendarTimeInput() {
 	const today = new Date()

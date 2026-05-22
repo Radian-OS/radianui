@@ -1,8 +1,8 @@
 "use client"
 
 import React from "react"
-import { Label } from "@/styles/default/ui/label"
-import { TextArea } from "@/styles/default/ui/text-area"
+import { Label } from "@/registry/ui/label"
+import { TextArea } from "@/registry/ui/text-area"
 
 const TextAreaPreview = () => {
 	const id = React.useId()

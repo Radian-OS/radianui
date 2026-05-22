@@ -8,7 +8,7 @@ import {
 	SelectItem,
 	SelectTrigger,
 	SelectValue,
-} from "@/styles/default/ui/select"
+} from "@/registry/ui/select"
 
 export type TimePickerProps = {
 	interval?: number

@@ -7,7 +7,7 @@ import {
 	SelectLabel,
 	SelectTrigger,
 	SelectValue,
-} from "@/styles/default/ui/select"
+} from "@/registry/ui/select"
 
 export default function SelectPreview() {
 	return (

@@ -12,13 +12,13 @@ import {
 	UploadIcon,
 	XIcon,
 } from "lucide-react"
-import { Button, IconButton } from "@/styles/default/ui/button"
+import { Button, IconButton } from "@/registry/ui/button"
 import {
 	type FileWithPreview,
 	formatBytes,
 	useFileUpload,
-} from "@/styles/default/ui/file-upload"
-import { Progress } from "@/styles/default/ui/progress"
+} from "@/registry/ui/file-upload"
+import { Progress } from "@/registry/ui/progress"
 
 const initialFiles = [
 	{

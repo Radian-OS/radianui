@@ -354,9 +354,9 @@ function ButtonGroup({
 			const isLast = index === React.Children.count(children) - 1
 
 			const borderRadiusClass = isFirst
-				? "rounded-l-lg"
+				? "rounded-l-control"
 				: isLast
-					? "rounded-r-lg"
+					? "rounded-r-control"
 					: "rounded-none"
 
 			if (React.isValidElement<ButtonProps>(child)) {

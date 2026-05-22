@@ -9,15 +9,15 @@
 	}
 
 	.cn-accordion-variant-table {
-		@apply border-border rounded-xl border;
+		@apply border-border rounded-surface border;
 	}
 
 	.cn-accordion-item-variant-box {
-		@apply border-border shadow-2xs rounded-lg border last:mb-0;
+		@apply border-border shadow-2xs rounded-surface-sm border last:mb-0;
 	}
 
 	.cn-accordion-item-variant-table {
-		@apply border-b first:rounded-t-xl last:rounded-b-xl last:border-b-0;
+		@apply last:rounded-b-surface first:rounded-t-surface border-b last:border-b-0;
 	}
 
 	.cn-accordion-item-variant-open {
@@ -101,7 +101,7 @@
 
 	/* Base */
 	.cn-alert {
-		@apply gap-3 rounded-lg p-3;
+		@apply rounded-surface-sm gap-3 p-3;
 		@apply [&>[data-slot=alert-title]]:font-medium;
 		@apply [&>[data-slot=alert-title]]:text-sm;
 		@apply [&>[data-slot=alert-title]]:mt-0.75;
@@ -617,22 +617,22 @@
 
 	/* Base size rounded tokens (extracted from size variant string) */
 	.cn-btn-size-28 {
-		@apply rounded-md;
+		@apply rounded-control-sm;
 	}
 	.cn-btn-size-32 {
-		@apply rounded-md;
+		@apply rounded-control-sm;
 	}
 	.cn-btn-size-36 {
-		@apply rounded-lg;
+		@apply rounded-control;
 	}
 	.cn-btn-size-40 {
-		@apply rounded-lg;
+		@apply rounded-control;
 	}
 	.cn-btn-size-44 {
-		@apply rounded-lg;
+		@apply rounded-control;
 	}
 	.cn-btn-size-48 {
-		@apply rounded-lg;
+		@apply rounded-control;
 	}
 
 	/* Strong */
@@ -815,9 +815,9 @@
 		@apply text-white-inverse focus-visible:ring-black-inverse bg-black-inverse after:from-black-inverse before:border-white-inverse/16 before:mask-b-from-98% relative overflow-hidden font-medium shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-white-inverse)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border after:absolute after:inset-0 after:-z-10 after:rounded-[inherit] after:bg-gradient-to-b after:to-white/20 hover:opacity-95;
 	}
 
-	/* CompactButton base */
+	/* MARK: CompactButton */
 	.cn-compact-btn {
-		@apply rounded-md;
+		@apply rounded-element;
 	}
 
 	/* CompactButton — Strong/Soft/Outline/Ghost share identical color tokens to Button, compact prefix only */
@@ -973,24 +973,24 @@
 		@apply focus-visible:ring-black-inverse before:border-white-inverse/16 before:mask-b-from-98% bg-black-inverse bg-linear-to-b text-white-inverse hover:before:bg-black-inverse/30 overflow-hidden from-white/0 to-white/20 font-medium before:absolute before:inset-px before:rounded-[inherit] before:border;
 	}
 
-	/* IconButton size variants */
+	/* MARK: IconButton */
 	.cn-icon-btn-size-28 {
-		@apply size-7 rounded-md p-1.5;
+		@apply rounded-element size-7 p-1.5;
 	}
 	.cn-icon-btn-size-32 {
-		@apply p-1.75 size-8 rounded-md;
+		@apply p-1.75 rounded-element size-8;
 	}
 	.cn-icon-btn-size-36 {
-		@apply size-9 rounded-lg p-2;
+		@apply rounded-element-lg size-9 p-2;
 	}
 	.cn-icon-btn-size-40 {
-		@apply size-10 rounded-lg p-2.5;
+		@apply rounded-element-lg size-10 p-2.5;
 	}
 	.cn-icon-btn-size-44 {
-		@apply size-11 rounded-lg p-3;
+		@apply rounded-element-lg size-11 p-3;
 	}
 	.cn-icon-btn-size-48 {
-		@apply size-12 rounded-lg p-3;
+		@apply rounded-element-lg size-12 p-3;
 	}
 
 	/* IconButton outline padding overrides */
@@ -1462,7 +1462,7 @@
 	/* MARK: HoverCard */
 
 	.cn-hover-card-content {
-		@apply bg-popover text-fg border-soft rounded-lg border p-4 shadow-md;
+		@apply bg-popover text-fg border-soft rounded-surface-sm border p-4 shadow-md;
 	}
 
 	/* MARK: Input */
@@ -1472,27 +1472,27 @@
 
 	/* Input sizes */
 	.cn-input-28 {
-		@apply rounded-md px-2 text-[13px];
+		@apply rounded-control-sm px-2 text-[13px];
 	}
 
 	.cn-input-32 {
-		@apply rounded-md px-2 text-sm;
+		@apply rounded-control-sm px-2 text-sm;
 	}
 
 	.cn-input-36 {
-		@apply rounded-lg px-2.5 text-sm;
+		@apply rounded-control px-2.5 text-sm;
 	}
 
 	.cn-input-40 {
-		@apply rounded-lg px-3 text-sm;
+		@apply rounded-control px-3 text-sm;
 	}
 
 	.cn-input-44 {
-		@apply rounded-lg px-3 text-base;
+		@apply rounded-control px-3 text-base;
 	}
 
 	.cn-input-48 {
-		@apply rounded-lg px-3.5 text-base;
+		@apply rounded-control px-3.5 text-base;
 	}
 
 	/* InputAddon base */
@@ -1502,27 +1502,27 @@
 
 	/* InputAddon sizes */
 	.cn-input-addon-28 {
-		@apply rounded-md px-2 text-[13px];
+		@apply rounded-control-sm px-2 text-[13px];
 	}
 
 	.cn-input-addon-32 {
-		@apply rounded-md px-2 text-sm;
+		@apply rounded-control-sm px-2 text-sm;
 	}
 
 	.cn-input-addon-36 {
-		@apply rounded-lg px-2.5 text-sm;
+		@apply rounded-control px-2.5 text-sm;
 	}
 
 	.cn-input-addon-40 {
-		@apply rounded-lg px-3 text-sm;
+		@apply rounded-control px-3 text-sm;
 	}
 
 	.cn-input-addon-44 {
-		@apply rounded-lg px-3 text-base;
+		@apply rounded-control px-3 text-base;
 	}
 
 	.cn-input-addon-48 {
-		@apply rounded-lg px-3.5 text-base;
+		@apply rounded-control px-3.5 text-base;
 	}
 
 	.cn-input-wrapper {
@@ -1641,27 +1641,27 @@
 	}
 
 	.cn-select-trigger-28 {
-		@apply h-7 rounded-md px-2 py-1.5 text-[13px];
+		@apply rounded-control-sm h-7 px-2 py-1.5 text-[13px];
 	}
 
 	.cn-select-trigger-32 {
-		@apply h-8 rounded-md px-2 py-1.5 text-sm;
+		@apply rounded-control-sm h-8 px-2 py-1.5 text-sm;
 	}
 
 	.cn-select-trigger-36 {
-		@apply h-9 rounded-lg px-2.5 py-2 text-sm;
+		@apply rounded-control h-9 px-2.5 py-2 text-sm;
 	}
 
 	.cn-select-trigger-40 {
-		@apply h-10 rounded-lg px-3 py-2.5 text-sm;
+		@apply rounded-control h-10 px-3 py-2.5 text-sm;
 	}
 
 	.cn-select-trigger-44 {
-		@apply h-11 rounded-lg px-3 py-2.5 text-base;
+		@apply rounded-control h-11 px-3 py-2.5 text-base;
 	}
 
 	.cn-select-trigger-48 {
-		@apply h-12 rounded-lg px-3.5 py-3 text-base;
+		@apply rounded-control h-12 px-3.5 py-3 text-base;
 	}
 
 	.cn-select-scroll-button {

@@ -7,9 +7,9 @@ import { CalendarIcon, CheckCircle } from "lucide-react"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 import { z } from "zod"
-import { Alert, AlertIcon, AlertTitle } from "@/styles/default/ui/alert"
-import { Button } from "@/styles/default/ui/button"
-import { Calendar } from "@/styles/default/ui/calendar"
+import { Alert, AlertIcon, AlertTitle } from "@/registry/ui/alert"
+import { Button } from "@/registry/ui/button"
+import { Calendar } from "@/registry/ui/calendar"
 import {
 	Form,
 	FormControl,
@@ -18,12 +18,8 @@ import {
 	FormItem,
 	FormLabel,
 	FormMessage,
-} from "@/styles/default/ui/form"
-import {
-	Popover,
-	PopoverContent,
-	PopoverTrigger,
-} from "@/styles/default/ui/popover"
+} from "@/registry/ui/form"
+import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
 
 export default function DatePickerForm() {
 	const today = new Date().toLocaleDateString("en-US", {

@@ -30,8 +30,8 @@ import {
 	useReactTable,
 } from "@tanstack/react-table"
 import { ChevronDownIcon, ChevronUpIcon, GripVerticalIcon } from "lucide-react"
-import { Badge } from "@/styles/default/ui/badge"
-import { IconButton } from "@/styles/default/ui/button"
+import { Badge } from "@/registry/ui/badge"
+import { IconButton } from "@/registry/ui/button"
 import {
 	Table,
 	TableBody,
@@ -39,7 +39,7 @@ import {
 	TableHead,
 	TableHeader,
 	TableRow,
-} from "@/styles/default/ui/table"
+} from "@/registry/ui/table"
 
 type Item = {
 	id: string

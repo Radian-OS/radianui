@@ -1,7 +1,7 @@
 import React from "react"
 import { useId } from "react"
-import { Checkbox } from "@/styles/default/ui/checkbox"
-import { Label } from "@/styles/default/ui/label"
+import { Checkbox } from "@/registry/ui/checkbox"
+import { Label } from "@/registry/ui/label"
 
 export default function CheckboxDisabled() {
 	const id = useId()

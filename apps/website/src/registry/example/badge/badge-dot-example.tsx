@@ -1,4 +1,4 @@
-import { Badge, BadgeDot } from "@/styles/default/ui/badge"
+import { Badge, BadgeDot } from "@/registry/ui/badge"
 
 function BadgeDotExample() {
 	return (

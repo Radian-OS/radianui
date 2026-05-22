@@ -1,16 +1,16 @@
 "use client"
 
 import { useState } from "react"
-import { CurrencyInput } from "@/styles/default/ui/currency-input"
-import { InputGroup, InputWrapper } from "@/styles/default/ui/input"
-import { Label } from "@/styles/default/ui/label"
+import { CurrencyInput } from "@/registry/ui/currency-input"
+import { InputGroup, InputWrapper } from "@/registry/ui/input"
+import { Label } from "@/registry/ui/label"
 import {
 	Select,
 	SelectContent,
 	SelectItem,
 	SelectTrigger,
 	SelectValue,
-} from "@/styles/default/ui/select"
+} from "@/registry/ui/select"
 
 const currencies = [
 	{ value: "USD", prefix: "$", label: "USD", locale: "en-US" },

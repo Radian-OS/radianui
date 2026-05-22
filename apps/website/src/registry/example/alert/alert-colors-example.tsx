@@ -13,7 +13,7 @@ import {
 	AlertDescription,
 	AlertIcon,
 	AlertTitle,
-} from "@/styles/default/ui/alert"
+} from "@/registry/ui/alert"
 
 const AlertColorsExample = () => {
 	return (

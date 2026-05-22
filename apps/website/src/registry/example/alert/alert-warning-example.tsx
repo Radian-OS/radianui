@@ -6,8 +6,8 @@ import {
 	AlertDescription,
 	AlertIcon,
 	AlertTitle,
-} from "@/styles/default/ui/alert"
-import { Button } from "@/styles/default/ui/button"
+} from "@/registry/ui/alert"
+import { Button } from "@/registry/ui/button"
 
 const AlertWarningExample = () => {
 	return (

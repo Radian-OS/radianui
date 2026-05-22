@@ -6,8 +6,8 @@ import {
 	BannerDescription,
 	BannerIcon,
 	BannerTitle,
-} from "@/styles/default/ui/banner"
-import { Button, ButtonGroup } from "@/styles/default/ui/button"
+} from "@/registry/ui/banner"
+import { Button, ButtonGroup } from "@/registry/ui/button"
 
 const BannerExample = () => {
 	return (

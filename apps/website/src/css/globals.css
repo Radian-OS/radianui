@@ -133,6 +133,16 @@
 	--shadow-lg: var(--shadow-lg);
 	--shadow-xl: var(--shadow-xl);
 	--shadow-2xl: var(--shadow-2xl);
+
+	--radius-control-sm: calc(var(--radius-control) - 4px);
+	--radius-control: calc(infinity * 1px);
+	--radius-surface-sm: calc(var(--radius-surface) - 4px);
+	--radius-surface: 12px;
+	--radius-pill: var(--rounded-full);
+	--radius-element-sm: 4px;
+	--radius-element: 6px;
+	--radius-element-lg: 8px;
+	--radius-badge: var(--rounded-md);
 }
 
 .dark {

@@ -1,5 +1,5 @@
 import React from "react"
-import { Button, ButtonGroup } from "@/styles/default/ui/button"
+import { Button, ButtonGroup } from "@/registry/ui/button"
 
 function ButtonGroupExample() {
 	return (

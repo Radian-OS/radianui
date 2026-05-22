@@ -5,9 +5,9 @@ import { CheckCircle } from "lucide-react"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 import { z } from "zod"
-import { Alert, AlertIcon, AlertTitle } from "@/styles/default/ui/alert"
-import { Button } from "@/styles/default/ui/button"
-import { Checkbox } from "@/styles/default/ui/checkbox"
+import { Alert, AlertIcon, AlertTitle } from "@/registry/ui/alert"
+import { Button } from "@/registry/ui/button"
+import { Checkbox } from "@/registry/ui/checkbox"
 import {
 	Form,
 	FormControl,
@@ -15,7 +15,7 @@ import {
 	FormItem,
 	FormLabel,
 	FormMessage,
-} from "@/styles/default/ui/form"
+} from "@/registry/ui/form"
 
 export default function CheckboxForm() {
 	const FormSchema = z.object({

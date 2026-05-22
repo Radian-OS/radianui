@@ -1,13 +1,13 @@
 import * as React from "react"
 import Image from "next/image"
-import { AspectRatio } from "@/styles/default/ui/aspect-ratio"
+import { AspectRatio } from "@/registry/ui/aspect-ratio"
 import {
 	Carousel,
 	CarouselContent,
 	CarouselItem,
 	CarouselNext,
 	CarouselPrevious,
-} from "@/styles/default/ui/carousel"
+} from "@/registry/ui/carousel"
 
 export default function CarouselLoop() {
 	const images = [

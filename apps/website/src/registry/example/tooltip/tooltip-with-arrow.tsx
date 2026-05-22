@@ -1,9 +1,5 @@
-import { Button } from "@/styles/default/ui/button"
-import {
-	Tooltip,
-	TooltipContent,
-	TooltipTrigger,
-} from "@/styles/default/ui/tooltip"
+import { Button } from "@/registry/ui/button"
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/registry/ui/tooltip"
 
 export default function TooltipWithArrow() {
 	return (

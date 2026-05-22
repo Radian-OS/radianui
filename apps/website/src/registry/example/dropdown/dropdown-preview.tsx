@@ -12,7 +12,7 @@ import {
 	UserRound,
 	Users,
 } from "lucide-react"
-import { Button } from "@/styles/default/ui/button"
+import { Button } from "@/registry/ui/button"
 import {
 	Dropdown,
 	DropdownContent,
@@ -24,7 +24,7 @@ import {
 	DropdownSubContent,
 	DropdownSubTrigger,
 	DropdownTrigger,
-} from "@/styles/default/ui/dropdown"
+} from "@/registry/ui/dropdown"
 
 export default function DropdownPreview() {
 	const [open, setOpen] = React.useState<boolean>(false)

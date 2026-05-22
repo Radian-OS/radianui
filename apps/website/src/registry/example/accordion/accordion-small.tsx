@@ -4,7 +4,7 @@ import {
 	AccordionContent,
 	AccordionItem,
 	AccordionTrigger,
-} from "@/styles/default/ui/accordion"
+} from "@/registry/ui/accordion"
 
 const contents = [
 	{

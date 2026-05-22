@@ -1,5 +1,5 @@
 import React from "react"
-import { Avatar, AvatarFallback } from "@/styles/default/ui/avatar"
+import { Avatar, AvatarFallback } from "@/registry/ui/avatar"
 
 export default function AvatarFallbackPreview() {
 	return (

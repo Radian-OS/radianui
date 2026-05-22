@@ -91,7 +91,7 @@ export default async function RootLayout({
 			</head>
 			<body
 				className={cn(
-					"relative min-h-svh antialiased",
+					"style-default relative min-h-svh antialiased",
 					geist.variable,
 					inter.variable
 				)}>

@@ -5,8 +5,8 @@ import { AlertCircle } from "lucide-react"
 import { FieldValues, useForm } from "react-hook-form"
 import { toast } from "sonner"
 import { z } from "zod"
-import { Alert, AlertIcon, AlertTitle } from "@/styles/default/ui/alert"
-import { Button } from "@/styles/default/ui/button"
+import { Alert, AlertIcon, AlertTitle } from "@/registry/ui/alert"
+import { Button } from "@/registry/ui/button"
 import {
 	Form,
 	FormControl,
@@ -14,8 +14,8 @@ import {
 	FormItem,
 	FormLabel,
 	FormMessage,
-} from "@/styles/default/ui/form"
-import { Input } from "@/styles/default/ui/input"
+} from "@/registry/ui/form"
+import { Input } from "@/registry/ui/input"
 
 interface FormData {
 	email: string

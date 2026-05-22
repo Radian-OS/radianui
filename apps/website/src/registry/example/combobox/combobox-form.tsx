@@ -6,7 +6,7 @@ import { Check, ChevronDown } from "lucide-react"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 import { z } from "zod"
-import { Button } from "@/styles/default/ui/button"
+import { Button } from "@/registry/ui/button"
 import {
 	Command,
 	CommandEmpty,
@@ -14,7 +14,7 @@ import {
 	CommandInput,
 	CommandItem,
 	CommandList,
-} from "@/styles/default/ui/command"
+} from "@/registry/ui/command"
 import {
 	Form,
 	FormControl,
@@ -22,12 +22,8 @@ import {
 	FormItem,
 	FormLabel,
 	FormMessage,
-} from "@/styles/default/ui/form"
-import {
-	Popover,
-	PopoverContent,
-	PopoverTrigger,
-} from "@/styles/default/ui/popover"
+} from "@/registry/ui/form"
+import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
 
 const languages = [
 	{

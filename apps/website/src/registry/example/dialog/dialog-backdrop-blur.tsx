@@ -1,5 +1,5 @@
 import { CircleAlert } from "lucide-react"
-import { Button } from "@/styles/default/ui/button"
+import { Button } from "@/registry/ui/button"
 import {
 	Dialog,
 	DialogBody,
@@ -10,7 +10,7 @@ import {
 	DialogHeader,
 	DialogTitle,
 	DialogTrigger,
-} from "@/styles/default/ui/dialog"
+} from "@/registry/ui/dialog"
 
 export default function DialogBackdropBlur() {
 	return (

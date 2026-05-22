@@ -5,8 +5,8 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import Link from "next/link"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-import { Button } from "@/styles/default/ui/button"
-import { Checkbox } from "@/styles/default/ui/checkbox"
+import { Button } from "@/registry/ui/button"
+import { Checkbox } from "@/registry/ui/checkbox"
 import {
 	Form,
 	FormControl,
@@ -14,9 +14,9 @@ import {
 	FormItem,
 	FormLabel,
 	FormMessage,
-} from "@/styles/default/ui/form"
-import { Input } from "@/styles/default/ui/input"
-import { Spinner } from "@/styles/default/ui/spinner"
+} from "@/registry/ui/form"
+import { Input } from "@/registry/ui/input"
+import { Spinner } from "@/registry/ui/spinner"
 
 const FormSchema = z
 	.object({

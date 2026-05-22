@@ -1,6 +1,6 @@
 import { useId } from "react"
-import { Label } from "@/styles/default/ui/label"
-import { Switch } from "@/styles/default/ui/switch"
+import { Label } from "@/registry/ui/label"
+import { Switch } from "@/registry/ui/switch"
 
 export default function SwitchCard() {
 	const id = useId()

@@ -3,9 +3,9 @@
 import React, { useMemo, useState } from "react"
 import { CircleCheck, EyeIcon, EyeOffIcon } from "lucide-react"
 import { z } from "zod"
-import { Input, InputWrapper } from "@/styles/default/ui/input"
-import { Label } from "@/styles/default/ui/label"
-import { Progress } from "@/styles/default/ui/progress"
+import { Input, InputWrapper } from "@/registry/ui/input"
+import { Label } from "@/registry/ui/label"
+import { Progress } from "@/registry/ui/progress"
 
 const passwordSchema = z
 	.string()

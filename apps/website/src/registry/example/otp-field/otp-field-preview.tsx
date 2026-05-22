@@ -1,9 +1,5 @@
-import { Label } from "@/styles/default/ui/label"
-import {
-	OTPField,
-	OTPHiddenInput,
-	OTPInput,
-} from "@/styles/default/ui/otp-field"
+import { Label } from "@/registry/ui/label"
+import { OTPField, OTPHiddenInput, OTPInput } from "@/registry/ui/otp-field"
 
 const PASSWORD_LENGTH = 6
 

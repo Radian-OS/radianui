@@ -3,19 +3,15 @@
 import React from "react"
 import { format } from "date-fns"
 import { Calendar as CalendarIcon, ChevronDown } from "lucide-react"
-import { Button } from "@/styles/default/ui/button"
-import { Calendar } from "@/styles/default/ui/calendar"
+import { Button } from "@/registry/ui/button"
+import { Calendar } from "@/registry/ui/calendar"
 import {
 	Dropdown,
 	DropdownContent,
 	DropdownItem,
 	DropdownTrigger,
-} from "@/styles/default/ui/dropdown"
-import {
-	Popover,
-	PopoverContent,
-	PopoverTrigger,
-} from "@/styles/default/ui/popover"
+} from "@/registry/ui/dropdown"
+import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
 
 const ButtonExampleInput = () => {
 	const [open, setOpen] = React.useState(false)

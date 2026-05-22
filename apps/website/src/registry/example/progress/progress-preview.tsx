@@ -3,15 +3,10 @@
 import { useEffect, useState } from "react"
 import { EyeIcon, RotateCw, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
-import { IconButton } from "@/styles/default/ui/button"
-import { Label } from "@/styles/default/ui/label"
-import { Progress } from "@/styles/default/ui/progress"
-import {
-	Tabs,
-	TabsContent,
-	TabsList,
-	TabsTrigger,
-} from "@/styles/default/ui/tabs"
+import { IconButton } from "@/registry/ui/button"
+import { Label } from "@/registry/ui/label"
+import { Progress } from "@/registry/ui/progress"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const ProgressPreview = () => {
 	const [progress, setProgress] = useState(0)
