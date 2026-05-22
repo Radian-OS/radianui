@@ -79,6 +79,7 @@ const COMPONENTS_DATA = [
 	"Form",
 	"Hover Card",
 	"Label",
+	"Menubar",
 	"Pagination",
 	"Phone Number Input",
 	"Popover",

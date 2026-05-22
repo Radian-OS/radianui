@@ -654,6 +654,9 @@ const registry: Record<
 	"label-preview": React.lazy(
 		() => import("@/registry/example/label/label-preview")
 	),
+	"menubar-preview": React.lazy(
+		() => import("@/registry/example/menubar/menubar-preview")
+	),
 	"otp-field-auto-submit": React.lazy(
 		() => import("@/registry/example/otp-field/otp-field-auto-submit")
 	),
