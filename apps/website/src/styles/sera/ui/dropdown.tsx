@@ -2,8 +2,8 @@
 
 import React from "react"
 import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu"
+import { Check, ChevronRight } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { IconSlot } from "@/registry/icon/icon-library"
 
 export type DropdownContextType = {
 	indicatorPosition?: "left" | "right"
@@ -117,7 +117,7 @@ function DropdownContent({ className, ...props }: DropdownContentProps) {
 			data-slot="dropdown-menu-content"
 			align="start"
 			className={cn(
-				"border-border bg-popover min-w-[var(--radix-dropdown-menu-trigger-width)] gap-1 rounded-none border p-2 shadow-none",
+				"border-border bg-popover min-w-[var(--radix-dropdown-menu-trigger-width)] gap-1 border p-2 shadow-none",
 				"no-scrollbar z-50 flex flex-col overflow-x-visible overflow-y-scroll",
 				"data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
 				className
@@ -137,7 +137,7 @@ function DropdownItem({ className, inset, ...props }: DropdownItemProps) {
 		<DropdownMenuPrimitive.Item
 			data-slot="dropdown-menu-item"
 			className={cn(
-				"text-fg focus:bg-fill1-alpha data-disabled:text-fg-disabled data-disabled:[&_*]:text-fg-disabled [&_svg]:text-fg-secondary gap-3 rounded-none px-3 py-2 text-sm [&_svg:not([class*='size-'])]:size-4",
+				"text-fg focus:bg-fill1-alpha data-disabled:text-fg-disabled data-disabled:[&_*]:text-fg-disabled [&_svg]:text-fg-secondary gap-3 px-3 py-2 text-sm [&_svg:not([class*='size-'])]:size-4",
 				"relative flex w-full cursor-pointer select-none items-center",
 				"outline-hidden transition-colors",
 				"focus:bg-fill1-alpha",
@@ -162,7 +162,7 @@ function DropdownCheckboxItem({
 		<DropdownMenuPrimitive.CheckboxItem
 			data-slot="dropdown-menu-checkbox-item"
 			className={cn(
-				"focus:bg-fill2-alpha [&_svg]:text-fg-secondary gap-3 rounded-none py-2 text-sm [&_svg:not([class*='size-'])]:size-5",
+				"focus:bg-fill2-alpha [&_svg]:text-fg-secondary gap-3 py-2 text-sm [&_svg:not([class*='size-'])]:size-5",
 				"flex w-full cursor-pointer select-none items-center",
 				"outline-hidden",
 				"focus:bg-fill2-alpha",
@@ -184,7 +184,7 @@ function DropdownCheckboxItem({
 						indicatorPosition === "left" ? "start-3" : "end-3"
 					)}>
 					<DropdownMenuPrimitive.ItemIndicator>
-						<IconSlot slot="check" size={20} />
+						<Check size={20} />
 					</DropdownMenuPrimitive.ItemIndicator>
 				</span>
 			)}
@@ -212,7 +212,7 @@ function DropdownRadioItem({
 		<DropdownMenuPrimitive.RadioItem
 			data-slot="dropdown-menu-radio-item"
 			className={cn(
-				"focus:bg-fill2-alpha [&_svg]:text-fg-secondary gap-3 rounded-none py-2 text-sm [&_svg:not([class*='size-'])]:size-5",
+				"focus:bg-fill2-alpha [&_svg]:text-fg-secondary gap-3 py-2 text-sm [&_svg:not([class*='size-'])]:size-5",
 				"flex w-full cursor-pointer select-none items-center",
 				"outline-hidden",
 				"focus:bg-fill2-alpha",
@@ -234,7 +234,7 @@ function DropdownRadioItem({
 						indicatorPosition === "left" ? "start-2" : "end-2"
 					)}>
 					<DropdownMenuPrimitive.ItemIndicator>
-						<IconSlot slot="check" size={20} />
+						<Check size={20} />
 					</DropdownMenuPrimitive.ItemIndicator>
 				</span>
 			)}
@@ -286,7 +286,7 @@ function DropdownSubTrigger({
 		<DropdownMenuPrimitive.SubTrigger
 			data-slot="dropdown-menu-sub-trigger"
 			className={cn(
-				"data-[state=open]:bg-fill1-alpha focus:bg-fill2-alpha [&_svg]:text-fg-secondary gap-3 rounded-none px-3 py-2 text-sm [&_svg:not([class*='size-'])]:size-4",
+				"data-[state=open]:bg-fill1-alpha focus:bg-fill2-alpha [&_svg]:text-fg-secondary gap-3 px-3 py-2 text-sm [&_svg:not([class*='size-'])]:size-4",
 				"flex cursor-pointer select-none items-center",
 				"outline-hidden transition-colors",
 				"data-[state=open]:bg-fill1-alpha focus:bg-fill2-alpha",
@@ -297,7 +297,7 @@ function DropdownSubTrigger({
 			)}
 			{...props}>
 			{children}
-			<IconSlot slot="right" className="ml-auto" />
+			<ChevronRight className="ml-auto" />
 		</DropdownMenuPrimitive.SubTrigger>
 	)
 }
@@ -308,7 +308,7 @@ function DropdownSubContent({ className, ...props }: DropdownSubContentProps) {
 			<DropdownMenuPrimitive.SubContent
 				data-slot="dropdown-menu-sub-content"
 				className={cn(
-					"border-border bg-popover min-w-36 rounded-none border p-2 shadow-none",
+					"border-border bg-popover min-w-36 border p-2 shadow-none",
 					"z-50 flex flex-col items-stretch justify-start",
 					"data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
 					className

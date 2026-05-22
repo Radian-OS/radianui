@@ -1,9 +1,9 @@
 "use client"
 
 import React from "react"
+import { ChevronLeft, ChevronRight } from "lucide-react"
 import { type ChevronProps, DayPicker } from "react-day-picker"
 import { cn } from "@/lib/utils"
-import { IconSlot } from "@/registry/icon/icon-library"
 
 export type CalendarProps = React.ComponentProps<typeof DayPicker>
 
@@ -29,11 +29,11 @@ function Calendar({
 				week: "w-full flex gap-1",
 				day: "size-9 p-0 shrink-0 group aria-selected:opacity-100 *:data-disabled:text-red-500 text-sm",
 				day_button:
-					"text-center cursor-pointer size-9 p-0 group-data-disabled:pointer-events-none text-fg rounded-lg text-sm font-medium hover:bg-fill1-alpha hover:group-data-selected:bg-primary group-data-disabled:line-through group-data-selected:bg-primary group-data-selected:text-primary-fg hover:group-[.rdp-outside]:group-data-selected:bg-primary group-[.rdp-outside]:group-data-selected:text-white group-[.range-middle]:group-[.rdp-outside]:group-data-selected:text-primary-text hover:group-[.range-middle]:group-[.rdp-outside]:group-data-selected:bg-primary-accent group-data-disabled:text-fg-tertiary group-data-outside:text-fg-tertiary group-data-today:border group-data-today:border-primary group-data-today:text-primary-text group-data-today:group-data-selected:text-primary-fg hover:group-[.range-middle]:group-data-selected:bg-primary-accent group-[.range-middle]:group-data-selected:bg-primary-accent group-[.range-middle]:group-data-selected:text-primary-text group-data-selected:group-data-outside:text-primary-fg",
+					"text-center cursor-pointer size-9 p-0 group-data-disabled:pointer-events-none text-fg text-sm font-medium hover:bg-fill1-alpha hover:group-data-selected:bg-primary group-data-disabled:line-through group-data-selected:bg-primary group-data-selected:text-primary-fg hover:group-[.rdp-outside]:group-data-selected:bg-primary group-[.rdp-outside]:group-data-selected:text-white group-[.range-middle]:group-[.rdp-outside]:group-data-selected:text-primary-text hover:group-[.range-middle]:group-[.rdp-outside]:group-data-selected:bg-primary-accent group-data-disabled:text-fg-tertiary group-data-outside:text-fg-tertiary group-data-today:border group-data-today:border-primary group-data-today:text-primary-text group-data-today:group-data-selected:text-primary-fg hover:group-[.range-middle]:group-data-selected:bg-primary-accent group-[.range-middle]:group-data-selected:bg-primary-accent group-[.range-middle]:group-data-selected:text-primary-text group-data-selected:group-data-outside:text-primary-fg",
 				button_previous:
-					"cursor-pointer flex justify-center items-center size-7 focus-visible:ring-offset-bg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 bg-elevation-level1 text-fg-secondary overflow-hidden font-medium border-border border hover:bg-fill1-alpha focus-visible:ring-border hover:before:bg-fill2-alpha relative before:absolute before:inset-0 aria-disabled:opacity-50 rounded-lg p-1.5",
+					"cursor-pointer flex justify-center items-center size-7 focus-visible:ring-offset-bg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 bg-elevation-level1 text-fg-secondary overflow-hidden font-medium border-border border hover:bg-fill1-alpha focus-visible:ring-border hover:before:bg-fill2-alpha relative before:absolute before:inset-0 aria-disabled:opacity-50 p-1.5",
 				button_next:
-					"cursor-pointer flex justify-center items-center size-7 focus-visible:ring-offset-bg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 bg-elevation-level1 text-fg-secondary overflow-hidden font-medium border-border border hover:bg-fill1-alpha focus-visible:ring-border hover:before:bg-fill2-alpha relative before:absolute before:inset-0 aria-disabled:opacity-50 rounded-lg p-1.5",
+					"cursor-pointer flex justify-center items-center size-7 focus-visible:ring-offset-bg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 bg-elevation-level1 text-fg-secondary overflow-hidden font-medium border-border border hover:bg-fill1-alpha focus-visible:ring-border hover:before:bg-fill2-alpha relative before:absolute before:inset-0 aria-disabled:opacity-50 p-1.5",
 				range_start: "range-start",
 				range_middle: "range-middle",
 				range_end: "range-end",
@@ -42,15 +42,11 @@ function Calendar({
 			components={{
 				Chevron: (props: ChevronProps) => {
 					if (props.orientation === "left")
-						return (
-							<IconSlot slot="left" size={16} className="text-fg-tertiary" />
-						)
-					return (
-						<IconSlot slot="right" size={16} className="text-fg-tertiary" />
-					)
+						return <ChevronLeft size={16} className="text-fg-tertiary" />
+					return <ChevronRight size={16} className="text-fg-tertiary" />
 				},
 			}}
-			className={cn("bg-card border-border rounded-xl border p-3", className)}
+			className={cn("bg-card border-border border p-3", className)}
 			showOutsideDays={showOutsideDays}
 			mode="single"
 			{...props}

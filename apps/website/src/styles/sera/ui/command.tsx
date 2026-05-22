@@ -8,8 +8,8 @@ import {
 	CommandList as CmdkList,
 	CommandSeparator as CmdkSeparator,
 } from "cmdk"
+import { Search } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { IconSlot } from "@/registry/icon/icon-library"
 import {
 	Dialog,
 	DialogContent,
@@ -39,7 +39,7 @@ function Command({ className, ...props }: CommandProps) {
 		<Cmdk
 			data-slot="command"
 			className={cn(
-				"bg-bg text-fg border-border flex h-full w-full flex-col overflow-hidden rounded-none border",
+				"bg-bg text-fg border-border flex h-full w-full flex-col overflow-hidden border",
 				className
 			)}
 			{...props}
@@ -77,7 +77,7 @@ function CommandInput({ className, ...props }: CommandInputProps) {
 		<div
 			data-slot="command-input-wrapper"
 			className="flex h-12 items-center gap-2 border-b px-4 py-3">
-			<IconSlot slot="search" className="text-fg-secondary size-4 shrink-0" />
+			<Search className="text-fg-secondary size-4 shrink-0" />
 			<CmdkInput
 				data-slot="command-input"
 				className={cn(
@@ -141,7 +141,7 @@ function CommandItem({ className, ...props }: CommandItemProps) {
 		<CmdkItem
 			data-slot="command-item"
 			className={cn(
-				"outline-hidden data-[selected=true]:bg-fill2-alpha data-[selected=true]:text-fg-secondary [&_svg:not([class*='text-'])]:text-fg-tertiary relative flex cursor-default select-none items-center gap-2 rounded-none px-3 py-2 text-sm data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+				"outline-hidden data-[selected=true]:bg-fill2-alpha data-[selected=true]:text-fg-secondary [&_svg:not([class*='text-'])]:text-fg-tertiary relative flex cursor-default select-none items-center gap-2 px-3 py-2 text-sm data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
 				className
 			)}
 			{...props}

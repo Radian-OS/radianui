@@ -54,7 +54,7 @@ const accordionVariants = cva("w-full", {
 const accordionItemVariants = cva("overflow-hidden", {
 	variants: {
 		variant: {
-			box: "cn-accordion-item-variant-box",
+			box: "cn-accordion-item-variant-box r-accordion-item-variant-box",
 			table: "cn-accordion-item-variant-table",
 			open: "cn-accordion-item-variant-open",
 		},

@@ -3,6 +3,7 @@
 
 @import "../registry/radius/radius-full.css" layer(base);
 @import "../registry/radius/radius-medium.css" layer(base);
+@import "../registry/radius/radius-none.css" layer(base);
 
 @custom-variant dark (&:is(.dark *));
 

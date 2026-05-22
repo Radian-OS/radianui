@@ -3,8 +3,8 @@
 import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { type VariantProps, cva } from "class-variance-authority"
+import { PanelLeft } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { IconSlot } from "@/registry/icon/icon-library"
 import { Badge } from "@/styles/sera/ui/badge"
 import { IconButton } from "@/styles/sera/ui/button"
 import {
@@ -127,7 +127,7 @@ export const sidebarMenuButtonVariants = cva(
 		variants: {
 			variant: {
 				strong:
-					"text-sidebar-fg focus-visible:ring-primary-focus focus-visible:outline-none data-[active=true]:bg-primary! data-[active=true]:text-white  data-[active=true]:[&>svg]:stroke-white",
+					"text-sidebar-fg focus-visible:ring-primary-focus focus-visible:outline-none data-[active=true]:bg-primary! data-[active=true]:text-white data-[active=true]:[&>svg]:stroke-white",
 				soft: "text-sidebar-fg focus-visible:ring-primary-focus focus-visible:outline-none data-[active=true]:bg-primary-accent! data-[active=true]:text-primary-text [&>svg]:text-fg-secondary data-[active=true]:[&>svg]:stroke-primary-text",
 				neutral:
 					"text-sidebar-fg rounded-md data-[active=true]:bg-sidebar-accent!",
@@ -623,7 +623,7 @@ function SidebarTrigger({
 				children
 			) : (
 				<>
-					<IconSlot slot="left-panel" />
+					<PanelLeft />
 					<span className="sr-only">Toggle Sidebar</span>
 				</>
 			)}

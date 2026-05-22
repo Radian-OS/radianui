@@ -58,17 +58,17 @@ const tabsListStyles = cva(
 			{
 				size: "sm",
 				variant: ["default", "outline", "ghost"],
-				className: "rounded-none",
+				className: "",
 			},
 			{
 				size: "md",
 				variant: ["default", "outline", "ghost"],
-				className: "rounded-none",
+				className: "",
 			},
 			{
 				size: "lg",
 				variant: ["default", "outline", "ghost"],
-				className: "rounded-none",
+				className: "",
 			},
 			{
 				size: ["sm", "md"],
@@ -110,17 +110,17 @@ const tabsTriggerStyles = cva(
 			{
 				size: "sm",
 				variant: ["default"],
-				className: "h-full rounded-none px-2 py-1",
+				className: "h-full px-2 py-1",
 			},
 			{
 				size: "md",
 				variant: ["default"],
-				className: "h-full rounded-none px-3 py-1.5",
+				className: "h-full px-3 py-1.5",
 			},
 			{
 				size: "lg",
 				variant: ["default"],
-				className: "h-full rounded-none px-4 py-2",
+				className: "h-full px-4 py-2",
 			},
 			{
 				size: "sm",
@@ -158,32 +158,32 @@ const tabsTriggerStyles = cva(
 			{
 				size: "sm",
 				variant: "outline",
-				className: "rounded-none",
+				className: "",
 			},
 			{
 				size: "md",
 				variant: "outline",
-				className: "rounded-none",
+				className: "",
 			},
 			{
 				size: "lg",
 				variant: "outline",
-				className: "data-[orientation=horizontal]:h-11 rounded-none",
+				className: "data-[orientation=horizontal]:h-11",
 			},
 			{
 				size: "sm",
 				variant: ["ghost", "outline-ghost"],
-				className: "data-[state=active]:rounded-none",
+				className: "",
 			},
 			{
 				size: "md",
 				variant: ["ghost", "outline-ghost"],
-				className: "h-full data-[state=active]:rounded-none",
+				className: "h-full",
 			},
 			{
 				size: "lg",
 				variant: ["ghost", "outline-ghost"],
-				className: "h-full data-[state=active]:rounded-none",
+				className: "h-full",
 			},
 		],
 		defaultVariants: {

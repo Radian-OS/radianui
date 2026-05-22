@@ -19,8 +19,8 @@ const textareaStyles = cva(
 	{
 		variants: {
 			rounded: {
-				rounded: "rounded-none",
-				square: "rounded-none",
+				rounded: "",
+				square: "",
 			},
 		},
 		defaultVariants: {

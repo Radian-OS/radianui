@@ -49,20 +49,20 @@ const avatarVariants = cva(
 				"80": "size-20 text-2xl",
 			},
 			rounded: {
-				circle: "rounded-full",
+				circle: "",
 				square: "",
 			},
 		},
 		compoundVariants: [
-			{ size: "16", rounded: "square", className: "rounded-sm" },
-			{ size: "20", rounded: "square", className: "rounded-sm" },
-			{ size: "24", rounded: "square", className: "rounded-md" },
-			{ size: "32", rounded: "square", className: "rounded-md" },
-			{ size: "36", rounded: "square", className: "rounded-lg" },
-			{ size: "40", rounded: "square", className: "rounded-lg" },
-			{ size: "48", rounded: "square", className: "rounded-lg" },
-			{ size: "64", rounded: "square", className: "rounded-xl" },
-			{ size: "80", rounded: "square", className: "rounded-2xl" },
+			{ size: "16", rounded: "square", className: "" },
+			{ size: "20", rounded: "square", className: "" },
+			{ size: "24", rounded: "square", className: "" },
+			{ size: "32", rounded: "square", className: "" },
+			{ size: "36", rounded: "square", className: "" },
+			{ size: "40", rounded: "square", className: "" },
+			{ size: "48", rounded: "square", className: "" },
+			{ size: "64", rounded: "square", className: "" },
+			{ size: "80", rounded: "square", className: "" },
 		],
 		defaultVariants: {
 			size: "40",
@@ -122,10 +122,7 @@ function AvatarImage({ className, ...props }: AvatarImageProps) {
 	return (
 		<AvatarPrimitive.Image
 			data-slot="avatar-image"
-			className={cn(
-				"relative aspect-square size-full rounded-[inherit] object-cover",
-				className
-			)}
+			className={cn("relative aspect-square size-full object-cover", className)}
 			{...props}
 		/>
 	)
@@ -137,7 +134,7 @@ function AvatarFallback({ className, ...props }: AvatarFallbackProps) {
 		<AvatarPrimitive.Fallback
 			data-slot="avatar-fallback"
 			className={cn(
-				"bg-primary-focus text-primary-text flex size-full items-center justify-center rounded-[inherit]",
+				"bg-primary-focus text-primary-text flex size-full items-center justify-center",
 				className
 			)}
 			{...props}

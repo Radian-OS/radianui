@@ -1,4 +1,3 @@
-import { twMerge } from "tailwind-merge"
 import {
 	type CallExpression,
 	type NoSubstitutionTemplateLiteral,
@@ -9,12 +8,6 @@ import {
 import { type StyleMap } from "./create-style-map"
 import { TransformerStyle } from "./transform"
 
-/**
- * Classes that should never be removed during transformation.
- * These are typically used as CSS selectors or for other purposes
- * that require the class name to remain in the code.
- */
-// TODO: all cn-* classes to be allowedlisted.
 const ALLOWLIST = new Set([
 	"cn-menu-target",
 	"cn-menu-translucent",
@@ -31,13 +24,17 @@ function isStringLiteralLike(
 	)
 }
 
+function isCnCall(call: CallExpression) {
+	const expression = call.getExpression()
+	return Node.isIdentifier(expression) && expression.getText() === "cn"
+}
+
 export const transformStyleMap: TransformerStyle<SourceFile> = async ({
 	sourceFile,
 	styleMap,
 }) => {
 	const matchedClasses = new Set<string>()
 
-	// Find ALL string literals and no-substitution template literals in the file
 	const stringLiterals: (StringLiteral | NoSubstitutionTemplateLiteral)[] = []
 	sourceFile.forEachDescendant((node) => {
 		if (isStringLiteralLike(node)) {
@@ -45,12 +42,10 @@ export const transformStyleMap: TransformerStyle<SourceFile> = async ({
 		}
 	})
 
-	// Process all string literals in-place
 	for (const stringLiteral of stringLiterals) {
 		applyStyleToCvaString(stringLiteral, styleMap, matchedClasses)
 	}
 
-	// Clean up empty arguments in all cn() calls in the file
 	const cnCalls: CallExpression[] = []
 	sourceFile.forEachDescendant((node) => {
 		if (Node.isCallExpression(node) && isCnCall(node)) {
@@ -58,7 +53,6 @@ export const transformStyleMap: TransformerStyle<SourceFile> = async ({
 		}
 	})
 
-	// Process bottom-up to avoid invalidating AST nodes
 	cnCalls.reverse().forEach((call) => {
 		if (!call.wasForgotten()) {
 			removeEmptyArgumentsFromCnCall(call)
@@ -74,31 +68,38 @@ function applyStyleToCvaString(
 	matchedClasses: Set<string>
 ) {
 	const stringValue = stringNode.getLiteralText()
+
+	// --- cn-* logic ---
 	const cnClasses = extractCnClasses(stringValue)
-
-	if (cnClasses.length === 0) {
-		return
-	}
-
-	// Skip allowlisted classes — they are handled at CLI install time.
-	const classesToInline = cnClasses.filter((cnClass) => !ALLOWLIST.has(cnClass))
-
+	const classesToInline = cnClasses.filter((c) => !ALLOWLIST.has(c))
 	const tailwindClassesToApply = classesToInline
-		.map((cnClass) => styleMap[cnClass])
-		.filter((classes): classes is string => Boolean(classes))
+		.map((c) => styleMap[c])
+		.filter((c): c is string => Boolean(c))
+
+	// Strip cn-* tokens from the string first
+	let updated = removeCnClasses(stringValue)
 
 	if (tailwindClassesToApply.length > 0) {
-		const mergedClasses = tailwindClassesToApply.join(" ")
-		const updated = removeCnClasses(mergeClasses(mergedClasses, stringValue))
-		stringNode.setLiteralValue(updated)
-		cnClasses.forEach((cnClass) => matchedClasses.add(cnClass))
-	} else {
-		// No styles to apply, but still need to clean up non-allowlisted classes.
-		const updated = removeCnClasses(stringValue)
-		stringNode.setLiteralValue(updated)
+		// Append cn-expanded classes AFTER stripping cn-* tokens
+		// Do NOT use twMerge here — it drops classes that look like conflicts
+		const expanded = tailwindClassesToApply.join(" ")
+		updated = `${updated} ${expanded}`.trim()
+		cnClasses.forEach((c) => matchedClasses.add(c))
 	}
-}
 
+	// --- r-* inline replacement ---
+	// Only swaps the r-* token itself; all other classes untouched
+	updated = updated.replace(/\br-[\w-]+\b/g, (token) => {
+		const mapped = styleMap[token]
+		if (!mapped) return token
+		matchedClasses.add(token)
+		return mapped
+	})
+
+	updated = updated.replace(/\s+/g, " ").trim()
+
+	stringNode.setLiteralValue(updated)
+}
 function extractCnClasses(str: string) {
 	const matches = str.matchAll(/\bcn-[\w-]+\b/g)
 	return Array.from(matches, (match) => match[0])
@@ -107,24 +108,16 @@ function extractCnClasses(str: string) {
 function removeCnClasses(str: string) {
 	return str
 		.replace(/\bcn-[\w-]+\b/g, (match) => {
-			// Preserve allowlisted classes
-			if (ALLOWLIST.has(match)) {
-				return match
-			}
+			if (ALLOWLIST.has(match)) return match
 			return ""
 		})
 		.replace(/\s+/g, " ")
 		.trim()
 }
 
-function mergeClasses(newClasses: string, existing: string) {
-	return twMerge(existing, newClasses)
-}
-
-function isCnCall(call: CallExpression) {
-	const expression = call.getExpression()
-	return Node.isIdentifier(expression) && expression.getText() === "cn"
-}
+// function mergeClasses(newClasses: string, existing: string) {
+// 	return twMerge(existing, newClasses)
+// }
 
 function removeEmptyArgumentsFromCnCall(callExpression: CallExpression) {
 	if (!isCnCall(callExpression)) {

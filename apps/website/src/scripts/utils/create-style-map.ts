@@ -6,15 +6,25 @@ import selectorParser, {
 import { z } from "zod"
 
 const CN_PREFIX = "cn-"
+const R_PREFIX = "r-"
 
 export const styleMapSchema = z.record(
-	z.string().startsWith(CN_PREFIX),
+	z.string().refine((k) => k.startsWith(CN_PREFIX) || k.startsWith(R_PREFIX), {
+		message: `Key must start with "${CN_PREFIX}" or "${R_PREFIX}"`,
+	}),
 	z.string()
 )
 
 export type StyleMap = z.infer<typeof styleMapSchema>
 
-export function createStyleMap(input: string) {
+/**
+ * Parse a CSS string and build a token → Tailwind-classes map.
+ *
+ * @param input  Raw CSS content.
+ * @param prefix Token prefix to collect. Defaults to "cn-".
+ *               Pass "r-" to parse radius-*.css files.
+ */
+export function createStyleMap(input: string, prefix: string = CN_PREFIX) {
 	const root = postcss.parse(input)
 
 	const result: Record<string, string> = {}
@@ -37,17 +47,13 @@ export function createStyleMap(input: string) {
 
 			selectorParser((selectorsRoot) => {
 				selectorsRoot.each((sel) => {
-					const targetClass = findSubjectClass(sel)
+					const targetClass = findSubjectClass(sel, prefix)
 
 					if (!targetClass) {
 						return
 					}
 
 					const className = targetClass.value
-
-					if (!className.startsWith(CN_PREFIX)) {
-						return
-					}
 
 					result[className] = result[className]
 						? `${tailwindClasses} ${result[className]}`
@@ -57,7 +63,15 @@ export function createStyleMap(input: string) {
 		}
 	})
 
-	return styleMapSchema.parse(result)
+	return result
+}
+
+/**
+ * Merge multiple style maps into one. Later maps win on key conflicts.
+ */
+export function mergeStyleMaps(...maps: Record<string, string>[]): StyleMap {
+	const merged = Object.assign({}, ...maps)
+	return styleMapSchema.parse(merged)
 }
 
 function normalizeSelector(selector: string) {
@@ -83,11 +97,11 @@ function extractTailwindClasses(rule: postcss.Rule) {
 	return classes.join(" ")
 }
 
-function findSubjectClass(selector: SelectorNodeRoot) {
+function findSubjectClass(selector: SelectorNodeRoot, prefix: string) {
 	const classNodes: ClassName[] = []
 
 	selector.walkClasses((classNode) => {
-		if (classNode.value.startsWith(CN_PREFIX)) {
+		if (classNode.value.startsWith(prefix)) {
 			classNodes.push(classNode)
 		}
 	})

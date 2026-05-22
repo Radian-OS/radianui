@@ -16,12 +16,12 @@ const inputVariants = cva(
 	{
 		variants: {
 			size: {
-				"28": "h-7 file:pe-1.5 file:me-1.5 rounded-md px-2 text-[13px]",
-				"32": "h-8 file:pe-3 file:me-3 rounded-md px-2 text-sm",
-				"36": "h-9 file:pe-2.5 file:me-2.5 rounded-lg px-2.5 text-sm",
-				"40": "h-10 file:pe-3 file:me-3 rounded-lg px-3 text-sm",
-				"44": "h-11 file:pe-3.5 file:me-3.5 rounded-lg px-3 text-base",
-				"48": "h-12 file:pe-3.5 file:me-3.5 rounded-lg px-3.5 text-base",
+				"28": "h-7 file:pe-1.5 file:me-1.5 px-2 text-[13px]",
+				"32": "h-8 file:pe-3 file:me-3 px-2 text-sm",
+				"36": "h-9 file:pe-2.5 file:me-2.5 px-2.5 text-sm",
+				"40": "h-10 file:pe-3 file:me-3 px-3 text-sm",
+				"44": "h-11 file:pe-3.5 file:me-3.5 px-3 text-base",
+				"48": "h-12 file:pe-3.5 file:me-3.5 px-3.5 text-base",
 			},
 		},
 		defaultVariants: {
@@ -35,12 +35,12 @@ const inputAddonVariants = cva(
 	{
 		variants: {
 			size: {
-				"28": "h-7 min-w-7 [&_svg:not([class*=size-])]:size-4 rounded-md px-2 text-[13px]",
-				"32": "h-8 min-w-8 [&_svg:not([class*=size-])]:size-4.5 rounded-md px-2 text-sm",
-				"36": "h-9 min-w-9 [&_svg:not([class*=size-])]:size-5 rounded-lg px-2.5 text-sm",
-				"40": "h-10 min-w-10 [&_svg:not([class*=size-])]:size-5 rounded-lg px-3 text-sm",
-				"44": "h-11 min-w-11 [&_svg:not([class*=size-])]:size-5 rounded-lg px-3 text-base",
-				"48": "h-12 min-w-12 [&_svg:not([class*=size-])]:size-5 rounded-lg px-3.5 text-base",
+				"28": "h-7 min-w-7 [&_svg:not([class*=size-])]:size-4 px-2 text-[13px]",
+				"32": "h-8 min-w-8 [&_svg:not([class*=size-])]:size-4.5 px-2 text-sm",
+				"36": "h-9 min-w-9 [&_svg:not([class*=size-])]:size-5 px-2.5 text-sm",
+				"40": "h-10 min-w-10 [&_svg:not([class*=size-])]:size-5 px-3 text-sm",
+				"44": "h-11 min-w-11 [&_svg:not([class*=size-])]:size-5 px-3 text-base",
+				"48": "h-12 min-w-12 [&_svg:not([class*=size-])]:size-5 px-3.5 text-base",
 			},
 			mode: {
 				default: "",
@@ -55,23 +55,7 @@ const inputAddonVariants = cva(
 )
 
 const inputGroupVariants = cva(
-	`
-	flex items-stretch
-	[&_:is([data-slot=input],[data-slot=currency-input])]:grow
-	[&_[data-slot=input-addon]:has(+:is([data-slot=input],[data-slot=currency-input]))]:rounded-e-none [&_[data-slot=input-addon]:has(+:is([data-slot=input],[data-slot=currency-input]))]:border-e-0
-	[&_[data-slot=input-addon]:has(+[data-slot=datefield])]:rounded-e-none [&_[data-slot=input-addon]:has(+[data-slot=datefield])]:border-e-0
-	[&_:is([data-slot=input],[data-slot=currency-input])+[data-slot=input-addon]]:rounded-s-none [&_:is([data-slot=input],[data-slot=currency-input])+[data-slot=input-addon]]:border-s-0
-	[&_[data-slot=input-addon]:has(+[data-slot=button])]:rounded-e-none
-	[&_:is([data-slot=input],[data-slot=currency-input])+[data-slot=button]]:rounded-s-none
-	[&_[data-slot=button]+:is([data-slot=input],[data-slot=currency-input])]:rounded-s-none
-	[&_[data-slot=input-addon]+:is([data-slot=input],[data-slot=currency-input])]:rounded-s-none
-	[&_[data-slot=input-addon]+[data-slot=datefield]]:[&_:is([data-slot=input],[data-slot=currency-input])]:rounded-s-none
-	[&_[data-slot=datefield]:has(+[data-slot=input-addon])]:[&_:is([data-slot=input],[data-slot=currency-input])]:rounded-e-none
-	[&_:is([data-slot=input],[data-slot=currency-input]):has(+[data-slot=button])]:rounded-e-none
-	[&_:is([data-slot=input],[data-slot=currency-input]):has(+[data-slot=input-addon])]:rounded-e-none
-	[&_[data-slot=datefield]]:grow
-	[&_[data-slot=datefield]+[data-slot=input-addon]]:rounded-s-none [&_[data-slot=datefield]+[data-slot=input-addon]]:border-s-0
-	`,
+	`flex items-stretch [&_:is([data-slot=input],[data-slot=currency-input])]:grow [&_[data-slot=input-addon]:has(+:is([data-slot=input],[data-slot=currency-input]))]:rounded-e-none [&_[data-slot=input-addon]:has(+:is([data-slot=input],[data-slot=currency-input]))]:border-e-0 [&_[data-slot=input-addon]:has(+[data-slot=datefield])]:rounded-e-none [&_[data-slot=input-addon]:has(+[data-slot=datefield])]:border-e-0 [&_:is([data-slot=input],[data-slot=currency-input])+[data-slot=input-addon]]:rounded-s-none [&_:is([data-slot=input],[data-slot=currency-input])+[data-slot=input-addon]]:border-s-0 [&_[data-slot=input-addon]:has(+[data-slot=button])]:rounded-e-none [&_:is([data-slot=input],[data-slot=currency-input])+[data-slot=button]]:rounded-s-none [&_[data-slot=button]+:is([data-slot=input],[data-slot=currency-input])]:rounded-s-none [&_[data-slot=input-addon]+:is([data-slot=input],[data-slot=currency-input])]:rounded-s-none [&_[data-slot=input-addon]+[data-slot=datefield]]:[&_:is([data-slot=input],[data-slot=currency-input])]:rounded-s-none [&_[data-slot=datefield]:has(+[data-slot=input-addon])]:[&_:is([data-slot=input],[data-slot=currency-input])]:rounded-e-none [&_:is([data-slot=input],[data-slot=currency-input]):has(+[data-slot=button])]:rounded-e-none [&_:is([data-slot=input],[data-slot=currency-input]):has(+[data-slot=input-addon])]:rounded-e-none [&_[data-slot=datefield]]:grow [&_[data-slot=datefield]+[data-slot=input-addon]]:rounded-s-none [&_[data-slot=datefield]+[data-slot=input-addon]]:border-s-0`,
 	{
 		variants: {},
 		defaultVariants: {},

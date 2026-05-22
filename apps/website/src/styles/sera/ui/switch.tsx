@@ -22,8 +22,8 @@ const switchVariants = cva(
 	{
 		variants: {
 			shape: {
-				pill: "rounded-none",
-				square: "rounded-none",
+				pill: "",
+				square: "",
 			},
 			size: {
 				"20": "w-8.5 h-5",
@@ -48,8 +48,8 @@ const switchThumbVariants = cva(
 	{
 		variants: {
 			shape: {
-				pill: "rounded-none",
-				square: "rounded-none",
+				pill: "",
+				square: "",
 			},
 			size: {
 				"20": "size-3.5 data-[state=checked]:translate-x-4",

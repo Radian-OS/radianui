@@ -58,17 +58,17 @@ const tabsListStyles = cva(
 			{
 				size: "sm",
 				variant: ["default", "outline", "ghost"],
-				className: "rounded-lg",
+				className: "",
 			},
 			{
 				size: "md",
 				variant: ["default", "outline", "ghost"],
-				className: "rounded-lg",
+				className: "",
 			},
 			{
 				size: "lg",
 				variant: ["default", "outline", "ghost"],
-				className: "rounded-xl",
+				className: "",
 			},
 			{
 				size: ["sm", "md"],
@@ -110,17 +110,17 @@ const tabsTriggerStyles = cva(
 			{
 				size: "sm",
 				variant: ["default"],
-				className: "h-full rounded-md px-1.5 py-1",
+				className: "h-full px-1.5 py-1",
 			},
 			{
 				size: "md",
 				variant: ["default"],
-				className: "h-full rounded-md px-2.5 py-1.5",
+				className: "h-full px-2.5 py-1.5",
 			},
 			{
 				size: "lg",
 				variant: ["default"],
-				className: "h-full rounded-[0.625rem] px-3 py-2",
+				className: "h-full px-3 py-2",
 			},
 			{
 				size: "sm",
@@ -158,35 +158,32 @@ const tabsTriggerStyles = cva(
 			{
 				size: "sm",
 				variant: "outline",
-				className:
-					"data-[orientation=horizontal]:first:rounded-l-lg data-[orientation=vertical]:first:rounded-t-lg data-[orientation=horizontal]:last:rounded-r-lg data-[orientation=vertical]:last:rounded-b-lg",
+				className: "",
 			},
 			{
 				size: "md",
 				variant: "outline",
-				className:
-					"data-[orientation=horizontal]:first:rounded-l-[0.625rem] data-[orientation=vertical]:first:rounded-t-[0.625rem] data-[orientation=horizontal]:last:rounded-r-[0.625rem] data-[orientation=vertical]:last:rounded-b-[0.625rem]",
+				className: "",
 			},
 			{
 				size: "lg",
 				variant: "outline",
-				className:
-					"data-[orientation=horizontal]:h-11 data-[orientation=horizontal]:first:rounded-l-xl data-[orientation=vertical]:first:rounded-t-xl data-[orientation=horizontal]:last:rounded-r-xl data-[orientation=vertical]:last:rounded-b-xl",
+				className: "data-[orientation=horizontal]:h-11",
 			},
 			{
 				size: "sm",
 				variant: ["ghost", "outline-ghost"],
-				className: "data-[state=active]:rounded-md",
+				className: "",
 			},
 			{
 				size: "md",
 				variant: ["ghost", "outline-ghost"],
-				className: "h-full data-[state=active]:rounded-lg",
+				className: "h-full",
 			},
 			{
 				size: "lg",
 				variant: ["ghost", "outline-ghost"],
-				className: "h-full data-[state=active]:rounded-[0.625rem]",
+				className: "h-full",
 			},
 		],
 		defaultVariants: {

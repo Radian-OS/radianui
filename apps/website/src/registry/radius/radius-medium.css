@@ -1,2 +1,484 @@
 .radius-medium {
+	/* MARK: Accordion */
+
+	.r-accordion-item-variant-box {
+		@apply rounded-full;
+	}
+
+	.r-accordion-item-variant-table {
+		@apply rounded-full; 
+	}
+
+	/* MARK: Alert Dialog */
+
+	.r-alert-dialog-content {
+		@apply rounded-full;
+	}
+
+	/* MARK: Avatar */
+
+	.r-avatar-rounded-circle {
+		@apply rounded-full;
+	}
+
+	.r-avatar-square-16 {
+		@apply rounded-full;
+	}
+	.r-avatar-square-20 {
+		@apply rounded-full;
+	}
+	.r-avatar-square-24 {
+		@apply rounded-full;
+	}
+	.r-avatar-square-32 {
+		@apply rounded-full;
+	}
+	.r-avatar-square-36 {
+		@apply rounded-full;
+	}
+	.r-avatar-square-40 {
+		@apply rounded-full;
+	}
+	.r-avatar-square-48 {
+		@apply rounded-full;
+	}
+	.r-avatar-square-64 {
+		@apply rounded-full;
+	}
+	.r-avatar-square-80 {
+		@apply rounded-full;
+	}
+
+	/* MARK: Badge */
+
+	.r-badge-size-20 {
+		@apply rounded-full;
+	}
+	.r-badge-size-24 {
+		@apply rounded-full;
+	}
+	.r-badge-size-28 {
+		@apply rounded-full;
+	}
+
+	/* MARK: Button */
+
+	/* Size rounded tokens */
+	.r-btn-size-28 {
+		@apply rounded-full;
+	}
+	.r-btn-size-32 {
+		@apply rounded-full;
+	}
+	.r-btn-size-36 {
+		@apply rounded-full;
+	}
+	.r-btn-size-40 {
+		@apply rounded-full;
+	}
+	.r-btn-size-44 {
+		@apply rounded-full;
+	}
+	.r-btn-size-48 {
+		@apply rounded-full;
+	}
+
+	/* Link variants */
+	.r-btn-link-primary {
+		@apply focus-visible:rounded-full;
+	}
+	.r-btn-link-info {
+		@apply focus-visible:rounded-full;
+	}
+	.r-btn-link-success {
+		@apply focus-visible:rounded-full;
+	}
+	.r-btn-link-error {
+		@apply focus-visible:rounded-full;
+	}
+	.r-btn-link-warning {
+		@apply focus-visible:rounded-full;
+	}
+	.r-btn-link-neutral {
+		@apply focus-visible:rounded-full;
+	}
+
+	/* CompactButton base */
+	.r-compact-btn {
+		@apply rounded-full;
+	}
+
+	/* IconButton size variants */
+	.r-icon-btn-size-28 {
+		@apply rounded-full;
+	}
+	.r-icon-btn-size-32 {
+		@apply rounded-full;
+	}
+	.r-icon-btn-size-36 {
+		@apply rounded-full;
+	}
+	.r-icon-btn-size-40 {
+		@apply rounded-full;
+	}
+	.r-icon-btn-size-44 {
+		@apply rounded-full;
+	}
+	.r-icon-btn-size-48 {
+		@apply rounded-full;
+	}
+
+	/* MARK: Calendar */
+
+	.r-calendar {
+		@apply rounded-full;
+	}
+
+	.r-calendar-day-button {
+		@apply rounded-full;
+	}
+
+	.r-calendar-button-previous,
+	.r-calendar-button-next {
+		@apply rounded-full;
+	}
+
+	/* MARK: Card */
+
+	.r-card {
+		@apply rounded-full;
+	}
+
+	/* MARK: Carousel */
+
+	.r-carousel-previous {
+		@apply rounded-full;
+	}
+
+	.r-carousel-next {
+		@apply rounded-full;
+	}
+
+	/* MARK: Checkbox */
+
+	.r-checkbox-sm {
+		@apply rounded-full;
+	}
+
+	.r-checkbox-md {
+		@apply rounded-full;
+	}
+
+	.r-checkbox-lg {
+		@apply rounded-full;
+	}
+
+	/* MARK: Code Area */
+
+	.r-code-area {
+		@apply rounded-full;
+	}
+
+	/* MARK: Command */
+
+	.r-command {
+		@apply rounded-full;
+	}
+
+	.r-command-item {
+		@apply rounded-full;
+	}
+
+	.r-command-checkbox-item {
+		@apply rounded-full;
+	}
+
+	.r-command-radio-item {
+		@apply rounded-full;
+	}
+
+	.r-command-sub-trigger {
+		@apply rounded-full;
+	}
+
+	.r-command-sub-content {
+		@apply rounded-full;
+	}
+
+	/* MARK: Dialog */
+
+	.r-dialog-content {
+		@apply rounded-full;
+	}
+
+	.r-dialog-close-button {
+		@apply rounded-full;
+	}
+
+	/* MARK: Drawer */
+
+	.r-drawer-variant-float {
+		@apply rounded-full;
+	}
+
+	.r-drawer-variant-rounded {
+		@apply rounded-full;
+	}
+
+	.r-drawer-rounded-top {
+		@apply rounded-full;
+	}
+	.r-drawer-rounded-bottom {
+		@apply rounded-full;
+	}
+	.r-drawer-rounded-left {
+		@apply rounded-full;
+	}
+	.r-drawer-rounded-right {
+		@apply rounded-full;
+	}
+
+	/* MARK: Dropdown */
+
+	.r-dropdown-content {
+		@apply rounded-full;
+	}
+
+	.r-dropdown-item {
+		@apply rounded-full;
+	}
+
+	.r-dropdown-checkbox-item {
+		@apply rounded-full;
+	}
+
+	.r-dropdown-radio-item {
+		@apply rounded-full;
+	}
+
+	.r-dropdown-sub-trigger {
+		@apply rounded-full;
+	}
+
+	.r-dropdown-sub-content {
+		@apply rounded-full;
+	}
+
+	/* MARK: HoverCard */
+
+	.r-hover-card-content {
+		@apply rounded-full;
+	}
+
+	/* MARK: Input */
+
+	.r-input-28 {
+		@apply rounded-full;
+	}
+	.r-input-32 {
+		@apply rounded-full;
+	}
+	.r-input-36 {
+		@apply rounded-full;
+	}
+	.r-input-40 {
+		@apply rounded-full;
+	}
+	.r-input-44 {
+		@apply rounded-full;
+	}
+	.r-input-48 {
+		@apply rounded-full;
+	}
+
+	.r-input-addon-28 {
+		@apply rounded-full;
+	}
+	.r-input-addon-32 {
+		@apply rounded-full;
+	}
+	.r-input-addon-36 {
+		@apply rounded-full;
+	}
+	.r-input-addon-40 {
+		@apply rounded-full;
+	}
+	.r-input-addon-44 {
+		@apply rounded-full;
+	}
+	.r-input-addon-48 {
+		@apply rounded-full;
+	}
+
+	/* MARK: OTPField */
+
+	.r-otp-input {
+		@apply rounded-full;
+	}
+
+	.r-otp-input-28 {
+		@apply rounded-full;
+	}
+	.r-otp-input-32 {
+		@apply rounded-full;
+	}
+	.r-otp-input-36 {
+		@apply rounded-full;
+	}
+	.r-otp-input-40 {
+		@apply rounded-full;
+	}
+	.r-otp-input-44 {
+		@apply rounded-full;
+	}
+	.r-otp-input-48 {
+		@apply rounded-full;
+	}
+
+	/* MARK: Popover */
+
+	.r-popover-content {
+		@apply rounded-full;
+	}
+
+	/* MARK: Progress */
+
+	.r-progress {
+		@apply rounded-full;
+	}
+
+	/* MARK: Resizable */
+
+	.r-resizable-handle-grip {
+		@apply rounded-full;
+	}
+
+	/* MARK: ScrollArea */
+
+	.r-scrollbar-thumb {
+		@apply rounded-full;
+	}
+
+	/* MARK: Select */
+
+	.r-select-trigger-28 {
+		@apply rounded-full;
+	}
+	.r-select-trigger-32 {
+		@apply rounded-full;
+	}
+	.r-select-trigger-36 {
+		@apply rounded-full;
+	}
+	.r-select-trigger-40 {
+		@apply rounded-full;
+	}
+	.r-select-trigger-44 {
+		@apply rounded-full;
+	}
+	.r-select-trigger-48 {
+		@apply rounded-full;
+	}
+
+	.r-select-content {
+		@apply rounded-full;
+	}
+
+	.r-select-item {
+		@apply rounded-full;
+	}
+
+	/* MARK: Slider */
+
+	.r-slider-track {
+		@apply rounded-full;
+	}
+
+	.r-slider-thumb {
+		@apply rounded-full;
+	}
+
+	/* MARK: Switch */
+
+	.r-switch-shape-pill {
+		@apply rounded-full;
+	}
+
+	.r-switch-shape-square {
+		@apply rounded-full;
+	}
+
+	.r-switch-thumb-shape-pill {
+		@apply rounded-full;
+	}
+
+	.r-switch-thumb-shape-square {
+		@apply rounded-full;
+	}
+
+	/* MARK: Tabs */
+
+	.r-tabs-list-rounded-md {
+		@apply rounded-full;
+	}
+
+	.r-tabs-list-rounded-lg {
+		@apply rounded-full;
+	}
+
+	.r-tabs-trigger-default-sm {
+		@apply rounded-full;
+	}
+
+	.r-tabs-trigger-default-md {
+		@apply rounded-full;
+	}
+
+	.r-tabs-trigger-default-lg {
+		@apply rounded-full;
+	}
+
+	.r-tabs-trigger-outline-sm {
+		@apply rounded-full;
+	}
+
+	.r-tabs-trigger-outline-md {
+		@apply rounded-full;
+	}
+
+	.r-tabs-trigger-outline-lg {
+		@apply rounded-full;
+	}
+
+	.r-tabs-trigger-ghost-sm {
+		@apply data-[state=active]:rounded-full;
+	}
+
+	.r-tabs-trigger-ghost-md {
+		@apply data-[state=active]:rounded-full;
+	}
+
+	.r-tabs-trigger-ghost-lg {
+		@apply data-[state=active]:rounded-full;
+	}
+
+	/* MARK: TextArea */
+
+	.r-textarea-rounded {
+		@apply rounded-full;
+	}
+
+	.r-textarea-square {
+		@apply rounded-full;
+	}
+
+	/* MARK: Tooltip */
+
+	.r-tooltip-content {
+		@apply rounded-full;
+	}
+
+	.r-tooltip-arrow {
+		@apply rounded-full;
+	}
 }

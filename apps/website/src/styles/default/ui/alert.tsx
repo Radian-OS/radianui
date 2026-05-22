@@ -1,7 +1,7 @@
 import * as React from "react"
 import { type VariantProps, cva } from "class-variance-authority"
+import { X } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { IconSlot } from "@/registry/icon/icon-library"
 
 export type AlertProps = Omit<
 	React.HTMLAttributes<HTMLDivElement>,
@@ -19,7 +19,7 @@ export type AlertIconProps = React.HTMLAttributes<HTMLDivElement>
 export type AlertToolbarProps = React.HTMLAttributes<HTMLDivElement>
 
 const alertVariants = cva(
-	"flex items-stretch w-full gap-3 rounded-lg p-3 [&>[data-slot=alert-title]]:font-medium [&>[data-slot=alert-title]]:text-sm [&>[data-slot=alert-title]]:mt-0.75 [&>[data-slot=alert-description]]:text-sm [&>[data-slot=alert-icon]>svg]:size-5 [&_[data-slot=alert-icon]]:mt-0.75 [&_[data-slot=alert-close]]:mt-0.75",
+	"flex items-stretch w-full gap-3 p-3 [&>[data-slot=alert-title]]:font-medium [&>[data-slot=alert-title]]:text-sm [&>[data-slot=alert-title]]:mt-0.75 [&>[data-slot=alert-description]]:text-sm [&>[data-slot=alert-icon]>svg]:size-5 [&_[data-slot=alert-icon]]:mt-0.75 [&_[data-slot=alert-close]]:mt-0.75",
 	{
 		variants: {
 			color: {
@@ -187,10 +187,7 @@ function Alert({
 					className={cn(
 						"group flex size-5 shrink-0 cursor-pointer items-center justify-center"
 					)}>
-					<IconSlot
-						slot="cross"
-						className="size-4 opacity-60 group-hover:opacity-100"
-					/>
+					<X className="size-4 opacity-60 group-hover:opacity-100" />
 				</button>
 			)}
 		</div>

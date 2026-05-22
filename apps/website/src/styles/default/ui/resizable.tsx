@@ -1,9 +1,9 @@
 "use client"
 
 import * as React from "react"
+import { GripVertical } from "lucide-react"
 import * as ResizablePrimitive from "react-resizable-panels"
 import { cn } from "@/lib/utils"
-import { IconSlot } from "@/registry/icon/icon-library"
 
 export type ResizablePanelGroupProps = React.ComponentProps<
 	typeof ResizablePrimitive.PanelGroup
@@ -53,8 +53,8 @@ function ResizableHandle({
 			)}
 			{...props}>
 			{withHandle && (
-				<div className="bg-border rounded-xs z-10 flex h-4 w-3 items-center justify-center border">
-					<IconSlot slot="grip" className="size-2.5" />
+				<div className="bg-border z-10 flex h-4 w-3 items-center justify-center border">
+					<GripVertical className="size-2.5" />
 				</div>
 			)}
 		</ResizablePrimitive.PanelResizeHandle>

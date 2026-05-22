@@ -3,8 +3,8 @@
 import * as React from "react"
 import * as SelectPrimitive from "@radix-ui/react-select"
 import { type VariantProps, cva } from "class-variance-authority"
+import { Check, ChevronDown, ChevronUp } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { IconSlot } from "@/registry/icon/icon-library"
 
 export type SelectContextType = {
 	indicatorPosition?: "left" | "right"
@@ -51,12 +51,12 @@ const selectTriggerVariants = cva(
 	{
 		variants: {
 			size: {
-				"28": "gap-0.5 h-7 rounded-md px-2 py-1.5 text-[13px]",
-				"32": "gap-0.5 h-8 rounded-md px-2 py-1.5 text-sm",
-				"36": "gap-1 h-9 rounded-lg px-2.5 py-2 text-sm",
-				"40": "gap-1 h-10 rounded-lg px-3 py-2.5 text-sm",
-				"44": "gap-1 h-11 rounded-lg px-3 py-2.5 text-base",
-				"48": "gap-1 h-12 rounded-lg px-3.5 py-3 text-base",
+				"28": "gap-0.5 h-7 px-2 py-1.5 text-[13px]",
+				"32": "gap-0.5 h-8 px-2 py-1.5 text-sm",
+				"36": "gap-1 h-9 px-2.5 py-2 text-sm",
+				"40": "gap-1 h-10 px-3 py-2.5 text-sm",
+				"44": "gap-1 h-11 px-3 py-2.5 text-base",
+				"48": "gap-1 h-12 px-3.5 py-3 text-base",
 			},
 		},
 		defaultVariants: {
@@ -108,7 +108,7 @@ function SelectTrigger({
 			{...props}>
 			{children}
 			<SelectPrimitive.Icon asChild>
-				<IconSlot slot="down" className="-me-0.5 ml-auto size-5 opacity-60" />
+				<ChevronDown className="-me-0.5 ml-auto size-5 opacity-60" />
 			</SelectPrimitive.Icon>
 		</SelectPrimitive.Trigger>
 	)
@@ -126,7 +126,7 @@ function SelectScrollUpButton({
 				className
 			)}
 			{...props}>
-			<IconSlot slot="up" className="h-4 w-4" />
+			<ChevronUp className="h-4 w-4" />
 		</SelectPrimitive.ScrollUpButton>
 	)
 }
@@ -143,7 +143,7 @@ function SelectScrollDownButton({
 				className
 			)}
 			{...props}>
-			<IconSlot slot="down" className="h-4 w-4" />
+			<ChevronDown className="h-4 w-4" />
 		</SelectPrimitive.ScrollDownButton>
 	)
 }
@@ -159,7 +159,7 @@ function SelectContent({
 			<SelectPrimitive.Content
 				data-slot="select-content"
 				className={cn(
-					"data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 max-h-(--radix-select-content-available-height) origin-(--radix-select-content-transform-origin) border-border bg-popover text-fg relative z-50 min-w-[8rem] overflow-y-auto overflow-x-hidden rounded-md border shadow-md shadow-black/5",
+					"data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 max-h-(--radix-select-content-available-height) origin-(--radix-select-content-transform-origin) border-border bg-popover text-fg relative z-50 min-w-[8rem] overflow-y-auto overflow-x-hidden border shadow-md shadow-black/5",
 					position === "popper" &&
 						"data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1.5 data-[side=right]:translate-x-1.5 data-[side=top]:-translate-y-1",
 					className
@@ -201,7 +201,7 @@ function SelectItem({ className, children, ...props }: SelectItemProps) {
 		<SelectPrimitive.Item
 			data-slot="select-item"
 			className={cn(
-				"outline-hidden focus:bg-fill2-alpha data-disabled:pointer-events-none data-disabled:opacity-50 relative flex w-full cursor-pointer select-none items-center rounded-sm py-1.5 text-sm",
+				"outline-hidden focus:bg-fill2-alpha data-disabled:pointer-events-none data-disabled:opacity-50 relative flex w-full cursor-pointer select-none items-center py-1.5 text-sm",
 				indicatorPosition === "left" ? "pe-2 ps-8" : "pe-8 ps-2",
 				className
 			)}
@@ -216,7 +216,7 @@ function SelectItem({ className, children, ...props }: SelectItemProps) {
 							indicatorPosition === "left" ? "start-2" : "end-2"
 						)}>
 						<SelectPrimitive.ItemIndicator>
-							<IconSlot slot="check" className="text-fg-secondary size-5" />
+							<Check className="text-fg-secondary size-5" />
 						</SelectPrimitive.ItemIndicator>
 					</span>
 				))}

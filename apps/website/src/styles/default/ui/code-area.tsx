@@ -156,7 +156,7 @@ function CodeArea({
 	return (
 		<div
 			className={cn(
-				"no-scrollbar relative box-border overflow-auto rounded-xl text-sm",
+				"no-scrollbar relative box-border overflow-auto text-sm",
 				className
 			)}>
 			<ShikiHighlighter

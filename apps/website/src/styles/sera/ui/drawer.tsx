@@ -49,9 +49,9 @@ const drawerVariants = cva(
 	{
 		variants: {
 			variant: {
-				float: "outline-border rounded-none shadow-none outline",
+				float: "outline-border shadow-none outline",
 				default: "outline-border outline",
-				rounded: "outline-border rounded-none outline",
+				rounded: "outline-border outline",
 			},
 			direction: {
 				top: "top-0 w-full h-fit left-0 max-h-full",
@@ -116,22 +116,22 @@ const drawerVariants = cva(
 			{
 				variant: "rounded",
 				direction: "top",
-				className: "rounded-none",
+				className: "",
 			},
 			{
 				variant: "rounded",
 				direction: "bottom",
-				className: "rounded-none",
+				className: "",
 			},
 			{
 				variant: "rounded",
 				direction: "left",
-				className: "rounded-none",
+				className: "",
 			},
 			{
 				variant: "rounded",
 				direction: "right",
-				className: "rounded-none",
+				className: "",
 			},
 		],
 	}

@@ -96,24 +96,7 @@ function ActivitySpinner({
 			focusable="false"
 			{...props}>
 			<style>
-				{`
-				.spinner-line {
-					animation: spinner-fade 1.2s linear infinite;
-				}
-				.spinner-line:nth-child(2) { animation-delay: 0s; }
-				.spinner-line:nth-child(3) { animation-delay: -1.05s; }
-				.spinner-line:nth-child(4) { animation-delay: -0.9s; }
-				.spinner-line:nth-child(5) { animation-delay: -0.75s; }
-				.spinner-line:nth-child(6) { animation-delay: -0.6s; }
-				.spinner-line:nth-child(7) { animation-delay: -0.45s; }
-				.spinner-line:nth-child(8) { animation-delay: -0.3s; }
-				.spinner-line:nth-child(9) { animation-delay: -0.15s; }
-				
-				@keyframes spinner-fade {
-					0%, 12.5% { opacity: 0.9; }
-					100% { opacity: 0.125; }
-				}
-				`}
+				{`.spinner-line { animation: spinner-fade 1.2s linear infinite; } .spinner-line:nth-child(2) { animation-delay: 0s; } .spinner-line:nth-child(3) { animation-delay: -1.05s; } .spinner-line:nth-child(4) { animation-delay: -0.9s; } .spinner-line:nth-child(5) { animation-delay: -0.75s; } .spinner-line:nth-child(6) { animation-delay: -0.6s; } .spinner-line:nth-child(7) { animation-delay: -0.45s; } .spinner-line:nth-child(8) { animation-delay: -0.3s; } .spinner-line:nth-child(9) { animation-delay: -0.15s; } @keyframes spinner-fade { 0%, 12.5% { opacity: 0.9; } 100% { opacity: 0.125; } }`}
 			</style>
 			{/* Top */}
 			<path
@@ -211,31 +194,7 @@ function WaveSpinner({
 			focusable="false"
 			{...props}>
 			<style>
-				{`
-				@keyframes wave1 {
-					0%, 100% { transform: translateY(0); }
-					20% { transform: translateY(-3px); }
-					40% { transform: translateY(3px); }
-					60%, 80% { transform: translateY(0); }
-				}
-				
-				@keyframes wave2 {
-					0%, 20%, 100% { transform: translateY(0); }
-					40% { transform: translateY(-3px); }
-					60% { transform: translateY(3px); }
-					80% { transform: translateY(0); }
-				}
-				
-				@keyframes wave3 {
-					0%, 40%, 100% { transform: translateY(0); }
-					60% { transform: translateY(-3px); }
-					80% { transform: translateY(3px); }
-				}
-
-				.wave-dot1 { animation: wave1 1s linear infinite; }
-				.wave-dot2 { animation: wave2 1s linear infinite; }
-				.wave-dot3 { animation: wave3 1s linear infinite; }
-				`}
+				{`@keyframes wave1 { 0%, 100% { transform: translateY(0); } 20% { transform: translateY(-3px); } 40% { transform: translateY(3px); } 60%, 80% { transform: translateY(0); } } @keyframes wave2 { 0%, 20%, 100% { transform: translateY(0); } 40% { transform: translateY(-3px); } 60% { transform: translateY(3px); } 80% { transform: translateY(0); } } @keyframes wave3 { 0%, 40%, 100% { transform: translateY(0); } 60% { transform: translateY(-3px); } 80% { transform: translateY(3px); } } .wave-dot1 { animation: wave1 1s linear infinite; } .wave-dot2 { animation: wave2 1s linear infinite; } .wave-dot3 { animation: wave3 1s linear infinite; }`}
 			</style>
 			<path
 				d="M19 13C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11C18.4477 11 18 11.4477 18 12C18 12.5523 18.4477 13 19 13Z"

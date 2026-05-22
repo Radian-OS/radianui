@@ -19,9 +19,9 @@ const badgeVariants = cva(
 				soft: "",
 			},
 			size: {
-				"20": "h-5 rounded-md px-1.5 text-xs [&_svg]:size-3.5",
-				"24": "h-6 rounded-md px-2 text-[13px] [&_svg]:size-3.5",
-				"28": "h-7 rounded-md px-2 text-sm [&_svg]:size-4",
+				"20": "h-5 px-1.5 text-xs [&_svg]:size-3.5",
+				"24": "h-6 px-2 text-[13px] [&_svg]:size-3.5",
+				"28": "h-7 px-2 text-sm [&_svg]:size-4",
 			},
 			color: {
 				primary: "",
@@ -172,10 +172,7 @@ function BadgeDot({ className, ...props }: BadgeDotProps) {
 	return (
 		<span
 			data-slot="badge-dot"
-			className={cn(
-				"size-1.5 shrink-0 rounded-full bg-[currentColor]",
-				className
-			)}
+			className={cn("size-1.5 shrink-0 bg-[currentColor]", className)}
 			{...props}
 		/>
 	)

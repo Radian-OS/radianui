@@ -3,8 +3,8 @@
 import React from "react"
 import * as AccordionPrimitive from "@radix-ui/react-accordion"
 import { type VariantProps, cva } from "class-variance-authority"
+import { ChevronDown, Plus } from "lucide-react"
 import { cn as classNames } from "@/lib/utils"
-import { IconSlot } from "@/registry/icon/icon-library"
 
 export type AccordionContextType = {
 	size?: VariantProps<typeof accordionVariants>["size"]
@@ -41,7 +41,7 @@ const accordionVariants = cva("w-full", {
 		},
 		variant: {
 			box: "",
-			table: "border-border rounded-none border",
+			table: "border-border border",
 			open: "",
 		},
 	},
@@ -54,8 +54,8 @@ const accordionVariants = cva("w-full", {
 const accordionItemVariants = cva("overflow-hidden", {
 	variants: {
 		variant: {
-			box: "border-border rounded-none border shadow-none last:mb-0",
-			table: "border-b first:rounded-none last:rounded-none last:border-b-0",
+			box: "r-accordion-item-variant-box border-border border shadow-none last:mb-0",
+			table: "border-b last:border-b-0",
 			open: "border-b last:border-b-0",
 		},
 		size: {
@@ -254,15 +254,13 @@ function AccordionTrigger({
 				{...props}>
 				{children}
 				{indicator === "chevron" && (
-					<IconSlot
-						slot="down"
+					<ChevronDown
 						className="AccordionChevron shrink-0 transition-transform duration-200"
 						aria-hidden
 					/>
 				)}
 				{indicator === "plus-minus" && (
-					<IconSlot
-						slot="plus"
+					<Plus
 						className="AccordionPlus shrink-0 transition-transform duration-200"
 						aria-hidden
 					/>

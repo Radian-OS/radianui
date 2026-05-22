@@ -37,7 +37,7 @@ function Slider({
 			<SliderPrimitive.Track
 				data-slot="slider-track"
 				className={cn(
-					"data-horizontal:h-1 data-vertical:h-full data-horizontal:w-full data-vertical:w-2 bg-fill3 relative h-2 grow overflow-hidden rounded-full",
+					"data-horizontal:h-1 data-vertical:h-full data-horizontal:w-full data-vertical:w-2 bg-fill3 relative h-2 grow overflow-hidden",
 					classNames?.sliderTrack
 				)}>
 				<SliderPrimitive.Range
@@ -58,7 +58,7 @@ function SliderThumb({ className, ...props }: SliderThumbProps) {
 		<SliderPrimitive.Thumb
 			data-slot="slider-thumb"
 			className={cn(
-				"focus-visible:outline-hidden data-disabled:cursor-not-allowed border-primary bg-bg drop-shadow-xs block size-4 cursor-pointer rounded-full border-2 transition-colors",
+				"focus-visible:outline-hidden data-disabled:cursor-not-allowed border-primary bg-bg drop-shadow-xs block size-4 cursor-pointer border-2 transition-colors",
 				className
 			)}
 			{...props}
