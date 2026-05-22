@@ -19,7 +19,6 @@ import {
 } from "@/registry/icon/icon-libraries"
 import { PRIMARY_COLORS, PrimaryColorValue } from "@/registry/primary-colors"
 import { RadiusValue } from "@/registry/radius"
-import { registryExampleGroups } from "@/registry/registry-map"
 import { STYLES, StyleValue } from "@/registry/styles"
 import {
 	Dropdown,
@@ -60,10 +59,61 @@ const BLOCK_PREVIEWS = [
 	description: "Block preview",
 }))
 
-const COMPONENT_PREVIEWS = registryExampleGroups.map((group) => ({
+const COMPONENT_PREVIEW_GROUPS = [
+	{ name: "accordion", examplesCount: 10 },
+	{ name: "alert", examplesCount: 8 },
+	{ name: "alert-dialog", examplesCount: 6 },
+	{ name: "aspect-ratio", examplesCount: 4 },
+	{ name: "auth-blocks", examplesCount: 5 },
+	{ name: "avatar", examplesCount: 9 },
+	{ name: "badge", examplesCount: 10 },
+	{ name: "banner", examplesCount: 8 },
+	{ name: "breadcrumb", examplesCount: 6 },
+	{ name: "button", examplesCount: 21 },
+	{ name: "calendar", examplesCount: 8 },
+	{ name: "card", examplesCount: 3 },
+	{ name: "carousel", examplesCount: 8 },
+	{ name: "checkbox", examplesCount: 8 },
+	{ name: "code-area", examplesCount: 5 },
+	{ name: "collapsible", examplesCount: 4 },
+	{ name: "combobox", examplesCount: 7 },
+	{ name: "command", examplesCount: 1 },
+	{ name: "currency-input", examplesCount: 13 },
+	{ name: "date-picker", examplesCount: 4 },
+	{ name: "dialog", examplesCount: 7 },
+	{ name: "divider", examplesCount: 4 },
+	{ name: "drawer", examplesCount: 5 },
+	{ name: "dropdown", examplesCount: 5 },
+	{ name: "empty", examplesCount: 12 },
+	{ name: "file-upload", examplesCount: 5 },
+	{ name: "form", examplesCount: 3 },
+	{ name: "hover-card", examplesCount: 5 },
+	{ name: "input", examplesCount: 19 },
+	{ name: "label", examplesCount: 1 },
+	{ name: "otp-field", examplesCount: 7 },
+	{ name: "pagination", examplesCount: 4 },
+	{ name: "phone-number-input", examplesCount: 8 },
+	{ name: "popover", examplesCount: 5 },
+	{ name: "progress", examplesCount: 3 },
+	{ name: "radio-group", examplesCount: 4 },
+	{ name: "resizable", examplesCount: 3 },
+	{ name: "scroll-area", examplesCount: 1 },
+	{ name: "select", examplesCount: 8 },
+	{ name: "skeleton", examplesCount: 1 },
+	{ name: "slider", examplesCount: 7 },
+	{ name: "sonner", examplesCount: 5 },
+	{ name: "spinner", examplesCount: 3 },
+	{ name: "switch", examplesCount: 10 },
+	{ name: "table", examplesCount: 6 },
+	{ name: "tabs", examplesCount: 13 },
+	{ name: "text-area", examplesCount: 4 },
+	{ name: "tooltip", examplesCount: 9 },
+]
+
+const COMPONENT_PREVIEWS = COMPONENT_PREVIEW_GROUPS.map((group) => ({
 	value: group.name,
 	label: humanizeName(group.name),
-	description: `${group.examples.length} examples`,
+	description: `${group.examplesCount} examples`,
 }))
 
 const PREVIEW_ITEMS = [...BLOCK_PREVIEWS, ...COMPONENT_PREVIEWS]

@@ -408,13 +408,13 @@
 
 	/* Size variants */
 	.cn-badge-size-20 {
-		@apply h-5 rounded-md px-1.5 text-xs [&_svg]:size-3.5;
+		@apply h-5 rounded-control-sm px-1.5 text-xs [&_svg]:size-3.5;
 	}
 	.cn-badge-size-24 {
-		@apply h-6 rounded-md px-2 text-[13px] [&_svg]:size-3.5;
+		@apply h-6 rounded-control-sm px-2 text-[13px] [&_svg]:size-3.5;
 	}
 	.cn-badge-size-28 {
-		@apply h-7 rounded-md px-2 text-sm [&_svg]:size-4;
+		@apply h-7 rounded-control-sm px-2 text-sm [&_svg]:size-4;
 	}
 
 	/* Color base (neutral only — others are fully defined via compound variants) */
@@ -1016,7 +1016,7 @@
 	/* MARK: Calendar */
 
 	.cn-calendar {
-		@apply bg-card border-border rounded-xl border p-3;
+		@apply bg-card border-border rounded-surface border p-3;
 	}
 
 	.cn-calendar-month-caption {
@@ -1036,7 +1036,7 @@
 	}
 
 	.cn-calendar-day-button {
-		@apply text-fg rounded-lg text-sm font-medium;
+		@apply text-fg rounded-control text-sm font-medium;
 		@apply hover:bg-fill1-alpha;
 		@apply hover:group-data-selected:bg-primary;
 		@apply group-data-disabled:line-through;
@@ -1071,7 +1071,7 @@
 
 	/* MARK: Card */
 	.cn-card {
-		@apply bg-card border-border gap-6 rounded-xl border py-6 shadow-sm;
+		@apply bg-card border-border gap-6 rounded-surface border py-6 shadow-sm;
 	}
 
 	.cn-card-header {
@@ -1367,7 +1367,7 @@
 	}
 
 	.cn-dropdown-content {
-		@apply border-border bg-popover drop-shadow-xs min-w-[var(--radix-dropdown-menu-trigger-width)] gap-0.5 rounded-lg border p-1.5;
+		@apply border-border bg-popover drop-shadow-xs min-w-[var(--radix-dropdown-menu-trigger-width)] gap-0.5 rounded-surface-sm border p-1.5;
 	}
 
 	.cn-dropdown-item {
@@ -1712,7 +1712,7 @@
 	}
 
 	.cn-switch-shape-pill {
-		@apply rounded-full;
+		@apply rounded-pill;
 	}
 
 	.cn-switch-shape-square {
@@ -1916,7 +1916,7 @@
 	}
 
 	.cn-textarea-rounded {
-		@apply rounded-md;
+		@apply rounded-element;
 	}
 
 	.cn-textarea-square {

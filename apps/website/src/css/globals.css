@@ -125,24 +125,20 @@
 	--heading-font: var(--font-geist), system-ui, sans-serif;
 	--body-font: var(--font-inter), system-ui, sans-serif;
 
-	--shadow-2xs: var(--shadow-2xs);
-	--shadow-xs: var(--shadow-xs);
-	--shadow-sm: var(--shadow-sm);
-	--shadow: var(--shadow);
-	--shadow-md: var(--shadow-md);
-	--shadow-lg: var(--shadow-lg);
-	--shadow-xl: var(--shadow-xl);
-	--shadow-2xl: var(--shadow-2xl);
 
-	--radius-control-sm: calc(var(--radius-control) - 4px);
-	--radius-control: calc(infinity * 1px);
-	--radius-surface-sm: calc(var(--radius-surface) - 4px);
+
+	/* Control Category - Button/Input/Select/OTP/Badge */
+	--radius-control-sm: 6px;
+	--radius-control: 8px;
+	/* Surface Category - Accordion/Alert/Dropdown/Sonner/CodeArea/HoverCard/Drawer */
+	--radius-surface-sm: 8px;
 	--radius-surface: 12px;
+	/* Pill Category - Avatar/Progress/Slider/Switch */
 	--radius-pill: var(--rounded-full);
+	/* Checkbox/CompactButton/Tooltip/Textarea/Tabs */
 	--radius-element-sm: 4px;
 	--radius-element: 6px;
 	--radius-element-lg: 8px;
-	--radius-badge: var(--rounded-md);
 }
 
 .dark {
