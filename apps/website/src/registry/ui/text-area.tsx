@@ -8,24 +8,24 @@ export type TextAreaProps = React.ComponentProps<"textarea"> &
 	VariantProps<typeof textareaStyles> & {
 		resizable?: boolean
 	}
-
 export type UseCharacterLimitOptions = {
 	maxLength: number
 	initialValue?: string
 }
-
-const textareaStyles = cva("cn-textarea peer w-full focus:outline-hidden", {
-	variants: {
-		rounded: {
-			rounded: "cn-textarea-rounded",
-			square: "cn-textarea-square",
+const textareaStyles = cva(
+	"r-textarea cn-textarea peer w-full focus:outline-hidden",
+	{
+		variants: {
+			rounded: {
+				rounded: "r-textarea-rounded cn-textarea-rounded",
+				square: "r-textarea-square cn-textarea-square",
+			},
 		},
-	},
-	defaultVariants: {
-		rounded: "rounded",
-	},
-})
-
+		defaultVariants: {
+			rounded: "rounded",
+		},
+	}
+)
 function TextArea({
 	className,
 	rounded = "rounded",
@@ -48,9 +48,7 @@ function TextArea({
 		/>
 	)
 }
-
 TextArea.displayName = "TextArea"
-
 function useCharacterLimit({
 	maxLength,
 	initialValue = "",
@@ -58,14 +56,12 @@ function useCharacterLimit({
 	const [value, setValue] = useState(initialValue)
 	const characterCount = value.length
 	const remainingCharacters = maxLength - characterCount
-
 	const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
 		const input = e.target.value
 		if (input.length <= maxLength) {
 			setValue(input)
 		}
 	}
-
 	return {
 		value,
 		setValue,
@@ -75,5 +71,4 @@ function useCharacterLimit({
 		handleChange,
 	}
 }
-
 export { TextArea, useCharacterLimit }

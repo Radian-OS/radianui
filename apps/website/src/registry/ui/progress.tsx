@@ -7,7 +7,6 @@ export type ProgressProps = React.ComponentProps<
 > & {
 	indicatorClassName?: string
 }
-
 function Progress({
 	value,
 	className,
@@ -17,13 +16,13 @@ function Progress({
 	return (
 		<ProgressPrimitive.Root
 			className={cn(
-				"cn-progress translate-z-0 relative w-full transform overflow-hidden",
+				"r-progress cn-progress translate-z-0 relative w-full transform overflow-hidden",
 				className
 			)}
 			{...props}>
 			<ProgressPrimitive.Indicator
 				className={cn(
-					"cn-progress-indicator h-full w-full transition-transform [transition-timing-function:cubic-bezier(0,0,1,1)]",
+					"r-progress-indicator cn-progress-indicator h-full w-full transition-transform [transition-timing-function:cubic-bezier(0,0,1,1)]",
 					indicatorClassName
 				)}
 				style={{ transform: `translateX(-${100 - (value || 0)}%)` }}
@@ -31,6 +30,5 @@ function Progress({
 		</ProgressPrimitive.Root>
 	)
 }
-
 Progress.displayName = ProgressPrimitive.Root.displayName
 export { Progress }

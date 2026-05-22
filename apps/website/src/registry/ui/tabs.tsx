@@ -37,11 +37,13 @@ const tabsListStyles = cva(
 				full: "data-[orientation=horizontal]:w-full data-[orientation=horizontal]:items-stretch data-[orientation=horizontal]:*:flex-1",
 			},
 			variant: {
-				default: "cn-tabs-list-variant-default",
-				open: "cn-tabs-list-variant-open data-[orientation=horizontal]:border-b data-[orientation=vertical]:border-r",
-				outline: "cn-tabs-list-variant-outline border",
-				ghost: "cn-tabs-list-variant-ghost",
-				"outline-ghost": "cn-tabs-list-variant-outline-ghost",
+				default: "r-tabs-list-variant-default cn-tabs-list-variant-default",
+				open: "r-tabs-list-variant-open cn-tabs-list-variant-open data-[orientation=horizontal]:border-b data-[orientation=vertical]:border-r",
+				outline:
+					"r-tabs-list-variant-outline cn-tabs-list-variant-outline border",
+				ghost: "r-tabs-list-variant-ghost cn-tabs-list-variant-ghost",
+				"outline-ghost":
+					"r-tabs-list-variant-outline-ghost cn-tabs-list-variant-outline-ghost",
 			},
 		},
 		defaultVariants: {
@@ -53,32 +55,32 @@ const tabsListStyles = cva(
 			{
 				size: ["sm", "md", "lg"],
 				variant: "default",
-				className: "cn-tabs-list-default-padded",
+				className: "r-tabs-list-default-padded cn-tabs-list-default-padded",
 			},
 			{
 				size: "sm",
 				variant: ["default", "outline", "ghost"],
-				className: "cn-tabs-list-rounded-md",
+				className: "r-tabs-list-rounded-md cn-tabs-list-rounded-md",
 			},
 			{
 				size: "md",
 				variant: ["default", "outline", "ghost"],
-				className: "cn-tabs-list-rounded-md",
+				className: "r-tabs-list-rounded-md cn-tabs-list-rounded-md",
 			},
 			{
 				size: "lg",
 				variant: ["default", "outline", "ghost"],
-				className: "cn-tabs-list-rounded-lg",
+				className: "r-tabs-list-rounded-lg cn-tabs-list-rounded-lg",
 			},
 			{
 				size: ["sm", "md"],
 				variant: "open",
-				className: "cn-tabs-list-open-gap-sm",
+				className: "r-tabs-list-open-gap-sm cn-tabs-list-open-gap-sm",
 			},
 			{
 				size: "lg",
 				variant: "open",
-				className: "cn-tabs-list-open-gap-lg",
+				className: "r-tabs-list-open-gap-lg cn-tabs-list-open-gap-lg",
 			},
 		],
 	}
@@ -95,91 +97,95 @@ const tabsTriggerStyles = cva(
 			},
 			variant: {
 				default:
-					"cn-tabs-trigger-variant-default data-[state=active]:border data-[state=active]:border-soft-alpha border border-transparent",
+					"r-tabs-trigger-variant-default cn-tabs-trigger-variant-default data-[state=active]:border data-[state=active]:border-soft-alpha border border-transparent",
 				outline:
-					"cn-tabs-trigger-variant-outline data-[orientation=horizontal]:not-last:border-r data-[orientation=vertical]:not-last:border-b border-border",
-				open: "cn-tabs-trigger-variant-open border-transparent data-[orientation=horizontal]:border-b-2 data-[orientation=vertical]:border-r-2 data-[state=active]:border-primary",
-				ghost: "cn-tabs-trigger-variant-ghost",
+					"r-tabs-trigger-variant-outline cn-tabs-trigger-variant-outline data-[orientation=horizontal]:not-last:border-r data-[orientation=vertical]:not-last:border-b border-border",
+				open: "r-tabs-trigger-variant-open cn-tabs-trigger-variant-open border-transparent data-[orientation=horizontal]:border-b-2 data-[orientation=vertical]:border-r-2 data-[state=active]:border-primary",
+				ghost: "r-tabs-trigger-variant-ghost cn-tabs-trigger-variant-ghost",
 				"outline-ghost":
-					"cn-tabs-trigger-variant-outline-ghost border border-transparent data-[state=active]:border-soft",
+					"r-tabs-trigger-variant-outline-ghost cn-tabs-trigger-variant-outline-ghost border border-transparent data-[state=active]:border-soft",
 			},
 		},
 		compoundVariants: [
 			{
 				size: "sm",
 				variant: ["default"],
-				className: "cn-tabs-trigger-default-sm h-full",
+				className:
+					"r-tabs-trigger-default-sm cn-tabs-trigger-default-sm h-full",
 			},
 			{
 				size: "md",
 				variant: ["default"],
-				className: "cn-tabs-trigger-default-md h-full",
+				className:
+					"r-tabs-trigger-default-md cn-tabs-trigger-default-md h-full",
 			},
 			{
 				size: "lg",
 				variant: ["default"],
-				className: "cn-tabs-trigger-default-lg h-full",
+				className:
+					"r-tabs-trigger-default-lg cn-tabs-trigger-default-lg h-full",
 			},
 			{
 				size: "sm",
 				variant: ["outline", "ghost", "outline-ghost"],
-				className: "cn-tabs-trigger-soft-sm data-[orientation=horizontal]:h-7",
+				className:
+					"r-tabs-trigger-soft-sm cn-tabs-trigger-soft-sm data-[orientation=horizontal]:h-7",
 			},
 			{
 				size: "md",
 				variant: ["outline", "ghost", "outline-ghost"],
-				className: "cn-tabs-trigger-soft-md",
+				className: "r-tabs-trigger-soft-md cn-tabs-trigger-soft-md",
 			},
 			{
 				size: "lg",
 				variant: ["outline", "ghost", "outline-ghost"],
-				className: "cn-tabs-trigger-soft-lg",
+				className: "r-tabs-trigger-soft-lg cn-tabs-trigger-soft-lg",
 			},
 			{
 				size: "sm",
 				variant: "open",
-				className: "cn-tabs-trigger-open-sm h-7",
+				className: "r-tabs-trigger-open-sm cn-tabs-trigger-open-sm h-7",
 			},
 			{
 				size: "md",
 				variant: "open",
-				className: "cn-tabs-trigger-open-md h-9",
+				className: "r-tabs-trigger-open-md cn-tabs-trigger-open-md h-9",
 			},
 			{
 				size: "lg",
 				variant: "open",
-				className: "cn-tabs-trigger-open-lg h-11",
+				className: "r-tabs-trigger-open-lg cn-tabs-trigger-open-lg h-11",
 			},
 			{
 				size: "sm",
 				variant: "outline",
-				className: "cn-tabs-trigger-outline-sm",
+				className: "r-tabs-trigger-outline-sm cn-tabs-trigger-outline-sm",
 			},
 			{
 				size: "md",
 				variant: "outline",
-				className: "cn-tabs-trigger-outline-md",
+				className: "r-tabs-trigger-outline-md cn-tabs-trigger-outline-md",
 			},
 			{
 				size: "lg",
 				variant: "outline",
 				className:
-					"cn-tabs-trigger-outline-lg data-[orientation=horizontal]:h-11",
+					"r-tabs-trigger-outline-lg cn-tabs-trigger-outline-lg data-[orientation=horizontal]:h-11",
 			},
 			{
 				size: "sm",
 				variant: ["ghost", "outline-ghost"],
-				className: "cn-tabs-trigger-ghost-sm",
+				className: "r-tabs-trigger-ghost-sm cn-tabs-trigger-ghost-sm",
 			},
 			{
 				size: "md",
 				variant: ["ghost", "outline-ghost"],
-				className: "cn-tabs-trigger-ghost-md h-full",
+				className: "r-tabs-trigger-ghost-md cn-tabs-trigger-ghost-md h-full",
 			},
 			{
 				size: "lg",
 				variant: ["ghost", "outline-ghost"],
-				className: "cn-tabs-trigger-ghost-lg h-full",
+				className: "r-tabs-trigger-ghost-lg cn-tabs-trigger-ghost-lg h-full",
 			},
 		],
 		defaultVariants: {

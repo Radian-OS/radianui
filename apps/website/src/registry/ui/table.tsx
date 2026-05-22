@@ -9,48 +9,44 @@ export type TableRowProps = React.HTMLAttributes<HTMLTableRowElement>
 export type TableHeadProps = React.ComponentProps<"th">
 export type TableCellProps = React.ComponentProps<"td">
 export type TableCaptionProps = React.HTMLAttributes<HTMLTableCaptionElement>
-
 function Table({ className, ...props }: TableProps) {
 	return (
 		<div data-slot="table-wrapper" className="relative w-full overflow-auto">
 			<table
 				data-slot="table"
-				className={cn("cn-table w-full caption-bottom", className)}
+				className={cn("r-table cn-table w-full caption-bottom", className)}
 				{...props}
 			/>
 		</div>
 	)
 }
 Table.displayName = "Table"
-
 function TableHeader({ className, ...props }: TableHeaderProps) {
 	return (
 		<thead
 			data-slot="table-header"
-			className={cn("cn-table-header", className)}
+			className={cn("r-table-header cn-table-header", className)}
 			{...props}
 		/>
 	)
 }
 TableHeader.displayName = "TableHeader"
-
 function TableBody({ className, ...props }: TableBodyProps) {
 	return (
 		<tbody
 			data-slot="table-body"
-			className={cn("cn-table-body", className)}
+			className={cn("r-table-body cn-table-body", className)}
 			{...props}
 		/>
 	)
 }
 TableBody.displayName = "TableBody"
-
 function TableFooter({ className, ...props }: TableFooterProps) {
 	return (
 		<tfoot
 			data-slot="table-footer"
 			className={cn(
-				"cn-table-footer font-medium last:[&>tr]:border-b-0",
+				"r-table-footer cn-table-footer font-medium last:[&>tr]:border-b-0",
 				className
 			)}
 			{...props}
@@ -58,24 +54,25 @@ function TableFooter({ className, ...props }: TableFooterProps) {
 	)
 }
 TableFooter.displayName = "TableFooter"
-
 function TableRow({ className, ...props }: TableRowProps) {
 	return (
 		<tr
 			data-slot="table-row"
-			className={cn("cn-table-row border-b transition-colors", className)}
+			className={cn(
+				"r-table-row cn-table-row border-b transition-colors",
+				className
+			)}
 			{...props}
 		/>
 	)
 }
 TableRow.displayName = "TableRow"
-
 function TableHead({ className, ...props }: TableHeadProps) {
 	return (
 		<th
 			data-slot="table-head"
 			className={cn(
-				"cn-table-head text-left align-middle has-[role=checkbox]:w-px [&:has([role=checkbox])]:pr-0",
+				"r-table-head cn-table-head text-left align-middle has-[role=checkbox]:w-px [&:has([role=checkbox])]:pr-0",
 				className
 			)}
 			{...props}
@@ -83,13 +80,12 @@ function TableHead({ className, ...props }: TableHeadProps) {
 	)
 }
 TableHead.displayName = "TableHead"
-
 function TableCell({ className, ...props }: TableCellProps) {
 	return (
 		<td
 			data-slot="table-cell"
 			className={cn(
-				"cn-table-cell align-middle [&:has([role=checkbox])]:pr-0",
+				"r-table-cell cn-table-cell align-middle [&:has([role=checkbox])]:pr-0",
 				className
 			)}
 			{...props}
@@ -97,18 +93,16 @@ function TableCell({ className, ...props }: TableCellProps) {
 	)
 }
 TableCell.displayName = "TableCell"
-
 function TableCaption({ className, ...props }: TableCaptionProps) {
 	return (
 		<caption
 			data-slot="table-caption"
-			className={cn("cn-table-caption", className)}
+			className={cn("r-table-caption cn-table-caption", className)}
 			{...props}
 		/>
 	)
 }
 TableCaption.displayName = "TableCaption"
-
 export {
 	Table,
 	TableBody,

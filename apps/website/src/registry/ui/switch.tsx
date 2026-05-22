@@ -18,21 +18,21 @@ const SwitchContext = React.createContext<SwitchContextType>({
 })
 
 const switchVariants = cva(
-	"cn-switch relative peer inline-flex shrink-0 cursor-pointer items-center transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border aria-invalid:border-error aria-invalid:ring-error [[data-invalid=true]_&]:border [[data-invalid=true]_&]:border-error [[data-invalid=true]_&]:ring-error",
+	"r-switch cn-switch relative peer inline-flex shrink-0 cursor-pointer items-center transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border aria-invalid:border-error aria-invalid:ring-error [[data-invalid=true]_&]:border [[data-invalid=true]_&]:border-error [[data-invalid=true]_&]:ring-error",
 	{
 		variants: {
 			shape: {
-				pill: "cn-switch-shape-pill",
-				square: "cn-switch-shape-square",
+				pill: "r-switch-shape-pill cn-switch-shape-pill",
+				square: "r-switch-shape-square cn-switch-shape-square",
 			},
 			size: {
-				"20": "cn-switch-20 w-8.5 h-5",
-				"24": "cn-switch-24 w-10.5 h-6",
-				"32": "cn-switch-32 w-14 h-8",
+				"20": "r-switch-20 cn-switch-20 w-8.5 h-5",
+				"24": "r-switch-24 cn-switch-24 w-10.5 h-6",
+				"32": "r-switch-32 cn-switch-32 w-14 h-8",
 			},
 			permanent: {
-				true: "cn-switch-permanent",
-				false: "cn-switch-toggleable",
+				true: "r-switch-permanent cn-switch-permanent",
+				false: "r-switch-toggleable cn-switch-toggleable",
 			},
 		},
 		defaultVariants: {
@@ -44,17 +44,17 @@ const switchVariants = cva(
 )
 
 const switchThumbVariants = cva(
-	"cn-switch-thumb pointer-events-none ring-0 transition-transform data-[state=unchecked]:translate-x-[3px] rtl:data-[state=unchecked]:-translate-x-[3px] rtl:data-[state=checked]:-translate-x-[calc(100%-3px)] flex items-center justify-center",
+	"r-switch-thumb cn-switch-thumb pointer-events-none ring-0 transition-transform data-[state=unchecked]:translate-x-[3px] rtl:data-[state=unchecked]:-translate-x-[3px] rtl:data-[state=checked]:-translate-x-[calc(100%-3px)] flex items-center justify-center",
 	{
 		variants: {
 			shape: {
-				pill: "cn-switch-thumb-shape-pill",
-				square: "cn-switch-thumb-shape-square",
+				pill: "r-switch-thumb-shape-pill cn-switch-thumb-shape-pill",
+				square: "r-switch-thumb-shape-square cn-switch-thumb-shape-square",
 			},
 			size: {
-				"20": "cn-switch-thumb-20 size-3.5 data-[state=checked]:translate-x-4",
-				"24": "cn-switch-thumb-24 size-4.5 data-[state=checked]:translate-x-5",
-				"32": "cn-switch-thumb-32 size-6 data-[state=checked]:translate-x-7",
+				"20": "r-switch-thumb-20 cn-switch-thumb-20 size-3.5 data-[state=checked]:translate-x-4",
+				"24": "r-switch-thumb-24 cn-switch-thumb-24 size-4.5 data-[state=checked]:translate-x-5",
+				"32": "r-switch-thumb-32 cn-switch-thumb-32 size-6 data-[state=checked]:translate-x-7",
 			},
 		},
 		defaultVariants: {
@@ -69,8 +69,8 @@ const switchIndicatorVariants = cva(
 	{
 		variants: {
 			state: {
-				on: "cn-switch-indicator-on",
-				off: "cn-switch-indicator-off",
+				on: "r-switch-indicator-on cn-switch-indicator-on",
+				off: "r-switch-indicator-off cn-switch-indicator-off",
 			},
 		},
 		defaultVariants: {

@@ -9,14 +9,13 @@ type TooltipContentProps = React.ComponentProps<
 	typeof TooltipPrimitive.Content
 > &
 	VariantProps<typeof tooltipContentVariants> & { withArrow?: boolean }
-
 const tooltipContentVariants = cva(
-	"cn-tooltip-content animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 z-50",
+	"r-tooltip-content cn-tooltip-content animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 z-50",
 	{
 		variants: {
 			theme: {
-				light: "cn-tooltip-theme-light",
-				default: "cn-tooltip-theme-default",
+				light: "r-tooltip-theme-light cn-tooltip-theme-light",
+				default: "r-tooltip-theme-default cn-tooltip-theme-default",
 			},
 		},
 		defaultVariants: {
@@ -24,7 +23,6 @@ const tooltipContentVariants = cva(
 		},
 	}
 )
-
 function Tooltip({ children, ...props }: TooltipProps) {
 	return (
 		<TooltipPrimitive.Provider delayDuration={0}>
@@ -35,12 +33,10 @@ function Tooltip({ children, ...props }: TooltipProps) {
 	)
 }
 Tooltip.displayName = TooltipPrimitive.Root.displayName
-
 function TooltipTrigger(props: TooltipTriggerProps) {
 	return <TooltipPrimitive.Trigger data-slot="tooltip-trigger" {...props} />
 }
 TooltipTrigger.displayName = TooltipPrimitive.Trigger.displayName
-
 function TooltipContent({
 	align = "center",
 	side = "top",
@@ -67,12 +63,11 @@ function TooltipContent({
 					data-theme={theme}
 					width={12}
 					height={7}
-					className="cn-tooltip-arrow"
+					className="r-tooltip-arrow cn-tooltip-arrow"
 				/>
 			)}
 		</TooltipPrimitive.Content>
 	)
 }
 TooltipContent.displayName = TooltipPrimitive.Content.displayName
-
 export { Tooltip, TooltipTrigger, TooltipContent }

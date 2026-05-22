@@ -5,7 +5,6 @@ import { cn } from "@/lib/utils"
 type PopoverProps = React.ComponentProps<typeof PopoverPrimitive.Root>
 type PopoverContentProps = React.ComponentProps<typeof PopoverPrimitive.Content>
 type PopoverTriggerProps = React.ComponentProps<typeof PopoverPrimitive.Trigger>
-
 function Popover({ children, ...props }: PopoverProps) {
 	return (
 		<PopoverPrimitive.Root data-slot="popover" {...props}>
@@ -14,12 +13,10 @@ function Popover({ children, ...props }: PopoverProps) {
 	)
 }
 Popover.displayName = PopoverPrimitive.Root.displayName
-
 function PopoverTrigger({ ...props }: PopoverTriggerProps) {
 	return <PopoverPrimitive.Trigger data-slot="popover-trigger" {...props} />
 }
 PopoverTrigger.displayName = PopoverPrimitive.Trigger.displayName
-
 function PopoverContent({
 	align = "center",
 	side = "bottom",
@@ -36,7 +33,7 @@ function PopoverContent({
 				side={side}
 				sideOffset={sideOffset}
 				className={cn(
-					"cn-popover-content outline-hidden z-50 w-72",
+					"r-popover-content cn-popover-content outline-hidden z-50 w-72",
 					"data-[state=open]:animate-in data-[state=closed]:animate-out",
 					"data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
 					"data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
@@ -50,5 +47,4 @@ function PopoverContent({
 	)
 }
 PopoverContent.displayName = PopoverPrimitive.Content.displayName
-
 export { Popover, PopoverContent, PopoverTrigger }

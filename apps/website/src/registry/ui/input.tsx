@@ -13,7 +13,7 @@ export type InputWrapperProps = React.ComponentProps<"div"> &
 
 const inputVariants = cva(
 	`
-	cn-input flex w-full items-center border-alpha transition-[color,box-shadow] text-fg placeholder:text-fg-tertiary
+	r-input cn-input flex w-full items-center border-alpha transition-[color,box-shadow] text-fg placeholder:text-fg-tertiary
 	focus-visible:ring-primary-focus focus-visible:border-primary focus-visible:outline-none 
 	disabled:cursor-not-allowed disabled:opacity-60 disabled:text-fg-disabled disabled:bg-fill2-alpha
 	[&[readonly]]:bg-fill1 [&[readonly]]:cursor-not-allowed
@@ -24,12 +24,12 @@ const inputVariants = cva(
 	{
 		variants: {
 			size: {
-				"28": "cn-input-28 h-7 file:pe-1.5 file:me-1.5",
-				"32": "cn-input-32 h-8 file:pe-3 file:me-3",
-				"36": "cn-input-36 h-9 file:pe-2.5 file:me-2.5",
-				"40": "cn-input-40 h-10 file:pe-3 file:me-3",
-				"44": "cn-input-44 h-11 file:pe-3.5 file:me-3.5",
-				"48": "cn-input-48 h-12 file:pe-3.5 file:me-3.5",
+				"28": "r-input-28 cn-input-28 h-7 file:pe-1.5 file:me-1.5",
+				"32": "r-input-32 cn-input-32 h-8 file:pe-3 file:me-3",
+				"36": "r-input-36 cn-input-36 h-9 file:pe-2.5 file:me-2.5",
+				"40": "r-input-40 cn-input-40 h-10 file:pe-3 file:me-3",
+				"44": "r-input-44 cn-input-44 h-11 file:pe-3.5 file:me-3.5",
+				"48": "r-input-48 cn-input-48 h-12 file:pe-3.5 file:me-3.5",
 			},
 		},
 		defaultVariants: {
@@ -39,16 +39,16 @@ const inputVariants = cva(
 )
 
 const inputAddonVariants = cva(
-	"cn-input-addon flex items-center shrink-0 justify-center [&_svg]:text-fg-tertiary",
+	"r-input-addon cn-input-addon flex items-center shrink-0 justify-center [&_svg]:text-fg-tertiary",
 	{
 		variants: {
 			size: {
-				"28": "cn-input-addon-28 h-7 min-w-7 [&_svg:not([class*=size-])]:size-4",
-				"32": "cn-input-addon-32 h-8 min-w-8 [&_svg:not([class*=size-])]:size-4.5",
-				"36": "cn-input-addon-36 h-9 min-w-9 [&_svg:not([class*=size-])]:size-5",
-				"40": "cn-input-addon-40 h-10 min-w-10 [&_svg:not([class*=size-])]:size-5",
-				"44": "cn-input-addon-44 h-11 min-w-11 [&_svg:not([class*=size-])]:size-5",
-				"48": "cn-input-addon-48 h-12 min-w-12 [&_svg:not([class*=size-])]:size-5",
+				"28": "r-input-addon-28 cn-input-addon-28 h-7 min-w-7 [&_svg:not([class*=size-])]:size-4",
+				"32": "r-input-addon-32 cn-input-addon-32 h-8 min-w-8 [&_svg:not([class*=size-])]:size-4.5",
+				"36": "r-input-addon-36 cn-input-addon-36 h-9 min-w-9 [&_svg:not([class*=size-])]:size-5",
+				"40": "r-input-addon-40 cn-input-addon-40 h-10 min-w-10 [&_svg:not([class*=size-])]:size-5",
+				"44": "r-input-addon-44 cn-input-addon-44 h-11 min-w-11 [&_svg:not([class*=size-])]:size-5",
+				"48": "r-input-addon-48 cn-input-addon-48 h-12 min-w-12 [&_svg:not([class*=size-])]:size-5",
 			},
 			mode: {
 				default: "",
@@ -88,7 +88,7 @@ const inputGroupVariants = cva(
 
 const inputWrapperVariants = cva(
 	`
-	cn-input-wrapper flex items-center gap-1.5
+	r-input-wrapper cn-input-wrapper flex items-center gap-1.5
 	has-[:focus-visible]:ring-primary-accent
 	has-[:focus-visible]:border-primary
 	has-[:focus-visible]:outline-none
@@ -119,15 +119,15 @@ const inputWrapperVariants = cva(
 	{
 		variants: {
 			size: {
-				"28": "cn-input-wrapper-28 [&_svg:not([class*=size-])]:size-4",
-				"32": "cn-input-wrapper-32 [&_svg:not([class*=size-])]:size-4.5",
-				"36": "cn-input-wrapper-36 [&_svg:not([class*=size-])]:size-5",
-				"40": "cn-input-wrapper-40 [&_svg:not([class*=size-])]:size-5",
-				"44": "cn-input-wrapper-44 [&_svg:not([class*=size-])]:size-5",
-				"48": "cn-input-wrapper-48 [&_svg:not([class*=size-])]:size-5",
+				"28": "r-input-wrapper-28 cn-input-wrapper-28 [&_svg:not([class*=size-])]:size-4",
+				"32": "r-input-wrapper-32 cn-input-wrapper-32 [&_svg:not([class*=size-])]:size-4.5",
+				"36": "r-input-wrapper-36 cn-input-wrapper-36 [&_svg:not([class*=size-])]:size-5",
+				"40": "r-input-wrapper-40 cn-input-wrapper-40 [&_svg:not([class*=size-])]:size-5",
+				"44": "r-input-wrapper-44 cn-input-wrapper-44 [&_svg:not([class*=size-])]:size-5",
+				"48": "r-input-wrapper-48 cn-input-wrapper-48 [&_svg:not([class*=size-])]:size-5",
 			},
 			disabled: {
-				true: "cn-input-wrapper-disabled has-[:focus-visible]:ring-0 has-[:focus-visible]:border-alpha",
+				true: "r-input-wrapper-disabled cn-input-wrapper-disabled has-[:focus-visible]:ring-0 has-[:focus-visible]:border-alpha",
 				false: "",
 			},
 		},
