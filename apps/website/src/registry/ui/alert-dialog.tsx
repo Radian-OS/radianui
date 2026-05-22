@@ -41,9 +41,11 @@ export const alertDialogOverlayVariants = cva(
 	{
 		variants: {
 			backdrop: {
-				overlay: "cn-alert-dialog-overlay-backdrop-overlay",
-				blur: "cn-alert-dialog-overlay-backdrop-blur",
-				transparent: "cn-alert-dialog-overlay-backdrop-transparent",
+				overlay:
+					"r-alert-dialog-overlay-backdrop-overlay cn-alert-dialog-overlay-backdrop-overlay",
+				blur: "r-alert-dialog-overlay-backdrop-blur cn-alert-dialog-overlay-backdrop-blur",
+				transparent:
+					"r-alert-dialog-overlay-backdrop-transparent cn-alert-dialog-overlay-backdrop-transparent",
 			},
 		},
 		defaultVariants: {
@@ -97,7 +99,7 @@ function AlertDialogContent({
 			<AlertDialogPrimitive.Content
 				data-slot="alert-dialog-content"
 				className={cn(
-					"cn-alert-dialog-content data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] duration-200",
+					"r-alert-dialog-content cn-alert-dialog-content data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] duration-200",
 					className
 				)}
 				{...props}
@@ -112,7 +114,7 @@ function AlertDialogHeader({ className, ...props }: AlertDialogHeaderProps) {
 		<div
 			data-slot="alert-dialog-header"
 			className={cn(
-				"cn-alert-dialog-header flex flex-col text-center sm:text-left",
+				"r-alert-dialog-header cn-alert-dialog-header flex flex-col text-center sm:text-left",
 				className
 			)}
 			{...props}
@@ -126,7 +128,7 @@ function AlertDialogFooter({ className, ...props }: AlertDialogFooterProps) {
 		<div
 			data-slot="alert-dialog-footer"
 			className={cn(
-				"cn-alert-dialog-footer flex flex-col-reverse sm:flex-row sm:justify-end",
+				"r-alert-dialog-footer cn-alert-dialog-footer flex flex-col-reverse sm:flex-row sm:justify-end",
 				className
 			)}
 			{...props}
@@ -139,7 +141,7 @@ function AlertDialogTitle({ className, ...props }: AlertDialogTitleProps) {
 	return (
 		<AlertDialogPrimitive.Title
 			data-slot="alert-dialog-title"
-			className={cn("cn-alert-dialog-title", className)}
+			className={cn("r-alert-dialog-title cn-alert-dialog-title", className)}
 			{...props}
 		/>
 	)
@@ -153,7 +155,10 @@ function AlertDialogDescription({
 	return (
 		<AlertDialogPrimitive.Description
 			data-slot="alert-dialog-description"
-			className={cn("cn-alert-dialog-description", className)}
+			className={cn(
+				"r-alert-dialog-description cn-alert-dialog-description",
+				className
+			)}
 			{...props}
 		/>
 	)

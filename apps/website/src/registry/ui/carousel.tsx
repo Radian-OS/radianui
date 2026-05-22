@@ -141,8 +141,8 @@ function CarouselContent({ className, ...props }: React.ComponentProps<"div">) {
 				className={cn(
 					"flex",
 					orientation === "horizontal"
-						? "cn-carousel-content-horizontal"
-						: "cn-carousel-content-vertical",
+						? "r-carousel-content-horizontal cn-carousel-content-horizontal"
+						: "r-carousel-content-vertical cn-carousel-content-vertical",
 					className
 				)}
 				{...props}
@@ -162,8 +162,8 @@ function CarouselItem({ className, ...props }: React.ComponentProps<"div">) {
 			className={cn(
 				"min-w-0 shrink-0 grow-0 basis-full",
 				orientation === "horizontal"
-					? "cn-carousel-item-horizontal"
-					: "cn-carousel-item-vertical",
+					? "r-carousel-item-horizontal cn-carousel-item-horizontal"
+					: "r-carousel-item-vertical cn-carousel-item-vertical",
 				className
 			)}
 			{...props}
@@ -190,7 +190,7 @@ function CarouselPrevious({
 			size={size}
 			color={color}
 			className={cn(
-				"cn-carousel-previous absolute",
+				"r-carousel-previous cn-carousel-previous absolute",
 				orientation === "horizontal"
 					? "-left-12 top-1/2 -translate-y-1/2"
 					: "-top-12 left-1/2 -translate-x-1/2 rotate-90",
@@ -226,7 +226,7 @@ function CarouselNext({
 			aria-label="Next Button"
 			size={size}
 			className={cn(
-				"cn-carousel-next absolute",
+				"r-carousel-next cn-carousel-next absolute",
 				orientation === "horizontal"
 					? "-right-12 top-1/2 -translate-y-1/2"
 					: "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",

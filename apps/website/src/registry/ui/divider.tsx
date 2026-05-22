@@ -3,7 +3,6 @@ import * as SeparatorPrimitive from "@radix-ui/react-separator"
 import { cn } from "@/lib/utils"
 
 export type DividerProps = React.ComponentProps<typeof SeparatorPrimitive.Root>
-
 function Divider({
 	className,
 	orientation = "horizontal",
@@ -16,12 +15,11 @@ function Divider({
 			decorative={decorative}
 			orientation={orientation}
 			className={cn(
-				"cn-divider shrink-0 data-[orientation=horizontal]:h-px data-[orientation=vertical]:h-full data-[orientation=horizontal]:w-full data-[orientation=vertical]:w-px",
+				"r-divider cn-divider shrink-0 data-[orientation=horizontal]:h-px data-[orientation=vertical]:h-full data-[orientation=horizontal]:w-full data-[orientation=vertical]:w-px",
 				className
 			)}
 			{...props}
 		/>
 	)
 }
-
 export { Divider }

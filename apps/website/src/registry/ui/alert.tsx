@@ -18,7 +18,7 @@ export type AlertContentProps = React.HTMLAttributes<HTMLDivElement>
 export type AlertIconProps = React.HTMLAttributes<HTMLDivElement>
 export type AlertToolbarProps = React.HTMLAttributes<HTMLDivElement>
 
-const alertVariants = cva("flex items-stretch w-full cn-alert", {
+const alertVariants = cva("flex items-stretch w-full r-alert cn-alert", {
 	variants: {
 		color: {
 			neutral: "",
@@ -30,98 +30,139 @@ const alertVariants = cva("flex items-stretch w-full cn-alert", {
 		},
 		variant: {
 			strong: "",
-			soft: "cn-alert-variant-soft",
-			"soft-outline": "cn-alert-variant-soft-outline",
-			outline: "cn-alert-variant-outline",
+			soft: "r-alert-variant-soft cn-alert-variant-soft",
+			"soft-outline":
+				"r-alert-variant-soft-outline cn-alert-variant-soft-outline",
+			outline: "r-alert-variant-outline cn-alert-variant-outline",
 		},
 	},
 	compoundVariants: [
 		// Soft variants
-		{ color: "neutral", variant: "soft", className: "cn-alert-soft-neutral" },
-		{ color: "primary", variant: "soft", className: "cn-alert-soft-primary" },
-		{ color: "info", variant: "soft", className: "cn-alert-soft-info" },
-		{ color: "success", variant: "soft", className: "cn-alert-soft-success" },
-		{ color: "error", variant: "soft", className: "cn-alert-soft-error" },
-		{ color: "warning", variant: "soft", className: "cn-alert-soft-warning" },
+		{
+			color: "neutral",
+			variant: "soft",
+			className: "r-alert-soft-neutral cn-alert-soft-neutral",
+		},
+		{
+			color: "primary",
+			variant: "soft",
+			className: "r-alert-soft-primary cn-alert-soft-primary",
+		},
+		{
+			color: "info",
+			variant: "soft",
+			className: "r-alert-soft-info cn-alert-soft-info",
+		},
+		{
+			color: "success",
+			variant: "soft",
+			className: "r-alert-soft-success cn-alert-soft-success",
+		},
+		{
+			color: "error",
+			variant: "soft",
+			className: "r-alert-soft-error cn-alert-soft-error",
+		},
+		{
+			color: "warning",
+			variant: "soft",
+			className: "r-alert-soft-warning cn-alert-soft-warning",
+		},
 
 		// Strong variants
 		{
 			color: "neutral",
 			variant: "strong",
-			className: "cn-alert-strong-neutral",
+			className: "r-alert-strong-neutral cn-alert-strong-neutral",
 		},
 		{
 			color: "primary",
 			variant: "strong",
-			className: "cn-alert-strong-primary",
+			className: "r-alert-strong-primary cn-alert-strong-primary",
 		},
-		{ color: "info", variant: "strong", className: "cn-alert-strong-info" },
+		{
+			color: "info",
+			variant: "strong",
+			className: "r-alert-strong-info cn-alert-strong-info",
+		},
 		{
 			color: "warning",
 			variant: "strong",
-			className: "cn-alert-strong-warning",
+			className: "r-alert-strong-warning cn-alert-strong-warning",
 		},
-		{ color: "error", variant: "strong", className: "cn-alert-strong-error" },
+		{
+			color: "error",
+			variant: "strong",
+			className: "r-alert-strong-error cn-alert-strong-error",
+		},
 		{
 			color: "success",
 			variant: "strong",
-			className: "cn-alert-strong-success",
+			className: "r-alert-strong-success cn-alert-strong-success",
 		},
 
 		// Soft-outline variants
 		{
 			color: "neutral",
 			variant: "soft-outline",
-			className: "cn-alert-soft-outline-neutral",
+			className: "r-alert-soft-outline-neutral cn-alert-soft-outline-neutral",
 		},
 		{
 			color: "primary",
 			variant: "soft-outline",
-			className: "cn-alert-soft-outline-primary",
+			className: "r-alert-soft-outline-primary cn-alert-soft-outline-primary",
 		},
 		{
 			color: "info",
 			variant: "soft-outline",
-			className: "cn-alert-soft-outline-info",
+			className: "r-alert-soft-outline-info cn-alert-soft-outline-info",
 		},
 		{
 			color: "success",
 			variant: "soft-outline",
-			className: "cn-alert-soft-outline-success",
+			className: "r-alert-soft-outline-success cn-alert-soft-outline-success",
 		},
 		{
 			color: "error",
 			variant: "soft-outline",
-			className: "cn-alert-soft-outline-error",
+			className: "r-alert-soft-outline-error cn-alert-soft-outline-error",
 		},
 		{
 			color: "warning",
 			variant: "soft-outline",
-			className: "cn-alert-soft-outline-warning",
+			className: "r-alert-soft-outline-warning cn-alert-soft-outline-warning",
 		},
 
 		// Outline variants
 		{
 			color: "neutral",
 			variant: "outline",
-			className: "cn-alert-outline-neutral",
+			className: "r-alert-outline-neutral cn-alert-outline-neutral",
 		},
 		{
 			color: "primary",
 			variant: "outline",
-			className: "cn-alert-outline-primary",
+			className: "r-alert-outline-primary cn-alert-outline-primary",
 		},
-		{ color: "info", variant: "outline", className: "cn-alert-outline-info" },
+		{
+			color: "info",
+			variant: "outline",
+			className: "r-alert-outline-info cn-alert-outline-info",
+		},
 		{
 			color: "success",
 			variant: "outline",
-			className: "cn-alert-outline-success",
+			className: "r-alert-outline-success cn-alert-outline-success",
 		},
-		{ color: "error", variant: "outline", className: "cn-alert-outline-error" },
+		{
+			color: "error",
+			variant: "outline",
+			className: "r-alert-outline-error cn-alert-outline-error",
+		},
 		{
 			color: "warning",
 			variant: "outline",
-			className: "cn-alert-outline-warning",
+			className: "r-alert-outline-warning cn-alert-outline-warning",
 		},
 	],
 	defaultVariants: {
@@ -152,9 +193,12 @@ function Alert({
 					aria-label="Dismiss"
 					data-slot="alert-close"
 					className={cn(
-						"cn-alert-close group flex size-5 shrink-0 cursor-pointer items-center justify-center"
+						"r-alert-close cn-alert-close group flex size-5 shrink-0 cursor-pointer items-center justify-center"
 					)}>
-					<IconSlot slot="cross" className="cn-alert-close-icon size-4" />
+					<IconSlot
+						slot="cross"
+						className="r-alert-close-icon cn-alert-close-icon size-4"
+					/>
 				</button>
 			)}
 		</div>
@@ -196,7 +240,7 @@ function AlertDescription({ className, ...props }: AlertDescriptionProps) {
 	return (
 		<div
 			data-slot="alert-description"
-			className={cn("cn-alert-description", className)}
+			className={cn("r-alert-description cn-alert-description", className)}
 			{...props}
 		/>
 	)
@@ -208,7 +252,7 @@ function AlertContent({ className, ...props }: AlertContentProps) {
 		<div
 			data-slot="alert-content"
 			className={cn(
-				"cn-alert-content flex grow flex-col justify-center",
+				"r-alert-content cn-alert-content flex grow flex-col justify-center",
 				className
 			)}
 			{...props}

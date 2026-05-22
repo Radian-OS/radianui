@@ -66,12 +66,12 @@ export const buttonVariants = cva(
 				"smooth-inverted": "",
 			},
 			size: {
-				"28": "r-btn-size-28 [&>svg]:size-4 text-[13px] leading-4.5 px-1 cn-btn-size-28",
-				"32": "r-btn-size-32 [&>svg]:size-4.5 text-sm px-1 cn-btn-size-32",
-				"36": "r-btn-size-36 [&>svg]:size-5 text-sm px-1 cn-btn-size-36",
-				"40": "r-btn-size-40 [&>svg]:size-5 text-sm px-1 cn-btn-size-40",
-				"44": "r-btn-size-44 [&>svg]:size-5 text-base px-1 cn-btn-size-44",
-				"48": "r-btn-size-48 [&>svg]:size-6 text-base px-1 cn-btn-size-48",
+				"28": "r-btn-size-28 [&>svg]:size-4 text-[13px] leading-4.5 px-1 r-btn-size-28 cn-btn-size-28",
+				"32": "r-btn-size-32 [&>svg]:size-4.5 text-sm px-1 r-btn-size-32 cn-btn-size-32",
+				"36": "r-btn-size-36 [&>svg]:size-5 text-sm px-1 r-btn-size-36 cn-btn-size-36",
+				"40": "r-btn-size-40 [&>svg]:size-5 text-sm px-1 r-btn-size-40 cn-btn-size-40",
+				"44": "r-btn-size-44 [&>svg]:size-5 text-base px-1 r-btn-size-44 cn-btn-size-44",
+				"48": "r-btn-size-48 [&>svg]:size-6 text-base px-1 r-btn-size-48 cn-btn-size-48",
 			},
 			loading: {
 				true: "",
@@ -105,184 +105,296 @@ export const buttonVariants = cva(
 			{
 				variant: "strong",
 				color: "primary",
-				className: "cn-btn-strong-primary",
+				className: "r-btn-strong-primary cn-btn-strong-primary",
 			},
-			{ variant: "strong", color: "info", className: "cn-btn-strong-info" },
+			{
+				variant: "strong",
+				color: "info",
+				className: "r-btn-strong-info cn-btn-strong-info",
+			},
 			{
 				variant: "strong",
 				color: "success",
-				className: "cn-btn-strong-success",
+				className: "r-btn-strong-success cn-btn-strong-success",
 			},
-			{ variant: "strong", color: "error", className: "cn-btn-strong-error" },
+			{
+				variant: "strong",
+				color: "error",
+				className: "r-btn-strong-error cn-btn-strong-error",
+			},
 			{
 				variant: "strong",
 				color: "warning",
-				className: "cn-btn-strong-warning",
+				className: "r-btn-strong-warning cn-btn-strong-warning",
 			},
 			{
 				variant: "strong",
 				color: "neutral",
-				className: "cn-btn-strong-neutral",
+				className: "r-btn-strong-neutral cn-btn-strong-neutral",
 			},
 
 			// Soft
-			{ variant: "soft", color: "primary", className: "cn-btn-soft-primary" },
-			{ variant: "soft", color: "info", className: "cn-btn-soft-info" },
-			{ variant: "soft", color: "success", className: "cn-btn-soft-success" },
-			{ variant: "soft", color: "error", className: "cn-btn-soft-error" },
-			{ variant: "soft", color: "warning", className: "cn-btn-soft-warning" },
-			{ variant: "soft", color: "neutral", className: "cn-btn-soft-neutral" },
+			{
+				variant: "soft",
+				color: "primary",
+				className: "r-btn-soft-primary cn-btn-soft-primary",
+			},
+			{
+				variant: "soft",
+				color: "info",
+				className: "r-btn-soft-info cn-btn-soft-info",
+			},
+			{
+				variant: "soft",
+				color: "success",
+				className: "r-btn-soft-success cn-btn-soft-success",
+			},
+			{
+				variant: "soft",
+				color: "error",
+				className: "r-btn-soft-error cn-btn-soft-error",
+			},
+			{
+				variant: "soft",
+				color: "warning",
+				className: "r-btn-soft-warning cn-btn-soft-warning",
+			},
+			{
+				variant: "soft",
+				color: "neutral",
+				className: "r-btn-soft-neutral cn-btn-soft-neutral",
+			},
 
 			// Outline
 			{
 				variant: "outline",
 				color: "primary",
-				className: "cn-btn-outline-primary",
+				className: "r-btn-outline-primary cn-btn-outline-primary",
 			},
-			{ variant: "outline", color: "info", className: "cn-btn-outline-info" },
+			{
+				variant: "outline",
+				color: "info",
+				className: "r-btn-outline-info cn-btn-outline-info",
+			},
 			{
 				variant: "outline",
 				color: "success",
-				className: "cn-btn-outline-success",
+				className: "r-btn-outline-success cn-btn-outline-success",
 			},
-			{ variant: "outline", color: "error", className: "cn-btn-outline-error" },
+			{
+				variant: "outline",
+				color: "error",
+				className: "r-btn-outline-error cn-btn-outline-error",
+			},
 			{
 				variant: "outline",
 				color: "warning",
-				className: "cn-btn-outline-warning",
+				className: "r-btn-outline-warning cn-btn-outline-warning",
 			},
 			{
 				variant: "outline",
 				color: "neutral",
-				className: "cn-btn-outline-neutral",
+				className: "r-btn-outline-neutral cn-btn-outline-neutral",
 			},
 
 			// Ghost
-			{ variant: "ghost", color: "primary", className: "cn-btn-ghost-primary" },
-			{ variant: "ghost", color: "info", className: "cn-btn-ghost-info" },
-			{ variant: "ghost", color: "success", className: "cn-btn-ghost-success" },
-			{ variant: "ghost", color: "error", className: "cn-btn-ghost-error" },
-			{ variant: "ghost", color: "warning", className: "cn-btn-ghost-warning" },
-			{ variant: "ghost", color: "neutral", className: "cn-btn-ghost-neutral" },
+			{
+				variant: "ghost",
+				color: "primary",
+				className: "r-btn-ghost-primary cn-btn-ghost-primary",
+			},
+			{
+				variant: "ghost",
+				color: "info",
+				className: "r-btn-ghost-info cn-btn-ghost-info",
+			},
+			{
+				variant: "ghost",
+				color: "success",
+				className: "r-btn-ghost-success cn-btn-ghost-success",
+			},
+			{
+				variant: "ghost",
+				color: "error",
+				className: "r-btn-ghost-error cn-btn-ghost-error",
+			},
+			{
+				variant: "ghost",
+				color: "warning",
+				className: "r-btn-ghost-warning cn-btn-ghost-warning",
+			},
+			{
+				variant: "ghost",
+				color: "neutral",
+				className: "r-btn-ghost-neutral cn-btn-ghost-neutral",
+			},
 
 			// Link
-			{ variant: "link", color: "primary", className: "cn-btn-link-primary" },
-			{ variant: "link", color: "info", className: "cn-btn-link-info" },
-			{ variant: "link", color: "success", className: "cn-btn-link-success" },
-			{ variant: "link", color: "error", className: "cn-btn-link-error" },
-			{ variant: "link", color: "warning", className: "cn-btn-link-warning" },
-			{ variant: "link", color: "neutral", className: "cn-btn-link-neutral" },
+			{
+				variant: "link",
+				color: "primary",
+				className: "r-btn-link-primary cn-btn-link-primary",
+			},
+			{
+				variant: "link",
+				color: "info",
+				className: "r-btn-link-info cn-btn-link-info",
+			},
+			{
+				variant: "link",
+				color: "success",
+				className: "r-btn-link-success cn-btn-link-success",
+			},
+			{
+				variant: "link",
+				color: "error",
+				className: "r-btn-link-error cn-btn-link-error",
+			},
+			{
+				variant: "link",
+				color: "warning",
+				className: "r-btn-link-warning cn-btn-link-warning",
+			},
+			{
+				variant: "link",
+				color: "neutral",
+				className: "r-btn-link-neutral cn-btn-link-neutral",
+			},
 
 			// Glossy
 			{
 				variant: "glossy",
 				color: "primary",
-				className: "cn-btn-glossy-primary",
+				className: "r-btn-glossy-primary cn-btn-glossy-primary",
 			},
-			{ variant: "glossy", color: "info", className: "cn-btn-glossy-info" },
+			{
+				variant: "glossy",
+				color: "info",
+				className: "r-btn-glossy-info cn-btn-glossy-info",
+			},
 			{
 				variant: "glossy",
 				color: "success",
-				className: "cn-btn-glossy-success",
+				className: "r-btn-glossy-success cn-btn-glossy-success",
 			},
 			{
 				variant: "glossy",
 				color: "warning",
-				className: "cn-btn-glossy-warning",
+				className: "r-btn-glossy-warning cn-btn-glossy-warning",
 			},
-			{ variant: "glossy", color: "error", className: "cn-btn-glossy-error" },
+			{
+				variant: "glossy",
+				color: "error",
+				className: "r-btn-glossy-error cn-btn-glossy-error",
+			},
 			{
 				variant: "glossy",
 				color: "neutral",
-				className: "cn-btn-glossy-neutral",
+				className: "r-btn-glossy-neutral cn-btn-glossy-neutral",
 			},
 
 			// Glossy-inverted
 			{
 				variant: "glossy-inverted",
 				color: "primary",
-				className: "cn-btn-glossy-inverted-primary",
+				className:
+					"r-btn-glossy-inverted-primary cn-btn-glossy-inverted-primary",
 			},
 			{
 				variant: "glossy-inverted",
 				color: "info",
-				className: "cn-btn-glossy-inverted-info",
+				className: "r-btn-glossy-inverted-info cn-btn-glossy-inverted-info",
 			},
 			{
 				variant: "glossy-inverted",
 				color: "success",
-				className: "cn-btn-glossy-inverted-success",
+				className:
+					"r-btn-glossy-inverted-success cn-btn-glossy-inverted-success",
 			},
 			{
 				variant: "glossy-inverted",
 				color: "warning",
-				className: "cn-btn-glossy-inverted-warning",
+				className:
+					"r-btn-glossy-inverted-warning cn-btn-glossy-inverted-warning",
 			},
 			{
 				variant: "glossy-inverted",
 				color: "error",
-				className: "cn-btn-glossy-inverted-error",
+				className: "r-btn-glossy-inverted-error cn-btn-glossy-inverted-error",
 			},
 			{
 				variant: "glossy-inverted",
 				color: "neutral",
-				className: "cn-btn-glossy-inverted-neutral",
+				className:
+					"r-btn-glossy-inverted-neutral cn-btn-glossy-inverted-neutral",
 			},
 
 			// Smooth
 			{
 				variant: "smooth",
 				color: "primary",
-				className: "cn-btn-smooth-primary",
+				className: "r-btn-smooth-primary cn-btn-smooth-primary",
 			},
-			{ variant: "smooth", color: "info", className: "cn-btn-smooth-info" },
+			{
+				variant: "smooth",
+				color: "info",
+				className: "r-btn-smooth-info cn-btn-smooth-info",
+			},
 			{
 				variant: "smooth",
 				color: "success",
-				className: "cn-btn-smooth-success",
+				className: "r-btn-smooth-success cn-btn-smooth-success",
 			},
 			{
 				variant: "smooth",
 				color: "warning",
-				className: "cn-btn-smooth-warning",
+				className: "r-btn-smooth-warning cn-btn-smooth-warning",
 			},
-			{ variant: "smooth", color: "error", className: "cn-btn-smooth-error" },
+			{
+				variant: "smooth",
+				color: "error",
+				className: "r-btn-smooth-error cn-btn-smooth-error",
+			},
 			{
 				variant: "smooth",
 				color: "neutral",
-				className: "cn-btn-smooth-neutral",
+				className: "r-btn-smooth-neutral cn-btn-smooth-neutral",
 			},
 
 			// Smooth-inverted
 			{
 				variant: "smooth-inverted",
 				color: "primary",
-				className: "cn-btn-smooth-inverted-primary",
+				className:
+					"r-btn-smooth-inverted-primary cn-btn-smooth-inverted-primary",
 			},
 			{
 				variant: "smooth-inverted",
 				color: "info",
-				className: "cn-btn-smooth-inverted-info",
+				className: "r-btn-smooth-inverted-info cn-btn-smooth-inverted-info",
 			},
 			{
 				variant: "smooth-inverted",
 				color: "success",
-				className: "cn-btn-smooth-inverted-success",
+				className:
+					"r-btn-smooth-inverted-success cn-btn-smooth-inverted-success",
 			},
 			{
 				variant: "smooth-inverted",
 				color: "warning",
-				className: "cn-btn-smooth-inverted-warning",
+				className:
+					"r-btn-smooth-inverted-warning cn-btn-smooth-inverted-warning",
 			},
 			{
 				variant: "smooth-inverted",
 				color: "error",
-				className: "cn-btn-smooth-inverted-error",
+				className: "r-btn-smooth-inverted-error cn-btn-smooth-inverted-error",
 			},
 			{
 				variant: "smooth-inverted",
 				color: "neutral",
-				className: "cn-btn-smooth-inverted-neutral",
+				className:
+					"r-btn-smooth-inverted-neutral cn-btn-smooth-inverted-neutral",
 			},
 
 			// Link loading state
@@ -386,7 +498,7 @@ function ButtonGroup({
 ButtonGroup.displayName = "ButtonGroup"
 
 export const compactButtonVariants = cva(
-	"inline-flex whitespace-nowrap items-center justify-center box-border focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-bg-bg disabled:pointer-events-none hover:cursor-pointer w-fit cn-compact-btn",
+	"inline-flex whitespace-nowrap items-center justify-center box-border focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-bg-bg disabled:pointer-events-none hover:cursor-pointer w-fit r-compact-btn cn-compact-btn",
 	{
 		variants: {
 			variant: {
@@ -422,252 +534,272 @@ export const compactButtonVariants = cva(
 			{
 				variant: "strong",
 				color: "primary",
-				className: "cn-compact-btn-strong-primary",
+				className: "r-compact-btn-strong-primary cn-compact-btn-strong-primary",
 			},
 			{
 				variant: "strong",
 				color: "info",
-				className: "cn-compact-btn-strong-info",
+				className: "r-compact-btn-strong-info cn-compact-btn-strong-info",
 			},
 			{
 				variant: "strong",
 				color: "success",
-				className: "cn-compact-btn-strong-success",
+				className: "r-compact-btn-strong-success cn-compact-btn-strong-success",
 			},
 			{
 				variant: "strong",
 				color: "error",
-				className: "cn-compact-btn-strong-error",
+				className: "r-compact-btn-strong-error cn-compact-btn-strong-error",
 			},
 			{
 				variant: "strong",
 				color: "warning",
-				className: "cn-compact-btn-strong-warning",
+				className: "r-compact-btn-strong-warning cn-compact-btn-strong-warning",
 			},
 			{
 				variant: "strong",
 				color: "neutral",
-				className: "cn-compact-btn-strong-neutral",
+				className: "r-compact-btn-strong-neutral cn-compact-btn-strong-neutral",
 			},
 
 			// Soft
 			{
 				variant: "soft",
 				color: "primary",
-				className: "cn-compact-btn-soft-primary",
+				className: "r-compact-btn-soft-primary cn-compact-btn-soft-primary",
 			},
-			{ variant: "soft", color: "info", className: "cn-compact-btn-soft-info" },
+			{
+				variant: "soft",
+				color: "info",
+				className: "r-compact-btn-soft-info cn-compact-btn-soft-info",
+			},
 			{
 				variant: "soft",
 				color: "success",
-				className: "cn-compact-btn-soft-success",
+				className: "r-compact-btn-soft-success cn-compact-btn-soft-success",
 			},
 			{
 				variant: "soft",
 				color: "error",
-				className: "cn-compact-btn-soft-error",
+				className: "r-compact-btn-soft-error cn-compact-btn-soft-error",
 			},
 			{
 				variant: "soft",
 				color: "warning",
-				className: "cn-compact-btn-soft-warning",
+				className: "r-compact-btn-soft-warning cn-compact-btn-soft-warning",
 			},
 			{
 				variant: "soft",
 				color: "neutral",
-				className: "cn-compact-btn-soft-neutral",
+				className: "r-compact-btn-soft-neutral cn-compact-btn-soft-neutral",
 			},
 
 			// Outline
 			{
 				variant: "outline",
 				color: "primary",
-				className: "cn-compact-btn-outline-primary",
+				className:
+					"r-compact-btn-outline-primary cn-compact-btn-outline-primary",
 			},
 			{
 				variant: "outline",
 				color: "info",
-				className: "cn-compact-btn-outline-info",
+				className: "r-compact-btn-outline-info cn-compact-btn-outline-info",
 			},
 			{
 				variant: "outline",
 				color: "success",
-				className: "cn-compact-btn-outline-success",
+				className:
+					"r-compact-btn-outline-success cn-compact-btn-outline-success",
 			},
 			{
 				variant: "outline",
 				color: "error",
-				className: "cn-compact-btn-outline-error",
+				className: "r-compact-btn-outline-error cn-compact-btn-outline-error",
 			},
 			{
 				variant: "outline",
 				color: "warning",
-				className: "cn-compact-btn-outline-warning",
+				className:
+					"r-compact-btn-outline-warning cn-compact-btn-outline-warning",
 			},
 			{
 				variant: "outline",
 				color: "neutral",
-				className: "cn-compact-btn-outline-neutral",
+				className:
+					"r-compact-btn-outline-neutral cn-compact-btn-outline-neutral",
 			},
 
 			// Ghost
 			{
 				variant: "ghost",
 				color: "primary",
-				className: "cn-compact-btn-ghost-primary",
+				className: "r-compact-btn-ghost-primary cn-compact-btn-ghost-primary",
 			},
 			{
 				variant: "ghost",
 				color: "info",
-				className: "cn-compact-btn-ghost-info",
+				className: "r-compact-btn-ghost-info cn-compact-btn-ghost-info",
 			},
 			{
 				variant: "ghost",
 				color: "success",
-				className: "cn-compact-btn-ghost-success",
+				className: "r-compact-btn-ghost-success cn-compact-btn-ghost-success",
 			},
 			{
 				variant: "ghost",
 				color: "error",
-				className: "cn-compact-btn-ghost-error",
+				className: "r-compact-btn-ghost-error cn-compact-btn-ghost-error",
 			},
 			{
 				variant: "ghost",
 				color: "warning",
-				className: "cn-compact-btn-ghost-warning",
+				className: "r-compact-btn-ghost-warning cn-compact-btn-ghost-warning",
 			},
 			{
 				variant: "ghost",
 				color: "neutral",
-				className: "cn-compact-btn-ghost-neutral",
+				className: "r-compact-btn-ghost-neutral cn-compact-btn-ghost-neutral",
 			},
 
 			// Glossy
 			{
 				variant: "glossy",
 				color: "primary",
-				className: "cn-compact-btn-glossy-primary",
+				className: "r-compact-btn-glossy-primary cn-compact-btn-glossy-primary",
 			},
 			{
 				variant: "glossy",
 				color: "info",
-				className: "cn-compact-btn-glossy-info",
+				className: "r-compact-btn-glossy-info cn-compact-btn-glossy-info",
 			},
 			{
 				variant: "glossy",
 				color: "success",
-				className: "cn-compact-btn-glossy-success",
+				className: "r-compact-btn-glossy-success cn-compact-btn-glossy-success",
 			},
 			{
 				variant: "glossy",
 				color: "warning",
-				className: "cn-compact-btn-glossy-warning",
+				className: "r-compact-btn-glossy-warning cn-compact-btn-glossy-warning",
 			},
 			{
 				variant: "glossy",
 				color: "error",
-				className: "cn-compact-btn-glossy-error",
+				className: "r-compact-btn-glossy-error cn-compact-btn-glossy-error",
 			},
 			{
 				variant: "glossy",
 				color: "neutral",
-				className: "cn-compact-btn-glossy-neutral",
+				className: "r-compact-btn-glossy-neutral cn-compact-btn-glossy-neutral",
 			},
 
 			// Glossy-inverted
 			{
 				variant: "glossy-inverted",
 				color: "primary",
-				className: "cn-compact-btn-glossy-inverted-primary",
+				className:
+					"r-compact-btn-glossy-inverted-primary cn-compact-btn-glossy-inverted-primary",
 			},
 			{
 				variant: "glossy-inverted",
 				color: "info",
-				className: "cn-compact-btn-glossy-inverted-info",
+				className:
+					"r-compact-btn-glossy-inverted-info cn-compact-btn-glossy-inverted-info",
 			},
 			{
 				variant: "glossy-inverted",
 				color: "success",
-				className: "cn-compact-btn-glossy-inverted-success",
+				className:
+					"r-compact-btn-glossy-inverted-success cn-compact-btn-glossy-inverted-success",
 			},
 			{
 				variant: "glossy-inverted",
 				color: "warning",
-				className: "cn-compact-btn-glossy-inverted-warning",
+				className:
+					"r-compact-btn-glossy-inverted-warning cn-compact-btn-glossy-inverted-warning",
 			},
 			{
 				variant: "glossy-inverted",
 				color: "error",
-				className: "cn-compact-btn-glossy-inverted-error",
+				className:
+					"r-compact-btn-glossy-inverted-error cn-compact-btn-glossy-inverted-error",
 			},
 			{
 				variant: "glossy-inverted",
 				color: "neutral",
-				className: "cn-compact-btn-glossy-inverted-neutral",
+				className:
+					"r-compact-btn-glossy-inverted-neutral cn-compact-btn-glossy-inverted-neutral",
 			},
 
 			// Smooth
 			{
 				variant: "smooth",
 				color: "primary",
-				className: "cn-compact-btn-smooth-primary",
+				className: "r-compact-btn-smooth-primary cn-compact-btn-smooth-primary",
 			},
 			{
 				variant: "smooth",
 				color: "info",
-				className: "cn-compact-btn-smooth-info",
+				className: "r-compact-btn-smooth-info cn-compact-btn-smooth-info",
 			},
 			{
 				variant: "smooth",
 				color: "success",
-				className: "cn-compact-btn-smooth-success",
+				className: "r-compact-btn-smooth-success cn-compact-btn-smooth-success",
 			},
 			{
 				variant: "smooth",
 				color: "warning",
-				className: "cn-compact-btn-smooth-warning",
+				className: "r-compact-btn-smooth-warning cn-compact-btn-smooth-warning",
 			},
 			{
 				variant: "smooth",
 				color: "error",
-				className: "cn-compact-btn-smooth-error",
+				className: "r-compact-btn-smooth-error cn-compact-btn-smooth-error",
 			},
 			{
 				variant: "smooth",
 				color: "neutral",
-				className: "cn-compact-btn-smooth-neutral",
+				className: "r-compact-btn-smooth-neutral cn-compact-btn-smooth-neutral",
 			},
 
 			// Smooth-inverted
 			{
 				variant: "smooth-inverted",
 				color: "primary",
-				className: "cn-compact-btn-smooth-inverted-primary",
+				className:
+					"r-compact-btn-smooth-inverted-primary cn-compact-btn-smooth-inverted-primary",
 			},
 			{
 				variant: "smooth-inverted",
 				color: "info",
-				className: "cn-compact-btn-smooth-inverted-info",
+				className:
+					"r-compact-btn-smooth-inverted-info cn-compact-btn-smooth-inverted-info",
 			},
 			{
 				variant: "smooth-inverted",
 				color: "success",
-				className: "cn-compact-btn-smooth-inverted-success",
+				className:
+					"r-compact-btn-smooth-inverted-success cn-compact-btn-smooth-inverted-success",
 			},
 			{
 				variant: "smooth-inverted",
 				color: "warning",
-				className: "cn-compact-btn-smooth-inverted-warning",
+				className:
+					"r-compact-btn-smooth-inverted-warning cn-compact-btn-smooth-inverted-warning",
 			},
 			{
 				variant: "smooth-inverted",
 				color: "error",
-				className: "cn-compact-btn-smooth-inverted-error",
+				className:
+					"r-compact-btn-smooth-inverted-error cn-compact-btn-smooth-inverted-error",
 			},
 			{
 				variant: "smooth-inverted",
 				color: "neutral",
-				className: "cn-compact-btn-smooth-inverted-neutral",
+				className:
+					"r-compact-btn-smooth-inverted-neutral cn-compact-btn-smooth-inverted-neutral",
 			},
 		],
 	}
@@ -703,12 +835,12 @@ CompactButton.displayName = "CompactButton"
 export const iconButtonSizeVariants = cva("", {
 	variants: {
 		size: {
-			"28": "[&>svg]:size-4 cn-icon-btn-size-28",
-			"32": "[&>svg]:size-4.5 cn-icon-btn-size-32",
-			"36": "[&>svg]:size-5 cn-icon-btn-size-36",
-			"40": "[&>svg]:size-5 cn-icon-btn-size-40",
-			"44": "[&>svg]:size-5 cn-icon-btn-size-44",
-			"48": "[&>svg]:size-6 cn-icon-btn-size-48",
+			"28": "[&>svg]:size-4 r-icon-btn-size-28 cn-icon-btn-size-28",
+			"32": "[&>svg]:size-4.5 r-icon-btn-size-32 cn-icon-btn-size-32",
+			"36": "[&>svg]:size-5 r-icon-btn-size-36 cn-icon-btn-size-36",
+			"40": "[&>svg]:size-5 r-icon-btn-size-40 cn-icon-btn-size-40",
+			"44": "[&>svg]:size-5 r-icon-btn-size-44 cn-icon-btn-size-44",
+			"48": "[&>svg]:size-6 r-icon-btn-size-48 cn-icon-btn-size-48",
 		},
 		variant: {
 			outline: "",
@@ -716,12 +848,36 @@ export const iconButtonSizeVariants = cva("", {
 		},
 	},
 	compoundVariants: [
-		{ variant: "outline", size: "28", className: "cn-icon-btn-outline-28" },
-		{ variant: "outline", size: "32", className: "cn-icon-btn-outline-32" },
-		{ variant: "outline", size: "36", className: "cn-icon-btn-outline-36" },
-		{ variant: "outline", size: "40", className: "cn-icon-btn-outline-40" },
-		{ variant: "outline", size: "44", className: "cn-icon-btn-outline-44" },
-		{ variant: "outline", size: "48", className: "cn-icon-btn-outline-48" },
+		{
+			variant: "outline",
+			size: "28",
+			className: "r-icon-btn-outline-28 cn-icon-btn-outline-28",
+		},
+		{
+			variant: "outline",
+			size: "32",
+			className: "r-icon-btn-outline-32 cn-icon-btn-outline-32",
+		},
+		{
+			variant: "outline",
+			size: "36",
+			className: "r-icon-btn-outline-36 cn-icon-btn-outline-36",
+		},
+		{
+			variant: "outline",
+			size: "40",
+			className: "r-icon-btn-outline-40 cn-icon-btn-outline-40",
+		},
+		{
+			variant: "outline",
+			size: "44",
+			className: "r-icon-btn-outline-44 cn-icon-btn-outline-44",
+		},
+		{
+			variant: "outline",
+			size: "48",
+			className: "r-icon-btn-outline-48 cn-icon-btn-outline-48",
+		},
 	],
 })
 

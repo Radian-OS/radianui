@@ -5,15 +5,12 @@ import { cn } from "@/lib/utils"
 export type CollapsibleProps = React.ComponentProps<
 	typeof CollapsiblePrimitive.Root
 >
-
 export type CollapsibleTriggerProps = React.ComponentProps<
 	typeof CollapsiblePrimitive.CollapsibleTrigger
 >
-
 export type CollapsibleContentProps = React.ComponentProps<
 	typeof CollapsiblePrimitive.CollapsibleContent
 >
-
 function Collapsible({ ...props }: CollapsibleProps) {
 	return <CollapsiblePrimitive.Root data-slot="collapsible" {...props} />
 }
@@ -25,7 +22,6 @@ function CollapsibleTrigger({ ...props }: CollapsibleTriggerProps) {
 		/>
 	)
 }
-
 function CollapsibleContent({
 	className,
 	children,
@@ -35,7 +31,7 @@ function CollapsibleContent({
 		<CollapsiblePrimitive.CollapsibleContent
 			data-slot="collapsible-content"
 			className={cn(
-				"data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down cn-collapsible-content overflow-hidden",
+				"data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down r-collapsible-content cn-collapsible-content overflow-hidden",
 				className
 			)}
 			{...props}>
@@ -43,5 +39,4 @@ function CollapsibleContent({
 		</CollapsiblePrimitive.CollapsibleContent>
 	)
 }
-
 export { Collapsible, CollapsibleContent, CollapsibleTrigger }

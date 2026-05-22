@@ -45,13 +45,13 @@ export type DrawerCloseProps = {
 }
 
 const drawerVariants = cva(
-	"fixed z-50 flex flex-col overflow-hidden cn-drawer",
+	"fixed z-50 flex flex-col overflow-hidden r-drawer cn-drawer",
 	{
 		variants: {
 			variant: {
-				float: "cn-drawer-variant-float",
-				default: "cn-drawer-variant-default",
-				rounded: "cn-drawer-variant-rounded",
+				float: "r-drawer-variant-float cn-drawer-variant-float",
+				default: "r-drawer-variant-default cn-drawer-variant-default",
+				rounded: "r-drawer-variant-rounded cn-drawer-variant-rounded",
 			},
 			direction: {
 				top: "top-0 w-full h-fit left-0 max-h-full",
@@ -61,7 +61,7 @@ const drawerVariants = cva(
 			},
 			handle: {
 				true: "",
-				false: "cn-drawer-padding",
+				false: "r-drawer-padding cn-drawer-padding",
 			},
 		},
 		defaultVariants: {
@@ -95,43 +95,45 @@ const drawerVariants = cva(
 			{
 				handle: true,
 				direction: "top",
-				className: "cn-drawer-handle-padding-top",
+				className: "r-drawer-handle-padding-top cn-drawer-handle-padding-top",
 			},
 			{
 				handle: true,
 				direction: "bottom",
-				className: "cn-drawer-handle-padding-bottom",
+				className:
+					"r-drawer-handle-padding-bottom cn-drawer-handle-padding-bottom",
 			},
 			{
 				handle: true,
 				direction: "left",
-				className: "cn-drawer-handle-padding-left",
+				className: "r-drawer-handle-padding-left cn-drawer-handle-padding-left",
 			},
 			{
 				handle: true,
 				direction: "right",
-				className: "cn-drawer-handle-padding-right",
+				className:
+					"r-drawer-handle-padding-right cn-drawer-handle-padding-right",
 			},
 			// Rounded directional overrides
 			{
 				variant: "rounded",
 				direction: "top",
-				className: "cn-drawer-rounded-top",
+				className: "r-drawer-rounded-top cn-drawer-rounded-top",
 			},
 			{
 				variant: "rounded",
 				direction: "bottom",
-				className: "cn-drawer-rounded-bottom",
+				className: "r-drawer-rounded-bottom cn-drawer-rounded-bottom",
 			},
 			{
 				variant: "rounded",
 				direction: "left",
-				className: "cn-drawer-rounded-left",
+				className: "r-drawer-rounded-left cn-drawer-rounded-left",
 			},
 			{
 				variant: "rounded",
 				direction: "right",
-				className: "cn-drawer-rounded-right",
+				className: "r-drawer-rounded-right cn-drawer-rounded-right",
 			},
 		],
 	}
@@ -140,9 +142,10 @@ const drawerVariants = cva(
 const backdropVariants = cva("z-50 fixed", {
 	variants: {
 		backdrop: {
-			overlay: "inset-0 cn-drawer-backdrop-overlay",
-			blur: "inset-0 cn-drawer-backdrop-blur",
-			transparent: "inset-0 cn-drawer-backdrop-transparent",
+			overlay: "inset-0 r-drawer-backdrop-overlay cn-drawer-backdrop-overlay",
+			blur: "inset-0 r-drawer-backdrop-blur cn-drawer-backdrop-blur",
+			transparent:
+				"inset-0 r-drawer-backdrop-transparent cn-drawer-backdrop-transparent",
 		},
 	},
 	defaultVariants: {
@@ -151,7 +154,7 @@ const backdropVariants = cva("z-50 fixed", {
 })
 
 const handleVariants = cva(
-	"absolute! max-h-20! max-w-1.5! z-50! rounded-full! cn-drawer-handle!",
+	"absolute! max-h-20! max-w-1.5! z-50! rounded-full! r-drawer-handle cn-drawer-handle!",
 	{
 		variants: {
 			direction: {
@@ -242,7 +245,11 @@ function DrawerContent({
 
 function DrawerHeader({ children, className }: DrawerHeaderProps) {
 	return (
-		<div className={cn("cn-drawer-header flex flex-col", className)}>
+		<div
+			className={cn(
+				"r-drawer-header cn-drawer-header flex flex-col",
+				className
+			)}>
 			{children}
 		</div>
 	)
@@ -250,7 +257,8 @@ function DrawerHeader({ children, className }: DrawerHeaderProps) {
 
 function DrawerTitle({ children, className }: DrawerTitleProps) {
 	return (
-		<DrawerPrimitives.Title className={cn("cn-drawer-title", className)}>
+		<DrawerPrimitives.Title
+			className={cn("r-drawer-title cn-drawer-title", className)}>
 			{children}
 		</DrawerPrimitives.Title>
 	)
@@ -259,7 +267,7 @@ function DrawerTitle({ children, className }: DrawerTitleProps) {
 function DrawerDescription({ children, className }: DrawerDescriptionProps) {
 	return (
 		<DrawerPrimitives.Description
-			className={cn("cn-drawer-description", className)}>
+			className={cn("r-drawer-description cn-drawer-description", className)}>
 			{children}
 		</DrawerPrimitives.Description>
 	)
@@ -276,7 +284,10 @@ function DrawerBody({ children, className }: DrawerDescriptionProps) {
 function DrawerFooter({ children, className }: DrawerFooterProps) {
 	return (
 		<div
-			className={cn("cn-drawer-footer flex items-end justify-end", className)}>
+			className={cn(
+				"r-drawer-footer cn-drawer-footer flex items-end justify-end",
+				className
+			)}>
 			{children}
 		</div>
 	)

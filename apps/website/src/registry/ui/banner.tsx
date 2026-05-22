@@ -14,7 +14,7 @@ export type BannerIconProps = React.HTMLAttributes<HTMLDivElement>
 export type BannerToolbarProps = React.HTMLAttributes<HTMLDivElement>
 
 const bannerVariants = cva(
-	"flex items-center justify-center w-full overflow-hidden cn-banner",
+	"flex items-center justify-center w-full overflow-hidden r-banner cn-banner",
 	{
 		variants: {
 			color: {
@@ -26,9 +26,9 @@ const bannerVariants = cva(
 				warning: "",
 			},
 			variant: {
-				strong: "cn-banner-variant-strong",
-				soft: "cn-banner-variant-soft",
-				outline: "cn-banner-variant-outline",
+				strong: "r-banner-variant-strong cn-banner-variant-strong",
+				soft: "r-banner-variant-soft cn-banner-variant-soft",
+				outline: "r-banner-variant-outline cn-banner-variant-outline",
 			},
 		},
 		compoundVariants: [
@@ -36,84 +36,96 @@ const bannerVariants = cva(
 			{
 				color: "neutral",
 				variant: "soft",
-				className: "cn-banner-soft-neutral",
+				className: "r-banner-soft-neutral cn-banner-soft-neutral",
 			},
 			{
 				color: "primary",
 				variant: "soft",
-				className: "cn-banner-soft-primary",
+				className: "r-banner-soft-primary cn-banner-soft-primary",
 			},
-			{ color: "info", variant: "soft", className: "cn-banner-soft-info" },
+			{
+				color: "info",
+				variant: "soft",
+				className: "r-banner-soft-info cn-banner-soft-info",
+			},
 			{
 				color: "success",
 				variant: "soft",
-				className: "cn-banner-soft-success",
+				className: "r-banner-soft-success cn-banner-soft-success",
 			},
-			{ color: "error", variant: "soft", className: "cn-banner-soft-error" },
+			{
+				color: "error",
+				variant: "soft",
+				className: "r-banner-soft-error cn-banner-soft-error",
+			},
 			{
 				color: "warning",
 				variant: "soft",
-				className: "cn-banner-soft-warning",
+				className: "r-banner-soft-warning cn-banner-soft-warning",
 			},
 
 			// Strong
 			{
 				color: "neutral",
 				variant: "strong",
-				className: "cn-banner-strong-neutral",
+				className: "r-banner-strong-neutral cn-banner-strong-neutral",
 			},
 			{
 				color: "primary",
 				variant: "strong",
-				className: "cn-banner-strong-primary",
+				className: "r-banner-strong-primary cn-banner-strong-primary",
 			},
-			{ color: "info", variant: "strong", className: "cn-banner-strong-info" },
+			{
+				color: "info",
+				variant: "strong",
+				className: "r-banner-strong-info cn-banner-strong-info",
+			},
 			{
 				color: "warning",
 				variant: "strong",
-				className: "cn-banner-strong-warning",
+				className: "r-banner-strong-warning cn-banner-strong-warning",
 			},
 			{
 				color: "error",
 				variant: "strong",
-				className: "cn-banner-strong-error",
+				className: "r-banner-strong-error cn-banner-strong-error",
 			},
 			{
 				color: "success",
 				variant: "strong",
-				className: "cn-banner-strong-success",
+				className: "r-banner-strong-success cn-banner-strong-success",
 			},
 
 			// Outline
 			{
 				color: "neutral",
 				variant: "outline",
-				className: "cn-banner-outline-neutral",
+				className: "r-banner-outline-neutral cn-banner-outline-neutral",
 			},
 			{
 				color: "primary",
 				variant: "outline",
-				className: "cn-banner-outline-primary",
+				className: "r-banner-outline-primary cn-banner-outline-primary",
 			},
 			{
 				color: "info",
 				variant: "outline",
-				className: "cn-banner-outline-info",
+				className: "r-banner-outline-info cn-banner-outline-info",
 			},
 			{
 				color: "success",
 				variant: "outline",
-				className: "cn-banner-outline-success",
+				className: "r-banner-outline-success cn-banner-outline-success",
 			},
 			{
 				color: "error",
 				variant: "outline",
-				className: "cn-banner-outline-error",
+				className: "r-banner-outline-error cn-banner-outline-error",
 			},
 			{
 				color: "warning",
 				variant: "outline",
-				className: "cn-banner-outline-warning",
+				className: "r-banner-outline-warning cn-banner-outline-warning",
 			},
 		],
 		defaultVariants: {
@@ -144,7 +156,10 @@ function Banner({
 					aria-label="Dismiss"
 					data-slot="banner-close"
 					className="group flex size-5 shrink-0 cursor-pointer items-center justify-center">
-					<IconSlot slot="cross" className="cn-banner-close-icon size-5" />
+					<IconSlot
+						slot="cross"
+						className="r-banner-close-icon cn-banner-close-icon size-5"
+					/>
 				</button>
 			)}
 		</div>
@@ -156,7 +171,7 @@ function BannerTitle({ className, ...props }: BannerTitleProps) {
 	return (
 		<div
 			data-slot="banner-title"
-			className={cn("cn-banner-title", className)}
+			className={cn("r-banner-title cn-banner-title", className)}
 			{...props}
 		/>
 	)
@@ -167,7 +182,7 @@ function BannerDescription({ className, ...props }: BannerDescriptionProps) {
 	return (
 		<div
 			data-slot="banner-description"
-			className={cn("cn-banner-description", className)}
+			className={cn("r-banner-description cn-banner-description", className)}
 			{...props}
 		/>
 	)
@@ -179,7 +194,7 @@ function BannerContent({ className, ...props }: BannerContentProps) {
 		<div
 			data-slot="banner-content"
 			className={cn(
-				"cn-banner-content flex flex-1 flex-col items-start justify-start",
+				"r-banner-content cn-banner-content flex flex-1 flex-col items-start justify-start",
 				className
 			)}
 			{...props}

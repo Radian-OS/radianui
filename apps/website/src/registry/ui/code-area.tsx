@@ -143,9 +143,7 @@ type CodeAreaProps = {
 	pkg?: string[]
 	tabs?: boolean
 }
-
 const DEFAULT_THEME = "github-dark-high-contrast"
-
 function CodeArea({
 	code,
 	theme = DEFAULT_THEME,
@@ -156,7 +154,7 @@ function CodeArea({
 	return (
 		<div
 			className={cn(
-				"no-scrollbar cn-code-area relative box-border overflow-auto",
+				"no-scrollbar r-code-area cn-code-area relative box-border overflow-auto",
 				className
 			)}>
 			<ShikiHighlighter
@@ -171,5 +169,4 @@ function CodeArea({
 		</div>
 	)
 }
-
 export { CodeArea, type CodeAreaProps }

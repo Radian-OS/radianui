@@ -34,35 +34,71 @@ function useAvatarContext() {
 }
 
 const avatarVariants = cva(
-	"flex items-center justify-center shrink-0 relative cn-avatar",
+	"flex items-center justify-center shrink-0 relative r-avatar cn-avatar",
 	{
 		variants: {
 			size: {
-				"16": "cn-avatar-size-16",
-				"20": "cn-avatar-size-20",
-				"24": "cn-avatar-size-24",
-				"32": "cn-avatar-size-32",
-				"36": "cn-avatar-size-36",
-				"40": "cn-avatar-size-40",
-				"48": "cn-avatar-size-48",
-				"64": "cn-avatar-size-64",
-				"80": "cn-avatar-size-80",
+				"16": "r-avatar-size-16 cn-avatar-size-16",
+				"20": "r-avatar-size-20 cn-avatar-size-20",
+				"24": "r-avatar-size-24 cn-avatar-size-24",
+				"32": "r-avatar-size-32 cn-avatar-size-32",
+				"36": "r-avatar-size-36 cn-avatar-size-36",
+				"40": "r-avatar-size-40 cn-avatar-size-40",
+				"48": "r-avatar-size-48 cn-avatar-size-48",
+				"64": "r-avatar-size-64 cn-avatar-size-64",
+				"80": "r-avatar-size-80 cn-avatar-size-80",
 			},
 			rounded: {
-				circle: "cn-avatar-rounded-circle",
+				circle: "r-avatar-rounded-circle cn-avatar-rounded-circle",
 				square: "",
 			},
 		},
 		compoundVariants: [
-			{ size: "16", rounded: "square", className: "cn-avatar-square-16" },
-			{ size: "20", rounded: "square", className: "cn-avatar-square-20" },
-			{ size: "24", rounded: "square", className: "cn-avatar-square-24" },
-			{ size: "32", rounded: "square", className: "cn-avatar-square-32" },
-			{ size: "36", rounded: "square", className: "cn-avatar-square-36" },
-			{ size: "40", rounded: "square", className: "cn-avatar-square-40" },
-			{ size: "48", rounded: "square", className: "cn-avatar-square-48" },
-			{ size: "64", rounded: "square", className: "cn-avatar-square-64" },
-			{ size: "80", rounded: "square", className: "cn-avatar-square-80" },
+			{
+				size: "16",
+				rounded: "square",
+				className: "r-avatar-square-16 cn-avatar-square-16",
+			},
+			{
+				size: "20",
+				rounded: "square",
+				className: "r-avatar-square-20 cn-avatar-square-20",
+			},
+			{
+				size: "24",
+				rounded: "square",
+				className: "r-avatar-square-24 cn-avatar-square-24",
+			},
+			{
+				size: "32",
+				rounded: "square",
+				className: "r-avatar-square-32 cn-avatar-square-32",
+			},
+			{
+				size: "36",
+				rounded: "square",
+				className: "r-avatar-square-36 cn-avatar-square-36",
+			},
+			{
+				size: "40",
+				rounded: "square",
+				className: "r-avatar-square-40 cn-avatar-square-40",
+			},
+			{
+				size: "48",
+				rounded: "square",
+				className: "r-avatar-square-48 cn-avatar-square-48",
+			},
+			{
+				size: "64",
+				rounded: "square",
+				className: "r-avatar-square-64 cn-avatar-square-64",
+			},
+			{
+				size: "80",
+				rounded: "square",
+				className: "r-avatar-square-80 cn-avatar-square-80",
+			},
 		],
 		defaultVariants: {
 			size: "40",
@@ -72,25 +108,25 @@ const avatarVariants = cva(
 )
 
 const avatarStatusVariants = cva(
-	"absolute z-10 rounded-full box-content cn-avatar-status",
+	"absolute z-10 rounded-full box-content r-avatar-status cn-avatar-status",
 	{
 		variants: {
 			variant: {
-				online: "cn-avatar-status-online",
-				offline: "cn-avatar-status-offline",
-				busy: "cn-avatar-status-busy",
-				away: "cn-avatar-status-away",
+				online: "r-avatar-status-online cn-avatar-status-online",
+				offline: "r-avatar-status-offline cn-avatar-status-offline",
+				busy: "r-avatar-status-busy cn-avatar-status-busy",
+				away: "r-avatar-status-away cn-avatar-status-away",
 			},
 			size: {
-				"16": "cn-avatar-status-size-16",
-				"20": "cn-avatar-status-size-20",
-				"24": "cn-avatar-status-size-24",
-				"32": "cn-avatar-status-size-32",
-				"36": "cn-avatar-status-size-36",
-				"40": "cn-avatar-status-size-40",
-				"48": "cn-avatar-status-size-48",
-				"64": "cn-avatar-status-size-64",
-				"80": "cn-avatar-status-size-80",
+				"16": "r-avatar-status-size-16 cn-avatar-status-size-16",
+				"20": "r-avatar-status-size-20 cn-avatar-status-size-20",
+				"24": "r-avatar-status-size-24 cn-avatar-status-size-24",
+				"32": "r-avatar-status-size-32 cn-avatar-status-size-32",
+				"36": "r-avatar-status-size-36 cn-avatar-status-size-36",
+				"40": "r-avatar-status-size-40 cn-avatar-status-size-40",
+				"48": "r-avatar-status-size-48 cn-avatar-status-size-48",
+				"64": "r-avatar-status-size-64 cn-avatar-status-size-64",
+				"80": "r-avatar-status-size-80 cn-avatar-status-size-80",
 			},
 		},
 		defaultVariants: {
@@ -123,7 +159,7 @@ function AvatarImage({ className, ...props }: AvatarImageProps) {
 		<AvatarPrimitive.Image
 			data-slot="avatar-image"
 			className={cn(
-				"cn-avatar-image relative aspect-square size-full object-cover",
+				"r-avatar-image cn-avatar-image relative aspect-square size-full object-cover",
 				className
 			)}
 			{...props}
@@ -137,7 +173,7 @@ function AvatarFallback({ className, ...props }: AvatarFallbackProps) {
 		<AvatarPrimitive.Fallback
 			data-slot="avatar-fallback"
 			className={cn(
-				"cn-avatar-fallback flex size-full items-center justify-center",
+				"r-avatar-fallback cn-avatar-fallback flex size-full items-center justify-center",
 				className
 			)}
 			{...props}
