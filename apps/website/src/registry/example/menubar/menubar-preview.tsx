@@ -17,7 +17,7 @@ import {
 
 export default function MenubarPreview() {
 	return (
-		<Menubar className="w-72">
+		<Menubar className="w-fit">
 			<MenubarMenu>
 				<MenubarTrigger>File</MenubarTrigger>
 				<MenubarContent>

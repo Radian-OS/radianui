@@ -10,3 +10,272 @@ links:
 ---
 
 <ComponentPreview path="menubar/menubar-preview" />
+
+## Installation
+
+<InstallationTabs>
+	<InstallTabsList>
+		<InstallTabsTrigger value="cli">CLI</InstallTabsTrigger>
+		<InstallTabsTrigger value="manual">Manual</InstallTabsTrigger>
+	</InstallTabsList>
+	<InstallTabsContent value="cli">
+		```bash
+		npx radianui@latest add menubar
+		```
+	</InstallTabsContent>
+	<InstallTabsContent value="manual" className="p-0">
+	<Steps>
+	    <Step>Install the following dependencies:</Step>
+		```bash
+		npm install @radix-ui/react-menubar
+		```
+    	<Step>Copy and paste the following code into your project.</Step>
+    	<ComponentSource name="menubar" title="components/ui/menubar.tsx" collapsible />
+    	<Step>Update the import paths as per your project structure.</Step>
+    </Steps>
+    </InstallTabsContent>
+
+</InstallationTabs>
+
+## Usage
+
+### Imports
+
+```tsx showLineNumbers title="components/ui/menubar.tsx"
+import {
+	Menubar,
+	MenubarCheckboxItem,
+	MenubarContent,
+	MenubarGroup,
+	MenubarItem,
+	MenubarLabel,
+	MenubarMenu,
+	MenubarRadioGroup,
+	MenubarRadioItem,
+	MenubarSeparator,
+	MenubarShortcut,
+	MenubarSub,
+	MenubarSubContent,
+	MenubarSubTrigger,
+	MenubarTrigger,
+} from "@/components/ui/menubar"
+```
+
+### Code
+
+```tsx showLineNumbers title="components/ui/menubar.tsx"
+<Menubar>
+	<MenubarMenu>
+		<MenubarTrigger>File</MenubarTrigger>
+		<MenubarContent>
+			<MenubarGroup>
+				<MenubarItem>
+					New Tab <MenubarShortcut>⌘T</MenubarShortcut>
+				</MenubarItem>
+				<MenubarItem>
+					New Window <MenubarShortcut>⌘N</MenubarShortcut>
+				</MenubarItem>
+			</MenubarGroup>
+			<MenubarSeparator />
+			<MenubarGroup>
+				<MenubarItem>
+					Print... <MenubarShortcut>⌘P</MenubarShortcut>
+				</MenubarItem>
+			</MenubarGroup>
+		</MenubarContent>
+	</MenubarMenu>
+</Menubar>
+```
+
+---
+
+## Examples
+
+### Text Editor
+
+A real-world text editor menubar with File, Edit, and View menus including keyboard shortcuts and toggleable checkbox items.
+
+<br />
+
+<ComponentPreview path="menubar/menubar-text-editor-example" />
+
+### With Radio Groups
+
+Use `MenubarRadioGroup` and `MenubarRadioItem` to present mutually exclusive options like theme or language selection.
+
+<br />
+
+<ComponentPreview path="menubar/menubar-with-radio-example" />
+
+### With Destructive Actions
+
+Use `variant="destructive"` on `MenubarItem` for dangerous operations like log out or delete.
+
+<br />
+
+<ComponentPreview path="menubar/menubar-with-destructive-example" />
+
+---
+
+## Props
+
+<PropsTableWrapper>
+	<PropsTable
+		title="Menubar"
+		externalReference="https://www.radix-ui.com/primitives/docs/components/menubar#root"
+	/>
+	<PropsTable
+		title="MenubarMenu"
+		externalReference="https://www.radix-ui.com/primitives/docs/components/menubar#menu"
+	/>
+	<PropsTable
+		title="MenubarTrigger"
+		externalReference="https://www.radix-ui.com/primitives/docs/components/menubar#trigger"
+	/>
+	<PropsTable
+		title="MenubarContent"
+		data={[
+			{
+				name: "align",
+				required: false,
+				defaultValue: "start",
+				values: ["start", "center", "end"],
+				description: "The alignment of the content relative to the trigger.",
+			},
+			{
+				name: "alignOffset",
+				required: false,
+				defaultValue: "-4",
+				values: ["number"],
+				description: "An offset in pixels from the 'start' or 'end' alignment.",
+			},
+			{
+				name: "sideOffset",
+				required: false,
+				defaultValue: "8",
+				values: ["number"],
+				description: "The distance in pixels from the trigger.",
+			},
+		]}
+		externalReference="https://www.radix-ui.com/primitives/docs/components/menubar#content"
+	/>
+	<PropsTable
+		title="MenubarItem"
+		data={[
+			{
+				name: "inset",
+				required: false,
+				defaultValue: "false",
+				values: ["boolean"],
+				description: "When true, adds left padding to align with items that have an indicator.",
+			},
+			{
+				name: "variant",
+				required: false,
+				defaultValue: "default",
+				values: ["default", "destructive"],
+				description: "Visual style of the item. Use 'destructive' for dangerous actions.",
+			},
+		]}
+		externalReference="https://www.radix-ui.com/primitives/docs/components/menubar#item"
+	/>
+	<PropsTable
+		title="MenubarCheckboxItem"
+		data={[
+			{
+				name: "checked",
+				required: false,
+				defaultValue: "false",
+				values: ["boolean"],
+				description: "The controlled checked state of the item.",
+			},
+			{
+				name: "onCheckedChange",
+				required: false,
+				values: ["(checked: boolean) => void"],
+				description: "Callback fired when the checked state changes.",
+			},
+			{
+				name: "inset",
+				required: false,
+				defaultValue: "false",
+				values: ["boolean"],
+				description: "When true, adds left padding to align with inset items.",
+			},
+		]}
+		externalReference="https://www.radix-ui.com/primitives/docs/components/menubar#checkboxitem"
+	/>
+	<PropsTable
+		title="MenubarRadioGroup"
+		externalReference="https://www.radix-ui.com/primitives/docs/components/menubar#radiogroup"
+	/>
+	<PropsTable
+		title="MenubarRadioItem"
+		data={[
+			{
+				name: "value",
+				required: true,
+				values: ["string"],
+				description: "The unique value of this radio item within its group.",
+			},
+			{
+				name: "inset",
+				required: false,
+				defaultValue: "false",
+				values: ["boolean"],
+				description: "When true, adds left padding to align with other items.",
+			},
+		]}
+		externalReference="https://www.radix-ui.com/primitives/docs/components/menubar#radioitem"
+	/>
+	<PropsTable
+		title="MenubarLabel"
+		data={[
+			{
+				name: "inset",
+				required: false,
+				defaultValue: "false",
+				values: ["boolean"],
+				description: "When true, adds left padding to align with inset items.",
+			},
+		]}
+		externalReference="https://www.radix-ui.com/primitives/docs/components/menubar#label"
+	/>
+	<PropsTable
+		title="MenubarSeparator"
+		externalReference="https://www.radix-ui.com/primitives/docs/components/menubar#separator"
+	/>
+	<PropsTable
+		title="MenubarSub"
+		externalReference="https://www.radix-ui.com/primitives/docs/components/menubar#sub"
+	/>
+	<PropsTable
+		title="MenubarSubTrigger"
+		data={[
+			{
+				name: "inset",
+				required: false,
+				defaultValue: "false",
+				values: ["boolean"],
+				description: "When true, adds left padding to align with other items.",
+			},
+		]}
+		externalReference="https://www.radix-ui.com/primitives/docs/components/menubar#subtrigger"
+	/>
+	<PropsTable
+		title="MenubarSubContent"
+		externalReference="https://www.radix-ui.com/primitives/docs/components/menubar#subcontent"
+	/>
+	<PropsTable
+		title="MenubarShortcut"
+		data={[
+			{
+				name: "className",
+				required: false,
+				values: ["string"],
+				description: "Additional CSS classes to apply to the shortcut text.",
+			},
+		]}
+	/>
+
+</PropsTableWrapper>

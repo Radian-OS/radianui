@@ -657,6 +657,15 @@ const registry: Record<
 	"menubar-preview": React.lazy(
 		() => import("@/registry/example/menubar/menubar-preview")
 	),
+	"menubar-text-editor-example": React.lazy(
+		() => import("@/registry/example/menubar/menubar-text-editor-example")
+	),
+	"menubar-with-destructive-example": React.lazy(
+		() => import("@/registry/example/menubar/menubar-with-destructive-example")
+	),
+	"menubar-with-radio-example": React.lazy(
+		() => import("@/registry/example/menubar/menubar-with-radio-example")
+	),
 	"otp-field-auto-submit": React.lazy(
 		() => import("@/registry/example/otp-field/otp-field-auto-submit")
 	),
