@@ -400,6 +400,21 @@ const registry: Record<
 	"command-preview": React.lazy(
 		() => import("@/registry/example/command/command-preview")
 	),
+	"context-menu-checkbox": React.lazy(
+		() => import("@/registry/example/context-menu/context-menu-checkbox")
+	),
+	"context-menu-dialog": React.lazy(
+		() => import("@/registry/example/context-menu/context-menu-dialog")
+	),
+	"context-menu-keyboard": React.lazy(
+		() => import("@/registry/example/context-menu/context-menu-keyboard")
+	),
+	"context-menu-preview": React.lazy(
+		() => import("@/registry/example/context-menu/context-menu-preview")
+	),
+	"context-menu-submenu": React.lazy(
+		() => import("@/registry/example/context-menu/context-menu-submenu")
+	),
 	"currency-decimal-separator": React.lazy(
 		() => import("@/registry/example/currency-input/currency-decimal-separator")
 	),

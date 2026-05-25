@@ -65,6 +65,7 @@ const COMPONENTS_DATA = [
 	"Collapsible",
 	"Combobox",
 	"Command",
+	"Context Menu",
 	"Currency Input",
 	"Checkbox",
 	"Date Picker",

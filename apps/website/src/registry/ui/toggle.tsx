@@ -18,11 +18,11 @@ const toggleVariants = cva(
 		variants: {
 			variant: {
 				ghost:
-					"bg-transparent text-fg hover:bg-fill2 focus-visible:ring-border" +
-					" data-[state=on]:bg-fill3 data-[state=on]:text-fg data-[state=on]:border-transparent",
+					"bg-transparent text-fg hover:bg-fill1 focus-visible:ring-border" +
+					" data-[state=on]:bg-fill2 data-[state=on]:text-fg data-[state=on]:border-transparent",
 				outline:
 					"border bg-transparent border-border text-fg hover:bg-fill1-alpha focus-visible:ring-border" +
-					" data-[state=on]:bg-fill3 data-[state=on]:text-fg data-[state=on]:border-fill4",
+					" data-[state=on]:bg-fill2 data-[state=on]:text-fg data-[state=on]:border-fill4",
 			},
 			size: {
 				"28": "h-7 px-2 py-1.5 text-[13px] gap-1 [&>svg]:size-4",

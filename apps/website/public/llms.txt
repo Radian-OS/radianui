@@ -48,6 +48,7 @@ This documentation is designed for AI agents and LLMs, providing structured Mark
 - [Collapsible](https://radianos.com/docs/components/collapsible.md): Detailed documentation for Collapsible
 - [Combobox](https://radianos.com/docs/components/combobox.md): Detailed documentation for Combobox
 - [Command](https://radianos.com/docs/components/command.md): Detailed documentation for Command
+- [Context Menu](https://radianos.com/docs/components/context-menu.md): Detailed documentation for Context Menu
 - [Currency Input](https://radianos.com/docs/components/currency-input.md): Detailed documentation for Currency Input
 - [Date Picker](https://radianos.com/docs/components/date-picker.md): Detailed documentation for Date Picker
 - [Dialog](https://radianos.com/docs/components/dialog.md): Detailed documentation for Dialog
