@@ -19,7 +19,7 @@ import {
 export default function ContextMenuDialogExamples() {
 	return (
 		<div className="flex w-full items-center justify-center p-12">
-			<Dialog>
+			<Dialog modal={false}>
 				<DialogTrigger asChild>
 					<Button color="neutral" variant="outline">
 						Open Dialog
