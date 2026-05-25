@@ -9,15 +9,15 @@
 	}
 
 	.cn-accordion-variant-table {
-		@apply border-border rounded-surface border;
+		@apply border-border rounded-surface-lg border;
 	}
 
 	.cn-accordion-item-variant-box {
-		@apply border-border shadow-2xs rounded-surface-sm border last:mb-0;
+		@apply border-border shadow-2xs rounded-surface-lg border last:mb-0;
 	}
 
 	.cn-accordion-item-variant-table {
-		@apply last:rounded-b-surface first:rounded-t-surface border-b last:border-b-0;
+		@apply last:rounded-b-surface-lg first:rounded-t-surface-xl border-b last:border-b-0;
 	}
 
 	.cn-accordion-item-variant-open {
@@ -101,7 +101,7 @@
 
 	/* Base */
 	.cn-alert {
-		@apply rounded-surface-sm gap-3 p-3;
+		@apply rounded-surface-lg gap-3 p-3;
 		@apply [&>[data-slot=alert-title]]:font-medium;
 		@apply [&>[data-slot=alert-title]]:text-sm;
 		@apply [&>[data-slot=alert-title]]:mt-0.75;
@@ -243,7 +243,7 @@
 	}
 
 	.cn-alert-dialog-content {
-		@apply bg-bg border-alpha gap-5 rounded-xl border p-6 shadow-lg shadow-black/5;
+		@apply bg-bg border-alpha gap-5 rounded-surface-xl border p-6 shadow-lg shadow-black/5;
 	}
 
 	.cn-alert-dialog-header {
@@ -304,36 +304,36 @@
 
 	/* Rounded variants */
 	.cn-avatar-rounded-circle {
-		@apply rounded-full;
+		@apply rounded-pill;
 	}
 
 	/* Square compound variants */
 	.cn-avatar-square-16 {
-		@apply rounded-sm;
+		@apply rounded-element-md;
 	}
 	.cn-avatar-square-20 {
-		@apply rounded-sm;
+		@apply rounded-element-md;
 	}
 	.cn-avatar-square-24 {
-		@apply rounded-md;
+		@apply rounded-element-lg;
 	}
 	.cn-avatar-square-32 {
-		@apply rounded-md;
+		@apply rounded-element-lg;
 	}
 	.cn-avatar-square-36 {
-		@apply rounded-lg;
+		@apply rounded-element-lg;
 	}
 	.cn-avatar-square-40 {
-		@apply rounded-lg;
+		@apply rounded-element-lg;
 	}
 	.cn-avatar-square-48 {
-		@apply rounded-lg;
+		@apply rounded-element-lg;
 	}
 	.cn-avatar-square-64 {
-		@apply rounded-xl;
+		@apply rounded-element-xl;
 	}
 	.cn-avatar-square-80 {
-		@apply rounded-2xl;
+		@apply rounded-element-2xl;
 	}
 
 	/* Image */
@@ -408,13 +408,13 @@
 
 	/* Size variants */
 	.cn-badge-size-20 {
-		@apply h-5 rounded-control-sm px-1.5 text-xs [&_svg]:size-3.5;
+		@apply h-5 rounded-control-md px-1.5 text-xs [&_svg]:size-3.5;
 	}
 	.cn-badge-size-24 {
-		@apply h-6 rounded-control-sm px-2 text-[13px] [&_svg]:size-3.5;
+		@apply h-6 rounded-control-md px-2 text-[13px] [&_svg]:size-3.5;
 	}
 	.cn-badge-size-28 {
-		@apply h-7 rounded-control-sm px-2 text-sm [&_svg]:size-4;
+		@apply h-7 rounded-control-md px-2 text-sm [&_svg]:size-4;
 	}
 
 	/* Color base (neutral only — others are fully defined via compound variants) */
@@ -484,7 +484,7 @@
 
 	/* Dot */
 	.cn-badge-dot {
-		@apply rounded-full bg-[currentColor];
+		@apply rounded-pill bg-[currentColor];
 	}
 
 	/* MARK: Banner */
@@ -617,22 +617,22 @@
 
 	/* Base size rounded tokens (extracted from size variant string) */
 	.cn-btn-size-28 {
-		@apply rounded-control-sm;
+		@apply rounded-control-md;
 	}
 	.cn-btn-size-32 {
-		@apply rounded-control-sm;
+		@apply rounded-control-md;
 	}
 	.cn-btn-size-36 {
-		@apply rounded-control;
+		@apply rounded-control-lg;
 	}
 	.cn-btn-size-40 {
-		@apply rounded-control;
+		@apply rounded-control-lg;
 	}
 	.cn-btn-size-44 {
-		@apply rounded-control;
+		@apply rounded-control-lg;
 	}
 	.cn-btn-size-48 {
-		@apply rounded-control;
+		@apply rounded-control-lg;
 	}
 
 	/* Strong */
@@ -817,7 +817,7 @@
 
 	/* MARK: CompactButton */
 	.cn-compact-btn {
-		@apply rounded-element;
+		@apply rounded-element-md;
 	}
 
 	/* CompactButton — Strong/Soft/Outline/Ghost share identical color tokens to Button, compact prefix only */
@@ -975,10 +975,10 @@
 
 	/* MARK: IconButton */
 	.cn-icon-btn-size-28 {
-		@apply rounded-element size-7 p-1.5;
+		@apply rounded-element-md size-7 p-1.5;
 	}
 	.cn-icon-btn-size-32 {
-		@apply p-1.75 rounded-element size-8;
+		@apply p-1.75 rounded-element-md size-8;
 	}
 	.cn-icon-btn-size-36 {
 		@apply rounded-element-lg size-9 p-2;
@@ -1016,7 +1016,7 @@
 	/* MARK: Calendar */
 
 	.cn-calendar {
-		@apply bg-card border-border rounded-surface border p-3;
+		@apply bg-card border-border rounded-surface-xl border p-3;
 	}
 
 	.cn-calendar-month-caption {
@@ -1036,7 +1036,7 @@
 	}
 
 	.cn-calendar-day-button {
-		@apply text-fg rounded-control text-sm font-medium;
+		@apply text-fg rounded-control-lg text-sm font-medium;
 		@apply hover:bg-fill1-alpha;
 		@apply hover:group-data-selected:bg-primary;
 		@apply group-data-disabled:line-through;
@@ -1062,7 +1062,7 @@
 		@apply hover:bg-fill1-alpha focus-visible:ring-border;
 		@apply hover:before:bg-fill2-alpha relative before:absolute before:inset-0;
 		@apply aria-disabled:opacity-50;
-		@apply rounded-lg p-1.5;
+		@apply rounded-element-lg p-1.5;
 	}
 
 	.cn-calendar-chevron {
@@ -1071,7 +1071,7 @@
 
 	/* MARK: Card */
 	.cn-card {
-		@apply bg-card border-border gap-6 rounded-surface border py-6 shadow-sm;
+		@apply bg-card border-border gap-6 rounded-surface-xl border py-6 shadow-sm;
 	}
 
 	.cn-card-header {
@@ -1113,11 +1113,11 @@
 	}
 
 	.cn-carousel-previous {
-		@apply rounded-full;
+		@apply rounded-pill;
 	}
 
 	.cn-carousel-next {
-		@apply rounded-full;
+		@apply rounded-pill;
 	}
 
 	/* MARK: Checkbox */
@@ -1132,21 +1132,21 @@
 	}
 
 	.cn-checkbox-sm {
-		@apply rounded-sm;
+		@apply rounded-element-sm;
 	}
 
 	.cn-checkbox-md {
-		@apply rounded-md;
+		@apply rounded-element-md;
 	}
 
 	.cn-checkbox-lg {
-		@apply rounded-md;
+		@apply rounded-element-md;
 	}
 
 	/* MARK: Code Area */
 
 	.cn-code-area {
-		@apply rounded-xl text-sm;
+		@apply rounded-surface-xl text-sm;
 	}
 
 	/* MARK: Collapsible */
@@ -1158,7 +1158,7 @@
 	/* MARK: Command */
 
 	.cn-command {
-		@apply bg-bg text-fg border-border rounded-lg border;
+		@apply bg-bg text-fg border-border rounded-surface-xl border;
 	}
 
 	.cn-command-dialog-cmdk {
@@ -1235,7 +1235,7 @@
 
 	/* Content */
 	.cn-dialog-content {
-		@apply bg-bg border-alpha gap-5 rounded-2xl border p-4 shadow-lg;
+		@apply bg-bg border-alpha gap-5 rounded-surface-2xl border p-4 shadow-lg;
 	}
 
 	/* Close button */
@@ -1285,24 +1285,24 @@
 		@apply outline-border outline;
 	}
 	.cn-drawer-variant-float {
-		@apply outline-border rounded-xl shadow-lg outline;
+		@apply outline-border rounded-surface-xl shadow-lg outline;
 	}
 	.cn-drawer-variant-rounded {
-		@apply outline-border rounded-xl outline;
+		@apply outline-border rounded-surface-xl outline;
 	}
 
 	/* Rounded directional overrides */
 	.cn-drawer-rounded-top {
-		@apply rounded-b-xl;
+		@apply rounded-b-surface-xl;
 	}
 	.cn-drawer-rounded-bottom {
-		@apply rounded-t-xl;
+		@apply rounded-t-surface-xl;
 	}
 	.cn-drawer-rounded-left {
-		@apply rounded-r-xl;
+		@apply rounded-r-surface-xl;
 	}
 	.cn-drawer-rounded-right {
-		@apply rounded-l-xl;
+		@apply rounded-l-surface-xl;
 	}
 
 	/* No-handle padding */
@@ -1367,11 +1367,11 @@
 	}
 
 	.cn-dropdown-content {
-		@apply border-border bg-popover drop-shadow-xs min-w-[var(--radix-dropdown-menu-trigger-width)] gap-0.5 rounded-surface-sm border p-1.5;
+		@apply border-border bg-popover drop-shadow-xs min-w-[var(--radix-dropdown-menu-trigger-width)] gap-0.5 rounded-surface-lg border p-1.5;
 	}
 
 	.cn-dropdown-item {
-		@apply text-fg gap-2 rounded-sm px-2 py-1.5 text-sm;
+		@apply text-fg gap-2 rounded-element-sm px-2 py-1.5 text-sm;
 		@apply focus:bg-fill1-alpha;
 		@apply data-disabled:text-fg-disabled data-disabled:[&_*]:text-fg-disabled;
 		@apply [&_svg]:text-fg-secondary [&_svg:not([class*='size-'])]:size-4;
@@ -1382,7 +1382,7 @@
 	}
 
 	.cn-dropdown-checkbox-item {
-		@apply gap-2 rounded-sm py-1.5 text-sm;
+		@apply gap-2 rounded-element-sm py-1.5 text-sm;
 		@apply focus:bg-fill2-alpha;
 		@apply [&_svg]:text-fg-secondary [&_svg:not([class*='size-'])]:size-5;
 	}
@@ -1396,7 +1396,7 @@
 	}
 
 	.cn-dropdown-radio-item {
-		@apply gap-2 rounded-sm py-1.5 text-sm;
+		@apply gap-2 rounded-element-sm py-1.5 text-sm;
 		@apply focus:bg-fill2-alpha;
 		@apply [&_svg]:text-fg-secondary [&_svg:not([class*='size-'])]:size-5;
 	}
@@ -1430,7 +1430,7 @@
 	}
 
 	.cn-dropdown-sub-trigger {
-		@apply gap-2 rounded-sm px-2 py-1.5 text-sm;
+		@apply gap-2 rounded-element-sm px-2 py-1.5 text-sm;
 		@apply data-[state=open]:bg-fill1-alpha focus:bg-fill2-alpha;
 		@apply [&_svg]:text-fg-secondary [&_svg:not([class*='size-'])]:size-4;
 	}
@@ -1440,7 +1440,7 @@
 	}
 
 	.cn-dropdown-sub-content {
-		@apply border-border bg-popover drop-shadow-xs min-w-36 rounded-lg border p-1.5;
+		@apply border-border bg-popover drop-shadow-xs min-w-36 rounded-surface-lg border p-1.5;
 	}
 
 	.cn-dropdown-label {
@@ -1462,7 +1462,7 @@
 	/* MARK: HoverCard */
 
 	.cn-hover-card-content {
-		@apply bg-popover text-fg border-soft rounded-surface-sm border p-4 shadow-md;
+		@apply bg-popover text-fg border-soft rounded-surface-lg border p-4 shadow-md;
 	}
 
 	/* MARK: Input */
@@ -1472,27 +1472,27 @@
 
 	/* Input sizes */
 	.cn-input-28 {
-		@apply rounded-control-sm px-2 text-[13px];
+		@apply rounded-control-md px-2 text-[13px];
 	}
 
 	.cn-input-32 {
-		@apply rounded-control-sm px-2 text-sm;
+		@apply rounded-control-md px-2 text-sm;
 	}
 
 	.cn-input-36 {
-		@apply rounded-control px-2.5 text-sm;
+		@apply rounded-control-lg px-2.5 text-sm;
 	}
 
 	.cn-input-40 {
-		@apply rounded-control px-3 text-sm;
+		@apply rounded-control-lg px-3 text-sm;
 	}
 
 	.cn-input-44 {
-		@apply rounded-control px-3 text-base;
+		@apply rounded-control-lg px-3 text-base;
 	}
 
 	.cn-input-48 {
-		@apply rounded-control px-3.5 text-base;
+		@apply rounded-control-lg px-3.5 text-base;
 	}
 
 	/* InputAddon base */
@@ -1502,27 +1502,27 @@
 
 	/* InputAddon sizes */
 	.cn-input-addon-28 {
-		@apply rounded-control-sm px-2 text-[13px];
+		@apply rounded-control-md px-2 text-[13px];
 	}
 
 	.cn-input-addon-32 {
-		@apply rounded-control-sm px-2 text-sm;
+		@apply rounded-control-md px-2 text-sm;
 	}
 
 	.cn-input-addon-36 {
-		@apply rounded-control px-2.5 text-sm;
+		@apply rounded-control-lg px-2.5 text-sm;
 	}
 
 	.cn-input-addon-40 {
-		@apply rounded-control px-3 text-sm;
+		@apply rounded-control-lg px-3 text-sm;
 	}
 
 	.cn-input-addon-44 {
-		@apply rounded-control px-3 text-base;
+		@apply rounded-control-lg px-3 text-base;
 	}
 
 	.cn-input-addon-48 {
-		@apply rounded-control px-3.5 text-base;
+		@apply rounded-control-lg px-3.5 text-base;
 	}
 
 	.cn-input-wrapper {
@@ -1566,7 +1566,7 @@
 	}
 
 	.cn-otp-input {
-		@apply bg-bg text-fg shadow-2xs border-alpha focus-visible:ring-3 focus-visible:ring-primary-focus focus-visible:border-primary-hover group-has-disabled:cursor-not-allowed group-has-disabled:text-fg-disabled group-has-disabled:bg-fill2-alpha group-has-disabled:placeholder:text-fg-disabled placeholder:text-fg-tertiary rounded-lg border font-semibold;
+		@apply bg-bg text-fg shadow-2xs border-alpha focus-visible:ring-3 focus-visible:ring-primary-focus focus-visible:border-primary-hover group-has-disabled:cursor-not-allowed group-has-disabled:text-fg-disabled group-has-disabled:bg-fill2-alpha group-has-disabled:placeholder:text-fg-disabled placeholder:text-fg-tertiary rounded-control-lg border font-semibold;
 	}
 
 	.cn-otp-input-28 {
@@ -1596,12 +1596,12 @@
 	/* MARK: Popover */
 
 	.cn-popover-content {
-		@apply text-fg bg-popover rounded-md border p-4 shadow-md;
+		@apply text-fg bg-popover rounded-element-md border p-4 shadow-md;
 	}
 
 	/* MARK: Progress */
 	.cn-progress {
-		@apply bg-fill3 h-2 rounded-full;
+		@apply bg-fill3 h-2 rounded-pill;
 	}
 
 	.cn-progress-indicator {
@@ -1615,7 +1615,7 @@
 	}
 
 	.cn-resizable-handle-grip {
-		@apply bg-border rounded-xs border;
+		@apply bg-border rounded-element-xs border;
 	}
 
 	/* MARK: ScrollArea */
@@ -1632,7 +1632,7 @@
 	}
 
 	.cn-scrollbar-thumb {
-		@apply bg-border rounded-full;
+		@apply bg-border rounded-pill;
 	}
 
 	/* MARK: Select */
@@ -1641,27 +1641,27 @@
 	}
 
 	.cn-select-trigger-28 {
-		@apply rounded-control-sm h-7 px-2 py-1.5 text-[13px];
+		@apply rounded-control-md h-7 px-2 py-1.5 text-[13px];
 	}
 
 	.cn-select-trigger-32 {
-		@apply rounded-control-sm h-8 px-2 py-1.5 text-sm;
+		@apply rounded-control-md h-8 px-2 py-1.5 text-sm;
 	}
 
 	.cn-select-trigger-36 {
-		@apply rounded-control h-9 px-2.5 py-2 text-sm;
+		@apply rounded-control-lg h-9 px-2.5 py-2 text-sm;
 	}
 
 	.cn-select-trigger-40 {
-		@apply rounded-control h-10 px-3 py-2.5 text-sm;
+		@apply rounded-control-lg h-10 px-3 py-2.5 text-sm;
 	}
 
 	.cn-select-trigger-44 {
-		@apply rounded-control h-11 px-3 py-2.5 text-base;
+		@apply rounded-control-lg h-11 px-3 py-2.5 text-base;
 	}
 
 	.cn-select-trigger-48 {
-		@apply rounded-control h-12 px-3.5 py-3 text-base;
+		@apply rounded-control-lg h-12 px-3.5 py-3 text-base;
 	}
 
 	.cn-select-scroll-button {
@@ -1669,7 +1669,7 @@
 	}
 
 	.cn-select-content {
-		@apply border-border bg-popover text-fg min-w-[8rem] rounded-md border shadow-md shadow-black/5;
+		@apply border-border bg-popover text-fg min-w-[8rem] rounded-surface-md border shadow-md shadow-black/5;
 	}
 
 	.cn-select-viewport {
@@ -1681,7 +1681,7 @@
 	}
 
 	.cn-select-item {
-		@apply focus:bg-fill2-alpha data-disabled:pointer-events-none data-disabled:opacity-50 rounded-sm py-1.5 text-sm;
+		@apply focus:bg-fill2-alpha data-disabled:pointer-events-none data-disabled:opacity-50 rounded-element-sm py-1.5 text-sm;
 	}
 
 	.cn-select-divider {
@@ -1694,7 +1694,7 @@
 	}
 
 	.cn-slider-track {
-		@apply bg-fill3 h-2 rounded-full;
+		@apply bg-fill3 h-2 rounded-pill;
 	}
 
 	.cn-slider-range {
@@ -1702,7 +1702,7 @@
 	}
 
 	.cn-slider-thumb {
-		@apply border-primary bg-bg drop-shadow-xs rounded-full border-2;
+		@apply border-primary bg-bg drop-shadow-xs rounded-pill border-2;
 	}
 
 	/* MARK: Switch */
@@ -1716,7 +1716,7 @@
 	}
 
 	.cn-switch-shape-square {
-		@apply rounded-md;
+		@apply rounded-element-md;
 	}
 
 	.cn-switch-permanent {
@@ -1732,11 +1732,11 @@
 	}
 
 	.cn-switch-thumb-shape-pill {
-		@apply rounded-full;
+		@apply rounded-pill;
 	}
 
 	.cn-switch-thumb-shape-square {
-		@apply rounded-md;
+		@apply rounded-element-md;
 	}
 
 	.cn-switch-indicator-on {
@@ -1809,11 +1809,11 @@
 	}
 
 	.cn-tabs-list-rounded-md {
-		@apply rounded-lg;
+		@apply rounded-element-lg;
 	}
 
 	.cn-tabs-list-rounded-lg {
-		@apply rounded-xl;
+		@apply rounded-element-xl;
 	}
 
 	.cn-tabs-list-open-gap-sm {
@@ -1847,15 +1847,15 @@
 
 	/* Trigger default size compounds */
 	.cn-tabs-trigger-default-sm {
-		@apply rounded-md px-1.5 py-1;
+		@apply rounded-element-md px-1.5 py-1;
 	}
 
 	.cn-tabs-trigger-default-md {
-		@apply rounded-md px-2.5 py-1.5;
+		@apply rounded-element-md px-2.5 py-1.5;
 	}
 
 	.cn-tabs-trigger-default-lg {
-		@apply rounded-[0.625rem] px-3 py-2;
+		@apply rounded-element-lg px-3 py-2;
 	}
 
 	/* Trigger outline/ghost/outline-ghost size compounds */
@@ -1899,15 +1899,15 @@
 
 	/* Trigger ghost/outline-ghost active rounded */
 	.cn-tabs-trigger-ghost-sm {
-		@apply data-[state=active]:rounded-md;
+		@apply data-[state=active]:rounded-element-md;
 	}
 
 	.cn-tabs-trigger-ghost-md {
-		@apply data-[state=active]:rounded-lg;
+		@apply data-[state=active]:rounded-element-lg;
 	}
 
 	.cn-tabs-trigger-ghost-lg {
-		@apply data-[state=active]:rounded-[0.625rem];
+		@apply data-[state=active]:rounded-element-lg;
 	}
 
 	/* MARK: TextArea */
@@ -1916,7 +1916,7 @@
 	}
 
 	.cn-textarea-rounded {
-		@apply rounded-element;
+		@apply rounded-element-md;
 	}
 
 	.cn-textarea-square {
@@ -1925,7 +1925,7 @@
 
 	/* MARK: Tooltip */
 	.cn-tooltip-content {
-		@apply max-w-70 rounded-md px-2 py-1.5 text-[13px]/4 shadow-md shadow-black/5;
+		@apply max-w-70 rounded-element-md px-2 py-1.5 text-[13px]/4 shadow-md shadow-black/5;
 	}
 
 	.cn-tooltip-theme-light {

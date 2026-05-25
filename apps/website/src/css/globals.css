@@ -125,20 +125,40 @@
 	--heading-font: var(--font-geist), system-ui, sans-serif;
 	--body-font: var(--font-inter), system-ui, sans-serif;
 
+	/* Control Category - Button/Input/Select/OTP/Badge */
+	--radius-control-md: 6px;
+	--radius-control-lg: 8px;
+	--radius-control-xl: 12px;
+	/* Surface Category - Accordion/Alert/Dropdown/Sonner/CodeArea/HoverCard/Drawer */
+	--radius-surface-md: 6px;
+	--radius-surface-lg: 8px;
+	--radius-surface-xl: 12px;
+	--radius-surface-2xl: 16px;
+	--radius-surface-3xl: 24px;
+	/* Pill Category - Avatar/Progress/Slider/Switch */
+	--radius-pill: 999px;
+	/* Element Category- Checkbox/CompactButton/IconButton/Tooltip/Textarea/Tabs */
+	--radius-element-xs: 2px;
+	--radius-element-sm: 4px;
+	--radius-element-md: 6px;
+	--radius-element-lg: 8px;
+	--radius-element-xl: 12px;
+	--radius-element-2xl: 16px;
 
 
 	/* Control Category - Button/Input/Select/OTP/Badge */
-	--radius-control-sm: 6px;
-	--radius-control: 8px;
-	/* Surface Category - Accordion/Alert/Dropdown/Sonner/CodeArea/HoverCard/Drawer */
-	--radius-surface-sm: 8px;
-	--radius-surface: 12px;
+	--radius-control-md: 6px;
+	--radius-control-lg: 8px;
+	--radius-control-xl: 12px;
+	/* Shape Category - Accordion/Alert/Dropdown/Sonner/CodeArea/HoverCard/Drawer/Avatar/Progress/Slider/Switch */
+	--radius-shape-xs: 2px;
+	--radius-shape-md: 6px;
+	--radius-shape-lg: 8px;
+	--radius-shape-xl: 12px;
+	--radius-shape-2xl: 16px;
+	--radius-shape-3xl: 24px;
 	/* Pill Category - Avatar/Progress/Slider/Switch */
-	--radius-pill: var(--rounded-full);
-	/* Checkbox/CompactButton/Tooltip/Textarea/Tabs */
-	--radius-element-sm: 4px;
-	--radius-element: 6px;
-	--radius-element-lg: 8px;
+	--radius-pill: 999px;
 }
 
 .dark {

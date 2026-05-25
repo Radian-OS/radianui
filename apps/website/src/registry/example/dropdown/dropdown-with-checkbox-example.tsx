@@ -1,3 +1,5 @@
+"use client"
+
 import { Button } from "@/registry/ui/button"
 import { Checkbox } from "@/registry/ui/checkbox"
 import {
