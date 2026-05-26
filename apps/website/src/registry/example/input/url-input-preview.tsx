@@ -1,15 +1,15 @@
 "use client"
 
 import { useState } from "react"
-import { Input, InputAddon, InputGroup } from "@/styles/default/ui/input"
-import { Label } from "@/styles/default/ui/label"
+import { Input, InputAddon, InputGroup } from "@/registry/ui/input"
+import { Label } from "@/registry/ui/label"
 import {
 	Select,
 	SelectContent,
 	SelectItem,
 	SelectTrigger,
 	SelectValue,
-} from "@/styles/default/ui/select"
+} from "@/registry/ui/select"
 
 type domainOption = ".com" | ".org" | ".net"
 

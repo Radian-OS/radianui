@@ -1,7 +1,7 @@
 import React from "react"
-import { Badge } from "@/styles/default/ui/badge"
-import { Divider } from "@/styles/default/ui/divider"
-import { Skeleton } from "@/styles/default/ui/skeleton"
+import { Badge } from "@/registry/ui/badge"
+import { Divider } from "@/registry/ui/divider"
+import { Skeleton } from "@/registry/ui/skeleton"
 
 function DividerBadgePreview() {
 	return (

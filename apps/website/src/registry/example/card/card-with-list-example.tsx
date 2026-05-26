@@ -2,18 +2,18 @@
 
 import { Settings } from "lucide-react"
 import Link from "next/link"
-import { Avatar, AvatarFallback, AvatarImage } from "@/styles/default/ui/avatar"
+import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
 // Assuming you have Avatar components
-import { Badge } from "@/styles/default/ui/badge"
+import { Badge } from "@/registry/ui/badge"
 // Assuming you have a Badge component
-import { Button, IconButton } from "@/styles/default/ui/button"
+import { Button, IconButton } from "@/registry/ui/button"
 import {
 	Card,
 	CardContent,
 	CardFooter,
 	CardHeader,
 	CardTitle,
-} from "@/styles/default/ui/card"
+} from "@/registry/ui/card"
 
 // User data
 const users = [

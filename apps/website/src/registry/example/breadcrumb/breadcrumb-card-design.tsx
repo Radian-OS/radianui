@@ -8,13 +8,13 @@ import {
 	BreadcrumbList,
 	BreadcrumbPage,
 	BreadcrumbSeparator,
-} from "@/styles/default/ui/breadcrumb"
+} from "@/registry/ui/breadcrumb"
 import {
 	Dropdown,
 	DropdownContent,
 	DropdownItem,
 	DropdownTrigger,
-} from "@/styles/default/ui/dropdown"
+} from "@/registry/ui/dropdown"
 
 function BreadCrumbCardDesign() {
 	return (

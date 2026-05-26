@@ -1,4 +1,4 @@
-import { Avatar, AvatarImage } from "@/styles/default/ui/avatar"
+import { Avatar, AvatarImage } from "@/registry/ui/avatar"
 import {
 	Select,
 	SelectContent,
@@ -7,7 +7,7 @@ import {
 	SelectLabel,
 	SelectTrigger,
 	SelectValue,
-} from "@/styles/default/ui/select"
+} from "@/registry/ui/select"
 
 export default function SelectWithBadge() {
 	return (

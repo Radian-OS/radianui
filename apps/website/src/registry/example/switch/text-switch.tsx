@@ -1,12 +1,8 @@
 "use client"
 
 import { useId, useState } from "react"
-import { Label } from "@/styles/default/ui/label"
-import {
-	Switch,
-	SwitchIndicator,
-	SwitchWrapper,
-} from "@/styles/default/ui/switch"
+import { Label } from "@/registry/ui/label"
+import { Switch, SwitchIndicator, SwitchWrapper } from "@/registry/ui/switch"
 
 export default function TextInsideSwitch() {
 	const [isOn, setIsOn] = useState(false)

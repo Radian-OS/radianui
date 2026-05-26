@@ -5,7 +5,7 @@ import {
 	AvatarImage,
 	AvatarIndicator,
 	AvatarStatus,
-} from "@/styles/default/ui/avatar"
+} from "@/registry/ui/avatar"
 
 export default function AvatarRoundedSquare() {
 	return (

@@ -20,14 +20,14 @@ import {
 	AvatarFallback,
 	AvatarImage,
 	AvatarStatus,
-} from "@/styles/default/ui/avatar"
+} from "@/registry/ui/avatar"
 import {
 	Collapsible,
 	CollapsibleContent,
 	CollapsibleTrigger,
-} from "@/styles/default/ui/collapsible"
-import { Divider } from "@/styles/default/ui/divider"
-import { Input, InputWrapper } from "@/styles/default/ui/input"
+} from "@/registry/ui/collapsible"
+import { Divider } from "@/registry/ui/divider"
+import { Input, InputWrapper } from "@/registry/ui/input"
 
 type SubMenuItem = {
 	id: string

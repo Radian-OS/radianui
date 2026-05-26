@@ -41,7 +41,7 @@ const accordionVariants = cva("w-full", {
 		},
 		variant: {
 			box: "",
-			table: "border-border rounded-xl border",
+			table: "border-border rounded-lg border",
 			open: "",
 		},
 	},
@@ -55,7 +55,7 @@ const accordionItemVariants = cva("overflow-hidden", {
 	variants: {
 		variant: {
 			box: "border-border shadow-2xs rounded-lg border last:mb-0",
-			table: "border-b first:rounded-t-xl last:rounded-b-xl last:border-b-0",
+			table: "border-b first:rounded-t-xl last:rounded-b-lg last:border-b-0",
 			open: "border-b last:border-b-0",
 		},
 		size: {

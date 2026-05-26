@@ -7,8 +7,8 @@ import {
 	InputAddon,
 	InputGroup,
 	InputWrapper,
-} from "@/styles/default/ui/input"
-import { Label } from "@/styles/default/ui/label"
+} from "@/registry/ui/input"
+import { Label } from "@/registry/ui/label"
 
 const NumberInputPreview = () => {
 	const [amount, setAmount] = useState("")

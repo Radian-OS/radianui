@@ -1,7 +1,7 @@
 import React from "react"
 import { MapPin, User } from "lucide-react"
-import { Input, InputWrapper } from "@/styles/default/ui/input"
-import { Label } from "@/styles/default/ui/label"
+import { Input, InputWrapper } from "@/registry/ui/input"
+import { Label } from "@/registry/ui/label"
 
 const InputWrappers = () => {
 	return (

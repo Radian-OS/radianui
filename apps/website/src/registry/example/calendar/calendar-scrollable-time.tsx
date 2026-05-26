@@ -3,9 +3,9 @@
 import React from "react"
 import { format, parse } from "date-fns"
 import { cn } from "@/lib/utils"
-import { Button } from "@/styles/default/ui/button"
-import { Calendar } from "@/styles/default/ui/calendar"
-import { ScrollArea } from "@/styles/default/ui/scroll-area"
+import { Button } from "@/registry/ui/button"
+import { Calendar } from "@/registry/ui/calendar"
+import { ScrollArea } from "@/registry/ui/scroll-area"
 
 const timeSlots = [
 	{ time: "09:00", available: true },

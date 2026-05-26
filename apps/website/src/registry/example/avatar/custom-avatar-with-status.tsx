@@ -5,7 +5,7 @@ import {
 	AvatarFallback,
 	AvatarImage,
 	AvatarIndicator,
-} from "@/styles/default/ui/avatar"
+} from "@/registry/ui/avatar"
 
 export default function CustomAvatarStatusPreview() {
 	return (

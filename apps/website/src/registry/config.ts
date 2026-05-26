@@ -111,7 +111,7 @@ export const PRESETS: Preset[] = [
 		headingFont: "playfair-display",
 		bodyFont: "playfair-display",
 		template: "next",
-		radius: "medium",
+		radius: "none",
 		style: "sera",
 		useSrcDir: true,
 		iconLibrary: "lucide",
@@ -306,7 +306,7 @@ export function buildRegistryConfig(config: ThemerConfig): RegistryConfig {
 	const radius = RADIUS.find((r) => r.value === config.radius)
 	if (radius) {
 		for (const [key, value] of Object.entries(radius.radius)) {
-			theme[`--radius-${key}`] = value
+			theme[`--${key}`] = value
 		}
 	}
 

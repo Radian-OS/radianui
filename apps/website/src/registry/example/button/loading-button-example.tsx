@@ -1,5 +1,5 @@
 import { User } from "lucide-react"
-import { Button, IconButton } from "@/styles/default/ui/button"
+import { Button, IconButton } from "@/registry/ui/button"
 
 function LoadingButtonExample() {
 	return (

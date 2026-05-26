@@ -1,7 +1,7 @@
 import React from "react"
 import { Bookmark, Plus, X } from "lucide-react"
-import { Avatar, AvatarFallback, AvatarImage } from "@/styles/default/ui/avatar"
-import { Badge, BadgeDot } from "@/styles/default/ui/badge"
+import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
+import { Badge, BadgeDot } from "@/registry/ui/badge"
 
 function BadgeExamplePreview() {
 	return (

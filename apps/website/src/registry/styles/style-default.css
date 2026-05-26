@@ -9,7 +9,7 @@
 	}
 
 	.cn-accordion-variant-table {
-		@apply border-border rounded-xl border;
+		@apply border-border rounded-lg border;
 	}
 
 	.cn-accordion-item-variant-box {
@@ -17,7 +17,7 @@
 	}
 
 	.cn-accordion-item-variant-table {
-		@apply border-b first:rounded-t-xl last:rounded-b-xl last:border-b-0;
+		@apply border-b first:rounded-t-xl last:rounded-b-lg last:border-b-0;
 	}
 
 	.cn-accordion-item-variant-open {
@@ -309,16 +309,16 @@
 
 	/* Square compound variants */
 	.cn-avatar-square-16 {
-		@apply rounded-sm;
+		@apply rounded-md;
 	}
 	.cn-avatar-square-20 {
-		@apply rounded-sm;
+		@apply rounded-md;
 	}
 	.cn-avatar-square-24 {
-		@apply rounded-md;
+		@apply rounded-lg;
 	}
 	.cn-avatar-square-32 {
-		@apply rounded-md;
+		@apply rounded-lg;
 	}
 	.cn-avatar-square-36 {
 		@apply rounded-lg;
@@ -408,13 +408,13 @@
 
 	/* Size variants */
 	.cn-badge-size-20 {
-		@apply h-5 rounded-md px-1.5 text-xs [&_svg]:size-3.5;
+		@apply rounded-control-md h-5 px-1.5 text-xs [&_svg]:size-3.5;
 	}
 	.cn-badge-size-24 {
-		@apply h-6 rounded-md px-2 text-[13px] [&_svg]:size-3.5;
+		@apply rounded-control-md h-6 px-2 text-[13px] [&_svg]:size-3.5;
 	}
 	.cn-badge-size-28 {
-		@apply h-7 rounded-md px-2 text-sm [&_svg]:size-4;
+		@apply rounded-control-md h-7 px-2 text-sm [&_svg]:size-4;
 	}
 
 	/* Color base (neutral only — others are fully defined via compound variants) */
@@ -617,22 +617,22 @@
 
 	/* Base size rounded tokens (extracted from size variant string) */
 	.cn-btn-size-28 {
-		@apply rounded-md;
+		@apply rounded-control-md;
 	}
 	.cn-btn-size-32 {
-		@apply rounded-md;
+		@apply rounded-control-md;
 	}
 	.cn-btn-size-36 {
-		@apply rounded-lg;
+		@apply rounded-control-lg;
 	}
 	.cn-btn-size-40 {
-		@apply rounded-lg;
+		@apply rounded-control-lg;
 	}
 	.cn-btn-size-44 {
-		@apply rounded-lg;
+		@apply rounded-control-lg;
 	}
 	.cn-btn-size-48 {
-		@apply rounded-lg;
+		@apply rounded-control-lg;
 	}
 
 	/* Strong */
@@ -815,7 +815,7 @@
 		@apply text-white-inverse focus-visible:ring-black-inverse bg-black-inverse after:from-black-inverse before:border-white-inverse/16 before:mask-b-from-98% relative overflow-hidden font-medium shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-white-inverse)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border after:absolute after:inset-0 after:-z-10 after:rounded-[inherit] after:bg-gradient-to-b after:to-white/20 hover:opacity-95;
 	}
 
-	/* CompactButton base */
+	/* MARK: CompactButton */
 	.cn-compact-btn {
 		@apply rounded-md;
 	}
@@ -973,7 +973,7 @@
 		@apply focus-visible:ring-black-inverse before:border-white-inverse/16 before:mask-b-from-98% bg-black-inverse bg-linear-to-b text-white-inverse hover:before:bg-black-inverse/30 overflow-hidden from-white/0 to-white/20 font-medium before:absolute before:inset-px before:rounded-[inherit] before:border;
 	}
 
-	/* IconButton size variants */
+	/* MARK: IconButton */
 	.cn-icon-btn-size-28 {
 		@apply size-7 rounded-md p-1.5;
 	}
@@ -1036,7 +1036,7 @@
 	}
 
 	.cn-calendar-day-button {
-		@apply text-fg rounded-lg text-sm font-medium;
+		@apply text-fg rounded-control-lg text-sm font-medium;
 		@apply hover:bg-fill1-alpha;
 		@apply hover:group-data-selected:bg-primary;
 		@apply group-data-disabled:line-through;
@@ -1158,7 +1158,7 @@
 	/* MARK: Command */
 
 	.cn-command {
-		@apply bg-bg text-fg border-border rounded-lg border;
+		@apply bg-bg text-fg border-border rounded-xl border;
 	}
 
 	.cn-command-dialog-cmdk {
@@ -1472,27 +1472,27 @@
 
 	/* Input sizes */
 	.cn-input-28 {
-		@apply rounded-md px-2 text-[13px];
+		@apply rounded-control-md px-2 text-[13px];
 	}
 
 	.cn-input-32 {
-		@apply rounded-md px-2 text-sm;
+		@apply rounded-control-md px-2 text-sm;
 	}
 
 	.cn-input-36 {
-		@apply rounded-lg px-2.5 text-sm;
+		@apply rounded-control-lg px-2.5 text-sm;
 	}
 
 	.cn-input-40 {
-		@apply rounded-lg px-3 text-sm;
+		@apply rounded-control-lg px-3 text-sm;
 	}
 
 	.cn-input-44 {
-		@apply rounded-lg px-3 text-base;
+		@apply rounded-control-lg px-3 text-base;
 	}
 
 	.cn-input-48 {
-		@apply rounded-lg px-3.5 text-base;
+		@apply rounded-control-lg px-3.5 text-base;
 	}
 
 	/* InputAddon base */
@@ -1641,27 +1641,27 @@
 	}
 
 	.cn-select-trigger-28 {
-		@apply h-7 rounded-md px-2 py-1.5 text-[13px];
+		@apply rounded-control-md h-7 px-2 py-1.5 text-[13px];
 	}
 
 	.cn-select-trigger-32 {
-		@apply h-8 rounded-md px-2 py-1.5 text-sm;
+		@apply rounded-control-md h-8 px-2 py-1.5 text-sm;
 	}
 
 	.cn-select-trigger-36 {
-		@apply h-9 rounded-lg px-2.5 py-2 text-sm;
+		@apply rounded-control-lg h-9 px-2.5 py-2 text-sm;
 	}
 
 	.cn-select-trigger-40 {
-		@apply h-10 rounded-lg px-3 py-2.5 text-sm;
+		@apply rounded-control-lg h-10 px-3 py-2.5 text-sm;
 	}
 
 	.cn-select-trigger-44 {
-		@apply h-11 rounded-lg px-3 py-2.5 text-base;
+		@apply rounded-control-lg h-11 px-3 py-2.5 text-base;
 	}
 
 	.cn-select-trigger-48 {
-		@apply h-12 rounded-lg px-3.5 py-3 text-base;
+		@apply rounded-control-lg h-12 px-3.5 py-3 text-base;
 	}
 
 	.cn-select-scroll-button {
@@ -1855,7 +1855,7 @@
 	}
 
 	.cn-tabs-trigger-default-lg {
-		@apply rounded-[0.625rem] px-3 py-2;
+		@apply rounded-lg px-3 py-2;
 	}
 
 	/* Trigger outline/ghost/outline-ghost size compounds */
@@ -1907,7 +1907,7 @@
 	}
 
 	.cn-tabs-trigger-ghost-lg {
-		@apply data-[state=active]:rounded-[0.625rem];
+		@apply data-[state=active]:rounded-lg;
 	}
 
 	/* MARK: TextArea */

@@ -2,10 +2,10 @@
 
 import * as React from "react"
 import { useEffect, useState } from "react"
-import { Badge } from "@/styles/default/ui/badge"
-import { Divider } from "@/styles/default/ui/divider"
-import { Label } from "@/styles/default/ui/label"
-import { Progress } from "@/styles/default/ui/progress"
+import { Badge } from "@/registry/ui/badge"
+import { Divider } from "@/registry/ui/divider"
+import { Label } from "@/registry/ui/label"
+import { Progress } from "@/registry/ui/progress"
 
 export default function DownloadingProgress() {
 	const [downloadProgress, setDownloadProgress] = useState(0)

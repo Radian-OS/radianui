@@ -16,12 +16,12 @@ const inputVariants = cva(
 	{
 		variants: {
 			size: {
-				"28": "h-7 file:pe-1.5 file:me-1.5 rounded-md px-2 text-[13px]",
-				"32": "h-8 file:pe-3 file:me-3 rounded-md px-2 text-sm",
-				"36": "h-9 file:pe-2.5 file:me-2.5 rounded-lg px-2.5 text-sm",
-				"40": "h-10 file:pe-3 file:me-3 rounded-lg px-3 text-sm",
-				"44": "h-11 file:pe-3.5 file:me-3.5 rounded-lg px-3 text-base",
-				"48": "h-12 file:pe-3.5 file:me-3.5 rounded-lg px-3.5 text-base",
+				"28": "h-7 file:pe-1.5 file:me-1.5 rounded-control-md px-2 text-[13px]",
+				"32": "h-8 file:pe-3 file:me-3 rounded-control-md px-2 text-sm",
+				"36": "h-9 file:pe-2.5 file:me-2.5 rounded-control-lg px-2.5 text-sm",
+				"40": "h-10 file:pe-3 file:me-3 rounded-control-lg px-3 text-sm",
+				"44": "h-11 file:pe-3.5 file:me-3.5 rounded-control-lg px-3 text-base",
+				"48": "h-12 file:pe-3.5 file:me-3.5 rounded-control-lg px-3.5 text-base",
 			},
 		},
 		defaultVariants: {

@@ -1,12 +1,7 @@
 import React from "react"
 import { AppWindow, Film, Music2, Image as Picture } from "lucide-react"
-import { Badge } from "@/styles/default/ui/badge"
-import {
-	Tabs,
-	TabsContent,
-	TabsList,
-	TabsTrigger,
-} from "@/styles/default/ui/tabs"
+import { Badge } from "@/registry/ui/badge"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const data = [
 	{

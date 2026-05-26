@@ -1,14 +1,14 @@
 "use client"
 
 import { useState } from "react"
-import { Button } from "@/styles/default/ui/button"
+import { Button } from "@/registry/ui/button"
 import {
 	Dropdown,
 	DropdownContent,
 	DropdownRadioGroup,
 	DropdownRadioItem,
 	DropdownTrigger,
-} from "@/styles/default/ui/dropdown"
+} from "@/registry/ui/dropdown"
 
 export default function DropdownWithRadioExample() {
 	const [theme, setTheme] = useState("system")

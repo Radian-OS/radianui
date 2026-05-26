@@ -1,12 +1,12 @@
 import { EarthLock, Heart, MapPinned, Share, Users } from "lucide-react"
-import { Avatar, AvatarFallback, AvatarImage } from "@/styles/default/ui/avatar"
-import { Badge } from "@/styles/default/ui/badge"
-import { Button, IconButton } from "@/styles/default/ui/button"
+import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
+import { Badge } from "@/registry/ui/badge"
+import { Button, IconButton } from "@/registry/ui/button"
 import {
 	HoverCard,
 	HoverCardContent,
 	HoverCardTrigger,
-} from "@/styles/default/ui/hover-card"
+} from "@/registry/ui/hover-card"
 
 const profile = {
 	name: "Zoya Petrova",

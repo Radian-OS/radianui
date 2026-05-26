@@ -1,13 +1,13 @@
 "use client"
 
 import * as React from "react"
-import { Button } from "@/styles/default/ui/button"
+import { Button } from "@/registry/ui/button"
 import {
 	Dropdown,
 	DropdownCheckboxItem,
 	DropdownContent,
 	DropdownTrigger,
-} from "@/styles/default/ui/dropdown"
+} from "@/registry/ui/dropdown"
 
 export default function DropdownWithDropdownCheckbox() {
 	const [email, setEmail] = React.useState(true)

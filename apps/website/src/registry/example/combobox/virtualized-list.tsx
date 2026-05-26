@@ -4,7 +4,7 @@ import * as React from "react"
 import { useVirtualizer } from "@tanstack/react-virtual"
 import { Check, ChevronsUpDown } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { Button } from "@/styles/default/ui/button"
+import { Button } from "@/registry/ui/button"
 import {
 	Command,
 	CommandEmpty,
@@ -12,12 +12,8 @@ import {
 	CommandInput,
 	CommandItem,
 	CommandList,
-} from "@/styles/default/ui/command"
-import {
-	Popover,
-	PopoverContent,
-	PopoverTrigger,
-} from "@/styles/default/ui/popover"
+} from "@/registry/ui/command"
+import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
 
 type Option = {
 	value: string

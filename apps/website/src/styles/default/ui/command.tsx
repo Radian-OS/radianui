@@ -39,7 +39,7 @@ function Command({ className, ...props }: CommandProps) {
 		<Cmdk
 			data-slot="command"
 			className={cn(
-				"bg-bg text-fg border-border flex h-full w-full flex-col overflow-hidden rounded-lg border",
+				"bg-bg text-fg border-border flex h-full w-full flex-col overflow-hidden rounded-xl border",
 				className
 			)}
 			{...props}

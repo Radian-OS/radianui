@@ -1,5 +1,5 @@
 import React from "react"
-import { Button } from "@/styles/default/ui/button"
+import { Button } from "@/registry/ui/button"
 
 function GoogleButtonExample() {
 	return (

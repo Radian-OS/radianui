@@ -1,5 +1,5 @@
 import { SVGProps } from "react"
-import { Button } from "@/styles/default/ui/button"
+import { Button } from "@/registry/ui/button"
 import {
 	Empty,
 	EmptyAction,
@@ -7,7 +7,7 @@ import {
 	EmptyHeader,
 	EmptyMedia,
 	EmptyTitle,
-} from "@/styles/default/ui/empty"
+} from "@/registry/ui/empty"
 
 export default function NoCommentsYet() {
 	return (

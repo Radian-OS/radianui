@@ -2,10 +2,10 @@
 
 import React from "react"
 import { Calendar, Mail, MapPin, Phone, Settings } from "lucide-react"
-import { Badge } from "@/styles/default/ui/badge"
-import { Button } from "@/styles/default/ui/button"
-import { Divider } from "@/styles/default/ui/divider"
-import { ScrollArea } from "@/styles/default/ui/scroll-area"
+import { Badge } from "@/registry/ui/badge"
+import { Button } from "@/registry/ui/button"
+import { Divider } from "@/registry/ui/divider"
+import { ScrollArea } from "@/registry/ui/scroll-area"
 
 const contacts = [
 	{

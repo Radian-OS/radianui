@@ -2,7 +2,7 @@
 
 import React from "react"
 import { MoonIcon, SunIcon } from "lucide-react"
-import { Switch } from "@/styles/default/ui/switch"
+import { Switch } from "@/registry/ui/switch"
 
 export default function Component() {
 	const id = React.useId()

@@ -1,8 +1,8 @@
 "use client"
 
 import * as React from "react"
-import { Input } from "@/styles/default/ui/input"
-import { Slider, SliderThumb } from "@/styles/default/ui/slider"
+import { Input } from "@/registry/ui/input"
+import { Slider, SliderThumb } from "@/registry/ui/slider"
 
 export default function SlideWithInput() {
 	const [value, setValue] = React.useState(50)

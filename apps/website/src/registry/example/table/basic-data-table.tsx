@@ -14,7 +14,7 @@ import {
 	useReactTable,
 } from "@tanstack/react-table"
 import { ChevronsUpDown } from "lucide-react"
-import { Checkbox } from "@/styles/default/ui/checkbox"
+import { Checkbox } from "@/registry/ui/checkbox"
 import {
 	Table,
 	TableBody,
@@ -22,7 +22,7 @@ import {
 	TableHead,
 	TableHeader,
 	TableRow,
-} from "@/styles/default/ui/table"
+} from "@/registry/ui/table"
 
 const data: Payment[] = [
 	{

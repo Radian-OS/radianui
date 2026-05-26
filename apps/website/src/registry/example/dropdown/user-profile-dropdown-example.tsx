@@ -2,16 +2,16 @@
 
 import * as React from "react"
 import { FolderCog, Ghost, LogOut, Settings, UserCog } from "lucide-react"
-import { Avatar, AvatarFallback, AvatarImage } from "@/styles/default/ui/avatar"
-import { Badge } from "@/styles/default/ui/badge"
+import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
+import { Badge } from "@/registry/ui/badge"
 import {
 	Dropdown,
 	DropdownContent,
 	DropdownDivider,
 	DropdownItem,
 	DropdownTrigger,
-} from "@/styles/default/ui/dropdown"
-import { Switch } from "@/styles/default/ui/switch"
+} from "@/registry/ui/dropdown"
+import { Switch } from "@/registry/ui/switch"
 
 const UserMenuDropdownExample = () => {
 	const [incognito, setIncognito] = React.useState(false)

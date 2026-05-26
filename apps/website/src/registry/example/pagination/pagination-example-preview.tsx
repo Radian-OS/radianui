@@ -6,13 +6,13 @@ import {
 	ChevronRight,
 } from "lucide-react"
 import Link from "next/link"
-import { IconButton } from "@/styles/default/ui/button"
+import { IconButton } from "@/registry/ui/button"
 import {
 	Pagination,
 	PaginationContent,
 	PaginationEllipsis,
 	PaginationItem,
-} from "@/styles/default/ui/pagination"
+} from "@/registry/ui/pagination"
 
 function PaginationExamplePreview() {
 	return (

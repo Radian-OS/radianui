@@ -1,13 +1,9 @@
 "use client"
 
 import Link from "next/link"
-import { Button } from "@/styles/default/ui/button"
-import { Label } from "@/styles/default/ui/label"
-import {
-	OTPField,
-	OTPHiddenInput,
-	OTPInput,
-} from "@/styles/default/ui/otp-field"
+import { Button } from "@/registry/ui/button"
+import { Label } from "@/registry/ui/label"
+import { OTPField, OTPHiddenInput, OTPInput } from "@/registry/ui/otp-field"
 
 const EmailCode = () => {
 	const handleSubmitClick = () => {

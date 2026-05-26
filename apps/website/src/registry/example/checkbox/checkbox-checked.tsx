@@ -1,8 +1,8 @@
 "use client"
 
 import { useId, useState } from "react"
-import { Checkbox } from "@/styles/default/ui/checkbox"
-import { Label } from "@/styles/default/ui/label"
+import { Checkbox } from "@/registry/ui/checkbox"
+import { Label } from "@/registry/ui/label"
 
 export default function CheckboxChecked() {
 	const id = useId()

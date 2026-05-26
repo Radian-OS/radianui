@@ -1,6 +1,6 @@
 import React from "react"
 import { ChevronDown, ChevronLeft, ChevronRight, ChevronUp } from "lucide-react"
-import { Button } from "@/styles/default/ui/button"
+import { Button } from "@/registry/ui/button"
 import {
 	Drawer,
 	DrawerBody,
@@ -11,7 +11,7 @@ import {
 	DrawerHeader,
 	DrawerTitle,
 	DrawerTrigger,
-} from "@/styles/default/ui/drawer"
+} from "@/registry/ui/drawer"
 
 function DrawerHandleExample() {
 	return (

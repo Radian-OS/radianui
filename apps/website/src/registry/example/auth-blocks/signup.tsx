@@ -1,8 +1,8 @@
 "use client"
 
 import Link from "next/link"
-import { Button } from "@/styles/default/ui/button"
-import { Input } from "@/styles/default/ui/input"
+import { Button } from "@/registry/ui/button"
+import { Input } from "@/registry/ui/input"
 
 const SignUp = () => {
 	const handleSubmitClick = () => {

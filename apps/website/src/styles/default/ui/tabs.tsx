@@ -120,7 +120,7 @@ const tabsTriggerStyles = cva(
 			{
 				size: "lg",
 				variant: ["default"],
-				className: "h-full rounded-[0.625rem] px-3 py-2",
+				className: "h-full rounded-lg px-3 py-2",
 			},
 			{
 				size: "sm",
@@ -186,7 +186,7 @@ const tabsTriggerStyles = cva(
 			{
 				size: "lg",
 				variant: ["ghost", "outline-ghost"],
-				className: "h-full data-[state=active]:rounded-[0.625rem]",
+				className: "h-full data-[state=active]:rounded-lg",
 			},
 		],
 		defaultVariants: {

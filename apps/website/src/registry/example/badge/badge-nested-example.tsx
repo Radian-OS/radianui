@@ -1,6 +1,6 @@
 import React from "react"
 import { ArrowRight } from "lucide-react"
-import { Badge } from "@/styles/default/ui/badge"
+import { Badge } from "@/registry/ui/badge"
 
 function BadgeNested() {
 	return (

@@ -1,8 +1,8 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { Label } from "@/styles/default/ui/label"
-import { Progress } from "@/styles/default/ui/progress"
+import { Label } from "@/registry/ui/label"
+import { Progress } from "@/registry/ui/progress"
 
 const ProgressExample = () => {
 	const [progress, setProgress] = useState(3)

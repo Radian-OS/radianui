@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { ChevronDown, MoonIcon, Palette, SunIcon, Type } from "lucide-react"
 import { useTheme } from "next-themes"
 import { useThemerLocks } from "@/lib/themer-locks"
@@ -11,15 +11,16 @@ import {
 	BaseColorValue,
 } from "@/registry/base-colors"
 import { PRESETS } from "@/registry/config"
-import { FontValue } from "@/registry/fonts"
+import { FONTS, FontValue } from "@/registry/fonts"
 import {
 	ICON_LIBRARIES,
 	ICON_LIBRARY_LABELS,
 	IconLibrary,
 } from "@/registry/icon/icon-libraries"
 import { PRIMARY_COLORS, PrimaryColorValue } from "@/registry/primary-colors"
-import { RadiusValue } from "@/registry/radius"
+import { RADIUS, RadiusValue } from "@/registry/radius"
 import { STYLES, StyleValue } from "@/registry/styles"
+import { Button } from "@/styles/default/ui/button"
 import {
 	Dropdown,
 	DropdownContent,
@@ -39,7 +40,13 @@ interface ThemerSidebarProps {
 	setSelectedComponent: (value: string) => void
 }
 
-const COMPONENTS_DATA = [
+const humanizeName = (name: string) =>
+	name
+		.split("-")
+		.map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+		.join(" ")
+
+const BLOCK_PREVIEWS = [
 	"preview-02",
 	"preview-03",
 	"signin",
@@ -47,7 +54,75 @@ const COMPONENTS_DATA = [
 	"new-password",
 	"reset-email",
 	"sidebar-inset",
+].map((name) => ({
+	value: name,
+	label: humanizeName(name),
+	description: "Block preview",
+}))
+
+const COMPONENT_PREVIEW_GROUPS = [
+	{ name: "accordion", examplesCount: 10 },
+	{ name: "alert", examplesCount: 8 },
+	{ name: "alert-dialog", examplesCount: 6 },
+	{ name: "aspect-ratio", examplesCount: 4 },
+	{ name: "auth-blocks", examplesCount: 5 },
+	{ name: "avatar", examplesCount: 9 },
+	{ name: "badge", examplesCount: 10 },
+	{ name: "banner", examplesCount: 8 },
+	{ name: "breadcrumb", examplesCount: 6 },
+	{ name: "button", examplesCount: 21 },
+	{ name: "calendar", examplesCount: 8 },
+	{ name: "card", examplesCount: 3 },
+	{ name: "carousel", examplesCount: 8 },
+	{ name: "checkbox", examplesCount: 8 },
+	{ name: "code-area", examplesCount: 5 },
+	{ name: "collapsible", examplesCount: 4 },
+	{ name: "combobox", examplesCount: 7 },
+	{ name: "command", examplesCount: 1 },
+	{ name: "currency-input", examplesCount: 13 },
+	{ name: "date-picker", examplesCount: 4 },
+	{ name: "dialog", examplesCount: 7 },
+	{ name: "divider", examplesCount: 4 },
+	{ name: "drawer", examplesCount: 5 },
+	{ name: "dropdown", examplesCount: 5 },
+	{ name: "empty", examplesCount: 12 },
+	{ name: "file-upload", examplesCount: 5 },
+	{ name: "form", examplesCount: 3 },
+	{ name: "hover-card", examplesCount: 5 },
+	{ name: "input", examplesCount: 19 },
+	{ name: "label", examplesCount: 1 },
+	{ name: "otp-field", examplesCount: 7 },
+	{ name: "pagination", examplesCount: 4 },
+	{ name: "phone-number-input", examplesCount: 8 },
+	{ name: "popover", examplesCount: 5 },
+	{ name: "progress", examplesCount: 3 },
+	{ name: "radio-group", examplesCount: 4 },
+	{ name: "resizable", examplesCount: 3 },
+	{ name: "scroll-area", examplesCount: 1 },
+	{ name: "select", examplesCount: 8 },
+	{ name: "skeleton", examplesCount: 1 },
+	{ name: "slider", examplesCount: 7 },
+	{ name: "sonner", examplesCount: 5 },
+	{ name: "spinner", examplesCount: 3 },
+	{ name: "switch", examplesCount: 10 },
+	{ name: "table", examplesCount: 6 },
+	{ name: "tabs", examplesCount: 13 },
+	{ name: "text-area", examplesCount: 4 },
+	{ name: "tooltip", examplesCount: 9 },
 ]
+
+const COMPONENT_PREVIEWS = COMPONENT_PREVIEW_GROUPS.map((group) => ({
+	value: group.name,
+	label: humanizeName(group.name),
+	description: `${group.examplesCount} examples`,
+}))
+
+const PREVIEW_ITEMS = [...BLOCK_PREVIEWS, ...COMPONENT_PREVIEWS]
+
+const RADIUS_DISABLED_STYLES: StyleValue[] = ["sera"]
+
+const getRandomItem = <T,>(items: readonly T[]) =>
+	items[Math.floor(Math.random() * items.length)]
 
 export function ThemerSidebar({
 	selectedComponent,
@@ -63,10 +138,51 @@ export function ThemerSidebar({
 	}, [])
 
 	const selectedComponentName =
-		COMPONENTS_DATA.find(
-			(name) => name.toLowerCase().replace(/\s+/g, "-") === selectedComponent
-		) ?? selectedComponent
+		PREVIEW_ITEMS.find((item) => item.value === selectedComponent)?.label ??
+		humanizeName(selectedComponent)
 	const selectedStyle = STYLES.find((t) => t.value === params.style)
+	const isRadiusDisabled = RADIUS_DISABLED_STYLES.includes(
+		params.style as StyleValue
+	)
+
+	useEffect(() => {
+		if (isRadiusDisabled && params.radius !== "none") {
+			setParams({ radius: "none" })
+		}
+	}, [isRadiusDisabled, params.radius, setParams])
+
+	const handleRandomize = useCallback(() => {
+		const style = getRandomItem(STYLES)
+		const primaryColor = getRandomItem(PRIMARY_COLORS)
+		const baseColor = getRandomItem(BASE_COLORS)
+		const headingFont = getRandomItem(FONTS)
+		const bodyFont = getRandomItem(FONTS)
+		const radius = getRandomItem(RADIUS)
+		const iconLibrary = getRandomItem(ICON_LIBRARIES)
+		const isNextRadiusDisabled = RADIUS_DISABLED_STYLES.includes(
+			style.value as StyleValue
+		)
+
+		setParams({
+			style: style.value as StyleValue,
+			primaryColor: primaryColor.value as PrimaryColorValue,
+			baseColor: baseColor.value as BaseColorValue,
+			iconLibrary: iconLibrary as IconLibrary,
+			...(isNextRadiusDisabled && {
+				radius: "none",
+			}),
+			...(!locked.headingFont && {
+				headingFont: headingFont.value as FontValue,
+			}),
+			...(!locked.bodyFont && {
+				bodyFont: bodyFont.value as FontValue,
+			}),
+			...(!locked.radius &&
+				!isNextRadiusDisabled && {
+					radius: radius.value as RadiusValue,
+				}),
+		})
+	}, [locked, setParams])
 
 	return (
 		<aside className="bg-elevation-level1 border-border flex w-80 shrink-0 flex-col border-r">
@@ -118,6 +234,9 @@ export function ThemerSidebar({
 								value={selectedStyle?.value}
 								onValueChange={(value) => {
 									const preset = PRESETS.find((p) => p.name === value)
+									const isNextRadiusDisabled = RADIUS_DISABLED_STYLES.includes(
+										value as StyleValue
+									)
 									setParams({
 										style: value as StyleValue,
 										...(preset && {
@@ -134,8 +253,12 @@ export function ThemerSidebar({
 										...(locked.bodyFont && {
 											bodyFont: params.bodyFont,
 										}),
-										...(locked.radius && {
-											radius: params.radius,
+										...(locked.radius &&
+											!isNextRadiusDisabled && {
+												radius: params.radius,
+											}),
+										...(isNextRadiusDisabled && {
+											radius: "none",
 										}),
 									})
 								}}>
@@ -234,12 +357,17 @@ export function ThemerSidebar({
 							<DropdownRadioGroup
 								value={selectedComponent}
 								onValueChange={setSelectedComponent}>
-								{COMPONENTS_DATA.map((name) => (
+								{PREVIEW_ITEMS.map((item) => (
 									<DropdownRadioItem
-										key={name}
-										value={name.toLowerCase().replace(/\s+/g, "-")}
+										key={item.value}
+										value={item.value}
 										onSelect={(e) => e.preventDefault()}>
-										{name}
+										<div className="flex flex-col gap-0.5">
+											<span>{item.label}</span>
+											<span className="text-fg-tertiary text-xs">
+												{item.description}
+											</span>
+										</div>
 									</DropdownRadioItem>
 								))}
 							</DropdownRadioGroup>
@@ -312,7 +440,10 @@ export function ThemerSidebar({
 							<RadiusPill
 								key={radius.value}
 								radius={radius}
-								isSelected={params.radius === radius.value}
+								isSelected={
+									(isRadiusDisabled ? "none" : params.radius) === radius.value
+								}
+								disabled={isRadiusDisabled}
 								onClick={() =>
 									setParams({ radius: radius.value as RadiusValue })
 								}
@@ -320,10 +451,20 @@ export function ThemerSidebar({
 						))}
 						<RadiusLockPill
 							isLocked={locked.radius}
+							disabled={isRadiusDisabled}
 							onToggle={() => toggleLock("radius")}
 						/>
 					</div>
 				</div>
+
+				<Button
+					type="button"
+					variant="outline"
+					color="neutral"
+					className="w-full"
+					onClick={handleRandomize}>
+					Randomize Preset
+				</Button>
 			</div>
 
 			{/* Footer action */}

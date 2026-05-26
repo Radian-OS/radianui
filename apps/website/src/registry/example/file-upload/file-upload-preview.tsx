@@ -8,9 +8,9 @@ import {
 	AlertDescription,
 	AlertIcon,
 	AlertTitle,
-} from "@/styles/default/ui/alert"
-import { IconButton } from "@/styles/default/ui/button"
-import { formatBytes, useFileUpload } from "@/styles/default/ui/file-upload"
+} from "@/registry/ui/alert"
+import { IconButton } from "@/registry/ui/button"
+import { formatBytes, useFileUpload } from "@/registry/ui/file-upload"
 
 const FileUploadPreview = () => {
 	const [

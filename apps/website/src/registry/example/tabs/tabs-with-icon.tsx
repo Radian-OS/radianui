@@ -1,11 +1,6 @@
 import React from "react"
 import { Archive, CheckCircle, Loader2 } from "lucide-react"
-import {
-	Tabs,
-	TabsContent,
-	TabsList,
-	TabsTrigger,
-} from "@/styles/default/ui/tabs"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const data = [
 	{

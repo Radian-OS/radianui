@@ -1,5 +1,5 @@
 import { Search } from "lucide-react"
-import { Input, InputWrapper } from "@/styles/default/ui/input"
+import { Input, InputWrapper } from "@/registry/ui/input"
 
 export default function InputSearch() {
 	return (

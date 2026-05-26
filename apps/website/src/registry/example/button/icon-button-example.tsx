@@ -1,6 +1,6 @@
 import React from "react"
 import { Bookmark, Plus, Settings, Trash2 } from "lucide-react"
-import { IconButton } from "@/styles/default/ui/button"
+import { IconButton } from "@/registry/ui/button"
 
 function ButtonIconOnlyExample() {
 	return (

@@ -1,12 +1,14 @@
-import { Button } from "@/styles/default/ui/button"
-import { Checkbox } from "@/styles/default/ui/checkbox"
+"use client"
+
+import { Button } from "@/registry/ui/button"
+import { Checkbox } from "@/registry/ui/checkbox"
 import {
 	Dropdown,
 	DropdownContent,
 	DropdownItem,
 	DropdownTrigger,
-} from "@/styles/default/ui/dropdown"
-import { Label } from "@/styles/default/ui/label"
+} from "@/registry/ui/dropdown"
+import { Label } from "@/registry/ui/label"
 
 const DropdownWithCheckboxExample = () => {
 	return (

@@ -1,6 +1,6 @@
 "use client"
 
-import { TextArea, useCharacterLimit } from "@/styles/default/ui/text-area"
+import { TextArea, useCharacterLimit } from "@/registry/ui/text-area"
 
 export default function LimitedCharacters() {
 	const { value, handleChange, remainingCharacters } = useCharacterLimit({

@@ -61,7 +61,7 @@ export const VITE_EXTRA_DEPENDENCIES = ["@tailwindcss/vite", "tailwindcss"]
 export const FALLBACK_PACKAGE_MANAGER = "npm"
 
 export const REGISTRY_URL =
-	process.env.NEXT_PUBLIC_WEBSITE_URL ?? "https://radianui.com/r"
+	process.env.RADIANUI_WEBSITE_URL ?? "https://radianui.com/r"
 
 export const RADIANUI_URL = REGISTRY_URL.replace(/\/r\/?$/, "")
 

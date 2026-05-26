@@ -2,7 +2,7 @@
 
 import { toast } from "sonner"
 import { useToast } from "@/contexts/toast-context"
-import { Button } from "@/styles/default/ui/button"
+import { Button } from "@/registry/ui/button"
 
 const ToastExpand = () => {
 	const { setIsExpandable } = useToast()

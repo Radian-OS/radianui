@@ -66,12 +66,12 @@ export const buttonVariants = cva(
 				"smooth-inverted": "",
 			},
 			size: {
-				"28": "[&>svg]:size-4 text-[13px] leading-4.5 px-1 rounded-md",
-				"32": "[&>svg]:size-4.5 text-sm px-1 rounded-md",
-				"36": "[&>svg]:size-5 text-sm px-1 rounded-lg",
-				"40": "[&>svg]:size-5 text-sm px-1 rounded-lg",
-				"44": "[&>svg]:size-5 text-base px-1 rounded-lg",
-				"48": "[&>svg]:size-6 text-base px-1 rounded-lg",
+				"28": "[&>svg]:size-4 text-[13px] leading-4.5 px-1 rounded-control-md",
+				"32": "[&>svg]:size-4.5 text-sm px-1 rounded-control-md",
+				"36": "[&>svg]:size-5 text-sm px-1 rounded-control-lg",
+				"40": "[&>svg]:size-5 text-sm px-1 rounded-control-lg",
+				"44": "[&>svg]:size-5 text-base px-1 rounded-control-lg",
+				"48": "[&>svg]:size-6 text-base px-1 rounded-control-lg",
 			},
 			loading: {
 				true: "",
@@ -512,9 +512,9 @@ function ButtonGroup({
 			const isLast = index === React.Children.count(children) - 1
 
 			const borderRadiusClass = isFirst
-				? "rounded-l-lg"
+				? "rounded-l-control"
 				: isLast
-					? "rounded-r-lg"
+					? "rounded-r-control"
 					: "rounded-none"
 
 			if (React.isValidElement<ButtonProps>(child)) {

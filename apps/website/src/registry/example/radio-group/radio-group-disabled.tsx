@@ -1,5 +1,5 @@
-import { Label } from "@/styles/default/ui/label"
-import { RadioGroup, RadioGroupItem } from "@/styles/default/ui/radio-group"
+import { Label } from "@/registry/ui/label"
+import { RadioGroup, RadioGroupItem } from "@/registry/ui/radio-group"
 
 export default function DisabledRadioGroup() {
 	return (
