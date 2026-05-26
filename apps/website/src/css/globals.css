@@ -125,48 +125,22 @@
 	--heading-font: var(--font-geist), system-ui, sans-serif;
 	--body-font: var(--font-inter), system-ui, sans-serif;
 
-	/* Control Category - Button/Input/Select/OTP/Badge */
-	--radius-control-md: 6px;
-	--radius-control-lg: 8px;
-	/* --radius-control-xl: 12px; */
-	/* Surface Category - Accordion/Alert/Dropdown/Sonner/CodeArea/HoverCard/Drawer */
-	--radius-surface-md: 6px;
-	--radius-surface-lg: 8px;
-	--radius-surface-xl: 12px;
-	--radius-surface-2xl: 16px;
-	/* --radius-surface-3xl: 24px; */
-	/* Pill Category - Avatar/Progress/Slider/Switch */
-	--radius-pill: 999px;
-	/* Element Category- Checkbox/CompactButton/IconButton/Tooltip/Textarea/Tabs */
-	--radius-element-xs: 2px;
-	--radius-element-sm: 4px;
-	--radius-element-md: 6px;
-	--radius-element-lg: 8px;
-	--radius-element-xl: 12px;
-	--radius-element-2xl: 16px;
-
+	--radius: 8px;
+	--control-radius: 8px;
 
 	/* Control Category - Button/Input/Select/OTP/Badge */
-	--radius-control-md: 6px;
-	--radius-control-lg: 8px;
-	--radius-control-xl: 12px;
-	/* Shape Category - Accordion/Alert/Dropdown/Sonner/CodeArea/HoverCard/Drawer/Avatar/Progress/Slider/Switch */
-	--radius-shape-xs: 2px;
-	--radius-shape-md: 6px;
-	--radius-shape-lg: 8px;
-	--radius-shape-xl: 12px;
-	--radius-shape-2xl: 16px;
-	--radius-shape-3xl: 24px;
-	/* Pill Category - Avatar/Progress/Slider/Switch */
-	--radius-pill: 999px;
+	--radius-control-md: calc(var(--control-radius) * 0.8);
+	--radius-control-lg: var(--control-radius);
+	--radius-control-xl: calc(var(--control-radius) * 1.4);
 
-	/* --radius-sm: calc(var(--radius) * 0.6);
-  --radius-md: calc(var(--radius) * 0.8);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.4);
-  --radius-2xl: calc(var(--radius) * 1.8);
-  --radius-3xl: calc(var(--radius) * 2.2);
-  --radius-4xl: calc(var(--radius) * 2.6); */
+	--radius-xs: calc(var(--radius) * 0.3);
+	--radius-sm: calc(var(--radius) * 0.6);
+	--radius-md: calc(var(--radius) * 0.8);
+	--radius-lg: var(--radius);
+	--radius-xl: calc(var(--radius) * 1.4);
+	--radius-2xl: calc(var(--radius) * 1.8);
+	--radius-3xl: calc(var(--radius) * 2.2);
+	--radius-4xl: calc(var(--radius) * 2.6);
 }
 
 .dark {

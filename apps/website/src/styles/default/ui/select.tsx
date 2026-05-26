@@ -51,12 +51,12 @@ const selectTriggerVariants = cva(
 	{
 		variants: {
 			size: {
-				"28": "gap-0.5 h-7 rounded-md px-2 py-1.5 text-[13px]",
-				"32": "gap-0.5 h-8 rounded-md px-2 py-1.5 text-sm",
-				"36": "gap-1 h-9 rounded-lg px-2.5 py-2 text-sm",
-				"40": "gap-1 h-10 rounded-lg px-3 py-2.5 text-sm",
-				"44": "gap-1 h-11 rounded-lg px-3 py-2.5 text-base",
-				"48": "gap-1 h-12 rounded-lg px-3.5 py-3 text-base",
+				"28": "gap-0.5 rounded-control-md h-7 px-2 py-1.5 text-[13px]",
+				"32": "gap-0.5 rounded-control-md h-8 px-2 py-1.5 text-sm",
+				"36": "gap-1 rounded-control-lg h-9 px-2.5 py-2 text-sm",
+				"40": "gap-1 rounded-control-lg h-10 px-3 py-2.5 text-sm",
+				"44": "gap-1 rounded-control-lg h-11 px-3 py-2.5 text-base",
+				"48": "gap-1 rounded-control-lg h-12 px-3.5 py-3 text-base",
 			},
 		},
 		defaultVariants: {

@@ -68,7 +68,7 @@ const buildRadiusCssText = (preset: string) => {
 	if (!radii) return ""
 
 	const declarations = Object.entries(radii)
-		.map(([key, value]) => `  --radius-${key}: ${value};`)
+		.map(([key, value]) => `--${key}: ${value};`)
 		.join("\n")
 
 	return `:root {\n${declarations}\n}\n`
