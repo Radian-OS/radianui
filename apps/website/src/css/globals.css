@@ -128,13 +128,13 @@
 	/* Control Category - Button/Input/Select/OTP/Badge */
 	--radius-control-md: 6px;
 	--radius-control-lg: 8px;
-	--radius-control-xl: 12px;
+	/* --radius-control-xl: 12px; */
 	/* Surface Category - Accordion/Alert/Dropdown/Sonner/CodeArea/HoverCard/Drawer */
 	--radius-surface-md: 6px;
 	--radius-surface-lg: 8px;
 	--radius-surface-xl: 12px;
 	--radius-surface-2xl: 16px;
-	--radius-surface-3xl: 24px;
+	/* --radius-surface-3xl: 24px; */
 	/* Pill Category - Avatar/Progress/Slider/Switch */
 	--radius-pill: 999px;
 	/* Element Category- Checkbox/CompactButton/IconButton/Tooltip/Textarea/Tabs */
@@ -159,6 +159,14 @@
 	--radius-shape-3xl: 24px;
 	/* Pill Category - Avatar/Progress/Slider/Switch */
 	--radius-pill: 999px;
+
+	/* --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6); */
 }
 
 .dark {
