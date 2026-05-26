@@ -119,6 +119,8 @@ const COMPONENT_PREVIEWS = COMPONENT_PREVIEW_GROUPS.map((group) => ({
 
 const PREVIEW_ITEMS = [...BLOCK_PREVIEWS, ...COMPONENT_PREVIEWS]
 
+const RADIUS_DISABLED_STYLES: StyleValue[] = ["sera"]
+
 const getRandomItem = <T,>(items: readonly T[]) =>
 	items[Math.floor(Math.random() * items.length)]
 
@@ -139,6 +141,15 @@ export function ThemerSidebar({
 		PREVIEW_ITEMS.find((item) => item.value === selectedComponent)?.label ??
 		humanizeName(selectedComponent)
 	const selectedStyle = STYLES.find((t) => t.value === params.style)
+	const isRadiusDisabled = RADIUS_DISABLED_STYLES.includes(
+		params.style as StyleValue
+	)
+
+	useEffect(() => {
+		if (isRadiusDisabled && params.radius !== "none") {
+			setParams({ radius: "none" })
+		}
+	}, [isRadiusDisabled, params.radius, setParams])
 
 	const handleRandomize = useCallback(() => {
 		const style = getRandomItem(STYLES)
@@ -148,21 +159,28 @@ export function ThemerSidebar({
 		const bodyFont = getRandomItem(FONTS)
 		const radius = getRandomItem(RADIUS)
 		const iconLibrary = getRandomItem(ICON_LIBRARIES)
+		const isNextRadiusDisabled = RADIUS_DISABLED_STYLES.includes(
+			style.value as StyleValue
+		)
 
 		setParams({
 			style: style.value as StyleValue,
 			primaryColor: primaryColor.value as PrimaryColorValue,
 			baseColor: baseColor.value as BaseColorValue,
 			iconLibrary: iconLibrary as IconLibrary,
+			...(isNextRadiusDisabled && {
+				radius: "none",
+			}),
 			...(!locked.headingFont && {
 				headingFont: headingFont.value as FontValue,
 			}),
 			...(!locked.bodyFont && {
 				bodyFont: bodyFont.value as FontValue,
 			}),
-			...(!locked.radius && {
-				radius: radius.value as RadiusValue,
-			}),
+			...(!locked.radius &&
+				!isNextRadiusDisabled && {
+					radius: radius.value as RadiusValue,
+				}),
 		})
 	}, [locked, setParams])
 
@@ -216,6 +234,9 @@ export function ThemerSidebar({
 								value={selectedStyle?.value}
 								onValueChange={(value) => {
 									const preset = PRESETS.find((p) => p.name === value)
+									const isNextRadiusDisabled = RADIUS_DISABLED_STYLES.includes(
+										value as StyleValue
+									)
 									setParams({
 										style: value as StyleValue,
 										...(preset && {
@@ -232,8 +253,12 @@ export function ThemerSidebar({
 										...(locked.bodyFont && {
 											bodyFont: params.bodyFont,
 										}),
-										...(locked.radius && {
-											radius: params.radius,
+										...(locked.radius &&
+											!isNextRadiusDisabled && {
+												radius: params.radius,
+											}),
+										...(isNextRadiusDisabled && {
+											radius: "none",
 										}),
 									})
 								}}>
@@ -415,7 +440,10 @@ export function ThemerSidebar({
 							<RadiusPill
 								key={radius.value}
 								radius={radius}
-								isSelected={params.radius === radius.value}
+								isSelected={
+									(isRadiusDisabled ? "none" : params.radius) === radius.value
+								}
+								disabled={isRadiusDisabled}
 								onClick={() =>
 									setParams({ radius: radius.value as RadiusValue })
 								}
@@ -423,6 +451,7 @@ export function ThemerSidebar({
 						))}
 						<RadiusLockPill
 							isLocked={locked.radius}
+							disabled={isRadiusDisabled}
 							onToggle={() => toggleLock("radius")}
 						/>
 					</div>

@@ -111,7 +111,7 @@ export const PRESETS: Preset[] = [
 		headingFont: "playfair-display",
 		bodyFont: "playfair-display",
 		template: "next",
-		radius: "medium",
+		radius: "none",
 		style: "sera",
 		useSrcDir: true,
 		iconLibrary: "lucide",
