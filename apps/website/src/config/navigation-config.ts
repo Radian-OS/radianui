@@ -81,6 +81,7 @@ const COMPONENTS_DATA = [
 	"Hover Card",
 	"Label",
 	"Menubar",
+	"Navigation Menu",
 	"Pagination",
 	"Phone Number Input",
 	"Popover",

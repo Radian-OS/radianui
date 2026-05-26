@@ -1,0 +1,225 @@
+---
+title: Navigation Menu
+description: A collection of links for navigating websites, with support for dropdown panels and active states.
+links:
+  github:
+    href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/navigation-menu.tsx
+  externalReference:
+    - label: Radix UI
+      href: https://www.radix-ui.com/primitives/docs/components/navigation-menu
+---
+
+<ComponentPreview path="navigation-menu/navigation-menu-preview" />
+
+## Installation
+
+<InstallationTabs>
+	<InstallTabsList>
+		<InstallTabsTrigger value="cli">CLI</InstallTabsTrigger>
+		<InstallTabsTrigger value="manual">Manual</InstallTabsTrigger>
+	</InstallTabsList>
+	<InstallTabsContent value="cli">
+		```bash
+		npx radianui@latest add navigation-menu
+		```
+	</InstallTabsContent>
+	<InstallTabsContent value="manual" className="p-0">
+	<Steps>
+	    <Step>Install the following dependencies:</Step>
+		```bash
+		npm install @radix-ui/react-navigation-menu
+		```
+    	<Step>Copy and paste the following code into your project.</Step>
+    	<ComponentSource name="navigation-menu" title="components/ui/navigation-menu.tsx" collapsible />
+    	<Step>Update the import paths as per your project structure.</Step>
+    </Steps>
+    </InstallTabsContent>
+
+</InstallationTabs>
+
+## Usage
+
+### Imports
+
+```tsx showLineNumbers title="components/ui/navigation-menu.tsx"
+import Link from "next/link"
+import {
+	NavigationMenu,
+	NavigationMenuContent,
+	NavigationMenuItem,
+	NavigationMenuLink,
+	NavigationMenuList,
+	NavigationMenuTrigger,
+	navigationMenuTriggerStyle,
+} from "@/components/ui/navigation-menu"
+```
+
+### Code
+
+```tsx showLineNumbers title="components/ui/navigation-menu.tsx"
+<NavigationMenu>
+	<NavigationMenuList>
+		<NavigationMenuItem>
+			<NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
+			<NavigationMenuContent>
+				<ul className="w-80">
+					<li>
+						<NavigationMenuLink asChild>
+							<Link href="#">
+								<div className="flex flex-col gap-1 px-1">
+									<div className="font-medium">Introduction</div>
+									<div className="text-muted-foreground line-clamp-2 text-sm">
+										Re-usable components built with Tailwind CSS.
+									</div>
+								</div>
+							</Link>
+						</NavigationMenuLink>
+					</li>
+					<li>
+						<NavigationMenuLink asChild>
+							<Link href="#">
+								<div className="flex flex-col gap-1 px-1">
+									<div className="font-medium">Installation</div>
+									<div className="text-muted-foreground line-clamp-2 text-sm">
+										How to install dependencies and structure your app.
+									</div>
+								</div>
+							</Link>
+						</NavigationMenuLink>
+					</li>
+				</ul>
+			</NavigationMenuContent>
+		</NavigationMenuItem>
+		<NavigationMenuItem>
+			<NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+				<Link href="#">Documentation</Link>
+			</NavigationMenuLink>
+		</NavigationMenuItem>
+	</NavigationMenuList>
+</NavigationMenu>
+```
+
+---
+
+## Examples
+
+### With Icons
+
+Add icons inside `NavigationMenuLink` for visual context alongside menu labels.
+
+<br />
+
+<ComponentPreview path="navigation-menu/navigation-menu-icons" />
+
+---
+
+## Props
+
+<PropsTableWrapper>
+	<PropsTable
+		title="NavigationMenu"
+		data={[
+			{
+				name: "viewport",
+				required: false,
+				defaultValue: "true",
+				values: ["boolean"],
+				description:
+					"When true, renders a shared viewport for dropdown content. Set to false to render content inline.",
+			},
+			{
+				name: "value",
+				required: false,
+				values: ["string"],
+				description: "The controlled value of the menu item to expand.",
+			},
+			{
+				name: "defaultValue",
+				required: false,
+				values: ["string"],
+				description: "The value of the menu item to expand when initially rendered.",
+			},
+			{
+				name: "onValueChange",
+				required: false,
+				values: ["(value: string) => void"],
+				description: "Callback fired when the expanded menu item changes.",
+			},
+			{
+				name: "delayDuration",
+				required: false,
+				defaultValue: "200",
+				values: ["number"],
+				description:
+					"The duration in milliseconds from when the pointer enters a trigger until the content opens.",
+			},
+			{
+				name: "skipDelayDuration",
+				required: false,
+				defaultValue: "300",
+				values: ["number"],
+				description:
+					"How much time a user has to enter another trigger without incurring a delay.",
+			},
+		]}
+		externalReference="https://www.radix-ui.com/primitives/docs/components/navigation-menu#root"
+	/>
+	<PropsTable
+		title="NavigationMenuList"
+		externalReference="https://www.radix-ui.com/primitives/docs/components/navigation-menu#list"
+	/>
+	<PropsTable
+		title="NavigationMenuItem"
+		externalReference="https://www.radix-ui.com/primitives/docs/components/navigation-menu#item"
+	/>
+	<PropsTable
+		title="NavigationMenuTrigger"
+		externalReference="https://www.radix-ui.com/primitives/docs/components/navigation-menu#trigger"
+	/>
+	<PropsTable
+		title="NavigationMenuContent"
+		externalReference="https://www.radix-ui.com/primitives/docs/components/navigation-menu#content"
+	/>
+	<PropsTable
+		title="NavigationMenuLink"
+		data={[
+			{
+				name: "asChild",
+				required: false,
+				defaultValue: "false",
+				values: ["boolean"],
+				description:
+					"Use this prop to render the link as a child component, such as Next.js Link.",
+			},
+			{
+				name: "active",
+				required: false,
+				defaultValue: "false",
+				values: ["boolean"],
+				description: "Whether the link is the active route.",
+			},
+		]}
+		externalReference="https://www.radix-ui.com/primitives/docs/components/navigation-menu#link"
+	/>
+	<PropsTable
+		title="NavigationMenuViewport"
+		externalReference="https://www.radix-ui.com/primitives/docs/components/navigation-menu#viewport"
+	/>
+	<PropsTable
+		title="NavigationMenuIndicator"
+		externalReference="https://www.radix-ui.com/primitives/docs/components/navigation-menu#indicator"
+	/>
+	<PropsTable
+		title="navigationMenuTriggerStyle"
+		data={[
+			{
+				name: "className",
+				required: false,
+				values: ["string"],
+				description:
+					"Apply to NavigationMenuLink for top-level links that should match trigger styling.",
+			},
+		]}
+	/>
+
+</PropsTableWrapper>

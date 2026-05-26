@@ -62,6 +62,7 @@ This documentation is designed for AI agents and LLMs, providing structured Mark
 - [Input](https://radianos.com/docs/components/input.md): Detailed documentation for Input
 - [Label](https://radianos.com/docs/components/label.md): Detailed documentation for Label
 - [Menubar](https://radianos.com/docs/components/menubar.md): Detailed documentation for Menubar
+- [Navigation Menu](https://radianos.com/docs/components/navigation-menu.md): Detailed documentation for Navigation Menu
 - [OTP Field](https://radianos.com/docs/components/otp-field.md): Detailed documentation for OTP Field
 - [Pagination](https://radianos.com/docs/components/pagination.md): Detailed documentation for Pagination
 - [Phone Number Input](https://radianos.com/docs/components/phone-number-input.md): Detailed documentation for Phone Number Input
