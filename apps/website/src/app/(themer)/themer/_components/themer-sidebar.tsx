@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { ChevronDown, MoonIcon, Palette, SunIcon, Type } from "lucide-react"
 import { useTheme } from "next-themes"
 import { useThemerLocks } from "@/lib/themer-locks"
@@ -11,15 +11,16 @@ import {
 	BaseColorValue,
 } from "@/registry/base-colors"
 import { PRESETS } from "@/registry/config"
-import { FontValue } from "@/registry/fonts"
+import { FONTS, FontValue } from "@/registry/fonts"
 import {
 	ICON_LIBRARIES,
 	ICON_LIBRARY_LABELS,
 	IconLibrary,
 } from "@/registry/icon/icon-libraries"
 import { PRIMARY_COLORS, PrimaryColorValue } from "@/registry/primary-colors"
-import { RadiusValue } from "@/registry/radius"
+import { RADIUS, RadiusValue } from "@/registry/radius"
 import { STYLES, StyleValue } from "@/registry/styles"
+import { Button } from "@/styles/default/ui/button"
 import {
 	Dropdown,
 	DropdownContent,
@@ -118,6 +119,9 @@ const COMPONENT_PREVIEWS = COMPONENT_PREVIEW_GROUPS.map((group) => ({
 
 const PREVIEW_ITEMS = [...BLOCK_PREVIEWS, ...COMPONENT_PREVIEWS]
 
+const getRandomItem = <T,>(items: readonly T[]) =>
+	items[Math.floor(Math.random() * items.length)]
+
 export function ThemerSidebar({
 	selectedComponent,
 	setSelectedComponent,
@@ -135,6 +139,32 @@ export function ThemerSidebar({
 		PREVIEW_ITEMS.find((item) => item.value === selectedComponent)?.label ??
 		humanizeName(selectedComponent)
 	const selectedStyle = STYLES.find((t) => t.value === params.style)
+
+	const handleRandomize = useCallback(() => {
+		const style = getRandomItem(STYLES)
+		const primaryColor = getRandomItem(PRIMARY_COLORS)
+		const baseColor = getRandomItem(BASE_COLORS)
+		const headingFont = getRandomItem(FONTS)
+		const bodyFont = getRandomItem(FONTS)
+		const radius = getRandomItem(RADIUS)
+		const iconLibrary = getRandomItem(ICON_LIBRARIES)
+
+		setParams({
+			style: style.value as StyleValue,
+			primaryColor: primaryColor.value as PrimaryColorValue,
+			baseColor: baseColor.value as BaseColorValue,
+			iconLibrary: iconLibrary as IconLibrary,
+			...(!locked.headingFont && {
+				headingFont: headingFont.value as FontValue,
+			}),
+			...(!locked.bodyFont && {
+				bodyFont: bodyFont.value as FontValue,
+			}),
+			...(!locked.radius && {
+				radius: radius.value as RadiusValue,
+			}),
+		})
+	}, [locked, setParams])
 
 	return (
 		<aside className="bg-elevation-level1 border-border flex w-80 shrink-0 flex-col border-r">
@@ -397,6 +427,15 @@ export function ThemerSidebar({
 						/>
 					</div>
 				</div>
+
+				<Button
+					type="button"
+					variant="outline"
+					color="neutral"
+					className="w-full"
+					onClick={handleRandomize}>
+					Randomize Preset
+				</Button>
 			</div>
 
 			{/* Footer action */}
