@@ -979,6 +979,9 @@ const registry: Record<
 	"toggle-formatting-toolbar": React.lazy(
 		() => import("@/registry/example/toggle/toggle-formatting-toolbar")
 	),
+	"toggle-heart": React.lazy(
+		() => import("@/registry/example/toggle/toggle-heart")
+	),
 	"toggle-notification": React.lazy(
 		() => import("@/registry/example/toggle/toggle-notification")
 	),
