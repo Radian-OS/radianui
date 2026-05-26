@@ -12,6 +12,7 @@ export const RADII = [
 	{ name: "Small", value: "small" },
 	{ name: "Medium", value: "medium" },
 	{ name: "Large", value: "large" },
+	{ name: "Full", value: "full" },
 ] as const
 
 export function RadiusPill({

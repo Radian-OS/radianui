@@ -32,6 +32,15 @@ export const RADIUS = [
 		type: "registry:radius",
 		radius: {
 			radius: "10px",
+			"control-radius": "10px",
+		},
+	},
+	{
+		value: "full",
+		name: "Full",
+		type: "registry:radius",
+		radius: {
+			radius: "12px",
 			"control-radius": "calc(infinity * 1px)",
 		},
 	},
