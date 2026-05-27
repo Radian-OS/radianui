@@ -1,95 +1,86 @@
-# Radian
+# Radian Documentation for LLMs
 
-> Radian is an open-source React UI component library and design system built on Radix Primitives and Tailwind CSS. It uses an open code system — components are copied directly into your codebase via CLI, giving you full ownership and customization. Currently supports Next.js (with Vite support available). TypeScript-native, with a companion Figma design system.
+> Radian is an open source React-based UI component library that provides a wide range of reusable components and design tokens, along with an accompanying Figma design system, to help developers and designers build consistent and visually appealing web applications.
 
-Radian is currently in alpha. Components are installed via `npx radianui@latest add [component]` and live in your project at `@/components/ui/`. New projects can be scaffolded with `npx radianui@latest init`. All components use Radian's semantic color tokens (e.g. `bg-bg`, `text-fg`, `border-border`, `text-primary-text`) defined as CSS custom properties in OKLCH format in your `globals.css`. Dark mode is built-in via a `.dark` class. Default fonts are Inter (body) and Geist (headings), configurable via `--body-font` and `--heading-font` CSS variables.
-
-When generating code with Radian components: import from `@/components/ui/[component]`. Use the `color` prop for semantic colors (primary, neutral, error, success, info, warning) and the `variant` prop for visual styles (strong, soft, outline, ghost, link, glossy, smooth). Most components accept standard Tailwind classes for additional styling. Use `asChild` to render a component as a different element (e.g. wrapping a Next.js `<Link>`).
+This documentation is designed for AI agents and LLMs, providing structured Markdown files optimized for context retrieval, semantic understanding, and automated code generation.
 
 ## Getting Started
 
-- [Introduction](https://radianos.com/docs/getting-started/introduction.md): Overview of Radian, its architecture (Radix + Tailwind), open code system, advantages, and FAQs
-- [Installation](https://radianos.com/docs/getting-started/installation.md): Framework-specific setup guides
-- [CLI](https://radianos.com/docs/getting-started/cli.md): `npx radianui@latest init` and `npx radianui@latest add [component]` commands, options, and flags
-- [Figma](https://radianos.com/docs/getting-started/figma.md): Companion Figma design system access and usage
-- [Changelog](https://radianos.com/docs/getting-started/changelog.md): Version history and release notes
+- [Introduction](https://radianos.com/docs/getting-started/introduction.md): Detailed documentation for Introduction
+- [Installation](https://radianos.com/docs/getting-started/installation.md): Detailed documentation for Installation
+- [CLI](https://radianos.com/docs/getting-started/cli.md): Detailed documentation for CLI
+- [Figma](https://radianos.com/docs/getting-started/figma.md): Detailed documentation for Figma
+- [Changelog](https://radianos.com/docs/getting-started/changelog.md): Detailed documentation for Changelog
 
-## Installation Guides
+## Installation
 
-- [Next.js](https://radianos.com/docs/installation/next.md): Step-by-step Next.js project setup with Radian
-- [Vite](https://radianos.com/docs/installation/vite.md): Step-by-step Vite project setup with Radian
-- [Manual](https://radianos.com/docs/installation/manual.md): Manual installation without the CLI
+- [Nextjs](https://radianos.com/docs/installation/next.md): Detailed documentation for Nextjs
+- [Vite](https://radianos.com/docs/installation/vite.md): Detailed documentation for Vite
+- [Manual](https://radianos.com/docs/installation/manual.md): Detailed documentation for Manual
 
 ## Fundamentals
 
-- [Colors](https://radianos.com/docs/fundamentals/colors.md): 156 color primitives and 70 semantic tokens organized by usage (background: bg/fill1-4, text: fg/fg-secondary/fg-tertiary/fg-disabled, border: border/soft/alpha, primary/success/error/warning/info with key/accent/focus/border/hover/text variants, plus elevation and alpha layers)
-- [Typography](https://radianos.com/docs/fundamentals/typography.md): 17 responsive type styles (heading-1 through heading-6, body-15, text-sm-p, body-13); defaults to Inter body + Geist headings; responsive scaling across breakpoints; customizable via CSS variables
-- [Iconography](https://radianos.com/docs/fundamentals/iconography.md): 1,200+ icons available, uses lucide-react
-- [Theme](https://radianos.com/docs/fundamentals/theme.md): Dark mode support via `.dark` class, CSS custom properties in OKLCH format, consistent naming between Figma variables and CSS tokens, 8 theme types
-- [Theme — Next.js](https://radianos.com/docs/fundamentals/theme/nextjs.md): Next.js-specific theme setup and configuration
-- [Theme — Vite](https://radianos.com/docs/fundamentals/theme/vite.md): Vite-specific theme setup and configuration
+> Universal settings for building a strong foundation for a digital product
 
-## Components — Form Controls
+- [Colors](https://radianos.com/docs/fundamentals/colors.md): 156 colors, 70 color tokens
+- [Typography](https://radianos.com/docs/fundamentals/typography.md): 17 Styles
+- [Iconography](https://radianos.com/docs/fundamentals/iconography.md): 1,200 Components
+- [Theme](https://radianos.com/docs/fundamentals/theme.md): 8 Types
+- [Theme — Next.js](https://radianos.com/docs/fundamentals/theme/nextjs.md): Detailed documentation for Theme (Next.js)
+- [Theme — Vite](https://radianos.com/docs/fundamentals/theme/vite.md): Detailed documentation for Theme (Vite)
 
-- [Button](https://radianos.com/docs/components/button.md): Exports Button, ButtonGroup, CompactButton, IconButton. Variants: strong, soft, outline, ghost, link, glossy, glossy-inverted, smooth, smooth-inverted. Colors: primary, neutral, error, success, info, warning. Sizes: 28, 32, 36, 40, 44, 48. Supports loading state, disabled, icons, badges, rounded, asChild for links, social login patterns, and split button with dropdown
-- [Checkbox](https://radianos.com/docs/components/checkbox.md): Checkbox input with label support, built on Radix Checkbox primitive
-- [Combobox](https://radianos.com/docs/components/combobox.md): Searchable select with typeahead filtering, built on Command primitive
-- [Currency Input](https://radianos.com/docs/components/currency-input.md): Formatted currency input field with locale-aware number formatting
-- [Date Picker](https://radianos.com/docs/components/date-picker.md): Date selection with calendar popover, supports single and range selection
-- [File Upload](https://radianos.com/docs/components/file-upload.md): Drag-and-drop and click-to-upload file input with preview
-- [Form](https://radianos.com/docs/components/form.md): Form wrapper using react-hook-form + zod validation. Exports Form, FormField, FormItem, FormLabel, FormControl, FormMessage, FormDescription. Install: `npx radianui@latest add form`
-- [Input](https://radianos.com/docs/components/input.md): Text input field with variants, sizes, and icon support
-- [Label](https://radianos.com/docs/components/label.md): Accessible form label component
-- [OTP Field](https://radianos.com/docs/components/otp-field.md): One-time password input with segmented digit fields
-- [Phone Number Input](https://radianos.com/docs/components/phone-number-input.md): International phone number input with country code picker
-- [Radio Group](https://radianos.com/docs/components/radio-group.md): Radio button group for single selection, built on Radix Radio Group
-- [Select](https://radianos.com/docs/components/select.md): Dropdown select menu built on Radix Select primitive
-- [Slider](https://radianos.com/docs/components/slider.md): Range slider input built on Radix Slider primitive
-- [Switch](https://radianos.com/docs/components/switch.md): Toggle switch for boolean settings, built on Radix Switch
-- [Text Area](https://radianos.com/docs/components/text-area.md): Multi-line text input field
+## Components
 
-## Components — Data Display
-
-- [Accordion](https://radianos.com/docs/components/accordion.md): Expandable/collapsible content sections, built on Radix Accordion
-- [Avatar](https://radianos.com/docs/components/avatar.md): User avatar with image fallback and initials, built on Radix Avatar
-- [Badge](https://radianos.com/docs/components/badge.md): Small status/label indicators with color and size variants
-- [Calendar](https://radianos.com/docs/components/calendar.md): Calendar display component used by Date Picker, supports single/range/multiple selection
-- [Card](https://radianos.com/docs/components/card.md): Content container with header, body, and footer sections
-- [Carousel](https://radianos.com/docs/components/carousel.md): Scrollable content carousel with navigation controls
-- [Code Area](https://radianos.com/docs/components/code-area.md): Syntax-highlighted code display block
-- [Empty](https://radianos.com/docs/components/empty.md): Empty state placeholder with icon, title, and description
-- [Skeleton](https://radianos.com/docs/components/skeleton.md): Loading placeholder animation for content
-- [Table](https://radianos.com/docs/components/table.md): Data table with header, body, row, and cell components
-
-## Components — Navigation
-
-- [Breadcrumb](https://radianos.com/docs/components/breadcrumb.md): Navigation breadcrumb trail with separator
-- [Command](https://radianos.com/docs/components/command.md): Command palette / command menu for keyboard-driven navigation
-- [Dropdown](https://radianos.com/docs/components/dropdown.md): Dropdown menu with items, groups, separators, and keyboard navigation; built on Radix DropdownMenu
-- [Pagination](https://radianos.com/docs/components/pagination.md): Page navigation controls with previous/next and page numbers
-- [Tabs](https://radianos.com/docs/components/tabs.md): Tabbed content navigation, built on Radix Tabs primitive
-
-## Components — Overlays & Popovers
-
-- [Alert Dialog](https://radianos.com/docs/components/alert-dialog.md): Confirmation dialog requiring user action, built on Radix AlertDialog
-- [Dialog](https://radianos.com/docs/components/dialog.md): Modal dialog overlay, built on Radix Dialog primitive
-- [Drawer](https://radianos.com/docs/components/drawer.md): Slide-in panel from screen edge for secondary content or navigation
-- [Hover Card](https://radianos.com/docs/components/hover-card.md): Card preview on hover, built on Radix HoverCard
-- [Popover](https://radianos.com/docs/components/popover.md): Floating content panel triggered by click, built on Radix Popover
-- [Tooltip](https://radianos.com/docs/components/tooltip.md): Hover tooltip for additional context, built on Radix Tooltip
-
-## Components — Feedback
-
-- [Alert](https://radianos.com/docs/components/alert.md): Inline alert messages with icon, title, description. Exports Alert, AlertIcon, AlertContent, AlertTitle, AlertDescription. Supports variant (soft) and color props
-- [Banner](https://radianos.com/docs/components/banner.md): Full-width notification banner for page-level announcements
-- [Progress](https://radianos.com/docs/components/progress.md): Progress bar indicator, built on Radix Progress primitive
-- [Sonner](https://radianos.com/docs/components/sonner.md): Toast notification system using the sonner library
-- [Spinner](https://radianos.com/docs/components/spinner.md): Loading spinner animation component
-
-## Components — Layout & Utility
-
-- [Aspect Ratio](https://radianos.com/docs/components/aspect-ratio.md): Maintains consistent width-to-height ratio for media content, built on Radix AspectRatio
-- [Collapsible](https://radianos.com/docs/components/collapsible.md): Expandable/collapsible section toggle, built on Radix Collapsible
-- [Divider](https://radianos.com/docs/components/divider.md): Horizontal or vertical separator line between content sections
-- [Resizable](https://radianos.com/docs/components/resizable.md): Resizable panel layout with drag handles
-- [Scroll Area](https://radianos.com/docs/components/scroll-area.md): Custom scrollbar container, built on Radix ScrollArea
+- [Accordion](https://radianos.com/docs/components/accordion.md): Detailed documentation for Accordion
+- [Alert](https://radianos.com/docs/components/alert.md): Detailed documentation for Alert
+- [Alert Dialog](https://radianos.com/docs/components/alert-dialog.md): Detailed documentation for Alert Dialog
+- [Aspect Ratio](https://radianos.com/docs/components/aspect-ratio.md): Detailed documentation for Aspect Ratio
+- [Avatar](https://radianos.com/docs/components/avatar.md): Detailed documentation for Avatar
+- [Badge](https://radianos.com/docs/components/badge.md): Detailed documentation for Badge
+- [Banner](https://radianos.com/docs/components/banner.md): Detailed documentation for Banner
+- [Breadcrumb](https://radianos.com/docs/components/breadcrumb.md): Detailed documentation for Breadcrumb
+- [Button](https://radianos.com/docs/components/button.md): Detailed documentation for Button
+- [Calendar](https://radianos.com/docs/components/calendar.md): Detailed documentation for Calendar
+- [Card](https://radianos.com/docs/components/card.md): Detailed documentation for Card
+- [Carousel](https://radianos.com/docs/components/carousel.md): Detailed documentation for Carousel
+- [Checkbox](https://radianos.com/docs/components/checkbox.md): Detailed documentation for Checkbox
+- [Code Area](https://radianos.com/docs/components/code-area.md): Detailed documentation for Code Area
+- [Collapsible](https://radianos.com/docs/components/collapsible.md): Detailed documentation for Collapsible
+- [Combobox](https://radianos.com/docs/components/combobox.md): Detailed documentation for Combobox
+- [Command](https://radianos.com/docs/components/command.md): Detailed documentation for Command
+- [Context Menu](https://radianos.com/docs/components/context-menu.md): Detailed documentation for Context Menu
+- [Currency Input](https://radianos.com/docs/components/currency-input.md): Detailed documentation for Currency Input
+- [Date Picker](https://radianos.com/docs/components/date-picker.md): Detailed documentation for Date Picker
+- [Dialog](https://radianos.com/docs/components/dialog.md): Detailed documentation for Dialog
+- [Divider](https://radianos.com/docs/components/divider.md): Detailed documentation for Divider
+- [Drawer](https://radianos.com/docs/components/drawer.md): Detailed documentation for Drawer
+- [Dropdown](https://radianos.com/docs/components/dropdown.md): Detailed documentation for Dropdown
+- [Empty](https://radianos.com/docs/components/empty.md): Detailed documentation for Empty
+- [File Upload](https://radianos.com/docs/components/file-upload.md): Detailed documentation for File Upload
+- [Form](https://radianos.com/docs/components/form.md): Detailed documentation for Form
+- [Hover Card](https://radianos.com/docs/components/hover-card.md): Detailed documentation for Hover Card
+- [Input](https://radianos.com/docs/components/input.md): Detailed documentation for Input
+- [Label](https://radianos.com/docs/components/label.md): Detailed documentation for Label
+- [Menubar](https://radianos.com/docs/components/menubar.md): Detailed documentation for Menubar
+- [Navigation Menu](https://radianos.com/docs/components/navigation-menu.md): Detailed documentation for Navigation Menu
+- [OTP Field](https://radianos.com/docs/components/otp-field.md): Detailed documentation for OTP Field
+- [Pagination](https://radianos.com/docs/components/pagination.md): Detailed documentation for Pagination
+- [Phone Number Input](https://radianos.com/docs/components/phone-number-input.md): Detailed documentation for Phone Number Input
+- [Popover](https://radianos.com/docs/components/popover.md): Detailed documentation for Popover
+- [Progress](https://radianos.com/docs/components/progress.md): Detailed documentation for Progress
+- [Radio Group](https://radianos.com/docs/components/radio-group.md): Detailed documentation for Radio Group
+- [Resizable](https://radianos.com/docs/components/resizable.md): Detailed documentation for Resizable
+- [Scroll Area](https://radianos.com/docs/components/scroll-area.md): Detailed documentation for Scroll Area
+- [Select](https://radianos.com/docs/components/select.md): Detailed documentation for Select
+- [Sidebar](https://radianos.com/docs/components/sidebar.md): Detailed documentation for Sidebar
+- [Skeleton](https://radianos.com/docs/components/skeleton.md): Detailed documentation for Skeleton
+- [Slider](https://radianos.com/docs/components/slider.md): Detailed documentation for Slider
+- [Sonner](https://radianos.com/docs/components/sonner.md): Detailed documentation for Sonner
+- [Spinner](https://radianos.com/docs/components/spinner.md): Detailed documentation for Spinner
+- [Switch](https://radianos.com/docs/components/switch.md): Detailed documentation for Switch
+- [Table](https://radianos.com/docs/components/table.md): Detailed documentation for Table
+- [Tabs](https://radianos.com/docs/components/tabs.md): Detailed documentation for Tabs
+- [Text Area](https://radianos.com/docs/components/text-area.md): Detailed documentation for Text Area
+- [Toggle](https://radianos.com/docs/components/toggle.md): Detailed documentation for Toggle
+- [Toggle Group](https://radianos.com/docs/components/toggle-group.md): Detailed documentation for Toggle Group
+- [Tooltip](https://radianos.com/docs/components/tooltip.md): Detailed documentation for Tooltip

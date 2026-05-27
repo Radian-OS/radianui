@@ -515,32 +515,55 @@ function ButtonGroup({
 	...props
 }: ButtonGroupProps) {
 	const modifiedChildren = React.Children.map(children, (child, index) => {
-		if (React.isValidElement(child)) {
-			const isFirst = index === 0
-			const isLast = index === React.Children.count(children) - 1
+		if (!React.isValidElement(child)) return child
 
-			const borderRadiusClass = isFirst
-				? "rounded-l-lg"
-				: isLast
-					? "rounded-r-lg"
-					: "rounded-none"
+		const isFirst = index === 0
+		const isLast = index === React.Children.count(children) - 1
 
-			if (React.isValidElement<ButtonProps>(child)) {
-				return React.cloneElement(child, {
-					variant,
-					size,
-					color,
-					className: cn(
-						"rounded-none",
-						borderRadiusClass,
-						"-ml-[1px]",
-						`${!isLast ? "border-r-0" : ""}`,
-						child.props.className
-					),
-				})
-			}
+		const borderRadiusClass = isFirst
+			? "rounded-l-lg"
+			: isLast
+				? "rounded-r-lg"
+				: "rounded-none"
+
+		const layoutClassName = cn(
+			"rounded-none",
+			borderRadiusClass,
+			"-ml-[1px]",
+			!isLast ? "border-r-0" : ""
+		)
+
+		// If the child is an asChild wrapper (e.g. DropdownTrigger asChild),
+		// Radix's Slot won't forward custom props (variant/color/size) to the
+		// real button. Instead, inject those props into the wrapper's child
+		// (the actual button element) and apply layout classes to the wrapper.
+		const childProps = child.props as Record<string, unknown>
+		if (
+			childProps.asChild === true &&
+			React.isValidElement(childProps.children)
+		) {
+			const innerChild = childProps.children as React.ReactElement<ButtonProps>
+			const patchedInner = React.cloneElement(innerChild, {
+				variant,
+				size,
+				color,
+				className: cn(layoutClassName, innerChild.props.className),
+			})
+			return React.cloneElement(
+				child as React.ReactElement<Record<string, unknown>>,
+				{
+					children: patchedInner,
+				}
+			)
 		}
-		return child
+
+		// Normal button child — inject directly.
+		return React.cloneElement(child as React.ReactElement<ButtonProps>, {
+			variant,
+			size,
+			color,
+			className: cn(layoutClassName, (child.props as ButtonProps).className),
+		})
 	})
 
 	return (

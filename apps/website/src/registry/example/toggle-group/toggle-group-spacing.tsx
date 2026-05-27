@@ -1,0 +1,17 @@
+import { ToggleGroup, ToggleGroupItem } from "@/registry/ui/toggle-group"
+
+export default function ToggleGroupSpacing() {
+	return (
+		<div className="flex items-center justify-center">
+			<ToggleGroup
+				type="single"
+				variant="outline"
+				spacing={2}
+				defaultValue="week">
+				<ToggleGroupItem value="day">Day</ToggleGroupItem>
+				<ToggleGroupItem value="week">Week</ToggleGroupItem>
+				<ToggleGroupItem value="month">Month</ToggleGroupItem>
+			</ToggleGroup>
+		</div>
+	)
+}

@@ -65,6 +65,7 @@ const COMPONENTS_DATA = [
 	"Collapsible",
 	"Combobox",
 	"Command",
+	"Context Menu",
 	"Currency Input",
 	"Checkbox",
 	"Date Picker",
@@ -79,6 +80,8 @@ const COMPONENTS_DATA = [
 	"Form",
 	"Hover Card",
 	"Label",
+	"Menubar",
+	"Navigation Menu",
 	"Pagination",
 	"Phone Number Input",
 	"Popover",
@@ -96,6 +99,8 @@ const COMPONENTS_DATA = [
 	"Table",
 	"Tabs",
 	"Text Area",
+	"Toggle",
+	"Toggle Group",
 	"Tooltip",
 ]
 

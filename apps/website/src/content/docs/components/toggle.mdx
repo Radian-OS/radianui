@@ -1,0 +1,148 @@
+---
+title: Toggle
+description: A button that toggles between two states, such as on/off or show/hide.
+links:
+  github:
+    href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/toggle.tsx
+  externalReference:
+    - label: Radix  UI
+      href: https://www.radix-ui.com/primitives/docs/components/toggle
+---
+
+<ComponentPreview path="toggle/toggle-preview" />
+
+## Installation
+
+<InstallationTabs>
+	<InstallTabsList>
+		<InstallTabsTrigger value="cli">CLI</InstallTabsTrigger>
+		<InstallTabsTrigger value="manual">Manual</InstallTabsTrigger>
+	</InstallTabsList>
+	<InstallTabsContent value="cli">
+		```bash
+		npx radianui@latest add toggle
+		```
+	</InstallTabsContent>
+	<InstallTabsContent value="manual" className="p-0">
+	<Steps>
+	    <Step>Install the following dependencies:</Step>
+		```bash
+		npm install @radix-ui/react-toggle
+		```
+    	<Step>Copy and paste the following code into your project.</Step>
+    	<ComponentSource name="toggle" title="components/ui/toggle.tsx" collapsible />
+
+    	<Step>Update the import paths as per your project structure.</Step>
+    </Steps>
+    </InstallTabsContent>
+
+</InstallationTabs>
+
+## Usage
+
+### Imports
+
+```tsx showLineNumbers title="/components/ui/toggle.tsx"
+import { Toggle } from "@/components/ui/toggle"
+```
+
+### Code
+
+```tsx showLineNumbers title="/components/ui/toggle.tsx"
+<Toggle>Toggle</Toggle>
+```
+
+---
+
+## Examples
+
+### Variants
+
+<ComponentPreview path="toggle/toggle-variants" />
+
+### Sizes
+
+<ComponentPreview path="toggle/toggle-sizes" />
+
+### Favorite
+
+<ComponentPreview path="toggle/toggle-favorite" />
+
+### Formatting Toolbar
+
+<ComponentPreview path="toggle/toggle-formatting-toolbar" />
+
+### Notifications
+
+<ComponentPreview path="toggle/toggle-notification" />
+
+### With Heart
+
+<ComponentPreview path="toggle/toggle-heart" />
+
+### Disabled
+
+<ComponentPreview path="toggle/toggle-disabled" />
+
+---
+
+## Props
+
+<PropsTableWrapper>
+	<PropsTable
+		title="Toggle"
+		data={[
+			{
+				name: "variant",
+				defaultValue: "outline",
+				values: ["ghost", "outline"],
+				required: false,
+				description: "Defines the visual style of the toggle",
+			},
+			{
+				name: "size",
+				defaultValue: "32",
+				values: ["28", "32", "36", "40", "44", "48"],
+				required: false,
+				description: "Sets the size of the toggle",
+			},
+			{
+				name: "pressed",
+				defaultValue: "undefined",
+				values: ["boolean"],
+				required: false,
+				description: "Controls the pressed state of the toggle",
+			},
+			{
+				name: "defaultPressed",
+				defaultValue: "false",
+				values: ["boolean"],
+				required: false,
+				description:
+					"Sets the initial pressed state for an uncontrolled toggle",
+			},
+			{
+				name: "onPressedChange",
+				defaultValue: "-",
+				values: ["(pressed: boolean) => void"],
+				required: false,
+				description: "Callback fired when the pressed state changes",
+			},
+			{
+				name: "disabled",
+				defaultValue: "false",
+				values: ["boolean"],
+				required: false,
+				description: "Disables interaction with the toggle when set to true",
+			},
+			{
+				name: "asChild",
+				defaultValue: "false",
+				values: ["boolean"],
+				required: false,
+				description: "Use this prop to render the toggle as a child component",
+			},
+		]}
+		externalReference="https://www.radix-ui.com/primitives/docs/components/toggle#root"
+	/>
+</PropsTableWrapper>

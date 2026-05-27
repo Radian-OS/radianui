@@ -1,0 +1,294 @@
+---
+title: Context Menu
+description: Displays a menu located at the pointer, triggered by a right-click or long press.
+links:
+  github:
+    href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/context-menu.tsx
+  externalReference:
+    - label: Radix UI
+      href: https://www.radix-ui.com/primitives/docs/components/context-menu
+---
+
+<ComponentPreview path="context-menu/context-menu-preview" />
+
+## Installation
+
+<InstallationTabs>
+	<InstallTabsList>
+		<InstallTabsTrigger value="cli">CLI</InstallTabsTrigger>
+		<InstallTabsTrigger value="manual">Manual</InstallTabsTrigger>
+	</InstallTabsList>
+	<InstallTabsContent value="cli">
+		```bash
+		npx radianui@latest add context-menu
+		```
+	</InstallTabsContent>
+	<InstallTabsContent value="manual" className="p-0">
+	<Steps>
+	    <Step>Install the following dependencies:</Step>
+		```bash
+		npm install @radix-ui/react-context-menu
+		```
+    	<Step>Copy and paste the following code into your project.</Step>
+    	<ComponentSource name="context-menu" title="components/ui/context-menu.tsx" collapsible />
+
+    	<Step>Update the import paths as per your project structure.</Step>
+    </Steps>
+    </InstallTabsContent>
+
+</InstallationTabs>
+
+## Usage
+
+### Imports
+
+```tsx showLineNumbers title="components/ui/context-menu.tsx"
+import {
+	ContextMenu,
+	ContextMenuCheckboxItem,
+	ContextMenuContent,
+	ContextMenuGroup,
+	ContextMenuItem,
+	ContextMenuLabel,
+	ContextMenuRadioGroup,
+	ContextMenuRadioItem,
+	ContextMenuSeparator,
+	ContextMenuShortcut,
+	ContextMenuSub,
+	ContextMenuSubContent,
+	ContextMenuSubTrigger,
+	ContextMenuTrigger,
+} from "@/components/ui/context-menu"
+```
+
+### Code
+
+```tsx showLineNumbers title="components/ui/context-menu.tsx"
+<ContextMenu>
+	<ContextMenuTrigger className="flex aspect-video w-full max-w-xs items-center justify-center rounded-xl border border-dashed text-sm">
+		Right click here
+	</ContextMenuTrigger>
+	<ContextMenuContent className="w-48">
+		<ContextMenuGroup>
+			<ContextMenuItem>
+				Back
+				<ContextMenuShortcut>⌘[</ContextMenuShortcut>
+			</ContextMenuItem>
+			<ContextMenuItem disabled>
+				Forward
+				<ContextMenuShortcut>⌘]</ContextMenuShortcut>
+			</ContextMenuItem>
+			<ContextMenuItem>
+				Reload
+				<ContextMenuShortcut>⌘R</ContextMenuShortcut>
+			</ContextMenuItem>
+		</ContextMenuGroup>
+		<ContextMenuSeparator />
+		<ContextMenuGroup>
+			<ContextMenuCheckboxItem checked>Show Bookmarks</ContextMenuCheckboxItem>
+			<ContextMenuCheckboxItem>Show Full URLs</ContextMenuCheckboxItem>
+		</ContextMenuGroup>
+	</ContextMenuContent>
+</ContextMenu>
+```
+
+---
+
+## Examples
+
+### With Submenus
+
+Use `ContextMenuSub`, `ContextMenuSubTrigger`, and `ContextMenuSubContent` to nest related actions.
+
+<br />
+
+<ComponentPreview path="context-menu/context-menu-submenu" />
+
+### With Keyboard Shortcuts
+
+Add `ContextMenuShortcut` inside `ContextMenuItem` to display keyboard hints aligned to the right.
+
+<br />
+
+<ComponentPreview path="context-menu/context-menu-keyboard" />
+
+### With Checkboxes
+
+Use `ContextMenuCheckboxItem` with `checked` and `onCheckedChange` for toggleable options.
+
+<br />
+
+<ComponentPreview path="context-menu/context-menu-checkbox" />
+
+### Inside a Dialog
+
+Context menus work inside modals. Wrap your trigger area with `ContextMenu` within the dialog content.
+
+<br />
+
+<ComponentPreview path="context-menu/context-menu-dialog" />
+
+---
+
+## Props
+
+<PropsTableWrapper>
+	<PropsTable
+		title="ContextMenu"
+		externalReference="https://www.radix-ui.com/primitives/docs/components/context-menu#root"
+	/>
+	<PropsTable
+		title="ContextMenuTrigger"
+		data={[
+			{
+				name: "asChild",
+				required: false,
+				defaultValue: "false",
+				values: ["boolean"],
+				description:
+					"Use this prop to render the trigger as a child component.",
+			},
+		]}
+		externalReference="https://www.radix-ui.com/primitives/docs/components/context-menu#trigger"
+	/>
+	<PropsTable
+		title="ContextMenuContent"
+		data={[
+			{
+				name: "align",
+				required: false,
+				defaultValue: "start",
+				values: ["start", "center", "end"],
+				description: "The alignment of the content relative to the trigger.",
+			},
+			{
+				name: "alignOffset",
+				required: false,
+				defaultValue: "0",
+				values: ["number"],
+				description: "An offset in pixels from the 'start' or 'end' alignment.",
+			},
+			{
+				name: "sideOffset",
+				required: false,
+				defaultValue: "0",
+				values: ["number"],
+				description: "The distance in pixels from the trigger.",
+			},
+		]}
+		externalReference="https://www.radix-ui.com/primitives/docs/components/context-menu#content"
+	/>
+	<PropsTable
+		title="ContextMenuItem"
+		data={[
+			{
+				name: "inset",
+				required: false,
+				defaultValue: "false",
+				values: ["boolean"],
+				description: "When true, adds left padding to align with items that have an indicator.",
+			},
+			{
+				name: "variant",
+				required: false,
+				defaultValue: "default",
+				values: ["default", "error"],
+				description: "Visual style of the item. Use 'error' for dangerous actions.",
+			},
+		]}
+		externalReference="https://www.radix-ui.com/primitives/docs/components/context-menu#item"
+	/>
+	<PropsTable
+		title="ContextMenuCheckboxItem"
+		data={[
+			{
+				name: "checked",
+				required: false,
+				defaultValue: "false",
+				values: ["boolean"],
+				description: "The controlled checked state of the item.",
+			},
+			{
+				name: "onCheckedChange",
+				required: false,
+				values: ["(checked: boolean) => void"],
+				description: "Callback fired when the checked state changes.",
+			},
+		]}
+		externalReference="https://www.radix-ui.com/primitives/docs/components/context-menu#checkboxitem"
+	/>
+	<PropsTable
+		title="ContextMenuRadioGroup"
+		externalReference="https://www.radix-ui.com/primitives/docs/components/context-menu#radiogroup"
+	/>
+	<PropsTable
+		title="ContextMenuRadioItem"
+		data={[
+			{
+				name: "value",
+				required: true,
+				values: ["string"],
+				description: "The unique value of this radio item within its group.",
+			},
+		]}
+		externalReference="https://www.radix-ui.com/primitives/docs/components/context-menu#radioitem"
+	/>
+	<PropsTable
+		title="ContextMenuLabel"
+		data={[
+			{
+				name: "inset",
+				required: false,
+				defaultValue: "false",
+				values: ["boolean"],
+				description: "When true, adds left padding to align with inset items.",
+			},
+		]}
+		externalReference="https://www.radix-ui.com/primitives/docs/components/context-menu#label"
+	/>
+	<PropsTable
+		title="ContextMenuSeparator"
+		externalReference="https://www.radix-ui.com/primitives/docs/components/context-menu#separator"
+	/>
+	<PropsTable
+		title="ContextMenuSub"
+		externalReference="https://www.radix-ui.com/primitives/docs/components/context-menu#sub"
+	/>
+	<PropsTable
+		title="ContextMenuSubTrigger"
+		data={[
+			{
+				name: "inset",
+				required: false,
+				defaultValue: "false",
+				values: ["boolean"],
+				description: "When true, adds left padding to align with other items.",
+			},
+		]}
+		externalReference="https://www.radix-ui.com/primitives/docs/components/context-menu#subtrigger"
+	/>
+	<PropsTable
+		title="ContextMenuSubContent"
+		externalReference="https://www.radix-ui.com/primitives/docs/components/context-menu#subcontent"
+	/>
+	<PropsTable
+		title="ContextMenuShortcut"
+		data={[
+			{
+				name: "className",
+				required: false,
+				values: ["string"],
+				description: "Additional CSS classes to apply to the shortcut text.",
+			},
+		]}
+	/>
+	<PropsTable
+		title="ContextMenuGroup"
+		externalReference="https://www.radix-ui.com/primitives/docs/components/context-menu#group"
+	/>
+	<PropsTable
+		title="ContextMenuPortal"
+		externalReference="https://www.radix-ui.com/primitives/docs/components/context-menu#portal"
+	/>
+
+</PropsTableWrapper>

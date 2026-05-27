@@ -400,6 +400,21 @@ const registry: Record<
 	"command-preview": React.lazy(
 		() => import("@/registry/example/command/command-preview")
 	),
+	"context-menu-checkbox": React.lazy(
+		() => import("@/registry/example/context-menu/context-menu-checkbox")
+	),
+	"context-menu-dialog": React.lazy(
+		() => import("@/registry/example/context-menu/context-menu-dialog")
+	),
+	"context-menu-keyboard": React.lazy(
+		() => import("@/registry/example/context-menu/context-menu-keyboard")
+	),
+	"context-menu-preview": React.lazy(
+		() => import("@/registry/example/context-menu/context-menu-preview")
+	),
+	"context-menu-submenu": React.lazy(
+		() => import("@/registry/example/context-menu/context-menu-submenu")
+	),
 	"currency-decimal-separator": React.lazy(
 		() => import("@/registry/example/currency-input/currency-decimal-separator")
 	),
@@ -653,6 +668,27 @@ const registry: Record<
 	),
 	"label-preview": React.lazy(
 		() => import("@/registry/example/label/label-preview")
+	),
+	"menubar-preview": React.lazy(
+		() => import("@/registry/example/menubar/menubar-preview")
+	),
+	"menubar-text-editor-example": React.lazy(
+		() => import("@/registry/example/menubar/menubar-text-editor-example")
+	),
+	"menubar-with-destructive-example": React.lazy(
+		() => import("@/registry/example/menubar/menubar-with-destructive-example")
+	),
+	"menubar-with-radio-example": React.lazy(
+		() => import("@/registry/example/menubar/menubar-with-radio-example")
+	),
+	"navigation-menu-docs": React.lazy(
+		() => import("@/registry/example/navigation-menu/navigation-menu-docs")
+	),
+	"navigation-menu-icons": React.lazy(
+		() => import("@/registry/example/navigation-menu/navigation-menu-icons")
+	),
+	"navigation-menu-preview": React.lazy(
+		() => import("@/registry/example/navigation-menu/navigation-menu-preview")
 	),
 	"otp-field-auto-submit": React.lazy(
 		() => import("@/registry/example/otp-field/otp-field-auto-submit")
@@ -936,6 +972,48 @@ const registry: Record<
 	),
 	"text-area-preview": React.lazy(
 		() => import("@/registry/example/text-area/text-area-preview")
+	),
+	"toggle-disabled": React.lazy(
+		() => import("@/registry/example/toggle/toggle-disabled")
+	),
+	"toggle-favorite": React.lazy(
+		() => import("@/registry/example/toggle/toggle-favorite")
+	),
+	"toggle-formatting-toolbar": React.lazy(
+		() => import("@/registry/example/toggle/toggle-formatting-toolbar")
+	),
+	"toggle-heart": React.lazy(
+		() => import("@/registry/example/toggle/toggle-heart")
+	),
+	"toggle-notification": React.lazy(
+		() => import("@/registry/example/toggle/toggle-notification")
+	),
+	"toggle-preview": React.lazy(
+		() => import("@/registry/example/toggle/toggle-preview")
+	),
+	"toggle-sizes": React.lazy(
+		() => import("@/registry/example/toggle/toggle-sizes")
+	),
+	"toggle-variants": React.lazy(
+		() => import("@/registry/example/toggle/toggle-variants")
+	),
+	"toggle-group-disabled": React.lazy(
+		() => import("@/registry/example/toggle-group/toggle-group-disabled")
+	),
+	"toggle-group-ghost-variant": React.lazy(
+		() => import("@/registry/example/toggle-group/toggle-group-ghost-variant")
+	),
+	"toggle-group-outline-variant": React.lazy(
+		() => import("@/registry/example/toggle-group/toggle-group-outline-variant")
+	),
+	"toggle-group-preview": React.lazy(
+		() => import("@/registry/example/toggle-group/toggle-group-preview")
+	),
+	"toggle-group-spacing": React.lazy(
+		() => import("@/registry/example/toggle-group/toggle-group-spacing")
+	),
+	"toggle-group-vertical": React.lazy(
+		() => import("@/registry/example/toggle-group/toggle-group-vertical")
 	),
 	"tooltip-align": React.lazy(
 		() => import("@/registry/example/tooltip/tooltip-align")
