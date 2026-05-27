@@ -25,7 +25,7 @@ export function ComponentPreviewDemo({
 	return (
 		<div
 			data-slot="preview"
-			className={`relative h-full overflow-auto rounded-xl border ${type === "component" ? `flex px-4 py-10 md:px-6 lg:px-10 items-${align} justify-center` : ""}`}
+			className={`relative h-full overflow-visible rounded-xl border ${type === "component" ? `flex px-4 py-10 md:px-6 lg:px-10 items-${align} justify-center` : ""}`}
 			style={{ minHeight: `${height}px` }}>
 			{renderContent()}
 		</div>

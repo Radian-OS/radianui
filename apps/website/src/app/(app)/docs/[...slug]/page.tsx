@@ -81,7 +81,7 @@ export default async function Page({ params }: DocPageProps) {
 	if (!doc) return notFound()
 
 	return (
-		<div className="mx-auto w-full flex-1 overflow-y-auto py-10 lg:max-w-[720px]">
+		<div className="mx-auto w-full flex-1 overflow-y-visible py-10 lg:max-w-[720px]">
 			<span className="text-primary-text text-sm font-medium capitalize">
 				{category}
 			</span>
