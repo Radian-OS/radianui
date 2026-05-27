@@ -2,7 +2,6 @@
 
 import { useEffect, useMemo, useRef, useState } from "react"
 import { Check, ChevronDown, Lock, LockOpen } from "lucide-react"
-import { FONTS as initialFonts } from "@/components/typography/typography-playground"
 import { cn } from "@/lib/utils"
 import { FONTS } from "@/registry/fonts"
 import { CommandDivider } from "@/registry/ui/command"
@@ -101,10 +100,6 @@ export function FontCombobox({
 		}
 	}
 
-	const displayedFonts = searchTerm
-		? filteredFonts
-		: FONTS.slice(0, visibleCount)
-
 	return (
 		<Popover open={open} onOpenChange={setOpen}>
 			<div
@@ -164,56 +159,74 @@ export function FontCombobox({
 						onScroll={handleScroll}
 						style={{ maxHeight: "300px", overflowY: "auto" }}>
 						<CommandEmpty>No font found.</CommandEmpty>
-						<CommandGroup>
-							{Object.entries(initialFonts).map(([family]) => {
-								const matchedFont = FONTS.find((f) => f.name === family)
-								const fontValue =
-									matchedFont?.value ??
-									family.toLowerCase().replace(/\s+/g, "-")
-								return (
+						{searchTerm ? (
+							<CommandGroup>
+								{filteredFonts.map((font) => (
 									<CommandItem
-										key={family}
-										value={family}
+										key={font.value}
+										value={font.name}
 										onSelect={() => {
-											onValueChange(fontValue)
+											onValueChange(font.value)
 										}}>
-										<span style={{ fontFamily: `"${family}", sans-serif` }}>
-											{family}
-										</span>
+										<span>{font.name}</span>
 										<Check
 											className={cn(
 												"ml-auto",
-												value === fontValue ? "opacity-100" : "opacity-0"
+												value === font.value ? "opacity-100" : "opacity-0"
 											)}
 										/>
 									</CommandItem>
-								)
-							})}
-						</CommandGroup>
-						<CommandDivider />
-						<CommandGroup>
-							{displayedFonts.map((font) => (
-								<CommandItem
-									key={font.value}
-									value={font.name}
-									onSelect={() => {
-										onValueChange(font.value)
-									}}>
-									<span>{font.name}</span>
-									<Check
-										className={cn(
-											"ml-auto",
-											value === font.value ? "opacity-100" : "opacity-0"
-										)}
-									/>
-								</CommandItem>
-							))}
-							{!searchTerm && loading && (
-								<div className="flex w-full items-center justify-center py-2">
-									<Spinner size={20} variant="simple" />
-								</div>
-							)}
-						</CommandGroup>
+								))}
+							</CommandGroup>
+						) : (
+							<>
+								<CommandGroup>
+									{FONTS.slice(0, 12).map((font) => (
+										<CommandItem
+											key={font.value}
+											value={font.name}
+											onSelect={() => {
+												onValueChange(font.value)
+											}}>
+											<span
+												style={{ fontFamily: `"${font.name}", sans-serif` }}>
+												{font.name}
+											</span>
+											<Check
+												className={cn(
+													"ml-auto",
+													value === font.value ? "opacity-100" : "opacity-0"
+												)}
+											/>
+										</CommandItem>
+									))}
+								</CommandGroup>
+								<CommandDivider />
+								<CommandGroup>
+									{FONTS.slice(12, visibleCount).map((font) => (
+										<CommandItem
+											key={font.value}
+											value={font.name}
+											onSelect={() => {
+												onValueChange(font.value)
+											}}>
+											<span>{font.name}</span>
+											<Check
+												className={cn(
+													"ml-auto",
+													value === font.value ? "opacity-100" : "opacity-0"
+												)}
+											/>
+										</CommandItem>
+									))}
+									{loading && (
+										<div className="flex w-full items-center justify-center py-2">
+											<Spinner size={20} variant="simple" />
+										</div>
+									)}
+								</CommandGroup>
+							</>
+						)}
 					</CommandList>
 				</Command>
 			</PopoverContent>
