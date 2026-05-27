@@ -2287,19 +2287,19 @@ export const FONTS = [
 				"https://fonts.googleapis.com/css2?family=Gayathri:wght@100;400;700&display=swap",
 		},
 	},
-	// {
-	// 	value: "geist",
-	// 	name: "Geist",
-	// 	type: "registry:font",
-	// 	font: {
-	// 		family: "'Geist', sans-serif",
-	// 		provider: "google",
-	// 		subsets: ["latin"],
-	// 		import: "Geist",
-	// 		googleFontsUrl:
-	// 			"https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap",
-	// 	},
-	// },
+	{
+		value: "geist",
+		name: "Geist",
+		type: "registry:font",
+		font: {
+			family: "'Geist', sans-serif",
+			provider: "google",
+			subsets: ["latin"],
+			import: "Geist",
+			googleFontsUrl:
+				"https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap",
+		},
+	},
 	{
 		value: "gemunu-libre",
 		name: "Gemunu Libre",
