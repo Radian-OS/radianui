@@ -1688,6 +1688,110 @@
 		@apply bg-border;
 	}
 
+		/* MARK: Sidebar */
+ 
+	/* Wrapper */
+	.cn-sidebar-wrapper {
+		@apply bg-bg has-data-[theme=default]:bg-bg has-data-[theme=gray]:has-data-[variant=inset]:bg-sidebar has-data-[theme=inverse]:has-data-[variant=inset]:bg-black;
+	}
+ 
+	/* Sidebar root */
+	.cn-sidebar {
+		/* no extra decoration in default; bg/fg applied inline via CSS vars */
+	}
+ 
+	/* Fixed container — variant-specific decoration */
+	.cn-sidebar-container-variant-sidebar {
+		@apply border-sidebar-border group-data-[side=left]:border-r group-data-[side=right]:border-l;
+	}
+	.cn-sidebar-container-variant-floating {
+		/* padding already structural; shadow lives here */
+	}
+	.cn-sidebar-container-variant-inset {
+		/* no extra border in default inset */
+	}
+ 
+	/* Inner panel — floating/inset get rounded corners + shadow/border */
+	.cn-sidebar-inner {
+		/* base: no decoration */
+	}
+	.cn-sidebar-inner-variant-floating {
+		@apply border-sidebar-border rounded-xl border shadow-sm;
+	}
+	.cn-sidebar-inner-variant-inset {
+		@apply rounded-lg;
+	}
+ 
+	/* Resize handle */
+	.cn-sidebar-resize-handle {
+		@apply after:bg-transparent hover:after:bg-sidebar-border;
+	}
+	.cn-sidebar-resize-handle-dragging {
+		@apply after:bg-sidebar-ring;
+	}
+ 
+	/* Rail */
+	.cn-sidebar-rail {
+		@apply hover:after:bg-sidebar-border hover:group-data-[collapsible=offcanvas]:bg-sidebar;
+	}
+ 
+	/* Inset main content */
+	.cn-sidebar-inset {
+		@apply peer-data-[theme=default]:border-sidebar-border peer-data-[theme=gray-body]:bg-fill1 peer-data-[theme=default]:peer-data-[variant=inset]:border md:peer-data-[variant=inset]:shadow-sm;
+	}
+ 
+	/* Input */
+	.cn-sidebar-input {
+		@apply shadow-none;
+	}
+ 
+	/* Separator */
+	.cn-sidebar-separator {
+		@apply bg-soft-alpha;
+	}
+ 
+	/* Group label */
+	.cn-sidebar-group-label {
+		@apply text-sidebar-fg/70;
+	}
+ 
+	/* Group action */
+	.cn-sidebar-group-action {
+		@apply text-sidebar-fg hover:bg-sidebar-accent hover:text-sidebar-accent-fg;
+	}
+ 
+	/* Menu action */
+	.cn-sidebar-menu-action {
+		@apply text-sidebar-fg hover:bg-sidebar-accent hover:text-sidebar-accent-fg peer-hover/menu-button:text-sidebar-accent-fg;
+	}
+	.cn-sidebar-menu-action-show-on-hover {
+		@apply peer-data-[active=true]/menu-button:text-sidebar-accent-fg;
+	}
+ 
+	/* Menu badge */
+	.cn-sidebar-menu-badge {
+		@apply border px-1.5 py-0.5;
+	}
+ 
+	/* Menu sub-button */
+	.cn-sidebar-menu-sub-button {
+		@apply text-sidebar-fg hover:bg-sidebar-accent hover:text-sidebar-accent-fg data-[active=true]:bg-sidebar-accent data-[active=true]:text-sidebar-accent-fg [&>svg]:text-sidebar-accent-fg;
+	}
+ 
+	/* Menu button variants */
+	.cn-sidebar-menu-button {
+		@apply hover:bg-sidebar-accent hover:text-sidebar-accent-fg font-medium rounded-control-md [&>svg]:text-fg-secondary;
+	}
+	.cn-sidebar-menu-button-variant-strong {
+		@apply text-sidebar-fg focus-visible:ring-primary-focus focus-visible:outline-none data-[active=true]:bg-primary! data-[active=true]:text-white data-[active=true]:[&>svg]:stroke-white;
+	}
+	.cn-sidebar-menu-button-variant-soft {
+		@apply text-sidebar-fg focus-visible:ring-primary-focus focus-visible:outline-none data-[active=true]:bg-primary-accent! data-[active=true]:text-primary-text [&>svg]:text-fg-secondary data-[active=true]:[&>svg]:stroke-primary-text;
+	}
+	.cn-sidebar-menu-button-variant-neutral {
+		@apply text-sidebar-fg data-[active=true]:bg-sidebar-accent!;
+	}
+
 	/* MARK: Slider */
 	.cn-slider {
 		@apply data-disabled:opacity-50;
