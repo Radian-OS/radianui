@@ -18,17 +18,35 @@ function ContextMenuTrigger({
 	return (
 		<ContextMenuPrimitive.Trigger
 			data-slot="context-menu-trigger"
-			className={cn("select-none", className)}
+			className={cn("select-none outline-none", className)}
 			{...props}
 		/>
 	)
 }
 
 function ContextMenuGroup({
+	children,
+	title,
+	className,
 	...props
-}: React.ComponentProps<typeof ContextMenuPrimitive.Group>) {
+}: React.ComponentProps<typeof ContextMenuPrimitive.Group> & {
+	title?: string
+}) {
 	return (
-		<ContextMenuPrimitive.Group data-slot="context-menu-group" {...props} />
+		<ContextMenuPrimitive.Group
+			data-slot="context-menu-group"
+			className={cn(
+				"z-50 flex flex-col items-stretch justify-start gap-0.5 px-0 py-0",
+				className
+			)}
+			{...props}>
+			{title && (
+				<label className="text-fg-tertiary text-xs/4.5 flex h-7 items-center gap-2.5 p-2 font-medium uppercase">
+					{title}
+				</label>
+			)}
+			{children}
+		</ContextMenuPrimitive.Group>
 	)
 }
 
@@ -68,9 +86,9 @@ function ContextMenuSubTrigger({
 	return (
 		<ContextMenuPrimitive.SubTrigger
 			data-slot="context-menu-sub-trigger"
-			data-inset={inset}
 			className={cn(
-				"focus:bg-fill3 focus:text-fg data-[state=open]:bg-fill3 data-[state=open]:text-fg outline-hidden flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm data-[inset]:pl-8 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+				"data-[state=open]:bg-fill1-alpha focus:bg-fill2-alpha outline-hidden data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:text-fg-secondary flex cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm transition-colors [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+				inset && "pl-8",
 				className
 			)}
 			{...props}>
@@ -85,14 +103,19 @@ function ContextMenuSubContent({
 	...props
 }: React.ComponentProps<typeof ContextMenuPrimitive.SubContent>) {
 	return (
-		<ContextMenuPrimitive.SubContent
-			data-slot="context-menu-sub-content"
-			className={cn(
-				"bg-elevation-level2 text-fg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 origin-(--radix-context-menu-content-transform-origin) border-border z-50 min-w-[8rem] overflow-hidden rounded-md border p-1 shadow-lg",
-				className
-			)}
-			{...props}
-		/>
+		<ContextMenuPrimitive.Portal>
+			<ContextMenuPrimitive.SubContent
+				data-slot="context-menu-sub-content"
+				className={cn(
+					"bg-elevation-level2 border-border drop-shadow-xs z-50 flex min-w-36 flex-col items-stretch justify-start rounded-lg border p-1.5",
+					"data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
+					className
+				)}
+				sideOffset={10}
+				alignOffset={-7}
+				{...props}
+			/>
+		</ContextMenuPrimitive.Portal>
 	)
 }
 
@@ -105,7 +128,8 @@ function ContextMenuContent({
 			<ContextMenuPrimitive.Content
 				data-slot="context-menu-content"
 				className={cn(
-					"bg-elevation-level2 text-fg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 max-h-(--radix-context-menu-content-available-height) origin-(--radix-context-menu-content-transform-origin) border-border z-50 min-w-[8rem] overflow-y-auto overflow-x-hidden rounded-md border p-1 shadow-md",
+					"no-scrollbar bg-elevation-level2 border-border drop-shadow-xs z-50 flex min-w-[8rem] flex-col gap-0.5 overflow-y-scroll rounded-lg border p-1.5",
+					"data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
 					className
 				)}
 				{...props}
@@ -126,10 +150,12 @@ function ContextMenuItem({
 	return (
 		<ContextMenuPrimitive.Item
 			data-slot="context-menu-item"
-			data-inset={inset}
-			data-variant={variant}
 			className={cn(
-				"focus:bg-fill3 focus:text-fg data-[variant=error]:text-error data-[variant=error]:focus:bg-error-accent data-[variant=error]:focus:text-error data-[variant=error]:*:[svg]:!text-error [&_svg:not([class*='text-'])]:text-fg-tertiary outline-hidden relative flex cursor-default select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm data-[disabled]:pointer-events-none data-[inset]:pl-8 data-[disabled]:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+				"text-fg focus:bg-fill1-alpha data-disabled:pointer-events-none data-disabled:text-fg-disabled data-disabled:[&_*]:text-fg-disabled outline-hidden relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm transition-colors",
+				"[&_svg]:text-fg-secondary [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+				inset && "pl-9",
+				variant === "error" &&
+					"text-error focus:bg-error-accent [&_svg]:!text-error",
 				className
 			)}
 			{...props}
@@ -147,7 +173,7 @@ function ContextMenuCheckboxItem({
 		<ContextMenuPrimitive.CheckboxItem
 			data-slot="context-menu-checkbox-item"
 			className={cn(
-				"focus:bg-fill3 focus:text-fg outline-hidden relative flex cursor-default select-none items-center gap-2 rounded-sm py-1.5 pe-2 ps-8 text-sm data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+				"focus:bg-fill2-alpha text-fg outline-hidden relative flex cursor-pointer select-none items-center gap-2 rounded-sm py-1.5 pe-2 ps-8 text-sm data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
 				className
 			)}
 			checked={checked}
@@ -171,7 +197,7 @@ function ContextMenuRadioItem({
 		<ContextMenuPrimitive.RadioItem
 			data-slot="context-menu-radio-item"
 			className={cn(
-				"focus:bg-fill3 focus:text-fg outline-hidden relative flex cursor-default select-none items-center gap-2 rounded-sm py-1.5 pe-2 ps-8 text-sm data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+				"focus:bg-fill2-alpha text-fg outline-hidden relative flex cursor-pointer select-none items-center gap-2 rounded-sm py-1.5 pe-2 ps-8 text-sm data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
 				className
 			)}
 			{...props}>
@@ -195,9 +221,9 @@ function ContextMenuLabel({
 	return (
 		<ContextMenuPrimitive.Label
 			data-slot="context-menu-label"
-			data-inset={inset}
 			className={cn(
-				"text-fg px-2 py-1.5 text-sm font-medium data-[inset]:pl-8",
+				"text-fg-tertiary px-2 py-1.5 text-xs font-medium",
+				inset && "pl-8",
 				className
 			)}
 			{...props}
@@ -212,7 +238,7 @@ function ContextMenuSeparator({
 	return (
 		<ContextMenuPrimitive.Separator
 			data-slot="context-menu-separator"
-			className={cn("bg-border -mx-1 my-1 h-px", className)}
+			className={cn("bg-soft-alpha -mx-1.5 my-1 h-px", className)}
 			{...props}
 		/>
 	)
@@ -226,7 +252,7 @@ function ContextMenuShortcut({
 		<span
 			data-slot="context-menu-shortcut"
 			className={cn(
-				"text-fg-tertiary ms-auto text-xs tracking-widest",
+				"text-fg-secondary ml-auto text-xs tracking-widest",
 				className
 			)}
 			{...props}

@@ -681,6 +681,9 @@ const registry: Record<
 	"menubar-with-radio-example": React.lazy(
 		() => import("@/registry/example/menubar/menubar-with-radio-example")
 	),
+	"navigation-menu-docs": React.lazy(
+		() => import("@/registry/example/navigation-menu/navigation-menu-docs")
+	),
 	"navigation-menu-icons": React.lazy(
 		() => import("@/registry/example/navigation-menu/navigation-menu-icons")
 	),
