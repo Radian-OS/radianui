@@ -2,8 +2,10 @@
 
 import { useEffect, useMemo, useRef, useState } from "react"
 import { Check, ChevronDown, Lock, LockOpen } from "lucide-react"
+import { FONTS as initialFonts } from "@/components/typography/typography-playground"
 import { cn } from "@/lib/utils"
 import { FONTS } from "@/registry/fonts"
+import { CommandDivider } from "@/registry/ui/command"
 import {
 	Command,
 	CommandEmpty,
@@ -162,6 +164,33 @@ export function FontCombobox({
 						onScroll={handleScroll}
 						style={{ maxHeight: "300px", overflowY: "auto" }}>
 						<CommandEmpty>No font found.</CommandEmpty>
+						<CommandGroup>
+							{Object.entries(initialFonts).map(([family]) => {
+								const matchedFont = FONTS.find((f) => f.name === family)
+								const fontValue =
+									matchedFont?.value ??
+									family.toLowerCase().replace(/\s+/g, "-")
+								return (
+									<CommandItem
+										key={family}
+										value={family}
+										onSelect={() => {
+											onValueChange(fontValue)
+										}}>
+										<span style={{ fontFamily: `"${family}", sans-serif` }}>
+											{family}
+										</span>
+										<Check
+											className={cn(
+												"ml-auto",
+												value === family ? "opacity-100" : "opacity-0"
+											)}
+										/>
+									</CommandItem>
+								)
+							})}
+						</CommandGroup>
+						<CommandDivider />
 						<CommandGroup>
 							{displayedFonts.map((font) => (
 								<CommandItem
