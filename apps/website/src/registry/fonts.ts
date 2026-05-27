@@ -1624,19 +1624,19 @@ export const FONTS = [
 				"https://fonts.googleapis.com/css2?family=Cuprum:wght@400..700&display=swap",
 		},
 	},
-	{
-		value: "dm-sans",
-		name: "DM Sans",
-		type: "registry:font",
-		font: {
-			family: "'DM Sans', sans-serif",
-			provider: "google",
-			subsets: ["latin"],
-			import: "DM_Sans",
-			googleFontsUrl:
-				"https://fonts.googleapis.com/css2?family=DM+Sans:wght@100..900&display=swap",
-		},
-	},
+	// {
+	// 	value: "dm-sans",
+	// 	name: "DM Sans",
+	// 	type: "registry:font",
+	// 	font: {
+	// 		family: "'DM Sans', sans-serif",
+	// 		provider: "google",
+	// 		subsets: ["latin"],
+	// 		import: "DM_Sans",
+	// 		googleFontsUrl:
+	// 			"https://fonts.googleapis.com/css2?family=DM+Sans:wght@100..900&display=swap",
+	// 	},
+	// },
 	{
 		value: "darker-grotesque",
 		name: "Darker Grotesque",
@@ -2066,19 +2066,19 @@ export const FONTS = [
 				"https://fonts.googleapis.com/css2?family=Federo&display=swap",
 		},
 	},
-	{
-		value: "figtree",
-		name: "Figtree",
-		type: "registry:font",
-		font: {
-			family: "'Figtree', sans-serif",
-			provider: "google",
-			subsets: ["latin"],
-			import: "Figtree",
-			googleFontsUrl:
-				"https://fonts.googleapis.com/css2?family=Figtree:wght@300..900&display=swap",
-		},
-	},
+	// {
+	// 	value: "figtree",
+	// 	name: "Figtree",
+	// 	type: "registry:font",
+	// 	font: {
+	// 		family: "'Figtree', sans-serif",
+	// 		provider: "google",
+	// 		subsets: ["latin"],
+	// 		import: "Figtree",
+	// 		googleFontsUrl:
+	// 			"https://fonts.googleapis.com/css2?family=Figtree:wght@300..900&display=swap",
+	// 	},
+	// },
 	{
 		value: "finlandica",
 		name: "Finlandica",
@@ -2287,19 +2287,19 @@ export const FONTS = [
 				"https://fonts.googleapis.com/css2?family=Gayathri:wght@100;400;700&display=swap",
 		},
 	},
-	{
-		value: "geist",
-		name: "Geist",
-		type: "registry:font",
-		font: {
-			family: "'Geist', sans-serif",
-			provider: "google",
-			subsets: ["latin"],
-			import: "Geist",
-			googleFontsUrl:
-				"https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap",
-		},
-	},
+	// {
+	// 	value: "geist",
+	// 	name: "Geist",
+	// 	type: "registry:font",
+	// 	font: {
+	// 		family: "'Geist', sans-serif",
+	// 		provider: "google",
+	// 		subsets: ["latin"],
+	// 		import: "Geist",
+	// 		googleFontsUrl:
+	// 			"https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap",
+	// 	},
+	// },
 	{
 		value: "gemunu-libre",
 		name: "Gemunu Libre",
@@ -2703,19 +2703,19 @@ export const FONTS = [
 				"https://fonts.googleapis.com/css2?family=Huninn&display=swap",
 		},
 	},
-	{
-		value: "ibm-plex-sans",
-		name: "IBM Plex Sans",
-		type: "registry:font",
-		font: {
-			family: "'IBM Plex Sans', sans-serif",
-			provider: "google",
-			subsets: ["latin"],
-			import: "IBM_Plex_Sans",
-			googleFontsUrl:
-				"https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100..700&display=swap",
-		},
-	},
+	// {
+	// 	value: "ibm-plex-sans",
+	// 	name: "IBM Plex Sans",
+	// 	type: "registry:font",
+	// 	font: {
+	// 		family: "'IBM Plex Sans', sans-serif",
+	// 		provider: "google",
+	// 		subsets: ["latin"],
+	// 		import: "IBM_Plex_Sans",
+	// 		googleFontsUrl:
+	// 			"https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100..700&display=swap",
+	// 	},
+	// },
 	{
 		value: "ibm-plex-sans-arabic",
 		name: "IBM Plex Sans Arabic",
@@ -2885,19 +2885,19 @@ export const FONTS = [
 				"https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&display=swap",
 		},
 	},
-	{
-		value: "inter",
-		name: "Inter",
-		type: "registry:font",
-		font: {
-			family: "'Inter', sans-serif",
-			provider: "google",
-			subsets: ["latin"],
-			import: "Inter",
-			googleFontsUrl:
-				"https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap",
-		},
-	},
+	// {
+	// 	value: "inter",
+	// 	name: "Inter",
+	// 	type: "registry:font",
+	// 	font: {
+	// 		family: "'Inter', sans-serif",
+	// 		provider: "google",
+	// 		subsets: ["latin"],
+	// 		import: "Inter",
+	// 		googleFontsUrl:
+	// 			"https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap",
+	// 	},
+	// },
 	{
 		value: "inter-tight",
 		name: "Inter Tight",
@@ -3353,19 +3353,19 @@ export const FONTS = [
 				"https://fonts.googleapis.com/css2?family=Lalezar&display=swap",
 		},
 	},
-	{
-		value: "lato",
-		name: "Lato",
-		type: "registry:font",
-		font: {
-			family: "'Lato', sans-serif",
-			provider: "google",
-			subsets: ["latin"],
-			import: "Lato",
-			googleFontsUrl:
-				"https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap",
-		},
-	},
+	// {
+	// 	value: "lato",
+	// 	name: "Lato",
+	// 	type: "registry:font",
+	// 	font: {
+	// 		family: "'Lato', sans-serif",
+	// 		provider: "google",
+	// 		subsets: ["latin"],
+	// 		import: "Lato",
+	// 		googleFontsUrl:
+	// 			"https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap",
+	// 	},
+	// },
 	{
 		value: "league-gothic",
 		name: "League Gothic",
@@ -3717,19 +3717,19 @@ export const FONTS = [
 				"https://fonts.googleapis.com/css2?family=Manjari:wght@100;400;700&display=swap",
 		},
 	},
-	{
-		value: "manrope",
-		name: "Manrope",
-		type: "registry:font",
-		font: {
-			family: "'Manrope', sans-serif",
-			provider: "google",
-			subsets: ["latin"],
-			import: "Manrope",
-			googleFontsUrl:
-				"https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap",
-		},
-	},
+	// {
+	// 	value: "manrope",
+	// 	name: "Manrope",
+	// 	type: "registry:font",
+	// 	font: {
+	// 		family: "'Manrope', sans-serif",
+	// 		provider: "google",
+	// 		subsets: ["latin"],
+	// 		import: "Manrope",
+	// 		googleFontsUrl:
+	// 			"https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap",
+	// 	},
+	// },
 	{
 		value: "marmelad",
 		name: "Marmelad",
@@ -6642,19 +6642,19 @@ export const FONTS = [
 				"https://fonts.googleapis.com/css2?family=Onest:wght@100..900&display=swap",
 		},
 	},
-	{
-		value: "open-sans",
-		name: "Open Sans",
-		type: "registry:font",
-		font: {
-			family: "'Open Sans', sans-serif",
-			provider: "google",
-			subsets: ["latin"],
-			import: "Open_Sans",
-			googleFontsUrl:
-				"https://fonts.googleapis.com/css2?family=Open+Sans:wght@300..800&display=swap",
-		},
-	},
+	// {
+	// 	value: "open-sans",
+	// 	name: "Open Sans",
+	// 	type: "registry:font",
+	// 	font: {
+	// 		family: "'Open Sans', sans-serif",
+	// 		provider: "google",
+	// 		subsets: ["latin"],
+	// 		import: "Open_Sans",
+	// 		googleFontsUrl:
+	// 			"https://fonts.googleapis.com/css2?family=Open+Sans:wght@300..800&display=swap",
+	// 	},
+	// },
 	{
 		value: "orbit",
 		name: "Orbit",
@@ -7201,19 +7201,19 @@ export const FONTS = [
 				"https://fonts.googleapis.com/css2?family=Rajdhani:wght@300..700&display=swap",
 		},
 	},
-	{
-		value: "raleway",
-		name: "Raleway",
-		type: "registry:font",
-		font: {
-			family: "'Raleway', sans-serif",
-			provider: "google",
-			subsets: ["latin"],
-			import: "Raleway",
-			googleFontsUrl:
-				"https://fonts.googleapis.com/css2?family=Raleway:wght@100..900&display=swap",
-		},
-	},
+	// {
+	// 	value: "raleway",
+	// 	name: "Raleway",
+	// 	type: "registry:font",
+	// 	font: {
+	// 		family: "'Raleway', sans-serif",
+	// 		provider: "google",
+	// 		subsets: ["latin"],
+	// 		import: "Raleway",
+	// 		googleFontsUrl:
+	// 			"https://fonts.googleapis.com/css2?family=Raleway:wght@100..900&display=swap",
+	// 	},
+	// },
 	{
 		value: "ramabhadra",
 		name: "Ramabhadra",
@@ -7383,19 +7383,19 @@ export const FONTS = [
 				"https://fonts.googleapis.com/css2?family=Rethink+Sans:wght@400..800&display=swap",
 		},
 	},
-	{
-		value: "roboto",
-		name: "Roboto",
-		type: "registry:font",
-		font: {
-			family: "'Roboto', sans-serif",
-			provider: "google",
-			subsets: ["latin"],
-			import: "Roboto",
-			googleFontsUrl:
-				"https://fonts.googleapis.com/css2?family=Roboto:wght@100..900&display=swap",
-		},
-	},
+	// {
+	// 	value: "roboto",
+	// 	name: "Roboto",
+	// 	type: "registry:font",
+	// 	font: {
+	// 		family: "'Roboto', sans-serif",
+	// 		provider: "google",
+	// 		subsets: ["latin"],
+	// 		import: "Roboto",
+	// 		googleFontsUrl:
+	// 			"https://fonts.googleapis.com/css2?family=Roboto:wght@100..900&display=swap",
+	// 	},
+	// },
 	{
 		value: "roboto-condensed",
 		name: "Roboto Condensed",
@@ -7461,19 +7461,19 @@ export const FONTS = [
 				"https://fonts.googleapis.com/css2?family=Rosario:wght@300..700&display=swap",
 		},
 	},
-	{
-		value: "rubik",
-		name: "Rubik",
-		type: "registry:font",
-		font: {
-			family: "'Rubik', sans-serif",
-			provider: "google",
-			subsets: ["latin"],
-			import: "Rubik",
-			googleFontsUrl:
-				"https://fonts.googleapis.com/css2?family=Rubik:wght@300..900&display=swap",
-		},
-	},
+	// {
+	// 	value: "rubik",
+	// 	name: "Rubik",
+	// 	type: "registry:font",
+	// 	font: {
+	// 		family: "'Rubik', sans-serif",
+	// 		provider: "google",
+	// 		subsets: ["latin"],
+	// 		import: "Rubik",
+	// 		googleFontsUrl:
+	// 			"https://fonts.googleapis.com/css2?family=Rubik:wght@300..900&display=swap",
+	// 	},
+	// },
 	{
 		value: "rubik-mono-one",
 		name: "Rubik Mono One",
@@ -8878,19 +8878,19 @@ export const FONTS = [
 				"https://fonts.googleapis.com/css2?family=Wix+Madefor+Text:wght@400..800&display=swap",
 		},
 	},
-	{
-		value: "work-sans",
-		name: "Work Sans",
-		type: "registry:font",
-		font: {
-			family: "'Work Sans', sans-serif",
-			provider: "google",
-			subsets: ["latin"],
-			import: "Work_Sans",
-			googleFontsUrl:
-				"https://fonts.googleapis.com/css2?family=Work+Sans:wght@100..900&display=swap",
-		},
-	},
+	// {
+	// 	value: "work-sans",
+	// 	name: "Work Sans",
+	// 	type: "registry:font",
+	// 	font: {
+	// 		family: "'Work Sans', sans-serif",
+	// 		provider: "google",
+	// 		subsets: ["latin"],
+	// 		import: "Work_Sans",
+	// 		googleFontsUrl:
+	// 			"https://fonts.googleapis.com/css2?family=Work+Sans:wght@100..900&display=swap",
+	// 	},
+	// },
 	{
 		value: "yaldevi",
 		name: "Yaldevi",

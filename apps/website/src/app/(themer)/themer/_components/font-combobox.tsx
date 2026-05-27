@@ -183,7 +183,7 @@ export function FontCombobox({
 										<Check
 											className={cn(
 												"ml-auto",
-												value === family ? "opacity-100" : "opacity-0"
+												value === fontValue ? "opacity-100" : "opacity-0"
 											)}
 										/>
 									</CommandItem>
