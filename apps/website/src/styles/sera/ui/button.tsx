@@ -946,12 +946,12 @@ CompactButton.displayName = "CompactButton"
 export const iconButtonSizeVariants = cva("", {
 	variants: {
 		size: {
-			"28": "[&>svg]:size-4 size-7 rounded-none p-1.5",
-			"32": "[&>svg]:size-4.5 p-1.75 size-8 rounded-none",
-			"36": "[&>svg]:size-5 size-9 rounded-none p-2",
-			"40": "[&>svg]:size-5 size-10 rounded-none p-2.5",
-			"44": "[&>svg]:size-5 size-11 rounded-none p-3",
-			"48": "[&>svg]:size-6 size-12 rounded-none p-3",
+			"28": "[&>svg]:size-4 size-7 p-1.5 rounded-none",
+			"32": "[&>svg]:size-4.5 size-8 p-1.75 rounded-none",
+			"36": "[&>svg]:size-5 size-9 p-2 rounded-none",
+			"40": "[&>svg]:size-5 size-10 p-2.5 rounded-none",
+			"44": "[&>svg]:size-5 size-11 p-3 rounded-none",
+			"48": "[&>svg]:size-6 size-12 p-3 rounded-none",
 		},
 		variant: {
 			outline: "",

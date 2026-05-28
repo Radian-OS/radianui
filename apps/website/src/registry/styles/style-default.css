@@ -642,24 +642,13 @@
 	}
 
 	/* MARK: IconButton */
-	.cn-icon-btn-size-28 {
-		@apply size-7 rounded-md p-1.5;
-	}
-	.cn-icon-btn-size-32 {
-		@apply p-1.75 size-8 rounded-md;
-	}
-	.cn-icon-btn-size-36 {
-		@apply size-9 rounded-lg p-2;
-	}
-	.cn-icon-btn-size-40 {
-		@apply size-10 rounded-lg p-2.5;
-	}
-	.cn-icon-btn-size-44 {
-		@apply size-11 rounded-lg p-3;
-	}
-	.cn-icon-btn-size-48 {
-		@apply size-12 rounded-lg p-3;
-	}
+	
+	.cn-icon-btn-size-28 { @apply rounded-md; }
+	.cn-icon-btn-size-32 { @apply rounded-md; }
+	.cn-icon-btn-size-36 { @apply rounded-lg; }
+	.cn-icon-btn-size-40 { @apply rounded-lg; }
+	.cn-icon-btn-size-44 { @apply rounded-lg; }
+	.cn-icon-btn-size-48 { @apply rounded-lg; }
 
 
 	/* MARK: Calendar */

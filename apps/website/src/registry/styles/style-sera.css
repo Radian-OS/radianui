@@ -643,25 +643,14 @@
 	}
 
 
-	/* IconButton size variants — all flat */
-	.cn-icon-btn-size-28 {
-		@apply size-7 rounded-none p-1.5;
-	}
-	.cn-icon-btn-size-32 {
-		@apply p-1.75 size-8 rounded-none;
-	}
-	.cn-icon-btn-size-36 {
-		@apply size-9 rounded-none p-2;
-	}
-	.cn-icon-btn-size-40 {
-		@apply size-10 rounded-none p-2.5;
-	}
-	.cn-icon-btn-size-44 {
-		@apply size-11 rounded-none p-3;
-	}
-	.cn-icon-btn-size-48 {
-		@apply size-12 rounded-none p-3;
-	}
+	/* MARK: IconButton */
+
+	.cn-icon-btn-size-28 { @apply rounded-none; }
+	.cn-icon-btn-size-32 { @apply rounded-none; }
+	.cn-icon-btn-size-36 { @apply rounded-none; }
+	.cn-icon-btn-size-40 { @apply rounded-none; }
+	.cn-icon-btn-size-44 { @apply rounded-none; }
+	.cn-icon-btn-size-48 { @apply rounded-none; }
 
 	/* MARK: Calendar */
 
