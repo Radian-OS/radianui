@@ -77,6 +77,7 @@ This documentation is designed for AI agents and LLMs, providing structured Mark
 - [Slider](https://radianos.com/docs/components/slider.md): Detailed documentation for Slider
 - [Sonner](https://radianos.com/docs/components/sonner.md): Detailed documentation for Sonner
 - [Spinner](https://radianos.com/docs/components/spinner.md): Detailed documentation for Spinner
+- [Stepper](https://radianos.com/docs/components/stepper.md): Detailed documentation for Stepper
 - [Switch](https://radianos.com/docs/components/switch.md): Detailed documentation for Switch
 - [Table](https://radianos.com/docs/components/table.md): Detailed documentation for Table
 - [Tabs](https://radianos.com/docs/components/tabs.md): Detailed documentation for Tabs

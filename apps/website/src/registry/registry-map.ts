@@ -874,6 +874,12 @@ const registry: Record<
 	"spinner-sizes": React.lazy(
 		() => import("@/registry/example/spinner/spinner-sizes")
 	),
+	"stepper-preview": React.lazy(
+		() => import("@/registry/example/stepper/stepper-preview")
+	),
+	"stepper-state": React.lazy(
+		() => import("@/registry/example/stepper/stepper-state")
+	),
 	"icon-inside-switch": React.lazy(
 		() => import("@/registry/example/switch/icon-inside-switch")
 	),

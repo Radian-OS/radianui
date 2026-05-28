@@ -1,0 +1,81 @@
+---
+title: Stepper
+description: A component that displays a series of steps and allows users to navigate between them
+links:
+  github:
+    href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/stepper.tsx
+---
+
+<ComponentPreview path="stepper/stepper-preview" />
+
+## Installation
+
+<InstallationTabs defaultValue="cli">
+	<InstallTabsList>
+		<InstallTabsTrigger value="cli">CLI</InstallTabsTrigger>
+		<InstallTabsTrigger value="manual">Manual</InstallTabsTrigger>
+	</InstallTabsList>
+	<InstallTabsContent value="cli" className="p-0">
+		```bash
+		npx radianui@latest add stepper
+		```
+	</InstallTabsContent>
+	<InstallTabsContent value="manual" className="p-0">
+	<Steps>
+    	<Step>Copy and paste the following code into your project.</Step>
+    	<ComponentSource name="stepper" title="components/ui/stepper.tsx" collapsible />
+
+    	<Step>Update the import paths as per your project structure.</Step>
+    </Steps>
+    </InstallTabsContent>
+
+</InstallationTabs>
+
+## Usage
+
+### Imports
+
+```tsx showLineNumbers title="/components/ui/stepper.tsx"
+import {
+	Stepper,
+	StepperContent,
+	StepperIndicator,
+	StepperItem,
+	StepperNav,
+	StepperPanel,
+	StepperSeparator,
+	StepperTrigger,
+} from "@/components/ui/stepper"
+```
+
+### Code
+
+```tsx showLineNumbers title="/components/ui/stepper.tsx"
+<Stepper defaultValue={1}>
+	<StepperNav>
+		<StepperItem step={1}>
+			<StepperTrigger>
+				<StepperIndicator>1</StepperIndicator>
+			</StepperTrigger>
+			<StepperSeparator />
+		</StepperItem>
+		<StepperItem step={2}>
+			<StepperTrigger>
+				<StepperIndicator>2</StepperIndicator>
+			</StepperTrigger>
+		</StepperItem>
+	</StepperNav>
+	<StepperPanel>
+		<StepperContent value={1}>Content 1</StepperContent>
+		<StepperContent value={2}>Content 2</StepperContent>
+	</StepperPanel>
+</Stepper>
+```
+
+---
+
+## Examples
+
+### States
+
+<ComponentPreview path="stepper/stepper-state" />
