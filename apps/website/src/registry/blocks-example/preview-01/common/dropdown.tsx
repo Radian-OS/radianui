@@ -7,7 +7,6 @@ import {
 	Keyboard,
 	LogOutIcon,
 	Settings,
-	Slack,
 } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
 import { Badge } from "@/registry/ui/badge"
@@ -56,7 +55,6 @@ const Dropdown = () => {
 					<p className="text-fg text-sm font-normal">Change logs</p>
 				</span>
 				<span className="hover:bg-fill2-alpha flex cursor-pointer gap-2 rounded-sm p-2">
-					<Slack size={20} strokeWidth={1.5} className="text-fg-secondary" />
 					<p className="text-fg text-sm font-normal">Slack Community</p>
 				</span>
 				<span className="hover:bg-fill2-alpha flex cursor-pointer gap-2 rounded-sm p-2">
