@@ -299,9 +299,9 @@ export function buildRegistryConfig(config: ThemerConfig): RegistryConfig {
 	const bodyFont = FONTS.find((font) => font.value === config.bodyFont)
 
 	if (config.headingFont)
-		theme["--heading-font"] = headingFont?.font.family || ""
+		theme["--font-heading"] = headingFont?.font.family || ""
 
-	if (config.bodyFont) theme["--body-font"] = bodyFont?.font.family || ""
+	if (config.bodyFont) theme["--font-body"] = bodyFont?.font.family || ""
 
 	const radius = RADIUS.find((r) => r.value === config.radius)
 	if (radius) {
@@ -354,8 +354,6 @@ export function buildRegistryConfig(config: ThemerConfig): RegistryConfig {
 				"button[class*='bg-gradient'], [role='button'][class*='bg-gradient']":
 					"will-change: background-image;",
 			},
-			"@utility font-heading": "font-family: var(--heading-font);",
-			"@utility font-body": "font-family: var(--body-font);",
 			"@utility heading-1":
 				"@apply font-heading text-[2.25rem] font-semibold leading-[2.75rem]; @media (width >=theme(--breakpoint-sm)) { font-size: 3rem; line-height: 3.5rem; } @media (width >=theme(--breakpoint-lg)) { font-size: 4rem; line-height: 4.5rem; }",
 			"@utility heading-2":

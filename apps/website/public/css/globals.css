@@ -104,6 +104,9 @@
 		transparent 84%
 	);
 
+	--font-heading: "Geist", sans-serif;
+	--font-body: "Inter", sans-serif;
+
 	--color-card: var(--color-elevation-level1);
 
 	--color-popover: var(--color-elevation-level2);
@@ -114,9 +117,6 @@
 	--color-sidebar-accent-fg: var(--color-fg);
 	--color-sidebar-border: var(--color-border);
 	--color-sidebar-ring: var(--color-fg-secondary);
-
-	--heading-font: var(--font-geist), system-ui, sans-serif;
-	--body-font: var(--font-inter), system-ui, sans-serif;
 
 	--radius: 8px;
 	/* Radius for control category(these components can get fully rounded) - Button/Input/Select/OTP/Badge */
@@ -265,16 +265,6 @@
 	[role="button"][class*="bg-gradient"] {
 		will-change: background-image;
 	}
-}
-
-/* Custom heading font */
-@utility font-heading {
-	font-family: var(--heading-font);
-}
-
-/* Custom body font */
-@utility font-body {
-	font-family: var(--body-font);
 }
 
 /* Heading 1 */

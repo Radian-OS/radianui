@@ -48,7 +48,7 @@ const useFontLoader = (
 		link.href = font.font.googleFontsUrl
 		document.head.appendChild(link)
 
-		const fontFamily = font.name
+		const fontFamily = font.font.family
 		document.documentElement.style.setProperty(cssVar, fontFamily)
 
 		return () => {
@@ -135,8 +135,8 @@ export function PreviewClient({ children }: { children: React.ReactNode }) {
 		}
 	}, [config, params.radius, params.style])
 
-	useFontLoader(selectedHeadingFont, "--heading-font")
-	useFontLoader(selectedBodyFont, "--body-font")
+	useFontLoader(selectedHeadingFont, "--font-heading")
+	useFontLoader(selectedBodyFont, "--font-body")
 
 	useEffect(() => {
 		const handleMessage = (event: MessageEvent) => {
