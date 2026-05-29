@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { Geist, Inter } from "next/font/google"
+import { Inter } from "next/font/google"
 import { Toaster } from "sonner"
 import AhrefsAnalytics from "@/components/ahrefs-analytics"
 import { PostHogProvider } from "@/components/posthog-provider"
@@ -9,7 +9,6 @@ import { ToastProvider } from "@/contexts/toast-context"
 import "@/css/globals.css"
 import { cn } from "@/lib/utils"
 
-const geist = Geist({ subsets: ["latin"], variable: "--font-geist" })
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
 
 export const metadata: Metadata = {
@@ -89,12 +88,7 @@ export default async function RootLayout({
 					dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
 				/>
 			</head>
-			<body
-				className={cn(
-					"relative min-h-svh antialiased",
-					geist.variable,
-					inter.variable
-				)}>
+			<body className={cn("relative min-h-svh antialiased", inter.variable)}>
 				<PostHogProvider>
 					<ToastProvider>
 						<ThemeProvider
