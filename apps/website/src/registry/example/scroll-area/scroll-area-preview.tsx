@@ -1,7 +1,7 @@
 "use client"
 
 import React from "react"
-import { Calendar, Mail, MapPin, Phone, Settings } from "lucide-react"
+import { IconSlot } from "@/registry/icon/icon-library"
 import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
 import { Divider } from "@/registry/ui/divider"
@@ -111,7 +111,7 @@ export default function ScrollAreaPreview() {
 						color="neutral"
 						size="28"
 						className="h-8 w-8 p-0">
-						<Settings className="text-fg-tertiary h-4 w-4" />
+						<IconSlot slot="setting" className="text-fg-tertiary h-4 w-4" />
 					</Button>
 				</div>
 
@@ -141,19 +141,19 @@ export default function ScrollAreaPreview() {
 
 								<div className="space-y-2">
 									<div className="text-fg-secondary flex items-center gap-2 text-sm">
-										<Mail className="h-3 w-3" />
+										<IconSlot slot="mail" className="h-3 w-3" />
 										<span>{contact.email}</span>
 									</div>
 									<div className="text-fg-secondary flex items-center gap-2 text-sm">
-										<Phone className="h-3 w-3" />
+										<IconSlot slot="smartphone" className="h-3 w-3" />
 										<span>{contact.phone}</span>
 									</div>
 									<div className="text-fg-secondary flex items-center gap-2 text-sm">
-										<MapPin className="h-3 w-3" />
+										<IconSlot slot="map-pin" className="h-3 w-3" />
 										<span>{contact.address}</span>
 									</div>
 									<div className="text-fg-tertiary flex items-center gap-2 text-xs">
-										<Calendar className="h-3 w-3" />
+										<IconSlot slot="calendar" className="h-3 w-3" />
 										<span>Last active: {contact.lastActive}</span>
 									</div>
 								</div>

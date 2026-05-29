@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { X } from "lucide-react"
+import { IconSlot } from "@/registry/icon/icon-library"
 import { Input, InputWrapper } from "@/registry/ui/input"
 import { Label } from "@/registry/ui/label"
 
@@ -21,7 +21,8 @@ export default function InputClearButton() {
 					onChange={(e) => setEmail(e.target.value)}
 					placeholder="johndoe@radian.com"
 				/>
-				<X
+				<IconSlot
+					slot="cross"
 					className="text-fg-tertiary size-4 cursor-pointer"
 					onClick={handleClear}
 				/>

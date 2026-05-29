@@ -9,8 +9,8 @@ import {
 	getSortedRowModel,
 	useReactTable,
 } from "@tanstack/react-table"
-import { ChevronDownIcon, ChevronUpIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { IconSlot } from "@/registry/icon/icon-library"
 import {
 	Table,
 	TableBody,
@@ -200,14 +200,16 @@ export default function ResizableTable() {
 												</span>
 												{{
 													asc: (
-														<ChevronUpIcon
+														<IconSlot
+															slot="up"
 															className="shrink-0 opacity-60"
 															size={16}
 															aria-hidden="true"
 														/>
 													),
 													desc: (
-														<ChevronDownIcon
+														<IconSlot
+															slot="down"
 															className="shrink-0 opacity-60"
 															size={16}
 															aria-hidden="true"

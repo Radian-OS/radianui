@@ -8,7 +8,7 @@ import {
 	getExpandedRowModel,
 	useReactTable,
 } from "@tanstack/react-table"
-import { ChevronDownIcon, ChevronUpIcon, InfoIcon } from "lucide-react"
+import { IconSlot } from "@/registry/icon/icon-library"
 import { Badge } from "@/registry/ui/badge"
 import { IconButton } from "@/registry/ui/button"
 import { Checkbox } from "@/registry/ui/checkbox"
@@ -99,13 +99,15 @@ const columns: ColumnDef<Item>[] = [
 						color: "neutral",
 					}}>
 					{row.getIsExpanded() ? (
-						<ChevronUpIcon
+						<IconSlot
+							slot="up"
 							className="opacity-60"
 							size={16}
 							aria-hidden="true"
 						/>
 					) : (
-						<ChevronDownIcon
+						<IconSlot
+							slot="down"
 							className="opacity-60"
 							size={16}
 							aria-hidden="true"
@@ -231,7 +233,11 @@ export default function ExpandTable() {
 													<span
 														className="me-3 mt-0.5 flex w-7 shrink-0 justify-center"
 														aria-hidden="true">
-														<InfoIcon className="opacity-60" size={16} />
+														<IconSlot
+															slot="info"
+															className="opacity-60"
+															size={16}
+														/>
 													</span>
 													<p className="text-sm">{row.original.note}</p>
 												</div>

@@ -5,6 +5,7 @@ import path from "path"
 import { CodeCollapsibleWrapper } from "@/components/code-collapsible-wrapper"
 import { formatCode } from "@/lib/format-code"
 import { highlightCode } from "@/lib/highligh-code"
+import { transformCode } from "@/lib/transform-icon"
 import { cn } from "@/lib/utils"
 import { CopyButton } from "./copy-button"
 
@@ -54,6 +55,7 @@ async function ComponentSource({
 	}
 
 	code = formatCode(code)
+	code = await transformCode(code, title)
 
 	const lang = language ?? title?.split(".").pop() ?? "tsx"
 	const highlightedCode = await highlightCode(code, lang)

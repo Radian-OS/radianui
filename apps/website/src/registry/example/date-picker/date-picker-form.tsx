@@ -3,10 +3,10 @@
 import { useState } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { format } from "date-fns"
-import { CalendarIcon, CheckCircle } from "lucide-react"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 import { z } from "zod"
+import { IconSlot } from "@/registry/icon/icon-library"
 import { Alert, AlertIcon, AlertTitle } from "@/registry/ui/alert"
 import { Button } from "@/registry/ui/button"
 import { Calendar } from "@/registry/ui/calendar"
@@ -53,7 +53,7 @@ export default function DatePickerForm() {
 					color="success"
 					onClose={() => toast.dismiss(t)}>
 					<AlertIcon>
-						<CheckCircle />
+						<IconSlot slot="circle-check" />
 					</AlertIcon>
 					<AlertTitle>
 						Your delivery is scheduled for {formattedDate}
@@ -94,7 +94,10 @@ export default function DatePickerForm() {
 														{today}
 													</span>
 												)}
-												<CalendarIcon className="text-fg-tertiary ml-auto size-4" />
+												<IconSlot
+													slot="calendar"
+													className="text-fg-tertiary ml-auto size-4"
+												/>
 											</Button>
 										</PopoverTrigger>
 										<PopoverContent className="w-auto p-0">

@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState } from "react"
-import { TriangleAlert } from "lucide-react"
+import { IconSlot } from "@/registry/icon/icon-library"
 import {
 	Banner,
 	BannerContent,
@@ -29,7 +29,7 @@ const BannerErrorExample = () => {
 					color="error"
 					variant="strong">
 					<BannerIcon>
-						<TriangleAlert size={20} />
+						<IconSlot slot="alert-triangle" size={20} />
 					</BannerIcon>
 					<BannerTitle className="grow truncate">
 						Pending Review. There is 1 new important file waiting for your
@@ -43,7 +43,7 @@ const BannerErrorExample = () => {
 
 			<Banner color="error" className="p-3">
 				<BannerIcon>
-					<TriangleAlert size={20} />
+					<IconSlot slot="alert-triangle" size={20} />
 				</BannerIcon>
 				<BannerContent className="flex sm:flex-row sm:gap-2">
 					<BannerTitle className="truncate">Your profile is hidden</BannerTitle>

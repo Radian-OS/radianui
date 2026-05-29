@@ -1,20 +1,9 @@
 "use client"
 
 import React from "react"
-import type { LucideIcon } from "lucide-react"
-import {
-	ChartColumnBig,
-	ChartNetwork,
-	ChevronDown,
-	CopyCheck,
-	Grid2X2,
-	House,
-	Layers2,
-	Search,
-	Users,
-} from "lucide-react"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
+import { IconSlot } from "@/registry/icon/icon-library"
 import {
 	Avatar,
 	AvatarFallback,
@@ -38,7 +27,7 @@ type SubMenuItem = {
 type MenuItem = {
 	id: string
 	label: string
-	icon: LucideIcon
+	icon: React.ReactNode
 	href?: string
 	subMenuItems?: SubMenuItem[]
 }
@@ -53,37 +42,37 @@ const MENU_ITEMS: MenuItem[] = [
 	{
 		id: "overview",
 		label: "Overview",
-		icon: House,
+		icon: <IconSlot slot="home" className="text-fg-secondary size-5" />,
 		href: "#collapsible-menu",
 	},
 	{
 		id: "analytics",
 		label: "Analytics",
-		icon: ChartColumnBig,
+		icon: <IconSlot slot="bar-chart" className="text-fg-secondary size-5" />,
 		href: "#collapsible-menu",
 	},
 	{
 		id: "products",
 		label: "Products",
-		icon: Layers2,
+		icon: <IconSlot slot="layers" className="text-fg-secondary size-5" />,
 		href: "#collapsible-menu",
 	},
 	{
 		id: "tasks",
 		label: "My Tasks",
-		icon: CopyCheck,
+		icon: <IconSlot slot="copy-check" className="text-fg-secondary size-5" />,
 		href: "#collapsible-menu",
 	},
 	{
 		id: "reporting",
 		label: "Reporting",
-		icon: ChartNetwork,
+		icon: <IconSlot slot="book" className="text-fg-secondary size-5" />,
 		href: "#collapsible-menu",
 	},
 	{
 		id: "workspace",
 		label: "Workspace",
-		icon: Grid2X2,
+		icon: <IconSlot slot="grid" className="text-fg-secondary size-5" />,
 		subMenuItems: [
 			{ id: "roadmap", label: "Roadmap", href: "#collapsible-menu" },
 			{ id: "integrations", label: "Integrations", href: "#collapsible-menu" },
@@ -93,7 +82,7 @@ const MENU_ITEMS: MenuItem[] = [
 	{
 		id: "shared",
 		label: "Shared with members",
-		icon: Users,
+		icon: <IconSlot slot="users" className="text-fg-secondary size-5" />,
 		subMenuItems: [
 			{ id: "handoff", label: "Design handoff", href: "#collapsible-menu" },
 			{ id: "collections", label: "Collections", href: "#collapsible-menu" },
@@ -107,8 +96,6 @@ const menuTriggerBaseClasses =
 
 const activeClasses =
 	"data-[active=true]:bg-primary-accent data-[active=true]:text-primary-text"
-const iconClasses =
-	"text-fg-secondary size-5 group-data-[active=true]:text-primary"
 
 function MenuItemEntry({ item, activeId, onActivate }: MenuItemEntryProps) {
 	const hasChildren = Boolean(item.subMenuItems?.length)
@@ -122,7 +109,7 @@ function MenuItemEntry({ item, activeId, onActivate }: MenuItemEntryProps) {
 				className={cn(menuTriggerBaseClasses, activeClasses, "gap-2")}
 				data-active={isActive ? "true" : undefined}
 				onClick={() => onActivate(item.id)}>
-				<item.icon className={iconClasses} />
+				{item.icon}
 				{item.label}
 			</Link>
 		)
@@ -142,10 +129,13 @@ function MenuItemEntry({ item, activeId, onActivate }: MenuItemEntryProps) {
 				)}
 				data-active={isParentActive ? "true" : undefined}>
 				<span className="flex items-center gap-2">
-					<item.icon className={iconClasses} />
+					{item.icon}
 					{item.label}
 				</span>
-				<ChevronDown className="text-fg-tertiary size-5 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+				<IconSlot
+					slot="down"
+					className="text-fg-tertiary size-5 transition-transform duration-200 group-data-[state=open]:rotate-180"
+				/>
 			</CollapsibleTrigger>
 			<CollapsibleContent>
 				<ul className="space-y-0.5">
@@ -192,7 +182,7 @@ export default function CollapsibleMenu() {
 			<div className="flex flex-col gap-2 py-4">
 				<div className="px-4">
 					<InputWrapper>
-						<Search className="text-fg-tertiary size-4" />
+						<IconSlot slot="search" className="text-fg-tertiary size-4" />
 						<Input type="search" placeholder="Search" />
 					</InputWrapper>
 				</div>

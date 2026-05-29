@@ -563,7 +563,242 @@ export const ICON_SLOT_REPLACEMENTS = [
 	},
 	{
 		slot: "trash",
-		lucideIcon: "Trash",
+		lucideIcon: "Trash2",
 		hugeiconsIcon: "Delete01Icon",
+	},
+	{
+		slot: "component",
+		lucideIcon: "Component",
+		hugeiconsIcon: "ComponentIcon",
+	},
+	{
+		slot: "app-window",
+		lucideIcon: "AppWindow",
+		hugeiconsIcon: "CursorInWindowIcon",
+	},
+	{
+		slot: "circle-check-big",
+		lucideIcon: "CircleCheckBig",
+		hugeiconsIcon: "CheckmarkCircle01Icon",
+	},
+	{
+		slot: "octagon-alert",
+		lucideIcon: "OctagonAlert",
+		hugeiconsIcon: "BadgeAlertIcon",
+	},
+	{
+		slot: "bell-ring",
+		lucideIcon: "BellRing",
+		hugeiconsIcon: "BellDotIcon",
+	},
+	{
+		slot: "circle-alert",
+		lucideIcon: "CircleAlert",
+		hugeiconsIcon: "AlertCircleIcon",
+	},
+	{
+		slot: "import",
+		lucideIcon: "Import",
+		hugeiconsIcon: "DatabaseImportIcon",
+	},
+	{
+		slot: "circle-check",
+		lucideIcon: "CircleCheck",
+		hugeiconsIcon: "CheckmarkCircle01Icon",
+	},
+	{
+		slot: "bookmark",
+		lucideIcon: "Bookmark",
+		hugeiconsIcon: "Bookmark01Icon",
+	},
+	{
+		slot: "trending-up",
+		lucideIcon: "TrendingUp",
+		hugeiconsIcon: "Chart03Icon",
+	},
+	{
+		slot: "flame",
+		lucideIcon: "Flame",
+		hugeiconsIcon: "FlameKindlingIcon",
+	},
+	{
+		slot: "refresh",
+		lucideIcon: "RefreshCcw",
+		hugeiconsIcon: "Refresh03Icon",
+	},
+	{
+		slot: "user-plus",
+		lucideIcon: "UserPlus",
+		hugeiconsIcon: "UserAdd01Icon",
+	},
+	{
+		slot: "printer",
+		lucideIcon: "Printer",
+		hugeiconsIcon: "PrinterIcon",
+	},
+	{
+		slot: "download",
+		lucideIcon: "Download",
+		hugeiconsIcon: "Download01Icon",
+	},
+	{
+		slot: "terminal",
+		lucideIcon: "Terminal",
+		hugeiconsIcon: "TerminalIcon",
+	},
+	{
+		slot: "clipboard",
+		lucideIcon: "Clipboard",
+		hugeiconsIcon: "TaskDone01Icon",
+	},
+	{
+		slot: "layers",
+		lucideIcon: "Layers2",
+		hugeiconsIcon: "Layers01Icon",
+	},
+	{
+		slot: "grid",
+		lucideIcon: "Grid2x2",
+		hugeiconsIcon: "LayoutGridIcon",
+	},
+	{
+		slot: "copy-check",
+		lucideIcon: "CopyCheck",
+		hugeiconsIcon: "CopyCheckIcon",
+	},
+	{
+		slot: "squircle",
+		lucideIcon: "Squircle",
+		hugeiconsIcon: "SquareIcon",
+	},
+	{
+		slot: "sun",
+		lucideIcon: "Sun",
+		hugeiconsIcon: "Sun01Icon",
+	},
+	{
+		slot: "map",
+		lucideIcon: "Map",
+		hugeiconsIcon: "MapingIcon",
+	},
+	{
+		slot: "community",
+		lucideIcon: "MessageCircleMore",
+		hugeiconsIcon: "Message02Icon",
+	},
+	{
+		slot: "folder-cog",
+		lucideIcon: "FolderCog",
+		hugeiconsIcon: "FolderCogIcon",
+	},
+	{
+		slot: "ghost",
+		lucideIcon: "Ghost",
+		hugeiconsIcon: "AnonymousIcon",
+	},
+	{
+		slot: "file-archive",
+		lucideIcon: "FileArchive",
+		hugeiconsIcon: "FileArchiveIcon",
+	},
+	{
+		slot: "file-spreadsheet",
+		lucideIcon: "FileSpreadsheet",
+		hugeiconsIcon: "FileSpreadsheetIcon",
+	},
+	{
+		slot: "file-play",
+		lucideIcon: "SquarePlay",
+		hugeiconsIcon: "VideoReplayIcon",
+	},
+	{
+		slot: "file-up",
+		lucideIcon: "FileUp",
+		hugeiconsIcon: "FileUpIcon",
+	},
+	{
+		slot: "loader",
+		lucideIcon: "LoaderCircle",
+		hugeiconsIcon: "Loading03Icon",
+	},
+	{
+		slot: "map-pin",
+		lucideIcon: "MapPin",
+		hugeiconsIcon: "MapPinHouseIcon",
+	},
+	{
+		slot: "earth",
+		lucideIcon: "EarthLock",
+		hugeiconsIcon: "EarthLockIcon",
+	},
+	{
+		slot: "share",
+		lucideIcon: "Share",
+		hugeiconsIcon: "Share01Icon",
+	},
+	{
+		slot: "chevron-first",
+		lucideIcon: "ChevronFirst",
+		hugeiconsIcon: "ChevronDoubleCloseIcon",
+	},
+	{
+		slot: "chevron-last",
+		lucideIcon: "ChevronLast",
+		hugeiconsIcon: "ChevronDoubleCloseIcon",
+	},
+	{
+		slot: "text-align-left",
+		lucideIcon: "TextAlignStart",
+		hugeiconsIcon: "TextAlignJustifyLeftIcon",
+	},
+	{
+		slot: "text-align-center",
+		lucideIcon: "TextAlignJustify",
+		hugeiconsIcon: "TextAlignJustifyCenterIcon",
+	},
+	{
+		slot: "text-align-right",
+		lucideIcon: "TextAlignEnd",
+		hugeiconsIcon: "TextAlignJustifyRightIcon",
+	},
+	{
+		slot: "smile-plus",
+		lucideIcon: "SmilePlus",
+		hugeiconsIcon: "SmilePlusIcon",
+	},
+	{
+		slot: "rotate",
+		lucideIcon: "RotateCw",
+		hugeiconsIcon: "Rotate01Icon",
+	},
+	{
+		slot: "pound",
+		lucideIcon: "PoundSterling",
+		hugeiconsIcon: "PoundIcon",
+	},
+	{
+		slot: "moon",
+		lucideIcon: "Moon",
+		hugeiconsIcon: "Moon02Icon",
+	},
+	{
+		slot: "phone-call",
+		lucideIcon: "PhoneCall",
+		hugeiconsIcon: "CallIcon",
+	},
+	{
+		slot: "music",
+		lucideIcon: "Music",
+		hugeiconsIcon: "MusicNoteSquare01Icon",
+	},
+	{
+		slot: "film",
+		lucideIcon: "Film",
+		hugeiconsIcon: "Film01Icon",
+	},
+	{
+		slot: "shield-check",
+		lucideIcon: "ShieldCheck",
+		hugeiconsIcon: "Shield01Icon",
 	},
 ] as const

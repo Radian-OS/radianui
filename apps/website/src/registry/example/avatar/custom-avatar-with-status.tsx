@@ -1,5 +1,5 @@
 import React from "react"
-import { Plus } from "lucide-react"
+import { IconSlot } from "@/registry/icon/icon-library"
 import {
 	Avatar,
 	AvatarFallback,
@@ -49,7 +49,8 @@ export default function CustomAvatarStatusPreview() {
 					AJ
 				</AvatarFallback>
 				<AvatarIndicator className="bottom-0 right-0">
-					<Plus
+					<IconSlot
+						slot="plus"
 						size={16}
 						className="bg-primary text-white-inverse border-bg rounded-full border-2 p-0.5"
 					/>

@@ -2,10 +2,10 @@
 
 import React from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Check, ChevronDown } from "lucide-react"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 import { z } from "zod"
+import { IconSlot } from "@/registry/icon/icon-library"
 import { Button } from "@/registry/ui/button"
 import {
 	Command,
@@ -137,7 +137,10 @@ export default function ComboboxForm() {
 											) : (
 												"Select Language"
 											)}
-											<ChevronDown className="text-fg-tertiary ml-auto" />
+											<IconSlot
+												slot="down"
+												className="text-fg-tertiary ml-auto"
+											/>
 										</Button>
 									</FormControl>
 								</PopoverTrigger>
@@ -168,7 +171,9 @@ export default function ComboboxForm() {
 															<span className="text-fg-secondary text-[13px] font-normal">
 																({l.label})
 															</span>
-															{l.value === field.value && <Check />}
+															{l.value === field.value && (
+																<IconSlot slot="check" />
+															)}
 														</div>
 													</CommandItem>
 												))}

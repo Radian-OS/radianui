@@ -1,12 +1,5 @@
 import React from "react"
-import {
-	AlarmClock,
-	Bug,
-	Feather,
-	Megaphone,
-	Sparkles,
-	Trophy,
-} from "lucide-react"
+import { IconSlot } from "@/registry/icon/icon-library"
 import {
 	Banner,
 	BannerDescription,
@@ -19,7 +12,7 @@ function BannerColorExample() {
 		<div className="max-w-160 flex w-full flex-col items-center justify-center gap-6">
 			<Banner>
 				<BannerIcon>
-					<Sparkles size={20} />
+					<IconSlot slot="sparkles" size={20} />
 				</BannerIcon>
 				<BannerTitle className="truncate">Primary</BannerTitle>
 				<BannerDescription className="truncate">
@@ -28,7 +21,7 @@ function BannerColorExample() {
 			</Banner>
 			<Banner color="neutral">
 				<BannerIcon>
-					<Megaphone size={20} />
+					<IconSlot slot="megaphone" size={20} />
 				</BannerIcon>
 				<BannerTitle className="truncate">Neutral</BannerTitle>
 				<BannerDescription className="truncate">
@@ -37,7 +30,7 @@ function BannerColorExample() {
 			</Banner>
 			<Banner color="success">
 				<BannerIcon>
-					<Trophy size={20} />
+					<IconSlot slot="circle-check" size={20} />
 				</BannerIcon>
 				<BannerTitle className="truncate">Success</BannerTitle>
 				<BannerDescription className="truncate">
@@ -46,7 +39,7 @@ function BannerColorExample() {
 			</Banner>
 			<Banner color="error">
 				<BannerIcon>
-					<Bug size={20} />
+					<IconSlot slot="circle-alert" size={20} />
 				</BannerIcon>
 				<BannerTitle className="truncate">Error</BannerTitle>
 				<BannerDescription className="truncate">
@@ -55,7 +48,7 @@ function BannerColorExample() {
 			</Banner>
 			<Banner color="warning">
 				<BannerIcon>
-					<AlarmClock size={20} />
+					<IconSlot slot="clock" size={20} />
 				</BannerIcon>
 				<BannerTitle className="truncate">Warning</BannerTitle>
 				<BannerDescription className="truncate">
@@ -64,7 +57,7 @@ function BannerColorExample() {
 			</Banner>
 			<Banner color="info">
 				<BannerIcon>
-					<Feather size={20} />
+					<IconSlot slot="info" size={20} />
 				</BannerIcon>
 				<BannerTitle className="truncate">Info</BannerTitle>
 				<BannerDescription className="truncate">

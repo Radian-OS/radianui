@@ -1,8 +1,8 @@
 "use client"
 
 import { useState } from "react"
-import { Check, Clipboard, Terminal } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { IconSlot } from "@/registry/icon/icon-library"
 import { IconButton } from "@/registry/ui/button"
 import { CodeArea } from "@/registry/ui/code-area"
 
@@ -34,7 +34,7 @@ export default function CodeWithCopyExample() {
 		<div className={cn("bg-fill2 flex w-full flex-col gap-2 rounded-xl p-1.5")}>
 			<div className="inline-flex items-center gap-3 px-1 py-0.5">
 				<span className="bg-bg text-fg-tertiary rounded-md p-1">
-					<Terminal className="size-4" />
+					<IconSlot slot="terminal" className="size-4" />
 				</span>
 				<span className="text-fg-secondary flex-1 text-sm">
 					Code area with copy button
@@ -45,7 +45,11 @@ export default function CodeWithCopyExample() {
 					size={"28"}
 					aria-label="Copy command"
 					onClick={copy}>
-					{copied ? <Check size={20} /> : <Clipboard size={20} />}
+					{copied ? (
+						<IconSlot slot="check" size={20} />
+					) : (
+						<IconSlot slot="clipboard" size={20} />
+					)}
 				</IconButton>
 			</div>
 			<CodeArea

@@ -1,5 +1,5 @@
 import React from "react"
-import { Bookmark, Plus, Settings, Trash2 } from "lucide-react"
+import { IconSlot } from "@/registry/icon/icon-library"
 import { IconButton } from "@/registry/ui/button"
 
 function ButtonIconOnlyExample() {
@@ -9,23 +9,23 @@ function ButtonIconOnlyExample() {
 				aria-label="Settings Button"
 				color="neutral"
 				variant="outline">
-				<Settings />
+				<IconSlot slot="cog" size={16} />
 			</IconButton>
 			<IconButton aria-label="Trash Button" variant="soft" color="error">
-				<Trash2 />
+				<IconSlot slot="trash" size={16} />
 			</IconButton>
 			<IconButton aria-label="Bookmark Button" variant="soft" color="primary">
-				<Bookmark />
+				<IconSlot slot="bookmark" size={16} />
 			</IconButton>
 			<IconButton aria-label="Plus Button">
-				<Plus />
+				<IconSlot slot="plus" size={16} />
 			</IconButton>
 			<IconButton
 				aria-label="Rounded Plus Button"
 				className="rounded-full"
 				variant="outline"
 				color="neutral">
-				<Plus />
+				<IconSlot slot="plus" size={16} />
 			</IconButton>
 		</div>
 	)

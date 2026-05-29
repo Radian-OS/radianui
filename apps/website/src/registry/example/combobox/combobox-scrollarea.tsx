@@ -1,8 +1,8 @@
 "use client"
 
 import * as React from "react"
-import { Check, ChevronsUpDown } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { IconSlot } from "@/registry/icon/icon-library"
 import { Button } from "@/registry/ui/button"
 import {
 	Command,
@@ -64,7 +64,10 @@ export default function ComboboxWithScrollArea() {
 					{value
 						? frameworks.find((f) => f.value === value)?.label
 						: "Select framework..."}
-					<ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+					<IconSlot
+						slot="chevrons-up-down"
+						className="ml-2 h-4 w-4 shrink-0 opacity-50"
+					/>
 				</Button>
 			</PopoverTrigger>
 
@@ -84,7 +87,8 @@ export default function ComboboxWithScrollArea() {
 											setOpen(false)
 										}}>
 										<span className="truncate">{framework.label}</span>
-										<Check
+										<IconSlot
+											slot="check"
 											className={cn(
 												"ml-auto",
 												value === framework.value ? "opacity-100" : "opacity-0"

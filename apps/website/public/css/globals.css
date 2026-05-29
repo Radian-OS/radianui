@@ -119,21 +119,21 @@
 	--body-font: var(--font-inter), system-ui, sans-serif;
 
 	--radius: 8px;
+	/* Radius for control category(these components can get fully rounded) - Button/Input/Select/OTP/Badge */
 	--control-radius: 8px;
 
-	/* Control Category - Button/Input/Select/OTP/Badge */
-	--radius-control-md: calc(var(--control-radius) * 0.8);
+	--radius-control-md: round(down, calc(var(--control-radius) * 0.8), 1px);
 	--radius-control-lg: var(--control-radius);
-	--radius-control-xl: calc(var(--control-radius) * 1.4);
+	--radius-control-xl: round(down, calc(var(--control-radius) * 1.5), 1px);
 
-	--radius-xs: calc(var(--radius) * 0.3);
-	--radius-sm: calc(var(--radius) * 0.6);
-	--radius-md: calc(var(--radius) * 0.8);
+	--radius-xs: round(down, calc(var(--radius) * 0.3), 1px);
+	--radius-sm: round(down, calc(var(--radius) * 0.6), 1px);
+	--radius-md: round(down, calc(var(--radius) * 0.8), 1px);
 	--radius-lg: var(--radius);
-	--radius-xl: calc(var(--radius) * 1.4);
-	--radius-2xl: calc(var(--radius) * 1.8);
-	--radius-3xl: calc(var(--radius) * 2.2);
-	--radius-4xl: calc(var(--radius) * 2.6);
+	--radius-xl: round(down, calc(var(--radius) * 1.5), 1px);
+	--radius-2xl: calc(var(--radius) * 2);
+	--radius-3xl: calc(var(--radius) * 3);
+	--radius-4xl: calc(var(--radius) * 4);
 }
 
 .dark {

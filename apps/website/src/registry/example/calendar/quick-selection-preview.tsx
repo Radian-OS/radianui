@@ -2,8 +2,8 @@
 
 import * as React from "react"
 import { subDays, subMonths } from "date-fns"
-import { Check } from "lucide-react"
 import { DateRange } from "react-day-picker"
+import { IconSlot } from "@/registry/icon/icon-library"
 import { Calendar } from "@/registry/ui/calendar"
 
 const today = new Date()
@@ -67,7 +67,7 @@ function QuickSelectionCalendarPreview() {
 						className="hover:bg-fill2-alpha group flex cursor-pointer select-none flex-nowrap items-center justify-between gap-2 rounded-sm p-2 text-sm font-normal leading-5">
 						{label}
 						{selectedShortcut === value ? (
-							<Check className="stroke-fg-tertiary" size={16} />
+							<IconSlot slot="check" className="stroke-fg-tertiary" size={16} />
 						) : (
 							<span className="size-4" />
 						)}

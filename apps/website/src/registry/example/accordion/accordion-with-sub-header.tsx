@@ -1,9 +1,9 @@
 "use client"
 
 import React, { useState } from "react"
-import { Bell, Globe, Palette } from "lucide-react"
 import Image from "next/image"
 import { cn } from "@/lib/utils"
+import { IconSlot } from "@/registry/icon/icon-library"
 import {
 	Accordion,
 	AccordionContent,
@@ -40,7 +40,10 @@ export default function AccordionWithSubHeader() {
 			<AccordionItem value="notifications">
 				<AccordionTrigger>
 					<span className="flex gap-2.5">
-						<Bell className="text-fg-secondary size-5 self-start" />
+						<IconSlot
+							slot="bell"
+							className="text-fg-secondary size-5 self-start"
+						/>
 						<span className="flex flex-col gap-0.5">
 							<span>Notifications</span>
 							<span className="text-fg-secondary font-normal">
@@ -92,7 +95,10 @@ export default function AccordionWithSubHeader() {
 			<AccordionItem value="appearance">
 				<AccordionTrigger>
 					<span className="flex gap-2.5">
-						<Palette className="text-fg-secondary size-5 self-start" />
+						<IconSlot
+							slot="palette"
+							className="text-fg-secondary size-5 self-start"
+						/>
 						<span className="flex flex-col gap-0.5">
 							<span>Appearance</span>
 							<span className="text-fg-secondary font-normal">
@@ -164,7 +170,10 @@ export default function AccordionWithSubHeader() {
 			<AccordionItem value="language">
 				<AccordionTrigger>
 					<span className="flex gap-2.5">
-						<Globe className="text-fg-secondary size-5 self-start" />
+						<IconSlot
+							slot="globe"
+							className="text-fg-secondary size-5 self-start"
+						/>
 						<span className="flex flex-col gap-0.5">
 							<span>Language</span>
 							<span className="text-fg-secondary font-normal">

@@ -1,5 +1,5 @@
 import React from "react"
-import { Moon, Sun } from "lucide-react"
+import { IconSlot } from "@/registry/icon/icon-library"
 import { Button } from "@/registry/ui/button"
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/registry/ui/tooltip"
 
@@ -9,7 +9,7 @@ export default function TooltipTheme() {
 			<Tooltip>
 				<TooltipTrigger asChild>
 					<Button color="neutral" variant="outline">
-						<Sun />
+						<IconSlot slot="sun" />
 						Light Tooltip
 					</Button>
 				</TooltipTrigger>
@@ -20,7 +20,7 @@ export default function TooltipTheme() {
 			<Tooltip>
 				<TooltipTrigger asChild>
 					<Button color="neutral" variant="outline">
-						<Moon />
+						<IconSlot slot="moon" />
 						Dark Tooltip
 					</Button>
 				</TooltipTrigger>

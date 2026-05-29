@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { format, setHours, setMinutes, setSeconds } from "date-fns"
-import { Calendar as CalendarIcon, ClockIcon } from "lucide-react"
+import { IconSlot } from "@/registry/icon/icon-library"
 import { Button } from "@/registry/ui/button"
 import { Calendar } from "@/registry/ui/calendar"
 import { Input } from "@/registry/ui/input"
@@ -42,7 +42,10 @@ export default function DatePickerWithTimeExample() {
 							{`${format(new Date(), "LLL dd, y - hh:mm a")}`}
 						</span>
 					)}
-					<CalendarIcon className="text-fg-tertiary ml-auto size-4" />
+					<IconSlot
+						slot="calendar"
+						className="text-fg-tertiary ml-auto size-4"
+					/>
 				</Button>
 			</PopoverTrigger>
 			<PopoverContent className="w-auto p-0" align="start" side="top">
@@ -65,7 +68,7 @@ export default function DatePickerWithTimeExample() {
 								className="peer appearance-none ps-9 [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none"
 							/>
 							<div className="text-fg-secondary/80 pointer-events-none absolute inset-y-0 start-0 flex items-center justify-center ps-3 peer-disabled:opacity-50">
-								<ClockIcon size={16} aria-hidden="true" />
+								<IconSlot slot="clock" size={16} aria-hidden="true" />
 							</div>
 						</div>
 					</div>

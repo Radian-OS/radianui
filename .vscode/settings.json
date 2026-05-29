@@ -53,5 +53,6 @@
   },
   "[json]": {
     "editor.defaultFormatter": "vscode.json-language-features"
-  }
+  },
+  "js/ts.tsdk.path": "node_modules/typescript/lib"
 }
