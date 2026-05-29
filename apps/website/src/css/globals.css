@@ -50,7 +50,7 @@
 	--color-fill1: oklch(0.976 0.001 264.547);
 	--color-fill2: oklch(0.953 0.002 264.544);
 	--color-fill3: oklch(0.937 0.003 264.541);
-	--color-fill4: oklch(0.906 0.0046 258.33);
+	--color-fill4: oklch(0.905 0.005 264.535);
 
 	/* foreground */
 	--color-fg: oklch(0.275 0.009 264.424);
@@ -134,7 +134,7 @@
 	--color-fill1: oklch(0.19 0.005 264.456);
 	--color-fill2: oklch(0.234 0.007 264.437);
 	--color-fill3: oklch(0.275 0.009 264.424);
-	--color-fill4: oklch(0.3162 0.0099 260.71);
+	--color-fill4: oklch(0.315 0.01 264.415);
 
 	/* foreground */
 	--color-fg: oklch(0.976 0.001 264.547);
