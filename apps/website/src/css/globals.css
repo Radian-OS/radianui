@@ -60,11 +60,18 @@
 	--color-fg-inverse: oklch(1 0 0);
 
 	/* border */
-	--color-border: oklch(0.905 0.005 264.535);
-	--color-alpha: oklch(0.302 0.038 263.737 / 0.001);
+	--color-border: oklch(0.906 0.005 264.535);
+	--color-alpha:  color-mix(
+		in srgb,
+		oklch(0.302 0.038 263.737),
+		transparent 88%
+	);
 	--color-soft: oklch(0.937 0.003 264.541);
-	--color-soft-alpha: oklch(0.302 0.038 263.737 / 0.001);
-
+	--color-alpha:  color-mix(
+		in srgb,
+		oklch(0.302 0.038 263.737),
+		transparent 92%
+	);
 	/* background elevation */
 	--color-elevation-negative: oklch(0.976 0.001 264.547);
 	--color-elevation-level1: oklch(1 0 0);
@@ -75,10 +82,26 @@
 	--color-black-inverse: oklch(0.144 0.003 264.025);
 
 	/* background fill alpha */
-	--color-fill1-alpha: oklch(0.302 0.038 263.737 / 0);
-	--color-fill2-alpha: oklch(0.302 0.038 263.737 / 0.001);
-	--color-fill3-alpha: oklch(0.302 0.038 263.737 / 0.001);
-	--color-fill4-alpha: oklch(0.302 0.038 263.737 / 0.002);
+		--color-fill1-alpha: color-mix(
+		in srgb,
+		oklch(0.302 0.038 263.737),
+		transparent 96%
+	);
+	--color-fill2-alpha: color-mix(
+		in srgb,
+		oklch(0.302 0.038 263.737),
+		transparent 92%
+	);
+	--color-fill3-alpha: color-mix(
+		in srgb,
+		oklch(0.302 0.038 263.737),
+		transparent 88%
+	);
+	--color-fill4-alpha: color-mix(
+		in srgb,
+		oklch(0.302 0.038 263.737),
+		transparent 84%
+	);
 
 	--color-sidebar: var(--color-fill1);
 	--color-sidebar-fg: var(--color-fg);
@@ -145,9 +168,9 @@
 
 	/* border */
 	--color-border: oklch(0.275 0.009 264.424);
-	--color-alpha: oklch(0.86 0.029 264.41 / 0.12);
+	--color-alpha: color-mix(in srgb, oklch(0.86 0.029 264.41), transparent 88%);
 	--color-soft: oklch(0.234 0.007 264.437);
-	--color-soft-alpha: oklch(0.86 0.029 264.41 / 0.08);
+	--color-alpha: color-mix(in srgb, oklch(0.86 0.029 264.41), transparent 92%);
 
 	/* background elevation */
 	--color-elevation-negative: oklch(0 0 0);
@@ -159,10 +182,27 @@
 	--color-black-inverse: oklch(1 0 0);
 
 	/* background fill alpha */
-	--color-fill1-alpha: oklch(0.86 0.029 264.41 / 0.1);
-	--color-fill2-alpha: oklch(0.86 0.029 264.41 / 0.12);
-	--color-fill3-alpha: oklch(0.86 0.029 264.41 / 0.16);
-	--color-fill4-alpha: oklch(0.86 0.029 264.41 / 0.2);
+
+		--color-fill1-alpha: color-mix(
+		in srgb,
+		oklch(0.86 0.029 264.41 ),
+		transparent 90%
+	);
+	--color-fill2-alpha: color-mix(
+		in srgb,
+		oklch(0.86 0.029 264.41 ),
+		transparent 88%
+	);
+	--color-fill3-alpha: color-mix(
+		in srgb,
+		oklch(0.86 0.029 264.41 ),
+		transparent 84%
+	);
+	--color-fill4-alpha: color-mix(
+		in srgb,
+		oklch(0.86 0.029 264.41 ),
+		transparent 80%
+	);
 
 	--color-sidebar: var(--color-fill1);
 	--color-sidebar-fg: var(--color-fg);
