@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { format, parse } from "date-fns"
-import { Check } from "lucide-react"
+import { IconSlot } from "@/registry/icon/icon-library"
 import { Button } from "@/registry/ui/button"
 import { Calendar } from "@/registry/ui/calendar"
 import { ScrollArea } from "@/registry/ui/scroll-area"
@@ -87,7 +87,11 @@ function TimePickerCalendarPreview() {
 										{format(parse(timeSlot, "HH:mm", new Date()), "h:mm a")}
 
 										{time === timeSlot && (
-											<Check className="text-fg-tertiary ml-auto" size={20} />
+											<IconSlot
+												slot="check"
+												className="text-fg-tertiary ml-auto"
+												size={20}
+											/>
 										)}
 									</Button>
 								))}

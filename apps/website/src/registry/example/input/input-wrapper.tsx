@@ -1,5 +1,5 @@
 import React from "react"
-import { MapPin, User } from "lucide-react"
+import { IconSlot } from "@/registry/icon/icon-library"
 import { Input, InputWrapper } from "@/registry/ui/input"
 import { Label } from "@/registry/ui/label"
 
@@ -9,7 +9,7 @@ const InputWrappers = () => {
 			<div className="flex flex-col gap-1.5">
 				<Label>Full Name</Label>
 				<InputWrapper className="w-full">
-					<User />
+					<IconSlot slot="user" />
 					<Input placeholder="Anna Mureum" />
 				</InputWrapper>
 			</div>
@@ -18,7 +18,7 @@ const InputWrappers = () => {
 				<Label>Location</Label>
 				<InputWrapper className="w-full">
 					<Input placeholder="182 St, Port Alsworth, USA" />
-					<MapPin />
+					<IconSlot slot="map-pin" />
 				</InputWrapper>
 			</div>
 		</div>

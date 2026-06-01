@@ -1,5 +1,5 @@
 import React from "react"
-import { ArrowUpRight, CircleAlert, OctagonAlert } from "lucide-react"
+import { IconSlot } from "@/registry/icon/icon-library"
 import {
 	Alert,
 	AlertContent,
@@ -14,7 +14,7 @@ const AlertErrorExamples = () => {
 		<div className="max-w-135 flex w-full flex-col items-center justify-center gap-3">
 			<Alert color="error" variant="soft-outline" close>
 				<AlertIcon>
-					<OctagonAlert size={20} />
+					<IconSlot slot="octagon-alert" size={20} />
 				</AlertIcon>
 				<AlertContent>
 					<AlertTitle>An error occurred while uploading your file.</AlertTitle>
@@ -28,14 +28,14 @@ const AlertErrorExamples = () => {
 						<span className="bg-fg-tertiary size-1 rounded-full"></span>
 						<Button color="error" variant="link">
 							File Requirements
-							<ArrowUpRight />
+							<IconSlot slot="arrow-up-right" />
 						</Button>
 					</section>
 				</AlertContent>
 			</Alert>
 			<Alert color="error" variant="outline">
 				<AlertIcon>
-					<CircleAlert size={20} />
+					<IconSlot slot="circle-alert" size={20} />
 				</AlertIcon>
 				<AlertContent>
 					<AlertTitle>Connection Error</AlertTitle>

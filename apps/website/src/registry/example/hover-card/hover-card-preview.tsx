@@ -1,4 +1,4 @@
-import { EarthLock, Heart, MapPinned, Share, Users } from "lucide-react"
+import { IconSlot } from "@/registry/icon/icon-library"
 import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
 import { Badge } from "@/registry/ui/badge"
 import { Button, IconButton } from "@/registry/ui/button"
@@ -81,15 +81,15 @@ function HoverCardContentShared() {
 				{/* Badges */}
 				<div className="flex flex-wrap gap-2">
 					<Badge variant="soft" color="neutral">
-						<MapPinned />
+						<IconSlot slot="map-pin" />
 						{group.location}
 					</Badge>
 					<Badge variant="soft" color="neutral">
-						<EarthLock />
+						<IconSlot slot="earth" />
 						{group.visibility}
 					</Badge>
 					<Badge variant="soft" color="neutral">
-						<Users />
+						<IconSlot slot="users" />
 						{group.memberCount}
 					</Badge>
 				</div>
@@ -105,13 +105,13 @@ function HoverCardContentShared() {
 						aria-label="Heart Button"
 						variant="outline"
 						color="neutral">
-						<Heart />
+						<IconSlot slot="heart" />
 					</IconButton>
 					<IconButton
 						aria-label="Share Button"
 						variant="outline"
 						color="neutral">
-						<Share />
+						<IconSlot slot="share" />
 					</IconButton>
 				</div>
 				<Button variant="strong" color="primary">

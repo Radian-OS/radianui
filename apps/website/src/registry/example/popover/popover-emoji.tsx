@@ -2,8 +2,8 @@
 
 import React from "react"
 import { EmojiPicker } from "frimousse"
-import { Search, SmilePlus } from "lucide-react"
 import Image from "next/image"
+import { IconSlot } from "@/registry/icon/icon-library"
 import {
 	Avatar,
 	AvatarFallback,
@@ -63,7 +63,7 @@ export default function PopoverEmoji() {
 					<Popover open={open} onOpenChange={setOpen}>
 						<PopoverTrigger asChild>
 							<Button variant="outline" color="neutral" size="28">
-								<SmilePlus />
+								<IconSlot slot="smile-plus" />
 							</Button>
 						</PopoverTrigger>
 						<PopoverContent
@@ -80,7 +80,7 @@ export default function PopoverEmoji() {
 								}
 								className="bg-elevation-level1 isolate flex h-[368px] flex-col">
 								<div className="flex items-center gap-2 px-3 py-2.5">
-									<Search className="size-4 shrink-0" />
+									<IconSlot slot="search" className="size-4 shrink-0" />
 									<EmojiPicker.Search
 										placeholder="Search"
 										className="placeholder:text-fg-tertiary z-10 w-full appearance-none text-sm font-normal focus:outline-0"

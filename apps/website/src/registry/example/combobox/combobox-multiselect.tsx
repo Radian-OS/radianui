@@ -1,8 +1,8 @@
 "use client"
 
 import * as React from "react"
-import { Check, ChevronDown, Plus, Squircle, X } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { IconSlot } from "@/registry/icon/icon-library"
 import { Badge, BadgeDot } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
 import {
@@ -69,7 +69,8 @@ export default function ComboboxTags() {
 											size="20">
 											<BadgeDot className={department.state} />
 											{department.label}
-											<X
+											<IconSlot
+												slot="cross"
 												className="hover:text-fg-secondary text-fg-tertiary size-3! cursor-pointer"
 												onClick={(e) => {
 													e.stopPropagation()
@@ -83,7 +84,7 @@ export default function ComboboxTags() {
 								<span className="px-2.5">Select tags</span>
 							)}
 						</div>
-						<ChevronDown className="absolute end-1.5 top-2" />
+						<IconSlot slot="down" className="absolute end-1.5 top-2" />
 					</Button>
 				</PopoverTrigger>
 				<PopoverContent className="w-(--radix-popper-anchor-width) fill-bg p-0">
@@ -97,17 +98,21 @@ export default function ComboboxTags() {
 							<CommandEmpty>No department found.</CommandEmpty>
 							<CommandGroup>
 								<CommandItem className="text-info-text cursor-pointer">
-									<Plus className="stroke-info-text size-4" /> Create new tag
+									<IconSlot slot="plus" className="stroke-info-text size-4" />{" "}
+									Create new tag
 								</CommandItem>
 								{companyDepartments.map((department) => (
 									<CommandItem
 										key={department.value}
 										value={department.value}
 										onSelect={() => toggleSelection(department.value)}>
-										<Squircle className={cn("size-4", department.state)} />
+										<IconSlot
+											slot="squircle"
+											className={cn("size-4", department.state)}
+										/>
 										<span className="truncate">{department.label}</span>
 										{selectedValues.includes(department.value) && (
-											<Check className="ml-auto" />
+											<IconSlot slot="check" className="ml-auto" />
 										)}
 									</CommandItem>
 								))}
@@ -115,7 +120,7 @@ export default function ComboboxTags() {
 							{search.trim() != "" && (
 								<div className="border-t p-1">
 									<div className="[&_svg:not([class*='text-'])]:text-fg-tertiary outline-hidden text-info-text relative flex cursor-default cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0">
-										<Plus className="stroke-info-text size-4" />
+										<IconSlot slot="plus" className="stroke-info-text size-4" />
 										{`Create new tag "${search}"`}
 									</div>
 								</div>

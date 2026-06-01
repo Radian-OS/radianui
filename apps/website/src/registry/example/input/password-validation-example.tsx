@@ -1,8 +1,8 @@
 "use client"
 
 import React, { useMemo, useState } from "react"
-import { CircleCheck, EyeIcon, EyeOffIcon } from "lucide-react"
 import { z } from "zod"
+import { IconSlot } from "@/registry/icon/icon-library"
 import { Input, InputWrapper } from "@/registry/ui/input"
 import { Label } from "@/registry/ui/label"
 import { Progress } from "@/registry/ui/progress"
@@ -25,7 +25,19 @@ function PasswordValidationExample() {
 		setShowPassword(!showPassword)
 	}
 
-	const IconComponent = showPassword ? EyeOffIcon : EyeIcon
+	const IconComponent = showPassword ? (
+		<IconSlot
+			slot="eyeoff"
+			className="hover:text-fg cursor-pointer"
+			onMouseDown={togglePasswordVisibility}
+		/>
+	) : (
+		<IconSlot
+			slot="eye"
+			className="hover:text-fg cursor-pointer"
+			onMouseDown={togglePasswordVisibility}
+		/>
+	)
 
 	const validation = useMemo(
 		() => passwordSchema.safeParse(password),
@@ -58,12 +70,7 @@ function PasswordValidationExample() {
 						onFocus={() => setIsFocused(true)}
 						onBlur={() => setIsFocused(false)}
 					/>
-					{isFocused && (
-						<IconComponent
-							className="hover:text-fg cursor-pointer"
-							onMouseDown={togglePasswordVisibility}
-						/>
-					)}
+					{isFocused && IconComponent}
 				</InputWrapper>
 			</div>
 			<div className="body-13 flex w-full flex-col gap-2">
@@ -76,7 +83,8 @@ function PasswordValidationExample() {
 					"At least one uppercase letter",
 				].map((label) => (
 					<p key={label} className="text-fg-tertiary flex items-center gap-2">
-						<CircleCheck
+						<IconSlot
+							slot="circle-check"
 							className={`size-4 ${isValid(label) ? "text-success-text" : ""}`}
 						/>
 						{label}

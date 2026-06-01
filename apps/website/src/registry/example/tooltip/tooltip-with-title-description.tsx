@@ -1,4 +1,4 @@
-import { Clock } from "lucide-react"
+import { IconSlot } from "@/registry/icon/icon-library"
 import { Button } from "@/registry/ui/button"
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/registry/ui/tooltip"
 
@@ -7,7 +7,7 @@ export default function TooltipWithTitleAndDescription() {
 		<Tooltip>
 			<TooltipTrigger asChild>
 				<Button color="neutral" className="gap-1.5" variant="outline">
-					<Clock />
+					<IconSlot slot="clock" />
 					Edit Time
 				</Button>
 			</TooltipTrigger>

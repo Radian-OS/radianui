@@ -1,4 +1,4 @@
-import { Home } from "lucide-react"
+import { IconSlot } from "@/registry/icon/icon-library"
 import {
 	Breadcrumb,
 	BreadcrumbItem,
@@ -15,7 +15,7 @@ function BreadCrumbWithIcons() {
 				<BreadcrumbList>
 					<BreadcrumbItem>
 						<BreadcrumbLink href="/" className="text-fg-tertiary">
-							<Home className="size-4" />
+							<IconSlot slot="home" className="size-4" />
 						</BreadcrumbLink>
 					</BreadcrumbItem>
 

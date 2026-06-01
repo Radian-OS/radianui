@@ -2,7 +2,7 @@
 
 import React from "react"
 import { format } from "date-fns"
-import { Calendar as CalendarIcon, ChevronDown } from "lucide-react"
+import { IconSlot } from "@/registry/icon/icon-library"
 import { Button } from "@/registry/ui/button"
 import { Calendar } from "@/registry/ui/calendar"
 import {
@@ -31,9 +31,9 @@ const ButtonExampleInput = () => {
 			<Dropdown>
 				<DropdownTrigger asChild>
 					<Button color="neutral" variant="outline">
-						<CalendarIcon />
+						<IconSlot slot="calendar" size={16} />
 						{value}
-						<ChevronDown />
+						<IconSlot slot="down" size={16} />
 					</Button>
 				</DropdownTrigger>
 				<DropdownContent className="w-39.5">
@@ -49,7 +49,7 @@ const ButtonExampleInput = () => {
 				<PopoverTrigger asChild>
 					<div className="relative">
 						<Button id="date" type="button" variant="outline" color="neutral">
-							<CalendarIcon />
+							<IconSlot slot="calendar" size={16} />
 							{date ? (
 								format(date, "PPP")
 							) : (

@@ -1,17 +1,7 @@
 "use client"
 
 import * as React from "react"
-import {
-	Clock,
-	CreditCard,
-	Headset,
-	LogOut,
-	MessageCircleMore,
-	Settings,
-	UserPlus,
-	UserRound,
-	Users,
-} from "lucide-react"
+import { IconSlot } from "@/registry/icon/icon-library"
 import { Button } from "@/registry/ui/button"
 import {
 	Dropdown,
@@ -39,56 +29,56 @@ export default function DropdownPreview() {
 			<DropdownContent className="w-80">
 				<DropdownLabel>My Account</DropdownLabel>
 				<DropdownItem>
-					<UserRound />
+					<IconSlot slot="user" />
 					View Profile
 					<DropdownShortcut>⌘+P</DropdownShortcut>
 				</DropdownItem>
 				<DropdownItem>
-					<Settings />
+					<IconSlot slot="setting" />
 					Settings
 					<DropdownShortcut>⌘+G</DropdownShortcut>
 				</DropdownItem>
 				<DropdownItem>
-					<CreditCard />
+					<IconSlot slot="card" />
 					Subscription
 					<DropdownShortcut>⌘+D</DropdownShortcut>
 				</DropdownItem>
 				<DropdownDivider />
 				<DropdownItem>
-					<Clock />
+					<IconSlot slot="clock" />
 					Changelog
 					<DropdownShortcut>⌘+F</DropdownShortcut>
 				</DropdownItem>
 				<DropdownSub>
 					<DropdownSubTrigger>
-						<Users />
+						<IconSlot slot="users" />
 						Invite Member
 					</DropdownSubTrigger>
 					<DropdownSubContent>
 						<DropdownItem>
-							<Users />
+							<IconSlot slot="users" />
 							Invite All
 						</DropdownItem>
 						<DropdownItem>
-							<UserPlus />
+							<IconSlot slot="user-plus" />
 							Invite Selected
 						</DropdownItem>
 					</DropdownSubContent>
 				</DropdownSub>
 				<DropdownDivider />
 				<DropdownItem>
-					<Headset />
+					<IconSlot slot="headset" />
 					Support
 					<DropdownShortcut>⌘+Z</DropdownShortcut>
 				</DropdownItem>
 				<DropdownItem>
-					<MessageCircleMore />
+					<IconSlot slot="community" />
 					Community
 					<DropdownShortcut>⌘+R</DropdownShortcut>
 				</DropdownItem>
 				<DropdownDivider />
 				<DropdownItem>
-					<LogOut />
+					<IconSlot slot="logout" />
 					Sign Out
 				</DropdownItem>
 			</DropdownContent>

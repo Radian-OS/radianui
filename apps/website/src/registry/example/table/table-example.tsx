@@ -11,20 +11,8 @@ import {
 	getSortedRowModel,
 	useReactTable,
 } from "@tanstack/react-table"
-import {
-	ChevronDownIcon,
-	ChevronFirstIcon,
-	ChevronLastIcon,
-	ChevronLeftIcon,
-	ChevronRightIcon,
-	ChevronUpIcon,
-	Ellipsis,
-	Mail,
-	Pen,
-	PhoneCall,
-	Settings,
-} from "lucide-react"
 import { cn } from "@/lib/utils"
+import { IconSlot } from "@/registry/icon/icon-library"
 import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
 import { Badge } from "@/registry/ui/badge"
 import { IconButton } from "@/registry/ui/button"
@@ -461,10 +449,10 @@ const columns: ColumnDef<UserData>[] = [
 			return (
 				<div className="text-fg-secondary flex items-center justify-start gap-2">
 					{(contactValue === "both" || contactValue === "email") && (
-						<Mail size={16} />
+						<IconSlot slot="mail" size={16} />
 					)}
 					{(contactValue === "both" || contactValue === "phone") && (
-						<PhoneCall size={16} />
+						<IconSlot slot="phone-call" size={16} />
 					)}
 				</div>
 			)
@@ -504,15 +492,15 @@ const columns: ColumnDef<UserData>[] = [
 			return (
 				<Dropdown>
 					<DropdownTrigger className="flex w-full items-center justify-center">
-						<Ellipsis size={20} />
+						<IconSlot slot="ellipsis" size={20} />
 					</DropdownTrigger>
 					<DropdownContent className="w-fit">
 						<DropdownItem>
-							<Pen />
+							<IconSlot slot="book" />
 							Edit
 						</DropdownItem>
 						<DropdownItem>
-							<Settings />
+							<IconSlot slot="setting" />
 							Delete
 						</DropdownItem>
 					</DropdownContent>
@@ -588,14 +576,16 @@ export default function Component() {
 													)}
 													{{
 														asc: (
-															<ChevronUpIcon
+															<IconSlot
+																slot="up"
 																className="shrink-0 opacity-60"
 																size={16}
 																aria-hidden="true"
 															/>
 														),
 														desc: (
-															<ChevronDownIcon
+															<IconSlot
+																slot="down"
 																className="shrink-0 opacity-60"
 																size={16}
 																aria-hidden="true"
@@ -709,7 +699,7 @@ export default function Component() {
 									onClick={() => table.firstPage()}
 									disabled={!table.getCanPreviousPage()}
 									aria-label="Go to first page">
-									<ChevronFirstIcon size={16} aria-hidden="true" />
+									<IconSlot slot="chevron-first" size={16} aria-hidden="true" />
 								</IconButton>
 							</PaginationItem>
 							{/* Previous page button */}
@@ -721,7 +711,7 @@ export default function Component() {
 									onClick={() => table.previousPage()}
 									disabled={!table.getCanPreviousPage()}
 									aria-label="Go to previous page">
-									<ChevronLeftIcon size={16} aria-hidden="true" />
+									<IconSlot slot="left" size={16} aria-hidden="true" />
 								</IconButton>
 							</PaginationItem>
 							{/* Next page button */}
@@ -733,7 +723,7 @@ export default function Component() {
 									onClick={() => table.nextPage()}
 									disabled={!table.getCanNextPage()}
 									aria-label="Go to next page">
-									<ChevronRightIcon size={16} aria-hidden="true" />
+									<IconSlot slot="right" size={16} aria-hidden="true" />
 								</IconButton>
 							</PaginationItem>
 							{/* Last page button */}
@@ -745,7 +735,7 @@ export default function Component() {
 									onClick={() => table.lastPage()}
 									disabled={!table.getCanNextPage()}
 									aria-label="Go to last page">
-									<ChevronLastIcon size={16} aria-hidden="true" />
+									<IconSlot slot="chevron-last" size={16} aria-hidden="true" />
 								</IconButton>
 							</PaginationItem>
 						</PaginationContent>
