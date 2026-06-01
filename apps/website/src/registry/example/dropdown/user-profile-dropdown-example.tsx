@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { IconSlot } from "@/registry/icon/icon-library"
+import { FolderCog, Ghost, LogOut, Settings, UserCog } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
 import { Badge } from "@/registry/ui/badge"
 import {
@@ -56,15 +56,15 @@ const UserMenuDropdownExample = () => {
 				</div>
 				<DropdownDivider />
 				<DropdownItem className="px-2 py-1.5">
-					<IconSlot slot="setting" />
+					<Settings />
 					Settings
 				</DropdownItem>
 				<DropdownItem className="px-2 py-1.5">
-					<IconSlot slot="settings-2" />
+					<UserCog />
 					Manage Account
 				</DropdownItem>
 				<DropdownItem className="px-2 py-1.5">
-					<IconSlot slot="folder-cog" />
+					<FolderCog />
 					Automations
 				</DropdownItem>
 				<DropdownItem
@@ -73,13 +73,13 @@ const UserMenuDropdownExample = () => {
 						e.preventDefault()
 					}}
 					className="px-2 py-1.5">
-					<IconSlot slot="ghost" />
+					<Ghost />
 					Go Incognito
 					<Switch className="ml-auto" id="incognito" checked={incognito} />
 				</DropdownItem>
 				<DropdownDivider />
 				<DropdownItem className="px-2 py-1.5">
-					<IconSlot slot="logout" />
+					<LogOut />
 					Logout
 				</DropdownItem>
 			</DropdownContent>

@@ -1,5 +1,5 @@
 import React from "react"
-import { IconSlot } from "@/registry/icon/icon-library"
+import { GlobeLock } from "lucide-react"
 import { Button } from "@/registry/ui/button"
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/registry/ui/tooltip"
 
@@ -13,8 +13,7 @@ export default function TooltipWithIconTitle() {
 			</TooltipTrigger>
 			<TooltipContent className="flex max-w-60 flex-col gap-1 rounded-lg p-3">
 				<div className="flex gap-2">
-					<IconSlot
-						slot="globe"
+					<GlobeLock
 						className="text-fg-tertiary size-4 shrink-0"
 						aria-hidden="true"
 					/>

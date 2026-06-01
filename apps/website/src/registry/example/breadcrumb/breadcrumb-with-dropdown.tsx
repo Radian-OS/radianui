@@ -1,5 +1,5 @@
+import { ChevronDown } from "lucide-react"
 import Link from "next/link"
-import { IconSlot } from "@/registry/icon/icon-library"
 import {
 	Breadcrumb,
 	BreadcrumbItem,
@@ -33,7 +33,7 @@ function BreadcrumbWithDropdown() {
 						<DropdownTrigger asChild>
 							<Button color="neutral" variant="outline" size={"32"}>
 								Installation
-								<IconSlot slot="down" size={16} />
+								<ChevronDown />
 							</Button>
 						</DropdownTrigger>
 						<DropdownContent>

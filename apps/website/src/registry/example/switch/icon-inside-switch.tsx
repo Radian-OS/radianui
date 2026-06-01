@@ -1,7 +1,7 @@
 "use client"
 
 import { useId, useState } from "react"
-import { IconSlot } from "@/registry/icon/icon-library"
+import { Moon, Sun } from "lucide-react"
 import { Label } from "@/registry/ui/label"
 import { Switch, SwitchIndicator, SwitchWrapper } from "@/registry/ui/switch"
 
@@ -16,11 +16,7 @@ export default function IconInsideSwitch() {
 					<SwitchIndicator
 						state={isOn ? "on" : "off"}
 						className="text-fg-secondary text-[8px] font-semibold">
-						{isOn ? (
-							<IconSlot slot="moon" size={16} />
-						) : (
-							<IconSlot slot="sun" size={16} />
-						)}
+						{isOn ? <Moon size={16} /> : <Sun size={16} />}
 					</SwitchIndicator>
 				</Switch>
 			</SwitchWrapper>

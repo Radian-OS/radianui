@@ -34,10 +34,10 @@ const FUNDAMENTALS_DATA = [
 		title: "Typography",
 		description: "17 Styles",
 	},
-	// {
-	// 	title: "Iconography",
-	// 	description: "1,200 Components",
-	// },
+	{
+		title: "Iconography",
+		description: "1,200 Components",
+	},
 	{
 		title: "Theme",
 		description: "8 Types",

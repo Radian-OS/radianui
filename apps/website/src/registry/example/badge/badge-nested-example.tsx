@@ -1,5 +1,5 @@
 import React from "react"
-import { IconSlot } from "@/registry/icon/icon-library"
+import { ArrowRight } from "lucide-react"
 import { Badge } from "@/registry/ui/badge"
 
 function BadgeNested() {
@@ -14,7 +14,7 @@ function BadgeNested() {
 					New
 				</Badge>
 				<span className="text-sm">Patch 0.2.1 is now online</span>
-				<IconSlot slot="arrow-right" />
+				<ArrowRight />
 			</Badge>
 			<Badge
 				size="28"

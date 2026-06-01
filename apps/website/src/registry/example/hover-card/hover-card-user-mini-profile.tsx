@@ -1,5 +1,5 @@
 import React from "react"
-import { IconSlot } from "@/registry/icon/icon-library"
+import { Calendar, Mail } from "lucide-react"
 import {
 	Avatar,
 	AvatarFallback,
@@ -63,14 +63,14 @@ export default function HoverCardUserMiniProfile() {
 							variant="outline"
 							color="neutral"
 							size={"28"}>
-							<IconSlot slot="calendar" />
+							<Calendar />
 						</IconButton>
 						<IconButton
 							aria-label="Mail Button"
 							variant="outline"
 							color="neutral"
 							size={"28"}>
-							<IconSlot slot="mail" />
+							<Mail />
 						</IconButton>
 						<Button size="28">Follow</Button>
 					</div>

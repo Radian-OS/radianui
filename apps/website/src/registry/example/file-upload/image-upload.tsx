@@ -1,7 +1,13 @@
 "use client"
 
 import { useState } from "react"
-import { IconSlot } from "@/registry/icon/icon-library"
+import {
+	AlertCircleIcon,
+	ImageIcon,
+	Loader2,
+	UploadIcon,
+	X,
+} from "lucide-react"
 import { Button, IconButton } from "@/registry/ui/button"
 import { FileMetadata, useFileUpload } from "@/registry/ui/file-upload"
 
@@ -49,14 +55,14 @@ function ImagePreview({ file, onRemove }: ImagePreviewProps) {
 			{/* Loading state - maintains full dimensions */}
 			{isLoading && (
 				<div className="absolute inset-0 flex items-center justify-center rounded-[inherit]">
-					<IconSlot slot="loader" className="size-6 animate-spin opacity-60" />
+					<Loader2 className="size-6 animate-spin opacity-60" />
 				</div>
 			)}
 
 			{/* Error state */}
 			{hasError && (
 				<div className="absolute inset-0 flex items-center justify-center rounded-[inherit]">
-					<IconSlot slot="image" className="size-6 opacity-40" />
+					<ImageIcon className="size-6 opacity-40" />
 				</div>
 			)}
 
@@ -76,7 +82,7 @@ function ImagePreview({ file, onRemove }: ImagePreviewProps) {
 				onClick={() => onRemove(file.id)}
 				className="size-6.5 absolute -right-2 -top-2 rounded-full"
 				aria-label="Remove image">
-				<IconSlot slot="cross" />
+				<X />
 			</IconButton>
 		</div>
 	)
@@ -133,8 +139,7 @@ export default function ImageUpload() {
 								size="32"
 								onClick={openFileDialog}
 								disabled={files.length >= maxFiles}>
-								<IconSlot
-									slot="upload"
+								<UploadIcon
 									className="-ms-0.5 size-3.5 opacity-60"
 									aria-hidden="true"
 								/>
@@ -153,7 +158,7 @@ export default function ImageUpload() {
 						<div
 							className="bg-bg mb-2 flex size-11 shrink-0 items-center justify-center rounded-full border"
 							aria-hidden="true">
-							<IconSlot slot="image" className="size-4 opacity-60" />
+							<ImageIcon className="size-4 opacity-60" />
 						</div>
 						<p className="mb-1.5 text-sm font-medium">Drop your images here</p>
 						<p className="text-fg-secondary text-xs">
@@ -164,11 +169,7 @@ export default function ImageUpload() {
 							color="neutral"
 							className="mt-4"
 							onClick={openFileDialog}>
-							<IconSlot
-								slot="upload"
-								className="-ms-1 opacity-60"
-								aria-hidden="true"
-							/>
+							<UploadIcon className="-ms-1 opacity-60" aria-hidden="true" />
 							Select images
 						</Button>
 					</div>
@@ -179,7 +180,7 @@ export default function ImageUpload() {
 				<div
 					className="text-error-text flex items-center gap-1 text-xs"
 					role="alert">
-					<IconSlot slot="alert" className="size-3 shrink-0" />
+					<AlertCircleIcon className="size-3 shrink-0" />
 					<span>{errors[0]}</span>
 				</div>
 			)}

@@ -1,7 +1,17 @@
 "use client"
 
 import { useState } from "react"
-import { IconSlot } from "@/registry/icon/icon-library"
+import {
+	AlertCircleIcon,
+	FileArchiveIcon,
+	FileIcon,
+	FileSpreadsheetIcon,
+	FileTextIcon,
+	ImageIcon,
+	Trash2Icon,
+	UploadIcon,
+	XIcon,
+} from "lucide-react"
 import { Button, IconButton } from "@/registry/ui/button"
 import {
 	type FileWithPreview,
@@ -47,7 +57,7 @@ const getFileIcon = (file: { file: File | { type: string; name: string } }) => {
 
 	const iconMap = {
 		pdf: {
-			icon: <IconSlot slot="file-text" />,
+			icon: FileTextIcon,
 			conditions: (type: string, name: string) =>
 				type.includes("pdf") ||
 				name.endsWith(".pdf") ||
@@ -56,7 +66,7 @@ const getFileIcon = (file: { file: File | { type: string; name: string } }) => {
 				name.endsWith(".docx"),
 		},
 		archive: {
-			icon: <IconSlot slot="file-archive" />,
+			icon: FileArchiveIcon,
 			conditions: (type: string, name: string) =>
 				type.includes("zip") ||
 				type.includes("archive") ||
@@ -64,7 +74,7 @@ const getFileIcon = (file: { file: File | { type: string; name: string } }) => {
 				name.endsWith(".rar"),
 		},
 		excel: {
-			icon: <IconSlot slot="file-spreadsheet" />,
+			icon: FileSpreadsheetIcon,
 			conditions: (type: string, name: string) =>
 				type.includes("excel") ||
 				name.endsWith(".xls") ||
@@ -74,11 +84,11 @@ const getFileIcon = (file: { file: File | { type: string; name: string } }) => {
 
 	for (const { icon: Icon, conditions } of Object.values(iconMap)) {
 		if (conditions(fileType, fileName)) {
-			return Icon
+			return <Icon className="size-5 opacity-60" />
 		}
 	}
 
-	return <IconSlot slot="file-text" className="size-5 opacity-60" />
+	return <FileIcon className="size-5 opacity-60" />
 }
 
 // Type for tracking upload progress
@@ -251,8 +261,7 @@ export default function Component() {
 									color="neutral"
 									size="28"
 									onClick={openFileDialog}>
-									<IconSlot
-										slot="upload"
+									<UploadIcon
 										className="-ms-0.5 size-3.5 opacity-60"
 										aria-hidden="true"
 									/>
@@ -267,8 +276,7 @@ export default function Component() {
 										setUploadProgress([])
 										clearFiles()
 									}}>
-									<IconSlot
-										slot="trash"
+									<Trash2Icon
 										className="-ms-0.5 size-3.5 opacity-60"
 										aria-hidden="true"
 									/>
@@ -318,11 +326,7 @@ export default function Component() {
 													removeFile(file.id)
 												}}
 												aria-label="Remove file">
-												<IconSlot
-													slot="cross"
-													className="size-4"
-													aria-hidden="true"
-												/>
+												<XIcon className="size-4" aria-hidden="true" />
 											</IconButton>
 										</div>
 
@@ -353,7 +357,7 @@ export default function Component() {
 						<div
 							className="bg-bg mb-2 flex size-11 shrink-0 items-center justify-center rounded-full border"
 							aria-hidden="true">
-							<IconSlot slot="image" className="size-4 opacity-60" />
+							<ImageIcon className="size-4 opacity-60" />
 						</div>
 						<p className="mb-1.5 text-sm font-medium">Drop your files here</p>
 						<p className="text-fg-secondary text-xs">
@@ -364,11 +368,7 @@ export default function Component() {
 							color="neutral"
 							className="mt-4"
 							onClick={openFileDialog}>
-							<IconSlot
-								slot="upload"
-								className="-ms-1 opacity-60"
-								aria-hidden="true"
-							/>
+							<UploadIcon className="-ms-1 opacity-60" aria-hidden="true" />
 							Select documents
 						</Button>
 					</div>
@@ -379,7 +379,7 @@ export default function Component() {
 				<div
 					className="text-error-text flex items-center gap-1 text-xs"
 					role="alert">
-					<IconSlot slot="alert" className="size-3 shrink-0" />
+					<AlertCircleIcon className="size-3 shrink-0" />
 					<span>{errors[0]}</span>
 				</div>
 			)}

@@ -1,5 +1,5 @@
 import React from "react"
-import { IconSlot } from "@/registry/icon/icon-library"
+import { Brain } from "lucide-react"
 import {
 	Banner,
 	BannerContent,
@@ -17,7 +17,7 @@ const BannerFloatingExample = () => {
 				variant="outline"
 				className="border-border border-t-1 border-r-1 border-l-1 rounded-lg shadow-[0_4px_8px_0_var(--color-fill4)]">
 				<BannerIcon>
-					<IconSlot slot="lightbulb" size={20} />
+					<Brain size={20} />
 				</BannerIcon>
 				<BannerContent className="sm:grow-0 sm:flex-row sm:items-center sm:gap-2">
 					<BannerTitle className="truncate">Floating Banner</BannerTitle>

@@ -1,5 +1,5 @@
 import React from "react"
-import { IconSlot } from "@/registry/icon/icon-library"
+import { ChevronDown, ChevronLeft, ChevronRight, ChevronUp } from "lucide-react"
 import { Button } from "@/registry/ui/button"
 import {
 	Drawer,
@@ -23,7 +23,7 @@ function DrawerPositionExample() {
 				backdrop="overlay">
 				<DrawerTrigger>
 					<Button variant="outline" color="neutral">
-						<IconSlot slot="left" size={20} /> Left
+						<ChevronLeft size={20} /> Left
 					</Button>
 				</DrawerTrigger>
 				<DrawerContent>
@@ -73,7 +73,7 @@ function DrawerPositionExample() {
 				backdrop="overlay">
 				<DrawerTrigger>
 					<Button variant="outline" color="neutral">
-						Right <IconSlot slot="right" size={20} />
+						Right <ChevronRight size={20} />
 					</Button>
 				</DrawerTrigger>
 				<DrawerContent>
@@ -123,7 +123,7 @@ function DrawerPositionExample() {
 				backdrop="overlay">
 				<DrawerTrigger>
 					<Button variant="outline" color="neutral">
-						Top <IconSlot slot="up" size={20} />
+						Top <ChevronUp size={20} />
 					</Button>
 				</DrawerTrigger>
 				<DrawerContent>
@@ -171,7 +171,7 @@ function DrawerPositionExample() {
 				backdrop="overlay">
 				<DrawerTrigger>
 					<Button variant="outline" color="neutral">
-						Bottom <IconSlot slot="down" size={20} />
+						Bottom <ChevronDown size={20} />
 					</Button>
 				</DrawerTrigger>
 				<DrawerContent>

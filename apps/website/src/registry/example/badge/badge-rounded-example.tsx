@@ -1,5 +1,5 @@
 import React from "react"
-import { IconSlot } from "@/registry/icon/icon-library"
+import { BadgeAlert } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
 import { Badge, BadgeDot } from "@/registry/ui/badge"
 
@@ -30,7 +30,7 @@ function BadgeRoundedExample() {
 				Samuel Eto
 			</Badge>
 			<Badge className="rounded-full" variant="soft" color="error">
-				<IconSlot slot="alert" /> 244 Errors
+				<BadgeAlert /> 244 Errors
 			</Badge>
 		</div>
 	)

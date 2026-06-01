@@ -1,4 +1,4 @@
-import { IconSlot } from "@/registry/icon/icon-library"
+import { CircleAlert, Import } from "lucide-react"
 import {
 	Alert,
 	AlertContent,
@@ -14,7 +14,7 @@ const AlertInfoExamples = () => {
 		<div className="max-w-135 flex w-full flex-col items-center justify-center gap-3">
 			<Alert color="info">
 				<AlertIcon>
-					<IconSlot slot="import" size={20} />
+					<Import size={20} />
 				</AlertIcon>
 				<AlertContent>
 					<AlertTitle>New Version Available</AlertTitle>
@@ -34,7 +34,7 @@ const AlertInfoExamples = () => {
 			</Alert>
 			<Alert color="info" variant="outline">
 				<AlertIcon>
-					<IconSlot slot="circle-alert" size={20} />
+					<CircleAlert size={20} />
 				</AlertIcon>
 				<AlertTitle>136 Contacts Imported</AlertTitle>
 				<AlertToolbar>

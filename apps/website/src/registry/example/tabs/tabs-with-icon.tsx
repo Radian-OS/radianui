@@ -1,24 +1,24 @@
 import React from "react"
-import { IconSlot } from "@/registry/icon/icon-library"
+import { Archive, CheckCircle, Loader2 } from "lucide-react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const data = [
 	{
 		id: 1,
 		trigger: "Completed",
-		icon: <IconSlot slot="circle-check" />,
+		icon: <CheckCircle />,
 		content: "You have completed 8 tasks.",
 	},
 	{
 		id: 2,
 		trigger: "In Progress",
-		icon: <IconSlot slot="loader" />,
+		icon: <Loader2 />,
 		content: "You have 4 tasks in progress.",
 	},
 	{
 		id: 3,
 		trigger: "Archived",
-		icon: <IconSlot slot="archive" />,
+		icon: <Archive />,
 		content: "You have archived 3 items.",
 	},
 ]

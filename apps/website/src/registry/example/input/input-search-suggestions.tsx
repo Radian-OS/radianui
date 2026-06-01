@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { IconSlot } from "@/registry/icon/icon-library"
+import { Search } from "lucide-react"
 import { Input, InputWrapper } from "@/registry/ui/input"
 import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
 
@@ -48,7 +48,7 @@ export default function SearchInput() {
 			<PopoverTrigger asChild>
 				<div className="w-full max-w-80">
 					<InputWrapper className="w-full">
-						<IconSlot slot="search" className="size-5" />
+						<Search className="size-5" />
 						<Input
 							placeholder="eg, Apple, Banana, Orange..."
 							value={query}

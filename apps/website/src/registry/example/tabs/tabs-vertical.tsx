@@ -1,5 +1,5 @@
 import React from "react"
-import { IconSlot } from "@/registry/icon/icon-library"
+import { AppWindow, Film, Music2, Image as Picture } from "lucide-react"
 import { Badge } from "@/registry/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
@@ -7,26 +7,26 @@ const data = [
 	{
 		id: 1,
 		trigger: "Music",
-		icon: <IconSlot slot="music" />,
+		icon: <Music2 />,
 		content: "Browse your favorite albums and artists.",
 	},
 	{
 		id: 2,
 		trigger: "Movies",
-		icon: <IconSlot slot="film" />,
+		icon: <Film />,
 		count: 4,
 		content: "Watch the latest blockbusters and classics.",
 	},
 	{
 		id: 3,
 		trigger: "Apps",
-		icon: <IconSlot slot="app-window" />,
+		icon: <AppWindow />,
 		content: "Explore featured and recommended apps.",
 	},
 	{
 		id: 4,
 		trigger: "Pictures",
-		icon: <IconSlot slot="image" />,
+		icon: <Picture />,
 		content: "Explore the latest pictures you have clicked.",
 	},
 ]

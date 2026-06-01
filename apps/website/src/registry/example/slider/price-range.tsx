@@ -1,10 +1,10 @@
 "use client"
 
 import { zodResolver } from "@hookform/resolvers/zod"
+import { PoundSterling } from "lucide-react"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 import { z } from "zod"
-import { IconSlot } from "@/registry/icon/icon-library"
 import { Button } from "@/registry/ui/button"
 import {
 	Form,
@@ -92,7 +92,7 @@ export default function PriceRange() {
 												])
 											}
 										/>
-										<IconSlot slot="pound" className="size-4" />
+										<PoundSterling className="size-4" />
 									</InputWrapper>
 								</div>
 								<div className="flex flex-col gap-1.5">
@@ -112,7 +112,7 @@ export default function PriceRange() {
 												])
 											}
 										/>
-										<IconSlot slot="pound" className="size-4" />
+										<PoundSterling className="size-4" />
 									</InputWrapper>
 								</div>
 							</div>

@@ -1,8 +1,8 @@
 "use client"
 
 import * as React from "react"
+import { Check, ChevronDown } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { IconSlot } from "@/registry/icon/icon-library"
 import { Button } from "@/registry/ui/button"
 import {
 	Command,
@@ -70,7 +70,7 @@ export default function ComboboxTimezone() {
 							Select Timezone
 						</span>
 					)}
-					<IconSlot slot="down" className="text-fg-tertiary ml-auto" />
+					<ChevronDown className="text-fg-tertiary ml-auto" />
 				</Button>
 			</PopoverTrigger>
 			<PopoverContent className="w-(--radix-popper-anchor-width) bg-bg p-0">
@@ -94,8 +94,7 @@ export default function ComboboxTimezone() {
 											{t.offset}
 										</span>
 									</div>
-									<IconSlot
-										slot="check"
+									<Check
 										className={cn(
 											"ml-auto size-5",
 											value === t.value ? "opacity-100" : "opacity-0"

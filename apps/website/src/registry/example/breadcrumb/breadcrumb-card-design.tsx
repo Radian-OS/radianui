@@ -1,5 +1,5 @@
+import { Home } from "lucide-react"
 import Link from "next/link"
-import { IconSlot } from "@/registry/icon/icon-library"
 import {
 	Breadcrumb,
 	BreadcrumbEllipsis,
@@ -23,7 +23,7 @@ function BreadCrumbCardDesign() {
 				<BreadcrumbItem>
 					<BreadcrumbLink className="text-fg-tertiary" asChild>
 						<Link href="/">
-							<IconSlot slot="home" size={16} />
+							<Home size={16} />
 						</Link>
 					</BreadcrumbLink>
 				</BreadcrumbItem>

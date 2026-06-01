@@ -1,5 +1,5 @@
 import React from "react"
-import { IconSlot } from "@/registry/icon/icon-library"
+import { Database } from "lucide-react"
 import { Button } from "@/registry/ui/button"
 import {
 	Empty,
@@ -17,7 +17,7 @@ export default function NoProjectsYet() {
 				variant="icon"
 				className="border-soft shadow-2xs rounded-full border">
 				<span className="bg-bg border-soft shadow-2xs flex items-center justify-center rounded-[inherit] border p-3.5">
-					<IconSlot slot="database" />
+					<Database />
 				</span>
 			</EmptyMedia>
 			<EmptyHeader>

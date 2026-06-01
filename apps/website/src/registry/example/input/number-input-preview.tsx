@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { IconSlot } from "@/registry/icon/icon-library"
+import { ChevronDown, ChevronUp, Minus, Plus } from "lucide-react"
 import {
 	Input,
 	InputAddon,
@@ -65,7 +65,7 @@ const NumberInputPreview = () => {
 						}}
 						className="cursor-pointer"
 						onMouseDown={(e) => e.preventDefault()}>
-						<IconSlot slot="minus" />
+						<Minus />
 					</InputAddon>
 					<Input
 						onChange={handleChange1}
@@ -82,7 +82,7 @@ const NumberInputPreview = () => {
 							setAmount1((v) => String(Number(v || "0") + 1))
 						}}
 						onMouseDown={(e) => e.preventDefault()}>
-						<IconSlot slot="plus" />
+						<Plus />
 					</InputAddon>
 				</InputGroup>
 			</div>
@@ -106,7 +106,7 @@ const NumberInputPreview = () => {
 								setAmount3((v) => String(Number(v || "0") + 1))
 							}}
 							onMouseDown={(e) => e.preventDefault()}>
-							<IconSlot slot="up" className="size-4" />
+							<ChevronUp className="size-4" />
 						</div>
 						<div
 							className="flex h-1/2 w-full cursor-pointer items-center justify-center"
@@ -115,7 +115,7 @@ const NumberInputPreview = () => {
 								setAmount3((v) => (Number(v) > 0 ? String(Number(v) - 1) : "0"))
 							}}
 							onMouseDown={(e) => e.preventDefault()}>
-							<IconSlot slot="down" className="size-4" />
+							<ChevronDown className="size-4" />
 						</div>
 					</InputAddon>
 				</InputGroup>
@@ -124,8 +124,7 @@ const NumberInputPreview = () => {
 			<div className="flex flex-col gap-1.5">
 				<Label>Input with Inline </Label>
 				<InputWrapper className="w-full">
-					<IconSlot
-						slot="minus"
+					<Minus
 						onClick={(e) => {
 							e.stopPropagation()
 							setAmount2((v) => (Number(v) > 0 ? String(Number(v) - 1) : "0"))
@@ -140,8 +139,7 @@ const NumberInputPreview = () => {
 						value={amount2}
 						type="numeric"
 					/>
-					<IconSlot
-						slot="plus"
+					<Plus
 						onClick={(e) => {
 							e.stopPropagation()
 							setAmount2((v) => String(Number(v || "0") + 1))

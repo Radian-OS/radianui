@@ -1,4 +1,4 @@
-import { IconSlot } from "@/registry/icon/icon-library"
+import { AlarmClock, Map, Users } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
 import { Button } from "@/registry/ui/button"
 import { Divider } from "@/registry/ui/divider"
@@ -52,18 +52,18 @@ function DividerPreview() {
 				<Divider orientation="vertical" className="mx-3 self-stretch" />
 				<section className="flex flex-col gap-2.5">
 					<span className="text-fg-secondary flex items-center gap-2 text-sm">
-						<IconSlot slot="map" className="size-5" />
+						<Map className="size-5" />
 						<span className="text-sm">San Francisco</span>
 					</span>
 					<span className="text-fg-secondary flex items-center gap-2 text-sm">
-						<IconSlot slot="clock" className="size-5" />
+						<AlarmClock className="size-5" />
 						<span className="text-sm">12:48 AM</span>
 					</span>
 				</section>
 				<Divider orientation="vertical" className="mx-3 self-stretch" />
 				<section className="flex flex-col gap-2.5">
 					<span className="text-fg-secondary flex items-center gap-2 text-sm">
-						<IconSlot slot="users" className="size-5" />
+						<Users className="size-5" />
 						<span className="text-sm">S. Tevez</span>
 					</span>
 					<div className="flex -space-x-2">
