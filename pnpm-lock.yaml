@@ -257,8 +257,8 @@ importers:
         specifier: ^11.2.6
         version: 11.2.6
       lucide-react:
-        specifier: 1.17.0
-        version: 1.17.0(react@19.2.1)
+        specifier: 1.10.0
+        version: 1.10.0(react@19.2.1)
       mdx-bundler:
         specifier: ^10.1.1
         version: 10.1.1(acorn@8.15.0)(esbuild@0.27.7)
@@ -5766,8 +5766,8 @@ packages:
   lru-cache@5.1.1:
     resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
 
-  lucide-react@1.17.0:
-    resolution: {integrity: sha512-9FA9evdox/JQL5PT57fdA1x/yg8T7knJ98+zjTL3UfKza6pflQUUh3XtaQIHKvnsJw1lmsEyHVlt5jchYxOQ5w==}
+  lucide-react@1.10.0:
+    resolution: {integrity: sha512-5LFaQrekEM05xG8yw67mR64Kf1O76wIgublWtiYlgUPa9sbWtdBJvIUrOjSfvrML9SBtPgwAkcNa8mEf8Dke4Q==}
     peerDependencies:
       react: ^19.2.1
 
@@ -7562,7 +7562,7 @@ packages:
 
   uuid@3.4.0:
     resolution: {integrity: sha512-HjSDRw6gZE5JMggctHBcjVak08+KEVhSIiDzFnT9S9aegmp85S/bReBVTb4QTFaRNptJ9kuYaNhnbNEOkbKb/A==}
-    deprecated: uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).
+    deprecated: Please upgrade  to version 7 or higher.  Older versions may use Math.random() in certain circumstances, which is known to be problematic.  See https://v8.dev/blog/math-random for details.
     hasBin: true
 
   uuid@9.0.1:
@@ -13252,7 +13252,7 @@ snapshots:
     dependencies:
       yallist: 3.1.1
 
-  lucide-react@1.17.0(react@19.2.1):
+  lucide-react@1.10.0(react@19.2.1):
     dependencies:
       react: 19.2.1
 
