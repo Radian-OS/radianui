@@ -3,8 +3,6 @@ title: Iconography
 description: Represent actions or concepts with simple graphics
 ---
 
-import { Construction } from "lucide-react"
-
 <br />
 
 Radian currently uses Lucide icon library by default. Lucide is an open-source icon library that provides 1000+ vector (svg) files for displaying icons and symbols in digital and non-digital projects.
@@ -72,16 +70,17 @@ export default function App() {
 <br />
 <br />
 
-<Alert variant="soft" color="warning">
-	<AlertIcon className="self-start">
-		<Construction className="text-warning-text" size={20} />
-	</AlertIcon>
-	<AlertContent>
-		<AlertTitle className="font-semibold">Native Icon set</AlertTitle>
-		<AlertDescription className="[&_p]:text-warning-text">
-			Currently we are using Lucide icon library to provide a consistent set of
-			icons. We are actively working on our own native icon set, which will be
-			available in a future update.
-		</AlertDescription>
-	</AlertContent>
-</Alert>
+import { Construction } from "lucide-react"
+
+    	<Alert variant="soft" color="warning">
+    		<AlertIcon className="self-start">
+    			<Construction className="text-warning-text" size={20} />
+    		</AlertIcon>
+    		<AlertContent>
+    			<AlertTitle className="font-semibold">Native Icon set</AlertTitle>
+    			<AlertDescription className="[&_p]:text-warning-text">
+    				Currently we are using Lucide icon library to provide a consistent set of icons. We are actively working on our own native icon set, which will be available in a future
+    				update.
+    			</AlertDescription>
+    		</AlertContent>
+    	</Alert>
