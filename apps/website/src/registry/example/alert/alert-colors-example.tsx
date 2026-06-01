@@ -1,12 +1,5 @@
 import React from "react"
-import {
-	BellRing,
-	Box,
-	CircleCheckBig,
-	OctagonAlert,
-	Sparkles,
-	TriangleAlert,
-} from "lucide-react"
+import { IconSlot } from "@/registry/icon/icon-library"
 import {
 	Alert,
 	AlertContent,
@@ -20,7 +13,7 @@ const AlertColorsExample = () => {
 		<div className="max-w-135 flex w-full flex-col items-center justify-center gap-3">
 			<Alert>
 				<AlertIcon>
-					<Sparkles size={20} />
+					<IconSlot slot="sparkles" size={20} />
 				</AlertIcon>
 				<AlertContent>
 					<AlertTitle>Primary alert</AlertTitle>
@@ -31,7 +24,7 @@ const AlertColorsExample = () => {
 			</Alert>
 			<Alert color="neutral">
 				<AlertIcon>
-					<Box size={20} />
+					<IconSlot slot="box" size={20} />
 				</AlertIcon>
 				<AlertContent>
 					<AlertTitle>Neutral alert</AlertTitle>
@@ -42,7 +35,7 @@ const AlertColorsExample = () => {
 			</Alert>
 			<Alert color="success">
 				<AlertIcon>
-					<CircleCheckBig size={20} />
+					<IconSlot slot="circle-check-big" size={20} />
 				</AlertIcon>
 				<AlertContent>
 					<AlertTitle>Success alert</AlertTitle>
@@ -53,7 +46,7 @@ const AlertColorsExample = () => {
 			</Alert>
 			<Alert color="error">
 				<AlertIcon>
-					<OctagonAlert size={20} />
+					<IconSlot slot="octagon-alert" size={20} />
 				</AlertIcon>
 				<AlertContent>
 					<AlertTitle>Error alert</AlertTitle>
@@ -64,7 +57,7 @@ const AlertColorsExample = () => {
 			</Alert>
 			<Alert color="info">
 				<AlertIcon>
-					<BellRing size={20} />
+					<IconSlot slot="bell-ring" size={20} />
 				</AlertIcon>
 				<AlertContent>
 					<AlertTitle>Info alert</AlertTitle>
@@ -75,7 +68,7 @@ const AlertColorsExample = () => {
 			</Alert>
 			<Alert color="warning">
 				<AlertIcon>
-					<TriangleAlert size={20} />
+					<IconSlot slot="alert-triangle" size={20} />
 				</AlertIcon>
 				<AlertContent>
 					<AlertTitle>Warning alert</AlertTitle>

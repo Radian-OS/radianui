@@ -1,20 +1,24 @@
-import { X } from "lucide-react"
+import { IconSlot } from "@/registry/icon/icon-library"
 import { Badge } from "@/registry/ui/badge"
 
 function BadgeIconExample() {
 	return (
 		<div className="flex flex-col items-center gap-3 sm:flex-row">
 			<Badge variant="outline" color="neutral">
-				Required <X />
+				Required
+				<IconSlot slot="cross" />
 			</Badge>
 			<Badge variant="soft" color="primary">
-				Metrics <X />
+				Metrics
+				<IconSlot slot="cross" />
 			</Badge>
 			<Badge variant="outline" color="primary">
-				Invited <X />
+				Invited
+				<IconSlot slot="cross" />
 			</Badge>
 			<Badge variant="strong" color="primary">
-				Verified <X />
+				Verified
+				<IconSlot slot="cross" />
 			</Badge>
 		</div>
 	)

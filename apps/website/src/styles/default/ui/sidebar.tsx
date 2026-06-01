@@ -123,13 +123,13 @@ export type SidebarMenuSubButtonProps = React.ComponentProps<"a"> & {
 
 export const sidebarMenuButtonVariants = cva(
 	// Structural-only base classes
-	"peer/menu-button cursor-pointer flex w-full items-center gap-2 overflow-hidden p-2 text-left truncate text-sm outline-hidden transition-[width,height,padding] disabled:pointer-events-none disabled:opacity-50 group-has-data-[sidebar=menu-action]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2! [&>span:last-child]:truncate [&>span:last-child]:min-w-0 [&>a:last-child]:truncate [&>a:last-child]:min-w-0 [&>svg]:size-5 [&>svg]:shrink-0 hover:bg-sidebar-accent hover:text-sidebar-accent-fg font-medium rounded-control-md [&>svg]:text-fg-secondary",
+	"peer/menu-button cursor-pointer flex w-full items-center gap-2 overflow-hidden p-2 text-left truncate text-sm outline-hidden transition-[width,height,padding] disabled:pointer-events-none disabled:opacity-50 group-has-data-[sidebar=menu-action]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2! [&>span:last-child]:truncate [&>span:last-child]:min-w-0 [&>a:last-child]:truncate [&>a:last-child]:min-w-0 [&>svg]:size-5 [&>svg]:shrink-0 hover:bg-sidebar-accent hover:text-sidebar-accent-fg rounded-control-md [&>svg]:text-fg-secondary font-medium",
 	{
 		variants: {
 			variant: {
 				strong:
-					"text-sidebar-fg focus-visible:ring-primary-focus focus-visible:outline-none data-[active=true]:bg-primary! data-[active=true]:text-white data-[active=true]:[&>svg]:stroke-white",
-				soft: "text-sidebar-fg focus-visible:ring-primary-focus focus-visible:outline-none data-[active=true]:bg-primary-accent! data-[active=true]:text-primary-text [&>svg]:text-fg-secondary data-[active=true]:[&>svg]:stroke-primary-text",
+					"text-sidebar-fg focus-visible:ring-primary-focus data-[active=true]:bg-primary! focus-visible:outline-none data-[active=true]:text-white data-[active=true]:[&>svg]:stroke-white",
+				soft: "text-sidebar-fg focus-visible:ring-primary-focus data-[active=true]:bg-primary-accent! data-[active=true]:text-primary-text [&>svg]:text-fg-secondary data-[active=true]:[&>svg]:stroke-primary-text focus-visible:outline-none",
 				neutral: "text-sidebar-fg data-[active=true]:bg-sidebar-accent!",
 			},
 			size: {

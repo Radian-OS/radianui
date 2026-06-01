@@ -3,8 +3,8 @@
 import React from "react"
 import data, { Skin } from "@emoji-mart/data"
 import Picker from "@emoji-mart/react"
-import { SmilePlus } from "lucide-react"
 import Image from "next/image"
+import { IconSlot } from "@/registry/icon/icon-library"
 import {
 	Avatar,
 	AvatarFallback,
@@ -64,7 +64,7 @@ export default function PopoverEmoji2() {
 					<Popover open={open} onOpenChange={setOpen}>
 						<PopoverTrigger asChild>
 							<Button variant="outline" color="neutral" size="28">
-								<SmilePlus />
+								<IconSlot slot="smile-plus" />
 							</Button>
 						</PopoverTrigger>
 						<PopoverContent

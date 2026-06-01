@@ -1,23 +1,23 @@
-import { BadgeCheck, Star, TrendingUp, User } from "lucide-react"
+import { IconSlot } from "@/registry/icon/icon-library"
 import { Badge } from "@/registry/ui/badge"
 
 function BadgeIconExample() {
 	return (
 		<div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
 			<Badge variant="strong">
-				<BadgeCheck />
+				<IconSlot slot="badge-check" />
 				Verified
 			</Badge>
 			<Badge color="primary" variant="outline">
-				<User />
+				<IconSlot slot="user" />
 				Profile
 			</Badge>
 			<Badge color="primary" variant="soft">
-				<TrendingUp />
+				<IconSlot slot="trending-up" />
 				Metrics
 			</Badge>
 			<Badge color="neutral" variant="outline">
-				<Star className="stroke-warning fill-warning" />
+				<IconSlot slot="star" className="stroke-warning fill-warning" />
 				4.8 Ratings
 			</Badge>
 		</div>

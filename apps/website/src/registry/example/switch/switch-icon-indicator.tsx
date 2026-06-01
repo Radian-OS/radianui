@@ -1,7 +1,7 @@
 "use client"
 
 import React from "react"
-import { MoonIcon, SunIcon } from "lucide-react"
+import { IconSlot } from "@/registry/icon/icon-library"
 import { Switch } from "@/registry/ui/switch"
 
 export default function Component() {
@@ -19,7 +19,7 @@ export default function Component() {
 				className="group-data-[state=checked]:text-fg-tertiary flex-1 cursor-pointer text-right text-sm font-medium"
 				aria-controls={id}
 				onClick={() => setChecked(false)}>
-				<MoonIcon size={20} aria-hidden="true" />
+				<IconSlot slot="moon" size={20} aria-hidden="true" />
 			</span>
 			<Switch
 				id={id}
@@ -33,7 +33,7 @@ export default function Component() {
 				className="group-data-[state=unchecked]:text-fg-tertiary flex-1 cursor-pointer text-left text-sm font-medium"
 				aria-controls={id}
 				onClick={() => setChecked(true)}>
-				<SunIcon size={20} aria-hidden="true" />
+				<IconSlot slot="sun" size={20} aria-hidden="true" />
 			</span>
 		</div>
 	)

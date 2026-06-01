@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { CircleCheckBig } from "lucide-react"
+import { IconSlot } from "@/registry/icon/icon-library"
 import {
 	Alert,
 	AlertContent,
@@ -30,7 +30,7 @@ function DismissibleAlert() {
 				{isVisible && (
 					<Alert close onClose={handleClose} color="primary" variant="outline">
 						<AlertIcon>
-							<CircleCheckBig size={20} />
+							<IconSlot slot="circle-check-big" size={20} />
 						</AlertIcon>
 						<AlertContent>
 							<AlertTitle>Payment Received</AlertTitle>

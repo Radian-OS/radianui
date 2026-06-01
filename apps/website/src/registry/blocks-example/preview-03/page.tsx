@@ -1077,7 +1077,7 @@ export function DropdownShowcaseCard() {
 					<Dropdown>
 						<DropdownTrigger asChild>
 							<Button variant="smooth">
-								Open Menu <IconSlot slot="setting" className="ml-2 h-4 w-4" />
+								Open Menu <IconSlot slot="setting" className="h-4 w-4" />
 							</Button>
 						</DropdownTrigger>
 						<DropdownContent className="w-80">

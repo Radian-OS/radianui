@@ -1,7 +1,7 @@
 "use client"
 
-import { TriangleAlert, User, X } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { IconSlot } from "@/registry/icon/icon-library"
 import {
 	Alert,
 	AlertContent,
@@ -62,7 +62,7 @@ const FileUploadPreview = () => {
 						/>
 					) : (
 						<div className="flex h-full w-full items-center justify-center">
-							<User className="text-fg size-6" />
+							<IconSlot slot="user" className="text-fg size-6" />
 						</div>
 					)}
 				</div>
@@ -73,7 +73,7 @@ const FileUploadPreview = () => {
 						onClick={handleRemove}
 						className="absolute end-0 top-0 size-7 rounded-full"
 						aria-label="Remove avatar">
-						<X className="size-3.5" />
+						<IconSlot slot="cross" className="size-3.5" />
 					</IconButton>
 				)}
 			</div>
@@ -88,7 +88,7 @@ const FileUploadPreview = () => {
 			{errors.length > 0 && (
 				<Alert variant="soft" color="error" className="mt-5">
 					<AlertIcon>
-						<TriangleAlert />
+						<IconSlot slot="alert-triangle" />
 					</AlertIcon>
 					<AlertContent>
 						<AlertTitle>File upload error(s)</AlertTitle>

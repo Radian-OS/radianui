@@ -1,12 +1,7 @@
 "use client"
 
 import { useId, useState } from "react"
-import {
-	ChevronFirstIcon,
-	ChevronLastIcon,
-	ChevronLeftIcon,
-	ChevronRightIcon,
-} from "lucide-react"
+import { IconSlot } from "@/registry/icon/icon-library"
 import { Badge } from "@/registry/ui/badge"
 import { IconButton } from "@/registry/ui/button"
 import { Label } from "@/registry/ui/label"
@@ -268,7 +263,7 @@ export default function Component() {
 									onClick={() => setCurrentPage(0)}
 									disabled={!canPreviousPage}
 									aria-label="Go to first page">
-									<ChevronFirstIcon size={16} aria-hidden="true" />
+									<IconSlot slot="chevron-first" size={16} aria-hidden="true" />
 								</IconButton>
 							</PaginationItem>
 							{/* Previous page button */}
@@ -281,7 +276,7 @@ export default function Component() {
 									onClick={() => setCurrentPage(currentPage - 1)}
 									disabled={!canPreviousPage}
 									aria-label="Go to previous page">
-									<ChevronLeftIcon size={16} aria-hidden="true" />
+									<IconSlot slot="left" size={16} aria-hidden="true" />
 								</IconButton>
 							</PaginationItem>
 							{/* Next page button */}
@@ -294,7 +289,7 @@ export default function Component() {
 									onClick={() => setCurrentPage(currentPage + 1)}
 									disabled={!canNextPage}
 									aria-label="Go to next page">
-									<ChevronRightIcon size={16} aria-hidden="true" />
+									<IconSlot slot="right" size={16} aria-hidden="true" />
 								</IconButton>
 							</PaginationItem>
 							{/* Last page button */}
@@ -307,7 +302,7 @@ export default function Component() {
 									onClick={() => setCurrentPage(totalPages - 1)}
 									disabled={!canNextPage}
 									aria-label="Go to last page">
-									<ChevronLastIcon size={16} aria-hidden="true" />
+									<IconSlot slot="chevron-last" size={16} aria-hidden="true" />
 								</IconButton>
 							</PaginationItem>
 						</PaginationContent>

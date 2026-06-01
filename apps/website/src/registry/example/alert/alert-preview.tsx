@@ -1,4 +1,4 @@
-import { CircleCheckBig } from "lucide-react"
+import { IconSlot } from "@/registry/icon/icon-library"
 import {
 	Alert,
 	AlertContent,
@@ -13,7 +13,7 @@ export default function AlertPreview() {
 		<div className="max-w-132.5 flex w-full flex-col items-center gap-6">
 			<Alert color="success">
 				<AlertIcon>
-					<CircleCheckBig size={20} />
+					<IconSlot slot="circle-check-big" size={20} />
 				</AlertIcon>
 				<AlertContent>
 					<AlertTitle>Payment Successful</AlertTitle>

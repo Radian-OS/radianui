@@ -1,4 +1,4 @@
-import { AlignCenter, AlignLeft, AlignRight } from "lucide-react"
+import { IconSlot } from "@/registry/icon/icon-library"
 import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
 import { Button } from "@/registry/ui/button"
 import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
@@ -39,7 +39,7 @@ export default function PopoverAlign() {
 			<Popover>
 				<PopoverTrigger asChild>
 					<Button size={"32"} color="neutral" variant="outline">
-						<AlignLeft />
+						<IconSlot slot="text-align-left" />
 						Left
 					</Button>
 				</PopoverTrigger>
@@ -51,7 +51,7 @@ export default function PopoverAlign() {
 			<Popover>
 				<PopoverTrigger asChild>
 					<Button size={"32"} color="neutral" variant="outline">
-						<AlignCenter />
+						<IconSlot slot="text-align-center" />
 						Center
 					</Button>
 				</PopoverTrigger>
@@ -63,7 +63,7 @@ export default function PopoverAlign() {
 			<Popover>
 				<PopoverTrigger asChild>
 					<Button size={"32"} color="neutral" variant="outline">
-						<AlignRight />
+						<IconSlot slot="text-align-right" />
 						End
 					</Button>
 				</PopoverTrigger>

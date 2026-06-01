@@ -1,4 +1,4 @@
-import { Trash2 } from "lucide-react"
+import { IconSlot } from "@/registry/icon/icon-library"
 import {
 	AlertDialog,
 	AlertDialogAction,
@@ -17,7 +17,7 @@ export default function DestructiveAlertDialog() {
 		<AlertDialog>
 			<AlertDialogTrigger asChild>
 				<Button color="error">
-					<Trash2 />
+					<IconSlot slot="trash" />
 					Delete Record
 				</Button>
 			</AlertDialogTrigger>

@@ -1,5 +1,5 @@
 import React from "react"
-import { Inbox, TriangleAlert } from "lucide-react"
+import { IconSlot } from "@/registry/icon/icon-library"
 import {
 	Alert,
 	AlertContent,
@@ -14,7 +14,7 @@ const AlertWarningExample = () => {
 		<div className="max-w-135 flex w-full flex-col items-center justify-center gap-3">
 			<Alert color="warning" variant="soft-outline" close>
 				<AlertIcon>
-					<TriangleAlert size={20} />
+					<IconSlot slot="alert-triangle" size={20} />
 				</AlertIcon>
 				<AlertContent>
 					<AlertTitle>Low Balance</AlertTitle>
@@ -31,7 +31,7 @@ const AlertWarningExample = () => {
 
 			<Alert variant="outline" color="warning">
 				<AlertIcon>
-					<Inbox size={20} />
+					<IconSlot slot="inbox" size={20} />
 				</AlertIcon>
 				<AlertContent>
 					<AlertTitle>Storage Almost Full</AlertTitle>

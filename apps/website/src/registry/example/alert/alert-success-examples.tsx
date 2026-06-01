@@ -1,5 +1,5 @@
 import React from "react"
-import { ArrowRight, Box, CircleCheck } from "lucide-react"
+import { IconSlot } from "@/registry/icon/icon-library"
 import {
 	Alert,
 	AlertContent,
@@ -15,7 +15,7 @@ const AlertSuccessExamples = () => {
 		<div className="max-w-135 flex w-full flex-col items-center justify-center gap-3">
 			<Alert color="success">
 				<AlertIcon>
-					<Box size={20} />
+					<IconSlot slot="box" size={20} />
 				</AlertIcon>
 				<AlertContent>
 					<AlertTitle>Profile Updated Successfully</AlertTitle>
@@ -27,7 +27,7 @@ const AlertSuccessExamples = () => {
 			</Alert>
 			<Alert color="success" variant="outline" close>
 				<AlertIcon>
-					<CircleCheck size={20} />
+					<IconSlot slot="circle-check" size={20} />
 				</AlertIcon>
 				<AlertContent>
 					<AlertTitle>Credit Purchased Successfully</AlertTitle>
@@ -38,7 +38,7 @@ const AlertSuccessExamples = () => {
 					<section className="flex items-center gap-2 pt-2">
 						<Button variant="link" color="success">
 							View Credit Balance
-							<ArrowRight />
+							<IconSlot slot="arrow-right" />
 						</Button>
 					</section>
 				</AlertContent>

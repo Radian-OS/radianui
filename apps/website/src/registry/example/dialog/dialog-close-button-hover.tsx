@@ -1,4 +1,4 @@
-import { CircleAlert } from "lucide-react"
+import { IconSlot } from "@/registry/icon/icon-library"
 import { Button } from "@/registry/ui/button"
 import {
 	Dialog,
@@ -24,7 +24,7 @@ export default function DialogCloseButtonHover() {
 				<DialogHeader>
 					<div className="flex gap-3">
 						<div className="border-soft-alpha flex size-fit items-center justify-start rounded-lg border p-2">
-							<CircleAlert className="text-fg2 size-6" />
+							<IconSlot slot="circle-alert" className="text-fg2 size-6" />
 						</div>
 						<div className="flex flex-col gap-1">
 							<DialogTitle>This is sample header</DialogTitle>

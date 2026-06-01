@@ -1,7 +1,7 @@
 "use client"
 
 import React from "react"
-import { Info } from "lucide-react"
+import { IconSlot } from "@/registry/icon/icon-library"
 import {
 	Banner,
 	BannerDescription,
@@ -15,7 +15,7 @@ function BannerExamplePreview() {
 		<div className="absolute top-0 h-full w-full">
 			<Banner className="w-full" variant="strong">
 				<BannerIcon>
-					<Info size={20} />
+					<IconSlot slot="info" size={20} />
 				</BannerIcon>
 				<BannerTitle className="truncate">
 					You have 1 day remaining in your Trail Period

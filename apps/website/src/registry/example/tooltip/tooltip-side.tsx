@@ -1,5 +1,5 @@
 import React from "react"
-import { ChevronDown, ChevronLeft, ChevronRight, ChevronUp } from "lucide-react"
+import { IconSlot } from "@/registry/icon/icon-library"
 import { Button } from "@/registry/ui/button"
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/registry/ui/tooltip"
 
@@ -9,7 +9,7 @@ export default function TooltipSide() {
 			<Tooltip>
 				<TooltipTrigger asChild>
 					<Button color="neutral" variant="outline">
-						<ChevronLeft />
+						<IconSlot slot="left" />
 						Left
 					</Button>
 				</TooltipTrigger>
@@ -20,7 +20,7 @@ export default function TooltipSide() {
 			<Tooltip>
 				<TooltipTrigger asChild>
 					<Button color="neutral" variant="outline">
-						<ChevronUp />
+						<IconSlot slot="up" />
 						Top
 					</Button>
 				</TooltipTrigger>
@@ -31,7 +31,7 @@ export default function TooltipSide() {
 			<Tooltip>
 				<TooltipTrigger asChild>
 					<Button color="neutral" variant="outline">
-						<ChevronDown />
+						<IconSlot slot="down" />
 						Bottom
 					</Button>
 				</TooltipTrigger>
@@ -42,7 +42,7 @@ export default function TooltipSide() {
 			<Tooltip>
 				<TooltipTrigger asChild>
 					<Button color="neutral" variant="outline">
-						<ChevronRight />
+						<IconSlot slot="right" />
 						Right
 					</Button>
 				</TooltipTrigger>

@@ -1,9 +1,9 @@
 "use client"
 
 import React, { useState } from "react"
-import { Check, ChevronDown } from "lucide-react"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
+import { IconSlot } from "@/registry/icon/icon-library"
 import { Badge } from "@/registry/ui/badge"
 import { Button, IconButton } from "@/registry/ui/button"
 import {
@@ -85,7 +85,7 @@ function TaskItem({ task }: TaskItemProps) {
 				/>
 			)
 		}
-		return <Check className="size-5 flex-shrink-0" />
+		return <IconSlot slot="check" className="size-5 flex-shrink-0" />
 	}
 
 	const renderStatusContent = () => {
@@ -174,7 +174,8 @@ function CollapsibleHeader({
 					variant="outline"
 					color="neutral"
 					size="32">
-					<ChevronDown
+					<IconSlot
+						slot="down"
 						className={cn(
 							"transition-transform duration-200",
 							isOpen && "rotate-180"
