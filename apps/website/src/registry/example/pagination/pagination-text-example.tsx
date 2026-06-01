@@ -1,6 +1,6 @@
 import React from "react"
+import { ChevronLeft, ChevronRight } from "lucide-react"
 import Link from "next/link"
-import { IconSlot } from "@/registry/icon/icon-library"
 import { Button, IconButton } from "@/registry/ui/button"
 import {
 	Pagination,
@@ -17,7 +17,7 @@ const PaginationTextExample = () => {
 					<PaginationItem>
 						<Button color="neutral" variant="ghost" asChild>
 							<Link href="#">
-								<IconSlot slot="left" className="rtl:rotate-180" /> Preview
+								<ChevronLeft className="rtl:rotate-180" /> Preview
 							</Link>
 						</Button>
 					</PaginationItem>
@@ -54,7 +54,7 @@ const PaginationTextExample = () => {
 					<PaginationItem>
 						<Button color="neutral" variant="ghost" asChild>
 							<Link href="#">
-								Next <IconSlot slot="right" className="rtl:rotate-180" />
+								Next <ChevronRight className="rtl:rotate-180" />
 							</Link>
 						</Button>
 					</PaginationItem>

@@ -29,7 +29,7 @@ import {
 	getSortedRowModel,
 	useReactTable,
 } from "@tanstack/react-table"
-import { IconSlot } from "@/registry/icon/icon-library"
+import { ChevronDownIcon, ChevronUpIcon, GripVerticalIcon } from "lucide-react"
 import { Badge } from "@/registry/ui/badge"
 import { IconButton } from "@/registry/ui/button"
 import {
@@ -302,8 +302,7 @@ const DraggableTableHeader = ({
 					{...attributes}
 					{...listeners}
 					aria-label="Drag to reorder">
-					<IconSlot
-						slot="grip"
+					<GripVerticalIcon
 						className="opacity-60"
 						size={16}
 						aria-hidden="true"
@@ -332,24 +331,21 @@ const DraggableTableHeader = ({
 					}}>
 					{{
 						asc: (
-							<IconSlot
-								slot="up"
+							<ChevronUpIcon
 								className="shrink-0 opacity-60"
 								size={16}
 								aria-hidden="true"
 							/>
 						),
 						desc: (
-							<IconSlot
-								slot="down"
+							<ChevronDownIcon
 								className="shrink-0 opacity-60"
 								size={16}
 								aria-hidden="true"
 							/>
 						),
 					}[header.column.getIsSorted() as string] ?? (
-						<IconSlot
-							slot="up"
+						<ChevronUpIcon
 							className="shrink-0 opacity-0 group-hover:opacity-60"
 							size={16}
 							aria-hidden="true"

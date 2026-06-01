@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState } from "react"
-import { IconSlot } from "@/registry/icon/icon-library"
+import { Sparkles } from "lucide-react"
 import {
 	Banner,
 	BannerContent,
@@ -45,7 +45,7 @@ const BannerSuccessExample = () => {
 			{bannerVisible2 && (
 				<Banner onClose={handleClose2} color="success">
 					<BannerIcon>
-						<IconSlot slot="sparkles" size={20} />
+						<Sparkles size={20} />
 					</BannerIcon>
 					<BannerDescription className="truncate">
 						Get full advantage of Radian with better performance.

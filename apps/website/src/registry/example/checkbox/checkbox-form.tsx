@@ -1,10 +1,10 @@
 "use client"
 
 import { zodResolver } from "@hookform/resolvers/zod"
+import { CheckCircle } from "lucide-react"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 import { z } from "zod"
-import { IconSlot } from "@/registry/icon/icon-library"
 import { Alert, AlertIcon, AlertTitle } from "@/registry/ui/alert"
 import { Button } from "@/registry/ui/button"
 import { Checkbox } from "@/registry/ui/checkbox"
@@ -37,7 +37,7 @@ export default function CheckboxForm() {
 					color="success"
 					onClose={() => toast.dismiss(t)}>
 					<AlertIcon>
-						<IconSlot slot="circle-check" />
+						<CheckCircle />
 					</AlertIcon>
 					<AlertTitle>Your form has successfully submitted</AlertTitle>
 				</Alert>

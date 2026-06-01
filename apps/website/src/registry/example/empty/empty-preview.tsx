@@ -1,5 +1,5 @@
 import React from "react"
-import { IconSlot } from "@/registry/icon/icon-library"
+import { Database } from "lucide-react"
 import { Button } from "@/registry/ui/button"
 import {
 	Empty,
@@ -14,7 +14,7 @@ export default function EmptyPreview() {
 	return (
 		<Empty>
 			<EmptyMedia variant="icon">
-				<IconSlot slot="database" />
+				<Database />
 			</EmptyMedia>
 			<EmptyHeader>
 				<EmptyTitle>Empty State Header</EmptyTitle>

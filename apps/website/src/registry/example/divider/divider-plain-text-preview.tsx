@@ -1,5 +1,5 @@
 import React from "react"
-import { IconSlot } from "@/registry/icon/icon-library"
+import { Mail } from "lucide-react"
 import { Button } from "@/registry/ui/button"
 import { Divider } from "@/registry/ui/divider"
 
@@ -7,7 +7,7 @@ function DividerTextPreview() {
 	return (
 		<div className="flex w-full max-w-80 flex-col items-center gap-4">
 			<Button className="w-full">
-				<IconSlot slot="mail" />
+				<Mail />
 				Continue with Email
 			</Button>
 			<div className="flex w-full items-center justify-center">

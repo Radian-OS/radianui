@@ -1,5 +1,5 @@
 import React from "react"
-import { IconSlot } from "@/registry/icon/icon-library"
+import { CheckCircle, FileStack, Link, ShieldAlert } from "lucide-react"
 import { Button } from "@/registry/ui/button"
 import {
 	Card,
@@ -20,29 +20,21 @@ const CardInfoExample = () => {
 			<CardContent>
 				<div className="mb-2 flex items-center justify-between">
 					<div className="flex items-center gap-2">
-						<IconSlot slot="link" className="text-fg-secondary" size={20} />
+						<Link className="text-fg-secondary" size={20} />
 						<span className="text-fg-secondary text-sm">Events Found</span>
 					</div>
 					<span className="text-sm font-medium">28</span>
 				</div>
 				<div className="mb-2 flex items-center justify-between">
 					<div className="flex items-center gap-2">
-						<IconSlot
-							slot="file-warning"
-							className="text-fg-secondary"
-							size={20}
-						/>
+						<ShieldAlert className="text-fg-secondary" size={20} />
 						<span className="text-fg-secondary text-sm">Events Expired</span>
 					</div>
 					<span className="text-sm font-medium">8</span>
 				</div>
 				<div className="mb-2 flex items-center justify-between">
 					<div className="flex items-center gap-2">
-						<IconSlot
-							slot="circle-check"
-							className="text-fg-secondary"
-							size={20}
-						/>
+						<CheckCircle className="text-fg-secondary" size={20} />
 						<span className="text-fg-secondary text-sm">Compile Progress</span>
 					</div>
 					<span className="text-info-text whitespace-nowrap text-sm font-medium">
@@ -51,11 +43,7 @@ const CardInfoExample = () => {
 				</div>
 				<div className="flex items-center justify-between">
 					<div className="flex items-center gap-2">
-						<IconSlot
-							slot="file-text"
-							className="text-fg-secondary"
-							size={20}
-						/>
+						<FileStack className="text-fg-secondary" size={20} />
 						<span className="text-fg-secondary text-sm">Sources Checked</span>
 					</div>
 					<span className="whitespace-nowrap text-sm font-medium">

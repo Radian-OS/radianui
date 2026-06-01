@@ -2,8 +2,8 @@
 
 import React from "react"
 import * as Flags from "country-flag-icons/react/3x2"
+import { Check, ChevronDown } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { IconSlot } from "@/registry/icon/icon-library"
 import { Button } from "@/registry/ui/button"
 import {
 	Command,
@@ -406,7 +406,7 @@ export default function ComboboxDemo() {
 					) : (
 						"Select Country"
 					)}
-					<IconSlot slot="down" className="text-fg-tertiary ml-auto" />
+					<ChevronDown className="text-fg-tertiary ml-auto" />
 				</Button>
 			</PopoverTrigger>
 			<PopoverContent className="w-80 p-0">
@@ -425,8 +425,7 @@ export default function ComboboxDemo() {
 									}}>
 									{<c.flag className="size-4" />}
 									<span>{c.name}</span>
-									<IconSlot
-										slot="check"
+									<Check
 										className={cn(
 											"ml-auto",
 											c.code === selectedCode ? "opacity-100" : "opacity-0"

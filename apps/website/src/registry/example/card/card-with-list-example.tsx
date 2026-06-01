@@ -1,9 +1,11 @@
 "use client"
 
+import { Settings } from "lucide-react"
 import Link from "next/link"
-import { IconSlot } from "@/registry/icon/icon-library"
 import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
+// Assuming you have Avatar components
 import { Badge } from "@/registry/ui/badge"
+// Assuming you have a Badge component
 import { Button, IconButton } from "@/registry/ui/button"
 import {
 	Card,
@@ -69,7 +71,7 @@ export default function CardWithList() {
 						color="neutral"
 						variant="outline"
 						size="28">
-						<IconSlot slot="setting" />
+						<Settings />
 					</IconButton>
 				</div>
 			</CardHeader>

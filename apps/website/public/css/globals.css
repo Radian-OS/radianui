@@ -1,5 +1,12 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import "./website.css";
+
+@import "../registry/styles/style-default.css" layer(base);
+@import "../registry/styles/style-sera.css" layer(base);
+
+@custom-variant style-default (&:where(.style-default *));
+@custom-variant style-sera (&:where(.style-sera *));
 
 @custom-variant dark (&:is(.dark *));
 

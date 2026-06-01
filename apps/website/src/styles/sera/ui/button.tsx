@@ -106,7 +106,7 @@ export const buttonVariants = cva(
 				variant: "strong",
 				color: "primary",
 				className:
-					"bg-primary font-medium text-primary-fg hover:bg-primary-hover focus-visible:ring-primary focus-visible:outline-none",
+					"bg-primary font-medium text-white hover:bg-primary-hover focus-visible:ring-primary focus-visible:outline-none",
 			},
 			{
 				variant: "strong",

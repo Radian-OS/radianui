@@ -1,4 +1,4 @@
-import { IconSlot } from "@/registry/icon/icon-library"
+import { ChevronDown, ChevronLeft, ChevronRight, ChevronUp } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
 import { Button } from "@/registry/ui/button"
 import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
@@ -39,7 +39,7 @@ export default function PopoverSide() {
 			<Popover>
 				<PopoverTrigger asChild>
 					<Button size={"32"} color="neutral" variant="outline">
-						<IconSlot slot="left" />
+						<ChevronLeft />
 						Left
 					</Button>
 				</PopoverTrigger>
@@ -51,7 +51,7 @@ export default function PopoverSide() {
 			<Popover>
 				<PopoverTrigger asChild>
 					<Button size={"32"} color="neutral" variant="outline">
-						<IconSlot slot="up" />
+						<ChevronUp />
 						Top
 					</Button>
 				</PopoverTrigger>
@@ -63,7 +63,7 @@ export default function PopoverSide() {
 			<Popover>
 				<PopoverTrigger asChild>
 					<Button size={"32"} color="neutral" variant="outline">
-						<IconSlot slot="right" />
+						<ChevronRight />
 						Right
 					</Button>
 				</PopoverTrigger>
@@ -75,7 +75,7 @@ export default function PopoverSide() {
 			<Popover>
 				<PopoverTrigger asChild>
 					<Button size={"32"} color="neutral" variant="outline">
-						<IconSlot slot="down" />
+						<ChevronDown />
 						Bottom
 					</Button>
 				</PopoverTrigger>

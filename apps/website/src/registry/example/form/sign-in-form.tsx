@@ -2,11 +2,11 @@
 
 import React, { useState } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { CircleCheckBig, EyeIcon, EyeOffIcon } from "lucide-react"
 import Link from "next/link"
 import { FieldValues, useForm } from "react-hook-form"
 import { toast } from "sonner"
 import { z } from "zod"
-import { IconSlot } from "@/registry/icon/icon-library"
 import { Alert, AlertIcon, AlertTitle } from "@/registry/ui/alert"
 import { Button } from "@/registry/ui/button"
 import { Checkbox } from "@/registry/ui/checkbox"
@@ -35,19 +35,7 @@ export default function SignIn() {
 		setShowPassword(!showPassword)
 	}
 
-	const IconComponent = showPassword ? (
-		<IconSlot
-			slot="eyeoff"
-			className="hover:text-fg peer-disabled:text-fg-disabled cursor-pointer peer-disabled:pointer-events-none"
-			onMouseDown={togglePasswordVisibility}
-		/>
-	) : (
-		<IconSlot
-			slot="eye"
-			onMouseDown={togglePasswordVisibility}
-			className="hover:text-fg peer-disabled:text-fg-disabled cursor-pointer peer-disabled:pointer-events-none"
-		/>
-	)
+	const IconComponent = showPassword ? EyeOffIcon : EyeIcon
 
 	const form = useForm<z.infer<typeof FormSchema>>({
 		resolver: zodResolver(FormSchema),
@@ -63,7 +51,7 @@ export default function SignIn() {
 		toast.custom(() => (
 			<Alert variant="soft" color="primary">
 				<AlertIcon>
-					<IconSlot slot="circle-check-big" />
+					<CircleCheckBig />
 				</AlertIcon>
 				<AlertTitle>Signed in successfully!</AlertTitle>
 			</Alert>
@@ -136,7 +124,10 @@ export default function SignIn() {
 													type={showPassword ? "text" : "password"}
 													{...field}
 												/>
-												{IconComponent}
+												<IconComponent
+													className="hover:text-fg peer-disabled:text-fg-disabled cursor-pointer peer-disabled:pointer-events-none"
+													onMouseDown={togglePasswordVisibility}
+												/>
 											</InputWrapper>
 										</FormControl>
 										<FormMessage />

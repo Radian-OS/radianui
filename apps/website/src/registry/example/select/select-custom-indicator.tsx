@@ -1,4 +1,4 @@
-import { IconSlot } from "@/registry/icon/icon-library"
+import { CircleCheck } from "lucide-react"
 import {
 	Select,
 	SelectContent,
@@ -15,7 +15,7 @@ export default function SelectDemo() {
 			indicatorPosition="right"
 			indicator={
 				<SelectIndicator>
-					<IconSlot slot="circle-check" className="text-primary size-4" />
+					<CircleCheck className="text-primary size-4" />
 				</SelectIndicator>
 			}>
 			<SelectTrigger

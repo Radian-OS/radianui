@@ -13,7 +13,7 @@ import {
 	getSortedRowModel,
 	useReactTable,
 } from "@tanstack/react-table"
-import { IconSlot } from "@/registry/icon/icon-library"
+import { ChevronsUpDown } from "lucide-react"
 import { Checkbox } from "@/registry/ui/checkbox"
 import {
 	Table,
@@ -104,7 +104,7 @@ export const columns: ColumnDef<Payment>[] = [
 					className="flex cursor-pointer items-center justify-start gap-1"
 					onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
 					Email
-					<IconSlot slot="chevrons-up-down" size={16} />
+					<ChevronsUpDown size={16} />
 				</div>
 			)
 		},
