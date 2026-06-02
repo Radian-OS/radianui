@@ -65,9 +65,9 @@ export const BASE_COLORS = [
 
 				"--color-soft": "oklch(0.233 0.008 17.714)",
 				"--color-alpha":
-					" color-mix(in srgb,oklch(0.856 0.033 17.82,transparent 88%)",
+					"color-mix(in srgb, oklch(0.856 0.033 17.82), transparent 88%)",
 				"--color-soft-alpha":
-					"color-mix(in srgb,oklch(0.856 0.033 17.82,transparent 92%)",
+					"color-mix(in srgb, oklch(0.856 0.033 17.82), transparent 92%)",
 				"--color-border": "oklch(0.274 0.01 17.766)",
 
 				"--color-elevation-negative": "oklch(0 0 0)",
@@ -145,9 +145,9 @@ export const BASE_COLORS = [
 				"--color-border": "oklch(0.28 0 0)",
 				"--color-soft": "oklch(0.238 0 0)",
 				"--color-alpha":
-					" color-mix(in srgb,oklch(0.856 0.033 17.82,transparent 88%)",
+					"color-mix(in srgb, oklch(0.856 0.033 17.82), transparent 88%)",
 				"--color-soft-alpha":
-					"color-mix(in srgb,oklch(0.856 0.033 17.82,transparent 92%)",
+					"color-mix(in srgb, oklch(0.856 0.033 17.82), transparent 92%)",
 
 				"--color-elevation-negative": "oklch(0 0 0)",
 				"--color-elevation-level1": "oklch(0.193 0 0)",
