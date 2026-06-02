@@ -2,9 +2,9 @@
 
 import React, { useRef, useState } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { Eye, EyeOff } from "lucide-react"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-import { IconSlot } from "@/registry/icon/icon-library"
 import { Button } from "@/registry/ui/button"
 import {
 	Form,
@@ -46,11 +46,7 @@ export default function NewPasswordForm() {
 		setShowPassword(!showPassword)
 	}
 
-	const IconComponent = showPassword ? (
-		<IconSlot slot="eye" />
-	) : (
-		<IconSlot slot="eyeoff" />
-	)
+	const IconComponent = showPassword ? <Eye /> : <EyeOff />
 
 	const form = useForm<z.infer<typeof FormSchema>>({
 		resolver: zodResolver(FormSchema),
