@@ -9,9 +9,6 @@ const registry: Record<
 	"accordion-indicator": React.lazy(
 		() => import("@/registry/example/accordion/accordion-indicator")
 	),
-	"accordion-large": React.lazy(
-		() => import("@/registry/example/accordion/accordion-large")
-	),
 	"accordion-nested": React.lazy(
 		() => import("@/registry/example/accordion/accordion-nested")
 	),
@@ -32,9 +29,6 @@ const registry: Record<
 	),
 	"accordion-with-icon": React.lazy(
 		() => import("@/registry/example/accordion/accordion-with-icon")
-	),
-	"accordion-with-sub-header": React.lazy(
-		() => import("@/registry/example/accordion/accordion-with-sub-header")
 	),
 	"alert-close-example-preview": React.lazy(
 		() => import("@/registry/example/alert/alert-close-example-preview")

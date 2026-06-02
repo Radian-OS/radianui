@@ -39,7 +39,6 @@ const accordionVariants = cva("w-full", {
 	variants: {
 		size: {
 			sm: "text-sm/6",
-			lg: "text-base/7",
 		},
 		variant: {
 			box: "",
@@ -62,7 +61,6 @@ const accordionItemVariants = cva("overflow-hidden", {
 		},
 		size: {
 			sm: "",
-			lg: "",
 		},
 	},
 	compoundVariants: [
@@ -70,11 +68,6 @@ const accordionItemVariants = cva("overflow-hidden", {
 			variant: "box",
 			size: "sm",
 			class: "mb-1.5",
-		},
-		{
-			variant: "box",
-			size: "lg",
-			class: "mb-2",
 		},
 	],
 	defaultVariants: {
@@ -84,7 +77,7 @@ const accordionItemVariants = cva("overflow-hidden", {
 })
 
 const accordionTriggerVariants = cva(
-	"text-fg outline-hidden flex flex-1 cursor-pointer items-center justify-between text-left font-medium transition-all",
+	"text-fg outline-hidden flex flex-1 cursor-pointer items-center justify-between text-left font-medium transition-all data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50",
 	{
 		variants: {
 			variant: {
@@ -94,7 +87,6 @@ const accordionTriggerVariants = cva(
 			},
 			size: {
 				sm: "leading-5",
-				lg: "leading-6",
 			},
 			indicator: {
 				chevron: "[&[data-state=open]>.AccordionChevron]:rotate-180",
@@ -109,30 +101,14 @@ const accordionTriggerVariants = cva(
 				class: "px-0 py-3",
 			},
 			{
-				variant: "open",
-				size: "lg",
-				class: "px-0 py-4",
-			},
-			{
 				variant: ["box", "table"],
 				size: "sm",
 				class: "p-3",
 			},
 			{
-				variant: ["box", "table"],
-				size: "lg",
-				class: "p-4",
-			},
-			// Indicator sizing
-			{
 				indicator: ["chevron", "plus-minus"],
 				size: "sm",
 				class: "[&>.AccordionChevron]:size-5 [&>.AccordionPlus]:size-5",
-			},
-			{
-				indicator: ["chevron", "plus-minus"],
-				size: "lg",
-				class: "[&>.AccordionChevron]:size-6 [&>.AccordionPlus]:size-6",
 			},
 		],
 		defaultVariants: {
@@ -156,7 +132,6 @@ const accordionContentInnerVariants = cva("pt-0", {
 		},
 		size: {
 			sm: "",
-			lg: "",
 		},
 	},
 	compoundVariants: [
@@ -166,19 +141,9 @@ const accordionContentInnerVariants = cva("pt-0", {
 			class: "px-0 pb-3",
 		},
 		{
-			variant: "open",
-			size: "lg",
-			class: "px-0 pb-4",
-		},
-		{
 			variant: ["box", "table"],
 			size: "sm",
 			class: "px-3 pb-3",
-		},
-		{
-			variant: ["box", "table"],
-			size: "lg",
-			class: "px-4 pb-4",
 		},
 	],
 	defaultVariants: {
@@ -187,7 +152,6 @@ const accordionContentInnerVariants = cva("pt-0", {
 	},
 })
 
-// Defining the hook for the accordion
 function useAccordion() {
 	const context = React.useContext(AccordionContext)
 	if (!context) {
@@ -196,7 +160,6 @@ function useAccordion() {
 	return context
 }
 
-/* Define the components */
 function Accordion({
 	size = "sm",
 	variant = "box",
@@ -231,6 +194,9 @@ function AccordionItem({ children, className, ...props }: AccordionItemProps) {
 			data-slot="accordion-item"
 			className={classNames(
 				accordionItemVariants({ variant, size }),
+				// Dim the entire item when disabled, letting the trigger
+				// handle the cursor and interaction blocking via data-[disabled]
+				"data-[disabled]:opacity-50",
 				className
 			)}
 			{...props}>
@@ -238,7 +204,6 @@ function AccordionItem({ children, className, ...props }: AccordionItemProps) {
 		</AccordionPrimitive.Item>
 	)
 }
-
 AccordionItem.displayName = "AccordionItem"
 
 function AccordionTrigger({
@@ -274,7 +239,6 @@ function AccordionTrigger({
 		</AccordionPrimitive.Header>
 	)
 }
-
 AccordionTrigger.displayName = "AccordionTrigger"
 
 function AccordionContent({
@@ -299,8 +263,6 @@ function AccordionContent({
 		</AccordionPrimitive.Content>
 	)
 }
-
 AccordionContent.displayName = "AccordionContent"
 
-/* Export all components*/
 export { Accordion, AccordionContent, AccordionItem, AccordionTrigger }
