@@ -1,4 +1,10 @@
-import { IconSlot } from "@/registry/icon/icon-library"
+import {
+	ClipboardList,
+	FileText,
+	MessageCircleQuestion,
+	Settings,
+	Sun,
+} from "lucide-react"
 import {
 	Command,
 	CommandDivider,
@@ -18,12 +24,12 @@ export default function CommandPreview() {
 				<CommandEmpty>No results found</CommandEmpty>
 				<CommandGroup heading="Create">
 					<CommandItem>
-						<IconSlot slot="file-text" />
+						<FileText />
 						<span>Create document</span>
 						<CommandShortcut>⌘D</CommandShortcut>
 					</CommandItem>
 					<CommandItem>
-						<IconSlot slot="clipboard" />
+						<ClipboardList />
 						<span>Create task</span>
 						<CommandShortcut>⌘T</CommandShortcut>
 					</CommandItem>
@@ -31,17 +37,17 @@ export default function CommandPreview() {
 				<CommandDivider />
 				<CommandGroup title="Settings">
 					<CommandItem>
-						<IconSlot slot="setting" />
+						<Settings />
 						<span>Open settings</span>
 						<CommandShortcut>⌘S</CommandShortcut>
 					</CommandItem>
 					<CommandItem>
-						<IconSlot slot="file-question" />
+						<MessageCircleQuestion />
 						<span>Open help center</span>
 						<CommandShortcut>H</CommandShortcut>
 					</CommandItem>
 					<CommandItem>
-						<IconSlot slot="sun" />
+						<Sun />
 						<span>Change theme</span>
 					</CommandItem>
 				</CommandGroup>

@@ -1,6 +1,17 @@
 "use client"
 
-import { IconSlot } from "@/registry/icon/icon-library"
+import {
+	AlertCircleIcon,
+	FileArchiveIcon,
+	FileIcon,
+	FileSpreadsheetIcon,
+	FileTextIcon,
+	FileUpIcon,
+	HeadphonesIcon,
+	ImageIcon,
+	VideoIcon,
+	XIcon,
+} from "lucide-react"
 import { Button, IconButton } from "@/registry/ui/button"
 import { formatBytes, useFileUpload } from "@/registry/ui/file-upload"
 
@@ -15,28 +26,28 @@ const getFileIcon = (file: { file: File | { type: string; name: string } }) => {
 		fileName.endsWith(".doc") ||
 		fileName.endsWith(".docx")
 	) {
-		return <IconSlot slot="file-text" className="size-4 opacity-60" />
+		return <FileTextIcon className="size-4 opacity-60" />
 	} else if (
 		fileType.includes("zip") ||
 		fileType.includes("archive") ||
 		fileName.endsWith(".zip") ||
 		fileName.endsWith(".rar")
 	) {
-		return <IconSlot slot="file-archive" className="size-4 opacity-60" />
+		return <FileArchiveIcon className="size-4 opacity-60" />
 	} else if (
 		fileType.includes("excel") ||
 		fileName.endsWith(".xls") ||
 		fileName.endsWith(".xlsx")
 	) {
-		return <IconSlot slot="file-spreadsheet" className="size-4 opacity-60" />
+		return <FileSpreadsheetIcon className="size-4 opacity-60" />
 	} else if (fileType.includes("video/")) {
-		return <IconSlot slot="file-play" className="size-4 opacity-60" />
+		return <VideoIcon className="size-4 opacity-60" />
 	} else if (fileType.includes("audio/")) {
-		return <IconSlot slot="headphones" className="size-4 opacity-60" />
+		return <HeadphonesIcon className="size-4 opacity-60" />
 	} else if (fileType.startsWith("image/")) {
-		return <IconSlot slot="image" className="size-4 opacity-60" />
+		return <ImageIcon className="size-4 opacity-60" />
 	}
-	return <IconSlot slot="file-text" className="size-4 opacity-60" />
+	return <FileIcon className="size-4 opacity-60" />
 }
 
 export default function DocumentUpload() {
@@ -83,7 +94,7 @@ export default function DocumentUpload() {
 					<div
 						className="bg-bg mb-2 flex size-11 shrink-0 items-center justify-center rounded-full border"
 						aria-hidden="true">
-						<IconSlot slot="file-up" className="size-4 opacity-60" />
+						<FileUpIcon className="size-4 opacity-60" />
 					</div>
 					<p className="mb-1.5 text-sm font-medium">Upload files</p>
 					<p className="text-fg-secondary mb-2 text-xs">
@@ -103,7 +114,7 @@ export default function DocumentUpload() {
 				<div
 					className="text-error flex items-center gap-1 text-xs"
 					role="alert">
-					<IconSlot slot="alert" className="size-3 shrink-0" />
+					<AlertCircleIcon className="size-3 shrink-0" />
 					<span>{errors[0]}</span>
 				</div>
 			)}
@@ -140,7 +151,7 @@ export default function DocumentUpload() {
 								className="text-fg-secondary hover:text-fg-tertiary -me-2 size-8 hover:bg-transparent"
 								onClick={() => removeFile(file.id)}
 								aria-label="Remove file">
-								<IconSlot slot="cross" className="size-4" aria-hidden="true" />
+								<XIcon className="size-4" aria-hidden="true" />
 							</IconButton>
 						</div>
 					))}

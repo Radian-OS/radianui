@@ -1,4 +1,4 @@
-import { IconSlot } from "@/registry/icon/icon-library"
+import { Mail } from "lucide-react"
 import {
 	Input,
 	InputAddon,
@@ -22,7 +22,7 @@ const EmailPreview = () => {
 			<div className="flex w-full flex-col gap-1.5">
 				<Label>Email w/icon</Label>
 				<InputWrapper className="w-full">
-					<IconSlot slot="mail" />
+					<Mail />
 					<Input type="email" placeholder="info@radianos.com" />
 				</InputWrapper>
 			</div>
@@ -31,7 +31,7 @@ const EmailPreview = () => {
 				<Label>Email w/icon inside the input</Label>
 				<InputGroup className="w-full">
 					<InputAddon mode="icon">
-						<IconSlot slot="mail" />
+						<Mail />
 					</InputAddon>
 					<Input type="email" placeholder="info@radianos.com" />
 				</InputGroup>

@@ -1,5 +1,5 @@
 import React from "react"
-import { IconSlot } from "@/registry/icon/icon-library"
+import { Flame, X } from "lucide-react"
 import {
 	Banner,
 	BannerContent,
@@ -15,8 +15,7 @@ const BannerExample = () => {
 			<Banner className="w-full max-w-3xl">
 				<BannerIcon className="flex-shrink-0">
 					<span className="flex size-9 items-center justify-center rounded-full bg-white">
-						<IconSlot
-							slot="flame"
+						<Flame
 							className="fill-warning-hover text-warning-hover"
 							size={20}
 						/>
@@ -37,7 +36,7 @@ const BannerExample = () => {
 					<Button size="28" className="hidden sm:flex">
 						Buy Now
 					</Button>
-					<IconSlot slot="cross" className="size-4 cursor-pointer sm:size-5" />
+					<X className="size-4 cursor-pointer sm:size-5" />
 				</section>
 			</Banner>
 		</div>

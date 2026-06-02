@@ -1,5 +1,5 @@
 import React from "react"
-import { IconSlot } from "@/registry/icon/icon-library"
+import { ChevronDown } from "lucide-react"
 import { Button, ButtonGroup, IconButton } from "@/registry/ui/button"
 import {
 	Dropdown,
@@ -17,7 +17,7 @@ function ButtonSplitExample() {
 					<Button>Download File</Button>
 					<DropdownTrigger asChild>
 						<IconButton aria-label="Button With Dropdown">
-							<IconSlot slot="down" size={16} />
+							<ChevronDown />
 						</IconButton>
 					</DropdownTrigger>
 				</ButtonGroup>

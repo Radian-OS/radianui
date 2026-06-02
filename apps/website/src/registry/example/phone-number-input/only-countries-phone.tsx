@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useMemo, useState } from "react"
+import { Check, ChevronDown } from "lucide-react"
 import {
 	CountryIso2,
 	FlagImage,
@@ -9,7 +10,6 @@ import {
 	usePhoneInput,
 } from "react-international-phone"
 import { cn } from "@/lib/utils"
-import { IconSlot } from "@/registry/icon/icon-library"
 import { Button } from "@/registry/ui/button"
 import {
 	Command,
@@ -65,7 +65,7 @@ export default function InternationalPhone({
 							aria-expanded={open}
 							className="border-r-1 w-fit justify-between gap-2 rounded-r-none">
 							<FlagImage iso2={country.iso2} className="size-4" />
-							<IconSlot slot="down" className="size-4 opacity-50" />
+							<ChevronDown className="size-4 opacity-50" />
 						</Button>
 					</PopoverTrigger>
 					<PopoverContent className="w-full p-0 md:w-80" align="start">
@@ -91,8 +91,7 @@ export default function InternationalPhone({
 														+{parsed.dialCode}
 													</span>
 												</div>
-												<IconSlot
-													slot="check"
+												<Check
 													className={cn(
 														"ml-2",
 														country.iso2 === parsed.iso2

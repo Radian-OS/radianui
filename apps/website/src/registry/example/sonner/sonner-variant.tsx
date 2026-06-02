@@ -1,8 +1,8 @@
 "use client"
 
 import React from "react"
+import { Box, XIcon } from "lucide-react"
 import { toast } from "sonner"
-import { IconSlot } from "@/registry/icon/icon-library"
 import { Button } from "@/registry/ui/button"
 
 const ToastColor = () => {
@@ -14,7 +14,7 @@ const ToastColor = () => {
 				onClick={() =>
 					toast.custom((t) => (
 						<div className="bg-elevation-level1 border-border flex w-[416px] items-center justify-between gap-2 rounded-lg border px-3 py-2.5">
-							<IconSlot slot="box" size={20} className="text-primary" />
+							<Box size={20} className="text-primary" />
 							<div>
 								<p className="text-fg text-sm font-medium">Toast Title</p>
 								<p className="text-fg-secondary text-sm font-normal">
@@ -29,8 +29,7 @@ const ToastColor = () => {
 									Upgrade
 								</Button>
 							</div>
-							<IconSlot
-								slot="cross"
+							<XIcon
 								onClick={() => toast.dismiss(t)}
 								size={16}
 								className="text-fg-secondary cursor-pointer"
@@ -47,7 +46,7 @@ const ToastColor = () => {
 				onClick={() =>
 					toast.custom((t) => (
 						<div className="bg-primary text-primary-fg flex w-[416px] items-center justify-between gap-2 rounded-lg px-3 py-2.5">
-							<IconSlot slot="box" size={20} className="text-primary-fg" />
+							<Box size={20} className="text-primary-fg" />
 							<div className="text-primary-fg">
 								<p className="text-sm font-medium">Toast Title</p>
 								<p className="text-sm font-normal">
@@ -62,8 +61,7 @@ const ToastColor = () => {
 									Upgrade
 								</Button>
 							</div>
-							<IconSlot
-								slot="cross"
+							<XIcon
 								onClick={() => toast.dismiss(t)}
 								size={16}
 								className="text-primary-fg cursor-pointer"
@@ -80,7 +78,7 @@ const ToastColor = () => {
 				onClick={() =>
 					toast.custom((t) => (
 						<div className="bg-black-inverse text-fg-inverse flex w-[416px] items-center justify-between gap-2 rounded-lg px-3 py-2.5">
-							<IconSlot slot="box" size={20} className="text-primary" />
+							<Box size={20} className="text-primary" />
 							<div className="text-fg-inverse">
 								<p className="text-sm font-medium">Toast Title</p>
 								<p className="text-sm font-normal">
@@ -95,8 +93,7 @@ const ToastColor = () => {
 									Upgrade
 								</Button>
 							</div>
-							<IconSlot
-								slot="cross"
+							<XIcon
 								onClick={() => toast.dismiss(t)}
 								size={16}
 								className="cursor-pointer"

@@ -1,4 +1,4 @@
-import { IconSlot } from "@/registry/icon/icon-library"
+import { User } from "lucide-react"
 import { Button, IconButton } from "@/registry/ui/button"
 
 function LoadingButtonExample() {
@@ -8,7 +8,7 @@ function LoadingButtonExample() {
 				Sync Progress
 			</Button>
 			<IconButton aria-label="Loading Button" disabled loading>
-				<IconSlot slot="user" size={16} />
+				<User />
 			</IconButton>
 		</div>
 	)

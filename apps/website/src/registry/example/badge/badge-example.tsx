@@ -1,5 +1,5 @@
 import React from "react"
-import { IconSlot } from "@/registry/icon/icon-library"
+import { Bookmark, Plus, X } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
 import { Badge, BadgeDot } from "@/registry/ui/badge"
 
@@ -19,19 +19,19 @@ function BadgeExamplePreview() {
 			</Badge>
 			<Badge color="error" variant="strong">
 				Close
-				<IconSlot slot="cross" />
+				<X />
 			</Badge>
 			<Badge className="rounded-full" color="neutral" variant="outline">
 				44
 			</Badge>
 			<Badge className="rounded-full p-1" color="neutral" variant="outline">
-				<IconSlot slot="plus" />
+				<Plus />
 			</Badge>
 			<Badge className="rounded-full" color="primary" variant="strong">
 				24
 			</Badge>
 			<Badge color="primary">
-				<IconSlot slot="bookmark" />
+				<Bookmark />
 				Bookmark
 			</Badge>
 			<Badge

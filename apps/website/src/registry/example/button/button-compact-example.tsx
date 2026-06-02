@@ -1,5 +1,5 @@
 import React from "react"
-import { IconSlot } from "@/registry/icon/icon-library"
+import { ChevronDown, X } from "lucide-react"
 import { CompactButton } from "@/registry/ui/button"
 
 function CompactButtonExample() {
@@ -10,24 +10,24 @@ function CompactButtonExample() {
 				size="20"
 				variant="outline"
 				color="neutral">
-				<IconSlot slot="down" size={16} />
+				<ChevronDown />
 			</CompactButton>
 			<CompactButton
 				aria-label="Close Button"
 				size="20"
 				variant="soft"
 				color="neutral">
-				<IconSlot slot="cross" size={16} />
+				<X />
 			</CompactButton>
 			<CompactButton size="24" variant="outline" color="neutral">
-				<IconSlot slot="down" size={16} />
+				<ChevronDown />
 			</CompactButton>
 			<CompactButton
 				aria-label="Close Button"
 				size="24"
 				variant="soft"
 				color="neutral">
-				<IconSlot slot="cross" size={16} />
+				<X />
 			</CompactButton>
 		</div>
 	)

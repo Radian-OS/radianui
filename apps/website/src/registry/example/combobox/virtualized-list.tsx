@@ -2,8 +2,8 @@
 
 import * as React from "react"
 import { useVirtualizer } from "@tanstack/react-virtual"
+import { Check, ChevronsUpDown } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { IconSlot } from "@/registry/icon/icon-library"
 import { Button } from "@/registry/ui/button"
 import {
 	Command,
@@ -46,10 +46,7 @@ export default function VirtualizedList() {
 					{selectedOption
 						? `Item ${options.find((option) => option === selectedOption)}`
 						: "Select Item"}
-					<IconSlot
-						slot="chevrons-up-down"
-						className="ml-2 h-4 w-4 shrink-0 opacity-50"
-					/>
+					<ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
 				</Button>
 			</PopoverTrigger>
 			<PopoverContent className="w-(--radix-popper-anchor-width) p-0">
@@ -162,8 +159,7 @@ const VirtualizedCommand = ({
 								onMouseLeave={() => !isKeyboardNavActive && setFocusedIndex(-1)}
 								onSelect={onSelectOption}>
 								{filteredOptions[virtualOption.index].label}
-								<IconSlot
-									slot="check"
+								<Check
 									className={cn(
 										"ml-auto",
 										selectedOption ===

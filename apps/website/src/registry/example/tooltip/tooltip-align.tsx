@@ -1,5 +1,5 @@
 import React from "react"
-import { IconSlot } from "@/registry/icon/icon-library"
+import { AlignCenter, AlignLeft, AlignRight } from "lucide-react"
 import { Button } from "@/registry/ui/button"
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/registry/ui/tooltip"
 
@@ -9,7 +9,7 @@ export default function TooltipAlign() {
 			<Tooltip>
 				<TooltipTrigger asChild>
 					<Button color="neutral" variant="outline">
-						<IconSlot slot="text-align-left" />
+						<AlignLeft />
 						Start
 					</Button>
 				</TooltipTrigger>
@@ -20,7 +20,7 @@ export default function TooltipAlign() {
 			<Tooltip>
 				<TooltipTrigger asChild>
 					<Button color="neutral" variant="outline">
-						<IconSlot slot="text-align-center" />
+						<AlignCenter />
 						Center
 					</Button>
 				</TooltipTrigger>
@@ -31,7 +31,7 @@ export default function TooltipAlign() {
 			<Tooltip>
 				<TooltipTrigger asChild>
 					<Button color="neutral" variant="outline">
-						<IconSlot slot="text-align-right" />
+						<AlignRight />
 						End
 					</Button>
 				</TooltipTrigger>

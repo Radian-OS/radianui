@@ -1,7 +1,7 @@
 "use client"
 
 import React from "react"
-import { IconSlot } from "@/registry/icon/icon-library"
+import { Check, ChevronRight, Plus } from "lucide-react"
 import { Avatar, AvatarImage } from "@/registry/ui/avatar"
 import { Button } from "@/registry/ui/button"
 import {
@@ -34,9 +34,9 @@ export default function ComboboxEmailInvite() {
 		<Popover>
 			<PopoverTrigger asChild>
 				<Button variant="soft">
-					<IconSlot slot="plus" />
+					<Plus />
 					Invite to Channel
-					<IconSlot slot="right" />
+					<ChevronRight />
 				</Button>
 			</PopoverTrigger>
 			<PopoverContent align="start" className="p-0">
@@ -53,7 +53,7 @@ export default function ComboboxEmailInvite() {
 									</Avatar>
 									{d.email}
 									{selectedValues.includes(d.email) && (
-										<IconSlot slot="check" className="ml-auto" />
+										<Check className="ml-auto" />
 									)}
 								</CommandItem>
 							))}

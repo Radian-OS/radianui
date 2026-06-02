@@ -1,5 +1,5 @@
 import React, { SVGProps } from "react"
-import { IconSlot } from "@/registry/icon/icon-library"
+import { Heart } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
 import { Button, IconButton } from "@/registry/ui/button"
 import {
@@ -74,7 +74,7 @@ export default function HoverCardGroupQuickView() {
 						variant="outline"
 						color="neutral"
 						size={"36"}>
-						<IconSlot slot="heart" />
+						<Heart />
 					</IconButton>
 					<div className="flex items-center justify-center gap-2">
 						<Button variant={"outline"} color="neutral" size={"36"}>

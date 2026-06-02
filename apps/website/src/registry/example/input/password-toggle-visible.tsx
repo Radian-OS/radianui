@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useRef, useState } from "react"
-import { IconSlot } from "@/registry/icon/icon-library"
+import { EyeIcon, EyeOffIcon } from "lucide-react"
 import { Input, InputWrapper } from "@/registry/ui/input"
 import { Label } from "@/registry/ui/label"
 
@@ -15,19 +15,7 @@ export default function PasswordToggleVisible() {
 		setShowPassword(!showPassword)
 	}
 
-	const IconComponent = showPassword ? (
-		<IconSlot
-			slot="eyeoff"
-			className="hover:text-fg cursor-pointer"
-			onMouseDown={togglePasswordVisibility}
-		/>
-	) : (
-		<IconSlot
-			slot="eye"
-			className="hover:text-fg cursor-pointer"
-			onMouseDown={togglePasswordVisibility}
-		/>
-	)
+	const IconComponent = showPassword ? EyeOffIcon : EyeIcon
 
 	return (
 		<div className="flex flex-col gap-1.5">
@@ -40,7 +28,10 @@ export default function PasswordToggleVisible() {
 					className="peer"
 					type={showPassword ? "text" : "password"}
 				/>
-				{IconComponent}
+				<IconComponent
+					className="hover:text-fg peer-disabled:text-fg-disabled cursor-pointer peer-disabled:pointer-events-none"
+					onMouseDown={togglePasswordVisibility}
+				/>
 			</InputWrapper>
 		</div>
 	)

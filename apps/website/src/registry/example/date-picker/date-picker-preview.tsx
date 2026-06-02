@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { format } from "date-fns"
-import { IconSlot } from "@/registry/icon/icon-library"
+import { Calendar as CalendarIcon } from "lucide-react"
 import { Button } from "@/registry/ui/button"
 import { Calendar } from "@/registry/ui/calendar"
 import { Label } from "@/registry/ui/label"
@@ -31,10 +31,7 @@ export default function DatePickerDemo() {
 									Pick a date
 								</span>
 							)}
-							<IconSlot
-								slot="calendar"
-								className="text-fg-tertiary ml-auto size-4"
-							/>
+							<CalendarIcon className="text-fg-tertiary ml-auto size-4" />
 						</Button>
 					</div>
 				</PopoverTrigger>

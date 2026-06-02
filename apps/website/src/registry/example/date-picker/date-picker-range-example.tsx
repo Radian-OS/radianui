@@ -2,8 +2,8 @@
 
 import * as React from "react"
 import { addDays, format } from "date-fns"
+import { Calendar as CalendarIcon } from "lucide-react"
 import { DateRange } from "react-day-picker"
-import { IconSlot } from "@/registry/icon/icon-library"
 import { Button } from "@/registry/ui/button"
 import { Calendar } from "@/registry/ui/calendar"
 import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
@@ -60,10 +60,7 @@ export default function DatePickerPresetsExample() {
 							Pick a date range
 						</span>
 					)}
-					<IconSlot
-						slot="calendar"
-						className="text-fg-tertiary ml-auto size-4"
-					/>
+					<CalendarIcon className="text-fg-tertiary ml-auto size-4" />
 				</Button>
 			</PopoverTrigger>
 			<PopoverContent className="w-auto p-0">

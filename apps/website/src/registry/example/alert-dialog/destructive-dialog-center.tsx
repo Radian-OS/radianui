@@ -1,4 +1,4 @@
-import { IconSlot } from "@/registry/icon/icon-library"
+import { Trash2 } from "lucide-react"
 import {
 	AlertDialog,
 	AlertDialogAction,
@@ -17,14 +17,14 @@ export default function DestructiveDialogCenter() {
 		<AlertDialog>
 			<AlertDialogTrigger asChild>
 				<Button color="error">
-					<IconSlot slot="trash" />
+					<Trash2 />
 					Delete Record
 				</Button>
 			</AlertDialogTrigger>
 			<AlertDialogContent className="max-w-100 gap-8 pt-8">
 				<div className="flex flex-col items-center gap-3">
 					<span className="bg-error-accent border-soft-alpha flex size-10 items-center justify-center rounded-lg border">
-						<IconSlot slot="trash" className="text-error size-6" />
+						<Trash2 className="text-error size-6" />
 					</span>
 					<AlertDialogHeader className="sm:text-center">
 						<AlertDialogTitle>Delete Account</AlertDialogTitle>

@@ -1,5 +1,5 @@
 import React from "react"
-import { IconSlot } from "@/registry/icon/icon-library"
+import { Archive, CheckCircle, Loader2 } from "lucide-react"
 import { Badge } from "@/registry/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
@@ -7,20 +7,20 @@ const data = [
 	{
 		id: 1,
 		trigger: "Completed",
-		icon: <IconSlot slot="circle-check" />,
+		icon: <CheckCircle />,
 		content: "You have no completed tasks.",
 	},
 	{
 		id: 2,
 		trigger: "In Progress",
-		icon: <IconSlot slot="loader" />,
-		count: 6,
-		content: "You have 6 tasks in progress.",
+		icon: <Loader2 />,
+		count: 4,
+		content: "You have 4 tasks in progress.",
 	},
 	{
 		id: 3,
 		trigger: "Archived",
-		icon: <IconSlot slot="archive" />,
+		icon: <Archive />,
 		content: "You have no archived items.",
 	},
 ]
