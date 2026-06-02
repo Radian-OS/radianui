@@ -49,6 +49,7 @@ const humanizeName = (name: string) =>
 const BLOCK_PREVIEWS = [
 	"preview-02",
 	"preview-03",
+	"preview-04",
 	"signin",
 	"signup",
 	"new-password",

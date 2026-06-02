@@ -496,7 +496,7 @@
 
 	/* Variant base styles */
 	.cn-banner-variant-strong {
-		@apply [&_[data-slot=banner-close]]:text-white;
+		@apply [&_[data-slot=banner-close]]:text-primary-fg;
 	}
 
 	.cn-banner-variant-soft {
@@ -537,7 +537,7 @@
 		@apply bg-black-inverse text-white-inverse;
 	}
 	.cn-banner-strong-primary {
-		@apply bg-primary text-white;
+		@apply bg-primary text-primary-fg;
 	}
 	.cn-banner-strong-info {
 		@apply bg-info text-white;
