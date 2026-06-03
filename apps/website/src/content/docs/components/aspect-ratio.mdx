@@ -53,3 +53,39 @@ import { AspectRatio } from "@/components/ui/aspect-ratio"
 	<Image src="/media/background-2.png" alt="Example" fill />
 </AspectRatio>
 ```
+
+---
+
+## Examples
+
+### 1:1 Ratio
+
+<ComponentPreview path="aspect-ratio/aspect-ratio-1-1" />
+
+### 4:3 Ratio
+
+<ComponentPreview path="aspect-ratio/aspect-ratio-4-3" />
+
+## Props
+
+<PropsTableWrapper>
+	<PropsTable
+		title="Aspect Ratio"
+		data={[
+			{
+				name: "ratio",
+				defaultValue: "-",
+				values: ["number"],
+				required: true,
+				description: "The desired ratio",
+			},
+			{
+				name: "className",
+				defaultValue: "-",
+				values: ["string"],
+				required: false,
+				description: "Customize with extra class",
+			},
+		]}
+	/>
+</PropsTableWrapper>

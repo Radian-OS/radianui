@@ -131,7 +131,11 @@ function DialogBody({
 	...props
 }: React.HTMLAttributes<HTMLDivElement>) {
 	return (
-		<div data-slot="dialog-body" className={cn("p-5", className)} {...props} />
+		<div
+			data-slot="dialog-body"
+			className={cn("border-soft border-t p-5", className)}
+			{...props}
+		/>
 	)
 }
 DialogBody.displayName = "DialogBody"
@@ -140,7 +144,10 @@ function DialogFooter({ className, ...props }: DialogFooterProps) {
 	return (
 		<div
 			data-slot="dialog-footer"
-			className={cn("flex justify-end gap-2 p-5", className)}
+			className={cn(
+				"border-soft flex justify-end gap-2 border-t p-5",
+				className
+			)}
 			{...props}
 		/>
 	)
@@ -151,7 +158,7 @@ function DialogTitle({ className, ...props }: DialogTitleProps) {
 	return (
 		<DialogPrimitive.Title
 			data-slot="dialog-title"
-			className={cn("text-lg font-semibold", className)}
+			className={cn("text-base font-medium", className)}
 			{...props}
 		/>
 	)

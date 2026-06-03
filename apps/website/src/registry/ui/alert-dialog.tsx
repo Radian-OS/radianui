@@ -126,7 +126,7 @@ function AlertDialogFooter({ className, ...props }: AlertDialogFooterProps) {
 		<div
 			data-slot="alert-dialog-footer"
 			className={cn(
-				"flex flex-col-reverse gap-2 p-5 sm:flex-row sm:justify-end",
+				"border-soft flex flex-col-reverse gap-2 border-t p-5 sm:flex-row sm:justify-end",
 				className
 			)}
 			{...props}
@@ -139,7 +139,7 @@ function AlertDialogTitle({ className, ...props }: AlertDialogTitleProps) {
 	return (
 		<AlertDialogPrimitive.Title
 			data-slot="alert-dialog-title"
-			className={cn("text-lg font-semibold", className)}
+			className={cn("text-base font-medium", className)}
 			{...props}
 		/>
 	)
