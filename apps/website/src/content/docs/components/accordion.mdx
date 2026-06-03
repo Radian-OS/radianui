@@ -76,9 +76,9 @@ import {
 
 <ComponentPreview path="accordion/accordion-table" />
 
-### Small Size
+### Disabled Variant
 
-<ComponentPreview path="accordion/accordion-small" />
+<ComponentPreview path="accordion/accordion-disable" />
 
 ### Plus/Minus Indicator
 
@@ -96,6 +96,18 @@ import {
 
 <ComponentPreview path="accordion/accordion-with-chevron-left" />
 
+### Custom Accordion - w/Avatar
+
+<ComponentPreview path="accordion/accordion-with-avatar" />
+
+### Custom Accordion - w/Dotted line
+
+<ComponentPreview path="accordion/accordion-with-dotted-line" />
+
+### Custom Accordion - w/Sub Header
+
+<ComponentPreview path="accordion/accordion-with-sub-header-chevron" />
+
 ## Props
 
 <PropsTableWrapper>
@@ -103,18 +115,18 @@ import {
 	title="Accordion"
 	data={[
 		{
-			name: "size",
-			defaultValue: "sm",
-			values: ["sm", "lg"],
-			required: false,
-			description: "Controls the overall size of the accordion",
-		},
-		{
 			name: "variant",
 			defaultValue: "box",
 			values: ["box", "table", "open"],
 			required: false,
 			description: "Defines the visual style of the accordion",
+		},
+		{
+			name: "disabled",
+			defaultValue: "false",
+			values: ["boolean"],
+			required: false,
+			description: "Applies disabled styling of the accordion",
 		},
 		{
 			name: "indicator",

@@ -6,6 +6,9 @@ const registry: Record<
 	string,
 	React.LazyExoticComponent<React.ComponentType>
 > = {
+	"accordion-disable": React.lazy(
+		() => import("@/registry/example/accordion/accordion-disable")
+	),
 	"accordion-indicator": React.lazy(
 		() => import("@/registry/example/accordion/accordion-indicator")
 	),
@@ -18,17 +21,24 @@ const registry: Record<
 	"accordion-preview": React.lazy(
 		() => import("@/registry/example/accordion/accordion-preview")
 	),
-	"accordion-small": React.lazy(
-		() => import("@/registry/example/accordion/accordion-small")
-	),
 	"accordion-table": React.lazy(
 		() => import("@/registry/example/accordion/accordion-table")
+	),
+	"accordion-with-avatar": React.lazy(
+		() => import("@/registry/example/accordion/accordion-with-avatar")
 	),
 	"accordion-with-chevron-left": React.lazy(
 		() => import("@/registry/example/accordion/accordion-with-chevron-left")
 	),
+	"accordion-with-dotted-line": React.lazy(
+		() => import("@/registry/example/accordion/accordion-with-dotted-line")
+	),
 	"accordion-with-icon": React.lazy(
 		() => import("@/registry/example/accordion/accordion-with-icon")
+	),
+	"accordion-with-sub-header-chevron": React.lazy(
+		() =>
+			import("@/registry/example/accordion/accordion-with-sub-header-chevron")
 	),
 	"alert-close-example-preview": React.lazy(
 		() => import("@/registry/example/alert/alert-close-example-preview")
