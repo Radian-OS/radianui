@@ -60,7 +60,7 @@ const avatarVariants = cva(
 			{ size: "32", rounded: "square", class: "rounded-md" },
 			{ size: "36", rounded: "square", class: "rounded-lg" },
 			{ size: "40", rounded: "square", class: "rounded-lg" },
-			{ size: "48", rounded: "square", class: "rounded-[10px]" },
+			{ size: "48", rounded: "square", class: "rounded-lg" },
 			{ size: "64", rounded: "square", class: "rounded-xl" },
 			{ size: "80", rounded: "square", class: "rounded-2xl" },
 		],
