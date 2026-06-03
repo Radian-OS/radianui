@@ -56,6 +56,7 @@ export default function AccordionDottedLine() {
 			variant="open"
 			indicator="plus-minus"
 			className="w-full lg:w-[75%]"
+			defaultValue="2"
 			collapsible>
 			{contents.map((item) => (
 				<AccordionItem
