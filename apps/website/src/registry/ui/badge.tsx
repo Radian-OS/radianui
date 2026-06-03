@@ -11,7 +11,7 @@ export type BadgeProps = Omit<React.HTMLAttributes<HTMLDivElement>, "color"> &
 export type BadgeDotProps = React.HTMLAttributes<HTMLSpanElement>
 
 const badgeVariants = cva(
-	"inline-flex items-center font-medium w-fit whitespace-nowrap transition duration-200 gap-1",
+	"inline-flex items-center font-medium w-fit whitespace-nowrap transition duration-200 gap-0.5",
 	{
 		variants: {
 			variant: {
@@ -20,9 +20,9 @@ const badgeVariants = cva(
 				soft: "",
 			},
 			size: {
-				"20": "h-5 px-1.5 text-xs rounded-md [&_svg]:size-3.5",
-				"24": "h-6 px-2 text-[13px] rounded-md [&_svg]:size-3.5",
-				"28": "h-7 px-2 text-sm rounded-md [&_svg]:size-4",
+				"20": "h-5 px-1 text-xs rounded-md [&_svg]:size-3",
+				"24": "h-6 px-1.5 text-[13px] rounded-md [&_svg]:size-3.5",
+				"28": "h-7 px-1.5 text-sm rounded-md [&_svg]:size-4",
 			},
 			color: {
 				primary: "",
@@ -34,16 +34,17 @@ const badgeVariants = cva(
 			},
 		},
 		defaultVariants: {
-			variant: "soft",
+			variant: "outline",
 			size: "24",
-			color: "primary",
+			color: "neutral",
 		},
 		compoundVariants: [
 			// strong
 			{
 				variant: "strong",
 				color: "primary",
-				className: "bg-primary text-white font-semibold border border-alpha",
+				className:
+					"bg-primary text-primary-fg font-semibold border border-alpha",
 			},
 			{
 				variant: "strong",
@@ -150,12 +151,16 @@ function Badge({
 	children,
 	...props
 }: BadgeProps) {
+	const wrappedChildren = React.Children.map(children, (child) =>
+		typeof child === "string" ? <span className="px-0.5">{child}</span> : child
+	)
+
 	if (asChild) {
 		return (
 			<Slot
 				className={cn(badgeVariants({ variant, size, color }), className)}
 				{...props}>
-				{children}
+				{wrappedChildren}
 			</Slot>
 		)
 	}
@@ -164,7 +169,7 @@ function Badge({
 		<span
 			className={cn(badgeVariants({ variant, size, color }), className)}
 			{...props}>
-			{children}
+			{wrappedChildren}
 		</span>
 	)
 }
@@ -173,14 +178,13 @@ Badge.displayName = "Badge"
 
 function BadgeDot({ className, ...props }: BadgeDotProps) {
 	return (
-		<span
-			data-slot="badge-dot"
-			className={cn(
-				"size-1.5 shrink-0 rounded-full bg-[currentColor]",
-				className
-			)}
-			{...props}
-		/>
+		<span className="p-0.75 flex shrink-0">
+			<span
+				data-slot="badge-dot"
+				className={cn("bg-fg size-1.5 shrink-0 rounded-full", className)}
+				{...props}
+			/>
+		</span>
 	)
 }
 export { Badge, BadgeDot, badgeVariants }
