@@ -6,6 +6,9 @@ const registry: Record<
 	string,
 	React.LazyExoticComponent<React.ComponentType>
 > = {
+	"accordion-box": React.lazy(
+		() => import("@/registry/example/accordion/accordion-box")
+	),
 	"accordion-disable": React.lazy(
 		() => import("@/registry/example/accordion/accordion-disable")
 	),
