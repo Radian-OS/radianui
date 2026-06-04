@@ -37,7 +37,7 @@ function useAvatarContext() {
 // ─── Size helpers ─────────────────────────────────────────────────────────────
 
 function getFontSize(size: number): number {
-	return Math.round(Math.max(10, size * 0.32))
+	return Math.round(Math.max(size * 0.32))
 }
 
 function getSquareRadius(size: number): number {
@@ -46,7 +46,7 @@ function getSquareRadius(size: number): number {
 
 function getStatusGeometry(size: number, rounded: AvatarRounded) {
 	const dotSize = Math.round(size * 0.12)
-	const borderWidth = Math.max(1, Math.round(size * 0.05))
+	const borderWidth = Math.max(Math.round(size * 0.05))
 
 	// For circle: dot sits on the edge of the circle at 45°.
 	// The centre of the dot lands at radius * (1 - cos45°) from the corner,
