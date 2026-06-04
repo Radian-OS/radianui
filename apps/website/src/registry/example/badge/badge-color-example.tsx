@@ -26,7 +26,9 @@ const BadgeColorExample = () => {
 		{ name: "Fuchsia", value: "fuchsia" },
 		{ name: "Magenta", value: "magenta" },
 		{ name: "Rose", value: "rose" },
-	]
+	] as const
+
+	type ColorValue = (typeof colors)[number]["value"]
 
 	return (
 		<div className="space-y-6">
@@ -35,13 +37,13 @@ const BadgeColorExample = () => {
 					<div key={color.value} className="flex flex-col gap-2">
 						<p className="text-fg text-sm font-semibold">{color.name}</p>
 						<div className="flex flex-wrap gap-2">
-							<Badge color={color.value as any} variant="strong">
+							<Badge color={color.value as ColorValue} variant="strong">
 								Strong
 							</Badge>
-							<Badge color={color.value as any} variant="outline">
+							<Badge color={color.value as ColorValue} variant="outline">
 								Outline
 							</Badge>
-							<Badge color={color.value as any} variant="soft">
+							<Badge color={color.value as ColorValue} variant="soft">
 								Soft
 							</Badge>
 						</div>
