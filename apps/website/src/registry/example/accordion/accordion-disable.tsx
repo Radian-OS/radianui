@@ -33,15 +33,18 @@ const contents = [
 	},
 ]
 
-export default function AccordionLarge() {
+export default function AccordionDisable() {
 	return (
 		<Accordion
 			type="single"
-			size={"lg"}
+			variant="table"
 			className="w-full lg:w-[75%]"
 			collapsible>
 			{contents.map((item) => (
-				<AccordionItem value={item.id.toString()} key={item.id}>
+				<AccordionItem
+					disabled={item.id === 2}
+					value={item.id.toString()}
+					key={item.id}>
 					<AccordionTrigger>{item.trigger}</AccordionTrigger>
 					<AccordionContent>{item.content}</AccordionContent>
 				</AccordionItem>

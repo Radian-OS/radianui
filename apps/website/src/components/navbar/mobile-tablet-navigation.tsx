@@ -99,7 +99,7 @@ export function MobileNavigation({
 					))}
 				</ul>
 
-				<Accordion type="single" size="sm" variant="open" collapsible>
+				<Accordion type="single" variant="open" collapsible>
 					{navigationItems
 						.filter((item) => item.title !== "Blocks")
 						.map((section) => (

@@ -21,7 +21,6 @@ export default function CollapsibleForm() {
 			<Accordion
 				type="single"
 				variant={"table"}
-				size={"lg"}
 				collapsible
 				defaultValue="billing">
 				<AccordionItem value="shipping">

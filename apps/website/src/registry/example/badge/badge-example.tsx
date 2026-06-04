@@ -14,7 +14,7 @@ function BadgeExamplePreview() {
 				New
 			</Badge>
 			<Badge color="neutral" variant="outline" size="24">
-				<BadgeDot className="bg-fg-disabled" />
+				<BadgeDot />
 				Neutral
 			</Badge>
 			<Badge color="error" variant="strong">

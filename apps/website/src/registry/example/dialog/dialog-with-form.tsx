@@ -2,6 +2,7 @@ import Image from "next/image"
 import { Button } from "@/registry/ui/button"
 import {
 	Dialog,
+	DialogBody,
 	DialogClose,
 	DialogContent,
 	DialogDescription,
@@ -45,24 +46,26 @@ export default function DialogWithForm() {
 						your tickets
 					</DialogDescription>
 				</DialogHeader>
-				<div className="flex flex-col gap-4">
-					<div className="flex flex-col gap-2">
-						<Label htmlFor="name">Account Name</Label>
-						<Input type="text" id="name" placeholder="e.g John Smith" />
+				<DialogBody>
+					<div className="flex flex-col gap-4">
+						<div className="flex flex-col gap-2">
+							<Label htmlFor="name">Account Name</Label>
+							<Input type="text" id="name" placeholder="e.g John Smith" />
+						</div>
+						<div className="flex flex-col gap-2">
+							<Label htmlFor="key">API Key</Label>
+							<Input type="text" id="key" placeholder="e.g 1231-2345FGH56-A" />
+						</div>
+						<div className="flex flex-col gap-2">
+							<Label htmlFor="url">Workspace URL</Label>
+							<Input
+								type="text"
+								id="url"
+								placeholder="e.g https://example@workspace.com"
+							/>
+						</div>
 					</div>
-					<div className="flex flex-col gap-2">
-						<Label htmlFor="key">API Key</Label>
-						<Input type="text" id="key" placeholder="e.g 1231-2345FGH56-A" />
-					</div>
-					<div className="flex flex-col gap-2">
-						<Label htmlFor="url">Workspace URL</Label>
-						<Input
-							type="text"
-							id="url"
-							placeholder="e.g https://example@workspace.com"
-						/>
-					</div>
-				</div>
+				</DialogBody>
 				<DialogFooter className="justify-start">
 					<DialogClose asChild>
 						<Button variant="outline" color="neutral" className="w-1/2">

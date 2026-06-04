@@ -33,11 +33,11 @@ const contents = [
 	},
 ]
 
-export default function AccordionSmall() {
+export default function AccordionOpen() {
 	return (
 		<Accordion
 			type="single"
-			size={"sm"}
+			variant="box"
 			className="w-full lg:w-[75%]"
 			collapsible>
 			{contents.map((item) => (

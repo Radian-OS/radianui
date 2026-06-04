@@ -95,6 +95,7 @@ const COMPONENTS_DATA = [
 	"Slider",
 	"Sonner",
 	"Spinner",
+	"Stepper",
 	"Switch",
 	"Table",
 	"Tabs",

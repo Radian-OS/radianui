@@ -63,12 +63,7 @@ export const CONTENT: FAQItem[] = [
 
 export default function FAQAccordion() {
 	return (
-		<Accordion
-			size="lg"
-			type="single"
-			className="w-full"
-			collapsible
-			variant="open">
+		<Accordion type="single" className="w-full" collapsible variant="open">
 			{CONTENT.map(({ title, content, icon: Icon }) => (
 				<AccordionItem key={title} value={title}>
 					<AccordionTrigger className="gap-2">

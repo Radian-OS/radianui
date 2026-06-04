@@ -6,11 +6,14 @@ const registry: Record<
 	string,
 	React.LazyExoticComponent<React.ComponentType>
 > = {
+	"accordion-box": React.lazy(
+		() => import("@/registry/example/accordion/accordion-box")
+	),
+	"accordion-disable": React.lazy(
+		() => import("@/registry/example/accordion/accordion-disable")
+	),
 	"accordion-indicator": React.lazy(
 		() => import("@/registry/example/accordion/accordion-indicator")
-	),
-	"accordion-large": React.lazy(
-		() => import("@/registry/example/accordion/accordion-large")
 	),
 	"accordion-nested": React.lazy(
 		() => import("@/registry/example/accordion/accordion-nested")
@@ -21,20 +24,24 @@ const registry: Record<
 	"accordion-preview": React.lazy(
 		() => import("@/registry/example/accordion/accordion-preview")
 	),
-	"accordion-small": React.lazy(
-		() => import("@/registry/example/accordion/accordion-small")
-	),
 	"accordion-table": React.lazy(
 		() => import("@/registry/example/accordion/accordion-table")
+	),
+	"accordion-with-avatar": React.lazy(
+		() => import("@/registry/example/accordion/accordion-with-avatar")
 	),
 	"accordion-with-chevron-left": React.lazy(
 		() => import("@/registry/example/accordion/accordion-with-chevron-left")
 	),
+	"accordion-with-dotted-line": React.lazy(
+		() => import("@/registry/example/accordion/accordion-with-dotted-line")
+	),
 	"accordion-with-icon": React.lazy(
 		() => import("@/registry/example/accordion/accordion-with-icon")
 	),
-	"accordion-with-sub-header": React.lazy(
-		() => import("@/registry/example/accordion/accordion-with-sub-header")
+	"accordion-with-sub-header-chevron": React.lazy(
+		() =>
+			import("@/registry/example/accordion/accordion-with-sub-header-chevron")
 	),
 	"alert-close-example-preview": React.lazy(
 		() => import("@/registry/example/alert/alert-close-example-preview")
@@ -147,6 +154,9 @@ const registry: Record<
 	"badge-icon-example": React.lazy(
 		() => import("@/registry/example/badge/badge-icon-example")
 	),
+	"badge-interactive-example": React.lazy(
+		() => import("@/registry/example/badge/badge-interactive-example")
+	),
 	"badge-nested-example": React.lazy(
 		() => import("@/registry/example/badge/badge-nested-example")
 	),
@@ -158,6 +168,12 @@ const registry: Record<
 	),
 	"badge-variants-example": React.lazy(
 		() => import("@/registry/example/badge/badge-variants-example")
+	),
+	"badge-with-emoji": React.lazy(
+		() => import("@/registry/example/badge/badge-with-emoji")
+	),
+	"badge-with-flag": React.lazy(
+		() => import("@/registry/example/badge/badge-with-flag")
 	),
 	"banner-black-friday-example": React.lazy(
 		() => import("@/registry/example/banner/banner-black-friday-example")
@@ -873,6 +889,21 @@ const registry: Record<
 	),
 	"spinner-sizes": React.lazy(
 		() => import("@/registry/example/spinner/spinner-sizes")
+	),
+	"stepper-controlled": React.lazy(
+		() => import("@/registry/example/stepper/stepper-controlled")
+	),
+	"stepper-indicators": React.lazy(
+		() => import("@/registry/example/stepper/stepper-indicators")
+	),
+	"stepper-preview": React.lazy(
+		() => import("@/registry/example/stepper/stepper-preview")
+	),
+	"stepper-state": React.lazy(
+		() => import("@/registry/example/stepper/stepper-state")
+	),
+	"stepper-vertical": React.lazy(
+		() => import("@/registry/example/stepper/stepper-vertical")
 	),
 	"icon-inside-switch": React.lazy(
 		() => import("@/registry/example/switch/icon-inside-switch")

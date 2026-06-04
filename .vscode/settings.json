@@ -50,5 +50,8 @@
   ],
   "[xml]": {
     "editor.defaultFormatter": "redhat.vscode-xml"
+  },
+  "[tailwindcss]": {
+    "editor.defaultFormatter": "numso.prettier-standard-vscode"
   }
 }

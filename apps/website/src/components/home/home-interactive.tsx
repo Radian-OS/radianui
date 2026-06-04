@@ -128,7 +128,7 @@ const HomeInteractive = () => {
 								className="text-fg-secondary text-sm">
 								More Blocks
 							</Link>
-							<Badge variant="soft" size="20">
+							<Badge color="primary" variant="soft" size="20">
 								Coming Soon
 							</Badge>
 						</div>
