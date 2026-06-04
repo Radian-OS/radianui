@@ -154,6 +154,9 @@ const registry: Record<
 	"badge-icon-example": React.lazy(
 		() => import("@/registry/example/badge/badge-icon-example")
 	),
+	"badge-interactive-example": React.lazy(
+		() => import("@/registry/example/badge/badge-interactive-example")
+	),
 	"badge-nested-example": React.lazy(
 		() => import("@/registry/example/badge/badge-nested-example")
 	),
