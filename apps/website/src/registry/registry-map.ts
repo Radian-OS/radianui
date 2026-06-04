@@ -166,6 +166,12 @@ const registry: Record<
 	"badge-variants-example": React.lazy(
 		() => import("@/registry/example/badge/badge-variants-example")
 	),
+	"badge-with-emoji": React.lazy(
+		() => import("@/registry/example/badge/badge-with-emoji")
+	),
+	"badge-with-flag": React.lazy(
+		() => import("@/registry/example/badge/badge-with-flag")
+	),
 	"banner-black-friday-example": React.lazy(
 		() => import("@/registry/example/banner/banner-black-friday-example")
 	),

@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "./website.css";
+@import "./utility.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -185,7 +186,7 @@
 
 	/* background fill alpha */
 
-		--color-fill1-alpha: color-mix(
+	--color-fill1-alpha: color-mix(
 		in srgb,
 		oklch(0.86 0.029 264.41 ),
 		transparent 90%
