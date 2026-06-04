@@ -6,11 +6,22 @@ import { Button, IconButton } from "@/registry/ui/button"
 import { Input } from "@/registry/ui/input"
 import { Slider, SliderThumb } from "@/registry/ui/slider"
 import { Avatar, AvatarFallback, AvatarImage, AvatarStatus } from "./avatar"
+import {
+	Avatar as A,
+	AvatarFallback as AF,
+	AvatarImage as AI,
+	AvatarStatus as AS,
+} from "./avatara"
 
 const SAMPLES = [
 	{ id: "img", src: "https://i.pravatar.cc/150?img=67", fallback: "YB" },
-	{ id: "yb", src: undefined, fallback: "YB" },
-	{ id: "sr", src: undefined, fallback: "SR" },
+
+	{ id: "mk", src: undefined, fallback: "MK" },
+]
+
+const SAMPLES1 = [
+	{ id: "img", src: "https://i.pravatar.cc/150?img=67", fallback: "YB" },
+
 	{ id: "mk", src: undefined, fallback: "MK" },
 ]
 
@@ -32,8 +43,11 @@ function getFontSize(size: number): number {
 function getSquareRadius(size: number): number {
 	return Math.round(size * 0.17)
 }
-function getDotSize(size: number): number {
-	return Math.round(size * 0.12)
+function getDot2Size(size: number): number {
+	return Math.round(size * 0.2)
+}
+function getDot16Size(size: number): number {
+	return Math.round(size * 0.16)
 }
 function getBorderWidth(size: number): number {
 	return Math.max(1, Math.round(size * 0.05))
@@ -46,10 +60,17 @@ type ScalingRow = {
 	value: (size: number) => number
 }
 
-const SCALING_ROWS: ScalingRow[] = [
+const SCALING_ROWS16: ScalingRow[] = [
 	{ label: "fontSize", ratio: 0.32, unit: "px", value: getFontSize },
 	{ label: "borderRadius", ratio: 0.17, unit: "px", value: getSquareRadius },
-	{ label: "dotSize", ratio: 0.12, unit: "px", value: getDotSize },
+	{ label: "dotSize", ratio: 0.16, unit: "px", value: getDot16Size },
+	{ label: "borderWidth", ratio: 0.05, unit: "px", value: getBorderWidth },
+]
+
+const SCALING_ROWS2: ScalingRow[] = [
+	{ label: "fontSize", ratio: 0.32, unit: "px", value: getFontSize },
+	{ label: "borderRadius", ratio: 0.17, unit: "px", value: getSquareRadius },
+	{ label: "dotSize", ratio: 0.2, unit: "px", value: getDot2Size },
 	{ label: "borderWidth", ratio: 0.05, unit: "px", value: getBorderWidth },
 ]
 
@@ -80,7 +101,7 @@ export default function AvatarPlayground() {
 
 	return (
 		<div className="bg-background min-h-screen p-8">
-			<div className="mx-auto max-w-2xl space-y-6">
+			<div className="mx-auto max-w-full space-y-6">
 				{/* Controls */}
 				<div className="border-border bg-card space-y-5 rounded-xl border p-6">
 					<div className="space-y-2">
@@ -122,7 +143,7 @@ export default function AvatarPlayground() {
 					</div>
 
 					<div className="space-y-2">
-						<span className="text-muted-foreground text-sm">Rounded</span>
+						<span className="text-fg text-sm">Rounded</span>
 						<div className="flex gap-2">
 							{ROUNDED_OPTIONS.map((opt) => (
 								<Button
@@ -159,47 +180,105 @@ export default function AvatarPlayground() {
 				</div>
 
 				{/* Preview */}
-				<div className="border-border bg-card rounded-xl border p-6">
-					<p className="text-muted-foreground mb-4 text-sm">Preview</p>
-					<div className="flex flex-wrap items-end gap-6">
-						{SAMPLES.map((s) => (
-							<div key={s.id} className="flex flex-col items-center gap-2">
-								<Avatar size={size} rounded={rounded}>
-									{s.src && <AvatarImage src={s.src} />}
-									<AvatarFallback>{s.fallback}</AvatarFallback>
-									{status !== "none" && <AvatarStatus variant={status} />}
-								</Avatar>
-								<span className="text-muted-foreground text-xs">
-									{s.src ? "image" : s.fallback}
-								</span>
+				<div className="bg-card flex gap-2">
+					<div className="border-border bg-card flex rounded-xl border">
+						<div className="border-border border-r p-6">
+							<p className="text-muted-foreground mb-4 text-sm">
+								{" "}
+								Preview (Dot size: {(size * 0.16).toFixed(2)}px)
+							</p>
+							<div className="flex flex-wrap items-end gap-6">
+								{SAMPLES.map((s) => (
+									<div key={s.id} className="flex flex-col items-center gap-2">
+										<Avatar size={size} rounded={rounded}>
+											{s.src && <AvatarImage src={s.src} />}
+											<AvatarFallback>{s.fallback}</AvatarFallback>
+											{status !== "none" && <AvatarStatus variant={status} />}
+										</Avatar>
+										<span className="text-muted-foreground text-xs">
+											{s.src ? "image" : s.fallback}
+										</span>
+									</div>
+								))}
 							</div>
-						))}
-					</div>
-				</div>
+						</div>
+						{/* Computed values */}
 
-				{/* Computed values */}
-				<div className="border-border bg-card space-y-3 rounded-xl border p-6">
-					<p className="text-muted-foreground text-sm">Computed values</p>
-					<div className="bg-muted space-y-2 rounded-lg p-4 font-mono text-sm">
-						{SCALING_ROWS.map((row) => {
-							const raw = size * row.ratio
-							const result = row.value(size)
-							return (
-								<div
-									key={row.label}
-									className="flex flex-wrap items-baseline gap-1.5">
-									<span className="text-fg">{row.label}</span>
-									<span className="text-fg">
-										= {size} × {row.ratio} = {raw.toFixed(2)}
-									</span>
-									<span className="text-fg-secondary">→</span>
-									<span className="text-fg font-medium">
-										rounds to {result}
-										{row.unit}
-									</span>
-								</div>
-							)
-						})}
+						<div className="p-6">
+							<p className="text-muted-foreground text-sm">
+								Computed values(Dot size 0.16px)
+							</p>
+							<div className="bg-muted space-y-2 rounded-lg p-4 font-mono text-sm">
+								{SCALING_ROWS16.map((row) => {
+									const raw = size * row.ratio
+									const result = row.value(size)
+									return (
+										<div
+											key={row.label}
+											className="flex flex-wrap items-baseline gap-1.5">
+											<span className="text-fg">{row.label}</span>
+											<span className="text-fg">
+												= {size} × {row.ratio} = {raw.toFixed(2)}
+											</span>
+											<span className="text-fg-secondary">→</span>
+											<span className="text-fg font-medium">
+												rounds to {result}
+												{row.unit}
+											</span>
+										</div>
+									)
+								})}
+							</div>
+						</div>
+					</div>
+
+					<div className="border-border bg-card flex rounded-xl border">
+						<div className="border-border border-r p-6">
+							<p className="text-fg mb-4 text-sm">
+								Preview (Dot size: {(size * 0.2).toFixed(2)}px)
+							</p>
+							<div className="flex flex-wrap items-end gap-6">
+								{SAMPLES1.map((s) => (
+									<div key={s.id} className="flex flex-col items-center gap-2">
+										<A size={size} rounded={rounded}>
+											{s.src && <AI src={s.src} />}
+											<AF>{s.fallback}</AF>
+											{status !== "none" && <AS variant={status} />}
+										</A>
+										<span className="text-fg text-xs">
+											{s.src ? "image" : s.fallback}
+										</span>
+									</div>
+								))}
+							</div>
+						</div>
+
+						<div className="border-border bg-card space-y-3 rounded-xl p-6">
+							<p className="text-muted-foreground text-sm">
+								Computed values(Dot size 0.2px)
+							</p>
+							<div className="bg-muted space-y-2 rounded-lg p-4 font-mono text-sm">
+								{SCALING_ROWS2.map((row) => {
+									const raw = size * row.ratio
+									const result = row.value(size)
+									return (
+										<div
+											key={row.label}
+											className="flex flex-wrap items-baseline gap-1.5">
+											<span className="text-fg">{row.label}</span>
+											<span className="text-fg">
+												= {size} × {row.ratio} = {raw.toFixed(2)}
+											</span>
+											<span className="text-fg-secondary">→</span>
+											<span className="text-fg font-medium">
+												rounds to {result}
+												{row.unit}
+											</span>
+										</div>
+									)
+								})}
+							</div>
+						</div>
 					</div>
 				</div>
 
@@ -221,6 +300,60 @@ export default function AvatarPlayground() {
 								.join("\n")}
 						</code>
 					</pre>
+				</div>
+				<div className="border-border bg-card flex rounded-xl border">
+					<div className="border-border border-r p-6">
+						<p className="text-muted-foreground mb-3 text-sm">
+							ClassName Example
+						</p>
+						{/* default — all computed from size */}
+						<div className="flex flex-wrap items-end gap-6">
+							<Avatar size={40} rounded="circle">
+								<AvatarFallback className="rounded-none">YB</AvatarFallback>
+								{/* <AvatarIndicator className="top-0 right-0" /> */}
+								<AvatarStatus className="right-0 top-0" variant="online" />
+							</Avatar>
+
+							{/* override font size via className */}
+							<Avatar size={40}>
+								<AvatarFallback className="text-3xl">YB</AvatarFallback>
+							</Avatar>
+
+							{/* override radius via className (e.g. sera theme) */}
+							<Avatar size={40} rounded="circle" className="rounded-none">
+								<AvatarImage
+									className="rounded-none"
+									src="https://i.pravatar.cc/150?img=67"
+								/>
+								<AvatarFallback className="rounded-none">YB</AvatarFallback>
+							</Avatar>
+						</div>
+					</div>
+
+					<div className="bg-card p-6">
+						<p className="text-muted-foreground mb-3 text-sm">Code</p>
+						<pre className="bg-muted text-foreground overflow-x-auto rounded-lg p-4 text-sm leading-relaxed">
+							<code>
+								{[
+									`<Avatar size={40} rounded="circle">
+	<AvatarFallback className="rounded-none">YB</AvatarFallback>
+	<AvatarStatus className=" top-0 right-0" variant="online" />
+</Avatar>
+
+<Avatar size={40}>
+	<AvatarFallback className=" text-3xl">YB</AvatarFallback>
+</Avatar>
+
+<Avatar size={40} rounded="circle" className="rounded-none">
+	<AvatarImage className="rounded-none" src="https://i.pravatar.cc/150?img=67" />
+	<AvatarFallback className="rounded-none">YB</AvatarFallback>
+</Avatar>`,
+								]
+									.filter(Boolean)
+									.join("\n")}
+							</code>
+						</pre>
+					</div>
 				</div>
 			</div>
 		</div>
