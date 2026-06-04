@@ -45,7 +45,7 @@ function getSquareRadius(size: number): number {
 }
 
 function getStatusGeometry(size: number, rounded: AvatarRounded) {
-	const dotSize = Math.round(size * 0.16)
+	const dotSize = Math.round(size * 0.2)
 	const borderWidth = Math.max(Math.round(size * 0.05))
 
 	// For circle: dot sits on the edge of the circle at 45°.
