@@ -105,7 +105,7 @@ export default function FooterNavigation() {
 			<div className="flex flex-col gap-5 px-5 pb-5 pt-10 xl:hidden">
 				<WebsiteLogo />
 				<div>
-					<Accordion size="lg" type="single" variant="open" collapsible>
+					<Accordion type="single" variant="open" collapsible>
 						{LINKS.map((item) => (
 							<AccordionItem key={item.title} value={item.title}>
 								<AccordionTrigger>{item.title}</AccordionTrigger>

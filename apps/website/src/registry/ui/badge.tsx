@@ -11,7 +11,7 @@ export type BadgeProps = Omit<React.HTMLAttributes<HTMLDivElement>, "color"> &
 export type BadgeDotProps = React.HTMLAttributes<HTMLSpanElement>
 
 const badgeVariants = cva(
-	"inline-flex items-center font-medium w-fit whitespace-nowrap transition duration-200 gap-1",
+	"inline-flex items-center text-red-accent font-medium w-fit whitespace-nowrap transition duration-200 gap-1",
 	{
 		variants: {
 			variant: {
@@ -63,7 +63,8 @@ const badgeVariants = cva(
 			{
 				variant: "strong",
 				color: "warning",
-				className: "bg-warning text-white font-semibold border border-alpha",
+				className:
+					"bg-warning text-warning-text font-semibold border border-alpha",
 			},
 			{
 				variant: "strong",

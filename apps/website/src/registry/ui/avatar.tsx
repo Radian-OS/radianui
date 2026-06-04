@@ -14,8 +14,10 @@ export type AvatarImageProps = React.ComponentProps<
 >
 export type AvatarFallbackProps = React.ComponentProps<
 	typeof AvatarPrimitive.Fallback
->
-export type AvatarIndicatorProps = React.HTMLAttributes<HTMLDivElement>
+> &
+	VariantProps<typeof avatarFallbackVariants>
+export type AvatarIndicatorProps = React.HTMLAttributes<HTMLDivElement> &
+	VariantProps<typeof avatarIndicatorVariants>
 export type AvatarStatusProps = React.HTMLAttributes<HTMLDivElement> &
 	VariantProps<typeof avatarStatusVariants>
 
@@ -100,6 +102,45 @@ const avatarStatusVariants = cva(
 	}
 )
 
+const avatarFallbackVariants = cva("", {
+	variants: {
+		color: {
+			red: "bg-red-accent text-red-text",
+			orange: "bg-orange-accent text-orange-text",
+			amber: "bg-amber-accent text-amber-text",
+			yellow: "bg-yellow-accent text-yellow-text",
+			neon: "bg-neon-accent text-neon-text",
+			green: "bg-green-accent text-green-text",
+			emerald: "bg-emerald-accent text-emerald-text",
+			teal: "bg-teal-accent text-teal-text",
+			cyan: "bg-cyan-accent text-cyan-text",
+			"light-blue": "bg-light-blue-accent text-light-blue-text",
+			blue: "bg-blue-accent text-blue-text",
+			"violet-blue": "bg-violet-blue-accent text-violet-blue-text",
+			purple: "bg-purple-accent text-purple-text",
+			"dark-orchid": "bg-dark-orchid-accent text-dark-orchid-text",
+			fuchsia: "bg-fuchsia-accent text-fuchsia-text",
+			magenta: "bg-magenta-accent text-magenta-text",
+			rose: "bg-rose-accent text-rose-text",
+		},
+	},
+})
+
+const avatarIndicatorVariants = cva(
+	"absolute z-10 box-content flex items-center justify-center",
+	{
+		variants: {
+			position: {
+				"bottom-left": "bottom-0 left-0",
+				"bottom-right": "bottom-0 right-0",
+			},
+		},
+		defaultVariants: {
+			position: "bottom-right",
+		},
+	}
+)
+
 function Avatar({
 	className,
 	size = "40",
@@ -132,12 +173,15 @@ function AvatarImage({ className, ...props }: AvatarImageProps) {
 }
 AvatarImage.displayName = "AvatarImage"
 
-function AvatarFallback({ className, ...props }: AvatarFallbackProps) {
+function AvatarFallback({ className, color, ...props }: AvatarFallbackProps) {
+	const colorClasses = color ? avatarFallbackVariants({ color }) : ""
+
 	return (
 		<AvatarPrimitive.Fallback
 			data-slot="avatar-fallback"
 			className={cn(
-				"bg-primary-focus text-primary-text flex size-full items-center justify-center rounded-[inherit]",
+				"flex size-full items-center justify-center rounded-[inherit]",
+				colorClasses || "bg-primary-focus text-primary-text",
 				className
 			)}
 			{...props}
@@ -146,14 +190,15 @@ function AvatarFallback({ className, ...props }: AvatarFallbackProps) {
 }
 AvatarFallback.displayName = "AvatarFallback"
 
-function AvatarIndicator({ className, ...props }: AvatarIndicatorProps) {
+function AvatarIndicator({
+	className,
+	position,
+	...props
+}: AvatarIndicatorProps) {
 	return (
 		<div
 			data-slot="avatar-indicator"
-			className={cn(
-				"absolute z-10 box-content flex items-center justify-center",
-				className
-			)}
+			className={cn(avatarIndicatorVariants({ position }), className)}
 			{...props}
 		/>
 	)
@@ -189,4 +234,6 @@ export {
 	AvatarStatus,
 	avatarStatusVariants,
 	avatarVariants,
+	avatarFallbackVariants,
+	avatarIndicatorVariants,
 }

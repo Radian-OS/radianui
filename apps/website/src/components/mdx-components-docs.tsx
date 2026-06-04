@@ -259,7 +259,7 @@ export const components = {
 	AlertDescription,
 
 	Accordion: (props: AccordionProps) => {
-		return <Accordion {...props} size="lg" variant="open" />
+		return <Accordion {...props} variant="open" />
 	},
 	AccordionItem,
 	AccordionTrigger: (props: AccordionTriggerProps) => {

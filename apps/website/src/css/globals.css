@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "./website.css";
+@import "./utility.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -60,11 +61,18 @@
 	--color-fg-inverse: oklch(1 0 0);
 
 	/* border */
-	--color-border: oklch(0.905 0.005 264.535);
-	--color-alpha: oklch(0.302 0.038 263.737 / 0.001);
+	--color-border: oklch(0.906 0.005 264.535);
+	--color-alpha:  color-mix(
+		in srgb,
+		oklch(0.302 0.038 263.737),
+		transparent 88%
+	);
 	--color-soft: oklch(0.937 0.003 264.541);
-	--color-soft-alpha: oklch(0.302 0.038 263.737 / 0.001);
-
+	--color-soft-alpha:  color-mix(
+		in srgb,
+		oklch(0.302 0.038 263.737),
+		transparent 92%
+	);
 	/* background elevation */
 	--color-elevation-negative: oklch(0.976 0.001 264.547);
 	--color-elevation-level1: oklch(1 0 0);
@@ -75,10 +83,26 @@
 	--color-black-inverse: oklch(0.144 0.003 264.025);
 
 	/* background fill alpha */
-	--color-fill1-alpha: oklch(0.302 0.038 263.737 / 0);
-	--color-fill2-alpha: oklch(0.302 0.038 263.737 / 0.001);
-	--color-fill3-alpha: oklch(0.302 0.038 263.737 / 0.001);
-	--color-fill4-alpha: oklch(0.302 0.038 263.737 / 0.002);
+		--color-fill1-alpha: color-mix(
+		in srgb,
+		oklch(0.302 0.038 263.737),
+		transparent 96%
+	);
+	--color-fill2-alpha: color-mix(
+		in srgb,
+		oklch(0.302 0.038 263.737),
+		transparent 92%
+	);
+	--color-fill3-alpha: color-mix(
+		in srgb,
+		oklch(0.302 0.038 263.737),
+		transparent 88%
+	);
+	--color-fill4-alpha: color-mix(
+		in srgb,
+		oklch(0.302 0.038 263.737),
+		transparent 84%
+	);
 
 	--color-sidebar: var(--color-fill1);
 	--color-sidebar-fg: var(--color-fg);
@@ -145,9 +169,9 @@
 
 	/* border */
 	--color-border: oklch(0.275 0.009 264.424);
-	--color-alpha: oklch(0.86 0.029 264.41 / 0.12);
+	--color-alpha: color-mix(in srgb, oklch(0.86 0.029 264.41), transparent 88%);
 	--color-soft: oklch(0.234 0.007 264.437);
-	--color-soft-alpha: oklch(0.86 0.029 264.41 / 0.08);
+	--color-soft-alpha: color-mix(in srgb, oklch(0.86 0.029 264.41), transparent 92%);
 
 	/* background elevation */
 	--color-elevation-negative: oklch(0 0 0);
@@ -159,10 +183,27 @@
 	--color-black-inverse: oklch(1 0 0);
 
 	/* background fill alpha */
-	--color-fill1-alpha: oklch(0.86 0.029 264.41 / 0.1);
-	--color-fill2-alpha: oklch(0.86 0.029 264.41 / 0.12);
-	--color-fill3-alpha: oklch(0.86 0.029 264.41 / 0.16);
-	--color-fill4-alpha: oklch(0.86 0.029 264.41 / 0.2);
+
+		--color-fill1-alpha: color-mix(
+		in srgb,
+		oklch(0.86 0.029 264.41 ),
+		transparent 90%
+	);
+	--color-fill2-alpha: color-mix(
+		in srgb,
+		oklch(0.86 0.029 264.41 ),
+		transparent 88%
+	);
+	--color-fill3-alpha: color-mix(
+		in srgb,
+		oklch(0.86 0.029 264.41 ),
+		transparent 84%
+	);
+	--color-fill4-alpha: color-mix(
+		in srgb,
+		oklch(0.86 0.029 264.41 ),
+		transparent 80%
+	);
 
 	--color-sidebar: var(--color-fill1);
 	--color-sidebar-fg: var(--color-fg);
@@ -204,7 +245,6 @@
 /* Custom heading font */
 @utility font-heading {
 	font-family: var(--heading-font);
-	letter-spacing: -1px;
 }
 
 /* Custom body font */
@@ -215,6 +255,8 @@
 /* Heading 1 */
 @utility heading-1 {
 	@apply font-heading text-[2.25rem] font-semibold leading-[2.75rem];
+		letter-spacing: -1px;
+
 
 	@media (width >=theme(--breakpoint-sm)) {
 		font-size: 3rem;
@@ -230,6 +272,7 @@
 /* Heading 2 */
 @utility heading-2 {
 	@apply font-heading text-[2rem] font-semibold leading-[2.5rem];
+		letter-spacing: -1px;
 
 	@media (width >=theme(--breakpoint-sm)) {
 		font-size: 2.5rem;
@@ -245,6 +288,7 @@
 /* Heading 3 */
 @utility heading-3 {
 	@apply font-heading text-[1.875rem] font-semibold leading-[2.375rem];
+		letter-spacing: -0.75px;
 
 	@media (width >=theme(--breakpoint-sm)) {
 		font-size: 2.25rem;
@@ -260,6 +304,7 @@
 /* Heading 4 */
 @utility heading-4 {
 	@apply font-heading text-[1.75rem] font-semibold leading-[2.25rem];
+		letter-spacing: -0.5px;
 
 	@media (width >=theme(--breakpoint-sm)) {
 		font-size: 1.875rem;
@@ -275,11 +320,15 @@
 /* Heading 5 */
 @utility heading-5 {
 	@apply font-heading text-[1.5rem] font-semibold leading-[2rem];
+		letter-spacing: -0.5px;
+
 }
 
 /* Heading 6 */
 @utility heading-6 {
 	@apply font-heading text-[1.25rem] font-semibold leading-[1.75rem];
+		letter-spacing: -0.25px;
+
 }
 
 /* Additional body fonts */
