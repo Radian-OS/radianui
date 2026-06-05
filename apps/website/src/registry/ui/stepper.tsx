@@ -29,6 +29,10 @@ import { cn } from "@/lib/utils"
 
 /* eslint-disable react-hooks/exhaustive-deps */
 
+/* eslint-disable react-hooks/exhaustive-deps */
+
+/* eslint-disable react-hooks/exhaustive-deps */
+
 // Types
 type StepperOrientation = "horizontal" | "vertical"
 type StepState = "active" | "completed" | "inactive" | "loading"
@@ -349,14 +353,14 @@ function StepperIndicator({
 			)}>
 			<div className="absolute">
 				{indicators &&
-				((isLoading && indicators.loading) ||
-					(state === "completed" && indicators.completed) ||
-					(state === "active" && indicators.active) ||
-					(state === "inactive" && indicators.inactive))
-					? (isLoading && indicators.loading) ||
+					((isLoading && indicators.loading) ||
 						(state === "completed" && indicators.completed) ||
 						(state === "active" && indicators.active) ||
-						(state === "inactive" && indicators.inactive)
+						(state === "inactive" && indicators.inactive))
+					? (isLoading && indicators.loading) ||
+					(state === "completed" && indicators.completed) ||
+					(state === "active" && indicators.active) ||
+					(state === "inactive" && indicators.inactive)
 					: children}
 			</div>
 		</div>

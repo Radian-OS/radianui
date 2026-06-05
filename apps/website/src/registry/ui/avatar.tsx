@@ -14,13 +14,17 @@ export type AvatarImageProps = React.ComponentProps<
 >
 export type AvatarFallbackProps = React.ComponentProps<
 	typeof AvatarPrimitive.Fallback
->
-export type AvatarIndicatorProps = React.HTMLAttributes<HTMLDivElement>
+> &
+	VariantProps<typeof avatarFallbackVariants>
+export type AvatarIndicatorProps = React.HTMLAttributes<HTMLDivElement> & {
+	position?: "bottom-left" | "bottom-right"
+}
 export type AvatarStatusProps = React.HTMLAttributes<HTMLDivElement> &
 	VariantProps<typeof avatarStatusVariants>
 
 export type AvatarContextValue = {
 	size: NonNullable<VariantProps<typeof avatarVariants>["size"]>
+	rounded: NonNullable<VariantProps<typeof avatarVariants>["rounded"]>
 }
 
 const AvatarContext = createContext<AvatarContextValue | null>(null)
@@ -100,6 +104,35 @@ const avatarStatusVariants = cva(
 	}
 )
 
+const avatarFallbackVariants = cva("", {
+	variants: {
+		color: {
+			red: "bg-red-accent text-red-text",
+			orange: "bg-orange-accent text-orange-text",
+			amber: "bg-amber-accent text-amber-text",
+			yellow: "bg-yellow-accent text-yellow-text",
+			neon: "bg-neon-accent text-neon-text",
+			green: "bg-green-accent text-green-text",
+			emerald: "bg-emerald-accent text-emerald-text",
+			teal: "bg-teal-accent text-teal-text",
+			cyan: "bg-cyan-accent text-cyan-text",
+			"light-blue": "bg-light-blue-accent text-light-blue-text",
+			blue: "bg-blue-accent text-blue-text",
+			"violet-blue": "bg-violet-blue-accent text-violet-blue-text",
+			purple: "bg-purple-accent text-purple-text",
+			"dark-orchid": "bg-dark-orchid-accent text-dark-orchid-text",
+			fuchsia: "bg-fuchsia-accent text-fuchsia-text",
+			magenta: "bg-magenta-accent text-magenta-text",
+			rose: "bg-rose-accent text-rose-text",
+		},
+	},
+})
+
+// Base styles only – corner placement is now handled dynamically
+const avatarIndicatorVariants = cva(
+	"absolute z-10 box-content flex items-center justify-center"
+)
+
 function Avatar({
 	className,
 	size = "40",
@@ -107,7 +140,7 @@ function Avatar({
 	...props
 }: AvatarProps) {
 	return (
-		<AvatarContext.Provider value={{ size }}>
+		<AvatarContext.Provider value={{ size, rounded }}>
 			<AvatarPrimitive.Root
 				data-slot="avatar"
 				className={cn(avatarVariants({ size, rounded }), className)}
@@ -132,12 +165,15 @@ function AvatarImage({ className, ...props }: AvatarImageProps) {
 }
 AvatarImage.displayName = "AvatarImage"
 
-function AvatarFallback({ className, ...props }: AvatarFallbackProps) {
+function AvatarFallback({ className, color, ...props }: AvatarFallbackProps) {
+	const colorClasses = color ? avatarFallbackVariants({ color }) : ""
+
 	return (
 		<AvatarPrimitive.Fallback
 			data-slot="avatar-fallback"
 			className={cn(
-				"bg-primary-focus text-primary-text flex size-full items-center justify-center rounded-[inherit]",
+				"flex size-full items-center justify-center rounded-[inherit]",
+				colorClasses || "bg-primary-focus text-primary-text",
 				className
 			)}
 			{...props}
@@ -146,14 +182,27 @@ function AvatarFallback({ className, ...props }: AvatarFallbackProps) {
 }
 AvatarFallback.displayName = "AvatarFallback"
 
-function AvatarIndicator({ className, ...props }: AvatarIndicatorProps) {
+function AvatarIndicator({
+	className,
+	position = "bottom-right",
+	...props
+}: AvatarIndicatorProps) {
+	const { rounded } = useAvatarContext()
+
+	// Choose corner classes based on shape
+	const cornerClasses =
+		position === "bottom-left"
+			? rounded === "circle"
+				? "bottom-1 left-1"
+				: "bottom-0 left-0"
+			: rounded === "circle"
+				? "bottom-1 right-1"
+				: "bottom-0 right-0"
+
 	return (
 		<div
 			data-slot="avatar-indicator"
-			className={cn(
-				"absolute z-10 box-content flex items-center justify-center",
-				className
-			)}
+			className={cn(avatarIndicatorVariants(), cornerClasses, className)}
 			{...props}
 		/>
 	)
@@ -189,4 +238,6 @@ export {
 	AvatarStatus,
 	avatarStatusVariants,
 	avatarVariants,
+	avatarFallbackVariants,
+	avatarIndicatorVariants,
 }

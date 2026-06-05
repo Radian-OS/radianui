@@ -36,13 +36,14 @@ const dialogOverlayVariants = cva(
 	{
 		variants: {
 			backdrop: {
-				overlay: "bg-black/50",
+				blackOverlay: "bg-black/50",
+				whiteOverlay: "bg-white/50",
 				blur: "backdrop-blur-sm",
 				transparent: "bg-transparent",
 			},
 		},
 		defaultVariants: {
-			backdrop: "overlay",
+			backdrop: "blackOverlay",
 		},
 	}
 )
@@ -61,7 +62,7 @@ const DialogClose = DialogPrimitive.Close
 
 function DialogOverlay({
 	className,
-	backdrop = "overlay",
+	backdrop = "blackOverlay",
 	...props
 }: DialogOverlayProps) {
 	return (

@@ -5,7 +5,7 @@ export default function AvatarFallbackPreview() {
 	return (
 		<div className="flex gap-6">
 			<Avatar size="48">
-				<AvatarFallback>SM</AvatarFallback>
+				<AvatarFallback color="blue">SM</AvatarFallback>
 			</Avatar>
 			<Avatar size="48">
 				<AvatarFallback className="bg-fill4 overflow-hidden">

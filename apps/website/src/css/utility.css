@@ -2,7 +2,7 @@
 
 @theme {
 	/* red */
-	--color-red: oklch(0.64 0.22 26.017);
+	--color-red: oklch(63.994% 0.22 26.022);
 	--color-red-accent: oklch(0.956 0.02 17.516);
 	--color-red-focus: oklch(0.914 0.041 17.928);
 	--color-red-border: oklch(0.719 0.175 22.489);
