@@ -16,13 +16,15 @@ export type AvatarFallbackProps = React.ComponentProps<
 	typeof AvatarPrimitive.Fallback
 > &
 	VariantProps<typeof avatarFallbackVariants>
-export type AvatarIndicatorProps = React.HTMLAttributes<HTMLDivElement> &
-	VariantProps<typeof avatarIndicatorVariants>
+export type AvatarIndicatorProps = React.HTMLAttributes<HTMLDivElement> & {
+	position?: "bottom-left" | "bottom-right"
+}
 export type AvatarStatusProps = React.HTMLAttributes<HTMLDivElement> &
 	VariantProps<typeof avatarStatusVariants>
 
 export type AvatarContextValue = {
 	size: NonNullable<VariantProps<typeof avatarVariants>["size"]>
+	rounded: NonNullable<VariantProps<typeof avatarVariants>["rounded"]>
 }
 
 const AvatarContext = createContext<AvatarContextValue | null>(null)
@@ -62,7 +64,7 @@ const avatarVariants = cva(
 			{ size: "32", rounded: "square", class: "rounded-md" },
 			{ size: "36", rounded: "square", class: "rounded-lg" },
 			{ size: "40", rounded: "square", class: "rounded-lg" },
-			{ size: "48", rounded: "square", class: "rounded-[10px]" },
+			{ size: "48", rounded: "square", class: "rounded-lg" },
 			{ size: "64", rounded: "square", class: "rounded-xl" },
 			{ size: "80", rounded: "square", class: "rounded-2xl" },
 		],
@@ -126,19 +128,9 @@ const avatarFallbackVariants = cva("", {
 	},
 })
 
+// Base styles only – corner placement is now handled dynamically
 const avatarIndicatorVariants = cva(
-	"absolute z-10 box-content flex items-center justify-center",
-	{
-		variants: {
-			position: {
-				"bottom-left": "bottom-0 left-0",
-				"bottom-right": "bottom-0 right-0",
-			},
-		},
-		defaultVariants: {
-			position: "bottom-right",
-		},
-	}
+	"absolute z-10 box-content flex items-center justify-center"
 )
 
 function Avatar({
@@ -148,7 +140,7 @@ function Avatar({
 	...props
 }: AvatarProps) {
 	return (
-		<AvatarContext.Provider value={{ size }}>
+		<AvatarContext.Provider value={{ size, rounded }}>
 			<AvatarPrimitive.Root
 				data-slot="avatar"
 				className={cn(avatarVariants({ size, rounded }), className)}
@@ -192,13 +184,25 @@ AvatarFallback.displayName = "AvatarFallback"
 
 function AvatarIndicator({
 	className,
-	position,
+	position = "bottom-right",
 	...props
 }: AvatarIndicatorProps) {
+	const { rounded } = useAvatarContext()
+
+	// Choose corner classes based on shape
+	const cornerClasses =
+		position === "bottom-left"
+			? rounded === "circle"
+				? "bottom-1 left-1"
+				: "bottom-0 left-0"
+			: rounded === "circle"
+				? "bottom-1 right-1"
+				: "bottom-0 right-0"
+
 	return (
 		<div
 			data-slot="avatar-indicator"
-			className={cn(avatarIndicatorVariants({ position }), className)}
+			className={cn(avatarIndicatorVariants(), cornerClasses, className)}
 			{...props}
 		/>
 	)

@@ -8,6 +8,7 @@
 @theme {
 	/* primary */
 	--color-primary: oklch(0.528 0.253 282.555);
+	--color-primary-fg: oklch(0.9764 0.0013 286.38);
 	--color-primary-accent: oklch(0.965 0.016 295.276);
 	--color-primary-focus: oklch(0.917 0.038 294.81);
 	--color-primary-border: oklch(0.68 0.169 290.359);
@@ -115,6 +116,7 @@
 .dark {
 	/* primary */
 	--color-primary: oklch(0.528 0.253 282.555);
+	--color-primary-fg: oklch(0.9764 0.0013 286.38);
 	--color-primary-accent: oklch(0.26 0.092 287.455);
 	--color-primary-focus: oklch(0.284 0.122 284.68);
 	--color-primary-border: oklch(0.528 0.253 282.555);
@@ -184,7 +186,7 @@
 
 	/* background fill alpha */
 
-		--color-fill1-alpha: color-mix(
+	--color-fill1-alpha: color-mix(
 		in srgb,
 		oklch(0.86 0.029 264.41 ),
 		transparent 90%

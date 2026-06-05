@@ -10,7 +10,25 @@ const nextConfig = {
 	async headers() {
 		return [
 			{
-				source: "/_next/static/:path*", // Static assets (JS, CSS, images)
+				source: "/_next/static/:path*",
+				headers: [
+					{
+						key: "Cache-Control",
+						value: "public, max-age=31536000, immutable",
+					},
+				],
+			},
+			{
+				source: "/:path*.(svg|ico|png|jpg|jpeg|webp|woff|woff2)",
+				headers: [
+					{
+						key: "Cache-Control",
+						value: "public, max-age=31536000, immutable",
+					},
+				],
+			},
+			{
+				source: "/static/:path*",
 				headers: [
 					{
 						key: "Cache-Control",
@@ -106,7 +124,7 @@ const nextConfig = {
 	skipTrailingSlashRedirect: true,
 	pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
 	images: {
-		minimumCacheTTL: 86400,
+		minimumCacheTTL: 864000,
 		remotePatterns: [
 			{
 				protocol: "https",

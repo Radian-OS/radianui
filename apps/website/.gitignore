@@ -9,3 +9,10 @@ robots.txt
 sitemap-*.xml
 sitemap.xml
 
+# Generated build artifacts
+src/app/api/components/components.json
+src/registry/example/example.json
+src/registry/registry-map.ts
+src/registry/blocks-example/index.tsx
+public/llms.txt
+public/llms-full.txt

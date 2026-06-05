@@ -16,15 +16,13 @@ export default function AvatarRoundedSquare() {
 			</Avatar>
 
 			<Avatar size="48" rounded="square">
-				<AvatarFallback className="text-success-text bg-success-focus">
-					AP
-				</AvatarFallback>
+				<AvatarFallback color="green">AP</AvatarFallback>
 			</Avatar>
 
 			<Avatar size="48" rounded="square">
 				<AvatarImage src="/media/female-1.jpg" />
 				<AvatarFallback>CH</AvatarFallback>
-				<AvatarIndicator className="bottom-1.5 right-1.5">
+				<AvatarIndicator position="bottom-right">
 					<AvatarStatus variant="online" />
 				</AvatarIndicator>
 			</Avatar>
