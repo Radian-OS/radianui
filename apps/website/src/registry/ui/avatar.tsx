@@ -51,6 +51,7 @@ const avatarVariants = cva(
 				"48": "size-12 text-base",
 				"64": "size-16 text-xl",
 				"80": "size-20 text-2xl",
+				"120": "size-30 border-2",
 			},
 			rounded: {
 				circle: "rounded-full",
@@ -95,6 +96,7 @@ const avatarStatusVariants = cva(
 				"48": "size-3 border-2",
 				"64": "size-3 border-2",
 				"80": "size-4 border-2",
+				"120": "size-6 border-2",
 			},
 		},
 		defaultVariants: {
@@ -189,14 +191,14 @@ function AvatarIndicator({
 }: AvatarIndicatorProps) {
 	const { rounded } = useAvatarContext()
 
-	// Choose corner classes based on shape
+	// Percentage‑based inset for circles – works for all sizes
 	const cornerClasses =
 		position === "bottom-left"
 			? rounded === "circle"
-				? "bottom-1 left-1"
+				? "bottom-[10%] left-[10%]"
 				: "bottom-0 left-0"
 			: rounded === "circle"
-				? "bottom-1 right-1"
+				? "bottom-[10%] right-[10%]"
 				: "bottom-0 right-0"
 
 	return (
