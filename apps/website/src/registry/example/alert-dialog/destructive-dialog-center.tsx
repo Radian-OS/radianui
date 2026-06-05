@@ -21,7 +21,7 @@ export default function DestructiveDialogCenter() {
 					Delete Record
 				</Button>
 			</AlertDialogTrigger>
-			<AlertDialogContent className="max-w-100 gap-8 pt-8">
+			<AlertDialogContent className="max-w-100 pt-8">
 				<div className="flex flex-col items-center gap-3">
 					<span className="bg-error-accent border-soft-alpha flex size-10 items-center justify-center rounded-lg border">
 						<Trash2 className="text-error size-6" />
