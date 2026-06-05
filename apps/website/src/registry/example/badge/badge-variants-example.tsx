@@ -5,9 +5,15 @@ function BadgeOutlineExample() {
 	return (
 		<div className="flex flex-col items-center justify-center gap-3">
 			<div className="flex items-center justify-center gap-3">
-				<Badge variant="strong">Strong</Badge>
-				<Badge variant="outline">Outline</Badge>
-				<Badge variant="soft">Soft</Badge>
+				<Badge color="primary" variant="strong">
+					Strong
+				</Badge>
+				<Badge color="primary" variant="outline">
+					Outline
+				</Badge>
+				<Badge color="primary" variant="soft">
+					Soft
+				</Badge>
 			</div>
 			<div className="flex items-center justify-center gap-3">
 				<Badge color="neutral" variant="strong">

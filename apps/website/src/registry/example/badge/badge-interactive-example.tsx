@@ -13,16 +13,19 @@ import {
 } from "@/registry/ui/dropdown"
 
 const PEOPLE = [
-	{ name: "Ava", initials: "AC", image: "/media/female-1.jpg" },
-	{ name: "Noah", initials: "NP", image: "/media/male-1.jpg" },
-	{ name: "Mia", initials: "MJ", image: "/media/female-2.jpg" },
-	{ name: "Leo", initials: "LK", image: "/media/male-4.jpg" },
-	{ name: "Zara", initials: "ZS", image: "/media/male-3.jpg" },
-	{ name: "Ethan", initials: "EB", image: "/media/male-2.jpg" },
+	{ name: "Grace", initials: "GH", image: "/media/female-1.jpg" },
+	{ name: "Ritchie", initials: "DR", image: "/media/male-1.jpg" },
+	{ name: "Margaret", initials: "MH", image: "/media/female-2.jpg" },
+	{ name: "Brendan", initials: "BE", image: "/media/male-4.jpg" },
+	{ name: "Carmack", initials: "JC", image: "/media/male-3.jpg" },
+	{ name: "Stallman", initials: "RS", image: "/media/male-2.jpg" },
 ]
 
 function BadgeInteractiveExample() {
-	const [selected, setSelected] = React.useState<string[]>(["Ava", "Mia"])
+	const [selected, setSelected] = React.useState<string[]>([
+		"Carmack",
+		"Ritchie",
+	])
 
 	const add = (label: string) => {
 		setSelected((prev) => (prev.includes(label) ? prev : [...prev, label]))

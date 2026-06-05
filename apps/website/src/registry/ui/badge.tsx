@@ -65,22 +65,22 @@ const badgeVariants = cva(
 			{
 				variant: "strong",
 				color: "info",
-				className: "bg-info text-white  border border-alpha",
+				className: "bg-info text-info-fg border border-alpha",
 			},
 			{
 				variant: "strong",
 				color: "success",
-				className: "bg-success text-white  border border-alpha",
+				className: "bg-success text-success-fg border border-alpha",
 			},
 			{
 				variant: "strong",
 				color: "error",
-				className: "bg-error text-white  border border-alpha",
+				className: "bg-error text-error-fg border border-alpha",
 			},
 			{
 				variant: "strong",
 				color: "warning",
-				className: "bg-warning text-white  border border-alpha",
+				className: "bg-warning text-error-fg border border-alpha",
 			},
 			{
 				variant: "strong",
@@ -244,55 +244,67 @@ const badgeVariants = cva(
 			},
 
 			// utility colors (strong)
-			{ variant: "strong", color: "red", className: "bg-red text-white" },
-			{ variant: "strong", color: "orange", className: "bg-orange text-white" },
+			{ variant: "strong", color: "red", className: "bg-red text-red-fg" },
+			{
+				variant: "strong",
+				color: "orange",
+				className: "bg-orange text-orange-fg",
+			},
 			{
 				variant: "strong",
 				color: "amber",
-				className: "bg-amber text-amber-text",
+				className: "bg-amber text-amber-fg",
 			},
 			{
 				variant: "strong",
 				color: "yellow",
-				className: "bg-yellow text-yellow-text",
+				className: "bg-yellow text-yellow-fg",
 			},
-			{ variant: "strong", color: "neon", className: "bg-neon text-neon-text" },
-			{ variant: "strong", color: "green", className: "bg-green text-white" },
+			{ variant: "strong", color: "neon", className: "bg-neon text-neon-fg" },
+			{
+				variant: "strong",
+				color: "green",
+				className: "bg-green text-green-fg",
+			},
 			{
 				variant: "strong",
 				color: "emerald",
-				className: "bg-emerald text-white",
+				className: "bg-emerald text-emerald-fg",
 			},
-			{ variant: "strong", color: "teal", className: "bg-teal text-white" },
-			{ variant: "strong", color: "cyan", className: "bg-cyan text-white" },
+			{ variant: "strong", color: "teal", className: "bg-teal text-teal-fg" },
+			{ variant: "strong", color: "cyan", className: "bg-cyan text-cyan-fg" },
 			{
 				variant: "strong",
 				color: "light-blue",
-				className: "bg-light-blue text-white",
+				className: "bg-light-blue text-light-blue-fg",
 			},
-			{ variant: "strong", color: "blue", className: "bg-blue text-white" },
+			{ variant: "strong", color: "blue", className: "bg-blue text-blue-fg" },
 			{
 				variant: "strong",
 				color: "violet-blue",
-				className: "bg-violet-blue text-white",
+				className: "bg-violet-blue text-violet-blue-fg",
 			},
-			{ variant: "strong", color: "purple", className: "bg-purple text-white" },
+			{
+				variant: "strong",
+				color: "purple",
+				className: "bg-purple text-purple-fg",
+			},
 			{
 				variant: "strong",
 				color: "dark-orchid",
-				className: "bg-dark-orchid text-white",
+				className: "bg-dark-orchid text-dark-orchid-fg",
 			},
 			{
 				variant: "strong",
 				color: "fuchsia",
-				className: "bg-fuchsia text-white",
+				className: "bg-fuchsia text-fuchsia-fg",
 			},
 			{
 				variant: "strong",
 				color: "magenta",
-				className: "bg-magenta text-white",
+				className: "bg-magenta text-magenta-fg",
 			},
-			{ variant: "strong", color: "rose", className: "bg-rose text-white" },
+			{ variant: "strong", color: "rose", className: "bg-rose text-rose-fg" },
 
 			// utility colors (outline)
 			{

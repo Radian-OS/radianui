@@ -99,9 +99,7 @@ export default function VideoDialogPreview() {
 			</DialogTrigger>
 
 			{/* Dialog Content */}
-			<DialogContent
-				backdrop="overlay"
-				className="mx-auto max-w-[1440px] overflow-hidden p-0">
+			<DialogContent className="mx-auto max-w-[1440px] overflow-hidden p-0">
 				<DialogHeader className="sr-only">
 					<DialogTitle>Radian OS demo</DialogTitle>
 					<DialogDescription>Watch the Radian OS demo video.</DialogDescription>
