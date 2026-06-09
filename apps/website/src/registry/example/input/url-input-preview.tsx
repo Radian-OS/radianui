@@ -14,7 +14,7 @@ import {
 type domainOption = ".com" | ".org" | ".net"
 
 const UrlPreview = () => {
-	const [domain, setDomain] = useState<domainOption>()
+	const [domain, setDomain] = useState<domainOption>(".com")
 
 	return (
 		<div className="flex w-80 flex-col gap-6">

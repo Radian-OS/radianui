@@ -15,8 +15,8 @@ type currencyOption = "USD" | "EUR" | "GBP" | "INR"
 type staffOption = "Admin" | "Editor" | "Viewer"
 
 const InputGroups = () => {
-	const [currency, setCurrency] = useState<currencyOption>()
-	const [staff, setStaff] = useState<staffOption>()
+	const [currency, setCurrency] = useState<currencyOption>("USD")
+	const [staff, setStaff] = useState<staffOption>("Admin")
 
 	return (
 		<div className="flex w-80 flex-col gap-6">
