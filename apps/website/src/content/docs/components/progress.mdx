@@ -63,6 +63,14 @@ import { Progress } from "@/components/ui/progress"
 
 <ComponentPreview path="progress/downloading-progress" />
 
+### File Upload Progress
+
+<ComponentPreview path="progress/progress-file-upload" />
+
+### Circular Progress
+
+<ComponentPreview path="progress/progress-circular" />
+
 ---
 
 ## Props
@@ -79,5 +87,107 @@ import { Progress } from "@/components/ui/progress"
 			},
 		]}
 		externalReference="https://www.radix-ui.com/primitives/docs/components/progress#api-reference"
+	/>
+	<PropsTable
+		title="ProgressCircle"
+		data={[
+			{
+				name: "value",
+				values: ["number"],
+				required: false,
+				description: "Progress value from 0 to 100",
+			},
+			{
+				name: "size",
+				values: ["number"],
+				required: false,
+				description: "Diameter of the circle in pixels. Defaults to 48",
+			},
+			{
+				name: "strokeWidth",
+				values: ["number"],
+				required: false,
+				description: "Width of the progress stroke. Defaults to 4",
+			},
+			{
+				name: "indicatorClassName",
+				values: ["string"],
+				required: false,
+				description: "Styling for the progress arc stroke",
+			},
+			{
+				name: "trackClassName",
+				values: ["string"],
+				required: false,
+				description: "Styling for the background track stroke",
+			},
+			{
+				name: "children",
+				values: ["ReactNode"],
+				required: false,
+				description: "Content rendered in the center of the circle",
+			},
+		]}
+	/>
+	<PropsTable
+		title="ProgressRadial"
+		data={[
+			{
+				name: "value",
+				values: ["number"],
+				required: false,
+				description: "Progress value from 0 to 100",
+			},
+			{
+				name: "size",
+				values: ["number"],
+				required: false,
+				description: "Diameter of the radial in pixels. Defaults to 120",
+			},
+			{
+				name: "strokeWidth",
+				values: ["number"],
+				required: false,
+				description: "Width of the progress stroke. Defaults to 8",
+			},
+			{
+				name: "startAngle",
+				values: ["number"],
+				required: false,
+				description: "Start angle in degrees. Defaults to -90",
+			},
+			{
+				name: "endAngle",
+				values: ["number"],
+				required: false,
+				description: "End angle in degrees. Defaults to 90",
+			},
+			{
+				name: "showLabel",
+				values: ["boolean"],
+				required: false,
+				description:
+					"Whether to show the percentage label in the center. Defaults to false",
+			},
+			{
+				name: "indicatorClassName",
+				values: ["string"],
+				required: false,
+				description: "Styling for the progress arc stroke",
+			},
+			{
+				name: "trackClassName",
+				values: ["string"],
+				required: false,
+				description: "Styling for the background track stroke",
+			},
+			{
+				name: "children",
+				values: ["ReactNode"],
+				required: false,
+				description:
+					"Custom content rendered in the center, overrides showLabel",
+			},
+		]}
 	/>
 </PropsTableWrapper>
