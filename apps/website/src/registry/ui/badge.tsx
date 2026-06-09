@@ -80,7 +80,7 @@ const badgeVariants = cva(
 			{
 				variant: "strong",
 				color: "warning",
-				className: "bg-warning text-error-fg border border-alpha",
+				className: "bg-warning text-warning-fg border border-alpha",
 			},
 			{
 				variant: "strong",
