@@ -14,6 +14,7 @@ const Greeting: React.FC<{ name: string }> = ({ name }) => {
 			/>
 			<CodeArea
 				language="tsx"
+				className="border"
 				theme="github-light-default"
 				code={`//Github Light Default
 const Greeting: React.FC<{ name: string }> = ({ name }) => {

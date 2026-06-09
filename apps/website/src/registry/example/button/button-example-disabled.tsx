@@ -13,7 +13,7 @@ function ButtonExampleDisabled() {
 				Delete File
 			</Button>
 			<Button disabled variant="outline" color="neutral">
-				<UserPlus />
+				<UserPlus className="text-fg-secondary" />
 				Invite Users
 			</Button>
 		</div>

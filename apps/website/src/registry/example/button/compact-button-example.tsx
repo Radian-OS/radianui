@@ -10,7 +10,7 @@ function CompactButtonExample() {
 				size="20"
 				variant="outline"
 				color="neutral">
-				<ChevronDown />
+				<ChevronDown className="text-fg-secondary" />
 			</CompactButton>
 			<CompactButton
 				aria-label="Close Button"
@@ -20,7 +20,7 @@ function CompactButtonExample() {
 				<X />
 			</CompactButton>
 			<CompactButton size="24" variant="outline" color="neutral">
-				<ChevronDown />
+				<ChevronDown className="text-fg-secondary" />
 			</CompactButton>
 			<CompactButton
 				aria-label="Close Button"

@@ -31,9 +31,9 @@ const ButtonExampleInput = () => {
 			<Dropdown>
 				<DropdownTrigger asChild>
 					<Button color="neutral" variant="outline">
-						<CalendarIcon />
+						<CalendarIcon className="text-fg-secondary" />
 						{value}
-						<ChevronDown />
+						<ChevronDown className="text-fg-secondary" />
 					</Button>
 				</DropdownTrigger>
 				<DropdownContent className="w-39.5">
@@ -49,7 +49,7 @@ const ButtonExampleInput = () => {
 				<PopoverTrigger asChild>
 					<div className="relative">
 						<Button id="date" type="button" variant="outline" color="neutral">
-							<CalendarIcon />
+							<CalendarIcon className="text-fg-secondary" />
 							{date ? (
 								format(date, "PPP")
 							) : (

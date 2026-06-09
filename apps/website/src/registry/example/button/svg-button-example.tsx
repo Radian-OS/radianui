@@ -11,7 +11,6 @@ function SvgButtonExample() {
 					variant="outline"
 					color="neutral">
 					<svg
-						className="text-fg"
 						width={119}
 						height={31}
 						viewBox="0 0 119 31"
