@@ -15,7 +15,7 @@ import {
 } from "@/registry/ui/dialog"
 import { Input, InputAddon, InputGroup } from "@/registry/ui/input"
 
-export default function DialogWhiteOverlay() {
+export default function DialogWithoutDivider() {
 	return (
 		<Dialog>
 			<DialogTrigger asChild>
@@ -23,16 +23,14 @@ export default function DialogWhiteOverlay() {
 					Open Dialog
 				</Button>
 			</DialogTrigger>
-			<DialogContent
-				backdrop="whiteOverlay"
-				onOpenAutoFocus={(e) => e.preventDefault()}>
+			<DialogContent onOpenAutoFocus={(e) => e.preventDefault()}>
 				<DialogHeader>
 					<DialogTitle>Share link</DialogTitle>
 					<DialogDescription>
 						Anyone with this link can access and view the content.
 					</DialogDescription>
 				</DialogHeader>
-				<DialogBody>
+				<DialogBody className="border-0">
 					<InputGroup className="w-full">
 						<InputAddon>
 							<p className="text-fg-tertiary">https://</p>
@@ -46,7 +44,7 @@ export default function DialogWhiteOverlay() {
 						</InputAddon>
 					</InputGroup>
 				</DialogBody>
-				<DialogFooter className="justify-between">
+				<DialogFooter className="justify-between border-0">
 					<div className="flex items-center gap-2">
 						<CircleAlert className="text-fg-secondary size-5 shrink-0" />
 						<span className="text-fg text-sm">Read before proceeding.</span>

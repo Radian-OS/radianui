@@ -1,4 +1,6 @@
-import { CircleAlert } from "lucide-react"
+"use client"
+
+import { CircleAlert, ClipboardIcon } from "lucide-react"
 import { Button } from "@/registry/ui/button"
 import {
 	Dialog,
@@ -11,6 +13,7 @@ import {
 	DialogTitle,
 	DialogTrigger,
 } from "@/registry/ui/dialog"
+import { Input, InputAddon, InputGroup } from "@/registry/ui/input"
 
 export default function DialogPreview() {
 	return (
@@ -20,30 +23,35 @@ export default function DialogPreview() {
 					Open Dialog
 				</Button>
 			</DialogTrigger>
-			<DialogContent>
+			<DialogContent onOpenAutoFocus={(e) => e.preventDefault()}>
 				<DialogHeader>
-					<div className="flex gap-3">
-						<div className="border-soft-alpha flex size-fit items-center justify-start rounded-lg border p-2">
-							<CircleAlert className="text-fg2 size-6" />
-						</div>
-						<div className="flex flex-col gap-1">
-							<DialogTitle>This is sample header</DialogTitle>
-							<DialogDescription>
-								Are you sure you want to change the content?
-							</DialogDescription>
-						</div>
-					</div>
+					<DialogTitle>Share link</DialogTitle>
+					<DialogDescription>
+						Anyone with this link can access and view the content.
+					</DialogDescription>
 				</DialogHeader>
 				<DialogBody>
-					<div className="bg-elevation-negative h-40 rounded-lg" />
+					<InputGroup className="w-full">
+						<InputAddon>
+							<p className="text-fg-tertiary">https://</p>
+						</InputAddon>
+						<Input
+							type="url"
+							defaultValue="radianos.com/docs/components/dialog"
+						/>
+						<InputAddon mode="icon" className="bg-transparent">
+							<ClipboardIcon />
+						</InputAddon>
+					</InputGroup>
 				</DialogBody>
-				<DialogFooter>
+				<DialogFooter className="justify-between">
+					<div className="flex items-center gap-2">
+						<CircleAlert className="text-fg-secondary size-5 shrink-0" />
+						<span className="text-fg text-sm">Read before proceeding.</span>
+					</div>
 					<DialogClose asChild>
-						<Button color="neutral" variant="outline">
-							Cancel
-						</Button>
+						<Button variant="strong">Close</Button>
 					</DialogClose>
-					<Button variant={"strong"}>Continue</Button>
 				</DialogFooter>
 			</DialogContent>
 		</Dialog>

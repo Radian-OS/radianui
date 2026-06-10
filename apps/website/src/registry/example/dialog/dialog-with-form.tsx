@@ -1,81 +1,253 @@
-import Image from "next/image"
-import { Button } from "@/registry/ui/button"
+"use client"
+
+import React from "react"
+import { zodResolver } from "@hookform/resolvers/zod"
+import {
+	Check,
+	CheckCircle,
+	ImagePlus,
+	Link,
+	MoreVertical,
+	Trash2,
+} from "lucide-react"
+import { useForm } from "react-hook-form"
+import { toast } from "sonner"
+import z from "zod"
+import { Alert, AlertIcon, AlertTitle } from "@/registry/ui/alert"
+import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
+import { Button, IconButton } from "@/registry/ui/button"
 import {
 	Dialog,
 	DialogBody,
 	DialogClose,
 	DialogContent,
-	DialogDescription,
 	DialogFooter,
 	DialogHeader,
 	DialogTitle,
 	DialogTrigger,
 } from "@/registry/ui/dialog"
+import {
+	Form,
+	FormControl,
+	FormField,
+	FormItem,
+	FormLabel,
+	FormMessage,
+} from "@/registry/ui/form"
 import { Input } from "@/registry/ui/input"
-import { Label } from "@/registry/ui/label"
+import { InputAddon, InputGroup } from "@/registry/ui/input"
+
+const FormSchema = z.object({
+	fullName: z.string().min(1, "Full name is required"),
+	username: z.string().min(1, "Username is required"),
+	website: z.string().min(1, "Website is required"),
+	description: z.string().optional(),
+})
 
 export default function DialogWithForm() {
+	const form = useForm<z.infer<typeof FormSchema>>({
+		resolver: zodResolver(FormSchema),
+		defaultValues: {
+			fullName: "Alexa",
+			username: "alexa_designer_123",
+			website: "alexarivas",
+			description:
+				"Hey, I am Alexa, a User Experience Designer who loves turning ideas into amazing websites!",
+		},
+	})
+
+	function onSubmit() {
+		toast.custom(
+			(t) => (
+				<Alert
+					variant="strong"
+					color="success"
+					onClose={() => toast.dismiss(t)}>
+					<AlertIcon>
+						<CheckCircle />
+					</AlertIcon>
+					<AlertTitle>Profile updated successfully</AlertTitle>
+				</Alert>
+			),
+			{ duration: 5000 }
+		)
+	}
+
 	return (
 		<Dialog>
 			<DialogTrigger asChild>
 				<Button variant="outline" color="neutral">
-					Integrate Now
+					Edit Profile
 				</Button>
 			</DialogTrigger>
-			<DialogContent closeButton="hover">
-				<div className="flex items-center justify-center gap-2 pt-6">
-					<Image
-						className="border-3 rounded-2xl p-0.5"
-						src={"/radian-mb.svg"}
-						alt="radian"
-						height={60}
-						width={60}
-					/>
-					<Image
-						className="border-3 rounded-2xl p-0.5"
-						src={"/github.webp"}
-						alt="github"
-						height={60}
-						width={60}
-					/>
-				</div>
-				<DialogHeader className="text-center">
-					<DialogTitle>Connect RadianOS to Github</DialogTitle>
-					<DialogDescription>
-						Streamline your API requests by using Github SDK’s and automate all
-						your tickets
-					</DialogDescription>
+			<DialogContent className="w-125 p-0">
+				<DialogHeader className="p-5 pb-0">
+					<DialogTitle>Edit Profile</DialogTitle>
 				</DialogHeader>
-				<DialogBody>
-					<div className="flex flex-col gap-4">
-						<div className="flex flex-col gap-2">
-							<Label htmlFor="name">Account Name</Label>
-							<Input type="text" id="name" placeholder="e.g John Smith" />
-						</div>
-						<div className="flex flex-col gap-2">
-							<Label htmlFor="key">API Key</Label>
-							<Input type="text" id="key" placeholder="e.g 1231-2345FGH56-A" />
-						</div>
-						<div className="flex flex-col gap-2">
-							<Label htmlFor="url">Workspace URL</Label>
-							<Input
-								type="text"
-								id="url"
-								placeholder="e.g https://example@workspace.com"
+
+				<Form {...form}>
+					<form onSubmit={form.handleSubmit(onSubmit)}>
+						{/* Banner */}
+						<div className="h-27 relative mt-3 w-full">
+							<img
+								src="/dialog-bg.png"
+								alt="Profile banner"
+								className="absolute inset-0 h-full w-full object-cover"
 							/>
+							<div className="absolute inset-0 flex items-center justify-center gap-2">
+								<IconButton
+									className="rounded-full"
+									variant="ghost"
+									color="neutral">
+									<ImagePlus className="text-white" />
+								</IconButton>
+								<IconButton
+									className="rounded-full"
+									variant="ghost"
+									color="neutral">
+									<Trash2 className="text-white" />
+								</IconButton>
+							</div>
+
+							{/* Avatar */}
+							<div className="absolute bottom-0 left-5 translate-y-1/2">
+								<Avatar
+									rounded="square"
+									size="80"
+									className="ring-bg ring-offset-bg z-10 rounded-2xl ring-2 ring-offset-2">
+									<AvatarImage src="/media/female-3.jpg" />
+									<AvatarFallback>CH</AvatarFallback>
+								</Avatar>
+								<div className="absolute inset-0 z-20 flex items-center justify-center rounded-2xl transition-opacity">
+									<IconButton
+										className="rounded-full"
+										type="button"
+										variant="ghost"
+										color="neutral">
+										<ImagePlus className="text-white" />
+									</IconButton>
+								</div>
+							</div>
 						</div>
-					</div>
-				</DialogBody>
-				<DialogFooter className="justify-start">
-					<DialogClose asChild>
-						<Button variant="outline" color="neutral" className="w-1/2">
-							Cancel
-						</Button>
-					</DialogClose>
-					<Button variant={"strong"} className="w-1/2">
-						Next
-					</Button>
-				</DialogFooter>
+
+						{/* Profile info */}
+						<div className="mt-12 flex items-center justify-between px-5">
+							<div className="flex flex-col gap-0.5">
+								<div className="flex items-center gap-2">
+									<span className="text-fg text-base font-medium">
+										Alexa Rivas
+									</span>
+									<img
+										src="https://flagcdn.com/w40/gb.png"
+										alt="UK"
+										className="h-4 w-6"
+									/>
+								</div>
+								<span className="text-fg-secondary text-sm">
+									alexa@radian.com
+								</span>
+							</div>
+							<IconButton type="button" variant="ghost" color="neutral">
+								<MoreVertical />
+							</IconButton>
+						</div>
+
+						{/* Action buttons */}
+						<div className="mt-3 flex gap-2 px-5">
+							<Button type="button" size="28" variant="outline" color="neutral">
+								<Link className="size-3.5" />
+								Copy link
+							</Button>
+							<Button type="button" size="28" variant="outline" color="neutral">
+								View profile
+							</Button>
+						</div>
+
+						<DialogBody className="mt-3 flex flex-col gap-4">
+							{/* Full name + Username row */}
+							<div className="grid grid-cols-2 gap-4">
+								<FormField
+									control={form.control}
+									name="fullName"
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>Full name</FormLabel>
+											<FormControl>
+												<Input placeholder="Full name" {...field} />
+											</FormControl>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
+								<FormField
+									control={form.control}
+									name="username"
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>Username</FormLabel>
+											<FormControl>
+												<Input placeholder="Username" {...field} />
+											</FormControl>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
+							</div>
+
+							{/* Website */}
+							<FormField
+								control={form.control}
+								name="website"
+								render={({ field }) => (
+									<FormItem>
+										<FormLabel>Website</FormLabel>
+										<FormControl>
+											<InputGroup className="w-full">
+												<InputAddon>radian.com//</InputAddon>
+												<Input placeholder="yourhandle" {...field} />
+												<InputAddon mode="icon">
+													<Check className="size-4" />
+												</InputAddon>
+											</InputGroup>
+										</FormControl>
+										<FormMessage />
+									</FormItem>
+								)}
+							/>
+
+							{/* Description */}
+							<FormField
+								control={form.control}
+								name="description"
+								render={({ field }) => (
+									<FormItem>
+										<FormLabel>Description</FormLabel>
+										<FormControl>
+											<textarea
+												placeholder="Tell us about yourself"
+												className="border-alpha bg-bg text-fg placeholder:text-fg-tertiary focus-visible:ring-border w-full resize-none rounded-lg border px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2"
+												rows={3}
+												{...field}
+											/>
+										</FormControl>
+										<FormMessage />
+									</FormItem>
+								)}
+							/>
+						</DialogBody>
+
+						<DialogFooter>
+							<DialogClose asChild>
+								<Button type="button" color="neutral" variant="outline">
+									Cancel
+								</Button>
+							</DialogClose>
+							<Button type="submit" variant="strong">
+								Update profile
+							</Button>
+						</DialogFooter>
+					</form>
+				</Form>
 			</DialogContent>
 		</Dialog>
 	)

@@ -59,7 +59,7 @@ const AlertWarningExample = () => {
 						storage
 					</AlertDescription>
 					<section className="flex items-center pt-2">
-						<Button color="warning" variant="link">
+						<Button color="warning" variant="link" className="text-warning-fg">
 							Upgrade Plan
 						</Button>
 					</section>
