@@ -14,6 +14,7 @@ import {
 	CommandList,
 } from "@/registry/ui/command"
 import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
+import { ScrollArea } from "@/registry/ui/scroll-area"
 
 // const countries = [
 // 	{ code: "AF", name: "Afghanistan", flag: <Flags.AF /> },
@@ -412,28 +413,30 @@ export default function ComboboxDemo() {
 			<PopoverContent className="w-80 p-0">
 				<Command className="border-0">
 					<CommandInput placeholder="Search" className="h-9" />
-					<CommandList>
+					<CommandList className="max-h-none overflow-visible">
 						<CommandEmpty>No country found.</CommandEmpty>
-						<CommandGroup>
-							{countries.map((c) => (
-								<CommandItem
-									value={c.name}
-									key={c.name}
-									onSelect={() => {
-										setSelectedCode(c.code)
-										setOpen(false)
-									}}>
-									{<c.flag className="size-4" />}
-									<span>{c.name}</span>
-									<Check
-										className={cn(
-											"ml-auto",
-											c.code === selectedCode ? "opacity-100" : "opacity-0"
-										)}
-									/>
-								</CommandItem>
-							))}
-						</CommandGroup>
+						<ScrollArea className="h-74">
+							<CommandGroup>
+								{countries.map((c) => (
+									<CommandItem
+										value={c.name}
+										key={c.name}
+										onSelect={() => {
+											setSelectedCode(c.code)
+											setOpen(false)
+										}}>
+										{<c.flag className="size-4" />}
+										<span>{c.name}</span>
+										<Check
+											className={cn(
+												"ml-auto",
+												c.code === selectedCode ? "opacity-100" : "opacity-0"
+											)}
+										/>
+									</CommandItem>
+								))}
+							</CommandGroup>
+						</ScrollArea>
 					</CommandList>
 				</Command>
 			</PopoverContent>

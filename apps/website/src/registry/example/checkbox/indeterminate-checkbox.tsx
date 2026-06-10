@@ -31,13 +31,14 @@ export default function CheckboxGroup() {
 	}
 
 	return (
-		<div className="bg-bg border-soft w-full max-w-60 rounded-lg border">
+		<div className="bg-bg border-soft w-90 rounded-lg border">
 			<div className="p-4 text-sm font-medium">
 				Which frameworks do you use?
 			</div>
+			<Divider />
 
-			<div className="flex flex-col gap-3">
-				<div className="flex items-center gap-2 px-4">
+			<div className="flex flex-col gap-3 p-4">
+				<div className="flex items-center gap-2">
 					<Checkbox
 						id={selectAllId}
 						checked={allChecked ? true : someChecked ? "indeterminate" : false}
@@ -47,9 +48,8 @@ export default function CheckboxGroup() {
 						Select all
 					</Label>
 				</div>
-				<Divider />
 
-				<div className="flex flex-col gap-3 px-4 pb-4">
+				<div className="flex flex-col gap-3">
 					{FRAMEWORKS.map((framework) => (
 						<div key={framework.id} className="flex items-center gap-2">
 							<Checkbox
@@ -66,6 +66,7 @@ export default function CheckboxGroup() {
 					))}
 				</div>
 			</div>
+			<Divider />
 
 			<div className="flex items-center justify-end gap-2 p-4">
 				<Button

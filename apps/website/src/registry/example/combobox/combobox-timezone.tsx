@@ -13,6 +13,7 @@ import {
 	CommandList,
 } from "@/registry/ui/command"
 import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
+import { ScrollArea } from "@/registry/ui/scroll-area"
 
 export default function ComboboxTimezone() {
 	const [open, setOpen] = React.useState(false)
@@ -76,33 +77,35 @@ export default function ComboboxTimezone() {
 			<PopoverContent className="w-(--radix-popper-anchor-width) bg-bg p-0">
 				<Command className="border-0">
 					<CommandInput placeholder="Search" />
-					<CommandList>
+					<CommandList className="max-h-none overflow-visible">
 						<CommandEmpty>No city found.</CommandEmpty>
-						<CommandGroup>
-							{formattedTimezones.map((t) => (
-								<CommandItem
-									keywords={[t.value]}
-									key={t.value}
-									value={t.value}
-									onSelect={(currentValue) => {
-										setValue(currentValue === value ? "" : currentValue)
-										setOpen(false)
-									}}>
-									<div className="flex gap-2 font-normal">
-										<span className="flex-1 truncate">{t.value}</span>
-										<span className="text-fg-secondary flex-nowrap text-[13px]">
-											{t.offset}
-										</span>
-									</div>
-									<Check
-										className={cn(
-											"ml-auto size-5",
-											value === t.value ? "opacity-100" : "opacity-0"
-										)}
-									/>
-								</CommandItem>
-							))}
-						</CommandGroup>
+						<ScrollArea className="h-74">
+							<CommandGroup>
+								{formattedTimezones.map((t) => (
+									<CommandItem
+										keywords={[t.value]}
+										key={t.value}
+										value={t.value}
+										onSelect={(currentValue) => {
+											setValue(currentValue === value ? "" : currentValue)
+											setOpen(false)
+										}}>
+										<div className="flex gap-2 font-normal">
+											<span className="flex-1 truncate">{t.value}</span>
+											<span className="text-fg-secondary flex-nowrap text-[13px]">
+												{t.offset}
+											</span>
+										</div>
+										<Check
+											className={cn(
+												"ml-auto size-5",
+												value === t.value ? "opacity-100" : "opacity-0"
+											)}
+										/>
+									</CommandItem>
+								))}
+							</CommandGroup>
+						</ScrollArea>
 					</CommandList>
 				</Command>
 			</PopoverContent>
