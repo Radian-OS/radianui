@@ -45,7 +45,7 @@ function Command({ className, ...props }: CommandProps) {
 		<Cmdk
 			data-slot="command"
 			className={cn(
-				"bg-bg text-fg border-border flex h-full w-full flex-col overflow-hidden rounded-lg border",
+				"bg-elevation-level1 text-fg border-border flex h-full w-full flex-col overflow-hidden rounded-lg border",
 				className
 			)}
 			{...props}
@@ -147,7 +147,7 @@ function CommandItem({ className, ...props }: CommandItemProps) {
 		<CmdkItem
 			data-slot="command-item"
 			className={cn(
-				"data-[selected=true]:bg-fill2-alpha data-[selected=true]:text-fg-secondary [&_svg:not([class*='text-'])]:text-fg-tertiary outline-hidden relative flex cursor-default select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+				"data-[selected=true]:bg-fill1-alpha [&_svg:not([class*='text-'])]:text-fg-tertiary outline-hidden relative flex cursor-default select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
 				className
 			)}
 			{...props}
