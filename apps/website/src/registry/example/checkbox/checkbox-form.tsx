@@ -52,7 +52,7 @@ const CheckboxForm = () => {
 		<Card className="w-130 gap-0 py-0">
 			<Form {...form}>
 				<form onSubmit={form.handleSubmit(onSubmit)}>
-					<CardHeader className="flex flex-col items-center gap-4 p-5 text-center">
+					<CardHeader className="flex flex-col items-center gap-4 text-center">
 						<IconButton color="warning" variant="soft" className="rounded-full">
 							<Wrench />
 						</IconButton>
@@ -68,7 +68,7 @@ const CheckboxForm = () => {
 						</div>
 					</CardHeader>
 
-					<CardFooter className="border-border flex items-center justify-between gap-4 border-t p-5">
+					<CardFooter className="border-border flex items-center justify-between gap-4 border-t">
 						<FormField
 							control={form.control}
 							name="acceptTerms"

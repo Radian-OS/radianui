@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState } from "react"
-import { Input } from "@/registry/ui/input"
+import { Input, InputWrapper } from "@/registry/ui/input"
 import { Label } from "@/registry/ui/label"
 
 const ColorInput = () => {
@@ -11,29 +11,27 @@ const ColorInput = () => {
 		<div className="flex w-80 flex-col gap-6">
 			<div className="flex flex-col gap-2">
 				<Label>Color Input</Label>
-				<div className="relative">
-					<label className="absolute left-2 top-2.5 size-5 cursor-pointer overflow-hidden rounded-md">
-						<Input
-							type="color"
-							value={color}
-							aria-label="Icon color picker"
-							className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
-							onChange={(e) => setColor(e.target.value)}
-						/>
+				<InputWrapper size="40">
+					<Label className="relative size-5 shrink-0 cursor-pointer overflow-hidden rounded-md">
 						<span
 							className="block size-full"
 							style={{ backgroundColor: color }}
 						/>
-					</label>
+						<Input
+							type="color"
+							value={color}
+							aria-label="Icon color picker"
+							className="absolute inset-0 size-full cursor-pointer opacity-0"
+							onChange={(e) => setColor(e.target.value)}
+						/>
+					</Label>
 					<Input
-						size="40"
-						className="pl-8"
 						type="text"
 						value={color}
 						placeholder="#000000"
 						onChange={(e) => setColor(e.target.value)}
 					/>
-				</div>
+				</InputWrapper>
 			</div>
 		</div>
 	)

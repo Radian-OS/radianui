@@ -26,7 +26,7 @@
 	--color-amber-border: oklch(0.802 0.171 73.267);
 	--color-amber-hover: oklch(0.834 0.159 79.507);
 	--color-amber-text: oklch(0.447 0.087 78.737);
-	--color-amber-fg: oklch(0.4452 0.0873 78.29);
+	--color-amber-fg: oklch(0.447 0.087 78.737);
 
 	/* yellow */
 	--color-yellow: oklch(0.9 0.174 96.856);
@@ -188,7 +188,7 @@
 	--color-amber-border: oklch(0.447 0.087 78.737);
 	--color-amber-hover: oklch(0.834 0.159 79.507);
 	--color-amber-text: oklch(0.834 0.159 79.507);
-	--color-amber-fg: oklch(0.4452 0.0873 78.29);
+	--color-amber-fg: oklch(0.447 0.087 78.737);
 
 	/* yellow */
 	--color-yellow: oklch(0.801 0.163 95.171);
