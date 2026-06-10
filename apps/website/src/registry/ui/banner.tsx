@@ -116,7 +116,7 @@ const bannerVariants = cva(
 				color: "warning",
 				variant: "outline",
 				className:
-					"bg-transparent text-warning-text [&_[data-slot=banner-icon]]:text-warning-border",
+					"bg-transparent [&_[data-slot=banner-title]]:text-warning-fg [&_[data-slot=banner-description]]:text-warning-fg text-warning-fg [&_[data-slot=banner-icon]]:text-warning-border",
 			},
 		],
 		defaultVariants: {
