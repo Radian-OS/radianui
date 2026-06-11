@@ -13,21 +13,48 @@ The Combobox is built using a composition of the [Popover](/docs/components/popo
 
 ### Imports
 
-```tsx showLineNumbers title="/components/ui/combobox.tsx"
-import { Combobox } from "@/components/ui/combobox"
+```tsx showLineNumbers title="/example/comboboxPreview.tsx"
+import {
+	Command,
+	CommandEmpty,
+	CommandGroup,
+	CommandInput,
+	CommandItem,
+	CommandList,
+} from "@/registry/ui/command"
+import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
+import { ScrollArea } from "@/registry/ui/scroll-area"
 ```
 
 ### Code
 
-```tsx showLineNumbers title="/components/ui/combobox.tsx"
-<Combobox>
-	<Combobox.Input placeholder="Search..." />
-	<Combobox.List>
-		<Combobox.Item>Option 1</Combobox.Item>
-		<Combobox.Item>Option 2</Combobox.Item>
-		<Combobox.Item>Option 3</Combobox.Item>
-	</Combobox.List>
-</Combobox>
+```tsx showLineNumbers title="/example/comboboxPreview.tsx"
+<Popover>
+	<PopoverTrigger>Open Combobox</PopoverTrigger>
+	<PopoverContent>
+		<Command>
+			<CommandInput />
+			<CommandList>
+				<CommandEmpty>No results found.</CommandEmpty>
+				<ScrollArea>
+					<CommandGroup heading="Suggestions">
+						<CommandItem>Calendar</CommandItem>
+						<CommandItem>Search Emoji</CommandItem>
+						<CommandItem>Calculator</CommandItem>
+					</CommandGroup>
+
+					<CommandDivider />
+
+					<CommandGroup heading="Settings">
+						<CommandItem>Profile</CommandItem>
+						<CommandItem>Billing</CommandItem>
+						<CommandItem>Settings</CommandItem>
+					</CommandGroup>
+				</ScrollArea>
+			</CommandList>
+		</Command>
+	</PopoverContent>
+</Popover>
 ```
 
 ---
