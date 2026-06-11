@@ -58,7 +58,7 @@ function MenubarTrigger({
 			className={cn(
 				"outline-hidden flex select-none items-center rounded-sm px-1.5 py-0.5 text-sm font-medium",
 				"text-fg",
-				"hover:bg-fill2 aria-expanded:bg-fill2",
+				"hover:bg-fill1-alpha aria-expanded:bg-fill1-alpha",
 				className
 			)}
 			{...props}
@@ -109,7 +109,7 @@ function MenubarItem({
 			className={cn(
 				"group/menubar-item outline-hidden relative flex cursor-default select-none items-center gap-1.5 rounded-md px-1.5 py-1 text-sm",
 				"text-fg",
-				"hover:bg-fill2 focus:bg-fill2",
+				"hover:bg-fill1-alpha focus:bg-fill1-alpha",
 				"data-inset:pl-7",
 				"data-[variant=destructive]:text-error-text",
 				"data-[variant=destructive]:hover:bg-error-accent",
@@ -140,7 +140,7 @@ function MenubarCheckboxItem({
 			className={cn(
 				"outline-hidden relative flex cursor-default select-none items-center gap-1.5 rounded-md py-1 pl-7 pr-1.5 text-sm",
 				"text-fg",
-				"hover:bg-fill2 focus:bg-fill2",
+				"hover:bg-fill1-alpha focus:bg-fill1-alpha",
 				"data-inset:pl-7",
 				"data-disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0",
 				className
@@ -172,7 +172,7 @@ function MenubarRadioItem({
 			className={cn(
 				"outline-hidden relative flex cursor-default select-none items-center gap-1.5 rounded-md py-1 pl-7 pr-1.5 text-sm",
 				"text-fg",
-				"hover:bg-fill2 focus:bg-fill2",
+				"hover:bg-fill1-alpha focus:bg-fill1-alpha",
 				"data-inset:pl-7",
 				"data-disabled:pointer-events-none data-disabled:opacity-50",
 				"[&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
@@ -263,7 +263,7 @@ function MenubarSubTrigger({
 			className={cn(
 				"flex cursor-default select-none items-center gap-1.5 rounded-md px-1.5 py-1 text-sm outline-none",
 				"text-fg",
-				"hover:bg-fill2 focus:bg-fill2 data-open:bg-fill2",
+				"hover:bg-fill1-alpha focus:bg-fill1-alpha data-open:bg-fill1-alpha",
 				"data-inset:pl-7",
 				"[&_svg:not([class*='size-'])]:size-4",
 				className

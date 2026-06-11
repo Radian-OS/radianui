@@ -2,12 +2,12 @@ import React from "react"
 import {
 	Bell,
 	CircleUserRound,
+	EllipsisVertical,
 	File,
 	Folder,
 	ImageIcon,
 	Mail,
-	MessageSquare,
-	MoreVertical,
+	MessageSquareText,
 	PhoneCall,
 	Search,
 	Trash2,
@@ -20,85 +20,141 @@ import {
 	AccordionItem,
 	AccordionTrigger,
 } from "@/registry/ui/accordion"
+import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
 import { Button, IconButton } from "@/registry/ui/button"
 import {
 	Drawer,
 	DrawerBody,
 	DrawerContent,
+	DrawerDescription,
 	DrawerHeader,
 	DrawerTitle,
 	DrawerTrigger,
 } from "@/registry/ui/drawer"
-import { Label } from "@/registry/ui/label"
-import { Switch } from "@/registry/ui/switch"
 
-const contactDetails = [
-	{ label: "Email", value: "alex.rivas@radian.io" },
-	{ label: "Phone", value: "+1 (555) 234-8890" },
-	{ label: "Address", value: "San Francisco, CA" },
-	{ label: "Joined at", value: "Jan 12, 2024" },
-]
-
-const quickActions = [
-	{ label: "Call Alexia", icon: PhoneCall, active: true },
-	{ label: "Open messages", icon: MessageSquare },
-	{ label: "Send email", icon: Mail },
-	{ label: "Search profile", icon: Search },
-]
-
-const drawerSections = [
+const contents = [
 	{
-		value: "files",
-		label: "Files",
-		icon: File,
-		items: ["Contract.pdf", "Brand assets.zip"],
+		id: 1,
+		trigger: (
+			<span className="flex items-center gap-3">
+				<CircleUserRound className="text-fg-secondary" size={20} />
+				<span className="text-sm font-medium">Contact Info</span>
+			</span>
+		),
+		content: (
+			<div className="grid grid-cols-[190px_1fr] gap-y-4 text-sm leading-5">
+				<span className="text-fg-secondary">Email</span>
+				<span className="text-fg">alex.rivas@radian.io</span>
+				<span className="text-fg-secondary">Phone</span>
+				<span className="text-fg">+1 (555) 234-8890</span>
+				<span className="text-fg-secondary">Address</span>
+				<span className="text-fg">San Francisco, CA</span>
+				<span className="text-fg-secondary">Joined at</span>
+				<span className="text-fg">Jan 12, 2024</span>
+			</div>
+		),
 	},
 	{
-		value: "projects",
-		label: "Projects",
-		icon: Folder,
-		items: ["Mobile onboarding", "Design system"],
-	},
-]
-
-const mediaSection = {
-	value: "media",
-	label: "Media",
-	icon: ImageIcon,
-	items: ["12 shared images", "4 screen recordings"],
-}
-
-type DrawerSection = {
-	value: string
-	label: string
-	icon: React.ComponentType<{ className?: string; size?: number }>
-	items: string[]
-}
-
-function DrawerAccordionItem({
-	value,
-	label,
-	icon: Icon,
-	items,
-}: DrawerSection) {
-	return (
-		<AccordionItem className="border-border border-b-0 border-t" value={value}>
-			<AccordionTrigger className="h-[52px] px-5 py-0 [&>.AccordionChevron]:size-[18px]">
-				<span className="flex items-center gap-3">
-					<Icon className="text-fg-secondary" size={20} />
-					<span className="text-fg text-sm font-medium">{label}</span>
-				</span>
-			</AccordionTrigger>
-			<AccordionContent className="px-12 pb-4 text-sm">
-				<div className="flex flex-col gap-2">
-					{items.map((item) => (
-						<span key={item}>{item}</span>
-					))}
+		id: 2,
+		trigger: (
+			<span className="flex items-center gap-3">
+				<File className="text-fg-secondary" size={20} />
+				<span>Files</span>
+			</span>
+		),
+		content: (
+			<div className="flex flex-col gap-3 text-sm leading-5">
+				<div className="flex items-center justify-between">
+					<span className="text-fg">Product strategy.pdf</span>
+					<span className="text-fg-secondary">2.4 MB</span>
 				</div>
-			</AccordionContent>
-		</AccordionItem>
-	)
-}
+				<div className="flex items-center justify-between">
+					<span className="text-fg">Research notes.docx</span>
+					<span className="text-fg-secondary">860 KB</span>
+				</div>
+				<div className="flex items-center justify-between">
+					<span className="text-fg">Brand assets.zip</span>
+					<span className="text-fg-secondary">18 MB</span>
+				</div>
+			</div>
+		),
+	},
+	{
+		id: 3,
+		trigger: (
+			<span className="flex items-center gap-3">
+				<Folder className="text-fg-secondary" size={20} />
+				<span>Projects</span>
+			</span>
+		),
+		content: (
+			<div className="flex flex-col gap-3 text-sm leading-5">
+				<div className="flex items-center justify-between">
+					<span className="text-fg">Mobile onboarding</span>
+					<span className="text-fg-secondary">Active</span>
+				</div>
+				<div className="flex items-center justify-between">
+					<span className="text-fg">Design system refresh</span>
+					<span className="text-fg-secondary">In review</span>
+				</div>
+				<div className="flex items-center justify-between">
+					<span className="text-fg">Customer insights</span>
+					<span className="text-fg-secondary">Draft</span>
+				</div>
+			</div>
+		),
+	},
+	{
+		id: 4,
+		trigger: (
+			<span className="flex items-center gap-3">
+				<Bell className="text-fg-secondary" size={20} />
+				<span>Notifications</span>
+			</span>
+		),
+		content: (
+			<div className="flex flex-col gap-3 text-sm leading-5">
+				<div className="flex items-center justify-between">
+					<span className="text-fg">Mentions</span>
+					<span className="text-fg-secondary">On</span>
+				</div>
+				<div className="flex items-center justify-between">
+					<span className="text-fg">Project updates</span>
+					<span className="text-fg-secondary">On</span>
+				</div>
+				<div className="flex items-center justify-between">
+					<span className="text-fg">File activity</span>
+					<span className="text-fg-secondary">Muted</span>
+				</div>
+			</div>
+		),
+	},
+	{
+		id: 5,
+		trigger: (
+			<span className="flex items-center gap-3">
+				<ImageIcon className="text-fg-secondary" size={20} />
+				<span>Media</span>
+			</span>
+		),
+		content: (
+			<div className="flex flex-col gap-3 text-sm leading-5">
+				<div className="flex items-center justify-between">
+					<span className="text-fg">Shared images</span>
+					<span className="text-fg-secondary">18 files</span>
+				</div>
+				<div className="flex items-center justify-between">
+					<span className="text-fg">Screen recordings</span>
+					<span className="text-fg-secondary">4 clips</span>
+				</div>
+				<div className="flex items-center justify-between">
+					<span className="text-fg">Design references</span>
+					<span className="text-fg-secondary">7 links</span>
+				</div>
+			</div>
+		),
+	},
+]
 
 function DrawerExamplePreview() {
 	return (
@@ -111,122 +167,94 @@ function DrawerExamplePreview() {
 				<DrawerTrigger>
 					<Button>Open Trigger</Button>
 				</DrawerTrigger>
-				<DrawerContent className="bg-bg w-[460px] max-w-full gap-0 p-0">
-					<DrawerHeader className="relative h-48 shrink-0 gap-0">
-						<DrawerTitle className="sr-only">Alexia Rivas profile</DrawerTitle>
-						<Image
-							alt="Mountain landscape cover"
-							className="h-[120px] w-full object-cover"
-							height={120}
-							src="/drawer-cover.png"
-							width={460}
-						/>
-						<Image
-							alt="Alexia Rivas"
-							className="border-bg absolute left-5 top-[78px] size-[101px] rounded-full border-8 object-cover"
-							height={101}
-							src="/drawer-profile.png"
-							width={101}
-						/>
-						<div className="absolute left-[140px] top-[136px] flex flex-col gap-1">
-							<p className="text-fg text-lg font-semibold leading-6">
-								Alexia Rivas
-							</p>
-							<p className="text-fg-secondary text-sm leading-5">
-								Lead Product Designer
-							</p>
-						</div>
-						<IconButton
-							aria-label="Open profile actions"
-							className="text-fg-secondary hover:bg-fill1 absolute right-6 top-[146px] flex size-8 items-center justify-center rounded-lg"
-							color="neutral"
-							size="32"
-							variant="ghost">
-							<MoreVertical size={20} />
-						</IconButton>
-					</DrawerHeader>
-					<DrawerBody className="flex w-full flex-col overflow-auto pb-8">
-						<div className="grid grid-cols-4 gap-2 px-6 pt-4">
-							{quickActions.map(({ label, icon: Icon, active }) => (
-								<IconButton
-									aria-label={label}
-									className={
-										active
-											? "h-10 w-full rounded-lg"
-											: "bg-fill1 text-fg-secondary hover:bg-fill2 h-10 w-full rounded-lg"
-									}
-									color={active ? "primary" : "neutral"}
-									key={label}
-									size="40"
-									variant={active ? "strong" : "ghost"}>
-									<Icon size={20} />
-								</IconButton>
-							))}
-						</div>
-
-						<Accordion
-							className="mt-10"
-							defaultValue={["contact-info"]}
-							type="multiple"
-							variant="open">
-							<AccordionItem
-								className="border-border border-b-0"
-								value="contact-info">
-								<AccordionTrigger className="h-[52px] px-5 py-0 [&>.AccordionChevron]:size-[18px]">
-									<span className="flex items-center gap-3">
-										<CircleUserRound className="text-fg-secondary" size={20} />
-										<span className="text-fg text-sm font-medium">
-											Contact Info
-										</span>
-									</span>
-								</AccordionTrigger>
-								<AccordionContent className="grid grid-cols-[190px_1fr] gap-y-4 px-5 pb-5 pt-3 text-sm leading-5">
-									{contactDetails.map((detail) => (
-										<React.Fragment key={detail.label}>
-											<span className="text-fg-secondary">{detail.label}</span>
-											<span className="text-fg">{detail.value}</span>
-										</React.Fragment>
-									))}
-								</AccordionContent>
-							</AccordionItem>
-							{drawerSections.map((section) => (
-								<DrawerAccordionItem key={section.value} {...section} />
-							))}
-							<div className="border-border flex h-[52px] items-center gap-3 border-t px-5">
-								<Bell className="text-fg-secondary" size={20} />
-								<span className="text-fg text-sm font-medium">
-									Notifications
-								</span>
-								<div className="ml-auto flex items-center gap-2">
-									<Switch
-										id="drawer-notification-label"
-										aria-label="Toggle notification label"
-										defaultChecked
-										size="20"
-									/>
-									<Label
-										className="text-fg text-sm font-normal"
-										htmlFor="drawer-notification-label">
-										Label
-									</Label>
-								</div>
+				<DrawerContent className="p-0">
+					<Image
+						alt="Mountain landscape cover"
+						className="h-30 w-full object-cover"
+						height={120}
+						src="/drawer-cover.png"
+						width={460}
+					/>
+					<DrawerHeader className="pr-7.5 relative flex flex-row items-center gap-5 pl-5">
+						<Avatar
+							rounded="circle"
+							className="size-25 ring-bg ring-offset-bg ring-offset-10 absolute bottom-0 rounded-full ring-2">
+							<AvatarImage src="/drawer-profile.png" />
+							<AvatarFallback>AR</AvatarFallback>
+						</Avatar>
+						<div className="flex w-full items-center justify-end gap-5">
+							<div className="pl-30 flex flex-1 flex-col gap-1">
+								<DrawerTitle>Alexia Rivas</DrawerTitle>
+								<DrawerDescription>Lead Product Designer</DrawerDescription>
 							</div>
-							<DrawerAccordionItem {...mediaSection} />
-						</Accordion>
-						<Button
-							className="border-border text-fg h-[52px] w-full justify-start rounded-none border-t px-5"
-							color="neutral"
-							variant="ghost">
-							<X className="text-error-text" size={18} />
-							Block Alexia
-						</Button>
-						<Button
-							className="border-border text-fg h-[52px] w-full justify-start rounded-none border-y px-5"
-							color="neutral"
-							variant="ghost">
-							<Trash2 className="text-error-text" size={18} />
-							Delete Conversation
-						</Button>
+							<IconButton size="40" color="neutral" variant="ghost">
+								<EllipsisVertical />
+							</IconButton>
+						</div>
+					</DrawerHeader>
+					<DrawerBody className="w-115 flex flex-col gap-6">
+						<div className="flex items-center gap-2 px-6">
+							<Button className="w-full" size="40">
+								<PhoneCall />
+							</Button>
+							<Button
+								className="w-full"
+								color="neutral"
+								variant="outline"
+								size="40">
+								<MessageSquareText />
+							</Button>
+							<Button
+								className="w-full"
+								color="neutral"
+								variant="outline"
+								size="40">
+								<MessageSquareText />
+							</Button>
+							<Button
+								className="w-full"
+								color="neutral"
+								variant="outline"
+								size="40">
+								<Mail />
+							</Button>
+							<Button
+								className="w-full"
+								color="neutral"
+								variant="outline"
+								size="40">
+								<Search />
+							</Button>
+						</div>
+						<div className="py-4">
+							<Accordion
+								type="single"
+								variant="open"
+								className="w-full"
+								collapsible>
+								{contents.map((item) => (
+									<AccordionItem
+										className="px-5"
+										value={item.id.toString()}
+										key={item.id}>
+										<AccordionTrigger className="py-4">
+											{item.trigger}
+										</AccordionTrigger>
+										<AccordionContent className="py-4">
+											{item.content}
+										</AccordionContent>
+									</AccordionItem>
+								))}
+							</Accordion>
+							<span className="hover:bg-fill1-alpha flex cursor-pointer items-center gap-4 border border-x-0 border-b-0 border-t px-5 py-4">
+								<X className="text-error" />
+								<p className="text-sm font-medium">Block Alexia</p>
+							</span>
+							<span className="hover:bg-fill1-alpha flex cursor-pointer items-center gap-4 border border-x-0 border-b border-t px-5 py-4">
+								<Trash2 className="text-error" />
+								<p className="text-sm font-medium">Delete Conversation</p>
+							</span>
+						</div>
 					</DrawerBody>
 				</DrawerContent>
 			</Drawer>
