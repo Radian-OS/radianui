@@ -50,7 +50,7 @@ export default function DialogWithRadioCards() {
 					Payment Method
 				</Button>
 			</DialogTrigger>
-			<DialogContent className="w-115">
+			<DialogContent className="w-130">
 				<DialogHeader>
 					<div className="flex gap-3">
 						<IconButton className="rounded-full" variant="soft">

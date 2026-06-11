@@ -31,11 +31,13 @@ export default function DialogDestructive() {
 			<DialogContent className="w-100">
 				<DialogHeader>
 					<div className="flex flex-col gap-3">
-						<IconButton className="rounded-full" variant="soft" color="error">
-							<Trash2 />
-						</IconButton>
+						<DialogTitle>
+							<IconButton className="rounded-full" variant="soft" color="error">
+								<Trash2 />
+							</IconButton>
+						</DialogTitle>
 						<div className="flex flex-col gap-1">
-							<DialogTitle>Confirm deletion</DialogTitle>
+							<DialogTitle closeButton={false}>Confirm deletion</DialogTitle>
 							<DialogDescription>
 								You are about to permanently delete this resource. Enter the
 								confirmation text below to proceed.

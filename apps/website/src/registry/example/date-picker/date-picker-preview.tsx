@@ -5,7 +5,6 @@ import { format } from "date-fns"
 import { Calendar as CalendarIcon } from "lucide-react"
 import { Button } from "@/registry/ui/button"
 import { Calendar } from "@/registry/ui/calendar"
-import { Label } from "@/registry/ui/label"
 import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
 
 export default function DatePickerDemo() {
@@ -14,16 +13,16 @@ export default function DatePickerDemo() {
 
 	return (
 		<div className="flex flex-col gap-1.5">
-			<Label htmlFor="date">Select a date</Label>
 			<Popover open={open} onOpenChange={setOpen}>
 				<PopoverTrigger asChild>
-					<div className="relative w-[320px]">
+					<div className="relative w-40">
 						<Button
 							id="date"
 							type="button"
 							variant="outline"
 							color="neutral"
-							className="text-fg hover:bg-elevation-level1 w-full justify-start gap-2">
+							className="text-fg hover:bg-elevation-level1 flex w-full gap-2">
+							<CalendarIcon className="text-fg-tertiary ml-auto size-4" />
 							{date ? (
 								format(date, "PPP")
 							) : (
@@ -31,7 +30,6 @@ export default function DatePickerDemo() {
 									Pick a date
 								</span>
 							)}
-							<CalendarIcon className="text-fg-tertiary ml-auto size-4" />
 						</Button>
 					</div>
 				</PopoverTrigger>

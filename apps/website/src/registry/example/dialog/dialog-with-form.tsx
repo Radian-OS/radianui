@@ -83,14 +83,14 @@ export default function DialogWithForm() {
 				</Button>
 			</DialogTrigger>
 			<DialogContent className="w-125 p-0">
-				<DialogHeader className="p-5 pb-0">
+				<DialogHeader>
 					<DialogTitle>Edit Profile</DialogTitle>
 				</DialogHeader>
 
 				<Form {...form}>
 					<form onSubmit={form.handleSubmit(onSubmit)}>
 						{/* Banner */}
-						<div className="h-27 relative mt-3 w-full">
+						<div className="h-27 relative w-full">
 							<Image
 								src="/dialog-bg.png"
 								alt="Profile banner"
@@ -98,16 +98,10 @@ export default function DialogWithForm() {
 								className="absolute inset-0 object-cover"
 							/>
 							<div className="absolute inset-0 flex items-center justify-center gap-2">
-								<IconButton
-									className="rounded-full"
-									variant="ghost"
-									color="neutral">
+								<IconButton className="bg-fill4-alpha hover:bg-fill4-alpha rounded-full">
 									<ImagePlus className="text-white" />
 								</IconButton>
-								<IconButton
-									className="rounded-full"
-									variant="ghost"
-									color="neutral">
+								<IconButton className="bg-fill4-alpha hover:bg-fill4-alpha rounded-full">
 									<Trash2 className="text-white" />
 								</IconButton>
 							</div>
@@ -122,47 +116,52 @@ export default function DialogWithForm() {
 									<AvatarFallback>CH</AvatarFallback>
 								</Avatar>
 								<div className="absolute inset-0 z-20 flex items-center justify-center rounded-2xl transition-opacity">
-									<IconButton
-										className="rounded-full"
-										type="button"
-										variant="ghost"
-										color="neutral">
+									<IconButton className="bg-fill4-alpha hover:bg-fill4-alpha rounded-full opacity-0 hover:opacity-100">
 										<ImagePlus className="text-white" />
 									</IconButton>
 								</div>
 							</div>
 						</div>
-
-						{/* Profile info */}
-						<div className="mt-12 flex items-center justify-between px-5">
-							<div className="flex flex-col gap-0.5">
-								<div className="flex items-center gap-2">
-									<span className="text-fg text-base font-medium">
-										Alexa Rivas
-									</span>
-									<Image src="/gb.png" alt="UK" width={24} height={16} />
+						<DialogBody className="flex flex-col gap-5 pt-14">
+							{/* Profile info */}
+							<div className="flex flex-col gap-4">
+								<div className="flex items-center justify-between">
+									<div className="flex flex-col gap-0.5">
+										<div className="flex items-center gap-2">
+											<span className="text-fg text-base font-medium">
+												Alexa Rivas
+											</span>
+											<Image src="/gb.png" alt="UK" width={24} height={16} />
+										</div>
+										<span className="text-fg-secondary text-sm">
+											alexa@radian.com
+										</span>
+									</div>
+									<IconButton type="button" variant="ghost" color="neutral">
+										<MoreVertical />
+									</IconButton>
 								</div>
-								<span className="text-fg-secondary text-sm">
-									alexa@radian.com
-								</span>
+
+								{/* Action buttons */}
+								<div className="flex gap-2">
+									<Button
+										type="button"
+										size="28"
+										variant="outline"
+										color="neutral">
+										<Link className="size-3.5" />
+										Copy link
+									</Button>
+									<Button
+										type="button"
+										size="28"
+										variant="outline"
+										color="neutral">
+										View profile
+									</Button>
+								</div>
 							</div>
-							<IconButton type="button" variant="ghost" color="neutral">
-								<MoreVertical />
-							</IconButton>
-						</div>
 
-						{/* Action buttons */}
-						<div className="mt-3 flex gap-2 px-5">
-							<Button type="button" size="28" variant="outline" color="neutral">
-								<Link className="size-3.5" />
-								Copy link
-							</Button>
-							<Button type="button" size="28" variant="outline" color="neutral">
-								View profile
-							</Button>
-						</div>
-
-						<DialogBody className="mt-3 flex flex-col gap-4">
 							{/* Full name + Username row */}
 							<div className="grid grid-cols-2 gap-4">
 								<FormField
