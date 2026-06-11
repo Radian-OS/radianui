@@ -15,14 +15,13 @@ export default function DatePickerDemo() {
 		<div className="flex flex-col gap-1.5">
 			<Popover open={open} onOpenChange={setOpen}>
 				<PopoverTrigger asChild>
-					<div className="relative w-40">
+					<div className="relative w-60">
 						<Button
-							id="date"
 							type="button"
 							variant="outline"
 							color="neutral"
 							className="text-fg hover:bg-elevation-level1 flex w-full gap-2">
-							<CalendarIcon className="text-fg-tertiary ml-auto size-4" />
+							<CalendarIcon className="text-fg-tertiary size-4" />
 							{date ? (
 								format(date, "PPP")
 							) : (
