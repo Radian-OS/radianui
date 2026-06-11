@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { CreditCard } from "lucide-react"
+import Image from "next/image"
 import { cn } from "@/lib/utils"
 import { Button, IconButton } from "@/registry/ui/button"
 import {
@@ -55,7 +56,7 @@ export default function DialogWithRadioCards() {
 						<IconButton className="rounded-full" variant="soft">
 							<CreditCard />
 						</IconButton>
-						<div className="flex flex-col gap-1">
+						<div className="flex w-full flex-col gap-1">
 							<DialogTitle>Payment Method</DialogTitle>
 							<DialogDescription>
 								Update your billing information.
@@ -78,10 +79,11 @@ export default function DialogWithRadioCards() {
 										? "border-primary-border"
 										: "border-soft-alpha"
 								)}>
-								<img
+								<Image
 									src={method.logo}
 									alt={method.name}
-									className="h-7.5 w-11.5"
+									width={46}
+									height={30}
 								/>
 								<div className="flex flex-1 flex-col gap-1 text-sm">
 									<span className="text-fg font-medium">{method.name}</span>

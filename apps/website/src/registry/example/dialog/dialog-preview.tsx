@@ -32,9 +32,7 @@ export default function DialogPreview() {
 				</DialogHeader>
 				<DialogBody>
 					<InputGroup className="w-full">
-						<InputAddon>
-							<p className="text-fg-tertiary">https://</p>
-						</InputAddon>
+						<InputAddon>https://</InputAddon>
 						<Input
 							type="url"
 							defaultValue="radianos.com/docs/components/dialog"

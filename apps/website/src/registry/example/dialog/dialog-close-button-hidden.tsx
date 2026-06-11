@@ -23,11 +23,9 @@ export default function DialogCloseButtonHidden() {
 					Open Dialog
 				</Button>
 			</DialogTrigger>
-			<DialogContent
-				closeButton="hidden"
-				onOpenAutoFocus={(e) => e.preventDefault()}>
+			<DialogContent onOpenAutoFocus={(e) => e.preventDefault()}>
 				<DialogHeader>
-					<DialogTitle>Share link</DialogTitle>
+					<DialogTitle closeButton={false}>Share link</DialogTitle>
 					<DialogDescription>
 						Anyone with this link can access and view the content.
 					</DialogDescription>

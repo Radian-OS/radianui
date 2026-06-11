@@ -161,10 +161,10 @@ export function SearchDocs() {
 						</Badge>
 					</Button>
 				</DialogTrigger>
-				<DialogContent
-					closeButton="hidden"
-					className="h-150 w-125 bg-fill3 border-alpha gap-0 rounded-2xl border p-1">
-					<DialogTitle className="hidden">Command Search</DialogTitle>
+				<DialogContent className="h-150 w-125 bg-fill3 border-alpha gap-0 rounded-2xl border p-1">
+					<DialogTitle closeButton={false} className="hidden">
+						Command Search
+					</DialogTitle>
 					<SearchCommand {...searchCommandProps} />
 				</DialogContent>
 			</Dialog>

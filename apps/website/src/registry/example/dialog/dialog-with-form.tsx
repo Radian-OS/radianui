@@ -10,6 +10,7 @@ import {
 	MoreVertical,
 	Trash2,
 } from "lucide-react"
+import Image from "next/image"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 import z from "zod"
@@ -36,6 +37,7 @@ import {
 } from "@/registry/ui/form"
 import { Input } from "@/registry/ui/input"
 import { InputAddon, InputGroup } from "@/registry/ui/input"
+import { TextArea } from "@/registry/ui/text-area"
 
 const FormSchema = z.object({
 	fullName: z.string().min(1, "Full name is required"),
@@ -89,10 +91,11 @@ export default function DialogWithForm() {
 					<form onSubmit={form.handleSubmit(onSubmit)}>
 						{/* Banner */}
 						<div className="h-27 relative mt-3 w-full">
-							<img
+							<Image
 								src="/dialog-bg.png"
 								alt="Profile banner"
-								className="absolute inset-0 h-full w-full object-cover"
+								fill
+								className="absolute inset-0 object-cover"
 							/>
 							<div className="absolute inset-0 flex items-center justify-center gap-2">
 								<IconButton
@@ -137,11 +140,7 @@ export default function DialogWithForm() {
 									<span className="text-fg text-base font-medium">
 										Alexa Rivas
 									</span>
-									<img
-										src="https://flagcdn.com/w40/gb.png"
-										alt="UK"
-										className="h-4 w-6"
-									/>
+									<Image src="/gb.png" alt="UK" width={24} height={16} />
 								</div>
 								<span className="text-fg-secondary text-sm">
 									alexa@radian.com
@@ -223,9 +222,8 @@ export default function DialogWithForm() {
 									<FormItem>
 										<FormLabel>Description</FormLabel>
 										<FormControl>
-											<textarea
+											<TextArea
 												placeholder="Tell us about yourself"
-												className="border-alpha bg-bg text-fg placeholder:text-fg-tertiary focus-visible:ring-border w-full resize-none rounded-lg border px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2"
 												rows={3}
 												{...field}
 											/>

@@ -43,7 +43,7 @@ export default function DialogDestructive() {
 						</div>
 					</div>
 				</DialogHeader>
-				<DialogBody className="border-0">
+				<DialogBody className="border-0 pt-0">
 					<div className="flex flex-col gap-2">
 						<Label className="text-fg text-sm font-semibold">
 							Type &quot;Delete&quot; to confirm

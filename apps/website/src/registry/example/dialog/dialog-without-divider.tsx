@@ -30,11 +30,9 @@ export default function DialogWithoutDivider() {
 						Anyone with this link can access and view the content.
 					</DialogDescription>
 				</DialogHeader>
-				<DialogBody className="border-0">
+				<DialogBody className="border-0 pt-0">
 					<InputGroup className="w-full">
-						<InputAddon>
-							<p className="text-fg-tertiary">https://</p>
-						</InputAddon>
+						<InputAddon>https://</InputAddon>
 						<Input
 							type="url"
 							defaultValue="radianos.com/docs/components/dialog"
@@ -44,7 +42,7 @@ export default function DialogWithoutDivider() {
 						</InputAddon>
 					</InputGroup>
 				</DialogBody>
-				<DialogFooter className="justify-between border-0">
+				<DialogFooter className="justify-between border-0 pt-0">
 					<div className="flex items-center gap-2">
 						<CircleAlert className="text-fg-secondary size-5 shrink-0" />
 						<span className="text-fg text-sm">Read before proceeding.</span>
