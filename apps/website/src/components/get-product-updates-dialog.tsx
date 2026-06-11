@@ -78,7 +78,6 @@ export function GetProductUpdatesDialog() {
 	return (
 		<Dialog defaultOpen>
 			<DialogContent
-				closeButton="hidden"
 				backdrop="blur"
 				className="max-w-85 md:max-w-170 flex w-full flex-col gap-0 overflow-hidden p-0 md:flex-row">
 				{/* Left Side - Graphic Background */}
@@ -106,7 +105,7 @@ export function GetProductUpdatesDialog() {
 					<div className="flex flex-col gap-4">
 						<Image src="/logo.svg" alt="radian_logo" width={36} height={36} />
 						<div className="flex flex-col gap-1">
-							<DialogTitle>Get Product Updates</DialogTitle>
+							<DialogTitle closeButton={false}>Get Product Updates</DialogTitle>
 							<DialogDescription>
 								Subscribe to receive updates on new components, UI blocks, and
 								key milestones as we build.

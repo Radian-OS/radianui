@@ -15,7 +15,7 @@ import {
 } from "@/registry/ui/dialog"
 import { Input, InputAddon, InputGroup } from "@/registry/ui/input"
 
-export default function DialogPreview() {
+export default function DialogWithoutDivider() {
 	return (
 		<Dialog>
 			<DialogTrigger asChild>
@@ -30,7 +30,7 @@ export default function DialogPreview() {
 						Anyone with this link can access and view the content.
 					</DialogDescription>
 				</DialogHeader>
-				<DialogBody>
+				<DialogBody className="border-0 pt-0">
 					<InputGroup className="w-full">
 						<InputAddon>https://</InputAddon>
 						<Input
@@ -42,7 +42,7 @@ export default function DialogPreview() {
 						</InputAddon>
 					</InputGroup>
 				</DialogBody>
-				<DialogFooter className="justify-between">
+				<DialogFooter className="justify-between border-0 pt-0">
 					<div className="flex items-center gap-2">
 						<CircleAlert className="text-fg-secondary size-5 shrink-0" />
 						<span className="text-fg text-sm">Read before proceeding.</span>

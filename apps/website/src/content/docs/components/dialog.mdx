@@ -87,10 +87,6 @@ import {
 
 <ComponentPreview path="dialog/dialog-close-button-hidden" />
 
-### Close Button - Hover
-
-<ComponentPreview path="dialog/dialog-close-button-hover" />
-
 ### Backdrop - White Overlay
 
 <ComponentPreview path="dialog/dialog-backdrop-white-overlay" />
@@ -106,6 +102,14 @@ import {
 ### Destructive
 
 <ComponentPreview path="dialog/dialog-destructive" />
+
+### Radio Cards Dialog
+
+<ComponentPreview path="dialog/dialog-with-radio-cards" />
+
+### Dialog Without Divider
+
+<ComponentPreview path="dialog/dialog-without-divider" />
 
 ### With Form
 
@@ -128,12 +132,6 @@ import {
 		title="DialogContent"
 		data={[
 			{
-				name: "closeButton",
-				values: ["hidden", "visible", "hover"],
-				defaultValue: "hidden",
-				description: "Show the close button state",
-			},
-			{
 				name: "backdrop",
 				values: ["blackOverlay", "whiteOverlay", "blur", "transparent"],
 				defaultValue: "blackOverlay",
@@ -144,6 +142,16 @@ import {
 	<PropsTable title="DialogHeader" />
 	<PropsTable
 		title="DialogTitle"
+		data={[
+			{
+				name: "closeButton",
+				required: false,
+				defaultValue: "true",
+				values: ["boolean"],
+				description:
+					"When true, a close button will be rendered in the top right corner of the dialog.",
+			},
+		]}
 		externalReference="https://www.radix-ui.com/primitives/docs/components/dialog#title"
 	/>
 	<PropsTable

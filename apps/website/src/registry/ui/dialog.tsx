@@ -3,6 +3,7 @@ import * as DialogPrimitive from "@radix-ui/react-dialog"
 import { type VariantProps, cva } from "class-variance-authority"
 import { X } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { CompactButton } from "@/registry/ui/button"
 
 type Backdrop = VariantProps<typeof dialogOverlayVariants>["backdrop"]
 
@@ -16,7 +17,6 @@ type DialogContentProps = React.ComponentPropsWithoutRef<
 	typeof DialogPrimitive.Content
 > & {
 	backdrop?: Backdrop
-	closeButton?: "hidden" | "visible" | "hover"
 }
 
 type DialogHeaderProps = React.HTMLAttributes<HTMLDivElement>
@@ -25,7 +25,9 @@ type DialogFooterProps = React.HTMLAttributes<HTMLDivElement>
 
 type DialogTitleProps = React.ComponentPropsWithoutRef<
 	typeof DialogPrimitive.Title
->
+> & {
+	closeButton?: boolean
+}
 
 type DialogDescriptionProps = React.ComponentPropsWithoutRef<
 	typeof DialogPrimitive.Description
@@ -79,7 +81,6 @@ function DialogContent({
 	className,
 	children,
 	backdrop,
-	closeButton = "visible",
 	...props
 }: DialogContentProps) {
 	return (
@@ -93,20 +94,6 @@ function DialogContent({
 				)}
 				{...props}>
 				{children}
-				{closeButton !== "hidden" && (
-					<DialogPrimitive.Close asChild>
-						<button
-							type="button"
-							className={cn(
-								"focus-visible:ring-offset-bg text-fg-tertiary hover:bg-fill2 focus-visible:ring-border absolute right-3 top-3 box-border inline-flex h-6 w-6 items-center justify-center whitespace-nowrap rounded-md bg-transparent font-medium hover:cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 [&>svg]:!h-4 [&>svg]:!w-4",
-								closeButton === "hover" &&
-									"opacity-0 transition-opacity group-hover:opacity-100"
-							)}
-							aria-label="Close">
-							<X />
-						</button>
-					</DialogPrimitive.Close>
-				)}
 			</DialogPrimitive.Content>
 		</DialogPortal>
 	)
@@ -155,13 +142,33 @@ function DialogFooter({ className, ...props }: DialogFooterProps) {
 }
 DialogFooter.displayName = "DialogFooter"
 
-function DialogTitle({ className, ...props }: DialogTitleProps) {
+function DialogTitle({
+	className,
+	closeButton = true,
+	children,
+	...props
+}: DialogTitleProps) {
 	return (
 		<DialogPrimitive.Title
 			data-slot="dialog-title"
-			className={cn("text-base font-medium", className)}
-			{...props}
-		/>
+			className={cn(
+				"flex items-center justify-between text-base font-medium",
+				className
+			)}
+			{...props}>
+			{children}
+			{closeButton && (
+				<DialogPrimitive.Close asChild>
+					<CompactButton
+						aria-label="Close Button"
+						size="24"
+						variant="ghost"
+						color="neutral">
+						<X />
+					</CompactButton>
+				</DialogPrimitive.Close>
+			)}
+		</DialogPrimitive.Title>
 	)
 }
 DialogTitle.displayName = DialogPrimitive.Title.displayName
