@@ -46,15 +46,6 @@ function BannerVariantsExample() {
 					This is a variant of banner component
 				</BannerDescription>
 			</Banner>
-			<Banner variant="outline" color="warning">
-				<BannerIcon>
-					<Sparkles size={20} />
-				</BannerIcon>
-				<BannerTitle className="truncate">Strong</BannerTitle>
-				<BannerDescription className="truncate">
-					This is a variant of banner component
-				</BannerDescription>
-			</Banner>
 		</div>
 	)
 }
