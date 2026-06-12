@@ -77,7 +77,8 @@ const bannerVariants = cva(
 			{
 				color: "warning",
 				variant: "strong",
-				className: "bg-warning text-warning-fg",
+				className:
+					"bg-warning text-warning-fg [&_[data-slot=banner-title]]:text-black",
 			},
 			{ color: "error", variant: "strong", className: "bg-error text-white" },
 			{
