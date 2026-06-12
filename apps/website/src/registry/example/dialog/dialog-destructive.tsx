@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { Trash2 } from "lucide-react"
-import { Button, IconButton } from "@/registry/ui/button"
+import { Button } from "@/registry/ui/button"
 import {
 	Dialog,
 	DialogBody,
@@ -32,9 +32,9 @@ export default function DialogDestructive() {
 				<DialogHeader>
 					<div className="flex flex-col gap-3">
 						<DialogTitle>
-							<IconButton className="rounded-full" variant="soft" color="error">
-								<Trash2 />
-							</IconButton>
+							<div className="bg-error-focus rounded-full p-2.5">
+								<Trash2 className="text-error" />
+							</div>
 						</DialogTitle>
 						<div className="flex flex-col gap-1">
 							<DialogTitle closeButton={false}>Confirm deletion</DialogTitle>

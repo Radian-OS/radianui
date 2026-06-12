@@ -83,7 +83,7 @@ const alertVariants = cva(
 			{
 				color: "warning",
 				variant: "strong",
-				className: "bg-warning text-warning-fg",
+				className: "bg-warning text-black",
 			},
 			{ color: "error", variant: "strong", className: "bg-error text-white" },
 			{

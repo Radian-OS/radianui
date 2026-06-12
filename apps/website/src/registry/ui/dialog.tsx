@@ -152,17 +152,17 @@ function DialogTitle({
 		<DialogPrimitive.Title
 			data-slot="dialog-title"
 			className={cn(
-				"flex items-center justify-between text-base font-medium",
+				"flex items-start justify-between text-base font-medium",
 				className
 			)}
 			{...props}>
-			{children}
+			<span className="self-center">{children}</span>
 			{closeButton && (
 				<DialogPrimitive.Close asChild>
 					<CompactButton
 						aria-label="Close Button"
 						size="24"
-						variant="ghost"
+						variant="soft"
 						color="neutral">
 						<X />
 					</CompactButton>
