@@ -2,23 +2,25 @@
 
 import * as React from "react"
 import {
-	Clock,
-	CreditCard,
-	Headset,
-	LogOut,
-	MessageCircleMore,
-	Settings,
+	Archive,
+	ArrowLeftRight,
+	ChevronDown,
+	Copy,
+	Link,
+	Move,
+	PencilLine,
+	Star,
+	Trash2,
 	UserPlus,
-	UserRound,
 	Users,
 } from "lucide-react"
+import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
 import {
 	Dropdown,
 	DropdownContent,
 	DropdownDivider,
 	DropdownItem,
-	DropdownLabel,
 	DropdownShortcut,
 	DropdownSub,
 	DropdownSubContent,
@@ -33,63 +35,71 @@ export default function DropdownPreview() {
 		<Dropdown open={open} onOpenChange={setOpen}>
 			<DropdownTrigger asChild>
 				<Button color="neutral" variant="outline">
-					Dropdown
+					Quick Actions
+					<ChevronDown className="text-fg-secondary" />
 				</Button>
 			</DropdownTrigger>
 			<DropdownContent className="w-80">
-				<DropdownLabel>My Account</DropdownLabel>
 				<DropdownItem>
-					<UserRound />
-					View Profile
-					<DropdownShortcut>⌘+P</DropdownShortcut>
+					<PencilLine />
+					Edit
+					<DropdownShortcut>
+						<Badge size="20" variant="outline" color="neutral">
+							⌘E
+						</Badge>
+					</DropdownShortcut>
 				</DropdownItem>
 				<DropdownItem>
-					<Settings />
-					Settings
-					<DropdownShortcut>⌘+G</DropdownShortcut>
-				</DropdownItem>
-				<DropdownItem>
-					<CreditCard />
-					Subscription
-					<DropdownShortcut>⌘+D</DropdownShortcut>
-				</DropdownItem>
-				<DropdownDivider />
-				<DropdownItem>
-					<Clock />
-					Changelog
-					<DropdownShortcut>⌘+F</DropdownShortcut>
+					<Copy />
+					Duplicate
+					<DropdownShortcut>
+						<Badge size="20" variant="outline" color="neutral">
+							⌘D
+						</Badge>
+					</DropdownShortcut>
 				</DropdownItem>
 				<DropdownSub>
 					<DropdownSubTrigger>
-						<Users />
-						Invite Member
+						<Move />
+						Move to...
 					</DropdownSubTrigger>
 					<DropdownSubContent>
 						<DropdownItem>
 							<Users />
-							Invite All
+							Existing Users
 						</DropdownItem>
 						<DropdownItem>
 							<UserPlus />
-							Invite Selected
+							New Users
 						</DropdownItem>
 					</DropdownSubContent>
 				</DropdownSub>
-				<DropdownDivider />
 				<DropdownItem>
-					<Headset />
-					Support
-					<DropdownShortcut>⌘+Z</DropdownShortcut>
-				</DropdownItem>
-				<DropdownItem>
-					<MessageCircleMore />
-					Community
-					<DropdownShortcut>⌘+R</DropdownShortcut>
+					<Link />
+					Copy link
 				</DropdownItem>
 				<DropdownDivider />
 				<DropdownItem>
-					<LogOut />
-					Sign Out
+					<Star />
+					Add to favorites
+				</DropdownItem>
+				<DropdownItem>
+					<ArrowLeftRight />
+					Transfer
+				</DropdownItem>
+				<DropdownItem>
+					<Archive />
+					Archive
+				</DropdownItem>
+				<DropdownDivider />
+				<DropdownItem>
+					<Trash2 />
+					Delete
+					<DropdownShortcut>
+						<Badge size="20" variant="outline" color="neutral">
+							⌫
+						</Badge>
+					</DropdownShortcut>
 				</DropdownItem>
 			</DropdownContent>
 		</Dropdown>

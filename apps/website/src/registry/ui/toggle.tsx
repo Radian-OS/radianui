@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils"
 
 const toggleVariants = cva(
 	[
-		"group/toggle cursor-pointer inline-flex items-center justify-center whitespace-nowrap gap-2 rounded-md font-medium",
+		"group/toggle cursor-pointer inline-flex items-center justify-center whitespace-nowrap font-medium",
 		"focus-visible:ring-2 focus-visible:outline-none focus-visible:ring-offset-2 focus-visible:ring-offset-bg",
 		"disabled:pointer-events-none disabled:opacity-50",
 		"[&_svg]:pointer-events-none [&_svg]:shrink-0",
@@ -19,18 +19,18 @@ const toggleVariants = cva(
 			variant: {
 				ghost:
 					"bg-transparent text-fg hover:bg-fill1 focus-visible:ring-border" +
-					" data-[state=on]:bg-fill2 data-[state=on]:text-fg data-[state=on]:border-transparent",
+					" data-[state=on]:bg-fill1 data-[state=on]:text-fg data-[state=on]:border-transparent",
 				outline:
 					"border bg-transparent border-border text-fg hover:bg-fill1-alpha focus-visible:ring-border" +
-					" data-[state=on]:bg-fill2 data-[state=on]:text-fg data-[state=on]:border-fill4",
+					" data-[state=on]:bg-fill1 data-[state=on]:text-fg data-[state=on]:border-fill4",
 			},
 			size: {
-				"28": "h-7 px-2 py-1.5 text-[13px] gap-1 [&>svg]:size-4",
-				"32": "h-8 px-2 py-1.5 text-sm gap-1.5 [&>svg]:size-4.5",
-				"36": "h-9 px-3 py-2 text-sm gap-2 [&>svg]:size-5",
-				"40": "h-10 px-3 py-2.5 text-sm gap-2 [&>svg]:size-5",
-				"44": "h-11 px-3 py-2.5 text-base gap-2 [&>svg]:size-5",
-				"48": "h-12 px-4 py-3 text-base gap-2 [&>svg]:size-6",
+				"28": "h-7 px-2 py-1.5 text-[13px] gap-1 [&>svg]:size-4 rounded-md",
+				"32": "h-8 px-2.5 py-1.5 text-sm gap-1.5 [&>svg]:size-4.5 rounded-md",
+				"36": "h-9 px-3 py-2 text-sm gap-2 [&>svg]:size-5 rounded-lg",
+				"40": "h-10 px-3 py-2.5 text-sm gap-2 [&>svg]:size-5 rounded-lg",
+				"44": "h-11 px-3 py-2.5 text-base gap-2 [&>svg]:size-5 rounded-lg",
+				"48": "h-12 px-4 py-3 text-base gap-2 [&>svg]:size-6 rounded-lg",
 			},
 		},
 		defaultVariants: {

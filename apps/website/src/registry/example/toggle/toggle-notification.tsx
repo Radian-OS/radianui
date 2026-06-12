@@ -13,7 +13,7 @@ export default function ToggleNotification() {
 			pressed={muted}
 			onPressedChange={setMuted}
 			aria-label="Toggle notifications">
-			<Icon />
+			<Icon className="text-fg-secondary" />
 			{muted ? "Muted" : "Notify"}
 		</Toggle>
 	)

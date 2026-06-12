@@ -75,7 +75,12 @@ const UserMenuDropdownExample = () => {
 					className="px-2 py-1.5">
 					<Ghost />
 					Go Incognito
-					<Switch className="ml-auto" id="incognito" checked={incognito} />
+					<Switch
+						size="20"
+						className="ml-auto"
+						id="incognito"
+						checked={incognito}
+					/>
 				</DropdownItem>
 				<DropdownDivider />
 				<DropdownItem className="px-2 py-1.5">

@@ -9,7 +9,7 @@ export default function TooltipTheme() {
 			<Tooltip>
 				<TooltipTrigger asChild>
 					<Button color="neutral" variant="outline">
-						<Sun />
+						<Sun className="text-fg-secondary" />
 						Light Tooltip
 					</Button>
 				</TooltipTrigger>
@@ -20,7 +20,7 @@ export default function TooltipTheme() {
 			<Tooltip>
 				<TooltipTrigger asChild>
 					<Button color="neutral" variant="outline">
-						<Moon />
+						<Moon className="text-fg-secondary" />
 						Dark Tooltip
 					</Button>
 				</TooltipTrigger>
