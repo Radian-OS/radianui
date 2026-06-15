@@ -7,26 +7,26 @@ export default function ToggleFormattingToolbar() {
 	return (
 		<div className="border-border bg-bg flex items-center justify-center gap-1 rounded-md border p-1">
 			<Toggle
-				className="p-1.5"
 				variant="ghost"
+				className="p-1.75"
 				size="32"
 				aria-label="Toggle bold">
-				<BoldIcon className="text-fg-secondary size-5" />
+				<BoldIcon className="text-fg-secondary !size-5" />
 			</Toggle>
 			<Toggle
-				className="p-1.5"
 				defaultPressed
 				variant="ghost"
+				className="p-1.75"
 				size="32"
 				aria-label="Toggle italic">
-				<ItalicIcon className="text-fg-secondary size-5" />
+				<ItalicIcon className="text-fg-secondary !size-5" />
 			</Toggle>
 			<Toggle
-				className="p-1.5"
+				className="p-1.75"
 				variant="ghost"
 				size="32"
 				aria-label="Toggle underline">
-				<UnderlineIcon className="text-fg-secondary size-5" />
+				<UnderlineIcon className="text-fg-secondary !size-5" />
 			</Toggle>
 		</div>
 	)

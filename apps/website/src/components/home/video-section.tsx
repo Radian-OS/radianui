@@ -1,9 +1,9 @@
 import { Layers } from "lucide-react"
 import Link from "next/link"
+import HomeInteractive from "@/components/home/home-interactive"
 import { BorderBeam } from "@/registry/animated/border-beam"
 import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
-import VideoDialogPreview from "./video/video-dialog-preview"
 
 export default function VideoSection() {
 	return (
@@ -72,7 +72,9 @@ export default function VideoSection() {
 					/>
 				</svg>
 			</div>
-			<VideoDialogPreview />
+			<div className="relative h-[760px] w-full max-w-[1400px] sm:h-[860px]">
+				<HomeInteractive />
+			</div>
 
 			<div className="z-20 flex w-full flex-col gap-3 md:w-fit md:flex-row">
 				<Button

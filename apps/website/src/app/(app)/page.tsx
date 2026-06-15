@@ -6,10 +6,10 @@ import FAQSection from "@/components/home/faq-section"
 import FeaturesSection from "@/components/home/features-section"
 import Footer from "@/components/home/footer"
 import HeroActionButtons from "@/components/home/hero-action-buttons"
-import HomeInteractive from "@/components/home/home-interactive"
 import InvertedSection from "@/components/home/inverted-section"
 import PlaygroundSectionWrapper from "@/components/home/playground-section-wrapper"
 import VideoSection from "@/components/home/video-section"
+import VideoDialogPreview from "@/components/home/video/video-dialog-preview"
 import { BorderBeam } from "@/registry/animated/border-beam"
 import { Badge } from "@/registry/ui/badge"
 
@@ -39,107 +39,8 @@ export default function Page() {
 					</div>
 				</div>
 
-				<div className="mt-15 relative mx-auto h-[760px] max-w-[1400px] sm:h-[860px]">
-					<HomeInteractive />
-
-					{/* Upper left line */}
-					<svg
-						className="not-lg:hidden full -left-290 absolute bottom-[70%] -z-10 max-h-[756px]"
-						viewBox="0 0 1552 756"
-						fill="none"
-						xmlns="http://www.w3.org/2000/svg">
-						<path
-							d="M 1552 756 L 1284.28 210.94 C 1280.06 203.268 1272 198.5 1263.24 198.5 L 1088.88 198.5 C 1080.31 198.5 1072.39 193.926 1068.1 186.5 L 967.928 13 C 963.641 5.5744 955.718 1 947.144 1 H 0"
-							stroke="var(--color-soft)"
-						/>
-
-						<path
-							id="beamPath"
-							d="M 1552 756 L 1284.28 210.94 C 1280.06 203.268 1272 198.5 1263.24 198.5 L 1088.88 198.5 C 1080.31 198.5 1072.39 193.926 1068.1 186.5 L 967.928 13 C 963.641 5.5744 955.718 1 947.144 1 H 0"
-							fill="none"
-							stroke="var(--color-primary)"
-							strokeWidth="1"
-							strokeLinecap="round"
-							className="animate-[var(--animate-beam-flow)] [stroke-dasharray:50_1000] [stroke-dashoffset:0]"
-							pathLength="1000"
-						/>
-					</svg>
-
-					{/* Lower left line */}
-					<svg
-						className="not-lg:hidden -left-290 absolute bottom-[75%] -z-10"
-						width="1331"
-						height="402"
-						viewBox="0 0 1331 402"
-						fill="none"
-						xmlns="http://www.w3.org/2000/svg">
-						<path
-							d="M1329.73 401L1193.99 159.301C1190.79 153.591 1184.75 150.057 1178.2 150.057L1019.5 150.057C1013.03 150.057 1007.05 146.604 1003.81 141L928.21 10.0566C924.974 4.45235 918.995 1 912.523 1H-4"
-							stroke="var(--color-soft)"
-							strokeWidth="1"
-						/>
-						<path
-							id="beamPath"
-							d="M1329.73 401L1193.99 159.301C1190.79 153.591 1184.75 150.057 1178.2 150.057L1019.5 150.057C1013.03 150.057 1007.05 146.604 1003.81 141L928.21 10.0566C924.974 4.45235 918.995 1 912.523 1H-4"
-							fill="none"
-							stroke="var(--color-primary)"
-							strokeWidth="1"
-							strokeLinecap="round"
-							className="animate-[var(--animate-beam-flow2)] opacity-0 [stroke-dasharray:50_1000] [stroke-dashoffset:0]"
-							vectorEffect="non-scaling-stroke"
-							pathLength="1000"
-						/>
-					</svg>
-
-					{/* Upper right line */}
-					<svg
-						className="not-lg:hidden full -right-290 absolute bottom-[70%] -z-10 max-h-[756px] scale-x-[-1]"
-						viewBox="0 0 1552 756"
-						fill="none"
-						xmlns="http://www.w3.org/2000/svg">
-						<path
-							d="M 1552 756 L 1284.28 210.94 C 1280.06 203.268 1272 198.5 1263.24 198.5 L 1088.88 198.5 C 1080.31 198.5 1072.39 193.926 1068.1 186.5 L 967.928 13 C 963.641 5.5744 955.718 1 947.144 1 H 0"
-							stroke="var(--color-soft)"
-						/>
-
-						<path
-							id="beamPath"
-							d="M 1552 756 L 1284.28 210.94 C 1280.06 203.268 1272 198.5 1263.24 198.5 L 1088.88 198.5 C 1080.31 198.5 1072.39 193.926 1068.1 186.5 L 967.928 13 C 963.641 5.5744 955.718 1 947.144 1 H 0"
-							fill="none"
-							stroke="var(--color-primary)"
-							strokeWidth="1"
-							strokeLinecap="round"
-							className="animate-[var(--animate-beam-flow)] [stroke-dasharray:50_1000] [stroke-dashoffset:0]"
-							vectorEffect="non-scaling-stroke"
-							pathLength="1000"
-						/>
-					</svg>
-
-					{/* Lower right line */}
-					<svg
-						className="not-lg:hidden -right-290 absolute bottom-[75%] -z-10 scale-x-[-1]"
-						width="1331"
-						height="402"
-						viewBox="0 0 1331 402"
-						fill="none"
-						xmlns="http://www.w3.org/2000/svg">
-						<path
-							d="M1329.73 401L1193.99 159.301C1190.79 153.591 1184.75 150.057 1178.2 150.057L1019.5 150.057C1013.03 150.057 1007.05 146.604 1003.81 141L928.21 10.0566C924.974 4.45235 918.995 1 912.523 1H-4"
-							stroke="var(--color-soft)"
-							strokeWidth="1"
-						/>
-						<path
-							id="beamPath"
-							d="M1329.73 401L1193.99 159.301C1190.79 153.591 1184.75 150.057 1178.2 150.057L1019.5 150.057C1013.03 150.057 1007.05 146.604 1003.81 141L928.21 10.0566C924.974 4.45235 918.995 1 912.523 1H-4"
-							fill="none"
-							stroke="var(--color-primary)"
-							strokeWidth="1"
-							strokeLinecap="round"
-							className="animate-[var(--animate-beam-flow2)] opacity-0 [stroke-dasharray:50_1000] [stroke-dashoffset:0]"
-							vectorEffect="non-scaling-stroke"
-							pathLength="1000"
-						/>
-					</svg>
+				<div className="mt-15 flex w-full justify-center px-5 min-[1920px]:px-60">
+					<VideoDialogPreview />
 				</div>
 			</Background>
 
