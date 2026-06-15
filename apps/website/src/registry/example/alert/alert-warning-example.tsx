@@ -36,30 +36,11 @@ const AlertWarningExample = () => {
 				<AlertContent>
 					<AlertTitle>Storage Almost Full</AlertTitle>
 					<AlertDescription>
-						You’ve used 95% of your available storage space. Upgrade to get more
-						storage
+						You&apos;ve used 95% of your available storage space. Upgrade to get
+						more storage
 					</AlertDescription>
 					<section className="flex items-center pt-2">
 						<Button color="warning" variant="link">
-							Upgrade Plan
-						</Button>
-					</section>
-				</AlertContent>
-			</Alert>
-
-			<span>temp example</span>
-			<Alert variant="strong" color="warning">
-				<AlertIcon>
-					<Inbox size={20} />
-				</AlertIcon>
-				<AlertContent>
-					<AlertTitle>Storage Almost Full</AlertTitle>
-					<AlertDescription>
-						You’ve used 95% of your available storage space. Upgrade to get more
-						storage
-					</AlertDescription>
-					<section className="flex items-center pt-2">
-						<Button color="warning" variant="link" className="text-warning-fg">
 							Upgrade Plan
 						</Button>
 					</section>
