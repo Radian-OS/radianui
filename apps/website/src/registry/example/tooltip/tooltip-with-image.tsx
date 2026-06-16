@@ -22,7 +22,7 @@ export default function TooltipWithImage() {
 				/>
 				<div className="flex flex-col gap-1">
 					<p className="text-fg font-semibold">Whats new in Radian v1.0.0</p>
-					<p className="leading-5">
+					<p className="leading-5 opacity-75">
 						Discover the innovative our latest update introduces cutting-edge
 						model that enhances your experience.
 					</p>
