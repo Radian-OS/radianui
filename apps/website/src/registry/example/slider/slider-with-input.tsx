@@ -9,7 +9,10 @@ export default function SlideWithInput() {
 
 	return (
 		<div className="w-100 flex gap-2">
-			<Slider value={[value]} onValueChange={([value]) => setValue(value)}>
+			<Slider
+				className="flex-1"
+				value={[value]}
+				onValueChange={([value]) => setValue(value)}>
 				<SliderThumb />
 			</Slider>
 			<Input

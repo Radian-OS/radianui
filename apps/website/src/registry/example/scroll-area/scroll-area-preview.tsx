@@ -1,175 +1,395 @@
 "use client"
 
-import React from "react"
-import { Calendar, Mail, MapPin, Phone, Settings } from "lucide-react"
+import { useState } from "react"
+import {
+	ColumnDef,
+	SortingState,
+	flexRender,
+	getCoreRowModel,
+	getSortedRowModel,
+	useReactTable,
+} from "@tanstack/react-table"
+import { ChevronDownIcon, ChevronUpIcon, Mail, PhoneCall } from "lucide-react"
+import { cn } from "@/lib/utils"
+import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
 import { Badge } from "@/registry/ui/badge"
-import { Button } from "@/registry/ui/button"
-import { Divider } from "@/registry/ui/divider"
-import { ScrollArea } from "@/registry/ui/scroll-area"
+import { Checkbox } from "@/registry/ui/checkbox"
+import { Progress } from "@/registry/ui/progress"
+import { ScrollArea, ScrollBar } from "@/registry/ui/scroll-area"
+import {
+	Table,
+	TableBody,
+	TableCell,
+	TableHead,
+	TableHeader,
+	TableRow,
+} from "@/registry/ui/table"
 
-const contacts = [
+type UserDetails = {
+	name: string
+	imageSrc: string
+}
+
+type UserData = {
+	user_details: UserDetails
+	email: string
+	income: string
+	progress: number
+	status: "Active" | "Inactive" | "Pending"
+	contact: "email" | "phone" | "both"
+}
+
+function getInitials(name: string) {
+	const parts = name.trim().split(" ")
+	if (parts.length === 1) {
+		return parts[0][0]?.toUpperCase() ?? ""
+	}
+	return (
+		(parts[0][0]?.toUpperCase() ?? "") +
+		(parts[parts.length - 1][0]?.toUpperCase() ?? "")
+	)
+}
+const data: UserData[] = [
 	{
-		id: 1,
-		name: "Sarah Johnson",
-		email: "sarah.johnson@company.com",
-		phone: "+1 (555) 123-4567",
-		address: "123 Main St, New York, NY 10001",
-		status: "online",
-		lastActive: "2 minutes ago",
+		user_details: {
+			name: "Alice Johnson",
+			imageSrc:
+				"https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face",
+		},
+		email: "alice.johnson@example.com",
+		status: "Active",
+		income: "$85,000",
+		progress: 72,
+		contact: "both",
 	},
 	{
-		id: 2,
-		name: "Michael Chen",
-		email: "michael.chen@company.com",
-		phone: "+1 (555) 234-5678",
-		address: "456 Oak Ave, San Francisco, CA 94102",
-		status: "away",
-		lastActive: "1 hour ago",
+		user_details: {
+			name: "David Smith",
+			imageSrc:
+				"https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
+		},
+		email: "david.smith@example.com",
+		status: "Inactive",
+		income: "$64,500",
+		progress: 40,
+		contact: "email",
 	},
 	{
-		id: 3,
-		name: "Emily Rodriguez",
-		email: "emily.rodriguez@company.com",
-		phone: "+1 (555) 345-6789",
-		address: "789 Pine St, Los Angeles, CA 90210",
-		status: "online",
-		lastActive: "5 minutes ago",
+		user_details: {
+			name: "Sophia Lee",
+			imageSrc:
+				"https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
+		},
+		email: "sophia.lee@example.com",
+		status: "Pending",
+		income: "$120,000",
+		progress: 55,
+		contact: "phone",
 	},
 	{
-		id: 4,
-		name: "David Kim",
-		email: "david.kim@company.com",
-		phone: "+1 (555) 456-7890",
-		address: "321 Elm St, Chicago, IL 60601",
-		status: "offline",
-		lastActive: "3 hours ago",
+		user_details: {
+			name: "Michael Brown",
+			imageSrc:
+				"https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
+		},
+		email: "michael.brown@example.com",
+		status: "Active",
+		income: "$92,300",
+		progress: 88,
+		contact: "both",
 	},
 	{
-		id: 5,
-		name: "Lisa Thompson",
-		email: "lisa.thompson@company.com",
-		phone: "+1 (555) 567-8901",
-		address: "654 Maple Dr, Seattle, WA 98101",
-		status: "online",
-		lastActive: "1 minute ago",
+		user_details: {
+			name: "Emily Carter",
+			imageSrc:
+				"https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop&crop=face",
+		},
+		email: "emily.carter@example.com",
+		status: "Active",
+		income: "$76,800",
+		progress: 67,
+		contact: "email",
 	},
 	{
-		id: 6,
-		name: "Alex Martinez",
-		email: "alex.martinez@company.com",
-		phone: "+1 (555) 678-9012",
-		address: "987 Cedar Ln, Austin, TX 78701",
-		status: "away",
-		lastActive: "30 minutes ago",
+		user_details: {
+			name: "James Wilson",
+			imageSrc:
+				"https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face",
+		},
+		email: "james.wilson@example.com",
+		status: "Inactive",
+		income: "$58,200",
+		progress: 33,
+		contact: "phone",
 	},
 	{
-		id: 7,
-		name: "Rachel Green",
-		email: "rachel.green@company.com",
-		phone: "+1 (555) 789-0123",
-		address: "147 Birch St, Boston, MA 02101",
-		status: "online",
-		lastActive: "10 minutes ago",
+		user_details: {
+			name: "Olivia Martinez",
+			imageSrc:
+				"https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face",
+		},
+		email: "olivia.martinez@example.com",
+		status: "Pending",
+		income: "$101,500",
+		progress: 49,
+		contact: "both",
 	},
 	{
-		id: 8,
-		name: "Tom Wilson",
-		email: "tom.wilson@company.com",
-		phone: "+1 (555) 890-1234",
-		address: "258 Spruce Ave, Denver, CO 80201",
-		status: "offline",
-		lastActive: "2 hours ago",
+		user_details: {
+			name: "Daniel White",
+			imageSrc:
+				"https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150&h=150&fit=crop&crop=face",
+		},
+		email: "daniel.white@example.com",
+		status: "Active",
+		income: "$89,700",
+		progress: 82,
+		contact: "email",
 	},
 	{
-		id: 9,
-		name: "Anna Davis",
-		email: "anna.davis@company.com",
-		phone: "+1 (555) 901-2345",
-		address: "369 Willow Way, Miami, FL 33101",
-		status: "online",
-		lastActive: "Just now",
+		user_details: {
+			name: "Lucas Young",
+			imageSrc:
+				"https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150&h=150&fit=crop&crop=face",
+		},
+		email: "lucas.young@example.com",
+		status: "Active",
+		income: "$98,400",
+		progress: 91,
+		contact: "both",
+	},
+]
+
+const columns: ColumnDef<UserData>[] = [
+	{
+		id: "select",
+		header: ({ table }) => (
+			<Checkbox
+				size="sm"
+				className="flex w-full items-center justify-start"
+				checked={
+					table.getIsAllPageRowsSelected() ||
+					(table.getIsSomePageRowsSelected() && "indeterminate")
+				}
+				onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+				aria-label="Select all"
+			/>
+		),
+		cell: ({ row }) => (
+			<Checkbox
+				size="sm"
+				checked={row.getIsSelected()}
+				onCheckedChange={(value) => row.toggleSelected(!!value)}
+				aria-label="Select row"
+			/>
+		),
+		size: 28,
+		enableSorting: false,
 	},
 	{
-		id: 10,
-		name: "James Brown",
-		email: "james.brown@company.com",
-		phone: "+1 (555) 012-3456",
-		address: "741 Poplar Blvd, Phoenix, AZ 85001",
-		status: "away",
-		lastActive: "45 minutes ago",
+		header: "User",
+		accessorKey: "user_details",
+		cell: ({ row }) => {
+			const userDetails = row.getValue("user_details") as UserDetails
+			return (
+				<div className="flex items-center gap-3">
+					<Avatar rounded="circle" size="24">
+						<AvatarImage src={userDetails.imageSrc} />
+						<AvatarFallback>{getInitials(userDetails.name)}</AvatarFallback>
+					</Avatar>
+					<p className="text-fg text-sm font-medium">{userDetails.name}</p>
+				</div>
+			)
+		},
+		size: 190,
+	},
+	{
+		header: "Email",
+		accessorKey: "email",
+		cell: ({ row }) => (
+			<p className="text-fg-secondary text-sm font-normal">
+				{row.getValue("email")}
+			</p>
+		),
+		size: 210,
+	},
+	{
+		header: "Total Spend",
+		accessorKey: "income",
+		cell: ({ row }) => (
+			<p className="text-fg-secondary text-sm font-normal">
+				{row.getValue("income")}
+			</p>
+		),
+		size: 140,
+	},
+	{
+		header: "Status",
+		accessorKey: "status",
+		cell: ({ row }) => (
+			<Badge
+				size="20"
+				variant="soft"
+				color={
+					row.getValue("status") === "Inactive"
+						? "error"
+						: row.getValue("status") === "Pending"
+							? "warning"
+							: "success"
+				}>
+				{row.getValue("status")}
+			</Badge>
+		),
+		size: 120,
+	},
+	{
+		header: "Contact",
+		accessorKey: "contact",
+		cell: ({ row }) => {
+			const contactValue = row.getValue("contact") as string
+
+			return (
+				<div className="text-fg-secondary flex items-center justify-start gap-2">
+					{(contactValue === "both" || contactValue === "email") && (
+						<Mail size={16} />
+					)}
+					{(contactValue === "both" || contactValue === "phone") && (
+						<PhoneCall size={16} />
+					)}
+				</div>
+			)
+		},
+		size: 100,
+	},
+	{
+		header: "Progress",
+		accessorKey: "progress",
+		cell: ({ row }) => {
+			const progress = row.getValue("progress") as number
+			return (
+				<div className="flex items-center justify-center gap-1">
+					<Progress className="w-40" value={progress} />
+					<p className="text-fg-secondary text-sm font-normal">{progress}%</p>
+				</div>
+			)
+		},
+		size: 200,
 	},
 ]
 
 export default function ScrollAreaPreview() {
+	const [sorting, setSorting] = useState<SortingState>([
+		{
+			id: "user_details",
+			desc: false,
+		},
+	])
+
+	const table = useReactTable({
+		data,
+		columns,
+		getCoreRowModel: getCoreRowModel(),
+		getSortedRowModel: getSortedRowModel(),
+		onSortingChange: setSorting,
+		enableSortingRemoval: false,
+		state: {
+			sorting,
+		},
+	})
+
 	return (
-		<div className="w-full max-w-sm">
-			<div className="border-border bg-elevation-level1 rounded-lg border py-4">
-				<div className="flex items-center justify-between px-4">
-					<p className="heading-6 font-medium">Contacts</p>
-					<Button
-						variant="ghost"
-						color="neutral"
-						size="28"
-						className="h-8 w-8 p-0">
-						<Settings className="text-fg-tertiary h-4 w-4" />
-					</Button>
-				</div>
-
-				<Divider orientation="horizontal" className="bg-border my-4" />
-
-				<ScrollArea className="h-80 px-4">
-					<div className="space-y-3">
-						{contacts.map((contact) => (
-							<div
-								key={contact.id}
-								className="border-border rounded-lg border border-dotted p-4">
-								<div className="mb-2 flex items-center justify-between">
-									<h4 className="text-fg font-medium">{contact.name}</h4>
-									<Badge
-										variant="soft"
-										color={
-											contact.status === "online"
-												? "success"
-												: contact.status === "away"
-													? "warning"
-													: "neutral"
-										}
-										size="20">
-										{contact.status}
-									</Badge>
-								</div>
-
-								<div className="space-y-2">
-									<div className="text-fg-secondary flex items-center gap-2 text-sm">
-										<Mail className="h-3 w-3" />
-										<span>{contact.email}</span>
-									</div>
-									<div className="text-fg-secondary flex items-center gap-2 text-sm">
-										<Phone className="h-3 w-3" />
-										<span>{contact.phone}</span>
-									</div>
-									<div className="text-fg-secondary flex items-center gap-2 text-sm">
-										<MapPin className="h-3 w-3" />
-										<span>{contact.address}</span>
-									</div>
-									<div className="text-fg-tertiary flex items-center gap-2 text-xs">
-										<Calendar className="h-3 w-3" />
-										<span>Last active: {contact.lastActive}</span>
-									</div>
-								</div>
-							</div>
+		<div className="flex w-full flex-col gap-4 overflow-auto">
+			<ScrollArea className="bg-bg h-100 overflow-hidden rounded-md border">
+				<Table className="table-fixed">
+					<TableHeader>
+						{table.getHeaderGroups().map((headerGroup) => (
+							<TableRow key={headerGroup.id} className="hover:bg-transparent">
+								{headerGroup.headers.map((header) => {
+									return (
+										<TableHead
+											key={header.id}
+											style={{ width: `${header.getSize()}px` }}
+											className="h-11">
+											{header.isPlaceholder ? null : header.column.getCanSort() ? (
+												<div
+													className={cn(
+														header.column.getCanSort() &&
+															"flex h-full cursor-pointer select-none items-center justify-between gap-2"
+													)}
+													onClick={header.column.getToggleSortingHandler()}
+													onKeyDown={(e) => {
+														if (
+															header.column.getCanSort() &&
+															(e.key === "Enter" || e.key === " ")
+														) {
+															e.preventDefault()
+															header.column.getToggleSortingHandler()?.(e)
+														}
+													}}
+													tabIndex={header.column.getCanSort() ? 0 : undefined}>
+													{flexRender(
+														header.column.columnDef.header,
+														header.getContext()
+													)}
+													{{
+														asc: (
+															<ChevronUpIcon
+																className="shrink-0 opacity-60"
+																size={16}
+																aria-hidden="true"
+															/>
+														),
+														desc: (
+															<ChevronDownIcon
+																className="shrink-0 opacity-60"
+																size={16}
+																aria-hidden="true"
+															/>
+														),
+													}[header.column.getIsSorted() as string] ?? null}
+												</div>
+											) : (
+												flexRender(
+													header.column.columnDef.header,
+													header.getContext()
+												)
+											)}
+										</TableHead>
+									)
+								})}
+							</TableRow>
 						))}
-					</div>
-				</ScrollArea>
-
-				<Divider orientation="horizontal" className="bg-border my-4" />
-
-				<div className="text-center">
-					<Button variant={"link"} color={"primary"}>
-						View all contacts
-					</Button>
-				</div>
-			</div>
+					</TableHeader>
+					<TableBody>
+						{table.getRowModel().rows?.length ? (
+							table.getRowModel().rows.map((row) => (
+								<TableRow
+									key={row.id}
+									data-state={row.getIsSelected() && "selected"}>
+									{row.getVisibleCells().map((cell) => (
+										<TableCell key={cell.id}>
+											{flexRender(
+												cell.column.columnDef.cell,
+												cell.getContext()
+											)}
+										</TableCell>
+									))}
+								</TableRow>
+							))
+						) : (
+							<TableRow>
+								<TableCell
+									colSpan={columns.length}
+									className="h-24 text-center">
+									No results.
+								</TableCell>
+							</TableRow>
+						)}
+					</TableBody>
+				</Table>
+				<ScrollBar orientation="horizontal" />
+				<ScrollBar orientation="vertical" />
+			</ScrollArea>
 		</div>
 	)
 }
