@@ -73,10 +73,10 @@ export default function VideoDialogPreview() {
 					ref={triggerRef}
 					type="button"
 					aria-label="Play Radian OS demo"
-					className="border-soft bg-bg/60 z-20 w-full max-w-[1440px] cursor-pointer appearance-none rounded-2xl border-0 p-0 text-left backdrop-blur-[45px] sm:border sm:p-3">
+					className="border-soft bg-bg/60 z-20 max-h-[840px] w-full max-w-[1400px] cursor-pointer appearance-none rounded-2xl border-0 p-0 text-left backdrop-blur-[45px] sm:border sm:p-3">
 					<AspectRatio
 						ratio={16 / 9}
-						className="bg-bg border-soft overflow-hidden rounded-2xl border">
+						className="bg-bg border-soft max-h-[840px] overflow-hidden rounded-2xl border">
 						<video
 							ref={backgroundVideoRef}
 							loop
@@ -99,7 +99,7 @@ export default function VideoDialogPreview() {
 			</DialogTrigger>
 
 			{/* Dialog Content */}
-			<DialogContent className="mx-auto max-w-[1440px] overflow-hidden p-0">
+			<DialogContent className="mx-auto max-h-[840px] max-w-[1400px] overflow-hidden p-0">
 				<DialogHeader className="sr-only">
 					<DialogTitle>Radian OS demo</DialogTitle>
 					<DialogDescription>Watch the Radian OS demo video.</DialogDescription>

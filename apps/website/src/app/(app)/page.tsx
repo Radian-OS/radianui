@@ -14,6 +14,12 @@ import VideoDialogPreview from "@/components/home/video/video-dialog-preview"
 import { BorderBeam } from "@/registry/animated/border-beam"
 import { Badge } from "@/registry/ui/badge"
 
+const upperHeroBeamPath =
+	"M0 1H132C142.8 1 152.8 6.8 158.1 16.2L286.5 258.8C292.1 269.4 303.2 276 315.2 276H438"
+
+const lowerHeroBeamPath =
+	"M0 1H92C102.6 1 112.4 6.6 117.8 15.8L154.2 78.2C159.6 87.4 169.4 93 180 93H214"
+
 export default function Page() {
 	return (
 		<div className="min-h-screen w-full overflow-x-hidden">
@@ -79,109 +85,72 @@ export default function Page() {
 
 function VideoPreviewWithBeams() {
 	return (
-		<div className="mt-[100px] flex w-full justify-center px-5 min-[1920px]:px-60">
-			<div className="relative w-full max-w-[1440px]">
-				<VideoDialogPreview />
+		<div className="-mx-4 mt-[100px] flex w-[calc(100%+2rem)] justify-center md:-mx-5 md:w-[calc(100%+2.5rem)]">
+			<div className="max-w-368 relative w-full px-4 md:px-5">
+				<div className="relative z-20 flex justify-center">
+					<VideoDialogPreview />
+				</div>
 
-				{/* Upper left line */}
-				<svg
-					className="not-lg:hidden full -left-290 absolute bottom-[70%] -z-10 max-h-[756px]"
-					viewBox="0 0 1552 756"
-					fill="none"
-					xmlns="http://www.w3.org/2000/svg">
-					<path
-						d="M 1552 756 L 1284.28 210.94 C 1280.06 203.268 1272 198.5 1263.24 198.5 L 1088.88 198.5 C 1080.31 198.5 1072.39 193.926 1068.1 186.5 L 967.928 13 C 963.641 5.5744 955.718 1 947.144 1 H 0"
-						stroke="var(--color-soft)"
-					/>
-
-					<path
-						id="beamPath"
-						d="M 1552 756 L 1284.28 210.94 C 1280.06 203.268 1272 198.5 1263.24 198.5 L 1088.88 198.5 C 1080.31 198.5 1072.39 193.926 1068.1 186.5 L 967.928 13 C 963.641 5.5744 955.718 1 947.144 1 H 0"
-						fill="none"
-						stroke="var(--color-primary)"
-						strokeWidth="1"
-						strokeLinecap="round"
-						className="animate-[var(--animate-beam-flow)] [stroke-dasharray:50_1000] [stroke-dashoffset:0]"
-						pathLength="1000"
-					/>
-				</svg>
-
-				{/* Lower left line */}
-				<svg
-					className="not-lg:hidden -left-290 absolute bottom-[75%] -z-10"
-					width="1331"
-					height="402"
-					viewBox="0 0 1331 402"
-					fill="none"
-					xmlns="http://www.w3.org/2000/svg">
-					<path
-						d="M1329.73 401L1193.99 159.301C1190.79 153.591 1184.75 150.057 1178.2 150.057L1019.5 150.057C1013.03 150.057 1007.05 146.604 1003.81 141L928.21 10.0566C924.974 4.45235 918.995 1 912.523 1H-4"
-						stroke="var(--color-soft)"
-						strokeWidth="1"
-					/>
-					<path
-						id="beamPath"
-						d="M1329.73 401L1193.99 159.301C1190.79 153.591 1184.75 150.057 1178.2 150.057L1019.5 150.057C1013.03 150.057 1007.05 146.604 1003.81 141L928.21 10.0566C924.974 4.45235 918.995 1 912.523 1H-4"
-						fill="none"
-						stroke="var(--color-primary)"
-						strokeWidth="1"
-						strokeLinecap="round"
-						className="animate-[var(--animate-beam-flow2)] opacity-0 [stroke-dasharray:50_1000] [stroke-dashoffset:0]"
-						vectorEffect="non-scaling-stroke"
-						pathLength="1000"
-					/>
-				</svg>
-
-				{/* Upper right line */}
-				<svg
-					className="not-lg:hidden full -right-290 absolute bottom-[70%] -z-10 max-h-[756px] scale-x-[-1]"
-					viewBox="0 0 1552 756"
-					fill="none"
-					xmlns="http://www.w3.org/2000/svg">
-					<path
-						d="M 1552 756 L 1284.28 210.94 C 1280.06 203.268 1272 198.5 1263.24 198.5 L 1088.88 198.5 C 1080.31 198.5 1072.39 193.926 1068.1 186.5 L 967.928 13 C 963.641 5.5744 955.718 1 947.144 1 H 0"
-						stroke="var(--color-soft)"
-					/>
-
-					<path
-						id="beamPath"
-						d="M 1552 756 L 1284.28 210.94 C 1280.06 203.268 1272 198.5 1263.24 198.5 L 1088.88 198.5 C 1080.31 198.5 1072.39 193.926 1068.1 186.5 L 967.928 13 C 963.641 5.5744 955.718 1 947.144 1 H 0"
-						fill="none"
-						stroke="var(--color-primary)"
-						strokeWidth="1"
-						strokeLinecap="round"
-						className="animate-[var(--animate-beam-flow)] [stroke-dasharray:50_1000] [stroke-dashoffset:0]"
-						vectorEffect="non-scaling-stroke"
-						pathLength="1000"
-					/>
-				</svg>
-
-				{/* Lower right line */}
-				<svg
-					className="not-lg:hidden -right-290 absolute bottom-[75%] -z-10 scale-x-[-1]"
-					width="1331"
-					height="402"
-					viewBox="0 0 1331 402"
-					fill="none"
-					xmlns="http://www.w3.org/2000/svg">
-					<path
-						d="M1329.73 401L1193.99 159.301C1190.79 153.591 1184.75 150.057 1178.2 150.057L1019.5 150.057C1013.03 150.057 1007.05 146.604 1003.81 141L928.21 10.0566C924.974 4.45235 918.995 1 912.523 1H-4"
-						stroke="var(--color-soft)"
-						strokeWidth="1"
-					/>
-					<path
-						id="beamPath"
-						d="M1329.73 401L1193.99 159.301C1190.79 153.591 1184.75 150.057 1178.2 150.057L1019.5 150.057C1013.03 150.057 1007.05 146.604 1003.81 141L928.21 10.0566C924.974 4.45235 918.995 1 912.523 1H-4"
-						fill="none"
-						stroke="var(--color-primary)"
-						strokeWidth="1"
-						strokeLinecap="round"
-						className="animate-[var(--animate-beam-flow2)] opacity-0 [stroke-dasharray:50_1000] [stroke-dashoffset:0]"
-						vectorEffect="non-scaling-stroke"
-						pathLength="1000"
-					/>
-				</svg>
+				<HeroBeamPath
+					className="left-4 top-[-276px] h-[276px] w-[438px] md:left-5"
+					path={upperHeroBeamPath}
+					viewBox="0 0 438 276"
+				/>
+				<HeroBeamPath
+					className="left-4 top-[-93px] h-[93px] w-[214px] md:left-5"
+					path={lowerHeroBeamPath}
+					viewBox="0 0 214 93"
+					beamClassName="animate-[var(--animate-beam-flow2)] opacity-0"
+				/>
+				<HeroBeamPath
+					className="right-4 top-[-276px] h-[276px] w-[438px] scale-x-[-1] md:right-5"
+					path={upperHeroBeamPath}
+					viewBox="0 0 438 276"
+				/>
+				<HeroBeamPath
+					className="right-4 top-[-93px] h-[93px] w-[214px] scale-x-[-1] md:right-5"
+					path={lowerHeroBeamPath}
+					viewBox="0 0 214 93"
+					beamClassName="animate-[var(--animate-beam-flow2)] opacity-0"
+				/>
 			</div>
 		</div>
+	)
+}
+
+function HeroBeamPath({
+	className,
+	path,
+	viewBox,
+	beamClassName = "animate-[var(--animate-beam-flow)]",
+}: {
+	className: string
+	path: string
+	viewBox: string
+	beamClassName?: string
+}) {
+	return (
+		<svg
+			className={`pointer-events-none absolute -z-10 hidden overflow-visible lg:block ${className}`}
+			viewBox={viewBox}
+			fill="none"
+			preserveAspectRatio="none"
+			aria-hidden="true">
+			<path
+				d={path}
+				stroke="var(--color-soft)"
+				strokeWidth="1"
+				vectorEffect="non-scaling-stroke"
+			/>
+			<path
+				d={path}
+				stroke="var(--color-primary)"
+				strokeWidth="1"
+				strokeLinecap="round"
+				vectorEffect="non-scaling-stroke"
+				pathLength="1000"
+				className={`${beamClassName} [stroke-dasharray:50_1000] [stroke-dashoffset:0]`}
+			/>
+		</svg>
 	)
 }
