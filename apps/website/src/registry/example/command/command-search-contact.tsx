@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { ArrowDown, ArrowUp, X } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
 import { Badge } from "@/registry/ui/badge"
 import { Button, CompactButton } from "@/registry/ui/button"
 import {
@@ -15,6 +16,7 @@ import {
 	CommandItem,
 	CommandList,
 } from "@/registry/ui/command"
+import { ScrollArea } from "@/registry/ui/scroll-area"
 
 type Department = "Sales" | "Design" | "HR"
 
@@ -97,8 +99,8 @@ function highlightMatch(text: string, query: string) {
 
 export default function CommandSearchContacts() {
 	const [open, setOpen] = useState(false)
-	const [query, setQuery] = useState("Ja")
-	const [activeFilters, setActiveFilters] = useState<Department[]>(["Sales"])
+	const [query, setQuery] = useState("")
+	const [activeFilters, setActiveFilters] = useState<Department[]>([])
 
 	const toggleFilter = (dept: Department) => {
 		setActiveFilters((prev) =>
@@ -106,20 +108,21 @@ export default function CommandSearchContacts() {
 		)
 	}
 
-	const filtered = ALL_CONTACTS.filter((c) => {
-		const matchesQuery =
-			!query || c.name.toLowerCase().includes(query.toLowerCase())
-		const matchesDept =
-			activeFilters.length === 0 || activeFilters.includes(c.department)
-		return matchesQuery && matchesDept
-	})
+	const searchResults = query
+		? ALL_CONTACTS.filter((c) => {
+				const matchesQuery = c.name.toLowerCase().includes(query.toLowerCase())
+				const matchesDept =
+					activeFilters.length === 0 || activeFilters.includes(c.department)
+				return matchesQuery && matchesDept
+			})
+		: []
 
-	const searchResults = filtered.filter((c) =>
-		query ? c.name.toLowerCase().includes(query.toLowerCase()) : false
-	)
+	const searchResultIds = new Set(searchResults.map((c) => c.id))
 
 	const allMembers = ALL_CONTACTS.filter(
-		(c) => activeFilters.length === 0 || activeFilters.includes(c.department)
+		(c) =>
+			(activeFilters.length === 0 || activeFilters.includes(c.department)) &&
+			!searchResultIds.has(c.id)
 	)
 
 	return (
@@ -128,18 +131,23 @@ export default function CommandSearchContacts() {
 				Search Contacts
 			</Button>
 			<CommandDialog open={open} onOpenChange={setOpen}>
-				<Command shouldFilter={false}>
+				<Command
+					className="**:data-[slot=command-input-wrapper]:border-none"
+					shouldFilter={false}>
 					{/* Input row */}
 					<div className="flex items-center justify-between gap-2 px-3">
 						<CommandInput
 							value={query}
 							onValueChange={setQuery}
 							placeholder="Search..."
-							className="flex-1"
+							className="flex-1 border-0"
 						/>
 						{query && (
-							<CompactButton onClick={() => setQuery("")}>
-								<X />{" "}
+							<CompactButton
+								color="neutral"
+								variant="soft"
+								onClick={() => setQuery("")}>
+								<X />
 							</CompactButton>
 						)}
 					</div>
@@ -167,36 +175,41 @@ export default function CommandSearchContacts() {
 					</div>
 
 					<CommandList>
-						<CommandEmpty className="text-fg-tertiary py-8 text-sm">
-							No contacts found.
-						</CommandEmpty>
+						<ScrollArea>
+							<CommandEmpty className="text-fg-tertiary py-8 text-sm">
+								No contacts found.
+							</CommandEmpty>
 
-						{/* Search Results group */}
-						{query && searchResults.length > 0 && (
-							<CommandGroup
-								heading={`Search Results (${searchResults.length})`}>
-								{searchResults.map((contact) => (
-									<ContactItem
-										key={contact.id}
-										contact={contact}
-										query={query}
-									/>
-								))}
-							</CommandGroup>
-						)}
+							{/* Search Results — only shown when query is active */}
+							{query && searchResults.length > 0 && (
+								<>
+									<CommandGroup
+										heading={`Search results (${searchResults.length})`}>
+										{searchResults.map((contact) => (
+											<ContactItem
+												key={contact.id}
+												contact={contact}
+												query={query}
+											/>
+										))}
+									</CommandGroup>
+									{allMembers.length > 0 && <CommandDivider />}
+								</>
+							)}
 
-						{query && searchResults.length > 0 && <CommandDivider />}
-
-						{/* All Members group */}
-						<CommandGroup heading="All Members">
-							{allMembers.map((contact) => (
-								<ContactItem key={contact.id} contact={contact} query="" />
-							))}
-						</CommandGroup>
+							{/* All Members — always shown, excludes search result contacts when query is active */}
+							{allMembers.length > 0 && (
+								<CommandGroup heading="All members">
+									{allMembers.map((contact) => (
+										<ContactItem key={contact.id} contact={contact} query="" />
+									))}
+								</CommandGroup>
+							)}
+						</ScrollArea>
 					</CommandList>
 
 					{/* Footer */}
-					<div className="border-soft flex items-center justify-between border-t px-3 py-2">
+					<div className="border-soft flex items-center justify-between border-t p-4">
 						<div className="text-fg-tertiary flex items-center gap-3 text-xs">
 							<span className="flex items-center gap-1">
 								<Badge size="20" color="neutral" variant="soft">
@@ -232,12 +245,11 @@ function ContactItem({ contact, query }: { contact: Contact; query: string }) {
 		<CommandItem
 			key={contact.id}
 			value={contact.id}
-			className="flex items-center gap-3 rounded-md px-3 py-2">
-			<img
-				src={contact.avatar}
-				alt={contact.name}
-				className="size-8 shrink-0 rounded-full object-cover"
-			/>
+			className="flex items-center gap-2.5 rounded-md p-2">
+			<Avatar size="32" rounded="circle">
+				<AvatarImage src={contact.avatar} />
+				<AvatarFallback>{contact.name.charAt(0)}</AvatarFallback>
+			</Avatar>
 			<div className="flex min-w-0 flex-col">
 				<span className="text-fg text-sm font-medium leading-tight">
 					{query ? highlightMatch(contact.name, query) : contact.name}
