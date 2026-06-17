@@ -17,7 +17,8 @@ const PaginationTextExample = () => {
 					<PaginationItem>
 						<Button color="neutral" variant="ghost" asChild>
 							<Link href="#">
-								<ChevronLeft className="rtl:rotate-180" /> Preview
+								<ChevronLeft className="text-fg-secondary rtl:rotate-180" />{" "}
+								Preview
 							</Link>
 						</Button>
 					</PaginationItem>
@@ -54,7 +55,8 @@ const PaginationTextExample = () => {
 					<PaginationItem>
 						<Button color="neutral" variant="ghost" asChild>
 							<Link href="#">
-								Next <ChevronRight className="rtl:rotate-180" />
+								Next{" "}
+								<ChevronRight className="text-fg-secondary rtl:rotate-180" />
 							</Link>
 						</Button>
 					</PaginationItem>

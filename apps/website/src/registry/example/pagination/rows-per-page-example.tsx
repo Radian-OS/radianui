@@ -268,7 +268,11 @@ export default function Component() {
 									onClick={() => setCurrentPage(0)}
 									disabled={!canPreviousPage}
 									aria-label="Go to first page">
-									<ChevronFirstIcon size={16} aria-hidden="true" />
+									<ChevronFirstIcon
+										size={16}
+										className="text-fg-secondary"
+										aria-hidden="true"
+									/>
 								</IconButton>
 							</PaginationItem>
 							{/* Previous page button */}
@@ -281,7 +285,11 @@ export default function Component() {
 									onClick={() => setCurrentPage(currentPage - 1)}
 									disabled={!canPreviousPage}
 									aria-label="Go to previous page">
-									<ChevronLeftIcon size={16} aria-hidden="true" />
+									<ChevronLeftIcon
+										size={16}
+										className="text-fg-secondary"
+										aria-hidden="true"
+									/>
 								</IconButton>
 							</PaginationItem>
 							{/* Next page button */}
@@ -294,7 +302,11 @@ export default function Component() {
 									onClick={() => setCurrentPage(currentPage + 1)}
 									disabled={!canNextPage}
 									aria-label="Go to next page">
-									<ChevronRightIcon size={16} aria-hidden="true" />
+									<ChevronRightIcon
+										size={16}
+										className="text-fg-secondary"
+										aria-hidden="true"
+									/>
 								</IconButton>
 							</PaginationItem>
 							{/* Last page button */}
@@ -307,7 +319,11 @@ export default function Component() {
 									onClick={() => setCurrentPage(totalPages - 1)}
 									disabled={!canNextPage}
 									aria-label="Go to last page">
-									<ChevronLastIcon size={16} aria-hidden="true" />
+									<ChevronLastIcon
+										className="text-fg-secondary"
+										size={16}
+										aria-hidden="true"
+									/>
 								</IconButton>
 							</PaginationItem>
 						</PaginationContent>

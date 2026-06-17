@@ -29,7 +29,7 @@ const PaginationCardExample = () => {
 								asChild
 								disabled>
 								<Link href="#">
-									<ChevronFirst className="rtl:rotate-180" />
+									<ChevronFirst className="text-fg-secondary rtl:rotate-180" />
 								</Link>
 							</IconButton>
 						</PaginationItem>
@@ -41,7 +41,7 @@ const PaginationCardExample = () => {
 								asChild
 								disabled>
 								<Link href="#">
-									<ChevronLeft className="rtl:rotate-180" />
+									<ChevronLeft className="text-fg-secondary rtl:rotate-180" />
 								</Link>
 							</IconButton>
 						</PaginationItem>
@@ -82,7 +82,7 @@ const PaginationCardExample = () => {
 								variant="ghost"
 								asChild>
 								<Link href="#">
-									<ChevronRight className="rtl:rotate-180" />
+									<ChevronRight className="text-fg-secondary rtl:rotate-180" />
 								</Link>
 							</IconButton>
 						</PaginationItem>
@@ -93,7 +93,7 @@ const PaginationCardExample = () => {
 								variant="ghost"
 								asChild>
 								<Link href="#">
-									<ChevronLast className="rtl:rotate-180" />
+									<ChevronLast className="text-fg-secondary rtl:rotate-180" />
 								</Link>
 							</IconButton>
 						</PaginationItem>

@@ -11,7 +11,7 @@ export default function ToggleFormattingToolbar() {
 				className="p-1.5"
 				size="32"
 				aria-label="Toggle bold">
-				<BoldIcon className="text-fg-secondary !size-5" />
+				<BoldIcon className="text-fg-secondary" />
 			</Toggle>
 			<Toggle
 				defaultPressed
@@ -19,7 +19,7 @@ export default function ToggleFormattingToolbar() {
 				className="p-1.5"
 				size="32"
 				aria-label="Toggle italic">
-				<ItalicIcon className="text-fg-secondary !size-5" />
+				<ItalicIcon className="text-fg-secondary" />
 			</Toggle>
 			<Toggle
 				className="p-1.5"
