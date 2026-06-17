@@ -7,6 +7,7 @@ import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
 import {
 	Command,
+	CommandDialog,
 	CommandDivider,
 	CommandEmpty,
 	CommandGroup,
@@ -88,6 +89,7 @@ const COMMANDS: SystemCommand[] = [
 const CATEGORIES: Category[] = ["All", "Actions", "Navigation", "Settings"]
 
 export default function CommandSystemCommands() {
+	const [open, setOpen] = useState(false)
 	const [query, setQuery] = useState("")
 	const [activeCategory, setActiveCategory] = useState<Category>("All")
 
@@ -109,12 +111,11 @@ export default function CommandSystemCommands() {
 		.filter((g) => g.items.length > 0)
 
 	return (
-		<div className="flex min-h-screen items-center justify-center">
-			<div className="w-160">
-				<Button color="neutral" variant="soft">
-					System Commands
-				</Button>
-
+		<>
+			<Button color="neutral" variant="outline" onClick={() => setOpen(true)}>
+				System Commands
+			</Button>
+			<CommandDialog open={open} onOpenChange={setOpen}>
 				<Command shouldFilter={false}>
 					{/* Input */}
 					<div className="border-border flex items-center gap-2 border-b px-3">
@@ -182,7 +183,7 @@ export default function CommandSystemCommands() {
 						))}
 					</CommandList>
 				</Command>
-			</div>
-		</div>
+			</CommandDialog>
+		</>
 	)
 }

@@ -298,8 +298,8 @@ export default function ScrollAreaPreview() {
 	})
 
 	return (
-		<div className="w-140 flex flex-col gap-4 overflow-auto">
-			<ScrollArea className="bg-bg h-60 overflow-hidden rounded-md border">
+		<div className="w-150 flex flex-col gap-4 overflow-auto">
+			<ScrollArea className="bg-bg h-90 overflow-hidden rounded-md border">
 				<Table className="table-fixed">
 					<TableHeader>
 						{table.getHeaderGroups().map((headerGroup) => (

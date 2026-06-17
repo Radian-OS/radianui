@@ -1,12 +1,13 @@
 "use client"
 
 import { useState } from "react"
-import { ArrowDown, ArrowUp, CornerDownLeft, X } from "lucide-react"
+import { ArrowDown, ArrowUp, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Badge } from "@/registry/ui/badge"
 import { Button, CompactButton } from "@/registry/ui/button"
 import {
 	Command,
+	CommandDialog,
 	CommandDivider,
 	CommandEmpty,
 	CommandGroup,
@@ -95,6 +96,7 @@ function highlightMatch(text: string, query: string) {
 }
 
 export default function CommandSearchContacts() {
+	const [open, setOpen] = useState(false)
 	const [query, setQuery] = useState("Ja")
 	const [activeFilters, setActiveFilters] = useState<Department[]>(["Sales"])
 
@@ -121,34 +123,35 @@ export default function CommandSearchContacts() {
 	)
 
 	return (
-		<div className="w-160 flex flex-col gap-2">
-			<Button color="neutral" variant="soft">
+		<>
+			<Button color="neutral" variant="outline" onClick={() => setOpen(true)}>
 				Search Contacts
 			</Button>
+			<CommandDialog open={open} onOpenChange={setOpen}>
+				<Command shouldFilter={false}>
+					{/* Input row */}
+					<div className="flex items-center justify-between gap-2 px-3">
+						<CommandInput
+							value={query}
+							onValueChange={setQuery}
+							placeholder="Search..."
+							className="flex-1"
+						/>
+						{query && (
+							<CompactButton onClick={() => setQuery("")}>
+								<X />{" "}
+							</CompactButton>
+						)}
+					</div>
 
-			<Command shouldFilter={false}>
-				{/* Input row */}
-				<div className="flex items-center justify-between gap-2 px-3">
-					<CommandInput
-						value={query}
-						onValueChange={setQuery}
-						placeholder="Search..."
-						className="flex-1"
-					/>
-					{query && (
-						<CompactButton onClick={() => setQuery("")}>
-							<X />{" "}
-						</CompactButton>
-					)}
-				</div>
-
-				{/* Filter badges */}
-				<div className="border-soft flex items-center gap-1.5 border-b px-3 py-2">
-					{DEPARTMENTS.map((dept) => {
-						const isActive = activeFilters.includes(dept)
-						return (
-							<button key={dept} onClick={() => toggleFilter(dept)}>
+					{/* Filter badges */}
+					<div className="border-soft flex items-center gap-1.5 border-b px-3 py-2">
+						{DEPARTMENTS.map((dept) => {
+							const isActive = activeFilters.includes(dept)
+							return (
 								<Badge
+									key={dept}
+									onClick={() => toggleFilter(dept)}
 									variant={isActive ? "outline" : "soft"}
 									color={isActive ? "primary" : "neutral"}
 									size="24"
@@ -159,63 +162,68 @@ export default function CommandSearchContacts() {
 									{dept}
 									{isActive && <X className="ml-0.5 size-3 opacity-70" />}
 								</Badge>
-							</button>
-						)
-					})}
-				</div>
+							)
+						})}
+					</div>
 
-				<CommandList>
-					<CommandEmpty className="text-fg-tertiary py-8 text-sm">
-						No contacts found.
-					</CommandEmpty>
+					<CommandList>
+						<CommandEmpty className="text-fg-tertiary py-8 text-sm">
+							No contacts found.
+						</CommandEmpty>
 
-					{/* Search Results group */}
-					{query && searchResults.length > 0 && (
-						<CommandGroup heading={`Search Results (${searchResults.length})`}>
-							{searchResults.map((contact) => (
-								<ContactItem key={contact.id} contact={contact} query={query} />
+						{/* Search Results group */}
+						{query && searchResults.length > 0 && (
+							<CommandGroup
+								heading={`Search Results (${searchResults.length})`}>
+								{searchResults.map((contact) => (
+									<ContactItem
+										key={contact.id}
+										contact={contact}
+										query={query}
+									/>
+								))}
+							</CommandGroup>
+						)}
+
+						{query && searchResults.length > 0 && <CommandDivider />}
+
+						{/* All Members group */}
+						<CommandGroup heading="All Members">
+							{allMembers.map((contact) => (
+								<ContactItem key={contact.id} contact={contact} query="" />
 							))}
 						</CommandGroup>
-					)}
+					</CommandList>
 
-					{query && searchResults.length > 0 && <CommandDivider />}
-
-					{/* All Members group */}
-					<CommandGroup heading="All Members">
-						{allMembers.map((contact) => (
-							<ContactItem key={contact.id} contact={contact} query="" />
-						))}
-					</CommandGroup>
-				</CommandList>
-
-				{/* Footer */}
-				<div className="border-soft flex items-center justify-between border-t px-3 py-2">
-					<div className="text-fg-tertiary flex items-center gap-3 text-xs">
-						<span className="flex items-center gap-1">
-							<kbd className="border-border bg-fill2 inline-flex size-5 items-center justify-center rounded border text-[10px]">
-								<ArrowUp className="size-3" />
-							</kbd>
-							<kbd className="border-border bg-fill2 inline-flex size-5 items-center justify-center rounded border text-[10px]">
-								<ArrowDown className="size-3" />
-							</kbd>
-							Navigate
-						</span>
-						<span className="flex items-center gap-1">
-							<kbd className="border-border bg-fill2 inline-flex h-5 items-center justify-center rounded border px-1 text-[10px]">
-								ESC
-							</kbd>
-							Close
+					{/* Footer */}
+					<div className="border-soft flex items-center justify-between border-t px-3 py-2">
+						<div className="text-fg-tertiary flex items-center gap-3 text-xs">
+							<span className="flex items-center gap-1">
+								<Badge size="20" color="neutral" variant="soft">
+									<ArrowUp className="size-3.5" />
+								</Badge>
+								<Badge size="20" color="neutral" variant="soft">
+									<ArrowDown className="size-3.5" />
+								</Badge>
+								Navigate
+							</span>
+							<span className="flex items-center gap-1">
+								<Badge size="20" color="neutral" variant="soft">
+									ESC
+								</Badge>
+								Close
+							</span>
+						</div>
+						<span className="text-fg-tertiary flex items-center gap-1 text-xs">
+							<Badge size="20" color="neutral" variant="soft">
+								⏎
+							</Badge>
+							Select
 						</span>
 					</div>
-					<span className="text-fg-tertiary flex items-center gap-1 text-xs">
-						<kbd className="border-border bg-fill2 inline-flex size-5 items-center justify-center rounded border text-[10px]">
-							<CornerDownLeft className="size-3" />
-						</kbd>
-						Select
-					</span>
-				</div>
-			</Command>
-		</div>
+				</Command>
+			</CommandDialog>
+		</>
 	)
 }
 
