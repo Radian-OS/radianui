@@ -2,7 +2,7 @@ import { Skeleton } from "@/registry/ui/skeleton"
 
 export default function SkeletonPreview() {
 	return (
-		<div className="inline-flex w-80 flex-col items-start justify-start gap-5 rounded-xl border p-5">
+		<div className="border-soft inline-flex w-80 flex-col items-start justify-start gap-5 rounded-xl border p-5">
 			{Array.from({ length: 5 }).map((_, index) => (
 				<div
 					key={index}

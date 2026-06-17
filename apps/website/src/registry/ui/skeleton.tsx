@@ -6,7 +6,7 @@ function Skeleton({ className, ...props }: SkeletonProps) {
 	return (
 		<div
 			data-slot="skeleton"
-			className={cn("bg-fill1 animate-pulse", className)}
+			className={cn("bg-fill2 animate-pulse", className)}
 			{...props}></div>
 	)
 }

@@ -82,17 +82,15 @@ export default function CollapsibleList() {
 	const rest = NOTIFICATIONS.slice(1)
 
 	return (
-		<div className="flex min-h-screen items-center justify-center">
+		<div className="flex items-center justify-center">
 			<div className="w-100">
 				<Collapsible
-					className="flex flex-col gap-6"
+					className="flex flex-col" // remove gap-6
 					open={open}
 					onOpenChange={setOpen}>
 					{/* Always-visible first notification */}
 					<div className="relative">
 						<NotificationCard notification={first} />
-
-						{/* Stacked peek cards when collapsed */}
 						{!open && (
 							<>
 								<div className="bg-bg border-soft absolute -bottom-2 left-3 right-3 -z-10 h-full rounded-xl border opacity-60" />
@@ -101,15 +99,15 @@ export default function CollapsibleList() {
 						)}
 					</div>
 
-					{/* Expanded items */}
-					<CollapsibleContent className="flex flex-col gap-2">
+					{/* Expanded items — gap-2 from the first card */}
+					<CollapsibleContent className="mt-2 flex flex-col gap-2">
 						{rest.map((n) => (
 							<NotificationCard key={n.id} notification={n} />
 						))}
 					</CollapsibleContent>
 
-					{/* Show All trigger */}
-					<div className="flex justify-center">
+					{/* Trigger — mt-6 to keep breathing room from the card stack */}
+					<div className="mt-6 flex justify-center">
 						<CollapsibleTrigger asChild>
 							<Button color="neutral" variant="outline">
 								{open ? "Show Less" : "Show All"}

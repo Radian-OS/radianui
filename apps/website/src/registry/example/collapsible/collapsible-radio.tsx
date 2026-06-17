@@ -54,8 +54,8 @@ export default function CollapsibleRadio() {
 								<Label
 									key={opt.value}
 									className={cn(
-										"hover:bg-fill1 flex cursor-pointer items-center gap-2 p-3 transition-colors",
-										opt.value === selected && "bg-fill2"
+										"hover:bg-fill1-alpha flex cursor-pointer items-center gap-2 p-3 transition-colors",
+										opt.value === selected && "bg-fill1-alpha"
 									)}>
 									<RadioGroupItem value={opt.value} />
 									<span className="text-fg text-sm">{opt.label}</span>

@@ -3,8 +3,11 @@
 import { useState } from "react"
 import { ArrowDown, ArrowUp, CheckIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { Badge } from "@/registry/ui/badge"
+import { Button } from "@/registry/ui/button"
 import {
 	Command,
+	CommandDialog,
 	CommandDivider,
 	CommandEmpty,
 	CommandGroup,
@@ -45,7 +48,7 @@ const INTEGRATIONS: Integration[] = [
 		name: "Asana",
 		tagline: "Task Management",
 		category: "Project Management",
-		logo: "/airtable.svg",
+		logo: "/asana.svg",
 		description:
 			"Manage your team's work, projects, and tasks in one place to stay on top of deadlines.",
 		features: [
@@ -60,7 +63,7 @@ const INTEGRATIONS: Integration[] = [
 		name: "Click Up",
 		tagline: "Work OS",
 		category: "Project Management",
-		logo: "/airtable.svg",
+		logo: "/clickup.svg",
 		description:
 			"One app to replace them all — tasks, docs, goals, and chat in a single productivity platform.",
 		features: [
@@ -75,7 +78,7 @@ const INTEGRATIONS: Integration[] = [
 		name: "Notion",
 		tagline: "Project Management",
 		category: "Project Management",
-		logo: "/airtable.svg",
+		logo: "/notion.svg",
 		description:
 			"An all-in-one workspace for notes, tasks, wikis, and databases to keep your team aligned.",
 		features: [
@@ -90,7 +93,7 @@ const INTEGRATIONS: Integration[] = [
 		name: "Microsoft Outlook",
 		tagline: "Email & Calendar",
 		category: "Communication",
-		logo: "/airtable.svg",
+		logo: "/outlook.svg",
 		description:
 			"Stay connected with professional email, calendar, and contacts all in one place.",
 		features: [
@@ -105,7 +108,7 @@ const INTEGRATIONS: Integration[] = [
 		name: "Zoom",
 		tagline: "Team Communication",
 		category: "Communication",
-		logo: "/airtable.svg",
+		logo: "/zoom.svg",
 		description:
 			"Video conferencing, webinars, and team chat to keep your distributed team connected.",
 		features: [
@@ -120,7 +123,7 @@ const INTEGRATIONS: Integration[] = [
 		name: "Discord",
 		tagline: "Community Chat",
 		category: "Communication",
-		logo: "/airtable.svg",
+		logo: "/discord.svg",
 		description:
 			"Voice, video, and text communication built for communities and teams of all sizes.",
 		features: [
@@ -133,6 +136,7 @@ const INTEGRATIONS: Integration[] = [
 ]
 
 export default function CommandSearchIntegration() {
+	const [open, setOpen] = useState(false)
 	const [query, setQuery] = useState("")
 	const [selected, setSelected] = useState<Integration>(INTEGRATIONS[0])
 	const [enabled, setEnabled] = useState<Record<string, boolean>>({
@@ -155,21 +159,20 @@ export default function CommandSearchIntegration() {
 		setEnabled((prev) => ({ ...prev, [id]: !prev[id] }))
 
 	return (
-		<div className="flex min-h-screen items-center justify-center">
-			<div className="border-border bg-elevation-level1 w-[700px] overflow-hidden rounded-xl border shadow-xl">
-				{/* Title */}
-				<div className="px-4 pb-2 pt-4">
-					<span className="text-fg text-sm font-medium">
-						Search Integration
-					</span>
-				</div>
-
-				<div className="flex" style={{ minHeight: 520 }}>
-					{/* Left: Command list */}
-					<div
-						className="border-border flex flex-col border-r"
-						style={{ width: 280 }}>
-						<Command shouldFilter={false}>
+		<>
+			<Button color="neutral" variant="outline" onClick={() => setOpen(true)}>
+				Search Integration
+			</Button>
+			<CommandDialog
+				open={open}
+				onOpenChange={setOpen}
+				className="max-w-[760px] overflow-hidden p-0">
+				<Command shouldFilter={false}>
+					<div className="flex" style={{ minHeight: 520 }}>
+						{/* Left: Command list */}
+						<div
+							className="border-border flex flex-col border-r"
+							style={{ width: 280 }}>
 							{/* Search */}
 							<div className="border-border flex items-center gap-2 border-b px-3">
 								<CommandInput
@@ -217,100 +220,99 @@ export default function CommandSearchIntegration() {
 									</CommandGroup>
 								)}
 							</CommandList>
-						</Command>
 
-						{/* Footer */}
-						<div className="border-border text-fg-tertiary mt-auto flex items-center gap-3 border-t px-3 py-2 text-xs">
-							<span className="flex items-center gap-1">
-								<kbd className="border-border bg-fill2 inline-flex size-5 items-center justify-center rounded border text-[10px]">
-									<ArrowUp className="size-3" />
-								</kbd>
-								<kbd className="border-border bg-fill2 inline-flex size-5 items-center justify-center rounded border text-[10px]">
-									<ArrowDown className="size-3" />
-								</kbd>
-								Navigate
-							</span>
-							<span className="flex items-center gap-1">
-								<kbd className="border-border bg-fill2 inline-flex h-5 items-center justify-center rounded border px-1 text-[10px]">
-									ESC
-								</kbd>
-								Close
-							</span>
+							{/* Left footer */}
+							<div className="border-border text-fg-tertiary mt-auto flex items-center gap-3 border-t px-3 py-2 text-xs">
+								<span className="flex items-center gap-1">
+									<Badge size="20" color="neutral" variant="soft">
+										<ArrowUp className="size-3.5" />
+									</Badge>
+									<Badge size="20" color="neutral" variant="soft">
+										<ArrowDown className="size-3.5" />
+									</Badge>
+									Navigate
+								</span>
+								<span className="flex items-center gap-1">
+									<Badge size="20" color="neutral" variant="soft">
+										ESC
+									</Badge>
+									Close
+								</span>
+							</div>
 						</div>
-					</div>
 
-					{/* Right: Detail panel */}
-					<div className="flex flex-1 flex-col gap-4 p-5">
-						{/* Logo + toggle */}
-						<div className="flex items-start justify-between">
-							<div className="bg-fill2 border-border flex size-12 items-center justify-center overflow-hidden rounded-xl border p-2">
-								<img
-									src={selected.logo}
-									alt={selected.name}
-									className="size-8 object-contain"
-									style={{ filter: `invert(0)` }}
+						{/* Right: Detail panel */}
+						<div className="flex flex-1 flex-col gap-4 p-5">
+							{/* Logo + toggle */}
+							<div className="flex items-start justify-between">
+								<div className="bg-fill2 border-border flex size-12 items-center justify-center overflow-hidden rounded-xl border p-2">
+									<img
+										src={selected.logo}
+										alt={selected.name}
+										className="size-8 object-contain"
+									/>
+								</div>
+								<Switch
+									checked={!!enabled[selected.id]}
+									onCheckedChange={() => toggleEnabled(selected.id)}
 								/>
 							</div>
-							<Switch
-								checked={!!enabled[selected.id]}
-								onCheckedChange={() => toggleEnabled(selected.id)}
-							/>
-						</div>
 
-						{/* Name + description */}
-						<div>
-							<h2 className="text-fg mb-1 text-xl font-bold">
-								{selected.name}
-							</h2>
-							<p className="text-fg-secondary text-sm leading-relaxed">
-								{selected.description}
-							</p>
-						</div>
+							{/* Name + description */}
+							<div>
+								<h2 className="text-fg mb-1 text-xl font-bold">
+									{selected.name}
+								</h2>
+								<p className="text-fg-secondary text-sm leading-relaxed">
+									{selected.description}
+								</p>
+							</div>
 
-						{/* Key features */}
-						<div>
-							<p className="text-fg mb-2 text-sm font-semibold">Key Features</p>
-							<ul className="flex flex-col gap-1.5">
-								{selected.features.map((f) => (
-									<li
-										key={f}
-										className="text-fg-secondary flex items-center gap-2 text-sm">
-										<CheckIcon className="text-primary size-4 shrink-0" />
-										{f}
-									</li>
-								))}
-							</ul>
-						</div>
+							{/* Key features */}
+							<div>
+								<p className="text-fg mb-2 text-sm font-semibold">
+									Key Features
+								</p>
+								<ul className="flex flex-col gap-1.5">
+									{selected.features.map((f) => (
+										<li
+											key={f}
+											className="text-fg-secondary flex items-center gap-2 text-sm">
+											<CheckIcon className="text-primary size-4 shrink-0" />
+											{f}
+										</li>
+									))}
+								</ul>
+							</div>
 
-						{/* CTA buttons */}
-						<div className="mt-auto flex flex-col gap-2">
-							<button className="bg-primary w-full rounded-lg py-2.5 text-sm font-semibold text-white transition-opacity hover:opacity-90">
-								View Integration
-							</button>
-							<button className="border-border text-fg hover:bg-fill2 w-full rounded-lg border py-2.5 text-sm font-semibold transition-colors">
-								Learn more
-							</button>
-						</div>
+							{/* CTA buttons */}
+							<div className="mt-auto flex flex-col gap-2">
+								<Button>View Integration</Button>
+								<Button variant="outline" color="neutral">
+									Learn more
+								</Button>
+							</div>
 
-						{/* Footer hints */}
-						<div className="text-fg-tertiary flex items-center justify-end gap-4 pt-1 text-xs">
-							<span className="flex items-center gap-1">
-								<kbd className="border-border bg-fill2 inline-flex h-5 items-center justify-center rounded border px-1 text-[10px]">
-									⇧+↵
-								</kbd>
-								Visit website
-							</span>
-							<span className="flex items-center gap-1">
-								<kbd className="border-border bg-fill2 inline-flex h-5 items-center justify-center rounded border px-1 text-[10px]">
-									↵
-								</kbd>
-								View Integration
-							</span>
+							{/* Right footer hints */}
+							<div className="text-fg-tertiary flex items-center justify-end gap-4 pt-1 text-xs">
+								<span className="flex items-center gap-1">
+									<Badge size="20" color="neutral" variant="soft">
+										⇧+⏎
+									</Badge>
+									Visit website
+								</span>
+								<span className="flex items-center gap-1">
+									<Badge size="20" color="neutral" variant="soft">
+										⏎
+									</Badge>
+									View Integration
+								</span>
+							</div>
 						</div>
 					</div>
-				</div>
-			</div>
-		</div>
+				</Command>
+			</CommandDialog>
+		</>
 	)
 }
 
