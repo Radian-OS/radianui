@@ -9,49 +9,69 @@ import {
 	navigationMenuTriggerStyle,
 } from "@/registry/ui/navigation-menu"
 
+type NavEntry =
+	| { label: string; href: string }
+	| { label: string; items: { label: string; href: string }[] }
+
+const NAV_CONFIG: NavEntry[] = [
+	{ label: "Features", href: "#" },
+	{
+		label: "Products",
+		items: [
+			{ label: "Workspace", href: "#" },
+			{ label: "Data Tables", href: "#" },
+			{ label: "Components", href: "#" },
+		],
+	},
+	{
+		label: "Pricing",
+		items: [
+			{ label: "Plans & Pricing", href: "#" },
+			{ label: "Enterprise", href: "#" },
+			{ label: "ROI Calculator", href: "#" },
+		],
+	},
+	{
+		label: "Resources",
+		items: [
+			{ label: "Help Center", href: "#" },
+			{ label: "FAQs", href: "#" },
+			{ label: "Documentation", href: "#" },
+		],
+	},
+]
+
 export default function NavigationMenuPreview() {
 	return (
 		<div className="flex items-center justify-center">
 			<NavigationMenu>
 				<NavigationMenuList>
-					<NavigationMenuItem>
-						<NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
-						<NavigationMenuContent>
-							<ul className="w-80">
-								<li>
-									<NavigationMenuLink asChild>
-										<Link href="#">
-											<div className="flex flex-col gap-1 px-1">
-												<div className="font-medium">Introduction</div>
-												<div className="text-muted-foreground line-clamp-2 text-sm">
-													Re-usable components built with Tailwind CSS.
-												</div>
-											</div>
-										</Link>
-									</NavigationMenuLink>
-								</li>
-								<li>
-									<NavigationMenuLink asChild>
-										<Link href="#">
-											<div className="flex flex-col gap-1 px-1">
-												<div className="font-medium">Installation</div>
-												<div className="text-muted-foreground line-clamp-2 text-sm">
-													How to install dependencies and structure your app.
-												</div>
-											</div>
-										</Link>
-									</NavigationMenuLink>
-								</li>
-							</ul>
-						</NavigationMenuContent>
-					</NavigationMenuItem>
-					<NavigationMenuItem>
-						<NavigationMenuLink
-							asChild
-							className={navigationMenuTriggerStyle()}>
-							<Link href="#">Documentation</Link>
-						</NavigationMenuLink>
-					</NavigationMenuItem>
+					{NAV_CONFIG.map((entry) =>
+						"href" in entry ? (
+							<NavigationMenuItem key={entry.label}>
+								<NavigationMenuLink
+									className={navigationMenuTriggerStyle()}
+									asChild>
+									<Link href={entry.href}>{entry.label}</Link>
+								</NavigationMenuLink>
+							</NavigationMenuItem>
+						) : (
+							<NavigationMenuItem key={entry.label}>
+								<NavigationMenuTrigger>{entry.label}</NavigationMenuTrigger>
+								<NavigationMenuContent className="min-w-50 p-2">
+									<ul className="flex w-full flex-col gap-1.5 px-1.5 py-1">
+										{entry.items.map(({ label, href }) => (
+											<li key={label} className="w-full">
+												<NavigationMenuLink asChild>
+													<Link href={href}>{label}</Link>
+												</NavigationMenuLink>
+											</li>
+										))}
+									</ul>
+								</NavigationMenuContent>
+							</NavigationMenuItem>
+						)
+					)}
 				</NavigationMenuList>
 			</NavigationMenu>
 		</div>
