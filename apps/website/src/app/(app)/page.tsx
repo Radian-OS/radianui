@@ -1,4 +1,5 @@
-import { Box } from "lucide-react"
+import { ArrowRight } from "lucide-react"
+import Link from "next/link"
 import Background from "@/components/effects/background"
 import ComponentsSection from "@/components/home/components-section"
 import CTASection from "@/components/home/cta-section"
@@ -19,13 +20,22 @@ export default function Page() {
 			<Background>
 				<div className="md:pt-30 pt-15 flex flex-col items-center justify-center gap-12">
 					<div className="max-w-250 flex flex-col items-center justify-center gap-6">
-						<div className="relative h-[28px] rounded-md">
-							<Badge color="primary" size="28" variant="soft">
-								<Box size={16} />
-								Under Development - Alpha Release
+						<Link
+							href="/docs/getting-started/changelog"
+							className="relative h-[32px] rounded-full">
+							<Badge
+								color="neon"
+								className="h-8 rounded-full p-2"
+								size="28"
+								variant="soft">
+								<Badge color="neon" className="rounded-full" variant="strong">
+									New Version
+								</Badge>
+								Read Changelog Version
+								<ArrowRight className="size-3.5" />
 							</Badge>
 							<BorderBeam size={50} />
-						</div>
+						</Link>
 						<h1 className="heading-1 dark:from-fg dark:to-fg-secondary not-dark:text-fg bg-clip-text text-center text-transparent dark:bg-gradient-to-b">
 							Build next gen of world class products and solutions
 						</h1>
@@ -69,7 +79,7 @@ export default function Page() {
 
 function VideoPreviewWithBeams() {
 	return (
-		<div className="mt-15 flex w-full justify-center px-5 min-[1920px]:px-60">
+		<div className="mt-[100px] flex w-full justify-center px-5 min-[1920px]:px-60">
 			<div className="relative w-full max-w-[1440px]">
 				<VideoDialogPreview />
 
