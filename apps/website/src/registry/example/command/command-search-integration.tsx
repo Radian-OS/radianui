@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { ArrowDown, ArrowUp, CheckIcon } from "lucide-react"
+import Image from "next/image"
 import { cn } from "@/lib/utils"
 import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
@@ -166,63 +167,116 @@ export default function CommandSearchIntegration() {
 			<CommandDialog
 				open={open}
 				onOpenChange={setOpen}
-				className="max-w-[760px] overflow-hidden p-0">
-				<Command shouldFilter={false}>
-					<div className="flex" style={{ minHeight: 520 }}>
+				className="max-w-200 w-full p-0">
+				<Command
+					className="**:data-[slot=command-input-wrapper]:border-none"
+					shouldFilter={false}>
+					<div className="flex w-full flex-col">
+						<div className="border-soft flex w-full items-center justify-between border-b px-3">
+							<CommandInput
+								value={query}
+								onValueChange={setQuery}
+								placeholder="Search integrations..."
+							/>
+							<span className="text-fg-tertiary shrink-0 font-mono text-xs">
+								⌘+K
+							</span>
+						</div>
 						{/* Left: Command list */}
-						<div
-							className="border-border flex flex-col border-r"
-							style={{ width: 280 }}>
-							{/* Search */}
-							<div className="border-border flex items-center gap-2 border-b px-3">
-								<CommandInput
-									value={query}
-									onValueChange={setQuery}
-									placeholder="Search integrations..."
-								/>
-								<span className="text-fg-tertiary shrink-0 font-mono text-xs">
-									⌘+K
-								</span>
+						<div className="flex w-full">
+							<div className="border-border flex flex-1 flex-col border-r">
+								{/* Search */}
+								<CommandList className="max-h-none">
+									<CommandEmpty className="text-fg-tertiary p-2 text-sm">
+										No integrations found.
+									</CommandEmpty>
+
+									{projectMgmt.length > 0 && (
+										<CommandGroup heading="PROJECT MANAGEMENT">
+											{projectMgmt.map((item) => (
+												<IntegrationItem
+													key={item.id}
+													item={item}
+													isSelected={selected.id === item.id}
+													onSelect={() => setSelected(item)}
+												/>
+											))}
+										</CommandGroup>
+									)}
+
+									{projectMgmt.length > 0 && communication.length > 0 && (
+										<CommandDivider />
+									)}
+
+									{communication.length > 0 && (
+										<CommandGroup heading="COMMUNICATION">
+											{communication.map((item) => (
+												<IntegrationItem
+													key={item.id}
+													item={item}
+													isSelected={selected.id === item.id}
+													onSelect={() => setSelected(item)}
+												/>
+											))}
+										</CommandGroup>
+									)}
+								</CommandList>
 							</div>
 
-							<CommandList className="max-h-[460px]">
-								<CommandEmpty className="text-fg-tertiary py-8 text-sm">
-									No integrations found.
-								</CommandEmpty>
+							{/* Right: Detail panel */}
+							<div className="flex flex-1 flex-col gap-6 p-5">
+								{/* Logo + toggle */}
+								<div className="flex items-start justify-between">
+									<Image
+										src={selected.logo}
+										alt={selected.name}
+										width={48}
+										height={48}
+										className="object-contain"
+									/>
+									<Switch
+										checked={!!enabled[selected.id]}
+										onCheckedChange={() => toggleEnabled(selected.id)}
+									/>
+								</div>
 
-								{projectMgmt.length > 0 && (
-									<CommandGroup heading="Project Management">
-										{projectMgmt.map((item) => (
-											<IntegrationItem
-												key={item.id}
-												item={item}
-												isSelected={selected.id === item.id}
-												onSelect={() => setSelected(item)}
-											/>
+								{/* Name + description */}
+								<div className="flex flex-col gap-2">
+									<h2 className="text-fg heading-6">{selected.name}</h2>
+									<p className="text-fg-secondary text-sm leading-relaxed">
+										{selected.description}
+									</p>
+								</div>
+
+								{/* Key features */}
+								<div className="flex flex-col gap-3">
+									<p className="text-fg mb-2 text-sm font-medium">
+										Key Features
+									</p>
+									<ul className="flex flex-col gap-3">
+										{selected.features.map((f) => (
+											<li
+												key={f}
+												className="text-fg-secondary flex items-center gap-2 text-sm">
+												<CheckIcon className="text-primary bg-bg-primary-accent size-3.5 shrink-0 p-0.5" />
+												{f}
+											</li>
 										))}
-									</CommandGroup>
-								)}
+									</ul>
+								</div>
 
-								{projectMgmt.length > 0 && communication.length > 0 && (
-									<CommandDivider />
-								)}
+								{/* CTA buttons */}
+								<div className="flex flex-col gap-2.5">
+									<Button className="w-full">View Integration</Button>
+									<Button className="w-full" variant="outline" color="neutral">
+										Learn more
+									</Button>
+								</div>
+							</div>
+						</div>
 
-								{communication.length > 0 && (
-									<CommandGroup heading="Communication">
-										{communication.map((item) => (
-											<IntegrationItem
-												key={item.id}
-												item={item}
-												isSelected={selected.id === item.id}
-												onSelect={() => setSelected(item)}
-											/>
-										))}
-									</CommandGroup>
-								)}
-							</CommandList>
-
-							{/* Left footer */}
-							<div className="border-border text-fg-tertiary mt-auto flex items-center gap-3 border-t px-3 py-2 text-xs">
+						<div className="border-soft flex items-center justify-between border-t p-4">
+							<div className="text-fg-tertiaryflex flex items-center gap-3 text-xs">
 								<span className="flex items-center gap-1">
 									<Badge size="20" color="neutral" variant="soft">
 										<ArrowUp className="size-3.5" />
@@ -239,62 +293,8 @@ export default function CommandSearchIntegration() {
 									Close
 								</span>
 							</div>
-						</div>
 
-						{/* Right: Detail panel */}
-						<div className="flex flex-1 flex-col gap-4 p-5">
-							{/* Logo + toggle */}
-							<div className="flex items-start justify-between">
-								<div className="bg-fill2 border-border flex size-12 items-center justify-center overflow-hidden rounded-xl border p-2">
-									<img
-										src={selected.logo}
-										alt={selected.name}
-										className="size-8 object-contain"
-									/>
-								</div>
-								<Switch
-									checked={!!enabled[selected.id]}
-									onCheckedChange={() => toggleEnabled(selected.id)}
-								/>
-							</div>
-
-							{/* Name + description */}
-							<div>
-								<h2 className="text-fg mb-1 text-xl font-bold">
-									{selected.name}
-								</h2>
-								<p className="text-fg-secondary text-sm leading-relaxed">
-									{selected.description}
-								</p>
-							</div>
-
-							{/* Key features */}
-							<div>
-								<p className="text-fg mb-2 text-sm font-semibold">
-									Key Features
-								</p>
-								<ul className="flex flex-col gap-1.5">
-									{selected.features.map((f) => (
-										<li
-											key={f}
-											className="text-fg-secondary flex items-center gap-2 text-sm">
-											<CheckIcon className="text-primary size-4 shrink-0" />
-											{f}
-										</li>
-									))}
-								</ul>
-							</div>
-
-							{/* CTA buttons */}
-							<div className="mt-auto flex flex-col gap-2">
-								<Button>View Integration</Button>
-								<Button variant="outline" color="neutral">
-									Learn more
-								</Button>
-							</div>
-
-							{/* Right footer hints */}
-							<div className="text-fg-tertiary flex items-center justify-end gap-4 pt-1 text-xs">
+							<div className="text-fg-tertiary flex gap-4 text-xs">
 								<span className="flex items-center gap-1">
 									<Badge size="20" color="neutral" variant="soft">
 										⇧+⏎
@@ -330,16 +330,16 @@ function IntegrationItem({
 			value={item.id}
 			onSelect={onSelect}
 			className={cn(
-				"flex cursor-pointer items-center gap-3 rounded-md px-3 py-2",
+				"flex cursor-pointer items-center gap-2.5 rounded-md p-2",
 				isSelected && "bg-fill1-alpha"
 			)}>
-			<div className="bg-fill2 border-border flex size-8 shrink-0 items-center justify-center overflow-hidden rounded-lg border p-1">
-				<img
-					src={item.logo}
-					alt={item.name}
-					className="size-5 object-contain"
-				/>
-			</div>
+			<Image
+				src={item.logo}
+				alt={item.name}
+				height={32}
+				width={32}
+				className="object-contain"
+			/>
 			<div className="flex min-w-0 flex-col">
 				<span className="text-fg text-sm font-medium leading-tight">
 					{item.name}

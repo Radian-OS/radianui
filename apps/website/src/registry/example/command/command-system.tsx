@@ -16,6 +16,7 @@ import {
 	CommandList,
 	CommandShortcut,
 } from "@/registry/ui/command"
+import { ScrollArea } from "@/registry/ui/scroll-area"
 
 type Category = "All" | "Actions" | "Navigation" | "Settings"
 
@@ -116,9 +117,11 @@ export default function CommandSystemCommands() {
 				System Commands
 			</Button>
 			<CommandDialog open={open} onOpenChange={setOpen}>
-				<Command shouldFilter={false}>
+				<Command
+					className="**:data-[slot=command-input-wrapper]:border-none"
+					shouldFilter={false}>
 					{/* Input */}
-					<div className="border-border flex items-center gap-2 border-b px-3">
+					<div className="border-soft flex items-center justify-between gap-2 border-b px-3">
 						<CommandInput
 							value={query}
 							onValueChange={setQuery}
@@ -130,7 +133,7 @@ export default function CommandSystemCommands() {
 					</div>
 
 					{/* Category filter badges */}
-					<div className="border-border flex items-center gap-1.5 border-b px-3 py-2.5">
+					<div className="border-soft flex items-center gap-1.5 border-b px-3 py-2.5">
 						{CATEGORIES.map((cat) => {
 							const isActive = activeCategory === cat
 							return (
@@ -151,36 +154,40 @@ export default function CommandSystemCommands() {
 						})}
 					</div>
 
-					<CommandList className="max-h-[520px]">
-						<CommandEmpty className="text-fg-tertiary py-8 text-sm">
-							No commands found.
-						</CommandEmpty>
+					<CommandList className="max-h-150">
+						<ScrollArea>
+							<CommandEmpty className="text-fg-tertiary py-8 text-sm">
+								No commands found.
+							</CommandEmpty>
 
-						{grouped.map((group, i) => (
-							<Fragment key={group.category}>
-								{i > 0 && <CommandDivider />}
-								<CommandGroup heading={group.category.toUpperCase()}>
-									{group.items.map((cmd) => (
-										<CommandItem
-											key={cmd.id}
-											value={cmd.id}
-											className="group flex items-center justify-between rounded-md px-3 py-2.5">
-											<div className="flex min-w-0 flex-col">
-												<span className="text-fg text-sm font-semibold leading-tight">
-													{cmd.label}
-												</span>
-												<span className="text-fg-secondary mt-0.5 text-xs">
-													{cmd.description}
-												</span>
-											</div>
-											<CommandShortcut className="text-fg-tertiary ml-4 shrink-0 font-mono text-xs">
-												{cmd.shortcut}
-											</CommandShortcut>
-										</CommandItem>
-									))}
-								</CommandGroup>
-							</Fragment>
-						))}
+							{grouped.map((group, i) => (
+								<Fragment key={group.category}>
+									{i > 0 && <CommandDivider />}
+									<CommandGroup heading={group.category.toUpperCase()}>
+										{group.items.map((cmd) => (
+											<CommandItem
+												key={cmd.id}
+												value={cmd.id}
+												className="group flex items-center justify-between gap-2 rounded-md p-2">
+												<div className="flex min-w-0 flex-col gap-0.5">
+													<span className="text-fg text-sm font-medium leading-tight">
+														{cmd.label}
+													</span>
+													<span className="text-fg-secondary text-xs">
+														{cmd.description}
+													</span>
+												</div>
+												<CommandShortcut className="text-fg-tertiary ml-4 shrink-0 font-mono text-xs">
+													<Badge variant="soft" color="neutral" size="20">
+														{cmd.shortcut}
+													</Badge>
+												</CommandShortcut>
+											</CommandItem>
+										))}
+									</CommandGroup>
+								</Fragment>
+							))}
+						</ScrollArea>
 					</CommandList>
 				</Command>
 			</CommandDialog>
