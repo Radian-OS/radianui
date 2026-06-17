@@ -59,7 +59,7 @@ function RadioGroup({
 	return (
 		<RadioGroupContext.Provider value={ctxValues}>
 			<RadioGroupPrimitive.Root
-				className={cn("grid gap-4", className)}
+				className={cn("grid gap-3", className)}
 				data-slot="radio-group"
 				{...props}>
 				{children}
