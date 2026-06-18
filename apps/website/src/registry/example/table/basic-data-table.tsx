@@ -74,24 +74,27 @@ export const columns: ColumnDef<Payment>[] = [
 	{
 		id: "select",
 		header: ({ table }) => (
-			<Checkbox
-				size="sm"
-				className="flex items-center justify-center"
-				checked={
-					table.getIsAllPageRowsSelected() ||
-					(table.getIsSomePageRowsSelected() && "indeterminate")
-				}
-				onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-				aria-label="Select all"
-			/>
+			<div className="flex items-center justify-center">
+				<Checkbox
+					size="sm"
+					checked={
+						table.getIsAllPageRowsSelected() ||
+						(table.getIsSomePageRowsSelected() && "indeterminate")
+					}
+					onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+					aria-label="Select all"
+				/>
+			</div>
 		),
 		cell: ({ row }) => (
-			<Checkbox
-				size="sm"
-				checked={row.getIsSelected()}
-				onCheckedChange={(value) => row.toggleSelected(!!value)}
-				aria-label="Select row"
-			/>
+			<div className="flex items-center justify-center">
+				<Checkbox
+					size="sm"
+					checked={row.getIsSelected()}
+					onCheckedChange={(value) => row.toggleSelected(!!value)}
+					aria-label="Select row"
+				/>
+			</div>
 		),
 		enableSorting: false,
 		enableHiding: false,

@@ -73,7 +73,7 @@ function TableRow({ className, ...props }: TableRowProps) {
 		<tr
 			data-slot="table-row"
 			className={cn(
-				"[&:has(td):hover]:bg-fill1 data-[state=selected]:bg-primary-accent border-b transition-colors",
+				"[&:has(td):hover]:bg-fill1 data-[state=selected]:bg-fill1 border-b transition-colors",
 				className
 			)}
 			{...props}
@@ -87,7 +87,7 @@ function TableHead({ className, ...props }: TableHeadProps) {
 		<th
 			data-slot="table-head"
 			className={cn(
-				"text-fg-secondary bg-fill2 px-3 py-2.5 text-left align-middle font-medium has-[role=checkbox]:w-px [&:has([role=checkbox])]:pr-0",
+				"text-fg-secondary bg-fill1 px-3 py-2.5 text-left align-middle font-medium has-[role=checkbox]:w-px [&:has([role=checkbox])]:pr-0",
 				className
 			)}
 			{...props}
