@@ -38,7 +38,7 @@ export const FeatureHeader = () => {
 
 				{/* Left side line */}
 				<svg
-					className="-left-180 -top-122 absolute"
+					className="-top-122 absolute -left-[725.5px]"
 					width="698"
 					height="798"
 					viewBox="0 0 698 798"
@@ -113,7 +113,7 @@ export const FeatureHeader = () => {
 
 				{/* Right side line */}
 				<svg
-					className="-right-180 -top-122 absolute z-10 scale-x-[-1]"
+					className="-top-122 absolute -right-[725.5px] z-10 scale-x-[-1]"
 					width="698"
 					height="798"
 					viewBox="0 0 698 798"
