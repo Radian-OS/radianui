@@ -3,7 +3,7 @@ import { RadioGroup, RadioGroupItem } from "@/registry/ui/radio-group"
 
 export default function DisabledRadioGroup() {
 	return (
-		<div className="flex min-w-fit flex-col gap-1.5">
+		<div className="flex min-w-fit flex-col gap-3">
 			<Label>Select Your ARM Chip</Label>
 			<RadioGroup defaultValue="m3_pro" disabled>
 				<div className="flex items-center gap-2">

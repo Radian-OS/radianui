@@ -3,7 +3,7 @@ import { RadioGroup, RadioGroupItem } from "@/registry/ui/radio-group"
 
 export default function RadioGroupSize() {
 	return (
-		<div className="bg-bg flex min-w-fit flex-col gap-1.5">
+		<div className="bg-bg flex min-w-fit flex-col gap-3">
 			<Label>Size</Label>
 			<RadioGroup defaultValue="sm">
 				<div className="flex items-center gap-2">
