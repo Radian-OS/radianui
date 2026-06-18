@@ -35,9 +35,7 @@ const owners = [
 export default function RadioCard() {
 	return (
 		<div className="flex flex-col gap-3">
-			<Label className="text-fg text-sm font-semibold">
-				Choose Workspace Owner
-			</Label>
+			<Label>Choose Workspace Owner</Label>
 			<RadioGroup defaultValue="alex" className="flex flex-col gap-2">
 				{owners.map((owner) => (
 					<Label

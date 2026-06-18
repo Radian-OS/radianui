@@ -31,7 +31,7 @@ export default function CollapsibleBillingCard() {
 	return (
 		<div className="w-100">
 			<Collapsible open={open} onOpenChange={setOpen}>
-				<div className="border-soft bg-bg flex flex-col gap-5 rounded-2xl border p-5">
+				<div className="border-soft bg-bg flex flex-col gap-5 overflow-hidden rounded-2xl border p-5">
 					{/* Header */}
 					<div className="flex items-center justify-between">
 						<span className="text-fg text-base font-semibold">
@@ -86,7 +86,7 @@ export default function CollapsibleBillingCard() {
 
 							{/* Fade mask when collapsed */}
 							{!open && (
-								<div className="from-elevation-level1 pointer-events-none absolute bottom-0 left-0 right-0 h-6 bg-gradient-to-t to-transparent" />
+								<div className="from-elevation-level1 pointer-events-none absolute -bottom-5 -left-5 -right-5 h-10 bg-gradient-to-t to-transparent" />
 							)}
 						</div>
 
@@ -113,7 +113,10 @@ export default function CollapsibleBillingCard() {
 				{/* Trigger button */}
 				<div className="-mt-4 flex justify-center">
 					<CollapsibleTrigger asChild>
-						<IconButton color="neutral" variant="outline">
+						<IconButton
+							color="neutral"
+							variant="outline"
+							className="hover:[background:linear-gradient(var(--color-fill1-alpha),var(--color-fill1-alpha)),linear-gradient(var(--color-bg),var(--color-bg))]">
 							<ChevronDown
 								className={cn(
 									"size-5 transition-transform duration-200",

@@ -2,7 +2,6 @@
 
 import { Fragment, useState } from "react"
 import { X } from "lucide-react"
-import { cn } from "@/lib/utils"
 import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
 import {
@@ -143,10 +142,7 @@ export default function CommandSystemCommands() {
 									variant={isActive ? "outline" : "soft"}
 									color={isActive ? "primary" : "neutral"}
 									size="24"
-									className={cn(
-										"cursor-pointer select-none transition-all",
-										isActive && "border-primary"
-									)}>
+									className="cursor-pointer select-none transition-all">
 									{cat}
 									{isActive && <X className="ml-0.5 size-3 opacity-70" />}
 								</Badge>

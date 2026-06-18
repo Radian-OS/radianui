@@ -2,7 +2,6 @@
 
 import { useState } from "react"
 import { ArrowDown, ArrowUp, X } from "lucide-react"
-import { cn } from "@/lib/utils"
 import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
 import { Badge } from "@/registry/ui/badge"
 import { Button, CompactButton } from "@/registry/ui/button"
@@ -163,10 +162,7 @@ export default function CommandSearchContacts() {
 									variant={isActive ? "outline" : "soft"}
 									color={isActive ? "primary" : "neutral"}
 									size="24"
-									className={cn(
-										"cursor-pointer select-none transition-all",
-										isActive && "border-primary"
-									)}>
+									className="cursor-pointer select-none transition-all">
 									{dept}
 									{isActive && <X className="ml-0.5 size-3 opacity-70" />}
 								</Badge>
