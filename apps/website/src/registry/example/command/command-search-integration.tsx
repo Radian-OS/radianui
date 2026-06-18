@@ -169,7 +169,7 @@ export default function CommandSearchIntegration() {
 				onOpenChange={setOpen}
 				className="max-w-200 w-full p-0">
 				<Command
-					className="**:data-[slot=command-input-wrapper]:border-none"
+					className="**:data-[slot=command-input-wrapper]:border-none border-none"
 					shouldFilter={false}>
 					<div className="flex w-full flex-col">
 						<div className="border-soft flex w-full items-center justify-between border-b px-3">

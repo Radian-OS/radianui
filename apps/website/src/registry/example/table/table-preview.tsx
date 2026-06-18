@@ -48,50 +48,10 @@ const TablePreview = () => {
 			email: "emily.d@company.com",
 			status: "Active",
 		},
-		{
-			name: "Michael Brown",
-			email: "m.brown@company.com",
-			status: "Inactive",
-		},
-		{
-			name: "Sophia Martinez",
-			email: "s.martinez@company.com",
-			status: "Active",
-		},
-		{
-			name: "Daniel Lee",
-			email: "d.lee@company.com",
-			status: "Inactive",
-		},
-		{
-			name: "Olivia Taylor",
-			email: "o.taylor@company.com",
-			status: "Active",
-		},
-		{
-			name: "Benjamin Clark",
-			email: "b.clark@company.com",
-			status: "Inactive",
-		},
-		{
-			name: "Amelia Lewis",
-			email: "a.lewis@company.com",
-			status: "Active",
-		},
-		{
-			name: "Lucas Walker",
-			email: "l.walker@company.com",
-			status: "Inactive",
-		},
-		{
-			name: "Harper Hall",
-			email: "h.hall@company.com",
-			status: "Active",
-		},
 	]
 
 	return (
-		<div className="flex h-[330px] w-full flex-col items-center justify-start overflow-auto">
+		<div className="flex h-full w-full flex-col items-center justify-start overflow-auto">
 			<Table>
 				<TableCaption>A list of user details.</TableCaption>
 				<TableHeader>

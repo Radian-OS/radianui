@@ -131,7 +131,7 @@ export default function CommandSearchContacts() {
 			</Button>
 			<CommandDialog open={open} onOpenChange={setOpen}>
 				<Command
-					className="**:data-[slot=command-input-wrapper]:border-none"
+					className="**:data-[slot=command-input-wrapper]:border-none border-none"
 					shouldFilter={false}>
 					{/* Input row */}
 					<div className="flex items-center justify-between gap-2 px-3">
