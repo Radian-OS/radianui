@@ -117,7 +117,7 @@ export default function CommandSystemCommands() {
 			</Button>
 			<CommandDialog open={open} onOpenChange={setOpen}>
 				<Command
-					className="**:data-[slot=command-input-wrapper]:border-none"
+					className="**:data-[slot=command-input-wrapper]:border-none border-none"
 					shouldFilter={false}>
 					{/* Input */}
 					<div className="border-soft flex items-center justify-between gap-2 border-b px-3">

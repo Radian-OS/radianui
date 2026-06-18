@@ -7,6 +7,7 @@ const ToastPreview = () => {
 	return (
 		<Button
 			variant="outline"
+			color="neutral"
 			onClick={() =>
 				toast("Toast Title", {
 					description: "Toast Description Message",
