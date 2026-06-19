@@ -1,7 +1,22 @@
+"use client"
+
+import { useEffect, useState } from "react"
 import { Card, CardContent } from "@/registry/ui/card"
 import { Spinner } from "@/registry/ui/spinner"
 
 export default function SpinnerOverlay() {
+	const [time, setTime] = useState(5)
+	useEffect(() => {
+		const interval = setInterval(() => {
+			setTime((prev) => {
+				if (prev === 0) return 5
+				return prev - 1
+			})
+		}, 1000)
+
+		return () => clearInterval(interval)
+	}, [])
+
 	return (
 		<Card className="relative w-full max-w-xs">
 			<CardContent className="space-y-3 p-4">
@@ -24,6 +39,7 @@ export default function SpinnerOverlay() {
 			<Card className="bg-bg/80 backdrop-blur-xs absolute inset-0 z-10 flex items-center justify-center border-0 shadow-none">
 				<CardContent className="flex grow flex-col items-center justify-center gap-2">
 					<Spinner className="size-4 opacity-60" />
+					<p className="text-error-text">Retrying in {time}s...</p>
 				</CardContent>
 			</Card>
 		</Card>
