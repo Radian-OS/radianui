@@ -1,64 +1,29 @@
-import React from "react"
-import { CheckCircle, FileStack, Link, ShieldAlert } from "lucide-react"
+// import Image from "next/image"
 import { Button } from "@/registry/ui/button"
-import {
-	Card,
-	CardContent,
-	CardDescription,
-	CardFooter,
-	CardHeader,
-	CardTitle,
-} from "@/registry/ui/card"
+import { Card, CardContent, CardFooter, CardHeader } from "@/registry/ui/card"
 
-const CardInfoExample = () => {
+// import { Input } from "@/registry/ui/input"
+// import { Label } from "@/registry/ui/label"
+
+export default function CardPreview() {
 	return (
-		<Card className="w-100">
-			<CardHeader>
-				<CardTitle>Sync In Progress</CardTitle>
-				<CardDescription>Started 3 mins ago</CardDescription>
+		<Card className="max-w-95 w-full gap-0 py-0">
+			<CardHeader className="px-5 pb-2 pt-5 text-base font-semibold">
+				Your Workspace
 			</CardHeader>
-			<CardContent>
-				<div className="mb-2 flex items-center justify-between">
-					<div className="flex items-center gap-2">
-						<Link className="text-fg-secondary" size={20} />
-						<span className="text-fg-secondary text-sm">Events Found</span>
-					</div>
-					<span className="text-sm font-medium">28</span>
-				</div>
-				<div className="mb-2 flex items-center justify-between">
-					<div className="flex items-center gap-2">
-						<ShieldAlert className="text-fg-secondary" size={20} />
-						<span className="text-fg-secondary text-sm">Events Expired</span>
-					</div>
-					<span className="text-sm font-medium">8</span>
-				</div>
-				<div className="mb-2 flex items-center justify-between">
-					<div className="flex items-center gap-2">
-						<CheckCircle className="text-fg-secondary" size={20} />
-						<span className="text-fg-secondary text-sm">Compile Progress</span>
-					</div>
-					<span className="text-info-text whitespace-nowrap text-sm font-medium">
-						In Progress
-					</span>
-				</div>
-				<div className="flex items-center justify-between">
-					<div className="flex items-center gap-2">
-						<FileStack className="text-fg-secondary" size={20} />
-						<span className="text-fg-secondary text-sm">Sources Checked</span>
-					</div>
-					<span className="whitespace-nowrap text-sm font-medium">
-						210 out of 340
-					</span>
-				</div>
+			<CardContent className="text-fg-secondary px-5 pb-5 pt-0 text-sm">
+				Organize projects, assign ownership, and track progress in real time -
+				all from one shared workspace built around your teams workflow.
+				<br />
+				<br />
+				The workspace component supports a size prop that defaults to default
+				for standard spacing and layout.
 			</CardContent>
-			<CardFooter className="flex items-center justify-end gap-2">
-				<Button variant="outline" color="neutral">
-					Cancel
+			<CardFooter className="bg-fill1 flex items-center justify-center border border-x-0 border-b-0 border-t px-5 py-5">
+				<Button variant="outline" color="neutral" className="w-full">
+					Open Workspace
 				</Button>
-				<Button>Continue</Button>
 			</CardFooter>
 		</Card>
 	)
 }
-
-export default CardInfoExample

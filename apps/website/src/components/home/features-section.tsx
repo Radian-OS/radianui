@@ -98,7 +98,7 @@ const FeaturesSection: React.FC<BentoProps> = ({
 
 			<BentoCardGrid
 				gridRef={gridRef}
-				className="flex flex-col items-center gap-20 pb-40 pt-40">
+				className="relative flex flex-col items-center gap-20 pb-40 pt-40">
 				<FeatureHeader />
 				<div className="flex w-full max-w-[1400px] flex-col gap-6 px-5">
 					<div className="flex w-full flex-col gap-6 rounded-[20px] lg:h-[600px] lg:flex-row">
@@ -234,6 +234,14 @@ const FeaturesSection: React.FC<BentoProps> = ({
 								</div>
 							</div>
 						</FeatureCard>
+					</div>
+				</div>
+				<div
+					aria-hidden="true"
+					className="not-xl:hidden pointer-events-none absolute inset-x-0 top-0 h-full">
+					<div className="max-w-368 relative mx-auto h-full w-full px-4 md:px-5">
+						<div className="bg-soft absolute left-4 top-0 h-full w-px md:left-5" />
+						<div className="bg-soft absolute right-4 top-0 h-full w-px md:right-5" />
 					</div>
 				</div>
 			</BentoCardGrid>

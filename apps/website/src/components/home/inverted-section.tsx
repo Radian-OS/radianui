@@ -8,6 +8,14 @@ import PlaygroundLogo from "./playground-logo"
 export default function InvertedSection() {
 	return (
 		<div className="gap-15 relative flex w-full flex-col overflow-clip">
+			<div
+				aria-hidden="true"
+				className="not-xl:hidden pointer-events-none absolute inset-x-0 top-0 z-20 h-[93px]">
+				<div className="max-w-368 relative mx-auto h-full w-full px-4 md:px-5">
+					<div className="bg-soft absolute left-4 top-0 h-full w-px md:left-5" />
+					<div className="bg-soft absolute right-4 top-0 h-full w-px md:right-5" />
+				</div>
+			</div>
 			<div className="relative flex w-full justify-center">
 				<div className="bg-soft z-10 rounded-3xl p-2">
 					<PlaygroundLogo className="z-10" width={64} height={64} />
