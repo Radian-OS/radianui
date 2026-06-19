@@ -12,7 +12,7 @@ import {
 export default function SelectPreview() {
 	return (
 		<Select indicatorPosition="right" defaultValue="node-js">
-			<SelectTrigger className="w-60">
+			<SelectTrigger className="w-80">
 				<SelectValue />
 			</SelectTrigger>
 			<SelectContent>

@@ -9,7 +9,7 @@ import {
 export default function SelectDemo() {
 	return (
 		<Select defaultValue="banana" indicatorPosition="left">
-			<SelectTrigger className="w-[200px]">
+			<SelectTrigger className="w-80">
 				<SelectValue placeholder="Select a fruit" />
 			</SelectTrigger>
 			<SelectContent>

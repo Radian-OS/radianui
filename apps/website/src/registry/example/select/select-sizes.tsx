@@ -15,11 +15,14 @@ function SelectComponent({ size }: { size: (typeof Sizes)[number] }) {
 			<Label htmlFor={`select-${size}`}>Size - {size}</Label>
 			<Select>
 				<SelectTrigger id={`select-${size}`} size={size} className="w-80">
-					Select Gender: <SelectValue />
+					<SelectValue />
 				</SelectTrigger>
 				<SelectContent>
-					<SelectItem value="male">Male</SelectItem>
-					<SelectItem value="female">Female</SelectItem>
+					<SelectItem value="apple">Apple</SelectItem>
+					<SelectItem value="banana">Banana</SelectItem>
+					<SelectItem value="cherry">Cherry</SelectItem>
+					<SelectItem value="orange">Orange</SelectItem>
+					<SelectItem value="grape">Grape</SelectItem>
 				</SelectContent>
 			</Select>
 		</div>
