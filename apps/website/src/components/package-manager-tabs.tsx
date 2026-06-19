@@ -199,7 +199,7 @@ export default function PackageManagerTabs({
 				className
 			)}>
 			<div className="flex items-center justify-between pr-1">
-				<TabsList className="bg-transparent" variant="outline-ghost" size="md">
+				<TabsList className="bg-transparent" variant="outline-ghost">
 					{pkg.map((manager) => (
 						<TabsTrigger
 							key={manager}

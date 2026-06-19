@@ -46,7 +46,7 @@ export function ComponentPreview({
 				data-slot="component-preview"
 				className="relative flex min-w-0 flex-col items-stretch">
 				<Tabs defaultValue="preview" className="w-full">
-					<TabsList size="md">
+					<TabsList>
 						<TabsTrigger value="preview">Preview</TabsTrigger>
 						<TabsTrigger value="code">Code</TabsTrigger>
 					</TabsList>

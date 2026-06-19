@@ -18,7 +18,7 @@ export function InstallationTabs({ children }: { children: React.ReactNode }) {
 
 export function InstallTabsList({ children }: { children: React.ReactNode }) {
 	return (
-		<TabsList width="full" variant="default" size="md">
+		<TabsList width="full" variant="default">
 			{children}
 		</TabsList>
 	)

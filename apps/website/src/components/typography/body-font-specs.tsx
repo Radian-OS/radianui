@@ -32,7 +32,7 @@ const BodyFontSpecs = () => {
 	return (
 		<Tabs defaultValue="desktop">
 			<div className="flex items-center justify-start overflow-x-auto">
-				<TabsList size="md">
+				<TabsList>
 					{Object.keys(fontSpecs).map((device) => (
 						<TabsTrigger key={device} value={device}>
 							{device.charAt(0).toUpperCase() + device.slice(1)}

@@ -76,7 +76,7 @@ export default function TypographyPlayground() {
 						</DropdownRadioGroup>
 					</DropdownContent>
 				</Dropdown>
-				<TabsList className="whitespace-nowrap sm:whitespace-normal" size="md">
+				<TabsList className="whitespace-nowrap sm:whitespace-normal">
 					<TabsTrigger value="desktop">Desktop</TabsTrigger>
 					<TabsTrigger value="tablet">Tablet</TabsTrigger>
 					<TabsTrigger value="mobile">Mobile</TabsTrigger>

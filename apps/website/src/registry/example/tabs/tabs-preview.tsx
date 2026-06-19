@@ -1,41 +1,26 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const data = [
-	{
-		label: "Products",
-		value: "products",
-		content: "This is the products tab",
-	},
-	{
-		label: "Orders",
-		value: "orders",
-		content: "This is the orders tab",
-	},
-	{
-		label: "Customers",
-		value: "customers",
-		content: "This is the customers tab",
-	},
-	{
-		label: "Reports",
-		value: "reports",
-		content: "This is the reports tab",
-	},
+	{ label: "Inbox", value: "inbox", content: "Inbox Content" },
+	{ label: "Projects", value: "projects", content: "Projects Content" },
+	{ label: "Tasks", value: "tasks", content: "Tasks Content" },
 ]
 
 export default function TabsPreview() {
 	return (
-		<Tabs defaultValue={data[0].value}>
-			<TabsList>
-				{data.map((dataItem) => (
-					<TabsTrigger key={dataItem.value} value={dataItem.value}>
-						{dataItem.label}
+		<Tabs className="w-105" defaultValue={data[0].value}>
+			<TabsList width="full" className="w-105">
+				{data.map((item) => (
+					<TabsTrigger key={item.value} value={item.value}>
+						{item.label}
 					</TabsTrigger>
 				))}
 			</TabsList>
 			{data.map(({ value, content }) => (
 				<TabsContent key={value} value={value}>
-					{content}
+					<div className="bg-bg border-soft text-fg-tertiary flex items-center justify-center rounded-xl border px-2.5 py-10 text-sm">
+						{content}
+					</div>
 				</TabsContent>
 			))}
 		</Tabs>

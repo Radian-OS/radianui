@@ -112,7 +112,6 @@ const HomeInteractive = () => {
 					<div className="flex">
 						<TabsList
 							variant="outline-ghost"
-							size="md"
 							className="not-lg:hidden mx-auto shrink-0 bg-transparent">
 							{PAGES.map((page, idx) => (
 								<TabsTrigger key={`${page.value}-${idx}`} value={page.value}>

@@ -25,7 +25,7 @@ export default function TabsDisabled() {
 	return (
 		<div className="flex flex-col items-center justify-center space-y-4">
 			<Tabs defaultValue={data[0].trigger.toLowerCase()}>
-				<TabsList size="lg">
+				<TabsList>
 					{data.map((item) => (
 						<TabsTrigger
 							key={item.id}

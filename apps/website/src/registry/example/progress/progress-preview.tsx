@@ -26,7 +26,7 @@ const ProgressPreview = () => {
 	return (
 		<Tabs defaultValue="preview">
 			<div className="flex items-center justify-between">
-				<TabsList variant="outline-ghost" size="md">
+				<TabsList variant="outline-ghost">
 					<TabsTrigger value="preview">
 						<EyeIcon />
 						Preview

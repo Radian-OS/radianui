@@ -269,7 +269,7 @@ export const components = {
 
 	Tabs,
 	TabsList: (props: React.ComponentProps<typeof TabsList>) => {
-		return <TabsList width="full" variant="default" size="md" {...props} />
+		return <TabsList width="full" variant="default" {...props} />
 	},
 	TabsTrigger,
 	TabsContent,

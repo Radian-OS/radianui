@@ -30,7 +30,7 @@ export function DisplayBlockClient({
 	return (
 		<Tabs defaultValue="preview" className="gap-0">
 			<div className="flex justify-between pb-3">
-				<TabsList size="md">
+				<TabsList>
 					<TabsTrigger aria-label="Block preview" value="preview">
 						Preview
 					</TabsTrigger>
