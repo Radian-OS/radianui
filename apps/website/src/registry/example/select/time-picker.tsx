@@ -129,7 +129,7 @@ function TimePicker({
 			<SelectTrigger className={className}>
 				<SelectValue placeholder="Select time" />
 			</SelectTrigger>
-			<SelectContent>
+			<SelectContent className="max-h-89">
 				{timeOptions.map((time, index) => {
 					const formatted = formatTime(time)
 					return (

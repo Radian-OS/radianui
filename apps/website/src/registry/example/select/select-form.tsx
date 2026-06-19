@@ -55,7 +55,7 @@ export default function SelectForm() {
 								<Select
 									onValueChange={field.onChange}
 									defaultValue={field.value}>
-									<SelectTrigger className="w-60">
+									<SelectTrigger className="w-80">
 										<SelectValue placeholder="Select a role" />
 									</SelectTrigger>
 									<SelectContent>

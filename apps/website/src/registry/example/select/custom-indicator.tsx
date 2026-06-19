@@ -18,9 +18,7 @@ export default function SelectDemo() {
 					<CircleCheck className="text-primary size-4" />
 				</SelectIndicator>
 			}>
-			<SelectTrigger
-				defaultValue="read_only"
-				className="w-[200px] [&_small]:hidden">
+			<SelectTrigger defaultValue="read_only" className="w-80 [&_small]:hidden">
 				<SelectValue placeholder="Select access level" />
 			</SelectTrigger>
 			<SelectContent>

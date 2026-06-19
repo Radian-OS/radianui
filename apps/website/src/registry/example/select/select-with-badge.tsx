@@ -10,7 +10,7 @@ import {
 export default function SelectWithBadge() {
 	return (
 		<Select defaultValue="1" indicatorPosition="right">
-			<SelectTrigger className="w-60">
+			<SelectTrigger className="w-80">
 				Status: <SelectValue />
 			</SelectTrigger>
 			<SelectContent>
