@@ -67,7 +67,7 @@ export function CodeBlockCommand({
 			}
 			className={cn("bg-fill2 gap-2 overflow-hidden", className)}>
 			<div className="flex items-center justify-between pr-1">
-				<TabsList className="bg-transparent" variant="outline-ghost">
+				<TabsList className="bg-transparent">
 					{Object.entries(tabs).map(([key]) => (
 						<TabsTrigger className="font-[Inter]" key={key} value={key}>
 							{key}

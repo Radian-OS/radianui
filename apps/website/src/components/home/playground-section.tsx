@@ -282,9 +282,7 @@ export default function PlaygroundSection() {
 											app/auth/{layout}.tsx
 										</p>
 									</div>
-									<TabsList
-										variant="outline"
-										className="h-full !rounded-none border-none data-[orientation=horizontal]:h-full">
+									<TabsList className="h-full !rounded-none border-none data-[orientation=horizontal]:h-full">
 										<TabsTrigger
 											className="border-border h-full border-l data-[orientation=horizontal]:first:rounded-l-none data-[orientation=horizontal]:last:rounded-r-none"
 											value="signin.tsx">
