@@ -1,104 +1,71 @@
 "use client"
 
 import { useState } from "react"
-import { ArrowLeft, ArrowRight } from "lucide-react"
 import { Button } from "@/registry/ui/button"
 import {
 	Stepper,
 	StepperContent,
-	StepperDescription,
 	StepperIndicator,
 	StepperItem,
 	StepperNav,
 	StepperPanel,
 	StepperSeparator,
-	StepperTitle,
 	StepperTrigger,
 } from "@/registry/ui/stepper"
 
-const steps = [
-	{
-		step: 1,
-		title: "Plan",
-		description: "Choose seats",
-		content: "Start with 12 editor seats and unlimited viewer access.",
-	},
-	{
-		step: 2,
-		title: "Team",
-		description: "Invite admins",
-		content: "Add account owners who can manage billing and permissions.",
-	},
-	{
-		step: 3,
-		title: "Confirm",
-		description: "Review changes",
-		content: "Confirm the subscription change before the next billing cycle.",
-	},
-]
+const steps = [1, 2, 3, 4]
 
 export default function StepperControlled() {
-	const [step, setStep] = useState(1)
-	const isFirstStep = step === 1
-	const isLastStep = step === steps.length
+	const [currentStep, setCurrentStep] = useState(2)
 
 	return (
-		<div className="w-full max-w-lg space-y-5">
-			<Stepper value={step} onValueChange={setStep} className="space-y-6">
-				<StepperNav>
-					{steps.map((item, index) => (
-						<StepperItem key={item.step} step={item.step}>
-							<StepperTrigger className="items-start">
-								<StepperIndicator>{item.step}</StepperIndicator>
-								<span className="hidden text-left sm:block">
-									<StepperTitle>{item.title}</StepperTitle>
-									<StepperDescription className="mt-1 text-xs">
-										{item.description}
-									</StepperDescription>
-								</span>
-							</StepperTrigger>
-							{index < steps.length - 1 && (
-								<StepperSeparator className="group-data-[state=completed]/step:bg-primary" />
-							)}
-						</StepperItem>
-					))}
-				</StepperNav>
+		<Stepper
+			value={currentStep}
+			onValueChange={setCurrentStep}
+			className="w-full max-w-md space-y-8">
+			<StepperNav>
+				{steps.map((step) => (
+					<StepperItem key={step} step={step}>
+						<StepperTrigger asChild>
+							<StepperIndicator className="data-[state=active]:bg-primary data-[state=completed]:bg-success data-[state=inactive]:text-fg-tertiary data-[state=active]:text-white data-[state=completed]:text-white">
+								{step}
+							</StepperIndicator>
+						</StepperTrigger>
+						{steps.length > step && (
+							<StepperSeparator className="group-data-[state=completed]/step:bg-success" />
+						)}
+					</StepperItem>
+				))}
+			</StepperNav>
 
-				<StepperPanel className="border-border rounded-lg border p-4 text-sm">
-					{steps.map((item) => (
-						<StepperContent
-							key={item.step}
-							value={item.step}
-							forceMount
-							className="space-y-2">
-							<h3 className="font-medium">{item.title}</h3>
-							<p className="text-fg-secondary">{item.content}</p>
-						</StepperContent>
-					))}
-				</StepperPanel>
-			</Stepper>
+			<StepperPanel className="text-sm">
+				{steps.map((step) => (
+					<StepperContent
+						className="bg-fill1 text-fg-tertiary flex items-center justify-center rounded-xl px-2.5 py-10 text-sm"
+						key={step}
+						value={step}>
+						Step {step} content
+					</StepperContent>
+				))}
+			</StepperPanel>
 
-			<div className="flex justify-end gap-2">
+			{/* Buttons */}
+			<div className="flex items-center justify-between gap-2.5">
 				<Button
-					type="button"
 					variant="outline"
 					color="neutral"
-					size="32"
-					disabled={isFirstStep}
-					onClick={() => setStep((current) => Math.max(current - 1, 1))}>
-					<ArrowLeft />
-					Back
+					onClick={() => setCurrentStep((prev) => prev - 1)}
+					disabled={currentStep === 1}>
+					Previous
 				</Button>
 				<Button
-					type="button"
-					size="32"
-					onClick={() =>
-						setStep((current) => Math.min(current + 1, steps.length))
-					}>
-					{isLastStep ? "Finish" : "Next"}
-					{!isLastStep && <ArrowRight />}
+					variant="outline"
+					color="neutral"
+					onClick={() => setCurrentStep((prev) => prev + 1)}
+					disabled={currentStep === steps.length}>
+					Next
 				</Button>
 			</div>
-		</div>
+		</Stepper>
 	)
 }

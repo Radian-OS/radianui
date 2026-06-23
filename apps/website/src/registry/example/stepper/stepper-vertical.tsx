@@ -1,5 +1,6 @@
 "use client"
 
+import { CheckIcon } from "lucide-react"
 import {
 	Stepper,
 	StepperContent,
@@ -14,71 +15,50 @@ import {
 } from "@/registry/ui/stepper"
 
 const steps = [
-	{
-		step: 1,
-		title: "Step 1",
-		description: "Insert description here",
-		content: "This step has been completed successfully.",
-	},
-	{
-		step: 2,
-		title: "Step 2",
-		description: "Insert description here",
-		content: "This step has been completed successfully.",
-	},
-	{
-		step: 3,
-		title: "Step 3",
-		description: "Insert description here",
-		content:
-			"You are currently on this step. Complete the required actions to proceed.",
-	},
-	{
-		step: 4,
-		title: "Step 4",
-		description: "Insert description here",
-		content: "This step will be available after completing the current step.",
-	},
-	{
-		step: 5,
-		title: "Step 5",
-		description: "Insert description here",
-		content: "This is the final step in the process.",
-	},
+	{ title: "Step 1", description: "First step description" },
+	{ title: "Step 2", description: "Second step description" },
+	{ title: "Step 3", description: "Third step description" },
+	{ title: "Step 4", description: "Fourth step description" },
 ]
 
 export default function StepperVertical() {
 	return (
 		<Stepper
-			defaultValue={3}
+			className="flex items-stretch justify-center gap-10"
+			defaultValue={2}
 			orientation="vertical"
-			className="w-full max-w-2xl gap-6 sm:grid sm:grid-cols-[240px_1fr]">
-			<StepperNav className="w-full">
-				{steps.map((item, index) => (
-					<StepperItem key={item.step} step={item.step} className="items-start">
-						<StepperTrigger className="items-start rounded-md p-1 text-left">
-							<StepperIndicator className="data-[state=active]:ring-primary/60 data-[state=active]:ring-offset-bg data-[state=inactive]:bg-fill1 data-[state=inactive]:border-border-soft data-[state=inactive]:text-fg-disabled mt-0.5 rounded-md data-[state=inactive]:border data-[state=active]:ring-2 data-[state=active]:ring-offset-2">
-								{item.step}
+			indicators={{
+				completed: <CheckIcon className="size-4" />,
+			}}>
+			<StepperNav>
+				{steps.map((step, index) => (
+					<StepperItem
+						key={index}
+						step={index + 1}
+						className="not-last:flex-1 relative items-start">
+						<StepperTrigger className="items-start gap-2.5 pb-12 last:pb-0">
+							<StepperIndicator className="data-[state=completed]:bg-success data-[state=completed]:text-white">
+								{index + 1}
 							</StepperIndicator>
-							<span>
-								<StepperTitle>{item.title}</StepperTitle>
-								<StepperDescription className="mt-1 text-xs">
-									{item.description}
-								</StepperDescription>
-							</span>
+							<div className="mt-0.5 text-left">
+								<StepperTitle>{step.title}</StepperTitle>
+								<StepperDescription>{step.description}</StepperDescription>
+							</div>
 						</StepperTrigger>
 						{index < steps.length - 1 && (
-							<StepperSeparator className="group-data-[state=completed]/step:bg-primary ml-3 h-10" />
+							<StepperSeparator className="group-data-[state=completed]/step:bg-success absolute inset-y-0 left-3 top-7 -order-1 m-0 -translate-x-1/2 group-data-[orientation=vertical]/stepper-nav:h-[calc(100%-2rem)]" />
 						)}
 					</StepperItem>
 				))}
 			</StepperNav>
 
-			<StepperPanel className="border-border bg-fill1 rounded-lg border p-4 text-sm">
-				{steps.map((item) => (
-					<StepperContent key={item.step} value={item.step}>
-						<h3 className="font-medium">{item.title}</h3>
-						<p className="text-fg-secondary mt-1">{item.content}</p>
+			<StepperPanel className="bg-fill1 text-fg-tertiary flex flex-1 flex-col items-center justify-center self-stretch rounded-xl px-2.5 py-10 text-sm">
+				{steps.map((step, index) => (
+					<StepperContent
+						className="flex h-full w-full items-center justify-center text-center"
+						key={index}
+						value={index + 1}>
+						{step.title} content
 					</StepperContent>
 				))}
 			</StepperPanel>
