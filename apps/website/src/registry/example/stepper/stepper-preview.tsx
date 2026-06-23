@@ -11,60 +11,31 @@ import {
 	StepperTrigger,
 } from "@/registry/ui/stepper"
 
-const steps = [
-	{
-		step: 1,
-		content: "This step has been completed successfully.",
-	},
-	{
-		step: 2,
-		content: "This step has been completed successfully.",
-	},
-	{
-		step: 3,
-		content:
-			"You are currently on this step. Complete the required actions to proceed.",
-	},
-	{
-		step: 4,
-		content: "This step will be available after completing the current step.",
-	},
-	{
-		step: 5,
-		content: "This is the final step in the process.",
-	},
-]
+const steps = [1, 2, 3, 4]
 
 export default function StepperPreview() {
 	return (
-		<Stepper defaultValue={3} className="w-full max-w-2xl space-y-6">
+		<Stepper defaultValue={2} className="w-full max-w-md space-y-8">
 			<StepperNav>
-				{steps.map((item, index) => (
-					<StepperItem key={item.step} step={item.step}>
-						<StepperTrigger className="items-start">
-							<StepperIndicator className="data-[state=active]:ring-primary/60 data-[state=active]:ring-offset-bg data-[state=inactive]:bg-fill1 data-[state=inactive]:border-border-soft data-[state=inactive]:text-fg-disabled rounded-md data-[state=inactive]:border data-[state=active]:ring-2 data-[state=active]:ring-offset-2">
-								{item.step}
-							</StepperIndicator>
+				{steps.map((step) => (
+					<StepperItem key={step} step={step}>
+						<StepperTrigger>
+							<StepperIndicator>{step}</StepperIndicator>
 						</StepperTrigger>
-						{index < steps.length - 1 && (
+						{steps.length > step && (
 							<StepperSeparator className="group-data-[state=completed]/step:bg-primary" />
 						)}
 					</StepperItem>
 				))}
 			</StepperNav>
 
-			<StepperPanel className="border-border bg-fill1 rounded-lg border p-4 text-sm">
-				{steps.map((item) => (
+			<StepperPanel>
+				{steps.map((step) => (
 					<StepperContent
-						key={item.step}
-						value={item.step}
-						className="space-y-2">
-						<div className="flex items-center justify-between gap-4">
-							<span className="bg-bg text-fg-secondary rounded-md px-2 py-1 text-xs">
-								Step {item.step} of {steps.length}
-							</span>
-						</div>
-						<p className="text-fg-secondary">{item.content}</p>
+						key={step}
+						value={step}
+						className="bg-fill1 text-fg-tertiary flex items-center justify-center rounded-xl px-2.5 py-10 text-sm">
+						Step {step} content
 					</StepperContent>
 				))}
 			</StepperPanel>

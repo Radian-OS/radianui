@@ -1,91 +1,103 @@
 "use client"
 
-import { Box } from "lucide-react"
+import { useState } from "react"
+import { Box, CheckIcon } from "lucide-react"
+import { Button } from "@/registry/ui/button"
 import {
 	Stepper,
 	StepperContent,
-	// StepperDescription,
 	StepperIndicator,
 	StepperItem,
 	StepperNav,
 	StepperPanel,
 	StepperSeparator,
-	// StepperTitle,
+	StepperTitle,
 	StepperTrigger,
 } from "@/registry/ui/stepper"
 
 const steps = [
 	{
-		step: 1,
 		title: "Step 1",
-		description: "Insert description here",
-		content: "This step has been completed successfully.",
-		icon: Box,
+		icon: <Box className="size-4" />,
 	},
 	{
-		step: 2,
 		title: "Step 2",
-		description: "Insert description here",
-		content: "This step has been completed successfully.",
-		icon: Box,
+		icon: <Box className="size-4" />,
 	},
 	{
-		step: 3,
 		title: "Step 3",
-		description: "Insert description here",
-		content:
-			"You are currently on this step. Complete the required actions to proceed.",
-		icon: Box,
+		icon: <Box className="size-4" />,
 	},
 	{
-		step: 4,
 		title: "Step 4",
-		description: "Insert description here",
-		content: "This step will be available after completing the current step.",
-		icon: Box,
+		icon: <Box className="size-4" />,
 	},
 ]
 
 export default function StepperIcon() {
+	const [currentStep, setCurrentStep] = useState(2)
+
 	return (
-		<Stepper defaultValue={3} className="w-full max-w-2xl space-y-6">
-			<StepperNav>
-				{steps.map((item, index) => (
-					<StepperItem key={item.step} step={item.step}>
-						<StepperTrigger className="items-start">
-							<StepperIndicator className="data-[state=completed]:bg-bg data-[state=active]:bg-bg data-[state=active]:text-fg border-border size-10 rounded-lg border">
-								<item.icon className="data-[state=active]:text-fg text-fg-tertiary size-5" />
+		<Stepper
+			value={currentStep}
+			onValueChange={setCurrentStep}
+			indicators={{
+				completed: <CheckIcon className="size-4" />,
+			}}
+			className="w-full max-w-md space-y-8">
+			<StepperNav className="gap-3">
+				{steps.map((step, index) => (
+					<StepperItem
+						key={index}
+						step={index + 1}
+						className="relative flex-1 items-center justify-center">
+						<StepperTrigger
+							className="flex flex-col items-center gap-2.5"
+							asChild>
+							<StepperIndicator className="data-[state=inactive]:border-border data-[state=active]:border-primary-border data-[state=inactive]:text-fg-tertiary data-[state=completed]:bg-success data-[state=completed]:border-success-border size-8 border-2 data-[state=inactive]:bg-transparent data-[state=completed]:text-white">
+								{step.icon}
 							</StepperIndicator>
-							{/* <span className="hidden min-w-0 text-left sm:block">
-								<StepperTitle>{item.title}</StepperTitle> 
-								<StepperDescription className="mt-1 text-xs">
-									{item.description}
-								</StepperDescription>
-							</span> */}
+							<div className="flex flex-col items-center gap-1">
+								<StepperTitle className="group-data-[state=inactive]/step:text-fg-tertiary">
+									{step.title}
+								</StepperTitle>
+							</div>
 						</StepperTrigger>
-						{index < steps.length - 1 && (
-							<StepperSeparator className="group-data-[state=completed]/step:bg-primary" />
+
+						{steps.length > index + 1 && (
+							<StepperSeparator className="group-data-[state=completed]/step:bg-success absolute left-[calc(50%+1.25rem)] right-[calc(-60%+1.25rem)] top-4 m-0 group-data-[orientation=horizontal]/stepper-nav:flex-none" />
 						)}
 					</StepperItem>
 				))}
 			</StepperNav>
 
-			<StepperPanel className="border-border bg-fill1 rounded-lg border p-4 text-sm">
-				{steps.map((item) => (
+			<StepperPanel className="text-sm">
+				{steps.map((step, index) => (
 					<StepperContent
-						key={item.step}
-						value={item.step}
-						className="space-y-2">
-						<div className="flex items-center justify-between gap-4">
-							<h3 className="font-medium">{item.title}</h3>
-							<span className="bg-bg text-fg-secondary rounded-md px-2 py-1 text-xs">
-								Step {item.step} of {steps.length}
-							</span>
-						</div>
-						<p className="text-fg-secondary">{item.content}</p>
+						key={index}
+						value={index + 1}
+						className="bg-fill1 text-fg-tertiary flex items-center justify-center rounded-xl px-2.5 py-10 text-sm">
+						{step.title} content
 					</StepperContent>
 				))}
 			</StepperPanel>
+
+			<div className="flex items-center justify-between gap-2.5">
+				<Button
+					variant="outline"
+					color="neutral"
+					onClick={() => setCurrentStep((prev) => prev - 1)}
+					disabled={currentStep === 1}>
+					Previous
+				</Button>
+				<Button
+					variant="outline"
+					color="neutral"
+					onClick={() => setCurrentStep((prev) => prev + 1)}
+					disabled={currentStep === steps.length}>
+					Next
+				</Button>
+			</div>
 		</Stepper>
 	)
 }
