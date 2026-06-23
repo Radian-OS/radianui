@@ -1,14 +1,10 @@
-// import Image from "next/image"
 import { Button } from "@/registry/ui/button"
 import { Card, CardContent, CardFooter, CardHeader } from "@/registry/ui/card"
 
-// import { Input } from "@/registry/ui/input"
-// import { Label } from "@/registry/ui/label"
-
-export default function CardPreview() {
+export default function CardHeaderFooterPreview() {
 	return (
 		<Card className="max-w-95 w-full gap-0 p-0">
-			<CardHeader className="border border-x-0 border-b-0 border-t-0 px-5 pb-2 pt-5 text-base font-semibold">
+			<CardHeader className="border border-x-0 border-b border-t-0 px-5 !pb-2.5 pt-5 text-base font-semibold">
 				Analytics Overview
 			</CardHeader>
 			<CardContent className="text-fg-secondary p-5 text-sm">

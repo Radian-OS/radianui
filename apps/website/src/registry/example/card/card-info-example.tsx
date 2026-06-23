@@ -2,9 +2,6 @@
 import { Button } from "@/registry/ui/button"
 import { Card, CardContent, CardFooter, CardHeader } from "@/registry/ui/card"
 
-// import { Input } from "@/registry/ui/input"
-// import { Label } from "@/registry/ui/label"
-
 export default function CardPreview() {
 	return (
 		<Card className="max-w-95 w-full gap-0 py-0">
