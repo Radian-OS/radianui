@@ -160,7 +160,7 @@ const DropdownWithRadioExample = () => {
 				</section>
 				<DropdownDivider />
 				<DropdownLabel className="flex items-center justify-between">
-					<span className="uppercase">Quick Select</span>
+					<span>Quick Select</span>
 					<RotateCcw
 						aria-label="Reset quick select"
 						className="size-4"

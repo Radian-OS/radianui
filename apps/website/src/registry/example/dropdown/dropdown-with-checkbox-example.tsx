@@ -45,7 +45,6 @@ const DropdownWithCheckboxExample = () => {
 			<DropdownContent className="w-80">
 				<DropdownLabel className="uppercase">Switch Workspace</DropdownLabel>
 				<DropdownCheckboxItem
-					className="flex items-center justify-center gap-2.5"
 					checked={isWorkspaceChecked("debcon")}
 					onCheckedChange={(checked) =>
 						setWorkspaceChecked("debcon", checked === true)
@@ -250,7 +249,6 @@ const DropdownWithCheckboxExample = () => {
 					</Badge>
 				</DropdownCheckboxItem>
 				<DropdownCheckboxItem
-					className="flex items-center justify-center gap-2.5"
 					checked={isWorkspaceChecked("xavion")}
 					onCheckedChange={(checked) =>
 						setWorkspaceChecked("xavion", checked === true)
@@ -456,7 +454,6 @@ const DropdownWithCheckboxExample = () => {
 					</Badge>
 				</DropdownCheckboxItem>
 				<DropdownCheckboxItem
-					className="flex items-center justify-center gap-2.5"
 					checked={isWorkspaceChecked("qubio")}
 					onCheckedChange={(checked) =>
 						setWorkspaceChecked("qubio", checked === true)
@@ -661,7 +658,6 @@ const DropdownWithCheckboxExample = () => {
 					</Badge>
 				</DropdownCheckboxItem>
 				<DropdownCheckboxItem
-					className="flex items-center justify-center gap-2.5"
 					checked={isWorkspaceChecked("personal")}
 					onCheckedChange={(checked) =>
 						setWorkspaceChecked("personal", checked === true)
