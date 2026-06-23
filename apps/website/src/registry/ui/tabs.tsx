@@ -32,9 +32,7 @@ const tabsListStyles = cva(
 			variant: {
 				default: "bg-fill2",
 				open: "data-[orientation=horizontal]:border-b data-[orientation=vertical]:border-r border-border",
-				outline: "border border-border",
 				ghost: "",
-				"outline-ghost": "bg-bg",
 			},
 		},
 		defaultVariants: {
@@ -47,7 +45,7 @@ const tabsListStyles = cva(
 				className: "p-0.5",
 			},
 			{
-				variant: ["default", "outline", "ghost"],
+				variant: ["default", "ghost"],
 				className: "rounded-lg",
 			},
 			{
@@ -66,13 +64,9 @@ const tabsTriggerStyles = cva(
 			variant: {
 				default:
 					"data-[state=active]:bg-elevation-level2 border border-transparent data-[state=active]:border data-[state=active]:border-soft-alpha data-[state=active]:drop-shadow-xs",
-				outline:
-					"data-[state=active]:bg-fill2 data-[orientation=horizontal]:not-last:border-r data-[orientation=vertical]:not-last:border-b border-border",
 				open: "data-[orientation=horizontal]:border-b-2 data-[orientation=vertical]:border-r-2 border-transparent data-[state=active][orientation=horizontal]:border-b-2 data-[state=active][orientation=vertical]:border-r-2 data-[state=active]:border-primary",
 				ghost:
 					"data-[state=active]:bg-primary-accent data-[state=active]:text-primary-text",
-				"outline-ghost":
-					"data-[state=active]:bg-bg border border-transparent data-[state=active]:border-soft data-[state=active]:drop-shadow-xs",
 			},
 		},
 		compoundVariants: [
@@ -81,7 +75,7 @@ const tabsTriggerStyles = cva(
 				className: "rounded-md px-2.5 py-1.5 h-full",
 			},
 			{
-				variant: ["outline", "ghost", "outline-ghost"],
+				variant: ["ghost"],
 				className: "p-2",
 			},
 			{
@@ -90,12 +84,7 @@ const tabsTriggerStyles = cva(
 					"data-[orientation=horizontal]:py-2 data-[orientation=vertical]:px-2 h-9",
 			},
 			{
-				variant: "outline",
-				className:
-					"data-[orientation=horizontal]:first:rounded-l-[0.625rem] data-[orientation=horizontal]:last:rounded-r-[0.625rem] data-[orientation=vertical]:first:rounded-t-[0.625rem] data-[orientation=vertical]:last:rounded-b-[0.625rem]",
-			},
-			{
-				variant: ["ghost", "outline-ghost"],
+				variant: ["ghost"],
 				className: "data-[state=active]:rounded-lg h-full",
 			},
 		],

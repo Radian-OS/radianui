@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { EyeIcon, RotateCw, SquareTerminal } from "lucide-react"
+import { RotateCw } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { IconButton } from "@/registry/ui/button"
 import { Label } from "@/registry/ui/label"
@@ -26,15 +26,9 @@ const ProgressPreview = () => {
 	return (
 		<Tabs defaultValue="preview">
 			<div className="flex items-center justify-between">
-				<TabsList variant="outline-ghost">
-					<TabsTrigger value="preview">
-						<EyeIcon />
-						Preview
-					</TabsTrigger>
-					<TabsTrigger value="code">
-						<SquareTerminal />
-						Code
-					</TabsTrigger>
+				<TabsList>
+					<TabsTrigger value="preview">Preview</TabsTrigger>
+					<TabsTrigger value="code">Code</TabsTrigger>
 				</TabsList>
 				<div className="flex gap-2">
 					<div className="flex gap-1">

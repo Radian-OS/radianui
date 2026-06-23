@@ -9,7 +9,7 @@ const data = [
 export default function TabsPreview() {
 	return (
 		<Tabs className="w-105" defaultValue={data[0].value}>
-			<TabsList width="full" className="w-105">
+			<TabsList width="full">
 				{data.map((item) => (
 					<TabsTrigger key={item.value} value={item.value}>
 						{item.label}

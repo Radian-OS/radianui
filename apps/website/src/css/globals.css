@@ -186,7 +186,7 @@
 	/* background elevation */
 	--color-elevation-negative: oklch(0 0 0);
 	--color-elevation-level1: oklch(0.19 0.005 264.456);
-	--color-elevation-level2: oklch(0.234 0.007 264.437);
+	--color-elevation-level2: oklch(0.275 0.009 264.424);
 
 	/* inverse */
 	--color-white-inverse: oklch(0.144 0.003 264.025);
