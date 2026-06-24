@@ -156,7 +156,7 @@ function DropdownCheckboxItem({
 			data-slot="dropdown-menu-checkbox-item"
 			className={cn(
 				"hover:bg-fill1-alpha focus:bg-fill1-alpha [&_svg]:text-fg-secondary outline-hidden flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2.5 py-1.5 text-sm data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg:not([class*='size-'])]:size-5 [&_svg]:pointer-events-none [&_svg]:shrink-0",
-				indicatorPosition === "left" ? "pe-2 ps-8" : "pe-8 ps-2",
+				indicatorPosition === "left" ? "pe-2 ps-9" : "pe-9 ps-2",
 				className
 			)}
 			{...props}>
@@ -168,7 +168,7 @@ function DropdownCheckboxItem({
 				<span
 					className={cn(
 						"absolute flex size-5 items-center justify-center",
-						indicatorPosition === "left" ? "start-2.5" : "end-2.5"
+						indicatorPosition === "left" ? "start-3.5" : "end-3.5"
 					)}>
 					<DropdownMenuPrimitive.ItemIndicator>
 						<Check size={20} />
