@@ -168,7 +168,7 @@ function DropdownCheckboxItem({
 				<span
 					className={cn(
 						"absolute flex size-5 items-center justify-center",
-						indicatorPosition === "left" ? "start-2" : "end-2"
+						indicatorPosition === "left" ? "start-2.5" : "end-2.5"
 					)}>
 					<DropdownMenuPrimitive.ItemIndicator>
 						<Check size={20} />
