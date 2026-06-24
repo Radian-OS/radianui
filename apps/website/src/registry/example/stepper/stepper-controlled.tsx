@@ -26,7 +26,7 @@ export default function StepperControlled() {
 			<StepperNav>
 				{steps.map((step) => (
 					<StepperItem key={step} step={step}>
-						<StepperTrigger asChild>
+						<StepperTrigger>
 							<StepperIndicator className="data-[state=active]:bg-primary data-[state=completed]:bg-success data-[state=inactive]:text-fg-tertiary data-[state=active]:text-white data-[state=completed]:text-white">
 								{step}
 							</StepperIndicator>

@@ -51,9 +51,7 @@ export default function StepperIcon() {
 						key={index}
 						step={index + 1}
 						className="relative flex-1 items-center justify-center">
-						<StepperTrigger
-							className="flex flex-col items-center gap-2.5"
-							asChild>
+						<StepperTrigger className="flex flex-col items-center gap-2">
 							<StepperIndicator className="data-[state=inactive]:border-border data-[state=active]:border-primary-border data-[state=inactive]:text-fg-tertiary data-[state=completed]:bg-success data-[state=completed]:border-success-border size-8 border-2 data-[state=inactive]:bg-transparent data-[state=completed]:text-white">
 								{step.icon}
 							</StepperIndicator>

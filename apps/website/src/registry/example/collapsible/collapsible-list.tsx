@@ -55,20 +55,20 @@ function NotificationCard({
 		<div className="bg-bg border-soft flex items-center gap-3 rounded-xl border p-3">
 			<div
 				className={cn(
-					"flex shrink-0 items-center justify-center rounded-lg p-3",
+					"flex shrink-0 items-center justify-center rounded-lg p-2.5",
 					notification.iconBg
 				)}>
-				<Icon className={cn("size-6", notification.iconColor)} />
+				<Icon className={cn("size-5", notification.iconColor)} />
 			</div>
-			<div className="min-w-0 flex-1">
-				<p className="text-fg text-base font-semibold leading-tight">
+			<div className="min-w-0 flex-1 flex-col gap-1">
+				<p className="text-fg text-sm font-medium leading-5">
 					{notification.title}
 				</p>
-				<p className="text-fg-secondary truncate text-sm font-medium">
+				<p className="text-fg-secondary truncate text-xs font-normal leading-4">
 					{notification.body}
 				</p>
 			</div>
-			<span className="text-fg-secondary shrink-0 text-base">
+			<span className="text-fg-secondary shrink-0 self-start text-xs font-normal leading-4">
 				{notification.time}
 			</span>
 		</div>
@@ -85,10 +85,9 @@ export default function CollapsibleList() {
 		<div className="flex items-center justify-center">
 			<div className="w-100">
 				<Collapsible
-					className="flex flex-col" // remove gap-6
+					className="flex flex-col"
 					open={open}
 					onOpenChange={setOpen}>
-					{/* Always-visible first notification */}
 					<div className="relative">
 						<NotificationCard notification={first} />
 						{!open && (
@@ -99,14 +98,12 @@ export default function CollapsibleList() {
 						)}
 					</div>
 
-					{/* Expanded items — gap-2 from the first card */}
 					<CollapsibleContent className="mt-2 flex flex-col gap-2">
 						{rest.map((n) => (
 							<NotificationCard key={n.id} notification={n} />
 						))}
 					</CollapsibleContent>
 
-					{/* Trigger — mt-6 to keep breathing room from the card stack */}
 					<div className="mt-6 flex justify-center">
 						<CollapsibleTrigger asChild>
 							<Button color="neutral" variant="outline">

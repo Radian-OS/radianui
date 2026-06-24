@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { ChevronDown, SunMedium } from "lucide-react"
+import { ChevronDown, SunMoon } from "lucide-react"
 import { cn } from "@/lib/utils"
 import {
 	Collapsible,
@@ -24,13 +24,13 @@ export default function CollapsibleRadio() {
 	return (
 		<div className="w-100">
 			<Collapsible
-				className="flex flex-col gap-2"
 				open={open}
-				onOpenChange={setOpen}>
+				onOpenChange={setOpen}
+				className="border-border bg-bg overflow-hidden rounded-lg border">
 				{/* Trigger row */}
 				<CollapsibleTrigger asChild>
-					<div className="border-border bg-bg flex w-full cursor-pointer items-center gap-2 rounded-xl border px-3 py-2.5">
-						<SunMedium className="text-fg-secondary size-5 shrink-0" />
+					<div className="flex w-full cursor-pointer items-center gap-2 px-3 py-2.5">
+						<SunMoon className="text-fg-secondary size-5 shrink-0" />
 						<span className="text-fg flex-1 text-left text-sm font-medium">
 							Appearance Settings
 						</span>
@@ -45,7 +45,7 @@ export default function CollapsibleRadio() {
 
 				{/* Expandable options */}
 				<CollapsibleContent>
-					<div className="border-soft bg-bg overflow-hidden rounded-xl border">
+					<div>
 						<RadioGroup
 							value={selected}
 							onValueChange={setSelected}
@@ -53,10 +53,7 @@ export default function CollapsibleRadio() {
 							{OPTIONS.map((opt) => (
 								<Label
 									key={opt.value}
-									className={cn(
-										"hover:bg-fill1-alpha flex cursor-pointer items-center gap-2 p-3 transition-colors",
-										opt.value === selected && "bg-fill1-alpha"
-									)}>
+									className="border-border flex cursor-pointer items-center gap-2 border-t px-3 py-2.5 transition-colors">
 									<RadioGroupItem value={opt.value} />
 									<span className="text-fg text-sm">{opt.label}</span>
 								</Label>

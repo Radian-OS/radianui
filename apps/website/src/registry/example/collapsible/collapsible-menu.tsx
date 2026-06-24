@@ -105,10 +105,8 @@ const MENU_ITEMS: MenuItem[] = [
 const menuTriggerBaseClasses =
 	"hover:bg-fill1 focus-visible:ring-alpha group flex w-full items-center rounded-md p-2 text-sm font-medium transition focus-visible:outline-none focus-visible:ring-2"
 
-const activeClasses =
-	"data-[active=true]:bg-primary-accent data-[active=true]:text-primary-text"
-const iconClasses =
-	"text-fg-secondary size-5 group-data-[active=true]:text-primary"
+const activeClasses = "data-[active=true]:bg-fill1"
+const iconClasses = "text-fg-secondary size-5"
 
 function MenuItemEntry({ item, activeId, onActivate }: MenuItemEntryProps) {
 	const hasChildren = Boolean(item.subMenuItems?.length)
@@ -136,7 +134,7 @@ function MenuItemEntry({ item, activeId, onActivate }: MenuItemEntryProps) {
 			defaultOpen={isParentActive}>
 			<CollapsibleTrigger
 				className={cn(
-					"data-[state=open]:bg-fill2 group justify-between",
+					"data-[state=open]:bg-fill1 group justify-between",
 					menuTriggerBaseClasses,
 					activeClasses
 				)}

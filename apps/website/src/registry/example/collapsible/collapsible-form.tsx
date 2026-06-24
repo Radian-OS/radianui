@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useState } from "react"
+import { ReceiptText, Ship } from "lucide-react"
 import {
 	Accordion,
 	AccordionContent,
@@ -24,7 +25,12 @@ export default function CollapsibleForm() {
 				collapsible
 				defaultValue="billing">
 				<AccordionItem value="shipping">
-					<AccordionTrigger>Shipping Address</AccordionTrigger>
+					<AccordionTrigger className="p-4">
+						<div className="flex items-center gap-3">
+							<Ship className="text-fg-secondary size-5" />
+							<p>Shipping Address</p>
+						</div>
+					</AccordionTrigger>
 					<AccordionContent className="text-fg">
 						<div className="space-y-5">
 							<div className="grid grid-cols-2 gap-2.5">
@@ -64,7 +70,12 @@ export default function CollapsibleForm() {
 				</AccordionItem>
 
 				<AccordionItem value="billing">
-					<AccordionTrigger>Billing Address</AccordionTrigger>
+					<AccordionTrigger className="p-4">
+						<div className="flex items-center gap-3">
+							<ReceiptText className="text-fg-secondary size-5" />
+							<p>Billing Address</p>
+						</div>
+					</AccordionTrigger>
 					<AccordionContent className="text-fg">
 						<div className="flex items-center gap-2">
 							<Checkbox
@@ -121,7 +132,7 @@ export default function CollapsibleForm() {
 				</AccordionItem>
 				<AccordionItem
 					value="footer"
-					className="flex items-center justify-end gap-2 p-4">
+					className="flex items-center justify-end gap-3 px-5 py-4">
 					<Button variant="outline" color="neutral" type="button">
 						Go Back
 					</Button>

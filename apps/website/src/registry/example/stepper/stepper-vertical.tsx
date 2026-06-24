@@ -36,11 +36,11 @@ export default function StepperVertical() {
 						key={index}
 						step={index + 1}
 						className="not-last:flex-1 relative items-start">
-						<StepperTrigger className="items-start gap-2.5 pb-12 last:pb-0">
+						<StepperTrigger className="items-start gap-2 pb-12 last:pb-0">
 							<StepperIndicator className="data-[state=completed]:bg-success data-[state=completed]:text-white">
 								{index + 1}
 							</StepperIndicator>
-							<div className="mt-0.5 text-left">
+							<div className="flex flex-col gap-1 text-left">
 								<StepperTitle>{step.title}</StepperTitle>
 								<StepperDescription>{step.description}</StepperDescription>
 							</div>
