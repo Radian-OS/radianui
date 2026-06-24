@@ -169,7 +169,7 @@ export default function CommandSearchIntegration() {
 				onOpenChange={setOpen}
 				className="max-w-200 w-full p-0">
 				<Command
-					className="**:data-[slot=command-input-wrapper]:border-none border-none"
+					className="**:data-[slot=command-input-wrapper]:border-none **:data-[slot=command-input-wrapper]:p-0 border-none"
 					shouldFilter={false}>
 					<div className="flex w-full flex-col">
 						<div className="border-soft flex w-full items-center justify-between border-b px-3">
@@ -258,7 +258,7 @@ export default function CommandSearchIntegration() {
 											<li
 												key={f}
 												className="text-fg-secondary flex items-center gap-2 text-sm">
-												<CheckIcon className="text-primary bg-bg-primary-accent size-3.5 shrink-0 p-0.5" />
+												<CheckIcon className="text-primary bg-primary-accent size-3.5 shrink-0 p-0.5" />
 												{f}
 											</li>
 										))}
@@ -276,32 +276,34 @@ export default function CommandSearchIntegration() {
 						</div>
 
 						<div className="border-soft flex items-center justify-between border-t p-4">
-							<div className="text-fg-tertiaryflex flex items-center gap-3 text-xs">
-								<span className="flex items-center gap-1">
-									<Badge size="20" color="neutral" variant="soft">
-										<ArrowUp className="size-3.5" />
-									</Badge>
-									<Badge size="20" color="neutral" variant="soft">
-										<ArrowDown className="size-3.5" />
-									</Badge>
+							<div className="text-fg-tertiaryflex flex items-center gap-4 text-xs">
+								<span className="flex items-center gap-2">
+									<div className="flex items-center gap-1">
+										<Badge size="20" color="neutral" variant="soft">
+											<ArrowUp className="size-3.5" />
+										</Badge>
+										<Badge size="20" color="neutral" variant="soft">
+											<ArrowDown className="size-3.5" />
+										</Badge>
+									</div>
 									Navigate
 								</span>
-								<span className="flex items-center gap-1">
+								<span className="flex items-center gap-2">
+									Close
 									<Badge size="20" color="neutral" variant="soft">
 										ESC
 									</Badge>
-									Close
 								</span>
 							</div>
 
 							<div className="text-fg-tertiary flex gap-4 text-xs">
-								<span className="flex items-center gap-1">
+								<span className="flex items-center gap-2">
 									<Badge size="20" color="neutral" variant="soft">
 										⇧+⏎
 									</Badge>
 									Visit website
 								</span>
-								<span className="flex items-center gap-1">
+								<span className="flex items-center gap-2">
 									<Badge size="20" color="neutral" variant="soft">
 										⏎
 									</Badge>
