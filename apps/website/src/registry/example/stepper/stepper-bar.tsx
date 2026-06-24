@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { Button } from "@/registry/ui/button"
 import { Progress } from "@/registry/ui/progress"
 import {
@@ -22,19 +22,6 @@ const steps = [
 
 export default function StepperBar() {
 	const [currentStep, setCurrentStep] = useState(2)
-	const [progressValues, setProgressValues] = useState<number[]>(
-		steps.map((_, i) => (i + 1 <= 2 ? 100 : 0))
-	)
-
-	useEffect(() => {
-		setProgressValues(
-			steps.map((_, i) => {
-				if (i + 1 < currentStep) return 100
-				if (i + 1 === currentStep) return 100
-				return 0
-			})
-		)
-	}, [currentStep])
 
 	return (
 		<Stepper
@@ -47,11 +34,11 @@ export default function StepperBar() {
 						key={index}
 						step={index + 1}
 						className="relative flex-1 items-start">
-						<StepperTrigger className="flex grow flex-col items-start justify-center gap-3.5">
+						<StepperTrigger className="flex grow flex-col items-start justify-center gap-2">
 							<Progress
-								value={progressValues[index]}
-								className="h-1 w-full"
-								indicatorClassName="transition-transform duration-700 ease-out"
+								value={index + 1 <= currentStep ? 100 : 0}
+								className="w-full"
+								indicatorClassName="transition-none"
 							/>
 							<StepperTitle className="group-data-[state=inactive]/step:text-fg-secondary text-start">
 								{step.title}
@@ -73,8 +60,6 @@ export default function StepperBar() {
 			</StepperPanel>
 
 			<div className="flex items-center justify-between gap-2.5">
-				{" "}
-				{/* added */}
 				<Button
 					variant="outline"
 					color="neutral"

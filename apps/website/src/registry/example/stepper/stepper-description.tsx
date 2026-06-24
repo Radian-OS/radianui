@@ -35,10 +35,12 @@ export default function StepperDescriptionExample() {
 						key={index}
 						step={index + 1}
 						className="relative flex-1 items-start">
-						<StepperTrigger className="flex flex-col gap-2.5">
+						<StepperTrigger className="flex flex-col gap-2">
 							<StepperIndicator>{index + 1}</StepperIndicator>
-							<StepperTitle>{step.title}</StepperTitle>
-							<StepperDescription>{step.description}</StepperDescription>
+							<div className="flex flex-col gap-1">
+								<StepperTitle>{step.title}</StepperTitle>
+								<StepperDescription>{step.description}</StepperDescription>
+							</div>
 						</StepperTrigger>
 
 						{steps.length > index + 1 && (

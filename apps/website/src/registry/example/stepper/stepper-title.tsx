@@ -34,7 +34,7 @@ export default function StepperTitleExample() {
 						key={index}
 						step={index + 1}
 						className="relative flex-1 items-start">
-						<StepperTrigger className="flex flex-col gap-2.5">
+						<StepperTrigger className="flex flex-col gap-2">
 							<StepperIndicator>{index + 1}</StepperIndicator>
 							<StepperTitle>{step.title}</StepperTitle>
 						</StepperTrigger>

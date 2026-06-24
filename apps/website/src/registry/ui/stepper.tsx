@@ -21,6 +21,8 @@ import { cn } from "@/lib/utils"
 
 /* eslint-disable react-hooks/exhaustive-deps */
 
+/* eslint-disable react-hooks/exhaustive-deps */
+
 // Types
 type StepperOrientation = "horizontal" | "vertical"
 type StepState = "active" | "completed" | "inactive" | "loading"
@@ -377,7 +379,7 @@ function StepperTitle({ children, className }: React.ComponentProps<"h3">) {
 		<h3
 			data-slot="stepper-title"
 			data-state={state}
-			className={cn("text-fg text-sm font-medium leading-none", className)}>
+			className={cn("text-fg text-sm font-medium", className)}>
 			{children}
 		</h3>
 	)

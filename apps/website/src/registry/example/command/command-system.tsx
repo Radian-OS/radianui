@@ -117,7 +117,7 @@ export default function CommandSystemCommands() {
 			</Button>
 			<CommandDialog open={open} onOpenChange={setOpen}>
 				<Command
-					className="**:data-[slot=command-input-wrapper]:border-none border-none"
+					className="**:data-[slot=command-input-wrapper]:border-none **:data-[slot=command-input-wrapper]:p-0 border-none"
 					shouldFilter={false}>
 					{/* Input */}
 					<div className="border-soft flex items-center justify-between gap-2 border-b px-3">
@@ -132,7 +132,7 @@ export default function CommandSystemCommands() {
 					</div>
 
 					{/* Category filter badges */}
-					<div className="border-soft flex items-center gap-1.5 border-b px-3 py-2.5">
+					<div className="border-soft flex items-center gap-1.5 border-b p-2">
 						{CATEGORIES.map((cat) => {
 							const isActive = activeCategory === cat
 							return (

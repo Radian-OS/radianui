@@ -131,28 +131,26 @@ export default function CommandSearchContacts() {
 			</Button>
 			<CommandDialog open={open} onOpenChange={setOpen}>
 				<Command
-					className="**:data-[slot=command-input-wrapper]:border-none border-none"
+					className="**:data-[slot=command-input-wrapper]:border-none **:data-[slot=command-input-wrapper]:p-0 border-none"
 					shouldFilter={false}>
 					{/* Input row */}
-					<div className="flex items-center justify-between gap-2 px-3">
+					<div className="flex items-center justify-between gap-2 px-4">
 						<CommandInput
 							value={query}
 							onValueChange={setQuery}
 							placeholder="Search..."
-							className="flex-1 border-0"
+							className="flex-1 border-0 p-0"
 						/>
-						{query && (
-							<CompactButton
-								color="neutral"
-								variant="soft"
-								onClick={() => setQuery("")}>
-								<X />
-							</CompactButton>
-						)}
+						<CompactButton
+							color="neutral"
+							variant="soft"
+							onClick={() => setQuery("")}>
+							<X />
+						</CompactButton>
 					</div>
 
 					{/* Filter badges */}
-					<div className="border-soft flex items-center gap-1.5 border-b px-3 py-2">
+					<div className="border-soft flex items-center gap-1.5 border-b px-4 pb-3">
 						{DEPARTMENTS.map((dept) => {
 							const isActive = activeFilters.includes(dept)
 							return (
@@ -206,24 +204,26 @@ export default function CommandSearchContacts() {
 
 					{/* Footer */}
 					<div className="border-soft flex items-center justify-between border-t p-4">
-						<div className="text-fg-tertiary flex items-center gap-3 text-xs">
-							<span className="flex items-center gap-1">
-								<Badge size="20" color="neutral" variant="soft">
-									<ArrowUp className="size-3.5" />
-								</Badge>
-								<Badge size="20" color="neutral" variant="soft">
-									<ArrowDown className="size-3.5" />
-								</Badge>
+						<div className="text-fg-tertiary flex items-center gap-4 text-xs">
+							<span className="flex items-center gap-2">
+								<div className="flex items-center gap-1">
+									<Badge size="20" color="neutral" variant="soft">
+										<ArrowUp className="size-3.5" />
+									</Badge>
+									<Badge size="20" color="neutral" variant="soft">
+										<ArrowDown className="size-3.5" />
+									</Badge>
+								</div>
 								Navigate
 							</span>
-							<span className="flex items-center gap-1">
+							<span className="flex items-center gap-2">
+								Close
 								<Badge size="20" color="neutral" variant="soft">
 									ESC
 								</Badge>
-								Close
 							</span>
 						</div>
-						<span className="text-fg-tertiary flex items-center gap-1 text-xs">
+						<span className="text-fg-tertiary flex items-center gap-2 text-sm">
 							<Badge size="20" color="neutral" variant="soft">
 								⏎
 							</Badge>
