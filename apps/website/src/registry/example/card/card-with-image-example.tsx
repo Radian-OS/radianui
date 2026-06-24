@@ -26,7 +26,7 @@ export default function CardWithImageExample() {
 				</Avatar>
 				<div className="flex flex-1 flex-col gap-0.5">
 					<span className="text-base font-semibold">Anna Murreum</span>
-					<span>anna@radian.com</span>
+					<span className="text-sm">anna@radian.com</span>
 				</div>
 				<Badge size="24" variant="soft" color="primary">
 					New

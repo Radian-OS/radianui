@@ -1,52 +1,47 @@
 import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
-import {
-	Card,
-	CardContent,
-	CardFooter,
-	CardHeader,
-	CardTitle,
-} from "@/registry/ui/card"
+import { Card } from "@/registry/ui/card"
+import { Divider } from "@/registry/ui/divider"
 import { Progress } from "@/registry/ui/progress"
 
 export default function CardBillingExample() {
 	return (
-		<Card className="w-95">
-			<CardHeader className="flex items-center justify-between">
-				<CardTitle>7 days remaining in cycle</CardTitle>
-				<Badge size="20" variant="soft" color="primary">
+		<Card className="max-w-95 w-full gap-5 p-5">
+			<div className="flex items-center justify-between">
+				<span className="text-base font-semibold">
+					7 days remaining in cycle
+				</span>
+				<Badge variant="soft" size="20" color="violet-blue">
 					Billing
 				</Badge>
-			</CardHeader>
-			<CardContent className="flex flex-col items-center gap-4">
-				<section className="flex w-full flex-col gap-1">
-					<span className="text-fg-secondary flex justify-between text-xs">
-						<p>Included Credits</p>
-						<p>On-Demand</p>
-					</span>
-					<span className="flex justify-between">
-						<p className="heading-6">$42.00 / $50</p>
-						<p className="heading-6">$0</p>
-					</span>
+			</div>
+			<div className="flex flex-col gap-4">
+				<section className="flex flex-col gap-1">
+					<div className="text-fg-secondary flex items-center justify-between text-xs">
+						<span>Included Credits</span>
+						<span>On-Demand</span>
+					</div>
+					<div className="heading-6 flex items-center justify-between">
+						<span>$42.00 / $50</span>
+						<span>$0</span>
+					</div>
 					<Progress value={80} />
 				</section>
-
-				<section className="flex w-full flex-col gap-1">
-					<span className="text-fg-secondary flex justify-between text-xs">
-						<p>Api Requests</p>
-						<p>$38.12</p>
-					</span>
-					<span className="text-fg-secondary flex justify-between text-xs">
-						<p>Compute Time</p>
-						<p>$3.88</p>
-					</span>
+				<section className="flex flex-col gap-1">
+					<div className="text-fg-secondary flex items-center justify-between text-xs">
+						<span>Api Requests</span>
+						<span>$38.12</span>
+					</div>
+					<div className="text-fg-secondary flex items-center justify-between text-xs">
+						<span>Compute Time</span>
+						<span>$3.88</span>
+					</div>
 				</section>
-			</CardContent>
-			<CardFooter className="max-w-85 w-full self-center border border-x-0 border-b-0 border-t border-dashed">
-				<Button className="w-full" variant="outline" color="neutral">
-					Add Credits
-				</Button>
-			</CardFooter>
+			</div>
+			<Divider className="border-alpha border border-b-0 border-t border-dashed bg-transparent" />
+			<Button color="neutral" variant="outline" className="w-full">
+				Add Credits
+			</Button>
 		</Card>
 	)
 }

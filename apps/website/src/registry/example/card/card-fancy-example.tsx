@@ -36,8 +36,8 @@ export default function CardFancyExample() {
 					</span>
 				</CardHeader>
 				<CardContent className="flex flex-col justify-center gap-2">
-					<CardTitle>React Native</CardTitle>
-					<CardDescription>
+					<CardTitle className="text-base font-medium">React Native</CardTitle>
+					<CardDescription className="text-sm">
 						A Mage icon library package for React Native and other applications.
 					</CardDescription>
 				</CardContent>
