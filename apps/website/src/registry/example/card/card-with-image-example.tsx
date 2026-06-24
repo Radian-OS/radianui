@@ -28,7 +28,7 @@ export default function CardWithImageExample() {
 					<span className="text-base font-semibold">Anna Murreum</span>
 					<span className="text-sm">anna@radian.com</span>
 				</div>
-				<Badge size="24" variant="soft" color="primary">
+				<Badge size="24" variant="soft" color="violet-blue">
 					New
 				</Badge>
 			</CardHeader>
