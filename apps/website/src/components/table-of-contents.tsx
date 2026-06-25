@@ -191,7 +191,9 @@ export default function TableOfContent({ headings }: TableOfContentsProps) {
 	return (
 		<nav className="flex h-full flex-col text-sm font-medium">
 			{/* Fixed title */}
-			<span className="text-fg mb-1 block py-2 font-medium">On This Page</span>
+			<span className="text-fg-secondary mb-1 block py-2 pl-3 text-[0.813rem] font-medium">
+				On This Page
+			</span>
 
 			{/* Scrollable content container */}
 			<div
@@ -216,7 +218,8 @@ export default function TableOfContent({ headings }: TableOfContentsProps) {
 											}
 										}}
 										className={cn(
-											"text-fg-secondary hover:text-fg group relative block py-1.5 pl-3 text-sm transition-colors",
+											"text-fg-secondary hover:text-fg group relative block py-1.5 text-[0.813rem] transition-colors",
+											heading.level <= 2 ? "pl-3" : "pl-6",
 											isActive && "text-fg font-medium"
 										)}
 										href={`#${heading.id}`}
