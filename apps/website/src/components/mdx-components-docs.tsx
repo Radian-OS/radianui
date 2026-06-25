@@ -178,6 +178,33 @@ export const components = {
 			</h3>
 		)
 	},
+	h4: ({
+		children,
+		className,
+		...props
+	}: HTMLAttributes<HTMLHeadingElement>) => {
+		const text = typeof children === "string" ? children : ""
+		const id = text
+			.toLowerCase()
+			.replace(/\s+/g, "-")
+			.replace(/[^\w-]/g, "")
+		return (
+			<h4
+				className={cn(
+					"scroll-mt-26 group mb-3 mt-6 flex hidden items-center text-lg font-medium leading-7",
+					className
+				)}
+				{...props}>
+				<Link href={`#${id}`} className="flex items-center gap-2">
+					{children}
+					<LinkIcon
+						size={16}
+						className="text-fg-tertiary opacity-0 transition-opacity group-hover:opacity-100"
+					/>
+				</Link>
+			</h4>
+		)
+	},
 	a: ({ className, ...props }: React.HTMLAttributes<HTMLAnchorElement>) => (
 		<a
 			aria-label="Link"

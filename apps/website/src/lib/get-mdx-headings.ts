@@ -13,16 +13,16 @@ type GetHeadingsOptions = {
 }
 
 /**
- * Extracts headings (h2/h3 by default) from MDX/Markdown code.
+ * Extracts headings (h2/h4 by default) from MDX/Markdown code.
  * @param mdxCode The MDX or Markdown code as a string
- * @param options Optional: minDepth/maxDepth for heading levels (default: 2-3)
+ * @param options Optional: minDepth/maxDepth for heading levels (default: 2-4)
  * @returns Promise<MdxHeading[]>
  */
 export async function getHeadingsFromMdx(
 	mdxCode: string,
-	options: GetHeadingsOptions = { minDepth: 2, maxDepth: 3 }
+	options: GetHeadingsOptions = { minDepth: 2, maxDepth: 4 }
 ): Promise<MdxHeading[]> {
-	const { minDepth = 2, maxDepth = 3 } = options
+	const { minDepth = 2, maxDepth = 4 } = options
 	const slugger = new GithubSlugger()
 	const headings: MdxHeading[] = []
 
