@@ -1,7 +1,22 @@
+import {
+	AppWindowMac,
+	Box,
+	ClipboardCheck,
+	CodeXml,
+	LetterText,
+	PaintBucket,
+	ScrollText,
+	SquareTerminal,
+	SunMoon,
+} from "lucide-react"
+import type { LucideIcon } from "lucide-react"
+import { FigmaIcon, NextJsIcon, ViteIcon } from "@/components/custom/icon"
+
 export type NavigationItem = {
 	title: string
 	description?: string
 	url: string
+	icon?: LucideIcon
 	thumbnail?: string
 	thumbnailDark?: string
 	alt?: string
@@ -29,18 +44,22 @@ const FUNDAMENTALS_DATA = [
 	{
 		title: "Colors",
 		description: "156 colors, 70 color tokens",
+		icon: PaintBucket,
 	},
 	{
 		title: "Typography",
 		description: "17 Styles",
+		icon: LetterText,
 	},
 	{
 		title: "Iconography",
 		description: "1,200 Components",
+		icon: Box,
 	},
 	{
 		title: "Theme",
 		description: "8 Types",
+		icon: SunMoon,
 		subItems: [
 			{ title: "Next.js", url: "/docs/fundamentals/theme/nextjs" },
 			{ title: "Vite", url: "/docs/fundamentals/theme/vite" },
@@ -115,18 +134,51 @@ const generateComponentsItems = COMPONENTS_DATA.map((title) => ({
 }))
 
 // ===== Getting Started & Installation Sections =====
+
 const GETTING_STARTED_ITEMS: NavigationItem[] = [
-	{ title: "Introduction", url: "/docs/getting-started/introduction" },
-	{ title: "Installation", url: "/docs/getting-started/installation" },
-	{ title: "CLI", url: "/docs/getting-started/cli" },
-	{ title: "Figma", url: "/docs/getting-started/figma" },
-	{ title: "Changelog", url: "/docs/getting-started/changelog" },
+	{
+		title: "Introduction",
+		url: "/docs/getting-started/introduction",
+		icon: ClipboardCheck,
+	},
+	{
+		title: "Installation",
+		url: "/docs/getting-started/installation",
+		icon: AppWindowMac,
+	},
+	{
+		title: "CLI",
+		url: "/docs/getting-started/cli",
+		icon: SquareTerminal,
+	},
+	{
+		title: "Figma",
+		url: "/docs/getting-started/figma",
+		icon: FigmaIcon,
+	},
+	{
+		title: "Changelog",
+		url: "/docs/getting-started/changelog",
+		icon: ScrollText,
+	},
 ]
 
 const INSTALLATION_ITEMS: NavigationItem[] = [
-	{ title: "Nextjs", url: "/docs/installation/next" },
-	{ title: "Vite", url: "/docs/installation/vite" },
-	{ title: "Manual", url: "/docs/installation/manual" },
+	{
+		title: "Nextjs",
+		url: "/docs/installation/next",
+		icon: NextJsIcon,
+	},
+	{
+		title: "Vite",
+		url: "/docs/installation/vite",
+		icon: ViteIcon,
+	},
+	{
+		title: "Manual",
+		url: "/docs/installation/manual",
+		icon: CodeXml,
+	},
 ]
 
 // ===== Blocks Section =====
@@ -163,6 +215,7 @@ const FUNDAMENTALS_ITEMS: NavigationItem[] = FUNDAMENTALS_DATA.map((item) => ({
 	title: item.title,
 	description: item.description,
 	url: `/docs/fundamentals/${item.title.toLowerCase().replace(/\s+/g, "-")}`,
+	icon: item.icon,
 	thumbnail: getThumbnail(item.title),
 	thumbnailDark: getThumbnail(item.title, true),
 	alt: `${item.title} illustration`,

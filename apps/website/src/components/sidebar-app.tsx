@@ -28,49 +28,46 @@ export default function Sidebar() {
 	})
 
 	return (
-		<div className="no-scrollbar w-65 not-lg:hidden sticky top-[4.3rem] z-30 h-[calc(100vh-4.3rem)] overflow-y-auto py-10 pe-2.5 text-sm">
-			<ScrollArea className="flex h-full w-full pe-4">
-				<div className="flex flex-col gap-3">
+		<div className="border-soft no-scrollbar w-65 not-lg:hidden sticky top-[4.3rem] z-30 h-[calc(100vh-4.3rem)] overflow-y-auto border-x text-sm">
+			<ScrollArea className="flex h-full w-full">
+				<div className="flex flex-col">
 					{filteredNavigationItems.map((section) => (
 						<div
-							className="flex flex-col gap-2 text-sm font-medium"
+							className="border-soft flex flex-col gap-2 border-b p-3 text-sm font-medium last:border-b-0"
 							key={section.title}>
-							<span className="py-1.5">{section.title}</span>
+							<span className="px-2 py-1.5">{section.title}</span>
 							<ul className="relative flex flex-col gap-1">
-								{/* Vertical line */}
-								<div className="bg-soft absolute bottom-0 left-0 top-0 w-px" />
 								{section.items.map((item) => {
 									const isActive = pathName === item.url
+									const Icon = item.icon
 									const content = (
-										<>
-											{/* Active indicator */}
-											{isActive && (
-												<div className="bg-primary absolute bottom-0 left-0 top-0 w-px" />
-											)}
-
-											{/* Hover indicator */}
-											{!isActive && (
-												<div className="bg-alpha absolute bottom-0 left-0 top-0 w-px opacity-0 transition-opacity group-hover:opacity-100" />
-											)}
-											<div className="flex items-center justify-between">
-												<span>{item.title}</span>
-												{item.isComingSoon && (
-													<Badge size="20" variant="soft" color="warning">
-														Coming Soon
-													</Badge>
+										<div className="flex w-full min-w-0 items-center justify-between gap-2">
+											<div className="flex min-w-0 items-center gap-2">
+												{Icon && (
+													<Icon
+														size={20}
+														aria-hidden="true"
+														className="text-fg-secondary shrink-0"
+													/>
 												)}
-												{item.isUpdated && (
-													<Badge size="20" variant="soft" color="info">
-														Updated
-													</Badge>
-												)}
-												{item.isNew && (
-													<Badge size="20" variant="soft" color="success">
-														New
-													</Badge>
-												)}
+												<span className="truncate">{item.title}</span>
 											</div>
-										</>
+											{item.isComingSoon && (
+												<Badge size="20" variant="soft" color="warning">
+													Coming Soon
+												</Badge>
+											)}
+											{item.isUpdated && (
+												<Badge size="20" variant="soft" color="info">
+													Updated
+												</Badge>
+											)}
+											{item.isNew && (
+												<Badge size="20" variant="soft" color="success">
+													New
+												</Badge>
+											)}
+										</div>
 									)
 
 									return (
@@ -78,18 +75,21 @@ export default function Sidebar() {
 											key={item.title}
 											className="relative"
 											ref={isActive ? activeItemRef : null}>
+											{isActive && (
+												<div className="bg-primary absolute -left-3 top-1/2 h-8 w-0.5 -translate-y-1/2 rounded-r-full" />
+											)}
 											{item.disabled ? (
 												<div
 													className={cn(
-														"text-fg-tertiary relative block cursor-not-allowed py-1.5 pl-3 text-sm"
+														"text-fg-tertiary relative flex min-h-8 cursor-not-allowed items-center gap-2 rounded-lg p-2 text-sm leading-4"
 													)}>
 													{content}
 												</div>
 											) : (
 												<Link
 													className={cn(
-														"text-fg-secondary hover:text-fg focus-visible:inset-ring-border group relative block py-1.5 pl-3 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset",
-														isActive ? "text-fg font-medium" : ""
+														"text-fg-secondary hover:bg-fill1-alpha hover:text-fg focus-visible:inset-ring-border group relative flex min-h-8 items-center gap-2 rounded-lg p-2 text-sm leading-4 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset",
+														isActive && "bg-fill1-alpha text-fg font-medium"
 													)}
 													href={item.url}>
 													{content}

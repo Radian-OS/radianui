@@ -22,7 +22,7 @@ export default function CardDefault() {
 				</p>
 			</CardContent>
 			<CardFooter>
-				<Button variant="outline" color="neutral" size="28" className="w-full">
+				<Button variant="outline" color="neutral" className="w-full">
 					Action
 				</Button>
 			</CardFooter>
