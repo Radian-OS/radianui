@@ -15,10 +15,10 @@ import {
 } from "@/registry/ui/stepper"
 
 const steps = [
-	{ title: "Step 1", description: "First step description" },
-	{ title: "Step 2", description: "Second step description" },
-	{ title: "Step 3", description: "Third step description" },
-	{ title: "Step 4", description: "Fourth step description" },
+	{ title: "Step 1", description: "Description" },
+	{ title: "Step 2", description: "Description" },
+	{ title: "Step 3", description: "Description" },
+	{ title: "Step 4", description: "Description" },
 ]
 
 export default function StepperDescriptionExample() {

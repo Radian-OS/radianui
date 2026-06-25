@@ -28,7 +28,7 @@ export default function StepperBar() {
 			value={currentStep}
 			onValueChange={setCurrentStep}
 			className="w-full space-y-8">
-			<StepperNav className="mb-10 gap-5">
+			<StepperNav className="mb-10 gap-2">
 				{steps.map((step, index) => (
 					<StepperItem
 						key={index}
