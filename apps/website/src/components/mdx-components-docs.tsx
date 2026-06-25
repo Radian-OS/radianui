@@ -191,7 +191,7 @@ export const components = {
 		return (
 			<h4
 				className={cn(
-					"scroll-mt-26 group mb-3 mt-6 flex hidden items-center text-lg font-medium leading-7",
+					"scroll-mt-26 group flex items-center opacity-0",
 					className
 				)}
 				{...props}>
