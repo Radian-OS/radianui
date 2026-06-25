@@ -423,7 +423,7 @@ function Badge({
 			<Slot
 				className={cn(badgeVariants({ variant, size, color }), className)}
 				{...props}>
-				{wrappedChildren}
+				{children}
 			</Slot>
 		)
 	}

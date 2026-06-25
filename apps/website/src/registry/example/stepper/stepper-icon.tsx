@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Box, CheckIcon } from "lucide-react"
+import { Bell, CheckIcon, Inbox, Search, User } from "lucide-react"
 import { Button } from "@/registry/ui/button"
 import {
 	Stepper,
@@ -18,19 +18,19 @@ import {
 const steps = [
 	{
 		title: "Step 1",
-		icon: <Box className="size-4" />,
+		icon: <User className="size-4" />,
 	},
 	{
 		title: "Step 2",
-		icon: <Box className="size-4" />,
+		icon: <Search className="size-4" />,
 	},
 	{
 		title: "Step 3",
-		icon: <Box className="size-4" />,
+		icon: <Inbox className="size-4" />,
 	},
 	{
 		title: "Step 4",
-		icon: <Box className="size-4" />,
+		icon: <Bell className="size-4" />,
 	},
 ]
 
