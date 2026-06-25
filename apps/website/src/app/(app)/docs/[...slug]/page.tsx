@@ -6,6 +6,7 @@ import Link from "next/link"
 import { notFound } from "next/navigation"
 import { Mdx } from "@/components/mdx"
 import { PreviousNextButtons } from "@/components/prev-next-buttons"
+import { PreviousNextIconButtons } from "@/components/prev-next-icon-buttons"
 import { websiteMetadata } from "@/config/website-metadata-config"
 import { Badge } from "@/registry/ui/badge"
 
@@ -82,9 +83,12 @@ export default async function Page({ params }: DocPageProps) {
 
 	return (
 		<div className="mx-auto w-full flex-1 overflow-y-visible py-10 lg:max-w-[720px]">
-			<span className="text-primary-text text-sm font-medium capitalize">
-				{category}
-			</span>
+			<div className="flex items-center justify-between">
+				<span className="text-primary-text text-sm font-medium capitalize">
+					{category}
+				</span>
+				<PreviousNextIconButtons currentPath={currentPath} />
+			</div>
 			<div className="flex flex-col">
 				<h1 className="heading-4 my-2">{doc.title}</h1>
 				<p className="text-fg-secondary mb-5">{doc.description}</p>
@@ -98,7 +102,7 @@ export default async function Page({ params }: DocPageProps) {
 								className="shadow-2xs"
 								asChild>
 								<Link
-									href={doc.links.github.href}
+									href={doc.links.github.href.replace(/\r$/, "")}
 									target="_blank"
 									rel="noopener noreferrer">
 									<svg
@@ -119,37 +123,37 @@ export default async function Page({ params }: DocPageProps) {
 						)}
 						{doc.links.externalReference &&
 							doc.links.externalReference.length > 0 &&
-							doc.links.externalReference.map((link) => (
-								<Badge
-									key={link.href}
-									size="28"
-									variant="outline"
-									color="neutral"
-									className="shadow-2xs"
-									asChild>
-									<Link
-										href={link.href}
-										target="_blank"
-										rel="noopener noreferrer">
-										{link.icon ? (
-											<Image
-												className="text-fg-secondary size-4"
-												height={16}
-												width={16}
-												src={
-													link.icon.startsWith("/")
-														? link.icon
-														: "/" + link.icon
-												}
-												alt={link.label}
-											/>
-										) : (
-											<ExternalLinkIcon className="size-4" />
-										)}
-										{link.label ?? <>External Reference</>}
-									</Link>
-								</Badge>
-							))}
+							doc.links.externalReference.map((link) => {
+								const href = link.href.replace(/\r$/, "")
+								return (
+									<Badge
+										key={href}
+										size="28"
+										variant="outline"
+										color="neutral"
+										className="shadow-2xs"
+										asChild>
+										<Link href={href} target="_blank" rel="noopener noreferrer">
+											{link.icon ? (
+												<Image
+													className="text-fg-secondary size-4"
+													height={16}
+													width={16}
+													src={
+														link.icon.startsWith("/")
+															? link.icon
+															: "/" + link.icon
+													}
+													alt={link.label}
+												/>
+											) : (
+												<ExternalLinkIcon className="size-4" />
+											)}
+											{link.label ?? <>External Reference</>}
+										</Link>
+									</Badge>
+								)
+							})}
 					</section>
 				)}
 			</div>
