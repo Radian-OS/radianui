@@ -89,11 +89,13 @@ export const components = {
 		height,
 		align,
 		type,
+		title,
 	}: {
 		path: string
 		height: number
 		align: "center" | "start" | "end"
 		type?: "component" | "block"
+		title: string
 	}) => {
 		const code =
 			examples
@@ -102,6 +104,7 @@ export const components = {
 
 		return (
 			<ComponentPreview
+				title={title}
 				type={type}
 				path={path}
 				code={code}
