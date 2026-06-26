@@ -7,8 +7,12 @@ interface VersionDisplayBadgeProps {
 
 export function VersionDisplayBadge({ version }: VersionDisplayBadgeProps) {
 	return (
-		<Badge variant="soft" size="24" color="neon" className="not-md:hidden">
-			Version {version}
+		<Badge
+			variant="outline"
+			size="24"
+			color="neutral"
+			className="not-md:hidden">
+			v{version}
 		</Badge>
 	)
 }
