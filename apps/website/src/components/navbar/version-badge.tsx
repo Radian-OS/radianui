@@ -12,7 +12,7 @@ export function VersionDisplayBadge({ version }: VersionDisplayBadgeProps) {
 			size="24"
 			color="neutral"
 			className="not-md:hidden">
-			v{version}
+			{`v${version}`}
 		</Badge>
 	)
 }
