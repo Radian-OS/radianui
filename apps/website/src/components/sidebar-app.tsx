@@ -28,7 +28,7 @@ export default function Sidebar() {
 	})
 
 	return (
-		<div className="border-soft no-scrollbar w-65 not-lg:hidden sticky top-[4.3rem] z-30 h-[calc(100vh-4.3rem)] overflow-y-auto border-x text-sm">
+		<div className="border-soft no-scrollbar w-65 not-lg:hidden sticky top-[4.3rem] z-30 h-[calc(100vh-4.3rem)] overflow-y-auto border-l border-r-0 text-sm">
 			<ScrollArea className="flex h-full w-full">
 				<div className="flex flex-col">
 					{filteredNavigationItems.map((section) => (

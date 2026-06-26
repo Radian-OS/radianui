@@ -202,7 +202,6 @@ export default function TableOfContent({ headings }: TableOfContentsProps) {
 				style={{ maxHeight: "calc(100vh - 200px)" }}>
 				<div className="relative">
 					{/* Background line */}
-					<div className="bg-border absolute bottom-0 left-0 top-0 w-px" />
 
 					<ul className="flex flex-col gap-0.5">
 						{headings.map((heading) => {
@@ -227,7 +226,7 @@ export default function TableOfContent({ headings }: TableOfContentsProps) {
 										title={heading.text}>
 										{/* Active indicator - positioned absolutely within the link */}
 										{isActive && (
-											<div className="bg-primary absolute -left-0 bottom-0 top-0 w-px" />
+											<div className="bg-primary absolute -left-0 bottom-0 top-0 w-0.5" />
 										)}
 
 										{/* Hover indicator - only show when not active */}
