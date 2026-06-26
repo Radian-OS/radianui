@@ -75,6 +75,7 @@ export function CodeBlockCommand({
 					))}
 				</TabsList>
 				<IconButton
+					className="text-fg-secondary"
 					variant="ghost"
 					color="neutral"
 					size={"28"}

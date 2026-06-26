@@ -39,7 +39,7 @@ function Slider({
 			<SliderPrimitive.Track
 				data-slot="slider-track"
 				className={cn(
-					"bg-fill3 relative h-2 w-full grow overflow-hidden rounded-full",
+					"bg-fill2-alpha relative h-2 w-full grow overflow-hidden rounded-full",
 					"data-[orientation=vertical]:w-2",
 					classNames?.sliderTrack
 				)}>

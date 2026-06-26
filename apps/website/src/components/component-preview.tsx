@@ -56,8 +56,12 @@ export function ComponentPreview({
 						<span className="text-fg text-sm font-medium">{title}</span>
 						<div className="flex items-center gap-2">
 							<TabsList className="h-8 data-[orientation=horizontal]:h-8">
-								<TabsTrigger value="preview">Preview</TabsTrigger>
-								<TabsTrigger value="code">Code</TabsTrigger>
+								<TabsTrigger className="text-xs" value="preview">
+									Preview
+								</TabsTrigger>
+								<TabsTrigger className="text-xs" value="code">
+									Code
+								</TabsTrigger>
 							</TabsList>
 							<ComponentPreviewCopyButton value={code} />
 						</div>

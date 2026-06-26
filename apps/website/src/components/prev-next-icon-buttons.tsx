@@ -24,7 +24,7 @@ function PreviousNextIconButtons({
 					variant="outline"
 					aria-label="Previous page">
 					<Link href={prev.url}>
-						<ArrowLeft className="size-4" />
+						<ArrowLeft className="text-fg-secondary size-4" />
 					</Link>
 				</IconButton>
 			) : (
@@ -45,7 +45,7 @@ function PreviousNextIconButtons({
 					variant="outline"
 					aria-label="Next page">
 					<Link href={next.url}>
-						<ArrowRight className="size-4" />
+						<ArrowRight className="text-fg-secondary size-4" />
 					</Link>
 				</IconButton>
 			) : (

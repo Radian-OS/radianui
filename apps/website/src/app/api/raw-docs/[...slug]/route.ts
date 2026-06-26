@@ -47,6 +47,10 @@ function buildFrontmatter(doc: (typeof allDocs)[number]): string {
 			lines.push("  github:")
 			lines.push(`    href: ${doc.links.github.href}`)
 		}
+		if (doc.links.figma) {
+			lines.push("  figma:")
+			lines.push(`    href: ${doc.links.figma.href}`)
+		}
 		if (doc.links.externalReference && doc.links.externalReference.length > 0) {
 			lines.push("  externalReference:")
 			for (const ref of doc.links.externalReference) {

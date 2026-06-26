@@ -24,6 +24,13 @@ const GithubLink = defineNestedType(() => ({
 	},
 }))
 
+const FigmaLink = defineNestedType(() => ({
+	name: "FigmaLink",
+	fields: {
+		href: { type: "string", required: true },
+	},
+}))
+
 const ExternalReferenceLink = defineNestedType(() => ({
 	name: "ExternalReferenceLink",
 	fields: {
@@ -37,6 +44,7 @@ const LinksField = defineNestedType(() => ({
 	name: "LinksField",
 	fields: {
 		github: { type: "nested", of: GithubLink, required: false },
+		figma: { type: "nested", of: FigmaLink, required: false },
 		externalReference: {
 			type: "list",
 			of: ExternalReferenceLink,

@@ -211,6 +211,7 @@ export default function PackageManagerTabs({
 					))}
 				</TabsList>
 				<IconButton
+					className="text-fg-secondary"
 					variant="ghost"
 					color="neutral"
 					size={"28"}

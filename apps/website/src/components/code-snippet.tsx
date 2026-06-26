@@ -44,6 +44,7 @@ export default function CodeSnippet({
 				</span>
 				<span className="text-fg-secondary flex-1 text-sm">{title}</span>
 				<Button
+					className="text-fg-secondary"
 					variant="ghost"
 					color="neutral"
 					size={"28"}

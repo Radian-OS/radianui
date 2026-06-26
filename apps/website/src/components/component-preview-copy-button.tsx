@@ -20,7 +20,8 @@ export function ComponentPreviewCopyButton({ value }: { value: string }) {
 			data-slot="copy-button"
 			onClick={copy}
 			size={"28"}
-			aria-label="Copy code">
+			aria-label="Copy code"
+			className="text-fg-secondary">
 			{copied ? <Check size={16} /> : <Clipboard size={16} />}
 		</IconButton>
 	)
