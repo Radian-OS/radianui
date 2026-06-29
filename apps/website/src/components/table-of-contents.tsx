@@ -227,7 +227,7 @@ export default function TableOfContent({ headings }: TableOfContentsProps) {
 										title={heading.text}>
 										{/* Active indicator - positioned absolutely within the link */}
 										{isActive && (
-											<div className="bg-primary-border absolute -left-0 bottom-0 top-0 w-0.5" />
+											<div className="bg-primary-border absolute -left-0 bottom-0 top-0 h-8 w-0.5" />
 										)}
 
 										{/* Hover indicator - only show when not active */}
