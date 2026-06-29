@@ -10,6 +10,8 @@ links:
 
 <ComponentPreview type="block" path="sidebar-doc" />
 
+---
+
 ## Installation
 
 <InstallationTabs defaultValue="cli">
@@ -33,6 +35,8 @@ links:
     </InstallTabsContent>
 
 </InstallationTabs>
+
+---
 
 ## Usage
 
@@ -85,6 +89,8 @@ export default function AppLayout({ children }) {
 }
 ```
 
+---
+
 ## Examples
 
 #### Floating Sidebar
@@ -123,6 +129,8 @@ export default function AppLayout({ children }) {
 
 <ComponentPreview title="Sidebar with Rail" path="sidebar-rail" type="block" />
 
+---
+
 ## SidebarProvider
 
 The root context component. Must wrap the entire layout, both the `Sidebar` and the `SidebarInset`.
@@ -133,6 +141,8 @@ The root context component. Must wrap the entire layout, both the `Sidebar` and 
 | `open`         | `boolean`                 | Controlled open state           |
 | `onOpenChange` | `(open: boolean) => void` | Called when open state changes  |
 | `shortcut`     | `string`                  | Shortcut key to open sidebar    |
+
+---
 
 ## Sidebar
 
@@ -147,6 +157,8 @@ The sidebar panel itself. Renders as a fixed-position column on desktop and as a
 | `resizable`   | `boolean`                                                                       | `false`          | Resizable behavior      |
 | `minWidth`    | `number`                                                                        | `250`            | Minimum width(in px)    |
 | `maxWidth`    | `number`                                                                        | `500`            | Maximum width(in px)    |
+
+---
 
 ## SidebarHeader
 
@@ -166,6 +178,8 @@ A sticky header component to add to the sidebar.
 	</SidebarMenuButton>
 </SidebarHeader>
 ```
+
+---
 
 ## SidebarContent
 
@@ -200,6 +214,8 @@ The scrollable body of the sidebar.
 </SidebarContent>
 ```
 
+---
+
 ## SidebarFooter
 
 A sticky footer component to add to the sidebar.
@@ -222,6 +238,8 @@ A sticky footer component to add to the sidebar.
 </SidebarFooter>
 ```
 
+---
+
 ## SidebarGroup
 
 A layout wrapper for a logical section of navigation items inside `SidebarContent`. Use multiple groups to organize nav items into sections.
@@ -234,6 +252,8 @@ A layout wrapper for a logical section of navigation items inside `SidebarConten
 	</SidebarGroupContent>
 </SidebarGroup>
 ```
+
+---
 
 ## SidebarGroupAction
 
@@ -249,6 +269,8 @@ An icon button anchored to the top-right of a `SidebarGroup`. Useful for section
 </SidebarGroup>
 ```
 
+---
+
 ## SidebarMenu
 
 The `SidebarMenu` component is used for building a menu within a `SidebarGroup`.
@@ -260,6 +282,8 @@ The `SidebarMenu` component is used for building a menu within a `SidebarGroup`.
 </SidebarMenu>
 ```
 
+---
+
 ## SidebarMenuItem
 
 An element that wraps a single menu item.
@@ -269,6 +293,8 @@ An element that wraps a single menu item.
 	<SidebarMenuButton>Dashboard</SidebarMenuButton>
 </SidebarMenuItem>
 ```
+
+---
 
 ## SidebarMenuButton
 
@@ -283,6 +309,8 @@ and `tooltip` as a fallback label in icon collapsible mode.
 	</a>
 </SidebarMenuButton>
 ```
+
+---
 
 ## SidebarMenuAction
 
@@ -302,6 +330,8 @@ The `SidebarMenuAction` component is used to render a menu action within a `Side
 </SidebarMenuItem>
 ```
 
+---
+
 ## SidebarMenuSub
 
 The `SidebarMenuSub` component is used to render a submenu within a `SidebarMenu`.
@@ -317,6 +347,8 @@ The `SidebarMenuSub` component is used to render a submenu within a `SidebarMenu
 </SidebarMenuItem>
 ```
 
+---
+
 ## SidebarCollapsible
 
 A component for building expandable nav groups.
@@ -329,6 +361,8 @@ A component for building expandable nav groups.
 	</SidebarCollapsibleContent>
 </SidebarCollapsible>
 ```
+
+---
 
 ## SidebarSkeleton
 
@@ -352,6 +386,8 @@ function SidebarLogo() {
 	return state === "expanded" ? <FullLogo /> : <IconMark />
 }
 ```
+
+---
 
 ## Theming
 
@@ -384,6 +420,8 @@ You can modify the following CSS variables.
 	--color-sidebar-ring: var(--color-primary-border);
 }
 ```
+
+---
 
 ## Mobile Behavior
 

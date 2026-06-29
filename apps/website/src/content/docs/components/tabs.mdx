@@ -13,6 +13,8 @@ links:
 
 <ComponentPreview path="tabs/tabs-preview" />
 
+---
+
 ## Installation
 
 <InstallationTabs defaultValue="cli">
@@ -41,17 +43,19 @@ links:
 
 </InstallationTabs>
 
+---
+
 ## Usage
 
 ### Imports
 
-```tsx showLineNumbers
+```tsx showLineNumbers title="/components/ui/tabs.tsx"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 ```
 
 ### Code
 
-```tsx showLineNumbers
+```tsx showLineNumbers title="/components/ui/tabs.tsx"
 <Tabs defaultValue="account">
 	<TabsList>
 		<TabsTrigger value="account">Account</TabsTrigger>
