@@ -56,7 +56,13 @@ const readFile = React.cache(async (filePath: string) => {
 	}
 })
 
-export async function DisplayBlock({ name }: { name: string }) {
+export async function DisplayBlock({
+	name,
+	title,
+}: {
+	name: string
+	title: string
+}) {
 	const block = await getBlock(name)
 	if (!block) return <h1>Block not found</h1>
 
@@ -79,6 +85,7 @@ export async function DisplayBlock({ name }: { name: string }) {
 
 	return (
 		<DisplayBlockClient
+			title={title}
 			name={name}
 			nodes={nodes!}
 			highlightedFiles={highlightedFilesWithMappedPaths}
