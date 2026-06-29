@@ -51,15 +51,15 @@ const UserMenuDropdownExample = () => {
 				</div>
 				<DropdownDivider />
 				<DropdownItem className="px-2 py-1.5">
-					<Settings />
+					<Settings className="size-5" />
 					Settings
 				</DropdownItem>
 				<DropdownItem className="px-2 py-1.5">
-					<UserCog />
+					<UserCog className="size-5" />
 					Manage Account
 				</DropdownItem>
 				<DropdownItem className="px-2 py-1.5">
-					<FolderCog />
+					<FolderCog className="size-5" />
 					Automations
 				</DropdownItem>
 				<DropdownItem className="px-2 py-1.5">
@@ -90,7 +90,7 @@ const UserMenuDropdownExample = () => {
 				</DropdownItem>
 				<DropdownDivider />
 				<DropdownItem className="px-2 py-1.5">
-					<LogOut />
+					<LogOut className="size-5" />
 					Logout
 				</DropdownItem>
 			</DropdownContent>

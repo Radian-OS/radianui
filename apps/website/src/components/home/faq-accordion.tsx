@@ -74,10 +74,10 @@ export default function FAQAccordion() {
 								className="text-fg-secondary shrink-0"
 								aria-hidden="true"
 							/>
-							<span>{title}</span>
+							<span className="text-sm">{title}</span>
 						</div>
 					</AccordionTrigger>
-					<AccordionContent>{content}</AccordionContent>
+					<AccordionContent className="text-sm">{content}</AccordionContent>
 				</AccordionItem>
 			))}
 		</Accordion>
