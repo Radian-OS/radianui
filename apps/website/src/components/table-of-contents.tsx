@@ -191,9 +191,10 @@ export default function TableOfContent({ headings }: TableOfContentsProps) {
 	return (
 		<nav className="flex h-full flex-col text-sm font-medium">
 			{/* Fixed title */}
-			<span className="text-fg-secondary mb-1 block py-2 pl-3 text-[13px] font-medium">
-				On This Page
-			</span>
+			{/* Fixed title */}
+			<div className="p-2 pl-3">
+				<span className="block text-sm font-medium">On This Page</span>
+			</div>
 
 			{/* Scrollable content container */}
 			<div
@@ -203,7 +204,7 @@ export default function TableOfContent({ headings }: TableOfContentsProps) {
 				<div className="relative">
 					{/* Background line */}
 
-					<ul className="flex flex-col gap-0.5">
+					<ul className="flex flex-col">
 						{headings.map((heading) => {
 							const isActive = activeHeadingId === heading.id
 							return (
@@ -217,8 +218,8 @@ export default function TableOfContent({ headings }: TableOfContentsProps) {
 											}
 										}}
 										className={cn(
-											"text-fg-secondary hover:text-fg group relative block py-1.5 text-[13px] transition-colors",
-											heading.level <= 2 ? "pl-3" : "pl-6",
+											"text-fg-secondary hover:text-fg group relative block py-2 text-sm transition-colors",
+											heading.level <= 2 ? "px-3" : "px-7",
 											isActive && "text-fg font-medium"
 										)}
 										href={`#${heading.id}`}
@@ -226,7 +227,7 @@ export default function TableOfContent({ headings }: TableOfContentsProps) {
 										title={heading.text}>
 										{/* Active indicator - positioned absolutely within the link */}
 										{isActive && (
-											<div className="bg-primary absolute -left-0 bottom-0 top-0 w-0.5" />
+											<div className="bg-primary-border absolute -left-0 bottom-0 top-0 w-0.5" />
 										)}
 
 										{/* Hover indicator - only show when not active */}
@@ -234,7 +235,7 @@ export default function TableOfContent({ headings }: TableOfContentsProps) {
 											<div className="bg-border absolute -left-4 bottom-0 top-0 w-px opacity-0 transition-opacity group-hover:opacity-100" />
 										)}
 
-										<span className="block truncate">{heading.text}</span>
+										<span className="block truncate px-2">{heading.text}</span>
 									</Link>
 								</li>
 							)

@@ -36,7 +36,7 @@ export default function Sidebar() {
 							className="border-soft flex flex-col gap-2 border-b p-3 text-sm font-medium last:border-b-0"
 							key={section.title}>
 							<span className="px-2 py-1.5">{section.title}</span>
-							<ul className="relative flex flex-col gap-1">
+							<ul className="relative flex flex-col gap-0.5">
 								{section.items.map((item) => {
 									const isActive = pathName === item.url
 									const Icon = item.icon
@@ -76,19 +76,19 @@ export default function Sidebar() {
 											className="relative"
 											ref={isActive ? activeItemRef : null}>
 											{isActive && (
-												<div className="bg-primary absolute -left-3 top-1/2 h-8 w-0.5 -translate-y-1/2 rounded-r-full" />
+												<div className="bg-primary-border absolute -left-3 top-1/2 h-8 w-0.5 -translate-y-1/2 rounded-r-full" />
 											)}
 											{item.disabled ? (
 												<div
 													className={cn(
-														"text-fg-tertiary relative flex min-h-8 cursor-not-allowed items-center gap-2 rounded-lg p-2 text-sm leading-4"
+														"text-fg-tertiary relative flex min-h-8 cursor-not-allowed items-center gap-2 rounded-lg p-2 text-sm"
 													)}>
 													{content}
 												</div>
 											) : (
 												<Link
 													className={cn(
-														"text-fg-secondary hover:bg-fill1-alpha hover:text-fg focus-visible:inset-ring-border group relative flex min-h-8 items-center gap-2 rounded-lg p-2 text-sm leading-4 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset",
+														"text-fg-secondary hover:bg-fill1-alpha hover:text-fg focus-visible:inset-ring-border group relative flex min-h-8 items-center gap-2 rounded-lg p-2 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset",
 														isActive && "bg-fill1-alpha text-fg font-medium"
 													)}
 													href={item.url}>

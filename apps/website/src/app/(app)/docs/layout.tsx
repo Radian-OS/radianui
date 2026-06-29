@@ -16,7 +16,9 @@ const DocsLayout = ({ children, aside }: Props) => {
 			<Sidebar />
 
 			{/* Main Content Area */}
-			<div className="flex-1 overflow-hidden px-5 xl:px-0">{children}</div>
+			<div className="flex-1 overflow-hidden pl-0 lg:pl-5 xl:pl-0">
+				{children}
+			</div>
 
 			{/* Right Sidebar (TOC) - Only show on docs pages */}
 			{aside}
