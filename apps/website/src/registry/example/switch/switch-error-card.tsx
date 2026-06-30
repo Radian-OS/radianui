@@ -19,8 +19,8 @@ export default function SwitchErrorCard() {
 					checked ? "border-error" : "border-soft-alpha"
 				)}>
 				{/* Icon */}
-				<div className="text-fg-secondary bg-fill2 flex shrink-0 items-center justify-center rounded-xl p-2.5">
-					<Globe className="size-6" />
+				<div className="bg-fill1 group-hover:bg-bg text-fg-secondary flex size-11 shrink-0 items-center justify-center rounded-[10px] transition-colors">
+					<Globe className="size-5" />
 				</div>
 
 				{/* Text */}
