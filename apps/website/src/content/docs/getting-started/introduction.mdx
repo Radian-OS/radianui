@@ -56,72 +56,80 @@ offering full code access for experimentation and learning.
 
 <br />
 
-import { Settings } from "lucide-react"
-
-    	<Alert variant="soft" color="primary">
-    		<AlertIcon className="self-start">
-    			<Settings className="text-primary-text" size={20} />
-    		</AlertIcon>
-    		<AlertContent>
-    			<AlertTitle className="font-semibold text-fg">Alpha Version</AlertTitle>
-    			<AlertDescription className ="[&_p]:text-fg [&_p]:font-normal [&_p]:mb-0">
-    				As we launch Radian in alpha, we're focused on bug fixes, code improvements, and community feedback.
-    			</AlertDescription>
-    		</AlertContent>
-    	</Alert>
-
 ## Common FAQs
 
-<Accordion collapsible>
+<Accordion collapsible className="[&_button]:!text-sm [&_p]:!text-sm">
 	<AccordionItem value="item-1">
-		<AccordionTrigger>What is Radian Built with?</AccordionTrigger>
-		<AccordionContent>
-			Radian leverages Radix Primitives for accessible foundations and Tailwind
-			CSS for styling. We add targeted packages per component to enhance
-			functionality without bloat.
+		<AccordionTrigger className="!text-sm">
+			What is Radian Built with?
+		</AccordionTrigger>
+		<AccordionContent className="!text-sm">
+			<p className="!text-sm">
+				Radian leverages Radix Primitives for accessible foundations and
+				Tailwind CSS for styling. We add targeted packages per component to
+				enhance functionality without bloat.
+			</p>
 		</AccordionContent>
 	</AccordionItem>
 	<AccordionItem value="item-2">
-		<AccordionTrigger>Does Radian Support Tailwind?</AccordionTrigger>
-		<AccordionContent>
-			Absolutely Radian fully supports all Tailwind classes. For optimal
-			theming, we recommend using Radian's CSS (e.g., for colors, typography,
-			and headings) to maintain control and consistency.
+		<AccordionTrigger className="!text-sm">
+			Does Radian Support Tailwind?
+		</AccordionTrigger>
+		<AccordionContent className="!text-sm">
+			<p className="!text-sm">
+				Absolutely Radian fully supports all Tailwind classes. For optimal
+				theming, we recommend using Radian's CSS (e.g., for colors, typography,
+				and headings) to maintain control and consistency.
+			</p>
 		</AccordionContent>
 	</AccordionItem>
 	<AccordionItem value="item-3">
-		<AccordionTrigger>Why use Open Code System?</AccordionTrigger>
-		<AccordionContent>
-			We encountered significant challenges when utilizing existing frontend
-			development libraries. Customizing even basic elements, such as
-			incorporating an icon within a checkbox, often proved to be a cumbersome
-			and time-consuming process. This experience led us to conclude that a
-			closed system for frontend code is not the best approach.
+		<AccordionTrigger className="!text-sm">
+			Why use Open Code System?
+		</AccordionTrigger>
+		<AccordionContent className="!text-sm">
+			<p className="!text-sm">
+				We encountered significant challenges when utilizing existing frontend
+				development libraries. Customizing even basic elements, such as
+				incorporating an icon within a checkbox, often proved to be a cumbersome
+				and time-consuming process. This experience led us to conclude that a
+				closed system for frontend code is not the best approach.
+			</p>
 		</AccordionContent>
 	</AccordionItem>
 	<AccordionItem value="item-4">
-		<AccordionTrigger>Is Radian a Copy-Paste Library?</AccordionTrigger>
-		<AccordionContent>
-			Yes, Radian employs an open code system. This enables users to copy and
-			paste the code into their codebase directly, provided that the necessary
-			dependencies are installed. Additionally, all code and files can be
-			initialized through the command line interface.
+		<AccordionTrigger className="!text-sm">
+			Is Radian a Copy-Paste Library?
+		</AccordionTrigger>
+		<AccordionContent className="!text-sm">
+			<p className="!text-sm">
+				Yes, Radian employs an open code system. This enables users to copy and
+				paste the code into their codebase directly, provided that the necessary
+				dependencies are installed. Additionally, all code and files can be
+				initialized through the command line interface.
+			</p>
 		</AccordionContent>
 	</AccordionItem>
 	<AccordionItem value="item-5">
-		<AccordionTrigger>Does Radian support TypeScript?</AccordionTrigger>
-		<AccordionContent>
-			Yes, Radian is fully TypeScript-native and type safe. JavaScript support
-			isn't available yet, ensuring robust, error free development.
+		<AccordionTrigger className="!text-sm">
+			Does Radian support TypeScript?
+		</AccordionTrigger>
+		<AccordionContent className="!text-sm">
+			<p className="!text-sm">
+				Yes, Radian is fully TypeScript-native and type safe. JavaScript support
+				isn't available yet, ensuring robust, error free development.
+			</p>
 		</AccordionContent>
 	</AccordionItem>
 	<AccordionItem value="item-6">
-		<AccordionTrigger>
+		<AccordionTrigger className="!text-sm">
 			How do I update to the Latest Radian Component Changes?
 		</AccordionTrigger>
-		<AccordionContent>
-			Currently, updates involve copying the latest code into your project.
-			We're planning CLI commands to simplify this process in future releases.
+		<AccordionContent className="!text-sm">
+			<p className="!text-sm">
+				Currently, updates involve copying the latest code into your project.
+				We're planning CLI commands to simplify this process in future releases.
+			</p>
 		</AccordionContent>
 	</AccordionItem>
 </Accordion>
