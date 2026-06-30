@@ -60,8 +60,8 @@
 
 	/* foreground */
 	--color-fg: oklch(0.275 0.009 264.424);
-	--color-fg-secondary: oklch(0.464 0.017 264.396);
-	--color-fg-tertiary: oklch(0.638 0.019 264.43);
+	--color-fg-secondary: oklch(0.569 0.022 264.389);
+	--color-fg-tertiary:  oklch(0.673 0.017 264.452);
 	--color-fg-disabled: oklch(0.707 0.015 264.471);
 	--color-fg-inverse: oklch(1 0 0);
 
@@ -172,8 +172,8 @@
 
 	/* foreground */
 	--color-fg: oklch(0.976 0.001 264.547);
-	--color-fg-secondary: oklch(0.84 0.008 264.519);
-	--color-fg-tertiary: oklch(0.707 0.015 264.471);
+	--color-fg-secondary:  oklch(0.673 0.017 264.452);
+	--color-fg-tertiary:  oklch(0.569 0.022 264.389); 
 	--color-fg-disabled: oklch(0.5 0.019 264.393);
 	--color-fg-inverse: oklch(0.234 0.007 264.437);
 

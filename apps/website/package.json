@@ -4,7 +4,7 @@
 	"type": "module",
 	"private": true,
 	"scripts": {
-		"dev": "pnpm run generate-registry-files && next dev --port 3001",
+		"dev": "next dev --port 3001",
 		"build": "contentlayer2 build && pnpm run generate-build-artifacts && next build",
 		"start": "next start",
 		"db:generate": "drizzle-kit generate",
