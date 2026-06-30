@@ -10,7 +10,12 @@ import {
 	SunMoon,
 } from "lucide-react"
 import type { LucideIcon } from "lucide-react"
-import { FigmaIcon, NextJsIcon, ViteIcon } from "@/components/custom/icon"
+import {
+	FigmaIcon,
+	NextJsIcon,
+	ResourcesIcon,
+	ViteIcon,
+} from "@/components/custom/icon"
 
 export type NavigationItem = {
 	title: string
@@ -160,6 +165,11 @@ const GETTING_STARTED_ITEMS: NavigationItem[] = [
 		title: "Changelog",
 		url: "/docs/getting-started/changelog",
 		icon: ScrollText,
+	},
+	{
+		title: "Resources",
+		url: "/docs/getting-started/resources",
+		icon: ResourcesIcon,
 	},
 ]
 
