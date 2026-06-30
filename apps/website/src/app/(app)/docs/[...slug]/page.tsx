@@ -4,6 +4,7 @@ import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
+import { DocPageActions } from "@/components/doc-page-actions"
 import { Mdx } from "@/components/mdx"
 import { PreviousNextButtons } from "@/components/prev-next-buttons"
 import { PreviousNextIconButtons } from "@/components/prev-next-icon-buttons"
@@ -88,7 +89,11 @@ export default async function Page({ params }: DocPageProps) {
 				<span className="text-primary-text text-sm font-medium capitalize">
 					{category}
 				</span>
-				<PreviousNextIconButtons currentPath={currentPath} />
+
+				<div className="flex items-center gap-2">
+					<DocPageActions slugAsParams={doc.slugAsParams} title={doc.title} />
+					<PreviousNextIconButtons currentPath={currentPath} />
+				</div>
 			</div>
 			<div className="flex flex-col">
 				<h1 className="heading-4 my-2">{doc.title}</h1>
