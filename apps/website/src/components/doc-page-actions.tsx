@@ -26,18 +26,6 @@ function buildShortPrompt(title: string, pageUrl: string): string {
 Help me understand how to use the "${title}" component. Be ready to explain concepts, give examples, or help debug based on it.`
 }
 
-function buildFullPrompt(
-	title: string,
-	pageUrl: string,
-	markdown: string
-): string {
-	return `${buildShortPrompt(title, pageUrl)}
-
-Here is the full documentation content:
-
-${markdown}`
-}
-
 export function DocPageActions({ slugAsParams, title }: DocPageActionsProps) {
 	const [open, setOpen] = useState(false)
 	const [copied, setCopied] = useState(false)
@@ -47,7 +35,7 @@ export function DocPageActions({ slugAsParams, title }: DocPageActionsProps) {
 			const markdown = await fetchRawMarkdown(slugAsParams)
 			await navigator.clipboard.writeText(markdown)
 			setCopied(true)
-			setTimeout(() => setCopied(false), 2000)
+			setTimeout(() => setCopied(false), 5000)
 		} catch (err) {
 			console.error("Failed to copy markdown:", err)
 		}
@@ -67,11 +55,9 @@ export function DocPageActions({ slugAsParams, title }: DocPageActionsProps) {
 
 	const handleOpenInClaude = useCallback(async () => {
 		try {
-			const markdown = await fetchRawMarkdown(slugAsParams)
 			const pageUrl = `${window.location.origin}/docs/${slugAsParams}`
-			const prompt = buildFullPrompt(title, pageUrl, markdown)
-			await navigator.clipboard.writeText(prompt)
-			window.open("https://claude.ai/new", "_blank")
+			const prompt = encodeURIComponent(buildShortPrompt(title, pageUrl))
+			window.open(`https://claude.ai/new?q=${prompt}`, "_blank")
 		} catch (err) {
 			console.error("Failed to open in Claude:", err)
 		}
