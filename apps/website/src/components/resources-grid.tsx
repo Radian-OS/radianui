@@ -6,7 +6,8 @@ interface ResourceItem {
 	title: string
 	description: string
 	comingSoon?: boolean
-	url: string
+	lightUrl: string
+	darkUrl: string
 }
 
 const resources: ResourceItem[] = [
@@ -15,55 +16,63 @@ const resources: ResourceItem[] = [
 		description:
 			"Create and personalize user pictures for your interface designs.",
 		comingSoon: false,
-		url: "/media/assets-page/popular-brands.png",
+		lightUrl: "/media/assets-page/avatars-light.png",
+		darkUrl: "/media/assets-page/avatars-dark.png",
 	},
 	{
 		title: "Popular Brand Logos",
 		description: "100+ well-known company logos for your projects.",
 		comingSoon: true,
-		url: "/media/assets-page/popular-brands.png",
+		lightUrl: "/media/assets-page/popular-brands-light.png",
+		darkUrl: "/media/assets-page/popular-brands-dark.png",
 	},
 	{
 		title: "Country Flags",
 		description:
 			"Over 250 flags from different nations in rectangular and circular shapes.",
 		comingSoon: true,
-		url: "/media/assets-page/flags.png",
+		lightUrl: "/media/assets-page/flags-light.png",
+		darkUrl: "/media/assets-page/flags-dark.png",
 	},
 	{
 		title: "Credit Cards",
 		description:
 			"Top credit card logos offered in light and dark color schemes.",
 		comingSoon: true,
-		url: "/media/assets-page/credit-cards.png",
+		lightUrl: "/media/assets-page/credit-cards-light.png",
+		darkUrl: "/media/assets-page/credit-cards-dark.png",
 	},
 	{
 		title: "Emojis",
 		description:
 			"A vast collection of over 500+ emojis in multiple clear file formats.",
 		comingSoon: true,
-		url: "/media/assets-page/credit-cards.png",
+		lightUrl: "/media/assets-page/emojis-light.png",
+		darkUrl: "/media/assets-page/emojis-dark.png",
 	},
 	{
 		title: "File Format Icons",
 		description:
 			"More than 20 common file type icons, each with three design options.",
 		comingSoon: true,
-		url: "/media/assets-page/files.png",
+		lightUrl: "/media/assets-page/files-light.png",
+		darkUrl: "/media/assets-page/files-dark.png",
 	},
 	{
 		title: "Logo Generator",
 		description:
 			"Design your own logo using customizable simple shapes and colors.",
 		comingSoon: true,
-		url: "/media/assets-page/logos.png",
+		lightUrl: "/media/assets-page/logos-light.png",
+		darkUrl: "/media/assets-page/logos-dark.png",
 	},
 	{
 		title: "Realistic Credit Card",
 		description:
 			"A realistic credit card design featuring a sleek, modern aesthetic.",
 		comingSoon: true,
-		url: "/media/assets-page/union-pay.png",
+		lightUrl: "/media/assets-page/union-pay-light.png",
+		darkUrl: "/media/assets-page/union-pay-dark.png",
 	},
 ]
 
@@ -74,9 +83,14 @@ export function ResourcesGrid() {
 				<div
 					key={index}
 					className="bg-bg border-soft flex cursor-pointer flex-col gap-2 rounded-xl border p-2 hover:shadow-sm">
-					<div className="bg-fill1-alpha border-soft relative flex h-48 w-full items-center justify-center overflow-hidden rounded-lg border">
-						{/* <Image src={resource.url} alt={resource.title} width={200} height={200} className="object-cover" /> */}
-					</div>
+					<img
+						src={resource.lightUrl}
+						className="h-48 w-full overflow-hidden rounded-lg object-cover dark:hidden"
+					/>
+					<img
+						src={resource.darkUrl}
+						className="hidden h-48 w-full overflow-hidden rounded-lg object-cover dark:block"
+					/>
 					<div className="flex flex-col gap-1 p-2">
 						<div className="flex items-center gap-2">
 							<span className="text-fg text-sm font-medium">
