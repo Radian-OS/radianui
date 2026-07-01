@@ -1,9 +1,10 @@
 import { allDocs } from "contentlayer/generated"
-import { ExternalLinkIcon, SquareTerminal } from "lucide-react"
+import { SquareTerminal } from "lucide-react"
 import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
+import { DocPageActions } from "@/components/doc-page-actions"
 import { Mdx } from "@/components/mdx"
 import { PreviousNextButtons } from "@/components/prev-next-buttons"
 import { PreviousNextIconButtons } from "@/components/prev-next-icon-buttons"
@@ -88,7 +89,11 @@ export default async function Page({ params }: DocPageProps) {
 				<span className="text-primary-text text-sm font-medium capitalize">
 					{category}
 				</span>
-				<PreviousNextIconButtons currentPath={currentPath} />
+
+				<div className="flex items-center gap-2">
+					<DocPageActions slugAsParams={doc.slugAsParams} title={doc.title} />
+					<PreviousNextIconButtons currentPath={currentPath} />
+				</div>
 			</div>
 			<div className="flex flex-col">
 				<h1 className="heading-4 my-2">{doc.title}</h1>
@@ -152,7 +157,17 @@ export default async function Page({ params }: DocPageProps) {
 														alt={link.label}
 													/>
 												) : (
-													<ExternalLinkIcon className="size-4" />
+													<svg
+														xmlns="http://www.w3.org/2000/svg"
+														width="16"
+														height="16"
+														viewBox="0 0 35 35"
+														fill="var(--color-black-inverse)"
+														className="size-4">
+														<path d="M17 35C10.3726 35 5 30.0751 5 24C5 17.9249 10.3726 13 17 13L17 35Z" />
+														<rect x="5" width="12" height="12" />
+														<circle cx="24" cy="6" r="6" />
+													</svg>
 												)}
 												{link.label ?? <>External Reference</>}
 											</Link>

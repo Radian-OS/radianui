@@ -1,6 +1,6 @@
 ---
 title: Date Picker
-description: UI for selecting a date
+description: A clean dropdown calendar connected to a text input for selecting single days or custom date ranges.
 links:
   github:
     href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/example/date-picker/date-picker-preview.tsx
@@ -10,9 +10,13 @@ links:
 
 <ComponentPreview path="date-picker/date-picker-preview" />
 
+---
+
 ## Installation
 
 The Date Picker is built using a composition of the [Popover](/docs/components/popover) and the [Calendar](/docs/components/calendar) components.
+
+---
 
 ## Usage
 
@@ -34,6 +38,8 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 </Popover>
 ```
 
+---
+
 ## Examples
 
 #### Input Date Picker
@@ -42,15 +48,18 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 	title="Input Date Picker"
 	path="date-picker/date-picker-input"
 />
+
 #### Date Range Picker
 
 <ComponentPreview
 	title="Date Range Picker"
 	path="date-picker/date-picker-range-example"
 />
+
 #### With Time
 
 <ComponentPreview title="With Time" path="date-picker/date-picker-with-time" />
+
 #### Form
 
 <ComponentPreview title="Form" path="date-picker/date-picker-form" />

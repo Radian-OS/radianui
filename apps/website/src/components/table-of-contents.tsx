@@ -13,20 +13,22 @@ export default function TableOfContent({ headings }: TableOfContentsProps) {
 	const [activeHeadingId, setActiveHeadingId] = useState<string>("")
 	const itemsRef = useRef<Map<string, HTMLAnchorElement>>(new Map())
 	const containerRef = useRef<HTMLDivElement>(null)
-	const isScrollingRef = useRef(false)
-	const scrollTimeoutRef = useRef<number | null>(null)
-	const userClickedRef = useRef(false)
-	const userClickTargetRef = useRef<string>("")
+	// Single flag: true while the page is smoothly scrolling after a TOC click
+	const isUserScrollingRef = useRef(false)
+	const userScrollTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(
+		null
+	)
 
-	// Track which heading is currently visible in the viewport
+	// Track which heading is currently visible in the viewport.
+	// NOTE: activeHeadingId is intentionally NOT in the deps array —
+	// using functional setState avoids stale closures and prevents
+	// re-creating the scroll listener on every active-heading change.
 	useEffect(() => {
 		if (!headings.length) return
 
 		const handleScroll = () => {
-			// Don't update active heading if user just clicked on a TOC item
-			if (isScrollingRef.current || userClickedRef.current) return
+			if (isUserScrollingRef.current) return
 
-			// Find which heading is currently in view
 			const headingElements = headings
 				.map((heading) => ({
 					id: heading.id,
@@ -36,30 +38,27 @@ export default function TableOfContent({ headings }: TableOfContentsProps) {
 
 			if (headingElements.length === 0) return
 
-			// Get viewport measurements
 			const navbar = document.querySelector("header, nav") as HTMLElement
 			const navbarHeight = navbar ? navbar.offsetHeight : 69
 			const offset = navbarHeight + 35
 
-			// Find the heading that's just passed the top of viewport
 			let activeHeading = headingElements[0].id
 
 			for (let i = headingElements.length - 1; i >= 0; i--) {
 				const { id, element } = headingElements[i]
 				const rect = element.getBoundingClientRect()
-
 				if (rect.top <= offset) {
 					activeHeading = id
 					break
 				}
 			}
 
-			if (activeHeading !== activeHeadingId) {
-				setActiveHeadingId(activeHeading)
-			}
+			// Functional update avoids stale closure without adding to deps
+			setActiveHeadingId((prev) =>
+				prev !== activeHeading ? activeHeading : prev
+			)
 		}
 
-		// Throttle scroll handler
 		let ticking = false
 		const throttledScroll = () => {
 			if (!ticking) {
@@ -72,117 +71,77 @@ export default function TableOfContent({ headings }: TableOfContentsProps) {
 		}
 
 		window.addEventListener("scroll", throttledScroll, { passive: true })
-		handleScroll() // Initial check
+		handleScroll()
 
 		return () => {
 			window.removeEventListener("scroll", throttledScroll)
 		}
-	}, [headings, activeHeadingId])
+	}, [headings])
 
-	// Scroll TOC container when active heading changes (but not when user clicked)
+	// Auto-scroll the TOC sidebar to keep the active link visible.
+	// Skipped if the user just clicked (they already know where it is).
 	useEffect(() => {
-		if (!activeHeadingId || !containerRef.current) return
-
-		// Don't auto-scroll TOC if user just clicked on it
-		if (
-			userClickedRef.current &&
-			activeHeadingId === userClickTargetRef.current
-		) {
-			// Reset the flag after a delay
-			setTimeout(() => {
-				userClickedRef.current = false
-				userClickTargetRef.current = ""
-			}, 1000)
+		if (!activeHeadingId || !containerRef.current || isUserScrollingRef.current)
 			return
-		}
 
-		// Small delay to ensure DOM is updated
-		const timeoutId = setTimeout(() => {
-			const activeElement = itemsRef.current.get(activeHeadingId)
-			const container = containerRef.current
+		const activeElement = itemsRef.current.get(activeHeadingId)
+		const container = containerRef.current
+		if (!activeElement || !container) return
 
-			if (!activeElement || !container) return
+		const containerRect = container.getBoundingClientRect()
+		const elementRect = activeElement.getBoundingClientRect()
 
-			// Get container measurements
-			const containerRect = container.getBoundingClientRect()
-			const containerTop = containerRect.top + window.scrollY
-			const containerHeight = containerRect.height
+		// Only scroll the sidebar if the active link is out of view
+		const isAbove = elementRect.top < containerRect.top
+		const isBelow = elementRect.bottom > containerRect.bottom
+		if (!isAbove && !isBelow) return
 
-			// Get active element measurements
-			const elementRect = activeElement.getBoundingClientRect()
-			const elementTop = elementRect.top + window.scrollY
-			const elementHeight = elementRect.height
+		const scrollDelta =
+			elementRect.top -
+			containerRect.top -
+			containerRect.height / 2 +
+			elementRect.height / 2
 
-			// Calculate scroll position to center the active element
-			const elementCenter = elementTop + elementHeight / 2
-			const containerCenter = containerTop + containerHeight / 2
-			const scrollDelta = elementCenter - containerCenter
-
-			// Calculate new scroll position
-			const newScrollTop = container.scrollTop + scrollDelta
-
-			// Apply boundaries
-			const maxScroll = container.scrollHeight - containerHeight
-			const boundedScrollTop = Math.max(0, Math.min(newScrollTop, maxScroll))
-
-			// Smooth scroll to position
-			container.scrollTo({
-				top: boundedScrollTop,
-				behavior: "smooth",
-			})
-		}, 150)
-
-		return () => clearTimeout(timeoutId)
+		container.scrollTo({
+			top: container.scrollTop + scrollDelta,
+			behavior: "smooth",
+		})
 	}, [activeHeadingId])
 
-	// Handle heading click
 	const handleHeadingClick = useCallback(
 		(e: React.MouseEvent<HTMLAnchorElement>, headingId: string) => {
 			e.preventDefault()
 
-			// Set flags to prevent auto-scrolling TOC
-			userClickedRef.current = true
-			userClickTargetRef.current = headingId
-			isScrollingRef.current = true
+			// Block the scroll listener from overriding our chosen heading
+			isUserScrollingRef.current = true
+			if (userScrollTimeoutRef.current)
+				clearTimeout(userScrollTimeoutRef.current)
 
-			// Set active heading immediately
 			setActiveHeadingId(headingId)
 
 			const element = document.getElementById(headingId)
 			if (element) {
-				// Get navbar height
 				const navbar = document.querySelector("header, nav") as HTMLElement
 				const navbarHeight = navbar ? navbar.offsetHeight : 69
-
-				// Calculate scroll position
-				const elementTop =
-					element.getBoundingClientRect().top + window.pageYOffset
+				const elementTop = element.getBoundingClientRect().top + window.scrollY
 				const scrollPosition = elementTop - navbarHeight - 35
 
-				// Scroll the page
-				window.scrollTo({
-					top: scrollPosition,
-					behavior: "smooth",
-				})
-
-				// Update URL
+				window.scrollTo({ top: scrollPosition, behavior: "smooth" })
 				window.history.replaceState(null, "", `#${headingId}`)
 			}
 
-			// Reset scrolling flag after scroll completes
-			setTimeout(() => {
-				isScrollingRef.current = false
-			}, 1000) // Increased timeout for longer scrolls
+			// Re-enable passive scroll tracking after the smooth scroll finishes
+			userScrollTimeoutRef.current = setTimeout(() => {
+				isUserScrollingRef.current = false
+			}, 800)
 		},
 		[]
 	)
 
-	// Cleanup on unmount
 	useEffect(() => {
 		return () => {
-			if (scrollTimeoutRef.current) {
-				clearTimeout(scrollTimeoutRef.current)
-			}
+			if (userScrollTimeoutRef.current)
+				clearTimeout(userScrollTimeoutRef.current)
 		}
 	}, [])
 
@@ -190,21 +149,16 @@ export default function TableOfContent({ headings }: TableOfContentsProps) {
 
 	return (
 		<nav className="flex h-full flex-col text-sm font-medium">
-			{/* Fixed title */}
-			<span className="text-fg-secondary mb-1 block py-2 pl-3 text-[13px] font-medium">
-				On This Page
-			</span>
+			<div className="p-2 pl-3">
+				<span className="block text-sm font-medium">On This Page</span>
+			</div>
 
-			{/* Scrollable content container */}
 			<div
 				ref={containerRef}
 				className="no-scrollbar relative flex-1 overflow-y-auto"
 				style={{ maxHeight: "calc(100vh - 200px)" }}>
 				<div className="relative">
-					{/* Background line */}
-					<div className="bg-border absolute bottom-0 left-0 top-0 w-px" />
-
-					<ul className="flex flex-col gap-0.5">
+					<ul className="flex flex-col">
 						{headings.map((heading) => {
 							const isActive = activeHeadingId === heading.id
 							return (
@@ -218,24 +172,28 @@ export default function TableOfContent({ headings }: TableOfContentsProps) {
 											}
 										}}
 										className={cn(
-											"text-fg-secondary hover:text-fg group relative block py-1.5 text-[13px] transition-colors",
-											heading.level <= 2 ? "pl-3" : "pl-6",
+											"text-fg-secondary hover:text-fg group relative block py-2 text-sm transition-colors",
+											heading.level <= 2 ? "px-3" : "px-7",
 											isActive && "text-fg font-medium"
 										)}
 										href={`#${heading.id}`}
 										onClick={(e) => handleHeadingClick(e, heading.id)}
 										title={heading.text}>
-										{/* Active indicator - positioned absolutely within the link */}
-										{isActive && (
-											<div className="bg-primary absolute -left-0 bottom-0 top-0 w-px" />
-										)}
+										{/* Active indicator — always in DOM, transitioned with opacity
+										    to avoid layout flicker from conditional rendering */}
+										<div
+											className={cn(
+												"bg-primary-border absolute left-0 top-1/2 h-8 w-0.5 -translate-y-1/2 transition-opacity duration-150",
+												isActive ? "opacity-100" : "opacity-0"
+											)}
+										/>
 
-										{/* Hover indicator - only show when not active */}
+										{/* Hover indicator — only visible when not active */}
 										{!isActive && (
 											<div className="bg-border absolute -left-4 bottom-0 top-0 w-px opacity-0 transition-opacity group-hover:opacity-100" />
 										)}
 
-										<span className="block truncate">{heading.text}</span>
+										<span className="block truncate px-2">{heading.text}</span>
 									</Link>
 								</li>
 							)

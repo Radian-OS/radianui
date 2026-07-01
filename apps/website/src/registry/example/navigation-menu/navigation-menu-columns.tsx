@@ -152,11 +152,13 @@ export default function NavigationMenuColumns() {
 						) : (
 							<NavigationMenuItem key={entry.label}>
 								<NavigationMenuTrigger>{entry.label}</NavigationMenuTrigger>
-								<NavigationMenuContent className="w-[min(640px,calc(100vw-2rem))] p-0 pr-0 md:w-[640px]">
+								<NavigationMenuContent className="w-[min(640px,calc(100vw-2rem))] px-1.5 py-0 md:w-[640px]">
 									<div className="divide-border grid grid-cols-1 divide-y md:grid-cols-3 md:divide-x md:divide-y-0">
 										{entry.columns.map((column) => (
-											<div key={column.title} className="px-5 py-4">
-												<div className="text-primary mb-3 px-2 text-xs font-semibold uppercase">
+											<div
+												key={column.title}
+												className="flex flex-col gap-1.5 px-2 py-3">
+												<div className="text-primary-text p-2 text-xs font-semibold uppercase">
 													{column.title}
 												</div>
 												<ul className="flex flex-col gap-1.5">

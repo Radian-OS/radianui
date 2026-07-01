@@ -1,6 +1,6 @@
 ---
 title: Text Area
-description: Displays a form textarea or a component that looks like a textarea
+description: An expandable multi-line text box designed for gathering longer user messages, feedback, or descriptions.
 links:
   github:
     href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/text-area.tsx
@@ -9,6 +9,8 @@ links:
 ---
 
 <ComponentPreview path="text-area/text-area-preview" />
+
+---
 
 ## Installation
 
@@ -33,17 +35,19 @@ links:
 
 </InstallationTabs>
 
+---
+
 ## Usage
 
 ### Imports
 
-```tsx showLineNumbers
+```tsx showLineNumbers title="/components/ui/text-area.tsx"
 import { TextArea } from "@/components/ui/text-area"
 ```
 
 ### Code
 
-```tsx showLineNumbers
+```tsx showLineNumbers title="/components/ui/text-area.tsx"
 <TextArea placeholder="Enter your message" />
 ```
 
@@ -54,15 +58,18 @@ import { TextArea } from "@/components/ui/text-area"
 #### Disabled
 
 <ComponentPreview title="Disabled" path="text-area/text-area-disabled" />
+
 #### Characters Limit
 
 <ComponentPreview
 	title="Characters Limit"
 	path="text-area/limited-characters"
 />
+
 #### Form
 
 <ComponentPreview title="Form" path="text-area/text-area-form" />
+
 #### Resizable Disabled
 
 <ComponentPreview

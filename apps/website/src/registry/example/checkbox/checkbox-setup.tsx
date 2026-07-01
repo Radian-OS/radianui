@@ -1,84 +1,86 @@
 "use client"
 
-import React from "react"
-import { Bell, FolderPlus, PlugZap, UserPlus } from "lucide-react"
-import { cn } from "@/lib/utils"
+import { useState } from "react"
+import { BrainCircuit, MailCheck, Moon, SendToBack } from "lucide-react"
 import { Checkbox } from "@/registry/ui/checkbox"
+import { Label } from "@/registry/ui/label"
 
-type SetupItem = {
-	id: string
-	icon: React.ReactNode
-	title: string
-	description: string
-}
-
-const setupItems: SetupItem[] = [
+const data = [
 	{
-		id: "workspace",
-		icon: <FolderPlus className="size-6" />,
-		title: "Create workspace",
-		description: "Set up a dedicated space for your team and projects.",
+		value: "email-notifications",
+		id: "setting_email_notifications",
+		title: "Enable email notifications",
+		description: "Stay informed about updates, and account activity.",
+		icon: MailCheck,
 	},
 	{
-		id: "invite",
-		icon: <UserPlus className="size-6" />,
-		title: "Invite team members",
-		description: "Add teammates so they can collaborate and contribute.",
+		value: "dark-mode",
+		id: "setting_dark_mode",
+		title: "Use dark mode by default",
+		description: "Automatically apply the dark theme",
+		icon: Moon,
 	},
 	{
-		id: "integrations",
-		icon: <PlugZap className="size-6" />,
-		title: "Connect integrations",
-		description: "Connect apps to streamline workflows.",
+		value: "remember-workspace",
+		id: "setting_remember_workspace",
+		title: "Remember my last workspace",
+		description: "Open the workspace you were last",
+		icon: BrainCircuit,
 	},
 	{
-		id: "notifications",
-		icon: <Bell className="size-6" />,
-		title: "Enable notifications",
-		description: "Stay informed about updates, activity, and important events.",
+		value: "usage-analytics",
+		id: "setting_usage_analytics",
+		title: "Send anonymous usage analytics",
+		description: "Help improve the product by sharing usage insights.",
+		icon: SendToBack,
 	},
 ]
 
-const CheckboxSetup = () => {
-	const [checked, setChecked] = React.useState<Record<string, boolean>>({
-		workspace: false,
-		invite: true,
-		integrations: false,
-		notifications: true,
-	})
+export default function CheckboxCardSetup() {
+	const [checkedItems, setCheckedItems] = useState<string[]>([
+		"setting_email_notifications",
+	])
 
-	const toggle = (id: string) =>
-		setChecked((prev) => ({ ...prev, [id]: !prev[id] }))
+	const toggle = (id: string) => {
+		setCheckedItems((prev) =>
+			prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
+		)
+	}
 
 	return (
 		<div className="flex flex-col gap-3">
-			<p className="text-fg text-sm font-semibold">Project Setup</p>
-			{setupItems.map((item) => (
-				<div
-					key={item.id}
-					onClick={() => toggle(item.id)}
-					className={cn(
-						"w-125 border-soft-alpha bg-bg flex cursor-pointer items-start gap-4 rounded-xl border p-4 transition-all",
-						checked[item.id] && "border-primary"
-					)}>
-					<div className="bg-fill2 text-fg-secondary flex items-center justify-center rounded-xl p-2.5">
-						{item.icon}
-					</div>
-					<div className="flex flex-1 flex-col gap-0.5">
-						<span className="text-fg text-sm font-medium">{item.title}</span>
-						<span className="text-fg-tertiary text-sm font-normal">
-							{item.description}
-						</span>
-					</div>
-					<Checkbox
-						checked={checked[item.id]}
-						onCheckedChange={() => toggle(item.id)}
-						onClick={(e) => e.stopPropagation()}
-					/>
-				</div>
-			))}
+			{data.map((view) => {
+				const Icon = view.icon
+				return (
+					<Label
+						key={view.value}
+						htmlFor={view.id}
+						className="border-soft-alpha hover:bg-fill1-alpha bg-bg group flex cursor-pointer items-center gap-4 rounded-xl border p-4 transition-colors">
+						{/* Icon */}
+						<div className="bg-fill1 group-hover:bg-bg text-fg-secondary flex size-11 shrink-0 items-center justify-center rounded-[10px] transition-colors">
+							<Icon className="size-5" />
+						</div>
+
+						{/* Content */}
+						<div className="flex flex-1 flex-col gap-1">
+							<p className="text-fg cursor-pointer text-sm font-medium leading-5">
+								{view.title}
+							</p>
+							<p className="text-fg-tertiary text-sm font-normal leading-5">
+								{view.description}
+							</p>
+						</div>
+
+						<Checkbox
+							className="cursor-pointer self-start"
+							id={view.id}
+							checked={checkedItems.includes(view.id)}
+							onCheckedChange={() => toggle(view.id)}
+							onClick={(e) => e.stopPropagation()}
+						/>
+					</Label>
+				)
+			})}
 		</div>
 	)
 }
-
-export default CheckboxSetup

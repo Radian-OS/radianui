@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { ChevronDown, Link2, Plus } from "lucide-react"
-import Image from "next/image"
+import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
 import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
 import {
@@ -51,13 +51,10 @@ const DropdownWithCheckboxExample = () => {
 						setWorkspaceChecked("debcon", checked === true)
 					}
 					onSelect={(event) => event.preventDefault()}>
-					<Image
-						height={32}
-						src="/media/debcon.png"
-						width={32}
-						className="size-8"
-						alt="debcon"
-					/>
+					<Avatar size="32" rounded="square">
+						<AvatarImage src="/media/debcon.png" alt="debcon" />
+						<AvatarFallback>DC</AvatarFallback>
+					</Avatar>
 					<div className="flex flex-1 flex-col gap-0.5">
 						<span className="text-sm font-medium">Debcon Inc.</span>
 						<span className="text-fg-secondary text-xs">14 members</span>
@@ -72,14 +69,10 @@ const DropdownWithCheckboxExample = () => {
 						setWorkspaceChecked("xavion", checked === true)
 					}
 					onSelect={(event) => event.preventDefault()}>
-					<Image
-						height={32}
-						src="/media/xavion.png"
-						width={32}
-						className="size-8"
-						alt="xavion"
-					/>
-
+					<Avatar size="32" rounded="square">
+						<AvatarImage src="/media/xavion.png" alt="xavion" />
+						<AvatarFallback>XV</AvatarFallback>
+					</Avatar>
 					<div className="flex flex-1 flex-col gap-0.5">
 						<span className="text-sm font-medium">Xavion Inc.</span>
 						<span className="text-fg-secondary text-xs">51 members</span>
@@ -94,13 +87,10 @@ const DropdownWithCheckboxExample = () => {
 						setWorkspaceChecked("qubio", checked === true)
 					}
 					onSelect={(event) => event.preventDefault()}>
-					<Image
-						height={32}
-						src="/media/qubio.png"
-						width={32}
-						className="size-8"
-						alt="qubio"
-					/>
+					<Avatar size="32" rounded="square">
+						<AvatarImage src="/media/qubio.png" alt="qubio" />
+						<AvatarFallback>QB</AvatarFallback>
+					</Avatar>
 					<div className="flex flex-1 flex-col gap-0.5">
 						<span className="text-sm font-medium">Qubio Inc.</span>
 						<span className="text-fg-secondary text-xs">84 members</span>
@@ -115,13 +105,10 @@ const DropdownWithCheckboxExample = () => {
 						setWorkspaceChecked("personal", checked === true)
 					}
 					onSelect={(event) => event.preventDefault()}>
-					<Image
-						height={32}
-						src="/media/personal.png"
-						width={32}
-						className="size-8"
-						alt="personal"
-					/>
+					<Avatar size="32" rounded="square">
+						<AvatarImage src="/media/personal.png" alt="personal" />
+						<AvatarFallback>AB</AvatarFallback>
+					</Avatar>
 					<div className="flex flex-1 flex-col gap-0.5">
 						<span className="text-sm font-medium">Personal</span>
 						<span className="text-fg-secondary text-xs">Just You</span>

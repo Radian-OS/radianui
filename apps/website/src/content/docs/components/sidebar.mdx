@@ -1,6 +1,6 @@
 ---
 title: Sidebar
-description: A sidebar menu that collapses, works on mobile, and supports themes.
+description: A sturdy vertical side menu used to host your website's main navigation links, logos, and user settings.
 links:
   github:
     href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/sidebar.tsx
@@ -9,6 +9,8 @@ links:
 ---
 
 <ComponentPreview type="block" path="sidebar-doc" />
+
+---
 
 ## Installation
 
@@ -34,11 +36,13 @@ links:
 
 </InstallationTabs>
 
+---
+
 ## Usage
 
 ### Imports
 
-```tsx showLineNumbers
+```tsx showLineNumbers title="/components/ui/sidebar.tsx"
 import {
 	Sidebar,
 	SidebarContent,
@@ -59,7 +63,7 @@ import {
 
 ### Code
 
-```tsx showLineNumbers
+```tsx showLineNumbers title="/components/ui/sidebar.tsx"
 export default function AppLayout({ children }) {
 	return (
 		<SidebarProvider>
@@ -85,6 +89,8 @@ export default function AppLayout({ children }) {
 }
 ```
 
+---
+
 ## Examples
 
 #### Floating Sidebar
@@ -94,12 +100,15 @@ export default function AppLayout({ children }) {
 	path="sidebar-floating"
 	type="block"
 />
+
 #### Inset Sidebar
 
 <ComponentPreview title="Inset Sidebar" path="sidebar-inset" type="block" />
+
 #### Inverse Sidebar
 
 <ComponentPreview title="Inverse Sidebar" path="sidebar-dark" type="block" />
+
 #### Offcanvas Sidebar
 
 <ComponentPreview
@@ -107,6 +116,7 @@ export default function AppLayout({ children }) {
 	path="sidebar-offcanvas"
 	type="block"
 />
+
 #### Resizable Sidebar
 
 <ComponentPreview
@@ -114,9 +124,12 @@ export default function AppLayout({ children }) {
 	path="sidebar-resize"
 	type="block"
 />
+
 #### Sidebar with Rail
 
 <ComponentPreview title="Sidebar with Rail" path="sidebar-rail" type="block" />
+
+---
 
 ## SidebarProvider
 
@@ -128,6 +141,8 @@ The root context component. Must wrap the entire layout, both the `Sidebar` and 
 | `open`         | `boolean`                 | Controlled open state           |
 | `onOpenChange` | `(open: boolean) => void` | Called when open state changes  |
 | `shortcut`     | `string`                  | Shortcut key to open sidebar    |
+
+---
 
 ## Sidebar
 
@@ -143,11 +158,13 @@ The sidebar panel itself. Renders as a fixed-position column on desktop and as a
 | `minWidth`    | `number`                                                                        | `250`            | Minimum width(in px)    |
 | `maxWidth`    | `number`                                                                        | `500`            | Maximum width(in px)    |
 
+---
+
 ## SidebarHeader
 
 A sticky header component to add to the sidebar.
 
-```tsx showLineNumbers
+```tsx showLineNumbers title="/components/ui/sidebar.tsx"
 <SidebarHeader>
 	<SidebarMenuButton size="48" className="justify-between">
 		<div className="flex items-center gap-2">
@@ -162,11 +179,13 @@ A sticky header component to add to the sidebar.
 </SidebarHeader>
 ```
 
+---
+
 ## SidebarContent
 
 The scrollable body of the sidebar.
 
-```tsx showLineNumbers
+```tsx showLineNumbers title="/components/ui/sidebar.tsx"
 <SidebarContent>
 	<SidebarGroup>
 		<SidebarGroupLabel>Platform</SidebarGroupLabel>
@@ -195,11 +214,13 @@ The scrollable body of the sidebar.
 </SidebarContent>
 ```
 
+---
+
 ## SidebarFooter
 
 A sticky footer component to add to the sidebar.
 
-```tsx showLineNumbers
+```tsx showLineNumbers title="/components/ui/sidebar.tsx"
 <SidebarFooter>
 	<Dropdown>
 		<DropdownTrigger asChild>
@@ -217,11 +238,13 @@ A sticky footer component to add to the sidebar.
 </SidebarFooter>
 ```
 
+---
+
 ## SidebarGroup
 
 A layout wrapper for a logical section of navigation items inside `SidebarContent`. Use multiple groups to organize nav items into sections.
 
-```tsx
+```tsx title="/components/ui/sidebar.tsx"
 <SidebarGroup>
 	<SidebarGroupLabel>Platform</SidebarGroupLabel>
 	<SidebarGroupContent>
@@ -230,11 +253,13 @@ A layout wrapper for a logical section of navigation items inside `SidebarConten
 </SidebarGroup>
 ```
 
+---
+
 ## SidebarGroupAction
 
 An icon button anchored to the top-right of a `SidebarGroup`. Useful for section-level actions like adding a new item to a list.
 
-```tsx showLineNumbers
+```tsx showLineNumbers title="/components/ui/sidebar.tsx"
 <SidebarGroup>
 	<SidebarGroupLabel>Projects</SidebarGroupLabel>
 	<SidebarGroupAction>
@@ -244,33 +269,39 @@ An icon button anchored to the top-right of a `SidebarGroup`. Useful for section
 </SidebarGroup>
 ```
 
+---
+
 ## SidebarMenu
 
 The `SidebarMenu` component is used for building a menu within a `SidebarGroup`.
 
-```tsx showLineNumbers
+```tsx showLineNumbers title="/components/ui/sidebar.tsx"
 <SidebarMenu>
 	<SidebarMenuItem>...</SidebarMenuItem>
 	<SidebarMenuItem>...</SidebarMenuItem>
 </SidebarMenu>
 ```
 
+---
+
 ## SidebarMenuItem
 
 An element that wraps a single menu item.
 
-```tsx showLineNumbers
+```tsx showLineNumbers title="/components/ui/sidebar.tsx"
 <SidebarMenuItem>
 	<SidebarMenuButton>Dashboard</SidebarMenuButton>
 </SidebarMenuItem>
 ```
+
+---
 
 ## SidebarMenuButton
 
 The primary interactive element inside a `SidebarMenuItem`. Accepts `asChild` to render as a link, `isActive` to mark the current page,
 and `tooltip` as a fallback label in icon collapsible mode.
 
-```tsx showLineNumbers
+```tsx showLineNumbers title="/components/ui/sidebar.tsx"
 <SidebarMenuButton asChild isActive tooltip="Dashboard">
 	<a href="/dashboard">
 		<LayoutDashboard />
@@ -279,11 +310,13 @@ and `tooltip` as a fallback label in icon collapsible mode.
 </SidebarMenuButton>
 ```
 
+---
+
 ## SidebarMenuAction
 
 The `SidebarMenuAction` component is used to render a menu action within a `SidebarMenuItem`. Use for item-level actions like renaming, deleting, or opening a context menu.
 
-```tsx showLineNumbers
+```tsx showLineNumbers title="/components/ui/sidebar.tsx"
 <SidebarMenuItem>
 	<SidebarMenuButton asChild>
 		<a href="/project/1">
@@ -297,11 +330,13 @@ The `SidebarMenuAction` component is used to render a menu action within a `Side
 </SidebarMenuItem>
 ```
 
+---
+
 ## SidebarMenuSub
 
 The `SidebarMenuSub` component is used to render a submenu within a `SidebarMenu`.
 
-```tsx showLineNumbers
+```tsx showLineNumbers title="/components/ui/sidebar.tsx"
 <SidebarMenuItem>
 	<SidebarMenuButton>Components</SidebarMenuButton>
 	<SidebarMenuSub>
@@ -312,11 +347,13 @@ The `SidebarMenuSub` component is used to render a submenu within a `SidebarMenu
 </SidebarMenuItem>
 ```
 
+---
+
 ## SidebarCollapsible
 
 A component for building expandable nav groups.
 
-```tsx showLineNumbers
+```tsx showLineNumbers title="/components/ui/sidebar.tsx"
 <SidebarCollapsible defaultOpen>
 	<SidebarCollapsibleTrigger>Settings</SidebarCollapsibleTrigger>
 	<SidebarCollapsibleContent>
@@ -324,6 +361,8 @@ A component for building expandable nav groups.
 	</SidebarCollapsibleContent>
 </SidebarCollapsible>
 ```
+
+---
 
 ## SidebarSkeleton
 
@@ -347,6 +386,8 @@ function SidebarLogo() {
 	return state === "expanded" ? <FullLogo /> : <IconMark />
 }
 ```
+
+---
 
 ## Theming
 
@@ -379,6 +420,8 @@ You can modify the following CSS variables.
 	--color-sidebar-ring: var(--color-primary-border);
 }
 ```
+
+---
 
 ## Mobile Behavior
 

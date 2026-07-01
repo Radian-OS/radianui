@@ -39,7 +39,7 @@ export function ComponentPreview({
 	}
 
 	if (type === "block") {
-		return <DisplayBlock name={path} />
+		return <DisplayBlock name={path} title={title} />
 	}
 
 	const Component = getComponent(path.split("/")[1])

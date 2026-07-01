@@ -1,6 +1,6 @@
 ---
 title: Table
-description: Display tabular data with sorting and pagination
+description: A clean data grid built to organize heavy rows and columns of information with easy sorting options.
 links:
   github:
     href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/table.tsx
@@ -9,6 +9,8 @@ links:
 ---
 
 <ComponentPreview path="table/table-preview" />
+
+---
 
 ## Installation
 
@@ -38,11 +40,13 @@ links:
 
 </InstallationTabs>
 
+---
+
 ## Usage
 
 ### Imports
 
-```tsx showLineNumbers
+```tsx showLineNumbers title="/components/ui/table.tsx"
 import {
 	Table,
 	TableBody,
@@ -59,7 +63,7 @@ import {
 
 ### Code
 
-```tsx showLineNumbers
+```tsx showLineNumbers title="/components/ui/table.tsx"
 <Table>
 	<TableCaption>User Table</TableCaption>
 	<TableHeader>
@@ -110,13 +114,15 @@ import { LucideInfo } from "lucide-react"
 #### Expand Table
 
 <ComponentPreview title="Expand Table" path="table/expand-table" />
+
 #### Resizable Table
 
 <ComponentPreview title="Resizable Table" path="table/resize-table" />
+
 #### Draggable Table
 
 <ComponentPreview title="Draggable Table" path="table/dragable-table" />
+
 #### Employee Dashboard Table
 
 <ComponentPreview title="Employee Dashboard Table" path="table/table-example" />
-````

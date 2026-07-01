@@ -60,15 +60,13 @@ function NotificationCard({
 				)}>
 				<Icon className={cn("size-5", notification.iconColor)} />
 			</div>
-			<div className="min-w-0 flex-1 flex-col gap-1">
-				<p className="text-fg text-sm font-medium leading-5">
-					{notification.title}
-				</p>
-				<p className="text-fg-secondary truncate text-xs font-normal leading-4">
+			<div className="min-w-0 flex-1 flex-col gap-0.5">
+				<p className="text-fg text-sm font-medium">{notification.title}</p>
+				<p className="text-fg-secondary truncate text-[13px] font-normal">
 					{notification.body}
 				</p>
 			</div>
-			<span className="text-fg-secondary shrink-0 self-start text-xs font-normal leading-4">
+			<span className="text-fg-secondary shrink-0 self-start text-xs font-normal">
 				{notification.time}
 			</span>
 		</div>
@@ -88,12 +86,12 @@ export default function CollapsibleList() {
 					className="flex flex-col"
 					open={open}
 					onOpenChange={setOpen}>
-					<div className="relative">
+					<div className="relative isolate">
 						<NotificationCard notification={first} />
 						{!open && (
 							<>
-								<div className="bg-bg border-soft absolute -bottom-2 left-3 right-3 -z-10 h-full rounded-xl border opacity-60" />
-								<div className="bg-bg border-soft absolute -bottom-4 left-6 right-6 -z-20 h-full rounded-xl border opacity-50" />
+								<div className="bg-bg border-soft absolute left-3 right-3 top-full -z-10 h-2 rounded-b-xl border-x border-b" />
+								<div className="bg-bg border-soft absolute left-6 right-6 top-full -z-20 h-2 translate-y-2 rounded-b-xl border-x border-b" />
 							</>
 						)}
 					</div>
@@ -104,10 +102,10 @@ export default function CollapsibleList() {
 						))}
 					</CollapsibleContent>
 
-					<div className="mt-6 flex justify-center">
+					<div className={cn("flex justify-center", open ? "mt-6" : "mt-10")}>
 						<CollapsibleTrigger asChild>
-							<Button color="neutral" variant="outline">
-								{open ? "Show Less" : "Show All"}
+							<Button color="neutral" size="28" variant="outline">
+								{open ? "Collapse" : "Show All"}
 								<ChevronDown
 									className={cn(
 										"text-fg-secondary size-4 transition-transform duration-200",

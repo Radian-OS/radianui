@@ -10,6 +10,7 @@ import { Alert, AlertIcon, AlertTitle } from "@/registry/ui/alert"
 import { Button, IconButton } from "@/registry/ui/button"
 import { Card, CardFooter, CardHeader } from "@/registry/ui/card"
 import { Checkbox } from "@/registry/ui/checkbox"
+import { Divider } from "@/registry/ui/divider"
 import {
 	Form,
 	FormControl,
@@ -49,10 +50,10 @@ const CheckboxForm = () => {
 	}
 
 	return (
-		<Card className="w-130 gap-0 py-0">
+		<Card className="w-130 gap-0 p-0">
 			<Form {...form}>
 				<form onSubmit={form.handleSubmit(onSubmit)}>
-					<CardHeader className="flex flex-col items-center gap-4 text-center">
+					<CardHeader className="flex flex-col items-center gap-4 p-5 text-center">
 						<IconButton color="warning" variant="soft" className="rounded-full">
 							<Wrench />
 						</IconButton>
@@ -67,8 +68,8 @@ const CheckboxForm = () => {
 							</p>
 						</div>
 					</CardHeader>
-
-					<CardFooter className="border-border flex items-center justify-between gap-4 border-t">
+					<Divider />
+					<CardFooter className="border-border flex items-center justify-end gap-3 px-5 py-4">
 						<FormField
 							control={form.control}
 							name="acceptTerms"
@@ -91,7 +92,7 @@ const CheckboxForm = () => {
 							)}
 						/>
 
-						<div className="flex items-center gap-2">
+						<div className="flex items-center gap-3">
 							<Button variant="outline" color="neutral" type="button">
 								Cancel
 							</Button>
