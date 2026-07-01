@@ -3,6 +3,7 @@ import { Inter } from "next/font/google"
 import { Toaster } from "sonner"
 import AhrefsAnalytics from "@/components/ahrefs-analytics"
 import { PostHogProvider } from "@/components/posthog-provider"
+import { ReactQueryProvider } from "@/components/react-query-provider"
 import { ThemeProvider } from "@/components/theme-provider"
 import { websiteMetadata } from "@/config/website-metadata-config"
 import { ToastProvider } from "@/contexts/toast-context"
@@ -89,17 +90,19 @@ export default async function RootLayout({
 				/>
 			</head>
 			<body className={cn("relative min-h-svh antialiased", inter.variable)}>
-				<PostHogProvider>
-					<ToastProvider>
-						<ThemeProvider
-							attribute="class"
-							defaultTheme="dark"
-							enableSystem
-							disableTransitionOnChange>
-							{children}
-						</ThemeProvider>
-					</ToastProvider>
-				</PostHogProvider>
+				<ReactQueryProvider>
+					<PostHogProvider>
+						<ToastProvider>
+							<ThemeProvider
+								attribute="class"
+								defaultTheme="dark"
+								enableSystem
+								disableTransitionOnChange>
+								{children}
+							</ThemeProvider>
+						</ToastProvider>
+					</PostHogProvider>
+				</ReactQueryProvider>
 				<Toaster theme="system" richColors />
 			</body>
 		</html>
