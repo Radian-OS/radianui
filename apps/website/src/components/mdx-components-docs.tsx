@@ -52,8 +52,12 @@ import { CodeBlockCommandServer } from "./code-block-command-server"
 import { CodeCollapsibleWrapper } from "./code-collapsible-wrapper"
 import ColorTableThemeToggle from "./color/color-table-theme-toggle"
 import { CopyButton } from "./copy-button"
+import { RequestDesign } from "./request-design"
+import { ResourcesGrid } from "./resources-grid"
 
 export const components = {
+	ResourcesGrid,
+	RequestDesign,
 	PropsTable,
 	ColorTable,
 	ColorTableThemeToggle,
