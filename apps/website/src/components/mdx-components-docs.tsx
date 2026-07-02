@@ -239,11 +239,7 @@ export const components = {
 			{children}
 		</strong>
 	),
-	hr: () => (
-		<div className="relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] mt-10 w-screen">
-			<Divider orientation="horizontal" />
-		</div>
-	),
+	hr: () => <Divider orientation="horizontal" />,
 
 	ul: ({
 		children,

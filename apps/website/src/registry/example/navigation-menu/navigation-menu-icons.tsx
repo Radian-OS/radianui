@@ -70,7 +70,7 @@ export default function NavigationMenuIcons() {
 						) : (
 							<NavigationMenuItem key={entry.label}>
 								<NavigationMenuTrigger>{entry.label}</NavigationMenuTrigger>
-								<NavigationMenuContent className="min-w-50 p-2">
+								<NavigationMenuContent align="left" className="min-w-50 p-2">
 									<ul className="flex w-full flex-col gap-1.5 px-1.5 py-1">
 										{entry.items.map(({ label, href, icon: Icon }) => (
 											<li key={label} className="w-full">
