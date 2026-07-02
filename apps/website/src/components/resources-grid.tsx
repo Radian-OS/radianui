@@ -83,14 +83,16 @@ export function ResourcesGrid() {
 				<div
 					key={index}
 					className="bg-bg border-soft flex cursor-pointer flex-col gap-2 rounded-xl border p-2 hover:shadow-sm">
-					<img
-						src={resource.lightUrl}
-						className="h-48 w-full overflow-hidden rounded-lg object-cover dark:hidden"
-					/>
-					<img
-						src={resource.darkUrl}
-						className="hidden h-48 w-full overflow-hidden rounded-lg object-cover dark:block"
-					/>
+					<div className="border-soft h-52 w-full overflow-clip rounded-lg border">
+						<img
+							src={resource.lightUrl}
+							className="h-full w-full scale-[1.02] object-cover dark:hidden"
+						/>
+						<img
+							src={resource.darkUrl}
+							className="hidden h-full w-full scale-[1.02] object-cover dark:block"
+						/>
+					</div>
 					<div className="flex flex-col gap-1 p-2">
 						<div className="flex items-center gap-2">
 							<span className="text-fg text-sm font-medium">
