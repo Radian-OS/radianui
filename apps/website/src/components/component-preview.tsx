@@ -80,7 +80,7 @@ export function ComponentPreview({
 								codeAreaClassName="max-h-100 overflow-auto no-scrollbar"
 								className="[&>figure]:mt-0! [&_[data-slot=copy-button]]:hidden"
 								code={code}
-								title={`${path.split("/")[path.split("/").length - 1]}.tsx`}
+								language="tsx"
 								collapsible={false}
 							/>
 						</TabsContent>
