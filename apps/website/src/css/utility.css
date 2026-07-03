@@ -21,11 +21,11 @@
 
 	/* amber */
 	--color-amber: oklch(0.802 0.171 73.267);
-	--color-amber-accent: oklch(0.445 0.087 78.294);
-	--color-amber-focus: oklch(0.945 0.057 84.52);
+	--color-amber-accent: oklch(0.976 0.024 83.417);
+	--color-amber-focus:  oklch(0.946 0.057 85.031);
 	--color-amber-border: oklch(0.802 0.171 73.267);
 	--color-amber-hover: oklch(0.834 0.159 79.507);
-	--color-amber-text: oklch(0.976 0.024 83.417);
+	--color-amber-text: oklch(0.445 0.087 78.294);
 	--color-amber-fg: oklch(0.447 0.087 78.737);
 
 	/* yellow */
@@ -185,7 +185,7 @@
 	--color-amber: oklch(0.802 0.171 73.267);
 	--color-amber-accent: oklch(0.266 0.037 83.24);
 	--color-amber-focus: oklch(0.375 0.064 81.692);
-	--color-amber-border: oklch(0.976 0.024 83.417);
+	--color-amber-border: oklch(0.445 0.087 78.294);
 	--color-amber-hover: oklch(0.834 0.159 79.507);
 	--color-amber-text: oklch(0.834 0.159 79.507);
 	--color-amber-fg: oklch(0.447 0.087 78.737);
