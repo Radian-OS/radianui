@@ -45,7 +45,7 @@ const tabsListStyles = cva(
 				className: "p-0.5",
 			},
 			{
-				variant: ["default", "ghost"],
+				variant: ["default"],
 				className: "rounded-lg",
 			},
 			{
