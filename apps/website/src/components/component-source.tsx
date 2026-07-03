@@ -12,7 +12,7 @@ type ComponentSourceProps = {
 	name?: string
 	src?: string
 	code?: string
-	title: string
+	title?: string
 	collapsible?: boolean
 	className?: string
 	language?: string
@@ -102,16 +102,14 @@ function ComponentCode({
 }) {
 	return (
 		<figure data-rehype-pretty-code-figure="" className="[&>pre]:max-h-96">
-			<figcaption data-rehype-pretty-code-title="" data-language={language}>
-				{title && (
-					<>
-						<span className="bg-bg text-fg-tertiary rounded-md p-1">
-							<TerminalIcon size={16} />
-						</span>
-						{title}
-					</>
-				)}
-			</figcaption>
+			{title && (
+				<figcaption data-rehype-pretty-code-title="" data-language={language}>
+					<span className="bg-bg text-fg-tertiary rounded-md p-1">
+						<TerminalIcon size={16} />
+					</span>
+					{title}
+				</figcaption>
+			)}
 			<CopyButton value={code} />
 			<div
 				className={cn("bg-bg border-soft rounded-xl border", codeAreaClassName)}
