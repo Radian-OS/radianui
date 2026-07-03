@@ -45,7 +45,7 @@ const tabsListStyles = cva(
 				className: "p-0.5",
 			},
 			{
-				variant: ["default", "ghost"],
+				variant: ["default"],
 				className: "rounded-lg",
 			},
 			{
@@ -58,7 +58,7 @@ const tabsListStyles = cva(
 )
 
 const tabsTriggerStyles = cva(
-	"inline-flex items-center justify-center text-sm [&>svg]:size-5 gap-1.5 focus-visible:ring focus-visible:ring-offset-1 whitespace-nowrap font-medium outline-none text-fg-secondary data-[state=active]:text-fg w-max data-[orientation=vertical]:w-full [&>svg]:text-fg-tertiary [&>svg]:shrink-0 disabled:text-fg-disabled disabled:[&>svg]:text-fg-disabled disabled:cursor-not-allowed box-border",
+	"inline-flex items-center justify-center text-sm [&>svg]:size-5 gap-1.5 focus-visible:ring focus-visible:ring-offset-1 whitespace-nowrap font-medium outline-none text-fg-secondary cursor-pointer data-[state=active]:text-fg w-max data-[orientation=vertical]:w-full [&>svg]:text-fg-tertiary [&>svg]:shrink-0 disabled:text-fg-disabled disabled:[&>svg]:text-fg-disabled disabled:cursor-not-allowed box-border",
 	{
 		variants: {
 			variant: {

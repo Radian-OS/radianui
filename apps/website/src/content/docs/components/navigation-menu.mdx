@@ -109,18 +109,25 @@ import {
 
 ## Examples
 
+#### Navigation Menu Items Align
+
 <ComponentPreview
-	title=" Left aligned With Icons"
-	path="navigation-menu/navigation-menu-icons"
+	title="Navigation Menu Items Align"
+	path="navigation-menu/navigation-menu-align"
 />
+
+#### Column w/Icons
 
 <ComponentPreview
 	title="Column w/Icons"
 	path="navigation-menu/navigation-menu-columns"
 />
+
+#### Plain Simple
+
 <ComponentPreview
-	title="Detailed View"
-	path="navigation-menu/navigation-menu-detailed"
+	title="Plain Simple"
+	path="navigation-menu/navigation-menu-plain"
 />
 
 ---
@@ -138,6 +145,13 @@ import {
 				values: ["boolean"],
 				description:
 					"When true, renders a shared viewport for dropdown content. Set to false to render content inline.",
+			},
+			{
+				name: "viewportClassName",
+				required: false,
+				values: ["string"],
+				description:
+					"Class name to apply to the viewport element. Only applicable when `viewport` is true.",
 			},
 			{
 				name: "value",
@@ -191,6 +205,15 @@ import {
 	<PropsTable
 		title="NavigationMenuContent"
 		externalReference="https://www.radix-ui.com/primitives/docs/components/navigation-menu#content"
+		data={[
+			{
+				name:"align",
+				required: false,
+				defaultValue: "left",
+				values: ["left", "right", "center"],
+				description: "The alignment of the content relative to the trigger.",
+			}
+		]}
 	/>
 	<PropsTable
 		title="NavigationMenuLink"

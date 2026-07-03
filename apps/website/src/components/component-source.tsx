@@ -12,7 +12,7 @@ type ComponentSourceProps = {
 	name?: string
 	src?: string
 	code?: string
-	title: string
+	title?: string
 	collapsible?: boolean
 	className?: string
 	language?: string
@@ -69,7 +69,7 @@ async function ComponentSource({
 					language={lang}
 					title={title}
 					highlightedCode={highlightedCode}
-					codeAreaClassName={codeAreaClassName}
+					codeAreaClassName={cn("!p-0", codeAreaClassName)}
 				/>
 			</div>
 		)
@@ -82,6 +82,7 @@ async function ComponentSource({
 				title={title}
 				language={lang}
 				highlightedCode={highlightedCode}
+				codeAreaClassName={codeAreaClassName}
 			/>
 		</CodeCollapsibleWrapper>
 	)
@@ -101,20 +102,23 @@ function ComponentCode({
 	codeAreaClassName?: string
 }) {
 	return (
-		<figure data-rehype-pretty-code-figure="" className="[&>pre]:max-h-96">
-			<figcaption data-rehype-pretty-code-title="" data-language={language}>
-				{title && (
-					<>
-						<span className="bg-bg text-fg-tertiary rounded-md p-1">
-							<TerminalIcon size={16} />
-						</span>
-						{title}
-					</>
-				)}
-			</figcaption>
+		<figure
+			data-rehype-pretty-code-figure=""
+			className={cn("[&>pre]:max-h-100 p-2", codeAreaClassName)}>
+			{title && (
+				<figcaption data-rehype-pretty-code-title="" data-language={language}>
+					<span className="bg-bg text-fg-tertiary rounded-md p-1">
+						<TerminalIcon size={16} />
+					</span>
+					{title}
+				</figcaption>
+			)}
 			<CopyButton value={code} />
 			<div
-				className={cn("bg-bg border-soft rounded-xl border", codeAreaClassName)}
+				className={cn(
+					"bg-bg border-soft rounded-[10px] border",
+					codeAreaClassName
+				)}
 				dangerouslySetInnerHTML={{ __html: highlightedCode }}
 			/>
 		</figure>
