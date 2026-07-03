@@ -1,14 +1,3 @@
-import {
-	Book,
-	Building2,
-	Calculator,
-	CircleHelp,
-	Component,
-	LayoutDashboard,
-	LifeBuoy,
-	Table,
-} from "lucide-react"
-import type { LucideIcon } from "lucide-react"
 import Link from "next/link"
 import {
 	NavigationMenu,
@@ -20,40 +9,46 @@ import {
 	navigationMenuTriggerStyle,
 } from "@/registry/ui/navigation-menu"
 
-type NavItem = { label: string; href: string; icon: LucideIcon }
 type NavEntry =
 	| { label: string; href: string }
-	| { label: string; items: NavItem[] }
+	| {
+			label: string
+			items: { label: string; href: string }[]
+			align: "left" | "center" | "right"
+	  }
 
 const NAV_CONFIG: NavEntry[] = [
 	{ label: "Features", href: "#" },
 	{
 		label: "Products",
+		align: "left",
 		items: [
-			{ label: "Workspace", href: "#", icon: LayoutDashboard },
-			{ label: "Data Tables", href: "#", icon: Table },
-			{ label: "Components", href: "#", icon: Component },
+			{ label: "Workspace", href: "#" },
+			{ label: "Data Tables", href: "#" },
+			{ label: "Components", href: "#" },
 		],
 	},
 	{
 		label: "Pricing",
+		align: "center",
 		items: [
-			{ label: "Plans & Pricing", href: "#", icon: LayoutDashboard },
-			{ label: "Enterprise", href: "#", icon: Building2 },
-			{ label: "ROI Calculator", href: "#", icon: Calculator },
+			{ label: "Plans & Pricing", href: "#" },
+			{ label: "Enterprise", href: "#" },
+			{ label: "ROI Calculator", href: "#" },
 		],
 	},
 	{
 		label: "Resources",
+		align: "right",
 		items: [
-			{ label: "Help Center", href: "#", icon: LifeBuoy },
-			{ label: "FAQs", href: "#", icon: CircleHelp },
-			{ label: "Documentation", href: "#", icon: Book },
+			{ label: "Help Center", href: "#" },
+			{ label: "FAQs", href: "#" },
+			{ label: "Documentation", href: "#" },
 		],
 	},
 ]
 
-export default function NavigationMenuIcons() {
+export default function NavigationMenuPreview() {
 	return (
 		<div className="flex items-center justify-center">
 			<NavigationMenu viewport={false}>
@@ -70,17 +65,14 @@ export default function NavigationMenuIcons() {
 						) : (
 							<NavigationMenuItem key={entry.label}>
 								<NavigationMenuTrigger>{entry.label}</NavigationMenuTrigger>
-								<NavigationMenuContent align="left" className="min-w-50 p-2">
+								<NavigationMenuContent
+									align={entry.align}
+									className="min-w-50 rounded-2xl p-2">
 									<ul className="flex w-full flex-col gap-1.5 px-1.5 py-1">
-										{entry.items.map(({ label, href, icon: Icon }) => (
+										{entry.items.map(({ label, href }) => (
 											<li key={label} className="w-full">
 												<NavigationMenuLink asChild>
-													<Link
-														href={href}
-														className="flex flex-row items-center gap-2">
-														<Icon className="text-fg-tertiary size-5" />
-														{label}
-													</Link>
+													<Link href={href}>{label}</Link>
 												</NavigationMenuLink>
 											</li>
 										))}

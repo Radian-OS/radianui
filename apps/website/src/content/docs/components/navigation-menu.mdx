@@ -110,8 +110,8 @@ import {
 ## Examples
 
 <ComponentPreview
-	title=" Left aligned With Icons"
-	path="navigation-menu/navigation-menu-icons"
+	title="Navigation Menu Items Align"
+	path="navigation-menu/navigation-menu-align"
 />
 
 <ComponentPreview
@@ -119,8 +119,8 @@ import {
 	path="navigation-menu/navigation-menu-columns"
 />
 <ComponentPreview
-	title="Detailed View"
-	path="navigation-menu/navigation-menu-detailed"
+	title="Plain Simple"
+	path="navigation-menu/navigation-menu-plain"
 />
 
 ---
@@ -138,6 +138,13 @@ import {
 				values: ["boolean"],
 				description:
 					"When true, renders a shared viewport for dropdown content. Set to false to render content inline.",
+			},
+			{
+				name: "viewportClassName",
+				required: false,
+				values: ["string"],
+				description:
+					"Class name to apply to the viewport element. Only applicable when `viewport` is true.",
 			},
 			{
 				name: "value",
