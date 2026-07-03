@@ -21,11 +21,11 @@
 
 	/* amber */
 	--color-amber: oklch(0.802 0.171 73.267);
-	--color-amber-accent: oklch(0.977 0.024 84.593);
+	--color-amber-accent: oklch(0.445 0.087 78.294);
 	--color-amber-focus: oklch(0.945 0.057 84.52);
 	--color-amber-border: oklch(0.802 0.171 73.267);
 	--color-amber-hover: oklch(0.834 0.159 79.507);
-	--color-amber-text: oklch(0.447 0.087 78.737);
+	--color-amber-text: oklch(0.976 0.024 83.417);
 	--color-amber-fg: oklch(0.447 0.087 78.737);
 
 	/* yellow */
@@ -34,16 +34,16 @@
 	--color-yellow-focus: oklch(0.96 0.077 98.121);
 	--color-yellow-border: oklch(0.801 0.163 95.171);
 	--color-yellow-hover: oklch(0.91 0.163 97.608);
-	--color-yellow-text: oklch(0.467 0.088 97.153);
+	--color-yellow-text: oklch(0.468 0.089 97.47);
 	--color-yellow-fg: oklch(0.4679 0.0888 97.47);
 
 	/* neon */
 	--color-neon: oklch(0.919 0.231 127.834);
-	--color-neon-accent: oklch(0.987 0.035 122.059);
+	--color-neon-accent: oklch(0.986 0.035 122.616);
 	--color-neon-focus: oklch(0.966 0.095 123.143);
 	--color-neon-border: oklch(0.716 0.187 128.923);
 	--color-neon-hover: oklch(0.932 0.196 125.802);
-	--color-neon-text: oklch(0.495 0.124 127.74);
+	--color-neon-text: oklch(0.495 0.123 127.468);
 	--color-neon-fg: oklch(0.4952 0.1233 127.47);
 
 	/* green */
@@ -185,7 +185,7 @@
 	--color-amber: oklch(0.802 0.171 73.267);
 	--color-amber-accent: oklch(0.266 0.037 83.24);
 	--color-amber-focus: oklch(0.375 0.064 81.692);
-	--color-amber-border: oklch(0.447 0.087 78.737);
+	--color-amber-border: oklch(0.976 0.024 83.417);
 	--color-amber-hover: oklch(0.834 0.159 79.507);
 	--color-amber-text: oklch(0.834 0.159 79.507);
 	--color-amber-fg: oklch(0.447 0.087 78.737);
@@ -194,7 +194,7 @@
 	--color-yellow: oklch(0.801 0.163 95.171);
 	--color-yellow-accent: oklch(0.28 0.042 98.194);
 	--color-yellow-focus: oklch(0.398 0.07 96.297);
-	--color-yellow-border: oklch(0.467 0.088 97.153);
+	--color-yellow-border:  oklch(0.468 0.089 97.47);
 	--color-yellow-hover: oklch(0.882 0.181 94.241);
 	--color-yellow-text: oklch(0.9 0.174 96.856);
 	--color-yellow-fg: oklch(0.4679 0.0888 97.47);
@@ -202,7 +202,7 @@
 	/* neon */
 	--color-neon: oklch(0.716 0.187 128.923);
 	--color-neon-accent: oklch(0.284 0.052 124.323);
-	--color-neon-focus: oklch(0.408 0.09 126.192);
+	--color-neon-focus: oklch(0.353 0.076 126.25);
 	--color-neon-border: oklch(0.495 0.124 127.74);
 	--color-neon-hover: oklch(0.825 0.217 129.074);
 	--color-neon-text: oklch(0.825 0.217 129.074);

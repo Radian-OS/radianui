@@ -51,15 +51,21 @@ export function ComponentPreview({
 				className="relative flex min-w-0 flex-col items-stretch">
 				<Tabs
 					defaultValue="preview"
-					className="border-soft bg-fill1-alpha flex w-full flex-col gap-2 rounded-2xl border p-1">
+					className="border-soft bg-fill1-alpha flex w-full flex-col gap-2 rounded-xl border p-1">
 					<div className="flex items-center justify-between px-2 pt-1">
 						<span className="text-fg text-sm font-medium">{title}</span>
 						<div className="flex items-center gap-2">
-							<TabsList className="h-8 data-[orientation=horizontal]:h-8">
-								<TabsTrigger className="text-xs" value="preview">
+							<TabsList
+								variant="ghost"
+								className="h-7 data-[orientation=horizontal]:h-7">
+								<TabsTrigger
+									className="data-[state=active]:text-fg data-[state=active]:bg-bg data-[state=active]:border-soft text-xs data-[state=active]:rounded-md data-[state=active]:border"
+									value="preview">
 									Preview
 								</TabsTrigger>
-								<TabsTrigger className="text-xs" value="code">
+								<TabsTrigger
+									className="data-[state=active]:text-fg data-[state=active]:bg-bg data-[state=active]:border-soft text-xs data-[state=active]:rounded-md data-[state=active]:border"
+									value="code">
 									Code
 								</TabsTrigger>
 							</TabsList>
@@ -77,7 +83,7 @@ export function ComponentPreview({
 						</TabsContent>
 						<TabsContent value="code" className="mt-0 outline-none">
 							<ComponentSource
-								codeAreaClassName="max-h-100 overflow-auto no-scrollbar"
+								codeAreaClassName="max-h-105 overflow-auto no-scrollbar"
 								className="[&>figure]:mt-0! [&_[data-slot=copy-button]]:hidden"
 								code={code}
 								language="tsx"
