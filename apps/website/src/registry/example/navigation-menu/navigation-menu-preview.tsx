@@ -398,8 +398,8 @@ export default function NavigationMenuPreview() {
 								{RESOURCE_SECTIONS.map((section) => (
 									<MenuColumn key={section.title} section={section} />
 								))}
-								<div className="bg-fill1-alpha flex min-w-0 flex-col gap-3 px-4 py-3">
-									<div className="text-fg-secondary py-2 text-xs font-medium uppercase">
+								<div className="bg-fill1-alpha flex min-w-0 flex-col gap-3 px-1.5 py-3">
+									<div className="text-fg-secondary px-2 py-2 text-xs font-medium uppercase">
 										Additional Links
 									</div>
 									<ul className="flex flex-col gap-1">
@@ -407,7 +407,7 @@ export default function NavigationMenuPreview() {
 											<li key={label}>
 												<NavigationMenuLink
 													asChild
-													className="rounded-md px-0 py-1.5 text-sm font-normal hover:bg-transparent focus:bg-transparent">
+													className="hover:bg-fill1-alpha focus:bg-fill1-alpha rounded-md px-2 py-1.5 text-sm font-normal">
 													<Link href="#">{label}</Link>
 												</NavigationMenuLink>
 											</li>
