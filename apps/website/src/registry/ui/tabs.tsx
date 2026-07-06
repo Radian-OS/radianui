@@ -42,11 +42,7 @@ const tabsListStyles = cva(
 		compoundVariants: [
 			{
 				variant: "default",
-				className: "p-0.5",
-			},
-			{
-				variant: ["default", "ghost"],
-				className: "rounded-lg",
+				className: "rounded-lg p-0.5",
 			},
 			{
 				variant: "open",
@@ -58,7 +54,7 @@ const tabsListStyles = cva(
 )
 
 const tabsTriggerStyles = cva(
-	"inline-flex items-center justify-center text-sm [&>svg]:size-5 gap-1.5 focus-visible:ring focus-visible:ring-offset-1 whitespace-nowrap font-medium outline-none text-fg-secondary data-[state=active]:text-fg w-max data-[orientation=vertical]:w-full [&>svg]:text-fg-tertiary [&>svg]:shrink-0 disabled:text-fg-disabled disabled:[&>svg]:text-fg-disabled disabled:cursor-not-allowed box-border",
+	"inline-flex items-center justify-center text-sm [&>svg]:size-5 gap-1.5 focus-visible:ring focus-visible:ring-offset-1 whitespace-nowrap font-medium outline-none text-fg-secondary cursor-pointer data-[state=active]:text-fg w-max data-[orientation=vertical]:w-full [&>svg]:text-fg-tertiary [&>svg]:shrink-0 disabled:text-fg-disabled disabled:[&>svg]:text-fg-disabled disabled:cursor-not-allowed box-border",
 	{
 		variants: {
 			variant: {
@@ -75,17 +71,13 @@ const tabsTriggerStyles = cva(
 				className: "rounded-md px-2.5 py-1.5 h-full",
 			},
 			{
-				variant: ["ghost"],
-				className: "p-2",
-			},
-			{
 				variant: "open",
 				className:
 					"data-[orientation=horizontal]:py-2 data-[orientation=vertical]:px-2 h-9",
 			},
 			{
 				variant: ["ghost"],
-				className: "data-[state=active]:rounded-lg h-full",
+				className: "p-2 data-[state=active]:rounded-lg h-full",
 			},
 		],
 		defaultVariants: {

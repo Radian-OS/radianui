@@ -1,20 +1,31 @@
 import React from "react"
-import { ArrowUpRight } from "lucide-react"
 import Link from "next/link"
 import { WebsiteLogo } from "@/components/navbar/website-logo"
+import { cn } from "@/lib/utils"
 import {
 	Accordion,
 	AccordionContent,
 	AccordionItem,
 	AccordionTrigger,
 } from "@/registry/ui/accordion"
-import { Badge } from "@/registry/ui/badge"
+import {
+	EmojiCollectionIcon,
+	FigmaIcon,
+	GithubIcon,
+	PopularBrandLogosIcon,
+	UIAvatarIcon,
+	UICountryFlagsIcon,
+	XIcon,
+	YoutubeIcon,
+} from "./footer-icons"
 
 interface LinkItem {
 	href: string
 	name: string
 	badge?: React.ReactNode
 	target?: string
+	isBlueLink?: boolean
+	icon?: React.ReactNode
 }
 
 interface Link {
@@ -28,21 +39,28 @@ const LINKS: Link[] = [
 		linkItems: [
 			{
 				href: "/docs/getting-started/introduction",
-				name: "Getting Started",
+				name: "Introduction",
+			},
+			{
+				href: "/docs/getting-started/installation",
+				name: "Installation",
+			},
+			{
+				href: "/docs/getting-started/changelog",
+				name: "Changelog",
 			},
 			{
 				href: "/docs/fundamentals/colors",
-				name: "Fundamentals",
+				name: "Colors",
 			},
 			{
 				href: "/docs/components/accordion",
-				name: "Base Components",
+				name: "Components",
 			},
 			{
-				href: process.env.NEXT_PUBLIC_BLOCKS_URL!,
-				name: "Explore Blocks",
-				badge: <ArrowUpRight className="text-fg-secondary size-5" />,
-				target: "_blank",
+				href: "/docs/getting-started/introduction",
+				name: "Open Documentation",
+				isBlueLink: true,
 			},
 		],
 	},
@@ -50,30 +68,70 @@ const LINKS: Link[] = [
 		title: "Resources",
 		linkItems: [
 			{
+				href: "/docs/resources/ui-avatars",
+				name: "UI Avatars",
+				icon: <UIAvatarIcon />,
+			},
+			{
+				href: "/docs/resources/popular-brand-logos",
+				name: "Popular Brand Logos",
+				icon: <PopularBrandLogosIcon />,
+			},
+			{
+				href: "/docs/resources/ui-country-flags",
+				name: "UI Country Flags",
+				icon: <UICountryFlagsIcon />,
+			},
+			{
+				href: "/docs/resources/credit-card-icons",
+				name: "Credit Card Icons",
+				icon: <UICountryFlagsIcon />,
+			},
+			{
+				href: "/docs/resources/emoji-collection",
+				name: "Emoji Collection",
+				icon: <EmojiCollectionIcon />,
+			},
+			{
 				href: "/docs/getting-started/changelog",
-				name: "Change Logs",
-				badge: (
-					<Badge variant="soft" size="20">
-						New
-					</Badge>
-				),
+				name: "Explore Resources",
+				isBlueLink: true,
+			},
+		],
+	},
+	{
+		title: "Explore UI Blocks",
+		linkItems: [
+			{
+				href: "https://blocks.radianos.com/blocks/authentication/sign-in",
+				name: "Sign In Blocks",
+				target: "_blank",
 			},
 			{
-				href: "/blog",
-				name: "Release Notes",
+				href: "https://blocks.radianos.com/blocks/authentication/sign-up",
+				name: "Sign Up Blocks",
+				target: "_blank",
 			},
 			{
-				href: "/blog",
-				name: "Blog Articles",
+				href: "https://blocks.radianos.com/blocks/authentication/verification",
+				name: "Account Verification",
+				target: "_blank",
 			},
 			{
-				href: "/docs/getting-started/figma",
-				name: "Radian Figma",
-				badge: (
-					<Badge variant="soft" size="20">
-						New
-					</Badge>
-				),
+				href: "https://blocks.radianos.com/blocks/webapp/sidebar",
+				name: "Sidebar Blocks",
+				target: "_blank",
+			},
+			{
+				href: "https://blocks.radianos.com/blocks/webapp/onboarding",
+				name: "Account Onboarding",
+				target: "_blank",
+			},
+			{
+				href: "https://blocks.radianos.com",
+				name: "Explore More Blocks",
+				target: "_blank",
+				isBlueLink: true,
 			},
 		],
 	},
@@ -84,15 +142,25 @@ const LINKS: Link[] = [
 				href: "https://github.com/Radian-os/radianos",
 				name: "Github",
 				target: "_blank",
+				icon: <GithubIcon />,
 			},
 			{
 				href: "/docs/getting-started/figma",
 				name: "Figma",
+				target: "_blank",
+				icon: <FigmaIcon />,
 			},
 			{
 				href: "https://x.com/radian_os",
 				name: "X (Twitter)",
 				target: "_blank",
+				icon: <XIcon />,
+			},
+			{
+				href: "https://youtube.com/radian_os",
+				name: "Youtube",
+				target: "_blank",
+				icon: <YoutubeIcon />,
 			},
 		],
 	},
@@ -134,26 +202,30 @@ export default function FooterNavigation() {
 			</div>
 
 			{/* For desktop (larger than 1280px) */}
-			<div className="not-xl:hidden max-w-360 px-30 py-15 mx-auto flex justify-between">
-				<WebsiteLogo />
-				<div className="flex gap-20">
+			<div className="not-xl:hidden max-w-360 px-7.5 py-15 mx-auto flex justify-between">
+				<div className="flex-1">
+					<WebsiteLogo />
+				</div>
+				<div className="gap-7.5 flex">
 					{LINKS.map((item) => (
-						<div className="flex flex-col gap-5" key={item.title}>
-							<p className="text-fg-tertiary text-sm font-medium uppercase">
-								{item.title}
-							</p>
-							<div className="flex flex-col gap-4">
+						<div className="w-55 flex flex-col gap-4" key={item.title}>
+							<p className="text-fg text-sm font-medium">{item.title}</p>
+							<div className="flex flex-col gap-3">
 								{item.linkItems.map((linkItem) => (
 									<span key={linkItem.name} className="flex items-center gap-2">
 										<Link
 											href={linkItem.href}
-											className="text-sm"
+											className={cn(
+												"text-fg flex items-center gap-2 text-sm font-normal",
+												{ "text-primary-text font-medium": linkItem.isBlueLink }
+											)}
 											target={linkItem.target ?? "_self"}
 											rel={
 												linkItem.target === "_blank"
 													? "noopener noreferrer"
 													: undefined
 											}>
+											{linkItem.icon && linkItem.icon}
 											{linkItem.name}
 										</Link>
 										{linkItem.badge && linkItem.badge}

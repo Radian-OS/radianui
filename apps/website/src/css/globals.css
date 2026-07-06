@@ -179,9 +179,9 @@
 
 	/* border */
 	--color-border: oklch(0.275 0.009 264.424);
-	--color-alpha: color-mix(in srgb, oklch(0.86 0.029 264.41), transparent 88%);
+	--color-alpha: color-mix(in srgb, oklch(0.86 0.029 264.41), transparent 84%);
 	--color-soft: oklch(0.234 0.007 264.437);
-	--color-soft-alpha: color-mix(in srgb, oklch(0.86 0.029 264.41), transparent 92%);
+	--color-soft-alpha: color-mix(in srgb, oklch(0.86 0.029 264.41), transparent 88%);
 
 	/* background elevation */
 	--color-elevation-negative: oklch(0 0 0);
