@@ -59,12 +59,12 @@ export function ComponentPreview({
 								variant="ghost"
 								className="h-7 data-[orientation=horizontal]:h-7">
 								<TabsTrigger
-									className="data-[state=active]:text-fg data-[state=active]:bg-bg data-[state=active]:border-soft text-xs data-[state=active]:rounded-md data-[state=active]:border"
+									className="data-[state=active]:text-fg data-[state=active]:bg-elevation-level2 data-[state=active]:border-soft text-xs data-[state=active]:rounded-md data-[state=active]:border"
 									value="preview">
 									Preview
 								</TabsTrigger>
 								<TabsTrigger
-									className="data-[state=active]:text-fg data-[state=active]:bg-bg data-[state=active]:border-soft text-xs data-[state=active]:rounded-md data-[state=active]:border"
+									className="data-[state=active]:text-fg data-[state=active]:bg-elevation-level2 data-[state=active]:border-soft text-xs data-[state=active]:rounded-md data-[state=active]:border"
 									value="code">
 									Code
 								</TabsTrigger>

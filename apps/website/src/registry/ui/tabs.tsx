@@ -42,11 +42,7 @@ const tabsListStyles = cva(
 		compoundVariants: [
 			{
 				variant: "default",
-				className: "p-0.5",
-			},
-			{
-				variant: ["default"],
-				className: "rounded-lg",
+				className: "rounded-lg p-0.5",
 			},
 			{
 				variant: "open",
@@ -75,17 +71,13 @@ const tabsTriggerStyles = cva(
 				className: "rounded-md px-2.5 py-1.5 h-full",
 			},
 			{
-				variant: ["ghost"],
-				className: "p-2",
-			},
-			{
 				variant: "open",
 				className:
 					"data-[orientation=horizontal]:py-2 data-[orientation=vertical]:px-2 h-9",
 			},
 			{
 				variant: ["ghost"],
-				className: "data-[state=active]:rounded-lg h-full",
+				className: "p-2 data-[state=active]:rounded-lg h-full",
 			},
 		],
 		defaultVariants: {
