@@ -157,7 +157,7 @@ const LINKS: Link[] = [
 				icon: <XIcon />,
 			},
 			{
-				href: "https://youtube.com/radian_os",
+				href: "https://www.youtube.com/@RadianOS",
 				name: "Youtube",
 				target: "_blank",
 				icon: <YoutubeIcon />,
