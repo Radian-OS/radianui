@@ -21,7 +21,7 @@ import {
 	ViewTools,
 } from "./nav-icons"
 
-const designTools = [
+export const designTools = [
 	{
 		title: "UI Avatars",
 		description: "User avatars for app and dashboard.",
@@ -64,7 +64,7 @@ const designTools = [
 	},
 ]
 
-const additionalLinks = [
+export const additionalLinks = [
 	{ title: "Introduction", href: "/docs/getting-started/introduction" },
 	{ title: "Installation", href: "/docs/getting-started/installation" },
 	{ title: "Blog", href: "/blog" },
