@@ -91,8 +91,8 @@ export function DesktopNavigation() {
 						<NavigationMenuTrigger className="bg-transparent">
 							Resources
 						</NavigationMenuTrigger>
-						<NavigationMenuContent className="border-soft flex w-[706px] flex-row border-r p-0 md:w-[706px]">
-							<div className="flex flex-col gap-1 p-3">
+						<NavigationMenuContent className="flex w-[706px] flex-row p-0 md:w-[706px]">
+							<div className="border-soft flex flex-col gap-1 border-r p-3">
 								<span className="text-fg-tertiary p-2 text-xs font-medium uppercase">
 									Design Tools
 								</span>
@@ -101,9 +101,9 @@ export function DesktopNavigation() {
 										<NavigationMenuLink
 											key={tool.title}
 											asChild
-											className="flex min-h-16 flex-row gap-3 p-3">
+											className="flex min-h-16 flex-row gap-3 rounded-lg p-3">
 											<Link href="#">
-												<div className="bg-primary-accent flex size-10 shrink-0 items-center justify-center rounded-md">
+												<div className="bg-primary-accent flex size-10 shrink-0 items-center justify-center rounded-lg">
 													{tool.icon}
 												</div>
 												<div className="flex flex-col">
@@ -128,7 +128,7 @@ export function DesktopNavigation() {
 										<NavigationMenuLink
 											key={link.title}
 											asChild
-											className="min-w-60 px-2 py-1.5 text-sm font-normal">
+											className="min-w-60 rounded-md px-2 py-1.5 text-sm font-normal">
 											<Link href={link.href}>{link.title}</Link>
 										</NavigationMenuLink>
 									))}
