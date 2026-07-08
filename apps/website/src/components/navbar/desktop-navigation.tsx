@@ -91,8 +91,8 @@ export function DesktopNavigation() {
 						<NavigationMenuTrigger className="bg-transparent">
 							Resources
 						</NavigationMenuTrigger>
-						<NavigationMenuContent className="flex w-[706px] flex-row p-0 md:w-[706px]">
-							<div className="border-soft flex flex-col gap-1 border-r p-3">
+						<NavigationMenuContent className="flex flex-row p-0">
+							<div className="border-soft flex w-[700px] flex-col gap-1 border-r p-3">
 								<span className="text-fg-tertiary p-2 text-xs font-medium uppercase">
 									Design Tools
 								</span>
@@ -110,7 +110,7 @@ export function DesktopNavigation() {
 													<span className="text-sm font-medium">
 														{tool.title}
 													</span>
-													<span className="text-fg-secondary text-xs font-normal">
+													<span className="text-fg-secondary text-sm font-normal">
 														{tool.description}
 													</span>
 												</div>
