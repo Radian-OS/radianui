@@ -94,3 +94,54 @@ import {
 	height="480"
 	path="pagination/rows-per-page-example"
 />
+
+---
+
+<ComponentDocContent
+	name={"Pagination"}
+	description={
+		"Pagination helps users navigate through large sets of content by splitting them into multiple pages. It provides previous and next page controls, page links, and a customizable layout that works seamlessly with your application's routing."
+	}
+	features={[
+		'Wraps the entire block in a semantic <nav aria-label="pagination"> tag to ensure assistive technologies correctly identify the navigation landmark.',
+		"Exposes a highly modular suite of layout blocks: <Pagination>, <PaginationContent>, <PaginationItem> and <PaginationEllipsis>.",
+		"Structural foundation, making it easier to use Tailwind's hidden sm:flex utilities to gracefully hide intermediate page numbers on small mobile screens.",
+	]}
+	related={[
+		{
+			title: "Table",
+			description:
+				"Pagination is almost universally paired with Data Tables to allow users to navigate through hundreds of database records efficiently.",
+			href: "/docs/components/table",
+		},
+		{
+			title: "Select",
+			description:
+				'Frequently placed adjacent to the pagination controls, allowing the user to explicitly change the "Rows per page" limit (e.g., 10, 50, 100).',
+			href: "/docs/components/select",
+		},
+		{
+			title: "Button",
+			description:
+				"The core aesthetic foundation that provides the hover and focus states for the individual pagination links.",
+			href: "/docs/components/button",
+		},
+	]}
+	faqs={[
+		{
+			question: "Does this component automatically split my data into pages?",
+			answer:
+				"No. The Radian Pagination is a strictly presentational UI component. It handles the visual layout, but you are completely responsible for managing the currentPage React state and applying standard JavaScript slice() methods (or API offset queries) to your data array.",
+		},
+		{
+			question: "How do I render the ellipsis (...) for large data sets?",
+			answer:
+				"If you have 50 pages, you shouldn't render 50 buttons. You must implement a custom React hook (often called usePagination) in your parent component that calculates a truncated array of visible pages based on the currentPage. You then map over that array, rendering a <PaginationEllipsis> component whenever the sequence breaks.",
+		},
+		{
+			question: "How do I align the pagination to the right side of my table?",
+			answer:
+				"The root <Pagination> component behaves like a standard flex container. You can pass standard Tailwind layout utilities through the className prop, such as justify-end, to push the entire block of buttons to the far right side of your container.",
+		},
+	]}
+/>

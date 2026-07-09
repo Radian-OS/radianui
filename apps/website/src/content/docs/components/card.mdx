@@ -116,3 +116,86 @@ import {
 #### Card With Form
 
 <ComponentPreview title="Card With Form" path="card/card-signin-example" />
+
+---
+
+<ComponentDocContent
+	name={"Card"}
+	description={
+		"A card is a box that groups related pieces of content, like an image, title, and text, into one neat, organized block. Cards are used to display information in a clean, bite-sized way, making it easier for users to scan and read content."
+	}
+	features={[
+		{
+			title: "Composable Architecture",
+			description:
+				"Exports a suite of flexible components: <Card>, <CardHeader>, <CardTitle>, <CardDescription>, <CardContent>, and <CardFooter>.",
+		},
+		{
+			title: "Pure Utility-First",
+			description:
+				"Built entirely with standard Tailwind CSS, requiring no external configuration files or complex setup.",
+		},
+		{
+			title: "Auto-Spacing",
+			description:
+				"Optimized flex and gap utilities handle spacing between header and content elements automatically.",
+		},
+		{
+			title: "Responsive",
+			description:
+				"Adapts naturally to available space when placed inside CSS Grid or Flexbox parent containers.",
+		},
+		{
+			title: "Theme Ready",
+			description:
+				"Utilizes semantic background colors, inheriting your theme's surface color and dark mode preferences seamlessly.",
+		},
+	]}
+	related={[
+		{
+			title: "Button",
+			description:
+				"Frequently placed inside the <CardFooter> to provide explicit call-to-action behaviors.",
+			href: "/docs/components/button",
+		},
+		{
+			title: "Badge",
+			description:
+				"Often floated in the <CardHeader> or positioned over a cover image to signify status, price, or category.",
+			href: "/docs/components/badge",
+		},
+		{
+			title: "Aspect Ratio",
+			description:
+				"Ideal for ensuring cover images maintain a consistent 16:9 or 4:3 dimension across all devices.",
+			href: "/docs/components/aspect-ratio",
+		},
+	]}
+	faqs={[
+		{
+			question: "How do I make the entire card clickable?",
+			answer:
+				"You can render the root <Card> as an <a> or <button> tag, or wrap the component in a Link component from your routing library (e.g., Next.js Link). Use hover utilities like hover:shadow-md to indicate interactivity.",
+		},
+		{
+			question: "Can I remove the border and use a drop shadow instead?",
+			answer:
+				"Yes. Open card.tsx and modify the root <Card> class names. Remove the border utility and add a shadow utility like shadow-md or shadow-lg to fit your design system.",
+		},
+		{
+			question: "How do I align buttons to the right in the footer?",
+			answer:
+				"The <CardFooter> uses Flexbox by default. Apply justify-end to the className prop on the footer to push its children to the right side.",
+		},
+		{
+			question: "How do I add a full-width image to the top?",
+			answer:
+				"Place your <img> or Image component directly inside the <Card> wrapper, above the <CardHeader>. Use rounded-t-lg to ensure the image corners match the card's border-radius.",
+		},
+		{
+			question: "Why does padding change on mobile?",
+			answer:
+				"The default Radian Card includes responsive padding utilities (e.g., p-4 sm:p-6) on the <CardContent> and <CardHeader>. This optimizes screen real estate on mobile devices while maintaining comfortable spacing on desktops.",
+		},
+	]}
+/>

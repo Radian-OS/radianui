@@ -81,6 +81,68 @@ import { Progress } from "@/components/ui/progress"
 
 ---
 
+<ComponentDocContent
+	name={"Progress"}
+	description={
+		"Progress is a component that visually shows how much of a task or process has been completed. It provides a customizable progress bar with consistent styling across browsers."
+	}
+	features={[
+		"@radix-ui/react-progress, ensures strict ARIA compliance with automatic aria-valuemax, aria-valuemin, and aria-valuenow attribute management.",
+		"Exposes a clean, unopinionated two-part structure featuring a root <Progress> track container and a nested visual indicator element.",
+		"Seamlessly integrates with standard Tailwind styling and CSS transforms to smoothly reflect the current completion percentage visually.",
+		"Highly performant animations; the default setup utilizes transform: translateX for the fill bar to avoid triggering expensive browser layout recalculations.",
+		"Easily adaptable for both determinate (known completion) and indeterminate (unknown duration) loading states.",
+	]}
+	related={[
+		{
+			title: "File Upload",
+			description:
+				"The most common use case; a progress bar provides critical user feedback while a large image or document is actively uploading to your server.",
+			href: "/docs/components/file-upload",
+		},
+		{
+			title: "Skeleton",
+			description:
+				"Use a Skeleton for initial, structural page loading to mimic text blocks. Use Progress for specific, measurable tasks or API calls.",
+			href: "/docs/components/skeleton",
+		},
+		{
+			title: "Alert Dialog",
+			description:
+				"Frequently paired with long-running, critical operations (like processing a large payment) to prevent users from prematurely closing the page.",
+			href: "/docs/components/alert-dialog",
+		},
+	]}
+	faqs={[
+		{
+			question: "How do I pass the current progress value?",
+			answer:
+				"You pass a numerical value (typically between 0 and 100) to the value prop on the root <Progress> component. The primitive automatically maps this to the aria-valuenow attribute so screen readers correctly announce the exact percentage.",
+		},
+		{
+			question: "How does the bar visually fill up?",
+			answer:
+				"The internal <ProgressPrimitive.Indicator> element controls the visual fill. It calculates the necessary offset based on your value prop and uses standard inline styles (like transform: translateX(-${100 - (value || 0)}%)) to accurately position the filled section of the bar.",
+		},
+		{
+			question: "How do I change the color of the progress fill?",
+			answer:
+				"Open the progress.tsx file in your repository. Locate the internal <ProgressPrimitive.Indicator> wrapper and change the standard bg-primary utility class to your desired custom color (like bg-error or a specific brand gradient).",
+		},
+		{
+			question: 'Can I create an "indeterminate" loading state?',
+			answer:
+				"Yes. If you don't know exactly how long a task will take, you can pass null or explicitly omit the value prop. The component enters an indeterminate state, and you can apply a custom, infinite CSS keyframe animation directly to the indicator block (like a sweeping pulse) to signal ongoing work.",
+		},
+		{
+			question:
+				"Why is the progress bar not animating smoothly when the state updates?",
+			answer:
+				"Ensure that your internal indicator component has standard CSS transitions applied. The default Radian setup includes the transition-all Tailwind utility on the indicator, which ensures that as your React state updates the value prop, the bar smoothly glides to the new position rather than snapping instantly.",
+		},
+	]}
+/>
+
 ## Props
 
 <PropsTableWrapper>

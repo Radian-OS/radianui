@@ -99,3 +99,66 @@ import { toast } from "sonner"
 #### Sonner Expand
 
 <ComponentPreview title="Sonner Expand" path="sonner/sonner-expand" />
+
+---
+
+<ComponentDocContent
+	name={"Sonner"}
+	description={
+		"Sonner is a lightweight React library for displaying toast notifications. It provides a layout to show success, error, warning, and custom messages with smooth animations, and customizable styling making it easy to notify users from anywhere in your application."
+	}
+	features={[
+		"Imperative API trigger notifications from anywhere, including event handlers, API interceptors, or even outside of React components.",
+		"Fully accessible automatically manages aria-live regions and role attributes to ensure screen readers announce notifications correctly.",
+		'Native "swipe-to-dismiss" gesture support on mobile devices for an ergonomic, app-like experience.',
+		"Intelligent stacking automatically manages overlapping toasts, stacking them cleanly when multiple notifications trigger simultaneously.",
+		"Zero-config Tailwind styling, making it trivial to adjust colors, padding, and border radius in the sonner.tsx file to match your application's design system.",
+	]}
+	related={[
+		{
+			title: "Dialog",
+			description:
+				'Use Dialogs for critical, blocking interruptions that require user action. Use Sonner for transient, non-blocking feedback (e.g., "Settings saved").',
+			href: "/docs/components/dialog",
+		},
+		{
+			title: "Form",
+			description:
+				"The most frequent use case for Sonner; trigger a success toast immediately after a successful react-hook-form submission or API call.",
+			href: "/docs/components/form",
+		},
+		{
+			title: "Button",
+			description:
+				"Essential for triggering toasts manually; you can pass the toast function directly into the onClick handler of your UI components.",
+			href: "/docs/components/button",
+		},
+	]}
+	faqs={[
+		{
+			question: "How do I trigger a toast from outside a React component?",
+			answer:
+				'Sonner is designed for this exact use case. Because it uses a static function approach, you can import the toast object directly into any utility file or API service file and call toast.success("Message") whenever needed.',
+		},
+		{
+			question: "How do I customize the default toast position?",
+			answer:
+				'You can pass the position prop (e.g., position="top-right" or position="bottom-center") directly to the <Toaster /> component, which you should render once at the top-level of your application (typically in your layout.tsx).',
+		},
+		{
+			question: "Can I render custom JSX instead of just a string?",
+			answer:
+				"Yes. You can pass a React component as the first argument (e.g., toast(<MyCustomToastContent />)). This is perfect for complex notifications that need to include buttons, progress bars, or formatted layout grids.",
+		},
+		{
+			question: 'How do I add a "Undo" or "Dismiss" action button?',
+			answer:
+				'Sonner provides a built-in action object in its toast configuration. You can pass { label: "Undo", onClick: () =>... } to automatically render a secondary button inside the toast that triggers your custom logic.',
+		},
+		{
+			question: "Why aren't the toasts animating correctly?",
+			answer:
+				"Sonner relies on standard Tailwind CSS keyframes for its smooth entry and exit transitions. Ensure your tailwind.config.ts includes the necessary animation and keyframe definitions provided during the CLI installation. If these are missing, the toasts may simply appear or vanish without the smooth sliding effect.",
+		},
+	]}
+/>

@@ -163,6 +163,68 @@ import {
 
 ---
 
+<ComponentDocContent
+	name={"Input"}
+	description={
+		"Input is a form field used to collect short text from users, such as names, emails, or passwords. It provides a consistent design, accessible support, and customizable input with support for focus states, dark mode, disabled states, and seamless integration with libraries like React Hook Form."
+	}
+	features={[
+		"Includes standard Tailwind interactive state modifiers out of the box, seamlessly handling disabled:opacity-50 and focus-visible:ring accessibility requirements.",
+		"Natively supports all standard HTML input types (text, email, password, number) with robust fallback styling for muted placeholder text.",
+		"Inherits your application's global theme variables (like bg-bg and border-soft) to instantly match your brand without requiring manual hex code adjustments.",
+		"Clean, structural footprint, making it easier to customize the height, border radius, or internal padding using standard utility classes.",
+	]}
+	related={[
+		{
+			title: "Form",
+			description:
+				"The essential parent wrapper used to bind the Input to complex validation logic, Zod schemas, and accessible error messages.",
+			href: "/docs/components/form",
+		},
+		{
+			title: "Label",
+			description:
+				"Pairs directly with the Input (via the htmlFor attribute) to provide screen readers with the necessary context for the data being requested.",
+			href: "/docs/components/label",
+		},
+		{
+			title: "Textarea",
+			description:
+				"Use this component instead when you need to capture long-form, multi-line user data like blog comments or product descriptions.",
+			href: "/docs/components/text-area",
+		},
+	]}
+	faqs={[
+		{
+			question: "How do I integrate this input with React Hook Form?",
+			answer:
+				'You can use the standard...register("fieldName") spread syntax directly on the Radian Input element. This allows you to seamlessly track the input\'s value and blur events.',
+		},
+		{
+			question: "Can I add an icon inside the input field?",
+			answer:
+				"You can use <InputWrapper/> or <InputGroup/> to add an icon inside the input.",
+		},
+		{
+			question: "How do I remove or change the default focus ring?",
+			answer:
+				"Open the input.tsx file in your repository and locate the focus-visible:ring and focus-visible:ring-ring. You can either delete them entirely to rely strictly on border color changes, or modify the ring color and width to perfectly match your brand UI guidelines.",
+		},
+		{
+			question:
+				"Does this component handle password visibility toggling natively?",
+			answer:
+				'No, the standard component is purely a styled input primitive. To add a "show/hide" eye icon, you must create a custom wrapper component that manages a boolean React state and conditionally swaps the input\'s native type prop from "password" to "text" or you can copy the Password toggle example from above.',
+		},
+		{
+			question:
+				"Why isn't my file input styling matching the standard text inputs?",
+			answer:
+				'Native <input type="file"> elements use specialized browser pseudo-elements for their "Choose File" buttons. While the Radian Input includes basic normalization classes like file:border-0 file:bg-transparent if you want a truly polished drag-and-drop experience, you should use our dedicated Radian File Upload component instead.',
+		},
+	]}
+/>
+
 ## Props
 
 <PropsTableWrapper>

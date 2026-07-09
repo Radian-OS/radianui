@@ -78,6 +78,67 @@ import { AspectRatio } from "@/components/ui/aspect-ratio"
 
 ---
 
+<ComponentDocContent
+	name={"Aspect Ratio"}
+	description={
+		"Aspect ratio is the relationship between the width and height of a box or screen. This component helps your pictures and videos keep their square or rectangular shape so they don't look stretched out or squashed when you view them on different screens. Use this component to make sure your images and videos stay the right shape on any device."
+	}
+	features={[
+		"Utilizes a robust CSS-based approach to lock proportions, preventing Cumulative Layout Shift (CLS) during image or iframe loading.",
+		"Accepts a ratio prop (e.g., 16/9 or 4/3) to mathematically define the exact dimensions of the container.",
+		"Renders as a standard div wrapper, allowing nested content to automatically stretch and fill the space using absolute positioning.",
+		"Zero-dependency visual styling, relying entirely on Tailwind to handle responsive width adjustments or parent container constraints.",
+		"Fully compatible with Next.js <Image> components to enforce strict aspect boundaries without breaking native image optimization.",
+	]}
+	related={[
+		{
+			title: "Card",
+			description:
+				"Perfect for rendering cover images or video thumbnails at a strict 16:9 ratio at the top of a card layout.",
+			href: "/docs/components/card",
+		},
+		{
+			title: "Carousel",
+			description:
+				"Essential for ensuring all swipeable slides maintain the exact same physical dimensions regardless of the source image's native size.",
+			href: "/docs/components/carousel",
+		},
+		{
+			title: "Skeleton",
+			description:
+				"Ideal for creating loading placeholders that exactly match the dimensions of the final loaded media, eliminating UI jumping.",
+			href: "/docs/components/skeleton",
+		},
+	]}
+	faqs={[
+		{
+			question: "How do I change the aspect ratio for different screen sizes?",
+			answer:
+				"You can manage responsive behaviors by dynamically updating the ratio prop based on window size, or more commonly, by wrapping the component in a Tailwind container that controls the maximum width at different breakpoints. The Radix primitive handles the internal proportion math automatically.",
+		},
+		{
+			question: "Does this replace Tailwind's native aspect ratio classes?",
+			answer:
+				"Tailwind CSS v4 provides built-in aspect-* utilities, but the Radix Aspect Ratio primitive remains the preferred choice for handling dynamic, calculated ratios or custom user-defined dimensions that require programmatic control beyond standard CSS presets.",
+		},
+		{
+			question: "How do I make nested images fit the container properly?",
+			answer:
+				"The nested child element (like an <img> or <video>) should typically have Tailwind's object-cover alongside w-full h-full classes applied. This ensures the media fills the exact boundary established by the Aspect Ratio wrapper without stretching or distorting the image.",
+		},
+		{
+			question: "Can I use this for embedding YouTube or Vimeo iframes?",
+			answer:
+				"Absolutely. Wrapping an <iframe> in the Radian Aspect Ratio component with a ratio={16/9} prop is the most reliable way to create responsive video embeds that seamlessly scale down on mobile devices without leaving empty black bars.",
+		},
+		{
+			question: "Why is my content overflowing the aspect ratio container?",
+			answer:
+				"The primitive uses absolute positioning internally to stretch the child element. If your child content is spilling outside the boundaries, ensure you have applied overflow-hidden to the parent wrapper or that your inner content is explicitly styled to clip or truncate text properly.",
+		},
+	]}
+/>
+
 ## Props
 
 <PropsTableWrapper>

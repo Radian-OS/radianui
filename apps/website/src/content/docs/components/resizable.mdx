@@ -101,6 +101,66 @@ import {
 
 ---
 
+<ComponentDocContent
+	name={"Resizable"}
+	description={
+		"Resizable lets users adjust the size of adjacent panels by dragging a resize handle.It provides smooth resizing, easy size customization, and flexible layouts for complex interfaces."
+	}
+	features={[
+		"Highly composable, declarative layout pieces: <ResizablePanelGroup>, <ResizablePanel>, and <ResizableHandle>.",
+		"Supports both horizontal (columns) and vertical (rows) orientations seamlessly through standard component props.",
+		"Enforces strict numerical constraints via intuitive props like defaultSize, minSize, and maxSize (represented strictly as percentages, not pixels).",
+	]}
+	related={[
+		{
+			title: "Sidebar",
+			description:
+				"Frequently placed inside a Resizable Panel to allow power users to adjust the width of their application navigation menu.",
+			href: "/docs/components/sidebar",
+		},
+		{
+			title: "Scroll Area",
+			description:
+				"Absolutely essential for wrapping the content inside the panels; this ensures that shrinking a panel doesn't break the global page layout or hide data irreversibly.",
+			href: "/docs/components/scroll-area",
+		},
+		{
+			title: "Divider",
+			description:
+				"Standard Dividers are static structural elements. Use Resizable Handles when user customization of layout space is required.",
+			href: "/docs/components/divider",
+		},
+	]}
+	faqs={[
+		{
+			question: "How do I define the sizes of the panels?",
+			answer:
+				"You must use percentage values, not fixed pixel widths. Pass numbers (e.g., defaultSize={50}) directly to each <ResizablePanel> component. The sum of the sibling panels' default sizes within a single group should generally equal exactly 100.",
+		},
+		{
+			question: "Can I nest resizable groups inside each other?",
+			answer:
+				"Yes. You can place a vertical <ResizablePanelGroup> directly inside the <ResizablePanel> of a horizontal group. This allows you to effortlessly create complex, multi-quadrant dashboard layouts common in code editors or data analysis tools.",
+		},
+		{
+			question: "How do I add a visual grab icon to the separator?",
+			answer:
+				"Open the component source file in your repository. You can pass the withHandle boolean prop to the <ResizableHandle> component to automatically render a centered, styled Radix/Lucide drag icon within the separator line.",
+		},
+		{
+			question: "How do I save the user's custom panel sizes across sessions?",
+			answer:
+				"The underlying library exposes an onLayout callback on the root <ResizablePanelGroup>. You can map this function to save the emitted array of percentage values to localStorage or a database, and then feed those values back into the defaultSize props on the next page mount.",
+		},
+		{
+			question:
+				"Why isn't my panel shrinking below a certain point when I drag it?",
+			answer:
+				"First, check your minSize prop on the panel. Second, and most commonly, ensure the CSS content inside your panel isn't forcing a rigid minimum width. If an inner div has a hardcoded min-w-[300px] or a flex container lacks overflow-hidden, the browser layout engine will physically block the panel from shrinking any further, overriding the drag math.",
+		},
+	]}
+/>
+
 ## Props
 
 <PropsTableWrapper>

@@ -93,3 +93,66 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 #### Form
 
 <ComponentPreview title="Form" path="combobox/combobox-form" />
+
+---
+
+<ComponentDocContent
+	name={"Combobox"}
+	description={
+		"A Combobox is a search box with a dropdown list that helps users find and select an item from a long list quickly. Use this component when you have a large list of options and want to let users filter and pick one easily."
+	}
+	features={[
+		"Powered by the cmdk library for optimized, high-speed command menu filtering logic.",
+		"Composed within a Radix UI Popover, utilizing portal rendering to eliminate z-index conflicts and overflow clipping.",
+		"Fully accessible keyboard navigation, allowing users to up/down arrow through filtered results and select options with the Enter key.",
+		"Support for custom empty states to provide clear user feedback when search queries return no matches.",
+		"Seamlessly styled with Tailwind CSS, allowing you to perfectly match the input trigger button and dropdown panel to your specific design system.",
+	]}
+	related={[
+		{
+			title: "Select",
+			description:
+				"Use a standard Select component when the list of options is short (typically under 10-15 items) and text-filtering is unnecessary.",
+			href: "/docs/components/select",
+		},
+		{
+			title: "Command",
+			description:
+				"The core engine behind the Combobox; use the standalone Command component when you want to build a full-page, macOS-style global search palette (Command+K).",
+			href: "/docs/components/command",
+		},
+		{
+			title: "Popover",
+			description:
+				"The underlying contextual container used to float the Combobox's dropdown menu directly beneath the input trigger element.",
+			href: "/docs/components/popover",
+		},
+	]}
+	faqs={[
+		{
+			question: "Why use this over the native HTML <select> element?",
+			answer:
+				"Native <select> elements lack consistent cross-browser styling and native search capabilities. The Radian Combobox provides a unified UI and high-performance filtering for large datasets.",
+		},
+		{
+			question: "Can I fetch options asynchronously from an external API?",
+			answer:
+				"Yes. By binding the <CommandInput> value to a debounced state hook, you can trigger API requests and display loading indicators while the component awaits the resolved data.",
+		},
+		{
+			question: "How do I implement a multi-select combobox?",
+			answer:
+				"While designed for single selection by default, you can extend the onSelect handler to manage an array of values in state and render selected items as interactive Badges within the trigger.",
+		},
+		{
+			question: "Why isn't the dropdown closing when I select an item?",
+			answer:
+				"Selection behavior in a controlled component requires manual state management. Ensure your onSelect logic calls setOpen(false) to dismiss the Popover once a choice is finalized.",
+		},
+		{
+			question: "Does the combobox support custom icons next to the options?",
+			answer:
+				"Yes. The CommandItem component accepts any React node as a child, allowing for the inclusion of SVG icons or status indicators aligned via standard Tailwind utility classes.",
+		},
+	]}
+/>

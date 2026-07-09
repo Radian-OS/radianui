@@ -131,6 +131,61 @@ const steps = [
 
 ---
 
+<ComponentDocContent
+	name={"Stepper"}
+	description={
+		"Stepper is a component that guides users through a series of steps, such as onboarding, checkout or multi-step forms. It visually tracks progress, highlights the current step, and supports customizable layouts and step indicators for a clear user experience."
+	}
+	features={[
+		"Modular, composable components: <Stepper>, <StepperItem>, <StepperTrigger>,<StepperSeparator> and so on.",
+		"Supports dynamic state management: easily track loading, completed, inactive and active via standard React state or context.",
+		"Fully responsive design; seamlessly adapt the layout from a horizontal bar for desktop to a compact or vertical list for mobile interfaces using Tailwind utilities.",
+		'Built-in support for "clickable" steps, enabling users to jump between sections in a non-linear flow, or "locked" steps for strict linear wizard experiences.',
+	]}
+	related={[
+		{
+			title: "Form",
+			description:
+				"The essential parent wrapper; the Stepper acts as the navigator, while the Form handles the individual fields and Zod validation for each step.",
+			href: "/docs/components/form",
+		},
+		{
+			title: "Button",
+			description:
+				'Essential for the "Next" and "Previous" actions that actually drive the Stepper\'s internal state.',
+			href: "/docs/components/button",
+		},
+		{
+			title: "Alert",
+			description:
+				"Frequently used inside a specific step if the user encounters an error in their submission that prevents them from proceeding to the next screen.",
+			href: "/docs/components/alert",
+		},
+	]}
+	faqs={[
+		{
+			question: "How do I manage the current step state?",
+			answer:
+				'The Radian Stepper is a controlled component. You manage the currentStep index in your parent component\'s state and pass it down as a prop. When the user clicks "Next," you simply increment the index in your state handler.',
+		},
+		{
+			question: "Can I render the Stepper vertically?",
+			answer:
+				"Yes. While the default layout is horizontal, you can easily change the root flex direction in your component source. By applying flex-col to the <Stepper> container, the orientation switches to vertical, which is often preferred for side-nav wizards or mobile-heavy applications.",
+		},
+		{
+			question: 'How do I style a step as "completed" vs "active"?',
+			answer:
+				"The component utilizes Tailwind's data-attribute modifiers. You can style the step indicators using data-[state=completed]:bg-green-500 or data-[state=active]:ring-2 to visually distinguish the stages of the user's progress.",
+		},
+		{
+			question: "How do I integrate this with React Hook Form?",
+			answer:
+				"You should use a useEffect or a step-change handler to trigger validation for the current step's fields before updating the currentStep state. This prevents users from moving forward if their current step contains invalid data.",
+		},
+	]}
+/>
+
 ## Props
 
 <PropsTableWrapper>

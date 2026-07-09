@@ -132,6 +132,59 @@ import {
 
 ---
 
+<ComponentDocContent
+	name={"Navigation Menu"}
+	description={
+		"Navigation Menu is a component for creating website headers and dropdown or mega menus. It provides smooth hover interactions, keyboard accessibility, responsive dropdowns, and customizable animations for a polished navigation experience."
+	}
+	features={[
+		"@radix-ui/react-navigation-menu, providing strict ARIA compliance and seamless keyboard traversal using Tab and Arrow keys.",
+		"Features an intelligent <NavigationMenuViewport> that smoothly animates its width and height to match the specific content of the currently active dropdown panel.",
+		"Comprehensive suite of modular components: <NavigationMenu>, <NavigationMenuList>, <NavigationMenuItem>, <NavigationMenuTrigger>, <NavigationMenuContent>, and <NavigationMenuLink>.",
+		'Natively handles safe "hover tunnels," allowing users to move their mouse diagonally from the trigger to the content without the menu abruptly closing.',
+		"Includes custom Tailwind keyframes (like animate-in, fade-in, and zoom-in) for polished, native-feeling interactions.",
+	]}
+	related={[
+		{
+			title: "Menubar",
+			description:
+				"Use a Menubar for building persistent, click-driven, macOS-style application menus. Use the Navigation Menu for standard, hover-driven public website headers.",
+			href: "/docs/components/menubar",
+		},
+		{
+			title: "Dropdown",
+			description:
+				"Simpler, click-triggered contextual menus. Not suited for massive, multi-column mega menus.",
+			href: "/docs/components/dropdown",
+		},
+		{
+			title: "Sidebar",
+			description:
+				"Navigation Menus are strictly horizontal. For mobile screens, you will typically hide the Navigation Menu and replace it with a hamburger button that opens a Radian Sheet (Drawer).",
+			href: "/docs/components/sidebar",
+		},
+	]}
+	faqs={[
+		{
+			question:
+				"How do I create a standard top-level link without a dropdown menu?",
+			answer:
+				"Not every item needs a dropdown. You can render a <NavigationMenuItem> that contains only a <NavigationMenuLink> (omitting the Trigger and Content pieces) to create a simple, direct navigational link right in the top bar.",
+		},
+		{
+			question:
+				"Can I put rich HTML like images or CSS Grids inside the dropdown?",
+			answer:
+				"Absolutely. The <NavigationMenuContent> component is simply an unopinionated container. You can render complex Tailwind grid layouts, featured article cards, icons, and buttons directly inside it to create a massive, detailed mega menu.",
+		},
+		{
+			question: "How do I change how fast the menu opens on hover?",
+			answer:
+				"The Radix primitive includes a slight delay to prevent accidental flashing when a user moves their mouse quickly across the screen. You can adjust this globally by passing the delayDuration prop (measured in milliseconds) directly to the root <NavigationMenu> component. Mobile devices automatically ignore this and convert the interaction to a standard tap.",
+		},
+	]}
+/>
+
 ## Props
 
 <PropsTableWrapper>

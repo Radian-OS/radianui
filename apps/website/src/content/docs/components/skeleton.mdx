@@ -100,6 +100,67 @@ import { Skeleton } from "@/components/ui/skeleton"
 
 ---
 
+<ComponentDocContent
+	name={"Skeleton"}
+	description={
+		"Skeleton is a placeholder component that displays the layout of content while data is loading. It helps improve the loading experience by reducing layout shifts and giving users a preview of the page before the actual content appears."
+	}
+	features={[
+		"Utilizes standard Tailwind CSS keyframes (specifically the animate-pulse utility) to create a smooth, native-feeling loading animation out of the box.",
+		"Inherits your application's specific CSS variables (defaulting to bg-bg or bg-secondary) to ensure the placeholder perfectly matches your dark or light mode theme.",
+		"Completely structural footprint; behaves exactly like a standard div, allowing you to shape it into text blocks, avatars, or complex card layouts effortlessly.",
+		"Adds absolutely zero JavaScript overhead to your application bundle, relying entirely on CSS for rendering and animation.",
+		"Highly composable; meant to be stacked, grouped, and sized using standard flexbox and grid layouts.",
+	]}
+	related={[
+		{
+			title: "Progress",
+			description:
+				"Use a Progress bar for specific, measurable tasks (like uploading a file). Use a Skeleton for initial structural page rendering.",
+			href: "/docs/components/progress",
+		},
+		{
+			title: "Card",
+			description:
+				'Skeletons are most frequently grouped together to build a mock "Card" layout, perfectly mirroring the height and width of your actual data widgets.',
+			href: "/docs/components/card",
+		},
+		{
+			title: "Table",
+			description:
+				"Essential for rendering a mock table body (e.g., 5 rows of Skeletons) while a heavy database pagination query resolves.",
+			href: "/docs/components/table",
+		},
+	]}
+	faqs={[
+		{
+			question: "Is this powered by a Radix UI primitive?",
+			answer:
+				"No. The Radian Skeleton is a strictly presentational UI block built entirely with native DOM elements and standard Tailwind CSS classes. It requires no complex state management.",
+		},
+		{
+			question: "How do I make the skeleton look like a circular Avatar?",
+			answer:
+				"Because the Skeleton component accepts all standard Tailwind utilities through the className prop, you simply apply h-10 w-10 rounded-full to perfectly mimic a user profile picture.",
+		},
+		{
+			question: "How do I build a text paragraph skeleton?",
+			answer:
+				"You should stack multiple Skeleton components vertically within a flex container. Apply a standard height (like h-4) to all of them, but vary their widths (e.g., w-full, w-[90%], w-[60%]) to naturally simulate wrapping text lines.",
+		},
+		{
+			question: "How do I make this accessible for screen readers?",
+			answer:
+				'A purely visual skeleton provides zero context to a blind user. When wrapping your page in a loading state, ensure the parent container has aria-busy="true" and ideally includes a visually hidden <span> (using Tailwind\'s sr-only class) that announces "Loading content..." to assistive technologies.',
+		},
+		{
+			question: "How do I change the speed of the pulsing animation?",
+			answer:
+				"Open your tailwind.config.ts file. The component relies on Tailwind's default pulse animation (which typically runs at a 2-second duration). You can easily override the keyframes and animation timings in your config to make the pulse faster or swap it for a shimmering gradient effect.",
+		},
+	]}
+/>
+
 ## Props
 
 <PropsTableWrapper>

@@ -134,6 +134,62 @@ import {
 
 ---
 
+<ComponentDocContent
+	name={"Alert"}
+	description={
+		"An Alert is a simple box used to show important messages to users, like success notifications or warnings. It can be used to draw attention to specific information on your page without interrupting the user's workflow."
+	}
+	features={[
+		"Includes default semantic variants via CVA: default, destructive, warning, success, and info.",
+		"Exports modular sub-components like <AlertTitle> and <AlertDescription> for easy text formatting.",
+		'Accessible by default, using the role="alert" attribute to ensure screen readers immediately announce critical information.',
+		"Completely unstyled structure outside of Tailwind utilities, making it trivial to add custom border radius or shadows.",
+		"Built-in layout support for prepending Lucide React icons next to the text content.",
+	]}
+	related={[
+		{
+			title: "Alert Dialog",
+			description:
+				"When the message requires immediate user interaction or confirmation, not just passive reading.",
+			href: "/docs/components/alert-dialog",
+		},
+		{
+			title: "Sonner (Toast)",
+			description:
+				"When you need a transient, floating notification instead of a static banner embedded in the page flow.",
+			href: "/docs/components/sonner",
+		},
+	]}
+	faqs={[
+		{
+			question: "How do I dismiss or close the Alert?",
+			answer:
+				"The default Radian Alert is a static component. To make it dismissible, you can wrap it in a custom React state hook (const [isOpen, setIsOpen] = useState(true)) and conditionally render it, adding an absolute-positioned icon button to trigger the state change.",
+		},
+		{
+			question: "Can I use custom icons for the different alert variants?",
+			answer:
+				"Yes. Since you have the source code, you can pass any SVG or icon library component as a child. Many users define a custom prop to automatically render specific icons based on the variant prop.",
+		},
+		{
+			question: "Does this alert automatically disappear after a few seconds?",
+			answer:
+				"No, this is a static layout block designed to remain in the DOM. If you need auto-dismissing notifications, you should use the Sonner component instead, which handles complex timing and queuing logic.",
+		},
+		{
+			question:
+				"How can I change the background color of the destructive alert?",
+			answer:
+				"You can locate the CVA configuration within the component. Under the destructive key, you can swap out the default Tailwind color classes (e.g., bg-red-500) for your custom brand variables or alternative utility classes.",
+		},
+		{
+			question: "Is the Alert component responsive?",
+			answer:
+				"Yes, it relies on standard flexbox utilities provided by Tailwind. It will automatically span the full width of its container and wrap text gracefully on smaller mobile screens.",
+		},
+	]}
+/>
+
 ## Props
 
 <PropsTableWrapper>

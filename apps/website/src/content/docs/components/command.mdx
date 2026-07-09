@@ -108,6 +108,67 @@ import {
 
 ---
 
+<ComponentDocContent
+	name={"Command"}
+	description={
+		"The Radian Command component is a keyboard-first, composable command menu - typically used to create a macOS-style global search palette. Built on top of the ultra-fast, unstyled cmdk library, it handles all the complex logic for filtering and keyboard navigation, wrapped in fully customizable Tailwind CSS that you own directly in your workspace."
+	}
+	features={[
+		"Powered directly by cmdk for instantaneous, unstyled item filtering without requiring a heavy external state manager.",
+		"Exposes highly composable sub-components: <Command>, <CommandInput>, <CommandList>, <CommandEmpty>, <CommandGroup>, and <CommandItem>.",
+		"Native keyboard navigation out of the box, including Up/Down arrows to traverse lists and Enter to execute actions.",
+		"Includes a pre-configured <CommandDialog> export, which intelligently wraps the command menu in a Radian Dialog for instant Cmd+K overlay functionality.",
+		"Fully styled with standard Tailwind CSS, making it trivial to add custom hover states, border radii, or dark mode overrides directly in the codebase.",
+	]}
+	related={[
+		{
+			title: "Combobox",
+			description:
+				"Combines the Command engine with a Popover to create a powerful, filterable dropdown menu for standard HTML forms.",
+			href: "/docs/components/combobox",
+		},
+		{
+			title: "Dialog",
+			description:
+				"The essential background container used to house the Command menu when building a floating, full-screen search interface.",
+			href: "/docs/components/dialog",
+		},
+		{
+			title: "Badge",
+			description:
+				"Frequently used inside <CommandItem> entries to display small keyboard shortcut hints or categorical tags to the user.",
+			href: "/docs/components/badge",
+		},
+	]}
+	faqs={[
+		{
+			question: "How do I implement the Cmd+K global keyboard shortcut?",
+			answer:
+				"You can use a standard React useEffect hook that listens for the keydown event on the document (checking for e.key === 'k' and e.metaKey || e.ctrlKey). When detected, simply toggle the React state variable that controls your <CommandDialog> visibility.",
+		},
+		{
+			question: "Why aren't my command items filtering correctly?",
+			answer:
+				"The underlying cmdk engine filters based on the value prop or the direct text content of the <CommandItem>. If your item contains complex nested React nodes, you must explicitly provide a plain-text value prop to each item so the filtering algorithm reads the correct string.",
+		},
+		{
+			question: "Can I fetch search results asynchronously from an API?",
+			answer:
+				"Yes. Pass shouldFilter={false} to the root <Command> component. You then bind the <CommandInput> value to your own React state and handle the API fetching and mapping manually.",
+		},
+		{
+			question: "How do I visually group search results together?",
+			answer:
+				'Use the exported <CommandGroup> component. By wrapping your items in a group and providing a heading prop (e.g., heading="Settings"), the list will automatically render semantic, non-selectable headers to separate categories.',
+		},
+		{
+			question: "Is this component accessible to screen readers?",
+			answer:
+				"Yes. The cmdk engine handles all complex WAI-ARIA combobox and listbox attributes automatically, ensuring visually impaired users can seamlessly type to filter and navigate the list.",
+		},
+	]}
+/>
+
 ## Props
 
 <PropsTableWrapper>

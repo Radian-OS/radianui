@@ -79,6 +79,65 @@ import { TextArea } from "@/components/ui/text-area"
 
 ---
 
+<ComponentDocContent
+	name={"Text Area"}
+	description={
+		"Textarea is a form component for entering long, multi-line text, such as comments, descriptions, or feedback. It provides a consistent, and easily customizable input with support for focus, disabled, and error states."
+	}
+	features={[
+		"Includes standard Tailwind interactive state modifiers out of the box, seamlessly handling disabled:opacity-50 and focus-visible:ring accessibility requirements.",
+		"Inherits your application's global theme variables (like bg-bg and border-input) to instantly match your brand without requiring manual hex code adjustments.",
+		"Clean, structural footprint, making it easy to customize height, vertical resize behavior, or internal padding using standard utility classes.",
+		'Includes normalized placeholder styling, ensuring your "hint" text is always legible and meets contrast accessibility standards.',
+	]}
+	related={[
+		{
+			title: "Form",
+			description:
+				"The essential parent wrapper used to bind the Textarea to complex validation logic, Zod schemas, and accessible error messages.",
+			href: "/docs/components/form",
+		},
+		{
+			title: "Label",
+			description:
+				"Pairs directly with the Textarea (via the htmlFor attribute) to provide screen readers with the necessary context for the long-form data being requested.",
+			href: "/docs/components/label",
+		},
+		{
+			title: "Input",
+			description:
+				"Use this component for short-form data (emails, names, passwords). Use the Textarea only when you expect the user to write more than a single line of text.",
+			href: "/docs/components/input",
+		},
+	]}
+	faqs={[
+		{
+			question: "How do I integrate this with React Hook Form?",
+			answer:
+				'Because the component utilizes forwardRef, you can use the standard...register("fieldName") spread syntax directly on the Radian Textarea. This allows RHF to seamlessly track the value, blur events, and validation status.',
+		},
+		{
+			question: "How do I enable or disable resizing?",
+			answer: "You can pass disabled boolean props for disable state",
+		},
+		{
+			question: "How do I set a default number of rows?",
+			answer:
+				"You pass the rows={4} prop directly to the component. This sets the initial height of the input area in lines of text, though you can still override this behavior if the user drags the resize handle.",
+		},
+		{
+			question: "Why isn't the text wrapping correctly?",
+			answer:
+				"Standard HTML <textarea> elements wrap text by default. If you are experiencing issues where the text stays on one long line, ensure you have not accidentally applied whitespace-nowrap [VERIFY] via a global CSS style or a conflicting class on the textarea container.",
+		},
+		{
+			question: 'How do I make the textarea "auto-grow" as the user types?',
+			answer:
+				'The base Radian Textarea is a static, controlled primitive. To achieve "auto-growing" functionality (where the height expands automatically without a resize handle), you must wrap this component in a small hook that listens to the onChange event and updates the style.height based on the scrollHeight of the element.',
+		},
+	]}
+/>
+
 ## Props
 
 <PropsTableWrapper>

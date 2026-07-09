@@ -138,6 +138,70 @@ import {
 
 ---
 
+<ComponentDocContent
+	name={"Dialog"}
+	description={
+		"A Dialog is a pop-up window that appears on top of the main page content to show important information or ask for a specific action. You can use it to create simple alerts or detailed forms that keep the user focused on a single task."
+	}
+	features={[
+		"Fully accessible out of the box: automatically traps focus within the modal, manages required ARIA roles, and handles Esc key dismissal.",
+		"Renders content intelligently in a React Portal to avoid z-index and overflow clipping issues from parent CSS containers.",
+		"Includes an animated backdrop overlay using Tailwind's animate-in and fade-in utilities for a polished, native feel.",
+		"Prevents body scrolling automatically when the dialog is open, ensuring users don't accidentally lose their place on the underlying page.",
+		"Highly composable architecture exporting modular pieces: <Dialog>, <DialogTrigger>, <DialogContent>, <DialogHeader>, <DialogFooter>, and <DialogTitle>.",
+	]}
+	related={[
+		{
+			title: "Alert Dialog",
+			description:
+				"Use this specialized, interruptive dialog specifically when the user must acknowledge critical or destructive actions (like deletions).",
+			href: "/docs/components/alert-dialog",
+		},
+		{
+			title: "Drawer",
+			description:
+				"A better, more ergonomic mobile alternative to a standard dialog, designed to slide up fluidly from the bottom of the screen.",
+			href: "/docs/components/drawer",
+		},
+		{
+			title: "Popover",
+			description:
+				"Ideal for displaying rich content in a smaller, non-modal overlay attached directly to a trigger element rather than centering on the screen.",
+			href: "/docs/components/popover",
+		},
+	]}
+	faqs={[
+		{
+			question:
+				"How do I prevent the dialog from closing when clicking the outside background?",
+			answer:
+				"By default, the dialog closes on outside clicks and Esc key presses. You can easily override this behavior by passing onPointerDownOutside={(e) => e.preventDefault()} directly to the <DialogContent> component, ensuring users must explicitly click a close button or submit your form to dismiss the modal.",
+		},
+		{
+			question: "Can I nest a dialog safely inside another dialog?",
+			answer:
+				"While the underlying Radix UI primitive technically supports this, nested modals almost always lead to confusing UX and cramped layouts on smaller screens. A better approach is usually to dynamically swap the content/components within a single open <DialogContent> wrapper, keeping the interface clean.",
+		},
+		{
+			question: "How do I control the maximum width of the dialog box?",
+			answer:
+				"You can adjust the width globally or per-instance by modifying the sm:max-w-[425px] class located directly on the <DialogContent> component. Because you own the source code, you can even create distinct size variants using CVA (e.g., sm, lg, xl) for different contextual use cases.",
+		},
+		{
+			question:
+				"Does the dialog automatically scroll if the content is too long?",
+			answer:
+				"The default Radian Dialog does not force internal scrolling. You can easily achieve this by adding a fixed height constraint (like max-h-[80vh]) and overflow-y-auto to the <DialogContent> classes. This ensures your body content scrolls while keeping your <DialogHeader> and <DialogFooter> cleanly sticky at the top and bottom.",
+		},
+		{
+			question:
+				"Why is my dialog content not animating correctly when it opens?",
+			answer:
+				"Dialog entrance and exit animations rely on properly mounting and unmounting the component from the DOM. Ensure your project configuration includes the necessary animation plugins or custom keyframes (like animate-in, zoom-in, and fade-in) that the Radian CLI automatically sets up during the initial workspace initialization.",
+		},
+	]}
+/>
+
 ## Props
 
 <PropsTableWrapper>

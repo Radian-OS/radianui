@@ -77,3 +77,60 @@ npm install react-international-phone
 	title="No Formatting"
 	path="phone-number-input/phone-number-no-formatting"
 />
+
+---
+
+<ComponentDocContent
+	name={"Phone Number Input"}
+	description={
+		"Phone Number Input is a form component for entering phone numbers from different countries. It includes a country code selector, automatic number formatting, and validation-friendly input for a consistent and user-friendly experience."
+	}
+	features={[
+		"Automatically formats user input with correct spacing and parentheses in real-time based on the currently selected country.",
+		"Includes a composable, accessible country selector complete with standard flag icons.",
+		"Guarantees that the underlying component state outputs a clean, standardized E.164 string (e.g., +14155552671) ready for your backend API, regardless of how it is visually displayed.",
+		"Shares identical focus rings, border radiuses, and disabled states with the standard Radian <Input>, ensuring perfect form consistency.",
+	]}
+	related={[
+		{
+			title: "Input",
+			description:
+				"The foundational standard field. Use the Phone Number Input explicitly for telephones, but fall back to the standard Input for simple numerical IDs.",
+			href: "/docs/components/input",
+		},
+		{
+			title: "OTP Field",
+			description:
+				"The standard next step in the authentication journey; after entering their phone number, users are typically directed to an OTP Field to enter the SMS verification code.",
+			href: "/docs/components/otp-field",
+		},
+		{
+			title: "Form",
+			description:
+				"The necessary wrapper to integrate the phone input with Zod validation, ensuring users receive localized error messages if they enter an invalid number.",
+			href: "/docs/components/form",
+		},
+	]}
+	faqs={[
+		{
+			question: "How do I validate if the phone number is actually correct?",
+			answer:
+				'While the input restricts formatting, strict validation requires utilizing the underlying library\'s helpers. If you are using Zod, you can import the isValidPhoneNumber utility from the base package and apply it to your schema (e.g.,.refine(isValidPhoneNumber, { message: "Invalid phone number" })).',
+		},
+		{
+			question: "How do I set a default country on initial load?",
+			answer:
+				'You can pass the defaultCountry prop (using a standard ISO 3166-1 alpha-2 string, like "US" or "GB") directly to the component. The input will automatically mount with that country\'s flag and formatting rules active.',
+		},
+		{
+			question: "Can I restrict the combobox to only allow specific countries?",
+			answer:
+				'Yes. You can pass a countries array prop containing the specific two-letter country codes you want to support (e.g., countries={["US", "CA", "MX"]}). The combobox will instantly filter out the rest of the globe.',
+		},
+		{
+			question: "How do I integrate this with React Hook Form?",
+			answer:
+				"Because this is a complex, controlled component that doesn't trigger standard native HTML input events, you can map the custom onChange handler to field.onChange to ensure your form state captures the formatted string.",
+		},
+	]}
+/>

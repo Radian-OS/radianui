@@ -452,3 +452,67 @@ Override mobile drawer width
 ```
 
 > The mobile `Drawer` includes a visually hidden `DialogTitle` for screen reader support. Cookie-based persistence only applies on desktop, mobile Drawer state is session-only.
+
+---
+
+<ComponentDocContent
+	name={"Sidebar"}
+	description={
+		"Sidebar is a vertical navigation component for organizing links, menus, and actions in an application. Styled with Tailwind CSS, it supports responsive layouts, collapsible sections, nested menus, and a mobile-friendly drawer for a consistent navigation experience across all devices."
+	}
+	features={[
+		"Responsive architecture transitions from a persistent desktop layout to a mobile-friendly slide-out overlay utilizing a shared <SidebarProvider>.",
+		"Highly modular, composable API: <Sidebar>, <SidebarHeader>, <SidebarContent>, <SidebarGroup>, <SidebarMenu>,<SidebarFooter> and so on.",
+		'Built-in support for a "collapsed" (or icon-only rail) state, allowing power users to shrink the sidebar width to maximize horizontal screen real estate.',
+		"Provides seamless ARIA accessibility, ensuring screen readers can correctly navigate the nested menu lists and skip over the sidebar when jumping to main content.",
+		"Structure perfectly suited for nesting Radian Collapsible components to create deeply nested, accordion-style navigation hierarchies.",
+	]}
+	related={[
+		{
+			title: "Drawer",
+			description:
+				"The underlying structural overlay primitive used automatically by the Sidebar to render itself on mobile viewports.",
+			href: "/docs/components/drawer",
+		},
+		{
+			title: "Resizable",
+			description:
+				"Frequently wraps the Sidebar component in desktop IDE layouts to allow users to manually drag and adjust the exact pixel width of the navigation pane.",
+			href: "/docs/components/resizable",
+		},
+		{
+			title: "Navigation Menu",
+			description:
+				"Use a Sidebar for vertical, application-style dashboard layouts; use the Navigation Menu for horizontal, public-facing website headers.",
+			href: "/docs/components/navigation-menu",
+		},
+	]}
+	faqs={[
+		{
+			question: "How does it handle mobile screens?",
+			answer:
+				"The standard Radian implementation utilizes a custom hook (like useIsMobile) alongside a global <SidebarProvider>. On small screens, the persistent desktop <aside> is removed, and a designated trigger button opens a Radian Sheet containing your <Sidebar> content, ensuring a flawless touch experience.",
+		},
+		{
+			question: "How do I make it collapse into an icon-only rail?",
+			answer:
+				"You can toggle the sidebar's state via the provider context. This triggers a data-[state=collapsed] modifier on the root <Sidebar> element, utilizing Tailwind CSS to smoothly animate the width (e.g., from w-64 to w-16) and visually hide the text labels while keeping the icons centered.",
+		},
+		{
+			question: "Can I put a user profile dropdown at the bottom?",
+			answer:
+				"Absolutely. The <SidebarFooter> component is specifically designed to stick to the bottom of the navigation viewport, making it the perfect flex container for a user Avatar wrapped inside a standard Radian Dropdown Menu for account actions.",
+		},
+		{
+			question: "How do I highlight the active page link?",
+			answer:
+				"You pass an isActive boolean prop directly to the <SidebarMenuButton> (or its equivalent link wrapper). This automatically applies the appropriate Tailwind interactive colors (like bg-accent text-accent-foreground) to clearly indicate the user's current route.",
+		},
+		{
+			question:
+				"Does the main page content automatically shift when the sidebar collapses?",
+			answer:
+				"Yes. Because the <SidebarProvider> typically wraps both the Sidebar and your main <main> content area inside a CSS flex layout, expanding or collapsing the sidebar will automatically and smoothly push or pull the adjacent content to fill the available screen space without overlapping.",
+		},
+	]}
+/>

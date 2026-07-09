@@ -109,6 +109,68 @@ import { CodeArea } from "@/components/ui/code-area"
 
 ---
 
+<ComponentDocContent
+	name={"Code Area"}
+	description={
+		"A Code Area is a simple, clean box used to display programming code on a website. It keeps code formatted correctly so it remains readable and easy for others to copy. Use this component to present code snippets clearly so your readers can easily see and copy the examples you provide."
+	}
+	features={[
+		"[VERIFY] Semantic HTML structure using <pre> and <code> tags for optimal screen reader accessibility and SEO formatting.",
+		'[VERIFY] Includes a built-in "Copy to Clipboard" utility button utilizing the native navigator.clipboard browser API.',
+		"[VERIFY] Handles horizontal and vertical overflow gracefully with customized scrollbars using standard Tailwind layout classes.",
+		"Unopinionated typography defaults, making it trivial to inject custom coding fonts (like JetBrains Mono, Fira Code, or Geist Mono) globally.",
+		'[VERIFY] Built-in absolute positioning for headers or language tags (e.g., placing "typescript" in the top right corner of the block).',
+	]}
+	related={[
+		{
+			title: "Scroll Area",
+			description:
+				"Essential if you want to implement custom, cross-browser styled scrollbars within the code block instead of relying on the native, clunky browser defaults.",
+			href: "/docs/components/scroll-area",
+		},
+		{
+			title: "Tabs",
+			description:
+				"Often used to group multiple Code Areas together, allowing users to toggle between different package managers (npm, pnpm, yarn) or related file names.",
+			href: "/docs/components/tabs",
+		},
+		{
+			title: "Sonner (Toast)",
+			description:
+				'Perfect for triggering a transient "Copied to clipboard!" notification after the user interacts with the copy action.',
+			href: "/docs/components/sonner",
+		},
+	]}
+	faqs={[
+		{
+			question: "Does this component include built-in syntax highlighting?",
+			answer:
+				"No, the base Radian Code Area is an unopinionated container [VERIFY]. To keep your application's bundle size as small as possible, you are encouraged to integrate a dedicated, lightweight library like Shiki, Prism.js, or Highlight.js inside the component source code to handle the actual tokenizing and coloring.",
+		},
+		{
+			question: "How does the copy-to-clipboard functionality work?",
+			answer:
+				"The component includes a button that triggers a native browser API call (navigator.clipboard.writeText) [VERIFY]. Because you own the source code, you can easily modify the CodeArea.tsx file to swap the default copy icon for a checkmark for two seconds after a successful click to provide visual feedback.",
+		},
+		{
+			question:
+				"How do I prevent long lines of code from wrapping automatically?",
+			answer:
+				"By default, code areas should preserve the exact author formatting. The standard Tailwind utility whitespace-pre [VERIFY] ensures that lines extend horizontally naturally, triggering the x-axis scrollbar instead of breaking the line and ruining the code's readability.",
+		},
+		{
+			question: "Can I add line numbers to the code block?",
+			answer:
+				"Yes, though this is most efficiently handled by the syntax highlighter you choose to pair with it. If you are rendering raw strings manually, you can map over an array of your code split by newlines and render a text-muted-foreground span [VERIFY] for the index on the left side of the flex container.",
+		},
+		{
+			question: "How do I handle styling changes for dark mode?",
+			answer:
+				"The Radian container itself natively responds to standard Tailwind dark mode classes (like dark:bg-zinc-950) [VERIFY] for the outer wrapper. For the code itself, modern highlighters like Shiki allow you to pass dual themes (e.g., github-light and github-dark), which you can toggle using your app's existing theme provider.",
+		},
+	]}
+/>
+
 ## Props
 
 <PropsTableWrapper>

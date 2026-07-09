@@ -116,6 +116,67 @@ import {
 
 ---
 
+<ComponentDocContent
+	name={"Tooltip"}
+	description={
+		"Tooltip displays a small text label when users hover over, focus on, or long-press an element. It provides smart positioning and customizable styling for showing helpful hints and additional information."
+	}
+	features={[
+		"@radix-ui/react-tooltip, ensures strict ARIA compliance with correct tooltip role and native automatic content announcement.",
+		"Exposes a highly composable, declarative API: <TooltipProvider>, <Tooltip>, <TooltipTrigger>, and <TooltipContent>.",
+		"Natively handles safe \"hover tunnels,\" ensuring the tooltip doesn't flicker or close unexpectedly if the user's mouse moves slightly while interacting with the trigger.",
+		"Collision-aware positioning via the underlying Popper engine automatically flips or shifts the content if it hits the edge of the viewport.",
+		"Features built-in support for delayDuration, allowing you to control exactly how quickly the tooltip appears after the user initiates the hover.",
+	]}
+	related={[
+		{
+			title: "Popover",
+			description:
+				"Use a Tooltip for brief, plain-text labels. Use a Popover for rich, interactive content (like forms or images) that requires a click to open.",
+			href: "/docs/components/popover",
+		},
+		{
+			title: "Button",
+			description:
+				"The most frequent trigger for a tooltip. A simple icon-only button often relies on a tooltip to provide necessary context to the user.",
+			href: "/docs/components/button",
+		},
+		{
+			title: "Dropdown Menu",
+			description:
+				'If your "help" text is long or requires interactive links, a Dropdown Menu or Popover is a better structural choice than a Tooltip.',
+			href: "/docs/components/dropdown",
+		},
+	]}
+	faqs={[
+		{
+			question: "How do I globally control the hover delay?",
+			answer:
+				"You wrap your entire application (or a specific section) in the <TooltipProvider> component. You can pass the delayDuration prop (e.g., delayDuration={300}) to this provider, which dictates the delay for all nested <Tooltip> components.",
+		},
+		{
+			question: "How do I change the position of the tooltip?",
+			answer:
+				'You pass the side prop directly to the <TooltipContent> component. Options include side="top" | "right" | "bottom" | "left". You can also use align="start" | "center" | "end" to fine-tune its position relative to the trigger.',
+		},
+		{
+			question: "Can I render a custom arrow on the tooltip?",
+			answer:
+				"Yes. You include the <TooltipArrow /> component inside your <TooltipContent>. It automatically inherits the parent's background color, or you can style it using Tailwind's fill utility to match your theme.",
+		},
+		{
+			question: "Why isn't the tooltip visible when I hover?",
+			answer:
+				"First, ensure you have wrapped the component in a <TooltipProvider>. Second, check that your <TooltipTrigger> contains exactly one focusable child element. If it's empty or contains multiple elements, the Radix primitive won't know where to anchor the tooltip.",
+		},
+		{
+			question: "How do I make the tooltip text accessible?",
+			answer:
+				"Radix automatically handles this. The primitive creates an aria-describedby relationship between the trigger and the content, ensuring that when a screen reader user focuses on the trigger, the tooltip text is read aloud as context.",
+		},
+	]}
+/>
+
 ## Props
 
 <PropsTableWrapper>
