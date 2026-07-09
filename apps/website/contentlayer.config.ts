@@ -153,9 +153,19 @@ export const Blog = defineDocumentType(() => ({
 	},
 }))
 
+export const Changelog = defineDocumentType(() => ({
+	name: "Changelog",
+	filePathPattern: `changelog/**/*.mdx`,
+	contentType: "mdx",
+	fields: {
+		version: { type: "string", required: true },
+		date: { type: "date", required: true },
+	},
+}))
+
 export default makeSource({
 	contentDirPath: "./src/content",
-	documentTypes: [Doc, Blog],
+	documentTypes: [Doc, Blog, Changelog],
 	disableImportAliasWarning: true,
 	mdx: {
 		remarkPlugins: [remarkGfm],

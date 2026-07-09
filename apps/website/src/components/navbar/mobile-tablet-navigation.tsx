@@ -13,6 +13,7 @@ import {
 	AccordionTrigger,
 } from "@/registry/ui/accordion"
 import { IconButton } from "@/registry/ui/button"
+import { additionalLinks, designTools } from "./desktop-navigation"
 import EarlyAccessButton from "./early-access-button"
 import FigmaPreviewButton from "./figma-preview-button"
 import { WebsiteLogo } from "./website-logo"
@@ -127,6 +128,41 @@ export function MobileNavigation({
 								</section>
 							</AccordionItem>
 						))}
+					<AccordionItem className="border-none" value="Resources">
+						<section>
+							<AccordionTrigger className="py-3 text-base">
+								Resources
+							</AccordionTrigger>
+							<AccordionContent>
+								<div className="flex flex-col items-start">
+									<div className="text-fg-tertiary w-full py-2 text-xs font-medium uppercase">
+										Design Tools
+									</div>
+									{designTools.map((tool) => (
+										<Link
+											onClick={() => setIsMobileMenuOpen(false)}
+											key={tool.title}
+											className={`${pathname === "#" ? "text-fg0" : ""} text-fgflex text-fgfont-normal w-full items-center py-3`}
+											href="#">
+											{tool.title}
+										</Link>
+									))}
+									<div className="text-fg-tertiary mt-2 w-full py-2 text-xs font-medium uppercase">
+										Additional Links
+									</div>
+									{additionalLinks.map((link) => (
+										<Link
+											onClick={() => setIsMobileMenuOpen(false)}
+											key={link.title}
+											className={`${pathname === link.href ? "text-fg0" : ""} text-fgflex text-fgfont-normal w-full items-center py-3`}
+											href={link.href}>
+											{link.title}
+										</Link>
+									))}
+								</div>
+							</AccordionContent>
+						</section>
+					</AccordionItem>
 				</Accordion>
 			</div>
 		</nav>
