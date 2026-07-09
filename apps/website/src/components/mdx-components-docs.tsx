@@ -382,7 +382,7 @@ export const components = {
 			.replace(/[^\w-]/g, "")
 		return (
 			<h4
-				className={cn("scroll-mt-26 group flex items-center", className)}
+				className={cn("scroll-mt-26 h-0 overflow-hidden opacity-0", className)}
 				{...props}>
 				<Link href={`#${id}`} className="flex items-center gap-2">
 					{children}
