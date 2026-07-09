@@ -23,6 +23,15 @@ const AVATARS = [
 	"/avatar/male-3.png",
 	"/avatar/male-4.png",
 	"/avatar/female-3.png",
+	"/avatar/male-5.png",
+	"/avatar/male-6.png",
+	"/avatar/female-4.png",
+	"/avatar/female-5.png",
+	"/avatar/male-7.png",
+	"/avatar/male-8.png",
+	"/avatar/female-6.png",
+	"/avatar/female-7.png",
+	"/avatar/female-8.png",
 ]
 
 const AvatarPlayground = () => {

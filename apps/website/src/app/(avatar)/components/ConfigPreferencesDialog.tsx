@@ -2,7 +2,6 @@
 
 import { useId, useState } from "react"
 import {
-	Blend,
 	Check,
 	ChevronDown,
 	Code2,
@@ -13,6 +12,7 @@ import {
 	Sparkles,
 	Star,
 } from "lucide-react"
+import Image from "next/image"
 import { Button } from "@/registry/ui/button"
 import {
 	Dialog,
@@ -111,23 +111,21 @@ const COLOR_MODE_OPTIONS: {
 	value: ColorMode
 	title: string
 	description: string
-	icon: typeof Pipette
-	iconClassName: string
+	icon?: typeof Pipette
+	iconClassName?: string
+	image?: string
 }[] = [
 	{
 		value: "static",
 		title: "Static Color",
 		description: "Static background color. Uses hex value for color code",
 		icon: Pipette,
-		iconClassName: "bg-bg-secondary text-fg-secondary",
 	},
 	{
 		value: "radian",
 		title: "Radian Colors",
 		description: "Library colors. The code will use colors from Radian library",
-		icon: Blend,
-		iconClassName:
-			"bg-gradient-to-br from-violet-500 to-fuchsia-500 text-white",
+		image: "/logo.svg",
 	},
 ]
 
@@ -168,7 +166,14 @@ const ConfigPreferencesDialog = ({
 							onValueChange={(v) => setColorMode(v as ColorMode)}
 							className="grid grid-cols-2 gap-3">
 							{COLOR_MODE_OPTIONS.map(
-								({ value, title, description, icon: Icon, iconClassName }) => {
+								({
+									value,
+									title,
+									description,
+									icon: Icon,
+									image,
+									iconClassName,
+								}) => {
 									const selected = colorMode === value
 									const inputId = `${idPrefix}-color-${value}`
 									return (
@@ -180,10 +185,31 @@ const ConfigPreferencesDialog = ({
 													? "border-violet-500"
 													: "border-border hover:bg-bg-secondary"
 											}`}>
-											<span
-												className={`flex size-8 items-center justify-center rounded-lg ${iconClassName}`}>
-												<Icon className="size-4" />
-											</span>
+											{value === "static" ? (
+												<Button
+													type="button"
+													color="neutral"
+													variant="outline"
+													onClick={(e) => {
+														e.preventDefault()
+													}}>
+													{Icon && <Icon className="size-3.5" />}
+												</Button>
+											) : (
+												<span
+													className={`flex size-8 items-center justify-center overflow-hidden rounded-lg ${iconClassName ?? ""}`}>
+													{image ? (
+														<Image
+															src={image}
+															alt={image}
+															width={32}
+															height={32}
+														/>
+													) : Icon ? (
+														<Icon className="size-4" />
+													) : null}
+												</span>
+											)}
 
 											<span className="text-sm font-medium">{title}</span>
 											<span className="text-fg-secondary text-xs leading-snug">
@@ -203,7 +229,7 @@ const ConfigPreferencesDialog = ({
 						</RadioGroup>
 					</div>
 
-					<DropdownDivider className="mx-0 border-dashed" />
+					<div className="mx-0 border-b border-dashed" />
 
 					{/* Copy button functionality */}
 					<div className="flex items-center justify-between gap-4">
@@ -218,7 +244,7 @@ const ConfigPreferencesDialog = ({
 						<CopyFormatDropdown value={copyFormat} onChange={setCopyFormat} />
 					</div>
 
-					<DropdownDivider className="mx-0 border-dashed" />
+					<div className="mx-0 border-b border-dashed" />
 
 					{/* Preserve settings */}
 					<div className="flex items-center justify-between gap-4">
