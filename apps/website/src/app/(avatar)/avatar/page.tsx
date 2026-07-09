@@ -3,8 +3,10 @@ import Link from "next/link"
 import Background from "@/components/effects/background"
 import Footer from "@/components/home/footer"
 import { BorderBeam } from "@/registry/animated/border-beam"
+import { Avatar, AvatarImage } from "@/registry/ui/avatar"
 import { Badge } from "@/registry/ui/badge"
 import AvatarHeroActionButtons from "../components/AvatarHeroActionButton"
+import AvatarPlayground from "../components/AvatarPlayground"
 
 const upperHeroBeamPath =
 	"M0 1H132C142.8 1 152.8 6.8 158.1 16.2L286.5 258.8C292.1 269.4 303.2 276 315.2 276H438"
@@ -12,10 +14,22 @@ const upperHeroBeamPath =
 const lowerHeroBeamPath =
 	"M0 1H92C102.6 1 112.4 6.6 117.8 15.8L154.2 78.2C159.6 87.4 169.4 93 180 93H214"
 
+export const people = [
+	{
+		image: "/avatar/header-1.jpg",
+	},
+	{
+		image: "/avatar/header-2.jpg",
+	},
+	{
+		image: "/avatar/header-3.jpg",
+	},
+]
+
 export default function Page() {
 	return (
 		<div className="min-h-screen w-full overflow-x-hidden">
-			<Background>
+			<Background topPosition="top-[700px]">
 				<div className="md:pt-30 pt-15 flex flex-col items-center justify-center gap-12">
 					<div className="max-w-250 flex flex-col items-center justify-center gap-6">
 						<Link
@@ -37,6 +51,18 @@ export default function Page() {
 							</Badge>
 							<BorderBeam size={50} />
 						</Link>
+						<div className="flex items-center -space-x-2">
+							{people.map((person) => (
+								<Avatar
+									size={`${person.image === "/avatar/header-2.jpg" ? "80" : "48"}`}
+									key={person.image}>
+									<AvatarImage
+										className={`${person.image === "/avatar/header-2.jpg" ? "z-10" : ""}`}
+										src={person.image}
+									/>
+								</Avatar>
+							))}
+						</div>
 						<h1 className="heading-1 dark:from-fg dark:to-fg-secondary not-dark:text-fg bg-clip-text text-center text-transparent dark:bg-gradient-to-b">
 							Beautiful, Production-Ready UI Avatars{" "}
 							<span className="text-fg bg-none [-webkit-text-fill-color:initial]">
@@ -63,11 +89,10 @@ export default function Page() {
 
 function VideoPreviewWithBeams() {
 	return (
-		<div className="bg-bg border-soft h-200 -mx-4 mt-[100px] flex w-[calc(100%+2rem)] justify-center border-t md:-mx-5 md:w-[calc(100%+2.5rem)]">
+		<div className="bg-bg border-soft -mx-4 mt-[100px] flex w-[calc(100%+2rem)] justify-center border-t md:-mx-5 md:w-[calc(100%+2.5rem)]">
 			<div className="max-w-368 relative w-full px-4 md:px-5">
-				<div className="relative z-20 flex justify-center">
-					{/* <VideoDialogPreview /> */}
-					Avatar Preview
+				<div className="relative z-20 flex justify-center py-10">
+					<AvatarPlayground />
 				</div>
 
 				<HeroBeamPath

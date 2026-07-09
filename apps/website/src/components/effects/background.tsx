@@ -2,12 +2,15 @@ import { FlickeringGrid } from "./flickering"
 
 export default function Background({
 	children,
+	topPosition = "top-[560px]",
 }: {
 	children?: React.ReactNode
+	topPosition?: string
 }) {
 	return (
 		<div className="relative w-full px-4 md:px-5">
-			<div className="bg-primary/60 absolute left-1/2 top-[560px] z-30 mx-auto aspect-square w-[300px] -translate-x-1/2 rounded-full rounded-b-none blur-[130px] min-[450px]:w-[400px] sm:w-[600px] md:w-[700px] xl:aspect-video xl:w-[1300px]"></div>
+			<div
+				className={`bg-primary/60 absolute left-1/2 ${topPosition} z-30 mx-auto aspect-square w-[300px] -translate-x-1/2 rounded-full rounded-b-none blur-[130px] min-[450px]:w-[400px] sm:w-[600px] md:w-[700px] xl:aspect-video xl:w-[1300px]`}></div>
 
 			{/* Neutral background overlay */}
 			<div className="from-bg via-bg/0 to-bg bg-linear-to-b absolute inset-0 top-[380px] z-20 h-full max-h-[960px] w-full to-90%" />
