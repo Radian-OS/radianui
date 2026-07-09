@@ -76,3 +76,66 @@ import { useFileUpload } from "@/components/ui/file-upload"
 ## Credits
 
 Built with [coss ui File Upload Hook](https://github.com/cosscom/coss/blob/main/apps/origin/registry/default/hooks/use-file-upload.ts).
+
+---
+
+<ComponentDocContent
+	name={"File Upload"}
+	description={
+		"The File Upload component lets users easily pick and add files from their device to your web application. It is used to securely attach documents, images, or other files to forms or profiles."
+	}
+	features={[
+		"Support for drag-and-drop functionality and manual file selection.",
+		"Configurable file size limits and accepted file formats (e.g., images, videos).",
+		"Real-time file validation and error handling for invalid uploads.",
+		"Progress indicators to show the status of ongoing uploads.",
+		"Customizable variants including area-based, card-based, and avatar uploaders.",
+	]}
+	related={[
+		{
+			title: "Form",
+			description:
+				"Essential for handling file data within a structured submission and displaying validation errors.",
+			href: "/docs/components/form",
+		},
+		{
+			title: "Progress Bar",
+			description:
+				"Used to visually represent the upload completion status to the user.",
+			href: "/docs/components/progress",
+		},
+		{
+			title: "Avatar",
+			description:
+				"Often paired with File Upload for profile picture management.",
+			href: "/docs/components/avatar",
+		},
+	]}
+	faqs={[
+		{
+			question: "How do I restrict file types?",
+			answer:
+				'Use the accept prop to specify MIME types like "image/*" or specific extensions to limit what users can upload.',
+		},
+		{
+			question: "Is there a file size limit?",
+			answer:
+				"Yes, you can define a maxSize property in bytes to prevent users from uploading excessively large files.",
+		},
+		{
+			question: "Can users upload multiple files at once?",
+			answer:
+				"By enabling the multiple attribute, the component allows users to select and upload several files simultaneously.",
+		},
+		{
+			question: "Does it support drag and drop?",
+			answer:
+				"Yes, the container variant is designed to handle drag-and-drop interactions natively.",
+		},
+		{
+			question: "Can I customize the upload UI?",
+			answer:
+				"Absolutely. You can choose between area, card, and avatar variants or customize the styling using Tailwind utility classes.",
+		},
+	]}
+/>

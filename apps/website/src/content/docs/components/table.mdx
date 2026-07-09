@@ -126,3 +126,66 @@ import { LucideInfo } from "lucide-react"
 #### Employee Dashboard Table
 
 <ComponentPreview title="Employee Dashboard Table" path="table/table-example" />
+
+---
+
+<ComponentDocContent
+	name={"Table"}
+	description={
+		"Table is a component for displaying and organizing data in rows and columns. Built on TanStack Table and styled with Tailwind CSS, it supports features like sorting, filtering, pagination, row selection, and customizable layouts, making it ideal for data-rich applications."
+	}
+	features={[
+		"TanStack Table, provides an incredibly robust, headless engine for sorting, filtering, and managing complex table states.",
+		"Modular, composable API: <Table>, <TableHeader>, <TableBody>, <TableFooter>, <TableHead>, <TableRow>, and <TableCell>.",
+		"Supports sticky headers and columns using standard Tailwind utilities (e.g., sticky top-0), ensuring readability for long datasets.",
+		"Fully responsive design; easily implement horizontal scroll areas or dynamic column hiding for mobile viewports.",
+		"Built-in support for row selection (checkboxes) and expandable rows, allowing for interactive master-detail layouts.",
+	]}
+	related={[
+		{
+			title: "Pagination",
+			description:
+				"Essential for breaking up large datasets; typically placed immediately below the Table.",
+			href: "/docs/components/pagination",
+		},
+		{
+			title: "Scroll Area",
+			description:
+				"Often wraps the Table component to allow for easy, unified scrolling on mobile devices or within confined layout panels.",
+			href: "/docs/components/scroll-area",
+		},
+		{
+			title: "Input",
+			description:
+				"Frequently used as a global filter/search box above the Table to narrow down displayed records.",
+			href: "/docs/components/input",
+		},
+	]}
+	faqs={[
+		{
+			question: "How do I enable sorting for my columns?",
+			answer:
+				"You define the accessorKey and enableSorting: true in your TanStack column definitions. The header then receives a column object, allowing you to trigger column.toggleSorting() on click.",
+		},
+		{
+			question: "How do I handle row selection?",
+			answer:
+				'You add a selection column to your column definitions and use the table.getIsAllPageRowsSelected() and row.getToggleSelectedHandler() hooks. This allows you to track selected rows in a local React state and perform bulk actions (e.g., "Delete Selected").',
+		},
+		{
+			question: "Can I render custom components inside a cell?",
+			answer:
+				"Yes. You simply define a cell function in your column definition that returns your JSX. This is perfect for rendering status badges, user avatars, or action buttons inside a table row.",
+		},
+		{
+			question: "How do I add zebra-striping to the rows?",
+			answer:
+				'You can easily apply this via Tailwind\'s nth-child modifiers directly on the table row component. Adding className="even:bg-muted/50" to your <TableRow> component will automatically alternate the background colors of your rows.',
+		},
+		{
+			question: "Why isn't my table layout responsive on mobile?",
+			answer:
+				"Standard tables are not inherently responsive. You must wrap the entire <Table> component in a div with overflow-x-auto. This ensures that if the table is too wide for the screen, the user can safely scroll horizontally without breaking the rest of your page layout.",
+		},
+	]}
+/>

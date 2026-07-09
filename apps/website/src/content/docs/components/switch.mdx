@@ -105,6 +105,67 @@ import { Switch } from "@/components/ui/switch"
 
 ---
 
+<ComponentDocContent
+	name={"Switch"}
+	description={
+		"Switch is a toggle component that lets users turn a boolean value either true or false. It provides accessible interactions, smooth toggle animations and customizable styling for a consistent user experience."
+	}
+	features={[
+		"@radix-ui/react-switch, ensures strict ARIA compliance with correct switch role and aria-checked state management.",
+		"Supports keyboard interaction; users can toggle the state instantly by pressing the Space or Enter keys when the element is focused.",
+		"Highly composable pieces: <Switch>, <SwitchIndicator> and <SwitchWrapper>..",
+		"Effortlessly styled with Tailwind CSS, utilizing data-[state=checked] modifiers to smoothly transition background colors and thumb positions.",
+		"Structural foundation, making it easier to scale for different UI densities from compact settings menus to prominent, large toggles.",
+	]}
+	related={[
+		{
+			title: "Checkbox",
+			description:
+				"Use a Checkbox for choosing options in a list or acknowledging terms. Use a Switch specifically for binary, immediate actions (like enabling a feature).",
+			href: "/docs/components/checkbox",
+		},
+		{
+			title: "Label",
+			description:
+				"Absolutely essential for providing context to the switch; Radian ensures the Label can be clicked to toggle the state of the Switch.",
+			href: "/docs/components/label",
+		},
+		{
+			title: "Form",
+			description:
+				"The necessary wrapper to integrate the Switch into Zod schemas and display error messages if a required toggle is not activated.",
+			href: "/docs/components/form",
+		},
+	]}
+	faqs={[
+		{
+			question: "How do I manage the Switch state?",
+			answer:
+				"You manage the boolean state in your parent component and pass it to the checked prop. You should then listen to the onCheckedChange callback to update your state whenever the user toggles the switch.",
+		},
+		{
+			question: "How do I change the size of the switch?",
+			answer:
+				'You adjust the sizing with the help of size prop (e.g.; size="24") classes on the root <Switch> element or classes like h-5 w-9 can be modified in the switch.tsx source file to perfectly match your brand\'s density requirements.',
+		},
+		{
+			question: "How do I integrate this with React Hook Form?",
+			answer:
+				"Wrap the <Switch> inside an RHF <Controller>. Map the onCheckedChange primitive event directly to the field.onChange handler to ensure your form data accurately reflects the toggle state.",
+		},
+		{
+			question: "Does it work with standard form labels?",
+			answer:
+				"Yes. Because the underlying primitive handles focus delegation, you can wrap the Switch and its associated text label inside a single <Label> component. Clicking the text label will automatically trigger the toggle animation.",
+		},
+		{
+			question: "How can I make the thumb move smoother?",
+			answer:
+				"The default Radian implementation uses the transition-transform Tailwind utility on the <SwitchThumb> component. Ensure this class is present, and you can further customize the animation duration by adding a class like duration-200 to the thumb's Tailwind list.",
+		},
+	]}
+/>
+
 ## Props
 
 <PropsTableWrapper>

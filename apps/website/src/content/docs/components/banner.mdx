@@ -110,6 +110,61 @@ import {
 
 ---
 
+<ComponentDocContent
+	name={"Banner"}
+	description={
+		"A banner is a bar at the top or bottom of a screen that shows important messages to visitors. Use a banner to display site-wide announcements like promotions or maintenance alerts."
+	}
+	features={[
+		"Designed to span the full viewport width by default using standard w-full flexbox layouts.",
+		"Includes an optional dismiss action pre-configured with a Lucide React X icon for efficient state management.",
+		"Supports semantic styling variants via CVA (such as default, warning, and destructive) to communicate the appropriate urgency level.",
+		"Structurally un-opinionated, making it trivial to configure as a sticky or fixed element at the top or bottom of the screen.",
+		'Engineered for accessibility, utilizing role="status" or role="alert" based on notification priority.',
+	]}
+	related={[
+		{
+			title: "Alert",
+			description:
+				"Use an Alert when the message needs to be embedded directly within a specific content flow (like a form error) rather than spanning the full viewport.",
+			href: "/docs/components/alert",
+		},
+		{
+			title: "Sonner (Toast)",
+			description:
+				'Ideal for transient, user-triggered notifications (like "Profile saved") rather than persistent sitewide announcements.',
+			href: "/docs/components/sonner",
+		},
+	]}
+	faqs={[
+		{
+			question: "How do I make the banner sticky at the top of the page?",
+			answer:
+				"Since the component source is fully owned in your project, you can apply sticky top-0 z-50 utility classes to the root wrapper. This ensures the banner remains persistent at the top of the viewport during page scroll.",
+		},
+		{
+			question: "Can I allow users to permanently dismiss the banner?",
+			answer:
+				"Yes. The dismiss button's onClick handler can be integrated with React state or persistent storage like localStorage. Direct ownership of the code allows for conditional rendering based on these user preferences.",
+		},
+		{
+			question: "Is this different from the Alert component?",
+			answer:
+				"Yes. While visually similar, an Alert is typically nested within content containers. The Banner is optimized for edge-to-edge layout, featuring centered typography and full-bleed background utilities.",
+		},
+		{
+			question: "How can I animate the banner sliding into view?",
+			answer:
+				"You can leverage modern utility-first animations by applying animate-in slide-in-from-top directly to the Banner wrapper, providing a smooth transition when the notification is triggered.",
+		},
+		{
+			question: "Does the banner support inline action buttons?",
+			answer:
+				"Yes. The Banner utilizes standard flexbox utilities (flex justify-between items-center). This architecture facilitates nesting additional interactive elements, such as a Radian Button or links, alongside the primary message.",
+		},
+	]}
+/>
+
 ## Props
 
 <PropsTableWrapper>

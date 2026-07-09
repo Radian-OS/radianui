@@ -87,6 +87,68 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 
 ---
 
+<ComponentDocContent
+	name={"Radio Group"}
+	description={
+		"Radio Group lets users select a single option from a set of choices.It provides keyboard accessibility, proper form semantics, and customizable styles for a consistent user experience."
+	}
+	features={[
+		"@radix-ui/react-radio-group, ensures strict ARIA compliance with automatic radiogroup and radio role management.",
+		"Supports keyboard navigation; users can use the Up/Down or Left/Right arrow keys to seamlessly cycle through the available options.",
+		"Highly composable sub-components: <RadioGroup> and <RadioGroupItem>, which pair perfectly with the standard Radian <Label>.",
+		"Effortlessly styled with Tailwind CSS, utilizing data-[state=checked] modifiers to smoothly transition background and border colors upon selection.",
+		"Includes a customizable <RadioGroupPrimitive.Indicator> that animates cleanly when a user selects an option.",
+	]}
+	related={[
+		{
+			title: "Checkbox",
+			description:
+				"Use a Checkbox when users are allowed to select multiple options from a list independently. Radio Groups are strictly for mutually exclusive choices.",
+			href: "/docs/components/checkbox",
+		},
+		{
+			title: "Select",
+			description:
+				"Use a Select dropdown when you have a long list of mutually exclusive options (e.g., more than 5-7 items) to save vertical screen real estate.",
+			href: "/docs/components/select",
+		},
+		{
+			title: "Form",
+			description:
+				"The essential wrapper for hooking the Radio Group into Zod validation schemas and rendering accessible error messages if a required selection is missed.",
+			href: "/docs/components/form",
+		},
+	]}
+	faqs={[
+		{
+			question: "How do I set a default selected option?",
+			answer:
+				"You pass the defaultValue prop (matching the specific string value of the desired item) directly to the root <RadioGroup> component.",
+		},
+		{
+			question: "How do I change the size or color of the inner dot?",
+			answer:
+				"Open the radio-group.tsx file in your repository. Locate the nested <RadioGroupPrimitive.Indicator> component. You can modify the standard Lucide <Circle> icon's fill color, swap it for a checkmark, or change the h-2.5 w-2.5 Tailwind sizing utilities directly.",
+		},
+		{
+			question: "How do I integrate this with React Hook Form?",
+			answer:
+				"Because this is a custom controlled component, you must wrap the root <RadioGroup> inside <Controller>. You then map the primitive's custom onValueChange event directly to the controller's field.onChange handler to keep your form state perfectly synced.",
+		},
+		{
+			question:
+				"Can I style the labels differently if their radio button is selected?",
+			answer:
+				"Yes. A popular pattern is to visually style the Radio Group as a row of selectable cards rather than simple circles. You can achieve this by targeting the peer; apply standard Tailwind modifiers like peer-data-[state=checked]:border-primary directly to the adjacent <Label> or wrapper container.",
+		},
+		{
+			question: "Why can't I uncheck a radio button by clicking it again?",
+			answer:
+				"This is standard HTML and ARIA specification behavior for radio groups. Once an option in a radio group is selected, it cannot be deselected by the user clicking it again. If you need a user to be able to toggle a single option on and off, you should use a Checkbox or a Switch instead.",
+		},
+	]}
+/>
+
 ## Props
 
 <PropsTableWrapper>

@@ -59,6 +59,70 @@ import { Label } from "@/components/ui/label"
 
 ---
 
+<ComponentDocContent
+	name={"Label"}
+	description={
+		"Label is a component used to describe form fields like inputs, checkboxes, and selects. It improves accessibility by correctly linking labels to form controls, supports click-to-focus behavior, and keeps form labels consistent across your application."
+	}
+	features={[
+		"@radix-ui/react-label is implemented to ensure flawless screen reader compatibility and native focus delegation.",
+		"Natively uses standard Tailwind peer-disabled modifier utilities (like peer-disabled:opacity-70) to gracefully dim the label text when the associated input is locked.",
+		"Built-in baseline typography utilities (text-sm font-medium leading-none) for clean, modern, high-density form layouts.",
+		"Prevents accidental text selection when a user rapidly double-clicks the label to toggle a connected checkbox or radio button.",
+		"Structural footprint, making it easy to customize global text colors or manually inject required field asterisks directly in the source file.",
+	]}
+	related={[
+		{
+			title: "Input",
+			description:
+				"The primary companion to the Label; Labels utilize the htmlFor attribute to explicitly target the Input's assigned id.",
+			href: "/docs/components/input",
+		},
+		{
+			title: "Checkbox",
+			description:
+				"Essential for expanding the interactive hit-area, allowing users to toggle a tiny checkbox simply by clicking the adjacent descriptive text.",
+			href: "/docs/components/checkbox",
+		},
+		{
+			title: "Form",
+			description:
+				"The composite wrapper that automatically manages Label generation, unique IDs, and Zod validation error states using React Hook Form.",
+			href: "/docs/components/form",
+		},
+	]}
+	faqs={[
+		{
+			question: "How do I correctly link a label to an input field?",
+			answer:
+				"You must provide an htmlFor prop directly to the Label component and ensure its value perfectly matches the id string applied to your target input element.",
+		},
+		{
+			question: "Does clicking the label text focus the input?",
+			answer:
+				"Yes. Because it utilizes the standard HTML label behavior wrapped in the Radix primitive, clicking the text will immediately transfer browser focus to the associated text field, or toggle the state of a connected checkbox/switch.",
+		},
+		{
+			question:
+				"How does it style itself when the connected input is disabled?",
+			answer:
+				"The default Radian ecosystem relies on Tailwind's peer utility architecture. If your adjacent input component has the peer class applied and enters a disabled state, the Label's peer-disabled:cursor-not-allowed and peer-disabled:opacity-70 classes automatically trigger to visually reflect the locked state.",
+		},
+		{
+			question:
+				"Why should I use this instead of a standard <span> or <p> tag?",
+			answer:
+				"Semantic HTML <label> tags are critical for accessibility. A standard <span> provides zero context to assistive technologies, meaning a visually impaired user navigating via screen reader will hear an input field but have no idea what data they are expected to type into it.",
+		},
+		{
+			question:
+				"Do I need to use this component manually if I am using the Radian Form?",
+			answer:
+				"No. If you are building complex forms using our composite <Form> component, the nested <FormLabel> piece automatically implements this Label primitive under the hood. It natively handles the htmlFor ID generation based on the field's React Hook Form context, entirely removing the need for you to link them manually.",
+		},
+	]}
+/>
+
 ## Props
 
 <PropsTableWrapper>

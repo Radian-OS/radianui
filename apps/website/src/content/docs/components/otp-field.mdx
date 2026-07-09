@@ -102,6 +102,62 @@ import { OTPField, OTPHiddenInput, OTPInput } from "@/components/ui/otp-field"
 
 ---
 
+<ComponentDocContent
+	name={"OTP Field"}
+	description={
+		"OTP Field is a component for entering one-time passwords, PINs, and verification codes. It automatically manages focus, supports pasting complete codes, handles backspace navigation, and customizable verification input experience."
+	}
+	features={[
+		"@radix-ui/react-otp-field, providing copy-paste support and SMS autofill capabilities natively on mobile devices.",
+		"Highly modular suite of components: <OTPInput>, <OTPField> and <OTPHiddenInput>.",
+		"Includes a custom, accessible blinking caret animation built with standard Tailwind keyframes to clearly indicate the currently active input slot.",
+		"Event handlers like onChange and onComplete, making it easier to trigger a backend validation request the moment the user types the final digit.",
+		"Zero-dependency visual styling, allowing you to quickly switch between connected box arrays, distinct floating slots, or underlined input styles directly in the source file.",
+	]}
+	related={[
+		{
+			title: "Form",
+			description:
+				"The necessary wrapper to integrate the OTP field with complex validation libraries (like Zod) and render accessible error messages if an invalid code is entered.",
+			href: "/docs/components/form",
+		},
+		{
+			title: "Input",
+			description:
+				"Use a standard Input component for normal text data; reserve the OTP Field strictly for fixed-length verification tokens.",
+			href: "/docs/components/input",
+		},
+		{
+			title: "Button",
+			description:
+				'Typically placed near or below the OTP field to allow the user to explicitly "Resend Code" if the SMS fails to arrive.',
+			href: "/docs/components/button",
+		},
+	]}
+	faqs={[
+		{
+			question: "How do I change the number of input slots?",
+			answer:
+				"You can render 6 individual <OTPInput> components within your JSX structure.",
+		},
+		{
+			question: "Can I mask the input digits like a password?",
+			answer:
+				'Yes. You can apply standard input masking by passing type="password" or using custom masking logic directly within the OTPField configuration props if you want to replace digits with custom bullet characters.',
+		},
+		{
+			question: "How do I auto-submit the form when the user finishes typing?",
+			answer:
+				"You can utilize the autoSubmit prop on the <OTPField> component. This callback fires automatically the moment the input reaches the defined length, allowing you to safely call your form's submit function without forcing the user to click a button.",
+		},
+		{
+			question: "How do I restrict the input to only numbers?",
+			answer:
+				'By default, you can pass a validationType="numeric" prop to the <OTPField/>.',
+		},
+	]}
+/>
+
 ## Props
 
 <PropsTableWrapper>

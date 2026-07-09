@@ -116,6 +116,87 @@ import {
 
 ---
 
+<ComponentDocContent
+	name={"Drawer"}
+	description={
+		"A drawer is an interactive panel that slides out from the side or bottom of the screen, covering part of the main content. It is an easy-to-use alternative to pop-up boxes, making it comfortable for users to interact with on touchscreens. You use a drawer when you want to show additional content or navigation without taking the user to a new page."
+	}
+	features={[
+		{
+			title: "Accessibility",
+			description:
+				"Fully accessible, handling focus trapping and ARIA role management seamlessly out of the box.",
+		},
+		{
+			title: "Touch-Friendly",
+			description:
+				"Native physics-based touch dragging and fluid swipe-to-close gestures.",
+		},
+		{
+			title: "Background Scaling",
+			description:
+				"Includes background scaling effects (where the main page shrinks slightly backward) to draw visual focus to the active drawer panel.",
+		},
+		{
+			title: "Snap Points",
+			description:
+				"Supports configurable snap points, allowing the drawer to rest at partial heights before expanding to full screen.",
+		},
+		{
+			title: "Modular Architecture",
+			description:
+				"Exposes highly modular layout components: <Drawer>, <DrawerTrigger>, <DrawerContent>, <DrawerHeader>, and <DrawerFooter>.",
+		},
+	]}
+	related={[
+		{
+			title: "Dialog",
+			description:
+				"Use a traditional, centered dialog for desktop environments where bottom-anchored drawers might feel unnatural or overly wide.",
+			href: "/docs/components/dialog",
+		},
+		{
+			title: "Sidebar",
+			description:
+				"A better structural pattern for persistent, top-level application navigation that slides in from the left or right edge of the viewport.",
+			href: "/docs/components/sidebar",
+		},
+		{
+			title: "Popover",
+			description:
+				"Ideal for very small, contextual floating menus that should be anchored directly to a trigger button rather than obscuring the lower half of the screen.",
+			href: "/docs/components/popover",
+		},
+	]}
+	faqs={[
+		{
+			question: "How do I make the drawer slide in from the left or right?",
+			answer:
+				'While standard drawers anchor to the bottom for mobile ergonomics, you can pass a direction="right" or direction="left" prop to the root <Drawer> component to create side-panel behaviors typical of complex desktop applications.',
+		},
+		{
+			question: "How do I enable the background scaling effect?",
+			answer:
+				"Set shouldScaleBackground={true} on the root <Drawer>. You also must ensure your application's main <main> div has the appropriate wrapper attribute so the CSS transform scales the background correctly.",
+		},
+		{
+			question: "Can I stop users from dragging the drawer to close it?",
+			answer:
+				"Yes. Pass dismissible={false} to the <Drawer> to completely disable swipe-to-close interactions. This is essential for forcing the user to interact with a specific button before the panel is dismissed.",
+		},
+		{
+			question: "How do I set partial snap points for the panel height?",
+			answer:
+				"Pass an array of numbers or percentages to the snapPoints prop (e.g., snapPoints={[0.5, 1]}).",
+		},
+		{
+			question: "Why is the drawer content not scrolling?",
+			answer:
+				"If your content exceeds the viewport height, ensure the nested <DrawerContent> or a container inside of it has the overflow-y-auto utility class applied. If missing, the drag physics may conflict with the browser's native vertical scrolling.",
+		},
+	]}
+/>
+
 ## Props
 
 <PropsTableWrapper>

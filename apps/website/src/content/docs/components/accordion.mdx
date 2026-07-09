@@ -141,6 +141,64 @@ import {
 
 ---
 
+<ComponentDocContent
+	name={"Accordion"}
+	description={
+		"An accordion is a set of vertically stacked headings that each reveal a section of content when clicked. It is an effective way to organize large amounts of information in a compact space, making it easier for users to scan and digest content without feeling overwhelmed."
+	}
+	features={[
+		"Fully accessible and screen-reader ready, adhering strictly to WAI-ARIA design patterns.",
+		"Supports both single and multiple type configurations to dictate whether one or multiple panels can be open simultaneously.",
+		"Includes smooth CSS-based open/close animations leveraging Tailwind's animate-accordion-down and animate-accordion-up.",
+		"Zero-dependency visual styling: all layout and design logic is handled locally via standard Tailwind CSS utility classes.",
+		"Exposes defaultValue and value props for seamless integration into both controlled and uncontrolled state management patterns.",
+	]}
+	related={[
+		{
+			title: "Collapsible",
+			description:
+				"Use this when you only need a single interactive, expanding panel rather than a full vertically stacked list.",
+			href: "/docs/components/collapsible",
+		},
+		{
+			title: "Tabs",
+			description:
+				"A better alternative when you want to organize distinct sections of content horizontally rather than vertically.",
+			href: "/docs/components/tabs",
+		},
+	]}
+	faqs={[
+		{
+			question:
+				"Can I allow multiple accordion items to be open at the same time?",
+			answer:
+				'Yes. By setting the type prop to "multiple" on the root <Accordion> component, users can expand multiple panels simultaneously. This is ideal for complex settings menus where users need to cross-reference information.',
+		},
+		{
+			question: "How do I customize the open and close animation speeds?",
+			answer:
+				"Because Radian gives you the source code, you can adjust the animation directly in your global CSS file. Simply modify the CSS keyframe definitions for accordion-down and accordion-up to perfectly match your design system.",
+		},
+		{
+			question: "Can I dynamically generate accordion items from a data array?",
+			answer:
+				"Absolutely. You can map over an array of data in your React component and return <AccordionItem>, <AccordionTrigger>, and <AccordionContent> components for each entry. Just ensure each mapped item receives a unique value prop.",
+		},
+		{
+			question:
+				"Does the accordion handle chevron icon rotation automatically?",
+			answer:
+				"Yes, the default template utilizes Tailwind's data-[state=open] attribute to seamlessly rotate the chevron icon. You can easily swap the default Lucide icon for your own by editing the <AccordionTrigger> component.",
+		},
+		{
+			question:
+				"Is it possible to use the accordion as a controlled component?",
+			answer:
+				"You can manage the state externally by passing the value and onValueChange props to the root component. This is particularly useful if you need to sync the expanded state with a URL search parameter or a global state store.",
+		},
+	]}
+/>
+
 ## Props
 
 <PropsTableWrapper>

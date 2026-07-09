@@ -117,6 +117,62 @@ import {
 
 ---
 
+<ComponentDocContent
+	name={"Breadcrumb"}
+	description={
+		"A breadcrumb is a navigation bar that shows users where they are on a website. Use breadcrumbs to help users easily track their path and navigate back to previous pages."
+	}
+	features={[
+		"Modular architecture exporting <Breadcrumb>, <BreadcrumbList>, <BreadcrumbItem>, <BreadcrumbLink>, and <BreadcrumbSeparator>.",
+		'Semantically correct DOM structure using <nav aria-label="breadcrumb"> and ordered lists for maximum accessibility.',
+		"Pre-styled separator components using Lucide chevrons or standard text slashes.",
+		"Completely framework-agnostic; BreadcrumbLink easily wraps Next.js <Link> or React Router components via the asChild prop.",
+		"Built-in support for an <BreadcrumbEllipsis> component to gracefully handle overly long navigation paths.",
+	]}
+	related={[
+		{
+			title: "Navigation Menu",
+			description:
+				"Breadcrumbs show where the user is, while the Navigation Menu provides the primary way to explore where else they can go.",
+			href: "/docs/components/navigation-menu",
+		},
+		{
+			title: "Dropdown",
+			description:
+				"The BreadcrumbEllipsis often triggers a dropdown menu to display the hidden navigation steps.",
+			href: "/docs/components/dropdown",
+		},
+	]}
+	faqs={[
+		{
+			question: "How do I use this with the Next.js App Router?",
+			answer:
+				"You can pass the asChild prop to <BreadcrumbLink> and nest the Next.js <Link> component inside it. This delegates the rendering to the Next.js link while preserving Radian's utility-first styling.",
+		},
+		{
+			question:
+				"How do I handle very long breadcrumb trails on mobile devices?",
+			answer:
+				"Use the exported <BreadcrumbEllipsis> component. Typically, developers replace the middle items of the path array with this ellipsis, which can be combined with a <Dropdown> for expanded navigation.",
+		},
+		{
+			question: "Can I change the separator icon?",
+			answer:
+				"Yes. The <BreadcrumbSeparator> component accepts children. If no children are provided, it renders a default chevron. You can pass any custom icon or text directly inside the component to override the default.",
+		},
+		{
+			question: "Does the breadcrumb automatically know my current route?",
+			answer:
+				"No. The Radian Breadcrumb is a presentational component. You must provide the navigation data by mapping over your router's current pathname to generate the corresponding BreadcrumbItem elements.",
+		},
+		{
+			question: "How is the active page indicated for screen readers?",
+			answer:
+				'Apply the aria-current="page" attribute to the final <BreadcrumbPage> or <BreadcrumbLink> element. This ensures the component remains fully accessible and compliant with WAI-ARIA standards.',
+		},
+	]}
+/>
+
 ## Props
 
 <PropsTableWrapper>

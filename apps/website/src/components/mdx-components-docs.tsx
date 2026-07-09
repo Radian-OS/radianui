@@ -33,10 +33,11 @@ import ProgressPreview from "@/registry/example/progress/progress-preview"
 import {
 	Accordion,
 	AccordionContent,
+	type AccordionContentProps,
 	AccordionItem,
-	AccordionProps,
+	type AccordionProps,
 	AccordionTrigger,
-	AccordionTriggerProps,
+	type AccordionTriggerProps,
 } from "@/registry/ui/accordion"
 import {
 	Alert,
@@ -55,9 +56,185 @@ import { CopyButton } from "./copy-button"
 import { RequestDesign } from "./request-design"
 import { ResourcesGrid } from "./resources-grid"
 
+type ComponentDocListItem = {
+	title?: string
+	description: React.ReactNode
+}
+
+type ComponentDocFeatureItem = React.ReactNode | ComponentDocListItem
+
+type ComponentDocRelatedItem = Required<ComponentDocListItem> & {
+	href?: string
+}
+
+type ComponentDocFaqItem = {
+	question: string
+	answer: React.ReactNode
+}
+
+type ComponentDocContentProps = {
+	name: string
+	description: React.ReactNode
+	features?: ComponentDocFeatureItem[]
+	related?: ComponentDocRelatedItem[]
+	faqs?: ComponentDocFaqItem[]
+}
+
+const componentDocListClass =
+	"marker:text-fg my-6 ml-6 list-decimal space-y-4 marker:font-bold"
+const componentDocListItemClass = "text-fg [&_p]:!inline [&_p]:!text-inherit"
+
+function createHeadingId(text: string) {
+	return text
+		.toLowerCase()
+		.replace(/\s+/g, "-")
+		.replace(/[^\w-]/g, "")
+}
+
+function ComponentDocHeading({ children }: { children: string }) {
+	const id = createHeadingId(children)
+
+	return (
+		<h2
+			id={id}
+			className="heading-5 font-semibold! scroll-mt-26 group mb-3 mt-10 flex items-center">
+			<Link href={`#${id}`} className="flex items-center gap-2">
+				{children}
+				<LinkIcon
+					size={16}
+					className="text-fg-tertiary opacity-0 transition-opacity group-hover:opacity-100"
+				/>
+			</Link>
+		</h2>
+	)
+}
+
+function ComponentDocDivider() {
+	return <Divider orientation="horizontal" className="mt-10" />
+}
+
+function isComponentDocListItem(
+	item: ComponentDocFeatureItem
+): item is ComponentDocListItem {
+	return typeof item === "object" && item !== null && "description" in item
+}
+
+function ComponentDocList({ items }: { items: ComponentDocFeatureItem[] }) {
+	return (
+		<ol className={componentDocListClass}>
+			{items.map((item, index) => (
+				<li key={index} className={componentDocListItemClass}>
+					{isComponentDocListItem(item) ? (
+						<span>
+							{item.title && (
+								<>
+									<span className="font-medium">{item.title}</span>:{" "}
+								</>
+							)}
+							{item.description}
+						</span>
+					) : (
+						<span>{item}</span>
+					)}
+				</li>
+			))}
+		</ol>
+	)
+}
+
+function ComponentDocRelatedList({
+	items,
+}: {
+	items: ComponentDocRelatedItem[]
+}) {
+	return (
+		<ol className={componentDocListClass}>
+			{items.map((item, index) => (
+				<li
+					key={`${item.title}-${index}`}
+					className={componentDocListItemClass}>
+					<span>
+						{item.href ? (
+							<Link
+								className="text-fg font-medium underline underline-offset-4"
+								href={item.href}>
+								{item.title}:
+							</Link>
+						) : (
+							<span className="font-medium">{item.title}:</span>
+						)}{" "}
+						{item.description}
+					</span>
+				</li>
+			))}
+		</ol>
+	)
+}
+
+function ComponentDocFaq({ items }: { items: ComponentDocFaqItem[] }) {
+	return (
+		<Accordion collapsible type="single" variant="open">
+			{items.map((item, index) => (
+				<AccordionItem
+					key={`${item.question}-${index}`}
+					value={`item-${index + 1}`}>
+					<AccordionTrigger className="gap-2 !text-base !font-medium">
+						{item.question}
+					</AccordionTrigger>
+					<AccordionContent className="!text-fg-secondary !text-base !leading-7 [&_p]:!text-inherit">
+						{item.answer}
+					</AccordionContent>
+				</AccordionItem>
+			))}
+		</Accordion>
+	)
+}
+
+function ComponentDocContent({
+	name,
+	description,
+	features = [],
+	related = [],
+	faqs = [],
+}: ComponentDocContentProps) {
+	return (
+		<>
+			<ComponentDocHeading>{`What is ${name}?`}</ComponentDocHeading>
+			<p className="text-fg text-base leading-7">{description}</p>
+
+			{features.length > 0 && (
+				<>
+					<ComponentDocDivider />
+					<ComponentDocHeading>Features</ComponentDocHeading>
+					<ComponentDocList items={features} />
+				</>
+			)}
+
+			{related.length > 0 && (
+				<>
+					<ComponentDocDivider />
+					<ComponentDocHeading>Related Components</ComponentDocHeading>
+					<ComponentDocRelatedList items={related} />
+				</>
+			)}
+
+			{faqs.length > 0 && (
+				<>
+					<ComponentDocDivider />
+					<ComponentDocHeading>Frequently Asked Questions</ComponentDocHeading>
+					<ComponentDocFaq items={faqs} />
+				</>
+			)}
+
+			<ComponentDocDivider />
+		</>
+	)
+}
+
 export const components = {
 	ResourcesGrid,
 	RequestDesign,
+	ComponentDocContent,
 	PropsTable,
 	ColorTable,
 	ColorTableThemeToggle,
@@ -299,7 +476,14 @@ export const components = {
 	AccordionTrigger: (props: AccordionTriggerProps) => {
 		return <AccordionTrigger className="gap-2" {...props} />
 	},
-	AccordionContent,
+	AccordionContent: ({ className, ...props }: AccordionContentProps) => {
+		return (
+			<AccordionContent
+				className={cn("[&_p]:!text-inherit", className)}
+				{...props}
+			/>
+		)
+	},
 
 	Tabs,
 	TabsList: (props: React.ComponentProps<typeof TabsList>) => {

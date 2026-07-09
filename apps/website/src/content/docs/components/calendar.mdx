@@ -115,6 +115,68 @@ the [official documentation](https://daypicker.dev/api).
 
 ---
 
+<ComponentDocContent
+	name={"Calendar"}
+	description={
+		"The Calendar is an interactive tool that lets users easily pick dates. It handles the complicated math and accessibility requirements behind the scenes, while giving you full control over the visual style. Use this component to help users easily select a single date or date range in forms and scheduling interfaces."
+	}
+	features={[
+		"Fully supports single date, multiple date, and date range selection modes out of the box.",
+		"Accessible keyboard navigation, allowing users to traverse months and days seamlessly using arrow keys.",
+		"Extensive styling map via Tailwind CSS classes applied directly to react-day-picker's internal classNames prop.",
+		"Easy integration with external date libraries like date-fns for robust date formatting and localized language support.",
+		"Exposes custom components for the navigation arrows, allowing effortless integration with Lucide React or custom SVG icons.",
+	]}
+	related={[
+		{
+			title: "Date Picker",
+			description:
+				"The Calendar is almost always combined with a Popover and an Input to create a fully functioning Date Picker for forms.",
+			href: "/docs/components/date-picker",
+		},
+		{
+			title: "Popover",
+			description:
+				"Used to house the Calendar in a floating, absolute-positioned overlay, keeping the primary form UI clean until interaction.",
+			href: "/docs/components/popover",
+		},
+		{
+			title: "Select",
+			description:
+				"Often paired with the Calendar to allow users to quickly jump between months and years without clicking arrows repeatedly.",
+			href: "/docs/components/select",
+		},
+	]}
+	faqs={[
+		{
+			question: "How do I disable specific dates or weekends?",
+			answer:
+				"The component inherits all native props from react-day-picker. You can pass the disabled prop, providing an array of specific dates, a date range object, or a custom matcher function (like checking if a day is a Saturday or Sunday) to prevent selection.",
+		},
+		{
+			question:
+				"Can I allow users to select a date range instead of a single day?",
+			answer:
+				'Yes, by setting the mode="range" prop on the Calendar component. You will also need to update your React state hook to handle an object containing from and to dates rather than a standard single Date object.',
+		},
+		{
+			question: "How do I change the language or locale of the calendar?",
+			answer:
+				"You can pass the locale prop, typically imported from date-fns/locale (e.g., import { es } from 'date-fns/locale'). This will automatically translate the month names and weekdays to your target language while respecting regional start-of-week preferences.",
+		},
+		{
+			question: "How do I customize the appearance of the selected day?",
+			answer:
+				"Open your calendar.tsx file and locate the classNames object passed to the DayPicker primitive. Modify the day_selected key to apply your desired Tailwind classes, such as bg-primary text-primary-foreground hover:bg-primary/90. Since we are using Tailwind v4, you can directly utilize CSS variables or the global theme without external config files.",
+		},
+		{
+			question: "Why are the navigation arrows not perfectly aligned?",
+			answer:
+				"The component relies on standard flexbox layouts and Lucide icons. If you changed the default icon size or adjusted the padding inside the components map for IconLeft and IconRight, you may need to tweak the flex alignments in the nav_button class configuration to re-center them.",
+		},
+	]}
+/>
+
 ## Props
 
 <PropsTableWrapper>

@@ -117,6 +117,67 @@ import { Badge, BadgeDot } from "@/components/ui/badge"
 
 ---
 
+<ComponentDocContent
+	name={"Badge"}
+	description={
+		"A badge is a small visual label used to highlight status, tags, or counts. It is a simple, lightweight component that helps you display information clearly. A badge is used to quickly highlight specific information like status labels, tags, or notification counts."
+	}
+	features={[
+		"Includes standard stylistic variants: default, secondary, destructive, and outline.",
+		"Built purely with CVA and Tailwind CSS, requiring zero client-side JavaScript or Radix UI primitives.",
+		"Uses standard flexbox and text alignment utilities (inline-flex, items-center) to ensure text and adjacent icons stay perfectly centered.",
+		"Easily extendable to support custom status colors (like success or warning) by adding new keys to the local CVA configuration.",
+		"Focus-visible rings are implemented by default in the Tailwind classes, preparing the badge in case you need to wrap it in an interactive element.",
+	]}
+	related={[
+		{
+			title: "Card",
+			description:
+				"Badges are frequently placed in the headers of cards to quickly indicate the status, price, or category of the content within.",
+			href: "/docs/components/card",
+		},
+		{
+			title: "Table",
+			description:
+				"Ideal for rendering inside table cells to visually differentiate row data, such as successful or failed payment statuses.",
+			href: "/docs/components/table",
+		},
+		{
+			title: "Avatar",
+			description:
+				"Often paired with avatars to show online/offline status dots or numeric notification counts overlapping the profile picture.",
+			href: "/docs/components/avatar",
+		},
+	]}
+	faqs={[
+		{
+			question: "Can I make the badge interactive or clickable?",
+			answer:
+				"The standard Badge is a static <div>. If you need a clickable tag for filtering or navigation, you can easily change the root element to a <button> or an <a> tag in the source code. Alternatively, you can simply use the Radian Button component configured with the sm or icon size variant.",
+		},
+		{
+			question: 'How do I add custom colors like "success" or "warning"?',
+			answer:
+				"Open the badge.tsx file and locate the CVA configuration. Add a new key under variants.variant (e.g., success) and apply your desired Tailwind utility classes. For global theme extensions in Tailwind CSS v4, define your custom colors within the CSS variables block of your stylesheet.",
+		},
+		{
+			question: "How do I add an icon inside the badge?",
+			answer:
+				"Because the badge uses inline-flex and items-center by default, you can simply drop a standard SVG or a Lucide React icon as a child next to your text. Flexbox will automatically align the icon perfectly alongside your label.",
+		},
+		{
+			question: "Is the badge accessible to screen readers?",
+			answer:
+				'As a purely visual element, a badge doesn&apos;t have inherent ARIA roles. If it conveys critical status information (like "Offline" or "Error"), ensure you add an aria-label or use screen-reader-only text (sr-only class) adjacent to it so visually impaired users receive the exact same context.',
+		},
+		{
+			question: "How do I make the badge completely round like a pill?",
+			answer:
+				"The default component uses the rounded-full utility class, which creates elongated pill-shaped badges. If you want a more squared-off aesthetic to match a sharper design system, change that class to rounded-md directly in the component file.",
+		},
+	]}
+/>
+
 ## Props
 
 <PropsTableWrapper>

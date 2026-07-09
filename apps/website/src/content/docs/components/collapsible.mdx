@@ -124,6 +124,91 @@ import {
 
 ---
 
+<ComponentDocContent
+	name={"Collapsible"}
+	description={
+		"A collapsible is a box that you can click to show or hide the information inside it. It helps keep your page clean by hiding extra details until someone actually needs to see them. You can use it to tuck away long descriptions or extra settings so the screen stays simple and easy to read."
+	}
+	features={[
+		{
+			title: "Modular Architecture",
+			description:
+				"Exposes clear, composable components for maximum flexibility: <Collapsible>, <CollapsibleTrigger>, and <CollapsibleContent>.",
+		},
+		{
+			title: "Accessibility",
+			description:
+				"Handles aria-expanded and aria-controls attributes automatically, ensuring robust screen reader compliance without manual configuration.",
+		},
+		{
+			title: "Flexible State",
+			description:
+				"Supports both controlled and uncontrolled component states via the open, defaultOpen, and onOpenChange props.",
+		},
+		{
+			title: "Unstyled Foundation",
+			description:
+				"Ships with an unstyled structural foundation by default, allowing you to use it purely for behavioral logic while wrapping any custom Tailwind layout.",
+		},
+		{
+			title: "Animated Transitions",
+			description:
+				"Easily integrated with custom Tailwind keyframes (like animate-collapsible-down and animate-collapsible-up) for smooth, CSS-driven reveal effects.",
+		},
+	]}
+	related={[
+		{
+			title: "Accordion",
+			description:
+				"Use an Accordion when you have multiple collapsible sections grouped together and want to restrict the user to opening only one at a time.",
+			href: "/docs/components/accordion",
+		},
+		{
+			title: "Hover Card",
+			description:
+				"Use when the hidden content is purely informative and should be revealed on mouse hover rather than an explicit click action.",
+			href: "/docs/components/hover-card",
+		},
+		{
+			title: "Card",
+			description:
+				"Often used to wrap the entire Collapsible, placing the <CollapsibleTrigger> in the card header and the hidden content in the body.",
+			href: "/docs/components/card",
+		},
+	]}
+	faqs={[
+		{
+			question:
+				"What is the exact difference between Collapsible and Accordion?",
+			answer:
+				"A Collapsible is a single, independent toggleable panel. An Accordion is a group of collapsible panels (often vertically stacked) that can be configured to intelligently manage each other's state (e.g., automatically closing one panel when another is opened).",
+		},
+		{
+			question: "How do I animate the content opening and closing smoothly?",
+			answer:
+				"You can apply CSS keyframes specifically targeting the data-[state=open] and data-[state=closed] attributes on the <CollapsibleContent> component. Because you own the configuration, you can adjust the height transition exactly to your liking within your stylesheet.",
+		},
+		{
+			question:
+				"Can I place multiple triggers to open the same collapsible panel?",
+			answer:
+				"Yes. Because the internal state is managed by the root <Collapsible> component, you can comfortably nest multiple <CollapsibleTrigger> components inside it, or control the state externally and use standard buttons to toggle it from anywhere on the page.",
+		},
+		{
+			question:
+				"Does the collapsible trigger have to be a standard button element?",
+			answer:
+				"By default, the <CollapsibleTrigger> renders a native <button> for strict accessibility reasons. If you need it to be a different semantic element, you can use the asChild prop and pass your custom element, provided it can still properly receive keyboard focus.",
+		},
+		{
+			question:
+				"How do I default the collapsible to be open on initial page load?",
+			answer:
+				"You can pass the defaultOpen={true} prop to the root <Collapsible> component. If you are managing the state externally as a controlled component, simply initialize your React state variable to true and pass it to the open prop.",
+		},
+	]}
+/>
+
 ## Props
 
 <PropsTableWrapper>

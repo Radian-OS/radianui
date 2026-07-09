@@ -80,6 +80,67 @@ import { Spinner } from "@/components/ui/spinner"
 
 ---
 
+<ComponentDocContent
+	name={"Spinner"}
+	description={
+		"Spinner is a loading indicator that shows an operation is in progress, such as fetching data, submitting a form, or processing a request. It is lightweight and easy to customize for different sizes and use cases."
+	}
+	features={[
+		"Lightweight SVG-based architecture, ensuring crisp rendering at any size without pixelation or resolution issues.",
+		"Employs a custom, infinitely looping CSS keyframe animation (animate-spin) via Tailwind, guaranteeing fluid motion across all modern browsers.",
+		"Completely unopinionated structural foundation; accepts standard Tailwind sizing (e.g., h-4 w-4, h-8 w-8) to easily sit inside buttons or cover full page layouts.",
+		'Accessibility-first design; exposes the role="status" and aria-label attributes to ensure screen readers correctly announce the loading state to users.',
+		"Highly composable; can be rendered as a standalone icon or wrapped within a button to replace the label during async interactions.",
+	]}
+	related={[
+		{
+			title: "Button",
+			description:
+				'Frequently used as a child component inside a button (e.g., a "Loading..." state) to prevent duplicate form submissions.',
+			href: "/docs/components/button",
+		},
+		{
+			title: "Progress",
+			description:
+				'Use a Progress bar for measurable, granular tasks (like file uploads). Use a Spinner for non-measurable, "wait until finished" tasks.',
+			href: "/docs/components/progress",
+		},
+		{
+			title: "Skeleton",
+			description:
+				"Use a Skeleton for structural layout placeholders during initial content loading. Use a Spinner for triggered, dynamic actions.",
+			href: "/docs/components/skeleton",
+		},
+	]}
+	faqs={[
+		{
+			question: "How do I make the spinner larger?",
+			answer:
+				'You can pass size {e.g., size={60}} prop inside <Spinner/> or Tailwind width and height utilities directly to the root component\'s className prop (e.g., className="h-10 w-10"). Because it is a vector SVG, it will scale perfectly without requiring any internal code modifications.',
+		},
+		{
+			question: "How do I change the speed of the rotation?",
+			answer:
+				"Open your tailwind.config.ts file. You can override the spin animation timing by modifying the animation key. For example, changing spin 1s linear infinite to spin 2s linear infinite will slow down the rotation for a more deliberate, sophisticated feel.",
+		},
+		{
+			question: "How do I correctly make this accessible?",
+			answer:
+				'The spinner is purely visual, so you must inform assistive technologies of its purpose. Always apply role="status" and a descriptive aria-label="Loading..." to the SVG container. This ensures that when the spinner appears, screen readers will immediately notify the user that the application is busy.',
+		},
+		{
+			question: "How can I prevent it from looking blurry on some browsers?",
+			answer:
+				"The Radian Spinner uses standard SVG viewBox and stroke attributes. Ensure your className does not apply aggressive scaling transforms that might trigger sub-pixel anti-aliasing. If blurring persists, try using explicit integer values (like h-8 w-8) rather than fractional rems.",
+		},
+		{
+			question: "Why isn't it centered when I put it on a page?",
+			answer:
+				"The spinner is a block-level or inline-block SVG element. To center it in a full-page layout, you must wrap it in a parent container with flexbox utilities: flex items-center justify-center. This tells the browser to treat the spinner as a flex item, allowing for perfect horizontal and vertical alignment.",
+		},
+	]}
+/>
+
 ## Props
 
 <PropsTableWrapper>

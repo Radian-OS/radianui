@@ -123,6 +123,69 @@ import {
 
 ---
 
+<ComponentDocContent
+	name={"Empty Component"}
+	description={
+		"An Empty Component is a screen shown to users when there is no data or content available. It keeps the page looking clean and helpful by providing a clear message and a button so the user knows what to do next. Use this component to guide your users when a page is empty."
+	}
+	features={[
+		"Composable, modular architecture exporting <EmptyState>, <EmptyStateIcon>, <EmptyStateTitle>, <EmptyStateDescription>, and <EmptyStateAction>.",
+		"Pre-configured flexbox layout (flex flex-col items-center justify-center) to perfectly center illustrations and typography automatically.",
+		"Zero-dependency structural foundation, making it trivial to drop in standard Lucide React icons or complex custom brand assets.",
+		"Responsive spacing and typography out of the box, ensuring the container scales gracefully from small mobile viewports to wide desktop grids.",
+		"Unopinionated background styling, allowing it to seamlessly blend into nested cards, dialogs, or full-page layouts.",
+	]}
+	related={[
+		{
+			title: "Table",
+			description:
+				"Essential for replacing the standard table body when a database query or user filter returns zero rows.",
+			href: "/docs/components/table",
+		},
+		{
+			title: "Card",
+			description:
+				"Empty states are frequently rendered directly inside a Card component when a specific dashboard widget or analytics block lacks data.",
+			href: "/docs/components/card",
+		},
+		{
+			title: "Button",
+			description:
+				'Placed inside the <EmptyStateAction> wrapper to provide users with a clear path forward (e.g., a primary "Create New Project" call-to-action).',
+			href: "/docs/components/button",
+		},
+	]}
+	faqs={[
+		{
+			question:
+				"How do I perfectly center the empty state within a full-page layout?",
+			answer:
+				"You can wrap the root <EmptyState> component in a parent container utilizing min-h-[calc(100vh-4rem)] flex items-center justify-center Tailwind utilities. This ensures the component sits exactly in the middle of the screen, accounting for your application's header height.",
+		},
+		{
+			question: "Can I use my own custom SVG illustrations instead of icons?",
+			answer:
+				"Absolutely. The <EmptyStateIcon> wrapper acts as a standard layout container. Because you own the component code, you can easily strip out the default Lucide icon and pass any custom SVG, <Image>, or external asset as a direct child.",
+		},
+		{
+			question: "How should I render an empty state inside a Data Table?",
+			answer:
+				"Instead of rendering a collapsed, empty table body, standard practice is to render a single table row (<tr>) containing one table cell that spans all columns (<td colSpan={columns.length}>). You then place the Radian Empty State component directly inside that cell for a clean UI.",
+		},
+		{
+			question: "Does this component require any external Radix primitives?",
+			answer:
+				"No. The Radian Empty State is a purely presentational component, built exclusively with native DOM elements and standard Tailwind CSS classes. It requires no complex WAI-ARIA state management and adds zero JavaScript overhead to your application bundle.",
+		},
+		{
+			question:
+				"How do I change the default text colors for the title and description?",
+			answer:
+				"Open the component source file in your repository. You will find that <EmptyStateTitle> defaults to standard text colors, while <EmptyStateDescription> uses text-muted-foreground. You can modify these directly to fit your specific theme constraints.",
+		},
+	]}
+/>
+
 ## Props
 
 <PropsTableWrapper>

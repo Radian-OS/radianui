@@ -144,6 +144,81 @@ documentation](https://www.npmjs.com/package/react-currency-input-field).
 
 ---
 
+<ComponentDocContent
+	name={"Currency Input"}
+	description={
+		"A Currency Input is a special type of text box designed to help people enter money values correctly. It automatically adds symbols and formatting as you type, ensuring the data is accurate. Use this component whenever you need to collect financial information from users, such as prices or payment amounts."
+	}
+	features={[
+		{
+			title: "Smart Formatting",
+			description:
+				"Automatically formats user input with standard thousands separators and decimal points dynamically based on the configured locale (e.g., en-US, de-DE).",
+		},
+		{
+			title: "Clean State",
+			description:
+				"Maintains a clean, unformatted Number (or string representation of a float) in the internal state to ensure safe database API submissions, while displaying the formatted string visually.",
+		},
+		{
+			title: "Prefix Support",
+			description:
+				"Safely prefixes configurable currency symbols (like $, €, or £) directly within the input wrapper using Tailwind's absolute positioning utilities.",
+		},
+		{
+			title: "Strict Validation",
+			description:
+				"Restricts invalid keystrokes natively, ensuring users cannot accidentally enter alphabetical characters or multiple decimal points.",
+		},
+		{
+			title: "Accessible Design",
+			description:
+				"Inherits accessible focus-visible rings and disabled states from the standard Radian Input component.",
+		},
+	]}
+	related={[
+		{
+			title: "Input",
+			description:
+				"The foundational element the Currency Input builds upon; use this for standard text, password, or email collection.",
+			href: "/docs/components/input",
+		},
+		{
+			title: "Form",
+			description:
+				"Essential for wrapping the Currency Input to provide WAI-ARIA compliant labels, descriptive text, and validation error messages.",
+			href: "/docs/components/form",
+		},
+	]}
+	faqs={[
+		{
+			question: "Can I change the currency symbol to Euro or GBP?",
+			answer:
+				'Yes. Pass a currency="EUR" prop to update the underlying Intl.NumberFormat configuration and the visual prefix element.',
+		},
+		{
+			question: "How does the component handle decimal precision?",
+			answer:
+				"By default, the input restricts trailing decimals to two places, adhering to standard global fiat currency formats. You can adjust this by changing the decimalsLimit prop.",
+		},
+		{
+			question: 'Why shouldn\'t I just use a standard <input type="number">?',
+			answer:
+				"Native number inputs behave inconsistently across browsers, often dropping trailing zeroes, displaying unwanted spinner arrows, and failing to support localized thousands separators. A controlled text input with a dedicated mask provides a vastly superior financial UX.",
+		},
+		{
+			question: "Does the component support right-aligned text?",
+			answer:
+				"Yes. You can effortlessly achieve this by passing Tailwind's text-right utility class through the component's className prop.",
+		},
+		{
+			question: "Do I need to configure Tailwind files for this?",
+			answer:
+				"No. Radian's implementation uses standard Tailwind utility classes directly. There is no need for tailwind.config.js or ts files.",
+		},
+	]}
+/>
+
 ## Props
 
 <PropsTableWrapper>

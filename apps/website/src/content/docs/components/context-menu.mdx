@@ -136,6 +136,89 @@ Context menus work inside modals. Wrap your trigger area with `ContextMenu` with
 
 ---
 
+<ComponentDocContent
+	name={"Context Menu"}
+	description={
+		"The Radian Context Menu is a custom right-click floating menu that replaces the standard one in your browser. It provides a strong starting point for web apps that feel like desktop software, styled easily with Tailwind CSS. A context menu is a floating list of options that appears when you right-click, helping users quickly access specific actions like copy, paste, or delete."
+	}
+	features={[
+		{
+			title: "Accessible",
+			description:
+				"Automatically traps focus and manages WAI-ARIA roles when triggered via right-click or standard keyboard shortcuts (e.g., Shift+F10).",
+		},
+		{
+			title: "Collision-Aware",
+			description:
+				"Intelligently flips or shifts positioning to remain visible if opened near the viewport edge.",
+		},
+		{
+			title: "Modular Architecture",
+			description:
+				"Exports a comprehensive suite of sub-components: <ContextMenu>, <ContextMenuTrigger>, <ContextMenuItem>, <ContextMenuCheckboxItem>, <ContextMenuRadioGroup>, and <ContextMenuSub>.",
+		},
+		{
+			title: "Nested Submenus",
+			description:
+				"Natively supports <ContextMenuSub> for organizing complex action hierarchies.",
+		},
+		{
+			title: "Unstyled Foundation",
+			description:
+				"Ships with an unstyled structural foundation, allowing Tailwind CSS to easily handle custom backdrop blurs, border radii, and hover states directly in your component file.",
+		},
+	]}
+	related={[
+		{
+			title: "Dropdown",
+			description:
+				"Use a standard Dropdown when the menu should be triggered by an explicit left-click on a button rather than a contextual right-click on a broader layout area.",
+			href: "/docs/components/dropdown",
+		},
+		{
+			title: "Menubar",
+			description:
+				"Ideal for creating a persistent, top-level macOS-style navigation bar across the top of your desktop-like application.",
+			href: "/docs/components/menubar",
+		},
+		{
+			title: "Table",
+			description:
+				"Context menus are frequently wrapped around data table rows to provide users with quick access to record-specific administrative actions.",
+			href: "/docs/components/table",
+		},
+	]}
+	faqs={[
+		{
+			question:
+				"How do I prevent the default browser context menu from appearing?",
+			answer:
+				"The underlying Radix primitive automatically handles this. When a user right-clicks inside the designated <ContextMenuTrigger> boundary, it calls e.preventDefault() on the native contextmenu event. Outside of this wrapper, the native browser menu behaves normally.",
+		},
+		{
+			question:
+				"Can I trigger the context menu with a standard left click instead?",
+			answer:
+				"No, the Context Menu primitive is explicitly bound to the right-click event. If you need a left-click interaction, use the Dropdown component, which shares an identical API and styling structure.",
+		},
+		{
+			question: "How do I add keyboard shortcuts to the menu items?",
+			answer:
+				"Utilize the pre-styled <ContextMenuShortcut> component. Nesting this alongside your item text (e.g., <ContextMenuShortcut>⌘C</ContextMenuShortcut>) automatically applies Tailwind classes to float the shortcut text to the far right.",
+		},
+		{
+			question: "Does the menu close automatically when I click an item?",
+			answer:
+				"Yes, standard <ContextMenuItem> interactions will immediately dismiss the overlay. If you need the menu to stay open (e.g., for toggling view settings), use the <ContextMenuCheckboxItem>, which manages its own interaction state without triggering a close event.",
+		},
+		{
+			question: "How do I handle menus that are taller than the screen?",
+			answer:
+				"Radix UI's internal Popper logic handles viewport collisions. Ensure your <ContextMenuContent> includes standard Tailwind overflow utilities like overflow-hidden or max-h-screen combined with overflow-y-auto to allow internal scrolling.",
+		},
+	]}
+/>
+
 ## Props
 
 <PropsTableWrapper>

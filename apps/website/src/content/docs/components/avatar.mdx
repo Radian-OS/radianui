@@ -120,6 +120,67 @@ import {
 
 ---
 
+<ComponentDocContent
+	name={"Avatar"}
+	description={
+		"The Avatar component displays a user's profile picture. It automatically shows initials or a placeholder if the image fails to load or is still downloading. Use this component to consistently show user profiles without broken image icons."
+	}
+	features={[
+		"Automatic rendering of the <AvatarFallback> component while the <AvatarImage> is loading or if the network request fails.",
+		"Pre-styled as a perfect circle using rounded-full, with easy structural overrides for square or rounded-corner avatars.",
+		"Completely unstyled JavaScript logic from Radix, allowing Tailwind to handle all visual aspects via overflow-hidden and exact sizing utilities.",
+		"Accessible by default, ensuring decorative images are ignored by screen readers while meaningful avatars retain proper ARIA labels.",
+		"Uses standard HTML img attributes under the hood, making it natively compatible with Next.js <Image> components with minor code adjustments.",
+	]}
+	related={[
+		{
+			title: "Dropdown",
+			description:
+				"Avatars are frequently used as the visual trigger for a user profile dropdown menu in application navigation bars.",
+			href: "/docs/components/dropdown",
+		},
+		{
+			title: "Hover Card",
+			description:
+				"Wrap an avatar in a hover card to display a brief user bio or contact information when the user hovers over the profile picture.",
+			href: "/docs/components/hover-card",
+		},
+		{
+			title: "Badge",
+			description:
+				"Often used to place a small notification dot or online status indicator overlapping the corner of the avatar component.",
+			href: "/docs/components/badge",
+		},
+	]}
+	faqs={[
+		{
+			question: "How do I show user initials while the image is loading?",
+			answer:
+				"Pass the user's computed initials as a string inside the <AvatarFallback> component. The Radix primitive automatically controls the visibility of this fallback state based on the image's network request status, ensuring it only displays when needed.",
+		},
+		{
+			question: "Can I change the size of the avatar?",
+			answer:
+				"Yes. By default, the root <Avatar> component uses specific Tailwind sizing utilities (like h-10 w-10). You can pass a custom className to override these directly where you use the component, or edit the file to implement CVA for standard sm, md, and lg variants.",
+		},
+		{
+			question: "How do I make the avatar square instead of circular?",
+			answer:
+				"Simply remove the rounded-full class from the <Avatar> root component in your local file. You can replace it with rounded-md for soft corners or leave it out entirely for sharp edges.",
+		},
+		{
+			question: "Does this work with Next.js Image optimization?",
+			answer:
+				"Out of the box, <AvatarImage> wraps a standard <img> tag. However, since you own the source code, you can easily swap the standard <img> for next/image inside the component definition to leverage automatic webp conversion and image caching.",
+		},
+		{
+			question: "What happens if the image fails to load permanently?",
+			answer:
+				"If the server returns a 404 or the image source is broken, the AvatarImage completely unmounts and the AvatarFallback remains permanently visible. This guarantees your UI never displays an ugly broken image icon to the user.",
+		},
+	]}
+/>
+
 ## Props
 
 <PropsTableWrapper>

@@ -91,3 +91,66 @@ import {
 	/>
 </Form>
 ```
+
+---
+
+<ComponentDocContent
+	name={"Form"}
+	description={
+		"File Upload is an easy-to-use tool that allows users to select and send files from their device to your application. It is used to simplify the process of adding attachments, documents, or media to your forms and interfaces."
+	}
+	features={[
+		"Offers highly flexible visual variants including a standard input style or a larger drag-and-drop container.",
+		"Built-in support for file validation, allowing you to restrict uploads by maxSize, maxFiles, and specific file types (MIME types).",
+		"Fully customizable styling with Tailwind CSS v4, supporting multiple rounded corner options from xs to 2xl.",
+		"Includes native state handling for disabled and hasError conditions to ensure accessible feedback.",
+		"Supports supplementary instructional text via label, description, and hint props to guide users. '",
+	]}
+	related={[
+		{
+			title: "Form",
+			description:
+				"Often used alongside the File Upload component to collect complete user datasets with validation.",
+			href: "/docs/components/form",
+		},
+		{
+			title: "Progress Bar",
+			description:
+				"Frequently paired with File Upload to provide visual feedback during long upload processes.",
+			href: "/docs/components/progress",
+		},
+		{
+			title: "Button",
+			description:
+				"Used as a trigger within the component to open the native system file picker.",
+			href: "/docs/components/button",
+		},
+	]}
+	faqs={[
+		{
+			question: "How do I restrict the types of files users can upload?",
+			answer:
+				"You can use the accept prop to define allowed MIME types, such as images or videos, ensuring only valid formats are selected.",
+		},
+		{
+			question: "Can I customize the look of the upload area?",
+			answer:
+				"Yes, the component supports two main variants: input for a standard field and container for a larger drag-and-drop zone.",
+		},
+		{
+			question: "How does the component handle large files?",
+			answer:
+				"You can set the maxSize prop in bytes to automatically prevent users from selecting files that exceed your application's limits.",
+		},
+		{
+			question: "Does it support multiple file selection?",
+			answer:
+				"Yes, by enabling the multiple prop and optionally defining maxFiles to limit the total number of attachments.",
+		},
+		{
+			question: "Is there a way to show error messages to the user?",
+			answer:
+				"You can pass a hint for general instructions and toggle the hasError state to visually highlight validation failures.",
+		},
+	]}
+/>

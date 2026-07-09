@@ -63,3 +63,57 @@ import {
 	<HoverCardContent>Hello! I am a tooltip-like card.</HoverCardContent>
 </HoverCard>
 ```
+
+---
+
+<ComponentDocContent
+	name={"Hover Card"}
+	description={
+		"Hover Card shows extra information when you hover over an element, such as a user profile, link preview, or additional details. It's a simple way to give users more context without requiring a click or opening a modal. It also includes smooth hover behavior, keyboard accessibility, and is easy to customize with Tailwind CSS."
+	}
+	features={[
+		"Radix UI's react hover card engine to intelligently manage viewport collisions and prevent the expanded card from clipping off-screen.",
+		"Customizable timing handlers (e.g., openDelay={700}) to prevent accidental flashing when a user rapidly moves their mouse across the viewport.",
+		"Exposes modular layout wrappers: <HoverCard>, <HoverCardTrigger>, and <HoverCardContent>.",
+		"Fully accessible for keyboard users; seamlessly hooks into native browser focus events to display the hidden content when tabbed into.",
+		"Features smooth Tailwind CSS keyframe animations (like animate-in, zoom-in, and fade-in) that trigger exactly when the card mounts to the DOM.",
+	]}
+	related={[
+		{
+			title: "Tooltip",
+			description:
+				"Use a Tooltip for brief, plain-text helper labels. Use a Hover Card when you need to render rich, interactive HTML content (like nested links or images).",
+			href: "/docs/components/tooltip",
+		},
+		{
+			title: "Popover",
+			description:
+				"A Popover is structurally similar but better suited for rich content that requires an explicit click to open, rather than a transient hover interaction.",
+			href: "/docs/components/popover",
+		},
+		{
+			title: "Avatar",
+			description:
+				"Frequently wrapped inside a <HoverCardTrigger> to display a detailed user bio card when someone hovers over a small profile picture in a data table.",
+			href: "/docs/components/avatar",
+		},
+	]}
+	faqs={[
+		{
+			question:
+				"What's the technical difference between a Hover Card and a Tooltip?",
+			answer:
+				"A standard Tooltip is explicitly designed for brief, non-interactive text strings (like labeling a standalone icon button). A Hover Card is ARIA compliant specifically for housing complex, interactive React nodes, such as secondary links, form fields, or formatted markdown.",
+		},
+		{
+			question: "How do I change the delay before the card opens?",
+			answer:
+				"You can easily adjust the timing globally or per-instance by passing the openDelay props directly to the root <HoverCard> component.",
+		},
+		{
+			question: "Can I place clickable links inside the expanded Hover Card?",
+			answer:
+				'Yes. Because the @radix-ui/react-hover-card primitive implements safe "hover tunnels" (or safe polygons), users can slowly move their mouse pointer from the trigger element into the expanded card to click links or buttons without the card immediately disappearing when the cursor leaves the trigger',
+		},
+	]}
+/>

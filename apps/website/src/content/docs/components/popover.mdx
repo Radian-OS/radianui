@@ -96,6 +96,63 @@ browsing options are priorities.
 
 ---
 
+<ComponentDocContent
+	name={"Popover"}
+	description={
+		"Popover is a floating panel that displays interactive content, such as forms, calendars, or additional details, next to a trigger element.It provides smart positioning, and customizable animations for a smooth user experience."
+	}
+	features={[
+		"@radix-ui/react-popover, ensures strict ARIA compliance, automatic focus trapping within the overlay, and native Esc key dismissal.",
+		"Renders inside a React Portal to completely avoid overflow clipping issues caused by parent CSS containers.",
+		"Collision-aware positioning via the underlying Popper engine automatically flips or shifts the overlay if it hits the edge of the user's viewport.",
+		"Exposes highly composable, modular pieces: <Popover>, <PopoverTrigger> and <PopoverContent>.",
+		"Includes smooth Tailwind CSS keyframe animations (like animate-in, zoom-in, and fade-in) that trigger perfectly when the popover mounts to the DOM.",
+	]}
+	related={[
+		{
+			title: "Tooltip",
+			description:
+				"Use a Tooltip for brief, plain-text helper labels that appear on hover. Use a Popover when you need to render rich, interactive HTML content that requires a click to open.",
+			href: "/docs/components/tooltip",
+		},
+		{
+			title: "Dialog",
+			description:
+				"Use a Dialog (modal) when you want to explicitly interrupt the user's workflow, dim the background, and force them to complete an action.",
+			href: "/docs/components/dialog",
+		},
+		{
+			title: "Dropdown Menu",
+			description:
+				"Structurally similar, but explicitly designed for rendering a vertical list of application actions. A Popover is unopinionated about its internal layout.",
+			href: "/docs/components/dropdown",
+		},
+	]}
+	faqs={[
+		{
+			question: "How do I change which side the popover opens on?",
+			answer:
+				'You can pass standard Popper layout props directly to the <PopoverContent> component. For example, use side="top" or side="right" to dictate the preferred placement, and use align="start" | "center" | "end" to adjust how it aligns with the trigger button.',
+		},
+		{
+			question: "Does it close automatically when I click outside of it?",
+			answer:
+				'Yes, by default, standard "outside click" interactions dismiss the popover.',
+		},
+		{
+			question:
+				"Can I place input fields or standard HTML forms inside the popover?",
+			answer:
+				"Absolutely. Because the primitive correctly traps focus and manages DOM events, nesting text inputs, checkboxes, or composite components like the Radian Date Picker inside a popover is completely accessible and highly recommended for building complex UI filters.",
+		},
+		{
+			question: "Why is my popover rendering underneath my sticky site header?",
+			answer:
+				"While the menu uses a React Portal to escape local container bounds, it still inherits standard stacking contexts. If your site header has an extremely high z-index, open your local popover.tsx file and verify that the <PopoverContent> includes a utility like z-50 to compete with your global layout.",
+		},
+	]}
+/>
+
 ## Props
 
 <PropsTableWrapper>
