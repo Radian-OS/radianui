@@ -48,14 +48,25 @@ import {
 } from "@/registry/ui/alert"
 import { Divider } from "@/registry/ui/divider"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
+import ChangelogCard from "./changelog-card"
+import ChangelogList from "./changelog-list"
+import { ChangelogV03Content } from "./changelog/v0-3-content"
 import { CodeBlockCommandServer } from "./code-block-command-server"
 import { CodeCollapsibleWrapper } from "./code-collapsible-wrapper"
 import ColorTableThemeToggle from "./color/color-table-theme-toggle"
+import { ComponentExpansionGrid } from "./component-expansion"
 import { CopyButton } from "./copy-button"
+import { FeatureList, FeatureListItem } from "./feature-list"
 import { RequestDesign } from "./request-design"
 import { ResourcesGrid } from "./resources-grid"
 
 export const components = {
+	ChangelogList,
+	ChangelogCard,
+	FeatureList,
+	FeatureListItem,
+	ComponentExpansionGrid,
+	ChangelogV03Content,
 	ResourcesGrid,
 	RequestDesign,
 	PropsTable,
@@ -194,10 +205,7 @@ export const components = {
 			.replace(/[^\w-]/g, "")
 		return (
 			<h4
-				className={cn(
-					"scroll-mt-26 group flex items-center opacity-0",
-					className
-				)}
+				className={cn("scroll-mt-26 group flex items-center", className)}
 				{...props}>
 				<Link href={`#${id}`} className="flex items-center gap-2">
 					{children}

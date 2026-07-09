@@ -2,9 +2,9 @@ import React from "react"
 import Image from "next/image"
 import Link from "next/link"
 
-export function WebsiteLogo() {
+export function WebsiteLogo({ className }: { className?: string }) {
 	return (
-		<Link href={"/"} tabIndex={-1}>
+		<Link href={"/"} tabIndex={-1} className={className}>
 			<Image
 				src="/radian.svg"
 				className="dark:hidden"
