@@ -181,18 +181,6 @@ const AvatarPlayground = () => {
 				{AVATARS.map((src, index) => (
 					<AvatarTile key={src} src={src} index={index} />
 				))}
-				{AVATARS.map((src, index) => (
-					<AvatarTile key={src} src={src} index={index} />
-				))}
-				{AVATARS.map((src, index) => (
-					<AvatarTile key={src} src={src} index={index} />
-				))}
-				{AVATARS.map((src, index) => (
-					<AvatarTile key={src} src={src} index={index} />
-				))}
-				{AVATARS.map((src, index) => (
-					<AvatarTile key={src} src={src} index={index} />
-				))}
 			</div>
 
 			<ConfigPreferencesDialog open={configOpen} onOpenChange={setConfigOpen} />
