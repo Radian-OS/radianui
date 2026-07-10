@@ -27,8 +27,10 @@ const AvatarCTA = () => {
 				</div>
 
 				<div className="flex flex-wrap items-center gap-3">
-					<Button variant="glossy">
-						<Link href="/docs" className="flex gap-1.5">
+					<Button variant="glossy" asChild>
+						<Link
+							href={process.env.NEXT_PUBLIC_BLOCKS_URL!}
+							className="flex gap-1.5">
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
 								width="20"
@@ -47,8 +49,10 @@ const AvatarCTA = () => {
 						</Link>
 					</Button>
 
-					<Button variant="outline" color="neutral">
-						<Link href="/figma" className="flex gap-1.5">
+					<Button variant="outline" color="neutral" asChild>
+						<Link
+							href="https://www.figma.com/community/file/1601125934366184350/radian-design-system-version-0-1-2"
+							className="flex gap-1.5">
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
 								width="20"
@@ -84,38 +88,40 @@ const AvatarCTA = () => {
 
 			<div className="pointer-events-none absolute -right-0 top-0 hidden w-[520px] -translate-y-1/2 md:block">
 				{/* Light mode images */}
-				<div className="absolute right-0 top-20 h-[600px] w-[520px] dark:hidden">
+				<div className="-right-70 absolute top-2 h-[700px] w-[900px] dark:hidden">
 					<Image
-						src="/avatar/table-light.svg"
+						src="/avatar/Table.png"
 						alt="Table view"
 						fill
 						className="object-contain"
 					/>
 				</div>
-				<Image
-					src="/avatar/dropdown-light.svg"
-					alt="Account dropdown"
-					width={220}
-					height={260}
-					className="absolute top-0 dark:hidden"
-				/>
+				<div className="right-51 absolute -top-2 h-[240px] w-[400px] dark:hidden">
+					<Image
+						src="/avatar/Dropdown.png"
+						alt="Account dropdown"
+						fill
+						className="object-contain"
+					/>
+				</div>
 
 				{/* Dark mode images */}
-
-				<Image
-					src="/avatar/table-dark.svg"
-					alt="Table view"
-					width={520}
-					height={500}
-					className="absolute right-0 top-20 hidden dark:block"
-				/>
-				<Image
-					src="/avatar/dropdown-dark.svg"
-					alt="Account dropdown"
-					width={220}
-					height={260}
-					className="absolute top-0 hidden dark:block"
-				/>
+				<div className="-right-70 absolute top-2 hidden h-[700px] w-[900px] dark:block">
+					<Image
+						src="/avatar/Table-1.png"
+						alt="Table view"
+						fill
+						className="object-contain"
+					/>
+				</div>
+				<div className="right-51 absolute -top-2 hidden h-[240px] w-[400px] dark:block">
+					<Image
+						src="/avatar/Dropdown-1.png"
+						alt="Account dropdown"
+						fill
+						className="object-contain"
+					/>
+				</div>
 			</div>
 		</div>
 	)

@@ -1,5 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-
 "use client"
 
 import {
@@ -16,36 +14,6 @@ import {
 	useState,
 } from "react"
 import { cn } from "@/lib/utils"
-
-/* eslint-disable react-hooks/exhaustive-deps */
-
-/* eslint-disable react-hooks/exhaustive-deps */
-
-/* eslint-disable react-hooks/exhaustive-deps */
-
-/* eslint-disable react-hooks/exhaustive-deps */
-
-/* eslint-disable react-hooks/exhaustive-deps */
-
-/* eslint-disable react-hooks/exhaustive-deps */
-
-/* eslint-disable react-hooks/exhaustive-deps */
-
-/* eslint-disable react-hooks/exhaustive-deps */
-
-/* eslint-disable react-hooks/exhaustive-deps */
-
-/* eslint-disable react-hooks/exhaustive-deps */
-
-/* eslint-disable react-hooks/exhaustive-deps */
-
-/* eslint-disable react-hooks/exhaustive-deps */
-
-/* eslint-disable react-hooks/exhaustive-deps */
-
-/* eslint-disable react-hooks/exhaustive-deps */
-
-/* eslint-disable react-hooks/exhaustive-deps */
 
 // Types
 type StepperOrientation = "horizontal" | "vertical"
