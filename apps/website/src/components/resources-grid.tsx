@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link"
 import { Badge } from "@/registry/ui/badge"
 
 interface ResourceItem {
@@ -8,6 +9,7 @@ interface ResourceItem {
 	comingSoon?: boolean
 	lightUrl: string
 	darkUrl: string
+	link?: string
 }
 
 const resources: ResourceItem[] = [
@@ -18,6 +20,7 @@ const resources: ResourceItem[] = [
 		comingSoon: false,
 		lightUrl: "/media/assets-page/avatars-light.png",
 		darkUrl: "/media/assets-page/avatars-dark.png",
+		link: "avatar",
 	},
 	{
 		title: "Popular Brand Logos",
@@ -80,35 +83,37 @@ export function ResourcesGrid() {
 	return (
 		<div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2">
 			{resources.map((resource, index) => (
-				<div
-					key={index}
-					className="bg-bg border-soft flex cursor-pointer flex-col gap-2 rounded-xl border p-2 hover:shadow-sm">
-					<div className="border-soft h-52 w-full overflow-clip rounded-lg border">
-						<img
-							src={resource.lightUrl}
-							className="h-full w-full scale-[1.02] object-cover dark:hidden"
-						/>
-						<img
-							src={resource.darkUrl}
-							className="hidden h-full w-full scale-[1.02] object-cover dark:block"
-						/>
-					</div>
-					<div className="flex flex-col gap-1 p-2">
-						<div className="flex items-center gap-2">
-							<span className="text-fg text-sm font-medium">
-								{resource.title}
-							</span>
-							{resource.comingSoon && (
-								<Badge variant="soft" color="amber" size="20">
-									Coming Soon
-								</Badge>
-							)}
+				<Link href={`/resources/${resource.link}`} key={index}>
+					<div className="bg-bg border-soft flex cursor-pointer flex-col gap-2 rounded-xl border p-2 hover:shadow-sm">
+						<div className="border-soft h-52 w-full overflow-clip rounded-lg border">
+							<img
+								alt={resource.title}
+								src={resource.lightUrl}
+								className="h-full w-full scale-[1.02] object-cover dark:hidden"
+							/>
+							<img
+								alt={resource.title}
+								src={resource.darkUrl}
+								className="hidden h-full w-full scale-[1.02] object-cover dark:block"
+							/>
 						</div>
-						<p className="text-fg-secondary text-sm font-normal">
-							{resource.description}
-						</p>
+						<div className="flex flex-col gap-1 p-2">
+							<div className="flex items-center gap-2">
+								<span className="text-fg text-sm font-medium">
+									{resource.title}
+								</span>
+								{resource.comingSoon && (
+									<Badge variant="soft" color="amber" size="20">
+										Coming Soon
+									</Badge>
+								)}
+							</div>
+							<p className="text-fg-secondary text-sm font-normal">
+								{resource.description}
+							</p>
+						</div>
 					</div>
-				</div>
+				</Link>
 			))}
 		</div>
 	)

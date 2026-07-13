@@ -47,6 +47,7 @@ import {
 	AlertProps,
 	AlertTitle,
 } from "@/registry/ui/alert"
+import { AspectRatio } from "@/registry/ui/aspect-ratio"
 import { Divider } from "@/registry/ui/divider"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 import ChangelogCard from "./changelog-card"
@@ -382,7 +383,10 @@ export const components = {
 			.replace(/[^\w-]/g, "")
 		return (
 			<h4
-				className={cn("scroll-mt-26 h-0 overflow-hidden opacity-0", className)}
+				className={cn(
+					"scroll-mt-26 mb-2 mt-7 overflow-hidden text-base font-medium",
+					className
+				)}
 				{...props}>
 				<Link href={`#${id}`} className="flex items-center gap-2">
 					{children}
@@ -545,8 +549,8 @@ export const components = {
 				className
 			)}
 			src={src || ""}
-			width={Number(width)}
-			height={Number(height)}
+			width={width !== undefined ? Number(width) : undefined}
+			height={height !== undefined ? Number(height) : undefined}
 			alt={alt || ""}
 			{...props}
 			quality={85}
@@ -666,4 +670,6 @@ export const components = {
 	},
 	CodeCollapsibleWrapper,
 	ThemeProviderForColorTable,
+	AspectRatio,
+	Divider,
 }

@@ -5,6 +5,7 @@ import Footer from "@/components/home/footer"
 import { BorderBeam } from "@/registry/animated/border-beam"
 import { Avatar, AvatarImage } from "@/registry/ui/avatar"
 import { Badge } from "@/registry/ui/badge"
+import AvatarDocs from "../components/AvatarDocs"
 import AvatarHeroActionButtons from "../components/AvatarHeroActionButton"
 import AvatarPlayground from "../components/AvatarPlayground"
 
@@ -63,17 +64,16 @@ export default function Page() {
 								</Avatar>
 							))}
 						</div>
-						<h1 className="heading-1 dark:from-fg dark:to-fg-secondary not-dark:text-fg bg-clip-text text-center text-transparent dark:bg-gradient-to-b">
-							Beautiful, Production-Ready UI Avatars{" "}
-							<span className="text-fg bg-none [-webkit-text-fill-color:initial]">
-								👩🏼‍💼
-							</span>
-						</h1>
-						<p className="text-fg-secondary w-full max-w-[640px] text-center text-lg font-normal">
-							Get instant access to a diverse, high-quality collection of user
-							interface avatars optimized for Figma, React, and modern web
-							design systems.
-						</p>
+						<div className="w-163 flex flex-col items-center justify-center gap-4">
+							<h1 className="heading-3 text-center">
+								Beautiful, Production-Ready UI Avatars 👩🏼‍💼
+							</h1>
+							<p className="text-fg-secondary text-center text-base font-normal">
+								Get instant access to a diverse, high-quality collection of user
+								interface avatars optimized for Figma, React, and modern web
+								design systems.
+							</p>
+						</div>
 					</div>
 					<div className="flex w-full flex-col items-center justify-center gap-3 sm:flex-row">
 						<AvatarHeroActionButtons />
@@ -81,7 +81,7 @@ export default function Page() {
 				</div>
 				<VideoPreviewWithBeams />
 			</Background>
-
+			<AvatarDocs />
 			<Footer />
 		</div>
 	)

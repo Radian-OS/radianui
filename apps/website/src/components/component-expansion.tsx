@@ -1,9 +1,49 @@
+"use client"
+
 import * as React from "react"
-import { BarChart, CheckSquare, ExternalLink, Folder, Mail } from "lucide-react"
+import {
+	BoldIcon,
+	BookmarkIcon,
+	Computer,
+	ExternalLink,
+	ItalicIcon,
+	Moon,
+	SunMedium,
+	UnderlineIcon,
+} from "lucide-react"
 import Link from "next/link"
-import { Badge } from "@/registry/ui/badge"
-import { Checkbox } from "@/registry/ui/checkbox"
-import { RadioGroup, RadioGroupItem } from "@/registry/ui/radio-group"
+import { Button } from "@/registry/ui/button"
+import {
+	ContextMenu,
+	ContextMenuContent,
+	ContextMenuGroup,
+	ContextMenuItem,
+	ContextMenuSeparator,
+	ContextMenuShortcut,
+	ContextMenuTrigger,
+} from "@/registry/ui/context-menu"
+import {
+	Menubar,
+	MenubarCheckboxItem,
+	MenubarContent,
+	MenubarGroup,
+	MenubarItem,
+	MenubarMenu,
+	MenubarRadioGroup,
+	MenubarRadioItem,
+	MenubarSeparator,
+	MenubarShortcut,
+	MenubarTrigger,
+} from "@/registry/ui/menubar"
+import {
+	NavigationMenu,
+	NavigationMenuContent,
+	NavigationMenuItem,
+	NavigationMenuLink,
+	NavigationMenuList,
+	NavigationMenuTrigger,
+	navigationMenuTriggerStyle,
+} from "@/registry/ui/navigation-menu"
 import {
 	Stepper,
 	StepperIndicator,
@@ -12,8 +52,8 @@ import {
 	StepperSeparator,
 	StepperTrigger,
 } from "@/registry/ui/stepper"
-import { Switch, SwitchWrapper } from "@/registry/ui/switch"
-import { Tabs, TabsList, TabsTrigger } from "@/registry/ui/tabs"
+import { Toggle } from "@/registry/ui/toggle"
+import { ToggleGroup, ToggleGroupItem } from "@/registry/ui/toggle-group"
 
 function Card({
 	title,
@@ -27,201 +67,343 @@ function Card({
 	href: string
 }) {
 	return (
-		<div className="flex flex-col rounded-xl border border-zinc-200 bg-white p-5 shadow-sm dark:border-zinc-800 dark:bg-zinc-950">
+		<div className="border-soft bg-bg flex flex-col rounded-xl border p-5 shadow-sm">
 			<div className="mb-6 flex items-center justify-between">
-				<span className="text-sm font-semibold text-zinc-900 dark:text-white">
-					{title}
-				</span>
-				<span className="text-xs text-zinc-500">{variants}</span>
+				<span className="text-fg text-sm font-semibold">{title}</span>
+				<span className="text-fg-secondary text-xs">{variants}</span>
 			</div>
-			<div className="relative mb-6 flex min-h-[140px] flex-1 items-center justify-center overflow-hidden rounded-lg border border-zinc-100 bg-zinc-50 dark:border-zinc-800/50 dark:bg-zinc-900/30">
-				{/* Background dot pattern */}
-				<div
-					className="absolute inset-0 opacity-40 dark:opacity-20"
-					style={{
-						backgroundImage: "radial-gradient(#d4d4d8 1px, transparent 1px)",
-						backgroundSize: "16px 16px",
-					}}></div>
-				<div className="relative z-10 flex w-full items-center justify-center p-4">
+			<div className="relative mb-6 flex min-h-[140px] flex-1 items-center justify-center overflow-hidden">
+				<div className="relative z-10 flex w-full items-center justify-center">
 					{children}
 				</div>
 			</div>
-			<Link
-				href={href}
-				className="flex items-center justify-center gap-2 rounded-lg bg-zinc-100 py-2.5 text-sm font-medium text-zinc-700 transition-colors hover:bg-zinc-200 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800">
-				<ExternalLink className="h-4 w-4" /> View page
-			</Link>
+			<Button
+				variant="soft"
+				size="36"
+				color="neutral"
+				className="w-full"
+				asChild>
+				<Link href={href}>
+					<ExternalLink className="text-fg-tertiary" /> View page
+				</Link>
+			</Button>
 		</div>
+	)
+}
+
+function PreviewWrapper({
+	children,
+	scale = 0.85,
+}: {
+	children: React.ReactNode
+	scale?: number
+}) {
+	return (
+		<div
+			className="select-none"
+			style={{ transform: `scale(${scale})` }}
+			aria-hidden="true">
+			{children}
+		</div>
+	)
+}
+
+const stepperSteps = [1, 2, 3, 4]
+
+function StepperDemo() {
+	return (
+		<Stepper defaultValue={2} className="mx-10 w-full max-w-xs space-y-4">
+			<StepperNav>
+				{stepperSteps.map((step) => (
+					<StepperItem key={step} step={step}>
+						<StepperTrigger>
+							<StepperIndicator className="rounded-lg">{step}</StepperIndicator>
+						</StepperTrigger>
+						{stepperSteps.length > step && (
+							<StepperSeparator className="group-data-[state=completed]/step:bg-primary" />
+						)}
+					</StepperItem>
+				))}
+			</StepperNav>
+		</Stepper>
+	)
+}
+
+function MenubarDemo() {
+	return (
+		<Menubar className="w-fit">
+			<MenubarMenu>
+				<MenubarTrigger>File</MenubarTrigger>
+				<MenubarContent>
+					<MenubarGroup>
+						<MenubarItem>
+							New Tab <MenubarShortcut>⌘T</MenubarShortcut>
+						</MenubarItem>
+						<MenubarItem>
+							New Window <MenubarShortcut>⌘N</MenubarShortcut>
+						</MenubarItem>
+						<MenubarItem disabled>New Incognito Window</MenubarItem>
+					</MenubarGroup>
+					<MenubarSeparator />
+					<MenubarGroup>
+						<MenubarItem>
+							Print... <MenubarShortcut>⌘P</MenubarShortcut>
+						</MenubarItem>
+					</MenubarGroup>
+				</MenubarContent>
+			</MenubarMenu>
+			<MenubarMenu>
+				<MenubarTrigger>Edit</MenubarTrigger>
+				<MenubarContent>
+					<MenubarGroup>
+						<MenubarItem>
+							Undo <MenubarShortcut>⌘Z</MenubarShortcut>
+						</MenubarItem>
+						<MenubarItem>
+							Redo <MenubarShortcut>⇧⌘Z</MenubarShortcut>
+						</MenubarItem>
+					</MenubarGroup>
+					<MenubarSeparator />
+					<MenubarGroup>
+						<MenubarItem>Cut</MenubarItem>
+						<MenubarItem>Copy</MenubarItem>
+						<MenubarItem>Paste</MenubarItem>
+					</MenubarGroup>
+				</MenubarContent>
+			</MenubarMenu>
+			<MenubarMenu>
+				<MenubarTrigger>View</MenubarTrigger>
+				<MenubarContent className="w-44">
+					<MenubarGroup>
+						<MenubarCheckboxItem>Bookmarks Bar</MenubarCheckboxItem>
+						<MenubarCheckboxItem>Full URLs</MenubarCheckboxItem>
+					</MenubarGroup>
+					<MenubarSeparator />
+					<MenubarGroup>
+						<MenubarItem inset>
+							Reload <MenubarShortcut>⌘R</MenubarShortcut>
+						</MenubarItem>
+						<MenubarItem disabled inset>
+							Force Reload <MenubarShortcut>⇧⌘R</MenubarShortcut>
+						</MenubarItem>
+					</MenubarGroup>
+					<MenubarSeparator />
+					<MenubarGroup>
+						<MenubarItem inset>Toggle Fullscreen</MenubarItem>
+					</MenubarGroup>
+				</MenubarContent>
+			</MenubarMenu>
+			<MenubarMenu>
+				<MenubarTrigger>Profiles</MenubarTrigger>
+				<MenubarContent>
+					<MenubarRadioGroup value="benoit">
+						<MenubarRadioItem value="andy">Andy</MenubarRadioItem>
+						<MenubarRadioItem value="benoit">Benoit</MenubarRadioItem>
+						<MenubarRadioItem value="luis">Luis</MenubarRadioItem>
+					</MenubarRadioGroup>
+					<MenubarSeparator />
+					<MenubarGroup>
+						<MenubarItem inset>Edit...</MenubarItem>
+					</MenubarGroup>
+					<MenubarSeparator />
+					<MenubarGroup>
+						<MenubarItem inset>Add Profile...</MenubarItem>
+					</MenubarGroup>
+				</MenubarContent>
+			</MenubarMenu>
+		</Menubar>
+	)
+}
+
+function ContextMenuDemo() {
+	return (
+		<ContextMenu>
+			<ContextMenuTrigger className="flex h-28 w-full max-w-xs items-center justify-center rounded-xl border border-dashed px-4 text-sm">
+				Right click here
+			</ContextMenuTrigger>
+			<ContextMenuContent className="w-48">
+				<ContextMenuGroup>
+					<ContextMenuItem>
+						Back
+						<ContextMenuShortcut>⌘[</ContextMenuShortcut>
+					</ContextMenuItem>
+					<ContextMenuItem disabled>
+						Forward
+						<ContextMenuShortcut>⌘]</ContextMenuShortcut>
+					</ContextMenuItem>
+					<ContextMenuItem>
+						Reload
+						<ContextMenuShortcut>⌘R</ContextMenuShortcut>
+					</ContextMenuItem>
+				</ContextMenuGroup>
+				<ContextMenuSeparator />
+				<ContextMenuGroup>
+					<ContextMenuItem>Show Bookmarks</ContextMenuItem>
+				</ContextMenuGroup>
+			</ContextMenuContent>
+		</ContextMenu>
+	)
+}
+
+function ToggleDemo() {
+	return (
+		<div className="flex items-center gap-3">
+			<Toggle aria-label="Toggle bookmark">
+				<BookmarkIcon className="group-data-[state=on]/toggle:fill-fg-secondary text-fg-secondary" />
+				Bookmark
+			</Toggle>
+			<div className="border-border bg-bg flex items-center justify-center gap-1 rounded-lg border p-1">
+				<Toggle
+					variant="ghost"
+					className="p-1.5"
+					size="32"
+					aria-label="Toggle bold">
+					<BoldIcon className="text-fg-secondary" />
+				</Toggle>
+				<Toggle
+					defaultPressed
+					variant="ghost"
+					className="p-1.5"
+					size="32"
+					aria-label="Toggle italic">
+					<ItalicIcon className="text-fg-secondary" />
+				</Toggle>
+				<Toggle
+					className="p-1.5"
+					variant="ghost"
+					size="32"
+					aria-label="Toggle underline">
+					<UnderlineIcon className="text-fg-secondary !size-5" />
+				</Toggle>
+			</div>
+		</div>
+	)
+}
+
+function ToggleGroupDemo() {
+	return (
+		<ToggleGroup
+			spacing={0}
+			type="single"
+			defaultValue="light"
+			variant="outline">
+			<ToggleGroupItem value="light" aria-label="Light theme">
+				<SunMedium className="text-fg-secondary" />
+				Light
+			</ToggleGroupItem>
+			<ToggleGroupItem value="dark" aria-label="Dark theme">
+				<Moon className="text-fg-secondary" />
+				Dark
+			</ToggleGroupItem>
+			<ToggleGroupItem value="system" aria-label="System theme">
+				<Computer className="text-fg-secondary" />
+				System
+			</ToggleGroupItem>
+		</ToggleGroup>
+	)
+}
+
+function NavigationMenuDemo() {
+	return (
+		<NavigationMenu viewport={false}>
+			<NavigationMenuList>
+				<NavigationMenuItem>
+					<NavigationMenuLink className={navigationMenuTriggerStyle()} asChild>
+						<Link href="#">Features</Link>
+					</NavigationMenuLink>
+				</NavigationMenuItem>
+				<NavigationMenuItem>
+					<NavigationMenuTrigger>Products</NavigationMenuTrigger>
+					<NavigationMenuContent
+						align="left"
+						className="min-w-50 rounded-2xl p-2">
+						<ul className="flex w-full flex-col gap-1.5 px-1.5 py-1">
+							<li>
+								<NavigationMenuLink asChild>
+									<Link href="#">Workspace</Link>
+								</NavigationMenuLink>
+							</li>
+							<li>
+								<NavigationMenuLink asChild>
+									<Link href="#">Data Tables</Link>
+								</NavigationMenuLink>
+							</li>
+							<li>
+								<NavigationMenuLink asChild>
+									<Link href="#">Components</Link>
+								</NavigationMenuLink>
+							</li>
+						</ul>
+					</NavigationMenuContent>
+				</NavigationMenuItem>
+				<NavigationMenuItem>
+					<NavigationMenuTrigger>Pricing</NavigationMenuTrigger>
+					<NavigationMenuContent
+						align="center"
+						className="min-w-50 rounded-2xl p-2">
+						<ul className="flex w-full flex-col gap-1.5 px-1.5 py-1">
+							<li>
+								<NavigationMenuLink asChild>
+									<Link href="#">Plans &amp; Pricing</Link>
+								</NavigationMenuLink>
+							</li>
+							<li>
+								<NavigationMenuLink asChild>
+									<Link href="#">Enterprise</Link>
+								</NavigationMenuLink>
+							</li>
+						</ul>
+					</NavigationMenuContent>
+				</NavigationMenuItem>
+			</NavigationMenuList>
+		</NavigationMenu>
 	)
 }
 
 export function ComponentExpansionGrid() {
 	return (
-		<div className="my-10 grid grid-cols-1 gap-5 md:grid-cols-2">
-			{/* Stepper */}
-			<Card title="Stepper" variants="(6 variants)" href="#">
-				<Stepper defaultValue={3} className="w-full max-w-[200px] px-2">
-					<StepperNav>
-						<StepperItem step={1}>
-							<StepperTrigger className="rounded-md">
-								<StepperIndicator className="rounded-md">1</StepperIndicator>
-							</StepperTrigger>
-							<StepperSeparator />
-						</StepperItem>
-						<StepperItem step={2}>
-							<StepperTrigger className="rounded-md">
-								<StepperIndicator className="rounded-md">2</StepperIndicator>
-							</StepperTrigger>
-							<StepperSeparator />
-						</StepperItem>
-						<StepperItem step={3}>
-							<StepperTrigger className="rounded-md">
-								<StepperIndicator className="rounded-md">3</StepperIndicator>
-							</StepperTrigger>
-							<StepperSeparator />
-						</StepperItem>
-						<StepperItem step={4}>
-							<StepperTrigger className="rounded-md">
-								<StepperIndicator className="rounded-md">4</StepperIndicator>
-							</StepperTrigger>
-						</StepperItem>
-					</StepperNav>
-				</Stepper>
+		<div className="my-9 mb-6 grid grid-cols-1 gap-5 md:grid-cols-2">
+			<Card title="Stepper" variants="" href="/docs/components/stepper">
+				<StepperDemo />
 			</Card>
 
-			{/* Circular Progress Bar */}
-			<Card title="Circular Progress Bar" variants="(4 Sizes)" href="#">
-				<div className="bg-bg border-border relative flex h-24 w-24 items-center justify-center rounded-full border shadow-sm">
-					<svg
-						className="absolute inset-0 h-full w-full -rotate-90 transform p-1"
-						viewBox="0 0 100 100">
-						<circle
-							cx="50"
-							cy="50"
-							r="42"
-							fill="transparent"
-							stroke="currentColor"
-							strokeWidth="8"
-							className="text-fg-tertiary"
-						/>
-						<circle
-							cx="50"
-							cy="50"
-							r="42"
-							fill="transparent"
-							stroke="currentColor"
-							strokeWidth="8"
-							className="text-primary"
-							strokeDasharray="264"
-							strokeDashoffset="132"
-							strokeLinecap="round"
-						/>
-					</svg>
-					<div className="flex flex-col items-center">
-						<span className="text-fg text-sm font-bold">50%</span>
-						<span className="text-fg-secondary text-[10px] font-medium">
-							Label
-						</span>
-					</div>
-				</div>
+			<Card title="Menu Bar" variants="" href="/docs/components/menubar">
+				<PreviewWrapper>
+					<MenubarDemo />
+				</PreviewWrapper>
 			</Card>
 
-			{/* Radio Card */}
-			<Card title="Radio Card" variants="(7 variants)" href="#">
-				<div className="border-border bg-bg flex w-full max-w-[220px] items-center gap-3 rounded-xl border p-3 shadow-sm">
-					<div className="bg-primary flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-white shadow-inner">
-						<svg
-							className="h-4 w-4"
-							fill="none"
-							viewBox="0 0 24 24"
-							stroke="currentColor">
-							<path
-								strokeLinecap="round"
-								strokeLinejoin="round"
-								strokeWidth={2}
-								d="M13 10V3L4 14h7v7l9-11h-7z"
-							/>
-						</svg>
-					</div>
-					<div className="flex min-w-0 flex-1 flex-col">
-						<div className="flex items-center gap-1">
-							Label{" "}
-							<Badge size="20" color="emerald" variant="soft">
-								New
-							</Badge>
-						</div>
-						<span className="text-fg-tertiary truncate text-[9px]">
-							Insert the cards description here.
-						</span>
-					</div>
-					<RadioGroup className="shrink-0">
-						<RadioGroupItem value="item-1" />
-					</RadioGroup>
-				</div>
+			<Card
+				title="Context Menu"
+				variants=""
+				href="/docs/components/context-menu">
+				<PreviewWrapper scale={0.9}>
+					<ContextMenuDemo />
+				</PreviewWrapper>
 			</Card>
 
-			{/* Switch Card */}
-			<Card title="Switch Card" variants="(7 variants)" href="#">
-				<div className="border-border bg-bg flex w-full max-w-[220px] items-center gap-3 rounded-xl border p-3 shadow-sm">
-					<div className="bg-red-accent text-red-text flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-[9px] font-bold">
-						PDF
-					</div>
-					<div className="flex min-w-0 flex-1 flex-col">
-						<div className="flex items-center gap-1">
-							Label{" "}
-							<Badge variant="soft" color="emerald" size="20">
-								New
-							</Badge>
-						</div>
-						<span className="truncate text-[9px] text-zinc-500">
-							Insert the cards description here.
-						</span>
-					</div>
-					<SwitchWrapper className="shrink-0">
-						<Switch defaultChecked size="20" />
-					</SwitchWrapper>
-				</div>
+			<Card title="Toggle" variants="" href="/docs/components/toggle">
+				<PreviewWrapper>
+					<ToggleDemo />
+				</PreviewWrapper>
 			</Card>
 
-			{/* Vertical Tab */}
-			<Card title="Vertical Tab" variants="(6 variants)" href="#">
-				<Tabs defaultValue="inbox" orientation="vertical">
-					<TabsList variant="open" className="w-12">
-						<TabsTrigger value="inbox" className="justify-start">
-							<Mail className="h-3.5 w-3.5 opacity-80" /> Inbox
-						</TabsTrigger>
-						<TabsTrigger value="projects" className="justify-start">
-							<Folder className="h-3.5 w-3.5 opacity-80" /> Projects
-						</TabsTrigger>
-						<TabsTrigger value="tasks" className="justify-start">
-							<CheckSquare className="h-3.5 w-3.5 opacity-80" /> Tasks
-						</TabsTrigger>
-						<TabsTrigger value="analytics" className="justify-start">
-							<BarChart className="h-3.5 w-3.5 opacity-80" /> Analytics
-						</TabsTrigger>
-					</TabsList>
-				</Tabs>
+			<Card
+				title="Toggle Group"
+				variants=""
+				href="/docs/components/toggle-group">
+				<PreviewWrapper>
+					<ToggleGroupDemo />
+				</PreviewWrapper>
 			</Card>
 
-			{/* Checkbox Card */}
-			<Card title="Checkbox Card" variants="(7 variants)" href="#">
-				<div className="bg-bg flex w-full max-w-[220px] items-center gap-3 rounded-xl border-2 p-3">
-					<div className="bg-orange-accent flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-full text-xl">
-						<span className="text-sm">👨‍💻</span>
-					</div>
-					<div className="flex min-w-0 flex-1 flex-col">
-						<div className="flex items-center gap-1">
-							Label
-							<Badge variant="soft" color="emerald" size="20">
-								New
-							</Badge>
-						</div>
-						<span className="text-fg-tertiary truncate text-[9px]">
-							Insert the cards description here.
-						</span>
-					</div>
-					<Checkbox defaultChecked size="sm" className="shrink-0" />
-				</div>
+			<Card
+				title="Navigation Menu"
+				variants=""
+				href="/docs/components/navigation-menu">
+				<PreviewWrapper scale={0.8}>
+					<NavigationMenuDemo />
+				</PreviewWrapper>
 			</Card>
 		</div>
 	)
