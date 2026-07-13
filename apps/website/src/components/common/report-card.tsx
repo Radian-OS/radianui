@@ -31,7 +31,7 @@ const ReportCard = () => {
 				/>
 			</span>
 			<span className="flex justify-end gap-2">
-				<Button variant="outline" color="neutral">
+				<Button variant="outline" color="primary">
 					Cancel
 				</Button>
 				<Button>Submit</Button>

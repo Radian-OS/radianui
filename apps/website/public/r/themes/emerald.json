@@ -1,4 +1,4 @@
-{
+﻿{
 	"name": "emerald",
 	"label": "Emerald",
 	"cssVariables": {
@@ -8,7 +8,8 @@
 			"primary-focus": "oklch(0.9489 0.0556 156.34)",
 			"primary-border": "oklch(0.7761 0.2117 148.55)",
 			"primary-hover": "oklch(0.6901 0.1748 149.64)",
-			"primary-text": "oklch(0.5388 0.1339 149.74)"
+			"primary-text": "oklch(0.5388 0.1339 149.74)",
+			"primary-fg": "oklch(1 0 0)"
 		},
 		"dark": {
 			"primary": "oklch(0.6334 0.171 148.65)",
@@ -16,7 +17,8 @@
 			"primary-focus": "oklch(0.3887 0.0924 150.55)",
 			"primary-border": "oklch(0.5388 0.1339 149.74)",
 			"primary-hover": "oklch(0.6901 0.1748 149.64)",
-			"primary-text": "oklch(0.7761 0.2117 148.55)"
+			"primary-text": "oklch(0.7761 0.2117 148.55)",
+			"primary-fg": "oklch(1 0 0)"
 		}
 	}
 }

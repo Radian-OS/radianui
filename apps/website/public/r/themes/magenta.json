@@ -1,4 +1,4 @@
-{
+﻿{
 	"name": "magenta",
 	"label": "Magenta",
 	"cssVariables": {
@@ -8,7 +8,8 @@
 			"primary-focus": "oklch(0.9221 0.0463 338.25)",
 			"primary-border": "oklch(0.7455 0.1847 341.92)",
 			"primary-hover": "oklch(0.6725 0.2452 344.84)",
-			"primary-text": "oklch(0.5565 0.2156 345.71)"
+			"primary-text": "oklch(0.5565 0.2156 345.71)",
+			"primary-fg": "oklch(1 0 0)"
 		},
 		"dark": {
 			"primary": "oklch(0.6175 0.2503 347.29)",
@@ -16,7 +17,8 @@
 			"primary-focus": "oklch(0.3111 0.1038 344.24)",
 			"primary-border": "oklch(0.5565 0.2156 345.71)",
 			"primary-hover": "oklch(0.6725 0.2452 344.84)",
-			"primary-text": "oklch(0.5565 0.2156 345.71)"
+			"primary-text": "oklch(0.5565 0.2156 345.71)",
+			"primary-fg": "oklch(1 0 0)"
 		}
 	}
 }
