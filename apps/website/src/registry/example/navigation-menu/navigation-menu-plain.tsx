@@ -51,7 +51,7 @@ const NAV_CONFIG: NavEntry[] = [
 export default function NavigationMenuPreview() {
 	return (
 		<div className="flex items-center justify-center">
-			<NavigationMenu viewport={false}>
+			<NavigationMenu>
 				<NavigationMenuList>
 					{NAV_CONFIG.map((entry) =>
 						"href" in entry ? (
