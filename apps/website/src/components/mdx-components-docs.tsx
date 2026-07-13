@@ -384,7 +384,7 @@ export const components = {
 		return (
 			<h4
 				className={cn(
-					"scroll-mt-26 mb-2 mt-6 overflow-hidden text-base font-medium",
+					"scroll-mt-26 mb-2 mt-7 overflow-hidden text-base font-medium",
 					className
 				)}
 				{...props}>
