@@ -60,11 +60,13 @@ function Card({
 	variants,
 	children,
 	href,
+	allowOverflow = false,
 }: {
 	title: string
 	variants: string
 	children: React.ReactNode
 	href: string
+	allowOverflow?: boolean
 }) {
 	return (
 		<div className="border-soft bg-bg flex flex-col rounded-xl border p-5 shadow-sm">
@@ -72,7 +74,8 @@ function Card({
 				<span className="text-fg text-sm font-semibold">{title}</span>
 				<span className="text-fg-secondary text-xs">{variants}</span>
 			</div>
-			<div className="relative mb-6 flex min-h-[140px] flex-1 items-center justify-center overflow-hidden">
+			<div
+				className={`relative mb-6 flex min-h-[140px] flex-1 items-center justify-center ${allowOverflow ? "overflow-visible" : "overflow-hidden"}`}>
 				<div className="relative z-10 flex w-full items-center justify-center">
 					{children}
 				</div>
@@ -368,9 +371,7 @@ export function ComponentExpansionGrid() {
 			</Card>
 
 			<Card title="Menu Bar" variants="" href="/docs/components/menubar">
-				<PreviewWrapper>
-					<MenubarDemo />
-				</PreviewWrapper>
+				<MenubarDemo />
 			</Card>
 
 			<Card
@@ -400,10 +401,9 @@ export function ComponentExpansionGrid() {
 			<Card
 				title="Navigation Menu"
 				variants=""
-				href="/docs/components/navigation-menu">
-				<PreviewWrapper scale={0.8}>
-					<NavigationMenuDemo />
-				</PreviewWrapper>
+				href="/docs/components/navigation-menu"
+				allowOverflow>
+				<NavigationMenuDemo />
 			</Card>
 		</div>
 	)
