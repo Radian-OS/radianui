@@ -64,7 +64,7 @@ export default function Page() {
 								</Avatar>
 							))}
 						</div>
-						<div className="w-163 flex flex-col items-center justify-center gap-4">
+						<div className="md:w-163 flex w-full flex-col items-center justify-center gap-4">
 							<h1 className="heading-3 text-center">
 								Beautiful, Production-Ready UI Avatars 👩🏼‍💼
 							</h1>

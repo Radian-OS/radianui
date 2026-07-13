@@ -8,7 +8,7 @@ import AvatarUseCase from "./AvatarUseCase"
 
 const AvatarDocs = () => {
 	return (
-		<div className="gap-25 py-30 border-soft bg-linear-to-b from-fill1 to-bg flex flex-col border-b">
+		<div className="gap-25 py-30 border-soft bg-linear-to-b from-fill1 to-bg flex flex-col border-b px-5 sm:px-6">
 			<AvatarIntroduction />
 			<AvatarUseCase />
 			<AvatarDesign />
