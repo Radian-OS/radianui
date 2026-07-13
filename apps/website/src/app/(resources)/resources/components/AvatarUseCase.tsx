@@ -59,10 +59,10 @@ const useCasePoints = [
 const AvatarUseCase = () => {
 	return (
 		<div className="flex flex-col gap-16">
-			<div className="w-200 mx-auto flex flex-col gap-6">
+			<div className="lg:w-200 mx-auto flex w-full flex-col gap-6">
 				<div className="flex flex-col gap-4">
 					<p className="text-primary-text text-sm font-medium">Use cases</p>
-					<h4 className="heading-4">Common avatar UI layouts and patterns</h4>
+					<h2 className="heading-4">Common avatar UI layouts and patterns</h2>
 					<div className="flex flex-col gap-8">
 						<p>
 							User avatars appear throughout modern interfaces because they

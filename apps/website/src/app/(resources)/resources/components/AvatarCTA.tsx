@@ -6,9 +6,9 @@ import { Button } from "@/registry/ui/button"
 
 const AvatarCTA = () => {
 	return (
-		<div className="border-soft bg-linear-to-b from-fill1 to-bg-fill2 p-15 relative mx-auto flex w-[1400px] items-center overflow-hidden rounded-[20px] border">
-			<div className="relative z-10 flex max-w-md flex-col gap-5">
-				<div className="flex w-[532px] flex-col gap-8">
+		<div className="border-soft bg-linear-to-b from-fill1 to-bg-fill2 lg:p-15 relative flex items-center overflow-hidden rounded-[20px] border p-6 sm:p-10 lg:mx-auto lg:w-[1350px]">
+			<div className="relative z-10 flex w-full flex-col gap-5 lg:max-w-md">
+				<div className="flex w-full flex-col gap-8 lg:w-[532px]">
 					<div className="flex flex-col gap-5">
 						<Badge color="green" variant="soft" size="28">
 							Open Source Library
@@ -26,8 +26,8 @@ const AvatarCTA = () => {
 					</p>
 				</div>
 
-				<div className="flex flex-wrap items-center gap-3">
-					<Button variant="glossy" asChild>
+				<div className="flex flex-col items-center gap-3 sm:flex-row">
+					<Button variant="glossy" className="w-full" asChild>
 						<Link
 							href={process.env.NEXT_PUBLIC_BLOCKS_URL!}
 							className="flex gap-1.5">
@@ -49,7 +49,7 @@ const AvatarCTA = () => {
 						</Link>
 					</Button>
 
-					<Button variant="outline" color="neutral" asChild>
+					<Button variant="outline" className="w-full" color="neutral" asChild>
 						<Link
 							href="https://www.figma.com/community/file/1601125934366184350/radian-design-system-version-0-1-2"
 							className="flex gap-1.5">
@@ -86,7 +86,7 @@ const AvatarCTA = () => {
 				</div>
 			</div>
 
-			<div className="pointer-events-none absolute -right-0 top-0 hidden w-[520px] -translate-y-1/2 md:block">
+			<div className="pointer-events-none absolute -right-0 top-0 hidden w-[520px] -translate-y-1/2 lg:block">
 				{/* Light mode images */}
 				<div className="-right-70 absolute top-2 h-[700px] w-[900px] dark:hidden">
 					<Image
