@@ -156,14 +156,14 @@ export const FeatureHeader = () => {
 				</svg>
 			</div>
 			<div className="z-20 flex w-full max-w-[730px] flex-col gap-6 text-center">
-				<span className="heading-2 max-w-[730px] text-center">
+				<h2 className="heading-2 max-w-[730px] text-center">
 					<span className="from-fg to-fg-secondary bg-gradient-to-b bg-clip-text text-transparent">
 						A design system built for speed,{" "}
 					</span>
 					<span className="bg-gradient-to-r from-[#7655F6] to-[#492EB8] bg-clip-text text-transparent">
 						scale and simplicity.
 					</span>
-				</span>
+				</h2>
 				<p className="text-fg-secondary text-base font-normal">
 					Get access to high quality components, animations and blocks. The
 					default settings for Radian can be used for production ready
