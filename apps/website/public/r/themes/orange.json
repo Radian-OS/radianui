@@ -1,4 +1,4 @@
-{
+﻿{
 	"name": "orange",
 	"label": "Orange",
 	"cssVariables": {
@@ -8,7 +8,8 @@
 			"primary-focus": "oklch(0.9372 0.0353 49.24)",
 			"primary-border": "oklch(0.6842 0.185 43.27)",
 			"primary-hover": "oklch(0.6842 0.185 43.27)",
-			"primary-text": "oklch(0.5381 0.1375 43.87)"
+			"primary-text": "oklch(0.5381 0.1375 43.87)",
+			"primary-fg": "oklch(1 0 0)"
 		},
 		"dark": {
 			"primary": "oklch(0.6211 0.1686 43.12)",
@@ -16,7 +17,8 @@
 			"primary-focus": "oklch(0.3313 0.069 46.31)",
 			"primary-border": "oklch(0.5008 0.126 44.4)",
 			"primary-hover": "oklch(0.6842 0.185 43.27)",
-			"primary-text": "oklch(0.737 0.1512 45.95)"
+			"primary-text": "oklch(0.737 0.1512 45.95)",
+			"primary-fg": "oklch(1 0 0)"
 		}
 	}
 }

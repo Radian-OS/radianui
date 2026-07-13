@@ -1,4 +1,4 @@
-{
+﻿{
 	"name": "blue",
 	"label": "Blue",
 	"cssVariables": {
@@ -8,7 +8,8 @@
 			"primary-focus": "oklch(0.9093 0.0355 280.44)",
 			"primary-border": "oklch(0.6082 0.1993 274.96)",
 			"primary-hover": "oklch(0.6082 0.1993 274.96)",
-			"primary-text": "oklch(0.6082 0.1993 274.96)"
+			"primary-text": "oklch(0.6082 0.1993 274.96)",
+			"primary-fg": "oklch(1 0 0)"
 		},
 		"dark": {
 			"primary": "oklch(0.5345 0.223 272.15)",
@@ -16,7 +17,8 @@
 			"primary-focus": "oklch(0.2809 0.1185 272.2)",
 			"primary-border": "oklch(0.5345 0.223 272.15)",
 			"primary-hover": "oklch(0.6082 0.1993 274.96)",
-			"primary-text": "oklch(0.6893 0.1433 278.39)"
+			"primary-text": "oklch(0.6893 0.1433 278.39)",
+			"primary-fg": "oklch(1 0 0)"
 		}
 	}
 }

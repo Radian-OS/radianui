@@ -1,5 +1,6 @@
 import React from "react"
 import Image from "next/image"
+import { InfiniteScroll } from "@/registry/animated/infinite-scroll"
 
 const useCaseImages = [
 	{ src: "/avatar/usecase/usecase-1.png", alt: "Navigation & Account Access" },
@@ -89,7 +90,7 @@ const AvatarUseCase = () => {
 					</p>
 				</div>
 			</div>
-			<div className="flex gap-8">
+			<InfiniteScroll duration={60} pauseOnHover={false}>
 				{useCaseImages.map((image) => (
 					<Image
 						key={image.src}
@@ -99,7 +100,7 @@ const AvatarUseCase = () => {
 						height={420}
 					/>
 				))}
-			</div>
+			</InfiniteScroll>
 		</div>
 	)
 }
