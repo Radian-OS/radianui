@@ -77,7 +77,7 @@ export function DocPageActions({ slugAsParams, title }: DocPageActionsProps) {
 				) : (
 					<Copy className="text-fg-secondary size-3.5" />
 				)}
-				Copy Page
+				<p className="hidden sm:block">Copy Page</p>
 			</Button>
 			<Dropdown open={open} onOpenChange={setOpen}>
 				<DropdownTrigger asChild>

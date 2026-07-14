@@ -37,11 +37,14 @@ export default function Page() {
 								href="/docs/getting-started/changelog"
 								className="relative h-[32px] rounded-full">
 								<Badge
-									color="neon"
-									className="h-8 rounded-full p-2"
+									color="primary"
+									className="h-8 gap-1.5 rounded-full py-1 pl-1"
 									size="28"
 									variant="soft">
-									<Badge color="neon" className="rounded-full" variant="strong">
+									<Badge
+										color="primary"
+										className="rounded-full"
+										variant="strong">
 										New Version
 									</Badge>
 									Read Changelog Version

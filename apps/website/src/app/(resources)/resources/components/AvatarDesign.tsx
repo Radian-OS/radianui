@@ -50,10 +50,10 @@ const designPoints = [
 
 const AvatarDesign = () => {
 	return (
-		<div className="w-200 mx-auto flex flex-col gap-6">
+		<div className="lg:w-200 mx-auto flex w-full flex-col gap-6">
 			<div className="flex flex-col gap-4">
 				<p className="text-primary-text text-sm font-medium">Design</p>
-				<h4 className="heading-4">Avatar UI Design Best Practices</h4>
+				<h2 className="heading-4">Avatar UI Design Best Practices</h2>
 				<div className="flex flex-col gap-8">
 					<p>
 						A well-designed avatar component should remain recognizable,

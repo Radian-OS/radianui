@@ -74,7 +74,7 @@ export default function Page() {
 								className="relative h-[32px] rounded-full">
 								<Badge
 									color="primary"
-									className="h-8 rounded-full p-2"
+									className="h-8 gap-1.5 rounded-full py-1 pl-1"
 									size="28"
 									variant="soft">
 									<Badge
@@ -100,7 +100,7 @@ export default function Page() {
 									</Avatar>
 								))}
 							</div>
-							<div className="w-163 flex flex-col items-center justify-center gap-4">
+							<div className="md:w-163 flex w-full flex-col items-center justify-center gap-4">
 								<h1 className="heading-3 text-center">
 									Beautiful, Production-Ready UI Avatars 👩🏼‍💼
 								</h1>

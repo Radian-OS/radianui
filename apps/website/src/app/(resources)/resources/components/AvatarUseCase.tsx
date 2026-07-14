@@ -58,11 +58,11 @@ const useCasePoints = [
 
 const AvatarUseCase = () => {
 	return (
-		<div className="flex flex-col gap-16">
-			<div className="w-200 mx-auto flex flex-col gap-6">
+		<div className="flex flex-col gap-8 md:gap-16">
+			<div className="lg:w-200 mx-auto flex w-full flex-col gap-6">
 				<div className="flex flex-col gap-4">
 					<p className="text-primary-text text-sm font-medium">Use cases</p>
-					<h4 className="heading-4">Common avatar UI layouts and patterns</h4>
+					<h2 className="heading-4">Common avatar UI layouts and patterns</h2>
 					<div className="flex flex-col gap-8">
 						<p>
 							User avatars appear throughout modern interfaces because they
@@ -90,17 +90,20 @@ const AvatarUseCase = () => {
 					</p>
 				</div>
 			</div>
-			<InfiniteScroll duration={60} pauseOnHover={false}>
-				{useCaseImages.map((image) => (
-					<Image
-						key={image.src}
-						src={image.src}
-						alt={image.alt}
-						width={560}
-						height={420}
-					/>
-				))}
-			</InfiniteScroll>
+			<div className="-mx-5 sm:-mx-6">
+				<InfiniteScroll duration={60} pauseOnHover={false}>
+					{useCaseImages.map((image) => (
+						<Image
+							key={image.src}
+							src={image.src}
+							alt={image.alt}
+							width={560}
+							height={420}
+							className="h-auto w-[70vw] shrink-0 rounded-xl sm:w-[45vw] md:w-[35vw] lg:w-[28vw]"
+						/>
+					))}
+				</InfiniteScroll>
+			</div>
 		</div>
 	)
 }

@@ -28,14 +28,14 @@ export default function ComponentsSection() {
 						/>
 					</svg>
 
-					<span className="heading-2 z-20">
+					<h2 className="heading-2 z-20">
 						<span className="from-fg to-fg-secondary bg-gradient-to-b bg-clip-text text-transparent">
 							Accelerate your workflow with{" "}
 						</span>
 						<span className="bg-gradient-to-r from-[#7655F6] to-[#492EB8] bg-clip-text text-transparent">
 							powerful components and blocks.
 						</span>
-					</span>
+					</h2>
 					<p className="text-fg-secondary z-20 text-base font-normal">
 						Multiple customizable components that seamlessly adapt to your
 						project need of every size.

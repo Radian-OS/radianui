@@ -44,8 +44,13 @@ export function ComponentPreview({
 
 	const Component = getComponent(path.split("/")[1])
 
+	const slug = title
+		.toLowerCase()
+		.replace(/[^a-z0-9]+/g, "-")
+		.replace(/^-+|-+$/g, "")
+
 	return (
-		<div className="mb-8">
+		<div className="mb-8 scroll-mt-20" id={slug}>
 			<div
 				data-slot="component-preview"
 				className="relative flex min-w-0 flex-col items-stretch">
@@ -53,7 +58,9 @@ export function ComponentPreview({
 					defaultValue="preview"
 					className="border-soft bg-fill1-alpha flex w-full flex-col gap-2 rounded-xl border p-1">
 					<div className="flex items-center justify-between px-2 pt-1">
-						<span className="text-fg text-sm font-medium">{title}</span>
+						<a href={`#${slug}`} className="hover:underline">
+							<h3 className="text-fg text-sm font-medium">{title}</h3>
+						</a>
 						<div className="flex items-center gap-2">
 							<TabsList
 								variant="ghost"
