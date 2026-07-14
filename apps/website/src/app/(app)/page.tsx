@@ -11,6 +11,8 @@ import InvertedSection from "@/components/home/inverted-section"
 import PlaygroundSectionWrapper from "@/components/home/playground-section-wrapper"
 import VideoSection from "@/components/home/video-section"
 import VideoDialogPreview from "@/components/home/video/video-dialog-preview"
+import { JsonLd } from "@/components/seo/json-ld"
+import { getHomepageStructuredData } from "@/lib/structured-data"
 import { BorderBeam } from "@/registry/animated/border-beam"
 import { Badge } from "@/registry/ui/badge"
 
@@ -22,64 +24,70 @@ const lowerHeroBeamPath =
 
 export default function Page() {
 	return (
-		<div className="min-h-screen w-full overflow-x-hidden">
-			<Background>
-				<div className="md:pt-30 pt-15 flex flex-col items-center justify-center gap-12">
-					<div className="max-w-250 flex flex-col items-center justify-center gap-6">
-						<Link
-							href="/docs/getting-started/changelog"
-							className="relative h-[32px] rounded-full">
-							<Badge
-								color="neon"
-								className="h-8 rounded-full p-2"
-								size="28"
-								variant="soft">
-								<Badge color="neon" className="rounded-full" variant="strong">
-									New Version
-								</Badge>
-								Read Changelog Version
-								<ArrowRight className="size-3.5" />
-							</Badge>
-							<BorderBeam size={50} />
-						</Link>
-						<h1 className="heading-1 dark:from-fg dark:to-fg-secondary not-dark:text-fg bg-clip-text text-center text-transparent dark:bg-gradient-to-b">
-							Build next gen of world class products and solutions
-						</h1>
-						<p className="text-fg-secondary w-full max-w-[640px] text-center text-lg font-normal">
-							Radian is a high-quality, flexible and open-source, design and
-							development library built using React, Radix and Tailwind.
-						</p>
-					</div>
-					<div className="flex w-full flex-col items-center justify-center gap-3 sm:flex-row">
-						<HeroActionButtons />
-					</div>
-				</div>
-
-				<VideoPreviewWithBeams />
-			</Background>
-
-			<FeaturesSection
-				textAutoHide={true}
-				enableSpotlight={true}
-				enableBorderGlow={true}
-				clickEffect={true}
-				spotlightRadius={573}
+		<>
+			<JsonLd
+				id="homepage-structured-data"
+				data={getHomepageStructuredData()}
 			/>
+			<div className="min-h-screen w-full overflow-x-hidden">
+				<Background>
+					<div className="md:pt-30 pt-15 flex flex-col items-center justify-center gap-12">
+						<div className="max-w-250 flex flex-col items-center justify-center gap-6">
+							<Link
+								href="/docs/getting-started/changelog"
+								className="relative h-[32px] rounded-full">
+								<Badge
+									color="neon"
+									className="h-8 rounded-full p-2"
+									size="28"
+									variant="soft">
+									<Badge color="neon" className="rounded-full" variant="strong">
+										New Version
+									</Badge>
+									Read Changelog Version
+									<ArrowRight className="size-3.5" />
+								</Badge>
+								<BorderBeam size={50} />
+							</Link>
+							<h1 className="heading-1 dark:from-fg dark:to-fg-secondary not-dark:text-fg bg-clip-text text-center text-transparent dark:bg-gradient-to-b">
+								Build next gen of world class products and solutions
+							</h1>
+							<p className="text-fg-secondary w-full max-w-[640px] text-center text-lg font-normal">
+								Radian is a high-quality, flexible and open-source, design and
+								development library built using React, Radix and Tailwind.
+							</p>
+						</div>
+						<div className="flex w-full flex-col items-center justify-center gap-3 sm:flex-row">
+							<HeroActionButtons />
+						</div>
+					</div>
 
-			<InvertedSection />
+					<VideoPreviewWithBeams />
+				</Background>
 
-			<ComponentsSection />
+				<FeaturesSection
+					textAutoHide={true}
+					enableSpotlight={true}
+					enableBorderGlow={true}
+					clickEffect={true}
+					spotlightRadius={573}
+				/>
 
-			<PlaygroundSectionWrapper />
+				<InvertedSection />
 
-			<VideoSection />
+				<ComponentsSection />
 
-			<FAQSection />
+				<PlaygroundSectionWrapper />
 
-			<CTASection />
+				<VideoSection />
 
-			<Footer />
-		</div>
+				<FAQSection />
+
+				<CTASection />
+
+				<Footer />
+			</div>
+		</>
 	)
 }
 
