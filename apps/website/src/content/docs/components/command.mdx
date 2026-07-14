@@ -163,40 +163,105 @@ import {
 	]}
 />
 
-## Props
+## API Reference
 
-<PropsTableWrapper>
-	<PropsTable
-		title="Command"
-		externalReference="https://cmdk.paco.me/#command"
-	/>
-	<PropsTable
-		title="CommandInput"
-		externalReference="https://cmdk.paco.me/#command-input"
-	/>
-	<PropsTable
-		title="CommandList"
-		externalReference="https://cmdk.paco.me/#command-list"
-	/>
-	<PropsTable
-		title="CommandEmpty"
-		externalReference="https://cmdk.paco.me/#command-empty"
-	/>
-	<PropsTable
-		title="CommandGroup"
-		externalReference="https://cmdk.paco.me/#command-group"
-	/>
-	<PropsTable
-		title="CommandItem"
-		externalReference="https://cmdk.paco.me/#command-item"
-	/>
-	<PropsTable
-		title="CommandSeparator"
-		externalReference="https://cmdk.paco.me/#command-separator"
-	/>
-	<PropsTable
-		title="CommandDialog"
-		externalReference="https://cmdk.paco.me/#command-dialog"
-	/>
-	<PropsTable title="CommandShortcut" />
-</PropsTableWrapper>
+This component is built on top of [cmdk](https://cmdk.paco.me/).
+
+### Command
+
+The root component that provides the command menu context and built-in search filtering.
+
+<PropsTable
+	data={[
+		{
+			name: "shouldFilter",
+			values: ["boolean"],
+			defaultValue: "true",
+			required: false,
+			description:
+				"Whether to automatically filter items based on the search input value.",
+		},
+		{
+			name: "filter",
+			values: ["(value: string, search: string) => number"],
+			required: false,
+			description:
+				"Custom filtering function to override the default search behavior.",
+		},
+		{
+			name: "loop",
+			values: ["boolean"],
+			defaultValue: "false",
+			required: false,
+			description:
+				"When true, keyboard navigation loops from the last item back to the first.",
+		},
+	]}
+/>
+
+### CommandDialog
+
+A wrapper that renders the command menu inside a modal dialog.
+
+    ### CommandInput
+
+The text input field for filtering and searching through the command menu items.
+
+    ### CommandList
+
+A scrollable container that houses the command groups and items.
+
+    ### CommandEmpty
+
+A fallback container displayed when no command items match the current search query.
+
+    ### CommandGroup
+
+A structural container for grouping related command items under a specific heading.
+
+<PropsTable
+	data={[
+		{
+			name: "heading",
+			values: ["string"],
+			required: false,
+			description: "An optional label displayed above the group of items.",
+		},
+	]}
+/>
+
+### CommandItem
+
+An interactive, selectable item within the command menu.
+
+<PropsTable
+	data={[
+		{
+			name: "value",
+			values: ["string"],
+			required: false,
+			description: "The value of the item, used for filtering and selection.",
+		},
+		{
+			name: "onSelect",
+			values: ["(value: string) => void"],
+			required: false,
+			description: "Callback fired when the item is selected.",
+		},
+		{
+			name: "disabled",
+			values: ["boolean"],
+			defaultValue: "false",
+			required: false,
+			description: "Disables the item, preventing it from being selected.",
+		},
+	]}
+/>
+
+### CommandSeparator
+
+A visual divider used to separate different sections or groups within the command menu.
+
+### CommandShortcut
+
+A small text label for displaying keyboard shortcuts alongside a command item.

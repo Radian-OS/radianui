@@ -166,45 +166,49 @@ import {
 	]}
 />
 
-## Props
+## API Reference
 
-<PropsTableWrapper>
-	<PropsTable
-		title="AlertDialog"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/alert-dialog#root"
-	/>
-	<PropsTable
-		title="AlertDialogTrigger"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/alert-dialog#trigger"
-	/>
-	<PropsTable
-		title="AlertDialogContent"
-		data={[
-			{
-				name: "backdrop",
-				values: ["overlay", "blur", "transparent"],
-				defaultValue: "overlay",
-				description: "Show the backdrop state",
-			},
-		]}
-		externalReference="https://www.radix-ui.com/primitives/docs/components/alert-dialog#content"
-	/>
-	<PropsTable title="AlertDialogHeader" data={[]} />
-	<PropsTable
-		title="AlertDialogTitle"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/alert-dialog#title"
-	/>
-	<PropsTable
-		title="AlertDialogDescription"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/alert-dialog#description"
-	/>
-	<PropsTable title="AlertDialogFooter" data={[]} />
-	<PropsTable
-		title="AlertDialogAction"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/alert-dialog#action"
-	/>
-	<PropsTable
-		title="AlertDialogCancel"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/alert-dialog#cancel"
-	/>
-</PropsTableWrapper>
+### AlertDialog
+
+Root component that manages the open state of the dialog and provides context to child components.
+
+### AlertDialogTrigger
+
+An interactive element that opens the alert dialog when clicked.
+
+### AlertDialogContent
+
+<PropsTable
+	data={[
+		{
+			name: "backdrop",
+			values: ["overlay", "blur", "transparent"],
+			defaultValue: "overlay",
+			description: "Show the backdrop state",
+		},
+	]}
+/>
+
+    ### AlertDialogHeader
+
+A structural container for the top section of the dialog, typically housing the title and description.
+
+    ### AlertDialogTitle
+
+A semantic heading that states the subject of the alert dialog.
+
+    ### AlertDialogDescription
+
+A text container providing additional context or explanation for the alert.
+
+    ### AlertDialogFooter
+
+A structural container for the bottom section of the dialog, used for action and cancel buttons.
+
+    ### AlertDialogAction
+
+The primary confirmation button that executes the critical action when clicked.
+
+    ### AlertDialogCancel
+
+The secondary button that dismisses the dialog without performing the critical action.

@@ -257,9 +257,7 @@ export const components = {
 	}: {
 		children: React.ReactNode | React.ReactNode[]
 	}) => (
-		<div className="bg-elevation-negative mt-3 flex flex-col gap-2 rounded-xl p-1.5">
-			{children}
-		</div>
+		<div className="mt-3 flex flex-col gap-2 rounded-xl p-1.5">{children}</div>
 	),
 	Installation,
 	BadgeExamplePreview,

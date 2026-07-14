@@ -154,3 +154,59 @@ import { toast } from "sonner"
 		},
 	]}
 />
+
+## API Reference
+
+### Toaster
+
+The root component that renders the toast viewport. Place this once at the top-level of your application.
+
+<PropsTable
+	data={[
+		{
+			name: "position",
+			values: [
+				"top-left",
+				"top-center",
+				"top-right",
+				"bottom-left",
+				"bottom-center",
+				"bottom-right",
+			],
+			defaultValue: "bottom-right",
+			required: false,
+			description: "The position on the screen where toasts appear.",
+		},
+		{
+			name: "theme",
+			values: ["light", "dark", "system"],
+			defaultValue: "system",
+			required: false,
+			description: "The color theme of the toast notifications.",
+		},
+		{
+			name: "duration",
+			values: ["number"],
+			defaultValue: "4000",
+			required: false,
+			description:
+				"The default duration in milliseconds before a toast auto-dismisses.",
+		},
+		{
+			name: "richColors",
+			values: ["boolean"],
+			defaultValue: "false",
+			required: false,
+			description:
+				"When true, success and error toasts display richer, more vibrant colors.",
+		},
+		{
+			name: "closeButton",
+			values: ["boolean"],
+			defaultValue: "false",
+			required: false,
+			description:
+				"When true, renders a close button on each toast notification.",
+		},
+	]}
+/>

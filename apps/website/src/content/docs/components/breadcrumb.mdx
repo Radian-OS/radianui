@@ -163,19 +163,47 @@ import {
 	]}
 />
 
-## Props
+## API Reference
 
-<PropsTableWrapper>
-	<PropsTable
-		title="BreadcrumbLink"
-		data={[
-			{
-				name: "asChild",
-				values: ["boolean"],
-				required: false,
-				description: "Use this prop to render the link as a child component.",
-				defaultValue: "false",
-			},
-		]}
-	/>
-</PropsTableWrapper>
+This is a custom component made using Radix UI's Slot.
+
+### Breadcrumb
+
+The root navigation container that provides accessibility context (nav element) for the breadcrumb trail.
+
+### BreadcrumbList
+
+An ordered list container (`<ol>`) that groups and structures the breadcrumb navigation items.
+
+### BreadcrumbItem
+
+A wrapper (`<li>`) for individual breadcrumb links, separators, or current page indicators.
+
+### BreadcrumbLink
+
+An interactive link element used for navigating to previous pages in the breadcrumb trail.
+
+<PropsTable
+	title="BreadcrumbLink"
+	data={[
+		{
+			name: "asChild",
+			values: ["boolean"],
+			required: false,
+			description: "Use this prop to render the link as a child component.",
+			defaultValue: "false",
+		},
+	]}
+/>
+
+### BreadcrumbPage
+
+A static text element representing the current active page, automatically styled and configured for screen readers.
+
+### BreadcrumbSeparator
+
+A visual divider (typically a slash or chevron) placed between breadcrumb items.
+
+### BreadcrumbEllipsis
+
+A visual indicator used to represent hidden or truncated pages in a long breadcrumb trail.

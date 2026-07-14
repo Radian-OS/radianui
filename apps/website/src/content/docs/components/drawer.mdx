@@ -189,68 +189,87 @@ import {
 	]}
 />
 
-## Props
+## API Reference
 
-<PropsTableWrapper>
-	<PropsTable
-		title="Drawer"
-		data={[
-			{
-				name: "variant",
-				defaultValue: "default",
-				values: ["default", "float", "rounded"],
-				description: "Controls the type of the drawer.",
-				required: true,
-			},
-			{
-				name: "direction",
-				defaultValue: "right",
-				description: "The direction the drawer opens from.",
-				required: true,
-				values: ["left", "right", "top", "bottom"],
-			},
-			{
-				name: "handle",
-				defaultValue: "false",
-				description: "Whether to show a handle on the drawer.",
-				required: false,
-				values: ["boolean"],
-			},
-			{
-				name: "backdrop",
-				defaultValue: "overlay",
-				description: "The backdrop style of the drawer.",
-				required: true,
-				values: ["overlay", "blur", "none"],
-			},
-		]}
-	/>
-	<PropsTable
-		title="DrawerTrigger"
-		data={[
-			{
-				name: "asChild",
-				description: "The content of the trigger.",
-				required: true,
-				defaultValue: "true",
-				values: ["boolean"],
-			},
-		]}
-	/>
-	<PropsTable
-		title="DrawerClose"
-		data={[
-			{
-				name: "asChild",
-				description: "The content of the close.",
-				required: true,
-				defaultValue: "true",
-				values: ["boolean"],
-			},
-		]}
-	/>
-	<PropsTable
-		title="DrawerFooter"
-		externalReference="https://vaul.emilkowal.ski/getting-started"
-	/>
-</PropsTableWrapper>
+The Drawer component is built on top of [vaul](https://vaul.emilkowal.ski/).
+
+### Drawer
+
+The root component of the drawer.
+
+<PropsTable
+	data={[
+		{
+			name: "variant",
+			defaultValue: "default",
+			values: ["default", "float", "rounded"],
+			description: "Controls the type of the drawer.",
+			required: true,
+		},
+		{
+			name: "direction",
+			defaultValue: "right",
+			description: "The direction the drawer opens from.",
+			required: true,
+			values: ["left", "right", "top", "bottom"],
+		},
+		{
+			name: "handle",
+			defaultValue: "false",
+			description: "Whether to show a handle on the drawer.",
+			required: false,
+			values: ["boolean"],
+		},
+		{
+			name: "backdrop",
+			defaultValue: "overlay",
+			description: "The backdrop style of the drawer.",
+			required: true,
+			values: ["overlay", "blur", "none"],
+		},
+	]}
+/>
+
+### DrawerTrigger
+
+An interactive element that opens the drawer when clicked.
+
+<PropsTable
+	data={[
+		{
+			name: "asChild",
+			description: "Use this prop to render the trigger as a child component.",
+			required: true,
+			defaultValue: "true",
+			values: ["boolean"],
+		},
+	]}
+/>
+
+### DrawerContent
+
+The main structural container that renders the drawer panel and its contents.
+
+### DrawerHeader
+
+A container for the top section of the drawer, typically used for titles and descriptions.
+
+### DrawerTitle
+
+A semantic heading that establishes the primary subject of the drawer.
+
+### DrawerDescription
+
+A text container for providing supplementary context or details below the drawer title.
+
+### DrawerBody
+
+The primary scrollable content area within the drawer.
+
+### DrawerFooter
+
+A structural container for the bottom section of the drawer, typically used for action buttons.
+
+### DrawerClose
+
+An interactive element that dismisses and closes the drawer when clicked.

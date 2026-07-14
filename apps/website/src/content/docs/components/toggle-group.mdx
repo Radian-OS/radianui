@@ -155,49 +155,49 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
 	]}
 />
 
-## Props
+## API Reference
 
-<PropsTableWrapper>
-	<PropsTable
-		title="ToggleGroup"
-		data={[
-			{
-				name: "variant",
-				defaultValue: "outline",
-				values: ["ghost", "outline"],
-				required: false,
-				description: "Defines the visual style of the toggle-group",
-			},
-			{
-				name: "size",
-				defaultValue: "36",
-				values: ["28", "32", "36", "40", "44", "48"],
-				required: false,
-				description: "Sets the size of the toggle",
-			},
-			{
-				name: "disabled",
-				defaultValue: "false",
-				values: ["boolean"],
-				required: false,
-				description:
-					"Disables interaction with the toggle-group when set to true",
-			},
-			{
-				name: "orientation",
-				defaultValue: "horizontal",
-				values: ["horizontal", "vertical"],
-				required: false,
-				description: "Defines the orientation of the toggle-group",
-			},
-			{
-				name: "spacing",
-				defaultValue: "0",
-				values: ["integer"],
-				required: false,
-				description: "Defines the spacing between toggle items in the group",
-			},
-		]}
-		externalReference="https://www.radix-ui.com/primitives/docs/components/toggle-group#root"
-	/>
-</PropsTableWrapper>
+### ToggleGroup
+
+The root container that manages a set of mutually exclusive or multi-select toggle items.
+
+<PropsTable
+	data={[
+		{
+			name: "variant",
+			defaultValue: "outline",
+			values: ["ghost", "outline"],
+			required: false,
+			description: "Defines the visual style of the toggle-group",
+		},
+		{
+			name: "size",
+			defaultValue: "36",
+			values: ["28", "32", "36", "40", "44", "48"],
+			required: false,
+			description: "Sets the size of the toggle",
+		},
+		{
+			name: "disabled",
+			defaultValue: "false",
+			values: ["boolean"],
+			required: false,
+			description:
+				"Disables interaction with the toggle-group when set to true",
+		},
+		{
+			name: "orientation",
+			defaultValue: "horizontal",
+			values: ["horizontal", "vertical"],
+			required: false,
+			description: "Defines the orientation of the toggle-group",
+		},
+		{
+			name: "spacing",
+			defaultValue: "0",
+			values: ["integer"],
+			required: false,
+			description: "Defines the spacing between toggle items in the group",
+		},
+	]}
+/>

@@ -142,63 +142,62 @@ import { Toggle } from "@/components/ui/toggle"
 	]}
 />
 
-## Props
+## API Reference
 
-<PropsTableWrapper>
-	<PropsTable
-		title="Toggle"
-		data={[
-			{
-				name: "variant",
-				defaultValue: "outline",
-				values: ["ghost", "outline"],
-				required: false,
-				description: "Defines the visual style of the toggle",
-			},
-			{
-				name: "size",
-				defaultValue: "32",
-				values: ["28", "32", "36", "40", "44", "48"],
-				required: false,
-				description: "Sets the size of the toggle",
-			},
-			{
-				name: "pressed",
-				defaultValue: "undefined",
-				values: ["boolean"],
-				required: false,
-				description: "Controls the pressed state of the toggle",
-			},
-			{
-				name: "defaultPressed",
-				defaultValue: "false",
-				values: ["boolean"],
-				required: false,
-				description:
-					"Sets the initial pressed state for an uncontrolled toggle",
-			},
-			{
-				name: "onPressedChange",
-				defaultValue: "-",
-				values: ["(pressed: boolean) => void"],
-				required: false,
-				description: "Callback fired when the pressed state changes",
-			},
-			{
-				name: "disabled",
-				defaultValue: "false",
-				values: ["boolean"],
-				required: false,
-				description: "Disables interaction with the toggle when set to true",
-			},
-			{
-				name: "asChild",
-				defaultValue: "false",
-				values: ["boolean"],
-				required: false,
-				description: "Use this prop to render the toggle as a child component",
-			},
-		]}
-		externalReference="https://www.radix-ui.com/primitives/docs/components/toggle#root"
-	/>
-</PropsTableWrapper>
+### Toggle
+
+The primary interactive element that toggles between an on and off state.
+
+<PropsTable
+	data={[
+		{
+			name: "variant",
+			defaultValue: "outline",
+			values: ["ghost", "outline"],
+			required: false,
+			description: "Defines the visual style of the toggle",
+		},
+		{
+			name: "size",
+			defaultValue: "32",
+			values: ["28", "32", "36", "40", "44", "48"],
+			required: false,
+			description: "Sets the size of the toggle",
+		},
+		{
+			name: "pressed",
+			defaultValue: "undefined",
+			values: ["boolean"],
+			required: false,
+			description: "Controls the pressed state of the toggle",
+		},
+		{
+			name: "defaultPressed",
+			defaultValue: "false",
+			values: ["boolean"],
+			required: false,
+			description: "Sets the initial pressed state for an uncontrolled toggle",
+		},
+		{
+			name: "onPressedChange",
+			defaultValue: "-",
+			values: ["(pressed: boolean) => void"],
+			required: false,
+			description: "Callback fired when the pressed state changes",
+		},
+		{
+			name: "disabled",
+			defaultValue: "false",
+			values: ["boolean"],
+			required: false,
+			description: "Disables interaction with the toggle when set to true",
+		},
+		{
+			name: "asChild",
+			defaultValue: "false",
+			values: ["boolean"],
+			required: false,
+			description: "Use this prop to render the toggle as a child component",
+		},
+	]}
+/>

@@ -142,15 +142,47 @@ import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 	]}
 />
 
-## Props
+## API Reference
 
-<PropsTableWrapper>
-	<PropsTable
-		title="ScrollArea"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/scroll-area/#root"
-	/>
-	<PropsTable
-		title="ScrollBar"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/scroll-area/#scrollbar"
-	/>
-</PropsTableWrapper>
+### ScrollArea
+
+The root container. Alias for `ScrollArea.Root` from Radix UI.
+
+<PropsTable
+	data={[
+		{
+			name: "type",
+			values: ["auto", "always", "scroll", "hover"],
+			defaultValue: "hover",
+			required: false,
+			description:
+				"Controls when the scrollbar is visible. 'auto' shows it when content overflows, 'always' keeps it permanently visible.",
+		},
+		{
+			name: "scrollHideDelay",
+			values: ["number"],
+			defaultValue: "600",
+			required: false,
+			description:
+				"The delay in milliseconds before the scrollbar hides after the user stops scrolling.",
+		},
+	]}
+	externalReference="https://www.radix-ui.com/primitives/docs/components/scroll-area#root"
+/>
+
+    ### ScrollBar
+
+The visual scrollbar track and thumb rendered inside the scroll area.
+
+<PropsTable
+	data={[
+		{
+			name: "orientation",
+			values: ["vertical", "horizontal"],
+			defaultValue: "vertical",
+			required: false,
+			description: "The orientation of the scrollbar.",
+		},
+	]}
+	externalReference="https://www.radix-ui.com/primitives/docs/components/scroll-area#scrollbar"
+/>

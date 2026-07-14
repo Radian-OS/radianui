@@ -146,29 +146,30 @@ import { OTPField, OTPHiddenInput, OTPInput } from "@/components/ui/otp-field"
 	]}
 />
 
-## Props
+## API Reference
 
-<PropsTableWrapper>
-	<PropsTable
-		title="OTPField"
-		data={[
-			{
-				name: "size",
-				description: "Sets the size of all OTP inputs in the OTP field",
-				required: false,
-				defaultValue: "40",
-				values: ["28", "32", "36", "40", "44", "56"],
-			}
-    	]}
-		externalReference="https://www.radix-ui.com/primitives/docs/components/one-time-password-field#root"
-    />
-	<PropsTable
-		title="OTPInput"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/one-time-password-field#input"
-	/>
-	<PropsTable
-		title="OTPHiddenInput"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/one-time-password-field#hiddeninput"
-	/>
+This component is built on top of [Radix UI OTP Field](https://www.radix-ui.com/primitives/docs/components/one-time-password-field). For advanced usage and additional props, please refer to their official documentation.
 
-</PropsTableWrapper>
+### OTPField
+
+The root container. Alias for `OneTimeFieldPassword.Root` from Radix UI.
+
+<PropsTable
+	data={[
+		{
+			name: "size",
+			description: "Sets the size of all OTP inputs in the OTP field",
+			required: false,
+			defaultValue: "40",
+			values: ["28", "32", "36", "40", "44", "56"],
+		},
+	]}
+/>
+
+    ### OTPInput
+
+An individual input character cell within the OTP field.
+
+    ### OTPHiddenInput
+
+A hidden native input field used to capture the combined OTP value for form submission and accessibility.

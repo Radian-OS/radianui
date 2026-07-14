@@ -177,11 +177,15 @@ import {
 	]}
 />
 
-## Props
+## API Reference
 
-<PropsTableWrapper>
-	<PropsTable
-	title="Accordion"
+These additional properties are unique to Radian's implementation to handle theme styling and indicator behavior. Radian’s Accordion primitives are built on top of Radix UI Accordion. For full underlying API specifications, please refer to the [Radix documentation](https://www.radix-ui.com/primitives/docs/components/accordion).
+
+### Accordion
+
+Root component. Alias for Accordion.Root
+
+<PropsTable
 	data={[
 		{
 			name: "variant",
@@ -191,33 +195,24 @@ import {
 			description: "Defines the visual style of the accordion",
 		},
 		{
-			name: "disabled",
-			defaultValue: "false",
-			values: ["boolean"],
-			required: false,
-			description: "Applies disabled styling of the accordion",
-		},
-		{
 			name: "indicator",
 			defaultValue: "chevron",
 			values: ["chevron", "plus-minus"],
 			required: false,
-			description: "Defines the indicator to be displayed in the accordion trigger",
-		}
-
-    ]}
-    externalReference="https://www.radix-ui.com/primitives/docs/components/accordion#root"
-
+			description:
+				"Defines the indicator to be displayed in the accordion trigger",
+		},
+	]}
 />
 
-    <PropsTable title="AccordionItem" externalReference="https://www.radix-ui.com/primitives/docs/components/accordion#item" />
+### AccordionItem
 
-    <PropsTable title="AccordionTrigger" externalReference="https://www.radix-ui.com/primitives/docs/components/accordion#trigger" />
+Individual accordion item container. Styled wrapper for Accordion.Item from Radix UI.
 
-    <PropsTable
-    title="AccordionContent"
-    externalReference="https://www.radix-ui.com/primitives/docs/components/accordion#content"
+### AccordionTrigger
 
-/>
+Trigger button that toggles the accordion panel. Styled wrapper for Accordion.Trigger from Radix UI. Includes a built-in chevron icon that rotates when expanded.
 
-</PropsTableWrapper>
+### AccordionContent
+
+Collapsible content. Styled wrapper for Accordion.Content from Radix UI.

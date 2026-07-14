@@ -137,33 +137,36 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 	]}
 />
 
-## Props
+## API Reference
 
-<PropsTableWrapper>
-	<PropsTable
-		title="RadioGroup"
-		data={[
-			{
-				name: "size",
-				values: ["sm", "md", "lg"],
-				defaultValue: "md",
-				description: "Sets the size for all radio items in the group.",
-				required: false,
-			},
-		]}
-		externalReference="https://www.radix-ui.com/primitives/docs/components/radio-group#root"
-	/>
-	<PropsTable
-		title="RadioGroupItem"
-		data={[
-			{
-				name: "size",
-				values: ["sm", "md", "lg"],
-				defaultValue: "undefined",
-				description: "Sets the size for the radio item.",
-				required: false,
-			},
-		]}
-		externalReference="https://www.radix-ui.com/primitives/docs/components/radio-group#item"
-	/>
-</PropsTableWrapper>
+### RadioGroup
+
+The root container.
+
+<PropsTable
+	data={[
+		{
+			name: "size",
+			values: ["sm", "md", "lg"],
+			defaultValue: "md",
+			description: "Sets the size for all radio items in the group.",
+			required: false,
+		},
+	]}
+/>
+
+    ### RadioGroupItem
+
+An individual, selectable radio button within the group.
+
+<PropsTable
+	data={[
+		{
+			name: "size",
+			values: ["sm", "md", "lg"],
+			defaultValue: "undefined",
+			description: "Sets the size for the radio item.",
+			required: false,
+		},
+	]}
+/>

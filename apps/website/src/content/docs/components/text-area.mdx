@@ -130,27 +130,29 @@ import { TextArea } from "@/components/ui/text-area"
 	]}
 />
 
-## Props
+## API Reference
 
-<PropsTableWrapper>
-	<PropsTable
-		title="TextArea"
-		data={[
-			{
-				name: "resizable",
-				values: ["boolean"],
-				required: false,
-				description: "Whether the textarea can be resized by the user",
-				defaultValue: "true",
-			},
-			{
-				name: "rounded",
-				values: ["rounded", "square"],
-				required: false,
-				description: "Sets the border radius of the textarea",
-				defaultValue: "rounded",
-			},
-		]}
-		externalReference="https://react.dev/reference/react-dom/components/textarea#props"
-	/>
-</PropsTableWrapper>
+This is a custom component, not a Radix UI wrapper.
+
+### TextArea
+
+A styled wrapper around the native HTML textarea element for collecting multi-line user input.
+
+<PropsTable
+	data={[
+		{
+			name: "resizable",
+			values: ["boolean"],
+			required: false,
+			description: "Whether the textarea can be resized by the user",
+			defaultValue: "true",
+		},
+		{
+			name: "rounded",
+			values: ["rounded", "square"],
+			required: false,
+			description: "Sets the border radius of the textarea",
+			defaultValue: "rounded",
+		},
+	]}
+/>

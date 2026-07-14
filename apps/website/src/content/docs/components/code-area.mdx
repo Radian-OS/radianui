@@ -159,58 +159,60 @@ import { CodeArea } from "@/components/ui/code-area"
 	]}
 />
 
-## Props
+## API Reference
 
-<PropsTableWrapper>
-	<PropsTable
-		title="CodeArea"
-		data={[
-			{
-				name: "code",
-				values: ["string"],
-				required: true,
-				description: "The code snippet to display",
-			},
-			{
-				name: "language",
-				values: [
-					"typescript",
-					"javascript",
-					"python",
-					"java",
-					"csharp",
-					"html",
-					"css",
-					"json",
-					"markdown",
-					"bash",
-					"...",
-				],
-				required: false,
-				description: "The programming language for syntax highlighting",
-			},
-			{
-				name: "theme",
-				defaultValue: "github-dark-high-contrast",
-				values: [
-					"github-dark-high-contrast",
-					"nord",
-					"dracula",
-					"solarized-light",
-					"solarized-dark",
-					"...",
-				],
-				required: false,
-				description: "The theme for syntax highlighting",
-			},
-			{
-				name: "showLineNumbers",
-				defaultValue: "false",
-				values: ["boolean"],
-				required: false,
-				description: "Whether to show line numbers in the code area",
-			},
-		]}
-		externalReference="https://shiki.style/"
-	/>
-</PropsTableWrapper>
+This is a custom component made using `react-shiki`.
+
+### CodeArea
+
+The main component that wraps code.
+
+<PropsTable
+	data={[
+		{
+			name: "code",
+			values: ["string"],
+			required: true,
+			description: "The code snippet to display",
+		},
+		{
+			name: "language",
+			values: [
+				"typescript",
+				"javascript",
+				"python",
+				"java",
+				"csharp",
+				"html",
+				"css",
+				"json",
+				"markdown",
+				"bash",
+				"...",
+			],
+			required: false,
+			description: "The programming language for syntax highlighting",
+		},
+		{
+			name: "theme",
+			defaultValue: "github-dark-high-contrast",
+			values: [
+				"github-dark-high-contrast",
+				"nord",
+				"dracula",
+				"solarized-light",
+				"solarized-dark",
+				"...",
+			],
+			required: false,
+			description: "The theme for syntax highlighting",
+		},
+		{
+			name: "showLineNumbers",
+			defaultValue: "false",
+			values: ["boolean"],
+			required: false,
+			description: "Whether to show line numbers in the code area",
+		},
+	]}
+/>
