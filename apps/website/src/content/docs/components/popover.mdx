@@ -147,15 +147,36 @@ browsing options are priorities.
 	]}
 />
 
-## Props
+## API Reference
 
-<PropsTableWrapper>
-	<PropsTable
-		title="Popover"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/popover#root"
-    />
+### Popover
 
-    <PropsTable title="PopoverTrigger" externalReference="https://www.radix-ui.com/primitives/docs/components/popover#trigger" />
-    <PropsTable title="PopoverContent" externalReference="https://www.radix-ui.com/primitives/docs/components/popover#content" />
+The root component. Alias for `Popover.Root` from Radix UI.
 
-</PropsTableWrapper>
+    ### PopoverTrigger
+
+An interactive element that opens the popover when clicked.
+
+    ### PopoverContent
+
+The floating panel that appears when the popover is open.
+
+<PropsTable
+	data={[
+		{
+			name: "align",
+			values: ["start", "center", "end"],
+			defaultValue: "center",
+			required: false,
+			description: "The alignment of the content relative to the trigger.",
+		},
+		{
+			name: "sideOffset",
+			values: ["number"],
+			defaultValue: "4",
+			required: false,
+			description:
+				"The distance in pixels between the trigger and the popover content.",
+		},
+	]}
+/>

@@ -165,56 +165,62 @@ import {
 	]}
 />
 
-## Props
+## API Reference
 
-<PropsTableWrapper>
-	<PropsTable
-		title="Avatar"
-		data={[
-			{
-				name: "size",
-				values: ["16", "20", "24", "32", "40", "48", "56", "64", "80"],
-				defaultValue: "40",
-				required: false,
-				description: "Sets the size of the avatar",
-			},
-			{
-				name: "rounded",
-				values: ["circle", "square"],
-				defaultValue: "circle",
-				required: false,
-				description: "Sets the shape of the avatar",
-			},
-		]}
-		externalReference="https://www.radix-ui.com/primitives/docs/components/avatar#root"
-	/>
-	<PropsTable
-		title="AvatarImage"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/avatar#image"
-	/>
-	<PropsTable
-		title="AvatarFallback"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/avatar#fallback"
-	/>
-	<PropsTable title="AvatarIndicator" />
-	<PropsTable
-		title="AvatarStatus"
-		data={[
-			{
-				name: "variant",
-				values: ["online", "offline", "busy", "away"],
-				defaultValue: "online",
-				required: false,
-				description: "Sets the color of the avatar status indicator",
-			},
-			{
-				name: "size",
-				values: ["16", "20", "24", "32", "40", "48", "56", "64", "80"],
-				defaultValue: "40",
-				required: false,
-				description: "Sets the size of the avatar status",
-			},
-		]}
-		externalReference="https://www.radix-ui.com/primitives/docs/components/avatar#status"
-	/>
-</PropsTableWrapper>
+### Avatar
+
+The root container that groups all avatar sub-components and controls the shared size and shape.
+
+<PropsTable
+	data={[
+		{
+			name: "size",
+			values: ["16", "20", "24", "32", "40", "48", "56", "64", "80"],
+			defaultValue: "40",
+			required: false,
+			description: "Sets the size of the avatar",
+		},
+		{
+			name: "rounded",
+			values: ["circle", "square"],
+			defaultValue: "circle",
+			required: false,
+			description: "Sets the shape of the avatar",
+		},
+	]}
+/>
+
+    ### AvatarImage
+
+The image element rendered inside the avatar. Hides automatically if the image fails to load.
+
+    ### AvatarFallback
+
+The fallback content displayed when the image is unavailable or still loading, typically initials or an icon.
+
+    ### AvatarIndicator
+
+A positioned wrapper that overlays the avatar, used to anchor the status badge at a corner of the avatar.
+
+    ### AvatarStatus
+
+A small colored badge indicating the user's current presence state such as online, offline, busy, or away.
+
+<PropsTable
+	data={[
+		{
+			name: "variant",
+			values: ["online", "offline", "busy", "away"],
+			defaultValue: "online",
+			required: false,
+			description: "Sets the color of the avatar status indicator",
+		},
+		{
+			name: "size",
+			values: ["16", "20", "24", "32", "40", "48", "56", "64", "80"],
+			defaultValue: "40",
+			required: false,
+			description: "Sets the size of the avatar status",
+		},
+	]}
+/>

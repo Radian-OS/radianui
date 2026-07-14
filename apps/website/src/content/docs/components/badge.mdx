@@ -154,47 +154,50 @@ import { Badge, BadgeDot } from "@/components/ui/badge"
 	]}
 />
 
-## Props
+## API Reference
 
-<PropsTableWrapper>
-	<PropsTable
-		title="Badge"
-		data={[
-			{
-				name: "variant",
-				defaultValue: "neutral",
-				values: ["neutral", "strong", "outline", "soft"],
-				required: false,
-				description: "Defines the visual style of the badge",
-			},
-			{
-				name: "size",
-				defaultValue: "24",
-				values: ["20", "24", "28"],
-				required: false,
-				description: "Sets the size of the badge",
-			},
-			{
-				name: "color",
-				defaultValue: "primary",
-				values: ["primary", "info", "success", "warning", "danger"],
-				description: "Sets the color scheme of the badge",
-				required: false,
-			},
-			{
-				name: "dot",
-				defaultValue: "false",
-				values: ["boolean"],
-				description: "Renders a dot inside a badge",
-				required: false,
-			},
-			{
-				name: "asChild",
-				values: ["boolean"],
-				required: false,
-				description: "Use this prop to render the badge as a child component.",
-				defaultValue: "false",
-			},
-		]}
-	/>
-</PropsTableWrapper>
+This is a custom component made using Radix's Slot.
+
+### Badge
+
+The root badge component
+
+<PropsTable
+	data={[
+		{
+			name: "variant",
+			defaultValue: "neutral",
+			values: ["neutral", "strong", "outline", "soft"],
+			required: false,
+			description: "Defines the visual style of the badge",
+		},
+		{
+			name: "size",
+			defaultValue: "24",
+			values: ["20", "24", "28"],
+			required: false,
+			description: "Sets the size of the badge",
+		},
+		{
+			name: "color",
+			defaultValue: "primary",
+			values: ["primary", "info", "success", "warning", "danger"],
+			description: "Sets the color scheme of the badge",
+			required: false,
+		},
+		{
+			name: "dot",
+			defaultValue: "false",
+			values: ["boolean"],
+			description: "Renders a dot inside a badge",
+			required: false,
+		},
+		{
+			name: "asChild",
+			values: ["boolean"],
+			required: false,
+			description: "Use this prop to render the badge as a child component.",
+			defaultValue: "false",
+		},
+	]}
+/>

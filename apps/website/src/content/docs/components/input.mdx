@@ -187,11 +187,15 @@ import {
 	]}
 />
 
-## Props
+## API Reference
 
-<PropsTableWrapper>
+This is a custom component, not a Radix UI wrapper.
+
+### Input
+
+The primary input field element for capturing user data.
+
 <PropsTable
-	title="Input"
 	data={[
 		{
 			name: "size",
@@ -199,13 +203,19 @@ import {
 			values: ["28", "32", "36", "40", "44", "48"],
 			required: false,
 			description: "Controls the height and padding of the input field",
-		}
+		},
 	]}
-	externalReference="https://react.dev/reference/react-dom/components/input#input"
 />
 
+### InputGroup
+
+A flexbox container for grouping an input field together with addons or icons.
+
+### InputAddon
+
+A decorative or functional element attached to the left or right side of an input field.
+
 <PropsTable
-	title="InputAddon"
 	data={[
 		{
 			name: "size",
@@ -225,8 +235,11 @@ import {
 	]}
 />
 
+### InputWrapper
+
+A structural container that manages the layout and styling of an input and its associated elements.
+
 <PropsTable
-	title="InputWrapper"
 	data={[
 		{
 			name: "size",
@@ -240,8 +253,8 @@ import {
 			defaultValue: "false",
 			values: ["boolean"],
 			required: false,
-			description: "Applies disabled styling to the wrapper and its children when set to true",
+			description:
+				"Applies disabled styling to the wrapper and its children when set to true",
 		},
 	]}
 />
-</PropsTableWrapper>

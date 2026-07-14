@@ -131,26 +131,27 @@ import { Spinner } from "@/components/ui/spinner"
 	]}
 />
 
-## Props
+## API Reference
 
-<PropsTableWrapper>
-	<PropsTable
-		title="Spinner"
-		data={[
-			{
-				name: "variant",
-				values: ["default", "simple", "activity", "wave"],
-				description: "Displays different spinner variants",
-                defaultValue:"default"
-			},
-            {
-                name:"size",
-                values:["24","32","36","40","48"],
-                description:"Controls the size of Spinner",
-                defaultValue:"36"
-            }
+This is a custom component, not a Radix UI wrapper.
 
-    	]}
-    />
+### Spinner
 
-</PropsTableWrapper>
+An animated visual indicator used to communicate background processing or loading states.
+
+<PropsTable
+	data={[
+		{
+			name: "variant",
+			values: ["default", "simple", "activity", "wave"],
+			description: "Displays different spinner variants",
+			defaultValue: "default",
+		},
+		{
+			name: "size",
+			values: ["24", "32", "36", "40", "48"],
+			description: "Controls the size of Spinner",
+			defaultValue: "36",
+		},
+	]}
+/>

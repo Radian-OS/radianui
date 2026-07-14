@@ -179,129 +179,127 @@ import {
 	]}
 />
 
-## Props
+## API Reference
 
-<PropsTableWrapper>
-	<PropsTable
-		title="NavigationMenu"
-		data={[
-			{
-				name: "viewport",
-				required: false,
-				defaultValue: "true",
-				values: ["boolean"],
-				description:
-					"When true, renders a shared viewport for dropdown content. Set to false to render content inline.",
-			},
-			{
-				name: "viewportClassName",
-				required: false,
-				values: ["string"],
-				description:
-					"Class name to apply to the viewport element. Only applicable when `viewport` is true.",
-			},
-			{
-				name: "value",
-				required: false,
-				values: ["string"],
-				description: "The controlled value of the menu item to expand.",
-			},
-			{
-				name: "defaultValue",
-				required: false,
-				values: ["string"],
-				description: "The value of the menu item to expand when initially rendered.",
-			},
-			{
-				name: "onValueChange",
-				required: false,
-				values: ["(value: string) => void"],
-				description: "Callback fired when the expanded menu item changes.",
-			},
-			{
-				name: "delayDuration",
-				required: false,
-				defaultValue: "200",
-				values: ["number"],
-				description:
-					"The duration in milliseconds from when the pointer enters a trigger until the content opens.",
-			},
-			{
-				name: "skipDelayDuration",
-				required: false,
-				defaultValue: "300",
-				values: ["number"],
-				description:
-					"How much time a user has to enter another trigger without incurring a delay.",
-			},
-		]}
-		externalReference="https://www.radix-ui.com/primitives/docs/components/navigation-menu#root"
-	/>
-	<PropsTable
-		title="NavigationMenuList"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/navigation-menu#list"
-	/>
-	<PropsTable
-		title="NavigationMenuItem"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/navigation-menu#item"
-	/>
-	<PropsTable
-		title="NavigationMenuTrigger"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/navigation-menu#trigger"
-	/>
-	<PropsTable
-		title="NavigationMenuContent"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/navigation-menu#content"
-		data={[
-			{
-				name:"align",
-				required: false,
-				defaultValue: "left",
-				values: ["left", "right", "center"],
-				description: "The alignment of the content relative to the trigger.",
-			}
-		]}
-	/>
-	<PropsTable
-		title="NavigationMenuLink"
-		data={[
-			{
-				name: "asChild",
-				required: false,
-				defaultValue: "false",
-				values: ["boolean"],
-				description:
-					"Use this prop to render the link as a child component, such as Next.js Link.",
-			},
-			{
-				name: "active",
-				required: false,
-				defaultValue: "false",
-				values: ["boolean"],
-				description: "Whether the link is the active route.",
-			},
-		]}
-		externalReference="https://www.radix-ui.com/primitives/docs/components/navigation-menu#link"
-	/>
-	<PropsTable
-		title="NavigationMenuViewport"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/navigation-menu#viewport"
-	/>
-	<PropsTable
-		title="NavigationMenuIndicator"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/navigation-menu#indicator"
-	/>
-	<PropsTable
-		title="navigationMenuTriggerStyle"
-		data={[
-			{
-				name: "className",
-				required: false,
-				values: ["string"],
-				description:
-					"Apply to NavigationMenuLink for top-level links that should match trigger styling.",
-			},
-		]}
-	/>
+### NavigationMenu
 
-</PropsTableWrapper>
+The root container. Alias for `NavigationMenu.Root` from Radix UI.
+
+<PropsTable
+	data={[
+		{
+			name: "viewport",
+			required: false,
+			defaultValue: "true",
+			values: ["boolean"],
+			description:
+				"When true, renders a shared viewport for dropdown content. Set to false to render content inline.",
+		},
+		{
+			name: "viewportClassName",
+			required: false,
+			values: ["string"],
+			description:
+				"Class name to apply to the viewport element. Only applicable when `viewport` is true.",
+		},
+		{
+			name: "value",
+			required: false,
+			values: ["string"],
+			description: "The controlled value of the menu item to expand.",
+		},
+		{
+			name: "defaultValue",
+			required: false,
+			values: ["string"],
+			description:
+				"The value of the menu item to expand when initially rendered.",
+		},
+		{
+			name: "onValueChange",
+			required: false,
+			values: ["(value: string) => void"],
+			description: "Callback fired when the expanded menu item changes.",
+		},
+		{
+			name: "delayDuration",
+			required: false,
+			defaultValue: "200",
+			values: ["number"],
+			description:
+				"The duration in milliseconds from when the pointer enters a trigger until the content opens.",
+		},
+		{
+			name: "skipDelayDuration",
+			required: false,
+			defaultValue: "300",
+			values: ["number"],
+			description:
+				"How much time a user has to enter another trigger without incurring a delay.",
+		},
+	]}
+/>
+
+    ### NavigationMenuList
+
+An ordered list container (`<ul>`) that groups navigation items.
+
+    ### NavigationMenuItem
+
+A list item (`<li>`) wrapper for individual triggers and links.
+
+    ### NavigationMenuTrigger
+
+An interactive element that opens the dropdown content when clicked or hovered.
+
+    ### NavigationMenuContent
+
+The dropdown panel containing nested links or custom layout.
+
+<PropsTable
+	data={[
+		{
+			name: "align",
+			required: false,
+			defaultValue: "left",
+			values: ["left", "right", "center"],
+			description: "The alignment of the content relative to the trigger.",
+		},
+	]}
+/>
+
+    ### NavigationMenuLink
+
+An interactive link element used for navigating between pages.
+
+<PropsTable
+	data={[
+		{
+			name: "asChild",
+			required: false,
+			defaultValue: "false",
+			values: ["boolean"],
+			description:
+				"Use this prop to render the link as a child component, such as Next.js Link.",
+		},
+		{
+			name: "active",
+			required: false,
+			defaultValue: "false",
+			values: ["boolean"],
+			description: "Whether the link is the active route.",
+		},
+	]}
+/>
+
+    ### NavigationMenuViewport
+
+A shared layout container where dropdown content is rendered to allow smooth animated transitions.
+
+    ### NavigationMenuIndicator
+
+A visual indicator showing which trigger is currently active.
+
+    ### navigationMenuTriggerStyle
+
+A utility function providing consistent styling for top-level links that should look like triggers.

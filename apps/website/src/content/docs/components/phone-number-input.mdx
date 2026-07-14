@@ -120,3 +120,57 @@ npm install react-international-phone
 		},
 	]}
 />
+
+## API Reference
+
+This component is built on top of [react-international-phone](https://www.npmjs.com/package/react-international-phone). For advanced usage and additional props, please refer to their official documentation.
+
+### PhoneNumberInput
+
+The main input component for collecting and formatting international phone numbers.
+
+<PropsTable
+	data={[
+		{
+			name: "defaultCountry",
+			values: ["string"],
+			defaultValue: "US",
+			required: false,
+			description:
+				"The default country code (ISO 3166-1 alpha-2) for the phone number input.",
+		},
+		{
+			name: "countries",
+			values: ["string[]"],
+			required: false,
+			description:
+				"Restricts the country selector to only the specified country codes.",
+		},
+		{
+			name: "value",
+			values: ["string"],
+			required: false,
+			description: "The controlled value of the phone number input.",
+		},
+		{
+			name: "onChange",
+			values: ["(value: string) => void"],
+			required: false,
+			description: "Callback fired when the phone number value changes.",
+		},
+		{
+			name: "disabled",
+			values: ["boolean"],
+			defaultValue: "false",
+			required: false,
+			description:
+				"Disables interaction with the phone number input when set to true.",
+		},
+		{
+			name: "placeholder",
+			values: ["string"],
+			required: false,
+			description: "Placeholder text shown inside the input when it is empty.",
+		},
+	]}
+/>

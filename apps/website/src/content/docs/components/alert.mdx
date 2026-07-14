@@ -176,40 +176,61 @@ import {
 	]}
 />
 
-## Props
+## API Reference
 
-<PropsTableWrapper>
-	<PropsTable
-		title="Alert"
-		data={[
-			{
-				name: "color",
-				defaultValue: "primary",
-				values: ["neutral", "primary", "info", "success", "warning", "error"],
-				required: false,
-				description: "Sets the color scheme of the alert",
-			},
-			{
-				name: "variant",
-				defaultValue: "soft",
-				values: ["soft", "soft-outline", "outline", "strong"],
-				required: false,
-				description: "Defines the visual style of the alert",
-			},
-			{
-				name: "close",
-				defaultValue: "false",
-				values: ["boolean"],
-				required: false,
-				description: "Shows a close button to dismiss the alert",
-			},
-			{
-				name: "onClose",
-				defaultValue: "-",
-				values: ["() => void"],
-				required: false,
-				description: "Callback function called when the alert is dismissed",
-			},
-		]}
-	/>
-</PropsTableWrapper>
+This is a custom component, not a Radix UI wrapper.
+
+### Alert
+
+<PropsTable
+	data={[
+		{
+			name: "color",
+			defaultValue: "primary",
+			values: ["neutral", "primary", "info", "success", "warning", "error"],
+			required: false,
+			description: "Sets the color scheme of the alert",
+		},
+		{
+			name: "variant",
+			defaultValue: "soft",
+			values: ["soft", "soft-outline", "outline", "strong"],
+			required: false,
+			description: "Defines the visual style of the alert",
+		},
+		{
+			name: "close",
+			defaultValue: "false",
+			values: ["boolean"],
+			required: false,
+			description: "Shows a close button to dismiss the alert",
+		},
+		{
+			name: "onClose",
+			defaultValue: "-",
+			values: ["() => void"],
+			required: false,
+			description: "Callback function called when the alert is dismissed",
+		},
+	]}
+/>
+
+### AlertTitle
+
+A semantic heading that displays the main title of the alert.
+
+### AlertDescription
+
+A text container for displaying the main message of the alert.
+
+### AlertIcon
+
+A wrapper for displaying icons alongside the alert message.
+
+### AlertContent
+
+The main container that groups and aligns the title and description text.
+
+### AlertToolbar
+
+A container for adding action buttons or links inside the alert.

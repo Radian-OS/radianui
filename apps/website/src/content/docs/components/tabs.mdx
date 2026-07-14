@@ -147,40 +147,39 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 	]}
 />
 
-## Props
+## API Reference
 
-<PropsTableWrapper>
-	<PropsTable
-		title="Tabs"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/tabs#root"
-	/>
-	<PropsTable
-		title="TabsList"
-		data={[
-			{
-				name: "variant",
-				values: ["default", "open", "ghost"],
-				required: false,
-				description: "Sets the visual style of the tabs list",
-				defaultValue: "default",
-			},
-			{
-				name: "width",
-				values: ["fit", "full"],
-				required: false,
-				description: "Controls the width behavior of the tabs list",
-				defaultValue: "fit",
-			},
-		]}
-		externalReference="https://www.radix-ui.com/primitives/docs/components/tabs#list"
-	/>
-	<PropsTable
-		title="TabsTrigger"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/tabs#trigger"
-	/>
-	<PropsTable
-		title="TabsContent"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/tabs#content"
-	/>
+### Tabs
 
-</PropsTableWrapper>
+The root container that manages the active tab state.
+
+    ### TabsList
+
+A structural container that groups the tab triggers together.
+
+<PropsTable
+	data={[
+		{
+			name: "variant",
+			values: ["default", "open", "ghost"],
+			required: false,
+			description: "Sets the visual style of the tabs list",
+			defaultValue: "default",
+		},
+		{
+			name: "width",
+			values: ["fit", "full"],
+			required: false,
+			description: "Controls the width behavior of the tabs list",
+			defaultValue: "fit",
+		},
+	]}
+/>
+
+    ### TabsTrigger
+
+An interactive element that activates its associated tab content.
+
+    ### TabsContent
+
+The container that displays the content for the associated tab trigger.

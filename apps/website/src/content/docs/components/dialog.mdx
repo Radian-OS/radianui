@@ -186,51 +186,62 @@ import {
 	]}
 />
 
-## Props
+## API Reference
 
-<PropsTableWrapper>
-	<PropsTable
-		title="Dialog"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/dialog#root"
-	/>
-	<PropsTable
-		title="DialogTrigger"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/dialog#trigger"
-	/>
-	<PropsTable
-		title="DialogContent"
-		data={[
-			{
-				name: "backdrop",
-				values: ["blackOverlay", "whiteOverlay", "blur", "transparent"],
-				defaultValue: "blackOverlay",
-				description: "Show the backdrop state",
-			},
-		]}
-	/>
-	<PropsTable title="DialogHeader" />
-	<PropsTable
-		title="DialogTitle"
-		data={[
-			{
-				name: "closeButton",
-				required: false,
-				defaultValue: "true",
-				values: ["boolean"],
-				description:
-					"When true, a close button will be rendered in the top right corner of the dialog.",
-			},
-		]}
-		externalReference="https://www.radix-ui.com/primitives/docs/components/dialog#title"
-	/>
-	<PropsTable
-		title="DialogDescription"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/dialog#description"
-	/>
-	<PropsTable title="DialogBody" />
-	<PropsTable title="DialogFooter" />
-	<PropsTable
-		title="DialogClose"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/dialog#close"
-	/>
-</PropsTableWrapper>
+### Dialog
+
+Root component that manages the open state of the dialog and provides context to child components.
+
+    ### DialogTrigger
+
+An interactive element that opens the dialog when clicked.
+
+    ### DialogContent
+
+<PropsTable
+	data={[
+		{
+			name: "backdrop",
+			values: ["blackOverlay", "whiteOverlay", "blur", "transparent"],
+			defaultValue: "blackOverlay",
+			description: "Sets the visual style of the dialog backdrop overlay.",
+		},
+	]}
+/>
+
+    ### DialogHeader
+
+A structural container for the top section of the dialog, typically housing the title and description.
+
+    ### DialogTitle
+
+A semantic heading that establishes the primary subject of the dialog.
+
+<PropsTable
+	data={[
+		{
+			name: "closeButton",
+			required: false,
+			defaultValue: "true",
+			values: ["boolean"],
+			description:
+				"When true, a close button will be rendered in the top right corner of the dialog.",
+		},
+	]}
+/>
+
+    ### DialogDescription
+
+A text container providing supplementary context or details below the dialog title.
+
+    ### DialogBody
+
+The primary scrollable content area within the dialog.
+
+    ### DialogFooter
+
+A structural container for the bottom section of the dialog, typically used for action buttons.
+
+    ### DialogClose
+
+An interactive element that dismisses and closes the dialog when clicked.

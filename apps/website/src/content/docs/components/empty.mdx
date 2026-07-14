@@ -164,87 +164,40 @@ import {
 	]}
 />
 
-## Props
+## API Reference
 
-<PropsTableWrapper>
-	<PropsTable
-		title="Empty"
-		data={[
-			{
-				name: "className",
-				values: ["string"],
-				required: false,
-				description: "Additional CSS classes for custom styling",
-			},
-		]}
-	/>
+### Empty
 
-    <PropsTable
-    	title="EmptyMedia"
-    	data={[
-    					{
-    			name: "variant",
-    			values: ["default", "icon"],
-    			defaultValue: "default",
-    			required: false,
-    			description: "The variant of the empty media",
-    		},
-    		{
-    			name: "className",
-    			values: ["string"],
-    			required: false,
-    			description: "Additional CSS classes for custom styling",
-    		},
+The root component that manages the empty state layout.
 
-    	]}
-    />
+### EmptyMedia
 
-    <PropsTable
-    	title="EmptyHeader"
-    	data={[
-    		{
-    			name: "className",
-    			values: ["string"],
-    			required: false,
-    			description: "Additional CSS classes for custom styling",
-    		},
-    	]}
-    />
+A visual container for displaying illustrations or icons related to the empty state.
 
-    <PropsTable
-    	title="EmptyTitle"
-    	data={[
-    		{
-    			name: "className",
-    			values: ["string"],
-    			required: false,
-    			description: "Additional CSS classes for custom styling",
-    		},
-    	]}
-    />
+<PropsTable
+	data={[
+		{
+			name: "variant",
+			values: ["default", "icon"],
+			defaultValue: "default",
+			required: false,
+			description: "The variant of the empty media",
+		},
+	]}
+/>
 
-    <PropsTable
-    	title="EmptyDescription"
-    	data={[
-    		{
-    			name: "className",
-    			values: ["string"],
-    			required: false,
-    			description: "Additional CSS classes for custom styling",
-    		},
-    	]}
-    />
+### EmptyHeader
 
-    <PropsTable
-    	title="EmptyAction"
-    	data={[
-    		{
-    			name: "className",
-    			values: ["string"],
-    			required: false,
-    			description: "Additional CSS classes for custom styling",
-    		},
-    	]}
-    />
+A structural container for the top section of the empty state, typically holding the title and description.
 
-</PropsTableWrapper>
+### EmptyTitle
+
+A semantic heading that explains why the current view is empty.
+
+### EmptyDescription
+
+A text container providing further context or instructions on how to populate the empty state.
+
+### EmptyAction
+
+A wrapper for actionable elements, such as buttons to create new items or reset filters.

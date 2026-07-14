@@ -151,34 +151,53 @@ import {
 	]}
 />
 
-## Props
+## API Reference
 
-<PropsTableWrapper>
-	<PropsTable
-		title="Banner"
-		data={[
-			{
-				name: "variant",
-				values: ["strong", "outline", "soft", "soft-outline"],
-				required: false,
-				description: "Sets the variant of the banner",
-				defaultValue: "soft",
-			},
-			{
-				name: "color",
-				defaultValue: "primary",
-				values: ["primary", "neutral", "success", "warning", "error", "info"],
-				required: false,
-				description: "Sets the color of the banner",
-			},
-			{
-				name: "onClose",
-				values: ["() => void"],
-				required: false,
-				description:
-					"Callback function when banner is closed. If provided, close button will be rendered",
-				defaultValue: "undefined",
-			},
-		]}
-	/>
-</PropsTableWrapper>
+This is a custom component, not a Radix UI wrapper.
+
+### Banner
+
+The root container that groups all banner sub-components and controls the shared size and shape.
+
+<PropsTable
+	data={[
+		{
+			name: "variant",
+			values: ["strong", "outline", "soft", "soft-outline"],
+			required: false,
+			description: "Sets the variant of the banner",
+			defaultValue: "soft",
+		},
+		{
+			name: "color",
+			defaultValue: "primary",
+			values: ["primary", "neutral", "success", "warning", "error", "info"],
+			required: false,
+			description: "Sets the color of the banner",
+		},
+		{
+			name: "onClose",
+			values: ["() => void"],
+			required: false,
+			description:
+				"Callback function when banner is closed. If provided, close button will be rendered",
+			defaultValue: "undefined",
+		},
+	]}
+/>
+
+### BannerContent
+
+The main container that groups the icon, title, and description text within the banner.
+
+### BannerIcon
+
+A wrapper for displaying visual indicators or SVG icons alongside the banner message.
+
+### BannerTitle
+
+A semantic heading that displays the main title or subject of the banner.
+
+### BannerDescription
+
+A text container for displaying the primary message or description of the banner.

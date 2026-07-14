@@ -220,135 +220,169 @@ import {
 	]}
 />
 
-## Props
+## API Reference
 
-<PropsTableWrapper>
-	<PropsTable
-		title="Button"
-		data={[
-			{
-				name: "variant",
-				defaultValue: "strong",
-				values: ["strong", "soft", "outline", "ghost","link","glossy","glossy-inverted","smooth","smooth-inverted"],
-				required: false,
-				description: "Defines the visual style of the button",
-			},
-			{
-				name:"color",
-				defaultValue: "primary",
-				values: ["primary", "info", "success", "warning", "error", "neutral"],
-				required: false,
-				description: "Sets the color scheme of the button",
-			},
-			{
-				name: "size",
-				defaultValue: "36",
-				values: ["28", "32", "36", "40", "44", "48"],
-				required: false,
-				description: "Sets the size of the button",
-			},
-			{
-             name:"disabled",
-			 defaultValue: "false",
-			 values: ["boolean"],
-			 required: false,
-			 description: "Disables interaction with the button when set to true",
-			},
-			{
-				name: "loading",
-				defaultValue: "false",
-				values: ["boolean"],
-				required: false,
-				description: "If true, the button will show a loading spinner",
-			},
-			{
-               name:"start",
-			   values: ["ReactNode"],
-			   required: false,
-			   description: "Sets the leading icon of the button",
-			},
-			{
-				name: "end",
-				values: ["ReactNode"],
-				required: false,
-				description: "Sets the trailing icon of the button",
-			},
-			{
-				name: "asChild",
-				defaultValue: "false",
-				values: ["boolean"],
-				required: false,
-				description: "If true, the button will render as a child component",
-			}
-    	]}
-    />
+This is a custom component made using Radix UI's Slot.
 
-    <PropsTable
-    	title="Buttongroup"
-    	data={[
-    		{
-    			name: "variant",
-    			defaultValue: "outline",
-    			values: ["strong", "soft", "outline", "ghost","glossy-inverted","smooth","smooth-inverted"],
-    			required: false,
-    			description: "Defines the visual style of the button",
-    		},
-    		{
-    			name:"color",
-    			defaultValue: "neutral",
-    			values: ["primary", "info", "success", "warning", "error", "neutral"],
-    			required: false,
-    			description: "Sets the color scheme of the button",
-    		},
-    		{
-    			name: "size",
-    			defaultValue: "36",
-    			values: ["28", "32", "36", "40", "44", "48"],
-    			required: false,
-    			description: "Sets the size of the button",
-    		}
-    	]}
-    />
+### Button
 
-    <PropsTable
-    title="CompactButton"
-    data={[
-        {
-            name: "variant",
-            defaultValue: "strong",
-            values: ["strong", "soft", "outline", "ghost","glossy-inverted","smooth","smooth-inverted"],
-            required: false,
-            description: "Defines the visual style of the button",
-        },
-        {
-            name:"color",
-            defaultValue: "primary",
-            values: ["primary", "info", "success", "warning", "error", "neutral"],
-            required: false,
-            description: "Sets the color scheme of the button",
-        },
-        {
-            name: "size",
-            defaultValue: "28",
-            values: ["28", "32"],
-            required: false,
-            description: "Sets the size of the button",
-        },
-    	{
-    		name:"disabled",
-    		defaultValue: "false",
-    		values: ["boolean"],
-    		required: false,
-    		description: "Disables interaction with the button when set to true"
-    	},
-    	{
-    			name: "asChild",
-    			defaultValue: "false",
-    			values: ["boolean"],
-    			required: false,
-    			description: "If true, the button will render as a child component",
-    		}
-    ]}
-    />
+An interactive element used to trigger actions or events.
 
-</PropsTableWrapper>
+<PropsTable
+	data={[
+		{
+			name: "variant",
+			defaultValue: "strong",
+			values: [
+				"strong",
+				"soft",
+				"outline",
+				"ghost",
+				"link",
+				"glossy",
+				"glossy-inverted",
+				"smooth",
+				"smooth-inverted",
+			],
+			required: false,
+			description: "Defines the visual style of the button",
+		},
+		{
+			name: "color",
+			defaultValue: "primary",
+			values: ["primary", "info", "success", "warning", "error", "neutral"],
+			required: false,
+			description: "Sets the color scheme of the button",
+		},
+		{
+			name: "size",
+			defaultValue: "36",
+			values: ["28", "32", "36", "40", "44", "48"],
+			required: false,
+			description: "Sets the size of the button",
+		},
+		{
+			name: "disabled",
+			defaultValue: "false",
+			values: ["boolean"],
+			required: false,
+			description: "Disables interaction with the button when set to true",
+		},
+		{
+			name: "loading",
+			defaultValue: "false",
+			values: ["boolean"],
+			required: false,
+			description: "If true, the button will show a loading spinner",
+		},
+		{
+			name: "start",
+			values: ["ReactNode"],
+			required: false,
+			description: "Sets the leading icon of the button",
+		},
+		{
+			name: "end",
+			values: ["ReactNode"],
+			required: false,
+			description: "Sets the trailing icon of the button",
+		},
+		{
+			name: "asChild",
+			defaultValue: "false",
+			values: ["boolean"],
+			required: false,
+			description: "If true, the button will render as a child component",
+		},
+	]}
+/>
+
+    ### ButtonGroup
+
+A container that groups related buttons together visually and semantically.
+
+<PropsTable
+	data={[
+		{
+			name: "variant",
+			defaultValue: "outline",
+			values: [
+				"strong",
+				"soft",
+				"outline",
+				"ghost",
+				"glossy-inverted",
+				"smooth",
+				"smooth-inverted",
+			],
+			required: false,
+			description: "Defines the visual style of the button",
+		},
+		{
+			name: "color",
+			defaultValue: "neutral",
+			values: ["primary", "info", "success", "warning", "error", "neutral"],
+			required: false,
+			description: "Sets the color scheme of the button",
+		},
+		{
+			name: "size",
+			defaultValue: "36",
+			values: ["28", "32", "36", "40", "44", "48"],
+			required: false,
+			description: "Sets the size of the button",
+		},
+	]}
+/>
+
+    ### CompactButton
+
+A smaller variant of the button designed for tight spaces, commonly used for icon-only actions or inline controls.
+
+<PropsTable
+	data={[
+		{
+			name: "variant",
+			defaultValue: "strong",
+			values: [
+				"strong",
+				"soft",
+				"outline",
+				"ghost",
+				"glossy-inverted",
+				"smooth",
+				"smooth-inverted",
+			],
+			required: false,
+			description: "Defines the visual style of the button",
+		},
+		{
+			name: "color",
+			defaultValue: "primary",
+			values: ["primary", "info", "success", "warning", "error", "neutral"],
+			required: false,
+			description: "Sets the color scheme of the button",
+		},
+		{
+			name: "size",
+			defaultValue: "28",
+			values: ["28", "32"],
+			required: false,
+			description: "Sets the size of the button",
+		},
+		{
+			name: "disabled",
+			defaultValue: "false",
+			values: ["boolean"],
+			required: false,
+			description: "Disables interaction with the button when set to true",
+		},
+		{
+			name: "asChild",
+			defaultValue: "false",
+			values: ["boolean"],
+			required: false,
+			description: "If true, the button will render as a child component",
+		},
+	]}
+/>

@@ -131,3 +131,73 @@ Built with [coss ui File Upload Hook](https://github.com/cosscom/coss/blob/main/
 		},
 	]}
 />
+
+## API Reference
+
+This is a custom component, not a Radix UI wrapper.
+
+### FileUpload
+
+The root component that manages file upload state and provides context to all child components.
+
+<PropsTable
+	data={[
+		{
+			name: "accept",
+			values: ["string"],
+			required: false,
+			description:
+				"Specifies the allowed file MIME types (e.g., 'image/*' or '.pdf,.doc').",
+		},
+		{
+			name: "maxSize",
+			values: ["number"],
+			required: false,
+			description:
+				"Maximum allowed file size in bytes. Files exceeding this limit are rejected.",
+		},
+		{
+			name: "maxFiles",
+			values: ["number"],
+			required: false,
+			description: "Maximum number of files that can be uploaded at once.",
+		},
+		{
+			name: "multiple",
+			values: ["boolean"],
+			defaultValue: "false",
+			required: false,
+			description:
+				"When true, allows users to select and upload multiple files simultaneously.",
+		},
+		{
+			name: "disabled",
+			values: ["boolean"],
+			defaultValue: "false",
+			required: false,
+			description: "Disables the file upload interaction when set to true.",
+		},
+		{
+			name: "onValueChange",
+			values: ["(files: File[]) => void"],
+			required: false,
+			description: "Callback fired when the selected files change.",
+		},
+	]}
+/>
+
+### FileUploadDropzone
+
+An interactive area that accepts dragged and dropped files from the user's operating system.
+
+### FileUploadInput
+
+A hidden input element that handles native file selection dialogues.
+
+### FileUploadList
+
+A structural container for displaying the list of currently uploaded or selected files.
+
+### FileUploadItem
+
+A wrapper for individual file entries, displaying file information and removal actions.

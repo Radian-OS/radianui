@@ -161,31 +161,35 @@ import {
 	]}
 />
 
-## Props
+## API Reference
 
-<PropsTableWrapper>
-	<PropsTable title="Tooltip" externalReference="https://www.radix-ui.com/primitives/docs/components/tooltip#root" />
-	<PropsTable
-		title="TooltipTrigger"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/tooltip#trigger"
-	/>
-	<PropsTable
-		title="TooltipContent"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/tooltip#content"
-		data={[
-			{
-				name: "theme",
-				defaultValue: "default",
-				values: ["light", "default"],
-				description: "'default' inverts color for light/dark modes. 'light' matches both.",
-			},
-			{
-				name: "withArrow",
-				values: ["boolean"],
-				defaultValue: "false",
-				description: "Either to display an arrow pointing to the target element or not",
-			}
-    	]}
-    />
+### Tooltip
 
-</PropsTableWrapper>
+The root container that manages the tooltip state and context.
+
+    ### TooltipTrigger
+
+An interactive element that opens the tooltip when hovered or focused.
+
+    ### TooltipContent
+
+The floating panel containing the tooltip text.
+
+<PropsTable
+	data={[
+		{
+			name: "theme",
+			defaultValue: "default",
+			values: ["light", "default"],
+			description:
+				"'default' inverts color for light/dark modes. 'light' matches both.",
+		},
+		{
+			name: "withArrow",
+			values: ["boolean"],
+			defaultValue: "false",
+			description:
+				"Either to display an arrow pointing to the target element or not",
+		},
+	]}
+/>
