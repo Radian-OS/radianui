@@ -184,10 +184,10 @@ function ComponentDocFaq({ items }: { items: ComponentDocFaqItem[] }) {
 				<AccordionItem
 					key={`${item.question}-${index}`}
 					value={`item-${index + 1}`}>
-					<AccordionTrigger className="gap-2 !text-base !font-medium">
+					<AccordionTrigger className="gap-2 pt-4 !text-base !font-medium">
 						{item.question}
 					</AccordionTrigger>
-					<AccordionContent className="!text-fg-secondary !text-base !leading-7 [&_p]:!text-inherit">
+					<AccordionContent className="!text-fg-secondary pb-4 !text-base !leading-7 [&_p]:!text-inherit">
 						{item.answer}
 					</AccordionContent>
 				</AccordionItem>
