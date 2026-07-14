@@ -52,7 +52,7 @@ const AvatarPlayground = () => {
 						variant="outline"
 						onClick={() => setConfigOpen(true)}>
 						<Settings className="text-fg-secondary" />
-						Config
+						<p className="hidden sm:block">Config</p>
 					</Button>
 
 					<Button color="neutral" variant="outline">
