@@ -71,7 +71,6 @@ const AvatarDesign = () => {
 							</li>
 						))}
 					</ul>
-					<p></p>
 				</div>
 			</div>
 		</div>
