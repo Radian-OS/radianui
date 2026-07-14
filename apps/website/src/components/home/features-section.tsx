@@ -109,9 +109,9 @@ const FeaturesSection: React.FC<BentoProps> = ({
 							<div className="border-soft flex h-[600px] flex-col gap-12 overflow-hidden rounded-[20px] border">
 								<div className="pt-15 flex flex-col gap-4 px-7 sm:px-12">
 									<ScanEye size={28} className="stroke-primary-hover" />
-									<span className="heading-6 font-medium">
+									<h3 className="heading-6 font-medium">
 										High Quality Base Components
-									</span>
+									</h3>
 									<p className="text-fg-secondary w-full text-sm leading-6 lg:max-w-[380px]">
 										Solid, reusable components built with attention to detail
 										and best practices.{" "}
@@ -130,9 +130,9 @@ const FeaturesSection: React.FC<BentoProps> = ({
 							<div className="border-soft relative flex h-[600px] w-full flex-col gap-12 overflow-hidden rounded-[20px] border">
 								<div className="pt-15 flex flex-col gap-4 px-7 sm:px-12">
 									<SquareTerminal size={28} className="stroke-primary-hover" />
-									<span className="heading-6 font-medium">
+									<h3 className="heading-6 font-medium">
 										Install via CLI or Copy Paste
-									</span>
+									</h3>
 									<p className="text-fg-secondary text-sm leading-6 lg:max-w-[380px]">
 										Install with one command or copy the snippet. No
 										configuration. No waiting. Just build.
@@ -151,9 +151,9 @@ const FeaturesSection: React.FC<BentoProps> = ({
 							<div className="border-soft flex h-[600px] w-full flex-col gap-12 overflow-hidden rounded-[20px] border">
 								<div className="pt-15 flex flex-col gap-4 px-7 sm:px-12">
 									<FolderGit size={28} className="stroke-primary-hover" />
-									<span className="heading-6 font-medium">
+									<h3 className="heading-6 font-medium">
 										Seamless Design to Code Sync
-									</span>
+									</h3>
 									<p className="text-fg-secondary text-sm leading-6 lg:max-w-[380px]">
 										Changes made in Figma are easily replicable in the code,
 										guaranteeing pixel-perfect consistency.
@@ -173,9 +173,7 @@ const FeaturesSection: React.FC<BentoProps> = ({
 								className="border-soft relative flex h-[600px] w-full cursor-pointer flex-col gap-12 overflow-hidden rounded-[20px] border">
 								<div className="pt-15 flex flex-col gap-4 px-7 sm:pl-12">
 									<SwatchBook size={28} className="stroke-primary-hover" />
-									<span className="heading-6 font-medium">
-										Themeable System
-									</span>
+									<h3 className="heading-6 font-medium">Themeable System</h3>
 									<p className="text-fg-secondary w-fit text-sm leading-6 lg:max-w-[380px]">
 										Edit one token to restyle your entire design system light,
 										dark, or custom themes.
@@ -196,9 +194,9 @@ const FeaturesSection: React.FC<BentoProps> = ({
 							<div className="border-soft z-5 relative flex h-[600px] w-full flex-col gap-12 overflow-hidden rounded-[20px] border">
 								<div className="pt-15 flex flex-col gap-4 px-7 sm:px-12">
 									<CircleGauge size={28} className="stroke-primary-hover" />
-									<span className="heading-6 font-medium">
+									<h3 className="heading-6 font-medium">
 										Tree-Shakable Architecture
-									</span>
+									</h3>
 									<p className="text-fg-secondary text-sm leading-6 lg:max-w-[380px]">
 										Only imports what you use ultra-light bundles for fast and
 										improved performance.
@@ -219,9 +217,7 @@ const FeaturesSection: React.FC<BentoProps> = ({
 							<div className="border-soft relative flex h-[600px] w-full flex-col gap-12 overflow-hidden rounded-[20px] border">
 								<div className="pt-15 flex flex-col gap-4 px-7 sm:px-12">
 									<LayoutDashboard size={28} className="stroke-primary-hover" />
-									<span className="heading-6 font-medium">
-										Reusable UI Blocks
-									</span>
+									<h3 className="heading-6 font-medium">Reusable UI Blocks</h3>
 									<p className="text-fg-secondary text-sm leading-6 lg:max-w-[380px]">
 										Get access to high quality pre-built UI blocks, designed and
 										developed to plug into any layout.{" "}
