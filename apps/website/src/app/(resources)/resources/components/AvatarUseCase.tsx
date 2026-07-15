@@ -3,37 +3,70 @@ import Image from "next/image"
 import { InfiniteScroll } from "@/registry/animated/infinite-scroll"
 
 const useCaseImages = [
-	{ src: "/avatar/usecase/usecase-1.png", alt: "Navigation & Account Access" },
-	{ src: "/avatar/usecase/usecase-2.png", alt: "Messaging & Collaboration" },
-	{ src: "/avatar/usecase/usecase-3.png", alt: "Lists & Data Displays" },
-	{ src: "/avatar/usecase/usecase-4.png", alt: "Avatar Groups and Teams" },
-	{ src: "/avatar/usecase/usecase-5.png", alt: "Comments & Activity Feeds" },
-	{ src: "/avatar/usecase/usecase-6.png", alt: "Project Ownership" },
-	{ src: "/avatar/usecase/usecase-7.png", alt: "Presence & Status Indicators" },
-	{ src: "/avatar/usecase/usecase-8.png", alt: "Organizations & Brands" },
+	{
+		src: "/avatar/usecase/usecase-1.png",
+		alt: "User profile hover card UI component",
+	},
+	{ src: "/avatar/usecase/usecase-2.png", alt: "Image upload UI card" },
+	{
+		src: "/avatar/usecase/usecase-3.png",
+		alt: "User account dropdown navigation UI component",
+	},
+	{
+		src: "/avatar/usecase/usecase-4.png",
+		alt: "Edit profile preview UI card component",
+	},
+	{
+		src: "/avatar/usecase/usecase-5.png",
+		alt: "Notifications feed Drawer component",
+	},
+	{
+		src: "/avatar/usecase/usecase-6.png",
+		alt: "Contributor search dropdown UI",
+	},
+	{
+		src: "/avatar/usecase/usecase-7.png",
+		alt: "Workspace owner selection radio cards component",
+	},
+	{
+		src: "/avatar/usecase/usecase-8.png",
+		alt: "Event preview hover card UI component",
+	},
 ]
 
 const useCaseImagesDark = [
 	{
 		src: "/avatar/usecase/usecase-1-dark.png",
-		alt: "Navigation & Account Access",
+		alt: "User profile hover card UI component",
 	},
 	{
 		src: "/avatar/usecase/usecase-2-dark.png",
-		alt: "Messaging & Collaboration",
+		alt: "Image upload UI card",
 	},
-	{ src: "/avatar/usecase/usecase-3-dark.png", alt: "Lists & Data Displays" },
-	{ src: "/avatar/usecase/usecase-4-dark.png", alt: "Avatar Groups and Teams" },
+	{
+		src: "/avatar/usecase/usecase-3-dark.png",
+		alt: "User account dropdown navigation UI component",
+	},
+	{
+		src: "/avatar/usecase/usecase-4-dark.png",
+		alt: "Edit profile preview UI card component",
+	},
 	{
 		src: "/avatar/usecase/usecase-5-dark.png",
-		alt: "Comments & Activity Feeds",
+		alt: "Notifications feed Drawer component",
 	},
-	{ src: "/avatar/usecase/usecase-6-dark.png", alt: "Project Ownership" },
+	{
+		src: "/avatar/usecase/usecase-6-dark.png",
+		alt: "Contributor search dropdown UI",
+	},
 	{
 		src: "/avatar/usecase/usecase-7-dark.png",
-		alt: "Presence & Status Indicators",
+		alt: "Workspace owner selection radio cards component",
 	},
-	{ src: "/avatar/usecase/usecase-8-dark.png", alt: "Organizations & Brands" },
+	{
+		src: "/avatar/usecase/usecase-8-dark.png",
+		alt: "Event preview hover card UI component",
+	},
 ]
 
 const useCasePoints = [
@@ -115,27 +148,25 @@ const AvatarUseCase = () => {
 			</div>
 			<div className="-mx-5 sm:-mx-6">
 				<InfiniteScroll duration={60} pauseOnHover={false}>
-					{useCaseImages.map((image) => (
-						<Image
+					{useCaseImages.map((image, i) => (
+						<div
 							key={image.src}
-							src={image.src}
-							alt={image.alt}
-							width={560}
-							height={420}
-							className="border-soft h-auto w-[70vw] shrink-0 rounded-[10px] border sm:w-[45vw] sm:rounded-xl md:w-[35vw] md:rounded-[20px] lg:w-[28vw] dark:hidden"
-						/>
-					))}
-				</InfiniteScroll>
-				<InfiniteScroll duration={60} pauseOnHover={false}>
-					{useCaseImagesDark.map((image) => (
-						<Image
-							key={image.src}
-							src={image.src}
-							alt={image.alt}
-							width={560}
-							height={420}
-							className="bg-fill1 border-soft hidden h-auto w-[70vw] shrink-0 rounded-[10px] border sm:w-[45vw] sm:rounded-xl md:w-[35vw] md:rounded-[20px] lg:w-[28vw] dark:block"
-						/>
+							className="relative h-auto w-[70vw] shrink-0 sm:w-[45vw] md:w-[35vw] lg:w-[28vw]">
+							<Image
+								src={image.src}
+								alt={image.alt}
+								width={560}
+								height={420}
+								className="bg-fill1 border-soft h-auto w-full rounded-[10px] border sm:rounded-xl md:rounded-[20px] dark:invisible dark:absolute dark:inset-0"
+							/>
+							<Image
+								src={useCaseImagesDark[i].src}
+								alt={useCaseImagesDark[i].alt}
+								width={560}
+								height={420}
+								className="bg-fill1 border-soft invisible absolute inset-0 h-auto w-full rounded-[10px] border sm:rounded-xl md:rounded-[20px] dark:visible dark:static"
+							/>
+						</div>
 					))}
 				</InfiniteScroll>
 			</div>
