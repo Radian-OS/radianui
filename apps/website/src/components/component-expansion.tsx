@@ -365,7 +365,7 @@ function NavigationMenuDemo() {
 
 export function ComponentExpansionGrid() {
 	return (
-		<div className="my-9 mb-6 grid grid-cols-1 gap-5 md:grid-cols-2">
+		<div className="my-9 mb-6 grid w-full grid-cols-1 gap-5 md:grid-cols-2">
 			<Card title="Stepper" variants="" href="/docs/components/stepper">
 				<StepperDemo />
 			</Card>
