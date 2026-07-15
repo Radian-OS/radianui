@@ -22,12 +22,12 @@ export default function CollapsibleAccordion() {
 	const [open, setOpen] = useState(false)
 
 	return (
-		<div>
+		<div className="max-w-100 w-full">
 			{ITEMS.map((item) => (
 				<Collapsible key={item.id} open={open} onOpenChange={setOpen}>
 					<div
 						className={cn(
-							"border-soft w-100 bg-bg flex flex-col gap-2 rounded-lg border p-3 transition-all"
+							"border-soft bg-bg flex w-full flex-col gap-2 rounded-lg border p-3 transition-all"
 						)}>
 						<CollapsibleTrigger asChild>
 							<div className="flex w-full cursor-pointer items-center gap-3 text-left">

@@ -32,12 +32,15 @@ export default function DestructiveDialogWithDivider() {
 				<Divider className="bg-soft-alpha" />
 				<AlertDialogFooter className="px-6 py-5">
 					<AlertDialogCancel asChild>
-						<Button variant="outline" color="neutral">
+						<Button
+							variant="outline"
+							color="neutral"
+							className="w-full sm:w-fit">
 							Cancel
 						</Button>
 					</AlertDialogCancel>
 					<AlertDialogAction asChild>
-						<Button variant="strong" color="error">
+						<Button variant="strong" color="error" className="w-full sm:w-fit">
 							Delete
 						</Button>
 					</AlertDialogAction>

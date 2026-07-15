@@ -70,7 +70,7 @@ const CheckboxDropdown = () => {
 	const selectedItems = techItems.filter((t) => selected.has(t.id))
 
 	return (
-		<div className="flex flex-col gap-1.5 p-6">
+		<div className="max-w-90 flex w-full flex-col gap-1.5 p-6">
 			<p className="text-fg text-base font-semibold">Tech Stack</p>
 
 			<Dropdown>
@@ -78,7 +78,7 @@ const CheckboxDropdown = () => {
 					<Button
 						color="neutral"
 						variant="outline"
-						className="w-90 flex justify-between gap-2">
+						className="max-w-90 flex w-full justify-between gap-2">
 						<span className="text-fg-tertiary text-sm">
 							Choose the technologies...
 						</span>

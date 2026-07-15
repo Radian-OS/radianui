@@ -81,7 +81,7 @@ export default function CollapsibleList() {
 
 	return (
 		<div className="flex items-center justify-center">
-			<div className="w-100">
+			<div className="max-w-100 w-full">
 				<Collapsible
 					className="flex flex-col"
 					open={open}

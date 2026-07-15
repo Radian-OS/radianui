@@ -34,7 +34,7 @@ const BadgeColorExample = () => {
 		<div className="space-y-6">
 			<div className="grid grid-cols-1 gap-4">
 				{colors.map((color) => (
-					<div key={color.value} className="flex gap-2">
+					<div key={color.value} className="flex flex-col gap-2 sm:flex-row">
 						<p className="text-fg w-22 text-sm font-semibold">{color.name}</p>
 						<div className="flex flex-wrap gap-2">
 							<Badge color={color.value as ColorValue} variant="strong">

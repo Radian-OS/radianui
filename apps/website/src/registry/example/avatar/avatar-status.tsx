@@ -9,7 +9,7 @@ import {
 
 export default function AvatarStatusPreview() {
 	return (
-		<div className="flex gap-6">
+		<div className="flex flex-wrap items-center justify-center gap-6">
 			<Avatar size="48">
 				<AvatarImage src="/media/female-6.jpg" />
 				<AvatarFallback>CH</AvatarFallback>

@@ -4,7 +4,7 @@ import { Button } from "@/registry/ui/button"
 const ButtonVariantsExample = () => {
 	return (
 		<div className="flex flex-col items-center justify-center gap-5">
-			<div className="flex items-center justify-center gap-3">
+			<div className="flex flex-wrap items-center justify-center gap-3">
 				<Button>Strong</Button>
 				<Button variant="soft" color="primary">
 					Soft
@@ -16,7 +16,7 @@ const ButtonVariantsExample = () => {
 					Ghost
 				</Button>
 			</div>
-			<div className="flex items-center justify-center gap-3">
+			<div className="flex flex-wrap items-center justify-center gap-3">
 				<Button color="neutral">Strong</Button>
 				<Button variant="soft" color="neutral">
 					Soft
@@ -28,7 +28,7 @@ const ButtonVariantsExample = () => {
 					Ghost
 				</Button>
 			</div>
-			<div className="flex items-center justify-center gap-3">
+			<div className="flex flex-wrap items-center justify-center gap-3">
 				<Button color="error">Strong</Button>
 				<Button variant="soft" color="error">
 					Soft
