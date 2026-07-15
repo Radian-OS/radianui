@@ -182,7 +182,7 @@ function DrawerExamplePreview() {
 							<AvatarImage src="/drawer-profile.png" />
 							<AvatarFallback>AR</AvatarFallback>
 						</Avatar>
-						<div className="flex w-full items-center justify-end gap-5">
+						<div className="flex w-full items-center justify-end gap-1 sm:gap-5">
 							<div className="pl-30 flex flex-1 flex-col gap-1">
 								<DrawerTitle>Alexia Rivas</DrawerTitle>
 								<DrawerDescription>Lead Product Designer</DrawerDescription>
@@ -192,7 +192,7 @@ function DrawerExamplePreview() {
 							</IconButton>
 						</div>
 					</DrawerHeader>
-					<DrawerBody className="w-115 flex flex-col gap-6">
+					<DrawerBody className="flex w-full flex-col gap-6">
 						<div className="flex items-center gap-2 px-6">
 							<Button className="w-full" size="40">
 								<PhoneCall />

@@ -39,7 +39,7 @@ export default function ComponentCard({
 					/>
 				</div>
 				<div className="flex flex-col gap-1 text-sm">
-					<p className="text-fg font-semibold">{title}</p>
+					<h3 className="text-fg font-semibold">{title}</h3>
 					<p className="text-fg-secondary font-normal">{description}</p>
 				</div>
 			</div>

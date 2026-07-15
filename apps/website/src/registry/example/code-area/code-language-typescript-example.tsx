@@ -3,7 +3,7 @@ import { CodeArea } from "@/registry/ui/code-area"
 
 const CodeLanguageTypescriptExample = () => {
 	return (
-		<div className="flex w-full items-center justify-center">
+		<div className="flex w-80 items-center justify-center sm:w-fit">
 			<CodeArea
 				className="max-w-150 w-full"
 				language="typescript"

@@ -15,7 +15,7 @@ import {
 
 function DrawerHandleExample() {
 	return (
-		<div className="flex items-center justify-center gap-6">
+		<div className="flex flex-col items-center justify-center gap-6 sm:flex-row">
 			<Drawer
 				variant="default"
 				direction="left"

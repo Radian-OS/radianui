@@ -26,7 +26,7 @@ export default function InvertedSectionItems() {
 				className="shrink-0 text-[#545463] transition-colors duration-300 group-hover:text-[#C8C8D0]"
 			/>
 			<div className="flex flex-col gap-2">
-				<p className="text-base font-medium text-[#C8C8D0]">{title}</p>
+				<h3 className="text-base font-medium text-[#C8C8D0]">{title}</h3>
 				<p className="text-sm font-normal text-[#868698]">{description}</p>
 			</div>
 		</div>

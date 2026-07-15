@@ -3,7 +3,7 @@ import { Switch } from "@/registry/ui/switch"
 
 export default function SwitchSizes() {
 	return (
-		<div className="flex gap-6">
+		<div className="flex flex-col items-center justify-center gap-6 sm:flex-row">
 			<div className="flex items-center space-x-2">
 				<Switch id="size-sm" size="20" />
 				<Label htmlFor="size-sm">Size 20</Label>

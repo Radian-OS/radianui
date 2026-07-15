@@ -5,7 +5,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@/registry/ui/tooltip"
 
 export default function TooltipSide() {
 	return (
-		<div className="flex items-center justify-center gap-3">
+		<div className="flex flex-col items-center justify-center gap-6 sm:flex-row">
 			<Tooltip>
 				<TooltipTrigger asChild>
 					<Button color="neutral" variant="outline">
