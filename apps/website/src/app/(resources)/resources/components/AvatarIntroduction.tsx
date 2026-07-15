@@ -33,7 +33,7 @@ const AvatarIntroduction = () => {
 			<Image
 				className="border-soft overflow-hidden rounded-xl border md:rounded-[20px] dark:hidden"
 				src="/avatar/avatar-introduction-bg.png"
-				alt="Avatar Introduction"
+				alt="UI Avatar Graphic"
 				width={800}
 				height={440}
 				sizes="(min-width: 1024px) 800px, 100vw"
@@ -41,7 +41,7 @@ const AvatarIntroduction = () => {
 			<Image
 				className="border-soft hidden overflow-hidden rounded-xl border md:rounded-[20px] dark:block"
 				src="/avatar/avatar-introduction-bg-dark.png"
-				alt="Avatar Introduction"
+				alt="UI Avatar Graphic"
 				width={800}
 				height={440}
 				sizes="(min-width: 1024px) 800px, 100vw"

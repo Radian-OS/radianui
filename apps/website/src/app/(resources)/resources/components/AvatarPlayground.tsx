@@ -15,24 +15,64 @@ import CategoryFilterDropdown from "./CategoryFilterDropdown"
 import ConfigPreferencesDialog from "./ConfigPreferencesDialog"
 import ToneFilterDropdown from "./ToneFilterDropdown"
 
-const AVATARS = [
-	"/avatar/male-1.png",
-	"/avatar/male-2.png",
-	"/avatar/female-1.png",
-	"/avatar/female-2.png",
-	"/avatar/male-3.png",
-	"/avatar/male-4.png",
-	"/avatar/female-3.png",
-	"/avatar/male-5.png",
-	"/avatar/male-6.png",
-	"/avatar/female-4.png",
-	"/avatar/female-5.png",
-	"/avatar/male-7.png",
-	"/avatar/male-8.png",
-	"/avatar/female-6.png",
-	"/avatar/female-7.png",
-	"/avatar/female-8.png",
-]
+const SOLID_COLOR_MAP: Record<string, string> = {
+	white: "#ffffff",
+	"gray-100": "#f3f4f6",
+	"red-300": "#fca5a5",
+	"orange-300": "#fdba74",
+	"amber-300": "#fcd34d",
+	"lime-300": "#bef264",
+	"green-300": "#86efac",
+	"emerald-300": "#6ee7b7",
+	"teal-300": "#5eead4",
+	"sky-300": "#7dd3fc",
+	"indigo-300": "#a5b4fc",
+	"violet-300": "#c4b5fd",
+	"purple-300": "#d8b4fe",
+	"fuchsia-300": "#f0abfc",
+	"pink-300": "#f9a8d4",
+}
+
+const GRADIENT_MAP: Record<string, { from: string; to: string }> = {
+	"grad-red-orange": { from: "#fca5a5", to: "#fdba74" },
+	"grad-orange-yellow": { from: "#fdba74", to: "#fde047" },
+	"grad-yellow-lime": { from: "#fde047", to: "#bef264" },
+	"grad-lime-green": { from: "#bef264", to: "#86efac" },
+	"grad-green-teal": { from: "#86efac", to: "#5eead4" },
+	"grad-teal-cyan": { from: "#5eead4", to: "#67e8f9" },
+	"grad-cyan-blue": { from: "#67e8f9", to: "#93c5fd" },
+	"grad-blue-indigo": { from: "#93c5fd", to: "#a5b4fc" },
+	"grad-indigo-violet": { from: "#a5b4fc", to: "#c4b5fd" },
+	"grad-violet-purple": { from: "#c4b5fd", to: "#d8b4fe" },
+	"grad-purple-fuchsia": { from: "#d8b4fe", to: "#f0abfc" },
+	"grad-fuchsia-pink": { from: "#f0abfc", to: "#f9a8d4" },
+}
+
+function getToneStyle(tone: string): React.CSSProperties {
+	if (SOLID_COLOR_MAP[tone]) {
+		return { backgroundColor: SOLID_COLOR_MAP[tone] }
+	}
+	const gradient = GRADIENT_MAP[tone]
+	if (gradient) {
+		return {
+			background: `linear-gradient(135deg, ${gradient.from}, ${gradient.to})`,
+		}
+	}
+	if (tone.startsWith("/blocks/")) {
+		return {
+			backgroundImage: `url(${tone})`,
+			backgroundSize: "cover",
+			backgroundPosition: "center",
+		}
+	}
+	return {}
+}
+
+const AVATARS = Array.from(
+	{ length: 200 },
+	(_, i) =>
+		`https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/avatars/src/${i + 1}.png`
+)
 
 const AvatarPlayground = () => {
 	const [category, setCategory] = useState("all")
@@ -173,13 +213,12 @@ const AvatarPlayground = () => {
 
 			<div className="grid grid-cols-3 gap-3 sm:grid-cols-5 md:grid-cols-7">
 				{AVATARS.map((src, index) => (
-					<AvatarTile key={src} src={src} index={index} />
-				))}
-				{AVATARS.map((src, index) => (
-					<AvatarTile key={src} src={src} index={index} />
-				))}
-				{AVATARS.map((src, index) => (
-					<AvatarTile key={src} src={src} index={index} />
+					<AvatarTile
+						key={src}
+						src={src}
+						index={index}
+						toneStyle={getToneStyle(tone)}
+					/>
 				))}
 			</div>
 
@@ -190,7 +229,15 @@ const AvatarPlayground = () => {
 
 export default AvatarPlayground
 
-const AvatarTile = ({ src, index }: { src: string; index: number }) => {
+const AvatarTile = ({
+	src,
+	index,
+	toneStyle,
+}: {
+	src: string
+	index: number
+	toneStyle: React.CSSProperties
+}) => {
 	const [copied, setCopied] = useState(false)
 	const [open, setOpen] = useState<boolean>(false)
 
@@ -210,7 +257,9 @@ const AvatarTile = ({ src, index }: { src: string; index: number }) => {
 	}
 
 	return (
-		<div className="border-border bg-bg-secondary group relative aspect-square w-full overflow-hidden rounded-xl border">
+		<div
+			className="border-border bg-bg-secondary group relative aspect-square w-full overflow-hidden rounded-xl border"
+			style={toneStyle}>
 			<Image
 				src={src}
 				alt={`Generated avatar ${index + 1}`}
