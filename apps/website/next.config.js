@@ -139,6 +139,11 @@ const nextConfig = {
 			},
 			{
 				protocol: "https",
+				hostname: "cdn.jsdelivr.net",
+				pathname: "/gh/Radian-os/**",
+			},
+			{
+				protocol: "https",
 				hostname: "www.google.com",
 				pathname: "/s2/favicons/**",
 			},

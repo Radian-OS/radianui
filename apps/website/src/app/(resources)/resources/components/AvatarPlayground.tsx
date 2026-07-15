@@ -68,24 +68,11 @@ function getToneStyle(tone: string): React.CSSProperties {
 	return {}
 }
 
-const AVATARS = [
-	"/avatar/male-1.png",
-	"/avatar/male-2.png",
-	"/avatar/female-1.png",
-	"/avatar/female-2.png",
-	"/avatar/male-3.png",
-	"/avatar/male-4.png",
-	"/avatar/female-3.png",
-	"/avatar/male-5.png",
-	"/avatar/male-6.png",
-	"/avatar/female-4.png",
-	"/avatar/female-5.png",
-	"/avatar/male-7.png",
-	"/avatar/male-8.png",
-	"/avatar/female-6.png",
-	"/avatar/female-7.png",
-	"/avatar/female-8.png",
-]
+const AVATARS = Array.from(
+	{ length: 200 },
+	(_, i) =>
+		`https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/avatars/src/${i + 1}.png`
+)
 
 const AvatarPlayground = () => {
 	const [category, setCategory] = useState("all")
@@ -225,22 +212,6 @@ const AvatarPlayground = () => {
 			</div>
 
 			<div className="grid grid-cols-3 gap-3 sm:grid-cols-5 md:grid-cols-7">
-				{AVATARS.map((src, index) => (
-					<AvatarTile
-						key={src}
-						src={src}
-						index={index}
-						toneStyle={getToneStyle(tone)}
-					/>
-				))}
-				{AVATARS.map((src, index) => (
-					<AvatarTile
-						key={src}
-						src={src}
-						index={index}
-						toneStyle={getToneStyle(tone)}
-					/>
-				))}
 				{AVATARS.map((src, index) => (
 					<AvatarTile
 						key={src}
