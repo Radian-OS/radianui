@@ -13,6 +13,29 @@ const useCaseImages = [
 	{ src: "/avatar/usecase/usecase-8.png", alt: "Organizations & Brands" },
 ]
 
+const useCaseImagesDark = [
+	{
+		src: "/avatar/usecase/usecase-1-dark.png",
+		alt: "Navigation & Account Access",
+	},
+	{
+		src: "/avatar/usecase/usecase-2-dark.png",
+		alt: "Messaging & Collaboration",
+	},
+	{ src: "/avatar/usecase/usecase-3-dark.png", alt: "Lists & Data Displays" },
+	{ src: "/avatar/usecase/usecase-4-dark.png", alt: "Avatar Groups and Teams" },
+	{
+		src: "/avatar/usecase/usecase-5-dark.png",
+		alt: "Comments & Activity Feeds",
+	},
+	{ src: "/avatar/usecase/usecase-6-dark.png", alt: "Project Ownership" },
+	{
+		src: "/avatar/usecase/usecase-7-dark.png",
+		alt: "Presence & Status Indicators",
+	},
+	{ src: "/avatar/usecase/usecase-8-dark.png", alt: "Organizations & Brands" },
+]
+
 const useCasePoints = [
 	{
 		title: "Navigation & Account Access",
@@ -99,7 +122,19 @@ const AvatarUseCase = () => {
 							alt={image.alt}
 							width={560}
 							height={420}
-							className="h-auto w-[70vw] shrink-0 rounded-xl sm:w-[45vw] md:w-[35vw] lg:w-[28vw]"
+							className="border-soft h-auto w-[70vw] shrink-0 rounded-[10px] border sm:w-[45vw] sm:rounded-xl md:w-[35vw] md:rounded-[20px] lg:w-[28vw] dark:hidden"
+						/>
+					))}
+				</InfiniteScroll>
+				<InfiniteScroll duration={60} pauseOnHover={false}>
+					{useCaseImagesDark.map((image) => (
+						<Image
+							key={image.src}
+							src={image.src}
+							alt={image.alt}
+							width={560}
+							height={420}
+							className="bg-fill1 border-soft hidden h-auto w-[70vw] shrink-0 rounded-[10px] border sm:w-[45vw] sm:rounded-xl md:w-[35vw] md:rounded-[20px] lg:w-[28vw] dark:block"
 						/>
 					))}
 				</InfiniteScroll>

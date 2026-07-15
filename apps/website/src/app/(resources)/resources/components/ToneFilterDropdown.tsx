@@ -3,7 +3,8 @@
 import React, { useState } from "react"
 import { Ban, ChevronDown, Dices, Pipette, X } from "lucide-react"
 import Image from "next/image"
-import { Button } from "@/registry/ui/button"
+import { Button, CompactButton, IconButton } from "@/registry/ui/button"
+import { Divider } from "@/registry/ui/divider"
 import {
 	Dropdown,
 	DropdownContent,
@@ -11,6 +12,7 @@ import {
 	DropdownLabel,
 	DropdownTrigger,
 } from "@/registry/ui/dropdown"
+import { ScrollArea } from "@/registry/ui/scroll-area"
 
 const SOLID_COLORS = [
 	{ id: "white", className: "bg-white" },
@@ -81,120 +83,126 @@ const ToneFilterDropdown = ({
 				</Button>
 			</DropdownTrigger>
 
-			<DropdownContent align="center">
-				{/* Header */}
-				<div className="flex items-center justify-between px-4 pb-2 pt-4">
-					<span className="text-sm font-semibold">Change Background</span>
-					<Button
-						onClick={() => setOpen(false)}
-						color="neutral"
-						variant="ghost">
-						<X className="size-4" />
-					</Button>
-				</div>
-
-				<div className="flex flex-col gap-4 px-4 pb-4">
-					{/* Colors */}
-					<div className="flex flex-col gap-2">
-						<DropdownLabel className="px-0 text-xs">Colors</DropdownLabel>
-						<div className="grid grid-cols-8 gap-2">
-							{SOLID_COLORS.map((c) => (
-								<div
-									key={c.id}
-									onClick={() => onChange(c.id)}
-									className={`size-8 cursor-pointer rounded-lg ${c.className} ${
-										value === c.id ? "ring-primary ring-2 ring-offset-2" : ""
-									}`}
-								/>
-							))}
-							{/* Rainbow / custom color */}
-							<div
-								onClick={() => onChange("custom-color")}
-								style={{
-									background:
-										"conic-gradient(from 180deg, #f87171, #fbbf24, #a3e635, #34d399, #38bdf8, #818cf8, #e879f9, #f87171)",
-								}}
-								className="border-border size-8 rounded-lg border"
-							/>
-							<Button
-								type="button"
-								onClick={() => onChange("pick-color")}
-								color="neutral"
-								variant="ghost">
-								<Pipette className="text-fg-secondary size-4" />
-							</Button>
-							<Button
-								type="button"
-								onClick={() => onChange("none")}
-								color="neutral"
-								variant="ghost">
-								<Ban className="text-fg-secondary size-4" />
-							</Button>
-						</div>
+			<DropdownContent align="center" className="rounded-xl p-0 md:w-[312px]">
+				<ScrollArea className="h-105">
+					{/* Header */}
+					<div className="flex items-center justify-between px-4 py-3">
+						<span className="text-sm font-semibold">Change Background</span>
+						<CompactButton
+							onClick={() => setOpen(false)}
+							color="neutral"
+							size="20"
+							variant="soft">
+							<X />
+						</CompactButton>
 					</div>
-
-					<DropdownDivider className="mx-0" />
-
-					{/* Gradients */}
-					<div className="flex flex-col gap-2">
-						<DropdownLabel className="px-0 text-xs">Gradients</DropdownLabel>
-						<div className="grid grid-cols-8 gap-2">
-							{GRADIENTS.map((g) => (
-								<div
-									key={g.id}
-									onClick={() => onChange(g.id)}
-									style={{
-										backgroundImage: `linear-gradient(135deg, ${g.from}, ${g.to})`,
-									}}
-									className={`size-8 rounded-lg ${
-										value === g.id ? "ring-primary ring-2 ring-offset-2" : ""
-									}`}
-								/>
-							))}
-							<div
-								onClick={() => onChange("gradient-white")}
-								className="border-border size-8 rounded-lg border bg-white"
-							/>
-							<Button
-								type="button"
-								onClick={() => onChange("pick-gradient")}
-								color="neutral"
-								variant="ghost">
-								<Pipette className="text-fg-secondary size-4" />
-							</Button>
-						</div>
-					</div>
-
-					<DropdownDivider className="mx-0" />
-
-					{/* Background images */}
-					<div className="flex flex-col gap-2">
-						<DropdownLabel className="px-0 text-xs">Background</DropdownLabel>
-						<div className="grid grid-cols-4 gap-2">
-							<div
-								onClick={() => onChange("upload-background")}
-								className="bg-fill1 flex aspect-square items-center justify-center rounded-lg">
-								<Dices className="text-fg-secondary size-4" />
-							</div>
-							{BACKGROUNDS.map((src) => (
-								<div
-									key={src}
-									onClick={() => onChange(src)}
-									className={`relative aspect-square overflow-hidden rounded-lg ${
-										value === src ? "ring-primary ring-2 ring-offset-2" : ""
-									}`}>
-									<Image
-										src={src}
-										alt={src}
-										fill
-										sizes="80px"
-										className="object-cover"
+					<Divider className="p-0" />
+					<div className="flex flex-col">
+						{/* Colors */}
+						<div className="flex flex-col gap-2.5 px-4 py-3">
+							<DropdownLabel className="px-0 text-xs">Colors</DropdownLabel>
+							<div className="grid grid-cols-8 gap-2">
+								{SOLID_COLORS.map((c) => (
+									<div
+										key={c.id}
+										onClick={() => onChange(c.id)}
+										className={`size-6 cursor-pointer rounded-lg ${c.className} ${
+											value === c.id ? "ring-primary ring-2 ring-offset-2" : ""
+										}`}
 									/>
+								))}
+								{/* Rainbow / custom color */}
+								<div
+									onClick={() => onChange("custom-color")}
+									style={{
+										background:
+											"conic-gradient(from 180deg, #f87171, #fbbf24, #a3e635, #34d399, #38bdf8, #818cf8, #e879f9, #f87171)",
+									}}
+									className="border-border size-6 rounded-lg border"
+								/>
+								<IconButton
+									type="button"
+									onClick={() => onChange("pick-color")}
+									color="neutral"
+									size="28"
+									variant="outline">
+									<Pipette />
+								</IconButton>
+								<IconButton
+									type="button"
+									onClick={() => onChange("none")}
+									color="neutral"
+									size="28"
+									variant="outline">
+									<Ban />
+								</IconButton>
+							</div>
+						</div>
+
+						<DropdownDivider className="mx-0" />
+
+						{/* Gradients */}
+						<div className="flex flex-col gap-2.5 px-4 py-3">
+							<DropdownLabel className="px-0 text-xs">Gradients</DropdownLabel>
+							<div className="grid grid-cols-8 gap-2">
+								{GRADIENTS.map((g) => (
+									<div
+										key={g.id}
+										onClick={() => onChange(g.id)}
+										style={{
+											backgroundImage: `linear-gradient(135deg, ${g.from}, ${g.to})`,
+										}}
+										className={`size-6 rounded-lg ${
+											value === g.id ? "ring-primary ring-2 ring-offset-2" : ""
+										}`}
+									/>
+								))}
+								<div
+									onClick={() => onChange("gradient-white")}
+									className="border-border size-6 rounded-lg border bg-white"
+								/>
+								<IconButton
+									type="button"
+									onClick={() => onChange("pick-gradient")}
+									color="neutral"
+									variant="outline"
+									size="28">
+									<Pipette />
+								</IconButton>
+							</div>
+						</div>
+
+						<DropdownDivider className="mx-0" />
+
+						{/* Background images */}
+						<div className="flex flex-col gap-2.5 px-4 py-3">
+							<DropdownLabel className="px-0 text-xs">Background</DropdownLabel>
+							<div className="grid grid-cols-4 gap-2">
+								<div
+									onClick={() => onChange("upload-background")}
+									className="bg-fill1 flex aspect-square items-center justify-center rounded-lg">
+									<Dices className="text-fg-secondary size-4" />
 								</div>
-							))}
+								{BACKGROUNDS.map((src) => (
+									<div
+										key={src}
+										onClick={() => onChange(src)}
+										className={`relative aspect-square overflow-hidden rounded-lg ${
+											value === src ? "ring-primary ring-2 ring-offset-2" : ""
+										}`}>
+										<Image
+											src={src}
+											alt={src}
+											fill
+											sizes="80px"
+											className="object-cover"
+										/>
+									</div>
+								))}
+							</div>
 						</div>
 					</div>
-				</div>
+				</ScrollArea>
 			</DropdownContent>
 		</Dropdown>
 	)

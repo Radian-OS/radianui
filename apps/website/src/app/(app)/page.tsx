@@ -96,7 +96,7 @@ export default function Page() {
 
 function VideoPreviewWithBeams() {
 	return (
-		<div className="-mx-4 mt-[100px] flex w-[calc(100%+2rem)] justify-center md:-mx-5 md:w-[calc(100%+2.5rem)]">
+		<div className="-mx-4 mt-[64px] flex w-[calc(100%+2rem)] justify-center sm:mt-[100px] md:-mx-5 md:w-[calc(100%+2.5rem)]">
 			<div className="max-w-368 relative w-full px-4 md:px-5">
 				<div className="relative z-20 flex justify-center">
 					<VideoDialogPreview />
