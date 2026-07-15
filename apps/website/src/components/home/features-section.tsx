@@ -98,7 +98,7 @@ const FeaturesSection: React.FC<BentoProps> = ({
 
 			<BentoCardGrid
 				gridRef={gridRef}
-				className="relative flex flex-col items-center gap-20 pb-40 pt-40">
+				className="relative flex flex-col items-center gap-20 pb-20 pt-20 md:pb-40 md:pt-40">
 				<FeatureHeader />
 				<div className="flex w-full max-w-[1400px] flex-col gap-6 px-5">
 					<div className="flex w-full flex-col gap-6 rounded-[20px] lg:h-[600px] lg:flex-row">

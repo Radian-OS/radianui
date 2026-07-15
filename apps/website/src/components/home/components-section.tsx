@@ -6,7 +6,7 @@ import ComponentSectionItems from "./components-section/components-section-items
 
 export default function ComponentsSection() {
 	return (
-		<div className="pb-25 flex w-full flex-col items-center gap-12 px-5 pt-36 xl:gap-20">
+		<div className="pb-15 md:pb-25 pt-26 flex w-full flex-col items-center gap-12 px-5 md:pt-36 xl:gap-20">
 			<div className="w-full max-w-[1230px]">
 				<div className="relative flex max-w-[880px] flex-col gap-6">
 					<Badge size="28" className="z-20">
