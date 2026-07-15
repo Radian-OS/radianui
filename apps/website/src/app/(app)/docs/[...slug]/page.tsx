@@ -164,11 +164,10 @@ export default async function Page({ params }: DocPageProps) {
 															className="text-fg-secondary size-4"
 															height={16}
 															width={16}
-															src={
-																link.icon.startsWith("/")
-																	? link.icon
-																	: "/" + link.icon
-															}
+															src={(link.icon.startsWith("/")
+																? link.icon
+																: "/" + link.icon
+															).trimEnd()}
 															alt={link.label}
 														/>
 													) : (

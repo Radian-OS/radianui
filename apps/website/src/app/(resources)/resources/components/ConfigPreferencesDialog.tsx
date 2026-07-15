@@ -13,7 +13,7 @@ import {
 	Star,
 } from "lucide-react"
 import Image from "next/image"
-import { Button } from "@/registry/ui/button"
+import { Button, IconButton } from "@/registry/ui/button"
 import {
 	Dialog,
 	DialogBody,
@@ -32,6 +32,7 @@ import {
 	DropdownLabel,
 	DropdownTrigger,
 } from "@/registry/ui/dropdown"
+import { Label } from "@/registry/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/registry/ui/radio-group"
 import { Switch } from "@/registry/ui/switch"
 
@@ -177,16 +178,16 @@ const ConfigPreferencesDialog = ({
 									const selected = colorMode === value
 									const inputId = `${idPrefix}-color-${value}`
 									return (
-										<label
+										<Label
 											key={value}
 											htmlFor={inputId}
-											className={`relative flex cursor-pointer flex-col items-start gap-2 rounded-xl border p-3 text-left transition-colors ${
+											className={`relative flex cursor-pointer flex-row items-start gap-2 rounded-xl border p-3 text-left transition-colors sm:flex-col ${
 												selected
-													? "border-violet-500"
-													: "border-border hover:bg-bg-secondary"
+													? "border-primary-border"
+													: "border-border hover:bg-fill1"
 											}`}>
 											{value === "static" ? (
-												<Button
+												<IconButton
 													type="button"
 													color="neutral"
 													variant="outline"
@@ -194,7 +195,7 @@ const ConfigPreferencesDialog = ({
 														e.preventDefault()
 													}}>
 													{Icon && <Icon className="size-3.5" />}
-												</Button>
+												</IconButton>
 											) : (
 												<span
 													className={`flex size-8 items-center justify-center overflow-hidden rounded-lg ${iconClassName ?? ""}`}>
@@ -222,7 +223,7 @@ const ConfigPreferencesDialog = ({
 												size="sm"
 												className="absolute right-2 top-2"
 											/>
-										</label>
+										</Label>
 									)
 								}
 							)}
@@ -273,7 +274,9 @@ const ConfigPreferencesDialog = ({
 							</Button>
 						</DialogClose>
 						<DialogClose asChild>
-							<Button color="primary">Save Changes</Button>
+							<Button color="primary">
+								<Check /> Save Changes
+							</Button>
 						</DialogClose>
 					</div>
 				</DialogFooter>

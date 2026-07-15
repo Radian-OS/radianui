@@ -1,7 +1,8 @@
 "use client"
 
 import React, { useEffect } from "react"
-import { X } from "lucide-react"
+import * as AccordionPrimitive from "@radix-ui/react-accordion"
+import { ChevronDown, X } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { navLinks } from "@/components/navbar/nav-links"
@@ -10,7 +11,6 @@ import {
 	Accordion,
 	AccordionContent,
 	AccordionItem,
-	AccordionTrigger,
 } from "@/registry/ui/accordion"
 import { IconButton } from "@/registry/ui/button"
 import { additionalLinks, designTools } from "./desktop-navigation"
@@ -21,6 +21,27 @@ import { WebsiteLogo } from "./website-logo"
 interface MobileNavigationProps {
 	isMobileMenuOpen: boolean
 	setIsMobileMenuOpen: (open: boolean) => void
+}
+
+function MobileAccordionTrigger({
+	children,
+	className,
+}: {
+	children: React.ReactNode
+	className?: string
+}) {
+	return (
+		<AccordionPrimitive.Header asChild>
+			<div className="flex">
+				<AccordionPrimitive.Trigger
+					type="button"
+					className={`text-fg outline-hidden flex flex-1 cursor-pointer items-center justify-between py-3 text-left font-medium transition-all data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50 [&[data-state=open]>.AccordionChevron]:rotate-180 ${className ?? ""}`.trim()}>
+					<span className="flex-1 text-left">{children}</span>
+					<ChevronDown className="AccordionChevron text-fg-tertiary size-5 shrink-0 transition-transform duration-200" />
+				</AccordionPrimitive.Trigger>
+			</div>
+		</AccordionPrimitive.Header>
+	)
 }
 
 export function MobileNavigation({
@@ -109,9 +130,9 @@ export function MobileNavigation({
 								value={section.title}
 								key={section.title}>
 								<section>
-									<AccordionTrigger className="py-3 text-base">
+									<MobileAccordionTrigger className="text-base">
 										{section.title}
-									</AccordionTrigger>
+									</MobileAccordionTrigger>
 									<AccordionContent>
 										<div className="flex flex-col items-start">
 											{section.items.map((item) => (
@@ -130,9 +151,9 @@ export function MobileNavigation({
 						))}
 					<AccordionItem className="border-none" value="Resources">
 						<section>
-							<AccordionTrigger className="py-3 text-base">
+							<MobileAccordionTrigger className="text-base">
 								Resources
-							</AccordionTrigger>
+							</MobileAccordionTrigger>
 							<AccordionContent>
 								<div className="flex flex-col items-start">
 									<div className="text-fg-tertiary w-full py-2 text-xs font-medium uppercase">

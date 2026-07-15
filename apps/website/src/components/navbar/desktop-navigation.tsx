@@ -25,6 +25,7 @@ export const designTools = [
 	{
 		title: "UI Avatars",
 		description: "User avatars for app and dashboard.",
+		href: "/resources/avatar",
 		icon: <UIAvatars />,
 	},
 	{
@@ -102,7 +103,7 @@ export function DesktopNavigation() {
 											key={tool.title}
 											asChild
 											className="flex min-h-16 flex-row gap-3 rounded-lg p-3">
-											<Link href="#">
+											<Link href={tool.href ?? "#"}>
 												<div className="bg-primary-accent flex size-10 shrink-0 items-center justify-center rounded-lg">
 													{tool.icon}
 												</div>

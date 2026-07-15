@@ -4,7 +4,7 @@ import { useState } from "react"
 import { Copy, Download, MoreHorizontal, Settings, Trash2 } from "lucide-react"
 import Image from "next/image"
 import { cn } from "@/lib/utils"
-import { Button, CompactButton } from "@/registry/ui/button"
+import { Button, CompactButton, IconButton } from "@/registry/ui/button"
 import {
 	Dropdown,
 	DropdownContent,
@@ -171,7 +171,7 @@ const AvatarPlayground = () => {
 				</div>
 			</div>
 
-			<div className="grid grid-cols-4 gap-3 sm:grid-cols-5 md:grid-cols-7">
+			<div className="grid grid-cols-3 gap-3 sm:grid-cols-5 md:grid-cols-7">
 				{AVATARS.map((src, index) => (
 					<AvatarTile key={src} src={src} index={index} />
 				))}
@@ -254,9 +254,23 @@ const AvatarTile = ({ src, index }: { src: string; index: number }) => {
 			</div>
 
 			<div className="absolute bottom-2 right-2 opacity-0 transition-opacity group-hover:opacity-100">
-				<Button color="neutral" variant="outline" onClick={handleCopy}>
+				<Button
+					className="hidden sm:block"
+					size="28"
+					color="neutral"
+					variant="strong"
+					onClick={handleCopy}>
 					{copied ? "Copied" : "Copy"}
 				</Button>
+				<IconButton
+					aria-label="Copy Button"
+					size="28"
+					color="neutral"
+					variant="strong"
+					className="block sm:hidden"
+					onClick={handleCopy}>
+					<Copy />
+				</IconButton>
 			</div>
 		</div>
 	)
