@@ -1,7 +1,7 @@
 "use client"
 
-import { useState } from "react"
-import { Copy, Download, MoreHorizontal, Settings, Trash2 } from "lucide-react"
+import { useCallback, useState } from "react"
+import { Copy, Download, MoreHorizontal, Settings, Star } from "lucide-react"
 import Image from "next/image"
 import { cn } from "@/lib/utils"
 import { Button, CompactButton, IconButton } from "@/registry/ui/button"
@@ -58,6 +58,15 @@ function getToneStyle(tone: string): React.CSSProperties {
 			background: `linear-gradient(135deg, ${gradient.from}, ${gradient.to})`,
 		}
 	}
+	if (tone.startsWith("grad-custom:")) {
+		const parts = tone.split(":")
+		return {
+			background: `linear-gradient(135deg, ${parts[1]}, ${parts[2]})`,
+		}
+	}
+	if (tone.startsWith("#")) {
+		return { backgroundColor: tone }
+	}
 	if (tone.startsWith("/blocks/")) {
 		return {
 			backgroundImage: `url(${tone})`,
@@ -74,10 +83,49 @@ const AVATARS = Array.from(
 		`https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/avatars/src/${i + 1}.png`
 )
 
+// Maps each category to the avatar numbers (1-indexed) that belong to it.
+// "all" is handled separately and shows every avatar.
+const CATEGORY_AVATAR_MAP: Record<string, number[]> = {
+	professional: [4, 6, 7, 8],
+	casual: [1, 2, 3, 5],
+	male: [1, 3, 4, 6, 8, 10, 12, 14],
+	female: [2, 5, 7, 9, 11, 13],
+	animated: [45, 78, 96],
+}
+
+function randomHexColor(): string {
+	return `#${Math.floor(Math.random() * 0xffffff)
+		.toString(16)
+		.padStart(6, "0")}`
+}
+
 const AvatarPlayground = () => {
 	const [category, setCategory] = useState("all")
 	const [tone, setTone] = useState("neutral")
 	const [configOpen, setConfigOpen] = useState(false)
+
+	const handleToneChange = useCallback((value: string) => {
+		if (value === "pick-color") {
+			setTone(randomHexColor())
+		} else if (value === "pick-gradient") {
+			const from = randomHexColor()
+			const to = randomHexColor()
+			setTone(`grad-custom:${from}:${to}`)
+		} else if (value === "pick-background") {
+			const backgrounds = [
+				"/blocks/bg-1.png",
+				"/blocks/bg-2.jpg",
+				"/blocks/bg-3.png",
+				"/blocks/bg-4.png",
+				"/blocks/bg-5.png",
+				"/blocks/bg-6.jpg",
+				"/blocks/bg-7.jpg",
+			]
+			setTone(backgrounds[Math.floor(Math.random() * backgrounds.length)])
+		} else {
+			setTone(value)
+		}
+	}, [])
 
 	return (
 		<div className="flex w-full flex-col gap-4">
@@ -85,7 +133,7 @@ const AvatarPlayground = () => {
 				<CategoryFilterDropdown value={category} onChange={setCategory} />
 
 				<div className="flex items-center gap-2">
-					<ToneFilterDropdown value={tone} onChange={setTone} />
+					<ToneFilterDropdown value={tone} onChange={handleToneChange} />
 
 					<Button
 						color="neutral"
@@ -212,14 +260,23 @@ const AvatarPlayground = () => {
 			</div>
 
 			<div className="grid grid-cols-3 gap-3 sm:grid-cols-5 md:grid-cols-7">
-				{AVATARS.map((src, index) => (
-					<AvatarTile
-						key={src}
-						src={src}
-						index={index}
-						toneStyle={getToneStyle(tone)}
-					/>
-				))}
+				{AVATARS.map((src, index) => {
+					const avatarNumber = index + 1
+					if (
+						category !== "all" &&
+						!CATEGORY_AVATAR_MAP[category]?.includes(avatarNumber)
+					) {
+						return null
+					}
+					return (
+						<AvatarTile
+							key={src}
+							src={src}
+							index={index}
+							toneStyle={getToneStyle(tone)}
+						/>
+					)
+				})}
 			</div>
 
 			<ConfigPreferencesDialog open={configOpen} onOpenChange={setConfigOpen} />
@@ -256,6 +313,78 @@ const AvatarTile = ({
 		}
 	}
 
+	const handleDownload = async (e: React.MouseEvent) => {
+		e.stopPropagation()
+		const size = 512
+		const canvas = document.createElement("canvas")
+		canvas.width = size
+		canvas.height = size
+		const ctx = canvas.getContext("2d")
+		if (!ctx) return
+
+		// Draw background
+		if (toneStyle.backgroundColor) {
+			ctx.fillStyle = toneStyle.backgroundColor as string
+			ctx.fillRect(0, 0, size, size)
+		} else if (
+			toneStyle.background &&
+			typeof toneStyle.background === "string"
+		) {
+			const bgStr = toneStyle.background as string
+			const gradMatch = bgStr.match(
+				/linear-gradient\(\s*[\d.]+deg\s*,\s*(#[0-9a-fA-F]{3,8})\s*,\s*(#[0-9a-fA-F]{3,8})\s*\)/
+			)
+			if (gradMatch) {
+				const grad = ctx.createLinearGradient(0, 0, size, size)
+				grad.addColorStop(0, gradMatch[1])
+				grad.addColorStop(1, gradMatch[2])
+				ctx.fillStyle = grad
+				ctx.fillRect(0, 0, size, size)
+			}
+		} else if (
+			toneStyle.backgroundImage &&
+			typeof toneStyle.backgroundImage === "string"
+		) {
+			const urlMatch = (toneStyle.backgroundImage as string).match(
+				/url\(([^)]+)\)/
+			)
+			if (urlMatch) {
+				try {
+					const bgImg = new window.Image()
+					bgImg.crossOrigin = "anonymous"
+					bgImg.src = urlMatch[1]
+					await new Promise<void>((resolve, reject) => {
+						bgImg.onload = () => resolve()
+						bgImg.onerror = reject
+					})
+					ctx.drawImage(bgImg, 0, 0, size, size)
+				} catch {
+					// Background image failed to load, continue with transparent bg
+				}
+			}
+		}
+
+		// Draw avatar
+		try {
+			const avatarImg = new window.Image()
+			avatarImg.crossOrigin = "anonymous"
+			avatarImg.src = src
+			await new Promise<void>((resolve, reject) => {
+				avatarImg.onload = () => resolve()
+				avatarImg.onerror = reject
+			})
+			ctx.drawImage(avatarImg, 0, 0, size, size)
+		} catch {
+			return
+		}
+
+		// Trigger download
+		const link = document.createElement("a")
+		link.download = `avatar-${index + 1}.png`
+		link.href = canvas.toDataURL("image/png")
+		link.click()
+	}
+
 	return (
 		<div
 			className="border-border bg-bg-secondary group relative aspect-square w-full overflow-hidden rounded-xl border"
@@ -290,27 +419,28 @@ const AvatarTile = ({
 							<Copy />
 							Copy
 						</DropdownItem>
-						<DropdownItem>
+						<DropdownItem onClick={handleDownload}>
 							<Download />
 							Download
 						</DropdownItem>
-						<DropdownItem className="text-danger">
-							<Trash2 />
-							Delete
+						<DropdownItem>
+							<Star />
+							Favourite
 						</DropdownItem>
 					</DropdownContent>
 				</Dropdown>
 			</div>
 
 			<div className="absolute bottom-2 right-2 opacity-0 transition-opacity group-hover:opacity-100">
-				<Button
-					className="hidden sm:block"
-					size="28"
-					color="neutral"
-					variant="strong"
-					onClick={handleCopy}>
-					{copied ? "Copied" : "Copy"}
-				</Button>
+				<div className="hidden sm:block">
+					<Button
+						size="28"
+						color="neutral"
+						variant="strong"
+						onClick={handleCopy}>
+						{copied ? "Copied" : "Copy"}
+					</Button>
+				</div>
 				<IconButton
 					aria-label="Copy Button"
 					size="28"
