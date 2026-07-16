@@ -233,7 +233,11 @@ const ToneFilterDropdown = ({
 									ref={colorInputRef}
 									type="color"
 									className="sr-only"
-									onChange={(e) => onChange(e.target.value)}
+									onChange={(e) => {
+										React.startTransition(() => {
+											onChange(e.target.value)
+										})
+									}}
 								/>
 								<IconButton
 									type="button"
