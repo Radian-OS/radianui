@@ -218,6 +218,7 @@ const AvatarPlayground = () => {
 						src={src}
 						index={index}
 						toneStyle={getToneStyle(tone)}
+						isImageBackground={tone.startsWith("/blocks/")}
 					/>
 				))}
 			</div>
@@ -233,10 +234,12 @@ const AvatarTile = ({
 	src,
 	index,
 	toneStyle,
+	isImageBackground,
 }: {
 	src: string
 	index: number
 	toneStyle: React.CSSProperties
+	isImageBackground: boolean
 }) => {
 	const [copied, setCopied] = useState(false)
 	const [open, setOpen] = useState<boolean>(false)
@@ -258,7 +261,7 @@ const AvatarTile = ({
 
 	return (
 		<div
-			className="border-border bg-bg-secondary group relative aspect-square w-full overflow-hidden rounded-xl border"
+			className="border-border bg-bg-secondary group relative isolate aspect-square w-full overflow-hidden rounded-xl border"
 			style={toneStyle}>
 			<Image
 				src={src}
@@ -266,6 +269,19 @@ const AvatarTile = ({
 				fill
 				sizes="(max-width: 640px) 25vw, (max-width: 768px) 20vw, 14vw"
 				className="object-cover"
+			/>
+			<Image
+				src={src}
+				alt=""
+				aria-hidden="true"
+				fill
+				sizes="(max-width: 640px) 25vw, (max-width: 768px) 20vw, 14vw"
+				className={cn(
+					"pointer-events-none object-cover opacity-25 mix-blend-multiply",
+					isImageBackground
+						? "mix-blend-soft opacity-25"
+						: "opacity-25 mix-blend-multiply"
+				)}
 			/>
 
 			<div
