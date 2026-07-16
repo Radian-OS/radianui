@@ -275,6 +275,7 @@ const AvatarPlayground = () => {
 							index={index}
 							toneStyle={getToneStyle(tone)}
 							isImageBackground={tone.startsWith("/blocks/")}
+							isNeutralBackground={tone === "neutral" || tone === "none"}
 						/>
 					)
 				})}
@@ -292,11 +293,13 @@ const AvatarTile = ({
 	index,
 	toneStyle,
 	isImageBackground,
+	isNeutralBackground,
 }: {
 	src: string
 	index: number
 	toneStyle: React.CSSProperties
 	isImageBackground: boolean
+	isNeutralBackground: boolean
 }) => {
 	const [copied, setCopied] = useState(false)
 	const [open, setOpen] = useState<boolean>(false)
@@ -410,6 +413,12 @@ const AvatarTile = ({
 					isImageBackground ? "mix-blend-soft-light" : "mix-blend-multiply"
 				)}
 			/>
+			{isNeutralBackground && (
+				<div
+					aria-hidden="true"
+					className="dark:bg-bg/10 pointer-events-none absolute inset-0 hidden dark:block"
+				/>
+			)}
 
 			<div
 				className={cn(
