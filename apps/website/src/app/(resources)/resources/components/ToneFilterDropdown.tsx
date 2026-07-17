@@ -16,47 +16,82 @@ import {
 import { ScrollArea } from "@/registry/ui/scroll-area"
 
 const SOLID_COLORS = [
-	{ id: "white", className: "bg-white" },
-	{ id: "gray-100", className: "bg-gray-100" },
-	{ id: "red-300", className: "bg-red-300" },
-	{ id: "orange-300", className: "bg-orange-300" },
-	{ id: "amber-300", className: "bg-amber-300" },
-	{ id: "lime-300", className: "bg-lime-300" },
-	{ id: "green-300", className: "bg-green-300" },
-	{ id: "emerald-300", className: "bg-emerald-300" },
-	{ id: "teal-300", className: "bg-teal-300" },
-	{ id: "sky-300", className: "bg-sky-300" },
-	{ id: "indigo-300", className: "bg-indigo-300" },
-	{ id: "violet-300", className: "bg-violet-300" },
-	{ id: "purple-300", className: "bg-purple-300" },
-	{ id: "fuchsia-300", className: "bg-fuchsia-300" },
-	{ id: "pink-300", className: "bg-pink-300" },
+	{ id: "Cool-Gray/L100%", className: "bg-[#FFFFFF]" },
+	{ id: "Cool-Gray/L94%", className: "bg-[#EEEFF1]" },
+	{ id: "Red/200", className: "bg-[#FFB2B2]" },
+	{ id: "Orange/200", className: "bg-[#FFC9AD]" },
+	{ id: "Amber/200", className: "bg-[#FFDD99]" },
+	{ id: "Yellow/200", className: "bg-[#FFEA85]" },
+	{ id: "Neon/200", className: "bg-[#D6FF85]" },
+	{ id: "Green/200", className: "bg-[#B5F7B5]" },
+	{ id: "Emerald/200", className: "bg-[#B1FBCA]" },
+	{ id: "Teal/200", className: "bg-[#A3FFE8]" },
+	{ id: "Light-Blue/200", className: "bg-[#C5E0FC]" },
+	{ id: "Blue/200", className: "bg-[#C8CCF9]" },
+	{ id: "Violet-Blue/200", className: "bg-[#D0C5FC]" },
+	{ id: "Purple/200", className: "bg-[#D9C5FC]" },
+	{ id: "Dark-Orchid/200", className: "bg-[#EBC2FF]" },
+	{ id: "Magenta/200", className: "bg-[#F9C8E9]" },
+	{ id: "Rose/200", className: "bg-[#FBBBD1]" },
 ]
 
-const GRADIENTS = [
-	{ id: "grad-red-orange", from: "#fca5a5", to: "#fdba74" },
-	{ id: "grad-orange-yellow", from: "#fdba74", to: "#fde047" },
-	{ id: "grad-yellow-lime", from: "#fde047", to: "#bef264" },
-	{ id: "grad-lime-green", from: "#bef264", to: "#86efac" },
-	{ id: "grad-green-teal", from: "#86efac", to: "#5eead4" },
-	{ id: "grad-teal-cyan", from: "#5eead4", to: "#67e8f9" },
-	{ id: "grad-cyan-blue", from: "#67e8f9", to: "#93c5fd" },
-	{ id: "grad-blue-indigo", from: "#93c5fd", to: "#a5b4fc" },
-	{ id: "grad-indigo-violet", from: "#a5b4fc", to: "#c4b5fd" },
-	{ id: "grad-violet-purple", from: "#c4b5fd", to: "#d8b4fe" },
-	{ id: "grad-purple-fuchsia", from: "#d8b4fe", to: "#f0abfc" },
-	{ id: "grad-fuchsia-pink", from: "#f0abfc", to: "#f9a8d4" },
+const SHEEN_OVERLAY = {
+	overlayFrom: "rgba(255, 255, 255, 0)",
+	overlayTo: "rgba(36, 46, 66, 0.16)",
+} as const
+
+type GradientDef = {
+	id: string
+	from?: string
+	to?: string
+	// For layered "sheen over solid" backgrounds like the Figma Red token
+	base?: string
+	overlayFrom?: string
+	overlayTo?: string
+}
+
+const GRADIENTS: GradientDef[] = SOLID_COLORS.map((c) => {
+	const hexMatch = c.className.match(/#[0-9A-Fa-f]+/)
+	return {
+		id: `grad-${c.id}`,
+		base: hexMatch ? hexMatch[0] : c.className,
+		...SHEEN_OVERLAY,
+	}
+})
+
+function getGradientBackground(g: GradientDef): string {
+	if (g.base) {
+		return `linear-gradient(180deg, ${g.overlayFrom} 0%, ${g.overlayTo} 100%), ${g.base}`
+	}
+	return `linear-gradient(135deg, ${g.from}, ${g.to})`
+}
+
+const BACKGROUND_COLORS = [
+	"Amber",
+	"Blue",
+	"Cyan",
+	"Dark%20Orchid",
+	"Emerald",
+	"Fuchsia",
+	"Green",
+	"Grey",
+	"Light%20Blue",
+	"Magenta",
+	"Neon",
+	"Orange",
+	"Purple",
+	"Red",
+	"Rose",
+	"Teal",
+	"Violet%20Blue",
+	"White",
+	"Yellow",
 ]
 
-const BACKGROUNDS = [
-	"/blocks/bg-1.png",
-	"/blocks/bg-2.jpg",
-	"/blocks/bg-3.png",
-	"/blocks/bg-4.png",
-	"/blocks/bg-5.png",
-	"/blocks/bg-6.jpg",
-	"/blocks/bg-7.jpg",
-]
+export const BACKGROUNDS = BACKGROUND_COLORS.map(
+	(color) =>
+		`https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/avatars-background/src/IMG-${color}.png`
+)
 
 function formatColorName(id: string): string {
 	return id
@@ -78,7 +113,7 @@ function getActiveInfo(value: string) {
 	const gradMatch = GRADIENTS.find((g) => g.id === value)
 	if (gradMatch) {
 		const name = gradMatch.id
-			.replace("grad-", "")
+			.replace("Linear-Gradient", "")
 			.split("-")
 			.map((w) => w.charAt(0).toUpperCase() + w.slice(1))
 			.join(" → ")
@@ -117,8 +152,6 @@ function getActiveInfo(value: string) {
 			type: "special" as const,
 			swatch: null,
 		}
-	if (value === "gradient-white")
-		return { label: "White Gradient", type: "special" as const, swatch: null }
 	if (value === "none")
 		return { label: "None", type: "none" as const, swatch: null }
 
@@ -150,9 +183,7 @@ const ToneFilterDropdown = ({
 			return (
 				<span
 					className="border-border size-3.5 rounded-full border"
-					style={{
-						backgroundImage: `linear-gradient(135deg, ${g.from}, ${g.to})`,
-					}}
+					style={{ background: getGradientBackground(g) }}
 				/>
 			)
 		}
@@ -215,7 +246,7 @@ const ToneFilterDropdown = ({
 									<div
 										key={c.id}
 										onClick={() => onChange(c.id)}
-										className={`size-7 cursor-pointer rounded-lg ${c.className} ${
+										className={`size-7 cursor-pointer rounded-lg ${c.className} ${c.id === "Cool-Gray/L100%" ? "border-soft border" : ""} ${
 											value === c.id ? "ring-primary ring-2 ring-offset-2" : ""
 										}`}
 									/>
@@ -268,18 +299,12 @@ const ToneFilterDropdown = ({
 									<div
 										key={g.id}
 										onClick={() => onChange(g.id)}
-										style={{
-											backgroundImage: `linear-gradient(135deg, ${g.from}, ${g.to})`,
-										}}
-										className={`size-7 rounded-lg ${
+										style={{ background: getGradientBackground(g) }}
+										className={`size-7 cursor-pointer rounded-lg ${
 											value === g.id ? "ring-primary ring-2 ring-offset-2" : ""
 										}`}
 									/>
 								))}
-								<div
-									onClick={() => onChange("gradient-white")}
-									className="border-border size-7 rounded-lg border bg-white"
-								/>
 								<IconButton
 									type="button"
 									onClick={() => onChange("pick-gradient")}
@@ -317,7 +342,6 @@ const ToneFilterDropdown = ({
 											fill
 											sizes="80px"
 											className="object-cover"
-											// w-65 h-48 aspect 4/3
 										/>
 									</AspectRatio>
 								))}

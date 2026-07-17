@@ -1,0 +1,224 @@
+"use client"
+
+import { useState } from "react"
+import { Copy, Download, MoreHorizontal, Star } from "lucide-react"
+import Image from "next/image"
+import { cn } from "@/lib/utils"
+import { Button, CompactButton, IconButton } from "@/registry/ui/button"
+import {
+	Dropdown,
+	DropdownContent,
+	DropdownItem,
+	DropdownTrigger,
+} from "@/registry/ui/dropdown"
+import {
+	GRADIENT_MAP,
+	SOLID_COLOR_MAP,
+	generateEditableSvg,
+} from "./avatar-playground-utils"
+
+interface AvatarTileProps {
+	src: string
+	index: number
+	toneStyle: React.CSSProperties
+	tone: string
+	copyFormat: string
+}
+
+export const AvatarTile = ({
+	src,
+	index,
+	toneStyle,
+	tone,
+	copyFormat,
+}: AvatarTileProps) => {
+	const [copied, setCopied] = useState(false)
+	const [open, setOpen] = useState<boolean>(false)
+
+	const handleCopy = async (e: React.MouseEvent) => {
+		e.stopPropagation()
+		if (copyFormat === "editable-bg") {
+			// Copy SVG to clipboard — user can paste directly into Figma
+			const svg = await generateEditableSvg(tone, src)
+			if (!svg) return
+			await navigator.clipboard.writeText(svg)
+			setCopied(true)
+			setTimeout(() => setCopied(false), 2500)
+			return
+		}
+		try {
+			const res = await fetch(src)
+			const blob = await res.blob()
+			await navigator.clipboard.write([
+				new ClipboardItem({ [blob.type]: blob }),
+			])
+			setCopied(true)
+			setTimeout(() => setCopied(false), 1500)
+		} catch {
+			await navigator.clipboard.writeText(src)
+		}
+	}
+
+	const handleDownload = async (e: React.MouseEvent) => {
+		e.stopPropagation()
+
+		if (copyFormat === "editable-bg") {
+			// Generate SVG with separate layers for Figma editing
+			const svg = await generateEditableSvg(tone, src)
+			if (!svg) return
+			const blob = new Blob([svg], { type: "image/svg+xml" })
+			const link = document.createElement("a")
+			link.download = `avatar-${index + 1}-editable.svg`
+			link.href = URL.createObjectURL(blob)
+			link.click()
+			URL.revokeObjectURL(link.href)
+			return
+		}
+
+		const size = 512
+		const canvas = document.createElement("canvas")
+		canvas.width = size
+		canvas.height = size
+		const ctx = canvas.getContext("2d")
+		if (!ctx) return
+
+		// Draw background
+		if (SOLID_COLOR_MAP[tone]) {
+			ctx.fillStyle = SOLID_COLOR_MAP[tone]
+			ctx.fillRect(0, 0, size, size)
+		} else if (GRADIENT_MAP[tone]) {
+			const g = GRADIENT_MAP[tone]
+			if (g.base) {
+				ctx.fillStyle = g.base
+				ctx.fillRect(0, 0, size, size)
+				const grad = ctx.createLinearGradient(0, 0, 0, size)
+				grad.addColorStop(0, g.overlayFrom || "rgba(255, 255, 255, 0)")
+				grad.addColorStop(1, g.overlayTo || "rgba(36, 46, 66, 0.16)")
+				ctx.fillStyle = grad
+				ctx.fillRect(0, 0, size, size)
+			} else if (g.from && g.to) {
+				const grad = ctx.createLinearGradient(0, 0, size, size)
+				grad.addColorStop(0, g.from)
+				grad.addColorStop(1, g.to)
+				ctx.fillStyle = grad
+				ctx.fillRect(0, 0, size, size)
+			}
+		} else if (tone.startsWith("grad-custom:")) {
+			const parts = tone.split(":")
+			const grad = ctx.createLinearGradient(0, 0, size, size)
+			grad.addColorStop(0, parts[1])
+			grad.addColorStop(1, parts[2])
+			ctx.fillStyle = grad
+			ctx.fillRect(0, 0, size, size)
+		} else if (tone.startsWith("#")) {
+			ctx.fillStyle = tone
+			ctx.fillRect(0, 0, size, size)
+		} else if (tone.startsWith("http") || tone.startsWith("/")) {
+			try {
+				const bgImg = new window.Image()
+				bgImg.crossOrigin = "anonymous"
+				bgImg.src = tone
+				await new Promise<void>((resolve, reject) => {
+					bgImg.onload = () => resolve()
+					bgImg.onerror = reject
+				})
+				ctx.drawImage(bgImg, 0, 0, size, size)
+			} catch {
+				// Background image failed to load, continue with transparent bg
+			}
+		}
+
+		// Draw avatar
+		try {
+			const avatarImg = new window.Image()
+			avatarImg.crossOrigin = "anonymous"
+			avatarImg.src = src
+			await new Promise<void>((resolve, reject) => {
+				avatarImg.onload = () => resolve()
+				avatarImg.onerror = reject
+			})
+			ctx.drawImage(avatarImg, 0, 0, size, size)
+		} catch {
+			return
+		}
+
+		// Trigger download
+		const link = document.createElement("a")
+		link.download = `avatar-${index + 1}.png`
+		link.href = canvas.toDataURL("image/png")
+		link.click()
+	}
+
+	return (
+		<div
+			className="border-border bg-bg-secondary group relative aspect-square w-full overflow-hidden rounded-xl border"
+			style={toneStyle}>
+			<Image
+				src={src}
+				alt={`Generated avatar ${index + 1}`}
+				fill
+				sizes="(max-width: 640px) 25vw, (max-width: 768px) 20vw, 14vw"
+				className="object-cover"
+			/>
+
+			<div
+				className={cn(
+					"absolute right-2 top-2 transition-opacity",
+					open ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+				)}>
+				<Dropdown open={open} onOpenChange={setOpen}>
+					<DropdownTrigger asChild>
+						<CompactButton
+							aria-label="Button with Down Arrow"
+							size="20"
+							variant="ghost"
+							color="neutral"
+							onClick={(e) => e.stopPropagation()}>
+							<MoreHorizontal className="size-4" />
+						</CompactButton>
+					</DropdownTrigger>
+
+					<DropdownContent align="end" className="w-40">
+						<DropdownItem onClick={handleCopy}>
+							<Copy />
+							Copy
+						</DropdownItem>
+						<DropdownItem onClick={handleDownload}>
+							<Download />
+							Download
+						</DropdownItem>
+						<DropdownItem>
+							<Star />
+							Favourite
+						</DropdownItem>
+					</DropdownContent>
+				</Dropdown>
+			</div>
+
+			<div className="absolute bottom-2 right-2 opacity-0 transition-opacity group-hover:opacity-100">
+				<div className="hidden sm:block">
+					<Button
+						size="28"
+						color="neutral"
+						variant="strong"
+						onClick={handleCopy}>
+						{copied
+							? copyFormat === "editable-bg"
+								? "Paste in Figma"
+								: "Copied"
+							: "Copy"}
+					</Button>
+				</div>
+				<IconButton
+					aria-label="Copy Button"
+					size="28"
+					color="neutral"
+					variant="strong"
+					className="block sm:hidden"
+					onClick={handleCopy}>
+					<Copy />
+				</IconButton>
+			</div>
+		</div>
+	)
+}

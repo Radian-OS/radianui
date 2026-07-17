@@ -133,18 +133,21 @@ const COLOR_MODE_OPTIONS: {
 const ConfigPreferencesDialog = ({
 	open,
 	onOpenChange,
+	copyFormat,
+	onCopyFormatChange,
 }: {
 	open: boolean
 	onOpenChange: (open: boolean) => void
+	copyFormat: string
+	onCopyFormatChange: (value: string) => void
 }) => {
 	const [colorMode, setColorMode] = useState<ColorMode>("static")
-	const [copyFormat, setCopyFormat] = useState("editable-bg")
 	const [preserveSettings, setPreserveSettings] = useState(true)
 	const idPrefix = useId()
 
 	const handleReset = () => {
 		setColorMode("static")
-		setCopyFormat("editable-bg")
+		onCopyFormatChange("editable-bg")
 		setPreserveSettings(true)
 	}
 
@@ -242,7 +245,10 @@ const ConfigPreferencesDialog = ({
 								Change the default copy function to your preference
 							</span>
 						</div>
-						<CopyFormatDropdown value={copyFormat} onChange={setCopyFormat} />
+						<CopyFormatDropdown
+							value={copyFormat}
+							onChange={onCopyFormatChange}
+						/>
 					</div>
 
 					<div className="mx-0 border-b border-dashed" />
