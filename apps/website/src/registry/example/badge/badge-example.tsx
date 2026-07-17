@@ -5,7 +5,7 @@ import { Badge, BadgeDot } from "@/registry/ui/badge"
 
 function BadgeExamplePreview() {
 	return (
-		<div className="flex flex-wrap items-center justify-center gap-2">
+		<div className="flex flex-wrap items-center justify-center gap-3">
 			<Badge
 				size="20"
 				className="rounded-full"

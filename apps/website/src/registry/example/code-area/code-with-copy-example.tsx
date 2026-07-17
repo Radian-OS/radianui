@@ -31,7 +31,10 @@ export default function CodeWithCopyExample() {
 	const { copied, copy } = useCopyPaste(code)
 
 	return (
-		<div className={cn("bg-fill2 flex w-full flex-col gap-2 rounded-xl p-1.5")}>
+		<div
+			className={cn(
+				"bg-fill2 flex w-full max-w-2xl flex-col gap-2 overflow-hidden rounded-xl p-1.5"
+			)}>
 			<div className="inline-flex items-center gap-3 px-1 py-0.5">
 				<span className="bg-bg text-fg-tertiary rounded-md p-1">
 					<Terminal className="size-4" />

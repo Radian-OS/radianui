@@ -18,7 +18,7 @@ export default function CardDashboardExample() {
 				<Image
 					width={3840}
 					height={2160}
-					className="w-85 h-63.75 rounded-lg"
+					className="w-85 h-63.75 rounded-lg object-cover"
 					src="/media/background-2.jpg"
 					alt="card-bg"
 				/>

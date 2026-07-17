@@ -31,25 +31,15 @@ const BadgeColorExample = () => {
 	type ColorValue = (typeof colors)[number]["value"]
 
 	return (
-		<div className="space-y-6">
-			<div className="grid grid-cols-1 gap-4">
-				{colors.map((color) => (
-					<div key={color.value} className="flex flex-col gap-2 sm:flex-row">
-						<p className="text-fg w-22 text-sm font-semibold">{color.name}</p>
-						<div className="flex flex-wrap gap-2">
-							<Badge color={color.value as ColorValue} variant="strong">
-								Strong
-							</Badge>
-							<Badge color={color.value as ColorValue} variant="outline">
-								Outline
-							</Badge>
-							<Badge color={color.value as ColorValue} variant="soft">
-								Soft
-							</Badge>
-						</div>
-					</div>
-				))}
-			</div>
+		<div className="flex flex-wrap justify-center gap-3">
+			{colors.map((color) => (
+				<Badge
+					key={color.value}
+					color={color.value as ColorValue}
+					variant="strong">
+					{color.name}
+				</Badge>
+			))}
 		</div>
 	)
 }

@@ -55,10 +55,10 @@ export default function CalendarScrollableTime() {
 	const [time, setTime] = React.useState<string | null>(null)
 
 	return (
-		<div className="border-border overflow-clip rounded-xl border">
-			<div className="flex">
+		<div className="border-border w-fit overflow-clip rounded-xl border">
+			<div className="flex flex-col sm:flex-row">
 				<Calendar
-					className="rounded-none border-0 border-r"
+					className="rounded-none border-0 border-b sm:border-b-0 sm:border-r"
 					mode="single"
 					selected={date}
 					onSelect={(newDate) => {
@@ -67,7 +67,7 @@ export default function CalendarScrollableTime() {
 						}
 					}}
 				/>
-				<div className="relative max-sm:h-48 sm:w-40">
+				<div className="relative h-48 sm:h-auto sm:w-40">
 					<div className="absolute inset-0 px-3 py-1">
 						<ScrollArea className="h-full">
 							<div className="space-y-0.5">

@@ -58,7 +58,7 @@ export default function ComboboxTimezone() {
 					color="neutral"
 					role="combobox"
 					aria-expanded={open}
-					className="w-80">
+					className="w-full max-w-80">
 					{value ? (
 						<>
 							<span>{selectedTimezone.value}</span>

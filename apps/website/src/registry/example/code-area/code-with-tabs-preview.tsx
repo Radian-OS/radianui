@@ -19,7 +19,7 @@ const CodeWithTabsPreview = () => {
 	return (
 		<Tabs
 			defaultValue="pnpm"
-			className="bg-fill2 w-full gap-2 overflow-hidden rounded-xl p-1.5">
+			className="bg-fill2 w-full max-w-2xl gap-2 overflow-hidden rounded-xl p-1.5">
 			<TabsList>
 				{Object.keys(commands).map((pkgManager) => (
 					<TabsTrigger value={pkgManager} key={pkgManager}>

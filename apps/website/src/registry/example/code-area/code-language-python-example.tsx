@@ -3,7 +3,7 @@ import { CodeArea } from "@/registry/ui/code-area"
 
 const CodeLanguagePythonExample = () => {
 	return (
-		<div className="flex w-80 items-center justify-center sm:w-fit">
+		<div className="w-full max-w-2xl">
 			<CodeArea
 				className="max-w-150 w-full"
 				language="python"

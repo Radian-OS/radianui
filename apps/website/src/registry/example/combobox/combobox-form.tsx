@@ -102,12 +102,14 @@ export default function ComboboxForm() {
 
 	return (
 		<Form {...form}>
-			<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
+			<form
+				onSubmit={form.handleSubmit(onSubmit)}
+				className="w-full max-w-80 space-y-3">
 				<FormField
 					control={form.control}
 					name="language"
 					render={({ field }) => (
-						<FormItem className="flex flex-col">
+						<FormItem className="flex w-full flex-col">
 							<FormLabel>Language</FormLabel>
 							<Popover open={open} onOpenChange={setOpen}>
 								<PopoverTrigger asChild>
@@ -118,7 +120,7 @@ export default function ComboboxForm() {
 											role="combobox"
 											aria-haspopup="listbox"
 											aria-expanded={!!field.value}
-											className="text-fg-tertiary w-80 font-normal">
+											className="text-fg-tertiary w-full font-normal">
 											{selectedLanguage ? (
 												<>
 													<img
@@ -141,7 +143,7 @@ export default function ComboboxForm() {
 										</Button>
 									</FormControl>
 								</PopoverTrigger>
-								<PopoverContent className="w-80 p-0">
+								<PopoverContent className="w-[var(--radix-popover-trigger-width)] p-0">
 									<Command className="border-0">
 										<CommandInput placeholder="Search" className="h-9" />
 										<CommandList>

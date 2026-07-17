@@ -3,7 +3,7 @@ import { CodeArea } from "@/registry/ui/code-area"
 
 const CodeAreaPreview = () => {
 	return (
-		<div className="flex w-80 items-center justify-center sm:w-fit">
+		<div className="w-full max-w-2xl">
 			<CodeArea
 				code={`const Greeting: React.FC<{ name: string }> = ({ name }) => {
   return <h1>Hello, {name}!</h1>;

@@ -73,8 +73,10 @@ export default function CarouselAutoplay() {
 					</CarouselItem>
 				))}
 			</CarouselContent>
-			<CarouselPrevious />
-			<CarouselNext />
+			<div className="mt-4 flex justify-center gap-2 sm:mt-0 sm:block">
+				<CarouselPrevious className="static translate-y-0 sm:absolute sm:-translate-y-1/2" />
+				<CarouselNext className="static translate-y-0 sm:absolute sm:-translate-y-1/2" />
+			</div>
 		</Carousel>
 	)
 }
