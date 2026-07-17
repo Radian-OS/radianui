@@ -146,6 +146,12 @@ function getActiveInfo(value: string) {
 		return { label: "Random Color", type: "special" as const, swatch: null }
 	if (value === "pick-gradient")
 		return { label: "Random Gradient", type: "special" as const, swatch: null }
+	if (value === "pick-background")
+		return {
+			label: "Random Background",
+			type: "special" as const,
+			swatch: null,
+		}
 	if (value === "upload-background")
 		return {
 			label: "Upload Background",

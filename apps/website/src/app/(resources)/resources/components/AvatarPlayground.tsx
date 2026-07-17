@@ -1,6 +1,6 @@
 "use client"
 
-import { useCallback, useState } from "react"
+import { useCallback, useMemo, useState } from "react"
 import { Settings } from "lucide-react"
 import { Button } from "@/registry/ui/button"
 import { AvatarTile } from "./AvatarTile"
@@ -19,22 +19,39 @@ import {
 const AvatarPlayground = () => {
 	const [category, setCategory] = useState("all")
 	const [tone, setTone] = useState("neutral")
+	const [randomTrigger, setRandomTrigger] = useState(0)
 	const [configOpen, setConfigOpen] = useState(false)
 	const [copyFormat, setCopyFormat] = useState("editable-bg")
 
 	const handleToneChange = useCallback((value: string) => {
-		if (value === "pick-color") {
-			setTone(randomHexColor())
-		} else if (value === "pick-gradient") {
-			const from = randomHexColor()
-			const to = randomHexColor()
-			setTone(`grad-custom:${from}:${to}`)
-		} else if (value === "pick-background") {
-			setTone(BACKGROUNDS[Math.floor(Math.random() * BACKGROUNDS.length)])
+		if (
+			value === "pick-color" ||
+			value === "pick-gradient" ||
+			value === "pick-background"
+		) {
+			setTone(value)
+			setRandomTrigger((prev) => prev + 1)
 		} else {
 			setTone(value)
 		}
 	}, [])
+
+	const resolvedTones = useMemo(() => {
+		return AVATARS.map(() => {
+			if (tone === "pick-color") {
+				return randomHexColor()
+			}
+			if (tone === "pick-gradient") {
+				const from = randomHexColor()
+				const to = randomHexColor()
+				return `grad-custom:${from}:${to}`
+			}
+			if (tone === "pick-background") {
+				return BACKGROUNDS[Math.floor(Math.random() * BACKGROUNDS.length)]
+			}
+			return tone
+		})
+	}, [tone, randomTrigger])
 
 	return (
 		<div className="flex w-full flex-col gap-4">
@@ -67,16 +84,15 @@ const AvatarPlayground = () => {
 					) {
 						return null
 					}
+					const tileTone = resolvedTones[index]
 					return (
 						<AvatarTile
 							key={src}
 							src={src}
 							index={index}
-							toneStyle={getToneStyle(tone)}
-							tone={tone}
+							toneStyle={getToneStyle(tileTone)}
+							tone={tileTone}
 							copyFormat={copyFormat}
-							// isImageBackground={tone.startsWith("/blocks/")}
-							// isNeutralBackground={tone === "neutral" || tone === "none"}
 						/>
 					)
 				})}
