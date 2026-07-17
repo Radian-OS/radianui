@@ -155,7 +155,7 @@ export const AvatarTile = ({
 
 	return (
 		<div
-			className="border-border bg-bg-secondary group relative isolate aspect-square w-full overflow-hidden rounded-xl border"
+			className="border-soft bg-bg-secondary group relative isolate aspect-square w-full overflow-hidden rounded-xl border"
 			style={toneStyle}>
 			{imageBackgroundTint && (
 				<div
