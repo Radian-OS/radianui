@@ -8,7 +8,7 @@ export default function CurrencyWithInputGroup() {
 		<div className="flex flex-col gap-4">
 			<div className="flex flex-col gap-1.5">
 				<Label htmlFor="ing-usd">US Dollars</Label>
-				<InputGroup className="md:w-80">
+				<InputGroup>
 					<InputAddon>$</InputAddon>
 					<CurrencyInput id="ing-usd" placeholder="Enter Amount Here" />
 					<InputAddon>USD</InputAddon>
@@ -16,7 +16,7 @@ export default function CurrencyWithInputGroup() {
 			</div>
 			<div className="flex flex-col gap-1.5">
 				<Label htmlFor="ing-eur">Euros</Label>
-				<InputGroup className="md:w-80">
+				<InputGroup>
 					<InputAddon>€</InputAddon>
 					<CurrencyInput id="ing-eur" placeholder="Enter Amount Here" />
 					<InputAddon>EUR</InputAddon>
@@ -24,7 +24,7 @@ export default function CurrencyWithInputGroup() {
 			</div>
 			<div className="flex flex-col gap-1.5">
 				<Label htmlFor="ing-pou">Pounds</Label>
-				<InputGroup className="md:w-80">
+				<InputGroup>
 					<InputAddon>£</InputAddon>
 					<CurrencyInput id="ing-pou" placeholder="Enter Amount Here" />
 					<InputAddon>GBP</InputAddon>
@@ -32,7 +32,7 @@ export default function CurrencyWithInputGroup() {
 			</div>
 			<div className="flex flex-col gap-1.5">
 				<Label htmlFor="ing-inr">Indian Rupees</Label>
-				<InputGroup className="md:w-80">
+				<InputGroup>
 					<InputAddon>₹</InputAddon>
 					<CurrencyInput id="ing-inr" placeholder="Enter Amount Here" />
 					<InputAddon>INR</InputAddon>
