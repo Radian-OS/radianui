@@ -138,6 +138,7 @@ export async function generateEditableSvg(
 	src: string
 ): Promise<string> {
 	const size = 512
+	const imageBackgroundTint = getImageBackgroundTint(tone)
 
 	// Build SVG background element
 	let bgElement = ""
@@ -146,13 +147,13 @@ export async function generateEditableSvg(
 	} else if (GRADIENT_MAP[tone]) {
 		const g = GRADIENT_MAP[tone]
 		if (g.base) {
-			bgElement = `<defs><linearGradient id="bg-grad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ffffff" stop-opacity="0" /><stop offset="100%" stop-color="#242e42" stop-opacity="0.16" /></linearGradient></defs><rect width="${size}" height="${size}" fill="${g.base}" /><rect width="${size}" height="${size}" fill="url(#bg-grad)" />`
+			bgElement = `<defs><linearGradient id="bg-grad" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#ffffff" stop-opacity="0" /><stop offset="100%" stop-color="#242e42" stop-opacity="0.16" /></linearGradient></defs><rect width="${size}" height="${size}" fill="${g.base}" /><rect width="${size}" height="${size}" fill="url(#bg-grad)" />`
 		} else {
-			bgElement = `<defs><linearGradient id="bg-grad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="${g.from}" /><stop offset="100%" stop-color="${g.to}" /></linearGradient></defs><rect width="${size}" height="${size}" fill="url(#bg-grad)" />`
+			bgElement = `<defs><linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="${g.from}" /><stop offset="100%" stop-color="${g.to}" /></linearGradient></defs><rect width="${size}" height="${size}" fill="url(#bg-grad)" />`
 		}
 	} else if (tone.startsWith("grad-custom:")) {
 		const parts = tone.split(":")
-		bgElement = `<defs><linearGradient id="bg-grad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="${parts[1]}" /><stop offset="100%" stop-color="${parts[2]}" /></linearGradient></defs><rect width="${size}" height="${size}" fill="url(#bg-grad)" />`
+		bgElement = `<defs><linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="${parts[1]}" /><stop offset="100%" stop-color="${parts[2]}" /></linearGradient></defs><rect width="${size}" height="${size}" fill="url(#bg-grad)" />`
 	} else if (tone.startsWith("#")) {
 		bgElement = `<rect width="${size}" height="${size}" fill="${tone}" />`
 	} else if (tone.startsWith("http") || tone.startsWith("/")) {
@@ -185,6 +186,27 @@ export async function generateEditableSvg(
 		return ""
 	}
 
+	// Keep the editable SVG visually consistent with the browser and PNG export:
+	// a low-opacity color/gradient layer is placed over the avatar.
+	let blendOverlayElement = ""
+	if (imageBackgroundTint) {
+		blendOverlayElement = `<rect width="${size}" height="${size}" fill="${imageBackgroundTint}" fill-opacity="0.15" />`
+	} else if (SOLID_COLOR_MAP[tone]) {
+		blendOverlayElement = `<rect width="${size}" height="${size}" fill="${SOLID_COLOR_MAP[tone]}" fill-opacity="0.15" />`
+	} else if (GRADIENT_MAP[tone]) {
+		const gradient = GRADIENT_MAP[tone]
+		if (gradient.base) {
+			blendOverlayElement = `<defs><linearGradient id="avatar-tint-sheen" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#ffffff" stop-opacity="0" /><stop offset="100%" stop-color="#242e42" stop-opacity="0.16" /></linearGradient></defs><rect width="${size}" height="${size}" fill="${gradient.base}" fill-opacity="0.15" /><rect width="${size}" height="${size}" fill="url(#avatar-tint-sheen)" fill-opacity="0.15" />`
+		} else if (gradient.from && gradient.to) {
+			blendOverlayElement = `<defs><linearGradient id="avatar-tint-grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="${gradient.from}" /><stop offset="100%" stop-color="${gradient.to}" /></linearGradient></defs><rect width="${size}" height="${size}" fill="url(#avatar-tint-grad)" fill-opacity="0.15" />`
+		}
+	} else if (tone.startsWith("grad-custom:")) {
+		const [, from, to] = tone.split(":")
+		blendOverlayElement = `<defs><linearGradient id="avatar-tint-grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="${from}" /><stop offset="100%" stop-color="${to}" /></linearGradient></defs><rect width="${size}" height="${size}" fill="url(#avatar-tint-grad)" fill-opacity="0.15" />`
+	} else if (tone.startsWith("#")) {
+		blendOverlayElement = `<rect width="${size}" height="${size}" fill="${tone}" fill-opacity="0.15" />`
+	}
+
 	return [
 		`<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">`,
 		`<!-- Background Layer (editable in Figma) -->`,
@@ -195,6 +217,9 @@ export async function generateEditableSvg(
 		`<g id="avatar">`,
 		`<image href="${avatarDataUrl}" width="${size}" height="${size}" />`,
 		`</g>`,
+		blendOverlayElement
+			? `<!-- Avatar Blend Overlay -->${blendOverlayElement}`
+			: "",
 		`</svg>`,
 	].join("\n")
 }
