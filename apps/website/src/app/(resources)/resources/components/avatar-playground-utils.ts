@@ -43,10 +43,13 @@ const IMAGE_BACKGROUND_TONE_MAP: Record<string, string> = {
 }
 
 export function getImageBackgroundTint(tone: string): string | undefined {
+	if (!tone.startsWith("http") && !tone.startsWith("/")) return undefined
+
 	const filename = tone.split("/").pop()?.split("?")[0] ?? ""
-	const imageName = decodeURIComponent(filename)
+	const imageName = filename
 		.replace(/^IMG-/, "")
 		.replace(/\.[^.]+$/, "")
+		.replace(/%20/gi, " ")
 
 	const matchingTone = IMAGE_BACKGROUND_TONE_MAP[imageName]
 	return matchingTone ? SOLID_COLOR_MAP[matchingTone] : undefined
@@ -100,8 +103,9 @@ export function getToneStyle(tone: string): CSSProperties {
 	if (tone.startsWith("http") || tone.startsWith("/")) {
 		return {
 			backgroundImage: `url(${tone})`,
-			backgroundSize: "fill",
+			backgroundSize: "cover",
 			backgroundPosition: "center",
+			backgroundRepeat: "no-repeat",
 		}
 	}
 	return {}
