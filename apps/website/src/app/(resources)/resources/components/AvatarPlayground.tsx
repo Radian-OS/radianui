@@ -75,8 +75,6 @@ const AvatarPlayground = () => {
 							toneStyle={getToneStyle(tone)}
 							tone={tone}
 							copyFormat={copyFormat}
-							// isImageBackground={tone.startsWith("/blocks/")}
-							// isNeutralBackground={tone === "neutral" || tone === "none"}
 						/>
 					)
 				})}

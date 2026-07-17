@@ -20,6 +20,38 @@ export const SOLID_COLOR_MAP: Record<string, string> = {
 	"Rose/100": "#FBDAE5",
 }
 
+const IMAGE_BACKGROUND_TONE_MAP: Record<string, string> = {
+	Amber: "Amber/100",
+	Blue: "Blue/100",
+	Cyan: "Teal/100",
+	"Dark Orchid": "Dark-Orchid/100",
+	Emerald: "Emerald/100",
+	Fuchsia: "Magenta/100",
+	Green: "Green/100",
+	Grey: "Cool-Gray/L94%",
+	"Light Blue": "Light-Blue/100",
+	Magenta: "Magenta/100",
+	Neon: "Neon/100",
+	Orange: "Orange/100",
+	Purple: "Purple/100",
+	Red: "Red/100",
+	Rose: "Rose/100",
+	Teal: "Teal/100",
+	"Violet Blue": "Violet-Blue/100",
+	White: "Cool-Gray/L100%",
+	Yellow: "Yellow/100",
+}
+
+export function getImageBackgroundTint(tone: string): string | undefined {
+	const filename = tone.split("/").pop()?.split("?")[0] ?? ""
+	const imageName = decodeURIComponent(filename)
+		.replace(/^IMG-/, "")
+		.replace(/\.[^.]+$/, "")
+
+	const matchingTone = IMAGE_BACKGROUND_TONE_MAP[imageName]
+	return matchingTone ? SOLID_COLOR_MAP[matchingTone] : undefined
+}
+
 export type GradientDef = {
 	from?: string
 	to?: string

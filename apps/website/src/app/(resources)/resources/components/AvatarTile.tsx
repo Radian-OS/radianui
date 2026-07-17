@@ -15,6 +15,7 @@ import {
 	GRADIENT_MAP,
 	SOLID_COLOR_MAP,
 	generateEditableSvg,
+	getImageBackgroundTint,
 } from "./avatar-playground-utils"
 
 interface AvatarTileProps {
@@ -34,6 +35,9 @@ export const AvatarTile = ({
 }: AvatarTileProps) => {
 	const [copied, setCopied] = useState(false)
 	const [open, setOpen] = useState<boolean>(false)
+	const isImageBackground = tone.startsWith("http") || tone.startsWith("/")
+	const isNeutralBackground = tone === "neutral" || tone === "none"
+	const imageBackgroundTint = getImageBackgroundTint(tone)
 
 	const handleCopy = async (e: React.MouseEvent) => {
 		e.stopPropagation()
@@ -151,8 +155,15 @@ export const AvatarTile = ({
 
 	return (
 		<div
-			className="border-border bg-bg-secondary group relative aspect-square w-full overflow-hidden rounded-xl border"
+			className="border-border bg-bg-secondary group relative isolate aspect-square w-full overflow-hidden rounded-xl border"
 			style={toneStyle}>
+			{imageBackgroundTint && (
+				<div
+					aria-hidden="true"
+					className="pointer-events-none absolute inset-0"
+					style={{ backgroundColor: imageBackgroundTint, opacity: 0.15 }}
+				/>
+			)}
 			<Image
 				src={src}
 				alt={`Generated avatar ${index + 1}`}
@@ -160,6 +171,25 @@ export const AvatarTile = ({
 				sizes="(max-width: 640px) 25vw, (max-width: 768px) 20vw, 14vw"
 				className="object-cover"
 			/>
+			{!imageBackgroundTint && (
+				<Image
+					src={src}
+					alt=""
+					aria-hidden="true"
+					fill
+					sizes="(max-width: 640px) 25vw, (max-width: 768px) 20vw, 14vw"
+					className={cn(
+						"pointer-events-none object-cover opacity-25",
+						isImageBackground ? "mix-blend-soft-light" : "mix-blend-multiply"
+					)}
+				/>
+			)}
+			{isNeutralBackground && (
+				<div
+					aria-hidden="true"
+					className="dark:bg-bg/10 pointer-events-none absolute inset-0 hidden dark:block"
+				/>
+			)}
 
 			<div
 				className={cn(
