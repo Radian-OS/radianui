@@ -167,7 +167,7 @@ export default function CommandSearchIntegration() {
 			<CommandDialog
 				open={open}
 				onOpenChange={setOpen}
-				className="max-w-200 w-full p-0">
+				className="md:min-w-190 w-full p-0">
 				<Command
 					className="**:data-[slot=command-input-wrapper]:border-none **:data-[slot=command-input-wrapper]:p-0 border-none"
 					shouldFilter={false}>
@@ -184,7 +184,7 @@ export default function CommandSearchIntegration() {
 						</div>
 						{/* Left: Command list */}
 						<div className="flex w-full">
-							<div className="border-border flex flex-1 flex-col border-r">
+							<div className="border-border flex flex-1 flex-col md:border-r">
 								{/* Search */}
 								<CommandList className="max-h-none">
 									<CommandEmpty className="text-fg-tertiary p-2 text-sm">
@@ -224,7 +224,7 @@ export default function CommandSearchIntegration() {
 							</div>
 
 							{/* Right: Detail panel */}
-							<div className="flex flex-1 flex-col gap-6 p-5">
+							<div className="hidden flex-1 flex-col gap-6 p-5 md:flex">
 								{/* Logo + toggle */}
 								<div className="flex items-start justify-between">
 									<Image

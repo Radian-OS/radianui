@@ -15,7 +15,7 @@ import {
 
 function DrawerPositionExample() {
 	return (
-		<div className="flex flex-col items-center justify-center gap-6 sm:flex-row">
+		<div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
 			<Drawer
 				variant="default"
 				direction="left"

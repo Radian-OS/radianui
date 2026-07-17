@@ -10,7 +10,6 @@ function CurrencyStepExample() {
 				id="step-eg"
 				prefix="$"
 				step={5}
-				className="md:w-80"
 				placeholder="Enter Amount Here"
 			/>
 		</div>
