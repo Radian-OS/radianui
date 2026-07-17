@@ -103,7 +103,7 @@ export function getToneStyle(tone: string): CSSProperties {
 	if (tone.startsWith("http") || tone.startsWith("/")) {
 		return {
 			backgroundImage: `url(${tone})`,
-			backgroundSize: "100% 100%",
+			backgroundSize: "104% 104%",
 			backgroundPosition: "center",
 			backgroundRepeat: "no-repeat",
 		}
