@@ -22,7 +22,7 @@ export default function AvatarRoundedSquare() {
 			<Avatar size="48" rounded="square">
 				<AvatarImage src="/media/female-1.jpg" />
 				<AvatarFallback>CH</AvatarFallback>
-				<AvatarIndicator position="bottom-right">
+				<AvatarIndicator className="bottom-1.5 right-1.5">
 					<AvatarStatus variant="online" />
 				</AvatarIndicator>
 			</Avatar>

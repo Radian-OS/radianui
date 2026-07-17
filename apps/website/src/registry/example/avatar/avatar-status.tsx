@@ -13,7 +13,7 @@ export default function AvatarStatusPreview() {
 			<Avatar size="48">
 				<AvatarImage src="/media/female-6.jpg" />
 				<AvatarFallback>CH</AvatarFallback>
-				<AvatarIndicator position="bottom-right">
+				<AvatarIndicator className="bottom-2 right-2">
 					<AvatarStatus variant={"online"} />
 				</AvatarIndicator>
 			</Avatar>
@@ -21,7 +21,7 @@ export default function AvatarStatusPreview() {
 			<Avatar size="48">
 				<AvatarImage src="/media/female-2.jpg" />
 				<AvatarFallback color="red">AJ</AvatarFallback>
-				<AvatarIndicator position="bottom-right">
+				<AvatarIndicator className="bottom-2 right-2">
 					<AvatarStatus className="bg-error" />
 				</AvatarIndicator>
 			</Avatar>
@@ -52,7 +52,7 @@ export default function AvatarStatusPreview() {
 						</g>
 					</svg>
 				</AvatarFallback>
-				<AvatarIndicator position="bottom-right">
+				<AvatarIndicator className="bottom-2 right-2">
 					<AvatarStatus variant={"offline"} />
 				</AvatarIndicator>
 			</Avatar>
@@ -83,7 +83,7 @@ export default function AvatarStatusPreview() {
 						</g>
 					</svg>
 				</AvatarFallback>
-				<AvatarIndicator position="bottom-right">
+				<AvatarIndicator className="bottom-2 right-2">
 					<AvatarStatus variant={"away"} />
 				</AvatarIndicator>
 			</Avatar>

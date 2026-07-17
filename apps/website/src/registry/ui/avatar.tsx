@@ -16,9 +16,8 @@ export type AvatarFallbackProps = React.ComponentProps<
 	typeof AvatarPrimitive.Fallback
 > &
 	VariantProps<typeof avatarFallbackVariants>
-export type AvatarIndicatorProps = React.HTMLAttributes<HTMLDivElement> & {
-	position?: "bottom-left" | "bottom-right"
-}
+export type AvatarIndicatorProps = React.HTMLAttributes<HTMLDivElement>
+
 export type AvatarStatusProps = React.HTMLAttributes<HTMLDivElement> &
 	VariantProps<typeof avatarStatusVariants>
 
@@ -130,11 +129,6 @@ const avatarFallbackVariants = cva("", {
 	},
 })
 
-// Base styles only – corner placement is now handled dynamically
-const avatarIndicatorVariants = cva(
-	"absolute z-10 box-content flex items-center justify-center"
-)
-
 function Avatar({
 	className,
 	size = "40",
@@ -184,27 +178,14 @@ function AvatarFallback({ className, color, ...props }: AvatarFallbackProps) {
 }
 AvatarFallback.displayName = "AvatarFallback"
 
-function AvatarIndicator({
-	className,
-	position = "bottom-right",
-	...props
-}: AvatarIndicatorProps) {
-	const { rounded } = useAvatarContext()
-
-	// Percentage‑based inset for circles – works for all sizes
-	const cornerClasses =
-		position === "bottom-left"
-			? rounded === "circle"
-				? "bottom-[10%] left-[10%]"
-				: "bottom-0 left-0"
-			: rounded === "circle"
-				? "bottom-[10%] right-[10%]"
-				: "bottom-0 right-0"
-
+function AvatarIndicator({ className, ...props }: AvatarIndicatorProps) {
 	return (
 		<div
 			data-slot="avatar-indicator"
-			className={cn(avatarIndicatorVariants(), cornerClasses, className)}
+			className={cn(
+				"absolute z-10 box-content flex items-center justify-center",
+				className
+			)}
 			{...props}
 		/>
 	)
@@ -241,5 +222,4 @@ export {
 	avatarStatusVariants,
 	avatarVariants,
 	avatarFallbackVariants,
-	avatarIndicatorVariants,
 }
