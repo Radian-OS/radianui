@@ -97,6 +97,10 @@ export const AvatarTile = ({
 			} catch {
 				// Background image failed to load, continue with transparent bg
 			}
+		} else {
+			// Fallback: fill white so the "Image" copy format is never transparent
+			ctx.fillStyle = "#FFFFFF"
+			ctx.fillRect(0, 0, size, size)
 		}
 
 		try {

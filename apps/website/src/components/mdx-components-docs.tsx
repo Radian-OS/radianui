@@ -438,7 +438,7 @@ export const components = {
 		return (
 			<ul
 				className={cn(
-					"my-6 ml-1 list-inside list-disc space-y-4 pb-6",
+					"mb-0 ml-4 mt-3 list-outside list-disc space-y-4",
 					className
 				)}>
 				{children}
