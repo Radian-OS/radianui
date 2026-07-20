@@ -5,219 +5,92 @@ date: "2026-07-10"
 
 ## Version 0.3
 
-This release marks our most significant design system update yet. We've expanded the library with new assets, introduced production-ready components, refined our color foundations, and rebuilt key architectures to improve flexibility, consistency, and everyday design workflows.
+Radian OS v0.3 is a major infrastructure release focused on improving both the developer and design workflow. This update introduces a more scalable component architecture, expanded token system, better installation experience, improved accessibility defaults, and significant improvements to maintainability across the library.
 
-Combined with hundreds of smaller improvements to spacing, accessibility, and how components behave, your daily design work will be faster, smoother, and more polished.
-
-Let&apos;s dive into what&apos;s new.
+<div className="h-6" />
+This one's a big release. We've cleaned up a lot of the rough edges around state
+management and theming, and trimmed down prop APls so integrating components
+takes less boilerplate than before.
 
 <Image
 	alt="radian background"
 	width="1000"
 	height="800"
-	src="/radian-changelog.jpg"
+	src="/changelog-v3.png"
 />
 
-### What changes are new in this release
+### 1. New Components
 
-This update focuses on four key areas: expanding the asset library, modernizing the color system, introducing production-ready components, and rebuilding existing components with a more flexible architecture.
+We added a bunch of stuff people have been asking for:
 
-#### 1. Assets & Resources
+- **Sidebar**: Resizable, with rail examples for the collapsed-icon-only look, plus an automatic collapsed mode that kicks in based on viewport width so you don't have to wire that up yourself .
 
-We've significantly expanded the design asset ecosystem to support more real-world use cases and speed up interface creation.
+- **Menu Bar & Context Menu**: Menu Bar is for desktop-style app navigation (think nested dropdowns across the top of a window), Context Menu handles right-click actions with support for nested submenus and shortcuts.
+
+- **Toggle Group**: For grouped selection controls, single or multi-select, useful for things like text alignment pickers or filter chips.
+
+- **Toggle**: A standalone single toggle button, same visual language as Toggle Group but for one- off use cases
+
+- **Stepper**: Walks users through multi-step flows (think onboarding or checkout), with built-in states for completed, active, and upcoming steps.
+
+- **Navigation Menu**: For primary site/app navigation, supports dropdown panels on hover or click with configurable alignment.
+
+### 2. Theming & accessibility
+
+- **17 new utility color**: Shipped 17 new utility color palettes, each with a consistent set of tokens (key, hover, text, border, focus, accent) so every color behaves predictably no matter which one you pick. Semantic colors now map straight to these utility colors instead of having their own separate definitions, and we added fg (foreground) variants so things like alerts and buttons have a proper contrasting text color out of the box - e.g. primary-fg.
+
+- **Fixed Accessibility Issues**: Fixed contrast issues on Neon, Yellow, Orange, and Red backgrounds. Specifically darkened the text tokens on Yellow, Amber, and Neon so they actually pass WCAG contrast requirements - previous versions were borderline or failing on these.
+
+- **More examples**: Added more examples across the docs: all of the components have new examples that show real life use cases.
 
 <Image
+	alt="radian background"
 	width="1000"
 	height="800"
-	src="/assets-resources.png"
-	alt="Assets and Resources"
+	src="/color-system-1.png"
+	className="dark:hidden"
 />
-
-<br />
-<br />
-<br />
-
-<FeatureList>
-	<FeatureListItem icon="🎯">
-		Added 90 new Brand Logos with original and neutral variants.
-	</FeatureListItem>
-	<FeatureListItem icon="🌍">
-		Introduced rounded Country Flags for every supported country.
-	</FeatureListItem>
-	<FeatureListItem icon="📝">
-		Expanded File Format Icons with 46 additional variants, bringing the total
-		to 69.
-	</FeatureListItem>
-	<FeatureListItem icon="🖼️">
-		Redesigned the asset library layout for faster browsing and discovery.
-	</FeatureListItem>
-	<FeatureListItem icon="✨">
-		Updated naming conventions for improved consistency across the library.
-	</FeatureListItem>
-</FeatureList>
-
-#### 2. Color System Refresh
-
-Our color foundations have been refined to improve accessibility, scalability, and consistency across light and dark themes.
-
-<FeatureList>
-	<FeatureListItem icon="🎨">
-		Added 17 new utility color systems with complete interaction tokens.
-	</FeatureListItem>
-	<FeatureListItem icon="🧩">
-		Refined neutral palettes, state variables, and alpha fills for greater
-		consistency.
-	</FeatureListItem>
-	<FeatureListItem icon="👀">
-		Improved accessibility, text contrast, and interaction states across the
-		color system.
-	</FeatureListItem>
-</FeatureList>
-
-<div className="grid grid-cols-1">
-	<Image
-		width="1200"
-		height="800"
-		src="/color-system-1.png"
-		alt="Color System Variables"
-	/>
-	<Image
-		width="1200"
-		height="800"
-		src="/color-system-2.png"
-		alt="Color System Dark Mode"
-	/>
-</div>
-
-#### 3. Logo & Typography
-
-We've modernized our brand presentation with more flexible layouts and refreshed typography. Highlights include containerless logo variants, updated typefaces across all styles, and editable placeholders to speed up your mockup process. We've also refreshed our recommended font showcase and transitioned our header typeface from Geist to Inter for a cleaner, more refined look.
 
 <Image
-	width="1200"
+	alt="radian background"
+	width="1000"
 	height="800"
-	src="/logo-typography.png"
-	alt="Logo and Typography"
+	src="/color-system-1-dark.png"
+	className="hidden dark:block"
 />
 
-#### 4. Effects & Visual Foundations
+### 3. API updates
 
-We've streamlined our interaction effects to make them both more versatile and easier to use. By reworking our underlying variables and introducing new focus styles including colorful outer rings and pastel borders We've created a more consistent experience. We have also phased out older, softer ring styles to make way for a cleaner, more modern look.
+- **Text Area**: They now ships with `useCharacterLimit` helper hook that handles character limiting for you.
 
-#### 5. Component Expansion
+- **Dialog and Drawer**: They both got an overlay prop with three options: overlay (the standard dim background), blur (backdrop blur instead of a solid color), or transparent (no overlay at all, for cases where you want the dialog to feel less intrusive.
 
-This release delivers one of the largest component updates to date, introducing entirely new systems alongside major upgrades to existing ones.
-
-New additions include:
-
-<ComponentExpansionGrid />
-
-<div className="bg-primary-accent text-primary-text rounded-sm p-2 px-4">
-	10+ core components rebuilt & redefined to support more powerful workflows.
-</div>
-
-#### 6. Ready-to-Use Blocks
-
-Build complete experiences faster with our latest collection of reusable interface blocks.
-
-<FeatureList>
-	<FeatureListItem icon="🧭">
-		10+ Sidebar layouts for modern dashboards and applications.
-	</FeatureListItem>
-	<FeatureListItem icon="👋">
-		5+ Onboarding flows for seamless user introductions and setup.
-	</FeatureListItem>
-	<FeatureListItem icon="🎛️">
-		Fully customizable and built using core design system components.
-	</FeatureListItem>
-	<FeatureListItem icon="🚀">
-		Ready to drop into real-world projects.
-	</FeatureListItem>
-</FeatureList>
+### 4. Developer experience
 
 <Image
-	width="1200"
+	alt="radian background"
+	width="1000"
 	height="800"
-	src="/ready-to-use-blocks.png"
-	alt="Ready-to-Use Blocks"
+	src="/dev-experience.png"
+	className="dark:hidden"
 />
-
-#### 7. Forms & Inputs
-
-Input components have been enhanced with richer layouts and improved usability, introducing features like required indicators, sublabels, info icons, character counters, multi-select support, and more flexible file upload workflows.
-
-#### 8. Flexible Architecture
-
-Many components have been rebuilt around modular structures and slot-based composition, making them easier to customize and extend.
-
-Improvements include:
-
-<FeatureList>
-	<FeatureListItem icon="🎀">
-		Introduced slot-based architecture across the system.
-	</FeatureListItem>
-	<FeatureListItem icon="⚙️">
-		Reworked Drawer, Tabs, and Pagination for greater flexibility.
-	</FeatureListItem>
-	<FeatureListItem icon="🧱">
-		Refined core component foundations, including Checkbox, Radio, Switch,
-		Avatar, Skeleton, and Badge.
-	</FeatureListItem>
-</FeatureList>
 
 <Image
-	width="1200"
+	alt="radian background"
+	width="1000"
 	height="800"
-	src="/flexible-architecture.png"
-	alt="Flexible Architecture"
+	src="/dev-experience-dark.png"
+	className="hidden dark:block"
 />
 
-#### 9. Productivity & Workflow Improvements
+- **New Assets**: We’ve added a new resources section in the documentation, which now allows designers and developers to find commonly used assets when designing their software. The resources is a growing library as we add more useful tools and resources.
 
-A wide range of quality-of-life improvements help designers build interfaces faster.
+- **CLI Update**: Added question when initializing the project to allows users to select color. Easier way to get the required brand color when setting up the project.
 
-Highlights include:
+- **LLMS**: Added Ilms.txt (https://radianos.com/llms.txt) so Al coding tools and assistants can parse our docs more reliably instead of scraping rendered HTML
 
-<FeatureList>
-	<FeatureListItem icon="🎛️">
-		50+ production-ready Dropdown examples.
-	</FeatureListItem>
-	<FeatureListItem icon="🎛️">
-		Accordion Blocks and Alert Blocks.
-	</FeatureListItem>
-	<FeatureListItem icon="🎛️">
-		New layout examples for Checkbox Groups and Radio Groups.
-	</FeatureListItem>
-	<FeatureListItem icon="🎛️">
-		Improved Progress Bar and Slider granularity.
-	</FeatureListItem>
-</FeatureList>
+### 5. Breaking / Removed
 
-<Image
-	width="1200"
-	height="800"
-	src="/productivity-workflow.png"
-	alt="Productivity & Workflow Improvements"
-/>
+- **Accordion**: Dropped the small, medium & large sizes as those properties were adjustable using only few tailwind classes.
 
-#### 10. Documentation Refresh
-
-We've refreshed our documentation by replacing traditional reference pages with practical, example-driven content and a cleaner format, making it easier to explore components and understand their real-world usage.
-
-<Image
-	width="1200"
-	height="800"
-	src="/documentation-refresh.png"
-	alt="Documentation Refresh"
-/>
-
-### What we're Building Next
-
-Looking ahead, we're focused on introducing powerful new Forms, Charts, and Blocks alongside continuous improvements to existing components. We'll keep expanding the library, refining architectures, and enhancing usability to deliver an even better experience for designers and developers.
-
-<Image
-	width="1200"
-	height="800"
-	src="/building-next.png"
-	alt="What we're Building Next"
-/>
+- **Badge**: Removed `neutral-outline` variant.

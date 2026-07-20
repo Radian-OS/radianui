@@ -3,6 +3,7 @@ import {
 	Box,
 	ClipboardCheck,
 	CodeXml,
+	FileText,
 	LetterText,
 	PaintBucket,
 	ScrollText,
@@ -170,6 +171,11 @@ const GETTING_STARTED_ITEMS: NavigationItem[] = [
 		title: "Resources",
 		url: "/docs/getting-started/resources",
 		icon: ResourcesIcon,
+	},
+	{
+		title: "llms.txt",
+		url: "/llms.txt",
+		icon: FileText,
 	},
 ]
 
