@@ -12,6 +12,7 @@ import {
 	DropdownTrigger,
 } from "@/registry/ui/dropdown"
 import {
+	AVATAR_BLEND_OPACITY,
 	GRADIENT_MAP,
 	SOLID_COLOR_MAP,
 	generateEditableSvg,
@@ -37,9 +38,9 @@ export const AvatarTile = ({
 	const [open, setOpen] = useState<boolean>(false)
 	const isNeutralBackground = tone === "neutral" || tone === "none"
 	const imageBackgroundTint = getImageBackgroundTint(tone)
-	const shouldApplyBlendOverlay =
+	const shouldApplyShadow =
 		!isNeutralBackground && Object.keys(toneStyle).length > 0
-	const blendOverlayStyle = imageBackgroundTint
+	const shadowStyle = imageBackgroundTint
 		? { backgroundColor: imageBackgroundTint }
 		: toneStyle
 
@@ -106,13 +107,15 @@ export const AvatarTile = ({
 				avatarImg.onload = () => resolve()
 				avatarImg.onerror = reject
 			})
+
 			ctx.drawImage(avatarImg, 0, 0, size, size)
 
-			// A translucent copy of the selected background sits above the avatar.
-			// This is deterministic in a PNG, unlike CSS mix-blend-mode.
-			if (shouldApplyBlendOverlay) {
+			// The avatar source is opaque, so the Color Burn fill must be composited
+			// above it to affect the exported pixels.
+			if (shouldApplyShadow) {
 				ctx.save()
-				ctx.globalAlpha = 0.15
+				ctx.globalAlpha = AVATAR_BLEND_OPACITY
+				ctx.globalCompositeOperation = "color-burn"
 				if (
 					imageBackgroundTint ||
 					SOLID_COLOR_MAP[tone] ||
@@ -232,11 +235,14 @@ export const AvatarTile = ({
 				sizes="(max-width: 640px) 25vw, (max-width: 768px) 20vw, 14vw"
 				className="object-cover"
 			/>
-			{shouldApplyBlendOverlay && (
+			{shouldApplyShadow && (
 				<div
 					aria-hidden="true"
-					className="pointer-events-none absolute inset-0"
-					style={{ ...blendOverlayStyle, opacity: 0.15 }}
+					className="pointer-events-none absolute inset-0 mix-blend-color-burn"
+					style={{
+						...shadowStyle,
+						opacity: AVATAR_BLEND_OPACITY,
+					}}
 				/>
 			)}
 			{isNeutralBackground && (

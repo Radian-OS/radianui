@@ -1,5 +1,7 @@
 import type { CSSProperties } from "react"
 
+export const AVATAR_BLEND_OPACITY = 0.2
+
 export const SOLID_COLOR_MAP: Record<string, string> = {
 	"Cool-Gray/L100%": "#FFFFFF",
 	"Cool-Gray/L94%": "#EEEFF1",
@@ -147,13 +149,13 @@ export async function generateEditableSvg(
 	} else if (GRADIENT_MAP[tone]) {
 		const g = GRADIENT_MAP[tone]
 		if (g.base) {
-			bgElement = `<defs><linearGradient id="bg-grad" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#ffffff" stop-opacity="0" /><stop offset="100%" stop-color="#242e42" stop-opacity="0.16" /></linearGradient></defs><rect width="${size}" height="${size}" fill="${g.base}" /><rect width="${size}" height="${size}" fill="url(#bg-grad)" />`
+			bgElement = `<defs><linearGradient id="bg-grad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="${size}"><stop offset="0%" stop-color="#ffffff" stop-opacity="0" /><stop offset="100%" stop-color="#242e42" stop-opacity="0.16" /></linearGradient></defs><rect width="${size}" height="${size}" fill="${g.base}" /><rect width="${size}" height="${size}" fill="url(#bg-grad)" />`
 		} else {
-			bgElement = `<defs><linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="${g.from}" /><stop offset="100%" stop-color="${g.to}" /></linearGradient></defs><rect width="${size}" height="${size}" fill="url(#bg-grad)" />`
+			bgElement = `<defs><linearGradient id="bg-grad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="${size}" y2="${size}"><stop offset="0%" stop-color="${g.from}" /><stop offset="100%" stop-color="${g.to}" /></linearGradient></defs><rect width="${size}" height="${size}" fill="url(#bg-grad)" />`
 		}
 	} else if (tone.startsWith("grad-custom:")) {
 		const parts = tone.split(":")
-		bgElement = `<defs><linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="${parts[1]}" /><stop offset="100%" stop-color="${parts[2]}" /></linearGradient></defs><rect width="${size}" height="${size}" fill="url(#bg-grad)" />`
+		bgElement = `<defs><linearGradient id="bg-grad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="${size}" y2="${size}"><stop offset="0%" stop-color="${parts[1]}" /><stop offset="100%" stop-color="${parts[2]}" /></linearGradient></defs><rect width="${size}" height="${size}" fill="url(#bg-grad)" />`
 	} else if (tone.startsWith("#")) {
 		bgElement = `<rect width="${size}" height="${size}" fill="${tone}" />`
 	} else if (tone.startsWith("http") || tone.startsWith("/")) {
@@ -187,24 +189,25 @@ export async function generateEditableSvg(
 	}
 
 	// Keep the editable SVG visually consistent with the browser and PNG export:
-	// a low-opacity color/gradient layer is placed over the avatar.
-	let blendOverlayElement = ""
+	// the avatar is opaque, so the Color Burn fill has to sit above it. Figma
+	// expects the layer itself at 100% opacity with a 20%-opaque color fill.
+	let shadowElement = ""
 	if (imageBackgroundTint) {
-		blendOverlayElement = `<rect width="${size}" height="${size}" fill="${imageBackgroundTint}" fill-opacity="0.15" />`
+		shadowElement = `<rect width="${size}" height="${size}" fill="${imageBackgroundTint}" fill-opacity="${AVATAR_BLEND_OPACITY}" />`
 	} else if (SOLID_COLOR_MAP[tone]) {
-		blendOverlayElement = `<rect width="${size}" height="${size}" fill="${SOLID_COLOR_MAP[tone]}" fill-opacity="0.15" />`
+		shadowElement = `<rect width="${size}" height="${size}" fill="${SOLID_COLOR_MAP[tone]}" fill-opacity="${AVATAR_BLEND_OPACITY}" />`
 	} else if (GRADIENT_MAP[tone]) {
 		const gradient = GRADIENT_MAP[tone]
 		if (gradient.base) {
-			blendOverlayElement = `<defs><linearGradient id="avatar-tint-sheen" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#ffffff" stop-opacity="0" /><stop offset="100%" stop-color="#242e42" stop-opacity="0.16" /></linearGradient></defs><rect width="${size}" height="${size}" fill="${gradient.base}" fill-opacity="0.15" /><rect width="${size}" height="${size}" fill="url(#avatar-tint-sheen)" fill-opacity="0.15" />`
+			shadowElement = `<defs><linearGradient id="avatar-shadow-sheen" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="${size}"><stop offset="0%" stop-color="#ffffff" stop-opacity="0" /><stop offset="100%" stop-color="#242e42" stop-opacity="0.16" /></linearGradient></defs><rect width="${size}" height="${size}" fill="${gradient.base}" fill-opacity="${AVATAR_BLEND_OPACITY}" /><rect width="${size}" height="${size}" fill="url(#avatar-shadow-sheen)" fill-opacity="${AVATAR_BLEND_OPACITY}" />`
 		} else if (gradient.from && gradient.to) {
-			blendOverlayElement = `<defs><linearGradient id="avatar-tint-grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="${gradient.from}" /><stop offset="100%" stop-color="${gradient.to}" /></linearGradient></defs><rect width="${size}" height="${size}" fill="url(#avatar-tint-grad)" fill-opacity="0.15" />`
+			shadowElement = `<defs><linearGradient id="avatar-shadow-grad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="${size}" y2="${size}"><stop offset="0%" stop-color="${gradient.from}" /><stop offset="100%" stop-color="${gradient.to}" /></linearGradient></defs><rect width="${size}" height="${size}" fill="url(#avatar-shadow-grad)" fill-opacity="${AVATAR_BLEND_OPACITY}" />`
 		}
 	} else if (tone.startsWith("grad-custom:")) {
 		const [, from, to] = tone.split(":")
-		blendOverlayElement = `<defs><linearGradient id="avatar-tint-grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="${from}" /><stop offset="100%" stop-color="${to}" /></linearGradient></defs><rect width="${size}" height="${size}" fill="url(#avatar-tint-grad)" fill-opacity="0.15" />`
+		shadowElement = `<defs><linearGradient id="avatar-shadow-grad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="${size}" y2="${size}"><stop offset="0%" stop-color="${from}" /><stop offset="100%" stop-color="${to}" /></linearGradient></defs><rect width="${size}" height="${size}" fill="url(#avatar-shadow-grad)" fill-opacity="${AVATAR_BLEND_OPACITY}" />`
 	} else if (tone.startsWith("#")) {
-		blendOverlayElement = `<rect width="${size}" height="${size}" fill="${tone}" fill-opacity="0.15" />`
+		shadowElement = `<rect width="${size}" height="${size}" fill="${tone}" fill-opacity="${AVATAR_BLEND_OPACITY}" />`
 	}
 
 	return [
@@ -217,8 +220,8 @@ export async function generateEditableSvg(
 		`<g id="avatar">`,
 		`<image href="${avatarDataUrl}" width="${size}" height="${size}" />`,
 		`</g>`,
-		blendOverlayElement
-			? `<!-- Avatar Blend Overlay -->${blendOverlayElement}`
+		shadowElement
+			? `<!-- Avatar Blend Layer --><g id="Shadow" style="mix-blend-mode:color-burn">${shadowElement}</g>`
 			: "",
 		`</svg>`,
 	].join("\n")
