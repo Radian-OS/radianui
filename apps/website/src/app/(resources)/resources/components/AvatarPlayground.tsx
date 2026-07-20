@@ -68,17 +68,17 @@ const AvatarPlayground = () => {
 						colorMode={colorMode}
 					/>
 
-					<IconButton
+					<Button
 						color="neutral"
 						variant="outline"
 						onClick={() => setConfigOpen(true)}>
 						<Settings className="text-fg-secondary" />
 						<p className="hidden sm:block">Config</p>
-					</IconButton>
-
-					<Button type="button" color="neutral" variant="outline">
-						<FigmaCustomIcon />
 					</Button>
+
+					<IconButton type="button" color="neutral" variant="outline">
+						<FigmaCustomIcon />
+					</IconButton>
 				</div>
 			</div>
 
