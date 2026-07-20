@@ -21,7 +21,7 @@ const InputGroups = () => {
 	return (
 		<div className="flex w-80 flex-col gap-6">
 			<div className="flex flex-col gap-1.5">
-				<Label>Currency</Label>
+				<Label htmlFor="currency-amount">Currency</Label>
 				<div className="flex">
 					<InputGroup className="w-full">
 						<Select
@@ -38,6 +38,7 @@ const InputGroups = () => {
 							</SelectContent>
 						</Select>
 						<Input
+							id="currency-amount"
 							className="rounded-l-none border-l-0 focus-within:border-l md:w-fit"
 							placeholder="160,000"
 						/>
@@ -46,10 +47,11 @@ const InputGroups = () => {
 			</div>
 
 			<div className="flex flex-col gap-1.5">
-				<Label>Enter email</Label>
+				<Label htmlFor="enter-email">Enter email</Label>
 				<div className="flex">
 					<InputGroup className="w-full">
 						<Input
+							id="enter-email"
 							className="rounded-r-none border-r-0 focus-within:border-r md:w-fit"
 							placeholder="Enter email"
 						/>

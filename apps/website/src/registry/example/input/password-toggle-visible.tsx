@@ -18,9 +18,9 @@ export default function PasswordToggleVisible() {
 	const IconComponent = showPassword ? EyeOffIcon : EyeIcon
 
 	return (
-		<div className="flex flex-col gap-1.5">
+		<div className="flex w-full max-w-80 flex-col gap-1.5">
 			<Label htmlFor="toggle-visible-password">Password</Label>
-			<InputWrapper className="w-80">
+			<InputWrapper className="w-full">
 				<Input
 					id="toggle-visible-password"
 					ref={inputRef}

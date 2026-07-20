@@ -45,10 +45,10 @@ function PasswordValidationExample() {
 
 	const isValid = (message: string) => !errors.includes(message)
 	return (
-		<div className="flex flex-col gap-4">
+		<div className="flex w-full max-w-80 flex-col gap-4">
 			<div className="flex flex-col gap-1.5">
 				<Label htmlFor="validation-password">Password</Label>
-				<InputWrapper className="w-80">
+				<InputWrapper className="w-full">
 					<Input
 						id="validation-password"
 						value={password}

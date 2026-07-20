@@ -5,8 +5,9 @@ import { Label } from "@/registry/ui/label"
 const InvalidInput = () => {
 	return (
 		<div className="flex w-80 flex-col gap-1.5">
-			<Label>Email</Label>
+			<Label htmlFor="invalid-email">Email</Label>
 			<Input
+				id="invalid-email"
 				className="w-full"
 				type="email"
 				aria-invalid

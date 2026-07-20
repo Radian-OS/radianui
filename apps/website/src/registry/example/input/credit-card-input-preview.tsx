@@ -6,10 +6,10 @@ const CreditCardPreview = () => {
 	return (
 		<div className="flex w-80 flex-col gap-6">
 			<div className="flex flex-col gap-1.5">
-				<Label>Card Number</Label>
+				<Label htmlFor="card-number-1">Card Number</Label>
 				<div className="flex w-full gap-1">
 					<InputWrapper>
-						<Input placeholder="0000 0000 0000 0000" />
+						<Input id="card-number-1" placeholder="0000 0000 0000 0000" />
 						<Image
 							src="/creditcard.png"
 							height={12.88}
@@ -21,10 +21,10 @@ const CreditCardPreview = () => {
 			</div>
 
 			<div className="flex flex-col gap-1.5">
-				<Label>Card Number</Label>
+				<Label htmlFor="card-number-2">Card Number</Label>
 				<div className="flex w-full gap-1">
 					<InputWrapper>
-						<Input placeholder="0000 0000 0000 0000" />
+						<Input id="card-number-2" placeholder="0000 0000 0000 0000" />
 						<Image
 							height={12.88}
 							width={20}
@@ -37,11 +37,11 @@ const CreditCardPreview = () => {
 				</div>
 			</div>
 			<div className="flex flex-col gap-1.5">
-				<Label>Credit Card</Label>
+				<Label htmlFor="credit-card-number">Credit Card</Label>
 				<div className="w-full">
 					<InputWrapper
 						className={`-ms rounded-b-none border-b-0 focus-within:z-30 focus-within:border-b`}>
-						<Input placeholder="Card Number" />
+						<Input id="credit-card-number" placeholder="Card Number" />
 						<Image
 							height={12.88}
 							width={20}

@@ -18,9 +18,9 @@ export default function PasswordToggleOnFocus() {
 	const IconComponent = showPassword ? EyeOffIcon : EyeIcon
 
 	return (
-		<div className="flex flex-col gap-1.5">
+		<div className="flex w-full max-w-80 flex-col gap-1.5">
 			<Label htmlFor="on-focus-password">Password</Label>
-			<InputWrapper className="w-80">
+			<InputWrapper className="w-full">
 				<Input
 					id="on-focus-password"
 					placeholder="Enter your password"
