@@ -2,7 +2,6 @@
 
 import {
 	Briefcase,
-	Cat,
 	ChevronDown,
 	Mars,
 	Palmtree,
@@ -26,7 +25,6 @@ const CATEGORIES = [
 	{ value: "casual", label: "Casual", icon: Palmtree },
 	{ value: "male", label: "Male", icon: Mars },
 	{ value: "female", label: "Female", icon: Venus },
-	{ value: "animated", label: "Animated", icon: Cat },
 ]
 
 const CategoryFilterDropdown = ({
