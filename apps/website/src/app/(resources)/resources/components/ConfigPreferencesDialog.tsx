@@ -135,18 +135,21 @@ const ConfigPreferencesDialog = ({
 	onOpenChange,
 	copyFormat,
 	onCopyFormatChange,
+	colorMode,
+	onColorModeChange,
 }: {
 	open: boolean
 	onOpenChange: (open: boolean) => void
 	copyFormat: string
 	onCopyFormatChange: (value: string) => void
+	colorMode: ColorMode
+	onColorModeChange: (value: ColorMode) => void
 }) => {
-	const [colorMode, setColorMode] = useState<ColorMode>("static")
 	const [preserveSettings, setPreserveSettings] = useState(true)
 	const idPrefix = useId()
 
 	const handleReset = () => {
-		setColorMode("static")
+		onColorModeChange("static")
 		onCopyFormatChange("editable-bg")
 		setPreserveSettings(true)
 	}
@@ -167,7 +170,7 @@ const ConfigPreferencesDialog = ({
 						<span className="text-sm font-medium">Colors</span>
 						<RadioGroup
 							value={colorMode}
-							onValueChange={(v) => setColorMode(v as ColorMode)}
+							onValueChange={(v) => onColorModeChange(v as ColorMode)}
 							className="grid grid-cols-2 gap-3">
 							{COLOR_MODE_OPTIONS.map(
 								({

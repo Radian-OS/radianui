@@ -2,7 +2,7 @@
 
 import { useCallback, useMemo, useState } from "react"
 import { Settings } from "lucide-react"
-import { Button } from "@/registry/ui/button"
+import { Button, IconButton } from "@/registry/ui/button"
 import { AvatarTile } from "./AvatarTile"
 import CategoryFilterDropdown from "./CategoryFilterDropdown"
 import ConfigPreferencesDialog from "./ConfigPreferencesDialog"
@@ -17,11 +17,14 @@ import {
 } from "./avatar-playground-utils"
 
 const AvatarPlayground = () => {
+	type ColorMode = "static" | "radian"
+
 	const [category, setCategory] = useState("all")
 	const [tone, setTone] = useState("neutral")
 	const [randomTrigger, setRandomTrigger] = useState(0)
 	const [configOpen, setConfigOpen] = useState(false)
 	const [copyFormat, setCopyFormat] = useState("editable-bg")
+	const [colorMode, setColorMode] = useState<ColorMode>("static")
 
 	const handleToneChange = useCallback((value: string) => {
 		if (
@@ -59,17 +62,21 @@ const AvatarPlayground = () => {
 				<CategoryFilterDropdown value={category} onChange={setCategory} />
 
 				<div className="flex items-center gap-2">
-					<ToneFilterDropdown value={tone} onChange={handleToneChange} />
+					<ToneFilterDropdown
+						value={tone}
+						onChange={handleToneChange}
+						colorMode={colorMode}
+					/>
 
-					<Button
+					<IconButton
 						color="neutral"
 						variant="outline"
 						onClick={() => setConfigOpen(true)}>
 						<Settings className="text-fg-secondary" />
 						<p className="hidden sm:block">Config</p>
-					</Button>
+					</IconButton>
 
-					<Button color="neutral" variant="outline">
+					<Button type="button" color="neutral" variant="outline">
 						<FigmaCustomIcon />
 					</Button>
 				</div>
@@ -103,6 +110,8 @@ const AvatarPlayground = () => {
 				onOpenChange={setConfigOpen}
 				copyFormat={copyFormat}
 				onCopyFormatChange={setCopyFormat}
+				colorMode={colorMode}
+				onColorModeChange={setColorMode}
 			/>
 		</div>
 	)

@@ -99,6 +99,10 @@ export function getToneStyle(tone: string): CSSProperties {
 			background: `linear-gradient(135deg, ${parts[1]}, ${parts[2]})`,
 		}
 	}
+	if (tone.startsWith("radian:")) {
+		const colorName = tone.slice("radian:".length)
+		return { backgroundColor: `var(--color-${colorName}-focus)` }
+	}
 	if (tone.startsWith("#")) {
 		return { backgroundColor: tone }
 	}
@@ -111,6 +115,21 @@ export function getToneStyle(tone: string): CSSProperties {
 		}
 	}
 	return {}
+}
+
+/**
+ * Resolves a `radian:<name>` tone to an actual color string by reading
+ * the computed value of the CSS custom property from the DOM.
+ * Falls back to a light gray when running server-side or if the variable is empty.
+ */
+export function resolveRadianColor(tone: string): string {
+	if (!tone.startsWith("radian:")) return ""
+	const colorName = tone.slice("radian:".length)
+	if (typeof window === "undefined") return "#f3f4f6"
+	const resolved = getComputedStyle(document.documentElement)
+		.getPropertyValue(`--color-${colorName}-focus`)
+		.trim()
+	return resolved || "#f3f4f6"
 }
 
 export const AVATARS = Array.from(
@@ -195,6 +214,9 @@ export async function generateEditableSvg(
 		bgElement = `<defs><linearGradient id="bg-grad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="${size}" y2="${size}"><stop offset="0%" stop-color="${parts[1]}" /><stop offset="100%" stop-color="${parts[2]}" /></linearGradient></defs><rect width="${size}" height="${size}" fill="url(#bg-grad)" />`
 	} else if (tone.startsWith("#")) {
 		bgElement = `<rect width="${size}" height="${size}" fill="${tone}" />`
+	} else if (tone.startsWith("radian:")) {
+		const color = resolveRadianColor(tone)
+		bgElement = `<rect width="${size}" height="${size}" fill="${color}" />`
 	} else if (tone.startsWith("http") || tone.startsWith("/")) {
 		// Embed background image as base64
 		try {
@@ -244,7 +266,10 @@ export async function generateEditableSvg(
 		const [, from, to] = tone.split(":")
 		shadowElement = `<defs><linearGradient id="avatar-shadow-grad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="${size}" y2="${size}"><stop offset="0%" stop-color="${from}" /><stop offset="100%" stop-color="${to}" /></linearGradient></defs><rect width="${size}" height="${size}" fill="url(#avatar-shadow-grad)" fill-opacity="${AVATAR_BLEND_OPACITY}" />`
 	} else if (tone.startsWith("#")) {
-		shadowElement = `<rect width="${size}" height="${size}" fill="${tone}" fill-opacity="${AVATAR_BLEND_OPACITY}" />`
+		blendOverlayElement = `<rect width="${size}" height="${size}" fill="${tone}" fill-opacity="0.15" />`
+	} else if (tone.startsWith("radian:")) {
+		const color = resolveRadianColor(tone)
+		blendOverlayElement = `<rect width="${size}" height="${size}" fill="${color}" fill-opacity="0.15" />`
 	}
 
 	return [

@@ -17,6 +17,7 @@ import {
 	SOLID_COLOR_MAP,
 	generateEditableSvg,
 	getImageBackgroundTint,
+	resolveRadianColor,
 } from "./avatar-playground-utils"
 
 interface AvatarTileProps {
@@ -80,6 +81,10 @@ export const AvatarTile = ({
 			grad.addColorStop(1, parts[2])
 			ctx.fillStyle = grad
 			ctx.fillRect(0, 0, size, size)
+		} else if (tone.startsWith("radian:")) {
+			const color = resolveRadianColor(tone)
+			ctx.fillStyle = color
+			ctx.fillRect(0, 0, size, size)
 		} else if (tone.startsWith("#")) {
 			ctx.fillStyle = tone
 			ctx.fillRect(0, 0, size, size)
@@ -123,9 +128,13 @@ export const AvatarTile = ({
 				if (
 					imageBackgroundTint ||
 					SOLID_COLOR_MAP[tone] ||
-					tone.startsWith("#")
+					tone.startsWith("#") ||
+					tone.startsWith("radian:")
 				) {
-					ctx.fillStyle = imageBackgroundTint || SOLID_COLOR_MAP[tone] || tone
+					ctx.fillStyle =
+						imageBackgroundTint ||
+						SOLID_COLOR_MAP[tone] ||
+						(tone.startsWith("radian:") ? resolveRadianColor(tone) : tone)
 					ctx.fillRect(0, 0, size, size)
 				} else if (GRADIENT_MAP[tone]) {
 					const gradient = GRADIENT_MAP[tone]
@@ -172,34 +181,70 @@ export const AvatarTile = ({
 	const handleCopy = async (e: React.MouseEvent) => {
 		e.stopPropagation()
 		if (copyFormat === "editable-bg") {
-			// Copy SVG to clipboard — user can paste directly into Figma
-			const svg = await generateEditableSvg(tone, src)
-			if (!svg) return
-			await navigator.clipboard.writeText(svg)
-			setCopied(true)
-			setTimeout(() => setCopied(false), 2500)
+			// Safari requires the ClipboardItem to be created synchronously
+			// within the click handler. We pass a Promise for the blob so the
+			// actual async work (fetching + base64 encoding) can happen after.
+			const svgBlobPromise = generateEditableSvg(tone, src).then((svg) => {
+				if (!svg) throw new Error("SVG generation failed")
+				return new Blob([svg], { type: "text/plain" })
+			})
+			try {
+				await navigator.clipboard.write([
+					new ClipboardItem({ "text/plain": svgBlobPromise }),
+				])
+				setCopied(true)
+				setTimeout(() => setCopied(false), 2500)
+			} catch {
+				// Fallback for browsers that don't support Promise in ClipboardItem
+				const svg = await generateEditableSvg(tone, src)
+				if (!svg) return
+				await navigator.clipboard.writeText(svg)
+				setCopied(true)
+				setTimeout(() => setCopied(false), 2500)
+			}
 			return
 		}
 		if (copyFormat === "image") {
-			const blob = await createCompositeBlob()
-			if (!blob) return
-			await navigator.clipboard.write([
-				new ClipboardItem({ "image/png": blob }),
-			])
-			setCopied(true)
-			setTimeout(() => setCopied(false), 1500)
+			const pngBlobPromise = createCompositeBlob().then((blob) => {
+				if (!blob) throw new Error("PNG generation failed")
+				return blob
+			})
+			try {
+				await navigator.clipboard.write([
+					new ClipboardItem({ "image/png": pngBlobPromise }),
+				])
+				setCopied(true)
+				setTimeout(() => setCopied(false), 1500)
+			} catch {
+				const blob = await createCompositeBlob()
+				if (!blob) return
+				await navigator.clipboard.write([
+					new ClipboardItem({ "image/png": blob }),
+				])
+				setCopied(true)
+				setTimeout(() => setCopied(false), 1500)
+			}
 			return
 		}
 		try {
-			const res = await fetch(src)
-			const blob = await res.blob()
+			const imgBlobPromise = fetch(src).then((res) => res.blob())
 			await navigator.clipboard.write([
-				new ClipboardItem({ [blob.type]: blob }),
+				new ClipboardItem({ "image/png": imgBlobPromise }),
 			])
 			setCopied(true)
 			setTimeout(() => setCopied(false), 1500)
 		} catch {
-			await navigator.clipboard.writeText(src)
+			try {
+				const res = await fetch(src)
+				const blob = await res.blob()
+				await navigator.clipboard.write([
+					new ClipboardItem({ [blob.type]: blob }),
+				])
+				setCopied(true)
+				setTimeout(() => setCopied(false), 1500)
+			} catch {
+				await navigator.clipboard.writeText(src)
+			}
 		}
 	}
 

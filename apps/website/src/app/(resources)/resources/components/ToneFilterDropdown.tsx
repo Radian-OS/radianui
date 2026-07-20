@@ -35,6 +35,39 @@ const SOLID_COLORS = [
 	{ id: "Rose/100", className: "bg-[#FBDAE5]" },
 ]
 
+export const RADIAN_COLORS = [
+	{ id: "radian:red", label: "Red", variable: "--color-red-focus" },
+	{ id: "radian:orange", label: "Orange", variable: "--color-orange-focus" },
+	{ id: "radian:amber", label: "Amber", variable: "--color-amber-focus" },
+	{ id: "radian:yellow", label: "Yellow", variable: "--color-yellow-focus" },
+	{ id: "radian:neon", label: "Neon", variable: "--color-neon-focus" },
+	{ id: "radian:green", label: "Green", variable: "--color-green-focus" },
+	{ id: "radian:emerald", label: "Emerald", variable: "--color-emerald-focus" },
+	{ id: "radian:teal", label: "Teal", variable: "--color-teal-focus" },
+	{ id: "radian:cyan", label: "Cyan", variable: "--color-cyan-focus" },
+	{
+		id: "radian:light-blue",
+		label: "Light Blue",
+		variable: "--color-light-blue-focus",
+	},
+	{ id: "radian:blue", label: "Blue", variable: "--color-blue-focus" },
+	{
+		id: "radian:violet-blue",
+		label: "Violet Blue",
+		variable: "--color-violet-blue-focus",
+	},
+	{ id: "radian:purple", label: "Purple", variable: "--color-purple-focus" },
+	{
+		id: "radian:dark-orchid",
+		label: "Dark Orchid",
+		variable: "--color-dark-orchid-focus",
+	},
+	{ id: "radian:fuchsia", label: "Fuchsia", variable: "--color-fuchsia-focus" },
+	{ id: "radian:magenta", label: "Magenta", variable: "--color-magenta-focus" },
+	{ id: "radian:rose", label: "Rose", variable: "--color-rose-focus" },
+	{ id: "radian:neutral", label: "Neutral", variable: "--color-neutral-focus" },
+]
+
 const SHEEN_OVERLAY = {
 	overlayFrom: "rgba(255, 255, 255, 0)",
 	overlayTo: "rgba(36, 46, 66, 0.16)",
@@ -130,6 +163,15 @@ function getActiveInfo(value: string) {
 		}
 	}
 
+	if (value.startsWith("radian:")) {
+		const match = RADIAN_COLORS.find((c) => c.id === value)
+		return {
+			label: match?.label ?? "Radian Color",
+			type: "radian" as const,
+			swatch: match ?? null,
+		}
+	}
+
 	if (value === "custom-color")
 		return { label: "Custom Color", type: "special" as const, swatch: null }
 	if (value.startsWith("grad-custom:")) {
@@ -167,9 +209,11 @@ function getActiveInfo(value: string) {
 const ToneFilterDropdown = ({
 	value,
 	onChange,
+	colorMode = "static",
 }: {
 	value: string
 	onChange: (value: string) => void
+	colorMode?: "static" | "radian"
 }) => {
 	const [open, setOpen] = useState(false)
 	const colorInputRef = useRef<HTMLInputElement>(null)
@@ -177,6 +221,15 @@ const ToneFilterDropdown = ({
 	const activeInfo = getActiveInfo(value)
 
 	const renderTriggerSwatch = () => {
+		if (activeInfo.type === "radian" && activeInfo.swatch) {
+			const radianColor = activeInfo.swatch as (typeof RADIAN_COLORS)[number]
+			return (
+				<span
+					className="border-border size-3.5 rounded-full border"
+					style={{ backgroundColor: `var(${radianColor.variable})` }}
+				/>
+			)
+		}
 		if (activeInfo.type === "solid" && activeInfo.swatch) {
 			return (
 				<span
@@ -246,17 +299,35 @@ const ToneFilterDropdown = ({
 					<div className="flex flex-col">
 						{/* Colors */}
 						<div className="flex flex-col gap-2.5 px-4 py-3">
-							<DropdownLabel className="px-0 text-xs">Colors</DropdownLabel>
+							<DropdownLabel className="px-0 text-xs">
+								{colorMode === "radian" ? "Radian Colors" : "Colors"}
+							</DropdownLabel>
 							<div className="grid grid-cols-9 gap-2">
-								{SOLID_COLORS.map((c) => (
-									<div
-										key={c.id}
-										onClick={() => onChange(c.id)}
-										className={`size-7 cursor-pointer rounded-lg ${c.className} ${c.id === "Cool-Gray/L100%" ? "border-soft border" : ""} ${
-											value === c.id ? "ring-primary ring-2 ring-offset-2" : ""
-										}`}
-									/>
-								))}
+								{colorMode === "radian"
+									? RADIAN_COLORS.map((c) => (
+											<div
+												key={c.id}
+												onClick={() => onChange(c.id)}
+												title={c.label}
+												style={{ backgroundColor: `var(${c.variable})` }}
+												className={`size-7 cursor-pointer rounded-lg ${
+													value === c.id
+														? "ring-primary ring-2 ring-offset-2"
+														: ""
+												}`}
+											/>
+										))
+									: SOLID_COLORS.map((c) => (
+											<div
+												key={c.id}
+												onClick={() => onChange(c.id)}
+												className={`size-7 cursor-pointer rounded-lg ${c.className} ${c.id === "Cool-Gray/L100%" ? "border-soft border" : ""} ${
+													value === c.id
+														? "ring-primary ring-2 ring-offset-2"
+														: ""
+												}`}
+											/>
+										))}
 								{/* Rainbow / custom color */}
 								<div
 									onClick={() => colorInputRef.current?.click()}
