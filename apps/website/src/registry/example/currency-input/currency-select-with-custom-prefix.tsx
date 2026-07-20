@@ -30,7 +30,7 @@ export default function CurrencyWithSelect() {
 	return (
 		<div className="flex flex-col gap-1.5">
 			<Label htmlFor="c-s-c-p">Select Currency</Label>
-			<InputGroup className="md:w-80">
+			<InputGroup>
 				<InputWrapper className="rounded-r-none border-r-0 focus-within:border-r">
 					<span>{currentCurrency.prefix}</span>
 					<CurrencyInput

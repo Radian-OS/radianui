@@ -13,7 +13,7 @@ import {
 	AVATARS,
 	CATEGORY_AVATAR_MAP,
 	getToneStyle,
-	randomHexColor,
+	randomSolidMapColor,
 } from "./avatar-playground-utils"
 
 const AvatarPlayground = () => {
@@ -39,11 +39,11 @@ const AvatarPlayground = () => {
 	const resolvedTones = useMemo(() => {
 		return AVATARS.map(() => {
 			if (tone === "pick-color") {
-				return randomHexColor()
+				return randomSolidMapColor()
 			}
 			if (tone === "pick-gradient") {
-				const from = randomHexColor()
-				const to = randomHexColor()
+				const from = randomSolidMapColor()
+				const to = randomSolidMapColor()
 				return `grad-custom:${from}:${to}`
 			}
 			if (tone === "pick-background") {
@@ -77,7 +77,7 @@ const AvatarPlayground = () => {
 
 			<div className="grid grid-cols-3 gap-3 sm:grid-cols-5 md:grid-cols-7">
 				{AVATARS.map((src, index) => {
-					const avatarNumber = index + 1
+					const avatarNumber = Number(src.match(/\d+/)?.[0])
 					if (
 						category !== "all" &&
 						!CATEGORY_AVATAR_MAP[category]?.includes(avatarNumber)

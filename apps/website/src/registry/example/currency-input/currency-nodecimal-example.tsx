@@ -10,7 +10,6 @@ function CurrencyNoDecimalExample() {
 				id="no-dl"
 				allowDecimals={false}
 				prefix="€"
-				className="md:w-80"
 				placeholder="Enter Amount Here"
 			/>
 		</div>

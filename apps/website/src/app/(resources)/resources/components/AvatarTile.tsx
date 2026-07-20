@@ -35,58 +35,23 @@ export const AvatarTile = ({
 }: AvatarTileProps) => {
 	const [copied, setCopied] = useState(false)
 	const [open, setOpen] = useState<boolean>(false)
-	const isImageBackground = tone.startsWith("http") || tone.startsWith("/")
 	const isNeutralBackground = tone === "neutral" || tone === "none"
 	const imageBackgroundTint = getImageBackgroundTint(tone)
+	const shouldApplyBlendOverlay =
+		!isNeutralBackground && Object.keys(toneStyle).length > 0
+	const blendOverlayStyle = imageBackgroundTint
+		? { backgroundColor: imageBackgroundTint }
+		: toneStyle
 
-	const handleCopy = async (e: React.MouseEvent) => {
-		e.stopPropagation()
-		if (copyFormat === "editable-bg") {
-			// Copy SVG to clipboard — user can paste directly into Figma
-			const svg = await generateEditableSvg(tone, src)
-			if (!svg) return
-			await navigator.clipboard.writeText(svg)
-			setCopied(true)
-			setTimeout(() => setCopied(false), 2500)
-			return
-		}
-		try {
-			const res = await fetch(src)
-			const blob = await res.blob()
-			await navigator.clipboard.write([
-				new ClipboardItem({ [blob.type]: blob }),
-			])
-			setCopied(true)
-			setTimeout(() => setCopied(false), 1500)
-		} catch {
-			await navigator.clipboard.writeText(src)
-		}
-	}
-
-	const handleDownload = async (e: React.MouseEvent) => {
-		e.stopPropagation()
-
-		if (copyFormat === "editable-bg") {
-			// Generate SVG with separate layers for Figma editing
-			const svg = await generateEditableSvg(tone, src)
-			if (!svg) return
-			const blob = new Blob([svg], { type: "image/svg+xml" })
-			const link = document.createElement("a")
-			link.download = `avatar-${index + 1}-editable.svg`
-			link.href = URL.createObjectURL(blob)
-			link.click()
-			URL.revokeObjectURL(link.href)
-			return
-		}
-
+	const createCompositeBlob = async (): Promise<Blob | null> => {
 		const size = 512
 		const canvas = document.createElement("canvas")
 		canvas.width = size
 		canvas.height = size
 		const ctx = canvas.getContext("2d")
-		if (!ctx) return
+		if (!ctx) return null
+		let backgroundImage: HTMLImageElement | null = null
 
-		// Draw background
 		if (SOLID_COLOR_MAP[tone]) {
 			ctx.fillStyle = SOLID_COLOR_MAP[tone]
 			ctx.fillRect(0, 0, size, size)
@@ -126,13 +91,17 @@ export const AvatarTile = ({
 					bgImg.onload = () => resolve()
 					bgImg.onerror = reject
 				})
+				backgroundImage = bgImg
 				ctx.drawImage(bgImg, 0, 0, size, size)
 			} catch {
 				// Background image failed to load, continue with transparent bg
 			}
+		} else {
+			// Fallback: fill white so the "Image" copy format is never transparent
+			ctx.fillStyle = "#FFFFFF"
+			ctx.fillRect(0, 0, size, size)
 		}
 
-		// Draw avatar
 		try {
 			const avatarImg = new window.Image()
 			avatarImg.crossOrigin = "anonymous"
@@ -142,28 +111,124 @@ export const AvatarTile = ({
 				avatarImg.onerror = reject
 			})
 			ctx.drawImage(avatarImg, 0, 0, size, size)
+
+			// A translucent copy of the selected background sits above the avatar.
+			// This is deterministic in a PNG, unlike CSS mix-blend-mode.
+			if (shouldApplyBlendOverlay) {
+				ctx.save()
+				ctx.globalAlpha = 0.15
+				if (
+					imageBackgroundTint ||
+					SOLID_COLOR_MAP[tone] ||
+					tone.startsWith("#")
+				) {
+					ctx.fillStyle = imageBackgroundTint || SOLID_COLOR_MAP[tone] || tone
+					ctx.fillRect(0, 0, size, size)
+				} else if (GRADIENT_MAP[tone]) {
+					const gradient = GRADIENT_MAP[tone]
+					if (gradient.base) {
+						ctx.fillStyle = gradient.base
+						ctx.fillRect(0, 0, size, size)
+						const sheen = ctx.createLinearGradient(0, 0, 0, size)
+						sheen.addColorStop(
+							0,
+							gradient.overlayFrom || "rgba(255, 255, 255, 0)"
+						)
+						sheen.addColorStop(
+							1,
+							gradient.overlayTo || "rgba(36, 46, 66, 0.16)"
+						)
+						ctx.fillStyle = sheen
+						ctx.fillRect(0, 0, size, size)
+					} else if (gradient.from && gradient.to) {
+						const fill = ctx.createLinearGradient(0, 0, size, size)
+						fill.addColorStop(0, gradient.from)
+						fill.addColorStop(1, gradient.to)
+						ctx.fillStyle = fill
+						ctx.fillRect(0, 0, size, size)
+					}
+				} else if (tone.startsWith("grad-custom:")) {
+					const [, from, to] = tone.split(":")
+					const fill = ctx.createLinearGradient(0, 0, size, size)
+					fill.addColorStop(0, from)
+					fill.addColorStop(1, to)
+					ctx.fillStyle = fill
+					ctx.fillRect(0, 0, size, size)
+				} else if (backgroundImage) {
+					ctx.drawImage(backgroundImage, 0, 0, size, size)
+				}
+				ctx.restore()
+			}
 		} catch {
+			return null
+		}
+
+		return new Promise((resolve) => canvas.toBlob(resolve, "image/png"))
+	}
+
+	const handleCopy = async (e: React.MouseEvent) => {
+		e.stopPropagation()
+		if (copyFormat === "editable-bg") {
+			// Copy SVG to clipboard — user can paste directly into Figma
+			const svg = await generateEditableSvg(tone, src)
+			if (!svg) return
+			await navigator.clipboard.writeText(svg)
+			setCopied(true)
+			setTimeout(() => setCopied(false), 2500)
+			return
+		}
+		if (copyFormat === "image") {
+			const blob = await createCompositeBlob()
+			if (!blob) return
+			await navigator.clipboard.write([
+				new ClipboardItem({ "image/png": blob }),
+			])
+			setCopied(true)
+			setTimeout(() => setCopied(false), 1500)
+			return
+		}
+		try {
+			const res = await fetch(src)
+			const blob = await res.blob()
+			await navigator.clipboard.write([
+				new ClipboardItem({ [blob.type]: blob }),
+			])
+			setCopied(true)
+			setTimeout(() => setCopied(false), 1500)
+		} catch {
+			await navigator.clipboard.writeText(src)
+		}
+	}
+
+	const handleDownload = async (e: React.MouseEvent) => {
+		e.stopPropagation()
+
+		if (copyFormat === "editable-bg") {
+			// Generate SVG with separate layers for Figma editing
+			const svg = await generateEditableSvg(tone, src)
+			if (!svg) return
+			const blob = new Blob([svg], { type: "image/svg+xml" })
+			const link = document.createElement("a")
+			link.download = `avatar-${index + 1}-editable.svg`
+			link.href = URL.createObjectURL(blob)
+			link.click()
+			URL.revokeObjectURL(link.href)
 			return
 		}
 
-		// Trigger download
+		const blob = await createCompositeBlob()
+		if (!blob) return
 		const link = document.createElement("a")
 		link.download = `avatar-${index + 1}.png`
-		link.href = canvas.toDataURL("image/png")
+		link.href = URL.createObjectURL(blob)
 		link.click()
+		URL.revokeObjectURL(link.href)
 	}
 
 	return (
 		<div
 			className="border-soft bg-bg-secondary group relative isolate aspect-square w-full overflow-hidden rounded-xl border"
 			style={toneStyle}>
-			{imageBackgroundTint && (
-				<div
-					aria-hidden="true"
-					className="pointer-events-none absolute inset-0"
-					style={{ backgroundColor: imageBackgroundTint, opacity: 0.15 }}
-				/>
-			)}
 			<Image
 				src={src}
 				alt={`Generated avatar ${index + 1}`}
@@ -171,17 +236,11 @@ export const AvatarTile = ({
 				sizes="(max-width: 640px) 25vw, (max-width: 768px) 20vw, 14vw"
 				className="object-cover"
 			/>
-			{!imageBackgroundTint && (
-				<Image
-					src={src}
-					alt=""
+			{shouldApplyBlendOverlay && (
+				<div
 					aria-hidden="true"
-					fill
-					sizes="(max-width: 640px) 25vw, (max-width: 768px) 20vw, 14vw"
-					className={cn(
-						"pointer-events-none object-cover opacity-25",
-						isImageBackground ? "mix-blend-soft-light" : "mix-blend-multiply"
-					)}
+					className="pointer-events-none absolute inset-0"
+					style={{ ...blendOverlayStyle, opacity: 0.15 }}
 				/>
 			)}
 			{isNeutralBackground && (

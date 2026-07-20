@@ -120,11 +120,40 @@ export const AVATARS = Array.from(
 // Maps each category to the avatar numbers (1-indexed) that belong to it.
 // "all" is handled separately and shows every avatar.
 export const CATEGORY_AVATAR_MAP: Record<string, number[]> = {
-	professional: [4, 6, 7, 8],
-	casual: [1, 2, 3, 5],
-	male: [1, 3, 4, 6, 8, 10, 12, 14],
-	female: [2, 5, 7, 9, 11, 13],
-	animated: [45, 78, 96],
+	professional: [
+		9, 11, 31, 32, 40, 52, 71, 72, 80, 85, 89, 90, 92, 100, 101, 110, 118, 125,
+		132, 136, 139, 142, 144, 156, 173, 195,
+	],
+	casual: [
+		1, 2, 3, 4, 5, 6, 7, 8, 10, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23,
+		24, 25, 26, 27, 28, 29, 30, 33, 34, 35, 36, 37, 38, 39, 41, 42, 43, 44, 45,
+		46, 47, 48, 49, 50, 51, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65,
+		66, 67, 68, 69, 70, 73, 74, 75, 76, 77, 78, 79, 81, 82, 83, 84, 86, 87, 88,
+		91, 93, 94, 95, 96, 97, 98, 99, 102, 103, 104, 105, 106, 107, 108, 109, 111,
+		112, 113, 114, 115, 116, 117, 119, 120, 121, 122, 123, 124, 126, 127, 128,
+		129, 130, 131, 133, 134, 135, 137, 138, 140, 141, 143, 145, 146, 147, 148,
+		149, 150, 151, 152, 153, 154, 155, 157, 158, 159, 160, 161, 162, 163, 164,
+		165, 166, 167, 168, 169, 170, 171, 172, 174, 175, 176, 177, 178, 179, 180,
+		181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 196,
+		197, 198, 199, 200,
+	],
+	male: [
+		1, 3, 4, 6, 8, 10, 12, 14, 16, 18, 20, 21, 23, 24, 26, 29, 31, 34, 35, 38,
+		39, 41, 42, 45, 46, 48, 50, 51, 53, 55, 56, 57, 59, 61, 63, 67, 68, 70, 71,
+		72, 73, 74, 76, 77, 78, 81, 87, 94, 100, 102, 103, 104, 105, 107, 108, 113,
+		115, 116, 117, 118, 119, 120, 124, 125, 126, 127, 128, 129, 130, 133, 135,
+		136, 137, 142, 144, 145, 146, 149, 150, 151, 155, 159, 160, 162, 164, 165,
+		166, 167, 169, 174, 180, 183, 185, 186, 187, 188, 190, 194, 195, 198, 199,
+		200,
+	],
+	female: [
+		2, 5, 7, 9, 11, 13, 15, 17, 19, 22, 25, 27, 28, 30, 32, 33, 36, 37, 40, 43,
+		44, 47, 49, 52, 54, 58, 60, 62, 64, 65, 66, 69, 75, 79, 80, 82, 83, 84, 85,
+		86, 88, 89, 90, 91, 92, 93, 95, 96, 97, 98, 99, 101, 106, 109, 110, 111,
+		112, 114, 121, 122, 123, 131, 132, 134, 138, 139, 140, 141, 143, 147, 148,
+		152, 153, 154, 156, 157, 158, 161, 163, 168, 170, 171, 172, 173, 175, 176,
+		177, 178, 179, 181, 182, 184, 189, 191, 192, 193, 196, 197,
+	],
 }
 
 export function randomHexColor(): string {
@@ -133,11 +162,20 @@ export function randomHexColor(): string {
 		.padStart(6, "0")}`
 }
 
+const SOLID_COLOR_VALUES = Object.values(SOLID_COLOR_MAP)
+
+export function randomSolidMapColor(): string {
+	return SOLID_COLOR_VALUES[
+		Math.floor(Math.random() * SOLID_COLOR_VALUES.length)
+	]
+}
+
 export async function generateEditableSvg(
 	tone: string,
 	src: string
 ): Promise<string> {
 	const size = 512
+	const imageBackgroundTint = getImageBackgroundTint(tone)
 
 	// Build SVG background element
 	let bgElement = ""
@@ -146,13 +184,13 @@ export async function generateEditableSvg(
 	} else if (GRADIENT_MAP[tone]) {
 		const g = GRADIENT_MAP[tone]
 		if (g.base) {
-			bgElement = `<defs><linearGradient id="bg-grad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ffffff" stop-opacity="0" /><stop offset="100%" stop-color="#242e42" stop-opacity="0.16" /></linearGradient></defs><rect width="${size}" height="${size}" fill="${g.base}" /><rect width="${size}" height="${size}" fill="url(#bg-grad)" />`
+			bgElement = `<defs><linearGradient id="bg-grad" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#ffffff" stop-opacity="0" /><stop offset="100%" stop-color="#242e42" stop-opacity="0.16" /></linearGradient></defs><rect width="${size}" height="${size}" fill="${g.base}" /><rect width="${size}" height="${size}" fill="url(#bg-grad)" />`
 		} else {
-			bgElement = `<defs><linearGradient id="bg-grad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="${g.from}" /><stop offset="100%" stop-color="${g.to}" /></linearGradient></defs><rect width="${size}" height="${size}" fill="url(#bg-grad)" />`
+			bgElement = `<defs><linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="${g.from}" /><stop offset="100%" stop-color="${g.to}" /></linearGradient></defs><rect width="${size}" height="${size}" fill="url(#bg-grad)" />`
 		}
 	} else if (tone.startsWith("grad-custom:")) {
 		const parts = tone.split(":")
-		bgElement = `<defs><linearGradient id="bg-grad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="${parts[1]}" /><stop offset="100%" stop-color="${parts[2]}" /></linearGradient></defs><rect width="${size}" height="${size}" fill="url(#bg-grad)" />`
+		bgElement = `<defs><linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="${parts[1]}" /><stop offset="100%" stop-color="${parts[2]}" /></linearGradient></defs><rect width="${size}" height="${size}" fill="url(#bg-grad)" />`
 	} else if (tone.startsWith("#")) {
 		bgElement = `<rect width="${size}" height="${size}" fill="${tone}" />`
 	} else if (tone.startsWith("http") || tone.startsWith("/")) {
@@ -185,6 +223,27 @@ export async function generateEditableSvg(
 		return ""
 	}
 
+	// Keep the editable SVG visually consistent with the browser and PNG export:
+	// a low-opacity color/gradient layer is placed over the avatar.
+	let blendOverlayElement = ""
+	if (imageBackgroundTint) {
+		blendOverlayElement = `<rect width="${size}" height="${size}" fill="${imageBackgroundTint}" fill-opacity="0.15" />`
+	} else if (SOLID_COLOR_MAP[tone]) {
+		blendOverlayElement = `<rect width="${size}" height="${size}" fill="${SOLID_COLOR_MAP[tone]}" fill-opacity="0.15" />`
+	} else if (GRADIENT_MAP[tone]) {
+		const gradient = GRADIENT_MAP[tone]
+		if (gradient.base) {
+			blendOverlayElement = `<defs><linearGradient id="avatar-tint-sheen" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#ffffff" stop-opacity="0" /><stop offset="100%" stop-color="#242e42" stop-opacity="0.16" /></linearGradient></defs><rect width="${size}" height="${size}" fill="${gradient.base}" fill-opacity="0.15" /><rect width="${size}" height="${size}" fill="url(#avatar-tint-sheen)" fill-opacity="0.15" />`
+		} else if (gradient.from && gradient.to) {
+			blendOverlayElement = `<defs><linearGradient id="avatar-tint-grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="${gradient.from}" /><stop offset="100%" stop-color="${gradient.to}" /></linearGradient></defs><rect width="${size}" height="${size}" fill="url(#avatar-tint-grad)" fill-opacity="0.15" />`
+		}
+	} else if (tone.startsWith("grad-custom:")) {
+		const [, from, to] = tone.split(":")
+		blendOverlayElement = `<defs><linearGradient id="avatar-tint-grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="${from}" /><stop offset="100%" stop-color="${to}" /></linearGradient></defs><rect width="${size}" height="${size}" fill="url(#avatar-tint-grad)" fill-opacity="0.15" />`
+	} else if (tone.startsWith("#")) {
+		blendOverlayElement = `<rect width="${size}" height="${size}" fill="${tone}" fill-opacity="0.15" />`
+	}
+
 	return [
 		`<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">`,
 		`<!-- Background Layer (editable in Figma) -->`,
@@ -195,6 +254,9 @@ export async function generateEditableSvg(
 		`<g id="avatar">`,
 		`<image href="${avatarDataUrl}" width="${size}" height="${size}" />`,
 		`</g>`,
+		blendOverlayElement
+			? `<!-- Avatar Blend Overlay -->${blendOverlayElement}`
+			: "",
 		`</svg>`,
 	].join("\n")
 }

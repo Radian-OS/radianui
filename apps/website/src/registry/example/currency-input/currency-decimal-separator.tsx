@@ -10,7 +10,6 @@ export default function CurrencyDecimalSeparatorsExample() {
 					id="ds-1"
 					prefix="$"
 					decimalSeparator="."
-					className="md:w-80"
 					placeholder="Enter Amount Here"
 				/>
 			</div>
@@ -21,7 +20,6 @@ export default function CurrencyDecimalSeparatorsExample() {
 					prefix="$"
 					decimalSeparator=","
 					groupSeparator="."
-					className="md:w-80"
 					placeholder="Enter Amount Here"
 				/>
 			</div>

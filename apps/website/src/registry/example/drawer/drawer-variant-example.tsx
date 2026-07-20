@@ -14,7 +14,7 @@ import {
 
 function DrawerVariantExample() {
 	return (
-		<div className="flex items-center justify-center gap-6">
+		<div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
 			<Drawer variant="rounded" direction="right" backdrop="overlay">
 				<DrawerTrigger>
 					<Button variant="outline" color="neutral">

@@ -9,7 +9,6 @@ export default function CurrencyMaxValueExample() {
 				id="c-m-v"
 				prefix="$"
 				placeholder="Enter Amount Here"
-				className="md:w-80"
 				maxLength={4}
 			/>
 		</div>
