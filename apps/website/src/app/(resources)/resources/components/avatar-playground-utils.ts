@@ -265,12 +265,13 @@ export async function generateEditableSvg(
 	} else if (tone.startsWith("grad-custom:")) {
 		const [, from, to] = tone.split(":")
 		shadowElement = `<defs><linearGradient id="avatar-shadow-grad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="${size}" y2="${size}"><stop offset="0%" stop-color="${from}" /><stop offset="100%" stop-color="${to}" /></linearGradient></defs><rect width="${size}" height="${size}" fill="url(#avatar-shadow-grad)" fill-opacity="${AVATAR_BLEND_OPACITY}" />`
-	} else if (tone.startsWith("#")) {
-		blendOverlayElement = `<rect width="${size}" height="${size}" fill="${tone}" fill-opacity="0.15" />`
-	} else if (tone.startsWith("radian:")) {
-		const color = resolveRadianColor(tone)
-		blendOverlayElement = `<rect width="${size}" height="${size}" fill="${color}" fill-opacity="0.15" />`
 	}
+	// else if (tone.startsWith("#")) {
+	// 	blendOverlayElement = `<rect width="${size}" height="${size}" fill="${tone}" fill-opacity="0.15" />`
+	// } else if (tone.startsWith("radian:")) {
+	// 	const color = resolveRadianColor(tone)
+	// 	blendOverlayElement = `<rect width="${size}" height="${size}" fill="${color}" fill-opacity="0.15" />`
+	// }
 
 	return [
 		`<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">`,
