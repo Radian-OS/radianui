@@ -135,25 +135,28 @@ const ConfigPreferencesDialog = ({
 	onOpenChange,
 	copyFormat,
 	onCopyFormatChange,
+	colorMode,
+	onColorModeChange,
 }: {
 	open: boolean
 	onOpenChange: (open: boolean) => void
 	copyFormat: string
 	onCopyFormatChange: (value: string) => void
+	colorMode: ColorMode
+	onColorModeChange: (value: ColorMode) => void
 }) => {
-	const [colorMode, setColorMode] = useState<ColorMode>("static")
 	const [preserveSettings, setPreserveSettings] = useState(true)
 	const idPrefix = useId()
 
 	const handleReset = () => {
-		setColorMode("static")
+		onColorModeChange("static")
 		onCopyFormatChange("editable-bg")
 		setPreserveSettings(true)
 	}
 
 	return (
 		<Dialog open={open} onOpenChange={onOpenChange}>
-			<DialogContent className="max-w-md">
+			<DialogContent className="sm:max-w-xl">
 				<DialogHeader className="gap-0 space-y-0 pb-4">
 					<DialogTitle>Configure Preferences</DialogTitle>
 					<DialogDescription>
@@ -167,7 +170,7 @@ const ConfigPreferencesDialog = ({
 						<span className="text-sm font-medium">Colors</span>
 						<RadioGroup
 							value={colorMode}
-							onValueChange={(v) => setColorMode(v as ColorMode)}
+							onValueChange={(v) => onColorModeChange(v as ColorMode)}
 							className="grid grid-cols-2 gap-3">
 							{COLOR_MODE_OPTIONS.map(
 								({
@@ -184,7 +187,7 @@ const ConfigPreferencesDialog = ({
 										<Label
 											key={value}
 											htmlFor={inputId}
-											className={`relative flex cursor-pointer flex-row items-start gap-2 rounded-xl border p-3 text-left transition-colors sm:flex-col ${
+											className={`relative flex cursor-pointer flex-col items-start gap-2 rounded-xl border p-3 text-left transition-colors ${
 												selected
 													? "border-primary-border"
 													: "border-border hover:bg-fill1"
@@ -280,9 +283,7 @@ const ConfigPreferencesDialog = ({
 							</Button>
 						</DialogClose>
 						<DialogClose asChild>
-							<Button color="primary">
-								<Check /> Save Changes
-							</Button>
+							<Button color="primary">Save Changes</Button>
 						</DialogClose>
 					</div>
 				</DialogFooter>

@@ -78,6 +78,9 @@ export const GRADIENT_MAP: Record<string, GradientDef> = Object.fromEntries(
 )
 
 export function getToneStyle(tone: string): CSSProperties {
+	if (tone === "none") {
+		return { backgroundColor: "transparent" }
+	}
 	if (SOLID_COLOR_MAP[tone]) {
 		return { backgroundColor: SOLID_COLOR_MAP[tone] }
 	}
@@ -99,6 +102,10 @@ export function getToneStyle(tone: string): CSSProperties {
 			background: `linear-gradient(135deg, ${parts[1]}, ${parts[2]})`,
 		}
 	}
+	if (tone.startsWith("radian:")) {
+		const colorName = tone.slice("radian:".length)
+		return { backgroundColor: `var(--color-${colorName}-focus)` }
+	}
 	if (tone.startsWith("#")) {
 		return { backgroundColor: tone }
 	}
@@ -113,8 +120,23 @@ export function getToneStyle(tone: string): CSSProperties {
 	return {}
 }
 
+/**
+ * Resolves a `radian:<name>` tone to an actual color string by reading
+ * the computed value of the CSS custom property from the DOM.
+ * Falls back to a light gray when running server-side or if the variable is empty.
+ */
+export function resolveRadianColor(tone: string): string {
+	if (!tone.startsWith("radian:")) return ""
+	const colorName = tone.slice("radian:".length)
+	if (typeof window === "undefined") return "#f3f4f6"
+	const resolved = getComputedStyle(document.documentElement)
+		.getPropertyValue(`--color-${colorName}-focus`)
+		.trim()
+	return resolved || "#f3f4f6"
+}
+
 export const AVATARS = Array.from(
-	{ length: 200 },
+	{ length: 216 },
 	(_, i) =>
 		`https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/avatars/src/${i + 1}.png`
 )
@@ -124,7 +146,8 @@ export const AVATARS = Array.from(
 export const CATEGORY_AVATAR_MAP: Record<string, number[]> = {
 	professional: [
 		9, 11, 31, 32, 40, 52, 71, 72, 80, 85, 89, 90, 92, 100, 101, 110, 118, 125,
-		132, 136, 139, 142, 144, 156, 173, 195,
+		132, 136, 139, 142, 144, 156, 173, 195, 201, 202, 203, 204, 205, 206, 207,
+		208, 209, 210, 211, 212, 213, 214, 215, 216,
 	],
 	casual: [
 		1, 2, 3, 4, 5, 6, 7, 8, 10, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23,
@@ -195,6 +218,9 @@ export async function generateEditableSvg(
 		bgElement = `<defs><linearGradient id="bg-grad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="${size}" y2="${size}"><stop offset="0%" stop-color="${parts[1]}" /><stop offset="100%" stop-color="${parts[2]}" /></linearGradient></defs><rect width="${size}" height="${size}" fill="url(#bg-grad)" />`
 	} else if (tone.startsWith("#")) {
 		bgElement = `<rect width="${size}" height="${size}" fill="${tone}" />`
+	} else if (tone.startsWith("radian:")) {
+		const color = resolveRadianColor(tone)
+		bgElement = `<rect width="${size}" height="${size}" fill="${color}" />`
 	} else if (tone.startsWith("http") || tone.startsWith("/")) {
 		// Embed background image as base64
 		try {
@@ -243,15 +269,22 @@ export async function generateEditableSvg(
 	} else if (tone.startsWith("grad-custom:")) {
 		const [, from, to] = tone.split(":")
 		shadowElement = `<defs><linearGradient id="avatar-shadow-grad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="${size}" y2="${size}"><stop offset="0%" stop-color="${from}" /><stop offset="100%" stop-color="${to}" /></linearGradient></defs><rect width="${size}" height="${size}" fill="url(#avatar-shadow-grad)" fill-opacity="${AVATAR_BLEND_OPACITY}" />`
-	} else if (tone.startsWith("#")) {
-		shadowElement = `<rect width="${size}" height="${size}" fill="${tone}" fill-opacity="${AVATAR_BLEND_OPACITY}" />`
 	}
+	// else if (tone.startsWith("#")) {
+	// 	blendOverlayElement = `<rect width="${size}" height="${size}" fill="${tone}" fill-opacity="0.15" />`
+	// } else if (tone.startsWith("radian:")) {
+	// 	const color = resolveRadianColor(tone)
+	// 	blendOverlayElement = `<rect width="${size}" height="${size}" fill="${color}" fill-opacity="0.15" />`
+	// }
 
 	return [
 		`<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">`,
 		`<!-- Background Layer (editable in Figma) -->`,
 		`<g id="background">`,
-		bgElement || `<rect width="${size}" height="${size}" fill="#ffffff" />`,
+		bgElement ||
+			(tone === "none"
+				? ""
+				: `<rect width="${size}" height="${size}" fill="#ffffff" />`),
 		`</g>`,
 		`<!-- Avatar Layer -->`,
 		`<g id="avatar">`,
@@ -262,4 +295,28 @@ export async function generateEditableSvg(
 			: "",
 		`</svg>`,
 	].join("\n")
+}
+
+/**
+ * Picks a random avatar, generates an editable SVG (transparent background),
+ * and copies it to the clipboard as text so it can be pasted in Figma.
+ * Returns the avatar image URL on success, or `null` on failure.
+ */
+export async function copyRandomAvatar(): Promise<string | null> {
+	const src = AVATARS[Math.floor(Math.random() * AVATARS.length)]
+	const svg = await generateEditableSvg("none", src)
+	if (!svg) return null
+
+	try {
+		const blob = new Blob([svg], { type: "text/plain" })
+		await navigator.clipboard.write([new ClipboardItem({ "text/plain": blob })])
+		return src
+	} catch {
+		try {
+			await navigator.clipboard.writeText(svg)
+			return src
+		} catch {
+			return null
+		}
+	}
 }

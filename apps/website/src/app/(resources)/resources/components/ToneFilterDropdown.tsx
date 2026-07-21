@@ -35,36 +35,65 @@ const SOLID_COLORS = [
 	{ id: "Rose/100", className: "bg-[#FBDAE5]" },
 ]
 
-const SHEEN_OVERLAY = {
-	overlayFrom: "rgba(255, 255, 255, 0)",
-	overlayTo: "rgba(36, 46, 66, 0.16)",
-} as const
+export const RADIAN_COLORS = [
+	{ id: "radian:red", label: "Red", variable: "--color-red-focus" },
+	{ id: "radian:orange", label: "Orange", variable: "--color-orange-focus" },
+	{ id: "radian:amber", label: "Amber", variable: "--color-amber-focus" },
+	{ id: "radian:yellow", label: "Yellow", variable: "--color-yellow-focus" },
+	{ id: "radian:neon", label: "Neon", variable: "--color-neon-focus" },
+	{ id: "radian:green", label: "Green", variable: "--color-green-focus" },
+	{ id: "radian:emerald", label: "Emerald", variable: "--color-emerald-focus" },
+	{ id: "radian:teal", label: "Teal", variable: "--color-teal-focus" },
+	{ id: "radian:cyan", label: "Cyan", variable: "--color-cyan-focus" },
+	{
+		id: "radian:light-blue",
+		label: "Light Blue",
+		variable: "--color-light-blue-focus",
+	},
+	{ id: "radian:blue", label: "Blue", variable: "--color-blue-focus" },
+	{
+		id: "radian:violet-blue",
+		label: "Violet Blue",
+		variable: "--color-violet-blue-focus",
+	},
+	{ id: "radian:purple", label: "Purple", variable: "--color-purple-focus" },
+	{
+		id: "radian:dark-orchid",
+		label: "Dark Orchid",
+		variable: "--color-dark-orchid-focus",
+	},
+	{ id: "radian:fuchsia", label: "Fuchsia", variable: "--color-fuchsia-focus" },
+	{ id: "radian:magenta", label: "Magenta", variable: "--color-magenta-focus" },
+	{ id: "radian:rose", label: "Rose", variable: "--color-rose-focus" },
+	{ id: "radian:neutral", label: "Neutral", variable: "--color-neutral-focus" },
+]
 
-type GradientDef = {
-	id: string
-	from?: string
-	to?: string
-	// For layered "sheen over solid" backgrounds like the Figma Red token
-	base?: string
-	overlayFrom?: string
-	overlayTo?: string
-}
+const GRADIENT_COLORS = [
+	"Amber",
+	"Blue",
+	"Cyan",
+	"Dark%20Orchid",
+	"Emerald",
+	"Fuchsia",
+	"Green",
+	"Grey",
+	"Light%20Blue",
+	"Magenta",
+	"Neon",
+	"Orange",
+	"Purple",
+	"Red",
+	"Rose",
+	"Teal",
+	"Violet%20Blue",
+	"White",
+	"Yellow",
+]
 
-const GRADIENTS: GradientDef[] = SOLID_COLORS.map((c) => {
-	const hexMatch = c.className.match(/#[0-9A-Fa-f]+/)
-	return {
-		id: `grad-${c.id}`,
-		base: hexMatch ? hexMatch[0] : c.className,
-		...SHEEN_OVERLAY,
-	}
-})
-
-function getGradientBackground(g: GradientDef): string {
-	if (g.base) {
-		return `linear-gradient(180deg, ${g.overlayFrom} 0%, ${g.overlayTo} 100%), ${g.base}`
-	}
-	return `linear-gradient(135deg, ${g.from}, ${g.to})`
-}
+export const GRADIENT_IMAGES = GRADIENT_COLORS.map(
+	(color) =>
+		`https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/avatars-background/src/Grad-${color}.png`
+)
 
 const BACKGROUND_COLORS = [
 	"Amber",
@@ -95,6 +124,7 @@ export const BACKGROUNDS = BACKGROUND_COLORS.map(
 
 function formatColorName(id: string): string {
 	return id
+		.replace(/\/.*$/, "")
 		.split("-")
 		.map((w) => w.charAt(0).toUpperCase() + w.slice(1))
 		.join(" ")
@@ -110,14 +140,14 @@ function getActiveInfo(value: string) {
 		}
 	}
 
-	const gradMatch = GRADIENTS.find((g) => g.id === value)
-	if (gradMatch) {
-		const name = gradMatch.id
-			.replace("Linear-Gradient", "")
-			.split("-")
-			.map((w) => w.charAt(0).toUpperCase() + w.slice(1))
-			.join(" → ")
-		return { label: name, type: "gradient" as const, swatch: gradMatch }
+	const gradImgMatch = GRADIENT_IMAGES.find((src) => src === value)
+	if (gradImgMatch) {
+		const idx = GRADIENT_IMAGES.indexOf(gradImgMatch) + 1
+		return {
+			label: `Gradient ${idx}`,
+			type: "gradient-img" as const,
+			swatch: gradImgMatch,
+		}
 	}
 
 	const bgMatch = BACKGROUNDS.find((src) => src === value)
@@ -127,6 +157,15 @@ function getActiveInfo(value: string) {
 			label: `Background ${idx}`,
 			type: "background" as const,
 			swatch: bgMatch,
+		}
+	}
+
+	if (value.startsWith("radian:")) {
+		const match = RADIAN_COLORS.find((c) => c.id === value)
+		return {
+			label: match?.label ?? "Radian Color",
+			type: "radian" as const,
+			swatch: match ?? null,
 		}
 	}
 
@@ -167,9 +206,11 @@ function getActiveInfo(value: string) {
 const ToneFilterDropdown = ({
 	value,
 	onChange,
+	colorMode = "static",
 }: {
 	value: string
 	onChange: (value: string) => void
+	colorMode?: "static" | "radian"
 }) => {
 	const [open, setOpen] = useState(false)
 	const colorInputRef = useRef<HTMLInputElement>(null)
@@ -177,33 +218,46 @@ const ToneFilterDropdown = ({
 	const activeInfo = getActiveInfo(value)
 
 	const renderTriggerSwatch = () => {
-		if (activeInfo.type === "solid" && activeInfo.swatch) {
+		if (activeInfo.type === "radian" && activeInfo.swatch) {
+			const radianColor = activeInfo.swatch as (typeof RADIAN_COLORS)[number]
 			return (
 				<span
-					className={`border-border size-3.5 rounded-full border ${(activeInfo.swatch as (typeof SOLID_COLORS)[number]).className}`}
+					className="border-border size-5 rounded-sm border"
+					style={{ backgroundColor: `var(${radianColor.variable})` }}
 				/>
 			)
 		}
-		if (activeInfo.type === "gradient" && activeInfo.swatch) {
-			const g = activeInfo.swatch as (typeof GRADIENTS)[number]
+		if (activeInfo.type === "solid" && activeInfo.swatch) {
 			return (
 				<span
-					className="border-border size-3.5 rounded-full border"
-					style={{ background: getGradientBackground(g) }}
+					className={`border-border size-5 rounded-sm border ${(activeInfo.swatch as (typeof SOLID_COLORS)[number]).className}`}
 				/>
+			)
+		}
+		if (activeInfo.type === "gradient-img" && activeInfo.swatch) {
+			return (
+				<span className="border-border relative size-5 overflow-hidden rounded-sm border">
+					<Image
+						src={activeInfo.swatch as string}
+						alt=""
+						fill
+						sizes="14px"
+						className="object-cover"
+					/>
+				</span>
 			)
 		}
 		if (activeInfo.type === "custom-hex" && activeInfo.swatch) {
 			return (
 				<span
-					className="border-border size-3.5 rounded-full border"
+					className="border-border size-5 rounded-sm border"
 					style={{ backgroundColor: activeInfo.swatch as string }}
 				/>
 			)
 		}
 		if (activeInfo.type === "background") {
 			return (
-				<span className="border-border relative size-3.5 overflow-hidden rounded-full border">
+				<span className="border-border relative size-5 overflow-hidden rounded-sm border">
 					<Image
 						src={activeInfo.swatch as string}
 						alt=""
@@ -215,7 +269,7 @@ const ToneFilterDropdown = ({
 			)
 		}
 		return (
-			<span className="border-border bg-elevation-level2 size-3.5 rounded-full border" />
+			<span className="border-border bg-elevation-level2 size-5 rounded-full border" />
 		)
 	}
 
@@ -224,7 +278,7 @@ const ToneFilterDropdown = ({
 			<DropdownTrigger asChild>
 				<Button color="neutral" variant="outline">
 					{renderTriggerSwatch()}
-					{activeInfo.label}
+					<p className="hidden sm:block">{activeInfo.label}</p>
 					<ChevronDown className="text-fg-secondary" />
 				</Button>
 			</DropdownTrigger>
@@ -246,17 +300,35 @@ const ToneFilterDropdown = ({
 					<div className="flex flex-col">
 						{/* Colors */}
 						<div className="flex flex-col gap-2.5 px-4 py-3">
-							<DropdownLabel className="px-0 text-xs">Colors</DropdownLabel>
+							<DropdownLabel className="px-0 text-xs">
+								{colorMode === "radian" ? "Radian Colors" : "Colors"}
+							</DropdownLabel>
 							<div className="grid grid-cols-9 gap-2">
-								{SOLID_COLORS.map((c) => (
-									<div
-										key={c.id}
-										onClick={() => onChange(c.id)}
-										className={`size-7 cursor-pointer rounded-lg ${c.className} ${c.id === "Cool-Gray/L100%" ? "border-soft border" : ""} ${
-											value === c.id ? "ring-primary ring-2 ring-offset-2" : ""
-										}`}
-									/>
-								))}
+								{colorMode === "radian"
+									? RADIAN_COLORS.map((c) => (
+											<div
+												key={c.id}
+												onClick={() => onChange(c.id)}
+												title={c.label}
+												style={{ backgroundColor: `var(${c.variable})` }}
+												className={`size-7 cursor-pointer rounded-lg ${
+													value === c.id
+														? "ring-primary ring-2 ring-offset-2"
+														: ""
+												}`}
+											/>
+										))
+									: SOLID_COLORS.map((c) => (
+											<div
+												key={c.id}
+												onClick={() => onChange(c.id)}
+												className={`size-7 cursor-pointer rounded-lg ${c.className} ${c.id === "Cool-Gray/L100%" ? "border-soft border" : ""} ${
+													value === c.id
+														? "ring-primary ring-2 ring-offset-2"
+														: ""
+												}`}
+											/>
+										))}
 								{/* Rainbow / custom color */}
 								<div
 									onClick={() => colorInputRef.current?.click()}
@@ -301,22 +373,27 @@ const ToneFilterDropdown = ({
 						<div className="flex flex-col gap-2.5 px-4 py-3">
 							<DropdownLabel className="px-0 text-xs">Gradients</DropdownLabel>
 							<div className="grid grid-cols-9 gap-2">
-								{GRADIENTS.map((g) => (
+								{GRADIENT_IMAGES.map((src) => (
 									<div
-										key={g.id}
-										onClick={() => onChange(g.id)}
-										style={{ background: getGradientBackground(g) }}
-										className={`size-7 cursor-pointer rounded-lg ${
-											value === g.id ? "ring-primary ring-2 ring-offset-2" : ""
-										}`}
-									/>
+										key={src}
+										onClick={() => onChange(src)}
+										className={`relative size-7 cursor-pointer overflow-hidden rounded-lg ${
+											value === src ? "ring-primary ring-2 ring-offset-2" : ""
+										}`}>
+										<Image
+											src={src}
+											alt={src}
+											fill
+											sizes="80px"
+											className="object-cover"
+										/>
+									</div>
 								))}
 								<IconButton
-									type="button"
 									onClick={() => onChange("pick-gradient")}
 									color="neutral"
-									variant="outline"
-									size="28">
+									size="28"
+									variant="outline">
 									<Dices />
 								</IconButton>
 							</div>

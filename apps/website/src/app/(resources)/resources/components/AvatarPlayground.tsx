@@ -2,26 +2,31 @@
 
 import { useCallback, useMemo, useState } from "react"
 import { Settings } from "lucide-react"
-import { Button } from "@/registry/ui/button"
+import { toast } from "sonner"
+import { Button, IconButton } from "@/registry/ui/button"
 import { AvatarTile } from "./AvatarTile"
 import CategoryFilterDropdown from "./CategoryFilterDropdown"
 import ConfigPreferencesDialog from "./ConfigPreferencesDialog"
 import FigmaCustomIcon from "./FigmaCustomIcon"
-import { BACKGROUNDS } from "./ToneFilterDropdown"
+import { BACKGROUNDS, GRADIENT_IMAGES } from "./ToneFilterDropdown"
 import ToneFilterDropdown from "./ToneFilterDropdown"
 import {
 	AVATARS,
 	CATEGORY_AVATAR_MAP,
+	copyRandomAvatar,
 	getToneStyle,
 	randomSolidMapColor,
 } from "./avatar-playground-utils"
 
 const AvatarPlayground = () => {
+	type ColorMode = "static" | "radian"
+
 	const [category, setCategory] = useState("all")
 	const [tone, setTone] = useState("neutral")
 	const [randomTrigger, setRandomTrigger] = useState(0)
 	const [configOpen, setConfigOpen] = useState(false)
 	const [copyFormat, setCopyFormat] = useState("editable-bg")
+	const [colorMode, setColorMode] = useState<ColorMode>("static")
 
 	const handleToneChange = useCallback((value: string) => {
 		if (
@@ -42,9 +47,9 @@ const AvatarPlayground = () => {
 				return randomSolidMapColor()
 			}
 			if (tone === "pick-gradient") {
-				const from = randomSolidMapColor()
-				const to = randomSolidMapColor()
-				return `grad-custom:${from}:${to}`
+				return GRADIENT_IMAGES[
+					Math.floor(Math.random() * GRADIENT_IMAGES.length)
+				]
 			}
 			if (tone === "pick-background") {
 				return BACKGROUNDS[Math.floor(Math.random() * BACKGROUNDS.length)]
@@ -59,19 +64,54 @@ const AvatarPlayground = () => {
 				<CategoryFilterDropdown value={category} onChange={setCategory} />
 
 				<div className="flex items-center gap-2">
-					<ToneFilterDropdown value={tone} onChange={handleToneChange} />
+					<ToneFilterDropdown
+						value={tone}
+						onChange={handleToneChange}
+						colorMode={colorMode}
+					/>
 
 					<Button
 						color="neutral"
 						variant="outline"
+						className="hidden sm:flex"
 						onClick={() => setConfigOpen(true)}>
 						<Settings className="text-fg-secondary" />
-						<p className="hidden sm:block">Config</p>
+						Config
 					</Button>
+					<IconButton
+						color="neutral"
+						variant="outline"
+						className="block sm:hidden"
+						onClick={() => setConfigOpen(true)}>
+						<Settings className="text-fg-secondary" />
+					</IconButton>
 
-					<Button color="neutral" variant="outline">
+					<IconButton
+						type="button"
+						color="neutral"
+						variant="outline"
+						onClick={async () => {
+							const avatarSrc = await copyRandomAvatar()
+							if (avatarSrc) {
+								toast.custom(() => (
+									<div className="bg-black-inverse text-fg-inverse sm:w-75 flex w-full items-center gap-2 rounded-lg px-3 py-2.5 shadow-[0_16px_24px_-4px_rgba(25,24,27,0.12)]">
+										<img
+											src={avatarSrc}
+											alt=""
+											className="size-10 rounded-lg object-cover"
+										/>
+										<div className="text-fg-inverse space-y-0.5 text-sm">
+											<p className="font-semibold">
+												Avatar copied to clipboard
+											</p>
+											<p>Paste in Figma to use</p>
+										</div>
+									</div>
+								))
+							}
+						}}>
 						<FigmaCustomIcon />
-					</Button>
+					</IconButton>
 				</div>
 			</div>
 
@@ -103,6 +143,8 @@ const AvatarPlayground = () => {
 				onOpenChange={setConfigOpen}
 				copyFormat={copyFormat}
 				onCopyFormatChange={setCopyFormat}
+				colorMode={colorMode}
+				onColorModeChange={setColorMode}
 			/>
 		</div>
 	)
