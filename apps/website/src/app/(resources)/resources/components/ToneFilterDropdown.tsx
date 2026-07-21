@@ -68,36 +68,32 @@ export const RADIAN_COLORS = [
 	{ id: "radian:neutral", label: "Neutral", variable: "--color-neutral-focus" },
 ]
 
-const SHEEN_OVERLAY = {
-	overlayFrom: "rgba(255, 255, 255, 0)",
-	overlayTo: "rgba(36, 46, 66, 0.16)",
-} as const
+const GRADIENT_COLORS = [
+	"Amber",
+	"Blue",
+	"Cyan",
+	"Dark%20Orchid",
+	"Emerald",
+	"Fuchsia",
+	"Green",
+	"Grey",
+	"Light%20Blue",
+	"Magenta",
+	"Neon",
+	"Orange",
+	"Purple",
+	"Red",
+	"Rose",
+	"Teal",
+	"Violet%20Blue",
+	"White",
+	"Yellow",
+]
 
-type GradientDef = {
-	id: string
-	from?: string
-	to?: string
-	// For layered "sheen over solid" backgrounds like the Figma Red token
-	base?: string
-	overlayFrom?: string
-	overlayTo?: string
-}
-
-const GRADIENTS: GradientDef[] = SOLID_COLORS.map((c) => {
-	const hexMatch = c.className.match(/#[0-9A-Fa-f]+/)
-	return {
-		id: `grad-${c.id}`,
-		base: hexMatch ? hexMatch[0] : c.className,
-		...SHEEN_OVERLAY,
-	}
-})
-
-function getGradientBackground(g: GradientDef): string {
-	if (g.base) {
-		return `linear-gradient(180deg, ${g.overlayFrom} 0%, ${g.overlayTo} 100%), ${g.base}`
-	}
-	return `linear-gradient(135deg, ${g.from}, ${g.to})`
-}
+export const GRADIENT_IMAGES = GRADIENT_COLORS.map(
+	(color) =>
+		`https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/avatars-background/src/Grad-${color}.png`
+)
 
 const BACKGROUND_COLORS = [
 	"Amber",
@@ -128,6 +124,7 @@ export const BACKGROUNDS = BACKGROUND_COLORS.map(
 
 function formatColorName(id: string): string {
 	return id
+		.replace(/\/.*$/, "")
 		.split("-")
 		.map((w) => w.charAt(0).toUpperCase() + w.slice(1))
 		.join(" ")
@@ -143,14 +140,14 @@ function getActiveInfo(value: string) {
 		}
 	}
 
-	const gradMatch = GRADIENTS.find((g) => g.id === value)
-	if (gradMatch) {
-		const name = gradMatch.id
-			.replace("Linear-Gradient", "")
-			.split("-")
-			.map((w) => w.charAt(0).toUpperCase() + w.slice(1))
-			.join(" → ")
-		return { label: name, type: "gradient" as const, swatch: gradMatch }
+	const gradImgMatch = GRADIENT_IMAGES.find((src) => src === value)
+	if (gradImgMatch) {
+		const idx = GRADIENT_IMAGES.indexOf(gradImgMatch) + 1
+		return {
+			label: `Gradient ${idx}`,
+			type: "gradient-img" as const,
+			swatch: gradImgMatch,
+		}
 	}
 
 	const bgMatch = BACKGROUNDS.find((src) => src === value)
@@ -225,7 +222,7 @@ const ToneFilterDropdown = ({
 			const radianColor = activeInfo.swatch as (typeof RADIAN_COLORS)[number]
 			return (
 				<span
-					className="border-border size-3.5 rounded-full border"
+					className="border-border size-5 rounded-sm border"
 					style={{ backgroundColor: `var(${radianColor.variable})` }}
 				/>
 			)
@@ -233,30 +230,34 @@ const ToneFilterDropdown = ({
 		if (activeInfo.type === "solid" && activeInfo.swatch) {
 			return (
 				<span
-					className={`border-border size-3.5 rounded-full border ${(activeInfo.swatch as (typeof SOLID_COLORS)[number]).className}`}
+					className={`border-border size-5 rounded-sm border ${(activeInfo.swatch as (typeof SOLID_COLORS)[number]).className}`}
 				/>
 			)
 		}
-		if (activeInfo.type === "gradient" && activeInfo.swatch) {
-			const g = activeInfo.swatch as (typeof GRADIENTS)[number]
+		if (activeInfo.type === "gradient-img" && activeInfo.swatch) {
 			return (
-				<span
-					className="border-border size-3.5 rounded-full border"
-					style={{ background: getGradientBackground(g) }}
-				/>
+				<span className="border-border relative size-5 overflow-hidden rounded-sm border">
+					<Image
+						src={activeInfo.swatch as string}
+						alt=""
+						fill
+						sizes="14px"
+						className="object-cover"
+					/>
+				</span>
 			)
 		}
 		if (activeInfo.type === "custom-hex" && activeInfo.swatch) {
 			return (
 				<span
-					className="border-border size-3.5 rounded-full border"
+					className="border-border size-5 rounded-sm border"
 					style={{ backgroundColor: activeInfo.swatch as string }}
 				/>
 			)
 		}
 		if (activeInfo.type === "background") {
 			return (
-				<span className="border-border relative size-3.5 overflow-hidden rounded-full border">
+				<span className="border-border relative size-5 overflow-hidden rounded-sm border">
 					<Image
 						src={activeInfo.swatch as string}
 						alt=""
@@ -268,7 +269,7 @@ const ToneFilterDropdown = ({
 			)
 		}
 		return (
-			<span className="border-border bg-elevation-level2 size-3.5 rounded-full border" />
+			<span className="border-border bg-elevation-level2 size-5 rounded-full border" />
 		)
 	}
 
@@ -277,7 +278,7 @@ const ToneFilterDropdown = ({
 			<DropdownTrigger asChild>
 				<Button color="neutral" variant="outline">
 					{renderTriggerSwatch()}
-					{activeInfo.label}
+					<p className="hidden sm:block">{activeInfo.label}</p>
 					<ChevronDown className="text-fg-secondary" />
 				</Button>
 			</DropdownTrigger>
@@ -372,22 +373,27 @@ const ToneFilterDropdown = ({
 						<div className="flex flex-col gap-2.5 px-4 py-3">
 							<DropdownLabel className="px-0 text-xs">Gradients</DropdownLabel>
 							<div className="grid grid-cols-9 gap-2">
-								{GRADIENTS.map((g) => (
+								{GRADIENT_IMAGES.map((src) => (
 									<div
-										key={g.id}
-										onClick={() => onChange(g.id)}
-										style={{ background: getGradientBackground(g) }}
-										className={`size-7 cursor-pointer rounded-lg ${
-											value === g.id ? "ring-primary ring-2 ring-offset-2" : ""
-										}`}
-									/>
+										key={src}
+										onClick={() => onChange(src)}
+										className={`relative size-7 cursor-pointer overflow-hidden rounded-lg ${
+											value === src ? "ring-primary ring-2 ring-offset-2" : ""
+										}`}>
+										<Image
+											src={src}
+											alt={src}
+											fill
+											sizes="80px"
+											className="object-cover"
+										/>
+									</div>
 								))}
 								<IconButton
-									type="button"
 									onClick={() => onChange("pick-gradient")}
 									color="neutral"
-									variant="outline"
-									size="28">
+									size="28"
+									variant="outline">
 									<Dices />
 								</IconButton>
 							</div>

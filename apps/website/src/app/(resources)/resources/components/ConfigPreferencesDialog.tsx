@@ -156,7 +156,7 @@ const ConfigPreferencesDialog = ({
 
 	return (
 		<Dialog open={open} onOpenChange={onOpenChange}>
-			<DialogContent className="max-w-md">
+			<DialogContent className="sm:max-w-xl">
 				<DialogHeader className="gap-0 space-y-0 pb-4">
 					<DialogTitle>Configure Preferences</DialogTitle>
 					<DialogDescription>
@@ -187,7 +187,7 @@ const ConfigPreferencesDialog = ({
 										<Label
 											key={value}
 											htmlFor={inputId}
-											className={`relative flex cursor-pointer flex-row items-start gap-2 rounded-xl border p-3 text-left transition-colors sm:flex-col ${
+											className={`relative flex cursor-pointer flex-col items-start gap-2 rounded-xl border p-3 text-left transition-colors ${
 												selected
 													? "border-primary-border"
 													: "border-border hover:bg-fill1"
@@ -283,9 +283,7 @@ const ConfigPreferencesDialog = ({
 							</Button>
 						</DialogClose>
 						<DialogClose asChild>
-							<Button color="primary">
-								<Check /> Save Changes
-							</Button>
+							<Button color="primary">Save Changes</Button>
 						</DialogClose>
 					</div>
 				</DialogFooter>

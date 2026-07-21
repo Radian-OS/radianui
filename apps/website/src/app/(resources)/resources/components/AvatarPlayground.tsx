@@ -8,7 +8,7 @@ import { AvatarTile } from "./AvatarTile"
 import CategoryFilterDropdown from "./CategoryFilterDropdown"
 import ConfigPreferencesDialog from "./ConfigPreferencesDialog"
 import FigmaCustomIcon from "./FigmaCustomIcon"
-import { BACKGROUNDS } from "./ToneFilterDropdown"
+import { BACKGROUNDS, GRADIENT_IMAGES } from "./ToneFilterDropdown"
 import ToneFilterDropdown from "./ToneFilterDropdown"
 import {
 	AVATARS,
@@ -47,9 +47,9 @@ const AvatarPlayground = () => {
 				return randomSolidMapColor()
 			}
 			if (tone === "pick-gradient") {
-				const from = randomSolidMapColor()
-				const to = randomSolidMapColor()
-				return `grad-custom:${from}:${to}`
+				return GRADIENT_IMAGES[
+					Math.floor(Math.random() * GRADIENT_IMAGES.length)
+				]
 			}
 			if (tone === "pick-background") {
 				return BACKGROUNDS[Math.floor(Math.random() * BACKGROUNDS.length)]
@@ -73,10 +73,18 @@ const AvatarPlayground = () => {
 					<Button
 						color="neutral"
 						variant="outline"
+						className="hidden sm:flex"
 						onClick={() => setConfigOpen(true)}>
 						<Settings className="text-fg-secondary" />
-						<p className="hidden sm:block">Config</p>
+						Config
 					</Button>
+					<IconButton
+						color="neutral"
+						variant="outline"
+						className="block sm:hidden"
+						onClick={() => setConfigOpen(true)}>
+						<Settings className="text-fg-secondary" />
+					</IconButton>
 
 					<IconButton
 						type="button"
