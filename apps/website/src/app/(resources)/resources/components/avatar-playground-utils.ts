@@ -78,6 +78,9 @@ export const GRADIENT_MAP: Record<string, GradientDef> = Object.fromEntries(
 )
 
 export function getToneStyle(tone: string): CSSProperties {
+	if (tone === "none") {
+		return { backgroundColor: "transparent" }
+	}
 	if (SOLID_COLOR_MAP[tone]) {
 		return { backgroundColor: SOLID_COLOR_MAP[tone] }
 	}
@@ -133,7 +136,7 @@ export function resolveRadianColor(tone: string): string {
 }
 
 export const AVATARS = Array.from(
-	{ length: 200 },
+	{ length: 216 },
 	(_, i) =>
 		`https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/avatars/src/${i + 1}.png`
 )
@@ -143,7 +146,8 @@ export const AVATARS = Array.from(
 export const CATEGORY_AVATAR_MAP: Record<string, number[]> = {
 	professional: [
 		9, 11, 31, 32, 40, 52, 71, 72, 80, 85, 89, 90, 92, 100, 101, 110, 118, 125,
-		132, 136, 139, 142, 144, 156, 173, 195,
+		132, 136, 139, 142, 144, 156, 173, 195, 201, 202, 203, 204, 205, 206, 207,
+		208, 209, 210, 211, 212, 213, 214, 215, 216,
 	],
 	casual: [
 		1, 2, 3, 4, 5, 6, 7, 8, 10, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23,
@@ -277,7 +281,10 @@ export async function generateEditableSvg(
 		`<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">`,
 		`<!-- Background Layer (editable in Figma) -->`,
 		`<g id="background">`,
-		bgElement || `<rect width="${size}" height="${size}" fill="#ffffff" />`,
+		bgElement ||
+			(tone === "none"
+				? ""
+				: `<rect width="${size}" height="${size}" fill="#ffffff" />`),
 		`</g>`,
 		`<!-- Avatar Layer -->`,
 		`<g id="avatar">`,
@@ -288,4 +295,28 @@ export async function generateEditableSvg(
 			: "",
 		`</svg>`,
 	].join("\n")
+}
+
+/**
+ * Picks a random avatar, generates an editable SVG (transparent background),
+ * and copies it to the clipboard as text so it can be pasted in Figma.
+ * Returns the avatar image URL on success, or `null` on failure.
+ */
+export async function copyRandomAvatar(): Promise<string | null> {
+	const src = AVATARS[Math.floor(Math.random() * AVATARS.length)]
+	const svg = await generateEditableSvg("none", src)
+	if (!svg) return null
+
+	try {
+		const blob = new Blob([svg], { type: "text/plain" })
+		await navigator.clipboard.write([new ClipboardItem({ "text/plain": blob })])
+		return src
+	} catch {
+		try {
+			await navigator.clipboard.writeText(svg)
+			return src
+		} catch {
+			return null
+		}
+	}
 }

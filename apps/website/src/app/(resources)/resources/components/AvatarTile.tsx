@@ -102,7 +102,7 @@ export const AvatarTile = ({
 			} catch {
 				// Background image failed to load, continue with transparent bg
 			}
-		} else {
+		} else if (tone !== "none") {
 			// Fallback: fill white so the "Image" copy format is never transparent
 			ctx.fillStyle = "#FFFFFF"
 			ctx.fillRect(0, 0, size, size)
@@ -275,7 +275,7 @@ export const AvatarTile = ({
 
 	return (
 		<div
-			className="border-soft bg-bg-secondary group relative isolate aspect-square w-full overflow-hidden rounded-xl border"
+			className="border-soft bg-bg group relative isolate aspect-square w-full overflow-hidden rounded-xl border"
 			style={toneStyle}>
 			<Image
 				src={src}

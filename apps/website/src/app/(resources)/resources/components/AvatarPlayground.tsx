@@ -2,6 +2,7 @@
 
 import { useCallback, useMemo, useState } from "react"
 import { Settings } from "lucide-react"
+import { toast } from "sonner"
 import { Button, IconButton } from "@/registry/ui/button"
 import { AvatarTile } from "./AvatarTile"
 import CategoryFilterDropdown from "./CategoryFilterDropdown"
@@ -12,6 +13,7 @@ import ToneFilterDropdown from "./ToneFilterDropdown"
 import {
 	AVATARS,
 	CATEGORY_AVATAR_MAP,
+	copyRandomAvatar,
 	getToneStyle,
 	randomSolidMapColor,
 } from "./avatar-playground-utils"
@@ -76,7 +78,30 @@ const AvatarPlayground = () => {
 						<p className="hidden sm:block">Config</p>
 					</Button>
 
-					<IconButton type="button" color="neutral" variant="outline">
+					<IconButton
+						type="button"
+						color="neutral"
+						variant="outline"
+						onClick={async () => {
+							const avatarSrc = await copyRandomAvatar()
+							if (avatarSrc) {
+								toast.custom(() => (
+									<div className="bg-black-inverse text-fg-inverse sm:w-75 flex w-full items-center gap-2 rounded-lg px-3 py-2.5 shadow-[0_16px_24px_-4px_rgba(25,24,27,0.12)]">
+										<img
+											src={avatarSrc}
+											alt=""
+											className="size-10 rounded-lg object-cover"
+										/>
+										<div className="text-fg-inverse space-y-0.5 text-sm">
+											<p className="font-semibold">
+												Avatar copied to clipboard
+											</p>
+											<p>Paste in Figma to use</p>
+										</div>
+									</div>
+								))
+							}
+						}}>
 						<FigmaCustomIcon />
 					</IconButton>
 				</div>
