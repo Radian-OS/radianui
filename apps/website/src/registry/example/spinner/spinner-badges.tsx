@@ -3,7 +3,7 @@ import { Spinner } from "@/registry/ui/spinner"
 
 export default function SpinnerBadge() {
 	return (
-		<div className="grid grid-cols-3 gap-4">
+		<div className="flex flex-wrap items-center justify-center gap-4">
 			<Badge>
 				<Spinner variant="activity" data-icon="inline-start" />
 				Updating

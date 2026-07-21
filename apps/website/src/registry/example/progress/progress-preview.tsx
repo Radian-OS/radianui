@@ -22,7 +22,7 @@ const ProgressPreview = () => {
 	}
 
 	return (
-		<div>
+		<div className="w-full max-w-80">
 			<IconButton
 				aria-label="Re-Preview Button"
 				variant="outline"
@@ -34,7 +34,7 @@ const ProgressPreview = () => {
 			</IconButton>
 			<div className="flex flex-col gap-1.5">
 				<Label>Progress</Label>
-				<Progress key={key} className="w-80" value={progress} />
+				<Progress key={key} value={progress} />
 			</div>
 		</div>
 	)

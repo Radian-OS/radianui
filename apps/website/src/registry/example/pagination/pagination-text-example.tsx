@@ -18,7 +18,7 @@ const PaginationTextExample = () => {
 						<Button color="neutral" variant="ghost" asChild>
 							<Link href="#">
 								<ChevronLeft className="text-fg-secondary rtl:rotate-180" />{" "}
-								Preview
+								<span className="hidden sm:inline">Previous</span>
 							</Link>
 						</Button>
 					</PaginationItem>
@@ -55,7 +55,7 @@ const PaginationTextExample = () => {
 					<PaginationItem>
 						<Button color="neutral" variant="ghost" asChild>
 							<Link href="#">
-								Next{" "}
+								<span className="hidden sm:inline">Next</span>{" "}
 								<ChevronRight className="text-fg-secondary rtl:rotate-180" />
 							</Link>
 						</Button>

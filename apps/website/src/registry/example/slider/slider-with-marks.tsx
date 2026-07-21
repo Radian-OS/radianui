@@ -9,10 +9,10 @@ export default function SliderWithMarks() {
 	const allMarks = Array.from({ length: max - min + 1 }, (_, i) => i + min)
 
 	return (
-		<div className="flex flex-col gap-2">
+		<div className="flex w-full max-w-[320px] flex-col gap-2">
 			<Label className="text-fg font-semibold">Duration (Months)</Label>
 
-			<div className="relative w-[320px]">
+			<div className="relative w-full">
 				<Slider defaultValue={[6]} step={step} max={max} min={min}>
 					<SliderThumb />
 				</Slider>

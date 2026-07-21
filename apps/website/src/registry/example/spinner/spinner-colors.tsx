@@ -2,7 +2,7 @@ import { Spinner } from "@/registry/ui/spinner"
 
 export default function SpinnerColors() {
 	return (
-		<div className="flex gap-5">
+		<div className="flex flex-wrap items-center justify-center gap-5">
 			<Spinner variant="activity" className="text-primary" />
 			<Spinner variant="activity" className="text-info" />
 			<Spinner variant="activity" className="text-success" />

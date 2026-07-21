@@ -26,7 +26,7 @@ const profile = {
 
 function ProfileCard() {
 	return (
-		<div className="flex w-80 flex-col gap-4">
+		<div className="flex w-80 flex-col gap-3">
 			<div className="flex items-start justify-between">
 				<Avatar size="48">
 					<AvatarImage src={profile.avatar} />
@@ -96,7 +96,7 @@ function ProfileCard() {
 
 export default function PopoverSide() {
 	return (
-		<div className="flex flex-col items-center justify-center gap-6 sm:flex-row">
+		<div className="flex flex-wrap items-center justify-center gap-3">
 			<Popover>
 				<PopoverTrigger asChild>
 					<Button size={"32"} color="neutral" variant="outline">

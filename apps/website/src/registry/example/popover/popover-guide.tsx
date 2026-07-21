@@ -51,7 +51,7 @@ export default function PopoverGuide() {
 					Open Tour
 				</Button>
 			</PopoverTrigger>
-			<PopoverContent className="w-100 flex flex-col gap-5">
+			<PopoverContent className="max-w-100 flex w-full flex-col gap-5">
 				{/* Header */}
 				<div className="flex flex-col gap-2">
 					<div className="flex items-start justify-between gap-1">

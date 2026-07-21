@@ -144,7 +144,11 @@ function TimePicker({
 }
 
 const TimePickerExample = () => {
-	return <TimePicker className="w-80" is24Hour={true} interval={30} />
+	return (
+		<div className="w-full max-w-80">
+			<TimePicker is24Hour={true} interval={30} />
+		</div>
+	)
 }
 
 export default TimePickerExample

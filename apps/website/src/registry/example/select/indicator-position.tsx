@@ -8,17 +8,19 @@ import {
 
 export default function SelectDemo() {
 	return (
-		<Select defaultValue="banana" indicatorPosition="left">
-			<SelectTrigger className="w-80">
-				<SelectValue placeholder="Select a fruit" />
-			</SelectTrigger>
-			<SelectContent>
-				<SelectItem value="apple">Apple</SelectItem>
-				<SelectItem value="banana">Banana</SelectItem>
-				<SelectItem value="cherry">Cherry</SelectItem>
-				<SelectItem value="orange">Orange</SelectItem>
-				<SelectItem value="grape">Grape</SelectItem>
-			</SelectContent>
-		</Select>
+		<div className="w-full max-w-80">
+			<Select defaultValue="banana" indicatorPosition="left">
+				<SelectTrigger>
+					<SelectValue placeholder="Select a fruit" />
+				</SelectTrigger>
+				<SelectContent>
+					<SelectItem value="apple">Apple</SelectItem>
+					<SelectItem value="banana">Banana</SelectItem>
+					<SelectItem value="cherry">Cherry</SelectItem>
+					<SelectItem value="orange">Orange</SelectItem>
+					<SelectItem value="grape">Grape</SelectItem>
+				</SelectContent>
+			</Select>
+		</div>
 	)
 }

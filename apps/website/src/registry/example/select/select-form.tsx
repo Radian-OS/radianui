@@ -44,18 +44,20 @@ export default function SelectForm() {
 
 	return (
 		<Form {...form}>
-			<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+			<form
+				onSubmit={form.handleSubmit(onSubmit)}
+				className="w-full max-w-80 space-y-6">
 				<FormField
 					control={form.control}
 					name="role"
 					render={({ field }) => (
-						<FormItem>
+						<FormItem className="w-full">
 							<FormLabel>Role</FormLabel>
 							<FormControl>
 								<Select
 									onValueChange={field.onChange}
 									defaultValue={field.value}>
-									<SelectTrigger className="w-80">
+									<SelectTrigger>
 										<SelectValue placeholder="Select a role" />
 									</SelectTrigger>
 									<SelectContent>

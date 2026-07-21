@@ -25,7 +25,7 @@ export default function FileUploadProgress() {
 	const isComplete = progress >= 100
 
 	return (
-		<div className="bg-bg border-soft w-90 flex flex-col gap-3 rounded-xl border p-2.5">
+		<div className="bg-bg border-soft max-w-90 flex w-full flex-col gap-3 rounded-xl border p-2.5">
 			<div className="flex items-center gap-3">
 				{/* SVG file icon */}
 				<svg

@@ -95,7 +95,7 @@ function ProfileCard() {
 
 export default function PopoverAlign() {
 	return (
-		<div className="flex items-center justify-center gap-6">
+		<div className="flex flex-wrap items-center justify-center gap-3">
 			<Popover>
 				<PopoverTrigger asChild>
 					<Button size={"32"} color="neutral" variant="outline">

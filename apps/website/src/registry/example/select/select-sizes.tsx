@@ -11,10 +11,10 @@ const Sizes = ["28", "32", "36", "40", "44", "48"] as const
 
 function SelectComponent({ size }: { size: (typeof Sizes)[number] }) {
 	return (
-		<div className="flex flex-col gap-1.5">
+		<div className="flex w-full flex-col gap-1.5">
 			<Label htmlFor={`select-${size}`}>Size - {size}</Label>
 			<Select>
-				<SelectTrigger id={`select-${size}`} size={size} className="w-80">
+				<SelectTrigger id={`select-${size}`} size={size} className="w-full">
 					<SelectValue />
 				</SelectTrigger>
 				<SelectContent>
@@ -31,7 +31,7 @@ function SelectComponent({ size }: { size: (typeof Sizes)[number] }) {
 
 export default function SelectSizes() {
 	return (
-		<div className="flex flex-col gap-5">
+		<div className="flex w-full max-w-80 flex-col gap-5">
 			{Sizes.map((size) => (
 				<SelectComponent size={size} key={size} />
 			))}
