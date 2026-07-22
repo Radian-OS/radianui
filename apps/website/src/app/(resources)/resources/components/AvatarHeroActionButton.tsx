@@ -4,22 +4,28 @@ import { Dices } from "lucide-react"
 import Link from "next/link"
 import { toast } from "sonner"
 import { Button } from "@/registry/ui/button"
-import { copyRandomAvatar } from "./avatar-playground-utils"
+import {
+	copyRandomAvatar,
+	randomSolidMapColor,
+} from "./avatar-playground-utils"
 
 export default function AvatarHeroActionButtons() {
 	const handleCopyRandom = async () => {
-		const avatarSrc = await copyRandomAvatar()
+		const tone = randomSolidMapColor()
+		const avatarSrc = await copyRandomAvatar(tone)
 		if (avatarSrc) {
 			toast.custom(() => (
-				<div className="bg-black-inverse text-fg-inverse sm:w-75 flex w-full items-center gap-2 rounded-lg px-3 py-2.5 shadow-[0_16px_24px_-4px_rgba(25,24,27,0.12)]">
+				<div className="bg-black-inverse text-fg-inverse sm:w-78.5 flex w-full items-center gap-2 rounded-[10px] p-2">
 					<img
 						src={avatarSrc}
 						alt=""
-						className="size-10 rounded-lg object-cover"
+						className="size-15 rounded-lg object-cover"
 					/>
 					<div className="text-fg-inverse space-y-0.5 text-sm">
-						<p className="font-semibold">Avatar copied to clipboard</p>
-						<p>Paste in Figma to use</p>
+						<p className="font-medium">Added to Clipboard</p>
+						<p className="text-fg-secondary font-normal">
+							Avatar has been copied to your clipboard.
+						</p>
 					</div>
 				</div>
 			))

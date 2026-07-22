@@ -9,6 +9,7 @@ import {
 	Grid2x2,
 	Link2,
 	Pipette,
+	RotateCw,
 	Sparkles,
 	Star,
 } from "lucide-react"
@@ -273,9 +274,20 @@ const ConfigPreferencesDialog = ({
 				</DialogBody>
 
 				<DialogFooter className="justify-between">
-					<Button color="neutral" variant="outline" onClick={handleReset}>
+					<Button
+						color="neutral"
+						variant="outline"
+						className="hidden sm:block"
+						onClick={handleReset}>
 						Reset Config
 					</Button>
+					<IconButton
+						color="neutral"
+						variant="outline"
+						className="sm:hidden"
+						onClick={handleReset}>
+						<RotateCw />
+					</IconButton>
 					<div className="flex items-center gap-2">
 						<DialogClose asChild>
 							<Button color="neutral" variant="outline">
