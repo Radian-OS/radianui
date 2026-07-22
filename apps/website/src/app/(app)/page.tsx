@@ -47,17 +47,17 @@ export default function Page() {
 										variant="strong">
 										New Version
 									</Badge>
-									Read Changelog Version
+									Read Changelog
 									<ArrowRight className="size-3.5" />
 								</Badge>
 								<BorderBeam size={50} />
 							</Link>
 							<h1 className="heading-1 dark:from-fg dark:to-fg-secondary not-dark:text-fg bg-clip-text text-center text-transparent dark:bg-gradient-to-b">
-								Build next gen of world class products and solutions
+								Open-Source React Components and Figma Design System
 							</h1>
 							<p className="text-fg-secondary w-full max-w-[640px] text-center text-lg font-normal">
-								Radian is a high-quality, flexible and open-source, design and
-								development library built using React, Radix and Tailwind.
+								A complete production-ready React components library, UI blocks,
+								and Figma UI Kit and design system for Design Teams.
 							</p>
 						</div>
 						<div className="flex w-full flex-col items-center justify-center gap-3 sm:flex-row">
