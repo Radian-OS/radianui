@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react"
+import React, { ReactNode, Suspense } from "react"
 import { GetProductUpdatesDialogController } from "@/components/get-product-updates-dialog-controller"
 import { NavigationBar } from "@/components/navbar/navigation-bar"
 
@@ -9,7 +9,9 @@ interface Props {
 export default function LandingLayout({ children }: Props) {
 	return (
 		<main>
-			<GetProductUpdatesDialogController />
+			<Suspense fallback={null}>
+				<GetProductUpdatesDialogController />
+			</Suspense>
 			<NavigationBar />
 			{children}
 		</main>
