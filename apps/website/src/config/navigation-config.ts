@@ -131,6 +131,7 @@ const COMPONENTS_DATA = [
 ]
 
 const NEW_COMPONENTS = new Set([
+	"Changelog",
 	"Context Menu",
 	"Menubar",
 	"Navigation Menu",
@@ -177,6 +178,7 @@ const GETTING_STARTED_ITEMS: NavigationItem[] = [
 		title: "Changelog",
 		url: "/docs/getting-started/changelog",
 		icon: ScrollText,
+		isNew: true,
 	},
 	{
 		title: "Resources",

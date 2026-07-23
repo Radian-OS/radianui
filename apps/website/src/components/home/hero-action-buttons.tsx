@@ -17,7 +17,11 @@ export default function HeroActionButtons() {
 				className="bg-elevation-level1/20 dark:hover:bg-fill2/40 hover:bg-fill2/40 w-full backdrop-blur-md sm:w-fit"
 				variant="outline"
 				color="neutral">
-				<Link href="/docs/getting-started/figma" className="w-full sm:w-fit">
+				<Link
+					target="_blank"
+					rel="noopener noreferrer"
+					href="https://www.figma.com/design/ZB8gTZwafZOYY7rdJjSRz6/%E2%9D%96-Preview-%E2%9D%96-Radian-Design-System-%E2%9D%96-Version-0.3?t=gjwvT9g2QCeoST8E-0"
+					className="w-full sm:w-fit">
 					<svg
 						width="14"
 						height="19"
