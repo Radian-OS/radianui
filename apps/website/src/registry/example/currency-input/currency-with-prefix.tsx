@@ -4,7 +4,7 @@ import { Label } from "@/registry/ui/label"
 
 export default function CurrencyWithPrefix() {
 	return (
-		<div className="flex flex-col gap-4">
+		<div className="flex w-full max-w-80 flex-col gap-4">
 			<div className="flex flex-col gap-1.5">
 				<Label htmlFor="us-dollars">US Dollars</Label>
 				<CurrencyInput

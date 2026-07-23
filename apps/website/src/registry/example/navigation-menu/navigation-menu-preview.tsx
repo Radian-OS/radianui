@@ -384,7 +384,7 @@ export default function NavigationMenuPreview() {
 							</div>
 						</NavigationMenuContent>
 					</NavigationMenuItem>
-					<NavigationMenuItem>
+					<NavigationMenuItem className="hidden md:flex">
 						<NavigationMenuLink
 							asChild
 							className={navigationMenuTriggerStyle()}>

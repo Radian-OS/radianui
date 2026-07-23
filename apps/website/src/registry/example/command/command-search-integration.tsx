@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { ArrowDown, ArrowUp, CheckIcon } from "lucide-react"
+import { ArrowDown, ArrowLeft, ArrowUp, CheckIcon } from "lucide-react"
 import Image from "next/image"
 import { cn } from "@/lib/utils"
 import { Badge } from "@/registry/ui/badge"
@@ -140,6 +140,7 @@ export default function CommandSearchIntegration() {
 	const [open, setOpen] = useState(false)
 	const [query, setQuery] = useState("")
 	const [selected, setSelected] = useState<Integration>(INTEGRATIONS[0])
+	const [showDetail, setShowDetail] = useState(false)
 	const [enabled, setEnabled] = useState<Record<string, boolean>>({
 		airtable: true,
 	})
@@ -166,8 +167,11 @@ export default function CommandSearchIntegration() {
 			</Button>
 			<CommandDialog
 				open={open}
-				onOpenChange={setOpen}
-				className="md:min-w-190 w-full p-0">
+				onOpenChange={(v) => {
+					setOpen(v)
+					if (!v) setShowDetail(false)
+				}}
+				className="md:min-w-190 md:max-w-190 w-[calc(100%-2.5rem)] max-w-[calc(100%-2.5rem)] p-0 sm:max-w-[calc(100%-2.5rem)]">
 				<Command
 					className="**:data-[slot=command-input-wrapper]:border-none **:data-[slot=command-input-wrapper]:p-0 border-none"
 					shouldFilter={false}>
@@ -184,7 +188,11 @@ export default function CommandSearchIntegration() {
 						</div>
 						{/* Left: Command list */}
 						<div className="flex w-full">
-							<div className="border-border flex flex-1 flex-col md:border-r">
+							<div
+								className={cn(
+									"border-border flex-1 flex-col md:flex md:border-r",
+									showDetail ? "hidden" : "flex"
+								)}>
 								{/* Search */}
 								<CommandList className="max-h-none">
 									<CommandEmpty className="text-fg-tertiary p-2 text-sm">
@@ -198,7 +206,10 @@ export default function CommandSearchIntegration() {
 													key={item.id}
 													item={item}
 													isSelected={selected.id === item.id}
-													onSelect={() => setSelected(item)}
+													onSelect={() => {
+														setSelected(item)
+														setShowDetail(true)
+													}}
 												/>
 											))}
 										</CommandGroup>
@@ -215,7 +226,10 @@ export default function CommandSearchIntegration() {
 													key={item.id}
 													item={item}
 													isSelected={selected.id === item.id}
-													onSelect={() => setSelected(item)}
+													onSelect={() => {
+														setSelected(item)
+														setShowDetail(true)
+													}}
 												/>
 											))}
 										</CommandGroup>
@@ -224,7 +238,19 @@ export default function CommandSearchIntegration() {
 							</div>
 
 							{/* Right: Detail panel */}
-							<div className="hidden flex-1 flex-col gap-6 p-5 md:flex">
+							<div
+								className={cn(
+									"flex-1 flex-col gap-6 p-5 md:flex",
+									showDetail ? "flex" : "hidden"
+								)}>
+								{/* Back button (mobile only) */}
+								<button
+									type="button"
+									onClick={() => setShowDetail(false)}
+									className="text-fg-secondary hover:text-fg flex items-center gap-1.5 text-sm md:hidden">
+									<ArrowLeft className="size-3.5" />
+									Back to list
+								</button>
 								{/* Logo + toggle */}
 								<div className="flex items-start justify-between">
 									<Image
@@ -275,7 +301,7 @@ export default function CommandSearchIntegration() {
 							</div>
 						</div>
 
-						<div className="border-soft flex items-center justify-between border-t p-4">
+						<div className="border-soft hidden items-center justify-between border-t p-4 md:flex">
 							<div className="text-fg-tertiaryflex flex items-center gap-4 text-xs">
 								<span className="flex items-center gap-2">
 									<div className="flex items-center gap-1">

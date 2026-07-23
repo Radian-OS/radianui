@@ -4,7 +4,7 @@ import { Label } from "@/registry/ui/label"
 
 function CurrencyStepExample() {
 	return (
-		<div className="flex flex-col gap-1.5">
+		<div className="flex w-full max-w-80 flex-col gap-1.5">
 			<Label htmlFor="step-eg">Please enter a value: (Press up/down)</Label>
 			<CurrencyInput
 				id="step-eg"

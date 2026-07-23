@@ -3,9 +3,9 @@ import { Label } from "@/registry/ui/label"
 
 export default function CurrencyDecimalSeparatorsExample() {
 	return (
-		<div className="flex flex-col items-center justify-center gap-4">
-			<div className="flex flex-col items-start justify-center gap-1.5">
-				<Label htmlFor="ds-1">Separator (.)</Label>
+		<div className="flex w-full max-w-80 flex-col items-center justify-center gap-4">
+			<div className="flex w-full flex-col items-start justify-center gap-1.5">
+				<Label htmlFor="ds-1">Decimal Separator (.)</Label>
 				<CurrencyInput
 					id="ds-1"
 					prefix="$"
@@ -13,8 +13,8 @@ export default function CurrencyDecimalSeparatorsExample() {
 					placeholder="Enter Amount Here"
 				/>
 			</div>
-			<div className="flex flex-col items-start justify-center gap-1.5">
-				<Label htmlFor="ds-2">Separator (,)</Label>
+			<div className="flex w-full flex-col items-start justify-center gap-1.5">
+				<Label htmlFor="ds-2">Decimal Separator (,)</Label>
 				<CurrencyInput
 					id="ds-2"
 					prefix="$"

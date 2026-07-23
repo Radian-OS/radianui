@@ -5,8 +5,8 @@ import { Label } from "@/registry/ui/label"
 
 export default function CurrencyWithInputGroup() {
 	return (
-		<div className="flex flex-col gap-4">
-			<div className="flex flex-col gap-1.5">
+		<div className="flex w-full max-w-80 flex-col gap-4">
+			<div className="flex w-full flex-col gap-1.5">
 				<Label htmlFor="ing-usd">US Dollars</Label>
 				<InputGroup>
 					<InputAddon>$</InputAddon>
@@ -14,7 +14,7 @@ export default function CurrencyWithInputGroup() {
 					<InputAddon>USD</InputAddon>
 				</InputGroup>
 			</div>
-			<div className="flex flex-col gap-1.5">
+			<div className="flex w-full flex-col gap-1.5">
 				<Label htmlFor="ing-eur">Euros</Label>
 				<InputGroup>
 					<InputAddon>€</InputAddon>
@@ -22,7 +22,7 @@ export default function CurrencyWithInputGroup() {
 					<InputAddon>EUR</InputAddon>
 				</InputGroup>
 			</div>
-			<div className="flex flex-col gap-1.5">
+			<div className="flex w-full flex-col gap-1.5">
 				<Label htmlFor="ing-pou">Pounds</Label>
 				<InputGroup>
 					<InputAddon>£</InputAddon>
@@ -30,7 +30,7 @@ export default function CurrencyWithInputGroup() {
 					<InputAddon>GBP</InputAddon>
 				</InputGroup>
 			</div>
-			<div className="flex flex-col gap-1.5">
+			<div className="flex w-full flex-col gap-1.5">
 				<Label htmlFor="ing-inr">Indian Rupees</Label>
 				<InputGroup>
 					<InputAddon>₹</InputAddon>

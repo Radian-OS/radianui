@@ -51,11 +51,11 @@ const NAV_CONFIG: NavEntry[] = [
 export default function NavigationMenuPreview() {
 	return (
 		<div className="flex items-center justify-center">
-			<NavigationMenu>
+			<NavigationMenu viewport={false}>
 				<NavigationMenuList>
 					{NAV_CONFIG.map((entry) =>
 						"href" in entry ? (
-							<NavigationMenuItem key={entry.label}>
+							<NavigationMenuItem key={entry.label} className="hidden md:flex">
 								<NavigationMenuLink
 									className={navigationMenuTriggerStyle()}
 									asChild>

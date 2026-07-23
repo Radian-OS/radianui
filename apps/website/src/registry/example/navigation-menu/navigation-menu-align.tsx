@@ -64,7 +64,7 @@ export default function NavigationMenuAlign() {
 				<NavigationMenuList>
 					{NAV_CONFIG.map((entry) =>
 						"href" in entry ? (
-							<NavigationMenuItem key={entry.label}>
+							<NavigationMenuItem key={entry.label} className="hidden md:flex">
 								<NavigationMenuLink
 									className={navigationMenuTriggerStyle()}
 									asChild>

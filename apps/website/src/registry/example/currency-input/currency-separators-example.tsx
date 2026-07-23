@@ -3,9 +3,9 @@ import { Label } from "@/registry/ui/label"
 
 export default function CurrencySeparatorsExample() {
 	return (
-		<div className="flex flex-col items-center justify-center gap-4">
-			<div className="flex flex-col items-start justify-center gap-1.5">
-				<Label htmlFor="cs-1">Separator (,)</Label>
+		<div className="flex w-full max-w-80 flex-col items-center justify-center gap-4">
+			<div className="flex w-full flex-col items-start justify-center gap-1.5">
+				<Label htmlFor="cs-1">Group Separator (,)</Label>
 				<CurrencyInput
 					id="cs-1"
 					prefix="$"
@@ -13,8 +13,8 @@ export default function CurrencySeparatorsExample() {
 					placeholder="Enter Amount Here"
 				/>
 			</div>
-			<div className="flex flex-col items-start justify-center gap-1.5">
-				<Label htmlFor="cs-2">Separator (.)</Label>
+			<div className="flex w-full flex-col items-start justify-center gap-1.5">
+				<Label htmlFor="cs-2">Group Separator (.)</Label>
 				<CurrencyInput
 					id="cs-2"
 					prefix="$"
@@ -23,8 +23,8 @@ export default function CurrencySeparatorsExample() {
 					placeholder="Enter Amount Here"
 				/>
 			</div>
-			<div className="flex flex-col items-start justify-center gap-1.5">
-				<Label htmlFor="cs-5">Separator Disabled</Label>
+			<div className="flex w-full flex-col items-start justify-center gap-1.5">
+				<Label htmlFor="cs-5">Group Separator Disabled</Label>
 				<CurrencyInput
 					id="cs-5"
 					prefix="$"
