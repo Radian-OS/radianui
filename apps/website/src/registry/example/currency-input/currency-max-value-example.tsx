@@ -3,7 +3,7 @@ import { Label } from "@/registry/ui/label"
 
 export default function CurrencyMaxValueExample() {
 	return (
-		<div className="flex flex-col items-start justify-center gap-1.5">
+		<div className="flex w-full max-w-80 flex-col items-start justify-center gap-1.5">
 			<Label htmlFor="c-m-v">Enter a value (max $9999)</Label>
 			<CurrencyInput
 				id="c-m-v"

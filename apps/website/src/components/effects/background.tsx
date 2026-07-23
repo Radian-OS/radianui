@@ -10,7 +10,7 @@ export default function Background({
 	return (
 		<div className="relative w-full px-4 md:px-5">
 			<div
-				className={`bg-primary/60 absolute left-1/2 ${topPosition} z-30 mx-auto aspect-square w-[300px] -translate-x-1/2 rounded-full rounded-b-none blur-[130px] min-[450px]:w-[400px] sm:w-[600px] md:w-[700px] xl:aspect-video xl:w-[1300px]`}></div>
+				className={`bg-primary/45 dark:bg-primary/60 absolute left-1/2 ${topPosition} z-30 mx-auto aspect-square w-[300px] -translate-x-1/2 rounded-full rounded-b-none blur-[130px] min-[450px]:w-[400px] sm:w-[600px] md:w-[700px] xl:aspect-video xl:w-[1300px]`}></div>
 
 			{/* Neutral background overlay */}
 			<div className="from-bg via-bg/0 to-bg bg-linear-to-b absolute inset-0 top-[380px] z-20 h-full max-h-[600px] w-full to-90% md:max-h-[960px]" />
@@ -31,7 +31,7 @@ export default function Background({
 				squareSize={4}
 				gridGap={6}
 				color="#6B7280"
-				maxOpacity={0.4}
+				maxOpacity={0.2}
 				flickerChance={0.3}
 			/>
 

@@ -127,12 +127,12 @@ const inputWrapperVariants = cva(
 	{
 		variants: {
 			size: {
-				"28": "gap-1.5 [&_svg:not([class*=size-])]:size-4",
-				"32": "gap-2 [&_svg:not([class*=size-])]:size-4.5",
-				"36": "gap-2 [&_svg:not([class*=size-])]:size-5",
-				"40": "gap-2 [&_svg:not([class*=size-])]:size-5",
-				"44": "gap-2 [&_svg:not([class*=size-])]:size-5",
-				"48": "gap-2 [&_svg:not([class*=size-])]:size-5",
+				"28": "gap-1.5 h-7 [&_svg:not([class*=size-])]:size-4",
+				"32": "gap-2 h-8 [&_svg:not([class*=size-])]:size-4.5",
+				"36": "gap-2 h-9 [&_svg:not([class*=size-])]:size-5",
+				"40": "gap-2 h-10 [&_svg:not([class*=size-])]:size-5",
+				"44": "gap-2 h-11 [&_svg:not([class*=size-])]:size-5",
+				"48": "gap-2 h-12 [&_svg:not([class*=size-])]:size-5",
 			},
 			disabled: {
 				true: "cursor-not-allowed opacity-60 bg-fill1 has-[:focus-visible]:ring-0 has-[:focus-visible]:border-alpha [&_svg]:text-fg-tertiary",

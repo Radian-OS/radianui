@@ -3,8 +3,8 @@ import { Label } from "@/registry/ui/label"
 
 export default function CurrencyLocaleConfig() {
 	return (
-		<div className="flex flex-col items-center justify-center gap-4">
-			<div className="flex flex-col items-start justify-center gap-1.5">
+		<div className="flex w-full max-w-80 flex-col items-center justify-center gap-4">
+			<div className="flex w-full flex-col items-start justify-center gap-1.5">
 				<Label htmlFor="locale1">US Dollar</Label>
 				<CurrencyInput
 					id="locale1"
@@ -12,7 +12,7 @@ export default function CurrencyLocaleConfig() {
 					placeholder="Enter Amount here"
 				/>
 			</div>
-			<div className="flex flex-col items-start justify-center gap-1.5">
+			<div className="flex w-full flex-col items-start justify-center gap-1.5">
 				<Label htmlFor="locale2">British Pound</Label>
 				<CurrencyInput
 					id="locale2"
@@ -20,7 +20,7 @@ export default function CurrencyLocaleConfig() {
 					placeholder="Enter Amount here"
 				/>
 			</div>
-			<div className="flex flex-col items-start justify-center gap-1.5">
+			<div className="flex w-full flex-col items-start justify-center gap-1.5">
 				<Label htmlFor="locale3">Japanese Yen</Label>
 				<CurrencyInput
 					id="locale3"
@@ -28,7 +28,7 @@ export default function CurrencyLocaleConfig() {
 					placeholder="Enter Amount here"
 				/>
 			</div>
-			<div className="flex flex-col items-start justify-center gap-1.5">
+			<div className="flex w-full flex-col items-start justify-center gap-1.5">
 				<Label htmlFor="locale4">Indian Rupee</Label>
 				<CurrencyInput
 					id="locale4"
@@ -36,7 +36,7 @@ export default function CurrencyLocaleConfig() {
 					placeholder="Enter Amount here"
 				/>
 			</div>
-			<div className="flex flex-col items-start justify-center gap-1.5">
+			<div className="flex w-full flex-col items-start justify-center gap-1.5">
 				<Label htmlFor="locale5">Chinese Yuan</Label>
 				<CurrencyInput
 					id="locale5"

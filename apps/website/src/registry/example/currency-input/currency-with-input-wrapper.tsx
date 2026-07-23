@@ -5,8 +5,8 @@ import { Label } from "@/registry/ui/label"
 
 export default function CurrencyWithInputWrapper() {
 	return (
-		<div className="flex flex-col gap-4">
-			<div className="flex flex-col gap-1.5">
+		<div className="flex w-full max-w-80 flex-col gap-4">
+			<div className="flex w-full flex-col gap-1.5">
 				<Label htmlFor="inw-usd">US Dollars</Label>
 				<InputWrapper>
 					<span>$</span>
@@ -14,7 +14,7 @@ export default function CurrencyWithInputWrapper() {
 					<span>USD</span>
 				</InputWrapper>
 			</div>
-			<div className="flex flex-col gap-1.5">
+			<div className="flex w-full flex-col gap-1.5">
 				<Label htmlFor="inw-eu">Euros</Label>
 				<InputWrapper>
 					<span>€</span>
@@ -22,7 +22,7 @@ export default function CurrencyWithInputWrapper() {
 					<span>EUR</span>
 				</InputWrapper>
 			</div>
-			<div className="flex flex-col gap-1.5">
+			<div className="flex w-full flex-col gap-1.5">
 				<Label htmlFor="inw-po">Pounds</Label>
 				<InputWrapper>
 					<span>£</span>
@@ -30,7 +30,7 @@ export default function CurrencyWithInputWrapper() {
 					<span>GBP</span>
 				</InputWrapper>
 			</div>
-			<div className="flex flex-col gap-1.5">
+			<div className="flex w-full flex-col gap-1.5">
 				<Label htmlFor="inw-inr">Indian Rupees</Label>
 				<InputWrapper>
 					<span>₹</span>
