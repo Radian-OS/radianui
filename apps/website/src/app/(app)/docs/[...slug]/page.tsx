@@ -9,7 +9,9 @@ import { Mdx } from "@/components/mdx"
 import { PreviousNextButtons } from "@/components/prev-next-buttons"
 import { PreviousNextIconButtons } from "@/components/prev-next-icon-buttons"
 import { JsonLd } from "@/components/seo/json-ld"
+import { VersionDisplayBadge } from "@/components/version-display-badge"
 import { websiteMetadata } from "@/config/website-metadata-config"
+import { getPackageVersion } from "@/lib/get-package-info"
 import { absoluteUrl, getDocStructuredData } from "@/lib/structured-data"
 import { Badge } from "@/registry/ui/badge"
 import { Button, IconButton } from "@/registry/ui/button"
@@ -88,6 +90,10 @@ export default async function Page({ params }: DocPageProps) {
 
 	if (!doc) return notFound()
 	const url = absoluteUrl(currentPath)
+	const version =
+		doc.slugAsParams === "getting-started/cli"
+			? await getPackageVersion()
+			: null
 
 	return (
 		<>
@@ -113,6 +119,9 @@ export default async function Page({ params }: DocPageProps) {
 				<div className="flex flex-col">
 					<h1 className="heading-4 my-2">{doc.title}</h1>
 					<p className="text-fg-secondary mb-5">{doc.description}</p>
+					{version && (
+						<VersionDisplayBadge version={version} className="mb-5" />
+					)}
 					{doc.links && (
 						<section className="flex justify-between">
 							<div className="flex flex-wrap items-center gap-2 pb-10">

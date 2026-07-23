@@ -490,7 +490,7 @@ export function ChangelogV03Content() {
 				<div className="text-fg-secondary mb-15 space-y-6 text-lg font-normal">
 					<p>
 						Radian is all about giving you a solid, scalable foundation for your
-						SaaS projects. We&apos;ve packed this version with improvements to
+						SaaS projects. We&apos;ve packed this update with improvements to
 						help you ship faster. We can&apos;t wait to see your work.
 					</p>
 					<p>Happy Designing!! 🚀✨</p>

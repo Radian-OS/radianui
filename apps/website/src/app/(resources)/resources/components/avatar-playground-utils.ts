@@ -49,7 +49,7 @@ export function getImageBackgroundTint(tone: string): string | undefined {
 
 	const filename = tone.split("/").pop()?.split("?")[0] ?? ""
 	const imageName = filename
-		.replace(/^IMG-/, "")
+		.replace(/^(IMG|Grad)-/, "")
 		.replace(/\.[^.]+$/, "")
 		.replace(/%20/gi, " ")
 
@@ -195,12 +195,48 @@ export function randomSolidMapColor(): string {
 	]
 }
 
+/**
+ * Simple in-memory cache for fetched image data URLs.
+ * Avoids re-fetching the same CDN image on repeated copy operations.
+ */
+const imageDataUrlCache = new Map<string, string>()
+
+/**
+ * Fetches an image URL and returns its data URL (base64).
+ * Uses an in-memory cache to avoid redundant network requests.
+ */
+async function fetchImageAsDataUrl(url: string): Promise<string> {
+	const cached = imageDataUrlCache.get(url)
+	if (cached) return cached
+
+	const res = await fetch(url)
+	const buffer = await res.arrayBuffer()
+	const contentType = res.headers.get("content-type") || "image/png"
+
+	// Convert ArrayBuffer to base64 in chunks to avoid call stack limits
+	const bytes = new Uint8Array(buffer)
+	let binary = ""
+	const chunkSize = 8192
+	for (let i = 0; i < bytes.length; i += chunkSize) {
+		binary += String.fromCharCode(...bytes.subarray(i, i + chunkSize))
+	}
+	const base64 = btoa(binary)
+	const dataUrl = `data:${contentType};base64,${base64}`
+
+	imageDataUrlCache.set(url, dataUrl)
+	return dataUrl
+}
+
 export async function generateEditableSvg(
 	tone: string,
 	src: string
 ): Promise<string> {
 	const size = 512
 	const imageBackgroundTint = getImageBackgroundTint(tone)
+
+	// Kick off the avatar fetch immediately so it runs in parallel
+	// with any background image fetch below.
+	const avatarPromise = fetchImageAsDataUrl(src).catch(() => "")
 
 	// Build SVG background element
 	let bgElement = ""
@@ -222,34 +258,18 @@ export async function generateEditableSvg(
 		const color = resolveRadianColor(tone)
 		bgElement = `<rect width="${size}" height="${size}" fill="${color}" />`
 	} else if (tone.startsWith("http") || tone.startsWith("/")) {
-		// Embed background image as base64
+		// Embed background image as base64 (fetched in parallel with avatar)
 		try {
-			const res = await fetch(tone)
-			const blob = await res.blob()
-			const base64 = await new Promise<string>((resolve) => {
-				const reader = new FileReader()
-				reader.onloadend = () => resolve(reader.result as string)
-				reader.readAsDataURL(blob)
-			})
+			const base64 = await fetchImageAsDataUrl(tone)
 			bgElement = `<image href="${base64}" width="${size}" height="${size}" preserveAspectRatio="xMidYMid slice" />`
 		} catch {
 			bgElement = `<rect width="${size}" height="${size}" fill="#f3f4f6" />`
 		}
 	}
 
-	// Embed avatar as base64
-	let avatarDataUrl = ""
-	try {
-		const res = await fetch(src)
-		const blob = await res.blob()
-		avatarDataUrl = await new Promise<string>((resolve) => {
-			const reader = new FileReader()
-			reader.onloadend = () => resolve(reader.result as string)
-			reader.readAsDataURL(blob)
-		})
-	} catch {
-		return ""
-	}
+	// Await the avatar data URL (may already be resolved from cache or parallel fetch)
+	const avatarDataUrl = await avatarPromise
+	if (!avatarDataUrl) return ""
 
 	// Keep the editable SVG visually consistent with the browser and PNG export:
 	// the avatar is opaque, so the Color Burn fill has to sit above it. Figma
@@ -270,12 +290,6 @@ export async function generateEditableSvg(
 		const [, from, to] = tone.split(":")
 		shadowElement = `<defs><linearGradient id="avatar-shadow-grad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="${size}" y2="${size}"><stop offset="0%" stop-color="${from}" /><stop offset="100%" stop-color="${to}" /></linearGradient></defs><rect width="${size}" height="${size}" fill="url(#avatar-shadow-grad)" fill-opacity="${AVATAR_BLEND_OPACITY}" />`
 	}
-	// else if (tone.startsWith("#")) {
-	// 	blendOverlayElement = `<rect width="${size}" height="${size}" fill="${tone}" fill-opacity="0.15" />`
-	// } else if (tone.startsWith("radian:")) {
-	// 	const color = resolveRadianColor(tone)
-	// 	blendOverlayElement = `<rect width="${size}" height="${size}" fill="${color}" fill-opacity="0.15" />`
-	// }
 
 	return [
 		`<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">`,
@@ -298,21 +312,34 @@ export async function generateEditableSvg(
 }
 
 /**
- * Picks a random avatar, generates an editable SVG (transparent background),
- * and copies it to the clipboard as text so it can be pasted in Figma.
+ * Picks a random avatar, generates an editable SVG with the given background
+ * tone, and copies it to the clipboard as text so it can be pasted in Figma.
  * Returns the avatar image URL on success, or `null` on failure.
+ *
+ * @param tone - The background tone to apply. Defaults to `"none"` (transparent).
  */
-export async function copyRandomAvatar(): Promise<string | null> {
+export async function copyRandomAvatar(
+	tone: string = "none"
+): Promise<string | null> {
 	const src = AVATARS[Math.floor(Math.random() * AVATARS.length)]
-	const svg = await generateEditableSvg("none", src)
-	if (!svg) return null
+
+	// Create the ClipboardItem synchronously (required by Safari) with a
+	// deferred Promise for the actual blob content.
+	const svgBlobPromise = generateEditableSvg(tone, src).then((svg) => {
+		if (!svg) throw new Error("SVG generation failed")
+		return new Blob([svg], { type: "text/plain" })
+	})
 
 	try {
-		const blob = new Blob([svg], { type: "text/plain" })
-		await navigator.clipboard.write([new ClipboardItem({ "text/plain": blob })])
+		await navigator.clipboard.write([
+			new ClipboardItem({ "text/plain": svgBlobPromise }),
+		])
 		return src
 	} catch {
+		// Fallback for browsers that don't support Promise in ClipboardItem
 		try {
+			const svg = await generateEditableSvg(tone, src)
+			if (!svg) return null
 			await navigator.clipboard.writeText(svg)
 			return src
 		} catch {

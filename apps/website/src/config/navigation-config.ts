@@ -130,6 +130,17 @@ const COMPONENTS_DATA = [
 	"Tooltip",
 ]
 
+const NEW_COMPONENTS = new Set([
+	"Changelog",
+	"Context Menu",
+	"Menubar",
+	"Navigation Menu",
+	"Sidebar",
+	"Stepper",
+	"Toggle",
+	"Toggle Group",
+])
+
 // Map Components array to NavigationItem
 const generateComponentsItems = COMPONENTS_DATA.map((title) => ({
 	title,
@@ -137,6 +148,7 @@ const generateComponentsItems = COMPONENTS_DATA.map((title) => ({
 	thumbnail: getThumbnail(title),
 	thumbnailDark: getThumbnail(title, true),
 	alt: `${title} UI component illustration`,
+	isNew: NEW_COMPONENTS.has(title),
 }))
 
 // ===== Getting Started & Installation Sections =====
@@ -166,16 +178,19 @@ const GETTING_STARTED_ITEMS: NavigationItem[] = [
 		title: "Changelog",
 		url: "/docs/getting-started/changelog",
 		icon: ScrollText,
+		isNew: true,
 	},
 	{
 		title: "Resources",
 		url: "/docs/getting-started/resources",
 		icon: ResourcesIcon,
+		isNew: true,
 	},
 	{
 		title: "llms.txt",
 		url: "/llms.txt",
 		icon: FileText,
+		isNew: true,
 	},
 ]
 

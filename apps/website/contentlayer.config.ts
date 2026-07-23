@@ -158,7 +158,6 @@ export const Changelog = defineDocumentType(() => ({
 	filePathPattern: `changelog/**/*.mdx`,
 	contentType: "mdx",
 	fields: {
-		version: { type: "string", required: true },
 		date: { type: "date", required: true },
 	},
 }))

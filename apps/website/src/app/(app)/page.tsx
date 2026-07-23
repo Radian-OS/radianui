@@ -9,6 +9,7 @@ import Footer from "@/components/home/footer"
 import HeroActionButtons from "@/components/home/hero-action-buttons"
 import InvertedSection from "@/components/home/inverted-section"
 import PlaygroundSectionWrapper from "@/components/home/playground-section-wrapper"
+import { RotatingWords } from "@/components/home/rotating-words"
 import VideoSection from "@/components/home/video-section"
 import VideoDialogPreview from "@/components/home/video/video-dialog-preview"
 import { JsonLd } from "@/components/seo/json-ld"
@@ -47,17 +48,21 @@ export default function Page() {
 										variant="strong">
 										New Version
 									</Badge>
-									Read Changelog Version
+									Read Changelog
 									<ArrowRight className="size-3.5" />
 								</Badge>
 								<BorderBeam size={50} />
 							</Link>
 							<h1 className="heading-1 dark:from-fg dark:to-fg-secondary not-dark:text-fg bg-clip-text text-center text-transparent dark:bg-gradient-to-b">
-								Build next gen of world class products and solutions
+								Open-Source React Components and Figma Design System
 							</h1>
 							<p className="text-fg-secondary w-full max-w-[640px] text-center text-lg font-normal">
-								Radian is a high-quality, flexible and open-source, design and
-								development library built using React, Radix and Tailwind.
+								A complete production-ready React components library, UI blocks,
+								and Figma UI Kit and design system for{" "}
+								<RotatingWords
+									words={["Designers", "Developers", "Startups", "Agencies"]}
+									className="text-fg font-medium"
+								/>
 							</p>
 						</div>
 						<div className="flex w-full flex-col items-center justify-center gap-3 sm:flex-row">
