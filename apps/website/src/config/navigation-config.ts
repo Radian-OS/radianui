@@ -178,7 +178,6 @@ const GETTING_STARTED_ITEMS: NavigationItem[] = [
 		title: "Changelog",
 		url: "/docs/getting-started/changelog",
 		icon: ScrollText,
-		isNew: true,
 	},
 	{
 		title: "Resources",
