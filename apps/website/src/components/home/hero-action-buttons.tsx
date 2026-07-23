@@ -17,9 +17,7 @@ export default function HeroActionButtons() {
 				className="bg-elevation-level1/20 dark:hover:bg-fill2/40 hover:bg-fill2/40 w-full backdrop-blur-md sm:w-fit"
 				variant="outline"
 				color="neutral">
-				<Link
-					href="/docs/getting-started/accordion"
-					className="w-full sm:w-fit">
+				<Link href="/docs/getting-started/figma" className="w-full sm:w-fit">
 					<svg
 						width="14"
 						height="19"
