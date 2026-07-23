@@ -73,7 +73,7 @@ const FUNDAMENTALS_DATA = [
 	},
 ]
 
-const COMPONENTS_DATA = [
+export const COMPONENTS_DATA = [
 	"Alert",
 	"Alert Dialog",
 	"Accordion",

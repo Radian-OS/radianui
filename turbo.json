@@ -56,6 +56,10 @@
 		"generate-component-json": {
 			"dependsOn": [],
 			"outputs": []
+		},
+		"generate-css": {
+			"dependsOn": [],
+			"outputs": []
 		}
 	}
 }

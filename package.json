@@ -21,6 +21,7 @@
 		"pub:release": "cd packages/cli && pnpm pub:release",
 		"check-types": "turbo run check-types",
 		"generate-component-json": "turbo run generate-component-json",
+		"generate-css": "turbo run generate-css",
 		"lint": "turbo run lint",
 		"prepare": "husky"
 	},

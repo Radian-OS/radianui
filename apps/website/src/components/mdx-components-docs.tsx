@@ -54,6 +54,7 @@ import ChangelogCard from "./changelog-card"
 import ChangelogList from "./changelog-list"
 import { ChangelogV03Content } from "./changelog/v0-3-content"
 import { CodeBlockCommandServer } from "./code-block-command-server"
+import { CodeCollapsibleFileWrapper } from "./code-collapsible-file-wrapper"
 import { CodeCollapsibleWrapper } from "./code-collapsible-wrapper"
 import ColorTableThemeToggle from "./color/color-table-theme-toggle"
 import { ComponentExpansionGrid } from "./component-expansion"
@@ -667,6 +668,7 @@ export const components = {
 		)
 	},
 	CodeCollapsibleWrapper,
+	CodeCollapsibleFileWrapper,
 	ThemeProviderForColorTable,
 	AspectRatio,
 	Divider,

@@ -20,7 +20,8 @@
 		"generate-registry": "tsx src/scripts/generate-registry.ts",
 		"generate-example-registry": "tsx src/scripts/generate-example-registry.ts",
 		"generate-blocks-index": "tsx src/scripts/generate-blocks-index.ts",
-		"build:llms": "tsx src/scripts/generate-llms.ts"
+		"build:llms": "tsx src/scripts/generate-llms.ts",
+		"generate-css": "tsx src/scripts/generate-css.ts"
 	},
 	"dependencies": {
 		"@dnd-kit/core": "^6.3.1",
@@ -33,7 +34,6 @@
 		"@emotion/is-prop-valid": "^1.3.1",
 		"@hookform/resolvers": "5.1.0",
 		"@internationalized/date": "^3.9.0",
-		"@neondatabase/serverless": "^1.0.0",
 		"@next/third-parties": "^15.2.6",
 		"@oslojs/encoding": "^1.1.0",
 		"@radix-ui/react-accordion": "^1.2.3",
@@ -82,7 +82,7 @@
 		"culori": "^4.0.1",
 		"date-fns": "^4.1.0",
 		"date-fns-tz": "^3.2.0",
-		"dotenv": "^16.4.7",
+		"dotenv": "^17.4.1",
 		"embla-carousel-react": "^8.6.0",
 		"emoji-mart": "^5.6.0",
 		"emoji-picker-react": "^4.15.2",
@@ -100,6 +100,7 @@
 		"next": "15.2.6",
 		"next-contentlayer2": "^0.5.5",
 		"next-themes": "^0.4.6",
+		"nuqs": "^2.8.9",
 		"ogl": "^1.0.11",
 		"pg": "^8.14.1",
 		"posthog-js": "^1.234.6",
@@ -151,7 +152,7 @@
 		"next-sitemap": "^4.2.3",
 		"rehype-slug": "^6.0.0",
 		"tailwindcss": "^4.1.0",
-		"tsx": "^4.19.3",
+		"tsx": "^4.21.0",
 		"tw-animate-css": "^1.3.4",
 		"typescript": "^5.8.2"
 	}

@@ -4,8 +4,16 @@ import path from "path"
 import prompts from "prompts"
 import { AddOptions } from "@/commands/add"
 import { InitOptions } from "@/commands/init"
+import {
+	COLORS,
+	DEFAULT_BRAND_COLOR,
+	DEFAULT_FONT,
+	DEFAULT_FRAMEWORK,
+	DEFAULT_PROJECT_NAME,
+	FONTS,
+	MAX_PROJECT_NAME_LENGTH,
+} from "@/registry/constants"
 import { txt } from "@/utils/colors"
-import { COLORS, DEFAULT_BRAND_COLOR, DEFAULT_FONT, DEFAULT_FRAMEWORK, DEFAULT_PROJECT_NAME, FONTS, MAX_PROJECT_NAME_LENGTH } from "@/utils/constants"
 import { FrameworkName } from "@/utils/frameworks"
 import { handleError } from "@/utils/handleError"
 import { logger } from "@/utils/logger"
@@ -23,7 +31,9 @@ export type PromptForNewProject = ProjectPrompts & {
 	projectName: string
 }
 
-export const promptForNewProject = async (options: InitOptions): Promise<PromptForNewProject> => {
+export const promptForNewProject = async (
+	options: InitOptions
+): Promise<PromptForNewProject> => {
 	if (options.defaultConfigurations) {
 		return {
 			projectName: DEFAULT_PROJECT_NAME,
@@ -64,7 +74,8 @@ export const promptForNewProject = async (options: InitOptions): Promise<PromptF
 					validate: (value: string): string | boolean => {
 						const name = value.trim()
 						if (name.length === 0) return "Project name cannot be empty."
-						if (name.length > MAX_PROJECT_NAME_LENGTH) return `Project name must be less than ${MAX_PROJECT_NAME_LENGTH} characters.`
+						if (name.length > MAX_PROJECT_NAME_LENGTH)
+							return `Project name must be less than ${MAX_PROJECT_NAME_LENGTH} characters.`
 						return true
 					},
 				},
@@ -159,10 +170,18 @@ export const promptForNewProject = async (options: InitOptions): Promise<PromptF
 					name: "font",
 					message: "Which font would you like to use for your project?",
 					choices: (() => {
-						const defaultFont = FONTS.find((font) => font.value === DEFAULT_FONT)
-						const otherFonts = FONTS.filter((font) => font.value !== DEFAULT_FONT)
-						const sortedOtherFonts = otherFonts.sort((a, b) => a.title.localeCompare(b.title))
-						const sortedFonts = defaultFont ? [defaultFont, ...sortedOtherFonts] : sortedOtherFonts
+						const defaultFont = FONTS.find(
+							(font) => font.value === DEFAULT_FONT
+						)
+						const otherFonts = FONTS.filter(
+							(font) => font.value !== DEFAULT_FONT
+						)
+						const sortedOtherFonts = otherFonts.sort((a, b) =>
+							a.title.localeCompare(b.title)
+						)
+						const sortedFonts = defaultFont
+							? [defaultFont, ...sortedOtherFonts]
+							: sortedOtherFonts
 						return sortedFonts.map((font) => ({
 							title: font.title,
 							value: font.value,
@@ -178,7 +197,9 @@ export const promptForNewProject = async (options: InitOptions): Promise<PromptF
 	return { projectName, useSrcDir, framework, brandColor, font }
 }
 
-export async function promptForExistingProject(options: InitOptions): Promise<Pick<ProjectPrompts, "brandColor" | "font">> {
+export async function promptForExistingProject(
+	options: InitOptions
+): Promise<Pick<ProjectPrompts, "brandColor" | "font">> {
 	const { brandColor } = options.color
 		? { brandColor: options.color }
 		: await prompts(
@@ -222,10 +243,16 @@ export async function promptForExistingProject(options: InitOptions): Promise<Pi
  * @param options - The parsed command options.
  * @returns A promise resolving to an array of selected component names.
  */
-export async function promptForComponents(options: AddOptions): Promise<string[]> {
+export async function promptForComponents(
+	options: AddOptions
+): Promise<string[]> {
 	try {
 		const registryIndex = await getRegistryComponents()
-		const componentNames = registryIndex.filter((component) => component.type === "ui" || component.type === "animated").map((components) => components.name)
+		const componentNames = registryIndex
+			.filter(
+				(component) => component.type === "ui" || component.type === "animated"
+			)
+			.map((components) => components.name)
 
 		if (options.all) {
 			return componentNames
@@ -261,7 +288,10 @@ export async function promptForComponents(options: AddOptions): Promise<string[]
 export async function promptForProject(
 	options: InitOptions,
 	hasExistingProject: boolean,
-	projectInfo?: { framework: { name: FrameworkName }; hasSrcDir: boolean } | null
+	projectInfo?: {
+		framework: { name: FrameworkName }
+		hasSrcDir: boolean
+	} | null
 ): Promise<ProjectPrompts> {
 	if (hasExistingProject && projectInfo) {
 		const { brandColor, font } = await promptForExistingProject(options)
@@ -288,6 +318,7 @@ export async function promptForProject(
 export function handlePromptCancel() {
 	logger.break()
 	logger.error("Aborted.")
+	logger.error(new Error().stack ?? "")
 	logger.break()
 	process.exit(1)
 }
