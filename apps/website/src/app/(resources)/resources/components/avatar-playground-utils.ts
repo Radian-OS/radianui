@@ -1,6 +1,6 @@
 import type { CSSProperties } from "react"
 
-export const AVATAR_BLEND_OPACITY = 0.2
+export const AVATAR_BLEND_OPACITY = 0.15
 
 export const SOLID_COLOR_MAP: Record<string, string> = {
 	"Cool-Gray/L100%": "#FFFFFF",
@@ -273,7 +273,7 @@ export async function generateEditableSvg(
 
 	// Keep the editable SVG visually consistent with the browser and PNG export:
 	// the avatar is opaque, so the Color Burn fill has to sit above it. Figma
-	// expects the layer itself at 100% opacity with a 20%-opaque color fill.
+	// expects the layer itself at 100% opacity with a 15%-opaque color fill.
 	let shadowElement = ""
 	if (imageBackgroundTint) {
 		shadowElement = `<rect width="${size}" height="${size}" fill="${imageBackgroundTint}" fill-opacity="${AVATAR_BLEND_OPACITY}" />`

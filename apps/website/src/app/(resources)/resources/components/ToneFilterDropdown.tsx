@@ -19,6 +19,7 @@ import {
 	BACKGROUNDS,
 	CDN_COLOR_NAMES,
 	type ColorMode,
+	GRADIENT_COLOR_NAMES,
 	GRADIENT_IMAGES,
 	RADIAN_COLORS,
 	type RadianColor,
@@ -33,6 +34,7 @@ import {
 export {
 	BACKGROUNDS,
 	GRADIENT_IMAGES,
+	GRADIENT_COLOR_NAMES,
 	RADIAN_COLORS,
 	SOLID_COLORS,
 	formatColorName,
@@ -233,7 +235,9 @@ export function ToneFilterDropdown({
 							<DropdownLabel className="px-0 text-xs">Gradients</DropdownLabel>
 							<div className="grid grid-cols-9 gap-2">
 								{GRADIENT_IMAGES.map((src, idx) => {
-									const colorName = getCdnColorDisplayName(CDN_COLOR_NAMES[idx])
+									const colorName = getCdnColorDisplayName(
+										GRADIENT_COLOR_NAMES[idx]
+									)
 									return (
 										<button
 											key={src}
