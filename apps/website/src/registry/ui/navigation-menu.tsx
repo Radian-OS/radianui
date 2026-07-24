@@ -1,18 +1,23 @@
+"use client"
+
 import * as React from "react"
 import * as NavigationMenuPrimitive from "@radix-ui/react-navigation-menu"
 import { type VariantProps, cva } from "class-variance-authority"
 import { ChevronDownIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { NavigationMenuViewportPortal } from "./navigation-menu-viewport-portal"
 
 function NavigationMenu({
 	className,
 	children,
 	viewport = true,
 	viewportClassName,
+	viewportPortal = false,
 	...props
 }: React.ComponentProps<typeof NavigationMenuPrimitive.Root> & {
 	viewport?: boolean
 	viewportClassName?: string
+	viewportPortal?: boolean
 }) {
 	return (
 		<NavigationMenuPrimitive.Root
@@ -24,7 +29,12 @@ function NavigationMenu({
 			)}
 			{...props}>
 			{children}
-			{viewport && <NavigationMenuViewport className={viewportClassName} />}
+			{viewport && (
+				<NavigationMenuViewport
+					className={viewportClassName}
+					portal={viewportPortal}
+				/>
+			)}
 		</NavigationMenuPrimitive.Root>
 	)
 }
@@ -116,21 +126,33 @@ function NavigationMenuContent({
 
 function NavigationMenuViewport({
 	className,
+	portal = false,
 	...props
-}: React.ComponentProps<typeof NavigationMenuPrimitive.Viewport>) {
+}: React.ComponentProps<typeof NavigationMenuPrimitive.Viewport> & {
+	portal?: boolean
+}) {
+	const viewport = (
+		<NavigationMenuPrimitive.Viewport
+			data-slot="navigation-menu-viewport"
+			className={cn(
+				"origin-top-center border-border bg-elevation-level1 text-fg data-[state=closed]:animate-out data-[state=closed]:zoom-out-95 data-[state=open]:animate-in data-[state=open]:zoom-in-90 relative mt-1.5 h-[var(--radix-navigation-menu-viewport-height)] w-full overflow-hidden rounded-md border shadow md:w-[var(--radix-navigation-menu-viewport-width)]",
+				className
+			)}
+			{...props}
+		/>
+	)
+
+	if (portal) {
+		return (
+			<NavigationMenuViewportPortal>{viewport}</NavigationMenuViewportPortal>
+		)
+	}
+
 	return (
 		<div
-			className={cn(
-				"absolute left-0 top-full isolate z-50 flex w-full justify-center"
-			)}>
-			<NavigationMenuPrimitive.Viewport
-				data-slot="navigation-menu-viewport"
-				className={cn(
-					"origin-top-center border-border bg-elevation-level1 text-fg data-[state=closed]:animate-out data-[state=closed]:zoom-out-95 data-[state=open]:animate-in data-[state=open]:zoom-in-90 relative mt-1.5 h-[var(--radix-navigation-menu-viewport-height)] w-full overflow-hidden rounded-md border shadow md:w-[var(--radix-navigation-menu-viewport-width)]",
-					className
-				)}
-				{...props}
-			/>
+			data-slot="navigation-menu-viewport-positioner"
+			className="absolute left-0 top-full isolate z-50 flex w-full justify-center">
+			{viewport}
 		</div>
 	)
 }

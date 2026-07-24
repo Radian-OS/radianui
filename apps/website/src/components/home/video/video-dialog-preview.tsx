@@ -99,17 +99,16 @@ export default function VideoDialogPreview() {
 			</DialogTrigger>
 
 			{/* Dialog Content */}
-			<DialogContent className="mx-auto max-h-[840px] max-w-[1400px] overflow-hidden p-0">
+			<DialogContent className="mx-auto max-h-[90dvh] w-[calc(100vw-1rem)] max-w-[calc(100vw-1rem)] overflow-hidden p-0 sm:w-[90vw] sm:max-w-[90vw]">
 				<DialogHeader className="sr-only">
 					<DialogTitle>Radian OS demo</DialogTitle>
 					<DialogDescription>Watch the Radian OS demo video.</DialogDescription>
 				</DialogHeader>
 
 				<DialogBody className="p-0">
-					<div className="relative h-0 w-full pb-[56.25%]">
-						{/* 16:9 */}
+					<div className="relative aspect-video w-full">
 						<iframe
-							className="absolute left-0 top-0 h-full w-full rounded-lg"
+							className="absolute inset-0 h-full w-full rounded-lg"
 							referrerPolicy="strict-origin-when-cross-origin"
 							src="https://www.youtube.com/embed/XeYZ6IauaMc?si=mzZLOA22F9MOSAyP"
 							title="Radian OS Demo"

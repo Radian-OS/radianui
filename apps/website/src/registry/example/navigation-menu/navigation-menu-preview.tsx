@@ -1,3 +1,5 @@
+"use client"
+
 import {
 	ArrowLeftRight,
 	ArrowRight,
@@ -358,14 +360,17 @@ function ProductPromo() {
 
 export default function NavigationMenuPreview() {
 	return (
-		<div className="flex w-full items-center justify-center">
+		<div className="flex w-full min-w-0 items-center justify-center">
 			<NavigationMenu
-				className="w-[calc(100vw-2rem)] max-w-none flex-none"
+				className="custom:translate-x-0 w-full min-w-0 max-w-full flex-none md:w-[calc(100vw-2rem)] md:max-w-none lg:-translate-x-[130px]"
+				viewportPortal
 				viewportClassName="rounded-2xl">
-				<NavigationMenuList>
+				<NavigationMenuList className="no-scrollbar w-full min-w-0 justify-start overflow-x-auto md:justify-center md:overflow-visible">
 					<NavigationMenuItem>
-						<NavigationMenuTrigger>Product</NavigationMenuTrigger>
-						<NavigationMenuContent className="w-[calc(100vw-2rem)] overflow-hidden p-0 shadow-lg md:w-[1200px] md:max-w-[calc(100vw-2rem)]">
+						<NavigationMenuTrigger className="px-2 sm:px-4">
+							Product
+						</NavigationMenuTrigger>
+						<NavigationMenuContent className="w-full overflow-hidden p-0 shadow-lg md:w-[1200px] md:max-w-[calc(100vw-2rem)]">
 							<div className="divide-border grid grid-cols-1 divide-y md:grid-cols-[repeat(3,minmax(0,1fr))_268px] md:divide-x md:divide-y-0">
 								{PRODUCT_SECTIONS.map((section) => (
 									<MenuColumn key={section.title} section={section} />
@@ -375,8 +380,10 @@ export default function NavigationMenuPreview() {
 						</NavigationMenuContent>
 					</NavigationMenuItem>
 					<NavigationMenuItem>
-						<NavigationMenuTrigger>Use Cases</NavigationMenuTrigger>
-						<NavigationMenuContent className="w-[calc(100vw-2rem)] overflow-hidden p-0 shadow-lg md:w-[900px] md:max-w-[calc(100vw-2rem)]">
+						<NavigationMenuTrigger className="px-2 sm:px-4">
+							Use Cases
+						</NavigationMenuTrigger>
+						<NavigationMenuContent className="w-full overflow-hidden p-0 shadow-lg md:w-[900px] md:max-w-[calc(100vw-2rem)]">
 							<div className="divide-border grid grid-cols-1 divide-y md:grid-cols-3 md:divide-x md:divide-y-0">
 								{USE_CASE_SECTIONS.map((section) => (
 									<MenuColumn key={section.title} section={section} />
@@ -392,8 +399,10 @@ export default function NavigationMenuPreview() {
 						</NavigationMenuLink>
 					</NavigationMenuItem>
 					<NavigationMenuItem>
-						<NavigationMenuTrigger>Resources</NavigationMenuTrigger>
-						<NavigationMenuContent className="w-[calc(100vw-2rem)] overflow-hidden p-0 shadow-lg md:w-[820px] md:max-w-[calc(100vw-2rem)]">
+						<NavigationMenuTrigger className="px-2 sm:px-4">
+							Resources
+						</NavigationMenuTrigger>
+						<NavigationMenuContent className="w-full overflow-hidden p-0 shadow-lg md:w-[820px] md:max-w-[calc(100vw-2rem)]">
 							<div className="divide-border grid grid-cols-1 divide-y md:grid-cols-[repeat(2,minmax(0,1fr))_244px] md:divide-x md:divide-y-0">
 								{RESOURCE_SECTIONS.map((section) => (
 									<MenuColumn key={section.title} section={section} />

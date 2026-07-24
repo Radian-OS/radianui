@@ -62,6 +62,33 @@
 	--color-hero-fade-gradient-to: hsla(260, 6%, 10%, 1);
 }
 
+@keyframes homepage-load-reveal {
+	from {
+		opacity: 0;
+		filter: blur(var(--homepage-reveal-blur));
+		transform: translate3d(0, var(--homepage-reveal-offset), 0)
+			scale(var(--homepage-reveal-scale));
+	}
+
+	to {
+		opacity: 1;
+		filter: blur(0);
+		transform: translate3d(0, 0, 0) scale(1);
+	}
+}
+
+.homepage-load-reveal {
+	transform-origin: 50% 30%;
+	animation: homepage-load-reveal var(--homepage-reveal-duration)
+		cubic-bezier(0.22, 1, 0.36, 1) var(--homepage-reveal-delay) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.homepage-load-reveal {
+		animation: none;
+	}
+}
+
 @layer base {
 	* {
 		border-color: var(--color-border);
