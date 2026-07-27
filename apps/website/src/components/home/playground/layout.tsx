@@ -8,7 +8,7 @@ import {
 	DropdownRadioGroup,
 	DropdownRadioItem,
 	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+} from "@/styles/default/ui/dropdown"
 
 const inter = Inter({ subsets: ["latin"] })
 

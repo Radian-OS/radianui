@@ -12,11 +12,15 @@ import {
 	AccordionContent,
 	AccordionItem,
 	AccordionTrigger,
-} from "@/registry/ui/accordion"
-import { Button, IconButton } from "@/registry/ui/button"
-import { Divider } from "@/registry/ui/divider"
-import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
-import { Switch } from "@/registry/ui/switch"
+} from "@/styles/default/ui/accordion"
+import { Button, IconButton } from "@/styles/default/ui/button"
+import { Divider } from "@/styles/default/ui/divider"
+import {
+	Popover,
+	PopoverContent,
+	PopoverTrigger,
+} from "@/styles/default/ui/popover"
+import { Switch } from "@/styles/default/ui/switch"
 
 export default function ListTodos() {
 	const {

@@ -1,7 +1,7 @@
 import { Component } from "lucide-react"
 import Link from "next/link"
-import { Badge } from "@/registry/ui/badge"
-import { Button } from "@/registry/ui/button"
+import { Badge } from "@/styles/default/ui/badge"
+import { Button } from "@/styles/default/ui/button"
 import ComponentSectionItems from "./components-section/components-section-items"
 
 export default function ComponentsSection() {

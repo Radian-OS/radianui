@@ -8,7 +8,7 @@ import {
 	SelectItem,
 	SelectTrigger,
 	SelectValue,
-} from "@/registry/ui/select"
+} from "@/styles/default/ui/select"
 
 export const lightThemeVars = {
 	// Primary

@@ -174,7 +174,7 @@ function DialogDescription({ className, ...props }: DialogDescriptionProps) {
 	return (
 		<DialogPrimitive.Description
 			data-slot="dialog-description"
-			className={cn("text-fg-secondary text-sm/5 leading-tight", className)}
+			className={cn("cn-dialog-description", className)}
 			{...props}
 		/>
 	)

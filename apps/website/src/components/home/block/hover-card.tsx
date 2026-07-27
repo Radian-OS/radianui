@@ -1,9 +1,9 @@
 import React, { SVGProps } from "react"
 import { usePlayground } from "@/contexts/playground"
-import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
-import { Button } from "@/registry/ui/button"
-import { Divider } from "@/registry/ui/divider"
-import { FileWithPreview } from "@/registry/ui/file-upload"
+import { Avatar, AvatarFallback, AvatarImage } from "@/styles/default/ui/avatar"
+import { Button } from "@/styles/default/ui/button"
+import { Divider } from "@/styles/default/ui/divider"
+import { FileWithPreview } from "@/styles/default/ui/file-upload"
 import {
 	buttonStyles,
 	colorMap,

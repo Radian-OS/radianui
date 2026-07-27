@@ -3,21 +3,21 @@
 import { useCallback, useEffect, useRef, useState } from "react"
 import { Search } from "lucide-react"
 import { navigationItems } from "@/config/navigation-config"
-import { Badge } from "@/registry/ui/badge"
-import { Button, IconButton } from "@/registry/ui/button"
+import { Badge } from "@/styles/default/ui/badge"
+import { Button, IconButton } from "@/styles/default/ui/button"
 import {
 	Dialog,
 	DialogContent,
 	DialogTitle,
 	DialogTrigger,
-} from "@/registry/ui/dialog"
+} from "@/styles/default/ui/dialog"
 import {
 	Drawer,
 	DrawerContent,
 	DrawerHeader,
 	DrawerTitle,
 	DrawerTrigger,
-} from "@/registry/ui/drawer"
+} from "@/styles/default/ui/drawer"
 import SearchCommand from "../search-command"
 
 export function SearchDocs() {

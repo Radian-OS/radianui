@@ -1,5 +1,5 @@
 import { MessageCircleQuestionIcon } from "lucide-react"
-import { Badge } from "@/registry/ui/badge"
+import { Badge } from "@/styles/default/ui/badge"
 import FAQAccordion from "./faq-accordion"
 
 export default function FAQSection() {

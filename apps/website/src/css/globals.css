@@ -3,6 +3,12 @@
 @import "./website.css";
 @import "./utility.css";
 
+@import "../registry/styles/style-default.css" layer(base);
+@import "../registry/styles/style-sera.css" layer(base);
+
+@custom-variant style-default (&:where(.style-default *));
+@custom-variant style-sera (&:where(.style-sera *));
+
 @custom-variant dark (&:is(.dark *));
 
 @theme {
@@ -109,12 +115,36 @@
 		transparent 84%
 	);
 
+	--font-heading: "Geist", sans-serif;
+	--font-body: "Inter", sans-serif;
+
+	--color-card: var(--color-elevation-level1);
+
+	--color-popover: var(--color-elevation-level2);
+
 	--color-sidebar: var(--color-fill1);
 	--color-sidebar-fg: var(--color-fg);
 	--color-sidebar-accent: var(--color-fill1-alpha);
 	--color-sidebar-accent-fg: var(--color-fg);
 	--color-sidebar-border: var(--color-border);
 	--color-sidebar-ring: var(--color-fg-secondary);
+
+	--radius: 8px;
+	/* Radius for control category(these components can get fully rounded) - Button/Input/Select/OTP/Badge */
+	--control-radius: 8px;
+
+	--radius-control-md: round(down, calc(var(--control-radius) * 0.8), 1px);
+	--radius-control-lg: var(--control-radius);
+	--radius-control-xl: round(down, calc(var(--control-radius) * 1.5), 1px);
+
+	--radius-xs: round(down, calc(var(--radius) * 0.3), 1px);
+	--radius-sm: round(down, calc(var(--radius) * 0.6), 1px);
+	--radius-md: round(down, calc(var(--radius) * 0.8), 1px);
+	--radius-lg: var(--radius);
+	--radius-xl: round(down, calc(var(--radius) * 1.5), 1px);
+	--radius-2xl: calc(var(--radius) * 2);
+	--radius-3xl: calc(var(--radius) * 3);
+	--radius-4xl: calc(var(--radius) * 4);
 }
 
 .dark {
@@ -215,6 +245,10 @@
 		transparent 80%
 	);
 
+	--color-card: var(--color-elevation-level1);
+
+	--color-popover: var(--color-elevation-level2);
+
 	--color-sidebar: var(--color-fill1);
 	--color-sidebar-fg: var(--color-fg);
 	--color-sidebar-accent: var(--color-fill1-alpha);
@@ -250,16 +284,6 @@
 	[role="button"][class*="bg-gradient"] {
 		will-change: background-image;
 	}
-}
-
-/* Custom heading font */
-@utility font-heading {
-	font-family: var(--heading-font);
-}
-
-/* Custom body font */
-@utility font-body {
-	font-family: var(--body-font);
 }
 
 /* Heading 1 */

@@ -1,20 +1,7 @@
 "use client"
 
 import React, { ComponentType } from "react"
-import {
-	Box,
-	Calendar,
-	ChevronDown,
-	ChevronRight,
-	ClipboardList,
-	FileChartColumn,
-	Headset,
-	Inbox,
-	Search,
-	Settings,
-	TvMinimal,
-	Users2,
-} from "lucide-react"
+import { IconSlot } from "@/registry/icon/icon-library"
 import { Badge } from "@/registry/ui/badge"
 import { IconButton } from "@/registry/ui/button"
 import {
@@ -72,7 +59,7 @@ interface SubItem {
 
 interface NavItem {
 	label: string
-	icon: ComponentType<{ className?: string }>
+	icon: React.ComponentType<{ className?: string }> | React.ReactNode
 	href?: string
 	subitems?: SubItem[]
 	isActive?: boolean
@@ -90,24 +77,24 @@ const mainData: NavGroup[] = [
 		items: [
 			{
 				label: "Home",
-				icon: TvMinimal,
+				icon: <IconSlot slot="box" />,
 				href: "#",
 			},
 			{
 				label: "Inbox",
-				icon: Inbox,
+				icon: <IconSlot slot="inbox" />,
 				href: "#",
 				isActive: true,
 				badge: 4,
 			},
 			{
 				label: "Calendar",
-				icon: Calendar,
+				icon: <IconSlot slot="calendar" />,
 				href: "#",
 			},
 			{
 				label: "Analytics",
-				icon: FileChartColumn,
+				icon: <IconSlot slot="file-box" />,
 				href: "#",
 			},
 		],
@@ -117,17 +104,17 @@ const mainData: NavGroup[] = [
 		items: [
 			{
 				label: "Subscribers",
-				icon: Users2,
+				icon: <IconSlot slot="users" />,
 				href: "#",
 			},
 			{
 				label: "Reports",
-				icon: ClipboardList,
+				icon: <IconSlot slot="clipboard-check" />,
 				href: "#",
 			},
 			{
 				label: "Integrations",
-				icon: Box,
+				icon: <IconSlot slot="box" />,
 				subitems: [
 					{
 						label: "Notion",
@@ -176,12 +163,12 @@ const footerData: NavGroup[] = [
 		items: [
 			{
 				label: "Help Center",
-				icon: Headset,
+				icon: <IconSlot slot="headset" />,
 				href: "#",
 			},
 			{
 				label: "Settings",
-				icon: Settings,
+				icon: <IconSlot slot="setting" />,
 				href: "#",
 			},
 		],
@@ -227,7 +214,7 @@ export function AppSidebar() {
 					<InputWrapper
 						className="group-data-[state=collapsed]:hidden"
 						size="36">
-						<Search className="text-fg-tertiary" />
+						<IconSlot slot="search" className="text-fg-tertiary" />
 						<Input ref={inputRef} type="search" placeholder="Search" />
 						<Badge size="20" color="neutral" variant="outline">
 							⌘ /
@@ -245,7 +232,7 @@ export function AppSidebar() {
 						variant="outline"
 						color="neutral"
 						className="group-data-[mobile=true]:hidden group-data-[state=expanded]:hidden">
-						<Search className="text-fg-tertiary" />
+						<IconSlot slot="search" className="text-fg-tertiary" />
 					</IconButton>
 				</div>
 			</SidebarHeader>
@@ -268,7 +255,16 @@ export function AppSidebar() {
 												tooltip={item.label}
 												asChild>
 												<a href={item.href}>
-													{item.icon && <item.icon className="size-5" />}
+													{item.icon &&
+														(React.isValidElement(item.icon)
+															? item.icon
+															: // item.icon may be a component type
+																(() => {
+																	const C = item.icon as ComponentType<{
+																		className?: string
+																	}>
+																	return <C className="size-5" />
+																})())}
 													<span>{item.label}</span>
 													{item.badge && (
 														<SidebarMenuBadge
@@ -296,7 +292,15 @@ export function AppSidebar() {
 													onMouseEnter={() => openMenu(item.label)}
 													onMouseLeave={closeMenu}
 													onPointerDown={(e) => e.preventDefault()}>
-													{item.icon && <item.icon />}
+													{item.icon &&
+														(React.isValidElement(item.icon)
+															? item.icon
+															: (() => {
+																	const C = item.icon as ComponentType<{
+																		className?: string
+																	}>
+																	return <C />
+																})())}
 												</SidebarMenuButton>
 											</DropdownTrigger>
 											<DropdownContent
@@ -330,9 +334,15 @@ export function AppSidebar() {
 										<SidebarMenuItem>
 											<SidebarCollapsibleTrigger className="w-full" asChild>
 												<SidebarMenuButton tooltip={item.label}>
-													{item.icon && <item.icon />}
+													{item.icon &&
+														(React.isValidElement(item.icon)
+															? item.icon
+															: null)}
 													<span>{item.label}</span>
-													<ChevronDown className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-180" />
+													<IconSlot
+														slot="down"
+														className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-180"
+													/>
 												</SidebarMenuButton>
 											</SidebarCollapsibleTrigger>
 											<SidebarCollapsibleContent>
@@ -373,7 +383,7 @@ export function AppSidebar() {
 										</span>
 										<span className="text-fg-tertiary flex cursor-pointer items-center truncate text-xs font-normal">
 											<span>Learn More</span>
-											<ChevronRight className="size-4" />
+											<IconSlot slot="right" className="size-4" />
 										</span>
 									</div>
 								</div>
@@ -401,7 +411,12 @@ export function AppSidebar() {
 									{section.items.map((item) => (
 										<SidebarMenuItem key={item.label}>
 											<SidebarMenuButton tooltip={item.label}>
-												{item.icon && <item.icon />}
+												{item.icon &&
+													(React.isValidElement(item.icon) ? (
+														item.icon
+													) : typeof item.icon === "function" ? (
+														<item.icon />
+													) : null)}
 												<span>{item.label}</span>
 											</SidebarMenuButton>
 										</SidebarMenuItem>

@@ -3,7 +3,7 @@ import { Type } from "lucide-react"
 import { FONTS } from "@/components/typography/typography-playground"
 import { FontCategory, usePlayground } from "@/contexts/playground"
 import fonts from "@/data/google-fonts.json"
-import { IconButton } from "@/registry/ui/button"
+import { IconButton } from "@/styles/default/ui/button"
 import {
 	Command,
 	CommandDivider,
@@ -12,9 +12,13 @@ import {
 	CommandInput,
 	CommandItem,
 	CommandList,
-} from "@/registry/ui/command"
-import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
-import { Spinner } from "@/registry/ui/spinner"
+} from "@/styles/default/ui/command"
+import {
+	Popover,
+	PopoverContent,
+	PopoverTrigger,
+} from "@/styles/default/ui/popover"
+import { Spinner } from "@/styles/default/ui/spinner"
 
 const PAGE_SIZE = 15
 

@@ -1,8 +1,8 @@
 import React from "react"
-import { Button } from "@/registry/ui/button"
-import { Input } from "@/registry/ui/input"
-import { Label } from "@/registry/ui/label"
-import { TextArea } from "@/registry/ui/text-area"
+import { Button } from "@/styles/default/ui/button"
+import { Input } from "@/styles/default/ui/input"
+import { Label } from "@/styles/default/ui/label"
+import { TextArea } from "@/styles/default/ui/text-area"
 
 const ReportCard = () => {
 	return (

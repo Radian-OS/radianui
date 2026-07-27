@@ -5,8 +5,8 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { navigationItems } from "@/config/navigation-config"
 import { cn } from "@/lib/utils"
-import { Badge } from "@/registry/ui/badge"
-import { ScrollArea } from "@/registry/ui/scroll-area"
+import { Badge } from "@/styles/default/ui/badge"
+import { ScrollArea } from "@/styles/default/ui/scroll-area"
 
 export default function Sidebar() {
 	const pathName = usePathname()

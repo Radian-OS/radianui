@@ -7,9 +7,14 @@ import { usePlayground } from "@/contexts/playground"
 import code from "@/data/code-snippets.json"
 import colorvalue from "@/data/color-value.json"
 import { BorderBeam } from "@/registry/animated/border-beam"
-import { Badge } from "@/registry/ui/badge"
-import { CodeArea } from "@/registry/ui/code-area"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
+import { Badge } from "@/styles/default/ui/badge"
+import { CodeArea } from "@/styles/default/ui/code-area"
+import {
+	Tabs,
+	TabsContent,
+	TabsList,
+	TabsTrigger,
+} from "@/styles/default/ui/tabs"
 import HoverCard from "./block/hover-card"
 import Signin1 from "./block/signin1"
 import Signin2 from "./block/signin2"

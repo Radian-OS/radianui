@@ -1,0 +1,24 @@
+{
+	"name": "grey",
+	"label": "Grey",
+	"cssVariables": {
+		"light": {
+			"primary": "oklch(0.7 0.011 286.16)",
+			"primary-accent": "oklch(0.94 0.0271 295.05)",
+			"primary-focus": "oklch(0.9169 0.0383 295.46)",
+			"primary-border": "oklch(0.7 0.011 286.16)",
+			"primary-hover": "oklch(0.8 0.011 286.16)",
+			"primary-text": "oklch(0.4515 0.0243 285.39)",
+			"primary-fg": "oklch(0.9764 0.0013 286.38)"
+		},
+		"dark": {
+			"primary": "oklch(0.7 0.011 286.16)",
+			"primary-accent": "oklch(0.94 0.0271 295.05)",
+			"primary-focus": "oklch(0.9169 0.0383 295.46)",
+			"primary-border": "oklch(0.7 0.011 286.16)",
+			"primary-hover": "oklch(0.8 0.011 286.16)",
+			"primary-text": "oklch(0.4515 0.0243 285.39)",
+			"primary-fg": "oklch(0.9764 0.0013 286.38)"
+		}
+	}
+}

@@ -37,7 +37,7 @@ function useAvatarContext() {
 }
 
 const avatarVariants = cva(
-	"flex items-center font-semibold justify-center shrink-0 relative",
+	"flex items-center justify-center shrink-0 relative cn-avatar",
 	{
 		variants: {
 			size: {
@@ -53,20 +53,20 @@ const avatarVariants = cva(
 				"120": "size-30 border-2",
 			},
 			rounded: {
-				circle: "rounded-full",
+				circle: "cn-avatar-rounded-circle",
 				square: "",
 			},
 		},
 		compoundVariants: [
-			{ size: "16", rounded: "square", class: "rounded-sm" },
-			{ size: "20", rounded: "square", class: "rounded-sm" },
-			{ size: "24", rounded: "square", class: "rounded-md" },
-			{ size: "32", rounded: "square", class: "rounded-md" },
-			{ size: "36", rounded: "square", class: "rounded-lg" },
-			{ size: "40", rounded: "square", class: "rounded-lg" },
-			{ size: "48", rounded: "square", class: "rounded-lg" },
-			{ size: "64", rounded: "square", class: "rounded-xl" },
-			{ size: "80", rounded: "square", class: "rounded-2xl" },
+			{ size: "16", rounded: "square", className: "cn-avatar-square-16" },
+			{ size: "20", rounded: "square", className: "cn-avatar-square-20" },
+			{ size: "24", rounded: "square", className: "cn-avatar-square-24" },
+			{ size: "32", rounded: "square", className: "cn-avatar-square-32" },
+			{ size: "36", rounded: "square", className: "cn-avatar-square-36" },
+			{ size: "40", rounded: "square", className: "cn-avatar-square-40" },
+			{ size: "48", rounded: "square", className: "cn-avatar-square-48" },
+			{ size: "64", rounded: "square", className: "cn-avatar-square-64" },
+			{ size: "80", rounded: "square", className: "cn-avatar-square-80" },
 		],
 		defaultVariants: {
 			size: "40",
@@ -76,14 +76,14 @@ const avatarVariants = cva(
 )
 
 const avatarStatusVariants = cva(
-	"absolute z-10 border-bg rounded-full box-content",
+	"absolute z-10 rounded-full box-content cn-avatar-status",
 	{
 		variants: {
 			variant: {
-				online: "bg-success",
-				offline: "bg-fg-disabled",
-				busy: "bg-warning",
-				away: "bg-info",
+				online: "cn-avatar-status-online",
+				offline: "cn-avatar-status-offline",
+				busy: "cn-avatar-status-busy",
+				away: "cn-avatar-status-away",
 			},
 			size: {
 				"16": "size-1 border",
@@ -152,7 +152,7 @@ function AvatarImage({ className, ...props }: AvatarImageProps) {
 		<AvatarPrimitive.Image
 			data-slot="avatar-image"
 			className={cn(
-				"relative aspect-square size-full rounded-[inherit] object-cover",
+				"cn-avatar-image relative aspect-square size-full object-cover",
 				className
 			)}
 			{...props}

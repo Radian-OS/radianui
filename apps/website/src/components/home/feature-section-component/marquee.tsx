@@ -2,7 +2,7 @@ import React from "react"
 import { motion } from "motion/react"
 import { FlickeringGrid } from "@/components/effects/flickering"
 import { InfiniteScroll } from "@/registry/animated/infinite-scroll"
-import { Badge } from "@/registry/ui/badge"
+import { Badge } from "@/styles/default/ui/badge"
 import { ComponentSvg } from "./component-svg"
 
 const componentStyle = [

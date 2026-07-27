@@ -7,10 +7,10 @@ import Link from "next/link"
 import { GithubIcon } from "@/components/home/block/components/github-icon"
 import { GoogleIcon } from "@/components/home/block/components/google-icon"
 import { cn } from "@/lib/utils"
-import { Button } from "@/registry/ui/button"
-import { Divider } from "@/registry/ui/divider"
-import { Input, InputWrapper } from "@/registry/ui/input"
-import { Label } from "@/registry/ui/label"
+import { Button } from "@/styles/default/ui/button"
+import { Divider } from "@/styles/default/ui/divider"
+import { Input, InputWrapper } from "@/styles/default/ui/input"
+import { Label } from "@/styles/default/ui/label"
 
 interface SignupProps {
 	fullScreen?: boolean
