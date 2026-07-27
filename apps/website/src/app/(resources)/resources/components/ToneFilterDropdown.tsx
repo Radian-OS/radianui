@@ -3,6 +3,21 @@
 import React, { useRef, useState } from "react"
 import { Ban, ChevronDown, Dices, X } from "lucide-react"
 import Image from "next/image"
+import {
+	type ActiveInfo,
+	BACKGROUNDS,
+	CDN_COLOR_NAMES,
+	type ColorMode,
+	GRADIENT_IMAGES,
+	RADIAN_COLORS,
+	type RadianColor,
+	SOLID_COLORS,
+	type SolidColor,
+	type ToneFilterDropdownProps,
+	formatColorName,
+	getActiveInfo,
+	getCdnColorDisplayName,
+} from "@/constants/tone-filter-data"
 import { AspectRatio } from "@/registry/ui/aspect-ratio"
 import { Button, CompactButton, IconButton } from "@/registry/ui/button"
 import { Divider } from "@/registry/ui/divider"
@@ -14,27 +29,11 @@ import {
 	DropdownTrigger,
 } from "@/registry/ui/dropdown"
 import { ScrollArea } from "@/registry/ui/scroll-area"
-import {
-	type ActiveInfo,
-	BACKGROUNDS,
-	CDN_COLOR_NAMES,
-	type ColorMode,
-	GRADIENT_COLOR_NAMES,
-	GRADIENT_IMAGES,
-	RADIAN_COLORS,
-	type RadianColor,
-	SOLID_COLORS,
-	type SolidColor,
-	type ToneFilterDropdownProps,
-	formatColorName,
-	getActiveInfo,
-	getCdnColorDisplayName,
-} from "./tone-filter-data"
 
 export {
 	BACKGROUNDS,
 	GRADIENT_IMAGES,
-	GRADIENT_COLOR_NAMES,
+	CDN_COLOR_NAMES,
 	RADIAN_COLORS,
 	SOLID_COLORS,
 	formatColorName,
@@ -235,9 +234,7 @@ export function ToneFilterDropdown({
 							<DropdownLabel className="px-0 text-xs">Gradients</DropdownLabel>
 							<div className="grid grid-cols-9 gap-2">
 								{GRADIENT_IMAGES.map((src, idx) => {
-									const colorName = getCdnColorDisplayName(
-										GRADIENT_COLOR_NAMES[idx]
-									)
+									const colorName = getCdnColorDisplayName(CDN_COLOR_NAMES[idx])
 									return (
 										<button
 											key={src}

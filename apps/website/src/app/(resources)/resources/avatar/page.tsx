@@ -11,9 +11,9 @@ import {
 import { BorderBeam } from "@/registry/animated/border-beam"
 import { Avatar, AvatarImage } from "@/registry/ui/avatar"
 import { Badge } from "@/registry/ui/badge"
-import AvatarDocs from "../components/AvatarDocs"
 import AvatarHeroActionButtons from "../components/AvatarHeroActionButton"
 import AvatarPlayground from "../components/AvatarPlayground"
+import AvatarDocs from "../docs/AvatarDocs"
 
 const upperHeroBeamPath =
 	"M0 1H132C142.8 1 152.8 6.8 158.1 16.2L286.5 258.8C292.1 269.4 303.2 276 315.2 276H438"

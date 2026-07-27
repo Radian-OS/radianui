@@ -3,11 +3,11 @@
 import { Dices } from "lucide-react"
 import Link from "next/link"
 import { toast } from "sonner"
-import { Button } from "@/registry/ui/button"
 import {
 	copyRandomAvatar,
 	randomSolidMapColor,
-} from "./avatar-playground-utils"
+} from "@/constants/avatar-playground-utils"
+import { Button } from "@/registry/ui/button"
 
 export default function AvatarHeroActionButtons() {
 	const handleCopyRandom = async () => {
