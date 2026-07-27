@@ -70,7 +70,7 @@ export default function BrandSection() {
 				}}>
 				<h2
 					id="brand-section-title"
-					className="text-fg-secondary border-soft flex h-full w-72 shrink-0 items-center border-r px-10 py-8 text-sm font-normal leading-5">
+					className="text-fg-secondary border-soft flex h-full w-72 shrink-0 items-center justify-center border-r px-10 py-8 text-center text-sm font-normal leading-5">
 					Teams using Radian to Empower their Designs
 				</h2>
 
