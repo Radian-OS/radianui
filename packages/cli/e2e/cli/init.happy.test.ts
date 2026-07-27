@@ -66,6 +66,7 @@ describe("e2e | init happy path (existing project)", () => {
       themes: { blue: blueTheme },
       fonts: { inter: interFont },
       globalCss: STUB_GLOBAL_CSS,
+      utilityCss: "/* utility css */",
     })
   })
 
@@ -85,6 +86,7 @@ describe("e2e | init happy path (existing project)", () => {
           RADIANUI_WEBSITE_URL: server.url,
           RADIANUI_BLOCKS_URL: server.url,
           RADIANUI_GLOBAL_CSS_URL: `${server.url}/css/globals.css`,
+          RADIANUI_UTILITY_CSS_URL: `${server.url}/css/utility.css`,
           RADIANUI_SKIP_INSTALL: "1",
         },
       }

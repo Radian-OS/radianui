@@ -41,9 +41,9 @@ export const alertDialogOverlayVariants = cva(
 	{
 		variants: {
 			backdrop: {
-				overlay: "bg-black/50",
-				blur: "backdrop-blur-md bg-black/25",
-				transparent: "bg-transparent",
+				overlay: "cn-alert-dialog-overlay-backdrop-overlay",
+				blur: "cn-alert-dialog-overlay-backdrop-blur",
+				transparent: "cn-alert-dialog-overlay-backdrop-transparent",
 			},
 		},
 		defaultVariants: {
@@ -153,7 +153,7 @@ function AlertDialogDescription({
 	return (
 		<AlertDialogPrimitive.Description
 			data-slot="alert-dialog-description"
-			className={cn("text-fg-secondary text-sm", className)}
+			className={cn("cn-alert-dialog-description", className)}
 			{...props}
 		/>
 	)

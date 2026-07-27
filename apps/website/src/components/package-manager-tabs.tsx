@@ -6,9 +6,14 @@ import { Check, Clipboard } from "lucide-react"
 import { useTheme } from "next-themes"
 import { usePreferences } from "@/lib/preferences"
 import { cn } from "@/lib/utils"
-import { IconButton } from "@/registry/ui/button"
-import { CodeArea } from "@/registry/ui/code-area"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
+import { IconButton } from "@/styles/default/ui/button"
+import { CodeArea } from "@/styles/default/ui/code-area"
+import {
+	Tabs,
+	TabsContent,
+	TabsList,
+	TabsTrigger,
+} from "@/styles/default/ui/tabs"
 
 export type PackageManager = "pnpm" | "npm" | "yarn" | "bun"
 export type Commands = Record<PackageManager, string>

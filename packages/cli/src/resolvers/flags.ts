@@ -1,4 +1,5 @@
 import { type PartialInitConfig } from "@/config/initSchema"
+import { ICON_LIBRARIES, Style } from "@/registry/constants"
 import { type Color, type Font } from "@/utils/registry"
 
 /**
@@ -13,6 +14,8 @@ export function resolveFlags(opts: {
 	font?: string
 	presetCode?: string
 	projectName?: string
+	style?: string
+	iconLibrary?: string
 }): PartialInitConfig {
 	let framework: PartialInitConfig["framework"]
 	if (opts.next) framework = "next-app"
@@ -25,5 +28,9 @@ export function resolveFlags(opts: {
 		useSrcDir: opts.useSrc,
 		brandColor: opts.color as Color | undefined,
 		font: opts.font as Font | undefined,
+		style: opts.style as Style | undefined,
+		iconLibrary: opts.iconLibrary as
+			| (typeof ICON_LIBRARIES)[number]["value"]
+			| undefined,
 	}
 }

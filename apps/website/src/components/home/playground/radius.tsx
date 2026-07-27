@@ -1,7 +1,7 @@
 import React from "react"
 import { CircleDashed } from "lucide-react"
 import { RadiusOption, usePlayground } from "@/contexts/playground"
-import { IconButton } from "@/registry/ui/button"
+import { IconButton } from "@/styles/default/ui/button"
 import {
 	Dropdown,
 	DropdownContent,
@@ -9,7 +9,7 @@ import {
 	DropdownRadioGroup,
 	DropdownRadioItem,
 	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+} from "@/styles/default/ui/dropdown"
 
 export default function Radius() {
 	const { radius, setRadius } = usePlayground()

@@ -26,6 +26,8 @@ describe("transform import", () => {
 				utils: "@/lib/utils",
 				animated: "@/components/animations",
 			},
+			style: "default",
+			iconLibrary: "lucide",
 		}
 
 		// Act
@@ -61,6 +63,8 @@ describe("transform import", () => {
 				utils: "@custom-alias/lib/utils",
 				animated: "@custom-alias/animated",
 			},
+			style: "default",
+			iconLibrary: "lucide",
 		}
 
 		const transformedContent = transformImport(sourceFile, config)

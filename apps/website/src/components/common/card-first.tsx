@@ -1,7 +1,7 @@
 import React from "react"
-import { Avatar, AvatarFallback } from "@/registry/ui/avatar"
-import { Badge } from "@/registry/ui/badge"
-import { Button } from "@/registry/ui/button"
+import { Avatar, AvatarFallback } from "@/styles/default/ui/avatar"
+import { Badge } from "@/styles/default/ui/badge"
+import { Button } from "@/styles/default/ui/button"
 
 const CardFirst = () => {
 	return (

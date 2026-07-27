@@ -1,7 +1,7 @@
+import components from "@public/r/styles/default.json"
 import fs from "fs/promises"
 import { TerminalIcon } from "lucide-react"
 import path from "path"
-import components from "@/app/api/components/components.json"
 import { CodeCollapsibleWrapper } from "@/components/code-collapsible-wrapper"
 import { formatCode } from "@/lib/format-code"
 import { highlightCode } from "@/lib/highligh-code"
@@ -45,10 +45,7 @@ async function ComponentSource({
 		}
 
 		if (src) {
-			code = await fs.readFile(
-				path.join(process.cwd(), "src", "registry", "example", `${src}.tsx`),
-				"utf-8"
-			)
+			code = await fs.readFile(path.join(process.cwd(), "src", src), "utf-8")
 		}
 
 		if (!code) {
@@ -56,10 +53,10 @@ async function ComponentSource({
 		}
 	}
 
-	code = await formatCode(code)
+	code = formatCode(code)
 
 	const lang = language ?? title?.split(".").pop() ?? "tsx"
-	const highlightedCode = await highlightCode(code)
+	const highlightedCode = await highlightCode(code, lang)
 
 	if (!collapsible) {
 		return (

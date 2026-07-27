@@ -1,5 +1,5 @@
 import React from "react"
-import { Calendar } from "@/registry/ui/calendar"
+import { Calendar } from "@/styles/default/ui/calendar"
 import CardFirst from "./card-first"
 import CookieCard from "./cookie-card"
 import Dropdown from "./dropdown"

@@ -1,4 +1,4 @@
-﻿{
+{
 	"name": "red",
 	"label": "Red",
 	"cssVariables": {
@@ -9,7 +9,7 @@
 			"primary-border": "oklch(0.719 0.1751 22.5)",
 			"primary-hover": "oklch(0.6786 0.2095 24.66)",
 			"primary-text": "oklch(0.5716 0.2125 27.27)",
-			"primary-fg": "oklch(1 0 0)"
+			"primary-fg": "oklch(0.9764 0.0013 286.38)"
 		},
 		"dark": {
 			"primary": "oklch(0.64 0.22 26.04)",
@@ -18,7 +18,7 @@
 			"primary-border": "oklch(0.4423 0.146 25.48)",
 			"primary-hover": "oklch(0.6786 0.2095 24.66)",
 			"primary-text": "oklch(0.719 0.1751 22.5)",
-			"primary-fg": "oklch(1 0 0)"
+			"primary-fg": "oklch(0.9764 0.0013 286.38)"
 		}
 	}
 }

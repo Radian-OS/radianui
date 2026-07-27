@@ -1,0 +1,569 @@
+export const ICON_SLOT_REPLACEMENTS = [
+	{
+		slot: "down",
+		lucideIcon: "ChevronDown",
+		hugeiconsIcon: "ArrowDown01Icon",
+	},
+	{
+		slot: "up",
+		lucideIcon: "ChevronUp",
+		hugeiconsIcon: "ArrowUp01Icon",
+	},
+	{
+		slot: "right",
+		lucideIcon: "ChevronRight",
+		hugeiconsIcon: "ArrowRight01Icon",
+	},
+	{
+		slot: "left",
+		lucideIcon: "ChevronLeft",
+		hugeiconsIcon: "ArrowLeft01Icon",
+	},
+	{
+		slot: "threeDot",
+		lucideIcon: "MoreHorizontal",
+		hugeiconsIcon: "MoreHorizontalIcon",
+	},
+	{
+		slot: "plus",
+		lucideIcon: "Plus",
+		hugeiconsIcon: "Add01Icon",
+	},
+	{
+		slot: "check",
+		lucideIcon: "Check",
+		hugeiconsIcon: "Tick01Icon",
+	},
+	{
+		slot: "cross",
+		lucideIcon: "X",
+		hugeiconsIcon: "Cancel01Icon",
+	},
+	{
+		slot: "minus",
+		lucideIcon: "Minus",
+		hugeiconsIcon: "MinusSignIcon",
+	},
+	{
+		slot: "search",
+		lucideIcon: "Search",
+		hugeiconsIcon: "Search01Icon",
+	},
+	{
+		slot: "circle",
+		lucideIcon: "Circle",
+		hugeiconsIcon: "CircleIcon",
+	},
+	{
+		slot: "grip",
+		lucideIcon: "GripVertical",
+		hugeiconsIcon: "More01Icon",
+	},
+	{
+		slot: "left-panel",
+		lucideIcon: "PanelLeft",
+		hugeiconsIcon: "PanelLeftIcon",
+	},
+
+	// themer playground specific icons
+	{
+		slot: "setting",
+		lucideIcon: "Settings",
+		hugeiconsIcon: "Setting07Icon",
+	},
+	{
+		slot: "car",
+		lucideIcon: "Car",
+		hugeiconsIcon: "Car03Icon",
+	},
+	{
+		slot: "coffee",
+		lucideIcon: "Coffee",
+		hugeiconsIcon: "Coffee02Icon",
+	},
+	{
+		slot: "cart",
+		lucideIcon: "ShoppingCart",
+		hugeiconsIcon: "ShoppingCart02Icon",
+	},
+	{
+		slot: "tv",
+		lucideIcon: "Tv",
+		hugeiconsIcon: "Tv01Icon",
+	},
+	{
+		slot: "card",
+		lucideIcon: "CreditCard",
+		hugeiconsIcon: "CreditCardIcon",
+	},
+	{
+		slot: "eye",
+		lucideIcon: "Eye",
+		hugeiconsIcon: "EyeIcon",
+	},
+	{
+		slot: "alert",
+		lucideIcon: "AlertCircle",
+		hugeiconsIcon: "AlertCircleIcon",
+	},
+	{
+		slot: "eyeoff",
+		lucideIcon: "EyeOff",
+		hugeiconsIcon: "ViewOffSlashIcon",
+	},
+	{
+		slot: "lock",
+		lucideIcon: "Lock",
+		hugeiconsIcon: "LockPasswordIcon",
+	},
+	{
+		slot: "logout",
+		lucideIcon: "LogOut",
+		hugeiconsIcon: "Logout01Icon",
+	},
+	{
+		slot: "user",
+		lucideIcon: "User",
+		hugeiconsIcon: "User02Icon",
+	},
+	{
+		slot: "mail",
+		lucideIcon: "Mail",
+		hugeiconsIcon: "Mail01Icon",
+	},
+
+	// blocks example specific icons
+
+	{
+		slot: "upload",
+		lucideIcon: "Upload",
+		hugeiconsIcon: "PanelRightIcon",
+	},
+	{
+		slot: "book",
+		lucideIcon: "BookOpen",
+		hugeiconsIcon: "BookOpenIcon",
+	},
+	{
+		slot: "briefcase",
+		lucideIcon: "Briefcase",
+		hugeiconsIcon: "BriefcaseIcon",
+	},
+	{
+		slot: "ellipsis",
+		lucideIcon: "Ellipsis",
+		hugeiconsIcon: "More01Icon",
+	},
+	{
+		slot: "lightbulb",
+		lucideIcon: "Lightbulb",
+		hugeiconsIcon: "LightbulbOffIcon",
+	},
+	{
+		slot: "pencil",
+		lucideIcon: "Pencil",
+		hugeiconsIcon: "Edit01Icon",
+	},
+	{
+		slot: "link",
+		lucideIcon: "Link2",
+		hugeiconsIcon: "Link01Icon",
+	},
+	{
+		slot: "building",
+		lucideIcon: "Building2",
+		hugeiconsIcon: "Building01Icon",
+	},
+	{
+		slot: "group",
+		lucideIcon: "Group",
+		hugeiconsIcon: "Group01Icon",
+	},
+	{
+		slot: "smartphone",
+		lucideIcon: "Smartphone",
+		hugeiconsIcon: "SmartPhone01Icon",
+	},
+	{
+		slot: "monitor",
+		lucideIcon: "Monitor",
+		hugeiconsIcon: "MonitorDotIcon",
+	},
+	{
+		slot: "dashboard",
+		lucideIcon: "LayoutDashboard",
+		hugeiconsIcon: "DashboardCircleIcon",
+	},
+	{
+		slot: "globe",
+		lucideIcon: "Globe",
+		hugeiconsIcon: "GlobeIcon",
+	},
+	{
+		slot: "scroll",
+		lucideIcon: "Scroll",
+		hugeiconsIcon: "ScrollIcon",
+	},
+
+	// additional slots used in registry view
+	{
+		slot: "home",
+		lucideIcon: "Home",
+		hugeiconsIcon: "Home01Icon",
+	},
+	{
+		slot: "calendar",
+		lucideIcon: "CalendarDays",
+		hugeiconsIcon: "Calendar01Icon",
+	},
+	{
+		slot: "image",
+		lucideIcon: "Image",
+		hugeiconsIcon: "Image01Icon",
+	},
+	{
+		slot: "inbox",
+		lucideIcon: "Inbox",
+		hugeiconsIcon: "InboxIcon",
+	},
+	{
+		slot: "send",
+		lucideIcon: "Send",
+		hugeiconsIcon: "MailSendIcon",
+	},
+	{
+		slot: "notebook",
+		lucideIcon: "NotebookPen",
+		hugeiconsIcon: "Notebook01Icon",
+	},
+	{
+		slot: "blocks",
+		lucideIcon: "Blocks",
+		hugeiconsIcon: "DashboardSquare01Icon",
+	},
+	{
+		slot: "lifebuoy",
+		lucideIcon: "LifeBuoy",
+		hugeiconsIcon: "LifebuoyIcon",
+	},
+	{
+		slot: "external-link",
+		lucideIcon: "ExternalLink",
+		hugeiconsIcon: "LinkSquare01Icon",
+	},
+	{
+		slot: "info",
+		lucideIcon: "Info",
+		hugeiconsIcon: "InformationCircleIcon",
+	},
+	{
+		slot: "headset",
+		lucideIcon: "Headset",
+		hugeiconsIcon: "HeadsetIcon",
+	},
+	{
+		slot: "badge-check",
+		lucideIcon: "BadgeCheck",
+		hugeiconsIcon: "Certificate01Icon",
+	},
+	{
+		slot: "bell",
+		lucideIcon: "Bell",
+		hugeiconsIcon: "Notification02Icon",
+	},
+	{
+		slot: "chevrons-up-down",
+		lucideIcon: "ChevronsUpDown",
+		hugeiconsIcon: "ArrowUpDownIcon",
+	},
+	{
+		slot: "sparkles",
+		lucideIcon: "Sparkles",
+		hugeiconsIcon: "SparklesIcon",
+	},
+	{
+		slot: "crown",
+		lucideIcon: "Crown",
+		hugeiconsIcon: "CrownIcon",
+	},
+	{
+		slot: "arrow-up-right",
+		lucideIcon: "ArrowUpRight",
+		hugeiconsIcon: "ArrowUpRight01Icon",
+	},
+	{
+		slot: "radio",
+		lucideIcon: "Radio",
+		hugeiconsIcon: "RadioIcon",
+	},
+	{
+		slot: "pie-chart",
+		lucideIcon: "PieChart",
+		hugeiconsIcon: "PieChart01Icon",
+	},
+	{
+		slot: "file-code",
+		lucideIcon: "FileCode2",
+		hugeiconsIcon: "FileCodeIcon",
+	},
+	{
+		slot: "database",
+		lucideIcon: "DatabaseZap",
+		hugeiconsIcon: "Database01Icon",
+	},
+	{
+		slot: "flask",
+		lucideIcon: "FlaskConical",
+		hugeiconsIcon: "EcoLabIcon",
+	},
+	{
+		slot: "scroll-text",
+		lucideIcon: "ScrollText",
+		hugeiconsIcon: "Note01Icon",
+	},
+	{
+		slot: "alert-triangle",
+		lucideIcon: "TriangleAlert",
+		hugeiconsIcon: "Alert01Icon",
+	},
+	{
+		slot: "cog",
+		lucideIcon: "Cog",
+		hugeiconsIcon: "Settings01Icon",
+	},
+	{
+		slot: "help-circle",
+		lucideIcon: "CircleHelp",
+		hugeiconsIcon: "HelpCircleIcon",
+	},
+	{
+		slot: "arrow-left-line",
+		lucideIcon: "ArrowLeftToLine",
+		hugeiconsIcon: "ArrowLeft02Icon",
+	},
+	{
+		slot: "arrow-right-line",
+		lucideIcon: "ArrowRightToLine",
+		hugeiconsIcon: "ArrowRight02Icon",
+	},
+	{
+		slot: "gauge",
+		lucideIcon: "Gauge",
+		hugeiconsIcon: "DashboardSquare01Icon",
+	},
+	{
+		slot: "archive",
+		lucideIcon: "Archive",
+		hugeiconsIcon: "ArchiveIcon",
+	},
+	{
+		slot: "file-box",
+		lucideIcon: "FileBox",
+		hugeiconsIcon: "PackageIcon",
+	},
+	{
+		slot: "shopping-bag",
+		lucideIcon: "ShoppingBag",
+		hugeiconsIcon: "ShoppingBag01Icon",
+	},
+	{
+		slot: "truck",
+		lucideIcon: "Truck",
+		hugeiconsIcon: "DeliveryTruck01Icon",
+	},
+	{
+		slot: "receipt",
+		lucideIcon: "ReceiptText",
+		hugeiconsIcon: "Invoice01Icon",
+	},
+	{
+		slot: "badge-percent",
+		lucideIcon: "BadgePercent",
+		hugeiconsIcon: "PercentIcon",
+	},
+	{
+		slot: "ticket",
+		lucideIcon: "TicketCheck",
+		hugeiconsIcon: "Ticket01Icon",
+	},
+	{
+		slot: "star",
+		lucideIcon: "Star",
+		hugeiconsIcon: "StarIcon",
+	},
+	{
+		slot: "users",
+		lucideIcon: "Users",
+		hugeiconsIcon: "UserGroupIcon",
+	},
+	{
+		slot: "store",
+		lucideIcon: "Store",
+		hugeiconsIcon: "Store01Icon",
+	},
+	{
+		slot: "settings-2",
+		lucideIcon: "Settings2",
+		hugeiconsIcon: "Settings02Icon",
+	},
+	{
+		slot: "palette",
+		lucideIcon: "Palette",
+		hugeiconsIcon: "PaintBoardIcon",
+	},
+	{
+		slot: "box",
+		lucideIcon: "Box",
+		hugeiconsIcon: "PackageIcon",
+	},
+	{
+		slot: "bar-chart",
+		lucideIcon: "BarChart3",
+		hugeiconsIcon: "BarChartIcon",
+	},
+	{
+		slot: "clock",
+		lucideIcon: "Clock",
+		hugeiconsIcon: "Clock01Icon",
+	},
+	{
+		slot: "calendar-check",
+		lucideIcon: "CalendarCheck",
+		hugeiconsIcon: "CalendarCheckIn01Icon",
+	},
+	{
+		slot: "heart",
+		lucideIcon: "Heart",
+		hugeiconsIcon: "FavouriteIcon",
+	},
+	{
+		slot: "link",
+		lucideIcon: "Link",
+		hugeiconsIcon: "Link01Icon",
+	},
+	{
+		slot: "file-question",
+		lucideIcon: "FileQuestion",
+		hugeiconsIcon: "FileQuestionMarkIcon",
+	},
+	{
+		slot: "zap",
+		lucideIcon: "Zap",
+		hugeiconsIcon: "FlashIcon",
+	},
+	{
+		slot: "calendar-clock",
+		lucideIcon: "CalendarClock",
+		hugeiconsIcon: "Calendar02Icon",
+	},
+	{
+		slot: "clipboard-check",
+		lucideIcon: "ClipboardCheck",
+		hugeiconsIcon: "ClipboardIcon",
+	},
+	{
+		slot: "door",
+		lucideIcon: "DoorOpen",
+		hugeiconsIcon: "DoorOpenIcon",
+	},
+	{
+		slot: "file-text",
+		lucideIcon: "FileText",
+		hugeiconsIcon: "FileAttachmentIcon",
+	},
+	{
+		slot: "file-warning",
+		lucideIcon: "FileWarning",
+		hugeiconsIcon: "Shield01Icon",
+	},
+	{
+		slot: "megaphone",
+		lucideIcon: "Megaphone",
+		hugeiconsIcon: "Megaphone01Icon",
+	},
+	{
+		slot: "timer",
+		lucideIcon: "Timer",
+		hugeiconsIcon: "Timer01Icon",
+	},
+	{
+		slot: "wrench",
+		lucideIcon: "Wrench",
+		hugeiconsIcon: "WrenchIcon",
+	},
+	{
+		slot: "clock-fading",
+		lucideIcon: "ClockFading",
+		hugeiconsIcon: "Clock01Icon",
+	},
+	{
+		slot: "contact",
+		lucideIcon: "Contact",
+		hugeiconsIcon: "ContactIcon",
+	},
+	{
+		slot: "git-branch",
+		lucideIcon: "GitBranch",
+		hugeiconsIcon: "GitBranchIcon",
+	},
+	{
+		slot: "headphones",
+		lucideIcon: "Headphones",
+		hugeiconsIcon: "HeadphonesIcon",
+	},
+	{
+		slot: "messages-square",
+		lucideIcon: "MessagesSquare",
+		hugeiconsIcon: "Message01Icon",
+	},
+	{
+		slot: "repeat",
+		lucideIcon: "Repeat",
+		hugeiconsIcon: "RepeatIcon",
+	},
+	{
+		slot: "check-square",
+		lucideIcon: "SquareCheck",
+		hugeiconsIcon: "TaskDone01Icon",
+	},
+	{
+		slot: "users-2",
+		lucideIcon: "Users2",
+		hugeiconsIcon: "UserGroupIcon",
+	},
+	{
+		slot: "arrow-right",
+		lucideIcon: "ArrowRight",
+		hugeiconsIcon: "ArrowRight01Icon",
+	},
+	{
+		slot: "ellipsis-vertical",
+		lucideIcon: "EllipsisVertical",
+		hugeiconsIcon: "MoreVerticalIcon",
+	},
+	{
+		slot: "contrast",
+		lucideIcon: "Contrast",
+		hugeiconsIcon: "Sun01Icon",
+	},
+	{
+		slot: "shapes",
+		lucideIcon: "Shapes",
+		hugeiconsIcon: "ShapeCollectionIcon",
+	},
+	{
+		slot: "arrow-left",
+		lucideIcon: "ArrowLeft",
+		hugeiconsIcon: "ArrowLeft01Icon",
+	},
+	{
+		slot: "quote",
+		lucideIcon: "Quote",
+		hugeiconsIcon: "QuoteUpIcon",
+	},
+	{
+		slot: "trash",
+		lucideIcon: "Trash",
+		hugeiconsIcon: "Delete01Icon",
+	},
+] as const

@@ -1,4 +1,4 @@
-import { ChevronRight } from "lucide-react"
+import { IconSlot } from "@/registry/icon/icon-library"
 
 export function InfoCard() {
 	return (
@@ -14,7 +14,7 @@ export function InfoCard() {
 				</span>
 				<span className="text-fg-tertiary flex cursor-pointer items-center text-xs font-normal">
 					<span>Learn More</span>
-					<ChevronRight className="size-4" />
+					<IconSlot slot="right" className="size-4" />
 				</span>
 			</div>
 		</div>

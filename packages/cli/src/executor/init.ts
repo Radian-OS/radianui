@@ -1,8 +1,9 @@
 import fs from "fs-extra"
 import path from "path"
 import prompts from "prompts"
+import { addComponentsToProject } from "@/commands/add"
 import { type InitConfig } from "@/config/initSchema"
-import { type Color, type Font } from "@/utils/registry"
+import { ICON_DEPENDENCIES } from "@/registry/constants"
 import {
 	getTemplateForFramework,
 	resolveTemplate,
@@ -14,18 +15,16 @@ import { createComponentsJson } from "@/utils/createComponentsJson"
 import { installDependencies } from "@/utils/dependencyInstaller"
 import { type FrameworkName } from "@/utils/frameworks"
 import { generateThemeCss } from "@/utils/generateCss"
-import { getGlobalCssV4 } from "@/utils/getGlobalCss"
+import { getConfig } from "@/utils/getConfig"
+import { getGlobalCssV4, getUtilityCssV4 } from "@/utils/getGlobalCss"
 import { getPackageManager } from "@/utils/getPackageManager"
 import { getProjectInfo, getTailwindCssFilePath } from "@/utils/getProjectInfo"
 import { handlePromptCancel } from "@/utils/prompts"
-import {
-	getRegistryComponents,
-	resolveComponents,
-} from "@/utils/registry"
+import { type Color, type Font } from "@/utils/registry"
+import { getRegistryComponents, resolveComponents } from "@/utils/registry"
 import { spinner } from "@/utils/spinner"
 import { updateCssWithTheme } from "@/utils/updaters/updateCss"
 import { updateCssWithPreset } from "@/utils/updaters/updateCssWithPreset"
-import { addComponentsToProject } from "@/commands/add"
 
 /**
  * Executes init with a fully-resolved config.
@@ -41,7 +40,12 @@ export async function executeInitFromConfig(config: InitConfig) {
 
 	// ── Step 2: Create components.json (if needed) ────────────────────────
 	if (!config.hasComponentsJson) {
-		await createComponentsJson(projectPath, config.useSrcDir)
+		await createComponentsJson(
+			projectPath,
+			config.useSrcDir,
+			config.style,
+			config.iconLibrary
+		)
 	}
 
 	// ── Step 3: Apply CSS ─────────────────────────────────────────────────
@@ -50,13 +54,19 @@ export async function executeInitFromConfig(config: InitConfig) {
 	configSpinner.succeed()
 
 	// ── Step 4: Install dependencies ──────────────────────────────────────
-	if (config.preset?.config.dependencies?.length) {
-		await installDependencies(
-			projectPath,
-			config.preset.config.dependencies,
-			"Installing preset dependencies"
-		)
-	}
+	const dependencies = config.preset?.config.dependencies?.length
+		? config.preset.config.dependencies
+		: [
+				"class-variance-authority",
+				"tw-animate-css",
+				"radix-ui",
+				...ICON_DEPENDENCIES[config.iconLibrary!],
+			]
+	await installDependencies(
+		projectPath,
+		dependencies,
+		"Installing dependencies"
+	)
 
 	// ── Step 5: Install components ────────────────────────────────────────
 	await installComponents(config, projectPath)
@@ -157,7 +167,18 @@ async function applyCss(config: InitConfig, projectPath: string) {
 		const globalCss = await getGlobalCssV4()
 		if (!globalCss) throw new Error("Global CSS content is undefined")
 		await fs.writeFile(cssPath, globalCss, "utf-8")
-		await updateCssWithTheme(cssPath, config.brandColor as Color, config.font as Font)
+		await updateCssWithTheme(
+			cssPath,
+			config.brandColor as Color,
+			config.font as Font
+		)
+
+		const utilityCssPath = path.join(path.dirname(cssPath), "utility.css")
+		const utilityCss = await getUtilityCssV4()
+		if (utilityCss) {
+			await fs.ensureFile(utilityCssPath)
+			await fs.writeFile(utilityCssPath, utilityCss, "utf-8")
+		}
 	}
 }
 
@@ -172,6 +193,8 @@ async function installComponents(config: InitConfig, projectPath: string) {
 	}
 	const projectInfo = await getProjectInfo(projectPath)
 
+	const rawConfig = await getConfig(projectPath)
+
 	if (config.preset) {
 		if (config.isExistingProject && config.hasComponentsJson) {
 			// Existing project with preset: merge existing ui/ components
@@ -179,7 +202,7 @@ async function installComponents(config: InitConfig, projectPath: string) {
 			await updateExistingComponents(config, projectPath, addOpts, projectInfo)
 		} else {
 			// New project with preset: install all UI components
-			const allComponents = (await getRegistryComponents()).filter(
+			const allComponents = (await getRegistryComponents(rawConfig)).filter(
 				(c) => c.type === "ui"
 			)
 			await addComponentsToProject(allComponents, addOpts, projectInfo)
@@ -187,7 +210,7 @@ async function installComponents(config: InitConfig, projectPath: string) {
 	} else {
 		// No preset: install button and badge as starters
 		const resolvedComponents = await resolveComponents(
-			await getRegistryComponents(),
+			await getRegistryComponents(rawConfig),
 			["button", "badge"]
 		)
 		await addComponentsToProject(resolvedComponents, addOpts, projectInfo)
@@ -217,9 +240,7 @@ async function updateExistingComponents(
 	}
 
 	const presetDeps = config.preset?.config.registryDependencies ?? []
-	const allComponentNames = [
-		...new Set([...existingComponents, ...presetDeps]),
-	]
+	const allComponentNames = [...new Set([...existingComponents, ...presetDeps])]
 
 	if (allComponentNames.length === 0) return
 
@@ -235,7 +256,8 @@ async function updateExistingComponents(
 
 	if (!updateComponents) return
 
-	const allRegistry = await getRegistryComponents()
+	const rawConfig = await getConfig(projectPath)
+	const allRegistry = await getRegistryComponents(rawConfig)
 	const resolvedComponents = await resolveComponents(
 		allRegistry,
 		allComponentNames

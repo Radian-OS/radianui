@@ -14,7 +14,7 @@ import {
 	AccordionContent,
 	AccordionItem,
 	AccordionTrigger,
-} from "@/registry/ui/accordion"
+} from "@/styles/default/ui/accordion"
 
 export interface FAQItem {
 	title: string

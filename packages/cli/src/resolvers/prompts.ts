@@ -7,9 +7,17 @@ import {
 	COLORS,
 	DEFAULT_BRAND_COLOR,
 	DEFAULT_FONT,
+	DEFAULT_FRAMEWORK,
+	DEFAULT_ICON_LIBRARY,
 	DEFAULT_PROJECT_NAME,
+	DEFAULT_STYLE,
+	DEFAULT_USE_SRC_DIR,
 	FONTS,
+	ICON_LIBRARIES,
+	IconLibrary,
 	MAX_PROJECT_NAME_LENGTH,
+	STYLES,
+	Style,
 } from "@/registry/constants"
 import { txt } from "@/utils/colors"
 import { handleError } from "@/utils/handleError"
@@ -31,10 +39,12 @@ export async function promptForMissing(
 		return {
 			cwd: partial.cwd,
 			projectName: (partial.projectName as string) ?? DEFAULT_PROJECT_NAME,
-			framework: partial.framework ?? "next-app",
-			useSrcDir: partial.useSrcDir ?? true,
+			framework: partial.framework ?? DEFAULT_FRAMEWORK,
+			useSrcDir: partial.useSrcDir ?? DEFAULT_USE_SRC_DIR,
 			brandColor: partial.brandColor ?? DEFAULT_BRAND_COLOR,
+			style: partial.style ?? DEFAULT_STYLE,
 			font: partial.font ?? DEFAULT_FONT,
+			iconLibrary: partial.iconLibrary ?? DEFAULT_ICON_LIBRARY,
 			preset: partial.preset,
 			isExistingProject: partial.isExistingProject ?? false,
 			hasComponentsJson: partial.hasComponentsJson ?? false,
@@ -111,8 +121,7 @@ export async function promptForMissing(
 						{
 							type: "select",
 							name: "brandColor",
-							message:
-								"Which color would you like to use as your brand color?",
+							message: "Which color would you like to use as your brand color?",
 							choices: COLORS.map((color) => ({
 								title: chalk.hex(color.hex)(color.title),
 								value: color.value,
@@ -124,6 +133,11 @@ export async function promptForMissing(
 				).brandColor
 	}
 
+	// Style (default to "default" / DEFAULT_STYLE without prompting)
+	if (!config.style) {
+		config.style = partial.preset?.config?.config?.style ?? DEFAULT_STYLE
+	}
+
 	// Font (skip if preset provides theme)
 	if (!config.font && !partial.preset) {
 		config.font = opts.skipPrompts
@@ -133,27 +147,26 @@ export async function promptForMissing(
 						{
 							type: "select",
 							name: "font",
-							message:
-								"Which font would you like to use for your project?",
+							message: "Which font would you like to use for your project?",
 							choices: (() => {
-								const defaultFont = FONTS.find(
-									(f) => f.value === DEFAULT_FONT
-								)
-								const otherFonts = FONTS.filter(
-									(f) => f.value !== DEFAULT_FONT
-								)
+								const defaultFont = FONTS.find((f) => f.value === DEFAULT_FONT)
+								const otherFonts = FONTS.filter((f) => f.value !== DEFAULT_FONT)
 								const sorted = otherFonts.sort((a, b) =>
 									a.title.localeCompare(b.title)
 								)
-								return defaultFont
-									? [defaultFont, ...sorted]
-									: sorted
+								return defaultFont ? [defaultFont, ...sorted] : sorted
 							})().map((f) => ({ title: f.title, value: f.value })),
 							initial: 0,
 						},
 						{ onCancel: () => handlePromptCancel() }
 					)
 				).font
+	}
+
+	// Icon Library (default to "lucide" / DEFAULT_ICON_LIBRARY without prompting)
+	if (!config.iconLibrary) {
+		config.iconLibrary =
+			partial.preset?.config?.config?.iconLibrary ?? DEFAULT_ICON_LIBRARY
 	}
 
 	// Existing project CSS override warning (only when no preset)
@@ -177,8 +190,10 @@ export async function promptForMissing(
 		projectName: config.projectName as string | undefined,
 		framework: config.framework as InitConfig["framework"],
 		useSrcDir: config.useSrcDir as boolean,
-		brandColor: (config.brandColor as string) ?? DEFAULT_BRAND_COLOR,
-		font: (config.font as string) ?? DEFAULT_FONT,
+		brandColor: config.brandColor as string,
+		style: config.style as Style,
+		font: config.font as string,
+		iconLibrary: config.iconLibrary as IconLibrary,
 		preset: partial.preset,
 		isExistingProject: partial.isExistingProject ?? false,
 		hasComponentsJson: partial.hasComponentsJson ?? false,

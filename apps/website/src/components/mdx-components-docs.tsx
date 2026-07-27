@@ -30,6 +30,7 @@ import DatePickerPresetsExample from "@/registry/example/date-picker/date-picker
 import DatePickerWithTimeExample from "@/registry/example/date-picker/date-picker-with-time"
 import examples from "@/registry/example/example.json"
 import ProgressPreview from "@/registry/example/progress/progress-preview"
+import { AspectRatio } from "@/registry/ui/aspect-ratio"
 import {
 	Accordion,
 	AccordionContent,
@@ -37,8 +38,8 @@ import {
 	AccordionItem,
 	type AccordionProps,
 	AccordionTrigger,
-	type AccordionTriggerProps,
-} from "@/registry/ui/accordion"
+	AccordionTriggerProps,
+} from "@/styles/default/ui/accordion"
 import {
 	Alert,
 	AlertContent,
@@ -46,13 +47,16 @@ import {
 	AlertIcon,
 	AlertProps,
 	AlertTitle,
-} from "@/registry/ui/alert"
-import { AspectRatio } from "@/registry/ui/aspect-ratio"
-import { Divider } from "@/registry/ui/divider"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
+} from "@/styles/default/ui/alert"
+import { Divider } from "@/styles/default/ui/divider"
+import {
+	Tabs,
+	TabsContent,
+	TabsList,
+	TabsTrigger,
+} from "@/styles/default/ui/tabs"
 import ChangelogCard from "./changelog-card"
 import ChangelogList from "./changelog-list"
-import { ChangelogV03Content } from "./changelog/v0-3-content"
 import { CodeBlockCommandServer } from "./code-block-command-server"
 import { CodeCollapsibleFileWrapper } from "./code-collapsible-file-wrapper"
 import { CodeCollapsibleWrapper } from "./code-collapsible-wrapper"
@@ -244,7 +248,6 @@ export const components = {
 	FeatureList,
 	FeatureListItem,
 	ComponentExpansionGrid,
-	ChangelogV03Content,
 	ResourcesGrid,
 	RequestDesign,
 	ComponentDocContent,

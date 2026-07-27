@@ -9,7 +9,7 @@ import { spinner } from "@/utils/spinner"
 
 const GITHUB_REPO_URL = "https://github.com/Radian-os/radianos"
 
-const GITHUB_REPO_BRANCH = "feat/cli"
+const GITHUB_REPO_BRANCH = "dev"
 
 export interface TemplateOptions {
 	projectPath: string
@@ -313,5 +313,5 @@ async function defaultPostInit({ projectPath }: { projectPath: string }) {
 		await execa("git", ["commit", "-m", "feat: initial commit"], {
 			cwd: projectPath,
 		})
-	} catch {}
+	} catch { }
 }

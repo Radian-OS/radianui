@@ -69,7 +69,11 @@ export default async function RootLayout({
 			<head>
 				<AhrefsAnalytics />
 			</head>
-			<body className={cn("relative min-h-svh antialiased", inter.variable)}>
+			<body
+				className={cn(
+					"style-default relative min-h-svh antialiased",
+					inter.variable
+				)}>
 				<ReactQueryProvider>
 					<PostHogProvider>
 						<ToastProvider>

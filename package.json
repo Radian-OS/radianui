@@ -21,7 +21,11 @@
 		"pub:release": "cd packages/cli && pnpm pub:release",
 		"check-types": "turbo run check-types",
 		"generate-component-json": "turbo run generate-component-json",
+		"generate-styles": "turbo run generate-styles",
 		"generate-css": "turbo run generate-css",
+		"generate-styles-json": "turbo run generate-styles-json",
+		"update-icon-slot": "turbo run update-icon-slot",
+		"generate-icon": "turbo run generate-icon",
 		"lint": "turbo run lint",
 		"prepare": "husky"
 	},

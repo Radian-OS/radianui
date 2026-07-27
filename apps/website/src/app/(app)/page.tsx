@@ -15,7 +15,7 @@ import VideoDialogPreview from "@/components/home/video/video-dialog-preview"
 import { JsonLd } from "@/components/seo/json-ld"
 import { getHomepageStructuredData } from "@/lib/structured-data"
 import { BorderBeam } from "@/registry/animated/border-beam"
-import { Badge } from "@/registry/ui/badge"
+import { Badge } from "@/styles/default/ui/badge"
 
 const upperHeroBeamPath =
 	"M0 1H132C142.8 1 152.8 6.8 158.1 16.2L286.5 258.8C292.1 269.4 303.2 276 315.2 276H438"

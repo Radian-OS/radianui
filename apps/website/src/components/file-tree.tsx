@@ -11,8 +11,8 @@ import React, {
 import * as AccordionPrimitive from "@radix-ui/react-accordion"
 import { ChevronDown, ChevronRight, FileCode2 } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { Button } from "@/registry/ui/button"
-import { ScrollArea } from "@/registry/ui/scroll-area"
+import { Button } from "@/styles/default/ui/button"
+import { ScrollArea } from "@/styles/default/ui/scroll-area"
 
 type TreeViewElement = {
 	id: string

@@ -1,4 +1,4 @@
-﻿{
+{
 	"name": "amber",
 	"label": "Amber",
 	"cssVariables": {
@@ -9,7 +9,7 @@
 			"primary-border": "oklch(0.8016 0.1705 73.27)",
 			"primary-hover": "oklch(0.8342 0.1594 79.51)",
 			"primary-text": "oklch(0.5461 0.1088 77.73)",
-			"primary-fg": "oklch(0.445 0.087 78.294)"
+			"primary-fg": "oklch(0.2764 0.0079 264.44)"
 		},
 		"dark": {
 			"primary": "oklch(0.8016 0.1705 73.27)",
@@ -18,7 +18,7 @@
 			"primary-border": "oklch(0.5461 0.1088 77.73)",
 			"primary-hover": "oklch(0.8342 0.1594 79.51)",
 			"primary-text": "oklch(0.8342 0.1594 79.51)",
-			"primary-fg": "oklch(0.445 0.087 78.294)"
+			"primary-fg": "oklch(0.2764 0.0079 264.44)"
 		}
 	}
 }

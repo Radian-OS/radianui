@@ -53,7 +53,7 @@ export default function HoverCardPostImagesAndStats() {
 					</div>
 				</div>
 			</HoverCardTrigger>
-			<HoverCardContent className="w-80 space-y-4 rounded-xl">
+			<HoverCardContent className="w-80 space-y-4">
 				<div className="flex items-center gap-2">
 					<Avatar size="64">
 						<AvatarImage src={profile.avatar} />

@@ -1,5 +1,5 @@
 import React from "react"
-import { Divider } from "@/registry/ui/divider"
+import { Divider } from "@/styles/default/ui/divider"
 
 export default function MiniFooter() {
 	const currentYear = new Date().getFullYear()

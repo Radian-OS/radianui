@@ -4,8 +4,8 @@ import Image from "next/image"
 import { GoogleIcon } from "@/components/home/block/components/google-icon"
 import { OutlookIcon } from "@/components/home/outlook-icon"
 import { cn } from "@/lib/utils"
-import { Button } from "@/registry/ui/button"
-import { Divider } from "@/registry/ui/divider"
+import { Button } from "@/styles/default/ui/button"
+import { Divider } from "@/styles/default/ui/divider"
 
 interface VerificationProps {
 	fullScreen?: boolean

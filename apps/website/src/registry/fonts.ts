@@ -1,5 +1,161 @@
 export const FONTS = [
 	{
+		value: "inter",
+		name: "Inter",
+		type: "registry:font",
+		font: {
+			family: "'Inter', sans-serif",
+			provider: "google",
+			subsets: ["latin"],
+			import: "Inter",
+			googleFontsUrl:
+				"https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap",
+		},
+	},
+	{
+		value: "roboto",
+		name: "Roboto",
+		type: "registry:font",
+		font: {
+			family: "'Roboto', sans-serif",
+			provider: "google",
+			subsets: ["latin"],
+			import: "Roboto",
+			googleFontsUrl:
+				"https://fonts.googleapis.com/css2?family=Roboto:wght@100..900&display=swap",
+		},
+	},
+	{
+		value: "open-sans",
+		name: "Open Sans",
+		type: "registry:font",
+		font: {
+			family: "'Open Sans', sans-serif",
+			provider: "google",
+			subsets: ["latin"],
+			import: "Open_Sans",
+			googleFontsUrl:
+				"https://fonts.googleapis.com/css2?family=Open+Sans:wght@300..800&display=swap",
+		},
+	},
+	{
+		value: "manrope",
+		name: "Manrope",
+		type: "registry:font",
+		font: {
+			family: "'Manrope', sans-serif",
+			provider: "google",
+			subsets: ["latin"],
+			import: "Manrope",
+			googleFontsUrl:
+				"https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap",
+		},
+	},
+	{
+		value: "geist",
+		name: "Geist",
+		type: "registry:font",
+		font: {
+			family: "'Geist', sans-serif",
+			provider: "google",
+			subsets: ["latin"],
+			import: "Geist",
+			googleFontsUrl:
+				"https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap",
+		},
+	},
+	{
+		value: "rubik",
+		name: "Rubik",
+		type: "registry:font",
+		font: {
+			family: "'Rubik', sans-serif",
+			provider: "google",
+			subsets: ["latin"],
+			import: "Rubik",
+			googleFontsUrl:
+				"https://fonts.googleapis.com/css2?family=Rubik:wght@300..900&display=swap",
+		},
+	},
+	{
+		value: "dm-sans",
+		name: "DM Sans",
+		type: "registry:font",
+		font: {
+			family: "'DM Sans', sans-serif",
+			provider: "google",
+			subsets: ["latin"],
+			import: "DM_Sans",
+			googleFontsUrl:
+				"https://fonts.googleapis.com/css2?family=DM+Sans:wght@100..900&display=swap",
+		},
+	},
+	{
+		value: "lato",
+		name: "Lato",
+		type: "registry:font",
+		font: {
+			family: "'Lato', sans-serif",
+			provider: "google",
+			subsets: ["latin"],
+			import: "Lato",
+			googleFontsUrl:
+				"https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap",
+		},
+	},
+	{
+		value: "raleway",
+		name: "Raleway",
+		type: "registry:font",
+		font: {
+			family: "'Raleway', sans-serif",
+			provider: "google",
+			subsets: ["latin"],
+			import: "Raleway",
+			googleFontsUrl:
+				"https://fonts.googleapis.com/css2?family=Raleway:wght@100..900&display=swap",
+		},
+	},
+	{
+		value: "work-sans",
+		name: "Work Sans",
+		type: "registry:font",
+		font: {
+			family: "'Work Sans', sans-serif",
+			provider: "google",
+			subsets: ["latin"],
+			import: "Work_Sans",
+			googleFontsUrl:
+				"https://fonts.googleapis.com/css2?family=Work+Sans:wght@100..900&display=swap",
+		},
+	},
+	{
+		value: "ibm-plex-sans",
+		name: "IBM Plex Sans",
+		type: "registry:font",
+		font: {
+			family: "'IBM Plex Sans', sans-serif",
+			provider: "google",
+			subsets: ["latin"],
+			import: "IBM_Plex_Sans",
+			googleFontsUrl:
+				"https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100..700&display=swap",
+		},
+	},
+	{
+		value: "figtree",
+		name: "Figtree",
+		type: "registry:font",
+		font: {
+			family: "'Figtree', sans-serif",
+			provider: "google",
+			subsets: ["latin"],
+			import: "Figtree",
+			googleFontsUrl:
+				"https://fonts.googleapis.com/css2?family=Figtree:wght@300..900&display=swap",
+		},
+	},
+	{
 		value: "abeezee",
 		name: "ABeeZee",
 		type: "registry:font",
@@ -23,6 +179,19 @@ export const FONTS = [
 			import: "AR_One_Sans",
 			googleFontsUrl:
 				"https://fonts.googleapis.com/css2?family=AR+One+Sans:wght@400..700&display=swap",
+		},
+	},
+	{
+		value: "architects-daughter",
+		name: "Architects Daughter",
+		type: "registry:font",
+		font: {
+			family: "'Architects Daughter', sans-serif",
+			provider: "google",
+			subsets: ["latin"],
+			import: "Architects_Daughter",
+			googleFontsUrl:
+				"https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap",
 		},
 	},
 	{
@@ -1612,19 +1781,6 @@ export const FONTS = [
 		},
 	},
 	{
-		value: "dm-sans",
-		name: "DM Sans",
-		type: "registry:font",
-		font: {
-			family: "'DM Sans', sans-serif",
-			provider: "google",
-			subsets: ["latin"],
-			import: "DM_Sans",
-			googleFontsUrl:
-				"https://fonts.googleapis.com/css2?family=DM+Sans:wght@100..900&display=swap",
-		},
-	},
-	{
 		value: "darker-grotesque",
 		name: "Darker Grotesque",
 		type: "registry:font",
@@ -2054,19 +2210,6 @@ export const FONTS = [
 		},
 	},
 	{
-		value: "figtree",
-		name: "Figtree",
-		type: "registry:font",
-		font: {
-			family: "'Figtree', sans-serif",
-			provider: "google",
-			subsets: ["latin"],
-			import: "Figtree",
-			googleFontsUrl:
-				"https://fonts.googleapis.com/css2?family=Figtree:wght@300..900&display=swap",
-		},
-	},
-	{
 		value: "finlandica",
 		name: "Finlandica",
 		type: "registry:font",
@@ -2272,19 +2415,6 @@ export const FONTS = [
 			import: "Gayathri",
 			googleFontsUrl:
 				"https://fonts.googleapis.com/css2?family=Gayathri:wght@100;400;700&display=swap",
-		},
-	},
-	{
-		value: "geist",
-		name: "Geist",
-		type: "registry:font",
-		font: {
-			family: "'Geist', sans-serif",
-			provider: "google",
-			subsets: ["latin"],
-			import: "Geist",
-			googleFontsUrl:
-				"https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap",
 		},
 	},
 	{
@@ -2691,19 +2821,6 @@ export const FONTS = [
 		},
 	},
 	{
-		value: "ibm-plex-sans",
-		name: "IBM Plex Sans",
-		type: "registry:font",
-		font: {
-			family: "'IBM Plex Sans', sans-serif",
-			provider: "google",
-			subsets: ["latin"],
-			import: "IBM_Plex_Sans",
-			googleFontsUrl:
-				"https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100..700&display=swap",
-		},
-	},
-	{
 		value: "ibm-plex-sans-arabic",
 		name: "IBM Plex Sans Arabic",
 		type: "registry:font",
@@ -2870,19 +2987,6 @@ export const FONTS = [
 			import: "Instrument_Sans",
 			googleFontsUrl:
 				"https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&display=swap",
-		},
-	},
-	{
-		value: "inter",
-		name: "Inter",
-		type: "registry:font",
-		font: {
-			family: "'Inter', sans-serif",
-			provider: "google",
-			subsets: ["latin"],
-			import: "Inter",
-			googleFontsUrl:
-				"https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap",
 		},
 	},
 	{
@@ -3341,19 +3445,6 @@ export const FONTS = [
 		},
 	},
 	{
-		value: "lato",
-		name: "Lato",
-		type: "registry:font",
-		font: {
-			family: "'Lato', sans-serif",
-			provider: "google",
-			subsets: ["latin"],
-			import: "Lato",
-			googleFontsUrl:
-				"https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap",
-		},
-	},
-	{
 		value: "league-gothic",
 		name: "League Gothic",
 		type: "registry:font",
@@ -3702,19 +3793,6 @@ export const FONTS = [
 			import: "Manjari",
 			googleFontsUrl:
 				"https://fonts.googleapis.com/css2?family=Manjari:wght@100;400;700&display=swap",
-		},
-	},
-	{
-		value: "manrope",
-		name: "Manrope",
-		type: "registry:font",
-		font: {
-			family: "'Manrope', sans-serif",
-			provider: "google",
-			subsets: ["latin"],
-			import: "Manrope",
-			googleFontsUrl:
-				"https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap",
 		},
 	},
 	{
@@ -6630,19 +6708,6 @@ export const FONTS = [
 		},
 	},
 	{
-		value: "open-sans",
-		name: "Open Sans",
-		type: "registry:font",
-		font: {
-			family: "'Open Sans', sans-serif",
-			provider: "google",
-			subsets: ["latin"],
-			import: "Open_Sans",
-			googleFontsUrl:
-				"https://fonts.googleapis.com/css2?family=Open+Sans:wght@300..800&display=swap",
-		},
-	},
-	{
 		value: "orbit",
 		name: "Orbit",
 		type: "registry:font",
@@ -6942,6 +7007,19 @@ export const FONTS = [
 		},
 	},
 	{
+		value: "playfair-display",
+		name: "Playfair Display",
+		type: "registry:font",
+		font: {
+			family: "'Playfair Display', serif",
+			provider: "google",
+			subsets: ["latin"],
+			import: "Playfair_Display",
+			googleFontsUrl:
+				"https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap",
+		},
+	},
+	{
 		value: "pontano-sans",
 		name: "Pontano Sans",
 		type: "registry:font",
@@ -7176,19 +7254,6 @@ export const FONTS = [
 		},
 	},
 	{
-		value: "raleway",
-		name: "Raleway",
-		type: "registry:font",
-		font: {
-			family: "'Raleway', sans-serif",
-			provider: "google",
-			subsets: ["latin"],
-			import: "Raleway",
-			googleFontsUrl:
-				"https://fonts.googleapis.com/css2?family=Raleway:wght@100..900&display=swap",
-		},
-	},
-	{
 		value: "ramabhadra",
 		name: "Ramabhadra",
 		type: "registry:font",
@@ -7358,19 +7423,6 @@ export const FONTS = [
 		},
 	},
 	{
-		value: "roboto",
-		name: "Roboto",
-		type: "registry:font",
-		font: {
-			family: "'Roboto', sans-serif",
-			provider: "google",
-			subsets: ["latin"],
-			import: "Roboto",
-			googleFontsUrl:
-				"https://fonts.googleapis.com/css2?family=Roboto:wght@100..900&display=swap",
-		},
-	},
-	{
 		value: "roboto-condensed",
 		name: "Roboto Condensed",
 		type: "registry:font",
@@ -7433,19 +7485,6 @@ export const FONTS = [
 			import: "Rosario",
 			googleFontsUrl:
 				"https://fonts.googleapis.com/css2?family=Rosario:wght@300..700&display=swap",
-		},
-	},
-	{
-		value: "rubik",
-		name: "Rubik",
-		type: "registry:font",
-		font: {
-			family: "'Rubik', sans-serif",
-			provider: "google",
-			subsets: ["latin"],
-			import: "Rubik",
-			googleFontsUrl:
-				"https://fonts.googleapis.com/css2?family=Rubik:wght@300..900&display=swap",
 		},
 	},
 	{
@@ -8850,19 +8889,6 @@ export const FONTS = [
 			import: "Wix_Madefor_Text",
 			googleFontsUrl:
 				"https://fonts.googleapis.com/css2?family=Wix+Madefor+Text:wght@400..800&display=swap",
-		},
-	},
-	{
-		value: "work-sans",
-		name: "Work Sans",
-		type: "registry:font",
-		font: {
-			family: "'Work Sans', sans-serif",
-			provider: "google",
-			subsets: ["latin"],
-			import: "Work_Sans",
-			googleFontsUrl:
-				"https://fonts.googleapis.com/css2?family=Work+Sans:wght@100..900&display=swap",
 		},
 	},
 	{

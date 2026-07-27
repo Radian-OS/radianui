@@ -1,4 +1,4 @@
-﻿{
+{
 	"name": "fuchsia",
 	"label": "Fuchsia",
 	"cssVariables": {
@@ -9,7 +9,7 @@
 			"primary-border": "oklch(0.7768 0.2026 327.31)",
 			"primary-hover": "oklch(0.7228 0.2325 327.65)",
 			"primary-text": "oklch(0.5839 0.2494 328.2)",
-			"primary-fg": "oklch(1 0 0)"
+			"primary-fg": "oklch(0.9764 0.0013 286.38)"
 		},
 		"dark": {
 			"primary": "oklch(0.6901 0.2628 327.97)",
@@ -18,7 +18,7 @@
 			"primary-border": "oklch(0.5839 0.2494 328.2)",
 			"primary-hover": "oklch(0.7228 0.2325 327.65)",
 			"primary-text": "oklch(0.7228 0.2325 327.65)",
-			"primary-fg": "oklch(1 0 0)"
+			"primary-fg": "oklch(0.9764 0.0013 286.38)"
 		}
 	}
 }

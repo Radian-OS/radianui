@@ -3,8 +3,11 @@ import { createWriteStream } from "fs"
 import * as fs from "fs"
 import path from "path"
 import { pipeline } from "stream/promises"
+import { type Style } from "@/registry/constants"
 import { handleError } from "@/utils/handleError"
 import { spinner } from "@/utils/spinner"
+import { RawConfig } from "./getConfig"
+import { IconMapping } from "./transformers/transformIcon"
 
 const stripTrailingSlash = (url: string) => url.replace(/\/+$/, "")
 
@@ -14,7 +17,8 @@ export const WEBSITE_URL = stripTrailingSlash(
 export const BLOCKS_URL = stripTrailingSlash(
 	process.env.RADIANUI_BLOCKS_URL ?? "http://devblocks.radianos.com"
 )
-export const REGISTRY_COMPONENT_URL = `${WEBSITE_URL}/api/components`
+export const getRegistryComponentUrl = (style: Style) =>
+	`${WEBSITE_URL}/r/styles/${style}.json`
 export const REGISTRY_BLOCK_URL = `${BLOCKS_URL}/api/blocks`
 export const PRESET_API_URL = `${BLOCKS_URL}/api/config`
 
@@ -50,8 +54,11 @@ export type BlockAsset = {
 	assetsDirectory: string
 }
 
-export const getRegistryComponents = async (): Promise<RegistryComponents> => {
+export const getRegistryComponents = async (
+	config: RawConfig
+): Promise<RegistryComponents> => {
 	try {
+		const REGISTRY_COMPONENT_URL = getRegistryComponentUrl(config.style)
 		const response = await fetch(REGISTRY_COMPONENT_URL)
 
 		if (!response.ok) {
@@ -280,4 +287,10 @@ export async function resolveComponents(
 		(component, index, self) =>
 			self.findIndex((c) => c.name === component.name) === index
 	)
+}
+
+export async function fetchIconMappings(): Promise<IconMapping[]> {
+	const res = await fetch(new URL("/r/icon/icon.json", WEBSITE_URL).toString())
+	if (!res.ok) throw new Error(`Failed to fetch icon mappings: ${res.status}`)
+	return res.json() as Promise<IconMapping[]>
 }

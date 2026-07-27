@@ -1,5 +1,23 @@
 # radianui
 
+## 0.2.2-alpha.4
+
+### Patch Changes
+
+- Let users choose icon library
+
+## 0.2.2-alpha.3
+
+### Patch Changes
+
+- Let users initialize project with selected theme
+
+## 0.2.2-alpha.2
+
+### Patch Changes
+
+- CLI handles adding style based components
+
 ## 0.2.2-alpha.1
 
 ### Patch Changes

@@ -16,6 +16,162 @@ export type RegistryItem = {
 }
 
 export const Index: Record<string, RegistryItem> = {
+  "new-password": {
+    name: "new-password",
+    type: "block",
+    files: [
+          {
+                "path": "registry\\blocks-example\\new-password\\components\\brand-logo.tsx",
+                "name": "brand-logo.tsx",
+                "type": "components",
+                "target": ""
+          },
+          {
+                "path": "registry\\blocks-example\\new-password\\components\\github-icon.tsx",
+                "name": "github-icon.tsx",
+                "type": "components",
+                "target": ""
+          },
+          {
+                "path": "registry\\blocks-example\\new-password\\components\\google-icon.tsx",
+                "name": "google-icon.tsx",
+                "type": "components",
+                "target": ""
+          },
+          {
+                "path": "registry\\blocks-example\\new-password\\components\\new-password-form.tsx",
+                "name": "new-password-form.tsx",
+                "type": "components",
+                "target": ""
+          },
+          {
+                "path": "registry\\blocks-example\\new-password\\page.tsx",
+                "name": "page.tsx",
+                "type": "page"
+          }
+    ],
+    component: React.lazy(() => import("@/registry/blocks-example/new-password/page"))
+  },
+  "preview-01": {
+    name: "preview-01",
+    type: "block",
+    files: [
+          {
+                "path": "registry\\blocks-example\\preview-01\\common\\card-first.tsx",
+                "name": "card-first.tsx",
+                "type": "components",
+                "target": ""
+          },
+          {
+                "path": "registry\\blocks-example\\preview-01\\common\\common-card.tsx",
+                "name": "common-card.tsx",
+                "type": "components",
+                "target": ""
+          },
+          {
+                "path": "registry\\blocks-example\\preview-01\\common\\cookie-card.tsx",
+                "name": "cookie-card.tsx",
+                "type": "components",
+                "target": ""
+          },
+          {
+                "path": "registry\\blocks-example\\preview-01\\common\\dropdown.tsx",
+                "name": "dropdown.tsx",
+                "type": "components",
+                "target": ""
+          },
+          {
+                "path": "registry\\blocks-example\\preview-01\\common\\invite-card.tsx",
+                "name": "invite-card.tsx",
+                "type": "components",
+                "target": ""
+          },
+          {
+                "path": "registry\\blocks-example\\preview-01\\common\\report-card.tsx",
+                "name": "report-card.tsx",
+                "type": "components",
+                "target": ""
+          },
+          {
+                "path": "registry\\blocks-example\\preview-01\\page.tsx",
+                "name": "page.tsx",
+                "type": "page"
+          }
+    ],
+    component: React.lazy(() => import("@/registry/blocks-example/preview-01/page"))
+  },
+  "preview-02": {
+    name: "preview-02",
+    type: "block",
+    files: [
+          {
+                "path": "registry\\blocks-example\\preview-02\\page.tsx",
+                "name": "page.tsx",
+                "type": "page"
+          }
+    ],
+    component: React.lazy(() => import("@/registry/blocks-example/preview-02/page"))
+  },
+  "preview-03": {
+    name: "preview-03",
+    type: "block",
+    files: [
+          {
+                "path": "registry\\blocks-example\\preview-03\\page.tsx",
+                "name": "page.tsx",
+                "type": "page"
+          }
+    ],
+    component: React.lazy(() => import("@/registry/blocks-example/preview-03/page"))
+  },
+  "preview-04": {
+    name: "preview-04",
+    type: "block",
+    files: [
+          {
+                "path": "registry\\blocks-example\\preview-04\\page.tsx",
+                "name": "page.tsx",
+                "type": "page"
+          }
+    ],
+    component: React.lazy(() => import("@/registry/blocks-example/preview-04/page"))
+  },
+  "reset-email": {
+    name: "reset-email",
+    type: "block",
+    files: [
+          {
+                "path": "registry\\blocks-example\\reset-email\\components\\brand-logo.tsx",
+                "name": "brand-logo.tsx",
+                "type": "components",
+                "target": ""
+          },
+          {
+                "path": "registry\\blocks-example\\reset-email\\components\\gmail-icon.tsx",
+                "name": "gmail-icon.tsx",
+                "type": "components",
+                "target": ""
+          },
+          {
+                "path": "registry\\blocks-example\\reset-email\\components\\mail-logo.tsx",
+                "name": "mail-logo.tsx",
+                "type": "components",
+                "target": ""
+          },
+          {
+                "path": "registry\\blocks-example\\reset-email\\components\\reset-email.tsx",
+                "name": "reset-email.tsx",
+                "type": "components",
+                "target": ""
+          },
+          {
+                "path": "registry\\blocks-example\\reset-email\\page.tsx",
+                "name": "page.tsx",
+                "type": "page"
+          }
+    ],
+    component: React.lazy(() => import("@/registry/blocks-example/reset-email/page"))
+  },
   "sidebar-dark": {
     name: "sidebar-dark",
     type: "block",
@@ -267,5 +423,77 @@ export const Index: Record<string, RegistryItem> = {
           }
     ],
     component: React.lazy(() => import("@/registry/blocks-example/sidebar-resize/page"))
+  },
+  "signin": {
+    name: "signin",
+    type: "block",
+    files: [
+          {
+                "path": "registry\\blocks-example\\signin\\components\\brand-logo.tsx",
+                "name": "brand-logo.tsx",
+                "type": "components",
+                "target": ""
+          },
+          {
+                "path": "registry\\blocks-example\\signin\\components\\github-icon.tsx",
+                "name": "github-icon.tsx",
+                "type": "components",
+                "target": ""
+          },
+          {
+                "path": "registry\\blocks-example\\signin\\components\\google-icon.tsx",
+                "name": "google-icon.tsx",
+                "type": "components",
+                "target": ""
+          },
+          {
+                "path": "registry\\blocks-example\\signin\\components\\signin-form.tsx",
+                "name": "signin-form.tsx",
+                "type": "components",
+                "target": ""
+          },
+          {
+                "path": "registry\\blocks-example\\signin\\page.tsx",
+                "name": "page.tsx",
+                "type": "page"
+          }
+    ],
+    component: React.lazy(() => import("@/registry/blocks-example/signin/page"))
+  },
+  "signup": {
+    name: "signup",
+    type: "block",
+    files: [
+          {
+                "path": "registry\\blocks-example\\signup\\components\\github-icon.tsx",
+                "name": "github-icon.tsx",
+                "type": "components",
+                "target": ""
+          },
+          {
+                "path": "registry\\blocks-example\\signup\\components\\google-icon.tsx",
+                "name": "google-icon.tsx",
+                "type": "components",
+                "target": ""
+          },
+          {
+                "path": "registry\\blocks-example\\signup\\components\\radian-logo.tsx",
+                "name": "radian-logo.tsx",
+                "type": "components",
+                "target": ""
+          },
+          {
+                "path": "registry\\blocks-example\\signup\\components\\sign-up-form.tsx",
+                "name": "sign-up-form.tsx",
+                "type": "components",
+                "target": ""
+          },
+          {
+                "path": "registry\\blocks-example\\signup\\page.tsx",
+                "name": "page.tsx",
+                "type": "page"
+          }
+    ],
+    component: React.lazy(() => import("@/registry/blocks-example/signup/page"))
   }
 }

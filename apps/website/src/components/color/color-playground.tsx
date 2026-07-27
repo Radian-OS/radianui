@@ -3,14 +3,14 @@
 import React, { useEffect, useMemo, useState } from "react"
 import CommonCard from "@/components/common/common-card"
 import { useCopyPaste } from "@/hooks/use-copy-paste"
-import { Button } from "@/registry/ui/button"
+import { Button } from "@/styles/default/ui/button"
 import {
 	Select,
 	SelectContent,
 	SelectItem,
 	SelectTrigger,
 	SelectValue,
-} from "@/registry/ui/select"
+} from "@/styles/default/ui/select"
 
 const COLORS = [
 	{ title: "Red", value: "red" },

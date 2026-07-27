@@ -1,4 +1,4 @@
-﻿{
+{
 	"name": "cyan",
 	"label": "Cyan",
 	"cssVariables": {
@@ -9,7 +9,7 @@
 			"primary-border": "oklch(0.7375 0.1249 194.79)",
 			"primary-hover": "oklch(0.7375 0.1249 194.79)",
 			"primary-text": "oklch(0.5517 0.089 194.88)",
-			"primary-fg": "oklch(1 0 0)"
+			"primary-fg": "oklch(0.9764 0.0013 286.38)"
 		},
 		"dark": {
 			"primary": "oklch(0.6549 0.1092 194.82)",
@@ -18,7 +18,7 @@
 			"primary-border": "oklch(0.5517 0.089 194.88)",
 			"primary-hover": "oklch(0.7375 0.1249 194.79)",
 			"primary-text": "oklch(0.8293 0.1414 194.77)",
-			"primary-fg": "oklch(1 0 0)"
+			"primary-fg": "oklch(0.9764 0.0013 286.38)"
 		}
 	}
 }

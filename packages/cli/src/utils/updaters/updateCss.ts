@@ -76,8 +76,6 @@ function updateColorDeclarations(
 
 		if (colorSet[fullColorName]) {
 			decl.value = colorSet[fullColorName]
-		} else {
-			logger.error(`No color found for: ${fullColorName} in ${context}`)
 		}
 	})
 }

@@ -2,13 +2,13 @@
 
 import * as React from "react"
 import { cn } from "@/lib/utils"
-import { Button } from "@/registry/ui/button"
+import { Button } from "@/styles/default/ui/button"
 import {
 	Collapsible,
 	CollapsibleContent,
 	CollapsibleTrigger,
-} from "@/registry/ui/collapsible"
-import { Divider } from "@/registry/ui/divider"
+} from "@/styles/default/ui/collapsible"
+import { Divider } from "@/styles/default/ui/divider"
 
 export function CodeCollapsibleWrapper({
 	className,

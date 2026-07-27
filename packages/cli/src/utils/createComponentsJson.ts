@@ -1,13 +1,18 @@
 import fs from "fs-extra"
 import path from "path"
+import { IconLibrary, Style } from "@/registry/constants"
 
 export const createComponentsJson = async (
 	projectDir: string,
-	hasSrcDir: boolean
+	hasSrcDir: boolean,
+	style: Style,
+	iconLibrary: IconLibrary
 ) => {
 	const componentsJsonPath = path.join(projectDir, "components.json")
 	const componentsJson = {
 		$schema: "https://radianos.com/schema.json",
+		style,
+		iconLibrary,
 		aliases: {
 			components: "@/components",
 			utils: "@/lib/utils",

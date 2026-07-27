@@ -1,4 +1,4 @@
-﻿{
+{
 	"name": "teal",
 	"label": "Teal",
 	"cssVariables": {
@@ -9,7 +9,7 @@
 			"primary-border": "oklch(0.7472 0.1465 169.02)",
 			"primary-hover": "oklch(0.7472 0.1465 169.02)",
 			"primary-text": "oklch(0.5427 0.1008 170.56)",
-			"primary-fg": "oklch(1 0 0)"
+			"primary-fg": "oklch(0.9764 0.0013 286.38)"
 		},
 		"dark": {
 			"primary": "oklch(0.6432 0.1255 169.12)",
@@ -18,7 +18,7 @@
 			"primary-border": "oklch(0.5427 0.1008 170.56)",
 			"primary-hover": "oklch(0.7472 0.1465 169.02)",
 			"primary-text": "oklch(0.818 0.1679 166.86)",
-			"primary-fg": "oklch(1 0 0)"
+			"primary-fg": "oklch(0.9764 0.0013 286.38)"
 		}
 	}
 }

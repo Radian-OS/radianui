@@ -8,18 +8,18 @@ import { buildRegistryConfig } from "@/registry/config"
 import { FONTS } from "@/registry/fonts"
 import { PRIMARY_COLORS } from "@/registry/primary-colors"
 import { TEMPLATES, Template } from "@/registry/templates"
-import { Button } from "@/registry/ui/button"
+import { Button } from "@/styles/default/ui/button"
 import {
 	Dialog,
 	DialogContent,
 	DialogDescription,
 	DialogTitle,
 	DialogTrigger,
-} from "@/registry/ui/dialog"
-import { Input } from "@/registry/ui/input"
-import { Label } from "@/registry/ui/label"
-import { Spinner } from "@/registry/ui/spinner"
-import { Switch, SwitchWrapper } from "@/registry/ui/switch"
+} from "@/styles/default/ui/dialog"
+import { Input } from "@/styles/default/ui/input"
+import { Label } from "@/styles/default/ui/label"
+import { Spinner } from "@/styles/default/ui/spinner"
+import { Switch, SwitchWrapper } from "@/styles/default/ui/switch"
 import { RADII } from "./radius-pill"
 import { TemplateCard } from "./template-card"
 import { ThemeSummaryPill } from "./theme-summary-pill"
@@ -106,7 +106,7 @@ export function CreateProjectDialog() {
 	}
 
 	const command = data?.id
-		? `pnpm dlx radianui@alpha init --preset ${data.id}`
+		? `set RADIANUI_WEBSITE_URL=https://tmp.radianos.com&& pnpm dlx radianui@alpha init --preset ${data.id}`
 		: ""
 
 	const handleCopy = () => {
@@ -189,7 +189,7 @@ export function CreateProjectDialog() {
 								<ThemeSummaryPill
 									label="Color"
 									value={selectedColor.name}
-									colorSwatch={selectedColor.cssVars.light.primary}
+									colorSwatch={selectedColor.cssVars.light["--color-primary"]}
 								/>
 							)}
 							{selectedHeadingFont && (
