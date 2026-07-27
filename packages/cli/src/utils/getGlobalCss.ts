@@ -1,8 +1,7 @@
 import { logger } from "@/utils/logger"
 
 const GLOBAL_CSS_URL =
-	process.env.RADIANUI_GLOBAL_CSS_URL ??
-	"https://create.radianos.com/css/globals.css"
+	process.env.RADIANUI_GLOBAL_CSS_URL ?? "https://radianos.com/css/globals.css"
 
 export async function getGlobalCssV4() {
 	const globalCssUrl = GLOBAL_CSS_URL
