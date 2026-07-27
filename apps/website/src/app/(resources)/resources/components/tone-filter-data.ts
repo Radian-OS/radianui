@@ -99,11 +99,7 @@ export function getCdnColorDisplayName(cdnName: string): string {
 	return decodeURIComponent(cdnName)
 }
 
-export const GRADIENT_COLOR_NAMES = CDN_COLOR_NAMES.filter(
-	(color) => color !== "Emerald"
-)
-
-export const GRADIENT_IMAGES = GRADIENT_COLOR_NAMES.map(
+export const GRADIENT_IMAGES = CDN_COLOR_NAMES.map(
 	(color) => `${CDN_BASE_URL}/Grad-${color}.png`
 )
 
@@ -146,7 +142,7 @@ export function getActiveInfo(value: string): ActiveInfo {
 	const gradIdx = GRADIENT_IMAGES.indexOf(value)
 	if (gradIdx !== -1) {
 		return {
-			label: `Gradient ${getCdnColorDisplayName(GRADIENT_COLOR_NAMES[gradIdx])}`,
+			label: `Gradient ${getCdnColorDisplayName(CDN_COLOR_NAMES[gradIdx])}`,
 			type: "gradient-img",
 			swatch: GRADIENT_IMAGES[gradIdx],
 		}
