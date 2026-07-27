@@ -23,9 +23,10 @@ function BannerExamplePreview() {
 				<BannerDescription className="truncate">
 					Have questions or need help ?{" "}
 				</BannerDescription>
+				j
 				<div className="pl-1">
 					<Button
-						className="text-fg-secondary bg-white hover:bg-white"
+						className="bg-white text-black hover:bg-white"
 						color="neutral"
 						size="28">
 						Talk to Sales

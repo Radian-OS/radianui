@@ -1,12 +1,16 @@
 ---
 title: Stepper
-description: A component that displays a series of steps and allows users to navigate between them
+description: A visual step-by-step progress guide that helps users navigate smoothly through multi-page checkout or sign-up forms.
 links:
   github:
     href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/stepper.tsx
+  figma:
+    href: https://www.figma.com/design/ZB8gTZwafZOYY7rdJjSRz6/%E2%9D%96-Preview-%E2%9D%96-Radian-Design-System-%E2%9D%96-Version-0.3?node-id=18133-95144&t=V6eYQNGSpHNQ8XrH-11
 ---
 
 <ComponentPreview path="stepper/stepper-preview" />
+
+---
 
 ## Installation
 
@@ -30,6 +34,8 @@ links:
     </InstallTabsContent>
 
 </InstallationTabs>
+
+---
 
 ## Usage
 
@@ -89,242 +95,338 @@ const steps = [
 
 ## Examples
 
-### States
+<ComponentPreview title="With complete states" path="stepper/stepper-state" />
 
-<ComponentPreview path="stepper/stepper-state" />
+<ComponentPreview
+	title="With control button"
+	path="stepper/stepper-controlled"
+/>
 
-### Controlled
+<ComponentPreview title="Stepper with Title" path="stepper/stepper-title" />
 
-<ComponentPreview path="stepper/stepper-controlled" />
+<ComponentPreview
+	title="Stepper with Description"
+	path="stepper/stepper-description"
+/>
 
-### Vertical
+<ComponentPreview title="Stepper with Icon" path="stepper/stepper-icon" />
 
-<ComponentPreview path="stepper/stepper-vertical" />
+<ComponentPreview title="With Progress Bar" path="stepper/stepper-bar" />
 
-### Custom Indicators
-
-<ComponentPreview path="stepper/stepper-indicators" />
+<ComponentPreview title="Vertical Stepper" path="stepper/stepper-vertical" />
 
 ---
 
-## Props
+<ComponentDocContent
+	name={"Stepper"}
+	description={
+		"Stepper is a component that guides users through a series of steps, such as onboarding, checkout or multi-step forms. It visually tracks progress, highlights the current step, and supports customizable layouts and step indicators for a clear user experience."
+	}
+	features={[
+		"Modular, composable components: <Stepper>, <StepperItem>, <StepperTrigger>,<StepperSeparator> and so on.",
+		"Supports dynamic state management: easily track loading, completed, inactive and active via standard React state or context.",
+		"Fully responsive design; seamlessly adapt the layout from a horizontal bar for desktop to a compact or vertical list for mobile interfaces using Tailwind utilities.",
+		'Built-in support for "clickable" steps, enabling users to jump between sections in a non-linear flow, or "locked" steps for strict linear wizard experiences.',
+	]}
+	related={[
+		{
+			title: "Form",
+			description:
+				"The essential parent wrapper; the Stepper acts as the navigator, while the Form handles the individual fields and Zod validation for each step.",
+			href: "/docs/components/form",
+		},
+		{
+			title: "Button",
+			description:
+				'Essential for the "Next" and "Previous" actions that actually drive the Stepper\'s internal state.',
+			href: "/docs/components/button",
+		},
+		{
+			title: "Alert",
+			description:
+				"Frequently used inside a specific step if the user encounters an error in their submission that prevents them from proceeding to the next screen.",
+			href: "/docs/components/alert",
+		},
+	]}
+	faqs={[
+		{
+			question: "How do I manage the current step state?",
+			answer:
+				'The Radian Stepper is a controlled component. You manage the currentStep index in your parent component\'s state and pass it down as a prop. When the user clicks "Next," you simply increment the index in your state handler.',
+		},
+		{
+			question: "Can I render the Stepper vertically?",
+			answer:
+				"Yes. While the default layout is horizontal, you can easily change the root flex direction in your component source. By applying flex-col to the <Stepper> container, the orientation switches to vertical, which is often preferred for side-nav wizards or mobile-heavy applications.",
+		},
+		{
+			question: 'How do I style a step as "completed" vs "active"?',
+			answer:
+				"The component utilizes Tailwind's data-attribute modifiers. You can style the step indicators using data-[state=completed]:bg-green-500 or data-[state=active]:ring-2 to visually distinguish the stages of the user's progress.",
+		},
+		{
+			question: "How do I integrate this with React Hook Form?",
+			answer:
+				"You should use a useEffect or a step-change handler to trigger validation for the current step's fields before updating the currentStep state. This prevents users from moving forward if their current step contains invalid data.",
+		},
+	]}
+/>
 
-<PropsTableWrapper>
-	<PropsTable
-		title="Stepper"
-		data={[
-			{
-				name: "defaultValue",
-				values: ["number"],
-				required: false,
-				description: "The initial active step when the stepper is uncontrolled",
-				defaultValue: "1",
-			},
-			{
-				name: "value",
-				values: ["number"],
-				required: false,
-				description: "The controlled active step value",
-			},
-			{
-				name: "onValueChange",
-				values: ["(value: number) => void"],
-				required: false,
-				description:
-					"Callback fired when a step trigger changes the active step",
-			},
-			{
-				name: "orientation",
-				values: ["horizontal", "vertical"],
-				required: false,
-				description: "Controls the direction of the step navigation",
-				defaultValue: "horizontal",
-			},
-			{
-				name: "indicators",
-				values: ["StepIndicators"],
-				required: false,
-				description:
-					"Custom indicator nodes for active, completed, inactive, and loading states",
-			},
-			{
-				name: "className",
-				values: ["string"],
-				required: false,
-				description: "Additional CSS classes for the root stepper",
-			},
-		]}
-	/>
-	<PropsTable
-		title="StepperItem"
-		data={[
-			{
-				name: "step",
-				values: ["number"],
-				required: true,
-				description: "Numeric value represented by the step item",
-			},
-			{
-				name: "completed",
-				values: ["boolean"],
-				required: false,
-				description: "Forces the item into the completed state",
-				defaultValue: "false",
-			},
-			{
-				name: "disabled",
-				values: ["boolean"],
-				required: false,
-				description: "Disables the step trigger for the item",
-				defaultValue: "false",
-			},
-			{
-				name: "loading",
-				values: ["boolean"],
-				required: false,
-				description: "Shows the loading indicator when this item is active",
-				defaultValue: "false",
-			},
-			{
-				name: "className",
-				values: ["string"],
-				required: false,
-				description: "Additional CSS classes for the step item",
-			},
-		]}
-	/>
-	<PropsTable
-		title="StepperTrigger"
-		data={[
-			{
-				name: "asChild",
-				values: ["boolean"],
-				required: false,
-				description: "Renders the trigger wrapper as a child slot-like element",
-				defaultValue: "false",
-			},
-			{
-				name: "disabled",
-				values: ["boolean"],
-				required: false,
-				description: "Disables the trigger button",
-			},
-			{
-				name: "className",
-				values: ["string"],
-				required: false,
-				description: "Additional CSS classes for the trigger",
-			},
-		]}
-	/>
-	<PropsTable
-		title="StepperIndicator"
-		data={[
-			{
-				name: "children",
-				values: ["ReactNode"],
-				required: false,
-				description:
-					"Fallback indicator content when no custom indicator is set",
-			},
-			{
-				name: "className",
-				values: ["string"],
-				required: false,
-				description: "Additional CSS classes for the indicator",
-			},
-		]}
-	/>
-	<PropsTable
-		title="StepperSeparator"
-		data={[
-			{
-				name: "className",
-				values: ["string"],
-				required: false,
-				description: "Additional CSS classes for the separator",
-			},
-		]}
-	/>
-	<PropsTable
-		title="StepperTitle"
-		data={[
-			{
-				name: "children",
-				values: ["ReactNode"],
-				required: false,
-				description: "Title content for a step",
-			},
-			{
-				name: "className",
-				values: ["string"],
-				required: false,
-				description: "Additional CSS classes for the title",
-			},
-		]}
-	/>
-	<PropsTable
-		title="StepperDescription"
-		data={[
-			{
-				name: "children",
-				values: ["ReactNode"],
-				required: false,
-				description: "Description content for a step",
-			},
-			{
-				name: "className",
-				values: ["string"],
-				required: false,
-				description: "Additional CSS classes for the description",
-			},
-		]}
-	/>
-	<PropsTable
-		title="StepperNav"
-		data={[
-			{
-				name: "className",
-				values: ["string"],
-				required: false,
-				description: "Additional CSS classes for the step navigation",
-			},
-		]}
-	/>
-	<PropsTable
-		title="StepperPanel"
-		data={[
-			{
-				name: "className",
-				values: ["string"],
-				required: false,
-				description: "Additional CSS classes for the content panel",
-			},
-		]}
-	/>
-	<PropsTable
-		title="StepperContent"
-		data={[
-			{
-				name: "value",
-				values: ["number"],
-				required: true,
-				description: "Step value that controls when this content is shown",
-			},
-			{
-				name: "forceMount",
-				values: ["boolean"],
-				required: false,
-				description:
-					"Keeps the content mounted and hides it when its step is inactive",
-				defaultValue: "false",
-			},
-			{
-				name: "className",
-				values: ["string"],
-				required: false,
-				description: "Additional CSS classes for the step content",
-			},
-		]}
-	/>
-</PropsTableWrapper>
+## API Reference
+
+This is a custom component, not a Radix UI wrapper.
+
+### Stepper
+
+The root container that manages the stepper state and coordinates its child components.
+
+<PropsTable
+	data={[
+		{
+			name: "defaultValue",
+			values: ["number"],
+			required: false,
+			description: "The initial active step when the stepper is uncontrolled",
+			defaultValue: "1",
+		},
+		{
+			name: "value",
+			values: ["number"],
+			required: false,
+			description: "The controlled active step value",
+		},
+		{
+			name: "onValueChange",
+			values: ["(value: number) => void"],
+			required: false,
+			description: "Callback fired when a step trigger changes the active step",
+		},
+		{
+			name: "orientation",
+			values: ["horizontal", "vertical"],
+			required: false,
+			description: "Controls the direction of the step navigation",
+			defaultValue: "horizontal",
+		},
+		{
+			name: "indicators",
+			values: ["StepIndicators"],
+			required: false,
+			description:
+				"Custom indicator nodes for active, completed, inactive, and loading states",
+		},
+		{
+			name: "className",
+			values: ["string"],
+			required: false,
+			description: "Additional CSS classes for the root stepper",
+		},
+	]}
+/>
+
+    ### StepperItem
+
+A structural container representing an individual step within the overall sequence.
+
+<PropsTable
+	data={[
+		{
+			name: "step",
+			values: ["number"],
+			required: true,
+			description: "Numeric value represented by the step item",
+		},
+		{
+			name: "completed",
+			values: ["boolean"],
+			required: false,
+			description: "Forces the item into the completed state",
+			defaultValue: "false",
+		},
+		{
+			name: "disabled",
+			values: ["boolean"],
+			required: false,
+			description: "Disables the step trigger for the item",
+			defaultValue: "false",
+		},
+		{
+			name: "loading",
+			values: ["boolean"],
+			required: false,
+			description: "Shows the loading indicator when this item is active",
+			defaultValue: "false",
+		},
+		{
+			name: "className",
+			values: ["string"],
+			required: false,
+			description: "Additional CSS classes for the step item",
+		},
+	]}
+/>
+
+    ### StepperTrigger
+
+An interactive element that allows users to navigate directly to a specific step.
+
+<PropsTable
+	data={[
+		{
+			name: "asChild",
+			values: ["boolean"],
+			required: false,
+			description: "Renders the trigger wrapper as a child slot-like element",
+			defaultValue: "false",
+		},
+		{
+			name: "disabled",
+			values: ["boolean"],
+			required: false,
+			description: "Disables the trigger button",
+		},
+		{
+			name: "className",
+			values: ["string"],
+			required: false,
+			description: "Additional CSS classes for the trigger",
+		},
+	]}
+/>
+
+    ### StepperIndicator
+
+A visual element, often a number or icon, denoting the current state or position of the step.
+
+<PropsTable
+	data={[
+		{
+			name: "children",
+			values: ["ReactNode"],
+			required: false,
+			description: "Fallback indicator content when no custom indicator is set",
+		},
+		{
+			name: "className",
+			values: ["string"],
+			required: false,
+			description: "Additional CSS classes for the indicator",
+		},
+	]}
+/>
+
+    ### StepperSeparator
+
+A visual divider connecting individual steps to indicate progression.
+
+<PropsTable
+	data={[
+		{
+			name: "className",
+			values: ["string"],
+			required: false,
+			description: "Additional CSS classes for the separator",
+		},
+	]}
+/>
+
+    ### StepperTitle
+
+A semantic heading describing the purpose of the individual step.
+
+<PropsTable
+	data={[
+		{
+			name: "children",
+			values: ["ReactNode"],
+			required: false,
+			description: "Title content for a step",
+		},
+		{
+			name: "className",
+			values: ["string"],
+			required: false,
+			description: "Additional CSS classes for the title",
+		},
+	]}
+/>
+
+    ### StepperDescription
+
+A text container providing further context or instructions for the step.
+
+<PropsTable
+	data={[
+		{
+			name: "children",
+			values: ["ReactNode"],
+			required: false,
+			description: "Description content for a step",
+		},
+		{
+			name: "className",
+			values: ["string"],
+			required: false,
+			description: "Additional CSS classes for the description",
+		},
+	]}
+/>
+
+    ### StepperNav
+
+A navigational container for housing "Next" and "Previous" progression buttons.
+
+<PropsTable
+	data={[
+		{
+			name: "className",
+			values: ["string"],
+			required: false,
+			description: "Additional CSS classes for the step navigation",
+		},
+	]}
+/>
+
+    ### StepperPanel
+
+A wrapper for grouping related content sections within a specific step.
+
+<PropsTable
+	data={[
+		{
+			name: "className",
+			values: ["string"],
+			required: false,
+			description: "Additional CSS classes for the content panel",
+		},
+	]}
+/>
+
+    ### StepperContent
+
+The main structural container that houses the specific content for the currently active step.
+
+<PropsTable
+	data={[
+		{
+			name: "value",
+			values: ["number"],
+			required: true,
+			description: "Step value that controls when this content is shown",
+		},
+		{
+			name: "forceMount",
+			values: ["boolean"],
+			required: false,
+			description:
+				"Keeps the content mounted and hides it when its step is inactive",
+			defaultValue: "false",
+		},
+		{
+			name: "className",
+			values: ["string"],
+			required: false,
+			description: "Additional CSS classes for the step content",
+		},
+	]}
+/>

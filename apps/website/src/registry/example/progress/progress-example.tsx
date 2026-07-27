@@ -22,12 +22,12 @@ const ProgressExample = () => {
 	}, [])
 
 	return (
-		<div className="flex flex-col gap-2">
-			<div className="flex w-80 items-center justify-between">
+		<div className="flex w-full max-w-80 flex-col gap-2">
+			<div className="flex items-center justify-between">
 				<Label>Progress</Label>
 				<p className="text-fg-secondary text-sm font-medium">{progress}%</p>
 			</div>
-			<Progress className="w-80" value={progress} />
+			<Progress value={progress} />
 			<p className="text-fg-tertiary text-sm font-normal">Description</p>
 		</div>
 	)

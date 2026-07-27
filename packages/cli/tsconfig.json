@@ -22,7 +22,9 @@
   "include": [
     "src/**/*",
     "test/**/*",
-    "e2e/**/*"
+    "e2e/**/*",
+    "templates/**/*",
+    "icons/**/*"
   ],
   "exclude": [
     "node_modules",

@@ -1,6 +1,6 @@
 ---
 title: Navigation Menu
-description: A collection of links for navigating websites, with support for dropdown panels and active states.
+description: A rich header navigation bar featuring smooth dropdown cards and multi-column link layouts.
 links:
   github:
     href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/navigation-menu.tsx
@@ -10,6 +10,8 @@ links:
 ---
 
 <ComponentPreview path="navigation-menu/navigation-menu-preview" />
+
+---
 
 ## Installation
 
@@ -36,6 +38,8 @@ links:
     </InstallTabsContent>
 
 </InstallationTabs>
+
+---
 
 ## Usage
 
@@ -103,127 +107,197 @@ import {
 
 ## Examples
 
-### With Icons
+<ComponentPreview
+	title="Navigation Menu Items Align"
+	path="navigation-menu/navigation-menu-align"
+/>
 
-Add icons inside `NavigationMenuLink` for visual context alongside menu labels.
+<ComponentPreview
+	title="Column w/Icons"
+	path="navigation-menu/navigation-menu-columns"
+/>
 
-<br />
-
-<ComponentPreview path="navigation-menu/navigation-menu-icons" />
-
-### With Docs
-
-<ComponentPreview path="navigation-menu/navigation-menu-docs" />
+<ComponentPreview
+	title="Plain Simple"
+	path="navigation-menu/navigation-menu-plain"
+/>
 
 ---
 
-## Props
+<ComponentDocContent
+	name={"Navigation Menu"}
+	description={
+		"Navigation Menu is a component for creating website headers and dropdown or mega menus. It provides smooth hover interactions, keyboard accessibility, responsive dropdowns, and customizable animations for a polished navigation experience."
+	}
+	features={[
+		"@radix-ui/react-navigation-menu, providing strict ARIA compliance and seamless keyboard traversal using Tab and Arrow keys.",
+		"Features an intelligent <NavigationMenuViewport> that smoothly animates its width and height to match the specific content of the currently active dropdown panel.",
+		"Comprehensive suite of modular components: <NavigationMenu>, <NavigationMenuList>, <NavigationMenuItem>, <NavigationMenuTrigger>, <NavigationMenuContent>, and <NavigationMenuLink>.",
+		'Natively handles safe "hover tunnels," allowing users to move their mouse diagonally from the trigger to the content without the menu abruptly closing.',
+		"Includes custom Tailwind keyframes (like animate-in, fade-in, and zoom-in) for polished, native-feeling interactions.",
+	]}
+	related={[
+		{
+			title: "Menubar",
+			description:
+				"Use a Menubar for building persistent, click-driven, macOS-style application menus. Use the Navigation Menu for standard, hover-driven public website headers.",
+			href: "/docs/components/menubar",
+		},
+		{
+			title: "Dropdown",
+			description:
+				"Simpler, click-triggered contextual menus. Not suited for massive, multi-column mega menus.",
+			href: "/docs/components/dropdown",
+		},
+		{
+			title: "Sidebar",
+			description:
+				"Navigation Menus are strictly horizontal. For mobile screens, you will typically hide the Navigation Menu and replace it with a hamburger button that opens a Radian Sheet (Drawer).",
+			href: "/docs/components/sidebar",
+		},
+	]}
+	faqs={[
+		{
+			question:
+				"How do I create a standard top-level link without a dropdown menu?",
+			answer:
+				"Not every item needs a dropdown. You can render a <NavigationMenuItem> that contains only a <NavigationMenuLink> (omitting the Trigger and Content pieces) to create a simple, direct navigational link right in the top bar.",
+		},
+		{
+			question:
+				"Can I put rich HTML like images or CSS Grids inside the dropdown?",
+			answer:
+				"Absolutely. The <NavigationMenuContent> component is simply an unopinionated container. You can render complex Tailwind grid layouts, featured article cards, icons, and buttons directly inside it to create a massive, detailed mega menu.",
+		},
+		{
+			question: "How do I change how fast the menu opens on hover?",
+			answer:
+				"The Radix primitive includes a slight delay to prevent accidental flashing when a user moves their mouse quickly across the screen. You can adjust this globally by passing the delayDuration prop (measured in milliseconds) directly to the root <NavigationMenu> component. Mobile devices automatically ignore this and convert the interaction to a standard tap.",
+		},
+	]}
+/>
 
-<PropsTableWrapper>
-	<PropsTable
-		title="NavigationMenu"
-		data={[
-			{
-				name: "viewport",
-				required: false,
-				defaultValue: "true",
-				values: ["boolean"],
-				description:
-					"When true, renders a shared viewport for dropdown content. Set to false to render content inline.",
-			},
-			{
-				name: "value",
-				required: false,
-				values: ["string"],
-				description: "The controlled value of the menu item to expand.",
-			},
-			{
-				name: "defaultValue",
-				required: false,
-				values: ["string"],
-				description: "The value of the menu item to expand when initially rendered.",
-			},
-			{
-				name: "onValueChange",
-				required: false,
-				values: ["(value: string) => void"],
-				description: "Callback fired when the expanded menu item changes.",
-			},
-			{
-				name: "delayDuration",
-				required: false,
-				defaultValue: "200",
-				values: ["number"],
-				description:
-					"The duration in milliseconds from when the pointer enters a trigger until the content opens.",
-			},
-			{
-				name: "skipDelayDuration",
-				required: false,
-				defaultValue: "300",
-				values: ["number"],
-				description:
-					"How much time a user has to enter another trigger without incurring a delay.",
-			},
-		]}
-		externalReference="https://www.radix-ui.com/primitives/docs/components/navigation-menu#root"
-	/>
-	<PropsTable
-		title="NavigationMenuList"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/navigation-menu#list"
-	/>
-	<PropsTable
-		title="NavigationMenuItem"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/navigation-menu#item"
-	/>
-	<PropsTable
-		title="NavigationMenuTrigger"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/navigation-menu#trigger"
-	/>
-	<PropsTable
-		title="NavigationMenuContent"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/navigation-menu#content"
-	/>
-	<PropsTable
-		title="NavigationMenuLink"
-		data={[
-			{
-				name: "asChild",
-				required: false,
-				defaultValue: "false",
-				values: ["boolean"],
-				description:
-					"Use this prop to render the link as a child component, such as Next.js Link.",
-			},
-			{
-				name: "active",
-				required: false,
-				defaultValue: "false",
-				values: ["boolean"],
-				description: "Whether the link is the active route.",
-			},
-		]}
-		externalReference="https://www.radix-ui.com/primitives/docs/components/navigation-menu#link"
-	/>
-	<PropsTable
-		title="NavigationMenuViewport"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/navigation-menu#viewport"
-	/>
-	<PropsTable
-		title="NavigationMenuIndicator"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/navigation-menu#indicator"
-	/>
-	<PropsTable
-		title="navigationMenuTriggerStyle"
-		data={[
-			{
-				name: "className",
-				required: false,
-				values: ["string"],
-				description:
-					"Apply to NavigationMenuLink for top-level links that should match trigger styling.",
-			},
-		]}
-	/>
+## API Reference
 
-</PropsTableWrapper>
+### NavigationMenu
+
+The root container. Alias for `NavigationMenu.Root` from Radix UI.
+
+<PropsTable
+	data={[
+		{
+			name: "viewport",
+			required: false,
+			defaultValue: "true",
+			values: ["boolean"],
+			description:
+				"When true, renders a shared viewport for dropdown content. Set to false to render content inline.",
+		},
+		{
+			name: "viewportClassName",
+			required: false,
+			values: ["string"],
+			description:
+				"Class name to apply to the viewport element. Only applicable when `viewport` is true.",
+		},
+		{
+			name: "value",
+			required: false,
+			values: ["string"],
+			description: "The controlled value of the menu item to expand.",
+		},
+		{
+			name: "defaultValue",
+			required: false,
+			values: ["string"],
+			description:
+				"The value of the menu item to expand when initially rendered.",
+		},
+		{
+			name: "onValueChange",
+			required: false,
+			values: ["(value: string) => void"],
+			description: "Callback fired when the expanded menu item changes.",
+		},
+		{
+			name: "delayDuration",
+			required: false,
+			defaultValue: "200",
+			values: ["number"],
+			description:
+				"The duration in milliseconds from when the pointer enters a trigger until the content opens.",
+		},
+		{
+			name: "skipDelayDuration",
+			required: false,
+			defaultValue: "300",
+			values: ["number"],
+			description:
+				"How much time a user has to enter another trigger without incurring a delay.",
+		},
+	]}
+/>
+
+    ### NavigationMenuList
+
+An ordered list container (`<ul>`) that groups navigation items.
+
+    ### NavigationMenuItem
+
+A list item (`<li>`) wrapper for individual triggers and links.
+
+    ### NavigationMenuTrigger
+
+An interactive element that opens the dropdown content when clicked or hovered.
+
+    ### NavigationMenuContent
+
+The dropdown panel containing nested links or custom layout.
+
+<PropsTable
+	data={[
+		{
+			name: "align",
+			required: false,
+			defaultValue: "left",
+			values: ["left", "right", "center"],
+			description: "The alignment of the content relative to the trigger.",
+		},
+	]}
+/>
+
+    ### NavigationMenuLink
+
+An interactive link element used for navigating between pages.
+
+<PropsTable
+	data={[
+		{
+			name: "asChild",
+			required: false,
+			defaultValue: "false",
+			values: ["boolean"],
+			description:
+				"Use this prop to render the link as a child component, such as Next.js Link.",
+		},
+		{
+			name: "active",
+			required: false,
+			defaultValue: "false",
+			values: ["boolean"],
+			description: "Whether the link is the active route.",
+		},
+	]}
+/>
+
+    ### NavigationMenuViewport
+
+A shared layout container where dropdown content is rendered to allow smooth animated transitions.
+
+    ### NavigationMenuIndicator
+
+A visual indicator showing which trigger is currently active.
+
+    ### navigationMenuTriggerStyle
+
+A utility function providing consistent styling for top-level links that should look like triggers.

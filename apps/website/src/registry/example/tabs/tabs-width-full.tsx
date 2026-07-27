@@ -1,37 +1,42 @@
 import React from "react"
-import { Archive, CheckCircle, Loader2 } from "lucide-react"
-import { Tabs, TabsList, TabsTrigger } from "@/registry/ui/tabs"
+import { Box, Inbox, ListTodo } from "lucide-react"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const data = [
+	{ label: "Inbox", icon: <Inbox />, value: "inbox", content: "Inbox Content" },
 	{
-		id: 1,
-		trigger: "Completed",
-		icon: <CheckCircle />,
+		label: "Projects",
+		icon: <Box />,
+		value: "projects",
+		content: "Projects Content",
 	},
 	{
-		id: 2,
-		trigger: "In Progress",
-		icon: <Loader2 />,
-	},
-	{
-		id: 3,
-		trigger: "Archived",
-		icon: <Archive />,
+		label: "Tasks",
+		icon: <ListTodo />,
+		value: "tasks",
+		content: "Tasks Content",
 	},
 ]
 
 export default function TabsWidthFull() {
 	return (
 		<div className="flex min-w-full flex-col justify-center gap-5">
-			<Tabs defaultValue={data[0].trigger.toLowerCase()}>
+			<Tabs defaultValue={data[0].value}>
 				<TabsList width={"full"} className="w-full">
 					{data.map((item) => (
-						<TabsTrigger key={item.id} value={item.trigger.toLowerCase()}>
+						<TabsTrigger key={item.value} value={item.value}>
 							{item.icon}
-							{item.trigger}
+							{item.label}
 						</TabsTrigger>
 					))}
 				</TabsList>
+				{data.map(({ value, content }) => (
+					<TabsContent key={value} value={value}>
+						<div className="bg-bg border-soft text-fg-tertiary flex items-center justify-center rounded-xl border px-2.5 py-10 text-sm">
+							{content}
+						</div>
+					</TabsContent>
+				))}
 			</Tabs>
 		</div>
 	)

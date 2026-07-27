@@ -98,7 +98,7 @@ const FeaturesSection: React.FC<BentoProps> = ({
 
 			<BentoCardGrid
 				gridRef={gridRef}
-				className="flex flex-col items-center gap-20 pb-40 pt-40">
+				className="pt-30 relative flex flex-col items-center gap-20 pb-40 sm:pt-40">
 				<FeatureHeader />
 				<div className="flex w-full max-w-[1400px] flex-col gap-6 px-5">
 					<div className="flex w-full flex-col gap-6 rounded-[20px] lg:h-[600px] lg:flex-row">
@@ -109,12 +109,12 @@ const FeaturesSection: React.FC<BentoProps> = ({
 							<div className="border-soft flex h-[600px] flex-col gap-12 overflow-hidden rounded-[20px] border">
 								<div className="pt-15 flex flex-col gap-4 px-7 sm:px-12">
 									<ScanEye size={28} className="stroke-primary-hover" />
-									<span className="heading-6 font-medium">
-										High Quality Base Components
-									</span>
+									<h3 className="heading-6 font-medium">
+										Production-Ready Figma UI Kit
+									</h3>
 									<p className="text-fg-secondary w-full text-sm leading-6 lg:max-w-[380px]">
-										Solid, reusable components built with attention to detail
-										and best practices.{" "}
+										Get access to over 2000+ Components, 1000+ assets and latest
+										Figma features like variables, auto layout and slots.{" "}
 									</p>
 								</div>
 								<div className="h-full pl-0 pr-0">
@@ -130,12 +130,12 @@ const FeaturesSection: React.FC<BentoProps> = ({
 							<div className="border-soft relative flex h-[600px] w-full flex-col gap-12 overflow-hidden rounded-[20px] border">
 								<div className="pt-15 flex flex-col gap-4 px-7 sm:px-12">
 									<SquareTerminal size={28} className="stroke-primary-hover" />
-									<span className="heading-6 font-medium">
-										Install via CLI or Copy Paste
-									</span>
+									<h3 className="heading-6 font-medium">
+										A Complete Library of UI Primitives.
+									</h3>
 									<p className="text-fg-secondary text-sm leading-6 lg:max-w-[380px]">
-										Install with one command or copy the snippet. No
-										configuration. No waiting. Just build.
+										Pre-styled 50+ React components built with Tailwind CSS to
+										copy and paste.
 									</p>
 								</div>
 								<CliCard />
@@ -151,12 +151,12 @@ const FeaturesSection: React.FC<BentoProps> = ({
 							<div className="border-soft flex h-[600px] w-full flex-col gap-12 overflow-hidden rounded-[20px] border">
 								<div className="pt-15 flex flex-col gap-4 px-7 sm:px-12">
 									<FolderGit size={28} className="stroke-primary-hover" />
-									<span className="heading-6 font-medium">
+									<h3 className="heading-6 font-medium">
 										Seamless Design to Code Sync
-									</span>
+									</h3>
 									<p className="text-fg-secondary text-sm leading-6 lg:max-w-[380px]">
-										Changes made in Figma are easily replicable in the code,
-										guaranteeing pixel-perfect consistency.
+										Variables and tokens in Figma Design File and Code use the
+										same semantic for smooth experience
 									</p>
 								</div>
 								<CodeSync />
@@ -173,12 +173,12 @@ const FeaturesSection: React.FC<BentoProps> = ({
 								className="border-soft relative flex h-[600px] w-full cursor-pointer flex-col gap-12 overflow-hidden rounded-[20px] border">
 								<div className="pt-15 flex flex-col gap-4 px-7 sm:pl-12">
 									<SwatchBook size={28} className="stroke-primary-hover" />
-									<span className="heading-6 font-medium">
-										Themeable System
-									</span>
+									<h3 className="heading-6 font-medium">
+										Instant Setup via CLI
+									</h3>
 									<p className="text-fg-secondary w-fit text-sm leading-6 lg:max-w-[380px]">
-										Edit one token to restyle your entire design system light,
-										dark, or custom themes.
+										Run a single terminal command to initialize RadianOS in your
+										project
 									</p>
 								</div>
 								<ThemeableSystem
@@ -196,12 +196,12 @@ const FeaturesSection: React.FC<BentoProps> = ({
 							<div className="border-soft z-5 relative flex h-[600px] w-full flex-col gap-12 overflow-hidden rounded-[20px] border">
 								<div className="pt-15 flex flex-col gap-4 px-7 sm:px-12">
 									<CircleGauge size={28} className="stroke-primary-hover" />
-									<span className="heading-6 font-medium">
-										Tree-Shakable Architecture
-									</span>
+									<h3 className="heading-6 font-medium">
+										Built on Radix Primitives
+									</h3>
 									<p className="text-fg-secondary text-sm leading-6 lg:max-w-[380px]">
-										Only imports what you use ultra-light bundles for fast and
-										improved performance.
+										Robust WCAG compliance and standard keyboard navigation
+										right out of the box
 									</p>
 								</div>
 								<div className="relative flex h-full">
@@ -219,12 +219,13 @@ const FeaturesSection: React.FC<BentoProps> = ({
 							<div className="border-soft relative flex h-[600px] w-full flex-col gap-12 overflow-hidden rounded-[20px] border">
 								<div className="pt-15 flex flex-col gap-4 px-7 sm:px-12">
 									<LayoutDashboard size={28} className="stroke-primary-hover" />
-									<span className="heading-6 font-medium">
-										Reusable UI Blocks
-									</span>
+									<h3 className="heading-6 font-medium">
+										Copy-Paste Landing Page Blocks
+									</h3>
 									<p className="text-fg-secondary text-sm leading-6 lg:max-w-[380px]">
-										Get access to high quality pre-built UI blocks, designed and
-										developed to plug into any layout.{" "}
+										Copy-Paste Landing Page Blocks. Growing Library of Pre-made
+										responsive sections designed to snap together into full
+										pages.{" "}
 									</p>
 								</div>
 								<div className="relative h-full w-full">
@@ -234,6 +235,14 @@ const FeaturesSection: React.FC<BentoProps> = ({
 								</div>
 							</div>
 						</FeatureCard>
+					</div>
+				</div>
+				<div
+					aria-hidden="true"
+					className="not-xl:hidden pointer-events-none absolute inset-x-0 top-0 h-full">
+					<div className="max-w-368 relative mx-auto h-full w-full px-4 md:px-5">
+						<div className="bg-soft absolute left-4 top-0 h-full w-px md:left-5" />
+						<div className="bg-soft absolute right-4 top-0 h-full w-px md:right-5" />
 					</div>
 				</div>
 			</BentoCardGrid>

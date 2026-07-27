@@ -21,17 +21,22 @@ import {
 	AccordionContent,
 	AccordionItem,
 	AccordionTrigger,
-} from "@/registry/ui/accordion"
-import { Badge } from "@/registry/ui/badge"
-import { Button } from "@/registry/ui/button"
+} from "@/styles/default/ui/accordion"
+import { Badge } from "@/styles/default/ui/badge"
+import { Button } from "@/styles/default/ui/button"
 import {
 	Dropdown,
 	DropdownContent,
 	DropdownRadioGroup,
 	DropdownRadioItem,
 	DropdownTrigger,
-} from "@/registry/ui/dropdown"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
+} from "@/styles/default/ui/dropdown"
+import {
+	Tabs,
+	TabsContent,
+	TabsList,
+	TabsTrigger,
+} from "@/styles/default/ui/tabs"
 
 export const FONTS: Record<string, string> = {
 	Inter: inter.className,
@@ -76,7 +81,7 @@ export default function TypographyPlayground() {
 						</DropdownRadioGroup>
 					</DropdownContent>
 				</Dropdown>
-				<TabsList className="whitespace-nowrap sm:whitespace-normal" size="md">
+				<TabsList className="whitespace-nowrap sm:whitespace-normal">
 					<TabsTrigger value="desktop">Desktop</TabsTrigger>
 					<TabsTrigger value="tablet">Tablet</TabsTrigger>
 					<TabsTrigger value="mobile">Mobile</TabsTrigger>

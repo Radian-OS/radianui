@@ -1,0 +1,155 @@
+"use client"
+
+import { useCallback, useMemo, useState } from "react"
+import { Settings } from "lucide-react"
+import { toast } from "sonner"
+import {
+	AVATARS,
+	CATEGORY_AVATAR_MAP,
+	copyRandomAvatar,
+	getToneStyle,
+	randomSolidMapColor,
+} from "@/constants/avatar-playground-utils"
+import { Button, IconButton } from "@/registry/ui/button"
+import { AvatarTile } from "./AvatarTile"
+import CategoryFilterDropdown from "./CategoryFilterDropdown"
+import ConfigPreferencesDialog from "./ConfigPreferencesDialog"
+import FigmaCustomIcon from "./FigmaCustomIcon"
+import { BACKGROUNDS, GRADIENT_IMAGES } from "./ToneFilterDropdown"
+import ToneFilterDropdown from "./ToneFilterDropdown"
+
+const AvatarPlayground = () => {
+	type ColorMode = "static" | "radian"
+
+	const [category, setCategory] = useState("all")
+	const [tone, setTone] = useState("neutral")
+	const [randomTrigger, setRandomTrigger] = useState(0)
+	const [configOpen, setConfigOpen] = useState(false)
+	const [copyFormat, setCopyFormat] = useState("editable-bg")
+	const [colorMode, setColorMode] = useState<ColorMode>("static")
+
+	const handleToneChange = useCallback((value: string) => {
+		if (
+			value === "pick-color" ||
+			value === "pick-gradient" ||
+			value === "pick-background"
+		) {
+			setTone(value)
+			setRandomTrigger((prev) => prev + 1)
+		} else {
+			setTone(value)
+		}
+	}, [])
+
+	const resolvedTones = useMemo(() => {
+		return AVATARS.map(() => {
+			if (tone === "pick-color") {
+				return randomSolidMapColor()
+			}
+			if (tone === "pick-gradient") {
+				return GRADIENT_IMAGES[
+					Math.floor(Math.random() * GRADIENT_IMAGES.length)
+				]
+			}
+			if (tone === "pick-background") {
+				return BACKGROUNDS[Math.floor(Math.random() * BACKGROUNDS.length)]
+			}
+			return tone
+		})
+	}, [tone, randomTrigger])
+
+	return (
+		<div className="flex w-full flex-col gap-4">
+			<div className="flex w-full items-center justify-between">
+				<CategoryFilterDropdown value={category} onChange={setCategory} />
+
+				<div className="flex items-center gap-2">
+					<ToneFilterDropdown
+						value={tone}
+						onChange={handleToneChange}
+						colorMode={colorMode}
+					/>
+
+					<Button
+						color="neutral"
+						variant="outline"
+						className="hidden sm:flex"
+						onClick={() => setConfigOpen(true)}>
+						<Settings className="text-fg-secondary" />
+						Config
+					</Button>
+					<IconButton
+						color="neutral"
+						variant="outline"
+						className="block sm:hidden"
+						onClick={() => setConfigOpen(true)}>
+						<Settings className="text-fg-secondary" />
+					</IconButton>
+
+					<IconButton
+						type="button"
+						color="neutral"
+						variant="outline"
+						onClick={async () => {
+							const randomIdx = Math.floor(Math.random() * AVATARS.length)
+							const randomTone = resolvedTones[randomIdx]
+							const avatarSrc = await copyRandomAvatar(randomTone)
+							if (avatarSrc) {
+								toast.custom(() => (
+									<div className="bg-black-inverse text-fg-inverse sm:w-78.5 flex w-full items-center gap-2 rounded-[10px] p-2">
+										<img
+											src={avatarSrc}
+											alt=""
+											className="size-15 rounded-lg object-cover"
+										/>
+										<div className="text-fg-inverse space-y-0.5 text-sm">
+											<p className="font-medium">Added to Clipboard</p>
+											<p className="text-fg-secondary font-normal">
+												Avatar has been copied to your clipboard.
+											</p>
+										</div>
+									</div>
+								))
+							}
+						}}>
+						<FigmaCustomIcon />
+					</IconButton>
+				</div>
+			</div>
+
+			<div className="grid grid-cols-3 gap-3 sm:grid-cols-5 md:grid-cols-7">
+				{AVATARS.map((src, index) => {
+					const avatarNumber = Number(src.match(/\d+/)?.[0])
+					if (
+						category !== "all" &&
+						!CATEGORY_AVATAR_MAP[category]?.includes(avatarNumber)
+					) {
+						return null
+					}
+					const tileTone = resolvedTones[index]
+					return (
+						<AvatarTile
+							key={src}
+							src={src}
+							index={index}
+							toneStyle={getToneStyle(tileTone)}
+							tone={tileTone}
+							copyFormat={copyFormat}
+						/>
+					)
+				})}
+			</div>
+
+			<ConfigPreferencesDialog
+				open={configOpen}
+				onOpenChange={setConfigOpen}
+				copyFormat={copyFormat}
+				onCopyFormatChange={setCopyFormat}
+				colorMode={colorMode}
+				onColorModeChange={setColorMode}
+			/>
+		</div>
+	)
+}
+
+export default AvatarPlayground

@@ -9,7 +9,7 @@ function ButtonIconOnlyExample() {
 				aria-label="Settings Button"
 				color="neutral"
 				variant="outline">
-				<Settings />
+				<Settings className="text-fg-secondary" />
 			</IconButton>
 			<IconButton aria-label="Trash Button" variant="soft" color="error">
 				<Trash2 />
@@ -25,7 +25,7 @@ function ButtonIconOnlyExample() {
 				className="rounded-full"
 				variant="outline"
 				color="neutral">
-				<Plus />
+				<Plus className="text-fg-secondary" />
 			</IconButton>
 		</div>
 	)

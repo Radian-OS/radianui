@@ -4,7 +4,7 @@ import { Button } from "@/registry/ui/button"
 
 function LinkButtonExample() {
 	return (
-		<div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
+		<div className="flex flex-wrap items-center justify-center gap-3">
 			<Button color="neutral" asChild variant="link">
 				<Link href="#link-button">Cancel</Link>
 			</Button>

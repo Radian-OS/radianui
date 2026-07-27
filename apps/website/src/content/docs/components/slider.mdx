@@ -1,15 +1,19 @@
 ---
 title: Slider
-description: Select values by dragging a handle along a track
+description: A visual track with a draggable handle that lets users adjust values like volume, price filters, or sizes.
 links:
   github:
     href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/slider.tsx
+  figma:
+    href: https://www.figma.com/design/ZB8gTZwafZOYY7rdJjSRz6/%E2%9D%96-Preview-%E2%9D%96-Radian-Design-System-%E2%9D%96-Version-0.3?node-id=18133-90649&t=V6eYQNGSpHNQ8XrH-11
   externalReference:
     - label: Radix UI
       href: https://www.radix-ui.com/primitives/docs/components/slider
 ---
 
 <ComponentPreview path="slider/slider-preview" />
+
+---
 
 ## Installation
 
@@ -31,13 +35,15 @@ links:
 		```
 
     	<Step>Copy and paste the following code into your project.</Step>
-    	<ComponentSource name="slider" title="components/ui/slider.tsx" collapsible />
+    	<ComponentSource src="styles/default/ui/slider.tsx" title="components/ui/slider.tsx" collapsible />
 
     	<Step>Update the import paths as per your project structure.</Step>
     </Steps>
     </InstallTabsContent>
 
 </InstallationTabs>
+
+---
 
 ## Usage
 
@@ -57,50 +63,103 @@ import { Slider, SliderThumb } from "@/components/ui/slider"
 
 ## Examples
 
-### With Stepper
+<ComponentPreview title="With Stepper" path="slider/slider-with-stepper" />
 
-<ComponentPreview path="slider/slider-with-stepper" />
+<ComponentPreview title="Vertical Slider" path="slider/slider-vertical" />
 
-### Range
+<ComponentPreview title="Disabled" path="slider/slider-disabled" />
 
-<ComponentPreview path="slider/range-slider" />
+<ComponentPreview title="Range" path="slider/range-slider" />
 
-### With Input
+<ComponentPreview title="With Input" path="slider/slider-with-input" />
 
-<ComponentPreview path="slider/slider-with-input" />
+<ComponentPreview title="With Tooltip" path="slider/slider-with-tooltip" />
 
-### With Tooltip
+<ComponentPreview title="With Marks" path="slider/slider-with-marks" />
 
-<ComponentPreview path="slider/slider-with-tooltip" />
-
-### With Marks
-
-<ComponentPreview path="slider/slider-with-marks" />
-
-### Form
-
-<ComponentPreview path="slider/price-range" />
+<ComponentPreview title="Form" path="slider/price-range" />
 
 ---
 
-## Props
+<ComponentDocContent
+	name={"Slider"}
+	description={
+		"Slider is a form component that lets users select a value or range by dragging one or more thumbs along a track. It provides keyboard accessibility, smooth interactions, and customizable styling for controls like volume, price ranges, and settings."
+	}
+	features={[
+		"@radix-ui/react-slider, ensures strict ARIA compliance with correct slider roles, aria-valuemin, aria-valuemax, and aria-valuenow management.",
+		"Supports keyboard navigation; users can use the Arrow keys to precisely increment or decrement the slider value.",
+		"Highly modular layout pieces: <Slider> and <SliderThumb>.",
+		"Effortlessly styled with Tailwind CSS, utilizing data-[disabled] modifiers to handle non-interactive states gracefully.",
+		"Supports both single-thumb selection and multi-thumb range selection (by passing an array of values to the value prop) for complex filtering interfaces.",
+	]}
+	related={[
+		{
+			title: "Form",
+			description:
+				"The necessary wrapper to integrate the Slider into complex Zod validation schemas and display localized error messages if a value is out of the requested range.",
+			href: "/docs/components/form",
+		},
+		{
+			title: "Input",
+			description:
+				"Use a standard Input component for typing exact numbers; use the Slider specifically for intuitive, approximate range selection.",
+			href: "/docs/components/input",
+		},
+		{
+			title: "Progress",
+			description:
+				"While Progress is a purely presentational indicator, the Slider is a fully interactive controller. Use them together if you need to visualize a load state while the user adjusts a throttle.",
+			href: "/docs/components/progress",
+		},
+	]}
+	faqs={[
+		{
+			question: "How do I set the minimum and maximum bounds?",
+			answer:
+				"You pass the min and max props (standard numbers) directly to the root <Slider> component. The primitive automatically handles the math to map your thumb position to the defined numerical scale.",
+		},
+		{
+			question: "How do I change the step increment?",
+			answer:
+				'You pass the step prop (e.g., step={10}) to the root component. This forces the slider thumb to "snap" to those specific intervals during drag or arrow-key interaction, preventing users from selecting invalid floating-point values.',
+		},
+		{
+			question: "How do I enable range selection (two thumbs)?",
+			answer:
+				"You simply pass an array containing two values (e.g., defaultValue={[20, 60]}) to the defaultValue prop. The component will automatically render two distinct thumb elements, allowing the user to define a lower and upper bound.",
+		},
+		{
+			question: "How do I integrate this with React Hook Form?",
+			answer:
+				"Since this is a controlled component, wrap the <Slider> map the primitive's onValueChange callback to the controller's field.onChange event to ensure your form state receives the updated array or number whenever the user interacts with the track.",
+		},
+		{
+			question: "Why isn't the slider track changing color correctly?",
+			answer:
+				"The track color is dictated by the <SliderTrack> and <SliderRange> internal components. Ensure your SliderRange component has the bg-primary (or your desired accent) Tailwind class applied. The primitive automatically calculates the range's width using absolute positioning based on the current value prop.",
+		},
+	]}
+/>
 
-<PropsTableWrapper>
-	<PropsTable
-		title="Slider"
-		data={[
-			{
-				name: "disabled",
-				values: ["boolean"],
-				defaultValue: "false",
-				description: "Shows disabled state for Slider",
-			},
-			{
-				name: "orientation",
-				values: ["horizantal", "vertical"],
-				description: "Displays and control orientation",
-			},
-		]}
-		externalReference="https://www.radix-ui.com/primitives/docs/components/slider"
-	/>
-</PropsTableWrapper>
+## API Reference
+
+### Slider
+
+The root component. Alias for `Slider.Root` from Radix UI.
+
+<PropsTable
+	data={[
+		{
+			name: "disabled",
+			values: ["boolean"],
+			defaultValue: "false",
+			description: "Shows disabled state for Slider",
+		},
+		{
+			name: "orientation",
+			values: ["horizantal", "vertical"],
+			description: "Displays and control orientation",
+		},
+	]}
+/>

@@ -1,9 +1,11 @@
 ---
 title: Code Area
-description: Display code snippets with syntax highlighting and formatting
+description: A beautifully styled text box made specifically for displaying clean, easy-to-read code snippets.
 links:
   github:
     href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/code-area.tsx
+  figma:
+    href: https://www.figma.com/design/ZB8gTZwafZOYY7rdJjSRz6/%E2%9D%96-Preview-%E2%9D%96-Radian-Design-System-%E2%9D%96-Version-0.3?node-id=18133-53832&t=V6eYQNGSpHNQ8XrH-11
   externalReference:
     - label: Shiki
       href: https://shiki.style/
@@ -11,6 +13,8 @@ links:
 ---
 
 <ComponentPreview path="code-area/code-area-preview" />
+
+---
 
 ## Installation
 
@@ -31,13 +35,15 @@ links:
 		npm install react-shiki
 		```
     	<Step>Copy and paste the following code into your project.</Step>
-    	<ComponentSource name="code-area" title="components/ui/code-area.tsx" collapsible />
+    	<ComponentSource src="styles/default/ui/code-area.tsx" title="components/ui/code-area.tsx" collapsible />
 
     	<Step>Update the import paths as per your project structure.</Step>
     </Steps>
     </InstallTabsContent>
 
 </InstallationTabs>
+
+---
 
 ## Usage
 
@@ -65,76 +71,148 @@ import { CodeArea } from "@/components/ui/code-area"
 
 ## Examples
 
-### Theme
+<ComponentPreview title="Theme" path="code-area/code-theme-example" />
 
-<ComponentPreview path="code-area/code-theme-example" />
+<ComponentPreview title="With Tabs" path="code-area/code-with-tabs-preview" />
 
-### Language
+<ComponentPreview
+	title="With Copy Button"
+	path="code-area/code-with-copy-example"
+/>
 
-<ComponentPreview path="code-area/code-language-example" />
+<ComponentPreview
+	title="TypeScript"
+	path="code-area/code-language-typescript-example"
+/>
 
-### With Tabs
+<ComponentPreview
+	title="Python"
+	path="code-area/code-language-python-example"
+/>
 
-<ComponentPreview path="code-area/code-with-tabs-preview" />
-
-### With Copy Button
-
-<ComponentPreview path="code-area/code-with-copy-example" />
+<ComponentPreview
+	title="JavaScript"
+	path="code-area/code-language-javascript-example"
+/>
 
 ---
 
-## Props
+<ComponentDocContent
+	name={"Code Area"}
+	description={
+		"A Code Area is a simple, clean box used to display programming code on a website. It keeps code formatted correctly so it remains readable and easy for others to copy. Use this component to present code snippets clearly so your readers can easily see and copy the examples you provide."
+	}
+	features={[
+		"Semantic HTML structure using <pre> and <code> tags for optimal screen reader accessibility and SEO formatting.",
+		'Includes a built-in "Copy to Clipboard" utility button utilizing the native navigator.clipboard browser API.',
+		"Handles horizontal and vertical overflow gracefully with customized scrollbars using standard Tailwind layout classes.",
+		"Unopinionated typography defaults, making it trivial to inject custom coding fonts (like JetBrains Mono, Fira Code, or Geist Mono) globally.",
+		'Built-in absolute positioning for headers or language tags (e.g., placing "typescript" in the top right corner of the block).',
+	]}
+	related={[
+		{
+			title: "Scroll Area",
+			description:
+				"Essential if you want to implement custom, cross-browser styled scrollbars within the code block instead of relying on the native, clunky browser defaults.",
+			href: "/docs/components/scroll-area",
+		},
+		{
+			title: "Tabs",
+			description:
+				"Often used to group multiple Code Areas together, allowing users to toggle between different package managers (npm, pnpm, yarn) or related file names.",
+			href: "/docs/components/tabs",
+		},
+		{
+			title: "Sonner (Toast)",
+			description:
+				'Perfect for triggering a transient "Copied to clipboard!" notification after the user interacts with the copy action.',
+			href: "/docs/components/sonner",
+		},
+	]}
+	faqs={[
+		{
+			question: "Does this component include built-in syntax highlighting?",
+			answer:
+				"No, the base Radian Code Area is an unopinionated container . To keep your application's bundle size as small as possible, you are encouraged to integrate a dedicated, lightweight library like Shiki, Prism.js, or Highlight.js inside the component source code to handle the actual tokenizing and coloring.",
+		},
+		{
+			question: "How does the copy-to-clipboard functionality work?",
+			answer:
+				"The component includes a button that triggers a native browser API call (navigator.clipboard.writeText) . Because you own the source code, you can easily modify the CodeArea.tsx file to swap the default copy icon for a checkmark for two seconds after a successful click to provide visual feedback.",
+		},
+		{
+			question:
+				"How do I prevent long lines of code from wrapping automatically?",
+			answer:
+				"By default, code areas should preserve the exact author formatting. The standard Tailwind utility whitespace-pre  ensures that lines extend horizontally naturally, triggering the x-axis scrollbar instead of breaking the line and ruining the code's readability.",
+		},
+		{
+			question: "Can I add line numbers to the code block?",
+			answer:
+				"Yes, though this is most efficiently handled by the syntax highlighter you choose to pair with it. If you are rendering raw strings manually, you can map over an array of your code split by newlines and render a text-muted-foreground span  for the index on the left side of the flex container.",
+		},
+		{
+			question: "How do I handle styling changes for dark mode?",
+			answer:
+				"The Radian container itself natively responds to standard Tailwind dark mode classes (like dark:bg-zinc-950)  for the outer wrapper. For the code itself, modern highlighters like Shiki allow you to pass dual themes (e.g., github-light and github-dark), which you can toggle using your app's existing theme provider.",
+		},
+	]}
+/>
 
-<PropsTableWrapper>
-	<PropsTable
-		title="CodeArea"
-		data={[
-			{
-				name: "code",
-				values: ["string"],
-				required: true,
-				description: "The code snippet to display",
-			},
-			{
-				name: "language",
-				values: [
-					"typescript",
-					"javascript",
-					"python",
-					"java",
-					"csharp",
-					"html",
-					"css",
-					"json",
-					"markdown",
-					"bash",
-					"...",
-				],
-				required: false,
-				description: "The programming language for syntax highlighting",
-			},
-			{
-				name: "theme",
-				defaultValue: "github-dark-high-contrast",
-				values: [
-					"github-dark-high-contrast",
-					"nord",
-					"dracula",
-					"solarized-light",
-					"solarized-dark",
-					"...",
-				],
-				required: false,
-				description: "The theme for syntax highlighting",
-			},
-			{
-				name: "showLineNumbers",
-				defaultValue: "false",
-				values: ["boolean"],
-				required: false,
-				description: "Whether to show line numbers in the code area",
-			},
-		]}
-		externalReference="https://shiki.style/"
-	/>
-</PropsTableWrapper>
+## API Reference
+
+This is a custom component made using `react-shiki`.
+
+### CodeArea
+
+The main component that wraps code.
+
+<PropsTable
+	data={[
+		{
+			name: "code",
+			values: ["string"],
+			required: true,
+			description: "The code snippet to display",
+		},
+		{
+			name: "language",
+			values: [
+				"typescript",
+				"javascript",
+				"python",
+				"java",
+				"csharp",
+				"html",
+				"css",
+				"json",
+				"markdown",
+				"bash",
+				"...",
+			],
+			required: false,
+			description: "The programming language for syntax highlighting",
+		},
+		{
+			name: "theme",
+			defaultValue: "github-dark-high-contrast",
+			values: [
+				"github-dark-high-contrast",
+				"nord",
+				"dracula",
+				"solarized-light",
+				"solarized-dark",
+				"...",
+			],
+			required: false,
+			description: "The theme for syntax highlighting",
+		},
+		{
+			name: "showLineNumbers",
+			defaultValue: "false",
+			values: ["boolean"],
+			required: false,
+			description: "Whether to show line numbers in the code area",
+		},
+	]}
+/>

@@ -1,24 +1,145 @@
 ---
 title: Date Picker
-description: UI for selecting a date
+description: A clean dropdown calendar connected to a text input for selecting single days or custom date ranges.
+links:
+  github:
+    href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/example/date-picker/date-picker-preview.tsx
+  figma:
+    href: https://www.figma.com/design/ZB8gTZwafZOYY7rdJjSRz6/%E2%9D%96-Preview-%E2%9D%96-Radian-Design-System-%E2%9D%96-Version-0.3?node-id=18133-57038&t=V6eYQNGSpHNQ8XrH-11
 ---
 
 <ComponentPreview path="date-picker/date-picker-preview" />
+
+---
 
 ## Installation
 
 The Date Picker is built using a composition of the [Popover](/docs/components/popover) and the [Calendar](/docs/components/calendar) components.
 
+---
+
 ## Usage
 
 ### Imports
 
-```tsx showLineNumbers title="/components/ui/date-picker.tsx"
-import { DatePicker } from "@/components/ui/date-picker"
+```tsx showLineNumbers title="/example/date-picker.tsx"
+import { Calendar } from "@/components/ui/calendar"
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 ```
 
 ### Code
 
-```tsx showLineNumbers title="/components/ui/date-picker.tsx"
-<DatePicker />
+```tsx showLineNumbers title="/example/date-picker.tsx"
+<Popover>
+	<PopoverTrigger>Date</PopoverTrigger>
+	<PopoverContent>
+		<Calendar />
+	</PopoverContent>
+</Popover>
 ```
+
+---
+
+## Examples
+
+<ComponentPreview
+	title="Input Date Picker"
+	path="date-picker/date-picker-input"
+/>
+
+<ComponentPreview
+	title="Date Range Picker"
+	path="date-picker/date-picker-range-example"
+/>
+
+<ComponentPreview title="With Time" path="date-picker/date-picker-with-time" />
+
+<ComponentPreview title="Form" path="date-picker/date-picker-form" />
+
+---
+
+<ComponentDocContent
+	name={"Date Picker"}
+	description={
+		"A Date Picker is a simple tool that lets users select a date from a calendar pop-up. Use this component when you need a user to select a specific date, such as a birthdate or appointment time, in a clean and easy way."
+	}
+	features={[
+		{
+			title: "Composite Architecture",
+			description:
+				"Composed utilizing the Radix UI @radix-ui/react-popover primitive to ensure the calendar overlay remains positioned correctly.",
+		},
+		{
+			title: "Flexible Modes",
+			description:
+				"Supports single-date, multiple-date, or range-selection modes through simple prop configuration.",
+		},
+		{
+			title: "Accessible Navigation",
+			description:
+				"Fully accessible keyboard navigation allowing users to tab into the trigger, open the popover, and navigate the calendar days using standard arrow keys.",
+		},
+		{
+			title: "Typeable Input",
+			description:
+				"Optional typeable mode allows users to enter dates manually with custom validation logic.",
+		},
+		"Tailwind v4 Styling: Fully customizable via Tailwind CSS utility classes. No external configuration files required; all layout and state styling are handled directly in your component files.",
+	]}
+	related={[
+		{
+			title: "Calendar",
+			description:
+				"The core engine driving the date selection grid and localized logic.",
+			href: "/docs/components/calendar",
+		},
+		{
+			title: "Popover",
+			description:
+				"The foundational overlay component used to house the Calendar interface.",
+			href: "/docs/components/popover",
+		},
+		{
+			title: "Form",
+			description:
+				"Essential for wrapping the Date Picker in a controller to synchronize state with your form library.",
+			href: "/docs/components/form",
+		},
+	]}
+	faqs={[
+		{
+			question: "How do I format the date displayed on the trigger?",
+			answer:
+				'You can update the formatting logic directly in your component file. We recommend using date-fns for formatting (e.g., format(date, "PPP")) to match your regional preferences.',
+		},
+		{
+			question: "How do I prevent users from selecting past dates?",
+			answer:
+				"Use the disabled prop on the nested Calendar component. You can pass a matcher function, such as { before: new Date() }, to restrict selection to future dates.",
+		},
+		{
+			question: "Can I let users type the date manually?",
+			answer:
+				"Yes, enable the typeable prop. You can then attach a custom onChange handler to parse typed strings back into valid Date objects.",
+		},
+		{
+			question: "How do I select a date range?",
+			answer:
+				'Set the mode prop to "range" and ensure your state is initialized as an object (e.g., { from: Date, to: Date }).',
+		},
+		{
+			question: "Do I need to configure anything in Tailwind?",
+			answer:
+				"No. Radian components use standard Tailwind utility classes directly. There is no need to add custom theme extensions or plugin configurations in any global config file.",
+		},
+	]}
+/>
+
+## API Reference
+
+This component is a composite pattern built using [Popover](/docs/components/popover) and [Calendar](/docs/components/calendar). Refer to each component's individual API Reference for the full list of available props.
+
+### Key Components Used
+
+- **Popover** — Houses the calendar dropdown overlay. See [Popover API](/docs/components/popover#api-reference).
+- **Calendar** — Handles the date grid, selection logic, and localization. See [Calendar API](/docs/components/calendar#api-reference).

@@ -1,13 +1,20 @@
 ---
 title: Phone Number Input
-description: Display phone number input with validation and formatting
+description: A smart phone number field that includes an interactive country code selector and automatic number formatting.
 links:
+  github:
+    href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/example/phone-number-input/phone-number-example.tsx
+  figma:
+    href: https://www.figma.com/design/ZB8gTZwafZOYY7rdJjSRz6/%E2%9D%96-Preview-%E2%9D%96-Radian-Design-System-%E2%9D%96-Version-0.3?node-id=18133-82859&t=V6eYQNGSpHNQ8XrH-11
   externalReference:
     - label: React International Phone
       href: https://www.npmjs.com/package/react-international-phone
+      icon: npm.svg
 ---
 
 <ComponentPreview path="phone-number-input/international-phone-hook-example" />
+
+---
 
 ## Installation
 
@@ -22,30 +29,148 @@ npm install react-international-phone
 
 ## Examples
 
-### National
+<ComponentPreview
+	title="National"
+	path="phone-number-input/national-phone-number-example"
+/>
 
-<ComponentPreview path="phone-number-input/national-phone-number-example" />
+<ComponentPreview
+	title="Only Countries"
+	path="phone-number-input/only-countries-phone"
+/>
 
-### Only Countries
+<ComponentPreview
+	title="Preferred Countries"
+	path="phone-number-input/preferred-countries-phone"
+/>
 
-<ComponentPreview path="phone-number-input/only-countries-phone" />
+<ComponentPreview
+	title="Exclude Countries"
+	path="phone-number-input/exclude-countries-example"
+/>
 
-### Preferred Countries
+<ComponentPreview
+	title="No Dropdown"
+	path="phone-number-input/phone-number-example"
+/>
 
-<ComponentPreview path="phone-number-input/preferred-countries-phone" />
+<ComponentPreview
+	title="Phone Number Static"
+	path="phone-number-input/phone-number-static"
+/>
 
-### Exclude Countries
+<ComponentPreview
+	title="No Formatting"
+	path="phone-number-input/phone-number-no-formatting"
+/>
 
-<ComponentPreview path="phone-number-input/exclude-countries-example" />
+---
 
-### No Dropdown
+<ComponentDocContent
+	name={"Phone Number Input"}
+	description={
+		"Phone Number Input is a form component for entering phone numbers from different countries. It includes a country code selector, automatic number formatting, and validation-friendly input for a consistent and user-friendly experience."
+	}
+	features={[
+		"Automatically formats user input with correct spacing and parentheses in real-time based on the currently selected country.",
+		"Includes a composable, accessible country selector complete with standard flag icons.",
+		"Guarantees that the underlying component state outputs a clean, standardized E.164 string (e.g., +14155552671) ready for your backend API, regardless of how it is visually displayed.",
+		"Shares identical focus rings, border radiuses, and disabled states with the standard Radian <Input>, ensuring perfect form consistency.",
+	]}
+	related={[
+		{
+			title: "Input",
+			description:
+				"The foundational standard field. Use the Phone Number Input explicitly for telephones, but fall back to the standard Input for simple numerical IDs.",
+			href: "/docs/components/input",
+		},
+		{
+			title: "OTP Field",
+			description:
+				"The standard next step in the authentication journey; after entering their phone number, users are typically directed to an OTP Field to enter the SMS verification code.",
+			href: "/docs/components/otp-field",
+		},
+		{
+			title: "Form",
+			description:
+				"The necessary wrapper to integrate the phone input with Zod validation, ensuring users receive localized error messages if they enter an invalid number.",
+			href: "/docs/components/form",
+		},
+	]}
+	faqs={[
+		{
+			question: "How do I validate if the phone number is actually correct?",
+			answer:
+				'While the input restricts formatting, strict validation requires utilizing the underlying library\'s helpers. If you are using Zod, you can import the isValidPhoneNumber utility from the base package and apply it to your schema (e.g.,.refine(isValidPhoneNumber, { message: "Invalid phone number" })).',
+		},
+		{
+			question: "How do I set a default country on initial load?",
+			answer:
+				'You can pass the defaultCountry prop (using a standard ISO 3166-1 alpha-2 string, like "US" or "GB") directly to the component. The input will automatically mount with that country\'s flag and formatting rules active.',
+		},
+		{
+			question: "Can I restrict the combobox to only allow specific countries?",
+			answer:
+				'Yes. You can pass a countries array prop containing the specific two-letter country codes you want to support (e.g., countries={["US", "CA", "MX"]}). The combobox will instantly filter out the rest of the globe.',
+		},
+		{
+			question: "How do I integrate this with React Hook Form?",
+			answer:
+				"Because this is a complex, controlled component that doesn't trigger standard native HTML input events, you can map the custom onChange handler to field.onChange to ensure your form state captures the formatted string.",
+		},
+	]}
+/>
 
-<ComponentPreview path="phone-number-input/phone-number-example" />
+## API Reference
 
-### Phone Number Static
+This component is built on top of [react-international-phone](https://www.npmjs.com/package/react-international-phone). For advanced usage and additional props, please refer to their official documentation.
 
-<ComponentPreview path="phone-number-input/phone-number-static" />
+### PhoneNumberInput
 
-### No Formatting
+The main input component for collecting and formatting international phone numbers.
 
-<ComponentPreview path="phone-number-input/phone-number-no-formatting" />
+<PropsTable
+	data={[
+		{
+			name: "defaultCountry",
+			values: ["string"],
+			defaultValue: "US",
+			required: false,
+			description:
+				"The default country code (ISO 3166-1 alpha-2) for the phone number input.",
+		},
+		{
+			name: "countries",
+			values: ["string[]"],
+			required: false,
+			description:
+				"Restricts the country selector to only the specified country codes.",
+		},
+		{
+			name: "value",
+			values: ["string"],
+			required: false,
+			description: "The controlled value of the phone number input.",
+		},
+		{
+			name: "onChange",
+			values: ["(value: string) => void"],
+			required: false,
+			description: "Callback fired when the phone number value changes.",
+		},
+		{
+			name: "disabled",
+			values: ["boolean"],
+			defaultValue: "false",
+			required: false,
+			description:
+				"Disables interaction with the phone number input when set to true.",
+		},
+		{
+			name: "placeholder",
+			values: ["string"],
+			required: false,
+			description: "Placeholder text shown inside the input when it is empty.",
+		},
+	]}
+/>

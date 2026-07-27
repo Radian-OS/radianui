@@ -9,7 +9,7 @@ const ToggleSizesExample = () => {
 		<div className="flex flex-wrap items-center justify-center gap-3">
 			{sizes.map((size) => (
 				<Toggle key={size} variant="outline" size={size}>
-					<BookmarkIcon className="group-data-[state=on]/toggle:fill-current" />
+					<BookmarkIcon className="group-data-[state=on]/toggle:fill-fg-secondary text-fg-secondary" />
 					{size}
 				</Toggle>
 			))}

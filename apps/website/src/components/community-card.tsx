@@ -1,7 +1,7 @@
 import * as React from "react"
 import { SVGProps } from "react"
 import Link from "next/link"
-import { Button, IconButton } from "@/registry/ui/button"
+import { Button } from "@/registry/ui/button"
 
 const Logo = (props: SVGProps<SVGSVGElement>) => (
 	<svg
@@ -115,23 +115,6 @@ const GithubIcon = (props: SVGProps<SVGSVGElement>) => (
 	</svg>
 )
 
-const XIcon = (props: SVGProps<SVGSVGElement>) => (
-	<svg
-		width={20}
-		height={20}
-		viewBox="0 0 20 20"
-		fill="none"
-		xmlns="http://www.w3.org/2000/svg"
-		{...props}>
-		<path
-			d="M6.69141 3L10.1836 7.5957L10.5537 8.08301L10.957 7.62305L15.0195 3H16.2432L11.3896 8.52344L11.1201 8.83105L11.3672 9.15625L17.3262 17H13.4365L9.55859 11.9512L9.18848 11.4688L8.78711 11.9258L4.32715 17H3.10156L8.34375 11.0342L8.61523 10.7256L8.36426 10.3994L2.68164 3H6.69141ZM4.25488 4.24805L13.499 16.2812L13.6494 16.4766H16.3203L15.71 15.6748L6.56934 3.64062L6.41895 3.44336H3.63672L4.25488 4.24805Z"
-			fill="#0A0A0B"
-			stroke="#565861"
-			className="fill-text stroke-fg-secondary"
-		/>
-	</svg>
-)
-
 const DotPattern = (props: SVGProps<SVGSVGElement>) => (
 	<svg
 		xmlns="http://www.w3.org/2000/svg"
@@ -177,7 +160,7 @@ const DotPattern = (props: SVGProps<SVGSVGElement>) => (
 
 export default function CommunityCard() {
 	return (
-		<div className="relative overflow-hidden rounded-xl border p-4">
+		<div className="relative overflow-hidden border border-x-0 p-4">
 			{/* Dotted SVG background, full width */}
 			<div className="z-1 h-32.5 absolute left-0 top-0 w-full">
 				<DotPattern />
@@ -209,19 +192,6 @@ export default function CommunityCard() {
 							Github
 						</Link>
 					</Button>
-
-					<IconButton
-						aria-label="X (Formerly Twitter)"
-						asChild
-						variant={"outline"}
-						color={"neutral"}>
-						<Link
-							href="https://x.com/radian_os"
-							target="_blank"
-							rel="noopener noreferrer">
-							<XIcon />
-						</Link>
-					</IconButton>
 				</div>
 			</div>
 		</div>

@@ -14,7 +14,7 @@ export default function CustomAvatarWithBadgePreview() {
 				<AvatarFallback>CH</AvatarFallback>
 				<AvatarIndicator className="-bottom-0.5 -right-0.5">
 					<div className="bg-error border-alpha ring-offset-bg flex size-4 items-center justify-center rounded-full border text-xs text-white ring ring-transparent ring-offset-2">
-						<span>2</span>
+						2
 					</div>
 				</AvatarIndicator>
 			</Avatar>
@@ -25,7 +25,7 @@ export default function CustomAvatarWithBadgePreview() {
 				</AvatarFallback>
 				<AvatarIndicator className="-right-0.5 -top-0.5">
 					<div className="bg-info border-alpha ring-offset-bg flex size-4 items-center justify-center rounded-full border text-xs text-white ring ring-transparent ring-offset-2">
-						<span>8</span>
+						8
 					</div>
 				</AvatarIndicator>
 			</Avatar>

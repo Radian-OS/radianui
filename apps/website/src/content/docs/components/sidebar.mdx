@@ -1,12 +1,16 @@
 ---
 title: Sidebar
-description: A sidebar menu that collapses, works on mobile, and supports themes.
+description: A sturdy vertical side menu used to host your website's main navigation links, logos, and user settings.
 links:
   github:
     href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/sidebar.tsx
+  figma:
+    href: https://www.figma.com/design/ZB8gTZwafZOYY7rdJjSRz6/%E2%9D%96-Preview-%E2%9D%96-Radian-Design-System-%E2%9D%96-Version-0.3?node-id=18825-19266&t=V6eYQNGSpHNQ8XrH-11
 ---
 
 <ComponentPreview type="block" path="sidebar-doc" />
+
+---
 
 ## Installation
 
@@ -24,7 +28,7 @@ links:
 		<Steps>
     		<Step>Copy and paste the following code into your project.</Step>
 
-    		<ComponentSource name="sidebar" title="components/ui/sidebar.tsx" collapsible />
+    		<ComponentSource src="styles/default/ui/sidebar.tsx" title="components/ui/sidebar.tsx" collapsible />
 
     		<Step>Update the import paths as per your project structure.</Step>
     	</Steps>
@@ -32,11 +36,13 @@ links:
 
 </InstallationTabs>
 
+---
+
 ## Usage
 
 ### Imports
 
-```tsx showLineNumbers
+```tsx showLineNumbers title="/components/ui/sidebar.tsx"
 import {
 	Sidebar,
 	SidebarContent,
@@ -57,7 +63,7 @@ import {
 
 ### Code
 
-```tsx showLineNumbers
+```tsx showLineNumbers title="/components/ui/sidebar.tsx"
 export default function AppLayout({ children }) {
 	return (
 		<SidebarProvider>
@@ -83,31 +89,35 @@ export default function AppLayout({ children }) {
 }
 ```
 
+---
+
 ## Examples
 
-### Floating Sidebar
+<ComponentPreview
+	title="Floating Sidebar"
+	path="sidebar-floating"
+	type="block"
+/>
 
-<ComponentPreview path="sidebar-floating" type="block" />
+<ComponentPreview title="Inset Sidebar" path="sidebar-inset" type="block" />
 
-### Inset Sidebar
+<ComponentPreview title="Inverse Sidebar" path="sidebar-dark" type="block" />
 
-<ComponentPreview path="sidebar-inset" type="block" />
+<ComponentPreview
+	title="Offcanvas Sidebar"
+	path="sidebar-offcanvas"
+	type="block"
+/>
 
-### Inverse Sidebar
+<ComponentPreview
+	title="Resizable Sidebar"
+	path="sidebar-resize"
+	type="block"
+/>
 
-<ComponentPreview path="sidebar-dark" type="block" />
+<ComponentPreview title="Sidebar with Rail" path="sidebar-rail" type="block" />
 
-### Offcanvas Sidebar
-
-<ComponentPreview path="sidebar-offcanvas" type="block" />
-
-### Resizable Sidebar
-
-<ComponentPreview path="sidebar-resize" type="block" />
-
-### Sidebar with Rail
-
-<ComponentPreview path="sidebar-rail" type="block" />
+---
 
 ## SidebarProvider
 
@@ -119,6 +129,8 @@ The root context component. Must wrap the entire layout, both the `Sidebar` and 
 | `open`         | `boolean`                 | Controlled open state           |
 | `onOpenChange` | `(open: boolean) => void` | Called when open state changes  |
 | `shortcut`     | `string`                  | Shortcut key to open sidebar    |
+
+---
 
 ## Sidebar
 
@@ -134,11 +146,13 @@ The sidebar panel itself. Renders as a fixed-position column on desktop and as a
 | `minWidth`    | `number`                                                                        | `250`            | Minimum width(in px)    |
 | `maxWidth`    | `number`                                                                        | `500`            | Maximum width(in px)    |
 
+---
+
 ## SidebarHeader
 
 A sticky header component to add to the sidebar.
 
-```tsx showLineNumbers
+```tsx showLineNumbers title="/components/ui/sidebar.tsx"
 <SidebarHeader>
 	<SidebarMenuButton size="48" className="justify-between">
 		<div className="flex items-center gap-2">
@@ -153,11 +167,13 @@ A sticky header component to add to the sidebar.
 </SidebarHeader>
 ```
 
+---
+
 ## SidebarContent
 
 The scrollable body of the sidebar.
 
-```tsx showLineNumbers
+```tsx showLineNumbers title="/components/ui/sidebar.tsx"
 <SidebarContent>
 	<SidebarGroup>
 		<SidebarGroupLabel>Platform</SidebarGroupLabel>
@@ -186,11 +202,13 @@ The scrollable body of the sidebar.
 </SidebarContent>
 ```
 
+---
+
 ## SidebarFooter
 
 A sticky footer component to add to the sidebar.
 
-```tsx showLineNumbers
+```tsx showLineNumbers title="/components/ui/sidebar.tsx"
 <SidebarFooter>
 	<Dropdown>
 		<DropdownTrigger asChild>
@@ -208,11 +226,13 @@ A sticky footer component to add to the sidebar.
 </SidebarFooter>
 ```
 
+---
+
 ## SidebarGroup
 
 A layout wrapper for a logical section of navigation items inside `SidebarContent`. Use multiple groups to organize nav items into sections.
 
-```tsx
+```tsx title="/components/ui/sidebar.tsx"
 <SidebarGroup>
 	<SidebarGroupLabel>Platform</SidebarGroupLabel>
 	<SidebarGroupContent>
@@ -221,11 +241,13 @@ A layout wrapper for a logical section of navigation items inside `SidebarConten
 </SidebarGroup>
 ```
 
+---
+
 ## SidebarGroupAction
 
 An icon button anchored to the top-right of a `SidebarGroup`. Useful for section-level actions like adding a new item to a list.
 
-```tsx showLineNumbers
+```tsx showLineNumbers title="/components/ui/sidebar.tsx"
 <SidebarGroup>
 	<SidebarGroupLabel>Projects</SidebarGroupLabel>
 	<SidebarGroupAction>
@@ -235,33 +257,39 @@ An icon button anchored to the top-right of a `SidebarGroup`. Useful for section
 </SidebarGroup>
 ```
 
+---
+
 ## SidebarMenu
 
 The `SidebarMenu` component is used for building a menu within a `SidebarGroup`.
 
-```tsx showLineNumbers
+```tsx showLineNumbers title="/components/ui/sidebar.tsx"
 <SidebarMenu>
 	<SidebarMenuItem>...</SidebarMenuItem>
 	<SidebarMenuItem>...</SidebarMenuItem>
 </SidebarMenu>
 ```
 
+---
+
 ## SidebarMenuItem
 
 An element that wraps a single menu item.
 
-```tsx showLineNumbers
+```tsx showLineNumbers title="/components/ui/sidebar.tsx"
 <SidebarMenuItem>
 	<SidebarMenuButton>Dashboard</SidebarMenuButton>
 </SidebarMenuItem>
 ```
+
+---
 
 ## SidebarMenuButton
 
 The primary interactive element inside a `SidebarMenuItem`. Accepts `asChild` to render as a link, `isActive` to mark the current page,
 and `tooltip` as a fallback label in icon collapsible mode.
 
-```tsx showLineNumbers
+```tsx showLineNumbers title="/components/ui/sidebar.tsx"
 <SidebarMenuButton asChild isActive tooltip="Dashboard">
 	<a href="/dashboard">
 		<LayoutDashboard />
@@ -270,11 +298,13 @@ and `tooltip` as a fallback label in icon collapsible mode.
 </SidebarMenuButton>
 ```
 
+---
+
 ## SidebarMenuAction
 
 The `SidebarMenuAction` component is used to render a menu action within a `SidebarMenuItem`. Use for item-level actions like renaming, deleting, or opening a context menu.
 
-```tsx showLineNumbers
+```tsx showLineNumbers title="/components/ui/sidebar.tsx"
 <SidebarMenuItem>
 	<SidebarMenuButton asChild>
 		<a href="/project/1">
@@ -288,11 +318,13 @@ The `SidebarMenuAction` component is used to render a menu action within a `Side
 </SidebarMenuItem>
 ```
 
+---
+
 ## SidebarMenuSub
 
 The `SidebarMenuSub` component is used to render a submenu within a `SidebarMenu`.
 
-```tsx showLineNumbers
+```tsx showLineNumbers title="/components/ui/sidebar.tsx"
 <SidebarMenuItem>
 	<SidebarMenuButton>Components</SidebarMenuButton>
 	<SidebarMenuSub>
@@ -303,11 +335,13 @@ The `SidebarMenuSub` component is used to render a submenu within a `SidebarMenu
 </SidebarMenuItem>
 ```
 
+---
+
 ## SidebarCollapsible
 
 A component for building expandable nav groups.
 
-```tsx showLineNumbers
+```tsx showLineNumbers title="/components/ui/sidebar.tsx"
 <SidebarCollapsible defaultOpen>
 	<SidebarCollapsibleTrigger>Settings</SidebarCollapsibleTrigger>
 	<SidebarCollapsibleContent>
@@ -315,6 +349,8 @@ A component for building expandable nav groups.
 	</SidebarCollapsibleContent>
 </SidebarCollapsible>
 ```
+
+---
 
 ## SidebarSkeleton
 
@@ -338,6 +374,8 @@ function SidebarLogo() {
 	return state === "expanded" ? <FullLogo /> : <IconMark />
 }
 ```
+
+---
 
 ## Theming
 
@@ -371,6 +409,8 @@ You can modify the following CSS variables.
 }
 ```
 
+---
+
 ## Mobile Behavior
 
 Below 768px, `Sidebar` renders as a Drawer automatically. The drawer direction matches the `side` prop.
@@ -400,3 +440,67 @@ Override mobile drawer width
 ```
 
 > The mobile `Drawer` includes a visually hidden `DialogTitle` for screen reader support. Cookie-based persistence only applies on desktop, mobile Drawer state is session-only.
+
+---
+
+<ComponentDocContent
+	name={"Sidebar"}
+	description={
+		"Sidebar is a vertical navigation component for organizing links, menus, and actions in an application. Styled with Tailwind CSS, it supports responsive layouts, collapsible sections, nested menus, and a mobile-friendly drawer for a consistent navigation experience across all devices."
+	}
+	features={[
+		"Responsive architecture transitions from a persistent desktop layout to a mobile-friendly slide-out overlay utilizing a shared <SidebarProvider>.",
+		"Highly modular, composable API: <Sidebar>, <SidebarHeader>, <SidebarContent>, <SidebarGroup>, <SidebarMenu>,<SidebarFooter> and so on.",
+		'Built-in support for a "collapsed" (or icon-only rail) state, allowing power users to shrink the sidebar width to maximize horizontal screen real estate.',
+		"Provides seamless ARIA accessibility, ensuring screen readers can correctly navigate the nested menu lists and skip over the sidebar when jumping to main content.",
+		"Structure perfectly suited for nesting Radian Collapsible components to create deeply nested, accordion-style navigation hierarchies.",
+	]}
+	related={[
+		{
+			title: "Drawer",
+			description:
+				"The underlying structural overlay primitive used automatically by the Sidebar to render itself on mobile viewports.",
+			href: "/docs/components/drawer",
+		},
+		{
+			title: "Resizable",
+			description:
+				"Frequently wraps the Sidebar component in desktop IDE layouts to allow users to manually drag and adjust the exact pixel width of the navigation pane.",
+			href: "/docs/components/resizable",
+		},
+		{
+			title: "Navigation Menu",
+			description:
+				"Use a Sidebar for vertical, application-style dashboard layouts; use the Navigation Menu for horizontal, public-facing website headers.",
+			href: "/docs/components/navigation-menu",
+		},
+	]}
+	faqs={[
+		{
+			question: "How does it handle mobile screens?",
+			answer:
+				"The standard Radian implementation utilizes a custom hook (like useIsMobile) alongside a global <SidebarProvider>. On small screens, the persistent desktop <aside> is removed, and a designated trigger button opens a Radian Sheet containing your <Sidebar> content, ensuring a flawless touch experience.",
+		},
+		{
+			question: "How do I make it collapse into an icon-only rail?",
+			answer:
+				"You can toggle the sidebar's state via the provider context. This triggers a data-[state=collapsed] modifier on the root <Sidebar> element, utilizing Tailwind CSS to smoothly animate the width (e.g., from w-64 to w-16) and visually hide the text labels while keeping the icons centered.",
+		},
+		{
+			question: "Can I put a user profile dropdown at the bottom?",
+			answer:
+				"Absolutely. The <SidebarFooter> component is specifically designed to stick to the bottom of the navigation viewport, making it the perfect flex container for a user Avatar wrapped inside a standard Radian Dropdown Menu for account actions.",
+		},
+		{
+			question: "How do I highlight the active page link?",
+			answer:
+				"You pass an isActive boolean prop directly to the <SidebarMenuButton> (or its equivalent link wrapper). This automatically applies the appropriate Tailwind interactive colors (like bg-accent text-accent-foreground) to clearly indicate the user's current route.",
+		},
+		{
+			question:
+				"Does the main page content automatically shift when the sidebar collapses?",
+			answer:
+				"Yes. Because the <SidebarProvider> typically wraps both the Sidebar and your main <main> content area inside a CSS flex layout, expanding or collapsing the sidebar will automatically and smoothly push or pull the adjacent content to fill the available screen space without overlapping.",
+		},
+	]}
+/>

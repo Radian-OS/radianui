@@ -120,7 +120,7 @@ export default function InputForm() {
 									</FormItem>
 								)}
 							/>
-							<div className="flex items-center justify-between">
+							<div className="flex flex-col justify-between gap-2 sm:flex-row sm:items-center">
 								<FormField
 									control={form.control}
 									name="rememberMe"

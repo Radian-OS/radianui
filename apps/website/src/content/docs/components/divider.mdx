@@ -1,12 +1,16 @@
 ---
 title: Divider
-description: Visually separate sections or content
+description: A simple line utility used to visually separate different blocks of text or sections on a busy page.
 links:
   github:
     href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/divider.tsx
+  figma:
+    href: https://www.figma.com/design/ZB8gTZwafZOYY7rdJjSRz6/%E2%9D%96-Preview-%E2%9D%96-Radian-Design-System-%E2%9D%96-Version-0.3?node-id=18133-62206&t=V6eYQNGSpHNQ8XrH-11
 ---
 
 <ComponentPreview path="divider/divider-preview" />
+
+---
 
 ## Installation
 
@@ -27,13 +31,15 @@ links:
 		npm install @radix-ui/react-separator
 		```
     	<Step>Copy and paste the following code into your project.</Step>
-    	<ComponentSource name="divider" title="components/ui/divider.tsx" collapsible />
+    	<ComponentSource src="styles/default/ui/divider.tsx" title="components/ui/divider.tsx" collapsible />
 
     	<Step>Update the import paths as per your project structure.</Step>
     </Steps>
     </InstallTabsContent>
 
 </InstallationTabs>
+
+---
 
 ## Usage
 
@@ -53,38 +59,101 @@ import { Divider } from "@/components/ui/divider"
 
 ## Examples
 
-### Divider -w/Plain text
+<ComponentPreview
+	title="Divider -w/Plain text"
+	path="divider/divider-plain-text-preview"
+/>
 
-<ComponentPreview path="divider/divider-plain-text-preview" />
+<ComponentPreview
+	title="Divider -w/Badge"
+	path="divider/divider-badge-preview"
+/>
 
-### Divider -w/Badge
+<ComponentPreview title="Divider -w/Text" path="divider/divider-text-preview" />
 
-<ComponentPreview path="divider/divider-badge-preview" />
+---
 
-### Divider -w/Text
+<ComponentDocContent
+	name={"Divider"}
+	description={
+		"A Divider is a tool used to put a line between different parts of a website. It helps make sure that different groups of information look separate. Use a divider to visually separate parts of your page so the content is easier to read and organized."
+	}
+	features={[
+		'Automatically manages the role="separator" and aria-orientation attributes for strict WAI-ARIA compliance.',
+		"Defaults to decorative={true}, which safely removes the divider from the accessibility tree so screen readers don't announce meaningless visual breaks.",
+		"Natively supports both horizontal and vertical orientations via standard component props.",
+		"Zero-dependency visual styling, relying entirely on simple Tailwind utilities like bg-border and h-[1px] to render the line.",
+		"Easily adapts to standard CSS Flexbox and Grid layouts without disrupting parent container alignments.",
+	]}
+	related={[
+		{
+			title: "Card",
+			description:
+				"Dividers are frequently used inside Cards to cleanly separate the <CardHeader> or <CardFooter> from the main content body.",
+			href: "/docs/components/card",
+		},
+		{
+			title: "Dropdown / Context Menu",
+			description:
+				'Essential for separating distinct groups of actions (like placing a divider above a destructive "Delete" action).',
+			href: "/docs/components/dropdown",
+		},
+		{
+			title: "Sidebar",
+			description:
+				"Perfect for visually breaking up different navigation sections or user account controls within a vertical menu block.",
+			href: "/docs/components/sidebar",
+		},
+	]}
+	faqs={[
+		{
+			question: "Why should I use this instead of a standard <hr> tag?",
+			answer:
+				"A native <hr> is implicitly horizontal and has rigid default browser styling that can be difficult to override cleanly. The Radian Divider supports vertical orientations natively and uses the Radix primitive to give you explicit control over whether the line is semantic (announced by screen readers) or purely decorative.",
+		},
+		{
+			question: "How do I make the divider vertical?",
+			answer:
+				'You must pass the orientation="vertical" prop to the component. Additionally, ensure the parent container is a flex row with a defined height, as the vertical divider uses h-full w-[1px] classes to stretch appropriately.',
+		},
+		{
+			question: "Can I put text in the middle of the divider?",
+			answer:
+				'The core component renders a single, continuous line. To create a divider with text in the middle (like an "OR" separator in a login form), you should construct a flex container in your layout wrapping two Radian Dividers with a <span> of text centered between them.',
+		},
+		{
+			question: "How do I change the thickness of the line?",
+			answer:
+				"Open the divider.tsx (or separator.tsx) file. For horizontal dividers, change the h-[1px] utility to h-0.5 or h-1. For vertical dividers, adjust the w-[1px] class correspondingly.",
+		},
+		{
+			question: "What does the decorative prop actually do?",
+			answer:
+				'By default, Radix sets decorative={true}, which applies role="none" to the element so screen readers ignore it entirely. If your divider actually represents a semantic thematic break in an article, you should explicitly pass decorative={false} so visually impaired users are properly notified of the transition.',
+		},
+	]}
+/>
 
-<ComponentPreview path="divider/divider-text-preview" />
+## API Reference
 
-## Props
+### Divider
 
-<PropsTableWrapper>
-	<PropsTable
-		title="Divider"
-		data={[
-			{
-				name: "orientation",
-				values: ["horizontal", "vertical"],
-				defaultValue: "horizontal",
-				required: false,
-				description: "The orientation of the divider",
-			},
-			{
-				name: "className",
-				values: ["string"],
-				required: false,
-				description: "Additional CSS classes for custom styling",
-			},
-		]}
-		externalReference="https://www.radix-ui.com/primitives/docs/components/separator"
-	/>
-</PropsTableWrapper>
+Alias for `Separator.Root` from Radix UI.
+
+<PropsTable
+	data={[
+		{
+			name: "orientation",
+			values: ["horizontal", "vertical"],
+			defaultValue: "horizontal",
+			required: false,
+			description: "The orientation of the divider",
+		},
+		{
+			name: "className",
+			values: ["string"],
+			required: false,
+			description: "Additional CSS classes for custom styling",
+		},
+	]}
+/>

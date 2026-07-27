@@ -6,7 +6,7 @@ function ButtonWithIconExample() {
 	return (
 		<div className="flex items-center justify-center gap-3 sm:flex-row">
 			<Button variant="outline" color="neutral">
-				<UserPlus /> Invite Users
+				<UserPlus className="text-fg-secondary" /> Invite Users
 			</Button>
 			<Button color="primary" variant="strong">
 				<RefreshCcw /> Outline

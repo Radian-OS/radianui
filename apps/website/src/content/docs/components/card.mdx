@@ -1,12 +1,14 @@
 ---
 title: Card
-description: Displays a card with header, content, and footer. Containers for displaying content and actions about a single subject.
+description: A clean, boxed container used to neatly group related text, pictures, and buttons into distinct sections.
 links:
   github:
     href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/card.tsx
 ---
 
-<ComponentPreview path="card/card-info-example" />
+<ComponentPreview path="card/card-default-example" />
+
+---
 
 ## Installation
 
@@ -27,13 +29,15 @@ links:
 		npm install @radix-ui/react-card
 		```
     	<Step>Copy and paste the following code into your project.</Step>
-    	<ComponentSource name="card" title="components/ui/card.tsx" collapsible />
+    	<ComponentSource src="styles/default/ui/card.tsx" title="components/ui/card.tsx" collapsible />
 
     	<Step>Update the import paths as per your project structure.</Step>
     </Steps>
     </InstallTabsContent>
 
 </InstallationTabs>
+
+---
 
 ## Usage
 
@@ -69,12 +73,139 @@ import {
 </Card>
 ```
 
+---
+
 ## Examples
 
-### Card With List
+<ComponentPreview title="Feature Card" path="card/card-feature-example" />
 
-<ComponentPreview path="card/card-with-list-example" />
+<ComponentPreview title="Card with Billings" path="card/card-billing-example" />
 
-### Card With Form
+<ComponentPreview title="Fancy Card" path="card/card-fancy-example" />
 
-<ComponentPreview path="card/card-preview" />
+<ComponentPreview
+	title="With Header and Footer"
+	path="card/card-header-footer-example"
+/>
+
+<ComponentPreview title="Card With Image" path="card/card-with-image-example" />
+
+<ComponentPreview title="Card Info" path="card/card-info-example" />
+
+<ComponentPreview
+	title="Card Dashboard Example"
+	path="card/card-dashboard-example"
+/>
+
+<ComponentPreview title="Card With Form" path="card/card-signin-example" />
+
+---
+
+<ComponentDocContent
+	name={"Card"}
+	description={
+		"A card is a box that groups related pieces of content, like an image, title, and text, into one neat, organized block. Cards are used to display information in a clean, bite-sized way, making it easier for users to scan and read content."
+	}
+	features={[
+		{
+			title: "Composable Architecture",
+			description:
+				"Exports a suite of flexible components: <Card>, <CardHeader>, <CardTitle>, <CardDescription>, <CardContent>, and <CardFooter>.",
+		},
+		{
+			title: "Pure Utility-First",
+			description:
+				"Built entirely with standard Tailwind CSS, requiring no external configuration files or complex setup.",
+		},
+		{
+			title: "Auto-Spacing",
+			description:
+				"Optimized flex and gap utilities handle spacing between header and content elements automatically.",
+		},
+		{
+			title: "Responsive",
+			description:
+				"Adapts naturally to available space when placed inside CSS Grid or Flexbox parent containers.",
+		},
+		{
+			title: "Theme Ready",
+			description:
+				"Utilizes semantic background colors, inheriting your theme's surface color and dark mode preferences seamlessly.",
+		},
+	]}
+	related={[
+		{
+			title: "Button",
+			description:
+				"Frequently placed inside the <CardFooter> to provide explicit call-to-action behaviors.",
+			href: "/docs/components/button",
+		},
+		{
+			title: "Badge",
+			description:
+				"Often floated in the <CardHeader> or positioned over a cover image to signify status, price, or category.",
+			href: "/docs/components/badge",
+		},
+		{
+			title: "Aspect Ratio",
+			description:
+				"Ideal for ensuring cover images maintain a consistent 16:9 or 4:3 dimension across all devices.",
+			href: "/docs/components/aspect-ratio",
+		},
+	]}
+	faqs={[
+		{
+			question: "How do I make the entire card clickable?",
+			answer:
+				"You can render the root <Card> as an <a> or <button> tag, or wrap the component in a Link component from your routing library (e.g., Next.js Link). Use hover utilities like hover:shadow-md to indicate interactivity.",
+		},
+		{
+			question: "Can I remove the border and use a drop shadow instead?",
+			answer:
+				"Yes. Open card.tsx and modify the root <Card> class names. Remove the border utility and add a shadow utility like shadow-md or shadow-lg to fit your design system.",
+		},
+		{
+			question: "How do I align buttons to the right in the footer?",
+			answer:
+				"The <CardFooter> uses Flexbox by default. Apply justify-end to the className prop on the footer to push its children to the right side.",
+		},
+		{
+			question: "How do I add a full-width image to the top?",
+			answer:
+				"Place your <img> or Image component directly inside the <Card> wrapper, above the <CardHeader>. Use rounded-t-lg to ensure the image corners match the card's border-radius.",
+		},
+		{
+			question: "Why does padding change on mobile?",
+			answer:
+				"The default Radian Card includes responsive padding utilities (e.g., p-4 sm:p-6) on the <CardContent> and <CardHeader>. This optimizes screen real estate on mobile devices while maintaining comfortable spacing on desktops.",
+		},
+	]}
+/>
+
+## API Reference
+
+This is a custom component, not a Radix UI wrapper.
+
+### CardHeader
+
+A structural container for the top section of the card, usually housing the title and description.
+
+### CardTitle
+
+A semantic heading that establishes the primary subject of the card.
+
+### CardDescription
+
+A text container for providing supplementary context or details below the card title.
+
+### CardContent
+
+The main content area of the card, designed to hold the primary information or interactive elements.
+
+### CardFooter
+
+A structural container for the bottom section of the card, typically used for action buttons or links.
+
+### CardAction
+
+A wrapper for positioning interactive elements like buttons inside the card.

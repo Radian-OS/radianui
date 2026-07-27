@@ -1,15 +1,19 @@
 ---
 title: Avatar
-description: Display user profile pictures or icons
+description: Display user profile pictures or initials with clean, automated backup designs when an image fails to load.
 links:
   github:
     href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/avatar.tsx
+  figma:
+    href: https://www.figma.com/design/ZB8gTZwafZOYY7rdJjSRz6/%E2%9D%96-Preview-%E2%9D%96-Radian-Design-System-%E2%9D%96-Version-0.3?node-id=18133-38249&t=V6eYQNGSpHNQ8XrH-4
   externalReference:
     - label: Radix UI
       href: https://www.radix-ui.com/primitives/docs/components/avatar
 ---
 
 <ComponentPreview path="avatar/avatar-preview" />
+
+---
 
 ## Installation
 
@@ -30,13 +34,15 @@ links:
 		npm install @radix-ui/react-avatar
 		```
     	<Step>Copy and paste the following code into your project.</Step>
-    	<ComponentSource name="avatar" title="components/ui/avatar.tsx" collapsible />
+    	<ComponentSource src="styles/default/ui/avatar.tsx" title="components/ui/avatar.tsx" collapsible />
 
     	<Step>Update the import paths as per your project structure.</Step>
     </Steps>
     </InstallTabsContent>
 
 </InstallationTabs>
+
+---
 
 ## Usage
 
@@ -68,90 +74,153 @@ import {
 
 ## Examples
 
-### Size
+<ComponentPreview title="Size" path="avatar/avatar-size" />
 
-<ComponentPreview path="avatar/avatar-size" />
+<ComponentPreview title="Fallback" path="avatar/avatar-fallback" />
 
-### Fallback
+<ComponentPreview title="Status" path="avatar/avatar-status" />
 
-<ComponentPreview path="avatar/avatar-fallback" />
+<ComponentPreview
+	title="Custom Avatar - w/Status"
+	path="avatar/custom-avatar-with-status"
+/>
 
-### Status
+<ComponentPreview
+	title="Custom Avatar - w/Badge"
+	path="avatar/custom-avatar-with-badge"
+/>
 
-<ComponentPreview path="avatar/avatar-status" />
+<ComponentPreview
+	title="Custom Avatar - w/Ring"
+	path="avatar/custom-avatar-with-ring"
+/>
 
-### Custom Avatar - w/Status
+<ComponentPreview
+	title="Rounded - Square"
+	path="avatar/avatar-rounded-square"
+/>
 
-<ComponentPreview path="avatar/custom-avatar-with-status" />
-
-### Custom Avatar - w/Badge
-
-<ComponentPreview path="avatar/custom-avatar-with-badge" />
-
-### Custom Avatar - w/Ring
-
-<ComponentPreview path="avatar/custom-avatar-with-ring" />
-
-### Rounded - Square
-
-<ComponentPreview path="avatar/avatar-rounded-square" />
-
-### Avatar Group
-
-<ComponentPreview path="avatar/avatar-group" />
+<ComponentPreview title="Avatar Group" path="avatar/avatar-group" />
 
 ---
 
-## Props
+<ComponentDocContent
+	name={"Avatar"}
+	description={
+		"The Avatar component displays a user's profile picture. It automatically shows initials or a placeholder if the image fails to load or is still downloading. Use this component to consistently show user profiles without broken image icons."
+	}
+	features={[
+		"Automatic rendering of the <AvatarFallback> component while the <AvatarImage> is loading or if the network request fails.",
+		"Pre-styled as a perfect circle using rounded-full, with easy structural overrides for square or rounded-corner avatars.",
+		"Completely unstyled JavaScript logic from Radix, allowing Tailwind to handle all visual aspects via overflow-hidden and exact sizing utilities.",
+		"Accessible by default, ensuring decorative images are ignored by screen readers while meaningful avatars retain proper ARIA labels.",
+		"Uses standard HTML img attributes under the hood, making it natively compatible with Next.js <Image> components with minor code adjustments.",
+	]}
+	related={[
+		{
+			title: "Dropdown",
+			description:
+				"Avatars are frequently used as the visual trigger for a user profile dropdown menu in application navigation bars.",
+			href: "/docs/components/dropdown",
+		},
+		{
+			title: "Hover Card",
+			description:
+				"Wrap an avatar in a hover card to display a brief user bio or contact information when the user hovers over the profile picture.",
+			href: "/docs/components/hover-card",
+		},
+		{
+			title: "Badge",
+			description:
+				"Often used to place a small notification dot or online status indicator overlapping the corner of the avatar component.",
+			href: "/docs/components/badge",
+		},
+	]}
+	faqs={[
+		{
+			question: "How do I show user initials while the image is loading?",
+			answer:
+				"Pass the user's computed initials as a string inside the <AvatarFallback> component. The Radix primitive automatically controls the visibility of this fallback state based on the image's network request status, ensuring it only displays when needed.",
+		},
+		{
+			question: "Can I change the size of the avatar?",
+			answer:
+				"Yes. By default, the root <Avatar> component uses specific Tailwind sizing utilities (like h-10 w-10). You can pass a custom className to override these directly where you use the component, or edit the file to implement CVA for standard sm, md, and lg variants.",
+		},
+		{
+			question: "How do I make the avatar square instead of circular?",
+			answer:
+				"Simply remove the rounded-full class from the <Avatar> root component in your local file. You can replace it with rounded-md for soft corners or leave it out entirely for sharp edges.",
+		},
+		{
+			question: "Does this work with Next.js Image optimization?",
+			answer:
+				"Out of the box, <AvatarImage> wraps a standard <img> tag. However, since you own the source code, you can easily swap the standard <img> for next/image inside the component definition to leverage automatic webp conversion and image caching.",
+		},
+		{
+			question: "What happens if the image fails to load permanently?",
+			answer:
+				"If the server returns a 404 or the image source is broken, the AvatarImage completely unmounts and the AvatarFallback remains permanently visible. This guarantees your UI never displays an ugly broken image icon to the user.",
+		},
+	]}
+/>
 
-<PropsTableWrapper>
-	<PropsTable
-		title="Avatar"
-		data={[
-			{
-				name: "size",
-				values: ["16", "20", "24", "32", "40", "48", "56", "64", "80"],
-				defaultValue: "40",
-				required: false,
-				description: "Sets the size of the avatar",
-			},
-			{
-				name: "rounded",
-				values: ["circle", "square"],
-				defaultValue: "circle",
-				required: false,
-				description: "Sets the shape of the avatar",
-			},
-		]}
-		externalReference="https://www.radix-ui.com/primitives/docs/components/avatar#root"
-	/>
-	<PropsTable
-		title="AvatarImage"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/avatar#image"
-	/>
-	<PropsTable
-		title="AvatarFallback"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/avatar#fallback"
-	/>
-	<PropsTable title="AvatarIndicator" />
-	<PropsTable
-		title="AvatarStatus"
-		data={[
-			{
-				name: "variant",
-				values: ["online", "offline", "busy", "away"],
-				defaultValue: "online",
-				required: false,
-				description: "Sets the color of the avatar status indicator",
-			},
-			{
-				name: "size",
-				values: ["16", "20", "24", "32", "40", "48", "56", "64", "80"],
-				defaultValue: "40",
-				required: false,
-				description: "Sets the size of the avatar status",
-			},
-		]}
-		externalReference="https://www.radix-ui.com/primitives/docs/components/avatar#status"
-	/>
-</PropsTableWrapper>
+## API Reference
+
+### Avatar
+
+The root container that groups all avatar sub-components and controls the shared size and shape.
+
+<PropsTable
+	data={[
+		{
+			name: "size",
+			values: ["16", "20", "24", "32", "40", "48", "56", "64", "80"],
+			defaultValue: "40",
+			required: false,
+			description: "Sets the size of the avatar",
+		},
+		{
+			name: "rounded",
+			values: ["circle", "square"],
+			defaultValue: "circle",
+			required: false,
+			description: "Sets the shape of the avatar",
+		},
+	]}
+/>
+
+    ### AvatarImage
+
+The image element rendered inside the avatar. Hides automatically if the image fails to load.
+
+    ### AvatarFallback
+
+The fallback content displayed when the image is unavailable or still loading, typically initials or an icon.
+
+    ### AvatarIndicator
+
+A positioned wrapper that overlays the avatar, used to anchor the status badge at a corner of the avatar.
+
+    ### AvatarStatus
+
+A small colored badge indicating the user's current presence state such as online, offline, busy, or away.
+
+<PropsTable
+	data={[
+		{
+			name: "variant",
+			values: ["online", "offline", "busy", "away"],
+			defaultValue: "online",
+			required: false,
+			description: "Sets the color of the avatar status indicator",
+		},
+		{
+			name: "size",
+			values: ["16", "20", "24", "32", "40", "48", "56", "64", "80"],
+			defaultValue: "40",
+			required: false,
+			description: "Sets the size of the avatar status",
+		},
+	]}
+/>

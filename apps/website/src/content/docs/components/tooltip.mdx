@@ -1,15 +1,19 @@
 ---
 title: Tooltip
-description: Provide additional information on hover or focus
+description: A small, helpful text box that slides into view when a user hovers over an icon or button to explain what it does.
 links:
   github:
     href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/tooltip.tsx
+  figma:
+    href: https://www.figma.com/design/ZB8gTZwafZOYY7rdJjSRz6/%E2%9D%96-Preview-%E2%9D%96-Radian-Design-System-%E2%9D%96-Version-0.3?node-id=18133-109357&t=V6eYQNGSpHNQ8XrH-11
   externalReference:
     - label: Radix UI
       href: https://www.radix-ui.com/primitives/docs/components/tooltip
 ---
 
 <ComponentPreview path="tooltip/tooltip-preview" />
+
+---
 
 ## Installation
 
@@ -31,7 +35,7 @@ links:
 		```
 
     	<Step>Copy and paste the following code into your project.</Step>
-    	<ComponentSource name="tooltip" title="components/ui/tooltip.tsx" collapsible />
+    	<ComponentSource src="styles/default/ui/tooltip.tsx" title="components/ui/tooltip.tsx" collapsible />
 
     	<Step>Update the import paths as per your project structure.</Step>
     </Steps>
@@ -39,11 +43,13 @@ links:
 
 </InstallationTabs>
 
+---
+
 ## Usage
 
 ### Imports
 
-```tsx showLineNumbers
+```tsx showLineNumbers title="/components/ui/tooltip.tsx"
 import {
 	Tooltip,
 	TooltipContent,
@@ -53,7 +59,7 @@ import {
 
 ### Code
 
-```tsx showLineNumbers
+```tsx showLineNumbers title="/components/ui/tooltip.tsx"
 <Tooltip>
 	<TooltipTrigger>Hover Me</TooltipTrigger>
 	<TooltipContent>This is a tooltip.</TooltipContent>
@@ -64,65 +70,126 @@ import {
 
 ## Examples
 
-### Theme
+<ComponentPreview title="Theme" path="tooltip/tooltip-theme" />
 
-<ComponentPreview path="tooltip/tooltip-theme" />
+<ComponentPreview title="With Arrow" path="tooltip/tooltip-with-arrow" />
 
-### With Arrow
+<ComponentPreview title="Side" path="tooltip/tooltip-side" />
 
-<ComponentPreview path="tooltip/tooltip-with-arrow" />
+<ComponentPreview title="Align" path="tooltip/tooltip-align" />
 
-### Side
+<ComponentPreview
+	title="Tooltip with Title and Description"
+	path="tooltip/tooltip-with-title-description"
+/>
 
-<ComponentPreview path="tooltip/tooltip-side" />
+<ComponentPreview
+	title="Custom Tooltip - w/Chart"
+	path="tooltip/tooltip-with-chart"
+/>
 
-### Align
+<ComponentPreview
+	title="Custom Tooltip - w/Image"
+	path="tooltip/tooltip-with-image"
+/>
 
-<ComponentPreview path="tooltip/tooltip-align" />
-
-### Tooltip with Title and Description
-
-<ComponentPreview path="tooltip/tooltip-with-title-description" />
-
-### Custom Tooltip - w/Chart
-
-<ComponentPreview path="tooltip/tooltip-with-chart" />
-
-### Custom Tooltip - w/Image
-
-<ComponentPreview path="tooltip/tooltip-with-image" />
-
-### Custom Tooltip - w/Icon & Title
-
-<ComponentPreview path="tooltip/tooltip-with-icon-title" />
+<ComponentPreview
+	title="Custom Tooltip - w/Icon & Title"
+	path="tooltip/tooltip-with-icon-title"
+/>
 
 ---
 
-## Props
+<ComponentDocContent
+	name={"Tooltip"}
+	description={
+		"Tooltip displays a small text label when users hover over, focus on, or long-press an element. It provides smart positioning and customizable styling for showing helpful hints and additional information."
+	}
+	features={[
+		"@radix-ui/react-tooltip, ensures strict ARIA compliance with correct tooltip role and native automatic content announcement.",
+		"Exposes a highly composable, declarative API: <TooltipProvider>, <Tooltip>, <TooltipTrigger>, and <TooltipContent>.",
+		"Natively handles safe \"hover tunnels,\" ensuring the tooltip doesn't flicker or close unexpectedly if the user's mouse moves slightly while interacting with the trigger.",
+		"Collision-aware positioning via the underlying Popper engine automatically flips or shifts the content if it hits the edge of the viewport.",
+		"Features built-in support for delayDuration, allowing you to control exactly how quickly the tooltip appears after the user initiates the hover.",
+	]}
+	related={[
+		{
+			title: "Popover",
+			description:
+				"Use a Tooltip for brief, plain-text labels. Use a Popover for rich, interactive content (like forms or images) that requires a click to open.",
+			href: "/docs/components/popover",
+		},
+		{
+			title: "Button",
+			description:
+				"The most frequent trigger for a tooltip. A simple icon-only button often relies on a tooltip to provide necessary context to the user.",
+			href: "/docs/components/button",
+		},
+		{
+			title: "Dropdown Menu",
+			description:
+				'If your "help" text is long or requires interactive links, a Dropdown Menu or Popover is a better structural choice than a Tooltip.',
+			href: "/docs/components/dropdown",
+		},
+	]}
+	faqs={[
+		{
+			question: "How do I globally control the hover delay?",
+			answer:
+				"You wrap your entire application (or a specific section) in the <TooltipProvider> component. You can pass the delayDuration prop (e.g., delayDuration={300}) to this provider, which dictates the delay for all nested <Tooltip> components.",
+		},
+		{
+			question: "How do I change the position of the tooltip?",
+			answer:
+				'You pass the side prop directly to the <TooltipContent> component. Options include side="top" | "right" | "bottom" | "left". You can also use align="start" | "center" | "end" to fine-tune its position relative to the trigger.',
+		},
+		{
+			question: "Can I render a custom arrow on the tooltip?",
+			answer:
+				"Yes. You include the <TooltipArrow /> component inside your <TooltipContent>. It automatically inherits the parent's background color, or you can style it using Tailwind's fill utility to match your theme.",
+		},
+		{
+			question: "Why isn't the tooltip visible when I hover?",
+			answer:
+				"First, ensure you have wrapped the component in a <TooltipProvider>. Second, check that your <TooltipTrigger> contains exactly one focusable child element. If it's empty or contains multiple elements, the Radix primitive won't know where to anchor the tooltip.",
+		},
+		{
+			question: "How do I make the tooltip text accessible?",
+			answer:
+				"Radix automatically handles this. The primitive creates an aria-describedby relationship between the trigger and the content, ensuring that when a screen reader user focuses on the trigger, the tooltip text is read aloud as context.",
+		},
+	]}
+/>
 
-<PropsTableWrapper>
-	<PropsTable title="Tooltip" externalReference="https://www.radix-ui.com/primitives/docs/components/tooltip#root" />
-	<PropsTable
-		title="TooltipTrigger"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/tooltip#trigger"
-	/>
-	<PropsTable
-		title="TooltipContent"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/tooltip#content"
-		data={[
-			{
-				name: "theme",
-				defaultValue: "default",
-				values: ["light", "default"],
-				description: "'default' inverts color for light/dark modes. 'light' matches both.",
-			},
-			{
-				name: "withArrow",
-				values: ["boolean"],
-				defaultValue: "false",
-				description: "Either to display an arrow pointing to the target element or not",
-			}
-    	]}
-    />
+## API Reference
 
-</PropsTableWrapper>
+### Tooltip
+
+The root container that manages the tooltip state and context.
+
+    ### TooltipTrigger
+
+An interactive element that opens the tooltip when hovered or focused.
+
+    ### TooltipContent
+
+The floating panel containing the tooltip text.
+
+<PropsTable
+	data={[
+		{
+			name: "theme",
+			defaultValue: "default",
+			values: ["light", "default"],
+			description:
+				"'default' inverts color for light/dark modes. 'light' matches both.",
+		},
+		{
+			name: "withArrow",
+			values: ["boolean"],
+			defaultValue: "false",
+			description:
+				"Either to display an arrow pointing to the target element or not",
+		},
+	]}
+/>

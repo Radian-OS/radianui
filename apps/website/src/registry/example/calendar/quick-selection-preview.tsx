@@ -55,8 +55,8 @@ function QuickSelectionCalendarPreview() {
 	}
 
 	return (
-		<div className="border-border bg-elevation-level1 flex overflow-hidden rounded-xl border">
-			<div className="border-border w-50 text-fg flex flex-col border-r px-1 py-2">
+		<div className="border-border bg-elevation-level1 flex flex-col-reverse overflow-hidden rounded-xl border sm:flex-row">
+			<div className="border-border sm:w-50 text-fg flex w-full flex-col border-t px-1 py-2 sm:border-r sm:border-t-0">
 				<p className="text-fg-tertiary h-8 rounded-sm p-2 text-xs font-medium">
 					SELECT DATE
 				</p>

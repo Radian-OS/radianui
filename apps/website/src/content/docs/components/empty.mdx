@@ -1,12 +1,16 @@
 ---
 title: Empty Component
-description: A flexible placeholder component for displaying empty states, no data screens, and error messages in React applications.
+description: A welcoming fallback layout with helpful text and graphics to show users when a list or search has no results.
 links:
   github:
     href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/empty.tsx
+  figma:
+    href: https://www.figma.com/design/ZB8gTZwafZOYY7rdJjSRz6/%E2%9D%96-Preview-%E2%9D%96-Radian-Design-System-%E2%9D%96-Version-0.3?node-id=18133-76697&t=V6eYQNGSpHNQ8XrH-11
 ---
 
 <ComponentPreview path="empty/empty-preview" />
+
+---
 
 ## Installation
 
@@ -23,12 +27,14 @@ links:
 	<InstallTabsContent value="manual" className="p-0">
 	<Steps>
 	    <Step>Copy and paste the following code into your project.</Step>
-    	<ComponentSource name="empty" title="components/ui/empty.tsx" collapsible />
+    	<ComponentSource src="styles/default/ui/empty.tsx" title="components/ui/empty.tsx" collapsible />
     	<Step>Update the import paths as per your project structure.</Step>
     </Steps>
     </InstallTabsContent>
 
 </InstallationTabs>
+
+---
 
 ## Usage
 
@@ -68,133 +74,130 @@ import {
 
 ## Examples
 
-### No Projects Yet
+<ComponentPreview title="No Projects Yet" path="empty/no-projects-yet" />
 
-<ComponentPreview path="empty/no-projects-yet" />
+<ComponentPreview title="No Search Results" path="empty/no-search-results" />
 
-### No Search Results
+<ComponentPreview
+	title="No Internet Connection"
+	path="empty/no-internet-connection"
+/>
 
-<ComponentPreview path="empty/no-search-results" />
+<ComponentPreview title="Unexpected Error" path="empty/unexpected-error" />
 
-### No Internet Connection
+<ComponentPreview title="No Messages" path="empty/no-messages" />
 
-<ComponentPreview path="empty/no-internet-connection" />
+<ComponentPreview title="No Notifications" path="empty/no-notifications" />
 
-### Unexpected Error
+<ComponentPreview title="No Files Uploaded" path="empty/no-files-uploaded" />
 
-<ComponentPreview path="empty/unexpected-error" />
+<ComponentPreview title="No Comments Yet" path="empty/no-comments-yet" />
 
-### No Messages
+<ComponentPreview title="No Recent Activity" path="empty/no-recent-activity" />
 
-<ComponentPreview path="empty/no-messages" />
+<ComponentPreview title="No Reports Yet" path="empty/no-reports-yet" />
 
-### No Notifications
-
-<ComponentPreview path="empty/no-notifications" />
-
-### No Files Uploaded
-
-<ComponentPreview path="empty/no-files-uploaded" />
-
-### No Comments Yet
-
-<ComponentPreview path="empty/no-comments-yet" />
-
-### No Recent Activity
-
-<ComponentPreview path="empty/no-recent-activity" />
-
-### No Reports Yet
-
-<ComponentPreview path="empty/no-reports-yet" />
-
-### No Such Directory
-
-<ComponentPreview path="empty/no-such-directory" />
+<ComponentPreview title="No Such Directory" path="empty/no-such-directory" />
 
 ---
 
-## Props
+<ComponentDocContent
+	name={"Empty Component"}
+	description={
+		"An Empty Component is a screen shown to users when there is no data or content available. It keeps the page looking clean and helpful by providing a clear message and a button so the user knows what to do next. Use this component to guide your users when a page is empty."
+	}
+	features={[
+		"Composable, modular architecture exporting <EmptyState>, <EmptyStateIcon>, <EmptyStateTitle>, <EmptyStateDescription>, and <EmptyStateAction>.",
+		"Pre-configured flexbox layout (flex flex-col items-center justify-center) to perfectly center illustrations and typography automatically.",
+		"Zero-dependency structural foundation, making it trivial to drop in standard Lucide React icons or complex custom brand assets.",
+		"Responsive spacing and typography out of the box, ensuring the container scales gracefully from small mobile viewports to wide desktop grids.",
+		"Unopinionated background styling, allowing it to seamlessly blend into nested cards, dialogs, or full-page layouts.",
+	]}
+	related={[
+		{
+			title: "Table",
+			description:
+				"Essential for replacing the standard table body when a database query or user filter returns zero rows.",
+			href: "/docs/components/table",
+		},
+		{
+			title: "Card",
+			description:
+				"Empty states are frequently rendered directly inside a Card component when a specific dashboard widget or analytics block lacks data.",
+			href: "/docs/components/card",
+		},
+		{
+			title: "Button",
+			description:
+				'Placed inside the <EmptyStateAction> wrapper to provide users with a clear path forward (e.g., a primary "Create New Project" call-to-action).',
+			href: "/docs/components/button",
+		},
+	]}
+	faqs={[
+		{
+			question:
+				"How do I perfectly center the empty state within a full-page layout?",
+			answer:
+				"You can wrap the root <EmptyState> component in a parent container utilizing min-h-[calc(100vh-4rem)] flex items-center justify-center Tailwind utilities. This ensures the component sits exactly in the middle of the screen, accounting for your application's header height.",
+		},
+		{
+			question: "Can I use my own custom SVG illustrations instead of icons?",
+			answer:
+				"Absolutely. The <EmptyStateIcon> wrapper acts as a standard layout container. Because you own the component code, you can easily strip out the default Lucide icon and pass any custom SVG, <Image>, or external asset as a direct child.",
+		},
+		{
+			question: "How should I render an empty state inside a Data Table?",
+			answer:
+				"Instead of rendering a collapsed, empty table body, standard practice is to render a single table row (<tr>) containing one table cell that spans all columns (<td colSpan={columns.length}>). You then place the Radian Empty State component directly inside that cell for a clean UI.",
+		},
+		{
+			question: "Does this component require any external Radix primitives?",
+			answer:
+				"No. The Radian Empty State is a purely presentational component, built exclusively with native DOM elements and standard Tailwind CSS classes. It requires no complex WAI-ARIA state management and adds zero JavaScript overhead to your application bundle.",
+		},
+		{
+			question:
+				"How do I change the default text colors for the title and description?",
+			answer:
+				"Open the component source file in your repository. You will find that <EmptyStateTitle> defaults to standard text colors, while <EmptyStateDescription> uses text-muted-foreground. You can modify these directly to fit your specific theme constraints.",
+		},
+	]}
+/>
 
-<PropsTableWrapper>
-	<PropsTable
-		title="Empty"
-		data={[
-			{
-				name: "className",
-				values: ["string"],
-				required: false,
-				description: "Additional CSS classes for custom styling",
-			},
-		]}
-	/>
+## API Reference
 
-    <PropsTable
-    	title="EmptyMedia"
-    	data={[
-    					{
-    			name: "variant",
-    			values: ["default", "icon"],
-    			defaultValue: "default",
-    			required: false,
-    			description: "The variant of the empty media",
-    		},
-    		{
-    			name: "className",
-    			values: ["string"],
-    			required: false,
-    			description: "Additional CSS classes for custom styling",
-    		},
+### Empty
 
-    	]}
-    />
+The root component that manages the empty state layout.
 
-    <PropsTable
-    	title="EmptyHeader"
-    	data={[
-    		{
-    			name: "className",
-    			values: ["string"],
-    			required: false,
-    			description: "Additional CSS classes for custom styling",
-    		},
-    	]}
-    />
+### EmptyMedia
 
-    <PropsTable
-    	title="EmptyTitle"
-    	data={[
-    		{
-    			name: "className",
-    			values: ["string"],
-    			required: false,
-    			description: "Additional CSS classes for custom styling",
-    		},
-    	]}
-    />
+A visual container for displaying illustrations or icons related to the empty state.
 
-    <PropsTable
-    	title="EmptyDescription"
-    	data={[
-    		{
-    			name: "className",
-    			values: ["string"],
-    			required: false,
-    			description: "Additional CSS classes for custom styling",
-    		},
-    	]}
-    />
+<PropsTable
+	data={[
+		{
+			name: "variant",
+			values: ["default", "icon"],
+			defaultValue: "default",
+			required: false,
+			description: "The variant of the empty media",
+		},
+	]}
+/>
 
-    <PropsTable
-    	title="EmptyAction"
-    	data={[
-    		{
-    			name: "className",
-    			values: ["string"],
-    			required: false,
-    			description: "Additional CSS classes for custom styling",
-    		},
-    	]}
-    />
+### EmptyHeader
 
-</PropsTableWrapper>
+A structural container for the top section of the empty state, typically holding the title and description.
+
+### EmptyTitle
+
+A semantic heading that explains why the current view is empty.
+
+### EmptyDescription
+
+A text container providing further context or instructions on how to populate the empty state.
+
+### EmptyAction
+
+A wrapper for actionable elements, such as buttons to create new items or reset filters.

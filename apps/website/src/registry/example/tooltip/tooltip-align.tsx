@@ -8,8 +8,8 @@ export default function TooltipAlign() {
 		<div className="flex flex-col items-center justify-center gap-3">
 			<Tooltip>
 				<TooltipTrigger asChild>
-					<Button color="neutral" variant="outline">
-						<AlignLeft />
+					<Button className="w-full" color="neutral" variant="outline">
+						<AlignLeft className="text-fg-secondary" />
 						Start
 					</Button>
 				</TooltipTrigger>
@@ -19,8 +19,8 @@ export default function TooltipAlign() {
 			</Tooltip>
 			<Tooltip>
 				<TooltipTrigger asChild>
-					<Button color="neutral" variant="outline">
-						<AlignCenter />
+					<Button className="w-full" color="neutral" variant="outline">
+						<AlignCenter className="text-fg-secondary" />
 						Center
 					</Button>
 				</TooltipTrigger>
@@ -30,8 +30,8 @@ export default function TooltipAlign() {
 			</Tooltip>
 			<Tooltip>
 				<TooltipTrigger asChild>
-					<Button color="neutral" variant="outline">
-						<AlignRight />
+					<Button className="w-full" color="neutral" variant="outline">
+						<AlignRight className="text-fg-secondary" />
 						End
 					</Button>
 				</TooltipTrigger>

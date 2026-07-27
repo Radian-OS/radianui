@@ -8,7 +8,7 @@ import {
 	LogOut,
 	Sparkles,
 } from "lucide-react"
-import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
+import { Avatar, AvatarFallback, AvatarImage } from "@/styles/default/ui/avatar"
 import {
 	Dropdown,
 	DropdownContent,
@@ -18,13 +18,13 @@ import {
 	DropdownLabel,
 	DropdownShortcut,
 	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+} from "@/styles/default/ui/dropdown"
 import {
 	SidebarMenu,
 	SidebarMenuButton,
 	SidebarMenuItem,
 	useSidebar,
-} from "@/registry/ui/sidebar"
+} from "@/styles/default/ui/sidebar"
 
 export function SidebarFooterUser() {
 	const { isMobile } = useSidebar()

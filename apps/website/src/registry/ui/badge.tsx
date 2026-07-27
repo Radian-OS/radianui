@@ -7,7 +7,6 @@ export type BadgeProps = Omit<React.HTMLAttributes<HTMLDivElement>, "color"> &
 	VariantProps<typeof badgeVariants> & {
 		asChild?: boolean
 	}
-
 export type BadgeDotProps = React.HTMLAttributes<HTMLSpanElement>
 
 const badgeVariants = cva(
@@ -16,7 +15,7 @@ const badgeVariants = cva(
 		variants: {
 			variant: {
 				strong: "",
-				outline: "",
+				outline: "cn-badge-variant-outline",
 				soft: "",
 			},
 			size: {
@@ -65,62 +64,54 @@ const badgeVariants = cva(
 			{
 				variant: "strong",
 				color: "info",
-				className: "bg-info text-white  border border-alpha",
+				className: "bg-info text-info-fg border border-alpha",
 			},
 			{
 				variant: "strong",
 				color: "success",
-				className: "bg-success text-white  border border-alpha",
+				className: "bg-success text-success-fg border border-alpha",
 			},
 			{
 				variant: "strong",
 				color: "error",
-				className: "bg-error text-white  border border-alpha",
+				className: "bg-error text-error-fg border border-alpha",
 			},
 			{
 				variant: "strong",
 				color: "warning",
-				className: "bg-warning text-white  border border-alpha",
+				className: "bg-warning text-warning-fg border border-alpha",
 			},
 			{
 				variant: "strong",
 				color: "neutral",
-				className:
-					"bg-black-inverse border border-alpha text-white-inverse font-medium",
+				className: "cn-badge-strong-neutral",
 			},
 			// outline
 			{
 				variant: "outline",
 				color: "primary",
-				className:
-					"text-primary-text border border-primary-border bg-transparent",
+				className: "cn-badge-outline-primary",
 			},
-			{
-				variant: "outline",
-				color: "info",
-				className: "text-info-text border border-info-border bg-transparent",
-			},
+			{ variant: "outline", color: "info", className: "cn-badge-outline-info" },
 			{
 				variant: "outline",
 				color: "success",
-				className:
-					"text-success-text border border-success-border bg-transparent",
+				className: "cn-badge-outline-success",
 			},
 			{
 				variant: "outline",
 				color: "error",
-				className: "text-error-text border border-error-border bg-transparent",
+				className: "cn-badge-outline-error",
 			},
 			{
 				variant: "outline",
 				color: "warning",
-				className:
-					"text-warning-text border border-warning-border bg-transparent",
+				className: "cn-badge-outline-warning",
 			},
 			{
 				variant: "outline",
 				color: "neutral",
-				className: "text-fg border bg-transparent",
+				className: "cn-badge-outline-neutral",
 			},
 			// soft
 			{
@@ -244,55 +235,67 @@ const badgeVariants = cva(
 			},
 
 			// utility colors (strong)
-			{ variant: "strong", color: "red", className: "bg-red text-white" },
-			{ variant: "strong", color: "orange", className: "bg-orange text-white" },
+			{ variant: "strong", color: "red", className: "bg-red text-red-fg" },
+			{
+				variant: "strong",
+				color: "orange",
+				className: "bg-orange text-orange-fg",
+			},
 			{
 				variant: "strong",
 				color: "amber",
-				className: "bg-amber text-amber-text",
+				className: "bg-amber text-amber-fg",
 			},
 			{
 				variant: "strong",
 				color: "yellow",
-				className: "bg-yellow text-yellow-text",
+				className: "bg-yellow text-yellow-fg",
 			},
-			{ variant: "strong", color: "neon", className: "bg-neon text-neon-text" },
-			{ variant: "strong", color: "green", className: "bg-green text-white" },
+			{ variant: "strong", color: "neon", className: "bg-neon text-neon-fg" },
+			{
+				variant: "strong",
+				color: "green",
+				className: "bg-green text-green-fg",
+			},
 			{
 				variant: "strong",
 				color: "emerald",
-				className: "bg-emerald text-white",
+				className: "bg-emerald text-emerald-fg",
 			},
-			{ variant: "strong", color: "teal", className: "bg-teal text-white" },
-			{ variant: "strong", color: "cyan", className: "bg-cyan text-white" },
+			{ variant: "strong", color: "teal", className: "bg-teal text-teal-fg" },
+			{ variant: "strong", color: "cyan", className: "bg-cyan text-cyan-fg" },
 			{
 				variant: "strong",
 				color: "light-blue",
-				className: "bg-light-blue text-white",
+				className: "bg-light-blue text-light-blue-fg",
 			},
-			{ variant: "strong", color: "blue", className: "bg-blue text-white" },
+			{ variant: "strong", color: "blue", className: "bg-blue text-blue-fg" },
 			{
 				variant: "strong",
 				color: "violet-blue",
-				className: "bg-violet-blue text-white",
+				className: "bg-violet-blue text-violet-blue-fg",
 			},
-			{ variant: "strong", color: "purple", className: "bg-purple text-white" },
+			{
+				variant: "strong",
+				color: "purple",
+				className: "bg-purple text-purple-fg",
+			},
 			{
 				variant: "strong",
 				color: "dark-orchid",
-				className: "bg-dark-orchid text-white",
+				className: "bg-dark-orchid text-dark-orchid-fg",
 			},
 			{
 				variant: "strong",
 				color: "fuchsia",
-				className: "bg-fuchsia text-white",
+				className: "bg-fuchsia text-fuchsia-fg",
 			},
 			{
 				variant: "strong",
 				color: "magenta",
-				className: "bg-magenta text-white",
+				className: "bg-magenta text-magenta-fg",
 			},
-			{ variant: "strong", color: "rose", className: "bg-rose text-white" },
+			{ variant: "strong", color: "rose", className: "bg-rose text-rose-fg" },
 
 			// utility colors (outline)
 			{
@@ -411,11 +414,10 @@ function Badge({
 			<Slot
 				className={cn(badgeVariants({ variant, size, color }), className)}
 				{...props}>
-				{wrappedChildren}
+				{children}
 			</Slot>
 		)
 	}
-
 	return (
 		<span
 			className={cn(badgeVariants({ variant, size, color }), className)}
@@ -424,7 +426,6 @@ function Badge({
 		</span>
 	)
 }
-
 Badge.displayName = "Badge"
 
 function BadgeDot({ className, ...props }: BadgeDotProps) {

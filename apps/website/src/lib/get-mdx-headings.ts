@@ -12,19 +12,41 @@ type GetHeadingsOptions = {
 	maxDepth?: number
 }
 
+function expandComponentDocContentHeadings(mdxCode: string): string {
+	return mdxCode.replace(
+		/^<ComponentDocContent\b[\s\S]*?^\/>$/gm,
+		(componentDocContent) => {
+			const nameMatch =
+				componentDocContent.match(/\bname=\{\s*["'`]([^"'`]+)["'`]\s*\}/) ||
+				componentDocContent.match(/\bname=["']([^"']+)["']/)
+			const name = nameMatch?.[1] || "Component"
+			const headings = [`## What is ${name}?`]
+
+			if (/\bfeatures=/.test(componentDocContent)) headings.push("## Features")
+			if (/\brelated=/.test(componentDocContent))
+				headings.push("## Related Components")
+			if (/\bfaqs=/.test(componentDocContent))
+				headings.push("## Frequently Asked Questions")
+
+			return headings.join("\n\n")
+		}
+	)
+}
+
 /**
- * Extracts headings (h2/h3 by default) from MDX/Markdown code.
+ * Extracts headings (h2/h4 by default) from MDX/Markdown code.
  * @param mdxCode The MDX or Markdown code as a string
- * @param options Optional: minDepth/maxDepth for heading levels (default: 2-3)
+ * @param options Optional: minDepth/maxDepth for heading levels (default: 2-4)
  * @returns Promise<MdxHeading[]>
  */
 export async function getHeadingsFromMdx(
 	mdxCode: string,
-	options: GetHeadingsOptions = { minDepth: 2, maxDepth: 3 }
+	options: GetHeadingsOptions = { minDepth: 2, maxDepth: 4 }
 ): Promise<MdxHeading[]> {
-	const { minDepth = 2, maxDepth = 3 } = options
+	const { minDepth = 2, maxDepth = 4 } = options
 	const slugger = new GithubSlugger()
 	const headings: MdxHeading[] = []
+	const expandedMdxCode = expandComponentDocContentHeadings(mdxCode)
 
 	// Helper to recursively extract all text from a node
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -52,6 +74,8 @@ export async function getHeadingsFromMdx(
 		}
 	}
 
-	const file = await remark().use(extractHeadingsPlugin).process(mdxCode)
+	const file = await remark()
+		.use(extractHeadingsPlugin)
+		.process(expandedMdxCode)
 	return (file.data.headings as MdxHeading[]) || []
 }

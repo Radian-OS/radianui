@@ -1,5 +1,5 @@
 import React from "react"
-import { Divider } from "@/registry/ui/divider"
+import { Divider } from "@/styles/default/ui/divider"
 
 export default function MiniFooter() {
 	const currentYear = new Date().getFullYear()
@@ -8,7 +8,7 @@ export default function MiniFooter() {
 		<>
 			<Divider className="via-border bg-gradient-to-r from-transparent to-transparent" />
 			<div className="h-13 flex items-center justify-center">
-				<p className="text-fg-secondary text-center text-sm font-medium">
+				<p className="text-fg-secondary text-center text-xs font-normal">
 					© Copyright Radian OS {currentYear}. All rights reserved.
 				</p>
 			</div>

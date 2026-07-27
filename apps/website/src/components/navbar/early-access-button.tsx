@@ -3,8 +3,8 @@
 import React, { ComponentProps, useEffect, useState } from "react"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
-import { Badge } from "@/registry/ui/badge"
-import { Button } from "@/registry/ui/button"
+import { Badge } from "@/styles/default/ui/badge"
+import { Button } from "@/styles/default/ui/button"
 import { CountingNumber } from "../counting-numbers"
 
 const REPO_NAME = "Radian-os/radianos"

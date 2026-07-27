@@ -1,12 +1,16 @@
 ---
 title: Input
-description: Capture text or data with customizable inputs
+description: A clean, multipurpose text field built for collecting user data, names, emails, and general form information.
 links:
   github:
     href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/input.tsx
+  figma:
+    href: https://www.figma.com/design/ZB8gTZwafZOYY7rdJjSRz6/%E2%9D%96-Preview-%E2%9D%96-Radian-Design-System-%E2%9D%96-Version-0.3?node-id=18133-80905&t=V6eYQNGSpHNQ8XrH-11
 ---
 
 <ComponentPreview path="input/input-preview" />
+
+---
 
 ## Installation
 
@@ -23,12 +27,14 @@ links:
 	<InstallTabsContent value="manual" className="p-0">
 	<Steps>
 	    <Step>Copy and paste the following code into your project.</Step>
-    	<ComponentSource name="input" title="components/ui/input.tsx" collapsible />
+    	<ComponentSource src="styles/default/ui/input.tsx" title="components/ui/input.tsx" collapsible />
     	<Step>Update the import paths as per your project structure.</Step>
     </Steps>
     </InstallTabsContent>
 
 </InstallationTabs>
+
+---
 
 ## Usage
 
@@ -65,85 +71,131 @@ import {
 
 ## Examples
 
-### Input Sizes
+<ComponentPreview title="Input Sizes" path="input/input-size" />
 
-<ComponentPreview path="input/input-size" />
+<ComponentPreview title="Disabled Input" path="input/disabled-input" />
 
-### Disabled Input
+<ComponentPreview title="Error Input" path="input/invalid-input" />
 
-<ComponentPreview path="input/disabled-input" />
+<ComponentPreview title="Input Wrapper" path="input/input-wrapper" />
 
-### Error Input
+<ComponentPreview title="Input Groups" path="input/input-groups" />
 
-<ComponentPreview path="input/invalid-input" />
+<ComponentPreview title="Email" path="input/email-input-preview" />
 
-### Input Wrapper
+<ComponentPreview title="URL" path="input/url-input-preview" />
 
-<ComponentPreview path="input/input-wrapper" />
+<ComponentPreview title="Number" path="input/number-input-preview" />
 
-### Input Groups
+<ComponentPreview title="Color Input" path="input/input-color" />
 
-<ComponentPreview path="input/input-groups" />
+<ComponentPreview title="Credit Card" path="input/credit-card-input-preview" />
 
-### Email
+<ComponentPreview title="Search" path="input/input-search" />
 
-<ComponentPreview path="input/email-input-preview" />
+<ComponentPreview
+	title="Search with Suggestions"
+	path="input/input-search-suggestions"
+/>
 
-### URL
+<ComponentPreview
+	title="Input with clear button"
+	path="input/input-clear-button"
+/>
 
-<ComponentPreview path="input/url-input-preview" />
+<ComponentPreview title="Password" path="input/password-preview" />
 
-### Number
+<ComponentPreview
+	title="Password Toggle On Focus"
+	path="input/password-toggle-on-focus"
+/>
 
-<ComponentPreview path="input/number-input-preview" />
+<ComponentPreview
+	title="Password Toggle Visible"
+	path="input/password-toggle-visible"
+/>
 
-### Color Input
+<ComponentPreview
+	title="Password With Validation"
+	path="input/password-validation-example"
+/>
 
-<ComponentPreview path="input/input-color" />
-
-### Credit Card
-
-<ComponentPreview path="input/credit-card-input-preview" />
-
-### Search
-
-<ComponentPreview path="input/input-search" />
-
-### Search with Suggestions
-
-<ComponentPreview path="input/input-search-suggestions" />
-
-### Input with clear button
-
-<ComponentPreview path="input/input-clear-button" />
-
-### Password
-
-<ComponentPreview path="input/password-preview" />
-
-### Password Toggle On Focus
-
-<ComponentPreview path="input/password-toggle-on-focus" />
-
-### Password Toggle Visible
-
-<ComponentPreview path="input/password-toggle-visible" />
-
-### Password With Validation
-
-<ComponentPreview path="input/password-validation-example" />
-
-### Input Form
-
-<ComponentPreview path="input/input-form" />
+<ComponentPreview title="Date Input" path="input/input-date" />
+<ComponentPreview title="Input Form" path="input/input-form" />
 
 ---
 
-## Props
+<ComponentDocContent
+	name={"Input"}
+	description={
+		"Input is a form field used to collect short text from users, such as names, emails, or passwords. It provides a consistent design, accessible support, and customizable input with support for focus states, dark mode, disabled states, and seamless integration with libraries like React Hook Form."
+	}
+	features={[
+		"Includes standard Tailwind interactive state modifiers out of the box, seamlessly handling disabled:opacity-50 and focus-visible:ring accessibility requirements.",
+		"Natively supports all standard HTML input types (text, email, password, number) with robust fallback styling for muted placeholder text.",
+		"Inherits your application's global theme variables (like bg-bg and border-soft) to instantly match your brand without requiring manual hex code adjustments.",
+		"Clean, structural footprint, making it easier to customize the height, border radius, or internal padding using standard utility classes.",
+	]}
+	related={[
+		{
+			title: "Form",
+			description:
+				"The essential parent wrapper used to bind the Input to complex validation logic, Zod schemas, and accessible error messages.",
+			href: "/docs/components/form",
+		},
+		{
+			title: "Label",
+			description:
+				"Pairs directly with the Input (via the htmlFor attribute) to provide screen readers with the necessary context for the data being requested.",
+			href: "/docs/components/label",
+		},
+		{
+			title: "Textarea",
+			description:
+				"Use this component instead when you need to capture long-form, multi-line user data like blog comments or product descriptions.",
+			href: "/docs/components/text-area",
+		},
+	]}
+	faqs={[
+		{
+			question: "How do I integrate this input with React Hook Form?",
+			answer:
+				'You can use the standard...register("fieldName") spread syntax directly on the Radian Input element. This allows you to seamlessly track the input\'s value and blur events.',
+		},
+		{
+			question: "Can I add an icon inside the input field?",
+			answer:
+				"You can use <InputWrapper/> or <InputGroup/> to add an icon inside the input.",
+		},
+		{
+			question: "How do I remove or change the default focus ring?",
+			answer:
+				"Open the input.tsx file in your repository and locate the focus-visible:ring and focus-visible:ring-ring. You can either delete them entirely to rely strictly on border color changes, or modify the ring color and width to perfectly match your brand UI guidelines.",
+		},
+		{
+			question:
+				"Does this component handle password visibility toggling natively?",
+			answer:
+				'No, the standard component is purely a styled input primitive. To add a "show/hide" eye icon, you must create a custom wrapper component that manages a boolean React state and conditionally swaps the input\'s native type prop from "password" to "text" or you can copy the Password toggle example from above.',
+		},
+		{
+			question:
+				"Why isn't my file input styling matching the standard text inputs?",
+			answer:
+				'Native <input type="file"> elements use specialized browser pseudo-elements for their "Choose File" buttons. While the Radian Input includes basic normalization classes like file:border-0 file:bg-transparent if you want a truly polished drag-and-drop experience, you should use our dedicated Radian File Upload component instead.',
+		},
+	]}
+/>
 
-<PropsTableWrapper>
+## API Reference
+
+This is a custom component, not a Radix UI wrapper.
+
+### Input
+
+The primary input field element for capturing user data.
+
 <PropsTable
-	title="Input"
 	data={[
 		{
 			name: "size",
@@ -151,13 +203,19 @@ import {
 			values: ["28", "32", "36", "40", "44", "48"],
 			required: false,
 			description: "Controls the height and padding of the input field",
-		}
+		},
 	]}
-	externalReference="https://react.dev/reference/react-dom/components/input#input"
 />
 
+### InputGroup
+
+A flexbox container for grouping an input field together with addons or icons.
+
+### InputAddon
+
+A decorative or functional element attached to the left or right side of an input field.
+
 <PropsTable
-	title="InputAddon"
 	data={[
 		{
 			name: "size",
@@ -177,8 +235,11 @@ import {
 	]}
 />
 
+### InputWrapper
+
+A structural container that manages the layout and styling of an input and its associated elements.
+
 <PropsTable
-	title="InputWrapper"
 	data={[
 		{
 			name: "size",
@@ -192,8 +253,8 @@ import {
 			defaultValue: "false",
 			values: ["boolean"],
 			required: false,
-			description: "Applies disabled styling to the wrapper and its children when set to true",
+			description:
+				"Applies disabled styling to the wrapper and its children when set to true",
 		},
 	]}
 />
-</PropsTableWrapper>

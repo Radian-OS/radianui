@@ -1,15 +1,19 @@
 ---
 title: Accordion
-description: Expand and collapse sections for organized content
+description: Clean, stacked panels that expand and collapse to organize large amounts of information and save page space.
 links:
   github:
     href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/accordion.tsx
+  figma:
+    href: https://www.figma.com/design/ZB8gTZwafZOYY7rdJjSRz6/%E2%9D%96-Preview-%E2%9D%96-Radian-Design-System-%E2%9D%96-Version-0.3?node-id=18133-34408&t=V6eYQNGSpHNQ8XrH-4
   externalReference:
     - label: Radix  UI
       href: https://www.radix-ui.com/primitives/docs/components/accordion
 ---
 
 <ComponentPreview path="accordion/accordion-preview" />
+
+---
 
 ## Installation
 
@@ -30,13 +34,15 @@ links:
 		npm install @radix-ui/react-accordion
 		```
     	<Step>Copy and paste the following code into your project.</Step>
-    	<ComponentSource name="accordion" title="components/ui/accordion.tsx" collapsible />
+    	<ComponentSource src="styles/default/ui/accordion.tsx" title="components/ui/accordion.tsx" collapsible />
 
     	<Step>Update the import paths as per your project structure.</Step>
     </Steps>
     </InstallTabsContent>
 
 </InstallationTabs>
+
+---
 
 ## Usage
 
@@ -68,55 +74,116 @@ import {
 
 ## Examples
 
-### Open Variant
+<ComponentPreview title="Open Variant" path="accordion/accordion-open" />
 
-<ComponentPreview path="accordion/accordion-open" />
+<ComponentPreview title="Table Variant" path="accordion/accordion-table" />
 
-### Table Variant
+<ComponentPreview title="Box Variant" path="accordion/accordion-box" />
 
-<ComponentPreview path="accordion/accordion-table" />
+<ComponentPreview title="Disabled State" path="accordion/accordion-disable" />
 
-### Box Variant
+<ComponentPreview
+	title="Plus/Minus Indicator"
+	path="accordion/accordion-indicator"
+/>
 
-<ComponentPreview path="accordion/accordion-box" />
+<ComponentPreview
+	title="Accordion with Icons"
+	path="accordion/accordion-with-icon"
+/>
 
-### Disabled Variant
+<ComponentPreview
+	title="Custom Accordion - Nested Accordion"
+	path="accordion/accordion-nested"
+/>
 
-<ComponentPreview path="accordion/accordion-disable" />
+<ComponentPreview
+	title="Custom Accordion - w/Chevron on left"
+	path="accordion/accordion-with-chevron-left"
+/>
 
-### Plus/Minus Indicator
+<ComponentPreview
+	title="Custom Accordion - w/Avatar"
+	path="accordion/accordion-with-avatar"
+/>
 
-<ComponentPreview path="accordion/accordion-indicator" />
+<ComponentPreview
+	title="Custom Accordion - w/Dotted line"
+	path="accordion/accordion-with-dotted-line"
+/>
 
-### Accordion with Icons
+<ComponentPreview
+	title="Custom Accordion - w/ Icon, sub-header and chevron"
+	path="accordion/accordion-with-sub-header-chevron"
+/>
 
-<ComponentPreview path="accordion/accordion-with-icon" />
+---
 
-### Custom Accordion - Nested Accordion
+<ComponentDocContent
+	name={"Accordion"}
+	description={
+		"An accordion is a set of vertically stacked headings that each reveal a section of content when clicked. It is an effective way to organize large amounts of information in a compact space, making it easier for users to scan and digest content without feeling overwhelmed."
+	}
+	features={[
+		"Fully accessible and screen-reader ready, adhering strictly to WAI-ARIA design patterns.",
+		"Supports both single and multiple type configurations to dictate whether one or multiple panels can be open simultaneously.",
+		"Includes smooth CSS-based open/close animations leveraging Tailwind's animate-accordion-down and animate-accordion-up.",
+		"Zero-dependency visual styling: all layout and design logic is handled locally via standard Tailwind CSS utility classes.",
+		"Exposes defaultValue and value props for seamless integration into both controlled and uncontrolled state management patterns.",
+	]}
+	related={[
+		{
+			title: "Collapsible",
+			description:
+				"Use this when you only need a single interactive, expanding panel rather than a full vertically stacked list.",
+			href: "/docs/components/collapsible",
+		},
+		{
+			title: "Tabs",
+			description:
+				"A better alternative when you want to organize distinct sections of content horizontally rather than vertically.",
+			href: "/docs/components/tabs",
+		},
+	]}
+	faqs={[
+		{
+			question:
+				"Can I allow multiple accordion items to be open at the same time?",
+			answer:
+				'Yes. By setting the type prop to "multiple" on the root <Accordion> component, users can expand multiple panels simultaneously. This is ideal for complex settings menus where users need to cross-reference information.',
+		},
+		{
+			question: "How do I customize the open and close animation speeds?",
+			answer:
+				"Because Radian gives you the source code, you can adjust the animation directly in your global CSS file. Simply modify the CSS keyframe definitions for accordion-down and accordion-up to perfectly match your design system.",
+		},
+		{
+			question: "Can I dynamically generate accordion items from a data array?",
+			answer:
+				"Absolutely. You can map over an array of data in your React component and return <AccordionItem>, <AccordionTrigger>, and <AccordionContent> components for each entry. Just ensure each mapped item receives a unique value prop.",
+		},
+		{
+			question:
+				"Does the accordion handle chevron icon rotation automatically?",
+			answer:
+				"Yes, the default template utilizes Tailwind's data-[state=open] attribute to seamlessly rotate the chevron icon. You can easily swap the default Lucide icon for your own by editing the <AccordionTrigger> component.",
+		},
+		{
+			question:
+				"Is it possible to use the accordion as a controlled component?",
+			answer:
+				"You can manage the state externally by passing the value and onValueChange props to the root component. This is particularly useful if you need to sync the expanded state with a URL search parameter or a global state store.",
+		},
+	]}
+/>
 
-<ComponentPreview path="accordion/accordion-nested" />
+## API Reference
 
-### Custom Accordion - w/Chevron on left
+### Accordion
 
-<ComponentPreview path="accordion/accordion-with-chevron-left" />
+Root component. Alias for `Accordion.Root` from Radix UI.
 
-### Custom Accordion - w/Avatar
-
-<ComponentPreview path="accordion/accordion-with-avatar" />
-
-### Custom Accordion - w/Dotted line
-
-<ComponentPreview path="accordion/accordion-with-dotted-line" />
-
-### Custom Accordion - w/ Icon, sub-header and chevron
-
-<ComponentPreview path="accordion/accordion-with-sub-header-chevron" />
-
-## Props
-
-<PropsTableWrapper>
-	<PropsTable
-	title="Accordion"
+<PropsTable
 	data={[
 		{
 			name: "variant",
@@ -126,33 +193,24 @@ import {
 			description: "Defines the visual style of the accordion",
 		},
 		{
-			name: "disabled",
-			defaultValue: "false",
-			values: ["boolean"],
-			required: false,
-			description: "Applies disabled styling of the accordion",
-		},
-		{
 			name: "indicator",
 			defaultValue: "chevron",
 			values: ["chevron", "plus-minus"],
 			required: false,
-			description: "Defines the indicator to be displayed in the accordion trigger",
-		}
-
-    ]}
-    externalReference="https://www.radix-ui.com/primitives/docs/components/accordion#root"
-
+			description:
+				"Defines the indicator to be displayed in the accordion trigger",
+		},
+	]}
 />
 
-    <PropsTable title="AccordionItem" externalReference="https://www.radix-ui.com/primitives/docs/components/accordion#item" />
+### AccordionItem
 
-    <PropsTable title="AccordionTrigger" externalReference="https://www.radix-ui.com/primitives/docs/components/accordion#trigger" />
+Individual accordion item container. Styled wrapper for `Accordion.Item` from Radix UI.
 
-    <PropsTable
-    title="AccordionContent"
-    externalReference="https://www.radix-ui.com/primitives/docs/components/accordion#content"
+### AccordionTrigger
 
-/>
+Trigger button that toggles the accordion panel. Styled wrapper for `Accordion.Trigger` from Radix UI. Includes a built-in chevron icon that rotates when expanded.
 
-</PropsTableWrapper>
+### AccordionContent
+
+Collapsible content. Styled wrapper for `Accordion.Content` from Radix UI.

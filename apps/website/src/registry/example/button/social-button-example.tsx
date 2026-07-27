@@ -33,7 +33,6 @@ function GoogleButtonExample() {
 				</Button>
 				<Button className="w-full" color="neutral" variant="outline">
 					<svg
-						className="text-fg"
 						width="24"
 						height="24"
 						viewBox="0 0 24 24"
@@ -70,7 +69,6 @@ function GoogleButtonExample() {
 				</Button>
 				<Button className="w-full" color="neutral" variant="outline">
 					<svg
-						className="text-fg"
 						width="24"
 						height="24"
 						viewBox="0 0 24 24"
@@ -86,7 +84,6 @@ function GoogleButtonExample() {
 
 				<Button className="w-full" color="neutral" variant="outline">
 					<svg
-						className="text-fg"
 						width="24"
 						height="24"
 						viewBox="0 0 24 24"

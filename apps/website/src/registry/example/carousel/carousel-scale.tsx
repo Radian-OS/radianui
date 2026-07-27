@@ -1,3 +1,5 @@
+"use client"
+
 import * as React from "react"
 import Image from "next/image"
 import { AspectRatio } from "@/registry/ui/aspect-ratio"
@@ -136,8 +138,10 @@ export default function CarouselScale() {
 				))}
 			</CarouselContent>
 
-			<CarouselPrevious />
-			<CarouselNext />
+			<div className="mt-4 flex justify-center gap-2 sm:mt-0 sm:block">
+				<CarouselPrevious className="static translate-y-0 sm:absolute sm:-translate-y-1/2" />
+				<CarouselNext className="static translate-y-0 sm:absolute sm:-translate-y-1/2" />
+			</div>
 		</Carousel>
 	)
 }

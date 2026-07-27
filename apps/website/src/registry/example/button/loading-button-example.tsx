@@ -3,7 +3,7 @@ import { Button, IconButton } from "@/registry/ui/button"
 
 function LoadingButtonExample() {
 	return (
-		<div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
+		<div className="flex flex-wrap items-center justify-center gap-3">
 			<Button disabled loading>
 				Sync Progress
 			</Button>

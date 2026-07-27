@@ -1,9 +1,9 @@
 import { Layers } from "lucide-react"
 import Link from "next/link"
+import HomeInteractive from "@/components/home/home-interactive"
 import { BorderBeam } from "@/registry/animated/border-beam"
 import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
-import VideoDialogPreview from "./video/video-dialog-preview"
 
 export default function VideoSection() {
 	return (
@@ -21,14 +21,14 @@ export default function VideoSection() {
 						</div>
 					</div>
 					<div className="flex max-w-[752px] flex-col items-center gap-5">
-						<span className="heading-2 text-center">
+						<h2 className="heading-2 text-center">
 							<span className="from-fg to-fg-secondary bg-gradient-to-b bg-clip-text text-transparent">
 								Multiple Ready to use UI blocks built for{" "}
 							</span>
 							<span className="bg-gradient-to-b from-[#492EB8] to-[#7655F6] bg-clip-text text-transparent">
 								speed & consistency
 							</span>
-						</span>
+						</h2>
 						<p className="text-fg-secondary max-w-[550px] text-center text-base font-normal">
 							Pre-made website & Application UI blocks to simplify your design
 							process and move smoothly from idea to implementation.
@@ -72,7 +72,9 @@ export default function VideoSection() {
 					/>
 				</svg>
 			</div>
-			<VideoDialogPreview />
+			<div className="relative h-[760px] w-full max-w-[1400px] sm:h-[860px]">
+				<HomeInteractive />
+			</div>
 
 			<div className="z-20 flex w-full flex-col gap-3 md:w-fit md:flex-row">
 				<Button

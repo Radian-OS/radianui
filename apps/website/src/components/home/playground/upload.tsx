@@ -3,9 +3,13 @@ import { Upload } from "lucide-react"
 import { AlertCircleIcon } from "lucide-react"
 import Image from "next/image"
 import { usePlayground } from "@/contexts/playground"
-import { Button, IconButton } from "@/registry/ui/button"
-import { FileMetadata, useFileUpload } from "@/registry/ui/file-upload"
-import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
+import { Button, IconButton } from "@/styles/default/ui/button"
+import { FileMetadata, useFileUpload } from "@/styles/default/ui/file-upload"
+import {
+	Popover,
+	PopoverContent,
+	PopoverTrigger,
+} from "@/styles/default/ui/popover"
 
 interface ImagePreviewProps {
 	file: {

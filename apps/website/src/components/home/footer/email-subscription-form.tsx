@@ -6,17 +6,17 @@ import { FieldValues, useForm } from "react-hook-form"
 import { z } from "zod"
 import { subscribeToNewsletter } from "@/lib/newsletter"
 import { cn } from "@/lib/utils"
-import { Button } from "@/registry/ui/button"
-import { Divider } from "@/registry/ui/divider"
+import { Button } from "@/styles/default/ui/button"
+import { Divider } from "@/styles/default/ui/divider"
 import {
 	Form,
 	FormControl,
 	FormField,
 	FormItem,
 	FormMessage,
-} from "@/registry/ui/form"
-import { Input } from "@/registry/ui/input"
-import { Spinner } from "@/registry/ui/spinner"
+} from "@/styles/default/ui/form"
+import { Input } from "@/styles/default/ui/input"
+import { Spinner } from "@/styles/default/ui/spinner"
 
 const formSchema = z.object({
 	email: z
@@ -69,55 +69,63 @@ export default function EmailSubscription() {
 	return (
 		<div className="flex flex-col items-center justify-center">
 			<Divider className="via-border bg-gradient-to-r from-transparent to-transparent" />
-			<div className="max-w-360 xl:px-30 flex w-full flex-col justify-between gap-8 px-5 py-8 md:flex-row md:py-10">
-				<div className="flex max-w-[396px] flex-col gap-2">
-					<span className="heading-5">Love Building Products?</span>
+			<div className="max-w-360 xl:px-7.5 flex w-full flex-col justify-between gap-8 px-5 py-8 md:flex-row md:py-10">
+				<div className="flex w-full flex-col gap-1 xl:max-w-[396px]">
+					<span className="font-base text-fg font-medium">
+						Subscribe to our newsletter
+					</span>
 					<p className="text-fg-secondary text-sm font-normal">
 						We’re adding tons of cool components and blocks to help you build.
 						Subscribe to get updates on development
 					</p>
 				</div>
-				<Form {...form}>
-					<form onSubmit={form.handleSubmit(onSubmit)}>
-						<div className="flex gap-3">
-							<FormField
-								control={form.control}
-								name="email"
-								render={({ field }: { field: FieldValues }) => (
-									<FormItem className="md:w-70 w-full">
-										<FormControl>
-											<Input
-												placeholder="Enter your email"
-												type="email"
-												{...field}
-												required
-											/>
-										</FormControl>
-										<FormMessage
-											className={cn({
-												"text-success-text":
-													subscriptionResult?.status &&
-													subscriptionResult?.status >= 200 &&
-													subscriptionResult?.status < 400,
-											})}>
-											{subscriptionResult?.message}
-										</FormMessage>
-									</FormItem>
-								)}
-							/>
-							<Button
-								className="w-23"
-								type="submit"
-								disabled={form.formState.isSubmitting}>
-								{form.formState.isSubmitting ? (
-									<Spinner variant="activity" />
-								) : (
-									"Subscribe"
-								)}
-							</Button>
-						</div>
-					</form>
-				</Form>
+				<div className="flex w-full flex-col gap-2 xl:max-w-[408px]">
+					<Form {...form}>
+						<form onSubmit={form.handleSubmit(onSubmit)}>
+							<div className="flex gap-2">
+								<FormField
+									control={form.control}
+									name="email"
+									render={({ field }: { field: FieldValues }) => (
+										<FormItem className="flex-1">
+											<FormControl>
+												<Input
+													placeholder="Enter your email"
+													type="email"
+													{...field}
+													required
+												/>
+											</FormControl>
+											<FormMessage
+												className={cn({
+													"text-success-text":
+														subscriptionResult?.status &&
+														subscriptionResult?.status >= 200 &&
+														subscriptionResult?.status < 400,
+												})}>
+												{subscriptionResult?.message}
+											</FormMessage>
+										</FormItem>
+									)}
+								/>
+								<Button
+									className="w-30"
+									type="submit"
+									disabled={form.formState.isSubmitting}>
+									{form.formState.isSubmitting ? (
+										<Spinner variant="activity" />
+									) : (
+										"Subscribe"
+									)}
+								</Button>
+							</div>
+						</form>
+					</Form>
+					<p className="text-fg-tertiary text-xs font-normal">
+						By submitting your email address, you agree to receive Radian’s
+						monthly newsletter.
+					</p>
+				</div>
 			</div>
 		</div>
 	)

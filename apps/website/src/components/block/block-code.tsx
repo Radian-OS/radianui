@@ -1,6 +1,5 @@
-import { Check, Clipboard, Menu } from "lucide-react"
+import { Menu } from "lucide-react"
 import { useCodeTreeContext } from "@/contexts/code-tree-context"
-import { useCopyPasteSimple as useClipboard } from "@/hooks/use-copy-paste-simple"
 import { IconButton } from "@/registry/ui/button"
 
 export function BlockCode({
@@ -16,7 +15,7 @@ export function BlockCode({
 	}>
 }) {
 	const { selectedFile } = useCodeTreeContext()
-	const { copy, copied } = useClipboard(selectedFile?.content || "")
+	// const { copy, copied } = useClipboard(selectedFile?.content || "")
 
 	return (
 		<div className="flex min-w-0 flex-1 flex-col overflow-hidden">
@@ -35,9 +34,9 @@ export function BlockCode({
 
 					<span className="text-sm">{selectedFile?.path}</span>
 				</div>
-				<IconButton variant="ghost" color="neutral" onClick={copy}>
+				{/* <IconButton variant="ghost" color="neutral" onClick={copy}>
 					{copied ? <Check /> : <Clipboard />}
-				</IconButton>
+				</IconButton> */}
 			</div>
 			<div className="flex-1 overflow-x-auto">
 				{selectedFile && (

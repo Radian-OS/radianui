@@ -1,6 +1,7 @@
 import React from "react"
 import fs from "fs/promises"
 import path from "path"
+import { formatCode } from "@/lib/format-code"
 import { highlightCode } from "@/lib/highligh-code"
 import { convertToFileTree } from "@/lib/registry"
 import { Index } from "@/registry/blocks-example"
@@ -56,18 +57,24 @@ const readFile = React.cache(async (filePath: string) => {
 	}
 })
 
-export async function DisplayBlock({ name }: { name: string }) {
+export async function DisplayBlock({
+	name,
+	title,
+}: {
+	name: string
+	title: string
+}) {
 	const block = await getBlock(name)
 	if (!block) return <h1>Block not found</h1>
 
 	const mappedFiles: FlatFile[] = block.files.map((file) => ({
-		content: file.content,
+		content: formatCode(file.content),
 		path: getFilePathname(file.type, file.name, name.split("-")[0]),
 	}))
 
 	const [nodes, highlightedFiles] = await Promise.all([
 		getCachedFileTree(mappedFiles),
-		getCachedHighlightedFiles(block.files),
+		getCachedHighlightedFiles(mappedFiles),
 	])
 
 	const highlightedFilesWithMappedPaths = highlightedFiles.map(
@@ -79,6 +86,7 @@ export async function DisplayBlock({ name }: { name: string }) {
 
 	return (
 		<DisplayBlockClient
+			title={title}
 			name={name}
 			nodes={nodes!}
 			highlightedFiles={highlightedFilesWithMappedPaths}

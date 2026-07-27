@@ -7,14 +7,14 @@ const ButtonWithBadgeExample = () => {
 	return (
 		<div className="flex items-center justify-center gap-3">
 			<Button variant="outline" color="neutral">
-				<Printer />
+				<Printer className="text-fg-secondary" />
 				Print
 				<Badge size="20" variant="outline" color="neutral">
 					⌘P
 				</Badge>
 			</Button>
 			<Button variant="outline" color="neutral">
-				<CloudDownload />
+				<CloudDownload className="text-fg-secondary" />
 				Download
 				<Badge size="20" variant="outline" color="neutral">
 					12

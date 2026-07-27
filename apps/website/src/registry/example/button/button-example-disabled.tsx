@@ -4,7 +4,7 @@ import { Button } from "@/registry/ui/button"
 
 function ButtonExampleDisabled() {
 	return (
-		<div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
+		<div className="flex flex-wrap items-center justify-center gap-3">
 			<Button disabled>
 				<RefreshCcw /> Sync Progress
 			</Button>
@@ -13,7 +13,7 @@ function ButtonExampleDisabled() {
 				Delete File
 			</Button>
 			<Button disabled variant="outline" color="neutral">
-				<UserPlus />
+				<UserPlus className="text-fg-secondary" />
 				Invite Users
 			</Button>
 		</div>

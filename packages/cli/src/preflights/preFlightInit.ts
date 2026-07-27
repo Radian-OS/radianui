@@ -12,19 +12,20 @@ import { spinner } from "@/utils/spinner"
  * - Detects framework and verifies Tailwind setup.
  * - Checks TypeScript import alias configuration.
  */
-export const preFlightInit = async (options: InitOptions): Promise<{ projectInfo: ProjectInfo | null }> => {
+export const preFlightInit = async (options: InitOptions): Promise<{ projectInfo: ProjectInfo | null; hasComponentsJson: boolean }> => {
 	// Check for empty project. We assume if no package.json exists, the project is empty.
 	if (!fs.existsSync(options.cwd) || !fs.existsSync(path.resolve(options.cwd, "package.json"))) {
-		return { projectInfo: null }
+		return { projectInfo: null, hasComponentsJson: false }
 	}
 
 	const projectInfo = await getProjectInfo(options.cwd)
 
 	const errors: string[] = []
+	const hasComponentsJson = fs.existsSync(path.resolve(options.cwd, "components.json"))
 
 	const beforeInitCheckSpinner = spinner("Preflight checks").start()
 
-	if (fs.existsSync(path.resolve(options.cwd, "components.json"))) {
+	if (hasComponentsJson && !options.presetCode) {
 		beforeInitCheckSpinner.fail()
 		errors.push(`The ${txt.info("components.json")} file already exists at ${txt.info(options.cwd)}.
         \nTo start over, remove the ${txt.info("components.json")} file and run ${txt.info("init")} command again`)
@@ -83,5 +84,5 @@ export const preFlightInit = async (options: InitOptions): Promise<{ projectInfo
 		throw new Error(errors.join("\n\n"))
 	}
 
-	return { projectInfo }
+	return { projectInfo, hasComponentsJson }
 }

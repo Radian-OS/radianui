@@ -1,12 +1,16 @@
 ---
 title: File Upload
-description: Allow users to upload files
+description: A reliable drag-and-drop box that lets users easily upload documents, images, and files to your website.
 links:
   github:
     href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/file-upload.tsx
+  figma:
+    href: https://www.figma.com/design/ZB8gTZwafZOYY7rdJjSRz6/%E2%9D%96-Preview-%E2%9D%96-Radian-Design-System-%E2%9D%96-Version-0.3?node-id=18133-79163&t=V6eYQNGSpHNQ8XrH-11
 ---
 
-<ComponentPreview path="file-upload/document-upload" />
+<ComponentPreview path="file-upload/file-upload-preview" />
+
+---
 
 ## Installation
 
@@ -23,12 +27,14 @@ links:
 	<InstallTabsContent value="manual" className="p-0">
 	<Steps>
 	    <Step>Copy and paste the following code into your project.</Step>
-    	<ComponentSource name="file-upload" title="components/ui/file-upload.tsx" collapsible />
+    	<ComponentSource src="styles/default/ui/file-upload.tsx" title="components/ui/file-upload.tsx" collapsible />
     	<Step>Update the import paths as per your project structure.</Step>
     </Steps>
     </InstallTabsContent>
 
 </InstallationTabs>
+
+---
 
 ## Usage
 
@@ -48,22 +54,150 @@ import { useFileUpload } from "@/components/ui/file-upload"
 
 ## Examples
 
-### File Input
+<ComponentPreview title="File Input" path="file-upload/file-upload-example" />
 
-<ComponentPreview path="file-upload/file-upload-example" />
+<ComponentPreview title="Image Upload" path="file-upload/file-upload-image" />
 
-### Image Upload
+<ComponentPreview
+	title="Document Upload"
+	path="file-upload/file-upload-document"
+/>
 
-<ComponentPreview path="file-upload/image-upload" />
-
-### Document Upload
-
-<ComponentPreview path="file-upload/document-file" />
-
-### Avatar Upload
-
-<ComponentPreview path="file-upload/file-upload-preview" />
+<ComponentPreview title="Avatar Upload" path="file-upload/file-upload-avatar" />
 
 ## Credits
 
 Built with [coss ui File Upload Hook](https://github.com/cosscom/coss/blob/main/apps/origin/registry/default/hooks/use-file-upload.ts).
+
+---
+
+<ComponentDocContent
+	name={"File Upload"}
+	description={
+		"The File Upload component lets users easily pick and add files from their device to your web application. It is used to securely attach documents, images, or other files to forms or profiles."
+	}
+	features={[
+		"Support for drag-and-drop functionality and manual file selection.",
+		"Configurable file size limits and accepted file formats (e.g., images, videos).",
+		"Real-time file validation and error handling for invalid uploads.",
+		"Progress indicators to show the status of ongoing uploads.",
+		"Customizable variants including area-based, card-based, and avatar uploaders.",
+	]}
+	related={[
+		{
+			title: "Form",
+			description:
+				"Essential for handling file data within a structured submission and displaying validation errors.",
+			href: "/docs/components/form",
+		},
+		{
+			title: "Progress Bar",
+			description:
+				"Used to visually represent the upload completion status to the user.",
+			href: "/docs/components/progress",
+		},
+		{
+			title: "Avatar",
+			description:
+				"Often paired with File Upload for profile picture management.",
+			href: "/docs/components/avatar",
+		},
+	]}
+	faqs={[
+		{
+			question: "How do I restrict file types?",
+			answer:
+				'Use the accept prop to specify MIME types like "image/*" or specific extensions to limit what users can upload.',
+		},
+		{
+			question: "Is there a file size limit?",
+			answer:
+				"Yes, you can define a maxSize property in bytes to prevent users from uploading excessively large files.",
+		},
+		{
+			question: "Can users upload multiple files at once?",
+			answer:
+				"By enabling the multiple attribute, the component allows users to select and upload several files simultaneously.",
+		},
+		{
+			question: "Does it support drag and drop?",
+			answer:
+				"Yes, the container variant is designed to handle drag-and-drop interactions natively.",
+		},
+		{
+			question: "Can I customize the upload UI?",
+			answer:
+				"Absolutely. You can choose between area, card, and avatar variants or customize the styling using Tailwind utility classes.",
+		},
+	]}
+/>
+
+## API Reference
+
+This is a custom component, not a Radix UI wrapper.
+
+### FileUpload
+
+The root component that manages file upload state and provides context to all child components.
+
+<PropsTable
+	data={[
+		{
+			name: "accept",
+			values: ["string"],
+			required: false,
+			description:
+				"Specifies the allowed file MIME types (e.g., 'image/*' or '.pdf,.doc').",
+		},
+		{
+			name: "maxSize",
+			values: ["number"],
+			required: false,
+			description:
+				"Maximum allowed file size in bytes. Files exceeding this limit are rejected.",
+		},
+		{
+			name: "maxFiles",
+			values: ["number"],
+			required: false,
+			description: "Maximum number of files that can be uploaded at once.",
+		},
+		{
+			name: "multiple",
+			values: ["boolean"],
+			defaultValue: "false",
+			required: false,
+			description:
+				"When true, allows users to select and upload multiple files simultaneously.",
+		},
+		{
+			name: "disabled",
+			values: ["boolean"],
+			defaultValue: "false",
+			required: false,
+			description: "Disables the file upload interaction when set to true.",
+		},
+		{
+			name: "onValueChange",
+			values: ["(files: File[]) => void"],
+			required: false,
+			description: "Callback fired when the selected files change.",
+		},
+	]}
+/>
+
+### FileUploadDropzone
+
+An interactive area that accepts dragged and dropped files from the user's operating system.
+
+### FileUploadInput
+
+A hidden input element that handles native file selection dialogues.
+
+### FileUploadList
+
+A structural container for displaying the list of currently uploaded or selected files.
+
+### FileUploadItem
+
+A wrapper for individual file entries, displaying file information and removal actions.

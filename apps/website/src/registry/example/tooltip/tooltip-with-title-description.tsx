@@ -7,13 +7,13 @@ export default function TooltipWithTitleAndDescription() {
 		<Tooltip>
 			<TooltipTrigger asChild>
 				<Button color="neutral" className="gap-1.5" variant="outline">
-					<Clock />
+					<Clock className="text-fg-secondary" />
 					Edit Time
 				</Button>
 			</TooltipTrigger>
 			<TooltipContent className="flex flex-col gap-1 rounded-lg p-3" withArrow>
 				<p className="font-medium">Timer</p>
-				<p className="leading-5">6:20 AM (30m left)</p>
+				<p className="leading-5 opacity-75">6:20 AM (30m left)</p>
 			</TooltipContent>
 		</Tooltip>
 	)

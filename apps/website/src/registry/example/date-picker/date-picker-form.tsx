@@ -19,14 +19,10 @@ import {
 	FormLabel,
 	FormMessage,
 } from "@/registry/ui/form"
+import { Input, InputWrapper } from "@/registry/ui/input"
 import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
 
 export default function DatePickerForm() {
-	const today = new Date().toLocaleDateString("en-US", {
-		year: "numeric",
-		month: "short",
-		day: "numeric",
-	})
 	const [date, setDate] = useState<Date | undefined>()
 	const [isPopoverOpen, setIsPopoverOpen] = useState(false)
 
@@ -81,21 +77,14 @@ export default function DatePickerForm() {
 								<FormControl>
 									<Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
 										<PopoverTrigger asChild>
-											<Button
-												id="date"
-												type="button"
-												variant="outline"
-												color="neutral"
-												className="text-fg hover:bg-elevation-level1 w-full justify-start gap-2">
-												{date ? (
-													format(date, "PPP")
-												) : (
-													<span className="text-fg-tertiary text-sm font-normal">
-														{today}
-													</span>
-												)}
-												<CalendarIcon className="text-fg-tertiary ml-auto size-4" />
-											</Button>
+											<InputWrapper className="w-full">
+												<Input
+													placeholder="Pick a date"
+													value={date ? format(date, "PPP") : ""}
+													className="w-full cursor-pointer pr-9"
+												/>
+												<CalendarIcon className="cursor-pointer" />
+											</InputWrapper>
 										</PopoverTrigger>
 										<PopoverContent className="w-auto p-0">
 											<Calendar

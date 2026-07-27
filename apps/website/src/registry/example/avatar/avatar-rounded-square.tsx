@@ -16,9 +16,7 @@ export default function AvatarRoundedSquare() {
 			</Avatar>
 
 			<Avatar size="48" rounded="square">
-				<AvatarFallback className="text-success-text bg-success-focus">
-					AP
-				</AvatarFallback>
+				<AvatarFallback color="green">AP</AvatarFallback>
 			</Avatar>
 
 			<Avatar size="48" rounded="square">

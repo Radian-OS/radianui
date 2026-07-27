@@ -1,0 +1,1694 @@
+.style-default {
+	/* MARK: Accordion */
+	.cn-accordion-size-sm {
+		@apply text-sm/6;
+	}
+
+	.cn-accordion-size-lg {
+		@apply text-base/7;
+	}
+
+	.cn-accordion-variant-table {
+		@apply border-border rounded-lg border;
+	}
+
+	.cn-accordion-item-variant-box {
+		@apply border-border shadow-2xs rounded-lg border last:mb-0;
+	}
+
+	.cn-accordion-item-variant-table {
+		@apply border-b first:rounded-t-xl last:rounded-b-lg last:border-b-0;
+	}
+
+	.cn-accordion-item-variant-open {
+		@apply border-b last:border-b-0;
+	}
+
+	.cn-accordion-item-box-sm {
+		@apply mb-1.5;
+	}
+
+	.cn-accordion-item-box-lg {
+		@apply mb-2;
+	}
+
+	.cn-accordion-trigger {
+		@apply text-fg;
+	}
+
+	.cn-accordion-trigger-size-sm {
+		@apply leading-5;
+	}
+
+	.cn-accordion-trigger-size-lg {
+		@apply leading-6;
+	}
+
+	.cn-accordion-trigger-open-sm {
+		@apply px-0 py-3;
+	}
+
+	.cn-accordion-trigger-open-lg {
+		@apply px-0 py-4;
+	}
+
+	.cn-accordion-trigger-boxed-sm {
+		@apply p-3;
+	}
+
+	.cn-accordion-trigger-boxed-lg {
+		@apply p-4;
+	}
+
+	.cn-accordion-trigger-indicator-sm {
+		@apply [&>.AccordionChevron]:size-5 [&>.AccordionPlus]:size-5;
+	}
+
+	.cn-accordion-trigger-indicator-lg {
+		@apply [&>.AccordionChevron]:size-6 [&>.AccordionPlus]:size-6;
+	}
+
+	.cn-accordion-content {
+		@apply text-fg-secondary;
+	}
+
+	.cn-accordion-content-inner {
+		@apply pt-0;
+	}
+
+	.cn-accordion-content-open-sm {
+		@apply px-0 pb-3;
+	}
+
+	.cn-accordion-content-open-lg {
+		@apply px-0 pb-4;
+	}
+
+	.cn-accordion-content-boxed-sm {
+		@apply px-3 pb-3;
+	}
+
+	.cn-accordion-content-boxed-lg {
+		@apply px-4 pb-4;
+	}
+
+	.AccordionChevron,
+	.AccordionPlus {
+		@apply text-fg-tertiary;
+	}
+
+	/* MARK: Alert */
+
+	/* Base */
+	.cn-alert {
+		@apply gap-3 rounded-lg p-3;
+		@apply [&>[data-slot=alert-title]]:font-medium;
+		@apply [&>[data-slot=alert-title]]:text-sm;
+		@apply [&>[data-slot=alert-title]]:mt-0.75;
+		@apply [&>[data-slot=alert-description]]:text-sm;
+		@apply [&>[data-slot=alert-icon]>svg]:size-5;
+		@apply [&_[data-slot=alert-icon]]:mt-0.75;
+		@apply [&_[data-slot=alert-close]]:mt-0.75;
+	}
+
+	/* Variant base styles */
+	.cn-alert-variant-soft {
+		@apply [&_[data-slot=alert-title]]:text-fg;
+		@apply [&_[data-slot=alert-description]]:text-fg;
+	}
+
+	.cn-alert-variant-soft-outline {
+		@apply ring-1 ring-inset;
+		@apply [&_[data-slot=alert-title]]:text-fg;
+		@apply [&_[data-slot=alert-description]]:text-fg;
+	}
+
+	.cn-alert-variant-outline {
+		@apply border-soft border;
+		@apply [&_[data-slot=alert-close]]:text-fg-tertiary;
+		@apply [&_[data-slot=alert-title]]:text-fg;
+		@apply [&_[data-slot=alert-description]]:text-fg;
+	}
+
+	/* Soft compound variants */
+	.cn-alert-soft-neutral {
+		@apply bg-fill2;
+	}
+	.cn-alert-soft-primary {
+		@apply bg-primary-accent text-primary-text;
+	}
+	.cn-alert-soft-info {
+		@apply bg-info-accent text-info-text;
+	}
+	.cn-alert-soft-success {
+		@apply bg-success-accent text-success-text;
+	}
+	.cn-alert-soft-error {
+		@apply bg-error-accent text-error-text;
+	}
+	.cn-alert-soft-warning {
+		@apply bg-warning-accent text-warning-text;
+	}
+
+	/* Strong compound variants */
+	.cn-alert-strong-neutral {
+		@apply bg-black-inverse text-white-inverse;
+	}
+	.cn-alert-strong-primary {
+		@apply bg-primary text-primary-fg;
+	}
+	.cn-alert-strong-info {
+		@apply bg-info text-white;
+	}
+	.cn-alert-strong-warning {
+		@apply bg-warning text-white;
+	}
+	.cn-alert-strong-error {
+		@apply bg-error text-white;
+	}
+	.cn-alert-strong-success {
+		@apply bg-success text-white;
+	}
+
+	/* Soft-outline compound variants */
+	.cn-alert-soft-outline-neutral {
+		@apply bg-fill2 border-border;
+	}
+	.cn-alert-soft-outline-primary {
+		@apply bg-primary-accent text-primary-text border-primary-border;
+	}
+	.cn-alert-soft-outline-info {
+		@apply bg-info-accent text-info-text border-info-border;
+	}
+	.cn-alert-soft-outline-success {
+		@apply bg-success-accent text-success-text border-success-border;
+	}
+	.cn-alert-soft-outline-error {
+		@apply bg-error-accent text-error-text border-error-border;
+	}
+	.cn-alert-soft-outline-warning {
+		@apply bg-warning-accent text-warning-text border-warning-border;
+	}
+
+	/* Outline compound variants */
+	.cn-alert-outline-neutral {
+		@apply text-fg bg-transparent;
+	}
+	.cn-alert-outline-primary {
+		@apply text-primary-text bg-transparent;
+	}
+	.cn-alert-outline-info {
+		@apply text-info-text bg-transparent;
+	}
+	.cn-alert-outline-success {
+		@apply text-success-text bg-transparent;
+	}
+	.cn-alert-outline-error {
+		@apply text-error-text bg-transparent;
+	}
+	.cn-alert-outline-warning {
+		@apply text-warning-text bg-transparent;
+	}
+
+	/* Close button */
+	.cn-alert-close-icon {
+		@apply opacity-60 group-hover:opacity-100;
+	}
+
+	/* Description */
+	.cn-alert-description {
+		@apply text-sm [&_p]:mb-2 [&_p]:leading-relaxed;
+	}
+
+	/* Content */
+	.cn-alert-content {
+		@apply gap-1;
+		@apply [&>[data-slot=alert-description]]:text-sm;
+		@apply [&>[data-slot=alert-title]]:text-sm;
+		@apply [&>[data-slot=alert-title]]:font-medium;
+	}
+
+	/* MARK: Alert Dialog */
+
+	.cn-alert-dialog-overlay-backdrop-overlay {
+		@apply bg-black/50;
+	}
+
+	.cn-alert-dialog-overlay-backdrop-blur {
+		@apply bg-black/25 backdrop-blur-md;
+	}
+
+	.cn-alert-dialog-overlay-backdrop-transparent {
+		@apply bg-transparent;
+	}
+
+	.cn-alert-dialog-content {
+		@apply bg-bg border-alpha gap-5 rounded-xl border p-6 shadow-lg shadow-black/5;
+	}
+
+	.cn-alert-dialog-header {
+		@apply space-y-1;
+	}
+
+	.cn-alert-dialog-footer {
+		@apply gap-2;
+	}
+
+	.cn-alert-dialog-title {
+		@apply text-lg font-semibold;
+	}
+
+	.cn-alert-dialog-description {
+		@apply text-fg-secondary text-sm;
+	}
+	/* MARK: Aspect Ratio */
+
+	/* No visual styles — AspectRatio is a structural primitive.
+   All styling is applied by the consumer at the usage site. */
+
+	/* MARK: Avatar */
+
+	/* Base */
+	.cn-avatar {
+		@apply font-semibold;
+	}
+
+	/* Size variants */
+	.cn-avatar-size-16 {
+		@apply size-4 text-xs;
+	}
+	.cn-avatar-size-20 {
+		@apply size-5 text-xs;
+	}
+	.cn-avatar-size-24 {
+		@apply size-6 text-xs;
+	}
+	.cn-avatar-size-32 {
+		@apply size-8 text-sm;
+	}
+	.cn-avatar-size-36 {
+		@apply size-9 text-sm;
+	}
+	.cn-avatar-size-40 {
+		@apply size-10 text-sm;
+	}
+	.cn-avatar-size-48 {
+		@apply size-12 text-base;
+	}
+	.cn-avatar-size-64 {
+		@apply size-16 text-xl;
+	}
+	.cn-avatar-size-80 {
+		@apply size-20 text-2xl;
+	}
+
+	/* Rounded variants */
+	.cn-avatar-rounded-circle {
+		@apply rounded-full;
+	}
+
+	/* Square compound variants */
+	.cn-avatar-square-16 {
+		@apply rounded-md;
+	}
+	.cn-avatar-square-20 {
+		@apply rounded-md;
+	}
+	.cn-avatar-square-24 {
+		@apply rounded-lg;
+	}
+	.cn-avatar-square-32 {
+		@apply rounded-lg;
+	}
+	.cn-avatar-square-36 {
+		@apply rounded-lg;
+	}
+	.cn-avatar-square-40 {
+		@apply rounded-lg;
+	}
+	.cn-avatar-square-48 {
+		@apply rounded-lg;
+	}
+	.cn-avatar-square-64 {
+		@apply rounded-xl;
+	}
+	.cn-avatar-square-80 {
+		@apply rounded-2xl;
+	}
+
+	/* Image */
+	.cn-avatar-image {
+		@apply rounded-[inherit];
+	}
+
+	/* Fallback */
+	.cn-avatar-fallback {
+		@apply bg-primary-focus text-primary-text rounded-[inherit];
+	}
+
+	/* Status base */
+	.cn-avatar-status {
+		@apply border-bg;
+	}
+
+	/* Status color variants */
+	.cn-avatar-status-online {
+		@apply bg-success;
+	}
+	.cn-avatar-status-offline {
+		@apply bg-fg-disabled;
+	}
+	.cn-avatar-status-busy {
+		@apply bg-warning;
+	}
+	.cn-avatar-status-away {
+		@apply bg-info;
+	}
+
+	/* Status size variants */
+	.cn-avatar-status-size-16 {
+		@apply size-1 border;
+	}
+	.cn-avatar-status-size-20 {
+		@apply size-1 border;
+	}
+	.cn-avatar-status-size-24 {
+		@apply size-1.5 border-2;
+	}
+	.cn-avatar-status-size-32 {
+		@apply size-1.5 border-2;
+	}
+	.cn-avatar-status-size-36 {
+		@apply size-1.5 border-2;
+	}
+	.cn-avatar-status-size-40 {
+		@apply size-2 border-2;
+	}
+	.cn-avatar-status-size-48 {
+		@apply size-3 border-2;
+	}
+	.cn-avatar-status-size-64 {
+		@apply size-3 border-2;
+	}
+	.cn-avatar-status-size-80 {
+		@apply size-4 border-2;
+	}
+
+	/* MARK: Badge */
+
+	/* Base */
+	.cn-badge {
+		@apply font-medium;
+	}
+
+	/* Variant base */
+	.cn-badge-variant-outline {
+		@apply bg-transparent;
+	}
+
+	/* Size variants */
+	.cn-badge-size-20 {
+		@apply rounded-control-md h-5 px-1.5 text-xs [&_svg]:size-3.5;
+	}
+	.cn-badge-size-24 {
+		@apply rounded-control-md h-6 px-2 text-[13px] [&_svg]:size-3.5;
+	}
+	.cn-badge-size-28 {
+		@apply rounded-control-md h-7 px-2 text-sm [&_svg]:size-4;
+	}
+
+	/* Color base (neutral only — others are fully defined via compound variants) */
+	.cn-badge-color-neutral {
+		@apply bg-elevation-level1 border-alpha;
+	}
+
+	/* Strong compound variants */
+	.cn-badge-strong-primary {
+		@apply bg-primary border-alpha text-primary-fg border font-semibold;
+	}
+	.cn-badge-strong-info {
+		@apply bg-info border-alpha border font-semibold text-white;
+	}
+	.cn-badge-strong-success {
+		@apply bg-success border-alpha border font-semibold text-white;
+	}
+	.cn-badge-strong-error {
+		@apply bg-error border-alpha border font-semibold text-white;
+	}
+	.cn-badge-strong-warning {
+		@apply bg-warning border-alpha border font-semibold text-white;
+	}
+	.cn-badge-strong-neutral {
+		@apply bg-black-inverse text-white-inverse border-alpha border font-medium;
+	}
+
+	/* Outline compound variants */
+	.cn-badge-outline-primary {
+		@apply text-primary-text border-primary-border border bg-transparent;
+	}
+	.cn-badge-outline-info {
+		@apply text-info-text border-info-border border bg-transparent;
+	}
+	.cn-badge-outline-success {
+		@apply text-success-text border-success-border border bg-transparent;
+	}
+	.cn-badge-outline-error {
+		@apply text-error-text border-error-border border bg-transparent;
+	}
+	.cn-badge-outline-warning {
+		@apply text-warning-text border-warning-border border bg-transparent;
+	}
+	.cn-badge-outline-neutral {
+		@apply text-fg border bg-transparent;
+	}
+
+	/* Soft compound variants */
+	.cn-badge-soft-primary {
+		@apply bg-primary-accent text-primary-text border-soft-alpha;
+	}
+	.cn-badge-soft-info {
+		@apply bg-info-accent text-info-text border-soft-alpha;
+	}
+	.cn-badge-soft-success {
+		@apply bg-success-accent text-success-text border-soft-alpha;
+	}
+	.cn-badge-soft-error {
+		@apply bg-error-accent text-error-text border-soft-alpha;
+	}
+	.cn-badge-soft-warning {
+		@apply bg-warning-accent text-warning-text border-soft-alpha;
+	}
+	.cn-badge-soft-neutral {
+		@apply bg-fill2 text-fg border-soft-alpha;
+	}
+
+	/* Dot */
+	.cn-badge-dot {
+		@apply rounded-full bg-[currentColor];
+	}
+
+	/* MARK: Banner */
+
+	/* Base */
+	.cn-banner {
+		@apply gap-2 p-2;
+	}
+
+	/* Variant base styles */
+	.cn-banner-variant-strong {
+		@apply [&_[data-slot=banner-close]]:text-primary-fg;
+	}
+
+	.cn-banner-variant-soft {
+		@apply [&_[data-slot=banner-close]]:text-[current];
+		@apply [&_[data-slot=banner-title]]:text-fg;
+		@apply [&_[data-slot=banner-description]]:text-fg;
+	}
+
+	.cn-banner-variant-outline {
+		@apply border-soft border border-l-0 border-r-0 border-t-0;
+		@apply [&_[data-slot=banner-close]]:text-fg-secondary;
+		@apply [&_[data-slot=banner-title]]:text-fg;
+		@apply [&_[data-slot=banner-description]]:text-fg-secondary;
+	}
+
+	/* Soft compound variants */
+	.cn-banner-soft-neutral {
+		@apply bg-fill2;
+	}
+	.cn-banner-soft-primary {
+		@apply bg-primary-accent text-primary-text;
+	}
+	.cn-banner-soft-info {
+		@apply bg-info-accent text-info-text;
+	}
+	.cn-banner-soft-success {
+		@apply bg-success-accent text-success-text;
+	}
+	.cn-banner-soft-error {
+		@apply bg-error-accent text-error-text;
+	}
+	.cn-banner-soft-warning {
+		@apply bg-warning-accent text-warning-text;
+	}
+
+	/* Strong compound variants */
+	.cn-banner-strong-neutral {
+		@apply bg-black-inverse text-white-inverse;
+	}
+	.cn-banner-strong-primary {
+		@apply bg-primary text-primary-fg;
+	}
+	.cn-banner-strong-info {
+		@apply bg-info text-white;
+	}
+	.cn-banner-strong-warning {
+		@apply bg-warning text-white;
+	}
+	.cn-banner-strong-error {
+		@apply bg-error text-white;
+	}
+	.cn-banner-strong-success {
+		@apply bg-success text-white;
+	}
+
+	/* Outline compound variants */
+	.cn-banner-outline-neutral {
+		@apply text-fg bg-transparent;
+	}
+	.cn-banner-outline-primary {
+		@apply text-primary-text bg-transparent;
+	}
+	.cn-banner-outline-info {
+		@apply text-info-text bg-transparent;
+	}
+	.cn-banner-outline-success {
+		@apply text-success-text bg-transparent;
+	}
+	.cn-banner-outline-error {
+		@apply text-error-text bg-transparent;
+	}
+	.cn-banner-outline-warning {
+		@apply text-warning-text bg-transparent;
+	}
+
+	/* Close icon */
+	.cn-banner-close-icon {
+		@apply group-hover:opacity-60;
+	}
+
+	/* Title */
+	.cn-banner-title {
+		@apply text-sm font-medium;
+	}
+
+	/* Description */
+	.cn-banner-description {
+		@apply text-sm;
+	}
+
+	/* Content */
+	.cn-banner-content {
+		@apply gap-0.5;
+		@apply [&_[data-slot=banner-description]]:text-sm;
+		@apply [&_[data-slot=banner-title]]:text-sm;
+		@apply [&_[data-slot=banner-title]]:font-semibold;
+	}
+
+	/* MARK: Breadcrumb */
+
+	.cn-breadcrumb-list {
+		@apply text-fg-secondary gap-1.5 text-sm;
+	}
+
+	.cn-breadcrumb-link {
+		@apply hover:text-fg;
+	}
+
+	.cn-breadcrumb-page {
+		@apply text-fg font-normal;
+	}
+
+	.cn-breadcrumb-separator {
+		@apply text-fg-tertiary [&>svg]:size-4;
+	}
+
+	/* MARK: Button */
+
+	/* Base size rounded tokens (extracted from size variant string) */
+	.cn-btn-size-28 {
+		@apply rounded-control-md;
+	}
+	.cn-btn-size-32 {
+		@apply rounded-control-md;
+	}
+	.cn-btn-size-36 {
+		@apply rounded-control-lg;
+	}
+	.cn-btn-size-40 {
+		@apply rounded-control-lg;
+	}
+	.cn-btn-size-44 {
+		@apply rounded-control-lg;
+	}
+	.cn-btn-size-48 {
+		@apply rounded-control-lg;
+	}
+
+	/* MARK: CompactButton */
+	.cn-compact-btn {
+		@apply rounded-md;
+	}
+
+	/* MARK: IconButton */
+
+	.cn-icon-btn-size-28 {
+		@apply rounded-md;
+	}
+	.cn-icon-btn-size-32 {
+		@apply rounded-md;
+	}
+	.cn-icon-btn-size-36 {
+		@apply rounded-lg;
+	}
+	.cn-icon-btn-size-40 {
+		@apply rounded-lg;
+	}
+	.cn-icon-btn-size-44 {
+		@apply rounded-lg;
+	}
+	.cn-icon-btn-size-48 {
+		@apply rounded-lg;
+	}
+
+	/* MARK: Calendar */
+
+	.cn-calendar {
+		@apply bg-card border-border rounded-xl border p-3;
+	}
+
+	.cn-calendar-month-caption {
+		@apply p-0 text-base font-semibold;
+	}
+
+	.cn-calendar-nav {
+		@apply p-0 pb-3;
+	}
+
+	.cn-calendar-weekday {
+		@apply text-fg-tertiary text-sm font-medium;
+	}
+
+	.cn-calendar-day {
+		@apply text-sm;
+	}
+
+	.cn-calendar-day-button {
+		@apply text-fg rounded-control-lg text-sm font-medium;
+		@apply hover:bg-fill1-alpha;
+		@apply hover:group-data-selected:bg-primary;
+		@apply group-data-disabled:line-through;
+		@apply group-data-selected:bg-primary group-data-selected:text-primary-fg;
+		@apply hover:group-[.rdp-outside]:group-data-selected:bg-primary;
+		@apply group-[.rdp-outside]:group-data-selected:text-white;
+		@apply group-[.range-middle]:group-[.rdp-outside]:group-data-selected:text-primary-text;
+		@apply hover:group-[.range-middle]:group-[.rdp-outside]:group-data-selected:bg-primary-accent;
+		@apply group-data-disabled:text-fg-tertiary;
+		@apply group-data-outside:text-fg-tertiary;
+		@apply group-data-today:border group-data-today:border-primary group-data-today:text-primary-text;
+		@apply group-data-today:group-data-selected:text-primary-fg;
+		@apply hover:group-[.range-middle]:group-data-selected:bg-primary-accent;
+		@apply group-[.range-middle]:group-data-selected:bg-primary-accent group-[.range-middle]:group-data-selected:text-primary-text;
+		@apply group-data-selected:group-data-outside:text-primary-fg;
+	}
+
+	.cn-calendar-button-previous,
+	.cn-calendar-button-next {
+		@apply focus-visible:ring-offset-bg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2;
+		@apply bg-elevation-level1 text-fg-secondary overflow-hidden font-medium;
+		@apply border-border border;
+		@apply hover:bg-fill1-alpha focus-visible:ring-border;
+		@apply hover:before:bg-fill2-alpha relative before:absolute before:inset-0;
+		@apply aria-disabled:opacity-50;
+		@apply rounded-lg p-1.5;
+	}
+
+	.cn-calendar-chevron {
+		@apply text-fg-tertiary;
+	}
+
+	/* MARK: Card */
+	.cn-card {
+		@apply bg-card border-border gap-6 rounded-xl border py-6 shadow-sm;
+	}
+
+	.cn-card-header {
+		@apply gap-2 px-6;
+	}
+
+	.cn-card-title {
+		@apply font-semibold;
+	}
+
+	.cn-card-description {
+		@apply text-fg-secondary text-sm;
+	}
+
+	.cn-card-content {
+		@apply px-6;
+	}
+
+	.cn-card-footer {
+		@apply px-6;
+	}
+
+	/* MARK: Carousel */
+
+	.cn-carousel-content-horizontal {
+		@apply -ml-4;
+	}
+
+	.cn-carousel-content-vertical {
+		@apply -mt-4 flex-col;
+	}
+
+	.cn-carousel-item-horizontal {
+		@apply pl-4;
+	}
+
+	.cn-carousel-item-vertical {
+		@apply pt-4;
+	}
+
+	.cn-carousel-previous {
+		@apply rounded-full;
+	}
+
+	.cn-carousel-next {
+		@apply rounded-full;
+	}
+
+	/* MARK: Checkbox */
+
+	.cn-checkbox {
+		@apply bg-bg border-border ring-offset-bg text-primary-fg;
+		@apply focus-visible:ring-primary;
+		@apply data-[state=checked]:bg-primary data-[state=checked]:border-primary data-[state=checked]:text-primary-fg;
+		@apply data-[state=indeterminate]:bg-primary data-[state=indeterminate]:border-primary data-[state=indeterminate]:text-primary-fg;
+		@apply aria-invalid:border-error aria-invalid:ring-error;
+		@apply [[data-invalid=true]_&]:border-error [[data-invalid=true]_&]:ring-error;
+	}
+
+	.cn-checkbox-sm {
+		@apply rounded-sm;
+	}
+
+	.cn-checkbox-md {
+		@apply rounded-md;
+	}
+
+	.cn-checkbox-lg {
+		@apply rounded-md;
+	}
+
+	/* MARK: Code Area */
+
+	.cn-code-area {
+		@apply rounded-xl text-sm;
+	}
+
+	/* MARK: Collapsible */
+
+	.cn-collapsible-content {
+		@apply [&>figure]:mt-0!;
+	}
+
+	/* MARK: Command */
+
+	.cn-command {
+		@apply bg-bg text-fg border-border rounded-xl border;
+	}
+
+	.cn-command-dialog-cmdk {
+		@apply [&_[cmdk-group-heading]]:text-fg-secondary;
+		@apply **:data-[slot=command-input-wrapper]:h-12;
+		@apply [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium;
+		@apply [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:pt-0;
+		@apply [&_[cmdk-group]]:px-2;
+		@apply [&_[cmdk-input-wrapper]_svg]:h-5 [&_[cmdk-input-wrapper]_svg]:w-5;
+		@apply [&_[cmdk-input]]:h-12;
+		@apply [&_[cmdk-item]]:px-2 [&_[cmdk-item]]:py-3;
+		@apply [&_[cmdk-item]_svg]:h-5 [&_[cmdk-item]_svg]:w-5;
+	}
+
+	.cn-command-input-wrapper {
+		@apply h-10 border-b px-3 py-2.5;
+	}
+
+	.cn-command-input-icon {
+		@apply text-fg-secondary size-4;
+	}
+
+	.cn-command-input {
+		@apply placeholder:text-fg-tertiary h-10 text-sm font-normal;
+	}
+
+	.cn-command-list {
+		@apply max-h-[300px] scroll-py-1;
+	}
+
+	.cn-command-empty {
+		@apply py-6 text-center text-sm;
+	}
+
+	.cn-command-group {
+		@apply text-fg p-1;
+		@apply [&_[cmdk-group-heading]]:text-fg-secondary;
+		@apply [&_[cmdk-group-heading]]:p-2;
+		@apply [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:font-medium;
+	}
+
+	.cn-command-divider {
+		@apply bg-border;
+	}
+
+	.cn-command-item {
+		@apply data-[selected=true]:bg-fill2-alpha data-[selected=true]:text-fg-secondary;
+		@apply [&_svg:not([class*='text-'])]:text-fg-tertiary;
+		@apply rounded-sm px-2 py-1.5 text-sm;
+		@apply [&_svg:not([class*='size-'])]:size-4;
+	}
+
+	.cn-command-shortcut {
+		@apply text-fg-tertiary text-xs tracking-widest;
+	}
+
+	/* MARK: Currency Input */
+
+	/* No visual styles — CurrencyInput delegates all styling to inputVariants from input.tsx.
+   See the Input component section for the relevant cn-input-* class definitions. */
+
+	/* MARK: Dialog */
+
+	/* Overlay backdrop variants */
+	.cn-dialog-overlay-backdrop-overlay {
+		@apply bg-black/50;
+	}
+	.cn-dialog-overlay-backdrop-blur {
+		@apply backdrop-blur-sm;
+	}
+	.cn-dialog-overlay-backdrop-transparent {
+		@apply bg-transparent;
+	}
+
+	/* Content */
+	.cn-dialog-content {
+		@apply bg-bg border-alpha gap-5 rounded-2xl border p-4 shadow-lg;
+	}
+
+	/* Close button */
+	.cn-dialog-close-button {
+		@apply focus-visible:ring-offset-bg text-fg-tertiary hover:bg-fill2 focus-visible:ring-border rounded-md bg-transparent focus-visible:ring-offset-2;
+	}
+
+	.cn-dialog-close-button-hover {
+		@apply opacity-0 transition-opacity group-hover:opacity-100;
+	}
+
+	/* Header */
+	.cn-dialog-header {
+		@apply space-y-1;
+	}
+
+	/* Footer */
+	.cn-dialog-footer {
+		@apply gap-2;
+	}
+
+	/* Title */
+	.cn-dialog-title {
+		@apply text-lg font-semibold;
+	}
+
+	/* Description */
+	.cn-dialog-description {
+		@apply text-fg-secondary text-sm/5 leading-tight;
+	}
+
+	/* MARK: Divider */
+
+	.cn-divider {
+		@apply bg-soft;
+	}
+
+	/* MARK: Drawer */
+
+	/* Base */
+	.cn-drawer {
+		@apply bg-bg gap-5;
+	}
+
+	/* Variant base styles */
+	.cn-drawer-variant-default {
+		@apply outline-border outline;
+	}
+	.cn-drawer-variant-float {
+		@apply outline-border rounded-xl shadow-lg outline;
+	}
+	.cn-drawer-variant-rounded {
+		@apply outline-border rounded-xl outline;
+	}
+
+	/* Rounded directional overrides */
+	.cn-drawer-rounded-top {
+		@apply rounded-b-xl;
+	}
+	.cn-drawer-rounded-bottom {
+		@apply rounded-t-xl;
+	}
+	.cn-drawer-rounded-left {
+		@apply rounded-r-xl;
+	}
+	.cn-drawer-rounded-right {
+		@apply rounded-l-xl;
+	}
+
+	/* No-handle padding */
+	.cn-drawer-padding {
+		@apply p-5;
+	}
+
+	/* Handle padding compound variants */
+	.cn-drawer-handle-padding-top {
+		@apply pb-7.5 pl-5 pr-5 pt-5;
+	}
+	.cn-drawer-handle-padding-bottom {
+		@apply pt-7.5 pb-5 pl-5 pr-5;
+	}
+	.cn-drawer-handle-padding-left {
+		@apply pr-7.5 pb-5 pl-5 pt-5;
+	}
+	.cn-drawer-handle-padding-right {
+		@apply pl-7.5 pb-5 pr-5 pt-5;
+	}
+
+	/* Backdrop variants */
+	.cn-drawer-backdrop-overlay {
+		@apply bg-black/50;
+	}
+	.cn-drawer-backdrop-blur {
+		@apply backdrop-blur-sm;
+	}
+	.cn-drawer-backdrop-transparent {
+		@apply backdrop-blur-none;
+	}
+
+	/* Handle */
+	.cn-drawer-handle {
+		@apply bg-border;
+	}
+
+	/* Header */
+	.cn-drawer-header {
+		@apply gap-1;
+	}
+
+	/* Title */
+	.cn-drawer-title {
+		@apply text-lg font-semibold;
+	}
+
+	/* Description */
+	.cn-drawer-description {
+		@apply text-fg-secondary gap-1 text-sm;
+	}
+
+	/* Footer */
+	.cn-drawer-footer {
+		@apply gap-2;
+	}
+
+	/* MARK: Dropdown */
+
+	.cn-dropdown-trigger {
+		@apply outline-none;
+	}
+
+	.cn-dropdown-content {
+		@apply border-border bg-popover drop-shadow-xs min-w-[var(--radix-dropdown-menu-trigger-width)] gap-0.5 rounded-lg border p-1.5;
+	}
+
+	.cn-dropdown-item {
+		@apply text-fg gap-2 rounded-sm px-2 py-1.5 text-sm;
+		@apply focus:bg-fill1-alpha;
+		@apply data-disabled:text-fg-disabled data-disabled:[&_*]:text-fg-disabled;
+		@apply [&_svg]:text-fg-secondary [&_svg:not([class*='size-'])]:size-4;
+	}
+
+	.cn-dropdown-item-inset {
+		@apply pl-9;
+	}
+
+	.cn-dropdown-checkbox-item {
+		@apply gap-2 rounded-sm py-1.5 text-sm;
+		@apply focus:bg-fill2-alpha;
+		@apply [&_svg]:text-fg-secondary [&_svg:not([class*='size-'])]:size-5;
+	}
+
+	.cn-dropdown-checkbox-item-indicator-left {
+		@apply pe-2 ps-8;
+	}
+
+	.cn-dropdown-checkbox-item-indicator-right {
+		@apply pe-8 ps-2;
+	}
+
+	.cn-dropdown-radio-item {
+		@apply gap-2 rounded-sm py-1.5 text-sm;
+		@apply focus:bg-fill2-alpha;
+		@apply [&_svg]:text-fg-secondary [&_svg:not([class*='size-'])]:size-5;
+	}
+
+	.cn-dropdown-radio-item-indicator-left {
+		@apply pe-2 ps-8;
+	}
+
+	.cn-dropdown-radio-item-indicator-right {
+		@apply pe-8 ps-2;
+	}
+
+	.cn-dropdown-item-indicator-wrapper {
+		@apply size-5;
+	}
+
+	.cn-dropdown-item-indicator-left {
+		@apply start-2;
+	}
+
+	.cn-dropdown-item-indicator-right {
+		@apply end-2;
+	}
+
+	.cn-dropdown-group {
+		@apply gap-0.5 px-0 py-0;
+	}
+
+	.cn-dropdown-group-label {
+		@apply text-xs/4.5 text-fg-tertiary h-7 p-2 font-medium uppercase;
+	}
+
+	.cn-dropdown-sub-trigger {
+		@apply gap-2 rounded-sm px-2 py-1.5 text-sm;
+		@apply data-[state=open]:bg-fill1-alpha focus:bg-fill2-alpha;
+		@apply [&_svg]:text-fg-secondary [&_svg:not([class*='size-'])]:size-4;
+	}
+
+	.cn-dropdown-sub-trigger-inset {
+		@apply pl-8;
+	}
+
+	.cn-dropdown-sub-content {
+		@apply border-border bg-popover drop-shadow-xs min-w-36 rounded-lg border p-1.5;
+	}
+
+	.cn-dropdown-label {
+		@apply text-fg-tertiary px-2 py-1.5 text-xs font-medium;
+	}
+
+	.cn-dropdown-label-inset {
+		@apply pl-8;
+	}
+
+	.cn-dropdown-shortcut {
+		@apply text-fg-secondary text-xs tracking-widest;
+	}
+
+	.cn-dropdown-divider {
+		@apply bg-soft-alpha -mx-1.5 my-1 h-px;
+	}
+
+	/* MARK: HoverCard */
+
+	.cn-hover-card-content {
+		@apply bg-popover text-fg border-soft rounded-lg border p-4 shadow-md;
+	}
+
+	/* MARK: Input */
+	.cn-input {
+		@apply bg-bg border focus-visible:ring-2;
+	}
+
+	/* Input sizes */
+	.cn-input-28 {
+		@apply rounded-control-md px-2 text-[13px];
+	}
+
+	.cn-input-32 {
+		@apply rounded-control-md px-2 text-sm;
+	}
+
+	.cn-input-36 {
+		@apply rounded-control-lg px-2.5 text-sm;
+	}
+
+	.cn-input-40 {
+		@apply rounded-control-lg px-3 text-sm;
+	}
+
+	.cn-input-44 {
+		@apply rounded-control-lg px-3 text-base;
+	}
+
+	.cn-input-48 {
+		@apply rounded-control-lg px-3.5 text-base;
+	}
+
+	/* InputAddon base */
+	.cn-input-addon {
+		@apply bg-elevation-level1 border-alpha shadow-xs text-fg-secondary border shadow-[rgba(0,0,0,0.05)];
+	}
+
+	/* InputAddon sizes */
+	.cn-input-addon-28 {
+		@apply rounded-md px-2 text-[13px];
+	}
+
+	.cn-input-addon-32 {
+		@apply rounded-md px-2 text-sm;
+	}
+
+	.cn-input-addon-36 {
+		@apply rounded-lg px-2.5 text-sm;
+	}
+
+	.cn-input-addon-40 {
+		@apply rounded-lg px-3 text-sm;
+	}
+
+	.cn-input-addon-44 {
+		@apply rounded-lg px-3 text-base;
+	}
+
+	.cn-input-addon-48 {
+		@apply rounded-lg px-3.5 text-base;
+	}
+
+	.cn-input-wrapper {
+		@apply has-[:focus-visible]:ring-2;
+	}
+
+	/* InputWrapper sizes */
+	.cn-input-wrapper-28 {
+		@apply gap-1.5;
+	}
+
+	.cn-input-wrapper-32 {
+		@apply gap-2;
+	}
+
+	.cn-input-wrapper-36 {
+		@apply gap-2;
+	}
+
+	.cn-input-wrapper-40 {
+		@apply gap-2;
+	}
+
+	.cn-input-wrapper-44 {
+		@apply gap-2;
+	}
+
+	.cn-input-wrapper-48 {
+		@apply gap-2;
+	}
+
+	/* InputWrapper disabled */
+	.cn-input-wrapper-disabled {
+		@apply bg-fill1 [&_svg]:text-fg-tertiary cursor-not-allowed opacity-60;
+	}
+
+	/* MARK: OTPField */
+
+	.cn-otp-field {
+		@apply gap-1.5;
+	}
+
+	.cn-otp-input {
+		@apply bg-bg text-fg shadow-2xs border-alpha focus-visible:ring-3 focus-visible:ring-primary-focus focus-visible:border-primary-hover group-has-disabled:cursor-not-allowed group-has-disabled:text-fg-disabled group-has-disabled:bg-fill2-alpha group-has-disabled:placeholder:text-fg-disabled placeholder:text-fg-tertiary rounded-lg border font-semibold;
+	}
+
+	.cn-otp-input-28 {
+		@apply size-7 text-[13px];
+	}
+
+	.cn-otp-input-32 {
+		@apply size-8 text-sm;
+	}
+
+	.cn-otp-input-36 {
+		@apply size-9 text-sm;
+	}
+
+	.cn-otp-input-40 {
+		@apply size-10 text-sm;
+	}
+
+	.cn-otp-input-44 {
+		@apply size-11 text-base;
+	}
+
+	.cn-otp-input-48 {
+		@apply size-12 text-base;
+	}
+
+	/* MARK: Popover */
+
+	.cn-popover-content {
+		@apply text-fg bg-popover rounded-md border p-4 shadow-md;
+	}
+
+	/* MARK: Progress */
+	.cn-progress {
+		@apply bg-fill3 h-2 rounded-full;
+	}
+
+	.cn-progress-indicator {
+		@apply bg-primary duration-[660ms];
+	}
+
+	/* MARK: Resizable */
+
+	.cn-resizable-handle {
+		@apply bg-border;
+	}
+
+	.cn-resizable-handle-grip {
+		@apply bg-border rounded-xs border;
+	}
+
+	/* MARK: ScrollArea */
+	.cn-scrollbar {
+		@apply p-px;
+	}
+
+	.cn-scrollbar-vertical {
+		@apply border-l border-l-transparent;
+	}
+
+	.cn-scrollbar-horizontal {
+		@apply border-t border-t-transparent;
+	}
+
+	.cn-scrollbar-thumb {
+		@apply bg-border rounded-full;
+	}
+
+	/* MARK: Select */
+	.cn-select-trigger {
+		@apply bg-bg border-border shadow-xs text-fg data-placeholder:text-fg-tertiary focus-visible:ring-primary-focus focus-visible:border-primary aria-invalid:border-error aria-invalid:ring-error [[data-invalid=true]_&]:border-error [[data-invalid=true]_&]:ring-error border shadow-black/5 focus-visible:outline-none focus-visible:ring-2 disabled:cursor-not-allowed disabled:opacity-50;
+	}
+
+	.cn-select-trigger-28 {
+		@apply rounded-control-md h-7 px-2 py-1.5 text-[13px];
+	}
+
+	.cn-select-trigger-32 {
+		@apply rounded-control-md h-8 px-2 py-1.5 text-sm;
+	}
+
+	.cn-select-trigger-36 {
+		@apply rounded-control-lg h-9 px-2.5 py-2 text-sm;
+	}
+
+	.cn-select-trigger-40 {
+		@apply rounded-control-lg h-10 px-3 py-2.5 text-sm;
+	}
+
+	.cn-select-trigger-44 {
+		@apply rounded-control-lg h-11 px-3 py-2.5 text-base;
+	}
+
+	.cn-select-trigger-48 {
+		@apply rounded-control-lg h-12 px-3.5 py-3 text-base;
+	}
+
+	.cn-select-scroll-button {
+		@apply py-1;
+	}
+
+	.cn-select-content {
+		@apply border-border bg-popover text-fg min-w-[8rem] rounded-md border shadow-md shadow-black/5;
+	}
+
+	.cn-select-viewport {
+		@apply p-1.5;
+	}
+
+	.cn-select-label {
+		@apply text-fg px-2 py-1.5 text-xs font-medium uppercase;
+	}
+
+	.cn-select-item {
+		@apply focus:bg-fill2-alpha data-disabled:pointer-events-none data-disabled:opacity-50 rounded-sm py-1.5 text-sm;
+	}
+
+	.cn-select-divider {
+		@apply bg-border;
+	}
+
+	/* MARK: Sidebar */
+
+	/* Wrapper */
+	.cn-sidebar-wrapper {
+		@apply bg-bg has-data-[theme=default]:bg-bg has-data-[theme=gray]:has-data-[variant=inset]:bg-sidebar has-data-[theme=inverse]:has-data-[variant=inset]:bg-black;
+	}
+
+	/* Sidebar root */
+	.cn-sidebar {
+		/* no extra decoration in default; bg/fg applied inline via CSS vars */
+	}
+
+	/* Fixed container — variant-specific decoration */
+	.cn-sidebar-container-variant-sidebar {
+		@apply border-sidebar-border group-data-[side=left]:border-r group-data-[side=right]:border-l;
+	}
+	.cn-sidebar-container-variant-floating {
+		/* padding already structural; shadow lives here */
+	}
+	.cn-sidebar-container-variant-inset {
+		/* no extra border in default inset */
+	}
+
+	/* Inner panel — floating/inset get rounded corners + shadow/border */
+	.cn-sidebar-inner {
+		/* base: no decoration */
+	}
+	.cn-sidebar-inner-variant-floating {
+		@apply border-sidebar-border rounded-xl border shadow-sm;
+	}
+	.cn-sidebar-inner-variant-inset {
+		@apply rounded-lg;
+	}
+
+	/* Resize handle */
+	.cn-sidebar-resize-handle {
+		@apply hover:after:bg-sidebar-border after:bg-transparent;
+	}
+	.cn-sidebar-resize-handle-dragging {
+		@apply after:bg-sidebar-ring;
+	}
+
+	/* Rail */
+	.cn-sidebar-rail {
+		@apply hover:after:bg-sidebar-border hover:group-data-[collapsible=offcanvas]:bg-sidebar;
+	}
+
+	/* Inset main content */
+	.cn-sidebar-inset {
+		@apply peer-data-[theme=default]:border-sidebar-border peer-data-[theme=gray-body]:bg-fill1 peer-data-[theme=default]:peer-data-[variant=inset]:border md:peer-data-[variant=inset]:shadow-sm;
+	}
+
+	/* Input */
+	.cn-sidebar-input {
+		@apply shadow-none;
+	}
+
+	/* Separator */
+	.cn-sidebar-separator {
+		@apply bg-soft-alpha;
+	}
+
+	/* Group label */
+	.cn-sidebar-group-label {
+		@apply text-sidebar-fg/70;
+	}
+
+	/* Group action */
+	.cn-sidebar-group-action {
+		@apply text-sidebar-fg hover:bg-sidebar-accent hover:text-sidebar-accent-fg;
+	}
+
+	/* Menu action */
+	.cn-sidebar-menu-action {
+		@apply text-sidebar-fg hover:bg-sidebar-accent hover:text-sidebar-accent-fg peer-hover/menu-button:text-sidebar-accent-fg;
+	}
+	.cn-sidebar-menu-action-show-on-hover {
+		@apply peer-data-[active=true]/menu-button:text-sidebar-accent-fg;
+	}
+
+	/* Menu badge */
+	.cn-sidebar-menu-badge {
+		@apply border px-1.5 py-0.5;
+	}
+
+	/* Menu sub-button */
+	.cn-sidebar-menu-sub-button {
+		@apply text-sidebar-fg hover:bg-sidebar-accent hover:text-sidebar-accent-fg data-[active=true]:bg-sidebar-accent data-[active=true]:text-sidebar-accent-fg [&>svg]:text-sidebar-accent-fg;
+	}
+
+	/* Menu button variants */
+	.cn-sidebar-menu-button {
+		@apply hover:bg-sidebar-accent hover:text-sidebar-accent-fg rounded-control-md [&>svg]:text-fg-secondary font-medium;
+	}
+	.cn-sidebar-menu-button-variant-strong {
+		@apply text-sidebar-fg focus-visible:ring-primary-focus data-[active=true]:bg-primary! focus-visible:outline-none data-[active=true]:text-white data-[active=true]:[&>svg]:stroke-white;
+	}
+	.cn-sidebar-menu-button-variant-soft {
+		@apply text-sidebar-fg focus-visible:ring-primary-focus data-[active=true]:bg-primary-accent! data-[active=true]:text-primary-text [&>svg]:text-fg-secondary data-[active=true]:[&>svg]:stroke-primary-text focus-visible:outline-none;
+	}
+	.cn-sidebar-menu-button-variant-neutral {
+		@apply text-sidebar-fg data-[active=true]:bg-sidebar-accent!;
+	}
+
+	/* MARK: Slider */
+	.cn-slider {
+		@apply data-disabled:opacity-50;
+	}
+
+	.cn-slider-track {
+		@apply bg-fill3 h-2 rounded-full;
+	}
+
+	.cn-slider-range {
+		@apply bg-primary;
+	}
+
+	.cn-slider-thumb {
+		@apply border-primary bg-bg drop-shadow-xs rounded-full border-2;
+	}
+
+	/* MARK: Switch */
+
+	.cn-switch {
+		@apply bg-fill2-alpha;
+	}
+
+	.cn-switch-shape-pill {
+		@apply rounded-full;
+	}
+
+	.cn-switch-shape-square {
+		@apply rounded-md;
+	}
+
+	.cn-switch-permanent {
+		@apply bg-fill3;
+	}
+
+	.cn-switch-toggleable {
+		@apply data-[state=checked]:bg-primary;
+	}
+
+	.cn-switch-thumb {
+		@apply data-[state=checked]:bg-primary-fg bg-white shadow-lg;
+	}
+
+	.cn-switch-thumb-shape-pill {
+		@apply rounded-full;
+	}
+
+	.cn-switch-thumb-shape-square {
+		@apply rounded-md;
+	}
+
+	.cn-switch-indicator-on {
+		@apply text-primary text-lg font-medium;
+	}
+
+	.cn-switch-indicator-off {
+		@apply text-fg-secondary text-lg font-medium;
+	}
+
+	/* MARK: Table */
+
+	.cn-table {
+		@apply text-fg text-sm;
+	}
+
+	.cn-table-header {
+		@apply [&_tr]:border-b;
+	}
+
+	.cn-table-body {
+		@apply [&_tr:last-child]:border-0;
+	}
+
+	.cn-table-footer {
+		@apply bg-fg-tertiary border-t;
+	}
+
+	.cn-table-row {
+		@apply [&:has(td):hover]:bg-fill1 data-[state=selected]:bg-primary-accent;
+	}
+
+	.cn-table-head {
+		@apply text-fg-secondary bg-fill2 px-3 py-2.5 font-medium;
+	}
+
+	.cn-table-cell {
+		@apply p-3;
+	}
+
+	.cn-table-caption {
+		@apply text-fg mt-4 text-sm;
+	}
+
+	/* MARK: Tabs */
+
+	/* List variants */
+	.cn-tabs-list-variant-default {
+		@apply bg-fill2;
+	}
+
+	.cn-tabs-list-variant-open {
+		@apply border-border;
+	}
+
+	.cn-tabs-list-variant-outline {
+		@apply border-border;
+	}
+
+	.cn-tabs-list-variant-ghost {
+		/* no visual styles */
+	}
+
+	.cn-tabs-list-variant-outline-ghost {
+		@apply bg-bg;
+	}
+
+	.cn-tabs-list-default-padded {
+		@apply p-0.5;
+	}
+
+	.cn-tabs-list-rounded-md {
+		@apply rounded-lg;
+	}
+
+	.cn-tabs-list-rounded-lg {
+		@apply rounded-xl;
+	}
+
+	.cn-tabs-list-open-gap-sm {
+		@apply data-[orientation=horizontal]:gap-3 data-[orientation=vertical]:gap-2;
+	}
+
+	.cn-tabs-list-open-gap-lg {
+		@apply data-[orientation=horizontal]:gap-4 data-[orientation=vertical]:gap-3;
+	}
+
+	/* Trigger variants */
+	.cn-tabs-trigger-variant-default {
+		@apply data-[state=active]:bg-elevation-level2 data-[state=active]:drop-shadow-xs;
+	}
+
+	.cn-tabs-trigger-variant-outline {
+		@apply data-[state=active]:bg-fill2;
+	}
+
+	.cn-tabs-trigger-variant-open {
+		/* border color handled inline via structural classes */
+	}
+
+	.cn-tabs-trigger-variant-ghost {
+		@apply data-[state=active]:bg-fill2;
+	}
+
+	.cn-tabs-trigger-variant-outline-ghost {
+		@apply data-[state=active]:bg-bg data-[state=active]:drop-shadow-xs;
+	}
+
+	/* Trigger default size compounds */
+	.cn-tabs-trigger-default-sm {
+		@apply rounded-md px-1.5 py-1;
+	}
+
+	.cn-tabs-trigger-default-md {
+		@apply rounded-md px-2.5 py-1.5;
+	}
+
+	.cn-tabs-trigger-default-lg {
+		@apply rounded-lg px-3 py-2;
+	}
+
+	/* Trigger outline/ghost/outline-ghost size compounds */
+	.cn-tabs-trigger-soft-sm {
+		@apply p-1.5;
+	}
+
+	.cn-tabs-trigger-soft-md {
+		@apply p-2;
+	}
+
+	.cn-tabs-trigger-soft-lg {
+		@apply p-3;
+	}
+
+	/* Trigger open size compounds */
+	.cn-tabs-trigger-open-sm {
+		@apply data-[orientation=horizontal]:py-1.5 data-[orientation=vertical]:px-1.5;
+	}
+
+	.cn-tabs-trigger-open-md {
+		@apply data-[orientation=horizontal]:py-2 data-[orientation=vertical]:px-2;
+	}
+
+	.cn-tabs-trigger-open-lg {
+		@apply data-[orientation=horizontal]:py-3 data-[orientation=vertical]:px-3;
+	}
+
+	/* Trigger outline rounded compounds */
+	.cn-tabs-trigger-outline-sm {
+		@apply data-[orientation=horizontal]:first:rounded-l-lg data-[orientation=vertical]:first:rounded-t-lg data-[orientation=horizontal]:last:rounded-r-lg data-[orientation=vertical]:last:rounded-b-lg;
+	}
+
+	.cn-tabs-trigger-outline-md {
+		@apply data-[orientation=horizontal]:first:rounded-l-[0.625rem] data-[orientation=vertical]:first:rounded-t-[0.625rem] data-[orientation=horizontal]:last:rounded-r-[0.625rem] data-[orientation=vertical]:last:rounded-b-[0.625rem];
+	}
+
+	.cn-tabs-trigger-outline-lg {
+		@apply data-[orientation=horizontal]:first:rounded-l-xl data-[orientation=vertical]:first:rounded-t-xl data-[orientation=horizontal]:last:rounded-r-xl data-[orientation=vertical]:last:rounded-b-xl;
+	}
+
+	/* Trigger ghost/outline-ghost active rounded */
+	.cn-tabs-trigger-ghost-sm {
+		@apply data-[state=active]:rounded-md;
+	}
+
+	.cn-tabs-trigger-ghost-md {
+		@apply data-[state=active]:rounded-lg;
+	}
+
+	.cn-tabs-trigger-ghost-lg {
+		@apply data-[state=active]:rounded-lg;
+	}
+
+	/* MARK: TextArea */
+	.cn-textarea {
+		@apply text-fg border-alpha drop-shadow-xs focus:border-primary-hover aria-invalid:ring-error aria-invalid:border-error focus:ring-primary-hover/30 disabled:border-soft disabled:bg-fill1 disabled:text-fg-disabled bg-bg border px-2.5 py-2 text-sm font-normal placeholder:text-sm focus:ring-2 disabled:cursor-not-allowed disabled:resize-none;
+	}
+
+	.cn-textarea-rounded {
+		@apply rounded-md;
+	}
+
+	.cn-textarea-square {
+		@apply rounded-none;
+	}
+
+	/* MARK: Tooltip */
+	.cn-tooltip-content {
+		@apply max-w-70 rounded-md px-2 py-1.5 text-[13px]/4 shadow-md shadow-black/5;
+	}
+
+	.cn-tooltip-theme-light {
+		@apply bg-elevation-level1 text-fg-secondary border-border border;
+	}
+
+	.cn-tooltip-theme-default {
+		@apply bg-black-inverse text-white-inverse;
+	}
+
+	.cn-tooltip-arrow {
+		@apply data-[theme=light]:fill-elevation-level1 data-[theme=default]:fill-black-inverse -mt-0.5 rounded-md data-[theme=light]:drop-shadow-[0_1px_0_var(--color-border)];
+	}
+}

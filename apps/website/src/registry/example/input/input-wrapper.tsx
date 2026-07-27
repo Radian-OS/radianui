@@ -7,17 +7,17 @@ const InputWrappers = () => {
 	return (
 		<div className="flex w-80 flex-col gap-6">
 			<div className="flex flex-col gap-1.5">
-				<Label>Full Name</Label>
+				<Label htmlFor="full-name">Full Name</Label>
 				<InputWrapper className="w-full">
 					<User />
-					<Input placeholder="Anna Mureum" />
+					<Input id="full-name" placeholder="Anna Mureum" />
 				</InputWrapper>
 			</div>
 
 			<div className="flex w-full flex-col gap-1.5">
-				<Label>Location</Label>
+				<Label htmlFor="location">Location</Label>
 				<InputWrapper className="w-full">
-					<Input placeholder="182 St, Port Alsworth, USA" />
+					<Input id="location" placeholder="182 St, Port Alsworth, USA" />
 					<MapPin />
 				</InputWrapper>
 			</div>

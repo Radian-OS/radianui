@@ -1,0 +1,95 @@
+---
+date: "2026-07-10"
+---
+
+## 10 July, 2026
+
+The 10 July Radian OS update focuses on improving both the developer and design workflow. It introduces a more scalable component architecture, an expanded token system, a better installation experience, improved accessibility defaults, and significant improvements to maintainability across the library.
+
+<div className="h-6" />
+This one's a big release. We've cleaned up a lot of the rough edges around state
+management and theming, and trimmed down prop APls so integrating components
+takes less boilerplate than before.
+
+<Image
+	alt="radian background"
+	width="1000"
+	height="800"
+	src="/changelog-v3.png"
+/>
+
+### 1. New Components
+
+We added a bunch of stuff people have been asking for:
+
+- **Sidebar**: Resizable, with rail examples for the collapsed-icon-only look, plus an automatic collapsed mode that kicks in based on viewport width so you don't have to wire that up yourself .
+
+- **Menu Bar & Context Menu**: Menu Bar is for desktop-style app navigation (think nested dropdowns across the top of a window), Context Menu handles right-click actions with support for nested submenus and shortcuts.
+
+- **Toggle Group**: For grouped selection controls, single or multi-select, useful for things like text alignment pickers or filter chips.
+
+- **Toggle**: A standalone single toggle button, same visual language as Toggle Group but for one- off use cases
+
+- **Stepper**: Walks users through multi-step flows (think onboarding or checkout), with built-in states for completed, active, and upcoming steps.
+
+- **Navigation Menu**: For primary site/app navigation, supports dropdown panels on hover or click with configurable alignment.
+
+### 2. Theming & accessibility
+
+- **17 new utility color**: Shipped 17 new utility color palettes, each with a consistent set of tokens (key, hover, text, border, focus, accent) so every color behaves predictably no matter which one you pick. Semantic colors now map straight to these utility colors instead of having their own separate definitions, and we added fg (foreground) variants so things like alerts and buttons have a proper contrasting text color out of the box - e.g. primary-fg.
+
+- **Fixed Accessibility Issues**: Fixed contrast issues on Neon, Yellow, Orange, and Red backgrounds. Specifically darkened the text tokens on Yellow, Amber, and Neon so they actually pass WCAG contrast requirements - the previous color values were borderline or failing on these.
+
+- **More examples**: Added more examples across the docs: all of the components have new examples that show real life use cases.
+
+<Image
+	alt="radian background"
+	width="1000"
+	height="800"
+	src="/color-system-1.png"
+	className="dark:hidden"
+/>
+
+<Image
+	alt="radian background"
+	width="1000"
+	height="800"
+	src="/color-system-1-dark.png"
+	className="hidden dark:block"
+/>
+
+### 3. API updates
+
+- **Text Area**: They now ships with `useCharacterLimit` helper hook that handles character limiting for you.
+
+- **Dialog and Drawer**: They both got an overlay prop with three options: overlay (the standard dim background), blur (backdrop blur instead of a solid color), or transparent (no overlay at all, for cases where you want the dialog to feel less intrusive.
+
+### 4. Developer experience
+
+<Image
+	alt="radian background"
+	width="1000"
+	height="800"
+	src="/dev-experience.png"
+	className="dark:hidden"
+/>
+
+<Image
+	alt="radian background"
+	width="1000"
+	height="800"
+	src="/dev-experience-dark.png"
+	className="hidden dark:block"
+/>
+
+- **New Assets**: We’ve added a new resources section in the documentation, which now allows designers and developers to find commonly used assets when designing their software. The resources is a growing library as we add more useful tools and resources.
+
+- **CLI Update**: Added question when initializing the project to allows users to select color. Easier way to get the required brand color when setting up the project.
+
+- **LLMS**: Added Ilms.txt (https://radianos.com/llms.txt) so Al coding tools and assistants can parse our docs more reliably instead of scraping rendered HTML
+
+### 5. Breaking / Removed
+
+- **Accordion**: Dropped the small, medium & large sizes as those properties were adjustable using only few tailwind classes.
+
+- **Badge**: Removed `neutral-outline` variant.

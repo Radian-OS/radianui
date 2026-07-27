@@ -4,8 +4,13 @@ import React from "react"
 import { Check, Clipboard } from "lucide-react"
 import { usePreferences } from "@/lib/preferences"
 import { cn } from "@/lib/utils"
-import { IconButton } from "@/registry/ui/button"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
+import { IconButton } from "@/styles/default/ui/button"
+import {
+	Tabs,
+	TabsContent,
+	TabsList,
+	TabsTrigger,
+} from "@/styles/default/ui/tabs"
 
 export function CodeBlockCommand({
 	__npm__,
@@ -67,7 +72,7 @@ export function CodeBlockCommand({
 			}
 			className={cn("bg-fill2 gap-2 overflow-hidden", className)}>
 			<div className="flex items-center justify-between pr-1">
-				<TabsList className="bg-transparent" variant="outline-ghost" size="md">
+				<TabsList className="bg-transparent">
 					{Object.entries(tabs).map(([key]) => (
 						<TabsTrigger className="font-[Inter]" key={key} value={key}>
 							{key}
@@ -75,6 +80,7 @@ export function CodeBlockCommand({
 					))}
 				</TabsList>
 				<IconButton
+					className="text-fg-secondary"
 					variant="ghost"
 					color="neutral"
 					size={"28"}

@@ -1,7 +1,11 @@
-import React from "react"
+"use client"
+
+import { useState } from "react"
+import { Trash2 } from "lucide-react"
 import { Button } from "@/registry/ui/button"
 import {
 	Dialog,
+	DialogBody,
 	DialogClose,
 	DialogContent,
 	DialogDescription,
@@ -10,30 +14,56 @@ import {
 	DialogTitle,
 	DialogTrigger,
 } from "@/registry/ui/dialog"
+import { Input } from "@/registry/ui/input"
+import { Label } from "@/registry/ui/label"
 
 export default function DialogDestructive() {
+	const [value, setValue] = useState("")
+	const confirmed = value === "Delete"
+
 	return (
-		<Dialog>
+		<Dialog onOpenChange={() => setValue("")}>
 			<DialogTrigger asChild>
-				<Button variant={"strong"} color={"error"}>
-					Delete
+				<Button variant="outline" color="neutral">
+					Delete resource
 				</Button>
 			</DialogTrigger>
-			<DialogContent closeButton="hidden">
+			<DialogContent className="w-100">
 				<DialogHeader>
-					<DialogTitle>Delete Container</DialogTitle>
-					<DialogDescription>
-						Are you sure you want to delete this container? This cannot be
-						undone
-					</DialogDescription>
+					<div className="flex flex-col gap-3">
+						<DialogTitle>
+							<div className="bg-error-focus rounded-full p-2.5">
+								<Trash2 className="text-error" />
+							</div>
+						</DialogTitle>
+						<div className="flex flex-col gap-1">
+							<DialogTitle closeButton={false}>Confirm deletion</DialogTitle>
+							<DialogDescription>
+								You are about to permanently delete this resource. Enter the
+								confirmation text below to proceed.
+							</DialogDescription>
+						</div>
+					</div>
 				</DialogHeader>
+				<DialogBody className="border-0 pt-0">
+					<div className="flex flex-col gap-2">
+						<Label className="text-fg text-sm font-semibold">
+							Type &quot;Delete&quot; to confirm
+						</Label>
+						<Input
+							placeholder="Delete"
+							value={value}
+							onChange={(e) => setValue(e.target.value)}
+						/>
+					</div>
+				</DialogBody>
 				<DialogFooter>
 					<DialogClose asChild>
 						<Button color="neutral" variant="outline">
 							Cancel
 						</Button>
 					</DialogClose>
-					<Button variant="strong" color="error">
+					<Button variant="strong" color="error" disabled={!confirmed}>
 						Delete
 					</Button>
 				</DialogFooter>

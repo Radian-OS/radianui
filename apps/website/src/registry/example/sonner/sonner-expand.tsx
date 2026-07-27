@@ -24,6 +24,7 @@ const ToastExpand = () => {
 			<div className="flex gap-2">
 				<Button
 					variant="outline"
+					color="neutral"
 					className="flex-1 sm:w-[140px]"
 					onClick={() => showToast(true)}>
 					Expand

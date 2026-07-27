@@ -3,7 +3,7 @@
 import { Check, Clipboard } from "lucide-react"
 import { useCopyPaste } from "@/hooks/use-copy-paste"
 import { cn } from "@/lib/utils"
-import { Button } from "@/registry/ui/button"
+import { Button } from "@/styles/default/ui/button"
 
 export function CopyButton({
 	value,
@@ -22,7 +22,7 @@ export function CopyButton({
 
 	return (
 		<Button
-			className={cn("top-4.5 absolute right-3", className)}
+			className={cn("top-4.5 text-fg-secondary absolute right-3", className)}
 			data-slot="copy-button"
 			variant="ghost"
 			color="neutral"

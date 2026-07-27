@@ -10,15 +10,15 @@ export default function ToggleGroupPreview() {
 				defaultValue="light"
 				variant="outline">
 				<ToggleGroupItem value="light" aria-label="Light theme">
-					<SunMedium />
+					<SunMedium className="text-fg-secondary" />
 					Light
 				</ToggleGroupItem>
 				<ToggleGroupItem value="dark" aria-label="Dark theme">
-					<Moon />
+					<Moon className="text-fg-secondary" />
 					Dark
 				</ToggleGroupItem>
 				<ToggleGroupItem value="system" aria-label="System theme">
-					<Computer />
+					<Computer className="text-fg-secondary" />
 					System
 				</ToggleGroupItem>
 			</ToggleGroup>

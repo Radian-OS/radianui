@@ -3,6 +3,7 @@ import { Inter } from "next/font/google"
 import { Toaster } from "sonner"
 import AhrefsAnalytics from "@/components/ahrefs-analytics"
 import { PostHogProvider } from "@/components/posthog-provider"
+import { ReactQueryProvider } from "@/components/react-query-provider"
 import { ThemeProvider } from "@/components/theme-provider"
 import { websiteMetadata } from "@/config/website-metadata-config"
 import { ToastProvider } from "@/contexts/toast-context"
@@ -63,43 +64,29 @@ export default async function RootLayout({
 }: Readonly<{
 	children: React.ReactNode
 }>) {
-	const structuredData = {
-		"@context": "https://schema.org",
-		"@type": "SoftwareApplication",
-		name: "Radian",
-		alternateName: ["RadianUI", "RadianOS", "Radianos"],
-		description:
-			"Open-source React component library with Tailwind CSS. Install with radianui CLI.",
-		url: process.env.NEXT_PUBLIC_WEBSITE_URL, // ✅ Evaluated here
-		applicationCategory: "DeveloperApplication",
-		operatingSystem: "Web",
-		offers: {
-			"@type": "Offer",
-			price: "0",
-			priceCurrency: "USD",
-		},
-	}
 	return (
 		<html lang="en" suppressHydrationWarning>
 			<head>
 				<AhrefsAnalytics />
-				<script
-					type="application/ld+json"
-					dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-				/>
 			</head>
-			<body className={cn("relative min-h-svh antialiased", inter.variable)}>
-				<PostHogProvider>
-					<ToastProvider>
-						<ThemeProvider
-							attribute="class"
-							defaultTheme="dark"
-							enableSystem
-							disableTransitionOnChange>
-							{children}
-						</ThemeProvider>
-					</ToastProvider>
-				</PostHogProvider>
+			<body
+				className={cn(
+					"style-default relative min-h-svh antialiased",
+					inter.variable
+				)}>
+				<ReactQueryProvider>
+					<PostHogProvider>
+						<ToastProvider>
+							<ThemeProvider
+								attribute="class"
+								defaultTheme="dark"
+								enableSystem
+								disableTransitionOnChange>
+								{children}
+							</ThemeProvider>
+						</ToastProvider>
+					</PostHogProvider>
+				</ReactQueryProvider>
 				<Toaster theme="system" richColors />
 			</body>
 		</html>

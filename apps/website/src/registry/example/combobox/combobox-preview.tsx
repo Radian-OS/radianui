@@ -14,197 +14,7 @@ import {
 	CommandList,
 } from "@/registry/ui/command"
 import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
-
-// const countries = [
-// 	{ code: "AF", name: "Afghanistan", flag: <Flags.AF /> },
-// 	{ code: "AL", name: "Albania", flag: <Flags.AL /> },
-// 	{ code: "DZ", name: "Algeria", flag: <Flags.DZ /> },
-// 	{ code: "AS", name: "American Samoa", flag: <Flags.AS /> },
-
-// 	{ code: "AD", name: "Andorra", flag: <Flags.AD /> },
-// 	{ code: "AO", name: "Angola", flag: <Flags.AO /> },
-// 	{ code: "AI", name: "Anguilla", flag: <Flags.AI /> },
-// 	{ code: "AG", name: "Antigua and Barbuda", flag: <Flags.AG /> },
-// 	{ code: "AR", name: "Argentina", flag: <Flags.AR /> },
-// 	{ code: "AM", name: "Armenia", flag: <Flags.AM /> },
-// 	{ code: "AU", name: "Australia", flag: <Flags.AU /> },
-// 	{ code: "AT", name: "Austria", flag: <Flags.AT /> },
-// 	{ code: "AZ", name: "Azerbaijan", flag: <Flags.AZ /> },
-// 	{ code: "BS", name: "Bahamas", flag: <Flags.BS /> },
-// 	{ code: "BH", name: "Bahrain", flag: <Flags.BH /> },
-// 	{ code: "BD", name: "Bangladesh", flag: <Flags.BD /> },
-// 	{ code: "BB", name: "Barbados", flag: <Flags.BB /> },
-// 	{ code: "BY", name: "Belarus", flag: <Flags.BY /> },
-// 	{ code: "BE", name: "Belgium", flag: <Flags.BE /> },
-// 	{ code: "BZ", name: "Belize", flag: <Flags.BZ /> },
-// 	{ code: "BJ", name: "Benin", flag: <Flags.BJ /> },
-// 	{ code: "BM", name: "Bermuda", flag: <Flags.BM /> },
-// 	{ code: "BT", name: "Bhutan", flag: <Flags.BT /> },
-// 	{ code: "BO", name: "Bolivia", flag: <Flags.BO /> },
-// 	{ code: "BA", name: "Bosnia and Herzegovina", flag: <Flags.BA /> },
-// 	{ code: "BW", name: "Botswana", flag: <Flags.BW /> },
-// 	{ code: "BR", name: "Brazil", flag: <Flags.BR /> },
-// 	{ code: "IO", name: "British Indian Ocean Territory", flag: <Flags.IO /> },
-// 	{ code: "BN", name: "Brunei Darussalam", flag: <Flags.BN /> },
-// 	{ code: "BG", name: "Bulgaria", flag: <Flags.BG /> },
-// 	{ code: "BF", name: "Burkina Faso", flag: <Flags.BF /> },
-// 	{ code: "BI", name: "Burundi", flag: <Flags.BI /> },
-// 	{ code: "KH", name: "Cambodia", flag: <Flags.KH /> },
-// 	{ code: "CM", name: "Cameroon", flag: <Flags.CM /> },
-// 	{ code: "CA", name: "Canada", flag: <Flags.CA /> },
-// 	{ code: "CV", name: "Cape Verde", flag: <Flags.CV /> },
-// 	{ code: "KY", name: "Cayman Islands", flag: <Flags.KY /> },
-// 	{ code: "CF", name: "Central African Republic", flag: <Flags.CF /> },
-// 	{ code: "TD", name: "Chad", flag: <Flags.TD /> },
-// 	{ code: "CL", name: "Chile", flag: <Flags.CL /> },
-// 	{ code: "CN", name: "China", flag: <Flags.CN /> },
-// 	{ code: "CO", name: "Colombia", flag: <Flags.CO /> },
-// 	{ code: "KM", name: "Comoros", flag: <Flags.KM /> },
-// 	{ code: "CG", name: "Congo", flag: <Flags.CG /> },
-// 	{ code: "CR", name: "Costa Rica", flag: <Flags.CR /> },
-// 	{ code: "CI", name: "Cote D'Ivoire", flag: <Flags.CI /> },
-// 	{ code: "HR", name: "Croatia", flag: <Flags.HR /> },
-// 	{ code: "CU", name: "Cuba", flag: <Flags.CU /> },
-// 	{ code: "CY", name: "Cyprus", flag: <Flags.CY /> },
-// 	{ code: "CZ", name: "Czech Republic", flag: <Flags.CZ /> },
-// 	{ code: "DK", name: "Denmark", flag: <Flags.DK /> },
-// 	{ code: "DJ", name: "Djibouti", flag: <Flags.DJ /> },
-// 	{ code: "DM", name: "Dominica", flag: <Flags.DM /> },
-// 	{ code: "DO", name: "Dominican Republic", flag: <Flags.DO /> },
-// 	{ code: "EC", name: "Ecuador", flag: <Flags.EC /> },
-// 	{ code: "EG", name: "Egypt", flag: <Flags.EG /> },
-// 	{ code: "SV", name: "El Salvador", flag: <Flags.SV /> },
-// 	{ code: "GQ", name: "Equatorial Guinea", flag: <Flags.GQ /> },
-// 	{ code: "ER", name: "Eritrea", flag: <Flags.ER /> },
-// 	{ code: "EE", name: "Estonia", flag: <Flags.EE /> },
-// 	{ code: "SZ", name: "Eswatini", flag: <Flags.SZ /> },
-// 	{ code: "ET", name: "Ethiopia", flag: <Flags.ET /> },
-// 	{ code: "FI", name: "Finland", flag: <Flags.FI /> },
-// 	{ code: "FR", name: "France", flag: <Flags.FR /> },
-// 	{ code: "GA", name: "Gabon", flag: <Flags.GA /> },
-// 	{ code: "GM", name: "Gambia", flag: <Flags.GM /> },
-// 	{ code: "GE", name: "Georgia", flag: <Flags.GE /> },
-// 	{ code: "DE", name: "Germany", flag: <Flags.DE /> },
-// 	{ code: "GH", name: "Ghana", flag: <Flags.GH /> },
-// 	{ code: "GR", name: "Greece", flag: <Flags.GR /> },
-// 	{ code: "GD", name: "Grenada", flag: <Flags.GD /> },
-// 	{ code: "GT", name: "Guatemala", flag: <Flags.GT /> },
-// 	{ code: "GN", name: "Guinea", flag: <Flags.GN /> },
-// 	{ code: "GW", name: "Guinea-Bissau", flag: <Flags.GW /> },
-// 	{ code: "GY", name: "Guyana", flag: <Flags.GY /> },
-// 	{ code: "HT", name: "Haiti", flag: <Flags.HT /> },
-// 	{ code: "HN", name: "Honduras", flag: <Flags.HN /> },
-// 	{ code: "HK", name: "Hong Kong", flag: <Flags.HK /> },
-// 	{ code: "HU", name: "Hungary", flag: <Flags.HU /> },
-// 	{ code: "IS", name: "Iceland", flag: <Flags.IS /> },
-// 	{ code: "IN", name: "India", flag: <Flags.IN /> },
-// 	{ code: "ID", name: "Indonesia", flag: <Flags.ID /> },
-// 	{ code: "IR", name: "Iran", flag: <Flags.IR /> },
-// 	{ code: "IQ", name: "Iraq", flag: <Flags.IQ /> },
-// 	{ code: "IE", name: "Ireland", flag: <Flags.IE /> },
-// 	{ code: "IL", name: "Israel", flag: <Flags.IL /> },
-// 	{ code: "IT", name: "Italy", flag: <Flags.IT /> },
-// 	{ code: "JM", name: "Jamaica", flag: <Flags.JM /> },
-// 	{ code: "JP", name: "Japan", flag: <Flags.JP /> },
-// 	{ code: "JO", name: "Jordan", flag: <Flags.JO /> },
-// 	{ code: "KZ", name: "Kazakhstan", flag: <Flags.KZ /> },
-// 	{ code: "KE", name: "Kenya", flag: <Flags.KE /> },
-// 	{ code: "KR", name: "South Korea", flag: <Flags.KR /> },
-// 	{ code: "KW", name: "Kuwait", flag: <Flags.KW /> },
-// 	{ code: "KG", name: "Kyrgyzstan", flag: <Flags.KG /> },
-// 	{ code: "LA", name: "Laos", flag: <Flags.LA /> },
-// 	{ code: "LV", name: "Latvia", flag: <Flags.LV /> },
-// 	{ code: "LB", name: "Lebanon", flag: <Flags.LB /> },
-// 	{ code: "LS", name: "Lesotho", flag: <Flags.LS /> },
-// 	{ code: "LR", name: "Liberia", flag: <Flags.LR /> },
-// 	{ code: "LY", name: "Libya", flag: <Flags.LY /> },
-// 	{ code: "LT", name: "Lithuania", flag: <Flags.LT /> },
-// 	{ code: "LU", name: "Luxembourg", flag: <Flags.LU /> },
-// 	{ code: "MO", name: "Macao", flag: <Flags.MO /> },
-// 	{ code: "MG", name: "Madagascar", flag: <Flags.MG /> },
-// 	{ code: "MW", name: "Malawi", flag: <Flags.MW /> },
-// 	{ code: "MY", name: "Malaysia", flag: <Flags.MY /> },
-// 	{ code: "MV", name: "Maldives", flag: <Flags.MV /> },
-// 	{ code: "ML", name: "Mali", flag: <Flags.ML /> },
-// 	{ code: "MT", name: "Malta", flag: <Flags.MT /> },
-// 	{
-// 		code: "MH",
-// 		name: "Marshall Islands",
-// 		flag: <Flags.MH />,
-// 	},
-// 	{ code: "MR", name: "Mauritania", flag: <Flags.MR /> },
-// 	{ code: "MU", name: "Mauritius", flag: <Flags.MU /> },
-// 	{ code: "MX", name: "Mexico", flag: <Flags.MX /> },
-// 	{ code: "FM", name: "Micronesia", flag: <Flags.FM /> },
-// 	{ code: "MD", name: "Moldova", flag: <Flags.MD /> },
-// 	{ code: "MC", name: "Monaco", flag: <Flags.MC /> },
-// 	{ code: "MN", name: "Mongolia", flag: <Flags.MN /> },
-// 	{ code: "ME", name: "Montenegro", flag: <Flags.ME /> },
-// 	{ code: "MA", name: "Morocco", flag: <Flags.MA /> },
-// 	{ code: "MZ", name: "Mozambique", flag: <Flags.MZ /> },
-// 	{ code: "MM", name: "Myanmar", flag: <Flags.MM /> },
-// 	{ code: "NA", name: "Namibia", flag: <Flags.NA /> },
-// 	{ code: "NP", name: "Nepal", flag: <Flags.NP /> },
-// 	{ code: "NL", name: "Netherlands", flag: <Flags.NL /> },
-// 	{ code: "NZ", name: "New Zealand", flag: <Flags.NZ /> },
-// 	{ code: "NI", name: "Nicaragua", flag: <Flags.NI /> },
-// 	{ code: "NG", name: "Nigeria", flag: <Flags.NG /> },
-// 	{ code: "NO", name: "Norway", flag: <Flags.NO /> },
-// 	{ code: "OM", name: "Oman", flag: <Flags.OM /> },
-// 	{ code: "PK", name: "Pakistan", flag: <Flags.PK /> },
-// 	{ code: "PA", name: "Panama", flag: <Flags.PA /> },
-// 	{
-// 		code: "PG",
-// 		name: "Papua New Guinea",
-// 		flag: <Flags.PG />,
-// 	},
-// 	{ code: "PY", name: "Paraguay", flag: <Flags.PY /> },
-// 	{ code: "PE", name: "Peru", flag: <Flags.PE /> },
-// 	{ code: "PH", name: "Philippines", flag: <Flags.PH /> },
-// 	{ code: "PL", name: "Poland", flag: <Flags.PL /> },
-// 	{ code: "PT", name: "Portugal", flag: <Flags.PT /> },
-// 	{ code: "QA", name: "Qatar", flag: <Flags.QA /> },
-// 	{ code: "RO", name: "Romania", flag: <Flags.RO /> },
-// 	{ code: "RU", name: "Russia", flag: <Flags.RU /> },
-// 	{ code: "RW", name: "Rwanda", flag: <Flags.RW /> },
-// 	{ code: "WS", name: "Samoa", flag: <Flags.WS /> },
-// 	{ code: "SM", name: "San Marino", flag: <Flags.SM /> },
-// 	{ code: "SA", name: "Saudi Arabia", flag: <Flags.SA /> },
-// 	{ code: "SN", name: "Senegal", flag: <Flags.SN /> },
-// 	{ code: "RS", name: "Serbia", flag: <Flags.RS /> },
-// 	{ code: "SG", name: "Singapore", flag: <Flags.SG /> },
-// 	{ code: "SK", name: "Slovakia", flag: <Flags.SK /> },
-// 	{ code: "SI", name: "Slovenia", flag: <Flags.SI /> },
-// 	{ code: "ZA", name: "South Africa", flag: <Flags.ZA /> },
-// 	{ code: "ES", name: "Spain", flag: <Flags.ES /> },
-// 	{ code: "LK", name: "Sri Lanka", flag: <Flags.LK /> },
-// 	{ code: "SE", name: "Sweden", flag: <Flags.SE /> },
-// 	{ code: "CH", name: "Switzerland", flag: <Flags.CH /> },
-// 	{ code: "SY", name: "Syria", flag: <Flags.SY /> },
-// 	{ code: "TW", name: "Taiwan", flag: <Flags.TW /> },
-// 	{ code: "TJ", name: "Tajikistan", flag: <Flags.TJ /> },
-// 	{ code: "TZ", name: "Tanzania", flag: <Flags.TZ /> },
-// 	{ code: "TH", name: "Thailand", flag: <Flags.TH /> },
-// 	{ code: "TR", name: "Turkey", flag: <Flags.TR /> },
-// 	{ code: "UG", name: "Uganda", flag: <Flags.UG /> },
-// 	{ code: "UA", name: "Ukraine", flag: <Flags.UA /> },
-// 	{
-// 		code: "AE",
-// 		name: "United Arab Emirates",
-// 		flag: <Flags.AE />,
-// 	},
-// 	{
-// 		code: "GB",
-// 		name: "United Kingdom",
-// 		flag: <Flags.GB />,
-// 	},
-// 	{ code: "US", name: "United States", flag: <Flags.US /> },
-// 	{ code: "UY", name: "Uruguay", flag: <Flags.UY /> },
-// 	{ code: "UZ", name: "Uzbekistan", flag: <Flags.UZ /> },
-// 	{ code: "VN", name: "Vietnam", flag: <Flags.VN /> },
-// 	{ code: "ZM", name: "Zambia", flag: <Flags.ZM /> },
-// 	{ code: "ZW", name: "Zimbabwe", flag: <Flags.ZW /> },
-// ]
+import { ScrollArea } from "@/registry/ui/scroll-area"
 
 const countries = [
 	{ code: "AF", name: "Afghanistan", flag: Flags.AF },
@@ -397,7 +207,7 @@ export default function ComboboxDemo() {
 					color="neutral"
 					role="combobox"
 					aria-haspopup="listbox"
-					className="text-fg-tertiary w-80 font-normal">
+					className="text-fg-tertiary w-full max-w-80 font-normal">
 					{selectedCountry ? (
 						<>
 							{<selectedCountry.flag className="size-4" />}
@@ -409,31 +219,33 @@ export default function ComboboxDemo() {
 					<ChevronDown className="text-fg-tertiary ml-auto" />
 				</Button>
 			</PopoverTrigger>
-			<PopoverContent className="w-80 p-0">
+			<PopoverContent className="w-[var(--radix-popover-trigger-width)] p-0">
 				<Command className="border-0">
 					<CommandInput placeholder="Search" className="h-9" />
-					<CommandList>
+					<CommandList className="max-h-none overflow-visible">
 						<CommandEmpty>No country found.</CommandEmpty>
-						<CommandGroup>
-							{countries.map((c) => (
-								<CommandItem
-									value={c.name}
-									key={c.name}
-									onSelect={() => {
-										setSelectedCode(c.code)
-										setOpen(false)
-									}}>
-									{<c.flag className="size-4" />}
-									<span>{c.name}</span>
-									<Check
-										className={cn(
-											"ml-auto",
-											c.code === selectedCode ? "opacity-100" : "opacity-0"
-										)}
-									/>
-								</CommandItem>
-							))}
-						</CommandGroup>
+						<ScrollArea className="h-74">
+							<CommandGroup>
+								{countries.map((c) => (
+									<CommandItem
+										value={c.name}
+										key={c.name}
+										onSelect={() => {
+											setSelectedCode(c.code)
+											setOpen(false)
+										}}>
+										{<c.flag className="size-4" />}
+										<span>{c.name}</span>
+										<Check
+											className={cn(
+												"ml-auto",
+												c.code === selectedCode ? "opacity-100" : "opacity-0"
+											)}
+										/>
+									</CommandItem>
+								))}
+							</CommandGroup>
+						</ScrollArea>
 					</CommandList>
 				</Command>
 			</PopoverContent>

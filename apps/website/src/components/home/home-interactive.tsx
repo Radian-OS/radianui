@@ -13,8 +13,13 @@ import {
 	DropdownRadioGroup,
 	DropdownRadioItem,
 	DropdownTrigger,
-} from "@/registry/ui/dropdown"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
+} from "@/styles/default/ui/dropdown"
+import {
+	Tabs,
+	TabsContent,
+	TabsList,
+	TabsTrigger,
+} from "@/styles/default/ui/tabs"
 
 const PAGES = [
 	{
@@ -110,10 +115,7 @@ const HomeInteractive = () => {
 						<span className="bg-fill4 size-2 rounded-full" />
 					</div>
 					<div className="flex">
-						<TabsList
-							variant="outline-ghost"
-							size="md"
-							className="not-lg:hidden mx-auto shrink-0 bg-transparent">
+						<TabsList className="not-lg:hidden mx-auto shrink-0 bg-transparent">
 							{PAGES.map((page, idx) => (
 								<TabsTrigger key={`${page.value}-${idx}`} value={page.value}>
 									{page.label}

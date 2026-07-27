@@ -1,6 +1,6 @@
 ---
 title: Toggle
-description: A button that toggles between two states, such as on/off or show/hide.
+description: A simple button that stays highlighted when clicked, perfect for turning formatting styles on and off.
 links:
   github:
     href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/toggle.tsx
@@ -10,6 +10,8 @@ links:
 ---
 
 <ComponentPreview path="toggle/toggle-preview" />
+
+---
 
 ## Installation
 
@@ -38,6 +40,8 @@ links:
 
 </InstallationTabs>
 
+---
+
 ## Usage
 
 ### Imports
@@ -56,93 +60,142 @@ import { Toggle } from "@/components/ui/toggle"
 
 ## Examples
 
-### Variants
+<ComponentPreview title="Variants" path="toggle/toggle-variants" />
 
-<ComponentPreview path="toggle/toggle-variants" />
+<ComponentPreview title="Sizes" path="toggle/toggle-sizes" />
 
-### Sizes
+<ComponentPreview title="Favorite" path="toggle/toggle-favorite" />
 
-<ComponentPreview path="toggle/toggle-sizes" />
+<ComponentPreview
+	title="Formatting Toolbar"
+	path="toggle/toggle-formatting-toolbar"
+/>
 
-### Favorite
+<ComponentPreview title="Notifications" path="toggle/toggle-notification" />
 
-<ComponentPreview path="toggle/toggle-favorite" />
+<ComponentPreview title="With Heart" path="toggle/toggle-heart" />
 
-### Formatting Toolbar
-
-<ComponentPreview path="toggle/toggle-formatting-toolbar" />
-
-### Notifications
-
-<ComponentPreview path="toggle/toggle-notification" />
-
-### With Heart
-
-<ComponentPreview path="toggle/toggle-heart" />
-
-### Disabled
-
-<ComponentPreview path="toggle/toggle-disabled" />
+<ComponentPreview title="Disabled" path="toggle/toggle-disabled" />
 
 ---
 
-## Props
+<ComponentDocContent
+	name={"Toggle"}
+	description={
+		"Toggle is a button that lets users switch between two states, such as on/off or active/inactive. It provides accessible interactions, keyboard support, and customizable styles for actions like bold, italic, or favorite."
+	}
+	features={[
+		"@radix-ui/react-toggle, ensures strict ARIA compliance with correct aria-pressed attribute management.",
+		"Natively supports keyboard interaction; users can toggle the state by pressing Space or Enter when the button is focused.",
+		"Exposes a highly composable API: <Toggle> and various variants for different visual styles (like outline, ghost, or solid).",
+		"Effortlessly styled with Tailwind CSS, utilizing data-[state=on] modifiers to smoothly transition background, text, and border colors.",
+		"Unopinionated structural foundation, making it trivial to nest icons (from Lucide or other sets) directly inside the component to create rich toolbars.",
+	]}
+	related={[
+		{
+			title: "Switch",
+			description:
+				'Use a Switch for binary preference settings (like "Enable Notifications"). Use a Toggle for toolbar-style actions (like "Bold" text or "Filter Results").',
+			href: "/docs/components/switch",
+		},
+		{
+			title: "Button",
+			description:
+				"The core aesthetic foundation. The Toggle component effectively behaves like a stateful, persistent-pressed Button.",
+			href: "/docs/components/button",
+		},
+		{
+			title: "Toggle Group",
+			description:
+				"A collection of Toggles that manage a set of options (e.g., text alignment: Left, Center, Right), often used in text editors.",
+			href: "/docs/components/toggle-group",
+		},
+	]}
+	faqs={[
+		{
+			question: "How do I manage the Toggle state?",
+			answer:
+				"You manage the boolean state in your parent component and pass it to the pressed prop. You should then listen to the onPressedChange callback to update your state whenever the user clicks or toggles the button.",
+		},
+		{
+			question: "How do I change the visual appearance when it is toggled?",
+			answer:
+				"The Radix primitive adds a data-[state=on] attribute to the component. You can style this using Tailwind's data-state modifiers. For example, data-[state=on]:bg-primary data-[state=on]:text-primary-foreground will automatically trigger these styles whenever the button is pressed.",
+		},
+		{
+			question: "How do I integrate this with React Hook Form?",
+			answer:
+				'Like other custom primitives, wrap the <Toggle> inside an RHF <Controller>. Map the onPressedChange callback directly to the field.onChange handler to ensure your form state accurately reflects whether the toggle is currently "on" or "off."',
+		},
+		{
+			question: "Can I group multiple Toggles together?",
+			answer:
+				'Yes. You can use the Radian ToggleGroup component, which manages a set of Toggles and allows you to enforce "single-select" or "multi-select" behavior within that group context.',
+		},
+		{
+			question: "Why isn't the toggle responding to clicks?",
+			answer:
+				"Ensure that the component is not being blocked by a parent pointer-events-none class. Also, check if you have disabled the button in your props (e.g., disabled={true}), which prevents the Radix primitive from registering any interactive events.",
+		},
+	]}
+/>
 
-<PropsTableWrapper>
-	<PropsTable
-		title="Toggle"
-		data={[
-			{
-				name: "variant",
-				defaultValue: "outline",
-				values: ["ghost", "outline"],
-				required: false,
-				description: "Defines the visual style of the toggle",
-			},
-			{
-				name: "size",
-				defaultValue: "32",
-				values: ["28", "32", "36", "40", "44", "48"],
-				required: false,
-				description: "Sets the size of the toggle",
-			},
-			{
-				name: "pressed",
-				defaultValue: "undefined",
-				values: ["boolean"],
-				required: false,
-				description: "Controls the pressed state of the toggle",
-			},
-			{
-				name: "defaultPressed",
-				defaultValue: "false",
-				values: ["boolean"],
-				required: false,
-				description:
-					"Sets the initial pressed state for an uncontrolled toggle",
-			},
-			{
-				name: "onPressedChange",
-				defaultValue: "-",
-				values: ["(pressed: boolean) => void"],
-				required: false,
-				description: "Callback fired when the pressed state changes",
-			},
-			{
-				name: "disabled",
-				defaultValue: "false",
-				values: ["boolean"],
-				required: false,
-				description: "Disables interaction with the toggle when set to true",
-			},
-			{
-				name: "asChild",
-				defaultValue: "false",
-				values: ["boolean"],
-				required: false,
-				description: "Use this prop to render the toggle as a child component",
-			},
-		]}
-		externalReference="https://www.radix-ui.com/primitives/docs/components/toggle#root"
-	/>
-</PropsTableWrapper>
+## API Reference
+
+### Toggle
+
+The primary interactive element that toggles between an on and off state.
+
+<PropsTable
+	data={[
+		{
+			name: "variant",
+			defaultValue: "outline",
+			values: ["ghost", "outline"],
+			required: false,
+			description: "Defines the visual style of the toggle",
+		},
+		{
+			name: "size",
+			defaultValue: "32",
+			values: ["28", "32", "36", "40", "44", "48"],
+			required: false,
+			description: "Sets the size of the toggle",
+		},
+		{
+			name: "pressed",
+			defaultValue: "undefined",
+			values: ["boolean"],
+			required: false,
+			description: "Controls the pressed state of the toggle",
+		},
+		{
+			name: "defaultPressed",
+			defaultValue: "false",
+			values: ["boolean"],
+			required: false,
+			description: "Sets the initial pressed state for an uncontrolled toggle",
+		},
+		{
+			name: "onPressedChange",
+			defaultValue: "-",
+			values: ["(pressed: boolean) => void"],
+			required: false,
+			description: "Callback fired when the pressed state changes",
+		},
+		{
+			name: "disabled",
+			defaultValue: "false",
+			values: ["boolean"],
+			required: false,
+			description: "Disables interaction with the toggle when set to true",
+		},
+		{
+			name: "asChild",
+			defaultValue: "false",
+			values: ["boolean"],
+			required: false,
+			description: "Use this prop to render the toggle as a child component",
+		},
+	]}
+/>

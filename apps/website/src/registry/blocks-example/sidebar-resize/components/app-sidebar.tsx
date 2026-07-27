@@ -14,8 +14,8 @@ import {
 	TvMinimal,
 	Users2,
 } from "lucide-react"
-import { Badge } from "@/registry/ui/badge"
-import { Input, InputWrapper } from "@/registry/ui/input"
+import { Badge } from "@/styles/default/ui/badge"
+import { Input, InputWrapper } from "@/styles/default/ui/input"
 import {
 	Sidebar,
 	SidebarCollapsible,
@@ -34,7 +34,7 @@ import {
 	SidebarMenuSub,
 	SidebarMenuSubItem,
 	SidebarSeparator,
-} from "@/registry/ui/sidebar"
+} from "@/styles/default/ui/sidebar"
 import { InfoCardExpanded } from "./info-card-expanded"
 import {
 	AcmeLogo,

@@ -1,15 +1,19 @@
 ---
 title: Dialog
-description: Focus user attention with overlaid interactive dialogs
+description: A responsive popup window that focuses user attention on a single task, form, or setting without leaving the page.
 links:
   github:
     href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/dialog.tsx
+  figma:
+    href: https://www.figma.com/design/ZB8gTZwafZOYY7rdJjSRz6/%E2%9D%96-Preview-%E2%9D%96-Radian-Design-System-%E2%9D%96-Version-0.3?node-id=18133-61441&t=V6eYQNGSpHNQ8XrH-11
   externalReference:
     - label: Radix UI
       href: https://www.radix-ui.com/primitives/docs/components/dialog
 ---
 
 <ComponentPreview path="dialog/dialog-preview" />
+
+---
 
 ## Installation
 
@@ -30,13 +34,15 @@ links:
 		npm install @radix-ui/react-dialog
 		```
     	<Step>Copy and paste the following code into your project.</Step>
-    	<ComponentSource name="dialog" title="components/ui/dialog.tsx" collapsible />
+    	<ComponentSource src="styles/default/ui/dialog.tsx" title="components/ui/dialog.tsx" collapsible />
 
     	<Step>Update the import paths as per your project structure.</Step>
     </Steps>
     </InstallTabsContent>
 
 </InstallationTabs>
+
+---
 
 ## Usage
 
@@ -83,73 +89,159 @@ import {
 
 ## Examples
 
-### Close Button - Hidden
+<ComponentPreview
+	title="Close Button - Hidden"
+	path="dialog/dialog-close-button-hidden"
+/>
 
-<ComponentPreview path="dialog/dialog-close-button-hidden" />
+<ComponentPreview
+	title="Backdrop - White Overlay"
+	path="dialog/dialog-backdrop-white-overlay"
+/>
 
-### Close Button - Hover
+<ComponentPreview title="Backdrop - Blur" path="dialog/dialog-backdrop-blur" />
 
-<ComponentPreview path="dialog/dialog-close-button-hover" />
+<ComponentPreview
+	title="Backdrop - Transparent"
+	path="dialog/dialog-backdrop-transparent"
+/>
 
-### Backdrop - Blur
+<ComponentPreview title="Destructive" path="dialog/dialog-destructive" />
 
-<ComponentPreview path="dialog/dialog-backdrop-blur" />
+<ComponentPreview
+	title="Radio Cards Dialog"
+	path="dialog/dialog-with-radio-cards"
+/>
 
-### Backdrop - Transparent
+<ComponentPreview
+	title="Dialog Without Divider"
+	path="dialog/dialog-without-divider"
+/>
 
-<ComponentPreview path="dialog/dialog-backdrop-transparent" />
-
-### Destructive
-
-<ComponentPreview path="dialog/dialog-destructive" />
-
-### With Form
-
-<ComponentPreview path="dialog/dialog-with-form" />
+<ComponentPreview title="With Form" path="dialog/dialog-with-form" />
 
 ---
 
-## Props
+<ComponentDocContent
+	name={"Dialog"}
+	description={
+		"A Dialog is a pop-up window that appears on top of the main page content to show important information or ask for a specific action. You can use it to create simple alerts or detailed forms that keep the user focused on a single task."
+	}
+	features={[
+		"Fully accessible out of the box: automatically traps focus within the modal, manages required ARIA roles, and handles Esc key dismissal.",
+		"Renders content intelligently in a React Portal to avoid z-index and overflow clipping issues from parent CSS containers.",
+		"Includes an animated backdrop overlay using Tailwind's animate-in and fade-in utilities for a polished, native feel.",
+		"Prevents body scrolling automatically when the dialog is open, ensuring users don't accidentally lose their place on the underlying page.",
+		"Highly composable architecture exporting modular pieces: <Dialog>, <DialogTrigger>, <DialogContent>, <DialogHeader>, <DialogFooter>, and <DialogTitle>.",
+	]}
+	related={[
+		{
+			title: "Alert Dialog",
+			description:
+				"Use this specialized, interruptive dialog specifically when the user must acknowledge critical or destructive actions (like deletions).",
+			href: "/docs/components/alert-dialog",
+		},
+		{
+			title: "Drawer",
+			description:
+				"A better, more ergonomic mobile alternative to a standard dialog, designed to slide up fluidly from the bottom of the screen.",
+			href: "/docs/components/drawer",
+		},
+		{
+			title: "Popover",
+			description:
+				"Ideal for displaying rich content in a smaller, non-modal overlay attached directly to a trigger element rather than centering on the screen.",
+			href: "/docs/components/popover",
+		},
+	]}
+	faqs={[
+		{
+			question:
+				"How do I prevent the dialog from closing when clicking the outside background?",
+			answer:
+				"By default, the dialog closes on outside clicks and Esc key presses. You can easily override this behavior by passing onPointerDownOutside={(e) => e.preventDefault()} directly to the <DialogContent> component, ensuring users must explicitly click a close button or submit your form to dismiss the modal.",
+		},
+		{
+			question: "Can I nest a dialog safely inside another dialog?",
+			answer:
+				"While the underlying Radix UI primitive technically supports this, nested modals almost always lead to confusing UX and cramped layouts on smaller screens. A better approach is usually to dynamically swap the content/components within a single open <DialogContent> wrapper, keeping the interface clean.",
+		},
+		{
+			question: "How do I control the maximum width of the dialog box?",
+			answer:
+				"You can adjust the width globally or per-instance by modifying the sm:max-w-[425px] class located directly on the <DialogContent> component. Because you own the source code, you can even create distinct size variants using CVA (e.g., sm, lg, xl) for different contextual use cases.",
+		},
+		{
+			question:
+				"Does the dialog automatically scroll if the content is too long?",
+			answer:
+				"The default Radian Dialog does not force internal scrolling. You can easily achieve this by adding a fixed height constraint (like max-h-[80vh]) and overflow-y-auto to the <DialogContent> classes. This ensures your body content scrolls while keeping your <DialogHeader> and <DialogFooter> cleanly sticky at the top and bottom.",
+		},
+		{
+			question:
+				"Why is my dialog content not animating correctly when it opens?",
+			answer:
+				"Dialog entrance and exit animations rely on properly mounting and unmounting the component from the DOM. Ensure your project configuration includes the necessary animation plugins or custom keyframes (like animate-in, zoom-in, and fade-in) that the Radian CLI automatically sets up during the initial workspace initialization.",
+		},
+	]}
+/>
 
-<PropsTableWrapper>
-	<PropsTable
-		title="Dialog"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/dialog#root"
-	/>
-	<PropsTable
-		title="DialogTrigger"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/dialog#trigger"
-	/>
-	<PropsTable
-		title="DialogContent"
-		data={[
-			{
-				name: "closeButton",
-				values: ["hidden", "visible", "hover"],
-				defaultValue: "hidden",
-				description: "Show the close button state",
-			},
-			{
-				name: "backdrop",
-				values: ["overlay", "blur", "transparent"],
-				defaultValue: "overlay",
-				description: "Show the backdrop state",
-			},
-		]}
-	/>
-	<PropsTable title="DialogHeader" />
-	<PropsTable
-		title="DialogTitle"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/dialog#title"
-	/>
-	<PropsTable
-		title="DialogDescription"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/dialog#description"
-	/>
-	<PropsTable title="DialogBody" />
-	<PropsTable title="DialogFooter" />
-	<PropsTable
-		title="DialogClose"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/dialog#close"
-	/>
-</PropsTableWrapper>
+## API Reference
+
+### Dialog
+
+Root component that manages the open state of the dialog and provides context to child components.
+
+    ### DialogTrigger
+
+An interactive element that opens the dialog when clicked.
+
+    ### DialogContent
+
+<PropsTable
+	data={[
+		{
+			name: "backdrop",
+			values: ["blackOverlay", "whiteOverlay", "blur", "transparent"],
+			defaultValue: "blackOverlay",
+			description: "Sets the visual style of the dialog backdrop overlay.",
+		},
+	]}
+/>
+
+    ### DialogHeader
+
+A structural container for the top section of the dialog, typically housing the title and description.
+
+    ### DialogTitle
+
+A semantic heading that establishes the primary subject of the dialog.
+
+<PropsTable
+	data={[
+		{
+			name: "closeButton",
+			required: false,
+			defaultValue: "true",
+			values: ["boolean"],
+			description:
+				"When true, a close button will be rendered in the top right corner of the dialog.",
+		},
+	]}
+/>
+
+    ### DialogDescription
+
+A text container providing supplementary context or details below the dialog title.
+
+    ### DialogBody
+
+The primary scrollable content area within the dialog.
+
+    ### DialogFooter
+
+A structural container for the bottom section of the dialog, typically used for action buttons.
+
+    ### DialogClose
+
+An interactive element that dismisses and closes the dialog when clicked.

@@ -9,8 +9,8 @@ const ToastColor = () => {
 	return (
 		<div className="flex items-center justify-center gap-4">
 			<Button
-				variant="soft"
-				color="primary"
+				variant="outline"
+				color="neutral"
 				onClick={() =>
 					toast.custom((t) => (
 						<div className="bg-elevation-level1 border-border flex w-[416px] items-center justify-between gap-2 rounded-lg border px-3 py-2.5">
@@ -41,30 +41,30 @@ const ToastColor = () => {
 			</Button>
 
 			<Button
-				variant="strong"
-				color="primary"
+				variant="outline"
+				color="neutral"
 				onClick={() =>
 					toast.custom((t) => (
-						<div className="bg-primary flex w-[416px] items-center justify-between gap-2 rounded-lg px-3 py-2.5">
-							<Box size={20} className="text-white" />
-							<div className="text-white">
+						<div className="bg-primary text-primary-fg flex w-[416px] items-center justify-between gap-2 rounded-lg px-3 py-2.5">
+							<Box size={20} className="text-primary-fg" />
+							<div className="text-primary-fg">
 								<p className="text-sm font-medium">Toast Title</p>
 								<p className="text-sm font-normal">
 									Toast description message.
 								</p>
 							</div>
 							<div className="flex gap-3">
-								<Button className="text-white" variant="link">
+								<Button className="text-primary-fg" variant="link">
 									Learn More
 								</Button>
-								<Button className="text-white" variant="link">
+								<Button className="text-primary-fg" variant="link">
 									Upgrade
 								</Button>
 							</div>
 							<XIcon
 								onClick={() => toast.dismiss(t)}
 								size={16}
-								className="cursor-pointer text-white"
+								className="text-primary-fg cursor-pointer"
 							/>
 						</div>
 					))
@@ -74,7 +74,7 @@ const ToastColor = () => {
 
 			<Button
 				variant="outline"
-				color="primary"
+				color="neutral"
 				onClick={() =>
 					toast.custom((t) => (
 						<div className="bg-black-inverse text-fg-inverse flex w-[416px] items-center justify-between gap-2 rounded-lg px-3 py-2.5">

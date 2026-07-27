@@ -1,9 +1,11 @@
 ---
 title: Calendar
-description: Display and select dates with interactive calendar + Select dates from a calendar
+description: An easy-to-use visual calendar for picking dates, scheduling, and managing simple custom time frames.
 links:
   github:
     href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/calendar.tsx
+  figma:
+    href: https://www.figma.com/design/ZB8gTZwafZOYY7rdJjSRz6/%E2%9D%96-Preview-%E2%9D%96-Radian-Design-System-%E2%9D%96-Version-0.3?node-id=18133-51618&t=V6eYQNGSpHNQ8XrH-11
   externalReference:
     - label: React DayPicker
       href: https://daypicker.dev/
@@ -11,6 +13,8 @@ links:
 ---
 
 <ComponentPreview path="calendar/calendar-preview" />
+
+---
 
 ## Installation
 
@@ -31,13 +35,15 @@ links:
 		npm install react-day-picker
 		```
     	<Step>Copy and paste the following code into your project.</Step>
-    	<ComponentSource name="calendar" title="components/ui/calendar.tsx" collapsible />
+    	<ComponentSource src="styles/default/ui/calendar.tsx" title="components/ui/calendar.tsx" collapsible />
 
     	<Step>Update the import paths as per your project structure.</Step>
     </Steps>
     </InstallTabsContent>
 
 </InstallationTabs>
+
+---
 
 ## Usage
 
@@ -57,33 +63,37 @@ import { Calendar } from "@/components/ui/calendar"
 
 ## Examples
 
-### With Quickview Presets
+<ComponentPreview
+	title="With Quickview Presets"
+	path="calendar/quick-selection-preview"
+/>
 
-<ComponentPreview path="calendar/quick-selection-preview" />
+<ComponentPreview
+	title="With Time Picker"
+	path="calendar/time-picker-calendar-preview"
+/>
 
-### With Time Picker
+<ComponentPreview
+	title="Double Calendar"
+	path="calendar/multiple-months-calendar-example"
+/>
 
-<ComponentPreview path="calendar/time-picker-calendar-preview" />
+<ComponentPreview title="With Footer" path="calendar/calendar-footer-preview" />
 
-### Double Calendar
+<ComponentPreview
+	title="Year and Month Selector"
+	path="calendar/calendar-year-month-selector-example"
+/>
 
-<ComponentPreview path="calendar/multiple-months-calendar-example" />
+<ComponentPreview
+	title="Manual Time Input"
+	path="calendar/calendar-time-input"
+/>
 
-### With Footer
-
-<ComponentPreview path="calendar/calendar-footer-preview" />
-
-### Year and Month Selector
-
-<ComponentPreview path="calendar/calendar-year-month-selector-example" />
-
-### Manual Time Input
-
-<ComponentPreview path="calendar/calendar-time-input" />
-
-### Scrollable Time & Availability status
-
-<ComponentPreview path="calendar/calendar-scrollable-time" />
+<ComponentPreview
+	title="Scrollable Time & Availability status"
+	path="calendar/calendar-scrollable-time"
+/>
 
 <br />
 The Calendar is built on top of `react-day-picker`. For more details, refer to
@@ -91,11 +101,72 @@ the [official documentation](https://daypicker.dev/api).
 
 ---
 
-## Props
+<ComponentDocContent
+	name={"Calendar"}
+	description={
+		"The Calendar is an interactive tool that lets users easily pick dates. It handles the complicated math and accessibility requirements behind the scenes, while giving you full control over the visual style. Use this component to help users easily select a single date or date range in forms and scheduling interfaces."
+	}
+	features={[
+		"Fully supports single date, multiple date, and date range selection modes out of the box.",
+		"Accessible keyboard navigation, allowing users to traverse months and days seamlessly using arrow keys.",
+		"Extensive styling map via Tailwind CSS classes applied directly to react-day-picker's internal classNames prop.",
+		"Easy integration with external date libraries like date-fns for robust date formatting and localized language support.",
+		"Exposes custom components for the navigation arrows, allowing effortless integration with Lucide React or custom SVG icons.",
+	]}
+	related={[
+		{
+			title: "Date Picker",
+			description:
+				"The Calendar is almost always combined with a Popover and an Input to create a fully functioning Date Picker for forms.",
+			href: "/docs/components/date-picker",
+		},
+		{
+			title: "Popover",
+			description:
+				"Used to house the Calendar in a floating, absolute-positioned overlay, keeping the primary form UI clean until interaction.",
+			href: "/docs/components/popover",
+		},
+		{
+			title: "Select",
+			description:
+				"Often paired with the Calendar to allow users to quickly jump between months and years without clicking arrows repeatedly.",
+			href: "/docs/components/select",
+		},
+	]}
+	faqs={[
+		{
+			question: "How do I disable specific dates or weekends?",
+			answer:
+				"The component inherits all native props from react-day-picker. You can pass the disabled prop, providing an array of specific dates, a date range object, or a custom matcher function (like checking if a day is a Saturday or Sunday) to prevent selection.",
+		},
+		{
+			question:
+				"Can I allow users to select a date range instead of a single day?",
+			answer:
+				'Yes, by setting the mode="range" prop on the Calendar component. You will also need to update your React state hook to handle an object containing from and to dates rather than a standard single Date object.',
+		},
+		{
+			question: "How do I change the language or locale of the calendar?",
+			answer:
+				"You can pass the locale prop, typically imported from date-fns/locale (e.g., import { es } from 'date-fns/locale'). This will automatically translate the month names and weekdays to your target language while respecting regional start-of-week preferences.",
+		},
+		{
+			question: "How do I customize the appearance of the selected day?",
+			answer:
+				"Open your calendar.tsx file and locate the classNames object passed to the DayPicker primitive. Modify the day_selected key to apply your desired Tailwind classes, such as bg-primary text-primary-foreground hover:bg-primary/90. Since we are using Tailwind v4, you can directly utilize CSS variables or the global theme without external config files.",
+		},
+		{
+			question: "Why are the navigation arrows not perfectly aligned?",
+			answer:
+				"The component relies on standard flexbox layouts and Lucide icons. If you changed the default icon size or adjusted the padding inside the components map for IconLeft and IconRight, you may need to tweak the flex alignments in the nav_button class configuration to re-center them.",
+		},
+	]}
+/>
 
-<PropsTableWrapper>
-	<PropsTable
-		title="Calendar"
-		externalReference="https://daypicker.dev/api/type-aliases/DayPickerProps"
-	/>
-</PropsTableWrapper>
+## API Reference
+
+This component is built on top of [react-day-picker](https://react-day-picker.js.org/). For advanced usage and additional props, please refer to their official documentation.
+
+### Calendar
+
+A calendar component for date selection.

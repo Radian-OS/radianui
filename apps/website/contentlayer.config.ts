@@ -24,6 +24,13 @@ const GithubLink = defineNestedType(() => ({
 	},
 }))
 
+const FigmaLink = defineNestedType(() => ({
+	name: "FigmaLink",
+	fields: {
+		href: { type: "string", required: true },
+	},
+}))
+
 const ExternalReferenceLink = defineNestedType(() => ({
 	name: "ExternalReferenceLink",
 	fields: {
@@ -37,6 +44,7 @@ const LinksField = defineNestedType(() => ({
 	name: "LinksField",
 	fields: {
 		github: { type: "nested", of: GithubLink, required: false },
+		figma: { type: "nested", of: FigmaLink, required: false },
 		externalReference: {
 			type: "list",
 			of: ExternalReferenceLink,
@@ -145,9 +153,18 @@ export const Blog = defineDocumentType(() => ({
 	},
 }))
 
+export const Changelog = defineDocumentType(() => ({
+	name: "Changelog",
+	filePathPattern: `changelog/**/*.mdx`,
+	contentType: "mdx",
+	fields: {
+		date: { type: "date", required: true },
+	},
+}))
+
 export default makeSource({
 	contentDirPath: "./src/content",
-	documentTypes: [Doc, Blog],
+	documentTypes: [Doc, Blog, Changelog],
 	disableImportAliasWarning: true,
 	mdx: {
 		remarkPlugins: [remarkGfm],

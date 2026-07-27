@@ -1,12 +1,16 @@
 ---
 title: Banner
-description: Banner Description
+description: Eye-catching notice bars fixed to the top of the page for major announcements or website-wide news.
 links:
   github:
     href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/banner.tsx
+  figma:
+    href: https://www.figma.com/design/ZB8gTZwafZOYY7rdJjSRz6/%E2%9D%96-Preview-%E2%9D%96-Radian-Design-System-%E2%9D%96-Version-0.3?node-id=18133-42102&t=V6eYQNGSpHNQ8XrH-11
 ---
 
 <ComponentPreview path="banner/banner-example-preview" />
+
+---
 
 ## Installation
 
@@ -23,13 +27,15 @@ links:
 	<InstallTabsContent value="manual" className="p-0">
 	<Steps>
     	<Step>Copy and paste the following code into your project.</Step>
-    	<ComponentSource name="banner" title="components/ui/banner.tsx" collapsible />
+    	<ComponentSource src="styles/default/ui/banner.tsx" title="components/ui/banner.tsx" collapsible />
 
     	<Step>Update the import paths as per your project structure.</Step>
     </Steps>
     </InstallTabsContent>
 
 </InstallationTabs>
+
+---
 
 ## Usage
 
@@ -68,64 +74,130 @@ import {
 
 ## Examples
 
-### Variants
+<ComponentPreview title="Variants" path="banner/banner-variants-example" />
 
-<ComponentPreview path="banner/banner-variants-example" />
+<ComponentPreview title="Colors" path="banner/banner-color-example" />
 
-### Colors
+<ComponentPreview title="Primary Banner" path="banner/banner-primary-example" />
 
-<ComponentPreview path="banner/banner-color-example" />
+<ComponentPreview title="Success Banner" path="banner/banner-success-example" />
 
-### Primary Banner
+<ComponentPreview title="Error Banner" path="banner/banner-error-example" />
 
-<ComponentPreview path="banner/banner-primary-example" />
+<ComponentPreview
+	title="Floating Banner"
+	path="banner/banner-floating-example"
+/>
 
-### Success Banner
-
-<ComponentPreview path="banner/banner-success-example" />
-
-### Error Banner
-
-<ComponentPreview path="banner/banner-error-example" />
-
-### Floating Banner
-
-<ComponentPreview path="banner/banner-floating-example" />
-
-### Black Friday Banner
-
-<ComponentPreview path="banner/banner-black-friday-example" />
+<ComponentPreview
+	title="Black Friday Banner"
+	path="banner/banner-black-friday-example"
+/>
 
 ---
 
-## Props
+<ComponentDocContent
+	name={"Banner"}
+	description={
+		"A banner is a bar at the top or bottom of a screen that shows important messages to visitors. Use a banner to display site-wide announcements like promotions or maintenance alerts."
+	}
+	features={[
+		"Designed to span the full viewport width by default using standard w-full flexbox layouts.",
+		"Includes an optional dismiss action pre-configured with a Lucide React X icon for efficient state management.",
+		"Supports semantic styling variants via CVA (such as default, warning, and destructive) to communicate the appropriate urgency level.",
+		"Structurally un-opinionated, making it trivial to configure as a sticky or fixed element at the top or bottom of the screen.",
+		'Engineered for accessibility, utilizing role="status" or role="alert" based on notification priority.',
+	]}
+	related={[
+		{
+			title: "Alert",
+			description:
+				"Use an Alert when the message needs to be embedded directly within a specific content flow (like a form error) rather than spanning the full viewport.",
+			href: "/docs/components/alert",
+		},
+		{
+			title: "Sonner (Toast)",
+			description:
+				'Ideal for transient, user-triggered notifications (like "Profile saved") rather than persistent sitewide announcements.',
+			href: "/docs/components/sonner",
+		},
+	]}
+	faqs={[
+		{
+			question: "How do I make the banner sticky at the top of the page?",
+			answer:
+				"Since the component source is fully owned in your project, you can apply sticky top-0 z-50 utility classes to the root wrapper. This ensures the banner remains persistent at the top of the viewport during page scroll.",
+		},
+		{
+			question: "Can I allow users to permanently dismiss the banner?",
+			answer:
+				"Yes. The dismiss button's onClick handler can be integrated with React state or persistent storage like localStorage. Direct ownership of the code allows for conditional rendering based on these user preferences.",
+		},
+		{
+			question: "Is this different from the Alert component?",
+			answer:
+				"Yes. While visually similar, an Alert is typically nested within content containers. The Banner is optimized for edge-to-edge layout, featuring centered typography and full-bleed background utilities.",
+		},
+		{
+			question: "How can I animate the banner sliding into view?",
+			answer:
+				"You can leverage modern utility-first animations by applying animate-in slide-in-from-top directly to the Banner wrapper, providing a smooth transition when the notification is triggered.",
+		},
+		{
+			question: "Does the banner support inline action buttons?",
+			answer:
+				"Yes. The Banner utilizes standard flexbox utilities (flex justify-between items-center). This architecture facilitates nesting additional interactive elements, such as a Radian Button or links, alongside the primary message.",
+		},
+	]}
+/>
 
-<PropsTableWrapper>
-	<PropsTable
-		title="Banner"
-		data={[
-			{
-				name: "variant",
-				values: ["strong", "outline", "soft", "soft-outline"],
-				required: false,
-				description: "Sets the variant of the banner",
-				defaultValue: "soft",
-			},
-			{
-				name: "color",
-				defaultValue: "primary",
-				values: ["primary", "neutral", "success", "warning", "error", "info"],
-				required: false,
-				description: "Sets the color of the banner",
-			},
-			{
-				name: "onClose",
-				values: ["() => void"],
-				required: false,
-				description:
-					"Callback function when banner is closed. If provided, close button will be rendered",
-				defaultValue: "undefined",
-			},
-		]}
-	/>
-</PropsTableWrapper>
+## API Reference
+
+This is a custom component, not a Radix UI wrapper.
+
+### Banner
+
+The root container that groups all banner sub-components and controls the shared size and shape.
+
+<PropsTable
+	data={[
+		{
+			name: "variant",
+			values: ["strong", "outline", "soft", "soft-outline"],
+			required: false,
+			description: "Sets the variant of the banner",
+			defaultValue: "soft",
+		},
+		{
+			name: "color",
+			defaultValue: "primary",
+			values: ["primary", "neutral", "success", "warning", "error", "info"],
+			required: false,
+			description: "Sets the color of the banner",
+		},
+		{
+			name: "onClose",
+			values: ["() => void"],
+			required: false,
+			description:
+				"Callback function when banner is closed. If provided, close button will be rendered",
+			defaultValue: "undefined",
+		},
+	]}
+/>
+
+### BannerContent
+
+The main container that groups the icon, title, and description text within the banner.
+
+### BannerIcon
+
+A wrapper for displaying visual indicators or SVG icons alongside the banner message.
+
+### BannerTitle
+
+A semantic heading that displays the main title or subject of the banner.
+
+### BannerDescription
+
+A text container for displaying the primary message or description of the banner.

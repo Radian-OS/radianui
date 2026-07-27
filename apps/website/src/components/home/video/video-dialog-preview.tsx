@@ -73,10 +73,10 @@ export default function VideoDialogPreview() {
 					ref={triggerRef}
 					type="button"
 					aria-label="Play Radian OS demo"
-					className="border-soft bg-bg z-20 w-full max-w-[1440px] cursor-pointer appearance-none rounded-2xl border-0 p-0 text-left sm:border sm:p-3">
+					className="border-soft bg-bg/60 z-20 max-h-[840px] w-full max-w-[1400px] cursor-pointer appearance-none rounded-2xl border-0 p-0 text-left backdrop-blur-[45px] sm:border sm:p-3">
 					<AspectRatio
 						ratio={16 / 9}
-						className="bg-bg border-soft overflow-hidden rounded-2xl border">
+						className="bg-bg border-soft max-h-[840px] overflow-hidden rounded-2xl border">
 						<video
 							ref={backgroundVideoRef}
 							loop
@@ -99,19 +99,16 @@ export default function VideoDialogPreview() {
 			</DialogTrigger>
 
 			{/* Dialog Content */}
-			<DialogContent
-				backdrop="overlay"
-				className="mx-auto max-w-[1440px] overflow-hidden p-0">
+			<DialogContent className="mx-auto max-h-[90dvh] w-[calc(100vw-1rem)] max-w-[calc(100vw-1rem)] overflow-hidden p-0 sm:w-[90vw] sm:max-w-[90vw]">
 				<DialogHeader className="sr-only">
 					<DialogTitle>Radian OS demo</DialogTitle>
 					<DialogDescription>Watch the Radian OS demo video.</DialogDescription>
 				</DialogHeader>
 
 				<DialogBody className="p-0">
-					<div className="relative h-0 w-full pb-[56.25%]">
-						{/* 16:9 */}
+					<div className="relative aspect-video w-full">
 						<iframe
-							className="absolute left-0 top-0 h-full w-full rounded-lg"
+							className="absolute inset-0 h-full w-full rounded-lg"
 							referrerPolicy="strict-origin-when-cross-origin"
 							src="https://www.youtube.com/embed/XeYZ6IauaMc?si=mzZLOA22F9MOSAyP"
 							title="Radian OS Demo"

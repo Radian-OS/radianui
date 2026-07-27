@@ -10,28 +10,28 @@ export default function ToggleGroupVertical() {
 				spacing={1}
 				defaultValue={["wifi", "bluetooth"]}>
 				<ToggleGroupItem value="wifi" aria-label="Wi-Fi" className="w-full">
-					<Wifi />
+					<Wifi className="text-fg-secondary" />
 					Wi-Fi
 				</ToggleGroupItem>
 				<ToggleGroupItem
 					value="bluetooth"
 					aria-label="Bluetooth"
 					className="w-full">
-					<Bluetooth />
+					<Bluetooth className="text-fg-secondary" />
 					Bluetooth
 				</ToggleGroupItem>
 				<ToggleGroupItem
 					value="airplane"
 					aria-label="Airplane Mode"
 					className="w-full">
-					<Plane />
+					<Plane className="text-fg-secondary" />
 					Airplane Mode
 				</ToggleGroupItem>
 				<ToggleGroupItem
 					value="location"
 					aria-label="Location"
 					className="w-full">
-					<MapPin />
+					<MapPin className="text-fg-secondary" />
 					Location
 				</ToggleGroupItem>
 			</ToggleGroup>

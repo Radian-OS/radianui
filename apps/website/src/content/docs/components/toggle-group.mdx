@@ -1,6 +1,6 @@
 ---
 title: Toggle Group
-description: A group of toggle buttons that can be used to select multiple options.
+description: A row of linked buttons used to manage text alignment or select multiple options from a small group.
 links:
   github:
     href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/toggle.tsx
@@ -10,6 +10,8 @@ links:
 ---
 
 <ComponentPreview path="toggle-group/toggle-group-preview" />
+
+---
 
 ## Installation
 
@@ -38,6 +40,8 @@ links:
 
 </InstallationTabs>
 
+---
+
 ## Usage
 
 ### Imports
@@ -60,71 +64,138 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
 
 ## Examples
 
-### Outline Variant
+<ComponentPreview
+	title="Outline Variant"
+	path="toggle-group/toggle-group-outline-variant"
+/>
 
-<ComponentPreview path="toggle-group/toggle-group-outline-variant" />
+<ComponentPreview
+	title="Ghost Variant"
+	path="toggle-group/toggle-group-ghost-variant"
+/>
 
-### Ghost Variant
+<ComponentPreview
+	title="Custom Spacing"
+	path="toggle-group/toggle-group-spacing"
+/>
 
-<ComponentPreview path="toggle-group/toggle-group-ghost-variant" />
+<ComponentPreview
+	title="Vertical Toggle Group"
+	path="toggle-group/toggle-group-vertical"
+/>
 
-### Custom Spacing
-
-<ComponentPreview path="toggle-group/toggle-group-spacing" />
-
-### Vertical Toggle Group
-
-<ComponentPreview path="toggle-group/toggle-group-vertical" />
-
-### Disabled State
-
-<ComponentPreview path="toggle-group/toggle-group-disabled" />
+<ComponentPreview
+	title="Disabled State"
+	path="toggle-group/toggle-group-disabled"
+/>
 
 ---
 
-## Props
+<ComponentDocContent
+	name={"Toggle Group"}
+	description={
+		"Toggle Group lets users select one or multiple options from a group of toggle buttons. It provides keyboard accessibility, proper grouping behavior, and customizable styles for controls like text alignment, filters, and formatting options."
+	}
+	features={[
+		"@radix-ui/react-toggle-group, ensures strict ARIA compliance with correct group role management and arrow-key focus roaming.",
+		"Exposes a highly composable API: <ToggleGroup> (root) and <ToggleGroupItem> (individual toggles).",
+		'Natively supports type="single" (mutually exclusive) or type="multiple" (multi-select) selection modes, making it trivial to configure complex filtering behaviors.',
+		"Effortlessly styled with Tailwind CSS, utilizing the data-[state=on] modifier on the child items to highlight active selections.",
+		"Unopinionated structural foundation; perfect for building anything from simple button bars to complex, icon-heavy toolbars.",
+	]}
+	related={[
+		{
+			title: "Toggle",
+			description:
+				"The individual building block of the group. If you only need one binary switch, use a standalone Toggle.",
+			href: "/docs/components/toggle",
+		},
+		{
+			title: "Radio Group",
+			description:
+				"Use a Radio Group for standard form inputs (where labels are important). Use a Toggle Group for visual toolbars or action-oriented interfaces.",
+			href: "/docs/components/radio-group",
+		},
+		{
+			title: "Button",
+			description:
+				"The core aesthetic. A Toggle Group essentially manages a row of persistent-pressed buttons.",
+			href: "/docs/components/button",
+		},
+	]}
+	faqs={[
+		{
+			question: "How do I choose between single and multiple selection?",
+			answer:
+				'You pass the type prop (either type="single" or type="multiple") to the root <ToggleGroup> component. If set to single, it acts like a Radio Group (one selection only). If multiple, it allows any combination of items to be active.',
+		},
+		{
+			question: "How do I manage the active items?",
+			answer:
+				'You manage the value in your parent state. For type="single", you pass a single string to the value prop. For type="multiple", you pass an array of strings (e.g., value={["bold", "italic"]}) to the value prop.',
+		},
+		{
+			question: "How do I integrate this with React Hook Form?",
+			answer:
+				"Wrap the <ToggleGroup> in an RHF <Controller>. Map the onValueChange primitive callback directly to the field.onChange handler, which will receive either the string or array of strings, ensuring perfect synchronization with your form state.",
+		},
+		{
+			question:
+				'Can I force an item to be required (i.e., not allow "all off")?',
+			answer:
+				"Yes. Radix allows you to pass a rovingFocus={true} and manage the onValueChange event to prevent a deselection if you want to enforce that at least one option must always be active.",
+		},
+		{
+			question: "How do I style the group as a single button bar?",
+			answer:
+				'You can apply standard Tailwind layout classes like inline-flex rounded-md border p-1 to the root <ToggleGroup> component. By applying border-r to the items and removing it from the last item, you can create a seamless, cohesive "segmented control" or "button bar" look.',
+		},
+	]}
+/>
 
-<PropsTableWrapper>
-	<PropsTable
-		title="ToggleGroup"
-		data={[
-			{
-				name: "variant",
-				defaultValue: "outline",
-				values: ["ghost", "outline"],
-				required: false,
-				description: "Defines the visual style of the toggle-group",
-			},
-			{
-				name: "size",
-				defaultValue: "36",
-				values: ["28", "32", "36", "40", "44", "48"],
-				required: false,
-				description: "Sets the size of the toggle",
-			},
-			{
-				name: "disabled",
-				defaultValue: "false",
-				values: ["boolean"],
-				required: false,
-				description:
-					"Disables interaction with the toggle-group when set to true",
-			},
-			{
-				name: "orientation",
-				defaultValue: "horizontal",
-				values: ["horizontal", "vertical"],
-				required: false,
-				description: "Defines the orientation of the toggle-group",
-			},
-			{
-				name: "spacing",
-				defaultValue: "0",
-				values: ["integer"],
-				required: false,
-				description: "Defines the spacing between toggle items in the group",
-			},
-		]}
-		externalReference="https://www.radix-ui.com/primitives/docs/components/toggle-group#root"
-	/>
-</PropsTableWrapper>
+## API Reference
+
+### ToggleGroup
+
+The root container that manages a set of mutually exclusive or multi-select toggle items.
+
+<PropsTable
+	data={[
+		{
+			name: "variant",
+			defaultValue: "outline",
+			values: ["ghost", "outline"],
+			required: false,
+			description: "Defines the visual style of the toggle-group",
+		},
+		{
+			name: "size",
+			defaultValue: "36",
+			values: ["28", "32", "36", "40", "44", "48"],
+			required: false,
+			description: "Sets the size of the toggle",
+		},
+		{
+			name: "disabled",
+			defaultValue: "false",
+			values: ["boolean"],
+			required: false,
+			description:
+				"Disables interaction with the toggle-group when set to true",
+		},
+		{
+			name: "orientation",
+			defaultValue: "horizontal",
+			values: ["horizontal", "vertical"],
+			required: false,
+			description: "Defines the orientation of the toggle-group",
+		},
+		{
+			name: "spacing",
+			defaultValue: "0",
+			values: ["integer"],
+			required: false,
+			description: "Defines the spacing between toggle items in the group",
+		},
+	]}
+/>

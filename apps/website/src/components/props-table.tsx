@@ -1,9 +1,12 @@
 import React, { HTMLAttributes } from "react"
-import { Box, ExternalLink, Info } from "lucide-react"
-import Link from "next/link"
+import { Info } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { Badge } from "@/registry/ui/badge"
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/registry/ui/tooltip"
+import { Badge } from "@/styles/default/ui/badge"
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipTrigger,
+} from "@/styles/default/ui/tooltip"
 
 export type PropsData = {
 	name: string
@@ -82,7 +85,7 @@ export const TableCell = ({
 	...props
 }: HTMLAttributes<HTMLTableCellElement> & { colSpan?: number }) => (
 	<td
-		className={cn("px-2 py-3 text-sm", className)}
+		className={cn("px-3 py-2.5 text-sm", className)}
 		colSpan={colSpan}
 		{...props}>
 		{children}
@@ -97,97 +100,51 @@ export const DescriptionTooltip = ({
 	return (
 		<Tooltip>
 			<TooltipTrigger asChild>
-				<Info className="text-primary size-4" />
+				<Info className="text-primary-border size-4" />
 			</TooltipTrigger>
 			<TooltipContent className="text-wrap">{description}</TooltipContent>
 		</Tooltip>
 	)
 }
 
-export const PropsTable = ({
-	title,
-	data,
-	externalReference,
-}: {
-	title?: string
-	data: PropsData[]
-	externalReference?: string
-}) => {
+export const PropsTable = ({ data }: { data: PropsData[] }) => {
 	return (
-		<div className="flex flex-col gap-2">
-			<div className="flex items-center gap-2 p-2">
-				<span className="text-fg-tertiary bg-bg rounded-md p-1">
-					<Box size={16} />
-				</span>
-				<span className="text-fg-secondary text-sm font-medium">{`<${title}>`}</span>
-			</div>
-			<Table>
-				<TableHeader>
-					<TableRow className="bg-bg">
-						<TableHead className="w-[200px]">Name</TableHead>
-						<TableHead className="w-[140px]">Default</TableHead>
-						<TableHead>Values</TableHead>
-					</TableRow>
-				</TableHeader>
-				<TableBody className="[&>tr:nth-child(odd)]:bg-fill1 [&>tr:nth-child(even)]:bg-bg">
-					{data?.map((prop) => (
-						<TableRow key={prop.name}>
-							<TableCell className="w-[200px]">
-								<span className="flex items-center gap-2 whitespace-nowrap">
-									<DescriptionTooltip description={prop.description} />
-									{prop.name}
-									{prop.required && (
-										<span className="text-primary ml-1">*</span>
-									)}
-								</span>
-							</TableCell>
-							<TableCell className="w-[140px]">
-								<Badge variant="soft" size="20">
-									{prop.defaultValue ?? "-"}
-								</Badge>
-							</TableCell>
+		<Table className="mt-3">
+			<TableHeader>
+				<TableRow className="bg-fill1 text-fg">
+					<TableHead className="w-[200px]">Prop</TableHead>
+					<TableHead className="w-[140px]">Default</TableHead>
+					<TableHead>Values</TableHead>
+				</TableRow>
+			</TableHeader>
+			<TableBody className="bg-bg [&>tr:not(:last-child)>td]:border-soft [&>tr:not(:last-child)>td]:border-b">
+				{data?.map((prop) => (
+					<TableRow key={prop.name}>
+						<TableCell className="w-[200px]">
+							<span className="text-fg flex items-center gap-2 whitespace-nowrap">
+								<DescriptionTooltip description={prop.description} />
+								{prop.name}
+								{prop.required && <span className="text-primary ml-1">*</span>}
+							</span>
+						</TableCell>
+						<TableCell className="w-[140px]">
+							<Badge variant="strong" color="neutral" size="20">
+								{prop.defaultValue ?? "-"}
+							</Badge>
+						</TableCell>
 
-							<TableCell className="grow">
-								<span className="flex flex-wrap gap-1">
-									{prop.values?.map((value) => (
-										<Badge
-											key={value}
-											variant="outline"
-											color="neutral"
-											size="20">
-											{value}
-										</Badge>
-									))}
-								</span>
-							</TableCell>
-						</TableRow>
-					))}
-					{externalReference && (
-						<TableRow>
-							<TableCell className="max-w-[150px]">
-								<Link
-									href={externalReference}
-									className="text-primary-text flex items-center gap-2 text-sm font-medium hover:underline"
-									target="_blank"
-									rel="noopener noreferrer">
-									<ExternalLink size={16} />
-									<span className="flex-1">External Reference</span>
-								</Link>
-							</TableCell>
-							<TableCell className="max-w-[120px]">
-								<Badge variant="soft" size="20">
-									-
-								</Badge>
-							</TableCell>
-							<TableCell>
-								<Badge variant="outline" color="neutral" size="20">
-									-
-								</Badge>
-							</TableCell>
-						</TableRow>
-					)}
-				</TableBody>
-			</Table>
-		</div>
+						<TableCell className="grow">
+							<span className="flex flex-wrap gap-1">
+								{prop.values?.map((value) => (
+									<Badge key={value} variant="soft" color="neutral" size="20">
+										{value}
+									</Badge>
+								))}
+							</span>
+						</TableCell>
+					</TableRow>
+				))}
+			</TableBody>
+		</Table>
 	)
 }

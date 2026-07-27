@@ -36,8 +36,8 @@ const AlertWarningExample = () => {
 				<AlertContent>
 					<AlertTitle>Storage Almost Full</AlertTitle>
 					<AlertDescription>
-						You’ve used 95% of your available storage space. Upgrade to get more
-						storage
+						You&apos;ve used 95% of your available storage space. Upgrade to get
+						more storage
 					</AlertDescription>
 					<section className="flex items-center pt-2">
 						<Button color="warning" variant="link">

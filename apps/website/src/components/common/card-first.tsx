@@ -1,7 +1,7 @@
 import React from "react"
-import { Avatar, AvatarFallback } from "@/registry/ui/avatar"
-import { Badge } from "@/registry/ui/badge"
-import { Button } from "@/registry/ui/button"
+import { Avatar, AvatarFallback } from "@/styles/default/ui/avatar"
+import { Badge } from "@/styles/default/ui/badge"
+import { Button } from "@/styles/default/ui/button"
 
 const CardFirst = () => {
 	return (
@@ -11,7 +11,7 @@ const CardFirst = () => {
 				<Avatar className="border-bg border-4" size="64" rounded="circle">
 					<AvatarFallback>NM</AvatarFallback>
 				</Avatar>
-				<Badge size="20" variant="outline" color="neutral">
+				<Badge size="20" variant="outline" color="primary">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						width="15"
@@ -39,7 +39,7 @@ const CardFirst = () => {
 					</p>
 				</span>
 				<div className="flex gap-2">
-					<Button variant="outline" color="neutral" className="w-full">
+					<Button variant="outline" color="primary" className="w-full">
 						Message
 					</Button>
 					<Button className="w-full">Add Friend</Button>

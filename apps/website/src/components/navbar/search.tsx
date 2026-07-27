@@ -3,21 +3,21 @@
 import { useCallback, useEffect, useRef, useState } from "react"
 import { Search } from "lucide-react"
 import { navigationItems } from "@/config/navigation-config"
-import { Badge } from "@/registry/ui/badge"
-import { Button, IconButton } from "@/registry/ui/button"
+import { Badge } from "@/styles/default/ui/badge"
+import { Button, IconButton } from "@/styles/default/ui/button"
 import {
 	Dialog,
 	DialogContent,
 	DialogTitle,
 	DialogTrigger,
-} from "@/registry/ui/dialog"
+} from "@/styles/default/ui/dialog"
 import {
 	Drawer,
 	DrawerContent,
 	DrawerHeader,
 	DrawerTitle,
 	DrawerTrigger,
-} from "@/registry/ui/drawer"
+} from "@/styles/default/ui/drawer"
 import SearchCommand from "../search-command"
 
 export function SearchDocs() {
@@ -161,10 +161,10 @@ export function SearchDocs() {
 						</Badge>
 					</Button>
 				</DialogTrigger>
-				<DialogContent
-					closeButton="hidden"
-					className="h-150 w-125 bg-fill3 border-alpha gap-0 rounded-2xl border p-1">
-					<DialogTitle className="hidden">Command Search</DialogTitle>
+				<DialogContent className="h-150 w-125 bg-fill3 border-alpha gap-0 rounded-2xl border p-1">
+					<DialogTitle closeButton={false} className="hidden">
+						Command Search
+					</DialogTitle>
 					<SearchCommand {...searchCommandProps} />
 				</DialogContent>
 			</Dialog>

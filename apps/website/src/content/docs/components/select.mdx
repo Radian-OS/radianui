@@ -1,15 +1,19 @@
 ---
 title: Select
-description: Display a collapsible list of options and allows a user to select
+description: A clean and stylized dropdown selection menu to replace ugly, default browser input lists.
 links:
   github:
     href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/select.tsx
+  figma:
+    href: https://www.figma.com/design/ZB8gTZwafZOYY7rdJjSRz6/%E2%9D%96-Preview-%E2%9D%96-Radian-Design-System-%E2%9D%96-Version-0.3?node-id=18133-87953&t=V6eYQNGSpHNQ8XrH-11
   externalReference:
     - label: Radix UI
       href: https://www.radix-ui.com/primitives/docs/components/select
 ---
 
 <ComponentPreview path="select/select-preview" />
+
+---
 
 ## Installation
 
@@ -41,13 +45,15 @@ links:
 		/>
 
     	<Step>Copy and paste the following code into your project.</Step>
-    	<ComponentSource name="select" title="components/ui/select.tsx" collapsible />
+    	<ComponentSource src="styles/default/ui/select.tsx" title="components/ui/select.tsx" collapsible />
 
     	<Step>Update the import paths as per your project structure.</Step>
     </Steps>
     </InstallTabsContent>
 
 </InstallationTabs>
+
+---
 
 ## Usage
 
@@ -81,39 +87,92 @@ import {
 
 ## Examples
 
-### Size
+<ComponentPreview title="Size" path="select/select-sizes" />
 
-<ComponentPreview path="select/select-sizes" />
+<ComponentPreview title="With Badge" path="select/select-with-badge" />
 
-### With Badge
+<ComponentPreview title="With Avatar" path="select/select-with-avatar" />
 
-<ComponentPreview path="select/select-with-badge" />
+<ComponentPreview title="Custom indicator" path="select/custom-indicator" />
 
-### With Avatar
+<ComponentPreview title="Indicator Position" path="select/indicator-position" />
 
-<ComponentPreview path="select/select-with-avatar" />
+<ComponentPreview title="Time Picker" path="select/time-picker" />
 
-### Custom indicator
+<ComponentPreview title="Form" path="select/select-form" />
 
-<ComponentPreview path="select/custom-indicator" />
+---
 
-### Indicator Position
+<ComponentDocContent
+	name={"Select"}
+	description={
+		"Select is a form component that lets users choose a single option from a dropdown list. It provides smooth keyboard navigation, easily customizable dropdowns, and a consistent experience across browsers and devices."
+	}
+	features={[
+		'@radix-ui/react-select, ensures native typeahead support (e.g., typing "C" jumps to "Canada") and seamless keyboard navigation using arrow keys.',
+		"Renders the option list inside a React Portal, guaranteeing it escapes any parent container overflow-hidden constraints.",
+		"Modular layout pieces: <Select>, <SelectTrigger>, <SelectValue>, <SelectContent>, <SelectGroup>, <SelectItem> and so on.",
+		'Natively supports the position="popper" configuration, dynamically flipping the dropdown above or below the trigger based on available screen space.',
+		"Features built-in scrolling support with customizable <SelectScrollUpButton> and <SelectScrollDownButton> components for handling long option lists safely.",
+	]}
+	related={[
+		{
+			title: "Dropdown Menu",
+			description:
+				"Often confused with Select. Use a Select specifically for picking a data value within a form; use a Dropdown Menu for triggering application actions or URL navigation.",
+			href: "/docs/components/dropdown",
+		},
+		{
+			title: "Combobox",
+			description:
+				"If your list contains hundreds of options (like all global cities), a standard Select becomes unwieldy. A Combobox combines a Select with an integrated text search input.",
+			href: "/docs/components/combobox",
+		},
+		{
+			title: "Form",
+			description:
+				"The absolutely necessary wrapper to integrate the Select into complex Zod validation schemas and display localized error messages.",
+			href: "/docs/components/form",
+		},
+	]}
+	faqs={[
+		{
+			question:
+				"What is the exact difference between Select and Dropdown Menu?",
+			answer:
+				'A Select component is explicitly designed for data collection (it holds a standard value and acts like an input). A Dropdown Menu is designed for commanding the application (like clicking an "Edit Profile" button or opening a modal).',
+		},
+		{
+			question: "How do I integrate this with React Hook Form?",
+			answer:
+				"Because this is a custom controlled component that doesn't trigger standard native onChange events, you must wrap the root <Select> in a React Hook Form <Controller>. You then map the primitive's custom onValueChange event directly to field.onChange to ensure your state updates accurately.",
+		},
+		{
+			question: "How do I set placeholder text before an option is chosen?",
+			answer:
+				'You pass a string directly to the placeholder prop on the nested <SelectValue> component (e.g., <SelectValue placeholder="Choose a country" />). The primitive automatically clears this text once a valid selection is made.',
+		},
+		{
+			question: "Can I group related options together?",
+			answer:
+				"Yes. You can wrap a set of <SelectItem> components inside a <SelectGroup>. To add a non-selectable header to that group, use the <SelectLabel> component, which beautifully styles the category name slightly muted and correctly removes it from keyboard traversal paths.",
+		},
+		{
+			question:
+				"Why is my dropdown content rendering far away from the trigger?",
+			answer:
+				'The Radix primitive defaults to position="item-aligned"+], which attempts to mimic native macOS behavior by positioning the currently selected item directly under the user\'s cursor. For a more standard web UI experience, open your local component file and change the <SelectContent> prop to position="popper".',
+		},
+	]}
+/>
 
-<ComponentPreview path="select/indicator-position" />
+## API Reference
 
-### Time Picker
+### Select
 
-<ComponentPreview path="select/time-picker" />
+The root container.
 
-### Form
-
-<ComponentPreview path="select/select-form" />
-
-## Props
-
-<PropsTableWrapper>
 <PropsTable
-	title="Select"
 	data={[
 		{
 			name: "indicatorPosition",
@@ -130,11 +189,13 @@ import {
 			description: "Replace the default indicator with custom indicator",
 		},
 	]}
-	externalReference="https://www.radix-ui.com/primitives/docs/components/select"
 />
 
+### SelectTrigger
+
+An interactive element that opens the select dropdown when clicked.
+
 <PropsTable
-	title="SelectTrigger"
 	data={[
 		{
 			name: "size",
@@ -143,11 +204,13 @@ import {
 			values: ["sm", "md", "lg"],
 		},
 	]}
-	externalReference="https://www.radix-ui.com/primitives/docs/components/select"
 />
 
+### SelectGroup
+
+A structural container used to group related select items together.
+
 <PropsTable
-	title="SelectGroup"
 	data={[
 		{
 			name: "label",
@@ -155,7 +218,4 @@ import {
 			description: "Shows label for select",
 		},
 	]}
-	externalReference="https://www.radix-ui.com/primitives/docs/components/select"
 />
-
-</PropsTableWrapper>

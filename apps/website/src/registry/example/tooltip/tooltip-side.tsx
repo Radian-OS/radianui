@@ -5,11 +5,11 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@/registry/ui/tooltip"
 
 export default function TooltipSide() {
 	return (
-		<div className="flex items-center justify-center gap-3">
+		<div className="flex flex-wrap items-center justify-center gap-3">
 			<Tooltip>
 				<TooltipTrigger asChild>
 					<Button color="neutral" variant="outline">
-						<ChevronLeft />
+						<ChevronLeft className="text-fg-secondary" />
 						Left
 					</Button>
 				</TooltipTrigger>
@@ -20,7 +20,7 @@ export default function TooltipSide() {
 			<Tooltip>
 				<TooltipTrigger asChild>
 					<Button color="neutral" variant="outline">
-						<ChevronUp />
+						<ChevronUp className="text-fg-secondary" />
 						Top
 					</Button>
 				</TooltipTrigger>
@@ -31,7 +31,7 @@ export default function TooltipSide() {
 			<Tooltip>
 				<TooltipTrigger asChild>
 					<Button color="neutral" variant="outline">
-						<ChevronDown />
+						<ChevronDown className="text-fg-secondary" />
 						Bottom
 					</Button>
 				</TooltipTrigger>
@@ -42,7 +42,7 @@ export default function TooltipSide() {
 			<Tooltip>
 				<TooltipTrigger asChild>
 					<Button color="neutral" variant="outline">
-						<ChevronRight />
+						<ChevronRight className="text-fg-secondary" />
 						Right
 					</Button>
 				</TooltipTrigger>

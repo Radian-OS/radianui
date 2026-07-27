@@ -1,6 +1,6 @@
 ---
 title: Scroll Area
-description: A scroll area component that allows a user to scroll through a list of items
+description: Smooth, custom-styled scrollbars for long text blocks that match your brand design perfectly on all browsers.
 links:
   github:
     href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/scroll-area.tsx
@@ -10,6 +10,8 @@ links:
 ---
 
 <ComponentPreview path="scroll-area/scroll-area-preview" />
+
+---
 
 ## Installation
 
@@ -27,7 +29,7 @@ links:
 		<Steps>
 			<Step>Copy and paste the following code into your project.</Step>
 			<ComponentSource
-				name="scroll-area"
+				src="styles/default/ui/scroll-area.tsx"
 				title="components/ui/scroll-area.tsx"
 				collapsible
 			/>
@@ -36,6 +38,8 @@ links:
 	</InstallTabsContent>
 
 </InstallationTabs>
+
+---
 
 ## Usage
 
@@ -49,28 +53,134 @@ import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 
 ```tsx showLineNumbers title="/components/ui/scroll-area"
 <ScrollArea className="h-80 w-80 rounded-lg border p-2">
-	Radian is an open-source React component library and UI design system built to
-	accelerate product development with beautiful defaults. Currently, available
-	for Next.js, it's powered by Tailwind CSS and Radix Primitives, providing a
-	solid foundation for modern web apps. Radian helps you design and iterate
-	quickly, offering components that can serve as ready-to-use building blocks
-	for your final product or as customizable starters for unique projects. We've
-	prioritized flexibility, ensuring common properties and behaviors are baked
-	in—so you won't waste time rebuilding essentials.
+	<div></div>
 </ScrollArea>
 ```
 
 ---
 
-## Props
+## Examples
 
-<PropsTableWrapper>
-	<PropsTable
-		title="ScrollArea"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/scroll-area/#root"
-	/>
-	<PropsTable
-		title="ScrollBar"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/scroll-area/#scrollbar"
-	/>
-</PropsTableWrapper>
+<ComponentPreview
+	title="Scroll Area Vertical"
+	path="scroll-area/scroll-area-vertical"
+/>
+
+<ComponentPreview
+	title="Scroll Area Horizontal"
+	path="scroll-area/scroll-area-horizontal"
+/>
+
+<ComponentPreview
+	title="Scroll Area Dropdown"
+	path="scroll-area/scroll-area-dropdown"
+/>
+
+---
+
+<ComponentDocContent
+	name={"Scroll Area"}
+	description={
+		"Scroll Area is a container with custom, consistent scrollbars for scrollable content.It preserves smooth native scrolling while providing accessibility, customizable scrollbars that look and behave consistently across different browsers and operating systems."
+	}
+	features={[
+		"@radix-ui/react-scroll-area, ensures the custom scrollbars are purely visual and do not interfere with standard screen reader navigation or native DOM wheel events.",
+		"Falls back to standard native scrolling interactions on touch devices while hiding the custom DOM scrollbars to prevent double-rendering.",
+		"Exposes modular structural pieces: <ScrollArea> (the root container) and <ScrollBar> (the styled thumb and track).",
+		"Content container, allowing you to wrap complex CSS Grids, Data Tables, or long Markdown articles effortlessly.",
+		"Features a clean, minimal design by default, utilizing Tailwind bg-border utilities to create a subtle, modern scroll thumb.",
+	]}
+	related={[
+		{
+			title: "Dialog",
+			description:
+				"Absolutely essential for wrapping the internal <DialogContent> when displaying massive forms or long legal texts, ensuring the modal header and footer remain sticky.",
+			href: "/docs/components/dialog",
+		},
+		{
+			title: "Dropdown Menu",
+			description:
+				"Frequently used inside complex, multi-item dropdowns to prevent the menu from overflowing the user's viewport height.",
+			href: "/docs/components/dropdown",
+		},
+		{
+			title: "Resizable",
+			description:
+				"Often paired with resizable sidebars; when the user shrinks a panel horizontally, the internal Scroll Area automatically manages the overflow content safely.",
+			href: "/docs/components/resizable",
+		},
+	]}
+	faqs={[
+		{
+			question: "How do I constrain the height of the scroll area?",
+			answer:
+				'The component requires a defined height constraint to know when to trigger the scrollbars. You apply standard Tailwind sizing utilities directly to the root <ScrollArea className="h-[300px] w-full">. If you omit a height, the container will just endlessly expand to fit its content.',
+		},
+		{
+			question: "How do I enable horizontal scrolling?",
+			answer:
+				'By default, the <ScrollBar> component manages vertical overflow. If you have wide content (like a massive Data Table), you must explicitly render a secondary <ScrollBar orientation="horizontal" /> inside your <ScrollArea>. The primitive intelligently handles both axes simultaneously.',
+		},
+		{
+			question: "Does it work on mobile touchscreens?",
+			answer:
+				"Yes. The Radix primitive intentionally does not try to emulate touch physics with JavaScript. It simply wraps native CSS overflow and relies on the browser's hardware-accelerated touch scrolling, meaning mobile users get perfect native inertia and bounce behaviors.",
+		},
+		{
+			question: "How do I make the scrollbar permanently visible?",
+			answer:
+				'By default, standard macOS-style behavior is applied, where the scrollbar auto-hides when the user stops interacting with it. You can disable this by modifying the Radix configuration inside your source code, passing type="always" to the root <ScrollAreaPrimitive.Root>.',
+		},
+		{
+			question:
+				"Why isn't my nested flex layout expanding correctly inside the scroll area?",
+			answer:
+				"The root component automatically wraps your children in a specialized <ScrollAreaPrimitive.Viewport> div. If you are building a complex flex layout, you may need to apply explicit styling (like h-full w-full) to your direct children so they correctly expand to fill the hidden viewport bounds.",
+		},
+	]}
+/>
+
+## API Reference
+
+### ScrollArea
+
+The root container. Alias for `ScrollArea.Root` from Radix UI.
+
+<PropsTable
+	data={[
+		{
+			name: "type",
+			values: ["auto", "always", "scroll", "hover"],
+			defaultValue: "hover",
+			required: false,
+			description:
+				"Controls when the scrollbar is visible. 'auto' shows it when content overflows, 'always' keeps it permanently visible.",
+		},
+		{
+			name: "scrollHideDelay",
+			values: ["number"],
+			defaultValue: "600",
+			required: false,
+			description:
+				"The delay in milliseconds before the scrollbar hides after the user stops scrolling.",
+		},
+	]}
+	externalReference="https://www.radix-ui.com/primitives/docs/components/scroll-area#root"
+/>
+
+    ### ScrollBar
+
+The visual scrollbar track and thumb rendered inside the scroll area.
+
+<PropsTable
+	data={[
+		{
+			name: "orientation",
+			values: ["vertical", "horizontal"],
+			defaultValue: "vertical",
+			required: false,
+			description: "The orientation of the scrollbar.",
+		},
+	]}
+	externalReference="https://www.radix-ui.com/primitives/docs/components/scroll-area#scrollbar"
+/>

@@ -1,42 +1,39 @@
 import React from "react"
-import { Archive, CheckCircle, Loader2 } from "lucide-react"
+import { Box, Inbox, ListTodo } from "lucide-react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const data = [
+	{ label: "Inbox", icon: <Inbox />, value: "inbox", content: "Inbox Content" },
 	{
-		id: 1,
-		trigger: "Completed",
-		icon: <CheckCircle />,
-		content: "You have completed 8 tasks.",
+		label: "Projects",
+		icon: <Box />,
+		value: "projects",
+		content: "Projects Content",
 	},
 	{
-		id: 2,
-		trigger: "In Progress",
-		icon: <Loader2 />,
-		content: "You have 4 tasks in progress.",
-	},
-	{
-		id: 3,
-		trigger: "Archived",
-		icon: <Archive />,
-		content: "You have archived 3 items.",
+		label: "Tasks",
+		icon: <ListTodo />,
+		value: "tasks",
+		content: "Tasks Content",
 	},
 ]
 
 export default function TabsWithIcon() {
 	return (
-		<Tabs defaultValue={data[0].trigger.toLowerCase()}>
-			<TabsList>
+		<Tabs className="w-105" defaultValue={data[0].value}>
+			<TabsList width="full">
 				{data.map((item) => (
-					<TabsTrigger key={item.id} value={item.trigger.toLowerCase()}>
+					<TabsTrigger key={item.value} value={item.value}>
 						{item.icon}
-						{item.trigger}
+						{item.label}
 					</TabsTrigger>
 				))}
 			</TabsList>
-			{data.map((item) => (
-				<TabsContent key={item.id} value={item.trigger.toLowerCase()}>
-					{item.content}
+			{data.map(({ value, content }) => (
+				<TabsContent key={value} value={value}>
+					<div className="bg-bg border-soft text-fg-tertiary flex items-center justify-center rounded-xl border px-2.5 py-10 text-sm">
+						{content}
+					</div>
 				</TabsContent>
 			))}
 		</Tabs>

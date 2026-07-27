@@ -1,6 +1,6 @@
 ---
 title: Carousel
-description: A carousel with motion and swipe built using Embla.
+description: A smooth, sliding slideshow that lets users swipe through images, products, or featured articles horizontally.
 links:
   github:
     href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/carousel.tsx
@@ -11,6 +11,8 @@ links:
 ---
 
 <ComponentPreview path="carousel/carousel-preview" />
+
+---
 
 ## Installation
 
@@ -31,13 +33,15 @@ links:
 		npm install embla-carousel-react
 		```
     	<Step>Copy and paste the following code into your project.</Step>
-    	<ComponentSource name="carousel" title="components/ui/carousel.tsx" collapsible />
+    	<ComponentSource src="styles/default/ui/carousel.tsx" title="components/ui/carousel.tsx" collapsible />
 
     	<Step>Update the import paths as per your project structure.</Step>
     </Steps>
     </InstallTabsContent>
 
 </InstallationTabs>
+
+---
 
 ## Usage
 
@@ -63,3 +67,109 @@ import {
 	<CarouselPrevious>Previous</CarouselPrevious>
 </Carousel>
 ```
+
+---
+
+## Examples
+
+<ComponentPreview title="Dot Button" path="carousel/carousel-dotbutton" />
+
+<ComponentPreview title="Size" path="carousel/carousel-size" />
+
+<ComponentPreview title="Loop" path="carousel/carousel-loop" />
+
+<ComponentPreview title="Autoplay" path="carousel/carousel-autoplay" />
+
+<ComponentPreview title="Spacing" path="carousel/carousel-space" />
+
+<ComponentPreview title="Scaling" path="carousel/carousel-scale" />
+
+<ComponentPreview title="Orientation" path="carousel/carousel-orientation" />
+
+---
+
+<ComponentDocContent
+	name={"Carousel"}
+	description={
+		"A carousel is a slider component that lets you show multiple items, like images or content, in a horizontal or vertical scrolling gallery. You use a carousel to display a series of items in a compact space, allowing users to swipe or click through them."
+	}
+	features={[
+		"Seamless touch and mouse drag support out of the box, powered by the native Embla physics engine.",
+		"Modular architecture exporting: <Carousel>, <CarouselContent>, <CarouselItem>, <CarouselPrevious>, and <CarouselNext>.",
+		"Exposes the Embla API instance via a React Context hook (useCarousel), allowing for deep programmatic control and state reading.",
+		"Easily configure orientation (horizontal or vertical) and infinite looping behavior via standard component props.",
+		"Accessible keyboard navigation and proper ARIA roles applied natively to the previous/next navigation buttons.",
+	]}
+	related={[
+		{
+			title: "Card",
+			description:
+				"Cards are the most common component nested inside a <CarouselItem> to create swipeable, interactive content blocks or pricing tiers.",
+			href: "/docs/components/card",
+		},
+		{
+			title: "Aspect Ratio",
+			description:
+				"Essential for ensuring all images inside the carousel slides maintain the exact same mathematical dimensions to prevent jarring layout shifts during swiping.",
+			href: "/docs/components/aspect-ratio",
+		},
+		{
+			title: "Image (Native)",
+			description:
+				"Use standard images optimized inside the carousel items to create robust e-commerce product galleries.",
+		},
+	]}
+	faqs={[
+		{
+			question: "How do I show multiple items on the screen at once?",
+			answer:
+				"You control the item sizing directly via Tailwind CSS on the <CarouselItem> component. For example, setting the class to basis-1/3 on desktop breakpoints will cleanly display three items concurrently on the screen.",
+		},
+		{
+			question: "Can I make the carousel auto-play?",
+			answer:
+				"Yes, but it requires adding an official plugin. You can install embla-carousel-autoplay and pass it to the plugins prop array on the root <Carousel> component to enable automatic scrolling and pause-on-hover logic.",
+		},
+		{
+			question:
+				"How do I move the navigation arrows outside the carousel track?",
+			answer:
+				"The default <CarouselPrevious> and <CarouselNext> components are absolutely positioned over the slides. By removing the absolute classes and the relative wrapper in your local file, you can place them anywhere in your DOM, provided they remain nested inside the main <Carousel> context provider.",
+		},
+		{
+			question: "Is it possible to make the carousel scroll vertically?",
+			answer:
+				'Yes. Pass the orientation="vertical" prop to the root <Carousel> component. You will also need to ensure your <CarouselContent> wrapper has a fixed height (e.g., h-[400px]) so the items have physical space to scroll within.',
+		},
+		{
+			question:
+				"How do I get the current active slide index for pagination dots?",
+			answer:
+				"You can utilize the exported useCarousel hook within a custom pagination component placed inside the <Carousel>. It exposes the raw api object from Embla, allowing you to attach an event listener to the select event and store the active index in your local React state.",
+		},
+	]}
+/>
+
+## API Reference
+
+This component is built on top of [embla-carousel-react](https://www.embla-carousel.com/).
+
+### Carousel
+
+Main wrapper for the carousel.
+
+### CarouselContent
+
+The flexbox container that holds all carousel items and handles the scrolling overflow.
+
+### CarouselItem
+
+A structural wrapper for individual slides or content blocks within the carousel.
+
+### CarouselPrevious
+
+An interactive button for navigating to the previous slide in the carousel.
+
+### CarouselNext
+
+An interactive button for navigating to the next slide in the carousel.

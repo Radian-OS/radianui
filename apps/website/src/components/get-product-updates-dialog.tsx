@@ -11,23 +11,23 @@ import {
 	subscribeToNewsletter,
 } from "@/lib/newsletter"
 import { cn } from "@/lib/utils"
-import { Button } from "@/registry/ui/button"
+import { Button } from "@/styles/default/ui/button"
 import {
 	Dialog,
 	DialogContent,
 	DialogDescription,
 	DialogTitle,
-} from "@/registry/ui/dialog"
+} from "@/styles/default/ui/dialog"
 import {
 	Form,
 	FormControl,
 	FormField,
 	FormItem,
 	FormMessage,
-} from "@/registry/ui/form"
-import { Input } from "@/registry/ui/input"
-import { Label } from "@/registry/ui/label"
-import { Spinner } from "@/registry/ui/spinner"
+} from "@/styles/default/ui/form"
+import { Input } from "@/styles/default/ui/input"
+import { Label } from "@/styles/default/ui/label"
+import { Spinner } from "@/styles/default/ui/spinner"
 
 const formSchema = z.object({
 	email: z
@@ -78,7 +78,6 @@ export function GetProductUpdatesDialog() {
 	return (
 		<Dialog defaultOpen>
 			<DialogContent
-				closeButton="hidden"
 				backdrop="blur"
 				className="max-w-85 md:max-w-170 flex w-full flex-col gap-0 overflow-hidden p-0 md:flex-row">
 				{/* Left Side - Graphic Background */}
@@ -106,7 +105,7 @@ export function GetProductUpdatesDialog() {
 					<div className="flex flex-col gap-4">
 						<Image src="/logo.svg" alt="radian_logo" width={36} height={36} />
 						<div className="flex flex-col gap-1">
-							<DialogTitle>Get Product Updates</DialogTitle>
+							<DialogTitle closeButton={false}>Get Product Updates</DialogTitle>
 							<DialogDescription>
 								Subscribe to receive updates on new components, UI blocks, and
 								key milestones as we build.

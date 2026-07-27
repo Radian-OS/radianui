@@ -14,7 +14,7 @@ import {
 
 function DrawerBackdropExample() {
 	return (
-		<div className="flex items-center justify-center gap-6">
+		<div className="flex flex-wrap items-center justify-center gap-3">
 			<Drawer variant="default" direction="right" backdrop="overlay">
 				<DrawerTrigger>
 					<Button variant="outline" color="neutral">

@@ -39,15 +39,13 @@ export default function DownloadingProgress() {
 						setDownloadProgress(0)
 						setIsComplete(false)
 						setSpeed(0)
-					}, 3000)
+					}, 1500) // pause at 100% before restarting
 					return 100
 				}
 
 				const increment = Math.random() * 3 + 1
 				const newProgress = prev + increment
-
-				// Calculate speed (MB/s simulation)
-				const currentSpeed = (increment / 150) * 1000 // Convert to MB/s
+				const currentSpeed = (increment / 150) * 1000
 				setSpeed(currentSpeed)
 
 				return newProgress
@@ -63,7 +61,7 @@ export default function DownloadingProgress() {
 	const progressPercentage = Math.round(downloadProgress)
 
 	return (
-		<div className="mx-auto w-full p-8">
+		<div className="max-w-130 mx-auto w-full p-8">
 			<div className="mb-6 text-center">
 				<h2 className="mb-1 text-xl font-semibold">
 					{isComplete ? "Installation Complete!" : "Workspace Setup"}

@@ -1,15 +1,19 @@
 ---
 title: Alert Dialog
-description: A modal dialog that interrupts the user with important information.
+description: A clear popup message that stops the user to confirm important or permanent choices, like deleting data.
 links:
   github:
     href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/alert-dialog.tsx
+  figma:
+    href: https://www.figma.com/design/ZB8gTZwafZOYY7rdJjSRz6/%E2%9D%96-Preview-%E2%9D%96-Radian-Design-System-%E2%9D%96-Version-0.3?node-id=18133-36548&t=V6eYQNGSpHNQ8XrH-4
   externalReference:
     - label: Radix UI
       href: https://www.radix-ui.com/primitives/docs/components/alert-dialog
 ---
 
 <ComponentPreview path="alert-dialog/alert-dialog-preview" />
+
+---
 
 ## Installation
 
@@ -30,13 +34,15 @@ links:
 		npm install @radix-ui/react-alert-dialog
 		```
     	<Step>Copy and paste the following code into your project.</Step>
-    	<ComponentSource name="alert-dialog" title="components/ui/alert-dialog.tsx" collapsible />
+    	<ComponentSource src="styles/default/ui/alert-dialog.tsx" title="components/ui/alert-dialog.tsx" collapsible />
 
     	<Step>Update the import paths as per your project structure.</Step>
     </Steps>
     </InstallTabsContent>
 
 </InstallationTabs>
+
+---
 
 ## Usage
 
@@ -81,67 +87,128 @@ import {
 
 ## Examples
 
-### Backdrop - Blur
+<ComponentPreview title="Backdrop - Blur" path="alert-dialog/backdrop-blur" />
 
-<ComponentPreview path="alert-dialog/backdrop-blur" />
+<ComponentPreview
+	title="Backdrop - Transparent"
+	path="alert-dialog/backdrop-transparent"
+/>
 
-### Backdrop - Transparent
+<ComponentPreview
+	title="Destructive"
+	path="alert-dialog/destructive-alert-dialog"
+/>
 
-<ComponentPreview path="alert-dialog/backdrop-transparent" />
+<ComponentPreview
+	title="Destructive Dialog - w/Divider"
+	path="alert-dialog/destructive-dialog-with-divider"
+/>
 
-### Destructive
-
-<ComponentPreview path="alert-dialog/destructive-alert-dialog" />
-
-### Destructive Dialog - w/Divider
-
-<ComponentPreview path="alert-dialog/destructive-dialog-with-divider" />
-
-### Destructive Dialog - Center
-
-<ComponentPreview path="alert-dialog/destructive-dialog-center" />
+<ComponentPreview
+	title="Destructive Dialog - Center"
+	path="alert-dialog/destructive-dialog-center"
+/>
 
 ---
 
-## Props
+<ComponentDocContent
+	name={"Alert Dialog"}
+	description={
+		"An Alert Dialog is a pop-up window that appears on the screen to get a user's attention. It asks them to make a specific choice, like confirming a deletion, before they can move on. Use this component when you need a user to stop and confirm an important action to prevent mistakes."
+	}
+	features={[
+		"Outside click dismissal is disabled by default to strictly adhere to WAI-ARIA alert dialog patterns, ensuring critical actions are intentional.",
+		"Focus management is handled automatically, trapping focus within the modal and returning it to the trigger element upon closure.",
+		"Semantic sub-components, such as AlertDialogAction and AlertDialogCancel, are provided to standardize button placement and behavior.",
+		"Native body scroll locking ensures the background remains static while the prompt is active.",
+		"Smooth transitions are implemented using native Tailwind CSS v4 keyframes, including fade-in and zoom-in effects for the overlay and content containers.",
+	]}
+	related={[
+		{
+			title: "Dialog",
+			description:
+				"For standard modals that contain forms, deep dives, or non-critical info where clicking the background to close is expected UX.",
+			href: "/docs/components/dialog",
+		},
+		{
+			title: "Button",
+			description:
+				"Essential for triggering the Alert Dialog and for acting as the confirm/cancel actions inside the footer.",
+			href: "/docs/components/button",
+		},
+	]}
+	faqs={[
+		{
+			question: "Why can't I click outside the Alert Dialog to close it?",
+			answer:
+				"An alert dialog is designed to interrupt the workflow for a mandatory user decision. The Radix primitive disables onPointerDownOutside to ensure that high-stakes actions, such as permanent deletions, are not dismissed accidentally.",
+		},
+		{
+			question: "How do I execute a function when the user clicks confirm?",
+			answer:
+				"You can attach an onClick handler to the <AlertDialogAction> component. For asynchronous logic, prevent the default close behavior by calling e.preventDefault() and manually managing the dialog's open state.",
+		},
+		{
+			question: "Can I customize the overlay background?",
+			answer:
+				"Yes. The <AlertDialogOverlay> uses standard Tailwind utility classes. In Tailwind v4, you can directly apply modern background utilities like backdrop-blur or modify the opacity of bg-black/80 to align with your project's visual style.",
+		},
+		{
+			question: "Is this component safe for screen readers?",
+			answer:
+				'Yes. The component uses Radix primitives that automatically apply role="alertdialog" and establish accessible relationships between the modal, its title, and its description via aria-labelledby and aria-describedby.',
+		},
+		{
+			question: "How do I use this within a server component in Next.js?",
+			answer:
+				'Because the Alert Dialog relies on browser-side events and state for accessibility and focus management, you must include the "use client" directive at the top of your component file.',
+		},
+	]}
+/>
 
-<PropsTableWrapper>
-	<PropsTable
-		title="AlertDialog"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/alert-dialog#root"
-	/>
-	<PropsTable
-		title="AlertDialogTrigger"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/alert-dialog#trigger"
-	/>
-	<PropsTable
-		title="AlertDialogContent"
-		data={[
-			{
-				name: "backdrop",
-				values: ["overlay", "blur", "transparent"],
-				defaultValue: "overlay",
-				description: "Show the backdrop state",
-			},
-		]}
-		externalReference="https://www.radix-ui.com/primitives/docs/components/alert-dialog#content"
-	/>
-	<PropsTable title="AlertDialogHeader" data={[]} />
-	<PropsTable
-		title="AlertDialogTitle"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/alert-dialog#title"
-	/>
-	<PropsTable
-		title="AlertDialogDescription"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/alert-dialog#description"
-	/>
-	<PropsTable title="AlertDialogFooter" data={[]} />
-	<PropsTable
-		title="AlertDialogAction"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/alert-dialog#action"
-	/>
-	<PropsTable
-		title="AlertDialogCancel"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/alert-dialog#cancel"
-	/>
-</PropsTableWrapper>
+## API Reference
+
+### AlertDialog
+
+Root component that manages the open state of the dialog and provides context to child components.
+
+### AlertDialogTrigger
+
+An interactive element that opens the alert dialog when clicked.
+
+### AlertDialogContent
+
+<PropsTable
+	data={[
+		{
+			name: "backdrop",
+			values: ["overlay", "blur", "transparent"],
+			defaultValue: "overlay",
+			description: "Show the backdrop state",
+		},
+	]}
+/>
+
+    ### AlertDialogHeader
+
+A structural container for the top section of the dialog, typically housing the title and description.
+
+    ### AlertDialogTitle
+
+A semantic heading that states the subject of the alert dialog.
+
+    ### AlertDialogDescription
+
+A text container providing additional context or explanation for the alert.
+
+    ### AlertDialogFooter
+
+A structural container for the bottom section of the dialog, used for action and cancel buttons.
+
+    ### AlertDialogAction
+
+The primary confirmation button that executes the critical action when clicked.
+
+    ### AlertDialogCancel
+
+The secondary button that dismisses the dialog without performing the critical action.

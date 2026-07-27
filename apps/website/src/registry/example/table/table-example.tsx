@@ -77,43 +77,43 @@ type UserData = {
 export const people = [
 	{
 		name: "John Doe",
-		image: "https://randomuser.me/api/portraits/men/1.jpg",
+		image: "/media/male-1.jpg",
 	},
 	{
 		name: "Jane Smith",
-		image: "https://randomuser.me/api/portraits/women/1.jpg",
+		image: "/media/female-1.jpg",
 	},
 	{
 		name: "Michael Brown",
-		image: "https://randomuser.me/api/portraits/men/2.jpg",
+		image: "/media/male-2.jpg",
 	},
 	{
 		name: "Emily Davis",
-		image: "https://randomuser.me/api/portraits/women/2.jpg",
+		image: "/media/female-2.jpg",
 	},
 	{
 		name: "Chris Johnson",
-		image: "https://randomuser.me/api/portraits/men/3.jpg",
+		image: "/media/male-3.jpg",
 	},
 	{
 		name: "Sophia Lee",
-		image: "https://randomuser.me/api/portraits/women/3.jpg",
+		image: "/media/female-3.jpg",
 	},
 	{
 		name: "Daniel Garcia",
-		image: "https://randomuser.me/api/portraits/men/4.jpg",
+		image: "/media/male-4.jpg",
 	},
 	{
 		name: "Olivia Martinez",
-		image: "https://randomuser.me/api/portraits/women/4.jpg",
+		image: "/media/female-4.jpg",
 	},
 	{
 		name: "Ethan Wilson",
-		image: "https://randomuser.me/api/portraits/men/5.jpg",
+		image: "/media/male-5.jpg",
 	},
 	{
 		name: "Mia Taylor",
-		image: "https://randomuser.me/api/portraits/women/5.jpg",
+		image: "/media/female-5.jpg",
 	},
 ]
 
@@ -131,8 +131,7 @@ const data: UserData[] = [
 	{
 		user_details: {
 			name: "Alice Johnson",
-			imageSrc:
-				"https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face",
+			imageSrc: "/media/male-1.jpg",
 			email: "alice.johnson@example.com",
 		},
 		status: "Active",
@@ -145,8 +144,7 @@ const data: UserData[] = [
 	{
 		user_details: {
 			name: "David Smith",
-			imageSrc:
-				"https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
+			imageSrc: "/media/male-2.jpg",
 			email: "david.smith@example.com",
 		},
 		status: "Inactive",
@@ -159,8 +157,7 @@ const data: UserData[] = [
 	{
 		user_details: {
 			name: "Sophia Lee",
-			imageSrc:
-				"https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
+			imageSrc: "/media/female-1.jpg",
 			email: "sophia.lee@example.com",
 		},
 		status: "Pending",
@@ -173,8 +170,7 @@ const data: UserData[] = [
 	{
 		user_details: {
 			name: "Michael Brown",
-			imageSrc:
-				"https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
+			imageSrc: "/media/male-3.jpg",
 			email: "michael.brown@example.com",
 		},
 		status: "Active",
@@ -187,8 +183,7 @@ const data: UserData[] = [
 	{
 		user_details: {
 			name: "Emily Carter",
-			imageSrc:
-				"https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop&crop=face",
+			imageSrc: "/media/female-2.jpg",
 			email: "emily.carter@example.com",
 		},
 		status: "Active",
@@ -201,8 +196,7 @@ const data: UserData[] = [
 	{
 		user_details: {
 			name: "James Wilson",
-			imageSrc:
-				"https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face",
+			imageSrc: "/media/male-4.jpg",
 			email: "james.wilson@example.com",
 		},
 		status: "Inactive",
@@ -215,8 +209,7 @@ const data: UserData[] = [
 	{
 		user_details: {
 			name: "Olivia Martinez",
-			imageSrc:
-				"https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face",
+			imageSrc: "/media/female-3.jpg",
 			email: "olivia.martinez@example.com",
 		},
 		status: "Pending",
@@ -229,8 +222,7 @@ const data: UserData[] = [
 	{
 		user_details: {
 			name: "Daniel White",
-			imageSrc:
-				"https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150&h=150&fit=crop&crop=face",
+			imageSrc: "/media/male-5.jpg",
 			email: "daniel.white@example.com",
 		},
 		status: "Active",
@@ -243,8 +235,7 @@ const data: UserData[] = [
 	{
 		user_details: {
 			name: "Grace Hall",
-			imageSrc:
-				"https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=150&h=150&fit=crop&crop=face",
+			imageSrc: "/media/female-5.jpg",
 			email: "grace.hall@example.com",
 		},
 		status: "Active",
@@ -257,8 +248,7 @@ const data: UserData[] = [
 	{
 		user_details: {
 			name: "Benjamin King",
-			imageSrc:
-				"https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?w=150&h=150&fit=crop&crop=face",
+			imageSrc: "/media/male-6.jpg",
 			email: "benjamin.king@example.com",
 		},
 		status: "Inactive",
@@ -271,8 +261,7 @@ const data: UserData[] = [
 	{
 		user_details: {
 			name: "Chloe Scott",
-			imageSrc:
-				"https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=150&h=150&fit=crop&crop=face",
+			imageSrc: "/media/female-6.jpg",
 			email: "chloe.scott@example.com",
 		},
 		status: "Pending",
@@ -285,8 +274,7 @@ const data: UserData[] = [
 	{
 		user_details: {
 			name: "Ethan Harris",
-			imageSrc:
-				"https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=150&h=150&fit=crop&crop=face",
+			imageSrc: "/media/male-7.jpg",
 			email: "ethan.harris@example.com",
 		},
 		status: "Active",
@@ -299,8 +287,7 @@ const data: UserData[] = [
 	{
 		user_details: {
 			name: "Milli Walker",
-			imageSrc:
-				"https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=150&h=150&fit=crop&crop=face",
+			imageSrc: "/media/female-7.jpg",
 			email: "milli.walker@example.com",
 		},
 		status: "Inactive",
@@ -313,8 +300,7 @@ const data: UserData[] = [
 	{
 		user_details: {
 			name: "Lucas Young",
-			imageSrc:
-				"https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150&h=150&fit=crop&crop=face",
+			imageSrc: "/media/male-8.jpg",
 			email: "lucas.young@example.com",
 		},
 		status: "Active",
@@ -353,24 +339,28 @@ const columns: ColumnDef<UserData>[] = [
 	{
 		id: "select",
 		header: ({ table }) => (
-			<Checkbox
-				size="sm"
-				className="flex w-full items-center justify-start"
-				checked={
-					table.getIsAllPageRowsSelected() ||
-					(table.getIsSomePageRowsSelected() && "indeterminate")
-				}
-				onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-				aria-label="Select all"
-			/>
+			<div className="flex items-center justify-center">
+				<Checkbox
+					size="sm"
+					className="flex w-full items-center justify-start"
+					checked={
+						table.getIsAllPageRowsSelected() ||
+						(table.getIsSomePageRowsSelected() && "indeterminate")
+					}
+					onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+					aria-label="Select all"
+				/>
+			</div>
 		),
 		cell: ({ row }) => (
-			<Checkbox
-				size="sm"
-				checked={row.getIsSelected()}
-				onCheckedChange={(value) => row.toggleSelected(!!value)}
-				aria-label="Select row"
-			/>
+			<div className="flex items-center justify-center">
+				<Checkbox
+					size="sm"
+					checked={row.getIsSelected()}
+					onCheckedChange={(value) => row.toggleSelected(!!value)}
+					aria-label="Select row"
+				/>
+			</div>
 		),
 		size: 28,
 		enableSorting: false,

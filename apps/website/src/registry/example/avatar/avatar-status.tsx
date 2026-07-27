@@ -9,7 +9,7 @@ import {
 
 export default function AvatarStatusPreview() {
 	return (
-		<div className="flex gap-6">
+		<div className="flex flex-wrap items-center justify-center gap-6">
 			<Avatar size="48">
 				<AvatarImage src="/media/female-6.jpg" />
 				<AvatarFallback>CH</AvatarFallback>
@@ -20,7 +20,7 @@ export default function AvatarStatusPreview() {
 
 			<Avatar size="48">
 				<AvatarImage src="/media/female-2.jpg" />
-				<AvatarFallback className="text-error bg-error/10">AJ</AvatarFallback>
+				<AvatarFallback color="red">AJ</AvatarFallback>
 				<AvatarIndicator className="bottom-2 right-2">
 					<AvatarStatus className="bg-error" />
 				</AvatarIndicator>

@@ -1,8 +1,7 @@
 import { Rocket } from "lucide-react"
 import Link from "next/link"
-import { Badge } from "@/registry/ui/badge"
-import { Button } from "@/registry/ui/button"
-import { FlickeringGrid } from "../effects/flickering"
+import { Badge } from "@/styles/default/ui/badge"
+import { Button } from "@/styles/default/ui/button"
 
 export default function CTASection() {
 	return (
@@ -62,19 +61,19 @@ export default function CTASection() {
 			</div>
 
 			{/* Half circle with primary color layer blur */}
-			<div className="bg-primary/60 xl:w-20/100 w-45/100 md:w-35/100 absolute bottom-0 left-1/2 z-30 mx-auto h-1/3 -translate-x-1/2 rounded-t-full blur-[130px]"></div>
+			{/* <div className="bg-primary/60 xl:w-20/100 w-45/100 md:w-35/100 absolute bottom-0 left-1/2 z-30 mx-auto h-1/3 -translate-x-1/2 rounded-t-full blur-[130px]"></div> */}
 
 			{/* Neutral radial background overlay */}
-			<div className="bg-radial-[at_50%_100%] to-bg absolute inset-0 z-30 from-transparent to-60%"></div>
+			{/* <div className="bg-radial-[at_50%_100%] to-bg absolute inset-0 z-30 from-transparent to-60%"></div> */}
 
-			<FlickeringGrid
+			{/* <FlickeringGrid
 				className="absolute left-0 top-0 z-10 h-[calc(100%+12px)]"
 				squareSize={4}
 				gridGap={6}
 				color="#6B7280"
 				maxOpacity={0.4}
 				flickerChance={0.2}
-			/>
+			/> */}
 
 			{/* Small gradient to soften the sharp bottom border */}
 			{/* <div className="to-bg/95 absolute inset-x-0 -bottom-2 z-30 h-6 bg-gradient-to-b from-transparent to-90%"></div> */}

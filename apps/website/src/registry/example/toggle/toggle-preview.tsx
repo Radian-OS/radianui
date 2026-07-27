@@ -6,7 +6,7 @@ import { Toggle } from "@/registry/ui/toggle"
 export default function TogglePreview() {
 	return (
 		<Toggle aria-label="Toggle bookmark">
-			<BookmarkIcon className="group-data-[state=on]/toggle:fill-fg" />
+			<BookmarkIcon className="group-data-[state=on]/toggle:fill-fg-secondary text-fg-secondary" />
 			Bookmark
 		</Toggle>
 	)

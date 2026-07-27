@@ -1,13 +1,6 @@
 "use client"
 
-import {
-	BadgeCheck,
-	Bell,
-	ChevronsUpDown,
-	CreditCard,
-	LogOut,
-	Sparkles,
-} from "lucide-react"
+import { IconSlot } from "@/registry/icon/icon-library"
 import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
 import {
 	Dropdown,
@@ -45,7 +38,7 @@ export function SidebarFooterUser() {
 									simmons@radianos.com
 								</span>
 							</div>
-							<ChevronsUpDown />
+							<IconSlot slot="chevrons-up-down" />
 						</SidebarMenuButton>
 					</DropdownTrigger>
 
@@ -72,28 +65,28 @@ export function SidebarFooterUser() {
 						<DropdownDivider />
 						<DropdownGroup>
 							<DropdownItem>
-								<Sparkles className="size-4" />
+								<IconSlot slot="sparkles" className="size-4" />
 								Upgrade to Pro
 							</DropdownItem>
 						</DropdownGroup>
 						<DropdownDivider />
 						<DropdownGroup>
 							<DropdownItem>
-								<BadgeCheck className="size-4" />
+								<IconSlot slot="badge-check" className="size-4" />
 								Account
 							</DropdownItem>
 							<DropdownItem>
-								<CreditCard className="size-4" />
+								<IconSlot slot="card" className="size-4" />
 								Billing
 							</DropdownItem>
 							<DropdownItem>
-								<Bell className="size-4" />
+								<IconSlot slot="bell" className="size-4" />
 								Notifications
 							</DropdownItem>
 						</DropdownGroup>
 						<DropdownDivider />
 						<DropdownItem>
-							<LogOut className="size-4" />
+							<IconSlot slot="logout" className="size-4" />
 							Log out
 							<DropdownShortcut>⌘L</DropdownShortcut>
 						</DropdownItem>

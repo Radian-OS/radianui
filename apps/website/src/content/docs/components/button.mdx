@@ -1,15 +1,19 @@
 ---
 title: Button
-description: Let users take action and make choices in a single
+description: Highly responsive, clickable elements built for form submissions, link actions, and clear user choices.
 links:
   github:
     href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/button.tsx
+  figma:
+    href: https://www.figma.com/design/ZB8gTZwafZOYY7rdJjSRz6/%E2%9D%96-Preview-%E2%9D%96-Radian-Design-System-%E2%9D%96-Version-0.3?node-id=18135-101064&t=V6eYQNGSpHNQ8XrH-11
   externalReference:
     - label: Radix UI
       href: https://www.radix-ui.com/primitives/docs/utilities/slot
 ---
 
 <ComponentPreview path="button/button-example-preview" />
+
+---
 
 ## Installation
 
@@ -30,13 +34,15 @@ links:
 		npm install @radix-ui/react-button
 		```
     	<Step>Copy and paste the following code into your project.</Step>
-    	<ComponentSource name="button" title="components/ui/button.tsx" collapsible />
+    	<ComponentSource src="styles/default/ui/button.tsx" title="components/ui/button.tsx" collapsible />
 
     	<Step>Update the import paths as per your project structure.</Step>
     </Steps>
     </InstallTabsContent>
 
 </InstallationTabs>
+
+---
 
 ## Usage
 
@@ -57,219 +63,326 @@ import {
 <Button>Click Me</Button>
 ```
 
+---
+
 ## Examples
 
-### Button Colors
+<ComponentPreview title="Button Colors" path="button/button-colors-example" />
 
-<ComponentPreview path="button/button-colors-example" />
+<ComponentPreview
+	title="Button Variants"
+	path="button/button-variants-example"
+/>
 
-### Button Variants
-
-<ComponentPreview path="button/button-variants-example" />
-
-### Button - w/Icon
-
-<ComponentPreview path="button/button-with-icon-example" />
-{/* ### Fancy Button */}
+<ComponentPreview
+	title="Button - w/Icon"
+	path="button/button-with-icon-example"
+/>
+{/* #### Fancy Button */}
 
 {/* <ComponentPreview path="button/button-fancy-preview" /> */}
 
-### Size
+<ComponentPreview title="Size" path="button/button-size-example" />
 
-<ComponentPreview path="button/button-size-example" />
+<ComponentPreview
+	title="Button is loading"
+	path="button/loading-button-example"
+/>
 
-### Button is loading
+<ComponentPreview title="Disabled" path="button/button-example-disabled" />
 
-<ComponentPreview path="button/loading-button-example" />
+<ComponentPreview title="Rounded Button" path="button/button-example-rounded" />
 
-### Disabled
+<ComponentPreview title="Button as Input" path="button/button-input-example" />
 
-<ComponentPreview path="button/button-example-disabled" />
+<ComponentPreview title="Link Button" path="button/link-button-example" />
 
-### Rounded Button
+<ComponentPreview title="Icon Button" path="button/icon-button-example" />
 
-<ComponentPreview path="button/button-example-rounded" />
+<ComponentPreview title="Compact Button" path="button/compact-button-example" />
 
-### Button as Input
+<ComponentPreview title="Button Group" path="button/button-group-example" />
 
-<ComponentPreview path="button/button-input-example" />
+<ComponentPreview
+	title="Button Group -w/Icon Button"
+	path="button/button-split-example"
+/>
 
-### Link Button
+<ComponentPreview
+	title="Button - w/Badge"
+	path="button/button-with-badge-example"
+/>
 
-<ComponentPreview path="button/link-button-example" />
+<ComponentPreview
+	title="Social Login Button"
+	path="button/social-button-example"
+/>
 
-### Icon Button
+<ComponentPreview
+	title="Fancy Button - Glossy"
+	path="button/button-glossy-example"
+/>
 
-<ComponentPreview path="button/icon-button-example" />
-
-### Compact Button
-
-<ComponentPreview path="button/compact-button-example" />
-
-### Button Group
-
-<ComponentPreview path="button/button-group-example" />
-
-### Button Group -w/Icon Button
-
-<ComponentPreview path="button/button-split-example" />
-
-### Button - w/Badge
-
-<ComponentPreview path="button/button-with-badge-example" />
-
-### Social Login Button
-
-<ComponentPreview path="button/social-button-example" />
-
-### Fancy Button - Glossy
-
-<ComponentPreview path="button/button-glossy-example" />
-
-### Fancy Button - Smooth
-
-<ComponentPreview path="button/button-smooth-example" />
+<ComponentPreview
+	title="Fancy Button - Smooth"
+	path="button/button-smooth-example"
+/>
 
 {/* <ComponentPreview path="button/button-fancy-example" /> */}
 
-### Custom Button - Elevated
+<ComponentPreview
+	title="Custom Button - Elevated"
+	path="button/button-elevated-example"
+/>
 
-<ComponentPreview path="button/button-elevated-example" />
-
-### App Stores Button
-
-<ComponentPreview path="button/svg-button-example" />
+<ComponentPreview title="App Stores Button" path="button/svg-button-example" />
 
 ---
 
-## Props
+<ComponentDocContent
+	name={"Button"}
+	description={
+		"A button is a simple clickable element that allows users to perform actions on a website, like submitting forms or navigating to different pages. Use this component whenever you need a reliable and easy-to-style trigger for user interactions in your application."
+	}
+	features={[
+		{
+			title: "Semantic Variants",
+			description:
+				"Includes standard variants out of the box: strong, outline, soft, ghost, neutral-soft, and neutral-outline.",
+		},
+		{
+			title: "Flexible Sizing",
+			description:
+				"Pre-configured size variants including 28, 32, 36, 40, 44, and 48 for rapid layout building.",
+		},
+		{
+			title: "Polymorphic Support",
+			description:
+				"Supports the asChild prop via Radix's Slot utility to seamlessly pass button styling to custom routing components (e.g., Next.js <Link>).",
+		},
+		{
+			title: "Styling",
+			description:
+				"Fully styled with Tailwind CSS, making it trivial to implement dark mode support or custom brand colors without external configuration files.",
+		},
+		{
+			title: "Accessibility",
+			description:
+				"Focus states managed natively through Tailwind's ring and focus-visible utilities.",
+		},
+	]}
+	related={[
+		{
+			title: "Dropdown",
+			description:
+				"Use a button as the primary trigger to reveal a contextual menu of actions or links.",
+			href: "/docs/components/dropdown",
+		},
+		{
+			title: "Command",
+			description:
+				"For complex search or action palettes where a standard button isn't sufficient for the interaction.",
+			href: "/docs/components/command",
+		},
+		{
+			title: "Toggle",
+			description:
+				"When you need a button that acts as a simple, accessible two-state on/off switch.",
+			href: "/docs/components/toggle",
+		},
+	]}
+	faqs={[
+		{
+			question: "How do I use this button with Next.js or React Router links?",
+			answer:
+				"You can use the asChild prop on the Radian Button. This allows you to wrap your framework's native <Link> component, merging the button's Tailwind classes onto the anchor tag without rendering invalid, nested interactive elements.",
+		},
+		{
+			question: "Can I add a custom loading state to the button?",
+			answer:
+				"Because you own the component code, you can easily add an isLoading boolean prop. You can then conditionally render a spinner icon, update the text, and disable the button natively by modifying the Button.tsx file to fit your exact requirements.",
+		},
+		{
+			question: "How do I create a new custom color variant?",
+			answer:
+				"Adding a variant is as simple as updating the CVA configuration in the component file. Add a new key to the variants object, define your Tailwind classes, and it will immediately be available as a prop with full TypeScript support.",
+		},
+		{
+			question: "Does the button support icons?",
+			answer:
+				"Yes, you can compose icons alongside your text effortlessly. The default Radian Button relies on standard flexbox utilities, so dropping a Lucide React icon inside the button will automatically align and center it with your text.",
+		},
+		{
+			question: "Why isn't there a Radix primitive for the button?",
+			answer:
+				"Standard HTML <button> elements already possess excellent native accessibility and keyboard support. Using a primitive would add unnecessary overhead, so we use CVA to handle the variant logic while relying on native DOM nodes.",
+		},
+	]}
+/>
 
-<PropsTableWrapper>
-	<PropsTable
-		title="Button"
-		data={[
-			{
-				name: "variant",
-				defaultValue: "strong",
-				values: ["strong", "soft", "outline", "ghost","link","glossy","glossy-inverted","smooth","smooth-inverted"],
-				required: false,
-				description: "Defines the visual style of the button",
-			},
-			{
-				name:"color",
-				defaultValue: "primary",
-				values: ["primary", "info", "success", "warning", "error", "neutral"],
-				required: false,
-				description: "Sets the color scheme of the button",
-			},
-			{
-				name: "size",
-				defaultValue: "36",
-				values: ["28", "32", "36", "40", "44", "48"],
-				required: false,
-				description: "Sets the size of the button",
-			},
-			{
-             name:"disabled",
-			 defaultValue: "false",
-			 values: ["boolean"],
-			 required: false,
-			 description: "Disables interaction with the button when set to true",
-			},
-			{
-				name: "loading",
-				defaultValue: "false",
-				values: ["boolean"],
-				required: false,
-				description: "If true, the button will show a loading spinner",
-			},
-			{
-               name:"start",
-			   values: ["ReactNode"],
-			   required: false,
-			   description: "Sets the leading icon of the button",
-			},
-			{
-				name: "end",
-				values: ["ReactNode"],
-				required: false,
-				description: "Sets the trailing icon of the button",
-			},
-			{
-				name: "asChild",
-				defaultValue: "false",
-				values: ["boolean"],
-				required: false,
-				description: "If true, the button will render as a child component",
-			}
-    	]}
-    />
-	<PropsTable
-		title="Buttongroup"
-		data={[
-			{
-				name: "variant",
-				defaultValue: "outline",
-				values: ["strong", "soft", "outline", "ghost","glossy-inverted","smooth","smooth-inverted"],
-				required: false,
-				description: "Defines the visual style of the button",
-			},
-			{
-				name:"color",
-				defaultValue: "neutral",
-				values: ["primary", "info", "success", "warning", "error", "neutral"],
-				required: false,
-				description: "Sets the color scheme of the button",
-			},
-			{
-				name: "size",
-				defaultValue: "36",
-				values: ["28", "32", "36", "40", "44", "48"],
-				required: false,
-				description: "Sets the size of the button",
-			}
-		]}
-	/>
+## API Reference
 
-    <PropsTable
-    title="CompactButton"
-    data={[
-        {
-            name: "variant",
-            defaultValue: "strong",
-            values: ["strong", "soft", "outline", "ghost","glossy-inverted","smooth","smooth-inverted"],
-            required: false,
-            description: "Defines the visual style of the button",
-        },
-        {
-            name:"color",
-            defaultValue: "primary",
-            values: ["primary", "info", "success", "warning", "error", "neutral"],
-            required: false,
-            description: "Sets the color scheme of the button",
-        },
-        {
-            name: "size",
-            defaultValue: "28",
-            values: ["28", "32"],
-            required: false,
-            description: "Sets the size of the button",
-        },
-    	{
-    		name:"disabled",
-    		defaultValue: "false",
-    		values: ["boolean"],
-    		required: false,
-    		description: "Disables interaction with the button when set to true"
-    	},
-    	{
-    			name: "asChild",
-    			defaultValue: "false",
-    			values: ["boolean"],
-    			required: false,
-    			description: "If true, the button will render as a child component",
-    		}
-    ]}
-    />
+This is a custom component made using Radix UI's Slot.
 
-</PropsTableWrapper>
+### Button
+
+An interactive element used to trigger actions or events.
+
+<PropsTable
+	data={[
+		{
+			name: "variant",
+			defaultValue: "strong",
+			values: [
+				"strong",
+				"soft",
+				"outline",
+				"ghost",
+				"link",
+				"glossy",
+				"glossy-inverted",
+				"smooth",
+				"smooth-inverted",
+			],
+			required: false,
+			description: "Defines the visual style of the button",
+		},
+		{
+			name: "color",
+			defaultValue: "primary",
+			values: ["primary", "info", "success", "warning", "error", "neutral"],
+			required: false,
+			description: "Sets the color scheme of the button",
+		},
+		{
+			name: "size",
+			defaultValue: "36",
+			values: ["28", "32", "36", "40", "44", "48"],
+			required: false,
+			description: "Sets the size of the button",
+		},
+		{
+			name: "disabled",
+			defaultValue: "false",
+			values: ["boolean"],
+			required: false,
+			description: "Disables interaction with the button when set to true",
+		},
+		{
+			name: "loading",
+			defaultValue: "false",
+			values: ["boolean"],
+			required: false,
+			description: "If true, the button will show a loading spinner",
+		},
+		{
+			name: "start",
+			values: ["ReactNode"],
+			required: false,
+			description: "Sets the leading icon of the button",
+		},
+		{
+			name: "end",
+			values: ["ReactNode"],
+			required: false,
+			description: "Sets the trailing icon of the button",
+		},
+		{
+			name: "asChild",
+			defaultValue: "false",
+			values: ["boolean"],
+			required: false,
+			description: "If true, the button will render as a child component",
+		},
+	]}
+/>
+
+    ### ButtonGroup
+
+A container that groups related buttons together visually and semantically.
+
+<PropsTable
+	data={[
+		{
+			name: "variant",
+			defaultValue: "outline",
+			values: [
+				"strong",
+				"soft",
+				"outline",
+				"ghost",
+				"glossy-inverted",
+				"smooth",
+				"smooth-inverted",
+			],
+			required: false,
+			description: "Defines the visual style of the button",
+		},
+		{
+			name: "color",
+			defaultValue: "neutral",
+			values: ["primary", "info", "success", "warning", "error", "neutral"],
+			required: false,
+			description: "Sets the color scheme of the button",
+		},
+		{
+			name: "size",
+			defaultValue: "36",
+			values: ["28", "32", "36", "40", "44", "48"],
+			required: false,
+			description: "Sets the size of the button",
+		},
+	]}
+/>
+
+    ### CompactButton
+
+A smaller variant of the button designed for tight spaces, commonly used for icon-only actions or inline controls.
+
+<PropsTable
+	data={[
+		{
+			name: "variant",
+			defaultValue: "strong",
+			values: [
+				"strong",
+				"soft",
+				"outline",
+				"ghost",
+				"glossy-inverted",
+				"smooth",
+				"smooth-inverted",
+			],
+			required: false,
+			description: "Defines the visual style of the button",
+		},
+		{
+			name: "color",
+			defaultValue: "primary",
+			values: ["primary", "info", "success", "warning", "error", "neutral"],
+			required: false,
+			description: "Sets the color scheme of the button",
+		},
+		{
+			name: "size",
+			defaultValue: "28",
+			values: ["28", "32"],
+			required: false,
+			description: "Sets the size of the button",
+		},
+		{
+			name: "disabled",
+			defaultValue: "false",
+			values: ["boolean"],
+			required: false,
+			description: "Disables interaction with the button when set to true",
+		},
+		{
+			name: "asChild",
+			defaultValue: "false",
+			values: ["boolean"],
+			required: false,
+			description: "If true, the button will render as a child component",
+		},
+	]}
+/>

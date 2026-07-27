@@ -3,7 +3,7 @@ import { CodeArea } from "@/registry/ui/code-area"
 
 const CodeThemeExample = () => {
 	return (
-		<div className="flex flex-col items-center justify-center gap-4">
+		<div className="flex w-full max-w-2xl flex-col items-center justify-center gap-4">
 			<CodeArea
 				language="tsx"
 				theme="night-owl"
@@ -11,9 +11,11 @@ const CodeThemeExample = () => {
 const Greeting: React.FC<{ name: string }> = ({ name }) => {
   return <h1>Hello, {name}!</h1>;
 };`}
+				className="w-full"
 			/>
 			<CodeArea
 				language="tsx"
+				className="w-full border"
 				theme="github-light-default"
 				code={`//Github Light Default
 const Greeting: React.FC<{ name: string }> = ({ name }) => {
@@ -27,6 +29,7 @@ const Greeting: React.FC<{ name: string }> = ({ name }) => {
 const Greeting: React.FC<{ name: string }> = ({ name }) => {
   return <h1>Hello, {name}!</h1>;
 };`}
+				className="w-full"
 			/>
 		</div>
 	)

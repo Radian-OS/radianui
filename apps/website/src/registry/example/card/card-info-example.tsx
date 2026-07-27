@@ -1,64 +1,25 @@
-import React from "react"
-import { CheckCircle, FileStack, Link, ShieldAlert } from "lucide-react"
 import { Button } from "@/registry/ui/button"
-import {
-	Card,
-	CardContent,
-	CardDescription,
-	CardFooter,
-	CardHeader,
-	CardTitle,
-} from "@/registry/ui/card"
+import { Card } from "@/registry/ui/card"
 
-const CardInfoExample = () => {
+export default function CardPreview() {
 	return (
-		<Card className="w-100">
-			<CardHeader>
-				<CardTitle>Sync In Progress</CardTitle>
-				<CardDescription>Started 3 mins ago</CardDescription>
-			</CardHeader>
-			<CardContent>
-				<div className="mb-2 flex items-center justify-between">
-					<div className="flex items-center gap-2">
-						<Link className="text-fg-secondary" size={20} />
-						<span className="text-fg-secondary text-sm">Events Found</span>
-					</div>
-					<span className="text-sm font-medium">28</span>
-				</div>
-				<div className="mb-2 flex items-center justify-between">
-					<div className="flex items-center gap-2">
-						<ShieldAlert className="text-fg-secondary" size={20} />
-						<span className="text-fg-secondary text-sm">Events Expired</span>
-					</div>
-					<span className="text-sm font-medium">8</span>
-				</div>
-				<div className="mb-2 flex items-center justify-between">
-					<div className="flex items-center gap-2">
-						<CheckCircle className="text-fg-secondary" size={20} />
-						<span className="text-fg-secondary text-sm">Compile Progress</span>
-					</div>
-					<span className="text-info-text whitespace-nowrap text-sm font-medium">
-						In Progress
-					</span>
-				</div>
-				<div className="flex items-center justify-between">
-					<div className="flex items-center gap-2">
-						<FileStack className="text-fg-secondary" size={20} />
-						<span className="text-fg-secondary text-sm">Sources Checked</span>
-					</div>
-					<span className="whitespace-nowrap text-sm font-medium">
-						210 out of 340
-					</span>
-				</div>
-			</CardContent>
-			<CardFooter className="flex items-center justify-end gap-2">
-				<Button variant="outline" color="neutral">
-					Cancel
+		<Card className="max-w-95 w-full gap-0 p-0">
+			<div className="flex flex-col p-5">
+				<span className="text-base font-semibold">Your Workspace</span>
+				<section className="text-fg-secondary pt-2 text-sm">
+					Organize projects, assign ownership, and track progress in real time -
+					all from one shared workspace built around your team&apos;s workflow.
+					<br />
+					<br />
+					The workspace component supports a size prop that defaults to
+					&quot;default&quot; for standard spacing and layout.
+				</section>
+			</div>
+			<div className="bg-fill1 flex items-center justify-center border border-x-0 border-b-0 border-t p-5">
+				<Button color="neutral" className="w-full" variant="outline">
+					Open Workspace
 				</Button>
-				<Button>Continue</Button>
-			</CardFooter>
+			</div>
 		</Card>
 	)
 }
-
-export default CardInfoExample

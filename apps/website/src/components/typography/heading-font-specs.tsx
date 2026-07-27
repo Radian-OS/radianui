@@ -1,8 +1,13 @@
 "use client"
 
 import React from "react"
-import { Badge } from "@/registry/ui/badge"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
+import { Badge } from "@/styles/default/ui/badge"
+import {
+	Tabs,
+	TabsContent,
+	TabsList,
+	TabsTrigger,
+} from "@/styles/default/ui/tabs"
 
 const fontSpecs = {
 	desktop: [
@@ -35,7 +40,7 @@ const HeadingFontSpecs = () => {
 	return (
 		<Tabs defaultValue="desktop">
 			<div className="flex items-center justify-start overflow-x-auto">
-				<TabsList size="md">
+				<TabsList>
 					{Object.keys(fontSpecs).map((device) => (
 						<TabsTrigger key={device} value={device}>
 							{device.charAt(0).toUpperCase() + device.slice(1)}

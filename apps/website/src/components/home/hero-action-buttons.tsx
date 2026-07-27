@@ -1,36 +1,15 @@
 "use client"
 
-import { Check } from "lucide-react"
 import Link from "next/link"
-import { toast } from "sonner"
-import { useCopyPasteSimple } from "@/hooks/use-copy-paste-simple"
-import { Button } from "@/registry/ui/button"
-
-const TERMINAL_COMMAND = "pnpm dlx radianui@latest init"
+import { Button } from "@/styles/default/ui/button"
 
 export default function HeroActionButtons() {
-	const { copy } = useCopyPasteSimple(TERMINAL_COMMAND)
-
 	return (
 		<>
-			<Button
-				variant="glossy"
-				className="w-full sm:w-fit"
-				size="40"
-				onClick={(e) => {
-					copy(e)
-
-					toast.custom(() => (
-						<div className="bg-black-inverse text-fg-inverse sm:w-75 flex w-full items-center gap-2 rounded-lg px-3 py-2.5 shadow-[0_16px_24px_-4px_rgba(25,24,27,0.12)]">
-							<Check size={20} className="text-success" />
-							<div className="text-fg-inverse space-y-0.5 text-sm">
-								<p className="font-semibold">Command copied to clipboard</p>
-								<p>{TERMINAL_COMMAND}</p>
-							</div>
-						</div>
-					))
-				}}>
-				Copy Terminal Command
+			<Button variant="smooth" className="w-full sm:w-fit" size="40" asChild>
+				<Link href="/docs/getting-started/introduction">
+					Read Documentation
+				</Link>
 			</Button>
 			<Button
 				asChild
@@ -38,8 +17,26 @@ export default function HeroActionButtons() {
 				className="bg-elevation-level1/20 dark:hover:bg-fill2/40 hover:bg-fill2/40 w-full backdrop-blur-md sm:w-fit"
 				variant="outline"
 				color="neutral">
-				<Link href="/docs/components/accordion" className="w-full sm:w-fit">
-					Browse Components
+				<Link
+					target="_blank"
+					rel="noopener noreferrer"
+					href="https://www.figma.com/design/ZB8gTZwafZOYY7rdJjSRz6/%E2%9D%96-Preview-%E2%9D%96-Radian-Design-System-%E2%9D%96-Version-0.3?t=gjwvT9g2QCeoST8E-0"
+					className="w-full sm:w-fit">
+					<svg
+						width="14"
+						height="19"
+						viewBox="0 0 14 19"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg">
+						<path
+							d="M6.58333 0.75H3.66667C2.89312 0.75 2.15125 1.05729 1.60427 1.60427C1.05729 2.15125 0.75 2.89312 0.75 3.66667C0.75 4.44021 1.05729 5.18208 1.60427 5.72906C2.15125 6.27604 2.89312 6.58333 3.66667 6.58333M6.58333 0.75V6.58333M6.58333 0.75H9.5C9.88302 0.75 10.2623 0.825442 10.6162 0.972018C10.97 1.11859 11.2916 1.33343 11.5624 1.60427C11.8332 1.87511 12.0481 2.19664 12.1946 2.55051C12.3412 2.90437 12.4167 3.28364 12.4167 3.66667C12.4167 4.04969 12.3412 4.42896 12.1946 4.78283C12.0481 5.13669 11.8332 5.45822 11.5624 5.72906C11.2916 5.9999 10.97 6.21474 10.6162 6.36132C10.2623 6.50789 9.88302 6.58333 9.5 6.58333M6.58333 6.58333H3.66667M6.58333 6.58333H9.5M6.58333 6.58333V12.4167M3.66667 6.58333C2.89312 6.58333 2.15125 6.89062 1.60427 7.43761C1.05729 7.98459 0.75 8.72645 0.75 9.5C0.75 10.2735 1.05729 11.0154 1.60427 11.5624C2.15125 12.1094 2.89312 12.4167 3.66667 12.4167M9.5 6.58333C9.11698 6.58333 8.73771 6.65877 8.38384 6.80535C8.02997 6.95193 7.70844 7.16677 7.43761 7.43761C7.16677 7.70844 6.95193 8.02997 6.80535 8.38384C6.65878 8.73771 6.58333 9.11698 6.58333 9.5C6.58333 9.88302 6.65878 10.2623 6.80535 10.6162C6.95193 10.97 7.16677 11.2916 7.43761 11.5624C7.70844 11.8332 8.02997 12.0481 8.38384 12.1946C8.73771 12.3412 9.11698 12.4167 9.5 12.4167C9.88302 12.4167 10.2623 12.3412 10.6162 12.1946C10.97 12.0481 11.2916 11.8332 11.5624 11.5624C11.8332 11.2916 12.0481 10.97 12.1946 10.6162C12.3412 10.2623 12.4167 9.88302 12.4167 9.5C12.4167 9.11698 12.3412 8.73771 12.1946 8.38384C12.0481 8.02997 11.8332 7.70844 11.5624 7.43761C11.2916 7.16677 10.97 6.95193 10.6162 6.80535C10.2623 6.65877 9.88302 6.58333 9.5 6.58333ZM3.66667 12.4167C2.89312 12.4167 2.15125 12.724 1.60427 13.2709C1.05729 13.8179 0.75 14.5598 0.75 15.3333C0.75 16.1069 1.05729 16.8487 1.60427 17.3957C2.15125 17.9427 2.89312 18.25 3.66667 18.25C4.44021 18.25 5.18208 17.9427 5.72906 17.3957C6.27604 16.8487 6.58333 16.1069 6.58333 15.3333V12.4167M3.66667 12.4167H6.58333"
+							stroke="#5E636E"
+							strokeWidth="1.5"
+							strokeLinecap="round"
+							strokeLinejoin="round"
+						/>
+					</svg>
+					Preview in Figma
 				</Link>
 			</Button>
 		</>

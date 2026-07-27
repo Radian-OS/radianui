@@ -1,7 +1,12 @@
 "use client"
 
 import { usePreferences } from "@/lib/preferences"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
+import {
+	Tabs,
+	TabsContent,
+	TabsList,
+	TabsTrigger,
+} from "@/styles/default/ui/tabs"
 
 export function InstallationTabs({ children }: { children: React.ReactNode }) {
 	const { installMethod, setInstallMethod } = usePreferences()
@@ -18,7 +23,7 @@ export function InstallationTabs({ children }: { children: React.ReactNode }) {
 
 export function InstallTabsList({ children }: { children: React.ReactNode }) {
 	return (
-		<TabsList width="full" variant="default" size="md">
+		<TabsList width="full" variant="default">
 			{children}
 		</TabsList>
 	)

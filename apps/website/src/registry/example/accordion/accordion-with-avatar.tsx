@@ -94,7 +94,7 @@ export default function AccordionWithAvatarAndBadge() {
 							</Badge>
 						</div>
 					</AccordionTrigger>
-					<AccordionContent className="ps-13.5">
+					<AccordionContent className="pl-11.5">
 						{item.content}
 					</AccordionContent>
 				</AccordionItem>

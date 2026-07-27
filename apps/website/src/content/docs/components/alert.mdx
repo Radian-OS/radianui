@@ -1,12 +1,16 @@
 ---
 title: Alert
-description: Display important messages with visual emphasis
+description: Important notification banners used to show quick success messages, warnings, or helpful updates to visitors.
 links:
   github:
     href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/alert.tsx
+  figma:
+    href: https://www.figma.com/design/ZB8gTZwafZOYY7rdJjSRz6/%E2%9D%96-Preview-%E2%9D%96-Radian-Design-System-%E2%9D%96-Version-0.3?node-id=18133-36548&t=V6eYQNGSpHNQ8XrH-4
 ---
 
 <ComponentPreview path="alert/alert-preview" />
+
+---
 
 ## Installation
 
@@ -27,13 +31,15 @@ links:
 		npm install @radix-ui/react-alert
 		```
     	<Step>Copy and paste the following code into your project.</Step>
-    	<ComponentSource name="alert" title="components/ui/alert.tsx" collapsible />
+    	<ComponentSource src="styles/default/ui/alert.tsx" title="components/ui/alert.tsx" collapsible />
 
     	<Step>Update the import paths as per your project structure.</Step>
     </Steps>
     </InstallTabsContent>
 
 </InstallationTabs>
+
+---
 
 ## Usage
 
@@ -75,68 +81,156 @@ import {
 
 ## Examples
 
-### Variants
+<ComponentPreview
+	title="Variants"
+	height="480"
+	path="alert/alert-variants-example"
+/>
 
-<ComponentPreview height="480" path="alert/alert-variants-example" />
+<ComponentPreview
+	title="Colors"
+	height="500"
+	path="alert/alert-colors-example"
+/>
 
-### Colors
+<ComponentPreview
+	title="On Close Functionality"
+	path="alert/alert-close-example-preview"
+/>
 
-<ComponentPreview height="500" path="alert/alert-colors-example" />
+<ComponentPreview
+	title="Success Alert Examples"
+	path="alert/alert-success-examples"
+/>
 
-### On Close Functionality
+<ComponentPreview
+	title="Error Alerts Examples"
+	path="alert/alert-error-examples"
+/>
 
-<ComponentPreview path="alert/alert-close-example-preview" />
+<ComponentPreview
+	title="Info Alerts Examples"
+	path="alert/alert-info-examples"
+/>
 
-### Success Alert Examples
+<ComponentPreview
+	title="Warning Alert Examples"
+	path="alert/alert-warning-example"
+/>
 
-<ComponentPreview path="alert/alert-success-examples" />
+---
 
-### Error Alerts Examples
+<ComponentDocContent
+	name={"Alert"}
+	description={
+		"An Alert is a simple box used to show important messages to users, like success notifications or warnings. It can be used to draw attention to specific information on your page without interrupting the user's workflow."
+	}
+	features={[
+		"Includes default semantic variants via CVA: default, destructive, warning, success, and info.",
+		"Exports modular sub-components like <AlertTitle> and <AlertDescription> for easy text formatting.",
+		'Accessible by default, using the role="alert" attribute to ensure screen readers immediately announce critical information.',
+		"Completely unstyled structure outside of Tailwind utilities, making it trivial to add custom border radius or shadows.",
+		"Built-in layout support for prepending Lucide React icons next to the text content.",
+	]}
+	related={[
+		{
+			title: "Alert Dialog",
+			description:
+				"When the message requires immediate user interaction or confirmation, not just passive reading.",
+			href: "/docs/components/alert-dialog",
+		},
+		{
+			title: "Sonner (Toast)",
+			description:
+				"When you need a transient, floating notification instead of a static banner embedded in the page flow.",
+			href: "/docs/components/sonner",
+		},
+	]}
+	faqs={[
+		{
+			question: "How do I dismiss or close the Alert?",
+			answer:
+				"The default Radian Alert is a static component. To make it dismissible, you can wrap it in a custom React state hook (const [isOpen, setIsOpen] = useState(true)) and conditionally render it, adding an absolute-positioned icon button to trigger the state change.",
+		},
+		{
+			question: "Can I use custom icons for the different alert variants?",
+			answer:
+				"Yes. Since you have the source code, you can pass any SVG or icon library component as a child. Many users define a custom prop to automatically render specific icons based on the variant prop.",
+		},
+		{
+			question: "Does this alert automatically disappear after a few seconds?",
+			answer:
+				"No, this is a static layout block designed to remain in the DOM. If you need auto-dismissing notifications, you should use the Sonner component instead, which handles complex timing and queuing logic.",
+		},
+		{
+			question:
+				"How can I change the background color of the destructive alert?",
+			answer:
+				"You can locate the CVA configuration within the component. Under the destructive key, you can swap out the default Tailwind color classes (e.g., bg-red-500) for your custom brand variables or alternative utility classes.",
+		},
+		{
+			question: "Is the Alert component responsive?",
+			answer:
+				"Yes, it relies on standard flexbox utilities provided by Tailwind. It will automatically span the full width of its container and wrap text gracefully on smaller mobile screens.",
+		},
+	]}
+/>
 
-<ComponentPreview path="alert/alert-error-examples" />
+## API Reference
 
-### Info Alerts Examples
+This is a custom component, not a Radix UI wrapper.
 
-<ComponentPreview path="alert/alert-info-examples" />
+### Alert
 
-### Warning Alert Examples
+<PropsTable
+	data={[
+		{
+			name: "color",
+			defaultValue: "primary",
+			values: ["neutral", "primary", "info", "success", "warning", "error"],
+			required: false,
+			description: "Sets the color scheme of the alert",
+		},
+		{
+			name: "variant",
+			defaultValue: "soft",
+			values: ["soft", "soft-outline", "outline", "strong"],
+			required: false,
+			description: "Defines the visual style of the alert",
+		},
+		{
+			name: "close",
+			defaultValue: "false",
+			values: ["boolean"],
+			required: false,
+			description: "Shows a close button to dismiss the alert",
+		},
+		{
+			name: "onClose",
+			defaultValue: "-",
+			values: ["() => void"],
+			required: false,
+			description: "Callback function called when the alert is dismissed",
+		},
+	]}
+/>
 
-<ComponentPreview path="alert/alert-warning-example" />
+### AlertTitle
 
-## Props
+A semantic heading that displays the main title of the alert.
 
-<PropsTableWrapper>
-	<PropsTable
-		title="Alert"
-		data={[
-			{
-				name: "color",
-				defaultValue: "primary",
-				values: ["neutral", "primary", "info", "success", "warning", "error"],
-				required: false,
-				description: "Sets the color scheme of the alert",
-			},
-			{
-				name: "variant",
-				defaultValue: "soft",
-				values: ["soft", "soft-outline", "outline", "strong"],
-				required: false,
-				description: "Defines the visual style of the alert",
-			},
-			{
-				name: "close",
-				defaultValue: "false",
-				values: ["boolean"],
-				required: false,
-				description: "Shows a close button to dismiss the alert",
-			},
-			{
-				name: "onClose",
-				defaultValue: "-",
-				values: ["() => void"],
-				required: false,
-				description: "Callback function called when the alert is dismissed",
-			},
-		]}
-	/>
-</PropsTableWrapper>
+### AlertDescription
+
+A text container for displaying the main message of the alert.
+
+### AlertIcon
+
+A wrapper for displaying icons alongside the alert message.
+
+### AlertContent
+
+The main container that groups and aligns the title and description text.
+
+### AlertToolbar
+
+A container for adding action buttons or links inside the alert.

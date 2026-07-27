@@ -4,13 +4,9 @@ import { Label } from "@/registry/ui/label"
 
 function CurrencyInputExample() {
 	return (
-		<div className="flex flex-col gap-1.5">
+		<div className="flex w-full max-w-80 flex-col gap-1.5">
 			<Label htmlFor="eg-1">Currency Amount</Label>
-			<CurrencyInput
-				id="eg-1"
-				className="md:w-80"
-				placeholder="Enter Amount Here"
-			/>
+			<CurrencyInput id="eg-1" placeholder="Enter Amount Here" />
 		</div>
 	)
 }

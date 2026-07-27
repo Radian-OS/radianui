@@ -4,7 +4,7 @@ import { Badge } from "@/registry/ui/badge"
 
 const BadgeAvatarExample = () => {
 	return (
-		<div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
+		<div className="flex flex-wrap items-center justify-center gap-3">
 			<Badge
 				className="rounded-full py-1 pl-1 pr-2"
 				variant="outline"

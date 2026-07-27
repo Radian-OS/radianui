@@ -9,7 +9,7 @@ export default function SliderWithStepper() {
 	const [value, setValue] = React.useState(50)
 
 	return (
-		<div className="w-100 flex gap-2">
+		<div className="w-100 flex items-center gap-2">
 			<IconButton
 				aria-label="Reduce Button"
 				size="28"
@@ -18,7 +18,10 @@ export default function SliderWithStepper() {
 				onClick={() => setValue((prev) => Math.max(prev - 10, 0))}>
 				<Minus size={16} />
 			</IconButton>
-			<Slider value={[value]} onValueChange={([value]) => setValue(value)}>
+			<Slider
+				className="flex-1"
+				value={[value]}
+				onValueChange={([val]) => setValue(val)}>
 				<SliderThumb />
 			</Slider>
 			<IconButton

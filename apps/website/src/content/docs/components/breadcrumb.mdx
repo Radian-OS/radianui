@@ -1,12 +1,16 @@
 ---
 title: Breadcrumb
-description: Show navigation hierarchy for current page
+description: A simple trail of links that shows users exactly where they are within your website's page structure.
 links:
   github:
     href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/breadcrumb.tsx
+  figma:
+    href: https://www.figma.com/design/ZB8gTZwafZOYY7rdJjSRz6/%E2%9D%96-Preview-%E2%9D%96-Radian-Design-System-%E2%9D%96-Version-0.3?node-id=18773-4502&t=V6eYQNGSpHNQ8XrH-4
 ---
 
 <ComponentPreview path="breadcrumb/breadcrumb-preview" />
+
+---
 
 ## Installation
 
@@ -27,13 +31,15 @@ links:
 		npm install @radix-ui/react-slot
 		```
     	<Step>Copy and paste the following code into your project.</Step>
-    	<ComponentSource name="breadcrumb" title="components/ui/breadcrumb.tsx" collapsible />
+    	<ComponentSource src="styles/default/ui/breadcrumb.tsx" title="components/ui/breadcrumb.tsx" collapsible />
 
     	<Step>Update the import paths as per your project structure.</Step>
     </Steps>
     </InstallTabsContent>
 
 </InstallationTabs>
+
+---
 
 ## Usage
 
@@ -83,41 +89,121 @@ import {
 
 ## Examples
 
-### With Icons
+<ComponentPreview title="With Icons" path="breadcrumb/breadcrumb-with-icons" />
 
-<ComponentPreview path="breadcrumb/breadcrumb-with-icons" />
+<ComponentPreview
+	title="Card Design"
+	path="breadcrumb/breadcrumb-card-design"
+/>
 
-### Card Design
+<ComponentPreview
+	title="With Dropdown"
+	path="breadcrumb/breadcrumb-with-dropdown"
+/>
 
-<ComponentPreview path="breadcrumb/breadcrumb-card-design" />
+<ComponentPreview title="With Dot" path="breadcrumb/breadcrumb-with-dot" />
 
-### With Dropdown
-
-<ComponentPreview path="breadcrumb/breadcrumb-with-dropdown" />
-
-### With Dot
-
-<ComponentPreview path="breadcrumb/breadcrumb-with-dot" />
-
-### With Slash
-
-<ComponentPreview path="breadcrumb/breadcrumb-with-slash" />
+<ComponentPreview title="With Slash" path="breadcrumb/breadcrumb-with-slash" />
 
 ---
 
-## Props
+<ComponentDocContent
+	name={"Breadcrumb"}
+	description={
+		"A breadcrumb is a navigation bar that shows users where they are on a website. Use breadcrumbs to help users easily track their path and navigate back to previous pages."
+	}
+	features={[
+		"Modular architecture exporting <Breadcrumb>, <BreadcrumbList>, <BreadcrumbItem>, <BreadcrumbLink>, and <BreadcrumbSeparator>.",
+		'Semantically correct DOM structure using <nav aria-label="breadcrumb"> and ordered lists for maximum accessibility.',
+		"Pre-styled separator components using Lucide chevrons or standard text slashes.",
+		"Completely framework-agnostic; BreadcrumbLink easily wraps Next.js <Link> or React Router components via the asChild prop.",
+		"Built-in support for an <BreadcrumbEllipsis> component to gracefully handle overly long navigation paths.",
+	]}
+	related={[
+		{
+			title: "Navigation Menu",
+			description:
+				"Breadcrumbs show where the user is, while the Navigation Menu provides the primary way to explore where else they can go.",
+			href: "/docs/components/navigation-menu",
+		},
+		{
+			title: "Dropdown",
+			description:
+				"The BreadcrumbEllipsis often triggers a dropdown menu to display the hidden navigation steps.",
+			href: "/docs/components/dropdown",
+		},
+	]}
+	faqs={[
+		{
+			question: "How do I use this with the Next.js App Router?",
+			answer:
+				"You can pass the asChild prop to <BreadcrumbLink> and nest the Next.js <Link> component inside it. This delegates the rendering to the Next.js link while preserving Radian's utility-first styling.",
+		},
+		{
+			question:
+				"How do I handle very long breadcrumb trails on mobile devices?",
+			answer:
+				"Use the exported <BreadcrumbEllipsis> component. Typically, developers replace the middle items of the path array with this ellipsis, which can be combined with a <Dropdown> for expanded navigation.",
+		},
+		{
+			question: "Can I change the separator icon?",
+			answer:
+				"Yes. The <BreadcrumbSeparator> component accepts children. If no children are provided, it renders a default chevron. You can pass any custom icon or text directly inside the component to override the default.",
+		},
+		{
+			question: "Does the breadcrumb automatically know my current route?",
+			answer:
+				"No. The Radian Breadcrumb is a presentational component. You must provide the navigation data by mapping over your router's current pathname to generate the corresponding BreadcrumbItem elements.",
+		},
+		{
+			question: "How is the active page indicated for screen readers?",
+			answer:
+				'Apply the aria-current="page" attribute to the final <BreadcrumbPage> or <BreadcrumbLink> element. This ensures the component remains fully accessible and compliant with WAI-ARIA standards.',
+		},
+	]}
+/>
 
-<PropsTableWrapper>
-	<PropsTable
-		title="BreadcrumbLink"
-		data={[
-			{
-				name: "asChild",
-				values: ["boolean"],
-				required: false,
-				description: "Use this prop to render the link as a child component.",
-				defaultValue: "false",
-			},
-		]}
-	/>
-</PropsTableWrapper>
+## API Reference
+
+This is a custom component made using Radix UI's Slot.
+
+### Breadcrumb
+
+The root navigation container that provides accessibility context (nav element) for the breadcrumb trail.
+
+### BreadcrumbList
+
+An ordered list container (`<ol>`) that groups and structures the breadcrumb navigation items.
+
+### BreadcrumbItem
+
+A wrapper (`<li>`) for individual breadcrumb links, separators, or current page indicators.
+
+### BreadcrumbLink
+
+An interactive link element used for navigating to previous pages in the breadcrumb trail.
+
+<PropsTable
+	title="BreadcrumbLink"
+	data={[
+		{
+			name: "asChild",
+			values: ["boolean"],
+			required: false,
+			description: "Use this prop to render the link as a child component.",
+			defaultValue: "false",
+		},
+	]}
+/>
+
+### BreadcrumbPage
+
+A static text element representing the current active page, automatically styled and configured for screen readers.
+
+### BreadcrumbSeparator
+
+A visual divider (typically a slash or chevron) placed between breadcrumb items.
+
+### BreadcrumbEllipsis
+
+A visual indicator used to represent hidden or truncated pages in a long breadcrumb trail.

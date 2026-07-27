@@ -1,59 +1,156 @@
 ---
 title: Combobox
-description: Autocomplete input and command palette with a list of suggestions.
+description: A smart input field that combines a search bar with a dropdown menu to quickly filter through massive lists.
+links:
+  github:
+    href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/example/combobox/combobox-preview.tsx
 ---
 
 <ComponentPreview path="combobox/combobox-preview" />
 
+---
+
 ## Installation
 
-The Combobox is built using a composition of the [Popover](/docs/components/popover) and the [Command](/docs/components/command) components.
+The Combobox is built using a composition of the [Popover](/docs/components/popover), [Scroll Area](/docs/components/scroll-area) and the [Command](/docs/components/command) components.
+
+---
 
 ## Usage
 
 ### Imports
 
-```tsx showLineNumbers title="/components/ui/combobox.tsx"
-import { Combobox } from "@/components/ui/combobox"
+```tsx showLineNumbers title="/example/comboboxPreview.tsx"
+import {
+	Command,
+	CommandEmpty,
+	CommandGroup,
+	CommandInput,
+	CommandItem,
+	CommandList,
+} from "@/components/ui/command"
+import {
+	Popover,
+	PopoverContent,
+	PopoverTrigger,
+} from "@/components/ui/popover"
+import { ScrollArea } from "@/components/ui/scroll-area"
 ```
 
 ### Code
 
-```tsx showLineNumbers title="/components/ui/combobox.tsx"
-<Combobox>
-	<Combobox.Input placeholder="Search..." />
-	<Combobox.List>
-		<Combobox.Item>Option 1</Combobox.Item>
-		<Combobox.Item>Option 2</Combobox.Item>
-		<Combobox.Item>Option 3</Combobox.Item>
-	</Combobox.List>
-</Combobox>
+```tsx showLineNumbers title="/example/comboboxPreview.tsx"
+<Popover>
+	<PopoverTrigger>Open Combobox</PopoverTrigger>
+	<PopoverContent>
+		<Command>
+			<CommandInput />
+			<CommandList>
+				<CommandEmpty>No results found.</CommandEmpty>
+				<ScrollArea>
+					<CommandGroup heading="Suggestions">
+						<CommandItem>Calendar</CommandItem>
+						<CommandItem>Search Emoji</CommandItem>
+						<CommandItem>Calculator</CommandItem>
+					</CommandGroup>
+
+					<CommandDivider />
+
+					<CommandGroup heading="Settings">
+						<CommandItem>Profile</CommandItem>
+						<CommandItem>Billing</CommandItem>
+						<CommandItem>Settings</CommandItem>
+					</CommandGroup>
+				</ScrollArea>
+			</CommandList>
+		</Command>
+	</PopoverContent>
+</Popover>
 ```
 
 ---
 
 ## Examples
 
-### Timezone
+<ComponentPreview title="Timezone" path="combobox/combobox-timezone" />
 
-<ComponentPreview path="combobox/combobox-timezone" />
+<ComponentPreview title="Tags" path="combobox/combobox-multiselect" />
 
-### Tags
+<ComponentPreview title="Email Invite" path="combobox/combobox-email-invite" />
 
-<ComponentPreview path="combobox/combobox-multiselect" />
+<ComponentPreview title="Virtualized List" path="combobox/virtualized-list" />
 
-### Email Invite
+<ComponentPreview title="Form" path="combobox/combobox-form" />
 
-<ComponentPreview path="combobox/combobox-email-invite" />
+---
 
-### With ScrollArea
+<ComponentDocContent
+	name={"Combobox"}
+	description={
+		"A Combobox is a search box with a dropdown list that helps users find and select an item from a long list quickly. Use this component when you have a large list of options and want to let users filter and pick one easily."
+	}
+	features={[
+		"Powered by the cmdk library for optimized, high-speed command menu filtering logic.",
+		"Composed within a Radix UI Popover, utilizing portal rendering to eliminate z-index conflicts and overflow clipping.",
+		"Fully accessible keyboard navigation, allowing users to up/down arrow through filtered results and select options with the Enter key.",
+		"Support for custom empty states to provide clear user feedback when search queries return no matches.",
+		"Seamlessly styled with Tailwind CSS, allowing you to perfectly match the input trigger button and dropdown panel to your specific design system.",
+	]}
+	related={[
+		{
+			title: "Select",
+			description:
+				"Use a standard Select component when the list of options is short (typically under 10-15 items) and text-filtering is unnecessary.",
+			href: "/docs/components/select",
+		},
+		{
+			title: "Command",
+			description:
+				"The core engine behind the Combobox; use the standalone Command component when you want to build a full-page, macOS-style global search palette (Command+K).",
+			href: "/docs/components/command",
+		},
+		{
+			title: "Popover",
+			description:
+				"The underlying contextual container used to float the Combobox's dropdown menu directly beneath the input trigger element.",
+			href: "/docs/components/popover",
+		},
+	]}
+	faqs={[
+		{
+			question: "Why use this over the native HTML <select> element?",
+			answer:
+				"Native <select> elements lack consistent cross-browser styling and native search capabilities. The Radian Combobox provides a unified UI and high-performance filtering for large datasets.",
+		},
+		{
+			question: "Can I fetch options asynchronously from an external API?",
+			answer:
+				"Yes. By binding the <CommandInput> value to a debounced state hook, you can trigger API requests and display loading indicators while the component awaits the resolved data.",
+		},
+		{
+			question: "How do I implement a multi-select combobox?",
+			answer:
+				"While designed for single selection by default, you can extend the onSelect handler to manage an array of values in state and render selected items as interactive Badges within the trigger.",
+		},
+		{
+			question: "Why isn't the dropdown closing when I select an item?",
+			answer:
+				"Selection behavior in a controlled component requires manual state management. Ensure your onSelect logic calls setOpen(false) to dismiss the Popover once a choice is finalized.",
+		},
+		{
+			question: "Does the combobox support custom icons next to the options?",
+			answer:
+				"Yes. The CommandItem component accepts any React node as a child, allowing for the inclusion of SVG icons or status indicators aligned via standard Tailwind utility classes.",
+		},
+	]}
+/>
 
-<ComponentPreview path="combobox/combobox-scrollarea" />
+## API Reference
 
-### Virtualized List
+This component is a composite pattern built using [Popover](/docs/components/popover), [Command](/docs/components/command), and [ScrollArea](/docs/components/scroll-area). Refer to each component's individual API Reference for the full list of available props.
 
-<ComponentPreview path="combobox/virtualized-list" />
+### Key Components Used
 
-### Form
-
-<ComponentPreview path="combobox/combobox-form" />
+- **Popover** — Houses the dropdown overlay. See [Popover API](/docs/components/popover#api-reference).
+- **Command** — Handles the search input and filtered list. See [Command API](/docs/components/command#api-reference).
+- **ScrollArea** — Wraps long results lists for smooth scrolling. See [ScrollArea API](/docs/components/scroll-area#api-reference).

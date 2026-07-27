@@ -1,6 +1,6 @@
 ---
 title: Menubar
-description: Creates a list of items that can be triggered by the user to perform an action or navigate.
+description: A horizontal top menu bar that mirrors desktop apps, making deep website navigation fast and organized.
 links:
   github:
     href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/menubar.tsx
@@ -10,6 +10,8 @@ links:
 ---
 
 <ComponentPreview path="menubar/menubar-preview" />
+
+---
 
 ## Installation
 
@@ -36,6 +38,8 @@ links:
     </InstallTabsContent>
 
 </InstallationTabs>
+
+---
 
 ## Usage
 
@@ -117,165 +121,248 @@ Use `variant="destructive"` on `MenubarItem` for dangerous operations like log o
 
 ---
 
-## Props
+<ComponentDocContent
+	name={"Menubar"}
+	description={
+		"Menubar is a horizontal menu that organizes actions into dropdown menus, similar to the menu bar in desktop applications.It offers keyboard accessibility, smooth navigation, and a familiar way to group commands in complex applications."
+	}
+	features={[
+		"@radix-ui/react-menuba, offers strict ARIA compliance and seamless focus roaming between adjacent dropdowns without requiring additional clicks.",
+		"Highly modular components: <Menubar>, <MenubarMenu>, <MenubarTrigger>, <MenubarContent>,<MenubarItem> and so on.",
+		"Natively supports complex submenus via <MenubarSub>, as well as stateful interactions using <MenubarCheckboxItem> and <MenubarRadioGroup>.",
+		"Collision-aware positioning via the underlying Popper engine automatically flips or shifts open menus to prevent clipping off the edge of the viewport.",
+		"Fully customizable Tailwind CSS foundation, making it easier to build an edge-to-edge macOS-style bar or a compact, floating pill navigation.",
+	]}
+	related={[
+		{
+			title: "Dropdown",
+			description:
+				"The underlying structural concept. Use a standalone Dropdown for isolated action buttons, but use a Menubar when grouping multiple dropdowns into a unified application header.",
+			href: "/docs/components/dropdown",
+		},
+		{
+			title: "Context Menu",
+			description:
+				"Shares nearly identical item syntax and styling, but is explicitly triggered via a right-click on a specific canvas or row rather than a top-level persistent navigation bar.",
+			href: "/docs/components/context-menu",
+		},
+		{
+			title: "Command",
+			description:
+				'Frequently triggered from a Menubar item (e.g., clicking "File > Search" opens the global Command dialog).',
+			href: "/docs/components/command",
+		},
+	]}
+	faqs={[
+		{
+			question:
+				"How does Menubar differ from a standard group of Dropdown Menus?",
+			answer:
+				'A Menubar manages focus across its child menus. If you click to open "File", you can hover or press the Right Arrow key to instantly open the adjacent "Edit" menu without needing to click again, perfectly mimicking native desktop OS behavior.',
+		},
+		{
+			question: "How do I add keyboard shortcuts to the menu items?",
+			answer:
+				"You can utilize the <MenubarShortcut> component exported alongside the main file. Nesting this inside a <MenubarItem> (e.g., <MenubarShortcut>⌘S</MenubarShortcut>) uses Tailwind flexbox utilities to cleanly align the hint to the far right side of the row.",
+		},
+		{
+			question: "Can I render a Menubar vertically?",
+			answer:
+				"No. The @radix-ui/react-menubar primitive is explicitly designed and strictly hardcoded for horizontal orientation to comply with standard desktop navigation ARIA patterns. For vertical navigation hierarchies, use an Accordion or a Sidebar component instead.",
+		},
+		{
+			question: "How do I make the Menubar stick to the top of the screen?",
+			answer:
+				"You apply standard Tailwind layout utilities directly to the root <Menubar> component (or its parent wrapper). Adding sticky top-0 z-50 w-full rounded-none border-b will lock the bar to the top of the viewport and allow main page content to scroll underneath it safely.",
+		},
+		{
+			question:
+				"Why is my open menu hiding behind other UI elements on the page?",
+			answer:
+				"While Radix renders the dropdown content inside a React Portal by default, your layout might contain specific, conflicting z-index stacking contexts. You can easily fix this by locating the <MenubarContent> component in your local file and modifying it to include a utility like z-50 or higher.",
+		},
+	]}
+/>
 
-<PropsTableWrapper>
-	<PropsTable
-		title="Menubar"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/menubar#root"
-	/>
-	<PropsTable
-		title="MenubarMenu"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/menubar#menu"
-	/>
-	<PropsTable
-		title="MenubarTrigger"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/menubar#trigger"
-	/>
-	<PropsTable
-		title="MenubarContent"
-		data={[
-			{
-				name: "align",
-				required: false,
-				defaultValue: "start",
-				values: ["start", "center", "end"],
-				description: "The alignment of the content relative to the trigger.",
-			},
-			{
-				name: "alignOffset",
-				required: false,
-				defaultValue: "-4",
-				values: ["number"],
-				description: "An offset in pixels from the 'start' or 'end' alignment.",
-			},
-			{
-				name: "sideOffset",
-				required: false,
-				defaultValue: "8",
-				values: ["number"],
-				description: "The distance in pixels from the trigger.",
-			},
-		]}
-		externalReference="https://www.radix-ui.com/primitives/docs/components/menubar#content"
-	/>
-	<PropsTable
-		title="MenubarItem"
-		data={[
-			{
-				name: "inset",
-				required: false,
-				defaultValue: "false",
-				values: ["boolean"],
-				description: "When true, adds left padding to align with items that have an indicator.",
-			},
-			{
-				name: "variant",
-				required: false,
-				defaultValue: "default",
-				values: ["default", "destructive"],
-				description: "Visual style of the item. Use 'destructive' for dangerous actions.",
-			},
-		]}
-		externalReference="https://www.radix-ui.com/primitives/docs/components/menubar#item"
-	/>
-	<PropsTable
-		title="MenubarCheckboxItem"
-		data={[
-			{
-				name: "checked",
-				required: false,
-				defaultValue: "false",
-				values: ["boolean"],
-				description: "The controlled checked state of the item.",
-			},
-			{
-				name: "onCheckedChange",
-				required: false,
-				values: ["(checked: boolean) => void"],
-				description: "Callback fired when the checked state changes.",
-			},
-			{
-				name: "inset",
-				required: false,
-				defaultValue: "false",
-				values: ["boolean"],
-				description: "When true, adds left padding to align with inset items.",
-			},
-		]}
-		externalReference="https://www.radix-ui.com/primitives/docs/components/menubar#checkboxitem"
-	/>
-	<PropsTable
-		title="MenubarRadioGroup"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/menubar#radiogroup"
-	/>
-	<PropsTable
-		title="MenubarRadioItem"
-		data={[
-			{
-				name: "value",
-				required: true,
-				values: ["string"],
-				description: "The unique value of this radio item within its group.",
-			},
-			{
-				name: "inset",
-				required: false,
-				defaultValue: "false",
-				values: ["boolean"],
-				description: "When true, adds left padding to align with other items.",
-			},
-		]}
-		externalReference="https://www.radix-ui.com/primitives/docs/components/menubar#radioitem"
-	/>
-	<PropsTable
-		title="MenubarLabel"
-		data={[
-			{
-				name: "inset",
-				required: false,
-				defaultValue: "false",
-				values: ["boolean"],
-				description: "When true, adds left padding to align with inset items.",
-			},
-		]}
-		externalReference="https://www.radix-ui.com/primitives/docs/components/menubar#label"
-	/>
-	<PropsTable
-		title="MenubarSeparator"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/menubar#separator"
-	/>
-	<PropsTable
-		title="MenubarSub"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/menubar#sub"
-	/>
-	<PropsTable
-		title="MenubarSubTrigger"
-		data={[
-			{
-				name: "inset",
-				required: false,
-				defaultValue: "false",
-				values: ["boolean"],
-				description: "When true, adds left padding to align with other items.",
-			},
-		]}
-		externalReference="https://www.radix-ui.com/primitives/docs/components/menubar#subtrigger"
-	/>
-	<PropsTable
-		title="MenubarSubContent"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/menubar#subcontent"
-	/>
-	<PropsTable
-		title="MenubarShortcut"
-		data={[
-			{
-				name: "className",
-				required: false,
-				values: ["string"],
-				description: "Additional CSS classes to apply to the shortcut text.",
-			},
-		]}
-	/>
+## API Reference
 
-</PropsTableWrapper>
+### Menubar
+
+The root container. Alias for `Menubar.Root` from Radix UI.
+
+    ### MenubarMenu
+
+A top-level menu item within the menubar that contains a trigger and content.
+
+    ### MenubarTrigger
+
+An interactive element that opens its associated menu when clicked or hovered.
+
+    ### MenubarContent
+
+The floating panel that contains the menu items.
+
+<PropsTable
+	data={[
+		{
+			name: "align",
+			required: false,
+			defaultValue: "start",
+			values: ["start", "center", "end"],
+			description: "The alignment of the content relative to the trigger.",
+		},
+		{
+			name: "alignOffset",
+			required: false,
+			defaultValue: "-4",
+			values: ["number"],
+			description: "An offset in pixels from the 'start' or 'end' alignment.",
+		},
+		{
+			name: "sideOffset",
+			required: false,
+			defaultValue: "8",
+			values: ["number"],
+			description: "The distance in pixels from the trigger.",
+		},
+	]}
+/>
+
+    ### MenubarItem
+
+An interactive, selectable item within a menu.
+
+<PropsTable
+	data={[
+		{
+			name: "inset",
+			required: false,
+			defaultValue: "false",
+			values: ["boolean"],
+			description:
+				"When true, adds left padding to align with items that have an indicator.",
+		},
+		{
+			name: "variant",
+			required: false,
+			defaultValue: "default",
+			values: ["default", "destructive"],
+			description:
+				"Visual style of the item. Use 'destructive' for dangerous actions.",
+		},
+	]}
+/>
+
+    ### MenubarCheckboxItem
+
+A menu item that can be toggled on or off, displaying a checkmark when active.
+
+<PropsTable
+	data={[
+		{
+			name: "checked",
+			required: false,
+			defaultValue: "false",
+			values: ["boolean"],
+			description: "The controlled checked state of the item.",
+		},
+		{
+			name: "onCheckedChange",
+			required: false,
+			values: ["(checked: boolean) => void"],
+			description: "Callback fired when the checked state changes.",
+		},
+		{
+			name: "inset",
+			required: false,
+			defaultValue: "false",
+			values: ["boolean"],
+			description: "When true, adds left padding to align with inset items.",
+		},
+	]}
+/>
+
+    ### MenubarRadioGroup
+
+A structural container for grouping multiple radio items together.
+
+    ### MenubarRadioItem
+
+An item within a radio group that can be selected, deselecting other items in the group.
+
+<PropsTable
+	data={[
+		{
+			name: "value",
+			required: true,
+			values: ["string"],
+			description: "The unique value of this radio item within its group.",
+		},
+		{
+			name: "inset",
+			required: false,
+			defaultValue: "false",
+			values: ["boolean"],
+			description: "When true, adds left padding to align with other items.",
+		},
+	]}
+/>
+
+    ### MenubarLabel
+
+A non-interactive text label used to describe or categorize a group of menu items.
+
+<PropsTable
+	data={[
+		{
+			name: "inset",
+			required: false,
+			defaultValue: "false",
+			values: ["boolean"],
+			description: "When true, adds left padding to align with inset items.",
+		},
+	]}
+/>
+
+    ### MenubarSeparator
+
+A visual divider used to separate items or groups within a menu.
+
+    ### MenubarSub
+
+The root container for a nested submenu within a menu.
+
+    ### MenubarSubTrigger
+
+An interactive menu item that opens the nested submenu when hovered or clicked.
+
+<PropsTable
+	data={[
+		{
+			name: "inset",
+			required: false,
+			defaultValue: "false",
+			values: ["boolean"],
+			description: "When true, adds left padding to align with other items.",
+		},
+	]}
+/>
+
+    ### MenubarSubContent
+
+The floating panel that contains the items for the nested submenu.
+
+    ### MenubarShortcut
+
+A small text label for displaying keyboard shortcuts alongside a menu item.
+
+<PropsTable
+	data={[
+		{
+			name: "className",
+			required: false,
+			values: ["string"],
+			description: "Additional CSS classes to apply to the shortcut text.",
+		},
+	]}
+/>

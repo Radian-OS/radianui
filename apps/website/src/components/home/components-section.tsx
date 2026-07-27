@@ -1,12 +1,12 @@
 import { Component } from "lucide-react"
 import Link from "next/link"
-import { Badge } from "@/registry/ui/badge"
-import { Button } from "@/registry/ui/button"
+import { Badge } from "@/styles/default/ui/badge"
+import { Button } from "@/styles/default/ui/button"
 import ComponentSectionItems from "./components-section/components-section-items"
 
 export default function ComponentsSection() {
 	return (
-		<div className="pb-25 flex w-full flex-col items-center gap-12 px-5 pt-36 xl:gap-20">
+		<div className="pb-15 md:pb-25 pt-26 flex w-full flex-col items-center gap-12 px-5 md:pt-36 xl:gap-20">
 			<div className="w-full max-w-[1230px]">
 				<div className="relative flex max-w-[880px] flex-col gap-6">
 					<Badge size="28" className="z-20">
@@ -28,14 +28,14 @@ export default function ComponentsSection() {
 						/>
 					</svg>
 
-					<span className="heading-2 z-20">
+					<h2 className="heading-2 z-20">
 						<span className="from-fg to-fg-secondary bg-gradient-to-b bg-clip-text text-transparent">
 							Accelerate your workflow with{" "}
 						</span>
 						<span className="bg-gradient-to-r from-[#7655F6] to-[#492EB8] bg-clip-text text-transparent">
 							powerful components and blocks.
 						</span>
-					</span>
+					</h2>
 					<p className="text-fg-secondary z-20 text-base font-normal">
 						Multiple customizable components that seamlessly adapt to your
 						project need of every size.

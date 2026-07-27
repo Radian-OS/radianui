@@ -1,15 +1,19 @@
 ---
 title: Tabs
-description: Organize content into navigable sections
+description: A row of navigation triggers that lets users click between different content views inside the same window box.
 links:
   github:
     href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/tabs.tsx
+  figma:
+    href: https://www.figma.com/design/ZB8gTZwafZOYY7rdJjSRz6/%E2%9D%96-Preview-%E2%9D%96-Radian-Design-System-%E2%9D%96-Version-0.3?node-id=18133-103973&t=V6eYQNGSpHNQ8XrH-11
   externalReference:
     - label: Radix UI
       href: https://www.radix-ui.com/primitives/docs/components/tabs
 ---
 
 <ComponentPreview path="tabs/tabs-preview" />
+
+---
 
 ## Installation
 
@@ -31,7 +35,7 @@ links:
 		```
 
     	<Step>Copy and paste the following code into your project.</Step>
-    	<ComponentSource name="tabs" title="components/ui/tabs.tsx" collapsible />
+    	<ComponentSource src="styles/default/ui/tabs.tsx" title="components/ui/tabs.tsx" collapsible />
 
     	<Step>Update the import paths as per your project structure.</Step>
     </Steps>
@@ -39,17 +43,19 @@ links:
 
 </InstallationTabs>
 
+---
+
 ## Usage
 
 ### Imports
 
-```tsx showLineNumbers
+```tsx showLineNumbers title="/components/ui/tabs.tsx"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 ```
 
 ### Code
 
-```tsx showLineNumbers
+```tsx showLineNumbers title="/components/ui/tabs.tsx"
 <Tabs defaultValue="account">
 	<TabsList>
 		<TabsTrigger value="account">Account</TabsTrigger>
@@ -64,97 +70,116 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 ## Examples
 
-### With Icon
+<ComponentPreview title="Variant - Open" path="tabs/tabs-variant-open" />
 
-<ComponentPreview path="tabs/tabs-with-icon" />
+<ComponentPreview title="Variant - Ghost" path="tabs/tabs-variant-ghost" />
 
-### With Badge
+<ComponentPreview title="With Icon" path="tabs/tabs-with-icon" />
 
-<ComponentPreview path="tabs/tabs-with-badge" />
+<ComponentPreview title="With Badge" path="tabs/tabs-with-badge" />
 
-### Variant - Outline
+<ComponentPreview title="Orientation - Vertical" path="tabs/tabs-vertical" />
 
-<ComponentPreview path="tabs/tabs-variant-outline" />
+<ComponentPreview title="Width - Full" path="tabs/tabs-width-full" />
 
-### Variant - Open
-
-<ComponentPreview path="tabs/tabs-variant-open" />
-
-### Variant - Ghost
-
-<ComponentPreview path="tabs/tabs-variant-ghost" />
-
-### Variant - Outline Ghost
-
-<ComponentPreview path="tabs/tabs-variant-outline-ghost" />
-
-### Orientation - Vertical
-
-<ComponentPreview path="tabs/tabs-vertical" />
-
-### Size - Small
-
-<ComponentPreview path="tabs/tabs-size-small" />
-
-### Size - Medium
-
-<ComponentPreview path="tabs/tabs-size-medium" />
-
-### Size - Large
-
-<ComponentPreview path="tabs/tabs-size-large" />
-
-### Width - Full
-
-<ComponentPreview path="tabs/tabs-width-full" />
-
-### Disabled
-
-<ComponentPreview path="tabs/tabs-disabled" />
+<ComponentPreview title="Disabled" path="tabs/tabs-disabled" />
 
 ---
 
-## Props
+<ComponentDocContent
+	name={"Tabs"}
+	description={
+		"Tabs organize related content into separate sections that users can switch between without leaving the page. It provides keyboard accessibility, smooth content switching, and customizable layouts for a clean, organized interface."
+	}
+	features={[
+		"@radix-ui/react-tabs, ensures strict ARIA compliance with correct tablist, tab, and tabpanel roles and keyboard focus management.",
+		"Highly composable, declarative API: <Tabs>, <TabsList>, <TabsTrigger>, and <TabsContent>.",
+		"Natively supports both controlled and uncontrolled states, making it effortless to integrate with your existing React application logic.",
+		'Fully structural foundation; perfect for building anything from a simple "Account/Security" settings page to complex dashboard interfaces.',
+		"Easily supports animated transitions by applying standard Tailwind CSS utilities to the content panels, such as animate-in and fade-in.",
+	]}
+	related={[
+		{
+			title: "Accordion",
+			description:
+				"Use an Accordion if you need to show/hide content vertically. Use Tabs when you want to group content horizontally and want the user to only see one section at a time.",
+			href: "/docs/components/accordion",
+		},
+		{
+			title: "Sidebar",
+			description:
+				"If your navigation categories are too numerous or complex for a horizontal tab bar, a Sidebar navigation is generally more scalable.",
+			href: "/docs/components/sidebar",
+		},
+		{
+			title: "Card",
+			description:
+				"Frequently used as the parent container to provide a visual boundary for the tabs and their associated content.",
+			href: "/docs/components/card",
+		},
+	]}
+	faqs={[
+		{
+			question: "How do I set the default active tab?",
+			answer:
+				"You pass the defaultValue prop (matching the value of your desired trigger) directly to the root <Tabs> component. This ensures the correct content panel is visible as soon as the component mounts.",
+		},
+		{
+			question: "Can I render the tabs vertically?",
+			answer:
+				"Yes. By default, the Radix primitive is flexible. You can apply a flex-column layout to the <Tabs> wrapper and a flex-col layout to the <TabsList>, allowing for side-aligned navigation with content panels rendered to the right.",
+		},
+		{
+			question: "How do I integrate this with React Hook Form?",
+			answer:
+				'Tabs are usually presentational and not direct form inputs. However, if you are building a "Wizard" flow, you can manually trigger a state change in your form logic and programmatically update the value prop on the root <Tabs> component to move the user through the steps.',
+		},
+		{
+			question: "How can I add an underline indicator to the active tab?",
+			answer: 'You can achieve this using prop variant="open"',
+		},
+		{
+			question:
+				"Why isn't my content panel switching when I click the trigger?",
+			answer:
+				"Ensure the value prop on your <TabsTrigger> perfectly matches the value prop on your <TabsContent>. These must be unique and identical to correctly link the trigger to its specific panel.",
+		},
+	]}
+/>
 
-<PropsTableWrapper>
-	<PropsTable
-		title="Tabs"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/tabs#root"
-	/>
-	<PropsTable
-		title="TabsList"
-		data={[
-			{
-				name: "variant",
-				values: ["default", "open", "outline", "ghost", "outline-ghost"],
-				required: false,
-				description: "Sets the visual style of the tabs list",
-				defaultValue: "default",
-			},
-			{
-				name: "size",
-				values: ["sm", "md", "lg"],
-				required: false,
-				description: "Sets the size of the tabs list",
-				defaultValue: "md",
-			},
-			{
-				name: "width",
-				values: ["fit", "full"],
-				required: false,
-				description: "Controls the width behavior of the tabs list",
-				defaultValue: "fit",
-			},
-		]}
-		externalReference="https://www.radix-ui.com/primitives/docs/components/tabs#list"
-	/>
-	<PropsTable
-		title="TabsTrigger"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/tabs#trigger"
-	/>
-	<PropsTable
-		title="TabsContent"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/tabs#content"
-	/>
+## API Reference
 
-</PropsTableWrapper>
+### Tabs
+
+The root container that manages the active tab state.
+
+    ### TabsList
+
+A structural container that groups the tab triggers together.
+
+<PropsTable
+	data={[
+		{
+			name: "variant",
+			values: ["default", "open", "ghost"],
+			required: false,
+			description: "Sets the visual style of the tabs list",
+			defaultValue: "default",
+		},
+		{
+			name: "width",
+			values: ["fit", "full"],
+			required: false,
+			description: "Controls the width behavior of the tabs list",
+			defaultValue: "fit",
+		},
+	]}
+/>
+
+    ### TabsTrigger
+
+An interactive element that activates its associated tab content.
+
+    ### TabsContent
+
+The container that displays the content for the associated tab trigger.

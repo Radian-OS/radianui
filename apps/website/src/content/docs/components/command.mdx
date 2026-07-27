@@ -1,15 +1,18 @@
 ---
 title: Command
-description: Fast, composable, unstyled command menu for React.
+description: A fast, search-driven menu overlay that lets users navigate your web application entirely with their keyboard.
 links:
   github:
     href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/command.tsx
   externalReference:
     - label: cmdk
-      href: https://cmdk.paco.me/
+      href: https://www.npmjs.com/package/cmdk
+      icon: npm.svg
 ---
 
 <ComponentPreview path="command/command-preview" />
+
+---
 
 ## Installation
 
@@ -30,13 +33,15 @@ links:
 		npm install cmdk radix-ui/react-dialog
 		```
     	<Step>Copy and paste the following code into your project.</Step>
-    	<ComponentSource name="command" title="components/ui/command.tsx" collapsible />
+    	<ComponentSource src="styles/default/ui/command.tsx" title="components/ui/command.tsx" collapsible />
 
     	<Step>Update the import paths as per your project structure.</Step>
     </Steps>
     </InstallTabsContent>
 
 </InstallationTabs>
+
+---
 
 ## Usage
 
@@ -76,3 +81,185 @@ import {
 	</CommandList>
 </Command>
 ```
+
+---
+
+## Examples
+
+<ComponentPreview
+	title="Command Search Contacts"
+	path="command/command-search-contact"
+/>
+
+<ComponentPreview title="Command System" path="command/command-system" />
+
+<ComponentPreview
+	title="Command Search Integration"
+	path="command/command-search-integration"
+/>
+
+---
+
+<ComponentDocContent
+	name={"Command"}
+	description={
+		"The Radian Command component is a keyboard-first, composable command menu - typically used to create a macOS-style global search palette. Built on top of the ultra-fast, unstyled cmdk library, it handles all the complex logic for filtering and keyboard navigation, wrapped in fully customizable Tailwind CSS that you own directly in your workspace."
+	}
+	features={[
+		"Powered directly by cmdk for instantaneous, unstyled item filtering without requiring a heavy external state manager.",
+		"Exposes highly composable sub-components: <Command>, <CommandInput>, <CommandList>, <CommandEmpty>, <CommandGroup>, and <CommandItem>.",
+		"Native keyboard navigation out of the box, including Up/Down arrows to traverse lists and Enter to execute actions.",
+		"Includes a pre-configured <CommandDialog> export, which intelligently wraps the command menu in a Radian Dialog for instant Cmd+K overlay functionality.",
+		"Fully styled with standard Tailwind CSS, making it trivial to add custom hover states, border radii, or dark mode overrides directly in the codebase.",
+	]}
+	related={[
+		{
+			title: "Combobox",
+			description:
+				"Combines the Command engine with a Popover to create a powerful, filterable dropdown menu for standard HTML forms.",
+			href: "/docs/components/combobox",
+		},
+		{
+			title: "Dialog",
+			description:
+				"The essential background container used to house the Command menu when building a floating, full-screen search interface.",
+			href: "/docs/components/dialog",
+		},
+		{
+			title: "Badge",
+			description:
+				"Frequently used inside <CommandItem> entries to display small keyboard shortcut hints or categorical tags to the user.",
+			href: "/docs/components/badge",
+		},
+	]}
+	faqs={[
+		{
+			question: "How do I implement the Cmd+K global keyboard shortcut?",
+			answer:
+				"You can use a standard React useEffect hook that listens for the keydown event on the document (checking for e.key === 'k' and e.metaKey || e.ctrlKey). When detected, simply toggle the React state variable that controls your <CommandDialog> visibility.",
+		},
+		{
+			question: "Why aren't my command items filtering correctly?",
+			answer:
+				"The underlying cmdk engine filters based on the value prop or the direct text content of the <CommandItem>. If your item contains complex nested React nodes, you must explicitly provide a plain-text value prop to each item so the filtering algorithm reads the correct string.",
+		},
+		{
+			question: "Can I fetch search results asynchronously from an API?",
+			answer:
+				"Yes. Pass shouldFilter={false} to the root <Command> component. You then bind the <CommandInput> value to your own React state and handle the API fetching and mapping manually.",
+		},
+		{
+			question: "How do I visually group search results together?",
+			answer:
+				'Use the exported <CommandGroup> component. By wrapping your items in a group and providing a heading prop (e.g., heading="Settings"), the list will automatically render semantic, non-selectable headers to separate categories.',
+		},
+		{
+			question: "Is this component accessible to screen readers?",
+			answer:
+				"Yes. The cmdk engine handles all complex WAI-ARIA combobox and listbox attributes automatically, ensuring visually impaired users can seamlessly type to filter and navigate the list.",
+		},
+	]}
+/>
+
+## API Reference
+
+This component is built on top of [cmdk](https://cmdk.paco.me/).
+
+### Command
+
+The root component that provides the command menu context and built-in search filtering.
+
+<PropsTable
+	data={[
+		{
+			name: "shouldFilter",
+			values: ["boolean"],
+			defaultValue: "true",
+			required: false,
+			description:
+				"Whether to automatically filter items based on the search input value.",
+		},
+		{
+			name: "filter",
+			values: ["(value: string, search: string) => number"],
+			required: false,
+			description:
+				"Custom filtering function to override the default search behavior.",
+		},
+		{
+			name: "loop",
+			values: ["boolean"],
+			defaultValue: "false",
+			required: false,
+			description:
+				"When true, keyboard navigation loops from the last item back to the first.",
+		},
+	]}
+/>
+
+### CommandDialog
+
+A wrapper that renders the command menu inside a modal dialog.
+
+    ### CommandInput
+
+The text input field for filtering and searching through the command menu items.
+
+    ### CommandList
+
+A scrollable container that houses the command groups and items.
+
+    ### CommandEmpty
+
+A fallback container displayed when no command items match the current search query.
+
+    ### CommandGroup
+
+A structural container for grouping related command items under a specific heading.
+
+<PropsTable
+	data={[
+		{
+			name: "heading",
+			values: ["string"],
+			required: false,
+			description: "An optional label displayed above the group of items.",
+		},
+	]}
+/>
+
+### CommandItem
+
+An interactive, selectable item within the command menu.
+
+<PropsTable
+	data={[
+		{
+			name: "value",
+			values: ["string"],
+			required: false,
+			description: "The value of the item, used for filtering and selection.",
+		},
+		{
+			name: "onSelect",
+			values: ["(value: string) => void"],
+			required: false,
+			description: "Callback fired when the item is selected.",
+		},
+		{
+			name: "disabled",
+			values: ["boolean"],
+			defaultValue: "false",
+			required: false,
+			description: "Disables the item, preventing it from being selected.",
+		},
+	]}
+/>
+
+### CommandSeparator
+
+A visual divider used to separate different sections or groups within the command menu.
+
+### CommandShortcut
+
+A small text label for displaying keyboard shortcuts alongside a command item.

@@ -1,6 +1,6 @@
 ---
 title: Context Menu
-description: Displays a menu located at the pointer, triggered by a right-click or long press.
+description: A custom, accessible menu that pops up when a user right-clicks on a specific section of your webpage.
 links:
   github:
     href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/context-menu.tsx
@@ -10,6 +10,8 @@ links:
 ---
 
 <ComponentPreview path="context-menu/context-menu-preview" />
+
+---
 
 ## Installation
 
@@ -37,6 +39,8 @@ links:
     </InstallTabsContent>
 
 </InstallationTabs>
+
+---
 
 ## Usage
 
@@ -130,165 +134,218 @@ Context menus work inside modals. Wrap your trigger area with `ContextMenu` with
 
 ---
 
-## Props
+<ComponentDocContent
+	name={"Context Menu"}
+	description={
+		"The Radian Context Menu is a custom right-click floating menu that replaces the standard one in your browser. It provides a strong starting point for web apps that feel like desktop software, styled easily with Tailwind CSS. A context menu is a floating list of options that appears when you right-click, helping users quickly access specific actions like copy, paste, or delete."
+	}
+	features={[
+		{
+			title: "Accessible",
+			description:
+				"Automatically traps focus and manages WAI-ARIA roles when triggered via right-click or standard keyboard shortcuts (e.g., Shift+F10).",
+		},
+		{
+			title: "Collision-Aware",
+			description:
+				"Intelligently flips or shifts positioning to remain visible if opened near the viewport edge.",
+		},
+		{
+			title: "Modular Architecture",
+			description:
+				"Exports a comprehensive suite of sub-components: <ContextMenu>, <ContextMenuTrigger>, <ContextMenuItem>, <ContextMenuCheckboxItem>, <ContextMenuRadioGroup>, and <ContextMenuSub>.",
+		},
+		{
+			title: "Nested Submenus",
+			description:
+				"Natively supports <ContextMenuSub> for organizing complex action hierarchies.",
+		},
+		{
+			title: "Unstyled Foundation",
+			description:
+				"Ships with an unstyled structural foundation, allowing Tailwind CSS to easily handle custom backdrop blurs, border radii, and hover states directly in your component file.",
+		},
+	]}
+	related={[
+		{
+			title: "Dropdown",
+			description:
+				"Use a standard Dropdown when the menu should be triggered by an explicit left-click on a button rather than a contextual right-click on a broader layout area.",
+			href: "/docs/components/dropdown",
+		},
+		{
+			title: "Menubar",
+			description:
+				"Ideal for creating a persistent, top-level macOS-style navigation bar across the top of your desktop-like application.",
+			href: "/docs/components/menubar",
+		},
+		{
+			title: "Table",
+			description:
+				"Context menus are frequently wrapped around data table rows to provide users with quick access to record-specific administrative actions.",
+			href: "/docs/components/table",
+		},
+	]}
+	faqs={[
+		{
+			question:
+				"How do I prevent the default browser context menu from appearing?",
+			answer:
+				"The underlying Radix primitive automatically handles this. When a user right-clicks inside the designated <ContextMenuTrigger> boundary, it calls e.preventDefault() on the native contextmenu event. Outside of this wrapper, the native browser menu behaves normally.",
+		},
+		{
+			question:
+				"Can I trigger the context menu with a standard left click instead?",
+			answer:
+				"No, the Context Menu primitive is explicitly bound to the right-click event. If you need a left-click interaction, use the Dropdown component, which shares an identical API and styling structure.",
+		},
+		{
+			question: "How do I add keyboard shortcuts to the menu items?",
+			answer:
+				"Utilize the pre-styled <ContextMenuShortcut> component. Nesting this alongside your item text (e.g., <ContextMenuShortcut>⌘C</ContextMenuShortcut>) automatically applies Tailwind classes to float the shortcut text to the far right.",
+		},
+		{
+			question: "Does the menu close automatically when I click an item?",
+			answer:
+				"Yes, standard <ContextMenuItem> interactions will immediately dismiss the overlay. If you need the menu to stay open (e.g., for toggling view settings), use the <ContextMenuCheckboxItem>, which manages its own interaction state without triggering a close event.",
+		},
+		{
+			question: "How do I handle menus that are taller than the screen?",
+			answer:
+				"Radix UI's internal Popper logic handles viewport collisions. Ensure your <ContextMenuContent> includes standard Tailwind overflow utilities like overflow-hidden or max-h-screen combined with overflow-y-auto to allow internal scrolling.",
+		},
+	]}
+/>
 
-<PropsTableWrapper>
-	<PropsTable
-		title="ContextMenu"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/context-menu#root"
-	/>
-	<PropsTable
-		title="ContextMenuTrigger"
-		data={[
-			{
-				name: "asChild",
-				required: false,
-				defaultValue: "false",
-				values: ["boolean"],
-				description:
-					"Use this prop to render the trigger as a child component.",
-			},
-		]}
-		externalReference="https://www.radix-ui.com/primitives/docs/components/context-menu#trigger"
-	/>
-	<PropsTable
-		title="ContextMenuContent"
-		data={[
-			{
-				name: "align",
-				required: false,
-				defaultValue: "start",
-				values: ["start", "center", "end"],
-				description: "The alignment of the content relative to the trigger.",
-			},
-			{
-				name: "alignOffset",
-				required: false,
-				defaultValue: "0",
-				values: ["number"],
-				description: "An offset in pixels from the 'start' or 'end' alignment.",
-			},
-			{
-				name: "sideOffset",
-				required: false,
-				defaultValue: "0",
-				values: ["number"],
-				description: "The distance in pixels from the trigger.",
-			},
-		]}
-		externalReference="https://www.radix-ui.com/primitives/docs/components/context-menu#content"
-	/>
-	<PropsTable
-		title="ContextMenuItem"
-		data={[
-			{
-				name: "inset",
-				required: false,
-				defaultValue: "false",
-				values: ["boolean"],
-				description: "When true, adds left padding to align with items that have an indicator.",
-			},
-			{
-				name: "variant",
-				required: false,
-				defaultValue: "default",
-				values: ["default", "error"],
-				description: "Visual style of the item. Use 'error' for dangerous actions.",
-			},
-		]}
-		externalReference="https://www.radix-ui.com/primitives/docs/components/context-menu#item"
-	/>
-	<PropsTable
-		title="ContextMenuCheckboxItem"
-		data={[
-			{
-				name: "checked",
-				required: false,
-				defaultValue: "false",
-				values: ["boolean"],
-				description: "The controlled checked state of the item.",
-			},
-			{
-				name: "onCheckedChange",
-				required: false,
-				values: ["(checked: boolean) => void"],
-				description: "Callback fired when the checked state changes.",
-			},
-		]}
-		externalReference="https://www.radix-ui.com/primitives/docs/components/context-menu#checkboxitem"
-	/>
-	<PropsTable
-		title="ContextMenuRadioGroup"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/context-menu#radiogroup"
-	/>
-	<PropsTable
-		title="ContextMenuRadioItem"
-		data={[
-			{
-				name: "value",
-				required: true,
-				values: ["string"],
-				description: "The unique value of this radio item within its group.",
-			},
-		]}
-		externalReference="https://www.radix-ui.com/primitives/docs/components/context-menu#radioitem"
-	/>
-	<PropsTable
-		title="ContextMenuLabel"
-		data={[
-			{
-				name: "inset",
-				required: false,
-				defaultValue: "false",
-				values: ["boolean"],
-				description: "When true, adds left padding to align with inset items.",
-			},
-		]}
-		externalReference="https://www.radix-ui.com/primitives/docs/components/context-menu#label"
-	/>
-	<PropsTable
-		title="ContextMenuSeparator"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/context-menu#separator"
-	/>
-	<PropsTable
-		title="ContextMenuSub"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/context-menu#sub"
-	/>
-	<PropsTable
-		title="ContextMenuSubTrigger"
-		data={[
-			{
-				name: "inset",
-				required: false,
-				defaultValue: "false",
-				values: ["boolean"],
-				description: "When true, adds left padding to align with other items.",
-			},
-		]}
-		externalReference="https://www.radix-ui.com/primitives/docs/components/context-menu#subtrigger"
-	/>
-	<PropsTable
-		title="ContextMenuSubContent"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/context-menu#subcontent"
-	/>
-	<PropsTable
-		title="ContextMenuShortcut"
-		data={[
-			{
-				name: "className",
-				required: false,
-				values: ["string"],
-				description: "Additional CSS classes to apply to the shortcut text.",
-			},
-		]}
-	/>
-	<PropsTable
-		title="ContextMenuGroup"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/context-menu#group"
-	/>
-	<PropsTable
-		title="ContextMenuPortal"
-		externalReference="https://www.radix-ui.com/primitives/docs/components/context-menu#portal"
-	/>
+## API Reference
 
-</PropsTableWrapper>
+### ContextMenu
+
+The root container that manages the context menu state and provides context to all child components.
+
+### ContextMenuTrigger
+
+The area that opens the context menu when right-clicked.
+
+    ### ContextMenuContent
+
+The floating menu panel that appears when the trigger is right-clicked.
+
+<PropsTable
+	data={[
+		{
+			name: "align",
+			required: false,
+			defaultValue: "start",
+			values: ["start", "center", "end"],
+			description: "The alignment of the content relative to the trigger.",
+		},
+		{
+			name: "alignOffset",
+			required: false,
+			defaultValue: "0",
+			values: ["number"],
+			description: "An offset in pixels from the 'start' or 'end' alignment.",
+		},
+		{
+			name: "sideOffset",
+			required: false,
+			defaultValue: "0",
+			values: ["number"],
+			description: "The distance in pixels from the trigger.",
+		},
+	]}
+/>
+
+    ### ContextMenuItem
+
+An interactive, selectable item within the context menu.
+
+<PropsTable
+	data={[
+		{
+			name: "inset",
+			required: false,
+			defaultValue: "false",
+			values: ["boolean"],
+			description:
+				"When true, adds left padding to align with items that have an indicator.",
+		},
+		{
+			name: "variant",
+			required: false,
+			defaultValue: "default",
+			values: ["default", "error"],
+			description:
+				"Visual style of the item. Use 'error' for dangerous actions.",
+		},
+	]}
+/>
+
+    ### ContextMenuCheckboxItem
+
+A menu item that can be toggled on or off, displaying a checkmark when active.
+
+    ### ContextMenuRadioGroup
+
+A structural container for grouping multiple radio items together.
+
+    ### ContextMenuRadioItem
+
+An item within a radio group that can be selected, deselecting other items in the group.
+
+    ### ContextMenuLabel
+
+A non-interactive text label used to describe or categorize a group of menu items.
+
+<PropsTable
+	data={[
+		{
+			name: "inset",
+			required: false,
+			defaultValue: "false",
+			values: ["boolean"],
+			description: "When true, adds left padding to align with inset items.",
+		},
+	]}
+/>
+
+    ### ContextMenuSeparator
+
+A visual divider used to separate items or groups within the context menu.
+
+### ContextMenuSub
+
+The root container for a nested submenu within the context menu.
+
+### ContextMenuSubTrigger
+
+An interactive menu item that opens the nested submenu when hovered or clicked.
+
+<PropsTable
+	data={[
+		{
+			name: "inset",
+			required: false,
+			defaultValue: "false",
+			values: ["boolean"],
+			description: "When true, adds left padding to align with other items.",
+		},
+	]}
+/>
+
+    ### ContextMenuSubContent
+
+The floating panel that contains the items for the nested submenu.
+
+### ContextMenuShortcut
+
+A small text label for displaying keyboard shortcuts alongside a context menu item.
+
+### ContextMenuGroup
+
+A structural container for grouping related context menu items together.
+
+### ContextMenuPortal
+
+A wrapper that renders the context menu in a React portal, escaping the current DOM hierarchy.

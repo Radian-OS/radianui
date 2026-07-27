@@ -5,37 +5,37 @@ import { Label } from "@/registry/ui/label"
 
 export default function CurrencyWithInputGroup() {
 	return (
-		<div className="flex flex-col gap-4">
-			<div className="flex flex-col gap-1.5">
+		<div className="flex w-full max-w-80 flex-col gap-4">
+			<div className="flex w-full flex-col gap-1.5">
 				<Label htmlFor="ing-usd">US Dollars</Label>
-				<InputGroup className="md:w-80">
-					<InputAddon className="text-fg-tertiary">$</InputAddon>
+				<InputGroup>
+					<InputAddon>$</InputAddon>
 					<CurrencyInput id="ing-usd" placeholder="Enter Amount Here" />
-					<InputAddon className="text-fg-tertiary">USD</InputAddon>
+					<InputAddon>USD</InputAddon>
 				</InputGroup>
 			</div>
-			<div className="flex flex-col gap-1.5">
+			<div className="flex w-full flex-col gap-1.5">
 				<Label htmlFor="ing-eur">Euros</Label>
-				<InputGroup className="md:w-80">
-					<InputAddon className="text-fg-tertiary">€</InputAddon>
+				<InputGroup>
+					<InputAddon>€</InputAddon>
 					<CurrencyInput id="ing-eur" placeholder="Enter Amount Here" />
-					<InputAddon className="text-fg-tertiary">EUR</InputAddon>
+					<InputAddon>EUR</InputAddon>
 				</InputGroup>
 			</div>
-			<div className="flex flex-col gap-1.5">
+			<div className="flex w-full flex-col gap-1.5">
 				<Label htmlFor="ing-pou">Pounds</Label>
-				<InputGroup className="md:w-80">
-					<InputAddon className="text-fg-tertiary">£</InputAddon>
+				<InputGroup>
+					<InputAddon>£</InputAddon>
 					<CurrencyInput id="ing-pou" placeholder="Enter Amount Here" />
-					<InputAddon className="text-fg-tertiary">GBP</InputAddon>
+					<InputAddon>GBP</InputAddon>
 				</InputGroup>
 			</div>
-			<div className="flex flex-col gap-1.5">
+			<div className="flex w-full flex-col gap-1.5">
 				<Label htmlFor="ing-inr">Indian Rupees</Label>
-				<InputGroup className="md:w-80">
-					<InputAddon className="text-fg-tertiary">₹</InputAddon>
+				<InputGroup>
+					<InputAddon>₹</InputAddon>
 					<CurrencyInput id="ing-inr" placeholder="Enter Amount Here" />
-					<InputAddon className="text-fg-tertiary">INR</InputAddon>
+					<InputAddon>INR</InputAddon>
 				</InputGroup>
 			</div>
 		</div>

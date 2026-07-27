@@ -14,30 +14,36 @@ import {
 type domainOption = ".com" | ".org" | ".net"
 
 const UrlPreview = () => {
-	const [domain, setDomain] = useState<domainOption>()
+	const [domain, setDomain] = useState<domainOption>(".com")
 
 	return (
 		<div className="flex w-80 flex-col gap-6">
 			<div className="flex flex-col gap-1.5">
-				<Label>URL Input</Label>
-				<Input type="url" className="w-full" placeholder="radianos.com" />
+				<Label htmlFor="url-input">URL Input</Label>
+				<Input
+					id="url-input"
+					type="url"
+					className="w-full"
+					placeholder="radianos.com"
+				/>
 			</div>
 
 			<div className="flex flex-col gap-1.5">
-				<Label>Input URL w/protocol</Label>
+				<Label htmlFor="url-with-protocol">Input URL w/protocol</Label>
 				<InputGroup className="w-full">
 					<InputAddon>
 						<p className="text-fg-tertiary">https://</p>
 					</InputAddon>{" "}
-					<Input type="url" placeholder="radianos.com" />
+					<Input id="url-with-protocol" type="url" placeholder="radianos.com" />
 				</InputGroup>
 			</div>
 
 			<div className="flex flex-col gap-1.5">
-				<Label>Input URL w/domain selector</Label>
+				<Label htmlFor="url-with-domain">Input URL w/domain selector</Label>
 				<div className="flex">
 					<InputGroup className="w-full">
 						<Input
+							id="url-with-domain"
 							className="rounded-r-none border-r-0 focus-within:border-r md:w-fit"
 							placeholder="radianos"
 							type="url"

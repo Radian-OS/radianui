@@ -1,6 +1,6 @@
 import React from "react"
 import { ColorOption, usePlayground } from "@/contexts/playground"
-import { IconButton } from "@/registry/ui/button"
+import { IconButton } from "@/styles/default/ui/button"
 import {
 	Dropdown,
 	DropdownContent,
@@ -8,7 +8,7 @@ import {
 	DropdownRadioGroup,
 	DropdownRadioItem,
 	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+} from "@/styles/default/ui/dropdown"
 
 export const COLORS = [
 	{ title: "Red", value: "red" },
@@ -32,24 +32,24 @@ export const COLORS = [
 ] as const
 
 export const COLOR_CLASSES = {
-	red: "bg-[oklch(0.64_0.22_26.04)]",
-	orange: "bg-[oklch(0.6211_0.1686_43.12)]",
-	amber: "bg-[oklch(0.8016_0.1705_73.27)]",
-	yellow: "bg-[oklch(0.8_0.1625_94.77)]",
-	neon: "bg-[oklch(0.7153_0.1873_128.9)]",
-	green: "bg-[oklch(0.6523_0.2156_142.6)]",
-	emerald: "bg-[oklch(0.6334_0.171_148.65)]",
-	teal: "bg-[oklch(0.6432_0.1255_169.12)]",
-	cyan: "bg-[oklch(0.6549_0.1092_194.82)]",
-	"light-blue": "bg-[oklch(0.6092_0.2041_255.8)]",
-	blue: "bg-[oklch(0.5345_0.223_272.15)]",
-	"violet-blue": "bg-[oklch(0.528_0.2539_282.58)]",
-	purple: "bg-[oklch(0.5554_0.2522_292.8)]",
-	"dark-orchid": "bg-[oklch(0.623_0.2799_310.69)]",
-	fuchsia: "bg-[oklch(0.6901_0.2628_327.97)]",
-	magenta: "bg-[oklch(0.6175_0.2503_347.29)]",
-	rose: "bg-[oklch(0.6515_0.221_6.33)]",
-	neutral: "bg-fg",
+	red: "bg-red",
+	orange: "bg-orange",
+	amber: "bg-amber",
+	yellow: "bg-yellow",
+	neon: "bg-neon",
+	green: "bg-green",
+	emerald: "bg-emerald",
+	teal: "bg-teal",
+	cyan: "bg-cyan",
+	"light-blue": "bg-light-blue",
+	blue: "bg-blue",
+	"violet-blue": "bg-violet-blue",
+	purple: "bg-purple",
+	"dark-orchid": "bg-dark-orchid",
+	fuchsia: "bg-fuchsia",
+	magenta: "bg-magenta",
+	rose: "bg-rose",
+	neutral: "bg-neutral",
 } as const
 export default function Colors() {
 	const { color, setColor } = usePlayground()

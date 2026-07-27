@@ -3,7 +3,7 @@ import { Badge } from "@/registry/ui/badge"
 
 function BadgeIconExample() {
 	return (
-		<div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
+		<div className="flex flex-wrap items-center justify-center gap-3">
 			<Badge variant="strong">
 				<BadgeCheck />
 				Verified

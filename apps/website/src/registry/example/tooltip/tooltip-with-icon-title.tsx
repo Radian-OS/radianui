@@ -19,7 +19,7 @@ export default function TooltipWithIconTitle() {
 					/>
 					<div className="space-y-1">
 						<p className="text-white-inverse font-semibold">Security Risk</p>
-						<p className="text-white-inverse">
+						<p className="opacity-75">
 							Upgrading your account to Pro for end-to- end encryption.
 						</p>
 					</div>

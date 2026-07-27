@@ -1,15 +1,19 @@
 ---
 title: Checkbox
-description: Allow users to switch between check or unchecked state
+description: A simple box for selecting one or multiple options in forms, lists, and setting preferences.
 links:
   github:
     href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/checkbox.tsx
+  figma:
+    href: https://www.figma.com/design/ZB8gTZwafZOYY7rdJjSRz6/%E2%9D%96-Preview-%E2%9D%96-Radian-Design-System-%E2%9D%96-Version-0.3?node-id=18133-53677&t=V6eYQNGSpHNQ8XrH-11
   externalReference:
     - label: Radix  UI
       href: https://www.radix-ui.com/primitives/docs/components/checkbox
 ---
 
 <ComponentPreview path="checkbox/checkbox-preview" />
+
+---
 
 ## Installation
 
@@ -30,13 +34,15 @@ links:
 		npm install @radix-ui/react-checkbox
 		```
     	<Step>Copy and paste the following code into your project.</Step>
-    	<ComponentSource name="checkbox" title="components/ui/checkbox.tsx" collapsible />
+    	<ComponentSource src="styles/default/ui/checkbox.tsx" title="components/ui/checkbox.tsx" collapsible />
 
     	<Step>Update the import paths as per your project structure.</Step>
     </Steps>
     </InstallTabsContent>
 
 </InstallationTabs>
+
+---
 
 ## Usage
 
@@ -56,39 +62,121 @@ import { Checkbox } from "@/components/ui/checkbox"
 
 ## Examples
 
-### Size
+<ComponentPreview title="Size" path="checkbox/checkbox-size" />
 
-<ComponentPreview path="checkbox/checkbox-size" />
+<ComponentPreview title="Checked" path="checkbox/checkbox-checked" />
 
-### Checked
+<ComponentPreview title="Disabled" path="checkbox/checkbox-disabled" />
 
-<ComponentPreview path="checkbox/checkbox-checked" />
+<ComponentPreview
+	title="Indeterminate"
+	path="checkbox/indeterminate-checkbox"
+/>
 
-### Disabled
+<ComponentPreview title="Checkbox Group" path="checkbox/checkbox-group" />
 
-<ComponentPreview path="checkbox/checkbox-disabled" />
+<ComponentPreview title="Custom Checkbox" path="checkbox/checkbox-card" />
 
-### Indeterminate
+<ComponentPreview title="Checkbox - Setup" path="checkbox/checkbox-setup" />
 
-<ComponentPreview path="checkbox/indeterminate-checkbox" />
+<ComponentPreview
+	title="Checkbox - Dropdown"
+	path="checkbox/checkbox-dropdown"
+/>
 
-### Checkbox Group
+<ComponentPreview title="Form" path="checkbox/checkbox-form" />
 
-<ComponentPreview path="checkbox/checkbox-group" />
+---
 
-### Custom Checkbox
+<ComponentDocContent
+	name={"Checkbox"}
+	description={
+		"A checkbox is an interactive box that lets users select or deselect an option. You use it when you want to let a user choose one or more items from a list."
+	}
+	features={[
+		{
+			title: "Indeterminate State",
+			description:
+				'Native support for the indeterminate state, essential for building complex "select all" table headers.',
+		},
+		{
+			title: "Accessible",
+			description:
+				"Fully keyboard accessible, handling Spacebar toggles and focus management automatically via Radix UI.",
+		},
+		{
+			title: "Form Compatible",
+			description:
+				"Renders a visually hidden <input> under the hood to ensure seamless integration with standard HTML forms and FormData submissions.",
+		},
+		{
+			title: "Framework Ready",
+			description:
+				"Easily integrated with complex form libraries like React Hook Form or Formik using standard checked and onCheckedChange props.",
+		},
+		{
+			title: "Utility-First",
+			description:
+				"Uses standard Tailwind CSS classes (e.g., focus-visible:ring, data-[state=checked]:bg-primary) for intuitive state-driven styling.",
+		},
+	]}
+	related={[
+		{
+			title: "Switch",
+			description:
+				"Use a Switch instead of a Checkbox when the user's action takes immediate effect (like toggling a global dark mode setting).",
+			href: "/docs/components/switch",
+		},
+		{
+			title: "Radio Group",
+			description:
+				"Essential when a user must select exactly one option from a mutually exclusive list.",
+			href: "/docs/components/radio-group",
+		},
+		{
+			title: "Form",
+			description:
+				"Checkboxes are most commonly nested inside Form blocks alongside semantic labels and validation error messages.",
+			href: "/docs/components/form",
+		},
+	]}
+	faqs={[
+		{
+			question: "How do I make the checkbox indeterminate?",
+			answer:
+				'You can set the checked prop to the string "indeterminate" rather than a standard boolean. This is particularly useful for parent checkboxes in a nested list where only a subset of the children are currently selected.',
+		},
+		{
+			question: "Can I change the checkmark icon?",
+			answer:
+				"Absolutely. Inside the checkbox.tsx file, you will find a <Check> icon nested within the <CheckboxPrimitive.Indicator>. You can replace this with a minus icon for indeterminate states or completely swap it for any custom SVG you prefer.",
+		},
+		{
+			question: "How do I link a text label to this checkbox?",
+			answer:
+				"Because it is an accessible primitive, you should render a standard HTML <label> element and use the htmlFor attribute, pointing it to the exact id prop you pass to the <Checkbox>. This expands the hit area, allowing users to click the text to toggle the state.",
+		},
+		{
+			question: "Does this work with React Hook Form?",
+			answer:
+				"Yes. You can wrap the Radian Checkbox in RHF's <Controller> component. Map the onChange event from the controller directly to the onCheckedChange prop of the Checkbox, ensuring your form state stays perfectly synced with the UI.",
+		},
+		{
+			question:
+				"Why isn't my native HTML form recognizing the checkbox value on submit?",
+			answer:
+				'Ensure you provide a name and value prop to the root Checkbox component. The Radix primitive automatically generates a hidden <input type="checkbox"> in the DOM specifically to support standard, JavaScript-free native form submissions.',
+		},
+	]}
+/>
 
-<ComponentPreview path="checkbox/checkbox-card" />
+## API Reference
 
-### Form
+### Checkbox
 
-<ComponentPreview path="checkbox/checkbox-form" />
+The root checkbox component.
 
-## Props
-
-<PropsTableWrapper>
 <PropsTable
-title="Checkbox"
 data={[
     {
         name:"size",
@@ -106,7 +194,4 @@ data={[
     },
 
 ]}
-externalReference="https://www.radix-ui.com/primitives/docs/components/checkbox#root"
 />
-
-</PropsTableWrapper>

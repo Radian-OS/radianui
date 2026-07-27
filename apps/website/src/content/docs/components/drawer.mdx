@@ -1,9 +1,11 @@
 ---
 title: Drawer
-description: Slide-in panel for additional content or navigation
+description: A smooth menu panel that slides out from the edge of the screen to give users extra options or settings space.
 links:
   github:
     href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/drawer.tsx
+  figma:
+    href: https://www.figma.com/design/ZB8gTZwafZOYY7rdJjSRz6/%E2%9D%96-Preview-%E2%9D%96-Radian-Design-System-%E2%9D%96-Version-0.3?node-id=18133-69128&t=V6eYQNGSpHNQ8XrH-11
   externalReference:
     - label: Vaul
       href: https://vaul.emilkowal.ski/
@@ -11,6 +13,8 @@ links:
 ---
 
 <ComponentPreview path="drawer/drawer-example-preview" />
+
+---
 
 ## Installation
 
@@ -31,13 +35,15 @@ links:
 		npm install vaul
 		```
     	<Step>Copy and paste the following code into your project.</Step>
-    	<ComponentSource name="drawer" title="components/ui/drawer.tsx" collapsible />
+    	<ComponentSource src="styles/default/ui/drawer.tsx" title="components/ui/drawer.tsx" collapsible />
 
     	<Step>Update the import paths as per your project structure.</Step>
     </Steps>
     </InstallTabsContent>
 
 </InstallationTabs>
+
+---
 
 ## Usage
 
@@ -88,88 +94,182 @@ import {
 </Drawer>
 ```
 
+---
+
 ## Examples
 
-### Variant
+<ComponentPreview title="Variant" path="drawer/drawer-variant-example" />
 
-<ComponentPreview path="drawer/drawer-variant-example" />
+<ComponentPreview title="Position" path="drawer/drawer-position-example" />
 
-### Position
+<ComponentPreview title="With Handle" path="drawer/drawer-handle-preview" />
 
-<ComponentPreview path="drawer/drawer-position-example" />
-
-### With Handle
-
-<ComponentPreview path="drawer/drawer-handle-preview" />
-
-### Backdrop
-
-<ComponentPreview path="drawer/drawer-backdrop-example" />
+<ComponentPreview title="Backdrop" path="drawer/drawer-backdrop-example" />
 
 ---
 
-## Props
+<ComponentDocContent
+	name={"Drawer"}
+	description={
+		"A drawer is an interactive panel that slides out from the side or bottom of the screen, covering part of the main content. It is an easy-to-use alternative to pop-up boxes, making it comfortable for users to interact with on touchscreens. You use a drawer when you want to show additional content or navigation without taking the user to a new page."
+	}
+	features={[
+		{
+			title: "Accessibility",
+			description:
+				"Fully accessible, handling focus trapping and ARIA role management seamlessly out of the box.",
+		},
+		{
+			title: "Touch-Friendly",
+			description:
+				"Native physics-based touch dragging and fluid swipe-to-close gestures.",
+		},
+		{
+			title: "Background Scaling",
+			description:
+				"Includes background scaling effects (where the main page shrinks slightly backward) to draw visual focus to the active drawer panel.",
+		},
+		{
+			title: "Snap Points",
+			description:
+				"Supports configurable snap points, allowing the drawer to rest at partial heights before expanding to full screen.",
+		},
+		{
+			title: "Modular Architecture",
+			description:
+				"Exposes highly modular layout components: <Drawer>, <DrawerTrigger>, <DrawerContent>, <DrawerHeader>, and <DrawerFooter>.",
+		},
+	]}
+	related={[
+		{
+			title: "Dialog",
+			description:
+				"Use a traditional, centered dialog for desktop environments where bottom-anchored drawers might feel unnatural or overly wide.",
+			href: "/docs/components/dialog",
+		},
+		{
+			title: "Sidebar",
+			description:
+				"A better structural pattern for persistent, top-level application navigation that slides in from the left or right edge of the viewport.",
+			href: "/docs/components/sidebar",
+		},
+		{
+			title: "Popover",
+			description:
+				"Ideal for very small, contextual floating menus that should be anchored directly to a trigger button rather than obscuring the lower half of the screen.",
+			href: "/docs/components/popover",
+		},
+	]}
+	faqs={[
+		{
+			question: "How do I make the drawer slide in from the left or right?",
+			answer:
+				'While standard drawers anchor to the bottom for mobile ergonomics, you can pass a direction="right" or direction="left" prop to the root <Drawer> component to create side-panel behaviors typical of complex desktop applications.',
+		},
+		{
+			question: "How do I enable the background scaling effect?",
+			answer:
+				"Set shouldScaleBackground={true} on the root <Drawer>. You also must ensure your application's main <main> div has the appropriate wrapper attribute so the CSS transform scales the background correctly.",
+		},
+		{
+			question: "Can I stop users from dragging the drawer to close it?",
+			answer:
+				"Yes. Pass dismissible={false} to the <Drawer> to completely disable swipe-to-close interactions. This is essential for forcing the user to interact with a specific button before the panel is dismissed.",
+		},
+		{
+			question: "How do I set partial snap points for the panel height?",
+			answer:
+				"Pass an array of numbers or percentages to the snapPoints prop (e.g., snapPoints={[0.5, 1]}).",
+		},
+		{
+			question: "Why is the drawer content not scrolling?",
+			answer:
+				"If your content exceeds the viewport height, ensure the nested <DrawerContent> or a container inside of it has the overflow-y-auto utility class applied. If missing, the drag physics may conflict with the browser's native vertical scrolling.",
+		},
+	]}
+/>
 
-<PropsTableWrapper>
-	<PropsTable
-		title="Drawer"
-		data={[
-			{
-				name: "variant",
-				defaultValue: "default",
-				values: ["default", "float", "rounded"],
-				description: "Controls the type of the drawer.",
-				required: true,
-			},
-			{
-				name: "direction",
-				defaultValue: "right",
-				description: "The direction the drawer opens from.",
-				required: true,
-				values: ["left", "right", "top", "bottom"],
-			},
-			{
-				name: "handle",
-				defaultValue: "false",
-				description: "Whether to show a handle on the drawer.",
-				required: false,
-				values: ["boolean"],
-			},
-			{
-				name: "backdrop",
-				defaultValue: "overlay",
-				description: "The backdrop style of the drawer.",
-				required: true,
-				values: ["overlay", "blur", "none"],
-			},
-		]}
-	/>
-	<PropsTable
-		title="DrawerTrigger"
-		data={[
-			{
-				name: "asChild",
-				description: "The content of the trigger.",
-				required: true,
-				defaultValue: "true",
-				values: ["boolean"],
-			},
-		]}
-	/>
-	<PropsTable
-		title="DrawerClose"
-		data={[
-			{
-				name: "asChild",
-				description: "The content of the close.",
-				required: true,
-				defaultValue: "true",
-				values: ["boolean"],
-			},
-		]}
-	/>
-	<PropsTable
-		title="DrawerFooter"
-		externalReference="https://vaul.emilkowal.ski/getting-started"
-	/>
-</PropsTableWrapper>
+## API Reference
+
+The Drawer component is built on top of [vaul](https://vaul.emilkowal.ski/).
+
+### Drawer
+
+The root component of the drawer.
+
+<PropsTable
+	data={[
+		{
+			name: "variant",
+			defaultValue: "default",
+			values: ["default", "float", "rounded"],
+			description: "Controls the type of the drawer.",
+			required: true,
+		},
+		{
+			name: "direction",
+			defaultValue: "right",
+			description: "The direction the drawer opens from.",
+			required: true,
+			values: ["left", "right", "top", "bottom"],
+		},
+		{
+			name: "handle",
+			defaultValue: "false",
+			description: "Whether to show a handle on the drawer.",
+			required: false,
+			values: ["boolean"],
+		},
+		{
+			name: "backdrop",
+			defaultValue: "overlay",
+			description: "The backdrop style of the drawer.",
+			required: true,
+			values: ["overlay", "blur", "none"],
+		},
+	]}
+/>
+
+### DrawerTrigger
+
+An interactive element that opens the drawer when clicked.
+
+<PropsTable
+	data={[
+		{
+			name: "asChild",
+			description: "Use this prop to render the trigger as a child component.",
+			required: true,
+			defaultValue: "true",
+			values: ["boolean"],
+		},
+	]}
+/>
+
+### DrawerContent
+
+The main structural container that renders the drawer panel and its contents.
+
+### DrawerHeader
+
+A container for the top section of the drawer, typically used for titles and descriptions.
+
+### DrawerTitle
+
+A semantic heading that establishes the primary subject of the drawer.
+
+### DrawerDescription
+
+A text container for providing supplementary context or details below the drawer title.
+
+### DrawerBody
+
+The primary scrollable content area within the drawer.
+
+### DrawerFooter
+
+A structural container for the bottom section of the drawer, typically used for action buttons.
+
+### DrawerClose
+
+An interactive element that dismisses and closes the drawer when clicked.

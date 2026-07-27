@@ -30,14 +30,16 @@ import DatePickerPresetsExample from "@/registry/example/date-picker/date-picker
 import DatePickerWithTimeExample from "@/registry/example/date-picker/date-picker-with-time"
 import examples from "@/registry/example/example.json"
 import ProgressPreview from "@/registry/example/progress/progress-preview"
+import { AspectRatio } from "@/registry/ui/aspect-ratio"
 import {
 	Accordion,
 	AccordionContent,
+	type AccordionContentProps,
 	AccordionItem,
-	AccordionProps,
+	type AccordionProps,
 	AccordionTrigger,
 	AccordionTriggerProps,
-} from "@/registry/ui/accordion"
+} from "@/styles/default/ui/accordion"
 import {
 	Alert,
 	AlertContent,
@@ -45,15 +47,210 @@ import {
 	AlertIcon,
 	AlertProps,
 	AlertTitle,
-} from "@/registry/ui/alert"
-import { Divider } from "@/registry/ui/divider"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
+} from "@/styles/default/ui/alert"
+import { Divider } from "@/styles/default/ui/divider"
+import {
+	Tabs,
+	TabsContent,
+	TabsList,
+	TabsTrigger,
+} from "@/styles/default/ui/tabs"
+import ChangelogCard from "./changelog-card"
+import ChangelogList from "./changelog-list"
 import { CodeBlockCommandServer } from "./code-block-command-server"
+import { CodeCollapsibleFileWrapper } from "./code-collapsible-file-wrapper"
 import { CodeCollapsibleWrapper } from "./code-collapsible-wrapper"
 import ColorTableThemeToggle from "./color/color-table-theme-toggle"
+import { ComponentExpansionGrid } from "./component-expansion"
 import { CopyButton } from "./copy-button"
+import { FeatureList, FeatureListItem } from "./feature-list"
+import { RequestDesign } from "./request-design"
+import { ResourcesGrid } from "./resources-grid"
+
+type ComponentDocListItem = {
+	title?: string
+	description: React.ReactNode
+}
+
+type ComponentDocFeatureItem = React.ReactNode | ComponentDocListItem
+
+type ComponentDocRelatedItem = Required<ComponentDocListItem> & {
+	href?: string
+}
+
+type ComponentDocFaqItem = {
+	question: string
+	answer: React.ReactNode
+}
+
+type ComponentDocContentProps = {
+	name: string
+	description: React.ReactNode
+	features?: ComponentDocFeatureItem[]
+	related?: ComponentDocRelatedItem[]
+	faqs?: ComponentDocFaqItem[]
+}
+
+const componentDocListClass =
+	"marker:text-fg my-6 ml-6 list-decimal space-y-4 marker:font-bold"
+const componentDocListItemClass = "text-fg [&_p]:!inline [&_p]:!text-inherit"
+
+function createHeadingId(text: string) {
+	return text
+		.toLowerCase()
+		.replace(/\s+/g, "-")
+		.replace(/[^\w-]/g, "")
+}
+
+function ComponentDocHeading({ children }: { children: string }) {
+	const id = createHeadingId(children)
+
+	return (
+		<h2
+			id={id}
+			className="heading-5 font-semibold! scroll-mt-26 group mb-3 mt-10 flex items-center">
+			<Link href={`#${id}`} className="flex items-center gap-2">
+				{children}
+				<LinkIcon
+					size={16}
+					className="text-fg-tertiary opacity-0 transition-opacity group-hover:opacity-100"
+				/>
+			</Link>
+		</h2>
+	)
+}
+
+function ComponentDocDivider() {
+	return <Divider orientation="horizontal" className="mt-10" />
+}
+
+function isComponentDocListItem(
+	item: ComponentDocFeatureItem
+): item is ComponentDocListItem {
+	return typeof item === "object" && item !== null && "description" in item
+}
+
+function ComponentDocList({ items }: { items: ComponentDocFeatureItem[] }) {
+	return (
+		<ol className={componentDocListClass}>
+			{items.map((item, index) => (
+				<li key={index} className={componentDocListItemClass}>
+					{isComponentDocListItem(item) ? (
+						<span>
+							{item.title && (
+								<>
+									<span className="font-medium">{item.title}</span>:{" "}
+								</>
+							)}
+							{item.description}
+						</span>
+					) : (
+						<span>{item}</span>
+					)}
+				</li>
+			))}
+		</ol>
+	)
+}
+
+function ComponentDocRelatedList({
+	items,
+}: {
+	items: ComponentDocRelatedItem[]
+}) {
+	return (
+		<ol className={componentDocListClass}>
+			{items.map((item, index) => (
+				<li
+					key={`${item.title}-${index}`}
+					className={componentDocListItemClass}>
+					<span>
+						{item.href ? (
+							<Link
+								className="text-fg font-medium underline underline-offset-4"
+								href={item.href}>
+								{item.title}:
+							</Link>
+						) : (
+							<span className="font-medium">{item.title}:</span>
+						)}{" "}
+						{item.description}
+					</span>
+				</li>
+			))}
+		</ol>
+	)
+}
+
+function ComponentDocFaq({ items }: { items: ComponentDocFaqItem[] }) {
+	return (
+		<Accordion collapsible type="single" variant="open">
+			{items.map((item, index) => (
+				<AccordionItem
+					key={`${item.question}-${index}`}
+					value={`item-${index + 1}`}>
+					<AccordionTrigger className="gap-2 pt-4 !text-base !font-medium">
+						{item.question}
+					</AccordionTrigger>
+					<AccordionContent className="!text-fg-secondary pb-4 !text-base !leading-7 [&_p]:!text-inherit">
+						{item.answer}
+					</AccordionContent>
+				</AccordionItem>
+			))}
+		</Accordion>
+	)
+}
+
+function ComponentDocContent({
+	name,
+	description,
+	features = [],
+	related = [],
+	faqs = [],
+}: ComponentDocContentProps) {
+	return (
+		<>
+			<ComponentDocHeading>{`What is ${name}?`}</ComponentDocHeading>
+			<p className="text-fg text-base leading-7">{description}</p>
+
+			{features.length > 0 && (
+				<>
+					<ComponentDocDivider />
+					<ComponentDocHeading>Features</ComponentDocHeading>
+					<ComponentDocList items={features} />
+				</>
+			)}
+
+			{related.length > 0 && (
+				<>
+					<ComponentDocDivider />
+					<ComponentDocHeading>Related Components</ComponentDocHeading>
+					<ComponentDocRelatedList items={related} />
+				</>
+			)}
+
+			{faqs.length > 0 && (
+				<>
+					<ComponentDocDivider />
+					<ComponentDocHeading>Frequently Asked Questions</ComponentDocHeading>
+					<ComponentDocFaq items={faqs} />
+				</>
+			)}
+
+			<ComponentDocDivider />
+		</>
+	)
+}
 
 export const components = {
+	ChangelogList,
+	ChangelogCard,
+	FeatureList,
+	FeatureListItem,
+	ComponentExpansionGrid,
+	ResourcesGrid,
+	RequestDesign,
+	ComponentDocContent,
 	PropsTable,
 	ColorTable,
 	ColorTableThemeToggle,
@@ -64,9 +261,7 @@ export const components = {
 	}: {
 		children: React.ReactNode | React.ReactNode[]
 	}) => (
-		<div className="bg-elevation-negative mt-3 flex flex-col gap-2 rounded-xl p-1.5">
-			{children}
-		</div>
+		<div className="mt-3 flex flex-col gap-2 rounded-xl p-1.5">{children}</div>
 	),
 	Installation,
 	BadgeExamplePreview,
@@ -89,11 +284,13 @@ export const components = {
 		height,
 		align,
 		type,
+		title,
 	}: {
 		path: string
 		height: number
 		align: "center" | "start" | "end"
 		type?: "component" | "block"
+		title: string
 	}) => {
 		const code =
 			examples
@@ -102,6 +299,7 @@ export const components = {
 
 		return (
 			<ComponentPreview
+				title={title}
 				type={type}
 				path={path}
 				code={code}
@@ -175,6 +373,33 @@ export const components = {
 			</h3>
 		)
 	},
+	h4: ({
+		children,
+		className,
+		...props
+	}: HTMLAttributes<HTMLHeadingElement>) => {
+		const text = typeof children === "string" ? children : ""
+		const id = text
+			.toLowerCase()
+			.replace(/\s+/g, "-")
+			.replace(/[^\w-]/g, "")
+		return (
+			<h4
+				className={cn(
+					"scroll-mt-26 mb-2 mt-7 overflow-hidden text-base font-medium",
+					className
+				)}
+				{...props}>
+				<Link href={`#${id}`} className="flex items-center gap-2">
+					{children}
+					<LinkIcon
+						size={16}
+						className="text-fg-tertiary opacity-0 transition-opacity group-hover:opacity-100"
+					/>
+				</Link>
+			</h4>
+		)
+	},
 	a: ({ className, ...props }: React.HTMLAttributes<HTMLAnchorElement>) => (
 		<a
 			aria-label="Link"
@@ -205,7 +430,7 @@ export const components = {
 			{children}
 		</strong>
 	),
-	hr: () => <Divider orientation={"horizontal"} className="mt-10" />,
+	hr: () => <Divider orientation="horizontal" className="mt-10" />,
 
 	ul: ({
 		children,
@@ -217,7 +442,7 @@ export const components = {
 		return (
 			<ul
 				className={cn(
-					"my-6 ml-1 list-inside list-disc space-y-4 pb-6",
+					"mb-0 ml-4 mt-3 list-outside list-disc space-y-4",
 					className
 				)}>
 				{children}
@@ -265,11 +490,18 @@ export const components = {
 	AccordionTrigger: (props: AccordionTriggerProps) => {
 		return <AccordionTrigger className="gap-2" {...props} />
 	},
-	AccordionContent,
+	AccordionContent: ({ className, ...props }: AccordionContentProps) => {
+		return (
+			<AccordionContent
+				className={cn("[&_p]:!text-inherit", className)}
+				{...props}
+			/>
+		)
+	},
 
 	Tabs,
 	TabsList: (props: React.ComponentProps<typeof TabsList>) => {
-		return <TabsList width="full" variant="default" size="md" {...props} />
+		return <TabsList width="full" variant="default" {...props} />
 	},
 	TabsTrigger,
 	TabsContent,
@@ -319,8 +551,8 @@ export const components = {
 				className
 			)}
 			src={src || ""}
-			width={Number(width)}
-			height={Number(height)}
+			width={width !== undefined ? Number(width) : undefined}
+			height={height !== undefined ? Number(height) : undefined}
 			alt={alt || ""}
 			{...props}
 			quality={85}
@@ -439,5 +671,8 @@ export const components = {
 		)
 	},
 	CodeCollapsibleWrapper,
+	CodeCollapsibleFileWrapper,
 	ThemeProviderForColorTable,
+	AspectRatio,
+	Divider,
 }

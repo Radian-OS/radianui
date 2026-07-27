@@ -5,7 +5,7 @@ import { Badge, BadgeDot } from "@/registry/ui/badge"
 
 function BadgeRoundedExample() {
 	return (
-		<div className="flex flex-col items-center gap-3 sm:flex-row">
+		<div className="flex flex-wrap items-center justify-center gap-3">
 			<Badge variant="strong" className="rounded-full">
 				VIP
 			</Badge>

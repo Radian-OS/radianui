@@ -1,6 +1,6 @@
 import React, { ComponentProps } from "react"
 import Link from "next/link"
-import { Button } from "@/registry/ui/button"
+import { Button } from "@/styles/default/ui/button"
 
 type FigmaPreviewButtonProps = {
 	size?: ComponentProps<typeof Button>["size"]
@@ -22,7 +22,10 @@ export default function FigmaPreviewButton({
 			color={color ?? "neutral"}
 			className={className}
 			asChild>
-			<Link href={"/docs/getting-started/figma"}>
+			<Link
+				href="https://www.figma.com/design/ZB8gTZwafZOYY7rdJjSRz6/%E2%9D%96-Preview-%E2%9D%96-Radian-Design-System-%E2%9D%96-Version-0.3?t=gjwvT9g2QCeoST8E-0"
+				target="_blank"
+				rel="noopener noreferrer">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					width="20"
