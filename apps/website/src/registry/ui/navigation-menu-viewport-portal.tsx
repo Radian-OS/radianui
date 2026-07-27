@@ -6,8 +6,10 @@ import { createPortal } from "react-dom"
 
 export function NavigationMenuViewportPortal({
 	children,
+	centered = false,
 }: {
 	children: ReactNode
+	centered?: boolean
 }) {
 	const markerRef = useRef<HTMLSpanElement>(null)
 	const [portalTarget, setPortalTarget] = useState<HTMLElement | null>(null)
@@ -28,10 +30,11 @@ export function NavigationMenuViewportPortal({
 
 		const updatePosition = () => {
 			const rect = anchor.getBoundingClientRect()
+			const width = Math.min(rect.width, window.innerWidth - 32)
 			setPosition({
-				left: rect.left,
+				left: centered ? (window.innerWidth - width) / 2 : rect.left,
 				top: rect.bottom,
-				width: rect.width,
+				width,
 			})
 		}
 
@@ -47,7 +50,7 @@ export function NavigationMenuViewportPortal({
 			window.removeEventListener("resize", updatePosition)
 			window.removeEventListener("scroll", updatePosition, true)
 		}
-	}, [])
+	}, [centered])
 
 	return (
 		<>

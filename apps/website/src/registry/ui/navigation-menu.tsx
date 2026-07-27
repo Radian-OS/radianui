@@ -13,11 +13,13 @@ function NavigationMenu({
 	viewport = true,
 	viewportClassName,
 	viewportPortal = false,
+	viewportPortalCentered = false,
 	...props
 }: React.ComponentProps<typeof NavigationMenuPrimitive.Root> & {
 	viewport?: boolean
 	viewportClassName?: string
 	viewportPortal?: boolean
+	viewportPortalCentered?: boolean
 }) {
 	return (
 		<NavigationMenuPrimitive.Root
@@ -33,6 +35,7 @@ function NavigationMenu({
 				<NavigationMenuViewport
 					className={viewportClassName}
 					portal={viewportPortal}
+					portalCentered={viewportPortalCentered}
 				/>
 			)}
 		</NavigationMenuPrimitive.Root>
@@ -127,9 +130,11 @@ function NavigationMenuContent({
 function NavigationMenuViewport({
 	className,
 	portal = false,
+	portalCentered = false,
 	...props
 }: React.ComponentProps<typeof NavigationMenuPrimitive.Viewport> & {
 	portal?: boolean
+	portalCentered?: boolean
 }) {
 	const viewport = (
 		<NavigationMenuPrimitive.Viewport
@@ -144,7 +149,9 @@ function NavigationMenuViewport({
 
 	if (portal) {
 		return (
-			<NavigationMenuViewportPortal>{viewport}</NavigationMenuViewportPortal>
+			<NavigationMenuViewportPortal centered={portalCentered}>
+				{viewport}
+			</NavigationMenuViewportPortal>
 		)
 	}
 

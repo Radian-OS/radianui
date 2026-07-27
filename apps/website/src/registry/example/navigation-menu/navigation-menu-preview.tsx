@@ -362,8 +362,9 @@ export default function NavigationMenuPreview() {
 	return (
 		<div className="flex w-full min-w-0 items-center justify-center">
 			<NavigationMenu
-				className="custom:translate-x-0 w-full min-w-0 max-w-full flex-none md:w-[calc(100vw-2rem)] md:max-w-none lg:-translate-x-[130px]"
+				className="w-full min-w-0 max-w-full flex-none md:w-[calc(100vw-2rem)] md:max-w-none"
 				viewportPortal
+				viewportPortalCentered
 				viewportClassName="rounded-2xl">
 				<NavigationMenuList className="no-scrollbar w-full min-w-0 justify-start overflow-x-auto md:justify-center md:overflow-visible">
 					<NavigationMenuItem>
