@@ -7,6 +7,7 @@ import FAQSection from "@/components/home/faq-section"
 import FeaturesSection from "@/components/home/features-section"
 import Footer from "@/components/home/footer"
 import HeroActionButtons from "@/components/home/hero-action-buttons"
+import HomepageLoadReveal from "@/components/home/homepage-load-reveal"
 import InvertedSection from "@/components/home/inverted-section"
 import PlaygroundSectionWrapper from "@/components/home/playground-section-wrapper"
 import { RotatingWords } from "@/components/home/rotating-words"
@@ -32,8 +33,10 @@ export default function Page() {
 			/>
 			<div className="min-h-screen w-full overflow-x-hidden">
 				<Background>
-					<div className="md:pt-30 pt-15 flex flex-col items-center justify-center gap-12">
-						<div className="max-w-250 flex flex-col items-center justify-center gap-6">
+					<div className="md:pt-30 pt-15 flex flex-col items-center justify-center gap-10">
+						<HomepageLoadReveal
+							className="max-w-250 flex flex-col items-center justify-center"
+							delay={0.05}>
 							<Link
 								href="/docs/getting-started/changelog"
 								className="relative h-[32px] rounded-full">
@@ -53,10 +56,10 @@ export default function Page() {
 								</Badge>
 								<BorderBeam size={50} />
 							</Link>
-							<h1 className="heading-1 dark:from-fg dark:to-fg-secondary not-dark:text-fg bg-clip-text text-center text-transparent dark:bg-gradient-to-b">
+							<h1 className="heading-1 dark:from-fg dark:to-fg-secondary not-dark:text-fg mt-6 bg-clip-text text-center text-transparent dark:bg-gradient-to-b">
 								Open-Source React Components and Figma Design System
 							</h1>
-							<p className="text-fg-secondary w-full max-w-[640px] text-center text-lg font-normal">
+							<p className="text-fg-secondary mt-10 w-full max-w-[640px] text-center text-lg font-normal">
 								A complete production-ready React components library, UI blocks,
 								and Figma UI Kit and design system for{" "}
 								<RotatingWords
@@ -64,10 +67,14 @@ export default function Page() {
 									className="text-fg font-medium"
 								/>
 							</p>
-						</div>
-						<div className="flex w-full flex-col items-center justify-center gap-3 sm:flex-row">
+						</HomepageLoadReveal>
+						<HomepageLoadReveal
+							className="flex w-full flex-col items-center justify-center gap-3 sm:flex-row"
+							delay={0.16}
+							offset={8}
+							blur={8}>
 							<HeroActionButtons />
-						</div>
+						</HomepageLoadReveal>
 					</div>
 
 					<VideoPreviewWithBeams />
@@ -101,11 +108,17 @@ export default function Page() {
 
 function VideoPreviewWithBeams() {
 	return (
-		<div className="-mx-4 mt-[64px] flex w-[calc(100%+2rem)] justify-center sm:mt-[100px] md:-mx-5 md:w-[calc(100%+2.5rem)]">
+		<div className="-mx-4 mt-[64px] flex w-[calc(100%+2rem)] justify-center sm:mt-[90px] md:-mx-5 md:w-[calc(100%+2.5rem)]">
 			<div className="max-w-368 relative w-full px-4 md:px-5">
-				<div className="relative z-20 flex justify-center">
+				<HomepageLoadReveal
+					className="relative z-20 flex justify-center"
+					delay={0.28}
+					duration={1}
+					offset={18}
+					blur={16}
+					scale={0.99}>
 					<VideoDialogPreview />
-				</div>
+				</HomepageLoadReveal>
 
 				<HeroBeamPath
 					className="left-4 top-[-276px] h-[276px] w-[438px] md:left-5"

@@ -3,7 +3,7 @@ import { Mdx } from "@/components/mdx"
 import { Divider } from "@/registry/ui/divider"
 
 export default function ChangelogList() {
-	const sortedChangelogs = allChangelogs.sort(
+	const sortedChangelogs = [...allChangelogs].sort(
 		(a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
 	)
 

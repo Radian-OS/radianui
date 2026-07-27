@@ -1,19 +1,22 @@
 import { ArrowRight } from "lucide-react"
-import type { Metadata } from "next"
 import Link from "next/link"
 import Background from "@/components/effects/background"
+import ComponentsSection from "@/components/home/components-section"
+import CTASection from "@/components/home/cta-section"
+import FAQSection from "@/components/home/faq-section"
+import FeaturesSection from "@/components/home/features-section"
 import Footer from "@/components/home/footer"
+import HeroActionButtons from "@/components/home/hero-action-buttons"
+import HomepageLoadReveal from "@/components/home/homepage-load-reveal"
+import InvertedSection from "@/components/home/inverted-section"
+import PlaygroundSectionWrapper from "@/components/home/playground-section-wrapper"
+import { RotatingWords } from "@/components/home/rotating-words"
+import VideoSection from "@/components/home/video-section"
+import VideoDialogPreview from "@/components/home/video/video-dialog-preview"
 import { JsonLd } from "@/components/seo/json-ld"
-import {
-	absoluteUrl,
-	getAvatarResourceStructuredData,
-} from "@/lib/structured-data"
+import { getHomepageStructuredData } from "@/lib/structured-data"
 import { BorderBeam } from "@/registry/animated/border-beam"
-import { Avatar, AvatarImage } from "@/registry/ui/avatar"
 import { Badge } from "@/registry/ui/badge"
-import AvatarHeroActionButtons from "../components/AvatarHeroActionButton"
-import AvatarPlayground from "../components/AvatarPlayground"
-import AvatarDocs from "../docs/AvatarDocs"
 
 const upperHeroBeamPath =
 	"M0 1H132C142.8 1 152.8 6.8 158.1 16.2L286.5 258.8C292.1 269.4 303.2 276 315.2 276H438"
@@ -21,54 +24,19 @@ const upperHeroBeamPath =
 const lowerHeroBeamPath =
 	"M0 1H92C102.6 1 112.4 6.6 117.8 15.8L154.2 78.2C159.6 87.4 169.4 93 180 93H214"
 
-const pageUrl = absoluteUrl("/resources/avatar")
-const pageTitle = "Free UI Avatar Pack for React & Figma | Radian"
-const pageDescription =
-	"Download production-ready UI avatars for React, Figma, dashboards, and design systems, with multiple styles and easy customization."
-const pageImage = absoluteUrl("/og/static-og.png")
-
-export const metadata: Metadata = {
-	title: pageTitle,
-	description: pageDescription,
-	alternates: { canonical: pageUrl },
-	openGraph: {
-		type: "website",
-		title: pageTitle,
-		description: pageDescription,
-		url: pageUrl,
-		images: [{ url: pageImage, width: 1200, height: 630, alt: pageTitle }],
-	},
-	twitter: {
-		card: "summary_large_image",
-		title: pageTitle,
-		description: pageDescription,
-		images: [pageImage],
-	},
-}
-
-export const people = [
-	{
-		image: "/avatar/header-1.jpg",
-	},
-	{
-		image: "/avatar/header-2.jpg",
-	},
-	{
-		image: "/avatar/header-3.jpg",
-	},
-]
-
 export default function Page() {
 	return (
 		<>
 			<JsonLd
-				id="avatar-resource-structured-data"
-				data={getAvatarResourceStructuredData()}
+				id="homepage-structured-data"
+				data={getHomepageStructuredData()}
 			/>
 			<div className="min-h-screen w-full overflow-x-hidden">
-				<Background topPosition="top-[700px]">
-					<div className="md:pt-30 pt-15 flex flex-col items-center justify-center gap-12">
-						<div className="max-w-250 flex flex-col items-center justify-center gap-6">
+				<Background>
+					<div className="md:pt-30 pt-15 flex flex-col items-center justify-center gap-10">
+						<HomepageLoadReveal
+							className="max-w-250 flex flex-col items-center justify-center"
+							delay={0.05}>
 							<Link
 								href="/docs/getting-started/changelog"
 								className="relative h-[32px] rounded-full">
@@ -81,43 +49,57 @@ export default function Page() {
 										color="primary"
 										className="rounded-full"
 										variant="strong">
-										100+ Faces
+										New Version
 									</Badge>
-									Curated UI Avatar Pack
+									Read Changelog
 									<ArrowRight className="size-3.5" />
 								</Badge>
 								<BorderBeam size={50} />
 							</Link>
-							<div className="flex items-center -space-x-2">
-								{people.map((person) => (
-									<Avatar
-										size={`${person.image === "/avatar/header-2.jpg" ? "80" : "48"}`}
-										key={person.image}>
-										<AvatarImage
-											className={`${person.image === "/avatar/header-2.jpg" ? "z-10" : ""}`}
-											src={person.image}
-										/>
-									</Avatar>
-								))}
-							</div>
-							<div className="md:w-163 flex w-full flex-col items-center justify-center gap-4">
-								<h1 className="heading-3 text-center">
-									Beautiful, Production-Ready UI Avatars 👩🏼‍💼
-								</h1>
-								<p className="text-fg-secondary text-center text-base font-normal">
-									Get instant access to a diverse, high-quality collection of
-									user interface avatars optimized for Figma, React, and modern
-									web design systems.
-								</p>
-							</div>
-						</div>
-						<div className="flex w-full flex-col items-center justify-center gap-3 sm:flex-row">
-							<AvatarHeroActionButtons />
-						</div>
+							<h1 className="heading-1 dark:from-fg dark:to-fg-secondary not-dark:text-fg mt-6 bg-clip-text text-center text-transparent dark:bg-gradient-to-b">
+								Open-Source React Components and Figma Design System
+							</h1>
+							<p className="text-fg-secondary mt-10 w-full max-w-[640px] text-center text-lg font-normal">
+								A complete production-ready React components library, UI blocks,
+								and Figma UI Kit and design system for{" "}
+								<RotatingWords
+									words={["Designers", "Developers", "Startups", "Agencies"]}
+									className="text-fg font-medium"
+								/>
+							</p>
+						</HomepageLoadReveal>
+						<HomepageLoadReveal
+							className="flex w-full flex-col items-center justify-center gap-3 sm:flex-row"
+							delay={0.16}
+							offset={8}
+							blur={8}>
+							<HeroActionButtons />
+						</HomepageLoadReveal>
 					</div>
+
 					<VideoPreviewWithBeams />
 				</Background>
-				<AvatarDocs />
+
+				<FeaturesSection
+					textAutoHide={true}
+					enableSpotlight={true}
+					enableBorderGlow={true}
+					clickEffect={true}
+					spotlightRadius={573}
+				/>
+
+				<InvertedSection />
+
+				<ComponentsSection />
+
+				<PlaygroundSectionWrapper />
+
+				<VideoSection />
+
+				<FAQSection />
+
+				<CTASection />
+
 				<Footer />
 			</div>
 		</>
@@ -126,11 +108,17 @@ export default function Page() {
 
 function VideoPreviewWithBeams() {
 	return (
-		<div className="bg-bg border-soft -mx-4 mt-[100px] flex w-[calc(100%+2rem)] justify-center border-t md:-mx-5 md:w-[calc(100%+2.5rem)]">
+		<div className="-mx-4 mt-[64px] flex w-[calc(100%+2rem)] justify-center sm:mt-[90px] md:-mx-5 md:w-[calc(100%+2.5rem)]">
 			<div className="max-w-368 relative w-full px-4 md:px-5">
-				<div className="relative z-20 flex justify-center py-10">
-					<AvatarPlayground />
-				</div>
+				<HomepageLoadReveal
+					className="relative z-20 flex justify-center"
+					delay={0.28}
+					duration={1}
+					offset={18}
+					blur={16}
+					scale={0.99}>
+					<VideoDialogPreview />
+				</HomepageLoadReveal>
 
 				<HeroBeamPath
 					className="left-4 top-[-276px] h-[276px] w-[438px] md:left-5"

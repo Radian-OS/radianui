@@ -178,7 +178,6 @@ const GETTING_STARTED_ITEMS: NavigationItem[] = [
 		title: "Changelog",
 		url: "/docs/getting-started/changelog",
 		icon: ScrollText,
-		isNew: true,
 	},
 	{
 		title: "Resources",
@@ -220,6 +219,8 @@ const BLOCKS_DATA = [
 	{ title: "Password Reset", category: "authentication" },
 	{ title: "Reset Email Sent", category: "authentication" },
 	{ title: "New Password", category: "authentication" },
+	{ title: "Sidebar", category: "webapp" },
+	{ title: "Onboarding", category: "webapp" },
 ]
 const BLOCKS_ITEMS: NavigationItem[] = BLOCKS_DATA.map(
 	({ title, category }) => ({

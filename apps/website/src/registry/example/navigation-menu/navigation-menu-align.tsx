@@ -1,3 +1,5 @@
+"use client"
+
 import {
 	Book,
 	Building2,
