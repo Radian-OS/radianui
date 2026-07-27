@@ -16,7 +16,7 @@ export const FeatureHeader = () => {
 				</Badge>
 
 				<svg
-					className="not-md:hidden absolute bottom-1/2 left-1/2 -translate-x-1/2 overflow-hidden"
+					className="not-md:hidden pointer-events-none absolute bottom-1/2 left-1/2 -translate-x-1/2 overflow-hidden"
 					width="1095"
 					height="350"
 					viewBox="0 0 1095 350"
@@ -38,7 +38,7 @@ export const FeatureHeader = () => {
 
 				{/* Left side line */}
 				<svg
-					className="-top-122 absolute -left-[725.5px]"
+					className="-top-122 pointer-events-none absolute -left-[725.5px]"
 					width="698"
 					height="798"
 					viewBox="0 0 698 798"
@@ -113,7 +113,7 @@ export const FeatureHeader = () => {
 
 				{/* Right side line */}
 				<svg
-					className="-top-122 absolute -right-[725.5px] z-10 scale-x-[-1]"
+					className="-top-122 pointer-events-none absolute -right-[725.5px] z-10 scale-x-[-1]"
 					width="698"
 					height="798"
 					viewBox="0 0 698 798"

@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils"
 type InfiniteScrollProps = {
 	duration?: number
 	pauseOnHover?: boolean
+	paused?: boolean
 	reverse?: boolean
 	vertical?: boolean
 	className?: string
@@ -37,6 +38,12 @@ const infiniteScrollY = css`
 	animation: infinite-scroll-vertical var(--duration) linear infinite;
 `
 
+const pauseOnHoverClass = css`
+	&:hover > div {
+		animation-play-state: paused !important;
+	}
+`
+
 const getClass = (isVertical: boolean) => {
 	if (isVertical) return infiniteScrollY
 	return infiniteScrollX
@@ -47,6 +54,7 @@ const InfiniteScroll = ({
 	reverse = false,
 	vertical = false,
 	pauseOnHover = true,
+	paused = false,
 	className,
 	children,
 }: InfiniteScrollProps) => {
@@ -57,6 +65,7 @@ const InfiniteScroll = ({
 				{
 					"flex-row": !vertical,
 					"flex-col": vertical,
+					[pauseOnHoverClass]: pauseOnHover,
 				},
 				className
 			)}
@@ -70,13 +79,13 @@ const InfiniteScroll = ({
 				.map((_, i) => (
 					<div
 						key={i}
+						style={paused ? { animationPlayState: "paused" } : undefined}
 						className={cn(
 							"flex shrink-0 justify-around [gap:var(--gap)]",
 							{
 								"![animation-direction:reverse]": reverse,
 								"flex-row": !vertical,
 								"flex-col": vertical,
-								"group-hover:![animation-play-state:paused]": pauseOnHover,
 							},
 							getClass(vertical)
 						)}>
