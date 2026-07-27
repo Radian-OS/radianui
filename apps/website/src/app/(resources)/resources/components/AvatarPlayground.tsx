@@ -3,6 +3,13 @@
 import { useCallback, useMemo, useState } from "react"
 import { Settings } from "lucide-react"
 import { toast } from "sonner"
+import {
+	AVATARS,
+	CATEGORY_AVATAR_MAP,
+	copyRandomAvatar,
+	getToneStyle,
+	randomSolidMapColor,
+} from "@/constants/avatar-playground-utils"
 import { Button, IconButton } from "@/registry/ui/button"
 import { AvatarTile } from "./AvatarTile"
 import CategoryFilterDropdown from "./CategoryFilterDropdown"
@@ -10,13 +17,6 @@ import ConfigPreferencesDialog from "./ConfigPreferencesDialog"
 import FigmaCustomIcon from "./FigmaCustomIcon"
 import { BACKGROUNDS, GRADIENT_IMAGES } from "./ToneFilterDropdown"
 import ToneFilterDropdown from "./ToneFilterDropdown"
-import {
-	AVATARS,
-	CATEGORY_AVATAR_MAP,
-	copyRandomAvatar,
-	getToneStyle,
-	randomSolidMapColor,
-} from "./avatar-playground-utils"
 
 const AvatarPlayground = () => {
 	type ColorMode = "static" | "radian"

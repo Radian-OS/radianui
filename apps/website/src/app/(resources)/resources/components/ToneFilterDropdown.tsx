@@ -3,17 +3,6 @@
 import React, { useRef, useState } from "react"
 import { Ban, ChevronDown, Dices, X } from "lucide-react"
 import Image from "next/image"
-import { AspectRatio } from "@/registry/ui/aspect-ratio"
-import { Button, CompactButton, IconButton } from "@/registry/ui/button"
-import { Divider } from "@/registry/ui/divider"
-import {
-	Dropdown,
-	DropdownContent,
-	DropdownDivider,
-	DropdownLabel,
-	DropdownTrigger,
-} from "@/registry/ui/dropdown"
-import { ScrollArea } from "@/registry/ui/scroll-area"
 import {
 	type ActiveInfo,
 	BACKGROUNDS,
@@ -28,7 +17,18 @@ import {
 	formatColorName,
 	getActiveInfo,
 	getCdnColorDisplayName,
-} from "./tone-filter-data"
+} from "@/constants/tone-filter-data"
+import { AspectRatio } from "@/registry/ui/aspect-ratio"
+import { Button, CompactButton, IconButton } from "@/registry/ui/button"
+import { Divider } from "@/registry/ui/divider"
+import {
+	Dropdown,
+	DropdownContent,
+	DropdownDivider,
+	DropdownLabel,
+	DropdownTrigger,
+} from "@/registry/ui/dropdown"
+import { ScrollArea } from "@/registry/ui/scroll-area"
 
 export {
 	BACKGROUNDS,
