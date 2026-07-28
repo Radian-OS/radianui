@@ -1,14 +1,11 @@
 import { ArrowRight } from "lucide-react"
 import Link from "next/link"
 import Background from "@/components/effects/background"
-// import ComponentsSection from "@/components/home/components-section"
 import CTASection from "@/components/home/cta-section"
 import FAQSection from "@/components/home/faq-section"
-// import FeaturesSection from "@/components/home/features-section"
 import Footer from "@/components/home/footer"
 import HeroActionButtons from "@/components/home/hero-action-buttons"
 import HomepageLoadReveal from "@/components/home/homepage-load-reveal"
-// import InvertedSection from "@/components/home/inverted-section"
 import BrandSection from "@/components/home/new/brand-section"
 import CarouselSection from "@/components/home/new/carousel-section"
 import PlaygroundSectionWrapper from "@/components/home/playground-section-wrapper"
@@ -87,17 +84,6 @@ export default function Page() {
 				<BrandSection />
 				<RapidDev />
 				<Component />
-				{/* <FeaturesSection
-					textAutoHide={true}
-					enableSpotlight={true}
-					enableBorderGlow={true}
-					clickEffect={true}
-					spotlightRadius={573}
-				/> */}
-
-				{/* <InvertedSection /> */}
-
-				{/* <ComponentsSection /> */}
 
 				<PlaygroundSectionWrapper />
 
@@ -108,7 +94,6 @@ export default function Page() {
 				<CTASection />
 
 				<Footer />
-				<RapidDev />
 				<CarouselSection />
 			</div>
 		</>

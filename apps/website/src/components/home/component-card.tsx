@@ -19,10 +19,10 @@ export default function ComponentCard({
 	alt,
 }: Props) {
 	return (
-		<Link href={url} className="flex w-full flex-col items-center">
+		<Link href={url} className="flex h-full w-full flex-col items-center">
 			<span className="sr-only">{title}</span>
-			<div className="border-soft flex w-full flex-col items-start gap-3 overflow-hidden border border-y-0">
-				<div className="flex w-full justify-center bg-[#F4F4F6] dark:bg-[#131316]">
+			<div className="border-soft flex h-full w-full flex-col items-start gap-3 overflow-hidden border border-y-0">
+				<div className="flex w-full flex-1 justify-center bg-[#F4F4F6] dark:bg-[#131316]">
 					<Image
 						width={335}
 						height={320}
