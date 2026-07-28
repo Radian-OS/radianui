@@ -15,13 +15,13 @@ const CarouselSection = () => {
 		<section
 			className="bg-bg text-fg dark relative z-20 w-full"
 			style={darkThemeVars}>
-			<div className="max-w-360 pt-30 mx-auto flex w-full flex-col gap-20">
-				<div className="flex flex-col items-center justify-center gap-6">
+			<div className="max-w-360 lg:pt-30 mx-auto flex w-full flex-col gap-12 pt-12 sm:gap-16 sm:pt-14 lg:gap-20">
+				<div className="flex w-full flex-col items-center justify-center gap-8 px-5 sm:px-8 lg:px-0">
 					<Badge color="violet-blue" size="28" variant="soft">
 						<BadgeDot className="text-violet-blue-text" />
 						Design at Scale
 					</Badge>
-					<h3 className="heading-3 max-w-212.5 text-center">
+					<h3 className="heading-3 max-w-212.5 text-center max-sm:text-2xl max-sm:leading-9">
 						More than just a component library.{" "}
 						<span className="text-fg-secondary">
 							A complete collection of design foundations, blocks, and assets
@@ -30,28 +30,30 @@ const CarouselSection = () => {
 					</h3>
 				</div>
 				{/* Numbers Section */}
-				<div className="border-soft flex w-full items-center justify-evenly border border-x-0">
-					<div className="border-soft flex w-full flex-col items-center justify-center gap-3 border border-y-0 border-l-0 border-r py-8">
+				<div className="border-soft flex w-full flex-wrap border-y">
+					<div className="border-soft flex w-1/2 flex-col items-center justify-center gap-3 border-b border-r px-4 py-8 text-center lg:w-1/4 lg:border-b-0">
 						<h4 className="heading-4">2000+</h4>
-						<span className="text-fg-secondary text-base">
+						<span className="text-fg-secondary text-sm sm:text-base">
 							Variables & Design Tokens
 						</span>
 					</div>
-					<div className="border-soft flex w-full flex-col items-center justify-center gap-3 border border-y-0 border-l-0 border-r py-8">
+					<div className="border-soft flex w-1/2 flex-col items-center justify-center gap-3 border-b px-4 py-8 text-center lg:w-1/4 lg:border-b-0 lg:border-r">
 						<h4 className="heading-4">4500+</h4>
-						<span className="text-fg-secondary text-base">
+						<span className="text-fg-secondary text-sm sm:text-base">
 							Components & Variants
 						</span>
 					</div>
-					<div className="border-soft flex w-full flex-col items-center justify-center gap-3 border border-y-0 border-l-0 border-r py-8">
+					<div className="border-soft flex w-1/2 flex-col items-center justify-center gap-3 border-r px-4 py-8 text-center lg:w-1/4">
 						<h4 className="heading-4">100+</h4>
-						<span className="text-fg-secondary text-base">
+						<span className="text-fg-secondary text-sm sm:text-base">
 							UI Blocks & Templates
 						</span>
 					</div>
-					<div className="border-soft flex w-full flex-col items-center justify-center gap-3 border border-y-0 border-l-0 border-r-0 py-8">
+					<div className="border-soft flex w-1/2 flex-col items-center justify-center gap-3 px-4 py-8 text-center lg:w-1/4">
 						<h4 className="heading-4">2,000+</h4>
-						<span className="text-fg-secondary text-base">Icons & Assets</span>
+						<span className="text-fg-secondary text-sm sm:text-base">
+							Icons & Assets
+						</span>
 					</div>
 				</div>
 				{/* Numbers Section */}
