@@ -6,7 +6,9 @@ import { type VariantProps, cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 type SlotSize = NonNullable<VariantProps<typeof otpInputVariants>["size"]>
-type OTPContextType = { size?: SlotSize }
+type OTPContextType = {
+	size?: SlotSize
+}
 type OTPFieldProps = React.ComponentPropsWithoutRef<
 	typeof OneTimePasswordFieldPrimitive.Root
 > &
@@ -20,19 +22,19 @@ type OTPHiddenInputProps = React.ComponentPropsWithoutRef<
 
 const otpInputVariants = cva(
 	cn(
-		"cn-otp-input inline-flex appearance-none items-center justify-center text-center p-0 leading-none outline-none outline-hidden",
+		"group-has-disabled:cursor-not-allowed group-has-disabled:text-fg-disabled group-has-disabled:bg-fill2-alpha group-has-disabled:placeholder:text-fg-disabled placeholder:text-fg-tertiary inline-flex text-center appearance-none items-center justify-center rounded-lg bg-bg p-0 leading-none text-fg outline-none shadow-2xs font-semibold outline-hidden border border-alpha focus-visible:ring-3 focus-visible:ring-primary-focus focus-visible:border-primary-hover ",
 		"group-aria-invalid:border-error group-aria-invalid:ring-error group-aria-invalid:focus-visible:ring-error-focus group-aria-invalid:focus-visible:border-error-hover",
 		"[[data-invalid=true]_&]:border-error [[data-invalid=true]_&]:ring-error [[data-invalid=true]_&]:focus-visible:ring-error-focus [[data-invalid=true]_&]:focus-visible:border-error-hover"
 	),
 	{
 		variants: {
 			size: {
-				"28": "cn-otp-input-28",
-				"32": "cn-otp-input-32",
-				"36": "cn-otp-input-36",
-				"40": "cn-otp-input-40",
-				"44": "cn-otp-input-44",
-				"48": "cn-otp-input-48",
+				"28": "size-7 text-[13px]",
+				"32": "size-8 text-sm",
+				"36": "size-9 text-sm",
+				"40": "size-10 text-sm",
+				"44": "size-11 text-base",
+				"48": "size-12 text-base",
 			},
 		},
 		defaultVariants: {
@@ -62,7 +64,7 @@ function OTPField({
 			data-slot="otp-field"
 			validationType={validationType}
 			className={cn(
-				"cn-otp-field has-disabled:cursor-not-allowed group peer flex flex-nowrap",
+				"has-disabled:cursor-not-allowed group peer flex flex-nowrap gap-1.5",
 				className
 			)}
 			{...props}>

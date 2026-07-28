@@ -3,9 +3,10 @@
 import React from "react"
 import * as AccordionPrimitive from "@radix-ui/react-accordion"
 import { type VariantProps, cva } from "class-variance-authority"
+import { ChevronDownIcon, Plus } from "lucide-react"
 import { cn as classNames } from "@/lib/utils"
-import { IconSlot } from "@/registry/icon/icon-library"
 
+// Defining the types for the accordion
 export type AccordionContextType = {
 	variant?: VariantProps<typeof accordionVariants>["variant"]
 	indicator?: VariantProps<typeof accordionTriggerVariants>["indicator"]
@@ -37,7 +38,7 @@ const accordionVariants = cva("w-full text-sm/6", {
 	variants: {
 		variant: {
 			box: "",
-			table: "cn-accordion-variant-table",
+			table: "border-stroke rounded-xl border",
 			open: "",
 		},
 	},
@@ -49,9 +50,9 @@ const accordionVariants = cva("w-full text-sm/6", {
 const accordionItemVariants = cva("overflow-hidden", {
 	variants: {
 		variant: {
-			box: "cn-accordion-item-variant-box",
-			table: "cn-accordion-item-variant-table",
-			open: "cn-accordion-item-variant-open",
+			box: "border-stroke border shadow-2xs rounded-lg last:mb-0",
+			table: "border-b first:rounded-t-xl last:rounded-b-xl last:border-b-0",
+			open: "border-b last:border-b-0",
 		},
 	},
 	compoundVariants: [
@@ -102,7 +103,7 @@ const accordionTriggerVariants = cva(
 )
 
 const accordionContentVariants = cva(
-	"data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden transition-all"
+	"text-fg-secondary data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden transition-all"
 )
 
 const accordionContentInnerVariants = cva("pt-0", {
@@ -198,16 +199,14 @@ function AccordionTrigger({
 				{...props}>
 				{children}
 				{indicator === "chevron" && (
-					<IconSlot
-						slot="down"
-						className="AccordionChevron shrink-0 transition-transform duration-200"
+					<ChevronDownIcon
+						className="AccordionChevron text-fg-tertiary shrink-0 transition-transform duration-200"
 						aria-hidden
 					/>
 				)}
 				{indicator === "plus-minus" && (
-					<IconSlot
-						slot="plus"
-						className="AccordionPlus shrink-0 transition-transform duration-200"
+					<Plus
+						className="AccordionPlus text-fg-tertiary shrink-0 transition-transform duration-200"
 						aria-hidden
 					/>
 				)}
@@ -227,7 +226,7 @@ function AccordionContent({
 	return (
 		<AccordionPrimitive.Content
 			data-slot="accordion-content"
-			className={classNames("cn-accordion-content", accordionContentVariants())}
+			className={classNames(accordionContentVariants())}
 			{...props}>
 			<div
 				className={classNames(
