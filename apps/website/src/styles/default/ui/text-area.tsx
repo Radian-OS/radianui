@@ -51,7 +51,6 @@ function TextArea({
 		/>
 	)
 }
-
 TextArea.displayName = "TextArea"
 
 function useCharacterLimit({
@@ -59,6 +58,7 @@ function useCharacterLimit({
 	initialValue = "",
 }: UseCharacterLimitOptions) {
 	const [value, setValue] = useState(initialValue)
+
 	const characterCount = value.length
 	const remainingCharacters = maxLength - characterCount
 

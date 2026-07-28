@@ -66,12 +66,12 @@ export const buttonVariants = cva(
 				"smooth-inverted": "",
 			},
 			size: {
-				"28": "[&>svg]:size-4 text-[13px] leading-4.5 px-1 rounded-control-md",
-				"32": "[&>svg]:size-4.5 text-sm px-1 rounded-control-md",
-				"36": "[&>svg]:size-5 text-sm px-1 rounded-control-lg",
-				"40": "[&>svg]:size-5 text-sm px-1 rounded-control-lg",
-				"44": "[&>svg]:size-5 text-base px-1 rounded-control-lg",
-				"48": "[&>svg]:size-6 text-base px-1 rounded-control-lg",
+				"28": "[&>svg]:size-4 text-[13px] leading-4.5 px-1 rounded-md",
+				"32": "[&>svg]:size-4.5 text-sm px-1 rounded-md",
+				"36": "[&>svg]:size-5 text-sm px-1 rounded-lg",
+				"40": "[&>svg]:size-5 text-sm px-1 rounded-lg",
+				"44": "[&>svg]:size-5 text-base px-1 rounded-lg",
+				"48": "[&>svg]:size-6 text-base px-1 rounded-lg",
 			},
 			loading: {
 				true: "",
@@ -946,12 +946,12 @@ CompactButton.displayName = "CompactButton"
 export const iconButtonSizeVariants = cva("", {
 	variants: {
 		size: {
-			"28": "[&>svg]:size-4 size-7 p-1.5 rounded-md",
-			"32": "[&>svg]:size-4.5 size-8 p-1.75 rounded-md",
-			"36": "[&>svg]:size-5 size-9 p-2 rounded-lg",
-			"40": "[&>svg]:size-5 size-10 p-2.5 rounded-lg",
-			"44": "[&>svg]:size-5 size-11 p-3 rounded-lg",
-			"48": "[&>svg]:size-6 size-12 p-3 rounded-lg",
+			"28": "[&>svg]:size-4 rounded-md size-7 p-1.5",
+			"32": "[&>svg]:size-4.5 rounded-md size-8 p-1.75",
+			"36": "[&>svg]:size-5 rounded-lg size-9 p-2",
+			"40": "[&>svg]:size-5 rounded-lg size-10 p-2.5",
+			"44": "[&>svg]:size-5 rounded-lg size-11 p-3",
+			"48": "[&>svg]:size-6 rounded-lg size-12 p-3",
 		},
 		variant: {
 			outline: "",

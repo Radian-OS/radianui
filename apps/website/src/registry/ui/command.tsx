@@ -8,8 +8,8 @@ import {
 	CommandList as CmdkList,
 	CommandSeparator as CmdkSeparator,
 } from "cmdk"
+import { SearchIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { IconSlot } from "@/registry/icon/icon-library"
 import {
 	Dialog,
 	DialogContent,
@@ -27,11 +27,17 @@ type CommandDialogProps = React.ComponentProps<typeof Dialog> & {
 } & Pick<React.ComponentProps<typeof DialogTitle>, "closeButton">
 
 type CommandInputProps = React.ComponentProps<typeof CmdkInput>
+
 type CommandListProps = React.ComponentProps<typeof CmdkList>
+
 type CommandEmptyProps = React.ComponentProps<typeof CmdkEmpty>
+
 type CommandGroupProps = React.ComponentProps<typeof CmdkGroup>
+
 type CommandDividerProps = React.ComponentProps<typeof CmdkSeparator>
+
 type CommandItemProps = React.ComponentProps<typeof CmdkItem>
+
 type CommandShortcutProps = React.ComponentProps<"span">
 
 function Command({ className, ...props }: CommandProps) {
@@ -74,12 +80,12 @@ function CommandInput({ className, ...props }: CommandInputProps) {
 	return (
 		<div
 			data-slot="command-input-wrapper"
-			className="cn-command-input-wrapper flex items-center gap-2">
-			<IconSlot slot="search" className="cn-command-input-icon shrink-0" />
+			className="flex h-10 items-center gap-2 border-b px-3 py-2.5">
+			<SearchIcon className="text-fg-secondary size-4 shrink-0" />
 			<CmdkInput
 				data-slot="command-input"
 				className={cn(
-					"outline-hidden cn-command-input flex w-full rounded-md bg-transparent disabled:cursor-not-allowed disabled:opacity-50",
+					"placeholder:text-fg-tertiary outline-hidden flex h-10 w-full rounded-md bg-transparent text-sm font-normal disabled:cursor-not-allowed disabled:opacity-50",
 					className
 				)}
 				{...props}
@@ -93,7 +99,7 @@ function CommandList({ className, ...props }: CommandListProps) {
 		<CmdkList
 			data-slot="command-list"
 			className={cn(
-				"cn-command-list overflow-y-auto overflow-x-hidden",
+				"max-h-[300px] scroll-py-1 overflow-y-auto overflow-x-hidden",
 				className
 			)}
 			{...props}
@@ -105,7 +111,7 @@ function CommandEmpty({ ...props }: CommandEmptyProps) {
 	return (
 		<CmdkEmpty
 			data-slot="command-empty"
-			className="cn-command-empty"
+			className="py-6 text-center text-sm"
 			{...props}
 		/>
 	)
@@ -115,7 +121,10 @@ function CommandGroup({ className, ...props }: CommandGroupProps) {
 	return (
 		<CmdkGroup
 			data-slot="command-group"
-			className={cn("cn-command-group overflow-hidden", className)}
+			className={cn(
+				"text-fg [&_[cmdk-group-heading]]:text-fg-secondary overflow-hidden p-1 [&_[cmdk-group-heading]]:p-2 [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:font-medium",
+				className
+			)}
 			{...props}
 		/>
 	)
@@ -125,7 +134,7 @@ function CommandDivider({ className, ...props }: CommandDividerProps) {
 	return (
 		<CmdkSeparator
 			data-slot="command-separator"
-			className={cn("cn-command-divider -mx-1 h-px", className)}
+			className={cn("bg-border -mx-1 h-px", className)}
 			{...props}
 		/>
 	)
@@ -148,7 +157,10 @@ function CommandShortcut({ className, ...props }: CommandShortcutProps) {
 	return (
 		<span
 			data-slot="command-shortcut"
-			className={cn("cn-command-shortcut ml-auto", className)}
+			className={cn(
+				"text-fg-tertiary ml-auto text-xs tracking-widest",
+				className
+			)}
 			{...props}
 		/>
 	)

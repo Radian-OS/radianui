@@ -8,7 +8,7 @@ import {
 	CommandList as CmdkList,
 	CommandSeparator as CmdkSeparator,
 } from "cmdk"
-import { Search } from "lucide-react"
+import { SearchIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
 import {
 	Dialog,
@@ -27,11 +27,17 @@ type CommandDialogProps = React.ComponentProps<typeof Dialog> & {
 } & Pick<React.ComponentProps<typeof DialogTitle>, "closeButton">
 
 type CommandInputProps = React.ComponentProps<typeof CmdkInput>
+
 type CommandListProps = React.ComponentProps<typeof CmdkList>
+
 type CommandEmptyProps = React.ComponentProps<typeof CmdkEmpty>
+
 type CommandGroupProps = React.ComponentProps<typeof CmdkGroup>
+
 type CommandDividerProps = React.ComponentProps<typeof CmdkSeparator>
+
 type CommandItemProps = React.ComponentProps<typeof CmdkItem>
+
 type CommandShortcutProps = React.ComponentProps<"span">
 
 function Command({ className, ...props }: CommandProps) {
@@ -75,11 +81,11 @@ function CommandInput({ className, ...props }: CommandInputProps) {
 		<div
 			data-slot="command-input-wrapper"
 			className="flex h-10 items-center gap-2 border-b px-3 py-2.5">
-			<Search className="text-fg-secondary size-4 shrink-0" />
+			<SearchIcon className="text-fg-secondary size-4 shrink-0" />
 			<CmdkInput
 				data-slot="command-input"
 				className={cn(
-					"outline-hidden placeholder:text-fg-tertiary flex h-10 w-full rounded-md bg-transparent text-sm font-normal disabled:cursor-not-allowed disabled:opacity-50",
+					"placeholder:text-fg-tertiary outline-hidden flex h-10 w-full rounded-md bg-transparent text-sm font-normal disabled:cursor-not-allowed disabled:opacity-50",
 					className
 				)}
 				{...props}

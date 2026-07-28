@@ -28,7 +28,7 @@ const tabsListStyles = cva(
 			width: {
 				fit: "w-max min-w-max max-w-full",
 				full: "data-[orientation=horizontal]:w-full data-[orientation=horizontal]:items-stretch data-[orientation=horizontal]:*:flex-1",
-			},
+			}, // default medium
 			variant: {
 				default: "bg-fill2",
 				open: "data-[orientation=horizontal]:border-b data-[orientation=vertical]:border-r border-border",
@@ -46,7 +46,8 @@ const tabsListStyles = cva(
 			},
 			{
 				variant: "open",
-				className: "cn-tabs-list-open-gap-sm",
+				className:
+					"data-[orientation=horizontal]:gap-3 data-[orientation=vertical]:gap-2",
 			},
 		],
 	}
@@ -67,11 +68,12 @@ const tabsTriggerStyles = cva(
 		compoundVariants: [
 			{
 				variant: ["default"],
-				className: "cn-tabs-trigger-default-md h-full",
+				className: "rounded-md px-2.5 py-1.5 h-full",
 			},
 			{
 				variant: "open",
-				className: "cn-tabs-trigger-open-md h-9",
+				className:
+					"data-[orientation=horizontal]:py-2 data-[orientation=vertical]:px-2 h-9",
 			},
 			{
 				variant: ["ghost"],
@@ -88,8 +90,9 @@ const TabsListContext = React.createContext<TabsListContextType | null>(null)
 
 function useTabsList() {
 	const context = React.use(TabsListContext)
-	if (!context)
+	if (!context) {
 		throw new Error("useTabsList must be used within a Context Provider")
+	}
 	return context
 }
 
@@ -152,6 +155,7 @@ function TabsContent({ className, ...props }: TabsContentProps) {
 		/>
 	)
 }
+
 TabsContent.displayName = TabsPrimitive.Content.displayName
 
-export { Tabs, TabsList, TabsTrigger, TabsContent }
+export { Tabs, TabsContent, TabsList, TabsTrigger }

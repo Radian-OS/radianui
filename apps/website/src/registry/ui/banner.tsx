@@ -1,7 +1,7 @@
 import * as React from "react"
 import { type VariantProps, cva } from "class-variance-authority"
+import { X } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { IconSlot } from "@/registry/icon/icon-library"
 
 export type BannerProps = Omit<React.HTMLAttributes<HTMLDivElement>, "color"> &
 	VariantProps<typeof bannerVariants> & {
@@ -14,7 +14,7 @@ export type BannerIconProps = React.HTMLAttributes<HTMLDivElement>
 export type BannerToolbarProps = React.HTMLAttributes<HTMLDivElement>
 
 const bannerVariants = cva(
-	"flex items-center justify-center w-full overflow-hidden cn-banner",
+	"flex items-center justify-center w-full gap-2 p-2 overflow-hidden",
 	{
 		variants: {
 			color: {
@@ -26,30 +26,35 @@ const bannerVariants = cva(
 				warning: "",
 			},
 			variant: {
-				strong: "cn-banner-variant-strong",
-				soft: "cn-banner-variant-soft",
-				outline: "cn-banner-variant-outline",
+				strong: "[&_[data-slot=banner-close]]:text-white",
+				soft: "[&_[data-slot=banner-close]]:text-[current] [&_[data-slot=banner-title]]:text-fg [&_[data-slot=banner-description]]:text-fg",
+				outline:
+					"border border-soft border-l-0 border-t-0 border-r-0 [&_[data-slot=banner-close]]:text-fg-secondary [&_[data-slot=banner-title]]:text-fg [&_[data-slot=banner-description]]:text-fg-secondary",
 			},
 		},
 		compoundVariants: [
 			// Soft
-			{
-				color: "neutral",
-				variant: "soft",
-				className: "cn-banner-soft-neutral",
-			},
+			{ color: "neutral", variant: "soft", className: "bg-fill2" },
 			{
 				color: "primary",
 				variant: "soft",
-				className: "cn-banner-soft-primary",
+				className: "bg-primary-accent text-primary-text",
 			},
-			{ color: "info", variant: "soft", className: "cn-banner-soft-info" },
+			{
+				color: "info",
+				variant: "soft",
+				className: "bg-info-accent text-info-text",
+			},
 			{
 				color: "success",
 				variant: "soft",
-				className: "cn-banner-soft-success",
+				className: "bg-success-accent text-success-text",
 			},
-			{ color: "error", variant: "soft", className: "cn-banner-soft-error" },
+			{
+				color: "error",
+				variant: "soft",
+				className: "bg-error-accent text-error-text",
+			},
 			{
 				color: "warning",
 				variant: "soft",
@@ -61,61 +66,57 @@ const bannerVariants = cva(
 			{
 				color: "neutral",
 				variant: "strong",
-				className: "cn-banner-strong-neutral",
+				className: "bg-black-inverse text-white-inverse",
 			},
 			{
 				color: "primary",
 				variant: "strong",
-				className: "cn-banner-strong-primary",
+				className: "bg-primary text-white",
 			},
-			{ color: "info", variant: "strong", className: "cn-banner-strong-info" },
+			{ color: "info", variant: "strong", className: "bg-info text-white" },
 			{
 				color: "warning",
 				variant: "strong",
 				className:
 					"bg-warning text-warning-fg [&_[data-slot=banner-title]]:text-black",
 			},
-			{
-				color: "error",
-				variant: "strong",
-				className: "cn-banner-strong-error",
-			},
+			{ color: "error", variant: "strong", className: "bg-error text-white" },
 			{
 				color: "success",
 				variant: "strong",
-				className: "cn-banner-strong-success",
+				className: "bg-success text-white",
 			},
 
 			// Outline
 			{
 				color: "neutral",
 				variant: "outline",
-				className: "cn-banner-outline-neutral",
+				className: "bg-transparent text-fg ",
 			},
 			{
 				color: "primary",
 				variant: "outline",
-				className: "cn-banner-outline-primary",
+				className: "bg-transparent text-primary-text",
 			},
 			{
 				color: "info",
 				variant: "outline",
-				className: "cn-banner-outline-info",
+				className: "bg-transparent text-info-text",
 			},
 			{
 				color: "success",
 				variant: "outline",
-				className: "cn-banner-outline-success",
+				className: "bg-transparent text-success-text",
 			},
 			{
 				color: "error",
 				variant: "outline",
-				className: "cn-banner-outline-error",
+				className: "bg-transparent text-error-text",
 			},
 			{
 				color: "warning",
 				variant: "outline",
-				className: "cn-banner-outline-warning",
+				className: "bg-transparent text-warning-text",
 			},
 		],
 		defaultVariants: {
@@ -145,8 +146,10 @@ function Banner({
 					onClick={onClose}
 					aria-label="Dismiss"
 					data-slot="banner-close"
-					className="group flex size-5 shrink-0 cursor-pointer items-center justify-center">
-					<IconSlot slot="cross" className="cn-banner-close-icon size-5" />
+					className={cn(
+						"group flex size-5 shrink-0 cursor-pointer items-center justify-center"
+					)}>
+					<X className="size-5 group-hover:opacity-60" />
 				</button>
 			)}
 		</div>
@@ -158,7 +161,7 @@ function BannerTitle({ className, ...props }: BannerTitleProps) {
 	return (
 		<div
 			data-slot="banner-title"
-			className={cn("cn-banner-title", className)}
+			className={cn("text-sm font-medium", className)}
 			{...props}
 		/>
 	)
@@ -169,7 +172,7 @@ function BannerDescription({ className, ...props }: BannerDescriptionProps) {
 	return (
 		<div
 			data-slot="banner-description"
-			className={cn("cn-banner-description", className)}
+			className={cn("text-sm", className)}
 			{...props}
 		/>
 	)
@@ -181,7 +184,7 @@ function BannerContent({ className, ...props }: BannerContentProps) {
 		<div
 			data-slot="banner-content"
 			className={cn(
-				"cn-banner-content flex flex-1 flex-col items-start justify-start",
+				"flex flex-1 flex-col items-start justify-start gap-0.5 [&_[data-slot=banner-description]]:text-sm [&_[data-slot=banner-title]]:text-sm [&_[data-slot=banner-title]]:font-semibold",
 				className
 			)}
 			{...props}

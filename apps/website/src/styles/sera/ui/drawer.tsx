@@ -45,13 +45,13 @@ export type DrawerCloseProps = {
 }
 
 const drawerVariants = cva(
-	"fixed z-50 flex flex-col overflow-hidden bg-bg gap-6",
+	"fixed z-50 bg-bg flex flex-col gap-5 overflow-hidden",
 	{
 		variants: {
 			variant: {
-				float: "outline-border rounded-none shadow-none outline",
-				default: "outline-border outline",
-				rounded: "outline-border rounded-none outline",
+				float: "rounded-xl shadow-lg outline outline-border",
+				default: "outline outline-border",
+				rounded: "outline outline-border rounded-xl",
 			},
 			direction: {
 				top: "top-0 w-full h-fit left-0 max-h-full",
@@ -61,7 +61,7 @@ const drawerVariants = cva(
 			},
 			handle: {
 				true: "",
-				false: "p-6",
+				false: "p-5",
 			},
 		},
 		defaultVariants: {
@@ -69,8 +69,9 @@ const drawerVariants = cva(
 			variant: "default",
 			handle: false,
 		},
+
 		compoundVariants: [
-			// Float position overrides
+			// Float variants (existing)
 			{
 				variant: "float",
 				direction: "top",
@@ -91,47 +92,46 @@ const drawerVariants = cva(
 				direction: "right",
 				className: "top-2 right-2 h-[calc(100%-1rem)]",
 			},
-			// Handle padding variants
+			// Padding variants with handle
 			{
 				handle: true,
 				direction: "top",
-				className: "pb-8 pl-6 pr-6 pt-6",
+				className: "pb-7.5 pt-5 pl-5 pr-5",
 			},
 			{
 				handle: true,
 				direction: "bottom",
-				className: "pb-6 pl-6 pr-6 pt-8",
+				className: "pt-7.5 pb-5 pl-5 pr-5",
 			},
 			{
 				handle: true,
 				direction: "left",
-				className: "pb-6 pl-6 pr-8 pt-6",
+				className: "pr-7.5 pt-5 pl-5 pb-5",
 			},
 			{
 				handle: true,
 				direction: "right",
-				className: "pb-6 pl-8 pr-6 pt-6",
+				className: "pl-7.5 pt-5 pb-5 pr-5",
 			},
-			// Rounded directional overrides
 			{
 				variant: "rounded",
 				direction: "top",
-				className: "rounded-none",
+				className: " rounded-b-xl",
 			},
 			{
 				variant: "rounded",
 				direction: "bottom",
-				className: "rounded-none",
+				className: "rounded-t-xl",
 			},
 			{
 				variant: "rounded",
 				direction: "left",
-				className: "rounded-none",
+				className: " rounded-r-xl",
 			},
 			{
 				variant: "rounded",
 				direction: "right",
-				className: "rounded-none",
+				className: " rounded-l-xl",
 			},
 		],
 	}
@@ -141,8 +141,8 @@ const backdropVariants = cva("z-50 fixed", {
 	variants: {
 		backdrop: {
 			overlay: "inset-0 bg-black/50",
-			blur: "inset-0 backdrop-blur-sm",
-			transparent: "inset-0 backdrop-blur-none",
+			blur: "backdrop-blur-sm inset-0",
+			transparent: "backdrop-blur-none inset-0",
 		},
 	},
 	defaultVariants: {
@@ -151,7 +151,7 @@ const backdropVariants = cva("z-50 fixed", {
 })
 
 const handleVariants = cva(
-	"absolute! max-h-20! max-w-1.5! z-50! rounded-full! ! bg-border",
+	"absolute! max-h-20! max-w-1.5! z-50! bg-border! rounded-full!",
 	{
 		variants: {
 			direction: {
@@ -241,12 +241,12 @@ function DrawerContent({
 }
 
 function DrawerHeader({ children, className }: DrawerHeaderProps) {
-	return <div className={cn("flex flex-col gap-2", className)}>{children}</div>
+	return <div className={cn("flex flex-col gap-1", className)}>{children}</div>
 }
 
 function DrawerTitle({ children, className }: DrawerTitleProps) {
 	return (
-		<DrawerPrimitives.Title className={cn("text-xl font-semibold", className)}>
+		<DrawerPrimitives.Title className={cn("text-lg font-semibold", className)}>
 			{children}
 		</DrawerPrimitives.Title>
 	)
@@ -255,7 +255,7 @@ function DrawerTitle({ children, className }: DrawerTitleProps) {
 function DrawerDescription({ children, className }: DrawerDescriptionProps) {
 	return (
 		<DrawerPrimitives.Description
-			className={cn("text-fg-secondary gap-2 text-sm", className)}>
+			className={cn("text-fg-secondary gap-1 text-sm", className)}>
 			{children}
 		</DrawerPrimitives.Description>
 	)
@@ -271,7 +271,7 @@ function DrawerBody({ children, className }: DrawerDescriptionProps) {
 
 function DrawerFooter({ children, className }: DrawerFooterProps) {
 	return (
-		<div className={cn("flex items-end justify-end gap-3", className)}>
+		<div className={cn("flex items-end justify-end gap-2", className)}>
 			{children}
 		</div>
 	)

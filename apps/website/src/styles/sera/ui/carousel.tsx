@@ -186,7 +186,7 @@ function CarouselPrevious({
 			size={size}
 			color={color}
 			className={cn(
-				"absolute rounded-none",
+				"absolute rounded-full",
 				orientation === "horizontal"
 					? "-left-12 top-1/2 -translate-y-1/2"
 					: "-top-12 left-1/2 -translate-x-1/2 rotate-90",
@@ -222,7 +222,7 @@ function CarouselNext({
 			aria-label="Next Button"
 			size={size}
 			className={cn(
-				"absolute rounded-none",
+				"absolute rounded-full",
 				orientation === "horizontal"
 					? "-right-12 top-1/2 -translate-y-1/2"
 					: "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",
@@ -231,8 +231,7 @@ function CarouselNext({
 			disabled={!canScrollNext}
 			onClick={scrollNext}
 			{...props}>
-			{children ?? <ChevronRight />}
-			<span className="sr-only">Next slide</span>
+			{children ?? <ChevronRight />} <span className="sr-only">Next slide</span>
 		</IconButton>
 	)
 }

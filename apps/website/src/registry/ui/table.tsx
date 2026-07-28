@@ -2,12 +2,19 @@ import * as React from "react"
 import { cn } from "@/lib/utils"
 
 export type TableProps = React.HTMLAttributes<HTMLTableElement>
+
 export type TableHeaderProps = React.HTMLAttributes<HTMLTableSectionElement>
+
 export type TableBodyProps = React.HTMLAttributes<HTMLTableSectionElement>
+
 export type TableFooterProps = React.HTMLAttributes<HTMLTableSectionElement>
+
 export type TableRowProps = React.HTMLAttributes<HTMLTableRowElement>
+
 export type TableHeadProps = React.ComponentProps<"th">
+
 export type TableCellProps = React.ComponentProps<"td">
+
 export type TableCaptionProps = React.HTMLAttributes<HTMLTableCaptionElement>
 
 function Table({ className, ...props }: TableProps) {
@@ -15,30 +22,32 @@ function Table({ className, ...props }: TableProps) {
 		<div data-slot="table-wrapper" className="relative w-full overflow-auto">
 			<table
 				data-slot="table"
-				className={cn("cn-table w-full caption-bottom", className)}
+				className={cn("text-fg w-full caption-bottom text-sm", className)}
 				{...props}
 			/>
 		</div>
 	)
 }
+
 Table.displayName = "Table"
 
 function TableHeader({ className, ...props }: TableHeaderProps) {
 	return (
 		<thead
 			data-slot="table-header"
-			className={cn("cn-table-header", className)}
+			className={cn("[&_tr]:border-b", className)}
 			{...props}
 		/>
 	)
 }
+
 TableHeader.displayName = "TableHeader"
 
 function TableBody({ className, ...props }: TableBodyProps) {
 	return (
 		<tbody
 			data-slot="table-body"
-			className={cn("cn-table-body", className)}
+			className={cn("[&_tr:last-child]:border-0", className)}
 			{...props}
 		/>
 	)
@@ -50,7 +59,7 @@ function TableFooter({ className, ...props }: TableFooterProps) {
 		<tfoot
 			data-slot="table-footer"
 			className={cn(
-				"cn-table-footer font-medium last:[&>tr]:border-b-0",
+				"bg-fg-tertiary border-t font-medium last:[&>tr]:border-b-0",
 				className
 			)}
 			{...props}
@@ -92,7 +101,7 @@ function TableCell({ className, ...props }: TableCellProps) {
 		<td
 			data-slot="table-cell"
 			className={cn(
-				"cn-table-cell align-middle [&:has([role=checkbox])]:pr-0",
+				"p-3 align-middle [&:has([role=checkbox])]:pr-0",
 				className
 			)}
 			{...props}
@@ -105,7 +114,7 @@ function TableCaption({ className, ...props }: TableCaptionProps) {
 	return (
 		<caption
 			data-slot="table-caption"
-			className={cn("cn-table-caption", className)}
+			className={cn("text-fg mt-4 text-sm", className)}
 			{...props}
 		/>
 	)
