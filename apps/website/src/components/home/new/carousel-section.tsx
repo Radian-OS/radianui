@@ -56,7 +56,7 @@ export default function CarouselSection() {
 						<BadgeDot className="text-violet-blue-text" />
 						Design at Scale
 					</Badge>
-					<h3 className="heading-3 max-w-212.5 text-center max-sm:text-2xl max-sm:leading-9">
+					<h3 className="heading-3 max-w-212.5 text-center font-medium max-sm:text-2xl max-sm:leading-9">
 						More than just a component library.{" "}
 						<span className="text-fg-secondary">
 							A complete collection of design foundations, blocks, and assets
@@ -96,7 +96,7 @@ export default function CarouselSection() {
 						<Sparkles />
 						Extended Build Experience
 					</Badge>
-					<h3 className="heading-3 max-w-225">
+					<h3 className="heading-3 max-w-225 font-medium">
 						Built for modern product teams{" "}
 						<span className="text-fg-tertiary">
 							Extend your experience with more features to help you build better
@@ -163,7 +163,7 @@ function StripedDivider({ patternId }: { patternId: string }) {
 						y1="0"
 						x2="0"
 						y2="9"
-						stroke="var(--color-fill1-alpha)"
+						className="stroke-fill1-alpha"
 						strokeWidth="1"
 					/>
 				</pattern>
