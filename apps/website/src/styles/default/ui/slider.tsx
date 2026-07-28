@@ -11,6 +11,7 @@ export type SliderProps = React.ComponentPropsWithRef<
 		sliderRange?: string
 	}
 }
+
 export type SliderThumbProps = React.ComponentProps<
 	typeof SliderPrimitive.Thumb
 >
@@ -51,6 +52,7 @@ function Slider({
 					)}
 				/>
 			</SliderPrimitive.Track>
+
 			{children}
 		</SliderPrimitive.Root>
 	)
@@ -61,7 +63,7 @@ function SliderThumb({ className, ...props }: SliderThumbProps) {
 		<SliderPrimitive.Thumb
 			data-slot="slider-thumb"
 			className={cn(
-				"focus-visible:outline-hidden data-disabled:cursor-not-allowed border-primary bg-bg drop-shadow-xs block size-4 cursor-pointer rounded-full border-2 transition-colors",
+				"border-primary bg-bg drop-shadow-xs focus-visible:outline-hidden data-disabled:cursor-not-allowed block size-4 cursor-pointer rounded-full border-2 transition-colors",
 				className
 			)}
 			{...props}

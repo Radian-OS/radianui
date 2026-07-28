@@ -5,6 +5,7 @@ import * as SwitchPrimitive from "@radix-ui/react-switch"
 import { type VariantProps, cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
+// Context Types
 export type SwitchContextType = { permanent?: boolean }
 export type SwitchWrapperProps = React.HTMLAttributes<HTMLDivElement> &
 	SwitchContextType
@@ -13,26 +14,34 @@ export type SwitchProps = React.ComponentProps<typeof SwitchPrimitive.Root> &
 export type SwitchIndicatorProps = React.HTMLAttributes<HTMLSpanElement> &
 	VariantProps<typeof switchIndicatorVariants>
 
+// Context
 const SwitchContext = React.createContext<SwitchContextType>({
 	permanent: false,
 })
 
+// Switch Variants
 const switchVariants = cva(
-	"cn-switch relative peer inline-flex shrink-0 cursor-pointer items-center transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border aria-invalid:border-error aria-invalid:ring-error [[data-invalid=true]_&]:border [[data-invalid=true]_&]:border-error [[data-invalid=true]_&]:ring-error",
+	`
+  relative peer inline-flex shrink-0 cursor-pointer items-center rounded-full transition-colors 
+  focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg 
+  disabled:cursor-not-allowed disabled:opacity-50 bg-fill2-alpha
+  aria-invalid:border aria-invalid:border-error aria-invalid:ring-error
+  [[data-invalid=true]_&]:border [[data-invalid=true]_&]:border-error [[data-invalid=true]_&]:ring-error
+  `,
 	{
 		variants: {
 			shape: {
-				pill: "cn-switch-shape-pill",
-				square: "cn-switch-shape-square",
+				pill: "rounded-full",
+				square: "rounded-md",
 			},
 			size: {
-				"20": "cn-switch-20 w-8.5 h-5",
-				"24": "cn-switch-24 w-10.5 h-6",
-				"32": "cn-switch-32 w-14 h-8",
+				"20": "w-8.5 h-5",
+				"24": "w-10.5 h-6",
+				"32": "w-14 h-8",
 			},
 			permanent: {
-				true: "cn-switch-permanent",
-				false: "cn-switch-toggleable",
+				true: "bg-fill3",
+				false: "data-[state=checked]:bg-primary",
 			},
 		},
 		defaultVariants: {
@@ -43,8 +52,15 @@ const switchVariants = cva(
 	}
 )
 
+// Thumb Variants
 const switchThumbVariants = cva(
-	"cn-switch-thumb pointer-events-none ring-0 transition-transform data-[state=unchecked]:translate-x-[3px] rtl:data-[state=unchecked]:-translate-x-[3px] rtl:data-[state=checked]:-translate-x-[calc(100%-3px)] flex items-center justify-center",
+	`
+  pointer-events-none bg-white shadow-lg ring-0 transition-transform 
+  data-[state=unchecked]:translate-x-[3px]
+  rtl:data-[state=unchecked]:-translate-x-[3px]
+  rtl:data-[state=checked]:-translate-x-[calc(100%-3px)]
+  flex items-center justify-center
+  `,
 	{
 		variants: {
 			shape: {
@@ -52,9 +68,9 @@ const switchThumbVariants = cva(
 				square: "rounded-sm",
 			},
 			size: {
-				"20": "cn-switch-thumb-20 size-3.5 data-[state=checked]:translate-x-4",
-				"24": "cn-switch-thumb-24 size-4.5 data-[state=checked]:translate-x-5",
-				"32": "cn-switch-thumb-32 size-6 data-[state=checked]:translate-x-7",
+				"20": "size-3.5 data-[state=checked]:translate-x-4",
+				"24": "size-4.5 data-[state=checked]:translate-x-5",
+				"32": "size-6 data-[state=checked]:translate-x-7",
 			},
 		},
 		defaultVariants: {
@@ -64,13 +80,14 @@ const switchThumbVariants = cva(
 	}
 )
 
+// Indicator Variants (used for styling only)
 const switchIndicatorVariants = cva(
-	"flex items-center justify-center w-full h-full transition-all duration-200 select-none",
+	"flex items-center justify-center w-full h-full text-[10px] font-medium transition-all duration-200 select-none",
 	{
 		variants: {
 			state: {
-				on: "cn-switch-indicator-on",
-				off: "cn-switch-indicator-off",
+				on: "text-primary",
+				off: "text-fg-secondary",
 			},
 		},
 		defaultVariants: {
@@ -79,13 +96,16 @@ const switchIndicatorVariants = cva(
 	}
 )
 
+// Hook
 function useSwitch() {
 	const context = React.useContext(SwitchContext)
-	if (!context)
+	if (!context) {
 		throw new Error("SwitchIndicator must be used within a Switch component")
+	}
 	return context
 }
 
+// Wrapper
 function SwitchWrapper({
 	className,
 	children,
@@ -104,6 +124,7 @@ function SwitchWrapper({
 	)
 }
 
+// Switch Root + Thumb (indicator inside)
 function Switch({
 	className,
 	thumbClassName = "",
@@ -122,12 +143,13 @@ function Switch({
 			{...props}>
 			<SwitchPrimitive.Thumb
 				className={cn(switchThumbVariants({ shape, size }), thumbClassName)}>
-				{children}
+				{children} {/* Indicator will render here */}
 			</SwitchPrimitive.Thumb>
 		</SwitchPrimitive.Root>
 	)
 }
 
+// Indicator (text or icon inside thumb)
 function SwitchIndicator({
 	className,
 	state,
@@ -145,4 +167,5 @@ function SwitchIndicator({
 	)
 }
 
+// Export
 export { Switch, SwitchIndicator, SwitchWrapper }

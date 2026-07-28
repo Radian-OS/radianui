@@ -66,12 +66,12 @@ export const buttonVariants = cva(
 				"smooth-inverted": "",
 			},
 			size: {
-				"28": "[&>svg]:size-4 text-[13px] leading-4.5 px-1 cn-btn-size-28",
-				"32": "[&>svg]:size-4.5 text-sm px-1 cn-btn-size-32",
-				"36": "[&>svg]:size-5 text-sm px-1 cn-btn-size-36",
-				"40": "[&>svg]:size-5 text-sm px-1 cn-btn-size-40",
-				"44": "[&>svg]:size-5 text-base px-1 cn-btn-size-44",
-				"48": "[&>svg]:size-6 text-base px-1 cn-btn-size-48",
+				"28": "[&>svg]:size-4 text-[13px] leading-4.5 px-1 rounded-md",
+				"32": "[&>svg]:size-4.5 text-sm px-1 rounded-md",
+				"36": "[&>svg]:size-5 text-sm px-1 rounded-lg",
+				"40": "[&>svg]:size-5 text-sm px-1 rounded-lg",
+				"44": "[&>svg]:size-5 text-base px-1 rounded-lg",
+				"48": "[&>svg]:size-6 text-base px-1 rounded-lg",
 			},
 			loading: {
 				true: "",
@@ -575,7 +575,7 @@ function ButtonGroup({
 ButtonGroup.displayName = "ButtonGroup"
 
 export const compactButtonVariants = cva(
-	"inline-flex whitespace-nowrap items-center justify-center box-border focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-bg-bg disabled:pointer-events-none hover:cursor-pointer w-fit cn-compact-btn",
+	"inline-flex whitespace-nowrap items-center justify-center box-border focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-bg-bg disabled:pointer-events-none hover:cursor-pointer w-fit rounded-md",
 	{
 		variants: {
 			variant: {
@@ -946,12 +946,12 @@ CompactButton.displayName = "CompactButton"
 export const iconButtonSizeVariants = cva("", {
 	variants: {
 		size: {
-			"28": "[&>svg]:size-4 size-7 p-1.5 cn-icon-btn-size-28",
-			"32": "[&>svg]:size-4.5 size-8 p-1.75 cn-icon-btn-size-32",
-			"36": "[&>svg]:size-5 size-9 p-2 cn-icon-btn-size-36",
-			"40": "[&>svg]:size-5 size-10 p-2.5 cn-icon-btn-size-40",
-			"44": "[&>svg]:size-5 size-11 p-3 cn-icon-btn-size-44",
-			"48": "[&>svg]:size-6 size-12 p-3 cn-icon-btn-size-48",
+			"28": "[&>svg]:size-4 rounded-md size-7 p-1.5",
+			"32": "[&>svg]:size-4.5 rounded-md size-8 p-1.75",
+			"36": "[&>svg]:size-5 rounded-lg size-9 p-2",
+			"40": "[&>svg]:size-5 rounded-lg size-10 p-2.5",
+			"44": "[&>svg]:size-5 rounded-lg size-11 p-3",
+			"48": "[&>svg]:size-6 rounded-lg size-12 p-3",
 		},
 		variant: {
 			outline: "",

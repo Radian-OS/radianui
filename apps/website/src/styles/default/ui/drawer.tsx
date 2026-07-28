@@ -45,13 +45,13 @@ export type DrawerCloseProps = {
 }
 
 const drawerVariants = cva(
-	"fixed z-50 flex flex-col overflow-hidden bg-bg gap-5",
+	"fixed z-50 bg-bg flex flex-col gap-5 overflow-hidden",
 	{
 		variants: {
 			variant: {
-				float: "outline-border rounded-xl shadow-lg outline",
-				default: "outline-border outline",
-				rounded: "outline-border rounded-xl outline",
+				float: "rounded-xl shadow-lg outline outline-border",
+				default: "outline outline-border",
+				rounded: "outline outline-border rounded-xl",
 			},
 			direction: {
 				top: "top-0 w-full h-fit left-0 max-h-full",
@@ -69,8 +69,9 @@ const drawerVariants = cva(
 			variant: "default",
 			handle: false,
 		},
+
 		compoundVariants: [
-			// Float position overrides
+			// Float variants (existing)
 			{
 				variant: "float",
 				direction: "top",
@@ -91,11 +92,11 @@ const drawerVariants = cva(
 				direction: "right",
 				className: "top-2 right-2 h-[calc(100%-1rem)]",
 			},
-			// Handle padding variants
+			// Padding variants with handle
 			{
 				handle: true,
 				direction: "top",
-				className: "pb-7.5 pl-5 pr-5 pt-5",
+				className: "pb-7.5 pt-5 pl-5 pr-5",
 			},
 			{
 				handle: true,
@@ -105,18 +106,17 @@ const drawerVariants = cva(
 			{
 				handle: true,
 				direction: "left",
-				className: "pr-7.5 pb-5 pl-5 pt-5",
+				className: "pr-7.5 pt-5 pl-5 pb-5",
 			},
 			{
 				handle: true,
 				direction: "right",
-				className: "pl-7.5 pb-5 pr-5 pt-5",
+				className: "pl-7.5 pt-5 pb-5 pr-5",
 			},
-			// Rounded directional overrides
 			{
 				variant: "rounded",
 				direction: "top",
-				className: "rounded-b-xl",
+				className: " rounded-b-xl",
 			},
 			{
 				variant: "rounded",
@@ -126,12 +126,12 @@ const drawerVariants = cva(
 			{
 				variant: "rounded",
 				direction: "left",
-				className: "rounded-r-xl",
+				className: " rounded-r-xl",
 			},
 			{
 				variant: "rounded",
 				direction: "right",
-				className: "rounded-l-xl",
+				className: " rounded-l-xl",
 			},
 		],
 	}
@@ -141,8 +141,8 @@ const backdropVariants = cva("z-50 fixed", {
 	variants: {
 		backdrop: {
 			overlay: "inset-0 bg-black/50",
-			blur: "inset-0 backdrop-blur-sm",
-			transparent: "inset-0 backdrop-blur-none",
+			blur: "backdrop-blur-sm inset-0",
+			transparent: "backdrop-blur-none inset-0",
 		},
 	},
 	defaultVariants: {
@@ -151,7 +151,7 @@ const backdropVariants = cva("z-50 fixed", {
 })
 
 const handleVariants = cva(
-	"absolute! max-h-20! max-w-1.5! z-50! rounded-full! ! bg-border",
+	"absolute! max-h-20! max-w-1.5! z-50! bg-border! rounded-full!",
 	{
 		variants: {
 			direction: {

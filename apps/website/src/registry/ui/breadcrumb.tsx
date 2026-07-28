@@ -1,7 +1,7 @@
 import * as React from "react"
 import * as SlotPrimitive from "@radix-ui/react-slot"
+import { ChevronRight, MoreHorizontal } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { IconSlot } from "@/registry/icon/icon-library"
 
 export type BreadcrumbType = React.ComponentProps<"nav"> & {
 	separator?: React.ReactNode
@@ -18,6 +18,7 @@ export type BreadcrumbEllipsisType = React.ComponentProps<"span">
 function Breadcrumb({ ...props }: BreadcrumbType) {
 	return <nav data-slot="breadcrumb" aria-label="breadcrumb" {...props} />
 }
+
 Breadcrumb.displayName = "Breadcrumb"
 
 function BreadcrumbList({ className, ...props }: BreadcrumbListType) {
@@ -25,14 +26,13 @@ function BreadcrumbList({ className, ...props }: BreadcrumbListType) {
 		<ol
 			data-slot="breadcrumb-list"
 			className={cn(
-				"cn-breadcrumb-list flex flex-wrap items-center break-words",
+				"text-fg-secondary flex flex-wrap items-center gap-1.5 break-words text-sm",
 				className
 			)}
 			{...props}
 		/>
 	)
 }
-BreadcrumbList.displayName = "BreadcrumbList"
 
 function BreadcrumbItem({ className, ...props }: BreadcrumbItemType) {
 	return (
@@ -47,10 +47,11 @@ BreadcrumbItem.displayName = "BreadcrumbItem"
 
 function BreadcrumbLink({ asChild, className, ...props }: BreadcrumbLinkType) {
 	const Comp = asChild ? SlotPrimitive.Slot : "a"
+
 	return (
 		<Comp
 			data-slot="breadcrumb-link"
-			className={cn("cn-breadcrumb-link transition-colors", className)}
+			className={cn("hover:text-fg transition-colors", className)}
 			{...props}
 		/>
 	)
@@ -64,7 +65,7 @@ function BreadcrumbPage({ className, ...props }: BreadcrumbPageType) {
 			role="link"
 			aria-disabled="true"
 			aria-current="page"
-			className={cn("cn-breadcrumb-page", className)}
+			className={cn("text-fg font-normal", className)}
 			{...props}
 		/>
 	)
@@ -81,9 +82,9 @@ function BreadcrumbSeparator({
 			data-slot="breadcrumb-separator"
 			role="presentation"
 			aria-hidden="true"
-			className={cn("cn-breadcrumb-separator", className)}
+			className={cn("text-fg-tertiary [&>svg]:size-4", className)}
 			{...props}>
-			{children ?? <IconSlot slot="right" className="rtl:rotate-180" />}
+			{children ?? <ChevronRight className="rtl:rotate-180" />}
 		</li>
 	)
 }
@@ -97,7 +98,7 @@ function BreadcrumbEllipsis({ className, ...props }: BreadcrumbEllipsisType) {
 			aria-hidden="true"
 			className={cn("flex size-9 items-center justify-center", className)}
 			{...props}>
-			<IconSlot slot="threeDot" className="size-4" />
+			<MoreHorizontal className="size-4" />
 			<span className="sr-only">More</span>
 		</span>
 	)

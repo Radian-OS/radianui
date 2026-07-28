@@ -56,7 +56,7 @@ function MenubarTrigger({
 		<MenubarPrimitive.Trigger
 			data-slot="menubar-trigger"
 			className={cn(
-				"outline-hidden flex select-none items-center rounded-sm px-1.5 py-0.5 text-sm font-medium",
+				"outline-hidden flex cursor-pointer select-none items-center rounded-sm px-1.5 py-0.5 text-sm font-medium",
 				"text-fg",
 				"hover:bg-fill1-alpha aria-expanded:bg-fill1-alpha",
 				className
@@ -107,7 +107,7 @@ function MenubarItem({
 			data-inset={inset}
 			data-variant={variant}
 			className={cn(
-				"group/menubar-item outline-hidden relative flex cursor-default select-none items-center gap-1.5 rounded-md px-1.5 py-1 text-sm",
+				"group/menubar-item outline-hidden relative flex cursor-pointer select-none items-center gap-1.5 rounded-md px-1.5 py-1 text-sm",
 				"text-fg",
 				"hover:bg-fill1-alpha focus:bg-fill1-alpha",
 				"data-inset:pl-7",
@@ -138,7 +138,7 @@ function MenubarCheckboxItem({
 			data-slot="menubar-checkbox-item"
 			data-inset={inset}
 			className={cn(
-				"outline-hidden relative flex cursor-default select-none items-center gap-1.5 rounded-md py-1 pl-7 pr-1.5 text-sm",
+				"outline-hidden relative flex cursor-pointer select-none items-center gap-1.5 rounded-md py-1 pl-7 pr-1.5 text-sm",
 				"text-fg",
 				"hover:bg-fill1-alpha focus:bg-fill1-alpha",
 				"data-inset:pl-7",
@@ -170,7 +170,7 @@ function MenubarRadioItem({
 			data-slot="menubar-radio-item"
 			data-inset={inset}
 			className={cn(
-				"outline-hidden relative flex cursor-default select-none items-center gap-1.5 rounded-md py-1 pl-7 pr-1.5 text-sm",
+				"outline-hidden relative flex cursor-pointer select-none items-center gap-1.5 rounded-md py-1 pl-7 pr-1.5 text-sm",
 				"text-fg",
 				"hover:bg-fill1-alpha focus:bg-fill1-alpha",
 				"data-inset:pl-7",
@@ -261,7 +261,7 @@ function MenubarSubTrigger({
 			data-slot="menubar-sub-trigger"
 			data-inset={inset}
 			className={cn(
-				"flex cursor-default select-none items-center gap-1.5 rounded-md px-1.5 py-1 text-sm outline-none",
+				"flex cursor-pointer select-none items-center gap-1.5 rounded-md px-1.5 py-1 text-sm outline-none",
 				"text-fg",
 				"hover:bg-fill1-alpha focus:bg-fill1-alpha data-open:bg-fill1-alpha",
 				"data-inset:pl-7",

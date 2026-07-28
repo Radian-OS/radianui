@@ -23,7 +23,7 @@ function Progress({
 			{...props}>
 			<ProgressPrimitive.Indicator
 				className={cn(
-					"cn-progress-indicator h-full w-full transition-transform [transition-timing-function:cubic-bezier(0,0,1,1)]",
+					"bg-primary duration-660 h-full w-full transition-transform [transition-timing-function:cubic-bezier(0,0,1,1)]",
 					indicatorClassName
 				)}
 				style={{ transform: `translateX(-${100 - (value || 0)}%)` }}
@@ -33,4 +33,5 @@ function Progress({
 }
 
 Progress.displayName = ProgressPrimitive.Root.displayName
+
 export { Progress }
