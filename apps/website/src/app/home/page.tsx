@@ -4,7 +4,7 @@ import Background from "@/components/effects/background"
 import ComponentsSection from "@/components/home/components-section"
 import CTASection from "@/components/home/cta-section"
 import FAQSection from "@/components/home/faq-section"
-import FeaturesSection from "@/components/home/features-section"
+// import FeaturesSection from "@/components/home/features-section"
 import Footer from "@/components/home/footer"
 import HeroActionButtons from "@/components/home/hero-action-buttons"
 import HomepageLoadReveal from "@/components/home/homepage-load-reveal"
@@ -84,14 +84,15 @@ export default function Page() {
 				</Background>
 
 				<BrandSection />
+				<RapidDev />
 
-				<FeaturesSection
+				{/* <FeaturesSection
 					textAutoHide={true}
 					enableSpotlight={true}
 					enableBorderGlow={true}
 					clickEffect={true}
 					spotlightRadius={573}
-				/>
+				/> */}
 
 				<InvertedSection />
 

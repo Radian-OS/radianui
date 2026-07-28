@@ -1,16 +1,17 @@
 import React from "react"
 import Image from "next/image"
 import { Badge, BadgeDot } from "@/registry/ui/badge"
+import DiagonalDivider from "./SvgDivider"
 
 const RapidDev = () => {
 	return (
-		<div className="mx-auto flex max-w-[1440px] flex-col">
-			<div className="px-15 py-30 flex flex-col gap-6">
+		<section className="mx-auto flex max-w-[1440px] flex-col">
+			<div className="md:px-15 md:py-30 flex flex-col gap-4 px-5 py-16 sm:gap-6 sm:px-10">
 				<Badge color="primary" size="28" variant="soft">
 					<BadgeDot className="bg-primary" />
 					Rapid Development
 				</Badge>
-				<div className="w-[1012px]">
+				<div className="w-full md:w-[1012px]">
 					<h2 className="heading-3">
 						Everything you need to ship polished interfaces
 					</h2>
@@ -24,9 +25,9 @@ const RapidDev = () => {
 				</div>
 			</div>
 
-			<div className="border-soft flex overflow-hidden border">
-				<div className="flex-2 border-soft border-r">
-					<div className="px-15 flex w-[520px] flex-col py-20">
+			<div className="border-soft flex flex-col overflow-hidden border md:flex-row">
+				<div className="md:flex-2 border-soft border-b md:border-r">
+					<div className="md:px-15 flex w-full flex-col px-5 py-8 sm:px-10 sm:py-12 md:w-[520px] md:py-20">
 						<h3 className="heading-5 text-[18px]">
 							Production-Ready Figma UI Kit.
 						</h3>
@@ -36,18 +37,19 @@ const RapidDev = () => {
 						</p>
 					</div>
 					<div className="relative h-[430px] overflow-hidden">
-						<div className="absolute bottom-0 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 scale-150">
+						<div className="absolute bottom-[10rem] left-1/2 top-1/2 -translate-x-1/2 scale-150 md:bottom-[-20rem]">
 							<Image
 								width={800}
 								height={1000}
 								alt=""
-								src="/newHome/OverviewContainer.png"
+								src="/newhome/OverviewContainer.png"
 							/>
 						</div>
+						<div className="pointer-events-none absolute bottom-0 left-0 right-0 h-[120px] bg-[linear-gradient(0deg,#FFF_0%,rgba(255,255,255,0)_100%)] dark:bg-[linear-gradient(0deg,oklch(0.144_0.003_264.025)_0%,oklch(0.144_0.003_264.025/0)_100%)]" />
 					</div>
 				</div>
-				<div className="flex-1">
-					<div className="px-15 flex w-[520px] flex-col py-20">
+				<div className="md:flex-1">
+					<div className="md:px-15 flex w-full flex-col px-5 py-8 sm:px-10 sm:py-12 md:w-[520px] md:py-20">
 						<h3 className="heading-5 text-[18px]">
 							A Complete Library of UI Primitives.
 						</h3>
@@ -62,59 +64,19 @@ const RapidDev = () => {
 								width={450}
 								height={600}
 								alt=""
-								src="/newHome/UIPreview.png"
+								src="/newhome/UIPreview.png"
 							/>
 						</div>
+						<div className="pointer-events-none absolute bottom-[-3rem] left-0 right-0 h-[120px] bg-[linear-gradient(0deg,#FFF_0%,rgba(255,255,255,0)_100%)] dark:bg-[linear-gradient(0deg,oklch(0.144_0.003_264.025)_0%,oklch(0.144_0.003_264.025/0)_100%)]" />
 					</div>
 				</div>
 			</div>
 
-			<svg
-				width="100%"
-				height="48"
-				viewBox="0 0 1440 48"
-				fill="none"
-				xmlns="http://www.w3.org/2000/svg"
-				xmlnsXlink="http://www.w3.org/1999/xlink">
-				<rect width="100%" height="48" fill="url(#pattern0_2797_43017)" />
-				<defs>
-					<pattern
-						id="pattern0_2797_43017"
-						patternUnits="userSpaceOnUse"
-						patternTransform="matrix(8.60365 0 0 12.2873 -0.819336 -0.573559)"
-						preserveAspectRatio="none"
-						viewBox="-0.819336 -0.573559 8.60365 12.2873"
-						width="1"
-						height="1">
-						<use
-							xlinkHref="#pattern0_2797_43017_inner"
-							transform="translate(-8.60365 -12.2873)"
-						/>
-						<use
-							xlinkHref="#pattern0_2797_43017_inner"
-							transform="translate(0 -12.2873)"
-						/>
-						<use
-							xlinkHref="#pattern0_2797_43017_inner"
-							transform="translate(-8.60365 0)"
-						/>
-						<g id="pattern0_2797_43017_inner">
-							<line
-								opacity="0.8"
-								x1="-0.409576"
-								y1="12.0005"
-								x2="8.19407"
-								y2="-0.286788"
-								stroke="#E9EAEC"
-							/>
-						</g>
-					</pattern>
-				</defs>
-			</svg>
+			<DiagonalDivider />
 
-			<div className="bg-fill1 border-soft flex border">
-				<div className="border-soft flex-1 border-r">
-					<div className="px-15 flex w-[520px] flex-col py-20">
+			<div className="bg-fill1 border-soft flex flex-col border md:flex-row">
+				<div className="border-soft border-b md:flex-1 md:border-r">
+					<div className="md:px-15 flex w-full flex-col px-5 py-8 sm:px-10 sm:py-12 md:w-[520px] md:py-20">
 						<h3 className="heading-5 text-[18px]">
 							Customize without compromise
 						</h3>
@@ -124,18 +86,19 @@ const RapidDev = () => {
 						</p>
 					</div>
 					<div className="relative h-[430px] overflow-hidden">
-						<div className="scale-120 absolute bottom-0 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+						<div className="scale-120 absolute bottom-[10rem] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 md:bottom-0">
 							<Image
 								width={600}
 								height={800}
 								alt=""
-								src="/newHome/credit.png"
+								src="/newhome/credit.png"
 							/>
 						</div>
+						<div className="pointer-events-none absolute bottom-0 left-0 right-0 h-[180px] bg-[linear-gradient(0deg,#FFF_0%,rgba(255,255,255,0)_100%)] dark:bg-[linear-gradient(0deg,oklch(0.144_0.003_264.025)_0%,oklch(0.144_0.003_264.025/0)_100%)]" />
 					</div>
 				</div>
-				<div className="flex-1">
-					<div className="px-15 flex w-[520px] flex-col py-20">
+				<div className="md:flex-1">
+					<div className="md:px-15 flex w-full flex-col px-5 py-8 sm:px-10 sm:py-12 md:w-[520px] md:py-20">
 						<h3 className="heading-5 text-[18px]">Built for the AI era</h3>
 						<p className="heading-5 text-fg-secondary text-[18px]">
 							Give your AI coding assistant a prompt and let it build with
@@ -144,17 +107,17 @@ const RapidDev = () => {
 					</div>
 
 					<div className="relative h-[430px] overflow-hidden">
-						<div className="absolute bottom-0 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-							<Image width={400} height={800} alt="" src="/newHome/app.png" />
+						<div className="absolute bottom-[10rem] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 md:bottom-0">
+							<Image width={400} height={800} alt="" src="/newhome/app.png" />
 						</div>
 					</div>
 				</div>
 			</div>
 
 			<div>
-				<div className="px-15 py-25 flex justify-between">
-					<h3 className="heading-5 w-[612px]">
-						Seamless Design-to-Code Sync.
+				<div className="px-15 py-25 flex flex-col justify-between gap-3 md:flex-row">
+					<h3 className="heading-5 w-full md:w-[612px]">
+						Seamless Design-to-Code Sync.{" "}
 						<span className="text-fg-secondary">
 							Variables and tokens in Figma Design File and Code use the same
 							semantic for smooth development experience
@@ -163,64 +126,24 @@ const RapidDev = () => {
 
 					<p className="">Designer . Developer</p>
 				</div>
-				<div className="bg-fill1 relative h-[720px] overflow-hidden">
-					<div className="absolute bottom-[-7rem] left-1/2 -translate-x-1/2 -translate-y-1/2 scale-150">
+				<div className="bg-fill1 relative h-[430px] overflow-hidden md:h-[720px]">
+					<div className="absolute bottom-[-5rem] left-1/2 -translate-x-1/2 -translate-y-1/2 scale-150 md:bottom-[-7rem]">
 						<Image
 							width={1120}
 							height={768}
 							alt=""
-							src="/newHome/content.png"
+							src="/newhome/Content.png"
 						/>
 					</div>
+					<div className="pointer-events-none absolute bottom-0 left-0 right-0 h-[200px] bg-[linear-gradient(0deg,#FFF_0%,rgba(255,255,255,0)_100%)] dark:bg-[linear-gradient(0deg,oklch(0.144_0.003_264.025)_0%,oklch(0.144_0.003_264.025/0)_100%)]" />
 				</div>
 			</div>
 
-			<svg
-				width="1440"
-				height="48"
-				viewBox="0 0 1440 48"
-				fill="none"
-				xmlns="http://www.w3.org/2000/svg"
-				xmlnsXlink="http://www.w3.org/1999/xlink">
-				<rect width="1440" height="48" fill="url(#pattern0_2797_43017)" />
-				<defs>
-					<pattern
-						id="pattern0_2797_43017"
-						patternUnits="userSpaceOnUse"
-						patternTransform="matrix(8.60365 0 0 12.2873 -0.819336 -0.573559)"
-						preserveAspectRatio="none"
-						viewBox="-0.819336 -0.573559 8.60365 12.2873"
-						width="1"
-						height="1">
-						<use
-							xlinkHref="#pattern0_2797_43017_inner"
-							transform="translate(-8.60365 -12.2873)"
-						/>
-						<use
-							xlinkHref="#pattern0_2797_43017_inner"
-							transform="translate(0 -12.2873)"
-						/>
-						<use
-							xlinkHref="#pattern0_2797_43017_inner"
-							transform="translate(-8.60365 0)"
-						/>
-						<g id="pattern0_2797_43017_inner">
-							<line
-								opacity="0.8"
-								x1="-0.409576"
-								y1="12.0005"
-								x2="8.19407"
-								y2="-0.286788"
-								stroke="#E9EAEC"
-							/>
-						</g>
-					</pattern>
-				</defs>
-			</svg>
+			<DiagonalDivider />
 
-			<div className="border-soft flex border">
-				<div className="border-soft flex-1 overflow-hidden border-r">
-					<div className="px-15 flex w-[520px] flex-col py-20">
+			<div className="border-soft flex flex-col border md:flex-row">
+				<div className="border-soft overflow-hidden border-b md:flex-1 md:border-r">
+					<div className="md:px-15 flex w-full flex-col px-5 py-8 sm:px-10 sm:py-12 md:w-[520px] md:py-20">
 						<h3 className="heading-5 text-[18px]">
 							Scalable Variable-first design system
 						</h3>
@@ -234,13 +157,14 @@ const RapidDev = () => {
 								width={600}
 								height={800}
 								alt=""
-								src="/newHome/sidebar.png"
+								src="/newhome/sidebar.png"
 							/>
 						</div>
+						<div className="pointer-events-none absolute bottom-[-2rem] left-0 right-0 h-[120px] bg-[linear-gradient(0deg,#FFF_0%,rgba(255,255,255,0)_100%)] dark:bg-[linear-gradient(0deg,oklch(0.144_0.003_264.025)_0%,oklch(0.144_0.003_264.025/0)_100%)]" />
 					</div>
 				</div>
-				<div className="flex-2">
-					<div className="px-15 flex w-[520px] flex-col py-20">
+				<div className="md:flex-2">
+					<div className="md:px-15 flex w-full flex-col px-5 py-8 sm:px-10 sm:py-12 md:w-[520px] md:py-20">
 						<h3 className="heading-5 text-[18px]">
 							Copy-Paste Landing Page Blocks
 						</h3>
@@ -254,63 +178,23 @@ const RapidDev = () => {
 							width={300}
 							height={700}
 							alt=""
-							src="/newHome/vertical.png"
+							src="/newhome/vertical.png"
 							className="absolute bottom-[-10rem] right-10"
 						/>
 						<Image
 							width={600}
 							height={1000}
 							alt=""
-							src="/newHome/Container.png"
-							className="-translate-y-50 absolute left-1/2 top-1/2 z-10 -translate-x-1/2"
+							src="/newhome/Container.png"
+							className="md:-translate-y-50 absolute left-1/2 top-1/2 z-10 -translate-x-1/2"
 						/>
+						<div className="pointer-events-none absolute bottom-0 left-0 right-0 z-20 h-[120px] bg-[linear-gradient(0deg,#FFF_0%,rgba(255,255,255,0)_100%)] dark:bg-[linear-gradient(0deg,oklch(0.144_0.003_264.025)_0%,oklch(0.144_0.003_264.025/0)_100%)]" />
 					</div>
 				</div>
 			</div>
 
-			<svg
-				width="1440"
-				height="48"
-				viewBox="0 0 1440 48"
-				fill="none"
-				xmlns="http://www.w3.org/2000/svg"
-				xmlnsXlink="http://www.w3.org/1999/xlink">
-				<rect width="1440" height="48" fill="url(#pattern0_2797_43017)" />
-				<defs>
-					<pattern
-						id="pattern0_2797_43017"
-						patternUnits="userSpaceOnUse"
-						patternTransform="matrix(8.60365 0 0 12.2873 -0.819336 -0.573559)"
-						preserveAspectRatio="none"
-						viewBox="-0.819336 -0.573559 8.60365 12.2873"
-						width="1"
-						height="1">
-						<use
-							xlinkHref="#pattern0_2797_43017_inner"
-							transform="translate(-8.60365 -12.2873)"
-						/>
-						<use
-							xlinkHref="#pattern0_2797_43017_inner"
-							transform="translate(0 -12.2873)"
-						/>
-						<use
-							xlinkHref="#pattern0_2797_43017_inner"
-							transform="translate(-8.60365 0)"
-						/>
-						<g id="pattern0_2797_43017_inner">
-							<line
-								opacity="0.8"
-								x1="-0.409576"
-								y1="12.0005"
-								x2="8.19407"
-								y2="-0.286788"
-								stroke="#E9EAEC"
-							/>
-						</g>
-					</pattern>
-				</defs>
-			</svg>
-		</div>
+			<DiagonalDivider />
+		</section>
 	)
 }
 
