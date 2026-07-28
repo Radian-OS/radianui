@@ -1,14 +1,14 @@
 import { ArrowRight } from "lucide-react"
 import Link from "next/link"
 import Background from "@/components/effects/background"
-import ComponentsSection from "@/components/home/components-section"
+// import ComponentsSection from "@/components/home/components-section"
 import CTASection from "@/components/home/cta-section"
 import FAQSection from "@/components/home/faq-section"
 // import FeaturesSection from "@/components/home/features-section"
 import Footer from "@/components/home/footer"
 import HeroActionButtons from "@/components/home/hero-action-buttons"
 import HomepageLoadReveal from "@/components/home/homepage-load-reveal"
-import InvertedSection from "@/components/home/inverted-section"
+// import InvertedSection from "@/components/home/inverted-section"
 import BrandSection from "@/components/home/new/brand-section"
 import CarouselSection from "@/components/home/new/carousel-section"
 import PlaygroundSectionWrapper from "@/components/home/playground-section-wrapper"
@@ -20,6 +20,7 @@ import { getHomepageStructuredData } from "@/lib/structured-data"
 import { BorderBeam } from "@/registry/animated/border-beam"
 import { Badge } from "@/registry/ui/badge"
 import RapidDev from "./RapidDev"
+import Component from "./component"
 
 const upperHeroBeamPath =
 	"M0 1H132C142.8 1 152.8 6.8 158.1 16.2L286.5 258.8C292.1 269.4 303.2 276 315.2 276H438"
@@ -85,7 +86,7 @@ export default function Page() {
 
 				<BrandSection />
 				<RapidDev />
-
+				<Component />
 				{/* <FeaturesSection
 					textAutoHide={true}
 					enableSpotlight={true}
@@ -94,9 +95,9 @@ export default function Page() {
 					spotlightRadius={573}
 				/> */}
 
-				<InvertedSection />
+				{/* <InvertedSection /> */}
 
-				<ComponentsSection />
+				{/* <ComponentsSection /> */}
 
 				<PlaygroundSectionWrapper />
 

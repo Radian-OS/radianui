@@ -1,18 +1,25 @@
+"use client"
+
 import * as React from "react"
 import * as NavigationMenuPrimitive from "@radix-ui/react-navigation-menu"
 import { type VariantProps, cva } from "class-variance-authority"
 import { ChevronDownIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { NavigationMenuViewportPortal } from "./navigation-menu-viewport-portal"
 
 function NavigationMenu({
 	className,
 	children,
 	viewport = true,
 	viewportClassName,
+	viewportPortal = false,
+	viewportPortalCentered = false,
 	...props
 }: React.ComponentProps<typeof NavigationMenuPrimitive.Root> & {
 	viewport?: boolean
 	viewportClassName?: string
+	viewportPortal?: boolean
+	viewportPortalCentered?: boolean
 }) {
 	return (
 		<NavigationMenuPrimitive.Root
@@ -24,7 +31,13 @@ function NavigationMenu({
 			)}
 			{...props}>
 			{children}
-			{viewport && <NavigationMenuViewport className={viewportClassName} />}
+			{viewport && (
+				<NavigationMenuViewport
+					className={viewportClassName}
+					portal={viewportPortal}
+					portalCentered={viewportPortalCentered}
+				/>
+			)}
 		</NavigationMenuPrimitive.Root>
 	)
 }
@@ -59,7 +72,7 @@ function NavigationMenuItem({
 }
 
 const navigationMenuTriggerStyle = cva(
-	"group inline-flex h-9 w-max items-center justify-center rounded-md bg-bg px-4 py-2 text-sm font-medium transition-[color,box-shadow] outline-none hover:bg-fill1-alpha hover:text-fg focus:bg-fill1-alpha focus:text-fg focus-visible:ring-[3px] focus-visible:ring-fill4/50 focus-visible:outline-1 disabled:pointer-events-none disabled:opacity-50 data-[state=open]:bg-fill1 data-[state=open]:text-fg data-[state=open]:hover:bg-fill1-alpha data-[state=open]:focus:bg-fill1-alpha"
+	"group inline-flex h-9 w-max cursor-pointer items-center justify-center rounded-md bg-bg px-4 py-2 text-sm font-medium transition-[color,box-shadow] outline-none hover:bg-fill1-alpha hover:text-fg focus:bg-fill1-alpha focus:text-fg focus-visible:ring-[3px] focus-visible:ring-fill4/50 focus-visible:outline-1 disabled:pointer-events-none disabled:opacity-50 data-[state=open]:bg-fill1 data-[state=open]:text-fg data-[state=open]:hover:bg-fill1-alpha data-[state=open]:focus:bg-fill1-alpha"
 )
 
 function NavigationMenuTrigger({
@@ -116,21 +129,37 @@ function NavigationMenuContent({
 
 function NavigationMenuViewport({
 	className,
+	portal = false,
+	portalCentered = false,
 	...props
-}: React.ComponentProps<typeof NavigationMenuPrimitive.Viewport>) {
+}: React.ComponentProps<typeof NavigationMenuPrimitive.Viewport> & {
+	portal?: boolean
+	portalCentered?: boolean
+}) {
+	const viewport = (
+		<NavigationMenuPrimitive.Viewport
+			data-slot="navigation-menu-viewport"
+			className={cn(
+				"origin-top-center border-border bg-elevation-level1 text-fg data-[state=closed]:animate-out data-[state=closed]:zoom-out-95 data-[state=open]:animate-in data-[state=open]:zoom-in-90 relative mt-1.5 h-[var(--radix-navigation-menu-viewport-height)] w-full overflow-hidden rounded-md border shadow md:w-[var(--radix-navigation-menu-viewport-width)]",
+				className
+			)}
+			{...props}
+		/>
+	)
+
+	if (portal) {
+		return (
+			<NavigationMenuViewportPortal centered={portalCentered}>
+				{viewport}
+			</NavigationMenuViewportPortal>
+		)
+	}
+
 	return (
 		<div
-			className={cn(
-				"absolute left-0 top-full isolate z-50 flex w-full justify-center"
-			)}>
-			<NavigationMenuPrimitive.Viewport
-				data-slot="navigation-menu-viewport"
-				className={cn(
-					"origin-top-center border-border bg-elevation-level1 text-fg data-[state=closed]:animate-out data-[state=closed]:zoom-out-95 data-[state=open]:animate-in data-[state=open]:zoom-in-90 relative mt-1.5 h-[var(--radix-navigation-menu-viewport-height)] w-full overflow-hidden rounded-md border shadow md:w-[var(--radix-navigation-menu-viewport-width)]",
-					className
-				)}
-				{...props}
-			/>
+			data-slot="navigation-menu-viewport-positioner"
+			className="absolute left-0 top-full isolate z-50 flex w-full justify-center">
+			{viewport}
 		</div>
 	)
 }
@@ -143,7 +172,7 @@ function NavigationMenuLink({
 		<NavigationMenuPrimitive.Link
 			data-slot="navigation-menu-link"
 			className={cn(
-				"hover:bg-fill1-alpha hover:text-fg focus:bg-fill1-alpha focus:text-fg focus-visible:ring-fill4/50 data-[active=true]:bg-fill1 data-[active=true]:text-fg data-[active=true]:hover:bg-fill1-alpha data-[active=true]:focus:bg-fill1-alpha [&_svg:not([class*='text-'])]:text-fg-secondary flex flex-col gap-1 rounded-sm p-2 text-sm outline-none transition-all focus-visible:outline-1 focus-visible:ring-[3px] [&_svg:not([class*='size-'])]:size-4",
+				"hover:bg-fill1-alpha hover:text-fg focus:bg-fill1-alpha focus:text-fg focus-visible:ring-fill4/50 data-[active=true]:bg-fill1 data-[active=true]:text-fg data-[active=true]:hover:bg-fill1-alpha data-[active=true]:focus:bg-fill1-alpha [&_svg:not([class*='text-'])]:text-fg-secondary flex cursor-pointer flex-col gap-1 rounded-sm p-2 text-sm outline-none transition-all focus-visible:outline-1 focus-visible:ring-[3px] [&_svg:not([class*='size-'])]:size-4",
 				className
 			)}
 			{...props}
