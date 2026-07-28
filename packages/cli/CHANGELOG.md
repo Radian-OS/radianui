@@ -1,5 +1,11 @@
 # radianui
 
+## 0.2.2-alpha.5
+
+### Patch Changes
+
+- Removed asking icon and styles questions temporarily
+
 ## 0.2.2-alpha.4
 
 ### Patch Changes
