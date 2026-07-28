@@ -10,6 +10,7 @@ import HeroActionButtons from "@/components/home/hero-action-buttons"
 import HomepageLoadReveal from "@/components/home/homepage-load-reveal"
 import InvertedSection from "@/components/home/inverted-section"
 import BrandSection from "@/components/home/new/brand-section"
+import CarouselSection from "@/components/home/new/carousel-section"
 import PlaygroundSectionWrapper from "@/components/home/playground-section-wrapper"
 import { RotatingWords } from "@/components/home/rotating-words"
 import VideoSection from "@/components/home/video-section"
@@ -106,6 +107,7 @@ export default function Page() {
 
 				<Footer />
 				<RapidDev />
+				<CarouselSection />
 			</div>
 		</>
 	)
