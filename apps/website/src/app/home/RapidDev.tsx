@@ -42,7 +42,7 @@ const RapidDev = () => {
 								width={800}
 								height={1000}
 								alt=""
-								src="/newHome/OverviewContainer.png"
+								src="/newhome/OverviewContainer.png"
 							/>
 						</div>
 						<div className="pointer-events-none absolute bottom-0 left-0 right-0 h-[120px] bg-[linear-gradient(0deg,#FFF_0%,rgba(255,255,255,0)_100%)] dark:bg-[linear-gradient(0deg,oklch(0.144_0.003_264.025)_0%,oklch(0.144_0.003_264.025/0)_100%)]" />
@@ -64,7 +64,7 @@ const RapidDev = () => {
 								width={450}
 								height={600}
 								alt=""
-								src="/newHome/UIPreview.png"
+								src="/newhome/UIPreview.png"
 							/>
 						</div>
 						<div className="pointer-events-none absolute bottom-[-3rem] left-0 right-0 h-[120px] bg-[linear-gradient(0deg,#FFF_0%,rgba(255,255,255,0)_100%)] dark:bg-[linear-gradient(0deg,oklch(0.144_0.003_264.025)_0%,oklch(0.144_0.003_264.025/0)_100%)]" />
@@ -91,7 +91,7 @@ const RapidDev = () => {
 								width={600}
 								height={800}
 								alt=""
-								src="/newHome/credit.png"
+								src="/newhome/credit.png"
 							/>
 						</div>
 						<div className="pointer-events-none absolute bottom-0 left-0 right-0 h-[180px] bg-[linear-gradient(0deg,#FFF_0%,rgba(255,255,255,0)_100%)] dark:bg-[linear-gradient(0deg,oklch(0.144_0.003_264.025)_0%,oklch(0.144_0.003_264.025/0)_100%)]" />
@@ -108,7 +108,7 @@ const RapidDev = () => {
 
 					<div className="relative h-[430px] overflow-hidden">
 						<div className="absolute bottom-[10rem] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 md:bottom-0">
-							<Image width={400} height={800} alt="" src="/newHome/app.png" />
+							<Image width={400} height={800} alt="" src="/newhome/app.png" />
 						</div>
 					</div>
 				</div>
@@ -132,7 +132,7 @@ const RapidDev = () => {
 							width={1120}
 							height={768}
 							alt=""
-							src="/newHome/content.png"
+							src="/newhome/Content.png"
 						/>
 					</div>
 					<div className="pointer-events-none absolute bottom-0 left-0 right-0 h-[200px] bg-[linear-gradient(0deg,#FFF_0%,rgba(255,255,255,0)_100%)] dark:bg-[linear-gradient(0deg,oklch(0.144_0.003_264.025)_0%,oklch(0.144_0.003_264.025/0)_100%)]" />
@@ -157,7 +157,7 @@ const RapidDev = () => {
 								width={600}
 								height={800}
 								alt=""
-								src="/newHome/sidebar.png"
+								src="/newhome/sidebar.png"
 							/>
 						</div>
 						<div className="pointer-events-none absolute bottom-[-2rem] left-0 right-0 h-[120px] bg-[linear-gradient(0deg,#FFF_0%,rgba(255,255,255,0)_100%)] dark:bg-[linear-gradient(0deg,oklch(0.144_0.003_264.025)_0%,oklch(0.144_0.003_264.025/0)_100%)]" />
@@ -178,14 +178,14 @@ const RapidDev = () => {
 							width={300}
 							height={700}
 							alt=""
-							src="/newHome/vertical.png"
+							src="/newhome/vertical.png"
 							className="absolute bottom-[-10rem] right-10"
 						/>
 						<Image
 							width={600}
 							height={1000}
 							alt=""
-							src="/newHome/Container.png"
+							src="/newhome/Container.png"
 							className="md:-translate-y-50 absolute left-1/2 top-1/2 z-10 -translate-x-1/2"
 						/>
 						<div className="pointer-events-none absolute bottom-0 left-0 right-0 z-20 h-[120px] bg-[linear-gradient(0deg,#FFF_0%,rgba(255,255,255,0)_100%)] dark:bg-[linear-gradient(0deg,oklch(0.144_0.003_264.025)_0%,oklch(0.144_0.003_264.025/0)_100%)]" />
