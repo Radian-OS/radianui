@@ -8,7 +8,7 @@ const RapidDev = () => {
 		<section
 			aria-labelledby="rapid-development-title"
 			className="max-w-368 relative z-20 mx-auto w-full px-4 lg:px-5">
-			<div className="max-w-358 border-soft mx-auto flex w-full flex-col border border-t-0">
+			<div className="max-w-358 border-soft mx-auto flex w-full flex-col overflow-hidden border border-t-0">
 				<div className="lg:px-15 lg:py-30 flex flex-col gap-4 px-5 py-16 sm:gap-6 sm:px-10">
 					<Badge color="primary" size="28" variant="soft">
 						<BadgeDot className="bg-primary" />

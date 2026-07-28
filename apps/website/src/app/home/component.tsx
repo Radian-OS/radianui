@@ -45,7 +45,7 @@ const Component = () => {
 		<section
 			aria-labelledby="components-title"
 			className="max-w-368 relative z-20 mx-auto w-full px-4 lg:px-5">
-			<div className="border-soft z-10 mx-auto flex max-w-[1440px] flex-col border border-t-0">
+			<div className="border-soft z-10 mx-auto flex max-w-[1440px] flex-col overflow-hidden border border-t-0">
 				<div className="md:px-15 md:py-30 flex flex-col gap-8 px-5 py-16 sm:px-10">
 					<div className="flex flex-col gap-4 sm:gap-6">
 						<Badge color="primary" size="28" variant="soft">
@@ -114,7 +114,7 @@ const Component = () => {
 						</CarouselContent>
 					</Carousel>
 				</div>
-				<DiagonalDivider className="w-full" />
+				<DiagonalDivider />
 			</div>
 		</section>
 	)
