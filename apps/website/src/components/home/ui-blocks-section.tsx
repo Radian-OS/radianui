@@ -7,7 +7,7 @@ import FigmaPreviewButton from "../navbar/figma-preview-button"
 
 export default function UIBlocksSection() {
 	return (
-		<div className="py-15 border-soft mx-auto flex w-full max-w-[1440px] flex-col items-center gap-10 border-l border-r px-5 min-[1920px]:gap-16 min-[1920px]:px-60 min-[1920px]:py-20">
+		<div className="lg:py-15 border-soft lg:px-15 mx-auto flex w-full max-w-[1440px] flex-col items-center gap-10 border-l border-r px-5 py-12">
 			<div className="flex w-full justify-between">
 				<div className="flex flex-col justify-start gap-6">
 					<Badge size="28" variant="soft" color="primary">

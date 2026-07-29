@@ -87,8 +87,9 @@ export default function Page() {
 				<RapidDev />
 				<Component />
 
-				<PlaygroundSectionWrapper />
 				<CarouselSection />
+
+				<PlaygroundSectionWrapper />
 
 				<div className="max-w-360 mx-auto w-full">
 					<div className="border-soft w-full border-b border-t lg:border-l lg:border-r">

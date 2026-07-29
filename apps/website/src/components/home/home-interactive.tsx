@@ -1,17 +1,10 @@
 "use client"
 
 import { useState } from "react"
-import { Check, ChevronDown, Clipboard } from "lucide-react"
+import { Check, Clipboard } from "lucide-react"
 import dynamic from "next/dynamic"
 import { toast } from "sonner"
 import { Button } from "@/registry/ui/button"
-import {
-	Dropdown,
-	DropdownContent,
-	DropdownRadioGroup,
-	DropdownRadioItem,
-	DropdownTrigger,
-} from "@/styles/default/ui/dropdown"
 import {
 	Tabs,
 	TabsContent,
@@ -110,8 +103,8 @@ const HomeInteractive = () => {
 					<div className="flex items-center gap-1.5 pl-3">
 						<span className="size-2 rounded-full bg-transparent" />
 					</div>
-					<div className="flex">
-						<TabsList className="not-lg:hidden mx-auto shrink-0 bg-transparent">
+					<div className="flex overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+						<TabsList className="mx-auto shrink-0 bg-transparent">
 							{PAGES.map((page, idx) => (
 								<TabsTrigger key={`${page.value}-${idx}`} value={page.value}>
 									{page.label}
@@ -146,28 +139,6 @@ const HomeInteractive = () => {
 								<Clipboard size={16} className="stroke-fg-tertiary shrink-0" />
 							)}
 						</Button>
-						<Dropdown>
-							<DropdownTrigger asChild className="lg:hidden">
-								<Button
-									aria-label="Change Block"
-									color="neutral"
-									size="28"
-									variant="ghost">
-									<ChevronDown size={16} className="shrink-0" />
-								</Button>
-							</DropdownTrigger>
-							<DropdownContent align="end">
-								<DropdownRadioGroup
-									value={activeTab}
-									onValueChange={handleTabChange}>
-									{PAGES.map((p) => (
-										<DropdownRadioItem key={p.value} value={p.value}>
-											{p.label}
-										</DropdownRadioItem>
-									))}
-								</DropdownRadioGroup>
-							</DropdownContent>
-						</Dropdown>
 					</div>
 				</div>
 				{PAGES.map((page) => {
