@@ -2,45 +2,44 @@
 
 import { useState } from "react"
 import Image from "next/image"
-import { cn } from "@/lib/utils"
 import { InfiniteScroll } from "@/registry/animated/infinite-scroll"
 
 const brands = [
 	{
 		name: "KrispCall",
-		src: "/brands/krispcall.png",
+		assetName: "Krispcall",
 		width: 110,
-		height: 37,
+		height: 23,
 	},
 	{
 		name: "RemitOS",
-		src: "/brands/remitos.png",
-		width: 110,
-		height: 37,
+		assetName: "Remit Os",
+		width: 105,
+		height: 22,
 	},
 	{
 		name: "airchannel.ai",
-		src: "/brands/airchannel.png",
+		assetName: "Airchannel",
 		width: 138,
 		height: 24,
 	},
 	{
 		name: "Tivazo",
-		src: "/brands/tivazo.png",
-		width: 110,
-		height: 37,
+		assetName: "Logo",
+		width: 84,
+		height: 18,
 	},
 	{
 		name: "Mage Icons",
-		src: "/brands/mageicons.png",
+		assetName: "Mage Icon",
 		width: 130,
 		height: 22,
 	},
 	{
 		name: "Dialaxy",
-		src: "/brands/dilaxy.png",
-		width: 110,
-		height: 37,
+		assetName: "Dialaxy",
+		width: 91,
+		height: 21,
 	},
 ] as const
 
@@ -57,7 +56,7 @@ export default function BrandSection() {
 				onPointerLeave={() => setIsPaused(false)}>
 				<h2
 					id="brand-section-title"
-					className="text-fg-secondary border-soft flex w-full shrink-0 items-center justify-center border-b px-8 py-[15px] text-center text-sm font-normal leading-5 md:py-5 lg:h-full lg:w-72 lg:border-b-0 lg:border-r lg:px-10 lg:py-[30px]">
+					className="text-fg-secondary border-soft flex w-full shrink-0 items-center justify-center border-b px-8 py-[15px] text-sm font-normal leading-5 md:py-5 lg:h-full lg:w-72 lg:border-b-0 lg:border-r lg:px-10 lg:py-[30px]">
 					Teams using Radian to Empower their Designs
 				</h2>
 
@@ -87,19 +86,20 @@ function BrandLogo({ brand }: { brand: (typeof brands)[number] }) {
 			className="border-soft flex h-full w-36 shrink-0 items-center justify-center border-r px-8 py-[15px] md:py-5 lg:w-56 lg:px-10 lg:py-[30px]"
 			onPointerEnter={() => setIsHovered(true)}
 			onPointerLeave={() => setIsHovered(false)}>
-			<span
-				className={cn(
-					"relative flex h-10 w-full items-center justify-center transition-[filter] duration-200",
-					isHovered
-						? "dark:hue-rotate-180 dark:invert"
-						: "grayscale dark:invert"
-				)}>
+			<span className="relative flex h-10 w-full items-center justify-center">
 				<Image
-					src={brand.src}
+					src={`/brands/${brand.assetName}${isHovered ? " - On Hover" : ""}.svg`}
 					alt=""
 					width={brand.width}
 					height={brand.height}
-					className="lg:max-w-35 max-h-9 max-w-full object-contain"
+					className="lg:max-w-35 max-h-9 max-w-full object-contain dark:hidden"
+				/>
+				<Image
+					src={`/brands/${brand.assetName}${isHovered ? " - On Hover - Dark" : " - Dark"}.svg`}
+					alt=""
+					width={brand.width}
+					height={brand.height}
+					className="lg:max-w-35 hidden max-h-9 max-w-full object-contain dark:block"
 				/>
 			</span>
 		</div>
