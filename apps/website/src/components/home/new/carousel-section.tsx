@@ -70,7 +70,7 @@ export default function CarouselSection() {
 						<div
 							key={stat.label}
 							className={cn(
-								"border-soft flex w-1/2 flex-col items-center justify-center gap-3 px-4 py-8 text-center lg:w-1/4",
+								"border-soft px-2.75 flex w-1/2 flex-col items-center justify-center gap-3 py-8 text-center lg:w-1/4 lg:px-4",
 								index < 2 && "border-b lg:border-b-0",
 								index % 2 === 0 && "border-r",
 								index === 1 && "lg:border-r"

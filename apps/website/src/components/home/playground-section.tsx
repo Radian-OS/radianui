@@ -79,17 +79,17 @@ export default function PlaygroundSection() {
 	}
 	return (
 		<div className="py-15 min-[1920px]:pt-25 flex flex-col items-center gap-10 px-5 min-[1920px]:gap-16 min-[1920px]:px-60 min-[1920px]:py-20">
-			<div className="border-soft align-center pt-15 xl:px-15 relative flex justify-center rounded-t-3xl px-5 xl:border-l xl:border-r xl:border-t">
+			<div className="align-center pt-15 xl:px-15 relative flex justify-center px-5">
 				<div className="flex flex-col items-center gap-6">
 					<div className="bg-bg absolute bottom-full h-fit translate-y-1/2 px-4">
-						<div className="border-soft px-7 xl:border-l xl:border-r">
-							<Badge size="28" variant="soft">
+						<div className="px-7">
+							<Badge size="28" color="violet-blue" variant="soft">
 								<SwatchBook className="text-primary" />
 								Flexibility
 							</Badge>
 						</div>
 					</div>
-					<div className="flex max-w-[752px] flex-col items-center gap-5">
+					<div className="flex max-w-[752px] flex-col items-center gap-6">
 						<h2 className="heading-2 text-center">
 							<span className="from-fg to-fg-secondary bg-gradient-to-b bg-clip-text text-transparent">
 								Customize Every Detail,{" "}
@@ -99,14 +99,11 @@ export default function PlaygroundSection() {
 							</span>
 						</h2>
 						<p className="text-fg-secondary max-w-[550px] text-center text-base font-normal">
-							From colors to corners to fonts and themes, fine-tune any
-							component to match your brand and ship polished interfaces faster.
+							Pre-made website & Application Ul blocks to simplify your design
+							process and move smoothly from idea to implementation.
 						</p>
 					</div>
 				</div>
-
-				<div className="bg-bg absolute -right-1 bottom-0 z-40 h-1/3 w-2" />
-				<div className="bg-bg absolute -left-1 bottom-0 z-40 h-1/3 w-2" />
 			</div>
 
 			<div className="border-soft bg-bg z-20 flex h-fit w-full max-w-[1440px] flex-col gap-2.5 rounded-2xl border p-3">
