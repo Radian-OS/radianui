@@ -1,5 +1,6 @@
+/*
 .style-default {
-	/* MARK: Accordion */
+	/* MARK: Accordion * /
 	.cn-accordion-size-sm {
 		@apply text-sm/6;
 	}
@@ -97,9 +98,9 @@
 		@apply text-fg-tertiary;
 	}
 
-	/* MARK: Alert */
+	/* MARK: Alert * /
 
-	/* Base */
+	/* Base * /
 	.cn-alert {
 		@apply gap-3 rounded-lg p-3;
 		@apply [&>[data-slot=alert-title]]:font-medium;
@@ -111,7 +112,7 @@
 		@apply [&_[data-slot=alert-close]]:mt-0.75;
 	}
 
-	/* Variant base styles */
+	/* Variant base styles * /
 	.cn-alert-variant-soft {
 		@apply [&_[data-slot=alert-title]]:text-fg;
 		@apply [&_[data-slot=alert-description]]:text-fg;
@@ -130,7 +131,7 @@
 		@apply [&_[data-slot=alert-description]]:text-fg;
 	}
 
-	/* Soft compound variants */
+	/* Soft compound variants * /
 	.cn-alert-soft-neutral {
 		@apply bg-fill2;
 	}
@@ -150,7 +151,7 @@
 		@apply bg-warning-accent text-warning-text;
 	}
 
-	/* Strong compound variants */
+	/* Strong compound variants * /
 	.cn-alert-strong-neutral {
 		@apply bg-black-inverse text-white-inverse;
 	}
@@ -170,7 +171,7 @@
 		@apply bg-success text-white;
 	}
 
-	/* Soft-outline compound variants */
+	/* Soft-outline compound variants * /
 	.cn-alert-soft-outline-neutral {
 		@apply bg-fill2 border-border;
 	}
@@ -190,7 +191,7 @@
 		@apply bg-warning-accent text-warning-text border-warning-border;
 	}
 
-	/* Outline compound variants */
+	/* Outline compound variants * /
 	.cn-alert-outline-neutral {
 		@apply text-fg bg-transparent;
 	}
@@ -210,17 +211,17 @@
 		@apply text-warning-text bg-transparent;
 	}
 
-	/* Close button */
+	/* Close button * /
 	.cn-alert-close-icon {
 		@apply opacity-60 group-hover:opacity-100;
 	}
 
-	/* Description */
+	/* Description * /
 	.cn-alert-description {
 		@apply text-sm [&_p]:mb-2 [&_p]:leading-relaxed;
 	}
 
-	/* Content */
+	/* Content * /
 	.cn-alert-content {
 		@apply gap-1;
 		@apply [&>[data-slot=alert-description]]:text-sm;
@@ -228,7 +229,7 @@
 		@apply [&>[data-slot=alert-title]]:font-medium;
 	}
 
-	/* MARK: Alert Dialog */
+	/* MARK: Alert Dialog * /
 
 	.cn-alert-dialog-overlay-backdrop-overlay {
 		@apply bg-black/50;
@@ -261,19 +262,19 @@
 	.cn-alert-dialog-description {
 		@apply text-fg-secondary text-sm;
 	}
-	/* MARK: Aspect Ratio */
+	/* MARK: Aspect Ratio * /
 
 	/* No visual styles — AspectRatio is a structural primitive.
-   All styling is applied by the consumer at the usage site. */
+   All styling is applied by the consumer at the usage site. * /
 
-	/* MARK: Avatar */
+	/* MARK: Avatar * /
 
-	/* Base */
+	/* Base * /
 	.cn-avatar {
 		@apply font-semibold;
 	}
 
-	/* Size variants */
+	/* Size variants * /
 	.cn-avatar-size-16 {
 		@apply size-4 text-xs;
 	}
@@ -302,12 +303,12 @@
 		@apply size-20 text-2xl;
 	}
 
-	/* Rounded variants */
+	/* Rounded variants * /
 	.cn-avatar-rounded-circle {
 		@apply rounded-full;
 	}
 
-	/* Square compound variants */
+	/* Square compound variants * /
 	.cn-avatar-square-16 {
 		@apply rounded-md;
 	}
@@ -336,22 +337,22 @@
 		@apply rounded-2xl;
 	}
 
-	/* Image */
+	/* Image * /
 	.cn-avatar-image {
 		@apply rounded-[inherit];
 	}
 
-	/* Fallback */
+	/* Fallback * /
 	.cn-avatar-fallback {
 		@apply bg-primary-focus text-primary-text rounded-[inherit];
 	}
 
-	/* Status base */
+	/* Status base * /
 	.cn-avatar-status {
 		@apply border-bg;
 	}
 
-	/* Status color variants */
+	/* Status color variants * /
 	.cn-avatar-status-online {
 		@apply bg-success;
 	}
@@ -365,7 +366,7 @@
 		@apply bg-info;
 	}
 
-	/* Status size variants */
+	/* Status size variants * /
 	.cn-avatar-status-size-16 {
 		@apply size-1 border;
 	}
@@ -394,19 +395,19 @@
 		@apply size-4 border-2;
 	}
 
-	/* MARK: Badge */
+	/* MARK: Badge * /
 
-	/* Base */
+	/* Base * /
 	.cn-badge {
 		@apply font-medium;
 	}
 
-	/* Variant base */
+	/* Variant base * /
 	.cn-badge-variant-outline {
 		@apply bg-transparent;
 	}
 
-	/* Size variants */
+	/* Size variants * /
 	.cn-badge-size-20 {
 		@apply rounded-control-md h-5 px-1.5 text-xs [&_svg]:size-3.5;
 	}
@@ -417,12 +418,12 @@
 		@apply rounded-control-md h-7 px-2 text-sm [&_svg]:size-4;
 	}
 
-	/* Color base (neutral only — others are fully defined via compound variants) */
+	/* Color base (neutral only — others are fully defined via compound variants) * /
 	.cn-badge-color-neutral {
 		@apply bg-elevation-level1 border-alpha;
 	}
 
-	/* Strong compound variants */
+	/* Strong compound variants * /
 	.cn-badge-strong-primary {
 		@apply bg-primary border-alpha text-primary-fg border font-semibold;
 	}
@@ -442,7 +443,7 @@
 		@apply bg-black-inverse text-white-inverse border-alpha border font-medium;
 	}
 
-	/* Outline compound variants */
+	/* Outline compound variants * /
 	.cn-badge-outline-primary {
 		@apply text-primary-text border-primary-border border bg-transparent;
 	}
@@ -462,7 +463,7 @@
 		@apply text-fg border bg-transparent;
 	}
 
-	/* Soft compound variants */
+	/* Soft compound variants * /
 	.cn-badge-soft-primary {
 		@apply bg-primary-accent text-primary-text border-soft-alpha;
 	}
@@ -482,19 +483,19 @@
 		@apply bg-fill2 text-fg border-soft-alpha;
 	}
 
-	/* Dot */
+	/* Dot * /
 	.cn-badge-dot {
 		@apply rounded-full bg-[currentColor];
 	}
 
-	/* MARK: Banner */
+	/* MARK: Banner * /
 
-	/* Base */
+	/* Base * /
 	.cn-banner {
 		@apply gap-2 p-2;
 	}
 
-	/* Variant base styles */
+	/* Variant base styles * /
 	.cn-banner-variant-strong {
 		@apply [&_[data-slot=banner-close]]:text-primary-fg;
 	}
@@ -512,7 +513,7 @@
 		@apply [&_[data-slot=banner-description]]:text-fg-secondary;
 	}
 
-	/* Soft compound variants */
+	/* Soft compound variants * /
 	.cn-banner-soft-neutral {
 		@apply bg-fill2;
 	}
@@ -532,7 +533,7 @@
 		@apply bg-warning-accent text-warning-text;
 	}
 
-	/* Strong compound variants */
+	/* Strong compound variants * /
 	.cn-banner-strong-neutral {
 		@apply bg-black-inverse text-white-inverse;
 	}
@@ -552,7 +553,7 @@
 		@apply bg-success text-white;
 	}
 
-	/* Outline compound variants */
+	/* Outline compound variants * /
 	.cn-banner-outline-neutral {
 		@apply text-fg bg-transparent;
 	}
@@ -572,22 +573,22 @@
 		@apply text-warning-text bg-transparent;
 	}
 
-	/* Close icon */
+	/* Close icon * /
 	.cn-banner-close-icon {
 		@apply group-hover:opacity-60;
 	}
 
-	/* Title */
+	/* Title * /
 	.cn-banner-title {
 		@apply text-sm font-medium;
 	}
 
-	/* Description */
+	/* Description * /
 	.cn-banner-description {
 		@apply text-sm;
 	}
 
-	/* Content */
+	/* Content * /
 	.cn-banner-content {
 		@apply gap-0.5;
 		@apply [&_[data-slot=banner-description]]:text-sm;
@@ -595,7 +596,7 @@
 		@apply [&_[data-slot=banner-title]]:font-semibold;
 	}
 
-	/* MARK: Breadcrumb */
+	/* MARK: Breadcrumb * /
 
 	.cn-breadcrumb-list {
 		@apply text-fg-secondary gap-1.5 text-sm;
@@ -613,9 +614,9 @@
 		@apply text-fg-tertiary [&>svg]:size-4;
 	}
 
-	/* MARK: Button */
+	/* MARK: Button * /
 
-	/* Base size rounded tokens (extracted from size variant string) */
+	/* Base size rounded tokens (extracted from size variant string) * /
 	.cn-btn-size-28 {
 		@apply rounded-control-md;
 	}
@@ -635,12 +636,12 @@
 		@apply rounded-control-lg;
 	}
 
-	/* MARK: CompactButton */
+	/* MARK: CompactButton * /
 	.cn-compact-btn {
 		@apply rounded-md;
 	}
 
-	/* MARK: IconButton */
+	/* MARK: IconButton * /
 
 	.cn-icon-btn-size-28 {
 		@apply rounded-md;
@@ -661,7 +662,7 @@
 		@apply rounded-lg;
 	}
 
-	/* MARK: Calendar */
+	/* MARK: Calendar * /
 
 	.cn-calendar {
 		@apply bg-card border-border rounded-xl border p-3;
@@ -717,7 +718,7 @@
 		@apply text-fg-tertiary;
 	}
 
-	/* MARK: Card */
+	/* MARK: Card * /
 	.cn-card {
 		@apply bg-card border-border gap-6 rounded-xl border py-6 shadow-sm;
 	}
@@ -742,7 +743,7 @@
 		@apply px-6;
 	}
 
-	/* MARK: Carousel */
+	/* MARK: Carousel * /
 
 	.cn-carousel-content-horizontal {
 		@apply -ml-4;
@@ -768,7 +769,7 @@
 		@apply rounded-full;
 	}
 
-	/* MARK: Checkbox */
+	/* MARK: Checkbox * /
 
 	.cn-checkbox {
 		@apply bg-bg border-border ring-offset-bg text-primary-fg;
@@ -791,19 +792,19 @@
 		@apply rounded-md;
 	}
 
-	/* MARK: Code Area */
+	/* MARK: Code Area * /
 
 	.cn-code-area {
 		@apply rounded-xl text-sm;
 	}
 
-	/* MARK: Collapsible */
+	/* MARK: Collapsible * /
 
 	.cn-collapsible-content {
 		@apply [&>figure]:mt-0!;
 	}
 
-	/* MARK: Command */
+	/* MARK: Command * /
 
 	.cn-command {
 		@apply bg-bg text-fg border-border rounded-xl border;
@@ -863,14 +864,14 @@
 		@apply text-fg-tertiary text-xs tracking-widest;
 	}
 
-	/* MARK: Currency Input */
+	/* MARK: Currency Input * /
 
 	/* No visual styles — CurrencyInput delegates all styling to inputVariants from input.tsx.
-   See the Input component section for the relevant cn-input-* class definitions. */
+   See the Input component section for the relevant cn-input-* class definitions. * /
 
-	/* MARK: Dialog */
+	/* MARK: Dialog * /
 
-	/* Overlay backdrop variants */
+	/* Overlay backdrop variants * /
 	.cn-dialog-overlay-backdrop-overlay {
 		@apply bg-black/50;
 	}
@@ -881,12 +882,12 @@
 		@apply bg-transparent;
 	}
 
-	/* Content */
+	/* Content * /
 	.cn-dialog-content {
 		@apply bg-bg border-alpha gap-5 rounded-2xl border p-4 shadow-lg;
 	}
 
-	/* Close button */
+	/* Close button * /
 	.cn-dialog-close-button {
 		@apply focus-visible:ring-offset-bg text-fg-tertiary hover:bg-fill2 focus-visible:ring-border rounded-md bg-transparent focus-visible:ring-offset-2;
 	}
@@ -895,40 +896,40 @@
 		@apply opacity-0 transition-opacity group-hover:opacity-100;
 	}
 
-	/* Header */
+	/* Header * /
 	.cn-dialog-header {
 		@apply space-y-1;
 	}
 
-	/* Footer */
+	/* Footer * /
 	.cn-dialog-footer {
 		@apply gap-2;
 	}
 
-	/* Title */
+	/* Title * /
 	.cn-dialog-title {
 		@apply text-lg font-semibold;
 	}
 
-	/* Description */
+	/* Description * /
 	.cn-dialog-description {
 		@apply text-fg-secondary text-sm/5 leading-tight;
 	}
 
-	/* MARK: Divider */
+	/* MARK: Divider * /
 
 	.cn-divider {
 		@apply bg-soft;
 	}
 
-	/* MARK: Drawer */
+	/* MARK: Drawer * /
 
-	/* Base */
+	/* Base * /
 	.cn-drawer {
 		@apply bg-bg gap-5;
 	}
 
-	/* Variant base styles */
+	/* Variant base styles * /
 	.cn-drawer-variant-default {
 		@apply outline-border outline;
 	}
@@ -939,7 +940,7 @@
 		@apply outline-border rounded-xl outline;
 	}
 
-	/* Rounded directional overrides */
+	/* Rounded directional overrides * /
 	.cn-drawer-rounded-top {
 		@apply rounded-b-xl;
 	}
@@ -953,12 +954,12 @@
 		@apply rounded-l-xl;
 	}
 
-	/* No-handle padding */
+	/* No-handle padding * /
 	.cn-drawer-padding {
 		@apply p-5;
 	}
 
-	/* Handle padding compound variants */
+	/* Handle padding compound variants * /
 	.cn-drawer-handle-padding-top {
 		@apply pb-7.5 pl-5 pr-5 pt-5;
 	}
@@ -972,7 +973,7 @@
 		@apply pl-7.5 pb-5 pr-5 pt-5;
 	}
 
-	/* Backdrop variants */
+	/* Backdrop variants * /
 	.cn-drawer-backdrop-overlay {
 		@apply bg-black/50;
 	}
@@ -983,32 +984,32 @@
 		@apply backdrop-blur-none;
 	}
 
-	/* Handle */
+	/* Handle * /
 	.cn-drawer-handle {
 		@apply bg-border;
 	}
 
-	/* Header */
+	/* Header * /
 	.cn-drawer-header {
 		@apply gap-1;
 	}
 
-	/* Title */
+	/* Title * /
 	.cn-drawer-title {
 		@apply text-lg font-semibold;
 	}
 
-	/* Description */
+	/* Description * /
 	.cn-drawer-description {
 		@apply text-fg-secondary gap-1 text-sm;
 	}
 
-	/* Footer */
+	/* Footer * /
 	.cn-drawer-footer {
 		@apply gap-2;
 	}
 
-	/* MARK: Dropdown */
+	/* MARK: Dropdown * /
 
 	.cn-dropdown-trigger {
 		@apply outline-none;
@@ -1107,18 +1108,18 @@
 		@apply bg-soft-alpha -mx-1.5 my-1 h-px;
 	}
 
-	/* MARK: HoverCard */
+	/* MARK: HoverCard * /
 
 	.cn-hover-card-content {
 		@apply bg-popover text-fg border-soft rounded-lg border p-4 shadow-md;
 	}
 
-	/* MARK: Input */
+	/* MARK: Input * /
 	.cn-input {
 		@apply bg-bg border focus-visible:ring-2;
 	}
 
-	/* Input sizes */
+	/* Input sizes * /
 	.cn-input-28 {
 		@apply rounded-control-md px-2 text-[13px];
 	}
@@ -1143,12 +1144,12 @@
 		@apply rounded-control-lg px-3.5 text-base;
 	}
 
-	/* InputAddon base */
+	/* InputAddon base * /
 	.cn-input-addon {
 		@apply bg-elevation-level1 border-alpha shadow-xs text-fg-secondary border shadow-[rgba(0,0,0,0.05)];
 	}
 
-	/* InputAddon sizes */
+	/* InputAddon sizes * /
 	.cn-input-addon-28 {
 		@apply rounded-md px-2 text-[13px];
 	}
@@ -1177,7 +1178,7 @@
 		@apply has-[:focus-visible]:ring-2;
 	}
 
-	/* InputWrapper sizes */
+	/* InputWrapper sizes * /
 	.cn-input-wrapper-28 {
 		@apply gap-1.5;
 	}
@@ -1202,12 +1203,12 @@
 		@apply gap-2;
 	}
 
-	/* InputWrapper disabled */
+	/* InputWrapper disabled * /
 	.cn-input-wrapper-disabled {
 		@apply bg-fill1 [&_svg]:text-fg-tertiary cursor-not-allowed opacity-60;
 	}
 
-	/* MARK: OTPField */
+	/* MARK: OTPField * /
 
 	.cn-otp-field {
 		@apply gap-1.5;
@@ -1241,13 +1242,13 @@
 		@apply size-12 text-base;
 	}
 
-	/* MARK: Popover */
+	/* MARK: Popover * /
 
 	.cn-popover-content {
 		@apply text-fg bg-popover rounded-md border p-4 shadow-md;
 	}
 
-	/* MARK: Progress */
+	/* MARK: Progress * /
 	.cn-progress {
 		@apply bg-fill3 h-2 rounded-full;
 	}
@@ -1256,7 +1257,7 @@
 		@apply bg-primary duration-[660ms];
 	}
 
-	/* MARK: Resizable */
+	/* MARK: Resizable * /
 
 	.cn-resizable-handle {
 		@apply bg-border;
@@ -1266,7 +1267,7 @@
 		@apply bg-border rounded-xs border;
 	}
 
-	/* MARK: ScrollArea */
+	/* MARK: ScrollArea * /
 	.cn-scrollbar {
 		@apply p-px;
 	}
@@ -1283,7 +1284,7 @@
 		@apply bg-border rounded-full;
 	}
 
-	/* MARK: Select */
+	/* MARK: Select * /
 	.cn-select-trigger {
 		@apply bg-bg border-border shadow-xs text-fg data-placeholder:text-fg-tertiary focus-visible:ring-primary-focus focus-visible:border-primary aria-invalid:border-error aria-invalid:ring-error [[data-invalid=true]_&]:border-error [[data-invalid=true]_&]:ring-error border shadow-black/5 focus-visible:outline-none focus-visible:ring-2 disabled:cursor-not-allowed disabled:opacity-50;
 	}
@@ -1336,32 +1337,32 @@
 		@apply bg-border;
 	}
 
-	/* MARK: Sidebar */
+	/* MARK: Sidebar * /
 
-	/* Wrapper */
+	/* Wrapper * /
 	.cn-sidebar-wrapper {
 		@apply bg-bg has-data-[theme=default]:bg-bg has-data-[theme=gray]:has-data-[variant=inset]:bg-sidebar has-data-[theme=inverse]:has-data-[variant=inset]:bg-black;
 	}
 
-	/* Sidebar root */
+	/* Sidebar root * /
 	.cn-sidebar {
-		/* no extra decoration in default; bg/fg applied inline via CSS vars */
+		/* no extra decoration in default; bg/fg applied inline via CSS vars * /
 	}
 
-	/* Fixed container — variant-specific decoration */
+	/* Fixed container — variant-specific decoration * /
 	.cn-sidebar-container-variant-sidebar {
 		@apply border-sidebar-border group-data-[side=left]:border-r group-data-[side=right]:border-l;
 	}
 	.cn-sidebar-container-variant-floating {
-		/* padding already structural; shadow lives here */
+		/* padding already structural; shadow lives here * /
 	}
 	.cn-sidebar-container-variant-inset {
-		/* no extra border in default inset */
+		/* no extra border in default inset * /
 	}
 
-	/* Inner panel — floating/inset get rounded corners + shadow/border */
+	/* Inner panel — floating/inset get rounded corners + shadow/border * /
 	.cn-sidebar-inner {
-		/* base: no decoration */
+		/* base: no decoration * /
 	}
 	.cn-sidebar-inner-variant-floating {
 		@apply border-sidebar-border rounded-xl border shadow-sm;
@@ -1370,7 +1371,7 @@
 		@apply rounded-lg;
 	}
 
-	/* Resize handle */
+	/* Resize handle * /
 	.cn-sidebar-resize-handle {
 		@apply hover:after:bg-sidebar-border after:bg-transparent;
 	}
@@ -1378,37 +1379,37 @@
 		@apply after:bg-sidebar-ring;
 	}
 
-	/* Rail */
+	/* Rail * /
 	.cn-sidebar-rail {
 		@apply hover:after:bg-sidebar-border hover:group-data-[collapsible=offcanvas]:bg-sidebar;
 	}
 
-	/* Inset main content */
+	/* Inset main content * /
 	.cn-sidebar-inset {
 		@apply peer-data-[theme=default]:border-sidebar-border peer-data-[theme=gray-body]:bg-fill1 peer-data-[theme=default]:peer-data-[variant=inset]:border md:peer-data-[variant=inset]:shadow-sm;
 	}
 
-	/* Input */
+	/* Input * /
 	.cn-sidebar-input {
 		@apply shadow-none;
 	}
 
-	/* Separator */
+	/* Separator * /
 	.cn-sidebar-separator {
 		@apply bg-soft-alpha;
 	}
 
-	/* Group label */
+	/* Group label * /
 	.cn-sidebar-group-label {
 		@apply text-sidebar-fg/70;
 	}
 
-	/* Group action */
+	/* Group action * /
 	.cn-sidebar-group-action {
 		@apply text-sidebar-fg hover:bg-sidebar-accent hover:text-sidebar-accent-fg;
 	}
 
-	/* Menu action */
+	/* Menu action * /
 	.cn-sidebar-menu-action {
 		@apply text-sidebar-fg hover:bg-sidebar-accent hover:text-sidebar-accent-fg peer-hover/menu-button:text-sidebar-accent-fg;
 	}
@@ -1416,17 +1417,17 @@
 		@apply peer-data-[active=true]/menu-button:text-sidebar-accent-fg;
 	}
 
-	/* Menu badge */
+	/* Menu badge * /
 	.cn-sidebar-menu-badge {
 		@apply border px-1.5 py-0.5;
 	}
 
-	/* Menu sub-button */
+	/* Menu sub-button * /
 	.cn-sidebar-menu-sub-button {
 		@apply text-sidebar-fg hover:bg-sidebar-accent hover:text-sidebar-accent-fg data-[active=true]:bg-sidebar-accent data-[active=true]:text-sidebar-accent-fg [&>svg]:text-sidebar-accent-fg;
 	}
 
-	/* Menu button variants */
+	/* Menu button variants * /
 	.cn-sidebar-menu-button {
 		@apply hover:bg-sidebar-accent hover:text-sidebar-accent-fg rounded-control-md [&>svg]:text-fg-secondary font-medium;
 	}
@@ -1440,7 +1441,7 @@
 		@apply text-sidebar-fg data-[active=true]:bg-sidebar-accent!;
 	}
 
-	/* MARK: Slider */
+	/* MARK: Slider * /
 	.cn-slider {
 		@apply data-disabled:opacity-50;
 	}
@@ -1457,7 +1458,7 @@
 		@apply border-primary bg-bg drop-shadow-xs rounded-full border-2;
 	}
 
-	/* MARK: Switch */
+	/* MARK: Switch * /
 
 	.cn-switch {
 		@apply bg-fill2-alpha;
@@ -1499,7 +1500,7 @@
 		@apply text-fg-secondary text-lg font-medium;
 	}
 
-	/* MARK: Table */
+	/* MARK: Table * /
 
 	.cn-table {
 		@apply text-fg text-sm;
@@ -1533,9 +1534,9 @@
 		@apply text-fg mt-4 text-sm;
 	}
 
-	/* MARK: Tabs */
+	/* MARK: Tabs * /
 
-	/* List variants */
+	/* List variants * /
 	.cn-tabs-list-variant-default {
 		@apply bg-fill2;
 	}
@@ -1549,7 +1550,7 @@
 	}
 
 	.cn-tabs-list-variant-ghost {
-		/* no visual styles */
+		/* no visual styles * /
 	}
 
 	.cn-tabs-list-variant-outline-ghost {
@@ -1576,7 +1577,7 @@
 		@apply data-[orientation=horizontal]:gap-4 data-[orientation=vertical]:gap-3;
 	}
 
-	/* Trigger variants */
+	/* Trigger variants * /
 	.cn-tabs-trigger-variant-default {
 		@apply data-[state=active]:bg-elevation-level2 data-[state=active]:drop-shadow-xs;
 	}
@@ -1586,7 +1587,7 @@
 	}
 
 	.cn-tabs-trigger-variant-open {
-		/* border color handled inline via structural classes */
+		/* border color handled inline via structural classes * /
 	}
 
 	.cn-tabs-trigger-variant-ghost {
@@ -1597,7 +1598,7 @@
 		@apply data-[state=active]:bg-bg data-[state=active]:drop-shadow-xs;
 	}
 
-	/* Trigger default size compounds */
+	/* Trigger default size compounds * /
 	.cn-tabs-trigger-default-sm {
 		@apply rounded-md px-1.5 py-1;
 	}
@@ -1610,7 +1611,7 @@
 		@apply rounded-lg px-3 py-2;
 	}
 
-	/* Trigger outline/ghost/outline-ghost size compounds */
+	/* Trigger outline/ghost/outline-ghost size compounds * /
 	.cn-tabs-trigger-soft-sm {
 		@apply p-1.5;
 	}
@@ -1623,7 +1624,7 @@
 		@apply p-3;
 	}
 
-	/* Trigger open size compounds */
+	/* Trigger open size compounds * /
 	.cn-tabs-trigger-open-sm {
 		@apply data-[orientation=horizontal]:py-1.5 data-[orientation=vertical]:px-1.5;
 	}
@@ -1636,7 +1637,7 @@
 		@apply data-[orientation=horizontal]:py-3 data-[orientation=vertical]:px-3;
 	}
 
-	/* Trigger outline rounded compounds */
+	/* Trigger outline rounded compounds * /
 	.cn-tabs-trigger-outline-sm {
 		@apply data-[orientation=horizontal]:first:rounded-l-lg data-[orientation=vertical]:first:rounded-t-lg data-[orientation=horizontal]:last:rounded-r-lg data-[orientation=vertical]:last:rounded-b-lg;
 	}
@@ -1649,7 +1650,7 @@
 		@apply data-[orientation=horizontal]:first:rounded-l-xl data-[orientation=vertical]:first:rounded-t-xl data-[orientation=horizontal]:last:rounded-r-xl data-[orientation=vertical]:last:rounded-b-xl;
 	}
 
-	/* Trigger ghost/outline-ghost active rounded */
+	/* Trigger ghost/outline-ghost active rounded * /
 	.cn-tabs-trigger-ghost-sm {
 		@apply data-[state=active]:rounded-md;
 	}
@@ -1662,7 +1663,7 @@
 		@apply data-[state=active]:rounded-lg;
 	}
 
-	/* MARK: TextArea */
+	/* MARK: TextArea * /
 	.cn-textarea {
 		@apply text-fg border-alpha drop-shadow-xs focus:border-primary-hover aria-invalid:ring-error aria-invalid:border-error focus:ring-primary-hover/30 disabled:border-soft disabled:bg-fill1 disabled:text-fg-disabled bg-bg border px-2.5 py-2 text-sm font-normal placeholder:text-sm focus:ring-2 disabled:cursor-not-allowed disabled:resize-none;
 	}
@@ -1675,7 +1676,7 @@
 		@apply rounded-none;
 	}
 
-	/* MARK: Tooltip */
+	/* MARK: Tooltip * /
 	.cn-tooltip-content {
 		@apply max-w-70 rounded-md px-2 py-1.5 text-[13px]/4 shadow-md shadow-black/5;
 	}
@@ -1692,3 +1693,4 @@
 		@apply data-[theme=light]:fill-elevation-level1 data-[theme=default]:fill-black-inverse -mt-0.5 rounded-md data-[theme=light]:drop-shadow-[0_1px_0_var(--color-border)];
 	}
 }
+*/

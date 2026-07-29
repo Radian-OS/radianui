@@ -1,6 +1,5 @@
 import type { AtRule, Declaration, PluginCreator, Root, Rule } from "postcss"
 import postcss from "postcss"
-import { logger } from "@/utils/logger"
 import {
 	Color,
 	type Font,
@@ -20,8 +19,8 @@ const CSS_CONSTANTS = {
 	DARK_SELECTOR: ".dark",
 	COLOR_PRIMARY_PREFIX: "--color-primary",
 	GOOGLE_FONTS_DOMAIN: "fonts.googleapis.com",
-	HEADING_FONT_PROP: "--heading-font",
-	BODY_FONT_PROP: "--body-font",
+	HEADING_FONT_PROP: "--font-heading",
+	BODY_FONT_PROP: "--font-body",
 	FALLBACK_FONTS: "system-ui, sans-serif",
 } as const
 
@@ -192,7 +191,7 @@ function addNewFontImport(root: Root, importURL: string): void {
 function updateFontDeclarations(root: Root, fontData: FontData): void {
 	root.walkAtRules("theme", (atRule: AtRule) => {
 		atRule.walkDecls((decl: Declaration) => {
-			if (decl.prop === "--heading-font" || decl.prop === "--body-font") {
+			if (decl.prop === CSS_CONSTANTS.HEADING_FONT_PROP || decl.prop === CSS_CONSTANTS.BODY_FONT_PROP) {
 				updateFontDeclaration(decl, fontData)
 			}
 		})

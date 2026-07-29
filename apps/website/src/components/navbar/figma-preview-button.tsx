@@ -4,6 +4,7 @@ import { Button } from "@/styles/default/ui/button"
 
 type FigmaPreviewButtonProps = {
 	size?: ComponentProps<typeof Button>["size"]
+	text?: string
 	variant?: ComponentProps<typeof Button>["variant"]
 	color?: ComponentProps<typeof Button>["color"]
 	className?: string
@@ -12,6 +13,7 @@ type FigmaPreviewButtonProps = {
 export default function FigmaPreviewButton({
 	size,
 	variant,
+	text,
 	color,
 	className,
 }: FigmaPreviewButtonProps) {
@@ -53,7 +55,7 @@ export default function FigmaPreviewButton({
 						fill="#A259FF"
 					/>
 				</svg>
-				Figma Preview
+				{text ? text : "Figma Preview"}
 			</Link>
 		</Button>
 	)

@@ -194,9 +194,9 @@ export default function FAQAccordion({
 			{displayContent.map(({ title, content }) => (
 				<AccordionItem key={title} value={title}>
 					<AccordionTrigger className="gap-2 p-5">
-						<span className="text-sm">{title}</span>
+						<span className="text-base">{title}</span>
 					</AccordionTrigger>
-					<AccordionContent className="px-5 text-sm">
+					<AccordionContent className="px-5 text-base">
 						{content}
 					</AccordionContent>
 				</AccordionItem>

@@ -1,5 +1,31 @@
 # radianui
 
+## 0.3.2
+
+### Patch Changes
+
+- fix font CSS variables not updated during `init`
+
+## 0.3.0
+
+### Minor Changes
+
+- 93e7b21: Removed asking icon and styles questions temporarily
+
+### Patch Changes
+
+- 721ea79: CLI now handles the useSrcDir configuration option
+- ac4b002: CLI handles adding style based components
+- 085515f: Let users choose icon library
+- 6c4ecb2: Add support for initializing projects using preset codes — fetches design system configuration (colors, fonts, radius, utilities) from the RadianUI API and generates the corresponding theme CSS.
+- Let users initialize project with selected theme
+
+## 0.2.2-alpha.5
+
+### Patch Changes
+
+- Removed asking icon and styles questions temporarily
+
 ## 0.2.2-alpha.4
 
 ### Patch Changes

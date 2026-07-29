@@ -1,7 +1,14 @@
 import React from "react"
+import { Dot } from "lucide-react"
 import Image from "next/image"
 import { Badge, BadgeDot } from "@/registry/ui/badge"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 import DiagonalDivider from "./SvgDivider"
+
+const data = [
+	{ label: "Designer", value: "designer", content: "Inbox Content" },
+	{ label: "Developer", value: "developer", content: "Projects Content" },
+]
 
 const RapidDev = () => {
 	return (
@@ -15,10 +22,10 @@ const RapidDev = () => {
 						Rapid Development
 					</Badge>
 					<div className="w-full lg:w-[1012px]">
-						<h2 className="heading-3 text-[40px] font-medium leading-[52px]">
+						<h2 className="heading-3 text-[24px] font-medium leading-[52px] md:text-[36px] lg:text-[40px]">
 							Everything you need to ship polished interfaces
 						</h2>
-						<h2 className="heading-3 text-fg-secondary text-[40px] font-medium leading-[52px]">
+						<h2 className="heading-3 text-fg-secondary text-[24px] font-medium leading-[52px] md:text-[36px] lg:text-[40px]">
 							Production ready React components,{" "}
 							<span className="bg-[linear-gradient(90deg,var(--primary-border,#9981F8)_72.12%,var(--utility-Fuchsia-border,#F881F8)_88.94%)] bg-clip-text text-transparent">
 								Figma UI Kit
@@ -28,8 +35,8 @@ const RapidDev = () => {
 					</div>
 				</div>
 
-				<div className="border-soft flex flex-col overflow-hidden border-t lg:flex-row">
-					<div className="lg:flex-2 border-soft border-b lg:border-r">
+				<div className="border-soft flex flex-col overflow-hidden border-y lg:flex-row">
+					<div className="lg:flex-2 border-soft border-b lg:border-b-0 lg:border-r">
 						<div className="lg:px-15 flex w-full flex-col px-5 py-8 sm:px-10 sm:py-12 lg:w-[520px] lg:py-20">
 							<h3 className="heading-5 text-[18px] font-medium leading-8 tracking-[-0.18px]">
 								Production-Ready Figma UI Kit.
@@ -39,7 +46,7 @@ const RapidDev = () => {
 								using smart auto layout and figma slots
 							</p>
 						</div>
-						<div className="relative h-[430px] overflow-hidden">
+						<div className="relative h-[214px] overflow-hidden md:h-[414px] lg:h-[430px]">
 							<div className="absolute bottom-[10rem] left-1/2 top-1/2 -translate-x-1/2 scale-150 lg:bottom-[-20rem]">
 								<Image
 									width={800}
@@ -61,8 +68,8 @@ const RapidDev = () => {
 								and paste
 							</p>
 						</div>
-						<div className="relative h-[430px]">
-							<div className="absolute bottom-[-3rem] right-0">
+						<div className="relative h-[214px] md:h-[414px] lg:h-[430px]">
+							<div className="absolute bottom-[-10rem] right-0">
 								<Image
 									width={450}
 									height={600}
@@ -83,7 +90,7 @@ const RapidDev = () => {
 				/>
 
 				<div className="bg-fill1 border-soft flex flex-col border-t lg:flex-row">
-					<div className="border-soft border-b lg:flex-1 lg:border-r">
+					<div className="border-soft border-b lg:flex-1 lg:border-b-0 lg:border-r">
 						<div className="lg:px-15 flex w-full flex-col px-5 py-8 sm:px-10 sm:py-12 lg:w-[520px] lg:py-20">
 							<h3 className="heading-5 text-[18px] font-medium leading-8 tracking-[-0.18px]">
 								Customize without compromise
@@ -93,7 +100,7 @@ const RapidDev = () => {
 								meaningful properties for easier customization
 							</p>
 						</div>
-						<div className="relative h-[430px] overflow-hidden">
+						<div className="relative h-[214px] overflow-hidden md:h-[414px] lg:h-[430px]">
 							<div className="scale-120 absolute bottom-[10rem] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 lg:bottom-0">
 								<Image
 									width={600}
@@ -116,7 +123,7 @@ const RapidDev = () => {
 							</p>
 						</div>
 
-						<div className="relative h-[430px] overflow-hidden">
+						<div className="relative h-[214px] overflow-hidden md:h-[414px] lg:h-[430px]">
 							<div className="absolute bottom-[10rem] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 lg:bottom-0">
 								<Image width={400} height={800} alt="" src="/newhome/app.png" />
 							</div>
@@ -124,9 +131,9 @@ const RapidDev = () => {
 					</div>
 				</div>
 
-				<div>
-					<div className="px-15 py-25 flex flex-col justify-between gap-3 lg:flex-row">
-						<h3 className="heading-5 w-full text-[24px] font-medium leading-9 tracking-[-0.24px] lg:w-[612px]">
+				<div className="border-soft border-y">
+					<div className="lg:px-15 lg:py-25 flex flex-col justify-between gap-3 px-5 py-12 sm:px-10 sm:py-16 lg:flex-row">
+						<h3 className="heading-5 w-full text-[20px] font-medium leading-9 tracking-[-0.24px] sm:text-[24px] lg:w-[612px]">
 							Seamless Design-to-Code Sync.{" "}
 							<span className="text-fg-secondary">
 								Variables and tokens in Figma Design File and Code use the same
@@ -134,9 +141,42 @@ const RapidDev = () => {
 							</span>
 						</h3>
 
-						<p className="">Designer . Developer</p>
+						<div className="hidden items-center gap-1 lg:flex lg:self-end">
+							<p className="text-fg-tertiary text-base">Designer </p>
+							<Dot size={24} />
+							<p className="text-fg text-base">Developer</p>
+						</div>
 					</div>
-					<div className="bg-fill1 relative h-[430px] overflow-hidden lg:h-[720px]">
+					<div className="flex lg:hidden">
+						<Tabs className="w-full gap-0" defaultValue={data[0].value}>
+							<TabsList width="full" className="rounded-none p-0">
+								{data.map((item) => (
+									<TabsTrigger
+										className="rounded-none"
+										key={item.value}
+										value={item.value}>
+										{item.label}
+									</TabsTrigger>
+								))}
+							</TabsList>
+							{data.map(({ value }) => (
+								<TabsContent className="rounded-none" key={value} value={value}>
+									<div className="bg-fill1 relative h-[240px] overflow-hidden md:h-[430px] lg:h-[720px]">
+										<div className="absolute bottom-[-5rem] left-1/2 -translate-x-1/2 -translate-y-1/2 scale-150 lg:bottom-[-7rem]">
+											<Image
+												width={1120}
+												height={768}
+												alt=""
+												src="/newhome/Content.png"
+											/>
+										</div>
+										<div className="pointer-events-none absolute bottom-0 left-0 right-0 h-[48px] bg-[linear-gradient(0deg,#FFF_0%,rgba(255,255,255,0)_100%)] md:h-[100px] lg:h-[200px] dark:bg-[linear-gradient(0deg,oklch(0.144_0.003_264.025)_0%,oklch(0.144_0.003_264.025/0)_100%)]" />
+									</div>
+								</TabsContent>
+							))}
+						</Tabs>
+					</div>
+					<div className="bg-fill1 relative hidden h-[240px] overflow-hidden md:h-[430px] lg:flex lg:h-[720px]">
 						<div className="absolute bottom-[-5rem] left-1/2 -translate-x-1/2 -translate-y-1/2 scale-150 lg:bottom-[-7rem]">
 							<Image
 								width={1120}
@@ -156,8 +196,8 @@ const RapidDev = () => {
 					viewBox="0 0 1440 32"
 				/>
 
-				<div className="border-soft flex flex-col border-t lg:flex-row">
-					<div className="border-soft overflow-hidden border-b lg:flex-1 lg:border-r">
+				<div className="border-soft flex flex-col border-y lg:flex-row">
+					<div className="border-soft overflow-hidden border-b lg:flex-1 lg:border-b-0 lg:border-r">
 						<div className="lg:px-15 flex w-full flex-col px-5 py-8 sm:px-10 sm:py-12 lg:w-[520px] lg:py-20">
 							<h3 className="heading-5 text-[18px] font-medium leading-8 tracking-[-0.18px]">
 								Scalable Variable-first design system
@@ -167,8 +207,8 @@ const RapidDev = () => {
 								more
 							</p>
 						</div>
-						<div className="relative h-[430px]">
-							<div className="scale-120 absolute bottom-[-9rem] left-1/2 -translate-x-1/2 -translate-y-1/2">
+						<div className="relative h-[214px] md:h-[414px] lg:h-[430px]">
+							<div className="scale-120 absolute bottom-[-20rem] left-1/2 -translate-x-1/2 -translate-y-1/2 md:bottom-[-9rem]">
 								<Image
 									width={600}
 									height={800}
@@ -189,7 +229,7 @@ const RapidDev = () => {
 								together into full pages
 							</p>
 						</div>
-						<div className="relative h-[430px] overflow-hidden">
+						<div className="relative h-[214px] overflow-hidden md:h-[414px] lg:h-[430px]">
 							<Image
 								width={300}
 								height={700}

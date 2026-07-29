@@ -10,7 +10,7 @@ import BrandSection from "@/components/home/new/brand-section"
 import CarouselSection from "@/components/home/new/carousel-section"
 import PlaygroundSectionWrapper from "@/components/home/playground-section-wrapper"
 import { RotatingWords } from "@/components/home/rotating-words"
-import VideoSection from "@/components/home/video-section"
+import UIBlocksSection from "@/components/home/ui-blocks-section"
 import VideoDialogPreview from "@/components/home/video/video-dialog-preview"
 import { JsonLd } from "@/components/seo/json-ld"
 import { getHomepageStructuredData } from "@/lib/structured-data"
@@ -87,10 +87,57 @@ export default function Page() {
 				<RapidDev />
 				<Component />
 
-				<PlaygroundSectionWrapper />
 				<CarouselSection />
 
-				<VideoSection />
+				<PlaygroundSectionWrapper />
+
+				<div className="max-w-360 mx-auto w-full">
+					<div className="border-soft w-full border-b border-t lg:border-l lg:border-r">
+						<svg
+							width="100%"
+							height="32"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+							xmlnsXlink="http://www.w3.org/1999/xlink">
+							<rect width="100%" height="32" fill="url(#pattern0_3100_26385)" />
+							<defs>
+								<pattern
+									id="pattern0_3100_26385"
+									patternUnits="userSpaceOnUse"
+									patternTransform="matrix(8.60365 0 0 12.2873 -0.819336 -0.573559)"
+									preserveAspectRatio="none"
+									viewBox="-0.819336 -0.573559 8.60365 12.2873"
+									width="1"
+									height="1">
+									<use
+										xlinkHref="#pattern0_3100_26385_inner"
+										transform="translate(-8.60365 -12.2873)"
+									/>
+									<use
+										xlinkHref="#pattern0_3100_26385_inner"
+										transform="translate(0 -12.2873)"
+									/>
+									<use
+										xlinkHref="#pattern0_3100_26385_inner"
+										transform="translate(-8.60365 0)"
+									/>
+									<g id="pattern0_3100_26385_inner">
+										<line
+											opacity="0.8"
+											x1="-0.409576"
+											y1="12.0005"
+											x2="8.19407"
+											y2="-0.286788"
+											stroke="#E9EAEC"
+										/>
+									</g>
+								</pattern>
+							</defs>
+						</svg>
+					</div>
+				</div>
+
+				<UIBlocksSection />
 
 				{/* <FAQSection /> */}
 				<FAQSection />

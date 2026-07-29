@@ -78,32 +78,22 @@ export default function PlaygroundSection() {
 		return null
 	}
 	return (
-		<div className="py-15 min-[1920px]:pt-25 flex flex-col items-center gap-10 px-5 min-[1920px]:gap-16 min-[1920px]:px-60 min-[1920px]:py-20">
-			<div className="align-center pt-15 xl:px-15 relative flex justify-center px-5">
-				<div className="flex flex-col items-center gap-6">
-					<div className="bg-bg absolute bottom-full h-fit translate-y-1/2 px-4">
-						<div className="px-7">
-							<Badge size="28" color="violet-blue" variant="soft">
-								<SwatchBook className="text-primary" />
-								Flexibility
-							</Badge>
-						</div>
-					</div>
-					<div className="flex max-w-[752px] flex-col items-center gap-6">
-						<h2 className="heading-2 text-center">
-							<span className="from-fg to-fg-secondary bg-gradient-to-b bg-clip-text text-transparent">
-								Customize Every Detail,{" "}
-							</span>
-							<span className="bg-gradient-to-b from-[#492EB8] to-[#7655F6] bg-clip-text text-transparent">
-								Effortlessly
-							</span>
-						</h2>
-						<p className="text-fg-secondary max-w-[550px] text-center text-base font-normal">
-							Pre-made website & Application Ul blocks to simplify your design
-							process and move smoothly from idea to implementation.
-						</p>
-					</div>
-				</div>
+		<div className="border-soft lg:py-25 lg:px-15 mx-auto flex w-full max-w-[1440px] flex-col items-center gap-10 border-l border-r px-5 py-20 md:gap-12 lg:gap-20">
+			<div className="flex max-w-[700px] flex-col items-center gap-6">
+				<Badge size="28" color="violet-blue" variant="soft">
+					<SwatchBook className="text-primary" />
+					Fully Flexible
+				</Badge>
+				<h2 className="heading-3 font-heading w-full text-center">
+					<span className="text-fg">Customize Every Detail, </span>
+					<span className="from-primary-border to-fuchsia-border bg-gradient-to-l bg-clip-text text-transparent">
+						Effortlessly
+					</span>
+				</h2>
+				<p className="text-fg-secondary max-w-[580px] text-center text-lg font-normal">
+					Pre-made website & Application Ul blocks to simplify your design
+					process and move smoothly from idea to implementation.
+				</p>
 			</div>
 
 			<div className="border-soft bg-bg z-20 flex h-fit w-full max-w-[1440px] flex-col gap-2.5 rounded-2xl border p-3">

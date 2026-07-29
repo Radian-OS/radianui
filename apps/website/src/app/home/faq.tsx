@@ -13,7 +13,7 @@ export default function FAQSection() {
 			aria-labelledby="faq-title"
 			className="max-w-368 relative mx-auto w-full px-4 lg:px-5">
 			<div className="border-soft mx-auto flex max-w-[1440px] flex-col overflow-hidden border">
-				<div className="md:px-15 flex w-full flex-col gap-12 px-0 sm:px-5 lg:flex-row">
+				<div className="md:px-15 border-soft flex w-full flex-col gap-12 border-b px-0 sm:px-5 lg:flex-row">
 					<div className="pt-15 flex flex-1 flex-col gap-8 px-5 sm:px-0">
 						<h2
 							id="faq-title"
@@ -38,7 +38,7 @@ export default function FAQSection() {
 						</div>
 					</div>
 
-					<div className="border-soft w-full flex-1 border border-b-0 lg:border-t-0">
+					<div className="border-soft w-full flex-1 border border-x-0 border-b-0 sm:border-x lg:border-t-0">
 						<FAQAccordion activeCategory={activeCategory} />
 					</div>
 				</div>

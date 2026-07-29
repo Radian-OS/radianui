@@ -1,19 +1,10 @@
 "use client"
 
 import { useState } from "react"
-import { Check, ChevronDown, Clipboard, Maximize } from "lucide-react"
+import { Check, Clipboard } from "lucide-react"
 import dynamic from "next/dynamic"
-import Link from "next/link"
 import { toast } from "sonner"
-import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
-import {
-	Dropdown,
-	DropdownContent,
-	DropdownRadioGroup,
-	DropdownRadioItem,
-	DropdownTrigger,
-} from "@/styles/default/ui/dropdown"
 import {
 	Tabs,
 	TabsContent,
@@ -103,37 +94,23 @@ const HomeInteractive = () => {
 	}
 
 	return (
-		<div className="bg-bg/60 border-soft relative z-30 h-full rounded-xl border p-3 backdrop-blur-[45px]">
+		<div className="bg-fill1-alpha border-soft relative z-30 h-full rounded-xl border p-3 backdrop-blur-[45px]">
 			<Tabs
 				value={activeTab}
 				onValueChange={handleTabChange}
 				className="h-full">
 				<div className="flex justify-between">
 					<div className="flex items-center gap-1.5 pl-3">
-						<span className="bg-fill4 size-2 rounded-full" />
-						<span className="bg-fill4 size-2 rounded-full" />
-						<span className="bg-fill4 size-2 rounded-full" />
+						<span className="size-2 rounded-full bg-transparent" />
 					</div>
-					<div className="flex">
-						<TabsList className="not-lg:hidden mx-auto shrink-0 bg-transparent">
+					<div className="flex overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+						<TabsList className="mx-auto shrink-0 bg-transparent">
 							{PAGES.map((page, idx) => (
 								<TabsTrigger key={`${page.value}-${idx}`} value={page.value}>
 									{page.label}
 								</TabsTrigger>
 							))}
 						</TabsList>
-						<div className="not-lg:hidden flex items-center gap-2 pl-3">
-							<Link
-								href={process.env.NEXT_PUBLIC_BLOCKS_URL!}
-								target="_blank"
-								rel="noopener noreferrer"
-								className="text-fg-secondary text-sm">
-								More Blocks
-							</Link>
-							<Badge color="primary" variant="soft" size="20">
-								Coming Soon
-							</Badge>
-						</div>
 					</div>
 					<div className="flex items-center gap-0.5">
 						<Button
@@ -157,46 +134,11 @@ const HomeInteractive = () => {
 							variant="ghost"
 							size="28">
 							{copied ? (
-								<Check size={16} className="shrink-0" />
+								<Check size={16} className="stroke-fg-tertiary shrink-0" />
 							) : (
-								<Clipboard size={16} className="shrink-0" />
+								<Clipboard size={16} className="stroke-fg-tertiary shrink-0" />
 							)}
 						</Button>
-						<Button
-							aria-label="Fullscreen"
-							size="28"
-							color="neutral"
-							variant="ghost"
-							asChild>
-							<Link
-								rel="noopener noreferrer"
-								href={PAGES.find((p) => p.value === activeTab)?.link ?? ""}
-								target="_blank">
-								<Maximize size={16} className="shrink-0" />
-							</Link>
-						</Button>
-						<Dropdown>
-							<DropdownTrigger asChild className="lg:hidden">
-								<Button
-									aria-label="Change Block"
-									color="neutral"
-									size="28"
-									variant="ghost">
-									<ChevronDown size={16} className="shrink-0" />
-								</Button>
-							</DropdownTrigger>
-							<DropdownContent align="end">
-								<DropdownRadioGroup
-									value={activeTab}
-									onValueChange={handleTabChange}>
-									{PAGES.map((p) => (
-										<DropdownRadioItem key={p.value} value={p.value}>
-											{p.label}
-										</DropdownRadioItem>
-									))}
-								</DropdownRadioGroup>
-							</DropdownContent>
-						</Dropdown>
 					</div>
 				</div>
 				{PAGES.map((page) => {
