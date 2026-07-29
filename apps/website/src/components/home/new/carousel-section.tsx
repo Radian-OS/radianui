@@ -1,3 +1,6 @@
+"use client"
+
+import { useEffect, useState } from "react"
 import {
 	LayoutGrid,
 	MonitorSmartphone,
@@ -6,10 +9,16 @@ import {
 	SwatchBook,
 } from "lucide-react"
 import Image from "next/image"
-import { darkThemeVars } from "@/components/theme/theme-vars"
+import { darkThemeVars, lightThemeVars } from "@/components/theme/theme-vars"
 import { cn } from "@/lib/utils"
 import { InfiniteScroll } from "@/registry/animated/infinite-scroll"
 import { Badge, BadgeDot } from "@/registry/ui/badge"
+import {
+	Carousel,
+	type CarouselApi,
+	CarouselContent,
+	CarouselItem,
+} from "@/registry/ui/carousel"
 
 const stats = [
 	{ value: "2000+", label: "Variables & Design Tokens" },
@@ -42,6 +51,29 @@ const featureItems = [
 		title: "Responsive by Default",
 		description:
 			"Different frame designs ensuring they look great on any screen size.",
+	},
+] as const
+
+const carouselImages = [
+	{
+		src: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=85&auto=format&fit=crop",
+		alt: "Mountain landscape beneath a cloudy sky",
+	},
+	{
+		src: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1600&q=85&auto=format&fit=crop",
+		alt: "Sunlight breaking through a mountain valley",
+	},
+	{
+		src: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=1600&q=85&auto=format&fit=crop",
+		alt: "Fog drifting across a green forest",
+	},
+	{
+		src: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1600&q=85&auto=format&fit=crop",
+		alt: "A path through a lush forest",
+	},
+	{
+		src: "https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=1600&q=85&auto=format&fit=crop",
+		alt: "A wide valley surrounded by mountains",
 	},
 ] as const
 
@@ -105,7 +137,7 @@ export default function CarouselSection() {
 					</h3>
 				</div>
 
-				<div className="h-100 lg:h-160 flex w-full justify-center overflow-hidden">
+				<div className="h-100 lg:h-160 relative flex w-full justify-center overflow-hidden">
 					<div className="h-100 w-192 lg:h-160 lg:w-320 xl:w-330 relative shrink-0 overflow-hidden md:rounded-xl">
 						<Image
 							src="/carousel-home.png"
@@ -115,6 +147,7 @@ export default function CarouselSection() {
 							className="object-cover"
 						/>
 					</div>
+					<ShowcaseCarousel />
 				</div>
 
 				<div className="lg:px-15 px-5 sm:px-8">
@@ -138,6 +171,105 @@ export default function CarouselSection() {
 				<StripedDivider patternId="carousel-divider-secondary" />
 			</div>
 		</section>
+	)
+}
+
+function ShowcaseCarousel() {
+	const [api, setApi] = useState<CarouselApi>()
+	const [current, setCurrent] = useState(0)
+
+	useEffect(() => {
+		if (!api) return
+
+		const updateCurrentSlide = () => {
+			setCurrent(api.selectedScrollSnap())
+		}
+
+		updateCurrentSlide()
+		api.on("select", updateCurrentSlide)
+		api.on("reInit", updateCurrentSlide)
+
+		return () => {
+			api.off("select", updateCurrentSlide)
+			api.off("reInit", updateCurrentSlide)
+		}
+	}, [api])
+
+	return (
+		<>
+			<div
+				className="bg-fill1/30 max-w-240 absolute bottom-0 left-1/2 h-[92%] w-[calc(100%_-_24px)] -translate-x-1/2 overflow-hidden rounded-t-xl backdrop-blur-xl sm:h-[78%] sm:w-[78%] lg:h-[80%]"
+				style={lightThemeVars}>
+				<div className="absolute inset-x-2 bottom-0 top-2">
+					<Carousel
+						opts={{ loop: true }}
+						setApi={setApi}
+						aria-label="Product inspiration gallery"
+						className="bg-bg h-full overflow-hidden rounded-t-lg [&_[data-slot=carousel-content]]:h-full"
+						style={darkThemeVars}>
+						<CarouselContent className="ml-0 h-full">
+							{carouselImages.map((image) => (
+								<CarouselItem key={image.src} className="h-full pl-0">
+									<div className="relative h-full w-full overflow-hidden rounded-t-lg">
+										<Image
+											src={image.src}
+											alt={image.alt}
+											fill
+											sizes="(min-width: 1024px) 960px, (min-width: 640px) 78vw, calc(100vw - 24px)"
+											className="object-cover"
+										/>
+									</div>
+								</CarouselItem>
+							))}
+						</CarouselContent>
+
+						<CarouselDots
+							api={api}
+							current={current}
+							className="bottom-4 left-1/2 -translate-x-1/2 sm:hidden"
+						/>
+					</Carousel>
+				</div>
+			</div>
+
+			<CarouselDots
+				api={api}
+				current={current}
+				className="bottom-4 right-4 hidden sm:flex min-[1320px]:right-[calc((100%_-_1320px)/2_+_16px)]"
+			/>
+		</>
+	)
+}
+
+function CarouselDots({
+	api,
+	current,
+	className,
+}: {
+	api: CarouselApi | undefined
+	current: number
+	className?: string
+}) {
+	return (
+		<div
+			className={cn(
+				"bg-fg/30 absolute z-10 flex gap-1.5 rounded-full p-1.5 backdrop-blur-md",
+				className
+			)}>
+			{carouselImages.map((image, index) => (
+				<button
+					key={image.src}
+					type="button"
+					onClick={() => api?.scrollTo(index)}
+					aria-label={`Go to slide ${index + 1}`}
+					aria-current={current === index ? "true" : undefined}
+					className={cn(
+						"size-2 cursor-pointer rounded-full transition-colors",
+						current === index ? "bg-fg" : "bg-fg-disabled"
+					)}
+				/>
+			))}
+		</div>
 	)
 }
 

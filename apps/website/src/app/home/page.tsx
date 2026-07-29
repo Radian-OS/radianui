@@ -88,6 +88,7 @@ export default function Page() {
 				<Component />
 
 				<PlaygroundSectionWrapper />
+				<CarouselSection />
 
 				<VideoSection />
 
@@ -97,7 +98,6 @@ export default function Page() {
 				<CTASection />
 
 				<Footer />
-				<CarouselSection />
 			</div>
 		</>
 	)
