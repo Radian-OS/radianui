@@ -1,5 +1,11 @@
 # radianui
 
+## 0.3.2
+
+### Patch Changes
+
+- fix font CSS variables not updated during `init`
+
 ## 0.3.0
 
 ### Minor Changes
