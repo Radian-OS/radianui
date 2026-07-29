@@ -6,8 +6,8 @@ export default function CTASection() {
 	return (
 		<section
 			aria-labelledby="build-section-title"
-			className="max-w-368 relative mx-auto w-full px-4 lg:px-5">
-			<div className="border-soft mx-auto flex max-w-[1440px] flex-col overflow-hidden border border-t-0">
+			className="max-w-368 relative mx-auto w-full px-4">
+			<div className="border-soft max-w-360 mx-auto flex flex-col overflow-hidden border border-t-0">
 				<div className="py-22 sm:py-30 sm:px-15 border-soft flex w-full flex-col items-center justify-center gap-8 overflow-hidden border-b px-5 md:py-40">
 					<div className="flex flex-col items-center justify-center gap-6">
 						<h2 className="heading-3 text-fg text-center text-[40px] font-medium leading-[52px]">
