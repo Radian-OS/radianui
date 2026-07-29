@@ -88,6 +88,7 @@ export default function Page() {
 				<Component />
 
 				<PlaygroundSectionWrapper />
+				<CarouselSection />
 
 				<div className="max-w-360 mx-auto w-full">
 					<div className="border-soft w-full border-b border-t lg:border-l lg:border-r">
@@ -143,7 +144,6 @@ export default function Page() {
 				<CTASection />
 
 				<Footer />
-				<CarouselSection />
 			</div>
 		</>
 	)
