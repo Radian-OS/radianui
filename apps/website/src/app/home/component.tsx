@@ -44,7 +44,7 @@ const Component = () => {
 	return (
 		<section
 			aria-labelledby="components-title"
-			className="max-w-368 relative mx-auto w-full px-4 lg:px-5">
+			className="max-w-368 relative mx-auto w-full px-0 sm:px-4 lg:px-5">
 			<div className="border-soft mx-auto flex max-w-[1440px] flex-col overflow-hidden border border-t-0">
 				<div className="md:px-15 md:py-30 flex flex-col gap-8 px-5 py-16 sm:px-10">
 					<div className="flex flex-col gap-4 sm:gap-6">
@@ -52,12 +52,12 @@ const Component = () => {
 							<ComponentIcon className="text-primary size-4" />
 							Components
 						</Badge>
-						<div className="w-full md:w-[940px]">
+						<div className="w-full lg:w-[940px]">
 							<h2 className="heading-4">
-								<span className="text-[32px] font-medium leading-[44px] tracking-[-0.32px]">
+								<span className="text-[24px] font-medium leading-[44px] tracking-[-0.32px] md:text-[30px] lg:text-[32px]">
 									Production-ready React and Figma UI components.
 								</span>{" "}
-								<span className="text-fg-secondary text-[32px] font-medium leading-[44px] tracking-[-0.32px]">
+								<span className="text-fg-secondary text-[24px] font-medium leading-[44px] tracking-[-0.32px] md:text-[30px] lg:text-[32px]">
 									Build modern interfaces faster with customizable React
 									components and Figma UI components.
 								</span>

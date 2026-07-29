@@ -49,7 +49,7 @@ const DiagonalDivider = ({
 							y1="12.0005"
 							x2="8.19407"
 							y2="-0.286788"
-							stroke="#E9EAEC"
+							className="stroke-border"
 						/>
 					</g>
 				</pattern>
