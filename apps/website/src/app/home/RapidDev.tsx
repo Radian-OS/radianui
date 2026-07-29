@@ -1,6 +1,8 @@
 import React from "react"
 import { Dot } from "lucide-react"
 import Image from "next/image"
+import { CreditCardUsageAnimation } from "@/components/effects/credit-card-usage-animation"
+import { LibraryComponentsCard } from "@/components/effects/library-primitives-card-animation"
 import { Badge, BadgeDot } from "@/registry/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 import DiagonalDivider from "./SvgDivider"
@@ -100,14 +102,9 @@ const RapidDev = () => {
 								meaningful properties for easier customization
 							</p>
 						</div>
-						<div className="relative h-[214px] overflow-hidden md:h-[414px] lg:h-[430px]">
-							<div className="scale-120 absolute bottom-[10rem] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 lg:bottom-0">
-								<Image
-									width={600}
-									height={800}
-									alt=""
-									src="/newhome/credit.png"
-								/>
+						<div className="relative flex h-[260px] justify-center overflow-hidden md:h-[414px] lg:h-[430px]">
+							<div className="shrink-0 origin-top scale-75 pt-2 sm:scale-90 sm:pt-4 md:scale-100">
+								<CreditCardUsageAnimation />
 							</div>
 							<div className="pointer-events-none absolute bottom-0 left-0 right-0 h-[180px] bg-[linear-gradient(0deg,#FFF_0%,rgba(255,255,255,0)_100%)] dark:bg-[linear-gradient(0deg,oklch(0.144_0.003_264.025)_0%,oklch(0.144_0.003_264.025/0)_100%)]" />
 						</div>
@@ -123,10 +120,8 @@ const RapidDev = () => {
 							</p>
 						</div>
 
-						<div className="relative h-[214px] overflow-hidden md:h-[414px] lg:h-[430px]">
-							<div className="absolute bottom-[10rem] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 lg:bottom-0">
-								<Image width={400} height={800} alt="" src="/newhome/app.png" />
-							</div>
+						<div className="relative flex h-[260px] justify-center overflow-hidden md:h-[420px] lg:h-[430px]">
+							<LibraryComponentsCard className="shrink-0 origin-top scale-75 sm:scale-90 md:scale-100" />
 						</div>
 					</div>
 				</div>

@@ -44,7 +44,7 @@ const Component = () => {
 	return (
 		<section
 			aria-labelledby="components-title"
-			className="max-w-368 relative mx-auto w-full px-4">
+			className="relative mx-auto w-full max-w-[1440px]">
 			<div className="border-soft max-w-360 mx-auto flex flex-col overflow-hidden border border-t-0">
 				<div className="md:px-15 md:py-30 flex flex-col gap-8 px-5 py-16 sm:px-10">
 					<div className="flex flex-col gap-4 sm:gap-6">
