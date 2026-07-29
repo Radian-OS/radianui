@@ -7,6 +7,7 @@ export type BadgeProps = Omit<React.HTMLAttributes<HTMLDivElement>, "color"> &
 	VariantProps<typeof badgeVariants> & {
 		asChild?: boolean
 	}
+
 export type BadgeDotProps = React.HTMLAttributes<HTMLSpanElement>
 
 const badgeVariants = cva(
@@ -15,7 +16,7 @@ const badgeVariants = cva(
 		variants: {
 			variant: {
 				strong: "",
-				outline: "bg-transparent",
+				outline: "",
 				soft: "",
 			},
 			size: {
@@ -85,36 +86,36 @@ const badgeVariants = cva(
 				variant: "strong",
 				color: "neutral",
 				className:
-					"bg-black-inverse text-white-inverse border-alpha border font-medium",
+					"bg-black-inverse border border-alpha text-white-inverse font-medium",
 			},
 			// outline
 			{
 				variant: "outline",
 				color: "primary",
 				className:
-					"text-primary-text border-primary-border border bg-transparent",
+					"text-primary-text border border-primary-border bg-transparent",
 			},
 			{
 				variant: "outline",
 				color: "info",
-				className: "text-info-text border-info-border border bg-transparent",
+				className: "text-info-text border border-info-border bg-transparent",
 			},
 			{
 				variant: "outline",
 				color: "success",
 				className:
-					"text-success-text border-success-border border bg-transparent",
+					"text-success-text border border-success-border bg-transparent",
 			},
 			{
 				variant: "outline",
 				color: "error",
-				className: "text-error-text border-error-border border bg-transparent",
+				className: "text-error-text border border-error-border bg-transparent",
 			},
 			{
 				variant: "outline",
 				color: "warning",
 				className:
-					"text-warning-text border-warning-border border bg-transparent",
+					"text-warning-text border border-warning-border bg-transparent",
 			},
 			{
 				variant: "outline",
@@ -426,6 +427,7 @@ function Badge({
 			</Slot>
 		)
 	}
+
 	return (
 		<span
 			className={cn(badgeVariants({ variant, size, color }), className)}
@@ -434,6 +436,7 @@ function Badge({
 		</span>
 	)
 }
+
 Badge.displayName = "Badge"
 
 function BadgeDot({ className, ...props }: BadgeDotProps) {

@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useId } from "react"
 
 interface DiagonalDividerProps {
 	className?: string
@@ -13,6 +13,10 @@ const DiagonalDivider = ({
 	height = "48",
 	viewBox = "0 0 1440 48",
 }: DiagonalDividerProps) => {
+	const uniqueId = useId()
+	const patternId = `pattern_diagonal_${uniqueId}`
+	const innerId = `pattern_diagonal_inner_${uniqueId}`
+
 	return (
 		<svg
 			width={width}
@@ -22,10 +26,10 @@ const DiagonalDivider = ({
 			className={className}
 			xmlns="http://www.w3.org/2000/svg"
 			xmlnsXlink="http://www.w3.org/1999/xlink">
-			<rect width={width} height={height} fill="url(#pattern0_2797_43017)" />
+			<rect width={width} height={height} fill={`url(#${patternId})`} />
 			<defs>
 				<pattern
-					id="pattern0_2797_43017"
+					id={patternId}
 					patternUnits="userSpaceOnUse"
 					patternTransform="matrix(8.60365 0 0 12.2873 -0.819336 -0.573559)"
 					preserveAspectRatio="none"
@@ -33,18 +37,12 @@ const DiagonalDivider = ({
 					width="1"
 					height="1">
 					<use
-						xlinkHref="#pattern0_2797_43017_inner"
+						xlinkHref={`#${innerId}`}
 						transform="translate(-8.60365 -12.2873)"
 					/>
-					<use
-						xlinkHref="#pattern0_2797_43017_inner"
-						transform="translate(0 -12.2873)"
-					/>
-					<use
-						xlinkHref="#pattern0_2797_43017_inner"
-						transform="translate(-8.60365 0)"
-					/>
-					<g id="pattern0_2797_43017_inner">
+					<use xlinkHref={`#${innerId}`} transform="translate(0 -12.2873)" />
+					<use xlinkHref={`#${innerId}`} transform="translate(-8.60365 0)" />
+					<g id={innerId}>
 						<line
 							opacity="0.8"
 							x1="-0.409576"
