@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import Image from "next/image"
+import { cn } from "@/lib/utils"
 import { InfiniteScroll } from "@/registry/animated/infinite-scroll"
 
 const brands = [
@@ -65,12 +66,12 @@ export default function BrandSection() {
 				onPointerLeave={() => setIsPaused(false)}>
 				<h2
 					id="brand-section-title"
-					className="text-fg-secondary border-soft h-15 flex w-full shrink-0 items-center justify-center border-b px-4 text-center text-sm font-normal leading-5 lg:h-full lg:w-72 lg:border-b-0 lg:border-r lg:px-10 lg:py-8">
+					className="text-fg-secondary border-soft flex w-full shrink-0 items-center justify-center border-b px-8 py-[15px] text-center text-sm font-normal leading-5 md:py-5 lg:h-full lg:w-72 lg:border-b-0 lg:border-r lg:px-10 lg:py-[30px]">
 					Teams using Radian to Empower their Designs
 				</h2>
 
 				<div
-					className="h-18 w-full min-w-0 flex-none lg:h-full lg:flex-1"
+					className="h-18 w-full min-w-0 flex-none md:h-20 lg:h-full lg:flex-1"
 					aria-hidden="true">
 					<InfiniteScroll
 						duration={28}
@@ -78,23 +79,38 @@ export default function BrandSection() {
 						paused={isPaused}
 						className="h-full p-0 [--gap:0px]">
 						{brands.map((brand) => (
-							<div
-								key={brand.name}
-								className="border-soft flex h-full w-36 shrink-0 items-center justify-center border-r px-6 py-4 lg:w-56 lg:px-10 lg:py-8">
-								<span className="flex h-10 items-center justify-center">
-									<Image
-										src={brand.src}
-										alt=""
-										width={brand.width}
-										height={brand.height}
-										className="max-w-30 lg:max-w-35 max-h-9 object-contain"
-									/>
-								</span>
-							</div>
+							<BrandLogo key={brand.name} brand={brand} />
 						))}
 					</InfiniteScroll>
 				</div>
 			</div>
 		</section>
+	)
+}
+
+function BrandLogo({ brand }: { brand: (typeof brands)[number] }) {
+	const [isHovered, setIsHovered] = useState(false)
+
+	return (
+		<div
+			className="border-soft flex h-full w-36 shrink-0 items-center justify-center border-r px-8 py-[15px] md:py-5 lg:w-56 lg:px-10 lg:py-[30px]"
+			onPointerEnter={() => setIsHovered(true)}
+			onPointerLeave={() => setIsHovered(false)}>
+			<span
+				className={cn(
+					"relative flex h-10 w-full items-center justify-center transition-[filter] duration-200",
+					isHovered
+						? "dark:hue-rotate-180 dark:invert"
+						: "grayscale dark:invert"
+				)}>
+				<Image
+					src={brand.src}
+					alt=""
+					width={brand.width}
+					height={brand.height}
+					className="lg:max-w-35 max-h-9 max-w-full object-contain"
+				/>
+			</span>
+		</div>
 	)
 }
