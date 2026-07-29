@@ -21,16 +21,16 @@ const RapidDev = () => {
 						<BadgeDot className="bg-primary" />
 						Rapid Development
 					</Badge>
-					<div className="w-full lg:w-[1012px]">
-						<h2 className="heading-3 text-[24px] font-medium leading-[52px] md:text-[36px] lg:text-[40px]">
-							Everything you need to ship polished interfaces
-						</h2>
-						<h2 className="heading-3 text-fg-secondary text-[24px] font-medium leading-[52px] md:text-[36px] lg:text-[40px]">
-							Production ready React components,{" "}
-							<span className="bg-[linear-gradient(90deg,var(--primary-border,#9981F8)_72.12%,var(--utility-Fuchsia-border,#F881F8)_88.94%)] bg-clip-text text-transparent">
-								Figma UI Kit
+					<div className="w-full lg:w-[950px]">
+						<h2 className="heading-3 text-[24px] font-medium leading-[36px] md:text-[36px] md:leading-[44px] lg:text-[40px] lg:leading-[52px]">
+							Everything you need to ship polished interfaces{" "}
+							<span className="heading-3 text-fg-secondary text-[24px] font-medium leading-[36px] md:text-[36px] md:leading-[44px] lg:text-[40px] lg:leading-[52px]">
+								Production ready React components,{" "}
+								<span className="bg-[linear-gradient(90deg,var(--primary-border,#9981F8)_72.12%,var(--utility-Fuchsia-border,#F881F8)_88.94%)] bg-clip-text text-transparent">
+									Figma UI Kit
+								</span>
+								, and reusable UI blocks.
 							</span>
-							, and reusable UI blocks.
 						</h2>
 					</div>
 				</div>
