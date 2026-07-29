@@ -17,6 +17,7 @@ import { getHomepageStructuredData } from "@/lib/structured-data"
 import { BorderBeam } from "@/registry/animated/border-beam"
 import { Badge } from "@/registry/ui/badge"
 import RapidDev from "./RapidDev"
+import DiagonalDivider from "./SvgDivider"
 import CTASection from "./build"
 import Component from "./component"
 import FAQSection from "./faq"
@@ -92,14 +93,20 @@ export default function Page() {
 				<PlaygroundSectionWrapper />
 
 				<div className="max-w-360 mx-auto w-full">
-					<div className="border-soft w-full border-b border-t lg:border-l lg:border-r">
+					<div className="border-soft w-full overflow-clip border-b border-t lg:border-l lg:border-r">
+						<DiagonalDivider />
+					</div>
+				</div>
+
+				{/* <div className="max-w-360 mx-auto w-full">
+					<div className="border-soft overflow-clip w-full border-b border-t lg:border-l lg:border-r">
 						<svg
 							width="100%"
-							height="32"
+							height="48"
 							fill="none"
 							xmlns="http://www.w3.org/2000/svg"
 							xmlnsXlink="http://www.w3.org/1999/xlink">
-							<rect width="100%" height="32" fill="url(#pattern0_3100_26385)" />
+							<rect width="100%" height="48" fill="url(#pattern0_3100_26385)" />
 							<defs>
 								<pattern
 									id="pattern0_3100_26385"
@@ -135,9 +142,15 @@ export default function Page() {
 							</defs>
 						</svg>
 					</div>
-				</div>
+				</div> */}
 
 				<UIBlocksSection />
+
+				<div className="max-w-360 mx-auto w-full">
+					<div className="border-soft w-full overflow-clip border-b border-t lg:border-l lg:border-r">
+						<DiagonalDivider />
+					</div>
+				</div>
 
 				{/* <FAQSection /> */}
 				<FAQSection />
