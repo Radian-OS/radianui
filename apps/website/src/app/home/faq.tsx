@@ -11,7 +11,7 @@ export default function FAQSection() {
 	return (
 		<section
 			aria-labelledby="faq-title"
-			className="max-w-368 relative mx-auto w-full px-4">
+			className="relative mx-auto w-full max-w-[1440px]">
 			<div className="border-soft max-w-360 mx-auto flex flex-col overflow-hidden border border-t-0">
 				<div className="md:px-15 border-soft flex w-full flex-col gap-12 border-b px-0 sm:px-5 lg:flex-row">
 					<div className="pt-15 flex flex-1 flex-col gap-8 px-5 sm:px-0">

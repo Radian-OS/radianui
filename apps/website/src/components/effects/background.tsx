@@ -15,10 +15,10 @@ export default function Background({
 			{/* Neutral background overlay */}
 			<div className="from-bg via-bg/0 to-bg bg-linear-to-b absolute inset-0 top-[380px] z-20 h-full max-h-[600px] w-full to-90% md:max-h-[960px]" />
 
-			<div className="pointer-events-none absolute -inset-x-4 top-0 z-[25] hidden h-full md:-inset-x-5 lg:block">
-				<div className="max-w-368 relative mx-auto h-full px-4 md:px-5">
-					<div className="bg-soft absolute left-4 top-0 h-full w-px md:left-5" />
-					<div className="bg-soft absolute right-4 top-0 h-full w-px md:right-5" />
+			<div className="pointer-events-none absolute -inset-x-4 top-0 z-[25] mx-auto hidden h-full w-full max-w-[1440px] md:-inset-x-5 lg:block">
+				<div className="relative mx-auto h-full max-w-[1440px] px-4 md:px-5">
+					<div className="bg-soft absolute left-0 top-0 h-full w-px" />
+					<div className="bg-soft absolute right-0 top-0 h-full w-px" />
 				</div>
 			</div>
 
