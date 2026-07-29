@@ -11,7 +11,6 @@ import {
 import Image from "next/image"
 import { darkThemeVars, lightThemeVars } from "@/components/theme/theme-vars"
 import { cn } from "@/lib/utils"
-import { InfiniteScroll } from "@/registry/animated/infinite-scroll"
 import { Badge, BadgeDot } from "@/registry/ui/badge"
 import {
 	Carousel,
@@ -54,30 +53,29 @@ const featureItems = [
 	},
 ] as const
 
-const carouselImages = [
-	{
-		src: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=85&auto=format&fit=crop",
-		alt: "Mountain landscape beneath a cloudy sky",
-	},
-	{
-		src: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1600&q=85&auto=format&fit=crop",
-		alt: "Sunlight breaking through a mountain valley",
-	},
-	{
-		src: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=1600&q=85&auto=format&fit=crop",
-		alt: "Fog drifting across a green forest",
-	},
-	{
-		src: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1600&q=85&auto=format&fit=crop",
-		alt: "A path through a lush forest",
-	},
-	{
-		src: "https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=1600&q=85&auto=format&fit=crop",
-		alt: "A wide valley surrounded by mountains",
-	},
-] as const
-
 export default function CarouselSection() {
+	const [api, setApi] = useState<CarouselApi>()
+	const [current, setCurrent] = useState(0)
+	const [snapCount, setSnapCount] = useState<number>(featureItems.length)
+
+	useEffect(() => {
+		if (!api) return
+
+		const updateCurrentSlide = () => {
+			setCurrent(api.selectedScrollSnap())
+			setSnapCount(api.scrollSnapList().length)
+		}
+
+		updateCurrentSlide()
+		api.on("select", updateCurrentSlide)
+		api.on("reInit", updateCurrentSlide)
+
+		return () => {
+			api.off("select", updateCurrentSlide)
+			api.off("reInit", updateCurrentSlide)
+		}
+	}, [api])
+
 	return (
 		<section
 			className="bg-bg text-fg dark relative z-20 w-full"
@@ -147,23 +145,38 @@ export default function CarouselSection() {
 							className="object-cover"
 						/>
 					</div>
-					<ShowcaseCarousel />
+					<ShowcaseFrame api={api} current={current} snapCount={snapCount} />
 				</div>
 
 				<div className="lg:px-15 px-5 sm:px-8">
-					<InfiniteScroll duration={24} className="w-full p-0 [--gap:20px]">
-						{featureItems.map(({ icon: Icon, title, description }) => (
-							<div
-								key={title}
-								className="w-90 flex shrink-0 flex-col gap-8 pr-8">
-								<Icon className="text-fg-tertiary size-6" />
-								<div className="flex flex-col gap-3">
-									<h4 className="font-medium">{title}</h4>
-									<p className="text-fg-secondary">{description}</p>
-								</div>
-							</div>
-						))}
-					</InfiniteScroll>
+					<Carousel
+						opts={{
+							align: "start",
+							loop: true,
+							slidesToScroll: 1,
+							breakpoints: {
+								"(min-width: 640px)": { slidesToScroll: 2 },
+							},
+						}}
+						setApi={setApi}
+						aria-label="Product feature highlights"
+						className="w-full">
+						<CarouselContent className="ml-0">
+							{featureItems.map(({ icon: Icon, title, description }) => (
+								<CarouselItem
+									key={title}
+									className="basis-full pl-0 sm:basis-1/2">
+									<div className="flex h-full flex-col gap-8 pr-8">
+										<Icon className="text-fg-tertiary size-6" />
+										<div className="flex flex-col gap-3">
+											<h4 className="font-medium">{title}</h4>
+											<p className="text-fg-secondary">{description}</p>
+										</div>
+									</div>
+								</CarouselItem>
+							))}
+						</CarouselContent>
+					</Carousel>
 				</div>
 			</div>
 
@@ -174,67 +187,38 @@ export default function CarouselSection() {
 	)
 }
 
-function ShowcaseCarousel() {
-	const [api, setApi] = useState<CarouselApi>()
-	const [current, setCurrent] = useState(0)
-
-	useEffect(() => {
-		if (!api) return
-
-		const updateCurrentSlide = () => {
-			setCurrent(api.selectedScrollSnap())
-		}
-
-		updateCurrentSlide()
-		api.on("select", updateCurrentSlide)
-		api.on("reInit", updateCurrentSlide)
-
-		return () => {
-			api.off("select", updateCurrentSlide)
-			api.off("reInit", updateCurrentSlide)
-		}
-	}, [api])
-
+function ShowcaseFrame({
+	api,
+	current,
+	snapCount,
+}: {
+	api: CarouselApi | undefined
+	current: number
+	snapCount: number
+}) {
 	return (
 		<>
 			<div
 				className="bg-fill1/30 max-w-240 absolute bottom-0 left-1/2 h-[92%] w-[calc(100%_-_24px)] -translate-x-1/2 overflow-hidden rounded-t-xl backdrop-blur-xl sm:h-[78%] sm:w-[78%] lg:h-[80%]"
 				style={lightThemeVars}>
 				<div className="absolute inset-x-2 bottom-0 top-2">
-					<Carousel
-						opts={{ loop: true }}
-						setApi={setApi}
-						aria-label="Product inspiration gallery"
-						className="bg-bg h-full overflow-hidden rounded-t-lg [&_[data-slot=carousel-content]]:h-full"
-						style={darkThemeVars}>
-						<CarouselContent className="ml-0 h-full">
-							{carouselImages.map((image) => (
-								<CarouselItem key={image.src} className="h-full pl-0">
-									<div className="relative h-full w-full overflow-hidden rounded-t-lg">
-										<Image
-											src={image.src}
-											alt={image.alt}
-											fill
-											sizes="(min-width: 1024px) 960px, (min-width: 640px) 78vw, calc(100vw - 24px)"
-											className="object-cover"
-										/>
-									</div>
-								</CarouselItem>
-							))}
-						</CarouselContent>
-
-						<CarouselDots
-							api={api}
-							current={current}
-							className="bottom-4 left-1/2 -translate-x-1/2 sm:hidden"
-						/>
-					</Carousel>
+					<div
+						className="bg-bg h-full w-full rounded-t-lg"
+						style={darkThemeVars}
+					/>
+					<CarouselDots
+						api={api}
+						current={current}
+						snapCount={snapCount}
+						className="bottom-4 left-1/2 -translate-x-1/2 sm:hidden"
+					/>
 				</div>
 			</div>
 
 			<CarouselDots
 				api={api}
 				current={current}
+				snapCount={snapCount}
 				className="bottom-4 right-4 hidden sm:flex min-[1320px]:right-[calc((100%_-_1320px)/2_+_16px)]"
 			/>
 		</>
@@ -244,10 +228,12 @@ function ShowcaseCarousel() {
 function CarouselDots({
 	api,
 	current,
+	snapCount,
 	className,
 }: {
 	api: CarouselApi | undefined
 	current: number
+	snapCount: number
 	className?: string
 }) {
 	return (
@@ -256,9 +242,9 @@ function CarouselDots({
 				"bg-fg/30 absolute z-10 flex gap-1.5 rounded-full p-1.5 backdrop-blur-md",
 				className
 			)}>
-			{carouselImages.map((image, index) => (
+			{Array.from({ length: snapCount }, (_, index) => (
 				<button
-					key={image.src}
+					key={index}
 					type="button"
 					onClick={() => api?.scrollTo(index)}
 					aria-label={`Go to slide ${index + 1}`}
