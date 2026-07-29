@@ -44,8 +44,8 @@ const Component = () => {
 	return (
 		<section
 			aria-labelledby="components-title"
-			className="max-w-368 relative z-20 mx-auto w-full px-4 lg:px-5">
-			<div className="border-soft z-10 mx-auto flex max-w-[1440px] flex-col overflow-hidden border border-t-0">
+			className="max-w-368 relative mx-auto w-full px-4 lg:px-5">
+			<div className="border-soft mx-auto flex max-w-[1440px] flex-col overflow-hidden border border-t-0">
 				<div className="md:px-15 md:py-30 flex flex-col gap-8 px-5 py-16 sm:px-10">
 					<div className="flex flex-col gap-4 sm:gap-6">
 						<Badge color="primary" size="28" variant="soft">
@@ -89,7 +89,7 @@ const Component = () => {
 						</div>
 					</div>
 				</div>
-				<div className="border-soft relative z-10 w-full border-y px-5">
+				<div className="border-soft relative w-full border-y px-5">
 					<Carousel
 						setApi={onApiChange}
 						opts={{
@@ -114,7 +114,12 @@ const Component = () => {
 						</CarouselContent>
 					</Carousel>
 				</div>
-				<DiagonalDivider />
+				<DiagonalDivider className="hidden sm:block" />
+				<DiagonalDivider
+					className="block sm:hidden"
+					height={32}
+					viewBox="0 0 1440 32"
+				/>
 			</div>
 		</section>
 	)

@@ -44,9 +44,7 @@ export type DropdownRadioItemProps = React.ComponentProps<
 
 export type DropdownGroupProps = React.ComponentProps<
 	typeof DropdownMenuPrimitive.Group
-> & {
-	title?: string
-}
+>
 
 export type DropdownSubProps = React.ComponentPropsWithoutRef<
 	typeof DropdownMenuPrimitive.Sub
@@ -117,8 +115,7 @@ function DropdownContent({ className, ...props }: DropdownContentProps) {
 			data-slot="dropdown-menu-content"
 			align="start"
 			className={cn(
-				"border-border bg-popover min-w-[var(--radix-dropdown-menu-trigger-width)] gap-1 rounded-none border p-2 shadow-none",
-				"no-scrollbar z-50 flex flex-col overflow-x-visible overflow-y-scroll",
+				"no-scrollbar border-border bg-elevation-level2 drop-shadow-xs z-50 flex min-w-[var(--radix-dropdown-menu-trigger-width)] flex-col gap-0.5 overflow-x-visible overflow-y-scroll rounded-lg border p-1.5",
 				"data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
 				className
 			)}
@@ -214,8 +211,7 @@ function DropdownRadioItem({
 			) : (
 				<span
 					className={cn(
-						"size-5",
-						"absolute flex items-center justify-center",
+						"absolute flex size-5 items-center justify-center",
 						indicatorPosition === "left" ? "start-2" : "end-2"
 					)}>
 					<DropdownMenuPrimitive.ItemIndicator>
@@ -237,18 +233,13 @@ function DropdownGroup({
 		<DropdownMenuPrimitive.Group
 			data-slot="dropdown-menu-group"
 			className={cn(
-				"gap-1 px-0 py-0",
-				"z-50 flex flex-col items-stretch justify-start",
+				"z-50 flex flex-col items-stretch justify-start gap-0.5 px-0 py-0",
 				className
 			)}
 			data-radix-dropdown-menu-group
 			{...props}>
 			{title && (
-				<label
-					className={cn(
-						"text-fg-tertiary h-8 p-3 text-xs/5 font-medium uppercase",
-						"flex items-center gap-2.5"
-					)}>
+				<label className="text-fg-tertiary text-xs/4.5 flex h-7 items-center gap-2.5 p-2 font-medium uppercase">
 					{title}
 				</label>
 			)}
@@ -288,8 +279,7 @@ function DropdownSubContent({ className, ...props }: DropdownSubContentProps) {
 			<DropdownMenuPrimitive.SubContent
 				data-slot="dropdown-menu-sub-content"
 				className={cn(
-					"border-border bg-popover min-w-36 rounded-none border p-2 shadow-none",
-					"z-50 flex flex-col items-stretch justify-start",
+					"border-border bg-elevation-level2 drop-shadow-xs z-50 flex min-w-36 flex-col items-stretch justify-start rounded-lg border p-1.5",
 					"data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
 					className
 				)}
@@ -306,8 +296,8 @@ function DropdownLabel({ className, inset, ...props }: DropdownLabelProps) {
 		<DropdownMenuPrimitive.Label
 			data-slot="dropdown-menu-label"
 			className={cn(
-				"text-fg-tertiary px-3 py-2 text-xs font-medium",
-				inset && "pl-10",
+				"text-fg-tertiary px-2 py-1.5 text-xs font-medium",
+				{ "pl-8": inset },
 				className
 			)}
 			{...props}
@@ -320,8 +310,7 @@ function DropdownShortcut({ className, ...props }: DropdownShortcutProps) {
 		<span
 			data-slot="dropdown-menu-shortcut"
 			className={cn(
-				"text-fg-secondary text-xs tracking-widest",
-				"ml-auto",
+				"text-fg-secondary ml-auto text-xs tracking-widest",
 				className
 			)}
 			{...props}
@@ -333,7 +322,7 @@ function DropdownDivider({ className, ...props }: DropdownDividerProps) {
 	return (
 		<DropdownMenuPrimitive.Separator
 			data-slot="dropdown-menu-separator"
-			className={cn("bg-soft-alpha -mx-2 my-1.5 h-px", className)}
+			className={cn("bg-soft-alpha -mx-1.5 my-1 h-px", className)}
 			{...props}
 		/>
 	)

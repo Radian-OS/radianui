@@ -1,6 +1,7 @@
 import { MessageCircleQuestionIcon } from "lucide-react"
 import { Badge } from "@/styles/default/ui/badge"
-import FAQAccordion from "./faq-accordion"
+
+// import FAQAccordion from "./faq-accordion"
 
 export default function FAQSection() {
 	return (
@@ -88,7 +89,7 @@ export default function FAQSection() {
 				</div>
 
 				<div className="w-full max-w-full xl:max-w-[640px]">
-					<FAQAccordion />
+					{/* <FAQAccordion /> */}
 				</div>
 			</div>
 		</div>

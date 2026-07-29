@@ -231,8 +231,7 @@ function CarouselNext({
 			disabled={!canScrollNext}
 			onClick={scrollNext}
 			{...props}>
-			{children ?? <ChevronRight />}
-			<span className="sr-only">Next slide</span>
+			{children ?? <ChevronRight />} <span className="sr-only">Next slide</span>
 		</IconButton>
 	)
 }

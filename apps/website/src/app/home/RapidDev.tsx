@@ -75,7 +75,12 @@ const RapidDev = () => {
 					</div>
 				</div>
 
-				<DiagonalDivider />
+				<DiagonalDivider className="hidden sm:block" />
+				<DiagonalDivider
+					className="block sm:hidden"
+					height={32}
+					viewBox="0 0 1440 32"
+				/>
 
 				<div className="bg-fill1 border-soft flex flex-col border-t lg:flex-row">
 					<div className="border-soft border-b lg:flex-1 lg:border-r">
@@ -144,7 +149,12 @@ const RapidDev = () => {
 					</div>
 				</div>
 
-				<DiagonalDivider />
+				<DiagonalDivider className="hidden sm:block" />
+				<DiagonalDivider
+					className="block sm:hidden"
+					height={32}
+					viewBox="0 0 1440 32"
+				/>
 
 				<div className="border-soft flex flex-col border-t lg:flex-row">
 					<div className="border-soft overflow-hidden border-b lg:flex-1 lg:border-r">
@@ -199,7 +209,12 @@ const RapidDev = () => {
 					</div>
 				</div>
 
-				<DiagonalDivider />
+				<DiagonalDivider className="hidden sm:block" />
+				<DiagonalDivider
+					className="block sm:hidden"
+					height={32}
+					viewBox="0 0 1440 32"
+				/>
 			</div>
 		</section>
 	)
