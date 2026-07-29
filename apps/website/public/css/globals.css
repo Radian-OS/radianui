@@ -1,6 +1,13 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+
 @import "./utility.css";
+
+
+
+
+
+
 
 @custom-variant dark (&:is(.dark *));
 
@@ -266,6 +273,7 @@
 @utility heading-1 {
 	@apply font-heading text-[2.25rem] font-semibold leading-[2.75rem];
 		letter-spacing: -1px;
+
 
 	@media (width >=theme(--breakpoint-sm)) {
 		font-size: 3rem;

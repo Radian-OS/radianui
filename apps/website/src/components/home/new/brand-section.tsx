@@ -2,7 +2,6 @@
 
 import { useState } from "react"
 import Image from "next/image"
-import { cn } from "@/lib/utils"
 import { InfiniteScroll } from "@/registry/animated/infinite-scroll"
 
 const brands = [
@@ -46,7 +45,6 @@ const brands = [
 
 export default function BrandSection() {
 	const [isPaused, setIsPaused] = useState(false)
-	const [hoveredBrand, setHoveredBrand] = useState<string | null>(null)
 
 	return (
 		<section
@@ -62,51 +60,38 @@ export default function BrandSection() {
 			/>
 
 			<div
-				className="border-soft bg-bg h-26 flex min-w-0 overflow-hidden border-y"
+				className="border-soft bg-bg lg:h-26 flex h-auto min-w-0 flex-col overflow-hidden border-y lg:flex-row"
 				onPointerEnter={() => setIsPaused(true)}
-				onPointerLeave={() => {
-					setIsPaused(false)
-					setHoveredBrand(null)
-				}}>
+				onPointerLeave={() => setIsPaused(false)}>
 				<h2
 					id="brand-section-title"
-					className="text-fg-secondary border-soft flex h-full w-72 shrink-0 items-center justify-center border-r px-10 py-8 text-center text-sm font-normal leading-5">
+					className="text-fg-secondary border-soft h-15 flex w-full shrink-0 items-center justify-center border-b px-4 text-center text-sm font-normal leading-5 lg:h-full lg:w-72 lg:border-b-0 lg:border-r lg:px-10 lg:py-8">
 					Teams using Radian to Empower their Designs
 				</h2>
 
-				<div className="min-w-0 flex-1" aria-hidden="true">
+				<div
+					className="h-18 w-full min-w-0 flex-none lg:h-full lg:flex-1"
+					aria-hidden="true">
 					<InfiniteScroll
 						duration={28}
 						pauseOnHover={false}
 						paused={isPaused}
 						className="h-full p-0 [--gap:0px]">
-						{brands.map((brand) => {
-							const isHovered = hoveredBrand === brand.name
-
-							return (
-								<div
-									key={brand.name}
-									className="border-soft flex h-full w-56 shrink-0 items-center justify-center border-r px-10 py-8"
-									onPointerEnter={() => setHoveredBrand(brand.name)}
-									onPointerLeave={() => setHoveredBrand(null)}>
-									<span
-										className={cn(
-											"flex h-10 items-center justify-center transition-[filter,opacity] duration-300",
-											isHovered
-												? "opacity-100 grayscale-0 dark:brightness-100 dark:invert-0"
-												: "opacity-70 grayscale dark:brightness-0 dark:invert"
-										)}>
-										<Image
-											src={brand.src}
-											alt=""
-											width={brand.width}
-											height={brand.height}
-											className="max-w-35 max-h-9 object-contain"
-										/>
-									</span>
-								</div>
-							)
-						})}
+						{brands.map((brand) => (
+							<div
+								key={brand.name}
+								className="border-soft flex h-full w-36 shrink-0 items-center justify-center border-r px-6 py-4 lg:w-56 lg:px-10 lg:py-8">
+								<span className="flex h-10 items-center justify-center">
+									<Image
+										src={brand.src}
+										alt=""
+										width={brand.width}
+										height={brand.height}
+										className="max-w-30 lg:max-w-35 max-h-9 object-contain"
+									/>
+								</span>
+							</div>
+						))}
 					</InfiniteScroll>
 				</div>
 			</div>
