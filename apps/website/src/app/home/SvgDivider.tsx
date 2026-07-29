@@ -5,6 +5,7 @@ interface DiagonalDividerProps {
 	width?: string | number
 	height?: string | number
 	viewBox?: string
+	preserveAspectRatio?: string
 }
 
 const DiagonalDivider = ({
@@ -12,6 +13,7 @@ const DiagonalDivider = ({
 	width = "1440",
 	height = "48",
 	viewBox = "0 0 1440 48",
+	preserveAspectRatio,
 }: DiagonalDividerProps) => {
 	const uniqueId = useId()
 	const patternId = `pattern_diagonal_${uniqueId}`
@@ -22,6 +24,7 @@ const DiagonalDivider = ({
 			width={width}
 			height={height}
 			viewBox={viewBox}
+			preserveAspectRatio={preserveAspectRatio}
 			fill="none"
 			className={className}
 			xmlns="http://www.w3.org/2000/svg"

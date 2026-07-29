@@ -9,6 +9,7 @@ import {
 	SwatchBook,
 } from "lucide-react"
 import Image from "next/image"
+import SvgDivider from "@/app/home/SvgDivider"
 import { darkThemeVars, lightThemeVars } from "@/components/theme/theme-vars"
 import { cn } from "@/lib/utils"
 import { Badge, BadgeDot } from "@/registry/ui/badge"
@@ -117,7 +118,12 @@ export default function CarouselSection() {
 					Animation Section (No Fixed Height Now, will adjust according to
 					animation)
 				</div>
-				<StripedDivider patternId="carousel-divider-primary" />
+				<SvgDivider
+					height={50}
+					viewBox="0 0 1440 50"
+					preserveAspectRatio="none"
+					className="border-soft block h-[50px] w-full border-y"
+				/>
 			</div>
 
 			<div className="border-soft max-w-360 pt-30 mx-auto flex w-full flex-col gap-10 border-x pb-20 lg:gap-20">
@@ -181,7 +187,12 @@ export default function CarouselSection() {
 			</div>
 
 			<div className="border-soft max-w-360 mx-auto w-full border-x">
-				<StripedDivider patternId="carousel-divider-secondary" />
+				<SvgDivider
+					height={50}
+					viewBox="0 0 1440 50"
+					preserveAspectRatio="none"
+					className="border-soft block h-[50px] w-full border-y"
+				/>
 			</div>
 		</section>
 	)
@@ -256,36 +267,5 @@ function CarouselDots({
 				/>
 			))}
 		</div>
-	)
-}
-
-function StripedDivider({ patternId }: { patternId: string }) {
-	return (
-		<svg
-			aria-hidden="true"
-			className="border-soft block h-[50px] w-full max-w-full overflow-hidden border-y"
-			width="100%"
-			height="50"
-			preserveAspectRatio="none"
-			xmlns="http://www.w3.org/2000/svg">
-			<rect width="100%" height="100%" fill={`url(#${patternId})`} />
-			<defs>
-				<pattern
-					id={patternId}
-					width="9"
-					height="9"
-					patternUnits="userSpaceOnUse"
-					patternTransform="rotate(35)">
-					<line
-						x1="0"
-						y1="0"
-						x2="0"
-						y2="9"
-						className="stroke-fill1-alpha"
-						strokeWidth="1"
-					/>
-				</pattern>
-			</defs>
-		</svg>
 	)
 }
