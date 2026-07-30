@@ -423,7 +423,7 @@ export function LibraryDocsCard() {
 								<button tabIndex={-1} type="button">
 									Code
 								</button>
-								<IconButton label="Copy preview code" tabIndex={-1}>
+								<IconButton label="Copy preview code">
 									<Clipboard aria-hidden="true" size={11} />
 								</IconButton>
 							</div>
