@@ -278,7 +278,7 @@ function ShowcaseFrame({
 						api={api}
 						current={current}
 						snapCount={snapCount}
-						className="bottom-4 left-1/2 -translate-x-1/2 sm:hidden"
+						className="bottom-4 left-1/2 -translate-x-1/2 lg:hidden"
 					/>
 				</div>
 			</div>
@@ -287,7 +287,7 @@ function ShowcaseFrame({
 				api={api}
 				current={current}
 				snapCount={snapCount}
-				className="bottom-4 right-4 hidden sm:flex min-[1320px]:right-[calc((100%_-_1320px)/2_+_16px)]"
+				className="bottom-4 right-4 hidden lg:flex min-[1320px]:right-[calc((100%_-_1320px)/2_+_16px)]"
 			/>
 		</>
 	)
