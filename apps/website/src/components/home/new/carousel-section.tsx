@@ -2,11 +2,19 @@
 
 import { useEffect, useState } from "react"
 import {
+	Blocks,
+	Braces,
+	CaseLower,
+	CloudCog,
+	Cuboid,
+	FileCode,
+	GalleryVertical,
 	LayoutGrid,
-	MonitorSmartphone,
+	Palette,
 	Sparkles,
 	SunMoon,
 	SwatchBook,
+	Users,
 } from "lucide-react"
 import Image from "next/image"
 import SvgDivider from "@/app/home/SvgDivider"
@@ -32,25 +40,73 @@ const featureItems = [
 		icon: SwatchBook,
 		title: "Figma variable system",
 		description:
-			"Organized variable collections to edit colors, spacing, radius & typography.",
+			"Manage consistent design tokens across color, spacing, and typography",
 	},
 	{
 		icon: LayoutGrid,
-		title: "Auto Layout",
+		title: "Auto layout",
 		description:
-			"Fully Built using Auto layout, from small components to UI Blocks.",
+			"Create scalable and flexible designs that adapt to any screen size automatically",
 	},
 	{
 		icon: SunMoon,
 		title: "Theme Modes",
 		description:
-			"Easily switch multiple color themes, with full light/dark mode support.",
+			"Switch effortlessly between light and dark themes, or create custom themes",
 	},
 	{
-		icon: MonitorSmartphone,
-		title: "Responsive by Default",
+		icon: CaseLower,
+		title: "Responsive Typography",
 		description:
-			"Different frame designs ensuring they look great on any screen size.",
+			"Ensure consistent, legible text across devices with an adaptive type system",
+	},
+	{
+		icon: Palette,
+		title: "Color Presets",
+		description:
+			"Use predefined color palettes to maintain harmony & visual consistency",
+	},
+	{
+		icon: GalleryVertical,
+		title: "Motion Components",
+		description:
+			"Bring your interfaces to life with smooth, modern motion and interaction patterns",
+	},
+	{
+		icon: Blocks,
+		title: "Composable System",
+		description:
+			"Composable components allows you to easily tweak and adjust components",
+	},
+	{
+		icon: FileCode,
+		title: "Type safe Components",
+		description:
+			"Eliminate code errors with strongly typed UI components for developers",
+	},
+	{
+		icon: Braces,
+		title: "Simplified Global CSS",
+		description:
+			"Streamline your styles with a minimal global CSS layer for easy customization",
+	},
+	{
+		icon: Users,
+		title: "Open Source",
+		description:
+			"Being open source allows for teams to access full code and build on top of it",
+	},
+	{
+		icon: Cuboid,
+		title: "Growing Block Library",
+		description:
+			"Expanding collection of ready-to-use UI blocks to speed up your workflow.",
+	},
+	{
+		icon: CloudCog,
+		title: "Minimal Dependencies",
+		description:
+			"Keep your stack lightweight and efficient with components built for minimal setup",
 	},
 ] as const
 
@@ -162,6 +218,7 @@ export default function CarouselSection() {
 							slidesToScroll: 1,
 							breakpoints: {
 								"(min-width: 640px)": { slidesToScroll: 2 },
+								"(min-width: 1024px)": { slidesToScroll: 3 },
 							},
 						}}
 						setApi={setApi}
@@ -171,7 +228,7 @@ export default function CarouselSection() {
 							{featureItems.map(({ icon: Icon, title, description }) => (
 								<CarouselItem
 									key={title}
-									className="basis-full pl-0 sm:basis-1/2">
+									className="basis-full pl-0 sm:basis-1/2 lg:basis-1/3">
 									<div className="flex h-full flex-col gap-8 pr-8">
 										<Icon className="text-fg-tertiary size-6" />
 										<div className="flex flex-col gap-3">

@@ -281,7 +281,7 @@ export function FigmaUiCard() {
 	const [isNeutralButton, setIsNeutralButton] = useState(false)
 	const [isColorMenuOpen, setIsColorMenuOpen] = useState(false)
 	const [cursorPosition, setCursorPosition] = useState({ x: 240, y: 120 })
-	const [cursorVisible, setCursorVisible] = useState(true)
+	const [cursorVisible, setCursorVisible] = useState(false)
 	const [isPointerActive, setIsPointerActive] = useState(false)
 	const isPointerActiveRef = useRef(false)
 	const highestZRef = useRef(5)
@@ -307,7 +307,6 @@ export function FigmaUiCard() {
 			if (!isPointerActiveRef.current) {
 				setCursorPosition(cursorTargets[nextPhase])
 			}
-			setCursorVisible(true)
 
 			if (
 				nextPhase === "assets" ||
@@ -344,7 +343,6 @@ export function FigmaUiCard() {
 		schedule(() => {
 			setAnimationPhase("figma")
 			setCursorPosition(cursorTargets.figma)
-			setCursorVisible(true)
 			setIntroducedPanels({
 				assets: false,
 				comments: false,
@@ -407,14 +405,15 @@ export function FigmaUiCard() {
 
 	const handlePointerMove = (event: PointerEvent<HTMLDivElement>) => {
 		const rect = event.currentTarget.getBoundingClientRect()
-		const scale = rect.width / 1440
-		const x = (event.clientX - rect.left) / scale
-		const y = (event.clientY - rect.top) / scale
+		const scaleX = rect.width / event.currentTarget.offsetWidth
+		const scaleY = rect.height / event.currentTarget.offsetHeight
+		const x = (event.clientX - rect.left) / scaleX
+		const y = (event.clientY - rect.top) / scaleY
 
 		setCursorVisible(true)
 		setCursorPosition({
-			x: Math.min(Math.max(x, 16), 1320),
-			y: Math.min(Math.max(y, 16), 672),
+			x: Math.min(Math.max(x, 0), event.currentTarget.offsetWidth),
+			y: Math.min(Math.max(y, 0), event.currentTarget.offsetHeight),
 		})
 
 		if (!dragState) {
@@ -425,8 +424,8 @@ export function FigmaUiCard() {
 			...current,
 			[dragState.id]: {
 				...current[dragState.id],
-				x: (event.clientX - rect.left) / scale - dragState.offsetX,
-				y: (event.clientY - rect.top) / scale - dragState.offsetY,
+				x: (event.clientX - rect.left) / scaleX - dragState.offsetX,
+				y: (event.clientY - rect.top) / scaleY - dragState.offsetY,
 			},
 		}))
 	}
@@ -437,19 +436,18 @@ export function FigmaUiCard() {
 			data-card5-button-color={isNeutralButton ? "neutral" : "primary"}
 			data-card5-lead-icon={leadIconEnabled ? "on" : "off"}
 			data-card5-phase={animationPhase}
-			onPointerEnter={() => {
+			onPointerEnter={(event) => {
 				isPointerActiveRef.current = true
 				setIsPointerActive(true)
-				setCursorVisible(true)
+				handlePointerMove(event)
 			}}
 			onPointerLeave={() => {
 				isPointerActiveRef.current = false
 				setIsPointerActive(false)
-				setCursorPosition(cursorTargets[animationPhase])
-				setCursorVisible(true)
+				setCursorVisible(false)
 				setDragState(null)
 			}}
-			onPointerMove={handlePointerMove}
+			onPointerMoveCapture={handlePointerMove}
 			onPointerUp={() => setDragState(null)}>
 			<div
 				className="figma-window-shell"
