@@ -106,7 +106,7 @@ export function LibraryComponentsCard({
 	return (
 		<article
 			aria-label="Complete library of UI components concept. Click to cycle the component library preview."
-			className={`component-library-card ${className}`.trimEnd()}
+			className={`component-library-card focus:outline-none ${className}`.trimEnd()}
 			onClick={advanceState}
 			onKeyDown={handleKeyDown}
 			role="button"

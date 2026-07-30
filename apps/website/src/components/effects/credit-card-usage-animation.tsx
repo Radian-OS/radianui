@@ -341,7 +341,7 @@ export function CreditCardUsageAnimation() {
 	return (
 		<article
 			aria-label={`Credits usage card, ${activeState.name} state. Click to change usage state.`}
-			className={`credit-usage-card credit-card-frame relative overflow-hidden ${
+			className={`credit-usage-card credit-card-frame relative overflow-hidden focus:outline-none ${
 				isPopping ? "is-popping" : ""
 			}`}
 			onAnimationEnd={() => setIsPopping(false)}

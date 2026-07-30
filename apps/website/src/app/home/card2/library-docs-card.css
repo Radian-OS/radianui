@@ -815,6 +815,13 @@
 	cursor: pointer;
 }
 
+.docs-copy-frame:focus,
+.docs-copy-frame:focus-visible,
+.docs-copy-frame *:focus,
+.docs-copy-frame *:focus-visible {
+	outline: none;
+}
+
 .docs-copy-frame button {
 	cursor: pointer;
 }
@@ -822,6 +829,7 @@
 .docs-copy-frame:active {
 	transform: scale(0.991);
 }
+
 
 .docs-copy-page-content {
 	animation: none;

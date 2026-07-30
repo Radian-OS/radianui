@@ -186,8 +186,7 @@
 }
 
 .credit-usage-card:focus-visible {
-	outline: 2px solid var(--card-accent);
-	outline-offset: 4px;
+	outline: none;
 }
 
 .credit-usage-card.is-popping {
@@ -273,8 +272,7 @@
 }
 
 .library-card-frame:focus-visible {
-	outline: 2px solid var(--library-accent);
-	outline-offset: 4px;
+	outline: none;
 }
 
 .library-sidebar {
@@ -666,8 +664,7 @@
 }
 
 .component-library-card:focus-visible {
-	outline: 2px solid var(--component-accent);
-	outline-offset: 4px;
+	outline: none;
 }
 
 .component-library-header {

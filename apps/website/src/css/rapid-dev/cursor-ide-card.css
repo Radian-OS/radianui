@@ -20,6 +20,13 @@
 	font-family: inherit;
 }
 
+.cursor-stage:focus,
+.cursor-stage:focus-visible,
+.cursor-stage *:focus,
+.cursor-stage *:focus-visible {
+	outline: none;
+}
+
 .cursor-window {
 	position: absolute;
 	top: 0;
