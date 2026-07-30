@@ -7,11 +7,13 @@ import FigmaPreviewButton from "../navbar/figma-preview-button"
 
 export default function UIBlocksSection() {
 	return (
-		<div className="lg:py-15 border-soft lg:px-15 mx-auto flex w-full max-w-[1440px] flex-col items-center gap-10 border-l border-r px-5 py-12">
-			<div className="flex w-full justify-between">
+		<section
+			aria-label="UI Blocks"
+			className="lg:py-15 border-soft lg:px-15 mx-auto flex w-full max-w-[1440px] flex-col items-center gap-10 border-l border-r px-5 py-12">
+			<header className="flex w-full justify-between">
 				<div className="flex flex-col justify-start gap-6">
 					<Badge size="28" variant="soft" color="primary">
-						<Layers className="text-primary" />
+						<Layers className="text-primary" aria-hidden="true" />
 						UI Blocks
 					</Badge>
 					<h2 className="heading-4 max-w-200 text-start text-2xl sm:text-[32px]">
@@ -25,32 +27,36 @@ export default function UIBlocksSection() {
 						<span className="text-fg-secondary">workflow.</span>
 					</h2>
 				</div>
-				<div className="hidden flex-col items-end justify-center gap-3 lg:flex">
+				<nav
+					aria-label="UI Blocks actions"
+					className="hidden flex-col items-end justify-center gap-3 lg:flex">
 					<FigmaPreviewButton text="Figma Community File" />
 					<Button variant="smooth" asChild>
 						<Link
 							target="_blank"
 							rel="noopener noreferrer"
 							href={process.env.NEXT_PUBLIC_BLOCKS_URL!}>
-							Explore UI Blocks <ArrowUpRight />
+							Explore UI Blocks <ArrowUpRight aria-hidden="true" />
 						</Link>
 					</Button>
-				</div>
-			</div>
-			<div className="relative h-[760px] w-full max-w-[1400px] sm:h-[860px]">
+				</nav>
+			</header>
+			<figure className="relative h-[760px] w-full max-w-[1400px] sm:h-[860px]">
 				<HomeInteractive />
-			</div>
-			<div className="flex flex-col items-center justify-center gap-3 lg:hidden">
+			</figure>
+			<nav
+				aria-label="UI Blocks mobile actions"
+				className="flex flex-col items-center justify-center gap-3 lg:hidden">
 				<FigmaPreviewButton text="Figma Community File" />
 				<Button variant="smooth" asChild>
 					<Link
 						target="_blank"
 						rel="noopener noreferrer"
 						href={process.env.NEXT_PUBLIC_BLOCKS_URL!}>
-						Explore UI Blocks <ArrowUpRight />
+						Explore UI Blocks <ArrowUpRight aria-hidden="true" />
 					</Link>
 				</Button>
-			</div>
-		</div>
+			</nav>
+		</section>
 	)
 }

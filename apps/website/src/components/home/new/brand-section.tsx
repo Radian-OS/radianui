@@ -49,16 +49,7 @@ export default function BrandSection() {
 	return (
 		<section
 			aria-labelledby="brand-section-title"
-			className="max-w-368 relative z-20 mx-auto w-full px-4 pt-[90px] md:px-5">
-			<div
-				aria-hidden="true"
-				className="border-soft pointer-events-none absolute inset-y-0 left-4 z-20 border-l md:left-5"
-			/>
-			<div
-				aria-hidden="true"
-				className="border-soft pointer-events-none absolute inset-y-0 right-4 z-20 border-r md:right-5"
-			/>
-
+			className="border-soft relative z-20 mx-auto w-full max-w-[1440px] border-l border-r pt-[90px]">
 			<div
 				className="border-soft bg-bg lg:h-26 flex h-auto min-w-0 flex-col overflow-hidden border-y lg:flex-row"
 				onPointerEnter={() => setIsPaused(true)}
