@@ -3,14 +3,16 @@ import { Dot } from "lucide-react"
 import Image from "next/image"
 import { CreditCardUsageAnimation } from "@/components/effects/credit-card-usage-animation"
 import { LibraryComponentsCard } from "@/components/effects/library-primitives-card-animation"
+import { RapidDevAnimation } from "@/components/home/rapid-dev/rapid-dev-animation"
 import { Badge, BadgeDot } from "@/registry/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 import DiagonalDivider from "./SvgDivider"
+import { LibraryDocsCard } from "./card2"
 
 const data = [
-	{ label: "Designer", value: "designer", content: "Inbox Content" },
-	{ label: "Developer", value: "developer", content: "Projects Content" },
-]
+	{ label: "Designer", value: "designer" },
+	{ label: "Developer", value: "developer" },
+] as const
 
 const RapidDev = () => {
 	return (
@@ -40,10 +42,10 @@ const RapidDev = () => {
 				<div className="border-soft flex flex-col overflow-hidden border-y lg:flex-row">
 					<div className="lg:flex-2 border-soft border-b lg:border-b-0 lg:border-r">
 						<div className="lg:px-15 flex w-full flex-col px-5 py-8 sm:px-10 sm:py-12 lg:w-[520px] lg:py-20">
-							<h3 className="heading-5 text-[18px] font-medium leading-8 tracking-[-0.18px]">
+							<h3 className="heading-5 text-[16px] font-medium leading-7 tracking-[-0.18px] sm:text-[18px] sm:leading-8">
 								Production-Ready Figma UI Kit.
 							</h3>
-							<p className="heading-5 text-fg-secondary text-[18px] font-medium leading-8 tracking-[-0.18px]">
+							<p className="heading-5 text-fg-secondary text-[16px] font-medium leading-7 tracking-[-0.18px] sm:text-[18px] sm:leading-8">
 								Get access to over 2000+ Components, 1000+ assets all built
 								using smart auto layout and figma slots
 							</p>
@@ -62,24 +64,20 @@ const RapidDev = () => {
 					</div>
 					<div className="lg:flex-1">
 						<div className="lg:px-15 flex w-full flex-col px-5 py-8 sm:px-10 sm:py-12 lg:w-[520px] lg:py-20">
-							<h3 className="heading-5 text-[18px] font-medium leading-8 tracking-[-0.18px]">
+							<h3 className="heading-5 text-[16px] font-medium leading-7 tracking-[-0.18px] sm:text-[18px] sm:leading-8">
 								A Complete Library of UI Primitives.
 							</h3>
-							<p className="heading-5 text-fg-secondary text-[18px] font-medium leading-8 tracking-[-0.18px]">
+							<p className="heading-5 text-fg-secondary text-[16px] font-medium leading-7 tracking-[-0.18px] sm:text-[18px] sm:leading-8">
 								Pre-styled 50+ React components built with Tailwind CSS to copy
 								and paste
 							</p>
 						</div>
-						<div className="relative h-[214px] md:h-[414px] lg:h-[430px]">
-							<div className="absolute bottom-[-10rem] right-0">
-								<Image
-									width={450}
-									height={600}
-									alt=""
-									src="/newhome/UIPreview.png"
-								/>
+						<div className="relative h-[260px] overflow-hidden md:h-[414px] lg:h-[449px]">
+							<div className="sm:scale-120 lg:scale-140 shrink-0 origin-top-left scale-95 px-5 sm:px-10 md:scale-150 md:px-7 lg:px-11">
+								<LibraryDocsCard />
 							</div>
-							<div className="pointer-events-none absolute bottom-[-3rem] left-0 right-0 h-[120px] bg-[linear-gradient(0deg,#FFF_0%,rgba(255,255,255,0)_100%)] dark:bg-[linear-gradient(0deg,oklch(0.144_0.003_264.025)_0%,oklch(0.144_0.003_264.025/0)_100%)]" />
+							<div className="pointer-events-none absolute bottom-0 left-0 right-0 h-[120px] bg-[linear-gradient(0deg,#FFF_0%,rgba(255,255,255,0)_100%)] dark:bg-[linear-gradient(0deg,oklch(0.144_0.003_264.025)_0%,oklch(0.144_0.003_264.025/0)_100%)]" />
+							<div className="pointer-events-none absolute bottom-0 right-0 top-0 w-[80px] bg-[linear-gradient(90deg,rgba(255,255,255,0)_0%,#FFF_100%)] sm:w-[150px] md:w-[400px] lg:w-[200px] dark:bg-[linear-gradient(90deg,oklch(0.144_0.003_264.025/0)_0%,oklch(0.144_0.003_264.025)_100%)]" />
 						</div>
 					</div>
 				</div>
@@ -94,10 +92,10 @@ const RapidDev = () => {
 				<div className="bg-fill1 border-soft flex flex-col border-t lg:flex-row">
 					<div className="border-soft border-b lg:flex-1 lg:border-b-0 lg:border-r">
 						<div className="lg:px-15 flex w-full flex-col px-5 py-8 sm:px-10 sm:py-12 lg:w-[520px] lg:py-20">
-							<h3 className="heading-5 text-[18px] font-medium leading-8 tracking-[-0.18px]">
+							<h3 className="heading-5 text-[16px] font-medium leading-7 tracking-[-0.18px] sm:text-[18px] sm:leading-8">
 								Customize without compromise
 							</h3>
-							<p className="heading-5 text-fg-secondary text-[18px] font-medium leading-8 tracking-[-0.18px]">
+							<p className="heading-5 text-fg-secondary text-[16px] font-medium leading-7 tracking-[-0.18px] sm:text-[18px] sm:leading-8">
 								The Radian library extends the primitive component with
 								meaningful properties for easier customization
 							</p>
@@ -111,10 +109,10 @@ const RapidDev = () => {
 					</div>
 					<div className="lg:flex-1">
 						<div className="lg:px-15 flex w-full flex-col px-5 py-8 sm:px-10 sm:py-12 lg:w-[520px] lg:py-20">
-							<h3 className="heading-5 text-[18px] font-medium leading-8 tracking-[-0.18px]">
+							<h3 className="heading-5 text-[16px] font-medium leading-7 tracking-[-0.18px] sm:text-[18px] sm:leading-8">
 								Built for the AI era
 							</h3>
-							<p className="heading-5 text-fg-secondary text-[18px] font-medium leading-8 tracking-[-0.18px]">
+							<p className="heading-5 text-fg-secondary text-[16px] font-medium leading-7 tracking-[-0.18px] sm:text-[18px] sm:leading-8">
 								Give your AI coding assistant a prompt and let it build with
 								Radian&apos;s components, blocks, and design system
 							</p>
@@ -126,7 +124,10 @@ const RapidDev = () => {
 					</div>
 				</div>
 
-				<div className="border-soft border-y">
+				<Tabs
+					aria-label="Design and development animations"
+					className="border-soft gap-0 border-y"
+					defaultValue={data[0].value}>
 					<div className="lg:px-15 lg:py-25 flex flex-col justify-between gap-3 px-5 py-12 sm:px-10 sm:py-16 lg:flex-row">
 						<h3 className="heading-5 w-full text-[20px] font-medium leading-9 tracking-[-0.24px] sm:text-[24px] lg:w-[612px]">
 							Seamless Design-to-Code Sync.{" "}
@@ -136,53 +137,44 @@ const RapidDev = () => {
 							</span>
 						</h3>
 
-						<div className="hidden items-center gap-1 lg:flex lg:self-end">
-							<p className="text-fg-tertiary text-base">Designer </p>
-							<Dot size={24} />
-							<p className="text-fg text-base">Developer</p>
-						</div>
+						<TabsList
+							aria-label="Select animation"
+							className="hidden h-auto items-center gap-1 overflow-visible bg-transparent p-0 lg:flex lg:self-end"
+							variant="ghost">
+							<TabsTrigger
+								className="text-fg-tertiary data-[state=active]:text-fg h-auto rounded-none p-0 text-base data-[state=active]:bg-transparent"
+								value="designer">
+								Designer
+							</TabsTrigger>
+							<Dot aria-hidden="true" size={24} />
+							<TabsTrigger
+								className="text-fg-tertiary data-[state=active]:text-fg h-auto rounded-none p-0 text-base data-[state=active]:bg-transparent"
+								value="developer">
+								Developer
+							</TabsTrigger>
+						</TabsList>
 					</div>
-					<div className="flex lg:hidden">
-						<Tabs className="w-full gap-0" defaultValue={data[0].value}>
-							<TabsList width="full" className="rounded-none p-0">
-								{data.map((item) => (
-									<TabsTrigger
-										className="rounded-none"
-										key={item.value}
-										value={item.value}>
-										{item.label}
-									</TabsTrigger>
-								))}
-							</TabsList>
-							{data.map(({ value }) => (
-								<TabsContent className="rounded-none" key={value} value={value}>
-									<div className="bg-fill1 relative h-[240px] overflow-hidden md:h-[430px] lg:h-[720px]">
-										<div className="absolute bottom-[-5rem] left-1/2 -translate-x-1/2 -translate-y-1/2 scale-150 lg:bottom-[-7rem]">
-											<Image
-												width={1120}
-												height={768}
-												alt=""
-												src="/newhome/Content.png"
-											/>
-										</div>
-										<div className="pointer-events-none absolute bottom-0 left-0 right-0 h-[48px] bg-[linear-gradient(0deg,#FFF_0%,rgba(255,255,255,0)_100%)] md:h-[100px] lg:h-[200px] dark:bg-[linear-gradient(0deg,oklch(0.144_0.003_264.025)_0%,oklch(0.144_0.003_264.025/0)_100%)]" />
-									</div>
-								</TabsContent>
-							))}
-						</Tabs>
-					</div>
-					<div className="bg-fill1 relative hidden h-[240px] overflow-hidden md:h-[430px] lg:flex lg:h-[720px]">
-						<div className="absolute bottom-[-5rem] left-1/2 -translate-x-1/2 -translate-y-1/2 scale-150 lg:bottom-[-7rem]">
-							<Image
-								width={1120}
-								height={768}
-								alt=""
-								src="/newhome/Content.png"
-							/>
-						</div>
-						<div className="pointer-events-none absolute bottom-0 left-0 right-0 h-[200px] bg-[linear-gradient(0deg,#FFF_0%,rgba(255,255,255,0)_100%)] dark:bg-[linear-gradient(0deg,oklch(0.144_0.003_264.025)_0%,oklch(0.144_0.003_264.025/0)_100%)]" />
-					</div>
-				</div>
+
+					<TabsList
+						aria-label="Select animation"
+						className="rounded-none p-0 lg:hidden"
+						width="full">
+						{data.map((item) => (
+							<TabsTrigger
+								className="rounded-none"
+								key={item.value}
+								value={item.value}>
+								{item.label}
+							</TabsTrigger>
+						))}
+					</TabsList>
+
+					{data.map(({ value }) => (
+						<TabsContent className="rounded-none" key={value} value={value}>
+							<RapidDevAnimation type={value} />
+						</TabsContent>
+					))}
+				</Tabs>
 
 				<DiagonalDivider className="hidden sm:block" />
 				<DiagonalDivider
@@ -194,10 +186,10 @@ const RapidDev = () => {
 				<div className="border-soft flex flex-col border-y lg:flex-row">
 					<div className="border-soft overflow-hidden border-b lg:flex-1 lg:border-b-0 lg:border-r">
 						<div className="lg:px-15 flex w-full flex-col px-5 py-8 sm:px-10 sm:py-12 lg:w-[520px] lg:py-20">
-							<h3 className="heading-5 text-[18px] font-medium leading-8 tracking-[-0.18px]">
+							<h3 className="heading-5 text-[16px] font-medium leading-7 tracking-[-0.18px] sm:text-[18px] sm:leading-8">
 								Scalable Variable-first design system
 							</h3>
-							<p className="heading-5 text-fg-secondary text-[18px] font-medium leading-8 tracking-[-0.18px]">
+							<p className="heading-5 text-fg-secondary text-[16px] font-medium leading-7 tracking-[-0.18px] sm:text-[18px] sm:leading-8">
 								Fully designed for dark modes, typography, color, spacings &
 								more
 							</p>
@@ -216,10 +208,10 @@ const RapidDev = () => {
 					</div>
 					<div className="lg:flex-2">
 						<div className="lg:px-15 flex w-full flex-col px-5 py-8 sm:px-10 sm:py-12 lg:w-[520px] lg:py-20">
-							<h3 className="heading-5 text-[18px] font-medium leading-8 tracking-[-0.18px]">
+							<h3 className="heading-5 text-[16px] font-medium leading-7 tracking-[-0.18px] sm:text-[18px] sm:leading-8">
 								Copy-Paste Landing Page Blocks
 							</h3>
-							<p className="heading-5 text-fg-secondary text-[18px] font-medium leading-8 tracking-[-0.18px]">
+							<p className="heading-5 text-fg-secondary text-[16px] font-medium leading-7 tracking-[-0.18px] sm:text-[18px] sm:leading-8">
 								Growing Library of Pre-made responsive sections designed to snap
 								together into full pages
 							</p>

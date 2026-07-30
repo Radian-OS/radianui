@@ -54,10 +54,10 @@ const Component = () => {
 						</Badge>
 						<div className="w-full lg:w-[940px]">
 							<h2 className="heading-4">
-								<span className="text-[24px] font-medium leading-[44px] tracking-[-0.32px] md:text-[30px] lg:text-[32px]">
+								<span className="text-[24px] font-medium leading-[36px] md:text-[36px] md:leading-[44px] lg:text-[40px] lg:leading-[52px]">
 									Production-ready React and Figma UI components.
 								</span>{" "}
-								<span className="text-fg-secondary text-[24px] font-medium leading-[44px] tracking-[-0.32px] md:text-[30px] lg:text-[32px]">
+								<span className="text-fg-secondary text-[24px] font-medium leading-[36px] md:text-[36px] md:leading-[44px] lg:text-[40px] lg:leading-[52px]">
 									Build modern interfaces faster with customizable React
 									components and Figma UI components.
 								</span>
