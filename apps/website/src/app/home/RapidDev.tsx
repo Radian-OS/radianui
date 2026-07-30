@@ -1,14 +1,15 @@
 import React from "react"
 import { Dot } from "lucide-react"
 import Image from "next/image"
+import { RapidDevAnimation } from "@/components/home/rapid-dev/rapid-dev-animation"
 import { Badge, BadgeDot } from "@/registry/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 import DiagonalDivider from "./SvgDivider"
 
 const data = [
-	{ label: "Designer", value: "designer", content: "Inbox Content" },
-	{ label: "Developer", value: "developer", content: "Projects Content" },
-]
+	{ label: "Designer", value: "designer" },
+	{ label: "Developer", value: "developer" },
+] as const
 
 const RapidDev = () => {
 	return (
@@ -131,7 +132,10 @@ const RapidDev = () => {
 					</div>
 				</div>
 
-				<div className="border-soft border-y">
+				<Tabs
+					aria-label="Design and development animations"
+					className="border-soft gap-0 border-y"
+					defaultValue={data[0].value}>
 					<div className="lg:px-15 lg:py-25 flex flex-col justify-between gap-3 px-5 py-12 sm:px-10 sm:py-16 lg:flex-row">
 						<h3 className="heading-5 w-full text-[20px] font-medium leading-9 tracking-[-0.24px] sm:text-[24px] lg:w-[612px]">
 							Seamless Design-to-Code Sync.{" "}
@@ -141,53 +145,44 @@ const RapidDev = () => {
 							</span>
 						</h3>
 
-						<div className="hidden items-center gap-1 lg:flex lg:self-end">
-							<p className="text-fg-tertiary text-base">Designer </p>
-							<Dot size={24} />
-							<p className="text-fg text-base">Developer</p>
-						</div>
+						<TabsList
+							aria-label="Select animation"
+							className="hidden h-auto items-center gap-1 overflow-visible bg-transparent p-0 lg:flex lg:self-end"
+							variant="ghost">
+							<TabsTrigger
+								className="text-fg-tertiary data-[state=active]:text-fg h-auto rounded-none p-0 text-base data-[state=active]:bg-transparent"
+								value="designer">
+								Designer
+							</TabsTrigger>
+							<Dot aria-hidden="true" size={24} />
+							<TabsTrigger
+								className="text-fg-tertiary data-[state=active]:text-fg h-auto rounded-none p-0 text-base data-[state=active]:bg-transparent"
+								value="developer">
+								Developer
+							</TabsTrigger>
+						</TabsList>
 					</div>
-					<div className="flex lg:hidden">
-						<Tabs className="w-full gap-0" defaultValue={data[0].value}>
-							<TabsList width="full" className="rounded-none p-0">
-								{data.map((item) => (
-									<TabsTrigger
-										className="rounded-none"
-										key={item.value}
-										value={item.value}>
-										{item.label}
-									</TabsTrigger>
-								))}
-							</TabsList>
-							{data.map(({ value }) => (
-								<TabsContent className="rounded-none" key={value} value={value}>
-									<div className="bg-fill1 relative h-[240px] overflow-hidden md:h-[430px] lg:h-[720px]">
-										<div className="absolute bottom-[-5rem] left-1/2 -translate-x-1/2 -translate-y-1/2 scale-150 lg:bottom-[-7rem]">
-											<Image
-												width={1120}
-												height={768}
-												alt=""
-												src="/newhome/Content.png"
-											/>
-										</div>
-										<div className="pointer-events-none absolute bottom-0 left-0 right-0 h-[48px] bg-[linear-gradient(0deg,#FFF_0%,rgba(255,255,255,0)_100%)] md:h-[100px] lg:h-[200px] dark:bg-[linear-gradient(0deg,oklch(0.144_0.003_264.025)_0%,oklch(0.144_0.003_264.025/0)_100%)]" />
-									</div>
-								</TabsContent>
-							))}
-						</Tabs>
-					</div>
-					<div className="bg-fill1 relative hidden h-[240px] overflow-hidden md:h-[430px] lg:flex lg:h-[720px]">
-						<div className="absolute bottom-[-5rem] left-1/2 -translate-x-1/2 -translate-y-1/2 scale-150 lg:bottom-[-7rem]">
-							<Image
-								width={1120}
-								height={768}
-								alt=""
-								src="/newhome/Content.png"
-							/>
-						</div>
-						<div className="pointer-events-none absolute bottom-0 left-0 right-0 h-[200px] bg-[linear-gradient(0deg,#FFF_0%,rgba(255,255,255,0)_100%)] dark:bg-[linear-gradient(0deg,oklch(0.144_0.003_264.025)_0%,oklch(0.144_0.003_264.025/0)_100%)]" />
-					</div>
-				</div>
+
+					<TabsList
+						aria-label="Select animation"
+						className="rounded-none p-0 lg:hidden"
+						width="full">
+						{data.map((item) => (
+							<TabsTrigger
+								className="rounded-none"
+								key={item.value}
+								value={item.value}>
+								{item.label}
+							</TabsTrigger>
+						))}
+					</TabsList>
+
+					{data.map(({ value }) => (
+						<TabsContent className="rounded-none" key={value} value={value}>
+							<RapidDevAnimation type={value} />
+						</TabsContent>
+					))}
+				</Tabs>
 
 				<DiagonalDivider className="hidden sm:block" />
 				<DiagonalDivider
