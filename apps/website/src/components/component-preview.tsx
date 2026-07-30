@@ -27,7 +27,7 @@ export function ComponentPreview({
 	height,
 	align,
 	type,
-	title = "Component Preview",
+	title = "Preview",
 }: ComponentPreviewProps) {
 	const props: ComponentPreviewProps = {
 		path,
@@ -58,9 +58,9 @@ export function ComponentPreview({
 					defaultValue="preview"
 					className="border-soft bg-fill1-alpha flex w-full flex-col gap-2 rounded-xl border p-1">
 					<div className="flex items-center justify-between px-2 pt-1">
-						<a href={`#${slug}`} className="hover:underline">
-							<h3 className="text-fg text-sm font-medium">{title}</h3>
-						</a>
+						{/* <a href={`#${slug}`} className="hover:underline"> */}
+						<p className="text-fg text-sm font-medium">{title}</p>
+						{/* </a> */}
 						<div className="flex items-center gap-2">
 							<TabsList
 								variant="ghost"
