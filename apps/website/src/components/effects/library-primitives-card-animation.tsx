@@ -1,7 +1,7 @@
 "use client"
 
 import type { CSSProperties, KeyboardEvent } from "react"
-import { useCallback, useEffect, useMemo, useState } from "react"
+import { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import {
 	Check,
 	Copy,
@@ -80,6 +80,8 @@ export function LibraryComponentsCard({
 }: { className?: string } = {}) {
 	const [stateIndex, setStateIndex] = useState(0)
 	const [cycleReset, setCycleReset] = useState(0)
+	const [isInView, setIsInView] = useState(false)
+	const containerRef = useRef<HTMLElement>(null)
 	const activeState = libraryStates[stateIndex]
 	const libraryStyle = useMemo(
 		() => getLibraryStyle(activeState),
@@ -92,9 +94,28 @@ export function LibraryComponentsCard({
 	}, [])
 
 	useEffect(() => {
+		const el = containerRef.current
+		if (!el) return
+
+		const observer = new IntersectionObserver(
+			([entry]) => {
+				if (entry.isIntersecting) {
+					setIsInView(true)
+					observer.disconnect()
+				}
+			},
+			{ threshold: 0.15 }
+		)
+
+		observer.observe(el)
+		return () => observer.disconnect()
+	}, [])
+
+	useEffect(() => {
+		if (!isInView) return
 		const timeout = window.setTimeout(advanceState, ROTATE_MS)
 		return () => window.clearTimeout(timeout)
-	}, [advanceState, cycleReset])
+	}, [advanceState, cycleReset, isInView])
 
 	function handleKeyDown(event: KeyboardEvent<HTMLElement>) {
 		if (event.key === "Enter" || event.key === " ") {
@@ -106,9 +127,10 @@ export function LibraryComponentsCard({
 	return (
 		<article
 			aria-label="Complete library of UI components concept. Click to cycle the component library preview."
-			className={`component-library-card focus:outline-none ${className}`.trimEnd()}
+			className={`component-library-card focus:outline-none${isInView ? "is-in-view" : ""} ${className}`.trimEnd()}
 			onClick={advanceState}
 			onKeyDown={handleKeyDown}
+			ref={containerRef}
 			role="button"
 			style={libraryStyle}
 			tabIndex={0}>

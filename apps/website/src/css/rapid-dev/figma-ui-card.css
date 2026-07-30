@@ -562,13 +562,14 @@
 	font-size: 12px;
 	font-weight: 650;
 	color: var(--color-fg-secondary);
-	cursor: grab;
+	cursor: none;
 }
 
 .figma-floating-card:active .figma-floating-title {
-	cursor: grabbing;
+	cursor: none;
 }
 
+.figma-stage *,
 .figma-stage .figma-window,
 .figma-stage .figma-floating-card {
 	cursor: none;
@@ -1749,7 +1750,7 @@
 
 .figma-user-cursor.is-pointer-active {
 	transition:
-		transform 80ms linear,
+		transform 0ms linear,
 		opacity 180ms ease;
 }
 

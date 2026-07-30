@@ -1,7 +1,7 @@
 "use client"
 
 import type { CSSProperties, ReactNode } from "react"
-import { useCallback, useEffect, useState } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 import type { LucideIcon } from "lucide-react"
 import {
 	Bookmark,
@@ -359,6 +359,8 @@ function DocsSidebar({ activeName }: { activeName: string }) {
 export function LibraryDocsCard() {
 	const [pageIndex, setPageIndex] = useState(0)
 	const [resetTick, setResetTick] = useState(0)
+	const [isInView, setIsInView] = useState(false)
+	const containerRef = useRef<HTMLElement>(null)
 	const activePage = pages[pageIndex]
 	const Preview = activePage.Preview
 
@@ -368,15 +370,35 @@ export function LibraryDocsCard() {
 	}, [])
 
 	useEffect(() => {
+		const el = containerRef.current
+		if (!el) return
+
+		const observer = new IntersectionObserver(
+			([entry]) => {
+				if (entry.isIntersecting) {
+					setIsInView(true)
+					observer.disconnect()
+				}
+			},
+			{ threshold: 0.15 }
+		)
+
+		observer.observe(el)
+		return () => observer.disconnect()
+	}, [])
+
+	useEffect(() => {
+		if (!isInView) return
 		const timeout = window.setTimeout(advancePage, ROTATE_MS)
 		return () => window.clearTimeout(timeout)
-	}, [advancePage, resetTick])
+	}, [advancePage, resetTick, isInView])
 
 	return (
 		<article
 			aria-label="Radian component documentation preview"
-			className="docs-copy-frame"
+			className={`docs-copy-frame${isInView ? "is-in-view" : ""}`}
 			onClick={advancePage}
+			ref={containerRef}
 			tabIndex={-1}>
 			<DocsSidebar activeName={activePage.name} />
 			<main className="docs-copy-main">
