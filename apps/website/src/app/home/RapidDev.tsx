@@ -42,10 +42,10 @@ const RapidDev = () => {
 				<div className="border-soft flex flex-col overflow-hidden border-y lg:flex-row">
 					<div className="lg:flex-2 border-soft border-b lg:border-b-0 lg:border-r">
 						<div className="lg:px-15 flex w-full flex-col px-5 py-8 sm:px-10 sm:py-12 lg:w-[520px] lg:py-20">
-							<h3 className="heading-5 text-[18px] font-medium leading-8 tracking-[-0.18px]">
+							<h3 className="heading-5 text-[16px] font-medium leading-7 tracking-[-0.18px] sm:text-[18px] sm:leading-8">
 								Production-Ready Figma UI Kit.
 							</h3>
-							<p className="heading-5 text-fg-secondary text-[18px] font-medium leading-8 tracking-[-0.18px]">
+							<p className="heading-5 text-fg-secondary text-[16px] font-medium leading-7 tracking-[-0.18px] sm:text-[18px] sm:leading-8">
 								Get access to over 2000+ Components, 1000+ assets all built
 								using smart auto layout and figma slots
 							</p>
@@ -64,19 +64,20 @@ const RapidDev = () => {
 					</div>
 					<div className="lg:flex-1">
 						<div className="lg:px-15 flex w-full flex-col px-5 py-8 sm:px-10 sm:py-12 lg:w-[520px] lg:py-20">
-							<h3 className="heading-5 text-[18px] font-medium leading-8 tracking-[-0.18px]">
+							<h3 className="heading-5 text-[16px] font-medium leading-7 tracking-[-0.18px] sm:text-[18px] sm:leading-8">
 								A Complete Library of UI Primitives.
 							</h3>
-							<p className="heading-5 text-fg-secondary text-[18px] font-medium leading-8 tracking-[-0.18px]">
+							<p className="heading-5 text-fg-secondary text-[16px] font-medium leading-7 tracking-[-0.18px] sm:text-[18px] sm:leading-8">
 								Pre-styled 50+ React components built with Tailwind CSS to copy
 								and paste
 							</p>
 						</div>
-						<div className="relative h-[214px] md:h-[414px] lg:h-[430px]">
-							<div className="absolute -bottom-[180%] -right-[25%] md:-bottom-[35%] md:-right-[28%] lg:-bottom-[40%] lg:-right-[30%]">
+						<div className="relative h-[260px] overflow-hidden md:h-[414px] lg:h-[449px]">
+							<div className="sm:scale-120 lg:scale-140 shrink-0 origin-top-left scale-95 px-5 sm:px-10 md:scale-150 md:px-7 lg:px-11">
 								<LibraryDocsCard />
 							</div>
-							<div className="pointer-events-none absolute bottom-[-3rem] left-0 right-0 h-[120px] bg-[linear-gradient(0deg,#FFF_0%,rgba(255,255,255,0)_100%)] dark:bg-[linear-gradient(0deg,oklch(0.144_0.003_264.025)_0%,oklch(0.144_0.003_264.025/0)_100%)]" />
+							<div className="pointer-events-none absolute bottom-0 left-0 right-0 h-[120px] bg-[linear-gradient(0deg,#FFF_0%,rgba(255,255,255,0)_100%)] dark:bg-[linear-gradient(0deg,oklch(0.144_0.003_264.025)_0%,oklch(0.144_0.003_264.025/0)_100%)]" />
+							<div className="pointer-events-none absolute bottom-0 right-0 top-0 w-[80px] bg-[linear-gradient(90deg,rgba(255,255,255,0)_0%,#FFF_100%)] sm:w-[150px] md:w-[400px] lg:w-[200px] dark:bg-[linear-gradient(90deg,oklch(0.144_0.003_264.025/0)_0%,oklch(0.144_0.003_264.025)_100%)]" />
 						</div>
 					</div>
 				</div>
@@ -91,10 +92,10 @@ const RapidDev = () => {
 				<div className="bg-fill1 border-soft flex flex-col border-t lg:flex-row">
 					<div className="border-soft border-b lg:flex-1 lg:border-b-0 lg:border-r">
 						<div className="lg:px-15 flex w-full flex-col px-5 py-8 sm:px-10 sm:py-12 lg:w-[520px] lg:py-20">
-							<h3 className="heading-5 text-[18px] font-medium leading-8 tracking-[-0.18px]">
+							<h3 className="heading-5 text-[16px] font-medium leading-7 tracking-[-0.18px] sm:text-[18px] sm:leading-8">
 								Customize without compromise
 							</h3>
-							<p className="heading-5 text-fg-secondary text-[18px] font-medium leading-8 tracking-[-0.18px]">
+							<p className="heading-5 text-fg-secondary text-[16px] font-medium leading-7 tracking-[-0.18px] sm:text-[18px] sm:leading-8">
 								The Radian library extends the primitive component with
 								meaningful properties for easier customization
 							</p>
@@ -108,10 +109,10 @@ const RapidDev = () => {
 					</div>
 					<div className="lg:flex-1">
 						<div className="lg:px-15 flex w-full flex-col px-5 py-8 sm:px-10 sm:py-12 lg:w-[520px] lg:py-20">
-							<h3 className="heading-5 text-[18px] font-medium leading-8 tracking-[-0.18px]">
+							<h3 className="heading-5 text-[16px] font-medium leading-7 tracking-[-0.18px] sm:text-[18px] sm:leading-8">
 								Built for the AI era
 							</h3>
-							<p className="heading-5 text-fg-secondary text-[18px] font-medium leading-8 tracking-[-0.18px]">
+							<p className="heading-5 text-fg-secondary text-[16px] font-medium leading-7 tracking-[-0.18px] sm:text-[18px] sm:leading-8">
 								Give your AI coding assistant a prompt and let it build with
 								Radian&apos;s components, blocks, and design system
 							</p>
@@ -185,10 +186,10 @@ const RapidDev = () => {
 				<div className="border-soft flex flex-col border-y lg:flex-row">
 					<div className="border-soft overflow-hidden border-b lg:flex-1 lg:border-b-0 lg:border-r">
 						<div className="lg:px-15 flex w-full flex-col px-5 py-8 sm:px-10 sm:py-12 lg:w-[520px] lg:py-20">
-							<h3 className="heading-5 text-[18px] font-medium leading-8 tracking-[-0.18px]">
+							<h3 className="heading-5 text-[16px] font-medium leading-7 tracking-[-0.18px] sm:text-[18px] sm:leading-8">
 								Scalable Variable-first design system
 							</h3>
-							<p className="heading-5 text-fg-secondary text-[18px] font-medium leading-8 tracking-[-0.18px]">
+							<p className="heading-5 text-fg-secondary text-[16px] font-medium leading-7 tracking-[-0.18px] sm:text-[18px] sm:leading-8">
 								Fully designed for dark modes, typography, color, spacings &
 								more
 							</p>
@@ -207,10 +208,10 @@ const RapidDev = () => {
 					</div>
 					<div className="lg:flex-2">
 						<div className="lg:px-15 flex w-full flex-col px-5 py-8 sm:px-10 sm:py-12 lg:w-[520px] lg:py-20">
-							<h3 className="heading-5 text-[18px] font-medium leading-8 tracking-[-0.18px]">
+							<h3 className="heading-5 text-[16px] font-medium leading-7 tracking-[-0.18px] sm:text-[18px] sm:leading-8">
 								Copy-Paste Landing Page Blocks
 							</h3>
-							<p className="heading-5 text-fg-secondary text-[18px] font-medium leading-8 tracking-[-0.18px]">
+							<p className="heading-5 text-fg-secondary text-[16px] font-medium leading-7 tracking-[-0.18px] sm:text-[18px] sm:leading-8">
 								Growing Library of Pre-made responsive sections designed to snap
 								together into full pages
 							</p>
