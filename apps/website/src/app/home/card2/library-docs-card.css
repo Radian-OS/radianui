@@ -843,17 +843,6 @@
 .docs-copy-page-content > .docs-copy-preview-card,
 .docs-copy-page-content > .docs-copy-divider,
 .docs-copy-page-content > .docs-copy-install-section {
-	opacity: 0;
-}
-
-.is-in-view .docs-copy-top-actions,
-.is-in-view .docs-copy-page-content > .docs-copy-kicker,
-.is-in-view .docs-copy-page-content > h2,
-.is-in-view .docs-copy-page-content > .docs-copy-description,
-.is-in-view .docs-copy-page-content > .docs-copy-source-row,
-.is-in-view .docs-copy-page-content > .docs-copy-preview-card,
-.is-in-view .docs-copy-page-content > .docs-copy-divider,
-.is-in-view .docs-copy-page-content > .docs-copy-install-section {
 	animation: docs-copy-right-item-reveal 620ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
@@ -1452,12 +1441,6 @@
 .docs-copy-sidebar h3,
 .docs-copy-nav-row,
 .docs-copy-component-link {
-	opacity: 0;
-}
-
-.is-in-view .docs-copy-sidebar h3,
-.is-in-view .docs-copy-nav-row,
-.is-in-view .docs-copy-component-link {
 	animation: docs-copy-sidebar-item-reveal 520ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 

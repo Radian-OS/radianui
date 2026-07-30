@@ -280,8 +280,6 @@ export function CreditCardUsageAnimation() {
 	const [stateIndex, setStateIndex] = useState(0)
 	const [isPopping, setIsPopping] = useState(false)
 	const [cycleReset, setCycleReset] = useState(0)
-	const [isInView, setIsInView] = useState(false)
-	const containerRef = useRef<HTMLElement>(null)
 	const [displayPercent, setDisplayPercent] = useState(
 		creditStates[0].percentUsed
 	)
@@ -303,28 +301,9 @@ export function CreditCardUsageAnimation() {
 	}, [])
 
 	useEffect(() => {
-		const el = containerRef.current
-		if (!el) return
-
-		const observer = new IntersectionObserver(
-			([entry]) => {
-				if (entry.isIntersecting) {
-					setIsInView(true)
-					observer.disconnect()
-				}
-			},
-			{ threshold: 0.15 }
-		)
-
-		observer.observe(el)
-		return () => observer.disconnect()
-	}, [])
-
-	useEffect(() => {
-		if (!isInView) return
 		const timeout = window.setTimeout(advanceTheme, STATE_INTERVAL_MS)
 		return () => window.clearTimeout(timeout)
-	}, [advanceTheme, cycleReset, isInView])
+	}, [advanceTheme, cycleReset])
 
 	useEffect(() => {
 		let frameId = 0
@@ -359,11 +338,6 @@ export function CreditCardUsageAnimation() {
 		}
 	}
 
-	const revealClass = isInView
-		? "credit-content-reveal"
-		: "credit-reveal-hidden"
-	const rowRevealClass = isInView ? "credit-row-reveal" : "credit-reveal-hidden"
-
 	return (
 		<article
 			aria-label={`Credits usage card, ${activeState.name} state. Click to change usage state.`}
@@ -373,12 +347,11 @@ export function CreditCardUsageAnimation() {
 			onAnimationEnd={() => setIsPopping(false)}
 			onClick={advanceTheme}
 			onKeyDown={handleKeyDown}
-			ref={containerRef}
 			role="button"
 			style={themeStyle}
 			tabIndex={0}>
 			<div
-				className={`${revealClass} flex items-start justify-between gap-[11px]`}
+				className="credit-content-reveal flex items-start justify-between gap-[11px]"
 				style={getRevealStyle(0)}>
 				<div>
 					<p className="text-[11.75px] font-medium uppercase leading-none tracking-[0.12em] text-[var(--card-muted)] transition-colors duration-500">
@@ -403,7 +376,7 @@ export function CreditCardUsageAnimation() {
 
 			<div
 				aria-label="Credits used progress"
-				className={`${revealClass} mt-[23.5px] h-[28px] w-full ${
+				className={`credit-content-reveal mt-[23.5px] h-[28px] w-full ${
 					isRailProgress
 						? "flex items-center"
 						: "flex items-center justify-between gap-[var(--card-bar-gap)]"
@@ -443,7 +416,7 @@ export function CreditCardUsageAnimation() {
 			</div>
 
 			<p
-				className={`${revealClass} mt-[12px] flex text-[13px] font-semibold uppercase leading-none tracking-[0] text-[var(--card-muted)] transition-colors duration-500`}
+				className="credit-content-reveal mt-[12px] flex text-[13px] font-semibold uppercase leading-none tracking-[0] text-[var(--card-muted)] transition-colors duration-500"
 				style={getRevealStyle(2)}>
 				<span className="inline-block w-[43px] shrink-0 tabular-nums">
 					{usedCredits}M
@@ -452,12 +425,12 @@ export function CreditCardUsageAnimation() {
 			</p>
 
 			<div
-				className={`${revealClass} mt-[15.25px] border-t border-dashed border-[var(--card-dash)] transition-colors duration-500`}
+				className="credit-content-reveal mt-[15.25px] border-t border-dashed border-[var(--card-dash)] transition-colors duration-500"
 				style={getRevealStyle(3)}
 			/>
 
 			<div
-				className={`${revealClass} mt-[15.25px] flex items-center gap-[18.5px]`}
+				className="credit-content-reveal mt-[15.25px] flex items-center gap-[18.5px]"
 				style={getRevealStyle(4)}>
 				<h1 className="text-[15.75px] font-semibold leading-none tracking-[0] text-[var(--card-text)] transition-colors duration-500">
 					Usage History
@@ -468,7 +441,7 @@ export function CreditCardUsageAnimation() {
 			</div>
 
 			<div
-				className={`${revealClass} mt-[19.5px] grid grid-cols-[1fr_1fr_61.75px] items-center text-[12.75px] font-semibold leading-none tracking-[0] text-[var(--card-muted)] transition-colors duration-500`}
+				className="credit-content-reveal mt-[19.5px] grid grid-cols-[1fr_1fr_61.75px] items-center text-[12.75px] font-semibold leading-none tracking-[0] text-[var(--card-muted)] transition-colors duration-500"
 				style={getRevealStyle(5)}>
 				<div>Date</div>
 				<div>Model</div>
@@ -476,11 +449,11 @@ export function CreditCardUsageAnimation() {
 			</div>
 
 			<div
-				className={`${revealClass} mt-[10.75px] border-t border-[var(--card-divider)] transition-colors duration-500`}
+				className="credit-content-reveal mt-[10.75px] border-t border-[var(--card-divider)] transition-colors duration-500"
 				style={getRevealStyle(6)}>
 				{usageRows.map((row, index) => (
 					<div
-						className={`${rowRevealClass} grid grid-cols-[1fr_1fr_61.75px] items-center text-[12px] font-semibold leading-none tracking-[0] text-[var(--card-muted)] transition-[border-color,color,height] duration-500 ${
+						className={`credit-row-reveal grid grid-cols-[1fr_1fr_61.75px] items-center text-[12px] font-semibold leading-none tracking-[0] text-[var(--card-muted)] transition-[border-color,color,height] duration-500 ${
 							index === usageRows.length - 1
 								? ""
 								: "border-b border-[var(--card-divider)]"

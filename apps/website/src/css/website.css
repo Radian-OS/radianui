@@ -193,10 +193,6 @@
 	animation: credit-card-pop 520ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.credit-reveal-hidden {
-	opacity: 0;
-}
-
 .credit-content-reveal,
 .credit-row-reveal {
 	animation: credit-content-reveal 620ms cubic-bezier(0.16, 1, 0.3, 1) both;
@@ -724,16 +720,12 @@
 }
 
 .component-command span {
-	opacity: 0;
+	animation: component-text-swap 520ms cubic-bezier(0.16, 1, 0.3, 1);
 	flex: 1;
 	font-family: "Azeret Mono", ui-monospace, monospace;
 	font-size: 10px;
 	font-weight: 500;
 	color: var(--color-fg-secondary);
-}
-
-.is-in-view .component-command span {
-	animation: component-text-swap 520ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .component-command kbd {
@@ -774,16 +766,12 @@
 	font-size: 9px;
 	font-weight: 500;
 	color: var(--color-fg-secondary);
-	opacity: 0;
+	animation: component-row-in 360ms cubic-bezier(0.16, 1, 0.3, 1) both;
 	transition:
 		border-color 420ms ease,
 		background-color 420ms ease,
 		color 420ms ease,
 		transform 420ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.is-in-view .component-catalog-row {
-	animation: component-row-in 360ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .component-catalog-row + .component-catalog-row {
@@ -835,11 +823,7 @@
 	border-radius: 10px;
 	background: var(--color-elevation-level1);
 	padding: 13px;
-	opacity: 0;
-}
-
-.is-in-view .component-preview-panel {
-	animation: component-panel-in 560ms cubic-bezier(0.16, 1, 0.3, 1) both;
+	animation: component-panel-in 560ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .component-preview-top {

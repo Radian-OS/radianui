@@ -1,11 +1,16 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import { CursorIdeCard } from "./cursor-ide-card"
-import { FigmaUiCard } from "./figma-ui-card"
+import dynamic from "next/dynamic"
 
 const STAGE_WIDTH = 1440
 const STAGE_HEIGHT = 720
+const CursorIdeCard = dynamic(() =>
+	import("./cursor-ide-card").then((module) => module.CursorIdeCard)
+)
+const FigmaUiCard = dynamic(() =>
+	import("./figma-ui-card").then((module) => module.FigmaUiCard)
+)
 
 type RapidDevAnimationProps = {
 	type: "designer" | "developer"
