@@ -18,6 +18,7 @@ import {
 	X,
 } from "lucide-react"
 import Image from "next/image"
+import { cn } from "@/lib/utils"
 import "./library-docs-card.css"
 
 const ROTATE_MS = 5800
@@ -396,7 +397,7 @@ export function LibraryDocsCard() {
 	return (
 		<article
 			aria-label="Radian component documentation preview"
-			className={`docs-copy-frame${isVisible ? "is-visible" : ""}`}
+			className={cn("docs-copy-frame", isVisible && "is-visible")}
 			onClick={advancePage}
 			ref={frameRef}
 			tabIndex={-1}>

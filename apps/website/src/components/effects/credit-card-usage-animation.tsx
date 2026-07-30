@@ -2,6 +2,7 @@
 
 import type { CSSProperties, KeyboardEvent } from "react"
 import { useCallback, useEffect, useMemo, useRef, useState } from "react"
+import { cn } from "@/lib/utils"
 
 const TOTAL_CREDITS = 100
 const TOTAL_BARS = 45
@@ -362,9 +363,11 @@ export function CreditCardUsageAnimation() {
 	return (
 		<article
 			aria-label={`Credits usage card, ${activeState.name} state. Click to change usage state.`}
-			className={`credit-usage-card credit-card-frame relative overflow-hidden focus:outline-none ${
-				isPopping ? "is-popping" : ""
-			}${isInView ? "is-visible" : ""}`}
+			className={cn(
+				"credit-usage-card credit-card-frame relative overflow-hidden focus:outline-none",
+				isPopping && "is-popping",
+				isInView && "is-visible"
+			)}
 			onAnimationEnd={() => setIsPopping(false)}
 			onClick={advanceTheme}
 			onKeyDown={handleKeyDown}

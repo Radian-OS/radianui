@@ -11,6 +11,7 @@ import {
 	SlidersHorizontal,
 	SquareStack,
 } from "lucide-react"
+import { cn } from "@/lib/utils"
 
 const ROTATE_MS = 4200
 
@@ -127,7 +128,11 @@ export function LibraryComponentsCard({
 	return (
 		<article
 			aria-label="Complete library of UI components concept. Click to cycle the component library preview."
-			className={`component-library-card focus:outline-none${isInView ? "is-visible" : ""} ${className}`.trimEnd()}
+			className={cn(
+				"component-library-card focus:outline-none",
+				isInView && "is-visible",
+				className
+			)}
 			onClick={advanceState}
 			onKeyDown={handleKeyDown}
 			ref={containerRef}
