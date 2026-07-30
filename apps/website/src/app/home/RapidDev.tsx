@@ -6,6 +6,7 @@ import { LibraryComponentsCard } from "@/components/effects/library-primitives-c
 import { Badge, BadgeDot } from "@/registry/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 import DiagonalDivider from "./SvgDivider"
+import { LibraryDocsCard } from "./card2"
 
 const data = [
 	{ label: "Designer", value: "designer", content: "Inbox Content" },
@@ -71,13 +72,8 @@ const RapidDev = () => {
 							</p>
 						</div>
 						<div className="relative h-[214px] md:h-[414px] lg:h-[430px]">
-							<div className="absolute bottom-[-10rem] right-0">
-								<Image
-									width={450}
-									height={600}
-									alt=""
-									src="/newhome/UIPreview.png"
-								/>
+							<div className="absolute -bottom-[180%] -right-[25%] md:-bottom-[35%] md:-right-[28%] lg:-bottom-[40%] lg:-right-[30%]">
+								<LibraryDocsCard />
 							</div>
 							<div className="pointer-events-none absolute bottom-[-3rem] left-0 right-0 h-[120px] bg-[linear-gradient(0deg,#FFF_0%,rgba(255,255,255,0)_100%)] dark:bg-[linear-gradient(0deg,oklch(0.144_0.003_264.025)_0%,oklch(0.144_0.003_264.025/0)_100%)]" />
 						</div>
