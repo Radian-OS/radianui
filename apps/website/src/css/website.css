@@ -195,15 +195,10 @@
 
 .credit-content-reveal,
 .credit-row-reveal {
-	opacity: 0;
-}
-
-.credit-usage-card.is-visible .credit-content-reveal,
-.credit-usage-card.is-visible .credit-row-reveal {
 	animation: credit-content-reveal 620ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-.credit-usage-card.is-visible .credit-row-reveal {
+.credit-row-reveal {
 	animation-duration: 520ms;
 }
 
@@ -771,16 +766,12 @@
 	font-size: 9px;
 	font-weight: 500;
 	color: var(--color-fg-secondary);
-	opacity: 0;
+	animation: component-row-in 360ms cubic-bezier(0.16, 1, 0.3, 1) both;
 	transition:
 		border-color 420ms ease,
 		background-color 420ms ease,
 		color 420ms ease,
 		transform 420ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.component-library-card.is-visible .component-catalog-row {
-	animation: component-row-in 360ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .component-catalog-row + .component-catalog-row {
@@ -794,35 +785,35 @@
 	transform: translateX(3px);
 }
 
-.component-library-card.is-visible .row-2 {
+.row-2 {
 	animation-delay: 18ms;
 }
 
-.component-library-card.is-visible .row-3 {
+.row-3 {
 	animation-delay: 36ms;
 }
 
-.component-library-card.is-visible .row-4 {
+.row-4 {
 	animation-delay: 54ms;
 }
 
-.component-library-card.is-visible .row-5 {
+.row-5 {
 	animation-delay: 72ms;
 }
 
-.component-library-card.is-visible .row-6 {
+.row-6 {
 	animation-delay: 90ms;
 }
 
-.component-library-card.is-visible .row-7 {
+.row-7 {
 	animation-delay: 108ms;
 }
 
-.component-library-card.is-visible .row-8 {
+.row-8 {
 	animation-delay: 126ms;
 }
 
-.component-library-card.is-visible .row-9 {
+.row-9 {
 	animation-delay: 144ms;
 }
 
@@ -832,11 +823,7 @@
 	border-radius: 10px;
 	background: var(--color-elevation-level1);
 	padding: 13px;
-	opacity: 0;
-}
-
-.component-library-card.is-visible .component-preview-panel {
-	animation: component-panel-in 560ms cubic-bezier(0.16, 1, 0.3, 1) both;
+	animation: component-panel-in 560ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .component-preview-top {
