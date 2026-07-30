@@ -182,66 +182,6 @@ const RapidDev = () => {
 					height={32}
 					viewBox="0 0 1440 32"
 				/>
-
-				<div className="border-soft flex flex-col border-y lg:flex-row">
-					<div className="border-soft overflow-hidden border-b lg:flex-1 lg:border-b-0 lg:border-r">
-						<div className="lg:px-15 flex w-full flex-col px-5 py-8 sm:px-10 sm:py-12 lg:w-[520px] lg:py-20">
-							<h3 className="heading-5 text-[16px] font-medium leading-7 tracking-[-0.18px] sm:text-[18px] sm:leading-8">
-								Scalable Variable-first design system
-							</h3>
-							<p className="heading-5 text-fg-secondary text-[16px] font-medium leading-7 tracking-[-0.18px] sm:text-[18px] sm:leading-8">
-								Fully designed for dark modes, typography, color, spacings &
-								more
-							</p>
-						</div>
-						<div className="relative h-[214px] md:h-[414px] lg:h-[430px]">
-							<div className="scale-120 absolute bottom-[-20rem] left-1/2 -translate-x-1/2 -translate-y-1/2 focus:outline-none focus:ring-0 md:bottom-[-9rem]">
-								<Image
-									width={600}
-									height={800}
-									alt=""
-									src="/newhome/sidebar.png"
-								/>
-							</div>
-							<div className="pointer-events-none absolute bottom-[-2rem] left-0 right-0 h-[120px] bg-[linear-gradient(0deg,#FFF_0%,rgba(255,255,255,0)_100%)] dark:bg-[linear-gradient(0deg,oklch(0.144_0.003_264.025)_0%,oklch(0.144_0.003_264.025/0)_100%)]" />
-						</div>
-					</div>
-					<div className="lg:flex-2">
-						<div className="lg:px-15 flex w-full flex-col px-5 py-8 sm:px-10 sm:py-12 lg:w-[520px] lg:py-20">
-							<h3 className="heading-5 text-[16px] font-medium leading-7 tracking-[-0.18px] sm:text-[18px] sm:leading-8">
-								Copy-Paste Landing Page Blocks
-							</h3>
-							<p className="heading-5 text-fg-secondary text-[16px] font-medium leading-7 tracking-[-0.18px] sm:text-[18px] sm:leading-8">
-								Growing Library of Pre-made responsive sections designed to snap
-								together into full pages
-							</p>
-						</div>
-						<div className="relative h-[214px] overflow-hidden focus:outline-none focus:ring-0 md:h-[414px] lg:h-[430px]">
-							<Image
-								width={300}
-								height={700}
-								alt=""
-								src="/newhome/vertical.png"
-								className="absolute bottom-[-10rem] right-10"
-							/>
-							<Image
-								width={600}
-								height={1000}
-								alt=""
-								src="/newhome/Container.png"
-								className="lg:-translate-y-50 absolute left-1/2 top-1/2 z-10 -translate-x-1/2"
-							/>
-							<div className="pointer-events-none absolute bottom-0 left-0 right-0 z-20 h-[120px] bg-[linear-gradient(0deg,#FFF_0%,rgba(255,255,255,0)_100%)] dark:bg-[linear-gradient(0deg,oklch(0.144_0.003_264.025)_0%,oklch(0.144_0.003_264.025/0)_100%)]" />
-						</div>
-					</div>
-				</div>
-
-				<DiagonalDivider className="hidden sm:block" />
-				<DiagonalDivider
-					className="block sm:hidden"
-					height={32}
-					viewBox="0 0 1440 32"
-				/>
 			</div>
 		</section>
 	)

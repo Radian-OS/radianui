@@ -38,51 +38,9 @@ const stats = [
 const featureItems = [
 	{
 		icon: SwatchBook,
-		title: "Figma variable system",
+		title: "Figma Variable System",
 		description:
 			"Manage consistent design tokens across color, spacing, and typography",
-	},
-	{
-		icon: LayoutGrid,
-		title: "Auto layout",
-		description:
-			"Create scalable and flexible designs that adapt to any screen size automatically",
-	},
-	{
-		icon: SunMoon,
-		title: "Theme Modes",
-		description:
-			"Switch effortlessly between light and dark themes, or create custom themes",
-	},
-	{
-		icon: CaseLower,
-		title: "Responsive Typography",
-		description:
-			"Ensure consistent, legible text across devices with an adaptive type system",
-	},
-	{
-		icon: Palette,
-		title: "Color Presets",
-		description:
-			"Use predefined color palettes to maintain harmony & visual consistency",
-	},
-	{
-		icon: GalleryVertical,
-		title: "Motion Components",
-		description:
-			"Bring your interfaces to life with smooth, modern motion and interaction patterns",
-	},
-	{
-		icon: Blocks,
-		title: "Composable System",
-		description:
-			"Composable components allows you to easily tweak and adjust components",
-	},
-	{
-		icon: FileCode,
-		title: "Type safe Components",
-		description:
-			"Eliminate code errors with strongly typed UI components for developers",
 	},
 	{
 		icon: Braces,
@@ -97,10 +55,52 @@ const featureItems = [
 			"Being open source allows for teams to access full code and build on top of it",
 	},
 	{
+		icon: SunMoon,
+		title: "Theme Modes",
+		description:
+			"Switch effortlessly between light and dark themes, or create custom themes",
+	},
+	{
+		icon: LayoutGrid,
+		title: "Auto Layout",
+		description:
+			"Create scalable and flexible designs that adapt to any screen size automatically",
+	},
+	{
+		icon: Palette,
+		title: "Color Presets",
+		description:
+			"Use predefined color palettes to maintain harmony & visual consistency",
+	},
+	{
+		icon: FileCode,
+		title: "Type Safe Components",
+		description:
+			"Eliminate code errors with strongly typed UI components for developers",
+	},
+	{
 		icon: Cuboid,
 		title: "Growing Block Library",
 		description:
 			"Expanding collection of ready-to-use UI blocks to speed up your workflow.",
+	},
+	{
+		icon: CaseLower,
+		title: "Responsive Typography",
+		description:
+			"Ensure consistent, legible text across devices with an adaptive type system",
+	},
+	{
+		icon: GalleryVertical,
+		title: "Motion Components",
+		description:
+			"Bring your interfaces to life with smooth, modern motion and interaction patterns",
+	},
+	{
+		icon: Blocks,
+		title: "Composable System",
+		description:
+			"Composable components allows you to easily tweak and adjust components",
 	},
 	{
 		icon: CloudCog,
@@ -218,7 +218,7 @@ export default function CarouselSection() {
 							slidesToScroll: 1,
 							breakpoints: {
 								"(min-width: 640px)": { slidesToScroll: 2 },
-								"(min-width: 1024px)": { slidesToScroll: 3 },
+								"(min-width: 1024px)": { slidesToScroll: 4 },
 							},
 						}}
 						setApi={setApi}
@@ -228,12 +228,14 @@ export default function CarouselSection() {
 							{featureItems.map(({ icon: Icon, title, description }) => (
 								<CarouselItem
 									key={title}
-									className="basis-full pl-0 sm:basis-1/2 lg:basis-1/3">
-									<div className="flex h-full flex-col gap-8 pr-8">
+									className="basis-full pl-0 sm:basis-1/2 lg:basis-1/4">
+									<div className="flex h-full min-w-0 flex-col gap-6 pr-4 sm:gap-8 sm:pr-8">
 										<Icon className="text-fg-tertiary size-6" />
-										<div className="flex flex-col gap-3">
+										<div className="flex min-w-0 flex-col gap-3">
 											<h4 className="font-medium">{title}</h4>
-											<p className="text-fg-secondary">{description}</p>
+											<p className="text-fg-secondary line-clamp-2 min-h-10 text-sm leading-5">
+												{description}
+											</p>
 										</div>
 									</div>
 								</CarouselItem>
