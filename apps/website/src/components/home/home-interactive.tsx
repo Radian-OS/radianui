@@ -94,7 +94,7 @@ const HomeInteractive = () => {
 	}
 
 	return (
-		<div className="bg-fill1-alpha border-soft relative z-30 h-full rounded-xl border p-3 backdrop-blur-[45px]">
+		<div className="bg-fill1-alpha border-soft relative z-30 h-full border p-3 backdrop-blur-[45px]">
 			<Tabs
 				value={activeTab}
 				onValueChange={handleTabChange}

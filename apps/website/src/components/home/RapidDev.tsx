@@ -129,7 +129,7 @@ const RapidDev = () => {
 					className="border-soft gap-0 border-y"
 					defaultValue={data[0].value}>
 					<div className="lg:px-15 lg:py-25 flex flex-col justify-between gap-3 px-5 py-12 sm:px-10 sm:py-16 lg:flex-row">
-						<h3 className="heading-5 w-full text-[20px] font-medium leading-9 tracking-[-0.24px] sm:text-[24px] lg:w-[612px]">
+						<h3 className="heading-5 w-full text-[20px] font-medium leading-7 tracking-[-0.24px] sm:text-[24px] sm:leading-9 lg:w-[612px]">
 							Seamless Design-to-Code Sync.{" "}
 							<span className="text-fg-secondary">
 								Variables and tokens in Figma Design File and Code use the same
