@@ -3,11 +3,11 @@ import { Dot } from "lucide-react"
 import Image from "next/image"
 import { CreditCardUsageAnimation } from "@/components/effects/credit-card-usage-animation"
 import { LibraryComponentsCard } from "@/components/effects/library-primitives-card-animation"
+import { LibraryDocsCard } from "@/components/home/rapid-dev/library-docs-card"
 import { RapidDevAnimation } from "@/components/home/rapid-dev/rapid-dev-animation"
 import { Badge, BadgeDot } from "@/registry/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 import DiagonalDivider from "./SvgDivider"
-import { LibraryDocsCard } from "./card2"
 
 const data = [
 	{ label: "Designer", value: "designer" },

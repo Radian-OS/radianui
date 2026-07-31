@@ -78,7 +78,7 @@ export default function PlaygroundSection() {
 		return null
 	}
 	return (
-		<div className="border-soft lg:py-25 lg:px-15 mx-auto flex w-full max-w-[1440px] flex-col items-center gap-10 border-l border-r px-5 py-20 md:gap-12 lg:gap-20">
+		<section className="border-soft lg:py-25 lg:px-15 mx-auto flex w-full max-w-[1440px] flex-col items-center gap-10 border-l border-r px-5 py-20 md:gap-12 lg:gap-20">
 			<div className="flex max-w-[700px] flex-col items-center gap-6">
 				<Badge size="28" color="violet-blue" variant="soft">
 					<SwatchBook className="text-primary" />
@@ -259,6 +259,6 @@ export default function PlaygroundSection() {
 					</div>
 				</Tabs>
 			</div>
-		</div>
+		</section>
 	)
 }

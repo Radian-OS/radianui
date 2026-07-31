@@ -6,7 +6,7 @@ export default function MiniFooter() {
 
 	return (
 		<>
-			<Divider />
+			<Divider className="border-soft border-t" />
 			<div className="h-13 flex items-center justify-center">
 				<p className="text-fg-secondary text-center text-xs font-normal">
 					© Copyright Radian OS {currentYear}. All rights reserved.

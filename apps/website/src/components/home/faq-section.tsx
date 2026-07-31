@@ -1,97 +1,54 @@
-import { MessageCircleQuestionIcon } from "lucide-react"
-import { Badge } from "@/styles/default/ui/badge"
+"use client"
 
-// import FAQAccordion from "./faq-accordion"
+import { useState } from "react"
+import FAQAccordion, { FAQ_CATEGORIES } from "@/components/home/faq-accordion"
+import { Button } from "@/registry/ui/button"
+import DiagonalDivider from "./SvgDivider"
 
 export default function FAQSection() {
+	const [activeCategory, setActiveCategory] = useState<string>("general")
+
 	return (
-		<div className="py-15 flex w-full flex-col items-center gap-8 px-5 xl:py-36">
-			<div className="max-w-360 relative w-full">
-				<Badge className="relative z-10" variant="soft" size="28">
-					<MessageCircleQuestionIcon className="text-primary-text" />
-					<span className="text-fg-secondary">FAQ&apos;s</span>
-				</Badge>
-				<svg
-					className="not-xl:hidden absolute bottom-[50%] left-0 z-0"
-					width="1593"
-					height="775"
-					fill="none"
-					viewBox="0 0 1593 775"
-					xmlns="http://www.w3.org/2000/svg">
-					<defs>
-						<linearGradient id="faqPath" x1="0%" y1="0%" x2="0%" y2="100%">
-							<stop offset="0%" stopColor="var(--color-bg)" stopOpacity="1" />
-							<stop
-								offset="20%"
-								stopColor="var(--color-soft)"
-								stopOpacity="1"
-							/>
-							<stop
-								offset="100%"
-								stopColor="var(--color-soft)"
-								stopOpacity="1"
-							/>
-						</linearGradient>
-					</defs>
-
-					<path
-						d="M 0 775 L 1326 775 C 1355 768 1352 749 1351 721 L 1351 613 C 1351 608 1349 592 1360 585 L 1583 412 C 1594 399 1592 400 1592 374 L 1593 0"
-						stroke="url(#faqPath)"
-						strokeWidth={1}
-					/>
-					<path
-						id="beamPath"
-						d="M 0 775 L 1326 775 C 1355 768 1352 749 1351 721 L 1351 613 C 1351 608 1349 592 1360 585 L 1583 412 C 1594 399 1592 400 1592 374 L 1593 0"
-						fill="none"
-						stroke="var(--color-primary)"
-						strokeWidth="1"
-						strokeLinecap="round"
-						className="animate-[var(--animate-beam-flow2)] opacity-0 [stroke-dasharray:20_1000] [stroke-dashoffset:0]"
-						vectorEffect="non-scaling-stroke"
-						pathLength="1000"
-					/>
-				</svg>
-
-				<svg
-					className="not-xl:hidden absolute -left-[50px] top-[50%] z-0 max-h-[341px]"
-					viewBox="-80 0 350 341"
-					xmlns="http://www.w3.org/2000/svg">
-					<path
-						d="M 0 0 L -65 0 C -76 5 -81 15 -80 32 L -80 231 C -75 248 -64 258 -48 256 L 178 256 C 200 256 212 262 220 272 L 276 341"
-						stroke="var(--color-soft)"
-						strokeWidth="1"
-						fill="none"
-					/>
-					<path
-						id="beamPath"
-						d="M 0 0 L -65 0 C -76 5 -81 15 -80 32 L -80 231 C -75 248 -64 258 -48 256 L 178 256 C 200 256 212 262 220 272 L 276 341"
-						strokeWidth="1"
-						fill="none"
-						stroke="var(--color-primary)"
-						strokeLinecap="round"
-						className="animate-[var(--animate-beam-flow4)] opacity-0 [stroke-dasharray:20_1000] [stroke-dashoffset:0]"
-						vectorEffect="non-scaling-stroke"
-						pathLength="400"
-					/>
-				</svg>
-			</div>
-			<div className="max-w-360 flex w-full flex-col gap-12 lg:flex-row">
-				<div className="flex flex-col gap-8">
-					<div className="flex flex-col gap-4">
-						<h2 className="heading-2 from-fg to-fg-secondary bg-gradient-to-b bg-clip-text text-transparent">
+		<section
+			aria-labelledby="faq-title"
+			className="relative mx-auto w-full max-w-[1440px]">
+			<div className="border-soft max-w-360 mx-auto flex flex-col overflow-hidden border border-t-0">
+				<div className="md:px-15 border-soft flex w-full flex-col gap-12 border-b px-0 sm:px-5 lg:flex-row">
+					<div className="pt-15 flex flex-1 flex-col gap-8 px-5 sm:px-0">
+						<h2
+							id="faq-title"
+							className="heading-4 text-fg text-[32px] font-medium leading-[40px]">
 							Frequently Asked Questions.
 						</h2>
-						<p className="text-fg-secondary">
-							Got questions? We&apos;ve got answers. <br />
-							Find everything you need to know about Radian here.
-						</p>
+						<div className="flex gap-2.5">
+							{FAQ_CATEGORIES.map((cat) => {
+								const Icon = cat.icon
+								return (
+									<Button
+										key={cat.value}
+										color="neutral"
+										className="w-full lg:w-auto"
+										variant={activeCategory === cat.value ? "outline" : "soft"}
+										onClick={() => setActiveCategory(cat.value)}>
+										<Icon size={14} />
+										{cat.label}
+									</Button>
+								)
+							})}
+						</div>
+					</div>
+
+					<div className="border-soft w-full flex-1 border border-x-0 border-b-0 sm:border-x lg:border-t-0">
+						<FAQAccordion activeCategory={activeCategory} />
 					</div>
 				</div>
-
-				<div className="w-full max-w-full xl:max-w-[640px]">
-					{/* <FAQAccordion /> */}
-				</div>
+				<DiagonalDivider className="hidden sm:block" />
+				<DiagonalDivider
+					className="block sm:hidden"
+					height={32}
+					viewBox="0 0 1440 32"
+				/>
 			</div>
-		</div>
+		</section>
 	)
 }

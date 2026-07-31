@@ -17,17 +17,11 @@ import {
 	Users,
 } from "lucide-react"
 import Image from "next/image"
-import SvgDivider from "@/app/home/SvgDivider"
-import { Card6Animation } from "@/components/home/new/card-6-animation"
+import SvgDivider from "@/components/home/SvgDivider"
 import { darkThemeVars, lightThemeVars } from "@/components/theme/theme-vars"
 import { cn } from "@/lib/utils"
 import { Badge, BadgeDot } from "@/registry/ui/badge"
-import {
-	Carousel,
-	type CarouselApi,
-	CarouselContent,
-	CarouselItem,
-} from "@/registry/ui/carousel"
+import { Card6Animation } from "./card-6-animation"
 
 const stats = [
 	{ value: "2000+", label: "Variables & Design Tokens" },
@@ -111,28 +105,23 @@ const featureItems = [
 	},
 ] as const
 
+const featureItemsPerPage = 4
+const featurePageCount = Math.ceil(featureItems.length / featureItemsPerPage)
+
 export default function CarouselSection() {
-	const [api, setApi] = useState<CarouselApi>()
 	const [current, setCurrent] = useState(0)
-	const [snapCount, setSnapCount] = useState<number>(featureItems.length)
+	const visibleFeatureItems = featureItems.slice(
+		current * featureItemsPerPage,
+		(current + 1) * featureItemsPerPage
+	)
 
 	useEffect(() => {
-		if (!api) return
+		const interval = window.setInterval(() => {
+			setCurrent((page) => (page + 1) % featurePageCount)
+		}, 6000)
 
-		const updateCurrentSlide = () => {
-			setCurrent(api.selectedScrollSnap())
-			setSnapCount(api.scrollSnapList().length)
-		}
-
-		updateCurrentSlide()
-		api.on("select", updateCurrentSlide)
-		api.on("reInit", updateCurrentSlide)
-
-		return () => {
-			api.off("select", updateCurrentSlide)
-			api.off("reInit", updateCurrentSlide)
-		}
-	}, [api])
+		return () => window.clearInterval(interval)
+	}, [])
 
 	return (
 		<section
@@ -207,41 +196,32 @@ export default function CarouselSection() {
 							className="object-cover"
 						/>
 					</div>
-					<ShowcaseFrame api={api} current={current} snapCount={snapCount} />
+					<ShowcaseFrame
+						current={current}
+						pageCount={featurePageCount}
+						onPageChange={setCurrent}
+					/>
 				</div>
 
 				<div className="lg:px-15 px-5 sm:px-8">
-					<Carousel
-						opts={{
-							align: "start",
-							loop: true,
-							slidesToScroll: 1,
-							breakpoints: {
-								"(min-width: 640px)": { slidesToScroll: 2 },
-								"(min-width: 1024px)": { slidesToScroll: 4 },
-							},
-						}}
-						setApi={setApi}
-						aria-label="Product feature highlights"
-						className="w-full">
-						<CarouselContent className="ml-0">
-							{featureItems.map(({ icon: Icon, title, description }) => (
-								<CarouselItem
-									key={title}
-									className="basis-full pl-0 sm:basis-1/2 lg:basis-1/4">
-									<div className="flex h-full min-w-0 flex-col gap-6 pr-4 sm:gap-8 sm:pr-8">
-										<Icon className="text-fg-tertiary size-6" />
-										<div className="flex min-w-0 flex-col gap-3">
-											<h4 className="font-medium">{title}</h4>
-											<p className="text-fg-secondary line-clamp-2 min-h-10 text-sm leading-5">
-												{description}
-											</p>
-										</div>
-									</div>
-								</CarouselItem>
-							))}
-						</CarouselContent>
-					</Carousel>
+					<div
+						aria-live="polite"
+						aria-label={`Product feature highlights, page ${current + 1} of ${featurePageCount}`}
+						className="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
+						{visibleFeatureItems.map(({ icon: Icon, title, description }) => (
+							<article
+								key={title}
+								className="flex min-w-0 flex-col gap-6 sm:gap-8">
+								<Icon className="text-fg-tertiary size-6" />
+								<div className="flex min-w-0 flex-col gap-3">
+									<h4 className="font-medium">{title}</h4>
+									<p className="text-fg-secondary line-clamp-2 min-h-10 text-sm leading-5">
+										{description}
+									</p>
+								</div>
+							</article>
+						))}
+					</div>
 				</div>
 			</div>
 
@@ -258,13 +238,13 @@ export default function CarouselSection() {
 }
 
 function ShowcaseFrame({
-	api,
 	current,
-	snapCount,
+	pageCount,
+	onPageChange,
 }: {
-	api: CarouselApi | undefined
 	current: number
-	snapCount: number
+	pageCount: number
+	onPageChange: (index: number) => void
 }) {
 	return (
 		<>
@@ -277,18 +257,18 @@ function ShowcaseFrame({
 						style={darkThemeVars}
 					/>
 					<CarouselDots
-						api={api}
 						current={current}
-						snapCount={snapCount}
+						pageCount={pageCount}
+						onPageChange={onPageChange}
 						className="bottom-4 left-1/2 -translate-x-1/2 lg:hidden"
 					/>
 				</div>
 			</div>
 
 			<CarouselDots
-				api={api}
 				current={current}
-				snapCount={snapCount}
+				pageCount={pageCount}
+				onPageChange={onPageChange}
 				className="bottom-4 right-4 hidden lg:flex min-[1320px]:right-[calc((100%_-_1320px)/2_+_16px)]"
 			/>
 		</>
@@ -296,14 +276,14 @@ function ShowcaseFrame({
 }
 
 function CarouselDots({
-	api,
 	current,
-	snapCount,
+	pageCount,
+	onPageChange,
 	className,
 }: {
-	api: CarouselApi | undefined
 	current: number
-	snapCount: number
+	pageCount: number
+	onPageChange: (index: number) => void
 	className?: string
 }) {
 	return (
@@ -312,12 +292,12 @@ function CarouselDots({
 				"bg-fg/30 absolute z-10 flex gap-1.5 rounded-full p-1.5 backdrop-blur-md",
 				className
 			)}>
-			{Array.from({ length: snapCount }, (_, index) => (
+			{Array.from({ length: pageCount }, (_, index) => (
 				<button
 					key={index}
 					type="button"
-					onClick={() => api?.scrollTo(index)}
-					aria-label={`Go to slide ${index + 1}`}
+					onClick={() => onPageChange(index)}
+					aria-label={`Show feature group ${index + 1}`}
 					aria-current={current === index ? "true" : undefined}
 					className={cn(
 						"size-2 cursor-pointer rounded-full transition-colors",
