@@ -146,6 +146,12 @@ export default function CarouselSection() {
 
 		const distanceX = event.clientX - start.x
 		const distanceY = event.clientY - start.y
+		const isTap = Math.abs(distanceX) <= 12 && Math.abs(distanceY) <= 12
+
+		if (isTap) {
+			setCurrent((page) => (page + 1) % featurePageCount)
+			return
+		}
 
 		if (
 			Math.abs(distanceX) < 48 ||
