@@ -35,7 +35,7 @@ export default function Page() {
 			/>
 			<div className="min-h-screen w-full overflow-x-hidden">
 				<Background>
-					<div className="md:pt-30 pt-15 flex flex-col items-center justify-center gap-10">
+					<div className="md:pt-30 pt-15 relative z-30 flex flex-col items-center justify-center gap-10">
 						<HomepageLoadReveal
 							className="max-w-250 flex flex-col items-center justify-center"
 							delay={0.05}>
@@ -115,8 +115,9 @@ export default function Page() {
 
 function VideoPreviewWithBeams() {
 	return (
-		<div className="-mx-4 mt-[64px] flex w-[calc(100%+2rem)] justify-center sm:mt-[90px] md:-mx-5 md:w-[calc(100%+2.5rem)]">
-			<div className="max-w-368 relative w-full px-4 md:px-5">
+		<div className="relative -mx-4 mt-[64px] flex w-[calc(100%+2rem)] justify-center sm:mt-[90px] md:-mx-5 md:w-[calc(100%+2.5rem)]">
+			<div className="bg-primary/45 dark:bg-primary/60 z-25 absolute left-1/2 top-1/2 mx-auto hidden aspect-video w-[90%] -translate-x-1/2 -translate-y-1/2 rounded-full rounded-b-none blur-[50px] md:blur-[100px] lg:w-[85%] lg:blur-[130px] 2xl:w-[70%] dark:block"></div>
+			<div className="max-w-368 z-35 relative w-full px-4 md:px-5">
 				<HomepageLoadReveal
 					className="relative z-20 flex justify-center"
 					delay={0.28}
