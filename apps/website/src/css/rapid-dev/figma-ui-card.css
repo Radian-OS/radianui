@@ -14,8 +14,12 @@
 		linear-gradient(180deg, var(--color-fill1) 0%, var(--color-bg) 100%),
 		var(--color-bg);
 	color: var(--color-fg);
-	cursor: none;
 	font-family: inherit;
+}
+
+.figma-stage,
+.figma-stage * {
+	cursor: none !important;
 }
 
 .figma-stage:focus,
@@ -562,11 +566,11 @@
 	font-size: 12px;
 	font-weight: 650;
 	color: var(--color-fg-secondary);
-	cursor: grab;
+	cursor: none;
 }
 
 .figma-floating-card:active .figma-floating-title {
-	cursor: grabbing;
+	cursor: none;
 }
 
 .figma-stage .figma-window,
