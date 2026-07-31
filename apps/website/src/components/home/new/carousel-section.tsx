@@ -17,11 +17,11 @@ import {
 	Users,
 } from "lucide-react"
 import Image from "next/image"
-import SvgDivider from "@/app/home/SvgDivider"
-import { Card6Animation } from "@/components/home/new/card-6-animation"
+import SvgDivider from "@/components/home/SvgDivider"
 import { darkThemeVars, lightThemeVars } from "@/components/theme/theme-vars"
 import { cn } from "@/lib/utils"
 import { Badge, BadgeDot } from "@/registry/ui/badge"
+import { Card6Animation } from "./card-6-animation"
 
 const stats = [
 	{ value: "2000+", label: "Variables & Design Tokens" },

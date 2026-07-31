@@ -75,8 +75,8 @@ export default function EmailSubscription() {
 						Subscribe to our newsletter
 					</span>
 					<p className="text-fg-secondary text-sm font-normal">
-						We’re adding tons of cool components and blocks to help you build.
-						Subscribe to get updates on development
+						We&apos;re adding tons of cool components and blocks to help you
+						build. Subscribe to get updates on development
 					</p>
 				</div>
 				<div className="flex w-full flex-col gap-2 xl:max-w-[408px]">

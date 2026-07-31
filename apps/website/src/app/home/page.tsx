@@ -1,8 +1,11 @@
 import { ArrowRight } from "lucide-react"
 import Link from "next/link"
 import Background from "@/components/effects/background"
-// import CTASection from "@/components/home/cta-section"
-// import FAQSection from "@/components/home/faq-section"
+import RapidDev from "@/components/home/RapidDev"
+import DiagonalDivider from "@/components/home/SvgDivider"
+import Component from "@/components/home/component-section"
+import CTASection from "@/components/home/cta-section"
+import FAQSection from "@/components/home/faq-section"
 import Footer from "@/components/home/footer"
 import HeroActionButtons from "@/components/home/hero-action-buttons"
 import HomepageLoadReveal from "@/components/home/homepage-load-reveal"
@@ -16,11 +19,6 @@ import { JsonLd } from "@/components/seo/json-ld"
 import { getHomepageStructuredData } from "@/lib/structured-data"
 import { BorderBeam } from "@/registry/animated/border-beam"
 import { Badge } from "@/registry/ui/badge"
-import RapidDev from "./RapidDev"
-import DiagonalDivider from "./SvgDivider"
-import CTASection from "./build"
-import Component from "./component"
-import FAQSection from "./faq"
 
 const upperHeroBeamPath =
 	"M0 1H132C142.8 1 152.8 6.8 158.1 16.2L286.5 258.8C292.1 269.4 303.2 276 315.2 276H438"
@@ -105,8 +103,6 @@ export default function Page() {
 						<DiagonalDivider />
 					</div>
 				</div>
-
-				{/* <FAQSection /> */}
 				<FAQSection />
 
 				<CTASection />
