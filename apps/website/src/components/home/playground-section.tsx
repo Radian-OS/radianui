@@ -96,9 +96,9 @@ export default function PlaygroundSection() {
 					</h2>
 				</div>
 
-				<div className="border-soft bg-bg z-20 flex h-fit w-full flex-col gap-2.5 border border-x-0 border-b-0 py-3">
+				<div className="border-soft bg-bg z-20 flex h-fit w-full flex-col gap-2.5 border border-x-0 border-b-0 pt-3">
 					<div className="flex items-center justify-between">
-						<div className="flex items-center gap-2 px-2">
+						<div className="flex items-center gap-2 px-4">
 							<span className="bg-error size-2.5 rounded-full" />
 							<span className="bg-success size-2.5 rounded-full" />
 							<span className="bg-warning size-2.5 rounded-full" />
@@ -113,7 +113,7 @@ export default function PlaygroundSection() {
 					</div>
 					<Tabs
 						defaultValue="preview"
-						className="border-soft flex h-full w-full flex-col gap-0 overflow-hidden border border-x-0">
+						className="border-soft flex h-full w-full flex-col gap-0 overflow-hidden border border-x-0 border-b-0">
 						{/* Mobile/Tablet View */}
 						<div
 							style={{

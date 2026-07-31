@@ -16,21 +16,10 @@ import DiagonalDivider from "./SvgDivider"
 
 const Component = () => {
 	const [api, setApi] = useState<CarouselApi>()
-	const [canScrollPrev, setCanScrollPrev] = useState(false)
-	const [canScrollNext, setCanScrollNext] = useState(false)
 
 	const onApiChange = useCallback((api: CarouselApi) => {
 		if (!api) return
 		setApi(api)
-
-		const updateButtons = () => {
-			setCanScrollPrev(api.canScrollPrev())
-			setCanScrollNext(api.canScrollNext())
-		}
-
-		updateButtons()
-		api.on("select", updateButtons)
-		api.on("reInit", updateButtons)
 	}, [])
 
 	const handlePrev = useCallback(() => {
@@ -54,10 +43,10 @@ const Component = () => {
 						</Badge>
 						<div className="w-full lg:w-[920px]">
 							<h2 className="heading-3">
-								<span className="text-[24px] font-medium leading-[36px] md:text-[28px] md:leading-[44px] lg:text-[32px] lg:leading-[52px]">
+								<span className="text-[24px] font-medium leading-[36px] md:text-[28px] md:leading-[38px] lg:text-[32px] lg:leading-[44px]">
 									Production-ready React and Figma UI components.
 								</span>{" "}
-								<span className="text-fg-secondary text-[24px] font-medium leading-[36px] md:text-[28px] md:leading-[44px] lg:text-[32px] lg:leading-[52px]">
+								<span className="text-fg-secondary text-[24px] font-medium leading-[36px] md:text-[28px] md:leading-[38px] lg:text-[32px] lg:leading-[44px]">
 									Carefully crafted components that are flexible, accessible,
 									and ready for production from day one.
 								</span>
@@ -73,8 +62,7 @@ const Component = () => {
 								color="neutral"
 								size="32"
 								variant="outline"
-								onClick={handlePrev}
-								disabled={!canScrollPrev}>
+								onClick={handlePrev}>
 								<ChevronLeft className="text-fg-secondary" />
 							</IconButton>
 							<IconButton
@@ -82,8 +70,7 @@ const Component = () => {
 								color="neutral"
 								size="32"
 								variant="outline"
-								onClick={handleNext}
-								disabled={!canScrollNext}>
+								onClick={handleNext}>
 								<ChevronRight className="text-fg-secondary" />
 							</IconButton>
 						</div>
@@ -95,6 +82,7 @@ const Component = () => {
 						opts={{
 							align: "start",
 							slidesToScroll: 1,
+							loop: true,
 						}}>
 						<CarouselContent>
 							{HOMEPAGE_COMPONENTS_LIST.map((item, idx) => (
