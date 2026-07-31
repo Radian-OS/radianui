@@ -396,7 +396,7 @@ export function LibraryDocsCard() {
 	return (
 		<article
 			aria-label="Radian component documentation preview"
-			className={cn("docs-copy-frame", isVisible && "is-visible")}
+			className={cn("docs-copy-frame select-none", isVisible && "is-visible")}
 			onClick={advancePage}
 			ref={frameRef}
 			tabIndex={-1}>
