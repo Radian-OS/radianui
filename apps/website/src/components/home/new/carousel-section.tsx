@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
+import type { ReactNode } from "react"
 import {
 	Blocks,
 	Braces,
@@ -170,20 +171,18 @@ export default function CarouselSection() {
 		<section
 			className="bg-bg text-fg dark relative z-20 w-full"
 			style={darkThemeVars}>
-			<div className="border-soft max-w-360 lg:pt-30 mx-auto flex w-full flex-col border-x pt-12 sm:pt-14">
-				<div className="mb-12 flex w-full flex-col items-center justify-center gap-8 px-5 sm:mb-16 sm:px-8 lg:mb-20 lg:px-0">
-					<Badge color="violet-blue" size="28" variant="soft">
-						<BadgeDot className="text-violet-blue-text" />
-						Design at Scale
-					</Badge>
-					<h3 className="heading-3 max-w-212.5 text-center font-medium max-sm:text-2xl max-sm:leading-9">
-						More than just a component library.{" "}
-						<span className="text-fg-secondary">
-							A complete collection of design foundations, blocks, and assets
-							built to work together.
-						</span>
-					</h3>
-				</div>
+			<div className="border-soft max-w-360 mx-auto flex w-full flex-col border-x">
+				<SectionHeader
+					centered
+					badge={
+						<Badge color="violet-blue" size="28" variant="soft">
+							<BadgeDot className="text-violet-blue-text" />
+							Design at Scale
+						</Badge>
+					}
+					title="More than just a component library."
+					description="A complete collection of design foundations, blocks, and assets built to work together."
+				/>
 
 				<div className="border-soft flex w-full flex-wrap border-y">
 					{stats.map((stat, index) => (
@@ -214,20 +213,17 @@ export default function CarouselSection() {
 				</div>
 			</div>
 
-			<div className="border-soft max-w-360 pt-30 mx-auto flex w-full flex-col gap-10 border-x pb-20 lg:gap-20">
-				<div className="lg:px-15 flex flex-col gap-6 px-5 pb-5 sm:px-8">
-					<Badge size="28" color="violet-blue" variant="soft">
-						<Sparkles />
-						Extended Build Experience
-					</Badge>
-					<h3 className="heading-3 max-w-225 font-medium">
-						Built for modern product teams{" "}
-						<span className="text-fg-tertiary">
-							Extend your experience with more features to help you build better
-							apps and products
-						</span>
-					</h3>
-				</div>
+			<div className="border-soft max-w-360 mx-auto flex w-full flex-col border-x pb-20">
+				<SectionHeader
+					badge={
+						<Badge size="28" color="violet-blue" variant="soft">
+							<Sparkles />
+							Extended Build Experience
+						</Badge>
+					}
+					title="Built for modern product teams"
+					description="Extend your experience with more features to help you build better apps and products"
+				/>
 
 				<div
 					className="h-100 lg:h-160 relative flex w-full touch-pan-y justify-center overflow-hidden"
@@ -252,7 +248,7 @@ export default function CarouselSection() {
 					/>
 				</div>
 
-				<div className="lg:px-15 px-5 sm:px-8">
+				<div className="lg:px-15 px-5 pt-10 sm:px-10 lg:pt-20">
 					<div
 						aria-live="polite"
 						aria-label={`Product feature highlights, page ${current + 1} of ${featurePageCount}`}
@@ -283,6 +279,39 @@ export default function CarouselSection() {
 				/>
 			</div>
 		</section>
+	)
+}
+
+function SectionHeader({
+	badge,
+	title,
+	description,
+	centered = false,
+}: {
+	badge: ReactNode
+	title: string
+	description: string
+	centered?: boolean
+}) {
+	const headingClassName =
+		"heading-3 text-[24px] font-medium leading-[36px] md:text-[36px] md:leading-[44px] lg:text-[40px] lg:leading-[52px]"
+
+	return (
+		<div
+			className={cn(
+				"lg:px-15 lg:py-30 flex w-full flex-col gap-4 px-5 py-16 sm:gap-6 sm:px-10",
+				centered && "items-center"
+			)}>
+			{badge}
+			<div className="w-full max-w-[950px]">
+				<h3 className={cn(headingClassName, centered && "text-center")}>
+					{title}{" "}
+					<span className={cn(headingClassName, "text-fg-secondary")}>
+						{description}
+					</span>
+				</h3>
+			</div>
+		</div>
 	)
 }
 
