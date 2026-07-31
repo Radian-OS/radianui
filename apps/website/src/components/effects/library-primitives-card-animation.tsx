@@ -129,7 +129,7 @@ export function LibraryComponentsCard({
 		<article
 			aria-label="Complete library of UI components concept. Click to cycle the component library preview."
 			className={cn(
-				"component-library-card focus:outline-none",
+				"component-library-card select-none focus:outline-none",
 				isInView && "is-visible",
 				className
 			)}
