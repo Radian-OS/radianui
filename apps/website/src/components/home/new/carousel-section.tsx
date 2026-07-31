@@ -18,6 +18,7 @@ import {
 } from "lucide-react"
 import Image from "next/image"
 import SvgDivider from "@/app/home/SvgDivider"
+import { Card6Animation } from "@/components/home/new/card-6-animation"
 import { darkThemeVars, lightThemeVars } from "@/components/theme/theme-vars"
 import { cn } from "@/lib/utils"
 import { Badge, BadgeDot } from "@/registry/ui/badge"
@@ -170,16 +171,15 @@ export default function CarouselSection() {
 					))}
 				</div>
 
-				<div>
-					Animation Section (No Fixed Height Now, will adjust according to
-					animation)
+				<div className="flex w-full flex-col">
+					<Card6Animation />
+					<SvgDivider
+						height={50}
+						viewBox="0 0 1440 50"
+						preserveAspectRatio="none"
+						className="border-soft block h-[50px] w-full border-y"
+					/>
 				</div>
-				<SvgDivider
-					height={50}
-					viewBox="0 0 1440 50"
-					preserveAspectRatio="none"
-					className="border-soft block h-[50px] w-full border-y"
-				/>
 			</div>
 
 			<div className="border-soft max-w-360 pt-30 mx-auto flex w-full flex-col gap-10 border-x pb-20 lg:gap-20">
