@@ -105,7 +105,7 @@ export function LibraryComponentsCard({
 					observer.disconnect()
 				}
 			},
-			{ threshold: 0.15 }
+			{ threshold: 0.5 }
 		)
 
 		observer.observe(el)
