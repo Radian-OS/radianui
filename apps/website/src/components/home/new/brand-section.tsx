@@ -56,7 +56,7 @@ export default function BrandSection() {
 				onPointerLeave={() => setIsPaused(false)}>
 				<h2
 					id="brand-section-title"
-					className="text-fg-secondary border-soft flex w-full shrink-0 items-center justify-center border-b px-8 py-[15px] text-sm font-normal leading-5 md:py-5 lg:h-full lg:w-72 lg:border-b-0 lg:border-r lg:px-10 lg:py-[30px]">
+					className="text-fg-secondary border-soft flex w-full shrink-0 items-center justify-center border-b px-8 py-[15px] text-sm font-normal leading-5 md:py-5 lg:h-full lg:w-72 lg:border-b-0 lg:border-r lg:px-9 lg:py-[30px]">
 					Teams using Radian to Empower their Designs
 				</h2>
 

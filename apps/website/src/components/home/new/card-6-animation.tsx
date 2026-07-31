@@ -4,7 +4,7 @@ import { useRef } from "react"
 import type { CSSProperties } from "react"
 
 const STAGE_WIDTH = 1440
-const STAGE_HEIGHT = 720
+const STAGE_HEIGHT = 800
 const IMAGE_SCALE = 0.75
 const ASSET_BASE = "/newhome/card-6-assets"
 
@@ -93,7 +93,7 @@ function Card6Canvas() {
 		<section
 			ref={canvasRef}
 			aria-label="Scrolling interface inspiration gallery"
-			className="bg-fill2 text-fg relative h-[720px] w-[1440px] shrink-0 select-none overflow-hidden"
+			className="bg-fill2 text-fg relative h-[800px] w-[1440px] shrink-0 select-none overflow-hidden"
 			onPointerCancel={() => setMarqueeSpeed(1)}
 			onPointerDown={() => setMarqueeSpeed(2.55)}
 			onPointerEnter={() => setMarqueeSpeed(0.72)}
@@ -122,7 +122,7 @@ export function Card6Animation() {
 		<svg
 			id="design-at-scale-animation"
 			aria-label="Scrolling interface inspiration gallery"
-			className="block aspect-[2/1] h-auto w-full max-w-[1440px] overflow-hidden"
+			className="block aspect-[9/5] h-auto w-full max-w-[1440px] overflow-hidden"
 			preserveAspectRatio="xMidYMid meet"
 			role="group"
 			viewBox={`0 0 ${STAGE_WIDTH} ${STAGE_HEIGHT}`}>

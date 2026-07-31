@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import {
 	Blocks,
 	Braces,
@@ -110,6 +110,11 @@ const featurePageCount = Math.ceil(featureItems.length / featureItemsPerPage)
 
 export default function CarouselSection() {
 	const [current, setCurrent] = useState(0)
+	const swipeStart = useRef<{
+		pointerId: number
+		x: number
+		y: number
+	} | null>(null)
 	const visibleFeatureItems = featureItems.slice(
 		current * featureItemsPerPage,
 		(current + 1) * featureItemsPerPage
@@ -123,12 +128,44 @@ export default function CarouselSection() {
 		return () => window.clearInterval(interval)
 	}, [])
 
+	const handleSwipeStart = (event: React.PointerEvent<HTMLDivElement>) => {
+		if (!event.isPrimary) return
+
+		swipeStart.current = {
+			pointerId: event.pointerId,
+			x: event.clientX,
+			y: event.clientY,
+		}
+	}
+
+	const handleSwipeEnd = (event: React.PointerEvent<HTMLDivElement>) => {
+		const start = swipeStart.current
+		swipeStart.current = null
+
+		if (!start || start.pointerId !== event.pointerId) return
+
+		const distanceX = event.clientX - start.x
+		const distanceY = event.clientY - start.y
+
+		if (
+			Math.abs(distanceX) < 48 ||
+			Math.abs(distanceX) <= Math.abs(distanceY)
+		) {
+			return
+		}
+
+		setCurrent(
+			(page) =>
+				(page + (distanceX < 0 ? 1 : -1) + featurePageCount) % featurePageCount
+		)
+	}
+
 	return (
 		<section
 			className="bg-bg text-fg dark relative z-20 w-full"
 			style={darkThemeVars}>
-			<div className="border-soft max-w-360 lg:pt-30 mx-auto flex w-full flex-col gap-12 border-x pt-12 sm:gap-16 sm:pt-14 lg:gap-20">
-				<div className="flex w-full flex-col items-center justify-center gap-8 px-5 sm:px-8 lg:px-0">
+			<div className="border-soft max-w-360 lg:pt-30 mx-auto flex w-full flex-col border-x pt-12 sm:pt-14">
+				<div className="mb-12 flex w-full flex-col items-center justify-center gap-8 px-5 sm:mb-16 sm:px-8 lg:mb-20 lg:px-0">
 					<Badge color="violet-blue" size="28" variant="soft">
 						<BadgeDot className="text-violet-blue-text" />
 						Design at Scale
@@ -186,7 +223,13 @@ export default function CarouselSection() {
 					</h3>
 				</div>
 
-				<div className="h-100 lg:h-160 relative flex w-full justify-center overflow-hidden">
+				<div
+					className="h-100 lg:h-160 relative flex w-full touch-pan-y justify-center overflow-hidden"
+					onPointerCancelCapture={() => {
+						swipeStart.current = null
+					}}
+					onPointerDownCapture={handleSwipeStart}
+					onPointerUpCapture={handleSwipeEnd}>
 					<div className="h-100 w-192 lg:h-160 lg:w-320 xl:w-330 relative shrink-0 overflow-hidden md:rounded-xl">
 						<Image
 							src="/carousel-home.png"
@@ -211,9 +254,9 @@ export default function CarouselSection() {
 						{visibleFeatureItems.map(({ icon: Icon, title, description }) => (
 							<article
 								key={title}
-								className="flex min-w-0 flex-col gap-6 sm:gap-8">
-								<Icon className="text-fg-tertiary size-6" />
-								<div className="flex min-w-0 flex-col gap-3">
+								className="flex min-w-0 items-start gap-6 sm:flex-col sm:gap-8">
+								<Icon className="text-fg-tertiary size-6 shrink-0" />
+								<div className="flex min-w-0 flex-col gap-2 sm:gap-3">
 									<h4 className="font-medium">{title}</h4>
 									<p className="text-fg-secondary line-clamp-2 min-h-10 text-sm leading-5">
 										{description}
