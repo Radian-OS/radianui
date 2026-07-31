@@ -43,7 +43,7 @@ export default function Page() {
 							delay={0.05}>
 							<Link
 								href="/docs/getting-started/changelog"
-								className="relative h-[32px] rounded-full">
+								className="relative h-[32px] rounded-full focus:outline-none">
 								<Badge
 									color="primary"
 									className="h-8 gap-1.5 rounded-full py-1 pl-1"

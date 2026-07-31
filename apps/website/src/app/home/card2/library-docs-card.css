@@ -815,6 +815,13 @@
 	cursor: pointer;
 }
 
+.docs-copy-frame:focus,
+.docs-copy-frame:focus-visible,
+.docs-copy-frame *:focus,
+.docs-copy-frame *:focus-visible {
+	outline: none;
+}
+
 .docs-copy-frame button {
 	cursor: pointer;
 }
@@ -822,6 +829,7 @@
 .docs-copy-frame:active {
 	transform: scale(0.991);
 }
+
 
 .docs-copy-page-content {
 	animation: none;
@@ -835,38 +843,49 @@
 .docs-copy-page-content > .docs-copy-preview-card,
 .docs-copy-page-content > .docs-copy-divider,
 .docs-copy-page-content > .docs-copy-install-section {
+	opacity: 0;
+}
+
+.docs-copy-frame.is-visible .docs-copy-top-actions,
+.docs-copy-frame.is-visible .docs-copy-page-content > .docs-copy-kicker,
+.docs-copy-frame.is-visible .docs-copy-page-content > h2,
+.docs-copy-frame.is-visible .docs-copy-page-content > .docs-copy-description,
+.docs-copy-frame.is-visible .docs-copy-page-content > .docs-copy-source-row,
+.docs-copy-frame.is-visible .docs-copy-page-content > .docs-copy-preview-card,
+.docs-copy-frame.is-visible .docs-copy-page-content > .docs-copy-divider,
+.docs-copy-frame.is-visible .docs-copy-page-content > .docs-copy-install-section {
 	animation: docs-copy-right-item-reveal 620ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-.docs-copy-top-actions {
+.docs-copy-frame.is-visible .docs-copy-top-actions {
 	animation-delay: 120ms;
 }
 
-.docs-copy-page-content > .docs-copy-kicker {
+.docs-copy-frame.is-visible .docs-copy-page-content > .docs-copy-kicker {
 	animation-delay: 180ms;
 }
 
-.docs-copy-page-content > h2 {
+.docs-copy-frame.is-visible .docs-copy-page-content > h2 {
 	animation-delay: 260ms;
 }
 
-.docs-copy-page-content > .docs-copy-description {
+.docs-copy-frame.is-visible .docs-copy-page-content > .docs-copy-description {
 	animation-delay: 340ms;
 }
 
-.docs-copy-page-content > .docs-copy-source-row {
+.docs-copy-frame.is-visible .docs-copy-page-content > .docs-copy-source-row {
 	animation-delay: 440ms;
 }
 
-.docs-copy-page-content > .docs-copy-preview-card {
+.docs-copy-frame.is-visible .docs-copy-page-content > .docs-copy-preview-card {
 	animation-delay: 560ms;
 }
 
-.docs-copy-page-content > .docs-copy-divider {
+.docs-copy-frame.is-visible .docs-copy-page-content > .docs-copy-divider {
 	animation-delay: 700ms;
 }
 
-.docs-copy-page-content > .docs-copy-install-section {
+.docs-copy-frame.is-visible .docs-copy-page-content > .docs-copy-install-section {
 	animation-delay: 820ms;
 }
 
@@ -1433,6 +1452,12 @@
 .docs-copy-sidebar h3,
 .docs-copy-nav-row,
 .docs-copy-component-link {
+	opacity: 0;
+}
+
+.docs-copy-frame.is-visible .docs-copy-sidebar h3,
+.docs-copy-frame.is-visible .docs-copy-nav-row,
+.docs-copy-frame.is-visible .docs-copy-component-link {
 	animation: docs-copy-sidebar-item-reveal 520ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 

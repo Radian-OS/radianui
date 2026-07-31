@@ -2,6 +2,7 @@
 
 import type { CSSProperties, KeyboardEvent } from "react"
 import { useCallback, useEffect, useMemo, useRef, useState } from "react"
+import { cn } from "@/lib/utils"
 
 const TOTAL_CREDITS = 100
 const TOTAL_BARS = 45
@@ -280,6 +281,8 @@ export function CreditCardUsageAnimation() {
 	const [stateIndex, setStateIndex] = useState(0)
 	const [isPopping, setIsPopping] = useState(false)
 	const [cycleReset, setCycleReset] = useState(0)
+	const [isInView, setIsInView] = useState(false)
+	const containerRef = useRef<HTMLElement>(null)
 	const [displayPercent, setDisplayPercent] = useState(
 		creditStates[0].percentUsed
 	)
@@ -301,9 +304,28 @@ export function CreditCardUsageAnimation() {
 	}, [])
 
 	useEffect(() => {
+		const el = containerRef.current
+		if (!el) return
+
+		const observer = new IntersectionObserver(
+			([entry]) => {
+				if (entry.isIntersecting) {
+					setIsInView(true)
+					observer.disconnect()
+				}
+			},
+			{ threshold: 0.15 }
+		)
+
+		observer.observe(el)
+		return () => observer.disconnect()
+	}, [])
+
+	useEffect(() => {
+		if (!isInView) return
 		const timeout = window.setTimeout(advanceTheme, STATE_INTERVAL_MS)
 		return () => window.clearTimeout(timeout)
-	}, [advanceTheme, cycleReset])
+	}, [advanceTheme, cycleReset, isInView])
 
 	useEffect(() => {
 		let frameId = 0
@@ -341,12 +363,15 @@ export function CreditCardUsageAnimation() {
 	return (
 		<article
 			aria-label={`Credits usage card, ${activeState.name} state. Click to change usage state.`}
-			className={`credit-usage-card credit-card-frame relative overflow-hidden ${
-				isPopping ? "is-popping" : ""
-			}`}
+			className={cn(
+				"credit-usage-card credit-card-frame relative overflow-hidden focus:outline-none",
+				isPopping && "is-popping",
+				isInView && "is-visible"
+			)}
 			onAnimationEnd={() => setIsPopping(false)}
 			onClick={advanceTheme}
 			onKeyDown={handleKeyDown}
+			ref={containerRef}
 			role="button"
 			style={themeStyle}
 			tabIndex={0}>

@@ -1,7 +1,7 @@
 "use client"
 
 import type { CSSProperties, ReactNode } from "react"
-import { useCallback, useEffect, useState } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 import type { LucideIcon } from "lucide-react"
 import {
 	Bookmark,
@@ -18,6 +18,7 @@ import {
 	X,
 } from "lucide-react"
 import Image from "next/image"
+import { cn } from "@/lib/utils"
 import "./library-docs-card.css"
 
 const ROTATE_MS = 5800
@@ -188,7 +189,11 @@ function IconButton({
 	children: ReactNode
 }) {
 	return (
-		<button aria-label={label} className="docs-copy-icon-button" type="button">
+		<button
+			aria-label={label}
+			className="docs-copy-icon-button"
+			tabIndex={-1}
+			type="button">
 			{children}
 		</button>
 	)
@@ -197,10 +202,16 @@ function IconButton({
 function ButtonPreview() {
 	return (
 		<div className="radian-docs-button-preview">
-			<button className="radian-docs-button-primary" type="button">
+			<button
+				className="radian-docs-button-primary"
+				tabIndex={-1}
+				type="button">
 				Save Changes
 			</button>
-			<button className="radian-docs-button-outline" type="button">
+			<button
+				className="radian-docs-button-outline"
+				tabIndex={-1}
+				type="button">
 				Cancel
 			</button>
 		</div>
@@ -349,6 +360,8 @@ function DocsSidebar({ activeName }: { activeName: string }) {
 export function LibraryDocsCard() {
 	const [pageIndex, setPageIndex] = useState(0)
 	const [resetTick, setResetTick] = useState(0)
+	const [isVisible, setIsVisible] = useState(false)
+	const frameRef = useRef<HTMLElement>(null)
 	const activePage = pages[pageIndex]
 	const Preview = activePage.Preview
 
@@ -358,15 +371,36 @@ export function LibraryDocsCard() {
 	}, [])
 
 	useEffect(() => {
+		const el = frameRef.current
+		if (!el) return
+
+		const observer = new IntersectionObserver(
+			([entry]) => {
+				if (entry.isIntersecting) {
+					setIsVisible(true)
+					observer.disconnect()
+				}
+			},
+			{ threshold: 0.15 }
+		)
+
+		observer.observe(el)
+		return () => observer.disconnect()
+	}, [])
+
+	useEffect(() => {
+		if (!isVisible) return
 		const timeout = window.setTimeout(advancePage, ROTATE_MS)
 		return () => window.clearTimeout(timeout)
-	}, [advancePage, resetTick])
+	}, [advancePage, resetTick, isVisible])
 
 	return (
 		<article
 			aria-label="Radian component documentation preview"
-			className="docs-copy-frame"
-			onClick={advancePage}>
+			className={cn("docs-copy-frame", isVisible && "is-visible")}
+			onClick={advancePage}
+			ref={frameRef}
+			tabIndex={-1}>
 			<DocsSidebar activeName={activePage.name} />
 			<main className="docs-copy-main">
 				<div className="docs-copy-top-actions">
@@ -384,12 +418,18 @@ export function LibraryDocsCard() {
 					<p className="docs-copy-description">{activePage.description}</p>
 
 					<div className="docs-copy-source-row">
-						<button className="docs-copy-source-button" type="button">
+						<button
+							className="docs-copy-source-button"
+							tabIndex={-1}
+							type="button">
 							<Code2 aria-hidden="true" size={12} />
 							<span>Source Code</span>
 						</button>
 						<div className="docs-copy-install-actions">
-							<button className="docs-copy-install-button" type="button">
+							<button
+								className="docs-copy-install-button"
+								tabIndex={-1}
+								type="button">
 								<Terminal aria-hidden="true" size={12} />
 								<span>Install</span>
 							</button>
@@ -400,10 +440,12 @@ export function LibraryDocsCard() {
 						<header className="docs-copy-preview-header">
 							<strong>Component Preview</strong>
 							<div className="docs-copy-preview-tabs">
-								<button className="is-active" type="button">
+								<button className="is-active" tabIndex={-1} type="button">
 									Preview
 								</button>
-								<button type="button">Code</button>
+								<button tabIndex={-1} type="button">
+									Code
+								</button>
 								<IconButton label="Copy preview code">
 									<Clipboard aria-hidden="true" size={11} />
 								</IconButton>
@@ -421,19 +463,27 @@ export function LibraryDocsCard() {
 					<section className="docs-copy-install-section">
 						<h3>Installation</h3>
 						<div className="docs-copy-install-tabs">
-							<button className="is-active" type="button">
+							<button className="is-active" tabIndex={-1} type="button">
 								Command
 							</button>
-							<button type="button">Manual</button>
+							<button tabIndex={-1} type="button">
+								Manual
+							</button>
 						</div>
 						<div className="docs-copy-command-card">
 							<div className="docs-copy-package-tabs">
-								<button className="is-active" type="button">
+								<button className="is-active" tabIndex={-1} type="button">
 									pnpm
 								</button>
-								<button type="button">npm</button>
-								<button type="button">yarn</button>
-								<button type="button">bun</button>
+								<button tabIndex={-1} type="button">
+									npm
+								</button>
+								<button tabIndex={-1} type="button">
+									yarn
+								</button>
+								<button tabIndex={-1} type="button">
+									bun
+								</button>
 								<IconButton label="Copy install command">
 									<Clipboard aria-hidden="true" size={11} />
 								</IconButton>

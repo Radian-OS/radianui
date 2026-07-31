@@ -18,6 +18,13 @@
 	font-family: inherit;
 }
 
+.figma-stage:focus,
+.figma-stage:focus-visible,
+.figma-stage *:focus,
+.figma-stage *:focus-visible {
+	outline: none;
+}
+
 .figma-window {
 	position: absolute;
 	top: 0;
