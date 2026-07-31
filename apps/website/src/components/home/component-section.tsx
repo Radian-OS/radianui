@@ -52,14 +52,14 @@ const Component = () => {
 							<ComponentIcon className="text-primary size-4" />
 							Components
 						</Badge>
-						<div className="w-full lg:w-[940px]">
-							<h2 className="heading-4">
-								<span className="text-[24px] font-medium leading-[36px] md:text-[36px] md:leading-[44px] lg:text-[40px] lg:leading-[52px]">
+						<div className="w-full lg:w-[920px]">
+							<h2 className="heading-3">
+								<span className="text-[24px] font-medium leading-[36px] md:text-[28px] md:leading-[44px] lg:text-[32px] lg:leading-[52px]">
 									Production-ready React and Figma UI components.
 								</span>{" "}
-								<span className="text-fg-secondary text-[24px] font-medium leading-[36px] md:text-[36px] md:leading-[44px] lg:text-[40px] lg:leading-[52px]">
-									Build modern interfaces faster with customizable React
-									components and Figma UI components.
+								<span className="text-fg-secondary text-[24px] font-medium leading-[36px] md:text-[28px] md:leading-[44px] lg:text-[32px] lg:leading-[52px]">
+									Carefully crafted components that are flexible, accessible,
+									and ready for production from day one.
 								</span>
 							</h2>
 						</div>
