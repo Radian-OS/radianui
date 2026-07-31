@@ -48,7 +48,7 @@ export default function BrandSection() {
 			<div className="border-soft bg-bg lg:h-26 flex h-auto min-w-0 flex-col overflow-hidden border-y lg:flex-row">
 				<h2
 					id="brand-section-title"
-					className="text-fg-secondary border-soft flex w-full shrink-0 items-center justify-center border-b px-8 py-[15px] text-sm font-normal leading-5 md:py-5 lg:h-full lg:w-72 lg:border-b-0 lg:border-r lg:px-10 lg:py-[30px]">
+					className="text-fg-secondary border-soft flex w-full shrink-0 items-center justify-center border-b px-8 py-[15px] text-sm font-normal leading-5 md:py-5 lg:h-full lg:w-72 lg:border-b-0 lg:border-r lg:px-9 lg:py-[30px]">
 					Teams using Radian to Empower their Designs
 				</h2>
 

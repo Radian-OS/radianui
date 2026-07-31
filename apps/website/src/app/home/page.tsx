@@ -65,6 +65,7 @@ export default function Page() {
 								A complete production-ready React components library, UI blocks,
 								and Figma UI Kit and design system for{" "}
 								<RotatingWords
+									interval={4000}
 									words={["Designers", "Developers", "Startups", "Agencies"]}
 									className="text-fg font-medium"
 								/>
