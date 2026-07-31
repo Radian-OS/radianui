@@ -25,10 +25,10 @@ import { Badge, BadgeDot } from "@/registry/ui/badge"
 import { Card6Animation } from "./card-6-animation"
 
 const stats = [
-	{ value: "2000+", label: "Variables & Design Tokens" },
-	{ value: "4500+", label: "Components & Variants" },
-	{ value: "100+", label: "UI Blocks & Templates" },
-	{ value: "2,000+", label: "Icons & Assets" },
+	{ value: "604", label: "Variables & Design Tokens" },
+	{ value: "1,668", label: "Components & Variants" },
+	{ value: "207", label: "UI Blocks & Templates" },
+	{ value: "2,564", label: "Icons & Assets" },
 ] as const
 
 const featureItems = [
@@ -108,6 +108,20 @@ const featureItems = [
 
 const featureItemsPerPage = 4
 const featurePageCount = Math.ceil(featureItems.length / featureItemsPerPage)
+const featurePageVideos = [
+	{
+		src: "/video/variable-theme-modes.mov",
+		label: "Variable system and theme modes demonstration",
+	},
+	{
+		src: "/video/color-preset-blocks.mov",
+		label: "Color presets and UI blocks demonstration",
+	},
+	{
+		src: "/video/responsive-typography-blocks.mov",
+		label: "Responsive typography and components demonstration",
+	},
+] as const
 
 export default function CarouselSection() {
 	const [current, setCurrent] = useState(0)
@@ -324,6 +338,8 @@ function ShowcaseFrame({
 	pageCount: number
 	onPageChange: (index: number) => void
 }) {
+	const video = featurePageVideos[current] ?? featurePageVideos[0]
+
 	return (
 		<>
 			<div
@@ -331,9 +347,20 @@ function ShowcaseFrame({
 				style={lightThemeVars}>
 				<div className="absolute inset-x-2 bottom-0 top-2">
 					<div
-						className="bg-bg h-full w-full rounded-t-lg"
-						style={darkThemeVars}
-					/>
+						className="bg-bg h-full w-full overflow-hidden rounded-t-lg"
+						style={darkThemeVars}>
+						<video
+							key={video.src}
+							autoPlay
+							muted
+							loop
+							playsInline
+							preload="metadata"
+							aria-label={video.label}
+							className="pointer-events-none h-full w-full object-cover">
+							<source src={video.src} />
+						</video>
+					</div>
 					<CarouselDots
 						current={current}
 						pageCount={pageCount}
