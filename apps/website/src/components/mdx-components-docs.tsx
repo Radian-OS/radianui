@@ -4,7 +4,10 @@ import Image from "next/image"
 import Link from "next/link"
 import ColorPlayground from "@/components/color/color-playground"
 import { ColorTable } from "@/components/color/color-table"
-import { ComponentPreview } from "@/components/component-preview"
+import {
+	ComponentPreview,
+	getRegistryFilePathCandidates,
+} from "@/components/component-preview"
 import { ComponentSource } from "@/components/component-source"
 import FigmaCard from "@/components/figma/figma-card"
 import Installation from "@/components/installation"
@@ -287,15 +290,16 @@ export const components = {
 		title,
 	}: {
 		path: string
-		height: number
-		align: "center" | "start" | "end"
+		height?: number
+		align?: "center" | "start" | "end"
 		type?: "component" | "block"
-		title: string
+		title?: string
 	}) => {
+		const pathCandidates = getRegistryFilePathCandidates(path)
 		const code =
 			examples
-				?.find((e) => e.files.some((file) => file.name === path))
-				?.files.find((file) => file.name === path)?.content || ""
+				.flatMap((example) => example.files)
+				.find((file) => pathCandidates.includes(file.name))?.content || ""
 
 		return (
 			<ComponentPreview

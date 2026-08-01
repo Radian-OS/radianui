@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useRef, useState } from "react"
 import type { ReactNode } from "react"
 import {
 	Blocks,
@@ -134,14 +134,6 @@ export default function CarouselSection() {
 		current * featureItemsPerPage,
 		(current + 1) * featureItemsPerPage
 	)
-
-	useEffect(() => {
-		const interval = window.setInterval(() => {
-			setCurrent((page) => (page + 1) % featurePageCount)
-		}, 6000)
-
-		return () => window.clearInterval(interval)
-	}, [])
 
 	const handleSwipeStart = (event: React.PointerEvent<HTMLDivElement>) => {
 		if (!event.isPrimary) return
@@ -353,9 +345,9 @@ function ShowcaseFrame({
 							key={video.src}
 							autoPlay
 							muted
-							loop
 							playsInline
 							preload="metadata"
+							onEnded={() => onPageChange((current + 1) % pageCount)}
 							aria-label={video.label}
 							className="pointer-events-none h-full w-full object-cover">
 							<source src={video.src} />
