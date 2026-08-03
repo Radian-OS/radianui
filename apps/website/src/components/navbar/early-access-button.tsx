@@ -5,31 +5,61 @@ import Link from "next/link"
 import { cn } from "@/lib/utils"
 import { Badge } from "@/styles/default/ui/badge"
 import { Button } from "@/styles/default/ui/button"
-import { CountingNumber } from "../counting-numbers"
 
-const REPO_NAME = "Radian-os/radianos"
-const GITHUB_STARS = 0
+const FALLBACK_GITHUB_STARS = 32
+const GITHUB_STARS_STORAGE_KEY = "radianos-github-stars"
 
-// Custom hook to fetch GitHub stars
-function useGithubStars(repo = REPO_NAME) {
-	const [stars, setStars] = useState<number>(GITHUB_STARS)
+function useGithubStars() {
+	const [stars, setStars] = useState(FALLBACK_GITHUB_STARS)
 
 	useEffect(() => {
+		const controller = new AbortController()
+
+		try {
+			const savedStars = Number(
+				window.localStorage.getItem(GITHUB_STARS_STORAGE_KEY)
+			)
+
+			if (Number.isInteger(savedStars) && savedStars > 0) {
+				setStars(savedStars)
+			}
+		} catch {
+			// Storage can be unavailable in privacy-restricted browsers.
+		}
+
 		const fetchStars = async () => {
 			try {
-				const response = await fetch(`https://api.github.com/repos/${repo}`)
-				if (response.ok) {
-					const data = await response.json()
-					if (data?.stargazers_count) {
-						setStars(data.stargazers_count)
+				const response = await fetch("/api/github-stars", {
+					signal: controller.signal,
+				})
+
+				if (!response.ok) return
+
+				const data: { stars?: unknown } = await response.json()
+				const nextStars = Number(data.stars)
+
+				if (Number.isInteger(nextStars) && nextStars > 0) {
+					setStars(nextStars)
+
+					try {
+						window.localStorage.setItem(
+							GITHUB_STARS_STORAGE_KEY,
+							String(nextStars)
+						)
+					} catch {
+						// The live value still renders when storage is unavailable.
 					}
 				}
-			} catch (error) {
-				console.error("Error fetching GitHub stars:", error)
+			} catch {
+				// Keep the last known non-zero value when the request is unavailable.
+				return
 			}
 		}
+
 		fetchStars()
-	}, [repo])
+
+		return () => controller.abort()
+	}, [])
 
 	return stars
 }
@@ -74,7 +104,7 @@ function EarlyAccessButton({
 				<GithubIcon />
 				Github
 				<Badge variant="strong" size="20" color="primary">
-					<CountingNumber from={0} to={stars} duration={1} />
+					{stars.toLocaleString("en-US")}
 				</Badge>
 			</Link>
 		</Button>

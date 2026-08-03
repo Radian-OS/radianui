@@ -178,7 +178,7 @@ export default function CarouselSection() {
 			aria-label="Radian design system capabilities"
 			className="bg-bg text-fg dark relative z-20 w-full"
 			style={darkThemeVars}>
-			<div className="border-soft max-w-360 mx-auto flex w-full flex-col border-x">
+			<div className="border-soft max-w-360 mx-auto flex w-full flex-col overflow-hidden border border-t-0">
 				<SectionHeader
 					headingId="design-at-scale-title"
 					centered
@@ -211,19 +211,22 @@ export default function CarouselSection() {
 				</dl>
 
 				<div className="flex w-full flex-col">
-					<div className="w-full" data-nosnippet aria-hidden="true">
+					<div
+						className="border-soft w-full border-b"
+						data-nosnippet
+						aria-hidden="true">
 						<Card6Animation />
 					</div>
-					<SvgDivider className="border-soft hidden w-full border-y sm:block" />
+					<SvgDivider className="hidden sm:block" />
 					<SvgDivider
-						className="border-soft block w-full border-y sm:hidden"
+						className="block sm:hidden"
 						height={32}
 						viewBox="0 0 1440 32"
 					/>
 				</div>
 			</div>
 
-			<div className="border-soft max-w-360 mx-auto flex w-full flex-col border-x pb-20">
+			<div className="border-soft max-w-360 mx-auto flex w-full flex-col overflow-hidden border border-t-0">
 				<SectionHeader
 					headingId="product-teams-title"
 					badge={
@@ -259,7 +262,7 @@ export default function CarouselSection() {
 					/>
 				</div>
 
-				<div className="lg:px-15 px-5 pt-10 sm:px-10 lg:pt-20">
+				<div className="border-soft lg:px-15 border-b px-5 py-10 sm:px-10 lg:py-20">
 					<div
 						aria-live="polite"
 						aria-label={`Product feature highlights, page ${current + 1} of ${featurePageCount}`}
@@ -283,12 +286,10 @@ export default function CarouselSection() {
 						))}
 					</div>
 				</div>
-			</div>
 
-			<div className="border-soft max-w-360 mx-auto w-full border-x">
-				<SvgDivider className="border-soft hidden w-full border-y sm:block" />
+				<SvgDivider className="hidden sm:block" />
 				<SvgDivider
-					className="border-soft block w-full border-y sm:hidden"
+					className="block sm:hidden"
 					height={32}
 					viewBox="0 0 1440 32"
 				/>
