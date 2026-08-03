@@ -1,0 +1,8 @@
+export { default as CheckboxThumbnail } from "./checkbox-thumbnail"
+export { default as InputThumbnail } from "./input-thumbnail"
+export { default as ButtonThumbnail } from "./button-thumbnail"
+export { default as DropdownThumbnail } from "./dropdown-thumbnail"
+export { default as TabsThumbnail } from "./tabs-thumbnail"
+export { default as DialogThumbnail } from "./dialog-thumbnail"
+export { default as SonnerThumbnail } from "./sonner-thumbnail"
+export { default as TableThumbnail } from "./table-thumbnail"
