@@ -30,7 +30,7 @@ const InputThumbnail = (props: React.SVGProps<SVGSVGElement>) => (
 			<g clipPath="url(#clip0_3867_194025)">
 				<path
 					d="M48 163C48 159.686 50.6863 157 54 157H282C285.314 157 288 159.686 288 163V183C288 186.314 285.314 189 282 189H54C50.6863 189 48 186.314 48 183V163Z"
-					fill="white"
+					fill="var(--color-bg)"
 				/>
 				<path d="M287.5 157.5V188.5H48.5V157.5H287.5Z" stroke="#DEE0E3" />
 				<path
@@ -81,7 +81,7 @@ const InputThumbnail = (props: React.SVGProps<SVGSVGElement>) => (
 			<clipPath id="clip0_3867_194025">
 				<path
 					d="M48 163C48 159.686 50.6863 157 54 157H282C285.314 157 288 159.686 288 163V183C288 186.314 285.314 189 282 189H54C50.6863 189 48 186.314 48 183V163Z"
-					fill="white"
+					fill="var(--color-bg)"
 				/>
 			</clipPath>
 		</defs>
