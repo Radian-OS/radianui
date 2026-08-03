@@ -3,6 +3,7 @@
 @import "./rapid-dev/figma-ui-card.css" layer(components);
 @import "./rapid-dev/library-docs-card.css" layer(components);
 @import "./rapid-dev/card-7-canvas.css" layer(components);
+@import "./rapid-dev/card-8-canvas.css" layer(components);
 
 @theme {
 	--breakpoint-custom: 85rem;

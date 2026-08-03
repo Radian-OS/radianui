@@ -272,7 +272,7 @@ export function FigmaUiCard() {
 	const [leadIconEnabled, setLeadIconEnabled] = useState(false)
 	const [isNeutralButton, setIsNeutralButton] = useState(false)
 	const [isColorMenuOpen, setIsColorMenuOpen] = useState(false)
-	const [cursorVisible, setCursorVisible] = useState(true)
+	const [cursorVisible, setCursorVisible] = useState(false)
 	const highestZRef = useRef(5)
 
 	useEffect(() => {

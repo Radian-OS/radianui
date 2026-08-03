@@ -1,6 +1,5 @@
 import React from "react"
 import { Dot } from "lucide-react"
-import Image from "next/image"
 import { CreditCardUsageAnimation } from "@/components/effects/credit-card-usage-animation"
 import { LibraryDocsCard } from "@/components/home/rapid-dev/library-docs-card"
 import { RapidDevAnimation } from "@/components/home/rapid-dev/rapid-dev-animation"
@@ -8,6 +7,7 @@ import { Badge, BadgeDot } from "@/registry/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 import DiagonalDivider from "./SvgDivider"
 import { Card7Canvas } from "./rapid-dev/card-7-canvas"
+import { Card8Canvas } from "./rapid-dev/card-8-canvas"
 
 const data = [
 	{ label: "Designer", value: "designer" },
@@ -51,13 +51,8 @@ const RapidDev = () => {
 							</p>
 						</div>
 						<div className="relative h-[214px] overflow-hidden md:h-[414px] lg:h-[430px]">
-							<div className="absolute bottom-[10rem] left-1/2 top-1/2 -translate-x-1/2 scale-150 focus:outline-none focus:ring-0 lg:bottom-[-20rem]">
-								<Image
-									width={800}
-									height={1000}
-									alt=""
-									src="/newhome/OverviewContainer.png"
-								/>
+							<div className="flex scale-100 justify-center focus:outline-none focus:ring-0">
+								<Card8Canvas />
 							</div>
 							<div className="pointer-events-none absolute bottom-0 left-0 right-0 h-[120px] bg-[linear-gradient(0deg,#FFF_0%,rgba(255,255,255,0)_100%)] dark:bg-[linear-gradient(0deg,oklch(0.144_0.003_264.025)_0%,oklch(0.144_0.003_264.025/0)_100%)]" />
 						</div>
