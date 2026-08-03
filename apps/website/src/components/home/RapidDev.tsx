@@ -45,7 +45,7 @@ const RapidDev = () => {
 
 				<div className="border-soft flex flex-col overflow-hidden border-y lg:flex-row">
 					<div className="border-soft isolate min-w-0 flex-1 overflow-hidden border-b lg:border-b-0 lg:border-r">
-						<div className="lg:px-15 flex w-full max-w-[800px] flex-1 flex-col px-5 py-8 sm:px-10 sm:py-12 lg:py-20">
+						<div className="lg:px-15 flex w-full flex-1 flex-col px-5 py-8 sm:px-10 sm:py-12 lg:py-20">
 							<h3 className="heading-5 text-[16px] font-medium leading-7 tracking-[-0.18px] sm:text-[18px] sm:leading-8">
 								Production-Ready Figma UI Kit.
 							</h3>
