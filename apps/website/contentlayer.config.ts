@@ -7,7 +7,6 @@ import rehypePrettyCode from "rehype-pretty-code"
 import rehypeSlug from "rehype-slug"
 import remarkGfm from "remark-gfm"
 import { transformers } from "@/lib/highligh-code"
-import { remarkComponentPreviewTitles } from "@/lib/remark-component-preview-titles"
 
 export const LinkProperties = defineNestedType(() => ({
 	name: "Links",
@@ -168,7 +167,7 @@ export default makeSource({
 	documentTypes: [Doc, Blog, Changelog],
 	disableImportAliasWarning: true,
 	mdx: {
-		remarkPlugins: [remarkComponentPreviewTitles, remarkGfm],
+		remarkPlugins: [remarkGfm],
 		rehypePlugins: [
 			rehypeSlug,
 			[

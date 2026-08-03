@@ -62,20 +62,11 @@ export async function getHeadingsFromMdx(
 	function extractHeadingsPlugin() {
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		return (tree: any, file: any) => {
-			let insideExamples = false
-
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 			visit(tree, "heading", (node: any) => {
+				if (node.depth < minDepth || node.depth > maxDepth) return
 				const text = extractText(node)
 				if (!text) return
-
-				if (node.depth === 2) {
-					insideExamples = text.trim().toLowerCase() === "examples"
-				}
-
-				if (node.depth < minDepth || node.depth > maxDepth) return
-				if (insideExamples && node.depth > 2) return
-
 				const id = slugger.slug(text)
 				headings.push({ level: node.depth, text, id })
 			})

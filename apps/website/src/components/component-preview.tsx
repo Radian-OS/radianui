@@ -6,57 +6,19 @@ import { ComponentPreviewDemo } from "./component-preview-demo"
 import { ComponentSource } from "./component-source"
 import { DisplayBlock } from "./display-block"
 
-function normalizeRegistryPath(value: string) {
-	return value
-		.trim()
-		.replace(/^\/+|\/+$/g, "")
-		.replace(/\.(?:tsx?|jsx?)$/, "")
-}
-
-export function getRegistryNameCandidates(value: string) {
-	const normalizedPath = normalizeRegistryPath(value)
-	const segments = normalizedPath.split("/").filter(Boolean)
-	const fileName = segments.at(-1) ?? normalizedPath
-	const groupName = segments.at(-2)
-	const prefixedName =
-		groupName && !fileName.startsWith(`${groupName}-`)
-			? `${groupName}-${fileName}`
-			: fileName
-
-	return Array.from(
-		new Set([fileName, prefixedName, segments.join("-")].filter(Boolean))
-	)
-}
-
-export function getRegistryFilePathCandidates(value: string) {
-	const normalizedPath = normalizeRegistryPath(value)
-	const segments = normalizedPath.split("/").filter(Boolean)
-	const directory = segments.slice(0, -1).join("/")
-
-	return Array.from(
-		new Set(
-			getRegistryNameCandidates(normalizedPath).map((name) =>
-				directory ? `${directory}/${name}` : name
-			)
-		)
-	)
-}
-
-export function getComponent(path: string) {
-	const name = getRegistryNameCandidates(path).find(
-		(candidate) => registry[candidate]
-	)
-
-	return name ? registry[name] : null
+export function getComponent(name: string) {
+	const loader = registry[name]
+	if (!loader) return () => null
+	return loader
 }
 
 export type ComponentPreviewProps = {
 	path: string
 	code: string
-	height?: number
-	align?: "center" | "start" | "end"
+	height: number
+	align: "center" | "start" | "end"
 	type?: "component" | "block"
-	title?: string
+	title: string
 }
 
 export function ComponentPreview({
@@ -80,7 +42,7 @@ export function ComponentPreview({
 		return <DisplayBlock name={path} title={title} />
 	}
 
-	const Component = getComponent(path)
+	const Component = getComponent(path.split("/")[1])
 
 	const slug = title
 		.toLowerCase()
@@ -122,7 +84,7 @@ export function ComponentPreview({
 							<Suspense fallback={<div>Loading...</div>}>
 								<ComponentPreviewDemo
 									{...props}
-									Component={Component ? React.createElement(Component) : null}
+									Component={React.createElement(Component)}
 								/>
 							</Suspense>
 						</TabsContent>
