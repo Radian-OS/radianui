@@ -178,12 +178,12 @@ export default function PlaygroundSection() {
 										</div>
 										<TabsList className="h-full !rounded-none border-none data-[orientation=horizontal]:h-full">
 											<TabsTrigger
-												className="border-border h-full border-l data-[orientation=horizontal]:first:rounded-l-none data-[orientation=horizontal]:last:rounded-r-none"
+												// className="border-border h-full border-l data-[orientation=horizontal]:first:rounded-l-none data-[orientation=horizontal]:last:rounded-r-none"
 												value="signin.tsx">
 												{layout}.tsx
 											</TabsTrigger>
 											<TabsTrigger
-												className="h-full data-[orientation=horizontal]:first:rounded-l-none data-[orientation=horizontal]:last:rounded-r-none"
+												// className="h-full data-[orientation=horizontal]:first:rounded-l-none data-[orientation=horizontal]:last:rounded-r-none"
 												value="globals.css">
 												globals.css
 											</TabsTrigger>
