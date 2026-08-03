@@ -102,13 +102,7 @@ const CarouselThumbnail = (props: React.SVGProps<SVGSVGElement>) => (
 				/>
 			</g>
 		</g>
-		<rect
-			x="-0.5"
-			y="-0.5"
-			width="336"
-			height="321"
-			stroke="var(--color-soft)"
-		/>
+
 		<defs>
 			<filter
 				id="filter0_d_3867_194145"
