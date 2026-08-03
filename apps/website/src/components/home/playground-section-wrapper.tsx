@@ -6,7 +6,7 @@ import { PlaygroundProvider } from "@/contexts/playground"
 const PlaygroundSection = dynamic(
 	() => import("@/components/home/playground-section"),
 	{
-		ssr: false,
+		ssr: true,
 	}
 )
 
