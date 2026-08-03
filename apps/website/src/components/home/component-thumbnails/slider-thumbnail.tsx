@@ -1,6 +1,6 @@
 import type React from "react"
 
-const SonnerThumbnail = (props: React.SVGProps<SVGSVGElement>) => (
+const SliderThumbnail = (props: React.SVGProps<SVGSVGElement>) => (
 	<svg
 		width="335"
 		height="321"
@@ -33,7 +33,7 @@ const SonnerThumbnail = (props: React.SVGProps<SVGSVGElement>) => (
 		<path
 			d="M37 176C37 173.791 38.7909 172 41 172H293C295.209 172 297 173.791 297 176C297 178.209 295.209 180 293 180H41C38.7909 180 37 178.209 37 176Z"
 			fill="#242E42"
-			fillOpacity="0.08"
+			fill-opacity="0.08"
 		/>
 		<path
 			d="M37 176C37 173.791 38.7909 172 41 172H163C165.209 172 167 173.791 167 176C167 178.209 165.209 180 163 180H41C38.7909 180 37 178.209 37 176Z"
@@ -47,7 +47,7 @@ const SonnerThumbnail = (props: React.SVGProps<SVGSVGElement>) => (
 			<path
 				d="M167 169C170.866 169 174 172.134 174 176C174 179.866 170.866 183 167 183C163.134 183 160 179.866 160 176C160 172.134 163.134 169 167 169Z"
 				stroke="#623DF5"
-				strokeWidth="2"
+				stroke-width="2"
 			/>
 		</g>
 		<defs>
@@ -58,8 +58,8 @@ const SonnerThumbnail = (props: React.SVGProps<SVGSVGElement>) => (
 				width="18"
 				height="18"
 				filterUnits="userSpaceOnUse"
-				colorInterpolationFilters="sRGB">
-				<feFlood floodOpacity="0" result="BackgroundImageFix" />
+				color-interpolation-filters="sRGB">
+				<feFlood flood-opacity="0" result="BackgroundImageFix" />
 				<feColorMatrix
 					in="SourceAlpha"
 					type="matrix"
@@ -89,4 +89,4 @@ const SonnerThumbnail = (props: React.SVGProps<SVGSVGElement>) => (
 	</svg>
 )
 
-export default SonnerThumbnail
+export default SliderThumbnail

@@ -8,6 +8,7 @@ import {
 	AccordionItem,
 	AccordionTrigger,
 } from "@/registry/ui/accordion"
+import { Badge } from "@/registry/ui/badge"
 import {
 	EmojiCollectionIcon,
 	FigmaIcon,
@@ -26,6 +27,7 @@ interface LinkItem {
 	target?: string
 	isBlueLink?: boolean
 	icon?: React.ReactNode
+	release?: "beta" | "coming-soon"
 }
 
 interface Link {
@@ -71,26 +73,31 @@ const LINKS: Link[] = [
 				href: "/docs/resources/ui-avatars",
 				name: "UI Avatars",
 				icon: <UIAvatarIcon />,
+				release: "beta",
 			},
 			{
-				href: "/docs/resources/popular-brand-logos",
+				href: "#",
 				name: "Popular Brand Logos",
 				icon: <PopularBrandLogosIcon />,
+				release: "coming-soon",
 			},
 			{
-				href: "/docs/resources/ui-country-flags",
+				href: "#",
 				name: "UI Country Flags",
 				icon: <UICountryFlagsIcon />,
+				release: "coming-soon",
 			},
 			{
-				href: "/docs/resources/credit-card-icons",
+				href: "#",
 				name: "Credit Card Icons",
 				icon: <UICountryFlagsIcon />,
+				release: "coming-soon",
 			},
 			{
-				href: "/docs/resources/emoji-collection",
+				href: "#",
 				name: "Emoji Collection",
 				icon: <EmojiCollectionIcon />,
+				release: "coming-soon",
 			},
 			{
 				href: "/docs/getting-started/changelog",
@@ -183,7 +190,11 @@ export default function FooterNavigation() {
 											<Link
 												key={linkItem.name}
 												href={linkItem.href}
-												className="py-2.5"
+												className={cn(
+													"flex items-center gap-2 py-2.5",
+													linkItem.release === "coming-soon" &&
+														"text-fg-tertiary"
+												)}
 												target={linkItem.target ?? "_self"}
 												rel={
 													linkItem.target === "_blank"
@@ -191,6 +202,10 @@ export default function FooterNavigation() {
 														: undefined
 												}>
 												{linkItem.name}
+												{linkItem.release ? (
+													<ReleaseBadge release={linkItem.release} />
+												) : null}
+												{linkItem.badge}
 											</Link>
 										))}
 									</div>
@@ -217,7 +232,11 @@ export default function FooterNavigation() {
 											href={linkItem.href}
 											className={cn(
 												"text-fg flex items-center gap-2 text-sm font-normal",
-												{ "text-primary-text font-medium": linkItem.isBlueLink }
+												{
+													"text-primary-text font-medium": linkItem.isBlueLink,
+													"text-fg-tertiary":
+														linkItem.release === "coming-soon",
+												}
 											)}
 											target={linkItem.target ?? "_self"}
 											rel={
@@ -227,8 +246,11 @@ export default function FooterNavigation() {
 											}>
 											{linkItem.icon && linkItem.icon}
 											{linkItem.name}
+											{linkItem.release ? (
+												<ReleaseBadge release={linkItem.release} />
+											) : null}
+											{linkItem.badge}
 										</Link>
-										{linkItem.badge && linkItem.badge}
 									</span>
 								))}
 							</div>
@@ -237,5 +259,20 @@ export default function FooterNavigation() {
 				</div>
 			</div>
 		</>
+	)
+}
+
+function ReleaseBadge({
+	release,
+}: {
+	release: NonNullable<LinkItem["release"]>
+}) {
+	return (
+		<Badge
+			color={release === "beta" ? "primary" : "neutral"}
+			size="20"
+			variant="soft">
+			{release === "beta" ? "Beta" : "Soon"}
+		</Badge>
 	)
 }

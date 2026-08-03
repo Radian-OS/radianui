@@ -33,7 +33,7 @@ const SwitchThumbnail = (props: React.SVGProps<SVGSVGElement>) => (
 		<g filter="url(#filter0_d_3867_194070)">
 			<path
 				d="M168 160C168 153.373 173.373 148 180 148C186.627 148 192 153.373 192 160C192 166.627 186.627 172 180 172C173.373 172 168 166.627 168 160Z"
-				fill="white"
+				fill="var(--color-bg)"
 			/>
 		</g>
 		<path
