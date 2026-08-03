@@ -10,10 +10,14 @@ const PlaygroundSection = dynamic(
 	}
 )
 
-export default function PlaygroundSectionWrapper() {
+export default function PlaygroundSectionWrapper({
+	renderBeforeMount = false,
+}: {
+	renderBeforeMount?: boolean
+}) {
 	return (
 		<PlaygroundProvider>
-			<PlaygroundSection />
+			<PlaygroundSection renderBeforeMount={renderBeforeMount} />
 		</PlaygroundProvider>
 	)
 }

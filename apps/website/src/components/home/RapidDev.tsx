@@ -1,10 +1,12 @@
 import React from "react"
 import { Dot } from "lucide-react"
 import Image from "next/image"
-import { CreditCardUsageAnimation } from "@/components/effects/credit-card-usage-animation"
-import { LibraryComponentsCard } from "@/components/effects/library-primitives-card-animation"
-import { LibraryDocsCard } from "@/components/home/rapid-dev/library-docs-card"
-import { RapidDevAnimation } from "@/components/home/rapid-dev/rapid-dev-animation"
+import {
+	CreditCardUsageVisual,
+	DesignCodeVisual,
+	LibraryComponentsVisual,
+	LibraryDocsVisual,
+} from "@/components/home/rapid-dev/client-only-visuals"
 import { Badge, BadgeDot } from "@/registry/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 import DiagonalDivider from "./SvgDivider"
@@ -26,7 +28,9 @@ const RapidDev = () => {
 						Rapid Development
 					</Badge>
 					<div className="w-full lg:w-[950px]">
-						<h2 className="heading-3 text-[24px] font-medium leading-[36px] md:text-[36px] md:leading-[44px] lg:text-[40px] lg:leading-[52px]">
+						<h2
+							id="rapid-development-title"
+							className="heading-3 text-[24px] font-medium leading-[36px] md:text-[36px] md:leading-[44px] lg:text-[40px] lg:leading-[52px]">
 							Everything you need to ship polished interfaces{" "}
 							<span className="heading-3 text-fg-secondary text-[24px] font-medium leading-[36px] md:text-[36px] md:leading-[44px] lg:text-[40px] lg:leading-[52px]">
 								Production ready React components,{" "}
@@ -55,7 +59,7 @@ const RapidDev = () => {
 								<Image
 									width={800}
 									height={1000}
-									alt=""
+									alt="Preview of the production-ready Radian Figma UI kit"
 									src="/newhome/OverviewContainer.png"
 								/>
 							</div>
@@ -77,7 +81,7 @@ const RapidDev = () => {
 							data-nosnippet
 							aria-hidden="true">
 							<div className="sm:scale-120 lg:scale-140 shrink-0 origin-top-left scale-95 px-5 focus:outline-none focus:ring-0 sm:px-10 md:scale-150 md:px-7 lg:px-11">
-								<LibraryDocsCard />
+								<LibraryDocsVisual />
 							</div>
 							<div className="pointer-events-none absolute bottom-0 left-0 right-0 h-[120px] bg-[linear-gradient(0deg,#FFF_0%,rgba(255,255,255,0)_100%)] dark:bg-[linear-gradient(0deg,oklch(0.144_0.003_264.025)_0%,oklch(0.144_0.003_264.025/0)_100%)]" />
 							<div className="pointer-events-none absolute bottom-0 right-0 top-0 w-[80px] bg-[linear-gradient(90deg,rgba(255,255,255,0)_0%,#FFF_100%)] sm:w-[150px] md:w-[400px] lg:w-[200px] dark:bg-[linear-gradient(90deg,oklch(0.144_0.003_264.025/0)_0%,oklch(0.144_0.003_264.025)_100%)]" />
@@ -108,7 +112,7 @@ const RapidDev = () => {
 							data-nosnippet
 							aria-hidden="true">
 							<div className="shrink-0 origin-top scale-75 pt-2 focus:outline-none focus:ring-0 sm:scale-90 sm:pt-4 md:scale-100">
-								<CreditCardUsageAnimation />
+								<CreditCardUsageVisual />
 							</div>
 							<div className="pointer-events-none absolute bottom-0 left-0 right-0 h-[180px] bg-[linear-gradient(0deg,#FFF_0%,rgba(255,255,255,0)_100%)] dark:bg-[linear-gradient(0deg,oklch(0.144_0.003_264.025)_0%,oklch(0.144_0.003_264.025/0)_100%)]" />
 						</div>
@@ -128,7 +132,7 @@ const RapidDev = () => {
 							className="relative flex h-[260px] justify-center overflow-hidden focus:outline-none focus:ring-0 md:h-[420px] lg:h-[430px]"
 							data-nosnippet
 							aria-hidden="true">
-							<LibraryComponentsCard className="shrink-0 origin-top scale-75 sm:scale-90 md:scale-100" />
+							<LibraryComponentsVisual className="shrink-0 origin-top scale-75 sm:scale-90 md:scale-100" />
 						</div>
 					</div>
 				</div>
@@ -180,7 +184,9 @@ const RapidDev = () => {
 
 					{data.map(({ value }) => (
 						<TabsContent className="rounded-none" key={value} value={value}>
-							<RapidDevAnimation type={value} />
+							<div className="contents" data-nosnippet aria-hidden="true">
+								<DesignCodeVisual type={value} />
+							</div>
 						</TabsContent>
 					))}
 				</Tabs>

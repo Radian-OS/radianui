@@ -2,6 +2,7 @@
 
 import React, { useCallback, useState } from "react"
 import { ChevronLeft, ChevronRight, ComponentIcon } from "lucide-react"
+import Link from "next/link"
 import ComponentCard from "@/components/home/component-card"
 import { HOMEPAGE_COMPONENTS_LIST } from "@/config/homepage-components-config"
 import { Badge } from "@/registry/ui/badge"
@@ -42,7 +43,7 @@ const Component = () => {
 							Components
 						</Badge>
 						<div className="w-full lg:w-[920px]">
-							<h2 className="heading-3">
+							<h2 id="components-title" className="heading-3">
 								<span className="text-[24px] font-medium leading-[36px] md:text-[28px] md:leading-[38px] lg:text-[32px] lg:leading-[44px]">
 									Production-ready React and Figma UI components.
 								</span>{" "}
@@ -55,10 +56,12 @@ const Component = () => {
 					</div>
 
 					<div className="flex justify-between">
-						<Button>View all Components</Button>
+						<Button asChild>
+							<Link href="/docs/components/accordion">View all Components</Link>
+						</Button>
 						<div className="flex gap-2.5">
 							<IconButton
-								aria-label="ChevronLeft"
+								aria-label="Show previous components"
 								color="neutral"
 								size="32"
 								variant="outline"
@@ -66,7 +69,7 @@ const Component = () => {
 								<ChevronLeft className="text-fg-secondary" />
 							</IconButton>
 							<IconButton
-								aria-label="ChevronRight"
+								aria-label="Show next components"
 								color="neutral"
 								size="32"
 								variant="outline"
