@@ -8,10 +8,10 @@ const CarouselThumbnail = (props: React.SVGProps<SVGSVGElement>) => (
 		fill="none"
 		xmlns="http://www.w3.org/2000/svg"
 		{...props}>
-		<g clip-path="url(#clip0_3867_194145)">
+		<g clipPath="url(#clip0_3867_194145)">
 			<rect width="335" height="320" fill="var(--color-elevation-level1)" />
 			<g filter="url(#filter0_d_3867_194145)">
-				<g clip-path="url(#clip1_3867_194145)">
+				<g clipPath="url(#clip1_3867_194145)">
 					<path
 						d="M-129 107.5C-129 100.873 -123.627 95.5 -117 95.5H32C38.6274 95.5 44 100.873 44 107.5V213.5C44 220.127 38.6274 225.5 32 225.5H-117C-123.627 225.5 -129 220.127 -129 213.5V107.5Z"
 						fill="var(--color-bg)"
@@ -23,7 +23,7 @@ const CarouselThumbnail = (props: React.SVGProps<SVGSVGElement>) => (
 				/>
 			</g>
 			<g filter="url(#filter1_d_3867_194145)">
-				<g clip-path="url(#clip2_3867_194145)">
+				<g clipPath="url(#clip2_3867_194145)">
 					<path
 						d="M54 87.5C54 80.8726 59.3726 75.5 66 75.5H268C274.627 75.5 280 80.8726 280 87.5V233.5C280 240.127 274.627 245.5 268 245.5H66C59.3726 245.5 54 240.127 54 233.5V87.5Z"
 						fill="var(--color-bg)"
@@ -45,7 +45,7 @@ const CarouselThumbnail = (props: React.SVGProps<SVGSVGElement>) => (
 							height="16"
 							rx="8"
 							fill="var(--color-bg)"
-							fill-opacity="0.2"
+							fillOpacity="0.2"
 						/>
 						<rect
 							x="149"
@@ -54,7 +54,7 @@ const CarouselThumbnail = (props: React.SVGProps<SVGSVGElement>) => (
 							height="6"
 							rx="3"
 							fill="var(--color-bg)"
-							fill-opacity="0.3"
+							fillOpacity="0.3"
 						/>
 						<rect
 							x="159"
@@ -71,7 +71,7 @@ const CarouselThumbnail = (props: React.SVGProps<SVGSVGElement>) => (
 							height="6"
 							rx="3"
 							fill="var(--color-bg)"
-							fill-opacity="0.3"
+							fillOpacity="0.3"
 						/>
 						<rect
 							x="179"
@@ -80,7 +80,7 @@ const CarouselThumbnail = (props: React.SVGProps<SVGSVGElement>) => (
 							height="6"
 							rx="3"
 							fill="var(--color-bg)"
-							fill-opacity="0.3"
+							fillOpacity="0.3"
 						/>
 					</g>
 				</g>
@@ -90,7 +90,7 @@ const CarouselThumbnail = (props: React.SVGProps<SVGSVGElement>) => (
 				/>
 			</g>
 			<g filter="url(#filter3_d_3867_194145)">
-				<g clip-path="url(#clip4_3867_194145)">
+				<g clipPath="url(#clip4_3867_194145)">
 					<path
 						d="M290 107.5C290 100.873 295.373 95.5 302 95.5H451C457.627 95.5 463 100.873 463 107.5V213.5C463 220.127 457.627 225.5 451 225.5H302C295.373 225.5 290 220.127 290 213.5V107.5Z"
 						fill="var(--color-bg)"
@@ -117,8 +117,8 @@ const CarouselThumbnail = (props: React.SVGProps<SVGSVGElement>) => (
 				width="175"
 				height="132"
 				filterUnits="userSpaceOnUse"
-				color-interpolation-filters="sRGB">
-				<feFlood flood-opacity="0" result="BackgroundImageFix" />
+				colorInterpolationFilters="sRGB">
+				<feFlood floodOpacity="0" result="BackgroundImageFix" />
 				<feColorMatrix
 					in="SourceAlpha"
 					type="matrix"
@@ -151,8 +151,8 @@ const CarouselThumbnail = (props: React.SVGProps<SVGSVGElement>) => (
 				width="228"
 				height="172"
 				filterUnits="userSpaceOnUse"
-				color-interpolation-filters="sRGB">
-				<feFlood flood-opacity="0" result="BackgroundImageFix" />
+				colorInterpolationFilters="sRGB">
+				<feFlood floodOpacity="0" result="BackgroundImageFix" />
 				<feColorMatrix
 					in="SourceAlpha"
 					type="matrix"
@@ -190,8 +190,8 @@ const CarouselThumbnail = (props: React.SVGProps<SVGSVGElement>) => (
 				width="175"
 				height="132"
 				filterUnits="userSpaceOnUse"
-				color-interpolation-filters="sRGB">
-				<feFlood flood-opacity="0" result="BackgroundImageFix" />
+				colorInterpolationFilters="sRGB">
+				<feFlood floodOpacity="0" result="BackgroundImageFix" />
 				<feColorMatrix
 					in="SourceAlpha"
 					type="matrix"

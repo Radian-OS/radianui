@@ -262,7 +262,7 @@ export default function CarouselSection() {
 					/>
 				</div>
 
-				<div className="border-soft lg:px-15 border-b px-5 pb-20 pt-10 sm:px-10 lg:pt-20">
+				<div className="border-soft lg:px-15 border-b px-5 py-10 sm:px-10 lg:py-20">
 					<div
 						aria-live="polite"
 						aria-label={`Product feature highlights, page ${current + 1} of ${featurePageCount}`}
