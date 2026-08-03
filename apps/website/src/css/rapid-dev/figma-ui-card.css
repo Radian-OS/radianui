@@ -4232,9 +4232,9 @@
 	gap: 2px;
 	border: 1px solid var(--color-soft-alpha);
 	border-radius: 16px;
-	background: oklch(0.22 0.006 264);
+	background: var(--color-bg);
 	padding: 13px;
-	color: var(--color-fg-inverse);
+	color: var(--color-fg);
 	box-shadow: 0 18px 42px color-mix(in srgb, var(--color-fg), transparent 82%);
 	opacity: 0;
 	transform: translateY(-4px) scale(0.98);
