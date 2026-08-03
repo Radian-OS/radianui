@@ -28,7 +28,7 @@ const brands = [
 	},
 	{
 		name: "Mage Icons",
-		assetName: "Mage Icon",
+		assetName: "Mage",
 		width: 130,
 		height: 22,
 	},

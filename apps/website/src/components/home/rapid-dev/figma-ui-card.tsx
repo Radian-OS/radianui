@@ -36,14 +36,6 @@ import { cn } from "@/lib/utils"
 type PanelId = "figma" | "assets" | "comments" | "product"
 type Card5Phase = PanelId | "button-change"
 
-const cursorTargets: Record<Card5Phase, { x: number; y: number }> = {
-	figma: { x: 720, y: 320 },
-	assets: { x: 290, y: 210 },
-	product: { x: 870, y: 440 },
-	comments: { x: 1220, y: 240 },
-	"button-change": { x: 1220, y: 350 },
-}
-
 type PanelState = Record<
 	PanelId,
 	{
@@ -126,7 +118,7 @@ function FileAssetIcon() {
 				y="23.5273"
 			/>
 			<text
-				fill="var(--color-white-inverse)"
+				fill="#fff"
 				fontFamily="Arial, sans-serif"
 				fontSize="11"
 				fontWeight="700"
@@ -174,7 +166,7 @@ function AssetPreview({ type }: { type: string }) {
 			<Image
 				alt=""
 				height={48}
-				src="/newhome/rapid-dev/card-5-assets/country-flag.png"
+				src="/card-5-assets/country-flag.png"
 				width={48}
 			/>
 		)
@@ -186,7 +178,7 @@ function AssetPreview({ type }: { type: string }) {
 				alt=""
 				className="is-card"
 				height={48}
-				src="/newhome/rapid-dev/card-5-assets/credit-card.png"
+				src="/card-5-assets/credit-card.png"
 				width={88}
 			/>
 		)
@@ -197,7 +189,7 @@ function AssetPreview({ type }: { type: string }) {
 			<Image
 				alt=""
 				height={48}
-				src="/newhome/rapid-dev/card-5-assets/google-logo.png"
+				src="/card-5-assets/google-logo.png"
 				width={48}
 			/>
 		)
@@ -280,10 +272,7 @@ export function FigmaUiCard() {
 	const [leadIconEnabled, setLeadIconEnabled] = useState(false)
 	const [isNeutralButton, setIsNeutralButton] = useState(false)
 	const [isColorMenuOpen, setIsColorMenuOpen] = useState(false)
-	const [cursorPosition, setCursorPosition] = useState({ x: 240, y: 120 })
-	const [cursorVisible, setCursorVisible] = useState(false)
-	const [isPointerActive, setIsPointerActive] = useState(false)
-	const isPointerActiveRef = useRef(false)
+	const [cursorVisible, setCursorVisible] = useState(true)
 	const highestZRef = useRef(5)
 
 	useEffect(() => {
@@ -296,6 +285,7 @@ export function FigmaUiCard() {
 		]
 		let phaseIndex = 1
 		let propertyState = false
+		let introComplete = false
 		const timers: number[] = []
 
 		const schedule = (callback: () => void, delay: number) => {
@@ -304,9 +294,6 @@ export function FigmaUiCard() {
 
 		const activatePhase = (nextPhase: Card5Phase) => {
 			setIsColorMenuOpen(false)
-			if (!isPointerActiveRef.current) {
-				setCursorPosition(cursorTargets[nextPhase])
-			}
 
 			if (
 				nextPhase === "assets" ||
@@ -342,7 +329,6 @@ export function FigmaUiCard() {
 
 		schedule(() => {
 			setAnimationPhase("figma")
-			setCursorPosition(cursorTargets.figma)
 			setIntroducedPanels({
 				assets: false,
 				comments: false,
@@ -355,14 +341,18 @@ export function FigmaUiCard() {
 
 		const advance = () => {
 			const nextPhase = phases[phaseIndex]
-			const nextDelay = nextPhase === "button-change" ? 7460 : 3000
+			const nextDelay =
+				nextPhase === "button-change" ? 7460 : introComplete ? 3000 : 1000
 
 			activatePhase(nextPhase)
 			phaseIndex = (phaseIndex + 1) % phases.length
+			if (nextPhase === "button-change") {
+				introComplete = true
+			}
 			schedule(advance, nextDelay)
 		}
 
-		schedule(advance, 3000)
+		schedule(advance, 1200)
 
 		return () => {
 			timers.forEach((timer) => window.clearTimeout(timer))
@@ -392,29 +382,23 @@ export function FigmaUiCard() {
 			return
 		}
 
-		const scale = rect.width / 1440
-
 		event.currentTarget.setPointerCapture(event.pointerId)
 		bringToFront(id)
 		setDragState({
 			id,
-			offsetX: (event.clientX - rect.left) / scale - panels[id].x,
-			offsetY: (event.clientY - rect.top) / scale - panels[id].y,
+			offsetX: event.clientX - rect.left - panels[id].x,
+			offsetY: event.clientY - rect.top - panels[id].y,
 		})
 	}
 
 	const handlePointerMove = (event: PointerEvent<HTMLDivElement>) => {
 		const rect = event.currentTarget.getBoundingClientRect()
-		const scaleX = rect.width / event.currentTarget.offsetWidth
-		const scaleY = rect.height / event.currentTarget.offsetHeight
-		const x = (event.clientX - rect.left) / scaleX
-		const y = (event.clientY - rect.top) / scaleY
+		const x = event.clientX - rect.left
+		const y = event.clientY - rect.top
 
 		setCursorVisible(true)
-		setCursorPosition({
-			x: Math.min(Math.max(x, 0), event.currentTarget.offsetWidth),
-			y: Math.min(Math.max(y, 0), event.currentTarget.offsetHeight),
-		})
+		event.currentTarget.style.setProperty("--cursor-x", `${x}px`)
+		event.currentTarget.style.setProperty("--cursor-y", `${y}px`)
 
 		if (!dragState) {
 			return
@@ -424,8 +408,8 @@ export function FigmaUiCard() {
 			...current,
 			[dragState.id]: {
 				...current[dragState.id],
-				x: (event.clientX - rect.left) / scaleX - dragState.offsetX,
-				y: (event.clientY - rect.top) / scaleY - dragState.offsetY,
+				x: event.clientX - rect.left - dragState.offsetX,
+				y: event.clientY - rect.top - dragState.offsetY,
 			},
 		}))
 	}
@@ -436,18 +420,12 @@ export function FigmaUiCard() {
 			data-card5-button-color={isNeutralButton ? "neutral" : "primary"}
 			data-card5-lead-icon={leadIconEnabled ? "on" : "off"}
 			data-card5-phase={animationPhase}
-			onPointerEnter={(event) => {
-				isPointerActiveRef.current = true
-				setIsPointerActive(true)
-				handlePointerMove(event)
-			}}
+			onPointerEnter={() => setCursorVisible(true)}
 			onPointerLeave={() => {
-				isPointerActiveRef.current = false
-				setIsPointerActive(false)
 				setCursorVisible(false)
 				setDragState(null)
 			}}
-			onPointerMoveCapture={handlePointerMove}
+			onPointerMove={handlePointerMove}
 			onPointerUp={() => setDragState(null)}>
 			<div
 				className="figma-window-shell"
@@ -862,7 +840,7 @@ export function FigmaUiCard() {
 							className="figma-product-photo"
 							draggable={false}
 							height={324}
-							src="/newhome/rapid-dev/card-5-assets/preview.jpg"
+							src="/card-5-assets/preview.jpg"
 							width={640}
 						/>
 					</div>
@@ -915,18 +893,7 @@ export function FigmaUiCard() {
 				</FloatingPanel>
 			) : null}
 
-			<div
-				className={cn(
-					"figma-user-cursor",
-					cursorVisible && "is-visible",
-					isPointerActive && "is-pointer-active"
-				)}
-				style={
-					{
-						"--cursor-x": `${cursorPosition.x}px`,
-						"--cursor-y": `${cursorPosition.y}px`,
-					} as CSSProperties
-				}>
+			<div className={cn("figma-user-cursor", cursorVisible && "is-visible")}>
 				<svg
 					aria-hidden="true"
 					fill="none"
@@ -934,19 +901,55 @@ export function FigmaUiCard() {
 					viewBox="0 0 23 28"
 					width="23"
 					xmlns="http://www.w3.org/2000/svg">
-					<g>
+					<g filter="url(#figma-user-cursor-shadow)">
 						<path
 							d="M9.07023 20.0632C9.01185 20.0789 8.95009 20.0836 8.88767 20.0752C8.69962 20.0507 8.5452 19.9148 8.49615 19.7318L4.59787 5.18321C4.54883 5.00018 4.6146 4.8053 4.76524 4.69008C4.91619 4.57429 5.12085 4.56163 5.28499 4.65602L17.9227 11.9779C18.0869 12.0727 18.178 12.2568 18.153 12.445C18.1286 12.6331 17.9927 12.7875 17.8097 12.8366L12.564 14.2421L9.35482 19.8448C9.29138 19.9547 9.18785 20.0317 9.07023 20.0632Z"
-							fill="var(--color-success)"
+							fill="#22C55E"
 						/>
 						<path
 							d="M4.26424 4.03618C4.62936 3.75631 5.10684 3.69479 5.52265 3.85772L5.6965 3.94055L5.69889 3.94193L18.335 11.2637L18.4956 11.3723C18.8453 11.6513 19.0291 12.0963 18.97 12.5504L18.9712 12.5511C18.9034 13.072 18.5275 13.4978 18.0236 13.6331L13.11 14.9497L10.0709 20.2549L10.0696 20.2573C9.89441 20.5606 9.60823 20.7731 9.28377 20.8601C9.1257 20.9024 8.95553 20.9153 8.78188 20.8925C8.26088 20.8247 7.83411 20.4493 7.69902 19.9451L3.80081 5.39682C3.66579 4.89292 3.8472 4.35551 4.26424 4.03618Z"
-							stroke="var(--color-white-inverse)"
+							stroke="white"
 							strokeWidth="1.65"
 						/>
 					</g>
+					<defs>
+						<filter
+							colorInterpolationFilters="sRGB"
+							filterUnits="userSpaceOnUse"
+							height="24.6557"
+							id="figma-user-cursor-shadow"
+							width="22.7417"
+							x="0.000260115"
+							y="2.94141">
+							<feFlood floodOpacity="0" result="BackgroundImageFix" />
+							<feColorMatrix
+								in="SourceAlpha"
+								result="hardAlpha"
+								type="matrix"
+								values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+							/>
+							<feOffset dy="2.93333" />
+							<feGaussianBlur stdDeviation="1.46667" />
+							<feComposite in2="hardAlpha" operator="out" />
+							<feColorMatrix
+								type="matrix"
+								values="0 0 0 0 0.0980392 0 0 0 0 0.0941176 0 0 0 0 0.105882 0 0 0 0.12 0"
+							/>
+							<feBlend
+								in2="BackgroundImageFix"
+								mode="normal"
+								result="effect1_dropShadow_3337_22261"
+							/>
+							<feBlend
+								in="SourceGraphic"
+								in2="effect1_dropShadow_3337_22261"
+								mode="normal"
+								result="shape"
+							/>
+						</filter>
+					</defs>
 				</svg>
-				<span>John Doe</span>
+				<span>John</span>
 			</div>
 			<div className="figma-stage-fade" />
 		</div>

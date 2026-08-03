@@ -108,8 +108,8 @@ export default function Page() {
 
 function VideoPreviewWithBeams() {
 	return (
-		<div className="-mx-4 mt-[64px] flex w-[calc(100%+2rem)] justify-center sm:mt-[90px] md:-mx-5 md:w-[calc(100%+2.5rem)]">
-			<div className="max-w-368 relative w-full px-4 md:px-5">
+		<div className="relative -mx-4 mt-[64px] flex w-[calc(100%+2rem)] justify-center sm:mt-[90px] md:-mx-5 md:w-[calc(100%+2.5rem)]">
+			<div className="max-w-360 relative w-full px-4 md:px-5">
 				<HomepageLoadReveal
 					className="relative z-20 flex justify-center"
 					delay={0.28}

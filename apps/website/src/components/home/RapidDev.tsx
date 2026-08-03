@@ -2,9 +2,9 @@ import React from "react"
 import { Dot } from "lucide-react"
 import Image from "next/image"
 import {
+	Card7Visual,
 	CreditCardUsageVisual,
 	DesignCodeVisual,
-	LibraryComponentsVisual,
 	LibraryDocsVisual,
 } from "@/components/home/rapid-dev/client-only-visuals"
 import { Badge, BadgeDot } from "@/registry/ui/badge"
@@ -132,7 +132,7 @@ const RapidDev = () => {
 							className="relative flex h-[260px] justify-center overflow-hidden focus:outline-none focus:ring-0 md:h-[420px] lg:h-[430px]"
 							data-nosnippet
 							aria-hidden="true">
-							<LibraryComponentsVisual className="shrink-0 origin-top scale-75 sm:scale-90 md:scale-100" />
+							<Card7Visual />
 						</div>
 					</div>
 				</div>

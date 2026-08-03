@@ -18,10 +18,10 @@ export const CreditCardUsageVisual = dynamic(
 	{ ssr: false }
 )
 
-export const LibraryComponentsVisual = dynamic(
+export const Card7Visual = dynamic(
 	() =>
-		import("@/components/effects/library-primitives-card-animation").then(
-			(module) => module.LibraryComponentsCard
+		import("@/components/home/rapid-dev/card-7-canvas").then(
+			(module) => module.Card7Canvas
 		),
 	{ ssr: false }
 )

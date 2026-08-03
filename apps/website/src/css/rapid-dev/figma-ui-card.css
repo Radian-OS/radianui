@@ -1,9 +1,7 @@
 .figma-stage {
-	--figma-stage-bottom: color-mix(
-		in srgb,
-		var(--color-fill1),
-		var(--color-fg) 2%
-	);
+	--figma-stage-bottom: color-mix(in srgb, var(--color-fill1), var(--color-fg) 2%);
+	--cursor-x: 20px;
+	--cursor-y: 38px;
 	position: relative;
 	width: 1440px;
 	height: 720px;
@@ -14,19 +12,8 @@
 		linear-gradient(180deg, var(--color-fill1) 0%, var(--color-bg) 100%),
 		var(--color-bg);
 	color: var(--color-fg);
+	cursor: none;
 	font-family: inherit;
-}
-
-.figma-stage,
-.figma-stage * {
-	cursor: none !important;
-}
-
-.figma-stage:focus,
-.figma-stage:focus-visible,
-.figma-stage *:focus,
-.figma-stage *:focus-visible {
-	outline: none;
 }
 
 .figma-window {
@@ -43,8 +30,7 @@
 	background: var(--color-bg);
 	box-shadow:
 		0 22px 80px color-mix(in srgb, var(--color-fg), transparent 94%),
-		0 1px 0 color-mix(in srgb, var(--color-white-inverse), transparent 70%)
-			inset;
+		0 1px 0 color-mix(in srgb, var(--color-white-inverse), transparent 70%) inset;
 	transform: translate3d(var(--floating-x), var(--floating-y), 0);
 	transition:
 		box-shadow 180ms ease,
@@ -390,22 +376,10 @@
 	background: var(--color-bg);
 }
 
-.figma-selection-outline i:nth-child(1) {
-	top: -4px;
-	left: -4px;
-}
-.figma-selection-outline i:nth-child(2) {
-	top: -4px;
-	right: -4px;
-}
-.figma-selection-outline i:nth-child(3) {
-	right: -4px;
-	bottom: -4px;
-}
-.figma-selection-outline i:nth-child(4) {
-	bottom: -4px;
-	left: -4px;
-}
+.figma-selection-outline i:nth-child(1) { top: -4px; left: -4px; }
+.figma-selection-outline i:nth-child(2) { top: -4px; right: -4px; }
+.figma-selection-outline i:nth-child(3) { right: -4px; bottom: -4px; }
+.figma-selection-outline i:nth-child(4) { bottom: -4px; left: -4px; }
 
 .figma-measurement {
 	position: absolute;
@@ -538,8 +512,7 @@
 	background: var(--color-bg);
 	box-shadow:
 		0 24px 74px color-mix(in srgb, var(--color-fg), transparent 88%),
-		0 1px 0 color-mix(in srgb, var(--color-white-inverse), transparent 65%)
-			inset;
+		0 1px 0 color-mix(in srgb, var(--color-white-inverse), transparent 65%) inset;
 	transform: translate3d(var(--floating-x), var(--floating-y), 0);
 	transition:
 		box-shadow 180ms ease,
@@ -551,8 +524,7 @@
 .figma-floating-card:active {
 	box-shadow:
 		0 30px 92px color-mix(in srgb, var(--color-fg), transparent 84%),
-		0 1px 0 color-mix(in srgb, var(--color-white-inverse), transparent 55%)
-			inset;
+		0 1px 0 color-mix(in srgb, var(--color-white-inverse), transparent 55%) inset;
 }
 
 .figma-floating-title {
@@ -576,6 +548,12 @@
 .figma-stage .figma-window,
 .figma-stage .figma-floating-card {
 	cursor: none;
+}
+
+.figma-stage *,
+.figma-stage *::before,
+.figma-stage *::after {
+	cursor: none !important;
 }
 
 .figma-floating-dots {
@@ -718,8 +696,7 @@
 	border-radius: 14px 14px 0 0;
 	box-shadow:
 		0 22px 80px color-mix(in srgb, var(--color-fg), transparent 94%),
-		0 1px 0 color-mix(in srgb, var(--color-white-inverse), transparent 70%)
-			inset;
+		0 1px 0 color-mix(in srgb, var(--color-white-inverse), transparent 70%) inset;
 }
 
 .figma-browser-tabs {
@@ -804,7 +781,7 @@
 .figma-canvas {
 	grid-column: 3;
 	grid-row: 2;
-	background: var(--color-fill3);
+	background: oklch(0.9368 0.0029 264.54);
 	background-image: none;
 }
 
@@ -994,8 +971,7 @@
 	border: 1px solid var(--color-soft);
 	border-radius: 6px;
 	background: var(--color-bg);
-	box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-fg), transparent 96%)
-		inset;
+	box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-fg), transparent 96%) inset;
 }
 
 .figma-component-grid span {
@@ -1116,9 +1092,7 @@
 	height: 0;
 	border-top: 19px solid var(--color-error);
 	border-right: 13px solid transparent;
-	filter: drop-shadow(
-		0 2px 2px color-mix(in srgb, var(--color-fg), transparent 82%)
-	);
+	filter: drop-shadow(0 2px 2px color-mix(in srgb, var(--color-fg), transparent 82%));
 	transform: rotate(-14deg);
 }
 
@@ -1170,9 +1144,7 @@
 	height: 0;
 	border-top: 19px solid var(--color-error);
 	border-right: 13px solid transparent;
-	filter: drop-shadow(
-		0 2px 2px color-mix(in srgb, var(--color-fg), transparent 82%)
-	);
+	filter: drop-shadow(0 2px 2px color-mix(in srgb, var(--color-fg), transparent 82%));
 	transform: rotate(-14deg);
 }
 
@@ -1405,8 +1377,7 @@
 	border: 2px solid var(--color-soft);
 	border-radius: 999px;
 	background: var(--color-bg);
-	box-shadow: 0 1px 2px color-mix(in srgb, var(--color-fg), transparent 90%)
-		inset;
+	box-shadow: 0 1px 2px color-mix(in srgb, var(--color-fg), transparent 90%) inset;
 }
 
 .figma-control-row i::after {
@@ -1417,9 +1388,7 @@
 	height: 20px;
 	border-radius: 999px;
 	background: var(--color-bg);
-	box-shadow:
-		0 0 0 1px var(--color-soft),
-		0 1px 2px color-mix(in srgb, var(--color-fg), transparent 86%);
+	box-shadow: 0 0 0 1px var(--color-soft), 0 1px 2px color-mix(in srgb, var(--color-fg), transparent 86%);
 	content: "";
 }
 
@@ -1447,7 +1416,7 @@
 .figma-asset-logo-svg {
 	width: 88px;
 	height: 24px;
-	color: var(--color-black-inverse);
+	color: #000;
 }
 
 .dark .figma-asset-logo-svg {
@@ -1577,8 +1546,8 @@
 
 .figma-asset-logo-svg,
 .figma-asset-logo-svg path {
-	color: var(--color-black-inverse);
-	fill: var(--color-black-inverse);
+	color: #000;
+	fill: #000;
 }
 
 .dark .figma-asset-logo-svg,
@@ -1658,8 +1627,8 @@
 
 .figma-asset-logo-svg,
 .figma-asset-logo-svg path {
-	color: var(--color-black-inverse) !important;
-	fill: var(--color-black-inverse) !important;
+	color: #000 !important;
+	fill: #000 !important;
 }
 
 .dark .figma-asset-logo-svg,
@@ -1742,36 +1711,26 @@
 		0
 	);
 	opacity: 0;
-	transition:
-		transform 900ms cubic-bezier(0.22, 1, 0.36, 1),
-		opacity 180ms ease;
+	transition: none;
 }
 
 .figma-user-cursor.is-visible {
 	opacity: 1;
 }
 
-.figma-user-cursor.is-pointer-active {
-	transition:
-		transform 80ms linear,
-		opacity 180ms ease;
-}
-
 .figma-user-cursor span {
 	position: absolute;
 	top: 20px;
 	left: 21px;
-	width: max-content;
 	height: 20px;
 	margin: 0;
 	border-radius: 5px;
-	background: var(--color-success);
+	background: #22c55e;
 	padding: 0 8px;
 	font-size: 12px;
 	font-weight: 500;
 	line-height: 20px;
-	color: var(--color-success-fg);
-	white-space: nowrap;
+	color: #fff;
 }
 
 .figma-asset-cursor-svg {
@@ -1841,15 +1800,15 @@
 }
 
 .figma-window-dots i:nth-child(1) {
-	background: var(--color-error);
+	background: #ff5f57;
 }
 
 .figma-window-dots i:nth-child(2) {
-	background: var(--color-warning);
+	background: #ffbd2e;
 }
 
 .figma-window-dots i:nth-child(3) {
-	background: var(--color-success);
+	background: #28c840;
 }
 
 .figma-window-dots svg {
@@ -2239,8 +2198,10 @@
 	flex: 0 0 22px;
 	margin-right: auto;
 	overflow: hidden;
-	background: var(--color-fg);
-	color: var(--color-bg);
+	background-image: url("https://randomuser.me/api/portraits/men/32.jpg");
+	background-position: center;
+	background-size: cover;
+	color: transparent;
 }
 
 .figma-right-tabs {
@@ -2447,19 +2408,11 @@
 }
 
 .figma-browser-tab.warm {
-	background: color-mix(
-		in srgb,
-		var(--color-warning-accent),
-		var(--color-fill3) 45%
-	);
+	background: color-mix(in srgb, var(--color-warning-accent), var(--color-fill3) 45%);
 }
 
 .figma-browser-tab.motion {
-	background: color-mix(
-		in srgb,
-		var(--color-success-accent),
-		var(--color-fill3) 42%
-	);
+	background: color-mix(in srgb, var(--color-success-accent), var(--color-fill3) 42%);
 }
 
 .figma-browser-tabs > svg {
@@ -3109,7 +3062,7 @@
 
 .figma-pages.blocks button::before {
 	background: var(--color-success);
-	color: var(--color-success-fg);
+	color: #fff;
 	content: "✦";
 }
 
@@ -3180,7 +3133,7 @@
 	padding: 0 12px;
 	font-size: 11px;
 	font-weight: 600;
-	color: var(--color-info-fg);
+	color: #fff;
 }
 
 .figma-right-head .figma-play-button {
@@ -3304,7 +3257,7 @@
 	background: var(--color-error);
 	font-size: 5px;
 	font-weight: 700;
-	color: var(--color-error-fg);
+	color: #fff;
 }
 
 .figma-style-row b:nth-child(2) {
@@ -3686,37 +3639,32 @@
 .figma-stage .figma-window {
 	border: 1px solid var(--color-soft-alpha) !important;
 	overflow: hidden !important;
-	box-shadow: 0 22px 80px color-mix(in srgb, var(--color-fg), transparent 94%) !important;
+	box-shadow:
+		0 22px 80px color-mix(in srgb, var(--color-fg), transparent 94%) !important;
 }
 
 .figma-stage {
 	--figma-panel-halo: color-mix(in srgb, var(--color-info), transparent 91%);
-	--figma-panel-halo-soft: color-mix(
-		in srgb,
-		var(--color-info),
-		transparent 96%
-	);
+	--figma-panel-halo-soft: color-mix(in srgb, var(--color-info), transparent 96%);
 	--figma-panel-glass: color-mix(in srgb, var(--color-bg), transparent 62%);
 	--figma-panel-glass-size: 14px;
 }
 
 .dark .figma-stage {
 	--figma-panel-halo: color-mix(in srgb, var(--color-info), transparent 88%);
-	--figma-panel-halo-soft: color-mix(
-		in srgb,
-		var(--color-info),
-		transparent 94%
-	);
+	--figma-panel-halo-soft: color-mix(in srgb, var(--color-info), transparent 94%);
 	--figma-panel-glass: color-mix(in srgb, var(--color-bg), transparent 60%);
 }
 
 .figma-stage .figma-window {
 	overflow: visible !important;
-	box-shadow: 0 22px 80px color-mix(in srgb, var(--color-fg), transparent 94%) !important;
+	box-shadow:
+		0 22px 80px color-mix(in srgb, var(--color-fg), transparent 94%) !important;
 }
 
 .figma-stage .figma-floating-card {
-	box-shadow: 0 16px 48px color-mix(in srgb, var(--color-fg), transparent 92%) !important;
+	box-shadow:
+		0 16px 48px color-mix(in srgb, var(--color-fg), transparent 92%) !important;
 }
 
 .figma-stage .figma-window::before,
@@ -3836,7 +3784,8 @@
 	overflow: hidden !important;
 	border: 1px solid var(--color-soft-alpha) !important;
 	border-radius: 14px !important;
-	box-shadow: 0 22px 80px color-mix(in srgb, var(--color-fg), transparent 94%) !important;
+	box-shadow:
+		0 22px 80px color-mix(in srgb, var(--color-fg), transparent 94%) !important;
 	transform: none !important;
 }
 
@@ -3882,20 +3831,12 @@
 }
 
 .figma-stage {
-	--figma-panel-glass: color-mix(
-		in srgb,
-		var(--color-white-inverse),
-		transparent 76%
-	) !important;
+	--figma-panel-glass: rgb(255 255 255 / 24%) !important;
 	--figma-panel-glass-size: 14px !important;
 }
 
 .dark .figma-stage {
-	--figma-panel-glass: color-mix(
-		in srgb,
-		var(--color-white-inverse),
-		transparent 92%
-	) !important;
+	--figma-panel-glass: rgb(255 255 255 / 8%) !important;
 }
 
 .figma-stage .figma-window-shell::before,
@@ -3932,8 +3873,7 @@
 	left: 0;
 	width: fit-content;
 	height: fit-content;
-	transform: translate3d(var(--floating-x), var(--floating-y), 0)
-		scale(var(--figma-floating-scale, 1));
+	transform: translate3d(var(--floating-x), var(--floating-y), 0) scale(var(--figma-floating-scale, 1));
 	transform-origin: top left;
 	transition: transform 120ms ease;
 	touch-action: none;
@@ -3999,19 +3939,11 @@
 }
 
 .figma-stage {
-	--figma-panel-glass: color-mix(
-		in srgb,
-		var(--color-white-inverse),
-		transparent 10%
-	) !important;
+	--figma-panel-glass: rgb(255 255 255 / 90%) !important;
 }
 
 .dark .figma-stage {
-	--figma-panel-glass: color-mix(
-		in srgb,
-		var(--color-white-inverse),
-		transparent 94%
-	) !important;
+	--figma-panel-glass: rgb(255 255 255 / 6%) !important;
 }
 
 .figma-props-panel .figma-control-row > .figma-box-select {
@@ -4220,7 +4152,7 @@
 	padding: 0 24px;
 	font-size: 26px;
 	font-weight: 560;
-	color: var(--color-primary-fg);
+	color: var(--color-primary-text);
 	transition:
 		background-color 460ms cubic-bezier(0.2, 0.82, 0.18, 1),
 		color 460ms cubic-bezier(0.2, 0.82, 0.18, 1),
@@ -4300,14 +4232,13 @@
 	gap: 2px;
 	border: 1px solid var(--color-soft-alpha);
 	border-radius: 16px;
-	background: var(--color-black-inverse);
+	background: oklch(0.22 0.006 264);
 	padding: 13px;
 	color: var(--color-fg-inverse);
 	box-shadow: 0 18px 42px color-mix(in srgb, var(--color-fg), transparent 82%);
 	opacity: 0;
 	transform: translateY(-4px) scale(0.98);
-	animation: figma-card5-menu-open 520ms cubic-bezier(0.2, 0.82, 0.18, 1) 180ms
-		both;
+	animation: figma-card5-menu-open 520ms cubic-bezier(0.2, 0.82, 0.18, 1) 180ms both;
 }
 
 .figma-props-panel .figma-color-menu em {
@@ -4357,11 +4288,9 @@
 }
 
 .figma-stage[data-card5-phase="button-change"] .figma-control-row.is-color-row,
-.figma-stage[data-card5-phase="button-change"]
-	.figma-control-row:nth-of-type(6),
+.figma-stage[data-card5-phase="button-change"] .figma-control-row:nth-of-type(6),
 .figma-stage[data-card5-phase="button-change"] .figma-product-footer button {
-	animation: figma-card5-property-nudge 640ms cubic-bezier(0.2, 0.82, 0.18, 1)
-		both;
+	animation: figma-card5-property-nudge 640ms cubic-bezier(0.2, 0.82, 0.18, 1) both;
 }
 
 @keyframes figma-card5-reveal-up {
@@ -4407,13 +4336,10 @@
 .figma-stage[data-card5-phase="figma"] .figma-browser-tabs > .figma-window-dots,
 .figma-stage[data-card5-phase="figma"] .figma-browser-tab,
 .figma-stage[data-card5-phase="figma"] .figma-browser-tabs > svg {
-	animation: figma-card5-reveal-right 680ms cubic-bezier(0.2, 0.82, 0.18, 1)
-		both;
+	animation: figma-card5-reveal-right 680ms cubic-bezier(0.2, 0.82, 0.18, 1) both;
 }
 
-.figma-stage[data-card5-phase="figma"]
-	.figma-browser-tabs
-	> .figma-window-dots {
+.figma-stage[data-card5-phase="figma"] .figma-browser-tabs > .figma-window-dots {
 	animation-delay: 40ms;
 }
 
@@ -4442,85 +4368,59 @@
 
 .figma-stage[data-card5-phase="figma"] .figma-file-header,
 .figma-stage[data-card5-phase="figma"] .figma-right-head {
-	animation: figma-card5-reveal-up 720ms cubic-bezier(0.2, 0.82, 0.18, 1) 170ms
-		both;
+	animation: figma-card5-reveal-up 720ms cubic-bezier(0.2, 0.82, 0.18, 1) 170ms both;
 }
 
 .figma-stage[data-card5-phase="figma"] .figma-right-tabs {
-	animation: figma-card5-reveal-up 720ms cubic-bezier(0.2, 0.82, 0.18, 1) 240ms
-		both;
+	animation: figma-card5-reveal-up 720ms cubic-bezier(0.2, 0.82, 0.18, 1) 240ms both;
 }
 
 .figma-stage[data-card5-phase="figma"] .figma-pages:not(.blocks) > div,
-.figma-stage[data-card5-phase="figma"]
-	.figma-right-panel
-	section:nth-of-type(1) {
+.figma-stage[data-card5-phase="figma"] .figma-right-panel section:nth-of-type(1) {
 	animation-delay: 230ms;
 }
 
-.figma-stage[data-card5-phase="figma"]
-	.figma-pages:not(.blocks)
-	> button:nth-of-type(1) {
+.figma-stage[data-card5-phase="figma"] .figma-pages:not(.blocks) > button:nth-of-type(1) {
 	animation-delay: 320ms;
 }
 
-.figma-stage[data-card5-phase="figma"]
-	.figma-pages:not(.blocks)
-	> button:nth-of-type(2) {
+.figma-stage[data-card5-phase="figma"] .figma-pages:not(.blocks) > button:nth-of-type(2) {
 	animation-delay: 390ms;
 }
 
-.figma-stage[data-card5-phase="figma"]
-	.figma-pages:not(.blocks)
-	> button:nth-of-type(3) {
+.figma-stage[data-card5-phase="figma"] .figma-pages:not(.blocks) > button:nth-of-type(3) {
 	animation-delay: 460ms;
 }
 
-.figma-stage[data-card5-phase="figma"]
-	.figma-pages:not(.blocks)
-	> button:nth-of-type(4) {
+.figma-stage[data-card5-phase="figma"] .figma-pages:not(.blocks) > button:nth-of-type(4) {
 	animation-delay: 530ms;
 }
 
-.figma-stage[data-card5-phase="figma"]
-	.figma-pages:not(.blocks)
-	> button:nth-of-type(5) {
+.figma-stage[data-card5-phase="figma"] .figma-pages:not(.blocks) > button:nth-of-type(5) {
 	animation-delay: 600ms;
 }
 
-.figma-stage[data-card5-phase="figma"]
-	.figma-pages:not(.blocks)
-	> button:nth-of-type(6) {
+.figma-stage[data-card5-phase="figma"] .figma-pages:not(.blocks) > button:nth-of-type(6) {
 	animation-delay: 670ms;
 }
 
-.figma-stage[data-card5-phase="figma"]
-	.figma-pages:not(.blocks)
-	> button:nth-of-type(7) {
+.figma-stage[data-card5-phase="figma"] .figma-pages:not(.blocks) > button:nth-of-type(7) {
 	animation-delay: 740ms;
 }
 
-.figma-stage[data-card5-phase="figma"]
-	.figma-pages:not(.blocks)
-	> button:nth-of-type(8) {
+.figma-stage[data-card5-phase="figma"] .figma-pages:not(.blocks) > button:nth-of-type(8) {
 	animation-delay: 810ms;
 }
 
-.figma-stage[data-card5-phase="figma"]
-	.figma-pages:not(.blocks)
-	> button:nth-of-type(9) {
+.figma-stage[data-card5-phase="figma"] .figma-pages:not(.blocks) > button:nth-of-type(9) {
 	animation-delay: 880ms;
 }
 
-.figma-stage[data-card5-phase="figma"]
-	.figma-pages:not(.blocks)
-	> button:nth-of-type(10) {
+.figma-stage[data-card5-phase="figma"] .figma-pages:not(.blocks) > button:nth-of-type(10) {
 	animation-delay: 950ms;
 }
 
-.figma-stage[data-card5-phase="figma"]
-	.figma-pages:not(.blocks)
-	> button:nth-of-type(11) {
+.figma-stage[data-card5-phase="figma"] .figma-pages:not(.blocks) > button:nth-of-type(11) {
 	animation-delay: 1020ms;
 }
 
@@ -4533,141 +4433,87 @@
 	animation-delay: 1120ms;
 }
 
-.figma-stage[data-card5-phase="figma"]
-	.figma-pages.blocks
-	> button:nth-of-type(1) {
+.figma-stage[data-card5-phase="figma"] .figma-pages.blocks > button:nth-of-type(1) {
 	animation-delay: 1210ms;
 }
 
-.figma-stage[data-card5-phase="figma"]
-	.figma-pages.blocks
-	> button:nth-of-type(2) {
+.figma-stage[data-card5-phase="figma"] .figma-pages.blocks > button:nth-of-type(2) {
 	animation-delay: 1280ms;
 }
 
-.figma-stage[data-card5-phase="figma"]
-	.figma-pages.blocks
-	> button:nth-of-type(3) {
+.figma-stage[data-card5-phase="figma"] .figma-pages.blocks > button:nth-of-type(3) {
 	animation-delay: 1350ms;
 }
 
-.figma-stage[data-card5-phase="figma"]
-	.figma-pages.blocks
-	> button:nth-of-type(4) {
+.figma-stage[data-card5-phase="figma"] .figma-pages.blocks > button:nth-of-type(4) {
 	animation-delay: 1420ms;
 }
 
-.figma-stage[data-card5-phase="figma"]
-	.figma-pages.blocks
-	> button:nth-of-type(5) {
+.figma-stage[data-card5-phase="figma"] .figma-pages.blocks > button:nth-of-type(5) {
 	animation-delay: 1490ms;
 }
 
-.figma-stage[data-card5-phase="figma"]
-	.figma-pages.blocks
-	> button:nth-of-type(6) {
+.figma-stage[data-card5-phase="figma"] .figma-pages.blocks > button:nth-of-type(6) {
 	animation-delay: 1560ms;
 }
 
-.figma-stage[data-card5-phase="figma"]
-	.figma-right-panel
-	section:nth-of-type(2) {
+.figma-stage[data-card5-phase="figma"] .figma-right-panel section:nth-of-type(2) {
 	animation-delay: 400ms;
 }
 
-.figma-stage[data-card5-phase="figma"]
-	.figma-right-panel
-	section:nth-of-type(3) {
+.figma-stage[data-card5-phase="figma"] .figma-right-panel section:nth-of-type(3) {
 	animation-delay: 1080ms;
 }
 
-.figma-stage[data-card5-phase="figma"]
-	.figma-right-panel
-	section:nth-of-type(4) {
+.figma-stage[data-card5-phase="figma"] .figma-right-panel section:nth-of-type(4) {
 	animation-delay: 1240ms;
 }
 
-.figma-stage[data-card5-phase="figma"]
-	.figma-right-panel
-	section:nth-of-type(2)
-	.figma-style-row {
+.figma-stage[data-card5-phase="figma"] .figma-right-panel section:nth-of-type(2) .figma-style-row {
 	animation: figma-card5-reveal-up 640ms cubic-bezier(0.2, 0.82, 0.18, 1) both;
 }
 
-.figma-stage[data-card5-phase="figma"]
-	.figma-right-panel
-	section:nth-of-type(2)
-	.figma-style-row:nth-of-type(1) {
+.figma-stage[data-card5-phase="figma"] .figma-right-panel section:nth-of-type(2) .figma-style-row:nth-of-type(1) {
 	animation-delay: 520ms;
 }
 
-.figma-stage[data-card5-phase="figma"]
-	.figma-right-panel
-	section:nth-of-type(2)
-	.figma-style-row:nth-of-type(2) {
+.figma-stage[data-card5-phase="figma"] .figma-right-panel section:nth-of-type(2) .figma-style-row:nth-of-type(2) {
 	animation-delay: 580ms;
 }
 
-.figma-stage[data-card5-phase="figma"]
-	.figma-right-panel
-	section:nth-of-type(2)
-	.figma-style-row:nth-of-type(3) {
+.figma-stage[data-card5-phase="figma"] .figma-right-panel section:nth-of-type(2) .figma-style-row:nth-of-type(3) {
 	animation-delay: 640ms;
 }
 
-.figma-stage[data-card5-phase="figma"]
-	.figma-right-panel
-	section:nth-of-type(2)
-	.figma-style-row:nth-of-type(4) {
+.figma-stage[data-card5-phase="figma"] .figma-right-panel section:nth-of-type(2) .figma-style-row:nth-of-type(4) {
 	animation-delay: 700ms;
 }
 
-.figma-stage[data-card5-phase="figma"]
-	.figma-right-panel
-	section:nth-of-type(2)
-	.figma-style-row:nth-of-type(5) {
+.figma-stage[data-card5-phase="figma"] .figma-right-panel section:nth-of-type(2) .figma-style-row:nth-of-type(5) {
 	animation-delay: 760ms;
 }
 
-.figma-stage[data-card5-phase="figma"]
-	.figma-right-panel
-	section:nth-of-type(2)
-	.figma-style-row:nth-of-type(6) {
+.figma-stage[data-card5-phase="figma"] .figma-right-panel section:nth-of-type(2) .figma-style-row:nth-of-type(6) {
 	animation-delay: 820ms;
 }
 
-.figma-stage[data-card5-phase="figma"]
-	.figma-right-panel
-	section:nth-of-type(2)
-	.figma-style-row:nth-of-type(7) {
+.figma-stage[data-card5-phase="figma"] .figma-right-panel section:nth-of-type(2) .figma-style-row:nth-of-type(7) {
 	animation-delay: 880ms;
 }
 
-.figma-stage[data-card5-phase="figma"]
-	.figma-right-panel
-	section:nth-of-type(2)
-	.figma-style-row:nth-of-type(8) {
+.figma-stage[data-card5-phase="figma"] .figma-right-panel section:nth-of-type(2) .figma-style-row:nth-of-type(8) {
 	animation-delay: 940ms;
 }
 
-.figma-stage[data-card5-phase="figma"]
-	.figma-right-panel
-	section:nth-of-type(2)
-	.figma-style-row:nth-of-type(9) {
+.figma-stage[data-card5-phase="figma"] .figma-right-panel section:nth-of-type(2) .figma-style-row:nth-of-type(9) {
 	animation-delay: 1000ms;
 }
 
-.figma-stage[data-card5-phase="figma"]
-	.figma-right-panel
-	section:nth-of-type(2)
-	.figma-style-row:nth-of-type(10) {
+.figma-stage[data-card5-phase="figma"] .figma-right-panel section:nth-of-type(2) .figma-style-row:nth-of-type(10) {
 	animation-delay: 1060ms;
 }
 
-.figma-stage[data-card5-phase="figma"]
-	.figma-right-panel
-	section:nth-of-type(2)
-	.figma-style-row:nth-of-type(11) {
+.figma-stage[data-card5-phase="figma"] .figma-right-panel section:nth-of-type(2) .figma-style-row:nth-of-type(11) {
 	animation-delay: 1120ms;
 }
 
@@ -4685,39 +4531,23 @@
 	animation-delay: 180ms;
 }
 
-.figma-stage[data-card5-phase="assets"]
-	.figma-component-grid
-	> div:nth-child(1),
-.figma-stage[data-card5-phase="assets"]
-	.figma-component-grid
-	> div:nth-child(2) {
+.figma-stage[data-card5-phase="assets"] .figma-component-grid > div:nth-child(1),
+.figma-stage[data-card5-phase="assets"] .figma-component-grid > div:nth-child(2) {
 	animation-delay: 300ms;
 }
 
-.figma-stage[data-card5-phase="assets"]
-	.figma-component-grid
-	> div:nth-child(3),
-.figma-stage[data-card5-phase="assets"]
-	.figma-component-grid
-	> div:nth-child(4) {
+.figma-stage[data-card5-phase="assets"] .figma-component-grid > div:nth-child(3),
+.figma-stage[data-card5-phase="assets"] .figma-component-grid > div:nth-child(4) {
 	animation-delay: 410ms;
 }
 
-.figma-stage[data-card5-phase="assets"]
-	.figma-component-grid
-	> div:nth-child(5),
-.figma-stage[data-card5-phase="assets"]
-	.figma-component-grid
-	> div:nth-child(6) {
+.figma-stage[data-card5-phase="assets"] .figma-component-grid > div:nth-child(5),
+.figma-stage[data-card5-phase="assets"] .figma-component-grid > div:nth-child(6) {
 	animation-delay: 520ms;
 }
 
-.figma-stage[data-card5-phase="assets"]
-	.figma-component-grid
-	> div:nth-child(7),
-.figma-stage[data-card5-phase="assets"]
-	.figma-component-grid
-	> div:nth-child(8) {
+.figma-stage[data-card5-phase="assets"] .figma-component-grid > div:nth-child(7),
+.figma-stage[data-card5-phase="assets"] .figma-component-grid > div:nth-child(8) {
 	animation-delay: 630ms;
 }
 
@@ -4800,16 +4630,11 @@
 	animation-delay: 560ms;
 }
 
-.figma-stage[data-card5-phase="comments"]
-	.figma-control-row:nth-of-type(n + 7) {
+.figma-stage[data-card5-phase="comments"] .figma-control-row:nth-of-type(n + 7) {
 	animation-delay: 660ms;
 }
 
 @media (prefers-reduced-motion: reduce) {
-	.figma-user-cursor {
-		transition: none !important;
-	}
-
 	.figma-stage .figma-window,
 	.figma-stage .figma-assets-panel,
 	.figma-stage .figma-product-panel,
