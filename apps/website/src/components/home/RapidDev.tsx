@@ -2,12 +2,12 @@ import React from "react"
 import { Dot } from "lucide-react"
 import Image from "next/image"
 import { CreditCardUsageAnimation } from "@/components/effects/credit-card-usage-animation"
-import { LibraryComponentsCard } from "@/components/effects/library-primitives-card-animation"
 import { LibraryDocsCard } from "@/components/home/rapid-dev/library-docs-card"
 import { RapidDevAnimation } from "@/components/home/rapid-dev/rapid-dev-animation"
 import { Badge, BadgeDot } from "@/registry/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 import DiagonalDivider from "./SvgDivider"
+import { Card7Canvas } from "./rapid-dev/card-7-canvas"
 
 const data = [
 	{ label: "Designer", value: "designer" },
@@ -128,7 +128,8 @@ const RapidDev = () => {
 							className="relative flex h-[260px] justify-center overflow-hidden focus:outline-none focus:ring-0 md:h-[420px] lg:h-[430px]"
 							data-nosnippet
 							aria-hidden="true">
-							<LibraryComponentsCard className="shrink-0 origin-top scale-75 sm:scale-90 md:scale-100" />
+							{/* <LibraryComponentsCard className="shrink-0 origin-top scale-75 sm:scale-90 md:scale-100" /> */}
+							<Card7Canvas />
 						</div>
 					</div>
 				</div>

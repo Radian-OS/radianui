@@ -1375,7 +1375,7 @@
 
 .radian-docs-button-primary {
 	background: var(--color-primary);
-	color: var(--color-black-inverse);
+	color: #fff;
 }
 
 .radian-docs-button-outline {
