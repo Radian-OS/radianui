@@ -38,7 +38,6 @@ export default function ComponentSectionItems({
 			title={item.title}
 			description={item.description!}
 			thumbnail={item.thumbnail!}
-			thumbnailDark={item.thumbnailDark!}
 		/>
 	))
 }
