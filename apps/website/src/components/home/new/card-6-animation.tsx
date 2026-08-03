@@ -120,6 +120,8 @@ function Card6Canvas() {
 export function Card6Animation() {
 	return (
 		<svg
+			aria-hidden="true"
+			data-nosnippet
 			id="design-at-scale-animation"
 			aria-label="Scrolling interface inspiration gallery"
 			className="block aspect-[9/5] h-auto w-full max-w-[1440px] overflow-hidden"

@@ -72,7 +72,10 @@ const RapidDev = () => {
 								and paste
 							</p>
 						</div>
-						<div className="relative h-[260px] overflow-hidden md:h-[414px] lg:h-[449px]">
+						<div
+							className="relative h-[260px] overflow-hidden md:h-[414px] lg:h-[449px]"
+							data-nosnippet
+							aria-hidden="true">
 							<div className="sm:scale-120 lg:scale-140 shrink-0 origin-top-left scale-95 px-5 focus:outline-none focus:ring-0 sm:px-10 md:scale-150 md:px-7 lg:px-11">
 								<LibraryDocsCard />
 							</div>
@@ -100,7 +103,10 @@ const RapidDev = () => {
 								meaningful properties for easier customization
 							</p>
 						</div>
-						<div className="relative flex h-[260px] justify-center overflow-hidden md:h-[414px] lg:h-[430px]">
+						<div
+							className="relative flex h-[260px] justify-center overflow-hidden md:h-[414px] lg:h-[430px]"
+							data-nosnippet
+							aria-hidden="true">
 							<div className="shrink-0 origin-top scale-75 pt-2 focus:outline-none focus:ring-0 sm:scale-90 sm:pt-4 md:scale-100">
 								<CreditCardUsageAnimation />
 							</div>
@@ -118,7 +124,10 @@ const RapidDev = () => {
 							</p>
 						</div>
 
-						<div className="relative flex h-[260px] justify-center overflow-hidden focus:outline-none focus:ring-0 md:h-[420px] lg:h-[430px]">
+						<div
+							className="relative flex h-[260px] justify-center overflow-hidden focus:outline-none focus:ring-0 md:h-[420px] lg:h-[430px]"
+							data-nosnippet
+							aria-hidden="true">
 							<LibraryComponentsCard className="shrink-0 origin-top scale-75 sm:scale-90 md:scale-100" />
 						</div>
 					</div>
