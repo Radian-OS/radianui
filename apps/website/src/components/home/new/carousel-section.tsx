@@ -214,11 +214,11 @@ export default function CarouselSection() {
 					<div className="w-full" data-nosnippet aria-hidden="true">
 						<Card6Animation />
 					</div>
+					<SvgDivider className="border-soft hidden w-full border-y sm:block" />
 					<SvgDivider
-						height={50}
-						viewBox="0 0 1440 50"
-						preserveAspectRatio="none"
-						className="border-soft block h-[50px] w-full border-y"
+						className="border-soft block w-full border-y sm:hidden"
+						height={32}
+						viewBox="0 0 1440 32"
 					/>
 				</div>
 			</div>
@@ -237,13 +237,13 @@ export default function CarouselSection() {
 				/>
 
 				<div
-					className="h-100 lg:h-160 relative flex w-full touch-pan-y justify-center overflow-hidden"
+					className="lg:h-160 relative flex aspect-[2640/1948] h-auto w-full touch-pan-y justify-center overflow-hidden lg:aspect-auto"
 					onPointerCancelCapture={() => {
 						swipeStart.current = null
 					}}
 					onPointerDownCapture={handleSwipeStart}
 					onPointerUpCapture={handleSwipeEnd}>
-					<div className="h-100 w-192 lg:h-160 lg:w-320 xl:w-330 relative shrink-0 overflow-hidden md:rounded-xl">
+					<div className="lg:h-160 lg:w-320 xl:w-330 relative aspect-[2640/1948] h-auto w-full shrink-0 overflow-hidden md:rounded-xl lg:aspect-auto">
 						<Image
 							src="/carousel-home.png"
 							fill
@@ -286,11 +286,11 @@ export default function CarouselSection() {
 			</div>
 
 			<div className="border-soft max-w-360 mx-auto w-full border-x">
+				<SvgDivider className="border-soft hidden w-full border-y sm:block" />
 				<SvgDivider
-					height={50}
-					viewBox="0 0 1440 50"
-					preserveAspectRatio="none"
-					className="border-soft block h-[50px] w-full border-y"
+					className="border-soft block w-full border-y sm:hidden"
+					height={32}
+					viewBox="0 0 1440 32"
 				/>
 			</div>
 		</section>
@@ -348,7 +348,7 @@ function ShowcaseFrame({
 	return (
 		<>
 			<div
-				className="bg-fill1/30 max-w-240 absolute bottom-0 left-1/2 h-[92%] w-[calc(100%_-_24px)] -translate-x-1/2 overflow-hidden rounded-t-xl backdrop-blur-xl sm:h-[78%] sm:w-[78%] lg:h-[80%]"
+				className="bg-fill1/30 max-w-240 absolute bottom-0 left-1/2 aspect-video h-auto w-[calc(100%_-_24px)] -translate-x-1/2 overflow-hidden rounded-t-xl backdrop-blur-xl sm:w-[78%] lg:aspect-auto lg:h-[80%]"
 				style={lightThemeVars}>
 				<div className="absolute inset-x-2 bottom-0 top-2">
 					<div
@@ -362,7 +362,7 @@ function ShowcaseFrame({
 							playsInline
 							preload="metadata"
 							aria-label={video.label}
-							className="pointer-events-none h-full w-full object-cover">
+							className="pointer-events-none h-full w-full object-contain lg:object-cover">
 							<source src={video.src} />
 						</video>
 					</div>

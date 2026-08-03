@@ -70,7 +70,7 @@ const LINKS: Link[] = [
 		title: "Resources",
 		linkItems: [
 			{
-				href: "/docs/resources/ui-avatars",
+				href: "/docs/resources/avatar",
 				name: "UI Avatars",
 				icon: <UIAvatarIcon />,
 				release: "beta",
@@ -100,7 +100,7 @@ const LINKS: Link[] = [
 				release: "coming-soon",
 			},
 			{
-				href: "/docs/getting-started/changelog",
+				href: "/docs/getting-started/resources",
 				name: "Explore Resources",
 				isBlueLink: true,
 			},

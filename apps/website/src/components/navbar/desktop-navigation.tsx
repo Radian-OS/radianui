@@ -75,9 +75,8 @@ export const designTools = [
 	{
 		title: "View all tools",
 		description: "Browse every available tool.",
-		href: "#",
+		href: "/docs/getting-started/resources",
 		icon: <ViewTools />,
-		release: "coming-soon",
 	},
 ]
 
