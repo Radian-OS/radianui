@@ -1,6 +1,6 @@
 import type React from "react"
 
-const DialogThumbnail = (props: React.SVGProps<SVGSVGElement>) => (
+const TooltipThumbnail = (props: React.SVGProps<SVGSVGElement>) => (
 	<svg
 		width="335"
 		height="321"
@@ -89,4 +89,4 @@ const DialogThumbnail = (props: React.SVGProps<SVGSVGElement>) => (
 	</svg>
 )
 
-export default DialogThumbnail
+export default TooltipThumbnail
