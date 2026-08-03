@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
+import { cn } from "@/lib/utils"
 
 export function Card7Canvas() {
 	const ref = useRef<HTMLElement>(null)
@@ -30,7 +31,7 @@ export function Card7Canvas() {
 			aria-hidden="true"
 			data-nosnippet
 			aria-label="Card 7 animation canvas"
-			className={`card-7-canvas select-none${isVisible ? "is-visible" : ""}`}>
+			className={cn("card-7-canvas select-none", isVisible && "is-visible")}>
 			<div className="card-7-terminal-shell">
 				<div className="card-7-terminal-window">
 					<div className="card-7-titlebar">

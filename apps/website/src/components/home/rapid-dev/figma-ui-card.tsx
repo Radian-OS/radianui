@@ -31,6 +31,7 @@ import {
 	Weight,
 } from "lucide-react"
 import Image from "next/image"
+import { cn } from "@/lib/utils"
 
 type PanelId = "figma" | "assets" | "comments" | "product"
 type Card5Phase = PanelId | "button-change"
@@ -892,7 +893,7 @@ export function FigmaUiCard() {
 				</FloatingPanel>
 			) : null}
 
-			<div className={`figma-user-cursor${cursorVisible ? "is-visible" : ""}`}>
+			<div className={cn("figma-user-cursor", cursorVisible && "is-visible")}>
 				<svg
 					aria-hidden="true"
 					fill="none"
