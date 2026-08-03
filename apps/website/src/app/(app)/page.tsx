@@ -1,22 +1,24 @@
 import { ArrowRight } from "lucide-react"
 import Link from "next/link"
 import Background from "@/components/effects/background"
-import ComponentsSection from "@/components/home/components-section"
+import RapidDev from "@/components/home/RapidDev"
+import DiagonalDivider from "@/components/home/SvgDivider"
+import Component from "@/components/home/component-section"
 import CTASection from "@/components/home/cta-section"
 import FAQSection from "@/components/home/faq-section"
-import FeaturesSection from "@/components/home/features-section"
 import Footer from "@/components/home/footer"
 import HeroActionButtons from "@/components/home/hero-action-buttons"
 import HomepageLoadReveal from "@/components/home/homepage-load-reveal"
-import InvertedSection from "@/components/home/inverted-section"
+import BrandSection from "@/components/home/new/brand-section"
+import CarouselSection from "@/components/home/new/carousel-section"
 import PlaygroundSectionWrapper from "@/components/home/playground-section-wrapper"
 import { RotatingWords } from "@/components/home/rotating-words"
-import VideoSection from "@/components/home/ui-blocks-section"
+import UIBlocksSection from "@/components/home/ui-blocks-section"
 import VideoDialogPreview from "@/components/home/video/video-dialog-preview"
 import { JsonLd } from "@/components/seo/json-ld"
 import { getHomepageStructuredData } from "@/lib/structured-data"
 import { BorderBeam } from "@/registry/animated/border-beam"
-import { Badge } from "@/styles/default/ui/badge"
+import { Badge } from "@/registry/ui/badge"
 
 const upperHeroBeamPath =
 	"M0 1H132C142.8 1 152.8 6.8 158.1 16.2L286.5 258.8C292.1 269.4 303.2 276 315.2 276H438"
@@ -31,85 +33,102 @@ export default function Page() {
 				id="homepage-structured-data"
 				data={getHomepageStructuredData()}
 			/>
-			<div className="min-h-screen w-full overflow-x-hidden">
-				<Background>
-					<div className="md:pt-30 pt-15 flex flex-col items-center justify-center gap-10">
-						<HomepageLoadReveal
-							className="max-w-250 flex flex-col items-center justify-center"
-							delay={0.05}>
-							<Link
-								href="/docs/getting-started/changelog"
-								className="relative h-[32px] rounded-full">
-								<Badge
-									color="primary"
-									className="h-8 gap-1.5 rounded-full py-1 pl-1"
-									size="28"
-									variant="soft">
+			<main className="min-h-screen w-full overflow-x-hidden">
+				<section aria-labelledby="home-page-title">
+					<Background>
+						<div className="md:pt-30 pt-15 relative z-30 flex flex-col items-center justify-center gap-10">
+							<HomepageLoadReveal
+								className="max-w-250 flex flex-col items-center justify-center"
+								delay={0.05}>
+								<Link
+									href="/docs/getting-started/changelog"
+									className="relative h-[32px] rounded-full focus:outline-none">
 									<Badge
 										color="primary"
-										className="rounded-full"
-										variant="strong">
-										New Version
+										className="h-8 gap-1.5 rounded-full py-1 pl-1"
+										size="28"
+										variant="soft">
+										<Badge
+											color="primary"
+											className="rounded-full"
+											variant="strong">
+											New Version
+										</Badge>
+										Read Changelog
+										<ArrowRight className="size-3.5" />
 									</Badge>
-									Read Changelog
-									<ArrowRight className="size-3.5" />
-								</Badge>
-								<BorderBeam size={50} />
-							</Link>
-							<h1 className="heading-1 dark:from-fg dark:to-fg-secondary not-dark:text-fg mt-6 bg-clip-text text-center text-transparent dark:bg-gradient-to-b">
-								Open-Source React Components and Figma Design System
-							</h1>
-							<p className="text-fg-secondary mt-10 w-full max-w-[640px] text-center text-lg font-normal">
-								A complete production-ready React components library, UI blocks,
-								and Figma UI Kit and design system for{" "}
-								<RotatingWords
-									words={["Designers", "Developers", "Startups", "Agencies"]}
-									className="text-fg font-medium"
-								/>
-							</p>
-						</HomepageLoadReveal>
-						<HomepageLoadReveal
-							className="flex w-full flex-col items-center justify-center gap-3 sm:flex-row"
-							delay={0.16}
-							offset={8}
-							blur={8}>
-							<HeroActionButtons />
-						</HomepageLoadReveal>
+									<BorderBeam size={50} />
+								</Link>
+								<h1
+									id="home-page-title"
+									className="heading-1 dark:from-fg dark:to-fg-secondary not-dark:text-fg mt-6 bg-clip-text text-center text-transparent dark:bg-gradient-to-b">
+									Open-Source React Components and Figma Design System
+								</h1>
+								<p className="text-fg-secondary mt-10 w-full max-w-[640px] text-center text-lg font-normal">
+									A complete production-ready React components library, UI
+									blocks, and Figma UI Kit and design system for{" "}
+									<RotatingWords
+										interval={4000}
+										words={["Designers", "Developers", "Startups", "Agencies"]}
+										className="text-fg font-medium"
+									/>
+								</p>
+							</HomepageLoadReveal>
+							<HomepageLoadReveal
+								className="flex w-full flex-col items-center justify-center gap-3 sm:flex-row"
+								delay={0.16}
+								offset={8}
+								blur={8}>
+								<HeroActionButtons />
+							</HomepageLoadReveal>
+						</div>
+
+						<VideoPreviewWithBeams />
+					</Background>
+				</section>
+
+				<BrandSection />
+				<RapidDev />
+				<Component />
+
+				<CarouselSection />
+
+				<PlaygroundSectionWrapper renderBeforeMount />
+
+				<div className="max-w-360 mx-auto w-full" aria-hidden="true">
+					<div className="border-soft w-full overflow-clip border-b border-t lg:border-l lg:border-r">
+						<DiagonalDivider />
 					</div>
+				</div>
 
-					<VideoPreviewWithBeams />
-				</Background>
+				<UIBlocksSection />
 
-				<FeaturesSection
-					textAutoHide={true}
-					enableSpotlight={true}
-					enableBorderGlow={true}
-					clickEffect={true}
-					spotlightRadius={573}
-				/>
-
-				<InvertedSection />
-
-				<ComponentsSection />
-
-				<PlaygroundSectionWrapper />
-
-				<VideoSection />
-
+				<div className="max-w-360 mx-auto w-full" aria-hidden="true">
+					<div className="border-soft w-full overflow-clip border-b border-t lg:border-l lg:border-r">
+						<DiagonalDivider />
+					</div>
+				</div>
 				<FAQSection />
 
 				<CTASection />
+			</main>
 
-				<Footer />
-			</div>
+			<Footer />
 		</>
 	)
 }
 
 function VideoPreviewWithBeams() {
 	return (
-		<div className="relative -mx-4 mt-[64px] flex w-[calc(100%+2rem)] justify-center sm:mt-[90px] md:-mx-5 md:w-[calc(100%+2.5rem)]">
-			<div className="max-w-360 relative w-full px-4 md:px-5">
+		<figure
+			aria-labelledby="home-demo-caption"
+			className="relative -mx-4 mt-[64px] flex w-[calc(100%+2rem)] justify-center sm:mt-[90px] md:-mx-5 md:w-[calc(100%+2.5rem)]">
+			<figcaption id="home-demo-caption" className="sr-only">
+				Interactive preview of the Radian OS component library and design
+				system.
+			</figcaption>
+			<div className="bg-primary/45 dark:bg-primary/60 z-25 absolute left-1/2 top-1/2 mx-auto hidden aspect-video w-[90%] max-w-[1300px] -translate-x-1/2 -translate-y-1/2 rounded-full rounded-b-none blur-[50px] md:blur-[100px] lg:w-[85%] lg:blur-[130px] 2xl:w-[70%] dark:block"></div>
+			<div className="max-w-368 z-35 relative w-full px-4 md:px-5">
 				<HomepageLoadReveal
 					className="relative z-20 flex justify-center"
 					delay={0.28}
@@ -143,7 +162,7 @@ function VideoPreviewWithBeams() {
 					beamClassName="animate-[var(--animate-beam-flow2)] opacity-0"
 				/>
 			</div>
-		</div>
+		</figure>
 	)
 }
 
