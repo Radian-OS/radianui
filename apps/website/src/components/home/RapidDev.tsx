@@ -1,6 +1,5 @@
 import React from "react"
 import { Dot } from "lucide-react"
-import Image from "next/image"
 import {
 	Card7Visual,
 	CreditCardUsageVisual,
@@ -10,6 +9,7 @@ import {
 import { Badge, BadgeDot } from "@/registry/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 import DiagonalDivider from "./SvgDivider"
+import { Card8Canvas } from "./rapid-dev/card-8-canvas"
 
 const data = [
 	{ label: "Designer", value: "designer" },
@@ -44,8 +44,8 @@ const RapidDev = () => {
 				</div>
 
 				<div className="border-soft flex flex-col overflow-hidden border-y lg:flex-row">
-					<div className="lg:flex-2 border-soft border-b lg:border-b-0 lg:border-r">
-						<div className="lg:px-15 flex w-full flex-col px-5 py-8 sm:px-10 sm:py-12 lg:w-[520px] lg:py-20">
+					<div className="border-soft isolate min-w-0 flex-1 overflow-hidden border-b lg:border-b-0 lg:border-r">
+						<div className="lg:px-15 flex w-full flex-1 flex-col px-5 py-8 sm:px-10 sm:py-12 lg:py-20">
 							<h3 className="heading-5 text-[16px] font-medium leading-7 tracking-[-0.18px] sm:text-[18px] sm:leading-8">
 								Production-Ready Figma UI Kit.
 							</h3>
@@ -54,19 +54,15 @@ const RapidDev = () => {
 								using smart auto layout and figma slots
 							</p>
 						</div>
-						<div className="relative h-[214px] overflow-hidden md:h-[414px] lg:h-[430px]">
-							<div className="absolute bottom-[10rem] left-1/2 top-1/2 -translate-x-1/2 scale-150 focus:outline-none focus:ring-0 lg:bottom-[-20rem]">
-								<Image
-									width={800}
-									height={1000}
-									alt="Preview of the production-ready Radian Figma UI kit"
-									src="/newhome/OverviewContainer.png"
-								/>
+						<div className="relative h-[214px] w-full overflow-hidden md:h-[414px] lg:h-[430px]">
+							{/* <div className="shrink-0 origin-top-left scale-[0.8] xl:scale-[0.95] 2xl:scale-100 focus:outline-none focus:ring-0"> */}
+							<div className="origin-top-left overflow-hidden focus:outline-none focus:ring-0">
+								<Card8Canvas />
 							</div>
 							<div className="pointer-events-none absolute bottom-0 left-0 right-0 h-[120px] bg-[linear-gradient(0deg,#FFF_0%,rgba(255,255,255,0)_100%)] dark:bg-[linear-gradient(0deg,oklch(0.144_0.003_264.025)_0%,oklch(0.144_0.003_264.025/0)_100%)]" />
 						</div>
 					</div>
-					<div className="lg:flex-1">
+					<div className="min-w-0 overflow-hidden lg:flex-1">
 						<div className="lg:px-15 flex w-full flex-col px-5 py-8 sm:px-10 sm:py-12 lg:w-[520px] lg:py-20">
 							<h3 className="heading-5 text-[16px] font-medium leading-7 tracking-[-0.18px] sm:text-[18px] sm:leading-8">
 								A Complete Library of UI Primitives.

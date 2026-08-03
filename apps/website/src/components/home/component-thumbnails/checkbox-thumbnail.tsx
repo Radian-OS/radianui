@@ -33,7 +33,7 @@ const CheckboxThumbnail = (props: React.SVGProps<SVGSVGElement>) => (
 			/>
 			<path
 				d="M141.834 124L134.5 131.333L131.167 128"
-				stroke="white"
+				stroke="var(--color-bg)"
 				strokeWidth="1.5"
 				strokeLinecap="round"
 				strokeLinejoin="round"
@@ -44,7 +44,7 @@ const CheckboxThumbnail = (props: React.SVGProps<SVGSVGElement>) => (
 			/>
 			<path
 				d="M126.5 156C126.5 152.686 129.186 150 132.5 150H140.5C143.814 150 146.5 152.686 146.5 156V164C146.5 167.314 143.814 170 140.5 170H132.5C129.186 170 126.5 167.314 126.5 164V156Z"
-				fill="white"
+				fill="var(--color-bg)"
 			/>
 			<path
 				d="M132.5 150.5H140.5C143.538 150.5 146 152.962 146 156V164C146 167.038 143.538 169.5 140.5 169.5H132.5C129.462 169.5 127 167.038 127 164V156C127 152.962 129.462 150.5 132.5 150.5Z"
@@ -57,7 +57,7 @@ const CheckboxThumbnail = (props: React.SVGProps<SVGSVGElement>) => (
 			/>
 			<path
 				d="M126.5 188C126.5 184.686 129.186 182 132.5 182H140.5C143.814 182 146.5 184.686 146.5 188V196C146.5 199.314 143.814 202 140.5 202H132.5C129.186 202 126.5 199.314 126.5 196V188Z"
-				fill="white"
+				fill="var(--color-bg)"
 			/>
 			<path
 				d="M132.5 182.5H140.5C143.538 182.5 146 184.962 146 188V196C146 199.038 143.538 201.5 140.5 201.5H132.5C129.462 201.5 127 199.038 127 196V188C127 184.962 129.462 182.5 132.5 182.5Z"
