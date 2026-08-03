@@ -1,0 +1,1228 @@
+.card-7-canvas {
+	--card-7-loop-duration: 38000ms;
+	width: 700px;
+	height: 420px;
+	flex: 0 0 auto;
+	position: relative;
+	overflow: hidden;
+	color: var(--color-fg);
+}
+
+.card-7-canvas *,
+.card-7-canvas *::before,
+.card-7-canvas *::after {
+	animation-play-state: paused !important;
+}
+
+.card-7-canvas.is-visible *,
+.card-7-canvas.is-visible *::before,
+.card-7-canvas.is-visible *::after {
+	animation-play-state: running !important;
+}
+
+.card-7-terminal-shell {
+	position: absolute;
+	top: 42px;
+	left: 50%;
+	width: 416px;
+	height: 976px;
+	transform: translateX(-50%);
+	opacity: 0;
+	animation: card-7-shell-enter 520ms cubic-bezier(0.18, 0.9, 0.22, 1) both;
+}
+
+.card-7-terminal-window {
+	width: 100%;
+	height: 100%;
+	transform: scale(0.92);
+	transform-origin: top center;
+	overflow: hidden;
+	border: 1px solid var(--color-border);
+	border-radius: 16px;
+	background: var(--color-fill2);
+	box-shadow: 0 18px 60px color-mix(in srgb, var(--color-black-inverse), transparent 88%);
+	animation: card-7-window-loop var(--card-7-loop-duration) cubic-bezier(0.18, 0.9, 0.22, 1) infinite both;
+}
+
+.dark .card-7-terminal-window {
+	box-shadow: none;
+}
+
+.card-7-titlebar {
+	position: relative;
+	display: flex;
+	height: 44px;
+	align-items: center;
+	justify-content: center;
+	padding: 0 16px;
+}
+
+.card-7-titlebar h2 {
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 20px;
+	color: var(--color-fg);
+}
+
+.card-7-window-controls {
+	position: absolute;
+	left: 14px;
+	top: 18px;
+	display: flex;
+	gap: 5px;
+}
+
+.card-7-control {
+	width: 8px;
+	height: 8px;
+	border-radius: 999px;
+}
+
+.card-7-control-red {
+	background: #ff5b59;
+}
+
+.card-7-control-yellow {
+	background: #f5b900;
+}
+
+.card-7-control-green {
+	background: #0fc27b;
+}
+
+.card-7-terminal-body {
+	--card-7-content-inset: 12px;
+	--card-7-bubble-x: 14px;
+	--card-7-bubble-y: 12px;
+	margin: 0 8px 12px;
+	height: calc(100% - 56px);
+	min-height: 0;
+	overflow: hidden;
+	border-radius: 12px;
+	background: var(--color-elevation-level1);
+	padding: 12px;
+	font-size: 12px;
+	line-height: 18px;
+	color: var(--color-fg-secondary);
+}
+
+.card-7-terminal-content {
+	min-height: 920px;
+	transform-origin: top center;
+	animation: card-7-content-loop var(--card-7-loop-duration) cubic-bezier(0.18, 0.9, 0.22, 1) infinite both;
+}
+
+.card-7-terminal-body p,
+.card-7-terminal-body dt,
+.card-7-terminal-body dd {
+	font-size: 12px;
+	line-height: 18px;
+}
+
+.card-7-reveal {
+	opacity: 0;
+	transform: translateY(10px);
+	filter: blur(5px);
+	animation-duration: var(--card-7-loop-duration);
+	animation-timing-function: cubic-bezier(0.2, 0.85, 0.25, 1);
+	animation-iteration-count: infinite;
+	animation-fill-mode: both;
+}
+
+.card-7-reveal-1 {
+	animation-name: card-7-section-loop-1;
+}
+
+.card-7-reveal-2 {
+	animation-name: card-7-section-loop-2;
+}
+
+.card-7-reveal-3 {
+	animation-name: card-7-section-loop-3;
+}
+
+.card-7-reveal-4 {
+	animation-name: card-7-section-loop-4;
+}
+
+.card-7-reveal-5 {
+	animation-name: card-7-section-loop-5;
+}
+
+.card-7-reveal-6 {
+	animation-name: card-7-section-loop-6;
+}
+
+.card-7-reveal-7 {
+	animation-name: card-7-section-loop-7;
+}
+
+.card-7-reveal-8 {
+	animation-name: card-7-section-loop-8;
+}
+
+.card-7-reveal-9 {
+	animation-name: card-7-section-loop-9;
+}
+
+.card-7-reveal-10 {
+	animation-name: card-7-section-loop-10;
+}
+
+.card-7-reveal-11 {
+	animation-name: card-7-section-loop-11;
+}
+
+.card-7-reveal-12 {
+	animation-name: card-7-section-loop-12;
+}
+
+.card-7-reveal-13 {
+	animation-name: card-7-section-loop-13;
+}
+
+.card-7-reveal-14 {
+	animation-name: card-7-section-loop-14;
+}
+
+.card-7-reveal-15 {
+	animation-name: card-7-section-loop-15;
+}
+
+.card-7-reveal-16 {
+	animation-name: card-7-section-loop-16;
+}
+
+.card-7-reveal-17 {
+	animation-name: card-7-section-loop-17;
+}
+
+.card-7-prompt-card,
+.card-7-followup-card {
+	display: grid;
+	grid-template-columns: 14px 1fr;
+	gap: 10px;
+	border-radius: 12px;
+	background: color-mix(in srgb, var(--color-fg), transparent 95%);
+	padding: var(--card-7-bubble-y) var(--card-7-bubble-x);
+	color: var(--color-fg);
+}
+
+.card-7-prompt-card p,
+.card-7-followup-card p,
+.card-7-ai-response p {
+	margin: 0;
+	font-size: 12px;
+	font-weight: 500;
+	line-height: 18px;
+}
+
+.card-7-prompt-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.card-7-prompt-typed {
+	display: inline-block;
+	overflow: hidden;
+	white-space: nowrap;
+	max-width: 0;
+	animation-duration: var(--card-7-loop-duration);
+	animation-iteration-count: infinite;
+	animation-fill-mode: both;
+	animation-timing-function: steps(var(--card-7-typing-steps), end);
+}
+
+.card-7-prompt-line-1 {
+	--card-7-typing-steps: 49;
+	--card-7-typing-width: 49ch;
+	animation-name: card-7-prompt-line-1;
+}
+
+.card-7-prompt-line-2 {
+	--card-7-typing-steps: 56;
+	--card-7-typing-width: 56ch;
+	animation-name: card-7-prompt-line-2;
+}
+
+.card-7-prompt-line-3 {
+	--card-7-typing-steps: 5;
+	--card-7-typing-width: 5ch;
+	animation-name: card-7-prompt-line-3;
+}
+
+.card-7-prompt-marker {
+	color: var(--color-fg-secondary);
+	font-weight: 600;
+}
+
+.card-7-ai-response {
+	display: grid;
+	grid-template-columns: 14px 1fr;
+	gap: 10px;
+	padding: 0 var(--card-7-content-inset);
+	color: var(--color-fg);
+	font-size: 12px;
+	line-height: 18px;
+}
+
+.card-7-followup-card + .card-7-ai-response {
+	margin-top: 18px;
+}
+
+.card-7-ai-spark {
+	color: var(--color-primary-text);
+	font-weight: 600;
+	line-height: 18px;
+}
+
+.card-7-ai-lines {
+	display: flex;
+	flex-direction: column;
+}
+
+.card-7-ai-typed {
+	display: block;
+	max-width: 0;
+	overflow: hidden;
+	white-space: nowrap;
+	animation-duration: var(--card-7-loop-duration);
+	animation-iteration-count: infinite;
+	animation-fill-mode: both;
+	animation-timing-function: steps(var(--card-7-typing-steps), end);
+}
+
+.card-7-ai-spaced {
+	margin-top: 13px;
+}
+
+.card-7-ai-1-line-1 {
+	--card-7-typing-steps: 61;
+	--card-7-typing-width: 61ch;
+	animation-name: card-7-type-ai-1-line-1;
+}
+
+.card-7-ai-1-line-2 {
+	--card-7-typing-steps: 53;
+	--card-7-typing-width: 53ch;
+	animation-name: card-7-type-ai-1-line-2;
+}
+
+.card-7-ai-1-line-3 {
+	--card-7-typing-steps: 51;
+	--card-7-typing-width: 51ch;
+	animation-name: card-7-type-ai-1-line-3;
+}
+
+.card-7-ai-1-line-4 {
+	--card-7-typing-steps: 36;
+	--card-7-typing-width: 36ch;
+	animation-name: card-7-type-ai-1-line-4;
+}
+
+.card-7-ai-2-line-1 {
+	--card-7-typing-steps: 58;
+	--card-7-typing-width: 58ch;
+	animation-name: card-7-type-ai-2-line-1;
+}
+
+.card-7-ai-2-line-2 {
+	--card-7-typing-steps: 42;
+	--card-7-typing-width: 42ch;
+	animation-name: card-7-type-ai-2-line-2;
+}
+
+.card-7-ai-3-line-1 {
+	--card-7-typing-steps: 56;
+	--card-7-typing-width: 56ch;
+	animation-name: card-7-type-ai-3-line-1;
+}
+
+.card-7-ai-3-line-2 {
+	--card-7-typing-steps: 59;
+	--card-7-typing-width: 59ch;
+	animation-name: card-7-type-ai-3-line-2;
+}
+
+.card-7-step-list {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	padding: 18px var(--card-7-content-inset) 0;
+}
+
+.card-7-step-list p {
+	opacity: 0;
+	transform: translateY(7px);
+	animation-duration: var(--card-7-loop-duration);
+	animation-timing-function: cubic-bezier(0.2, 0.85, 0.25, 1);
+	animation-iteration-count: infinite;
+	animation-fill-mode: both;
+}
+
+.card-7-step-list p:nth-child(1) {
+	animation-name: card-7-line-loop-1;
+}
+
+.card-7-step-list p:nth-child(2) {
+	--card-7-typing-steps: 34;
+	--card-7-typing-width: 34ch;
+	animation-name: card-7-line-loop-2;
+}
+
+.card-7-step-list p:nth-child(3) {
+	--card-7-typing-steps: 37;
+	--card-7-typing-width: 37ch;
+	animation-name: card-7-line-loop-3;
+}
+
+.card-7-step-list p:nth-child(4) {
+	--card-7-typing-steps: 35;
+	--card-7-typing-width: 35ch;
+	animation-name: card-7-line-loop-4;
+}
+
+.card-7-step-list p:nth-child(5) {
+	--card-7-typing-steps: 55;
+	--card-7-typing-width: 55ch;
+	animation-name: card-7-line-loop-5;
+}
+
+.card-7-step-list p,
+.card-7-command-block p,
+.card-7-install-block p,
+.card-7-footer-command p {
+	margin: 0;
+	font-size: 12px;
+	line-height: 18px;
+}
+
+.card-7-muted-line {
+	color: var(--color-fg-tertiary);
+}
+
+.card-7-thinking-line {
+	position: relative;
+}
+
+.card-7-thinking-text::after {
+	content: "Thinking 0.5s";
+	animation: card-7-thinking-copy var(--card-7-loop-duration) linear infinite both;
+}
+
+.card-7-thinking-spinner {
+	animation:
+		card-7-spinner-spin 900ms linear infinite,
+		card-7-thinking-spinner-state var(--card-7-loop-duration) linear infinite both;
+}
+
+.card-7-thinking-check {
+	position: absolute;
+	left: 1px;
+	top: 50%;
+	width: 12px;
+	transform: translateY(-50%) scale(0.78);
+	color: var(--color-fg-secondary);
+	opacity: 0;
+	animation: card-7-thinking-check-state var(--card-7-loop-duration) linear infinite both;
+}
+
+.card-7-step-list p {
+	display: flex;
+	align-items: center;
+	gap: 7px;
+}
+
+.card-7-step-list p:not(.card-7-thinking-line) {
+	max-width: 0;
+	overflow: hidden;
+	white-space: nowrap;
+	animation-timing-function: steps(var(--card-7-typing-steps), end);
+	color: var(--color-fg);
+}
+
+.card-7-spinner {
+	position: relative;
+	width: 12px;
+	height: 12px;
+	display: inline-block;
+	flex: 0 0 auto;
+}
+
+.card-7-spinner::before,
+.card-7-spinner::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	border-radius: 999px;
+	border: 2px solid var(--color-fg-disabled);
+	border-top-color: transparent;
+}
+
+.card-7-spinner::after {
+	inset: 3px;
+	border-width: 1px;
+	opacity: 0.5;
+}
+
+.card-7-spinner-primary::before,
+.card-7-spinner-primary::after {
+	border-color: var(--color-primary);
+	border-top-color: transparent;
+}
+
+.card-7-spinner-primary {
+	animation: card-7-spinner-spin 900ms linear infinite;
+}
+
+.card-7-spark,
+.card-7-install-block dt {
+	color: var(--color-primary-text);
+}
+
+.card-7-primary-line {
+	color: var(--color-fg);
+}
+
+.card-7-narration {
+	padding-top: 5px;
+	color: var(--color-fg);
+}
+
+.card-7-divider {
+	height: 1px;
+	margin: 17px 0;
+	background: var(--color-soft);
+}
+
+.card-7-command-block {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	padding-inline: var(--card-7-content-inset);
+	color: var(--color-fg-secondary);
+}
+
+.card-7-command-block strong {
+	padding-left: 14px;
+	color: var(--color-fg);
+	font-weight: 500;
+}
+
+.card-7-command-block > p:first-child,
+.card-7-footer-command > p {
+	overflow: hidden;
+	white-space: nowrap;
+	max-width: 0;
+	animation-duration: var(--card-7-loop-duration);
+	animation-iteration-count: infinite;
+	animation-fill-mode: both;
+	animation-timing-function: steps(var(--card-7-typing-steps), end);
+}
+
+.card-7-command-block > p:first-child {
+	--card-7-typing-steps: 17;
+	--card-7-typing-width: 17ch;
+	animation-name: card-7-type-ps-1;
+}
+
+.card-7-footer-command > p:nth-child(1) {
+	--card-7-typing-steps: 8;
+	--card-7-typing-width: 8ch;
+	animation-name: card-7-type-footer-1;
+}
+
+.card-7-footer-command > p:nth-child(2) {
+	--card-7-typing-steps: 17;
+	--card-7-typing-width: 17ch;
+	animation-name: card-7-type-footer-2;
+}
+
+.card-7-footer-command > p:nth-child(3) {
+	max-width: none;
+}
+
+.card-7-footer-command > p:nth-child(4) {
+	--card-7-typing-steps: 33;
+	--card-7-typing-width: 33ch;
+	animation-name: card-7-type-footer-4;
+}
+
+.card-7-footer-command > p:nth-child(5) {
+	--card-7-typing-steps: 58;
+	--card-7-typing-width: 58ch;
+	animation-name: card-7-type-footer-5;
+}
+
+.card-7-type {
+	display: inline-block;
+	max-width: 0;
+	overflow: hidden;
+	vertical-align: bottom;
+	white-space: nowrap;
+	animation-duration: var(--card-7-loop-duration);
+	animation-iteration-count: infinite;
+	animation-fill-mode: both;
+	animation-timing-function: steps(var(--card-7-typing-steps), end);
+}
+
+.card-7-type-command {
+	--card-7-typing-steps: 31;
+	--card-7-typing-width: 31ch;
+	animation-name: card-7-type-command;
+}
+
+.card-7-type-init {
+	--card-7-typing-steps: 25;
+	--card-7-typing-width: 25ch;
+	animation-name: card-7-type-init;
+}
+
+.card-7-type-dev {
+	--card-7-typing-steps: 13;
+	--card-7-typing-width: 13ch;
+	animation-name: card-7-type-dev;
+}
+
+.card-7-type-followup-1 {
+	animation-name: card-7-type-followup-1;
+}
+
+.card-7-type-followup-2 {
+	animation-name: card-7-type-followup-2;
+}
+
+.card-7-followup-type {
+	display: block;
+	max-width: 0;
+	overflow: hidden;
+	white-space: nowrap;
+	animation-duration: var(--card-7-loop-duration);
+	animation-iteration-count: infinite;
+	animation-fill-mode: both;
+	animation-timing-function: steps(var(--card-7-typing-steps), end);
+}
+
+.card-7-followup-type-1 {
+	--card-7-typing-steps: 37;
+	--card-7-typing-width: 37ch;
+	animation-name: card-7-type-followup-1;
+}
+
+.card-7-followup-type-2 {
+	--card-7-typing-steps: 43;
+	--card-7-typing-width: 43ch;
+	animation-name: card-7-type-followup-2;
+}
+
+.card-7-install-block {
+	padding-inline: var(--card-7-content-inset);
+}
+
+.card-7-primary-line {
+	display: flex;
+	align-items: center;
+	gap: 7px;
+	font-weight: 500;
+}
+
+.card-7-install-block dl {
+	display: grid;
+	gap: 2px;
+	margin: 9px 0 0;
+}
+
+.card-7-install-block dl div {
+	display: grid;
+	grid-template-columns: 14px 1fr;
+	gap: 8px;
+	opacity: 0;
+	transform: translateY(6px);
+	animation-duration: var(--card-7-loop-duration);
+	animation-timing-function: cubic-bezier(0.2, 0.85, 0.25, 1);
+	animation-iteration-count: infinite;
+	animation-fill-mode: both;
+}
+
+.card-7-install-block dl div:nth-child(1) {
+	animation-name: card-7-install-line-loop-1;
+}
+
+.card-7-install-block dl div:nth-child(2) {
+	animation-name: card-7-install-line-loop-2;
+}
+
+.card-7-install-block dl div:nth-child(3) {
+	animation-name: card-7-install-line-loop-3;
+}
+
+.card-7-install-block dl div:nth-child(4) {
+	animation-name: card-7-install-line-loop-4;
+}
+
+.card-7-install-block dl div:nth-child(5) {
+	animation-name: card-7-install-line-loop-5;
+}
+
+.card-7-install-block dl div:nth-child(6) {
+	animation-name: card-7-install-line-loop-6;
+}
+
+.card-7-install-block dl div:nth-child(7) {
+	animation-name: card-7-install-line-loop-7;
+}
+
+.card-7-install-block dl div:nth-child(8) {
+	animation-name: card-7-install-line-loop-8;
+}
+
+.card-7-install-block dt,
+.card-7-install-block dd {
+	margin: 0;
+}
+
+.card-7-install-block dd {
+	color: var(--color-fg);
+	overflow: hidden;
+	white-space: nowrap;
+	max-width: 0;
+	animation-duration: var(--card-7-loop-duration);
+	animation-iteration-count: infinite;
+	animation-fill-mode: both;
+	animation-timing-function: steps(var(--card-7-typing-steps), end);
+}
+
+.card-7-install-block dl div:nth-child(1) dd {
+	--card-7-typing-steps: 49;
+	--card-7-typing-width: 49ch;
+	animation-name: card-7-type-install-1;
+}
+
+.card-7-install-block dl div:nth-child(2) dd {
+	--card-7-typing-steps: 6;
+	--card-7-typing-width: 6ch;
+	animation-name: card-7-type-install-2;
+}
+
+.card-7-install-block dl div:nth-child(3) dd {
+	--card-7-typing-steps: 40;
+	--card-7-typing-width: 40ch;
+	animation-name: card-7-type-install-3;
+}
+
+.card-7-install-block dl div:nth-child(4) dd {
+	--card-7-typing-steps: 3;
+	--card-7-typing-width: 3ch;
+	animation-name: card-7-type-install-4;
+}
+
+.card-7-install-block dl div:nth-child(5) dd {
+	--card-7-typing-steps: 56;
+	--card-7-typing-width: 56ch;
+	animation-name: card-7-type-install-5;
+}
+
+.card-7-install-block dl div:nth-child(6) dd {
+	--card-7-typing-steps: 11;
+	--card-7-typing-width: 11ch;
+	animation-name: card-7-type-install-6;
+}
+
+.card-7-install-block dl div:nth-child(7) dd {
+	--card-7-typing-steps: 33;
+	--card-7-typing-width: 33ch;
+	animation-name: card-7-type-install-7;
+}
+
+.card-7-install-block dl div:nth-child(8) dd {
+	--card-7-typing-steps: 5;
+	--card-7-typing-width: 5ch;
+	animation-name: card-7-type-install-8;
+}
+
+.card-7-success-text,
+.card-7-complete-line {
+	color: var(--color-success-text);
+}
+
+.card-7-install-block dd.card-7-success-text {
+	color: var(--color-success-text);
+}
+
+.card-7-check-line {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	margin: 14px var(--card-7-content-inset) 0;
+	font-size: 12px;
+	line-height: 18px;
+	color: var(--color-fg-secondary);
+}
+
+.card-7-check-line span {
+	color: var(--color-fg);
+	font-weight: 700;
+}
+
+.card-7-complete-line {
+	margin: 12px var(--card-7-content-inset) 0;
+}
+
+.card-7-footer-command {
+	display: flex;
+	flex-direction: column;
+	gap: 7px;
+	padding-inline: var(--card-7-content-inset);
+	color: var(--color-fg);
+}
+
+.card-7-footer-command .card-7-check-line {
+	margin: 14px 0 0;
+}
+
+.card-7-dev-status {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	margin: 14px 0 0;
+	color: var(--color-fg);
+	font-size: 12px;
+	line-height: 18px;
+}
+
+.card-7-dev-icon {
+	position: relative;
+	width: 12px;
+	height: 12px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	flex: 0 0 12px;
+}
+
+.card-7-dev-spinner,
+.card-7-dev-check {
+	position: absolute;
+	inset: 0;
+}
+
+.card-7-dev-spinner {
+	animation:
+		card-7-spinner-spin 760ms linear infinite,
+		card-7-dev-spinner-state var(--card-7-loop-duration) linear infinite both;
+}
+
+.card-7-dev-check {
+	color: var(--color-fg);
+	font-weight: 700;
+	line-height: 12px;
+	opacity: 0;
+	animation: card-7-dev-check-state var(--card-7-loop-duration) linear infinite both;
+}
+
+.card-7-warning-text {
+	color: var(--color-warning-text);
+}
+
+@keyframes card-7-window-loop {
+	0% {
+		transform: translateY(20px) scale(0.58);
+	}
+
+	3%,
+	97% {
+		transform: translateY(0) scale(0.92);
+	}
+
+	100% {
+		transform: translateY(20px) scale(0.58);
+	}
+}
+
+@keyframes card-7-shell-enter {
+	0% {
+		opacity: 0;
+		transform: translateX(-50%) translateY(14px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateX(-50%) translateY(0);
+	}
+}
+
+@keyframes card-7-content-loop {
+	0%, 40% {
+		opacity: 1;
+		filter: blur(0);
+		transform: translateY(0);
+	}
+
+	43%, 64.5% {
+		opacity: 1;
+		filter: blur(0);
+		transform: translateY(-205px);
+	}
+
+	67%, 74% {
+		opacity: 1;
+		filter: blur(0);
+		transform: translateY(-380px);
+	}
+
+	76.5%, 86.8% {
+		opacity: 1;
+		filter: blur(0);
+		transform: translateY(-560px);
+	}
+
+	88%, 89.5% {
+		opacity: 1;
+		filter: blur(0);
+		transform: translateY(-620px);
+	}
+
+	91%, 97% {
+		opacity: 1;
+		filter: blur(0);
+		transform: translateY(-770px);
+	}
+
+	100% {
+		opacity: 0;
+		filter: blur(6px);
+		transform: translateY(0);
+	}
+}
+
+@keyframes card-7-section-loop-1 {
+	0%, 0.8%, 99%, 100% { opacity: 0; transform: translateY(10px); filter: blur(5px); }
+	2%, 98% { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+@keyframes card-7-section-loop-2 {
+	0%, 13%, 99%, 100% { opacity: 0; transform: translateY(10px); filter: blur(5px); }
+	14%, 98% { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+@keyframes card-7-section-loop-3 {
+	0%, 31%, 99%, 100% { opacity: 0; transform: translateY(10px); filter: blur(5px); }
+	32%, 98% { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+@keyframes card-7-section-loop-4 {
+	0%, 33%, 99%, 100% { opacity: 0; transform: translateY(10px); filter: blur(5px); }
+	34%, 98% { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+@keyframes card-7-section-loop-5 {
+	0%, 38%, 99%, 100% { opacity: 0; transform: translateY(10px); filter: blur(5px); }
+	39%, 98% { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+@keyframes card-7-section-loop-6 {
+	0%, 40%, 99%, 100% { opacity: 0; transform: translateY(10px); filter: blur(5px); }
+	41%, 98% { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+@keyframes card-7-section-loop-7 {
+	0%, 58%, 99%, 100% { opacity: 0; transform: translateY(10px); filter: blur(5px); }
+	59%, 98% { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+@keyframes card-7-section-loop-8 {
+	0%, 60%, 99%, 100% { opacity: 0; transform: translateY(10px); filter: blur(5px); }
+	61%, 98% { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+@keyframes card-7-section-loop-9 {
+	0%, 64%, 99%, 100% { opacity: 0; transform: translateY(10px); filter: blur(5px); }
+	65%, 98% { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+@keyframes card-7-section-loop-10 {
+	0%, 66%, 99%, 100% { opacity: 0; transform: translateY(10px); filter: blur(5px); }
+	67%, 98% { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+@keyframes card-7-section-loop-11 {
+	0%, 72%, 99%, 100% { opacity: 0; transform: translateY(10px); filter: blur(5px); }
+	73%, 98% { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+@keyframes card-7-section-loop-12 {
+	0%, 74%, 99%, 100% { opacity: 0; transform: translateY(10px); filter: blur(5px); }
+	75%, 98% { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+@keyframes card-7-section-loop-13 {
+	0%, 88.4%, 99.8%, 100% { opacity: 0; transform: translateY(10px); filter: blur(5px); }
+	88.9%, 99.4% { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+@keyframes card-7-section-loop-14 {
+	0%, 90.6%, 99.8%, 100% { opacity: 0; transform: translateY(10px); filter: blur(5px); }
+	90.9%, 99.4% { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+@keyframes card-7-section-loop-15 {
+	0%, 92.5%, 99.8%, 100% { opacity: 0; transform: translateY(10px); filter: blur(5px); }
+	92.8%, 99.4% { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+@keyframes card-7-section-loop-16 {
+	0%, 92.9%, 99.8%, 100% { opacity: 0; transform: translateY(10px); filter: blur(5px); }
+	93.2%, 99.4% { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+@keyframes card-7-section-loop-17 {
+	0%, 94.2%, 99.8%, 100% { opacity: 0; transform: translateY(10px); filter: blur(5px); }
+	94.6%, 99.4% { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+@keyframes card-7-line-loop-1 {
+	0%, 13.5%, 99%, 100% { opacity: 0; transform: translateY(7px); clip-path: inset(0 100% 0 0); }
+	14%, 20% { opacity: 1; transform: translateY(0); clip-path: inset(0 0 0 0); }
+	21%, 98% { opacity: 1; transform: translateY(0); clip-path: inset(0 0 0 0); }
+}
+
+@keyframes card-7-line-loop-2 {
+	0%, 21%, 99.8%, 100% { opacity: 0; transform: translateY(7px); max-width: 0; }
+	22.3%, 99.4% { opacity: 1; transform: translateY(0); max-width: var(--card-7-typing-width); }
+}
+
+@keyframes card-7-line-loop-3 {
+	0%, 23%, 99.8%, 100% { opacity: 0; transform: translateY(7px); max-width: 0; }
+	24.4%, 99.4% { opacity: 1; transform: translateY(0); max-width: var(--card-7-typing-width); }
+}
+
+@keyframes card-7-line-loop-4 {
+	0%, 25%, 99.8%, 100% { opacity: 0; transform: translateY(7px); max-width: 0; }
+	26.3%, 99.4% { opacity: 1; transform: translateY(0); max-width: var(--card-7-typing-width); }
+}
+
+@keyframes card-7-line-loop-5 {
+	0%, 27%, 99.8%, 100% { opacity: 0; transform: translateY(7px); max-width: 0; }
+	29%, 99.4% { opacity: 1; transform: translateY(0); max-width: var(--card-7-typing-width); }
+}
+
+@keyframes card-7-install-line-loop-1 {
+	0%, 41%, 99%, 100% { opacity: 0; transform: translateY(6px); }
+	42%, 98% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes card-7-install-line-loop-2 {
+	0%, 43%, 99%, 100% { opacity: 0; transform: translateY(6px); }
+	44%, 98% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes card-7-install-line-loop-3 {
+	0%, 45%, 99%, 100% { opacity: 0; transform: translateY(6px); }
+	46%, 98% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes card-7-install-line-loop-4 {
+	0%, 47%, 99%, 100% { opacity: 0; transform: translateY(6px); }
+	48%, 98% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes card-7-install-line-loop-5 {
+	0%, 49%, 99%, 100% { opacity: 0; transform: translateY(6px); }
+	50%, 98% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes card-7-install-line-loop-6 {
+	0%, 51%, 99%, 100% { opacity: 0; transform: translateY(6px); }
+	52%, 98% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes card-7-install-line-loop-7 {
+	0%, 53%, 99%, 100% { opacity: 0; transform: translateY(6px); }
+	54%, 98% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes card-7-install-line-loop-8 {
+	0%, 55%, 99%, 100% { opacity: 0; transform: translateY(6px); }
+	56%, 98% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes card-7-spinner-spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes card-7-thinking-copy {
+	0%, 14% { content: "Thinking 0.4s"; }
+	15.5% { content: "Thinking 0.9s"; }
+	17% { content: "Thinking 1.4s"; }
+	18.5% { content: "Thinking 2.0s"; }
+	20% { content: "Thinking 2.5s"; }
+	21%, 100% { content: "Thought for 2.5s"; }
+}
+
+@keyframes card-7-thinking-spinner-state {
+	0%, 20% { opacity: 1; }
+	21%, 100% { opacity: 0; }
+}
+
+@keyframes card-7-thinking-check-state {
+	0%, 20% { opacity: 0; transform: translateY(-50%) scale(0.78); }
+	21%, 98% { opacity: 1; transform: translateY(-50%) scale(1); }
+	99%, 100% { opacity: 0; transform: translateY(-50%) scale(0.78); }
+}
+
+@keyframes card-7-prompt-line-1 {
+	0%, 1.5%, 99.8%, 100% { max-width: 0; }
+	4.2%, 99.4% { max-width: var(--card-7-typing-width); }
+}
+
+@keyframes card-7-prompt-line-2 {
+	0%, 4.3%, 99.8%, 100% { max-width: 0; }
+	7.2%, 99.4% { max-width: var(--card-7-typing-width); }
+}
+
+@keyframes card-7-prompt-line-3 {
+	0%, 7.3%, 99.8%, 100% { max-width: 0; }
+	7.8%, 99.4% { max-width: var(--card-7-typing-width); }
+}
+
+@keyframes card-7-type-command {
+	0%, 34%, 99.8%, 100% { max-width: 0; }
+	35.7%, 99.4% { max-width: var(--card-7-typing-width); }
+}
+
+@keyframes card-7-type-init {
+	0%, 41%, 99.8%, 100% { max-width: 0; }
+	42.3%, 99.4% { max-width: var(--card-7-typing-width); }
+}
+
+@keyframes card-7-type-dev {
+	0%, 76%, 99.8%, 100% { max-width: 0; }
+	76.8%, 99.4% { max-width: var(--card-7-typing-width); }
+}
+
+@keyframes card-7-type-followup-1 {
+	0%, 89.1%, 99.8%, 100% { max-width: 0; }
+	90.3%, 99.4% { max-width: var(--card-7-typing-width); }
+}
+
+@keyframes card-7-type-followup-2 {
+	0%, 93.4%, 99.8%, 100% { max-width: 0; }
+	94.1%, 99.4% { max-width: var(--card-7-typing-width); }
+}
+
+@keyframes card-7-type-install-1 {
+	0%, 42%, 99.8%, 100% { max-width: 0; }
+	43.1%, 99.4% { max-width: var(--card-7-typing-width); }
+}
+
+@keyframes card-7-type-install-2 {
+	0%, 44%, 99.8%, 100% { max-width: 0; }
+	45.1%, 99.4% { max-width: var(--card-7-typing-width); }
+}
+
+@keyframes card-7-type-install-3 {
+	0%, 46%, 99.8%, 100% { max-width: 0; }
+	47.1%, 99.4% { max-width: var(--card-7-typing-width); }
+}
+
+@keyframes card-7-type-install-4 {
+	0%, 48%, 99.8%, 100% { max-width: 0; }
+	49.1%, 99.4% { max-width: var(--card-7-typing-width); }
+}
+
+@keyframes card-7-type-install-5 {
+	0%, 50%, 99.8%, 100% { max-width: 0; }
+	51.1%, 99.4% { max-width: var(--card-7-typing-width); }
+}
+
+@keyframes card-7-type-install-6 {
+	0%, 52%, 99.8%, 100% { max-width: 0; }
+	53.1%, 99.4% { max-width: var(--card-7-typing-width); }
+}
+
+@keyframes card-7-type-install-7 {
+	0%, 54%, 99.8%, 100% { max-width: 0; }
+	55.1%, 99.4% { max-width: var(--card-7-typing-width); }
+}
+
+@keyframes card-7-type-install-8 {
+	0%, 56%, 99.8%, 100% { max-width: 0; }
+	57.1%, 99.4% { max-width: var(--card-7-typing-width); }
+}
+
+@keyframes card-7-type-ps-1 {
+	0%, 33%, 99.8%, 100% { max-width: 0; }
+	34%, 99.4% { max-width: var(--card-7-typing-width); }
+}
+
+@keyframes card-7-type-ai-1-line-1 {
+	0%, 67%, 99.8%, 100% { max-width: 0; }
+	69%, 99.4% { max-width: var(--card-7-typing-width); }
+}
+
+@keyframes card-7-type-ai-1-line-2 {
+	0%, 69%, 99.8%, 100% { max-width: 0; }
+	70.7%, 99.4% { max-width: var(--card-7-typing-width); }
+}
+
+@keyframes card-7-type-ai-1-line-3 {
+	0%, 71.2%, 99.8%, 100% { max-width: 0; }
+	72.9%, 99.4% { max-width: var(--card-7-typing-width); }
+}
+
+@keyframes card-7-type-ai-1-line-4 {
+	0%, 73%, 99.8%, 100% { max-width: 0; }
+	74.1%, 99.4% { max-width: var(--card-7-typing-width); }
+}
+
+@keyframes card-7-type-ai-2-line-1 {
+	0%, 91%, 99.8%, 100% { max-width: 0; }
+	91.7%, 99.4% { max-width: var(--card-7-typing-width); }
+}
+
+@keyframes card-7-type-ai-2-line-2 {
+	0%, 91.8%, 99.8%, 100% { max-width: 0; }
+	92.4%, 99.4% { max-width: var(--card-7-typing-width); }
+}
+
+@keyframes card-7-type-ai-3-line-1 {
+	0%, 94.7%, 99.8%, 100% { max-width: 0; }
+	95.4%, 99.4% { max-width: var(--card-7-typing-width); }
+}
+
+@keyframes card-7-type-ai-3-line-2 {
+	0%, 95.5%, 99.8%, 100% { max-width: 0; }
+	96.2%, 99.4% { max-width: var(--card-7-typing-width); }
+}
+
+@keyframes card-7-type-footer-1 {
+	0%, 75%, 99.8%, 100% { max-width: 0; }
+	75.6%, 99.4% { max-width: var(--card-7-typing-width); }
+}
+
+@keyframes card-7-type-footer-2 {
+	0%, 76%, 99.8%, 100% { max-width: 0; }
+	77%, 99.4% { max-width: var(--card-7-typing-width); }
+}
+
+@keyframes card-7-type-footer-4 {
+	0%, 79%, 99.8%, 100% { max-width: 0; }
+	80.4%, 99.4% { max-width: var(--card-7-typing-width); }
+}
+
+@keyframes card-7-type-footer-5 {
+	0%, 86.6%, 99.8%, 100% { max-width: 0; }
+	88%, 99.4% { max-width: var(--card-7-typing-width); }
+}
+
+@keyframes card-7-dev-spinner-state {
+	0%, 78.8%, 86.4%, 99%, 100% { opacity: 0; }
+	79.2%, 85.8% { opacity: 1; }
+}
+
+@keyframes card-7-dev-check-state {
+	0%, 85.8%, 99%, 100% { opacity: 0; transform: scale(0.8); }
+	86.6%, 98% { opacity: 1; transform: scale(1); }
+}

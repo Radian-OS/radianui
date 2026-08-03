@@ -1,9 +1,8 @@
-import Image from "next/image"
+import type React from "react"
 import Link from "next/link"
 
 type Props = {
-	thumbnail: string
-	thumbnailDark: string
+	thumbnail: React.ComponentType<React.SVGProps<SVGSVGElement>>
 	title: string
 	description: string
 	url: string
@@ -11,36 +10,28 @@ type Props = {
 }
 
 export default function ComponentCard({
-	thumbnail,
-	thumbnailDark,
+	thumbnail: Thumbnail,
 	title,
 	description,
 	url,
 	alt,
 }: Props) {
 	return (
-		<Link href={url} className="flex w-full flex-col items-center">
+		<Link href={url} className="flex h-full w-full flex-col items-center">
 			<span className="sr-only">{title}</span>
-			<div className="flex w-full flex-col items-start gap-3">
-				<div className="flex w-full justify-center rounded-md bg-[#F4F4F6] dark:bg-[#131316]">
-					<Image
-						width={282}
-						height={228}
-						alt={alt}
-						src={thumbnail}
-						className="max-h-[228x] max-w-[282px] dark:hidden"
-					/>
-					<Image
-						width={282}
-						height={228}
-						alt={alt}
-						src={thumbnailDark}
-						className="hidden max-h-[228px] max-w-[282px] dark:block"
+			<div className="border-soft flex h-full w-full flex-col items-start overflow-hidden border border-y-0">
+				<div className="flex w-full flex-1 justify-center bg-[#F4F4F6] dark:bg-[#131316]">
+					<Thumbnail
+						aria-label={alt}
+						role="img"
+						className="max-h-[320px] max-w-[335px]"
 					/>
 				</div>
-				<div className="flex flex-col gap-1 text-sm">
-					<h3 className="text-fg font-semibold">{title}</h3>
-					<p className="text-fg-secondary font-normal">{description}</p>
+				<div className="flex flex-col gap-1 p-5 text-sm">
+					<h3 className="text-fg font-medium">{title}</h3>
+					<p className="text-fg-secondary font-normal">
+						{description}, 94 variants
+					</p>
 				</div>
 			</div>
 		</Link>

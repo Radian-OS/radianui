@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useCallback, useEffect, useRef, useState } from "react"
+import { useTheme } from "next-themes"
 import { cn } from "@/lib/utils"
 import { subscribeRAF } from "./raf-scheduler"
 
@@ -26,16 +27,19 @@ interface GridState {
 }
 
 export const FlickeringGrid: React.FC<FlickeringGridProps> = ({
-	squareSize = 4,
+	squareSize = 3,
 	gridGap = 6,
 	flickerChance = 0.3,
 	color = "rgb(0,0,0)",
 	width,
 	height,
 	className,
-	maxOpacity = 0.3,
+	maxOpacity: maxOpacityProp,
 	shape = "square",
 }) => {
+	const { resolvedTheme } = useTheme()
+	const maxOpacity = maxOpacityProp ?? (resolvedTheme === "light" ? 0.1 : 0.2)
+
 	const canvasRef = useRef<HTMLCanvasElement>(null)
 	const containerRef = useRef<HTMLDivElement>(null)
 	const gridRef = useRef<GridState | null>(null)

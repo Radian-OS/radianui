@@ -13,8 +13,9 @@ import { cn } from "@/lib/utils"
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
 
 export const metadata: Metadata = {
-	title: `${websiteMetadata.name} - Ship next generation of world class products and solutions`,
-	description: "Welcome to Radian your goto React & Tailwind CSS lib.",
+	title: `${websiteMetadata.name} - Open Source React Components and Figma Design System`,
+	description:
+		"A complete production-ready React components library, UI blocks, and Figma UI Kit and design system",
 	metadataBase: new URL(process.env.NEXT_PUBLIC_WEBSITE_URL!),
 	keywords: [...websiteMetadata.keywords],
 	icons: {

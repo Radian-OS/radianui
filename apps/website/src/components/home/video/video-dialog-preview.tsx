@@ -73,7 +73,7 @@ export default function VideoDialogPreview() {
 					ref={triggerRef}
 					type="button"
 					aria-label="Play Radian OS demo"
-					className="border-soft bg-bg/60 z-20 max-h-[840px] w-full max-w-[1400px] cursor-pointer appearance-none rounded-2xl border-0 p-0 text-left backdrop-blur-[45px] sm:border sm:p-3">
+					className="border-soft bg-bg/60 z-20 max-h-[840px] w-full max-w-[1400px] cursor-pointer appearance-none rounded-2xl border p-3 text-left backdrop-blur-[45px]">
 					<AspectRatio
 						ratio={16 / 9}
 						className="bg-bg border-soft max-h-[840px] overflow-hidden rounded-2xl border">

@@ -1,6 +1,7 @@
 import React from "react"
 import Link from "next/link"
 import { navLinks } from "@/components/navbar/nav-links"
+import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
 import {
 	NavigationMenu,
@@ -27,40 +28,54 @@ export const designTools = [
 		description: "User avatars for app and dashboard.",
 		href: "/resources/avatar",
 		icon: <UIAvatars />,
+		release: "beta",
 	},
 	{
 		title: "Emoji",
 		description: "A complete emoji collection.",
+		href: "#",
 		icon: <Emoji />,
+		release: "coming-soon",
 	},
 	{
 		title: "Brand Logo",
 		description: "Popular company logos.",
+		href: "#",
 		icon: <BrandLogo />,
+		release: "coming-soon",
 	},
 	{
 		title: "File Format Icons",
 		description: "Common file type icons.",
+		href: "#",
 		icon: <FileFormat />,
+		release: "coming-soon",
 	},
 	{
 		title: "Country Flags",
 		description: "Flags from around the world.",
+		href: "#",
 		icon: <CountryFlags />,
+		release: "coming-soon",
 	},
 	{
 		title: "Logo Generator",
 		description: "Generate custom logos instantly.",
+		href: "#",
 		icon: <LogoGenerator />,
+		release: "coming-soon",
 	},
 	{
 		title: "Credit Card",
 		description: "Credit card brand assets.",
+		href: "#",
 		icon: <CreditCard />,
+		release: "coming-soon",
 	},
 	{
 		title: "View all tools",
 		description: "Browse every available tool.",
+		href: "/docs/getting-started/resources",
 		icon: <ViewTools />,
 	},
 ]
@@ -69,7 +84,7 @@ export const additionalLinks = [
 	{ title: "Introduction", href: "/docs/getting-started/introduction" },
 	{ title: "Installation", href: "/docs/getting-started/installation" },
 	{ title: "Blog", href: "/blog" },
-	{ title: "Change Log", href: "#" },
+	{ title: "Change Log", href: "/docs/getting-started/changelog" },
 ]
 
 export function DesktopNavigation() {
@@ -108,9 +123,24 @@ export function DesktopNavigation() {
 													{tool.icon}
 												</div>
 												<div className="flex flex-col">
-													<span className="text-sm font-medium">
-														{tool.title}
-													</span>
+													<div className="flex items-center gap-1.5">
+														<span
+															className={`${tool.release === "coming-soon" ? "text-fg-tertiary" : "text-fg"} text-sm font-medium`}>
+															{tool.title}
+														</span>
+														<Badge
+															variant="soft"
+															color={
+																tool.release === "coming-soon"
+																	? "neutral"
+																	: "primary"
+															}
+															size="20">
+															{tool.release === "coming-soon"
+																? "Coming Soon"
+																: "Beta"}
+														</Badge>
+													</div>
 													<span className="text-fg-secondary text-sm font-normal">
 														{tool.description}
 													</span>

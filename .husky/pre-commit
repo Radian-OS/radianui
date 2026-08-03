@@ -45,7 +45,9 @@ echo "$STAGED_FILES" | grep -q "^apps/website/" && {
     }
     
     # Re-stage website files that were modified by Prettier
-    for FILE in $STAGED_FILES; do
+    printf '%s\n' "$STAGED_FILES" | while IFS= read -r FILE; do
+        [ -z "$FILE" ] && continue
+
         case "$FILE" in
             apps/website/*)
                 git add "$FILE" || exit 1

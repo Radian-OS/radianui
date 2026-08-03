@@ -79,7 +79,7 @@ export default function Signup2() {
 					</div>
 					<div
 						className={`flex flex-col ${spaceMap.gap2[spacing ?? "default"]}`}>
-						<h1 className="text-2xl font-bold leading-8">Sign Up</h1>
+						<p className="text-2xl font-bold leading-8">Sign Up</p>
 						<p className="text-fg-secondary text-sm">
 							Already have an account?{" "}
 							<Button variant="link" asChild color="primary">

@@ -1,0 +1,118 @@
+"use client"
+
+import React, { useCallback, useState } from "react"
+import { ChevronLeft, ChevronRight, ComponentIcon } from "lucide-react"
+import Link from "next/link"
+import ComponentCard from "@/components/home/component-card"
+import { HOMEPAGE_COMPONENTS_LIST } from "@/config/homepage-components-config"
+import { Badge } from "@/registry/ui/badge"
+import { Button, IconButton } from "@/registry/ui/button"
+import {
+	Carousel,
+	type CarouselApi,
+	CarouselContent,
+	CarouselItem,
+} from "@/registry/ui/carousel"
+import DiagonalDivider from "./SvgDivider"
+
+const Component = () => {
+	const [api, setApi] = useState<CarouselApi>()
+
+	const onApiChange = useCallback((api: CarouselApi) => {
+		if (!api) return
+		setApi(api)
+	}, [])
+
+	const handlePrev = useCallback(() => {
+		api?.scrollPrev()
+	}, [api])
+
+	const handleNext = useCallback(() => {
+		api?.scrollNext()
+	}, [api])
+
+	return (
+		<section
+			aria-labelledby="components-title"
+			className="relative mx-auto w-full max-w-[1440px]">
+			<div className="border-soft max-w-360 mx-auto flex flex-col overflow-hidden border border-t-0">
+				<div className="md:px-15 md:py-30 flex flex-col gap-8 px-5 py-16 sm:px-10">
+					<div className="flex flex-col gap-4 sm:gap-6">
+						<Badge color="primary" size="28" variant="soft">
+							<ComponentIcon className="text-primary size-4" />
+							Components
+						</Badge>
+						<div className="w-full lg:w-[920px]">
+							<h2 id="components-title" className="heading-3">
+								<span className="text-[24px] font-medium leading-[36px] md:text-[28px] md:leading-[38px] lg:text-[32px] lg:leading-[44px]">
+									Production-ready React and Figma UI components.
+								</span>{" "}
+								<span className="text-fg-secondary text-[24px] font-medium leading-[36px] md:text-[28px] md:leading-[38px] lg:text-[32px] lg:leading-[44px]">
+									Carefully crafted components that are flexible, accessible,
+									and ready for production from day one.
+								</span>
+							</h2>
+						</div>
+					</div>
+
+					<div className="flex justify-between">
+						<Button asChild>
+							<Link href="/docs/components/accordion">View all Components</Link>
+						</Button>
+						<div className="flex gap-2.5">
+							<IconButton
+								aria-label="Show previous components"
+								color="neutral"
+								size="32"
+								variant="outline"
+								onClick={handlePrev}>
+								<ChevronLeft className="text-fg-secondary" />
+							</IconButton>
+							<IconButton
+								aria-label="Show next components"
+								color="neutral"
+								size="32"
+								variant="outline"
+								onClick={handleNext}>
+								<ChevronRight className="text-fg-secondary" />
+							</IconButton>
+						</div>
+					</div>
+				</div>
+				<div className="border-soft relative w-full border-y px-5">
+					<Carousel
+						setApi={onApiChange}
+						opts={{
+							align: "start",
+							slidesToScroll: 1,
+							loop: true,
+						}}>
+						<CarouselContent>
+							{HOMEPAGE_COMPONENTS_LIST.map((item, idx) => (
+								<CarouselItem
+									key={item.title + idx}
+									className="basis-full sm:basis-1/2 lg:basis-1/4">
+									<ComponentCard
+										alt={item.alt}
+										url={item.url}
+										title={item.title}
+										description={item.description}
+										thumbnail={item.thumbnail}
+									/>
+								</CarouselItem>
+							))}
+						</CarouselContent>
+					</Carousel>
+				</div>
+				<DiagonalDivider className="hidden sm:block" />
+				<DiagonalDivider
+					className="block sm:hidden"
+					height={32}
+					viewBox="0 0 1440 32"
+				/>
+			</div>
+		</section>
+	)
+}
+
+export default Component
