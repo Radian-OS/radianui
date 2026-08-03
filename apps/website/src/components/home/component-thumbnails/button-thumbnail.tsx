@@ -15,13 +15,7 @@ const ButtonThumbnail = (props: React.SVGProps<SVGSVGElement>) => (
 			height="321"
 			fill="var(--color-elevation-level1)"
 		/>
-		<rect
-			x="-0.5"
-			y="-0.5"
-			width="336"
-			height="321"
-			stroke="var(--color-soft)"
-		/>
+
 		<g filter="url(#filter0_d_3867_194031)">
 			<path
 				d="M69 150C69 146.686 71.6863 144 75 144H132C135.314 144 138 146.686 138 150V170C138 173.314 135.314 176 132 176H75C71.6863 176 69 173.314 69 170V150Z"

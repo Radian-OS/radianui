@@ -128,18 +128,20 @@ export function DesktopNavigation() {
 															className={`${tool.release === "coming-soon" ? "text-fg-tertiary" : "text-fg"} text-sm font-medium`}>
 															{tool.title}
 														</span>
-														<Badge
-															variant="soft"
-															color={
-																tool.release === "coming-soon"
-																	? "neutral"
-																	: "primary"
-															}
-															size="20">
-															{tool.release === "coming-soon"
-																? "Coming Soon"
-																: "Beta"}
-														</Badge>
+														{tool.release && (
+															<Badge
+																variant="soft"
+																color={
+																	tool.release === "coming-soon"
+																		? "neutral"
+																		: "primary"
+																}
+																size="20">
+																{tool.release === "coming-soon"
+																	? "Coming Soon"
+																	: "Beta"}
+															</Badge>
+														)}
 													</div>
 													<span className="text-fg-secondary text-sm font-normal">
 														{tool.description}

@@ -35,56 +35,57 @@ export default function Page() {
 			/>
 			<main className="min-h-screen w-full overflow-x-hidden">
 				<section aria-labelledby="home-page-title">
-					<Background>
-						<div className="md:pt-30 pt-15 relative z-30 flex flex-col items-center justify-center gap-10">
-							<HomepageLoadReveal
-								className="max-w-250 flex flex-col items-center justify-center"
-								delay={0.05}>
-								<Link
-									href="/docs/getting-started/changelog"
-									className="relative h-[32px] rounded-full focus:outline-none">
-									<Badge
-										color="primary"
-										className="h-8 gap-1.5 rounded-full py-1 pl-1"
-										size="28"
-										variant="soft">
+					<HomepageLoadReveal delay={0.05} duration={1} offset={14} blur={12}>
+						<Background>
+							<div className="md:pt-30 pt-15 relative z-30 flex flex-col items-center justify-center gap-10">
+								<div className="max-w-250 flex flex-col items-center justify-center">
+									<Link
+										href="/docs/getting-started/changelog"
+										className="relative h-[32px] rounded-full focus:outline-none">
 										<Badge
 											color="primary"
-											className="rounded-full"
-											variant="strong">
-											New Version
+											className="h-8 gap-1.5 rounded-full py-1 pl-1"
+											size="28"
+											variant="soft">
+											<Badge
+												color="primary"
+												className="rounded-full"
+												variant="strong">
+												New Version
+											</Badge>
+											Read Changelog
+											<ArrowRight className="size-3.5" />
 										</Badge>
-										Read Changelog
-										<ArrowRight className="size-3.5" />
-									</Badge>
-									<BorderBeam size={50} />
-								</Link>
-								<h1
-									id="home-page-title"
-									className="heading-1 dark:from-fg dark:to-fg-secondary not-dark:text-fg mt-6 bg-clip-text text-center text-transparent dark:bg-gradient-to-b">
-									Open-Source React Components and Figma Design System
-								</h1>
-								<p className="text-fg-secondary mt-10 w-full max-w-[640px] text-center text-lg font-normal">
-									A complete production-ready React components library, UI
-									blocks, and Figma UI Kit and design system for{" "}
-									<RotatingWords
-										interval={4000}
-										words={["Designers", "Developers", "Startups", "Agencies"]}
-										className="text-fg font-medium"
-									/>
-								</p>
-							</HomepageLoadReveal>
-							<HomepageLoadReveal
-								className="flex w-full flex-col items-center justify-center gap-3 sm:flex-row"
-								delay={0.16}
-								offset={8}
-								blur={8}>
-								<HeroActionButtons />
-							</HomepageLoadReveal>
-						</div>
+										<BorderBeam size={50} />
+									</Link>
+									<h1
+										id="home-page-title"
+										className="heading-1 dark:from-fg dark:to-fg-secondary not-dark:text-fg mt-6 bg-clip-text text-center text-transparent dark:bg-gradient-to-b">
+										Open-Source React Components and Figma Design System
+									</h1>
+									<p className="text-fg-secondary mt-10 w-full max-w-[640px] text-center text-lg font-normal">
+										A complete production-ready React components library, UI
+										blocks, and Figma UI Kit and design system for{" "}
+										<RotatingWords
+											interval={4000}
+											words={[
+												"Designers",
+												"Developers",
+												"Startups",
+												"Agencies",
+											]}
+											className="text-fg font-medium"
+										/>
+									</p>
+								</div>
+								<div className="flex w-full flex-col items-center justify-center gap-3 sm:flex-row">
+									<HeroActionButtons />
+								</div>
+							</div>
 
-						<VideoPreviewWithBeams />
-					</Background>
+							<VideoPreviewWithBeams />
+						</Background>
+					</HomepageLoadReveal>
 				</section>
 
 				<BrandSection />
@@ -129,15 +130,9 @@ function VideoPreviewWithBeams() {
 			</figcaption>
 			<div className="bg-primary/45 dark:bg-primary/60 z-25 absolute left-1/2 top-1/2 mx-auto hidden aspect-video w-[90%] max-w-[1300px] -translate-x-1/2 -translate-y-1/2 rounded-full rounded-b-none blur-[50px] md:blur-[100px] lg:w-[85%] lg:blur-[130px] 2xl:w-[70%] dark:block"></div>
 			<div className="max-w-368 z-35 relative w-full px-4 md:px-5">
-				<HomepageLoadReveal
-					className="relative z-20 flex justify-center"
-					delay={0.28}
-					duration={1}
-					offset={18}
-					blur={16}
-					scale={0.99}>
+				<div className="relative z-20 flex justify-center">
 					<VideoDialogPreview />
-				</HomepageLoadReveal>
+				</div>
 
 				<HeroBeamPath
 					className="left-4 top-[-276px] h-[276px] w-[438px] md:left-5"

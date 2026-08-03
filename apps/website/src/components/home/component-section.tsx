@@ -86,7 +86,11 @@ const Component = () => {
 							align: "start",
 							slidesToScroll: 1,
 							loop: true,
-						}}>
+						}}
+						className="">
+						{/* Static border overlays that sit on top */}
+						<div className="border-soft pointer-events-none absolute inset-y-0 left-0 z-10 border-l" />
+						<div className="border-soft pointer-events-none absolute inset-y-0 right-0 z-10 border-r" />
 						<CarouselContent>
 							{HOMEPAGE_COMPONENTS_LIST.map((item, idx) => (
 								<CarouselItem
