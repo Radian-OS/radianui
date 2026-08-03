@@ -56,10 +56,11 @@ const RapidDev = () => {
 						</div>
 						<div className="relative h-[214px] w-full overflow-hidden md:h-[414px] lg:h-[430px]">
 							{/* <div className="shrink-0 origin-top-left scale-[0.8] xl:scale-[0.95] 2xl:scale-100 focus:outline-none focus:ring-0"> */}
-							<div className="origin-top-left overflow-hidden focus:outline-none focus:ring-0">
-								<Card8Canvas />
+							<div className="scale-90 overflow-hidden focus:outline-none focus:ring-0 lg:scale-100">
+								<Card8Canvas className="" />
 							</div>
 							<div className="pointer-events-none absolute bottom-0 left-0 right-0 h-[120px] bg-[linear-gradient(0deg,#FFF_0%,rgba(255,255,255,0)_100%)] dark:bg-[linear-gradient(0deg,oklch(0.144_0.003_264.025)_0%,oklch(0.144_0.003_264.025/0)_100%)]" />
+							<div className="pointer-events-none absolute bottom-0 right-0 top-0 w-[80px] bg-[linear-gradient(90deg,rgba(255,255,255,0)_0%,#FFF_100%)] sm:w-[150px] md:w-[400px] lg:w-[200px] dark:bg-[linear-gradient(90deg,oklch(0.144_0.003_264.025/0)_0%,oklch(0.144_0.003_264.025)_100%)]" />
 						</div>
 					</div>
 					<div className="min-w-0 overflow-hidden lg:flex-1">
