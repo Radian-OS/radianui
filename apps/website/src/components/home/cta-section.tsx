@@ -10,7 +10,9 @@ export default function CTASection() {
 			<div className="border-soft max-w-360 mx-auto flex flex-col overflow-hidden border border-y-0">
 				<div className="py-22 sm:py-30 sm:px-15 border-soft flex w-full flex-col items-center justify-center gap-8 overflow-hidden border-b px-5 md:py-40">
 					<div className="flex flex-col items-center justify-center gap-6">
-						<h2 className="heading-3 text-fg text-center text-[40px] font-medium leading-[52px]">
+						<h2
+							id="build-section-title"
+							className="heading-3 text-fg text-center text-[40px] font-medium leading-[52px]">
 							Build faster with Radian
 						</h2>
 						<p className="text-fg-secondary text-center text-lg font-normal leading-[28px] tracking-[-0.18px]">

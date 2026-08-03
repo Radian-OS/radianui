@@ -27,7 +27,11 @@ import ListTodos from "./playground/list-todo"
 import Radius from "./playground/radius"
 import Uploads from "./playground/upload"
 
-export default function PlaygroundSection() {
+export default function PlaygroundSection({
+	renderBeforeMount = false,
+}: {
+	renderBeforeMount?: boolean
+}) {
 	const { theme, setTheme } = useTheme()
 	const [activeFile, setActiveFile] = useState<"signin.tsx" | "globals.css">(
 		"signin.tsx"
@@ -74,7 +78,7 @@ export default function PlaygroundSection() {
 		setMounted(true)
 	}, [])
 
-	if (!mounted) {
+	if (!mounted && !renderBeforeMount) {
 		return null
 	}
 	return (
@@ -87,7 +91,9 @@ export default function PlaygroundSection() {
 						<BadgeDot className="bg-primary" />
 						Customize
 					</Badge>
-					<h2 className="heading-3 font-heading w-full lg:w-[900px]">
+					<h2
+						id="customize-section-title"
+						className="heading-3 font-heading w-full lg:w-[900px]">
 						<span className="text-fg font-medium">Flexible by default. </span>
 						<span className="text-fg-secondary font-medium">
 							Personalize colors, fonts, themes, and component properties to

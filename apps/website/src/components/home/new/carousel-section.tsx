@@ -17,12 +17,17 @@ import {
 	SwatchBook,
 	Users,
 } from "lucide-react"
+import dynamic from "next/dynamic"
 import Image from "next/image"
 import SvgDivider from "@/components/home/SvgDivider"
 import { darkThemeVars, lightThemeVars } from "@/components/theme/theme-vars"
 import { cn } from "@/lib/utils"
 import { Badge, BadgeDot } from "@/registry/ui/badge"
-import { Card6Animation } from "./card-6-animation"
+
+const Card6Animation = dynamic(
+	() => import("./card-6-animation").then((module) => module.Card6Animation),
+	{ ssr: false }
+)
 
 const stats = [
 	{ value: "604", label: "Variables & Design Tokens" },
@@ -130,11 +135,6 @@ export default function CarouselSection() {
 		x: number
 		y: number
 	} | null>(null)
-	const visibleFeatureItems = featureItems.slice(
-		current * featureItemsPerPage,
-		(current + 1) * featureItemsPerPage
-	)
-
 	const handleSwipeStart = (event: React.PointerEvent<HTMLDivElement>) => {
 		if (!event.isPrimary) return
 
@@ -175,10 +175,12 @@ export default function CarouselSection() {
 
 	return (
 		<section
+			aria-label="Radian design system capabilities"
 			className="bg-bg text-fg dark relative z-20 w-full"
 			style={darkThemeVars}>
 			<div className="border-soft max-w-360 mx-auto flex w-full flex-col border-x">
 				<SectionHeader
+					headingId="design-at-scale-title"
 					centered
 					badge={
 						<Badge color="violet-blue" size="28" variant="soft">
@@ -190,7 +192,7 @@ export default function CarouselSection() {
 					description="A complete collection of design foundations, blocks, and assets built to work together."
 				/>
 
-				<div className="border-soft flex w-full flex-wrap border-y">
+				<dl className="border-soft flex w-full flex-wrap border-y">
 					{stats.map((stat, index) => (
 						<div
 							key={stat.label}
@@ -200,16 +202,18 @@ export default function CarouselSection() {
 								index % 2 === 0 && "border-r",
 								index === 1 && "lg:border-r"
 							)}>
-							<h4 className="heading-4">{stat.value}</h4>
-							<span className="text-fg-secondary text-sm sm:text-base">
+							<dt className="text-fg-secondary order-2 text-sm sm:text-base">
 								{stat.label}
-							</span>
+							</dt>
+							<dd className="heading-4 order-1">{stat.value}</dd>
 						</div>
 					))}
-				</div>
+				</dl>
 
 				<div className="flex w-full flex-col">
-					<Card6Animation />
+					<div className="w-full" data-nosnippet aria-hidden="true">
+						<Card6Animation />
+					</div>
 					<SvgDivider
 						height={50}
 						viewBox="0 0 1440 50"
@@ -221,6 +225,7 @@ export default function CarouselSection() {
 
 			<div className="border-soft max-w-360 mx-auto flex w-full flex-col border-x pb-20">
 				<SectionHeader
+					headingId="product-teams-title"
 					badge={
 						<Badge size="28" color="violet-blue" variant="soft">
 							<Sparkles />
@@ -259,13 +264,17 @@ export default function CarouselSection() {
 						aria-live="polite"
 						aria-label={`Product feature highlights, page ${current + 1} of ${featurePageCount}`}
 						className="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
-						{visibleFeatureItems.map(({ icon: Icon, title, description }) => (
+						{featureItems.map(({ icon: Icon, title, description }, index) => (
 							<article
 								key={title}
-								className="flex min-w-0 items-start gap-6 sm:flex-col sm:gap-8">
+								className={cn(
+									"flex min-w-0 items-start gap-6 sm:flex-col sm:gap-8",
+									Math.floor(index / featureItemsPerPage) !== current &&
+										"hidden"
+								)}>
 								<Icon className="text-fg-tertiary size-6 shrink-0" />
 								<div className="flex min-w-0 flex-col gap-2 sm:gap-3">
-									<h4 className="font-medium">{title}</h4>
+									<h3 className="font-medium">{title}</h3>
 									<p className="text-fg-secondary line-clamp-2 min-h-10 text-sm leading-5">
 										{description}
 									</p>
@@ -289,11 +298,13 @@ export default function CarouselSection() {
 }
 
 function SectionHeader({
+	headingId,
 	badge,
 	title,
 	description,
 	centered = false,
 }: {
+	headingId: string
 	badge: ReactNode
 	title: string
 	description: string
@@ -310,12 +321,14 @@ function SectionHeader({
 			)}>
 			{badge}
 			<div className="w-full max-w-[950px]">
-				<h3 className={cn(headingClassName, centered && "text-center")}>
+				<h2
+					id={headingId}
+					className={cn(headingClassName, centered && "text-center")}>
 					{title}{" "}
 					<span className={cn(headingClassName, "text-fg-secondary")}>
 						{description}
 					</span>
-				</h3>
+				</h2>
 			</div>
 		</div>
 	)
@@ -344,10 +357,10 @@ function ShowcaseFrame({
 						<video
 							key={video.src}
 							autoPlay
+							loop
 							muted
 							playsInline
 							preload="metadata"
-							onEnded={() => onPageChange((current + 1) % pageCount)}
 							aria-label={video.label}
 							className="pointer-events-none h-full w-full object-cover">
 							<source src={video.src} />

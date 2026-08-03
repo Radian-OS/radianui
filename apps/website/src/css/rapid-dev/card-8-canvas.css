@@ -1,11 +1,13 @@
 .card-8-canvas {
 	position: relative;
-	width: 900px;
+	/* width: 800px; */
 	height: 430px;
 	flex: 0 0 auto;
 	overflow: hidden;
 	border-radius: 8px;
+	width: 100%;
 	color: var(--color-fg);
+	max-width: 700px;
 }
 
 .card-8-canvas *,
@@ -22,7 +24,7 @@
 
 .card-8-preview-shell {
 	position: absolute;
-	left: 0;
+	left: 10px;
 	top: 0;
 	width: 600px;
 	height: 72px;
