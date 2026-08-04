@@ -273,7 +273,7 @@ function Card8PanelSet() {
 	)
 }
 
-export function Card8Canvas() {
+export function Card8Canvas({ className }: { className?: string }) {
 	const ref = useRef<HTMLElement>(null)
 	const [isVisible, setIsVisible] = useState(false)
 
@@ -299,7 +299,11 @@ export function Card8Canvas() {
 		<section
 			ref={ref}
 			aria-label="Card 8 animation canvas"
-			className={cn("card-8-canvas select-none", isVisible && "is-visible")}
+			className={cn(
+				"card-8-canvas select-none",
+				isVisible && "is-visible",
+				className
+			)}
 			data-nosnippet
 			aria-hidden="true">
 			<div className="card-8-preview-shell">
