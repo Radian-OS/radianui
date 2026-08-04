@@ -37,6 +37,12 @@ const PAGES = [
 		command: "pnpm dlx radianui@latest add password-reset-01",
 		link: "/blocks/password-reset",
 	},
+	{
+		value: "new-password",
+		label: "New Password",
+		command: "pnpm dlx radianui@latest add new-password-01",
+		link: "/blocks/new-password",
+	},
 ] as const
 
 type PageValue = (typeof PAGES)[number]["value"]
@@ -52,6 +58,9 @@ const PAGE_COMPONENTS = {
 		loading: () => null,
 	}),
 	"password-reset": dynamic(() => import("@/app/blocks/password-reset/page"), {
+		loading: () => null,
+	}),
+	"new-password": dynamic(() => import("@/app/blocks/new-password/page"), {
 		loading: () => null,
 	}),
 } as const
@@ -81,6 +90,7 @@ const HomeInteractive = () => {
 		signup: false,
 		verification: false,
 		"password-reset": false,
+		"new-password": false,
 	})
 	const { copy, copied } = useCopyPaste()
 
@@ -100,9 +110,6 @@ const HomeInteractive = () => {
 				onValueChange={handleTabChange}
 				className="h-full">
 				<div className="flex justify-between">
-					<div className="flex items-center gap-1.5 pl-3">
-						<span className="size-2 rounded-full bg-transparent" />
-					</div>
 					<div className="flex overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
 						<TabsList className="mx-auto shrink-0 bg-transparent">
 							{PAGES.map((page, idx) => (
