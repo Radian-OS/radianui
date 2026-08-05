@@ -1,4 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 @import "./rapid-dev/cursor-ide-card.css" layer(components);
 @import "./rapid-dev/figma-ui-card.css" layer(components);
 @import "./rapid-dev/library-docs-card.css" layer(components);
