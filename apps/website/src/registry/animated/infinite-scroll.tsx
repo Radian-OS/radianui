@@ -1,6 +1,6 @@
 "use client"
 
-import React from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { css } from "@emotion/css"
 import { cn } from "@/lib/utils"
 
@@ -38,12 +38,6 @@ const infiniteScrollY = css`
 	animation: infinite-scroll-vertical var(--duration) linear infinite;
 `
 
-const pauseOnHoverClass = css`
-	&:hover > div {
-		animation-play-state: paused !important;
-	}
-`
-
 const getClass = (isVertical: boolean) => {
 	if (isVertical) return infiniteScrollY
 	return infiniteScrollX
@@ -58,14 +52,60 @@ const InfiniteScroll = ({
 	className,
 	children,
 }: InfiniteScrollProps) => {
+	const containerRef = useRef<HTMLDivElement>(null)
+	const [isHovered, setIsHovered] = useState(false)
+
+	useEffect(() => {
+		const container = containerRef.current
+		if (!container) return
+
+		let animationFrameId: number
+		const targetRate = (pauseOnHover && isHovered) || paused ? 0 : 1
+		let frameCount = 0
+
+		const updateRate = () => {
+			const animations = container.getAnimations({ subtree: true })
+
+			if (animations.length === 0) {
+				frameCount++
+				if (frameCount < 10) {
+					animationFrameId = requestAnimationFrame(updateRate)
+				}
+				return
+			}
+
+			let allReached = true
+			animations.forEach((anim) => {
+				const currentRate = anim.playbackRate
+				const diff = targetRate - currentRate
+				if (Math.abs(diff) > 0.01) {
+					anim.playbackRate = currentRate + diff * 0.08
+					allReached = false
+				} else {
+					anim.playbackRate = targetRate
+				}
+			})
+
+			if (!allReached) {
+				animationFrameId = requestAnimationFrame(updateRate)
+			}
+		}
+
+		animationFrameId = requestAnimationFrame(updateRate)
+
+		return () => cancelAnimationFrame(animationFrameId)
+	}, [isHovered, paused, pauseOnHover])
+
 	return (
 		<div
+			ref={containerRef}
+			onMouseEnter={() => setIsHovered(true)}
+			onMouseLeave={() => setIsHovered(false)}
 			className={cn(
 				"group flex overflow-hidden p-2 [--duration:20s] [--gap:1rem] [gap:var(--gap)]",
 				{
 					"flex-row": !vertical,
 					"flex-col": vertical,
-					[pauseOnHoverClass]: pauseOnHover,
 				},
 				className
 			)}
@@ -79,7 +119,6 @@ const InfiniteScroll = ({
 				.map((_, i) => (
 					<div
 						key={i}
-						style={paused ? { animationPlayState: "paused" } : undefined}
 						className={cn(
 							"flex shrink-0 justify-around [gap:var(--gap)]",
 							{

@@ -44,7 +44,7 @@ export default function BrandSection() {
 	return (
 		<section
 			aria-labelledby="brand-section-title"
-			className="border-soft relative z-30 mx-auto w-full max-w-[1440px] border-l border-r pt-[90px]">
+			className="border-soft relative z-30 mx-auto w-full max-w-[1440px] border-l border-r pt-[40px] lg:pt-[80px]">
 			<div className="border-soft bg-bg lg:h-26 flex h-auto min-w-0 flex-col overflow-hidden border-y lg:flex-row">
 				<h2
 					id="brand-section-title"

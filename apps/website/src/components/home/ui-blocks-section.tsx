@@ -18,10 +18,10 @@ export default function UIBlocksSection() {
 					<h2
 						id="ui-blocks-title"
 						className="heading-3 font-heading w-full lg:w-[900px]">
-						<span className="text-fg font-medium">
+						<span className="heading-3 text-fg text-[24px] font-medium leading-[36px] md:text-[36px] md:leading-[44px] lg:text-[40px] lg:leading-[52px]">
 							Start with complete layouts, not blank pages.{" "}
 						</span>
-						<span className="text-fg-secondary font-medium">
+						<span className="heading-3 text-fg-secondary text-[24px] font-medium leading-[36px] md:text-[36px] md:leading-[44px] lg:text-[40px] lg:leading-[52px]">
 							Landing pages, dashboards, auth flows, and settings screens ready
 							to customize and ship.{" "}
 						</span>
