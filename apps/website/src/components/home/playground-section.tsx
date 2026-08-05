@@ -94,8 +94,10 @@ export default function PlaygroundSection({
 					<h2
 						id="customize-section-title"
 						className="heading-3 font-heading w-full lg:w-[900px]">
-						<span className="text-fg font-medium">Flexible by default. </span>
-						<span className="text-fg-secondary font-medium">
+						<span className="heading-3 text-fg text-[24px] font-medium leading-[36px] md:text-[36px] md:leading-[44px] lg:text-[40px] lg:leading-[52px]">
+							Flexible by default.{" "}
+						</span>
+						<span className="heading-3 text-fg-secondary text-[24px] font-medium leading-[36px] md:text-[36px] md:leading-[44px] lg:text-[40px] lg:leading-[52px]">
 							Personalize colors, fonts, themes, and component properties to
 							match your design system in minutes.
 						</span>

@@ -13,7 +13,7 @@ const TableThumbnail = (props: React.SVGProps<SVGSVGElement>) => (
 			y="-0.5"
 			width="336"
 			height="321"
-			fill="var(--color-elevation-level1)"
+			fill="var(--color-elevation-negative)"
 		/>
 		<g clipPath="url(#clip0_3867_194084)">
 			<path d="M22 86.0002H94.5V126H22V86.0002Z" stroke="var(--color-soft)" />
