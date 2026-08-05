@@ -85,6 +85,13 @@
 
 .homepage-load-reveal {
 	transform-origin: 50% 30%;
+	opacity: 0;
+	filter: blur(var(--homepage-reveal-blur));
+	transform: translate3d(0, var(--homepage-reveal-offset), 0)
+		scale(var(--homepage-reveal-scale));
+}
+
+.homepage-load-reveal[data-reveal-ready="true"] {
 	animation: homepage-load-reveal var(--homepage-reveal-duration)
 		cubic-bezier(0.22, 1, 0.36, 1) var(--homepage-reveal-delay) both;
 }
@@ -98,6 +105,9 @@
 
 @media (prefers-reduced-motion: reduce) {
 	.homepage-load-reveal {
+		opacity: 1;
+		filter: none;
+		transform: none;
 		animation: none;
 	}
 }

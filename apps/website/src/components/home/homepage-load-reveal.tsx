@@ -1,6 +1,13 @@
 "use client"
 
-import { type CSSProperties, type ReactNode, useEffect, useRef } from "react"
+import {
+	type CSSProperties,
+	type ReactNode,
+	useEffect,
+	useRef,
+	useState,
+} from "react"
+import { useTheme } from "next-themes"
 import { cn } from "@/lib/utils"
 
 type HomepageLoadRevealProps = {
@@ -31,6 +38,8 @@ export default function HomepageLoadReveal({
 	scale = 0.995,
 }: HomepageLoadRevealProps) {
 	const revealRef = useRef<HTMLDivElement>(null)
+	const [isRevealReady, setIsRevealReady] = useState(false)
+	const { resolvedTheme } = useTheme()
 
 	const style: HomepageLoadRevealStyle = {
 		"--homepage-reveal-delay": `${delay}s`,
@@ -41,6 +50,18 @@ export default function HomepageLoadReveal({
 	}
 
 	useEffect(() => {
+		if (!resolvedTheme || isRevealReady) return
+
+		const frame = window.requestAnimationFrame(() => {
+			setIsRevealReady(true)
+		})
+
+		return () => window.cancelAnimationFrame(frame)
+	}, [isRevealReady, resolvedTheme])
+
+	useEffect(() => {
+		if (!isRevealReady) return
+
 		const element = revealRef.current
 		if (!element) return
 
@@ -59,19 +80,23 @@ export default function HomepageLoadReveal({
 
 		element.addEventListener("animationend", handleAnimationEnd)
 
-		const animation = element.getAnimations()[0]
-		if (!animation || animation.playState === "finished") {
-			completeReveal()
-		}
+		const frame = window.requestAnimationFrame(() => {
+			const animation = element.getAnimations()[0]
+			if (!animation || animation.playState === "finished") {
+				completeReveal()
+			}
+		})
 
 		return () => {
+			window.cancelAnimationFrame(frame)
 			element.removeEventListener("animationend", handleAnimationEnd)
 		}
-	}, [])
+	}, [isRevealReady])
 
 	return (
 		<div
 			ref={revealRef}
+			data-reveal-ready={isRevealReady ? "true" : undefined}
 			className={cn("homepage-load-reveal", className)}
 			style={style}>
 			{children}
