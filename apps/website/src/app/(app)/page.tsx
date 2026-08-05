@@ -35,9 +35,9 @@ export default function Page() {
 			/>
 			<main className="min-h-screen w-full overflow-x-hidden">
 				<section aria-labelledby="home-page-title">
-					<HomepageLoadReveal delay={0.05} duration={1} offset={14} blur={12}>
+					<HomepageLoadReveal delay={0.05} duration={1} blur={12}>
 						<Background>
-							<div className="md:pt-30 pt-15 relative z-30 flex flex-col items-center justify-center gap-5 md:gap-10">
+							<div className="md:pt-30 pt-15 relative z-30 flex flex-col items-center justify-center gap-10">
 								<div className="max-w-250 flex flex-col items-center justify-center">
 									<Link
 										href="/docs/getting-started/changelog"
@@ -63,7 +63,7 @@ export default function Page() {
 										className="heading-1 dark:from-fg dark:to-fg-secondary not-dark:text-fg mt-6 bg-clip-text text-center text-transparent dark:bg-gradient-to-b">
 										Open-Source React Components and Figma Design System
 									</h1>
-									<p className="text-fg-secondary mt-5 w-full max-w-[640px] text-center text-base font-normal md:mt-10 md:text-lg">
+									<p className="text-fg-secondary mt-10 w-full max-w-[640px] text-center text-base font-normal md:text-lg">
 										A complete production-ready React components library, UI
 										blocks, and Figma UI Kit and design system for{" "}
 										<RotatingWords
