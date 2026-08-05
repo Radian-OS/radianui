@@ -37,7 +37,7 @@ export default function Page() {
 				<section aria-labelledby="home-page-title">
 					<HomepageLoadReveal delay={0.05} duration={1} offset={14} blur={12}>
 						<Background>
-							<div className="md:pt-30 pt-15 relative z-30 flex flex-col items-center justify-center gap-10">
+							<div className="md:pt-30 pt-15 relative z-30 flex flex-col items-center justify-center gap-5 md:gap-10">
 								<div className="max-w-250 flex flex-col items-center justify-center">
 									<Link
 										href="/docs/getting-started/changelog"
@@ -63,7 +63,7 @@ export default function Page() {
 										className="heading-1 dark:from-fg dark:to-fg-secondary not-dark:text-fg mt-6 bg-clip-text text-center text-transparent dark:bg-gradient-to-b">
 										Open-Source React Components and Figma Design System
 									</h1>
-									<p className="text-fg-secondary mt-10 w-full max-w-[640px] text-center text-lg font-normal">
+									<p className="text-fg-secondary mt-5 w-full max-w-[640px] text-center text-base font-normal md:mt-10 md:text-lg">
 										A complete production-ready React components library, UI
 										blocks, and Figma UI Kit and design system for{" "}
 										<RotatingWords
@@ -74,7 +74,7 @@ export default function Page() {
 												"Startups",
 												"Agencies",
 											]}
-											className="text-fg font-medium"
+											className="text-fg text-base font-medium md:text-lg"
 										/>
 									</p>
 								</div>
@@ -123,7 +123,7 @@ function VideoPreviewWithBeams() {
 	return (
 		<figure
 			aria-labelledby="home-demo-caption"
-			className="relative -mx-4 mt-[64px] flex w-[calc(100%+2rem)] justify-center sm:mt-[90px] md:-mx-5 md:w-[calc(100%+2.5rem)]">
+			className="relative -mx-4 mt-[40px] flex w-[calc(100%+2rem)] justify-center md:-mx-5 md:w-[calc(100%+2.5rem)] lg:mt-[80px]">
 			<figcaption id="home-demo-caption" className="sr-only">
 				Interactive preview of the Radian OS component library and design
 				system.
