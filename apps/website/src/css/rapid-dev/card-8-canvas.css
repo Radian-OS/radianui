@@ -53,7 +53,7 @@
 	background: var(--color-elevation-level1);
 	padding: 0 18px;
 	color: var(--color-fg-secondary);
-	font-size: 20px;
+	font-size: 18px;
 	font-weight: 500;
 	line-height: 1;
 	white-space: nowrap;
@@ -78,17 +78,17 @@
 .card-8-figma-mark {
 	position: relative;
 	display: grid;
-	width: 14px;
-	height: 21px;
-	grid-template-columns: repeat(2, 7px);
-	grid-template-rows: repeat(3, 7px);
+	width: 12px;
+	height: 18px;
+	grid-template-columns: repeat(2, 6px);
+	grid-template-rows: repeat(3, 6px);
 	flex: 0 0 auto;
 }
 
 .card-8-figma-mark span {
 	display: block;
-	width: 7px;
-	height: 7px;
+	width: 6px;
+	height: 6px;
 }
 
 .card-8-figma-mark span:nth-child(1) {
