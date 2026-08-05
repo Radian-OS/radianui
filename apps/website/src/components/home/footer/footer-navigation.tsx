@@ -70,7 +70,7 @@ const LINKS: Link[] = [
 		title: "Resources",
 		linkItems: [
 			{
-				href: "/docs/resources/avatar",
+				href: "/resources/avatar",
 				name: "UI Avatars",
 				icon: <UIAvatarIcon />,
 				release: "beta",
@@ -230,6 +230,7 @@ export default function FooterNavigation() {
 									<span key={linkItem.name} className="flex items-center gap-2">
 										<Link
 											href={linkItem.href}
+											scroll={linkItem.href !== "#"}
 											className={cn(
 												"text-fg flex items-center gap-2 text-sm font-normal",
 												{

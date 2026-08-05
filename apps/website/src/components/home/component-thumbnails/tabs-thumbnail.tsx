@@ -15,13 +15,6 @@ const TabsThumbnail = (props: React.SVGProps<SVGSVGElement>) => (
 			height="321"
 			fill="var(--color-elevation-level1)"
 		/>
-		<rect
-			x="-0.5"
-			y="-0.5"
-			width="336"
-			height="321"
-			stroke="var(--color-soft)"
-		/>
 		<path
 			d="M47 150C47 145.582 50.5817 142 55 142H279C283.418 142 287 145.582 287 150V170C287 174.418 283.418 178 279 178H55C50.5817 178 47 174.418 47 170V150Z"
 			fill="#242E42"

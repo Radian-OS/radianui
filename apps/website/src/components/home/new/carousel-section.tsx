@@ -19,6 +19,7 @@ import {
 } from "lucide-react"
 import dynamic from "next/dynamic"
 import Image from "next/image"
+import { NumberTicker } from "@/components/effects/number-ticker"
 import SvgDivider from "@/components/home/SvgDivider"
 import { darkThemeVars, lightThemeVars } from "@/components/theme/theme-vars"
 import { cn } from "@/lib/utils"
@@ -30,10 +31,10 @@ const Card6Animation = dynamic(
 )
 
 const stats = [
-	{ value: "604", label: "Variables & Design Tokens" },
-	{ value: "1,668", label: "Components & Variants" },
-	{ value: "207", label: "UI Blocks & Templates" },
-	{ value: "2,564", label: "Icons & Assets" },
+	{ value: 604, label: "Variables & Design Tokens" },
+	{ value: 1668, label: "Components & Variants" },
+	{ value: 207, label: "UI Blocks & Templates" },
+	{ value: 2564, label: "Icons & Assets" },
 ] as const
 
 const featureItems = [
@@ -205,7 +206,12 @@ export default function CarouselSection() {
 							<dt className="text-fg-secondary order-2 text-sm sm:text-base">
 								{stat.label}
 							</dt>
-							<dd className="heading-4 order-1">{stat.value}</dd>
+							<dd>
+								<NumberTicker
+									value={stat.value}
+									className="heading-4 order-1"
+								/>
+							</dd>
 						</div>
 					))}
 				</dl>

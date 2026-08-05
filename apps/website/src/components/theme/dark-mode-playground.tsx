@@ -19,8 +19,8 @@ const DarkModePlayground = () => {
 				<BeforeAfterSlider
 					delimiterIconStyles={iconStyles}
 					delimiterColor="transparent"
-					firstImage={{ imageUrl: "/doc/dark.png" }}
-					secondImage={{ imageUrl: "/doc/light.png" }}
+					firstImage={{ imageUrl: "/doc/dark.webp" }}
+					secondImage={{ imageUrl: "/doc/light.webp" }}
 					currentPercentPosition={50}
 				/>
 			</section>
