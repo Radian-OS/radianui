@@ -1,8 +1,7 @@
 "use client"
 
 import type { CSSProperties, ReactNode } from "react"
-import { useCallback, useEffect, useRef, useState } from "react"
-import type { LucideIcon } from "lucide-react"
+import React, { useCallback, useEffect, useRef, useState } from "react"
 import {
 	Bookmark,
 	ChevronDown,
@@ -14,17 +13,20 @@ import {
 	FileUp,
 	PenTool,
 	Plus,
+	ScrollText,
+	SquareTerminal,
 	Terminal,
 	X,
 } from "lucide-react"
 import Image from "next/image"
+import { FigmaIcon, ResourcesIcon } from "@/components/custom/icon"
 import { cn } from "@/lib/utils"
 
 const ROTATE_MS = 5800
 
 type SidebarItem = {
 	label: string
-	Icon: LucideIcon
+	Icon: React.ComponentType<{ size?: number; "aria-hidden"?: boolean }>
 	badge?: string
 }
 
@@ -98,10 +100,10 @@ const sidebarSections: SidebarSection[] = [
 		items: [
 			{ label: "Introduction", Icon: Clipboard },
 			{ label: "Installation", Icon: Terminal },
-			{ label: "CLI", Icon: Code2 },
-			{ label: "Figma", Icon: PenTool },
-			{ label: "Changelog", Icon: Clipboard },
-			{ label: "Resources", Icon: FileUp, badge: "New" },
+			{ label: "CLI", Icon: SquareTerminal },
+			{ label: "Figma", Icon: FigmaIcon },
+			{ label: "Changelog", Icon: ScrollText },
+			{ label: "Resources", Icon: ResourcesIcon, badge: "New" },
 		],
 	},
 	{
@@ -330,8 +332,9 @@ function DocsSidebar({ activeName }: { activeName: string }) {
 						<div
 							className="docs-copy-nav-row"
 							key={label}
-							style={revealStyle()}>
-							<Icon aria-hidden="true" size={12} />
+							style={revealStyle()}
+							aria-hidden="true">
+							<Icon size={12} />
 							<span>{label}</span>
 							{badge ? <b>{badge}</b> : null}
 						</div>

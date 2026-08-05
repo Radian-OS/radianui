@@ -45,7 +45,7 @@ const RapidDev = () => {
 
 				<div className="border-soft flex flex-col overflow-hidden border-y lg:flex-row">
 					<div className="border-soft isolate min-w-0 flex-1 overflow-hidden border-b lg:border-b-0 lg:border-r">
-						<div className="lg:px-15 flex w-full flex-1 flex-col px-5 py-8 sm:px-10 sm:py-12 lg:py-20">
+						<div className="lg:px-15 flex w-full flex-1 flex-col px-5 py-10 sm:px-10 sm:py-12 lg:py-20">
 							<h3 className="heading-5 text-[16px] font-medium leading-7 tracking-[-0.18px] sm:text-[18px] sm:leading-8">
 								Production-Ready Figma UI Kit.
 							</h3>
@@ -54,9 +54,8 @@ const RapidDev = () => {
 								using smart auto layout and figma slots
 							</p>
 						</div>
-						<div className="relative h-[214px] w-full overflow-hidden md:h-[414px] lg:h-[430px]">
-							{/* <div className="shrink-0 origin-top-left scale-[0.8] xl:scale-[0.95] 2xl:scale-100 focus:outline-none focus:ring-0"> */}
-							<div className="scale-90 overflow-hidden focus:outline-none focus:ring-0 lg:scale-100">
+						<div className="relative h-[240px] w-full overflow-hidden md:h-[414px] lg:h-[430px]">
+							<div className="scale-80 w-[125%] origin-top-left overflow-hidden focus:outline-none focus:ring-0 md:w-[111.11%] md:scale-90 lg:w-full lg:scale-100">
 								<Card8Canvas className="" />
 							</div>
 							<div className="pointer-events-none absolute bottom-0 left-0 right-0 h-[120px] bg-[linear-gradient(0deg,#FFF_0%,rgba(255,255,255,0)_100%)] dark:bg-[linear-gradient(0deg,oklch(0.144_0.003_264.025)_0%,oklch(0.144_0.003_264.025/0)_100%)]" />
@@ -64,7 +63,7 @@ const RapidDev = () => {
 						</div>
 					</div>
 					<div className="min-w-0 overflow-hidden lg:flex-1">
-						<div className="lg:px-15 flex w-full flex-col px-5 py-8 sm:px-10 sm:py-12 lg:w-[520px] lg:py-20">
+						<div className="lg:px-15 flex w-full flex-col px-5 py-10 sm:px-10 sm:py-12 lg:w-[520px] lg:py-20">
 							<h3 className="heading-5 text-[16px] font-medium leading-7 tracking-[-0.18px] sm:text-[18px] sm:leading-8">
 								A Complete Library of UI Primitives.
 							</h3>
@@ -95,7 +94,7 @@ const RapidDev = () => {
 
 				<div className="bg-fill1 border-soft flex flex-col border-t lg:flex-row">
 					<div className="border-soft border-b lg:flex-1 lg:border-b-0 lg:border-r">
-						<div className="lg:px-15 flex w-full flex-col px-5 py-8 sm:px-10 sm:py-12 lg:w-[520px] lg:py-20">
+						<div className="lg:px-15 flex w-full flex-col px-5 py-10 sm:px-10 sm:py-12 lg:w-[520px] lg:py-20">
 							<h3 className="heading-5 text-[16px] font-medium leading-7 tracking-[-0.18px] sm:text-[18px] sm:leading-8">
 								Customize without compromise
 							</h3>
@@ -115,7 +114,7 @@ const RapidDev = () => {
 						</div>
 					</div>
 					<div className="lg:flex-1">
-						<div className="lg:px-15 flex w-full flex-col px-5 py-8 sm:px-10 sm:py-12 lg:w-[520px] lg:py-20">
+						<div className="lg:px-15 flex w-full flex-col px-5 py-10 sm:px-10 sm:py-12 lg:w-[520px] lg:py-20">
 							<h3 className="heading-5 text-[16px] font-medium leading-7 tracking-[-0.18px] sm:text-[18px] sm:leading-8">
 								Built for the AI era
 							</h3>
@@ -126,10 +125,12 @@ const RapidDev = () => {
 						</div>
 
 						<div
-							className="relative flex h-[260px] scale-90 justify-center overflow-hidden focus:outline-none focus:ring-0 sm:scale-100 md:h-[420px] lg:h-[430px]"
+							className="relative flex h-[260px] justify-center overflow-hidden md:h-[420px] lg:h-[430px]"
 							data-nosnippet
 							aria-hidden="true">
-							<Card7Visual />
+							<div className="origin-top scale-90 focus:outline-none focus:ring-0 sm:scale-100">
+								<Card7Visual />
+							</div>
 						</div>
 					</div>
 				</div>
