@@ -90,6 +90,13 @@
 		cubic-bezier(0.22, 1, 0.36, 1) var(--homepage-reveal-delay) both;
 }
 
+.homepage-load-reveal[data-reveal-complete="true"] {
+	opacity: 1;
+	filter: none;
+	transform: none;
+	animation: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
 	.homepage-load-reveal {
 		animation: none;

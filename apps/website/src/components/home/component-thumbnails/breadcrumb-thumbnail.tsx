@@ -13,7 +13,7 @@ const BreadcrumbThumbnail = (props: React.SVGProps<SVGSVGElement>) => (
 			y="-0.5"
 			width="336"
 			height="321"
-			fill="var(--color-elevation-level1)"
+			fill="var(--color-elevation-negative)"
 		/>
 
 		<path

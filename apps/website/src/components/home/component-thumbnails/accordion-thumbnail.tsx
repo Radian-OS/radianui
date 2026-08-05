@@ -13,7 +13,7 @@ const AccordionThumbnail = (props: React.SVGProps<SVGSVGElement>) => (
 			y="-0.5"
 			width="336"
 			height="321"
-			fill="var(--color-elevation-level1)"
+			fill="var(--color-elevation-negative)"
 		/>
 		<path
 			d="M30 84.5H304C308.142 84.5 311.5 87.8579 311.5 92V120C311.5 124.142 308.142 127.5 304 127.5H30C25.8579 127.5 22.5 124.142 22.5 120V92C22.5 87.8579 25.8579 84.5 30 84.5Z"

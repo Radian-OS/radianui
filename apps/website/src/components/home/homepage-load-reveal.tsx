@@ -1,4 +1,6 @@
-import type { CSSProperties, ReactNode } from "react"
+"use client"
+
+import { type CSSProperties, type ReactNode, useEffect, useRef } from "react"
 import { cn } from "@/lib/utils"
 
 type HomepageLoadRevealProps = {
@@ -28,6 +30,8 @@ export default function HomepageLoadReveal({
 	blur = 12,
 	scale = 0.995,
 }: HomepageLoadRevealProps) {
+	const revealRef = useRef<HTMLDivElement>(null)
+
 	const style: HomepageLoadRevealStyle = {
 		"--homepage-reveal-delay": `${delay}s`,
 		"--homepage-reveal-duration": `${duration}s`,
@@ -36,8 +40,40 @@ export default function HomepageLoadReveal({
 		"--homepage-reveal-scale": scale,
 	}
 
+	useEffect(() => {
+		const element = revealRef.current
+		if (!element) return
+
+		const completeReveal = () => {
+			element.dataset.revealComplete = "true"
+		}
+
+		const handleAnimationEnd = (event: AnimationEvent) => {
+			if (
+				event.target === element &&
+				event.animationName === "homepage-load-reveal"
+			) {
+				completeReveal()
+			}
+		}
+
+		element.addEventListener("animationend", handleAnimationEnd)
+
+		const animation = element.getAnimations()[0]
+		if (!animation || animation.playState === "finished") {
+			completeReveal()
+		}
+
+		return () => {
+			element.removeEventListener("animationend", handleAnimationEnd)
+		}
+	}, [])
+
 	return (
-		<div className={cn("homepage-load-reveal", className)} style={style}>
+		<div
+			ref={revealRef}
+			className={cn("homepage-load-reveal", className)}
+			style={style}>
 			{children}
 		</div>
 	)

@@ -9,7 +9,7 @@ const CarouselThumbnail = (props: React.SVGProps<SVGSVGElement>) => (
 		xmlns="http://www.w3.org/2000/svg"
 		{...props}>
 		<g clipPath="url(#clip0_3867_194145)">
-			<rect width="335" height="320" fill="var(--color-elevation-level1)" />
+			<rect width="335" height="320" fill="var(--color-elevation-negative)" />
 			<g filter="url(#filter0_d_3867_194145)">
 				<g clipPath="url(#clip1_3867_194145)">
 					<path

@@ -36,7 +36,7 @@ export function RotatingWords({
 	return (
 		<span
 			className={cn(
-				"relative inline-grid h-7 overflow-hidden align-bottom",
+				"relative inline-grid h-[1lh] overflow-hidden align-bottom leading-[inherit]",
 				className
 			)}>
 			<span className="sr-only">{words[0]}</span>
@@ -44,7 +44,7 @@ export function RotatingWords({
 				<span
 					aria-hidden="true"
 					key={`word-size-${index}`}
-					className="invisible col-start-1 row-start-1 inline-flex h-7 items-center whitespace-nowrap">
+					className="invisible col-start-1 row-start-1 inline-flex h-[1lh] items-center whitespace-nowrap leading-[inherit]">
 					{word}
 				</span>
 			))}
@@ -52,7 +52,7 @@ export function RotatingWords({
 				<motion.span
 					aria-hidden="true"
 					key={`${visibleIndex}-${activeWord}`}
-					className="col-start-1 row-start-1 inline-flex h-7 items-center whitespace-nowrap"
+					className="col-start-1 row-start-1 inline-flex h-[1lh] items-center whitespace-nowrap leading-[inherit]"
 					initial={shouldReduceMotion ? false : { opacity: 0, y: "100%" }}
 					animate={{ opacity: 1, y: 0 }}
 					exit={shouldReduceMotion ? undefined : { opacity: 0, y: "-50%" }}

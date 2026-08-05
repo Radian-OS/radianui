@@ -44,7 +44,7 @@ export default function BrandSection() {
 	return (
 		<section
 			aria-labelledby="brand-section-title"
-			className="border-soft relative z-30 mx-auto w-full max-w-[1440px] border-l border-r pt-[90px]">
+			className="border-soft relative z-30 mx-auto w-full max-w-[1440px] border-l border-r pt-[40px] lg:pt-[80px]">
 			<div className="border-soft bg-bg lg:h-26 flex h-auto min-w-0 flex-col overflow-hidden border-y lg:flex-row">
 				<h2
 					id="brand-section-title"
@@ -75,28 +75,28 @@ function BrandLogo({ brand }: { brand: (typeof brands)[number] }) {
 			<span className="relative flex h-10 w-full items-center justify-center">
 				<Image
 					src={`/brands/${brand.assetName}.svg`}
-					alt=""
+					alt={`${brand.name} logo`}
 					width={brand.width}
 					height={brand.height}
 					className="lg:max-w-35 absolute max-h-9 max-w-full object-contain transition-opacity group-hover/logo:opacity-0 dark:hidden"
 				/>
 				<Image
 					src={`/brands/${brand.assetName} - On Hover.svg`}
-					alt=""
+					alt={`${brand.name} logo`}
 					width={brand.width}
 					height={brand.height}
 					className="lg:max-w-35 absolute max-h-9 max-w-full object-contain opacity-0 transition-opacity group-hover/logo:opacity-100 dark:hidden"
 				/>
 				<Image
 					src={`/brands/${brand.assetName} - Dark.svg`}
-					alt=""
+					alt={`${brand.name} logo`}
 					width={brand.width}
 					height={brand.height}
 					className="lg:max-w-35 absolute hidden max-h-9 max-w-full object-contain transition-opacity group-hover/logo:opacity-0 dark:block"
 				/>
 				<Image
 					src={`/brands/${brand.assetName} - On Hover - Dark.svg`}
-					alt=""
+					alt={`${brand.name} logo`}
 					width={brand.width}
 					height={brand.height}
 					className="lg:max-w-35 absolute hidden max-h-9 max-w-full object-contain opacity-0 transition-opacity dark:block dark:group-hover/logo:opacity-100"
