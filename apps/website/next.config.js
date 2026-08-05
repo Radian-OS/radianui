@@ -175,7 +175,7 @@ const nextConfig = {
 		removeConsole: false,
 	},
 	experimental: {
-		optimizePackageImports: ["lucide-react"],
+		optimizePackageImports: ["lucide-react", "@radix-ui/react-icons"],
 	},
 	compress: false, // Let cloudflare handle the compression,
 	webpack: (config, { isServer }) => {

@@ -126,7 +126,7 @@ const RapidDev = () => {
 						</div>
 
 						<div
-							className="relative flex h-[260px] justify-center overflow-hidden focus:outline-none focus:ring-0 md:h-[420px] lg:h-[430px]"
+							className="relative flex h-[260px] scale-90 justify-center overflow-hidden focus:outline-none focus:ring-0 sm:scale-100 md:h-[420px] lg:h-[430px]"
 							data-nosnippet
 							aria-hidden="true">
 							<Card7Visual />
