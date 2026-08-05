@@ -25,9 +25,7 @@ export default function ComponentCard({
 				</div>
 				<div className="flex flex-col gap-1 p-5 text-sm">
 					<h3 className="text-fg font-medium">{title}</h3>
-					<p className="text-fg-secondary font-normal">
-						{description}, 94 variants
-					</p>
+					<p className="text-fg-secondary font-normal">{description}</p>
 				</div>
 			</div>
 		</Link>
