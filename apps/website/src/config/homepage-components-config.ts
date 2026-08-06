@@ -6,7 +6,6 @@ import {
 	ButtonThumbnail,
 	CarouselThumbnail,
 	CheckboxThumbnail,
-	DialogThumbnail,
 	DropdownThumbnail,
 	FileUploadThumbnail,
 	InputThumbnail,
@@ -127,13 +126,6 @@ export const HOMEPAGE_COMPONENTS_LIST: {
 		url: "/docs/components/tooltip",
 		thumbnail: TooltipThumbnail,
 		alt: "Tooltip UI component illustration",
-	},
-	{
-		title: "Dialog",
-		description: "4 Components, 92 Variants",
-		url: "/docs/components/dialog",
-		thumbnail: DialogThumbnail,
-		alt: "Dialog UI component illustration",
 	},
 	{
 		title: "Carousel",
