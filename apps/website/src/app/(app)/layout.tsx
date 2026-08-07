@@ -8,12 +8,12 @@ interface Props {
 
 export default function LandingLayout({ children }: Props) {
 	return (
-		<main>
+		<>
 			<Suspense fallback={null}>
 				<GetProductUpdatesDialogController />
 			</Suspense>
 			<NavigationBar />
 			{children}
-		</main>
+		</>
 	)
 }

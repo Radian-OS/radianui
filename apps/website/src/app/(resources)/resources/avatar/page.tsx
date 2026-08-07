@@ -22,7 +22,7 @@ const lowerHeroBeamPath =
 	"M0 1H92C102.6 1 112.4 6.6 117.8 15.8L154.2 78.2C159.6 87.4 169.4 93 180 93H214"
 
 const pageUrl = absoluteUrl("/resources/avatar")
-const pageTitle = "Free UI Avatar Pack for React & Figma | Radian"
+const pageTitle = "Free UI Avatar Pack for React & Figma | Radian UI"
 const pageDescription =
 	"Download production-ready UI avatars for React, Figma, dashboards, and design systems, with multiple styles and easy customization."
 const pageImage = absoluteUrl("/og/static-og.png")

@@ -1,7 +1,7 @@
 .card-7-canvas {
 	--card-7-loop-duration: 38000ms;
 	width: 700px;
-	height: 420px;
+	height: 460px;
 	flex: 0 0 auto;
 	position: relative;
 	overflow: hidden;
@@ -22,7 +22,7 @@
 
 .card-7-terminal-shell {
 	position: absolute;
-	top: 42px;
+	top: 0px;
 	left: 50%;
 	width: 416px;
 	height: 976px;

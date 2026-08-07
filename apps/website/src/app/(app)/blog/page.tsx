@@ -16,11 +16,11 @@ const blogUrl = absoluteUrl("/blog")
 const blogImage = absoluteUrl("/og/static-og.png")
 
 export const metadata: Metadata = {
-	title: "Radian Blogs - Latest Updates & Insights",
+	title: "Radian UI Blogs - Latest Updates & Insights",
 	description:
-		"Stay updated with the latest blogs, updates, and insights from the RadianOS team. Discover product updates, industry trends, and tips to make the most of Radian OS.",
+		"Stay updated with the latest blogs, updates, and insights from the Radian UI team. Discover product updates, industry trends, and tips to make the most of Radian UI.",
 	keywords: [
-		"RadianOS blog",
+		"Radian UI blog",
 		"Radian UI Blogs",
 		"Radian  updates",
 		"tech insights",
@@ -32,28 +32,28 @@ export const metadata: Metadata = {
 	robots: { index: true, follow: true },
 	alternates: { canonical: blogUrl },
 	openGraph: {
-		title: "Radian Blog | Latest Updates & Insights",
+		title: "Radian UI Blog | Latest Updates & Insights",
 		description:
-			"Read the latest updates and insights from the RadianOS team. Stay informed about product releases, industry trends, and expert tips.",
+			"Read the latest updates and insights from the Radian UI team. Stay informed about product releases, industry trends, and expert tips.",
 		type: "website",
 		url: blogUrl,
-		siteName: "Radian",
+		siteName: "Radian UI",
 		images: [
 			{
 				url: blogImage,
 				width: 1200,
 				height: 630,
-				alt: "RadianOS Blog Open Graph Image",
+				alt: "Radian UI Blog Open Graph Image",
 			},
 		],
 	},
 	twitter: {
 		card: "summary_large_image",
-		title: "Radian Blogs - Latest Updates & Insights",
+		title: "Radian UI Blogs - Latest Updates & Insights",
 		description:
-			"Stay informed with blogs and updates from the RadianOS team. Discover product news, industry insights, and expert tips.",
-		site: "@RadianOS",
-		creator: "@RadianOS",
+			"Stay informed with blogs and updates from the Radian UI team. Discover product news, industry insights, and expert tips.",
+		site: "@Radian UI",
+		creator: "@Radian UI",
 		images: [blogImage],
 	},
 }

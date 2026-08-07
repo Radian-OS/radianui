@@ -24,9 +24,9 @@ export const metadata: Metadata = {
 		apple: "/apple-touch-icon.png",
 	},
 	openGraph: {
-		title: `${websiteMetadata.name} - Ship next generation of world class products and solutions`,
+		title: `${websiteMetadata.name} - Open Source React Components and Figma Design System`,
 		description:
-			"Discover Radian, the ultimate React & Tailwind component lib.",
+			"A complete production-ready React components library, UI blocks, and Figma UI Kit and design system",
 		type: "website",
 		url: `${process.env.NEXT_PUBLIC_WEBSITE_URL!}`,
 		images: [
@@ -39,9 +39,9 @@ export const metadata: Metadata = {
 	},
 	twitter: {
 		card: "summary_large_image",
-		title: `${websiteMetadata.name} - Ship next generation of world class products and solutions`,
+		title: `${websiteMetadata.name} - Open Source React Components and Figma Design System`,
 		description:
-			"Discover Radian, the ultimate React & Tailwind component lib.",
+			"A complete production-ready React components library, UI blocks, and Figma UI Kit and design system",
 		images: [`${websiteMetadata.ogImage}`],
 	},
 	alternates: {

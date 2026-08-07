@@ -23,51 +23,39 @@ export const FAQ_CATEGORIES = [
 export const CONTENT: FAQItem[] = [
 	// General
 	{
-		title: "What is RadianOS?",
+		title: "What is Radian UI?",
 		content:
-			"RadianOS is an UI component library for building modern, responsive user interfaces.",
+			"Radian UI is an open-source, beautifully designed collection of React components. It is built on top of Radix UI primitives and styled with Tailwind CSS. Instead of installing it as a rigid dependency, you use our CLI to copy the component source code directly into your project so you have full ownership and control.",
 		category: "general",
 	},
 	{
-		title: "Is RadianOS open-source?",
+		title: "Is Radian UI distributed as an npm package?",
 		content:
-			"Yes, RadianOS is open source, allowing anyone to view, modify, and contribute to its code.",
+			"No. You do not install Radian UI as a dependency (npm install radianui). Instead, you use the CLI (npx radianui init) to pull the raw React and Tailwind code directly into your codebase. It is 100% open-source (MIT License) and completely free for both personal and commercial projects.",
 		category: "general",
 	},
 	{
-		title: "How can I contribute?",
+		title: "Does Radian UI support the Next.js App Router?",
 		content:
-			"You can contribute to RadianOS by forking the repository, making your changes, and submitting a pull request. Review the contribution guidelines before starting.",
+			"Yes. Radian UI components are fully compatible with Next.js, including the App Router. Components that require client-side interactivity (like Accordions or Dialogs) include the 'use client' directive by default, allowing you to seamlessly integrate them with your server components.",
 		category: "general",
 	},
 	{
-		title: "Is it production-ready?",
+		title: "Does Radian UI support Tailwind CSS dark mode?",
 		content:
-			"RadianOS is stable for most use cases but still under active development. Evaluate it in your environment before production deployment.",
+			"Yes. Every component is designed out-of-the-box to support Tailwind's dark mode utilizing CSS variables. You can easily theme your entire application by updating a few core tokens in your global CSS file.",
 		category: "general",
 	},
 	{
-		title: "Does it comply with current security standards?",
+		title: "How can I contribute to the open-source repository?",
 		content:
-			"RadianOS follows modern security best practices and is regularly updated to address any vulnerabilities.",
+			"We welcome community contributions! You can fork the radianui repository on GitHub, make your changes, and submit a pull request. If you have feature requests, bug reports, or need support, feel free to join our GitHub Discussions or open an issue.",
 		category: "general",
 	},
 	{
-		title: "What license does RadianOS use?",
+		title: "Can I use Radian UI components in production?",
 		content:
-			"RadianOS is released under a permissive open-source license, making it safe to use in personal and commercial projects.",
-		category: "general",
-	},
-	{
-		title: "Is RadianOS free to use?",
-		content:
-			"Yes, RadianOS is completely free to use, with no hidden costs or premium tiers required to access its components.",
-		category: "general",
-	},
-	{
-		title: "Where can I get support or ask questions?",
-		content:
-			"You can reach out through the project's GitHub discussions or issue tracker for support, questions, and feature requests.",
+			"Yes. Because Radian UI uses a copy-and-paste architecture, you own the code. The underlying interactive elements are powered by Radix UI, which is thoroughly tested, WAI-ARIA accessible, and currently used in massive enterprise production environments.",
 		category: "general",
 	},
 

@@ -63,7 +63,7 @@ export default function Page() {
 										className="heading-1 dark:from-fg dark:to-fg-secondary not-dark:text-fg mt-6 bg-clip-text text-center text-transparent dark:bg-gradient-to-b">
 										Open-Source React Components and Figma Design System
 									</h1>
-									<p className="text-fg-secondary mt-10 w-full max-w-[640px] text-center text-base font-normal md:text-lg">
+									<p className="text-fg-secondary mt-7 w-full max-w-[640px] text-center text-base font-normal md:mt-10 md:text-lg">
 										A complete production-ready React components library, UI
 										blocks, and Figma UI Kit and design system for{" "}
 										<RotatingWords

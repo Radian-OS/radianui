@@ -6,6 +6,90 @@ const withBundleAnalyzer = bundleAnalyzer({
 	enabled: process.env.ANALYZE === "true",
 })
 
+const LEGACY_DOCUMENTATION_ROUTES = {
+	gettingStarted: ["changelog", "cli", "figma", "installation", "introduction"],
+	installation: {
+		laravel: "manual",
+		manual: "manual",
+		next: "next",
+		vite: "vite",
+	},
+	fundamentals: {
+		colors: "colors",
+		"default-theme": "theme",
+		iconography: "iconography",
+		typography: "typography",
+	},
+	components: {
+		accordion: "accordion",
+		alert: "alert",
+		avatar: "avatar",
+		badge: "badge",
+		banner: "banner",
+		breadcrumb: "breadcrumb",
+		buttons: "button",
+		calendar: "calendar",
+		checkbox: "checkbox",
+		"code-area": "code-area",
+		"currency-amount": "currency-input",
+		"date-picker": "date-picker",
+		divider: "divider",
+		drawer: "drawer",
+		dropdown: "dropdown",
+		"file-upload": "file-upload",
+		forms: "form",
+		"hover-card": "hover-card",
+		"input-otp": "otp-field",
+		inputs: "input",
+		modal: "dialog",
+		pagination: "pagination",
+		"phone-number": "phone-number-input",
+		popover: "popover",
+		"progress-bar": "progress",
+		"radio-group": "radio-group",
+		resizable: "resizable",
+		select: "select",
+		skeleton: "skeleton",
+		slider: "slider",
+		spinner: "spinner",
+		switch: "switch",
+		table: "table",
+		tabs: "tabs",
+		"text-area": "text-area",
+		toast: "sonner",
+		tooltip: "tooltip",
+	},
+}
+
+const legacyDocumentationRedirects = [
+	...LEGACY_DOCUMENTATION_ROUTES.gettingStarted.map((slug) => ({
+		source: `/documentation/${slug}`,
+		destination: `/docs/getting-started/${slug}`,
+		permanent: true,
+	})),
+	...Object.entries(LEGACY_DOCUMENTATION_ROUTES.installation).map(
+		([sourceSlug, destinationSlug]) => ({
+			source: `/documentation/installation/${sourceSlug}`,
+			destination: `/docs/installation/${destinationSlug}`,
+			permanent: true,
+		})
+	),
+	...Object.entries(LEGACY_DOCUMENTATION_ROUTES.fundamentals).map(
+		([sourceSlug, destinationSlug]) => ({
+			source: `/documentation/${sourceSlug}`,
+			destination: `/docs/fundamentals/${destinationSlug}`,
+			permanent: true,
+		})
+	),
+	...Object.entries(LEGACY_DOCUMENTATION_ROUTES.components).map(
+		([sourceSlug, destinationSlug]) => ({
+			source: `/documentation/components/${sourceSlug}`,
+			destination: `/docs/components/${destinationSlug}`,
+			permanent: true,
+		})
+	),
+]
+
 const nextConfig = {
 	async headers() {
 		return [
@@ -104,6 +188,12 @@ const nextConfig = {
 				destination: "/docs/getting-started/introduction",
 				permanent: true,
 			},
+			{
+				source: "/documentation/components",
+				destination: "/docs/components/accordion",
+				permanent: true,
+			},
+			...legacyDocumentationRedirects,
 			{
 				source: "/docs/components",
 				destination: "/docs/components/accordion",
