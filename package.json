@@ -1,5 +1,5 @@
 {
-	"name": "radian-monorepo",
+	"name": "radianui-monorepo",
 	"private": true,
 	"type": "module",
 	"scripts": {
