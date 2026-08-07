@@ -17,8 +17,7 @@ const TabsThumbnail = (props: React.SVGProps<SVGSVGElement>) => (
 		/>
 		<path
 			d="M47 150C47 145.582 50.5817 142 55 142H279C283.418 142 287 145.582 287 150V170C287 174.418 283.418 178 279 178H55C50.5817 178 47 174.418 47 170V150Z"
-			fill="#242E42"
-			fillOpacity="0.04"
+			fill="var(--color-soft-alpha)"
 		/>
 		<g filter="url(#filter0_d_3867_194052)">
 			<path
@@ -28,8 +27,7 @@ const TabsThumbnail = (props: React.SVGProps<SVGSVGElement>) => (
 			/>
 			<path
 				d="M57 144.5H159C163.142 144.5 166.5 147.858 166.5 152V168C166.5 172.142 163.142 175.5 159 175.5H57C52.8579 175.5 49.5 172.142 49.5 168V152C49.5 147.858 52.8579 144.5 57 144.5Z"
-				stroke="#242E42"
-				strokeOpacity="0.08"
+				stroke="var(--color-soft-alpha)"
 				shapeRendering="crispEdges"
 			/>
 			<path

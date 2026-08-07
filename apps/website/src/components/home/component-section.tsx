@@ -95,7 +95,7 @@ const Component = () => {
 							{HOMEPAGE_COMPONENTS_LIST.map((item, idx) => (
 								<CarouselItem
 									key={item.title + idx}
-									className="basis-full sm:basis-1/2 lg:basis-1/4">
+									className="basis-full sm:basis-1/2 lg:basis-1/3 xl:basis-1/4">
 									<ComponentCard
 										alt={item.alt}
 										url={item.url}
