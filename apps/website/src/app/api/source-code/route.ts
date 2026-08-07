@@ -23,12 +23,12 @@ export async function GET(request: NextRequest) {
 		const fullPath = path.join(process.cwd(), file)
 
 		// Check if file exists
-		if (!fs.existsSync(fullPath)) {
+		if (!fs.existsSync(/*turbopackIgnore: true*/ fullPath)) {
 			return NextResponse.json({ error: "File not found" }, { status: 404 })
 		}
 
 		// Read the file content
-		const content = fs.readFileSync(fullPath, "utf-8")
+		const content = fs.readFileSync(/*turbopackIgnore: true*/ fullPath, "utf-8")
 
 		return NextResponse.json({ content })
 	} catch (error) {

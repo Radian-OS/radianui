@@ -1,17 +1,17 @@
-import { allDocs } from "contentlayer/generated"
 import { SquareTerminal } from "lucide-react"
 import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import { DocPageActions } from "@/components/doc-page-actions"
-import { Mdx } from "@/components/mdx"
+import { components } from "@/components/mdx-components-docs"
 import { PreviousNextButtons } from "@/components/prev-next-buttons"
 import { PreviousNextIconButtons } from "@/components/prev-next-icon-buttons"
 import { JsonLd } from "@/components/seo/json-ld"
 import { VersionDisplayBadge } from "@/components/version-display-badge"
 import { websiteMetadata } from "@/config/website-metadata-config"
 import { getPackageVersion } from "@/lib/get-package-info"
+import { docsSource } from "@/lib/source"
 import { absoluteUrl, getDocStructuredData } from "@/lib/structured-data"
 import { Badge } from "@/registry/ui/badge"
 import { Button, IconButton } from "@/registry/ui/button"
@@ -27,15 +27,15 @@ interface DocPageProps {
 // Await `params` inside the function
 async function getDocFromParams({ params }: DocPageProps) {
 	const resolvedParams = await params
-	const slug = resolvedParams.slug.join("/") || ""
-	const doc = allDocs.find((doc) => doc.slugAsParams === slug)
+	const slug = resolvedParams.slug || []
+	const doc = docsSource.getPage(slug)
 	return doc ?? null
 }
 
 // Static path generation
 export async function generateStaticParams() {
-	return allDocs.map((doc) => ({
-		slug: doc.slugAsParams.split("/"),
+	return docsSource.getPages().map((doc) => ({
+		slug: doc.slugs,
 	}))
 }
 
@@ -45,11 +45,11 @@ export async function generateMetadata({
 	const doc = await getDocFromParams({ params })
 	if (!doc) return {}
 
-	const url = absoluteUrl(`/docs/${doc.slugAsParams}`)
-	const title = `${doc.title} - ${websiteMetadata.name}`
-	const description = doc.description
+	const url = absoluteUrl(`/docs/${doc.slugs.join("/")}`)
+	const title = `${doc.data.title} - ${websiteMetadata.name}`
+	const description = doc.data.description
 	const ogImageUrl = absoluteUrl(
-		`/api/og?title=${encodeURIComponent(doc.title)}`
+		`/api/og?title=${encodeURIComponent(doc.data.title)}`
 	)
 
 	return {
@@ -86,12 +86,12 @@ export default async function Page({ params }: DocPageProps) {
 	const resolvedParams = await params
 	const doc = await getDocFromParams({ params })
 	const currentPath = `/docs/${resolvedParams.slug.join("/")}`
-	const category = doc?.slugAsParams.split("/")[0].replace("-", " ")
+	const category = doc?.slugs[0]?.replace("-", " ")
 
 	if (!doc) return notFound()
 	const url = absoluteUrl(currentPath)
 	const version =
-		doc.slugAsParams === "getting-started/cli"
+		doc.slugs.join("/") === "getting-started/cli"
 			? await getPackageVersion()
 			: null
 
@@ -100,8 +100,8 @@ export default async function Page({ params }: DocPageProps) {
 			<JsonLd
 				id="documentation-structured-data"
 				data={getDocStructuredData({
-					title: doc.title,
-					description: doc.description,
+					title: doc.data.title,
+					description: doc.data.description || "",
 					url,
 				})}
 			/>
@@ -112,20 +112,23 @@ export default async function Page({ params }: DocPageProps) {
 					</span>
 
 					<div className="flex items-center gap-2">
-						<DocPageActions slugAsParams={doc.slugAsParams} title={doc.title} />
+						<DocPageActions
+							slugAsParams={doc.slugs.join("/")}
+							title={doc.data.title}
+						/>
 						<PreviousNextIconButtons currentPath={currentPath} />
 					</div>
 				</div>
 				<div className="flex flex-col">
-					<h1 className="heading-4 my-2">{doc.title}</h1>
-					<p className="text-fg-secondary mb-5">{doc.description}</p>
+					<h1 className="heading-4 my-2">{doc.data.title}</h1>
+					<p className="text-fg-secondary mb-5">{doc.data.description}</p>
 					{version && (
 						<VersionDisplayBadge version={version} className="mb-5" />
 					)}
-					{doc.links && (
+					{doc.data.links && (
 						<section className="flex justify-between">
 							<div className="flex flex-wrap items-center gap-2 pb-10">
-								{doc.links.github && (
+								{doc.data.links.github && (
 									<Badge
 										size="28"
 										variant="outline"
@@ -133,7 +136,7 @@ export default async function Page({ params }: DocPageProps) {
 										className="shadow-2xs"
 										asChild>
 										<Link
-											href={doc.links.github.href.replace(/\r$/, "")}
+											href={doc.data.links.github.href.replace(/\r$/, "")}
 											target="_blank"
 											rel="noopener noreferrer">
 											<svg
@@ -152,9 +155,9 @@ export default async function Page({ params }: DocPageProps) {
 										</Link>
 									</Badge>
 								)}
-								{doc.links.externalReference &&
-									doc.links.externalReference.length > 0 &&
-									doc.links.externalReference.map((link) => {
+								{doc.data.links.externalReference &&
+									doc.data.links.externalReference.length > 0 &&
+									doc.data.links.externalReference.map((link: any) => {
 										const href = link.href.replace(/\r$/, "")
 										return (
 											<Badge
@@ -199,7 +202,7 @@ export default async function Page({ params }: DocPageProps) {
 									})}
 							</div>
 							<div className="flex gap-2">
-								{doc.links.figma && (
+								{doc.data.links.figma && (
 									<IconButton
 										asChild
 										color="neutral"
@@ -207,7 +210,7 @@ export default async function Page({ params }: DocPageProps) {
 										variant="soft"
 										aria-label="Open Figma design">
 										<Link
-											href={doc.links.figma.href.replace(/\r$/, "")}
+											href={doc.data.links.figma.href.replace(/\r$/, "")}
 											target="_blank"
 											rel="noopener noreferrer">
 											<Image
@@ -220,7 +223,7 @@ export default async function Page({ params }: DocPageProps) {
 										</Link>
 									</IconButton>
 								)}
-								{doc.rawMdx.includes("## Installation") && (
+								{false && (
 									<Button
 										asChild
 										variant="outline"
@@ -238,7 +241,9 @@ export default async function Page({ params }: DocPageProps) {
 					)}
 				</div>
 
-				<Mdx code={doc.body.code} />
+				<div className="prose dark:prose-invert">
+					<doc.data.body components={components} />
+				</div>
 
 				<PreviousNextButtons currentPath={currentPath} className="mt-10" />
 			</div>
