@@ -113,7 +113,7 @@ export default function PlaygroundSection({
 						</div>
 						<div className="text-fg-tertiary flex items-center gap-1.5">
 							<Lock size={16} />
-							<span className="text-sm">radianos.com</span>
+							<span className="text-sm">radianui.com</span>
 						</div>
 						<div className="text-fg-tertiary flex items-center gap-3 px-3">
 							{/* <Share size={16} /> */}
