@@ -580,7 +580,7 @@ export function FigmaUiCard() {
 						<div className="figma-canvas-board">
 							<section className="figma-frame figma-frame-desktop">
 								<nav>
-									<span>radianos</span>
+									<span>radianui</span>
 									<div />
 									<div />
 								</nav>
