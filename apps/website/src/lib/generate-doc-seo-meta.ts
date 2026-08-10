@@ -48,7 +48,7 @@ export const DOCS_SEO_CONFIG = {
 				"Use this guide to understand Radian UI workflows, setup, and tooling for a reliable project.",
 			pages: {
 				introduction: {
-					title: "Radian UI — React/Tailwind Component Library",
+					title: "Introduction to Radian UI — React/Tailwind Component Library",
 				},
 				installation: {
 					title: "Install Radian UI — React/Tailwind Setup Guide | Radian UI",

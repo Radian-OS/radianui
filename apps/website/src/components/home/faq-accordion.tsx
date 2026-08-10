@@ -61,25 +61,25 @@ export const CONTENT: FAQItem[] = [
 
 	// Design
 	{
-		title: "Does RadianOS support theming and dark mode?",
+		title: "Does Radian UI support theming and dark mode?",
 		content:
-			"Yes, RadianOS supports theming and includes built-in dark mode options.",
+			"Yes, Radian UI supports theming and includes built-in dark mode options.",
 		category: "design",
 	},
 	{
 		title: "Can I customize the design tokens?",
 		content:
-			"Yes, RadianOS exposes design tokens for colors, spacing, and typography so you can tailor the look and feel to your brand.",
+			"Yes, Radian UI exposes design tokens for colors, spacing, and typography so you can tailor the look and feel to your brand.",
 		category: "design",
 	},
 	{
-		title: "Does RadianOS follow a consistent design system?",
+		title: "Does Radian UI follow a consistent design system?",
 		content:
-			"RadianOS is built around a cohesive design system, ensuring visual and behavioral consistency across all components.",
+			"Radian UI is built around a cohesive design system, ensuring visual and behavioral consistency across all components.",
 		category: "design",
 	},
 	{
-		title: "Is RadianOS accessible?",
+		title: "Is Radian UI accessible?",
 		content:
 			"Yes, components are designed with accessibility in mind, following WAI-ARIA guidelines for keyboard navigation and screen readers.",
 		category: "design",
@@ -91,15 +91,15 @@ export const CONTENT: FAQItem[] = [
 		category: "design",
 	},
 	{
-		title: "Does RadianOS support responsive design out of the box?",
+		title: "Does Radian UI support responsive design out of the box?",
 		content:
 			"Yes, components are responsive by default and adapt gracefully across breakpoints and screen sizes.",
 		category: "design",
 	},
 	{
-		title: "What design principles guide RadianOS components?",
+		title: "What design principles guide Radian UI components?",
 		content:
-			"RadianOS emphasizes clarity, consistency, and simplicity, aiming to reduce visual noise while keeping interfaces intuitive.",
+			"Radian UI emphasizes clarity, consistency, and simplicity, aiming to reduce visual noise while keeping interfaces intuitive.",
 		category: "design",
 	},
 	{
@@ -113,43 +113,43 @@ export const CONTENT: FAQItem[] = [
 	{
 		title: "Can I use it with React or Next.js?",
 		content:
-			"Yes, RadianOS is compatible with React and Next.js for building modern web interfaces.",
+			"Yes, Radian UI is compatible with React and Next.js for building modern web interfaces.",
 		category: "development",
 	},
 	{
 		title: "Has it been tested across all target devices?",
 		content:
-			"RadianOS components are tested across major browsers and devices to ensure consistent behavior and responsiveness.",
+			"Radian UI components are tested across major browsers and devices to ensure consistent behavior and responsiveness.",
 		category: "development",
 	},
 	{
-		title: "Is RadianOS written in TypeScript?",
+		title: "Is Radian UI written in TypeScript?",
 		content:
-			"Yes, RadianOS is built entirely in TypeScript, giving you type safety and better editor autocompletion out of the box.",
+			"Yes, Radian UI is built entirely in TypeScript, giving you type safety and better editor autocompletion out of the box.",
 		category: "development",
 	},
 	{
-		title: "How do I install RadianOS in my project?",
+		title: "How do I install Radian UI in my project?",
 		content:
-			"You can install RadianOS via your package manager of choice, such as npm, pnpm, or yarn, and start importing components right away.",
+			"You can install Radian UI via your package manager of choice, such as npm, pnpm, or yarn, and start importing components right away.",
 		category: "development",
 	},
 	{
-		title: "Does RadianOS support tree-shaking?",
+		title: "Does Radian UI support tree-shaking?",
 		content:
-			"Yes, RadianOS is optimized for tree-shaking, so your final bundle only includes the components you actually use.",
+			"Yes, Radian UI is optimized for tree-shaking, so your final bundle only includes the components you actually use.",
 		category: "development",
 	},
 	{
-		title: "Can I use RadianOS with a CLI or code generator?",
+		title: "Can I use Radian UI with a CLI or code generator?",
 		content:
-			"RadianOS offers CLI tooling to scaffold and add components directly into your project with minimal setup.",
+			"Radian UI offers CLI tooling to scaffold and add components directly into your project with minimal setup.",
 		category: "development",
 	},
 	{
-		title: "Is RadianOS compatible with Tailwind CSS?",
+		title: "Is Radian UI compatible with Tailwind CSS?",
 		content:
-			"Yes, RadianOS is built to work seamlessly alongside Tailwind CSS, so you can style and extend components with utility classes.",
+			"Yes, Radian UI is built to work seamlessly alongside Tailwind CSS, so you can style and extend components with utility classes.",
 		category: "development",
 	},
 	{
