@@ -4,7 +4,9 @@ import {
 	defineDocs,
 	frontmatterSchema,
 } from "fumadocs-mdx/config"
+import rehypePrettyCode from "rehype-pretty-code"
 import { z } from "zod"
+import { transformers } from "@/lib/highlight-code"
 
 // Docs collection — maps to src/content/docs/**/*.mdx
 export const { docs, meta } = defineDocs({
@@ -66,24 +68,22 @@ export const changelog = defineCollections({
 	}),
 })
 
-export default defineConfig({})
+export default defineConfig({
+	mdxOptions: {
+		rehypePlugins: (plugins) => {
+			plugins.shift()
+			plugins.push([
+				rehypePrettyCode,
+				{
+					theme: {
+						dark: "vesper",
+						light: "github-light-default",
+					},
+					transformers,
+				},
+			])
 
-// export default defineConfig({
-// 	mdxOptions: {
-// 		rehypePlugins: (plugins) => {
-// 			plugins.shift()
-// 			plugins.push([
-// 				rehypePrettyCode,
-// 				{
-// 					theme: {
-// 						dark: "vesper",
-// 						light: "github-light-default",
-// 					},
-// 					transformers,
-// 				},
-// 			])
-
-// 			return plugins
-// 		},
-// 	},
-// })
+			return plugins
+		},
+	},
+})

@@ -1,7 +1,7 @@
 import fs from "fs/promises"
 import { TerminalIcon } from "lucide-react"
 import path from "path"
-import { highlightCode } from "@/lib/highligh-code"
+import { highlightCode } from "@/lib/highlight-code"
 import { cn } from "@/lib/utils"
 import { CodeCollapsibleWrapper } from "./code-collapsible-wrapper"
 import { CopyButton } from "./copy-button"
