@@ -1,10 +1,10 @@
-import bundleAnalyzer from "@next/bundle-analyzer"
-import { withContentlayer } from "next-contentlayer2"
+import { createMDX } from "fumadocs-mdx/next"
 
 /** @type {import('next').NextConfig} */
-const withBundleAnalyzer = bundleAnalyzer({
-	enabled: process.env.ANALYZE === "true",
-})
+const withBundleAnalyzer =
+	process.env.ANALYZE === "true"
+		? (await import("@next/bundle-analyzer")).default({ enabled: true })
+		: (config) => config
 
 const LEGACY_DOCUMENTATION_ROUTES = {
 	gettingStarted: ["changelog", "cli", "figma", "installation", "introduction"],
@@ -92,7 +92,7 @@ const legacyDocumentationRedirects = [
 
 const nextConfig = {
 	async headers() {
-		return [
+		const headers = [
 			{
 				source: "/_next/static/:path*",
 				headers: [
@@ -163,6 +163,19 @@ const nextConfig = {
 				],
 			},
 		]
+
+		// Cache-Control is useful in production but breaks Next's dev cache/HMR
+		// behavior. Keep security and CORS headers active in both environments.
+		return process.env.NODE_ENV === "production"
+			? headers
+			: headers
+					.map((route) => ({
+						...route,
+						headers: route.headers.filter(
+							(header) => header.key !== "Cache-Control"
+						),
+					}))
+					.filter((route) => route.headers.length > 0)
 	},
 
 	async rewrites() {
@@ -193,7 +206,7 @@ const nextConfig = {
 				destination: "/docs/components/accordion",
 				permanent: true,
 			},
-			...legacyDocumentationRedirects,
+			// ...legacyDocumentationRedirects,
 			{
 				source: "/docs/components",
 				destination: "/docs/components/accordion",
@@ -265,7 +278,12 @@ const nextConfig = {
 		removeConsole: false,
 	},
 	experimental: {
-		optimizePackageImports: ["lucide-react", "@radix-ui/react-icons"],
+		optimizePackageImports: [
+			"lucide-react",
+			"@radix-ui/react-icons",
+			"@hugeicons/core-free-icons",
+			"@hugeicons/react",
+		],
 	},
 	compress: false, // Let cloudflare handle the compression,
 	webpack: (config, { isServer }) => {
@@ -279,4 +297,5 @@ const nextConfig = {
 		return config
 	},
 }
-export default withBundleAnalyzer(withContentlayer(nextConfig))
+const withMDX = createMDX()
+export default withBundleAnalyzer(withMDX(nextConfig))

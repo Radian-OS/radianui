@@ -7,11 +7,11 @@ import { Badge } from "@/registry/ui/badge"
 import { Button, CompactButton } from "@/registry/ui/button"
 import { Checkbox } from "@/registry/ui/checkbox"
 import {
-	Dropdown,
-	DropdownContent,
-	DropdownDivider,
-	DropdownItem,
-	DropdownTrigger,
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuDivider,
+	DropdownMenuItem,
+	DropdownMenuTrigger,
 } from "@/registry/ui/dropdown-menu"
 
 type BadgeColor = "success" | "warning" | "info"
@@ -73,8 +73,8 @@ const CheckboxDropdown = () => {
 		<div className="max-w-90 flex w-full flex-col gap-1.5 p-6">
 			<p className="text-fg text-base font-semibold">Tech Stack</p>
 
-			<Dropdown>
-				<DropdownTrigger asChild>
+			<DropdownMenu>
+				<DropdownMenuTrigger asChild>
 					<Button
 						color="neutral"
 						variant="outline"
@@ -84,7 +84,7 @@ const CheckboxDropdown = () => {
 						</span>
 						<ChevronDown className="text-fg-tertiary size-5" />
 					</Button>
-				</DropdownTrigger>
+				</DropdownMenuTrigger>
 
 				{selectedItems.length > 0 && (
 					<div className="flex flex-wrap items-center gap-1.5">
@@ -104,9 +104,9 @@ const CheckboxDropdown = () => {
 					</div>
 				)}
 
-				<DropdownContent className="w-full" sideOffset={40}>
+				<DropdownMenuContent className="w-full" sideOffset={40}>
 					{techItems.map((item) => (
-						<DropdownItem
+						<DropdownMenuItem
 							key={item.id}
 							onClick={() => toggle(item.id)}
 							className={cn(
@@ -126,17 +126,17 @@ const CheckboxDropdown = () => {
 							<Badge variant="soft" color={item.badgeColor} size="20">
 								{item.category}
 							</Badge>
-						</DropdownItem>
+						</DropdownMenuItem>
 					))}
-					<DropdownDivider />
-					<DropdownItem className="flex cursor-pointer items-center gap-2">
+					<DropdownMenuDivider />
+					<DropdownMenuItem className="flex cursor-pointer items-center gap-2">
 						<CompactButton color="neutral" variant="outline">
 							<Plus className="text-fg-tertiary" />
 						</CompactButton>
 						<span className="text-fg-secondary text-sm">Create tag</span>
-					</DropdownItem>
-				</DropdownContent>
-			</Dropdown>
+					</DropdownMenuItem>
+				</DropdownMenuContent>
+			</DropdownMenu>
 		</div>
 	)
 }

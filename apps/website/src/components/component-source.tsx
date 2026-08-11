@@ -4,7 +4,7 @@ import { TerminalIcon } from "lucide-react"
 import path from "path"
 import { CodeCollapsibleWrapper } from "@/components/code-collapsible-wrapper"
 import { formatCode } from "@/lib/format-code"
-import { highlightCode } from "@/lib/highligh-code"
+import { highlightCode } from "@/lib/highlight-code"
 import { cn } from "@/lib/utils"
 import { CopyButton } from "./copy-button"
 

@@ -2,13 +2,13 @@ import React from "react"
 import { ColorOption, usePlayground } from "@/contexts/playground"
 import { IconButton } from "@/styles/default/ui/button"
 import {
-	Dropdown,
-	DropdownContent,
-	DropdownPortal,
-	DropdownRadioGroup,
-	DropdownRadioItem,
-	DropdownTrigger,
-} from "@/styles/default/ui/dropdown"
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuPortal,
+	DropdownMenuRadioGroup,
+	DropdownMenuRadioItem,
+	DropdownMenuTrigger,
+} from "@/styles/default/ui/dropdown-menu"
 
 export const COLORS = [
 	{ title: "Red", value: "red" },
@@ -54,8 +54,8 @@ export const COLOR_CLASSES = {
 export default function Colors() {
 	const { color, setColor } = usePlayground()
 	return (
-		<Dropdown indicatorPosition="right">
-			<DropdownTrigger asChild>
+		<DropdownMenu indicatorPosition="right">
+			<DropdownMenuTrigger asChild>
 				<IconButton
 					size="32"
 					aria-label="Change Primary Color"
@@ -64,17 +64,17 @@ export default function Colors() {
 					className="hover:bg-fill2 text-fg flex size-8 cursor-pointer items-center justify-center rounded-md">
 					<div className="size-4.5 bg-primary border-border rounded-full border" />
 				</IconButton>
-			</DropdownTrigger>
-			<DropdownPortal>
-				<DropdownContent
+			</DropdownMenuTrigger>
+			<DropdownMenuPortal>
+				<DropdownMenuContent
 					align="end"
 					className="h-69.5 overflow-y-scroll"
 					sideOffset={10}>
-					<DropdownRadioGroup
+					<DropdownMenuRadioGroup
 						value={color}
 						onValueChange={(value) => setColor(value as ColorOption)}>
 						{COLORS.map((colorOption) => (
-							<DropdownRadioItem
+							<DropdownMenuRadioItem
 								key={colorOption.value}
 								value={colorOption.value}>
 								<div className="flex items-center justify-center gap-2">
@@ -83,11 +83,11 @@ export default function Colors() {
 									/>
 									{colorOption.title}
 								</div>
-							</DropdownRadioItem>
+							</DropdownMenuRadioItem>
 						))}
-					</DropdownRadioGroup>
-				</DropdownContent>
-			</DropdownPortal>
-		</Dropdown>
+					</DropdownMenuRadioGroup>
+				</DropdownMenuContent>
+			</DropdownMenuPortal>
+		</DropdownMenu>
 	)
 }

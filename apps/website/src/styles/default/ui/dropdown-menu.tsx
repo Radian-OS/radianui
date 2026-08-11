@@ -353,24 +353,6 @@ function DropdownMenuDivider({
 	)
 }
 
-// Backward-compatible value aliases. New code should use the DropdownMenu*
-// exports; the prop type aliases intentionally use only DropdownMenu* names.
-const Dropdown = DropdownMenu
-const DropdownContent = DropdownMenuContent
-const DropdownDivider = DropdownMenuDivider
-const DropdownGroup = DropdownMenuGroup
-const DropdownItem = DropdownMenuItem
-const DropdownCheckboxItem = DropdownMenuCheckboxItem
-const DropdownRadioGroup = DropdownMenuRadioGroup
-const DropdownRadioItem = DropdownMenuRadioItem
-const DropdownSub = DropdownMenuSub
-const DropdownSubContent = DropdownMenuSubContent
-const DropdownSubTrigger = DropdownMenuSubTrigger
-const DropdownTrigger = DropdownMenuTrigger
-const DropdownLabel = DropdownMenuLabel
-const DropdownShortcut = DropdownMenuShortcut
-const DropdownPortal = DropdownMenuPortal
-
 export {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -387,19 +369,4 @@ export {
 	DropdownMenuLabel,
 	DropdownMenuShortcut,
 	DropdownMenuPortal,
-	Dropdown,
-	DropdownContent,
-	DropdownDivider,
-	DropdownGroup,
-	DropdownItem,
-	DropdownCheckboxItem,
-	DropdownRadioGroup,
-	DropdownRadioItem,
-	DropdownSub,
-	DropdownSubContent,
-	DropdownSubTrigger,
-	DropdownTrigger,
-	DropdownLabel,
-	DropdownShortcut,
-	DropdownPortal,
 }

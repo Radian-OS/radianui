@@ -25,12 +25,12 @@ import {
 import { Badge } from "@/styles/default/ui/badge"
 import { Button } from "@/styles/default/ui/button"
 import {
-	Dropdown,
-	DropdownContent,
-	DropdownRadioGroup,
-	DropdownRadioItem,
-	DropdownTrigger,
-} from "@/styles/default/ui/dropdown"
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuRadioGroup,
+	DropdownMenuRadioItem,
+	DropdownMenuTrigger,
+} from "@/styles/default/ui/dropdown-menu"
 import {
 	Tabs,
 	TabsContent,
@@ -59,8 +59,8 @@ export default function TypographyPlayground() {
 	return (
 		<Tabs defaultValue="desktop">
 			<div className="flex flex-col justify-between gap-2 sm:flex-row sm:items-center">
-				<Dropdown>
-					<DropdownTrigger asChild>
+				<DropdownMenu>
+					<DropdownMenuTrigger asChild>
 						<Button
 							variant="outline"
 							color="neutral"
@@ -68,19 +68,19 @@ export default function TypographyPlayground() {
 							autoFocus={false}>
 							Font: {selectedFont} <ChevronDown />
 						</Button>
-					</DropdownTrigger>
-					<DropdownContent>
-						<DropdownRadioGroup
+					</DropdownMenuTrigger>
+					<DropdownMenuContent>
+						<DropdownMenuRadioGroup
 							value={selectedFont}
 							onValueChange={(value) => setSelectedFont(value)}>
 							{Object.keys(FONTS).map((fontName) => (
-								<DropdownRadioItem key={fontName} value={fontName}>
+								<DropdownMenuRadioItem key={fontName} value={fontName}>
 									{fontName}
-								</DropdownRadioItem>
+								</DropdownMenuRadioItem>
 							))}
-						</DropdownRadioGroup>
-					</DropdownContent>
-				</Dropdown>
+						</DropdownMenuRadioGroup>
+					</DropdownMenuContent>
+				</DropdownMenu>
 				<TabsList className="whitespace-nowrap sm:whitespace-normal">
 					<TabsTrigger value="desktop">Desktop</TabsTrigger>
 					<TabsTrigger value="tablet">Tablet</TabsTrigger>

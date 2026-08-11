@@ -1,6 +1,6 @@
-import { allChangelogs, allDocs } from "contentlayer/generated"
 import AsideBar from "@/components/aside-bar"
-import { getHeadingsFromMdx } from "@/lib/get-mdx-headings"
+import { MdxHeading } from "@/lib/get-mdx-headings"
+import { changelog, docsSource } from "@/lib/source"
 
 export const revalidate = false
 export const dynamic = "force-static"
@@ -13,22 +13,33 @@ interface Props {
 export default async function AsideSlot({ params }: Props) {
 	const resolvedParams = await params
 	const slug = resolvedParams.slug.join("/")
-	const doc = allDocs.find((d) => d.slugAsParams === slug)
-	if (!doc) return null
 
-	const headings =
-		slug === "getting-started/changelog"
-			? (
-					await Promise.all(
-						[...allChangelogs]
-							.sort(
-								(a, b) =>
-									new Date(b.date).getTime() - new Date(a.date).getTime()
-							)
-							.map((changelog) => getHeadingsFromMdx(changelog.body.raw))
-					)
-				).flat()
-			: await getHeadingsFromMdx(doc.rawMdx)
+	let headings: MdxHeading[] = []
+
+	if (slug === "getting-started/changelog") {
+		const changelogPages = changelog
+			.getPages()
+			.sort(
+				(a, b) =>
+					new Date(b.data.date ?? 0).getTime() -
+					new Date(a.data.date ?? 0).getTime()
+			)
+		headings = changelogPages.flatMap((page) =>
+			page.data.toc.map((item) => ({
+				level: item.depth,
+				text: item.title as string,
+				id: item.url.replace(/^#/, ""),
+			}))
+		)
+	} else {
+		const page = docsSource.getPage(resolvedParams.slug)
+		if (!page) return null
+		headings = page.data.toc.map((item) => ({
+			level: item.depth,
+			text: item.title as string,
+			id: item.url.replace(/^#/, ""),
+		}))
+	}
 
 	return <AsideBar headings={headings} />
 }

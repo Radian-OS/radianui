@@ -6,13 +6,13 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
 import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
 import {
-	Dropdown,
-	DropdownCheckboxItem,
-	DropdownContent,
-	DropdownDivider,
-	DropdownItem,
-	DropdownLabel,
-	DropdownTrigger,
+	DropdownMenu,
+	DropdownMenuCheckboxItem,
+	DropdownMenuContent,
+	DropdownMenuDivider,
+	DropdownMenuItem,
+	DropdownMenuLabel,
+	DropdownMenuTrigger,
 } from "@/registry/ui/dropdown-menu"
 
 type Workspace = "debcon" | "xavion" | "qubio" | "personal"
@@ -36,16 +36,18 @@ const DropdownWithCheckboxExample = () => {
 	}
 
 	return (
-		<Dropdown indicatorPosition="right">
-			<DropdownTrigger asChild>
+		<DropdownMenu indicatorPosition="right">
+			<DropdownMenuTrigger asChild>
 				<Button color="neutral" variant="outline">
 					Switch Workspace <ChevronDown className="text-fg-secondary" />
 				</Button>
-			</DropdownTrigger>
+			</DropdownMenuTrigger>
 
-			<DropdownContent className="w-80">
-				<DropdownLabel className="uppercase">Switch Workspace</DropdownLabel>
-				<DropdownCheckboxItem
+			<DropdownMenuContent className="w-80">
+				<DropdownMenuLabel className="uppercase">
+					Switch Workspace
+				</DropdownMenuLabel>
+				<DropdownMenuCheckboxItem
 					checked={isWorkspaceChecked("debcon")}
 					onCheckedChange={(checked) =>
 						setWorkspaceChecked("debcon", checked === true)
@@ -62,8 +64,8 @@ const DropdownWithCheckboxExample = () => {
 					<Badge variant="soft" color="info">
 						Pro
 					</Badge>
-				</DropdownCheckboxItem>
-				<DropdownCheckboxItem
+				</DropdownMenuCheckboxItem>
+				<DropdownMenuCheckboxItem
 					checked={isWorkspaceChecked("xavion")}
 					onCheckedChange={(checked) =>
 						setWorkspaceChecked("xavion", checked === true)
@@ -80,8 +82,8 @@ const DropdownWithCheckboxExample = () => {
 					<Badge variant="soft" color="warning">
 						Biz
 					</Badge>
-				</DropdownCheckboxItem>
-				<DropdownCheckboxItem
+				</DropdownMenuCheckboxItem>
+				<DropdownMenuCheckboxItem
 					checked={isWorkspaceChecked("qubio")}
 					onCheckedChange={(checked) =>
 						setWorkspaceChecked("qubio", checked === true)
@@ -98,8 +100,8 @@ const DropdownWithCheckboxExample = () => {
 					<Badge variant="outline" color="neutral">
 						Free
 					</Badge>
-				</DropdownCheckboxItem>
-				<DropdownCheckboxItem
+				</DropdownMenuCheckboxItem>
+				<DropdownMenuCheckboxItem
 					checked={isWorkspaceChecked("personal")}
 					onCheckedChange={(checked) =>
 						setWorkspaceChecked("personal", checked === true)
@@ -116,18 +118,18 @@ const DropdownWithCheckboxExample = () => {
 					<Badge variant="outline" color="neutral">
 						Free
 					</Badge>
-				</DropdownCheckboxItem>
-				<DropdownDivider />
-				<DropdownItem>
+				</DropdownMenuCheckboxItem>
+				<DropdownMenuDivider />
+				<DropdownMenuItem>
 					<Plus />
 					Create Workspace
-				</DropdownItem>
-				<DropdownItem>
+				</DropdownMenuItem>
+				<DropdownMenuItem>
 					<Link2 />
 					Join with invite link
-				</DropdownItem>
-			</DropdownContent>
-		</Dropdown>
+				</DropdownMenuItem>
+			</DropdownMenuContent>
+		</DropdownMenu>
 	)
 }
 

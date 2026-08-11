@@ -11,8 +11,14 @@
       "@public/*": [
         "./public/*"
       ],
-      "contentlayer/generated": [
-        "./.contentlayer/generated"
+      "collections/server": [
+        "./.source/server.ts"
+      ],
+      "collections/browser": [
+        "./.source/browser.ts"
+      ],
+      "collections/dynamic": [
+        "./.source/dynamic.ts"
       ]
     }
   },
@@ -21,15 +27,14 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts",
+    ".next/dev/**/*.ts",
     "**/*.mdx",
-    ".contentlayer/generated",
     "next-sitemap.config.cjs",
-    "src/app/blocks/verification",
+    "src/app/blocks/verification"
   ],
   "exclude": [
     "node_modules",
-    ".contentlayer",
+    ".source",
     ".next",
     ".turbo"
   ]

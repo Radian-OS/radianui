@@ -26,12 +26,12 @@ import {
 	DialogTitle,
 } from "@/registry/ui/dialog"
 import {
-	Dropdown,
-	DropdownContent,
-	DropdownDivider,
-	DropdownItem,
-	DropdownLabel,
-	DropdownTrigger,
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuDivider,
+	DropdownMenuItem,
+	DropdownMenuLabel,
+	DropdownMenuTrigger,
 } from "@/registry/ui/dropdown-menu"
 import { Label } from "@/registry/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/registry/ui/radio-group"
@@ -68,8 +68,8 @@ const CopyFormatDropdown = ({
 			?.label ?? "PNG Image"
 
 	return (
-		<Dropdown>
-			<DropdownTrigger asChild>
+		<DropdownMenu>
+			<DropdownMenuTrigger asChild>
 				<Button
 					color="neutral"
 					variant="outline"
@@ -80,30 +80,30 @@ const CopyFormatDropdown = ({
 					</span>
 					<ChevronDown className="text-fg-secondary" />
 				</Button>
-			</DropdownTrigger>
+			</DropdownMenuTrigger>
 
-			<DropdownContent align="end" className="w-56">
+			<DropdownMenuContent align="end" className="w-56">
 				{COPY_FORMAT_GROUPS.map((group, i) => (
 					<div key={group.label}>
-						{i > 0 && <DropdownDivider />}
-						<DropdownLabel>{group.label}</DropdownLabel>
+						{i > 0 && <DropdownMenuDivider />}
+						<DropdownMenuLabel>{group.label}</DropdownMenuLabel>
 						{group.options.map(({ value: v, label, icon: Icon }) => (
-							<DropdownItem key={v} onClick={() => onChange(v)}>
+							<DropdownMenuItem key={v} onClick={() => onChange(v)}>
 								<Icon className="text-fg-secondary size-4" />
 								<span className="flex-1 text-sm font-medium">{label}</span>
 								{value === v && <Check className="size-4" />}
-							</DropdownItem>
+							</DropdownMenuItem>
 						))}
 					</div>
 				))}
-				<DropdownDivider />
-				<DropdownItem onClick={() => onChange("favourite")}>
+				<DropdownMenuDivider />
+				<DropdownMenuItem onClick={() => onChange("favourite")}>
 					<Star className="text-fg-secondary size-4" />
 					<span className="flex-1 text-sm font-medium">Favourite</span>
 					{value === "favourite" && <Check className="size-4" />}
-				</DropdownItem>
-			</DropdownContent>
-		</Dropdown>
+				</DropdownMenuItem>
+			</DropdownMenuContent>
+		</DropdownMenu>
 	)
 }
 

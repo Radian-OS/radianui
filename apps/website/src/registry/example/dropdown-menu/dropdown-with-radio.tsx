@@ -4,12 +4,12 @@ import React from "react"
 import { ListFilter, RotateCcw } from "lucide-react"
 import { Button } from "@/registry/ui/button"
 import {
-	Dropdown,
-	DropdownContent,
-	DropdownDivider,
-	DropdownItem,
-	DropdownLabel,
-	DropdownTrigger,
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuDivider,
+	DropdownMenuItem,
+	DropdownMenuLabel,
+	DropdownMenuTrigger,
 } from "@/registry/ui/dropdown-menu"
 import { Input } from "@/registry/ui/input"
 import { RadioGroup, RadioGroupItem } from "@/registry/ui/radio-group"
@@ -110,14 +110,14 @@ const DropdownWithRadioExample = () => {
 	}
 
 	return (
-		<Dropdown>
-			<DropdownTrigger asChild>
+		<DropdownMenu>
+			<DropdownMenuTrigger asChild>
 				<Button color="neutral" variant="outline">
 					Filter Settings <ListFilter className="text-fg-secondary" />
 				</Button>
-			</DropdownTrigger>
-			<DropdownContent className="w-80">
-				<DropdownLabel className="flex items-center justify-between">
+			</DropdownMenuTrigger>
+			<DropdownMenuContent className="w-80">
+				<DropdownMenuLabel className="flex items-center justify-between">
 					<span className="uppercase">Filter by Price range</span>
 					<RotateCcw
 						aria-label="Reset price range"
@@ -127,7 +127,7 @@ const DropdownWithRadioExample = () => {
 						role="button"
 						tabIndex={0}
 					/>
-				</DropdownLabel>
+				</DropdownMenuLabel>
 				<section className="flex flex-col items-center justify-between gap-4 px-2 pb-3 pt-2">
 					<div className="flex flex-col gap-3">
 						<span className="text-sm font-medium">Price Range</span>
@@ -158,8 +158,8 @@ const DropdownWithRadioExample = () => {
 						/>
 					</div>
 				</section>
-				<DropdownDivider />
-				<DropdownLabel className="flex items-center justify-between">
+				<DropdownMenuDivider />
+				<DropdownMenuLabel className="flex items-center justify-between">
 					<span>Quick Select</span>
 					<RotateCcw
 						aria-label="Reset quick select"
@@ -169,51 +169,51 @@ const DropdownWithRadioExample = () => {
 						role="button"
 						tabIndex={0}
 					/>
-				</DropdownLabel>
+				</DropdownMenuLabel>
 				<RadioGroup value={quickSelect} onValueChange={handleQuickSelect}>
-					<DropdownItem
+					<DropdownMenuItem
 						onSelect={(event) => {
 							event.preventDefault()
 							handleQuickSelect("5000")
 						}}>
 						<RadioGroupItem value="5000" />
 						Under $5000
-					</DropdownItem>
-					<DropdownItem
+					</DropdownMenuItem>
+					<DropdownMenuItem
 						onSelect={(event) => {
 							event.preventDefault()
 							handleQuickSelect("10000")
 						}}>
 						<RadioGroupItem value="10000" />
 						$5,000 - $10,000
-					</DropdownItem>
-					<DropdownItem
+					</DropdownMenuItem>
+					<DropdownMenuItem
 						onSelect={(event) => {
 							event.preventDefault()
 							handleQuickSelect("15000")
 						}}>
 						<RadioGroupItem value="15000" />
 						$10,000 - $15,000
-					</DropdownItem>
-					<DropdownItem
+					</DropdownMenuItem>
+					<DropdownMenuItem
 						onSelect={(event) => {
 							event.preventDefault()
 							handleQuickSelect("20000")
 						}}>
 						<RadioGroupItem value="20000" />
 						$15,000 - $20,000
-					</DropdownItem>
-					<DropdownItem
+					</DropdownMenuItem>
+					<DropdownMenuItem
 						onSelect={(event) => {
 							event.preventDefault()
 							handleQuickSelect("30000")
 						}}>
 						<RadioGroupItem value="30000" />
 						$25,000 - $30,000
-					</DropdownItem>
+					</DropdownMenuItem>
 				</RadioGroup>
-			</DropdownContent>
-		</Dropdown>
+			</DropdownMenuContent>
+		</DropdownMenu>
 	)
 }
 

@@ -10,10 +10,10 @@ import {
 	BreadcrumbSeparator,
 } from "@/registry/ui/breadcrumb"
 import {
-	Dropdown,
-	DropdownContent,
-	DropdownItem,
-	DropdownTrigger,
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuItem,
+	DropdownMenuTrigger,
 } from "@/registry/ui/dropdown-menu"
 
 function BreadCrumbCardDesign() {
@@ -30,24 +30,24 @@ function BreadCrumbCardDesign() {
 
 				<BreadcrumbSeparator />
 
-				<Dropdown>
-					<DropdownTrigger asChild>
+				<DropdownMenu>
+					<DropdownMenuTrigger asChild>
 						<BreadcrumbEllipsis className="h-5 w-7 rounded-md border" />
-					</DropdownTrigger>
-					<DropdownContent className="w-39.5">
-						<DropdownItem asChild>
+					</DropdownMenuTrigger>
+					<DropdownMenuContent className="w-39.5">
+						<DropdownMenuItem asChild>
 							<Link href="/docs/getting-started/installation">
 								Installations
 							</Link>
-						</DropdownItem>
-						<DropdownItem asChild>
+						</DropdownMenuItem>
+						<DropdownMenuItem asChild>
 							<Link href="/docs/fundamentals/colors">Fundamentals</Link>
-						</DropdownItem>
-						<DropdownItem asChild>
+						</DropdownMenuItem>
+						<DropdownMenuItem asChild>
 							<Link href="#">Animations</Link>
-						</DropdownItem>
-					</DropdownContent>
-				</Dropdown>
+						</DropdownMenuItem>
+					</DropdownMenuContent>
+				</DropdownMenu>
 				<BreadcrumbSeparator />
 
 				<BreadcrumbItem>

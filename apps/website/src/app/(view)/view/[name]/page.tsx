@@ -1,6 +1,6 @@
 import React from "react"
 import { Index } from "@/registry/blocks-example"
-import registry from "@/registry/registry-map"
+import { getComponent } from "@/registry/registry-map"
 
 export default async function Page({
 	params,
@@ -9,7 +9,7 @@ export default async function Page({
 }) {
 	const { name } = await params
 
-	const Component = registry[name]
+	const Component = getComponent(name)
 
 	if (!Component) {
 		const block = Index[name]

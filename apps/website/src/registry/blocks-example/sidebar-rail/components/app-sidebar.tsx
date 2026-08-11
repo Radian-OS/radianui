@@ -18,12 +18,12 @@ import {
 import { Badge } from "@/styles/default/ui/badge"
 import { IconButton } from "@/styles/default/ui/button"
 import {
-	Dropdown,
-	DropdownContent,
-	DropdownItem,
-	DropdownLabel,
-	DropdownTrigger,
-} from "@/styles/default/ui/dropdown"
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuItem,
+	DropdownMenuLabel,
+	DropdownMenuTrigger,
+} from "@/styles/default/ui/dropdown-menu"
 import {
 	HoverCard,
 	HoverCardContent,
@@ -287,31 +287,33 @@ export function AppSidebar() {
 
 								if (state === "collapsed" && !isMobile) {
 									return (
-										<Dropdown
+										<DropdownMenu
 											open={openItem === item.label}
 											onOpenChange={() => {}}
 											modal={false}
 											key={item.label}>
-											<DropdownTrigger className="group/trigger w-full" asChild>
+											<DropdownMenuTrigger
+												className="group/trigger w-full"
+												asChild>
 												<SidebarMenuButton
 													onMouseEnter={() => openMenu(item.label)}
 													onMouseLeave={closeMenu}
 													onPointerDown={(e) => e.preventDefault()}>
 													{item.icon && <item.icon />}
 												</SidebarMenuButton>
-											</DropdownTrigger>
-											<DropdownContent
+											</DropdownMenuTrigger>
+											<DropdownMenuContent
 												onMouseEnter={() => openMenu(item.label)}
 												onMouseLeave={closeMenu}
 												side="right"
 												className="w-60"
 												align="center">
 												{item.label && (
-													<DropdownLabel>{item.label}</DropdownLabel>
+													<DropdownMenuLabel>{item.label}</DropdownMenuLabel>
 												)}
 
 												{item.subitems.map((subitem) => (
-													<DropdownItem
+													<DropdownMenuItem
 														key={subitem.label}
 														className="[&_svg]:size-5!"
 														asChild>
@@ -319,10 +321,10 @@ export function AppSidebar() {
 															<subitem.icon />
 															{subitem.label}
 														</a>
-													</DropdownItem>
+													</DropdownMenuItem>
 												))}
-											</DropdownContent>
-										</Dropdown>
+											</DropdownMenuContent>
+										</DropdownMenu>
 									)
 								}
 
