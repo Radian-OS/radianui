@@ -1,5 +1,5 @@
 ---
-title: Dropdown
+title: Dropdown Menu
 description: A classic menu button that unfolds to reveal a list of useful links, actions, or settings shortcuts.
 links:
   github:
@@ -17,27 +17,42 @@ links:
 
 ## Installation
 
-<InstallationTabs>
+<InstallationTabs defaultValue="cli">
 	<InstallTabsList>
 		<InstallTabsTrigger value="cli">CLI</InstallTabsTrigger>
 		<InstallTabsTrigger value="manual">Manual</InstallTabsTrigger>
 	</InstallTabsList>
-	<InstallTabsContent value="cli">
-		```bash
-		npx radianui@latest add dropdown
-		```
+	<InstallTabsContent value="cli" className="p-0">
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm dlx radianui@latest add dropdown-menu",
+				npm: "npx radianui@latest add dropdown-menu",
+				yarn: "yarn dlx radianui@latest add dropdown-menu",
+				bun: "bunx radianui@latest add dropdown-menu",
+			}}
+		/>
 	</InstallTabsContent>
 	<InstallTabsContent value="manual" className="p-0">
-	<Steps>
-	    <Step>Install the following dependencies:</Step>
-		```bash
-		npm install @radix-ui/react-dropdown-menu
-		```
-    	<Step>Copy and paste the following code into your project.</Step>
-    	<ComponentSource src="styles/default/ui/dropdown.tsx" title="components/ui/dropdown.tsx" collapsible />
+		<Steps>
+			<Step>Install the following dependency:</Step>
+			<PackageManagerTabs
+				commands={{
+					pnpm: "pnpm add @radix-ui/react-dropdown-menu",
+					npm: "npm install @radix-ui/react-dropdown-menu",
+					yarn: "yarn add @radix-ui/react-dropdown-menu",
+					bun: "bun add @radix-ui/react-dropdown-menu",
+				}}
+			/>
 
-    	<Step>Update the import paths as per your project structure.</Step>
-    </Steps>
+    		<Step>Copy and paste the following code into your project.</Step>
+    		<ComponentSource
+    			src="styles/default/ui/dropdown-menu.tsx"
+    			title="components/ui/dropdown-menu.tsx"
+    			collapsible
+    		/>
+
+    		<Step>Update the import paths as per your project structure.</Step>
+    	</Steps>
     </InstallTabsContent>
 
 </InstallationTabs>
@@ -48,33 +63,33 @@ links:
 
 ### Imports
 
-```tsx showLineNumbers title="/components/ui/dropdown.tsx"
+```tsx showLineNumbers title="/components/ui/dropdown-menu.tsx"
 import {
-	Dropdown,
-	DropdownContent,
-	DropdownItem,
-	DropdownSub,
-	DropdownSubContent,
-	DropdownSubTrigger,
-	DropdownTrigger,
-} from "@/components/ui/dropdown"
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuItem,
+	DropdownMenuSub,
+	DropdownMenuSubContent,
+	DropdownMenuSubTrigger,
+	DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 ```
 
 ### Code
 
-```tsx showLineNumbers title="/components/ui/dropdown.tsx"
-<Dropdown>
-	<DropdownTrigger asChild>
+```tsx showLineNumbers title="/components/ui/dropdown-menu.tsx"
+<DropdownMenu>
+	<DropdownMenuTrigger asChild>
 		<Button variant="outline">Open Menu</Button>
-	</DropdownTrigger>
-	<DropdownContent>
-		<DropdownGroup title="Actions" selectionMode="single">
-			<DropdownItem value="new">New File</DropdownItem>
-			<DropdownItem value="open">Open File</DropdownItem>
-			<DropdownItem value="save">Save</DropdownItem>
-		</DropdownGroup>
-	</DropdownContent>
-</Dropdown>
+	</DropdownMenuTrigger>
+	<DropdownMenuContent>
+		<DropdownMenuGroup title="Actions" selectionMode="single">
+			<DropdownMenuItem value="new">New File</DropdownMenuItem>
+			<DropdownMenuItem value="open">Open File</DropdownMenuItem>
+			<DropdownMenuItem value="save">Save</DropdownMenuItem>
+		</DropdownMenuGroup>
+	</DropdownMenuContent>
+</DropdownMenu>
 ```
 
 ---
@@ -83,26 +98,26 @@ import {
 
 ### User Menu
 
-<ComponentPreview path="dropdown/user-profile-dropdown-example" />
+<ComponentPreview path="dropdown-menu/user-profile-dropdown-example" />
 
 ### With Simple Checkbox
 
-<ComponentPreview path="dropdown/dropdown-with-dropdown-checkbox" />
+<ComponentPreview path="dropdown-menu/dropdown-with-dropdown-checkbox" />
 
 ### With Check Box and Svg
 
-<ComponentPreview path="dropdown/dropdown-with-checkbox-example" />
+<ComponentPreview path="dropdown-menu/dropdown-with-checkbox-example" />
 
 ### With Radio Group
 
-<ComponentPreview path="dropdown/dropdown-with-radio" />
+<ComponentPreview path="dropdown-menu/dropdown-with-radio" />
 
 ---
 
 <ComponentDocContent
-	name={"Dropdown"}
+	name={"Dropdown Menu"}
 	description={
-		"A Dropdown is a menu that appears when you click a button, showing a list of actions or choices for you to pick from. Use this component to keep your screen clean by hiding extra options until they are needed."
+		"A Dropdown Menu is a menu that appears when you click a button, showing a list of actions or choices for you to pick from. Use this component to keep your screen clean by hiding extra options until they are needed."
 	}
 	features={[
 		{
@@ -135,7 +150,7 @@ import {
 		{
 			title: "Select",
 			description:
-				'Use Select for picking a data value within a form context; use Dropdown for triggering standalone actions (like "Edit" or "Delete") or navigating via links.',
+				'Use Select for picking a data value within a form context; use Dropdown Menu for triggering standalone actions (like "Edit" or "Delete") or navigating via links.',
 			href: "/docs/components/select",
 		},
 		{
@@ -153,7 +168,8 @@ import {
 	]}
 	faqs={[
 		{
-			question: "What is the exact difference between Dropdown and Select?",
+			question:
+				"What is the exact difference between Dropdown Menu and Select?",
 			answer:
 				"A Select component is specifically designed for standard HTML forms to pick a value (like choosing a country from a list). A Dropdown Menu is built for triggering application actions, opening modals, or navigating to new URLs (like a user profile settings menu).",
 		},
@@ -184,7 +200,7 @@ import {
 
 ## API Reference
 
-### Dropdown
+### DropdownMenu
 
 The root container.
 
@@ -207,11 +223,11 @@ The root container.
 	]}
 />
 
-    ### DropdownTrigger
+    ### DropdownMenuTrigger
 
 An interactive element that opens the dropdown menu when clicked.
 
-    ### DropdownContent
+    ### DropdownMenuContent
 
 The floating menu panel that appears when the trigger is activated.
 
@@ -234,7 +250,7 @@ The floating menu panel that appears when the trigger is activated.
 	]}
 />
 
-    ### DropdownItem
+    ### DropdownMenuItem
 
 An interactive, selectable item within the dropdown menu.
 

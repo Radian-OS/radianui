@@ -29,7 +29,7 @@ import {
 	DropdownSubContent,
 	DropdownSubTrigger,
 	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+} from "@/registry/ui/dropdown-menu"
 import { Input, InputWrapper } from "@/registry/ui/input"
 import { Label } from "@/registry/ui/label"
 import { Progress } from "@/registry/ui/progress"

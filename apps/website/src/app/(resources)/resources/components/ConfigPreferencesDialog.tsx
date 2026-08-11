@@ -32,7 +32,7 @@ import {
 	DropdownItem,
 	DropdownLabel,
 	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+} from "@/registry/ui/dropdown-menu"
 import { Label } from "@/registry/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/registry/ui/radio-group"
 import { Switch } from "@/registry/ui/switch"

@@ -34,7 +34,7 @@ import {
 	DropdownContent,
 	DropdownItem,
 	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+} from "@/registry/ui/dropdown-menu"
 import { Label } from "@/registry/ui/label"
 import {
 	Pagination,

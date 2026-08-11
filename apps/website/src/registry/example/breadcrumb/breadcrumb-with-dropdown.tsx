@@ -14,7 +14,7 @@ import {
 	DropdownGroup,
 	DropdownItem,
 	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+} from "@/registry/ui/dropdown-menu"
 
 function BreadcrumbWithDropdown() {
 	return (

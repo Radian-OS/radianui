@@ -10,7 +10,7 @@ import {
 	DropdownContent,
 	DropdownItem,
 	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+} from "@/registry/ui/dropdown-menu"
 import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
 
 const ButtonExampleInput = () => {

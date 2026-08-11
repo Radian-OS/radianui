@@ -11,7 +11,7 @@ import {
 	DropdownGroup,
 	DropdownItem,
 	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+} from "@/registry/ui/dropdown-menu"
 import { ScrollArea } from "@/registry/ui/scroll-area"
 
 const timezoneGroups = [

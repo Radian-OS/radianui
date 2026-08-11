@@ -17,7 +17,7 @@ import {
 	DropdownRadioGroup,
 	DropdownRadioItem,
 	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+} from "@/registry/ui/dropdown-menu"
 
 const CATEGORIES = [
 	{ value: "all", label: "All", icon: User },

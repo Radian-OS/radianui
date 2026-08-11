@@ -8,7 +8,7 @@ import {
 	DropdownDivider,
 	DropdownItem,
 	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+} from "@/registry/ui/dropdown-menu"
 
 const UserMenuDropdownExample = () => {
 	return (

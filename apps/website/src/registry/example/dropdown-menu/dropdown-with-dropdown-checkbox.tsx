@@ -7,7 +7,7 @@ import {
 	DropdownCheckboxItem,
 	DropdownContent,
 	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+} from "@/registry/ui/dropdown-menu"
 
 export default function DropdownWithDropdownCheckbox() {
 	const [email, setEmail] = React.useState(true)

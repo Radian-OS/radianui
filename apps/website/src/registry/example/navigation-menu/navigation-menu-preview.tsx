@@ -71,7 +71,7 @@ const PRODUCT_SECTIONS: MenuSection[] = [
 				icon: TextCursorInput,
 			},
 			{
-				title: "Dropdown",
+				title: "Dropdown Menu",
 				description: "Capture user input with accessible form controls.",
 				href: "#",
 				icon: ChevronsUpDown,

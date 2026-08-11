@@ -8,7 +8,7 @@ import {
 	DropdownContent,
 	DropdownItem,
 	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+} from "@/registry/ui/dropdown-menu"
 
 interface DocPageActionsProps {
 	slugAsParams: string

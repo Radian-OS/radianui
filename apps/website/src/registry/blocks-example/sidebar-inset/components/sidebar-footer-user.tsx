@@ -11,7 +11,7 @@ import {
 	DropdownLabel,
 	DropdownShortcut,
 	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+} from "@/registry/ui/dropdown-menu"
 import {
 	SidebarMenu,
 	SidebarMenuButton,

@@ -10,7 +10,7 @@ import {
 	DropdownItem,
 	DropdownLabel,
 	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+} from "@/registry/ui/dropdown-menu"
 import { Input } from "@/registry/ui/input"
 import { RadioGroup, RadioGroupItem } from "@/registry/ui/radio-group"
 import { Slider, SliderThumb } from "@/registry/ui/slider"

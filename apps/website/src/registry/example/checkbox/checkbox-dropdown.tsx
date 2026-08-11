@@ -12,7 +12,7 @@ import {
 	DropdownDivider,
 	DropdownItem,
 	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+} from "@/registry/ui/dropdown-menu"
 
 type BadgeColor = "success" | "warning" | "info"
 

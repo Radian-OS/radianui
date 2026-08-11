@@ -13,7 +13,7 @@ import {
 	DropdownItem,
 	DropdownLabel,
 	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+} from "@/registry/ui/dropdown-menu"
 
 type Workspace = "debcon" | "xavion" | "qubio" | "personal"
 

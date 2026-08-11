@@ -26,7 +26,7 @@ import {
 	DropdownSubContent,
 	DropdownSubTrigger,
 	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+} from "@/registry/ui/dropdown-menu"
 
 export default function DropdownPreview() {
 	const [open, setOpen] = React.useState<boolean>(false)

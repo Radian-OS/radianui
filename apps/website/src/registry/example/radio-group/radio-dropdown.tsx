@@ -10,7 +10,7 @@ import {
 	DropdownDivider,
 	DropdownGroup,
 	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+} from "@/registry/ui/dropdown-menu"
 import { RadioGroup, RadioGroupItem } from "@/registry/ui/radio-group"
 
 type OptionItem = {

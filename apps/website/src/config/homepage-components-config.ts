@@ -47,11 +47,11 @@ export const HOMEPAGE_COMPONENTS_LIST: {
 		alt: "Button UI component illustration",
 	},
 	{
-		title: "Dropdown",
+		title: "Dropdown Menu",
 		description: "2 Components, 67 Variants",
-		url: "/docs/components/dropdown",
+		url: "/docs/components/dropdown-menu",
 		thumbnail: DropdownThumbnail,
-		alt: "Dropdown UI component illustration",
+		alt: "Dropdown Menu UI component illustration",
 	},
 	{
 		title: "Tabs",

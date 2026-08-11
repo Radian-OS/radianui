@@ -10,7 +10,7 @@ import {
 	DropdownItem,
 	DropdownLabel,
 	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+} from "@/registry/ui/dropdown-menu"
 import {
 	HoverCard,
 	HoverCardContent,

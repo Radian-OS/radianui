@@ -42,8 +42,11 @@ export type NavigationSection = {
 }
 
 // Helper to generate thumbnail paths
+const getComponentSlug = (title: string) =>
+	title.toLowerCase().replace(/\s+/g, "-")
+
 const getThumbnail = (title: string, dark = false) =>
-	`/thumbnails/${title.toLowerCase().replace(/\s+/g, "-")}${dark ? "-dark" : ""}.webp`
+	`/thumbnails/${getComponentSlug(title)}${dark ? "-dark" : ""}.webp`
 
 // ===== Fundamentals & Components Data =====
 const FUNDAMENTALS_DATA = [
@@ -96,7 +99,7 @@ export const COMPONENTS_DATA = [
 	"Date Picker",
 	"Dialog",
 	"Divider",
-	"Dropdown",
+	"Dropdown Menu",
 	"Drawer",
 	"Empty",
 	"Input",
@@ -108,7 +111,7 @@ export const COMPONENTS_DATA = [
 	"Menubar",
 	"Navigation Menu",
 	"Pagination",
-	"Phone Number Input",
+	"Phone Input",
 	"Popover",
 	"Progress",
 	"Radio Group",
@@ -144,7 +147,7 @@ const NEW_COMPONENTS = new Set([
 // Map Components array to NavigationItem
 const generateComponentsItems = COMPONENTS_DATA.map((title) => ({
 	title,
-	url: `/docs/components/${title.toLowerCase().replace(/\s+/g, "-")}`,
+	url: `/docs/components/${getComponentSlug(title)}`,
 	thumbnail: getThumbnail(title),
 	thumbnailDark: getThumbnail(title, true),
 	alt: `${title} UI component illustration`,

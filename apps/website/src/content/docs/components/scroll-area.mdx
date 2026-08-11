@@ -15,27 +15,42 @@ links:
 
 ## Installation
 
-<InstallationTabs>
+<InstallationTabs defaultValue="cli">
 	<InstallTabsList>
 		<InstallTabsTrigger value="cli">CLI</InstallTabsTrigger>
 		<InstallTabsTrigger value="manual">Manual</InstallTabsTrigger>
 	</InstallTabsList>
-	<InstallTabsContent value="cli">
-		```bash
-		npm install @radix-ui/react-scroll-area
-		```
+	<InstallTabsContent value="cli" className="p-0">
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm dlx radianui@latest add scroll-area",
+				npm: "npx radianui@latest add scroll-area",
+				yarn: "yarn dlx radianui@latest add scroll-area",
+				bun: "bunx radianui@latest add scroll-area",
+			}}
+		/>
 	</InstallTabsContent>
 	<InstallTabsContent value="manual" className="p-0">
 		<Steps>
-			<Step>Copy and paste the following code into your project.</Step>
-			<ComponentSource
-				src="styles/default/ui/scroll-area.tsx"
-				title="components/ui/scroll-area.tsx"
-				collapsible
+			<Step>Install the following dependency:</Step>
+			<PackageManagerTabs
+				commands={{
+					pnpm: "pnpm add @radix-ui/react-scroll-area",
+					npm: "npm install @radix-ui/react-scroll-area",
+					yarn: "yarn add @radix-ui/react-scroll-area",
+					bun: "bun add @radix-ui/react-scroll-area",
+				}}
 			/>
-			<Step>Update the import paths as per your project structure.</Step>
-		</Steps>
-	</InstallTabsContent>
+
+    		<Step>Copy and paste the following code into your project.</Step>
+    		<ComponentSource
+    			src="styles/default/ui/scroll-area.tsx"
+    			title="components/ui/scroll-area.tsx"
+    			collapsible
+    		/>
+    		<Step>Update the import paths as per your project structure.</Step>
+    	</Steps>
+    </InstallTabsContent>
 
 </InstallationTabs>
 
@@ -69,7 +84,7 @@ import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 
 <ComponentPreview path="scroll-area/scroll-area-horizontal" />
 
-### Scroll Area Dropdown
+### Scroll Area Dropdown Menu
 
 <ComponentPreview path="scroll-area/scroll-area-dropdown" />
 
@@ -98,7 +113,7 @@ import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 			title: "Dropdown Menu",
 			description:
 				"Frequently used inside complex, multi-item dropdowns to prevent the menu from overflowing the user's viewport height.",
-			href: "/docs/components/dropdown",
+			href: "/docs/components/dropdown-menu",
 		},
 		{
 			title: "Resizable",

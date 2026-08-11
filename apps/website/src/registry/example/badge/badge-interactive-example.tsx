@@ -10,7 +10,7 @@ import {
 	DropdownCheckboxItem,
 	DropdownContent,
 	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+} from "@/registry/ui/dropdown-menu"
 
 const PEOPLE = [
 	{ name: "Grace", initials: "GH", image: "/media/female-1.jpg" },

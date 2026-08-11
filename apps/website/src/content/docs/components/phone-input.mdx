@@ -1,5 +1,5 @@
 ---
-title: Phone Number Input
+title: Phone Input
 description: A smart phone number field that includes an interactive country code selector and automatic number formatting.
 links:
   github:
@@ -18,7 +18,7 @@ links:
 
 ## Installation
 
-The Phone Number Input is built using a composition of the [Combobox](/docs/components/combobox) and the [Input](/docs/components/input) components.
+The Phone Input is built using a composition of the [Combobox](/docs/components/combobox) and the [Input](/docs/components/input) components.
 It utilizes the **usePhoneInput()** hook from **react-international-phone** library.
 
 ```bash
@@ -31,38 +31,38 @@ npm install react-international-phone
 
 ### National
 
-<ComponentPreview path="phone-number-input/national-phone-number-example" />
+<ComponentPreview path="phone-input/national-phone-number-example" />
 
 ### Only Countries
 
-<ComponentPreview path="phone-number-input/only-countries-phone" />
+<ComponentPreview path="phone-input/only-countries-phone" />
 
 ### Preferred Countries
 
-<ComponentPreview path="phone-number-input/preferred-countries-phone" />
+<ComponentPreview path="phone-input/preferred-countries-phone" />
 
 ### Exclude Countries
 
-<ComponentPreview path="phone-number-input/exclude-countries-example" />
+<ComponentPreview path="phone-input/exclude-countries-example" />
 
-### No Dropdown
+### No Dropdown Menu
 
-<ComponentPreview path="phone-number-input/phone-number-example" />
+<ComponentPreview path="phone-input/phone-number-example" />
 
-### Phone Number Static
+### Static Phone Input
 
-<ComponentPreview path="phone-number-input/phone-number-static" />
+<ComponentPreview path="phone-input/phone-number-static" />
 
 ### No Formatting
 
-<ComponentPreview path="phone-number-input/phone-number-no-formatting" />
+<ComponentPreview path="phone-input/phone-number-no-formatting" />
 
 ---
 
 <ComponentDocContent
-	name={"Phone Number Input"}
+	name={"Phone Input"}
 	description={
-		"Phone Number Input is a form component for entering phone numbers from different countries. It includes a country code selector, automatic number formatting, and validation-friendly input for a consistent and user-friendly experience."
+		"Phone Input is a form component for entering phone numbers from different countries. It includes a country code selector, automatic number formatting, and validation-friendly input for a consistent and user-friendly experience."
 	}
 	features={[
 		"Automatically formats user input with correct spacing and parentheses in real-time based on the currently selected country.",
@@ -74,7 +74,7 @@ npm install react-international-phone
 		{
 			title: "Input",
 			description:
-				"The foundational standard field. Use the Phone Number Input explicitly for telephones, but fall back to the standard Input for simple numerical IDs.",
+				"The foundational standard field. Use the Phone Input explicitly for telephones, but fall back to the standard Input for simple numerical IDs.",
 			href: "/docs/components/input",
 		},
 		{
@@ -130,7 +130,7 @@ The main input component for collecting and formatting international phone numbe
 			defaultValue: "US",
 			required: false,
 			description:
-				"The default country code (ISO 3166-1 alpha-2) for the phone number input.",
+				"The default country code (ISO 3166-1 alpha-2) for the phone input.",
 		},
 		{
 			name: "countries",
@@ -143,7 +143,7 @@ The main input component for collecting and formatting international phone numbe
 			name: "value",
 			values: ["string"],
 			required: false,
-			description: "The controlled value of the phone number input.",
+			description: "The controlled value of the phone input.",
 		},
 		{
 			name: "onChange",
@@ -157,7 +157,7 @@ The main input component for collecting and formatting international phone numbe
 			defaultValue: "false",
 			required: false,
 			description:
-				"Disables interaction with the phone number input when set to true.",
+				"Disables interaction with the phone input when set to true.",
 		},
 		{
 			name: "placeholder",

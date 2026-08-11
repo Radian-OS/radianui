@@ -13,7 +13,7 @@ import {
 	DropdownContent,
 	DropdownItem,
 	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+} from "@/registry/ui/dropdown-menu"
 
 function BreadCrumbPreview() {
 	return (
