@@ -3,14 +3,14 @@
 import { IconSlot } from "@/registry/icon/icon-library"
 import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
 import {
-	Dropdown,
-	DropdownContent,
-	DropdownDivider,
-	DropdownGroup,
-	DropdownItem,
-	DropdownLabel,
-	DropdownShortcut,
-	DropdownTrigger,
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuDivider,
+	DropdownMenuGroup,
+	DropdownMenuItem,
+	DropdownMenuLabel,
+	DropdownMenuShortcut,
+	DropdownMenuTrigger,
 } from "@/registry/ui/dropdown-menu"
 import {
 	SidebarMenu,
@@ -25,8 +25,8 @@ export function SidebarFooterUser() {
 	return (
 		<SidebarMenu className="p-3 group-data-[state=collapsed]:p-3.5">
 			<SidebarMenuItem>
-				<Dropdown>
-					<DropdownTrigger asChild>
+				<DropdownMenu>
+					<DropdownMenuTrigger asChild>
 						<SidebarMenuButton size="48">
 							<Avatar size="32">
 								<AvatarImage src="/media/male-3.jpg" />
@@ -40,13 +40,13 @@ export function SidebarFooterUser() {
 							</div>
 							<IconSlot slot="chevrons-up-down" />
 						</SidebarMenuButton>
-					</DropdownTrigger>
+					</DropdownMenuTrigger>
 
-					<DropdownContent
+					<DropdownMenuContent
 						className="min-w-68"
 						side={isMobile ? "top" : "right"}
 						align="end">
-						<DropdownLabel className="p-0 font-normal">
+						<DropdownMenuLabel className="p-0 font-normal">
 							<div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
 								<Avatar className="h-8 w-8 rounded-lg">
 									<AvatarImage src="/media/male-3.jpg" alt="Jim Simmons" />
@@ -61,37 +61,37 @@ export function SidebarFooterUser() {
 									</span>
 								</div>
 							</div>
-						</DropdownLabel>
-						<DropdownDivider />
-						<DropdownGroup>
-							<DropdownItem>
+						</DropdownMenuLabel>
+						<DropdownMenuDivider />
+						<DropdownMenuGroup>
+							<DropdownMenuItem>
 								<IconSlot slot="sparkles" className="size-4" />
 								Upgrade to Pro
-							</DropdownItem>
-						</DropdownGroup>
-						<DropdownDivider />
-						<DropdownGroup>
-							<DropdownItem>
+							</DropdownMenuItem>
+						</DropdownMenuGroup>
+						<DropdownMenuDivider />
+						<DropdownMenuGroup>
+							<DropdownMenuItem>
 								<IconSlot slot="badge-check" className="size-4" />
 								Account
-							</DropdownItem>
-							<DropdownItem>
+							</DropdownMenuItem>
+							<DropdownMenuItem>
 								<IconSlot slot="card" className="size-4" />
 								Billing
-							</DropdownItem>
-							<DropdownItem>
+							</DropdownMenuItem>
+							<DropdownMenuItem>
 								<IconSlot slot="bell" className="size-4" />
 								Notifications
-							</DropdownItem>
-						</DropdownGroup>
-						<DropdownDivider />
-						<DropdownItem>
+							</DropdownMenuItem>
+						</DropdownMenuGroup>
+						<DropdownMenuDivider />
+						<DropdownMenuItem>
 							<IconSlot slot="logout" className="size-4" />
 							Log out
-							<DropdownShortcut>⌘L</DropdownShortcut>
-						</DropdownItem>
-					</DropdownContent>
-				</Dropdown>
+							<DropdownMenuShortcut>⌘L</DropdownMenuShortcut>
+						</DropdownMenuItem>
+					</DropdownMenuContent>
+				</DropdownMenu>
 			</SidebarMenuItem>
 		</SidebarMenu>
 	)

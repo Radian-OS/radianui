@@ -4,7 +4,7 @@
 .env.test.local
 .env.production.local
 next-env.d.ts
-.contentlayer/
+.fumadocs/
 robots.txt
 sitemap-*.xml
 sitemap.xml
@@ -16,3 +16,5 @@ src/registry/registry-map.ts
 src/registry/blocks-example/index.tsx
 public/llms.txt
 public/llms-full.txt
+
+.source/

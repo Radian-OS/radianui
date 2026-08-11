@@ -17,91 +17,91 @@ import {
 import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
 import {
-	Dropdown,
-	DropdownContent,
-	DropdownDivider,
-	DropdownItem,
-	DropdownShortcut,
-	DropdownSub,
-	DropdownSubContent,
-	DropdownSubTrigger,
-	DropdownTrigger,
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuDivider,
+	DropdownMenuItem,
+	DropdownMenuShortcut,
+	DropdownMenuSub,
+	DropdownMenuSubContent,
+	DropdownMenuSubTrigger,
+	DropdownMenuTrigger,
 } from "@/registry/ui/dropdown-menu"
 
 export default function DropdownPreview() {
 	const [open, setOpen] = React.useState<boolean>(false)
 
 	return (
-		<Dropdown open={open} onOpenChange={setOpen}>
-			<DropdownTrigger asChild>
+		<DropdownMenu open={open} onOpenChange={setOpen}>
+			<DropdownMenuTrigger asChild>
 				<Button color="neutral" variant="outline">
 					Quick Actions
 					<ChevronDown className="text-fg-secondary" />
 				</Button>
-			</DropdownTrigger>
-			<DropdownContent className="w-80">
-				<DropdownItem>
+			</DropdownMenuTrigger>
+			<DropdownMenuContent className="w-80">
+				<DropdownMenuItem>
 					<PencilLine />
 					Edit
-					<DropdownShortcut>
+					<DropdownMenuShortcut>
 						<Badge size="20" variant="outline" color="neutral">
 							⌘E
 						</Badge>
-					</DropdownShortcut>
-				</DropdownItem>
-				<DropdownItem>
+					</DropdownMenuShortcut>
+				</DropdownMenuItem>
+				<DropdownMenuItem>
 					<Copy />
 					Duplicate
-					<DropdownShortcut>
+					<DropdownMenuShortcut>
 						<Badge size="20" variant="outline" color="neutral">
 							⌘D
 						</Badge>
-					</DropdownShortcut>
-				</DropdownItem>
-				<DropdownSub>
-					<DropdownSubTrigger>
+					</DropdownMenuShortcut>
+				</DropdownMenuItem>
+				<DropdownMenuSub>
+					<DropdownMenuSubTrigger>
 						<Move />
 						Move to...
-					</DropdownSubTrigger>
-					<DropdownSubContent>
-						<DropdownItem>
+					</DropdownMenuSubTrigger>
+					<DropdownMenuSubContent>
+						<DropdownMenuItem>
 							<Users />
 							Existing Users
-						</DropdownItem>
-						<DropdownItem>
+						</DropdownMenuItem>
+						<DropdownMenuItem>
 							<UserPlus />
 							New Users
-						</DropdownItem>
-					</DropdownSubContent>
-				</DropdownSub>
-				<DropdownItem>
+						</DropdownMenuItem>
+					</DropdownMenuSubContent>
+				</DropdownMenuSub>
+				<DropdownMenuItem>
 					<Link />
 					Copy link
-				</DropdownItem>
-				<DropdownDivider />
-				<DropdownItem>
+				</DropdownMenuItem>
+				<DropdownMenuDivider />
+				<DropdownMenuItem>
 					<Star />
 					Add to favorites
-				</DropdownItem>
-				<DropdownItem>
+				</DropdownMenuItem>
+				<DropdownMenuItem>
 					<ArrowLeftRight />
 					Transfer
-				</DropdownItem>
-				<DropdownItem>
+				</DropdownMenuItem>
+				<DropdownMenuItem>
 					<Archive />
 					Archive
-				</DropdownItem>
-				<DropdownDivider />
-				<DropdownItem>
+				</DropdownMenuItem>
+				<DropdownMenuDivider />
+				<DropdownMenuItem>
 					<Trash2 />
 					Delete
-					<DropdownShortcut>
+					<DropdownMenuShortcut>
 						<Badge size="20" variant="outline" color="neutral">
 							⌫
 						</Badge>
-					</DropdownShortcut>
-				</DropdownItem>
-			</DropdownContent>
-		</Dropdown>
+					</DropdownMenuShortcut>
+				</DropdownMenuItem>
+			</DropdownMenuContent>
+		</DropdownMenu>
 	)
 }

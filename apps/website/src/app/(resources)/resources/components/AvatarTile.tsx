@@ -11,10 +11,10 @@ import { useAvatarTileActions } from "@/hooks/avatar/use-avatar-tile-actions"
 import { cn } from "@/lib/utils"
 import { Button, CompactButton, IconButton } from "@/registry/ui/button"
 import {
-	Dropdown,
-	DropdownContent,
-	DropdownItem,
-	DropdownTrigger,
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuItem,
+	DropdownMenuTrigger,
 } from "@/registry/ui/dropdown-menu"
 
 export interface AvatarTileProps {
@@ -82,8 +82,8 @@ export const AvatarTile = ({
 					"absolute right-2 top-2 transition-opacity",
 					open ? "opacity-100" : "opacity-0 group-hover:opacity-100"
 				)}>
-				<Dropdown open={open} onOpenChange={setOpen}>
-					<DropdownTrigger asChild>
+				<DropdownMenu open={open} onOpenChange={setOpen}>
+					<DropdownMenuTrigger asChild>
 						<CompactButton
 							aria-label="Button with Down Arrow"
 							size="20"
@@ -92,23 +92,23 @@ export const AvatarTile = ({
 							onClick={(e) => e.stopPropagation()}>
 							<MoreHorizontal className="size-4" />
 						</CompactButton>
-					</DropdownTrigger>
+					</DropdownMenuTrigger>
 
-					<DropdownContent align="end" className="w-40">
-						<DropdownItem onClick={handleCopy}>
+					<DropdownMenuContent align="end" className="w-40">
+						<DropdownMenuItem onClick={handleCopy}>
 							<Copy />
 							Copy
-						</DropdownItem>
-						<DropdownItem onClick={handleDownload}>
+						</DropdownMenuItem>
+						<DropdownMenuItem onClick={handleDownload}>
 							<Download />
 							Download
-						</DropdownItem>
-						<DropdownItem>
+						</DropdownMenuItem>
+						<DropdownMenuItem>
 							<Star />
 							Favourite
-						</DropdownItem>
-					</DropdownContent>
-				</Dropdown>
+						</DropdownMenuItem>
+					</DropdownMenuContent>
+				</DropdownMenu>
 			</div>
 
 			<div className="absolute bottom-2 right-2 opacity-0 transition-opacity group-hover:opacity-100">

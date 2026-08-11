@@ -22,12 +22,12 @@ import { RADIUS, RadiusValue } from "@/registry/radius"
 import { STYLES, StyleValue } from "@/registry/styles"
 import { Button } from "@/styles/default/ui/button"
 import {
-	Dropdown,
-	DropdownContent,
-	DropdownRadioGroup,
-	DropdownRadioItem,
-	DropdownTrigger,
-} from "@/styles/default/ui/dropdown"
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuRadioGroup,
+	DropdownMenuRadioItem,
+	DropdownMenuTrigger,
+} from "@/styles/default/ui/dropdown-menu"
 import { Tabs, TabsList, TabsTrigger } from "@/styles/default/ui/tabs"
 import { ColorSwatch } from "./color-swatch"
 import { CreateProjectDialog } from "./create-project-dialog"
@@ -225,13 +225,13 @@ export function ThemerSidebar({
 
 				<div className="flex flex-col gap-3">
 					<SectionLabel>Styles</SectionLabel>
-					<Dropdown>
-						<DropdownTrigger className="border-border hover:border-fg-disabled bg-elevation-level2 flex w-full items-center justify-between gap-2 rounded-lg border px-3 py-2 text-sm transition-colors">
+					<DropdownMenu>
+						<DropdownMenuTrigger className="border-border hover:border-fg-disabled bg-elevation-level2 flex w-full items-center justify-between gap-2 rounded-lg border px-3 py-2 text-sm transition-colors">
 							<span className="text-fg font-medium">{selectedStyle?.name}</span>
 							<ChevronDown className="text-fg-tertiary size-3.5 shrink-0" />
-						</DropdownTrigger>
-						<DropdownContent side="right" className="max-h-96 w-64">
-							<DropdownRadioGroup
+						</DropdownMenuTrigger>
+						<DropdownMenuContent side="right" className="max-h-96 w-64">
+							<DropdownMenuRadioGroup
 								value={selectedStyle?.value}
 								onValueChange={(value) => {
 									const preset = PRESETS.find((p) => p.name === value)
@@ -264,7 +264,7 @@ export function ThemerSidebar({
 									})
 								}}>
 								{STYLES.map((style) => (
-									<DropdownRadioItem
+									<DropdownMenuRadioItem
 										key={style.value}
 										value={style.value}
 										className="py-2.5"
@@ -275,11 +275,11 @@ export function ThemerSidebar({
 												{style.description}
 											</span>
 										</div>
-									</DropdownRadioItem>
+									</DropdownMenuRadioItem>
 								))}
-							</DropdownRadioGroup>
-						</DropdownContent>
-					</Dropdown>
+							</DropdownMenuRadioGroup>
+						</DropdownMenuContent>
+					</DropdownMenu>
 				</div>
 
 				{/* Color Section */}
@@ -318,48 +318,48 @@ export function ThemerSidebar({
 							/>
 						))}
 					</div> */}
-					<Dropdown>
-						<DropdownTrigger className="border-border hover:border-fg-disabled bg-elevation-level2 flex w-full items-center justify-between gap-2 rounded-lg border px-3 py-2 text-sm transition-colors">
+					<DropdownMenu>
+						<DropdownMenuTrigger className="border-border hover:border-fg-disabled bg-elevation-level2 flex w-full items-center justify-between gap-2 rounded-lg border px-3 py-2 text-sm transition-colors">
 							<span className="text-fg font-medium">
 								{BASE_COLORS_MAP[params.baseColor].name}
 							</span>
 							<ChevronDown className="text-fg-tertiary size-3.5 shrink-0" />
-						</DropdownTrigger>
-						<DropdownContent side="left" className="max-h-96 w-56">
-							<DropdownRadioGroup
+						</DropdownMenuTrigger>
+						<DropdownMenuContent side="left" className="max-h-96 w-56">
+							<DropdownMenuRadioGroup
 								value={params.baseColor}
 								onValueChange={(value) =>
 									setParams({ baseColor: value as BaseColorValue })
 								}>
 								{BASE_COLORS.map((baseColor) => (
-									<DropdownRadioItem
+									<DropdownMenuRadioItem
 										key={baseColor.value}
 										value={baseColor.value}
 										onSelect={(e) => e.preventDefault()}>
 										{baseColor.name}
-									</DropdownRadioItem>
+									</DropdownMenuRadioItem>
 								))}
-							</DropdownRadioGroup>
-						</DropdownContent>
-					</Dropdown>
+							</DropdownMenuRadioGroup>
+						</DropdownMenuContent>
+					</DropdownMenu>
 				</div>
 
 				{/* Component Preview */}
 				<div className="flex flex-col gap-3">
 					<SectionLabel>Preview</SectionLabel>
-					<Dropdown>
-						<DropdownTrigger className="border-border hover:border-fg-disabled bg-elevation-level2 flex w-full items-center justify-between gap-2 rounded-lg border px-3 py-2 text-sm transition-colors">
+					<DropdownMenu>
+						<DropdownMenuTrigger className="border-border hover:border-fg-disabled bg-elevation-level2 flex w-full items-center justify-between gap-2 rounded-lg border px-3 py-2 text-sm transition-colors">
 							<span className="text-fg font-medium">
 								{selectedComponentName}
 							</span>
 							<ChevronDown className="text-fg-tertiary size-3.5 shrink-0" />
-						</DropdownTrigger>
-						<DropdownContent side="left" className="max-h-96 w-56">
-							<DropdownRadioGroup
+						</DropdownMenuTrigger>
+						<DropdownMenuContent side="left" className="max-h-96 w-56">
+							<DropdownMenuRadioGroup
 								value={selectedComponent}
 								onValueChange={setSelectedComponent}>
 								{PREVIEW_ITEMS.map((item) => (
-									<DropdownRadioItem
+									<DropdownMenuRadioItem
 										key={item.value}
 										value={item.value}
 										onSelect={(e) => e.preventDefault()}>
@@ -369,40 +369,40 @@ export function ThemerSidebar({
 												{item.description}
 											</span>
 										</div>
-									</DropdownRadioItem>
+									</DropdownMenuRadioItem>
 								))}
-							</DropdownRadioGroup>
-						</DropdownContent>
-					</Dropdown>
+							</DropdownMenuRadioGroup>
+						</DropdownMenuContent>
+					</DropdownMenu>
 				</div>
 
 				{/* Icon Library */}
 				<div className="flex flex-col gap-3">
 					<SectionLabel>Icons</SectionLabel>
-					<Dropdown>
-						<DropdownTrigger className="border-border hover:border-fg-disabled bg-elevation-level2 flex w-full items-center justify-between gap-2 rounded-lg border px-3 py-2 text-sm transition-colors">
+					<DropdownMenu>
+						<DropdownMenuTrigger className="border-border hover:border-fg-disabled bg-elevation-level2 flex w-full items-center justify-between gap-2 rounded-lg border px-3 py-2 text-sm transition-colors">
 							<span className="text-fg font-medium">
 								{ICON_LIBRARY_LABELS[params.iconLibrary as IconLibrary]}
 							</span>
 							<ChevronDown className="text-fg-tertiary size-3.5 shrink-0" />
-						</DropdownTrigger>
-						<DropdownContent side="left" className="max-h-96 w-56">
-							<DropdownRadioGroup
+						</DropdownMenuTrigger>
+						<DropdownMenuContent side="left" className="max-h-96 w-56">
+							<DropdownMenuRadioGroup
 								value={params.iconLibrary}
 								onValueChange={(value) =>
 									setParams({ iconLibrary: value as IconLibrary })
 								}>
 								{ICON_LIBRARIES.map((iconLibrary) => (
-									<DropdownRadioItem
+									<DropdownMenuRadioItem
 										key={iconLibrary}
 										value={iconLibrary}
 										onSelect={(e) => e.preventDefault()}>
 										{ICON_LIBRARY_LABELS[iconLibrary]}
-									</DropdownRadioItem>
+									</DropdownMenuRadioItem>
 								))}
-							</DropdownRadioGroup>
-						</DropdownContent>
-					</Dropdown>
+							</DropdownMenuRadioGroup>
+						</DropdownMenuContent>
+					</DropdownMenu>
 				</div>
 
 				{/* Typography */}

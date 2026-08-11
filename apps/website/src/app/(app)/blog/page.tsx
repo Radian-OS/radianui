@@ -1,9 +1,9 @@
-import { allBlogs } from "contentlayer/generated"
 import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
 import { EmailSubscribeBlog } from "@/components/email-subscribe-blog"
 import { JsonLd } from "@/components/seo/json-ld"
+import { blog } from "@/lib/source"
 import { absoluteUrl, getBlogIndexStructuredData } from "@/lib/structured-data"
 import { Badge } from "@/registry/ui/badge"
 import { Divider } from "@/registry/ui/divider"
@@ -64,18 +64,18 @@ export default async function BlogPage({ params }: BlogListPageProps) {
 		: typeof params.slug === "string"
 			? params.slug
 			: ""
-	const filteredBlogs = allBlogs.filter((blog) =>
-		blog.slugAsParams.startsWith(slugPath)
-	)
+	const filteredBlogs = blog
+		.getPages()
+		.filter((post) => post.slugs.join("/").startsWith(slugPath))
 
 	return (
 		<>
 			<JsonLd
 				id="blog-index-structured-data"
 				data={getBlogIndexStructuredData({
-					posts: filteredBlogs.map((blog) => ({
-						title: blog.title,
-						url: absoluteUrl(blog.slug),
+					posts: filteredBlogs.map((post) => ({
+						title: post.data.title,
+						url: absoluteUrl(post.url),
 					})),
 				})}
 			/>
@@ -114,32 +114,36 @@ export default async function BlogPage({ params }: BlogListPageProps) {
 					</div>
 				</div>
 
-				{filteredBlogs.map((blog) => (
-					<span key={blog._id}>
+				{filteredBlogs.map((post) => (
+					<span key={post.url}>
 						<Divider className="my-10" />
 						<Link
-							href={blog.slug}
+							href={post.url}
 							className="flex flex-col items-start gap-9 md:flex-row">
 							<Image
 								className="md:w-70 md:h-45 h-full w-full rounded-lg object-cover"
 								alt="blog-image"
 								height={400}
 								width={400}
-								src={blog.image ?? "/og/static-og.png"}
+								src={post.data.image ?? "/og/static-og.png"}
 							/>
 							<section className="flex flex-col lg:items-start">
 								<div className="flex flex-col gap-1 pt-2 lg:items-start lg:pt-0">
-									<p className="text-fg-tertiary text-sm">{blog.card}</p>
-									<span className="heading-6">{blog.title}</span>
+									<p className="text-fg-tertiary text-sm">{post.data.card}</p>
+									<span className="heading-6">{post.data.title}</span>
 								</div>
 								<div className="flex gap-2 pb-5 pt-3">
-									{/* <AvatarGroup>{blog.author ? blog.author.map((item) => <Avatar key={item.name} name={item.name} src={item.avatar} />) : []}</AvatarGroup> */}
+									{/* <AvatarGroup>{post.data.author ? post.data.author.map((item) => <Avatar key={item.name} name={item.name} src={item.avatar} />) : []}</AvatarGroup> */}
 									<span className="text-fg-secondary">
-										{blog.formattedDate}
+										{new Date(post.data.date).toLocaleDateString("en-US", {
+											month: "long",
+											day: "numeric",
+											year: "numeric",
+										})}
 									</span>
 								</div>
 								<p className="text-fg-secondary max-w-121 text-sm lg:text-start">
-									{blog.description}
+									{post.data.description}
 								</p>
 							</section>
 						</Link>

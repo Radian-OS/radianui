@@ -3,10 +3,10 @@
 import * as React from "react"
 import { Button } from "@/registry/ui/button"
 import {
-	Dropdown,
-	DropdownCheckboxItem,
-	DropdownContent,
-	DropdownTrigger,
+	DropdownMenu,
+	DropdownMenuCheckboxItem,
+	DropdownMenuContent,
+	DropdownMenuTrigger,
 } from "@/registry/ui/dropdown-menu"
 
 export default function DropdownWithDropdownCheckbox() {
@@ -15,32 +15,32 @@ export default function DropdownWithDropdownCheckbox() {
 	const [push, setPush] = React.useState(true)
 
 	return (
-		<Dropdown indicatorPosition="left">
-			<DropdownTrigger asChild>
+		<DropdownMenu indicatorPosition="left">
+			<DropdownMenuTrigger asChild>
 				<Button variant="outline" color="neutral">
 					Notifications
 				</Button>
-			</DropdownTrigger>
-			<DropdownContent>
-				<DropdownCheckboxItem
+			</DropdownMenuTrigger>
+			<DropdownMenuContent>
+				<DropdownMenuCheckboxItem
 					onSelect={(e) => e.preventDefault()}
 					checked={email}
 					onCheckedChange={(checked) => setEmail(checked)}>
 					Email
-				</DropdownCheckboxItem>
-				<DropdownCheckboxItem
+				</DropdownMenuCheckboxItem>
+				<DropdownMenuCheckboxItem
 					onSelect={(e) => e.preventDefault()}
 					checked={sms}
 					onCheckedChange={(checked) => setSms(checked)}>
 					SMS
-				</DropdownCheckboxItem>
-				<DropdownCheckboxItem
+				</DropdownMenuCheckboxItem>
+				<DropdownMenuCheckboxItem
 					onSelect={(e) => e.preventDefault()}
 					checked={push}
 					onCheckedChange={(checked) => setPush(checked)}>
 					Push Notifications
-				</DropdownCheckboxItem>
-			</DropdownContent>
-		</Dropdown>
+				</DropdownMenuCheckboxItem>
+			</DropdownMenuContent>
+		</DropdownMenu>
 	)
 }

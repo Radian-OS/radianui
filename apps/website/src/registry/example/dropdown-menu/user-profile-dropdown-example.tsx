@@ -3,23 +3,23 @@ import { FolderCog, LogOut, Settings, UserCog } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
 import { Badge } from "@/registry/ui/badge"
 import {
-	Dropdown,
-	DropdownContent,
-	DropdownDivider,
-	DropdownItem,
-	DropdownTrigger,
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuDivider,
+	DropdownMenuItem,
+	DropdownMenuTrigger,
 } from "@/registry/ui/dropdown-menu"
 
 const UserMenuDropdownExample = () => {
 	return (
-		<Dropdown>
-			<DropdownTrigger asChild className="cursor-pointer">
+		<DropdownMenu>
+			<DropdownMenuTrigger asChild className="cursor-pointer">
 				<Avatar size="40">
 					<AvatarImage src="https://randomuser.me/api/portraits/men/1.jpg" />
 					<AvatarFallback>WM</AvatarFallback>
 				</Avatar>
-			</DropdownTrigger>
-			<DropdownContent
+			</DropdownMenuTrigger>
+			<DropdownMenuContent
 				align="center"
 				className="[&_svg]:text-fg-secondary w-80 space-y-0.5">
 				<div className="flex w-full items-center gap-2.5 p-2">
@@ -37,7 +37,7 @@ const UserMenuDropdownExample = () => {
 						PRO
 					</Badge>
 				</div>
-				<DropdownDivider />
+				<DropdownMenuDivider />
 				<div className="flex w-full items-center gap-2.5 p-2">
 					<div className="flex-1">
 						<p className="text-sm-p font-medium">Account Storage</p>
@@ -49,20 +49,20 @@ const UserMenuDropdownExample = () => {
 						Manage
 					</Badge>
 				</div>
-				<DropdownDivider />
-				<DropdownItem className="px-2 py-1.5">
+				<DropdownMenuDivider />
+				<DropdownMenuItem className="px-2 py-1.5">
 					<Settings className="size-5" />
 					Settings
-				</DropdownItem>
-				<DropdownItem className="px-2 py-1.5">
+				</DropdownMenuItem>
+				<DropdownMenuItem className="px-2 py-1.5">
 					<UserCog className="size-5" />
 					Manage Account
-				</DropdownItem>
-				<DropdownItem className="px-2 py-1.5">
+				</DropdownMenuItem>
+				<DropdownMenuItem className="px-2 py-1.5">
 					<FolderCog className="size-5" />
 					Automations
-				</DropdownItem>
-				<DropdownItem className="px-2 py-1.5">
+				</DropdownMenuItem>
+				<DropdownMenuItem className="px-2 py-1.5">
 					<svg
 						width="24"
 						height="24"
@@ -87,14 +87,14 @@ const UserMenuDropdownExample = () => {
 						/>
 					</svg>
 					Install Google App
-				</DropdownItem>
-				<DropdownDivider />
-				<DropdownItem className="px-2 py-1.5">
+				</DropdownMenuItem>
+				<DropdownMenuDivider />
+				<DropdownMenuItem className="px-2 py-1.5">
 					<LogOut className="size-5" />
 					Logout
-				</DropdownItem>
-			</DropdownContent>
-		</Dropdown>
+				</DropdownMenuItem>
+			</DropdownMenuContent>
+		</DropdownMenu>
 	)
 }
 

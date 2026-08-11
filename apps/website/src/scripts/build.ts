@@ -1,7 +1,7 @@
 import { execSync } from "child_process"
 
 const commands = [
-	"contentlayer2 build",
+	"pnpm exec fumadocs-mdx",
 	"pnpm run generate-examples-json",
 	"pnpm run generate-example-registry",
 	"pnpm run generate-blocks-index",

@@ -22,11 +22,11 @@ import { AspectRatio } from "@/registry/ui/aspect-ratio"
 import { Button, CompactButton, IconButton } from "@/registry/ui/button"
 import { Divider } from "@/registry/ui/divider"
 import {
-	Dropdown,
-	DropdownContent,
-	DropdownDivider,
-	DropdownLabel,
-	DropdownTrigger,
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuDivider,
+	DropdownMenuLabel,
+	DropdownMenuTrigger,
 } from "@/registry/ui/dropdown-menu"
 import { ScrollArea } from "@/registry/ui/scroll-area"
 
@@ -114,16 +114,16 @@ export function ToneFilterDropdown({
 	}
 
 	return (
-		<Dropdown open={open} onOpenChange={setOpen} indicatorPosition="right">
-			<DropdownTrigger asChild>
+		<DropdownMenu open={open} onOpenChange={setOpen} indicatorPosition="right">
+			<DropdownMenuTrigger asChild>
 				<Button color="neutral" variant="outline">
 					<TriggerSwatch activeInfo={activeInfo} />
 					<p className="hidden sm:block">{activeInfo.label}</p>
 					<ChevronDown className="text-fg-secondary" />
 				</Button>
-			</DropdownTrigger>
+			</DropdownMenuTrigger>
 
-			<DropdownContent align="center" className="rounded-xl p-0">
+			<DropdownMenuContent align="center" className="rounded-xl p-0">
 				<ScrollArea className="h-105">
 					{/* Header */}
 					<div className="flex items-center justify-between px-4 py-3">
@@ -141,9 +141,9 @@ export function ToneFilterDropdown({
 					<div className="flex flex-col">
 						{/* Colors */}
 						<div className="flex flex-col gap-2.5 px-4 py-3">
-							<DropdownLabel className="px-0 text-xs">
+							<DropdownMenuLabel className="px-0 text-xs">
 								{colorMode === "radian" ? "Radian Colors" : "Colors"}
-							</DropdownLabel>
+							</DropdownMenuLabel>
 							<div className="grid grid-cols-9 gap-2">
 								{colorMode === "radian"
 									? RADIAN_COLORS.map((c) => (
@@ -227,11 +227,13 @@ export function ToneFilterDropdown({
 							</div>
 						</div>
 
-						<DropdownDivider className="mx-0" />
+						<DropdownMenuDivider className="mx-0" />
 
 						{/* Gradients */}
 						<div className="flex flex-col gap-2.5 px-4 py-3">
-							<DropdownLabel className="px-0 text-xs">Gradients</DropdownLabel>
+							<DropdownMenuLabel className="px-0 text-xs">
+								Gradients
+							</DropdownMenuLabel>
 							<div className="grid grid-cols-9 gap-2">
 								{GRADIENT_IMAGES.map((src, idx) => {
 									const colorName = getCdnColorDisplayName(CDN_COLOR_NAMES[idx])
@@ -268,11 +270,13 @@ export function ToneFilterDropdown({
 							</div>
 						</div>
 
-						<DropdownDivider className="mx-0" />
+						<DropdownMenuDivider className="mx-0" />
 
 						{/* Background Images */}
 						<div className="flex flex-col gap-2.5 px-4 py-3">
-							<DropdownLabel className="px-0 text-xs">Background</DropdownLabel>
+							<DropdownMenuLabel className="px-0 text-xs">
+								Background
+							</DropdownMenuLabel>
 							<div className="grid grid-cols-4 gap-2">
 								<AspectRatio
 									ratio={4 / 3}
@@ -306,8 +310,8 @@ export function ToneFilterDropdown({
 						</div>
 					</div>
 				</ScrollArea>
-			</DropdownContent>
-		</Dropdown>
+			</DropdownMenuContent>
+		</DropdownMenu>
 	)
 }
 

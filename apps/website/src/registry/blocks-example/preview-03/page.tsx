@@ -15,20 +15,20 @@ import {
 import { Checkbox } from "@/registry/ui/checkbox"
 import { Divider } from "@/registry/ui/divider"
 import {
-	Dropdown,
-	DropdownCheckboxItem,
-	DropdownContent,
-	DropdownDivider,
-	DropdownItem,
-	DropdownLabel,
-	DropdownPortal,
-	DropdownRadioGroup,
-	DropdownRadioItem,
-	DropdownShortcut,
-	DropdownSub,
-	DropdownSubContent,
-	DropdownSubTrigger,
-	DropdownTrigger,
+	DropdownMenu,
+	DropdownMenuCheckboxItem,
+	DropdownMenuContent,
+	DropdownMenuDivider,
+	DropdownMenuItem,
+	DropdownMenuLabel,
+	DropdownMenuPortal,
+	DropdownMenuRadioGroup,
+	DropdownMenuRadioItem,
+	DropdownMenuShortcut,
+	DropdownMenuSub,
+	DropdownMenuSubContent,
+	DropdownMenuSubTrigger,
+	DropdownMenuTrigger,
 } from "@/registry/ui/dropdown-menu"
 import { Input, InputWrapper } from "@/registry/ui/input"
 import { Label } from "@/registry/ui/label"
@@ -226,7 +226,7 @@ export function SelectShowcaseCard() {
 		<Card>
 			<CardHeader>
 				<CardTitle className="text-base font-semibold">Select</CardTitle>
-				<CardDescription>Dropdown selection variants.</CardDescription>
+				<CardDescription>DropdownMenu selection variants.</CardDescription>
 			</CardHeader>
 
 			<CardContent className="space-y-4">
@@ -1057,7 +1057,7 @@ export function DividerShowcaseCard() {
 }
 
 // ──────────────────────────────────────────────
-// Dropdown Showcase
+// DropdownMenu Showcase
 // ──────────────────────────────────────────────
 export function DropdownShowcaseCard() {
 	const [theme, setTheme] = useState("system")
@@ -1066,7 +1066,9 @@ export function DropdownShowcaseCard() {
 	return (
 		<Card>
 			<CardHeader>
-				<CardTitle className="text-base font-semibold">Dropdown Menu</CardTitle>
+				<CardTitle className="text-base font-semibold">
+					DropdownMenu Menu
+				</CardTitle>
 				<CardDescription>
 					Complex menus with checkboxes, radios, and submenus.
 				</CardDescription>
@@ -1074,82 +1076,86 @@ export function DropdownShowcaseCard() {
 
 			<CardContent className="space-y-6">
 				<div className="flex justify-center py-6">
-					<Dropdown>
-						<DropdownTrigger asChild>
+					<DropdownMenu>
+						<DropdownMenuTrigger asChild>
 							<Button variant="smooth">
 								Open Menu <IconSlot slot="setting" className="ml-2 h-4 w-4" />
 							</Button>
-						</DropdownTrigger>
-						<DropdownContent className="w-80">
-							<DropdownLabel>My Account</DropdownLabel>
-							<DropdownItem>
+						</DropdownMenuTrigger>
+						<DropdownMenuContent className="w-80">
+							<DropdownMenuLabel>My Account</DropdownMenuLabel>
+							<DropdownMenuItem>
 								<IconSlot slot="user" className="mr-2 h-4 w-4" />
 								<span>Profile</span>
-								<DropdownShortcut>⇧⌘P</DropdownShortcut>
-							</DropdownItem>
-							<DropdownItem>
+								<DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+							</DropdownMenuItem>
+							<DropdownMenuItem>
 								<IconSlot slot="mail" className="mr-2 h-4 w-4" />
 								<span>Billing</span>
-								<DropdownShortcut>⌘B</DropdownShortcut>
-							</DropdownItem>
-							<DropdownItem>
+								<DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
+							</DropdownMenuItem>
+							<DropdownMenuItem>
 								<IconSlot slot="setting" className="mr-2 h-4 w-4" />
 								<span>Settings</span>
-								<DropdownShortcut>⌘S</DropdownShortcut>
-							</DropdownItem>
+								<DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
+							</DropdownMenuItem>
 
-							<DropdownDivider />
+							<DropdownMenuDivider />
 
-							<DropdownSub>
-								<DropdownSubTrigger>
+							<DropdownMenuSub>
+								<DropdownMenuSubTrigger>
 									<IconSlot slot="user" className="mr-2 h-4 w-4" />
 									<span>Invite users</span>
-								</DropdownSubTrigger>
-								<DropdownPortal>
-									<DropdownSubContent>
-										<DropdownItem>
+								</DropdownMenuSubTrigger>
+								<DropdownMenuPortal>
+									<DropdownMenuSubContent>
+										<DropdownMenuItem>
 											<IconSlot slot="mail" className="mr-2 h-4 w-4" />
 											<span>Email</span>
-										</DropdownItem>
-										<DropdownItem>
+										</DropdownMenuItem>
+										<DropdownMenuItem>
 											<IconSlot slot="mail" className="mr-2 h-4 w-4" />
 											<span>Message</span>
-										</DropdownItem>
-										<DropdownDivider />
-										<DropdownItem>
+										</DropdownMenuItem>
+										<DropdownMenuDivider />
+										<DropdownMenuItem>
 											<IconSlot slot="plus" className="mr-2 h-4 w-4" />
 											<span>More...</span>
-										</DropdownItem>
-									</DropdownSubContent>
-								</DropdownPortal>
-							</DropdownSub>
+										</DropdownMenuItem>
+									</DropdownMenuSubContent>
+								</DropdownMenuPortal>
+							</DropdownMenuSub>
 
-							<DropdownDivider />
+							<DropdownMenuDivider />
 
-							<DropdownLabel>Appearance</DropdownLabel>
-							<DropdownRadioGroup value={theme} onValueChange={setTheme}>
-								<DropdownRadioItem value="light">Light</DropdownRadioItem>
-								<DropdownRadioItem value="dark">Dark</DropdownRadioItem>
-								<DropdownRadioItem value="system">System</DropdownRadioItem>
-							</DropdownRadioGroup>
+							<DropdownMenuLabel>Appearance</DropdownMenuLabel>
+							<DropdownMenuRadioGroup value={theme} onValueChange={setTheme}>
+								<DropdownMenuRadioItem value="light">
+									Light
+								</DropdownMenuRadioItem>
+								<DropdownMenuRadioItem value="dark">Dark</DropdownMenuRadioItem>
+								<DropdownMenuRadioItem value="system">
+									System
+								</DropdownMenuRadioItem>
+							</DropdownMenuRadioGroup>
 
-							<DropdownDivider />
+							<DropdownMenuDivider />
 
-							<DropdownCheckboxItem
+							<DropdownMenuCheckboxItem
 								checked={showToolbar}
 								onCheckedChange={setShowToolbar}>
 								Show Toolbar
-							</DropdownCheckboxItem>
+							</DropdownMenuCheckboxItem>
 
-							<DropdownDivider />
+							<DropdownMenuDivider />
 
-							<DropdownItem className="text-error">
+							<DropdownMenuItem className="text-error">
 								<IconSlot slot="logout" className="mr-2 h-4 w-4" />
 								<span>Log out</span>
-								<DropdownShortcut>⇧⌘Q</DropdownShortcut>
-							</DropdownItem>
-						</DropdownContent>
-					</Dropdown>
+								<DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+							</DropdownMenuItem>
+						</DropdownMenuContent>
+					</DropdownMenu>
 				</div>
 			</CardContent>
 		</Card>

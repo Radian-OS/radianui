@@ -1,5 +1,5 @@
 // CodeBlockCommand.server.tsx (no 'use client')
-import { highlightCode } from "@/lib/highligh-code"
+import { highlightCode } from "@/lib/highlight-code"
 import { CodeBlockCommand } from "./code-block-command"
 
 export async function CodeBlockCommandServer({
