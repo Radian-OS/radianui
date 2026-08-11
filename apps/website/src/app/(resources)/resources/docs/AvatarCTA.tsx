@@ -6,7 +6,9 @@ import { Button } from "@/registry/ui/button"
 
 const AvatarCTA = () => {
 	return (
-		<div className="border-soft bg-linear-to-b from-fill1 to-bg-fill2 relative max-w-[1430px] overflow-hidden rounded-[20px] border 2xl:mx-auto">
+		<section
+			aria-labelledby="avatar-cta-heading"
+			className="border-soft bg-linear-to-b from-fill1 to-bg-fill2 relative max-w-[1430px] overflow-hidden rounded-[20px] border 2xl:mx-auto">
 			<div className="lg:p-15 flex items-center overflow-hidden p-6 sm:p-10 lg:w-[1350px]">
 				<div className="relative z-10 flex w-full flex-col gap-5 lg:max-w-md">
 					<div className="flex w-full flex-col gap-8 lg:w-[532px]">
@@ -15,13 +17,13 @@ const AvatarCTA = () => {
 								Open Source Library
 							</Badge>
 
-							<h2 className="heading-4">
+							<h2 id="avatar-cta-heading" className="heading-4">
 								Production-Ready UI Blocks for Designers and Developers
 							</h2>
 						</div>
 
 						<p className="text-fg-secondary text-sm font-normal">
-							Radian OS bridges the gap between design and development. Access
+							Radian UI bridges the gap between design and development. Access
 							production-ready UI blocks, developer documentation, and a fully
 							synced Figma UI kit to launch your next project in record time.
 						</p>
@@ -96,7 +98,7 @@ const AvatarCTA = () => {
 					<div className="-right-70 absolute top-2 h-[700px] w-[900px] dark:hidden">
 						<Image
 							src="/avatar/Table.png"
-							alt="Table view"
+							alt="User management table demonstrating avatars in a Radian UI layout"
 							fill
 							className="object-contain"
 						/>
@@ -104,7 +106,7 @@ const AvatarCTA = () => {
 					<div className="right-51 absolute -top-2 h-[240px] w-[400px] dark:hidden">
 						<Image
 							src="/avatar/Dropdown.png"
-							alt="Account dropdown"
+							alt="Account navigation dropdown demonstrating a user avatar"
 							fill
 							className="object-contain"
 						/>
@@ -114,7 +116,7 @@ const AvatarCTA = () => {
 					<div className="-right-70 absolute top-2 hidden h-[700px] w-[900px] dark:block">
 						<Image
 							src="/avatar/Table-1.png"
-							alt="Table view"
+							alt="User management table demonstrating avatars in a dark Radian UI layout"
 							fill
 							className="object-contain"
 						/>
@@ -122,14 +124,14 @@ const AvatarCTA = () => {
 					<div className="right-51 absolute -top-2 hidden h-[240px] w-[400px] dark:block">
 						<Image
 							src="/avatar/Dropdown-1.png"
-							alt="Account dropdown"
+							alt="Dark account navigation dropdown demonstrating a user avatar"
 							fill
 							className="object-contain"
 						/>
 					</div>
 				</div>
 			</div>
-		</div>
+		</section>
 	)
 }
 

@@ -5,6 +5,7 @@ import { Copy, Download, MoreHorizontal, Star } from "lucide-react"
 import Image from "next/image"
 import {
 	AVATAR_BLEND_OPACITY,
+	getAvatarAltText,
 	getImageBackgroundTint,
 } from "@/constants/avatar-playground-utils"
 import { useAvatarTileActions } from "@/hooks/avatar/use-avatar-tile-actions"
@@ -50,12 +51,12 @@ export const AvatarTile = ({
 	})
 
 	return (
-		<div
+		<li
 			className="border-soft bg-bg group relative isolate aspect-square w-full overflow-hidden rounded-xl border"
 			style={toneStyle}>
 			<Image
 				src={src}
-				alt={`Generated avatar ${index + 1}`}
+				alt={getAvatarAltText(index + 1, tone)}
 				fill
 				sizes="(max-width: 640px) 25vw, (max-width: 768px) 20vw, 14vw"
 				className="object-cover"
@@ -135,6 +136,6 @@ export const AvatarTile = ({
 					<Copy />
 				</IconButton>
 			</div>
-		</div>
+		</li>
 	)
 }

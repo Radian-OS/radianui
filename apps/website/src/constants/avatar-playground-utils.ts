@@ -181,6 +181,40 @@ export const CATEGORY_AVATAR_MAP: Record<string, number[]> = {
 	],
 }
 
+/**
+ * Builds useful, unique alternative text from the metadata associated with an
+ * avatar. Keep this in one place so filtered and customized avatars retain the
+ * same identity while their background description changes.
+ */
+export function getAvatarAltText(avatarNumber: number, tone: string): string {
+	const style = CATEGORY_AVATAR_MAP.professional.includes(avatarNumber)
+		? "professional"
+		: "casual"
+	const presentation = CATEGORY_AVATAR_MAP.female.includes(avatarNumber)
+		? "female"
+		: "male"
+
+	let background = "neutral background"
+	if (tone === "none") {
+		background = "transparent background"
+	} else if (tone.startsWith("#")) {
+		background = `${tone} background`
+	} else if (tone.startsWith("radian:")) {
+		background = `${tone.slice("radian:".length).replaceAll("-", " ")} background`
+	} else if (tone.startsWith("http") || tone.startsWith("/")) {
+		const filename = tone.split("/").pop()?.split("?")[0] ?? "custom"
+		const name = filename
+			.replace(/^(IMG|Grad)-/, "")
+			.replace(/\.[^.]+$/, "")
+			.replace(/%20/gi, " ")
+		background = `${name} background`
+	} else if (tone !== "neutral") {
+		background = `${tone.replace(/^grad-/, "").replaceAll("/", " ")} background`
+	}
+
+	return `${style[0].toUpperCase()}${style.slice(1)} ${presentation} UI avatar illustration ${avatarNumber} on a ${background}`
+}
+
 export function randomHexColor(): string {
 	return `#${Math.floor(Math.random() * 0xffffff)
 		.toString(16)

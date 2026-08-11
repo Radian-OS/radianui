@@ -55,23 +55,21 @@ const developmentPoints = [
 
 const AvatarDevlopment = () => {
 	return (
-		<div className="lg:w-200 mx-auto flex w-full flex-col gap-6">
+		<section
+			aria-labelledby="avatar-development-heading"
+			className="lg:w-200 mx-auto flex w-full flex-col gap-6">
 			<div className="flex flex-col gap-4">
 				<p className="text-primary-text text-sm font-medium">Development</p>
-				<h2 className="heading-4">
+				<h2 id="avatar-development-heading" className="heading-4">
 					Avatar Component Architecture and Development
 				</h2>
 				<div className="flex flex-col gap-8">
 					<p>
-						A production-ready avatar component should be built for flexibility,
-						performance, and maintainability. Rather than focusing solely on
-						appearance, developers should design avatar components that handle
-						image loading, fallback states, customization, accessibility, and
-						composition in a predictable way. A well-architected component
-						becomes a reusable building block that can be used consistently
-						across navigation, messaging, tables, user profiles, and
-						collaborative interfaces. Here are some good development practices
-						for Avatars.
+						A production-ready avatar component needs to handle more than looks.
+						It should be able to handle image loading, fallback states,
+						accessibility, and composition all need to work predictably. Get
+						that right and it becomes a reusable building block for navigation,
+						tables, profiles, and messaging alike.
 					</p>
 					<ul className="flex list-disc flex-col gap-4 pl-5">
 						{developmentPoints.map((point) => (
@@ -83,7 +81,7 @@ const AvatarDevlopment = () => {
 					</ul>
 				</div>
 			</div>
-		</div>
+		</section>
 	)
 }
 

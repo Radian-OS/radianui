@@ -50,18 +50,19 @@ const designPoints = [
 
 const AvatarDesign = () => {
 	return (
-		<div className="lg:w-200 mx-auto flex w-full flex-col gap-6">
+		<section
+			aria-labelledby="avatar-design-heading"
+			className="lg:w-200 mx-auto flex w-full flex-col gap-6">
 			<div className="flex flex-col gap-4">
 				<p className="text-primary-text text-sm font-medium">Design</p>
-				<h2 className="heading-4">Avatar UI Design Best Practices</h2>
+				<h2 id="avatar-design-heading" className="heading-4">
+					Avatar UI Design Best Practices
+				</h2>
 				<div className="flex flex-col gap-8">
 					<p>
-						A well-designed avatar component should remain recognizable,
-						accessible, and consistent across every part of your application.
-						Whether you&apos;re building a SaaS dashboard, social platform,
-						messaging app, or admin panel, following established avatar design
-						patterns improves usability while maintaining a polished interface.
-						When designing avatar components, consider these best practices:
+						A good avatar component stays recognizable, accessible, and
+						consistent no matter where it shows up in your product. Here&apos;s
+						what to get right:
 					</p>
 					<ul className="flex list-disc flex-col gap-4 pl-5">
 						{designPoints.map((point) => (
@@ -73,7 +74,7 @@ const AvatarDesign = () => {
 					</ul>
 				</div>
 			</div>
-		</div>
+		</section>
 	)
 }
 
