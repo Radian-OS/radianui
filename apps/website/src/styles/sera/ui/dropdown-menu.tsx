@@ -96,7 +96,11 @@ function DropdownMenu({
 	return (
 		<DropdownMenuContext.Provider
 			value={{ indicatorPosition: indicatorPosition ?? "right", indicator }}>
-			<DropdownMenuPrimitive.Root data-slot="dropdown-menu" {...props} />
+			<DropdownMenuPrimitive.Root
+				data-slot="dropdown-menu"
+				modal={false}
+				{...props}
+			/>
 		</DropdownMenuContext.Provider>
 	)
 }
