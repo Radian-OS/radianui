@@ -3,6 +3,8 @@ node_modules
 .pnp
 .pnp.js
 
+.pnpm-store/
+
 # env files
 .env
 

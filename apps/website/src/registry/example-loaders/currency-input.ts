@@ -28,9 +28,7 @@ const registry: Record<
 	),
 	"currency-select-with-custom-prefix": React.lazy(
 		() =>
-			import(
-				"@/registry/example/currency-input/currency-select-with-custom-prefix"
-			)
+			import("@/registry/example/currency-input/currency-select-with-custom-prefix")
 	),
 	"currency-separators-example": React.lazy(
 		() =>

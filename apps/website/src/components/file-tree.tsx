@@ -199,8 +199,9 @@ const TreeIndicator = forwardRef<
 TreeIndicator.displayName = "TreeIndicator"
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
-interface FolderComponentProps
-	extends React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Item> {}
+interface FolderComponentProps extends React.ComponentPropsWithoutRef<
+	typeof AccordionPrimitive.Item
+> {}
 
 type FolderProps = {
 	expandedItems?: string[]

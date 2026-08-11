@@ -11,15 +11,11 @@ const registry: Record<
 	),
 	"international-phone-hook-example": React.lazy(
 		() =>
-			import(
-				"@/registry/example/phone-number-input/international-phone-hook-example"
-			)
+			import("@/registry/example/phone-number-input/international-phone-hook-example")
 	),
 	"national-phone-number-example": React.lazy(
 		() =>
-			import(
-				"@/registry/example/phone-number-input/national-phone-number-example"
-			)
+			import("@/registry/example/phone-number-input/national-phone-number-example")
 	),
 	"only-countries-phone": React.lazy(
 		() => import("@/registry/example/phone-number-input/only-countries-phone")
