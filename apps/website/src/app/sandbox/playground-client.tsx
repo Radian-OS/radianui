@@ -6,6 +6,7 @@ import {
 	ChevronRight,
 	Code,
 	Copy,
+	ExternalLink,
 	Eye,
 	FileCode,
 	Folder,
@@ -20,6 +21,7 @@ import { useTheme } from "next-themes"
 import { cn } from "@/lib/utils"
 import { Button, IconButton } from "@/styles/default/ui/button"
 import { CodeArea } from "@/styles/default/ui/code-area"
+import { BeamHeaderSection } from "./beam-header/beam-header-section"
 import { TestimonialSection } from "./test2/testimonial-section"
 import { LogoSection } from "./test/logo-section"
 
@@ -28,19 +30,27 @@ import { LogoSection } from "./test/logo-section"
 interface FilesData {
 	test: Record<string, string>
 	test2: Record<string, string>
+	"beam-header": Record<string, string>
 }
 
 interface PlaygroundClientProps {
 	files: FilesData
 }
 
-type PreviewKey = "logo" | "faq"
+type PreviewKey = "logo" | "faq" | "beam-header"
 type ViewMode = "preview" | "code"
 type DeviceSize = "desktop" | "tablet" | "mobile"
 
 const referenceUrls: Record<PreviewKey, string> = {
 	logo: "https://www.flowbase.co/preview/jambo-logo-01",
 	faq: "https://www.flowbase.co/preview/klarheit-faq-02",
+	"beam-header": "https://www.flowbase.co/preview/beam-header-01",
+}
+
+const previewRoutes: Record<PreviewKey, string> = {
+	logo: "/sandbox/test",
+	faq: "/sandbox/test2",
+	"beam-header": "/sandbox/beam-header",
 }
 
 export function PlaygroundClient({ files }: PlaygroundClientProps) {
@@ -76,6 +86,9 @@ export function PlaygroundClient({ files }: PlaygroundClientProps) {
 		if (activeComponent === "faq") {
 			return files.test2[activeFile] || ""
 		}
+		if (activeComponent === "beam-header") {
+			return files["beam-header"][activeFile] || ""
+		}
 		return ""
 	}
 
@@ -88,7 +101,7 @@ export function PlaygroundClient({ files }: PlaygroundClientProps) {
 	return (
 		<div className="bg-bg text-fg flex h-screen w-screen overflow-hidden">
 			{/* Left Sidebar */}
-			<aside className="border-border bg-fill1 z-20 flex w-[300px] shrink-0 flex-col border-r shadow-[4px_0_24px_rgba(0,0,0,0.02)]">
+			<aside className="border-border bg-fill1 z-20 flex w-[230px] shrink-0 flex-col border-r shadow-[4px_0_24px_rgba(0,0,0,0.02)]">
 				{/* Sidebar Header */}
 				<div className="border-border bg-fill2/50 flex flex-col gap-1 border-b p-6">
 					<div className="flex items-center gap-2">
@@ -201,6 +214,54 @@ export function PlaygroundClient({ files }: PlaygroundClientProps) {
 							})}
 						</div>
 					</div>
+
+					{/* Beam Header Section */}
+					<div className="space-y-2">
+						<div className="text-fg-tertiary flex items-center gap-2 px-2 text-xs font-semibold uppercase tracking-wider">
+							<Folder className="text-primary size-3.5" />
+							<span>src/app/sandbox/beam-header</span>
+						</div>
+						<div className="space-y-1">
+							{Object.keys(files["beam-header"]).map((fileName) => {
+								const isSelected =
+									activeComponent === "beam-header" && activeFile === fileName
+								return (
+									<Button
+										key={fileName}
+										variant={isSelected ? "strong" : "ghost"}
+										color={isSelected ? "primary" : "neutral"}
+										size="32"
+										onClick={() => selectFile("beam-header", fileName)}
+										className={cn(
+											"group flex w-full items-center justify-start gap-2.5 rounded-lg px-3 py-2 text-left text-sm font-medium transition-all duration-200",
+											!isSelected &&
+												"hover:bg-fill3 text-fg-secondary hover:text-fg"
+										)}>
+										<FileCode
+											className={cn(
+												"size-4 shrink-0",
+												isSelected
+													? "text-primary-fg"
+													: "text-fg-tertiary group-hover:text-primary"
+											)}
+										/>
+										<span className="flex-1 truncate">{fileName}</span>
+										{fileName === "beam-header-section.tsx" && (
+											<span
+												className={cn(
+													"rounded-full px-1.5 py-0.5 text-[9px] font-bold uppercase",
+													isSelected
+														? "bg-white/20 text-white"
+														: "bg-primary-accent text-primary-text"
+												)}>
+												Main
+											</span>
+										)}
+									</Button>
+								)
+							})}
+						</div>
+					</div>
 				</div>
 
 				{/* Sidebar Footer */}
@@ -219,7 +280,11 @@ export function PlaygroundClient({ files }: PlaygroundClientProps) {
 						<span className="text-fg-tertiary font-medium">sandbox</span>
 						<ChevronRight className="text-fg-tertiary size-3" />
 						<span className="font-medium">
-							{activeComponent === "logo" ? "test" : "test2"}
+							{activeComponent === "logo"
+								? "test"
+								: activeComponent === "faq"
+									? "test2"
+									: "beam-header"}
 						</span>
 						<ChevronRight className="text-fg-tertiary size-3" />
 						<span className="text-fg max-w-[150px] overflow-hidden text-ellipsis font-semibold">
@@ -349,7 +414,9 @@ export function PlaygroundClient({ files }: PlaygroundClientProps) {
 												Component Preview —{" "}
 												{activeComponent === "logo"
 													? "LogoSection"
-													: "FaqSection"}
+													: activeComponent === "faq"
+														? "FaqSection"
+														: "BeamHeaderSection"}
 											</span>
 											<div className="flex items-center gap-4">
 												{referenceUrls[activeComponent] && (
@@ -362,6 +429,14 @@ export function PlaygroundClient({ files }: PlaygroundClientProps) {
 														<span>Reference Website</span>
 													</a>
 												)}
+												<a
+													href={previewRoutes[activeComponent]}
+													target="_blank"
+													rel="noopener noreferrer"
+													className="text-primary hover:text-primary-hover flex items-center gap-1 font-medium transition-colors">
+													<ExternalLink className="size-3.5" />
+													<span>Full Page Preview</span>
+												</a>
 												<span className="font-mono">
 													{deviceSize === "desktop"
 														? "Desktop view"
@@ -375,6 +450,9 @@ export function PlaygroundClient({ files }: PlaygroundClientProps) {
 											<div className="w-full">
 												{activeComponent === "logo" && <LogoSection />}
 												{activeComponent === "faq" && <TestimonialSection />}
+												{activeComponent === "beam-header" && (
+													<BeamHeaderSection />
+												)}
 											</div>
 										</div>
 									</div>

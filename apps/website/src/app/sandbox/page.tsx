@@ -26,6 +26,7 @@ function readFileContent(dirPath: string, fileName: string): string {
 export default function PlaygroundPage() {
 	const testDir = path.join(process.cwd(), "src/app/sandbox/test")
 	const test2Dir = path.join(process.cwd(), "src/app/sandbox/test2")
+	const beamHeaderDir = path.join(process.cwd(), "src/app/sandbox/beam-header")
 
 	const testFiles = [
 		"logo-section.tsx",
@@ -34,9 +35,15 @@ export default function PlaygroundPage() {
 		"page.tsx",
 	]
 	const test2Files = ["faq-section.tsx", "page.tsx"]
+	const beamHeaderFiles = [
+		"beam-header-section.tsx",
+		"beam-logo-strip.tsx",
+		"beam-dashboard.tsx",
+	]
 
 	const testData: Record<string, string> = {}
 	const test2Data: Record<string, string> = {}
+	const beamHeaderData: Record<string, string> = {}
 
 	for (const file of testFiles) {
 		testData[file] = readFileContent(testDir, file)
@@ -46,9 +53,14 @@ export default function PlaygroundPage() {
 		test2Data[file] = readFileContent(test2Dir, file)
 	}
 
+	for (const file of beamHeaderFiles) {
+		beamHeaderData[file] = readFileContent(beamHeaderDir, file)
+	}
+
 	const files = {
 		test: testData,
 		test2: test2Data,
+		"beam-header": beamHeaderData,
 	}
 
 	return <PlaygroundClient files={files} />
