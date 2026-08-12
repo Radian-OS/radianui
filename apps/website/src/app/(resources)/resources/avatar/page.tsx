@@ -22,9 +22,9 @@ const lowerHeroBeamPath =
 	"M0 1H92C102.6 1 112.4 6.6 117.8 15.8L154.2 78.2C159.6 87.4 169.4 93 180 93H214"
 
 const pageUrl = absoluteUrl("/resources/avatar")
-const pageTitle = "Free UI Avatar Pack for React & Figma | Radian UI"
+const pageTitle = "Free UI Avatar Pack (216) – No Copyright, SVG & PNG"
 const pageDescription =
-	"Download production-ready UI avatars for React, Figma, dashboards, and design systems, with multiple styles and easy customization."
+	"Free UI avatars for React & Figma — 216 royalty-free faces, no copyright required. Copy as HTML, download SVG or PNG, fully customizable."
 const pageImage = absoluteUrl("/og/static-og.png")
 
 export const metadata: Metadata = {
@@ -49,12 +49,15 @@ export const metadata: Metadata = {
 export const people = [
 	{
 		image: "/avatar/header-1.jpg",
+		alt: "Woman with long dark hair wearing a green shirt",
 	},
 	{
 		image: "/avatar/header-2.jpg",
+		alt: "Bearded man wearing black glasses and a blue shirt",
 	},
 	{
 		image: "/avatar/header-3.jpg",
+		alt: "Man with shoulder-length dark hair and glasses on a red background",
 	},
 ]
 
@@ -67,7 +70,7 @@ export default function Page() {
 			/>
 			<div className="min-h-screen w-full overflow-x-hidden">
 				<Background topPosition="top-[700px]">
-					<div className="md:pt-30 pt-15 flex flex-col items-center justify-center gap-12">
+					<header className="md:pt-30 pt-15 flex flex-col items-center justify-center gap-12">
 						<div className="max-w-250 flex flex-col items-center justify-center gap-6">
 							<Link
 								href="/docs/getting-started/changelog"
@@ -96,25 +99,27 @@ export default function Page() {
 										<AvatarImage
 											className={`${person.image === "/avatar/header-2.jpg" ? "z-10" : ""}`}
 											src={person.image}
+											alt={person.alt}
 										/>
 									</Avatar>
 								))}
 							</div>
 							<div className="md:w-163 flex w-full flex-col items-center justify-center gap-4">
 								<h1 className="heading-3 text-center">
-									Beautiful, Production-Ready UI Avatars 👩🏼‍💼
+									Beautiful, Free UI Avatars Production-Ready for Figma & React
+									👩🏼‍💼
 								</h1>
 								<p className="text-fg-secondary text-center text-base font-normal">
-									Get instant access to a diverse, high-quality collection of
-									user interface avatars optimized for Figma, React, and modern
-									web design systems.
+									216 diverse, royalty-free avatars ready to drop into your
+									project. Copy the HTML or Next.js Image tag, grab the Figma
+									frame, or download as SVG or PNG.
 								</p>
 							</div>
 						</div>
 						<div className="flex w-full flex-col items-center justify-center gap-3 sm:flex-row">
 							<AvatarHeroActionButtons />
 						</div>
-					</div>
+					</header>
 					<VideoPreviewWithBeams />
 				</Background>
 				<AvatarDocs />
@@ -126,8 +131,13 @@ export default function Page() {
 
 function VideoPreviewWithBeams() {
 	return (
-		<div className="bg-bg border-soft -mx-4 mt-[100px] flex w-[calc(100%+2rem)] justify-center border-t md:-mx-5 md:w-[calc(100%+2.5rem)]">
+		<section
+			aria-labelledby="avatar-gallery-heading"
+			className="bg-bg border-soft -mx-4 mt-[100px] flex w-[calc(100%+2rem)] justify-center border-t md:-mx-5 md:w-[calc(100%+2.5rem)]">
 			<div className="max-w-368 relative w-full px-4 md:px-5">
+				<h2 id="avatar-gallery-heading" className="sr-only">
+					Browse 216 free UI avatar illustrations
+				</h2>
 				<div className="relative z-20 flex justify-center py-10">
 					<AvatarPlayground />
 				</div>
@@ -155,7 +165,7 @@ function VideoPreviewWithBeams() {
 					beamClassName="animate-[var(--animate-beam-flow2)] opacity-0"
 				/>
 			</div>
-		</div>
+		</section>
 	)
 }
 

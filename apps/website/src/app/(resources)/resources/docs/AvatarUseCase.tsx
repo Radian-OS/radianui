@@ -114,20 +114,20 @@ const useCasePoints = [
 
 const AvatarUseCase = () => {
 	return (
-		<div className="flex flex-col gap-8 md:gap-16">
+		<section
+			aria-labelledby="avatar-use-cases-heading"
+			className="flex flex-col gap-8 md:gap-16">
 			<div className="lg:w-200 mx-auto flex w-full flex-col gap-6">
 				<div className="flex flex-col gap-4">
 					<p className="text-primary-text text-sm font-medium">Use cases</p>
-					<h2 className="heading-4">Common avatar UI layouts and patterns</h2>
+					<h2 id="avatar-use-cases-heading" className="heading-4">
+						Common avatar UI layouts and patterns
+					</h2>
 					<div className="flex flex-col gap-8">
 						<p>
-							User avatars appear throughout modern interfaces because they
-							provide instant visual recognition while reducing cognitive load.
-							Instead of relying solely on text, avatars help users identify
-							people, teams, and organizations at a glance. A well-designed
-							avatar component adapts to many interface patterns, from
-							navigation menus and messaging apps to data tables and
-							collaborative workspaces.
+							Avatars aren&apos;t just for profile headers. They show up in nav
+							bars, chat threads, data tables, and activity feeds anywhere a UI
+							needs to tie something back to a specific person or team.
 						</p>
 
 						<ul className="flex list-disc flex-col gap-4 pl-5">
@@ -170,7 +170,7 @@ const AvatarUseCase = () => {
 					))}
 				</InfiniteScroll>
 			</div>
-		</div>
+		</section>
 	)
 }
 
