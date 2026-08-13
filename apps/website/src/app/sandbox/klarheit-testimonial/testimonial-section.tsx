@@ -7,7 +7,7 @@ import { TestimonialCard } from "./testimonial-card"
 const testimonials = [
 	{
 		quote:
-			"\u201CMore than a creative agency \u2014 they felt like a true growth partner throughout the entire process.\u201D",
+			"“More than a creative agency — they felt like a true growth partner throughout the entire process.”",
 		name: "Rachel Kim",
 		title: "Marketing Director, Recording Studio",
 		brand: "d Metrix",
@@ -16,7 +16,7 @@ const testimonials = [
 	},
 	{
 		quote:
-			"\u201CTheir design thinking transformed our digital presence and boosted our conversion rate by 3x.\u201D",
+			"“Their design thinking transformed our digital presence and boosted our conversion rate by 3x.”",
 		name: "James Chen",
 		title: "CEO, TechVenture Labs",
 		brand: "TechVenture",
@@ -25,7 +25,7 @@ const testimonials = [
 	},
 	{
 		quote:
-			"\u201CIncredible attention to detail. Every pixel was intentional and every interaction felt seamless.\u201D",
+			"“Incredible attention to detail. Every pixel was intentional and every interaction felt seamless.”",
 		name: "Sofia Alvarez",
 		title: "Head of Product, NovaBrand",
 		brand: "NovaBrand",
@@ -50,12 +50,12 @@ export function TestimonialSection() {
 	return (
 		<section className="mx-auto max-w-[1440px] px-6 py-12 md:px-12 lg:px-20 xl:px-28">
 			{/* TESTIMONIALS label */}
-			<p className="mb-6 text-xs font-bold uppercase tracking-[0.16em] text-[#ff4f19] sm:text-sm">
+			<p className="text-orange-text mb-6 text-xs font-bold uppercase tracking-[0.16em] sm:text-sm">
 				Testimonials
 			</p>
 
 			{/* Divider */}
-			<div className="mb-10 h-px w-full bg-[#e5e5e5] lg:mb-14" />
+			<div className="bg-border mb-10 h-px w-full lg:mb-14" />
 
 			{/* Main testimonial content */}
 			<div className="mb-10 grid grid-cols-1 gap-8 lg:mb-14 lg:grid-cols-[minmax(200px,380px)_1fr] lg:gap-16">
@@ -64,22 +64,20 @@ export function TestimonialSection() {
 
 				{/* Right column: Quote + Author */}
 				<div className="flex flex-col justify-center">
-					<blockquote className="heading-2 mb-8 leading-[1.2] text-[#0a0a0a]">
+					<blockquote className="heading-2 text-fg mb-8 leading-[1.2]">
 						{current.quote}
 					</blockquote>
 
 					<div>
-						<p className="text-base font-semibold text-[#0a0a0a]">
-							{current.name}
-						</p>
-						<p className="mt-1 text-sm text-[#737373]">{current.title}</p>
+						<p className="text-fg text-base font-semibold">{current.name}</p>
+						<p className="text-fg-tertiary mt-1 text-sm">{current.title}</p>
 					</div>
 				</div>
 			</div>
 
 			{/* Bottom row: Description + Navigation */}
 			<div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
-				<p className="max-w-md text-sm leading-relaxed text-[#525252] sm:text-base">
+				<p className="text-fg-secondary max-w-md text-sm leading-relaxed sm:text-base">
 					Real feedback from brands who trusted us to think deeper, move faster,
 					and deliver work that actually performs.
 				</p>
@@ -88,13 +86,13 @@ export function TestimonialSection() {
 					<button
 						onClick={goToPrev}
 						aria-label="Previous testimonial"
-						className="flex h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-[#737373] text-white transition-colors hover:bg-[#525252]">
+						className="bg-fill3 text-fg hover:bg-fill4 flex h-12 w-12 cursor-pointer items-center justify-center rounded-full transition-colors active:scale-95">
 						<ArrowLeft className="h-5 w-5" />
 					</button>
 					<button
 						onClick={goToNext}
 						aria-label="Next testimonial"
-						className="flex h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-[#ff4f19] text-white transition-colors hover:bg-[#e5461a]">
+						className="bg-orange flex h-12 w-12 cursor-pointer items-center justify-center rounded-full text-white transition-colors hover:opacity-90 active:scale-95">
 						<ArrowRight className="h-5 w-5" />
 					</button>
 				</div>

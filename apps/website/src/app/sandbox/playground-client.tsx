@@ -36,41 +36,45 @@ import {
 	SidebarTrigger,
 } from "@/styles/default/ui/sidebar"
 import { Tabs, TabsList, TabsTrigger } from "@/styles/default/ui/tabs"
-import { BeamHeaderSection } from "./beam-header/beam-header-section"
-import { TestimonialSection } from "./test2/testimonial-section"
-import { LogoSection } from "./test/logo-section"
 
 // Previews
 
 interface FilesData {
-	test: Record<string, string>
-	test2: Record<string, string>
+	motion: Record<string, string>
 	"beam-header": Record<string, string>
+	"jambo-pricing": Record<string, string>
+	"klarheit-faq": Record<string, string>
+	"klarheit-testimonial": Record<string, string>
 }
 
 interface PlaygroundClientProps {
 	files: FilesData
 }
 
-type PreviewKey = "logo" | "faq" | "beam-header"
+type PreviewKey =
+	"motion" | "faq" | "beam-header" | "jambo-pricing" | "testimonials"
 type ViewMode = "preview" | "code"
 type DeviceSize = "desktop" | "tablet" | "mobile"
 
 const referenceUrls: Record<PreviewKey, string> = {
-	logo: "https://www.flowbase.co/preview/jambo-logo-01",
+	motion: "https://www.flowbase.co/preview/jambo-logo-01",
 	faq: "https://www.flowbase.co/preview/klarheit-faq-02",
 	"beam-header": "https://www.flowbase.co/preview/beam-header-01",
+	"jambo-pricing": "https://www.flowbase.co/preview/jambo-pricing-01",
+	testimonials: "https://www.flowbase.co/preview/klarheit-testimonial-02",
 }
 
 const previewRoutes: Record<PreviewKey, string> = {
-	logo: "/sandbox/test",
-	faq: "/sandbox/test2",
+	motion: "/sandbox/motion",
+	faq: "/sandbox/klarheit-faq",
+	testimonials: "/sandbox/klarheit-testimonial",
 	"beam-header": "/sandbox/beam-header",
+	"jambo-pricing": "/sandbox/jambo-pricing",
 }
 
 export function PlaygroundClient({ files }: PlaygroundClientProps) {
 	// Sidebar state
-	const [activeComponent, setActiveComponent] = useState<PreviewKey>("logo")
+	const [activeComponent, setActiveComponent] = useState<PreviewKey>("motion")
 	const [activeFile, setActiveFile] = useState<string>("logo-section.tsx")
 
 	// View mode state
@@ -95,14 +99,20 @@ export function PlaygroundClient({ files }: PlaygroundClientProps) {
 	}
 
 	const getActiveCode = () => {
-		if (activeComponent === "logo") {
-			return files.test[activeFile] || ""
+		if (activeComponent === "motion") {
+			return files.motion[activeFile] || ""
 		}
 		if (activeComponent === "faq") {
-			return files.test2[activeFile] || ""
+			return files["klarheit-faq"][activeFile] || ""
+		}
+		if (activeComponent === "testimonials") {
+			return files["klarheit-testimonial"][activeFile] || ""
 		}
 		if (activeComponent === "beam-header") {
 			return files["beam-header"][activeFile] || ""
+		}
+		if (activeComponent === "jambo-pricing") {
+			return files["jambo-pricing"][activeFile] || ""
 		}
 		return ""
 	}
@@ -114,7 +124,7 @@ export function PlaygroundClient({ files }: PlaygroundClientProps) {
 	}
 
 	return (
-		<SidebarProvider>
+		<SidebarProvider className="h-svh" defaultWidth="13.5rem">
 			{/* Left Sidebar */}
 			<Sidebar theme="gray" collapsible="icon">
 				{/* Sidebar Header */}
@@ -135,35 +145,37 @@ export function PlaygroundClient({ files }: PlaygroundClientProps) {
 						</SidebarGroupLabel>
 						<SidebarGroupContent>
 							<SidebarMenu className="space-y-1">
-								{/* Test / Logo */}
+								{/* Motion / Logo */}
 								<SidebarMenuItem>
 									<SidebarMenuButton
-										isActive={activeComponent === "logo"}
-										variant={activeComponent === "logo" ? "strong" : "neutral"}
-										tooltip="src/app/sandbox/test"
+										isActive={activeComponent === "motion"}
+										variant={
+											activeComponent === "motion" ? "strong" : "neutral"
+										}
+										tooltip="src/app/sandbox/motion"
 										onClick={() => {
-											setActiveComponent("logo")
+											setActiveComponent("motion")
 											setActiveFile("logo-section.tsx")
 										}}
 										className={cn(
 											"group flex w-full items-center justify-start gap-2.5 rounded-lg px-3 py-2 text-left text-sm font-medium transition-all duration-200",
-											activeComponent !== "logo" &&
+											activeComponent !== "motion" &&
 												"hover:bg-fill3 text-fg-secondary hover:text-fg",
 											"group-data-[state=collapsed]:p-2!"
 										)}>
 										<Folder className="text-primary size-4 shrink-0" />
 										<span className="flex-1 truncate group-data-[state=collapsed]:hidden">
-											src/app/sandbox/test
+											src/app/sandbox/motion
 										</span>
 									</SidebarMenuButton>
 								</SidebarMenuItem>
 
-								{/* Test2 / FAQ */}
+								{/* Klarheit FAQ */}
 								<SidebarMenuItem>
 									<SidebarMenuButton
 										isActive={activeComponent === "faq"}
 										variant={activeComponent === "faq" ? "strong" : "neutral"}
-										tooltip="src/app/sandbox/test2"
+										tooltip="src/app/sandbox/klarheit-faq"
 										onClick={() => {
 											setActiveComponent("faq")
 											setActiveFile("faq-section.tsx")
@@ -176,7 +188,32 @@ export function PlaygroundClient({ files }: PlaygroundClientProps) {
 										)}>
 										<Folder className="text-primary size-4 shrink-0" />
 										<span className="flex-1 truncate group-data-[state=collapsed]:hidden">
-											src/app/sandbox/test2
+											src/app/sandbox/klarheit-faq
+										</span>
+									</SidebarMenuButton>
+								</SidebarMenuItem>
+
+								{/* Testimonials */}
+								<SidebarMenuItem>
+									<SidebarMenuButton
+										isActive={activeComponent === "testimonials"}
+										variant={
+											activeComponent === "testimonials" ? "strong" : "neutral"
+										}
+										tooltip="src/app/sandbox/klarheit-testimonial"
+										onClick={() => {
+											setActiveComponent("testimonials")
+											setActiveFile("testimonial-section.tsx")
+										}}
+										className={cn(
+											"group flex w-full items-center justify-start gap-2.5 rounded-lg px-3 py-2 text-left text-sm font-medium transition-all duration-200",
+											activeComponent !== "testimonials" &&
+												"hover:bg-fill3 text-fg-secondary hover:text-fg",
+											"group-data-[state=collapsed]:p-2!"
+										)}>
+										<Folder className="text-primary size-4 shrink-0" />
+										<span className="flex-1 truncate group-data-[state=collapsed]:hidden">
+											src/app/sandbox/klarheit-testimonial
 										</span>
 									</SidebarMenuButton>
 								</SidebarMenuItem>
@@ -205,6 +242,31 @@ export function PlaygroundClient({ files }: PlaygroundClientProps) {
 										</span>
 									</SidebarMenuButton>
 								</SidebarMenuItem>
+
+								{/* Jambo Pricing */}
+								<SidebarMenuItem>
+									<SidebarMenuButton
+										isActive={activeComponent === "jambo-pricing"}
+										variant={
+											activeComponent === "jambo-pricing" ? "strong" : "neutral"
+										}
+										tooltip="src/app/sandbox/jambo-pricing"
+										onClick={() => {
+											setActiveComponent("jambo-pricing")
+											setActiveFile("jambo-pricing-section.tsx")
+										}}
+										className={cn(
+											"group flex w-full items-center justify-start gap-2.5 rounded-lg px-3 py-2 text-left text-sm font-medium transition-all duration-200",
+											activeComponent !== "jambo-pricing" &&
+												"hover:bg-fill3 text-fg-secondary hover:text-fg",
+											"group-data-[state=collapsed]:p-2!"
+										)}>
+										<Folder className="text-primary size-4 shrink-0" />
+										<span className="flex-1 truncate group-data-[state=collapsed]:hidden">
+											src/app/sandbox/jambo-pricing
+										</span>
+									</SidebarMenuButton>
+								</SidebarMenuItem>
 							</SidebarMenu>
 						</SidebarGroupContent>
 					</SidebarGroup>
@@ -212,20 +274,24 @@ export function PlaygroundClient({ files }: PlaygroundClientProps) {
 			</Sidebar>
 
 			{/* Main Workspace Area */}
-			<SidebarInset className="bg-bg relative flex flex-1 flex-col overflow-hidden">
+			<SidebarInset className="bg-bg relative flex min-h-0 flex-1 flex-col overflow-hidden">
 				{/* Top Controls Header */}
-				<header className="border-border bg-fill1 z-10 flex items-center justify-between border-b p-2.5 px-6">
+				<header className="border-border bg-fill1 sticky top-0 z-10 flex items-center justify-between border-b p-2.5 px-6">
 					{/* Active Path Breadcrumbs */}
 					<div className="text-fg-secondary flex items-center gap-2 text-sm">
 						<SidebarTrigger className="text-fg-tertiary hover:bg-fill3 hover:text-fg mr-1" />
 						<span className="text-fg-tertiary font-medium">sandbox</span>
 						<ChevronRight className="text-fg-tertiary size-3" />
 						<span className="font-medium">
-							{activeComponent === "logo"
-								? "test"
-								: activeComponent === "faq"
-									? "test2"
-									: "beam-header"}
+							{activeComponent === "motion"
+								? "motion"
+								: activeComponent === "testimonials"
+									? "klarheit-testimonial"
+									: activeComponent === "faq"
+										? "klarheit-faq"
+										: activeComponent === "beam-header"
+											? "beam-header"
+											: "jambo-pricing"}
 						</span>
 						<ChevronRight className="text-fg-tertiary size-3" />
 						<span className="text-fg overflow-hidden text-ellipsis font-semibold">
@@ -291,8 +357,8 @@ export function PlaygroundClient({ files }: PlaygroundClientProps) {
 				</header>
 
 				{/* Workspace Content */}
-				<div className="flex flex-1 overflow-hidden">
-					<div className="flex h-full flex-1 flex-col overflow-hidden">
+				<div className="flex min-h-0 flex-1 overflow-hidden">
+					<div className="flex h-full min-h-0 flex-1 flex-col overflow-hidden">
 						<div className="border-border text-fg-tertiary flex select-none items-center justify-between border-b px-4 py-3 text-[11px] font-semibold">
 							<span>Component Preview</span>
 							<div className="flex items-center gap-4">
@@ -326,14 +392,13 @@ export function PlaygroundClient({ files }: PlaygroundClientProps) {
 									)}>
 									{/* Component Preview Card */}
 									<div className="text-fg flex flex-1 flex-col overflow-hidden">
-										<div className="bg-bg text-fg relative flex flex-1 items-center justify-center overflow-auto">
-											<div className="w-full">
-												{activeComponent === "logo" && <LogoSection />}
-												{activeComponent === "faq" && <TestimonialSection />}
-												{activeComponent === "beam-header" && (
-													<BeamHeaderSection />
-												)}
-											</div>
+										<div className="bg-bg text-fg relative flex flex-1 overflow-hidden">
+											<iframe
+												key={activeComponent}
+												src={previewRoutes[activeComponent]}
+												className="bg-bg h-full w-full border-0"
+												title="Component Preview"
+											/>
 										</div>
 									</div>
 								</div>
@@ -352,11 +417,15 @@ export function PlaygroundClient({ files }: PlaygroundClientProps) {
 									</div>
 									<div className="flex-1 space-y-1 overflow-y-auto p-2">
 										{Object.keys(
-											activeComponent === "logo"
-												? files.test
-												: activeComponent === "faq"
-													? files.test2
-													: files["beam-header"]
+											activeComponent === "motion"
+												? files.motion
+												: activeComponent === "testimonials"
+													? files["klarheit-testimonial"]
+													: activeComponent === "faq"
+														? files["klarheit-faq"]
+														: activeComponent === "beam-header"
+															? files["beam-header"]
+															: files["jambo-pricing"]
 										).map((fileName) => {
 											const isSelected = activeFile === fileName
 											return (
@@ -412,7 +481,7 @@ export function PlaygroundClient({ files }: PlaygroundClientProps) {
 									</div>
 
 									{/* Code Editor body */}
-									<div className="custom-shiki-container bg-bg flex-1 overflow-auto p-6">
+									<div className="custom-shiki-container bg-bg flex-1 overflow-auto p-1">
 										<CodeArea
 											code={getActiveCode()}
 											language="tsx"

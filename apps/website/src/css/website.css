@@ -1651,3 +1651,49 @@
 		animation-play-state: paused;
 	}
 }
+
+
+/* Marquee animations for logo section */
+@keyframes marquee-left {
+	0% {
+		transform: translateX(0);
+	}
+	100% {
+		transform: translateX(-100%);
+	}
+}
+
+@keyframes marquee-right {
+	0% {
+		transform: translateX(-100%);
+	}
+	100% {
+		transform: translateX(0);
+	}
+}
+
+@utility animate-marquee-left {
+	animation: marquee-left var(--marquee-duration, 30s) linear infinite;
+}
+
+@utility animate-marquee-right {
+	animation: marquee-right var(--marquee-duration, 30s) linear infinite;
+}
+
+/* Vertical mask for fading edges of marquee */
+@utility mask-gradient {
+	mask-image: linear-gradient(
+		to bottom,
+		transparent 0%,
+		black 8%,
+		black 92%,
+		transparent 100%
+	);
+	-webkit-mask-image: linear-gradient(
+		to bottom,
+		transparent 0%,
+		black 8%,
+		black 92%,
+		transparent 100%
+	);
+}

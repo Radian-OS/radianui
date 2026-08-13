@@ -10,29 +10,29 @@ export function BeamHeaderSection() {
 	return (
 		<section
 			id="beam-header-section"
-			className="bg-fg relative w-full overflow-hidden px-4 pb-0 pt-12 sm:px-6 sm:pt-16 md:pt-20 lg:px-10 lg:pt-24">
+			className="bg-bg relative w-full overflow-hidden px-4 pb-0 pt-12 sm:px-6 sm:pt-16 md:pt-20 lg:px-10 lg:pt-24">
 			{/* Hero Content */}
 			<div className="relative z-10 mx-auto max-w-3xl text-center">
 				{/* Badge */}
-				<div className="border-fg-tertiary/20 bg-fill3-alpha mb-6 inline-flex items-center gap-2 rounded-full border px-4 py-1.5">
+				<div className="border-border bg-fill2 mb-6 inline-flex items-center gap-2 rounded-full border px-4 py-1.5">
 					<Zap className="text-primary size-3.5" />
-					<span className="text-primary-fg/80 text-xs font-medium sm:text-sm">
+					<span className="text-fg-secondary text-xs font-medium sm:text-sm">
 						Empower Innovation!
 					</span>
 				</div>
 
 				{/* Heading */}
-				<h1 className="heading-1 text-bg mb-6">
+				<h1 className="heading-1 text-fg mb-6">
 					Shaping innovation one beam at a time
 				</h1>
 
 				{/* Subheading */}
-				<p className="text-fg-tertiary/80 mx-auto mb-10 max-w-xl text-sm leading-relaxed sm:text-base md:mb-14">
+				<p className="text-fg-secondary mx-auto mb-10 max-w-xl text-sm leading-relaxed sm:text-base md:mb-14">
 					Lorem ipsum dolor sit{" "}
-					<span className="text-bg font-semibold">amet consectetur</span> Lectus
+					<span className="text-fg font-semibold">amet consectetur</span> Lectus
 					massa sodales at sit aliquet velit ipsum Elementum turpis enim
 					consequat{" "}
-					<span className="text-bg font-semibold">pharetra iaculis</span> enim
+					<span className="text-fg font-semibold">pharetra iaculis</span> enim
 					odio id tellus.
 				</p>
 			</div>

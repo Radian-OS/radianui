@@ -106,7 +106,7 @@ export function LogoMarquee() {
 						{[...row.logos, ...row.logos].map((variant, i) => (
 							<div
 								key={`${variant}-${i}`}
-								className="flex h-[72px] w-[72px] shrink-0 items-center justify-center rounded-full bg-[#f0efed] transition-all duration-300 hover:scale-110 hover:shadow-md md:h-[84px] md:w-[84px]">
+								className="bg-fill2 text-fg hover:bg-fill3 hover:text-fg flex h-[72px] w-[72px] shrink-0 items-center justify-center rounded-full transition-all duration-300 hover:scale-110 hover:shadow-md md:h-[84px] md:w-[84px]">
 								<LogoIcon
 									variant={variant}
 									className="h-8 w-8 md:h-10 md:w-10"
@@ -129,7 +129,7 @@ export function LogoMarquee() {
 						{[...row.logos, ...row.logos].map((variant, i) => (
 							<div
 								key={`dup-${variant}-${i}`}
-								className="flex h-[72px] w-[72px] shrink-0 items-center justify-center rounded-full bg-[#f0efed] transition-all duration-300 hover:scale-110 hover:shadow-md md:h-[84px] md:w-[84px]">
+								className="bg-fill2 text-fg hover:bg-fill3 hover:text-fg flex h-[72px] w-[72px] shrink-0 items-center justify-center rounded-full transition-all duration-300 hover:scale-110 hover:shadow-md md:h-[84px] md:w-[84px]">
 								<LogoIcon
 									variant={variant}
 									className="h-8 w-8 md:h-10 md:w-10"

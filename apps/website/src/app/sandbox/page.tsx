@@ -24,43 +24,86 @@ function readFileContent(dirPath: string, fileName: string): string {
 }
 
 export default function PlaygroundPage() {
-	const testDir = path.join(process.cwd(), "src/app/sandbox/test")
-	const test2Dir = path.join(process.cwd(), "src/app/sandbox/test2")
+	const motionDir = path.join(process.cwd(), "src/app/sandbox/motion")
 	const beamHeaderDir = path.join(process.cwd(), "src/app/sandbox/beam-header")
+	const jamboPricingDir = path.join(
+		process.cwd(),
+		"src/app/sandbox/jambo-pricing"
+	)
+	const klarheitFaqDir = path.join(
+		process.cwd(),
+		"src/app/sandbox/klarheit-faq"
+	)
+	const klarheitTestimonialDir = path.join(
+		process.cwd(),
+		"src/app/sandbox/klarheit-testimonial"
+	)
 
-	const testFiles = [
+	const motionFiles = [
 		"logo-section.tsx",
 		"logo-marquee.tsx",
 		"logo-icon.tsx",
 		"page.tsx",
 	]
-	const test2Files = ["faq-section.tsx", "page.tsx"]
 	const beamHeaderFiles = [
 		"beam-header-section.tsx",
 		"beam-logo-strip.tsx",
 		"beam-dashboard.tsx",
 	]
+	const jamboPricingFiles = [
+		"jambo-pricing-section.tsx",
+		"pricing-card.tsx",
+		"rating.tsx",
+		"logo-strip.tsx",
+		"page.tsx",
+	]
+	const klarheitFaqFiles = [
+		"faq-section.tsx",
+		"faq-accordion.tsx",
+		"stat-card.tsx",
+		"page.tsx",
+	]
+	const klarheitTestimonialFiles = [
+		"testimonial-section.tsx",
+		"testimonial-card.tsx",
+		"page.tsx",
+	]
 
-	const testData: Record<string, string> = {}
-	const test2Data: Record<string, string> = {}
+	const motionData: Record<string, string> = {}
 	const beamHeaderData: Record<string, string> = {}
+	const jamboPricingData: Record<string, string> = {}
+	const klarheitFaqData: Record<string, string> = {}
+	const klarheitTestimonialData: Record<string, string> = {}
 
-	for (const file of testFiles) {
-		testData[file] = readFileContent(testDir, file)
-	}
-
-	for (const file of test2Files) {
-		test2Data[file] = readFileContent(test2Dir, file)
+	for (const file of motionFiles) {
+		motionData[file] = readFileContent(motionDir, file)
 	}
 
 	for (const file of beamHeaderFiles) {
 		beamHeaderData[file] = readFileContent(beamHeaderDir, file)
 	}
 
+	for (const file of jamboPricingFiles) {
+		jamboPricingData[file] = readFileContent(jamboPricingDir, file)
+	}
+
+	for (const file of klarheitFaqFiles) {
+		klarheitFaqData[file] = readFileContent(klarheitFaqDir, file)
+	}
+
+	for (const file of klarheitTestimonialFiles) {
+		klarheitTestimonialData[file] = readFileContent(
+			klarheitTestimonialDir,
+			file
+		)
+	}
+
 	const files = {
-		test: testData,
-		test2: test2Data,
+		motion: motionData,
 		"beam-header": beamHeaderData,
+		"jambo-pricing": jamboPricingData,
+		"klarheit-faq": klarheitFaqData,
+		"klarheit-testimonial": klarheitTestimonialData,
 	}
 
 	return <PlaygroundClient files={files} />

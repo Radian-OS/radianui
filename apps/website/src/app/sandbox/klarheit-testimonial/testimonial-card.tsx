@@ -1,3 +1,4 @@
+import React from "react"
 import Image from "next/image"
 
 interface TestimonialCardProps {
@@ -17,12 +18,12 @@ export function TestimonialCard({ brand, image }: TestimonialCardProps) {
 				sizes="(max-width: 768px) 100vw, 380px"
 			/>
 
-			{/* Blue tint overlay */}
-			<div className="absolute inset-0 bg-[#1900ff]/70 mix-blend-multiply" />
+			{/* Blue tint overlay using global CSS variables */}
+			<div className="bg-blue/70 absolute inset-0 mix-blend-multiply" />
 
 			{/* Brand name overlay */}
 			<div className="absolute bottom-6 left-6 z-10">
-				<span className="text-xl font-medium tracking-tight text-white sm:text-2xl">
+				<span className="text-fg-inverse text-xl font-medium tracking-tight sm:text-2xl">
 					{brand}
 				</span>
 			</div>
