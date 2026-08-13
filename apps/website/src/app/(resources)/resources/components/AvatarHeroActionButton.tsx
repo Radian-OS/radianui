@@ -40,7 +40,9 @@ export default function AvatarHeroActionButtons() {
 				className="bg-elevation-level1/20 dark:hover:bg-fill2/40 hover:bg-fill2/40 w-full backdrop-blur-md sm:w-fit"
 				variant="outline"
 				color="neutral">
-				<Link href="/docs/components/accordion" className="w-full sm:w-fit">
+				<Link
+					href="/docs/getting-started/resources"
+					className="w-full sm:w-fit">
 					Explore Resources
 				</Link>
 			</Button>

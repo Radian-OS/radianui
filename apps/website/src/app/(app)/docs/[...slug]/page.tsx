@@ -9,7 +9,7 @@ import { PreviousNextButtons } from "@/components/prev-next-buttons"
 import { PreviousNextIconButtons } from "@/components/prev-next-icon-buttons"
 import { JsonLd } from "@/components/seo/json-ld"
 import { VersionDisplayBadge } from "@/components/version-display-badge"
-import { websiteMetadata } from "@/config/website-metadata-config"
+import { generateSeoMeta } from "@/lib/generate-doc-seo-meta"
 import { getPackageVersion } from "@/lib/get-package-info"
 import { docsSource } from "@/lib/source"
 import { absoluteUrl, getDocStructuredData } from "@/lib/structured-data"
@@ -45,9 +45,14 @@ export async function generateMetadata({
 	const doc = await getDocFromParams({ params })
 	if (!doc) return {}
 
-	const url = absoluteUrl(`/docs/${doc.slugs.join("/")}`)
-	const title = `${doc.data.title} - ${websiteMetadata.name}`
-	const description = doc.data.description
+	const slug = doc.slugs.join("/")
+	const url = absoluteUrl(`/docs/${slug}`)
+	const { title, description } = generateSeoMeta({
+		slug,
+		section: doc.slugs[0],
+		title: doc.data.title,
+		description: doc.data.description,
+	})
 	const ogImageUrl = absoluteUrl(
 		`/api/og?title=${encodeURIComponent(doc.data.title)}`
 	)
