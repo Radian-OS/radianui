@@ -24,6 +24,8 @@ export interface AvatarTileProps {
 	toneStyle: React.CSSProperties
 	tone: string
 	copyFormat: string
+	isFavorite: boolean
+	onToggleFavorite: () => void
 }
 
 export const AvatarTile = ({
@@ -32,6 +34,8 @@ export const AvatarTile = ({
 	toneStyle,
 	tone,
 	copyFormat,
+	isFavorite,
+	onToggleFavorite,
 }: AvatarTileProps) => {
 	const [open, setOpen] = useState<boolean>(false)
 	const isNeutralBackground = tone === "neutral" || tone === "none"
@@ -96,17 +100,17 @@ export const AvatarTile = ({
 					</DropdownMenuTrigger>
 
 					<DropdownMenuContent align="end" className="w-40">
-						<DropdownMenuItem onClick={handleCopy}>
+						<DropdownMenuItem onSelect={() => handleCopy()}>
 							<Copy />
 							Copy
 						</DropdownMenuItem>
-						<DropdownMenuItem onClick={handleDownload}>
+						<DropdownMenuItem onSelect={() => handleDownload()}>
 							<Download />
 							Download
 						</DropdownMenuItem>
-						<DropdownMenuItem>
-							<Star />
-							Favourite
+						<DropdownMenuItem onSelect={onToggleFavorite}>
+							<Star className={isFavorite ? "fill-current" : undefined} />
+							{isFavorite ? "Unfavourite" : "Favourite"}
 						</DropdownMenuItem>
 					</DropdownMenuContent>
 				</DropdownMenu>
@@ -117,7 +121,8 @@ export const AvatarTile = ({
 					<Button
 						size="28"
 						color="neutral"
-						variant="strong"
+						variant="outline"
+						className="bg-white text-black hover:bg-white"
 						onClick={handleCopy}>
 						{copied
 							? copyFormat === "editable-bg"

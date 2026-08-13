@@ -5,9 +5,11 @@ import {
 	ChevronDown,
 	Mars,
 	Palmtree,
+	Star,
 	User,
 	Venus,
 } from "lucide-react"
+import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
 import {
 	DropdownMenu,
@@ -21,6 +23,7 @@ import {
 
 const CATEGORIES = [
 	{ value: "all", label: "All", icon: User },
+	{ value: "favorites", label: "Favorites", icon: Star },
 	{ value: "professional", label: "Professional", icon: Briefcase },
 	{ value: "casual", label: "Casual", icon: Palmtree },
 	{ value: "male", label: "Male", icon: Mars },
@@ -30,18 +33,27 @@ const CATEGORIES = [
 const CategoryFilterDropdown = ({
 	value,
 	onChange,
+	favoriteCount = 0,
 }: {
 	value: string
 	onChange: (value: string) => void
+	favoriteCount?: number
 }) => {
-	const activeLabel = CATEGORIES.find((c) => c.value === value)?.label ?? "All"
+	const activeCategory = CATEGORIES.find((c) => c.value === value)
+	const activeLabel = activeCategory?.label ?? "All"
+	const ActiveIcon = activeCategory?.icon ?? User
 
 	return (
 		<DropdownMenu indicatorPosition="right">
 			<DropdownMenuTrigger asChild>
 				<Button color="neutral" variant="outline">
-					<User className="text-fg-secondary" />
+					<ActiveIcon className="text-fg-secondary" />
 					{activeLabel}
+					{value === "favorites" && favoriteCount > 0 && (
+						<span className="bg-primary/20 text-primary rounded-full px-1.5 py-0.5 text-xs font-semibold">
+							{favoriteCount}
+						</span>
+					)}
 					<ChevronDown className="text-fg-secondary" />
 				</Button>
 			</DropdownMenuTrigger>
@@ -54,6 +66,11 @@ const CategoryFilterDropdown = ({
 						<DropdownMenuRadioItem key={v} value={v}>
 							<Icon className="text-fg-secondary size-4" />
 							<span className="flex-1 text-sm font-medium">{label}</span>
+							{v === "favorites" && favoriteCount > 0 && (
+								<Badge size="20" variant="soft" color="neutral">
+									{favoriteCount}
+								</Badge>
+							)}
 						</DropdownMenuRadioItem>
 					))}
 				</DropdownMenuRadioGroup>

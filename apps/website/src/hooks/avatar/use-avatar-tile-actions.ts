@@ -21,8 +21,8 @@ export const useAvatarTileActions = ({
 }: UseAvatarTileActionsOptions) => {
 	const [copied, setCopied] = useState(false)
 
-	const handleCopy = async (e: React.MouseEvent) => {
-		e.stopPropagation()
+	const handleCopy = async (e?: { stopPropagation?: () => void }) => {
+		e?.stopPropagation?.()
 		if (copyFormat === "editable-bg") {
 			// Safari requires the ClipboardItem to be created synchronously
 			// within the click handler. We pass a Promise for the blob so the
@@ -95,8 +95,8 @@ export const useAvatarTileActions = ({
 		}
 	}
 
-	const handleDownload = async (e: React.MouseEvent) => {
-		e.stopPropagation()
+	const handleDownload = async (e?: { stopPropagation?: () => void }) => {
+		e?.stopPropagation?.()
 
 		if (copyFormat === "editable-bg") {
 			// Generate SVG with separate layers for Figma editing
