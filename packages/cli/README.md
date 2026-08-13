@@ -65,8 +65,8 @@ Behavior:
 
 ## 🌐 Documentation
 
-Visit [https://radianos.com/docs/getting-started/cli](https://radianos.com/docs/getting-started/cli) for guides and full CLI reference.
+Visit [https://radianui.com/docs/getting-started/cli](https://radianui.com/docs/getting-started/cli) for guides and full CLI reference.
 
 ## 📄 License
 
-Licensed under the [MIT License](https://github.com/Radian-os/radianos/blob/main/LICENSE.md).
+Licensed under the [MIT License](https://github.com/Radian-os/radianui/blob/main/LICENSE.md).

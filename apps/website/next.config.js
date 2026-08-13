@@ -169,13 +169,13 @@ const nextConfig = {
 		return process.env.NODE_ENV === "production"
 			? headers
 			: headers
-					.map((route) => ({
-						...route,
-						headers: route.headers.filter(
-							(header) => header.key !== "Cache-Control"
-						),
-					}))
-					.filter((route) => route.headers.length > 0)
+				.map((route) => ({
+					...route,
+					headers: route.headers.filter(
+						(header) => header.key !== "Cache-Control"
+					),
+				}))
+				.filter((route) => route.headers.length > 0)
 	},
 
 	async rewrites() {
@@ -262,7 +262,7 @@ const nextConfig = {
 			},
 			{
 				protocol: "https",
-				hostname: "radianos.com",
+				hostname: "radianui.com",
 			},
 			{
 				protocol: "https",

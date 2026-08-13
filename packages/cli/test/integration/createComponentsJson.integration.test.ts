@@ -19,7 +19,7 @@ describe("integration > createComponentsJson", () => {
     await createComponentsJson(tempDir, true)
     const file = await fs.readJSON(path.join(tempDir, "components.json"))
     expect(file).toEqual({
-      $schema: "https://radianos.com/schema.json",
+      $schema: "https://radianui.com/schema.json",
       aliases: {
         components: "@/components",
         utils: "@/lib/utils",

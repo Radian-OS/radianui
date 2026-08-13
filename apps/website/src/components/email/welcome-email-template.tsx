@@ -219,7 +219,7 @@ export default function WelcomeEmailTemplate({
 										className="text-fg text-lg font-semibold leading-7">
 										Examples and Blocks
 									</Heading>
-									<Link href={`https://blocks.radianos.com/`}>
+									<Link href={`https://blocks.radianui.com/`}>
 										<Img
 											src={`${baseUrl}/media/welcome-email/examples-and-blocks.gif`}
 											alt="examples-and-blocks"
@@ -286,7 +286,7 @@ export default function WelcomeEmailTemplate({
 									{/* GitHub */}
 									<Column className="w-1/3">
 										<Link
-											href="https://github.com/Radian-os/radianos"
+											href="https://github.com/Radian-os/radianui"
 											className="border-border text-fg-secondary block w-full rounded-lg border bg-white py-2 text-sm font-medium no-underline">
 											<Row
 												cellSpacing={6}
@@ -380,7 +380,7 @@ export default function WelcomeEmailTemplate({
 									<Row align="right" cellSpacing={8}>
 										<Column>
 											<Button
-												href="https://github.com/Radian-os/radianos"
+												href="https://github.com/Radian-os/radianui"
 												style={{
 													boxShadow: "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
 													borderRadius: "8px",

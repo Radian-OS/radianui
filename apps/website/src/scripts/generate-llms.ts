@@ -6,7 +6,7 @@ import {
 	navigationItems,
 } from "@/config/navigation-config"
 
-const NEXT_PUBLIC_WEBSITE_URL = "https://radianos.com"
+const NEXT_PUBLIC_WEBSITE_URL = "https://radianui.com"
 
 // ===== Helpers =====
 

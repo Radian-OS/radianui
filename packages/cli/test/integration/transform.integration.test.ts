@@ -31,7 +31,7 @@ const nextProjectInfo: ProjectInfo = {
 	framework: {
 		name: "next-app",
 		label: "Next.js",
-		link: { installation: "https://radianos.com", tailwind: "https://x" },
+		link: { installation: "https://radianui.com", tailwind: "https://x" },
 	},
 	hasSrcDir: true,
 	isRSC: true,
@@ -46,7 +46,7 @@ const viteProjectInfo: ProjectInfo = {
 	framework: {
 		name: "vite",
 		label: "Vite",
-		link: { installation: "https://radianos.com", tailwind: "https://x" },
+		link: { installation: "https://radianui.com", tailwind: "https://x" },
 	},
 	isRSC: false,
 }

@@ -5,7 +5,7 @@ export const FRAMEWORKS: Record<FrameworkName, Framework> = {
 		name: "manual",
 		label: "Manual",
 		link: {
-			installation: "https://radianos.com/documentation/installation",
+			installation: "https://radianui.com/documentation/installation",
 			tailwind: "https://tailwindcss.com/docs/guides/manual",
 		},
 	},
@@ -13,7 +13,7 @@ export const FRAMEWORKS: Record<FrameworkName, Framework> = {
 		name: "next-app",
 		label: "Next.js",
 		link: {
-			installation: "https://radianos.com/documentation/installation",
+			installation: "https://radianui.com/documentation/installation",
 			tailwind: "https://tailwindcss.com/docs/guides/nextjs",
 		},
 	},
@@ -21,7 +21,7 @@ export const FRAMEWORKS: Record<FrameworkName, Framework> = {
 		name: "vite",
 		label: "Vite",
 		link: {
-			installation: "https://radianos.com/documentation/installation",
+			installation: "https://radianui.com/documentation/installation",
 			tailwind: "https://tailwindcss.com/docs/guides/vite",
 		},
 	},

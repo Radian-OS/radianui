@@ -8,17 +8,17 @@ body:
       value: |
         ### 🙏 Thanks for your interest in improving Radian!
 
-        Before submitting, please search [existing issues](https://github.com/Radian-os/radianos/issues) to avoid duplicates.
+        Before submitting, please search [existing issues](https://github.com/Radian-os/radianui/issues) to avoid duplicates.
 
         Not sure if it's a bug or feature?  
-        👉 [Start a discussion instead](https://github.com/Radian-os/radianos/discussions/new?category=general)
+        👉 [Start a discussion instead](https://github.com/Radian-os/radianui/discussions/new?category=general)
 
   - type: textarea
     id: description
     attributes:
       label: Feature description
       description: "Clearly explain what the feature does and why it would be helpful."
-      placeholder: "Describe the feature you'd like to see in RadianOs..."
+      placeholder: "Describe the feature you'd like to see in radianui..."
     validations:
       required: true
 

@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server"
 
-const GITHUB_REPOSITORY = "Radian-os/radianos"
-const FALLBACK_GITHUB_STARS = 32
+const GITHUB_REPOSITORY = "Radian-os/radianui"
 
 export const revalidate = 300
 
@@ -31,7 +30,7 @@ export async function GET() {
 		const data: { stargazers_count?: unknown } = await response.json()
 		const stars = Number(data.stargazers_count)
 
-		if (!Number.isInteger(stars) || stars <= 0) {
+		if (!Number.isInteger(stars) || stars < 0) {
 			throw new Error("GitHub returned an invalid star count")
 		}
 
@@ -45,10 +44,11 @@ export async function GET() {
 		)
 	} catch {
 		return NextResponse.json(
-			{ stars: FALLBACK_GITHUB_STARS },
+			{ error: "Unable to fetch GitHub stars" },
 			{
+				status: 502,
 				headers: {
-					"Cache-Control": "public, s-maxage=60, stale-while-revalidate=86400",
+					"Cache-Control": "no-store",
 				},
 			}
 		)

@@ -28,7 +28,7 @@ export default function App() {
 
 				<div className="flex flex-wrap items-center justify-center gap-3 pt-2">
 					<Button size="44" variant="glossy" asChild>
-						<a href="https://radianos.com">Explore the docs</a>
+						<a href="https://radianui.com">Explore the docs</a>
 					</Button>
 					<Button
 						size="44"

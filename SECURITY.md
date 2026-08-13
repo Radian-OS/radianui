@@ -4,7 +4,7 @@
 
 **Don't create a public issue!**
 
-If you've discovered a security vulnerability in RadianOS, please report it privately to keep our users safe.
+If you've discovered a security vulnerability in Radian UI, please report it privately to keep our users safe.
 
 Email us directly at **security@radianos.com**
 
@@ -28,4 +28,4 @@ Email us directly at **security@radianos.com**
 
 ---
 
-**Thanks for helping keep RadianOS secure!** 🎯
+**Thanks for helping keep Radian UI secure!** 🎯

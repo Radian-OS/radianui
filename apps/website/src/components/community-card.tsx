@@ -185,7 +185,7 @@ export default function CommunityCard() {
 				<div className="flex gap-2">
 					<Button asChild variant={"strong"} color={"neutral"}>
 						<Link
-							href="https://github.com/Radian-os/radianos"
+							href="https://github.com/Radian-os/radianui"
 							target="_blank"
 							rel="noopener noreferrer">
 							<GithubIcon />

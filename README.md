@@ -1,11 +1,11 @@
 <p align="center">
-  <a href="https://radianos.com">
-      <img src="https://github.com/Radian-os/radianos/blob/main/apps/website/public/og/static-og.png" alt="radian" />
+  <a href="https://radianui.com">
+      <img src="https://github.com/Radian-os/radianui/blob/main/apps/website/public/og/static-og.png" alt="radian" />
   </a>
 </p>
 
 <p align="center">
-  <a href="https://github.com/Radian-os/radianos/blob/main/LICENSE.md">
+  <a href="https://github.com/Radian-os/radianui/blob/main/LICENSE.md">
     <img src="https://img.shields.io/badge/license-MIT-green" alt="License">
   </a>
 </p>
@@ -19,7 +19,7 @@ _Free. Open Source. Developer-first._
 
 Explore the full documentation, including installation, components, variants, theming, and best practices:
 
-🔗 [https://radianos.com/documentation](https://radianos.com/documentation)
+🔗 [https://radianui.com/documentation](https://radianui.com/documentation)
 
 ## 🚀 Features
 
@@ -31,22 +31,22 @@ Explore the full documentation, including installation, components, variants, th
 
 ## 🤝 Contributing
 
-We welcome contributions to RadianOs — whether it’s improving components, fixing bugs, or suggesting new ideas.  
+We welcome contributions to Radian UI — whether it’s improving components, fixing bugs, or suggesting new ideas.  
 Please read our [Contributing Guide](/CONTRIBUTING.md) to get started.
 
 ## ⚖️ License
 
-RadianOs is licensed under the [MIT License](https://github.com/Radian-os/radianos/blob/main/LICENSE.md).  
+Radian UI is licensed under the [MIT License](https://github.com/Radian-os/radianui/blob/main/LICENSE.md).  
 Feel free to use, modify, and distribute — with attribution.
 
 ## 💬 Community
 
 Join the discussion, get help, or share your creations:
 
-- 💬 [Discussions](https://github.com/Radian-os/radianos/discussions)
-- 🐛 [Report bugs](https://github.com/Radian-os/radianos/issues/new?template=bug_report.yml)
-- 🧪 [Request features](https://github.com/Radian-os/radianos/issues/new?template=feature_request.yml)
+- 💬 [Discussions](https://github.com/Radian-os/radianui/discussions)
+- 🐛 [Report bugs](https://github.com/Radian-os/radianui/issues/new?template=bug_report.yml)
+- 🧪 [Request features](https://github.com/Radian-os/radianui/issues/new?template=feature_request.yml)
 
 ---
 
-Made with ❤️ by the RadianOS team
+Made with ❤️ by the Radian UI team

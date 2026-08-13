@@ -31,7 +31,7 @@ export default function ChangelogCard({ title, children }: ChangelogCardProps) {
 					</span>
 				</div>
 				<span className="text-fg-tertiary text-lg font-normal">
-					www.radianos.com
+					www.radianui.com
 				</span>
 			</div>
 

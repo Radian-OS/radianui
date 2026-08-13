@@ -6,26 +6,11 @@ import { cn } from "@/lib/utils"
 import { Badge } from "@/styles/default/ui/badge"
 import { Button } from "@/styles/default/ui/button"
 
-const FALLBACK_GITHUB_STARS = 32
-const GITHUB_STARS_STORAGE_KEY = "radianos-github-stars"
-
 function useGithubStars() {
-	const [stars, setStars] = useState(FALLBACK_GITHUB_STARS)
+	const [stars, setStars] = useState<number | null>(null)
 
 	useEffect(() => {
 		const controller = new AbortController()
-
-		try {
-			const savedStars = Number(
-				window.localStorage.getItem(GITHUB_STARS_STORAGE_KEY)
-			)
-
-			if (Number.isInteger(savedStars) && savedStars > 0) {
-				setStars(savedStars)
-			}
-		} catch {
-			// Storage can be unavailable in privacy-restricted browsers.
-		}
 
 		const fetchStars = async () => {
 			try {
@@ -38,20 +23,10 @@ function useGithubStars() {
 				const data: { stars?: unknown } = await response.json()
 				const nextStars = Number(data.stars)
 
-				if (Number.isInteger(nextStars) && nextStars > 0) {
+				if (Number.isInteger(nextStars) && nextStars >= 0) {
 					setStars(nextStars)
-
-					try {
-						window.localStorage.setItem(
-							GITHUB_STARS_STORAGE_KEY,
-							String(nextStars)
-						)
-					} catch {
-						// The live value still renders when storage is unavailable.
-					}
 				}
 			} catch {
-				// Keep the last known non-zero value when the request is unavailable.
 				return
 			}
 		}
@@ -100,12 +75,14 @@ function EarlyAccessButton({
 			<Link
 				rel="noopener noreferrer"
 				target="_blank"
-				href={"https://github.com/Radian-os/radianos"}>
+				href={"https://github.com/Radian-os/radianui"}>
 				<GithubIcon />
 				Github
-				<Badge variant="strong" size="20" color="primary">
-					{stars.toLocaleString("en-US")}
-				</Badge>
+				{stars !== null && (
+					<Badge variant="strong" size="20" color="primary">
+						{stars.toLocaleString("en-US")}
+					</Badge>
+				)}
 			</Link>
 		</Button>
 	)

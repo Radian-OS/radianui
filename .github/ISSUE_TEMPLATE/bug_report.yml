@@ -12,10 +12,10 @@ body:
     attributes:
       value: |
         ### Not sure if it’s a bug?
-        
+
         If you're unsure whether this is actually a bug, feel free to start a discussion instead:
-        
-        👉 [Open a general discussion](https://github.com/Radian-os/radianos/discussions/new?category=general)
+
+        👉 [Open a general discussion](https://github.com/Radian-os/radianui/discussions/new?category=general)
 
   - type: textarea
     id: description
@@ -29,7 +29,7 @@ body:
   - type: input
     id: affected-components
     attributes:
-      label: Affected RadianOs components
+      label: Affected Radian UI components
       description: "List the components affected by this bug (e.g., Button, Input, OTPInput)"
       placeholder: "e.g. Button, Accordion, OTPInput"
     validations:

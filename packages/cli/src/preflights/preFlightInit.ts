@@ -74,7 +74,7 @@ export const preFlightInit = async (options: InitOptions): Promise<{ projectInfo
 		tsConfigSpinner?.fail()
 		errors.push(
 			`No import alias found in your tsconfig.json file.\n` +
-				`Visit ${txt.info("https://radianos.com/docs/installation/manual#configure-path-aliases")} to learn how to set an import alias.`
+				`Visit ${txt.info("https://radianui.com/docs/installation/manual#configure-path-aliases")} to learn how to set an import alias.`
 		)
 	} else {
 		tsConfigSpinner?.succeed(`Verifying import alias. Found import alias prefix: ${projectInfo.aliasPrefix}`)

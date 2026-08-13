@@ -10,7 +10,7 @@ export const createComponentsJson = async (
 ) => {
 	const componentsJsonPath = path.join(projectDir, "components.json")
 	const componentsJson = {
-		$schema: "https://radianos.com/schema.json",
+		$schema: "https://radianui.com/schema.json",
 		style,
 		iconLibrary,
 		aliases: {
