@@ -7,7 +7,7 @@ import type { Config } from "@/utils/getConfig"
 import { handleError } from "@/utils/handleError"
 import { spinner } from "@/utils/spinner"
 
-const GITHUB_REPO_URL = "https://github.com/Radian-os/radianos"
+const GITHUB_REPO_URL = "https://github.com/Radian-os/radianui"
 
 const GITHUB_REPO_BRANCH = "dev"
 

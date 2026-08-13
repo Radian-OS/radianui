@@ -110,32 +110,32 @@ const LINKS: Link[] = [
 		title: "Explore UI Blocks",
 		linkItems: [
 			{
-				href: "https://blocks.radianos.com/blocks/authentication/sign-in",
+				href: "https://blocks.radianui.com/blocks/authentication/sign-in",
 				name: "Sign In Blocks",
 				target: "_blank",
 			},
 			{
-				href: "https://blocks.radianos.com/blocks/authentication/sign-up",
+				href: "https://blocks.radianui.com/blocks/authentication/sign-up",
 				name: "Sign Up Blocks",
 				target: "_blank",
 			},
 			{
-				href: "https://blocks.radianos.com/blocks/authentication/verification",
+				href: "https://blocks.radianui.com/blocks/authentication/verification",
 				name: "Account Verification",
 				target: "_blank",
 			},
 			{
-				href: "https://blocks.radianos.com/blocks/webapp/sidebar",
+				href: "https://blocks.radianui.com/blocks/webapp/sidebar",
 				name: "Sidebar Blocks",
 				target: "_blank",
 			},
 			{
-				href: "https://blocks.radianos.com/blocks/webapp/onboarding",
+				href: "https://blocks.radianui.com/blocks/webapp/onboarding",
 				name: "Account Onboarding",
 				target: "_blank",
 			},
 			{
-				href: "https://blocks.radianos.com",
+				href: "https://blocks.radianui.com",
 				name: "Explore More Blocks",
 				target: "_blank",
 				isBlueLink: true,
@@ -146,7 +146,7 @@ const LINKS: Link[] = [
 		title: "Community",
 		linkItems: [
 			{
-				href: "https://github.com/Radian-os/radianos",
+				href: "https://github.com/Radian-os/radianui",
 				name: "Github",
 				target: "_blank",
 				icon: <GithubIcon />,
@@ -164,7 +164,7 @@ const LINKS: Link[] = [
 				icon: <XIcon />,
 			},
 			{
-				href: "https://www.youtube.com/@RadianOS",
+				href: "https://www.youtube.com/@radianui",
 				name: "Youtube",
 				target: "_blank",
 				icon: <YoutubeIcon />,

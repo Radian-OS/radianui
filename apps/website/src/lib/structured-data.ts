@@ -4,7 +4,7 @@ import { websiteMetadata } from "@/config/website-metadata-config"
 const configuredSiteUrl =
 	websiteMetadata.url ||
 	process.env.NEXT_PUBLIC_WEBSITE_URL ||
-	"https://radianos.com"
+	"https://radianui.com"
 
 export const siteUrl = configuredSiteUrl.replace(/\/+$/, "")
 export const organizationId = `${siteUrl}/#organization`
@@ -60,7 +60,7 @@ export function getHomepageStructuredData(): JsonLdObject {
 					height: 192,
 				},
 				sameAs: [
-					"https://github.com/Radian-os/radianos",
+					"https://github.com/Radian-os/radianui",
 					"https://x.com/radian_os",
 					"https://www.youtube.com/@RadianOS",
 				],
@@ -81,10 +81,10 @@ export function getHomepageStructuredData(): JsonLdObject {
 				description:
 					"Open-source React component library and design system built with Tailwind CSS.",
 				url: absoluteUrl("/"),
-				codeRepository: "https://github.com/Radian-os/radianos",
+				codeRepository: "https://github.com/Radian-os/radianui",
 				programmingLanguage: ["TypeScript", "JavaScript"],
 				runtimePlatform: ["React", "Next.js", "Web"],
-				license: "https://github.com/Radian-os/radianos/blob/main/LICENSE.md",
+				license: "https://github.com/Radian-os/radianui/blob/main/LICENSE.md",
 				isAccessibleForFree: true,
 				author: { "@id": organizationId },
 			},

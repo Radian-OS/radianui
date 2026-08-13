@@ -41,13 +41,13 @@
 		"tailwind",
 		"radix-ui"
 	],
-	"author": "RadianOS <radianos44@gmail.com> (https://radianos.com)",
+	"author": "RadianOS <radianos44@gmail.com> (https://radianui.com)",
 	"license": "MIT",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/Radian-os/radianos"
+		"url": "https://github.com/Radian-os/radianui"
 	},
-	"homepage": "https://github.com/Radian-os/radianos#readme",
+	"homepage": "https://github.com/Radian-os/radianui#readme",
 	"dependencies": {
 		"@clack/prompts": "^0.11.0",
 		"adm-zip": "^0.5.16",

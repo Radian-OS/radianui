@@ -8,7 +8,7 @@ import {
 describe("rawConfigSchema", () => {
 	it("parses a minimal valid configuration", () => {
 		const parsed = rawConfigSchema.parse({
-			$schema: "https://radianos.com/schema.json",
+			$schema: "https://radianui.com/schema.json",
 			style: "default",
 			aliases: { components: "@/components", utils: "@/lib/utils" },
 			iconLibrary: "lucide",
@@ -22,7 +22,7 @@ describe("rawConfigSchema", () => {
 
 	it("coerces hasSrcDir to a boolean", () => {
 		const parsed = rawConfigSchema.parse({
-			$schema: "https://radianos.com/schema.json",
+			$schema: "https://radianui.com/schema.json",
 			style: "default",
 			aliases: { components: "@/components", utils: "@/lib/utils" },
 			hasSrcDir: "true",
@@ -34,7 +34,7 @@ describe("rawConfigSchema", () => {
 	it("rejects missing required aliases", () => {
 		expect(() =>
 			rawConfigSchema.parse({
-				$schema: "https://radianos.com/schema.json",
+				$schema: "https://radianui.com/schema.json",
 				aliases: { components: "@/components" },
 			})
 		).toThrow()

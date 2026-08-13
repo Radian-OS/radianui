@@ -87,7 +87,7 @@ export async function resolveDetect(
 		tsConfigSpinner.fail()
 		errors.push(
 			`No import alias found in your tsconfig.json file.\n` +
-				`Visit ${txt.info("https://radianos.com/docs/installation/manual#configure-path-aliases")} to learn how to set an import alias.`
+				`Visit ${txt.info("https://radianui.com/docs/installation/manual#configure-path-aliases")} to learn how to set an import alias.`
 		)
 	} else {
 		tsConfigSpinner.succeed(

@@ -1,8 +1,8 @@
-# Contributing to RadianOS
+# Contributing to Radian UI
 
-Thank you for your interest in contributing to RadianOS! We welcome contributions from the software community to help improve and enhance this modern UI component library.
+Thank you for your interest in contributing to Radian UI! We welcome contributions from the software community to help improve and enhance this modern UI component library.
 
-By contributing, you can help make RadianOS a more valuable resource for developers and contribute to the growth of the open-source community.
+By contributing, you can help make Radian UI a more valuable resource for developers and contribute to the growth of the open-source community.
 
 ## Table of Contents
 
@@ -13,7 +13,7 @@ By contributing, you can help make RadianOS a more valuable resource for develop
 
 ## How to Contribute
 
-To contribute to RadianOS, please follow these guidelines:
+To contribute to Radian UI, please follow these guidelines:
 
 1. **Fork the repository** on GitHub
 2. **Clone your forked repository** to your local machine
@@ -104,8 +104,8 @@ Here's a guide on how you can effectively contribute to our UI component library
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/radianos.git
-cd radianos
+git clone https://github.com/your-username/Radian UI.git
+cd Radian UI
 
 # Install dependencies
 pnpm install
@@ -136,9 +136,9 @@ pnpm lint
 
 ## 📞 Need Help?
 
-- 💬 [GitHub Discussions](https://github.com/Radian-os/radianos/discussions)
-- 🐛 [Report Issues](https://github.com/Radian-os/radianos/issues/new)
-- 📧 [Contact the Team](mailto:team@radianos.com)
+- 💬 [GitHub Discussions](https://github.com/Radian-os/Radian UI/discussions)
+- 🐛 [Report Issues](https://github.com/Radian-os/Radian UI/issues/new)
+- 📧 [Contact the Team](mailto:team@Radian UI.com)
 
 We appreciate your enthusiasm and look forward to your valuable contributions to our open-source UI component library!
 
