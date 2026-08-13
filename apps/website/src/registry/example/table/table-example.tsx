@@ -30,11 +30,11 @@ import { Badge } from "@/registry/ui/badge"
 import { IconButton } from "@/registry/ui/button"
 import { Checkbox } from "@/registry/ui/checkbox"
 import {
-	Dropdown,
-	DropdownContent,
-	DropdownItem,
-	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuItem,
+	DropdownMenuTrigger,
+} from "@/registry/ui/dropdown-menu"
 import { Label } from "@/registry/ui/label"
 import {
 	Pagination,
@@ -492,21 +492,21 @@ const columns: ColumnDef<UserData>[] = [
 		header: "Edit",
 		cell: ({}) => {
 			return (
-				<Dropdown>
-					<DropdownTrigger className="flex w-full items-center justify-center">
+				<DropdownMenu>
+					<DropdownMenuTrigger className="flex w-full items-center justify-center">
 						<Ellipsis size={20} />
-					</DropdownTrigger>
-					<DropdownContent className="w-fit">
-						<DropdownItem>
+					</DropdownMenuTrigger>
+					<DropdownMenuContent className="w-fit">
+						<DropdownMenuItem>
 							<Pen />
 							Edit
-						</DropdownItem>
-						<DropdownItem>
+						</DropdownMenuItem>
+						<DropdownMenuItem>
 							<Settings />
 							Delete
-						</DropdownItem>
-					</DropdownContent>
-				</Dropdown>
+						</DropdownMenuItem>
+					</DropdownMenuContent>
+				</DropdownMenu>
 			)
 		},
 		size: 60,

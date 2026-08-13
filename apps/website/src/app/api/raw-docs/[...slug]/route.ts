@@ -1,5 +1,7 @@
-import { allDocs } from "contentlayer/generated"
+import fs from "fs"
 import { NextRequest, NextResponse } from "next/server"
+import path from "path"
+import { docsSource } from "@/lib/source"
 import Examples from "@/registry/example/example.json"
 
 // Flatten all example files into a single lookup map: path -> source code
@@ -28,32 +30,36 @@ function expandMdxComponents(rawMdx: string): string {
 	return expanded
 }
 
-function buildFrontmatter(doc: (typeof allDocs)[number]): string {
+function buildFrontmatter(doc: any): string {
 	const lines: string[] = ["---"]
 
-	lines.push(`title: ${doc.title}`)
-	lines.push(`description: ${doc.description}`)
+	lines.push(`title: ${doc.data.title}`)
+	lines.push(`description: ${doc.data.description}`)
 
-	if (doc.apiRef) lines.push(`apiRef: ${doc.apiRef}`)
-	if (doc.source) lines.push(`source: ${doc.source}`)
-	if (doc.externalSiteRef) lines.push(`externalSiteRef: ${doc.externalSiteRef}`)
-	if (doc.externalSiteName)
-		lines.push(`externalSiteName: ${doc.externalSiteName}`)
-	if (doc.customLogo) lines.push(`customLogo: ${doc.customLogo}`)
+	if (doc.data.apiRef) lines.push(`apiRef: ${doc.data.apiRef}`)
+	if (doc.data.source) lines.push(`source: ${doc.data.source}`)
+	if (doc.data.externalSiteRef)
+		lines.push(`externalSiteRef: ${doc.data.externalSiteRef}`)
+	if (doc.data.externalSiteName)
+		lines.push(`externalSiteName: ${doc.data.externalSiteName}`)
+	if (doc.data.customLogo) lines.push(`customLogo: ${doc.data.customLogo}`)
 
-	if (doc.links) {
+	if (doc.data.links) {
 		lines.push("links:")
-		if (doc.links.github) {
+		if (doc.data.links.github) {
 			lines.push("  github:")
-			lines.push(`    href: ${doc.links.github.href}`)
+			lines.push(`    href: ${doc.data.links.github.href}`)
 		}
-		if (doc.links.figma) {
+		if (doc.data.links.figma) {
 			lines.push("  figma:")
-			lines.push(`    href: ${doc.links.figma.href}`)
+			lines.push(`    href: ${doc.data.links.figma.href}`)
 		}
-		if (doc.links.externalReference && doc.links.externalReference.length > 0) {
+		if (
+			doc.data.links.externalReference &&
+			doc.data.links.externalReference.length > 0
+		) {
 			lines.push("  externalReference:")
-			for (const ref of doc.links.externalReference) {
+			for (const ref of doc.data.links.externalReference) {
 				lines.push(`    - label: ${ref.label}`)
 				lines.push(`      href: ${ref.href}`)
 				if (ref.icon) lines.push(`      icon: ${ref.icon}`)
@@ -72,7 +78,7 @@ export async function GET(
 	const { slug } = await params
 	const slugAsParams = slug.join("/")
 
-	const doc = allDocs.find((d) => d.slugAsParams === slugAsParams)
+	const doc = docsSource.getPage(slug)
 
 	if (!doc) {
 		return new NextResponse(
@@ -84,8 +90,15 @@ export async function GET(
 		)
 	}
 
+	const filePath = path.join(process.cwd(), "src/content/docs", doc.path)
+	const rawMdx = fs.existsSync(/*turbopackIgnore: true*/ filePath)
+		? fs.readFileSync(/*turbopackIgnore: true*/ filePath, "utf-8")
+		: ""
+	// Remove the frontmatter from rawMdx if present
+	const rawBody = rawMdx.replace(/^---\n[\s\S]*?\n---\n/, "")
+
 	const frontmatter = buildFrontmatter(doc)
-	const expandedBody = expandMdxComponents(doc.rawMdx)
+	const expandedBody = expandMdxComponents(rawBody)
 	const fullContent = `${frontmatter}\n\n${expandedBody}`
 
 	return new NextResponse(fullContent, {

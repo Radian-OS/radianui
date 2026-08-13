@@ -5,12 +5,12 @@ import { Check, Monitor, Moon, Sun } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/registry/ui/button"
 import {
-	Dropdown,
-	DropdownContent,
-	DropdownDivider,
-	DropdownGroup,
-	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuDivider,
+	DropdownMenuGroup,
+	DropdownMenuTrigger,
+} from "@/registry/ui/dropdown-menu"
 import { RadioGroup, RadioGroupItem } from "@/registry/ui/radio-group"
 
 type OptionItem = {
@@ -110,15 +110,15 @@ export default function RadioDropdown() {
 	const [density, setDensity] = React.useState("comfortable")
 
 	return (
-		<Dropdown>
-			<DropdownTrigger asChild>
+		<DropdownMenu>
+			<DropdownMenuTrigger asChild>
 				<Button variant="outline" color="neutral">
 					Settings
 				</Button>
-			</DropdownTrigger>
-			<DropdownContent className="w-80">
+			</DropdownMenuTrigger>
+			<DropdownMenuContent className="w-80">
 				{/* Mode */}
-				<DropdownGroup title="Mode">
+				<DropdownMenuGroup title="Mode">
 					<RadioGroup value={mode} onValueChange={setMode} className="gap-0">
 						{modeOptions.map((option) => (
 							<RadioDropdownItem
@@ -130,12 +130,12 @@ export default function RadioDropdown() {
 							/>
 						))}
 					</RadioGroup>
-				</DropdownGroup>
+				</DropdownMenuGroup>
 
-				<DropdownDivider />
+				<DropdownMenuDivider />
 
 				{/* Accent Color */}
-				<DropdownGroup title="Accent Color">
+				<DropdownMenuGroup title="Accent Color">
 					<RadioGroup
 						value={accent}
 						onValueChange={setAccent}
@@ -149,12 +149,12 @@ export default function RadioDropdown() {
 							/>
 						))}
 					</RadioGroup>
-				</DropdownGroup>
+				</DropdownMenuGroup>
 
-				<DropdownDivider />
+				<DropdownMenuDivider />
 
 				{/* Density */}
-				<DropdownGroup title="Accent Color">
+				<DropdownMenuGroup title="Accent Color">
 					<RadioGroup
 						value={density}
 						onValueChange={setDensity}
@@ -169,8 +169,8 @@ export default function RadioDropdown() {
 							/>
 						))}
 					</RadioGroup>
-				</DropdownGroup>
-			</DropdownContent>
-		</Dropdown>
+				</DropdownMenuGroup>
+			</DropdownMenuContent>
+		</DropdownMenu>
 	)
 }

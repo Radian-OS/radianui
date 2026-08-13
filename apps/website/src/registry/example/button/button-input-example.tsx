@@ -6,11 +6,11 @@ import { Calendar as CalendarIcon, ChevronDown } from "lucide-react"
 import { Button } from "@/registry/ui/button"
 import { Calendar } from "@/registry/ui/calendar"
 import {
-	Dropdown,
-	DropdownContent,
-	DropdownItem,
-	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuItem,
+	DropdownMenuTrigger,
+} from "@/registry/ui/dropdown-menu"
 import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
 
 const ButtonExampleInput = () => {
@@ -28,22 +28,22 @@ const ButtonExampleInput = () => {
 
 	return (
 		<div className="flex flex-wrap items-center justify-center gap-3">
-			<Dropdown>
-				<DropdownTrigger asChild>
+			<DropdownMenu>
+				<DropdownMenuTrigger asChild>
 					<Button color="neutral" variant="outline">
 						<CalendarIcon className="text-fg-secondary" />
 						{value}
 						<ChevronDown className="text-fg-secondary" />
 					</Button>
-				</DropdownTrigger>
-				<DropdownContent className="w-39.5">
+				</DropdownMenuTrigger>
+				<DropdownMenuContent className="w-39.5">
 					{options.map((option) => (
-						<DropdownItem key={option} onSelect={() => setValue(option)}>
+						<DropdownMenuItem key={option} onSelect={() => setValue(option)}>
 							{option}
-						</DropdownItem>
+						</DropdownMenuItem>
 					))}
-				</DropdownContent>
-			</Dropdown>
+				</DropdownMenuContent>
+			</DropdownMenu>
 
 			<Popover open={open} onOpenChange={setOpen}>
 				<PopoverTrigger asChild>

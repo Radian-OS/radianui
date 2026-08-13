@@ -5,17 +5,18 @@ import { Copy, Download, MoreHorizontal, Star } from "lucide-react"
 import Image from "next/image"
 import {
 	AVATAR_BLEND_OPACITY,
+	getAvatarAltText,
 	getImageBackgroundTint,
 } from "@/constants/avatar-playground-utils"
 import { useAvatarTileActions } from "@/hooks/avatar/use-avatar-tile-actions"
 import { cn } from "@/lib/utils"
 import { Button, CompactButton, IconButton } from "@/registry/ui/button"
 import {
-	Dropdown,
-	DropdownContent,
-	DropdownItem,
-	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuItem,
+	DropdownMenuTrigger,
+} from "@/registry/ui/dropdown-menu"
 
 export interface AvatarTileProps {
 	src: string
@@ -50,12 +51,12 @@ export const AvatarTile = ({
 	})
 
 	return (
-		<div
+		<li
 			className="border-soft bg-bg group relative isolate aspect-square w-full overflow-hidden rounded-xl border"
 			style={toneStyle}>
 			<Image
 				src={src}
-				alt={`Generated avatar ${index + 1}`}
+				alt={getAvatarAltText(index + 1, tone)}
 				fill
 				sizes="(max-width: 640px) 25vw, (max-width: 768px) 20vw, 14vw"
 				className="object-cover"
@@ -82,8 +83,8 @@ export const AvatarTile = ({
 					"absolute right-2 top-2 transition-opacity",
 					open ? "opacity-100" : "opacity-0 group-hover:opacity-100"
 				)}>
-				<Dropdown open={open} onOpenChange={setOpen}>
-					<DropdownTrigger asChild>
+				<DropdownMenu open={open} onOpenChange={setOpen}>
+					<DropdownMenuTrigger asChild>
 						<CompactButton
 							aria-label="Button with Down Arrow"
 							size="20"
@@ -92,23 +93,23 @@ export const AvatarTile = ({
 							onClick={(e) => e.stopPropagation()}>
 							<MoreHorizontal className="size-4" />
 						</CompactButton>
-					</DropdownTrigger>
+					</DropdownMenuTrigger>
 
-					<DropdownContent align="end" className="w-40">
-						<DropdownItem onClick={handleCopy}>
+					<DropdownMenuContent align="end" className="w-40">
+						<DropdownMenuItem onClick={handleCopy}>
 							<Copy />
 							Copy
-						</DropdownItem>
-						<DropdownItem onClick={handleDownload}>
+						</DropdownMenuItem>
+						<DropdownMenuItem onClick={handleDownload}>
 							<Download />
 							Download
-						</DropdownItem>
-						<DropdownItem>
+						</DropdownMenuItem>
+						<DropdownMenuItem>
 							<Star />
 							Favourite
-						</DropdownItem>
-					</DropdownContent>
-				</Dropdown>
+						</DropdownMenuItem>
+					</DropdownMenuContent>
+				</DropdownMenu>
 			</div>
 
 			<div className="absolute bottom-2 right-2 opacity-0 transition-opacity group-hover:opacity-100">
@@ -135,6 +136,6 @@ export const AvatarTile = ({
 					<Copy />
 				</IconButton>
 			</div>
-		</div>
+		</li>
 	)
 }

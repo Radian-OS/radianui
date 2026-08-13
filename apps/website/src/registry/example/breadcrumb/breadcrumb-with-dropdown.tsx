@@ -9,12 +9,12 @@ import {
 } from "@/registry/ui/breadcrumb"
 import { Button } from "@/registry/ui/button"
 import {
-	Dropdown,
-	DropdownContent,
-	DropdownGroup,
-	DropdownItem,
-	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuGroup,
+	DropdownMenuItem,
+	DropdownMenuTrigger,
+} from "@/registry/ui/dropdown-menu"
 
 function BreadcrumbWithDropdown() {
 	return (
@@ -29,27 +29,27 @@ function BreadcrumbWithDropdown() {
 				<BreadcrumbSeparator />
 
 				<BreadcrumbItem>
-					<Dropdown>
-						<DropdownTrigger asChild>
+					<DropdownMenu>
+						<DropdownMenuTrigger asChild>
 							<Button color="neutral" variant="outline" size={"32"}>
 								Installation
 								<ChevronDown />
 							</Button>
-						</DropdownTrigger>
-						<DropdownContent>
-							<DropdownGroup>
-								<DropdownItem asChild>
+						</DropdownMenuTrigger>
+						<DropdownMenuContent>
+							<DropdownMenuGroup>
+								<DropdownMenuItem asChild>
 									<Link href="/docs/installation/next">Nextjs</Link>
-								</DropdownItem>
-								<DropdownItem asChild>
+								</DropdownMenuItem>
+								<DropdownMenuItem asChild>
 									<Link href="/docs/installation/vite">Vite</Link>
-								</DropdownItem>
-								<DropdownItem asChild>
+								</DropdownMenuItem>
+								<DropdownMenuItem asChild>
 									<Link href="/docs/installation/manual">Manual</Link>
-								</DropdownItem>
-							</DropdownGroup>
-						</DropdownContent>
-					</Dropdown>
+								</DropdownMenuItem>
+							</DropdownMenuGroup>
+						</DropdownMenuContent>
+					</DropdownMenu>
 				</BreadcrumbItem>
 			</BreadcrumbList>
 		</Breadcrumb>

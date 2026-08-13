@@ -8,14 +8,16 @@ import AvatarUseCase from "./AvatarUseCase"
 
 const AvatarDocs = () => {
 	return (
-		<div className="md:gap-25 md:py-30 border-soft bg-linear-to-b from-fill1 to-bg flex flex-col gap-10 border-b px-5 py-8 sm:gap-20 sm:px-6 sm:py-20">
+		<article
+			aria-label="UI avatar design and development guide"
+			className="md:gap-25 md:py-30 border-soft bg-linear-to-b from-fill1 to-bg flex flex-col gap-10 border-b px-5 py-8 sm:gap-20 sm:px-6 sm:py-20">
 			<AvatarIntroduction />
 			<AvatarUseCase />
 			<AvatarDesign />
 			<AvatarDevlopment />
 			<AvatarFaq />
 			<AvatarCTA />
-		</div>
+		</article>
 	)
 }
 

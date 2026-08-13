@@ -17,22 +17,41 @@ links:
 
 ## Installation
 
-<InstallationTabs>
+<InstallationTabs defaultValue="cli">
 	<InstallTabsList>
 		<InstallTabsTrigger value="cli">CLI</InstallTabsTrigger>
 		<InstallTabsTrigger value="manual">Manual</InstallTabsTrigger>
 	</InstallTabsList>
-	<InstallTabsContent value="cli">
-		```bash
-		npm install @radix-ui/react-radio-group
-		```
+	<InstallTabsContent value="cli" className="p-0">
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm dlx radianui@latest add radio-group",
+				npm: "npx radianui@latest add radio-group",
+				yarn: "yarn dlx radianui@latest add radio-group",
+				bun: "bunx radianui@latest add radio-group",
+			}}
+		/>
 	</InstallTabsContent>
 	<InstallTabsContent value="manual" className="p-0">
-	<Steps>
-	    <Step>Copy and paste the following code into your project.</Step>
-    	<ComponentSource src="styles/default/ui/radio-group.tsx" title="components/ui/radio-group.tsx" collapsible />
-    	<Step>Update the import paths as per your project structure.</Step>
-    </Steps>
+		<Steps>
+			<Step>Install the following dependency:</Step>
+			<PackageManagerTabs
+				commands={{
+					pnpm: "pnpm add @radix-ui/react-radio-group",
+					npm: "npm install @radix-ui/react-radio-group",
+					yarn: "yarn add @radix-ui/react-radio-group",
+					bun: "bun add @radix-ui/react-radio-group",
+				}}
+			/>
+
+    		<Step>Copy and paste the following code into your project.</Step>
+    		<ComponentSource
+    			src="styles/default/ui/radio-group.tsx"
+    			title="components/ui/radio-group.tsx"
+    			collapsible
+    		/>
+    		<Step>Update the import paths as per your project structure.</Step>
+    	</Steps>
     </InstallTabsContent>
 
 </InstallationTabs>
@@ -77,7 +96,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 
 <ComponentPreview path="radio-group/radio-card" />
 
-### Radio Dropdown
+### Radio Dropdown Menu
 
 <ComponentPreview path="radio-group/radio-dropdown" />
 

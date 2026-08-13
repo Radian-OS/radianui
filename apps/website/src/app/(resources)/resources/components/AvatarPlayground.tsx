@@ -117,7 +117,9 @@ const AvatarPlayground = () => {
 				</div>
 			</div>
 
-			<div className="grid grid-cols-3 gap-3 sm:grid-cols-5 md:grid-cols-7">
+			<ul
+				aria-label="Available UI avatar illustrations"
+				className="grid list-none grid-cols-3 gap-3 sm:grid-cols-5 md:grid-cols-7">
 				{AVATARS.map((src, index) => {
 					const avatarNumber = Number(src.match(/\d+/)?.[0])
 					if (
@@ -138,7 +140,7 @@ const AvatarPlayground = () => {
 						/>
 					)
 				})}
-			</div>
+			</ul>
 
 			<ConfigPreferencesDialog
 				open={configOpen}

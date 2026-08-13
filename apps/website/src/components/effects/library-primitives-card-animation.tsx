@@ -22,7 +22,7 @@ const components = [
 	"Calendar",
 	"Command",
 	"Data Table",
-	"Dropdown",
+	"Dropdown Menu",
 	"Input",
 	"Tabs",
 ]

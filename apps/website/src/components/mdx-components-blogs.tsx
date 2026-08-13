@@ -1,8 +1,7 @@
 "use client"
 
-import { HTMLAttributes, useMemo } from "react"
+import { HTMLAttributes } from "react"
 // import { Box, Settings } from "lucide-react"
-import { getMDXComponent } from "mdx-bundler/dist/client"
 import { MDXComponents } from "mdx/types"
 import Image from "next/image"
 import PackageManagerTabs, {
@@ -20,11 +19,7 @@ import { cn } from "@/lib/utils"
 // 	className?: string
 // }
 
-type MdxBlogProps = {
-	code: string
-}
-
-const BlogComponents: MDXComponents = {
+export const BlogComponents: MDXComponents = {
 	h2: ({
 		children,
 		className,
@@ -95,34 +90,4 @@ const BlogComponents: MDXComponents = {
 			/>
 		</div>
 	),
-}
-
-/**
- * @returns A React component that renders an error message
- */
-
-function ErrorComponent() {
-	return <div className="text-error-text">Error rendering content</div>
-}
-
-/**
- * Mdx component to render MDX content
- * @param code - The MDX code to render
- * @returns A React component that renders the MDX content
- */
-
-export function MdxBlog({ code }: MdxBlogProps) {
-	const Component = useMemo(() => {
-		if (!code) return () => null
-		try {
-			return getMDXComponent(code)
-		} catch (error) {
-			console.log(error)
-			return ErrorComponent
-		}
-	}, [code])
-
-	return (
-		<Component className="flex flex-col gap-12" components={BlogComponents} />
-	)
 }

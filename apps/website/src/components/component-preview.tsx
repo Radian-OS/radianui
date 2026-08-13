@@ -1,16 +1,10 @@
 import React, { Suspense } from "react"
-import registry from "@/registry/registry-map"
+import { getComponent } from "@/registry/registry-map"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 import { ComponentPreviewCopyButton } from "./component-preview-copy-button"
 import { ComponentPreviewDemo } from "./component-preview-demo"
 import { ComponentSource } from "./component-source"
 import { DisplayBlock } from "./display-block"
-
-export function getComponent(name: string) {
-	const loader = registry[name]
-	if (!loader) return () => null
-	return loader
-}
 
 export type ComponentPreviewProps = {
 	path: string
@@ -42,7 +36,7 @@ export function ComponentPreview({
 		return <DisplayBlock name={path} title={title} />
 	}
 
-	const Component = getComponent(path.split("/")[1])
+	const Component = getComponent(path) ?? (() => null)
 
 	const slug = title
 		.toLowerCase()

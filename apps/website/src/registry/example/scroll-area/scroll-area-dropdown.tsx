@@ -5,13 +5,13 @@ import { Check } from "lucide-react"
 import { FlagImage } from "react-international-phone"
 import { Button } from "@/registry/ui/button"
 import {
-	Dropdown,
-	DropdownContent,
-	DropdownDivider,
-	DropdownGroup,
-	DropdownItem,
-	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuDivider,
+	DropdownMenuGroup,
+	DropdownMenuItem,
+	DropdownMenuTrigger,
+} from "@/registry/ui/dropdown-menu"
 import { ScrollArea } from "@/registry/ui/scroll-area"
 
 const timezoneGroups = [
@@ -43,21 +43,21 @@ export default function ScrollAreaDropdown() {
 	const [selected, setSelected] = React.useState("NPT")
 
 	return (
-		<Dropdown>
-			<DropdownTrigger asChild>
+		<DropdownMenu>
+			<DropdownMenuTrigger asChild>
 				<Button variant="outline" color="neutral">
-					Scroll Area Dropdown
+					Scroll Area DropdownMenu
 				</Button>
-			</DropdownTrigger>
-			<DropdownContent className="w-72 p-0">
+			</DropdownMenuTrigger>
+			<DropdownMenuContent className="w-72 p-0">
 				<ScrollArea className="h-80">
 					<div className="p-1.5">
 						{timezoneGroups.map((group, i) => (
 							<React.Fragment key={group.label}>
-								{i > 0 && <DropdownDivider />}
-								<DropdownGroup title={group.label}>
+								{i > 0 && <DropdownMenuDivider />}
+								<DropdownMenuGroup title={group.label}>
 									{group.timezones.map((tz) => (
-										<DropdownItem
+										<DropdownMenuItem
 											key={tz.code}
 											onClick={() => setSelected(tz.code)}
 											className="flex items-center gap-2">
@@ -72,14 +72,14 @@ export default function ScrollAreaDropdown() {
 											{selected === tz.code && (
 												<Check className="text-fg-secondary ml-auto size-4" />
 											)}
-										</DropdownItem>
+										</DropdownMenuItem>
 									))}
-								</DropdownGroup>
+								</DropdownMenuGroup>
 							</React.Fragment>
 						))}
 					</div>
 				</ScrollArea>
-			</DropdownContent>
-		</Dropdown>
+			</DropdownMenuContent>
+		</DropdownMenu>
 	)
 }

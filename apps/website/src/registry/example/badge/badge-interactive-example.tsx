@@ -6,11 +6,11 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
 import { Badge } from "@/registry/ui/badge"
 import { CompactButton } from "@/registry/ui/button"
 import {
-	Dropdown,
-	DropdownCheckboxItem,
-	DropdownContent,
-	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+	DropdownMenu,
+	DropdownMenuCheckboxItem,
+	DropdownMenuContent,
+	DropdownMenuTrigger,
+} from "@/registry/ui/dropdown-menu"
 
 const PEOPLE = [
 	{ name: "Grace", initials: "GH", image: "/media/female-1.jpg" },
@@ -64,8 +64,8 @@ function BadgeInteractiveExample() {
 					)
 				})}
 
-				<Dropdown indicatorPosition="right">
-					<DropdownTrigger asChild>
+				<DropdownMenu indicatorPosition="right">
+					<DropdownMenuTrigger asChild>
 						<CompactButton
 							aria-label="Add person"
 							size="24"
@@ -73,11 +73,11 @@ function BadgeInteractiveExample() {
 							color="neutral">
 							<Plus />
 						</CompactButton>
-					</DropdownTrigger>
+					</DropdownMenuTrigger>
 
-					<DropdownContent>
+					<DropdownMenuContent>
 						{PEOPLE.map((person) => (
-							<DropdownCheckboxItem
+							<DropdownMenuCheckboxItem
 								key={person.name}
 								onSelect={(e) => e.preventDefault()}
 								checked={selected.includes(person.name)}
@@ -89,10 +89,10 @@ function BadgeInteractiveExample() {
 									<AvatarFallback>{person.initials}</AvatarFallback>
 								</Avatar>
 								<span className="text-sm">{person.name}</span>
-							</DropdownCheckboxItem>
+							</DropdownMenuCheckboxItem>
 						))}
-					</DropdownContent>
-				</Dropdown>
+					</DropdownMenuContent>
+				</DropdownMenu>
 			</div>
 
 			<div className="text-fg-secondary text-sm">

@@ -3,19 +3,19 @@ import { CircleDashed } from "lucide-react"
 import { RadiusOption, usePlayground } from "@/contexts/playground"
 import { IconButton } from "@/styles/default/ui/button"
 import {
-	Dropdown,
-	DropdownContent,
-	DropdownPortal,
-	DropdownRadioGroup,
-	DropdownRadioItem,
-	DropdownTrigger,
-} from "@/styles/default/ui/dropdown"
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuPortal,
+	DropdownMenuRadioGroup,
+	DropdownMenuRadioItem,
+	DropdownMenuTrigger,
+} from "@/styles/default/ui/dropdown-menu"
 
 export default function Radius() {
 	const { radius, setRadius } = usePlayground()
 	return (
-		<Dropdown indicatorPosition="right">
-			<DropdownTrigger asChild>
+		<DropdownMenu indicatorPosition="right">
+			<DropdownMenuTrigger asChild>
 				<IconButton
 					variant="ghost"
 					color="neutral"
@@ -23,19 +23,23 @@ export default function Radius() {
 					className="hover:bg-fill2 text-fg flex size-8 cursor-pointer items-center justify-center rounded-md">
 					<CircleDashed size={18} />
 				</IconButton>
-			</DropdownTrigger>
-			<DropdownPortal>
-				<DropdownContent sideOffset={10}>
-					<DropdownRadioGroup
+			</DropdownMenuTrigger>
+			<DropdownMenuPortal>
+				<DropdownMenuContent sideOffset={10}>
+					<DropdownMenuRadioGroup
 						value={radius}
 						onValueChange={(value) => setRadius(value as RadiusOption)}>
-						<DropdownRadioItem value="default">Default</DropdownRadioItem>
-						<DropdownRadioItem value="rounded">Rounded</DropdownRadioItem>
-						<DropdownRadioItem value="flat">Flat</DropdownRadioItem>
-						<DropdownRadioItem value="fun">Fun</DropdownRadioItem>
-					</DropdownRadioGroup>
-				</DropdownContent>
-			</DropdownPortal>
-		</Dropdown>
+						<DropdownMenuRadioItem value="default">
+							Default
+						</DropdownMenuRadioItem>
+						<DropdownMenuRadioItem value="rounded">
+							Rounded
+						</DropdownMenuRadioItem>
+						<DropdownMenuRadioItem value="flat">Flat</DropdownMenuRadioItem>
+						<DropdownMenuRadioItem value="fun">Fun</DropdownMenuRadioItem>
+					</DropdownMenuRadioGroup>
+				</DropdownMenuContent>
+			</DropdownMenuPortal>
+		</DropdownMenu>
 	)
 }
