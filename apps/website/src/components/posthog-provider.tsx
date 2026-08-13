@@ -11,8 +11,8 @@ export function PostHogProvider({ children }: { children: React.ReactNode }) {
 		// Only init PostHog on production domain
 		const isProduction =
 			typeof window !== "undefined" &&
-			(window.location.hostname === "radianos.com" ||
-				window.location.hostname === "www.radianos.com")
+			(window.location.hostname === "radianui.com" ||
+				window.location.hostname === "www.radianui.com")
 
 		if (isProduction) {
 			posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY!, {
