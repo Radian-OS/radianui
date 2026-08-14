@@ -209,7 +209,12 @@ export function ToneFilterDropdown({
 									size="28"
 									variant="outline"
 									title="Random Color"
-									aria-label="Random Color">
+									aria-label="Random Color"
+									className={
+										value === "pick-color"
+											? "ring-primary ring-2 ring-offset-2"
+											: ""
+									}>
 									<Dices />
 								</IconButton>
 
@@ -264,7 +269,12 @@ export function ToneFilterDropdown({
 									size="28"
 									variant="outline"
 									title="Random Gradient"
-									aria-label="Random Gradient">
+									aria-label="Random Gradient"
+									className={
+										value === "pick-gradient"
+											? "ring-primary ring-2 ring-offset-2"
+											: ""
+									}>
 									<Dices />
 								</IconButton>
 							</div>
@@ -281,7 +291,11 @@ export function ToneFilterDropdown({
 								<AspectRatio
 									ratio={4 / 3}
 									onClick={() => onChange("pick-background")}
-									className="bg-fill1 flex cursor-pointer items-center justify-center rounded-lg transition-transform active:scale-95"
+									className={`bg-fill1 flex cursor-pointer items-center justify-center rounded-lg transition-transform active:scale-95 ${
+										value === "pick-background"
+											? "ring-primary ring-2 ring-offset-2"
+											: ""
+									}`}
 									title="Random Background">
 									<Dices className="text-fg-secondary size-4" />
 								</AspectRatio>

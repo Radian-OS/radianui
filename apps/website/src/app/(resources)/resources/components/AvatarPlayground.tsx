@@ -1,16 +1,24 @@
 "use client"
 
-import { useCallback, useMemo, useState } from "react"
-import { Settings } from "lucide-react"
+import {
+	startTransition,
+	useCallback,
+	useEffect,
+	useMemo,
+	useState,
+} from "react"
+import { Settings, Star } from "lucide-react"
 import { toast } from "sonner"
 import {
 	AVATARS,
 	CATEGORY_AVATAR_MAP,
+	// randomSolidMapColor,
+	SOLID_COLOR_MAP,
 	copyRandomAvatar,
 	getToneStyle,
-	randomSolidMapColor,
 } from "@/constants/avatar-playground-utils"
 import { Button, IconButton } from "@/registry/ui/button"
+import { Skeleton } from "@/registry/ui/skeleton"
 import { AvatarTile } from "./AvatarTile"
 import CategoryFilterDropdown from "./CategoryFilterDropdown"
 import ConfigPreferencesDialog from "./ConfigPreferencesDialog"
@@ -18,17 +26,86 @@ import FigmaCustomIcon from "./FigmaCustomIcon"
 import { BACKGROUNDS, GRADIENT_IMAGES } from "./ToneFilterDropdown"
 import ToneFilterDropdown from "./ToneFilterDropdown"
 
+const FAVORITES_STORAGE_KEY = "radian-avatar-favorites"
+const TONE_STORAGE_KEY = "radian-avatar-tone"
+
+const getSavedFavorites = () => {
+	if (typeof window === "undefined") return new Set<string>()
+
+	try {
+		const savedFavorites = localStorage.getItem(FAVORITES_STORAGE_KEY)
+		const parsedFavorites: unknown = savedFavorites
+			? JSON.parse(savedFavorites)
+			: []
+		return new Set(
+			Array.isArray(parsedFavorites)
+				? parsedFavorites.filter(
+						(item): item is string => typeof item === "string"
+					)
+				: []
+		)
+	} catch {
+		localStorage.removeItem(FAVORITES_STORAGE_KEY)
+		return new Set<string>()
+	}
+}
+
+const getSavedTone = () => {
+	if (typeof window === "undefined") return "pick-color"
+
+	return localStorage.getItem(TONE_STORAGE_KEY) ?? "pick-color"
+}
+
 const AvatarPlayground = () => {
 	type ColorMode = "static" | "radian"
 
 	const [category, setCategory] = useState("all")
-	const [tone, setTone] = useState("neutral")
+	const [tone, setTone] = useState("pick-color")
 	const [randomTrigger, setRandomTrigger] = useState(0)
 	const [configOpen, setConfigOpen] = useState(false)
 	const [copyFormat, setCopyFormat] = useState("editable-bg")
 	const [colorMode, setColorMode] = useState<ColorMode>("static")
+	const [favorites, setFavorites] = useState<Set<string>>(() => new Set())
+	const [isHydrated, setIsHydrated] = useState(false)
+
+	useEffect(() => {
+		const savedTone = getSavedTone()
+		if (savedTone && savedTone !== "pick-color") {
+			setTone(savedTone)
+		}
+		const savedFavs = getSavedFavorites()
+		if (savedFavs.size > 0) {
+			setFavorites(savedFavs)
+		}
+		setIsHydrated(true)
+	}, [])
+
+	useEffect(() => {
+		if (isHydrated && typeof window !== "undefined") {
+			localStorage.setItem(
+				FAVORITES_STORAGE_KEY,
+				JSON.stringify([...favorites])
+			)
+		}
+	}, [favorites, isHydrated])
+
+	const toggleFavorite = useCallback((src: string) => {
+		startTransition(() => {
+			setFavorites((currentFavorites) => {
+				const nextFavorites = new Set(currentFavorites)
+				if (nextFavorites.has(src)) {
+					nextFavorites.delete(src)
+				} else {
+					nextFavorites.add(src)
+				}
+				return nextFavorites
+			})
+		})
+	}, [])
 
 	const handleToneChange = useCallback((value: string) => {
+		localStorage.setItem(TONE_STORAGE_KEY, value)
+
 		if (
 			value === "pick-color" ||
 			value === "pick-gradient" ||
@@ -42,26 +119,59 @@ const AvatarPlayground = () => {
 	}, [])
 
 	const resolvedTones = useMemo(() => {
-		return AVATARS.map(() => {
+		const solidColorValues = Object.values(SOLID_COLOR_MAP)
+		return AVATARS.map((_, index) => {
 			if (tone === "pick-color") {
-				return randomSolidMapColor()
+				const seed = index + randomTrigger * 17
+				const hash = (seed * 13 + 7) % solidColorValues.length
+				return solidColorValues[hash]
 			}
 			if (tone === "pick-gradient") {
-				return GRADIENT_IMAGES[
-					Math.floor(Math.random() * GRADIENT_IMAGES.length)
-				]
+				const seed = index + randomTrigger * 17
+				const hash = (seed * 13 + 7) % GRADIENT_IMAGES.length
+				return GRADIENT_IMAGES[hash]
 			}
 			if (tone === "pick-background") {
-				return BACKGROUNDS[Math.floor(Math.random() * BACKGROUNDS.length)]
+				const seed = index + randomTrigger * 17
+				const hash = (seed * 13 + 7) % BACKGROUNDS.length
+				return BACKGROUNDS[hash]
 			}
 			return tone
 		})
 	}, [tone, randomTrigger])
 
+	const displayedAvatars = useMemo(
+		() =>
+			AVATARS.map((src, index) => ({ src, index }))
+				.filter(({ src }) => {
+					if (category === "favorites") {
+						return favorites.has(src)
+					}
+					const avatarNumber = Number(src.match(/\d+/)?.[0])
+					return (
+						category === "all" ||
+						CATEGORY_AVATAR_MAP[category]?.includes(avatarNumber)
+					)
+				})
+				.sort((a, b) => {
+					const isAFav = favorites.has(a.src)
+					const isBFav = favorites.has(b.src)
+					if (isAFav !== isBFav) {
+						return isAFav ? -1 : 1
+					}
+					return a.index - b.index
+				}),
+		[category, favorites]
+	)
+
 	return (
-		<div className="flex w-full flex-col gap-4">
+		<div className="bg-bg z-100 sticky top-[69px] flex w-full flex-col gap-4 py-2">
 			<div className="flex w-full items-center justify-between">
-				<CategoryFilterDropdown value={category} onChange={setCategory} />
+				<CategoryFilterDropdown
+					value={category}
+					onChange={setCategory}
+					favoriteCount={favorites.size}
+				/>
 
 				<div className="flex items-center gap-2">
 					<ToneFilterDropdown
@@ -117,30 +227,45 @@ const AvatarPlayground = () => {
 				</div>
 			</div>
 
-			<ul
-				aria-label="Available UI avatar illustrations"
-				className="grid list-none grid-cols-3 gap-3 sm:grid-cols-5 md:grid-cols-7">
-				{AVATARS.map((src, index) => {
-					const avatarNumber = Number(src.match(/\d+/)?.[0])
-					if (
-						category !== "all" &&
-						!CATEGORY_AVATAR_MAP[category]?.includes(avatarNumber)
-					) {
-						return null
-					}
-					const tileTone = resolvedTones[index]
-					return (
-						<AvatarTile
-							key={src}
-							src={src}
-							index={index}
-							toneStyle={getToneStyle(tileTone)}
-							tone={tileTone}
-							copyFormat={copyFormat}
-						/>
-					)
-				})}
-			</ul>
+			{!isHydrated ? (
+				<div
+					aria-label="Loading avatars"
+					className="grid grid-cols-3 gap-3 sm:grid-cols-5 md:grid-cols-7">
+					{Array.from({ length: 14 }).map((_, i) => (
+						<Skeleton key={i} className="aspect-square w-full rounded-xl" />
+					))}
+				</div>
+			) : displayedAvatars.length === 0 ? (
+				<div className="border-soft bg-bg/50 flex flex-col items-center justify-center rounded-xl border border-dashed py-16 text-center">
+					<Star className="text-fg-secondary mb-3 size-10" />
+					<p className="text-sm font-medium">No favorite avatars yet</p>
+					<p className="text-fg-secondary mt-1 text-xs">
+						Click the 3 dots menu on any avatar tile to add it to your
+						favorites.
+					</p>
+				</div>
+			) : (
+				<ul
+					suppressHydrationWarning
+					aria-label="Available UI avatar illustrations"
+					className="grid list-none grid-cols-3 gap-3 sm:grid-cols-5 md:grid-cols-7">
+					{displayedAvatars.map(({ src, index }) => {
+						const tileTone = resolvedTones[index]
+						return (
+							<AvatarTile
+								key={src}
+								src={src}
+								index={index}
+								toneStyle={getToneStyle(tileTone)}
+								tone={tileTone}
+								copyFormat={copyFormat}
+								isFavorite={favorites.has(src)}
+								onToggleFavorite={() => toggleFavorite(src)}
+							/>
+						)
+					})}
+				</ul>
+			)}
 
 			<ConfigPreferencesDialog
 				open={configOpen}
