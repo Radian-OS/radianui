@@ -18,6 +18,7 @@ import {
 	copyRandomAvatar,
 	getToneStyle,
 } from "@/constants/avatar-playground-utils"
+import { cn } from "@/lib/utils"
 import { Button, IconButton } from "@/registry/ui/button"
 import { Skeleton } from "@/registry/ui/skeleton"
 import { AvatarTile } from "./AvatarTile"
@@ -67,6 +68,7 @@ const AvatarPlayground = () => {
 	const [copyFormat, setCopyFormat] = useState("editable-bg")
 	const [colorMode, setColorMode] = useState<ColorMode>("static")
 	const [favorites, setFavorites] = useState<Set<string>>(() => new Set())
+	const [isBlocked, setIsBlocked] = useState(false)
 	const [isHydrated, setIsHydrated] = useState(false)
 	const sentinelRef = useRef<HTMLDivElement>(null)
 	const bottomSentinelRef = useRef<HTMLDivElement>(null)
@@ -137,6 +139,11 @@ const AvatarPlayground = () => {
 	}, [favorites, isHydrated])
 
 	const toggleFavorite = useCallback((src: string) => {
+		setIsBlocked(true)
+		setTimeout(() => {
+			setIsBlocked(false)
+		}, 300)
+
 		startTransition(() => {
 			setFavorites((currentFavorites) => {
 				const nextFavorites = new Set(currentFavorites)
@@ -301,7 +308,10 @@ const AvatarPlayground = () => {
 				<ul
 					suppressHydrationWarning
 					aria-label="Available UI avatar illustrations"
-					className="grid list-none grid-cols-3 gap-3 sm:grid-cols-5 md:grid-cols-7">
+					className={cn(
+						"grid list-none grid-cols-3 gap-3 sm:grid-cols-5 md:grid-cols-7",
+						isBlocked && "pointer-events-none"
+					)}>
 					{displayedAvatars.map(({ src, index }) => {
 						const tileTone = resolvedTones[index]
 						return (
