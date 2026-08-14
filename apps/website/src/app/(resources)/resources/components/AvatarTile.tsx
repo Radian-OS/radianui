@@ -9,6 +9,7 @@ import {
 	Star,
 } from "lucide-react"
 import Image from "next/image"
+import { toast } from "sonner"
 import {
 	AVATAR_BLEND_OPACITY,
 	getAvatarAltText,
@@ -100,7 +101,6 @@ export const AvatarTile = ({
 	isFavorite,
 	onToggleFavorite,
 }: AvatarTileProps) => {
-	const [open, setOpen] = useState<boolean>(false)
 	const isNeutralBackground = tone === "neutral" || tone === "none"
 	const imageBackgroundTint = getImageBackgroundTint(tone)
 	const shouldApplyShadow =
@@ -173,24 +173,21 @@ export const AvatarTile = ({
 				}}
 			/>
 
-			<div
-				className={cn(
-					"absolute right-2 top-2 z-30 transition-opacity",
-					open ? "opacity-100" : "opacity-0 group-hover:opacity-100"
-				)}>
-				<DropdownMenu open={open} onOpenChange={setOpen}>
+			<div className="absolute right-2 top-2 z-30">
+				<DropdownMenu>
 					<DropdownMenuTrigger asChild>
 						<CompactButton
 							aria-label="Button with Down Arrow"
 							size="20"
 							variant="ghost"
 							color="neutral"
+							className="opacity-0 transition-opacity group-hover:opacity-100 data-[state=open]:opacity-100"
 							onClick={(e) => e.stopPropagation()}>
 							<MoreHorizontal className="size-4" />
 						</CompactButton>
 					</DropdownMenuTrigger>
 
-					<DropdownMenuContent align="end" className="w-56 p-1.5">
+					<DropdownMenuContent align="start" className="z-100 w-56 p-1.5">
 						<DropdownMenuLabel className="text-fg-tertiary px-2 py-1 text-xs font-medium">
 							Design
 						</DropdownMenuLabel>
@@ -231,7 +228,23 @@ export const AvatarTile = ({
 							<Download className="text-fg-secondary size-4" />
 							<span>Download PNG</span>
 						</DropdownMenuItem>
-						<DropdownMenuItem onSelect={onToggleFavorite}>
+						<DropdownMenuItem
+							onSelect={() => {
+								// Instantly block pointer events on the grid container to prevent layout-shift click hijacking
+								const grid = document.querySelector(
+									'[aria-label="Available UI avatar illustrations"]'
+								)
+								if (grid) {
+									grid.classList.add("pointer-events-none")
+									setTimeout(() => {
+										grid.classList.remove("pointer-events-none")
+									}, 300)
+								}
+								onToggleFavorite()
+								toast.success(
+									isFavorite ? "Removed from favorites" : "Added to favorites"
+								)
+							}}>
 							<Star
 								className={cn(
 									"text-fg-secondary size-4",

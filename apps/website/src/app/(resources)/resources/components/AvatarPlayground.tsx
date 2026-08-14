@@ -187,6 +187,8 @@ const AvatarPlayground = () => {
 		})
 	}, [tone, randomTrigger])
 
+	const favoritesArray = useMemo(() => Array.from(favorites), [favorites])
+
 	const displayedAvatars = useMemo(
 		() =>
 			AVATARS.map((src, index) => ({ src, index }))
@@ -206,9 +208,12 @@ const AvatarPlayground = () => {
 					if (isAFav !== isBFav) {
 						return isAFav ? -1 : 1
 					}
+					if (isAFav && isBFav) {
+						return favoritesArray.indexOf(b.src) - favoritesArray.indexOf(a.src)
+					}
 					return a.index - b.index
 				}),
-		[category, favorites]
+		[category, favorites, favoritesArray]
 	)
 
 	return (
@@ -279,7 +284,7 @@ const AvatarPlayground = () => {
 				<div
 					aria-label="Loading avatars"
 					className="grid grid-cols-3 gap-3 sm:grid-cols-5 md:grid-cols-7">
-					{Array.from({ length: 14 }).map((_, i) => (
+					{Array.from({ length: 42 }).map((_, i) => (
 						<Skeleton key={i} className="aspect-square w-full rounded-xl" />
 					))}
 				</div>
@@ -327,6 +332,7 @@ const AvatarPlayground = () => {
 				onCopyFormatChange={setCopyFormat}
 				colorMode={colorMode}
 				onColorModeChange={setColorMode}
+				onToneChange={handleToneChange}
 			/>
 		</div>
 	)
