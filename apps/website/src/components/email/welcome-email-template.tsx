@@ -370,7 +370,7 @@ export default function WelcomeEmailTemplate({
 							<Row>
 								<Column className="w-4/5" align="left">
 									<Text className="text-fg-secondary m-0">
-										RadianOS
+										Radian UI
 										<br />
 										Delaware 19901, US
 										<br />8 The Green STE A Dover
@@ -446,7 +446,7 @@ export default function WelcomeEmailTemplate({
 						{/* Footer */}
 						<Section className="mt-11 text-center">
 							<Text className="text-fg-tertiary m-0 text-sm">
-								2025 © Radian OS, all rights reserved
+								2025 © Radian UI, all rights reserved
 							</Text>
 							<Text className="text-fg-tertiary m-0 my-1 text-sm">
 								8 The Green STE A Dover, Delaware 19901, US

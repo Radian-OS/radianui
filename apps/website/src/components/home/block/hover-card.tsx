@@ -15,7 +15,7 @@ import {
 
 const profile = {
 	name: "Zoya Petrova",
-	description: "Engineering partner for @Radianos",
+	description: "Engineering partner for @Radianui",
 	avatar: "/media/male-2.png",
 	address: "Berlin, Germany",
 	followingInThousands: 1.4,

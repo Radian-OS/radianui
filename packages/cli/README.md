@@ -1,6 +1,6 @@
-# 🖥️ RadianOS CLI (radianui)
+# 🖥️ Radian UI CLI (radianui)
 
-RadianOS CLI helps you scaffold a new project and add production‑ready UI components, blocks, and utilities with minimal setup. It configures Tailwind CSS (v4), generates project configuration, and installs required dependencies for you.
+Radian UI CLI helps you scaffold a new project and add production‑ready UI components, blocks, and utilities with minimal setup. It configures Tailwind CSS (v4), generates project configuration, and installs required dependencies for you.
 
 ---
 

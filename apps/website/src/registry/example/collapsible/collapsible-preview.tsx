@@ -195,7 +195,7 @@ export default function ProjectCollapsible() {
 			onOpenChange={setIsOpen}
 			className="max-w-115 border-soft shadow-xs w-full rounded-xl border transition-all duration-200">
 			<CollapsibleHeader
-				title="Design Project: Radian OS 3.0"
+				title="Design Project: Radian UI 3.0"
 				subtitle="Status: 84% Complete (2 Dependencies Active)"
 				isOpen={isOpen}
 			/>

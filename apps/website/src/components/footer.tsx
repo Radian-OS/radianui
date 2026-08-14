@@ -5,7 +5,7 @@ export default function Footer() {
 	return (
 		<footer className="border-alpha flex h-16 items-center justify-center border-t">
 			<div className="text-fg-secondary max-w-320 text-sm font-medium">
-				&copy; Copyright Radian OS {currentYear}. All rights reserved.
+				&copy; Copyright Radian UI {currentYear}. All rights reserved.
 			</div>
 		</footer>
 	)

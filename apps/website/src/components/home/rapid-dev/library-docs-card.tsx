@@ -38,21 +38,21 @@ type SidebarSection = {
 const accordionContents = [
 	{
 		id: 1,
-		trigger: "What is Radian OS?",
+		trigger: "What is Radian UI?",
 		content:
-			"Radian OS is a high-quality design and development library aimed at building systems that scale quickly. It enables rapid transition from design to product in just a few hours.",
+			"Radian UI is a high-quality design and development library aimed at building systems that scale quickly. It enables rapid transition from design to product in just a few hours.",
 	},
 	{
 		id: 2,
-		trigger: "What components are available in Radian OS?",
+		trigger: "What components are available in Radian UI?",
 	},
 	{
 		id: 3,
-		trigger: "What application components does Radian OS provide?",
+		trigger: "What application components does Radian UI provide?",
 	},
 	{
 		id: 4,
-		trigger: "How can I stay updated with Radian OS developments?",
+		trigger: "How can I stay updated with Radian UI developments?",
 	},
 ]
 

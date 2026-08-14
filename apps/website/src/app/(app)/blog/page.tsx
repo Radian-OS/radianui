@@ -89,7 +89,7 @@ export default async function BlogPage({ params }: BlogListPageProps) {
 							</h1>
 						</div>
 						<p className="text-fg-secondary text-base">
-							Learn more about Radian OS, updates, and reads from our team and
+							Learn more about Radian UI, updates, and reads from our team and
 							industry leading experts
 						</p>
 						<EmailSubscribeBlog />

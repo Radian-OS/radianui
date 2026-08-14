@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/radianos.iml" filepath="$PROJECT_DIR$/.idea/radianos.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/radianui.iml" filepath="$PROJECT_DIR$/.idea/radianui.iml" />
     </modules>
   </component>
 </project>

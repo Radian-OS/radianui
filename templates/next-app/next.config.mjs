@@ -4,7 +4,7 @@ const nextConfig = {
 		remotePatterns: [
 			{
 				protocol: "https",
-				hostname: "radianos.com",
+				hostname: "radianui.com",
 			},
 			{
 				protocol: "https",
