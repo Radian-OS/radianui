@@ -5,6 +5,7 @@ import {
 	useCallback,
 	useEffect,
 	useMemo,
+	useRef,
 	useState,
 } from "react"
 import { Settings, Star } from "lucide-react"
@@ -67,6 +68,52 @@ const AvatarPlayground = () => {
 	const [colorMode, setColorMode] = useState<ColorMode>("static")
 	const [favorites, setFavorites] = useState<Set<string>>(() => new Set())
 	const [isHydrated, setIsHydrated] = useState(false)
+	const sentinelRef = useRef<HTMLDivElement>(null)
+	const bottomSentinelRef = useRef<HTMLDivElement>(null)
+
+	useEffect(() => {
+		const topSentinel = sentinelRef.current
+		const bottomSentinel = bottomSentinelRef.current
+		if (!topSentinel || !bottomSentinel) return
+
+		let topScrolledPast = false
+		let bottomStillVisible = true
+
+		const dispatchSticky = () => {
+			const isSticky = topScrolledPast && bottomStillVisible
+			window.dispatchEvent(
+				new CustomEvent("avatar-filter-sticky", { detail: { isSticky } })
+			)
+		}
+
+		const topObserver = new IntersectionObserver(
+			([entry]) => {
+				topScrolledPast =
+					!entry.isIntersecting && entry.boundingClientRect.top < 50
+				dispatchSticky()
+			},
+			{ threshold: 0, rootMargin: "-50px 0px 0px 0px" }
+		)
+
+		const bottomObserver = new IntersectionObserver(
+			([entry]) => {
+				bottomStillVisible =
+					entry.isIntersecting || entry.boundingClientRect.top > 1000
+				dispatchSticky()
+			},
+			{ threshold: 0 }
+		)
+
+		topObserver.observe(topSentinel)
+		bottomObserver.observe(bottomSentinel)
+		return () => {
+			topObserver.disconnect()
+			bottomObserver.disconnect()
+			window.dispatchEvent(
+				new CustomEvent("avatar-filter-sticky", { detail: { isSticky: false } })
+			)
+		}
+	}, [])
 
 	useEffect(() => {
 		const savedTone = getSavedTone()
@@ -122,18 +169,18 @@ const AvatarPlayground = () => {
 		const solidColorValues = Object.values(SOLID_COLOR_MAP)
 		return AVATARS.map((_, index) => {
 			if (tone === "pick-color") {
-				const seed = index + randomTrigger * 17
-				const hash = (seed * 13 + 7) % solidColorValues.length
+				const seed = index + randomTrigger * 19
+				const hash = Math.abs((seed * 31 + 7) % solidColorValues.length)
 				return solidColorValues[hash]
 			}
 			if (tone === "pick-gradient") {
-				const seed = index + randomTrigger * 17
-				const hash = (seed * 13 + 7) % GRADIENT_IMAGES.length
+				const seed = index + randomTrigger * 19
+				const hash = Math.abs((seed * 31 + 7) % GRADIENT_IMAGES.length)
 				return GRADIENT_IMAGES[hash]
 			}
 			if (tone === "pick-background") {
-				const seed = index + randomTrigger * 17
-				const hash = (seed * 13 + 7) % BACKGROUNDS.length
+				const seed = index + randomTrigger * 19
+				const hash = Math.abs((seed * 31 + 7) % BACKGROUNDS.length)
 				return BACKGROUNDS[hash]
 			}
 			return tone
@@ -165,8 +212,9 @@ const AvatarPlayground = () => {
 	)
 
 	return (
-		<div className="bg-bg z-100 sticky top-[69px] flex w-full flex-col gap-4 py-2">
-			<div className="flex w-full items-center justify-between">
+		<div className="flex w-full flex-col gap-4 py-2">
+			<div ref={sentinelRef} className="pointer-events-none h-px w-full" />
+			<div className="bg-bg/95 z-100 sticky top-0 flex w-full items-center justify-between py-3 backdrop-blur-sm">
 				<CategoryFilterDropdown
 					value={category}
 					onChange={setCategory}
@@ -266,6 +314,11 @@ const AvatarPlayground = () => {
 					})}
 				</ul>
 			)}
+
+			<div
+				ref={bottomSentinelRef}
+				className="pointer-events-none h-px w-full"
+			/>
 
 			<ConfigPreferencesDialog
 				open={configOpen}
