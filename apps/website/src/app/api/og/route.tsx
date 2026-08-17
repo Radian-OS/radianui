@@ -43,7 +43,8 @@ export async function GET(request: NextRequest) {
 					<img
 						src={`${process.env.NEXT_PUBLIC_WEBSITE_URL}/og/dynamic-og-logo.png`}
 						alt="radian-logo"
-						height="48"
+						width={183}
+						height={48}
 					/>
 
 					{/* Dynamic Title */}
