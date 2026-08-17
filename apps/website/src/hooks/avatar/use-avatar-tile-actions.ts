@@ -44,6 +44,18 @@ export const useAvatarTileActions = ({
 			await handleCopyPng()
 			return
 		}
+		if (copyFormat === "url") {
+			await handleCopyUrlTransparent()
+			return
+		}
+		if (copyFormat === "nextjs-image") {
+			await handleCopyNextImageTag()
+			return
+		}
+		if (copyFormat === "html-img") {
+			await handleCopyHtmlImgTag()
+			return
+		}
 		await handleCopyTransparentPng()
 	}
 
