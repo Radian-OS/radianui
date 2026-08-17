@@ -35,7 +35,6 @@ import {
 } from "@/registry/ui/dropdown-menu"
 import { Label } from "@/registry/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/registry/ui/radio-group"
-import { Switch } from "@/registry/ui/switch"
 
 const COPY_FORMAT_GROUPS = [
 	{
@@ -68,7 +67,7 @@ const CopyFormatDropdown = ({
 			?.label ?? "PNG Image"
 
 	return (
-		<DropdownMenu>
+		<DropdownMenu modal={true}>
 			<DropdownMenuTrigger asChild>
 				<Button
 					color="neutral"
@@ -82,7 +81,7 @@ const CopyFormatDropdown = ({
 				</Button>
 			</DropdownMenuTrigger>
 
-			<DropdownMenuContent align="end" className="w-56">
+			<DropdownMenuContent align="start" className="w-56">
 				{COPY_FORMAT_GROUPS.map((group, i) => (
 					<div key={group.label}>
 						{i > 0 && <DropdownMenuDivider />}
@@ -96,12 +95,6 @@ const CopyFormatDropdown = ({
 						))}
 					</div>
 				))}
-				<DropdownMenuDivider />
-				<DropdownMenuItem onClick={() => onChange("favourite")}>
-					<Star className="text-fg-secondary size-4" />
-					<span className="flex-1 text-sm font-medium">Favourite</span>
-					{value === "favourite" && <Check className="size-4" />}
-				</DropdownMenuItem>
 			</DropdownMenuContent>
 		</DropdownMenu>
 	)
@@ -138,6 +131,7 @@ const ConfigPreferencesDialog = ({
 	onCopyFormatChange,
 	colorMode,
 	onColorModeChange,
+	onToneChange,
 }: {
 	open: boolean
 	onOpenChange: (open: boolean) => void
@@ -145,14 +139,14 @@ const ConfigPreferencesDialog = ({
 	onCopyFormatChange: (value: string) => void
 	colorMode: ColorMode
 	onColorModeChange: (value: ColorMode) => void
+	onToneChange: (value: string) => void
 }) => {
-	const [preserveSettings, setPreserveSettings] = useState(true)
 	const idPrefix = useId()
 
 	const handleReset = () => {
 		onColorModeChange("static")
 		onCopyFormatChange("editable-bg")
-		setPreserveSettings(true)
+		onToneChange("pick-color")
 	}
 
 	return (
@@ -242,9 +236,7 @@ const ConfigPreferencesDialog = ({
 					{/* Copy button functionality */}
 					<div className="flex items-center justify-between gap-4">
 						<div className="flex flex-col gap-0.5">
-							<span className="text-sm font-medium">
-								Copy Button Functionality
-							</span>
+							<span className="text-sm font-medium">Default Copy Button</span>
 							<span className="text-fg-secondary text-xs leading-snug">
 								Change the default copy function to your preference
 							</span>
@@ -252,23 +244,6 @@ const ConfigPreferencesDialog = ({
 						<CopyFormatDropdown
 							value={copyFormat}
 							onChange={onCopyFormatChange}
-						/>
-					</div>
-
-					<div className="mx-0 border-b border-dashed" />
-
-					{/* Preserve settings */}
-					<div className="flex items-center justify-between gap-4">
-						<div className="flex flex-col gap-0.5">
-							<span className="text-sm font-medium">Preserve Settings</span>
-							<span className="text-fg-secondary text-xs leading-snug">
-								This page will maintain your previously selected settings and
-								configuration
-							</span>
-						</div>
-						<Switch
-							checked={preserveSettings}
-							onCheckedChange={setPreserveSettings}
 						/>
 					</div>
 				</DialogBody>

@@ -1,4 +1,5 @@
 import type { CSSProperties } from "react"
+import { AVATAR_SHADOW_MAP } from "./avatar-shadow-map"
 
 export const AVATAR_BLEND_OPACITY = 0.15
 
@@ -263,84 +264,87 @@ async function fetchImageAsDataUrl(url: string): Promise<string> {
 
 export async function generateEditableSvg(
 	tone: string,
-	src: string
+	src: string,
+	avatarIndex?: number
 ): Promise<string> {
 	const size = 512
 	const imageBackgroundTint = getImageBackgroundTint(tone)
 
-	// Kick off the avatar fetch immediately so it runs in parallel
-	// with any background image fetch below.
+	// Kick off avatar & shadow fetch in parallel
 	const avatarPromise = fetchImageAsDataUrl(src).catch(() => "")
+	const shadowSrc =
+		typeof avatarIndex === "number" ? AVATAR_SHADOW_MAP[avatarIndex] : undefined
+	const shadowPromise = shadowSrc
+		? fetchImageAsDataUrl(shadowSrc).catch(() => "")
+		: Promise.resolve("")
 
 	// Build SVG background element
 	let bgElement = ""
 	if (SOLID_COLOR_MAP[tone]) {
-		bgElement = `<rect width="${size}" height="${size}" fill="${SOLID_COLOR_MAP[tone]}" />`
+		bgElement = `<rect id="background" data-locked="true" locked="true" width="${size}" height="${size}" fill="${SOLID_COLOR_MAP[tone]}" />`
 	} else if (GRADIENT_MAP[tone]) {
 		const g = GRADIENT_MAP[tone]
 		if (g.base) {
-			bgElement = `<defs><linearGradient id="bg-grad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="${size}"><stop offset="0%" stop-color="#ffffff" stop-opacity="0" /><stop offset="100%" stop-color="#242e42" stop-opacity="0.16" /></linearGradient></defs><rect width="${size}" height="${size}" fill="${g.base}" /><rect width="${size}" height="${size}" fill="url(#bg-grad)" />`
+			bgElement = `<defs><linearGradient id="bg-grad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="${size}"><stop offset="0%" stop-color="#ffffff" stop-opacity="0" /><stop offset="100%" stop-color="#242e42" stop-opacity="0.16" /></linearGradient></defs><rect id="background" data-locked="true" locked="true" width="${size}" height="${size}" fill="${g.base}" /><rect width="${size}" height="${size}" fill="url(#bg-grad)" pointer-events="none" />`
 		} else {
-			bgElement = `<defs><linearGradient id="bg-grad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="${size}" y2="${size}"><stop offset="0%" stop-color="${g.from}" /><stop offset="100%" stop-color="${g.to}" /></linearGradient></defs><rect width="${size}" height="${size}" fill="url(#bg-grad)" />`
+			bgElement = `<defs><linearGradient id="bg-grad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="${size}" y2="${size}"><stop offset="0%" stop-color="${g.from}" /><stop offset="100%" stop-color="${g.to}" /></linearGradient></defs><rect id="background" data-locked="true" locked="true" width="${size}" height="${size}" fill="url(#bg-grad)" />`
 		}
 	} else if (tone.startsWith("grad-custom:")) {
 		const parts = tone.split(":")
-		bgElement = `<defs><linearGradient id="bg-grad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="${size}" y2="${size}"><stop offset="0%" stop-color="${parts[1]}" /><stop offset="100%" stop-color="${parts[2]}" /></linearGradient></defs><rect width="${size}" height="${size}" fill="url(#bg-grad)" />`
+		bgElement = `<defs><linearGradient id="bg-grad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="${size}" y2="${size}"><stop offset="0%" stop-color="${parts[1]}" /><stop offset="100%" stop-color="${parts[2]}" /></linearGradient></defs><rect id="background" data-locked="true" locked="true" width="${size}" height="${size}" fill="url(#bg-grad)" />`
 	} else if (tone.startsWith("#")) {
-		bgElement = `<rect width="${size}" height="${size}" fill="${tone}" />`
+		bgElement = `<rect id="background" data-locked="true" locked="true" width="${size}" height="${size}" fill="${tone}" />`
 	} else if (tone.startsWith("radian:")) {
 		const color = resolveRadianColor(tone)
-		bgElement = `<rect width="${size}" height="${size}" fill="${color}" />`
+		bgElement = `<rect id="background" data-locked="true" locked="true" width="${size}" height="${size}" fill="${color}" />`
 	} else if (tone.startsWith("http") || tone.startsWith("/")) {
 		// Embed background image as base64 (fetched in parallel with avatar)
 		try {
 			const base64 = await fetchImageAsDataUrl(tone)
-			bgElement = `<image href="${base64}" width="${size}" height="${size}" preserveAspectRatio="xMidYMid slice" />`
+			bgElement = `<image id="background" data-locked="true" locked="true" href="${base64}" width="${size}" height="${size}" preserveAspectRatio="xMidYMid slice" />`
 		} catch {
-			bgElement = `<rect width="${size}" height="${size}" fill="#f3f4f6" />`
+			bgElement = `<rect id="background" data-locked="true" locked="true" width="${size}" height="${size}" fill="#f3f4f6" />`
 		}
 	}
 
-	// Await the avatar data URL (may already be resolved from cache or parallel fetch)
+	// Await the avatar & shadow data URLs
 	const avatarDataUrl = await avatarPromise
 	if (!avatarDataUrl) return ""
+	const shadowDataUrl = await shadowPromise
 
 	// Keep the editable SVG visually consistent with the browser and PNG export:
 	// the avatar is opaque, so the Color Burn fill has to sit above it. Figma
 	// expects the layer itself at 100% opacity with a 15%-opaque color fill.
 	let shadowElement = ""
 	if (imageBackgroundTint) {
-		shadowElement = `<rect width="${size}" height="${size}" fill="${imageBackgroundTint}" fill-opacity="${AVATAR_BLEND_OPACITY}" />`
+		shadowElement = `<rect id="tint" data-locked="true" locked="true" style="mix-blend-mode:color-burn" width="${size}" height="${size}" fill="${imageBackgroundTint}" fill-opacity="${AVATAR_BLEND_OPACITY}" />`
 	} else if (SOLID_COLOR_MAP[tone]) {
-		shadowElement = `<rect width="${size}" height="${size}" fill="${SOLID_COLOR_MAP[tone]}" fill-opacity="${AVATAR_BLEND_OPACITY}" />`
+		shadowElement = `<rect id="tint" data-locked="true" locked="true" style="mix-blend-mode:color-burn" width="${size}" height="${size}" fill="${SOLID_COLOR_MAP[tone]}" fill-opacity="${AVATAR_BLEND_OPACITY}" />`
 	} else if (GRADIENT_MAP[tone]) {
 		const gradient = GRADIENT_MAP[tone]
 		if (gradient.base) {
-			shadowElement = `<defs><linearGradient id="avatar-shadow-sheen" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="${size}"><stop offset="0%" stop-color="#ffffff" stop-opacity="0" /><stop offset="100%" stop-color="#242e42" stop-opacity="0.16" /></linearGradient></defs><rect width="${size}" height="${size}" fill="${gradient.base}" fill-opacity="${AVATAR_BLEND_OPACITY}" /><rect width="${size}" height="${size}" fill="url(#avatar-shadow-sheen)" fill-opacity="${AVATAR_BLEND_OPACITY}" />`
+			shadowElement = `<defs><linearGradient id="avatar-shadow-sheen" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="${size}"><stop offset="0%" stop-color="#ffffff" stop-opacity="0" /><stop offset="100%" stop-color="#242e42" stop-opacity="0.16" /></linearGradient></defs><rect id="tint" data-locked="true" locked="true" style="mix-blend-mode:color-burn" width="${size}" height="${size}" fill="${gradient.base}" fill-opacity="${AVATAR_BLEND_OPACITY}" /><rect style="mix-blend-mode:color-burn" width="${size}" height="${size}" fill="url(#avatar-shadow-sheen)" fill-opacity="${AVATAR_BLEND_OPACITY}" />`
 		} else if (gradient.from && gradient.to) {
-			shadowElement = `<defs><linearGradient id="avatar-shadow-grad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="${size}" y2="${size}"><stop offset="0%" stop-color="${gradient.from}" /><stop offset="100%" stop-color="${gradient.to}" /></linearGradient></defs><rect width="${size}" height="${size}" fill="url(#avatar-shadow-grad)" fill-opacity="${AVATAR_BLEND_OPACITY}" />`
+			shadowElement = `<defs><linearGradient id="avatar-shadow-grad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="${size}" y2="${size}"><stop offset="0%" stop-color="${gradient.from}" /><stop offset="100%" stop-color="${gradient.to}" /></linearGradient></defs><rect id="tint" data-locked="true" locked="true" style="mix-blend-mode:color-burn" width="${size}" height="${size}" fill="url(#avatar-shadow-grad)" fill-opacity="${AVATAR_BLEND_OPACITY}" />`
 		}
 	} else if (tone.startsWith("grad-custom:")) {
 		const [, from, to] = tone.split(":")
-		shadowElement = `<defs><linearGradient id="avatar-shadow-grad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="${size}" y2="${size}"><stop offset="0%" stop-color="${from}" /><stop offset="100%" stop-color="${to}" /></linearGradient></defs><rect width="${size}" height="${size}" fill="url(#avatar-shadow-grad)" fill-opacity="${AVATAR_BLEND_OPACITY}" />`
+		shadowElement = `<defs><linearGradient id="avatar-shadow-grad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="${size}" y2="${size}"><stop offset="0%" stop-color="${from}" /><stop offset="100%" stop-color="${to}" /></linearGradient></defs><rect id="tint" data-locked="true" locked="true" style="mix-blend-mode:color-burn" width="${size}" height="${size}" fill="url(#avatar-shadow-grad)" fill-opacity="${AVATAR_BLEND_OPACITY}" />`
 	}
 
 	return [
 		`<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">`,
-		`<!-- Background Layer (editable in Figma) -->`,
-		`<g id="background">`,
+		`<!-- Background Layer -->`,
 		bgElement ||
 			(tone === "none"
 				? ""
-				: `<rect width="${size}" height="${size}" fill="#ffffff" />`),
-		`</g>`,
-		`<!-- Avatar Layer -->`,
-		`<g id="avatar">`,
-		`<image href="${avatarDataUrl}" width="${size}" height="${size}" />`,
-		`</g>`,
-		shadowElement
-			? `<!-- Avatar Blend Layer --><g id="Shadow" style="mix-blend-mode:color-burn">${shadowElement}</g>`
+				: `<rect id="background" data-locked="true" locked="true" width="${size}" height="${size}" fill="#ffffff" />`),
+		shadowDataUrl
+			? `<!-- Shadow Layer --><image id="shadow" data-locked="true" locked="true" style="mix-blend-mode:hard-light" href="${shadowDataUrl}" width="${size}" height="${size}" />`
 			: "",
+		`<!-- Avatar Layer -->`,
+		`<image id="avatar" data-locked="true" locked="true" href="${avatarDataUrl}" width="${size}" height="${size}" />`,
+		shadowElement ? `<!-- Avatar Blend Layer -->${shadowElement}` : "",
 		`</svg>`,
 	].join("\n")
 }
@@ -355,14 +359,17 @@ export async function generateEditableSvg(
 export async function copyRandomAvatar(
 	tone: string = "none"
 ): Promise<string | null> {
-	const src = AVATARS[Math.floor(Math.random() * AVATARS.length)]
+	const avatarIndex = Math.floor(Math.random() * AVATARS.length)
+	const src = AVATARS[avatarIndex]
 
 	// Create the ClipboardItem synchronously (required by Safari) with a
 	// deferred Promise for the actual blob content.
-	const svgBlobPromise = generateEditableSvg(tone, src).then((svg) => {
-		if (!svg) throw new Error("SVG generation failed")
-		return new Blob([svg], { type: "text/plain" })
-	})
+	const svgBlobPromise = generateEditableSvg(tone, src, avatarIndex).then(
+		(svg) => {
+			if (!svg) throw new Error("SVG generation failed")
+			return new Blob([svg], { type: "text/plain" })
+		}
+	)
 
 	try {
 		await navigator.clipboard.write([
@@ -372,7 +379,7 @@ export async function copyRandomAvatar(
 	} catch {
 		// Fallback for browsers that don't support Promise in ClipboardItem
 		try {
-			const svg = await generateEditableSvg(tone, src)
+			const svg = await generateEditableSvg(tone, src, avatarIndex)
 			if (!svg) return null
 			await navigator.clipboard.writeText(svg)
 			return src

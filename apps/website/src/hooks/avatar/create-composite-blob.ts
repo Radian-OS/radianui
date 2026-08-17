@@ -5,6 +5,7 @@ import {
 	getImageBackgroundTint,
 	resolveRadianColor,
 } from "@/constants/avatar-playground-utils"
+import { AVATAR_SHADOW_MAP } from "@/constants/avatar-shadow-map"
 
 /**
  * Renders the avatar + background tone onto an off-screen canvas and returns
@@ -13,7 +14,8 @@ import {
 export const createCompositeBlob = async (
 	tone: string,
 	src: string,
-	shouldApplyShadow: boolean
+	shouldApplyShadow: boolean,
+	index: number
 ): Promise<Blob | null> => {
 	const size = 512
 	const canvas = document.createElement("canvas")
@@ -88,6 +90,25 @@ export const createCompositeBlob = async (
 		})
 
 		ctx.drawImage(avatarImg, 0, 0, size, size)
+
+		const shadowSrc = AVATAR_SHADOW_MAP[index]
+		if (shadowSrc) {
+			try {
+				const shadowImg = new window.Image()
+				shadowImg.crossOrigin = "anonymous"
+				shadowImg.src = shadowSrc
+				await new Promise<void>((resolve, reject) => {
+					shadowImg.onload = () => resolve()
+					shadowImg.onerror = reject
+				})
+				ctx.save()
+				ctx.globalCompositeOperation = "hard-light"
+				ctx.drawImage(shadowImg, 0, 0, size, size)
+				ctx.restore()
+			} catch {
+				// Continue if shadow image fails to load
+			}
+		}
 
 		// The avatar source is opaque, so the Color Burn fill must be composited
 		// above it to affect the exported pixels.
