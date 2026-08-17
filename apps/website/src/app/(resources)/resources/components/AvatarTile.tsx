@@ -171,7 +171,7 @@ export const AvatarTile = ({
 				alt={getAvatarAltText(index + 1, tone)}
 				fill
 				sizes="(max-width: 640px) 25vw, (max-width: 768px) 20vw, 14vw"
-				className="z-10 object-cover transition-transform duration-500 ease-out will-change-transform group-hover:scale-105"
+				className="z-10 origin-bottom translate-y-[3%] scale-[1.03] object-cover object-bottom transition-transform duration-500 ease-out will-change-transform group-hover:scale-[1.08]"
 			/>
 			{AVATAR_SHADOW_MAP[index] && (
 				<Image
@@ -179,7 +179,7 @@ export const AvatarTile = ({
 					alt=""
 					fill
 					sizes="(max-width: 640px) 25vw, (max-width: 768px) 20vw, 14vw"
-					className="z-5 pointer-events-none object-cover mix-blend-hard-light transition-transform duration-500 ease-out will-change-transform group-hover:scale-105"
+					className="z-5 pointer-events-none origin-bottom translate-y-[3%] scale-[1.03] object-cover object-bottom mix-blend-hard-light transition-transform duration-500 ease-out will-change-transform group-hover:scale-[1.08]"
 				/>
 			)}
 			{shouldApplyShadow && (
@@ -226,21 +226,24 @@ export const AvatarTile = ({
 						<DropdownMenuLabel className="text-fg-tertiary px-2 py-1 text-xs font-medium">
 							Design
 						</DropdownMenuLabel>
-						<DropdownMenuItem onSelect={handleCopyPng}>
+						<DropdownMenuItem className="h-7" onSelect={handleCopyPng}>
 							<ImageIcon className="text-fg-secondary size-4" />
 							<span>Copy PNG</span>
 						</DropdownMenuItem>
-						<DropdownMenuItem onSelect={handleCopyTransparentPng}>
+						<DropdownMenuItem
+							className="h-7"
+							onSelect={handleCopyTransparentPng}>
 							<SquareDashedMousePointer className="text-fg-secondary size-4" />
 							<span>Copy Transparent PNG</span>
 						</DropdownMenuItem>
-						<DropdownMenuItem onSelect={handleCopyFigmaFrame}>
+						<DropdownMenuItem className="h-7" onSelect={handleCopyFigmaFrame}>
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
-								width="20"
-								height="20"
+								width="16"
+								height="16"
 								viewBox="0 0 20 20"
-								fill="none">
+								fill="none"
+								className="size-4 shrink-0">
 								<path
 									d="M9.72266 10.0001C9.72266 8.3893 11.0285 7.08344 12.6393 7.08344C14.2501 7.08344 15.556 8.3893 15.556 10.0001C15.556 11.6109 14.2501 12.9168 12.6393 12.9168C11.0285 12.9168 9.72266 11.6109 9.72266 10.0001Z"
 									fill="#1ABCFE"
@@ -270,26 +273,29 @@ export const AvatarTile = ({
 						<DropdownMenuLabel className="text-fg-tertiary px-2 py-1 text-xs font-medium">
 							Development
 						</DropdownMenuLabel>
-						<DropdownMenuItem onSelect={handleCopyUrlTransparent}>
+						<DropdownMenuItem
+							className="h-7"
+							onSelect={handleCopyUrlTransparent}>
 							<Link2 className="text-fg-secondary size-4" />
 							<span>URL Transparent</span>
 						</DropdownMenuItem>
-						<DropdownMenuItem onSelect={handleCopyNextImageTag}>
+						<DropdownMenuItem className="h-7" onSelect={handleCopyNextImageTag}>
 							<NextjsIcon className="text-fg size-4" />
 							<span>Next JS &lt;Image&gt; Tag</span>
 						</DropdownMenuItem>
-						<DropdownMenuItem onSelect={handleCopyHtmlImgTag}>
+						<DropdownMenuItem className="h-7" onSelect={handleCopyHtmlImgTag}>
 							<Html5Icon className="size-4" />
 							<span>HTML &lt;IMG&gt; Tag</span>
 						</DropdownMenuItem>
 
 						<DropdownMenuDivider />
 
-						<DropdownMenuItem onSelect={() => handleDownload()}>
+						<DropdownMenuItem className="h-7" onSelect={() => handleDownload()}>
 							<Download className="text-fg-secondary size-4" />
 							<span>Download PNG</span>
 						</DropdownMenuItem>
 						<DropdownMenuItem
+							className="h-7"
 							onSelect={() => {
 								setTimeout(() => {
 									onToggleFavorite()
@@ -317,7 +323,7 @@ export const AvatarTile = ({
 					size="28"
 					color="neutral"
 					variant="outline"
-					className="w-full bg-white text-black hover:bg-white"
+					className="w-full border-none bg-white text-black hover:[background:linear-gradient(rgba(0,0,0,0.10),rgba(0,0,0,0.10)),_#fff]"
 					onClick={handleCopy}>
 					{copied
 						? copyFormat === "editable-bg"

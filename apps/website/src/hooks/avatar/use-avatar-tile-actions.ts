@@ -2,7 +2,13 @@
 
 import { useState } from "react"
 import { toast } from "sonner"
-import { generateEditableSvg } from "@/constants/avatar-playground-utils"
+import {
+	GRADIENT_MAP,
+	SOLID_COLOR_MAP,
+	generateEditableSvg,
+	resolveRadianColor,
+} from "@/constants/avatar-playground-utils"
+import { AVATAR_SHADOW_MAP } from "@/constants/avatar-shadow-map"
 import { createCompositeBlob } from "@/hooks/avatar/create-composite-blob"
 
 interface UseAvatarTileActionsOptions {
@@ -142,9 +148,63 @@ export const useAvatarTileActions = ({
 		}
 	}
 
+	// Helper: resolve tone to a CSS background value for inline styles
+	const getBackgroundCss = (): string => {
+		if (SOLID_COLOR_MAP[tone])
+			return `background-color: ${SOLID_COLOR_MAP[tone]};`
+		const gradient = GRADIENT_MAP[tone]
+		if (gradient) {
+			if (gradient.base) {
+				return `background-color: ${gradient.base}; background-image: linear-gradient(180deg, ${gradient.overlayFrom} 0%, ${gradient.overlayTo} 100%);`
+			}
+			return `background: linear-gradient(135deg, ${gradient.from}, ${gradient.to});`
+		}
+		if (tone.startsWith("grad-custom:")) {
+			const parts = tone.split(":")
+			return `background: linear-gradient(135deg, ${parts[1]}, ${parts[2]});`
+		}
+		if (tone.startsWith("radian:")) {
+			const color = resolveRadianColor(tone)
+			return `background-color: ${color};`
+		}
+		if (tone.startsWith("#")) return `background-color: ${tone};`
+		if (tone.startsWith("http") || tone.startsWith("/")) {
+			return `background-image: url(${tone}); background-size: cover; background-position: center;`
+		}
+		return ""
+	}
+
 	// 5. Next JS <Image> Tag
 	const handleCopyNextImageTag = async () => {
-		const snippet = `<Image src="${src}" alt="Avatar illustration ${index + 1}" width={512} height={512} />`
+		const bgCss = getBackgroundCss()
+		const shadowSrc = AVATAR_SHADOW_MAP[index]
+
+		const lines = [
+			`<div style={{ position: "relative", width: 512, height: 512, overflow: "hidden"${
+				bgCss
+					? `, ${bgCss
+							.split(";")
+							.filter(Boolean)
+							.map((s) => {
+								const [k, ...v] = s.split(":")
+								const camel = k
+									.trim()
+									.replace(/-([a-z])/g, (_, c) => c.toUpperCase())
+								return `${camel}: "${v.join(":").trim()}"`
+							})
+							.join(", ")}`
+					: ""
+			} }}>`,
+			`  <Image src="${src}" alt="Avatar illustration ${index + 1}" fill style={{ objectFit: "cover" }} />`,
+		]
+		if (shadowSrc) {
+			lines.push(
+				`  <Image src="${shadowSrc}" alt="" fill style={{ objectFit: "cover", mixBlendMode: "hard-light", pointerEvents: "none" }} />`
+			)
+		}
+		lines.push(`</div>`)
+
+		const snippet = lines.join("\n")
 		try {
 			await navigator.clipboard.writeText(snippet)
 			markCopied()
@@ -156,7 +216,21 @@ export const useAvatarTileActions = ({
 
 	// 6. HTML <IMG> Tag
 	const handleCopyHtmlImgTag = async () => {
-		const snippet = `<img src="${src}" alt="Avatar illustration ${index + 1}" width="512" height="512" />`
+		const bgCss = getBackgroundCss()
+		const shadowSrc = AVATAR_SHADOW_MAP[index]
+
+		const lines = [
+			`<div style="position: relative; width: 512px; height: 512px; overflow: hidden;${bgCss ? ` ${bgCss}` : ""}">`,
+			`  <img src="${src}" alt="Avatar illustration ${index + 1}" style="width: 100%; height: 100%; object-fit: cover;" />`,
+		]
+		if (shadowSrc) {
+			lines.push(
+				`  <img src="${shadowSrc}" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; mix-blend-mode: hard-light; pointer-events: none;" />`
+			)
+		}
+		lines.push(`</div>`)
+
+		const snippet = lines.join("\n")
 		try {
 			await navigator.clipboard.writeText(snippet)
 			markCopied()
