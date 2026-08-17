@@ -24,6 +24,7 @@ export const metadata: Metadata = {
 		apple: "/apple-touch-icon.png",
 	},
 	openGraph: {
+		siteName: websiteMetadata.name,
 		title: `${websiteMetadata.name} - Open Source React Components and Figma Design System`,
 		description:
 			"A complete production-ready React components library, UI blocks, and Figma UI Kit and design system",

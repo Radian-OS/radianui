@@ -48,6 +48,7 @@ export async function generateMetadata({
 		})),
 		alternates: { canonical: url },
 		openGraph: {
+			siteName: websiteMetadata.name,
 			type: "article",
 			title,
 			description: blog.data.description,

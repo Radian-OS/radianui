@@ -9,6 +9,7 @@ import { PreviousNextButtons } from "@/components/prev-next-buttons"
 import { PreviousNextIconButtons } from "@/components/prev-next-icon-buttons"
 import { JsonLd } from "@/components/seo/json-ld"
 import { VersionDisplayBadge } from "@/components/version-display-badge"
+import { websiteMetadata } from "@/config/website-metadata-config"
 import { generateSeoMeta } from "@/lib/generate-doc-seo-meta"
 import { getPackageVersion } from "@/lib/get-package-info"
 import { docsSource } from "@/lib/source"
@@ -61,6 +62,7 @@ export async function generateMetadata({
 		title: title,
 		description: description,
 		openGraph: {
+			siteName: websiteMetadata.name,
 			title: title,
 			description: description,
 			url,

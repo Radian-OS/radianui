@@ -4,6 +4,7 @@ import Link from "next/link"
 import Background from "@/components/effects/background"
 import Footer from "@/components/home/footer"
 import { JsonLd } from "@/components/seo/json-ld"
+import { websiteMetadata } from "@/config/website-metadata-config"
 import {
 	absoluteUrl,
 	getAvatarResourceStructuredData,
@@ -32,6 +33,7 @@ export const metadata: Metadata = {
 	description: pageDescription,
 	alternates: { canonical: pageUrl },
 	openGraph: {
+		siteName: websiteMetadata.name,
 		type: "website",
 		title: pageTitle,
 		description: pageDescription,
