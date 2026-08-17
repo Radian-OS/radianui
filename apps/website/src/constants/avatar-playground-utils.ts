@@ -268,7 +268,6 @@ export async function generateEditableSvg(
 	avatarIndex?: number
 ): Promise<string> {
 	const size = 512
-	const imageBackgroundTint = getImageBackgroundTint(tone)
 
 	// Kick off avatar & shadow fetch in parallel
 	const avatarPromise = fetchImageAsDataUrl(src).catch(() => "")
@@ -278,73 +277,47 @@ export async function generateEditableSvg(
 		? fetchImageAsDataUrl(shadowSrc).catch(() => "")
 		: Promise.resolve("")
 
-	// Build SVG background element
+	// --- 1. Determine SVG root fill & child background element ---------------
 	let bgElement = ""
 	if (SOLID_COLOR_MAP[tone]) {
-		bgElement = `<rect id="background" data-locked="true" locked="true" width="${size}" height="${size}" fill="${SOLID_COLOR_MAP[tone]}" />`
+		bgElement = `<path id="background" data-locked="true" locked="true" d="M0 0h${size}v${size}H0z" fill="${SOLID_COLOR_MAP[tone]}" />`
 	} else if (GRADIENT_MAP[tone]) {
 		const g = GRADIENT_MAP[tone]
 		if (g.base) {
-			bgElement = `<defs><linearGradient id="bg-grad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="${size}"><stop offset="0%" stop-color="#ffffff" stop-opacity="0" /><stop offset="100%" stop-color="#242e42" stop-opacity="0.16" /></linearGradient></defs><rect id="background" data-locked="true" locked="true" width="${size}" height="${size}" fill="${g.base}" /><rect width="${size}" height="${size}" fill="url(#bg-grad)" pointer-events="none" />`
+			bgElement = `<defs><linearGradient id="bg-grad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="${size}"><stop offset="0%" stop-color="#ffffff" stop-opacity="0" /><stop offset="100%" stop-color="#242e42" stop-opacity="0.16" /></linearGradient></defs><g id="background"><path data-locked="true" locked="true" d="M0 0h${size}v${size}H0z" fill="${g.base}" /><path data-locked="true" locked="true" d="M0 0h${size}v${size}H0z" fill="url(#bg-grad)" pointer-events="none" /></g>`
 		} else {
-			bgElement = `<defs><linearGradient id="bg-grad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="${size}" y2="${size}"><stop offset="0%" stop-color="${g.from}" /><stop offset="100%" stop-color="${g.to}" /></linearGradient></defs><rect id="background" data-locked="true" locked="true" width="${size}" height="${size}" fill="url(#bg-grad)" />`
+			bgElement = `<defs><linearGradient id="bg-grad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="${size}" y2="${size}"><stop offset="0%" stop-color="${g.from}" /><stop offset="100%" stop-color="${g.to}" /></linearGradient></defs><path id="background" data-locked="true" locked="true" d="M0 0h${size}v${size}H0z" fill="url(#bg-grad)" />`
 		}
 	} else if (tone.startsWith("grad-custom:")) {
 		const parts = tone.split(":")
-		bgElement = `<defs><linearGradient id="bg-grad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="${size}" y2="${size}"><stop offset="0%" stop-color="${parts[1]}" /><stop offset="100%" stop-color="${parts[2]}" /></linearGradient></defs><rect id="background" data-locked="true" locked="true" width="${size}" height="${size}" fill="url(#bg-grad)" />`
+		bgElement = `<defs><linearGradient id="bg-grad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="${size}" y2="${size}"><stop offset="0%" stop-color="${parts[1]}" /><stop offset="100%" stop-color="${parts[2]}" /></linearGradient></defs><path id="background" data-locked="true" locked="true" d="M0 0h${size}v${size}H0z" fill="url(#bg-grad)" />`
 	} else if (tone.startsWith("#")) {
-		bgElement = `<rect id="background" data-locked="true" locked="true" width="${size}" height="${size}" fill="${tone}" />`
+		bgElement = `<path id="background" data-locked="true" locked="true" d="M0 0h${size}v${size}H0z" fill="${tone}" />`
 	} else if (tone.startsWith("radian:")) {
 		const color = resolveRadianColor(tone)
-		bgElement = `<rect id="background" data-locked="true" locked="true" width="${size}" height="${size}" fill="${color}" />`
+		bgElement = `<path id="background" data-locked="true" locked="true" d="M0 0h${size}v${size}H0z" fill="${color}" />`
 	} else if (tone.startsWith("http") || tone.startsWith("/")) {
-		// Embed background image as base64 (fetched in parallel with avatar)
 		try {
 			const base64 = await fetchImageAsDataUrl(tone)
 			bgElement = `<image id="background" data-locked="true" locked="true" href="${base64}" width="${size}" height="${size}" preserveAspectRatio="xMidYMid slice" />`
 		} catch {
-			bgElement = `<rect id="background" data-locked="true" locked="true" width="${size}" height="${size}" fill="#f3f4f6" />`
+			bgElement = `<path id="background" data-locked="true" locked="true" d="M0 0h${size}v${size}H0z" fill="#f3f4f6" />`
 		}
 	}
 
-	// Await the avatar & shadow data URLs
+	// --- 2. Await avatar & shadow data URLs ----------------------------------
 	const avatarDataUrl = await avatarPromise
 	if (!avatarDataUrl) return ""
 	const shadowDataUrl = await shadowPromise
 
-	// Keep the editable SVG visually consistent with the browser and PNG export:
-	// the avatar is opaque, so the Color Burn fill has to sit above it. Figma
-	// expects the layer itself at 100% opacity with a 15%-opaque color fill.
-	let shadowElement = ""
-	if (imageBackgroundTint) {
-		shadowElement = `<rect id="tint" data-locked="true" locked="true" style="mix-blend-mode:color-burn" width="${size}" height="${size}" fill="${imageBackgroundTint}" fill-opacity="${AVATAR_BLEND_OPACITY}" />`
-	} else if (SOLID_COLOR_MAP[tone]) {
-		shadowElement = `<rect id="tint" data-locked="true" locked="true" style="mix-blend-mode:color-burn" width="${size}" height="${size}" fill="${SOLID_COLOR_MAP[tone]}" fill-opacity="${AVATAR_BLEND_OPACITY}" />`
-	} else if (GRADIENT_MAP[tone]) {
-		const gradient = GRADIENT_MAP[tone]
-		if (gradient.base) {
-			shadowElement = `<defs><linearGradient id="avatar-shadow-sheen" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="${size}"><stop offset="0%" stop-color="#ffffff" stop-opacity="0" /><stop offset="100%" stop-color="#242e42" stop-opacity="0.16" /></linearGradient></defs><rect id="tint" data-locked="true" locked="true" style="mix-blend-mode:color-burn" width="${size}" height="${size}" fill="${gradient.base}" fill-opacity="${AVATAR_BLEND_OPACITY}" /><rect style="mix-blend-mode:color-burn" width="${size}" height="${size}" fill="url(#avatar-shadow-sheen)" fill-opacity="${AVATAR_BLEND_OPACITY}" />`
-		} else if (gradient.from && gradient.to) {
-			shadowElement = `<defs><linearGradient id="avatar-shadow-grad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="${size}" y2="${size}"><stop offset="0%" stop-color="${gradient.from}" /><stop offset="100%" stop-color="${gradient.to}" /></linearGradient></defs><rect id="tint" data-locked="true" locked="true" style="mix-blend-mode:color-burn" width="${size}" height="${size}" fill="url(#avatar-shadow-grad)" fill-opacity="${AVATAR_BLEND_OPACITY}" />`
-		}
-	} else if (tone.startsWith("grad-custom:")) {
-		const [, from, to] = tone.split(":")
-		shadowElement = `<defs><linearGradient id="avatar-shadow-grad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="${size}" y2="${size}"><stop offset="0%" stop-color="${from}" /><stop offset="100%" stop-color="${to}" /></linearGradient></defs><rect id="tint" data-locked="true" locked="true" style="mix-blend-mode:color-burn" width="${size}" height="${size}" fill="url(#avatar-shadow-grad)" fill-opacity="${AVATAR_BLEND_OPACITY}" />`
-	}
-
+	// --- 3. Assemble SVG: Frame (with fill) → avatar + shadow ----------------
 	return [
 		`<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">`,
-		`<!-- Background Layer -->`,
-		bgElement ||
-			(tone === "none"
-				? ""
-				: `<rect id="background" data-locked="true" locked="true" width="${size}" height="${size}" fill="#ffffff" />`),
-		shadowDataUrl
-			? `<!-- Shadow Layer --><image id="shadow" data-locked="true" locked="true" style="mix-blend-mode:hard-light" href="${shadowDataUrl}" width="${size}" height="${size}" />`
-			: "",
-		`<!-- Avatar Layer -->`,
+		bgElement ? `<!-- Background Layer -->\n${bgElement}` : "",
 		`<image id="avatar" data-locked="true" locked="true" href="${avatarDataUrl}" width="${size}" height="${size}" />`,
-		shadowElement ? `<!-- Avatar Blend Layer -->${shadowElement}` : "",
+		shadowDataUrl
+			? `<image id="shadow" data-locked="true" locked="true" style="mix-blend-mode:hard-light" href="${shadowDataUrl}" width="${size}" height="${size}" />`
+			: "",
 		`</svg>`,
 	].join("\n")
 }
