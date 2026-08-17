@@ -16,7 +16,7 @@ const DialogThumbnail = (props: React.SVGProps<SVGSVGElement>) => (
 			fill="var(--color-elevation-negative)"
 		/>
 		<g filter="url(#filter0_d_3905_19610)">
-			<g clip-path="url(#clip0_3905_19610)">
+			<g clipPath="url(#clip0_3905_19610)">
 				<rect
 					x="43"
 					y="92"
@@ -85,7 +85,7 @@ const DialogThumbnail = (props: React.SVGProps<SVGSVGElement>) => (
 				height="154"
 				filterUnits="userSpaceOnUse"
 				colorInterpolationFilters="sRGB">
-				<feFlood flood-opacity="0" result="BackgroundImageFix" />
+				<feFlood floodOpacity="0" result="BackgroundImageFix" />
 				<feColorMatrix
 					in="SourceAlpha"
 					type="matrix"
@@ -119,7 +119,7 @@ const DialogThumbnail = (props: React.SVGProps<SVGSVGElement>) => (
 				height="28"
 				filterUnits="userSpaceOnUse"
 				colorInterpolationFilters="sRGB">
-				<feFlood flood-opacity="0" result="BackgroundImageFix" />
+				<feFlood floodOpacity="0" result="BackgroundImageFix" />
 				<feColorMatrix
 					in="SourceAlpha"
 					type="matrix"

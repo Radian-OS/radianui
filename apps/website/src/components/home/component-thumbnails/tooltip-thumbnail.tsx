@@ -49,7 +49,7 @@ const TooltipThumbnail = (props: React.SVGProps<SVGSVGElement>) => (
 			transform="rotate(-180 175 186)"
 			fill="white"
 		/>
-		<g clip-path="url(#clip0_3867_194131)">
+		<g clipPath="url(#clip0_3867_194131)">
 			<path
 				d="M167 213.333V210M167 206.667H167.009M175.334 210C175.334 214.602 171.603 218.333 167 218.333C162.398 218.333 158.667 214.602 158.667 210C158.667 205.398 162.398 201.667 167 201.667C171.603 201.667 175.334 205.398 175.334 210Z"
 				stroke="#5E636E"
