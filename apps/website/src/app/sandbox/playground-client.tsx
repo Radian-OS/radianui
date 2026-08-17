@@ -133,7 +133,7 @@ export function PlaygroundClient({ files }: PlaygroundClientProps) {
 						<div className="bg-primary text-primary-fg shadow-primary/20 flex h-6 w-6 shrink-0 items-center justify-center rounded-lg text-xs font-black shadow-md">
 							R
 						</div>
-						<span className="group-data-[state=collapsed]:hidden">Sanbox</span>
+						<span className="group-data-[state=collapsed]:hidden">Sandbox</span>
 					</div>
 				</SidebarHeader>
 
@@ -165,7 +165,7 @@ export function PlaygroundClient({ files }: PlaygroundClientProps) {
 										)}>
 										<Folder className="text-primary size-4 shrink-0" />
 										<span className="flex-1 truncate group-data-[state=collapsed]:hidden">
-											src/app/sandbox/motion
+											motion
 										</span>
 									</SidebarMenuButton>
 								</SidebarMenuItem>
@@ -188,7 +188,7 @@ export function PlaygroundClient({ files }: PlaygroundClientProps) {
 										)}>
 										<Folder className="text-primary size-4 shrink-0" />
 										<span className="flex-1 truncate group-data-[state=collapsed]:hidden">
-											src/app/sandbox/klarheit-faq
+											klarheit-faq
 										</span>
 									</SidebarMenuButton>
 								</SidebarMenuItem>
@@ -213,7 +213,7 @@ export function PlaygroundClient({ files }: PlaygroundClientProps) {
 										)}>
 										<Folder className="text-primary size-4 shrink-0" />
 										<span className="flex-1 truncate group-data-[state=collapsed]:hidden">
-											src/app/sandbox/klarheit-testimonial
+											klarheit-testimonial
 										</span>
 									</SidebarMenuButton>
 								</SidebarMenuItem>
@@ -238,7 +238,7 @@ export function PlaygroundClient({ files }: PlaygroundClientProps) {
 										)}>
 										<Folder className="text-primary size-4 shrink-0" />
 										<span className="flex-1 truncate group-data-[state=collapsed]:hidden">
-											src/app/sandbox/beam-header
+											beam-header
 										</span>
 									</SidebarMenuButton>
 								</SidebarMenuItem>
@@ -263,7 +263,7 @@ export function PlaygroundClient({ files }: PlaygroundClientProps) {
 										)}>
 										<Folder className="text-primary size-4 shrink-0" />
 										<span className="flex-1 truncate group-data-[state=collapsed]:hidden">
-											src/app/sandbox/jambo-pricing
+											jambo-pricing
 										</span>
 									</SidebarMenuButton>
 								</SidebarMenuItem>
@@ -300,6 +300,26 @@ export function PlaygroundClient({ files }: PlaygroundClientProps) {
 					</div>
 
 					<div className="flex items-center gap-3">
+						<div className="flex items-center gap-1">
+							{referenceUrls[activeComponent] && (
+								<IconButton variant="ghost" color="neutral" size="32">
+									<a
+										href={referenceUrls[activeComponent]}
+										target="_blank"
+										rel="noopener noreferrer">
+										<Globe className="text-fg-tertiary hover:text-fg size-4" />
+									</a>
+								</IconButton>
+							)}
+							<IconButton variant="ghost" color="neutral" size="32">
+								<a
+									href={previewRoutes[activeComponent]}
+									target="_blank"
+									rel="noopener noreferrer">
+									<ExternalLink className="text-fg-tertiary hover:text-fg size-4" />
+								</a>
+							</IconButton>
+						</div>
 						{viewMode === "preview" && (
 							<Tabs
 								value={deviceSize}
@@ -323,11 +343,9 @@ export function PlaygroundClient({ files }: PlaygroundClientProps) {
 							<TabsList>
 								<TabsTrigger value="preview">
 									<Eye className="size-3.5" />
-									<span>Preview</span>
 								</TabsTrigger>
 								<TabsTrigger value="code">
 									<Code className="size-3.5" />
-									<span>Code</span>
 								</TabsTrigger>
 							</TabsList>
 						</Tabs>
@@ -359,27 +377,6 @@ export function PlaygroundClient({ files }: PlaygroundClientProps) {
 				{/* Workspace Content */}
 				<div className="flex min-h-0 flex-1 overflow-hidden">
 					<div className="flex h-full min-h-0 flex-1 flex-col overflow-hidden">
-						<div className="border-border text-fg-tertiary flex select-none items-center justify-between border-b px-4 py-3 text-[11px] font-semibold">
-							<span>Component Preview</span>
-							<div className="flex items-center gap-4">
-								{referenceUrls[activeComponent] && (
-									<a
-										href={referenceUrls[activeComponent]}
-										target="_blank"
-										rel="noopener noreferrer"
-										className="text-primary hover:text-primary-hover flex items-center gap-1 font-medium transition-colors">
-										<Globe className="size-3.5" />
-									</a>
-								)}
-								<a
-									href={previewRoutes[activeComponent]}
-									target="_blank"
-									rel="noopener noreferrer"
-									className="text-primary hover:text-primary-hover flex items-center gap-1 font-medium transition-colors">
-									<ExternalLink className="size-3.5" />
-								</a>
-							</div>
-						</div>
 						{/* Live Preview Pane */}
 						{viewMode === "preview" && (
 							<div className="flex flex-1 flex-col items-center overflow-y-auto">
