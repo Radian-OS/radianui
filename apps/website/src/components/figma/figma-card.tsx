@@ -44,7 +44,7 @@ const FigmaCard = () => {
 					Get Radian Design System Kit Figma
 				</p>
 				<p className="text-fg-tertiary font-normal leading-5">
-					radianos.com/figma
+					radianui.com/figma
 				</p>
 			</div>
 		</Link>

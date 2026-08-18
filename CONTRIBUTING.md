@@ -104,8 +104,8 @@ Here's a guide on how you can effectively contribute to our UI component library
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/Radian UI.git
-cd Radian UI
+git clone https://github.com/your-username/radianui.git
+cd radianui
 
 # Install dependencies
 pnpm install
@@ -136,8 +136,8 @@ pnpm lint
 
 ## 📞 Need Help?
 
-- 💬 [GitHub Discussions](https://github.com/Radian-os/Radian UI/discussions)
-- 🐛 [Report Issues](https://github.com/Radian-os/Radian UI/issues/new)
+- 💬 [GitHub Discussions](https://github.com/Radian-os/radianui/discussions)
+- 🐛 [Report Issues](https://github.com/Radian-os/radianui/issues/new)
 - 📧 [Contact the Team](mailto:team@Radian UI.com)
 
 We appreciate your enthusiasm and look forward to your valuable contributions to our open-source UI component library!

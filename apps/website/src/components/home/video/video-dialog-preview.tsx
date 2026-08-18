@@ -72,7 +72,7 @@ export default function VideoDialogPreview() {
 				<button
 					ref={triggerRef}
 					type="button"
-					aria-label="Play Radian OS demo"
+					aria-label="Play Radian UI demo"
 					className="border-soft bg-bg/60 z-20 max-h-[840px] w-full max-w-[1400px] cursor-pointer appearance-none rounded-2xl border p-3 text-left backdrop-blur-[45px]">
 					<AspectRatio
 						ratio={16 / 9}
@@ -101,8 +101,8 @@ export default function VideoDialogPreview() {
 			{/* Dialog Content */}
 			<DialogContent className="mx-auto max-h-[90dvh] w-[calc(100vw-1rem)] max-w-[calc(100vw-1rem)] overflow-hidden p-0 sm:w-[90vw] sm:max-w-[90vw]">
 				<DialogHeader className="sr-only">
-					<DialogTitle>Radian OS demo</DialogTitle>
-					<DialogDescription>Watch the Radian OS demo video.</DialogDescription>
+					<DialogTitle>Radian UI demo</DialogTitle>
+					<DialogDescription>Watch the Radian UI demo video.</DialogDescription>
 				</DialogHeader>
 
 				<DialogBody className="p-0">
@@ -111,7 +111,7 @@ export default function VideoDialogPreview() {
 							className="absolute inset-0 h-full w-full rounded-lg"
 							referrerPolicy="strict-origin-when-cross-origin"
 							src="https://www.youtube.com/embed/XeYZ6IauaMc?si=mzZLOA22F9MOSAyP"
-							title="Radian OS Demo"
+							title="Radian UI Demo"
 							allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 							allowFullScreen
 						/>

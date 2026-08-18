@@ -1,6 +1,6 @@
 name: "🐞 Bug Report"
 title: "[BUG] - Briefly describe the issue"
-description: "Report a reproducible bug in the RadianOs UI component system."
+description: "Report a reproducible bug in the Radian UI component system."
 labels: ["bug"]
 body:
   - type: markdown

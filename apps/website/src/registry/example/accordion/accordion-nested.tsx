@@ -9,15 +9,15 @@ import {
 // const contents = [
 // 	{
 // 		id: 1,
-// 		trigger: "What is Radian OS?",
+// 		trigger: "What is Radian UI?",
 // 		content:
-// 			"Radian OS is a high-quality design and development library aimed at building systems that scale quickly. It enables rapid transition from design to product in just a few hours.",
+// 			"Radian UI is a high-quality design and development library aimed at building systems that scale quickly. It enables rapid transition from design to product in just a few hours.",
 // 	},
 // 	{
 // 		id: 2,
-// 		trigger: "What components are available in Radian OS?",
+// 		trigger: "What components are available in Radian UI?",
 // 		content:
-// 			"Radian OS offers a variety of UI components including Accordions, Alerts, Avatars, Badges, Banners, Buttons, Calendars, Checkboxes, Dropdowns, Inputs, Modals, Pagination, Progress Bars, Radio Buttons, Sliders, Switches, Tables, Tabs, Tooltips, and more.",
+// 			"Radian UI offers a variety of UI components including Accordions, Alerts, Avatars, Badges, Banners, Buttons, Calendars, Checkboxes, Dropdowns, Inputs, Modals, Pagination, Progress Bars, Radio Buttons, Sliders, Switches, Tables, Tabs, Tooltips, and more.",
 // 		nested: [
 // 			{
 // 				id: "nested-1",
@@ -28,19 +28,19 @@ import {
 // 			{
 // 				id: "nested-2",
 // 				trigger: "How does layout scaling work?",
-// 				content: "Radian OS applies responsive grid variables, adjusting columns and spacing automatically for each device mode.",
+// 				content: "Radian UI applies responsive grid variables, adjusting columns and spacing automatically for each device mode.",
 // 			},
 // 		],
 // 	},
 // 	{
 // 		id: 3,
-// 		trigger: "What application components does Radian OS provide?",
+// 		trigger: "What application components does Radian UI provide?",
 // 		content: "Application components such as User Authentication, Navigation Bars, Application Settings, and many more.",
 // 	},
 // 	{
 // 		id: 4,
-// 		trigger: "How can I stay updated with Radian OS developments?",
-// 		content: "You can subscribe to Radian OS newsletter to receive the latest information, tips, and exclusive offers.",
+// 		trigger: "How can I stay updated with Radian UI developments?",
+// 		content: "You can subscribe to Radian UI newsletter to receive the latest information, tips, and exclusive offers.",
 // 	},
 // ]
 
@@ -53,9 +53,9 @@ export default function AccordionNested() {
 			collapsible
 			className="w-full lg:w-[75%]">
 			<AccordionItem value="1" key="1">
-				<AccordionTrigger>What is Radian OS?</AccordionTrigger>
+				<AccordionTrigger>What is Radian UI?</AccordionTrigger>
 				<AccordionContent>
-					Radian OS is a high-quality design and development library aimed at
+					Radian UI is a high-quality design and development library aimed at
 					building systems that scale quickly. It enables rapid transition from
 					design to product in just a few hours.
 				</AccordionContent>
@@ -63,7 +63,7 @@ export default function AccordionNested() {
 
 			<AccordionItem value="2" key="2" className="[&_div]:p-0">
 				<AccordionTrigger>
-					What components are available in Radian OS?
+					What components are available in Radian UI?
 				</AccordionTrigger>
 				<AccordionContent>
 					<Accordion
@@ -85,7 +85,7 @@ export default function AccordionNested() {
 								How does layout scaling work?
 							</AccordionTrigger>
 							<AccordionContent className="!ps-10.5 !pb-3 !pe-3">
-								Radian OS applies responsive grid variables, adjusting columns
+								Radian UI applies responsive grid variables, adjusting columns
 								and spacing automatically for each device mode.
 							</AccordionContent>
 						</AccordionItem>
@@ -95,7 +95,7 @@ export default function AccordionNested() {
 
 			<AccordionItem value="3" key="3">
 				<AccordionTrigger>
-					What application components does Radian OS provide?
+					What application components does Radian UI provide?
 				</AccordionTrigger>
 				<AccordionContent>
 					Application components such as User Authentication, Navigation Bars,
@@ -105,10 +105,10 @@ export default function AccordionNested() {
 
 			<AccordionItem value="4" key="4">
 				<AccordionTrigger>
-					How can I stay updated with Radian OS developments?
+					How can I stay updated with Radian UI developments?
 				</AccordionTrigger>
 				<AccordionContent>
-					You can subscribe to Radian OS newsletter to receive the latest
+					You can subscribe to Radian UI newsletter to receive the latest
 					information, tips, and exclusive offers.
 				</AccordionContent>
 			</AccordionItem>

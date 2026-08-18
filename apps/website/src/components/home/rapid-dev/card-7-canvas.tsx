@@ -49,7 +49,7 @@ export function Card7Canvas() {
 								<span className="card-7-prompt-marker">&gt;</span>
 								<p className="card-7-prompt-text">
 									<span className="card-7-prompt-typed card-7-prompt-line-1">
-										Build me a SaaS dashboard using Radian OS. Use
+										Build me a SaaS dashboard using Radian UI. Use
 									</span>
 									<span className="card-7-prompt-typed card-7-prompt-line-2">
 										Radian blocks for navigation, analytic cards, and data
@@ -84,7 +84,7 @@ export function Card7Canvas() {
 									Generating project structure . . .
 								</p>
 								<p className="card-7-narration">
-									I&apos;ll initialize a new Next.js project with Radian OS.
+									I&apos;ll initialize a new Next.js project with Radian UI.
 								</p>
 							</div>
 
@@ -109,7 +109,7 @@ export function Card7Canvas() {
 										aria-hidden="true"
 									/>
 									<span className="card-7-type card-7-type-init">
-										Initializing Radian OS...
+										Initializing Radian UI...
 									</span>
 								</p>
 								<dl>
@@ -156,7 +156,7 @@ export function Card7Canvas() {
 							</div>
 
 							<p className="card-7-complete-line card-7-reveal card-7-reveal-8">
-								{"\u{1F389}"} Radian OS has been successfully set up in your
+								{"\u{1F389}"} Radian UI has been successfully set up in your
 								project!
 							</p>
 
@@ -166,7 +166,7 @@ export function Card7Canvas() {
 								<span className="card-7-ai-spark">{"\u2726"}</span>
 								<p className="card-7-ai-lines card-7-ai-lines-1">
 									<span className="card-7-ai-typed card-7-ai-1-line-1">
-										I&apos;ve initialized your project with Radian OS and
+										I&apos;ve initialized your project with Radian UI and
 										installed
 									</span>
 									<span className="card-7-ai-typed card-7-ai-1-line-2">

@@ -35,7 +35,7 @@ export default function DialogPreview() {
 						<InputAddon>https://</InputAddon>
 						<Input
 							type="url"
-							defaultValue="radianos.com/docs/components/dialog"
+							defaultValue="radianui.com/docs/components/dialog"
 						/>
 						<InputAddon mode="icon" className="bg-transparent">
 							<ClipboardIcon />

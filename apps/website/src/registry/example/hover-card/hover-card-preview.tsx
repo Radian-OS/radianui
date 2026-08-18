@@ -10,7 +10,7 @@ import {
 
 const profile = {
 	name: "Zoya Petrova",
-	description: "Engineering partner for @Radianos",
+	description: "Engineering partner for @Radianui",
 	avatar: "/media/organization-2.png",
 }
 

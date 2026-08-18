@@ -1,67 +1,53 @@
 "use client"
 
-import { useCallback, useMemo, useState } from "react"
-import { Settings } from "lucide-react"
+import { Settings, Star } from "lucide-react"
 import { toast } from "sonner"
 import {
 	AVATARS,
-	CATEGORY_AVATAR_MAP,
 	copyRandomAvatar,
 	getToneStyle,
-	randomSolidMapColor,
 } from "@/constants/avatar-playground-utils"
+import { useAvatarPlayground } from "@/hooks/avatar/use-avatar-playground"
+import { cn } from "@/lib/utils"
 import { Button, IconButton } from "@/registry/ui/button"
+import { Skeleton } from "@/registry/ui/skeleton"
 import { AvatarTile } from "./AvatarTile"
 import CategoryFilterDropdown from "./CategoryFilterDropdown"
 import ConfigPreferencesDialog from "./ConfigPreferencesDialog"
 import FigmaCustomIcon from "./FigmaCustomIcon"
-import { BACKGROUNDS, GRADIENT_IMAGES } from "./ToneFilterDropdown"
 import ToneFilterDropdown from "./ToneFilterDropdown"
 
 const AvatarPlayground = () => {
-	type ColorMode = "static" | "radian"
-
-	const [category, setCategory] = useState("all")
-	const [tone, setTone] = useState("neutral")
-	const [randomTrigger, setRandomTrigger] = useState(0)
-	const [configOpen, setConfigOpen] = useState(false)
-	const [copyFormat, setCopyFormat] = useState("editable-bg")
-	const [colorMode, setColorMode] = useState<ColorMode>("static")
-
-	const handleToneChange = useCallback((value: string) => {
-		if (
-			value === "pick-color" ||
-			value === "pick-gradient" ||
-			value === "pick-background"
-		) {
-			setTone(value)
-			setRandomTrigger((prev) => prev + 1)
-		} else {
-			setTone(value)
-		}
-	}, [])
-
-	const resolvedTones = useMemo(() => {
-		return AVATARS.map(() => {
-			if (tone === "pick-color") {
-				return randomSolidMapColor()
-			}
-			if (tone === "pick-gradient") {
-				return GRADIENT_IMAGES[
-					Math.floor(Math.random() * GRADIENT_IMAGES.length)
-				]
-			}
-			if (tone === "pick-background") {
-				return BACKGROUNDS[Math.floor(Math.random() * BACKGROUNDS.length)]
-			}
-			return tone
-		})
-	}, [tone, randomTrigger])
+	const {
+		category,
+		setCategory,
+		tone,
+		handleToneChange,
+		configOpen,
+		setConfigOpen,
+		copyFormat,
+		setCopyFormat,
+		colorMode,
+		setColorMode,
+		favorites,
+		toggleFavorite,
+		isBlocked,
+		isHydrated,
+		sentinelRef,
+		bottomSentinelRef,
+		resolvedTones,
+		displayedAvatars,
+	} = useAvatarPlayground()
 
 	return (
-		<div className="flex w-full flex-col gap-4">
-			<div className="flex w-full items-center justify-between">
-				<CategoryFilterDropdown value={category} onChange={setCategory} />
+		<div className="flex w-full flex-col gap-4 py-2">
+			<div ref={sentinelRef} className="pointer-events-none h-px w-full" />
+			<div className="bg-bg/95 z-100 sticky top-0 flex w-full items-center justify-between py-3 backdrop-blur-sm">
+				<CategoryFilterDropdown
+					value={category}
+					onChange={setCategory}
+					favoriteCount={favorites.size}
+				/>
 
 				<div className="flex items-center gap-2">
 					<ToneFilterDropdown
@@ -117,30 +103,53 @@ const AvatarPlayground = () => {
 				</div>
 			</div>
 
-			<ul
-				aria-label="Available UI avatar illustrations"
-				className="grid list-none grid-cols-3 gap-3 sm:grid-cols-5 md:grid-cols-7">
-				{AVATARS.map((src, index) => {
-					const avatarNumber = Number(src.match(/\d+/)?.[0])
-					if (
-						category !== "all" &&
-						!CATEGORY_AVATAR_MAP[category]?.includes(avatarNumber)
-					) {
-						return null
-					}
-					const tileTone = resolvedTones[index]
-					return (
-						<AvatarTile
-							key={src}
-							src={src}
-							index={index}
-							toneStyle={getToneStyle(tileTone)}
-							tone={tileTone}
-							copyFormat={copyFormat}
-						/>
-					)
-				})}
-			</ul>
+			{!isHydrated ? (
+				<div
+					aria-label="Loading avatars"
+					className="grid grid-cols-3 gap-3 sm:grid-cols-5 md:grid-cols-7">
+					{Array.from({ length: 42 }).map((_, i) => (
+						<Skeleton key={i} className="aspect-square w-full rounded-xl" />
+					))}
+				</div>
+			) : displayedAvatars.length === 0 ? (
+				<div className="border-soft bg-bg/50 flex flex-col items-center justify-center rounded-xl border border-dashed py-16 text-center">
+					<Star className="text-fg-secondary mb-3 size-10" />
+					<p className="text-sm font-medium">No favorite avatars yet</p>
+					<p className="text-fg-secondary mt-1 text-xs">
+						Click the 3 dots menu on any avatar tile to add it to your
+						favorites.
+					</p>
+				</div>
+			) : (
+				<ul
+					suppressHydrationWarning
+					aria-label="Available UI avatar illustrations"
+					className={cn(
+						"grid list-none grid-cols-3 gap-3 sm:grid-cols-5 md:grid-cols-7",
+						isBlocked && "pointer-events-none"
+					)}>
+					{displayedAvatars.map(({ src, index }) => {
+						const tileTone = resolvedTones[index]
+						return (
+							<AvatarTile
+								key={src}
+								src={src}
+								index={index}
+								toneStyle={getToneStyle(tileTone)}
+								tone={tileTone}
+								copyFormat={copyFormat}
+								isFavorite={favorites.has(src)}
+								onToggleFavorite={() => toggleFavorite(src)}
+							/>
+						)
+					})}
+				</ul>
+			)}
+
+			<div
+				ref={bottomSentinelRef}
+				className="pointer-events-none h-px w-full"
+			/>
 
 			<ConfigPreferencesDialog
 				open={configOpen}
@@ -149,6 +158,7 @@ const AvatarPlayground = () => {
 				onCopyFormatChange={setCopyFormat}
 				colorMode={colorMode}
 				onColorModeChange={setColorMode}
+				onToneChange={handleToneChange}
 			/>
 		</div>
 	)

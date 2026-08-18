@@ -30,18 +30,27 @@ const CATEGORIES = [
 const CategoryFilterDropdown = ({
 	value,
 	onChange,
+	favoriteCount = 0,
 }: {
 	value: string
 	onChange: (value: string) => void
+	favoriteCount?: number
 }) => {
-	const activeLabel = CATEGORIES.find((c) => c.value === value)?.label ?? "All"
+	const activeCategory = CATEGORIES.find((c) => c.value === value)
+	const activeLabel = activeCategory?.label ?? "All"
+	const ActiveIcon = activeCategory?.icon ?? User
 
 	return (
 		<DropdownMenu indicatorPosition="right">
 			<DropdownMenuTrigger asChild>
 				<Button color="neutral" variant="outline">
-					<User className="text-fg-secondary" />
+					<ActiveIcon className="text-fg-secondary" />
 					{activeLabel}
+					{value === "favorites" && favoriteCount > 0 && (
+						<span className="bg-primary/20 text-primary rounded-full px-1.5 py-0.5 text-xs font-semibold">
+							{favoriteCount}
+						</span>
+					)}
 					<ChevronDown className="text-fg-secondary" />
 				</Button>
 			</DropdownMenuTrigger>

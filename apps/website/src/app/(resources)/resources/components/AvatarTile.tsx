@@ -1,22 +1,15 @@
 "use client"
 
-import { useState } from "react"
-import { Copy, Download, MoreHorizontal, Star } from "lucide-react"
 import Image from "next/image"
 import {
 	AVATAR_BLEND_OPACITY,
 	getAvatarAltText,
 	getImageBackgroundTint,
 } from "@/constants/avatar-playground-utils"
+import { AVATAR_SHADOW_MAP } from "@/constants/avatar-shadow-map"
 import { useAvatarTileActions } from "@/hooks/avatar/use-avatar-tile-actions"
-import { cn } from "@/lib/utils"
-import { Button, CompactButton, IconButton } from "@/registry/ui/button"
-import {
-	DropdownMenu,
-	DropdownMenuContent,
-	DropdownMenuItem,
-	DropdownMenuTrigger,
-} from "@/registry/ui/dropdown-menu"
+import { Button } from "@/registry/ui/button"
+import { AvatarTileMenu } from "./AvatarTileMenu"
 
 export interface AvatarTileProps {
 	src: string
@@ -24,6 +17,8 @@ export interface AvatarTileProps {
 	toneStyle: React.CSSProperties
 	tone: string
 	copyFormat: string
+	isFavorite: boolean
+	onToggleFavorite: () => void
 }
 
 export const AvatarTile = ({
@@ -32,8 +27,9 @@ export const AvatarTile = ({
 	toneStyle,
 	tone,
 	copyFormat,
+	isFavorite,
+	onToggleFavorite,
 }: AvatarTileProps) => {
-	const [open, setOpen] = useState<boolean>(false)
 	const isNeutralBackground = tone === "neutral" || tone === "none"
 	const imageBackgroundTint = getImageBackgroundTint(tone)
 	const shouldApplyShadow =
@@ -42,7 +38,17 @@ export const AvatarTile = ({
 		? { backgroundColor: imageBackgroundTint }
 		: toneStyle
 
-	const { copied, handleCopy, handleDownload } = useAvatarTileActions({
+	const {
+		copied,
+		handleCopy,
+		handleCopyPng,
+		handleCopyTransparentPng,
+		handleCopyFigmaFrame,
+		handleCopyUrlTransparent,
+		handleCopyNextImageTag,
+		handleCopyHtmlImgTag,
+		handleDownload,
+	} = useAvatarTileActions({
 		src,
 		index,
 		tone,
@@ -59,8 +65,17 @@ export const AvatarTile = ({
 				alt={getAvatarAltText(index + 1, tone)}
 				fill
 				sizes="(max-width: 640px) 25vw, (max-width: 768px) 20vw, 14vw"
-				className="object-cover"
+				className="z-10 origin-bottom translate-y-[3%] scale-[1.03] object-cover object-bottom transition-transform duration-500 ease-out will-change-transform group-hover:scale-[1.08]"
 			/>
+			{AVATAR_SHADOW_MAP[index] && (
+				<Image
+					src={AVATAR_SHADOW_MAP[index]}
+					alt=""
+					fill
+					sizes="(max-width: 640px) 25vw, (max-width: 768px) 20vw, 14vw"
+					className="z-5 pointer-events-none origin-bottom translate-y-[3%] scale-[1.03] object-cover object-bottom mix-blend-hard-light transition-transform duration-500 ease-out will-change-transform group-hover:scale-[1.08]"
+				/>
+			)}
 			{shouldApplyShadow && (
 				<div
 					aria-hidden="true"
@@ -79,62 +94,39 @@ export const AvatarTile = ({
 			)}
 
 			<div
-				className={cn(
-					"absolute right-2 top-2 transition-opacity",
-					open ? "opacity-100" : "opacity-0 group-hover:opacity-100"
-				)}>
-				<DropdownMenu open={open} onOpenChange={setOpen}>
-					<DropdownMenuTrigger asChild>
-						<CompactButton
-							aria-label="Button with Down Arrow"
-							size="20"
-							variant="ghost"
-							color="neutral"
-							onClick={(e) => e.stopPropagation()}>
-							<MoreHorizontal className="size-4" />
-						</CompactButton>
-					</DropdownMenuTrigger>
+				aria-hidden="true"
+				className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-[80px] opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+				style={{
+					background:
+						"linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.50) 100%)",
+				}}
+			/>
 
-					<DropdownMenuContent align="end" className="w-40">
-						<DropdownMenuItem onClick={handleCopy}>
-							<Copy />
-							Copy
-						</DropdownMenuItem>
-						<DropdownMenuItem onClick={handleDownload}>
-							<Download />
-							Download
-						</DropdownMenuItem>
-						<DropdownMenuItem>
-							<Star />
-							Favourite
-						</DropdownMenuItem>
-					</DropdownMenuContent>
-				</DropdownMenu>
-			</div>
+			<AvatarTileMenu
+				isFavorite={isFavorite}
+				onToggleFavorite={onToggleFavorite}
+				handleCopyPng={handleCopyPng}
+				handleCopyTransparentPng={handleCopyTransparentPng}
+				handleCopyFigmaFrame={handleCopyFigmaFrame}
+				handleCopyUrlTransparent={handleCopyUrlTransparent}
+				handleCopyNextImageTag={handleCopyNextImageTag}
+				handleCopyHtmlImgTag={handleCopyHtmlImgTag}
+				handleDownload={handleDownload}
+			/>
 
-			<div className="absolute bottom-2 right-2 opacity-0 transition-opacity group-hover:opacity-100">
-				<div className="hidden sm:block">
-					<Button
-						size="28"
-						color="neutral"
-						variant="strong"
-						onClick={handleCopy}>
-						{copied
-							? copyFormat === "editable-bg"
-								? "Paste in Figma"
-								: "Copied"
-							: "Copy"}
-					</Button>
-				</div>
-				<IconButton
-					aria-label="Copy Button"
+			<div className="absolute inset-x-0 bottom-0 z-30 p-3 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+				<Button
 					size="28"
 					color="neutral"
-					variant="strong"
-					className="block sm:hidden"
+					variant="outline"
+					className="w-full border-none bg-white text-black hover:[background:linear-gradient(rgba(0,0,0,0.10),rgba(0,0,0,0.10)),_#fff]"
 					onClick={handleCopy}>
-					<Copy />
-				</IconButton>
+					{copied
+						? copyFormat === "editable-bg"
+							? "Paste in Figma"
+							: "Copied"
+						: "Copy"}
+				</Button>
 			</div>
 		</li>
 	)

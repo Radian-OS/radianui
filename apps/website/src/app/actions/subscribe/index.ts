@@ -41,7 +41,7 @@ export async function subscribe(email: string) {
 		const { error: email_send_error } = await resend.emails.send({
 			from: fromEmail,
 			to: email,
-			subject: "Welcome to RadianOS",
+			subject: "Welcome to Radian UI",
 			react: WelcomeEmailTemplate({
 				baseUrl: websiteUrl,
 				id: new_contact_data.id,

@@ -125,7 +125,7 @@ function VideoPreviewWithBeams() {
 			aria-labelledby="home-demo-caption"
 			className="relative -mx-4 mt-[40px] flex w-[calc(100%+2rem)] justify-center md:-mx-5 md:w-[calc(100%+2.5rem)] lg:mt-[80px]">
 			<figcaption id="home-demo-caption" className="sr-only">
-				Interactive preview of the Radian OS component library and design
+				Interactive preview of the Radian UI component library and design
 				system.
 			</figcaption>
 			<div className="bg-primary/45 dark:bg-primary/60 z-25 absolute left-1/2 top-1/2 mx-auto hidden aspect-video w-[90%] max-w-[1300px] -translate-x-1/2 -translate-y-1/2 rounded-full rounded-b-none blur-[50px] md:blur-[100px] lg:w-[85%] lg:blur-[130px] 2xl:w-[70%] dark:block"></div>

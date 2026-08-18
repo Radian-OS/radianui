@@ -24,7 +24,7 @@ const UrlPreview = () => {
 					id="url-input"
 					type="url"
 					className="w-full"
-					placeholder="radianos.com"
+					placeholder="radianui.com"
 				/>
 			</div>
 
@@ -34,7 +34,7 @@ const UrlPreview = () => {
 					<InputAddon>
 						<p className="text-fg-tertiary">https://</p>
 					</InputAddon>{" "}
-					<Input id="url-with-protocol" type="url" placeholder="radianos.com" />
+					<Input id="url-with-protocol" type="url" placeholder="radianui.com" />
 				</InputGroup>
 			</div>
 
@@ -45,7 +45,7 @@ const UrlPreview = () => {
 						<Input
 							id="url-with-domain"
 							className="rounded-r-none border-r-0 focus-within:border-r md:w-fit"
-							placeholder="radianos"
+							placeholder="radianui"
 							type="url"
 						/>
 						<Select

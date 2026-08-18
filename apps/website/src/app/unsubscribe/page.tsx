@@ -89,7 +89,7 @@ export default async function UnsubscribePage({
 					</Empty>
 				</Card>
 				<footer className="text-fg-tertiary text-center text-sm">
-					<p>2025 &copy; Radian OS, all rights reserved</p>
+					<p>2025 &copy; Radian UI, all rights reserved</p>
 					<p>8 The Green STE A Dover, Delaware 19901, US</p>
 				</footer>
 			</div>

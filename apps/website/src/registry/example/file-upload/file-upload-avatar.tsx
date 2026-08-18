@@ -49,7 +49,7 @@ export default function FileUploadAvatar() {
 							viewBox="0 0 80 80"
 							fill="none"
 							xmlns="http://www.w3.org/2000/svg">
-							<g clip-path="url(#clip0_15139_40857)">
+							<g clipPath="url(#clip0_15139_40857)">
 								<rect width="80" height="80" fill="#9CA1AB" />
 								<path
 									d="M12 87C12 71.5636 24 59 40 59C56 59 68 71.5636 68 87H12Z"

@@ -16,7 +16,7 @@ const EmailPreview = () => {
 					id="email-input"
 					className="w-full"
 					type="email"
-					placeholder="info@radianos.com"
+					placeholder="info@radianui.com"
 				/>
 			</div>
 
@@ -27,7 +27,7 @@ const EmailPreview = () => {
 					<Input
 						id="email-with-icon"
 						type="email"
-						placeholder="info@radianos.com"
+						placeholder="info@radianui.com"
 					/>
 				</InputWrapper>
 			</div>
@@ -41,7 +41,7 @@ const EmailPreview = () => {
 					<Input
 						id="email-icon-inside"
 						type="email"
-						placeholder="info@radianos.com"
+						placeholder="info@radianui.com"
 					/>
 				</InputGroup>
 			</div>

@@ -4,6 +4,7 @@ import Link from "next/link"
 import Background from "@/components/effects/background"
 import Footer from "@/components/home/footer"
 import { JsonLd } from "@/components/seo/json-ld"
+import { websiteMetadata } from "@/config/website-metadata-config"
 import {
 	absoluteUrl,
 	getAvatarResourceStructuredData,
@@ -32,6 +33,7 @@ export const metadata: Metadata = {
 	description: pageDescription,
 	alternates: { canonical: pageUrl },
 	openGraph: {
+		siteName: websiteMetadata.name,
 		type: "website",
 		title: pageTitle,
 		description: pageDescription,
@@ -68,7 +70,7 @@ export default function Page() {
 				id="avatar-resource-structured-data"
 				data={getAvatarResourceStructuredData()}
 			/>
-			<div className="min-h-screen w-full overflow-x-hidden">
+			<div className="min-h-screen w-full">
 				<Background topPosition="top-[700px]">
 					<header className="md:pt-30 pt-15 flex flex-col items-center justify-center gap-12">
 						<div className="max-w-250 flex flex-col items-center justify-center gap-6">
