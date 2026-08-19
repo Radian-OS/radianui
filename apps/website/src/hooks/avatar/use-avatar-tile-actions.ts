@@ -1,7 +1,9 @@
 "use client"
 
+import { createElement } from "react"
 import { useState } from "react"
 import { toast } from "sonner"
+import { showCopiedToast } from "@/app/(resources)/resources/components/CopiedToast"
 import {
 	GRADIENT_MAP,
 	SOLID_COLOR_MAP,
@@ -18,6 +20,8 @@ interface UseAvatarTileActionsOptions {
 	copyFormat: string
 	shouldApplyShadow: boolean
 }
+
+export type AvatarDownloadFormats = "jpg" | "png" | "webp"
 
 export const useAvatarTileActions = ({
 	src,
@@ -66,7 +70,8 @@ export const useAvatarTileActions = ({
 				tone,
 				src,
 				shouldApplyShadow,
-				index
+				index,
+				"png"
 			).then((blob) => {
 				if (!blob) throw new Error("PNG generation failed")
 				return blob
@@ -75,21 +80,34 @@ export const useAvatarTileActions = ({
 				new ClipboardItem({ "image/png": pngBlobPromise }),
 			])
 			markCopied()
-			toast.success("Copied PNG to clipboard")
+			showCopiedToast({
+				src,
+				index,
+				tone,
+				showShadow: shouldApplyShadow,
+				description: "PNG has been copied to your clipboard.",
+			})
 		} catch {
 			try {
 				const blob = await createCompositeBlob(
 					tone,
 					src,
 					shouldApplyShadow,
-					index
+					index,
+					"png"
 				)
 				if (!blob) return
 				await navigator.clipboard.write([
 					new ClipboardItem({ "image/png": blob }),
 				])
 				markCopied()
-				toast.success("Copied PNG to clipboard")
+				showCopiedToast({
+					src,
+					index,
+					tone,
+					showShadow: shouldApplyShadow,
+					description: "PNG has been copied to your clipboard.",
+				})
 			} catch {
 				toast.error("Failed to copy PNG")
 			}
@@ -104,7 +122,13 @@ export const useAvatarTileActions = ({
 				new ClipboardItem({ "image/png": imgBlobPromise }),
 			])
 			markCopied()
-			toast.success("Copied Transparent PNG to clipboard")
+			showCopiedToast({
+				src,
+				index,
+				tone,
+				showShadow: shouldApplyShadow,
+				description: "Transparent PNG has been copied to your clipboard.",
+			})
 		} catch {
 			try {
 				const res = await fetch(src)
@@ -113,11 +137,23 @@ export const useAvatarTileActions = ({
 					new ClipboardItem({ [blob.type]: blob }),
 				])
 				markCopied()
-				toast.success("Copied Transparent PNG to clipboard")
+				showCopiedToast({
+					src,
+					index,
+					tone,
+					showShadow: shouldApplyShadow,
+					description: "Transparent PNG has been copied to your clipboard.",
+				})
 			} catch {
 				await navigator.clipboard.writeText(src)
 				markCopied()
-				toast.success("Copied image URL to clipboard")
+				showCopiedToast({
+					src,
+					index,
+					tone,
+					showShadow: shouldApplyShadow,
+					description: "Image URL has been copied to your clipboard.",
+				})
 			}
 		}
 	}
@@ -135,14 +171,26 @@ export const useAvatarTileActions = ({
 				new ClipboardItem({ "text/plain": svgBlobPromise }),
 			])
 			markCopied()
-			toast.success("Copied Figma Frame to clipboard")
+			showCopiedToast({
+				src,
+				index,
+				tone,
+				showShadow: shouldApplyShadow,
+				description: "Figma Frame has been copied to your clipboard.",
+			})
 		} catch {
 			try {
 				const svg = await generateEditableSvg(tone, src, index)
 				if (!svg) return
 				await navigator.clipboard.writeText(svg)
 				markCopied()
-				toast.success("Copied Figma Frame to clipboard")
+				showCopiedToast({
+					src,
+					index,
+					tone,
+					showShadow: shouldApplyShadow,
+					description: "Figma Frame has been copied to your clipboard.",
+				})
 			} catch {
 				toast.error("Failed to copy Figma Frame")
 			}
@@ -154,7 +202,13 @@ export const useAvatarTileActions = ({
 		try {
 			await navigator.clipboard.writeText(src)
 			markCopied()
-			toast.success("Copied transparent URL to clipboard")
+			showCopiedToast({
+				src,
+				index,
+				tone,
+				showShadow: shouldApplyShadow,
+				description: "Transparent URL has been copied to your clipboard.",
+			})
 		} catch {
 			toast.error("Failed to copy URL")
 		}
@@ -220,7 +274,13 @@ export const useAvatarTileActions = ({
 		try {
 			await navigator.clipboard.writeText(snippet)
 			markCopied()
-			toast.success("Copied Next.js <Image> tag")
+			showCopiedToast({
+				src,
+				index,
+				tone,
+				showShadow: shouldApplyShadow,
+				description: "Next.js <Image> tag has been copied to your clipboard.",
+			})
 		} catch {
 			toast.error("Failed to copy Next.js tag")
 		}
@@ -246,37 +306,52 @@ export const useAvatarTileActions = ({
 		try {
 			await navigator.clipboard.writeText(snippet)
 			markCopied()
-			toast.success("Copied HTML <img> tag")
+			showCopiedToast({
+				src,
+				index,
+				tone,
+				showShadow: shouldApplyShadow,
+				description: "HTML <img> tag has been copied to your clipboard.",
+			})
 		} catch {
 			toast.error("Failed to copy HTML tag")
 		}
 	}
 
 	// 7. Download PNG
-	const handleDownload = async (e?: { stopPropagation?: () => void }) => {
+	const handleDownload = async (
+		format: AvatarDownloadFormats,
+		e?: { stopPropagation?: () => void }
+	) => {
 		e?.stopPropagation?.()
 
-		if (copyFormat === "editable-bg") {
-			const svg = await generateEditableSvg(tone, src, index)
-			if (!svg) return
-			const blob = new Blob([svg], { type: "image/svg+xml" })
-			const link = document.createElement("a")
-			link.download = `avatar-${index + 1}-editable.svg`
-			link.href = URL.createObjectURL(blob)
-			link.click()
-			URL.revokeObjectURL(link.href)
-			toast.success("Downloading SVG...")
-			return
-		}
+		// if (copyFormat === "editable-bg") {
+		// 	const svg = await generateEditableSvg(tone, src, index)
+		// 	if (!svg) return
+		// 	const blob = new Blob([svg], { type: "image/svg+xml" })
+		// 	const link = document.createElement("a")
+		// 	link.download = `avatar-${index + 1}-editable.svg`
+		// 	link.href = URL.createObjectURL(blob)
+		// 	link.click()
+		// 	URL.revokeObjectURL(link.href)
+		// 	toast.success("Downloading SVG...")
+		// 	return
+		// }
 
-		const blob = await createCompositeBlob(tone, src, shouldApplyShadow, index)
+		const blob = await createCompositeBlob(
+			tone,
+			src,
+			shouldApplyShadow,
+			index,
+			format
+		)
 		if (!blob) return
 		const link = document.createElement("a")
-		link.download = `avatar-${index + 1}.png`
+		link.download = `avatar-${index + 1}.jpg`
 		link.href = URL.createObjectURL(blob)
 		link.click()
 		URL.revokeObjectURL(link.href)
-		toast.success("Downloading PNG...")
+		toast.success("Downloading JPG...")
 	}
 
 	return {

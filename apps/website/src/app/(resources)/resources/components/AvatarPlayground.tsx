@@ -1,7 +1,6 @@
 "use client"
 
 import { Settings, Star } from "lucide-react"
-import { toast } from "sonner"
 import {
 	AVATARS,
 	copyRandomAvatar,
@@ -14,6 +13,7 @@ import { Skeleton } from "@/registry/ui/skeleton"
 import { AvatarTile } from "./AvatarTile"
 import CategoryFilterDropdown from "./CategoryFilterDropdown"
 import ConfigPreferencesDialog from "./ConfigPreferencesDialog"
+import { showCopiedToast } from "./CopiedToast"
 import FigmaCustomIcon from "./FigmaCustomIcon"
 import ToneFilterDropdown from "./ToneFilterDropdown"
 
@@ -27,8 +27,10 @@ const AvatarPlayground = () => {
 		setConfigOpen,
 		copyFormat,
 		setCopyFormat,
-		colorMode,
-		setColorMode,
+		// colorMode,
+		// setColorMode,
+		showShadow,
+		handleShowShadowChange,
 		favorites,
 		toggleFavorite,
 		isBlocked,
@@ -53,7 +55,7 @@ const AvatarPlayground = () => {
 					<ToneFilterDropdown
 						value={tone}
 						onChange={handleToneChange}
-						colorMode={colorMode}
+						// colorMode={colorMode}
 					/>
 
 					<Button
@@ -79,23 +81,14 @@ const AvatarPlayground = () => {
 						onClick={async () => {
 							const randomIdx = Math.floor(Math.random() * AVATARS.length)
 							const randomTone = resolvedTones[randomIdx]
-							const avatarSrc = await copyRandomAvatar(randomTone)
-							if (avatarSrc) {
-								toast.custom(() => (
-									<div className="bg-black-inverse text-fg-inverse sm:w-78.5 flex w-full items-center gap-2 rounded-[10px] p-2">
-										<img
-											src={avatarSrc}
-											alt=""
-											className="size-15 rounded-lg object-cover"
-										/>
-										<div className="text-fg-inverse space-y-0.5 text-sm">
-											<p className="font-medium">Added to Clipboard</p>
-											<p className="text-fg-secondary font-normal">
-												Avatar has been copied to your clipboard.
-											</p>
-										</div>
-									</div>
-								))
+							const result = await copyRandomAvatar(randomTone)
+							if (result) {
+								showCopiedToast({
+									src: result.src,
+									index: result.index,
+									tone: randomTone,
+									description: "Avatar has been copied to your clipboard.",
+								})
 							}
 						}}>
 						<FigmaCustomIcon />
@@ -125,7 +118,7 @@ const AvatarPlayground = () => {
 					suppressHydrationWarning
 					aria-label="Available UI avatar illustrations"
 					className={cn(
-						"grid list-none grid-cols-3 gap-3 sm:grid-cols-5 md:grid-cols-7",
+						"grid list-none grid-cols-3 gap-3 sm:grid-cols-5 md:grid-cols-6",
 						isBlocked && "pointer-events-none"
 					)}>
 					{displayedAvatars.map(({ src, index }) => {
@@ -138,6 +131,7 @@ const AvatarPlayground = () => {
 								toneStyle={getToneStyle(tileTone)}
 								tone={tileTone}
 								copyFormat={copyFormat}
+								showShadow={showShadow}
 								isFavorite={favorites.has(src)}
 								onToggleFavorite={() => toggleFavorite(src)}
 							/>
@@ -156,8 +150,10 @@ const AvatarPlayground = () => {
 				onOpenChange={setConfigOpen}
 				copyFormat={copyFormat}
 				onCopyFormatChange={setCopyFormat}
-				colorMode={colorMode}
-				onColorModeChange={setColorMode}
+				// colorMode={colorMode}
+				// onColorModeChange={setColorMode}
+				showShadow={showShadow}
+				onShowShadowChange={handleShowShadowChange}
 				onToneChange={handleToneChange}
 			/>
 		</div>

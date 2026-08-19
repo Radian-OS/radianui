@@ -1,6 +1,6 @@
 "use client"
 
-import { useId, useState } from "react"
+import { useId } from "react"
 import {
 	Check,
 	ChevronDown,
@@ -8,12 +8,9 @@ import {
 	FileImage,
 	Grid2x2,
 	Link2,
-	Pipette,
 	RotateCw,
 	Sparkles,
-	Star,
 } from "lucide-react"
-import Image from "next/image"
 import { Button, IconButton } from "@/registry/ui/button"
 import {
 	Dialog,
@@ -33,8 +30,7 @@ import {
 	DropdownMenuLabel,
 	DropdownMenuTrigger,
 } from "@/registry/ui/dropdown-menu"
-import { Label } from "@/registry/ui/label"
-import { RadioGroup, RadioGroupItem } from "@/registry/ui/radio-group"
+import { Switch, SwitchWrapper } from "@/registry/ui/switch"
 
 const COPY_FORMAT_GROUPS = [
 	{
@@ -100,52 +96,57 @@ const CopyFormatDropdown = ({
 	)
 }
 
-type ColorMode = "static" | "radian"
+// type ColorMode = "static" | "radian"
 
-const COLOR_MODE_OPTIONS: {
-	value: ColorMode
-	title: string
-	description: string
-	icon?: typeof Pipette
-	iconClassName?: string
-	image?: string
-}[] = [
-	{
-		value: "static",
-		title: "Static Color",
-		description: "Static background color. Uses hex value for color code",
-		icon: Pipette,
-	},
-	{
-		value: "radian",
-		title: "Radian Colors",
-		description: "Library colors. The code will use colors from Radian library",
-		image: "/logo.svg",
-	},
-]
+// const COLOR_MODE_OPTIONS: {
+// 	value: ColorMode
+// 	title: string
+// 	description: string
+// 	icon?: typeof Pipette
+// 	iconClassName?: string
+// 	image?: string
+// }[] = [
+// 	{
+// 		value: "static",
+// 		title: "Static Color",
+// 		description: "Static background color. Uses hex value for color code",
+// 		icon: Pipette,
+// 	},
+// 	{
+// 		value: "radian",
+// 		title: "Radian Colors",
+// 		description: "Library colors. The code will use colors from Radian library",
+// 		image: "/logo.svg",
+// 	},
+// ]
 
 const ConfigPreferencesDialog = ({
 	open,
 	onOpenChange,
 	copyFormat,
 	onCopyFormatChange,
-	colorMode,
-	onColorModeChange,
+	// colorMode,
+	// onColorModeChange,
+	showShadow,
+	onShowShadowChange,
 	onToneChange,
 }: {
 	open: boolean
 	onOpenChange: (open: boolean) => void
 	copyFormat: string
 	onCopyFormatChange: (value: string) => void
-	colorMode: ColorMode
-	onColorModeChange: (value: ColorMode) => void
+	// colorMode: ColorMode
+	// onColorModeChange: (value: ColorMode) => void
+	showShadow: boolean
+	onShowShadowChange: (value: boolean) => void
 	onToneChange: (value: string) => void
 }) => {
 	const idPrefix = useId()
 
 	const handleReset = () => {
-		onColorModeChange("static")
+		// onColorModeChange("static")
 		onCopyFormatChange("editable-bg")
+		onShowShadowChange(true)
 		onToneChange("pick-color")
 	}
 
@@ -161,7 +162,7 @@ const ConfigPreferencesDialog = ({
 
 				<DialogBody className="flex flex-col gap-5">
 					{/* Colors */}
-					<div className="flex flex-col gap-2">
+					{/* <div className="flex flex-col gap-2">
 						<span className="text-sm font-medium">Colors</span>
 						<RadioGroup
 							value={colorMode}
@@ -182,11 +183,10 @@ const ConfigPreferencesDialog = ({
 										<Label
 											key={value}
 											htmlFor={inputId}
-											className={`relative flex cursor-pointer flex-col items-start gap-2 rounded-xl border p-3 text-left transition-colors ${
-												selected
-													? "border-primary-border"
-													: "border-border hover:bg-fill1"
-											}`}>
+											className={`relative flex cursor-pointer flex-col items-start gap-2 rounded-xl border p-3 text-left transition-colors ${selected
+												? "border-primary-border"
+												: "border-border hover:bg-fill1"
+												}`}>
 											{value === "static" ? (
 												<IconButton
 													type="button"
@@ -229,9 +229,9 @@ const ConfigPreferencesDialog = ({
 								}
 							)}
 						</RadioGroup>
-					</div>
+					</div> */}
 
-					<div className="mx-0 border-b border-dashed" />
+					{/* <div className="mx-0 border-b border-dashed" /> */}
 
 					{/* Copy button functionality */}
 					<div className="flex items-center justify-between gap-4">
@@ -245,6 +245,24 @@ const ConfigPreferencesDialog = ({
 							value={copyFormat}
 							onChange={onCopyFormatChange}
 						/>
+					</div>
+
+					<div className="mx-0 border-b border-dashed" />
+
+					{/* Shadow toggle */}
+					<div className="flex items-center justify-between gap-4">
+						<div className="flex flex-col gap-0.5">
+							<span className="text-sm font-medium">Show Shadow</span>
+							<span className="text-fg-secondary text-xs leading-snug">
+								Toggle the shadow overlay on avatar tiles
+							</span>
+						</div>
+						<SwitchWrapper>
+							<Switch
+								checked={showShadow}
+								onCheckedChange={onShowShadowChange}
+							/>
+						</SwitchWrapper>
 					</div>
 				</DialogBody>
 

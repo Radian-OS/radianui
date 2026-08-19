@@ -1,6 +1,7 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef } from "react"
+import Image from "next/image"
 import { AspectRatio } from "@/registry/ui/aspect-ratio"
 import {
 	Dialog,
@@ -14,85 +15,77 @@ import {
 
 export default function VideoDialogPreview() {
 	const backgroundVideoRef = useRef<HTMLVideoElement>(null)
-	const triggerRef = useRef<HTMLButtonElement>(null)
 	const isDialogOpenRef = useRef(false)
-	const [shouldLoadPreviewVideo, setShouldLoadPreviewVideo] = useState(false)
-
-	useEffect(() => {
-		const trigger = triggerRef.current
-
-		if (!trigger || shouldLoadPreviewVideo) return
-
-		if (!("IntersectionObserver" in window)) {
-			setShouldLoadPreviewVideo(true)
-			return
-		}
-
-		const observer = new IntersectionObserver(
-			([entry]) => {
-				if (entry.isIntersecting) {
-					setShouldLoadPreviewVideo(true)
-					observer.disconnect()
-				}
-			},
-			{ rootMargin: "400px" }
-		)
-
-		observer.observe(trigger)
-
-		return () => observer.disconnect()
-	}, [shouldLoadPreviewVideo])
 
 	useEffect(() => {
 		const video = backgroundVideoRef.current
+		if (!video) return
 
-		if (!video || !shouldLoadPreviewVideo) return
+		// Setting both properties covers browsers that do not reliably preserve the
+		// muted state from server-rendered markup before evaluating autoplay.
+		video.defaultMuted = true
+		video.muted = true
 
-		video.load()
-
-		if (!isDialogOpenRef.current) {
-			void video.play().catch(() => {})
+		const playPreview = () => {
+			if (!isDialogOpenRef.current) void video.play().catch(() => {})
 		}
-	}, [shouldLoadPreviewVideo])
+		const resumeWhenVisible = () => {
+			if (document.visibilityState === "visible") playPreview()
+		}
+
+		playPreview()
+		video.addEventListener("loadeddata", playPreview)
+		document.addEventListener("visibilitychange", resumeWhenVisible)
+
+		return () => {
+			video.removeEventListener("loadeddata", playPreview)
+			document.removeEventListener("visibilitychange", resumeWhenVisible)
+		}
+	}, [])
 
 	return (
 		<Dialog
 			onOpenChange={(open) => {
 				isDialogOpenRef.current = open
-
 				const video = backgroundVideoRef.current
 
 				if (video) {
 					if (open) video.pause()
-					else if (shouldLoadPreviewVideo) void video.play().catch(() => {})
+					else void video.play().catch(() => {})
 				}
 			}}>
 			{/* Trigger */}
 			<DialogTrigger asChild>
 				<button
-					ref={triggerRef}
 					type="button"
 					aria-label="Play Radian UI demo"
 					className="border-soft bg-bg/60 z-20 max-h-[840px] w-full max-w-[1400px] cursor-pointer appearance-none rounded-2xl border p-3 text-left backdrop-blur-[45px]">
 					<AspectRatio
 						ratio={16 / 9}
-						className="bg-bg border-soft max-h-[840px] overflow-hidden rounded-2xl border">
+						className="bg-bg border-soft relative max-h-[840px] overflow-hidden rounded-2xl border">
+						<Image
+							src="/video/Radian-OS-poster.jpg"
+							alt="Radian UI component library preview"
+							fill
+							preload
+							fetchPriority="high"
+							sizes="(max-width: 768px) calc(100vw - 60px), (max-width: 1440px) calc(100vw - 64px), 1376px"
+							className="object-cover"
+						/>
 						<video
 							ref={backgroundVideoRef}
 							loop
 							muted
 							autoPlay
 							playsInline
-							preload={shouldLoadPreviewVideo ? "metadata" : "none"}
+							preload="auto"
 							poster="/video/Radian-OS-poster.jpg"
 							disablePictureInPicture
-							className="h-full w-full rounded-2xl object-cover">
-							{shouldLoadPreviewVideo ? (
-								<>
-									<source src="/video/Radian-OS-WEBM.webm" type="video/webm" />
-									<source src="/video/Radian-OS-MP4.mp4" type="video/mp4" />
-								</>
-							) : null}
+							className="absolute inset-0 h-full w-full rounded-2xl object-cover">
+							<source
+								src="https://cdn.radianui.com/website/videos/Radian-OS-MP4.mp4"
+								type="video/mp4"
+							/>
 						</video>
 					</AspectRatio>
 				</button>

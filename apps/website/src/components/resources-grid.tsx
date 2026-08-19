@@ -82,9 +82,10 @@ const resources: ResourceItem[] = [
 export function ResourcesGrid() {
 	return (
 		<div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2">
-			{resources.map((resource, index) => (
-				<Link href={`/resources/${resource.link}`} key={index}>
-					<div className="bg-bg border-soft flex cursor-pointer flex-col gap-2 rounded-xl border p-2 hover:shadow-sm">
+			{resources.map((resource) => {
+				const card = (
+					<div
+						className={`bg-bg border-soft flex flex-col gap-2 rounded-xl border p-2 ${resource.link ? "cursor-pointer hover:shadow-sm" : ""}`}>
 						<div className="border-soft h-52 w-full overflow-clip rounded-lg border">
 							<img
 								alt={resource.title}
@@ -113,8 +114,16 @@ export function ResourcesGrid() {
 							</p>
 						</div>
 					</div>
-				</Link>
-			))}
+				)
+
+				return resource.link ? (
+					<Link href={`/resources/${resource.link}`} key={resource.title}>
+						{card}
+					</Link>
+				) : (
+					<div key={resource.title}>{card}</div>
+				)
+			})}
 		</div>
 	)
 }

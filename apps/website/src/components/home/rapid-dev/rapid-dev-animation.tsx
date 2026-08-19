@@ -47,7 +47,6 @@ export function RapidDevAnimation({ type }: RapidDevAnimationProps) {
 		<div
 			ref={viewportRef}
 			className="rapid-animation-viewport bg-fill1 relative h-[240px] w-full max-w-[1440px] overflow-hidden md:h-[430px] lg:h-[720px]"
-			aria-hidden="true"
 			data-nosnippet="">
 			<div
 				className="absolute left-0 top-0 size-max origin-top-left"

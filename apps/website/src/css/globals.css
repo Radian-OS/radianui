@@ -186,7 +186,7 @@
 	/* foreground */
 	--color-fg: oklch(0.976 0.001 264.547);
 	--color-fg-secondary:oklch(0.7073 0.0153 264.47);
-	--color-fg-tertiary:  oklch(0.569 0.022 264.389); 
+	--color-fg-tertiary:  oklch(0.59 0.022 264.389);
 	--color-fg-disabled: oklch(0.5 0.019 264.393);
 	--color-fg-inverse: oklch(0.234 0.007 264.437);
 
