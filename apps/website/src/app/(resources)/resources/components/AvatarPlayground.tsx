@@ -27,8 +27,8 @@ const AvatarPlayground = () => {
 		setConfigOpen,
 		copyFormat,
 		setCopyFormat,
-		colorMode,
-		setColorMode,
+		// colorMode,
+		// setColorMode,
 		favorites,
 		toggleFavorite,
 		isBlocked,
@@ -53,7 +53,7 @@ const AvatarPlayground = () => {
 					<ToneFilterDropdown
 						value={tone}
 						onChange={handleToneChange}
-						colorMode={colorMode}
+						// colorMode={colorMode}
 					/>
 
 					<Button
@@ -125,7 +125,7 @@ const AvatarPlayground = () => {
 					suppressHydrationWarning
 					aria-label="Available UI avatar illustrations"
 					className={cn(
-						"grid list-none grid-cols-3 gap-3 sm:grid-cols-5 md:grid-cols-7",
+						"grid list-none grid-cols-3 gap-3 sm:grid-cols-5 md:grid-cols-6",
 						isBlocked && "pointer-events-none"
 					)}>
 					{displayedAvatars.map(({ src, index }) => {
@@ -156,8 +156,8 @@ const AvatarPlayground = () => {
 				onOpenChange={setConfigOpen}
 				copyFormat={copyFormat}
 				onCopyFormatChange={setCopyFormat}
-				colorMode={colorMode}
-				onColorModeChange={setColorMode}
+				// colorMode={colorMode}
+				// onColorModeChange={setColorMode}
 				onToneChange={handleToneChange}
 			/>
 		</div>

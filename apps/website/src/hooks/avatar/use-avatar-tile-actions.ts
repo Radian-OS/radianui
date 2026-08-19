@@ -19,6 +19,8 @@ interface UseAvatarTileActionsOptions {
 	shouldApplyShadow: boolean
 }
 
+export type AvatarDownloadFormats = "jpg" | "png" | "webp"
+
 export const useAvatarTileActions = ({
 	src,
 	index,
@@ -66,7 +68,8 @@ export const useAvatarTileActions = ({
 				tone,
 				src,
 				shouldApplyShadow,
-				index
+				index,
+				"png"
 			).then((blob) => {
 				if (!blob) throw new Error("PNG generation failed")
 				return blob
@@ -82,7 +85,8 @@ export const useAvatarTileActions = ({
 					tone,
 					src,
 					shouldApplyShadow,
-					index
+					index,
+					"png"
 				)
 				if (!blob) return
 				await navigator.clipboard.write([
@@ -253,7 +257,10 @@ export const useAvatarTileActions = ({
 	}
 
 	// 7. Download PNG
-	const handleDownload = async (e?: { stopPropagation?: () => void }) => {
+	const handleDownload = async (
+		format: AvatarDownloadFormats,
+		e?: { stopPropagation?: () => void }
+	) => {
 		e?.stopPropagation?.()
 
 		// if (copyFormat === "editable-bg") {
@@ -274,7 +281,7 @@ export const useAvatarTileActions = ({
 			src,
 			shouldApplyShadow,
 			index,
-			"jpeg"
+			format
 		)
 		if (!blob) return
 		const link = document.createElement("a")

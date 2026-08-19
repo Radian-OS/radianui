@@ -6,6 +6,13 @@ import {
 	resolveRadianColor,
 } from "@/constants/avatar-playground-utils"
 import { AVATAR_SHADOW_MAP } from "@/constants/avatar-shadow-map"
+import type { AvatarDownloadFormats } from "./use-avatar-tile-actions"
+
+const MIME_MAP: Partial<Record<AvatarDownloadFormats, string>> = {
+	png: "image/png",
+	jpg: "image/jpeg",
+	webp: "image/webp",
+}
 
 /**
  * Renders the avatar + background tone onto an off-screen canvas and returns
@@ -16,7 +23,7 @@ export const createCompositeBlob = async (
 	src: string,
 	shouldApplyShadow: boolean,
 	index: number,
-	format: "png" | "jpeg" = "png"
+	format: AvatarDownloadFormats
 ): Promise<Blob | null> => {
 	const size = 512
 	const canvas = document.createElement("canvas")
@@ -165,10 +172,6 @@ export const createCompositeBlob = async (
 	}
 
 	return new Promise((resolve) =>
-		canvas.toBlob(
-			resolve,
-			`image/${format}`,
-			format === "jpeg" ? 0.92 : undefined
-		)
+		canvas.toBlob(resolve, MIME_MAP[format] ?? "image/png", 0.95)
 	)
 }

@@ -9,6 +9,7 @@ import {
 	Star,
 } from "lucide-react"
 import { toast } from "sonner"
+import { AvatarDownloadFormats } from "@/hooks/avatar/use-avatar-tile-actions"
 import { cn } from "@/lib/utils"
 import { CompactButton } from "@/registry/ui/button"
 import {
@@ -17,6 +18,9 @@ import {
 	DropdownMenuDivider,
 	DropdownMenuItem,
 	DropdownMenuLabel,
+	DropdownMenuSub,
+	DropdownMenuSubContent,
+	DropdownMenuSubTrigger,
 	DropdownMenuTrigger,
 } from "@/registry/ui/dropdown-menu"
 
@@ -118,7 +122,7 @@ export interface AvatarTileMenuProps {
 	handleCopyUrlTransparent: () => void
 	handleCopyNextImageTag: () => void
 	handleCopyHtmlImgTag: () => void
-	handleDownload: () => void
+	handleDownload: (format: AvatarDownloadFormats) => void
 }
 
 export const AvatarTileMenu = ({
@@ -211,10 +215,33 @@ export const AvatarTileMenu = ({
 
 					<DropdownMenuDivider />
 
-					<DropdownMenuItem className="h-7" onSelect={() => handleDownload()}>
+					<DropdownMenuSub>
+						<DropdownMenuSubTrigger>
+							<Download className="text-fg-secondary size-4" />
+							Download
+						</DropdownMenuSubTrigger>
+						<DropdownMenuSubContent>
+							<DropdownMenuItem
+								className="h-7"
+								onSelect={() => handleDownload("jpg")}>
+								<span>Download JPG</span>
+							</DropdownMenuItem>
+							<DropdownMenuItem
+								className="h-7"
+								onSelect={() => handleDownload("png")}>
+								<span>Download PNG</span>
+							</DropdownMenuItem>
+							<DropdownMenuItem
+								className="h-7"
+								onSelect={() => handleDownload("webp")}>
+								<span>Download WebP</span>
+							</DropdownMenuItem>
+						</DropdownMenuSubContent>
+					</DropdownMenuSub>
+					{/* <DropdownMenuItem className="h-7" onSelect={() => handleDownload()}>
 						<Download className="text-fg-secondary size-4" />
-						<span>Download JPG</span>
-					</DropdownMenuItem>
+						<span>Download Transparent PNG</span>
+					</DropdownMenuItem> */}
 					<DropdownMenuItem
 						className="h-7"
 						onSelect={() => {

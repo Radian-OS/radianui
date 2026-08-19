@@ -124,118 +124,118 @@ export function ToneFilterDropdown({
 			</DropdownMenuTrigger>
 
 			<DropdownMenuContent align="center" className="rounded-xl p-0">
-				<ScrollArea className="h-105">
-					{/* Header */}
-					<div className="flex items-center justify-between px-4 py-3">
-						<span className="text-sm font-semibold">Change Background</span>
-						<CompactButton
-							onClick={() => setOpen(false)}
-							color="neutral"
-							size="20"
-							variant="soft">
-							<X />
-						</CompactButton>
-					</div>
-					<Divider className="p-0" />
+				{/* <ScrollArea className="h-105"> */}
+				{/* Header */}
+				<div className="flex items-center justify-between px-4 py-3">
+					<span className="text-sm font-semibold">Change Background</span>
+					<CompactButton
+						onClick={() => setOpen(false)}
+						color="neutral"
+						size="20"
+						variant="soft">
+						<X />
+					</CompactButton>
+				</div>
+				<Divider className="p-0" />
 
-					<div className="flex flex-col">
-						{/* Colors */}
-						<div className="flex flex-col gap-2.5 px-4 py-3">
-							<DropdownMenuLabel className="px-0 text-xs">
-								{colorMode === "radian" ? "Radian Colors" : "Colors"}
-							</DropdownMenuLabel>
-							<div className="grid grid-cols-9 gap-2">
-								{colorMode === "radian"
-									? RADIAN_COLORS.map((c) => (
-											<button
-												key={c.id}
-												type="button"
-												onClick={() => onChange(c.id)}
-												title={c.label}
-												aria-label={c.label}
-												style={{ backgroundColor: `var(${c.variable})` }}
-												className={`size-7 cursor-pointer rounded-lg transition-transform active:scale-95 ${
-													c.label === "Neutral" ? "border-alpha border" : ""
-												} ${
-													value === c.id
-														? "ring-primary ring-2 ring-offset-2"
-														: ""
-												}`}
-											/>
-										))
-									: SOLID_COLORS.map((c) => (
-											<button
-												key={c.id}
-												type="button"
-												onClick={() => onChange(c.id)}
-												title={formatColorName(c.id)}
-												aria-label={formatColorName(c.id)}
-												className={`size-7 cursor-pointer rounded-lg transition-transform active:scale-95 ${
-													c.className
-												} ${
-													c.id === "Cool-Gray/L100%" ? "border-soft border" : ""
-												} ${
-													value === c.id
-														? "ring-primary ring-2 ring-offset-2"
-														: ""
-												}`}
-											/>
-										))}
+				<div className="flex flex-col">
+					{/* Colors */}
+					<div className="flex flex-col gap-2.5 px-4 py-3">
+						<DropdownMenuLabel className="px-0 text-xs">
+							{colorMode === "radian" ? "Radian Colors" : "Colors"}
+						</DropdownMenuLabel>
+						<div className="grid grid-cols-9 gap-2">
+							{colorMode === "radian"
+								? RADIAN_COLORS.map((c) => (
+										<button
+											key={c.id}
+											type="button"
+											onClick={() => onChange(c.id)}
+											title={c.label}
+											aria-label={c.label}
+											style={{ backgroundColor: `var(${c.variable})` }}
+											className={`size-7 cursor-pointer rounded-lg transition-transform active:scale-95 ${
+												c.label === "Neutral" ? "border-alpha border" : ""
+											} ${
+												value === c.id
+													? "ring-primary ring-2 ring-offset-2"
+													: ""
+											}`}
+										/>
+									))
+								: SOLID_COLORS.map((c) => (
+										<button
+											key={c.id}
+											type="button"
+											onClick={() => onChange(c.id)}
+											title={formatColorName(c.id)}
+											aria-label={formatColorName(c.id)}
+											className={`size-7 cursor-pointer rounded-lg transition-transform active:scale-95 ${
+												c.className
+											} ${
+												c.id === "Cool-Gray/L100%" ? "border-soft border" : ""
+											} ${
+												value === c.id
+													? "ring-primary ring-2 ring-offset-2"
+													: ""
+											}`}
+										/>
+									))}
 
-								{/* Custom Color Picker */}
-								<button
-									type="button"
-									onClick={() => colorInputRef.current?.click()}
-									title="Custom Color"
-									aria-label="Custom Color Picker"
-									style={{
-										background:
-											"conic-gradient(from 180deg, #f87171, #fbbf24, #a3e635, #34d399, #38bdf8, #818cf8, #e879f9, #f87171)",
-									}}
-									className="border-border size-7 cursor-pointer rounded-lg border transition-transform active:scale-95"
-								/>
-								<input
-									ref={colorInputRef}
-									type="color"
-									className="sr-only"
-									onChange={handleCustomColorChange}
-								/>
+							{/* Custom Color Picker */}
+							<button
+								type="button"
+								onClick={() => colorInputRef.current?.click()}
+								title="Custom Color"
+								aria-label="Custom Color Picker"
+								style={{
+									background:
+										"conic-gradient(from 180deg, #f87171, #fbbf24, #a3e635, #34d399, #38bdf8, #818cf8, #e879f9, #f87171)",
+								}}
+								className="border-border size-7 cursor-pointer rounded-lg border transition-transform active:scale-95"
+							/>
+							<input
+								ref={colorInputRef}
+								type="color"
+								className="sr-only"
+								onChange={handleCustomColorChange}
+							/>
 
-								{/* Random Color Button */}
-								<IconButton
-									type="button"
-									onClick={() => onChange("pick-color")}
-									color="neutral"
-									size="28"
-									variant="outline"
-									title="Random Color"
-									aria-label="Random Color"
-									className={
-										value === "pick-color"
-											? "ring-primary ring-2 ring-offset-2"
-											: ""
-									}>
-									<Dices />
-								</IconButton>
+							{/* Random Color Button */}
+							<IconButton
+								type="button"
+								onClick={() => onChange("pick-color")}
+								color="neutral"
+								size="28"
+								variant="outline"
+								title="Random Color"
+								aria-label="Random Color"
+								className={
+									value === "pick-color"
+										? "ring-primary ring-2 ring-offset-2"
+										: ""
+								}>
+								<Dices />
+							</IconButton>
 
-								{/* Clear / None Button */}
-								<IconButton
-									type="button"
-									onClick={() => onChange("none")}
-									color="neutral"
-									size="28"
-									variant="outline"
-									title="Clear Background"
-									aria-label="Clear Background">
-									<Ban />
-								</IconButton>
-							</div>
+							{/* Clear / None Button */}
+							<IconButton
+								type="button"
+								onClick={() => onChange("none")}
+								color="neutral"
+								size="28"
+								variant="outline"
+								title="Clear Background"
+								aria-label="Clear Background">
+								<Ban />
+							</IconButton>
 						</div>
+					</div>
 
-						<DropdownMenuDivider className="mx-0" />
+					{/* <DropdownMenuDivider className="mx-0" /> */}
 
-						{/* Gradients */}
-						<div className="flex flex-col gap-2.5 px-4 py-3">
+					{/* Gradients */}
+					{/* <div className="flex flex-col gap-2.5 px-4 py-3">
 							<DropdownMenuLabel className="px-0 text-xs">
 								Gradients
 							</DropdownMenuLabel>
@@ -281,9 +281,9 @@ export function ToneFilterDropdown({
 						</div>
 
 						<DropdownMenuDivider className="mx-0" />
-
-						{/* Background Images */}
-						<div className="flex flex-col gap-2.5 px-4 py-3">
+ */}
+					{/* Background Images */}
+					{/* <div className="flex flex-col gap-2.5 px-4 py-3">
 							<DropdownMenuLabel className="px-0 text-xs">
 								Background
 							</DropdownMenuLabel>
@@ -291,11 +291,10 @@ export function ToneFilterDropdown({
 								<AspectRatio
 									ratio={4 / 3}
 									onClick={() => onChange("pick-background")}
-									className={`bg-fill1 flex cursor-pointer items-center justify-center rounded-lg transition-transform active:scale-95 ${
-										value === "pick-background"
+									className={`bg-fill1 flex cursor-pointer items-center justify-center rounded-lg transition-transform active:scale-95 ${value === "pick-background"
 											? "ring-primary ring-2 ring-offset-2"
 											: ""
-									}`}
+										}`}
 									title="Random Background">
 									<Dices className="text-fg-secondary size-4" />
 								</AspectRatio>
@@ -306,9 +305,8 @@ export function ToneFilterDropdown({
 											ratio={4 / 3}
 											key={src}
 											onClick={() => onChange(src)}
-											className={`relative cursor-pointer overflow-hidden rounded-lg transition-transform active:scale-95 ${
-												value === src ? "ring-primary ring-2 ring-offset-2" : ""
-											}`}
+											className={`relative cursor-pointer overflow-hidden rounded-lg transition-transform active:scale-95 ${value === src ? "ring-primary ring-2 ring-offset-2" : ""
+												}`}
 											title={`Background ${colorName}`}>
 											<Image
 												src={src}
@@ -321,9 +319,9 @@ export function ToneFilterDropdown({
 									)
 								})}
 							</div>
-						</div>
-					</div>
-				</ScrollArea>
+						</div> */}
+				</div>
+				{/* </ScrollArea> */}
 			</DropdownMenuContent>
 		</DropdownMenu>
 	)
