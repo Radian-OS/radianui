@@ -256,27 +256,33 @@ export const useAvatarTileActions = ({
 	const handleDownload = async (e?: { stopPropagation?: () => void }) => {
 		e?.stopPropagation?.()
 
-		if (copyFormat === "editable-bg") {
-			const svg = await generateEditableSvg(tone, src, index)
-			if (!svg) return
-			const blob = new Blob([svg], { type: "image/svg+xml" })
-			const link = document.createElement("a")
-			link.download = `avatar-${index + 1}-editable.svg`
-			link.href = URL.createObjectURL(blob)
-			link.click()
-			URL.revokeObjectURL(link.href)
-			toast.success("Downloading SVG...")
-			return
-		}
+		// if (copyFormat === "editable-bg") {
+		// 	const svg = await generateEditableSvg(tone, src, index)
+		// 	if (!svg) return
+		// 	const blob = new Blob([svg], { type: "image/svg+xml" })
+		// 	const link = document.createElement("a")
+		// 	link.download = `avatar-${index + 1}-editable.svg`
+		// 	link.href = URL.createObjectURL(blob)
+		// 	link.click()
+		// 	URL.revokeObjectURL(link.href)
+		// 	toast.success("Downloading SVG...")
+		// 	return
+		// }
 
-		const blob = await createCompositeBlob(tone, src, shouldApplyShadow, index)
+		const blob = await createCompositeBlob(
+			tone,
+			src,
+			shouldApplyShadow,
+			index,
+			"jpeg"
+		)
 		if (!blob) return
 		const link = document.createElement("a")
-		link.download = `avatar-${index + 1}.png`
+		link.download = `avatar-${index + 1}.jpg`
 		link.href = URL.createObjectURL(blob)
 		link.click()
 		URL.revokeObjectURL(link.href)
-		toast.success("Downloading PNG...")
+		toast.success("Downloading JPG...")
 	}
 
 	return {

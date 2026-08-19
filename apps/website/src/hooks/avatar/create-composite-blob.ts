@@ -15,7 +15,8 @@ export const createCompositeBlob = async (
 	tone: string,
 	src: string,
 	shouldApplyShadow: boolean,
-	index: number
+	index: number,
+	format: "png" | "jpeg" = "png"
 ): Promise<Blob | null> => {
 	const size = 512
 	const canvas = document.createElement("canvas")
@@ -163,5 +164,11 @@ export const createCompositeBlob = async (
 		return null
 	}
 
-	return new Promise((resolve) => canvas.toBlob(resolve, "image/png"))
+	return new Promise((resolve) =>
+		canvas.toBlob(
+			resolve,
+			`image/${format}`,
+			format === "jpeg" ? 0.92 : undefined
+		)
+	)
 }

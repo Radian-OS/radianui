@@ -213,7 +213,7 @@ export const AvatarTileMenu = ({
 
 					<DropdownMenuItem className="h-7" onSelect={() => handleDownload()}>
 						<Download className="text-fg-secondary size-4" />
-						<span>Download PNG</span>
+						<span>Download JPG</span>
 					</DropdownMenuItem>
 					<DropdownMenuItem
 						className="h-7"
