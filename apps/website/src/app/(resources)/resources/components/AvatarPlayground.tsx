@@ -1,7 +1,6 @@
 "use client"
 
 import { Settings, Star } from "lucide-react"
-import { toast } from "sonner"
 import {
 	AVATARS,
 	copyRandomAvatar,

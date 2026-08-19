@@ -1,27 +1,15 @@
 import type { CSSProperties } from "react"
 import { AVATAR_SHADOW_MAP } from "./avatar-shadow-map"
+import { SOLID_COLORS } from "./tone-filter-data"
 
 export const AVATAR_BLEND_OPACITY = 0.15
 
-export const SOLID_COLOR_MAP: Record<string, string> = {
-	"Cool-Gray/L100%": "#FFFFFF",
-	"Cool-Gray/L94%": "#EEEFF1",
-	"Red/100": "#FDD8D8",
-	"Orange/100": "#FFE4D6",
-	"Amber/100": "#FFEBC2",
-	"Yellow/100": "#FFF3B8",
-	"Neon/100": "#E7FFB8",
-	"Green/100": "#D1FAD1",
-	"Emerald/100": "#D1FADF",
-	"Teal/100": "#BCFFEE",
-	"Light-Blue/100": "#D1E6FA",
-	"Blue/100": "#DCDFF9",
-	"Violet-Blue/100": "#E5DFFB",
-	"Purple/100": "#E9DFFB",
-	"Dark-Orchid/100": "#F3DBFF",
-	"Magenta/100": "#FBDAF0",
-	"Rose/100": "#FBDAE5",
-}
+export const SOLID_COLOR_MAP: Record<string, string> = Object.fromEntries(
+	SOLID_COLORS.map((c) => {
+		const match = c.className.match(/bg-\[(#[0-9a-fA-F]+)\]/i)
+		return [c.id, match ? match[1] : "#FFFFFF"]
+	})
+)
 
 const IMAGE_BACKGROUND_TONE_MAP: Record<string, string> = {
 	Amber: "Amber/100",
