@@ -7,18 +7,18 @@ export function WebsiteLogo({ className }: { className?: string }) {
 		<Link href={"/"} tabIndex={-1} className={className}>
 			<Image
 				src="/radian.svg"
-				className="dark:hidden"
+				className="h-auto w-[112px] dark:hidden"
 				alt="radian-logo"
-				width={112}
-				height={36}
+				width={103}
+				height={28}
 				priority
 			/>
 			<Image
 				src="/radian-dark.svg"
-				className="not-dark:hidden"
+				className="not-dark:hidden h-auto w-[112px]"
 				alt="radian-logo"
-				width={112}
-				height={36}
+				width={103}
+				height={28}
 				priority
 			/>
 		</Link>

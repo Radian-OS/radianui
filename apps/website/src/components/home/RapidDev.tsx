@@ -75,6 +75,7 @@ const RapidDev = () => {
 						<div
 							className="relative h-[260px] overflow-hidden md:h-[414px] lg:h-[449px]"
 							data-nosnippet
+							inert
 							aria-hidden="true">
 							<div className="sm:scale-120 lg:scale-140 shrink-0 origin-top-left scale-95 px-5 focus:outline-none focus:ring-0 sm:px-10 md:scale-150 md:px-7 lg:px-11">
 								<LibraryDocsVisual />
@@ -106,6 +107,7 @@ const RapidDev = () => {
 						<div
 							className="relative flex h-[260px] justify-center overflow-hidden md:h-[414px] lg:h-[430px]"
 							data-nosnippet
+							inert
 							aria-hidden="true">
 							<div className="shrink-0 origin-top scale-75 pt-2 focus:outline-none focus:ring-0 sm:scale-90 sm:pt-4 md:scale-100">
 								<CreditCardUsageVisual />
@@ -127,6 +129,7 @@ const RapidDev = () => {
 						<div
 							className="relative flex h-[260px] justify-center overflow-hidden md:h-[420px] lg:h-[430px]"
 							data-nosnippet
+							inert
 							aria-hidden="true">
 							<div className="origin-top scale-90 focus:outline-none focus:ring-0 sm:scale-100">
 								<Card7Visual />
@@ -183,7 +186,9 @@ const RapidDev = () => {
 					{data.map(({ value }) => (
 						<TabsContent className="rounded-none" key={value} value={value}>
 							<div className="contents" data-nosnippet aria-hidden="true">
-								<DesignCodeVisual type={value} />
+								<div inert>
+									<DesignCodeVisual type={value} />
+								</div>
 							</div>
 						</TabsContent>
 					))}

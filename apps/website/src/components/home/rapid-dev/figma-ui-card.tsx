@@ -839,9 +839,9 @@ export function FigmaUiCard() {
 							alt=""
 							className="figma-product-photo"
 							draggable={false}
-							height={324}
+							height={1080}
 							src="/card-5-assets/preview.jpg"
-							width={640}
+							width={1080}
 						/>
 					</div>
 					<div className="figma-product-body">

@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import type { ReactNode } from "react"
 import {
 	Blocks,
@@ -116,15 +116,15 @@ const featureItemsPerPage = 4
 const featurePageCount = Math.ceil(featureItems.length / featureItemsPerPage)
 const featurePageVideos = [
 	{
-		src: "/video/variable-theme-modes.mov",
+		src: "https://cdn.radianui.com/website/videos/variable-theme-modes.mov",
 		label: "Variable system and theme modes demonstration",
 	},
 	{
-		src: "/video/color-preset-blocks.mov",
+		src: "https://cdn.radianui.com/website/videos/color-preset-blocks.mov",
 		label: "Color presets and UI blocks demonstration",
 	},
 	{
-		src: "/video/responsive-typography-blocks.mov",
+		src: "https://cdn.radianui.com/website/videos/responsive-typography-blocks.mov",
 		label: "Responsive typography and components demonstration",
 	},
 ] as const
@@ -351,27 +351,49 @@ function ShowcaseFrame({
 	onPageChange: (index: number) => void
 }) {
 	const video = featurePageVideos[current] ?? featurePageVideos[0]
+	const frameRef = useRef<HTMLDivElement>(null)
+	const [shouldLoadVideo, setShouldLoadVideo] = useState(false)
+
+	useEffect(() => {
+		const frame = frameRef.current
+		if (!frame || shouldLoadVideo) return
+
+		const observer = new IntersectionObserver(
+			([entry]) => {
+				if (!entry.isIntersecting) return
+				setShouldLoadVideo(true)
+				observer.disconnect()
+			},
+			{ rootMargin: "300px 0px" }
+		)
+
+		observer.observe(frame)
+		return () => observer.disconnect()
+	}, [shouldLoadVideo])
 
 	return (
 		<>
 			<div
+				ref={frameRef}
 				className="bg-fill1/30 max-w-240 absolute bottom-0 left-1/2 aspect-video h-auto w-[calc(100%_-_24px)] -translate-x-1/2 overflow-hidden rounded-t-xl backdrop-blur-xl sm:w-[78%] lg:aspect-auto lg:h-[80%]"
 				style={lightThemeVars}>
 				<div className="absolute inset-x-2 bottom-0 top-2">
 					<div
 						className="bg-bg h-full w-full overflow-hidden rounded-t-lg"
 						style={darkThemeVars}>
-						<video
-							key={video.src}
-							autoPlay
-							loop
-							muted
-							playsInline
-							preload="metadata"
-							aria-label={video.label}
-							className="pointer-events-none h-full w-full object-contain lg:object-cover">
-							<source src={video.src} />
-						</video>
+						{shouldLoadVideo ? (
+							<video
+								key={video.src}
+								src={video.src}
+								autoPlay
+								loop
+								muted
+								playsInline
+								preload="none"
+								aria-label={video.label}
+								className="pointer-events-none h-full w-full object-contain lg:object-cover"
+							/>
+						) : null}
 					</div>
 					<CarouselDots
 						current={current}
@@ -406,7 +428,7 @@ function CarouselDots({
 	return (
 		<div
 			className={cn(
-				"bg-fg/30 absolute z-10 flex gap-1.5 rounded-full p-1.5 backdrop-blur-md",
+				"bg-fg/30 absolute z-10 flex rounded-full p-0.5 backdrop-blur-md",
 				className
 			)}>
 			{Array.from({ length: pageCount }, (_, index) => (
@@ -417,10 +439,16 @@ function CarouselDots({
 					aria-label={`Show feature group ${index + 1}`}
 					aria-current={current === index ? "true" : undefined}
 					className={cn(
-						"size-2 cursor-pointer rounded-full transition-colors",
-						current === index ? "bg-fg" : "bg-fg-disabled"
-					)}
-				/>
+						"grid size-6 cursor-pointer place-items-center rounded-full"
+					)}>
+					<span
+						aria-hidden="true"
+						className={cn(
+							"size-2 rounded-full transition-colors",
+							current === index ? "bg-fg" : "bg-fg-disabled"
+						)}
+					/>
+				</button>
 			))}
 		</div>
 	)

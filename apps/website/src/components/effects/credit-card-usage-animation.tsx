@@ -1,6 +1,6 @@
 "use client"
 
-import type { CSSProperties, KeyboardEvent } from "react"
+import type { CSSProperties } from "react"
 import { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { cn } from "@/lib/utils"
 
@@ -353,16 +353,8 @@ export function CreditCardUsageAnimation() {
 		return () => window.cancelAnimationFrame(frameId)
 	}, [activeState.percentUsed])
 
-	function handleKeyDown(event: KeyboardEvent<HTMLElement>) {
-		if (event.key === "Enter" || event.key === " ") {
-			event.preventDefault()
-			advanceTheme()
-		}
-	}
-
 	return (
 		<article
-			aria-label={`Credits usage card, ${activeState.name} state. Click to change usage state.`}
 			className={cn(
 				"credit-usage-card credit-card-frame relative select-none overflow-hidden focus:outline-none",
 				isPopping && "is-popping",
@@ -370,11 +362,8 @@ export function CreditCardUsageAnimation() {
 			)}
 			onAnimationEnd={() => setIsPopping(false)}
 			onClick={advanceTheme}
-			onKeyDown={handleKeyDown}
 			ref={containerRef}
-			role="button"
-			style={themeStyle}
-			tabIndex={0}>
+			style={themeStyle}>
 			<div
 				className="credit-content-reveal flex items-start justify-between gap-[11px]"
 				style={getRevealStyle(0)}>

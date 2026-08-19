@@ -3,17 +3,13 @@ import Link from "next/link"
 import Background from "@/components/effects/background"
 import RapidDev from "@/components/home/RapidDev"
 import DiagonalDivider from "@/components/home/SvgDivider"
-import Component from "@/components/home/component-section"
 import CTASection from "@/components/home/cta-section"
+import DeferredHomeSection from "@/components/home/deferred-home-section"
 import FAQSection from "@/components/home/faq-section"
 import Footer from "@/components/home/footer"
 import HeroActionButtons from "@/components/home/hero-action-buttons"
-import HomepageLoadReveal from "@/components/home/homepage-load-reveal"
 import BrandSection from "@/components/home/new/brand-section"
-import CarouselSection from "@/components/home/new/carousel-section"
-import PlaygroundSectionWrapper from "@/components/home/playground-section-wrapper"
 import { RotatingWords } from "@/components/home/rotating-words"
-import UIBlocksSection from "@/components/home/ui-blocks-section"
 import VideoDialogPreview from "@/components/home/video/video-dialog-preview"
 import { JsonLd } from "@/components/seo/json-ld"
 import { getHomepageStructuredData } from "@/lib/structured-data"
@@ -35,66 +31,59 @@ export default function Page() {
 			/>
 			<main className="min-h-screen w-full overflow-x-hidden">
 				<section aria-labelledby="home-page-title">
-					<HomepageLoadReveal delay={0.05} duration={1} blur={12}>
-						<Background>
-							<div className="md:pt-30 pt-15 relative z-30 flex flex-col items-center justify-center gap-10">
-								<div className="max-w-250 flex flex-col items-center justify-center">
-									<Link
-										href="/docs/getting-started/changelog"
-										className="relative h-[32px] rounded-full focus:outline-none">
+					<Background>
+						<div className="md:pt-30 pt-15 relative z-30 flex flex-col items-center justify-center gap-10">
+							<div className="max-w-250 flex flex-col items-center justify-center">
+								<Link
+									href="/docs/getting-started/changelog"
+									className="relative h-[32px] rounded-full focus:outline-none">
+									<Badge
+										color="primary"
+										className="h-8 gap-1.5 rounded-full py-1 pl-1"
+										size="28"
+										variant="soft">
 										<Badge
 											color="primary"
-											className="h-8 gap-1.5 rounded-full py-1 pl-1"
-											size="28"
-											variant="soft">
-											<Badge
-												color="primary"
-												className="rounded-full"
-												variant="strong">
-												New Version
-											</Badge>
-											Read Changelog
-											<ArrowRight className="size-3.5" />
+											className="rounded-full"
+											variant="strong">
+											New Version
 										</Badge>
-										<BorderBeam size={50} />
-									</Link>
-									<h1
-										id="home-page-title"
-										className="heading-1 dark:from-fg dark:to-fg-secondary not-dark:text-fg mt-6 bg-clip-text text-center text-transparent dark:bg-gradient-to-b">
-										Open-Source React Components and Figma Design System
-									</h1>
-									<p className="text-fg-secondary mt-7 w-full max-w-[640px] text-center text-base font-normal md:mt-10 md:text-lg">
-										A complete production-ready React components library, UI
-										blocks, and Figma UI Kit and design system for{" "}
-										<RotatingWords
-											interval={4000}
-											words={[
-												"Designers",
-												"Developers",
-												"Startups",
-												"Agencies",
-											]}
-											className="text-fg text-base font-medium md:text-lg"
-										/>
-									</p>
-								</div>
-								<div className="flex w-full flex-col items-center justify-center gap-3 sm:flex-row">
-									<HeroActionButtons />
-								</div>
+										Read Changelog
+										<ArrowRight className="size-3.5" />
+									</Badge>
+									<BorderBeam size={50} />
+								</Link>
+								<h1
+									id="home-page-title"
+									className="heading-1 dark:from-fg dark:to-fg-secondary not-dark:text-fg mt-6 bg-clip-text text-center text-transparent dark:bg-gradient-to-b">
+									Open-Source React Components and Figma Design System
+								</h1>
+								<p className="text-fg-secondary mt-7 w-full max-w-[640px] text-center text-base font-normal md:mt-10 md:text-lg">
+									A complete production-ready React components library, UI
+									blocks, and Figma UI Kit and design system for{" "}
+									<RotatingWords
+										interval={4000}
+										words={["Designers", "Developers", "Startups", "Agencies"]}
+										className="text-fg text-base font-medium md:text-lg"
+									/>
+								</p>
 							</div>
+							<div className="flex w-full flex-col items-center justify-center gap-3 sm:flex-row">
+								<HeroActionButtons />
+							</div>
+						</div>
 
-							<VideoPreviewWithBeams />
-						</Background>
-					</HomepageLoadReveal>
+						<VideoPreviewWithBeams />
+					</Background>
 				</section>
 
 				<BrandSection />
 				<RapidDev />
-				<Component />
+				<DeferredHomeSection section="components" minHeight={760} />
 
-				<CarouselSection />
+				<DeferredHomeSection section="carousel" minHeight={1800} />
 
-				<PlaygroundSectionWrapper renderBeforeMount />
+				<DeferredHomeSection section="playground" minHeight={1300} />
 
 				<div className="max-w-360 mx-auto w-full" aria-hidden="true">
 					<div className="border-soft w-full overflow-clip border-b border-t lg:border-l lg:border-r">
@@ -102,7 +91,7 @@ export default function Page() {
 					</div>
 				</div>
 
-				<UIBlocksSection />
+				<DeferredHomeSection section="ui-blocks" minHeight={1400} />
 
 				<div className="max-w-360 mx-auto w-full" aria-hidden="true">
 					<div className="border-soft w-full overflow-clip border-b border-t lg:border-l lg:border-r">
