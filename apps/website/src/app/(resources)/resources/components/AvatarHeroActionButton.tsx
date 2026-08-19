@@ -8,27 +8,19 @@ import {
 	randomSolidMapColor,
 } from "@/constants/avatar-playground-utils"
 import { Button } from "@/registry/ui/button"
+import { showCopiedToast } from "./CopiedToast"
 
 export default function AvatarHeroActionButtons() {
 	const handleCopyRandom = async () => {
 		const tone = randomSolidMapColor()
-		const avatarSrc = await copyRandomAvatar(tone)
-		if (avatarSrc) {
-			toast.custom(() => (
-				<div className="bg-black-inverse text-fg-inverse sm:w-78.5 flex w-full items-center gap-2 rounded-[10px] p-2">
-					<img
-						src={avatarSrc}
-						alt=""
-						className="size-15 rounded-lg object-cover"
-					/>
-					<div className="text-fg-inverse space-y-0.5 text-sm">
-						<p className="font-medium">Added to Clipboard</p>
-						<p className="text-fg-secondary font-normal">
-							Avatar has been copied to your clipboard.
-						</p>
-					</div>
-				</div>
-			))
+		const result = await copyRandomAvatar(tone)
+		if (result) {
+			showCopiedToast({
+				src: result.src,
+				index: result.index,
+				tone,
+				description: "Avatar has been copied to your clipboard.",
+			})
 		}
 	}
 
