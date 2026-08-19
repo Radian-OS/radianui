@@ -16,19 +16,15 @@ import {
 	type ToneFilterDropdownProps,
 	formatColorName,
 	getActiveInfo,
-	getCdnColorDisplayName,
 } from "@/constants/tone-filter-data"
-import { AspectRatio } from "@/registry/ui/aspect-ratio"
 import { Button, CompactButton, IconButton } from "@/registry/ui/button"
 import { Divider } from "@/registry/ui/divider"
 import {
 	DropdownMenu,
 	DropdownMenuContent,
-	DropdownMenuDivider,
 	DropdownMenuLabel,
 	DropdownMenuTrigger,
 } from "@/registry/ui/dropdown-menu"
-import { ScrollArea } from "@/registry/ui/scroll-area"
 
 export {
 	BACKGROUNDS,
@@ -116,10 +112,10 @@ export function ToneFilterDropdown({
 	return (
 		<DropdownMenu open={open} onOpenChange={setOpen} indicatorPosition="right">
 			<DropdownMenuTrigger asChild>
-				<Button color="neutral" variant="outline">
+				<Button color="neutral" variant="outline" className="w-40">
 					<TriggerSwatch activeInfo={activeInfo} />
 					<p className="hidden sm:block">{activeInfo.label}</p>
-					<ChevronDown className="text-fg-secondary" />
+					<ChevronDown className="text-fg-secondary ml-auto" />
 				</Button>
 			</DropdownMenuTrigger>
 

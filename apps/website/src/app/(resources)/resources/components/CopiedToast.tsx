@@ -5,7 +5,6 @@ import {
 	getToneStyle,
 } from "@/constants/avatar-playground-utils"
 import { AVATAR_SHADOW_MAP } from "@/constants/avatar-shadow-map"
-import { cn } from "@/lib/utils"
 
 export interface ShowCopiedToastProps {
 	src: string
