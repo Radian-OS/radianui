@@ -21,6 +21,32 @@ const imageColumns = [
 	{ width: 520, tiles: ["22", "23"] },
 ] as const
 
+const tileDimensions: Record<string, { width: number; height: number }> = {
+	"01": { width: 550, height: 580 },
+	"02": { width: 550, height: 706 },
+	"03": { width: 320, height: 370 },
+	"04": { width: 320, height: 474 },
+	"05": { width: 320, height: 400 },
+	"06": { width: 280, height: 919 },
+	"07": { width: 280, height: 384 },
+	"08": { width: 460, height: 1024 },
+	"09": { width: 536, height: 656 },
+	"10": { width: 520, height: 372 },
+	"11": { width: 520, height: 436 },
+	"12": { width: 316, height: 190 },
+	"13": { width: 316, height: 448 },
+	"14": { width: 316, height: 485 },
+	"15": { width: 336, height: 396 },
+	"16": { width: 320, height: 492 },
+	"17": { width: 320, height: 241 },
+	"18": { width: 500, height: 670 },
+	"19": { width: 500, height: 650 },
+	"20": { width: 520, height: 616 },
+	"21": { width: 520, height: 410 },
+	"22": { width: 520, height: 484 },
+	"23": { width: 520, height: 938 },
+}
+
 type ColumnStyle = CSSProperties & {
 	"--column-width": string
 }
@@ -43,11 +69,14 @@ function ImageColumnSet({ copyIndex }: { copyIndex: number }) {
 						} as ColumnStyle
 					}>
 					{column.tiles.map((tileId, tileIndex) => (
-						// eslint-disable-next-line @next/next/no-img-element -- Decorative local collage assets need their intrinsic aspect ratios.
 						<img
 							key={`${copyIndex}-${tileId}`}
 							alt=""
 							aria-hidden="true"
+							width={tileDimensions[tileId].width}
+							height={tileDimensions[tileId].height}
+							loading="lazy"
+							decoding="async"
 							className="card-6-reference-tile pointer-events-none block h-auto w-full select-none object-contain"
 							draggable={false}
 							src={`${ASSET_BASE}/${tileId}.png`}

@@ -622,7 +622,10 @@ export function FigmaUiCard() {
 						<div className="figma-right-head">
 							<div className="figma-avatar">B</div>
 							<ChevronDown size={11} />
-							<button className="figma-play-button" type="button">
+							<button
+								aria-label="Preview prototype"
+								className="figma-play-button"
+								type="button">
 								<Play className="figma-play-icon" size={10} strokeWidth={1.7} />
 							</button>
 							<button type="button">Share</button>
@@ -839,9 +842,9 @@ export function FigmaUiCard() {
 							alt=""
 							className="figma-product-photo"
 							draggable={false}
-							height={324}
+							height={1080}
 							src="/card-5-assets/preview.jpg"
-							width={640}
+							width={1080}
 						/>
 					</div>
 					<div className="figma-product-body">

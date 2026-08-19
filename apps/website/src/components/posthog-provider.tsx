@@ -2,136 +2,114 @@
 
 import { Suspense, useEffect } from "react"
 import { usePathname, useSearchParams } from "next/navigation"
-import posthog from "posthog-js"
-import { PostHogProvider as PHProvider, usePostHog } from "posthog-js/react"
-import { onCLS, onFCP, onINP, onLCP, onTTFB } from "web-vitals"
+
+type PostHogClient = typeof import("posthog-js").default
+
+let analyticsPromise: Promise<PostHogClient> | null = null
+
+function loadAnalytics() {
+	if (analyticsPromise) return analyticsPromise
+
+	analyticsPromise = Promise.all([
+		import("posthog-js"),
+		import("web-vitals"),
+	]).then(([posthogModule, vitals]) => {
+		const posthog = posthogModule.default
+
+		posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY!, {
+			api_host: "/ingest",
+			ui_host: "https://us.posthog.com",
+			capture_pageview: false,
+			capture_pageleave: true,
+		})
+
+		const captureVital =
+			(name: string) =>
+			(metric: { value: number; rating: string; delta: number }) => {
+				posthog.capture(`${name}_measured`, {
+					value: metric.value,
+					rating: metric.rating,
+					delta: metric.delta,
+					page_url: window.location.pathname,
+				})
+			}
+
+		vitals.onLCP(captureVital("lcp"))
+		vitals.onINP(captureVital("inp"))
+		vitals.onCLS(captureVital("cls"))
+		vitals.onFCP(captureVital("fcp"))
+		vitals.onTTFB(captureVital("ttfb"))
+
+		return posthog
+	})
+
+	return analyticsPromise
+}
 
 export function PostHogProvider({ children }: { children: React.ReactNode }) {
-	useEffect(() => {
-		// Only init PostHog on production domain
-		const isProduction =
-			typeof window !== "undefined" &&
-			(window.location.hostname === "radianui.com" ||
-				window.location.hostname === "www.radianui.com")
+	return (
+		<>
+			<Suspense fallback={null}>
+				<PostHogAnalytics />
+			</Suspense>
+			{children}
+		</>
+	)
+}
 
-		if (isProduction) {
-			posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY!, {
-				api_host: "/ingest",
-				ui_host: "https://us.posthog.com",
-				capture_pageview: false,
-				capture_pageleave: true,
+function PostHogAnalytics() {
+	const pathname = usePathname()
+	const searchParams = useSearchParams()
+
+	useEffect(() => {
+		const isProduction =
+			window.location.hostname === "radianui.com" ||
+			window.location.hostname === "www.radianui.com"
+
+		if (!isProduction || !process.env.NEXT_PUBLIC_POSTHOG_KEY) return
+
+		let disposed = false
+		const interactionEvents = [
+			"pointerdown",
+			"keydown",
+			"touchstart",
+			"scroll",
+		] as const
+
+		const removeListeners = () => {
+			interactionEvents.forEach((eventName) =>
+				window.removeEventListener(eventName, startAnalytics)
+			)
+		}
+
+		const startAnalytics = () => {
+			removeListeners()
+			void loadAnalytics().then((posthog) => {
+				if (disposed) return
+				posthog.capture("$pageview", { $current_url: window.location.href })
 			})
+		}
+
+		interactionEvents.forEach((eventName) =>
+			window.addEventListener(eventName, startAnalytics, {
+				once: true,
+				passive: true,
+			})
+		)
+
+		return () => {
+			disposed = true
+			removeListeners()
 		}
 	}, [])
 
-	return (
-		<PHProvider client={posthog}>
-			<SuspendedPostHogPageView />
-			<WebVitals />
-			{children}
-		</PHProvider>
-	)
-}
-
-// Web Vitals tracking component
-function WebVitals() {
-	const posthog = usePostHog()
-
 	useEffect(() => {
-		if (!posthog) return
+		if (!analyticsPromise) return
 
-		// LCP: Largest Contentful Paint - main loading metric
-		// Measures: Time until largest content element loads
-		// Good: < 2.5s, Poor: > 4.0s
-		onLCP((metric) => {
-			posthog.capture("lcp_measured", {
-				value: metric.value, // milliseconds
-				rating: metric.rating, // "good", "needs-improvement", or "poor"
-				delta: metric.delta,
-				page_url: window.location.pathname,
-			})
+		void analyticsPromise.then((posthog) => {
+			posthog.capture("$pageview", { $current_url: window.location.href })
 		})
-
-		// INP: Interaction to Next Paint (NEW - replaces FID)
-		// Measures: Responsiveness to user interactions
-		// Good: < 200ms, Poor: > 500ms
-		onINP((metric) => {
-			posthog.capture("inp_measured", {
-				value: metric.value, // milliseconds
-				rating: metric.rating,
-				delta: metric.delta,
-				page_url: window.location.pathname,
-			})
-		})
-
-		// CLS: Cumulative Layout Shift - visual stability
-		// Measures: Unexpected layout shifts while loading
-		// Good: < 0.1, Poor: > 0.25
-		onCLS((metric) => {
-			posthog.capture("cls_measured", {
-				value: metric.value, // unitless score
-				rating: metric.rating,
-				delta: metric.delta,
-				page_url: window.location.pathname,
-			})
-		})
-
-		// FCP: First Contentful Paint - initial loading
-		// Measures: Time until first content appears
-		// Good: < 1.8s, Poor: > 3.0s
-		onFCP((metric) => {
-			posthog.capture("fcp_measured", {
-				value: metric.value, // milliseconds
-				rating: metric.rating,
-				delta: metric.delta,
-				page_url: window.location.pathname,
-			})
-		})
-
-		// TTFB: Time to First Byte - server response time
-		// Measures: Server response speed
-		// Good: < 800ms, Poor: > 1800ms
-		onTTFB((metric) => {
-			posthog.capture("ttfb_measured", {
-				value: metric.value, // milliseconds
-				rating: metric.rating,
-				delta: metric.delta,
-				page_url: window.location.pathname,
-			})
-		})
-
-		// Note: FID (First Input Delay) has been replaced by INP
-		// INP is the newer, more comprehensive interactivity metric
-	}, [posthog])
+	}, [pathname, searchParams])
 
 	return null
-}
-
-// PageView tracking component
-function PostHogPageView() {
-	const pathname = usePathname()
-	const searchParams = useSearchParams()
-	const posthog = usePostHog()
-
-	useEffect(() => {
-		if (pathname && posthog) {
-			let url = window.origin + pathname
-			const search = searchParams.toString()
-			if (search) {
-				url += "?" + search
-			}
-			posthog.capture("$pageview", { $current_url: url })
-		}
-	}, [pathname, searchParams, posthog])
-
-	return null
-}
-
-// Suspended version to handle Next.js Suspense boundary
-function SuspendedPostHogPageView() {
-	return (
-		<Suspense fallback={null}>
-			<PostHogPageView />
-		</Suspense>
-	)
 }

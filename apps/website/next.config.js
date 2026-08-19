@@ -94,15 +94,6 @@ const nextConfig = {
 	async headers() {
 		const headers = [
 			{
-				source: "/_next/static/:path*",
-				headers: [
-					{
-						key: "Cache-Control",
-						value: "public, max-age=31536000, immutable",
-					},
-				],
-			},
-			{
 				source: "/:path*.(svg|ico|png|jpg|jpeg|webp|woff|woff2)",
 				headers: [
 					{
@@ -155,10 +146,6 @@ const nextConfig = {
 					{
 						key: "Permissions-Policy",
 						value: "camera=(), microphone=(), geolocation=()",
-					},
-					{
-						key: "Cache-Control",
-						value: "public, max-age=60, stale-while-revalidate=30",
 					},
 				],
 			},
@@ -228,6 +215,7 @@ const nextConfig = {
 	pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
 	images: {
 		minimumCacheTTL: 864000,
+		qualities: [75, 80],
 		remotePatterns: [
 			{
 				protocol: "https",
