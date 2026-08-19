@@ -58,6 +58,26 @@ export const CONTENT: FAQItem[] = [
 			"Yes. Because Radian UI uses a copy-and-paste architecture, you own the code. The underlying interactive elements are powered by Radix UI, which is thoroughly tested, WAI-ARIA accessible, and currently used in massive enterprise production environments.",
 		category: "general",
 	},
+	{
+		title: "Is Radian UI free for commercial projects?",
+		content:
+			"Yes. Radian UI is released under the MIT License, so you can use, modify, and ship its components in personal, client, and commercial products without paying a licensing fee.",
+		category: "general",
+	},
+	{
+		title:
+			"What makes Radian UI different from a traditional React component library?",
+		content:
+			"Radian UI gives you the component source code instead of hiding it inside a runtime package. The CLI copies React, TypeScript, and Tailwind code into your project, so your team can inspect every implementation, customize it freely, and keep full ownership of the result.",
+		category: "general",
+	},
+	{
+		title:
+			"Does Radian UI include both React components and a Figma design system?",
+		content:
+			"Yes. Radian UI includes production-ready React components, reusable UI blocks, design tokens, and a free Figma UI kit. Designers can compose interfaces in Figma while developers build from the corresponding Radian UI system.",
+		category: "general",
+	},
 
 	// Design
 	{
@@ -108,6 +128,26 @@ export const CONTENT: FAQItem[] = [
 			"Yes, spacing, border radius, and typography scales are all configurable to fit different product styles.",
 		category: "design",
 	},
+	{
+		title:
+			"Can I make Radian UI match my brand without rebuilding every component?",
+		content:
+			"Yes. You can update the shared color, typography, spacing, and radius tokens, then refine individual components with Tailwind CSS. Because the source code lives in your project, you can make deeper visual changes whenever your brand requires them.",
+		category: "design",
+	},
+	{
+		title: "Can designers and developers use the same Radian UI design system?",
+		content:
+			"Yes. The free Figma kit gives designers reusable components, variables, colors, spacing, and typography, while the React library gives developers the implementation layer. This shared foundation helps teams keep design decisions and shipped interfaces consistent.",
+		category: "design",
+	},
+	{
+		title:
+			"Is Radian UI a good choice for building an accessible design system?",
+		content:
+			"Radian UI provides a strong accessible foundation through Radix UI primitives, keyboard-friendly interactions, and WAI-ARIA patterns. Your team should still test its own content, color choices, and customizations as part of the final product's accessibility review.",
+		category: "design",
+	},
 
 	// Development
 	{
@@ -156,6 +196,25 @@ export const CONTENT: FAQItem[] = [
 		title: "How do I report bugs or request features?",
 		content:
 			"Bugs and feature requests can be submitted through the project's GitHub issue tracker, where maintainers review and triage them.",
+		category: "development",
+	},
+	{
+		title: "Can I use Radian UI with Next.js or Vite?",
+		content:
+			"Yes. Radian UI has documented setup paths for both frameworks. Run `npx radianui@latest init --next` for Next.js or `npx radianui@latest init --vite` for Vite, then use the CLI to add the components you need.",
+		category: "development",
+	},
+	{
+		title:
+			"How do I add one Radian UI component without installing the whole library?",
+		content:
+			"After initializing your project, run a command such as `npx radianui@latest add button`. The CLI adds that component and its required code to your project, so you can use and customize it without importing the entire library.",
+		category: "development",
+	},
+	{
+		title: "Can AI coding assistants understand Radian UI documentation?",
+		content:
+			"Yes. Radian UI publishes an `/llms.txt` file that presents its documentation in a format AI coding tools can parse more reliably. You can give that URL to an assistant when asking it to install, use, or customize Radian UI components.",
 		category: "development",
 	},
 ]
