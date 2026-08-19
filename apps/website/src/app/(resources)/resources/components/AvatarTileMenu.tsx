@@ -192,7 +192,7 @@ export const AvatarTileMenu = ({
 								fill="#A259FF"
 							/>
 						</svg>
-						<span>Figma Frame</span>
+						<span>Copy Figma Frame</span>
 					</DropdownMenuItem>
 
 					<DropdownMenuDivider />
