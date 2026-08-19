@@ -29,6 +29,8 @@ const AvatarPlayground = () => {
 		setCopyFormat,
 		// colorMode,
 		// setColorMode,
+		showShadow,
+		handleShowShadowChange,
 		favorites,
 		toggleFavorite,
 		isBlocked,
@@ -138,6 +140,7 @@ const AvatarPlayground = () => {
 								toneStyle={getToneStyle(tileTone)}
 								tone={tileTone}
 								copyFormat={copyFormat}
+								showShadow={showShadow}
 								isFavorite={favorites.has(src)}
 								onToggleFavorite={() => toggleFavorite(src)}
 							/>
@@ -158,6 +161,8 @@ const AvatarPlayground = () => {
 				onCopyFormatChange={setCopyFormat}
 				// colorMode={colorMode}
 				// onColorModeChange={setColorMode}
+				showShadow={showShadow}
+				onShowShadowChange={handleShowShadowChange}
 				onToneChange={handleToneChange}
 			/>
 		</div>

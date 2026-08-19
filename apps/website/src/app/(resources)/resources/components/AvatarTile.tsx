@@ -17,6 +17,7 @@ export interface AvatarTileProps {
 	toneStyle: React.CSSProperties
 	tone: string
 	copyFormat: string
+	showShadow: boolean
 	isFavorite: boolean
 	onToggleFavorite: () => void
 }
@@ -27,6 +28,7 @@ export const AvatarTile = ({
 	toneStyle,
 	tone,
 	copyFormat,
+	showShadow,
 	isFavorite,
 	onToggleFavorite,
 }: AvatarTileProps) => {
@@ -67,7 +69,7 @@ export const AvatarTile = ({
 				sizes="(max-width: 640px) 25vw, (max-width: 768px) 20vw, 14vw"
 				className="z-10 origin-bottom translate-y-[3%] scale-[1.03] object-cover object-bottom transition-transform duration-500 ease-out will-change-transform group-hover:scale-[1.08]"
 			/>
-			{AVATAR_SHADOW_MAP[index] && (
+			{showShadow && AVATAR_SHADOW_MAP[index] && (
 				<Image
 					src={AVATAR_SHADOW_MAP[index]}
 					alt=""
