@@ -14,6 +14,7 @@ import { Skeleton } from "@/registry/ui/skeleton"
 import { AvatarTile } from "./AvatarTile"
 import CategoryFilterDropdown from "./CategoryFilterDropdown"
 import ConfigPreferencesDialog from "./ConfigPreferencesDialog"
+import { showCopiedToast } from "./CopiedToast"
 import FigmaCustomIcon from "./FigmaCustomIcon"
 import ToneFilterDropdown from "./ToneFilterDropdown"
 
@@ -29,6 +30,8 @@ const AvatarPlayground = () => {
 		setCopyFormat,
 		// colorMode,
 		// setColorMode,
+		showShadow,
+		handleShowShadowChange,
 		favorites,
 		toggleFavorite,
 		isBlocked,
@@ -79,23 +82,14 @@ const AvatarPlayground = () => {
 						onClick={async () => {
 							const randomIdx = Math.floor(Math.random() * AVATARS.length)
 							const randomTone = resolvedTones[randomIdx]
-							const avatarSrc = await copyRandomAvatar(randomTone)
-							if (avatarSrc) {
-								toast.custom(() => (
-									<div className="bg-black-inverse text-fg-inverse sm:w-78.5 flex w-full items-center gap-2 rounded-[10px] p-2">
-										<img
-											src={avatarSrc}
-											alt=""
-											className="size-15 rounded-lg object-cover"
-										/>
-										<div className="text-fg-inverse space-y-0.5 text-sm">
-											<p className="font-medium">Added to Clipboard</p>
-											<p className="text-fg-secondary font-normal">
-												Avatar has been copied to your clipboard.
-											</p>
-										</div>
-									</div>
-								))
+							const result = await copyRandomAvatar(randomTone)
+							if (result) {
+								showCopiedToast({
+									src: result.src,
+									index: result.index,
+									tone: randomTone,
+									description: "Avatar has been copied to your clipboard.",
+								})
 							}
 						}}>
 						<FigmaCustomIcon />
@@ -138,6 +132,7 @@ const AvatarPlayground = () => {
 								toneStyle={getToneStyle(tileTone)}
 								tone={tileTone}
 								copyFormat={copyFormat}
+								showShadow={showShadow}
 								isFavorite={favorites.has(src)}
 								onToggleFavorite={() => toggleFavorite(src)}
 							/>
@@ -158,6 +153,8 @@ const AvatarPlayground = () => {
 				onCopyFormatChange={setCopyFormat}
 				// colorMode={colorMode}
 				// onColorModeChange={setColorMode}
+				showShadow={showShadow}
+				onShowShadowChange={handleShowShadowChange}
 				onToneChange={handleToneChange}
 			/>
 		</div>

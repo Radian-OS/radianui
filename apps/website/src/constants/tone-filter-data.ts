@@ -18,23 +18,19 @@ export interface ToneFilterDropdownProps {
 }
 
 export const SOLID_COLORS: SolidColor[] = [
-	{ id: "Cool-Gray/L100%", className: "bg-[#FFFFFF]" },
 	{ id: "Cool-Gray/L94%", className: "bg-[#EEEFF1]" },
-	{ id: "Red/100", className: "bg-[#FDD8D8]" },
-	{ id: "Orange/100", className: "bg-[#FFE4D6]" },
-	{ id: "Amber/100", className: "bg-[#FFEBC2]" },
-	{ id: "Yellow/100", className: "bg-[#FFF3B8]" },
-	{ id: "Neon/100", className: "bg-[#E7FFB8]" },
-	{ id: "Green/100", className: "bg-[#D1FAD1]" },
-	{ id: "Emerald/100", className: "bg-[#D1FADF]" },
-	{ id: "Teal/100", className: "bg-[#BCFFEE]" },
-	{ id: "Light-Blue/100", className: "bg-[#D1E6FA]" },
-	{ id: "Blue/100", className: "bg-[#DCDFF9]" },
-	{ id: "Violet-Blue/100", className: "bg-[#E5DFFB]" },
-	{ id: "Purple/100", className: "bg-[#E9DFFB]" },
-	{ id: "Dark-Orchid/100", className: "bg-[#F3DBFF]" },
-	{ id: "Magenta/100", className: "bg-[#FBDAF0]" },
-	{ id: "Rose/100", className: "bg-[#FBDAE5]" },
+	{ id: "Warm-Gray/L100%", className: "bg-[#EBE4E0]" },
+	{ id: "Green/100", className: "bg-[#DAE7DA]" },
+	{ id: "Purple/100", className: "bg-[#E5E1EA]" },
+	{ id: "Red/100", className: "bg-[#FBDADA]" },
+	{ id: "Orange/100", className: "bg-[#F9D9C8]" },
+	{ id: "Yellow/100", className: "bg-[#F9E9C8]" },
+	{ id: "Neon/100", className: "bg-[#E4F8BF]" },
+	{ id: "Emerald/100", className: "bg-[#D1FAD1]" },
+	{ id: "Light-Blue/100", className: "bg-[#D1FAEC]" },
+	{ id: "Blue/100", className: "bg-[#D1E5FA]" },
+	{ id: "Violet-Blue/100", className: "bg-[#DADAFB]" },
+	{ id: "Pink/100", className: "bg-[#F6DAFB]" },
 ]
 
 export const RADIAN_COLORS: RadianColor[] = [

@@ -1,6 +1,6 @@
 "use client"
 
-import { useId, useState } from "react"
+import { useId } from "react"
 import {
 	Check,
 	ChevronDown,
@@ -8,12 +8,9 @@ import {
 	FileImage,
 	Grid2x2,
 	Link2,
-	Pipette,
 	RotateCw,
 	Sparkles,
-	Star,
 } from "lucide-react"
-import Image from "next/image"
 import { Button, IconButton } from "@/registry/ui/button"
 import {
 	Dialog,
@@ -33,8 +30,7 @@ import {
 	DropdownMenuLabel,
 	DropdownMenuTrigger,
 } from "@/registry/ui/dropdown-menu"
-import { Label } from "@/registry/ui/label"
-import { RadioGroup, RadioGroupItem } from "@/registry/ui/radio-group"
+import { Switch, SwitchWrapper } from "@/registry/ui/switch"
 
 const COPY_FORMAT_GROUPS = [
 	{
@@ -131,6 +127,8 @@ const ConfigPreferencesDialog = ({
 	onCopyFormatChange,
 	// colorMode,
 	// onColorModeChange,
+	showShadow,
+	onShowShadowChange,
 	onToneChange,
 }: {
 	open: boolean
@@ -139,6 +137,8 @@ const ConfigPreferencesDialog = ({
 	onCopyFormatChange: (value: string) => void
 	// colorMode: ColorMode
 	// onColorModeChange: (value: ColorMode) => void
+	showShadow: boolean
+	onShowShadowChange: (value: boolean) => void
 	onToneChange: (value: string) => void
 }) => {
 	const idPrefix = useId()
@@ -146,6 +146,7 @@ const ConfigPreferencesDialog = ({
 	const handleReset = () => {
 		// onColorModeChange("static")
 		onCopyFormatChange("editable-bg")
+		onShowShadowChange(true)
 		onToneChange("pick-color")
 	}
 
@@ -244,6 +245,24 @@ const ConfigPreferencesDialog = ({
 							value={copyFormat}
 							onChange={onCopyFormatChange}
 						/>
+					</div>
+
+					<div className="mx-0 border-b border-dashed" />
+
+					{/* Shadow toggle */}
+					<div className="flex items-center justify-between gap-4">
+						<div className="flex flex-col gap-0.5">
+							<span className="text-sm font-medium">Show Shadow</span>
+							<span className="text-fg-secondary text-xs leading-snug">
+								Toggle the shadow overlay on avatar tiles
+							</span>
+						</div>
+						<SwitchWrapper>
+							<Switch
+								checked={showShadow}
+								onCheckedChange={onShowShadowChange}
+							/>
+						</SwitchWrapper>
 					</div>
 				</DialogBody>
 

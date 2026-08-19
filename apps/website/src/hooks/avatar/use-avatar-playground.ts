@@ -18,6 +18,7 @@ import {
 
 const FAVORITES_STORAGE_KEY = "radian-avatar-favorites"
 const TONE_STORAGE_KEY = "radian-avatar-tone"
+const SHADOW_STORAGE_KEY = "radian-avatar-shadow"
 
 export type ColorMode = "static" | "radian"
 
@@ -54,6 +55,7 @@ export const useAvatarPlayground = () => {
 	const [configOpen, setConfigOpen] = useState(false)
 	const [copyFormat, setCopyFormat] = useState("editable-bg")
 	const [colorMode, setColorMode] = useState<ColorMode>("static")
+	const [showShadow, setShowShadow] = useState(true)
 	const [favorites, setFavorites] = useState<Set<string>>(() => new Set())
 	const [isBlocked, setIsBlocked] = useState(false)
 	const [isHydrated, setIsHydrated] = useState(false)
@@ -113,6 +115,10 @@ export const useAvatarPlayground = () => {
 		if (savedFavs.size > 0) {
 			setFavorites(savedFavs)
 		}
+		const savedShadow = localStorage.getItem(SHADOW_STORAGE_KEY)
+		if (savedShadow !== null) {
+			setShowShadow(savedShadow === "true")
+		}
 		setIsHydrated(true)
 	}, [])
 
@@ -141,6 +147,13 @@ export const useAvatarPlayground = () => {
 				}
 				return nextFavorites
 			})
+		})
+	}, [])
+
+	const handleShowShadowChange = useCallback((value: boolean) => {
+		localStorage.setItem(SHADOW_STORAGE_KEY, String(value))
+		startTransition(() => {
+			setShowShadow(value)
 		})
 	}, [])
 
@@ -221,6 +234,8 @@ export const useAvatarPlayground = () => {
 		setCopyFormat,
 		colorMode,
 		setColorMode,
+		showShadow,
+		handleShowShadowChange,
 		favorites,
 		toggleFavorite,
 		isBlocked,
