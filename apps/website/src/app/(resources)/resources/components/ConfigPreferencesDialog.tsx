@@ -100,51 +100,51 @@ const CopyFormatDropdown = ({
 	)
 }
 
-type ColorMode = "static" | "radian"
+// type ColorMode = "static" | "radian"
 
-const COLOR_MODE_OPTIONS: {
-	value: ColorMode
-	title: string
-	description: string
-	icon?: typeof Pipette
-	iconClassName?: string
-	image?: string
-}[] = [
-	{
-		value: "static",
-		title: "Static Color",
-		description: "Static background color. Uses hex value for color code",
-		icon: Pipette,
-	},
-	{
-		value: "radian",
-		title: "Radian Colors",
-		description: "Library colors. The code will use colors from Radian library",
-		image: "/logo.svg",
-	},
-]
+// const COLOR_MODE_OPTIONS: {
+// 	value: ColorMode
+// 	title: string
+// 	description: string
+// 	icon?: typeof Pipette
+// 	iconClassName?: string
+// 	image?: string
+// }[] = [
+// 	{
+// 		value: "static",
+// 		title: "Static Color",
+// 		description: "Static background color. Uses hex value for color code",
+// 		icon: Pipette,
+// 	},
+// 	{
+// 		value: "radian",
+// 		title: "Radian Colors",
+// 		description: "Library colors. The code will use colors from Radian library",
+// 		image: "/logo.svg",
+// 	},
+// ]
 
 const ConfigPreferencesDialog = ({
 	open,
 	onOpenChange,
 	copyFormat,
 	onCopyFormatChange,
-	colorMode,
-	onColorModeChange,
+	// colorMode,
+	// onColorModeChange,
 	onToneChange,
 }: {
 	open: boolean
 	onOpenChange: (open: boolean) => void
 	copyFormat: string
 	onCopyFormatChange: (value: string) => void
-	colorMode: ColorMode
-	onColorModeChange: (value: ColorMode) => void
+	// colorMode: ColorMode
+	// onColorModeChange: (value: ColorMode) => void
 	onToneChange: (value: string) => void
 }) => {
 	const idPrefix = useId()
 
 	const handleReset = () => {
-		onColorModeChange("static")
+		// onColorModeChange("static")
 		onCopyFormatChange("editable-bg")
 		onToneChange("pick-color")
 	}
@@ -161,7 +161,7 @@ const ConfigPreferencesDialog = ({
 
 				<DialogBody className="flex flex-col gap-5">
 					{/* Colors */}
-					<div className="flex flex-col gap-2">
+					{/* <div className="flex flex-col gap-2">
 						<span className="text-sm font-medium">Colors</span>
 						<RadioGroup
 							value={colorMode}
@@ -182,11 +182,10 @@ const ConfigPreferencesDialog = ({
 										<Label
 											key={value}
 											htmlFor={inputId}
-											className={`relative flex cursor-pointer flex-col items-start gap-2 rounded-xl border p-3 text-left transition-colors ${
-												selected
-													? "border-primary-border"
-													: "border-border hover:bg-fill1"
-											}`}>
+											className={`relative flex cursor-pointer flex-col items-start gap-2 rounded-xl border p-3 text-left transition-colors ${selected
+												? "border-primary-border"
+												: "border-border hover:bg-fill1"
+												}`}>
 											{value === "static" ? (
 												<IconButton
 													type="button"
@@ -229,9 +228,9 @@ const ConfigPreferencesDialog = ({
 								}
 							)}
 						</RadioGroup>
-					</div>
+					</div> */}
 
-					<div className="mx-0 border-b border-dashed" />
+					{/* <div className="mx-0 border-b border-dashed" /> */}
 
 					{/* Copy button functionality */}
 					<div className="flex items-center justify-between gap-4">

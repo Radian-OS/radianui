@@ -18,3 +18,5 @@ public/llms.txt
 public/llms-full.txt
 
 .source/
+
+tsconfig.tsbuildinfo

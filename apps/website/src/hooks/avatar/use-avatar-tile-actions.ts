@@ -19,6 +19,8 @@ interface UseAvatarTileActionsOptions {
 	shouldApplyShadow: boolean
 }
 
+export type AvatarDownloadFormats = "jpg" | "png" | "webp"
+
 export const useAvatarTileActions = ({
 	src,
 	index,
@@ -44,6 +46,18 @@ export const useAvatarTileActions = ({
 			await handleCopyPng()
 			return
 		}
+		if (copyFormat === "url") {
+			await handleCopyUrlTransparent()
+			return
+		}
+		if (copyFormat === "nextjs-image") {
+			await handleCopyNextImageTag()
+			return
+		}
+		if (copyFormat === "html-img") {
+			await handleCopyHtmlImgTag()
+			return
+		}
 		await handleCopyTransparentPng()
 	}
 
@@ -54,7 +68,8 @@ export const useAvatarTileActions = ({
 				tone,
 				src,
 				shouldApplyShadow,
-				index
+				index,
+				"png"
 			).then((blob) => {
 				if (!blob) throw new Error("PNG generation failed")
 				return blob
@@ -70,7 +85,8 @@ export const useAvatarTileActions = ({
 					tone,
 					src,
 					shouldApplyShadow,
-					index
+					index,
+					"png"
 				)
 				if (!blob) return
 				await navigator.clipboard.write([
@@ -241,30 +257,39 @@ export const useAvatarTileActions = ({
 	}
 
 	// 7. Download PNG
-	const handleDownload = async (e?: { stopPropagation?: () => void }) => {
+	const handleDownload = async (
+		format: AvatarDownloadFormats,
+		e?: { stopPropagation?: () => void }
+	) => {
 		e?.stopPropagation?.()
 
-		if (copyFormat === "editable-bg") {
-			const svg = await generateEditableSvg(tone, src, index)
-			if (!svg) return
-			const blob = new Blob([svg], { type: "image/svg+xml" })
-			const link = document.createElement("a")
-			link.download = `avatar-${index + 1}-editable.svg`
-			link.href = URL.createObjectURL(blob)
-			link.click()
-			URL.revokeObjectURL(link.href)
-			toast.success("Downloading SVG...")
-			return
-		}
+		// if (copyFormat === "editable-bg") {
+		// 	const svg = await generateEditableSvg(tone, src, index)
+		// 	if (!svg) return
+		// 	const blob = new Blob([svg], { type: "image/svg+xml" })
+		// 	const link = document.createElement("a")
+		// 	link.download = `avatar-${index + 1}-editable.svg`
+		// 	link.href = URL.createObjectURL(blob)
+		// 	link.click()
+		// 	URL.revokeObjectURL(link.href)
+		// 	toast.success("Downloading SVG...")
+		// 	return
+		// }
 
-		const blob = await createCompositeBlob(tone, src, shouldApplyShadow, index)
+		const blob = await createCompositeBlob(
+			tone,
+			src,
+			shouldApplyShadow,
+			index,
+			format
+		)
 		if (!blob) return
 		const link = document.createElement("a")
-		link.download = `avatar-${index + 1}.png`
+		link.download = `avatar-${index + 1}.jpg`
 		link.href = URL.createObjectURL(blob)
 		link.click()
 		URL.revokeObjectURL(link.href)
-		toast.success("Downloading PNG...")
+		toast.success("Downloading JPG...")
 	}
 
 	return {
