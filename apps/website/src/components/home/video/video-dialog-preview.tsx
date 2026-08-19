@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef, useState } from "react"
+import { useEffect, useRef } from "react"
 import Image from "next/image"
 import { AspectRatio } from "@/registry/ui/aspect-ratio"
 import {
@@ -15,11 +15,38 @@ import {
 
 export default function VideoDialogPreview() {
 	const backgroundVideoRef = useRef<HTMLVideoElement>(null)
-	const [isPreviewPlaying, setIsPreviewPlaying] = useState(false)
+	const isDialogOpenRef = useRef(false)
+
+	useEffect(() => {
+		const video = backgroundVideoRef.current
+		if (!video) return
+
+		// Setting both properties covers browsers that do not reliably preserve the
+		// muted state from server-rendered markup before evaluating autoplay.
+		video.defaultMuted = true
+		video.muted = true
+
+		const playPreview = () => {
+			if (!isDialogOpenRef.current) void video.play().catch(() => {})
+		}
+		const resumeWhenVisible = () => {
+			if (document.visibilityState === "visible") playPreview()
+		}
+
+		playPreview()
+		video.addEventListener("loadeddata", playPreview)
+		document.addEventListener("visibilitychange", resumeWhenVisible)
+
+		return () => {
+			video.removeEventListener("loadeddata", playPreview)
+			document.removeEventListener("visibilitychange", resumeWhenVisible)
+		}
+	}, [])
 
 	return (
 		<Dialog
 			onOpenChange={(open) => {
+				isDialogOpenRef.current = open
 				const video = backgroundVideoRef.current
 
 				if (video) {
@@ -52,9 +79,9 @@ export default function VideoDialogPreview() {
 							autoPlay
 							playsInline
 							preload="auto"
-							onCanPlay={() => setIsPreviewPlaying(true)}
+							poster="/video/Radian-OS-poster.jpg"
 							disablePictureInPicture
-							className={`absolute inset-0 h-full w-full rounded-2xl object-cover transition-opacity duration-300 ${isPreviewPlaying ? "opacity-100" : "opacity-0"}`}>
+							className="absolute inset-0 h-full w-full rounded-2xl object-cover">
 							<source
 								src="https://cdn.radianui.com/website/videos/Radian-OS-MP4.mp4"
 								type="video/mp4"
