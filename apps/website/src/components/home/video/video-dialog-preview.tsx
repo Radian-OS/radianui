@@ -27,7 +27,14 @@ export default function VideoDialogPreview() {
 		video.muted = true
 
 		const playPreview = () => {
-			if (!isDialogOpenRef.current) void video.play().catch(() => {})
+			if (isDialogOpenRef.current) return
+
+			void video
+				.play()
+				.then(() => {
+					video.dataset.playing = "true"
+				})
+				.catch(() => {})
 		}
 		const resumeWhenVisible = () => {
 			if (document.visibilityState === "visible") playPreview()
@@ -79,9 +86,16 @@ export default function VideoDialogPreview() {
 							autoPlay
 							playsInline
 							preload="auto"
-							poster="/video/Radian-OS-poster.jpg"
+							onPlaying={(event) => {
+								event.currentTarget.dataset.playing = "true"
+							}}
 							disablePictureInPicture
-							className="absolute inset-0 h-full w-full rounded-2xl object-cover">
+							className="absolute inset-0 h-full w-full rounded-2xl object-cover opacity-0 data-[playing=true]:opacity-100">
+							<source
+								media="(max-width: 768px)"
+								src="/video/Radian-OS-preview-mobile.mp4"
+								type="video/mp4"
+							/>
 							<source
 								src="https://cdn.radianui.com/website/videos/Radian-OS-MP4.mp4"
 								type="video/mp4"

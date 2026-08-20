@@ -1,7 +1,6 @@
 import { ArrowRight } from "lucide-react"
 import Link from "next/link"
 import Background from "@/components/effects/background"
-import RapidDev from "@/components/home/RapidDev"
 import DiagonalDivider from "@/components/home/SvgDivider"
 import CTASection from "@/components/home/cta-section"
 import DeferredHomeSection from "@/components/home/deferred-home-section"
@@ -36,6 +35,7 @@ export default function Page() {
 							<div className="max-w-250 flex flex-col items-center justify-center">
 								<Link
 									href="/docs/getting-started/changelog"
+									prefetch={false}
 									className="relative h-[32px] rounded-full focus:outline-none">
 									<Badge
 										color="primary"
@@ -78,7 +78,7 @@ export default function Page() {
 				</section>
 
 				<BrandSection />
-				<RapidDev />
+				<DeferredHomeSection section="rapid-dev" minHeight={2400} />
 				<DeferredHomeSection section="components" minHeight={760} />
 
 				<DeferredHomeSection section="carousel" minHeight={1800} />

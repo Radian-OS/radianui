@@ -97,6 +97,7 @@ export function DesktopNavigation() {
 							<Button variant={"ghost"} color={"neutral"} asChild>
 								<Link
 									href={item.link}
+									prefetch={false}
 									target={item.isExternal ? "_blank" : "_self"}>
 									{item.name}
 								</Link>
@@ -118,7 +119,7 @@ export function DesktopNavigation() {
 											key={tool.title}
 											asChild
 											className="flex min-h-16 flex-row gap-3 rounded-lg p-3">
-											<Link href={tool.href ?? "#"}>
+											<Link href={tool.href ?? "#"} prefetch={false}>
 												<div className="bg-primary-accent flex size-10 shrink-0 items-center justify-center rounded-lg">
 													{tool.icon}
 												</div>
@@ -162,7 +163,9 @@ export function DesktopNavigation() {
 											key={link.title}
 											asChild
 											className="min-w-60 rounded-md px-2 py-1.5 text-sm font-normal">
-											<Link href={link.href}>{link.title}</Link>
+											<Link href={link.href} prefetch={false}>
+												{link.title}
+											</Link>
 										</NavigationMenuLink>
 									))}
 								</div>

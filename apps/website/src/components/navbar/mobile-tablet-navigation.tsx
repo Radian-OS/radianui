@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import * as AccordionPrimitive from "@radix-ui/react-accordion"
 import { ChevronDown, X } from "lucide-react"
 import Link from "next/link"
@@ -50,6 +50,12 @@ export function MobileNavigation({
 	setIsMobileMenuOpen,
 }: MobileNavigationProps) {
 	const pathname = usePathname()
+	const [isReady, setIsReady] = useState(false)
+
+	useEffect(() => {
+		const frame = window.requestAnimationFrame(() => setIsReady(true))
+		return () => window.cancelAnimationFrame(frame)
+	}, [])
 
 	useEffect(() => {
 		if (isMobileMenuOpen) {
@@ -81,7 +87,7 @@ export function MobileNavigation({
 	return (
 		<nav
 			className={`bg-bg z-100 fixed right-0 top-0 flex h-screen w-full transform flex-col overflow-y-auto px-4 transition-transform duration-300 ease-in-out md:px-5 ${
-				isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
+				isMobileMenuOpen && isReady ? "translate-x-0" : "translate-x-full"
 			}`}>
 			{/* Top Bar */}
 			<div className="border-alpha -mx-4 flex min-h-16 items-center justify-between border-b px-4 md:-mx-5 md:px-5">
@@ -115,6 +121,7 @@ export function MobileNavigation({
 								onClick={() => setIsMobileMenuOpen(false)}
 								className={`${pathname === item.link ? "text-fg0" : ""} text-fg1 w-full py-3 leading-6`}
 								href={item.link}
+								prefetch={false}
 								target={item.isExternal ? "_blank" : "_self"}>
 								{item.name}
 							</Link>
@@ -141,7 +148,8 @@ export function MobileNavigation({
 													onClick={() => setIsMobileMenuOpen(false)}
 													key={item.url}
 													className={`${pathname === item.url ? "text-fg0" : ""} text-fgflex text-fgfont-normal w-full items-center py-3`}
-													href={item.url}>
+													href={item.url}
+													prefetch={false}>
 													{item.title}
 												</Link>
 											))}
@@ -165,7 +173,8 @@ export function MobileNavigation({
 											onClick={() => setIsMobileMenuOpen(false)}
 											key={tool.title}
 											className="text-fg flex w-full items-center py-3 font-normal"
-											href={tool.href}>
+											href={tool.href}
+											prefetch={false}>
 											{tool.title}
 										</Link>
 									))}
@@ -177,7 +186,8 @@ export function MobileNavigation({
 											onClick={() => setIsMobileMenuOpen(false)}
 											key={link.title}
 											className="text-fg flex w-full items-center py-3 font-normal"
-											href={link.href}>
+											href={link.href}
+											prefetch={false}>
 											{link.title}
 										</Link>
 									))}
