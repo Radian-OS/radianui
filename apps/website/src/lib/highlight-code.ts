@@ -1,9 +1,13 @@
 import { createHash } from "crypto"
 import { LRUCache } from "lru-cache"
-import { type ShikiTransformer, codeToHtml } from "shiki"
+import { codeToHtml } from "shiki"
+import type { ShikiTransformer } from "shiki"
 
+// LRU cache for cross-request caching of highlighted code.
+// Shiki highlighting is CPU-intensive and deterministic, so caching is safe.
 const highlightCache = new LRUCache<string, string>({
-	max: 1000,
+	max: 500,
+	ttl: 1000 * 60 * 60, // 1 hour.
 })
 
 export const transformers = [
@@ -18,9 +22,7 @@ export const transformers = [
 					node.properties["__yarn__"] = raw.replace("npm install", "yarn add")
 					node.properties["__pnpm__"] = raw.replace("npm install", "pnpm add")
 					node.properties["__bun__"] = raw.replace("npm install", "bun add")
-				}
-
-				if (raw.startsWith("npx create-")) {
+				} else if (raw.startsWith("npx create-")) {
 					node.properties["__npm__"] = raw
 					node.properties["__yarn__"] = raw.replace(
 						"npx create-",
@@ -31,26 +33,20 @@ export const transformers = [
 						"pnpm create "
 					)
 					node.properties["__bun__"] = raw.replace("npx", "bunx --bun")
-				}
-
-				// npm create.
-				if (raw.startsWith("npm create")) {
+				} else if (raw.startsWith("npm create")) {
+					// npm create.
 					node.properties["__npm__"] = raw
 					node.properties["__yarn__"] = raw.replace("npm create", "yarn create")
 					node.properties["__pnpm__"] = raw.replace("npm create", "pnpm create")
 					node.properties["__bun__"] = raw.replace("npm create", "bun create")
-				}
-
-				// npx.
-				if (raw.startsWith("npx")) {
+				} else if (raw.startsWith("npx")) {
+					// npx.
 					node.properties["__npm__"] = raw
-					node.properties["__yarn__"] = raw.replace("npx", "yarn")
+					node.properties["__yarn__"] = raw.replace("npx", "yarn dlx")
 					node.properties["__pnpm__"] = raw.replace("npx", "pnpm dlx")
 					node.properties["__bun__"] = raw.replace("npx", "bunx --bun")
-				}
-
-				// npm run.
-				if (raw.startsWith("npm run")) {
+				} else if (raw.startsWith("npm run")) {
+					// npm run.
 					node.properties["__npm__"] = raw
 					node.properties["__yarn__"] = raw.replace("npm run", "yarn")
 					node.properties["__pnpm__"] = raw.replace("npm run", "pnpm")
@@ -86,14 +82,7 @@ export async function highlightCode(code: string, language: string = "tsx") {
 						"no-scrollbar min-w-0 overflow-x-auto overflow-y-auto overscroll-x-contain overscroll-y-auto px-4 py-3.5 outline-none has-[[data-highlighted-line]]:px-0 has-[[data-line-numbers]]:px-0 has-[[data-slot=tabs]]:p-0 !bg-transparent"
 				},
 				code(node) {
-					if (
-						language !== "bash" &&
-						language !== "sh" &&
-						language !== "console" &&
-						language !== "shellscript"
-					) {
-						node.properties["data-line-numbers"] = ""
-					}
+					node.properties["data-line-numbers"] = ""
 				},
 				line(node) {
 					node.properties["data-line"] = ""
