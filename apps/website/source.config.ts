@@ -58,16 +58,6 @@ export const blog = defineCollections({
 	}),
 })
 
-// Changelog collection
-export const changelog = defineCollections({
-	type: "doc",
-	dir: "src/content/changelog",
-	schema: frontmatterSchema.extend({
-		title: z.string().optional(),
-		date: z.coerce.date(),
-	}),
-})
-
 export default defineConfig({
 	mdxOptions: {
 		rehypePlugins: (plugins) => {
