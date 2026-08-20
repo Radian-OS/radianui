@@ -7,6 +7,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { navLinks } from "@/components/navbar/nav-links"
 import { navigationItems } from "@/config/navigation-config"
+import { cn } from "@/lib/utils"
 import {
 	Accordion,
 	AccordionContent,
@@ -163,8 +164,8 @@ export function MobileNavigation({
 										<Link
 											onClick={() => setIsMobileMenuOpen(false)}
 											key={tool.title}
-											className={`${pathname === "#" ? "text-fg0" : ""} text-fgflex text-fgfont-normal w-full items-center py-3`}
-											href="#">
+											className="text-fg flex w-full items-center py-3 font-normal"
+											href={tool.href}>
 											{tool.title}
 										</Link>
 									))}
@@ -175,7 +176,7 @@ export function MobileNavigation({
 										<Link
 											onClick={() => setIsMobileMenuOpen(false)}
 											key={link.title}
-											className={`${pathname === link.href ? "text-fg0" : ""} text-fgflex text-fgfont-normal w-full items-center py-3`}
+											className="text-fg flex w-full items-center py-3 font-normal"
 											href={link.href}>
 											{link.title}
 										</Link>
