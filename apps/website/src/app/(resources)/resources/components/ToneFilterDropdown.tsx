@@ -112,7 +112,7 @@ export function ToneFilterDropdown({
 	return (
 		<DropdownMenu open={open} onOpenChange={setOpen} indicatorPosition="right">
 			<DropdownMenuTrigger asChild>
-				<Button color="neutral" variant="outline" className="w-40">
+				<Button color="neutral" variant="outline" className="md:w-40">
 					<TriggerSwatch activeInfo={activeInfo} />
 					<p className="hidden sm:block">{activeInfo.label}</p>
 					<ChevronDown className="text-fg-secondary ml-auto" />
