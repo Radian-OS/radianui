@@ -8,6 +8,7 @@ import { resolveFlags } from "@/resolvers/flags"
 import { resolvePreset } from "@/resolvers/preset"
 import { promptForMissing } from "@/resolvers/prompts"
 import { txt } from "@/utils/colors"
+import { getPackageRunner } from "@/utils/getPackageManager"
 import { handleError } from "@/utils/handleError"
 import { logger } from "@/utils/logger"
 
@@ -60,7 +61,7 @@ export const init = new Command()
 				process.exit(1)
 			}
 
-			const { projectName } = await executeInit(options)
+			const { projectName, projectPath } = await executeInit(options)
 
 			logger.break()
 			logger.info(
@@ -72,8 +73,9 @@ export const init = new Command()
 				logger.log(`  cd ${txt.info(projectName)}`)
 			}
 			if (!options.presetCode) {
+				const runner = await getPackageRunner(projectPath ?? options.cwd)
 				logger.log(
-					`  To add all components, run: ${txt.info("npx radianui add -a")}`
+					`  To add all components, run: ${txt.info(`${runner} radianui add -a`)}`
 				)
 			}
 			logger.break()
@@ -103,5 +105,5 @@ export const executeInit = async (options: InitOptions) => {
 	// Phase 4: Execute — act on the fully-resolved config
 	const result = await executeInitFromConfig(config)
 
-	return { projectName: result.projectName }
+	return { projectName: result.projectName, projectPath: result.projectPath }
 }
