@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useState } from "react"
+import React, { useEffect, useMemo, useRef, useState } from "react"
 import { Type } from "lucide-react"
-import { FONTS } from "@/components/typography/typography-playground"
+import { FEATURED_FONT_NAMES } from "@/constants/featured-fonts"
 import { FontCategory, usePlayground } from "@/contexts/playground"
 import fonts from "@/data/google-fonts.json"
 import { IconButton } from "@/styles/default/ui/button"
@@ -32,8 +32,12 @@ export default function Font() {
 	const listRef = useRef<HTMLDivElement>(null)
 
 	// Filter fonts based on search term
-	const filteredFonts = fonts.fonts.filter((font) =>
-		font.family.toLowerCase().includes(searchTerm.toLowerCase())
+	const filteredFonts = useMemo(
+		() =>
+			fonts.fonts.filter((font) =>
+				font.family.toLowerCase().includes(searchTerm.toLowerCase())
+			),
+		[searchTerm]
 	)
 
 	// Handle scroll to load more (only if no search)
@@ -74,7 +78,7 @@ export default function Font() {
 			link.href = `https://fonts.googleapis.com/css2?family=${family.replace(/ /g, "+")}&display=swap`
 			document.head.appendChild(link)
 		})
-	}, [visibleCount, searchTerm])
+	}, [filteredFonts, visibleCount, searchTerm])
 
 	return (
 		<Popover open={open} onOpenChange={setOpen}>
@@ -101,7 +105,7 @@ export default function Font() {
 						style={{ maxHeight: "300px", overflowY: "auto" }}>
 						<CommandEmpty>No results found</CommandEmpty>
 						<CommandGroup>
-							{Object.entries(FONTS).map(([family]) => (
+							{FEATURED_FONT_NAMES.map((family) => (
 								<CommandItem
 									className="flex justify-between"
 									key={family}

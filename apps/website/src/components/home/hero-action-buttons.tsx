@@ -7,7 +7,7 @@ export default function HeroActionButtons() {
 	return (
 		<>
 			<Button variant="smooth" className="w-full sm:w-fit" size="40" asChild>
-				<Link href="/docs/getting-started/introduction">
+				<Link href="/docs/getting-started/introduction" prefetch={false}>
 					Read Documentation
 				</Link>
 			</Button>

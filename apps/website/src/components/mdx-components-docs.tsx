@@ -56,7 +56,6 @@ import {
 	TabsTrigger,
 } from "@/styles/default/ui/tabs"
 import ChangelogCard from "./changelog-card"
-import ChangelogList from "./changelog-list"
 import { CodeBlockCommandServer } from "./code-block-command-server"
 import { CodeCollapsibleFileWrapper } from "./code-collapsible-file-wrapper"
 import { CodeCollapsibleWrapper } from "./code-collapsible-wrapper"
@@ -243,7 +242,6 @@ function ComponentDocContent({
 }
 
 export const components = {
-	ChangelogList,
 	ChangelogCard,
 	FeatureList,
 	FeatureListItem,
