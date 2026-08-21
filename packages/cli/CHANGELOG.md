@@ -1,5 +1,11 @@
 # radianui
 
+## 0.3.4
+
+### Patch Changes
+
+- aaf7495: Add `preInstall` hook and upgrade template's packages versions
+
 ## 0.3.3
 
 ### Patch Changes

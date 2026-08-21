@@ -1,7 +1,7 @@
 {
 	"name": "radianui",
 	"description": "Add components to your project",
-	"version": "0.3.3",
+	"version": "0.3.4",
 	"main": "index.js",
 	"type": "module",
 	"publishConfig": {
@@ -69,8 +69,6 @@
 		"prompts": "^2.4.2",
 		"ts-morph": "^27.0.2",
 		"tsconfig-paths": "^4.2.0",
-		"tsup": "^8.5.0",
-		"type-fest": "^5.1.0",
 		"zod": "^4.1.12"
 	},
 	"devDependencies": {
@@ -81,7 +79,9 @@
 		"@types/prompts": "^2.4.9",
 		"@vitest/coverage-istanbul": "^4.0.4",
 		"cross-env": "^7.0.3",
+		"tsup": "^8.5.1",
 		"tsx": "^4.19.3",
+		"type-fest": "^4.39.1",
 		"typescript": "^5.9.3",
 		"vite-tsconfig-paths": "^5.1.4",
 		"vitest": "^4.0.4"
