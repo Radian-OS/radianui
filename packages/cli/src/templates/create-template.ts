@@ -41,6 +41,7 @@ export interface TemplateConfig {
 	create: (options: TemplateOptions) => Promise<void>
 	init?: (options: TemplateInitOptions) => Promise<Config>
 	files?: RegistryItem["files"]
+	preInstall?: (options: { projectPath: string }) => Promise<void>
 	postInit?: (options: { projectPath: string }) => Promise<void>
 	// Monorepo overrides. When --monorepo is passed, these fields
 	// are merged over the base template config.
@@ -61,6 +62,7 @@ export function createTemplate(config: TemplateConfig) {
 			defaultScaffold({
 				title: config.title,
 				templateDir: config.templateDir,
+				preInstall: config.preInstall
 			}),
 		postInit: config.postInit ?? defaultPostInit,
 	}
@@ -219,9 +221,11 @@ async function rewriteWorkspaceProtocol(dir: string) {
 function defaultScaffold({
 	title,
 	templateDir,
+	preInstall
 }: {
 	title: string
 	templateDir: string
+	preInstall?: (options: { projectPath: string }) => Promise<void>
 }) {
 	return async ({ projectPath, packageManager }: TemplateOptions) => {
 		const createSpinner = spinner(
@@ -273,6 +277,9 @@ function defaultScaffold({
 			// Adapt workspace config and lockfiles for the target package manager.
 			await adaptWorkspaceConfig(projectPath, packageManager)
 
+			if (preInstall)
+				await preInstall({ projectPath })
+
 			// Run install (unless explicitly skipped).
 			if (process.env.RADIANUI_SKIP_INSTALL !== "1") {
 				const installArgs = getInstallArgs(packageManager)
@@ -306,7 +313,7 @@ function defaultScaffold({
 
 // Initialize a git repository and create an initial commit.
 // Silently ignores failures (e.g. git not installed).
-async function defaultPostInit({ projectPath }: { projectPath: string }) {
+export async function defaultPostInit({ projectPath }: { projectPath: string }) {
 	try {
 		await execa("git", ["init"], { cwd: projectPath })
 		await execa("git", ["add", "-A"], { cwd: projectPath })

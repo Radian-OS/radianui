@@ -15,7 +15,7 @@ export const WEBSITE_URL = stripTrailingSlash(
 	process.env.RADIANUI_WEBSITE_URL ?? "https://radianui.com"
 )
 export const BLOCKS_URL = stripTrailingSlash(
-	process.env.RADIANUI_BLOCKS_URL ?? "http://devblocks.radianui.com"
+	process.env.RADIANUI_BLOCKS_URL ?? "http://blocks.radianui.com"
 )
 export const getRegistryComponentUrl = (style: Style) =>
 	`${WEBSITE_URL}/r/styles/${style}.json`

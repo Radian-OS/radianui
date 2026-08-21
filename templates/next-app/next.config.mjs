@@ -8,7 +8,7 @@ const nextConfig = {
 			},
 			{
 				protocol: "https",
-				hostname: "dev.radianos.com",
+				hostname: "dev.radianui.com",
 			},
 			{
 				protocol: "https",

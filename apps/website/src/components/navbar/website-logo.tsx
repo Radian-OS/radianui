@@ -4,7 +4,7 @@ import Link from "next/link"
 
 export function WebsiteLogo({ className }: { className?: string }) {
 	return (
-		<Link href={"/"} tabIndex={-1} className={className}>
+		<Link href={"/"} prefetch={false} tabIndex={-1} className={className}>
 			<Image
 				src="/radian.svg"
 				className="h-auto w-[112px] dark:hidden"

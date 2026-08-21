@@ -57,11 +57,11 @@ export async function executeInitFromConfig(config: InitConfig) {
 	const dependencies = config.preset?.config.dependencies?.length
 		? config.preset.config.dependencies
 		: [
-				"class-variance-authority",
-				"tw-animate-css",
-				"radix-ui",
-				...ICON_DEPENDENCIES[config.iconLibrary!],
-			]
+			"class-variance-authority",
+			"tw-animate-css",
+			"radix-ui",
+			...ICON_DEPENDENCIES[config.iconLibrary!],
+		]
 	await installDependencies(
 		projectPath,
 		dependencies,

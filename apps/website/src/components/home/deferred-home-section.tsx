@@ -6,6 +6,9 @@ import dynamic from "next/dynamic"
 const ComponentSection = dynamic(() => import("./component-section"), {
 	ssr: false,
 })
+const RapidDev = dynamic(() => import("./RapidDev"), {
+	ssr: false,
+})
 const CarouselSection = dynamic(() => import("./new/carousel-section"), {
 	ssr: false,
 })
@@ -18,7 +21,7 @@ const UIBlocksSection = dynamic(() => import("./ui-blocks-section"), {
 })
 
 type DeferredHomeSectionProps = {
-	section: "components" | "carousel" | "playground" | "ui-blocks"
+	section: "rapid-dev" | "components" | "carousel" | "playground" | "ui-blocks"
 	minHeight: number
 }
 
@@ -44,12 +47,12 @@ export default function DeferredHomeSection({
 				setShouldRender(true)
 				observer.disconnect()
 			},
-			{ rootMargin: "1200px 0px" }
+			{ rootMargin: section === "rapid-dev" ? "0px" : "1200px 0px" }
 		)
 
 		observer.observe(boundary)
 		return () => observer.disconnect()
-	}, [shouldRender])
+	}, [section, shouldRender])
 
 	return (
 		<div
@@ -65,6 +68,8 @@ function DeferredSection({
 	section,
 }: Pick<DeferredHomeSectionProps, "section">) {
 	switch (section) {
+		case "rapid-dev":
+			return <RapidDev />
 		case "components":
 			return <ComponentSection />
 		case "carousel":

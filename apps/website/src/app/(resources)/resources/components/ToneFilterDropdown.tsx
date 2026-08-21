@@ -17,6 +17,7 @@ import {
 	formatColorName,
 	getActiveInfo,
 } from "@/constants/tone-filter-data"
+import { cn } from "@/lib/utils"
 import { Button, CompactButton, IconButton } from "@/registry/ui/button"
 import { Divider } from "@/registry/ui/divider"
 import {
@@ -112,7 +113,7 @@ export function ToneFilterDropdown({
 	return (
 		<DropdownMenu open={open} onOpenChange={setOpen} indicatorPosition="right">
 			<DropdownMenuTrigger asChild>
-				<Button color="neutral" variant="outline" className="md:w-40">
+				<Button color="neutral" variant="outline" className="md:w-44">
 					<TriggerSwatch activeInfo={activeInfo} />
 					<p className="hidden sm:block">{activeInfo.label}</p>
 					<ChevronDown className="text-fg-secondary ml-auto" />
@@ -166,15 +167,13 @@ export function ToneFilterDropdown({
 											onClick={() => onChange(c.id)}
 											title={formatColorName(c.id)}
 											aria-label={formatColorName(c.id)}
-											className={`size-7 cursor-pointer rounded-lg transition-transform active:scale-95 ${
-												c.className
-											} ${
-												c.id === "Cool-Gray/L100%" ? "border-soft border" : ""
-											} ${
-												value === c.id
-													? "ring-primary ring-2 ring-offset-2"
-													: ""
-											}`}
+											className={cn(
+												"border-soft size-7 cursor-pointer rounded-lg border transition-transform active:scale-95",
+												c.className,
+												// c.id === "Cool-Gray/L100%" && "border-soft border",
+												value === c.id &&
+													"ring-primary ring-offset-elevation-level2 ring-2 ring-offset-2"
+											)}
 										/>
 									))}
 

@@ -2,7 +2,7 @@
 
 import React, { useState } from "react"
 import { HamburgerMenuIcon } from "@radix-ui/react-icons"
-import { MobileNavigation } from "@/components/navbar/mobile-tablet-navigation"
+import dynamic from "next/dynamic"
 import { SearchDocs } from "@/components/navbar/search"
 import { DesktopThemeToggler } from "@/components/theme-toggler"
 import { cn } from "@/lib/utils"
@@ -11,6 +11,14 @@ import { DesktopNavigation } from "./desktop-navigation"
 import EarlyAccessButton from "./early-access-button"
 import FigmaPreviewButton from "./figma-preview-button"
 import { WebsiteLogo } from "./website-logo"
+
+const MobileNavigation = dynamic(
+	() =>
+		import("@/components/navbar/mobile-tablet-navigation").then(
+			(module) => module.MobileNavigation
+		),
+	{ ssr: false }
+)
 
 export interface NavigationBarProps {
 	sticky?: boolean
@@ -22,6 +30,7 @@ export function NavigationBar({
 	className,
 }: NavigationBarProps = {}) {
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+	const [hasOpenedMobileMenu, setHasOpenedMobileMenu] = useState(false)
 
 	return (
 		<>
@@ -55,16 +64,21 @@ export function NavigationBar({
 							color="neutral"
 							variant="soft"
 							className="xl:hidden"
-							onClick={() => setIsMobileMenuOpen(true)}>
+							onClick={() => {
+								setHasOpenedMobileMenu(true)
+								setIsMobileMenuOpen(true)
+							}}>
 							<HamburgerMenuIcon className="size-6" />
 						</IconButton>
 					</div>
 				</div>
 			</nav>
-			<MobileNavigation
-				isMobileMenuOpen={isMobileMenuOpen}
-				setIsMobileMenuOpen={setIsMobileMenuOpen}
-			/>
+			{hasOpenedMobileMenu ? (
+				<MobileNavigation
+					isMobileMenuOpen={isMobileMenuOpen}
+					setIsMobileMenuOpen={setIsMobileMenuOpen}
+				/>
+			) : null}
 		</>
 	)
 }

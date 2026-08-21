@@ -160,6 +160,11 @@ export const useAvatarPlayground = () => {
 	const handleToneChange = useCallback((value: string) => {
 		localStorage.setItem(TONE_STORAGE_KEY, value)
 
+		if (value === "none") {
+			localStorage.setItem(SHADOW_STORAGE_KEY, "false")
+			setShowShadow(false)
+		}
+
 		if (
 			value === "pick-color" ||
 			value === "pick-gradient" ||
