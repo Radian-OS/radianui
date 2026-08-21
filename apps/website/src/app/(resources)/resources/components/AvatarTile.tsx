@@ -32,7 +32,8 @@ export const AvatarTile = ({
 	isFavorite,
 	onToggleFavorite,
 }: AvatarTileProps) => {
-	const isNeutralBackground = tone === "neutral" || tone === "none"
+	const isNoneBackground = tone === "none"
+	const isNeutralBackground = tone === "neutral" || isNoneBackground
 	const imageBackgroundTint = getImageBackgroundTint(tone)
 	const shouldApplyShadow =
 		!isNeutralBackground && Object.keys(toneStyle).length > 0
@@ -62,6 +63,26 @@ export const AvatarTile = ({
 		<li
 			className="border-soft bg-bg group relative isolate aspect-square w-full overflow-hidden rounded-xl border"
 			style={toneStyle}>
+			{isNoneBackground && (
+				<div
+					aria-hidden="true"
+					className="pointer-events-none absolute inset-0 bg-repeat dark:hidden"
+					style={{
+						backgroundImage: "url(/media/transparent-bg-light.png)",
+						backgroundSize: "200px 200px",
+					}}
+				/>
+			)}
+			{isNoneBackground && (
+				<div
+					aria-hidden="true"
+					className="pointer-events-none absolute inset-0 hidden bg-repeat dark:block"
+					style={{
+						backgroundImage: "url(/media/transparent-bg-dark.png)",
+						backgroundSize: "200px 200px",
+					}}
+				/>
+			)}
 			<Image
 				src={src}
 				alt={getAvatarAltText(index + 1, tone)}

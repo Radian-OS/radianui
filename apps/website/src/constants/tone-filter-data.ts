@@ -18,6 +18,7 @@ export interface ToneFilterDropdownProps {
 }
 
 export const SOLID_COLORS: SolidColor[] = [
+	{ id: "White/L100%", className: "bg-[#FFFFFF]" },
 	{ id: "Cool-Gray/L94%", className: "bg-[#F7F7F8]" },
 	{ id: "Warm-Gray/L100%", className: "bg-[#EFE9E6]" },
 	{ id: "Green/100", className: "bg-[#E3E8E3]" },
