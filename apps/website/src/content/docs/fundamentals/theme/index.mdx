@@ -25,9 +25,26 @@ themes to Radian is a lot easier.
 
 <Image src="/doc/theme-figma.webp" alt="Theme Figma" width={800} height={600} />
 
-2. **Dark mode in Development:** Radian supports dark mode by default, you can acces those colors in global CSS.
+2. **Dark mode in Development:** Radian supports dark mode by default. We recommend you to use CSS variables for theming. To add a new token define it under `@theme` and `.dark`
 
-<CodeCollapsibleFileWrapper file="globals.css" />
+```postcss
+/* For light mode */
+@theme {
+	--color-card-background: oklch(0.528 0.253 282.555);
+}
+
+/* For dark mode */
+.dark {
+	--color-card-background: oklch(0.528 0.253 282.555);
+}
+```
+
+<br />
+Then use the `card-background` token in your components.
+
+```tsx
+<div className="bg-card-background">...</div>
+```
 
 ## How to Make Custom Themes
 
