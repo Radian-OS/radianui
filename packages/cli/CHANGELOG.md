@@ -1,5 +1,17 @@
 # radianui
 
+## 0.3.5
+
+### Patch Changes
+
+- 8001aef: Move `tsup` and `type-fest` to `devDependencies`
+
+## 0.3.4
+
+### Patch Changes
+
+- aaf7495: Add `preInstall` hook and upgrade template's packages versions
+
 ## 0.3.3
 
 ### Patch Changes

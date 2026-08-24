@@ -1,6 +1,8 @@
 # 🖥️ Radian UI CLI (radianui)
 
-Radian UI CLI helps you scaffold a new project and add production‑ready UI components, blocks, and utilities with minimal setup. It configures Tailwind CSS (v4), generates project configuration, and installs required dependencies for you.
+Radian UI CLI helps you scaffold a new project and add production ready UI components, blocks, and utilities with minimal setup. It configures Tailwind CSS (v4), generates project configuration, and installs required dependencies for you.
+
+**[Website](https://radianui.com)** • **[Documentation](https://radianui.com/docs/getting-started/introduction)** • **[UI Blocks](https://blocks.radianui.com)** • **[Figma Design System](https://www.figma.com/design/ZB8gTZwafZOYY7rdJjSRz6/%E2%9D%96-Preview-%E2%9D%96-Radian-Design-System-%E2%9D%96-Version-0.3)** • **[GitHub](https://github.com/Radian-os/radianui)**
 
 ---
 
@@ -23,7 +25,6 @@ Then follow the prompts to choose framework, src directory, brand color, and fon
 Initialize a new project or configure an existing one.
 
 ```bash
-
 # Create a new Vite React+TS app
 npx radianui init my-app --vite
 
@@ -57,9 +58,19 @@ npx radianui add button --overwrite
 
 Behavior:
 
-- If no project is detected, you’ll be prompted to create one before adding components.
+- If no project is detected, you'll be prompted to create one before adding components.
 - Files are created under your configured aliases (see `components.json`).
 - When adding blocks, required assets are downloaded into `public/` automatically.
+
+---
+
+## 🎨 Design resources
+
+Beyond components, Radian provides free, ready-to-use design assets:
+
+- **[Figma Design System](https://www.figma.com/design/ZB8gTZwafZOYY7rdJjSRz6/%E2%9D%96-Preview-%E2%9D%96-Radian-Design-System-%E2%9D%96-Version-0.3)** — The full component library as an editable Figma file, kept in sync with the code
+- **[UI Avatars](https://radianui.com/resources/avatar)** — 216+ free, royalty free avatar illustrations, available as SVG, PNG, HTML embed, or a matching Figma frame
+- **[Full resource hub](https://radianui.com/docs/getting-started/resources)** — Browse everything in one place; more asset packs (brand logos, flags, file icons, emojis) are actively in progress
 
 ---
 
