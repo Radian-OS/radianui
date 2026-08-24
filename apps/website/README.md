@@ -7,5 +7,3 @@ Build next generation of world class products and solutions. **Use this to make 
 ## Documentation
 
 Visit https://radianui.com/docs/getting-started/introduction to view the documentation.
-
-test

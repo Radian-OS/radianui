@@ -1,6 +1,6 @@
 {
 	"name": "radianui",
-	"description": "Add components to your project",
+	"description": "CLI to scaffold React projects and add production-ready UI components with Tailwind CSS",
 	"version": "0.3.2",
 	"main": "index.js",
 	"type": "module",
@@ -33,13 +33,20 @@
 		"coverage": "vitest run --coverage"
 	},
 	"keywords": [
-		"radian",
-		"radianos",
-		"radianos cli",
-		"components",
-		"ui",
-		"tailwind",
-		"radix-ui"
+		"react",
+		"nextjs",
+		"vite",
+		"cli",
+		"component-library",
+		"ui-components",
+		"tailwindcss",
+		"design-system",
+		"radianui",
+		"radianui-components",
+		"radianui-figma",
+		"radianui-cli",
+		"radianui-resources",
+		"radianui-blocks"
 	],
 	"author": "RadianOS <radianos44@gmail.com> (https://radianui.com)",
 	"license": "MIT",
@@ -47,7 +54,7 @@
 		"type": "git",
 		"url": "https://github.com/Radian-os/radianui"
 	},
-	"homepage": "https://github.com/Radian-os/radianui#readme",
+	"homepage": "https://radianui.com",
 	"dependencies": {
 		"@clack/prompts": "^0.11.0",
 		"adm-zip": "^0.5.16",
