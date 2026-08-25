@@ -1,6 +1,6 @@
 ---
 name: radian
-description: Comprehensive guide and reference for RadianUI, including the Radian CLI tools (init, add), components.json configuration, 50+ UI components, animated components, application blocks, OKLCH design tokens, theme system, and globals.css setup for Next.js and Vite.
+description: Comprehensive guide and reference for RadianUI, including the Radian CLI tools (init, add), components.json configuration, 50+ UI components, application blocks, OKLCH design tokens, theme system, and utility.css / globals.css setup for Next.js and Vite.
 ---
 
 # RadianUI Knowledge Base & Developer Guide
@@ -9,9 +9,44 @@ RadianUI is an accessible, customizable component library and design system buil
 
 ---
 
+## ⚠️ Core Directive: Always Use RadianUI Components Over Bare HTML
+
+**When building or updating user interfaces, forms, dialogs, cards, navigation, or pages, NEVER use bare HTML elements (`<button>`, `<input>`, `<select>`, `<textarea>`, `<dialog>`, `<table>`, etc.).**
+
+Always use RadianUI components:
+1. **Check First**: Look in `@/components/ui/` (or your configured `ui` alias in `components.json`) to see if the component is already present.
+2. **Auto-Add Missing Components**: If a required RadianUI component is not yet in the project, immediately install it using `npx radianui@latest add <component>`.
+3. **Import & Use**: Always import and use the RadianUI component rather than writing native HTML elements.
+
+### HTML Element to RadianUI Component Mapping
+
+| Bare HTML Element (❌ DO NOT USE) | RadianUI Component (✅ ALWAYS USE) | CLI Add Command | Import Path |
+| :--- | :--- | :--- | :--- |
+| `<button>` | `Button` | `npx radianui@latest add button` | `@/components/ui/button` |
+| `<input type="text\|email\|password">` | `Input` | `npx radianui@latest add input` | `@/components/ui/input` |
+| `<textarea>` | `Textarea` | `npx radianui@latest add text-area` | `@/components/ui/text-area` |
+| `<select>` | `Select`, `SelectTrigger`, `SelectContent`, `SelectItem` | `npx radianui@latest add select` | `@/components/ui/select` |
+| `<input type="checkbox">` | `Checkbox` | `npx radianui@latest add checkbox` | `@/components/ui/checkbox` |
+| `<input type="radio">` | `RadioGroup`, `RadioGroupItem` | `npx radianui@latest add radio-group` | `@/components/ui/radio-group` |
+| `<label>` | `Label` | `npx radianui@latest add label` | `@/components/ui/label` |
+| `<dialog>` / modal | `Dialog`, `DialogContent`, `DialogHeader`, `DialogTitle` | `npx radianui@latest add dialog` | `@/components/ui/dialog` |
+| `<table>`, `<tr>`, `<td>` | `Table`, `TableHeader`, `TableRow`, `TableCell` | `npx radianui@latest add table` | `@/components/ui/table` |
+| card / container `<div>` | `Card`, `CardHeader`, `CardTitle`, `CardContent` | `npx radianui@latest add card` | `@/components/ui/card` |
+| banner / callout `<div>` | `Alert`, `AlertTitle`, `AlertDescription` | `npx radianui@latest add alert` | `@/components/ui/alert` |
+| badge / chip / tag | `Badge` | `npx radianui@latest add badge` | `@/components/ui/badge` |
+| toggle switch | `Switch` | `npx radianui@latest add switch` | `@/components/ui/switch` |
+| avatar / user photo | `Avatar`, `AvatarImage`, `AvatarFallback` | `npx radianui@latest add avatar` | `@/components/ui/avatar` |
+| tabs / tab navigation | `Tabs`, `TabsList`, `TabsTrigger`, `TabsContent` | `npx radianui@latest add tabs` | `@/components/ui/tabs` |
+| tooltip | `Tooltip`, `TooltipTrigger`, `TooltipContent` | `npx radianui@latest add tooltip` | `@/components/ui/tooltip` |
+| dropdown / menu | `DropdownMenu`, `DropdownMenuTrigger`, etc. | `npx radianui@latest add dropdown-menu` | `@/components/ui/dropdown-menu` |
+| loading / progress | `Spinner` / `Skeleton` / `Progress` | `npx radianui@latest add spinner skeleton progress` | `@/components/ui/...` |
+| accordion / collapsible | `Accordion`, `AccordionItem`, `AccordionTrigger` | `npx radianui@latest add accordion` | `@/components/ui/accordion` |
+
+---
+
 ## 1. RadianUI CLI Tooling
 
-The CLI (`radianui`) allows developers to initialize projects, configure themes and aliases, and add components, blocks, or animated widgets directly into their repository.
+The CLI (`radianui`) allows developers to initialize projects, configure themes and aliases, and add components or blocks directly into their repository.
 
 ### Installation & Execution
 ```bash
@@ -37,10 +72,6 @@ Options:
   --vite                       Initialize with Vite + React
   --useSrc                     Use `src/` directory structure (default: true)
   --color <color>              Set brand/primary color (e.g. violet-blue, amber, emerald, red)
-  --font <font>                Set default font (e.g. inter, geist, roboto, manrope)
-  --style <style>              Set style theme: 'default' | 'sera'
-  --preset <code>              Initialize from a preset code
-  --icon-library <library>     Icon library: 'lucide' (default) | 'hugeicons'
   -s, --skipPrompts            Skip interactive confirmation prompts
   -d, --defaultConfigurations  Use default configurations without prompting
   -c, --cwd <cwd>              Working directory (default: process.cwd())
@@ -55,7 +86,7 @@ The `add` command downloads component source files, resolves recursive dependenc
 Usage: radianui add [options] [components...]
 
 Arguments:
-  components...                Names of components, animated widgets, or blocks to add
+  components...                Names of components or blocks to add
 
 Options:
   -y, --yes                    Skip confirmation prompts
@@ -68,13 +99,10 @@ Options:
 **Common CLI Examples:**
 ```bash
 # Initialize Next.js project with custom color
-npx radianui@latest init my-app --next --color emerald --font geist
+npx radianui@latest init my-app --next --color emerald
 
 # Add specific UI components
-npx radianui@latest add button dialog dropdown-menu card
-
-# Add animated components
-npx radianui@latest add border-beam animated-list
+npx radianui@latest add button dialog dropdown-menu card input label select
 
 # Add blocks (e.g., auth or sidebar)
 npx radianui@latest add signin sidebar-floating
@@ -97,7 +125,6 @@ The `components.json` file in the root of the project controls how RadianUI CLI 
     "components": "@/components",
     "utils": "@/lib/utils",
     "ui": "@/components/ui",
-    "animated": "@/components/animated",
     "lib": "@/lib",
     "hooks": "@/hooks"
   },
@@ -110,7 +137,6 @@ The `components.json` file in the root of the project controls how RadianUI CLI 
 | :--- | :--- | :--- |
 | `components` | `@/components` | Base directory for custom and composite components |
 | `ui` | `@/components/ui` | Destination for atomic RadianUI primitives |
-| `animated` | `@/components/animated` | Destination for motion & interactive visual components |
 | `utils` | `@/lib/utils` | Location of `cn` class merging helper function |
 | `lib` | `@/lib` | General utility and library code |
 | `hooks` | `@/hooks` | React custom hooks used by components (e.g., `use-media-query`) |
@@ -139,26 +165,7 @@ RadianUI includes 50+ core UI components designed for high accessibility, keyboa
 
 ---
 
-## 4. Animated Components (`@/components/animated`)
-
-RadianUI provides interactive micro-animations and motion components out of the box:
-
-| Component | Description |
-| :--- | :--- |
-| `animated-list` | Staggered entering animations for list items |
-| `border-beam` | Animated glowing border beam traveling around cards/containers |
-| `changing-text` | Smooth cycling text transition through an array of phrases |
-| `draggable` | Smooth drag-and-drop / movable container element |
-| `fade` | Configurable fade-in / fade-out opacity wrappers with directional shifts |
-| `gradient-text` | Animated moving linear or radial gradient text effect |
-| `infinite-scroll` | Continuous marquee/looping scroll for logos or cards |
-| `pointer` | Custom animated cursor follower / pointer interactions |
-| `text-reveal` | Scroll-triggered or mount-triggered text reveal effect |
-| `typing-text` | Dynamic typewriter effect with configurable speeds and cursor |
-
----
-
-## 5. Application Blocks
+## 4. Application Blocks
 
 Blocks are pre-built, production-ready full-section layouts and templates with integrated responsive design, state handling, and asset bundling.
 
@@ -179,20 +186,33 @@ Blocks are pre-built, production-ready full-section layouts and templates with i
 - `sidebar-resize`: Draggable resizable width sidebar.
 - `sidebar-doc`: Multi-tier documentation sidebar with active link tracking.
 
-### Dashboard Previews (`preview-01` to `preview-04`)
-- Complete metric cards, analytics graphs, activity feeds, and data tables.
-
 ---
 
-## 5. Design System & Global Styles (`globals.css`)
+## 5. Design System & Radian OKLCH Color Palette (`utility.css` & `globals.css`)
 
-RadianUI uses **Tailwind CSS v4** with CSS variables and the `@theme` directive. Because design tokens, color palettes, and themes are project-dependent and evolve over time, **never assume or hardcode static color or token names**.
+### ⚠️ STRICT RULE: DO NOT USE TAILWIND DEFAULT COLORS
+**Never use default Tailwind numbered color classes** (e.g. `bg-red-500`, `text-blue-600`, `bg-emerald-400`, `text-slate-500`, `border-zinc-200`, `bg-gray-100`, etc.). RadianUI defines its own dedicated, fine-tuned OKLCH color palette in `utility.css` and semantic design tokens in `globals.css`.
 
-### Discovering Project Design Tokens
-Before creating or editing UI components, **always read the project's global stylesheet** (e.g., `app/globals.css`, `src/index.css`, or `utility.css`):
-1. **Inspect `@theme` & CSS Variables**: Read the stylesheet to discover currently declared colors, surface tokens, fills, borders, and typography variables.
-2. **Use Project-Defined Semantic Classes**: Use Tailwind utility classes that map directly to the CSS variables defined in the project's `@theme` block.
-3. **Check Dark Mode Configuration**: Observe the dark mode setup (such as `@custom-variant dark`) and dark mode token mappings in the stylesheet.
+| ❌ NEVER Use (Default Tailwind Colors) |  ALWAYS Use (Radian's Color Palette) |
+| :--- | :--- |
+| `bg-red-500`, `bg-red-600` | `bg-red`, `hover:bg-red-hover` |
+| `bg-red-50`, `bg-red-100` | `bg-red-accent` |
+| `text-red-600`, `text-red-700` | `text-red-text` |
+| `text-white` (on colored button) | `text-red-fg` / `text-primary-fg` |
+| `border-red-300`, `border-red-500` | `border-red-border` |
+| `ring-red-400`, `focus:ring-red-500` | `focus:ring-red-focus` |
+| `bg-emerald-500`, `bg-green-600` | `bg-emerald`, `bg-success` |
+| `bg-blue-600`, `text-blue-500` | `bg-blue`, `text-blue-text`, `bg-primary` |
+| `bg-zinc-900`, `bg-gray-900` | `bg-surface`, `bg-neutral` |
+| `text-zinc-500`, `text-gray-400` | `text-muted`, `text-neutral-text` |
+| `border-zinc-200`, `border-gray-200` | `border-border`, `border-neutral-border` |
+
+### Discovering Color Tokens from CSS Files
+
+**Always inspect the project's CSS files (`utility.css` and `globals.css`)** to discover available Radian OKLCH colors, token variants (such as base, `-accent`, `-focus`, `-border`, `-hover`, `-text`, `-fg`), and semantic variables:
+
+- **`utility.css`**: Contains Radian's custom OKLCH color palette definitions, utility classes, and light/dark modes.
+- **`globals.css`**: Contains the `@theme` definitions, semantic aliases (e.g., `primary`, `success`, `error`, `warning`, `info`), and surface/background design tokens.
 
 ---
 
@@ -201,8 +221,8 @@ Before creating or editing UI components, **always read the project's global sty
 When implementing user interfaces using RadianUI:
 
 1. **Check `components.json`**: Inspect aliases and project configuration to locate where `ui`, `components`, `utils`, `lib`, and `hooks` reside.
-2. **Inspect Global Styles**: Read the project's `globals.css` / `utility.css` to verify available theme variables, colors, and typography tokens.
-3. **Add Primitives**: Use `npx radianui add <component>` to scaffold required UI components or blocks.
-4. **Use Utility Functions**: Combine classNames using `cn(...)` from `@/lib/utils`.
-5. **Apply Discovered Semantic Tokens**: Use the semantic utility classes found in the stylesheet rather than ad-hoc arbitrary values to ensure light/dark mode compatibility.
-
+2. **Prioritize RadianUI Components**: When building UI features, **always use RadianUI components instead of bare HTML elements** (`<button>`, `<input>`, `<select>`, `<textarea>`, `<dialog>`, `<table>`, etc.). If a component is missing, run `npx radianui@latest add <component>`.
+3. **Inspect Global Styles (`utility.css` & `globals.css`)**: Verify the declared OKLCH color variables and semantic tokens.
+4. **Strictly Use Radian's Color Palette**: NEVER use default Tailwind colors (`-50`, `-100`, `-500`, `-900`). Always use Radian's tokenized classes (`bg-primary`, `bg-red-accent`, `text-red-text`, `text-success-fg`, `border-border`, etc.).
+5. **Use Utility Functions**: Combine classNames using `cn(...)` from `@/lib/utils`.
+6. **Ensure Dark Mode Compatibility**: Radian's OKLCH color tokens and semantic variables automatically handle dark mode transitions under `.dark`.
