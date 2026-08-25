@@ -1,6 +1,5 @@
 "use client"
 
-import { createElement } from "react"
 import { useState } from "react"
 import { toast } from "sonner"
 import { showCopiedToast } from "@/app/(resources)/resources/components/CopiedToast"
@@ -246,7 +245,7 @@ export const useAvatarTileActions = ({
 		const shadowSrc = AVATAR_SHADOW_MAP[index]
 
 		const lines = [
-			`<div style={{ position: "relative", width: 512, height: 512, overflow: "hidden"${
+			`<div style={{ position: "relative", width: 1024, height: 1024, overflow: "hidden"${
 				bgCss
 					? `, ${bgCss
 							.split(";")
@@ -292,7 +291,7 @@ export const useAvatarTileActions = ({
 		const shadowSrc = AVATAR_SHADOW_MAP[index]
 
 		const lines = [
-			`<div style="position: relative; width: 512px; height: 512px; overflow: hidden;${bgCss ? ` ${bgCss}` : ""}">`,
+			`<div style="position: relative; width: 1024px; height: 1024px; overflow: hidden;${bgCss ? ` ${bgCss}` : ""}">`,
 			`  <img src="${src}" alt="Avatar illustration ${index + 1}" style="width: 100%; height: 100%; object-fit: cover;" />`,
 		]
 		if (shadowSrc) {

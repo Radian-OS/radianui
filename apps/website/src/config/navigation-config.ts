@@ -9,6 +9,7 @@ import {
 	ScrollText,
 	SquareTerminal,
 	SunMoon,
+	Zap,
 } from "lucide-react"
 import type { LucideIcon } from "lucide-react"
 import {
@@ -186,6 +187,12 @@ const GETTING_STARTED_ITEMS: NavigationItem[] = [
 		title: "Resources",
 		url: "/docs/getting-started/resources",
 		icon: ResourcesIcon,
+		isNew: true,
+	},
+	{
+		title: "Skills",
+		url: "/docs/getting-started/skills",
+		icon: Zap,
 		isNew: true,
 	},
 	{
