@@ -106,12 +106,23 @@ const AvatarPlayground = () => {
 				</div>
 			) : displayedAvatars.length === 0 ? (
 				<div className="border-soft bg-bg/50 flex flex-col items-center justify-center rounded-xl border border-dashed py-16 text-center">
-					<Star className="text-fg-secondary mb-3 size-10" />
-					<p className="text-sm font-medium">No favorite avatars yet</p>
-					<p className="text-fg-secondary mt-1 text-xs">
-						Click the 3 dots menu on any avatar tile to add it to your
-						favorites.
-					</p>
+					{category === "favorites" ? (
+						<>
+							<Star className="text-fg-secondary mb-3 size-10" />
+							<p className="text-sm font-medium">No favorite avatars yet</p>
+							<p className="text-fg-secondary mt-1 text-xs">
+								Click the 3 dots menu on any avatar tile to add it to your
+								favorites.
+							</p>
+						</>
+					) : (
+						<>
+							<p className="text-sm font-medium">No avatars found</p>
+							<p className="text-fg-secondary mt-1 text-xs">
+								Try selecting a different category.
+							</p>
+						</>
+					)}
 				</div>
 			) : (
 				<ul

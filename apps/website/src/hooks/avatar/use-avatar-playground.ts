@@ -204,11 +204,11 @@ export const useAvatarPlayground = () => {
 	const displayedAvatars = useMemo(
 		() =>
 			AVATARS.map((src, index) => ({ src, index }))
-				.filter(({ src }) => {
+				.filter(({ src, index }) => {
 					if (category === "favorites") {
 						return favorites.has(src)
 					}
-					const avatarNumber = Number(src.match(/\d+/)?.[0])
+					const avatarNumber = index + 1
 					return (
 						category === "all" ||
 						CATEGORY_AVATAR_MAP[category]?.includes(avatarNumber)
