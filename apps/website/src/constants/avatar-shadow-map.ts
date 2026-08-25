@@ -1,5 +1,5 @@
 const BASE_CDN_URL =
-	"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/shadow/src"
+	"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@v1.0.0/packages/shadow/src"
 
 const SHADOWS: string[] = [
 	"CenterA.png",

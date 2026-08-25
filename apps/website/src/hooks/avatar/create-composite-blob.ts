@@ -25,7 +25,7 @@ export const createCompositeBlob = async (
 	index: number,
 	format: AvatarDownloadFormats
 ): Promise<Blob | null> => {
-	const size = 512
+	const size = 1024
 	const canvas = document.createElement("canvas")
 	canvas.width = size
 	canvas.height = size
