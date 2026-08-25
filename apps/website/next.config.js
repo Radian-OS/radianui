@@ -116,15 +116,6 @@ const nextConfig = {
 				headers: [{ key: "Access-Control-Allow-Origin", value: "*" }],
 			},
 			{
-				source: "/docs/:path*",
-				headers: [
-					{
-						key: "Cache-Control",
-						value: "public, max-age=31536000, immutable",
-					},
-				],
-			},
-			{
 				source: "/:path*", // HTML pages and other
 				headers: [
 					// {
@@ -156,13 +147,13 @@ const nextConfig = {
 		return process.env.NODE_ENV === "production"
 			? headers
 			: headers
-				.map((route) => ({
-					...route,
-					headers: route.headers.filter(
-						(header) => header.key !== "Cache-Control"
-					),
-				}))
-				.filter((route) => route.headers.length > 0)
+					.map((route) => ({
+						...route,
+						headers: route.headers.filter(
+							(header) => header.key !== "Cache-Control"
+						),
+					}))
+					.filter((route) => route.headers.length > 0)
 	},
 
 	async rewrites() {
