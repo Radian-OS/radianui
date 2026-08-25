@@ -89,6 +89,7 @@ export const COMPONENTS_DATA = [
 	"Calendar",
 	"Card",
 	"Carousel",
+	"Chart",
 	"Code Area",
 	"Collapsible",
 	"Combobox",

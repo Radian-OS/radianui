@@ -1,5 +1,12 @@
 # radianui
 
+## 0.3.6
+
+### Patch Changes
+
+- Update readme.md
+- 7a0673d: Add `preInstall` hook and upgrade template's packages versions
+
 ## 0.3.5
 
 ### Patch Changes
