@@ -346,11 +346,11 @@ export const useAvatarTileActions = ({
 		)
 		if (!blob) return
 		const link = document.createElement("a")
-		link.download = `avatar-${index + 1}.jpg`
+		link.download = `avatar-${index + 1}.${format}`
 		link.href = URL.createObjectURL(blob)
 		link.click()
 		URL.revokeObjectURL(link.href)
-		toast.success("Downloading JPG...")
+		toast.success(`Downloading ${format.toUpperCase()}...`)
 	}
 
 	return {
