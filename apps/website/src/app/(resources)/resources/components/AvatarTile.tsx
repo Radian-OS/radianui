@@ -102,7 +102,7 @@ export const AvatarTile = ({
 			{shouldApplyShadow && (
 				<div
 					aria-hidden="true"
-					className="pointer-events-none absolute inset-0 mix-blend-color-burn"
+					className="z-15 pointer-events-none absolute inset-0 mix-blend-color-burn"
 					style={{
 						...shadowStyle,
 						opacity: AVATAR_BLEND_OPACITY,
