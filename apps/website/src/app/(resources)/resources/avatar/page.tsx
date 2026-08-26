@@ -1,5 +1,6 @@
 import { ArrowRight } from "lucide-react"
 import type { Metadata } from "next"
+import Image from "next/image"
 import Link from "next/link"
 import Background from "@/components/effects/background"
 import Footer from "@/components/home/footer"
