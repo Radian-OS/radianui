@@ -53,7 +53,7 @@ export const useAvatarPlayground = () => {
 	const [tone, setTone] = useState("pick-color")
 	const [randomTrigger, setRandomTrigger] = useState(0)
 	const [configOpen, setConfigOpen] = useState(false)
-	const [copyFormat, setCopyFormat] = useState("editable-bg")
+	const [copyFormat, setCopyFormat] = useState("image")
 	const [colorMode, setColorMode] = useState<ColorMode>("static")
 	const [showShadow, setShowShadow] = useState(true)
 	const [favorites, setFavorites] = useState<Set<string>>(() => new Set())

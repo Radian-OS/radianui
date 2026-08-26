@@ -145,7 +145,7 @@ const ConfigPreferencesDialog = ({
 
 	const handleReset = () => {
 		// onColorModeChange("static")
-		onCopyFormatChange("editable-bg")
+		onCopyFormatChange("image")
 		onShowShadowChange(true)
 		onToneChange("pick-color")
 	}

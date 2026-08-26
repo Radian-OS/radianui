@@ -239,37 +239,19 @@ export const useAvatarTileActions = ({
 		return ""
 	}
 
+	const getBackgroundColor = (): string => {
+		if (tone.startsWith("#")) return tone
+
+		if (SOLID_COLOR_MAP[tone]) return SOLID_COLOR_MAP[tone]
+
+		return ""
+	}
+
 	// 5. Next JS <Image> Tag
 	const handleCopyNextImageTag = async () => {
-		const bgCss = getBackgroundCss()
-		const shadowSrc = AVATAR_SHADOW_MAP[index]
+		const bgColor = getBackgroundColor()
 
-		const lines = [
-			`<div style={{ position: "relative", width: 1024, height: 1024, overflow: "hidden"${
-				bgCss
-					? `, ${bgCss
-							.split(";")
-							.filter(Boolean)
-							.map((s) => {
-								const [k, ...v] = s.split(":")
-								const camel = k
-									.trim()
-									.replace(/-([a-z])/g, (_, c) => c.toUpperCase())
-								return `${camel}: "${v.join(":").trim()}"`
-							})
-							.join(", ")}`
-					: ""
-			} }}>`,
-			`  <Image src="${src}" alt="Avatar illustration ${index + 1}" fill style={{ objectFit: "cover" }} />`,
-		]
-		if (shadowSrc) {
-			lines.push(
-				`  <Image src="${shadowSrc}" alt="" fill style={{ objectFit: "cover", mixBlendMode: "hard-light", pointerEvents: "none" }} />`
-			)
-		}
-		lines.push(`</div>`)
-
-		const snippet = lines.join("\n")
+		const snippet = `<Image src="${src}" alt="Avatar" width={200} height={200} style={{ objectFit: "cover", backgroundColor: "${bgColor}" }} />`
 		try {
 			await navigator.clipboard.writeText(snippet)
 			markCopied()
@@ -287,21 +269,9 @@ export const useAvatarTileActions = ({
 
 	// 6. HTML <IMG> Tag
 	const handleCopyHtmlImgTag = async () => {
-		const bgCss = getBackgroundCss()
-		const shadowSrc = AVATAR_SHADOW_MAP[index]
+		const bgColor = getBackgroundColor()
 
-		const lines = [
-			`<div style="position: relative; width: 1024px; height: 1024px; overflow: hidden;${bgCss ? ` ${bgCss}` : ""}">`,
-			`  <img src="${src}" alt="Avatar illustration ${index + 1}" style="width: 100%; height: 100%; object-fit: cover;" />`,
-		]
-		if (shadowSrc) {
-			lines.push(
-				`  <img src="${shadowSrc}" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; mix-blend-mode: hard-light; pointer-events: none;" />`
-			)
-		}
-		lines.push(`</div>`)
-
-		const snippet = lines.join("\n")
+		const snippet = `<img src="${src}" alt="Avatar" style="width: 200px; height: 100%; object-fit: cover; background-color: ${bgColor};" />`
 		try {
 			await navigator.clipboard.writeText(snippet)
 			markCopied()
