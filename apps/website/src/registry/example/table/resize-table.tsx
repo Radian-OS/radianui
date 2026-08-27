@@ -2,12 +2,17 @@
 
 import { useState } from "react"
 import {
-	ColumnDef,
-	SortingState,
+	type ColumnDef,
+	type SortingState,
+	columnResizingFeature,
+	columnSizingFeature,
+	columnVisibilityFeature,
+	createSortedRowModel,
 	flexRender,
-	getCoreRowModel,
-	getSortedRowModel,
-	useReactTable,
+	rowSelectionFeature,
+	rowSortingFeature,
+	tableFeatures,
+	useTable,
 } from "@tanstack/react-table"
 import { ChevronDownIcon, ChevronUpIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
@@ -19,6 +24,15 @@ import {
 	TableHeader,
 	TableRow,
 } from "@/registry/ui/table"
+
+const features = tableFeatures({
+	rowSortingFeature,
+	rowSelectionFeature,
+	columnResizingFeature,
+	columnSizingFeature,
+	columnVisibilityFeature,
+	sortedRowModel: createSortedRowModel(),
+})
 
 type Item = {
 	id: string
@@ -87,7 +101,7 @@ const data: Item[] = [
 	},
 ]
 
-const columns: ColumnDef<Item>[] = [
+const columns: ColumnDef<typeof features, Item>[] = [
 	{
 		header: "Email",
 		accessorKey: "email",
@@ -133,12 +147,11 @@ export default function ResizableTable() {
 		},
 	])
 
-	const table = useReactTable({
+	const table = useTable({
+		features,
 		data,
 		columns,
 		columnResizeMode: "onChange",
-		getCoreRowModel: getCoreRowModel(),
-		getSortedRowModel: getSortedRowModel(),
 		onSortingChange: setSorting,
 		state: {
 			sorting,

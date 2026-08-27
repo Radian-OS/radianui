@@ -2,14 +2,19 @@
 
 import { useId, useState } from "react"
 import {
-	ColumnDef,
-	PaginationState,
-	SortingState,
+	type ColumnDef,
+	type PaginationState,
+	type SortingState,
+	columnSizingFeature,
+	columnVisibilityFeature,
+	createPaginatedRowModel,
+	createSortedRowModel,
 	flexRender,
-	getCoreRowModel,
-	getPaginationRowModel,
-	getSortedRowModel,
-	useReactTable,
+	rowPaginationFeature,
+	rowSelectionFeature,
+	rowSortingFeature,
+	tableFeatures,
+	useTable,
 } from "@tanstack/react-table"
 import {
 	ChevronDownIcon,
@@ -57,6 +62,16 @@ import {
 	TableHeader,
 	TableRow,
 } from "@/registry/ui/table"
+
+const features = tableFeatures({
+	rowSortingFeature,
+	rowPaginationFeature,
+	rowSelectionFeature,
+	columnSizingFeature,
+	columnVisibilityFeature,
+	sortedRowModel: createSortedRowModel(),
+	paginatedRowModel: createPaginatedRowModel(),
+})
 
 type UserDetails = {
 	name: string
@@ -335,7 +350,7 @@ const getTimeAgo = (dateString: string): string => {
 	return "Just now"
 }
 
-const columns: ColumnDef<UserData>[] = [
+const columns: ColumnDef<typeof features, UserData>[] = [
 	{
 		id: "select",
 		header: ({ table }) => (
@@ -527,14 +542,12 @@ export default function Component() {
 		},
 	])
 
-	const table = useReactTable({
+	const table = useTable({
+		features,
 		data,
 		columns,
-		getCoreRowModel: getCoreRowModel(),
-		getSortedRowModel: getSortedRowModel(),
 		onSortingChange: setSorting,
 		enableSortingRemoval: false,
-		getPaginationRowModel: getPaginationRowModel(),
 		onPaginationChange: setPagination,
 		state: {
 			sorting,
@@ -641,7 +654,7 @@ export default function Component() {
 						Rows per page
 					</Label>
 					<Select
-						value={table.getState().pagination.pageSize.toString()}
+						value={table.state.pagination.pageSize.toString()}
 						onValueChange={(value) => {
 							table.setPageSize(Number(value))
 						}}>
@@ -666,15 +679,15 @@ export default function Component() {
 						className="text-fg-secondary whitespace-nowrap text-sm"
 						aria-live="polite">
 						<span className="text-shadow-fg-disabled">
-							{table.getState().pagination.pageIndex *
-								table.getState().pagination.pageSize +
+							{table.state.pagination.pageIndex *
+								table.state.pagination.pageSize +
 								1}
 							-
 							{Math.min(
 								Math.max(
-									table.getState().pagination.pageIndex *
-										table.getState().pagination.pageSize +
-										table.getState().pagination.pageSize,
+									table.state.pagination.pageIndex *
+										table.state.pagination.pageSize +
+										table.state.pagination.pageSize,
 									0
 								),
 								table.getRowCount()

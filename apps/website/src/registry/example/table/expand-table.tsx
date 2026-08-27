@@ -2,11 +2,15 @@
 
 import { Fragment } from "react"
 import {
-	ColumnDef,
+	type ColumnDef,
+	columnSizingFeature,
+	columnVisibilityFeature,
+	createExpandedRowModel,
 	flexRender,
-	getCoreRowModel,
-	getExpandedRowModel,
-	useReactTable,
+	rowExpandingFeature,
+	rowSelectionFeature,
+	tableFeatures,
+	useTable,
 } from "@tanstack/react-table"
 import { ChevronDownIcon, ChevronUpIcon, InfoIcon } from "lucide-react"
 import { Badge } from "@/registry/ui/badge"
@@ -20,6 +24,14 @@ import {
 	TableHeader,
 	TableRow,
 } from "@/registry/ui/table"
+
+const features = tableFeatures({
+	rowExpandingFeature,
+	rowSelectionFeature,
+	columnSizingFeature,
+	columnVisibilityFeature,
+	expandedRowModel: createExpandedRowModel(),
+})
 
 type Item = {
 	id: string
@@ -81,7 +93,7 @@ const data: Item[] = [
 	},
 ]
 
-const columns: ColumnDef<Item>[] = [
+const columns: ColumnDef<typeof features, Item>[] = [
 	{
 		id: "expander",
 		header: () => null,
@@ -178,12 +190,11 @@ const columns: ColumnDef<Item>[] = [
 ]
 
 export default function ExpandTable() {
-	const table = useReactTable({
+	const table = useTable({
+		features,
 		data,
 		columns,
 		getRowCanExpand: (row) => Boolean(row.original.note),
-		getCoreRowModel: getCoreRowModel(),
-		getExpandedRowModel: getExpandedRowModel(),
 	})
 
 	return (
