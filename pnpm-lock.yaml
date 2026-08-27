@@ -23,8 +23,8 @@ importers:
         specifier: ^8.0.0
         version: 8.0.0
       zod:
-        specifier: ^3.25.76
-        version: 3.25.76
+        specifier: ^4.4.3
+        version: 4.4.3
     devDependencies:
       '@commitlint/cli':
         specifier: ^19.8.1
@@ -259,10 +259,10 @@ importers:
         version: 11.3.0
       fumadocs-core:
         specifier: ^16.15.1
-        version: 16.15.1(@mdx-js/mdx@3.1.1)(@types/estree-jsx@1.0.5)(@types/hast@3.0.5)(@types/mdast@4.0.4)(@types/react@19.0.12)(lucide-react@0.486.0(react@19.2.8))(next@16.3.0(@babel/core@7.28.5)(@opentelemetry/api@1.9.0)(@types/node@22.14.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(zod@4.1.5)
+        version: 16.15.1(@mdx-js/mdx@3.1.1)(@types/estree-jsx@1.0.5)(@types/hast@3.0.5)(@types/mdast@4.0.4)(@types/react@19.0.12)(lucide-react@0.486.0(react@19.2.8))(next@16.3.0(@babel/core@7.28.5)(@opentelemetry/api@1.9.0)(@types/node@22.14.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(zod@4.4.3)
       fumadocs-mdx:
         specifier: ^15.3.0
-        version: 15.3.0(@types/mdast@4.0.4)(@types/mdx@2.0.13)(@types/react@19.0.12)(fumadocs-core@16.15.1(@mdx-js/mdx@3.1.1)(@types/estree-jsx@1.0.5)(@types/hast@3.0.5)(@types/mdast@4.0.4)(@types/react@19.0.12)(lucide-react@0.486.0(react@19.2.8))(next@16.3.0(@babel/core@7.28.5)(@opentelemetry/api@1.9.0)(@types/node@22.14.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(zod@4.1.5))(next@16.3.0(@babel/core@7.28.5)(@opentelemetry/api@1.9.0)(@types/node@22.14.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(vite@7.1.12(@types/node@22.14.0)(jiti@2.6.1)(lightningcss@1.29.2)(tsx@4.22.4)(yaml@2.9.0))
+        version: 15.3.0(@types/mdast@4.0.4)(@types/mdx@2.0.13)(@types/react@19.0.12)(fumadocs-core@16.15.1(@mdx-js/mdx@3.1.1)(@types/estree-jsx@1.0.5)(@types/hast@3.0.5)(@types/mdast@4.0.4)(@types/react@19.0.12)(lucide-react@0.486.0(react@19.2.8))(next@16.3.0(@babel/core@7.28.5)(@opentelemetry/api@1.9.0)(@types/node@22.14.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(zod@4.4.3))(next@16.3.0(@babel/core@7.28.5)(@opentelemetry/api@1.9.0)(@types/node@22.14.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(vite@7.1.12(@types/node@22.14.0)(jiti@2.6.1)(lightningcss@1.29.2)(tsx@4.22.4)(yaml@2.9.0))
       github-slugger:
         specifier: ^2.0.0
         version: 2.0.0
@@ -387,8 +387,8 @@ importers:
         specifier: ^6.1.1
         version: 6.1.1
       zod:
-        specifier: ^4.1.5
-        version: 4.1.5
+        specifier: ^4.4.3
+        version: 4.4.3
       zustand:
         specifier: ^5.0.9
         version: 5.0.9(@types/react@19.0.12)(immer@11.1.18)(react@19.2.8)(use-sync-external-store@1.6.0(react@19.2.8))
@@ -520,8 +520,8 @@ importers:
         specifier: ^4.2.0
         version: 4.2.0
       zod:
-        specifier: ^4.1.12
-        version: 4.1.12
+        specifier: ^4.4.3
+        version: 4.4.3
     devDependencies:
       '@types/adm-zip':
         specifier: ^0.5.7
@@ -8524,15 +8524,6 @@ packages:
     peerDependencies:
       zod: ^3.25.0 || ^4.0.0
 
-  zod@3.25.76:
-    resolution: {integrity: sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ==}
-
-  zod@4.1.12:
-    resolution: {integrity: sha512-JInaHOamG8pt5+Ey8kGmdcAcg3OL9reK8ltczgHTAwNhMys/6ThXHityHxVV2p3fkw/c+MAvBHFVYHFZDmjMCQ==}
-
-  zod@4.1.5:
-    resolution: {integrity: sha512-rcUUZqlLJgBC33IT3PNMgsCq6TzLQEG/Ei/KTCU0PedSWRMAXoOUN+4t/0H+Q8bdnLPdqUYnvboJT0bn/229qg==}
-
   zod@4.4.3:
     resolution: {integrity: sha512-ytENFjIJFl2UwYglde2jchW2Hwm4GJFLDiSXWdTrJQBIN9Fcyp7n4DhxJEiWNAJMV1/BqWfW/kkg71UDcHJyTQ==}
 
@@ -13180,8 +13171,8 @@ snapshots:
       '@babel/parser': 7.29.8
       eslint: 9.24.0(jiti@2.6.1)
       hermes-parser: 0.25.1
-      zod: 4.1.5
-      zod-validation-error: 4.0.2(zod@4.1.5)
+      zod: 4.4.3
+      zod-validation-error: 4.0.2(zod@4.4.3)
     transitivePeerDependencies:
       - supports-color
 
@@ -13521,7 +13512,7 @@ snapshots:
   fsevents@2.3.3:
     optional: true
 
-  fumadocs-core@16.15.1(@mdx-js/mdx@3.1.1)(@types/estree-jsx@1.0.5)(@types/hast@3.0.5)(@types/mdast@4.0.4)(@types/react@19.0.12)(lucide-react@0.486.0(react@19.2.8))(next@16.3.0(@babel/core@7.28.5)(@opentelemetry/api@1.9.0)(@types/node@22.14.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(zod@4.1.5):
+  fumadocs-core@16.15.1(@mdx-js/mdx@3.1.1)(@types/estree-jsx@1.0.5)(@types/hast@3.0.5)(@types/mdast@4.0.4)(@types/react@19.0.12)(lucide-react@0.486.0(react@19.2.8))(next@16.3.0(@babel/core@7.28.5)(@opentelemetry/api@1.9.0)(@types/node@22.14.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(zod@4.4.3):
     dependencies:
       '@fumari/image-size': 0.1.0
       estree-util-value-to-estree: 3.5.0
@@ -13552,18 +13543,18 @@ snapshots:
       next: 16.3.0(@babel/core@7.28.5)(@opentelemetry/api@1.9.0)(@types/node@22.14.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       react: 19.2.8
       react-dom: 19.2.8(react@19.2.8)
-      zod: 4.1.5
+      zod: 4.4.3
     transitivePeerDependencies:
       - supports-color
 
-  fumadocs-mdx@15.3.0(@types/mdast@4.0.4)(@types/mdx@2.0.13)(@types/react@19.0.12)(fumadocs-core@16.15.1(@mdx-js/mdx@3.1.1)(@types/estree-jsx@1.0.5)(@types/hast@3.0.5)(@types/mdast@4.0.4)(@types/react@19.0.12)(lucide-react@0.486.0(react@19.2.8))(next@16.3.0(@babel/core@7.28.5)(@opentelemetry/api@1.9.0)(@types/node@22.14.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(zod@4.1.5))(next@16.3.0(@babel/core@7.28.5)(@opentelemetry/api@1.9.0)(@types/node@22.14.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(vite@7.1.12(@types/node@22.14.0)(jiti@2.6.1)(lightningcss@1.29.2)(tsx@4.22.4)(yaml@2.9.0)):
+  fumadocs-mdx@15.3.0(@types/mdast@4.0.4)(@types/mdx@2.0.13)(@types/react@19.0.12)(fumadocs-core@16.15.1(@mdx-js/mdx@3.1.1)(@types/estree-jsx@1.0.5)(@types/hast@3.0.5)(@types/mdast@4.0.4)(@types/react@19.0.12)(lucide-react@0.486.0(react@19.2.8))(next@16.3.0(@babel/core@7.28.5)(@opentelemetry/api@1.9.0)(@types/node@22.14.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(zod@4.4.3))(next@16.3.0(@babel/core@7.28.5)(@opentelemetry/api@1.9.0)(@types/node@22.14.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(vite@7.1.12(@types/node@22.14.0)(jiti@2.6.1)(lightningcss@1.29.2)(tsx@4.22.4)(yaml@2.9.0)):
     dependencies:
       '@mdx-js/mdx': 3.1.1
       '@standard-schema/spec': 1.1.0
       chokidar: 5.0.0
       esbuild: 0.28.2
       estree-util-value-to-estree: 3.5.0
-      fumadocs-core: 16.15.1(@mdx-js/mdx@3.1.1)(@types/estree-jsx@1.0.5)(@types/hast@3.0.5)(@types/mdast@4.0.4)(@types/react@19.0.12)(lucide-react@0.486.0(react@19.2.8))(next@16.3.0(@babel/core@7.28.5)(@opentelemetry/api@1.9.0)(@types/node@22.14.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(zod@4.1.5)
+      fumadocs-core: 16.15.1(@mdx-js/mdx@3.1.1)(@types/estree-jsx@1.0.5)(@types/hast@3.0.5)(@types/mdast@4.0.4)(@types/react@19.0.12)(lucide-react@0.486.0(react@19.2.8))(next@16.3.0(@babel/core@7.28.5)(@opentelemetry/api@1.9.0)(@types/node@22.14.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(zod@4.4.3)
       github-slugger: 2.0.0
       magic-string: 1.2.3
       mdast-util-mdx: 3.0.0
@@ -16871,15 +16862,9 @@ snapshots:
 
   zbsearch@4.0.0: {}
 
-  zod-validation-error@4.0.2(zod@4.1.5):
+  zod-validation-error@4.0.2(zod@4.4.3):
     dependencies:
-      zod: 4.1.5
-
-  zod@3.25.76: {}
-
-  zod@4.1.12: {}
-
-  zod@4.1.5: {}
+      zod: 4.4.3
 
   zod@4.4.3: {}
 
