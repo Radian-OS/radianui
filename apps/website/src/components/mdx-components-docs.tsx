@@ -56,6 +56,7 @@ import {
 	TabsTrigger,
 } from "@/styles/default/ui/tabs"
 import ChangelogCard from "./changelog-card"
+import ChartList from "./chart-list"
 import { CodeBlockCommandServer } from "./code-block-command-server"
 import { CodeCollapsibleFileWrapper } from "./code-collapsible-file-wrapper"
 import { CodeCollapsibleWrapper } from "./code-collapsible-wrapper"
@@ -262,6 +263,7 @@ export const components = {
 		<div className="mt-3 flex flex-col gap-2 rounded-xl p-1.5">{children}</div>
 	),
 	Installation,
+	ChartList,
 	BadgeExamplePreview,
 	TypographyPlayground,
 	DatePickerPresetsExample,

@@ -5,8 +5,8 @@ const registry: Record<
 	string,
 	React.LazyExoticComponent<React.ComponentType>
 > = {
-	"chart-preview": React.lazy(
-		() => import("@/registry/example/chart/chart-preview")
+	"line-chart-preview": React.lazy(
+		() => import("@/registry/example/line-chart/line-chart-preview")
 	),
 }
 

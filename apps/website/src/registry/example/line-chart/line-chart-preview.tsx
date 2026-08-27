@@ -1,6 +1,6 @@
 "use client"
 
-import { Bar, BarChart, CartesianGrid, XAxis } from "recharts"
+import { CartesianGrid, Line, LineChart, XAxis } from "recharts"
 import {
 	type ChartConfig,
 	ChartContainer,
@@ -20,30 +20,48 @@ const chartData = [
 const chartConfig = {
 	desktop: {
 		label: "Desktop",
-		color: "var(--color-success)",
+		color: "var(--color-blue)",
 	},
 	mobile: {
 		label: "Mobile",
-		color: "var(--color-primary)",
+		color: "var(--color-rose)",
 	},
 } satisfies ChartConfig
 
-export default function ChartBarPreview() {
+export default function LineChartPreview() {
 	return (
 		<ChartContainer config={chartConfig} className="min-h-[200px] w-full">
-			<BarChart accessibilityLayer data={chartData}>
+			<LineChart
+				accessibilityLayer
+				data={chartData}
+				margin={{
+					left: 12,
+					right: 12,
+				}}>
 				<CartesianGrid vertical={false} />
 				<XAxis
 					dataKey="month"
 					tickLine={false}
-					tickMargin={10}
 					axisLine={false}
+					tickMargin={8}
 					tickFormatter={(value) => value.slice(0, 3)}
 				/>
-				<ChartTooltip content={<ChartTooltipContent />} />
-				<Bar dataKey="desktop" fill="var(--color-desktop)" radius={4} />
-				<Bar dataKey="mobile" fill="var(--color-mobile)" radius={4} />
-			</BarChart>
+				<ChartTooltip cursor={false} content={<ChartTooltipContent />} />
+				<Line
+					dataKey="desktop"
+					type="monotone"
+					stroke="var(--color-desktop)"
+					strokeWidth={2}
+					dot={false}
+				/>
+				<Line
+					dataKey="mobile"
+					type="monotone"
+					stroke="var(--color-mobile)"
+					strokeWidth={2}
+					dot={false}
+				/>
+			</LineChart>
 		</ChartContainer>
 	)
 }

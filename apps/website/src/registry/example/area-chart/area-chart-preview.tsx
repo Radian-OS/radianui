@@ -1,12 +1,14 @@
 "use client"
 
-import { Bar, BarChart, CartesianGrid, XAxis } from "recharts"
+import { Area, AreaChart, CartesianGrid, XAxis } from "recharts"
 import {
 	type ChartConfig,
 	ChartContainer,
 	ChartTooltip,
 	ChartTooltipContent,
 } from "@/registry/ui/chart"
+
+export const description = "A stacked area chart"
 
 const chartData = [
 	{ month: "January", desktop: 186, mobile: 80 },
@@ -20,30 +22,53 @@ const chartData = [
 const chartConfig = {
 	desktop: {
 		label: "Desktop",
-		color: "var(--color-success)",
+		color: "var(--color-error)",
 	},
 	mobile: {
 		label: "Mobile",
-		color: "var(--color-primary)",
+		color: "var(--color-neon)",
 	},
 } satisfies ChartConfig
 
-export default function ChartBarPreview() {
+export default function AreaChartPreview() {
 	return (
 		<ChartContainer config={chartConfig} className="min-h-[200px] w-full">
-			<BarChart accessibilityLayer data={chartData}>
+			<AreaChart
+				accessibilityLayer
+				data={chartData}
+				margin={{
+					left: 12,
+					right: 12,
+				}}>
 				<CartesianGrid vertical={false} />
 				<XAxis
 					dataKey="month"
 					tickLine={false}
-					tickMargin={10}
 					axisLine={false}
+					tickMargin={8}
 					tickFormatter={(value) => value.slice(0, 3)}
 				/>
-				<ChartTooltip content={<ChartTooltipContent />} />
-				<Bar dataKey="desktop" fill="var(--color-desktop)" radius={4} />
-				<Bar dataKey="mobile" fill="var(--color-mobile)" radius={4} />
-			</BarChart>
+				<ChartTooltip
+					cursor={false}
+					content={<ChartTooltipContent indicator="dot" />}
+				/>
+				<Area
+					dataKey="mobile"
+					type="natural"
+					fill="var(--color-mobile)"
+					fillOpacity={0.4}
+					stroke="var(--color-mobile)"
+					stackId="a"
+				/>
+				<Area
+					dataKey="desktop"
+					type="natural"
+					fill="var(--color-desktop)"
+					fillOpacity={0.4}
+					stroke="var(--color-desktop)"
+					stackId="a"
+				/>
+			</AreaChart>
 		</ChartContainer>
 	)
 }

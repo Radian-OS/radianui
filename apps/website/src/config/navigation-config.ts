@@ -96,6 +96,7 @@ export const COMPONENTS_DATA = [
 	"Command",
 	"Context Menu",
 	"Currency Input",
+	"Chart",
 	"Checkbox",
 	"Date Picker",
 	"Dialog",
@@ -136,6 +137,7 @@ export const COMPONENTS_DATA = [
 
 const NEW_COMPONENTS = new Set([
 	"Changelog",
+	"Chart",
 	"Context Menu",
 	"Menubar",
 	"Navigation Menu",
@@ -143,6 +145,12 @@ const NEW_COMPONENTS = new Set([
 	"Stepper",
 	"Toggle",
 	"Toggle Group",
+	"Area Chart",
+	"Bar Chart",
+	"Donut Chart",
+	"Line Chart",
+	"Pie Chart",
+	"Radar Chart",
 ])
 
 // Map Components array to NavigationItem
@@ -240,6 +248,20 @@ const BLOCKS_ITEMS: NavigationItem[] = BLOCKS_DATA.map(
 	})
 )
 
+// ===== Chart Section =====
+const CHART_ITEMS: NavigationItem[] = [
+	"Area Chart",
+	"Bar Chart",
+	"Donut Chart",
+	"Line Chart",
+	"Pie Chart",
+	"Radar Chart",
+].map((title) => ({
+	title,
+	url: `/docs/components/charts/${getComponentSlug(title)}`,
+	isNew: NEW_COMPONENTS.has(title),
+}))
+
 // ===== Animations Section =====
 const ANIMATIONS_ITEMS: NavigationItem[] = [
 	"Fade",
@@ -294,10 +316,16 @@ export const navigationItems: NavigationSection[] = [
 		),
 	},
 	{
+		title: "Charts",
+		searchIcon: "/search-icons/search-components.svg",
+		items: CHART_ITEMS.sort((a, b) => a.title.localeCompare(b.title)),
+	},
+	{
 		title: "Blocks",
 		searchIcon: "/search-icons/search-ui-blocks.svg",
 		items: BLOCKS_ITEMS,
 	},
+
 	{
 		title: "Animations",
 		searchIcon: "/search-icons/search-components.svg",
