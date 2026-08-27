@@ -122,7 +122,7 @@
 		"react-hook-form": "^7.62.0",
 		"react-international-phone": "^4.6.0",
 		"react-phone-number-input": "^3.4.12",
-		"react-resizable-panels": "^2.1.7",
+		"react-resizable-panels": "^4.12.3",
 		"react-shiki": "^0.7.2",
 		"recharts": "^3.10.1",
 		"rehype-pretty-code": "^0.14.1",
