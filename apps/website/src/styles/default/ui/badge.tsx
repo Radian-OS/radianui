@@ -441,7 +441,7 @@ Badge.displayName = "Badge"
 
 function BadgeDot({ className, ...props }: BadgeDotProps) {
 	return (
-		<span className="p-0.75 flex shrink-0">
+		<span className="flex shrink-0 p-0.75">
 			<span
 				data-slot="badge-dot"
 				className={cn(
