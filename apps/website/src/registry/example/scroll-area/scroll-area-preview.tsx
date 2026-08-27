@@ -2,12 +2,16 @@
 
 import { useState } from "react"
 import {
-	ColumnDef,
-	SortingState,
+	type ColumnDef,
+	type SortingState,
+	columnSizingFeature,
+	columnVisibilityFeature,
+	createSortedRowModel,
 	flexRender,
-	getCoreRowModel,
-	getSortedRowModel,
-	useReactTable,
+	rowSelectionFeature,
+	rowSortingFeature,
+	tableFeatures,
+	useTable,
 } from "@tanstack/react-table"
 import { ChevronDownIcon, ChevronUpIcon, Mail, PhoneCall } from "lucide-react"
 import { cn } from "@/lib/utils"
@@ -24,6 +28,14 @@ import {
 	TableHeader,
 	TableRow,
 } from "@/registry/ui/table"
+
+const features = tableFeatures({
+	rowSortingFeature,
+	rowSelectionFeature,
+	columnVisibilityFeature,
+	columnSizingFeature,
+	sortedRowModel: createSortedRowModel(),
+})
 
 type UserDetails = {
 	name: string
@@ -160,7 +172,7 @@ const data: UserData[] = [
 	},
 ]
 
-const columns: ColumnDef<UserData>[] = [
+const columns: ColumnDef<typeof features, UserData>[] = [
 	{
 		id: "select",
 		header: ({ table }) => (
@@ -289,11 +301,10 @@ export default function ScrollAreaPreview() {
 		},
 	])
 
-	const table = useReactTable({
+	const table = useTable({
+		features,
 		data,
 		columns,
-		getCoreRowModel: getCoreRowModel(),
-		getSortedRowModel: getSortedRowModel(),
 		onSortingChange: setSorting,
 		enableSortingRemoval: false,
 		state: {

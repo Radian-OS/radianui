@@ -18,7 +18,7 @@ function ContextMenuTrigger({
 	return (
 		<ContextMenuPrimitive.Trigger
 			data-slot="context-menu-trigger"
-			className={cn("select-none outline-none", className)}
+			className={cn("outline-none select-none", className)}
 			{...props}
 		/>
 	)
@@ -41,7 +41,7 @@ function ContextMenuGroup({
 			)}
 			{...props}>
 			{title && (
-				<label className="text-fg-tertiary text-xs/4.5 flex h-7 items-center gap-2.5 p-2 font-medium uppercase">
+				<label className="text-fg-tertiary flex h-7 items-center gap-2.5 p-2 text-xs/4.5 font-medium uppercase">
 					{title}
 				</label>
 			)}
@@ -87,7 +87,7 @@ function ContextMenuSubTrigger({
 		<ContextMenuPrimitive.SubTrigger
 			data-slot="context-menu-sub-trigger"
 			className={cn(
-				"data-[state=open]:bg-fill1-alpha focus:bg-fill2-alpha outline-hidden data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:text-fg-secondary flex cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm transition-colors [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+				"data-[state=open]:bg-fill1-alpha focus:bg-fill2-alpha [&_svg]:text-fg-secondary flex cursor-pointer items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-hidden transition-colors select-none data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
 				inset && "pl-8",
 				className
 			)}
@@ -107,7 +107,7 @@ function ContextMenuSubContent({
 			<ContextMenuPrimitive.SubContent
 				data-slot="context-menu-sub-content"
 				className={cn(
-					"bg-elevation-level2 border-border drop-shadow-xs z-50 flex min-w-36 flex-col items-stretch justify-start rounded-lg border p-1.5",
+					"bg-elevation-level2 border-border z-50 flex min-w-36 flex-col items-stretch justify-start rounded-lg border p-1.5 drop-shadow-xs",
 					"data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
 					className
 				)}
@@ -128,7 +128,7 @@ function ContextMenuContent({
 			<ContextMenuPrimitive.Content
 				data-slot="context-menu-content"
 				className={cn(
-					"no-scrollbar bg-elevation-level2 border-border drop-shadow-xs z-50 flex min-w-[8rem] flex-col gap-0.5 overflow-y-scroll rounded-lg border p-1.5",
+					"no-scrollbar bg-elevation-level2 border-border z-50 flex min-w-[8rem] flex-col gap-0.5 overflow-y-scroll rounded-lg border p-1.5 drop-shadow-xs",
 					"data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
 					className
 				)}
@@ -151,8 +151,8 @@ function ContextMenuItem({
 		<ContextMenuPrimitive.Item
 			data-slot="context-menu-item"
 			className={cn(
-				"text-fg focus:bg-fill1-alpha data-disabled:pointer-events-none data-disabled:text-fg-disabled data-disabled:[&_*]:text-fg-disabled outline-hidden relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm transition-colors",
-				"[&_svg]:text-fg-secondary [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+				"text-fg focus:bg-fill1-alpha data-disabled:text-fg-disabled data-disabled:[&_*]:text-fg-disabled relative flex w-full cursor-pointer items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-hidden transition-colors select-none data-disabled:pointer-events-none",
+				"[&_svg]:text-fg-secondary [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
 				inset && "pl-9",
 				variant === "error" &&
 					"text-error focus:bg-error-accent [&_svg]:!text-error",
@@ -173,7 +173,7 @@ function ContextMenuCheckboxItem({
 		<ContextMenuPrimitive.CheckboxItem
 			data-slot="context-menu-checkbox-item"
 			className={cn(
-				"focus:bg-fill2-alpha text-fg outline-hidden relative flex cursor-pointer select-none items-center gap-2 rounded-sm py-1.5 pe-2 ps-8 text-sm data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+				"focus:bg-fill2-alpha text-fg relative flex cursor-pointer items-center gap-2 rounded-sm py-1.5 ps-8 pe-2 text-sm outline-hidden select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
 				className
 			)}
 			checked={checked}
@@ -197,7 +197,7 @@ function ContextMenuRadioItem({
 		<ContextMenuPrimitive.RadioItem
 			data-slot="context-menu-radio-item"
 			className={cn(
-				"focus:bg-fill2-alpha text-fg outline-hidden relative flex cursor-pointer select-none items-center gap-2 rounded-sm py-1.5 pe-2 ps-8 text-sm data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+				"focus:bg-fill2-alpha text-fg relative flex cursor-pointer items-center gap-2 rounded-sm py-1.5 ps-8 pe-2 text-sm outline-hidden select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
 				className
 			)}
 			{...props}>

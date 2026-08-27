@@ -6,28 +6,25 @@ import * as ResizablePrimitive from "react-resizable-panels"
 import { cn } from "@/lib/utils"
 
 export type ResizablePanelGroupProps = React.ComponentProps<
-	typeof ResizablePrimitive.PanelGroup
+	typeof ResizablePrimitive.Group
 >
 
 export type ResizablePanelProps = React.ComponentProps<
 	typeof ResizablePrimitive.Panel
 >
 
-export type ResizableHandleProps = React.ComponentProps<
-	typeof ResizablePrimitive.PanelResizeHandle
+export type ResizableSeparatorProps = React.ComponentProps<
+	typeof ResizablePrimitive.Separator
 > & {
 	withHandle?: boolean
 }
 
-function ResizablePanelGroup({
-	className,
-	...props
-}: ResizablePanelGroupProps) {
+function ResizableGroup({ className, ...props }: ResizablePanelGroupProps) {
 	return (
-		<ResizablePrimitive.PanelGroup
-			data-slot="resizable-panel-group"
+		<ResizablePrimitive.Group
+			data-slot="resizable-group"
 			className={cn(
-				"flex h-full w-full data-[panel-group-direction=vertical]:flex-col",
+				"flex h-full w-full aria-[orientation=vertical]:flex-col",
 				className
 			)}
 			{...props}
@@ -35,7 +32,7 @@ function ResizablePanelGroup({
 	)
 }
 
-ResizablePanelGroup.displayName = "ResizablePanelGroup"
+ResizableGroup.displayName = "ResizableGroup"
 
 function ResizablePanel({ ...props }: ResizablePanelProps) {
 	return <ResizablePrimitive.Panel data-slot="resizable-panel" {...props} />
@@ -43,16 +40,16 @@ function ResizablePanel({ ...props }: ResizablePanelProps) {
 
 ResizablePanel.displayName = "ResizablePanel"
 
-function ResizableHandle({
+function ResizableSeparator({
 	withHandle,
 	className,
 	...props
-}: ResizableHandleProps) {
+}: ResizableSeparatorProps) {
 	return (
-		<ResizablePrimitive.PanelResizeHandle
-			data-slot="resizable-handle"
+		<ResizablePrimitive.Separator
+			data-slot="resizable-separator"
 			className={cn(
-				"bg-border focus-visible:ring-ring focus-visible:outline-hidden relative flex w-px items-center justify-center after:absolute after:inset-y-0 after:left-1/2 after:w-1 after:-translate-x-1/2 focus-visible:ring-1 focus-visible:ring-offset-1 data-[panel-group-direction=vertical]:h-px data-[panel-group-direction=vertical]:w-full data-[panel-group-direction=vertical]:after:left-0 data-[panel-group-direction=vertical]:after:h-1 data-[panel-group-direction=vertical]:after:w-full data-[panel-group-direction=vertical]:after:-translate-y-1/2 data-[panel-group-direction=vertical]:after:translate-x-0 [&[data-panel-group-direction=vertical]>div]:rotate-90",
+				"bg-border focus-visible:ring-ring focus-visible:outline-hidden relative flex w-px items-center justify-center after:absolute after:inset-y-0 after:left-1/2 after:w-1 after:-translate-x-1/2 focus-visible:ring-1 focus-visible:ring-offset-1 aria-[orientation=horizontal]:h-px aria-[orientation=horizontal]:w-full aria-[orientation=horizontal]:after:left-0 aria-[orientation=horizontal]:after:h-1 aria-[orientation=horizontal]:after:w-full aria-[orientation=horizontal]:after:-translate-y-1/2 aria-[orientation=horizontal]:after:translate-x-0 [&[aria-orientation=horizontal]>div]:rotate-90",
 				className
 			)}
 			{...props}>
@@ -61,9 +58,9 @@ function ResizableHandle({
 					<GripVerticalIcon className="size-2.5" />
 				</div>
 			)}
-		</ResizablePrimitive.PanelResizeHandle>
+		</ResizablePrimitive.Separator>
 	)
 }
-ResizableHandle.displayName = "ResizableHandle"
+ResizableSeparator.displayName = "ResizableSeparator"
 
-export { ResizablePanelGroup, ResizablePanel, ResizableHandle }
+export { ResizableGroup, ResizablePanel, ResizableSeparator }

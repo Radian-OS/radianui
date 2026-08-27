@@ -13,7 +13,7 @@ function Menubar({
 		<MenubarPrimitive.Root
 			data-slot="menubar"
 			className={cn(
-				"p-0.75 flex h-8 items-center gap-0.5 rounded-lg border",
+				"flex h-8 items-center gap-0.5 rounded-lg border p-0.75",
 				"bg-bg border-border",
 				className
 			)}
@@ -56,7 +56,7 @@ function MenubarTrigger({
 		<MenubarPrimitive.Trigger
 			data-slot="menubar-trigger"
 			className={cn(
-				"outline-hidden flex cursor-pointer select-none items-center rounded-sm px-1.5 py-0.5 text-sm font-medium",
+				"flex cursor-pointer items-center rounded-sm px-1.5 py-0.5 text-sm font-medium outline-hidden select-none",
 				"text-fg",
 				"hover:bg-fill1-alpha aria-expanded:bg-fill1-alpha",
 				className
@@ -81,7 +81,7 @@ function MenubarContent({
 				alignOffset={alignOffset}
 				sideOffset={sideOffset}
 				className={cn(
-					"origin-(--radix-menubar-content-transform-origin) z-50 min-w-36 overflow-hidden rounded-lg p-1 shadow-md ring-1",
+					"z-50 min-w-36 origin-(--radix-menubar-content-transform-origin) overflow-hidden rounded-lg p-1 shadow-md ring-1",
 					"bg-elevation-level1 text-fg ring-alpha",
 					"data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 duration-100",
 					className
@@ -107,7 +107,7 @@ function MenubarItem({
 			data-inset={inset}
 			data-variant={variant}
 			className={cn(
-				"group/menubar-item outline-hidden relative flex cursor-pointer select-none items-center gap-1.5 rounded-md px-1.5 py-1 text-sm",
+				"group/menubar-item relative flex cursor-pointer items-center gap-1.5 rounded-md px-1.5 py-1 text-sm outline-hidden select-none",
 				"text-fg",
 				"hover:bg-fill1-alpha focus:bg-fill1-alpha",
 				"data-inset:pl-7",
@@ -116,7 +116,7 @@ function MenubarItem({
 				"data-[variant=destructive]:focus:bg-error-accent",
 				"data-[variant=destructive]:[&_svg]:text-error-text!",
 				"data-disabled:pointer-events-none data-disabled:opacity-50",
-				"[&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+				"[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
 				className
 			)}
 			{...props}
@@ -138,7 +138,7 @@ function MenubarCheckboxItem({
 			data-slot="menubar-checkbox-item"
 			data-inset={inset}
 			className={cn(
-				"outline-hidden relative flex cursor-pointer select-none items-center gap-1.5 rounded-md py-1 pl-7 pr-1.5 text-sm",
+				"relative flex cursor-pointer items-center gap-1.5 rounded-md py-1 pr-1.5 pl-7 text-sm outline-hidden select-none",
 				"text-fg",
 				"hover:bg-fill1-alpha focus:bg-fill1-alpha",
 				"data-inset:pl-7",
@@ -170,12 +170,12 @@ function MenubarRadioItem({
 			data-slot="menubar-radio-item"
 			data-inset={inset}
 			className={cn(
-				"outline-hidden relative flex cursor-pointer select-none items-center gap-1.5 rounded-md py-1 pl-7 pr-1.5 text-sm",
+				"relative flex cursor-pointer items-center gap-1.5 rounded-md py-1 pr-1.5 pl-7 text-sm outline-hidden select-none",
 				"text-fg",
 				"hover:bg-fill1-alpha focus:bg-fill1-alpha",
 				"data-inset:pl-7",
 				"data-disabled:pointer-events-none data-disabled:opacity-50",
-				"[&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+				"[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
 				className
 			)}
 			{...props}>
@@ -261,7 +261,7 @@ function MenubarSubTrigger({
 			data-slot="menubar-sub-trigger"
 			data-inset={inset}
 			className={cn(
-				"flex cursor-pointer select-none items-center gap-1.5 rounded-md px-1.5 py-1 text-sm outline-none",
+				"flex cursor-pointer items-center gap-1.5 rounded-md px-1.5 py-1 text-sm outline-none select-none",
 				"text-fg",
 				"hover:bg-fill1-alpha focus:bg-fill1-alpha data-open:bg-fill1-alpha",
 				"data-inset:pl-7",
@@ -283,7 +283,7 @@ function MenubarSubContent({
 		<MenubarPrimitive.SubContent
 			data-slot="menubar-sub-content"
 			className={cn(
-				"origin-(--radix-menubar-content-transform-origin) z-50 min-w-32 overflow-hidden rounded-lg p-1 shadow-lg ring-1",
+				"z-50 min-w-32 origin-(--radix-menubar-content-transform-origin) overflow-hidden rounded-lg p-1 shadow-lg ring-1",
 				"bg-elevation-level1 text-fg ring-alpha",
 				"data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95 duration-100",
 				className

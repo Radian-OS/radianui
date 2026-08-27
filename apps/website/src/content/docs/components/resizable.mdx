@@ -63,34 +63,34 @@ links:
 
 ```tsx showLineNumbers title=" "
 import {
-	ResizableHandle,
+	ResizableGroup,
 	ResizablePanel,
-	ResizablePanelGroup,
+	ResizableSeparator,
 } from "@/components/ui/resizable"
 ```
 
 ### Code
 
 ```tsx showLineNumbers title=" "
-<ResizablePanelGroup direction="horizontal">
+<ResizableGroup orientation="horizontal">
 	<ResizablePanel defaultSize={50} className="border-r">
-		<ResizablePanelGroup direction="vertical">
+		<ResizableGroup orientation="vertical">
 			<ResizablePanel defaultSize={25}>
 				<span className="font-semibold">One</span>
 			</ResizablePanel>
 			<ResizableHandle />
-		</ResizablePanelGroup>
+		</ResizableGroup>
 	</ResizablePanel>
-	<ResizableHandle />
+	<ResizableSeparator />
 	<ResizablePanel defaultSize={50}>
-		<ResizablePanelGroup direction="vertical">
-			<ResizableHandle />
+		<ResizableGroup orientation="vertical">
+			<ResizableSeparator />
 			<ResizablePanel defaultSize={75}>
 				<span className="font-semibold">Four</span>
 			</ResizablePanel>
-		</ResizablePanelGroup>
+		</ResizableGroup>
 	</ResizablePanel>
-</ResizablePanelGroup>
+</ResizableGroup>
 ```
 
 ---
@@ -171,7 +171,7 @@ import {
 
 This is a custom component made using `react-resizable-panels`.
 
-### ResizablePanelGroup
+### ResizableGroup
 
 The root container that manages a group of resizable panels and their associated drag handles.
 
@@ -179,6 +179,6 @@ The root container that manages a group of resizable panels and their associated
 
 A structural container representing an individual resizable section within the group.
 
-### ResizableHandle
+### ResizableSeparator
 
 An interactive divider that users can drag to adjust the size of adjacent panels.

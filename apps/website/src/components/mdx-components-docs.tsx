@@ -107,7 +107,7 @@ function ComponentDocHeading({ children }: { children: string }) {
 	return (
 		<h2
 			id={id}
-			className="heading-5 font-semibold! scroll-mt-26 group mb-3 mt-10 flex items-center">
+			className="heading-5 group mt-10 mb-3 flex scroll-mt-26 items-center font-semibold!">
 			<Link href={`#${id}`} className="flex items-center gap-2">
 				{children}
 				<LinkIcon
@@ -330,7 +330,7 @@ export const components = {
 		return (
 			<h2
 				className={cn(
-					"heading-5 font-semibold! scroll-mt-26 group mb-3 mt-10 flex items-center",
+					"heading-5 group mt-10 mb-3 flex scroll-mt-26 items-center font-semibold!",
 					className
 				)}
 				{...props}>
@@ -357,7 +357,7 @@ export const components = {
 		return (
 			<h3
 				className={cn(
-					"scroll-mt-26 group mb-3 mt-6 flex items-center text-lg font-medium leading-7",
+					"group mt-6 mb-3 flex scroll-mt-26 items-center text-lg leading-7 font-medium",
 					className
 				)}
 				{...props}>
@@ -384,7 +384,7 @@ export const components = {
 		return (
 			<h4
 				className={cn(
-					"scroll-mt-26 mb-2 mt-7 overflow-hidden text-base font-medium",
+					"mt-7 mb-2 scroll-mt-26 overflow-hidden text-base font-medium",
 					className
 				)}
 				{...props}>
@@ -440,7 +440,7 @@ export const components = {
 		return (
 			<ul
 				className={cn(
-					"mb-0 ml-4 mt-3 list-outside list-disc space-y-4",
+					"mt-3 mb-0 ml-4 list-outside list-disc space-y-4",
 					className
 				)}>
 				{children}
@@ -506,9 +506,9 @@ export const components = {
 	Step: ({ className, ...props }: React.ComponentProps<"h3">) => (
 		<h3
 			className={cn(
-				"mb-3 mt-6 scroll-m-20 text-lg font-medium first:mt-0 last:mb-0",
+				"mt-6 mb-3 scroll-m-20 text-lg font-medium first:mt-0 last:mb-0",
 				"relative [counter-increment:step]",
-				"before:absolute before:-left-10 before:top-0 before:flex before:size-7 before:items-center before:justify-center",
+				"before:absolute before:top-0 before:-left-10 before:flex before:size-7 before:items-center before:justify-center",
 				"before:border-soft-alpha before:bg-elevation-level1 before:text-fg before:rounded-lg before:border before:text-sm before:font-medium",
 				"before:content-[counter(step)]",
 				className
@@ -545,10 +545,10 @@ export const components = {
 		<Image
 			unoptimized
 			className={cn(
-				"bg-fill2 border-soft mb-6 mt-4 rounded-2xl border-8 object-cover",
+				"bg-fill2 border-soft mt-4 mb-6 rounded-2xl border-8 object-cover",
 				className
 			)}
-			src={src || ""}
+			src={(src as string) || ""}
 			width={width !== undefined ? Number(width) : undefined}
 			height={height !== undefined ? Number(height) : undefined}
 			alt={alt || ""}
@@ -582,7 +582,7 @@ export const components = {
 	td: ({ className, ...props }: React.ComponentProps<"td">) => (
 		<td
 			className={cn(
-				"whitespace-nowrap px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right",
+				"px-4 py-2 text-left whitespace-nowrap [&[align=center]]:text-center [&[align=right]]:text-right",
 				className
 			)}
 			{...props}
@@ -609,7 +609,7 @@ export const components = {
 		return (
 			<pre
 				className={cn(
-					"bg-bg no-scrollbar has-data-highlighted-line:px-0 has-data-line-numbers:px-0 has-data-[slot=tabs]:p-0 min-w-0 overflow-x-auto overflow-y-auto overscroll-y-auto overscroll-x-contain rounded-lg px-5 py-4 pb-5 outline-none",
+					"bg-bg no-scrollbar min-w-0 overflow-x-auto overflow-y-auto overscroll-x-contain overscroll-y-auto rounded-lg px-5 py-4 pb-5 outline-none has-data-highlighted-line:px-0 has-data-line-numbers:px-0 has-data-[slot=tabs]:p-0",
 					className
 				)}
 				{...props}>
@@ -639,7 +639,7 @@ export const components = {
 			return (
 				<code
 					className={cn(
-						"bg-fill2 wrap-break-word relative rounded-md px-[0.3rem] py-[0.2rem] font-mono text-[0.8rem] outline-none",
+						"bg-fill2 relative rounded-md px-[0.3rem] py-[0.2rem] font-mono text-[0.8rem] wrap-break-word outline-none",
 						className
 					)}
 					{...props}
