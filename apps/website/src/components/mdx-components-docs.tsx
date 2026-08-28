@@ -25,11 +25,7 @@ import HeadingFontSpecs from "@/components/typography/heading-font-specs"
 import TypographyPlayground from "@/components/typography/typography-playground"
 import { ThemeProviderForColorTable } from "@/contexts/theme-context"
 import { cn } from "@/lib/utils"
-import BadgeExamplePreview from "@/registry/example/badge/badge-color-example"
-import DatePickerPresetsExample from "@/registry/example/date-picker/date-picker-range-example"
-import DatePickerWithTimeExample from "@/registry/example/date-picker/date-picker-with-time"
 import examples from "@/registry/example/example.json"
-import ProgressPreview from "@/registry/example/progress/progress-preview"
 import { AspectRatio } from "@/registry/ui/aspect-ratio"
 import {
 	Accordion,
@@ -262,16 +258,12 @@ export const components = {
 		<div className="mt-3 flex flex-col gap-2 rounded-xl p-1.5">{children}</div>
 	),
 	Installation,
-	BadgeExamplePreview,
 	TypographyPlayground,
-	DatePickerPresetsExample,
-	DatePickerWithTimeExample,
 	HeadingFontSpecs,
 	BodyFontSpecs,
 	DarkModePlayground,
 	CustomThemePlayground,
 	// Animation components
-	ProgressPreview,
 	PackageManagerTabs,
 	InstallationTabs,
 	InstallTabsList,
