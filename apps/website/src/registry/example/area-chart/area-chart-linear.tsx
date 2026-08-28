@@ -1,6 +1,6 @@
 "use client"
 
-import { Bar, BarChart, CartesianGrid, XAxis } from "recharts"
+import { Area, AreaChart, CartesianGrid, XAxis } from "recharts"
 import {
 	type ChartConfig,
 	ChartContainer,
@@ -9,9 +9,9 @@ import {
 } from "@/registry/ui/chart"
 
 const chartData = [
-	{ month: "January", desktop: 186 },
-	{ month: "February", desktop: 310 },
-	{ month: "March", desktop: 237 },
+	{ month: "January", desktop: 120 },
+	{ month: "February", desktop: 305 },
+	{ month: "March", desktop: 250 },
 	{ month: "April", desktop: 73 },
 	{ month: "May", desktop: 209 },
 	{ month: "June", desktop: 214 },
@@ -20,28 +20,40 @@ const chartData = [
 const chartConfig = {
 	desktop: {
 		label: "Desktop",
-		color: "var(--color-orange)",
+		color: "var(--color-error)",
 	},
 } satisfies ChartConfig
 
-export default function BarChartPreview() {
+export default function ChartAreaLinear() {
 	return (
 		<ChartContainer config={chartConfig} className="min-h-[200px] w-full">
-			<BarChart accessibilityLayer data={chartData}>
+			<AreaChart
+				accessibilityLayer
+				data={chartData}
+				margin={{
+					left: 12,
+					right: 12,
+				}}>
 				<CartesianGrid vertical={false} />
 				<XAxis
 					dataKey="month"
 					tickLine={false}
-					tickMargin={10}
 					axisLine={false}
+					tickMargin={8}
 					tickFormatter={(value) => value.slice(0, 3)}
 				/>
 				<ChartTooltip
 					cursor={false}
-					content={<ChartTooltipContent hideLabel />}
+					content={<ChartTooltipContent indicator="dot" hideLabel />}
 				/>
-				<Bar dataKey="desktop" fill="var(--color-desktop)" radius={8} />
-			</BarChart>
+				<Area
+					dataKey="desktop"
+					type="linear"
+					fill="var(--color-desktop)"
+					fillOpacity={0.4}
+					stroke="var(--color-desktop)"
+				/>
+			</AreaChart>
 		</ChartContainer>
 	)
 }

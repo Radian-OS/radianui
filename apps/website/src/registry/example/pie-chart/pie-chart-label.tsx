@@ -42,22 +42,12 @@ const chartConfig = {
 	},
 } satisfies ChartConfig
 
-export default function DonutChartPreview() {
+export default function PieChartLabel() {
 	return (
-		<ChartContainer
-			config={chartConfig}
-			className="mx-auto aspect-square min-h-[250px]">
+		<ChartContainer config={chartConfig} className="min-h-[200px] w-full">
 			<PieChart>
-				<ChartTooltip
-					cursor={false}
-					content={<ChartTooltipContent hideLabel />}
-				/>
-				<Pie
-					data={chartData}
-					dataKey="visitors"
-					nameKey="browser"
-					innerRadius={60}
-				/>
+				<ChartTooltip content={<ChartTooltipContent hideLabel />} />
+				<Pie data={chartData} dataKey="visitors" label nameKey="browser" />
 			</PieChart>
 		</ChartContainer>
 	)

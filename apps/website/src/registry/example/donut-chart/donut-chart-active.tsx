@@ -1,6 +1,7 @@
 "use client"
 
-import { Pie, PieChart } from "recharts"
+import { Pie, PieChart, Sector } from "recharts"
+import type { PieSectorShapeProps } from "recharts/types/polar/Pie"
 import {
 	type ChartConfig,
 	ChartContainer,
@@ -42,7 +43,9 @@ const chartConfig = {
 	},
 } satisfies ChartConfig
 
-export default function DonutChartPreview() {
+const ACTIVE_INDEX = 0
+
+export default function DonutChartActive() {
 	return (
 		<ChartContainer
 			config={chartConfig}
@@ -57,6 +60,14 @@ export default function DonutChartPreview() {
 					dataKey="visitors"
 					nameKey="browser"
 					innerRadius={60}
+					strokeWidth={5}
+					shape={({ index, outerRadius = 0, ...props }: PieSectorShapeProps) =>
+						index === ACTIVE_INDEX ? (
+							<Sector {...props} outerRadius={outerRadius + 10} />
+						) : (
+							<Sector {...props} outerRadius={outerRadius} />
+						)
+					}
 				/>
 			</PieChart>
 		</ChartContainer>

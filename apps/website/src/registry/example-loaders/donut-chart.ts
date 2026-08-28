@@ -5,8 +5,14 @@ const registry: Record<
 	string,
 	React.LazyExoticComponent<React.ComponentType>
 > = {
+	"donut-chart-active": React.lazy(
+		() => import("@/registry/example/donut-chart/donut-chart-active")
+	),
 	"donut-chart-preview": React.lazy(
 		() => import("@/registry/example/donut-chart/donut-chart-preview")
+	),
+	"donut-chart-text": React.lazy(
+		() => import("@/registry/example/donut-chart/donut-chart-text")
 	),
 }
 

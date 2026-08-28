@@ -1,6 +1,6 @@
 "use client"
 
-import { Bar, BarChart, CartesianGrid, XAxis } from "recharts"
+import { CartesianGrid, Line, LineChart, XAxis } from "recharts"
 import {
 	type ChartConfig,
 	ChartContainer,
@@ -10,7 +10,7 @@ import {
 
 const chartData = [
 	{ month: "January", desktop: 186 },
-	{ month: "February", desktop: 310 },
+	{ month: "February", desktop: 305 },
 	{ month: "March", desktop: 237 },
 	{ month: "April", desktop: 73 },
 	{ month: "May", desktop: 209 },
@@ -20,28 +20,40 @@ const chartData = [
 const chartConfig = {
 	desktop: {
 		label: "Desktop",
-		color: "var(--color-orange)",
+		color: "var(--color-neon)",
 	},
 } satisfies ChartConfig
 
-export default function BarChartPreview() {
+export default function LineChartLinear() {
 	return (
 		<ChartContainer config={chartConfig} className="min-h-[200px] w-full">
-			<BarChart accessibilityLayer data={chartData}>
+			<LineChart
+				accessibilityLayer
+				data={chartData}
+				margin={{
+					left: 12,
+					right: 12,
+				}}>
 				<CartesianGrid vertical={false} />
 				<XAxis
 					dataKey="month"
 					tickLine={false}
-					tickMargin={10}
 					axisLine={false}
+					tickMargin={8}
 					tickFormatter={(value) => value.slice(0, 3)}
 				/>
 				<ChartTooltip
 					cursor={false}
 					content={<ChartTooltipContent hideLabel />}
 				/>
-				<Bar dataKey="desktop" fill="var(--color-desktop)" radius={8} />
-			</BarChart>
+				<Line
+					dataKey="desktop"
+					type="linear"
+					stroke="var(--color-desktop)"
+					strokeWidth={2}
+					dot={false}
+				/>
+			</LineChart>
 		</ChartContainer>
 	)
 }

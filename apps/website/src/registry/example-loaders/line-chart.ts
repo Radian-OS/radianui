@@ -5,8 +5,26 @@ const registry: Record<
 	string,
 	React.LazyExoticComponent<React.ComponentType>
 > = {
+	"line-chart-custom-dot": React.lazy(
+		() => import("@/registry/example/line-chart/line-chart-custom-dot")
+	),
+	"line-chart-dots": React.lazy(
+		() => import("@/registry/example/line-chart/line-chart-dots")
+	),
+	"line-chart-label": React.lazy(
+		() => import("@/registry/example/line-chart/line-chart-label")
+	),
+	"line-chart-linear": React.lazy(
+		() => import("@/registry/example/line-chart/line-chart-linear")
+	),
+	"line-chart-multiple": React.lazy(
+		() => import("@/registry/example/line-chart/line-chart-multiple")
+	),
 	"line-chart-preview": React.lazy(
 		() => import("@/registry/example/line-chart/line-chart-preview")
+	),
+	"line-chart-step": React.lazy(
+		() => import("@/registry/example/line-chart/line-chart-step")
 	),
 }
 

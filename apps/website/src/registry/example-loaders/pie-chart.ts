@@ -5,8 +5,17 @@ const registry: Record<
 	string,
 	React.LazyExoticComponent<React.ComponentType>
 > = {
+	"pie-chart-label": React.lazy(
+		() => import("@/registry/example/pie-chart/pie-chart-label")
+	),
+	"pie-chart-legend": React.lazy(
+		() => import("@/registry/example/pie-chart/pie-chart-legend")
+	),
 	"pie-chart-preview": React.lazy(
 		() => import("@/registry/example/pie-chart/pie-chart-preview")
+	),
+	"pie-chart-stacked": React.lazy(
+		() => import("@/registry/example/pie-chart/pie-chart-stacked")
 	),
 }
 

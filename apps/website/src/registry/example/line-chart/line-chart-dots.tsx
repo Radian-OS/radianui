@@ -9,12 +9,12 @@ import {
 } from "@/registry/ui/chart"
 
 const chartData = [
-	{ month: "January", desktop: 186 },
-	{ month: "February", desktop: 305 },
-	{ month: "March", desktop: 237 },
-	{ month: "April", desktop: 73 },
-	{ month: "May", desktop: 209 },
-	{ month: "June", desktop: 214 },
+	{ month: "January", desktop: 186, mobile: 80 },
+	{ month: "February", desktop: 305, mobile: 200 },
+	{ month: "March", desktop: 237, mobile: 120 },
+	{ month: "April", desktop: 73, mobile: 190 },
+	{ month: "May", desktop: 209, mobile: 130 },
+	{ month: "June", desktop: 214, mobile: 140 },
 ]
 
 const chartConfig = {
@@ -22,9 +22,13 @@ const chartConfig = {
 		label: "Desktop",
 		color: "var(--color-red)",
 	},
+	mobile: {
+		label: "Mobile",
+		color: "var(--color-blue)",
+	},
 } satisfies ChartConfig
 
-export default function LineChartDefault() {
+export default function LineChartDots() {
 	return (
 		<ChartContainer config={chartConfig} className="min-h-[200px] w-full">
 			<LineChart
@@ -51,7 +55,12 @@ export default function LineChartDefault() {
 					type="natural"
 					stroke="var(--color-desktop)"
 					strokeWidth={2}
-					dot={false}
+					dot={{
+						fill: "var(--color-desktop)",
+					}}
+					activeDot={{
+						r: 6,
+					}}
 				/>
 			</LineChart>
 		</ChartContainer>

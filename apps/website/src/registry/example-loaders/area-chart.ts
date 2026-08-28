@@ -5,8 +5,32 @@ const registry: Record<
 	string,
 	React.LazyExoticComponent<React.ComponentType>
 > = {
+	"area-chart-axes": React.lazy(
+		() => import("@/registry/example/area-chart/area-chart-axes")
+	),
+	"area-chart-expand": React.lazy(
+		() => import("@/registry/example/area-chart/area-chart-expand")
+	),
+	"area-chart-gradient": React.lazy(
+		() => import("@/registry/example/area-chart/area-chart-gradient")
+	),
+	"area-chart-icons": React.lazy(
+		() => import("@/registry/example/area-chart/area-chart-icons")
+	),
+	"area-chart-linear": React.lazy(
+		() => import("@/registry/example/area-chart/area-chart-linear")
+	),
+	"area-chart-negative": React.lazy(
+		() => import("@/registry/example/area-chart/area-chart-negative")
+	),
 	"area-chart-preview": React.lazy(
 		() => import("@/registry/example/area-chart/area-chart-preview")
+	),
+	"area-chart-stacked": React.lazy(
+		() => import("@/registry/example/area-chart/area-chart-stacked")
+	),
+	"area-chart-step": React.lazy(
+		() => import("@/registry/example/area-chart/area-chart-step")
 	),
 }
 

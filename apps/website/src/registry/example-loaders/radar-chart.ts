@@ -5,6 +5,24 @@ const registry: Record<
 	string,
 	React.LazyExoticComponent<React.ComponentType>
 > = {
+	"radar-chart-dots": React.lazy(
+		() => import("@/registry/example/radar-chart/radar-chart-dots")
+	),
+	"radar-chart-grid-circle": React.lazy(
+		() => import("@/registry/example/radar-chart/radar-chart-grid-circle")
+	),
+	"radar-chart-grid-filled": React.lazy(
+		() => import("@/registry/example/radar-chart/radar-chart-grid-filled")
+	),
+	"radar-chart-label": React.lazy(
+		() => import("@/registry/example/radar-chart/radar-chart-label")
+	),
+	"radar-chart-lines": React.lazy(
+		() => import("@/registry/example/radar-chart/radar-chart-lines")
+	),
+	"radar-chart-multiple-legend": React.lazy(
+		() => import("@/registry/example/radar-chart/radar-chart-multiple-legend")
+	),
 	"radar-chart-preview": React.lazy(
 		() => import("@/registry/example/radar-chart/radar-chart-preview")
 	),

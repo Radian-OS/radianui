@@ -1,6 +1,6 @@
 "use client"
 
-import { Bar, BarChart, CartesianGrid, XAxis } from "recharts"
+import { Bar, BarChart, CartesianGrid, LabelList, XAxis } from "recharts"
 import {
 	type ChartConfig,
 	ChartContainer,
@@ -10,7 +10,7 @@ import {
 
 const chartData = [
 	{ month: "January", desktop: 186 },
-	{ month: "February", desktop: 310 },
+	{ month: "February", desktop: 305 },
 	{ month: "March", desktop: 237 },
 	{ month: "April", desktop: 73 },
 	{ month: "May", desktop: 209 },
@@ -24,10 +24,15 @@ const chartConfig = {
 	},
 } satisfies ChartConfig
 
-export default function BarChartPreview() {
+export default function BarChartLabel() {
 	return (
 		<ChartContainer config={chartConfig} className="min-h-[200px] w-full">
-			<BarChart accessibilityLayer data={chartData}>
+			<BarChart
+				accessibilityLayer
+				data={chartData}
+				margin={{
+					top: 20,
+				}}>
 				<CartesianGrid vertical={false} />
 				<XAxis
 					dataKey="month"
@@ -40,7 +45,14 @@ export default function BarChartPreview() {
 					cursor={false}
 					content={<ChartTooltipContent hideLabel />}
 				/>
-				<Bar dataKey="desktop" fill="var(--color-desktop)" radius={8} />
+				<Bar dataKey="desktop" fill="var(--color-desktop)" radius={8}>
+					<LabelList
+						position="top"
+						offset={12}
+						className="fill-fg"
+						fontSize={12}
+					/>
+				</Bar>
 			</BarChart>
 		</ChartContainer>
 	)

@@ -8,8 +8,6 @@ import {
 	ChartTooltipContent,
 } from "@/registry/ui/chart"
 
-export const description = "A radar chart"
-
 const chartData = [
 	{ month: "January", desktop: 186 },
 	{ month: "February", desktop: 305 },
@@ -22,21 +20,28 @@ const chartData = [
 const chartConfig = {
 	desktop: {
 		label: "Desktop",
-		color: "var(--color-neon)",
+		color: "var(--color-rose)",
 	},
 } satisfies ChartConfig
 
-export default function RadarChartPreview() {
+export default function RadarChartGridCircle() {
 	return (
-		<ChartContainer config={chartConfig} className="min-h-[250px] w-full">
+		<ChartContainer config={chartConfig} className="min-h-[250px]">
 			<RadarChart data={chartData}>
-				<ChartTooltip cursor={false} content={<ChartTooltipContent />} />
+				<ChartTooltip
+					cursor={false}
+					content={<ChartTooltipContent hideLabel />}
+				/>
+				<PolarGrid gridType="circle" />
 				<PolarAngleAxis dataKey="month" />
-				<PolarGrid />
 				<Radar
 					dataKey="desktop"
 					fill="var(--color-desktop)"
 					fillOpacity={0.6}
+					dot={{
+						r: 4,
+						fillOpacity: 1,
+					}}
 				/>
 			</RadarChart>
 		</ChartContainer>

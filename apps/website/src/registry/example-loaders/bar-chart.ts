@@ -5,8 +5,23 @@ const registry: Record<
 	string,
 	React.LazyExoticComponent<React.ComponentType>
 > = {
+	"bar-chart-horizontal": React.lazy(
+		() => import("@/registry/example/bar-chart/bar-chart-horizontal")
+	),
+	"bar-chart-label": React.lazy(
+		() => import("@/registry/example/bar-chart/bar-chart-label")
+	),
+	"bar-chart-multiple": React.lazy(
+		() => import("@/registry/example/bar-chart/bar-chart-multiple")
+	),
+	"bar-chart-negative": React.lazy(
+		() => import("@/registry/example/bar-chart/bar-chart-negative")
+	),
 	"bar-chart-preview": React.lazy(
 		() => import("@/registry/example/bar-chart/bar-chart-preview")
+	),
+	"bar-chart-stacked": React.lazy(
+		() => import("@/registry/example/bar-chart/bar-chart-stacked")
 	),
 }
 

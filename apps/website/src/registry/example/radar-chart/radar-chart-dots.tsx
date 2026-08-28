@@ -1,6 +1,6 @@
 "use client"
 
-import { Bar, BarChart, CartesianGrid, XAxis } from "recharts"
+import { PolarAngleAxis, PolarGrid, Radar, RadarChart } from "recharts"
 import {
 	type ChartConfig,
 	ChartContainer,
@@ -10,9 +10,9 @@ import {
 
 const chartData = [
 	{ month: "January", desktop: 186 },
-	{ month: "February", desktop: 310 },
+	{ month: "February", desktop: 305 },
 	{ month: "March", desktop: 237 },
-	{ month: "April", desktop: 73 },
+	{ month: "April", desktop: 273 },
 	{ month: "May", desktop: 209 },
 	{ month: "June", desktop: 214 },
 ]
@@ -20,28 +20,30 @@ const chartData = [
 const chartConfig = {
 	desktop: {
 		label: "Desktop",
-		color: "var(--color-orange)",
+		color: "var(--color-neon)",
 	},
 } satisfies ChartConfig
 
-export default function BarChartPreview() {
+export default function RadarChartDot() {
 	return (
 		<ChartContainer config={chartConfig} className="min-h-[200px] w-full">
-			<BarChart accessibilityLayer data={chartData}>
-				<CartesianGrid vertical={false} />
-				<XAxis
-					dataKey="month"
-					tickLine={false}
-					tickMargin={10}
-					axisLine={false}
-					tickFormatter={(value) => value.slice(0, 3)}
-				/>
+			<RadarChart data={chartData}>
 				<ChartTooltip
 					cursor={false}
 					content={<ChartTooltipContent hideLabel />}
 				/>
-				<Bar dataKey="desktop" fill="var(--color-desktop)" radius={8} />
-			</BarChart>
+				<PolarGrid gridType="circle" />
+				<PolarAngleAxis dataKey="month" />
+				<Radar
+					dataKey="desktop"
+					fill="var(--color-desktop)"
+					fillOpacity={0.6}
+					dot={{
+						r: 4,
+						fillOpacity: 1,
+					}}
+				/>
+			</RadarChart>
 		</ChartContainer>
 	)
 }

@@ -1,6 +1,6 @@
 "use client"
 
-import { CartesianGrid, Line, LineChart, XAxis } from "recharts"
+import { Area, AreaChart, CartesianGrid, XAxis } from "recharts"
 import {
 	type ChartConfig,
 	ChartContainer,
@@ -9,10 +9,10 @@ import {
 } from "@/registry/ui/chart"
 
 const chartData = [
-	{ month: "January", desktop: 186 },
-	{ month: "February", desktop: 305 },
-	{ month: "March", desktop: 237 },
-	{ month: "April", desktop: 73 },
+	{ month: "January", desktop: 120 },
+	{ month: "February", desktop: -305 },
+	{ month: "March", desktop: 250 },
+	{ month: "April", desktop: -73 },
 	{ month: "May", desktop: 209 },
 	{ month: "June", desktop: 214 },
 ]
@@ -20,14 +20,14 @@ const chartData = [
 const chartConfig = {
 	desktop: {
 		label: "Desktop",
-		color: "var(--color-red)",
+		color: "var(--color-error)",
 	},
 } satisfies ChartConfig
 
-export default function LineChartDefault() {
+export default function ChartAreaNegative() {
 	return (
 		<ChartContainer config={chartConfig} className="min-h-[200px] w-full">
-			<LineChart
+			<AreaChart
 				accessibilityLayer
 				data={chartData}
 				margin={{
@@ -44,16 +44,16 @@ export default function LineChartDefault() {
 				/>
 				<ChartTooltip
 					cursor={false}
-					content={<ChartTooltipContent hideLabel />}
+					content={<ChartTooltipContent indicator="line" />}
 				/>
-				<Line
+				<Area
 					dataKey="desktop"
 					type="natural"
+					fill="var(--color-desktop)"
+					fillOpacity={0.4}
 					stroke="var(--color-desktop)"
-					strokeWidth={2}
-					dot={false}
 				/>
-			</LineChart>
+			</AreaChart>
 		</ChartContainer>
 	)
 }

@@ -1,6 +1,182 @@
 ---
 title: Donut Chart
-description: The Chart component is a versatile and customizable charting solution built on top of the Recharts library.
+description: A donut chart variation of the pie chart built on top of Recharts, featuring a hollow center perfect for displaying summary values or labels.
 ---
 
 <ComponentPreview path="donut-chart/donut-chart-preview" />
+
+---
+
+## Installation
+
+<InstallationTabs>
+    <InstallTabsList>
+        <InstallTabsTrigger value="cli">CLI</InstallTabsTrigger>
+        <InstallTabsTrigger value="manual">Manual</InstallTabsTrigger>
+    </InstallTabsList>
+    <InstallTabsContent value="cli">
+        ```bash
+        npx radianui@latest add chart
+        ```
+    </InstallTabsContent>
+    <InstallTabsContent value="manual" className="p-0">
+    <Steps>
+        <Step>Install the following dependencies:</Step>
+        ```bash
+        npm install recharts
+        ```
+        <Step>Copy and paste the following code into your project.</Step>
+        <ComponentSource src="styles/default/ui/chart.tsx" title="components/ui/chart.tsx" collapsible />
+
+        <Step>Update the import paths as per your project structure.</Step>
+    </Steps>
+    </InstallTabsContent>
+
+</InstallationTabs>
+
+---
+
+## Usage
+
+### Imports
+
+```tsx showLineNumbers title=" "
+import { Pie, PieChart } from "recharts"
+import {
+	type ChartConfig,
+	ChartContainer,
+	ChartLegend,
+	ChartLegendContent,
+	ChartTooltip,
+	ChartTooltipContent,
+} from "@/components/ui/chart"
+```
+
+### Code
+
+```tsx showLineNumbers title=" "
+<ChartContainer config={chartConfig}>
+	<PieChart>
+		<ChartTooltip content={<ChartTooltipContent />} />
+		<ChartLegend content={<ChartLegendContent />} />
+		<Pie
+			data={chartData}
+			dataKey="visitors"
+			nameKey="browser"
+			innerRadius={60}
+		/>
+	</PieChart>
+</ChartContainer>
+```
+
+---
+
+## Examples
+
+### Active
+
+<ComponentPreview path="donut-chart/donut-chart-active" />
+
+### Text
+
+<ComponentPreview path="donut-chart/donut-chart-text" />
+
+---
+
+<ComponentDocContent
+	name={"Donut Chart"}
+	description={
+		"A donut chart variation of the pie chart built on top of Recharts, featuring a hollow center perfect for displaying summary values or labels."
+	}
+	features={[
+		{
+			title: "Composable Architecture",
+			description:
+				"Exports a suite of flexible wrappers: <ChartContainer>, <ChartTooltip>, <ChartLegend>, and more.",
+		},
+		{
+			title: "Recharts Integration",
+			description:
+				"Built seamlessly on top of the powerful Recharts library, giving you full access to its native components and APIs.",
+		},
+		{
+			title: "Theme Ready",
+			description:
+				"Automatically adapts to light and dark modes by utilizing CSS variables for consistent theming across your application.",
+		},
+		{
+			title: "Responsive",
+			description:
+				"Scales perfectly to fit any container size, ensuring your data visualizations look great on mobile and desktop.",
+		},
+		{
+			title: "Customizable",
+			description:
+				"Define your own color palettes, labels, and styles through a simple configuration object passed to the <ChartContainer>.",
+		},
+	]}
+	related={[
+		{
+			title: "Card",
+			description:
+				"Often used as a container to wrap charts, providing a clean boundary and space for titles or descriptions.",
+			href: "/docs/components/card",
+		},
+		{
+			title: "Badge",
+			description:
+				"Can be utilized near chart legends or headers to highlight specific data points or status.",
+			href: "/docs/components/badge",
+		},
+	]}
+	faqs={[
+		{
+			question: "How do I change the chart colors?",
+			answer:
+				"Pass a custom config object to the <ChartContainer> with your desired theme colors mapped to CSS variables.",
+		},
+		{
+			question: "Is the chart accessible?",
+			answer:
+				"Yes, you can add the accessibilityLayer prop to your Recharts components to ensure screen readers can accurately interpret the data.",
+		},
+		{
+			question: "Can I use native Recharts components?",
+			answer:
+				"Absolutely! You can import and use any native Recharts components (like <Line>, <Area>, or <Pie>) alongside our wrappers.",
+		},
+		{
+			question: "How do I format the tooltip values?",
+			answer:
+				"You can pass a custom formatter function or use the built-in formatting options within the <ChartTooltipContent> component.",
+		},
+	]}
+/>
+
+## API Reference
+
+This is a custom component built on top of [Recharts](https://recharts.github.io/).
+
+### ChartContainer
+
+A structural wrapper that provides styling context and configuration for the chart via CSS variables.
+
+### ChartTooltip
+
+A wrapper for integrating custom, themed tooltips seamlessly into your chart.
+
+### ChartTooltipContent
+
+The internal content component for tooltips, responsible for displaying and formatting hovered data points.
+
+### ChartLegend
+
+A wrapper for embedding a custom, themed legend into your chart.
+
+### ChartLegendContent
+
+The internal content component for legends, mapping data keys to their respective colors and labels.
+
+### ChartStyle
+
+An optional component used to define or inject specific global styles and CSS variables required by the chart configuration.

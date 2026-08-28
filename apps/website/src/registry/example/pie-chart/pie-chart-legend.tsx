@@ -4,8 +4,8 @@ import { Pie, PieChart } from "recharts"
 import {
 	type ChartConfig,
 	ChartContainer,
-	ChartTooltip,
-	ChartTooltipContent,
+	ChartLegend,
+	ChartLegendContent,
 } from "@/registry/ui/chart"
 
 const chartData = [
@@ -42,22 +42,14 @@ const chartConfig = {
 	},
 } satisfies ChartConfig
 
-export default function DonutChartPreview() {
+export default function PieChartLegend() {
 	return (
 		<ChartContainer
 			config={chartConfig}
-			className="mx-auto aspect-square min-h-[250px]">
+			className="mx-auto aspect-square min-h-[300px]">
 			<PieChart>
-				<ChartTooltip
-					cursor={false}
-					content={<ChartTooltipContent hideLabel />}
-				/>
-				<Pie
-					data={chartData}
-					dataKey="visitors"
-					nameKey="browser"
-					innerRadius={60}
-				/>
+				<Pie data={chartData} dataKey="visitors" />
+				<ChartLegend content={<ChartLegendContent nameKey="browser" />} />
 			</PieChart>
 		</ChartContainer>
 	)
