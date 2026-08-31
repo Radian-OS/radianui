@@ -144,7 +144,7 @@ export const AvatarTile = ({
 				size="24"
 				variant="ghost"
 				color="neutral"
-				className="hover:bg-fill2-alpha absolute top-2 left-2 z-50 cursor-pointer opacity-0 transition-opacity group-hover:opacity-100"
+				className="absolute top-2 left-2 z-50 cursor-pointer opacity-0 transition-opacity group-hover:opacity-100 hover:bg-black/10"
 				onClick={() => {
 					toast.success(
 						isFavorite ? "Removed from favorites" : "Added to favorites"
@@ -155,7 +155,7 @@ export const AvatarTile = ({
 					className={cn(
 						isFavorite
 							? "fill-primary-border stroke-transparent"
-							: "fill-fill4-alpha stroke-transparent"
+							: "fill-fg-tertiary stroke-transparent"
 					)}
 				/>
 			</CompactButton>

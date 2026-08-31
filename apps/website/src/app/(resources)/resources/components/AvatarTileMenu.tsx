@@ -138,9 +138,9 @@ export const AvatarTileMenu = ({
 						size="24"
 						variant="ghost"
 						color="neutral"
-						className="hover:bg-fill2-alpha opacity-0 transition-opacity group-hover:bg-transparent group-hover:opacity-100 data-[state=open]:opacity-100"
+						className="opacity-0 transition-opacity group-hover:bg-transparent group-hover:opacity-100 hover:bg-black/10 data-[state=open]:opacity-100"
 						onClick={(e) => e.stopPropagation()}>
-						<MoreHorizontal className="text-fg size-4" />
+						<MoreHorizontal className="text-fg-tertiary size-4" />
 					</CompactButton>
 				</DropdownMenuTrigger>
 
