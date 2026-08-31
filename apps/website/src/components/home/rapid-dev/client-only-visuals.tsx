@@ -65,11 +65,7 @@ function DeferredVisual({ children }: { children: ReactNode }) {
 }
 
 export function LibraryDocsVisual() {
-	return (
-		<DeferredVisual>
-			<LibraryDocs />
-		</DeferredVisual>
-	)
+	return <LibraryDocs />
 }
 
 export function CreditCardUsageVisual() {
