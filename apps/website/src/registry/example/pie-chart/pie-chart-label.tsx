@@ -22,23 +22,23 @@ const chartConfig = {
 	},
 	chrome: {
 		label: "Chrome",
-		color: "var(--color-red)",
+		color: "var(--color-primary)",
 	},
 	safari: {
 		label: "Safari",
-		color: "var(--color-orange)",
+		color: "var(--color-primary-hover)",
 	},
 	firefox: {
 		label: "Firefox",
-		color: "var(--color-yellow)",
+		color: "var(--color-primary-border)",
 	},
 	edge: {
 		label: "Edge",
-		color: "var(--color-blue)",
+		color: "var(--color-primary-focus)",
 	},
 	other: {
 		label: "Other",
-		color: "var(--color-green)",
+		color: "var(--color-primary-accent)",
 	},
 } satisfies ChartConfig
 

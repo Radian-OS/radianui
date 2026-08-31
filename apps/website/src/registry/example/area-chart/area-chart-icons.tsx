@@ -23,12 +23,12 @@ const chartData = [
 const chartConfig = {
 	desktop: {
 		label: "Desktop",
-		color: "var(--color-error)",
+		color: "var(--color-primary)",
 		icon: TrendingDown,
 	},
 	mobile: {
 		label: "Mobile",
-		color: "var(--color-neon)",
+		color: "var(--color-primary-border)",
 		icon: TrendingUp,
 	},
 } satisfies ChartConfig

@@ -40,7 +40,9 @@ export default function BarChartNegative() {
 						<Cell
 							key={item.month}
 							fill={
-								item.visitors > 0 ? "var(--color-orange)" : "var(--color-red)"
+								item.visitors > 0
+									? "var(--color-primary)"
+									: "var(--color-primary-border)"
 							}
 						/>
 					))}

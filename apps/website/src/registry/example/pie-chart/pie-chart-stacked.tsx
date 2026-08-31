@@ -37,23 +37,23 @@ const chartConfig = {
 	},
 	january: {
 		label: "January",
-		color: "var(--color-red)",
+		color: "var(--color-primary)",
 	},
 	february: {
 		label: "February",
-		color: "var(--color-orange)",
+		color: "var(--color-primary-hover)",
 	},
 	march: {
 		label: "March",
-		color: "var(--color-yellow)",
+		color: "var(--color-primary-border)",
 	},
 	april: {
 		label: "April",
-		color: "var(--color-blue)",
+		color: "var(--color-primary-focus)",
 	},
 	may: {
 		label: "May",
-		color: "var(--color-green)",
+		color: "var(--color-primary-accent)",
 	},
 } satisfies ChartConfig
 
