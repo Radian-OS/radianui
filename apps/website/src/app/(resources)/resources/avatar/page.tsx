@@ -24,9 +24,9 @@ const lowerHeroBeamPath =
 	"M0 1H92C102.6 1 112.4 6.6 117.8 15.8L154.2 78.2C159.6 87.4 169.4 93 180 93H214"
 
 const pageUrl = absoluteUrl("/resources/avatar")
-const pageTitle = "Free UI Avatar Pack (216) – No Copyright, SVG & PNG"
+const pageTitle = "Free Open Source Avatars Library for UI design"
 const pageDescription =
-	"Free UI avatars for React & Figma — 216 royalty-free faces, no copyright required. Copy as HTML, download SVG or PNG, fully customizable."
+	"Get access to free UI portraits, avatars, profile pictures, and placeholder images for Figma, React, UI design, and mockups"
 const pageImage = absoluteUrl("/og/static-og.png")
 
 export const metadata: Metadata = {
@@ -73,8 +73,8 @@ export default function Page() {
 			/>
 			<div className="min-h-screen w-full">
 				<Background topPosition="top-[700px]">
-					<header className="md:pt-30 pt-15 flex flex-col items-center justify-center gap-12">
-						<div className="max-w-250 flex flex-col items-center justify-center gap-6">
+					<header className="flex flex-col items-center justify-center gap-12 pt-15 md:pt-30">
+						<div className="flex max-w-250 flex-col items-center justify-center gap-6">
 							<Link
 								href="/docs/getting-started/changelog"
 								className="relative h-[32px] rounded-full">
@@ -94,28 +94,14 @@ export default function Page() {
 								</Badge>
 								<BorderBeam size={50} />
 							</Link>
-							<div className="flex items-center -space-x-2">
-								{people.map((person) => (
-									<Avatar
-										size={`${person.image === "/avatar/header-2.jpg" ? "80" : "48"}`}
-										key={person.image}>
-										<AvatarImage
-											className={`${person.image === "/avatar/header-2.jpg" ? "z-10" : ""}`}
-											src={person.image}
-											alt={person.alt}
-										/>
-									</Avatar>
-								))}
-							</div>
-							<div className="md:w-163 flex w-full flex-col items-center justify-center gap-4">
+							<div className="flex w-full flex-col items-center justify-center gap-4 md:w-163">
 								<h1 className="heading-3 text-center">
-									Beautiful, Free UI Avatars Production-Ready for Figma & React
-									👩🏼‍💼
+									Get Free High Quality UI Faces and Avatars
 								</h1>
 								<p className="text-fg-secondary text-center text-base font-normal">
-									216 diverse, royalty-free avatars ready to drop into your
-									project. Copy the HTML or Next.js Image tag, grab the Figma
-									frame, or download as SVG or PNG.
+									Get access to free UI portraits, avatars, profile pictures,
+									and placeholder images for Figma, React, UI design, and
+									mockups
 								</p>
 							</div>
 						</div>
@@ -137,32 +123,32 @@ function VideoPreviewWithBeams() {
 		<section
 			aria-labelledby="avatar-gallery-heading"
 			className="bg-bg border-soft -mx-4 mt-[100px] flex w-[calc(100%+2rem)] justify-center border-t md:-mx-5 md:w-[calc(100%+2.5rem)]">
-			<div className="max-w-368 relative w-full px-4 md:px-5">
+			<div className="relative w-full max-w-368 px-4 md:px-5">
 				<h2 id="avatar-gallery-heading" className="sr-only">
 					Browse 216 free UI avatar illustrations
 				</h2>
-				<div className="relative z-20 flex justify-center py-10">
+				<div className="relative z-20 flex justify-center">
 					<AvatarPlayground />
 				</div>
 
 				<HeroBeamPath
-					className="left-4 top-[-276px] h-[276px] w-[438px] md:left-5"
+					className="top-[-276px] left-4 h-[276px] w-[438px] md:left-5"
 					path={upperHeroBeamPath}
 					viewBox="0 0 438 276"
 				/>
 				<HeroBeamPath
-					className="left-4 top-[-93px] h-[93px] w-[214px] md:left-5"
+					className="top-[-93px] left-4 h-[93px] w-[214px] md:left-5"
 					path={lowerHeroBeamPath}
 					viewBox="0 0 214 93"
 					beamClassName="animate-[var(--animate-beam-flow2)] opacity-0"
 				/>
 				<HeroBeamPath
-					className="right-4 top-[-276px] h-[276px] w-[438px] scale-x-[-1] md:right-5"
+					className="top-[-276px] right-4 h-[276px] w-[438px] scale-x-[-1] md:right-5"
 					path={upperHeroBeamPath}
 					viewBox="0 0 438 276"
 				/>
 				<HeroBeamPath
-					className="right-4 top-[-93px] h-[93px] w-[214px] scale-x-[-1] md:right-5"
+					className="top-[-93px] right-4 h-[93px] w-[214px] scale-x-[-1] md:right-5"
 					path={lowerHeroBeamPath}
 					viewBox="0 0 214 93"
 					beamClassName="animate-[var(--animate-beam-flow2)] opacity-0"

@@ -37,8 +37,7 @@ const COPY_FORMAT_GROUPS = [
 		label: "Design",
 		options: [
 			{ value: "image", label: "Image", icon: FileImage },
-			{ value: "transparent", label: "Transparent", icon: Grid2x2 },
-			{ value: "editable-bg", label: "Editable BG", icon: Sparkles },
+			{ value: "editable-bg", label: "SVG", icon: Sparkles },
 		],
 	},
 	{

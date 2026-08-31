@@ -1,6 +1,8 @@
 "use client"
 
+import { Star } from "lucide-react"
 import Image from "next/image"
+import { toast } from "sonner"
 import {
 	AVATAR_BLEND_OPACITY,
 	getAvatarAltText,
@@ -8,7 +10,9 @@ import {
 } from "@/constants/avatar-playground-utils"
 import { AVATAR_SHADOW_MAP } from "@/constants/avatar-shadow-map"
 import { useAvatarTileActions } from "@/hooks/avatar/use-avatar-tile-actions"
+import { cn } from "@/lib/utils"
 import { Button } from "@/registry/ui/button"
+import { CompactButton } from "@/styles/default/ui/button"
 import { AvatarTileMenu } from "./AvatarTileMenu"
 
 export interface AvatarTileProps {
@@ -96,13 +100,13 @@ export const AvatarTile = ({
 					alt=""
 					fill
 					sizes="(max-width: 640px) 25vw, (max-width: 768px) 20vw, 14vw"
-					className="z-5 pointer-events-none origin-bottom translate-y-[3%] scale-[1.03] object-cover object-bottom mix-blend-hard-light transition-transform duration-500 ease-out will-change-transform group-hover:scale-[1.08]"
+					className="pointer-events-none z-5 origin-bottom translate-y-[3%] scale-[1.03] object-cover object-bottom mix-blend-hard-light transition-transform duration-500 ease-out will-change-transform group-hover:scale-[1.08]"
 				/>
 			)}
 			{shouldApplyShadow && (
 				<div
 					aria-hidden="true"
-					className="z-15 pointer-events-none absolute inset-0 mix-blend-color-burn"
+					className="pointer-events-none absolute inset-0 z-15 mix-blend-color-burn"
 					style={{
 						...shadowStyle,
 						opacity: AVATAR_BLEND_OPACITY,
@@ -126,8 +130,6 @@ export const AvatarTile = ({
 			/>
 
 			<AvatarTileMenu
-				isFavorite={isFavorite}
-				onToggleFavorite={onToggleFavorite}
 				handleCopyPng={handleCopyPng}
 				handleCopyTransparentPng={handleCopyTransparentPng}
 				handleCopyFigmaFrame={handleCopyFigmaFrame}
@@ -137,6 +139,27 @@ export const AvatarTile = ({
 				handleDownload={handleDownload}
 			/>
 
+			<CompactButton
+				aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}
+				size="24"
+				variant="ghost"
+				color="neutral"
+				className="hover:bg-fill2-alpha absolute top-2 left-2 z-50 cursor-pointer opacity-0 transition-opacity group-hover:opacity-100"
+				onClick={() => {
+					toast.success(
+						isFavorite ? "Removed from favorites" : "Added to favorites"
+					)
+					onToggleFavorite()
+				}}>
+				<Star
+					className={cn(
+						isFavorite
+							? "fill-primary-border stroke-transparent"
+							: "fill-fill4-alpha stroke-transparent"
+					)}
+				/>
+			</CompactButton>
+
 			<div className="absolute inset-x-0 bottom-0 z-30 p-3 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
 				<Button
 					size="28"
@@ -144,11 +167,7 @@ export const AvatarTile = ({
 					variant="outline"
 					className="w-full border-none bg-white text-black hover:[background:linear-gradient(rgba(0,0,0,0.10),rgba(0,0,0,0.10)),_#fff]"
 					onClick={handleCopy}>
-					{copied
-						? copyFormat === "editable-bg"
-							? "Paste in Figma"
-							: "Copied"
-						: "Copy"}
+					{copied ? "Copied" : "Copy"}
 				</Button>
 			</div>
 		</li>

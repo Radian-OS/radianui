@@ -175,7 +175,7 @@ export const useAvatarTileActions = ({
 				index,
 				tone,
 				showShadow: shouldApplyShadow,
-				description: "Figma Frame has been copied to your clipboard.",
+				description: "SVG has been copied to your clipboard.",
 			})
 		} catch {
 			try {

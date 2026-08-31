@@ -8,7 +8,7 @@ import {
 } from "@/constants/avatar-playground-utils"
 import { useAvatarPlayground } from "@/hooks/avatar/use-avatar-playground"
 import { cn } from "@/lib/utils"
-import { Button, IconButton } from "@/registry/ui/button"
+import { IconButton } from "@/registry/ui/button"
 import { Skeleton } from "@/registry/ui/skeleton"
 import { AvatarTile } from "./AvatarTile"
 import CategoryFilterDropdown from "./CategoryFilterDropdown"
@@ -44,7 +44,7 @@ const AvatarPlayground = () => {
 	return (
 		<div className="flex w-full flex-col gap-4 py-2">
 			<div ref={sentinelRef} className="pointer-events-none h-px w-full" />
-			<div className="bg-bg/95 z-100 sticky top-0 flex w-full items-center justify-between py-3 backdrop-blur-sm">
+			<div className="bg-bg/95 sticky top-0 z-100 flex w-full items-center justify-between py-3 backdrop-blur-sm">
 				<CategoryFilterDropdown
 					value={category}
 					onChange={setCategory}
@@ -58,18 +58,9 @@ const AvatarPlayground = () => {
 						// colorMode={colorMode}
 					/>
 
-					<Button
-						color="neutral"
-						variant="outline"
-						className="hidden sm:flex"
-						onClick={() => setConfigOpen(true)}>
-						<Settings className="text-fg-secondary" />
-						Config
-					</Button>
 					<IconButton
 						color="neutral"
 						variant="outline"
-						className="block sm:hidden"
 						onClick={() => setConfigOpen(true)}>
 						<Settings className="text-fg-secondary" />
 					</IconButton>
