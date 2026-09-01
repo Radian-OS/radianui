@@ -21,6 +21,7 @@ const MIME_MAP: Partial<Record<AvatarDownloadFormats, string>> = {
 export const createCompositeBlob = async (
 	tone: string,
 	src: string,
+	showShadow: boolean,
 	shouldApplyShadow: boolean,
 	index: number,
 	format: AvatarDownloadFormats
@@ -31,6 +32,8 @@ export const createCompositeBlob = async (
 	canvas.height = size
 	const ctx = canvas.getContext("2d")
 	if (!ctx) return null
+	ctx.imageSmoothingEnabled = true
+	ctx.imageSmoothingQuality = "high"
 	let backgroundImage: HTMLImageElement | null = null
 	const imageBackgroundTint = getImageBackgroundTint(tone)
 
@@ -89,6 +92,29 @@ export const createCompositeBlob = async (
 	}
 
 	try {
+		// Draw shadow behind avatar (matching UI layer order) if enabled and not transparent
+		if (showShadow && tone !== "none") {
+			const shadowSrc = AVATAR_SHADOW_MAP[index]
+			if (shadowSrc) {
+				try {
+					const shadowImg = new window.Image()
+					shadowImg.crossOrigin = "anonymous"
+					shadowImg.src = shadowSrc
+					await new Promise<void>((resolve, reject) => {
+						shadowImg.onload = () => resolve()
+						shadowImg.onerror = reject
+					})
+					ctx.save()
+					ctx.globalCompositeOperation = "hard-light"
+					ctx.drawImage(shadowImg, 0, 0, size, size)
+					ctx.restore()
+				} catch {
+					// Continue if shadow image fails to load
+				}
+			}
+		}
+
+		// Draw avatar image
 		const avatarImg = new window.Image()
 		avatarImg.crossOrigin = "anonymous"
 		avatarImg.src = src
@@ -98,25 +124,6 @@ export const createCompositeBlob = async (
 		})
 
 		ctx.drawImage(avatarImg, 0, 0, size, size)
-
-		const shadowSrc = AVATAR_SHADOW_MAP[index]
-		if (shadowSrc) {
-			try {
-				const shadowImg = new window.Image()
-				shadowImg.crossOrigin = "anonymous"
-				shadowImg.src = shadowSrc
-				await new Promise<void>((resolve, reject) => {
-					shadowImg.onload = () => resolve()
-					shadowImg.onerror = reject
-				})
-				ctx.save()
-				ctx.globalCompositeOperation = "hard-light"
-				ctx.drawImage(shadowImg, 0, 0, size, size)
-				ctx.restore()
-			} catch {
-				// Continue if shadow image fails to load
-			}
-		}
 
 		// The avatar source is opaque, so the Color Burn fill must be composited
 		// above it to affect the exported pixels.
@@ -172,6 +179,6 @@ export const createCompositeBlob = async (
 	}
 
 	return new Promise((resolve) =>
-		canvas.toBlob(resolve, MIME_MAP[format] ?? "image/png", 0.95)
+		canvas.toBlob(resolve, MIME_MAP[format] ?? "image/png", 1.0)
 	)
 }

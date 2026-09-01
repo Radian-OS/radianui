@@ -17,6 +17,7 @@ interface UseAvatarTileActionsOptions {
 	index: number
 	tone: string
 	copyFormat: string
+	showShadow: boolean
 	shouldApplyShadow: boolean
 }
 
@@ -27,6 +28,7 @@ export const useAvatarTileActions = ({
 	index,
 	tone,
 	copyFormat,
+	showShadow,
 	shouldApplyShadow,
 }: UseAvatarTileActionsOptions) => {
 	const [copied, setCopied] = useState(false)
@@ -62,12 +64,17 @@ export const useAvatarTileActions = ({
 		await handleCopyTransparentPng()
 	}
 
-	// 1. Copy PNG (composite with background + shadow)
+	// 1. Copy PNG (composite with background + shadow, or raw transparent if tone === "none")
 	const handleCopyPng = async () => {
+		if (tone === "none") {
+			await handleCopyTransparentPng()
+			return
+		}
 		try {
 			const pngBlobPromise = createCompositeBlob(
 				tone,
 				src,
+				showShadow,
 				shouldApplyShadow,
 				index,
 				"png"
@@ -83,7 +90,7 @@ export const useAvatarTileActions = ({
 				src,
 				index,
 				tone,
-				showShadow: shouldApplyShadow,
+				showShadow,
 				description: "PNG has been copied to your clipboard.",
 			})
 		} catch {
@@ -91,6 +98,7 @@ export const useAvatarTileActions = ({
 				const blob = await createCompositeBlob(
 					tone,
 					src,
+					showShadow,
 					shouldApplyShadow,
 					index,
 					"png"
@@ -104,7 +112,7 @@ export const useAvatarTileActions = ({
 					src,
 					index,
 					tone,
-					showShadow: shouldApplyShadow,
+					showShadow,
 					description: "PNG has been copied to your clipboard.",
 				})
 			} catch {
@@ -287,29 +295,34 @@ export const useAvatarTileActions = ({
 		}
 	}
 
-	// 7. Download PNG
+	// 7. Download PNG / JPG / WebP
 	const handleDownload = async (
 		format: AvatarDownloadFormats,
 		e?: { stopPropagation?: () => void }
 	) => {
 		e?.stopPropagation?.()
 
-		// if (copyFormat === "editable-bg") {
-		// 	const svg = await generateEditableSvg(tone, src, index)
-		// 	if (!svg) return
-		// 	const blob = new Blob([svg], { type: "image/svg+xml" })
-		// 	const link = document.createElement("a")
-		// 	link.download = `avatar-${index + 1}-editable.svg`
-		// 	link.href = URL.createObjectURL(blob)
-		// 	link.click()
-		// 	URL.revokeObjectURL(link.href)
-		// 	toast.success("Downloading SVG...")
-		// 	return
-		// }
+		// For transparent PNGs, download the raw lossless source asset directly to avoid canvas compression/re-encoding
+		if (tone === "none" && format === "png") {
+			try {
+				const res = await fetch(src)
+				const blob = await res.blob()
+				const link = document.createElement("a")
+				link.download = `avatar-${index + 1}.png`
+				link.href = URL.createObjectURL(blob)
+				link.click()
+				URL.revokeObjectURL(link.href)
+				toast.success("Downloading PNG...")
+				return
+			} catch {
+				// Fallback to canvas composite if direct fetch fails
+			}
+		}
 
 		const blob = await createCompositeBlob(
 			tone,
 			src,
+			showShadow,
 			shouldApplyShadow,
 			index,
 			format

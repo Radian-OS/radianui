@@ -60,6 +60,7 @@ export const AvatarTile = ({
 		index,
 		tone,
 		copyFormat,
+		showShadow,
 		shouldApplyShadow,
 	})
 

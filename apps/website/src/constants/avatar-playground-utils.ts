@@ -259,7 +259,9 @@ export async function generateEditableSvg(
 	// Kick off avatar & shadow fetch in parallel
 	const avatarPromise = fetchImageAsDataUrl(src).catch(() => "")
 	const shadowSrc =
-		typeof avatarIndex === "number" ? AVATAR_SHADOW_MAP[avatarIndex] : undefined
+		typeof avatarIndex === "number" && tone !== "none"
+			? AVATAR_SHADOW_MAP[avatarIndex]
+			: undefined
 	const shadowPromise = shadowSrc
 		? fetchImageAsDataUrl(shadowSrc).catch(() => "")
 		: Promise.resolve("")
@@ -297,14 +299,14 @@ export async function generateEditableSvg(
 	if (!avatarDataUrl) return ""
 	const shadowDataUrl = await shadowPromise
 
-	// --- 3. Assemble SVG: Frame (with fill) → avatar + shadow ----------------
+	// --- 3. Assemble SVG: Background → shadow (hard-light) → avatar ----------
 	return [
 		`<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">`,
 		bgElement ? `<!-- Background Layer -->\n${bgElement}` : "",
-		`<image id="avatar" data-locked="true" locked="true" href="${avatarDataUrl}" width="${size}" height="${size}" />`,
 		shadowDataUrl
 			? `<image id="shadow" data-locked="true" locked="true" style="mix-blend-mode:hard-light" href="${shadowDataUrl}" width="${size}" height="${size}" />`
 			: "",
+		`<image id="avatar" data-locked="true" locked="true" href="${avatarDataUrl}" width="${size}" height="${size}" />`,
 		`</svg>`,
 	].join("\n")
 }
