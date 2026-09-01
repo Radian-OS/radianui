@@ -27,6 +27,39 @@ export const createCompositeBlob = async (
 	format: AvatarDownloadFormats
 ): Promise<Blob | null> => {
 	const size = 1024
+
+	// Kick off image loads in parallel to avoid sequential network delays
+	const avatarPromise = new Promise<HTMLImageElement>((resolve, reject) => {
+		const img = new window.Image()
+		img.crossOrigin = "anonymous"
+		img.onload = () => resolve(img)
+		img.onerror = reject
+		img.src = src
+	}).catch(() => null)
+
+	const shadowSrc =
+		showShadow && tone !== "none" ? AVATAR_SHADOW_MAP[index] : null
+	const shadowPromise = shadowSrc
+		? new Promise<HTMLImageElement>((resolve, reject) => {
+				const img = new window.Image()
+				img.crossOrigin = "anonymous"
+				img.onload = () => resolve(img)
+				img.onerror = reject
+				img.src = shadowSrc
+			}).catch(() => null)
+		: Promise.resolve(null)
+
+	const bgIsImage = tone.startsWith("http") || tone.startsWith("/")
+	const bgPromise = bgIsImage
+		? new Promise<HTMLImageElement>((resolve, reject) => {
+				const img = new window.Image()
+				img.crossOrigin = "anonymous"
+				img.onload = () => resolve(img)
+				img.onerror = reject
+				img.src = tone
+			}).catch(() => null)
+		: Promise.resolve(null)
+
 	const canvas = document.createElement("canvas")
 	canvas.width = size
 	canvas.height = size
@@ -71,19 +104,11 @@ export const createCompositeBlob = async (
 	} else if (tone.startsWith("#")) {
 		ctx.fillStyle = tone
 		ctx.fillRect(0, 0, size, size)
-	} else if (tone.startsWith("http") || tone.startsWith("/")) {
-		try {
-			const bgImg = new window.Image()
-			bgImg.crossOrigin = "anonymous"
-			bgImg.src = tone
-			await new Promise<void>((resolve, reject) => {
-				bgImg.onload = () => resolve()
-				bgImg.onerror = reject
-			})
+	} else if (bgIsImage) {
+		const bgImg = await bgPromise
+		if (bgImg) {
 			backgroundImage = bgImg
 			ctx.drawImage(bgImg, 0, 0, size, size)
-		} catch {
-			// Background image failed to load, continue with transparent bg
 		}
 	} else if (tone !== "none") {
 		// Fallback: fill white so the "Image" copy format is never transparent
@@ -94,36 +119,20 @@ export const createCompositeBlob = async (
 	try {
 		// Draw shadow behind avatar (matching UI layer order) if enabled and not transparent
 		if (showShadow && tone !== "none") {
-			const shadowSrc = AVATAR_SHADOW_MAP[index]
-			if (shadowSrc) {
-				try {
-					const shadowImg = new window.Image()
-					shadowImg.crossOrigin = "anonymous"
-					shadowImg.src = shadowSrc
-					await new Promise<void>((resolve, reject) => {
-						shadowImg.onload = () => resolve()
-						shadowImg.onerror = reject
-					})
-					ctx.save()
-					ctx.globalCompositeOperation = "hard-light"
-					ctx.drawImage(shadowImg, 0, 0, size, size)
-					ctx.restore()
-				} catch {
-					// Continue if shadow image fails to load
-				}
+			const shadowImg = await shadowPromise
+			if (shadowImg) {
+				ctx.save()
+				ctx.globalCompositeOperation = "hard-light"
+				ctx.drawImage(shadowImg, 0, 0, size, size)
+				ctx.restore()
 			}
 		}
 
 		// Draw avatar image
-		const avatarImg = new window.Image()
-		avatarImg.crossOrigin = "anonymous"
-		avatarImg.src = src
-		await new Promise<void>((resolve, reject) => {
-			avatarImg.onload = () => resolve()
-			avatarImg.onerror = reject
-		})
-
-		ctx.drawImage(avatarImg, 0, 0, size, size)
+		const avatarImg = await avatarPromise
+		if (avatarImg) {
+			ctx.drawImage(avatarImg, 0, 0, size, size)
+		}
 
 		// The avatar source is opaque, so the Color Burn fill must be composited
 		// above it to affect the exported pixels.

@@ -70,20 +70,21 @@ export const useAvatarTileActions = ({
 			await handleCopyTransparentPng()
 			return
 		}
+		const blobPromise = createCompositeBlob(
+			tone,
+			src,
+			showShadow,
+			shouldApplyShadow,
+			index,
+			"png"
+		).then((blob) => {
+			if (!blob) throw new Error("PNG generation failed")
+			return blob
+		})
+
 		try {
-			const pngBlobPromise = createCompositeBlob(
-				tone,
-				src,
-				showShadow,
-				shouldApplyShadow,
-				index,
-				"png"
-			).then((blob) => {
-				if (!blob) throw new Error("PNG generation failed")
-				return blob
-			})
 			await navigator.clipboard.write([
-				new ClipboardItem({ "image/png": pngBlobPromise }),
+				new ClipboardItem({ "image/png": blobPromise }),
 			])
 			markCopied()
 			showCopiedToast({
@@ -95,14 +96,7 @@ export const useAvatarTileActions = ({
 			})
 		} catch {
 			try {
-				const blob = await createCompositeBlob(
-					tone,
-					src,
-					showShadow,
-					shouldApplyShadow,
-					index,
-					"png"
-				)
+				const blob = await blobPromise
 				if (!blob) return
 				await navigator.clipboard.write([
 					new ClipboardItem({ "image/png": blob }),
