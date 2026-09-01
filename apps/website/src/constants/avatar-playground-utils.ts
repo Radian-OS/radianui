@@ -2,7 +2,7 @@ import type { CSSProperties } from "react"
 import { AVATAR_SHADOW_MAP } from "./avatar-shadow-map"
 import { SOLID_COLORS } from "./tone-filter-data"
 
-export const AVATAR_BLEND_OPACITY = 0.15
+export const AVATAR_BLEND_OPACITY = 0.08
 
 export const SOLID_COLOR_MAP: Record<string, string> = Object.fromEntries(
 	SOLID_COLORS.map((c) => {
@@ -252,14 +252,15 @@ async function fetchImageAsDataUrl(url: string): Promise<string> {
 export async function generateEditableSvg(
 	tone: string,
 	src: string,
-	avatarIndex?: number
+	avatarIndex?: number,
+	showShadow: boolean = true
 ): Promise<string> {
 	const size = 1024
 
 	// Kick off avatar & shadow fetch in parallel
 	const avatarPromise = fetchImageAsDataUrl(src).catch(() => "")
 	const shadowSrc =
-		typeof avatarIndex === "number" && tone !== "none"
+		typeof avatarIndex === "number" && tone !== "none" && showShadow
 			? AVATAR_SHADOW_MAP[avatarIndex]
 			: undefined
 	const shadowPromise = shadowSrc
@@ -294,12 +295,50 @@ export async function generateEditableSvg(
 		}
 	}
 
+	// --- 1.5 Determine SVG tint overlay --------------------------------------
+	let tintElement = ""
+	if (tone !== "none" && tone !== "neutral") {
+		let innerTint = ""
+		if (SOLID_COLOR_MAP[tone]) {
+			innerTint = `<rect width="${size}" height="${size}" fill="${SOLID_COLOR_MAP[tone]}" />`
+		} else if (GRADIENT_MAP[tone]) {
+			const g = GRADIENT_MAP[tone]
+			if (g.base) {
+				innerTint = `<rect width="${size}" height="${size}" fill="${g.base}" />\n<rect width="${size}" height="${size}" fill="url(#bg-grad)" />`
+			} else {
+				innerTint = `<rect width="${size}" height="${size}" fill="url(#bg-grad)" />`
+			}
+		} else if (tone.startsWith("grad-custom:")) {
+			innerTint = `<rect width="${size}" height="${size}" fill="url(#bg-grad)" />`
+		} else if (tone.startsWith("#")) {
+			innerTint = `<rect width="${size}" height="${size}" fill="${tone}" />`
+		} else if (tone.startsWith("radian:")) {
+			innerTint = `<rect width="${size}" height="${size}" fill="${resolveRadianColor(tone)}" />`
+		} else if (tone.startsWith("http") || tone.startsWith("/")) {
+			const imageTint = getImageBackgroundTint(tone)
+			if (imageTint) {
+				innerTint = `<rect width="${size}" height="${size}" fill="${imageTint}" />`
+			} else {
+				try {
+					const base64 = await fetchImageAsDataUrl(tone)
+					innerTint = `<image href="${base64}" width="${size}" height="${size}" preserveAspectRatio="xMidYMid slice" />`
+				} catch {
+					// Fallback if image fails to load
+				}
+			}
+		}
+
+		if (innerTint) {
+			tintElement = `<g id="tint-overlay" data-locked="true" locked="true" style="mix-blend-mode:color-burn;" opacity="${AVATAR_BLEND_OPACITY}" pointer-events="none">\n${innerTint}\n</g>`
+		}
+	}
+
 	// --- 2. Await avatar & shadow data URLs ----------------------------------
 	const avatarDataUrl = await avatarPromise
 	if (!avatarDataUrl) return ""
 	const shadowDataUrl = await shadowPromise
 
-	// --- 3. Assemble SVG: Background → shadow (hard-light) → avatar ----------
+	// --- 3. Assemble SVG: Background → shadow (hard-light) → avatar → tint ---
 	return [
 		`<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">`,
 		bgElement ? `<!-- Background Layer -->\n${bgElement}` : "",
@@ -307,6 +346,7 @@ export async function generateEditableSvg(
 			? `<image id="shadow" data-locked="true" locked="true" style="mix-blend-mode:hard-light" href="${shadowDataUrl}" width="${size}" height="${size}" />`
 			: "",
 		`<image id="avatar" data-locked="true" locked="true" href="${avatarDataUrl}" width="${size}" height="${size}" />`,
+		tintElement ? `<!-- Tint Overlay -->\n${tintElement}` : "",
 		`</svg>`,
 	].join("\n")
 }

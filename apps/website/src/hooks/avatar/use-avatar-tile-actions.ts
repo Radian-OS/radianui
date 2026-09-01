@@ -168,12 +168,15 @@ export const useAvatarTileActions = ({
 	// 3. Figma Frame (editable SVG string)
 	const handleCopyFigmaFrame = async () => {
 		try {
-			const svgBlobPromise = generateEditableSvg(tone, src, index).then(
-				(svg) => {
-					if (!svg) throw new Error("SVG generation failed")
-					return new Blob([svg], { type: "text/plain" })
-				}
-			)
+			const svgBlobPromise = generateEditableSvg(
+				tone,
+				src,
+				index,
+				showShadow
+			).then((svg) => {
+				if (!svg) throw new Error("SVG generation failed")
+				return new Blob([svg], { type: "text/plain" })
+			})
 			await navigator.clipboard.write([
 				new ClipboardItem({ "text/plain": svgBlobPromise }),
 			])
@@ -187,7 +190,7 @@ export const useAvatarTileActions = ({
 			})
 		} catch {
 			try {
-				const svg = await generateEditableSvg(tone, src, index)
+				const svg = await generateEditableSvg(tone, src, index, showShadow)
 				if (!svg) return
 				await navigator.clipboard.writeText(svg)
 				markCopied()

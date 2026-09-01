@@ -1,6 +1,5 @@
 import { ArrowRight } from "lucide-react"
 import type { Metadata } from "next"
-import Image from "next/image"
 import Link from "next/link"
 import Background from "@/components/effects/background"
 import Footer from "@/components/home/footer"
@@ -11,7 +10,6 @@ import {
 	getAvatarResourceStructuredData,
 } from "@/lib/structured-data"
 import { BorderBeam } from "@/registry/animated/border-beam"
-import { Avatar, AvatarImage } from "@/registry/ui/avatar"
 import { Badge } from "@/registry/ui/badge"
 import AvatarHeroActionButtons from "../components/AvatarHeroActionButton"
 import AvatarPlayground from "../components/AvatarPlayground"
@@ -24,9 +22,9 @@ const lowerHeroBeamPath =
 	"M0 1H92C102.6 1 112.4 6.6 117.8 15.8L154.2 78.2C159.6 87.4 169.4 93 180 93H214"
 
 const pageUrl = absoluteUrl("/resources/avatar")
-const pageTitle = "Free Open Source Avatars Library for UI design"
+const pageTitle = "Free Open Source Avatar Library for UI design"
 const pageDescription =
-	"Get access to free UI portraits, avatars, profile pictures, and placeholder images for Figma, React, UI design, and mockups"
+	"Access free UI portraits, avatars, profile pictures, and placeholder images for Figma, React, UI design, and mockups"
 const pageImage = absoluteUrl("/og/static-og.png")
 
 export const metadata: Metadata = {
@@ -73,7 +71,7 @@ export default function Page() {
 			/>
 			<div className="min-h-screen w-full">
 				<Background topPosition="top-[700px]">
-					<header className="flex flex-col items-center justify-center gap-12 pt-15 md:pt-30">
+					<header className="flex flex-col items-center justify-center gap-12 pt-15 pb-10 md:pt-30 md:pb-25">
 						<div className="flex max-w-250 flex-col items-center justify-center gap-6">
 							<Link
 								href="/docs/getting-started/changelog"
@@ -87,7 +85,7 @@ export default function Page() {
 										color="primary"
 										className="rounded-full"
 										variant="strong">
-										100+ Faces
+										200+ Faces
 									</Badge>
 									Curated UI Avatar Pack
 									<ArrowRight className="size-3.5" />
@@ -99,9 +97,8 @@ export default function Page() {
 									Get Free High Quality UI Faces and Avatars
 								</h1>
 								<p className="text-fg-secondary text-center text-base font-normal">
-									Get access to free UI portraits, avatars, profile pictures,
-									and placeholder images for Figma, React, UI design, and
-									mockups
+									Access free UI portraits, avatars, profile pictures, and
+									placeholder images for Figma, React, UI design, and mockups
 								</p>
 							</div>
 						</div>
@@ -122,7 +119,7 @@ function VideoPreviewWithBeams() {
 	return (
 		<section
 			aria-labelledby="avatar-gallery-heading"
-			className="bg-bg border-soft -mx-4 mt-[100px] flex w-[calc(100%+2rem)] justify-center border-t md:-mx-5 md:w-[calc(100%+2.5rem)]">
+			className="bg-bg border-soft -mx-4 flex w-[calc(100%+2rem)] justify-center border-t md:-mx-5 md:w-[calc(100%+2.5rem)]">
 			<div className="relative w-full max-w-368 px-4 md:px-5">
 				<h2 id="avatar-gallery-heading" className="sr-only">
 					Browse 216 free UI avatar illustrations
