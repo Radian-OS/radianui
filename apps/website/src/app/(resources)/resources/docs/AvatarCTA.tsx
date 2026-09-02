@@ -8,8 +8,8 @@ const AvatarCTA = () => {
 	return (
 		<section
 			aria-labelledby="avatar-cta-heading"
-			className="border-soft bg-linear-to-b from-fill1 to-bg-fill2 relative max-w-[1430px] overflow-hidden rounded-[20px] border 2xl:mx-auto">
-			<div className="lg:p-15 flex items-center overflow-hidden p-6 sm:p-10 lg:w-[1350px]">
+			className="border-soft from-fill1 to-bg-fill2 relative max-w-[1430px] overflow-hidden rounded-[20px] border bg-linear-to-b 2xl:mx-auto">
+			<div className="flex items-center overflow-hidden p-6 sm:p-10 lg:w-[1350px] lg:p-15">
 				<div className="relative z-10 flex w-full flex-col gap-5 lg:max-w-md">
 					<div className="flex w-full flex-col gap-8 lg:w-[532px]">
 						<div className="flex flex-col gap-5">
@@ -18,7 +18,9 @@ const AvatarCTA = () => {
 							</Badge>
 
 							<h2 id="avatar-cta-heading" className="heading-4">
-								Production-Ready UI Blocks for Designers and Developers
+								<a href="#avatar-cta-heading">
+									Production-Ready UI Blocks for Designers and Developers
+								</a>
 							</h2>
 						</div>
 
@@ -93,9 +95,9 @@ const AvatarCTA = () => {
 					</div>
 				</div>
 
-				<div className="pointer-events-none absolute -right-0 top-0 hidden -translate-y-1/2 lg:block">
+				<div className="pointer-events-none absolute top-0 -right-0 hidden -translate-y-1/2 lg:block">
 					{/* Light mode images */}
-					<div className="-right-70 absolute top-2 h-[700px] w-[900px] dark:hidden">
+					<div className="absolute top-2 -right-70 h-[700px] w-[900px] dark:hidden">
 						<Image
 							src="/avatar/Table.png"
 							alt="User management table demonstrating avatars in a Radian UI layout"
@@ -103,7 +105,7 @@ const AvatarCTA = () => {
 							className="object-contain"
 						/>
 					</div>
-					<div className="right-51 absolute -top-2 h-[240px] w-[400px] dark:hidden">
+					<div className="absolute -top-2 right-51 h-[240px] w-[400px] dark:hidden">
 						<Image
 							src="/avatar/Dropdown.png"
 							alt="Account navigation dropdown demonstrating a user avatar"
@@ -113,7 +115,7 @@ const AvatarCTA = () => {
 					</div>
 
 					{/* Dark mode images */}
-					<div className="-right-70 absolute top-2 hidden h-[700px] w-[900px] dark:block">
+					<div className="absolute top-2 -right-70 hidden h-[700px] w-[900px] dark:block">
 						<Image
 							src="/avatar/Table-1.png"
 							alt="User management table demonstrating avatars in a dark Radian UI layout"
@@ -121,7 +123,7 @@ const AvatarCTA = () => {
 							className="object-contain"
 						/>
 					</div>
-					<div className="right-51 absolute -top-2 hidden h-[240px] w-[400px] dark:block">
+					<div className="absolute -top-2 right-51 hidden h-[240px] w-[400px] dark:block">
 						<Image
 							src="/avatar/Dropdown-1.png"
 							alt="Dark account navigation dropdown demonstrating a user avatar"

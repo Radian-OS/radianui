@@ -68,14 +68,14 @@ const AvatarFaq = () => {
 	return (
 		<section
 			aria-labelledby="avatar-faq-heading"
-			className="lg:w-200 mx-auto flex w-full flex-col gap-6">
+			className="mx-auto flex w-full flex-col gap-6 lg:w-200">
 			<div className="flex flex-col gap-8 md:gap-16">
 				<div className="flex flex-col items-center gap-4">
 					<p className="text-primary-text text-center text-sm font-medium">
 						FAQ
 					</p>
 					<h2 id="avatar-faq-heading" className="heading-4 text-center">
-						Frequently Asked Questions
+						<a href="#avatar-faq-heading">Frequently Asked Questions</a>
 					</h2>
 					<p className="text-fg-secondary text-center text-base font-normal md:w-[590px]">
 						Have a question or need clarification? Our team is here to help and

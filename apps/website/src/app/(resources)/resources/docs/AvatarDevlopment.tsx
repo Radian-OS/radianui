@@ -57,11 +57,13 @@ const AvatarDevlopment = () => {
 	return (
 		<section
 			aria-labelledby="avatar-development-heading"
-			className="lg:w-200 mx-auto flex w-full flex-col gap-6">
+			className="mx-auto flex w-full flex-col gap-6 lg:w-200">
 			<div className="flex flex-col gap-4">
 				<p className="text-primary-text text-sm font-medium">Development</p>
 				<h2 id="avatar-development-heading" className="heading-4">
-					Avatar Component Architecture and Development
+					<a href="#avatar-development-heading">
+						Avatar Component Architecture and Development
+					</a>
 				</h2>
 				<div className="flex flex-col gap-8">
 					<p>
