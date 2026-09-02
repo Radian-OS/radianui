@@ -8,7 +8,7 @@ import {
 } from "@/constants/avatar-playground-utils"
 import { useAvatarPlayground } from "@/hooks/avatar/use-avatar-playground"
 import { cn } from "@/lib/utils"
-import { Button, IconButton } from "@/registry/ui/button"
+import { IconButton } from "@/registry/ui/button"
 import { Skeleton } from "@/registry/ui/skeleton"
 import { AvatarTile } from "./AvatarTile"
 import CategoryFilterDropdown from "./CategoryFilterDropdown"
@@ -31,6 +31,8 @@ const AvatarPlayground = () => {
 		// setColorMode,
 		showShadow,
 		handleShowShadowChange,
+		useCompressedAvatars,
+		handleUseCompressedAvatarsChange,
 		favorites,
 		toggleFavorite,
 		isBlocked,
@@ -58,18 +60,9 @@ const AvatarPlayground = () => {
 						// colorMode={colorMode}
 					/>
 
-					<Button
-						color="neutral"
-						variant="outline"
-						className="hidden sm:flex"
-						onClick={() => setConfigOpen(true)}>
-						<Settings className="text-fg-secondary" />
-						Config
-					</Button>
 					<IconButton
 						color="neutral"
 						variant="outline"
-						className="block sm:hidden"
 						onClick={() => setConfigOpen(true)}>
 						<Settings className="text-fg-secondary" />
 					</IconButton>
@@ -132,12 +125,12 @@ const AvatarPlayground = () => {
 						"grid list-none grid-cols-3 gap-3 sm:grid-cols-5 md:grid-cols-6",
 						isBlocked && "pointer-events-none"
 					)}>
-					{displayedAvatars.map(({ src, index }) => {
+					{displayedAvatars.map(({ src, displaySrc, index }) => {
 						const tileTone = resolvedTones[index]
 						return (
 							<AvatarTile
 								key={src}
-								src={src}
+								src={displaySrc}
 								index={index}
 								toneStyle={getToneStyle(tileTone)}
 								tone={tileTone}
@@ -165,6 +158,8 @@ const AvatarPlayground = () => {
 				// onColorModeChange={setColorMode}
 				showShadow={showShadow}
 				onShowShadowChange={handleShowShadowChange}
+				useCompressedAvatars={useCompressedAvatars}
+				onUseCompressedAvatarsChange={handleUseCompressedAvatarsChange}
 				onToneChange={handleToneChange}
 			/>
 		</div>

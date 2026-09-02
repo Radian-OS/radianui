@@ -113,7 +113,12 @@
 
 	html {
 		scroll-behavior: smooth;
-		scrollbar-gutter: stable;
+	}
+
+	@supports (-moz-appearance: none) {
+		html {
+			scrollbar-gutter: stable;
+		}
 	}
 
 	h1,

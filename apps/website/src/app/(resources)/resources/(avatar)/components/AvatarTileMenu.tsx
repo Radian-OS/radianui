@@ -6,11 +6,8 @@ import {
 	Link2,
 	MoreHorizontal,
 	SquareDashedMousePointer,
-	Star,
 } from "lucide-react"
-import { toast } from "sonner"
 import { AvatarDownloadFormats } from "@/hooks/avatar/use-avatar-tile-actions"
-import { cn } from "@/lib/utils"
 import { CompactButton } from "@/registry/ui/button"
 import {
 	DropdownMenu,
@@ -114,8 +111,6 @@ const Html5Icon = (props: React.SVGProps<SVGSVGElement>) => (
 )
 
 export interface AvatarTileMenuProps {
-	isFavorite: boolean
-	onToggleFavorite: () => void
 	handleCopyPng: () => void
 	handleCopyTransparentPng: () => void
 	handleCopyFigmaFrame: () => void
@@ -126,8 +121,6 @@ export interface AvatarTileMenuProps {
 }
 
 export const AvatarTileMenu = ({
-	isFavorite,
-	onToggleFavorite,
 	handleCopyPng,
 	handleCopyTransparentPng,
 	handleCopyFigmaFrame,
@@ -145,9 +138,9 @@ export const AvatarTileMenu = ({
 						size="24"
 						variant="ghost"
 						color="neutral"
-						className="opacity-0 transition-opacity group-hover:bg-transparent group-hover:opacity-100 hover:bg-transparent data-[state=open]:opacity-100"
+						className="opacity-0 transition-opacity group-hover:bg-transparent group-hover:opacity-100 hover:bg-black/10 data-[state=open]:opacity-100"
 						onClick={(e) => e.stopPropagation()}>
-						<MoreHorizontal className="size-4 text-black" />
+						<MoreHorizontal className="text-fg-tertiary size-4" />
 					</CompactButton>
 				</DropdownMenuTrigger>
 
@@ -238,28 +231,6 @@ export const AvatarTileMenu = ({
 							</DropdownMenuItem>
 						</DropdownMenuSubContent>
 					</DropdownMenuSub>
-					{/* <DropdownMenuItem className="h-7" onSelect={() => handleDownload()}>
-						<Download className="text-fg-secondary size-4" />
-						<span>Download Transparent PNG</span>
-					</DropdownMenuItem> */}
-					<DropdownMenuItem
-						className="h-7"
-						onSelect={() => {
-							setTimeout(() => {
-								onToggleFavorite()
-							}, 200)
-							toast.success(
-								isFavorite ? "Removed from favorites" : "Added to favorites"
-							)
-						}}>
-						<Star
-							className={cn(
-								"text-fg-secondary size-4",
-								isFavorite && "fill-current"
-							)}
-						/>
-						<span>{isFavorite ? "Unfavorite Avatar" : "Favorite Avatar"}</span>
-					</DropdownMenuItem>
 				</DropdownMenuContent>
 			</DropdownMenu>
 		</div>

@@ -113,10 +113,12 @@ export function ToneFilterDropdown({
 	return (
 		<DropdownMenu open={open} onOpenChange={setOpen} indicatorPosition="right">
 			<DropdownMenuTrigger asChild>
-				<Button color="neutral" variant="outline" className="md:w-44">
+				<Button
+					color="neutral"
+					variant="outline"
+					className="justify-start px-2 md:w-42">
 					<TriggerSwatch activeInfo={activeInfo} />
 					<p className="hidden sm:block">{activeInfo.label}</p>
-					<ChevronDown className="text-fg-secondary ml-auto" />
 				</Button>
 			</DropdownMenuTrigger>
 
@@ -142,6 +144,35 @@ export function ToneFilterDropdown({
 							{colorMode === "radian" ? "Radian Colors" : "Colors"}
 						</DropdownMenuLabel>
 						<div className="grid grid-cols-9 gap-2">
+							{/* Clear / None Button */}
+							<IconButton
+								type="button"
+								onClick={() => onChange("none")}
+								color="neutral"
+								size="28"
+								variant="outline"
+								title="Clear Background"
+								aria-label="Clear Background">
+								<Ban />
+							</IconButton>
+
+							{/* Random Color Button */}
+							<IconButton
+								type="button"
+								onClick={() => onChange("pick-color")}
+								color="neutral"
+								size="28"
+								variant="outline"
+								title="Random Color"
+								aria-label="Random Color"
+								className={
+									value === "pick-color"
+										? "ring-primary ring-2 ring-offset-2"
+										: ""
+								}>
+								<Dices />
+							</IconButton>
+
 							{colorMode === "radian"
 								? RADIAN_COLORS.map((c) => (
 										<button
@@ -195,35 +226,6 @@ export function ToneFilterDropdown({
 								className="sr-only"
 								onChange={handleCustomColorChange}
 							/>
-
-							{/* Random Color Button */}
-							<IconButton
-								type="button"
-								onClick={() => onChange("pick-color")}
-								color="neutral"
-								size="28"
-								variant="outline"
-								title="Random Color"
-								aria-label="Random Color"
-								className={
-									value === "pick-color"
-										? "ring-primary ring-2 ring-offset-2"
-										: ""
-								}>
-								<Dices />
-							</IconButton>
-
-							{/* Clear / None Button */}
-							<IconButton
-								type="button"
-								onClick={() => onChange("none")}
-								color="neutral"
-								size="28"
-								variant="outline"
-								title="Clear Background"
-								aria-label="Clear Background">
-								<Ban />
-							</IconButton>
 						</div>
 					</div>
 

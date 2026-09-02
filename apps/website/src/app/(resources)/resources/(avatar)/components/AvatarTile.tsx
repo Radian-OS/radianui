@@ -1,6 +1,8 @@
 "use client"
 
+import { Star } from "lucide-react"
 import Image from "next/image"
+import { toast } from "sonner"
 import {
 	AVATAR_BLEND_OPACITY,
 	getAvatarAltText,
@@ -8,7 +10,9 @@ import {
 } from "@/constants/avatar-playground-utils"
 import { AVATAR_SHADOW_MAP } from "@/constants/avatar-shadow-map"
 import { useAvatarTileActions } from "@/hooks/avatar/use-avatar-tile-actions"
+import { cn } from "@/lib/utils"
 import { Button } from "@/registry/ui/button"
+import { CompactButton } from "@/styles/default/ui/button"
 import { AvatarTileMenu } from "./AvatarTileMenu"
 
 export interface AvatarTileProps {
@@ -56,6 +60,7 @@ export const AvatarTile = ({
 		index,
 		tone,
 		copyFormat,
+		showShadow,
 		shouldApplyShadow,
 	})
 
@@ -126,8 +131,6 @@ export const AvatarTile = ({
 			/>
 
 			<AvatarTileMenu
-				isFavorite={isFavorite}
-				onToggleFavorite={onToggleFavorite}
 				handleCopyPng={handleCopyPng}
 				handleCopyTransparentPng={handleCopyTransparentPng}
 				handleCopyFigmaFrame={handleCopyFigmaFrame}
@@ -137,6 +140,27 @@ export const AvatarTile = ({
 				handleDownload={handleDownload}
 			/>
 
+			<CompactButton
+				aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}
+				size="24"
+				variant="ghost"
+				color="neutral"
+				className="absolute top-2 left-2 z-50 cursor-pointer opacity-0 transition-opacity group-hover:opacity-100 hover:bg-black/10"
+				onClick={() => {
+					toast.success(
+						isFavorite ? "Removed from favorites" : "Added to favorites"
+					)
+					onToggleFavorite()
+				}}>
+				<Star
+					className={cn(
+						isFavorite
+							? "fill-primary-border stroke-transparent"
+							: "fill-fg-tertiary stroke-transparent"
+					)}
+				/>
+			</CompactButton>
+
 			<div className="absolute inset-x-0 bottom-0 z-30 p-3 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
 				<Button
 					size="28"
@@ -144,11 +168,7 @@ export const AvatarTile = ({
 					variant="outline"
 					className="w-full border-none bg-white text-black hover:[background:linear-gradient(rgba(0,0,0,0.10),rgba(0,0,0,0.10)),_#fff]"
 					onClick={handleCopy}>
-					{copied
-						? copyFormat === "editable-bg"
-							? "Paste in Figma"
-							: "Copied"
-						: "Copy"}
+					{copied ? "Copied" : "Copy"}
 				</Button>
 			</div>
 		</li>

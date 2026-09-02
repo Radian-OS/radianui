@@ -3,6 +3,7 @@ import { ArrowRight } from "lucide-react"
 import Link from "next/link"
 import Background from "@/components/effects/background"
 import Footer from "@/components/home/footer"
+import { cn } from "@/lib/utils"
 import { BorderBeam } from "@/registry/animated/border-beam"
 import { Badge } from "@/registry/ui/badge"
 
@@ -25,6 +26,9 @@ interface ResourcePageProps {
 	showcaseLabel: string
 	showcase: ReactNode
 	documentation: ReactNode
+	headerClassName?: string
+	showcaseClassName?: string
+	showcaseContentClassName?: string
 }
 
 export function ResourcePage({
@@ -36,11 +40,18 @@ export function ResourcePage({
 	showcaseLabel,
 	showcase,
 	documentation,
+	headerClassName,
+	showcaseClassName,
+	showcaseContentClassName,
 }: ResourcePageProps) {
 	return (
 		<div className="min-h-screen w-full">
 			<Background>
-				<header className="flex flex-col items-center justify-center gap-12 pt-15 md:pt-30">
+				<header
+					className={cn(
+						"flex flex-col items-center justify-center gap-12 pt-15 md:pt-30",
+						headerClassName
+					)}>
 					<div className="flex max-w-250 flex-col items-center justify-center gap-6">
 						<Link
 							href={badge.href ?? "/docs/getting-started/resources"}
@@ -77,7 +88,12 @@ export function ResourcePage({
 					</div>
 				</header>
 
-				<ResourceShowcase label={showcaseLabel}>{showcase}</ResourceShowcase>
+				<ResourceShowcase
+					label={showcaseLabel}
+					className={showcaseClassName}
+					contentClassName={showcaseContentClassName}>
+					{showcase}
+				</ResourceShowcase>
 			</Background>
 
 			{documentation}
@@ -89,19 +105,30 @@ export function ResourcePage({
 function ResourceShowcase({
 	label,
 	children,
+	className,
+	contentClassName,
 }: {
 	label: string
 	children: ReactNode
+	className?: string
+	contentClassName?: string
 }) {
 	return (
 		<section
 			aria-labelledby="resource-showcase-heading"
-			className="bg-bg border-soft -mx-4 mt-[100px] flex w-[calc(100%+2rem)] justify-center border-t md:-mx-5 md:w-[calc(100%+2.5rem)]">
+			className={cn(
+				"bg-bg border-soft -mx-4 mt-[100px] flex w-[calc(100%+2rem)] justify-center border-t md:-mx-5 md:w-[calc(100%+2.5rem)]",
+				className
+			)}>
 			<div className="relative w-full max-w-368 px-4 md:px-5">
 				<h2 id="resource-showcase-heading" className="sr-only">
 					{label}
 				</h2>
-				<div className="relative z-20 flex justify-center py-10">
+				<div
+					className={cn(
+						"relative z-20 flex justify-center py-10",
+						contentClassName
+					)}>
 					{children}
 				</div>
 

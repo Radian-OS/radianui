@@ -2,7 +2,7 @@ import type { CSSProperties } from "react"
 import { AVATAR_SHADOW_MAP } from "./avatar-shadow-map"
 import { SOLID_COLORS } from "./tone-filter-data"
 
-export const AVATAR_BLEND_OPACITY = 0.15
+export const AVATAR_BLEND_OPACITY = 0.08
 
 export const SOLID_COLOR_MAP: Record<string, string> = Object.fromEntries(
 	SOLID_COLORS.map((c) => {
@@ -124,32 +124,46 @@ export function resolveRadianColor(tone: string): string {
 	return resolved || "#f3f4f6"
 }
 
-export const AVATARS = Array.from(
-	{ length: 216 },
-	(_, i) =>
-		`https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@v1.0.0/packages/avatars/src/${i + 1}.png`
+export const AVATAR_CDN_CONFIG = {
+	baseUrl:
+		"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@v1.0.2/packages",
+	uncompressedPath: "/uncompressed-avatars/src",
+	compressedPath: "/avatars/src",
+	extension: ".png",
+	total: 216,
+}
+
+export const getAvatarUrl = (index: number, compressed: boolean = false) => {
+	const path = compressed
+		? AVATAR_CDN_CONFIG.compressedPath
+		: AVATAR_CDN_CONFIG.uncompressedPath
+	return `${AVATAR_CDN_CONFIG.baseUrl}${path}/${index + 1}${AVATAR_CDN_CONFIG.extension}`
+}
+
+export const AVATARS = Array.from({ length: AVATAR_CDN_CONFIG.total }, (_, i) =>
+	getAvatarUrl(i, false)
 )
 
 // Maps each category to the avatar numbers (1-indexed) that belong to it.
 // "all" is handled separately and shows every avatar.
 export const CATEGORY_AVATAR_MAP: Record<string, number[]> = {
 	professional: [
-		9, 11, 22, 27, 31, 32, 40, 41, 48, 52, 71, 72, 80, 83, 85, 89, 90, 91, 92,
-		93, 100, 101, 105, 110, 118, 125, 132, 133, 136, 139, 142, 144, 156, 158,
+		9, 11, 22, 27, 31, 32, 40, 41, 48, 52, 71, 72, 78, 79, 80, 83, 85, 89, 90,
+		91, 92, 93, 100, 101, 105, 118, 125, 132, 133, 136, 139, 142, 144, 156, 158,
 		169, 173, 182, 195, 196, 202, 208, 210, 214,
 	],
 	casual: [
 		1, 2, 3, 4, 5, 6, 7, 8, 10, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 23, 24,
 		25, 26, 28, 29, 30, 33, 34, 35, 36, 37, 38, 39, 42, 43, 44, 45, 46, 47, 49,
 		50, 51, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69,
-		70, 73, 74, 75, 76, 77, 78, 79, 81, 82, 84, 86, 87, 88, 94, 95, 96, 97, 98,
-		99, 102, 103, 104, 106, 107, 108, 109, 111, 112, 113, 114, 115, 116, 117,
-		119, 120, 121, 122, 123, 124, 126, 127, 128, 129, 130, 131, 134, 135, 137,
-		138, 140, 141, 143, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155,
-		157, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 170, 171, 172, 174,
-		175, 176, 177, 178, 179, 180, 181, 183, 184, 185, 186, 187, 188, 189, 190,
-		191, 192, 193, 194, 197, 198, 199, 200, 201, 204, 206, 209, 211, 212, 213,
-		215, 216,
+		70, 73, 74, 75, 76, 77, 81, 82, 84, 86, 87, 88, 94, 95, 96, 97, 98, 99, 102,
+		103, 104, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 119,
+		120, 121, 122, 123, 124, 126, 127, 128, 129, 130, 131, 134, 135, 137, 138,
+		140, 141, 143, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 157,
+		159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 170, 171, 172, 174, 175,
+		176, 177, 178, 179, 180, 181, 183, 184, 185, 186, 187, 188, 189, 190, 191,
+		192, 193, 194, 197, 198, 199, 200, 201, 204, 206, 209, 211, 212, 213, 215,
+		216,
 	],
 	male: [
 		1, 3, 4, 6, 8, 10, 12, 14, 16, 18, 20, 21, 23, 24, 26, 29, 31, 34, 35, 38,
@@ -252,14 +266,17 @@ async function fetchImageAsDataUrl(url: string): Promise<string> {
 export async function generateEditableSvg(
 	tone: string,
 	src: string,
-	avatarIndex?: number
+	avatarIndex?: number,
+	showShadow: boolean = true
 ): Promise<string> {
 	const size = 1024
 
 	// Kick off avatar & shadow fetch in parallel
 	const avatarPromise = fetchImageAsDataUrl(src).catch(() => "")
 	const shadowSrc =
-		typeof avatarIndex === "number" ? AVATAR_SHADOW_MAP[avatarIndex] : undefined
+		typeof avatarIndex === "number" && tone !== "none" && showShadow
+			? AVATAR_SHADOW_MAP[avatarIndex]
+			: undefined
 	const shadowPromise = shadowSrc
 		? fetchImageAsDataUrl(shadowSrc).catch(() => "")
 		: Promise.resolve("")
@@ -292,19 +309,58 @@ export async function generateEditableSvg(
 		}
 	}
 
+	// --- 1.5 Determine SVG tint overlay --------------------------------------
+	let tintElement = ""
+	if (tone !== "none" && tone !== "neutral") {
+		let innerTint = ""
+		if (SOLID_COLOR_MAP[tone]) {
+			innerTint = `<rect width="${size}" height="${size}" fill="${SOLID_COLOR_MAP[tone]}" />`
+		} else if (GRADIENT_MAP[tone]) {
+			const g = GRADIENT_MAP[tone]
+			if (g.base) {
+				innerTint = `<rect width="${size}" height="${size}" fill="${g.base}" />\n<rect width="${size}" height="${size}" fill="url(#bg-grad)" />`
+			} else {
+				innerTint = `<rect width="${size}" height="${size}" fill="url(#bg-grad)" />`
+			}
+		} else if (tone.startsWith("grad-custom:")) {
+			innerTint = `<rect width="${size}" height="${size}" fill="url(#bg-grad)" />`
+		} else if (tone.startsWith("#")) {
+			innerTint = `<rect width="${size}" height="${size}" fill="${tone}" />`
+		} else if (tone.startsWith("radian:")) {
+			innerTint = `<rect width="${size}" height="${size}" fill="${resolveRadianColor(tone)}" />`
+		} else if (tone.startsWith("http") || tone.startsWith("/")) {
+			const imageTint = getImageBackgroundTint(tone)
+			if (imageTint) {
+				innerTint = `<rect width="${size}" height="${size}" fill="${imageTint}" />`
+			} else {
+				try {
+					const base64 = await fetchImageAsDataUrl(tone)
+					innerTint = `<image href="${base64}" width="${size}" height="${size}" preserveAspectRatio="xMidYMid slice" />`
+				} catch {
+					// Fallback if image fails to load
+				}
+			}
+		}
+
+		if (innerTint) {
+			tintElement = `<g id="tint-overlay" data-locked="true" locked="true" style="mix-blend-mode:color-burn;" opacity="${AVATAR_BLEND_OPACITY}" pointer-events="none">\n${innerTint}\n</g>`
+		}
+	}
+
 	// --- 2. Await avatar & shadow data URLs ----------------------------------
 	const avatarDataUrl = await avatarPromise
 	if (!avatarDataUrl) return ""
 	const shadowDataUrl = await shadowPromise
 
-	// --- 3. Assemble SVG: Frame (with fill) → avatar + shadow ----------------
+	// --- 3. Assemble SVG: Background → shadow (hard-light) → avatar → tint ---
 	return [
 		`<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">`,
 		bgElement ? `<!-- Background Layer -->\n${bgElement}` : "",
-		`<image id="avatar" data-locked="true" locked="true" href="${avatarDataUrl}" width="${size}" height="${size}" />`,
 		shadowDataUrl
 			? `<image id="shadow" data-locked="true" locked="true" style="mix-blend-mode:hard-light" href="${shadowDataUrl}" width="${size}" height="${size}" />`
 			: "",
+		`<image id="avatar" data-locked="true" locked="true" href="${avatarDataUrl}" width="${size}" height="${size}" />`,
+		tintElement ? `<!-- Tint Overlay -->\n${tintElement}` : "",
 		`</svg>`,
 	].join("\n")
 }

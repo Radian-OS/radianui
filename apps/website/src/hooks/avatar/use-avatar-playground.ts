@@ -14,11 +14,13 @@ import {
 	AVATARS,
 	CATEGORY_AVATAR_MAP,
 	SOLID_COLOR_MAP,
+	getAvatarUrl,
 } from "@/constants/avatar-playground-utils"
 
 const FAVORITES_STORAGE_KEY = "radian-avatar-favorites"
 const TONE_STORAGE_KEY = "radian-avatar-tone"
 const SHADOW_STORAGE_KEY = "radian-avatar-shadow"
+const COMPRESSED_AVATARS_STORAGE_KEY = "radian-avatar-compressed"
 
 export type ColorMode = "static" | "radian"
 
@@ -56,6 +58,7 @@ export const useAvatarPlayground = () => {
 	const [copyFormat, setCopyFormat] = useState("image")
 	const [colorMode, setColorMode] = useState<ColorMode>("static")
 	const [showShadow, setShowShadow] = useState(true)
+	const [useCompressedAvatars, setUseCompressedAvatars] = useState(false)
 	const [favorites, setFavorites] = useState<Set<string>>(() => new Set())
 	const [isBlocked, setIsBlocked] = useState(false)
 	const [isHydrated, setIsHydrated] = useState(false)
@@ -121,6 +124,10 @@ export const useAvatarPlayground = () => {
 		if (savedShadow !== null) {
 			setShowShadow(savedShadow === "true")
 		}
+		const savedCompressed = localStorage.getItem(COMPRESSED_AVATARS_STORAGE_KEY)
+		if (savedCompressed !== null) {
+			setUseCompressedAvatars(savedCompressed === "true")
+		}
 		setIsHydrated(true)
 	}, [])
 
@@ -156,6 +163,13 @@ export const useAvatarPlayground = () => {
 		localStorage.setItem(SHADOW_STORAGE_KEY, String(value))
 		startTransition(() => {
 			setShowShadow(value)
+		})
+	}, [])
+
+	const handleUseCompressedAvatarsChange = useCallback((value: boolean) => {
+		localStorage.setItem(COMPRESSED_AVATARS_STORAGE_KEY, String(value))
+		startTransition(() => {
+			setUseCompressedAvatars(value)
 		})
 	}, [])
 
@@ -205,7 +219,11 @@ export const useAvatarPlayground = () => {
 
 	const displayedAvatars = useMemo(
 		() =>
-			AVATARS.map((src, index) => ({ src, index }))
+			AVATARS.map((src, index) => ({
+				src,
+				displaySrc: getAvatarUrl(index, useCompressedAvatars),
+				index,
+			}))
 				.filter(({ src, index }) => {
 					if (category === "favorites") {
 						return favorites.has(src)
@@ -227,7 +245,7 @@ export const useAvatarPlayground = () => {
 					}
 					return a.index - b.index
 				}),
-		[category, favorites, favoritesArray]
+		[category, favorites, favoritesArray, useCompressedAvatars]
 	)
 
 	return {
@@ -243,6 +261,8 @@ export const useAvatarPlayground = () => {
 		setColorMode,
 		showShadow,
 		handleShowShadowChange,
+		useCompressedAvatars,
+		handleUseCompressedAvatarsChange,
 		favorites,
 		toggleFavorite,
 		isBlocked,
