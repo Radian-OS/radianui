@@ -1,5 +1,4 @@
 import React from "react"
-import { ResourceTextSection } from "../../components/ResourceDocs"
 
 const developmentPoints = [
 	{
