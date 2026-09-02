@@ -38,6 +38,7 @@ export default function PlaygroundPage() {
 		process.cwd(),
 		"src/app/sandbox/klarheit-testimonial"
 	)
+	const hero21Dir = path.join(process.cwd(), "src/app/sandbox/hero-21")
 
 	const motionFiles = [
 		"logo-section.tsx",
@@ -68,12 +69,22 @@ export default function PlaygroundPage() {
 		"testimonial-card.tsx",
 		"page.tsx",
 	]
+	const hero21Files = [
+		"hero-section.tsx",
+		"hero-navbar.tsx",
+		"review-badge.tsx",
+		"testimonial-card.tsx",
+		"showcase-grid.tsx",
+		"logo-marquee.tsx",
+		"page.tsx",
+	]
 
 	const motionData: Record<string, string> = {}
 	const beamHeaderData: Record<string, string> = {}
 	const jamboPricingData: Record<string, string> = {}
 	const klarheitFaqData: Record<string, string> = {}
 	const klarheitTestimonialData: Record<string, string> = {}
+	const hero21Data: Record<string, string> = {}
 
 	for (const file of motionFiles) {
 		motionData[file] = readFileContent(motionDir, file)
@@ -98,12 +109,17 @@ export default function PlaygroundPage() {
 		)
 	}
 
+	for (const file of hero21Files) {
+		hero21Data[file] = readFileContent(hero21Dir, file)
+	}
+
 	const files = {
 		motion: motionData,
 		"beam-header": beamHeaderData,
 		"jambo-pricing": jamboPricingData,
 		"klarheit-faq": klarheitFaqData,
 		"klarheit-testimonial": klarheitTestimonialData,
+		"hero-21": hero21Data,
 	}
 
 	return <PlaygroundClient files={files} />
