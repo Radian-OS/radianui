@@ -540,7 +540,7 @@ export const components = {
 				"bg-fill2 border-soft mt-4 mb-6 rounded-2xl border-8 object-cover",
 				className
 			)}
-			src={(src as string) || ""}
+			src={typeof src === "string" ? src : ""}
 			width={width !== undefined ? Number(width) : undefined}
 			height={height !== undefined ? Number(height) : undefined}
 			alt={alt || ""}

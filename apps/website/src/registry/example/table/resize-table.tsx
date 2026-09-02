@@ -173,7 +173,7 @@ export default function ResizableTable() {
 								return (
 									<TableHead
 										key={header.id}
-										className="relative h-10 select-none border-t last:[&>.cursor-col-resize]:opacity-0"
+										className="relative h-10 border-t select-none last:[&>.cursor-col-resize]:opacity-0"
 										aria-sort={
 											header.column.getIsSorted() === "asc"
 												? "ascending"
@@ -191,7 +191,7 @@ export default function ResizableTable() {
 											<div
 												className={cn(
 													header.column.getCanSort() &&
-														"flex h-full cursor-pointer select-none items-center justify-between gap-2"
+														"flex h-full cursor-pointer items-center justify-between gap-2 select-none"
 												)}
 												onClick={header.column.getToggleSortingHandler()}
 												onKeyDown={(e) => {

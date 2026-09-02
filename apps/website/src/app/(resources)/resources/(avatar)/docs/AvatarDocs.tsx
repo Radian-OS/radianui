@@ -1,4 +1,5 @@
 import React from "react"
+import { ResourceDocs } from "../../components/ResourceDocs"
 import AvatarCTA from "./AvatarCTA"
 import AvatarDesign from "./AvatarDesign"
 import AvatarDevlopment from "./AvatarDevlopment"

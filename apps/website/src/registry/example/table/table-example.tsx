@@ -572,7 +572,7 @@ export default function Component() {
 												<div
 													className={cn(
 														header.column.getCanSort() &&
-															"flex h-full cursor-pointer select-none items-center justify-between gap-2"
+															"flex h-full cursor-pointer items-center justify-between gap-2 select-none"
 													)}
 													onClick={header.column.getToggleSortingHandler()}
 													onKeyDown={(e) => {
@@ -664,7 +664,7 @@ export default function Component() {
 							className="w-fit whitespace-nowrap">
 							<SelectValue placeholder="Select number of results" />
 						</SelectTrigger>
-						<SelectContent className="[&_*[role=option]>span]:end-2 [&_*[role=option]>span]:start-auto [&_*[role=option]]:pe-8 [&_*[role=option]]:ps-2">
+						<SelectContent className="[&_*[role=option]]:ps-2 [&_*[role=option]]:pe-8 [&_*[role=option]>span]:start-auto [&_*[role=option]>span]:end-2">
 							{[5, 10, 25, 50].map((pageSize) => (
 								<SelectItem key={pageSize} value={pageSize.toString()}>
 									{pageSize}
@@ -674,9 +674,9 @@ export default function Component() {
 					</Select>
 				</div>
 				{/* Page number information */}
-				<div className="text-fg-secondary flex grow justify-end whitespace-nowrap text-sm">
+				<div className="text-fg-secondary flex grow justify-end text-sm whitespace-nowrap">
 					<p
-						className="text-fg-secondary whitespace-nowrap text-sm"
+						className="text-fg-secondary text-sm whitespace-nowrap"
 						aria-live="polite">
 						<span className="text-shadow-fg-disabled">
 							{table.state.pagination.pageIndex *

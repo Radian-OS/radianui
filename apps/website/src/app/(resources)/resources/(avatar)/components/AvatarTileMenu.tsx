@@ -21,7 +21,7 @@ import {
 	DropdownMenuTrigger,
 } from "@/registry/ui/dropdown-menu"
 
-const NextjsIcon = (props: React.SVGProps<SVGSVGElement>) => (
+export const NextjsIcon = (props: React.SVGProps<SVGSVGElement>) => (
 	<svg
 		width="17"
 		height="17"
