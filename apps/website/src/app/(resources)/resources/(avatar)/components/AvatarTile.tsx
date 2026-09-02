@@ -1,5 +1,6 @@
 "use client"
 
+import { useRef, useState } from "react"
 import { Star } from "lucide-react"
 import Image from "next/image"
 import { toast } from "sonner"
@@ -64,10 +65,64 @@ export const AvatarTile = ({
 		shouldApplyShadow,
 	})
 
+	const timerRef = useRef<NodeJS.Timeout | null>(null)
+	const isLongPressRef = useRef(false)
+	const [drawerOpen, setDrawerOpen] = useState(false)
+
+	const handlePointerDown = (e: React.MouseEvent | React.TouchEvent) => {
+		if (e.type === "mousedown" && (e as React.MouseEvent).button !== 0) return
+
+		isLongPressRef.current = false
+		timerRef.current = setTimeout(() => {
+			isLongPressRef.current = true
+			setDrawerOpen(true)
+			if (
+				typeof window !== "undefined" &&
+				window.navigator &&
+				window.navigator.vibrate
+			) {
+				window.navigator.vibrate(50)
+			}
+		}, 500)
+	}
+
+	const handlePointerUp = () => {
+		if (timerRef.current) {
+			clearTimeout(timerRef.current)
+			timerRef.current = null
+		}
+	}
+
+	const handleTileClick = () => {
+		if (
+			!isLongPressRef.current &&
+			typeof window !== "undefined" &&
+			window.innerWidth < 1024
+		) {
+			handleCopy()
+		}
+	}
+
 	return (
 		<li
-			className="border-soft bg-bg group relative isolate aspect-square w-full overflow-hidden rounded-xl border"
-			style={toneStyle}>
+			className="border-soft bg-bg group relative isolate aspect-square w-full overflow-hidden rounded-xl border select-none"
+			style={{
+				...toneStyle,
+				WebkitTouchCallout: "none",
+			}}
+			onTouchStart={handlePointerDown}
+			onTouchEnd={handlePointerUp}
+			onTouchMove={handlePointerUp}
+			onMouseDown={handlePointerDown}
+			onMouseUp={handlePointerUp}
+			onMouseLeave={handlePointerUp}
+			onClick={handleTileClick}
+			onContextMenu={(e) => {
+				// Prevent default context menu on mobile to allow long press custom drawer
+				if (typeof window !== "undefined" && window.innerWidth < 1024) {
+					e.preventDefault()
+				}
+			}}>
 			{isNoneBackground && (
 				<div
 					aria-hidden="true"
@@ -131,6 +186,15 @@ export const AvatarTile = ({
 			/>
 
 			<AvatarTileMenu
+				drawerOpen={drawerOpen}
+				setDrawerOpen={setDrawerOpen}
+				isFavorite={isFavorite}
+				onToggleFavorite={() => {
+					toast.success(
+						isFavorite ? "Removed from favorites" : "Added to favorites"
+					)
+					onToggleFavorite()
+				}}
 				handleCopyPng={handleCopyPng}
 				handleCopyTransparentPng={handleCopyTransparentPng}
 				handleCopyFigmaFrame={handleCopyFigmaFrame}
@@ -145,8 +209,14 @@ export const AvatarTile = ({
 				size="24"
 				variant="ghost"
 				color="neutral"
-				className="absolute top-2 left-2 z-50 cursor-pointer opacity-0 transition-opacity group-hover:opacity-100 hover:bg-black/10"
-				onClick={() => {
+				className={cn(
+					"absolute top-2 left-2 z-50 cursor-pointer transition-opacity hover:bg-black/10",
+					isFavorite
+						? "flex opacity-100"
+						: "hidden opacity-0 group-hover:opacity-100 lg:flex"
+				)}
+				onClick={(e) => {
+					e.stopPropagation()
 					toast.success(
 						isFavorite ? "Removed from favorites" : "Added to favorites"
 					)
@@ -161,13 +231,16 @@ export const AvatarTile = ({
 				/>
 			</CompactButton>
 
-			<div className="absolute inset-x-0 bottom-0 z-30 p-3 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+			<div className="absolute inset-x-0 bottom-0 z-30 hidden p-3 opacity-0 transition-opacity duration-200 group-hover:opacity-100 lg:block">
 				<Button
 					size="28"
 					color="neutral"
 					variant="outline"
 					className="w-full border-none bg-white text-black hover:[background:linear-gradient(rgba(0,0,0,0.10),rgba(0,0,0,0.10)),_#fff]"
-					onClick={handleCopy}>
+					onClick={(e) => {
+						e.stopPropagation()
+						handleCopy()
+					}}>
 					{copied ? "Copied" : "Copy"}
 				</Button>
 			</div>
