@@ -128,6 +128,8 @@ const ConfigPreferencesDialog = ({
 	// onColorModeChange,
 	showShadow,
 	onShowShadowChange,
+	useCompressedAvatars,
+	onUseCompressedAvatarsChange,
 	onToneChange,
 }: {
 	open: boolean
@@ -138,6 +140,8 @@ const ConfigPreferencesDialog = ({
 	// onColorModeChange: (value: ColorMode) => void
 	showShadow: boolean
 	onShowShadowChange: (value: boolean) => void
+	useCompressedAvatars: boolean
+	onUseCompressedAvatarsChange: (value: boolean) => void
 	onToneChange: (value: string) => void
 }) => {
 	const idPrefix = useId()
@@ -146,6 +150,7 @@ const ConfigPreferencesDialog = ({
 		// onColorModeChange("static")
 		onCopyFormatChange("image")
 		onShowShadowChange(true)
+		onUseCompressedAvatarsChange(false)
 		onToneChange("pick-color")
 	}
 
@@ -260,6 +265,26 @@ const ConfigPreferencesDialog = ({
 							<Switch
 								checked={showShadow}
 								onCheckedChange={onShowShadowChange}
+							/>
+						</SwitchWrapper>
+					</div>
+
+					<div className="mx-0 border-b border-dashed" />
+
+					{/* Compressed images toggle */}
+					<div className="flex items-center justify-between gap-4">
+						<div className="flex flex-col gap-0.5">
+							<span className="text-sm font-medium">
+								Use compressed avatars
+							</span>
+							<span className="text-fg-secondary text-xs leading-snug">
+								The images will be smaller in size but have less quality
+							</span>
+						</div>
+						<SwitchWrapper>
+							<Switch
+								checked={useCompressedAvatars}
+								onCheckedChange={onUseCompressedAvatarsChange}
 							/>
 						</SwitchWrapper>
 					</div>

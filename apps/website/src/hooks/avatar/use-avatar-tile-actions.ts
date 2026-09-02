@@ -9,7 +9,6 @@ import {
 	generateEditableSvg,
 	resolveRadianColor,
 } from "@/constants/avatar-playground-utils"
-import { AVATAR_SHADOW_MAP } from "@/constants/avatar-shadow-map"
 import { createCompositeBlob } from "@/hooks/avatar/create-composite-blob"
 
 interface UseAvatarTileActionsOptions {

@@ -124,10 +124,24 @@ export function resolveRadianColor(tone: string): string {
 	return resolved || "#f3f4f6"
 }
 
-export const AVATARS = Array.from(
-	{ length: 216 },
-	(_, i) =>
-		`https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@v1.0.1/packages/avatars/src/${i + 1}.png`
+export const AVATAR_CDN_CONFIG = {
+	baseUrl:
+		"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@v1.0.2/packages",
+	uncompressedPath: "/uncompressed-avatars/src",
+	compressedPath: "/avatars/src",
+	extension: ".png",
+	total: 216,
+}
+
+export const getAvatarUrl = (index: number, compressed: boolean = false) => {
+	const path = compressed
+		? AVATAR_CDN_CONFIG.compressedPath
+		: AVATAR_CDN_CONFIG.uncompressedPath
+	return `${AVATAR_CDN_CONFIG.baseUrl}${path}/${index + 1}${AVATAR_CDN_CONFIG.extension}`
+}
+
+export const AVATARS = Array.from({ length: AVATAR_CDN_CONFIG.total }, (_, i) =>
+	getAvatarUrl(i, false)
 )
 
 // Maps each category to the avatar numbers (1-indexed) that belong to it.

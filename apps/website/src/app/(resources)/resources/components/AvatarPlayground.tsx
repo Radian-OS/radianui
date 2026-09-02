@@ -31,6 +31,8 @@ const AvatarPlayground = () => {
 		// setColorMode,
 		showShadow,
 		handleShowShadowChange,
+		useCompressedAvatars,
+		handleUseCompressedAvatarsChange,
 		favorites,
 		toggleFavorite,
 		isBlocked,
@@ -123,12 +125,12 @@ const AvatarPlayground = () => {
 						"grid list-none grid-cols-3 gap-3 sm:grid-cols-5 md:grid-cols-6",
 						isBlocked && "pointer-events-none"
 					)}>
-					{displayedAvatars.map(({ src, index }) => {
+					{displayedAvatars.map(({ src, displaySrc, index }) => {
 						const tileTone = resolvedTones[index]
 						return (
 							<AvatarTile
 								key={src}
-								src={src}
+								src={displaySrc}
 								index={index}
 								toneStyle={getToneStyle(tileTone)}
 								tone={tileTone}
@@ -156,6 +158,8 @@ const AvatarPlayground = () => {
 				// onColorModeChange={setColorMode}
 				showShadow={showShadow}
 				onShowShadowChange={handleShowShadowChange}
+				useCompressedAvatars={useCompressedAvatars}
+				onUseCompressedAvatarsChange={handleUseCompressedAvatarsChange}
 				onToneChange={handleToneChange}
 			/>
 		</div>
