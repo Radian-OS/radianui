@@ -2,14 +2,13 @@
 
 import { useState } from "react"
 import { toast } from "sonner"
-import { showCopiedToast } from "@/app/(resources)/resources/components/CopiedToast"
+import { showCopiedToast } from "@/app/(resources)/resources/(avatar)/components/CopiedToast"
 import {
 	GRADIENT_MAP,
 	SOLID_COLOR_MAP,
 	generateEditableSvg,
 	resolveRadianColor,
 } from "@/constants/avatar-playground-utils"
-import { AVATAR_SHADOW_MAP } from "@/constants/avatar-shadow-map"
 import { createCompositeBlob } from "@/hooks/avatar/create-composite-blob"
 
 interface UseAvatarTileActionsOptions {

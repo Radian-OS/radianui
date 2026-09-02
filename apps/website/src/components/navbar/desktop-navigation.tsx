@@ -54,9 +54,9 @@ export const designTools = [
 	{
 		title: "Country Flags",
 		description: "Flags from around the world.",
-		href: "#",
+		href: "/resources/flags",
 		icon: <CountryFlags />,
-		release: "coming-soon",
+		release: "beta",
 	},
 	{
 		title: "Logo Generator",

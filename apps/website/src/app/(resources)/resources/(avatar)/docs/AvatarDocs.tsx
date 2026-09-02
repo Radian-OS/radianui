@@ -1,4 +1,5 @@
 import React from "react"
+import { ResourceDocs } from "../../components/ResourceDocs"
 import AvatarCTA from "./AvatarCTA"
 import AvatarDesign from "./AvatarDesign"
 import AvatarDevlopment from "./AvatarDevlopment"
@@ -8,16 +9,14 @@ import AvatarUseCase from "./AvatarUseCase"
 
 const AvatarDocs = () => {
 	return (
-		<article
-			aria-label="UI avatar design and development guide"
-			className="md:gap-25 md:py-30 border-soft bg-linear-to-b from-fill1 to-bg flex flex-col gap-10 border-b px-5 py-8 sm:gap-20 sm:px-6 sm:py-20">
+		<ResourceDocs label="UI avatar design and development guide">
 			<AvatarIntroduction />
 			<AvatarUseCase />
 			<AvatarDesign />
 			<AvatarDevlopment />
 			<AvatarFaq />
 			<AvatarCTA />
-		</article>
+		</ResourceDocs>
 	)
 }
 

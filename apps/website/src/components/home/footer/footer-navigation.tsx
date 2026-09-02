@@ -82,10 +82,10 @@ const LINKS: Link[] = [
 				release: "coming-soon",
 			},
 			{
-				href: "#",
+				href: "/resources/flags",
 				name: "UI Country Flags",
 				icon: <UICountryFlagsIcon />,
-				release: "coming-soon",
+				release: "beta",
 			},
 			{
 				href: "#",
@@ -177,7 +177,7 @@ export default function FooterNavigation() {
 	return (
 		<>
 			{/* For tablet and mobile */}
-			<div className="flex flex-col gap-5 px-5 pb-5 pt-10 xl:hidden">
+			<div className="flex flex-col gap-5 px-5 pt-10 pb-5 xl:hidden">
 				<WebsiteLogo />
 				<div>
 					<Accordion type="single" variant="open" collapsible>
@@ -217,13 +217,13 @@ export default function FooterNavigation() {
 			</div>
 
 			{/* For desktop (larger than 1280px) */}
-			<div className="not-xl:hidden max-w-360 px-7.5 py-15 mx-auto flex justify-between">
+			<div className="mx-auto flex max-w-360 justify-between px-7.5 py-15 not-xl:hidden">
 				<div className="flex-1">
 					<WebsiteLogo />
 				</div>
-				<div className="gap-7.5 flex">
+				<div className="flex gap-7.5">
 					{LINKS.map((item) => (
-						<div className="w-55 flex flex-col gap-4" key={item.title}>
+						<div className="flex w-55 flex-col gap-4" key={item.title}>
 							<p className="text-fg text-sm font-medium">{item.title}</p>
 							<div className="flex flex-col gap-3">
 								{item.linkItems.map((linkItem) => (

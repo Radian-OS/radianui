@@ -31,10 +31,10 @@ export const showCopiedToast = ({
 		: toneStyle
 
 	toast.custom(() => (
-		<div className="bg-black-inverse text-fg-inverse sm:w-78.5 flex w-full items-center gap-2 rounded-[10px] p-2">
+		<div className="bg-black-inverse text-fg-inverse flex w-full items-center gap-2 rounded-[10px] p-2 sm:w-78.5">
 			{/* Avatar Preview mimicking AvatarTile */}
 			<div
-				className="bg-bg size-15 relative isolate aspect-square shrink-0 overflow-hidden rounded-lg"
+				className="bg-bg relative isolate aspect-square size-15 shrink-0 overflow-hidden rounded-lg"
 				style={toneStyle}>
 				<img
 					src={src}
@@ -45,7 +45,7 @@ export const showCopiedToast = ({
 					<img
 						src={AVATAR_SHADOW_MAP[index]}
 						alt=""
-						className="z-5 pointer-events-none absolute inset-0 size-full origin-bottom translate-y-[3%] scale-[1.03] object-cover object-bottom mix-blend-hard-light"
+						className="pointer-events-none absolute inset-0 z-5 size-full origin-bottom translate-y-[3%] scale-[1.03] object-cover object-bottom mix-blend-hard-light"
 					/>
 				)}
 				{shouldApplyShadow && (

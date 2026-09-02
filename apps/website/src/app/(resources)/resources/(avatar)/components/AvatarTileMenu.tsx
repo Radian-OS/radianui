@@ -24,7 +24,7 @@ import {
 	DropdownMenuTrigger,
 } from "@/registry/ui/dropdown-menu"
 
-const NextjsIcon = (props: React.SVGProps<SVGSVGElement>) => (
+export const NextjsIcon = (props: React.SVGProps<SVGSVGElement>) => (
 	<svg
 		width="17"
 		height="17"
@@ -137,7 +137,7 @@ export const AvatarTileMenu = ({
 	handleDownload,
 }: AvatarTileMenuProps) => {
 	return (
-		<div className="absolute right-2 top-2 z-30">
+		<div className="absolute top-2 right-2 z-30">
 			<DropdownMenu>
 				<DropdownMenuTrigger asChild>
 					<CompactButton
@@ -145,7 +145,7 @@ export const AvatarTileMenu = ({
 						size="24"
 						variant="ghost"
 						color="neutral"
-						className="opacity-0 transition-opacity hover:bg-transparent group-hover:bg-transparent group-hover:opacity-100 data-[state=open]:opacity-100"
+						className="opacity-0 transition-opacity group-hover:bg-transparent group-hover:opacity-100 hover:bg-transparent data-[state=open]:opacity-100"
 						onClick={(e) => e.stopPropagation()}>
 						<MoreHorizontal className="size-4 text-black" />
 					</CompactButton>

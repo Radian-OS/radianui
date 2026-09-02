@@ -9,7 +9,7 @@ import {
 import {
 	BACKGROUNDS,
 	GRADIENT_IMAGES,
-} from "@/app/(resources)/resources/components/ToneFilterDropdown"
+} from "@/app/(resources)/resources/(avatar)/components/ToneFilterDropdown"
 import {
 	AVATARS,
 	CATEGORY_AVATAR_MAP,
@@ -73,7 +73,7 @@ export const useAvatarPlayground = () => {
 		const dispatchSticky = () => {
 			const isSticky = topScrolledPast && bottomStillVisible
 			window.dispatchEvent(
-				new CustomEvent("avatar-filter-sticky", { detail: { isSticky } })
+				new CustomEvent("resource-filter-sticky", { detail: { isSticky } })
 			)
 		}
 
@@ -101,7 +101,9 @@ export const useAvatarPlayground = () => {
 			topObserver.disconnect()
 			bottomObserver.disconnect()
 			window.dispatchEvent(
-				new CustomEvent("avatar-filter-sticky", { detail: { isSticky: false } })
+				new CustomEvent("resource-filter-sticky", {
+					detail: { isSticky: false },
+				})
 			)
 		}
 	}, [])

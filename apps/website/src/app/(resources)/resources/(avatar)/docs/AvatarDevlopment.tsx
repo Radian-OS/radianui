@@ -1,4 +1,5 @@
 import React from "react"
+import { ResourceTextSection } from "../../components/ResourceDocs"
 
 const developmentPoints = [
 	{
@@ -55,33 +56,17 @@ const developmentPoints = [
 
 const AvatarDevlopment = () => {
 	return (
-		<section
-			aria-labelledby="avatar-development-heading"
-			className="lg:w-200 mx-auto flex w-full flex-col gap-6">
-			<div className="flex flex-col gap-4">
-				<p className="text-primary-text text-sm font-medium">Development</p>
-				<h2 id="avatar-development-heading" className="heading-4">
-					Avatar Component Architecture and Development
-				</h2>
-				<div className="flex flex-col gap-8">
-					<p>
-						A production-ready avatar component needs to handle more than looks.
-						It should be able to handle image loading, fallback states,
-						accessibility, and composition all need to work predictably. Get
-						that right and it becomes a reusable building block for navigation,
-						tables, profiles, and messaging alike.
-					</p>
-					<ul className="flex list-disc flex-col gap-4 pl-5">
-						{developmentPoints.map((point) => (
-							<li key={point.title}>
-								<span className="font-semibold">{point.title}</span> -{" "}
-								{point.description}
-							</li>
-						))}
-					</ul>
-				</div>
-			</div>
-		</section>
+		<ResourceTextSection
+			id="avatar-development-heading"
+			eyebrow="Development"
+			title="Avatar Component Architecture and Development"
+			points={developmentPoints}>
+			<p>
+				A production-ready avatar needs predictable image loading, fallback
+				states, accessibility, and composition across navigation, tables,
+				profiles, and messaging.
+			</p>
+		</ResourceTextSection>
 	)
 }
 

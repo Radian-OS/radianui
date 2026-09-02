@@ -96,13 +96,13 @@ export const AvatarTile = ({
 					alt=""
 					fill
 					sizes="(max-width: 640px) 25vw, (max-width: 768px) 20vw, 14vw"
-					className="z-5 pointer-events-none origin-bottom translate-y-[3%] scale-[1.03] object-cover object-bottom mix-blend-hard-light transition-transform duration-500 ease-out will-change-transform group-hover:scale-[1.08]"
+					className="pointer-events-none z-5 origin-bottom translate-y-[3%] scale-[1.03] object-cover object-bottom mix-blend-hard-light transition-transform duration-500 ease-out will-change-transform group-hover:scale-[1.08]"
 				/>
 			)}
 			{shouldApplyShadow && (
 				<div
 					aria-hidden="true"
-					className="z-15 pointer-events-none absolute inset-0 mix-blend-color-burn"
+					className="pointer-events-none absolute inset-0 z-15 mix-blend-color-burn"
 					style={{
 						...shadowStyle,
 						opacity: AVATAR_BLEND_OPACITY,

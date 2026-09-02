@@ -1,4 +1,5 @@
 import React from "react"
+import { ResourceTextSection } from "../../components/ResourceDocs"
 
 const designPoints = [
 	{
@@ -50,31 +51,16 @@ const designPoints = [
 
 const AvatarDesign = () => {
 	return (
-		<section
-			aria-labelledby="avatar-design-heading"
-			className="lg:w-200 mx-auto flex w-full flex-col gap-6">
-			<div className="flex flex-col gap-4">
-				<p className="text-primary-text text-sm font-medium">Design</p>
-				<h2 id="avatar-design-heading" className="heading-4">
-					Avatar UI Design Best Practices
-				</h2>
-				<div className="flex flex-col gap-8">
-					<p>
-						A good avatar component stays recognizable, accessible, and
-						consistent no matter where it shows up in your product. Here&apos;s
-						what to get right:
-					</p>
-					<ul className="flex list-disc flex-col gap-4 pl-5">
-						{designPoints.map((point) => (
-							<li key={point.title}>
-								<span className="font-semibold">{point.title}</span> -{" "}
-								{point.description}
-							</li>
-						))}
-					</ul>
-				</div>
-			</div>
-		</section>
+		<ResourceTextSection
+			id="avatar-design-heading"
+			eyebrow="Design"
+			title="Avatar UI Design Best Practices"
+			points={designPoints}>
+			<p>
+				A good avatar component stays recognizable, accessible, and consistent
+				no matter where it appears in your product.
+			</p>
+		</ResourceTextSection>
 	)
 }
 

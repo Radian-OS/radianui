@@ -1,6 +1,7 @@
 import React from "react"
 import Image from "next/image"
 import { InfiniteScroll } from "@/registry/animated/infinite-scroll"
+import { ResourceTextSection } from "../../components/ResourceDocs"
 
 const useCaseImages = [
 	{
@@ -114,63 +115,51 @@ const useCasePoints = [
 
 const AvatarUseCase = () => {
 	return (
-		<section
-			aria-labelledby="avatar-use-cases-heading"
-			className="flex flex-col gap-8 md:gap-16">
-			<div className="lg:w-200 mx-auto flex w-full flex-col gap-6">
-				<div className="flex flex-col gap-4">
-					<p className="text-primary-text text-sm font-medium">Use cases</p>
-					<h2 id="avatar-use-cases-heading" className="heading-4">
-						Common avatar UI layouts and patterns
-					</h2>
-					<div className="flex flex-col gap-8">
-						<p>
-							Avatars aren&apos;t just for profile headers. They show up in nav
-							bars, chat threads, data tables, and activity feeds anywhere a UI
-							needs to tie something back to a specific person or team.
-						</p>
+		<ResourceTextSection
+			id="avatar-use-cases-heading"
+			eyebrow="Use cases"
+			title="Common avatar UI layouts and patterns"
+			points={useCasePoints}
+			after={
+				<p>
+					Below is a collection of avatars used in different interface patterns.
+				</p>
+			}
+			visual={<AvatarUseCaseVisual />}>
+			<p>
+				Avatars appear in navigation, chat threads, data tables, and activity
+				feeds anywhere an interface needs to identify a person or team.
+			</p>
+		</ResourceTextSection>
+	)
+}
 
-						<ul className="flex list-disc flex-col gap-4 pl-5">
-							{useCasePoints.map((point) => (
-								<li key={point.title}>
-									<span className="font-semibold">{point.title}</span> –{" "}
-									{point.description}
-								</li>
-							))}
-						</ul>
+function AvatarUseCaseVisual() {
+	return (
+		<div className="-mx-5 sm:-mx-6">
+			<InfiniteScroll duration={60} pauseOnHover={false}>
+				{useCaseImages.map((image, i) => (
+					<div
+						key={image.src}
+						className="relative h-auto w-[70vw] shrink-0 sm:w-[45vw] md:w-[35vw] lg:w-[28vw]">
+						<Image
+							src={image.src}
+							alt={image.alt}
+							width={560}
+							height={420}
+							className="bg-fill1 border-soft h-auto w-full rounded-[10px] border sm:rounded-xl md:rounded-[20px] dark:invisible dark:absolute dark:inset-0"
+						/>
+						<Image
+							src={useCaseImagesDark[i].src}
+							alt={useCaseImagesDark[i].alt}
+							width={560}
+							height={420}
+							className="bg-fill1 border-soft invisible absolute inset-0 h-auto w-full rounded-[10px] border sm:rounded-xl md:rounded-[20px] dark:visible dark:static"
+						/>
 					</div>
-
-					<p>
-						Below is a collection of avatars used in various cases and their
-						visualization in user interface.
-					</p>
-				</div>
-			</div>
-			<div className="-mx-5 sm:-mx-6">
-				<InfiniteScroll duration={60} pauseOnHover={false}>
-					{useCaseImages.map((image, i) => (
-						<div
-							key={image.src}
-							className="relative h-auto w-[70vw] shrink-0 sm:w-[45vw] md:w-[35vw] lg:w-[28vw]">
-							<Image
-								src={image.src}
-								alt={image.alt}
-								width={560}
-								height={420}
-								className="bg-fill1 border-soft h-auto w-full rounded-[10px] border sm:rounded-xl md:rounded-[20px] dark:invisible dark:absolute dark:inset-0"
-							/>
-							<Image
-								src={useCaseImagesDark[i].src}
-								alt={useCaseImagesDark[i].alt}
-								width={560}
-								height={420}
-								className="bg-fill1 border-soft invisible absolute inset-0 h-auto w-full rounded-[10px] border sm:rounded-xl md:rounded-[20px] dark:visible dark:static"
-							/>
-						</div>
-					))}
-				</InfiniteScroll>
-			</div>
-		</section>
+				))}
+			</InfiniteScroll>
+		</div>
 	)
 }
 
