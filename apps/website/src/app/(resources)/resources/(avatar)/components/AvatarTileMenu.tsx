@@ -256,162 +256,170 @@ export const AvatarTileMenu = ({
 				</DropdownMenu>
 			</div>
 
-			<Drawer
-				open={drawerOpen}
-				onOpenChange={setDrawerOpen}
-				direction="bottom"
-				handle>
-				<DrawerContent className="px-2">
-					<DrawerHeader className="sr-only">
-						<DrawerTitle>Avatar Options</DrawerTitle>
-					</DrawerHeader>
-					<DrawerBody className="flex flex-col gap-1 px-4 pt-2 pb-6">
-						<button
-							className="flex items-center gap-2 rounded-md px-2 py-2 text-sm hover:bg-black/5"
-							onClick={() => {
-								onToggleFavorite()
-								setDrawerOpen(false)
-							}}>
-							<Star
-								className={
-									isFavorite
-										? "fill-primary-border text-primary-border size-4"
-										: "text-fg-secondary size-4"
-								}
-							/>
-							<span>
-								{isFavorite ? "Remove from Favorites" : "Add to Favorites"}
-							</span>
-						</button>
-
-						<div className="bg-border my-1 h-px w-full" />
-
-						<div className="text-fg-tertiary px-2 py-1 text-xs font-medium">
-							Design
-						</div>
-						<button
-							className="flex items-center gap-2 rounded-md px-2 py-2 text-sm hover:bg-black/5"
-							onClick={() => {
-								handleCopyPng()
-								setDrawerOpen(false)
-							}}>
-							<ImageIcon className="text-fg-secondary size-4" />
-							<span>Copy PNG</span>
-						</button>
-						<button
-							className="flex items-center gap-2 rounded-md px-2 py-2 text-sm hover:bg-black/5"
-							onClick={() => {
-								handleCopyTransparentPng()
-								setDrawerOpen(false)
-							}}>
-							<SquareDashedMousePointer className="text-fg-secondary size-4" />
-							<span>Copy Transparent PNG</span>
-						</button>
-						<button
-							className="flex items-center gap-2 rounded-md px-2 py-2 text-sm hover:bg-black/5"
-							onClick={() => {
-								handleCopyFigmaFrame()
-								setDrawerOpen(false)
-							}}>
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								width="16"
-								height="16"
-								viewBox="0 0 20 20"
-								fill="none"
-								className="size-4 shrink-0">
-								<path
-									d="M9.72266 10.0001C9.72266 8.3893 11.0285 7.08344 12.6393 7.08344C14.2501 7.08344 15.556 8.3893 15.556 10.0001C15.556 11.6109 14.2501 12.9168 12.6393 12.9168C11.0285 12.9168 9.72266 11.6109 9.72266 10.0001Z"
-									fill="#1ABCFE"
+			<div
+				onClick={(e) => e.stopPropagation()}
+				onTouchStart={(e) => e.stopPropagation()}
+				onTouchEnd={(e) => e.stopPropagation()}
+				onTouchMove={(e) => e.stopPropagation()}
+				onMouseDown={(e) => e.stopPropagation()}
+				onMouseUp={(e) => e.stopPropagation()}>
+				<Drawer
+					open={drawerOpen}
+					onOpenChange={setDrawerOpen}
+					direction="bottom"
+					handle>
+					<DrawerContent className="px-2">
+						<DrawerHeader className="sr-only">
+							<DrawerTitle>Avatar Options</DrawerTitle>
+						</DrawerHeader>
+						<DrawerBody className="flex flex-col gap-1 px-4 pt-2 pb-6">
+							<button
+								className="flex items-center gap-2 rounded-md px-2 py-2 text-sm hover:bg-black/5"
+								onClick={() => {
+									onToggleFavorite()
+									setDrawerOpen(false)
+								}}>
+								<Star
+									className={
+										isFavorite
+											? "fill-primary-border text-primary-border size-4"
+											: "text-fg-secondary size-4"
+									}
 								/>
-								<path
-									d="M3.88867 15.8332C3.88867 14.2224 5.19451 12.9166 6.80534 12.9166H9.722V15.8332C9.722 17.4441 8.41618 18.7499 6.80534 18.7499C5.19451 18.7499 3.88867 17.4441 3.88867 15.8332Z"
-									fill="#0ACF83"
-								/>
-								<path
-									d="M9.72266 1.25V7.08331H12.6393C14.2502 7.08331 15.556 5.77749 15.556 4.16666C15.556 2.55584 14.2502 1.25 12.6393 1.25H9.72266Z"
-									fill="#FF7262"
-								/>
-								<path
-									d="M3.88867 4.16667C3.88867 5.77749 5.19451 7.08332 6.80534 7.08332H9.722V1.25H6.80534C5.19451 1.25 3.88867 2.55583 3.88867 4.16667Z"
-									fill="#F24E1E"
-								/>
-								<path
-									d="M3.88867 10.0001C3.88867 11.6109 5.19451 12.9168 6.80534 12.9168H9.722V7.08344H6.80534C5.19451 7.08344 3.88867 8.3893 3.88867 10.0001Z"
-									fill="#A259FF"
-								/>
-							</svg>
-							<span>Copy Figma Frame</span>
-						</button>
+								<span>
+									{isFavorite ? "Remove from Favorites" : "Add to Favorites"}
+								</span>
+							</button>
 
-						<div className="bg-border my-1 h-px w-full" />
+							<div className="bg-border my-1 h-px w-full" />
 
-						<div className="text-fg-tertiary px-2 py-1 text-xs font-medium">
-							Development
-						</div>
-						<button
-							className="flex items-center gap-2 rounded-md px-2 py-2 text-sm hover:bg-black/5"
-							onClick={() => {
-								handleCopyUrlTransparent()
-								setDrawerOpen(false)
-							}}>
-							<Link2 className="text-fg-secondary size-4" />
-							<span>URL Transparent</span>
-						</button>
-						<button
-							className="flex items-center gap-2 rounded-md px-2 py-2 text-sm hover:bg-black/5"
-							onClick={() => {
-								handleCopyNextImageTag()
-								setDrawerOpen(false)
-							}}>
-							<NextjsIcon className="text-fg size-4" />
-							<span>Next JS &lt;Image&gt; Tag</span>
-						</button>
-						<button
-							className="flex items-center gap-2 rounded-md px-2 py-2 text-sm hover:bg-black/5"
-							onClick={() => {
-								handleCopyHtmlImgTag()
-								setDrawerOpen(false)
-							}}>
-							<Html5Icon className="size-4" />
-							<span>HTML &lt;IMG&gt; Tag</span>
-						</button>
+							<div className="text-fg-tertiary px-2 py-1 text-xs font-medium">
+								Design
+							</div>
+							<button
+								className="flex items-center gap-2 rounded-md px-2 py-2 text-sm hover:bg-black/5"
+								onClick={() => {
+									handleCopyPng()
+									setDrawerOpen(false)
+								}}>
+								<ImageIcon className="text-fg-secondary size-4" />
+								<span>Copy PNG</span>
+							</button>
+							<button
+								className="flex items-center gap-2 rounded-md px-2 py-2 text-sm hover:bg-black/5"
+								onClick={() => {
+									handleCopyTransparentPng()
+									setDrawerOpen(false)
+								}}>
+								<SquareDashedMousePointer className="text-fg-secondary size-4" />
+								<span>Copy Transparent PNG</span>
+							</button>
+							<button
+								className="flex items-center gap-2 rounded-md px-2 py-2 text-sm hover:bg-black/5"
+								onClick={() => {
+									handleCopyFigmaFrame()
+									setDrawerOpen(false)
+								}}>
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="16"
+									height="16"
+									viewBox="0 0 20 20"
+									fill="none"
+									className="size-4 shrink-0">
+									<path
+										d="M9.72266 10.0001C9.72266 8.3893 11.0285 7.08344 12.6393 7.08344C14.2501 7.08344 15.556 8.3893 15.556 10.0001C15.556 11.6109 14.2501 12.9168 12.6393 12.9168C11.0285 12.9168 9.72266 11.6109 9.72266 10.0001Z"
+										fill="#1ABCFE"
+									/>
+									<path
+										d="M3.88867 15.8332C3.88867 14.2224 5.19451 12.9166 6.80534 12.9166H9.722V15.8332C9.722 17.4441 8.41618 18.7499 6.80534 18.7499C5.19451 18.7499 3.88867 17.4441 3.88867 15.8332Z"
+										fill="#0ACF83"
+									/>
+									<path
+										d="M9.72266 1.25V7.08331H12.6393C14.2502 7.08331 15.556 5.77749 15.556 4.16666C15.556 2.55584 14.2502 1.25 12.6393 1.25H9.72266Z"
+										fill="#FF7262"
+									/>
+									<path
+										d="M3.88867 4.16667C3.88867 5.77749 5.19451 7.08332 6.80534 7.08332H9.722V1.25H6.80534C5.19451 1.25 3.88867 2.55583 3.88867 4.16667Z"
+										fill="#F24E1E"
+									/>
+									<path
+										d="M3.88867 10.0001C3.88867 11.6109 5.19451 12.9168 6.80534 12.9168H9.722V7.08344H6.80534C5.19451 7.08344 3.88867 8.3893 3.88867 10.0001Z"
+										fill="#A259FF"
+									/>
+								</svg>
+								<span>Copy Figma Frame</span>
+							</button>
 
-						<div className="bg-border my-1 h-px w-full" />
+							<div className="bg-border my-1 h-px w-full" />
 
-						<div className="text-fg-tertiary px-2 py-1 text-xs font-medium">
-							Download
-						</div>
-						<button
-							className="flex items-center gap-2 rounded-md px-2 py-2 text-sm hover:bg-black/5"
-							onClick={() => {
-								handleDownload("jpg")
-								setDrawerOpen(false)
-							}}>
-							<Download className="text-fg-secondary size-4" />
-							<span>Download JPG</span>
-						</button>
-						<button
-							className="flex items-center gap-2 rounded-md px-2 py-2 text-sm hover:bg-black/5"
-							onClick={() => {
-								handleDownload("png")
-								setDrawerOpen(false)
-							}}>
-							<Download className="text-fg-secondary size-4" />
-							<span>Download PNG</span>
-						</button>
-						<button
-							className="flex items-center gap-2 rounded-md px-2 py-2 text-sm hover:bg-black/5"
-							onClick={() => {
-								handleDownload("webp")
-								setDrawerOpen(false)
-							}}>
-							<Download className="text-fg-secondary size-4" />
-							<span>Download WebP</span>
-						</button>
-					</DrawerBody>
-				</DrawerContent>
-			</Drawer>
+							<div className="text-fg-tertiary px-2 py-1 text-xs font-medium">
+								Development
+							</div>
+							<button
+								className="flex items-center gap-2 rounded-md px-2 py-2 text-sm hover:bg-black/5"
+								onClick={() => {
+									handleCopyUrlTransparent()
+									setDrawerOpen(false)
+								}}>
+								<Link2 className="text-fg-secondary size-4" />
+								<span>URL Transparent</span>
+							</button>
+							<button
+								className="flex items-center gap-2 rounded-md px-2 py-2 text-sm hover:bg-black/5"
+								onClick={() => {
+									handleCopyNextImageTag()
+									setDrawerOpen(false)
+								}}>
+								<NextjsIcon className="text-fg size-4" />
+								<span>Next JS &lt;Image&gt; Tag</span>
+							</button>
+							<button
+								className="flex items-center gap-2 rounded-md px-2 py-2 text-sm hover:bg-black/5"
+								onClick={() => {
+									handleCopyHtmlImgTag()
+									setDrawerOpen(false)
+								}}>
+								<Html5Icon className="size-4" />
+								<span>HTML &lt;IMG&gt; Tag</span>
+							</button>
+
+							<div className="bg-border my-1 h-px w-full" />
+
+							<div className="text-fg-tertiary px-2 py-1 text-xs font-medium">
+								Download
+							</div>
+							<button
+								className="flex items-center gap-2 rounded-md px-2 py-2 text-sm hover:bg-black/5"
+								onClick={() => {
+									handleDownload("jpg")
+									setDrawerOpen(false)
+								}}>
+								<Download className="text-fg-secondary size-4" />
+								<span>Download JPG</span>
+							</button>
+							<button
+								className="flex items-center gap-2 rounded-md px-2 py-2 text-sm hover:bg-black/5"
+								onClick={() => {
+									handleDownload("png")
+									setDrawerOpen(false)
+								}}>
+								<Download className="text-fg-secondary size-4" />
+								<span>Download PNG</span>
+							</button>
+							<button
+								className="flex items-center gap-2 rounded-md px-2 py-2 text-sm hover:bg-black/5"
+								onClick={() => {
+									handleDownload("webp")
+									setDrawerOpen(false)
+								}}>
+								<Download className="text-fg-secondary size-4" />
+								<span>Download WebP</span>
+							</button>
+						</DrawerBody>
+					</DrawerContent>
+				</Drawer>
+			</div>
 		</>
 	)
 }
