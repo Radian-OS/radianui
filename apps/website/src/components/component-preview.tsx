@@ -85,7 +85,7 @@ export function ComponentPreview({
 						<TabsContent value="code" className="mt-0 outline-none">
 							<ComponentSource
 								codeAreaClassName="max-h-105 overflow-auto no-scrollbar"
-								className="[&>figure]:mt-0! [&_[data-slot=copy-button]]:hidden"
+								className="[&_[data-slot=copy-button]]:hidden [&>figure]:mt-0!"
 								code={code}
 								language="tsx"
 								collapsible={false}

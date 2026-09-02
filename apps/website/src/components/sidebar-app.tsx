@@ -28,7 +28,7 @@ export default function Sidebar() {
 	})
 
 	return (
-		<div className="border-soft no-scrollbar w-65 not-lg:hidden sticky top-[4.3rem] z-30 h-[calc(100vh-4.3rem)] overflow-y-auto border-x text-sm">
+		<div className="border-soft no-scrollbar sticky top-[4.3rem] z-30 h-[calc(100vh-4.3rem)] w-65 overflow-y-auto border-x text-sm not-lg:hidden">
 			<ScrollArea className="flex h-full w-full">
 				<div className="flex flex-col">
 					{filteredNavigationItems.map((section) => (
@@ -76,7 +76,7 @@ export default function Sidebar() {
 											className="relative"
 											ref={isActive ? activeItemRef : null}>
 											{isActive && (
-												<div className="bg-primary-border absolute -left-3 top-1/2 h-8 w-0.5 -translate-y-1/2 rounded-r-full" />
+												<div className="bg-primary-border absolute top-1/2 -left-3 h-8 w-0.5 -translate-y-1/2 rounded-r-full" />
 											)}
 											{item.disabled ? (
 												<div
@@ -88,7 +88,7 @@ export default function Sidebar() {
 											) : (
 												<Link
 													className={cn(
-														"text-fg-secondary hover:bg-fill1-alpha hover:text-fg focus-visible:inset-ring-border group relative flex min-h-8 items-center gap-2 rounded-lg p-2 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset",
+														"text-fg-secondary hover:bg-fill1-alpha hover:text-fg focus-visible:inset-ring-border group relative flex min-h-8 items-center gap-2 rounded-lg p-2 text-sm transition-colors focus-visible:ring-2 focus-visible:outline-none focus-visible:ring-inset",
 														isActive && "bg-fill1-alpha text-fg font-medium"
 													)}
 													href={item.url}>

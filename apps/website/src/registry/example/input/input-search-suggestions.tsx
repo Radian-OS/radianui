@@ -58,12 +58,12 @@ export default function SearchInput() {
 			{filtered.length > 0 && (
 				<PopoverContent
 					onOpenAutoFocus={(e) => e.preventDefault()}
-					className="no-scrollbar border-border bg-elevation-level2 shadow-xs drop-shadow-xs max-h-60 min-w-[var(--radix-popper-anchor-width)] overflow-y-auto rounded-lg border p-1.5">
+					className="no-scrollbar border-border bg-elevation-level2 max-h-60 min-w-[var(--radix-popper-anchor-width)] overflow-y-auto rounded-lg border p-1.5 shadow-xs drop-shadow-xs">
 					<ul className="flex flex-col gap-0.5">
 						{filtered.map((item) => (
 							<li
 								key={item}
-								className="text-fg hover:bg-fill1-alpha relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-none"
+								className="text-fg hover:bg-fill1-alpha relative flex w-full cursor-pointer items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-none select-none"
 								onMouseDown={(e) => e.preventDefault()}
 								onClick={() => handleSelect(item)}>
 								{item}

@@ -15,7 +15,7 @@ export function WebsiteLogo({ className }: { className?: string }) {
 			/>
 			<Image
 				src="/radian-dark.svg"
-				className="not-dark:hidden h-auto w-[112px]"
+				className="h-auto w-[112px] not-dark:hidden"
 				alt="radian-logo"
 				width={103}
 				height={28}

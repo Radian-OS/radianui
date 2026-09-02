@@ -77,7 +77,7 @@ function ImageColumnSet({ copyIndex }: { copyIndex: number }) {
 							height={tileDimensions[tileId].height}
 							loading="lazy"
 							decoding="async"
-							className="card-6-reference-tile pointer-events-none block h-auto w-full select-none object-contain"
+							className="card-6-reference-tile pointer-events-none block h-auto w-full object-contain select-none"
 							draggable={false}
 							src={`${ASSET_BASE}/${tileId}.png`}
 							style={
@@ -122,7 +122,7 @@ function Card6Canvas() {
 		<section
 			ref={canvasRef}
 			aria-label="Scrolling interface inspiration gallery"
-			className="bg-fill2 text-fg relative h-[800px] w-[1440px] shrink-0 select-none overflow-hidden"
+			className="bg-fill2 text-fg relative h-[800px] w-[1440px] shrink-0 overflow-hidden select-none"
 			onPointerCancel={() => setMarqueeSpeed(1)}
 			onPointerDown={() => setMarqueeSpeed(2.55)}
 			onPointerEnter={() => setMarqueeSpeed(0.72)}
@@ -130,9 +130,9 @@ function Card6Canvas() {
 			onPointerUp={() => setMarqueeSpeed(0.72)}>
 			<div
 				aria-hidden="true"
-				className="bg-fill2 absolute -inset-x-[720px] -inset-y-[520px] grid origin-center rotate-[-40deg] skew-x-[8deg] skew-y-[-4deg] scale-[1.12] select-none grid-rows-[1fr_1px_1fr] overflow-hidden">
+				className="bg-fill2 absolute -inset-x-[720px] -inset-y-[520px] grid origin-center scale-[1.12] rotate-[-40deg] skew-x-[8deg] skew-y-[-4deg] grid-rows-[1fr_1px_1fr] overflow-hidden select-none">
 				<div className="bg-elevation-negative relative flex items-end overflow-hidden p-[18px]">
-					<div className="absolute bottom-[18px] right-[18px] w-max origin-center rotate-180">
+					<div className="absolute right-[18px] bottom-[18px] w-max origin-center rotate-180">
 						<ImageTrack />
 					</div>
 				</div>

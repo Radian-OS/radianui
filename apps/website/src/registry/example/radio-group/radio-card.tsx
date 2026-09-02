@@ -50,10 +50,10 @@ export default function RadioCard() {
 
 						{/* Content */}
 						<div className="flex flex-1 flex-col gap-1">
-							<p className="text-fg cursor-pointer text-sm font-medium leading-5">
+							<p className="text-fg cursor-pointer text-sm leading-5 font-medium">
 								{view.title}
 							</p>
-							<p className="text-fg-tertiary text-sm font-normal leading-5">
+							<p className="text-fg-tertiary text-sm leading-5 font-normal">
 								{view.description}
 							</p>
 						</div>

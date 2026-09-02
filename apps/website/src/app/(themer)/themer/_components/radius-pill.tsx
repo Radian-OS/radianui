@@ -63,7 +63,7 @@ export function RadiusLockPill({
 					onClick={onToggle}
 					className={cn(
 						"flex size-8 items-center justify-center rounded-md border transition-all",
-						"focus-visible:ring-primary focus-visible:ring-offset-elevation-level1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
+						"focus-visible:ring-primary focus-visible:ring-offset-elevation-level1 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none",
 						disabled && "cursor-not-allowed opacity-50",
 						isLocked
 							? "border-primary bg-primary-accent text-primary"

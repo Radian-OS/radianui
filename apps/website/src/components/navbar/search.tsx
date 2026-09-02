@@ -145,7 +145,7 @@ export function SearchDocs() {
 			<Dialog open={isOpen} onOpenChange={setIsOpen}>
 				<DialogTrigger asChild>
 					<Button
-						className="not-md:hidden gap-1"
+						className="gap-1 not-md:hidden"
 						variant={"outline"}
 						color={"neutral"}>
 						<Search className="text-fg-tertiary" />
@@ -161,7 +161,7 @@ export function SearchDocs() {
 						</Badge>
 					</Button>
 				</DialogTrigger>
-				<DialogContent className="h-150 w-125 bg-fill3 border-alpha gap-0 rounded-2xl border p-1">
+				<DialogContent className="bg-fill3 border-alpha h-150 w-125 gap-0 rounded-2xl border p-1">
 					<DialogTitle closeButton={false} className="hidden">
 						Command Search
 					</DialogTitle>

@@ -11,7 +11,7 @@ const SignUp = () => {
 
 	return (
 		<div className="flex h-[85vh] items-center justify-center">
-			<div className="max-w-88 sm:w-88 w-full px-4">
+			<div className="w-full max-w-88 px-4 sm:w-88">
 				<div className="mx-auto flex flex-col gap-9">
 					<Link href="/" style={{ fill: "white", color: "white" }}>
 						<img
@@ -56,7 +56,7 @@ const SignUp = () => {
 								onClick={handleSubmitClick}>
 								Sign Up
 							</Button>
-							<div className="text-[0.875rem] font-normal leading-[1.3125rem]">
+							<div className="text-[0.875rem] leading-[1.3125rem] font-normal">
 								<p className="text-fg-secondary">
 									By signing up, you agree to Radian &apos;s{" "}
 									<span className="text-fg">Terms of Service</span> and{" "}

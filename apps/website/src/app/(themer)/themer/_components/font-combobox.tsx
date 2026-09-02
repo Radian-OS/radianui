@@ -129,7 +129,7 @@ export function FontCombobox({
 								onClick={onToggleLock}
 								className={cn(
 									"border-border relative flex w-10 shrink-0 items-center justify-center border-l transition-colors",
-									"focus-visible:ring-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset",
+									"focus-visible:ring-primary focus-visible:ring-2 focus-visible:outline-none focus-visible:ring-inset",
 									isLocked
 										? "bg-primary-accent text-primary"
 										: "text-fg-tertiary hover:bg-fill1 hover:text-fg"

@@ -7,7 +7,7 @@ const CarouselThumbnail = (props: React.SVGProps<SVGSVGElement>) => (
 		viewBox="0 0 335 321"
 		fill="none"
 		xmlns="http://www.w3.org/2000/svg"
-		className="md:scale-135 scale-150 sm:scale-110 lg:scale-100"
+		className="scale-150 sm:scale-110 md:scale-135 lg:scale-100"
 		{...props}>
 		<g clipPath="url(#clip0_3867_194145)">
 			<rect width="335" height="320" fill="var(--color-elevation-negative)" />

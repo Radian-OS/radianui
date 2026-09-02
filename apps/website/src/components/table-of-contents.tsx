@@ -183,14 +183,14 @@ export default function TableOfContent({ headings }: TableOfContentsProps) {
 										    to avoid layout flicker from conditional rendering */}
 										<div
 											className={cn(
-												"bg-primary-border absolute left-0 top-1/2 h-8 w-0.5 -translate-y-1/2 transition-opacity duration-150",
+												"bg-primary-border absolute top-1/2 left-0 h-8 w-0.5 -translate-y-1/2 transition-opacity duration-150",
 												isActive ? "opacity-100" : "opacity-0"
 											)}
 										/>
 
 										{/* Hover indicator — only visible when not active */}
 										{!isActive && (
-											<div className="bg-border absolute -left-4 bottom-0 top-0 w-px opacity-0 transition-opacity group-hover:opacity-100" />
+											<div className="bg-border absolute top-0 bottom-0 -left-4 w-px opacity-0 transition-opacity group-hover:opacity-100" />
 										)}
 
 										<span className="block truncate px-2">{heading.text}</span>

@@ -10,7 +10,7 @@ interface ChangelogCardProps {
 export default function ChangelogCard({ title, children }: ChangelogCardProps) {
 	return (
 		<div className="border-border bg-fill1 my-8 overflow-hidden rounded-[32px] border">
-			<div className="border-border flex flex-col justify-between gap-4 border-b px-20 pb-8 pt-10 sm:flex-row sm:items-center">
+			<div className="border-border flex flex-col justify-between gap-4 border-b px-20 pt-10 pb-8 sm:flex-row sm:items-center">
 				<div className="flex items-center gap-3">
 					<div className="flex items-center gap-2">
 						{/* <Image
@@ -35,8 +35,8 @@ export default function ChangelogCard({ title, children }: ChangelogCardProps) {
 				</span>
 			</div>
 
-			<div className="px-20 pb-20 pt-8">
-				<h2 className="mb-4 mt-0 border-none pb-0 text-3xl font-semibold tracking-tight text-zinc-900 dark:text-white">
+			<div className="px-20 pt-8 pb-20">
+				<h2 className="mt-0 mb-4 border-none pb-0 text-3xl font-semibold tracking-tight text-zinc-900 dark:text-white">
 					{title}
 				</h2>
 				<div className="m-0 max-w-4xl text-base leading-relaxed text-zinc-600 dark:text-zinc-400">

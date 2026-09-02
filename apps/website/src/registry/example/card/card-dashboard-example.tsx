@@ -13,12 +13,12 @@ import { Divider } from "@/registry/ui/divider"
 
 export default function CardDashboardExample() {
 	return (
-		<Card className="w-95 flex flex-col gap-4 p-5">
+		<Card className="flex w-95 flex-col gap-4 p-5">
 			<CardHeader className="flex items-center justify-center p-0">
 				<Image
 					width={3840}
 					height={2160}
-					className="w-85 h-63.75 rounded-lg object-cover"
+					className="h-63.75 w-85 rounded-lg object-cover"
 					src="/media/background-2.jpg"
 					alt="card-bg"
 				/>

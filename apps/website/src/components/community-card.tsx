@@ -162,7 +162,7 @@ export default function CommunityCard() {
 	return (
 		<div className="relative overflow-hidden border border-x-0 p-4">
 			{/* Dotted SVG background, full width */}
-			<div className="z-1 h-32.5 absolute left-0 top-0 w-full">
+			<div className="absolute top-0 left-0 z-1 h-32.5 w-full">
 				<DotPattern />
 			</div>
 

@@ -70,7 +70,7 @@ export default function DocumentUpload() {
 	})
 
 	return (
-		<div className="w-90 flex flex-col gap-2">
+		<div className="flex w-90 flex-col gap-2">
 			{/* Drop area */}
 			<div
 				role="button"
@@ -80,7 +80,7 @@ export default function DocumentUpload() {
 				onDragOver={handleDragOver}
 				onDrop={handleDrop}
 				data-dragging={isDragging || undefined}
-				className="border-fg-disabled hover:bg-fill1-alpha data-[dragging=true]:bg-primary-accent has-[input:focus]:border-primary-focus has-[input:focus]:ring-primary has-disabled:pointer-events-none has-disabled:opacity-50 flex min-h-40 flex-col items-center justify-center rounded-xl border border-dashed p-4 transition-colors has-[input:focus]:ring-[3px]">
+				className="border-fg-disabled hover:bg-fill1-alpha data-[dragging=true]:bg-primary-accent has-[input:focus]:border-primary-focus has-[input:focus]:ring-primary flex min-h-40 flex-col items-center justify-center rounded-xl border border-dashed p-4 transition-colors has-disabled:pointer-events-none has-disabled:opacity-50 has-[input:focus]:ring-[3px]">
 				<input
 					{...getInputProps()}
 					className="sr-only"

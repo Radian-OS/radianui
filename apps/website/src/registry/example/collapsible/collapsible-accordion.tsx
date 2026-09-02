@@ -22,7 +22,7 @@ export default function CollapsibleAccordion() {
 	const [open, setOpen] = useState(false)
 
 	return (
-		<div className="max-w-100 w-full">
+		<div className="w-full max-w-100">
 			{ITEMS.map((item) => (
 				<Collapsible key={item.id} open={open} onOpenChange={setOpen}>
 					<div

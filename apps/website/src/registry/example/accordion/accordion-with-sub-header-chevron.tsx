@@ -65,7 +65,7 @@ export default function AccordionWithSubHeader() {
 							</span>
 						</span>
 					</AccordionTrigger>
-					<AccordionContent className="text-fg-secondary pb-4 ps-12 text-sm">
+					<AccordionContent className="text-fg-secondary ps-12 pb-4 text-sm">
 						{content}
 					</AccordionContent>
 				</AccordionItem>

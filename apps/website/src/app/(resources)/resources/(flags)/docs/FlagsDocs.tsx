@@ -1,8 +1,5 @@
-import { Figma, Github } from "lucide-react"
 import Image from "next/image"
-import Link from "next/link"
-import { Button } from "@/registry/ui/button"
-import { ResourceCTA } from "../../components/ResourceCTA"
+import { ResourceLibraryCTA } from "../../components/ResourceCTA"
 import {
 	ResourceDocs,
 	ResourceFaq,
@@ -247,50 +244,7 @@ export default function FlagsDocs() {
 
 			<ResourceFaq id="flag-faq-heading" items={faqItems} />
 
-			<ResourceCTA
-				id="flag-cta-heading"
-				badge="Open Source Library"
-				title="Production-Ready UI Blocks for Designers and Developers"
-				description="Radian UI bridges design and development with reusable components, developer documentation, and a synchronized Figma library."
-				actions={
-					<>
-						<Button variant="glossy" className="w-full" asChild>
-							<Link href={process.env.NEXT_PUBLIC_BLOCKS_URL!}>
-								<Github />
-								Documentation
-							</Link>
-						</Button>
-						<Button
-							variant="outline"
-							className="w-full"
-							color="neutral"
-							asChild>
-							<Link href="https://www.figma.com/community/file/1601125934366184350/radian-design-system-version-0-1-2">
-								<Figma />
-								View Figma Library
-							</Link>
-						</Button>
-					</>
-				}
-				visual={
-					<div className="pointer-events-none absolute top-1/2 -right-10 hidden w-[55%] -translate-y-1/2 lg:block">
-						<Image
-							src="/media/assets-page/flags-light.png"
-							alt="Country flag collection in a light interface"
-							width={664}
-							height={418}
-							className="border-soft rounded-xl border shadow-lg dark:hidden"
-						/>
-						<Image
-							src="/media/assets-page/flags-dark.png"
-							alt="Country flag collection in a dark interface"
-							width={664}
-							height={418}
-							className="border-soft hidden rounded-xl border shadow-lg dark:block"
-						/>
-					</div>
-				}
-			/>
+			<ResourceLibraryCTA id="flag-cta-heading" />
 		</ResourceDocs>
 	)
 }

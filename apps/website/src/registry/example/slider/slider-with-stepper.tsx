@@ -9,7 +9,7 @@ export default function SliderWithStepper() {
 	const [value, setValue] = React.useState(50)
 
 	return (
-		<div className="w-100 flex items-center gap-2">
+		<div className="flex w-100 items-center gap-2">
 			<IconButton
 				aria-label="Reduce Button"
 				size="28"
