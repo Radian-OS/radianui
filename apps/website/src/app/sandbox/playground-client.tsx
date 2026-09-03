@@ -70,12 +70,20 @@ export function PlaygroundClient({ files }: PlaygroundClientProps) {
 						setViewMode(mode)
 						if (mode !== "inspect") {
 							setIsCommentsEnabled(false)
+							setDraftComment(null)
+						} else {
+							setIsCommentsEnabled(true)
 						}
 					}}
 					deviceSize={deviceSize}
 					onDeviceSizeChange={setDeviceSize}
 					isCommentsEnabled={isCommentsEnabled}
-					onToggleComments={setIsCommentsEnabled}
+					onToggleComments={(enabled) => {
+						setIsCommentsEnabled(enabled)
+						if (!enabled) {
+							setDraftComment(null)
+						}
+					}}
 					commentsCount={comments.length}
 				/>
 
@@ -92,7 +100,7 @@ export function PlaygroundClient({ files }: PlaygroundClientProps) {
 								onSubmitDraft={addComment}
 								onDeleteComment={deleteComment}
 								isSubmitting={isSubmitting}
-								isCommentsVisible={isCommentsEnabled || comments.length > 0}
+								isCommentsVisible={viewMode === "inspect" && isCommentsEnabled}
 							/>
 						)}
 

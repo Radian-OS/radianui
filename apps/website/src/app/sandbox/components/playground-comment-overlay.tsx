@@ -25,7 +25,7 @@ export function PlaygroundCommentOverlay({
 	isSubmitting = false,
 	isVisible,
 }: PlaygroundCommentOverlayProps) {
-	if (!isVisible && comments.length === 0 && !draftComment) {
+	if (!isVisible) {
 		return null
 	}
 
@@ -51,12 +51,12 @@ export function PlaygroundCommentOverlay({
 						top: `${draftComment.positionY}%`,
 					}}>
 					{/* Draft Pin Icon */}
-					<div className="bg-primary text-primary-fg ring-background relative -left-3.5 -top-3.5 flex size-7 animate-bounce items-center justify-center rounded-full font-mono text-xs font-bold shadow-xl ring-2">
+					<div className="bg-primary text-primary-fg ring-background size-6.5 relative -left-3 -top-3 flex items-center justify-center rounded-full font-mono text-xs font-bold shadow-md ring-2">
 						<span>+</span>
 					</div>
 
 					{/* Draft Form Card */}
-					<div className="absolute left-0 top-4 -translate-x-1/4">
+					<div className="absolute left-0 top-5 -translate-x-1/4">
 						<CommentForm
 							elementTag={draftComment.elementTag}
 							elementSelector={draftComment.elementSelector}

@@ -45,6 +45,12 @@ export function useComments(
 		setDraftComment(null)
 	}, [fetchComments])
 
+	useEffect(() => {
+		if (viewMode !== "inspect" || !isCommentsEnabled) {
+			setDraftComment(null)
+		}
+	}, [viewMode, isCommentsEnabled])
+
 	// Add new comment
 	const addComment = async (formValues: CommentFormValues) => {
 		if (!draftComment) return

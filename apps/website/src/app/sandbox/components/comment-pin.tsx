@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState } from "react"
-import { MessageSquare, Trash2, X } from "lucide-react"
+import { Trash2, X } from "lucide-react"
 import { Button } from "@/styles/default/ui/button"
 import type { SandboxComment } from "./types"
 
@@ -47,7 +47,7 @@ export function CommentPin({ comment, index, onDelete }: CommentPinProps) {
 				top: `${comment.positionY}%`,
 				transform: "translate(-50%, -50%)",
 			}}>
-			{/* Figma-style Numbered Pin Button */}
+			{/* Numbered Pin Button */}
 			<button
 				type="button"
 				onClick={(e) => {
@@ -55,7 +55,7 @@ export function CommentPin({ comment, index, onDelete }: CommentPinProps) {
 					setIsOpen(!isOpen)
 				}}
 				aria-label={`View comment #${index + 1} from ${comment.authorName}`}
-				className="bg-primary text-primary-fg ring-background hover:scale-115 group relative flex size-7 items-center justify-center rounded-full font-mono text-xs font-bold shadow-lg ring-2 transition-transform duration-150 active:scale-95">
+				className="bg-primary text-primary-fg ring-background size-6.5 group relative flex items-center justify-center rounded-full font-mono text-xs font-bold shadow-md ring-2 transition-transform duration-150 hover:scale-110 active:scale-95">
 				<span>{index + 1}</span>
 				{/* Small pointer tail */}
 				<span className="bg-primary absolute -bottom-1 left-1/2 size-1.5 -translate-x-1/2 rotate-45" />
@@ -65,70 +65,65 @@ export function CommentPin({ comment, index, onDelete }: CommentPinProps) {
 			{isOpen && (
 				<div
 					onClick={(e) => e.stopPropagation()}
-					className="border-border bg-background animate-in fade-in zoom-in-95 absolute left-0 top-9 z-50 w-[300px] -translate-x-1/4 rounded-xl border p-4 shadow-2xl backdrop-blur-md duration-150">
-					{/* Header */}
-					<div className="border-border/60 flex items-center justify-between border-b pb-2">
-						<div className="flex items-center gap-2">
-							<div className="bg-primary text-primary-fg flex size-5 items-center justify-center rounded-full text-[10px] font-bold">
+					className="border-border bg-bg animate-in fade-in zoom-in-95 absolute left-0 top-8 z-50 w-72 -translate-x-1/4 rounded-xl border p-3 shadow-xl duration-150">
+					{/* Header: Author + Time + Actions */}
+					<div className="flex items-center justify-between gap-2 pb-2">
+						<div className="flex min-w-0 items-center gap-2">
+							<div className="bg-primary text-primary-fg flex size-5 shrink-0 items-center justify-center rounded-full text-[10px] font-bold">
 								{index + 1}
 							</div>
-							<span className="text-foreground text-xs font-bold">
-								{comment.authorName}
-							</span>
+							<div className="flex min-w-0 flex-col">
+								<span className="text-fg truncate text-xs font-semibold">
+									{comment.authorName}
+								</span>
+								<span className="text-fg-tertiary text-[10px]">
+									{formatDate(comment.createdAt)}
+								</span>
+							</div>
 						</div>
-						<div className="flex items-center gap-1">
-							<span className="text-fg-tertiary text-[10px]">
-								{formatDate(comment.createdAt)}
-							</span>
+
+						<div className="flex shrink-0 items-center gap-1">
+							<Button
+								type="button"
+								variant="ghost"
+								color="error"
+								size="28"
+								onClick={handleDelete}
+								loading={isDeleting}
+								title="Delete comment"
+								className="text-fg-tertiary hover:text-error">
+								<Trash2 className="size-3.5" />
+							</Button>
 							<Button
 								type="button"
 								variant="ghost"
 								color="neutral"
 								size="28"
 								onClick={() => setIsOpen(false)}
-								className="text-fg-tertiary hover:text-foreground size-6 p-0">
+								title="Close">
 								<X className="size-3.5" />
 							</Button>
 						</div>
 					</div>
 
-					{/* Tag badge */}
-					<div className="mt-2 flex items-center gap-1">
-						<span className="bg-fill3 text-primary rounded px-1.5 py-0.5 font-mono text-[10px] font-semibold">
-							&lt;{comment.elementTag}&gt;
-						</span>
-						{comment.elementSelector && (
-							<span
-								className="text-fg-tertiary truncate text-[10px]"
-								title={comment.elementSelector}>
-								{comment.elementSelector}
+					{/* Element context (if present) */}
+					{comment.elementTag && (
+						<div className="mb-1.5 flex items-center gap-1 overflow-hidden">
+							<span className="bg-fill3 text-primary shrink-0 rounded px-1.5 py-0.5 font-mono text-[10px] font-semibold">
+								&lt;{comment.elementTag}&gt;
 							</span>
-						)}
-					</div>
+							{comment.elementSelector && (
+								<span
+									className="text-fg-tertiary truncate font-mono text-[10px]"
+									title={comment.elementSelector}>
+									{comment.elementSelector}
+								</span>
+							)}
+						</div>
+					)}
 
 					{/* Comment Content */}
-					<p className="text-foreground mt-2 text-xs leading-relaxed">
-						{comment.content}
-					</p>
-
-					{/* Actions Footer */}
-					<div className="border-border/50 mt-3 flex items-center justify-between border-t pt-2">
-						<div className="text-fg-tertiary flex items-center gap-1 text-[11px]">
-							<MessageSquare className="size-3" />
-							<span>Feedback</span>
-						</div>
-						<Button
-							type="button"
-							variant="ghost"
-							color="error"
-							size="28"
-							onClick={handleDelete}
-							loading={isDeleting}
-							className="h-6 gap-1 px-2 text-xs">
-							<Trash2 className="size-3" />
-							<span>Delete</span>
-						</Button>
-					</div>
+					<p className="text-fg text-xs leading-relaxed">{comment.content}</p>
 				</div>
 			)}
 		</div>

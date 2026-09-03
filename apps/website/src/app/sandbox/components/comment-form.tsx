@@ -2,7 +2,7 @@
 
 import React from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Send, User, X } from "lucide-react"
+import { Send, X } from "lucide-react"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { Button } from "@/styles/default/ui/button"
@@ -11,7 +11,6 @@ import {
 	FormControl,
 	FormField,
 	FormItem,
-	FormLabel,
 	FormMessage,
 } from "@/styles/default/ui/form"
 import { Input } from "@/styles/default/ui/input"
@@ -48,7 +47,7 @@ export function CommentForm({
 	const form = useForm<CommentFormValues>({
 		resolver: zodResolver(commentFormSchema),
 		defaultValues: {
-			authorName: "Reviewer",
+			authorName: "",
 			content: "",
 		},
 	})
@@ -59,16 +58,16 @@ export function CommentForm({
 	})
 
 	return (
-		<div className="border-border bg-background animate-in fade-in zoom-in-95 w-[320px] rounded-xl border p-4 shadow-xl backdrop-blur-md duration-150">
+		<div className="border-border bg-bg animate-in fade-in zoom-in-95 w-72 rounded-xl border p-3 shadow-xl duration-150">
 			{/* Header info */}
-			<div className="border-border/60 mb-3 flex items-center justify-between border-b pb-2">
-				<div className="flex items-center gap-1.5 overflow-hidden">
-					<span className="bg-fill3 text-primary rounded-md px-1.5 py-0.5 font-mono text-[11px] font-bold">
+			<div className="mb-2 flex items-center justify-between gap-2">
+				<div className="flex min-w-0 items-center gap-1.5 overflow-hidden">
+					<span className="bg-fill3 text-primary shrink-0 rounded px-1.5 py-0.5 font-mono text-[10px] font-semibold">
 						&lt;{elementTag}&gt;
 					</span>
 					{elementSelector && (
 						<span
-							className="text-fg-tertiary truncate text-xs"
+							className="text-fg-tertiary truncate font-mono text-[11px]"
 							title={elementSelector}>
 							{elementSelector}
 						</span>
@@ -80,81 +79,75 @@ export function CommentForm({
 					color="neutral"
 					size="28"
 					onClick={onCancel}
-					className="text-fg-tertiary hover:text-foreground size-6 p-0">
+					className="shrink-0">
 					<X className="size-3.5" />
 				</Button>
 			</div>
 
 			<Form {...form}>
-				<form onSubmit={handleSubmit} className="space-y-3">
-					{/* Author name field */}
-					<FormField
-						control={form.control}
-						name="authorName"
-						render={({ field }) => (
-							<FormItem className="space-y-1">
-								<FormLabel className="text-fg-secondary flex items-center gap-1 text-[11px] font-medium">
-									<User className="size-3" />
-									<span>Your Name</span>
-								</FormLabel>
-								<FormControl>
-									<Input
-										placeholder="e.g. Alex"
-										size="32"
-										className="text-xs"
-										{...field}
-									/>
-								</FormControl>
-								<FormMessage className="text-[11px]" />
-							</FormItem>
-						)}
-					/>
-
-					{/* Comment content field */}
+				<form onSubmit={handleSubmit} className="space-y-2">
+					{/* Comment content */}
 					<FormField
 						control={form.control}
 						name="content"
 						render={({ field }) => (
 							<FormItem className="space-y-1">
-								<FormLabel className="text-fg-secondary text-[11px] font-medium">
-									Comment
-								</FormLabel>
 								<FormControl>
 									<TextArea
-										placeholder="Write your feedback..."
-										rows={3}
-										className="resize-none text-xs"
+										placeholder="Add a comment..."
+										rows={2}
+										className="resize-none text-xs leading-relaxed"
 										autoFocus
 										{...field}
 									/>
 								</FormControl>
-								<FormMessage className="text-[11px]" />
+								<FormMessage className="text-[10px]" />
 							</FormItem>
 						)}
 					/>
 
-					{/* Action Buttons */}
-					<div className="flex items-center justify-end gap-2 pt-1">
-						<Button
-							type="button"
-							variant="outline"
-							color="neutral"
-							size="32"
-							onClick={onCancel}
-							disabled={isSubmitting}
-							className="text-xs">
-							Cancel
-						</Button>
-						<Button
-							type="submit"
-							variant="strong"
-							color="primary"
-							size="32"
-							loading={isSubmitting}
-							className="text-xs font-semibold">
-							<Send className="size-3.5" />
-							<span>Post</span>
-						</Button>
+					{/* Author name & actions */}
+					<div className="flex items-center justify-between gap-2 pt-0.5">
+						<FormField
+							control={form.control}
+							name="authorName"
+							render={({ field }) => (
+								<FormItem className="min-w-0 flex-1 space-y-0">
+									<FormControl>
+										<Input
+											placeholder="Your name"
+											size="28"
+											className="h-7 text-xs"
+											{...field}
+										/>
+									</FormControl>
+									<FormMessage className="text-[10px]" />
+								</FormItem>
+							)}
+						/>
+
+						<div className="flex shrink-0 items-center gap-1">
+							<Button
+								type="button"
+								variant="ghost"
+								color="neutral"
+								size="28"
+								onClick={onCancel}
+								disabled={isSubmitting}
+								className="h-7 text-xs">
+								Cancel
+							</Button>
+							<Button
+								type="submit"
+								variant="strong"
+								color="primary"
+								size="28"
+								loading={isSubmitting}
+								className="h-7 gap-1 text-xs font-semibold">
+								<Send className="size-3" />
+								<span>Post</span>
+							</Button>
+						</div>
 					</div>
 				</form>
 			</Form>
