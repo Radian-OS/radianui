@@ -1,12 +1,7 @@
 import { Pool } from "pg"
 
 function getConnectionString(): string | undefined {
-	return (
-		process.env.DATABASE ||
-		process.env.DATABASE_URL ||
-		process.env.POSTGRES_URL ||
-		process.env.POSTGRES_PRISMA_URL
-	)
+	return process.env.DATABASE
 }
 
 const globalForPg = globalThis as unknown as {
