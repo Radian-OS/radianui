@@ -28,7 +28,6 @@ export const designTools = [
 		description: "User avatars for app and dashboard.",
 		href: "/resources/avatar",
 		icon: <UIAvatars />,
-		release: "beta",
 	},
 	{
 		title: "Emoji",
@@ -54,9 +53,9 @@ export const designTools = [
 	{
 		title: "Country Flags",
 		description: "Flags from around the world.",
-		href: "/resources/flags",
+		href: "#",
 		icon: <CountryFlags />,
-		release: "beta",
+		release: "coming-soon",
 	},
 	{
 		title: "Logo Generator",

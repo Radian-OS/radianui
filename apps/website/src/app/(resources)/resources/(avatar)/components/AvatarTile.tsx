@@ -226,7 +226,7 @@ export const AvatarTile = React.memo(
 						className={cn(
 							isFavorite
 								? "fill-primary-border stroke-transparent"
-								: "fill-fg-tertiary stroke-transparent"
+								: "fill-[#c0c0c9] stroke-transparent"
 						)}
 					/>
 				</CompactButton>
