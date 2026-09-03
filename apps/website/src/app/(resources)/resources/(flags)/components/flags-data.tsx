@@ -265,6 +265,7 @@ export const flagNames = [
 
 export type FlagName = (typeof flagNames)[number]
 export type FlagShape = "flat" | "round"
+export type FlagSize = 16 | 24 | 32 | 64 | 128 | 256 | 512
 
 const flagDisplayNames: Partial<Record<FlagName, string>> = {
 	Alandislands: "Åland Islands",
@@ -339,9 +340,13 @@ export function getFlagDisplayName(name: FlagName) {
 	return flagDisplayNames[name] ?? name
 }
 
-export function getFlagUrl(name: FlagName, shape: FlagShape = "flat") {
+export function getFlagUrl(
+	name: FlagName,
+	shape: FlagShape = "flat",
+	size: FlagSize = 64
+) {
 	const folder = shape === "round" ? "circle" : "flat"
-	return `${FLAG_CDN_ROOT}/${folder}/${encodeURIComponent(name)}.png`
+	return `${FLAG_CDN_ROOT.replace("/64px", `/${size}px`)}/${folder}/${encodeURIComponent(name)}.png`
 }
 
 export function getFlagSvgMarkup(name: FlagName, imageHref: string) {

@@ -3,9 +3,10 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react"
 import { Search } from "lucide-react"
 import { Input, InputWrapper } from "@/registry/ui/input"
+import { FlagDetailsDialog } from "./FlagDetailsDialog"
 import { FlagShapeDropdown } from "./FlagShapeDropdown"
 import { FlagTile } from "./FlagTile"
-import type { FlagShape } from "./flags-data"
+import type { FlagName, FlagShape } from "./flags-data"
 import { flagNames, getFlagDisplayName } from "./flags-data"
 
 const FLAG_SHAPE_STORAGE_KEY = "radian-flags-shape"
@@ -13,6 +14,7 @@ const FLAG_SHAPE_STORAGE_KEY = "radian-flags-shape"
 export default function FlagsPlayground() {
 	const [query, setQuery] = useState("")
 	const [shape, setShape] = useState<FlagShape>("flat")
+	const [selectedFlag, setSelectedFlag] = useState<FlagName | null>(null)
 	const sentinelRef = useRef<HTMLDivElement>(null)
 	const bottomSentinelRef = useRef<HTMLDivElement>(null)
 
@@ -124,6 +126,7 @@ export default function FlagsPlayground() {
 							name={name}
 							shape={shape}
 							priority={index < 18}
+							onSelect={setSelectedFlag}
 						/>
 					))}
 				</ul>
@@ -136,6 +139,17 @@ export default function FlagsPlayground() {
 			<div
 				ref={bottomSentinelRef}
 				className="pointer-events-none h-px w-full"
+			/>
+
+			<FlagDetailsDialog
+				name={selectedFlag}
+				shape={shape}
+				open={selectedFlag !== null}
+				onOpenChange={(open) => {
+					if (!open) setSelectedFlag(null)
+				}}
+				onShapeChange={handleShapeChange}
+				onSelectFlag={setSelectedFlag}
 			/>
 		</div>
 	)
