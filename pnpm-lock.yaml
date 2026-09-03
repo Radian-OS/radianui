@@ -372,8 +372,8 @@ importers:
         specifier: ^25.0.1
         version: 25.0.1
       type-fest:
-        specifier: ^4.39.0
-        version: 4.39.1
+        specifier: ^5.9.0
+        version: 5.9.0
       uni:
         specifier: ^0.0.6
         version: 0.0.6
@@ -551,8 +551,8 @@ importers:
         specifier: ^4.23.12
         version: 4.23.12
       type-fest:
-        specifier: ^4.39.1
-        version: 4.39.1
+        specifier: ^5.9.0
+        version: 5.9.0
       typescript:
         specifier: ^5.9.3
         version: 5.9.3
@@ -7085,6 +7085,10 @@ packages:
     resolution: {integrity: sha512-yUT0ukFkFEt4nb+NY+n2ag51aS/u9UHXoZw+A4jgD77/jzZsBoSDHuqysrVCBC4CYR4TYvUJq54ONpXgDBH8tA==}
     engines: {node: '>=0.2.6'}
 
+  tagged-tag@1.0.0:
+    resolution: {integrity: sha512-yEFYrVhod+hdNyx7g5Bnkkb0G6si8HJurOoOEgC8B/O0uXLHlaey/65KRv6cuWBNhBgHKAROVpc7QyYqE5gFng==}
+    engines: {node: '>=20'}
+
   tailwind-merge@3.6.0:
     resolution: {integrity: sha512-uxL7qAVQriqRQPAyK3pj66VqskWqoZ37PW94jwOTwNfq/z9oyu1V+eqrZqtR2+fCiXdYOZe/Modt8GtvqNzu+w==}
 
@@ -7256,9 +7260,9 @@ packages:
   type-component@0.0.1:
     resolution: {integrity: sha512-mDZRBQS2yZkwRQKfjJvQ8UIYJeBNNWCq+HBNstl9N5s9jZ4dkVYXEGkVPsSCEh5Ld4JM1kmrZTzjnrqSAIQ7dw==}
 
-  type-fest@4.39.1:
-    resolution: {integrity: sha512-uW9qzd66uyHYxwyVBYiwS4Oi0qZyUqwjU+Oevr6ZogYiXt99EOYtwvzMSLw1c3lYo2HzJsep/NB23iEVEgjG/w==}
-    engines: {node: '>=16'}
+  type-fest@5.9.0:
+    resolution: {integrity: sha512-yANm3Jr3GiJ1qgJlxGAVxTOIcEOk1rhQHamlXtnrCK7EHP4HeM9OGxtMg/W7HFdrVzw/ZWJKGVIJusVH85sLtw==}
+    engines: {node: '>=20'}
 
   typed-array-buffer@1.0.3:
     resolution: {integrity: sha512-nAYYwfY3qnzX30IkA6AQZjVbtK6duGontcQm1WSG1MD94YLqK0515GNApXkoxKOWMusVssAHWLh9SeaoefYFGw==}
@@ -14525,6 +14529,8 @@ snapshots:
 
   sylvester@0.0.21: {}
 
+  tagged-tag@1.0.0: {}
+
   tailwind-merge@3.6.0: {}
 
   tailwindcss-animate@1.0.7(tailwindcss@4.3.3):
@@ -14686,7 +14692,9 @@ snapshots:
 
   type-component@0.0.1: {}
 
-  type-fest@4.39.1: {}
+  type-fest@5.9.0:
+    dependencies:
+      tagged-tag: 1.0.0
 
   typed-array-buffer@1.0.3:
     dependencies:
