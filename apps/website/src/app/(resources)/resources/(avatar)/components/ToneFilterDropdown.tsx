@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useRef, useState } from "react"
-import { Ban, ChevronDown, Dices, X } from "lucide-react"
+import { Ban, Dices, X } from "lucide-react"
 import Image from "next/image"
 import {
 	type ActiveInfo,
@@ -100,27 +100,74 @@ export function ToneFilterDropdown({
 }: ToneFilterDropdownProps) {
 	const [open, setOpen] = useState(false)
 	const colorInputRef = useRef<HTMLInputElement>(null)
+	const debounceTimerRef = useRef<NodeJS.Timeout | null>(null)
+	const pendingColorRef = useRef<string | null>(null)
+	const isColorPickerActiveRef = useRef(false)
 
 	const activeInfo = getActiveInfo(value)
 
 	const handleCustomColorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const selectedColor = e.target.value
-		React.startTransition(() => {
-			onChange(selectedColor)
-		})
+		pendingColorRef.current = selectedColor
+
+		if (debounceTimerRef.current) {
+			clearTimeout(debounceTimerRef.current)
+		}
+
+		debounceTimerRef.current = setTimeout(() => {
+			React.startTransition(() => {
+				onChange(selectedColor)
+			})
+			pendingColorRef.current = null
+			debounceTimerRef.current = null
+		}, 80)
+	}
+
+	const handleCustomColorCommit = () => {
+		if (pendingColorRef.current) {
+			if (debounceTimerRef.current) {
+				clearTimeout(debounceTimerRef.current)
+				debounceTimerRef.current = null
+			}
+			const finalColor = pendingColorRef.current
+			pendingColorRef.current = null
+			React.startTransition(() => {
+				onChange(finalColor)
+			})
+		}
 	}
 
 	return (
-		<DropdownMenu open={open} onOpenChange={setOpen} indicatorPosition="right">
+		<DropdownMenu
+			open={open}
+			onOpenChange={(nextOpen) => {
+				if (!nextOpen && isColorPickerActiveRef.current) return
+				setOpen(nextOpen)
+			}}
+			indicatorPosition="right">
 			<DropdownMenuTrigger asChild>
-				<Button color="neutral" variant="outline" className="md:w-44">
+				<Button
+					color="neutral"
+					variant="outline"
+					className="justify-start px-2 md:w-42">
 					<TriggerSwatch activeInfo={activeInfo} />
 					<p className="hidden sm:block">{activeInfo.label}</p>
-					<ChevronDown className="text-fg-secondary ml-auto" />
 				</Button>
 			</DropdownMenuTrigger>
 
-			<DropdownMenuContent align="center" className="rounded-xl p-0">
+			<DropdownMenuContent
+				align="center"
+				className="rounded-xl p-0"
+				onInteractOutside={(e) => {
+					if (isColorPickerActiveRef.current) {
+						e.preventDefault()
+					}
+				}}
+				onFocusOutside={(e) => {
+					if (isColorPickerActiveRef.current) {
+						e.preventDefault()
+					}
+				}}>
 				{/* <ScrollArea className="h-105"> */}
 				{/* Header */}
 				<div className="flex items-center justify-between px-4 py-3">
@@ -142,6 +189,35 @@ export function ToneFilterDropdown({
 							{colorMode === "radian" ? "Radian Colors" : "Colors"}
 						</DropdownMenuLabel>
 						<div className="grid grid-cols-9 gap-2">
+							{/* Clear / None Button */}
+							<IconButton
+								type="button"
+								onClick={() => onChange("none")}
+								color="neutral"
+								size="28"
+								variant="outline"
+								title="Clear Background"
+								aria-label="Clear Background">
+								<Ban />
+							</IconButton>
+
+							{/* Random Color Button */}
+							<IconButton
+								type="button"
+								onClick={() => onChange("pick-color")}
+								color="neutral"
+								size="28"
+								variant="outline"
+								title="Random Color"
+								aria-label="Random Color"
+								className={
+									value === "pick-color"
+										? "ring-primary ring-2 ring-offset-2"
+										: ""
+								}>
+								<Dices />
+							</IconButton>
+
 							{colorMode === "radian"
 								? RADIAN_COLORS.map((c) => (
 										<button
@@ -178,52 +254,38 @@ export function ToneFilterDropdown({
 									))}
 
 							{/* Custom Color Picker */}
-							<button
-								type="button"
-								onClick={() => colorInputRef.current?.click()}
+							<label
 								title="Custom Color"
 								aria-label="Custom Color Picker"
 								style={{
 									background:
 										"conic-gradient(from 180deg, #f87171, #fbbf24, #a3e635, #34d399, #38bdf8, #818cf8, #e879f9, #f87171)",
 								}}
-								className="border-border size-7 cursor-pointer rounded-lg border transition-transform active:scale-95"
-							/>
-							<input
-								ref={colorInputRef}
-								type="color"
-								className="sr-only"
-								onChange={handleCustomColorChange}
-							/>
-
-							{/* Random Color Button */}
-							<IconButton
-								type="button"
-								onClick={() => onChange("pick-color")}
-								color="neutral"
-								size="28"
-								variant="outline"
-								title="Random Color"
-								aria-label="Random Color"
-								className={
-									value === "pick-color"
-										? "ring-primary ring-2 ring-offset-2"
-										: ""
-								}>
-								<Dices />
-							</IconButton>
-
-							{/* Clear / None Button */}
-							<IconButton
-								type="button"
-								onClick={() => onChange("none")}
-								color="neutral"
-								size="28"
-								variant="outline"
-								title="Clear Background"
-								aria-label="Clear Background">
-								<Ban />
-							</IconButton>
+								className={cn(
+									"border-border relative size-7 cursor-pointer overflow-hidden rounded-lg border transition-transform active:scale-95",
+									activeInfo.type === "custom-hex" &&
+										"ring-primary ring-offset-elevation-level2 ring-2 ring-offset-2"
+								)}>
+								<input
+									ref={colorInputRef}
+									type="color"
+									className="absolute inset-0 size-full cursor-pointer opacity-0"
+									value={value.startsWith("#") ? value : "#ffffff"}
+									onFocus={() => {
+										isColorPickerActiveRef.current = true
+									}}
+									onClick={() => {
+										isColorPickerActiveRef.current = true
+									}}
+									onChange={handleCustomColorChange}
+									onBlur={() => {
+										handleCustomColorCommit()
+										setTimeout(() => {
+											isColorPickerActiveRef.current = false
+										}, 500)
+									}}
+								/>
+							</label>
 						</div>
 					</div>
 

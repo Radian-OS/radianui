@@ -1,4 +1,5 @@
 import React from "react"
+import AvatarBestPracticeDesign from "./AvatarBestPracticeDesign"
 import AvatarCTA from "./AvatarCTA"
 import AvatarDesign from "./AvatarDesign"
 import AvatarDevlopment from "./AvatarDevlopment"
@@ -10,10 +11,11 @@ const AvatarDocs = () => {
 	return (
 		<article
 			aria-label="UI avatar design and development guide"
-			className="md:gap-25 md:py-30 border-soft bg-linear-to-b from-fill1 to-bg flex flex-col gap-10 border-b px-5 py-8 sm:gap-20 sm:px-6 sm:py-20">
+			className="border-soft from-fill1 to-bg flex flex-col gap-10 border-b bg-linear-to-b px-5 py-8 sm:gap-20 sm:px-6 sm:py-20 md:gap-25 md:py-30">
 			<AvatarIntroduction />
-			<AvatarUseCase />
 			<AvatarDesign />
+			<AvatarUseCase />
+			<AvatarBestPracticeDesign />
 			<AvatarDevlopment />
 			<AvatarFaq />
 			<AvatarCTA />

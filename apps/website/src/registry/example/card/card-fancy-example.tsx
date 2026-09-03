@@ -13,9 +13,9 @@ import {
 export default function CardFancyExample() {
 	return (
 		<div className="bg-primary-accent flex w-full flex-col items-center justify-center gap-2 rounded-[20px] px-2.5 py-2.5 sm:w-fit">
-			<Card className="sm:w-97.5 w-full">
+			<Card className="w-full sm:w-97.5">
 				<CardHeader className="flex flex-row justify-between">
-					<span className="bg-primary p-2.25 flex w-fit items-center justify-center rounded-[10px]">
+					<span className="bg-primary flex w-fit items-center justify-center rounded-[10px] p-2.25">
 						<Leaf className="size-6 text-white" />
 					</span>
 					<span className="border-alpha flex items-center overflow-hidden rounded-md border">

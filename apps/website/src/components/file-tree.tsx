@@ -369,7 +369,7 @@ const CollapseButton = forwardRef<
 	return (
 		<Button
 			variant={"ghost"}
-			className={cn("absolute bottom-1 right-2 h-8 w-fit p-1", className)}
+			className={cn("absolute right-2 bottom-1 h-8 w-fit p-1", className)}
 			onClick={
 				expandedItems && expandedItems.length > 0
 					? closeAll

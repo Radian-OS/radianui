@@ -96,7 +96,7 @@ export default function TypographyPlayground() {
 						<Badge variant="soft" color="primary" size="24">
 							Heading 2
 						</Badge>
-						<span className={`text-5xl font-semibold leading-[3.5rem]`}>
+						<span className={`text-5xl leading-[3.5rem] font-semibold`}>
 							Levy Chronicles
 						</span>
 						<p className="text-fg-secondary">
@@ -110,7 +110,7 @@ export default function TypographyPlayground() {
 						<Badge variant="soft" color="primary" size="24">
 							Heading 4
 						</Badge>
-						<span className={`text-[2rem] font-semibold leading-[2.5rem]`}>
+						<span className={`text-[2rem] leading-[2.5rem] font-semibold`}>
 							The Regent&apos;s Edict
 						</span>
 						<p className="text-fg-secondary">
@@ -120,7 +120,7 @@ export default function TypographyPlayground() {
 							profit from the sea.
 						</p>
 					</div>
-					<div className="text-fg-secondary bg-fill2 border-l-primary border border-b-0 border-r-0 border-t-0 p-3">
+					<div className="text-fg-secondary bg-fill2 border-l-primary border border-t-0 border-r-0 border-b-0 p-3">
 						&quot;If every voyage begins with a chart,&quot; the regent
 						declared, &quot;then every chart should begin with a coin.&quot;
 					</div>
@@ -206,7 +206,7 @@ export default function TypographyPlayground() {
 						<Badge variant="soft" color="primary" size="24">
 							Heading 2
 						</Badge>
-						<span className={`text-[2.5rem] font-semibold leading-[3rem]`}>
+						<span className={`text-[2.5rem] leading-[3rem] font-semibold`}>
 							Levy Chronicles
 						</span>
 						<p className="text-fg-secondary">
@@ -221,7 +221,7 @@ export default function TypographyPlayground() {
 							Heading 4
 						</Badge>
 						<span
-							className={`text-[1.875rem] font-semibold leading-[2.375rem]`}>
+							className={`text-[1.875rem] leading-[2.375rem] font-semibold`}>
 							The Regent&apos;s Edict
 						</span>
 						<p className="text-fg-secondary">
@@ -231,7 +231,7 @@ export default function TypographyPlayground() {
 							profit from the sea.
 						</p>
 					</div>
-					<div className="text-fg-secondary bg-fill2 border-l-primary border border-b-0 border-r-0 border-t-0 p-3">
+					<div className="text-fg-secondary bg-fill2 border-l-primary border border-t-0 border-r-0 border-b-0 p-3">
 						&quot;If every voyage begins with a chart,&quot; the regent
 						declared, &quot;then every chart should begin with a coin.&quot;
 					</div>
@@ -317,7 +317,7 @@ export default function TypographyPlayground() {
 						<Badge variant="soft" color="primary" size="24">
 							Heading 2
 						</Badge>
-						<span className={`text-[2.25rem] font-semibold leading-[2.75rem]`}>
+						<span className={`text-[2.25rem] leading-[2.75rem] font-semibold`}>
 							Levy Chronicles
 						</span>
 						<p className="text-fg-secondary">
@@ -331,7 +331,7 @@ export default function TypographyPlayground() {
 						<Badge variant="soft" color="primary" size="24">
 							Heading 4
 						</Badge>
-						<span className={`text-[1.75rem] font-semibold leading-[2.25rem]`}>
+						<span className={`text-[1.75rem] leading-[2.25rem] font-semibold`}>
 							The Regent&apos;s Edict
 						</span>
 						<p className="text-fg-secondary">
@@ -341,7 +341,7 @@ export default function TypographyPlayground() {
 							profit from the sea.
 						</p>
 					</div>
-					<div className="text-fg-secondary bg-fill2 border-l-primary border border-b-0 border-r-0 border-t-0 p-3">
+					<div className="text-fg-secondary bg-fill2 border-l-primary border border-t-0 border-r-0 border-b-0 p-3">
 						&quot;If every voyage begins with a chart,&quot; the regent
 						declared, &quot;then every chart should begin with a coin.&quot;
 					</div>

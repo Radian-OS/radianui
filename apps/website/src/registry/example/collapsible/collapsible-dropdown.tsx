@@ -73,7 +73,7 @@ function NavItem({ item }: { item: (typeof NAV_ITEMS)[number] }) {
 						return (
 							<div
 								key={child.id}
-								className="hover:bg-fill1-alpha flex cursor-pointer items-center gap-3 rounded-lg py-1.5 pl-11 pr-3 transition-colors">
+								className="hover:bg-fill1-alpha flex cursor-pointer items-center gap-3 rounded-lg py-1.5 pr-3 pl-11 transition-colors">
 								<ChildIcon className="text-fg-secondary size-5 shrink-0" />
 								<span className="text-fg text-sm">{child.label}</span>
 							</div>

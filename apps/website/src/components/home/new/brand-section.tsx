@@ -44,11 +44,11 @@ export default function BrandSection() {
 	return (
 		<section
 			aria-labelledby="brand-section-title"
-			className="border-soft relative z-30 mx-auto w-full max-w-[1440px] border-l border-r pt-[40px] lg:pt-[80px]">
-			<div className="border-soft bg-bg lg:h-26 flex h-auto min-w-0 flex-col overflow-hidden border-y lg:flex-row">
+			className="border-soft relative z-30 mx-auto w-full max-w-[1440px] border-r border-l pt-[40px] lg:pt-[80px]">
+			<div className="border-soft bg-bg flex h-auto min-w-0 flex-col overflow-hidden border-y lg:h-26 lg:flex-row">
 				<h2
 					id="brand-section-title"
-					className="text-fg-secondary border-soft flex w-full shrink-0 items-center justify-center border-b px-8 py-[15px] text-sm font-normal leading-5 md:py-5 lg:h-full lg:w-72 lg:border-b-0 lg:border-r lg:px-9 lg:py-[30px]">
+					className="text-fg-secondary border-soft flex w-full shrink-0 items-center justify-center border-b px-8 py-[15px] text-sm leading-5 font-normal md:py-5 lg:h-full lg:w-72 lg:border-r lg:border-b-0 lg:px-9 lg:py-[30px]">
 					Teams using Radian to Empower their Designs
 				</h2>
 
@@ -78,28 +78,28 @@ function BrandLogo({ brand }: { brand: (typeof brands)[number] }) {
 					alt={`${brand.name} logo`}
 					width={brand.width}
 					height={brand.height}
-					className="lg:max-w-35 absolute max-h-9 max-w-full object-contain transition-opacity group-hover/logo:opacity-0 dark:hidden"
+					className="absolute max-h-9 max-w-full object-contain transition-opacity group-hover/logo:opacity-0 lg:max-w-35 dark:hidden"
 				/>
 				<Image
 					src={`/brands/${brand.assetName} - On Hover.svg`}
 					alt={`${brand.name} logo`}
 					width={brand.width}
 					height={brand.height}
-					className="lg:max-w-35 absolute max-h-9 max-w-full object-contain opacity-0 transition-opacity group-hover/logo:opacity-100 dark:hidden"
+					className="absolute max-h-9 max-w-full object-contain opacity-0 transition-opacity group-hover/logo:opacity-100 lg:max-w-35 dark:hidden"
 				/>
 				<Image
 					src={`/brands/${brand.assetName} - Dark.svg`}
 					alt={`${brand.name} logo`}
 					width={brand.width}
 					height={brand.height}
-					className="lg:max-w-35 absolute hidden max-h-9 max-w-full object-contain transition-opacity group-hover/logo:opacity-0 dark:block"
+					className="absolute hidden max-h-9 max-w-full object-contain transition-opacity group-hover/logo:opacity-0 lg:max-w-35 dark:block"
 				/>
 				<Image
 					src={`/brands/${brand.assetName} - On Hover - Dark.svg`}
 					alt={`${brand.name} logo`}
 					width={brand.width}
 					height={brand.height}
-					className="lg:max-w-35 absolute hidden max-h-9 max-w-full object-contain opacity-0 transition-opacity dark:block dark:group-hover/logo:opacity-100"
+					className="absolute hidden max-h-9 max-w-full object-contain opacity-0 transition-opacity lg:max-w-35 dark:block dark:group-hover/logo:opacity-100"
 				/>
 			</span>
 		</div>

@@ -79,7 +79,7 @@ export default async function BlogPage({ params }: BlogListPageProps) {
 					})),
 				})}
 			/>
-			<div className="flex flex-col pb-20 pt-10">
+			<div className="flex flex-col pt-10 pb-20">
 				<div className="flex gap-20">
 					<section className="flex flex-col gap-6">
 						<div className="flex flex-col gap-4">
@@ -121,7 +121,7 @@ export default async function BlogPage({ params }: BlogListPageProps) {
 							href={post.url}
 							className="flex flex-col items-start gap-9 md:flex-row">
 							<Image
-								className="md:w-70 md:h-45 h-full w-full rounded-lg object-cover"
+								className="h-full w-full rounded-lg object-cover md:h-45 md:w-70"
 								alt="blog-image"
 								height={400}
 								width={400}
@@ -132,7 +132,7 @@ export default async function BlogPage({ params }: BlogListPageProps) {
 									<p className="text-fg-tertiary text-sm">{post.data.card}</p>
 									<span className="heading-6">{post.data.title}</span>
 								</div>
-								<div className="flex gap-2 pb-5 pt-3">
+								<div className="flex gap-2 pt-3 pb-5">
 									{/* <AvatarGroup>{post.data.author ? post.data.author.map((item) => <Avatar key={item.name} name={item.name} src={item.avatar} />) : []}</AvatarGroup> */}
 									<span className="text-fg-secondary">
 										{new Date(post.data.date).toLocaleDateString("en-US", {
@@ -150,7 +150,7 @@ export default async function BlogPage({ params }: BlogListPageProps) {
 					</span>
 				))}
 				{filteredBlogs.length === 0 && (
-					<section className="py-15 mt-10 flex flex-col items-center justify-center gap-6 rounded-sm border border-dashed">
+					<section className="mt-10 flex flex-col items-center justify-center gap-6 rounded-sm border border-dashed py-15">
 						<div>
 							<svg
 								className="text-border"

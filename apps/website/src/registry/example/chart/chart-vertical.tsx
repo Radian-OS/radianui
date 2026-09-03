@@ -95,7 +95,7 @@ export default function ChartVerticalBars() {
 										<div className="flex w-full items-center justify-between gap-2">
 											<div className="flex items-center gap-1.5">
 												<div
-													className="rounded-xs bg-(--color-bg) h-2.5 w-2.5 shrink-0"
+													className="h-2.5 w-2.5 shrink-0 rounded-xs bg-(--color-bg)"
 													style={
 														{
 															"--color-bg": `var(--color-${name})`,

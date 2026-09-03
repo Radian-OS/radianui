@@ -127,7 +127,7 @@ export function CreateProjectDialog() {
 				{data?.id ? (
 					<div className="flex flex-col">
 						{/* Success header */}
-						<div className="bg-success-accent flex flex-col items-center gap-3 px-6 pb-5 pt-8">
+						<div className="bg-success-accent flex flex-col items-center gap-3 px-6 pt-8 pb-5">
 							<div className="bg-success flex size-10 items-center justify-center rounded-full">
 								<Rocket className="text-fg-inverse size-5" />
 							</div>
@@ -146,7 +146,7 @@ export function CreateProjectDialog() {
 							<div
 								className="bg-fill1 border-border hover:border-fg-disabled group relative flex cursor-pointer items-center rounded-lg border p-3 transition-colors"
 								onClick={handleCopy}>
-								<code className="text-fg flex-1 select-all break-all text-[13px]">
+								<code className="text-fg flex-1 text-[13px] break-all select-all">
 									{command}
 								</code>
 								<button
@@ -169,7 +169,7 @@ export function CreateProjectDialog() {
 				) : (
 					<div className="flex flex-col">
 						{/* Dialog header with icon */}
-						<div className="flex flex-col items-center gap-3 px-6 pb-4 pt-8">
+						<div className="flex flex-col items-center gap-3 px-6 pt-8 pb-4">
 							<div className="bg-primary-accent flex size-10 items-center justify-center rounded-full">
 								<FolderPlus className="text-primary size-5" />
 							</div>

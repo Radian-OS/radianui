@@ -291,7 +291,7 @@ export default function FileUpload({ onContinue, onCancel }: FileUploadProps) {
 	}
 
 	return (
-		<Card className="w-115 border-soft bg-bg flex flex-col gap-0 rounded-xl border p-0">
+		<Card className="border-soft bg-bg flex w-115 flex-col gap-0 rounded-xl border p-0">
 			{/* Header */}
 			<div className="flex items-start gap-3 p-5">
 				<div className="bg-primary-focus rounded-full p-2.5">
@@ -320,7 +320,7 @@ export default function FileUpload({ onContinue, onCancel }: FileUploadProps) {
 					onKeyDown={(e) => {
 						if (e.key === "Enter" || e.key === " ") actions.openFileDialog()
 					}}
-					className="border-fg-disabled hover:bg-fill1-alpha data-[dragging=true]:bg-primary-accent has-[input:focus]:border-primary-focus has-[input:focus]:ring-primary has-disabled:pointer-events-none has-disabled:opacity-50 flex min-h-40 flex-col items-center justify-center gap-3 rounded-xl border border-dashed p-4 transition-colors has-[input:focus]:ring-[3px]">
+					className="border-fg-disabled hover:bg-fill1-alpha data-[dragging=true]:bg-primary-accent has-[input:focus]:border-primary-focus has-[input:focus]:ring-primary flex min-h-40 flex-col items-center justify-center gap-3 rounded-xl border border-dashed p-4 transition-colors has-disabled:pointer-events-none has-disabled:opacity-50 has-[input:focus]:ring-[3px]">
 					<input {...actions.getInputProps()} className="hidden" />
 
 					<IconButton

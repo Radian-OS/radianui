@@ -81,7 +81,7 @@ export default function Uploads() {
 						data-dragging={isDragging || undefined}
 						data-files={files.length > 0 || undefined}
 						role="button"
-						className="border-border hover:bg-fill1 data-[dragging=true]:bg-primary-accent has-[input:focus]:border-primary has-disabled:pointer-events-none has-disabled:opacity-50 min-h-41 flex flex-col items-center justify-center rounded-xl border border-dashed p-4 transition-colors has-[input:focus]:ring-[3px] has-[input:focus]:ring-transparent">
+						className="border-border hover:bg-fill1 data-[dragging=true]:bg-primary-accent has-[input:focus]:border-primary flex min-h-41 flex-col items-center justify-center rounded-xl border border-dashed p-4 transition-colors has-disabled:pointer-events-none has-disabled:opacity-50 has-[input:focus]:ring-[3px] has-[input:focus]:ring-transparent">
 						<input
 							{...getInputProps()}
 							className="sr-only"

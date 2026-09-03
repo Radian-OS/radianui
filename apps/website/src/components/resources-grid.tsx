@@ -33,9 +33,10 @@ const resources: ResourceItem[] = [
 		title: "Country Flags",
 		description:
 			"Over 250 flags from different nations in rectangular and circular shapes.",
-		comingSoon: true,
+		comingSoon: false,
 		lightUrl: "/media/assets-page/flags-light.png",
 		darkUrl: "/media/assets-page/flags-dark.png",
+		link: "flags",
 	},
 	{
 		title: "Credit Cards",

@@ -4,7 +4,7 @@ import { AspectRatio } from "@/registry/ui/aspect-ratio"
 
 export default function AspectRatioPreview() {
 	return (
-		<div className="max-w-47.5 w-full">
+		<div className="w-full max-w-47.5">
 			<AspectRatio
 				ratio={9 / 16}
 				className="bg-fill1 overflow-hidden rounded-xl">

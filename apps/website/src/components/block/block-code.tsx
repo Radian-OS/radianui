@@ -19,7 +19,7 @@ export function BlockCode({
 
 	return (
 		<div className="flex min-w-0 flex-1 flex-col overflow-hidden">
-			<div className="h-13 border-soft-alpha flex items-center justify-between border-b px-4 py-3">
+			<div className="border-soft-alpha flex h-13 items-center justify-between border-b px-4 py-3">
 				<div className="text-fg-secondary flex items-center gap-2.5">
 					<IconButton
 						variant="ghost"

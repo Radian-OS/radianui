@@ -313,7 +313,7 @@ export default function ScrollAreaPreview() {
 	})
 
 	return (
-		<div className="w-150 flex flex-col gap-4 overflow-auto">
+		<div className="flex w-150 flex-col gap-4 overflow-auto">
 			<ScrollArea className="bg-bg h-90 overflow-hidden rounded-md border">
 				<Table className="table-fixed">
 					<TableHeader>
@@ -329,7 +329,7 @@ export default function ScrollAreaPreview() {
 												<div
 													className={cn(
 														header.column.getCanSort() &&
-															"flex h-full cursor-pointer select-none items-center justify-between gap-2"
+															"flex h-full cursor-pointer items-center justify-between gap-2 select-none"
 													)}
 													onClick={header.column.getToggleSortingHandler()}
 													onKeyDown={(e) => {

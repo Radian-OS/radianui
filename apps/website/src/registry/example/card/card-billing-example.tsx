@@ -6,7 +6,7 @@ import { Progress } from "@/registry/ui/progress"
 
 export default function CardBillingExample() {
 	return (
-		<Card className="max-w-95 w-full gap-5 p-5">
+		<Card className="w-full max-w-95 gap-5 p-5">
 			<div className="flex items-center justify-between">
 				<span className="text-base font-semibold">
 					7 days remaining in cycle
@@ -38,7 +38,7 @@ export default function CardBillingExample() {
 					</div>
 				</section>
 			</div>
-			<Divider className="border-alpha border border-b-0 border-t border-dashed bg-transparent" />
+			<Divider className="border-alpha border border-t border-b-0 border-dashed bg-transparent" />
 			<Button color="neutral" variant="outline" className="w-full">
 				Add Credits
 			</Button>

@@ -86,7 +86,7 @@ function RadioDropdownItem({
 			role="menuitem"
 			onClick={() => onSelect(option.value)}
 			className={cn(
-				"hover:bg-fill1-alpha flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm transition-colors",
+				"hover:bg-fill1-alpha flex w-full cursor-pointer items-center gap-2 rounded-sm px-2 py-1.5 text-sm transition-colors select-none",
 				"text-fg"
 			)}>
 			<RadioGroupItem

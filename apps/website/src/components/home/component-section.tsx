@@ -35,8 +35,8 @@ const Component = () => {
 		<section
 			aria-labelledby="components-title"
 			className="relative mx-auto w-full max-w-[1440px]">
-			<div className="border-soft max-w-360 mx-auto flex flex-col overflow-hidden border border-t-0">
-				<div className="lg:px-15 lg:py-30 flex flex-col gap-8 px-5 py-16 sm:px-10">
+			<div className="border-soft mx-auto flex max-w-360 flex-col overflow-hidden border border-t-0">
+				<div className="flex flex-col gap-8 px-5 py-16 sm:px-10 lg:px-15 lg:py-30">
 					<div className="flex flex-col gap-4 sm:gap-6">
 						<Badge color="primary" size="28" variant="soft">
 							<ComponentIcon className="text-primary size-4" />
@@ -44,10 +44,10 @@ const Component = () => {
 						</Badge>
 						<div className="w-full lg:w-[920px]">
 							<h2 id="components-title" className="heading-3">
-								<span className="text-[24px] font-medium leading-[36px] md:text-[36px] md:leading-[44px] lg:text-[32px]">
+								<span className="text-[24px] leading-[36px] font-medium md:text-[36px] md:leading-[44px] lg:text-[32px]">
 									Production-ready React and Figma UI components.
 								</span>{" "}
-								<span className="text-fg-secondary text-[24px] font-medium leading-[36px] md:text-[36px] md:leading-[44px] lg:text-[32px]">
+								<span className="text-fg-secondary text-[24px] leading-[36px] font-medium md:text-[36px] md:leading-[44px] lg:text-[32px]">
 									Carefully crafted components that are flexible, accessible,
 									and ready for production from day one.
 								</span>

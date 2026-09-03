@@ -38,7 +38,7 @@ export default function HoverCardInfluencerProfile() {
 				<div className="bg-primary-focus relative h-20">
 					<Avatar
 						size="80"
-						className="border-bg border-6 absolute bottom-0 left-2.5 box-content translate-y-1/2">
+						className="border-bg absolute bottom-0 left-2.5 box-content translate-y-1/2 border-6">
 						<AvatarImage src={profile.avatar} />
 						<AvatarFallback className="text-base">
 							{profile.name.charAt(0).toUpperCase()}
@@ -46,7 +46,7 @@ export default function HoverCardInfluencerProfile() {
 					</Avatar>
 				</div>
 
-				<div className="flex flex-col gap-4 px-4 pb-4 pt-14">
+				<div className="flex flex-col gap-4 px-4 pt-14 pb-4">
 					<div className="flex flex-col gap-1">
 						<div className="flex items-center gap-1">
 							<p className="font-medium">{profile.name}</p>

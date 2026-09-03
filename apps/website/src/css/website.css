@@ -113,7 +113,12 @@
 
 	html {
 		scroll-behavior: smooth;
-		scrollbar-gutter: stable;
+	}
+
+	@supports (-moz-appearance: none) {
+		html {
+			scrollbar-gutter: stable;
+		}
 	}
 
 	h1,
@@ -123,7 +128,7 @@
 	h5,
 	h6,
 	:is(.heading-1, .heading-2, .heading-3, .heading-4, .heading-5, .heading-6) {
-		@apply tracking-[-0.01em];
+		@apply tracking-[-0.01em] scroll-mt-24;
 	}
 }
 

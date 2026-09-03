@@ -31,7 +31,7 @@ function ProfileCard() {
 				<Avatar size="48">
 					<AvatarImage src={profile.avatar} />
 					<AvatarFallback>CH</AvatarFallback>
-					<AvatarIndicator className="bottom-0 right-0">
+					<AvatarIndicator className="right-0 bottom-0">
 						<svg
 							width={16}
 							height={16}

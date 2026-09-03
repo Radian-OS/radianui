@@ -179,7 +179,7 @@ export default function CarouselSection() {
 			aria-label="Radian design system capabilities"
 			className="bg-bg text-fg dark relative z-20 w-full"
 			style={darkThemeVars}>
-			<div className="border-soft max-w-360 mx-auto flex w-full flex-col overflow-hidden border border-t-0">
+			<div className="border-soft mx-auto flex w-full max-w-360 flex-col overflow-hidden border border-t-0">
 				<SectionHeader
 					headingId="design-at-scale-title"
 					centered
@@ -198,7 +198,7 @@ export default function CarouselSection() {
 						<div
 							key={stat.label}
 							className={cn(
-								"border-soft px-2.75 flex w-1/2 flex-col items-center justify-center gap-3 py-8 text-center lg:w-1/4 lg:px-4",
+								"border-soft flex w-1/2 flex-col items-center justify-center gap-3 px-2.75 py-8 text-center lg:w-1/4 lg:px-4",
 								index < 2 && "border-b lg:border-b-0",
 								index % 2 === 0 && "border-r",
 								index === 1 && "lg:border-r"
@@ -232,7 +232,7 @@ export default function CarouselSection() {
 				</div>
 			</div>
 
-			<div className="border-soft max-w-360 mx-auto flex w-full flex-col overflow-hidden border border-t-0">
+			<div className="border-soft mx-auto flex w-full max-w-360 flex-col overflow-hidden border border-t-0">
 				<SectionHeader
 					headingId="product-teams-title"
 					badge={
@@ -246,13 +246,13 @@ export default function CarouselSection() {
 				/>
 
 				<div
-					className="lg:h-160 relative flex aspect-[2640/1948] h-auto w-full touch-pan-y justify-center overflow-hidden lg:aspect-auto"
+					className="relative flex aspect-[2640/1948] h-auto w-full touch-pan-y justify-center overflow-hidden lg:aspect-auto lg:h-160"
 					onPointerCancelCapture={() => {
 						swipeStart.current = null
 					}}
 					onPointerDownCapture={handleSwipeStart}
 					onPointerUpCapture={handleSwipeEnd}>
-					<div className="lg:h-160 lg:w-320 xl:w-330 relative aspect-[2640/1948] h-auto w-full shrink-0 overflow-hidden md:rounded-xl lg:aspect-auto">
+					<div className="relative aspect-[2640/1948] h-auto w-full shrink-0 overflow-hidden md:rounded-xl lg:aspect-auto lg:h-160 lg:w-320 xl:w-330">
 						<Image
 							src="/carousel-home.png"
 							fill
@@ -268,7 +268,7 @@ export default function CarouselSection() {
 					/>
 				</div>
 
-				<div className="border-soft lg:px-15 border-b px-5 py-10 sm:px-10 lg:py-20">
+				<div className="border-soft border-b px-5 py-10 sm:px-10 lg:px-15 lg:py-20">
 					<div
 						aria-live="polite"
 						aria-label={`Product feature highlights, page ${current + 1} of ${featurePageCount}`}
@@ -323,7 +323,7 @@ function SectionHeader({
 	return (
 		<div
 			className={cn(
-				"lg:px-15 lg:py-30 flex w-full flex-col gap-4 px-5 py-16 sm:gap-6 sm:px-10",
+				"flex w-full flex-col gap-4 px-5 py-16 sm:gap-6 sm:px-10 lg:px-15 lg:py-30",
 				centered && "items-center"
 			)}>
 			{badge}
@@ -375,9 +375,9 @@ function ShowcaseFrame({
 		<>
 			<div
 				ref={frameRef}
-				className="bg-fill1/30 max-w-240 absolute bottom-0 left-1/2 aspect-video h-auto w-[calc(100%_-_24px)] -translate-x-1/2 overflow-hidden rounded-t-xl backdrop-blur-xl sm:w-[78%] lg:aspect-auto lg:h-[80%]"
+				className="bg-fill1/30 absolute bottom-0 left-1/2 aspect-video h-auto w-[calc(100%_-_24px)] max-w-240 -translate-x-1/2 overflow-hidden rounded-t-xl backdrop-blur-xl sm:w-[78%] lg:aspect-auto lg:h-[80%]"
 				style={lightThemeVars}>
-				<div className="absolute inset-x-2 bottom-0 top-2">
+				<div className="absolute inset-x-2 top-2 bottom-0">
 					<div
 						className="bg-bg h-full w-full overflow-hidden rounded-t-lg"
 						style={darkThemeVars}>
@@ -408,7 +408,7 @@ function ShowcaseFrame({
 				current={current}
 				pageCount={pageCount}
 				onPageChange={onPageChange}
-				className="bottom-4 right-4 hidden lg:flex min-[1320px]:right-[calc((100%_-_1320px)/2_+_16px)]"
+				className="right-4 bottom-4 hidden min-[1320px]:right-[calc((100%_-_1320px)/2_+_16px)] lg:flex"
 			/>
 		</>
 	)

@@ -61,7 +61,7 @@ const InfiniteScroll = ({
 	return (
 		<div
 			className={cn(
-				"group flex overflow-hidden p-2 [--duration:20s] [--gap:1rem] [gap:var(--gap)]",
+				"group flex [gap:var(--gap)] overflow-hidden p-2 [--duration:20s] [--gap:1rem]",
 				{
 					"flex-row": !vertical,
 					"flex-col": vertical,

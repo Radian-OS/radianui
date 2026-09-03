@@ -72,7 +72,7 @@ export default function FileUploadAvatar() {
 				{/* Text + Actions */}
 				<div className="flex flex-col gap-3">
 					<div className="flex flex-col gap-1">
-						<p className="text-fg text-sm font-medium leading-none">
+						<p className="text-fg text-sm leading-none font-medium">
 							Upload Image
 						</p>
 						<p className="text-fg-secondary text-xs font-normal">

@@ -4,7 +4,7 @@ import { Card } from "@/registry/ui/card"
 
 export default function CardFeatureExample() {
 	return (
-		<Card className="max-w-95 w-full gap-0 p-0">
+		<Card className="w-full max-w-95 gap-0 p-0">
 			<div className="flex flex-col gap-5 p-5">
 				<span className="bg-primary-accent flex w-fit items-center justify-center rounded-lg p-2.5">
 					<ReceiptText className="text-primary size-5" />

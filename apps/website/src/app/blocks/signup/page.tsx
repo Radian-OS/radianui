@@ -33,7 +33,7 @@ export default function Signup({ fullScreen = true }: SignupProps) {
 				"h-screen w-screen": fullScreen,
 				"h-full w-full": !fullScreen,
 			})}>
-			<div className="w-100 bg-bg border-border flex rounded-2xl border px-5 py-6 sm:p-6">
+			<div className="bg-bg border-border flex w-100 rounded-2xl border px-5 py-6 sm:p-6">
 				<div className="flex flex-1 flex-col gap-8">
 					<div>
 						<Image src="/favicon-16x16.png" height={32} width={32} alt="Logo" />
@@ -102,7 +102,7 @@ export default function Signup({ fullScreen = true }: SignupProps) {
 					<div className="flex flex-1 flex-col gap-6">
 						<div className="flex items-center gap-2">
 							<Divider className="flex-1" />
-							<span className="text-fg-tertiary whitespace-nowrap text-sm font-medium">
+							<span className="text-fg-tertiary text-sm font-medium whitespace-nowrap">
 								Or continue with
 							</span>
 							<Divider className="flex-1" />

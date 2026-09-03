@@ -9,8 +9,8 @@ export default function UIBlocksSection() {
 		<section
 			aria-labelledby="ui-blocks-title"
 			className="bg-bg relative z-30 mx-auto w-full max-w-[1440px]">
-			<header className="max-w-360 border-soft mx-auto flex w-full flex-col overflow-hidden border border-y-0">
-				<div className="lg:px-15 lg:py-30 flex flex-col gap-4 px-5 py-16 sm:gap-6 sm:px-10">
+			<header className="border-soft mx-auto flex w-full max-w-360 flex-col overflow-hidden border border-y-0">
+				<div className="flex flex-col gap-4 px-5 py-16 sm:gap-6 sm:px-10 lg:px-15 lg:py-30">
 					<Badge size="28" variant="soft" color="primary">
 						<BadgeDot className="bg-primary" />
 						UI Blocks
@@ -18,10 +18,10 @@ export default function UIBlocksSection() {
 					<h2
 						id="ui-blocks-title"
 						className="heading-3 font-heading w-full lg:w-[900px]">
-						<span className="heading-3 text-fg text-[24px] font-medium leading-[36px] md:text-[36px] md:leading-[44px] lg:text-[40px] lg:leading-[52px]">
+						<span className="heading-3 text-fg text-[24px] leading-[36px] font-medium md:text-[36px] md:leading-[44px] lg:text-[40px] lg:leading-[52px]">
 							Start with complete layouts, not blank pages.{" "}
 						</span>
-						<span className="heading-3 text-fg-secondary text-[24px] font-medium leading-[36px] md:text-[36px] md:leading-[44px] lg:text-[40px] lg:leading-[52px]">
+						<span className="heading-3 text-fg-secondary text-[24px] leading-[36px] font-medium md:text-[36px] md:leading-[44px] lg:text-[40px] lg:leading-[52px]">
 							Landing pages, dashboards, auth flows, and settings screens ready
 							to customize and ship.{" "}
 						</span>

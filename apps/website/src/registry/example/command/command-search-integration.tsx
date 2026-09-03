@@ -171,9 +171,9 @@ export default function CommandSearchIntegration() {
 					setOpen(v)
 					if (!v) setShowDetail(false)
 				}}
-				className="md:min-w-190 md:max-w-190 w-[calc(100%-2.5rem)] max-w-[calc(100%-2.5rem)] p-0 sm:max-w-[calc(100%-2.5rem)]">
+				className="w-[calc(100%-2.5rem)] max-w-[calc(100%-2.5rem)] p-0 sm:max-w-[calc(100%-2.5rem)] md:max-w-190 md:min-w-190">
 				<Command
-					className="**:data-[slot=command-input-wrapper]:border-none **:data-[slot=command-input-wrapper]:p-0 border-none"
+					className="border-none **:data-[slot=command-input-wrapper]:border-none **:data-[slot=command-input-wrapper]:p-0"
 					shouldFilter={false}>
 					<div className="flex w-full flex-col">
 						<div className="border-soft flex w-full items-center justify-between border-b px-3">
@@ -369,7 +369,7 @@ function IntegrationItem({
 				className="object-contain"
 			/>
 			<div className="flex min-w-0 flex-col">
-				<span className="text-fg text-sm font-medium leading-tight">
+				<span className="text-fg text-sm leading-tight font-medium">
 					{item.name}
 				</span>
 				<span className="text-fg-secondary truncate text-xs">

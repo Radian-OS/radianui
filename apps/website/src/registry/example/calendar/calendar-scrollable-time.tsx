@@ -58,7 +58,7 @@ export default function CalendarScrollableTime() {
 		<div className="border-border w-fit overflow-clip rounded-xl border">
 			<div className="flex flex-col sm:flex-row">
 				<Calendar
-					className="rounded-none border-0 border-b sm:border-b-0 sm:border-r"
+					className="rounded-none border-0 border-b sm:border-r sm:border-b-0"
 					mode="single"
 					selected={date}
 					onSelect={(newDate) => {

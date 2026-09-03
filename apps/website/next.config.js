@@ -187,7 +187,6 @@ const nextConfig = {
 	skipTrailingSlashRedirect: true,
 	pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
 	images: {
-		minimumCacheTTL: 864000,
 		qualities: [75, 80],
 		remotePatterns: [
 			{
