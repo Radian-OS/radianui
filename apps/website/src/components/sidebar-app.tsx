@@ -11,10 +11,19 @@ import { ScrollArea } from "@/styles/default/ui/scroll-area"
 export default function Sidebar() {
 	const pathName = usePathname()
 	const activeItemRef = useRef<HTMLLIElement>(null)
+	const lastChartRef = useRef<HTMLLIElement>(null)
 
-	// Auto-scroll to active item when pathname changes
+	// Auto-scroll to active item when pathname changes (or to the last chart if on a chart page)
 	useEffect(() => {
-		if (activeItemRef.current) {
+		const isChartPage = pathName.startsWith("/docs/components/charts")
+
+		if (isChartPage && lastChartRef.current) {
+			lastChartRef.current.scrollIntoView({
+				behavior: "smooth",
+				block: "nearest",
+				inline: "nearest",
+			})
+		} else if (activeItemRef.current) {
 			activeItemRef.current.scrollIntoView({
 				behavior: "smooth",
 				block: "nearest",
@@ -37,8 +46,12 @@ export default function Sidebar() {
 							key={section.title}>
 							<span className="px-2 py-1.5">{section.title}</span>
 							<ul className="relative flex flex-col gap-0.5">
-								{section.items.map((item) => {
+								{section.items.map((item, index) => {
 									const isActive = pathName === item.url
+									const isLastChart =
+										section.title === "Charts" &&
+										(index === section.items.length - 1 ||
+											item.title === "Radar Chart")
 									const Icon = item.icon
 									const content = (
 										<div className="flex w-full min-w-0 items-center justify-between gap-2">
@@ -74,7 +87,16 @@ export default function Sidebar() {
 										<li
 											key={item.title}
 											className="relative"
-											ref={isActive ? activeItemRef : null}>
+											ref={(node) => {
+												if (isActive) {
+													activeItemRef.current = node
+												} else if (activeItemRef.current === node) {
+													activeItemRef.current = null
+												}
+												if (isLastChart) {
+													lastChartRef.current = node
+												}
+											}}>
 											{isActive && (
 												<div className="bg-primary-border absolute -left-3 top-1/2 h-8 w-0.5 -translate-y-1/2 rounded-r-full" />
 											)}

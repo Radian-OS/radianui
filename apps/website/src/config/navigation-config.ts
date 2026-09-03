@@ -263,16 +263,16 @@ const CHART_ITEMS: NavigationItem[] = [
 }))
 
 // ===== Animations Section =====
-const ANIMATIONS_ITEMS: NavigationItem[] = [
-	"Fade",
-	"Infinite Scroll",
-	"Pointer",
-].map((title) => ({
-	title,
-	url: "#",
-	isComingSoon: true,
-	disabled: true,
-}))
+// const ANIMATIONS_ITEMS: NavigationItem[] = [
+// 	"Fade",
+// 	"Infinite Scroll",
+// 	"Pointer",
+// ].map((title) => ({
+// 	title,
+// 	url: "#",
+// 	isComingSoon: true,
+// 	disabled: true,
+// }))
 
 // ===== Fundamentals Items Mapping =====
 const FUNDAMENTALS_ITEMS: NavigationItem[] = FUNDAMENTALS_DATA.map((item) => ({
@@ -326,9 +326,9 @@ export const navigationItems: NavigationSection[] = [
 		items: BLOCKS_ITEMS,
 	},
 
-	{
-		title: "Animations",
-		searchIcon: "/search-icons/search-components.svg",
-		items: ANIMATIONS_ITEMS.sort((a, b) => a.title.localeCompare(b.title)),
-	},
+	// {
+	// 	title: "Animations",
+	// 	searchIcon: "/search-icons/search-components.svg",
+	// 	items: ANIMATIONS_ITEMS.sort((a, b) => a.title.localeCompare(b.title)),
+	// },
 ]
