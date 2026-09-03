@@ -7,6 +7,7 @@ import {
 	ExternalLink,
 	Eye,
 	Globe,
+	MessageSquare,
 	Monitor,
 	Moon,
 	Smartphone,
@@ -27,6 +28,9 @@ interface PlaygroundHeaderProps {
 	onViewModeChange: (mode: ViewMode) => void
 	deviceSize: DeviceSize
 	onDeviceSizeChange: (size: DeviceSize) => void
+	isCommentsEnabled: boolean
+	onToggleComments: (enabled: boolean) => void
+	commentsCount?: number
 }
 
 export function PlaygroundHeader({
@@ -36,6 +40,9 @@ export function PlaygroundHeader({
 	onViewModeChange,
 	deviceSize,
 	onDeviceSizeChange,
+	isCommentsEnabled,
+	onToggleComments,
+	commentsCount = 0,
 }: PlaygroundHeaderProps) {
 	const { resolvedTheme, setTheme } = useTheme()
 	const [mounted, setMounted] = useState(false)
@@ -120,6 +127,34 @@ export function PlaygroundHeader({
 						</TabsTrigger>
 					</TabsList>
 				</Tabs>
+
+				{/* Comment Mode On / Off Tab (Visible when in Inspect Mode) */}
+				{viewMode === "inspect" && (
+					<Tabs
+						value={isCommentsEnabled ? "on" : "off"}
+						onValueChange={(v) => onToggleComments(v === "on")}>
+						<TabsList className="bg-fill2">
+							<TabsTrigger
+								value="off"
+								title="Disable comments"
+								className="gap-1 text-xs">
+								<span>Off</span>
+							</TabsTrigger>
+							<TabsTrigger
+								value="on"
+								title="Enable Figma-style comments"
+								className="gap-1.5 text-xs font-semibold">
+								<MessageSquare className="text-primary size-3" />
+								<span>Comments</span>
+								{typeof commentsCount === "number" && commentsCount > 0 && (
+									<span className="bg-primary py-0.2 text-primary-fg rounded-full px-1.5 text-[10px] font-bold">
+										{commentsCount}
+									</span>
+								)}
+							</TabsTrigger>
+						</TabsList>
+					</Tabs>
+				)}
 
 				{/* Theme Toggle Button */}
 				<IconButton

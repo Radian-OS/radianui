@@ -13,6 +13,7 @@ import {
 	type ViewMode,
 	sandboxComponents,
 } from "./components/types"
+import { useComments } from "./components/use-comments"
 import { useInspectMode } from "./components/use-inspect-mode"
 
 export interface PlaygroundClientProps {
@@ -24,6 +25,7 @@ export function PlaygroundClient({ files }: PlaygroundClientProps) {
 	const [activeFile, setActiveFile] = useState<string>("hero-section.tsx")
 	const [viewMode, setViewMode] = useState<ViewMode>("preview")
 	const [deviceSize, setDeviceSize] = useState<DeviceSize>("desktop")
+	const [isCommentsEnabled, setIsCommentsEnabled] = useState(false)
 
 	const iframeRef = useRef<HTMLIFrameElement>(null)
 
@@ -31,7 +33,18 @@ export function PlaygroundClient({ files }: PlaygroundClientProps) {
 		sandboxComponents.find((c) => c.id === activeComponent) ||
 		sandboxComponents[0]
 
+	// DOM Inspect effect
 	useInspectMode(iframeRef, viewMode, activeComponent)
+
+	// Figma-style comments hook
+	const {
+		comments,
+		draftComment,
+		setDraftComment,
+		isSubmitting,
+		addComment,
+		deleteComment,
+	} = useComments(iframeRef, activeComponent, viewMode, isCommentsEnabled)
 
 	const handleSelectComponent = (
 		component: PreviewKey,
@@ -53,9 +66,17 @@ export function PlaygroundClient({ files }: PlaygroundClientProps) {
 					activeComponentConfig={activeComponentConfig}
 					activeFile={activeFile}
 					viewMode={viewMode}
-					onViewModeChange={setViewMode}
+					onViewModeChange={(mode) => {
+						setViewMode(mode)
+						if (mode !== "inspect") {
+							setIsCommentsEnabled(false)
+						}
+					}}
 					deviceSize={deviceSize}
 					onDeviceSizeChange={setDeviceSize}
+					isCommentsEnabled={isCommentsEnabled}
+					onToggleComments={setIsCommentsEnabled}
+					commentsCount={comments.length}
 				/>
 
 				<div className="flex min-h-0 flex-1 overflow-hidden">
@@ -65,6 +86,13 @@ export function PlaygroundClient({ files }: PlaygroundClientProps) {
 								activeComponentConfig={activeComponentConfig}
 								deviceSize={deviceSize}
 								iframeRef={iframeRef}
+								comments={comments}
+								draftComment={draftComment}
+								onCancelDraft={() => setDraftComment(null)}
+								onSubmitDraft={addComment}
+								onDeleteComment={deleteComment}
+								isSubmitting={isSubmitting}
+								isCommentsVisible={isCommentsEnabled || comments.length > 0}
 							/>
 						)}
 

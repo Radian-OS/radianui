@@ -2,18 +2,39 @@
 
 import React, { type RefObject } from "react"
 import { cn } from "@/lib/utils"
-import type { DeviceSize, SandboxComponentConfig } from "./types"
+import type { CommentFormValues } from "./comment-form"
+import { PlaygroundCommentOverlay } from "./playground-comment-overlay"
+import type {
+	DeviceSize,
+	SandboxComment,
+	SandboxComponentConfig,
+} from "./types"
+import type { DraftComment } from "./use-comments"
 
 interface PlaygroundPreviewProps {
 	activeComponentConfig: SandboxComponentConfig
 	deviceSize: DeviceSize
 	iframeRef: RefObject<HTMLIFrameElement | null>
+	comments: SandboxComment[]
+	draftComment: DraftComment | null
+	onCancelDraft: () => void
+	onSubmitDraft: (values: CommentFormValues) => Promise<void> | void
+	onDeleteComment: (id: string) => Promise<void> | void
+	isSubmitting?: boolean
+	isCommentsVisible: boolean
 }
 
 export function PlaygroundPreview({
 	activeComponentConfig,
 	deviceSize,
 	iframeRef,
+	comments,
+	draftComment,
+	onCancelDraft,
+	onSubmitDraft,
+	onDeleteComment,
+	isSubmitting = false,
+	isCommentsVisible,
 }: PlaygroundPreviewProps) {
 	return (
 		<div className="flex flex-1 flex-col items-center overflow-y-auto">
@@ -33,6 +54,17 @@ export function PlaygroundPreview({
 							src={activeComponentConfig.previewRoute}
 							className="bg-bg h-full w-full border-0"
 							title={`${activeComponentConfig.label} Component Preview`}
+						/>
+
+						{/* Figma-like Comment Pins & Form Overlay */}
+						<PlaygroundCommentOverlay
+							comments={comments}
+							draftComment={draftComment}
+							onCancelDraft={onCancelDraft}
+							onSubmitDraft={onSubmitDraft}
+							onDeleteComment={onDeleteComment}
+							isSubmitting={isSubmitting}
+							isVisible={isCommentsVisible}
 						/>
 					</div>
 				</div>

@@ -18,6 +18,19 @@ export type PreviewKey =
 export type ViewMode = "preview" | "inspect" | "code"
 export type DeviceSize = "desktop" | "tablet" | "mobile"
 
+export interface SandboxComment {
+	id: string
+	componentId: string
+	elementTag: string
+	elementSelector: string
+	positionX: number
+	positionY: number
+	authorName: string
+	content: string
+	createdAt: string
+	resolved: boolean
+}
+
 export interface SandboxComponentConfig {
 	id: PreviewKey
 	label: string
