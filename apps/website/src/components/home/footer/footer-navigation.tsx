@@ -81,10 +81,10 @@ const LINKS: Link[] = [
 				release: "coming-soon",
 			},
 			{
-				href: "/resources/flags",
+				href: "#",
 				name: "UI Country Flags",
 				icon: <UICountryFlagsIcon />,
-				release: "beta",
+				release: "coming-soon",
 			},
 			{
 				href: "#",
