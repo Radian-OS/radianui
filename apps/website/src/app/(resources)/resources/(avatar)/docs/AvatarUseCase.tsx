@@ -141,6 +141,7 @@ const AvatarUseCase = () => {
 								width={560}
 								height={420}
 								className="bg-fill1 border-soft h-auto w-full rounded-[10px] border sm:rounded-xl md:rounded-[20px] dark:invisible dark:absolute dark:inset-0"
+								unoptimized
 							/>
 							<Image
 								src={useCaseImagesDark[i].src}
@@ -148,6 +149,7 @@ const AvatarUseCase = () => {
 								width={560}
 								height={420}
 								className="bg-fill1 border-soft invisible absolute inset-0 h-auto w-full rounded-[10px] border sm:rounded-xl md:rounded-[20px] dark:visible dark:static"
+								unoptimized
 							/>
 						</div>
 					))}

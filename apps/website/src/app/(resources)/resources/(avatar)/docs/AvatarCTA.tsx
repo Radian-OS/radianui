@@ -18,9 +18,7 @@ const AvatarCTA = () => {
 							</Badge>
 
 							<h2 id="avatar-cta-heading" className="heading-4">
-								<a href="#avatar-cta-heading">
-									Production-Ready UI Blocks for Designers and Developers
-								</a>
+								Production-Ready UI Blocks for Designers and Developers
 							</h2>
 						</div>
 

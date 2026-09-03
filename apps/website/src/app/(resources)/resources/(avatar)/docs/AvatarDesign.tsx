@@ -128,6 +128,7 @@ const AvatarDesign = () => {
 							width={560}
 							height={420}
 							className="bg-fill1 border-soft h-auto w-full rounded-[10px] border sm:rounded-xl md:rounded-[20px] dark:invisible dark:absolute dark:inset-0"
+							unoptimized
 						/>
 						<Image
 							src="/avatar/avatar-anatomy-dark.png"
@@ -135,6 +136,7 @@ const AvatarDesign = () => {
 							width={560}
 							height={420}
 							className="bg-fill1 border-soft invisible absolute inset-0 h-auto w-full rounded-[10px] border sm:rounded-xl md:rounded-[20px] dark:visible dark:static"
+							unoptimized
 						/>
 						<p className="text-fg-tertiary text-center text-[13px] font-normal">
 							Anatomy of an avatar in UI Design
@@ -173,6 +175,7 @@ const AvatarDesign = () => {
 							width={560}
 							height={420}
 							className="bg-fill1 border-soft h-auto w-full rounded-[10px] border sm:rounded-xl md:rounded-[20px] dark:invisible dark:absolute dark:inset-0"
+							unoptimized
 						/>
 						<Image
 							src="/avatar/avatar-representation-dark.png"
@@ -180,6 +183,7 @@ const AvatarDesign = () => {
 							width={560}
 							height={420}
 							className="bg-fill1 border-soft invisible absolute inset-0 h-auto w-full rounded-[10px] border sm:rounded-xl md:rounded-[20px] dark:visible dark:static"
+							unoptimized
 						/>
 						<p className="text-fg-tertiary text-center text-[13px] font-normal">
 							Avatars in various states such as empty and uploaded with
@@ -234,6 +238,7 @@ const AvatarDesign = () => {
 							width={560}
 							height={420}
 							className="bg-fill1 border-soft h-auto w-full rounded-[10px] border sm:rounded-xl md:rounded-[20px] dark:invisible dark:absolute dark:inset-0"
+							unoptimized
 						/>
 						<Image
 							src="/avatar/avatar-shape-dark.png"
@@ -241,6 +246,7 @@ const AvatarDesign = () => {
 							width={560}
 							height={420}
 							className="bg-fill1 border-soft invisible absolute inset-0 h-auto w-full rounded-[10px] border sm:rounded-xl md:rounded-[20px] dark:visible dark:static"
+							unoptimized
 						/>
 						<p className="text-fg-tertiary text-center text-[13px] font-normal">
 							Examples of various avatar shapes
@@ -268,7 +274,7 @@ const AvatarDesign = () => {
 								<h6
 									id="avatar-react-component"
 									className="text-fg text-base font-semibold">
-									<a href="#avatar-react-component">Avatar React Component</a>
+									Avatar React Component
 								</h6>
 								<p className="text-fg-secondary text-sm font-normal">
 									Add accessible, customizable avatars to your React project.
@@ -277,7 +283,7 @@ const AvatarDesign = () => {
 						</Link>
 
 						<Link
-							href="https://www.figma.com/community/file/1601125934366184350/radian-design-system-version-0-1-2"
+							href="https://www.figma.com/design/ZB8gTZwafZOYY7rdJjSRz6/%E2%9D%96-Preview-%E2%9D%96-Radian-Design-System-%E2%9D%96-Version-0.3?node-id=38-5"
 							target="_blank"
 							rel="noopener noreferrer"
 							className="bg-primary-accent border-primary-focus hover:border-primary-hover/50 flex gap-3 rounded-xl border p-4">
@@ -286,7 +292,7 @@ const AvatarDesign = () => {
 								<h6
 									id="avatar-figma-component"
 									className="text-fg text-base font-semibold">
-									<a href="#avatar-figma-component">Avatar Figma Component</a>
+									Avatar Figma Component
 								</h6>
 								<p className="text-fg-secondary text-sm font-normal">
 									Use ready-made avatar components and variants in Figma.

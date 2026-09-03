@@ -51,6 +51,8 @@ const AvatarIntroduction = () => {
 					width={800}
 					height={440}
 					sizes="(min-width: 1024px) 800px, 100vw"
+					quality={100}
+					unoptimized
 				/>
 				<Image
 					className="border-soft hidden overflow-hidden rounded-xl border md:rounded-[20px] dark:block"
@@ -59,6 +61,8 @@ const AvatarIntroduction = () => {
 					width={800}
 					height={440}
 					sizes="(min-width: 1024px) 800px, 100vw"
+					quality={100}
+					unoptimized
 				/>
 				<p className="text-fg-tertiary text-center text-[13px] font-normal">
 					Avatar usage in UI Design

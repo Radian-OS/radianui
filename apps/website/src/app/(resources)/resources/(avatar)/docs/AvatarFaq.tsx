@@ -16,20 +16,13 @@ const contents = [
 	{
 		id: 2,
 		trigger: "What file formats are available ?",
-		content:
-			"Five ways to use each avatar: copy the HTML <img> tag, copy a ready-to-use Next.js <Image> tag (with width and height already set), download as SVG for full color and scale control, download as PNG, or grab the matching Figma frame for design work so that your mockups and your shipped product use the exact same asset.",
+		content: "You can download the avatars in JPG, PNG, SVG, and WebP formats.",
 	},
 	{
 		id: 3,
 		trigger: "How do I add one of these avatars to my React project ?",
 		content:
 			"Click Copy on any avatar to grab either a plain HTML <img> tag or a pre-formatted Next.js <Image> tag, the Next.js version already has width and height set, so you skip the usual 'Image requires width and height' error. Drop either straight into your JSX, or swap the URL into your existing Avatar component's src prop if you already have one.",
-	},
-	{
-		id: 4,
-		trigger: "Why are SVG avatars popular ?",
-		content:
-			"SVGs are vector, so they stay sharp at any size. The same file works as a 24px icon in a table and a 96px image on a profile page without pixelating. They're also lightweight for illustrated or icon-style avatars, and you can recolor or restyle them with CSS instead of exporting new files for each variant.",
 	},
 	{
 		id: 5,
@@ -62,6 +55,23 @@ const contents = [
 		content:
 			"Yes, for anything below the fold. Long member lists, comment threads, or large avatar groups. Skip lazy-loading for avatars visible immediately on page load, like the current user in a nav bar, so they don't pop in late and shift the layout.",
 	},
+	{
+		id: 10,
+		trigger: "What makes a good avatar picture for linkedin?",
+		content:
+			"A good LinkedIn avatar is a high-quality, well-lit headshot or portrait with a clean background that presents you in a highly professional and approachable light.",
+	},
+	{
+		id: 11,
+		trigger: "Is this an avatar maker?",
+		content: "No, but all images are high quality headshots.",
+	},
+	{
+		id: 13,
+		trigger: "Should I use a photo or an illustration for my profile picture?",
+		content:
+			"It depends on the context. For professional networks, a clear, high-quality photo of your face is best. For gaming, casual social media, or creative forums, an illustration or stylized avatar is completely fine.",
+	},
 ]
 
 const AvatarFaq = () => {
@@ -75,7 +85,7 @@ const AvatarFaq = () => {
 						FAQ
 					</p>
 					<h2 id="avatar-faq-heading" className="heading-4 text-center">
-						<a href="#avatar-faq-heading">Frequently Asked Questions</a>
+						Frequently Asked Questions
 					</h2>
 					<p className="text-fg-secondary text-center text-base font-normal md:w-[590px]">
 						Have a question or need clarification? Our team is here to help and
