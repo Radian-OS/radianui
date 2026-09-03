@@ -10,7 +10,7 @@ const AvatarCTA = () => {
 			aria-labelledby="avatar-cta-heading"
 			className="border-soft from-fill1 to-bg-fill2 relative max-w-[1430px] overflow-hidden rounded-[20px] border bg-linear-to-b 2xl:mx-auto">
 			<div className="flex items-center overflow-hidden p-6 sm:p-10 lg:w-[1350px] lg:p-15">
-				<div className="relative z-10 flex w-full flex-col gap-5 lg:max-w-md">
+				<div className="relative z-10 flex w-full flex-col gap-8 lg:max-w-md">
 					<div className="flex w-full flex-col gap-8 lg:w-[532px]">
 						<div className="flex flex-col gap-5">
 							<Badge color="green" variant="soft" size="28">
@@ -29,7 +29,7 @@ const AvatarCTA = () => {
 					</div>
 
 					<div className="flex flex-col items-center gap-3 sm:flex-row">
-						<Button variant="glossy" className="w-full" asChild>
+						<Button variant="glossy" className="w-full" size="40" asChild>
 							<Link
 								href={process.env.NEXT_PUBLIC_BLOCKS_URL!}
 								className="flex gap-1.5">
@@ -55,6 +55,7 @@ const AvatarCTA = () => {
 							variant="outline"
 							className="w-full"
 							color="neutral"
+							size="40"
 							asChild>
 							<Link
 								href="https://www.figma.com/community/file/1601125934366184350/radian-design-system-version-0-1-2"

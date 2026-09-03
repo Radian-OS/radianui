@@ -28,7 +28,6 @@ export const designTools = [
 		description: "User avatars for app and dashboard.",
 		href: "/resources/avatar",
 		icon: <UIAvatars />,
-		release: "beta",
 	},
 	{
 		title: "Emoji",

@@ -11,7 +11,7 @@ const contents = [
 		id: 1,
 		trigger: "Are these avatars free to use commercially ?",
 		content:
-			"Yes. Every avatar in this pack is free for personal and commercial projects. No attribution required, no licensing fees, no usage cap. Use them in a client project, a paid product, or an open-source repo, same terms apply.",
+			"Yes. Every avatar in this pack is free for personal and commercial projects. No attribution required, no licensing fees, no usage cap. Use them in a client project, a paid product, or an open-source repo, same terms apply. But the avatars cannot be sold and distributed under another name.",
 	},
 	{
 		id: 2,
@@ -64,7 +64,8 @@ const contents = [
 	{
 		id: 11,
 		trigger: "Is this an avatar maker?",
-		content: "No, but all images are high quality headshots.",
+		content:
+			"No, this is not an avatar maker. Instead, it's a curated library of AI-generated headshots that are handpicked and better quality, good for any avatar usage from UI design mockups and web apps to presentations and profile pictures.",
 	},
 	{
 		id: 13,
@@ -100,10 +101,10 @@ const AvatarFaq = () => {
 						collapsible>
 						{contents.map((item) => (
 							<AccordionItem value={item.id.toString()} key={item.id}>
-								<AccordionTrigger className="data-[state=closed]:bg-fill1 data-[state=open]:bg-bg">
+								<AccordionTrigger className="data-[state=open]:bg-bg text-base">
 									{item.trigger}
 								</AccordionTrigger>
-								<AccordionContent className="group-data-[state=closed]:bg-fill1 group-data-[state=open]:bg-bg">
+								<AccordionContent className="group-data-[state=open]:bg-bg text-base">
 									{item.content}
 								</AccordionContent>
 							</AccordionItem>

@@ -49,6 +49,7 @@ export default function Page() {
 					label: "Curated UI Avatar Pack",
 					href: "/docs/getting-started/changelog",
 				}}
+				titleWidth="md:w-160"
 				heroVisual={null}
 				title="Get Free High Quality UI Faces and Avatars"
 				description="Access free UI portraits, avatars, profile pictures, and placeholder images for Figma, React, UI design, and mockups"

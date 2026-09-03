@@ -26,7 +26,7 @@ export function ResourceDocs({
 	return (
 		<article
 			aria-label={label}
-			className="border-soft from-fill1 to-bg flex flex-col gap-10 border-b bg-linear-to-b px-5 py-8 sm:gap-20 sm:px-6 sm:py-20 md:gap-25 md:py-30">
+			className="from-fill1 to-bg flex flex-col gap-10 bg-linear-to-b px-5 py-8 sm:gap-20 sm:px-6 sm:py-20 md:gap-25 md:py-30">
 			{children}
 		</article>
 	)

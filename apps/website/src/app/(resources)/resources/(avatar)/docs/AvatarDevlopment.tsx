@@ -80,6 +80,15 @@ const AvatarDevlopment = () => {
 							</li>
 						))}
 					</ul>
+					<p>
+						And that&apos;s really all you need to know about avatars, from
+						choosing the right style and size to building a component that works
+						well in a real product. If you are ready to start designing you can
+						also use our ready to use free UI avatar library and use the avatars
+						straight into your projects. And when you&apos;re building the next
+						part of your UI, check out our other resources for more handy
+						components, guides, and design assets.
+					</p>
 				</div>
 			</div>
 		</section>

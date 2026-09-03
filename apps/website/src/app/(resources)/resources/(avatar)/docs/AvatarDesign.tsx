@@ -212,7 +212,22 @@ const AvatarDesign = () => {
 						part of the profile itself, something like 80 px makes more sense.
 					</p>
 					<div className="flex flex-col gap-3">
-						<p>Image</p>
+						<Image
+							src="/avatar/avatar-dimension.png"
+							alt="Avatar dimension"
+							width={560}
+							height={420}
+							className="bg-fill1 border-soft h-auto w-full rounded-[10px] border sm:rounded-xl md:rounded-[20px] dark:invisible dark:absolute dark:inset-0"
+							unoptimized
+						/>
+						<Image
+							src="/avatar/avatar-dimension-dark.png"
+							alt="Avatar dimension dark"
+							width={560}
+							height={420}
+							className="bg-fill1 border-soft invisible absolute inset-0 h-auto w-full rounded-[10px] border sm:rounded-xl md:rounded-[20px] dark:visible dark:static"
+							unoptimized
+						/>
 						<p className="text-fg-tertiary text-center text-[13px] font-normal">
 							Examples showcasing different avatar sizes
 						</p>

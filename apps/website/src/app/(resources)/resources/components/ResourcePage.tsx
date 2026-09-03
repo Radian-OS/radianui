@@ -21,6 +21,7 @@ interface ResourcePageProps {
 	}
 	heroVisual: ReactNode
 	title: ReactNode
+	titleWidth?: string
 	description: ReactNode
 	actions: ReactNode
 	showcaseLabel: string
@@ -35,6 +36,7 @@ export function ResourcePage({
 	badge,
 	heroVisual,
 	title,
+	titleWidth,
 	description,
 	actions,
 	showcaseLabel,
@@ -75,7 +77,11 @@ export function ResourcePage({
 
 						{heroVisual}
 
-						<div className="flex w-full flex-col items-center justify-center gap-4 md:w-163">
+						<div
+							className={cn(
+								"flex w-full flex-col items-center justify-center gap-4 md:w-163",
+								titleWidth
+							)}>
 							<h1 className="heading-3 text-center">{title}</h1>
 							<p className="text-fg-secondary text-center text-base font-normal">
 								{description}
