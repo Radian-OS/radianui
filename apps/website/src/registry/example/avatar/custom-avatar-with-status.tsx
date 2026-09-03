@@ -28,7 +28,7 @@ export default function CustomAvatarStatusPreview() {
 			<Avatar size="48">
 				<AvatarImage src="/media/female-3.jpg" />
 				<AvatarFallback>CH</AvatarFallback>
-				<AvatarIndicator className="bottom-0 right-0">
+				<AvatarIndicator className="right-0 bottom-0">
 					<CustomBadge />
 				</AvatarIndicator>
 			</Avatar>
@@ -37,7 +37,7 @@ export default function CustomAvatarStatusPreview() {
 				<AvatarFallback className="text-warning bg-warning/10">
 					AJ
 				</AvatarFallback>
-				<AvatarIndicator className="bottom-0 right-0">
+				<AvatarIndicator className="right-0 bottom-0">
 					<Plus
 						size={16}
 						className="bg-primary text-white-inverse border-bg rounded-full border-2 p-0.5"

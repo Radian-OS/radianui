@@ -90,7 +90,7 @@ export default function DialogWithForm() {
 				<Form {...form}>
 					<form onSubmit={form.handleSubmit(onSubmit)}>
 						{/* Banner */}
-						<div className="h-27 relative w-full">
+						<div className="relative h-27 w-full">
 							<Image
 								src="/dialog-bg.png"
 								alt="Profile banner"

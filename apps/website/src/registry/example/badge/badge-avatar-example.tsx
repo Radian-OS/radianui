@@ -6,7 +6,7 @@ const BadgeAvatarExample = () => {
 	return (
 		<div className="flex flex-wrap items-center justify-center gap-3">
 			<Badge
-				className="rounded-full py-1 pl-1 pr-2"
+				className="rounded-full py-1 pr-2 pl-1"
 				variant="outline"
 				color="neutral">
 				<Avatar size="16">
@@ -18,7 +18,7 @@ const BadgeAvatarExample = () => {
 				</Avatar>
 				Jean Marine
 			</Badge>
-			<Badge className="rounded-full py-1 pl-1 pr-2" variant="soft">
+			<Badge className="rounded-full py-1 pr-2 pl-1" variant="soft">
 				<Avatar size="16">
 					<AvatarImage
 						src="https://randomuser.me/api/portraits/men/1.jpg"
@@ -29,7 +29,7 @@ const BadgeAvatarExample = () => {
 				Jean Marine
 			</Badge>
 			<Badge
-				className="rounded-full py-1 pl-1 pr-2"
+				className="rounded-full py-1 pr-2 pl-1"
 				variant="outline"
 				color="primary">
 				<Avatar size="16">
@@ -42,7 +42,7 @@ const BadgeAvatarExample = () => {
 				Jean Marine
 			</Badge>
 			<Badge
-				className="rounded-full py-1 pl-1 pr-2"
+				className="rounded-full py-1 pr-2 pl-1"
 				variant="strong"
 				color="primary">
 				<Avatar size="16">

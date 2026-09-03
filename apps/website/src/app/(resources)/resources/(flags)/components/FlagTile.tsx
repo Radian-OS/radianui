@@ -17,6 +17,7 @@ import {
 interface FlagTileProps {
 	name: FlagName
 	shape: FlagShape
+	priority?: boolean
 }
 
 function blobToDataUrl(blob: Blob) {
@@ -28,7 +29,7 @@ function blobToDataUrl(blob: Blob) {
 	})
 }
 
-export function FlagTile({ name, shape }: FlagTileProps) {
+export function FlagTile({ name, shape, priority = false }: FlagTileProps) {
 	const [copied, setCopied] = useState(false)
 	const displayName = getFlagDisplayName(name)
 	const flagUrl = getFlagUrl(name, shape)
@@ -101,7 +102,9 @@ export function FlagTile({ name, shape }: FlagTileProps) {
 						alt={`${displayName} flag`}
 						width={48}
 						height={48}
-						loading="lazy"
+						loading="eager"
+						decoding="async"
+						fetchPriority={priority ? "high" : "auto"}
 						className="absolute top-1/2 left-1/2 size-12 -translate-x-1/2 -translate-y-1/2 object-contain"
 					/>
 

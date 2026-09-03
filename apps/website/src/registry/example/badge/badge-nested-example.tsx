@@ -8,7 +8,7 @@ function BadgeNested() {
 			<Badge
 				size="28"
 				variant="strong"
-				className="h-8 gap-2 rounded-full py-1 pl-1 pr-[10px]"
+				className="h-8 gap-2 rounded-full py-1 pr-[10px] pl-1"
 				color="neutral">
 				<Badge className="rounded-full" variant="strong" color="primary">
 					New
@@ -19,7 +19,7 @@ function BadgeNested() {
 			<Badge
 				size="28"
 				variant="soft"
-				className="h-8 gap-2 rounded-full py-1.5 pl-2.5 pr-1.5">
+				className="h-8 gap-2 rounded-full py-1.5 pr-1.5 pl-2.5">
 				<span className="text-sm">Save 17% off</span>
 				<Badge
 					size="20"

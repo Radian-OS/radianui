@@ -126,7 +126,7 @@ export default function CarouselScale() {
 					<CarouselItem key={index} className="basis-1/3 pl-2 md:pl-4">
 						<AspectRatio
 							ratio={1 / 1}
-							className="scale-wrap duration-50 flex items-center justify-center transition-transform will-change-transform">
+							className="scale-wrap flex items-center justify-center transition-transform duration-50 will-change-transform">
 							<Image
 								src={image.src}
 								alt={image.alt}

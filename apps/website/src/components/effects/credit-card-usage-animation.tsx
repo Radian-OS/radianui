@@ -364,7 +364,7 @@ export function CreditCardUsageAnimation() {
 		<article
 			aria-label={`Credits usage card, ${activeState.name} state. Click to change usage state.`}
 			className={cn(
-				"credit-usage-card credit-card-frame relative select-none overflow-hidden focus:outline-none",
+				"credit-usage-card credit-card-frame relative overflow-hidden select-none focus:outline-none",
 				isPopping && "is-popping",
 				isInView && "is-visible"
 			)}
@@ -379,22 +379,22 @@ export function CreditCardUsageAnimation() {
 				className="credit-content-reveal flex items-start justify-between gap-[11px]"
 				style={getRevealStyle(0)}>
 				<div>
-					<p className="text-[11.75px] font-medium uppercase leading-none tracking-[0.12em] text-[var(--card-muted)] transition-colors duration-500">
+					<p className="text-[11.75px] leading-none font-medium tracking-[0.12em] text-[var(--card-muted)] uppercase transition-colors duration-500">
 						Credits Used
 					</p>
-					<p className="mt-[12px] text-[33.25px] font-semibold leading-[0.78] tracking-[0] text-[var(--card-text)] transition-colors duration-500">
+					<p className="mt-[12px] text-[33.25px] leading-[0.78] font-semibold tracking-[0] text-[var(--card-text)] transition-colors duration-500">
 						{displayPercent.toFixed(1)}%
 					</p>
 				</div>
 
 				<div className="mt-[4px] flex items-center gap-[13.5px]">
-					<p className="text-[12px] font-semibold leading-none tracking-[0] text-[var(--card-muted)] transition-colors duration-500">
+					<p className="text-[12px] leading-none font-semibold tracking-[0] text-[var(--card-muted)] transition-colors duration-500">
 						Auto Credit Balancer
 					</p>
 					<div
 						aria-hidden="true"
 						className="relative h-[20.25px] w-[34.25px] rounded-full bg-[var(--card-toggle)] transition-colors duration-500">
-						<span className="bg-fg-inverse absolute right-[2.75px] top-1/2 h-[14.25px] w-[14.25px] -translate-y-1/2 rounded-full transition-colors duration-500" />
+						<span className="bg-fg-inverse absolute top-1/2 right-[2.75px] h-[14.25px] w-[14.25px] -translate-y-1/2 rounded-full transition-colors duration-500" />
 					</div>
 				</div>
 			</div>
@@ -441,7 +441,7 @@ export function CreditCardUsageAnimation() {
 			</div>
 
 			<p
-				className="credit-content-reveal mt-[12px] flex text-[13px] font-semibold uppercase leading-none tracking-[0] text-[var(--card-muted)] transition-colors duration-500"
+				className="credit-content-reveal mt-[12px] flex text-[13px] leading-none font-semibold tracking-[0] text-[var(--card-muted)] uppercase transition-colors duration-500"
 				style={getRevealStyle(2)}>
 				<span className="inline-block w-[43px] shrink-0 tabular-nums">
 					{usedCredits}M
@@ -457,16 +457,16 @@ export function CreditCardUsageAnimation() {
 			<div
 				className="credit-content-reveal mt-[15.25px] flex items-center gap-[18.5px]"
 				style={getRevealStyle(4)}>
-				<h1 className="text-[15.75px] font-semibold leading-none tracking-[0] text-[var(--card-text)] transition-colors duration-500">
+				<h1 className="text-[15.75px] leading-none font-semibold tracking-[0] text-[var(--card-text)] transition-colors duration-500">
 					Usage History
 				</h1>
-				<div className="flex h-[23.5px] items-center rounded-[var(--card-button-radius)] border border-[var(--card-border)] px-[9.5px] text-[12.25px] font-semibold leading-none tracking-[0] text-[var(--card-muted)] shadow-[0_1px_2px_color-mix(in_srgb,var(--card-text)_9%,transparent)] transition-[border-color,border-radius,color,background-color] duration-500">
+				<div className="flex h-[23.5px] items-center rounded-[var(--card-button-radius)] border border-[var(--card-border)] px-[9.5px] text-[12.25px] leading-none font-semibold tracking-[0] text-[var(--card-muted)] shadow-[0_1px_2px_color-mix(in_srgb,var(--card-text)_9%,transparent)] transition-[border-color,border-radius,color,background-color] duration-500">
 					View All
 				</div>
 			</div>
 
 			<div
-				className="credit-content-reveal mt-[19.5px] grid grid-cols-[1fr_1fr_61.75px] items-center text-[12.75px] font-semibold leading-none tracking-[0] text-[var(--card-muted)] transition-colors duration-500"
+				className="credit-content-reveal mt-[19.5px] grid grid-cols-[1fr_1fr_61.75px] items-center text-[12.75px] leading-none font-semibold tracking-[0] text-[var(--card-muted)] transition-colors duration-500"
 				style={getRevealStyle(5)}>
 				<div>Date</div>
 				<div>Model</div>
@@ -478,7 +478,7 @@ export function CreditCardUsageAnimation() {
 				style={getRevealStyle(6)}>
 				{usageRows.map((row, index) => (
 					<div
-						className={`credit-row-reveal grid grid-cols-[1fr_1fr_61.75px] items-center text-[12px] font-semibold leading-none tracking-[0] text-[var(--card-muted)] transition-[border-color,color,height] duration-500 ${
+						className={`credit-row-reveal grid grid-cols-[1fr_1fr_61.75px] items-center text-[12px] leading-none font-semibold tracking-[0] text-[var(--card-muted)] transition-[border-color,color,height] duration-500 ${
 							index === usageRows.length - 1
 								? ""
 								: "border-b border-[var(--card-divider)]"

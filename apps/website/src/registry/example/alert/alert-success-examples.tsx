@@ -12,7 +12,7 @@ import { Button } from "@/registry/ui/button"
 
 const AlertSuccessExamples = () => {
 	return (
-		<div className="max-w-135 flex w-full flex-col items-center justify-center gap-3">
+		<div className="flex w-full max-w-135 flex-col items-center justify-center gap-3">
 			<Alert color="success">
 				<AlertIcon>
 					<Box size={20} />

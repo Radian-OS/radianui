@@ -11,7 +11,7 @@ export default function ResetEmail() {
 				<Logo />
 			</div>
 			<div className="flex flex-1 items-center justify-center">
-				<div className="w-90 bg-bg flex">
+				<div className="bg-bg flex w-90">
 					<div className="flex flex-1 flex-col gap-8">
 						<div className="flex w-full justify-center">
 							<MailLogo />

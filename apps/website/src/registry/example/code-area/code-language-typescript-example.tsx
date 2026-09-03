@@ -5,7 +5,7 @@ const CodeLanguageTypescriptExample = () => {
 	return (
 		<div className="w-full max-w-2xl">
 			<CodeArea
-				className="max-w-150 w-full"
+				className="w-full max-w-150"
 				language="typescript"
 				theme="tokyo-night"
 				code={`type User = {

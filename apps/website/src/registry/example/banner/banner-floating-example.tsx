@@ -11,11 +11,11 @@ import { Button } from "@/registry/ui/button"
 
 const BannerFloatingExample = () => {
 	return (
-		<div className="max-w-160 flex w-full items-center justify-center">
+		<div className="flex w-full max-w-160 items-center justify-center">
 			<Banner
 				color="primary"
 				variant="outline"
-				className="border-border border-t-1 border-r-1 border-l-1 rounded-lg shadow-[0_4px_8px_0_var(--color-fill4)]">
+				className="border-border rounded-lg border-t-1 border-r-1 border-l-1 shadow-[0_4px_8px_0_var(--color-fill4)]">
 				<BannerIcon>
 					<Brain size={20} />
 				</BannerIcon>

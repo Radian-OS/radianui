@@ -11,7 +11,7 @@ import { Button } from "@/registry/ui/button"
 
 const AlertInfoExamples = () => {
 	return (
-		<div className="max-w-135 flex w-full flex-col items-center justify-center gap-3">
+		<div className="flex w-full max-w-135 flex-col items-center justify-center gap-3">
 			<Alert color="info">
 				<AlertIcon>
 					<Import size={20} />

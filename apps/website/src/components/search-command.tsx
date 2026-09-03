@@ -31,7 +31,7 @@ export default function SearchCommand({
 	const inputRef = useRef<HTMLInputElement>(null)
 	return (
 		<>
-			<div className="bg-fill1 rounded-b-none rounded-t-xl p-1.5">
+			<div className="bg-fill1 rounded-t-xl rounded-b-none p-1.5">
 				<div className="flex h-11 items-center gap-2 px-2 py-3">
 					<Search size={20} className="text-fg-tertiary" />
 					<input
@@ -55,7 +55,7 @@ export default function SearchCommand({
 							setSelectedIndex(newFilteredItems.length > 0 ? 0 : -1)
 						}}
 						ref={inputRef}
-						className="outline-hidden placeholder:text-fg-tertiary flex-1 text-sm font-normal focus:outline-0"
+						className="placeholder:text-fg-tertiary flex-1 text-sm font-normal outline-hidden focus:outline-0"
 					/>
 					<X
 						size={20}
@@ -64,7 +64,7 @@ export default function SearchCommand({
 					/>
 				</div>
 			</div>
-			<div className="h-0.25 border-soft-alpha w-full" />
+			<div className="border-soft-alpha h-0.25 w-full" />
 			<div className="no-scrollbar bg-fill1 h-full flex-1 overflow-y-auto rounded-b-2xl">
 				{filteredItems.length > 0 ? (
 					filteredItems.map((section, sectionIndex) => (
@@ -73,7 +73,7 @@ export default function SearchCommand({
 								<h3 className="text-fg-tertiary p-2 text-xs font-medium uppercase">
 									{section.title}
 								</h3>
-								<ul className="gap-1.25 flex flex-col">
+								<ul className="flex flex-col gap-1.25">
 									{section.items.map((item, itemIndex) => {
 										const globalIndex =
 											filteredItems
@@ -108,7 +108,7 @@ export default function SearchCommand({
 								</ul>
 							</div>
 							{sectionIndex !== filteredItems.length - 1 && (
-								<div className="h-0.25 bg-soft-alpha w-full" />
+								<div className="bg-soft-alpha h-0.25 w-full" />
 							)}
 						</main>
 					))

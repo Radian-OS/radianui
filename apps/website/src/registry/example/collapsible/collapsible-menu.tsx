@@ -172,12 +172,12 @@ export default function CollapsibleMenu() {
 	const [activeId, setActiveId] = React.useState<string | null>(null)
 
 	return (
-		<div className="border-soft bg-bg shadow-xs max-w-67.5 flex w-full flex-col rounded-xl border text-sm">
+		<div className="border-soft bg-bg flex w-full max-w-67.5 flex-col rounded-xl border text-sm shadow-xs">
 			<header className="flex items-center gap-2 px-4 py-3">
 				<Avatar size="40">
 					<AvatarImage src="/media/female-3.jpg" alt="Amelie Laurent" />
 					<AvatarFallback>AL</AvatarFallback>
-					<AvatarStatus variant={"online"} className="bottom-0 right-0" />
+					<AvatarStatus variant={"online"} className="right-0 bottom-0" />
 				</Avatar>
 				<div className="flex flex-col">
 					<span className="font-medium">Amelie Laurent</span>

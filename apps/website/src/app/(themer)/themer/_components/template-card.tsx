@@ -22,7 +22,7 @@ export function TemplateCard({
 					: "border-border bg-elevation-level2 hover:border-fg-disabled"
 			)}>
 			{isSelected && (
-				<span className="bg-primary absolute right-2 top-2 flex size-4 items-center justify-center rounded-full">
+				<span className="bg-primary absolute top-2 right-2 flex size-4 items-center justify-center rounded-full">
 					<Check className="text-fg-inverse size-2.5" strokeWidth={3} />
 				</span>
 			)}

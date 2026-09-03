@@ -29,7 +29,7 @@ const ProgressPreview = () => {
 				color="neutral"
 				size="28"
 				onClick={handleRefresh}
-				className="absolute right-0 top-0 m-2">
+				className="absolute top-0 right-0 m-2">
 				<RotateCw />
 			</IconButton>
 			<div className="flex flex-col gap-1.5">

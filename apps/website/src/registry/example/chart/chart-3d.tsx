@@ -208,7 +208,7 @@ export default function Chart3D() {
 									formatter={(value, name) => (
 										<div className="flex w-full items-center justify-between gap-2">
 											<div className="flex items-center gap-1.5">
-												<div className="bg-chart-1 rounded-xs h-2.5 w-2.5 shrink-0" />
+												<div className="bg-chart-1 h-2.5 w-2.5 shrink-0 rounded-xs" />
 												<span className="text-muted-foreground">
 													{chartConfig[name as keyof typeof chartConfig]
 														?.label || name}

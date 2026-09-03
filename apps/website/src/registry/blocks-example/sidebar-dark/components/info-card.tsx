@@ -9,7 +9,7 @@ export function InfoCard() {
 				alt="Abstract Image"
 			/>
 			<div>
-				<span className="text-[13px] font-medium leading-5">
+				<span className="text-[13px] leading-5 font-medium">
 					Version 1.2 Update
 				</span>
 				<span className="text-fg-tertiary flex cursor-pointer items-center text-xs font-normal">

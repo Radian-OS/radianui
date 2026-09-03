@@ -50,7 +50,7 @@ const CheckboxForm = () => {
 	}
 
 	return (
-		<Card className="sm:w-130 w-full max-w-full gap-0 p-0">
+		<Card className="w-full max-w-full gap-0 p-0 sm:w-130">
 			<Form {...form}>
 				<form onSubmit={form.handleSubmit(onSubmit)}>
 					<CardHeader className="flex flex-col items-center gap-4 p-5 text-center">
@@ -75,7 +75,7 @@ const CheckboxForm = () => {
 							name="acceptTerms"
 							render={({ field }) => (
 								<FormItem>
-									<Label className="flex cursor-pointer select-none items-center gap-2">
+									<Label className="flex cursor-pointer items-center gap-2 select-none">
 										<FormControl>
 											<Checkbox
 												checked={field.value}

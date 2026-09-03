@@ -68,7 +68,7 @@ export default function InternationalPhone({
 							variant="outline"
 							role="combobox"
 							aria-expanded={open}
-							className="border-r-1 w-fit justify-between gap-2 rounded-r-none">
+							className="w-fit justify-between gap-2 rounded-r-none border-r-1">
 							<FlagImage iso2={country.iso2} className="size-4" />
 							<ChevronDown className="size-4 opacity-50" />
 						</Button>

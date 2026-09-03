@@ -2,7 +2,7 @@ import React from "react"
 
 const layout = ({ children }: { children: React.ReactNode }) => {
 	return (
-		<div className="mb-43 max-w-200 mx-auto mt-10 w-full px-5 lg:px-0">
+		<div className="mx-auto mt-10 mb-43 w-full max-w-200 px-5 lg:px-0">
 			{children}
 		</div>
 	)

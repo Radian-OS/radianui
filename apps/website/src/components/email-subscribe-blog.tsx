@@ -101,7 +101,7 @@ export const EmailSubscribeBlog = () => {
 						disabled={form.formState.isSubmitting}
 						size="40"
 						variant={"glossy"}
-						className="sm:w-23.5 w-full">
+						className="w-full sm:w-23.5">
 						{form.formState.isSubmitting ? (
 							<Spinner variant="activity" />
 						) : (

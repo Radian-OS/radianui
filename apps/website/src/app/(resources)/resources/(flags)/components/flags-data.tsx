@@ -1,3 +1,5 @@
+export const FLAG_CDN_ORIGIN = "https://cdn.jsdelivr.net"
+
 const FLAG_CDN_ROOT =
 	"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/country-flags/src/64px"
 
@@ -183,7 +185,6 @@ export const flagNames = [
 	"Peru",
 	"Philippines",
 	"Pitcairnislands",
-	"Placeholder",
 	"Poland",
 	"Portugal",
 	"Puertorico",

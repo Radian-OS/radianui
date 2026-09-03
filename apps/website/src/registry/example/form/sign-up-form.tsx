@@ -166,7 +166,7 @@ export default function SignUp() {
 								</Button>
 							</form>
 						</Form>
-						<div className="text-[0.875rem] font-normal leading-[1.3125rem]">
+						<div className="text-[0.875rem] leading-[1.3125rem] font-normal">
 							<p className="text-fg-secondary">
 								By signing up, you agree to Radian&apos;s{" "}
 								<span className="text-fg">Terms of Service</span> and{" "}
