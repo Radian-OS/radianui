@@ -18,6 +18,7 @@ interface FlagTileProps {
 	name: FlagName
 	shape: FlagShape
 	priority?: boolean
+	onSelect: (name: FlagName) => void
 }
 
 function blobToDataUrl(blob: Blob) {
@@ -29,7 +30,12 @@ function blobToDataUrl(blob: Blob) {
 	})
 }
 
-export function FlagTile({ name, shape, priority = false }: FlagTileProps) {
+export function FlagTile({
+	name,
+	shape,
+	priority = false,
+	onSelect,
+}: FlagTileProps) {
 	const [copied, setCopied] = useState(false)
 	const displayName = getFlagDisplayName(name)
 	const flagUrl = getFlagUrl(name, shape)
@@ -94,53 +100,61 @@ export function FlagTile({ name, shape, priority = false }: FlagTileProps) {
 	}
 
 	return (
-		<Tooltip>
-			<TooltipTrigger asChild>
-				<li className="border-soft group relative size-[142px] shrink-0 overflow-hidden rounded-xl border">
-					<img
-						src={flagUrl}
-						alt={`${displayName} flag`}
-						width={48}
-						height={48}
-						loading="eager"
-						decoding="async"
-						fetchPriority={priority ? "high" : "auto"}
-						className="absolute top-1/2 left-1/2 size-12 -translate-x-1/2 -translate-y-1/2 object-contain"
-					/>
+		<li className="group relative size-[142px] shrink-0">
+			<Tooltip>
+				<TooltipTrigger asChild>
+					<Button
+						size="32"
+						color="neutral"
+						variant="outline"
+						className="size-[142px] overflow-hidden rounded-xl p-0"
+						aria-label={`View ${displayName} flag details`}
+						onClick={() => onSelect(name)}>
+						<img
+							src={flagUrl}
+							alt={`${displayName} flag`}
+							width={48}
+							height={48}
+							loading="eager"
+							decoding="async"
+							fetchPriority={priority ? "high" : "auto"}
+							className="absolute top-1/2 left-1/2 size-12 -translate-x-1/2 -translate-y-1/2 object-contain"
+						/>
+					</Button>
+				</TooltipTrigger>
+				<TooltipContent
+					theme="light"
+					withArrow
+					side="top"
+					sideOffset={-80}
+					avoidCollisions={false}
+					className="pointer-events-none text-xs">
+					{displayName}
+				</TooltipContent>
+			</Tooltip>
 
-					<FlagTileMenu
-						onCopyPng={copyPng}
-						onCopySvg={copySvg}
-						onCopyUrl={() => copyText(flagUrl, "URL")}
-						onCopyNextImage={() =>
-							copyText(getFlagNextImageMarkup(name, shape), "Next.js markup")
-						}
-						onCopyHtmlImage={() =>
-							copyText(getFlagHtmlMarkup(name, shape), "HTML markup")
-						}
-					/>
+			<FlagTileMenu
+				onCopyPng={copyPng}
+				onCopySvg={copySvg}
+				onCopyUrl={() => copyText(flagUrl, "URL")}
+				onCopyNextImage={() =>
+					copyText(getFlagNextImageMarkup(name, shape), "Next.js markup")
+				}
+				onCopyHtmlImage={() =>
+					copyText(getFlagHtmlMarkup(name, shape), "HTML markup")
+				}
+			/>
 
-					<div className="absolute right-2 bottom-2 z-20 opacity-0 transition-opacity duration-200 group-focus-within:opacity-100 group-hover:opacity-100">
-						<Button
-							size="28"
-							color="neutral"
-							variant="outline"
-							className="bg-bg"
-							onClick={copySvg}>
-							{copied ? "Copied" : "Copy"}
-						</Button>
-					</div>
-				</li>
-			</TooltipTrigger>
-			<TooltipContent
-				theme="light"
-				withArrow
-				side="top"
-				sideOffset={-80}
-				avoidCollisions={false}
-				className="pointer-events-none text-xs">
-				{displayName}
-			</TooltipContent>
-		</Tooltip>
+			<div className="absolute right-2 bottom-2 z-20 opacity-0 transition-opacity duration-200 group-focus-within:opacity-100 group-hover:opacity-100">
+				<Button
+					size="28"
+					color="neutral"
+					variant="outline"
+					className="bg-bg"
+					onClick={copySvg}>
+					{copied ? "Copied" : "Copy"}
+				</Button>
+			</div>
+		</li>
 	)
 }
