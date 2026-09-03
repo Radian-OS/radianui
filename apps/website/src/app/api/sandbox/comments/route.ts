@@ -14,8 +14,35 @@ export interface SandboxComment {
 	resolved: boolean
 }
 
+let isTableInitialized = false
+
+async function ensureTable() {
+	if (isTableInitialized) return
+	try {
+		await pool.query(`
+			CREATE TABLE IF NOT EXISTS sandbox_comments (
+				id TEXT PRIMARY KEY,
+				component_id TEXT NOT NULL,
+				element_tag TEXT NOT NULL,
+				element_selector TEXT NOT NULL,
+				position_x DOUBLE PRECISION NOT NULL,
+				position_y DOUBLE PRECISION NOT NULL,
+				author_name TEXT NOT NULL,
+				content TEXT NOT NULL,
+				created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+				resolved BOOLEAN NOT NULL DEFAULT FALSE
+			);
+			CREATE INDEX IF NOT EXISTS idx_sandbox_comments_component ON sandbox_comments(component_id);
+		`)
+		isTableInitialized = true
+	} catch (err) {
+		console.error("Failed to auto-ensure sandbox_comments table:", err)
+	}
+}
+
 export async function GET(request: Request) {
 	try {
+		await ensureTable()
 		const { searchParams } = new URL(request.url)
 		const componentId = searchParams.get("componentId")
 
@@ -58,8 +85,9 @@ export async function GET(request: Request) {
 		return NextResponse.json({ comments: result.rows })
 	} catch (error) {
 		console.error("Failed to fetch sandbox comments:", error)
+		const details = error instanceof Error ? error.message : String(error)
 		return NextResponse.json(
-			{ error: "Failed to fetch comments", comments: [] },
+			{ error: "Failed to fetch comments", details, comments: [] },
 			{ status: 500 }
 		)
 	}
@@ -67,6 +95,7 @@ export async function GET(request: Request) {
 
 export async function POST(request: Request) {
 	try {
+		await ensureTable()
 		const body = await request.json()
 		const {
 			componentId,
@@ -135,8 +164,9 @@ export async function POST(request: Request) {
 		return NextResponse.json({ comment: result.rows[0] }, { status: 201 })
 	} catch (error) {
 		console.error("Failed to save sandbox comment:", error)
+		const details = error instanceof Error ? error.message : String(error)
 		return NextResponse.json(
-			{ error: "Failed to save comment" },
+			{ error: "Failed to save comment", details },
 			{ status: 500 }
 		)
 	}
@@ -144,6 +174,7 @@ export async function POST(request: Request) {
 
 export async function DELETE(request: Request) {
 	try {
+		await ensureTable()
 		const { searchParams } = new URL(request.url)
 		const id = searchParams.get("id")
 
@@ -158,8 +189,9 @@ export async function DELETE(request: Request) {
 		return NextResponse.json({ success: true, id })
 	} catch (error) {
 		console.error("Failed to delete sandbox comment:", error)
+		const details = error instanceof Error ? error.message : String(error)
 		return NextResponse.json(
-			{ error: "Failed to delete comment" },
+			{ error: "Failed to delete comment", details },
 			{ status: 500 }
 		)
 	}
