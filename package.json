@@ -40,7 +40,7 @@
 		"@commitlint/cli": "^19.8.1",
 		"@commitlint/config-conventional": "^21.2.2",
 		"@trivago/prettier-plugin-sort-imports": "^6.0.2",
-		"@types/node": "^22.20.1",
+		"@types/node": "^26.4.0",
 		"husky": "^9.1.7",
 		"prettier": "^3.9.6",
 		"prettier-plugin-tailwindcss": "^0.8.1",
