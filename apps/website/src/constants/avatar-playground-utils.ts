@@ -1,6 +1,10 @@
 import type { CSSProperties } from "react"
 import { AVATAR_SHADOW_MAP } from "./avatar-shadow-map"
-import { SOLID_COLORS } from "./tone-filter-data"
+import {
+	RADIAN_COLORS,
+	SOLID_COLORS,
+	formatColorName,
+} from "./tone-filter-data"
 
 export const AVATAR_BLEND_OPACITY = 0.08
 
@@ -66,47 +70,50 @@ export const GRADIENT_MAP: Record<string, GradientDef> = Object.fromEntries(
 	])
 )
 
+const TONE_STYLE_CACHE = new Map<string, CSSProperties>()
+
 export function getToneStyle(tone: string): CSSProperties {
+	const cached = TONE_STYLE_CACHE.get(tone)
+	if (cached) return cached
+
+	let style: CSSProperties = {}
 	if (tone === "none") {
-		return { backgroundColor: "transparent" }
-	}
-	if (SOLID_COLOR_MAP[tone]) {
-		return { backgroundColor: SOLID_COLOR_MAP[tone] }
-	}
-	const gradient = GRADIENT_MAP[tone]
-	if (gradient) {
+		style = { backgroundColor: "transparent" }
+	} else if (SOLID_COLOR_MAP[tone]) {
+		style = { backgroundColor: SOLID_COLOR_MAP[tone] }
+	} else if (GRADIENT_MAP[tone]) {
+		const gradient = GRADIENT_MAP[tone]
 		if (gradient.base) {
-			return {
+			style = {
 				backgroundColor: gradient.base,
 				backgroundImage: `linear-gradient(180deg, ${gradient.overlayFrom} 0%, ${gradient.overlayTo} 100%)`,
 			}
+		} else {
+			style = {
+				background: `linear-gradient(135deg, ${gradient.from}, ${gradient.to})`,
+			}
 		}
-		return {
-			background: `linear-gradient(135deg, ${gradient.from}, ${gradient.to})`,
-		}
-	}
-	if (tone.startsWith("grad-custom:")) {
+	} else if (tone.startsWith("grad-custom:")) {
 		const parts = tone.split(":")
-		return {
+		style = {
 			background: `linear-gradient(135deg, ${parts[1]}, ${parts[2]})`,
 		}
-	}
-	if (tone.startsWith("radian:")) {
+	} else if (tone.startsWith("radian:")) {
 		const colorName = tone.slice("radian:".length)
-		return { backgroundColor: `var(--color-${colorName}-focus)` }
-	}
-	if (tone.startsWith("#")) {
-		return { backgroundColor: tone }
-	}
-	if (tone.startsWith("http") || tone.startsWith("/")) {
-		return {
+		style = { backgroundColor: `var(--color-${colorName}-focus)` }
+	} else if (tone.startsWith("#")) {
+		style = { backgroundColor: tone }
+	} else if (tone.startsWith("http") || tone.startsWith("/")) {
+		style = {
 			backgroundImage: `url(${tone})`,
 			backgroundSize: "104% 104%",
 			backgroundPosition: "center",
 			backgroundRepeat: "no-repeat",
 		}
 	}
-	return {}
+
+	TONE_STYLE_CACHE.set(tone, style)
+	return style
 }
 
 /**
@@ -188,33 +195,53 @@ export const CATEGORY_AVATAR_MAP: Record<string, number[]> = {
  * avatar. Keep this in one place so filtered and customized avatars retain the
  * same identity while their background description changes.
  */
+const HEX_TO_SOLID_COLOR_NAME: Record<string, string> = Object.fromEntries(
+	SOLID_COLORS.map((c) => {
+		const match = c.className.match(/bg-\[(#[0-9a-fA-F]+)\]/i)
+		const hex = match ? match[1].toLowerCase() : ""
+		return [hex, formatColorName(c.id)]
+	}).filter(([hex]) => Boolean(hex))
+)
+
 export function getAvatarAltText(avatarNumber: number, tone: string): string {
 	const style = CATEGORY_AVATAR_MAP.professional.includes(avatarNumber)
-		? "professional"
-		: "casual"
+		? "Professional"
+		: "Casual"
 	const presentation = CATEGORY_AVATAR_MAP.female.includes(avatarNumber)
 		? "female"
 		: "male"
 
-	let background = "neutral background"
+	let background = "neutral"
 	if (tone === "none") {
-		background = "transparent background"
-	} else if (tone.startsWith("#")) {
-		background = `${tone} background`
+		background = "transparent"
 	} else if (tone.startsWith("radian:")) {
-		background = `${tone.slice("radian:".length).replaceAll("-", " ")} background`
+		const radian = RADIAN_COLORS.find((c) => c.id === tone)
+		background = radian
+			? radian.label
+			: formatColorName(tone.slice("radian:".length))
+	} else if (SOLID_COLORS.some((c) => c.id === tone)) {
+		background = formatColorName(tone)
+	} else if (HEX_TO_SOLID_COLOR_NAME[tone.toLowerCase()]) {
+		background = HEX_TO_SOLID_COLOR_NAME[tone.toLowerCase()]
+	} else if (tone.startsWith("#")) {
+		background = tone
 	} else if (tone.startsWith("http") || tone.startsWith("/")) {
 		const filename = tone.split("/").pop()?.split("?")[0] ?? "custom"
-		const name = filename
+		background = filename
 			.replace(/^(IMG|Grad)-/, "")
 			.replace(/\.[^.]+$/, "")
 			.replace(/%20/gi, " ")
-		background = `${name} background`
+	} else if (tone.startsWith("grad-custom:")) {
+		const parts = tone.split(":")
+		background = `${parts[1]} to ${parts[2]}`
+	} else if (tone.startsWith("grad-")) {
+		const baseId = tone.replace(/^grad-/, "")
+		background = formatColorName(baseId)
 	} else if (tone !== "neutral") {
-		background = `${tone.replace(/^grad-/, "").replaceAll("/", " ")} background`
+		background = formatColorName(tone)
 	}
 
-	return `${style[0].toUpperCase()}${style.slice(1)} ${presentation} UI avatar illustration ${avatarNumber} on a ${background}`
+	return `${style} ${presentation} UI avatar on "${background}" background image, avatar=${avatarNumber}.png`
 }
 
 export function randomHexColor(): string {
