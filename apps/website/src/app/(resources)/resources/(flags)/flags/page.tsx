@@ -1,9 +1,11 @@
 import type { Metadata } from "next"
+import { preconnect } from "react-dom"
 import { websiteMetadata } from "@/config/website-metadata-config"
 import { absoluteUrl } from "@/lib/structured-data"
 import { ResourcePage } from "../../components/ResourcePage"
 import FlagsHeroActionButtons from "../components/FlagsHeroActionButtons"
 import FlagsPlayground from "../components/FlagsPlayground"
+import { FLAG_CDN_ORIGIN } from "../components/flags-data"
 import FlagsDocs from "../docs/FlagsDocs"
 
 const pageUrl = absoluteUrl("/resources/flags")
@@ -41,6 +43,8 @@ const heroFlags = [
 ] as const
 
 export default function Page() {
+	preconnect(FLAG_CDN_ORIGIN, { crossOrigin: "anonymous" })
+
 	return (
 		<ResourcePage
 			badge={{
