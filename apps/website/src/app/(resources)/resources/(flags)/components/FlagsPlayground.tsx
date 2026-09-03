@@ -117,9 +117,14 @@ export default function FlagsPlayground() {
 			</div>
 
 			{visibleFlags.length ? (
-				<ul className="grid list-none grid-cols-[repeat(auto-fill,142px)] justify-center gap-3 sm:justify-between">
-					{visibleFlags.map((name) => (
-						<FlagTile key={name} name={name} shape={shape} />
+				<ul className="grid list-none grid-cols-[repeat(auto-fill,142px)] justify-center gap-x-3 gap-y-5 sm:justify-between">
+					{visibleFlags.map((name, index) => (
+						<FlagTile
+							key={name}
+							name={name}
+							shape={shape}
+							priority={index < 18}
+						/>
 					))}
 				</ul>
 			) : (
