@@ -140,7 +140,7 @@ const AvatarUseCase = () => {
 								alt={image.alt}
 								width={560}
 								height={420}
-								className="bg-fill1 border-soft h-auto w-full rounded-[10px] border sm:rounded-xl md:rounded-[20px] dark:invisible dark:absolute dark:inset-0"
+								className="border-soft h-auto w-full overflow-clip rounded-[10px] border sm:rounded-xl md:rounded-[20px] dark:invisible dark:absolute dark:inset-0"
 								unoptimized
 							/>
 							<Image
@@ -148,7 +148,7 @@ const AvatarUseCase = () => {
 								alt={useCaseImagesDark[i].alt}
 								width={560}
 								height={420}
-								className="bg-fill1 border-soft invisible absolute inset-0 h-auto w-full rounded-[10px] border sm:rounded-xl md:rounded-[20px] dark:visible dark:static"
+								className="border-soft invisible absolute inset-0 rounded-[10px] border object-cover sm:rounded-xl md:rounded-[20px] dark:visible dark:static"
 								unoptimized
 							/>
 						</div>

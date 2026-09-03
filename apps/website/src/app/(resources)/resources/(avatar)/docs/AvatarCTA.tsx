@@ -18,14 +18,13 @@ const AvatarCTA = () => {
 							</Badge>
 
 							<h2 id="avatar-cta-heading" className="heading-4">
-								Production-Ready UI Blocks for Designers and Developers
+								Get Free Access To The Full Library
 							</h2>
 						</div>
 
-						<p className="text-fg-secondary text-sm font-normal">
-							Radian UI bridges the gap between design and development. Access
-							production-ready UI blocks, developer documentation, and a fully
-							synced Figma UI kit to launch your next project in record time.
+						<p className="text-fg-secondary text-base font-normal">
+							Radian UI provides a complete production-ready React components
+							library, UI blocks, and Figma UI Kit and design system
 						</p>
 					</div>
 

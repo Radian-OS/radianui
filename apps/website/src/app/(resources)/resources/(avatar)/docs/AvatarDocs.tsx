@@ -1,4 +1,5 @@
 import React from "react"
+import AvatarBestPracticeDesign from "./AvatarBestPracticeDesign"
 import AvatarCTA from "./AvatarCTA"
 import AvatarDesign from "./AvatarDesign"
 import AvatarDevlopment from "./AvatarDevlopment"
@@ -14,6 +15,7 @@ const AvatarDocs = () => {
 			<AvatarIntroduction />
 			<AvatarDesign />
 			<AvatarUseCase />
+			<AvatarBestPracticeDesign />
 			<AvatarDevlopment />
 			<AvatarFaq />
 			<AvatarCTA />
