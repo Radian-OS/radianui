@@ -52,7 +52,7 @@
 		"node": ">=18"
 	},
 	"dependencies": {
-		"@changesets/cli": "^2.29.6",
+		"@changesets/cli": "^3.0.1",
 		"@radix-ui/react-tooltip": "^1.2.16",
 		"dotenv-cli": "^8.0.0",
 		"zod": "^4.5.4"
