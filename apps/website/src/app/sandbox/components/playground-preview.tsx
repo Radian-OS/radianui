@@ -58,6 +58,9 @@ export function PlaygroundPreview({
 
 						{/* Figma-like Comment Pins & Form Overlay */}
 						<PlaygroundCommentOverlay
+							iframeRef={iframeRef}
+							activeComponentId={activeComponentConfig.id}
+							deviceSize={deviceSize}
 							comments={comments}
 							draftComment={draftComment}
 							onCancelDraft={onCancelDraft}

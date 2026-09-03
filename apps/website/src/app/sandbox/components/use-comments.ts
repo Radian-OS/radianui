@@ -155,14 +155,30 @@ export function useComments(
 					const target = e.target as HTMLElement | null
 					if (!target) return
 
-					const docWidth =
-						doc.documentElement.clientWidth || doc.body.clientWidth || 800
-					const docHeight =
-						doc.documentElement.clientHeight || doc.body.clientHeight || 600
+					const scrollX =
+						doc.defaultView?.scrollX ?? doc.documentElement.scrollLeft ?? 0
+					const scrollY =
+						doc.defaultView?.scrollY ?? doc.documentElement.scrollTop ?? 0
 
-					// Calculate percentage coordinates relative to the iframe viewport
-					const posX = Math.max(2, Math.min(98, (e.clientX / docWidth) * 100))
-					const posY = Math.max(2, Math.min(98, (e.clientY / docHeight) * 100))
+					const pageX = e.clientX + scrollX
+					const pageY = e.clientY + scrollY
+
+					const docWidth = Math.max(
+						doc.documentElement.scrollWidth || 0,
+						doc.body?.scrollWidth || 0,
+						doc.documentElement.clientWidth || 0,
+						800
+					)
+					const docHeight = Math.max(
+						doc.documentElement.scrollHeight || 0,
+						doc.body?.scrollHeight || 0,
+						doc.documentElement.clientHeight || 0,
+						600
+					)
+
+					// Calculate percentage coordinates relative to the full document content
+					const posX = Math.max(1, Math.min(99, (pageX / docWidth) * 100))
+					const posY = Math.max(1, Math.min(99, (pageY / docHeight) * 100))
 
 					const tag = target.tagName.toLowerCase()
 					const classNames =

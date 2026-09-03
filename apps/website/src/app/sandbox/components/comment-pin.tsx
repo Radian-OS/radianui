@@ -41,7 +41,7 @@ export function CommentPin({ comment, index, onDelete }: CommentPinProps) {
 
 	return (
 		<div
-			className="absolute z-20 transition-all duration-150"
+			className="absolute z-20"
 			style={{
 				left: `${comment.positionX}%`,
 				top: `${comment.positionY}%`,
