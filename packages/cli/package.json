@@ -1,7 +1,7 @@
 {
 	"name": "radianui",
 	"description": "CLI to scaffold React projects and add production-ready UI components with Tailwind CSS",
-	"version": "0.3.6",
+	"version": "0.3.8",
 	"main": "index.js",
 	"type": "module",
 	"publishConfig": {
@@ -56,27 +56,22 @@
 	},
 	"homepage": "https://radianui.com",
 	"dependencies": {
-		"@clack/prompts": "^0.11.0",
 		"adm-zip": "^0.6.0",
 		"chalk": "^5.6.2",
 		"commander": "^14.0.2",
 		"cosmiconfig": "^10.0.1",
 		"dedent": "^1.7.2",
-		"deepmerge": "^4.3.1",
 		"execa": "^9.6.0",
 		"fast-glob": "^3.3.3",
 		"fs-extra": "^11.4.0",
 		"gradient-string": "^3.0.0",
-		"json5": "^2.2.3",
-		"kleur": "^4.1.5",
-		"node-fetch": "^3.3.2",
 		"ora": "^9.4.1",
 		"package-manager-detector": "^1.8.0",
 		"postcss": "^8.5.26",
 		"prompts": "^2.4.2",
 		"ts-morph": "^28.0.0",
 		"tsconfig-paths": "^4.2.0",
-		"zod": "^4.5.4"
+		"zod": "4.5.4"
 	},
 	"devDependencies": {
 		"@types/adm-zip": "^0.5.8",
@@ -85,7 +80,6 @@
 		"@types/node": "^26.4.0",
 		"@types/prompts": "^2.4.9",
 		"@vitest/coverage-istanbul": "^4.1.11",
-		"cross-env": "^10.1.0",
 		"tsup": "^8.5.1",
 		"tsx": "^4.23.12",
 		"type-fest": "^5.9.0",

@@ -1,4 +1,5 @@
 import type { CSSProperties } from "react"
+import { createCompositeBlob } from "@/hooks/avatar/create-composite-blob"
 import { AVATAR_SHADOW_MAP } from "./avatar-shadow-map"
 import {
 	RADIAN_COLORS,
@@ -273,21 +274,18 @@ async function fetchImageAsDataUrl(url: string): Promise<string> {
 	if (cached) return cached
 
 	const res = await fetch(url)
-	const buffer = await res.arrayBuffer()
-	const contentType = res.headers.get("content-type") || "image/png"
+	const blob = await res.blob()
 
-	// Convert ArrayBuffer to base64 in chunks to avoid call stack limits
-	const bytes = new Uint8Array(buffer)
-	let binary = ""
-	const chunkSize = 8192
-	for (let i = 0; i < bytes.length; i += chunkSize) {
-		binary += String.fromCharCode(...bytes.subarray(i, i + chunkSize))
-	}
-	const base64 = btoa(binary)
-	const dataUrl = `data:${contentType};base64,${base64}`
-
-	imageDataUrlCache.set(url, dataUrl)
-	return dataUrl
+	return new Promise<string>((resolve, reject) => {
+		const reader = new FileReader()
+		reader.onloadend = () => {
+			const dataUrl = (reader.result as string) || ""
+			imageDataUrlCache.set(url, dataUrl)
+			resolve(dataUrl)
+		}
+		reader.onerror = reject
+		reader.readAsDataURL(blob)
+	})
 }
 
 export async function generateEditableSvg(
@@ -393,41 +391,59 @@ export async function generateEditableSvg(
 }
 
 /**
- * Picks a random avatar, generates an editable SVG with the given background
- * tone, and copies it to the clipboard as text so it can be pasted in Figma.
+ * Picks a random avatar, renders it onto a composite canvas with the given
+ * background tone and shadow, and copies it to the clipboard as a PNG image.
  * Returns the avatar image URL and index on success, or `null` on failure.
  *
  * @param tone - The background tone to apply. Defaults to `"none"` (transparent).
+ * @param showShadow - Whether to apply the shadow overlay. Defaults to `true`.
  */
 export async function copyRandomAvatar(
-	tone: string = "none"
+	tone: string = "none",
+	showShadow: boolean = true
 ): Promise<{ src: string; index: number } | null> {
-	const avatarIndex = Math.floor(Math.random() * AVATARS.length)
-	const src = AVATARS[avatarIndex]
+	const avatarIndex = Math.floor(Math.random() * AVATAR_CDN_CONFIG.total)
+	// Use compressed avatar for ~3x faster network loading and minimal memory footprint
+	const src = getAvatarUrl(avatarIndex, true)
+	const isNeutralBackground = tone === "none" || tone === "neutral"
+	const shouldApplyShadow = !isNeutralBackground
 
-	// Create the ClipboardItem synchronously (required by Safari) with a
-	// deferred Promise for the actual blob content.
-	const svgBlobPromise = generateEditableSvg(tone, src, avatarIndex).then(
-		(svg) => {
-			if (!svg) throw new Error("SVG generation failed")
-			return new Blob([svg], { type: "text/plain" })
-		}
-	)
+	const blobPromise = createCompositeBlob(
+		tone,
+		src,
+		showShadow,
+		shouldApplyShadow,
+		avatarIndex,
+		"png"
+	).then((blob) => {
+		if (!blob) throw new Error("PNG generation failed")
+		return blob
+	})
 
 	try {
+		// 1. Direct write with Promise (Safari / iOS requires synchronous call in gesture)
 		await navigator.clipboard.write([
-			new ClipboardItem({ "text/plain": svgBlobPromise }),
+			new ClipboardItem({ "image/png": blobPromise }),
 		])
 		return { src, index: avatarIndex }
 	} catch {
-		// Fallback for browsers that don't support Promise in ClipboardItem
 		try {
-			const svg = await generateEditableSvg(tone, src, avatarIndex)
-			if (!svg) return null
-			await navigator.clipboard.writeText(svg)
+			// 2. Fallback for Chromium / Firefox where Promise inside ClipboardItem is unsupported
+			const blob = await blobPromise
+			if (!blob) return null
+			await navigator.clipboard.write([
+				new ClipboardItem({ "image/png": blob }),
+			])
 			return { src, index: avatarIndex }
 		} catch {
-			return null
+			// 3. Fallback for restricted mobile browsers that don't support copying image blobs:
+			// Copy image URL so clipboard operation doesn't crash or fail silently
+			try {
+				await navigator.clipboard.writeText(src)
+				return { src, index: avatarIndex }
+			} catch {
+				return null
+			}
 		}
 	}
 }

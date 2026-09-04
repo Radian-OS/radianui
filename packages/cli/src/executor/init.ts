@@ -12,6 +12,7 @@ import {
 import type { TemplateOptions } from "@/templates"
 import { txt } from "@/utils/colors"
 import { createComponentsJson } from "@/utils/createComponentsJson"
+import { createUtilsFile } from "@/utils/createUtilsFile"
 import { installDependencies } from "@/utils/dependencyInstaller"
 import { type FrameworkName } from "@/utils/frameworks"
 import { generateThemeCss } from "@/utils/generateCss"
@@ -48,6 +49,11 @@ export async function executeInitFromConfig(config: InitConfig) {
 		)
 	}
 
+	// ── Step 2.5: Create utils file (if existing project) ────────────────
+	if (config.isExistingProject) {
+		await createUtilsFile(projectPath, config.useSrcDir)
+	}
+
 	// ── Step 3: Apply CSS ─────────────────────────────────────────────────
 	const configSpinner = spinner("Setting up project configuration").start()
 	await applyCss(config, projectPath)
@@ -58,6 +64,8 @@ export async function executeInitFromConfig(config: InitConfig) {
 		? config.preset.config.dependencies
 		: [
 			"class-variance-authority",
+			"clsx",
+			"tailwind-merge",
 			"tw-animate-css",
 			"radix-ui",
 			...ICON_DEPENDENCIES[config.iconLibrary!],
