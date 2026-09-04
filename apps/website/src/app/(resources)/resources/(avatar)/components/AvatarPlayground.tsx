@@ -1,5 +1,6 @@
 "use client"
 
+import { useState } from "react"
 import { Settings, Star } from "lucide-react"
 import {
 	AVATARS,
@@ -42,6 +43,7 @@ const AvatarPlayground = () => {
 		resolvedTones,
 		displayedAvatars,
 	} = useAvatarPlayground()
+	const [isCopyingRandom, setIsCopyingRandom] = useState(false)
 
 	return (
 		<div className="flex w-full flex-col gap-4 py-2">
@@ -71,17 +73,26 @@ const AvatarPlayground = () => {
 						type="button"
 						color="neutral"
 						variant="outline"
+						loading={isCopyingRandom}
+						disabled={isCopyingRandom}
 						onClick={async () => {
-							const randomIdx = Math.floor(Math.random() * AVATARS.length)
-							const randomTone = resolvedTones[randomIdx]
-							const result = await copyRandomAvatar(randomTone)
-							if (result) {
-								showCopiedToast({
-									src: result.src,
-									index: result.index,
-									tone: randomTone,
-									description: "Avatar has been copied to your clipboard.",
-								})
+							if (isCopyingRandom) return
+							setIsCopyingRandom(true)
+							try {
+								const randomIdx = Math.floor(Math.random() * AVATARS.length)
+								const randomTone = resolvedTones[randomIdx]
+								const result = await copyRandomAvatar(randomTone, showShadow)
+								if (result) {
+									showCopiedToast({
+										src: result.src,
+										index: result.index,
+										tone: randomTone,
+										showShadow,
+										description: "PNG has been copied to your clipboard.",
+									})
+								}
+							} finally {
+								setIsCopyingRandom(false)
 							}
 						}}>
 						<FigmaCustomIcon />

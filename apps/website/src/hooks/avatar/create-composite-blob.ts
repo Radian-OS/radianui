@@ -14,6 +14,19 @@ const MIME_MAP: Partial<Record<AvatarDownloadFormats, string>> = {
 	webp: "image/webp",
 }
 
+const loadImage = (url: string): Promise<HTMLImageElement | null> => {
+	return new Promise<HTMLImageElement>((resolve, reject) => {
+		const img = new window.Image()
+		img.crossOrigin = "anonymous"
+		img.onload = () => resolve(img)
+		img.onerror = reject
+		img.src = url
+		if (img.complete && img.naturalWidth !== 0) {
+			resolve(img)
+		}
+	}).catch(() => null)
+}
+
 /**
  * Renders the avatar + background tone onto an off-screen canvas and returns
  * the result as a PNG Blob.  Pure DOM helper — no React dependency.
@@ -29,36 +42,14 @@ export const createCompositeBlob = async (
 	const size = 1024
 
 	// Kick off image loads in parallel to avoid sequential network delays
-	const avatarPromise = new Promise<HTMLImageElement>((resolve, reject) => {
-		const img = new window.Image()
-		img.crossOrigin = "anonymous"
-		img.onload = () => resolve(img)
-		img.onerror = reject
-		img.src = src
-	}).catch(() => null)
+	const avatarPromise = loadImage(src)
 
 	const shadowSrc =
 		showShadow && tone !== "none" ? AVATAR_SHADOW_MAP[index] : null
-	const shadowPromise = shadowSrc
-		? new Promise<HTMLImageElement>((resolve, reject) => {
-				const img = new window.Image()
-				img.crossOrigin = "anonymous"
-				img.onload = () => resolve(img)
-				img.onerror = reject
-				img.src = shadowSrc
-			}).catch(() => null)
-		: Promise.resolve(null)
+	const shadowPromise = shadowSrc ? loadImage(shadowSrc) : Promise.resolve(null)
 
 	const bgIsImage = tone.startsWith("http") || tone.startsWith("/")
-	const bgPromise = bgIsImage
-		? new Promise<HTMLImageElement>((resolve, reject) => {
-				const img = new window.Image()
-				img.crossOrigin = "anonymous"
-				img.onload = () => resolve(img)
-				img.onerror = reject
-				img.src = tone
-			}).catch(() => null)
-		: Promise.resolve(null)
+	const bgPromise = bgIsImage ? loadImage(tone) : Promise.resolve(null)
 
 	const canvas = document.createElement("canvas")
 	canvas.width = size

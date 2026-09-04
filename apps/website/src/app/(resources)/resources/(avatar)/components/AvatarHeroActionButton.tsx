@@ -1,5 +1,6 @@
 "use client"
 
+import { useState } from "react"
 import { Dices } from "lucide-react"
 import Link from "next/link"
 import {
@@ -10,16 +11,24 @@ import { Button } from "@/registry/ui/button"
 import { showCopiedToast } from "./CopiedToast"
 
 export default function AvatarHeroActionButtons() {
+	const [isCopying, setIsCopying] = useState(false)
+
 	const handleCopyRandom = async () => {
-		const tone = randomSolidMapColor()
-		const result = await copyRandomAvatar(tone)
-		if (result) {
-			showCopiedToast({
-				src: result.src,
-				index: result.index,
-				tone,
-				description: "Avatar has been copied to your clipboard.",
-			})
+		if (isCopying) return
+		setIsCopying(true)
+		try {
+			const tone = randomSolidMapColor()
+			const result = await copyRandomAvatar(tone)
+			if (result) {
+				showCopiedToast({
+					src: result.src,
+					index: result.index,
+					tone,
+					description: "PNG has been copied to your clipboard.",
+				})
+			}
+		} finally {
+			setIsCopying(false)
 		}
 	}
 
@@ -41,9 +50,11 @@ export default function AvatarHeroActionButtons() {
 				variant="glossy"
 				className="w-full sm:w-fit"
 				size="40"
+				loading={isCopying}
+				disabled={isCopying}
 				onClick={handleCopyRandom}>
-				<Dices className="size-5" />
-				Copy Random Avatar
+				{!isCopying && <Dices className="size-5" />}
+				{isCopying ? "Copying..." : "Copy Random Avatar"}
 			</Button>
 		</>
 	)
