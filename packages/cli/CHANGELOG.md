@@ -1,5 +1,11 @@
 # radianui
 
+## 0.3.8
+
+### Patch Changes
+
+- e3781a9: Include cn utils dependencies in install list
+
 ## 0.3.7
 
 ### Patch Changes
