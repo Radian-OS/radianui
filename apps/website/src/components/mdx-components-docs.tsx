@@ -51,14 +51,11 @@ import {
 	TabsList,
 	TabsTrigger,
 } from "@/styles/default/ui/tabs"
-import ChangelogCard from "./changelog-card"
 import { CodeBlockCommandServer } from "./code-block-command-server"
 import { CodeCollapsibleFileWrapper } from "./code-collapsible-file-wrapper"
 import { CodeCollapsibleWrapper } from "./code-collapsible-wrapper"
 import ColorTableThemeToggle from "./color/color-table-theme-toggle"
-import { ComponentExpansionGrid } from "./component-expansion"
 import { CopyButton } from "./copy-button"
-import { FeatureList, FeatureListItem } from "./feature-list"
 import { RequestDesign } from "./request-design"
 import { ResourcesGrid } from "./resources-grid"
 
@@ -238,10 +235,6 @@ function ComponentDocContent({
 }
 
 export const components = {
-	ChangelogCard,
-	FeatureList,
-	FeatureListItem,
-	ComponentExpansionGrid,
 	ResourcesGrid,
 	RequestDesign,
 	ComponentDocContent,
