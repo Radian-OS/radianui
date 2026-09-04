@@ -42,6 +42,25 @@ export default function PlaygroundPage() {
 	const hero21Dir = path.join(process.cwd(), "src/app/sandbox/hero-21")
 	const aiworkDir = path.join(process.cwd(), "src/app/sandbox/aiwork")
 	const verseoDir = path.join(process.cwd(), "src/app/sandbox/verseo")
+	const agentlabDir = path.join(process.cwd(), "src/app/sandbox/agentlab")
+
+	const agentlabFiles = [
+		"page.tsx",
+		"announcement-bar.tsx",
+		"navbar.tsx",
+		"hero-section.tsx",
+		"logo-marquee.tsx",
+		"problem-section.tsx",
+		"solution-section.tsx",
+		"roi-section.tsx",
+		"multi-model-section.tsx",
+		"industry-section.tsx",
+		"testimonials-section.tsx",
+		"security-section.tsx",
+		"faq-section.tsx",
+		"cta-banner.tsx",
+		"footer.tsx",
+	]
 
 	const omrixFiles = [
 		"page.tsx",
@@ -138,6 +157,7 @@ export default function PlaygroundPage() {
 	const hero21Data: Record<string, string> = {}
 	const aiworkData: Record<string, string> = {}
 	const verseoData: Record<string, string> = {}
+	const agentlabData: Record<string, string> = {}
 
 	for (const file of omrixFiles) {
 		omrixData[file] = readFileContent(omrixDir, file)
@@ -178,7 +198,12 @@ export default function PlaygroundPage() {
 		verseoData[file] = readFileContent(verseoDir, file)
 	}
 
+	for (const file of agentlabFiles) {
+		agentlabData[file] = readFileContent(agentlabDir, file)
+	}
+
 	const files = {
+		agentlab: agentlabData,
 		omrix: omrixData,
 		motion: motionData,
 		"beam-header": beamHeaderData,

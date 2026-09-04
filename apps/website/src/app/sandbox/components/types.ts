@@ -8,9 +8,11 @@ export interface FilesData {
 	"hero-21": Record<string, string>
 	aiwork: Record<string, string>
 	verseo: Record<string, string>
+	agentlab: Record<string, string>
 }
 
 export type PreviewKey =
+	| "agentlab"
 	| "omrix"
 	| "motion"
 	| "faq"
@@ -48,6 +50,15 @@ export interface SandboxComponentConfig {
 }
 
 export const sandboxComponents: SandboxComponentConfig[] = [
+	{
+		id: "agentlab",
+		label: "agentlab",
+		filesKey: "agentlab",
+		path: "src/app/sandbox/agentlab",
+		defaultFile: "page.tsx",
+		referenceUrl: "https://agentlab.framer.ai/",
+		previewRoute: "/sandbox/agentlab",
+	},
 	{
 		id: "omrix",
 		label: "omrix",
