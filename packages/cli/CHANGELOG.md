@@ -1,5 +1,11 @@
 # radianui
 
+## 0.3.7
+
+### Patch Changes
+
+- 8c22041: Pin zod version and add logic to create cn utils file for existing projects
+
 ## 0.3.6
 
 ### Patch Changes

@@ -1,7 +1,7 @@
 {
 	"name": "radianui",
 	"description": "CLI to scaffold React projects and add production-ready UI components with Tailwind CSS",
-	"version": "0.3.6",
+	"version": "0.3.7",
 	"main": "index.js",
 	"type": "module",
 	"publishConfig": {
