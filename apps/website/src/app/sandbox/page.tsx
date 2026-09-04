@@ -24,6 +24,7 @@ function readFileContent(dirPath: string, fileName: string): string {
 }
 
 export default function PlaygroundPage() {
+	const omrixDir = path.join(process.cwd(), "src/app/sandbox/omrix")
 	const motionDir = path.join(process.cwd(), "src/app/sandbox/motion")
 	const beamHeaderDir = path.join(process.cwd(), "src/app/sandbox/beam-header")
 	const jamboPricingDir = path.join(
@@ -39,7 +40,22 @@ export default function PlaygroundPage() {
 		"src/app/sandbox/klarheit-testimonial"
 	)
 	const hero21Dir = path.join(process.cwd(), "src/app/sandbox/hero-21")
+	const aiworkDir = path.join(process.cwd(), "src/app/sandbox/aiwork")
+	const verseoDir = path.join(process.cwd(), "src/app/sandbox/verseo")
 
+	const omrixFiles = [
+		"page.tsx",
+		"navbar.tsx",
+		"hero-section.tsx",
+		"dashboard-mockup.tsx",
+		"dashboard-sidebar.tsx",
+		"dashboard-header.tsx",
+		"dashboard-metrics.tsx",
+		"dashboard-chart.tsx",
+		"dashboard-activity.tsx",
+		"dashboard-table.tsx",
+		"logos-strip.tsx",
+	]
 	const motionFiles = [
 		"logo-section.tsx",
 		"logo-marquee.tsx",
@@ -78,13 +94,54 @@ export default function PlaygroundPage() {
 		"logo-marquee.tsx",
 		"page.tsx",
 	]
+	const aiworkFiles = [
+		"page.tsx",
+		"navbar.tsx",
+		"hero-section.tsx",
+		"dashboard-mockup.tsx",
+		"logos-strip.tsx",
+		"solutions-section.tsx",
+		"agents-section.tsx",
+		"automation-section.tsx",
+		"integrations-section.tsx",
+		"how-it-works-section.tsx",
+		"testimonials-section.tsx",
+		"pricing-section.tsx",
+		"faq-section.tsx",
+		"cta-banner.tsx",
+		"footer.tsx",
+	]
+	const verseoFiles = [
+		"page.tsx",
+		"navbar.tsx",
+		"hero-section.tsx",
+		"client-logos.tsx",
+		"problem-difference-section.tsx",
+		"features-section.tsx",
+		"use-cases-section.tsx",
+		"how-it-works-section.tsx",
+		"results-section.tsx",
+		"examples-section.tsx",
+		"testimonials-section.tsx",
+		"pricing-section.tsx",
+		"faq-section.tsx",
+		"cta-section.tsx",
+		"footer.tsx",
+	]
 
+	const omrixData: Record<string, string> = {}
 	const motionData: Record<string, string> = {}
 	const beamHeaderData: Record<string, string> = {}
 	const jamboPricingData: Record<string, string> = {}
 	const klarheitFaqData: Record<string, string> = {}
 	const klarheitTestimonialData: Record<string, string> = {}
 	const hero21Data: Record<string, string> = {}
+	const aiworkData: Record<string, string> = {}
+	const verseoData: Record<string, string> = {}
+
+	for (const file of omrixFiles) {
+		omrixData[file] = readFileContent(omrixDir, file)
+	}
 
 	for (const file of motionFiles) {
 		motionData[file] = readFileContent(motionDir, file)
@@ -113,13 +170,24 @@ export default function PlaygroundPage() {
 		hero21Data[file] = readFileContent(hero21Dir, file)
 	}
 
+	for (const file of aiworkFiles) {
+		aiworkData[file] = readFileContent(aiworkDir, file)
+	}
+
+	for (const file of verseoFiles) {
+		verseoData[file] = readFileContent(verseoDir, file)
+	}
+
 	const files = {
+		omrix: omrixData,
 		motion: motionData,
 		"beam-header": beamHeaderData,
 		"jambo-pricing": jamboPricingData,
 		"klarheit-faq": klarheitFaqData,
 		"klarheit-testimonial": klarheitTestimonialData,
 		"hero-21": hero21Data,
+		aiwork: aiworkData,
+		verseo: verseoData,
 	}
 
 	return <PlaygroundClient files={files} />

@@ -1,19 +1,25 @@
 export interface FilesData {
+	omrix: Record<string, string>
 	motion: Record<string, string>
 	"beam-header": Record<string, string>
 	"jambo-pricing": Record<string, string>
 	"klarheit-faq": Record<string, string>
 	"klarheit-testimonial": Record<string, string>
 	"hero-21": Record<string, string>
+	aiwork: Record<string, string>
+	verseo: Record<string, string>
 }
 
 export type PreviewKey =
+	| "omrix"
 	| "motion"
 	| "faq"
 	| "beam-header"
 	| "jambo-pricing"
 	| "testimonials"
 	| "hero-21"
+	| "aiwork"
+	| "verseo"
 
 export type ViewMode = "preview" | "inspect" | "code"
 export type DeviceSize = "desktop" | "tablet" | "mobile"
@@ -42,6 +48,33 @@ export interface SandboxComponentConfig {
 }
 
 export const sandboxComponents: SandboxComponentConfig[] = [
+	{
+		id: "omrix",
+		label: "omrix",
+		filesKey: "omrix",
+		path: "src/app/sandbox/omrix",
+		defaultFile: "page.tsx",
+		referenceUrl: "https://omrix.framer.ai/",
+		previewRoute: "/sandbox/omrix",
+	},
+	{
+		id: "aiwork",
+		label: "aiwork",
+		filesKey: "aiwork",
+		path: "src/app/sandbox/aiwork",
+		defaultFile: "page.tsx",
+		referenceUrl: "https://aiwork.framer.website/",
+		previewRoute: "/sandbox/aiwork",
+	},
+	{
+		id: "verseo",
+		label: "verseo",
+		filesKey: "verseo",
+		path: "src/app/sandbox/verseo",
+		defaultFile: "page.tsx",
+		referenceUrl: "https://verseo.framer.website/",
+		previewRoute: "/sandbox/verseo",
+	},
 	{
 		id: "hero-21",
 		label: "hero-21",

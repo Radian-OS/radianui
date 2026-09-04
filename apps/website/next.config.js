@@ -276,6 +276,10 @@ const nextConfig = {
 				protocol: "https",
 				hostname: "images.shadcnspace.com",
 			},
+			{
+				protocol: "https",
+				hostname: "framerusercontent.com",
+			},
 		],
 	},
 	compiler: {
