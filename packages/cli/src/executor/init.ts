@@ -64,6 +64,8 @@ export async function executeInitFromConfig(config: InitConfig) {
 		? config.preset.config.dependencies
 		: [
 			"class-variance-authority",
+			"clsx",
+			"tailwind-merge",
 			"tw-animate-css",
 			"radix-ui",
 			...ICON_DEPENDENCIES[config.iconLibrary!],
