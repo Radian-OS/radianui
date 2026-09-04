@@ -51,7 +51,14 @@ export const registryItemFileSchema = z.discriminatedUnion("type", [
 	z.object({
 		path: z.string(),
 		content: z.string().optional(),
-		type: registryItemTypeSchema.exclude(["registry:file", "registry:page"]),
+		type: z.enum([
+			"registry:lib",
+			"registry:block",
+			"registry:component",
+			"registry:ui",
+			"registry:hook",
+			"registry:theme",
+		]),
 		target: z.string().optional(),
 	}),
 ])
@@ -61,9 +68,9 @@ export const registryItemCommonSchema = z.object({
 	files: z.array(registryItemFileSchema).optional(),
 })
 
-export const registryItemSchema = z.discriminatedUnion("type", [
-	registryItemCommonSchema,
-])
+export const registryItemSchema = registryItemCommonSchema.extend({
+	type: registryItemTypeSchema,
+})
 
 export type RegistryItem = z.infer<typeof registryItemSchema>
 

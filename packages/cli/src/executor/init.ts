@@ -12,6 +12,7 @@ import {
 import type { TemplateOptions } from "@/templates"
 import { txt } from "@/utils/colors"
 import { createComponentsJson } from "@/utils/createComponentsJson"
+import { createUtilsFile } from "@/utils/createUtilsFile"
 import { installDependencies } from "@/utils/dependencyInstaller"
 import { type FrameworkName } from "@/utils/frameworks"
 import { generateThemeCss } from "@/utils/generateCss"
@@ -46,6 +47,11 @@ export async function executeInitFromConfig(config: InitConfig) {
 			config.style,
 			config.iconLibrary
 		)
+	}
+
+	// ── Step 2.5: Create utils file (if existing project) ────────────────
+	if (config.isExistingProject) {
+		await createUtilsFile(projectPath, config.useSrcDir)
 	}
 
 	// ── Step 3: Apply CSS ─────────────────────────────────────────────────
