@@ -50,6 +50,17 @@ export default async function PlaygroundPage() {
 	const aiworkDir = path.join(process.cwd(), "src/app/sandbox/aiwork")
 	const verseoDir = path.join(process.cwd(), "src/app/sandbox/verseo")
 	const agentlabDir = path.join(process.cwd(), "src/app/sandbox/agentlab")
+	const crisplyDir = path.join(process.cwd(), "src/app/sandbox/crisply")
+
+	const crisplyFiles = [
+		"page.tsx",
+		"app-sidebar.tsx",
+		"top-header.tsx",
+		"settings-nav.tsx",
+		"profile-section.tsx",
+		"security-section.tsx",
+		"support-access-section.tsx",
+	]
 
 	const agentlabFiles = [
 		"page.tsx",
@@ -165,6 +176,7 @@ export default async function PlaygroundPage() {
 	const aiworkData: Record<string, string> = {}
 	const verseoData: Record<string, string> = {}
 	const agentlabData: Record<string, string> = {}
+	const crisplyData: Record<string, string> = {}
 
 	for (const file of omrixFiles) {
 		omrixData[file] = readFileContent(omrixDir, file)
@@ -209,7 +221,12 @@ export default async function PlaygroundPage() {
 		agentlabData[file] = readFileContent(agentlabDir, file)
 	}
 
+	for (const file of crisplyFiles) {
+		crisplyData[file] = readFileContent(crisplyDir, file)
+	}
+
 	const files = {
+		crisply: crisplyData,
 		agentlab: agentlabData,
 		omrix: omrixData,
 		motion: motionData,

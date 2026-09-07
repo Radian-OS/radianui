@@ -21,11 +21,6 @@ interface AuthContextValue {
 		email: string,
 		password: string
 	) => Promise<{ success: boolean; error?: string }>
-	signUp: (
-		firstName: string,
-		email: string,
-		password: string
-	) => Promise<{ success: boolean; error?: string }>
 	signOut: () => Promise<void>
 	refreshUser: () => Promise<void>
 }
@@ -84,27 +79,6 @@ export function SandboxAuthProvider({
 		}
 	}
 
-	const signUp = async (firstName: string, email: string, password: string) => {
-		try {
-			const res = await fetch("/api/sandbox/auth/sign-up", {
-				method: "POST",
-				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify({ firstName, email, password }),
-			})
-			const data = await res.json()
-			if (res.ok && data.success) {
-				setUser(data.user)
-				return { success: true }
-			}
-			return { success: false, error: data.error || "Failed to sign up" }
-		} catch (err) {
-			return {
-				success: false,
-				error: err instanceof Error ? err.message : "Network error",
-			}
-		}
-	}
-
 	const signOut = async () => {
 		try {
 			await fetch("/api/sandbox/auth/sign-out", { method: "POST" })
@@ -121,7 +95,6 @@ export function SandboxAuthProvider({
 				user,
 				isLoading,
 				signIn,
-				signUp,
 				signOut,
 				refreshUser,
 			}}>

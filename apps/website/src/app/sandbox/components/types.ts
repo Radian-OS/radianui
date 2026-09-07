@@ -9,9 +9,11 @@ export interface FilesData {
 	aiwork: Record<string, string>
 	verseo: Record<string, string>
 	agentlab: Record<string, string>
+	crisply: Record<string, string>
 }
 
 export type PreviewKey =
+	| "crisply"
 	| "agentlab"
 	| "omrix"
 	| "motion"
@@ -50,6 +52,16 @@ export interface SandboxComponentConfig {
 }
 
 export const sandboxComponents: SandboxComponentConfig[] = [
+	{
+		id: "crisply",
+		label: "crisply",
+		filesKey: "crisply",
+		path: "src/app/sandbox/crisply",
+		defaultFile: "page.tsx",
+		referenceUrl:
+			"https://dribbble.com/shots/25800159-Cripsly-Account-Settings-CRM-Dashboard",
+		previewRoute: "/sandbox/crisply",
+	},
 	{
 		id: "agentlab",
 		label: "agentlab",

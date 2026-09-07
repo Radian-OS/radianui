@@ -3,7 +3,6 @@
 import React, { useEffect, useRef, useState } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Eye, EyeOff } from "lucide-react"
-import Link from "next/link"
 import { useRouter, useSearchParams } from "next/navigation"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
@@ -120,10 +119,7 @@ export default function SigninForm() {
 					<div className="flex flex-col gap-2">
 						<h1 className="heading-5 font-semibold">Sign In</h1>
 						<p className="text-fg-secondary text-sm">
-							Don&apos;t have an account?{" "}
-							<Button variant="link" asChild color="primary">
-								<Link href="/sandbox/auth/sign-up">Sign up</Link>
-							</Button>
+							Enter your credentials to access the sandbox
 						</p>
 					</div>
 
