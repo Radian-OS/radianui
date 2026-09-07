@@ -1,3 +1,4 @@
+import { Suspense } from "react"
 import type { Metadata } from "next"
 import SignUpForm from "../sign-up"
 
@@ -7,5 +8,9 @@ export const metadata: Metadata = {
 }
 
 export default function SignUpPage() {
-	return <SignUpForm />
+	return (
+		<Suspense fallback={null}>
+			<SignUpForm />
+		</Suspense>
+	)
 }

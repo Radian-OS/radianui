@@ -1,3 +1,4 @@
+import { Suspense } from "react"
 import type { Metadata } from "next"
 import SigninForm from "../sign-in"
 
@@ -7,5 +8,9 @@ export const metadata: Metadata = {
 }
 
 export default function SignInPage() {
-	return <SigninForm />
+	return (
+		<Suspense fallback={null}>
+			<SigninForm />
+		</Suspense>
+	)
 }

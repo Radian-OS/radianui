@@ -20,7 +20,7 @@ export async function GET(request: NextRequest) {
 		}
 
 		// Construct the full path relative to the project root
-		const fullPath = path.join(process.cwd(), file)
+		const fullPath = path.join(/*turbopackIgnore: true*/ process.cwd(), file)
 
 		// Check if file exists
 		if (!fs.existsSync(/*turbopackIgnore: true*/ fullPath)) {
