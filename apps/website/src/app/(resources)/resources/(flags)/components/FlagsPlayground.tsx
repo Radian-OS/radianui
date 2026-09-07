@@ -21,7 +21,13 @@ import { FlagDetailsDialog } from "./FlagDetailsDialog"
 import { FlagShapeDropdown } from "./FlagShapeDropdown"
 import { FlagTile } from "./FlagTile"
 import type { FlagName, FlagShape } from "./flags-data"
-import { flagNames, getFlagDisplayName } from "./flags-data"
+import {
+	FLAGS_PAGE_PATH,
+	flagNames,
+	getFlagNameFromSlug,
+	getFlagPagePath,
+	getFlagSearchTerms,
+} from "./flags-data"
 
 const FLAG_SHAPE_STORAGE_KEY = "radian-flags-shape"
 
@@ -274,10 +280,26 @@ function EmptyMediaContent(props: SVGProps<SVGSVGElement>) {
 	)
 }
 
-export default function FlagsPlayground() {
+interface FlagsPlaygroundProps {
+	initialSelectedFlag?: FlagName | null
+}
+
+function getFlagFromPathname(pathname: string) {
+	const slug = pathname.split("/").filter(Boolean).at(-1)
+	return slug && pathname.startsWith(`${FLAGS_PAGE_PATH}/`)
+		? getFlagNameFromSlug(slug)
+		: null
+}
+
+export default function FlagsPlayground({
+	initialSelectedFlag = null,
+}: FlagsPlaygroundProps) {
 	const [query, setQuery] = useState("")
 	const [shape, setShape] = useState<FlagShape>("flat")
-	const [selectedFlag, setSelectedFlag] = useState<FlagName | null>(null)
+	const [selectedFlag, setSelectedFlag] = useState<FlagName | null>(
+		initialSelectedFlag
+	)
+	const ownsDialogHistoryEntryRef = useRef(false)
 	const sentinelRef = useRef<HTMLDivElement>(null)
 	const bottomSentinelRef = useRef<HTMLDivElement>(null)
 
@@ -334,9 +356,55 @@ export default function FlagsPlayground() {
 		}
 	}, [])
 
+	useEffect(() => {
+		const handlePopState = () => {
+			setSelectedFlag(getFlagFromPathname(window.location.pathname))
+			ownsDialogHistoryEntryRef.current = Boolean(
+				window.history.state?.radianFlagDialog
+			)
+		}
+
+		window.addEventListener("popstate", handlePopState)
+		return () => window.removeEventListener("popstate", handlePopState)
+	}, [])
+
 	const handleShapeChange = (nextShape: FlagShape) => {
 		setShape(nextShape)
 		window.localStorage.setItem(FLAG_SHAPE_STORAGE_KEY, nextShape)
+	}
+
+	const handleSelectFlag = (name: FlagName) => {
+		const nextPath = getFlagPagePath(name)
+		const nextState = {
+			...window.history.state,
+			radianFlagDialog: true,
+		}
+
+		if (selectedFlag) {
+			window.history.replaceState(nextState, "", nextPath)
+		} else {
+			window.history.pushState(nextState, "", nextPath)
+			ownsDialogHistoryEntryRef.current = true
+		}
+
+		setSelectedFlag(name)
+	}
+
+	const handleDialogOpenChange = (open: boolean) => {
+		if (open) return
+
+		setSelectedFlag(null)
+		if (ownsDialogHistoryEntryRef.current) {
+			ownsDialogHistoryEntryRef.current = false
+			window.history.back()
+			return
+		}
+
+		window.history.replaceState(
+			{ ...window.history.state, radianFlagDialog: false },
+			"",
+			FLAGS_PAGE_PATH
+		)
 	}
 
 	const visibleFlags = useMemo(() => {
@@ -344,10 +412,12 @@ export default function FlagsPlayground() {
 		if (!normalizedQuery) return flagNames
 
 		return flagNames.filter((name) =>
-			getFlagDisplayName(name)
-				.toLowerCase()
-				.replace(/[^a-z0-9]/g, "")
-				.includes(normalizedQuery)
+			getFlagSearchTerms(name).some((term) =>
+				term
+					.toLowerCase()
+					.replace(/[^a-z0-9]/g, "")
+					.includes(normalizedQuery)
+			)
 		)
 	}, [query])
 
@@ -375,8 +445,8 @@ export default function FlagsPlayground() {
 					<Input
 						value={query}
 						onChange={(event) => setQuery(event.target.value)}
-						placeholder="Search e.g. United States, Japan, Canada..."
-						aria-label="Search country flags"
+						placeholder="Search by name, ISO code, or dial code (e.g. Japan, +81)..."
+						aria-label="Search flags by country name, ISO code, or dialing code"
 					/>
 				</InputWrapper>
 			</div>
@@ -389,7 +459,7 @@ export default function FlagsPlayground() {
 							name={name}
 							shape={shape}
 							priority={index < 18}
-							onSelect={setSelectedFlag}
+							onSelect={handleSelectFlag}
 						/>
 					))}
 				</ul>
@@ -420,11 +490,9 @@ export default function FlagsPlayground() {
 				name={selectedFlag}
 				shape={shape}
 				open={selectedFlag !== null}
-				onOpenChange={(open) => {
-					if (!open) setSelectedFlag(null)
-				}}
+				onOpenChange={handleDialogOpenChange}
 				onShapeChange={handleShapeChange}
-				onSelectFlag={setSelectedFlag}
+				onSelectFlag={handleSelectFlag}
 			/>
 		</div>
 	)

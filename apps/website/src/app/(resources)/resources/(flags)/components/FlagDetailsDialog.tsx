@@ -217,7 +217,7 @@ export function FlagDetailsDialog({
 	}
 
 	const shareFlag = async () => {
-		const url = getFlagUrl(name, shape, pngSize)
+		const url = window.location.href
 		try {
 			if (navigator.share) {
 				await navigator.share({

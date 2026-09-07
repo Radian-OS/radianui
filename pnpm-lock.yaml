@@ -257,6 +257,9 @@ importers:
       hast-util-to-jsx-runtime:
         specifier: ^2.3.6
         version: 2.3.6
+      libphonenumber-js:
+        specifier: ^1.13.11
+        version: 1.13.11
       lru-cache:
         specifier: ^11.5.2
         version: 11.5.2

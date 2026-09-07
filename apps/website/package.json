@@ -97,6 +97,7 @@
 		"fumadocs-mdx": "^15.4.0",
 		"github-slugger": "^2.0.0",
 		"hast-util-to-jsx-runtime": "^2.3.6",
+		"libphonenumber-js": "^1.13.11",
 		"lru-cache": "^11.5.2",
 		"lucide-react": "0.486.0",
 		"motion": "^12.15.0",
