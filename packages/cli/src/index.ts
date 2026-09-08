@@ -5,6 +5,7 @@ import { init } from "@/commands/init.js"
 import { displayGradientString } from "@/utils/gradientString"
 import { handleError } from "@/utils/handleError"
 import packageJson from "../package.json"
+import { search } from "./commands/search"
 
 process.on("uncaughtException", handleError)
 process.on("unhandledRejection", handleError)
@@ -19,6 +20,8 @@ async function main() {
 	program.addCommand(init)
 
 	program.addCommand(add)
+
+	program.addCommand(search)
 
 	program.parse()
 }

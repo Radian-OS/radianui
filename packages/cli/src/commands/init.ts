@@ -48,7 +48,7 @@ export const init = new Command()
 		try {
 			const options = initOptionsSchema.parse({
 				...opts,
-				projectNameArg,
+				projectName: projectNameArg,
 				presetCode: opts.preset,
 			})
 
