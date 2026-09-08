@@ -1,5 +1,3 @@
-"use client"
-
 import React, { HTMLAttributes } from "react"
 import { MDXComponents } from "mdx/types"
 import Image from "next/image"
@@ -47,7 +45,7 @@ export const BlogComponents: MDXComponents = {
 		<h2
 			id={id}
 			className={cn(
-				"heading-5 text-fg mt-10 mb-4 scroll-mt-24 font-semibold tracking-tight",
+				"heading-5 text-fg mb-4 scroll-mt-24 font-semibold tracking-tight",
 				className
 			)}
 			{...props}>
@@ -109,7 +107,7 @@ export const BlogComponents: MDXComponents = {
 				<Link
 					href={href}
 					className={cn(
-						"text-primary-text font-medium underline underline-offset-4 transition-colors hover:opacity-80",
+						"text-primary font-medium underline underline-offset-4 transition-colors hover:opacity-80",
 						className
 					)}
 					{...props}>
@@ -123,7 +121,7 @@ export const BlogComponents: MDXComponents = {
 				target={isExternal ? "_blank" : undefined}
 				rel={isExternal ? "noopener noreferrer" : undefined}
 				className={cn(
-					"text-primary-text font-medium underline underline-offset-4 transition-colors hover:opacity-80",
+					"text-primary font-medium underline underline-offset-4 transition-colors hover:opacity-80",
 					className
 				)}
 				{...props}>
