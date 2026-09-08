@@ -9,9 +9,9 @@ const AvatarCTA = () => {
 		<section
 			aria-labelledby="avatar-cta-heading"
 			className="border-soft from-fill1 to-bg-fill2 relative max-w-[1430px] overflow-hidden rounded-[20px] border bg-linear-to-b 2xl:mx-auto">
-			<div className="flex w-full max-w-[1350px] items-center overflow-hidden p-6 sm:p-10 lg:p-15">
+			<div className="flex items-center overflow-hidden p-6 sm:p-10 lg:p-15 xl:w-[1350px]">
 				<div className="relative z-10 flex w-full flex-col gap-8 xl:max-w-md">
-					<div className="flex w-full flex-col gap-8 xl:w-[532px]">
+					<div className="flex w-full flex-col gap-8 xl:max-w-[532px]">
 						<div className="flex flex-col gap-5">
 							<Badge color="green" variant="soft" size="28">
 								Open Source Library
