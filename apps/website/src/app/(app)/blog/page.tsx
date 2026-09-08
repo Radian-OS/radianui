@@ -9,7 +9,7 @@ import { Badge } from "@/registry/ui/badge"
 import { Divider } from "@/registry/ui/divider"
 
 interface BlogListPageProps {
-	params: { slug?: string[] }
+	params?: Promise<{ slug?: string[] }>
 }
 
 const blogUrl = absoluteUrl("/blog")
@@ -59,14 +59,20 @@ export const metadata: Metadata = {
 }
 
 export default async function BlogPage({ params }: BlogListPageProps) {
-	const slugPath = Array.isArray(params.slug)
-		? params.slug.join("/")
-		: typeof params.slug === "string"
-			? params.slug
+	const resolvedParams = params ? await params : undefined
+	const slugPath = Array.isArray(resolvedParams?.slug)
+		? resolvedParams.slug.join("/")
+		: typeof resolvedParams?.slug === "string"
+			? resolvedParams.slug
 			: ""
-	const filteredBlogs = blog
-		.getPages()
-		.filter((post) => post.slugs.join("/").startsWith(slugPath))
+	const allBlogs = blog.getPages()
+	const filteredBlogs = (
+		slugPath
+			? allBlogs.filter((post) => post.slugs.join("/").startsWith(slugPath))
+			: allBlogs
+	).sort(
+		(a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+	)
 
 	return (
 		<>
@@ -122,19 +128,28 @@ export default async function BlogPage({ params }: BlogListPageProps) {
 							className="flex flex-col items-start gap-9 md:flex-row">
 							<Image
 								className="h-full w-full rounded-lg object-cover md:h-45 md:w-70"
-								alt="blog-image"
+								alt={post.data.title}
 								height={400}
 								width={400}
 								src={post.data.image ?? "/og/static-og.png"}
 							/>
 							<section className="flex flex-col lg:items-start">
 								<div className="flex flex-col gap-1 pt-2 lg:items-start lg:pt-0">
-									<p className="text-fg-tertiary text-sm">{post.data.card}</p>
+									{post.data.card && (
+										<p className="text-fg-tertiary text-sm">{post.data.card}</p>
+									)}
 									<span className="heading-6">{post.data.title}</span>
 								</div>
-								<div className="flex gap-2 pt-3 pb-5">
-									{/* <AvatarGroup>{post.data.author ? post.data.author.map((item) => <Avatar key={item.name} name={item.name} src={item.avatar} />) : []}</AvatarGroup> */}
-									<span className="text-fg-secondary">
+								<div className="flex flex-wrap items-center gap-2 pt-3 pb-5">
+									{post.data.author && post.data.author.length > 0 && (
+										<>
+											<span className="text-fg text-sm font-medium">
+												{post.data.author.map((a: any) => a.name).join(", ")}
+											</span>
+											<span className="text-fg-tertiary">•</span>
+										</>
+									)}
+									<span className="text-fg-secondary text-sm">
 										{new Date(post.data.date).toLocaleDateString("en-US", {
 											month: "long",
 											day: "numeric",

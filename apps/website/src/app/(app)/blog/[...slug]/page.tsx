@@ -93,9 +93,11 @@ export default async function BlogPage({ params }: BlogPageProps) {
 			/>
 			{/* Blog Title and Meta */}
 			<div className="flex flex-col gap-4">
-				<Badge size="28" variant="soft">
-					{blog.data.card}
-				</Badge>
+				{blog.data.card && (
+					<Badge size="28" variant="soft">
+						{blog.data.card}
+					</Badge>
+				)}
 				<h1 className="heading-3 font-semibold">{blog.data.title}</h1>
 				<time
 					className="text-fg-secondary text-sm"
@@ -111,49 +113,71 @@ export default async function BlogPage({ params }: BlogPageProps) {
 			{/* Blog Image */}
 			<div className="py-6">
 				<Image
-					width={500}
-					height={500}
+					width={800}
+					height={450}
 					className="h-auto w-full rounded-lg object-cover"
 					alt={blog.data.title}
 					src={blog.data.image ?? "/og/static-og.png"}
+					priority
 				/>
 			</div>
 
 			{/* Author Info */}
-			<div className="flex items-center gap-3">
-				<span className="text-fg-secondary text-sm">Author</span>
-				{blog.data.author?.map((author: any, index: number) =>
-					author.username && author.avatar ? (
-						<Link
-							target="_blank"
-							rel="noopener noreferrer"
-							href={author.link || "#"}
-							key={author._id}
-							className={`flex items-center gap-3 ${index !== 0 ? "px-3" : ""}`}>
-							<Avatar size="24">
-								<AvatarImage src={author.avatar} />
-								<AvatarFallback>
-									{author.name.charAt(0).toUpperCase()}
-								</AvatarFallback>
-							</Avatar>
-							<span className="flex flex-col">
-								<span className="text-sm font-medium">{author.name}</span>
-								<span className="text-fg-secondary text-xs">
-									{author.username}
+			{blog.data.author && blog.data.author.length > 0 && (
+				<div className="flex flex-wrap items-center gap-3">
+					<span className="text-fg-secondary text-sm">Author</span>
+					{blog.data.author.map((author: any, index: number) => {
+						const authorKey = author.username || author.name || index
+						const content = (
+							<div className="flex items-center gap-2">
+								<Avatar size="24">
+									{author.avatar && (
+										<AvatarImage src={author.avatar} alt={author.name} />
+									)}
+									<AvatarFallback>
+										{author.name ? author.name.charAt(0).toUpperCase() : "A"}
+									</AvatarFallback>
+								</Avatar>
+								<span className="flex flex-col">
+									<span className="text-sm font-medium">{author.name}</span>
+									{author.username && (
+										<span className="text-fg-secondary text-xs">
+											{author.username}
+										</span>
+									)}
 								</span>
-							</span>
-						</Link>
-					) : (
-						<React.Fragment key={author._id || index}></React.Fragment>
-					)
-				)}
-			</div>
+							</div>
+						)
+
+						if (author.link) {
+							return (
+								<Link
+									target="_blank"
+									rel="noopener noreferrer"
+									href={author.link}
+									key={authorKey}
+									className={`flex items-center gap-2 ${index !== 0 ? "px-3" : ""}`}>
+									{content}
+								</Link>
+							)
+						}
+
+						return (
+							<div
+								key={authorKey}
+								className={`flex items-center gap-2 ${index !== 0 ? "px-3" : ""}`}>
+								{content}
+							</div>
+						)
+					})}
+				</div>
+			)}
 			<Divider className="my-5" />
 			{/* Blog Body */}
 			<div className="pb-5">
-				<div className="flex flex-col gap-12">
+				<article className="w-full">
 					<blog.data.body components={BlogComponents} />
-				</div>
+				</article>
 			</div>
 		</>
 	)
