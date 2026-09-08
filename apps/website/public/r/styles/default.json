@@ -1,6 +1,7 @@
 [
   {
     "name": "accordion",
+    "description": "Clean, stacked panels that expand and collapse to organize large amounts of information and save page space.",
     "files": [
       {
         "name": "accordion.tsx",
@@ -15,6 +16,7 @@
   },
   {
     "name": "alert-dialog",
+    "description": "A clear popup message that stops the user to confirm important or permanent choices, like deleting data.",
     "files": [
       {
         "name": "alert-dialog.tsx",
@@ -29,6 +31,7 @@
   },
   {
     "name": "alert",
+    "description": "Important notification banners used to show quick success messages, warnings, or helpful updates to visitors.",
     "files": [
       {
         "name": "alert.tsx",
@@ -40,6 +43,7 @@
   },
   {
     "name": "aspect-ratio",
+    "description": "A simple layout utility to keep your images and videos perfectly proportioned on mobile and desktop screens.",
     "files": [
       {
         "name": "aspect-ratio.tsx",
@@ -54,6 +58,7 @@
   },
   {
     "name": "avatar",
+    "description": "Display user profile pictures or initials with clean, automated backup designs when an image fails to load.",
     "files": [
       {
         "name": "avatar.tsx",
@@ -68,6 +73,7 @@
   },
   {
     "name": "badge",
+    "description": "Small, colorful labels used to show quick status updates, counts, or categories next to your content.",
     "files": [
       {
         "name": "badge.tsx",
@@ -82,6 +88,7 @@
   },
   {
     "name": "banner",
+    "description": "Eye-catching notice bars fixed to the top of the page for major announcements or website-wide news.",
     "files": [
       {
         "name": "banner.tsx",
@@ -93,6 +100,7 @@
   },
   {
     "name": "breadcrumb",
+    "description": "A simple trail of links that shows users exactly where they are within your website's page structure.",
     "files": [
       {
         "name": "breadcrumb.tsx",
@@ -107,6 +115,7 @@
   },
   {
     "name": "button",
+    "description": "Highly responsive, clickable elements built for form submissions, link actions, and clear user choices.",
     "files": [
       {
         "name": "button.tsx",
@@ -124,6 +133,7 @@
   },
   {
     "name": "calendar",
+    "description": "An easy-to-use visual calendar for picking dates, scheduling, and managing simple custom time frames.",
     "files": [
       {
         "name": "calendar.tsx",
@@ -138,6 +148,7 @@
   },
   {
     "name": "card",
+    "description": "A clean, boxed container used to neatly group related text, pictures, and buttons into distinct sections.",
     "files": [
       {
         "name": "card.tsx",
@@ -149,6 +160,7 @@
   },
   {
     "name": "carousel",
+    "description": "A smooth, sliding slideshow that lets users swipe through images, products, or featured articles horizontally.",
     "files": [
       {
         "name": "carousel.tsx",
@@ -180,6 +192,7 @@
   },
   {
     "name": "checkbox",
+    "description": "A simple box for selecting one or multiple options in forms, lists, and setting preferences.",
     "files": [
       {
         "name": "checkbox.tsx",
@@ -194,6 +207,7 @@
   },
   {
     "name": "code-area",
+    "description": "A beautifully styled text box made specifically for displaying clean, easy-to-read code snippets.",
     "files": [
       {
         "name": "code-area.tsx",
@@ -208,6 +222,7 @@
   },
   {
     "name": "collapsible",
+    "description": "Easily hide or show extra sections of content with a single click to keep your web design clean and minimal.",
     "files": [
       {
         "name": "collapsible.tsx",
@@ -222,6 +237,7 @@
   },
   {
     "name": "command",
+    "description": "A fast, search-driven menu overlay that lets users navigate your web application entirely with their keyboard.",
     "files": [
       {
         "name": "command.tsx",
@@ -239,6 +255,7 @@
   },
   {
     "name": "context-menu",
+    "description": "A custom, accessible menu that pops up when a user right-clicks on a specific section of your webpage.",
     "files": [
       {
         "name": "context-menu.tsx",
@@ -253,6 +270,7 @@
   },
   {
     "name": "currency-input",
+    "description": "An intelligent number field that automatically adds currency symbols, commas, and proper decimal points.",
     "files": [
       {
         "name": "currency-input.tsx",
@@ -270,6 +288,7 @@
   },
   {
     "name": "dialog",
+    "description": "A responsive popup window that focuses user attention on a single task, form, or setting without leaving the page.",
     "files": [
       {
         "name": "dialog.tsx",
@@ -287,6 +306,7 @@
   },
   {
     "name": "divider",
+    "description": "A simple line utility used to visually separate different blocks of text or sections on a busy page.",
     "files": [
       {
         "name": "divider.tsx",
@@ -301,6 +321,7 @@
   },
   {
     "name": "drawer",
+    "description": "A smooth menu panel that slides out from the edge of the screen to give users extra options or settings space.",
     "files": [
       {
         "name": "drawer.tsx",
@@ -315,6 +336,7 @@
   },
   {
     "name": "dropdown-menu",
+    "description": "A classic menu button that unfolds to reveal a list of useful links, actions, or settings shortcuts.",
     "files": [
       {
         "name": "dropdown-menu.tsx",
@@ -329,6 +351,7 @@
   },
   {
     "name": "empty",
+    "description": "A welcoming fallback layout with helpful text and graphics to show users when a list or search has no results.",
     "files": [
       {
         "name": "empty.tsx",
@@ -340,6 +363,7 @@
   },
   {
     "name": "file-upload",
+    "description": "A reliable drag-and-drop box that lets users easily upload documents, images, and files to your website.",
     "files": [
       {
         "name": "file-upload.tsx",
@@ -351,6 +375,7 @@
   },
   {
     "name": "form",
+    "description": "A complete framework to build accessible web forms with built-in layout rules and instant error validation.",
     "files": [
       {
         "name": "form.tsx",
@@ -369,6 +394,7 @@
   },
   {
     "name": "hover-card",
+    "description": "A helpful preview window that pops up instantly when a user hovers their mouse cursor over a link or profile.",
     "files": [
       {
         "name": "hover-card.tsx",
@@ -383,6 +409,7 @@
   },
   {
     "name": "input",
+    "description": "A clean, multipurpose text field built for collecting user data, names, emails, and general form information.",
     "files": [
       {
         "name": "input.tsx",
@@ -394,6 +421,7 @@
   },
   {
     "name": "label",
+    "description": "A clear text title placed above input fields to make your forms much easier to read and navigate for everyone.",
     "files": [
       {
         "name": "label.tsx",
@@ -408,6 +436,7 @@
   },
   {
     "name": "menubar",
+    "description": "A horizontal top menu bar that mirrors desktop apps, making deep website navigation fast and organized.",
     "files": [
       {
         "name": "menubar.tsx",
@@ -422,6 +451,7 @@
   },
   {
     "name": "navigation-menu",
+    "description": "A rich header navigation bar featuring smooth dropdown cards and multi-column link layouts.",
     "files": [
       {
         "name": "navigation-menu.tsx",
@@ -436,6 +466,7 @@
   },
   {
     "name": "otp-field",
+    "description": "A secure, split-box input designed specifically for users to easily type in multi-digit login verification codes.",
     "files": [
       {
         "name": "otp-field.tsx",
@@ -450,6 +481,7 @@
   },
   {
     "name": "pagination",
+    "description": "Break up long lists or data tables into numbered pages to speed up your website and make browsing easier.",
     "files": [
       {
         "name": "pagination.tsx",
@@ -461,6 +493,7 @@
   },
   {
     "name": "popover",
+    "description": "A small info bubble pinned to a button that pops up to show extra text, settings, or rich interactive content.",
     "files": [
       {
         "name": "popover.tsx",
@@ -475,6 +508,7 @@
   },
   {
     "name": "progress",
+    "description": "A clean, filling progress bar that shows users how much of a task, download, or setup process is completed.",
     "files": [
       {
         "name": "progress.tsx",
@@ -489,6 +523,7 @@
   },
   {
     "name": "radio-group",
+    "description": "A list of round buttons where a user can select only one single option from the entire available set.",
     "files": [
       {
         "name": "radio-group.tsx",
@@ -503,6 +538,7 @@
   },
   {
     "name": "resizable",
+    "description": "Flexible page dividers that users can click and drag to resize sidebar menus and dashboard grid layouts.",
     "files": [
       {
         "name": "resizable.tsx",
@@ -517,6 +553,7 @@
   },
   {
     "name": "scroll-area",
+    "description": "Smooth, custom-styled scrollbars for long text blocks that match your brand design perfectly on all browsers.",
     "files": [
       {
         "name": "scroll-area.tsx",
@@ -531,6 +568,7 @@
   },
   {
     "name": "select",
+    "description": "A clean and stylized dropdown selection menu to replace ugly, default browser input lists.",
     "files": [
       {
         "name": "select.tsx",
@@ -545,6 +583,7 @@
   },
   {
     "name": "sidebar",
+    "description": "A sturdy vertical side menu used to host your website's main navigation links, logos, and user settings.",
     "files": [
       {
         "name": "sidebar.tsx",
@@ -570,6 +609,7 @@
   },
   {
     "name": "skeleton",
+    "description": "Animated loading shapes that outline your page layout while real data and images finish downloading.",
     "files": [
       {
         "name": "skeleton.tsx",
@@ -581,6 +621,7 @@
   },
   {
     "name": "slider",
+    "description": "A visual track with a draggable handle that lets users adjust values like volume, price filters, or sizes.",
     "files": [
       {
         "name": "slider.tsx",
@@ -595,6 +636,7 @@
   },
   {
     "name": "spinner",
+    "description": "A minimal, spinning loading icon used to show users that a specific button or section is currently working.",
     "files": [
       {
         "name": "spinner.tsx",
@@ -606,6 +648,7 @@
   },
   {
     "name": "stepper",
+    "description": "A visual step-by-step progress guide that helps users navigate smoothly through multi-page checkout or sign-up forms.",
     "files": [
       {
         "name": "stepper.tsx",
@@ -617,6 +660,7 @@
   },
   {
     "name": "switch",
+    "description": "A beautiful sliding toggle button used to turn individual settings, features, or dark mode on and off.",
     "files": [
       {
         "name": "switch.tsx",
@@ -631,6 +675,7 @@
   },
   {
     "name": "table",
+    "description": "A clean data grid built to organize heavy rows and columns of information with easy sorting options.",
     "files": [
       {
         "name": "table.tsx",
@@ -642,6 +687,7 @@
   },
   {
     "name": "tabs",
+    "description": "A row of navigation triggers that lets users click between different content views inside the same window box.",
     "files": [
       {
         "name": "tabs.tsx",
@@ -656,6 +702,7 @@
   },
   {
     "name": "text-area",
+    "description": "An expandable multi-line text box designed for gathering longer user messages, feedback, or descriptions.",
     "files": [
       {
         "name": "text-area.tsx",
@@ -667,6 +714,7 @@
   },
   {
     "name": "toggle-group",
+    "description": "A row of linked buttons used to manage text alignment or select multiple options from a small group.",
     "files": [
       {
         "name": "toggle-group.tsx",
@@ -684,6 +732,7 @@
   },
   {
     "name": "toggle",
+    "description": "A simple button that stays highlighted when clicked, perfect for turning formatting styles on and off.",
     "files": [
       {
         "name": "toggle.tsx",
@@ -698,6 +747,7 @@
   },
   {
     "name": "tooltip",
+    "description": "A small, helpful text box that slides into view when a user hovers over an icon or button to explain what it does.",
     "files": [
       {
         "name": "tooltip.tsx",
