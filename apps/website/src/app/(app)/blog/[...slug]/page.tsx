@@ -135,9 +135,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
 			</div>
 
 			{/* Main Title */}
-			<h1 className="text-fg mb-6 text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
-				{blog.data.title}
-			</h1>
+			<h1 className="heading-2 mb-6">{blog.data.title}</h1>
 
 			{/* Lead / Intro Paragraphs */}
 			{leadParagraphs.length > 0 && (
@@ -161,7 +159,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
 							{authors.map((author: any, index: number) => {
 								const authorKey = author.username || author.name || index
 								const content = (
-									<div className="flex items-center gap-2.5">
+									<div className="hover:bg-fill1-alpha flex items-center gap-2.5 rounded-md p-2">
 										<Avatar size="32" className="size-8">
 											{author.avatar && (
 												<AvatarImage src={author.avatar} alt={author.name} />
@@ -191,8 +189,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
 											key={authorKey}
 											target="_blank"
 											rel="noopener noreferrer"
-											href={author.url}
-											className="transition-opacity hover:opacity-80">
+											href={author.url}>
 											{content}
 										</Link>
 									)
@@ -224,7 +221,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
 			{/* Main Content + Table of Contents Layout */}
 			<div className="flex flex-col lg:flex-row lg:items-start lg:gap-16">
 				{/* Article Body */}
-				<article className="max-w-2xl min-w-0 flex-1">
+				<article className="max-w-3xl min-w-0 flex-1">
 					<blog.data.body components={BlogComponents} />
 				</article>
 
