@@ -1,11 +1,21 @@
-import React from "react"
+import React, { ReactNode } from "react"
+import AvatarCTA from "@/app/(resources)/resources/(avatar)/docs/AvatarCTA"
+import Footer from "@/components/home/footer"
 
-const layout = ({ children }: { children: React.ReactNode }) => {
+interface BlogLayoutProps {
+	children: ReactNode
+}
+
+const BlogLayout = ({ children }: BlogLayoutProps) => {
 	return (
-		<div className="mx-auto mt-10 mb-43 w-full max-w-200 px-5 lg:px-0">
-			{children}
+		<div className="flex flex-col gap-4">
+			<div className="mx-auto mt-6 mb-32 w-full max-w-5xl px-4 sm:px-6 lg:px-8">
+				{children}
+			</div>
+			<AvatarCTA />
+			<Footer />
 		</div>
 	)
 }
 
-export default layout
+export default BlogLayout
