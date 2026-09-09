@@ -15,6 +15,7 @@ interface PlaygroundCommentOverlayProps {
 	onCancelDraft: () => void
 	onSubmitDraft: (values: CommentFormValues) => Promise<void> | void
 	onDeleteComment: (id: string) => Promise<void> | void
+	onNavigateToCode?: (file: string, lineNumber: number) => void
 	isSubmitting?: boolean
 	isVisible: boolean
 }
@@ -28,6 +29,7 @@ export function PlaygroundCommentOverlay({
 	onCancelDraft,
 	onSubmitDraft,
 	onDeleteComment,
+	onNavigateToCode,
 	isSubmitting = false,
 	isVisible,
 }: PlaygroundCommentOverlayProps) {
@@ -160,6 +162,7 @@ export function PlaygroundCommentOverlay({
 							comment={comment}
 							index={index}
 							onDelete={onDeleteComment}
+							onNavigateToCode={onNavigateToCode}
 						/>
 					</div>
 				))}
@@ -182,6 +185,8 @@ export function PlaygroundCommentOverlay({
 							<CommentForm
 								elementTag={draftComment.elementTag}
 								elementSelector={draftComment.elementSelector}
+								sourceLocation={draftComment.sourceLocation}
+								onNavigateToCode={onNavigateToCode}
 								onSubmit={onSubmitDraft}
 								onCancel={onCancelDraft}
 								isSubmitting={isSubmitting}

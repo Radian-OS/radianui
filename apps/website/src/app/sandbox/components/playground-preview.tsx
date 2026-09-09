@@ -20,6 +20,7 @@ interface PlaygroundPreviewProps {
 	onCancelDraft: () => void
 	onSubmitDraft: (values: CommentFormValues) => Promise<void> | void
 	onDeleteComment: (id: string) => Promise<void> | void
+	onNavigateToCode?: (file: string, lineNumber: number) => void
 	isSubmitting?: boolean
 	isCommentsVisible: boolean
 }
@@ -33,6 +34,7 @@ export function PlaygroundPreview({
 	onCancelDraft,
 	onSubmitDraft,
 	onDeleteComment,
+	onNavigateToCode,
 	isSubmitting = false,
 	isCommentsVisible,
 }: PlaygroundPreviewProps) {
@@ -66,6 +68,7 @@ export function PlaygroundPreview({
 							onCancelDraft={onCancelDraft}
 							onSubmitDraft={onSubmitDraft}
 							onDeleteComment={onDeleteComment}
+							onNavigateToCode={onNavigateToCode}
 							isSubmitting={isSubmitting}
 							isVisible={isCommentsVisible}
 						/>

@@ -2,6 +2,10 @@
 
 import { type RefObject, useCallback, useEffect, useState } from "react"
 import type { CommentFormValues } from "./comment-form"
+import {
+	type SourceLocation,
+	resolveElementSourceLocation,
+} from "./source-locator"
 import type { PreviewKey, SandboxComment, ViewMode } from "./types"
 
 export interface DraftComment {
@@ -9,13 +13,16 @@ export interface DraftComment {
 	positionY: number
 	elementTag: string
 	elementSelector: string
+	sourceLocation?: SourceLocation | null
 }
 
 export function useComments(
 	iframeRef: RefObject<HTMLIFrameElement | null>,
 	componentId: PreviewKey,
 	viewMode: ViewMode,
-	isCommentsEnabled: boolean
+	isCommentsEnabled: boolean,
+	componentFiles: Record<string, string> = {},
+	defaultFile: string = "page.tsx"
 ) {
 	const [comments, setComments] = useState<SandboxComment[]>([])
 	const [isLoading, setIsLoading] = useState(false)
@@ -55,6 +62,10 @@ export function useComments(
 	const addComment = async (formValues: CommentFormValues) => {
 		if (!draftComment) return
 		setIsSubmitting(true)
+		const file = formValues.file || draftComment.sourceLocation?.file
+		const lineNumber =
+			formValues.lineNumber || draftComment.sourceLocation?.lineNumber
+
 		try {
 			const res = await fetch("/api/sandbox/comments", {
 				method: "POST",
@@ -67,13 +78,22 @@ export function useComments(
 					positionY: draftComment.positionY,
 					authorName: formValues.authorName,
 					content: formValues.content,
+					file,
+					lineNumber,
 				}),
 			})
 
 			if (res.ok) {
 				const data = await res.json()
 				if (data.comment) {
-					setComments((prev) => [...prev, data.comment])
+					setComments((prev) => [
+						...prev,
+						{
+							...data.comment,
+							file: file || data.comment.file,
+							lineNumber: lineNumber || data.comment.lineNumber,
+						},
+					])
 				}
 				setDraftComment(null)
 			}
@@ -191,11 +211,18 @@ export function useComments(
 									.join("")
 							: ""
 
+					const sourceLocation = resolveElementSourceLocation(
+						target,
+						componentFiles,
+						defaultFile
+					)
+
 					setDraftComment({
 						positionX: Math.round(posX * 10) / 10,
 						positionY: Math.round(posY * 10) / 10,
 						elementTag: tag,
 						elementSelector: classNames,
+						sourceLocation,
 					})
 				}
 
@@ -225,7 +252,14 @@ export function useComments(
 			iframe.removeEventListener("load", setupCommentListener)
 			cleanup?.()
 		}
-	}, [iframeRef, viewMode, isCommentsEnabled, componentId])
+	}, [
+		iframeRef,
+		viewMode,
+		isCommentsEnabled,
+		componentId,
+		componentFiles,
+		defaultFile,
+	])
 
 	return {
 		comments,

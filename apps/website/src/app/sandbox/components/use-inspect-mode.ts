@@ -1,12 +1,15 @@
 "use client"
 
 import { type RefObject, useEffect } from "react"
+import { resolveElementSourceLocation } from "./source-locator"
 import type { PreviewKey, ViewMode } from "./types"
 
 export function useInspectMode(
 	iframeRef: RefObject<HTMLIFrameElement | null>,
 	viewMode: ViewMode,
-	activeComponent: PreviewKey
+	activeComponent: PreviewKey,
+	componentFiles: Record<string, string> = {},
+	defaultFile: string = "page.tsx"
 ) {
 	useEffect(() => {
 		const iframe = iframeRef.current
@@ -85,8 +88,16 @@ export function useInspectMode(
 									.join("")
 							: ""
 					const dims = `${Math.round(rect.width)} × ${Math.round(rect.height)} px`
+					const sourceLoc = resolveElementSourceLocation(
+						target,
+						componentFiles,
+						defaultFile
+					)
+					const sourceText = sourceLoc
+						? ` • ${sourceLoc.file}:${sourceLoc.lineNumber}`
+						: ""
 
-					badge.textContent = `${tag}${classNames} | ${dims}`
+					badge.textContent = `${tag}${classNames} | ${dims}${sourceText}`
 					badge.style.display = "block"
 
 					const badgeTop = rect.top - 26 < 8 ? rect.bottom + 4 : rect.top - 26
@@ -133,5 +144,5 @@ export function useInspectMode(
 			iframe.removeEventListener("load", setupInspect)
 			cleanup?.()
 		}
-	}, [viewMode, activeComponent, iframeRef])
+	}, [viewMode, activeComponent, iframeRef, componentFiles, defaultFile])
 }

@@ -13,6 +13,8 @@ export interface SandboxComment {
 	content: string
 	createdAt: string
 	resolved: boolean
+	file?: string
+	lineNumber?: number
 }
 
 let isTableInitialized = false
@@ -30,10 +32,14 @@ async function ensureTable() {
 				position_y DOUBLE PRECISION NOT NULL,
 				author_name TEXT NOT NULL,
 				content TEXT NOT NULL,
+				file TEXT,
+				line_number INTEGER,
 				created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
 				resolved BOOLEAN NOT NULL DEFAULT FALSE
 			);
 			CREATE INDEX IF NOT EXISTS idx_sandbox_comments_component ON sandbox_comments(component_id);
+			ALTER TABLE sandbox_comments ADD COLUMN IF NOT EXISTS file TEXT;
+			ALTER TABLE sandbox_comments ADD COLUMN IF NOT EXISTS line_number INTEGER;
 		`)
 		isTableInitialized = true
 	} catch (err) {
@@ -58,6 +64,8 @@ export async function GET(request: Request) {
 					position_y AS "positionY",
 					author_name AS "authorName",
 					content,
+					file,
+					line_number AS "lineNumber",
 					created_at AS "createdAt",
 					resolved
 				FROM sandbox_comments
@@ -76,6 +84,8 @@ export async function GET(request: Request) {
 				position_y AS "positionY",
 				author_name AS "authorName",
 				content,
+				file,
+				line_number AS "lineNumber",
 				created_at AS "createdAt",
 				resolved
 			FROM sandbox_comments
@@ -106,6 +116,8 @@ export async function POST(request: Request) {
 			positionY,
 			authorName,
 			content,
+			file,
+			lineNumber,
 		} = body
 
 		if (
@@ -138,9 +150,11 @@ export async function POST(request: Request) {
 				position_y,
 				author_name,
 				content,
+				file,
+				line_number,
 				created_at,
 				resolved
-			) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, NOW(), FALSE)
+			) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, NOW(), FALSE)
 			RETURNING 
 				id,
 				component_id AS "componentId",
@@ -150,6 +164,8 @@ export async function POST(request: Request) {
 				position_y AS "positionY",
 				author_name AS "authorName",
 				content,
+				file,
+				line_number AS "lineNumber",
 				created_at AS "createdAt",
 				resolved`,
 			[
@@ -161,6 +177,8 @@ export async function POST(request: Request) {
 				typeof positionY === "number" ? positionY : 0,
 				finalAuthor,
 				content.trim(),
+				typeof file === "string" ? file : null,
+				typeof lineNumber === "number" ? lineNumber : null,
 			]
 		)
 

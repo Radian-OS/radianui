@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState } from "react"
-import { Trash2, X } from "lucide-react"
+import { ArrowRight, Code, Trash2, X } from "lucide-react"
 import { Button } from "@/styles/default/ui/button"
 import type { SandboxComment } from "./types"
 
@@ -9,6 +9,7 @@ interface CommentPinProps {
 	comment: SandboxComment
 	index: number
 	onDelete: (id: string) => Promise<void> | void
+	onNavigateToCode?: (file: string, lineNumber: number) => void
 }
 
 function formatDate(dateStr: string) {
@@ -25,7 +26,12 @@ function formatDate(dateStr: string) {
 	}
 }
 
-export function CommentPin({ comment, index, onDelete }: CommentPinProps) {
+export function CommentPin({
+	comment,
+	index,
+	onDelete,
+	onNavigateToCode,
+}: CommentPinProps) {
 	const [isOpen, setIsOpen] = useState(false)
 	const [isDeleting, setIsDeleting] = useState(false)
 
@@ -120,6 +126,35 @@ export function CommentPin({ comment, index, onDelete }: CommentPinProps) {
 								</span>
 							)}
 						</div>
+					)}
+
+					{/* Source Code Navigation Button */}
+					{comment.file && onNavigateToCode && (
+						<button
+							type="button"
+							onClick={() =>
+								onNavigateToCode(comment.file!, comment.lineNumber || 1)
+							}
+							title={`Go to ${comment.file}:${comment.lineNumber || 1} in code editor`}
+							className="border-border bg-fill2/70 hover:bg-fill3 hover:border-primary/40 group mb-2 flex w-full cursor-pointer items-center justify-between gap-2 rounded-lg border px-2 py-1 text-left transition-all duration-150 active:scale-[0.98]">
+							<div className="flex min-w-0 items-center gap-1.5">
+								<div className="bg-primary/15 text-primary group-hover:bg-primary group-hover:text-primary-fg flex size-5 shrink-0 items-center justify-center rounded transition-colors">
+									<Code className="size-3" />
+								</div>
+								<span className="text-fg group-hover:text-primary truncate font-mono text-[11px] font-semibold">
+									{comment.file}
+									{comment.lineNumber && (
+										<span className="text-primary font-bold">
+											:{comment.lineNumber}
+										</span>
+									)}
+								</span>
+							</div>
+							<div className="text-primary flex shrink-0 items-center gap-0.5 font-sans text-[10px] font-semibold">
+								<span>Code</span>
+								<ArrowRight className="size-2.5 transition-transform group-hover:translate-x-0.5" />
+							</div>
+						</button>
 					)}
 
 					{/* Comment Content */}

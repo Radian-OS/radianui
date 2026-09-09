@@ -28,6 +28,11 @@ export type PreviewKey =
 export type ViewMode = "preview" | "inspect" | "code"
 export type DeviceSize = "desktop" | "tablet" | "mobile"
 
+export interface SourceLocation {
+	file: string
+	lineNumber: number
+}
+
 export interface SandboxComment {
 	id: string
 	componentId: string
@@ -39,6 +44,8 @@ export interface SandboxComment {
 	content: string
 	createdAt: string
 	resolved: boolean
+	file?: string
+	lineNumber?: number
 }
 
 export interface SandboxComponentConfig {

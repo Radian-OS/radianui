@@ -37,6 +37,7 @@ export function PlaygroundClient({ files }: PlaygroundClientProps) {
 	const [viewMode, setViewMode] = useState<ViewMode>("preview")
 	const [deviceSize, setDeviceSize] = useState<DeviceSize>("desktop")
 	const [isCommentsEnabled, setIsCommentsEnabled] = useState(false)
+	const [targetLineNumber, setTargetLineNumber] = useState<number | null>(null)
 
 	const iframeRef = useRef<HTMLIFrameElement>(null)
 
@@ -44,10 +45,18 @@ export function PlaygroundClient({ files }: PlaygroundClientProps) {
 		sandboxComponents.find((c) => c.id === activeComponent) ||
 		sandboxComponents[0]
 
-	// DOM Inspect effect
-	useInspectMode(iframeRef, viewMode, activeComponent)
+	const componentFiles = files[activeComponentConfig.filesKey] || {}
 
-	// Figma-style comments hook
+	// DOM Inspect effect with source location preview on hover
+	useInspectMode(
+		iframeRef,
+		viewMode,
+		activeComponent,
+		componentFiles,
+		activeComponentConfig.defaultFile
+	)
+
+	// Figma-style comments hook with element source location resolution
 	const {
 		comments,
 		draftComment,
@@ -55,7 +64,14 @@ export function PlaygroundClient({ files }: PlaygroundClientProps) {
 		isSubmitting,
 		addComment,
 		deleteComment,
-	} = useComments(iframeRef, activeComponent, viewMode, isCommentsEnabled)
+	} = useComments(
+		iframeRef,
+		activeComponent,
+		viewMode,
+		isCommentsEnabled,
+		componentFiles,
+		activeComponentConfig.defaultFile
+	)
 
 	const handleSelectComponent = (
 		component: PreviewKey,
@@ -63,6 +79,18 @@ export function PlaygroundClient({ files }: PlaygroundClientProps) {
 	) => {
 		setActiveComponent(component)
 		setActiveFile(defaultFile)
+		setTargetLineNumber(null)
+	}
+
+	const handleSelectFile = (fileName: string) => {
+		setActiveFile(fileName)
+		setTargetLineNumber(null)
+	}
+
+	const handleNavigateToCode = (fileName: string, lineNumber?: number) => {
+		setActiveFile(fileName)
+		setTargetLineNumber(lineNumber ?? 1)
+		setViewMode("code")
 	}
 
 	return (
@@ -110,6 +138,7 @@ export function PlaygroundClient({ files }: PlaygroundClientProps) {
 								onCancelDraft={() => setDraftComment(null)}
 								onSubmitDraft={addComment}
 								onDeleteComment={deleteComment}
+								onNavigateToCode={handleNavigateToCode}
 								isSubmitting={isSubmitting}
 								isCommentsVisible={viewMode === "inspect" && isCommentsEnabled}
 							/>
@@ -120,7 +149,8 @@ export function PlaygroundClient({ files }: PlaygroundClientProps) {
 								files={files}
 								activeComponentConfig={activeComponentConfig}
 								activeFile={activeFile}
-								onSelectFile={setActiveFile}
+								onSelectFile={handleSelectFile}
+								targetLineNumber={targetLineNumber}
 							/>
 						)}
 					</div>

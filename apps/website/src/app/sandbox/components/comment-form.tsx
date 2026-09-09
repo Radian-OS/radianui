@@ -2,7 +2,7 @@
 
 import React from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Send, X } from "lucide-react"
+import { ArrowRight, Code, Send, X } from "lucide-react"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { Button } from "@/styles/default/ui/button"
@@ -15,6 +15,7 @@ import {
 } from "@/styles/default/ui/form"
 import { TextArea } from "@/styles/default/ui/text-area"
 import { useAuth } from "../auth/auth-context"
+import type { SourceLocation } from "./types"
 
 const commentFormSchema = z.object({
 	content: z
@@ -26,11 +27,15 @@ const commentFormSchema = z.object({
 export type CommentFormValues = {
 	content: string
 	authorName?: string
+	file?: string
+	lineNumber?: number
 }
 
 interface CommentFormProps {
 	elementTag: string
 	elementSelector: string
+	sourceLocation?: SourceLocation | null
+	onNavigateToCode?: (file: string, lineNumber: number) => void
 	onSubmit: (values: CommentFormValues) => Promise<void> | void
 	onCancel: () => void
 	isSubmitting?: boolean
@@ -39,6 +44,8 @@ interface CommentFormProps {
 export function CommentForm({
 	elementTag,
 	elementSelector,
+	sourceLocation,
+	onNavigateToCode,
 	onSubmit,
 	onCancel,
 	isSubmitting = false,
@@ -56,6 +63,8 @@ export function CommentForm({
 		await onSubmit({
 			content: data.content,
 			authorName: user?.firstName || "",
+			file: sourceLocation?.file,
+			lineNumber: sourceLocation?.lineNumber,
 		})
 		form.reset({
 			content: "",
@@ -63,7 +72,7 @@ export function CommentForm({
 	})
 
 	return (
-		<div className="border-border bg-bg animate-in fade-in zoom-in-95 w-76 rounded-xl border p-3 shadow-xl duration-150">
+		<div className="border-border bg-bg animate-in fade-in zoom-in-95 w-80 rounded-xl border p-3 shadow-xl duration-150">
 			{/* Header info */}
 			<div className="mb-2 flex items-center justify-between gap-2">
 				<div className="flex min-w-0 items-center gap-1.5 overflow-hidden">
@@ -88,6 +97,38 @@ export function CommentForm({
 					<X className="size-3.5" />
 				</Button>
 			</div>
+
+			{/* Source Code Navigation Button */}
+			{sourceLocation && onNavigateToCode && (
+				<button
+					type="button"
+					onClick={() =>
+						onNavigateToCode(sourceLocation.file, sourceLocation.lineNumber)
+					}
+					title={`Go to ${sourceLocation.file}:${sourceLocation.lineNumber} in code editor`}
+					className="border-border bg-fill2/70 hover:bg-fill3 hover:border-primary/40 group mb-2.5 flex w-full cursor-pointer items-center justify-between gap-2 rounded-lg border px-2.5 py-1.5 text-left transition-all duration-150 active:scale-[0.98]">
+					<div className="flex min-w-0 items-center gap-2">
+						<div className="bg-primary/15 text-primary group-hover:bg-primary group-hover:text-primary-fg flex size-6 shrink-0 items-center justify-center rounded-md transition-colors">
+							<Code className="size-3.5" />
+						</div>
+						<div className="flex min-w-0 flex-col">
+							<span className="text-fg-tertiary text-[10px] font-medium uppercase tracking-wider">
+								Source File
+							</span>
+							<span className="text-fg group-hover:text-primary truncate font-mono text-xs font-semibold">
+								{sourceLocation.file}
+								<span className="text-primary font-bold">
+									:{sourceLocation.lineNumber}
+								</span>
+							</span>
+						</div>
+					</div>
+					<div className="text-primary flex shrink-0 items-center gap-1 font-sans text-[11px] font-semibold">
+						<span>View in Code</span>
+						<ArrowRight className="size-3 transition-transform group-hover:translate-x-0.5" />
+					</div>
+				</button>
+			)}
 
 			<Form {...form}>
 				<form onSubmit={handleSubmit} className="space-y-2.5">
