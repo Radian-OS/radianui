@@ -1,11 +1,19 @@
-import React from "react"
+import React, { ReactNode } from "react"
+import CTASection from "@/components/home/cta-section"
+import Footer from "@/components/home/footer"
 
-const layout = ({ children }: { children: React.ReactNode }) => {
+interface BlogLayoutProps {
+	children: ReactNode
+}
+
+const BlogLayout = ({ children }: BlogLayoutProps) => {
 	return (
-		<div className="mx-auto mt-10 mb-43 w-full max-w-200 px-5 lg:px-0">
-			{children}
+		<div className="flex flex-col">
+			<div className="mx-auto w-full max-w-360">{children}</div>
+			<CTASection />
+			<Footer />
 		</div>
 	)
 }
 
-export default layout
+export default BlogLayout

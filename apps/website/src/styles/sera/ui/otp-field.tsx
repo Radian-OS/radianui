@@ -64,7 +64,7 @@ function OTPField({
 			data-slot="otp-field"
 			validationType={validationType}
 			className={cn(
-				"group peer flex flex-nowrap gap-1.5 has-disabled:cursor-not-allowed",
+				"has-disabled:cursor-not-allowed group peer flex flex-nowrap gap-1.5",
 				className
 			)}
 			{...props}>

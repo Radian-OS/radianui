@@ -11,11 +11,17 @@ import { IconMapping } from "./transformers/transformIcon"
 
 const stripTrailingSlash = (url: string) => url.replace(/\/+$/, "")
 
+// export const WEBSITE_URL = stripTrailingSlash(
+// 	process.env.RADIANUI_WEBSITE_URL ?? "https://radianui.com"
+// )
 export const WEBSITE_URL = stripTrailingSlash(
-	process.env.RADIANUI_WEBSITE_URL ?? "https://radianui.com"
+	process.env.RADIANUI_WEBSITE_URL ?? "http://localhost:3001"
 )
+// export const BLOCKS_URL = stripTrailingSlash(
+// 	process.env.RADIANUI_BLOCKS_URL ?? "https://blocks.radianui.com"
+// )
 export const BLOCKS_URL = stripTrailingSlash(
-	process.env.RADIANUI_BLOCKS_URL ?? "http://blocks.radianui.com"
+	process.env.RADIANUI_BLOCKS_URL ?? "http://localhost:3005"
 )
 export const getRegistryComponentUrl = (style: Style) =>
 	`${WEBSITE_URL}/r/styles/${style}.json`
@@ -40,6 +46,7 @@ export type RegistryComponentFile = {
 
 export type RegistryComponent = {
 	name: string
+	description?: string
 	dependencies?: string[]
 	registryDependencies?: string[]
 	files: RegistryComponentFile[]
