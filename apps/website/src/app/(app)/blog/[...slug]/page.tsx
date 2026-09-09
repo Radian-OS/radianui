@@ -44,7 +44,7 @@ export async function generateMetadata({
 	return {
 		title,
 		description: blog.data.description,
-		authors: blog.data.author?.map((author: any) => ({
+		authors: blog.data.author?.map((author) => ({
 			name: author.name,
 			...(author.link ? { url: author.link } : {}),
 		})),
@@ -56,7 +56,7 @@ export async function generateMetadata({
 			description: blog.data.description,
 			url,
 			publishedTime: blog.data.date.toISOString(),
-			authors: blog.data.author?.map((author: any) => author.name),
+			authors: blog.data.author?.map((author) => author.name),
 			images: [{ url: image, alt: blog.data.title }],
 		},
 		twitter: {
@@ -75,7 +75,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
 	const url = absoluteUrl(`/blog/${blog.slugs.join("/")}`)
 	const image = absoluteUrl(blog.data.image ?? "/carousel-home.png")
 	const authors =
-		blog.data.author?.map((author: any) => ({
+		blog.data.author?.map((author) => ({
 			name: author.name,
 			username: author.username,
 			avatar: author.avatar,
@@ -91,7 +91,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
 				: []
 
 	const headings: MdxHeading[] =
-		blog.data.toc?.map((item: any) => ({
+		blog.data.toc?.map((item) => ({
 			level: item.depth,
 			text: item.title as string,
 			id: item.url.replace(/^#/, ""),
@@ -111,103 +111,114 @@ export default async function BlogPage({ params }: BlogPageProps) {
 				})}
 			/>
 
-			{/* Back Link */}
-			<div className="mb-6">
-				<Link
-					href="/blog"
-					className="text-fg-secondary hover:text-fg group inline-flex items-center gap-2 text-sm font-normal transition-colors">
-					<ArrowLeft className="size-4 transition-transform group-hover:-translate-x-0.5" />
-					<span>Back to Blogs</span>
-				</Link>
-			</div>
+			<section className="flex items-center justify-center">
+				<div className="my-10 flex flex-col gap-10 xl:mx-30 xl:w-200">
+					{/* Back Link */}
+					<div>
+						<Link
+							href="/blog"
+							className="text-fg-secondary hover:text-fg group inline-flex items-center gap-2 text-sm font-medium transition-colors">
+							<ArrowLeft className="size-4 transition-transform group-hover:-translate-x-0.5" />
+							<span>Back to Blogs</span>
+						</Link>
+					</div>
 
-			{/* Date & Reading Time */}
-			<div className="text-fg-secondary mb-4 flex items-center gap-2 text-sm">
-				<span>
-					{new Date(blog.data.date).toLocaleDateString("en-US", {
-						month: "long",
-						day: "numeric",
-						year: "numeric",
-					})}
-				</span>
-				<span>•</span>
-				<span>{blog.data.readingTime || "6 min read"}</span>
-			</div>
+					<div className="flex flex-col gap-6">
+						{/* Date & Reading Time */}
+						<div className="flex flex-col gap-3">
+							<div className="text-fg-secondary flex items-center gap-2 text-sm">
+								<span>
+									{new Date(blog.data.date).toLocaleDateString("en-US", {
+										month: "long",
+										day: "numeric",
+										year: "numeric",
+									})}
+								</span>
+								<span>•</span>
+								<span>{blog.data.readingTime || "6 min read"}</span>
+							</div>
 
-			{/* Main Title */}
-			<h1 className="heading-2 mb-6">{blog.data.title}</h1>
+							{/* Main Title */}
+							<h1 className="heading-2">{blog.data.title}</h1>
+						</div>
 
-			{/* Lead / Intro Paragraphs */}
-			{leadParagraphs.length > 0 && (
-				<div className="mb-8 space-y-4">
-					{leadParagraphs.map((paragraph, index) => (
-						<p
-							key={index}
-							className="text-fg-secondary text-base leading-relaxed">
-							{paragraph}
-						</p>
-					))}
-				</div>
-			)}
+						{/* Lead / Intro Paragraphs */}
+						{leadParagraphs.length > 0 && (
+							<div className="space-y-8">
+								{leadParagraphs.map((paragraph, index) => (
+									<p
+										key={index}
+										className="text-fg-secondary text-base leading-7 font-medium">
+										{paragraph}
+									</p>
+								))}
+							</div>
+						)}
+					</div>
 
-			{/* Author & Share Row */}
-			<div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-				{authors.length > 0 && (
-					<div className="flex flex-col gap-2">
-						<span className="text-fg-secondary text-xs">Author</span>
-						<div className="flex flex-wrap items-center gap-6">
-							{authors.map((author: any, index: number) => {
-								const authorKey = author.username || author.name || index
-								const content = (
-									<div className="hover:bg-fill1-alpha flex items-center gap-2.5 rounded-md p-2">
-										<Avatar size="32" className="size-8">
-											{author.avatar && (
-												<AvatarImage src={author.avatar} alt={author.name} />
-											)}
-											<AvatarFallback>
-												{author.name
-													? author.name.charAt(0).toUpperCase()
-													: "A"}
-											</AvatarFallback>
-										</Avatar>
-										<div className="flex flex-col">
-											<span className="text-fg text-sm font-medium">
-												{author.name}
-											</span>
-											{author.username && (
-												<span className="text-fg-secondary text-xs">
-													{author.username}
-												</span>
-											)}
-										</div>
-									</div>
-								)
+					{/* Author & Share Row */}
+					<div className="flex flex-col gap-4 pt-3 sm:flex-row sm:items-end sm:justify-between">
+						{authors.length > 0 && (
+							<div className="flex flex-col gap-2">
+								<span className="text-fg-secondary text-xs">Author</span>
+								<div className="flex flex-wrap items-center gap-3">
+									{authors.map((author, index) => {
+										const authorKey = author.username || author.name || index
+										const content = (
+											<div className="hover:bg-fill1-alpha flex items-center gap-2.5 rounded-md p-2">
+												<Avatar size="32">
+													{author.avatar && (
+														<AvatarImage
+															src={author.avatar}
+															alt={author.name}
+														/>
+													)}
+													<AvatarFallback>
+														{author.name
+															? author.name.charAt(0).toUpperCase()
+															: "A"}
+													</AvatarFallback>
+												</Avatar>
+												<div className="flex flex-col">
+													<span className="text-fg text-sm font-medium">
+														{author.name}
+													</span>
+													{author.username && (
+														<span className="text-fg-secondary text-xs">
+															{author.username}
+														</span>
+													)}
+												</div>
+											</div>
+										)
 
-								if (author.url) {
-									return (
-										<Link
-											key={authorKey}
-											target="_blank"
-											rel="noopener noreferrer"
-											href={author.url}>
-											{content}
-										</Link>
-									)
-								}
+										if (author.url) {
+											return (
+												<Link
+													key={authorKey}
+													target="_blank"
+													rel="noopener noreferrer"
+													href={author.url}>
+													{content}
+												</Link>
+											)
+										}
 
-								return <div key={authorKey}>{content}</div>
-							})}
+										return <div key={authorKey}>{content}</div>
+									})}
+								</div>
+							</div>
+						)}
+
+						<div className="self-end sm:self-auto">
+							<BlogShareButton title={blog.data.title} />
 						</div>
 					</div>
-				)}
-
-				<div className="self-end sm:self-auto">
-					<BlogShareButton title={blog.data.title} />
 				</div>
-			</div>
+			</section>
 
 			{/* Hero / Cover Image */}
-			<div className="border-border/50 bg-fill2 relative mb-12 aspect-[16/9] w-full overflow-hidden rounded-2xl border shadow-sm">
+			<section className="relative aspect-video w-full overflow-hidden rounded-xl">
 				<Image
 					fill
 					src={blog.data.image ?? "/carousel-home.png"}
@@ -216,20 +227,22 @@ export default async function BlogPage({ params }: BlogPageProps) {
 					priority
 					sizes="(min-width: 1280px) 1100px, (min-width: 1024px) 960px, 100vw"
 				/>
-			</div>
+			</section>
 
 			{/* Main Content + Table of Contents Layout */}
-			<div className="flex flex-col lg:flex-row lg:items-start lg:gap-16">
-				{/* Article Body */}
-				<article className="max-w-3xl min-w-0 flex-1">
-					<blog.data.body components={BlogComponents} />
-				</article>
+			<section className="my-15 xl:ml-80">
+				<div className="flex flex-col lg:flex-row lg:items-start lg:gap-15">
+					{/* Article Body */}
+					<article className="min-w-0 lg:w-200">
+						<blog.data.body components={BlogComponents} />
+					</article>
 
-				{/* In this Article (Table of Contents) */}
-				<aside className="sticky top-24 hidden w-64 shrink-0 lg:block">
-					<BlogTableOfContents headings={headings} />
-				</aside>
-			</div>
+					{/* In this Article (Table of Contents) */}
+					<aside className="sticky top-24 hidden w-64 shrink-0 lg:block">
+						<BlogTableOfContents headings={headings} />
+					</aside>
+				</div>
+			</section>
 		</>
 	)
 }

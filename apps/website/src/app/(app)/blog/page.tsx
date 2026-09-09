@@ -144,7 +144,7 @@ export default async function BlogPage({ params }: BlogListPageProps) {
 									{post.data.author && post.data.author.length > 0 && (
 										<>
 											<span className="text-fg text-sm font-medium">
-												{post.data.author.map((a: any) => a.name).join(", ")}
+												{post.data.author.map((a) => a.name).join(", ")}
 											</span>
 											<span className="text-fg-tertiary">•</span>
 										</>
