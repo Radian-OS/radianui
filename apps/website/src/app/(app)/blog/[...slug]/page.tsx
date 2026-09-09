@@ -98,7 +98,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
 		})) ?? []
 
 	return (
-		<>
+		<section className="px-4 sm:px-6 lg:px-8">
 			<JsonLd
 				id="blog-post-structured-data"
 				data={getBlogPostStructuredData({
@@ -243,6 +243,6 @@ export default async function BlogPage({ params }: BlogPageProps) {
 					</aside>
 				</div>
 			</section>
-		</>
+		</section>
 	)
 }

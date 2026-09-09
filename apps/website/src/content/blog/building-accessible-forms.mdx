@@ -1,0 +1,71 @@
+---
+title: "Building Accessible Forms with Radix Primitives & React Hook Form"
+description: "A deep dive into keyboard navigation, ARIA attributes, floating labels, and robust error validation for mission-critical form interfaces."
+date: "2026-08-20"
+card: "Components"
+image: "/ready-to-use-blocks.png"
+img: "/ready-to-use-blocks.png"
+readingTime: "4 min read"
+lead:
+  - "Forms are the primary point of interaction between your users and your application. When forms are confusing, inaccessible, or prone to validation errors, conversion drops dramatically."
+  - "Discover how to pair Radian UI form components with React Hook Form and Zod to construct rock-solid user experiences with zero accessibility regressions."
+author:
+  - name: "Noah Brooks"
+    username: "@noahbrooks"
+    avatar: "/media/male-1.jpg"
+    link: "https://example.com"
+  - name: "Simran Maharjan"
+    username: "@singh_simran"
+    avatar: "/media/female-3.jpg"
+    link: "https://example.com"
+---
+
+## Key Ingredients of Accessible Forms
+
+An accessible form must satisfy several criteria:
+
+- **Explicit Label Associations:** Form controls must be programmatically linked to `<label>` elements via `htmlFor` and `id`.
+- **Clear Error Announcements:** Validation messages should leverage `aria-describedby` and `aria-invalid` to be read aloud by assistive technologies.
+- **Predictable Keyboard Focus:** Tab order should be logical, and focus states should remain clearly visible.
+
+## Integrating React Hook Form with Radian Input
+
+Radian provides seamless integration with controlled form state:
+
+```tsx
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
+import { Button } from "@/registry/ui/button"
+import { Input, InputWrapper } from "@/registry/ui/input"
+
+const schema = z.object({
+	email: z.string().email("Please enter a valid work email"),
+})
+
+export function NewsletterForm() {
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm({
+		resolver: zodResolver(schema),
+	})
+
+	return (
+		<form onSubmit={handleSubmit((data) => console.log(data))}>
+			<InputWrapper>
+				<Input placeholder="name@company.com" {...register("email")} />
+			</InputWrapper>
+			{errors.email && (
+				<p className="text-error mt-1 text-xs">{errors.email.message}</p>
+			)}
+			<Button color="primary" type="submit">
+				Subscribe
+			</Button>
+		</form>
+	)
+}
+```
+
+Radian's input wrappers handle focus rings, sizing, and error states automatically, giving you consistent styling across every device.
