@@ -45,6 +45,7 @@ export const blog = defineCollections({
 		date: z.coerce.date(),
 		card: z.string().optional(),
 		image: z.string().optional(),
+		img: z.string().optional(),
 		readingTime: z.string().optional(),
 		lead: z.union([z.string(), z.array(z.string())]).optional(),
 		author: z

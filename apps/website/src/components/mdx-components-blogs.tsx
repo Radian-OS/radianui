@@ -318,7 +318,7 @@ export const BlogComponents: MDXComponents = {
 			src={src}
 			alt={alt || ""}
 			className={cn(
-				"border-border my-6 h-auto w-full max-w-full rounded-xl border object-cover",
+				"my-6 h-auto w-full max-w-full rounded-xl object-cover",
 				className
 			)}
 			{...props}

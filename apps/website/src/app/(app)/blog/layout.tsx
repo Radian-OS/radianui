@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react"
-import AvatarCTA from "@/app/(resources)/resources/(avatar)/docs/AvatarCTA"
+import CTASection from "@/components/home/cta-section"
 import Footer from "@/components/home/footer"
 
 interface BlogLayoutProps {
@@ -8,11 +8,9 @@ interface BlogLayoutProps {
 
 const BlogLayout = ({ children }: BlogLayoutProps) => {
 	return (
-		<div className="flex flex-col gap-4">
-			<div className="mx-auto mt-6 mb-32 w-full max-w-5xl px-4 sm:px-6 lg:px-8">
-				{children}
-			</div>
-			<AvatarCTA />
+		<div className="flex flex-col">
+			<div className="mx-auto w-full max-w-360">{children}</div>
+			<CTASection />
 			<Footer />
 		</div>
 	)

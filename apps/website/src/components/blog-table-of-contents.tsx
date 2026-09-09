@@ -105,12 +105,12 @@ export function BlogTableOfContents({ headings }: BlogTableOfContentsProps) {
 	if (!headings.length) return null
 
 	return (
-		<nav aria-label="Table of Contents" className="flex flex-col text-sm">
-			<span className="text-fg mb-4 text-sm font-semibold tracking-tight">
+		<nav aria-label="Table of Contents" className="flex flex-col gap-1 text-sm">
+			<span className="text-fg py-2 text-[18px] font-semibold tracking-tight">
 				In this Article
 			</span>
 
-			<ul className="flex flex-col space-y-2.5">
+			<ul className="flex flex-col">
 				{headings.map((heading) => {
 					const isActive = activeHeadingId === heading.id
 					return (
@@ -120,7 +120,7 @@ export function BlogTableOfContents({ headings }: BlogTableOfContentsProps) {
 								onClick={(e) => handleHeadingClick(e, heading.id)}
 								title={heading.text}
 								className={cn(
-									"block text-sm transition-colors",
+									"block py-2 text-sm transition-colors",
 									isActive
 										? "font-medium text-indigo-600 dark:text-indigo-400"
 										: "text-fg-secondary hover:text-fg"

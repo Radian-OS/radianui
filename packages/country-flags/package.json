@@ -1,0 +1,71 @@
+{
+	"name": "@radianui/country-flags",
+	"version": "0.1.0",
+	"description": "Accessible country flag components for React and React frameworks.",
+	"type": "module",
+	"sideEffects": false,
+	"main": "./dist/index.js",
+	"module": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js",
+			"default": "./dist/index.js"
+		},
+		"./package.json": "./package.json"
+	},
+	"files": [
+		"dist",
+		"LICENSE",
+		"README.md"
+	],
+	"scripts": {
+		"build": "pnpm validate:source && pnpm generate && tsup",
+		"check-types": "pnpm generate && tsc --noEmit",
+		"dev": "pnpm generate && tsup --watch",
+		"generate": "tsx scripts/generate.ts",
+		"sync:manifest": "tsx scripts/sync-manifest.ts",
+		"test": "pnpm generate && tsx scripts/test.tsx",
+		"validate:source": "tsx scripts/validate-source.ts",
+		"prepack": "pnpm build",
+		"prepublishOnly": "pnpm check-types && pnpm test"
+	},
+	"keywords": [
+		"country-flags",
+		"flags",
+		"react",
+		"svg",
+		"radianui"
+	],
+	"author": "RadianOS <radianos44@gmail.com> (https://radianui.com)",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Radian-OS/radianui.git",
+		"directory": "packages/country-flags"
+	},
+	"homepage": "https://radianui.com",
+	"bugs": {
+		"url": "https://github.com/Radian-OS/radianui/issues"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"engines": {
+		"node": ">=18"
+	},
+	"peerDependencies": {
+		"react": "^18.2.0 || ^19.0.0"
+	},
+	"devDependencies": {
+		"@types/node": "^26.4.0",
+		"@types/react": "^19.2.18",
+		"@types/react-dom": "^19.2.5",
+		"react": "^19.2.8",
+		"react-dom": "^19.2.8",
+		"tsup": "^8.5.1",
+		"tsx": "^4.23.12",
+		"typescript": "^5.9.3"
+	}
+}
