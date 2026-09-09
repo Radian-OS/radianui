@@ -20,6 +20,7 @@ export type ProjectInfo = {
 	isTsx: boolean
 	tailwindConfigFile: string | null
 	tailwindCssFile: string | null
+	utilityCssFile: string | null
 	aliasPrefix: string | null
 }
 
@@ -30,6 +31,7 @@ export const getProjectInfo = async (cwd: string): Promise<ProjectInfo> => {
 		isTsx,
 		tailwindConfigFile,
 		tailwindCssFile,
+		utilityCssFile,
 		aliasPrefix,
 	] = await Promise.all([
 		getConfigFile(cwd),
@@ -37,6 +39,7 @@ export const getProjectInfo = async (cwd: string): Promise<ProjectInfo> => {
 		getIsTypescriptProject(cwd),
 		getTailwindConfigFile(cwd),
 		getTailwindCssFile(cwd),
+		getUtilityCssFile(cwd),
 		getAliasPrefixFromTsConfigFile(cwd),
 	])
 
@@ -51,6 +54,7 @@ export const getProjectInfo = async (cwd: string): Promise<ProjectInfo> => {
 		isTsx,
 		tailwindConfigFile,
 		tailwindCssFile,
+		utilityCssFile,
 		aliasPrefix,
 	}
 
@@ -120,6 +124,20 @@ export const getTailwindCssFile = async (cwd: string) => {
 	}
 
 	return null
+}
+
+export const getUtilityCssFile = async (cwd: string) => {
+	const files = await fg.glob(["**/utility.css"], {
+		cwd,
+		deep: 5,
+		ignore: PROJECT_SHARED_IGNORE,
+	})
+
+	if (!files.length) {
+		return null
+	}
+
+	return files[0]
 }
 
 export const getTypescriptConfig = async () => {
