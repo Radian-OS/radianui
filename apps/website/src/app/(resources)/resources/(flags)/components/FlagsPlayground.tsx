@@ -464,7 +464,7 @@ export default function FlagsPlayground({
 					))}
 				</ul>
 			) : (
-				<div className="border-soft bg-fill1 flex min-h-40 items-center justify-center rounded-lg border border-dashed text-center">
+				<div className="flex min-h-40 items-center justify-center">
 					{/* <p className="text-fg-secondary text-sm">No flags match “{query}”.</p> */}
 					<Empty>
 						<EmptyMedia>

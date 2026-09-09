@@ -1,0 +1,1556 @@
+{
+	"schemaVersion": 1,
+	"license": "MIT",
+	"copyright": "Copyright (c) 2026 RadianOS",
+	"flags": [
+		{
+			"id": "abkhazia",
+			"name": "Abkhazia",
+			"file": "abkhazia.svg",
+			"codes": ["GE-AB"]
+		},
+		{
+			"id": "afghanistan",
+			"name": "Afghanistan",
+			"file": "afghanistan.svg",
+			"codes": ["AF"]
+		},
+		{
+			"id": "aland-islands",
+			"name": "Åland Islands",
+			"file": "aland-islands.svg",
+			"codes": ["AX"]
+		},
+		{
+			"id": "albania",
+			"name": "Albania",
+			"file": "albania.svg",
+			"codes": ["AL"]
+		},
+		{
+			"id": "algeria",
+			"name": "Algeria",
+			"file": "algeria.svg",
+			"codes": ["DZ"]
+		},
+		{
+			"id": "american-samoa",
+			"name": "American Samoa",
+			"file": "american-samoa.svg",
+			"codes": ["AS"]
+		},
+		{
+			"id": "andorra",
+			"name": "Andorra",
+			"file": "andorra.svg",
+			"codes": ["AD"]
+		},
+		{
+			"id": "angola",
+			"name": "Angola",
+			"file": "angola.svg",
+			"codes": ["AO"]
+		},
+		{
+			"id": "anguilla",
+			"name": "Anguilla",
+			"file": "anguilla.svg",
+			"codes": ["AI"]
+		},
+		{
+			"id": "antigua-and-barbuda",
+			"name": "Antigua and Barbuda",
+			"file": "antigua-and-barbuda.svg",
+			"codes": ["AG"]
+		},
+		{
+			"id": "argentina",
+			"name": "Argentina",
+			"file": "argentina.svg",
+			"codes": ["AR"]
+		},
+		{
+			"id": "armenia",
+			"name": "Armenia",
+			"file": "armenia.svg",
+			"codes": ["AM"]
+		},
+		{
+			"id": "aruba",
+			"name": "Aruba",
+			"file": "aruba.svg",
+			"codes": ["AW"]
+		},
+		{
+			"id": "australia",
+			"name": "Australia",
+			"file": "australia.svg",
+			"codes": ["AU"]
+		},
+		{
+			"id": "austria",
+			"name": "Austria",
+			"file": "austria.svg",
+			"codes": ["AT"]
+		},
+		{
+			"id": "azerbaijan",
+			"name": "Azerbaijan",
+			"file": "azerbaijan.svg",
+			"codes": ["AZ"]
+		},
+		{
+			"id": "azores-islands",
+			"name": "Azores Islands",
+			"file": "azores-islands.svg",
+			"codes": ["PT-20"]
+		},
+		{
+			"id": "bahamas",
+			"name": "Bahamas",
+			"file": "bahamas.svg",
+			"codes": ["BS"]
+		},
+		{
+			"id": "bahrain",
+			"name": "Bahrain",
+			"file": "bahrain.svg",
+			"codes": ["BH"]
+		},
+		{
+			"id": "balearic-islands",
+			"name": "Balearic Islands",
+			"file": "balearic-islands.svg",
+			"codes": ["ES-IB"]
+		},
+		{
+			"id": "bangladesh",
+			"name": "Bangladesh",
+			"file": "bangladesh.svg",
+			"codes": ["BD"]
+		},
+		{
+			"id": "barbados",
+			"name": "Barbados",
+			"file": "barbados.svg",
+			"codes": ["BB"]
+		},
+		{
+			"id": "basque-country",
+			"name": "Basque Country",
+			"file": "basque-country.svg",
+			"codes": ["ES-PV"]
+		},
+		{
+			"id": "belarus",
+			"name": "Belarus",
+			"file": "belarus.svg",
+			"codes": ["BY"]
+		},
+		{
+			"id": "belgium",
+			"name": "Belgium",
+			"file": "belgium.svg",
+			"codes": ["BE"]
+		},
+		{
+			"id": "belize",
+			"name": "Belize",
+			"file": "belize.svg",
+			"codes": ["BZ"]
+		},
+		{
+			"id": "benin",
+			"name": "Benin",
+			"file": "benin.svg",
+			"codes": ["BJ"]
+		},
+		{
+			"id": "bermuda",
+			"name": "Bermuda",
+			"file": "bermuda.svg",
+			"codes": ["BM"]
+		},
+		{
+			"id": "bhutan",
+			"name": "Bhutan",
+			"file": "bhutan.svg",
+			"codes": ["BT"]
+		},
+		{
+			"id": "bolivia",
+			"name": "Bolivia",
+			"file": "bolivia.svg",
+			"codes": ["BO"]
+		},
+		{
+			"id": "bonaire",
+			"name": "Bonaire",
+			"file": "bonaire.svg",
+			"codes": ["BQ", "BQ-BO"]
+		},
+		{
+			"id": "bosnia-and-herzegovina",
+			"name": "Bosnia and Herzegovina",
+			"file": "bosnia-and-herzegovina.svg",
+			"codes": ["BA"]
+		},
+		{
+			"id": "botswana",
+			"name": "Botswana",
+			"file": "botswana.svg",
+			"codes": ["BW"]
+		},
+		{
+			"id": "brazil",
+			"name": "Brazil",
+			"file": "brazil.svg",
+			"codes": ["BR"]
+		},
+		{
+			"id": "british-columbia",
+			"name": "British Columbia",
+			"file": "british-columbia.svg",
+			"codes": ["CA-BC"]
+		},
+		{
+			"id": "british-indian-ocean-territory",
+			"name": "British Indian Ocean Territory",
+			"file": "british-indian-ocean-territory.svg",
+			"codes": ["IO"]
+		},
+		{
+			"id": "british-virgin-islands",
+			"name": "British Virgin Islands",
+			"file": "british-virgin-islands.svg",
+			"codes": ["VG"]
+		},
+		{
+			"id": "brunei",
+			"name": "Brunei",
+			"file": "brunei.svg",
+			"codes": ["BN"]
+		},
+		{
+			"id": "bulgaria",
+			"name": "Bulgaria",
+			"file": "bulgaria.svg",
+			"codes": ["BG"]
+		},
+		{
+			"id": "burkina-faso",
+			"name": "Burkina Faso",
+			"file": "burkina-faso.svg",
+			"codes": ["BF"]
+		},
+		{
+			"id": "burundi",
+			"name": "Burundi",
+			"file": "burundi.svg",
+			"codes": ["BI"]
+		},
+		{
+			"id": "cambodia",
+			"name": "Cambodia",
+			"file": "cambodia.svg",
+			"codes": ["KH"]
+		},
+		{
+			"id": "cameroon",
+			"name": "Cameroon",
+			"file": "cameroon.svg",
+			"codes": ["CM"]
+		},
+		{
+			"id": "canada",
+			"name": "Canada",
+			"file": "canada.svg",
+			"codes": ["CA"]
+		},
+		{
+			"id": "canary-islands",
+			"name": "Canary Islands",
+			"file": "canary-islands.svg",
+			"codes": ["ES-CN"]
+		},
+		{
+			"id": "cape-verde",
+			"name": "Cape Verde",
+			"file": "cape-verde.svg",
+			"codes": ["CV"]
+		},
+		{
+			"id": "cayman-islands",
+			"name": "Cayman Islands",
+			"file": "cayman-islands.svg",
+			"codes": ["KY"]
+		},
+		{
+			"id": "central-african-republic",
+			"name": "Central African Republic",
+			"file": "central-african-republic.svg",
+			"codes": ["CF"]
+		},
+		{
+			"id": "ceuta",
+			"name": "Ceuta",
+			"file": "ceuta.svg",
+			"codes": ["ES-CE"]
+		},
+		{
+			"id": "chad",
+			"name": "Chad",
+			"file": "chad.svg",
+			"codes": ["TD"]
+		},
+		{
+			"id": "chile",
+			"name": "Chile",
+			"file": "chile.svg",
+			"codes": ["CL"]
+		},
+		{
+			"id": "china",
+			"name": "China",
+			"file": "china.svg",
+			"codes": ["CN"]
+		},
+		{
+			"id": "christmas-island",
+			"name": "Christmas Island",
+			"file": "christmas-island.svg",
+			"codes": ["CX"]
+		},
+		{
+			"id": "cocos-islands",
+			"name": "Cocos Islands",
+			"file": "cocos-islands.svg",
+			"codes": ["CC"]
+		},
+		{
+			"id": "colombia",
+			"name": "Colombia",
+			"file": "colombia.svg",
+			"codes": ["CO"]
+		},
+		{
+			"id": "comoros",
+			"name": "Comoros",
+			"file": "comoros.svg",
+			"codes": ["KM"]
+		},
+		{
+			"id": "cook-islands",
+			"name": "Cook Islands",
+			"file": "cook-islands.svg",
+			"codes": ["CK"]
+		},
+		{
+			"id": "corsica",
+			"name": "Corsica",
+			"file": "corsica.svg",
+			"codes": ["FR-20R"]
+		},
+		{
+			"id": "costa-rica",
+			"name": "Costa Rica",
+			"file": "costa-rica.svg",
+			"codes": ["CR"]
+		},
+		{
+			"id": "croatia",
+			"name": "Croatia",
+			"file": "croatia.svg",
+			"codes": ["HR"]
+		},
+		{
+			"id": "cuba",
+			"name": "Cuba",
+			"file": "cuba.svg",
+			"codes": ["CU"]
+		},
+		{
+			"id": "curacao",
+			"name": "Curacao",
+			"file": "curacao.svg",
+			"codes": ["CW"]
+		},
+		{
+			"id": "czech-republic",
+			"name": "Czech Republic",
+			"file": "czech-republic.svg",
+			"codes": ["CZ"]
+		},
+		{
+			"id": "democratic-republic-of-the-congo",
+			"name": "Democratic Republic of the Congo",
+			"file": "democratic-republic-of-the-congo.svg",
+			"codes": ["CD"]
+		},
+		{
+			"id": "denmark",
+			"name": "Denmark",
+			"file": "denmark.svg",
+			"codes": ["DK"]
+		},
+		{
+			"id": "djibouti",
+			"name": "Djibouti",
+			"file": "djibouti.svg",
+			"codes": ["DJ"]
+		},
+		{
+			"id": "dominica",
+			"name": "Dominica",
+			"file": "dominica.svg",
+			"codes": ["DM"]
+		},
+		{
+			"id": "dominican-republic",
+			"name": "Dominican Republic",
+			"file": "dominican-republic.svg",
+			"codes": ["DO"]
+		},
+		{
+			"id": "east-timor",
+			"name": "East Timor",
+			"file": "east-timor.svg",
+			"codes": ["TL"]
+		},
+		{
+			"id": "ecuador",
+			"name": "Ecuador",
+			"file": "ecuador.svg",
+			"codes": ["EC"]
+		},
+		{
+			"id": "egypt",
+			"name": "Egypt",
+			"file": "egypt.svg",
+			"codes": ["EG"]
+		},
+		{
+			"id": "el-salvador",
+			"name": "El Salvador",
+			"file": "el-salvador.svg",
+			"codes": ["SV"]
+		},
+		{
+			"id": "england",
+			"name": "England",
+			"file": "england.svg",
+			"codes": ["GB-ENG"]
+		},
+		{
+			"id": "equatorial-guinea",
+			"name": "Equatorial Guinea",
+			"file": "equatorial-guinea.svg",
+			"codes": ["GQ"]
+		},
+		{
+			"id": "eritrea",
+			"name": "Eritrea",
+			"file": "eritrea.svg",
+			"codes": ["ER"]
+		},
+		{
+			"id": "estonia",
+			"name": "Estonia",
+			"file": "estonia.svg",
+			"codes": ["EE"]
+		},
+		{
+			"id": "ethiopia",
+			"name": "Ethiopia",
+			"file": "ethiopia.svg",
+			"codes": ["ET"]
+		},
+		{
+			"id": "european-union",
+			"name": "European Union",
+			"file": "european-union.svg",
+			"codes": ["EU"]
+		},
+		{
+			"id": "falkland-islands",
+			"name": "Falkland Islands",
+			"file": "falkland-islands.svg",
+			"codes": ["FK"]
+		},
+		{
+			"id": "fiji",
+			"name": "Fiji",
+			"file": "fiji.svg",
+			"codes": ["FJ"]
+		},
+		{
+			"id": "finland",
+			"name": "Finland",
+			"file": "finland.svg",
+			"codes": ["FI"]
+		},
+		{
+			"id": "france",
+			"name": "France",
+			"file": "france.svg",
+			"codes": ["FR"]
+		},
+		{
+			"id": "french-polynesia",
+			"name": "French Polynesia",
+			"file": "french-polynesia.svg",
+			"codes": ["PF"]
+		},
+		{
+			"id": "gabon",
+			"name": "Gabon",
+			"file": "gabon.svg",
+			"codes": ["GA"]
+		},
+		{
+			"id": "galapagos-islands",
+			"name": "Galapagos Islands",
+			"file": "galapagos-islands.svg",
+			"codes": ["EC-W"]
+		},
+		{
+			"id": "gambia",
+			"name": "Gambia",
+			"file": "gambia.svg",
+			"codes": ["GM"]
+		},
+		{
+			"id": "georgia",
+			"name": "Georgia",
+			"file": "georgia.svg",
+			"codes": ["GE"]
+		},
+		{
+			"id": "germany",
+			"name": "Germany",
+			"file": "germany.svg",
+			"codes": ["DE"]
+		},
+		{
+			"id": "ghana",
+			"name": "Ghana",
+			"file": "ghana.svg",
+			"codes": ["GH"]
+		},
+		{
+			"id": "gibraltar",
+			"name": "Gibraltar",
+			"file": "gibraltar.svg",
+			"codes": ["GI"]
+		},
+		{
+			"id": "greece",
+			"name": "Greece",
+			"file": "greece.svg",
+			"codes": ["GR"]
+		},
+		{
+			"id": "greenland",
+			"name": "Greenland",
+			"file": "greenland.svg",
+			"codes": ["GL"]
+		},
+		{
+			"id": "grenada",
+			"name": "Grenada",
+			"file": "grenada.svg",
+			"codes": ["GD"]
+		},
+		{
+			"id": "guam",
+			"name": "Guam",
+			"file": "guam.svg",
+			"codes": ["GU"]
+		},
+		{
+			"id": "guatemala",
+			"name": "Guatemala",
+			"file": "guatemala.svg",
+			"codes": ["GT"]
+		},
+		{
+			"id": "guernsey",
+			"name": "Guernsey",
+			"file": "guernsey.svg",
+			"codes": ["GG"]
+		},
+		{
+			"id": "guinea",
+			"name": "Guinea",
+			"file": "guinea.svg",
+			"codes": ["GN"]
+		},
+		{
+			"id": "guinea-bissau",
+			"name": "Guinea-Bissau",
+			"file": "guinea-bissau.svg",
+			"codes": ["GW"]
+		},
+		{
+			"id": "haiti",
+			"name": "Haiti",
+			"file": "haiti.svg",
+			"codes": ["HT"]
+		},
+		{
+			"id": "hawaii",
+			"name": "Hawaii",
+			"file": "hawaii.svg",
+			"codes": ["US-HI"]
+		},
+		{
+			"id": "honduras",
+			"name": "Honduras",
+			"file": "honduras.svg",
+			"codes": ["HN"]
+		},
+		{
+			"id": "hong-kong",
+			"name": "Hong Kong",
+			"file": "hong-kong.svg",
+			"codes": ["HK"]
+		},
+		{
+			"id": "hungary",
+			"name": "Hungary",
+			"file": "hungary.svg",
+			"codes": ["HU"]
+		},
+		{
+			"id": "iceland",
+			"name": "Iceland",
+			"file": "iceland.svg",
+			"codes": ["IS"]
+		},
+		{
+			"id": "india",
+			"name": "India",
+			"file": "india.svg",
+			"codes": ["IN"]
+		},
+		{
+			"id": "indonesia",
+			"name": "Indonesia",
+			"file": "indonesia.svg",
+			"codes": ["ID"]
+		},
+		{
+			"id": "iran",
+			"name": "Iran",
+			"file": "iran.svg",
+			"codes": ["IR"]
+		},
+		{
+			"id": "iraq",
+			"name": "Iraq",
+			"file": "iraq.svg",
+			"codes": ["IQ"]
+		},
+		{
+			"id": "ireland",
+			"name": "Ireland",
+			"file": "ireland.svg",
+			"codes": ["IE"]
+		},
+		{
+			"id": "isle-of-man",
+			"name": "Isle of Man",
+			"file": "isle-of-man.svg",
+			"codes": ["IM"]
+		},
+		{
+			"id": "israel",
+			"name": "Israel",
+			"file": "israel.svg",
+			"codes": ["IL"]
+		},
+		{
+			"id": "italy",
+			"name": "Italy",
+			"file": "italy.svg",
+			"codes": ["IT"]
+		},
+		{
+			"id": "ivory-coast",
+			"name": "Ivory Coast",
+			"file": "ivory-coast.svg",
+			"codes": ["CI"]
+		},
+		{
+			"id": "jamaica",
+			"name": "Jamaica",
+			"file": "jamaica.svg",
+			"codes": ["JM"]
+		},
+		{
+			"id": "japan",
+			"name": "Japan",
+			"file": "japan.svg",
+			"codes": ["JP"]
+		},
+		{
+			"id": "jersey",
+			"name": "Jersey",
+			"file": "jersey.svg",
+			"codes": ["JE"]
+		},
+		{
+			"id": "jordan",
+			"name": "Jordan",
+			"file": "jordan.svg",
+			"codes": ["JO"]
+		},
+		{
+			"id": "kazakhstan",
+			"name": "Kazakhstan",
+			"file": "kazakhstan.svg",
+			"codes": ["KZ"]
+		},
+		{
+			"id": "kenya",
+			"name": "Kenya",
+			"file": "kenya.svg",
+			"codes": ["KE"]
+		},
+		{
+			"id": "kiribati",
+			"name": "Kiribati",
+			"file": "kiribati.svg",
+			"codes": ["KI"]
+		},
+		{
+			"id": "kosovo",
+			"name": "Kosovo",
+			"file": "kosovo.svg",
+			"codes": ["XK"]
+		},
+		{
+			"id": "kuwait",
+			"name": "Kuwait",
+			"file": "kuwait.svg",
+			"codes": ["KW"]
+		},
+		{
+			"id": "kyrgyzstan",
+			"name": "Kyrgyzstan",
+			"file": "kyrgyzstan.svg",
+			"codes": ["KG"]
+		},
+		{
+			"id": "laos",
+			"name": "Laos",
+			"file": "laos.svg",
+			"codes": ["LA"]
+		},
+		{
+			"id": "latvia",
+			"name": "Latvia",
+			"file": "latvia.svg",
+			"codes": ["LV"]
+		},
+		{
+			"id": "lebanon",
+			"name": "Lebanon",
+			"file": "lebanon.svg",
+			"codes": ["LB"]
+		},
+		{
+			"id": "lesotho",
+			"name": "Lesotho",
+			"file": "lesotho.svg",
+			"codes": ["LS"]
+		},
+		{
+			"id": "liberia",
+			"name": "Liberia",
+			"file": "liberia.svg",
+			"codes": ["LR"]
+		},
+		{
+			"id": "libya",
+			"name": "Libya",
+			"file": "libya.svg",
+			"codes": ["LY"]
+		},
+		{
+			"id": "liechtenstein",
+			"name": "Liechtenstein",
+			"file": "liechtenstein.svg",
+			"codes": ["LI"]
+		},
+		{
+			"id": "lithuania",
+			"name": "Lithuania",
+			"file": "lithuania.svg",
+			"codes": ["LT"]
+		},
+		{
+			"id": "luxembourg",
+			"name": "Luxembourg",
+			"file": "luxembourg.svg",
+			"codes": ["LU"]
+		},
+		{
+			"id": "macao",
+			"name": "Macao",
+			"file": "macao.svg",
+			"codes": ["MO"]
+		},
+		{
+			"id": "madagascar",
+			"name": "Madagascar",
+			"file": "madagascar.svg",
+			"codes": ["MG"]
+		},
+		{
+			"id": "madeira",
+			"name": "Madeira",
+			"file": "madeira.svg",
+			"codes": ["PT-30"]
+		},
+		{
+			"id": "malawi",
+			"name": "Malawi",
+			"file": "malawi.svg",
+			"codes": ["MW"]
+		},
+		{
+			"id": "malaysia",
+			"name": "Malaysia",
+			"file": "malaysia.svg",
+			"codes": ["MY"]
+		},
+		{
+			"id": "maldives",
+			"name": "Maldives",
+			"file": "maldives.svg",
+			"codes": ["MV"]
+		},
+		{
+			"id": "mali",
+			"name": "Mali",
+			"file": "mali.svg",
+			"codes": ["ML"]
+		},
+		{
+			"id": "malta",
+			"name": "Malta",
+			"file": "malta.svg",
+			"codes": ["MT"]
+		},
+		{
+			"id": "marshall-islands",
+			"name": "Marshall Islands",
+			"file": "marshall-islands.svg",
+			"codes": ["MH"]
+		},
+		{
+			"id": "martinique",
+			"name": "Martinique",
+			"file": "martinique.svg",
+			"codes": ["MQ"]
+		},
+		{
+			"id": "mauritania",
+			"name": "Mauritania",
+			"file": "mauritania.svg",
+			"codes": ["MR"]
+		},
+		{
+			"id": "mauritius",
+			"name": "Mauritius",
+			"file": "mauritius.svg",
+			"codes": ["MU"]
+		},
+		{
+			"id": "melilla",
+			"name": "Melilla",
+			"file": "melilla.svg",
+			"codes": ["ES-ML"]
+		},
+		{
+			"id": "mexico",
+			"name": "Mexico",
+			"file": "mexico.svg",
+			"codes": ["MX"]
+		},
+		{
+			"id": "micronesia",
+			"name": "Micronesia",
+			"file": "micronesia.svg",
+			"codes": ["FM"]
+		},
+		{
+			"id": "moldova",
+			"name": "Moldova",
+			"file": "moldova.svg",
+			"codes": ["MD"]
+		},
+		{
+			"id": "monaco",
+			"name": "Monaco",
+			"file": "monaco.svg",
+			"codes": ["MC"]
+		},
+		{
+			"id": "mongolia",
+			"name": "Mongolia",
+			"file": "mongolia.svg",
+			"codes": ["MN"]
+		},
+		{
+			"id": "montenegro",
+			"name": "Montenegro",
+			"file": "montenegro.svg",
+			"codes": ["ME"]
+		},
+		{
+			"id": "montserrat",
+			"name": "Montserrat",
+			"file": "montserrat.svg",
+			"codes": ["MS"]
+		},
+		{
+			"id": "morocco",
+			"name": "Morocco",
+			"file": "morocco.svg",
+			"codes": ["MA"]
+		},
+		{
+			"id": "mozambique",
+			"name": "Mozambique",
+			"file": "mozambique.svg",
+			"codes": ["MZ"]
+		},
+		{
+			"id": "myanmar",
+			"name": "Myanmar",
+			"file": "myanmar.svg",
+			"codes": ["MM"]
+		},
+		{
+			"id": "namibia",
+			"name": "Namibia",
+			"file": "namibia.svg",
+			"codes": ["NA"]
+		},
+		{
+			"id": "nato",
+			"name": "NATO",
+			"file": "nato.svg",
+			"codes": ["NATO"]
+		},
+		{
+			"id": "nauru",
+			"name": "Nauru",
+			"file": "nauru.svg",
+			"codes": ["NR"]
+		},
+		{
+			"id": "nepal",
+			"name": "Nepal",
+			"file": "nepal.svg",
+			"circleViewBox": "0 6.6207 10.7586 10.7586",
+			"codes": ["NP"]
+		},
+		{
+			"id": "netherlands",
+			"name": "Netherlands",
+			"file": "netherlands.svg",
+			"codes": ["NL"]
+		},
+		{
+			"id": "new-zealand",
+			"name": "New Zealand",
+			"file": "new-zealand.svg",
+			"codes": ["NZ"]
+		},
+		{
+			"id": "nicaragua",
+			"name": "Nicaragua",
+			"file": "nicaragua.svg",
+			"codes": ["NI"]
+		},
+		{
+			"id": "niger",
+			"name": "Niger",
+			"file": "niger.svg",
+			"codes": ["NE"]
+		},
+		{
+			"id": "nigeria",
+			"name": "Nigeria",
+			"file": "nigeria.svg",
+			"codes": ["NG"]
+		},
+		{
+			"id": "niue",
+			"name": "Niue",
+			"file": "niue.svg",
+			"codes": ["NU"]
+		},
+		{
+			"id": "norfolk-island",
+			"name": "Norfolk Island",
+			"file": "norfolk-island.svg",
+			"codes": ["NF"]
+		},
+		{
+			"id": "north-korea",
+			"name": "North Korea",
+			"file": "north-korea.svg",
+			"codes": ["KP"]
+		},
+		{
+			"id": "northern-cyprus",
+			"name": "Northern Cyprus",
+			"file": "northern-cyprus.svg",
+			"codes": ["CY-TRNC"]
+		},
+		{
+			"id": "northern-mariana-islands",
+			"name": "Northern Mariana Islands",
+			"file": "northern-mariana-islands.svg",
+			"codes": ["MP"]
+		},
+		{
+			"id": "norway",
+			"name": "Norway",
+			"file": "norway.svg",
+			"codes": ["NO"]
+		},
+		{
+			"id": "oman",
+			"name": "Oman",
+			"file": "oman.svg",
+			"codes": ["OM"]
+		},
+		{
+			"id": "pakistan",
+			"name": "Pakistan",
+			"file": "pakistan.svg",
+			"codes": ["PK"]
+		},
+		{
+			"id": "palau",
+			"name": "Palau",
+			"file": "palau.svg",
+			"codes": ["PW"]
+		},
+		{
+			"id": "palestine",
+			"name": "Palestine",
+			"file": "palestine.svg",
+			"codes": ["PS"]
+		},
+		{
+			"id": "panama",
+			"name": "Panama",
+			"file": "panama.svg",
+			"codes": ["PA"]
+		},
+		{
+			"id": "papua-new-guinea",
+			"name": "Papua New Guinea",
+			"file": "papua-new-guinea.svg",
+			"codes": ["PG"]
+		},
+		{
+			"id": "paraguay",
+			"name": "Paraguay",
+			"file": "paraguay.svg",
+			"codes": ["PY"]
+		},
+		{
+			"id": "peru",
+			"name": "Peru",
+			"file": "peru.svg",
+			"codes": ["PE"]
+		},
+		{
+			"id": "philippines",
+			"name": "Philippines",
+			"file": "philippines.svg",
+			"codes": ["PH"]
+		},
+		{
+			"id": "pitcairn-islands",
+			"name": "Pitcairn Islands",
+			"file": "pitcairn-islands.svg",
+			"codes": ["PN"]
+		},
+		{
+			"id": "placeholder",
+			"name": "Placeholder",
+			"file": "placeholder.svg",
+			"codes": []
+		},
+		{
+			"id": "poland",
+			"name": "Poland",
+			"file": "poland.svg",
+			"codes": ["PL"]
+		},
+		{
+			"id": "portugal",
+			"name": "Portugal",
+			"file": "portugal.svg",
+			"codes": ["PT"]
+		},
+		{
+			"id": "puerto-rico",
+			"name": "Puerto Rico",
+			"file": "puerto-rico.svg",
+			"codes": ["PR"]
+		},
+		{
+			"id": "qatar",
+			"name": "Qatar",
+			"file": "qatar.svg",
+			"codes": ["QA"]
+		},
+		{
+			"id": "rapa-nui",
+			"name": "Rapa Nui",
+			"file": "rapa-nui.svg",
+			"codes": ["CL-VS"]
+		},
+		{
+			"id": "republic-of-macedonia",
+			"name": "Republic of Macedonia",
+			"file": "republic-of-macedonia.svg",
+			"codes": ["MK"]
+		},
+		{
+			"id": "republic-of-the-congo",
+			"name": "Republic of the Congo",
+			"file": "republic-of-the-congo.svg",
+			"codes": ["CG"]
+		},
+		{
+			"id": "romania",
+			"name": "Romania",
+			"file": "romania.svg",
+			"codes": ["RO"]
+		},
+		{
+			"id": "russia",
+			"name": "Russia",
+			"file": "russia.svg",
+			"codes": ["RU"]
+		},
+		{
+			"id": "rwanda",
+			"name": "Rwanda",
+			"file": "rwanda.svg",
+			"codes": ["RW"]
+		},
+		{
+			"id": "saba-island",
+			"name": "Saba Island",
+			"file": "saba-island.svg",
+			"codes": ["BQ-SA"]
+		},
+		{
+			"id": "sahrawi-arab-democratic-republic",
+			"name": "Sahrawi Arab Democratic Republic",
+			"file": "sahrawi-arab-democratic-republic.svg",
+			"codes": ["EH"]
+		},
+		{
+			"id": "saint-kitts-and-nevis",
+			"name": "Saint Kitts and Nevis",
+			"file": "saint-kitts-and-nevis.svg",
+			"codes": ["KN"]
+		},
+		{
+			"id": "samoa",
+			"name": "Samoa",
+			"file": "samoa.svg",
+			"codes": ["WS"]
+		},
+		{
+			"id": "san-marino",
+			"name": "San Marino",
+			"file": "san-marino.svg",
+			"codes": ["SM"]
+		},
+		{
+			"id": "sao-tome-and-principe",
+			"name": "São Tomé and Príncipe",
+			"file": "sao-tome-and-principe.svg",
+			"codes": ["ST"]
+		},
+		{
+			"id": "sardinia",
+			"name": "Sardinia",
+			"file": "sardinia.svg",
+			"codes": ["IT-88"]
+		},
+		{
+			"id": "saudi-arabia",
+			"name": "Saudi Arabia",
+			"file": "saudi-arabia.svg",
+			"codes": ["SA"]
+		},
+		{
+			"id": "scotland",
+			"name": "Scotland",
+			"file": "scotland.svg",
+			"codes": ["GB-SCT"]
+		},
+		{
+			"id": "senegal",
+			"name": "Senegal",
+			"file": "senegal.svg",
+			"codes": ["SN"]
+		},
+		{
+			"id": "serbia",
+			"name": "Serbia",
+			"file": "serbia.svg",
+			"codes": ["RS"]
+		},
+		{
+			"id": "seychelles",
+			"name": "Seychelles",
+			"file": "seychelles.svg",
+			"codes": ["SC"]
+		},
+		{
+			"id": "sierra-leone",
+			"name": "Sierra Leone",
+			"file": "sierra-leone.svg",
+			"codes": ["SL"]
+		},
+		{
+			"id": "singapore",
+			"name": "Singapore",
+			"file": "singapore.svg",
+			"codes": ["SG"]
+		},
+		{
+			"id": "sint-eustatius",
+			"name": "Sint Eustatius",
+			"file": "sint-eustatius.svg",
+			"codes": ["BQ-SE"]
+		},
+		{
+			"id": "sint-maarten",
+			"name": "Sint Maarten",
+			"file": "sint-maarten.svg",
+			"codes": ["SX"]
+		},
+		{
+			"id": "slovakia",
+			"name": "Slovakia",
+			"file": "slovakia.svg",
+			"codes": ["SK"]
+		},
+		{
+			"id": "slovenia",
+			"name": "Slovenia",
+			"file": "slovenia.svg",
+			"codes": ["SI"]
+		},
+		{
+			"id": "somalia",
+			"name": "Somalia",
+			"file": "somalia.svg",
+			"codes": ["SO"]
+		},
+		{
+			"id": "somaliland",
+			"name": "Somaliland",
+			"file": "somaliland.svg",
+			"codes": ["SO-SL"]
+		},
+		{
+			"id": "south-africa",
+			"name": "South Africa",
+			"file": "south-africa.svg",
+			"codes": ["ZA"]
+		},
+		{
+			"id": "south-korea",
+			"name": "South Korea",
+			"file": "south-korea.svg",
+			"codes": ["KR"]
+		},
+		{
+			"id": "south-ossetia",
+			"name": "South Ossetia",
+			"file": "south-ossetia.svg",
+			"codes": ["GE-SO"]
+		},
+		{
+			"id": "south-sudan",
+			"name": "South Sudan",
+			"file": "south-sudan.svg",
+			"codes": ["SS"]
+		},
+		{
+			"id": "spain",
+			"name": "Spain",
+			"file": "spain.svg",
+			"codes": ["ES"]
+		},
+		{
+			"id": "sri-lanka",
+			"name": "Sri Lanka",
+			"file": "sri-lanka.svg",
+			"codes": ["LK"]
+		},
+		{
+			"id": "st-barts",
+			"name": "St. Barts",
+			"file": "st-barts.svg",
+			"codes": ["BL"]
+		},
+		{
+			"id": "st-lucia",
+			"name": "St. Lucia",
+			"file": "st-lucia.svg",
+			"codes": ["LC"]
+		},
+		{
+			"id": "st-vincent-and-the-grenadines",
+			"name": "St. Vincent and the Grenadines",
+			"file": "st-vincent-and-the-grenadines.svg",
+			"codes": ["VC"]
+		},
+		{
+			"id": "sudan",
+			"name": "Sudan",
+			"file": "sudan.svg",
+			"codes": ["SD"]
+		},
+		{
+			"id": "suriname",
+			"name": "Suriname",
+			"file": "suriname.svg",
+			"codes": ["SR"]
+		},
+		{
+			"id": "swaziland",
+			"name": "Swaziland",
+			"file": "swaziland.svg",
+			"codes": ["SZ"]
+		},
+		{
+			"id": "sweden",
+			"name": "Sweden",
+			"file": "sweden.svg",
+			"codes": ["SE"]
+		},
+		{
+			"id": "switzerland",
+			"name": "Switzerland",
+			"file": "switzerland.svg",
+			"codes": ["CH"]
+		},
+		{
+			"id": "syria",
+			"name": "Syria",
+			"file": "syria.svg",
+			"codes": ["SY"]
+		},
+		{
+			"id": "taiwan",
+			"name": "Taiwan",
+			"file": "taiwan.svg",
+			"codes": ["TW"]
+		},
+		{
+			"id": "tajikistan",
+			"name": "Tajikistan",
+			"file": "tajikistan.svg",
+			"codes": ["TJ"]
+		},
+		{
+			"id": "tanzania",
+			"name": "Tanzania",
+			"file": "tanzania.svg",
+			"codes": ["TZ"]
+		},
+		{
+			"id": "thailand",
+			"name": "Thailand",
+			"file": "thailand.svg",
+			"codes": ["TH"]
+		},
+		{
+			"id": "tibet",
+			"name": "Tibet",
+			"file": "tibet.svg",
+			"codes": ["CN-XZ"]
+		},
+		{
+			"id": "togo",
+			"name": "Togo",
+			"file": "togo.svg",
+			"codes": ["TG"]
+		},
+		{
+			"id": "tokelau",
+			"name": "Tokelau",
+			"file": "tokelau.svg",
+			"codes": ["TK"]
+		},
+		{
+			"id": "tonga",
+			"name": "Tonga",
+			"file": "tonga.svg",
+			"codes": ["TO"]
+		},
+		{
+			"id": "transnistria",
+			"name": "Transnistria",
+			"file": "transnistria.svg",
+			"codes": ["MD-PMR"]
+		},
+		{
+			"id": "trinidad-and-tobago",
+			"name": "Trinidad and Tobago",
+			"file": "trinidad-and-tobago.svg",
+			"codes": ["TT"]
+		},
+		{
+			"id": "tunisia",
+			"name": "Tunisia",
+			"file": "tunisia.svg",
+			"codes": ["TN"]
+		},
+		{
+			"id": "turkey",
+			"name": "Turkey",
+			"file": "turkey.svg",
+			"codes": ["TR"]
+		},
+		{
+			"id": "turkmenistan",
+			"name": "Turkmenistan",
+			"file": "turkmenistan.svg",
+			"codes": ["TM"]
+		},
+		{
+			"id": "turks-and-caicos-islands",
+			"name": "Turks and Caicos Islands",
+			"file": "turks-and-caicos-islands.svg",
+			"codes": ["TC"]
+		},
+		{
+			"id": "tuvalu",
+			"name": "Tuvalu",
+			"file": "tuvalu.svg",
+			"codes": ["TV"]
+		},
+		{
+			"id": "uganda",
+			"name": "Uganda",
+			"file": "uganda.svg",
+			"codes": ["UG"]
+		},
+		{
+			"id": "ukraine",
+			"name": "Ukraine",
+			"file": "ukraine.svg",
+			"codes": ["UA"]
+		},
+		{
+			"id": "united-arab-emirates",
+			"name": "United Arab Emirates",
+			"file": "united-arab-emirates.svg",
+			"codes": ["AE"]
+		},
+		{
+			"id": "united-kingdom",
+			"name": "United Kingdom",
+			"file": "united-kingdom.svg",
+			"codes": ["GB"]
+		},
+		{
+			"id": "united-nations",
+			"name": "United Nations",
+			"file": "united-nations.svg",
+			"codes": ["UN"]
+		},
+		{
+			"id": "united-states",
+			"name": "United States",
+			"file": "united-states.svg",
+			"codes": ["US"]
+		},
+		{
+			"id": "uruguay",
+			"name": "Uruguay",
+			"file": "uruguay.svg",
+			"codes": ["UY"]
+		},
+		{
+			"id": "uzbekistan",
+			"name": "Uzbekistan",
+			"file": "uzbekistan.svg",
+			"codes": ["UZ"]
+		},
+		{
+			"id": "vanuatu",
+			"name": "Vanuatu",
+			"file": "vanuatu.svg",
+			"codes": ["VU"]
+		},
+		{
+			"id": "vatican-city",
+			"name": "Vatican City",
+			"file": "vatican-city.svg",
+			"codes": ["VA"]
+		},
+		{
+			"id": "venezuela",
+			"name": "Venezuela",
+			"file": "venezuela.svg",
+			"codes": ["VE"]
+		},
+		{
+			"id": "vietnam",
+			"name": "Vietnam",
+			"file": "vietnam.svg",
+			"codes": ["VN"]
+		},
+		{
+			"id": "virgin-islands",
+			"name": "Virgin Islands",
+			"file": "virgin-islands.svg",
+			"codes": ["VI"]
+		},
+		{
+			"id": "wales",
+			"name": "Wales",
+			"file": "wales.svg",
+			"codes": ["GB-WLS"]
+		},
+		{
+			"id": "yemen",
+			"name": "Yemen",
+			"file": "yemen.svg",
+			"codes": ["YE"]
+		},
+		{
+			"id": "zambia",
+			"name": "Zambia",
+			"file": "zambia.svg",
+			"codes": ["ZM"]
+		},
+		{
+			"id": "zimbabwe",
+			"name": "Zimbabwe",
+			"file": "zimbabwe.svg",
+			"codes": ["ZW"]
+		}
+	]
+}
