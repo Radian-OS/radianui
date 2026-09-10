@@ -19,6 +19,15 @@ export const createFilePath = (
 	frameworkName: FrameworkName,
 	config: RawConfig
 ) => {
+	// If file has a targetDir and it's not a page, it's a static asset (e.g. /assets/flags)
+	if (file.targetDir && file.type !== "page") {
+		const cleanTargetDir = file.targetDir.replace(/^\/+/, "")
+		const publicPath = cleanTargetDir.startsWith("public")
+			? cleanTargetDir
+			: path.join("public", cleanTargetDir)
+		return path.join(cwd, publicPath, file.name)
+	}
+
 	let dir: string
 	let filename: string
 
@@ -27,7 +36,11 @@ export const createFilePath = (
 			dir =
 				file.type === "page"
 					? path.join("app", `${file.targetDir}`)
-					: path.join(...config.aliases[file.type].split("/").slice(1))
+					: path.join(
+							...(config.aliases[file.type] ?? `@/components/${file.type}`)
+								.split("/")
+								.slice(1)
+						)
 			filename = file.type === "page" ? "page.tsx" : file.name
 			break
 		}
@@ -35,7 +48,11 @@ export const createFilePath = (
 			dir =
 				file.type === "page"
 					? `${file.targetDir}`
-					: path.join(...config.aliases[file.type].split("/").slice(1))
+					: path.join(
+							...(config.aliases[file.type] ?? `@/components/${file.type}`)
+								.split("/")
+								.slice(1)
+						)
 			filename = file.name
 			break
 		}

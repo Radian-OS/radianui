@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import { Command } from "commander"
 import { add } from "@/commands/add.js"
+import { addAsset } from "@/commands/add-asset.js"
 import { init } from "@/commands/init.js"
 import { displayGradientString } from "@/utils/gradientString"
 import { handleError } from "@/utils/handleError"
@@ -23,6 +24,8 @@ async function main() {
 	program.addCommand(init)
 
 	program.addCommand(add)
+
+	program.addCommand(addAsset)
 
 	program.addCommand(search)
 

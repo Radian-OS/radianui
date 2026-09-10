@@ -30,13 +30,16 @@ export const getRegistryComponentUrl = (style: Style) =>
 export const REGISTRY_BLOCK_URL = `${BLOCKS_URL}/api/blocks`
 export const PRESET_API_URL = `${BLOCKS_URL}/api/config`
 
+export type AssetRegistryType = 'flag'
+
 export type RegistryType =
-	| "ui"
+	"ui"
 	| "components"
 	| "page"
 	| "hooks"
 	| "animated"
 	| "block"
+	| AssetRegistryType
 
 export type RegistryComponentFile = {
 	name: string
@@ -302,4 +305,43 @@ export async function fetchIconMappings(): Promise<IconMapping[]> {
 	const res = await fetch(new URL("/r/icon/icon.json", WEBSITE_URL).toString())
 	if (!res.ok) throw new Error(`Failed to fetch icon mappings: ${res.status}`)
 	return res.json() as Promise<IconMapping[]>
+}
+
+export const ASSET_REGISTRIES: Record<
+	AssetRegistryType,
+	{ label: string; url: string; prefix?: string }
+> = {
+	flag: {
+		label: "Flags",
+		url: `${WEBSITE_URL}/r/flags/flags.json`,
+		prefix: "flag:",
+	}
+}
+
+export const getAssetRegistryUrl = (assetType: AssetRegistryType): string => {
+	const normalized = assetType.toLowerCase().trim()
+	if (ASSET_REGISTRIES[normalized]) {
+		return ASSET_REGISTRIES[normalized].url
+	}
+	return `${WEBSITE_URL}/r/${normalized}/${normalized}.json`
+}
+
+export const getAssetRegistry = async (
+	assetType: AssetRegistryType
+): Promise<RegistryComponents> => {
+	try {
+		const url = getAssetRegistryUrl(assetType)
+		const response = await fetch(url)
+
+		if (!response.ok) {
+			const errorMessage = `Failed to fetch asset registry from ${url}.\nStatus: ${response.status} - ${response.statusText}`
+			throw new Error(errorMessage)
+		}
+
+		const data = await response.json()
+		return data as RegistryComponents
+	} catch (error) {
+		handleError(error)
+		return []
+	}
 }
