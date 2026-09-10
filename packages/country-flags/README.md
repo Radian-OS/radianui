@@ -1,17 +1,17 @@
-# @radianui/country-flags
+# @radianui/flags
 
 Accessible country flag components for React and React frameworks.
 
 ## Installation
 
 ```bash
-pnpm add @radianui/country-flags
+pnpm add @radianui/flags
 ```
 
 ## Usage
 
 ```tsx
-import { Flag } from "@radianui/country-flags"
+import { Flag } from "@radianui/flags"
 
 export function Example() {
 	return (
@@ -55,7 +55,7 @@ Run the synchronization script after adding a manifest entry, and add an
 explicit override for regional or organizational flags.
 
 ```bash
-pnpm --filter @radianui/country-flags sync:manifest
+pnpm --filter @radianui/flags sync:manifest
 ```
 
 ## Development
@@ -63,10 +63,10 @@ pnpm --filter @radianui/country-flags sync:manifest
 From the repository root:
 
 ```bash
-pnpm --filter @radianui/country-flags validate:source
-pnpm --filter @radianui/country-flags check-types
-pnpm --filter @radianui/country-flags test
-pnpm --filter @radianui/country-flags build
+pnpm --filter @radianui/flags validate:source
+pnpm --filter @radianui/flags check-types
+pnpm --filter @radianui/flags test
+pnpm --filter @radianui/flags build
 ```
 
 The validator checks metadata uniqueness, country codes, filename coverage,

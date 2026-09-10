@@ -1,5 +1,5 @@
 {
-	"name": "@radianui/country-flags",
+	"name": "@radianui/flags",
 	"version": "0.1.0",
 	"description": "Accessible country flag components for React and React frameworks.",
 	"type": "module",
