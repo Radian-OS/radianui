@@ -3,7 +3,7 @@ title: Country Flags
 description: Install and use accessible, type-safe SVG country flags in React and Next.js applications.
 links:
   github:
-    href: https://github.com/Radian-OS/radianui/tree/main/packages/country-flags
+    href: https://github.com/Radian-OS/radianui
   externalReference:
     - label: npm
       href: https://www.npmjs.com/package/@radianui/flags
@@ -11,8 +11,9 @@ links:
 ---
 
 `@radianui/flags` provides country flag components for React and React
-frameworks. It supports official ISO 3166-1 alpha-2 country codes, flat and
-circle shapes, flexible sizing, TypeScript types, and accessible labelling.
+frameworks. It includes 229 flags keyed by supported ISO 3166-1 alpha-2 country
+codes, with flat and circle shapes, flexible sizing, TypeScript types, and
+accessible labelling.
 
 [Browse the complete flag collection](/resources/flags) or
 [view the package on npm](https://www.npmjs.com/package/@radianui/flags).
@@ -90,9 +91,17 @@ default when adjacent text already communicates the country.
 <Flag country="NP" />
 ```
 
+When a flag communicates information by itself, provide an `aria-label`.
+Labelled flags render with `role="img"` and are not hidden from assistive
+technology.
+
 ```tsx
 <Flag country="NP" aria-label="Nepal" />
 ```
+
+The accessibility props are type-safe: an unlabelled decorative flag may use
+`aria-hidden={true}`, while a labelled flag may use `aria-hidden={false}`. In
+normal usage, omit `aria-hidden` and let the component manage it automatically.
 
 ---
 
@@ -131,13 +140,13 @@ console.log(getCountryName(country)) // "Nepal"
 
 ## API reference
 
-| Prop          | Type                 | Default      | Description                                      |
-| ------------- | -------------------- | ------------ | ------------------------------------------------ |
-| `country`     | `CountryCode`        | Required     | Supported ISO 3166-1 alpha-2 country code.       |
-| `shape`       | `"flat" \| "circle"` | `"flat"`     | Controls the rendered flag shape.                |
-| `size`        | `number \| string`   | `24`         | Sets both SVG width and height.                  |
-| `aria-label`  | `string`             | —            | Describes a meaningful standalone flag.          |
-| `aria-hidden` | `true \| false`      | Auto-managed | Keeps decorative flags hidden from assistive UI. |
+| Prop          | Type                                      | Default                        | Description                                                |
+| ------------- | ----------------------------------------- | ------------------------------ | ---------------------------------------------------------- |
+| `country`     | `CountryCode`                             | Required                       | One of the package's supported ISO 3166-1 alpha-2 codes.   |
+| `shape`       | `"flat" \| "circle"`                      | `"flat"`                       | Controls the rendered flag shape.                          |
+| `size`        | `number \| string`                        | `24`                           | Sets both SVG width and height.                            |
+| `aria-label`  | `string`                                  | —                              | Describes a meaningful standalone flag.                    |
+| `aria-hidden` | `true` when unlabelled; otherwise `false` | `true` without an `aria-label` | Managed from `aria-label`; normally does not need setting. |
 
 For the package source, releases, and issue tracking, visit the
 [RadianUI repository](https://github.com/Radian-OS/radianui) or
