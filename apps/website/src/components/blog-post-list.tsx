@@ -288,12 +288,12 @@ export function BlogPostList({ posts, postsPerPage }: BlogPostListProps) {
 								/>
 							</div>
 
-							<div className="flex flex-1 flex-col justify-between gap-6 p-6">
+							<div className="flex flex-1 flex-col justify-between gap-6 p-8">
 								<div className="flex w-full items-center justify-between">
 									<p className="text-fg-secondary text-sm font-medium">
 										{post.data.card}
 									</p>
-									<p className="text-fg-secondary text-sm font-medium">
+									<p className="text-fg-tertiary text-sm font-medium">
 										[ {post.data.readingTime} ]
 									</p>
 								</div>
