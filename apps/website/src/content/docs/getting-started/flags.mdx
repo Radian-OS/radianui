@@ -1,0 +1,144 @@
+---
+title: Country Flags
+description: Install and use accessible, type-safe SVG country flags in React and Next.js applications.
+links:
+  github:
+    href: https://github.com/Radian-OS/radianui/tree/main/packages/country-flags
+  externalReference:
+    - label: npm
+      href: https://www.npmjs.com/package/@radianui/flags
+      icon: npm.svg
+---
+
+`@radianui/flags` provides country flag components for React and React
+frameworks. It supports official ISO 3166-1 alpha-2 country codes, flat and
+circle shapes, flexible sizing, TypeScript types, and accessible labelling.
+
+[Browse the complete flag collection](/resources/flags) or
+[view the package on npm](https://www.npmjs.com/package/@radianui/flags).
+
+---
+
+## Installation
+
+<PackageManagerTabs
+	commands={{
+		pnpm: "pnpm add @radianui/flags",
+		npm: "npm install @radianui/flags",
+		yarn: "yarn add @radianui/flags",
+		bun: "bun add @radianui/flags",
+	}}
+	withIcon
+/>
+
+---
+
+## Quick start
+
+Import `Flag` and provide a supported uppercase country code:
+
+```tsx title="country-flags.tsx"
+import { Flag } from "@radianui/flags"
+
+export function CountryFlags() {
+	return (
+		<>
+			<Flag country="NP" />
+			<Flag country="GB" shape="circle" />
+			<Flag country="JP" size={32} aria-label="Japan" />
+		</>
+	)
+}
+```
+
+---
+
+## Shapes
+
+The default `flat` shape preserves the canonical flag artwork. Use `circle`
+when the flag should fill a circular frame.
+
+```tsx
+<Flag country="GB" />
+<Flag country="GB" shape="flat" />
+<Flag country="GB" shape="circle" />
+```
+
+---
+
+## Sizes
+
+The default size is `24`. Pass a number for pixel dimensions or a CSS length
+when the flag should follow a relative scale.
+
+```tsx
+<Flag country="US" size={16} />
+<Flag country="US" size={32} />
+<Flag country="US" size="2rem" />
+```
+
+The same value is applied to the rendered SVG's width and height.
+
+---
+
+## Accessibility
+
+Flags are decorative by default and render with `aria-hidden="true"`. Keep this
+default when adjacent text already communicates the country.
+
+```tsx
+<Flag country="NP" />
+```
+
+```tsx
+<Flag country="NP" aria-label="Nepal" />
+```
+
+---
+
+## Styling and SVG props
+
+`Flag` accepts standard SVG properties such as `className`, `style`, and data
+attributes.
+
+```tsx
+<Flag
+	country="CA"
+	shape="circle"
+	size={40}
+	className="shrink-0"
+	data-testid="country-flag"
+/>
+```
+
+---
+
+## Country helpers
+
+Use the exported country list and name helper when building selectors, menus,
+or validation rules.
+
+```tsx
+import { type CountryCode, countryCodes, getCountryName } from "@radianui/flags"
+
+const country: CountryCode = "NP"
+
+console.log(countryCodes)
+console.log(getCountryName(country)) // "Nepal"
+```
+
+---
+
+## API reference
+
+| Prop          | Type                 | Default      | Description                                      |
+| ------------- | -------------------- | ------------ | ------------------------------------------------ |
+| `country`     | `CountryCode`        | Required     | Supported ISO 3166-1 alpha-2 country code.       |
+| `shape`       | `"flat" \| "circle"` | `"flat"`     | Controls the rendered flag shape.                |
+| `size`        | `number \| string`   | `24`         | Sets both SVG width and height.                  |
+| `aria-label`  | `string`             | —            | Describes a meaningful standalone flag.          |
+| `aria-hidden` | `true \| false`      | Auto-managed | Keeps decorative flags hidden from assistive UI. |
+
+For the package source, releases, and issue tracking, visit the
+[RadianUI repository](https://github.com/Radian-OS/radianui) or
+[the npm package page](https://www.npmjs.com/package/@radianui/flags).

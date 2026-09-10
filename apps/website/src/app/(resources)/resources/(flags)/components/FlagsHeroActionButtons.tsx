@@ -12,8 +12,8 @@ export default function FlagsHeroActionButtons() {
 				color="neutral">
 				<Link href="/docs/getting-started/resources">Explore Resources</Link>
 			</Button>
-			<Button variant="glossy" className="w-full sm:w-fit" size="40">
-				Developer API
+			<Button asChild variant="glossy" className="w-full sm:w-fit" size="40">
+				<Link href="/docs/getting-started/flags">React package</Link>
 			</Button>
 		</>
 	)
