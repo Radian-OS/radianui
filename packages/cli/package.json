@@ -79,7 +79,7 @@
 		"@types/fs-extra": "^11.0.4",
 		"@types/node": "^26.4.0",
 		"@types/prompts": "^2.4.9",
-		"@vitest/coverage-istanbul": "^4.1.11",
+		"@vitest/coverage-istanbul": "^5.0.0",
 		"tsup": "^8.5.1",
 		"tsx": "^4.23.12",
 		"type-fest": "^5.9.0",
