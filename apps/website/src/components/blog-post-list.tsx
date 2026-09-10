@@ -1,12 +1,18 @@
 "use client"
 
-import React, { useMemo, useState } from "react"
-import { Search, X } from "lucide-react"
+import React, { useMemo, useRef, useState } from "react"
+import { ArrowLeft, ArrowRight, Search, X } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
-import { Button } from "@/registry/ui/button"
+import { Button, IconButton } from "@/registry/ui/button"
 import { Input, InputWrapper } from "@/registry/ui/input"
+import {
+	Pagination,
+	PaginationContent,
+	PaginationEllipsis,
+	PaginationItem,
+} from "@/registry/ui/pagination"
 
 export interface BlogAuthor {
 	name: string
@@ -24,7 +30,6 @@ export interface SerializedBlogPost {
 		date: string
 		card?: string
 		image?: string
-		img?: string
 		readingTime?: string
 		author?: BlogAuthor[]
 	}
@@ -32,7 +37,7 @@ export interface SerializedBlogPost {
 
 interface BlogPostListProps {
 	posts: SerializedBlogPost[]
-	defaultPeople?: { name: string; image: string }[]
+	postsPerPage?: number
 }
 
 function getInitials(name: string) {
@@ -46,6 +51,40 @@ function getInitials(name: string) {
 	)
 }
 
+function getPaginationRange(
+	currentPage: number,
+	totalPages: number
+): (number | "ellipsis")[] {
+	if (totalPages <= 7) {
+		return Array.from({ length: totalPages }, (_, i) => i + 1)
+	}
+
+	const showLeftEllipsis = currentPage > 4
+	const showRightEllipsis = currentPage < totalPages - 3
+
+	if (!showLeftEllipsis && showRightEllipsis) {
+		return [1, 2, 3, 4, 5, "ellipsis", totalPages]
+	}
+
+	if (showLeftEllipsis && !showRightEllipsis) {
+		const rightRange: number[] = []
+		for (let i = totalPages - 4; i <= totalPages; i++) {
+			rightRange.push(i)
+		}
+		return [1, "ellipsis", ...rightRange]
+	}
+
+	return [
+		1,
+		"ellipsis",
+		currentPage - 1,
+		currentPage,
+		currentPage + 1,
+		"ellipsis",
+		totalPages,
+	]
+}
+
 const PREFERRED_CATEGORIES = [
 	"All",
 	"Design Systems",
@@ -55,9 +94,11 @@ const PREFERRED_CATEGORIES = [
 	"Releases",
 ]
 
-export function BlogPostList({ posts, defaultPeople = [] }: BlogPostListProps) {
+export function BlogPostList({ posts, postsPerPage = 9 }: BlogPostListProps) {
 	const [searchQuery, setSearchQuery] = useState("")
 	const [selectedCategory, setSelectedCategory] = useState("All")
+	const [currentPage, setCurrentPage] = useState(1)
+	const listRef = useRef<HTMLElement>(null)
 
 	// Collect unique categories from existing posts while ensuring preferred order
 	const categories = useMemo(() => {
@@ -108,20 +149,58 @@ export function BlogPostList({ posts, defaultPeople = [] }: BlogPostListProps) {
 		})
 	}, [posts, selectedCategory, searchQuery])
 
+	// Total pages calculation based on filtered results
+	const totalPages = Math.max(1, Math.ceil(filteredPosts.length / postsPerPage))
+	const safeCurrentPage = Math.min(Math.max(1, currentPage), totalPages)
+
+	// Keep currentPage in bounds if filteredPosts changes
+	React.useEffect(() => {
+		if (currentPage > totalPages) {
+			setCurrentPage(1)
+		}
+	}, [currentPage, totalPages])
+
+	// Paginated slice for current page
+	const paginatedPosts = useMemo(() => {
+		const startIndex = (safeCurrentPage - 1) * postsPerPage
+		return filteredPosts.slice(startIndex, startIndex + postsPerPage)
+	}, [filteredPosts, safeCurrentPage, postsPerPage])
+
+	// Pagination numbers and ellipses
+	const paginationRange = useMemo(() => {
+		return getPaginationRange(safeCurrentPage, totalPages)
+	}, [safeCurrentPage, totalPages])
+
+	const handlePageChange = (page: number) => {
+		if (page < 1 || page > totalPages || page === safeCurrentPage) return
+		setCurrentPage(page)
+		listRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
+	}
+
+	const handleCategoryChange = (category: string) => {
+		setSelectedCategory(category)
+		setCurrentPage(1)
+	}
+
+	const handleSearchChange = (value: string) => {
+		setSearchQuery(value)
+		setCurrentPage(1)
+	}
+
 	return (
-		<section className="border-soft flex flex-col border-y">
+		<section ref={listRef} className="border-soft flex flex-col border-t">
 			{/* Search & Topic Filters Bar */}
 			<div className="border-soft flex w-full flex-col items-stretch justify-between gap-5 border-b p-6 md:p-10 lg:flex-row lg:items-center">
 				<InputWrapper className="w-full lg:w-80">
 					<Input
 						placeholder="Search blog..."
 						value={searchQuery}
-						onChange={(e) => setSearchQuery(e.target.value)}
+						onChange={(e) => handleSearchChange(e.target.value)}
 					/>
 					{searchQuery ? (
 						<button
 							type="button"
-							onClick={() => setSearchQuery("")}
+							onClick={() => handleSearchChange("")}
 							className="text-fg-tertiary hover:text-fg transition-colors"
 							aria-label="Clear search">
 							<X className="size-4" />
@@ -140,7 +219,7 @@ export function BlogPostList({ posts, defaultPeople = [] }: BlogPostListProps) {
 								key={category}
 								color={isSelected ? "primary" : "neutral"}
 								variant={isSelected ? undefined : "outline"}
-								onClick={() => setSelectedCategory(category)}
+								onClick={() => handleCategoryChange(category)}
 								className="transition-all">
 								{category}
 							</Button>
@@ -152,33 +231,33 @@ export function BlogPostList({ posts, defaultPeople = [] }: BlogPostListProps) {
 			{/* Posts Grid */}
 			{filteredPosts.length > 0 ? (
 				<div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-					{filteredPosts.map((post) => (
+					{paginatedPosts.map((post) => (
 						<Link
 							key={post.url}
 							href={post.url}
-							className="group border-soft hover:border-fg-tertiary/40 bg-bg flex flex-col overflow-hidden border transition-colors">
+							className="group border-soft bg-bg flex flex-col overflow-hidden border transition-colors">
 							<div className="bg-fill1 relative aspect-video w-full overflow-hidden">
 								<Image
 									className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
 									alt={post.data.title}
 									height={540}
 									width={840}
-									src={post.data.image ?? post.data.img ?? "/changelog-v3.webp"}
+									src={post.data.image ?? "/changelog-v3.webp"}
 								/>
 							</div>
 
 							<div className="flex flex-1 flex-col justify-between gap-6 p-6">
 								<div className="flex w-full items-center justify-between">
 									<p className="text-fg-secondary text-sm font-medium">
-										{post.data.card || "Resources"}
+										{post.data.card}
 									</p>
 									<p className="text-fg-secondary text-sm font-medium">
-										[ {post.data.readingTime || "5 min read"} ]
+										[ {post.data.readingTime} ]
 									</p>
 								</div>
 
 								<div className="flex flex-1 flex-col gap-3">
-									<h2 className="heading-6 group-hover:text-primary line-clamp-2 transition-colors">
+									<h2 className="heading-6 line-clamp-2 transition-colors">
 										{post.data.title}
 									</h2>
 
@@ -187,33 +266,20 @@ export function BlogPostList({ posts, defaultPeople = [] }: BlogPostListProps) {
 									</p>
 								</div>
 
-								<div className="flex items-center gap-5 pt-2">
+								<div className="flex items-center gap-2">
 									<div className="flex -space-x-2.5">
-										{post.data.author && post.data.author.length > 0
-											? post.data.author.map((person) => (
-													<Avatar
-														size="24"
-														className="border-bg border-2 hover:z-10"
-														key={person.name}>
-														{person.avatar && (
-															<AvatarImage src={person.avatar} />
-														)}
-														<AvatarFallback>
-															{getInitials(person.name)}
-														</AvatarFallback>
-													</Avatar>
-												))
-											: defaultPeople.map((person) => (
-													<Avatar
-														size="24"
-														className="border-bg border-2 hover:z-10"
-														key={person.name}>
-														<AvatarImage src={person.image} />
-														<AvatarFallback>
-															{getInitials(person.name)}
-														</AvatarFallback>
-													</Avatar>
-												))}
+										{post.data.author &&
+											post.data.author.map((person) => (
+												<Avatar
+													size="24"
+													className="border-bg border-2 hover:z-10"
+													key={person.name}>
+													{person.avatar && <AvatarImage src={person.avatar} />}
+													<AvatarFallback>
+														{getInitials(person.name)}
+													</AvatarFallback>
+												</Avatar>
+											))}
 									</div>
 
 									<p className="text-fg-secondary text-sm font-normal">
@@ -245,12 +311,78 @@ export function BlogPostList({ posts, defaultPeople = [] }: BlogPostListProps) {
 							color="neutral"
 							variant="outline"
 							onClick={() => {
-								setSearchQuery("")
-								setSelectedCategory("All")
+								handleSearchChange("")
+								handleCategoryChange("All")
 							}}>
 							Reset filters
 						</Button>
 					)}
+				</div>
+			)}
+
+			{/* Dynamic Pagination Bar */}
+			{filteredPosts.length > 0 && (
+				<div className="flex items-center justify-center p-10">
+					<Pagination>
+						<PaginationContent className="border-soft bg-bg flex items-center gap-0 rounded-lg border">
+							{/* Previous Page Button */}
+							<PaginationItem>
+								<Button
+									color="neutral"
+									variant="ghost"
+									className="border-soft rounded-l-lg rounded-r-none border-r"
+									disabled={safeCurrentPage <= 1}
+									onClick={() => handlePageChange(safeCurrentPage - 1)}
+									aria-label="Go to previous page">
+									<ArrowLeft className="text-fg-secondary rtl:rotate-180" />{" "}
+									<span className="hidden sm:inline">Previous</span>
+								</Button>
+							</PaginationItem>
+
+							{/* Page Numbers */}
+							{paginationRange.map((pageItem, index) => {
+								if (pageItem === "ellipsis") {
+									return (
+										<PaginationItem key={`ellipsis-${index}`}>
+											<PaginationEllipsis className="text-fg-secondary border-soft border-r" />
+										</PaginationItem>
+									)
+								}
+
+								const isCurrent = safeCurrentPage === pageItem
+
+								return (
+									<PaginationItem key={pageItem}>
+										<IconButton
+											aria-label={`Page ${pageItem}`}
+											color={isCurrent ? "primary" : "neutral"}
+											variant={isCurrent ? "soft" : "ghost"}
+											className={`border-soft rounded-none border-r ${
+												isCurrent ? "text-primary font-semibold" : ""
+											}`}
+											onClick={() => handlePageChange(pageItem)}
+											aria-current={isCurrent ? "page" : undefined}>
+											{pageItem}
+										</IconButton>
+									</PaginationItem>
+								)
+							})}
+
+							{/* Next Page Button */}
+							<PaginationItem>
+								<Button
+									color="neutral"
+									variant="ghost"
+									className="rounded-l-none rounded-r-lg"
+									disabled={safeCurrentPage >= totalPages}
+									onClick={() => handlePageChange(safeCurrentPage + 1)}
+									aria-label="Go to next page">
+									<span className="hidden sm:inline">Next</span>{" "}
+									<ArrowRight className="text-fg-secondary rtl:rotate-180" />
+								</Button>
+							</PaginationItem>
+						</PaginationContent>
+					</Pagination>
 				</div>
 			)}
 		</section>

@@ -26,7 +26,7 @@ function BreadcrumbList({ className, ...props }: BreadcrumbListType) {
 		<ol
 			data-slot="breadcrumb-list"
 			className={cn(
-				"text-fg-secondary flex flex-wrap items-center gap-1.5 break-words text-sm",
+				"text-fg-secondary flex flex-wrap items-center gap-1.5 text-sm break-words",
 				className
 			)}
 			{...props}

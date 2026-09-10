@@ -16,7 +16,7 @@ function Divider({
 			decorative={decorative}
 			orientation={orientation}
 			className={cn(
-				"bg-soft-alpha shrink-0 data-[orientation=horizontal]:h-px data-[orientation=vertical]:h-full data-[orientation=horizontal]:w-full data-[orientation=vertical]:w-px",
+				"bg-soft-alpha shrink-0 data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px",
 				className
 			)}
 			{...props}
