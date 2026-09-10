@@ -23,6 +23,8 @@ export const WEBSITE_URL = stripTrailingSlash(
 export const BLOCKS_URL = stripTrailingSlash(
 	process.env.RADIANUI_BLOCKS_URL ?? "http://localhost:3005"
 )
+export const RADIAN_DOCS_URL = "https://radianui.com/docs/getting-started/introduction"
+
 export const getRegistryComponentUrl = (style: Style) =>
 	`${WEBSITE_URL}/r/styles/${style}.json`
 export const REGISTRY_BLOCK_URL = `${BLOCKS_URL}/api/blocks`
