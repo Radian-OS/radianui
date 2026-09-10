@@ -1,6 +1,12 @@
 "use client"
 
-import React, { useMemo, useRef, useState } from "react"
+import React, {
+	useCallback,
+	useMemo,
+	useRef,
+	useState,
+	useSyncExternalStore,
+} from "react"
 import { ArrowLeft, ArrowRight, Search, X } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
@@ -38,6 +44,35 @@ export interface SerializedBlogPost {
 interface BlogPostListProps {
 	posts: SerializedBlogPost[]
 	postsPerPage?: number
+}
+
+function useMediaQuery(query: string, defaultValue = false) {
+	const subscribe = useCallback(
+		(callback: () => void) => {
+			if (typeof window === "undefined" || !window.matchMedia) {
+				return () => {}
+			}
+			const matchMedia = window.matchMedia(query)
+			matchMedia.addEventListener("change", callback)
+			return () => {
+				matchMedia.removeEventListener("change", callback)
+			}
+		},
+		[query]
+	)
+
+	const getSnapshot = () => {
+		if (typeof window === "undefined" || !window.matchMedia) {
+			return defaultValue
+		}
+		return window.matchMedia(query).matches
+	}
+
+	const getServerSnapshot = () => {
+		return defaultValue
+	}
+
+	return useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot)
 }
 
 function getInitials(name: string) {
@@ -94,11 +129,15 @@ const PREFERRED_CATEGORIES = [
 	"Releases",
 ]
 
-export function BlogPostList({ posts, postsPerPage = 9 }: BlogPostListProps) {
+export function BlogPostList({ posts, postsPerPage }: BlogPostListProps) {
 	const [searchQuery, setSearchQuery] = useState("")
 	const [selectedCategory, setSelectedCategory] = useState("All")
 	const [currentPage, setCurrentPage] = useState(1)
 	const listRef = useRef<HTMLElement>(null)
+
+	// Responsive posts per page: 9 for 3-column grid (lg: >= 1024px), 8 for 2-column grid (< 1024px)
+	const isLargeScreen = useMediaQuery("(min-width: 1024px)", true)
+	const effectivePostsPerPage = postsPerPage ?? (isLargeScreen ? 9 : 8)
 
 	// Collect unique categories from existing posts while ensuring preferred order
 	const categories = useMemo(() => {
@@ -150,7 +189,10 @@ export function BlogPostList({ posts, postsPerPage = 9 }: BlogPostListProps) {
 	}, [posts, selectedCategory, searchQuery])
 
 	// Total pages calculation based on filtered results
-	const totalPages = Math.max(1, Math.ceil(filteredPosts.length / postsPerPage))
+	const totalPages = Math.max(
+		1,
+		Math.ceil(filteredPosts.length / effectivePostsPerPage)
+	)
 	const safeCurrentPage = Math.min(Math.max(1, currentPage), totalPages)
 
 	// Keep currentPage in bounds if filteredPosts changes
@@ -162,9 +204,9 @@ export function BlogPostList({ posts, postsPerPage = 9 }: BlogPostListProps) {
 
 	// Paginated slice for current page
 	const paginatedPosts = useMemo(() => {
-		const startIndex = (safeCurrentPage - 1) * postsPerPage
-		return filteredPosts.slice(startIndex, startIndex + postsPerPage)
-	}, [filteredPosts, safeCurrentPage, postsPerPage])
+		const startIndex = (safeCurrentPage - 1) * effectivePostsPerPage
+		return filteredPosts.slice(startIndex, startIndex + effectivePostsPerPage)
+	}, [filteredPosts, safeCurrentPage, effectivePostsPerPage])
 
 	// Pagination numbers and ellipses
 	const paginationRange = useMemo(() => {
@@ -230,7 +272,7 @@ export function BlogPostList({ posts, postsPerPage = 9 }: BlogPostListProps) {
 
 			{/* Posts Grid */}
 			{filteredPosts.length > 0 ? (
-				<div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+				<div className="-mt-px -ml-px grid w-[calc(100%+2px)] grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
 					{paginatedPosts.map((post) => (
 						<Link
 							key={post.url}
