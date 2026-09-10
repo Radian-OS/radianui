@@ -13,5 +13,5 @@
 	"baseBranch": "main",
 	"updateInternalDependencies": "patch",
 	"ignore": ["website", "@radianos/typescript-config"],
-	"changedFilePatterns": ["packages/cli/src/**"]
+	"changedFilePatterns": ["packages/cli/src/**", "packages/country-flags/**"]
 }
