@@ -124,7 +124,7 @@ export default async function BlogPage({ params }: BlogListPageProps) {
 					})),
 				})}
 			/>
-			<div className="border-soft flex w-full max-w-368 flex-col border border-y-0">
+			<div className="border-soft flex w-full max-w-368 flex-col overflow-x-hidden border border-y-0">
 				<section className="border-soft flex flex-col items-center gap-5 border-0 border-b px-15 py-20">
 					<p className="text-primary text-base font-medium">Radian UI Blog</p>
 					<h1 className="heading-3 text-center md:w-150">
@@ -144,8 +144,8 @@ export default async function BlogPage({ params }: BlogListPageProps) {
 				{featuredPost && (
 					<Link
 						href={featuredPost.url}
-						className="border-soft flex flex-col border-y lg:flex-row">
-						<div className="group relative flex-1 basis-1/2 overflow-hidden">
+						className="border-soft flex flex-col border-y md:flex-row">
+						<div className="group relative aspect-video w-full overflow-hidden md:aspect-auto md:flex-1 md:basis-1/2">
 							<Image
 								alt={featuredPost.data.title}
 								src={featuredPost.data.image ?? "/changelog-v3.webp"}
