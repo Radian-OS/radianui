@@ -2,6 +2,7 @@
 
 import React, {
 	useCallback,
+	useId,
 	useMemo,
 	useRef,
 	useState,
@@ -10,6 +11,7 @@ import React, {
 import { ArrowLeft, ArrowRight, Search, X } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import { cn } from "@/lib/utils"
 import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
 import { Button, IconButton } from "@/registry/ui/button"
 import { Input, InputWrapper } from "@/registry/ui/input"
@@ -19,6 +21,70 @@ import {
 	PaginationEllipsis,
 	PaginationItem,
 } from "@/registry/ui/pagination"
+import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+} from "@/registry/ui/select"
+
+function DiagonalPattern({ className }: { className?: string }) {
+	const rawId = useId()
+	const uniqueId = useMemo(() => rawId.replace(/[^a-zA-Z0-9]/g, ""), [rawId])
+	const patternId = `diagonal_pattern_${uniqueId}`
+	const lineId = `diagonal_line_${uniqueId}`
+
+	return (
+		<svg
+			aria-hidden="true"
+			className={cn(
+				"pointer-events-none absolute inset-0 size-full",
+				className
+			)}
+			fill="none"
+			xmlns="http://www.w3.org/2000/svg"
+			xmlnsXlink="http://www.w3.org/1999/xlink">
+			<defs>
+				<pattern
+					id={patternId}
+					patternUnits="userSpaceOnUse"
+					patternTransform="matrix(8.60365 0 0 12.2873 -0.819336 -0.573559)"
+					preserveAspectRatio="none"
+					viewBox="-0.819336 -0.573559 8.60365 12.2873"
+					width="1"
+					height="1">
+					<use
+						href={`#${lineId}`}
+						xlinkHref={`#${lineId}`}
+						transform="translate(-8.60365 -12.2873)"
+					/>
+					<use
+						href={`#${lineId}`}
+						xlinkHref={`#${lineId}`}
+						transform="translate(0 -12.2873)"
+					/>
+					<use
+						href={`#${lineId}`}
+						xlinkHref={`#${lineId}`}
+						transform="translate(-8.60365 0)"
+					/>
+					<g id={lineId}>
+						<line
+							opacity="0.8"
+							x1="-0.409576"
+							y1="12.0005"
+							x2="8.19407"
+							y2="-0.286788"
+							className="stroke-border"
+						/>
+					</g>
+				</pattern>
+			</defs>
+			<rect width="100%" height="100%" fill={`url(#${patternId})`} />
+		</svg>
+	)
+}
 
 export interface BlogAuthor {
 	name: string
@@ -232,8 +298,8 @@ export function BlogPostList({ posts, postsPerPage }: BlogPostListProps) {
 	return (
 		<section ref={listRef} className="border-soft flex flex-col border-t">
 			{/* Search & Topic Filters Bar */}
-			<div className="border-soft flex w-full flex-col items-stretch justify-between gap-5 border-b p-6 md:p-10 lg:flex-row lg:items-center">
-				<InputWrapper className="w-full lg:w-80">
+			<div className="border-soft flex w-full items-stretch justify-between gap-8 border-b px-5 py-8 md:p-10 lg:items-center">
+				<InputWrapper className="w-full md:w-80">
 					<Input
 						placeholder="Search blog..."
 						value={searchQuery}
@@ -252,7 +318,24 @@ export function BlogPostList({ posts, postsPerPage }: BlogPostListProps) {
 					)}
 				</InputWrapper>
 
-				<div className="flex flex-wrap items-center gap-2">
+				{/* Mobile Category Dropdown */}
+				<div className="w-fit md:hidden">
+					<Select value={selectedCategory} onValueChange={handleCategoryChange}>
+						<SelectTrigger aria-label="Filter by category" className="w-full">
+							<SelectValue placeholder="Select category" />
+						</SelectTrigger>
+						<SelectContent>
+							{categories.map((category) => (
+								<SelectItem key={category} value={category}>
+									{category}
+								</SelectItem>
+							))}
+						</SelectContent>
+					</Select>
+				</div>
+
+				{/* Desktop / Tablet Category Buttons */}
+				<div className="hidden flex-wrap items-center gap-2 md:flex">
 					{categories.map((category) => {
 						const isSelected =
 							selectedCategory.toLowerCase() === category.toLowerCase()
@@ -270,97 +353,104 @@ export function BlogPostList({ posts, postsPerPage }: BlogPostListProps) {
 				</div>
 			</div>
 
-			{/* Posts Grid */}
-			{filteredPosts.length > 0 ? (
-				<div className="-mt-px -ml-px grid w-[calc(100%+2px)] grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-					{paginatedPosts.map((post) => (
-						<Link
-							key={post.url}
-							href={post.url}
-							className="group border-soft bg-bg flex flex-col overflow-hidden border transition-colors">
-							<div className="bg-fill1 relative aspect-video w-full overflow-hidden">
-								<Image
-									className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
-									alt={post.data.title}
-									height={540}
-									width={840}
-									src={post.data.image ?? "/changelog-v3.webp"}
-								/>
-							</div>
-
-							<div className="flex flex-1 flex-col justify-between gap-6 p-8">
-								<div className="flex w-full items-center justify-between">
-									<p className="text-fg-secondary text-sm font-medium">
-										{post.data.card}
-									</p>
-									<p className="text-fg-tertiary text-sm font-medium">
-										[ {post.data.readingTime} ]
-									</p>
-								</div>
-
-								<div className="flex flex-1 flex-col gap-3">
-									<h2 className="heading-6 line-clamp-2 transition-colors">
-										{post.data.title}
-									</h2>
-
-									<p className="text-fg-secondary line-clamp-3 text-sm font-normal">
-										{post.data.description}
-									</p>
-								</div>
-
-								<div className="flex items-center gap-2">
-									<div className="flex -space-x-2.5">
-										{post.data.author &&
-											post.data.author.map((person) => (
-												<Avatar
-													size="24"
-													className="border-bg border-2 hover:z-10"
-													key={person.name}>
-													{person.avatar && <AvatarImage src={person.avatar} />}
-													<AvatarFallback>
-														{getInitials(person.name)}
-													</AvatarFallback>
-												</Avatar>
-											))}
+			<div className="border-soft border-b">
+				{/* Posts Grid */}
+				{filteredPosts.length > 0 ? (
+					<div className="relative -my-px -ml-px w-[calc(100%+2px)] overflow-hidden">
+						<DiagonalPattern />
+						<div className="relative grid grid-cols-1 gap-6 p-0 md:grid-cols-2 md:px-5 lg:grid-cols-3 lg:p-0">
+							{paginatedPosts.map((post) => (
+								<Link
+									key={post.url}
+									href={post.url}
+									className="group border-soft bg-bg relative flex flex-col overflow-hidden border transition-colors">
+									<div className="bg-fill1 relative aspect-video w-full overflow-hidden">
+										<Image
+											className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+											alt={post.data.title}
+											height={540}
+											width={840}
+											src={post.data.image ?? "/changelog-v3.webp"}
+										/>
 									</div>
 
-									<p className="text-fg-secondary text-sm font-normal">
-										{new Date(post.data.date).toLocaleDateString("en-US", {
-											month: "long",
-											day: "numeric",
-											year: "numeric",
-										})}
-									</p>
-								</div>
-							</div>
-						</Link>
-					))}
-				</div>
-			) : (
-				/* Empty State */
-				<div className="flex flex-col items-center justify-center gap-4 px-6 py-20 text-center">
-					<div className="bg-fill1 border-soft text-fg-secondary rounded-full border p-3">
-						<Search className="size-6" />
+									<div className="flex flex-1 flex-col justify-between gap-5 p-6 md:gap-6 md:p-8">
+										<div className="flex w-full items-center justify-between">
+											<p className="text-fg-secondary text-sm font-medium">
+												{post.data.card}
+											</p>
+											<p className="text-fg-tertiary text-sm font-medium">
+												[ {post.data.readingTime} ]
+											</p>
+										</div>
+
+										<div className="flex flex-1 flex-col gap-3">
+											<h2 className="heading-6 line-clamp-2 transition-colors">
+												{post.data.title}
+											</h2>
+
+											<p className="text-fg-secondary line-clamp-3 text-sm font-normal">
+												{post.data.description}
+											</p>
+										</div>
+
+										<div className="flex items-center gap-2">
+											<div className="flex -space-x-2.5">
+												{post.data.author &&
+													post.data.author.map((person) => (
+														<Avatar
+															size="24"
+															className="border-bg border-2 hover:z-10"
+															key={person.name}>
+															{person.avatar && (
+																<AvatarImage src={person.avatar} />
+															)}
+															<AvatarFallback>
+																{getInitials(person.name)}
+															</AvatarFallback>
+														</Avatar>
+													))}
+											</div>
+
+											<p className="text-fg-secondary text-sm font-normal">
+												{new Date(post.data.date).toLocaleDateString("en-US", {
+													month: "long",
+													day: "numeric",
+													year: "numeric",
+												})}
+											</p>
+										</div>
+									</div>
+								</Link>
+							))}
+						</div>
 					</div>
-					<h3 className="heading-6">No articles found</h3>
-					<p className="text-fg-secondary max-w-sm text-sm">
-						{searchQuery
-							? `No articles match "${searchQuery}" in ${selectedCategory}.`
-							: `There are currently no articles under ${selectedCategory}.`}
-					</p>
-					{(searchQuery || selectedCategory !== "All") && (
-						<Button
-							color="neutral"
-							variant="outline"
-							onClick={() => {
-								handleSearchChange("")
-								handleCategoryChange("All")
-							}}>
-							Reset filters
-						</Button>
-					)}
-				</div>
-			)}
+				) : (
+					/* Empty State */
+					<div className="flex flex-col items-center justify-center gap-4 px-6 py-20 text-center">
+						<div className="bg-fill1 border-soft text-fg-secondary rounded-full border p-3">
+							<Search className="size-6" />
+						</div>
+						<h3 className="heading-6">No articles found</h3>
+						<p className="text-fg-secondary max-w-sm text-sm">
+							{searchQuery
+								? `No articles match "${searchQuery}" in ${selectedCategory}.`
+								: `There are currently no articles under ${selectedCategory}.`}
+						</p>
+						{(searchQuery || selectedCategory !== "All") && (
+							<Button
+								color="neutral"
+								variant="outline"
+								onClick={() => {
+									handleSearchChange("")
+									handleCategoryChange("All")
+								}}>
+								Reset filters
+							</Button>
+						)}
+					</div>
+				)}
+			</div>
 
 			{/* Dynamic Pagination Bar */}
 			{filteredPosts.length > 0 && (
