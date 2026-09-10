@@ -1,7 +1,7 @@
 {
 	"name": "@radianui/flags",
 	"version": "0.1.0",
-	"description": "Accessible country flag components for React and React frameworks.",
+	"description": "Accessible, type-safe SVG country flag components for React and Next.js using ISO 3166-1 country codes.",
 	"type": "module",
 	"sideEffects": false,
 	"main": "./dist/index.js",
@@ -33,9 +33,17 @@
 	},
 	"keywords": [
 		"country-flags",
+		"country-flag",
 		"flags",
 		"react",
+		"react-flags",
+		"react-country-flags",
+		"nextjs",
+		"typescript",
 		"svg",
+		"iso-3166",
+		"accessible",
+		"accessibility",
 		"radianui"
 	],
 	"author": "RadianOS <radianos44@gmail.com> (https://radianui.com)",
@@ -45,7 +53,7 @@
 		"url": "git+https://github.com/Radian-OS/radianui.git",
 		"directory": "packages/country-flags"
 	},
-	"homepage": "https://radianui.com",
+	"homepage": "https://radianui.com/resources/flags",
 	"bugs": {
 		"url": "https://github.com/Radian-OS/radianui/issues"
 	},

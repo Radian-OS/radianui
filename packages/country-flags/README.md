@@ -1,6 +1,11 @@
 # @radianui/flags
 
-Accessible country flag components for React and React frameworks.
+Accessible, type-safe SVG country flag components for React and Next.js using
+ISO 3166-1 country codes.
+
+[Flags gallery and documentation](https://radianui.com/resources/flags) ·
+[RadianUI](https://radianui.com) ·
+[GitHub repository](https://github.com/Radian-OS/radianui)
 
 ## Installation
 
