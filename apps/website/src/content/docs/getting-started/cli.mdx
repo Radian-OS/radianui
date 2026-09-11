@@ -1,6 +1,6 @@
 ---
 title: CLI
-description: Use the CLI to add components to your project.
+description: Use the CLI to scaffold projects, add components and static assets, search the registry, and inspect project configuration.
 ---
 
 ## init
@@ -8,36 +8,19 @@ description: Use the CLI to add components to your project.
 Use the **`init`** command to initialize configuration and dependencies for a new project.
 
 <br />
-The **`init`** command installs dependencies, adds the radianui util and CSS
-variables for the project.
+The **`init`** command installs dependencies, adds the Radian UI utilities, and
+configures CSS variables and theme tokens for the project.
 
 ```bash
-npx radianui@latest init
-```
-
-<br />
-You will be asked a few questions to configure components.json:
-
-```bash title="Terminal"
-√ No package.json found at C:\Users\RadianOS\Projects. Create a new project? ... yes
-√ What would you like to name your project? ... my-app
-√ Which framework do you want to use? » Next.js
-√ Would you like to use /src directory? ... yes
-√ Which color would you like to use as your brand color? » Dark Orchid
-√ Which font would you like to use for your project? » Inter - Geist (Default)
-✔ Creating a new Next.js project. This might take some time.
-✔ Writing components.json file
-✔ Setting up project configuration
-✔ Installing dependencies
-✔ Updating global CSS variables
-
-Success! Project initialization completed. You may now add components.
+npx radianui@latest init [project-name]
 ```
 
 ### options
 
 ```bash title="Terminal"
 Usage: radianui init [options] [project-name]
+
+initializes your project with required dependencies
 
 Arguments:
   project-name                 the name of the project
@@ -50,29 +33,29 @@ Options:
   --font <font>                set default font
   -s, --skipPrompts            skip confirmation prompts (default: false)
   -d, --defaultConfigurations  use default configurations (default: false)
-  -c, --cwd <cwd>              current working directory (default: "D:\\RadianOS\\radianos")
+  -c, --cwd <cwd>              current working directory (default: process.cwd())
   -h, --help                   display help for command
 ```
 
 ## add
 
-Use the **`add`** command to add components and dependencies to your project.
+Use the **`add`** command to add components, blocks, and dependencies to your project.
 
 ```bash
-npx radianui@latest add [component]
+npx radianui@latest add [components...]
 ```
 
 <br />
-You will be presented with installation process:
+You will be presented with the installation process:
 
 ```bash title="Terminal"
-RadianOS v1.0.0
+RadianUI v0.3.8
 √ Checking registry
-√ Installing the dependencies
+√ Installing dependencies
 
 Created 1 file(s):
 
-- C:\Project\components\ui\accordion.tsx
+- src/components/ui/accordion.tsx
 ```
 
 ### options
@@ -83,12 +66,125 @@ Usage: radianui add [options] [components...]
 add components to ui folder inside the components folder in your project
 
 Arguments:
-  components       the components to add.
+  components...    the components to add.
 
 Options:
   -y, --yes        skip confirmation prompts. (default: false)
   -a, --all        install all available components. (default: false)
-  -c, --cwd <cwd>  the working directory. defaults to the current directory. (default: "D:\\RadianOS\\radianos")
+  -c, --cwd <cwd>  the working directory. defaults to the current directory. (default: process.cwd())
   -o, --overwrite  overwrite existing files if they exist. (default: false)
   -h, --help       display help for command
+```
+
+## add-asset
+
+Use the **`add-asset`** command to install static registry assets (such as country flags, brand logos, or file icons) directly into your project's static assets directory (e.g. `public/assets/flags/`).
+
+```bash
+npx radianui@latest add-asset [assetType] [assets...]
+```
+
+<br />
+You can install specific assets by code or name, or install all assets of a
+given type:
+
+```bash
+# Install specific country flags
+npx radianui@latest add-asset flag US GB NP
+
+# Install using identifier prefix
+npx radianui@latest add-asset flag:US
+
+# Install all assets for a given type
+npx radianui@latest add-asset flag --all
+```
+
+### options
+
+```bash title="Terminal"
+Usage: radianui add-asset [options] [assetType] [assets...]
+
+add static assets (flag, logos, icons) to your project
+
+Arguments:
+  assetType        the type of asset (e.g. flag, logo) or asset identifier (e.g. flag:US-24x24)
+  assets...        the specific asset names or codes to add
+
+Options:
+  -a, --all        install all available assets for the selected type (default: false)
+  -y, --yes        skip confirmation prompts (default: false)
+  -c, --cwd <cwd>  the working directory. defaults to the current directory (default: process.cwd())
+  -o, --overwrite  overwrite existing files if they exist (default: false)
+  -h, --help       display help for command
+```
+
+## search
+
+Use the **`search`** command to quickly find components and blocks by name or description with fuzzy matching.
+
+```bash
+npx radianui@latest search <query> [options]
+```
+
+<br />
+Search across all registry items or filter specifically by `ui` components or
+`block` sections:
+
+```bash
+# Search for dialog and modal primitives
+npx radianui@latest search modal
+
+# Search only full-section blocks
+npx radianui@latest search sidebar --filter block
+
+# Limit the number of search results
+npx radianui@latest search input --limit 5
+```
+
+### options
+
+```bash title="Terminal"
+Usage: radianui search [options] <query>
+
+Search for components/blocks by name or description
+
+Arguments:
+  query                search query
+
+Options:
+  -l, --limit <limit>  number of results to show (default: "8")
+  --filter <type>      filter by type of item (choices: "ui", "block")
+  -h, --help           display help for command
+```
+
+## info
+
+Use the **`info`** command to inspect the current RadianUI project configuration, framework, Tailwind CSS version, design style, icon library, and list all currently installed components.
+
+```bash
+npx radianui@latest info [options]
+```
+
+<br />
+Run the command in your project directory:
+
+### JSON output
+
+Use the `--json` flag to output the report as structured JSON, ideal for automation, build scripts, and AI coding assistants:
+
+```bash
+npx radianui@latest info --json
+```
+
+### options
+
+```bash title="Terminal"
+Usage: radianui info [options]
+
+display information about the current RadianUI project
+
+Options:
+  -c, --cwd <cwd>      the working directory. defaults to the current directory. (default: process.cwd())
+  --json               output project information as JSON (default: false)
+  -h, --help           display help for command
 ```

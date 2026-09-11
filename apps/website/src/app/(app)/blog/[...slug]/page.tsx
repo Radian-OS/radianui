@@ -114,7 +114,13 @@ export default async function BlogPage({ params }: BlogPageProps) {
 			/>
 
 			<section className="border-soft flex w-full max-w-368 flex-col items-center justify-center overflow-hidden border-x">
-				<div className="border-border flex w-full flex-col gap-6 border-b border-dashed p-5 md:pt-10 lg:px-25 lg:pt-16 lg:pb-8 xl:max-w-312.5">
+				<div
+					className="border-border flex w-full flex-col gap-6 bg-bottom bg-repeat-x p-5 md:pt-10 lg:px-25 lg:pt-16 lg:pb-8 xl:px-46"
+					style={{
+						backgroundImage:
+							"repeating-linear-gradient(to right, var(--color-border) 0, var(--color-border) 12px, transparent 12px, transparent 20px)",
+						backgroundSize: "20px 1px",
+					}}>
 					<div className="flex items-center justify-between xl:w-262.5">
 						<Link
 							href="/blog"
@@ -122,7 +128,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
 							<ArrowLeft className="size-4 transition-transform group-hover:-translate-x-0.5" />
 							<span>Back to Blogs</span>
 						</Link>
-						<div className="text-fg-tertiary hidden items-center justify-center gap-3 text-sm uppercase sm:flex">
+						<div className="text-fg-tertiary hidden items-center justify-center gap-3 text-sm font-medium uppercase sm:flex">
 							<span>
 								{new Date(blog.data.date).toLocaleDateString("en-US", {
 									month: "long",
@@ -133,12 +139,12 @@ export default async function BlogPage({ params }: BlogPageProps) {
 							<div className="bg-fill4 size-2 shrink-0 rounded-full" />
 							<span>{blog.data.card}</span>
 						</div>
-						<span className="text-fg-tertiary flex items-center text-sm">
+						<span className="text-fg-tertiary flex items-center text-sm font-medium">
 							[{blog.data.readingTime}]
 						</span>
 					</div>
 
-					<div className="text-fg-tertiary flex items-center justify-center gap-3 text-sm uppercase sm:hidden">
+					<div className="text-fg-tertiary flex items-center justify-start gap-3 text-sm font-medium uppercase sm:hidden">
 						<span>
 							{new Date(blog.data.date).toLocaleDateString("en-US", {
 								month: "long",
@@ -168,7 +174,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
 						)}
 					</div>
 					{/* Hero / Cover Image */}
-					<div className="relative aspect-video w-full overflow-hidden rounded-xl">
+					<div className="relative aspect-2/1 w-full overflow-hidden rounded-xl">
 						<Image
 							fill
 							src={blog.data.image ?? "/carousel-home.png"}
@@ -180,7 +186,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
 					</div>
 
 					{/* Author & Share Row */}
-					<div className="flex flex-col gap-4 pt-3 sm:flex-row sm:items-end sm:justify-between">
+					<div className="flex flex-col pt-3 sm:flex-row sm:items-end sm:justify-between">
 						{authors.length > 0 && (
 							<div className="flex flex-col gap-2">
 								<span className="text-fg-secondary text-xs">Author</span>
@@ -244,7 +250,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
 			<section className="border-soft border">
 				<div className="flex flex-col lg:flex-row lg:items-start">
 					<div>
-						<NormalBlogTableOfContents headings={headings} />
+						{/* <NormalBlogTableOfContents headings={headings} /> */}
 						{/* Article Body */}
 						<article className="p-5 md:py-10 lg:px-25 lg:py-15">
 							<blog.data.body components={BlogComponents} />

@@ -18,6 +18,7 @@ import {
 import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
 import { Divider } from "@/registry/ui/divider"
+import { BlogExampleCard, BlogExampleCardGroup } from "./blog-example-card"
 
 export const BlogComponents: MDXComponents = {
 	h1: ({
@@ -339,7 +340,7 @@ export const BlogComponents: MDXComponents = {
 				width={resolvedWidth}
 				height={resolvedHeight}
 				className={cn(
-					"my-20 h-100 w-full max-w-full rounded-xl object-cover",
+					"my-10 aspect-110/60 w-full max-w-full rounded-xl object-cover",
 					className
 				)}
 				{...props}
@@ -369,4 +370,8 @@ export const BlogComponents: MDXComponents = {
 			/>
 		</div>
 	),
+	ExampleCard: BlogExampleCard,
+	ExampleCardGroup: BlogExampleCardGroup,
+	BlogExampleCard,
+	BlogExampleCardGroup,
 }

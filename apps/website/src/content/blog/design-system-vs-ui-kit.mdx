@@ -21,7 +21,7 @@ author:
 
 ## What is a UI Kit?
 
-A UI kit is basically a ready-made toolbox for designing digital products. Instead of creating every button, form, card, menu, icon, and other UI element from scratch, you have a bunch of reusable pieces sitting there, ready to pick up and use. Most UI kits live in design tools like Figma, and they can include way more than just components. You might find color palettes, typography styles, grids, layouts, templates, and other design assets all packed into the same file. The whole point is pretty simple: give interface designers a collection of reusable pieces they can mix, match, tweak, and turn into actual screens without starting from a completely blank canvas.
+A UI kit is a ready-made toolbox for designing digital products. Instead of creating every button, form, card, menu, icon, and other UI element from scratch, you have a bunch of reusable pieces sitting there, ready to pick up and use. Most UI kits live in design tools like Figma, and they can include way more than just components. You might find color palettes, typography styles, grids, layouts, templates, and other design assets all packed into the same file. The whole point is pretty simple: give interface designers a collection of reusable pieces they can mix, match, tweak, and turn into actual screens without starting from a completely blank canvas.
 
 ![Image description](/blocks/bg-2.jpg)
 
@@ -53,7 +53,7 @@ But there's a trade-off. The kit might not have exactly what you need. You may h
 
 For many projects, that's perfectly fine. But eventually, some products outgrow the simple idea of a collection of design resources. That's where the design system comes in.
 
-![Image description](/blocks/bg-2.jpg)
+![Image description](/blog/cat-typing.gif)
 
 ## What Is a Design System?
 
@@ -97,63 +97,25 @@ But a design system also asks more from the team. Someone has to maintain it. Co
 
 A design system isn't automatically better because it's bigger. It isn't better because it has more components, more tokens, or more documentation either. A good design system is one that gives a team the right structure for the product they're actually building. Now that we've looked at both, the difference between a UI kit and a design system becomes much easier to see.
 
-![Image description](/blocks/bg-2.jpg)
+![Image description](/blog/duck.gif)
 
 ## Key Differences Between UI Kits and Design Systems
 
-UI kits and design systems share the same basic idea: don't keep reinventing the wheel.
+UI kits and design systems share the same basic idea: don't keep reinventing the wheel. The difference is how far that idea goes.
 
-The difference is how far that idea goes.
-
-**Scope**
-
-UI kits: A UI kit mainly focuses on the design side. It gives designers ready-made components, styles, assets, patterns, and layouts they can use to create screens.
-
-Design systems: A design system has a wider scope. Along with those design resources, it can cover principles, guidelines, accessibility, documentation, code, and the processes that keep everything aligned.
-
-**Who Uses Them**
-
-UI kits: UI kits are primarily made for designers. They help designers work faster and keep their screens visually consistent.
-
-Design systems: Design systems are shared across the wider product team. Designers and developers use them together, while product managers, content designers, and other contributors may also rely on them.
-
-**Customization**
-
-UI kits: UI kits are generally flexible. You can adjust colors, typography, components, and layouts to suit your project.
-
-Design systems: Design systems also allow flexibility, but within a shared set of decisions and guidelines. This helps teams solve specific problems without every screen becoming its own little design language.
-
-**Guidelines and Documentation**
-
-UI kits: A UI kit might include some notes about how to use its components, but detailed documentation isn't always necessary.
-
-Design systems: Documentation and guidelines are a much bigger part of the picture. They explain how components and patterns should be used and can cover everything from accessibility to content and interaction.
-
-**Design and Development**
-
-UI kits: A UI kit usually lives in a design tool such as Figma and represents how the interface should look.
-
-Design systems: A design system can connect the design with the actual product through coded components, design tokens, and implementation guidance.
-
-This is one of the biggest practical differences. The designer isn't working in isolation anymore. The same decisions can travel from the design file into development.
-
-**Maintenance and Governance**
-
-UI kits: A designer or design team can usually update a UI kit as the project changes. There may not be a formal process around those changes.
-
-Design systems: Once many people depend on a system, changes need more structure. Teams may have owners, contribution processes, reviews, versioning, and regular updates.
-
-**Applicability and Scale**
-
-UI kits: A UI kit can be a great fit for a focused project, prototype, MVP, or smaller team that mainly needs reusable design resources.
-
-Design systems: A design system becomes more useful as products and teams grow. Multiple designers, developers, features, products, or platforms can all benefit from having the same shared system.
-
-**Consistency**
-
-UI kits: A UI kit helps keep the visual design consistent by giving designers the same components and styles.
-
-Design systems: A design system takes that consistency further. It can align the designs, code, interactions, content, accessibility, and the way teams make decisions.
+|                            | UI Kit                                                                                             | Design System                                                                                              |
+| :------------------------- | :------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------- |
+| **Scope**                  | Mainly focuses on the design side and ready-made components, styles, assets, patterns, and layouts | Has a wider scope as it can cover principles, guidelines, accessibility, documentation, code and much more |
+| **Who Uses Them**          | Primarily made for designers.                                                                      | Shared across the wider product team.                                                                      |
+| **Customization**          | More Flexible due to being less rules to adhere to                                                 | Flexible but within a shared set of decisions and guidelines                                               |
+| **Guidelines**             | Can include some notes about how to use its components                                             | Explains how components and patterns should be used                                                        |
+| **Governance and Updates** | A designer or design team can usually update a UI kit as the project change                        | Once many people depend on a system, changes need more structure                                           |
+| **Applicability**          | Great fit for a focused project, prototype, MVP, or new projects                                   | More useful as products and teams grow.                                                                    |
+| **Design Principles**      | ❌ Limited                                                                                         | ✅ Required                                                                                                |
+| **Interaction Patterns**   | ❌ Limited                                                                                         | ✅ Required                                                                                                |
+| **Content Guidelines**     | ❌ Not Required                                                                                    | ✅ Required                                                                                                |
+| **Design + Code**          | ⚠️ Optional                                                                                        | ✅ Required                                                                                                |
+| **Documentation**          | Basic                                                                                              | Extensive                                                                                                  |
 
 So the difference isn't really about whether one has certain components and the other doesn't. It's about everything that surrounds those components.
 
@@ -206,23 +168,63 @@ The exact journey will look different for every team, but the idea stays the sam
 
 ## Real-World Examples of UI Kits and Design Systems
 
-Seeing a few real examples makes the distinction easier to spot.
+**UI Kits**
 
-**UI Kit Examples**
+<ExampleCardGroup>
+	<ExampleCard
+		logo="radian"
+		title="Radian UI"
+		href="https://radianui.com"
+		description="A free and open-source UI kit with Figma components, UI blocks, React components, variables, dark mode, and design assets. The full library is available for free for both design and development."
+	/>
+	<ExampleCard
+		logo="untitledui"
+		title="Untitled UI"
+		href="https://www.untitledui.com/"
+		description="A comprehensive Figma UI kit for product designers. The free version includes core components and styles, while variables, dark mode, advanced components, and the full library are part of PRO."
+	/>
+	<ExampleCard
+		logo="relume"
+		title="Relume"
+		href="https://www.relume.io/"
+		description="A UI library focused on wireframes, sections, and page structures. It's especially useful for quickly planning and assembling websites before applying the final visual design."
+	/>
+	<ExampleCard
+		logo="shadcn"
+		title="Shadcn"
+		href="https://ui.shadcn.com/"
+		description="A developer-first React component library built around copy, customize, and own. Its open-source components provide a flexible foundation for building interfaces, with Figma resources available separately."
+	/>
+</ExampleCardGroup>
 
-[Radian UI](https://radianui.com): Radian UI brings Figma components, UI blocks, React components, and other design assets together. The idea is pretty straightforward: designers get reusable pieces to work with in Figma, while developers can use the React components when it's time to build. It's a useful example of how a UI resource can support both sides of the workflow without making the explanation overly complicated.
+**Design Systems**
 
-[Untitled UI](https://www.untitledui.com/): Untitled UI is a Figma UI kit made mainly for product designers. It brings together things like components, variants, styles, icons, and ready-made screens in one place. So if you're designing a dashboard, SaaS product, or another digital product, you already have a lot of the common pieces ready to go.
-
-[Tailwind UI](https://tailwindui.com): Tailwind UI gives you a bunch of ready-made components, sections, and templates for building websites and web apps with Tailwind CSS. Instead of starting with an empty Figma file or a blank page, you can pick the pieces you need and build from there. It's a good example of a UI kit that focuses on helping you get the interface together faster.
-
-**Design System Examples**
-
-[Material Design](https://m3.material.io/): Material Design is Google's design system for building digital products. It covers much more than individual components, including foundations, typography, color, layout, interaction, accessibility, motion, and theming. The components are important, but they're really just one part of the bigger system.
-
-[IBM Carbon Design System](https://carbondesignsystem.com/): Carbon is IBM's design system, and it brings the design and development sides together. You get reusable components, design resources, guidelines, accessibility guidance, documentation, and coded components for different technologies. It's a good example of a system built to support teams working on a large range of products.
-
-[Atlassian Design System](https://atlassian.design/): Atlassian's design system brings together the things its teams need to build products consistently, from foundations and components to tokens, patterns, content guidance, and accessibility. It also has resources for both Figma and development, so designers and developers aren't working from completely different sets of rules.
+<ExampleCardGroup>
+	<ExampleCard
+		logo="google"
+		title="Material Design"
+		href="https://m3.material.io/"
+		description="Google's comprehensive design system for building consistent digital products. It combines components, foundations, interaction patterns, accessibility guidance, and implementation resources across platforms."
+	/>
+	<ExampleCard
+		logo="ibm"
+		title="IBM Carbon Design System"
+		href="https://carbondesignsystem.com/"
+		description="IBM's open-source design system for digital products and enterprise applications. It brings together components, patterns, design guidance, Figma resources, and production-ready code."
+	/>
+	<ExampleCard
+		logo="apple"
+		title="Human Interface Guidelines (HIG)"
+		href="https://developer.apple.com/design/human-interface-guidelines"
+		description="Apple's Human Interface Guidelines define principles and best practices for designing experiences across Apple platforms. It covers foundations, components, interaction patterns, accessibility, and platform-specific behavior."
+	/>
+	<ExampleCard
+		logo="atlassian"
+		title="Atlassian Design System"
+		href="https://atlassian.design/"
+		description="Atlassian's design system provides foundations, components, design tokens, guidelines, and tools for building consistent experiences across its products, with strong guidance around accessibility and content."
+	/>
+</ExampleCardGroup>
 
 Looking at these examples, one thing becomes pretty clear: the number of components doesn't tell you whether something is a UI kit or a design system. A UI kit can have hundreds of components and still mainly be a collection of design resources. A design system can contain many of those same components but adds the shared rules, documentation, code, and processes around them.
 
@@ -236,4 +238,4 @@ So, rather than asking which one is better, ask a simpler question: What does yo
 
 And that’s all! Hopefully, this makes the difference between a UI kit and a design system a little easier to understand. Bye! 👋
 
-![Image description](/blocks/bg-2.jpg)
+![Image description](/blog/sheep.gif)

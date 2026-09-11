@@ -3,7 +3,7 @@ import { Command } from "commander"
 import fs from "fs-extra"
 import z from "zod"
 import { txt } from "@/utils/colors"
-import { RawConfig, getRawConfig } from "@/utils/getConfig"
+import { RawConfig, getConfig } from "@/utils/getConfig"
 import { getProjectInfo, ProjectInfo } from "@/utils/getProjectInfo"
 import { handleError } from "@/utils/handleError"
 import { logger } from "@/utils/logger"
@@ -48,7 +48,7 @@ export type InfoOptions = z.infer<typeof infoOptionsSchema>
 
 export type ProjectInfoReport = {
 	projectInfo: ProjectInfo
-	config: RawConfig | null
+	config: RawConfig
 	installedComponents: string[]
 	docsUrl: string
 	llmsTxtUrl: string
@@ -122,7 +122,7 @@ export async function getInstalledComponentsDetails(
  * Aggregates all project information into a single report object.
  */
 export async function collectProjectInfo(cwd: string): Promise<ProjectInfoReport> {
-	const rawConfig = await getRawConfig(cwd)
+	const rawConfig = await getConfig(cwd)
 
 	const projectInfo = await getProjectInfo(cwd)
 	const installedComponents = await getInstalledComponentsDetails(cwd, rawConfig)
