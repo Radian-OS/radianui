@@ -136,14 +136,16 @@ export function FlagDetailsDialog({
 	const [packageManager, setPackageManager] = useState<PackageManager>("pnpm")
 	const [commandCopied, setCommandCopied] = useState(false)
 
-	const moreFlags = useMemo(() => {
+	const moreFlags: FlagName[] = useMemo(() => {
 		if (!name) return featuredFlagNames
 
-		const featured = featuredFlagNames.filter((flagName) => flagName !== name)
+		const featured = featuredFlagNames.filter(
+			(flagName: FlagName) => flagName !== name
+		)
 		if (featured.length === featuredFlagNames.length) return featured
 
 		const replacement = flagNames.find(
-			(flagName) => flagName !== name && !featured.includes(flagName)
+			(flagName: FlagName) => flagName !== name && !featured.includes(flagName)
 		)
 		return replacement ? [...featured, replacement] : featured
 	}, [name])
