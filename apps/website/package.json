@@ -113,7 +113,7 @@
 		"posthog-node": "^4.11.1",
 		"react": "^19.2.8",
 		"react-before-after-slider-component": "^1.1.8",
-		"react-currency-input-field": "^3.10.0",
+		"react-currency-input-field": "^4.0.6",
 		"react-day-picker": "10.0.1",
 		"react-dom": "^19.2.8",
 		"react-hook-form": "^7.87.0",
