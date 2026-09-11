@@ -49,7 +49,6 @@ const codeOverrides: Record<string, readonly string[]> = {
 	nato: ["NATO"],
 	"northern-cyprus": ["CY-TRNC"],
 	palestine: ["PS"],
-	placeholder: [],
 	"rapa-nui": ["CL-VS"],
 	"republic-of-macedonia": ["MK"],
 	"republic-of-the-congo": ["CG"],

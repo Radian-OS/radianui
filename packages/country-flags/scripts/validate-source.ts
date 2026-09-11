@@ -43,9 +43,8 @@ for (const [index, flag] of manifest.flags.entries()) {
 	assert.equal(flag.file, `${flag.id}.svg`, `File must match ID: ${flag.id}`)
 	assert.ok(!ids.has(flag.id), `Duplicate flag ID: ${flag.id}`)
 	assert.ok(!files.has(flag.file), `Duplicate flag file: ${flag.file}`)
-	assert.equal(
+	assert.ok(
 		flag.codes.length > 0,
-		flag.id !== "placeholder",
 		`${flag.id} has an invalid number of country codes`
 	)
 

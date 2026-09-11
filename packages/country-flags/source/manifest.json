@@ -1085,12 +1085,6 @@
 			"codes": ["PN"]
 		},
 		{
-			"id": "placeholder",
-			"name": "Placeholder",
-			"file": "placeholder.svg",
-			"codes": []
-		},
-		{
 			"id": "poland",
 			"name": "Poland",
 			"file": "poland.svg",

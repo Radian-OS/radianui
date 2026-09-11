@@ -53,11 +53,40 @@ export function Flag({
 	...svgProps
 }: FlagProps) {
 	const instanceId = `rf${useId().replace(/[^a-zA-Z0-9_-]/g, "")}`
-	const normalizedCountry = country.toUpperCase() as CountryCode
-	const flagId = countryCodeToFlagId[normalizedCountry] ?? "placeholder"
-	const flag = flagsById[flagId]
+	const normalizedCountry = country?.toUpperCase() as CountryCode
+	const flagId = countryCodeToFlagId[normalizedCountry]
+	const flag = flagId ? flagsById[flagId] : undefined
 	const resolvedAriaLabel = ariaLabel?.trim() || undefined
 	const isLabelled = Boolean(resolvedAriaLabel)
+
+	if (!flag) {
+		return (
+			<svg
+				{...svgProps}
+				aria-hidden={ariaHidden ?? (isLabelled ? undefined : true)}
+				aria-label={resolvedAriaLabel}
+				data-country={normalizedCountry}
+				data-flag="placeholder"
+				data-shape={shape}
+				focusable="false"
+				height={size}
+				role={isLabelled ? "img" : undefined}
+				style={{
+					display: "inline-block",
+					flex: "none",
+					overflow: "hidden",
+					verticalAlign: "middle",
+					...shapeStyles[shape],
+					...style,
+				}}
+				viewBox={flatViewBox}
+				width={size}
+				xmlns="http://www.w3.org/2000/svg"
+			>
+				<rect width="24" height="24" fill="#DEE0E3" />
+			</svg>
+		)
+	}
 
 	return (
 		<svg

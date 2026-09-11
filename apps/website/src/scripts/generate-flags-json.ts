@@ -46,6 +46,8 @@ async function generateFlagsJson() {
 	const flagsData: RegistryComponent[] = []
 
 	for (const flag of manifest.flags) {
+		if (!flag.codes || flag.codes.length === 0) continue
+
 		const svgFilePath = path.join(flagsSvgDir, flag.file)
 		try {
 			const rawSvg = await fs.readFile(svgFilePath, "utf-8")

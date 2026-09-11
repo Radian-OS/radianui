@@ -2340,19 +2340,6 @@
     ]
   },
   {
-    "name": "flag:undefined",
-    "description": "Placeholder",
-    "type": "icon",
-    "files": [
-      {
-        "name": "undefined.svg",
-        "content": "<svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<g clip-path=\"url(#clip0_29_74780)\">\n<path d=\"M23.5861 19.8618H0.413751C0.185235 19.8618 -6.10352e-05 19.6765 -6.10352e-05 19.448V4.55151C-6.10352e-05 4.32299 0.185235 4.1377 0.413751 4.1377H23.5861C23.8146 4.1377 23.9999 4.32299 23.9999 4.55151V19.448C23.9999 19.6766 23.8146 19.8618 23.5861 19.8618Z\" fill=\"#DEE0E3\"/>\n</g>\n<defs>\n<clipPath id=\"clip0_29_74780\">\n<rect width=\"24\" height=\"24\" fill=\"white\"/>\n</clipPath>\n</defs>\n</svg>",
-        "type": "icon",
-        "targetDir": "/assets/flags"
-      }
-    ]
-  },
-  {
     "name": "flag:PL",
     "description": "Poland",
     "type": "icon",

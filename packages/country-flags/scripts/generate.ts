@@ -69,7 +69,7 @@ const flags: Record<
 	{ name: string; svg: string; circleViewBox?: string }
 > = {}
 const codeToFlagId: Record<string, string> = {}
-const publicFlagIds = new Set(["placeholder"])
+const publicFlagIds = new Set<string>()
 
 for (const flag of manifest.flags) {
 	for (const code of flag.codes) {
@@ -122,5 +122,5 @@ await mkdir(generatedDirectory, { recursive: true })
 await writeFile(generatedPath, source)
 
 console.log(
-	`Generated ${Object.keys(flags).length - 1} flags for ${Object.keys(codeToFlagId).length} ISO country codes.`
+	`Generated ${Object.keys(flags).length} flags for ${Object.keys(codeToFlagId).length} ISO country codes.`
 )
