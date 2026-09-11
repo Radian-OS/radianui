@@ -18,6 +18,7 @@ import {
 import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
 import { Divider } from "@/registry/ui/divider"
+import { BlogExampleCard, BlogExampleCardGroup } from "./blog-example-card"
 
 export const BlogComponents: MDXComponents = {
 	h1: ({
@@ -369,4 +370,8 @@ export const BlogComponents: MDXComponents = {
 			/>
 		</div>
 	),
+	ExampleCard: BlogExampleCard,
+	ExampleCardGroup: BlogExampleCardGroup,
+	BlogExampleCard,
+	BlogExampleCardGroup,
 }
