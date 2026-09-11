@@ -339,7 +339,7 @@ export const BlogComponents: MDXComponents = {
 				width={resolvedWidth}
 				height={resolvedHeight}
 				className={cn(
-					"my-20 h-100 w-full max-w-full rounded-xl object-cover",
+					"my-10 aspect-110/60 w-full max-w-full rounded-xl object-cover",
 					className
 				)}
 				{...props}
