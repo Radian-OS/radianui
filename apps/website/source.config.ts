@@ -14,6 +14,7 @@ export const { docs, meta } = defineDocs({
 	docs: {
 		schema: frontmatterSchema.extend({
 			apiRef: z.string().optional(),
+			seoTitle: z.string().optional(),
 			source: z.string().optional(),
 			externalSiteRef: z.string().optional(),
 			externalSiteName: z.string().optional(),

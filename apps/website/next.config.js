@@ -157,6 +157,21 @@ const nextConfig = {
 	async redirects() {
 		return [
 			{
+				source: "/docs/getting-started/flags",
+				destination: "/docs/packages/flags",
+				permanent: true,
+			},
+			{
+				source: "/docs/components/flag",
+				destination: "/docs/packages/flags",
+				permanent: true,
+			},
+			{
+				source: "/docs/flags",
+				destination: "/docs/packages/flags",
+				permanent: true,
+			},
+			{
 				source: "/documentation",
 				destination: "/docs/getting-started/introduction",
 				permanent: true,

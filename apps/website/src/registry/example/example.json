@@ -1016,6 +1016,27 @@
     ]
   },
   {
+    "name": "flag",
+    "files": [
+      {
+        "name": "flag/flag-country-select",
+        "content": "\"use client\"\n\nimport { useState } from \"react\"\nimport { type CountryCode, Flag } from \"@radianui/flags\"\nimport { Label } from \"@/components/ui/label\"\nimport {\n\tSelect,\n\tSelectContent,\n\tSelectItem,\n\tSelectTrigger,\n\tSelectValue,\n} from \"@/components/ui/select\"\n\nconst countries = [\n\t{ code: \"US\", name: \"United States\" },\n\t{ code: \"IN\", name: \"India\" },\n\t{ code: \"CN\", name: \"China\" },\n\t{ code: \"GB\", name: \"United Kingdom\" },\n\t{ code: \"JP\", name: \"Japan\" },\n] as const satisfies ReadonlyArray<{ code: CountryCode; name: string }>\n\nexport default function FlagCountrySelect() {\n\tconst [country, setCountry] = useState<CountryCode>(\"US\")\n\n\treturn (\n\t\t<div className=\"flex w-full max-w-64 flex-col gap-2\">\n\t\t\t<Label htmlFor=\"country\">Country</Label>\n\t\t\t<Select\n\t\t\t\tvalue={country}\n\t\t\t\tonValueChange={(value) => setCountry(value as CountryCode)}>\n\t\t\t\t<SelectTrigger id=\"country\" className=\"w-full\">\n\t\t\t\t\t<SelectValue placeholder=\"Select a country\" />\n\t\t\t\t</SelectTrigger>\n\t\t\t\t<SelectContent>\n\t\t\t\t\t{countries.map((item) => (\n\t\t\t\t\t\t<SelectItem key={item.code} value={item.code}>\n\t\t\t\t\t\t\t<span className=\"flex items-center gap-2\">\n\t\t\t\t\t\t\t\t<Flag country={item.code} size={20} />\n\t\t\t\t\t\t\t\t{item.name}\n\t\t\t\t\t\t\t</span>\n\t\t\t\t\t\t</SelectItem>\n\t\t\t\t\t))}\n\t\t\t\t</SelectContent>\n\t\t\t</Select>\n\t\t</div>\n\t)\n}\n"
+      },
+      {
+        "name": "flag/flag-preview",
+        "content": "import { Flag } from \"@radianui/flags\"\n\nexport default function FlagPreview() {\n\treturn (\n\t\t<div className=\"flex flex-wrap items-center justify-center gap-5\">\n\t\t\t<Flag\n\t\t\t\tcountry=\"US\"\n\t\t\t\tsize={48}\n\t\t\t\tclassName=\"drop-shadow-sm\"\n\t\t\t\taria-label=\"United States\"\n\t\t\t/>\n\t\t\t<Flag country=\"GB\" shape=\"circle\" size={48} aria-label=\"United Kingdom\" />\n\t\t\t<Flag country=\"JP\" size={48} aria-label=\"Japan\" />\n\t\t\t<Flag\n\t\t\t\tcountry=\"DE\"\n\t\t\t\tshape=\"circle\"\n\t\t\t\tsize={48}\n\t\t\t\tstyle={{ opacity: 0.9 }}\n\t\t\t\taria-label=\"Germany\"\n\t\t\t/>\n\t\t</div>\n\t)\n}\n"
+      },
+      {
+        "name": "flag/flag-shapes",
+        "content": "import { Flag } from \"@radianui/flags\"\n\nexport default function FlagShapes() {\n\treturn (\n\t\t<div className=\"flex items-center justify-center gap-8\">\n\t\t\t<div className=\"flex flex-col items-center gap-2\">\n\t\t\t\t<Flag country=\"GB\" size={56} />\n\t\t\t\t<span className=\"text-muted-foreground text-sm\">Flat</span>\n\t\t\t</div>\n\t\t\t<div className=\"flex flex-col items-center gap-2\">\n\t\t\t\t<Flag country=\"GB\" shape=\"circle\" size={56} />\n\t\t\t\t<span className=\"text-muted-foreground text-sm\">Circle</span>\n\t\t\t</div>\n\t\t</div>\n\t)\n}\n"
+      },
+      {
+        "name": "flag/flag-sizes",
+        "content": "import { Flag } from \"@radianui/flags\"\n\nconst sizes = [16, 24, 32, 48, 64] as const\n\nexport default function FlagSizes() {\n\treturn (\n\t\t<div className=\"flex flex-wrap items-end justify-center gap-6\">\n\t\t\t{sizes.map((size) => (\n\t\t\t\t<div key={size} className=\"flex flex-col items-center gap-2\">\n\t\t\t\t\t<Flag country=\"CN\" size={size} />\n\t\t\t\t\t<span className=\"text-muted-foreground text-xs\">{size}px</span>\n\t\t\t\t</div>\n\t\t\t))}\n\t\t</div>\n\t)\n}\n"
+      }
+    ]
+  },
+  {
     "name": "form",
     "files": [
       {

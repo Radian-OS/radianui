@@ -191,12 +191,6 @@ const GETTING_STARTED_ITEMS: NavigationItem[] = [
 		isNew: true,
 	},
 	{
-		title: "Flags",
-		url: "/docs/getting-started/flags",
-		icon: FlagIcon,
-		isNew: true,
-	},
-	{
 		title: "Skills",
 		url: "/docs/getting-started/skills",
 		icon: Zap,
@@ -225,6 +219,16 @@ const INSTALLATION_ITEMS: NavigationItem[] = [
 		title: "Manual",
 		url: "/docs/installation/manual",
 		icon: CodeXml,
+	},
+]
+
+const PACKAGES_ITEMS: NavigationItem[] = [
+	{
+		title: "@radianui/flags",
+		description: "Accessible country flags for React",
+		url: "/docs/packages/flags",
+		icon: FlagIcon,
+		isNew: true,
 	},
 ]
 
@@ -285,6 +289,11 @@ export const navigationItems: NavigationSection[] = [
 		title: "Installation",
 		searchIcon: "/search-icons/search-installation.svg",
 		items: INSTALLATION_ITEMS,
+	},
+	{
+		title: "Packages",
+		searchIcon: "/search-icons/search-components.svg",
+		items: PACKAGES_ITEMS,
 	},
 	{
 		title: "Fundamentals",

@@ -1,0 +1,214 @@
+---
+title: "@radianui/flags"
+seoTitle: "@radianui/flags — React Country Flags | Radian UI"
+description: Accessible, type-safe SVG country flags for React and React frameworks.
+links:
+  github:
+    href: https://github.com/Radian-OS/radianui
+  externalReference:
+    - label: npm
+      href: https://www.npmjs.com/package/@radianui/flags
+      icon: npm.svg
+---
+
+`@radianui/flags` is RadianUI's dedicated country flag package for React and
+React frameworks. It provides tree-shakeable SVG flags, supported ISO 3166-1
+alpha-2 country codes, flat and circle shapes, flexible sizing, TypeScript
+types, and accessible labelling.
+
+[Browse every available flag](/resources/flags) or
+[view the package on npm](https://www.npmjs.com/package/@radianui/flags).
+
+<br />
+<ComponentPreview path="flag/flag-preview" />
+
+---
+
+## Installation
+
+<PackageManagerTabs
+	commands={{
+		pnpm: "pnpm add @radianui/flags",
+		npm: "npm install @radianui/flags",
+		yarn: "yarn add @radianui/flags",
+		bun: "bun add @radianui/flags",
+	}}
+	withIcon
+/>
+
+---
+
+## Usage
+
+Import `Flag` and pass a supported uppercase country code. The `country` prop is
+required and `shape` defaults to `flat`.
+
+```tsx showLineNumbers title="country-flags.tsx"
+import { Flag } from "@radianui/flags"
+
+export function CountryFlags() {
+	return (
+		<div className="flex items-center gap-3">
+			<Flag country="US" />
+			<Flag country="GB" shape="circle" />
+			<Flag country="JP" size={32} aria-label="Japan" />
+		</div>
+	)
+}
+```
+
+---
+
+## Examples
+
+### Shapes
+
+Use `flat` to preserve the source artwork in its square view box. Use `circle`
+to crop and scale the artwork into a consistent circular frame.
+
+<br />
+<ComponentPreview path="flag/flag-shapes" />
+
+### Sizes
+
+The default size is `24`. A numeric value is rendered in pixels, while a string
+can use any valid SVG length such as `2rem`.
+
+<br />
+
+<ComponentPreview path="flag/flag-sizes" />
+
+```tsx
+<Flag country="US" size={32} />
+<Flag country="US" size="2rem" />
+```
+
+### Country select
+
+The package can be composed with RadianUI components. This example uses a
+type-safe `CountryCode` with the Radian Select and Label components.
+
+<br />
+<ComponentPreview path="flag/flag-country-select" />
+
+---
+
+## Accessibility
+
+Flags are decorative by default and render with `aria-hidden="true"`. Keep that
+default when nearby text already names the country.
+
+```tsx
+<span className="flex items-center gap-2">
+	<Flag country="DE" />
+	Germany
+</span>
+```
+
+<br />
+When the flag communicates information on its own, provide an `aria-label`. The
+component then renders with `role="img"` and remains available to assistive
+technology.
+
+```tsx
+<Flag country="DE" aria-label="Germany" />
+```
+
+<br />
+The accessibility props are type-safe. In normal use, omit `aria-hidden` and let
+the component derive it from the presence of `aria-label`.
+
+---
+
+## Styling and SVG props
+
+`FlagProps` extends React's standard SVG props, excluding properties controlled
+by the component such as `width`, `height`, and `children`. This means both
+`className` and `style` are supported, along with event handlers and data
+attributes.
+
+```tsx
+<Flag
+	country="FR"
+	shape="circle"
+	size={40}
+	className="shrink-0 drop-shadow-sm"
+	style={{ opacity: 0.9 }}
+	data-testid="country-flag"
+/>
+```
+
+<br />
+Inline styles are merged after the component's internal SVG styles, so values
+you provide through `style` take precedence. The `size` prop should be used for
+width and height so the flag remains square and both dimensions stay in sync.
+
+---
+
+## Country helpers
+
+Use the exported country list and name helper when building selectors, menus,
+or validation rules.
+
+```tsx
+import { type CountryCode, countryCodes, getCountryName } from "@radianui/flags"
+
+const country: CountryCode = "IN"
+
+console.log(countryCodes)
+console.log(getCountryName(country)) // "India"
+```
+
+---
+
+## Add a raw SVG with the CLI
+
+Use the package when you want a React component. If you need an individual raw
+SVG asset instead, the RadianUI CLI writes it to your configured assets folder.
+
+```bash
+npx radianui@latest add-asset flag US
+```
+
+<br />
+Add every available flag with:
+
+```bash
+npx radianui@latest add-asset flag --all
+```
+
+<br />
+The package and CLI are generated from the same SVG source, so country names and
+artwork stay consistent between both workflows.
+
+---
+
+## API reference
+
+### Flag
+
+| Prop          | Type                                      | Default                        | Description                                                |
+| ------------- | ----------------------------------------- | ------------------------------ | ---------------------------------------------------------- |
+| `country`     | `CountryCode`                             | Required                       | A supported ISO 3166-1 alpha-2 country code.               |
+| `shape`       | `"flat" \| "circle"`                      | `"flat"`                       | Controls the rendered flag shape.                          |
+| `size`        | `number \| string`                        | `24`                           | Sets both SVG width and height.                            |
+| `className`   | `string`                                  | —                              | Applies CSS classes to the rendered SVG.                   |
+| `style`       | `React.CSSProperties`                     | —                              | Merges inline styles onto the rendered SVG.                |
+| `aria-label`  | `string`                                  | —                              | Describes a meaningful standalone flag.                    |
+| `aria-hidden` | `true` when unlabelled; otherwise `false` | `true` without an `aria-label` | Managed from `aria-label`; normally does not need setting. |
+
+### Exports
+
+| Export           | Description                                            |
+| ---------------- | ------------------------------------------------------ |
+| `Flag`           | The React flag component.                              |
+| `FlagProps`      | Props accepted by `Flag`.                              |
+| `FlagShape`      | The `"flat" \| "circle"` shape union.                  |
+| `CountryCode`    | The union of supported uppercase country codes.        |
+| `countryCodes`   | The complete array of supported country codes.         |
+| `getCountryName` | Returns the display name for a supported country code. |
+
+For releases and package metadata, visit
+[the npm package page](https://www.npmjs.com/package/@radianui/flags). Source,
+issues, and contribution guidelines are available in the
+[RadianUI repository](https://github.com/Radian-OS/radianui).

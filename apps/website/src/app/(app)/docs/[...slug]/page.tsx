@@ -48,12 +48,14 @@ export async function generateMetadata({
 
 	const slug = doc.slugs.join("/")
 	const url = absoluteUrl(`/docs/${slug}`)
-	const { title, description } = generateSeoMeta({
+	const generatedMeta = generateSeoMeta({
 		slug,
 		section: doc.slugs[0],
 		title: doc.data.title,
 		description: doc.data.description,
 	})
+	const title = doc.data.seoTitle ?? generatedMeta.title
+	const description = generatedMeta.description
 	const ogImageUrl = absoluteUrl(
 		`/api/og?title=${encodeURIComponent(doc.data.title)}`
 	)
