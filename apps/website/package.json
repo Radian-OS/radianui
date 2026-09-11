@@ -110,7 +110,7 @@
 		"postcss": "^8.5.26",
 		"postcss-selector-parser": "^7.1.5",
 		"posthog-js": "^1.422.5",
-		"posthog-node": "^4.11.1",
+		"posthog-node": "^5.51.6",
 		"react": "^19.2.8",
 		"react-before-after-slider-component": "^1.1.8",
 		"react-currency-input-field": "^3.10.0",
