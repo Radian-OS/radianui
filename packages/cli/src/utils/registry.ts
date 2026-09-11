@@ -11,17 +11,11 @@ import { IconMapping } from "./transformers/transformIcon"
 
 const stripTrailingSlash = (url: string) => url.replace(/\/+$/, "")
 
-// export const WEBSITE_URL = stripTrailingSlash(
-// 	process.env.RADIANUI_WEBSITE_URL ?? "https://radianui.com"
-// )
 export const WEBSITE_URL = stripTrailingSlash(
-	process.env.RADIANUI_WEBSITE_URL ?? "http://localhost:3001"
+	process.env.RADIANUI_WEBSITE_URL ?? "https://radianui.com"
 )
-// export const BLOCKS_URL = stripTrailingSlash(
-// 	process.env.RADIANUI_BLOCKS_URL ?? "https://blocks.radianui.com"
-// )
 export const BLOCKS_URL = stripTrailingSlash(
-	process.env.RADIANUI_BLOCKS_URL ?? "http://localhost:3005"
+	process.env.RADIANUI_BLOCKS_URL ?? "https://blocks.radianui.com"
 )
 export const RADIAN_DOCS_URL = "https://radianui.com/docs/getting-started/introduction"
 

@@ -1,18 +1,18 @@
 ---
 name: radian
-description: Comprehensive guide and reference for RadianUI, including the Radian CLI tools (init, add), components.json configuration, 50+ UI components, application blocks, OKLCH design tokens, theme system, and utility.css / globals.css setup for Next.js and Vite.
+description: Comprehensive guide and reference for RadianUI, including the Radian CLI tools (init, add, add-asset, search, info), components.json configuration, 50+ UI components, application blocks, OKLCH design tokens, theme system, and utility.css / globals.css setup for Next.js and Vite.
 allowed-tools: Bash(npx radianui@latest *), Bash(pnpm dlx radianui@latest *), Bash(bunx --bun radianui@latest *), Bash(yarn radianui@latest *)
 ---
 
 # RadianUI
 
-RadianUI is an accessible, customizable component library and design system built with Tailwind CSS v4, OKLCH color palettes, React, and modern TypeScript. It provides a CLI for scaffolding projects and adding components/blocks directly to your codebase.
+RadianUI is an accessible, customizable component library and design system built with Tailwind CSS v4, OKLCH color palettes, React, and modern TypeScript. It provides a CLI for scaffolding projects, adding components, blocks, and static assets directly to your codebase.
 
 ---
 
 ## LLMs.txt
 
-The llms.txt for the RadianUI is available here: https://radianui.com/llms.txt
+The llms.txt for RadianUI is available here: https://radianui.com/llms.txt
 
 ## Core Directive: Always Use RadianUI Components Over Bare HTML
 
@@ -48,11 +48,41 @@ Always use RadianUI components:
 | loading / progress                     | `Spinner` / `Skeleton` / `Progress`                      | `npx radianui@latest add spinner skeleton progress` | `@/components/ui/...`           |
 | accordion / collapsible                | `Accordion`, `AccordionItem`, `AccordionTrigger`         | `npx radianui@latest add accordion`                 | `@/components/ui/accordion`     |
 
+### Automatic Icon Sizing & Coloring in Button and Badge
+
+**DO NOT pass `size` (e.g. `size={16}`, `size-4`, `w-4 h-4`) or explicit color classes (`text-white`, `text-primary`) to icons rendered inside `Button` or `Badge`.**
+
+Both `Button` and `Badge` already configure icon dimensions via nested SVG selectors (`[&>svg]:size-*`, `[&_svg]:size-*`) matching their `size` variant, and inherit foreground colors automatically via `currentColor`:
+
+```tsx
+// INCORRECT: Redundant size and color overrides
+<Button size="36">
+  <Plus className="size-4 text-white" />
+  <span>Add Item</span>
+</Button>
+
+<Badge size="24">
+  <Check size={14} className="text-emerald" />
+  <span>Verified</span>
+</Badge>
+
+// CORRECT: Button and Badge handle icon dimensions and colors automatically
+<Button size="36">
+  <Plus />
+  <span>Add Item</span>
+</Button>
+
+<Badge size="24">
+  <Check />
+  <span>Verified</span>
+</Badge>
+```
+
 ---
 
 ## 1. RadianUI CLI Tooling
 
-The CLI (`radianui`) allows developers to initialize projects, configure themes and aliases, and add components or blocks directly into their repository.
+The CLI (`radianui`) allows developers to initialize projects, add components, blocks, or static assets, search registry items, and inspect project configuration.
 
 ### Installation & Execution
 
@@ -60,13 +90,25 @@ The CLI (`radianui`) allows developers to initialize projects, configure themes 
 # Initialize a new or existing project
 npx radianui@latest init [project-name] [options]
 
-# Add components or blocks to an initialized project
+# Add components or blocks
 npx radianui@latest add [components...] [options]
+
+# Add static assets (e.g. country flags, logos, icons)
+npx radianui@latest add-asset [assetType] [assets...] [options]
+
+# Search registry items (components and blocks)
+npx radianui@latest search <query> [options]
+
+# Inspect project information and installed components
+npx radianui@latest info [options]
 ```
 
 ### `init` Command Reference
 
-The `init` command sets up `components.json`, installs core dependencies (`tailwindcss`, `tw-animate-css`, `class-variance-authority`, `clsx`, `tailwind-merge`, icon packages), configures global CSS with OKLCH theme variables, and sets up path aliases.
+The `init` command sets up `components.json`, installs core dependencies (`tailwindcss`, `tw-animate-css`, `class-variance-authority`, `clsx`, `tailwind-merge`, and icon libraries), configures global CSS with OKLCH theme variables, and configures path aliases.
+
+- **Empty directory**: Scaffolds a new Next.js or Vite React project from scratch.
+- **Existing project**: Detects framework and configures RadianUI without re-scaffolding.
 
 ```bash
 Usage: radianui@latest init [options] [project-name]
@@ -78,16 +120,28 @@ Options:
   --next                       Initialize with Next.js (App Router)
   --vite                       Initialize with Vite + React
   --useSrc                     Use `src/` directory structure (default: true)
-  --color <color>              Set brand/primary color (e.g. violet-blue, amber, emerald, red)
+  --color <color>              Set brand/primary color (default: violet-blue)
+  --font <font>                Set default typography (default: inter)
+  --style <style>              Set component style: 'default' | 'sera' (default: default)
+  --icon-library <library>     Set icon library: 'lucide' | 'hugeicons' (default: lucide)
+  --preset <code>              Generate project from a preset configuration code
   -s, --skipPrompts            Skip interactive confirmation prompts
   -d, --defaultConfigurations  Use default configurations without prompting
   -c, --cwd <cwd>              Working directory (default: process.cwd())
   -h, --help                   Display command help
 ```
 
+**Available Colors (17 OKLCH colors):**
+`red`, `orange`, `amber`, `yellow`, `neon`, `green`, `emerald`, `teal`, `cyan`, `light-blue`, `blue`, `violet-blue` (default), `purple`, `dark-orchid`, `fuchsia`, `magenta`, `rose`.
+
+**Available Fonts (12 Google Fonts):**
+`inter` (default), `roboto`, `geist`, `dm-sans`, `open-sans`, `rubik`, `lato`, `manrope`, `raleway`, `work-sans`, `ibm-plex-sans`, `figtree`.
+
+---
+
 ### `add` Command Reference
 
-The `add` command downloads component source files, resolves recursive dependencies (e.g., dialog needing button/icon), configures component assets (for blocks), and places files into the paths configured in `components.json`.
+The `add` command downloads component source files, resolves recursive dependencies (e.g., dialog needing button/icon), downloads required assets (for blocks), and places files into the paths configured in `components.json`.
 
 ```bash
 Usage: radianui@latest add [options] [components...]
@@ -103,43 +157,126 @@ Options:
   -h, --help                   Display command help
 ```
 
-**Common CLI Examples:**
+- If no components are specified, an interactive multi-select menu appears.
+- If run in a folder without a project, it prompts to run `init` first.
+
+---
+
+### `add-asset` Command Reference
+
+The `add-asset` (alias `asset`) command downloads static registry assets (such as country flags, brand logos, or file icons) directly into your project's static asset directory (e.g. `public/assets/flags/`):
 
 ```bash
-# Initialize Next.js project with custom color
-npx radianui@latest init my-app --next --color emerald
+Usage: radianui@latest add-asset [options] [assetType] [assets...]
 
-# Add specific UI components
-npx radianui@latest add button dialog dropdown-menu card input label select
+Arguments:
+  assetType                    Type of asset (e.g. 'flag') or identifier ('flag:US')
+  assets...                    Specific asset names, country codes, or identifiers to add
 
-# Add blocks (e.g., auth or sidebar)
-npx radianui@latest add signin sidebar-floating
-
-# Overwrite existing components during update
-npx radianui@latest add button --overwrite
+Options:
+  -a, --all                    Install all available assets for the selected type
+  -y, --yes                    Skip confirmation prompts
+  -o, --overwrite              Overwrite existing files if they exist
+  -c, --cwd <cwd>              Working directory (default: process.cwd())
+  -h, --help                   Display command help
 ```
+
+**Examples:**
+
+```bash
+# Add specific country flags
+npx radianui@latest add-asset flag US GB NP
+
+# Add using prefix syntax
+npx radianui@latest add-asset flag:US
+
+# Download all flags
+npx radianui@latest add-asset flag --all
+
+# Interactive prompt to choose asset type and items
+npx radianui@latest add-asset
+```
+
+---
+
+### `search` Command Reference
+
+The `search` command performs fuzzy searching across all components and blocks by name and description:
+
+```bash
+Usage: radianui@latest search [options] <query>
+
+Arguments:
+  query                        Search term or keyword
+
+Options:
+  -l, --limit <limit>          Number of results to show (default: 8)
+  --filter <type>              Filter by type: 'ui' | 'block'
+  -h, --help                   Display command help
+```
+
+**Examples:**
+
+```bash
+# Search across all components and blocks
+npx radianui@latest search modal
+
+# Search only full-section blocks
+npx radianui@latest search sidebar --filter block
+
+# Limit results
+npx radianui@latest search input --limit 5
+```
+
+---
+
+### `info` Command Reference
+
+The `info` command inspects the current project and outputs details about the framework, package manager, Tailwind version, style, icon library, configured aliases, and all currently installed RadianUI components:
+
+```bash
+Usage: radianui@latest info [options]
+
+Options:
+  --json                       Output project information as JSON
+  -c, --cwd <cwd>              Working directory (default: process.cwd())
+  -h, --help                   Display command help
+```
+
+**Agent Tip:** Run `npx radianui@latest info --json` to quickly inspect which RadianUI components, framework, and styles are installed in a repository before creating or modifying UI files.
 
 ---
 
 ## 2. Configuration (`components.json`)
 
-The `components.json` file in the root of the project controls how RadianUI CLI resolves paths, aliases, and project settings.
+The `components.json` file in the project root controls how RadianUI CLI resolves paths, aliases, and project settings.
 
 ### Schema Structure
 
 ```json
 {
 	"$schema": "https://radianui.com/schema.json",
+	"style": "default",
+	"iconLibrary": "lucide",
+	"hasSrcDir": true,
 	"aliases": {
 		"components": "@/components",
 		"utils": "@/lib/utils",
 		"ui": "@/components/ui",
 		"lib": "@/lib",
 		"hooks": "@/hooks"
-	},
-	"hasSrcDir": true
+	}
 }
 ```
+
+### Configuration Fields
+
+| Field         | Type    | Choices / Format            | Description                                 |
+| :------------ | :------ | :-------------------------- | :------------------------------------------ |
+| `style`       | string  | `"default"` \| `"sera"`     | Visual styling and design aesthetic         |
+| `iconLibrary` | string  | `"lucide"` \| `"hugeicons"` | Icon set used across components             |
+| `hasSrcDir`   | boolean | `true` \| `false`           | Whether the project uses a `src/` directory |
+| `aliases`     | object  | Key-value map               | Path aliases mapped in `tsconfig.json`      |
 
 ### Path Aliases
 
@@ -174,6 +311,7 @@ RadianUI includes 50+ core UI components designed for high accessibility, keyboa
 2. **`cn()` Utility**: All components export with support for custom `className` override using `cn(...)` (`clsx` + `tailwind-merge`).
 3. **Compound Components**: Complex components expose modular sub-components (e.g., `Card`, `CardHeader`, `CardTitle`, `CardDescription`, `CardContent`, `CardFooter`).
 4. **Radix / Headless Primitives**: Complex accessible widgets wrap accessible primitive foundations.
+5. **Icon Handling in `Button` & `Badge`**: Never specify `size` or color on icons inside `Button` and `Badge`. The container styles automatically scale SVGs (`[&>svg]:size-*`, `[&_svg]:size-*`) and set the proper contrast colors.
 
 ---
 
@@ -235,9 +373,11 @@ Blocks are pre-built, production-ready full-section layouts and templates with i
 
 When implementing user interfaces using RadianUI:
 
-1. **Check `components.json`**: Inspect aliases and project configuration to locate where `ui`, `components`, `utils`, `lib`, and `hooks` reside.
+1. **Check `components.json` or run `npx radianui info`**: Inspect aliases, style, icon library, and installed components.
 2. **Prioritize RadianUI Components**: When building UI features, **always use RadianUI components instead of bare HTML elements** (`<button>`, `<input>`, `<select>`, `<textarea>`, `<dialog>`, `<table>`, etc.). If a component is missing, run `npx radianui@latest add <component>`.
-3. **Inspect Global Styles (`utility.css` & `globals.css`)**: Verify the declared OKLCH color variables and semantic tokens.
-4. **Strictly Use Radian's Color Palette**: NEVER use default Tailwind colors (`-50`, `-100`, `-500`, `-900`). Always use Radian's tokenized classes (`bg-primary`, `bg-red-accent`, `text-red-text`, `text-success-fg`, `border-border`, etc.).
-5. **Use Utility Functions**: Combine classNames using `cn(...)` from `@/lib/utils`.
-6. **Ensure Dark Mode Compatibility**: Radian's OKLCH color tokens and semantic variables automatically handle dark mode transitions under `.dark`.
+3. **Use `add-asset` for Static Assets**: If flags or static SVGs are required, download them via `npx radianui@latest add-asset flag <ISO-CODE>`.
+4. **Inspect Global Styles (`utility.css` & `globals.css`)**: Verify the declared OKLCH color variables and semantic tokens.
+5. **Strictly Use Radian's Color Palette**: NEVER use default Tailwind colors (`-50`, `-100`, `-500`, `-900`). Always use Radian's tokenized classes (`bg-primary`, `bg-red-accent`, `text-red-text`, `text-success-fg`, `border-border`, etc.).
+6. **Use Utility Functions**: Combine classNames using `cn(...)` from `@/lib/utils`.
+7. **Do Not Style Icons in `Button` & `Badge`**: Never pass explicit size or color classes to icons inside `Button` or `Badge`; those components handle icon sizing and colors automatically.
+8. **Ensure Dark Mode Compatibility**: Radian's OKLCH color tokens and semantic variables automatically handle dark mode transitions under `.dark`.
