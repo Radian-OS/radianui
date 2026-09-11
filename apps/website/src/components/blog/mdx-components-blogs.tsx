@@ -45,7 +45,7 @@ export const BlogComponents: MDXComponents = {
 		<h2
 			id={id}
 			className={cn(
-				"heading-5 text-fg mt-10 mb-4 scroll-mt-24 font-semibold tracking-tight",
+				"heading-5 text-fg mt-5 mb-4 scroll-mt-24 font-semibold tracking-tight",
 				className
 			)}
 			{...props}>
@@ -287,7 +287,7 @@ export const BlogComponents: MDXComponents = {
 		height,
 		...props
 	}: {
-		src: string
+		src: any
 		alt?: string
 		className?: string
 		width?: number
@@ -295,35 +295,57 @@ export const BlogComponents: MDXComponents = {
 	} & Omit<
 		React.ComponentProps<typeof Image>,
 		"src" | "alt" | "className" | "width" | "height"
-	>) => (
-		<Image
-			src={src}
-			alt={alt || ""}
-			className={cn(
-				"border-border my-6 h-auto w-full max-w-full rounded-xl border object-cover",
-				className
-			)}
-			height={height ?? 500}
-			width={width ?? 800}
-			{...props}
-		/>
-	),
+	>) => {
+		const resolvedSrc = typeof src === "object" && src !== null ? src.src : src
+		const resolvedWidth =
+			width ?? (typeof src === "object" && src !== null ? src.width : 800)
+		const resolvedHeight =
+			height ?? (typeof src === "object" && src !== null ? src.height : 500)
+
+		return (
+			<Image
+				src={resolvedSrc}
+				alt={alt || ""}
+				className={cn(
+					"border-border my-6 h-auto w-full max-w-full rounded-xl border object-cover",
+					className
+				)}
+				height={resolvedHeight}
+				width={resolvedWidth}
+				{...props}
+			/>
+		)
+	},
 	img: ({
 		src,
 		alt,
 		className,
+		width,
+		height,
 		...props
-	}: React.ImgHTMLAttributes<HTMLImageElement>) => (
-		<img
-			src={src}
-			alt={alt || ""}
-			className={cn(
-				"my-6 h-auto w-full max-w-full rounded-xl object-cover",
-				className
-			)}
-			{...props}
-		/>
-	),
+	}: React.ComponentProps<"img">) => {
+		const isObj = typeof src === "object" && src !== null
+		const imageSource = isObj
+			? (src as unknown as { src: string; width?: number; height?: number })
+			: undefined
+		const resolvedSrc = imageSource?.src ?? (src as string)
+		const resolvedWidth = width ?? imageSource?.width
+		const resolvedHeight = height ?? imageSource?.height
+
+		return (
+			<img
+				src={resolvedSrc}
+				alt={alt || ""}
+				width={resolvedWidth}
+				height={resolvedHeight}
+				className={cn(
+					"my-20 h-100 w-full max-w-full rounded-xl object-cover",
+					className
+				)}
+				{...props}
+			/>
+		)
+	},
 	Alert: (props: AlertProps) => (
 		<Alert variant="soft" color="warning" className="my-6" {...props} />
 	),
