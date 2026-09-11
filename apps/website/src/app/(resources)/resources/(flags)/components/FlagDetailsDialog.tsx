@@ -11,8 +11,6 @@ import {
 	Download,
 	Globe2,
 	Image as ImageIcon,
-	Lightbulb,
-	Share2,
 } from "lucide-react"
 import { toast } from "sonner"
 import { Badge } from "@/registry/ui/badge"
@@ -36,6 +34,7 @@ import { NextjsIcon } from "../../(avatar)/components/AvatarTileMenu"
 import type { FlagName, FlagShape, FlagSize } from "./flags-data"
 import {
 	flagNames,
+	getFlagAssetCode,
 	getFlagDisplayName,
 	getFlagHtmlMarkup,
 	getFlagNextImageMarkup,
@@ -89,11 +88,20 @@ const flagSearchTags: Partial<Record<FlagName, string[]>> = {
 	Japan: ["Japan", "JP", "Japanese flag", "JPY", "+81"],
 }
 
-const packageCommands: Record<PackageManager, string> = {
-	pnpm: "pnpm dlx radianui@latest add flags",
-	npm: "npx radianui@latest add flags",
-	yarn: "yarn dlx radianui@latest add flags",
-	bun: "bunx --bun radianui@latest add flags",
+const packageCommandPrefixes: Record<PackageManager, string> = {
+	pnpm: "pnpm dlx radianui@latest",
+	npm: "npx radianui@latest",
+	yarn: "yarn dlx radianui@latest",
+	bun: "bunx --bun radianui@latest",
+}
+
+function getPackageCommands(assetCode: string): Record<PackageManager, string> {
+	return Object.fromEntries(
+		Object.entries(packageCommandPrefixes).map(([manager, prefix]) => [
+			manager,
+			`${prefix} add-asset flag ${assetCode}`,
+		])
+	) as Record<PackageManager, string>
 }
 
 function blobToDataUrl(blob: Blob) {
@@ -143,6 +151,8 @@ export function FlagDetailsDialog({
 	if (!name) return null
 
 	const displayName = getFlagDisplayName(name)
+	const assetCode = getFlagAssetCode(name)
+	const packageCommands = getPackageCommands(assetCode)
 	const shapeLabel = shape === "round" ? "Rounded" : "Flat"
 	const previewUrl = getFlagUrl(name, shape, 512)
 	const searchTags =
@@ -216,32 +226,14 @@ export function FlagDetailsDialog({
 		}
 	}
 
-	const shareFlag = async () => {
-		const url = window.location.href
-		try {
-			if (navigator.share) {
-				await navigator.share({
-					title: `${displayName} ${shapeLabel} Flag`,
-					text: `Download the ${displayName} flag from Radian UI.`,
-					url,
-				})
-				return
-			}
-			await copyText(url, "Flag link")
-		} catch (error) {
-			if (error instanceof DOMException && error.name === "AbortError") return
-			toast.error("Could not share this flag")
-		}
-	}
-
 	const copyCommand = async () => {
 		try {
 			await navigator.clipboard.writeText(packageCommands[packageManager])
 			setCommandCopied(true)
 			window.setTimeout(() => setCommandCopied(false), 1200)
-			toast.success("Install command copied to clipboard")
+			toast.success("Add flag command copied to clipboard")
 		} catch {
-			toast.error("Could not copy install command")
+			toast.error("Could not copy add flag command")
 		}
 	}
 
@@ -268,20 +260,10 @@ export function FlagDetailsDialog({
 					</div>
 
 					<div className="flex min-w-0 flex-col gap-5">
-						<div className="flex items-center justify-between gap-3">
-							<DialogTitle
-								closeButton={false}
-								className="min-w-0 font-semibold">
+						<div className="flex items-center gap-3">
+							<DialogTitle className="min-w-0 flex-1 font-semibold">
 								{displayName} {shapeLabel} Flag
 							</DialogTitle>
-							<IconButton
-								size="28"
-								color="neutral"
-								variant="soft"
-								aria-label={`Share ${displayName} flag`}
-								onClick={shareFlag}>
-								<Share2 />
-							</IconButton>
 						</div>
 
 						<div className="flex flex-wrap items-center gap-2">
@@ -319,7 +301,7 @@ export function FlagDetailsDialog({
 								variant="strong"
 								onClick={copySvg}>
 								<Boxes />
-								SVG
+								Copy SVG
 							</Button>
 
 							<IconButton
@@ -388,14 +370,6 @@ export function FlagDetailsDialog({
 									size="32"
 									color="neutral"
 									variant="outline"
-									onClick={() => toast.message("Thanks for your suggestion!")}>
-									<Lightbulb />
-									Suggest
-								</Button>
-								<Button
-									size="32"
-									color="neutral"
-									variant="outline"
 									onClick={() =>
 										copyText(
 											getFlagNextImageMarkup(name, shape),
@@ -420,7 +394,7 @@ export function FlagDetailsDialog({
 
 						<div className="flex flex-col gap-2">
 							<p className="text-fg-secondary text-xs font-medium">
-								Add flag to your project
+								Add flag to your radian project
 							</p>
 							<Tabs
 								value={packageManager}
@@ -443,7 +417,7 @@ export function FlagDetailsDialog({
 										size="28"
 										color="neutral"
 										variant="ghost"
-										aria-label="Copy install command"
+										aria-label={`Copy command to add the ${displayName} flag`}
 										onClick={copyCommand}>
 										{commandCopied ? <Check /> : <Clipboard />}
 									</IconButton>
