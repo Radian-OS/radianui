@@ -4,6 +4,7 @@ import {
 	ClipboardCheck,
 	CodeXml,
 	FileText,
+	Flag as FlagIcon,
 	LetterText,
 	PaintBucket,
 	ScrollText,
@@ -187,6 +188,12 @@ const GETTING_STARTED_ITEMS: NavigationItem[] = [
 		title: "Resources",
 		url: "/docs/getting-started/resources",
 		icon: ResourcesIcon,
+		isNew: true,
+	},
+	{
+		title: "Flags",
+		url: "/docs/getting-started/flags",
+		icon: FlagIcon,
 		isNew: true,
 	},
 	{

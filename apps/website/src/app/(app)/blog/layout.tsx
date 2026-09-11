@@ -12,8 +12,10 @@ const BlogLayout = ({ children }: BlogLayoutProps) => {
 	return (
 		<div className="flex flex-col">
 			<div className="mx-auto w-full max-w-360">{children}</div>
-			<section className="border-soft border-y p-10">
-				<div className="h-10"></div>
+			<section className="border-soft border-y">
+				<div className="mx-auto w-full max-w-360">
+					<div className="border-soft flex h-10 w-full max-w-368 flex-col overflow-x-hidden border border-y-0 p-10"></div>
+				</div>
 			</section>
 
 			<CTASection />

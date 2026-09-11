@@ -45,7 +45,7 @@ export const BlogComponents: MDXComponents = {
 		<h2
 			id={id}
 			className={cn(
-				"heading-5 text-fg mb-4 scroll-mt-24 font-semibold tracking-tight",
+				"heading-5 text-fg mt-10 mb-4 scroll-mt-24 font-semibold tracking-tight",
 				className
 			)}
 			{...props}>

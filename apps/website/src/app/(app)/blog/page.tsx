@@ -102,7 +102,7 @@ export default async function BlogPage({ params }: BlogListPageProps) {
 	}))
 
 	// Multiplied 5x (30 posts total) to test dynamic pagination and ellipses
-	const serializedPosts = Array.from({ length: 15 }).flatMap((_, i) =>
+	const serializedPosts = Array.from({ length: 2 }).flatMap((_, i) =>
 		basePosts.map((post) => ({
 			...post,
 			url: i === 0 ? post.url : `${post.url}?copy=${i}`,
@@ -125,7 +125,7 @@ export default async function BlogPage({ params }: BlogListPageProps) {
 				})}
 			/>
 			<div className="border-soft flex w-full max-w-368 flex-col overflow-x-hidden border border-y-0">
-				<section className="border-soft flex flex-col items-center gap-5 border-0 border-b px-15 py-20">
+				<section className="border-soft flex flex-col items-center gap-5 border-0 border-b px-5 py-10 md:px-15 md:py-20">
 					<p className="text-primary text-base font-medium">Radian UI Blog</p>
 					<h1 className="heading-3 text-center md:w-150">
 						Latest Updates and Insights from the Radian Team
@@ -155,7 +155,7 @@ export default async function BlogPage({ params }: BlogListPageProps) {
 							/>
 						</div>
 
-						<div className="flex flex-1 basis-1/2 flex-col justify-center gap-10 p-15">
+						<div className="flex flex-1 basis-1/2 flex-col justify-center gap-5 px-5 py-8 md:gap-10 md:p-15">
 							<div className="flex w-full justify-between">
 								<p className="text-fg-secondary text-base font-medium">
 									{featuredPost.data.card}
