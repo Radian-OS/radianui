@@ -1,8 +1,9 @@
 import React, { ReactNode } from "react"
 import Link from "next/link"
+import { BlogHomeSection } from "@/components/blog/blog-home-section"
 import DiagonalDivider from "@/components/home/SvgDivider"
 import Footer from "@/components/home/footer"
-import { Button } from "@/styles/default/ui/button"
+import { Button } from "@/registry/ui/button"
 
 interface BlogLayoutProps {
 	children: ReactNode
@@ -12,11 +13,7 @@ const BlogLayout = ({ children }: BlogLayoutProps) => {
 	return (
 		<div className="flex flex-col">
 			<div className="mx-auto w-full max-w-360">{children}</div>
-			<section className="border-soft border-y">
-				<div className="mx-auto w-full max-w-360">
-					<div className="border-soft flex h-10 w-full max-w-368 flex-col overflow-x-hidden border border-y-0 p-10"></div>
-				</div>
-			</section>
+			<BlogHomeSection />
 
 			<CTASection />
 			<Footer />
