@@ -1,4 +1,4 @@
-import { countries as isoCountryCodes } from "country-flag-icons"
+import flagManifest from "@radianui/flags/source/manifest.json"
 import {
 	type CountryCode,
 	getCountryCallingCode,
@@ -347,89 +347,27 @@ const flagDisplayNames: Partial<Record<FlagName, string>> = {
 	Vaticancity: "Vatican City",
 }
 
-const flagCountryCodeOverrides: Partial<Record<FlagName, readonly string[]>> = {
-	Antiguaandbarbuda: ["AG"],
-	Azoresislands: ["PT"],
-	Balearicislands: ["ES"],
-	Basquecountry: ["ES"],
-	Bonaire: ["BQ"],
-	Bosniaandherzegovina: ["BA"],
-	Britishcolumbia: ["CA"],
-	Ceuta: ["ES"],
-	Cocosisland: ["CC"],
-	Corsica: ["FR"],
-	Czechrepublic: ["CZ"],
-	Democraticrepublicofcongo: ["CD"],
-	Easttimor: ["TL"],
-	England: ["GB-ENG"],
-	Galapagosislands: ["EC"],
-	Hawaii: ["US"],
-	Hongkong: ["HK"],
-	Ivorycoast: ["CI"],
-	Macao: ["MO"],
-	Madeira: ["PT"],
-	Melilla: ["ES"],
-	Myanmar: ["MM"],
-	Nato: ["NATO"],
-	Northerncyprus: ["CY"],
-	Ossetia: ["GE"],
-	Palestine: ["PS"],
-	Rapanui: ["CL"],
-	Republicofmacedonia: ["MK"],
-	Republicofthecongo: ["CG"],
-	Sabaisland: ["BQ-SA"],
-	Sahrawiarabdemocraticrepublic: ["EH"],
-	Saintkittsandnevis: ["KN"],
-	Saotomeandprince: ["ST"],
-	Sardinia: ["IT"],
-	Scotland: ["GB-SCT"],
-	Sinteustatius: ["BQ-SE"],
-	Somaliland: ["SO"],
-	"St Vincent And The Grenadines": ["VC"],
-	Stbarts: ["BL"],
-	Swaziland: ["SZ"],
-	Tibet: ["CN"],
-	Transnistria: ["MD"],
-	Trinidadandtobago: ["TT"],
-	Turkey: ["TR"],
-	Turksandcaicos: ["TC"],
-	Unitednations: ["UN"],
-	"Virgin Islands": ["VG", "VI"],
-	Wales: ["GB-WLS"],
-}
-
-function normalizeFlagSearchValue(value: string) {
-	return value
-		.normalize("NFKD")
-		.toLowerCase()
-		.replace(/[^a-z0-9]/g, "")
-}
-
-const regionDisplayNames = new Intl.DisplayNames(["en"], { type: "region" })
-const inferredCountryCodeByName = new Map<string, string>()
 const phoneCountryCodes = new Set<string>(getPhoneCountries())
-
-for (const code of isoCountryCodes) {
-	if (!/^[A-Z]{2}$/.test(code)) continue
-
-	const countryName = regionDisplayNames.of(code)
-	if (countryName) {
-		inferredCountryCodeByName.set(normalizeFlagSearchValue(countryName), code)
-	}
-}
+const flagCountryCodesById = new Map(
+	flagManifest.flags.map((flag) => [flag.id, flag.codes] as const)
+)
 
 export function getFlagDisplayName(name: FlagName) {
 	return flagDisplayNames[name] ?? name
 }
 
 export function getFlagCountryCodes(name: FlagName) {
-	const overrides = flagCountryCodeOverrides[name]
-	if (overrides) return overrides
+	return flagCountryCodesById.get(getFlagSlug(name)) ?? []
+}
 
-	const inferredCode = inferredCountryCodeByName.get(
-		normalizeFlagSearchValue(getFlagDisplayName(name))
-	)
-	return inferredCode ? [inferredCode] : []
+export function getFlagAssetCode(name: FlagName) {
+	const [assetCode] = getFlagCountryCodes(name)
+
+	if (!assetCode) {
+		throw new Error(`Missing CLI asset code for ${name}`)
+	}
+
+	return assetCode
 }
 
 export function getFlagCallingCodes(name: FlagName) {

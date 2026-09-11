@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
-import { BlogPostList } from "@/components/blog-post-list"
+import { BlogPostList } from "@/components/blog/blog-post-list"
 import DiagonalDivider from "@/components/home/SvgDivider"
 import { JsonLd } from "@/components/seo/json-ld"
 import { blog } from "@/lib/source"
@@ -101,18 +101,6 @@ export default async function BlogPage({ params }: BlogListPageProps) {
 		},
 	}))
 
-	// Multiplied 5x (30 posts total) to test dynamic pagination and ellipses
-	const serializedPosts = Array.from({ length: 2 }).flatMap((_, i) =>
-		basePosts.map((post) => ({
-			...post,
-			url: i === 0 ? post.url : `${post.url}?copy=${i}`,
-			data: {
-				...post.data,
-				title: i === 0 ? post.data.title : `${post.data.title} (Copy ${i + 1})`,
-			},
-		}))
-	)
-
 	return (
 		<>
 			<JsonLd
@@ -206,7 +194,7 @@ export default async function BlogPage({ params }: BlogListPageProps) {
 					height={32}
 					viewBox="0 0 1440 32"
 				/>
-				<BlogPostList posts={serializedPosts} />
+				<BlogPostList posts={basePosts} />
 			</div>
 		</>
 	)
