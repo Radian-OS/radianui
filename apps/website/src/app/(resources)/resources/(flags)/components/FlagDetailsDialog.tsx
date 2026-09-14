@@ -3,9 +3,7 @@
 import { useMemo, useState } from "react"
 import {
 	Boxes,
-	Check,
 	ChevronDown,
-	Clipboard,
 	CloudDownload,
 	CodeXml,
 	Download,
@@ -13,6 +11,9 @@ import {
 	Image as ImageIcon,
 } from "lucide-react"
 import { toast } from "sonner"
+import PackageManagerTabs, {
+	type Commands,
+} from "@/components/package-manager-tabs"
 import { Badge } from "@/registry/ui/badge"
 import { Button, ButtonGroup, IconButton } from "@/registry/ui/button"
 import {
@@ -29,7 +30,6 @@ import {
 	DropdownMenuRadioItem,
 	DropdownMenuTrigger,
 } from "@/registry/ui/dropdown-menu"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 import { NextjsIcon } from "../../(avatar)/components/AvatarTileMenu"
 import type { FlagName, FlagShape, FlagSize } from "./flags-data"
 import {
@@ -42,8 +42,6 @@ import {
 	getFlagUrl,
 } from "./flags-data"
 
-type PackageManager = "pnpm" | "npm" | "yarn" | "bun"
-
 interface FlagDetailsDialogProps {
 	name: FlagName | null
 	shape: FlagShape
@@ -54,23 +52,11 @@ interface FlagDetailsDialogProps {
 }
 
 const pngSizes: FlagSize[] = [64, 128, 256, 512]
+const MORE_FLAGS_LIMIT = 15
 
-const featuredFlagNames: FlagName[] = [
-	"united-kingdom",
-	"australia",
-	"new-zealand",
-	"fiji",
-	"american-samoa",
-	"samoa",
-	"cook-islands",
-	"tuvalu",
-	"china",
-	"ghana",
-	"russia",
-	"ukraine",
-	"united-arab-emirates",
-	"uzbekistan",
-]
+const alphabeticalFlagNames = [...flagNames].sort((first, second) =>
+	getFlagDisplayName(first).localeCompare(getFlagDisplayName(second), "en")
+)
 
 const flagSearchTags: Partial<Record<FlagName, string[]>> = {
 	"united-states": ["United States", "USA", "America", "USA flag", "USD", "+1"],
@@ -88,20 +74,37 @@ const flagSearchTags: Partial<Record<FlagName, string[]>> = {
 	japan: ["Japan", "JP", "Japanese flag", "JPY", "+81"],
 }
 
-const packageCommandPrefixes: Record<PackageManager, string> = {
+const packageCommandPrefixes: Commands = {
 	pnpm: "pnpm dlx radianui@latest",
 	npm: "npx radianui@latest",
 	yarn: "yarn dlx radianui@latest",
 	bun: "bunx --bun radianui@latest",
 }
 
-function getPackageCommands(assetCode: string): Record<PackageManager, string> {
+function getPackageCommands(assetCode: string): Commands {
 	return Object.fromEntries(
 		Object.entries(packageCommandPrefixes).map(([manager, prefix]) => [
 			manager,
 			`${prefix} add-asset flag ${assetCode}`,
 		])
-	) as Record<PackageManager, string>
+	) as Commands
+}
+
+function getMoreFlags(name: FlagName) {
+	const selectedIndex = alphabeticalFlagNames.indexOf(name)
+	if (selectedIndex < 0) return alphabeticalFlagNames.slice(0, MORE_FLAGS_LIMIT)
+
+	const windowSize = MORE_FLAGS_LIMIT + 1
+	const flagsBefore = Math.floor(MORE_FLAGS_LIMIT / 2)
+	let startIndex = Math.max(0, selectedIndex - flagsBefore)
+	let endIndex = Math.min(alphabeticalFlagNames.length, startIndex + windowSize)
+
+	startIndex = Math.max(0, endIndex - windowSize)
+	endIndex = Math.min(alphabeticalFlagNames.length, startIndex + windowSize)
+
+	return alphabeticalFlagNames
+		.slice(startIndex, endIndex)
+		.filter((flagName) => flagName !== name)
 }
 
 function blobToDataUrl(blob: Blob) {
@@ -133,22 +136,7 @@ export function FlagDetailsDialog({
 	onSelectFlag,
 }: FlagDetailsDialogProps) {
 	const [pngSize, setPngSize] = useState<FlagSize>(512)
-	const [packageManager, setPackageManager] = useState<PackageManager>("pnpm")
-	const [commandCopied, setCommandCopied] = useState(false)
-
-	const moreFlags: FlagName[] = useMemo(() => {
-		if (!name) return featuredFlagNames
-
-		const featured = featuredFlagNames.filter(
-			(flagName: FlagName) => flagName !== name
-		)
-		if (featured.length === featuredFlagNames.length) return featured
-
-		const replacement = flagNames.find(
-			(flagName: FlagName) => flagName !== name && !featured.includes(flagName)
-		)
-		return replacement ? [...featured, replacement] : featured
-	}, [name])
+	const moreFlags = useMemo(() => (name ? getMoreFlags(name) : []), [name])
 
 	if (!name) return null
 
@@ -225,17 +213,6 @@ export function FlagDetailsDialog({
 			toast.success(`${format.toUpperCase()} downloaded`)
 		} catch {
 			toast.error(`Could not download ${format.toUpperCase()}`)
-		}
-	}
-
-	const copyCommand = async () => {
-		try {
-			await navigator.clipboard.writeText(packageCommands[packageManager])
-			setCommandCopied(true)
-			window.setTimeout(() => setCommandCopied(false), 1200)
-			toast.success("Add flag command copied to clipboard")
-		} catch {
-			toast.error("Could not copy add flag command")
 		}
 	}
 
@@ -381,16 +358,6 @@ export function FlagDetailsDialog({
 									<NextjsIcon />
 									Next JS
 								</Button>
-								<Button
-									size="32"
-									color="neutral"
-									variant="outline"
-									onClick={() =>
-										copyText(packageCommands.pnpm, "Radian UI command")
-									}>
-									<Boxes />
-									Radian UI
-								</Button>
 							</div>
 						</div>
 
@@ -398,43 +365,7 @@ export function FlagDetailsDialog({
 							<p className="text-fg-secondary text-xs font-medium">
 								Add flag to your radian project
 							</p>
-							<Tabs
-								value={packageManager}
-								onValueChange={(value) =>
-									setPackageManager(value as PackageManager)
-								}
-								className="bg-fill1 gap-0 overflow-hidden rounded-lg">
-								<div className="flex h-9 items-center justify-between px-1">
-									<TabsList variant="ghost" className="h-8 bg-transparent">
-										{Object.keys(packageCommands).map((manager) => (
-											<TabsTrigger
-												key={manager}
-												value={manager}
-												className="h-7 px-2 text-xs">
-												{manager}
-											</TabsTrigger>
-										))}
-									</TabsList>
-									<IconButton
-										size="28"
-										color="neutral"
-										variant="ghost"
-										aria-label={`Copy command to add the ${displayName} flag`}
-										onClick={copyCommand}>
-										{commandCopied ? <Check /> : <Clipboard />}
-									</IconButton>
-								</div>
-								{Object.entries(packageCommands).map(([manager, command]) => (
-									<TabsContent
-										key={manager}
-										value={manager}
-										className="px-1 pb-1">
-										<div className="border-soft bg-bg overflow-x-auto rounded-md border px-3 py-2 font-mono text-xs whitespace-nowrap">
-											{command}
-										</div>
-									</TabsContent>
-								))}
-							</Tabs>
+							<PackageManagerTabs commands={packageCommands} />
 						</div>
 					</div>
 				</div>
@@ -453,7 +384,7 @@ export function FlagDetailsDialog({
 
 					<div className="flex flex-col gap-2">
 						<p className="text-fg-secondary text-xs font-medium">More Flags</p>
-						<div className="grid grid-cols-[repeat(auto-fit,50px)] justify-between gap-y-2">
+						<div className="grid grid-cols-[repeat(auto-fill,50px)] gap-2">
 							{moreFlags.map((flagName) => {
 								const moreFlagDisplayName = getFlagDisplayName(flagName)
 								return (

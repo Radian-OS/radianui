@@ -439,7 +439,7 @@ export default function FlagsPlayground({
 		<div className="flex w-full flex-col gap-5 py-2">
 			<div ref={sentinelRef} className="pointer-events-none h-px w-full" />
 			<div className="bg-bg/95 sticky top-0 z-100 py-3 backdrop-blur-sm">
-				<InputWrapper className="bg-fill1 h-13 w-full">
+				<InputWrapper className="bg-fill1 focus-within:bg-bg h-13 w-full">
 					<FlagShapeDropdown value={shape} onValueChange={handleShapeChange} />
 					<Search aria-hidden="true" />
 					<Input

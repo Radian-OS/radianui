@@ -1,25 +1,18 @@
 "use client"
 
-import { useCallback, useEffect, useMemo, useState } from "react"
+import { useMemo, useState } from "react"
 import { type CountryCode, Flag } from "@radianui/flags"
-import { ArrowLeftRight, RefreshCw } from "lucide-react"
-import {
-	Alert,
-	AlertContent,
-	AlertDescription,
-	AlertTitle,
-} from "@/registry/ui/alert"
-import { Badge } from "@/registry/ui/badge"
-import { Button } from "@/registry/ui/button"
+import { ArrowDownUp } from "lucide-react"
+import { IconButton } from "@/registry/ui/button"
 import {
 	Card,
 	CardContent,
 	CardDescription,
-	CardFooter,
 	CardHeader,
 	CardTitle,
 } from "@/registry/ui/card"
 import { CurrencyInput } from "@/registry/ui/currency-input"
+import { InputWrapper } from "@/registry/ui/input"
 import { Label } from "@/registry/ui/label"
 import {
 	Select,
@@ -30,302 +23,226 @@ import {
 } from "@/registry/ui/select"
 
 const currencies = [
-	{ code: "GBP", name: "British pound", symbol: "£", country: "GB" },
-	{ code: "USD", name: "US dollar", symbol: "$", country: "US" },
-	{ code: "INR", name: "Indian rupee", symbol: "₹", country: "IN" },
-	{ code: "JPY", name: "Japanese yen", symbol: "¥", country: "JP" },
-	{ code: "CNY", name: "Chinese yuan", symbol: "¥", country: "CN" },
-	{ code: "AUD", name: "Australian dollar", symbol: "A$", country: "AU" },
-	{ code: "CAD", name: "Canadian dollar", symbol: "C$", country: "CA" },
-	{ code: "CHF", name: "Swiss franc", symbol: "CHF ", country: "CH" },
+	{
+		code: "USD",
+		country: "US",
+		countryName: "United States",
+		name: "US Dollar",
+		symbol: "$",
+		decimals: 2,
+	},
+	{
+		code: "EUR",
+		country: "DE",
+		countryName: "Germany",
+		name: "Euro",
+		symbol: "€",
+		decimals: 2,
+	},
+	{
+		code: "INR",
+		country: "IN",
+		countryName: "India",
+		name: "Indian Rupee",
+		symbol: "₹",
+		decimals: 2,
+	},
+	{
+		code: "JPY",
+		country: "JP",
+		countryName: "Japan",
+		name: "Japanese Yen",
+		symbol: "¥",
+		decimals: 0,
+	},
+	{
+		code: "CNY",
+		country: "CN",
+		countryName: "China",
+		name: "Chinese Yuan",
+		symbol: "¥",
+		decimals: 2,
+	},
 ] as const satisfies ReadonlyArray<{
 	code: string
+	country: CountryCode
+	countryName: string
 	name: string
 	symbol: string
-	country: CountryCode
+	decimals: number
 }>
 
 type CurrencyCode = (typeof currencies)[number]["code"]
-type RateStatus = "loading" | "success" | "stale" | "error"
+type Currency = (typeof currencies)[number]
 
-type RateData = {
-	date: string
-	base: CurrencyCode
-	quote: CurrencyCode
-	rate: number
+const usdRates: Record<CurrencyCode, number> = {
+	USD: 1,
+	EUR: 0.92,
+	INR: 83.1,
+	JPY: 149.5,
+	CNY: 7.24,
 }
-
-const refreshInterval = 15 * 60 * 1000
-const rateCachePrefix = "radian-currency-rate"
 
 function getCurrency(code: CurrencyCode) {
 	return currencies.find((currency) => currency.code === code) ?? currencies[0]
 }
 
-function isRateData(value: unknown): value is RateData {
-	if (!value || typeof value !== "object") return false
+function getRate(from: CurrencyCode, to: CurrencyCode) {
+	return usdRates[to] / usdRates[from]
+}
 
-	const rate = value as Record<string, unknown>
+type CurrencyFieldProps = {
+	amount: string
+	currency: Currency
+	id: string
+	label: string
+	onAmountChange?: (value: string | undefined) => void
+	onCurrencyChange: (value: CurrencyCode) => void
+}
+
+function CurrencyField({
+	amount,
+	currency,
+	id,
+	label,
+	onAmountChange,
+	onCurrencyChange,
+}: CurrencyFieldProps) {
 	return (
-		typeof rate.date === "string" &&
-		typeof rate.base === "string" &&
-		typeof rate.quote === "string" &&
-		typeof rate.rate === "number" &&
-		Number.isFinite(rate.rate)
+		<div className="grid gap-2">
+			<Label htmlFor={id}>{label}</Label>
+			<InputWrapper
+				size="48"
+				className="h-auto flex-col items-stretch gap-4 rounded-xl p-4">
+				<Select
+					value={currency.code}
+					onValueChange={(value) => onCurrencyChange(value as CurrencyCode)}>
+					<SelectTrigger
+						aria-label={`${label} currency`}
+						className="h-auto border-0 bg-transparent p-0 shadow-none focus-visible:border-transparent focus-visible:ring-0">
+						<SelectValue>
+							<span className="flex min-w-0 items-center gap-3 text-start">
+								<Flag
+									country={currency.country}
+									shape="circle"
+									size={48}
+									className="size-12"
+								/>
+								<span className="grid min-w-0 gap-0.5">
+									<span className="font-semibold">{currency.code}</span>
+									<span className="text-fg-secondary truncate text-sm">
+										{currency.countryName} · {currency.name}
+									</span>
+								</span>
+							</span>
+						</SelectValue>
+					</SelectTrigger>
+					<SelectContent>
+						{currencies.map((item) => (
+							<SelectItem key={item.code} value={item.code}>
+								<span className="flex items-center gap-2">
+									<Flag country={item.country} shape="circle" size={28} />
+									<span>
+										{item.countryName} · {item.code}
+									</span>
+								</span>
+							</SelectItem>
+						))}
+					</SelectContent>
+				</Select>
+
+				<CurrencyInput
+					id={id}
+					value={amount}
+					prefix={`${currency.symbol} `}
+					allowDecimals={currency.decimals > 0}
+					decimalsLimit={currency.decimals}
+					decimalScale={currency.decimals}
+					groupSeparator=","
+					decimalSeparator="."
+					aria-label={`${label} amount in ${currency.name}`}
+					readOnly={!onAmountChange}
+					onValueChange={onAmountChange}
+					className="text-3xl leading-none font-semibold tracking-tight tabular-nums"
+				/>
+			</InputWrapper>
+		</div>
 	)
-}
-
-function readCachedRate(base: CurrencyCode, quote: CurrencyCode) {
-	try {
-		const cached = window.localStorage.getItem(
-			`${rateCachePrefix}:${base}:${quote}`
-		)
-		if (!cached) return null
-
-		const parsed: unknown = JSON.parse(cached)
-		return isRateData(parsed) ? parsed : null
-	} catch {
-		return null
-	}
-}
-
-function writeCachedRate(rate: RateData) {
-	try {
-		window.localStorage.setItem(
-			`${rateCachePrefix}:${rate.base}:${rate.quote}`,
-			JSON.stringify(rate)
-		)
-	} catch {
-		// The converter still works when storage is unavailable.
-	}
 }
 
 export default function FlagCurrencyConverter() {
 	const [amount, setAmount] = useState("1000")
-	const [from, setFrom] = useState<CurrencyCode>("GBP")
-	const [to, setTo] = useState<CurrencyCode>("USD")
-	const [rateData, setRateData] = useState<RateData | null>(null)
-	const [status, setStatus] = useState<RateStatus>("loading")
+	const [from, setFrom] = useState<CurrencyCode>("USD")
+	const [to, setTo] = useState<CurrencyCode>("EUR")
 
 	const fromCurrency = getCurrency(from)
 	const toCurrency = getCurrency(to)
-	const currentRate =
-		rateData?.base === from && rateData.quote === to ? rateData : null
-
-	const loadRate = useCallback(
-		async (signal?: AbortSignal) => {
-			if (from === to) {
-				setRateData({
-					date: new Date().toISOString().slice(0, 10),
-					base: from,
-					quote: to,
-					rate: 1,
-				})
-				setStatus("success")
-				return
-			}
-
-			setStatus("loading")
-
-			try {
-				const response = await fetch(
-					`https://api.frankfurter.dev/v2/rate/${from.toLowerCase()}/${to.toLowerCase()}`,
-					{ signal }
-				)
-
-				if (!response.ok) throw new Error("Unable to load the exchange rate")
-
-				const result: unknown = await response.json()
-				if (!isRateData(result))
-					throw new Error("Invalid exchange-rate response")
-
-				setRateData(result)
-				writeCachedRate(result)
-				setStatus("success")
-			} catch (error) {
-				if (error instanceof DOMException && error.name === "AbortError") return
-
-				const cachedRate = readCachedRate(from, to)
-				if (cachedRate) {
-					setRateData(cachedRate)
-					setStatus("stale")
-					return
-				}
-
-				setStatus("error")
-			}
-		},
-		[from, to]
-	)
-
-	useEffect(() => {
-		const controller = new AbortController()
-		const refreshRate = () => void loadRate()
-		void loadRate(controller.signal)
-
-		const interval = window.setInterval(refreshRate, refreshInterval)
-		window.addEventListener("focus", refreshRate)
-		window.addEventListener("online", refreshRate)
-
-		return () => {
-			controller.abort()
-			window.clearInterval(interval)
-			window.removeEventListener("focus", refreshRate)
-			window.removeEventListener("online", refreshRate)
-		}
-	}, [loadRate])
-
+	const rate = getRate(from, to)
 	const convertedAmount = useMemo(() => {
-		if (!amount.trim()) return ""
-
 		const numericAmount = Number(amount)
-		if (!currentRate || !Number.isFinite(numericAmount)) return ""
+		if (!Number.isFinite(numericAmount)) return ""
 
-		return (numericAmount * currentRate.rate).toFixed(2)
-	}, [amount, currentRate])
+		return (numericAmount * rate).toFixed(toCurrency.decimals)
+	}, [amount, rate, toCurrency.decimals])
+
+	const formattedRate = rate.toLocaleString("en-US", {
+		minimumFractionDigits: 2,
+		maximumFractionDigits: 6,
+	})
 
 	const swapCurrencies = () => {
 		setFrom(to)
 		setTo(from)
 	}
 
-	const rateLabel = currentRate
-		? currentRate.rate.toLocaleString(undefined, {
-				minimumFractionDigits: 2,
-				maximumFractionDigits: 6,
-			})
-		: null
-
 	return (
-		<div className="w-full max-w-xl">
-			<Card>
-				<CardHeader>
-					<CardTitle>Currency converter</CardTitle>
-					<CardDescription>
-						Convert currencies with the latest available reference rate.
-					</CardDescription>
-				</CardHeader>
-				<CardContent>
-					<div className="grid gap-5">
-						<div className="grid gap-2">
-							<Label htmlFor="converter-amount">Amount</Label>
-							<CurrencyInput
-								id="converter-amount"
-								value={amount}
-								prefix={fromCurrency.symbol}
-								onValueChange={(value) => setAmount(value ?? "")}
-							/>
-							<Select
-								value={from}
-								onValueChange={(value) => setFrom(value as CurrencyCode)}>
-								<SelectTrigger aria-label="Source currency">
-									<SelectValue />
-								</SelectTrigger>
-								<SelectContent>
-									{currencies.map((currency) => (
-										<SelectItem key={currency.code} value={currency.code}>
-											<span className="flex items-center gap-2">
-												<Flag country={currency.country} size={20} />
-												{currency.code} · {currency.name}
-											</span>
-										</SelectItem>
-									))}
-								</SelectContent>
-							</Select>
-						</div>
+		<Card className="w-full max-w-md gap-0 rounded-2xl py-0 shadow-md">
+			<CardHeader className="border-soft border-b p-6">
+				<CardTitle>Currency converter</CardTitle>
+				<CardDescription>
+					Convert between five currencies using hardcoded example rates.
+				</CardDescription>
+			</CardHeader>
 
-						<div className="flex justify-center">
-							<Button
-								variant="outline"
-								color="neutral"
-								onClick={swapCurrencies}>
-								<ArrowLeftRight />
-								Swap currencies
-							</Button>
-						</div>
+			<CardContent className="grid gap-4 p-6">
+				<CurrencyField
+					id="currency-from"
+					label="From"
+					amount={amount}
+					currency={fromCurrency}
+					onAmountChange={(value) => setAmount(value ?? "")}
+					onCurrencyChange={setFrom}
+				/>
 
-						<div className="grid gap-2">
-							<Label htmlFor="converter-result">Converted to</Label>
-							<CurrencyInput
-								id="converter-result"
-								value={convertedAmount}
-								prefix={toCurrency.symbol}
-								readOnly
-							/>
-							<Select
-								value={to}
-								onValueChange={(value) => setTo(value as CurrencyCode)}>
-								<SelectTrigger aria-label="Destination currency">
-									<SelectValue />
-								</SelectTrigger>
-								<SelectContent>
-									{currencies.map((currency) => (
-										<SelectItem key={currency.code} value={currency.code}>
-											<span className="flex items-center gap-2">
-												<Flag country={currency.country} size={20} />
-												{currency.code} · {currency.name}
-											</span>
-										</SelectItem>
-									))}
-								</SelectContent>
-							</Select>
-						</div>
+				<div className="relative flex h-5 items-center justify-center">
+					<div className="border-soft absolute inset-x-0 border-t" />
+					<IconButton
+						type="button"
+						size="36"
+						variant="outline"
+						color="neutral"
+						aria-label="Swap currencies"
+						className="bg-bg hover:bg-fill1 active:bg-fill2 relative z-10 rounded-full"
+						onClick={swapCurrencies}>
+						<ArrowDownUp />
+					</IconButton>
+				</div>
 
-						{currentRate && rateLabel ? (
-							<div aria-live="polite" className="grid gap-1">
-								<p className="font-medium">
-									1 {from} = {rateLabel} {to}
-								</p>
-								<p className="text-fg-secondary text-sm">
-									Reference rate dated {currentRate.date}
-								</p>
-							</div>
-						) : status === "error" ? (
-							<Alert color="error" variant="soft">
-								<AlertContent>
-									<AlertTitle>Rate unavailable</AlertTitle>
-									<AlertDescription>
-										Check your connection and try refreshing the rate.
-									</AlertDescription>
-								</AlertContent>
-							</Alert>
-						) : (
-							<p aria-live="polite" className="text-fg-secondary text-sm">
-								Loading the latest rate…
-							</p>
-						)}
-					</div>
-				</CardContent>
-				<CardFooter>
-					<div className="flex w-full flex-wrap items-center justify-between gap-3">
-						<Badge
-							variant="soft"
-							color={
-								status === "error"
-									? "error"
-									: status === "stale"
-										? "warning"
-										: "success"
-							}>
-							{status === "error"
-								? "Rate unavailable"
-								: status === "stale"
-									? "Cached rate"
-									: status === "loading"
-										? "Updating rate"
-										: "Current reference rate"}
-						</Badge>
-						<Button
-							variant="outline"
-							color="neutral"
-							loading={status === "loading"}
-							onClick={() => void loadRate()}>
-							<RefreshCw />
-							Refresh rate
-						</Button>
-					</div>
-				</CardFooter>
-			</Card>
-		</div>
+				<CurrencyField
+					id="currency-to"
+					label="To"
+					amount={convertedAmount}
+					currency={toCurrency}
+					onCurrencyChange={setTo}
+				/>
+
+				<div className="bg-fill1 flex items-center justify-between gap-4 rounded-xl px-4 py-3 text-sm">
+					<span className="text-fg-secondary">Hardcoded demo rate</span>
+					<span className="font-medium tabular-nums">
+						1 {from} = {formattedRate} {to}
+					</span>
+				</div>
+			</CardContent>
+		</Card>
 	)
 }

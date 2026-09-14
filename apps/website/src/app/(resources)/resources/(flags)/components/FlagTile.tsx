@@ -124,11 +124,12 @@ export function FlagTile({
 				</TooltipTrigger>
 				<TooltipContent
 					theme="light"
-					withArrow
 					side="top"
-					sideOffset={-80}
+					align="start"
+					alignOffset={8}
+					sideOffset={-40}
 					avoidCollisions={false}
-					className="pointer-events-none text-xs">
+					className="pointer-events-auto w-22 truncate text-center text-xs hover:w-max hover:max-w-none hover:overflow-visible">
 					{displayName}
 				</TooltipContent>
 			</Tooltip>
@@ -145,12 +146,12 @@ export function FlagTile({
 				}
 			/>
 
-			<div className="absolute right-2 bottom-2 z-20 opacity-0 transition-opacity duration-200 group-focus-within:opacity-100 group-hover:opacity-100">
+			<div className="absolute inset-x-0 bottom-0 z-20 p-2 opacity-0 transition-opacity duration-200 group-focus-within:opacity-100 group-hover:opacity-100">
 				<Button
 					size="28"
 					color="neutral"
 					variant="outline"
-					className="bg-bg"
+					className="bg-bg w-full"
 					onClick={copySvg}>
 					{copied ? "Copied" : "Copy"}
 				</Button>

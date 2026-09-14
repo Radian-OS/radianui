@@ -222,9 +222,9 @@ const INSTALLATION_ITEMS: NavigationItem[] = [
 	},
 ]
 
-const PACKAGES_ITEMS: NavigationItem[] = [
+const MISCELLANEOUS_ITEMS: NavigationItem[] = [
 	{
-		title: "@radianui/flags",
+		title: "Flags",
 		description: "Accessible country flags for React",
 		url: "/docs/packages/flags",
 		icon: FlagIcon,
@@ -291,11 +291,6 @@ export const navigationItems: NavigationSection[] = [
 		items: INSTALLATION_ITEMS,
 	},
 	{
-		title: "Packages",
-		searchIcon: "/search-icons/search-components.svg",
-		items: PACKAGES_ITEMS,
-	},
-	{
 		title: "Fundamentals",
 		searchIcon: "/search-icons/search-fundamentals.svg",
 		description:
@@ -318,5 +313,10 @@ export const navigationItems: NavigationSection[] = [
 		title: "Animations",
 		searchIcon: "/search-icons/search-components.svg",
 		items: ANIMATIONS_ITEMS.sort((a, b) => a.title.localeCompare(b.title)),
+	},
+	{
+		title: "Miscellaneous",
+		searchIcon: "/search-icons/search-components.svg",
+		items: MISCELLANEOUS_ITEMS,
 	},
 ]
