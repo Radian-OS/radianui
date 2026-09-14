@@ -9,6 +9,7 @@ interface FlagEntry {
 	name: string
 	file: string
 	circleViewBox?: string
+	cdnName?: string
 	codes?: string[]
 }
 

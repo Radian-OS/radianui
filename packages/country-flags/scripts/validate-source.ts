@@ -27,6 +27,7 @@ assert.ok(Array.isArray(manifest.flags), "manifest.flags must be an array")
 const ids = new Set<string>()
 const files = new Set<string>()
 const countryCodes = new Set<string>()
+const cdnNames = new Set<string>()
 
 for (const [index, flag] of manifest.flags.entries()) {
 	assert.ok(isRecord(flag), `Flag at index ${index} must be an object`)
@@ -47,6 +48,25 @@ for (const [index, flag] of manifest.flags.entries()) {
 		flag.codes.length > 0,
 		`${flag.id} has an invalid number of country codes`
 	)
+
+	if (flag.cdnName !== undefined) {
+		assert.ok(
+			typeof flag.cdnName === "string",
+			`Invalid CDN name for ${flag.id}`
+		)
+	}
+
+	const cdnName =
+		typeof flag.cdnName === "string"
+			? flag.cdnName
+			: `${flag.id.charAt(0).toUpperCase()}${flag.id.slice(1).replaceAll("-", "")}`
+	assert.match(
+		cdnName,
+		/^[A-Za-z]+(?: [A-Za-z]+)*$/,
+		`Invalid CDN name: ${cdnName}`
+	)
+	assert.ok(!cdnNames.has(cdnName), `Duplicate CDN name: ${cdnName}`)
+	cdnNames.add(cdnName)
 
 	if (flag.circleViewBox !== undefined) {
 		assert.ok(

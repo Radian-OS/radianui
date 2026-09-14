@@ -1,4 +1,4 @@
-import manifest from "@radianui/flags/source/manifest.json" with { type: "json" }
+import { flagMetadata } from "@radianui/flags/metadata"
 import fs from "node:fs/promises"
 import { createRequire } from "node:module"
 import path from "node:path"
@@ -40,15 +40,14 @@ const outputFile = path.join(process.cwd(), "public/r/flags/flags.json")
 
 async function generateFlagsJson() {
 	console.log(
-		`Generating flags.json registry from ${manifest.flags.length} flag definitions...`
+		`Generating flags.json registry from ${flagMetadata.length} flag definitions...`
 	)
 
 	const flagsData: RegistryComponent[] = []
 
-	for (const flag of manifest.flags) {
-		if (!flag.codes || flag.codes.length === 0) continue
-
-		const svgFilePath = path.join(flagsSvgDir, flag.file)
+	for (const flag of flagMetadata) {
+		const file = `${flag.id}.svg`
+		const svgFilePath = path.join(flagsSvgDir, file)
 		try {
 			const rawSvg = await fs.readFile(svgFilePath, "utf-8")
 			const name = `${flag.codes[0]}`
@@ -67,7 +66,7 @@ async function generateFlagsJson() {
 			})
 		} catch (error) {
 			console.error(
-				`❌ Failed to read SVG for flag: ${flag.id} (${flag.file})`,
+				`❌ Failed to read SVG for flag: ${flag.id} (${file})`,
 				error
 			)
 			throw error

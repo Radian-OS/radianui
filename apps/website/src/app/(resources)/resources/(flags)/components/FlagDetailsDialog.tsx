@@ -56,25 +56,25 @@ interface FlagDetailsDialogProps {
 const pngSizes: FlagSize[] = [64, 128, 256, 512]
 
 const featuredFlagNames: FlagName[] = [
-	"Unitedkingdom",
-	"Australia",
-	"Newzealand",
-	"Fiji",
-	"Americansamoa",
-	"Samoa",
-	"Cookisland",
-	"Tuvalu",
-	"China",
-	"Ghana",
-	"Russia",
-	"Ukraine",
-	"Unitedarabemirates",
-	"Uzbekistan",
+	"united-kingdom",
+	"australia",
+	"new-zealand",
+	"fiji",
+	"american-samoa",
+	"samoa",
+	"cook-islands",
+	"tuvalu",
+	"china",
+	"ghana",
+	"russia",
+	"ukraine",
+	"united-arab-emirates",
+	"uzbekistan",
 ]
 
 const flagSearchTags: Partial<Record<FlagName, string[]>> = {
-	"United States": ["United States", "USA", "America", "USA flag", "USD", "+1"],
-	Unitedkingdom: [
+	"united-states": ["United States", "USA", "America", "USA flag", "USD", "+1"],
+	"united-kingdom": [
 		"United Kingdom",
 		"UK",
 		"Britain",
@@ -82,10 +82,10 @@ const flagSearchTags: Partial<Record<FlagName, string[]>> = {
 		"GBP",
 		"+44",
 	],
-	Australia: ["Australia", "AU", "Australian flag", "AUD", "+61"],
-	Canada: ["Canada", "CA", "Canadian flag", "CAD", "+1"],
-	India: ["India", "IN", "Indian flag", "INR", "+91"],
-	Japan: ["Japan", "JP", "Japanese flag", "JPY", "+81"],
+	australia: ["Australia", "AU", "Australian flag", "AUD", "+61"],
+	canada: ["Canada", "CA", "Canadian flag", "CAD", "+1"],
+	india: ["India", "IN", "Indian flag", "INR", "+91"],
+	japan: ["Japan", "JP", "Japanese flag", "JPY", "+81"],
 }
 
 const packageCommandPrefixes: Record<PackageManager, string> = {

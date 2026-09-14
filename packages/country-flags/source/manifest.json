@@ -325,6 +325,7 @@
 			"id": "cocos-islands",
 			"name": "Cocos Islands",
 			"file": "cocos-islands.svg",
+			"cdnName": "Cocosisland",
 			"codes": ["CC"]
 		},
 		{
@@ -343,6 +344,7 @@
 			"id": "cook-islands",
 			"name": "Cook Islands",
 			"file": "cook-islands.svg",
+			"cdnName": "Cookisland",
 			"codes": ["CK"]
 		},
 		{
@@ -385,6 +387,7 @@
 			"id": "democratic-republic-of-the-congo",
 			"name": "Democratic Republic of the Congo",
 			"file": "democratic-republic-of-the-congo.svg",
+			"cdnName": "Democraticrepublicofcongo",
 			"codes": ["CD"]
 		},
 		{
@@ -445,6 +448,7 @@
 			"id": "equatorial-guinea",
 			"name": "Equatorial Guinea",
 			"file": "equatorial-guinea.svg",
+			"cdnName": "Equatorial Guinea",
 			"codes": ["GQ"]
 		},
 		{
@@ -847,6 +851,7 @@
 			"id": "marshall-islands",
 			"name": "Marshall Islands",
 			"file": "marshall-islands.svg",
+			"cdnName": "Marshallisland",
 			"codes": ["MH"]
 		},
 		{
@@ -1016,6 +1021,7 @@
 			"id": "northern-mariana-islands",
 			"name": "Northern Mariana Islands",
 			"file": "northern-mariana-islands.svg",
+			"cdnName": "Northernmarianasislands",
 			"codes": ["MP"]
 		},
 		{
@@ -1178,6 +1184,7 @@
 			"id": "sao-tome-and-principe",
 			"name": "São Tomé and Príncipe",
 			"file": "sao-tome-and-principe.svg",
+			"cdnName": "Saotomeandprince",
 			"codes": ["ST"]
 		},
 		{
@@ -1280,6 +1287,7 @@
 			"id": "south-ossetia",
 			"name": "South Ossetia",
 			"file": "south-ossetia.svg",
+			"cdnName": "Ossetia",
 			"codes": ["GE-SO"]
 		},
 		{
@@ -1316,6 +1324,7 @@
 			"id": "st-vincent-and-the-grenadines",
 			"name": "St. Vincent and the Grenadines",
 			"file": "st-vincent-and-the-grenadines.svg",
+			"cdnName": "St Vincent And The Grenadines",
 			"codes": ["VC"]
 		},
 		{
@@ -1436,6 +1445,7 @@
 			"id": "turks-and-caicos-islands",
 			"name": "Turks and Caicos Islands",
 			"file": "turks-and-caicos-islands.svg",
+			"cdnName": "Turksandcaicos",
 			"codes": ["TC"]
 		},
 		{
@@ -1478,6 +1488,7 @@
 			"id": "united-states",
 			"name": "United States",
 			"file": "united-states.svg",
+			"cdnName": "United States",
 			"codes": ["US"]
 		},
 		{
@@ -1520,6 +1531,7 @@
 			"id": "virgin-islands",
 			"name": "Virgin Islands",
 			"file": "virgin-islands.svg",
+			"cdnName": "Virgin Islands",
 			"codes": ["VI"]
 		},
 		{
