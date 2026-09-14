@@ -27,8 +27,7 @@
 		"generate-colors": "tsx src/scripts/generate-colors.ts",
 		"generate-llms-txt": "tsx src/scripts/generate-llms.ts",
 		"update-icon-slot": "tsx src/scripts/update-icon-slot.ts",
-		"generate-icon": "tsx src/scripts/generate-icon.ts",
-		"generate-flags-json": "tsx src/scripts/generate-flags-json.ts"
+		"generate-icon": "tsx src/scripts/generate-icon.ts"
 	},
 	"dependencies": {
 		"@dnd-kit/core": "^6.3.1",
