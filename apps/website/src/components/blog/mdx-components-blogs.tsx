@@ -46,7 +46,7 @@ export const BlogComponents: MDXComponents = {
 		<h2
 			id={id}
 			className={cn(
-				"heading-5 text-fg mt-5 mb-4 scroll-mt-24 font-semibold tracking-tight",
+				"heading-5 text-fg mt-10 mb-4 scroll-mt-24 font-semibold tracking-tight",
 				className
 			)}
 			{...props}>
@@ -246,7 +246,7 @@ export const BlogComponents: MDXComponents = {
 		)
 	},
 	table: ({ className, ...props }: React.ComponentProps<"table">) => (
-		<div className="no-scrollbar border-border my-6 w-full overflow-y-auto rounded-lg border">
+		<div className="no-scrollbar my-5 w-full overflow-y-auto">
 			<table
 				className={cn(
 					"relative w-full overflow-hidden border-none text-sm [&_tbody_tr:last-child]:border-b-0",
@@ -265,7 +265,7 @@ export const BlogComponents: MDXComponents = {
 	th: ({ className, ...props }: React.ComponentProps<"th">) => (
 		<th
 			className={cn(
-				"text-fg bg-fill1 px-4 py-3 text-left font-semibold [&[align=center]]:text-center [&[align=right]]:text-right",
+				"text-fg px-3 py-2.5 text-left font-medium [&[align=center]]:text-center [&[align=right]]:text-right",
 				className
 			)}
 			{...props}
@@ -274,7 +274,7 @@ export const BlogComponents: MDXComponents = {
 	td: ({ className, ...props }: React.ComponentProps<"td">) => (
 		<td
 			className={cn(
-				"text-fg-secondary px-4 py-3 text-left [&[align=center]]:text-center [&[align=right]]:text-right",
+				"text-fg p-3 text-left font-normal [&[align=center]]:text-center [&[align=right]]:text-right",
 				className
 			)}
 			{...props}
@@ -288,7 +288,7 @@ export const BlogComponents: MDXComponents = {
 		height,
 		...props
 	}: {
-		src: any
+		src: React.ComponentProps<typeof Image>["src"]
 		alt?: string
 		className?: string
 		width?: number
@@ -297,11 +297,15 @@ export const BlogComponents: MDXComponents = {
 		React.ComponentProps<typeof Image>,
 		"src" | "alt" | "className" | "width" | "height"
 	>) => {
-		const resolvedSrc = typeof src === "object" && src !== null ? src.src : src
-		const resolvedWidth =
-			width ?? (typeof src === "object" && src !== null ? src.width : 800)
-		const resolvedHeight =
-			height ?? (typeof src === "object" && src !== null ? src.height : 500)
+		const imageData =
+			typeof src === "object" && src !== null && "src" in src
+				? src
+				: typeof src === "object" && src !== null && "default" in src
+					? src.default
+					: undefined
+		const resolvedSrc = imageData?.src ?? src
+		const resolvedWidth = width ?? imageData?.width ?? 800
+		const resolvedHeight = height ?? imageData?.height ?? 500
 
 		return (
 			<Image
@@ -340,7 +344,7 @@ export const BlogComponents: MDXComponents = {
 				width={resolvedWidth}
 				height={resolvedHeight}
 				className={cn(
-					"my-10 aspect-110/60 w-full max-w-full rounded-xl object-cover",
+					"border-border my-10 aspect-110/60 w-full max-w-full rounded-xl border object-cover",
 					className
 				)}
 				{...props}
