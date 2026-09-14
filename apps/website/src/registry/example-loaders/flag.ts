@@ -8,6 +8,9 @@ const registry: Record<
 	"flag-country-select": React.lazy(
 		() => import("@/registry/example/flag/flag-country-select")
 	),
+	"flag-currency-converter": React.lazy(
+		() => import("@/registry/example/flag/flag-currency-converter")
+	),
 	"flag-preview": React.lazy(
 		() => import("@/registry/example/flag/flag-preview")
 	),
