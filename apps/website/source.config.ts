@@ -7,6 +7,7 @@ import {
 import rehypePrettyCode from "rehype-pretty-code"
 import { z } from "zod"
 import { transformers } from "@/lib/highlight-code"
+import { calculateReadingTime } from "@/lib/reading-time"
 
 // Docs collection — maps to src/content/docs/**/*.mdx
 export const { docs, meta } = defineDocs({
@@ -42,24 +43,30 @@ export const { docs, meta } = defineDocs({
 export const blog = defineCollections({
 	type: "doc",
 	dir: "src/content/blog",
-	schema: frontmatterSchema.extend({
-		date: z.coerce.date(),
-		card: z.string().optional(),
-		image: z.string().optional(),
-		img: z.string().optional(),
-		readingTime: z.string().optional(),
-		lead: z.union([z.string(), z.array(z.string())]).optional(),
-		author: z
-			.array(
-				z.object({
-					name: z.string(),
-					link: z.string().optional(),
-					avatar: z.string().optional(),
-					username: z.string().optional(),
-				})
-			)
-			.optional(),
-	}),
+	schema: (ctx) =>
+		frontmatterSchema
+			.extend({
+				date: z.coerce.date(),
+				card: z.string().optional(),
+				image: z.string().optional(),
+				img: z.string().optional(),
+				readingTime: z.string().optional(),
+				lead: z.union([z.string(), z.array(z.string())]).optional(),
+				author: z
+					.array(
+						z.object({
+							name: z.string(),
+							link: z.string().optional(),
+							avatar: z.string().optional(),
+							username: z.string().optional(),
+						})
+					)
+					.optional(),
+			})
+			.transform((data) => ({
+				...data,
+				readingTime: calculateReadingTime(ctx?.source),
+			})),
 })
 
 export default defineConfig({

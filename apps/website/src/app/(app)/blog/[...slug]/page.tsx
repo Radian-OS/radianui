@@ -128,7 +128,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
 							<ArrowLeft className="size-4 transition-transform group-hover:-translate-x-0.5" />
 							<span>Back to Blogs</span>
 						</Link>
-						<div className="text-fg-tertiary hidden items-center justify-center gap-3 text-sm font-medium uppercase sm:flex">
+						<div className="text-fg-tertiary hidden items-center justify-center gap-3 text-sm font-medium sm:flex">
 							<span>
 								{new Date(blog.data.date).toLocaleDateString("en-US", {
 									month: "long",
@@ -157,12 +157,12 @@ export default async function BlogPage({ params }: BlogPageProps) {
 					</div>
 				</div>
 				<div className="flex flex-col gap-5 p-5 md:gap-8 md:py-12 lg:gap-10 lg:px-25 lg:py-16">
-					<div className="flex flex-col gap-5 md:gap-6">
+					<div className="flex flex-col gap-5 md:gap-6 lg:w-200">
 						<h1 className="heading-2">{blog.data.title}</h1>
 
 						{/* Lead / Intro Paragraphs */}
 						{leadParagraphs.length > 0 && (
-							<div className="w-full space-y-8 lg:w-225">
+							<div className="w-full space-y-8">
 								{leadParagraphs.map((paragraph, index) => (
 									<p
 										key={index}
@@ -173,29 +173,17 @@ export default async function BlogPage({ params }: BlogPageProps) {
 							</div>
 						)}
 					</div>
-					{/* Hero / Cover Image */}
-					<div className="relative aspect-2/1 w-full overflow-hidden rounded-xl">
-						<Image
-							fill
-							src={blog.data.image ?? "/carousel-home.png"}
-							alt={blog.data.title}
-							className="object-cover"
-							priority
-							sizes="(min-width: 1280px) 1100px, (min-width: 1024px) 960px, 100vw"
-						/>
-					</div>
-
 					{/* Author & Share Row */}
 					<div className="flex flex-col pt-3 sm:flex-row sm:items-end sm:justify-between">
 						{authors.length > 0 && (
 							<div className="flex flex-col gap-2">
 								<span className="text-fg-secondary text-xs">Author</span>
-								<div className="flex flex-wrap items-center gap-3">
+								<div className="flex flex-wrap items-center gap-6">
 									{authors.map((author, index) => {
 										const authorKey = author.username || author.name || index
 										const content = (
-											<div className="hover:bg-fill1 flex items-center gap-2.5 rounded-xl p-2">
-												<Avatar size="32">
+											<div className="hover:bg-fill1 -mx-2 flex items-center gap-2.5 rounded-xl p-2">
+												<Avatar size="24">
 													{author.avatar && (
 														<AvatarImage
 															src={author.avatar}
@@ -212,11 +200,6 @@ export default async function BlogPage({ params }: BlogPageProps) {
 													<span className="text-fg text-sm font-medium">
 														{author.name}
 													</span>
-													{author.username && (
-														<span className="text-fg-secondary text-xs">
-															{author.username}
-														</span>
-													)}
 												</div>
 											</div>
 										)
@@ -243,6 +226,17 @@ export default async function BlogPage({ params }: BlogPageProps) {
 							<BlogShareButton title={blog.data.title} />
 						</div>
 					</div>
+					{/* Hero / Cover Image */}
+					<div className="relative aspect-2/1 w-full overflow-hidden rounded-xl xl:-mx-60 xl:w-[calc(100%+30rem)]">
+						<Image
+							fill
+							src={blog.data.image ?? "/carousel-home.png"}
+							alt={blog.data.title}
+							className="object-cover"
+							priority
+							sizes="(min-width: 1280px) 1100px, (min-width: 1024px) 960px, 100vw"
+						/>
+					</div>
 				</div>
 			</section>
 
@@ -252,14 +246,14 @@ export default async function BlogPage({ params }: BlogPageProps) {
 					<div>
 						{/* <NormalBlogTableOfContents headings={headings} /> */}
 						{/* Article Body */}
-						<article className="p-5 md:py-10 lg:px-25 lg:py-15">
+						<article className="p-5 md:pt-8 md:pb-10 lg:px-25 lg:pb-15 xl:w-242">
 							<blog.data.body components={BlogComponents} />
 						</article>
 					</div>
 
 					{/* In this Article (Table of Contents) */}
 					{headings.length > 0 && (
-						<aside className="border-soft sticky top-10 hidden h-[calc(100vh)] w-64 shrink-0 border-l lg:block lg:py-15">
+						<aside className="border-soft sticky top-10 hidden h-[calc(100vh)] min-w-0 flex-1 overflow-y-auto border-l lg:block lg:py-15">
 							<BlogTableOfContents headings={headings} />
 						</aside>
 					)}
