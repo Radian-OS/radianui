@@ -155,7 +155,7 @@ export function BlogTableOfContents({
 		<nav
 			aria-label="Table of Contents"
 			className="flex h-full flex-col text-sm font-medium">
-			<span className="text-fg-secondary block p-2 pl-7 text-sm text-[18px] font-semibold">
+			<span className="text-fg-secondary block p-2 pl-7 text-base text-[18px] font-semibold">
 				{title}
 			</span>
 
