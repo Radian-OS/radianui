@@ -1,10 +1,3 @@
-import { notFound } from "next/navigation"
-
-export default function Page() {
-	notFound()
-}
-
-/*
 "use client"
 
 import {
@@ -18,7 +11,7 @@ import {
 import { useThemerPreset } from "@/lib/themer-preset"
 import { ThemerSidebar } from "./_components/themer-sidebar"
 
-function ThemerPage() {
+export default function ThemerPage() {
 	const [params] = useThemerPreset()
 	const [selectedComponent, setSelectedComponent] =
 		useState<string>("preview-02")
@@ -109,7 +102,6 @@ function ThemerPage() {
 				setSelectedComponent={setSelectedComponent}
 			/>
 
-			// Preview Area
 			<main className="flex flex-1 flex-col overflow-hidden p-5">
 				<div className="border-border flex flex-1 overflow-hidden rounded-xl border shadow-sm">
 					<iframe ref={iframeRef} src={iframeSrc} className="h-full w-full" />
@@ -118,4 +110,3 @@ function ThemerPage() {
 		</div>
 	)
 }
-*/

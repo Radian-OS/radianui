@@ -14,16 +14,13 @@ export type AvatarImageProps = React.ComponentProps<
 >
 export type AvatarFallbackProps = React.ComponentProps<
 	typeof AvatarPrimitive.Fallback
-> &
-	VariantProps<typeof avatarFallbackVariants>
+>
 export type AvatarIndicatorProps = React.HTMLAttributes<HTMLDivElement>
-
 export type AvatarStatusProps = React.HTMLAttributes<HTMLDivElement> &
 	VariantProps<typeof avatarStatusVariants>
 
 export type AvatarContextValue = {
 	size: NonNullable<VariantProps<typeof avatarVariants>["size"]>
-	rounded: NonNullable<VariantProps<typeof avatarVariants>["rounded"]>
 }
 
 const AvatarContext = createContext<AvatarContextValue | null>(null)
@@ -37,36 +34,35 @@ function useAvatarContext() {
 }
 
 const avatarVariants = cva(
-	"flex items-center font-semibold justify-center shrink-0 relative",
+	"flex items-center justify-center shrink-0 relative cn-avatar",
 	{
 		variants: {
 			size: {
-				"16": "size-4 text-xs",
-				"20": "size-5 text-xs",
-				"24": "size-6 text-xs",
-				"32": "size-8 text-sm",
-				"36": "size-9 text-sm",
-				"40": "size-10 text-sm",
-				"48": "size-12 text-base",
-				"64": "size-16 text-xl",
-				"80": "size-20 text-2xl",
-				"120": "size-30 border-2",
+				"16": "cn-avatar-size-16",
+				"20": "cn-avatar-size-20",
+				"24": "cn-avatar-size-24",
+				"32": "cn-avatar-size-32",
+				"36": "cn-avatar-size-36",
+				"40": "cn-avatar-size-40",
+				"48": "cn-avatar-size-48",
+				"64": "cn-avatar-size-64",
+				"80": "cn-avatar-size-80",
 			},
 			rounded: {
-				circle: "rounded-full",
+				circle: "cn-avatar-rounded-circle",
 				square: "",
 			},
 		},
 		compoundVariants: [
-			{ size: "16", rounded: "square", class: "rounded-sm" },
-			{ size: "20", rounded: "square", class: "rounded-sm" },
-			{ size: "24", rounded: "square", class: "rounded-md" },
-			{ size: "32", rounded: "square", class: "rounded-md" },
-			{ size: "36", rounded: "square", class: "rounded-lg" },
-			{ size: "40", rounded: "square", class: "rounded-lg" },
-			{ size: "48", rounded: "square", class: "rounded-lg" },
-			{ size: "64", rounded: "square", class: "rounded-xl" },
-			{ size: "80", rounded: "square", class: "rounded-2xl" },
+			{ size: "16", rounded: "square", className: "cn-avatar-square-16" },
+			{ size: "20", rounded: "square", className: "cn-avatar-square-20" },
+			{ size: "24", rounded: "square", className: "cn-avatar-square-24" },
+			{ size: "32", rounded: "square", className: "cn-avatar-square-32" },
+			{ size: "36", rounded: "square", className: "cn-avatar-square-36" },
+			{ size: "40", rounded: "square", className: "cn-avatar-square-40" },
+			{ size: "48", rounded: "square", className: "cn-avatar-square-48" },
+			{ size: "64", rounded: "square", className: "cn-avatar-square-64" },
+			{ size: "80", rounded: "square", className: "cn-avatar-square-80" },
 		],
 		defaultVariants: {
 			size: "40",
@@ -76,26 +72,25 @@ const avatarVariants = cva(
 )
 
 const avatarStatusVariants = cva(
-	"absolute z-10 border-bg rounded-full box-content",
+	"absolute z-10 rounded-full box-content cn-avatar-status",
 	{
 		variants: {
 			variant: {
-				online: "bg-success",
-				offline: "bg-fg-disabled",
-				busy: "bg-warning",
-				away: "bg-info",
+				online: "cn-avatar-status-online",
+				offline: "cn-avatar-status-offline",
+				busy: "cn-avatar-status-busy",
+				away: "cn-avatar-status-away",
 			},
 			size: {
-				"16": "size-1 border",
-				"20": "size-1 border",
-				"24": "size-1.5 border-2",
-				"32": "size-1.5 border-2",
-				"36": "size-1.5 border-2",
-				"40": "size-2 border-2",
-				"48": "size-3 border-2",
-				"64": "size-3 border-2",
-				"80": "size-4 border-2",
-				"120": "size-6 border-2",
+				"16": "cn-avatar-status-size-16",
+				"20": "cn-avatar-status-size-20",
+				"24": "cn-avatar-status-size-24",
+				"32": "cn-avatar-status-size-32",
+				"36": "cn-avatar-status-size-36",
+				"40": "cn-avatar-status-size-40",
+				"48": "cn-avatar-status-size-48",
+				"64": "cn-avatar-status-size-64",
+				"80": "cn-avatar-status-size-80",
 			},
 		},
 		defaultVariants: {
@@ -105,30 +100,6 @@ const avatarStatusVariants = cva(
 	}
 )
 
-const avatarFallbackVariants = cva("", {
-	variants: {
-		color: {
-			red: "bg-red-accent text-red-text",
-			orange: "bg-orange-accent text-orange-text",
-			amber: "bg-amber-accent text-amber-text",
-			yellow: "bg-yellow-accent text-yellow-text",
-			neon: "bg-neon-accent text-neon-text",
-			green: "bg-green-accent text-green-text",
-			emerald: "bg-emerald-accent text-emerald-text",
-			teal: "bg-teal-accent text-teal-text",
-			cyan: "bg-cyan-accent text-cyan-text",
-			"light-blue": "bg-light-blue-accent text-light-blue-text",
-			blue: "bg-blue-accent text-blue-text",
-			"violet-blue": "bg-violet-blue-accent text-violet-blue-text",
-			purple: "bg-purple-accent text-purple-text",
-			"dark-orchid": "bg-dark-orchid-accent text-dark-orchid-text",
-			fuchsia: "bg-fuchsia-accent text-fuchsia-text",
-			magenta: "bg-magenta-accent text-magenta-text",
-			rose: "bg-rose-accent text-rose-text",
-		},
-	},
-})
-
 function Avatar({
 	className,
 	size = "40",
@@ -136,7 +107,7 @@ function Avatar({
 	...props
 }: AvatarProps) {
 	return (
-		<AvatarContext.Provider value={{ size, rounded }}>
+		<AvatarContext.Provider value={{ size }}>
 			<AvatarPrimitive.Root
 				data-slot="avatar"
 				className={cn(avatarVariants({ size, rounded }), className)}
@@ -152,7 +123,7 @@ function AvatarImage({ className, ...props }: AvatarImageProps) {
 		<AvatarPrimitive.Image
 			data-slot="avatar-image"
 			className={cn(
-				"relative aspect-square size-full rounded-[inherit] object-cover",
+				"cn-avatar-image relative aspect-square size-full object-cover",
 				className
 			)}
 			{...props}
@@ -161,15 +132,12 @@ function AvatarImage({ className, ...props }: AvatarImageProps) {
 }
 AvatarImage.displayName = "AvatarImage"
 
-function AvatarFallback({ className, color, ...props }: AvatarFallbackProps) {
-	const colorClasses = color ? avatarFallbackVariants({ color }) : ""
-
+function AvatarFallback({ className, ...props }: AvatarFallbackProps) {
 	return (
 		<AvatarPrimitive.Fallback
 			data-slot="avatar-fallback"
 			className={cn(
-				"flex size-full items-center justify-center rounded-[inherit]",
-				colorClasses || "bg-primary-focus text-primary-text",
+				"cn-avatar-fallback flex size-full items-center justify-center",
 				className
 			)}
 			{...props}
@@ -221,5 +189,4 @@ export {
 	AvatarStatus,
 	avatarStatusVariants,
 	avatarVariants,
-	avatarFallbackVariants,
 }
