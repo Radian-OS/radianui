@@ -44,6 +44,18 @@ available as text:
 The package also exports `countryCodes`, `CountryCode`, `FlagProps`,
 `FlagShape`, and `getCountryName`.
 
+## Metadata
+
+The complete flag catalog is available from the `metadata` subpath. Each entry
+contains its stable ID, display name, associated country or regional codes, and
+CDN filename.
+
+```ts
+import { type FlagMetadata, flagMetadata } from "@radianui/flags/metadata"
+
+const nepal = flagMetadata.find((flag) => flag.codes.includes("NP"))
+```
+
 ## Source of truth
 
 Every flag has exactly one canonical SVG in `source/flags`. Filenames use

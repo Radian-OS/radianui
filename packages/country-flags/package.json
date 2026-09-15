@@ -1,6 +1,6 @@
 {
 	"name": "@radianui/flags",
-	"version": "0.0.1",
+	"version": "0.0.3",
 	"description": "Accessible, type-safe SVG country flag components for React and Next.js using ISO 3166-1 country codes.",
 	"type": "module",
 	"sideEffects": false,
@@ -23,6 +23,7 @@
 	},
 	"files": [
 		"dist",
+		"source",
 		"LICENSE",
 		"README.md"
 	],
