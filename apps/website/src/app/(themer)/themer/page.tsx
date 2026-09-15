@@ -11,7 +11,7 @@ import {
 import { useThemerPreset } from "@/lib/themer-preset"
 import { ThemerSidebar } from "./_components/themer-sidebar"
 
-export default function ThemerPage() {
+function ThemerContent() {
 	const [params] = useThemerPreset()
 	const [selectedComponent, setSelectedComponent] =
 		useState<string>("preview-02")
@@ -108,5 +108,13 @@ export default function ThemerPage() {
 				</div>
 			</main>
 		</div>
+	)
+}
+
+export default function ThemerPage() {
+	return (
+		<Suspense fallback={<div className="bg-fill2 flex h-screen w-full" />}>
+			<ThemerContent />
+		</Suspense>
 	)
 }

@@ -11,7 +11,6 @@ export type SliderProps = React.ComponentPropsWithRef<
 		sliderRange?: string
 	}
 }
-
 export type SliderThumbProps = React.ComponentProps<
 	typeof SliderPrimitive.Thumb
 >
@@ -28,8 +27,7 @@ function Slider({
 		<SliderPrimitive.Root
 			data-slot="slider"
 			className={cn(
-				"data-disabled:opacity-50 relative flex touch-none select-none items-center",
-				"data-[orientation=vertical]:w-auto data-[orientation=vertical]:flex-col",
+				"data-vertical:h-full data-vertical:w-fit data-vertical:flex-col data-vertical:min-h-40 data-disabled:opacity-50 relative flex w-full touch-none select-none items-center",
 				classNames?.sliderRoot,
 				className
 			)}
@@ -39,20 +37,17 @@ function Slider({
 			<SliderPrimitive.Track
 				data-slot="slider-track"
 				className={cn(
-					"bg-fill2-alpha relative h-2 w-full grow overflow-hidden rounded-full",
-					"data-[orientation=vertical]:w-2",
+					"data-horizontal:h-1 data-vertical:h-full data-horizontal:w-full data-vertical:w-2 bg-fill3 relative h-1 grow overflow-hidden rounded-none",
 					classNames?.sliderTrack
 				)}>
 				<SliderPrimitive.Range
 					data-slot="slider-range"
 					className={cn(
-						"bg-primary absolute h-full",
-						"data-[orientation=vertical]:h-auto data-[orientation=vertical]:w-full",
+						"bg-primary absolute data-[orientation=horizontal]:h-full data-[orientation=vertical]:w-8",
 						classNames?.sliderRange
 					)}
 				/>
 			</SliderPrimitive.Track>
-
 			{children}
 		</SliderPrimitive.Root>
 	)
@@ -63,7 +58,7 @@ function SliderThumb({ className, ...props }: SliderThumbProps) {
 		<SliderPrimitive.Thumb
 			data-slot="slider-thumb"
 			className={cn(
-				"border-primary bg-bg drop-shadow-xs focus-visible:outline-hidden data-disabled:cursor-not-allowed block size-4 cursor-pointer rounded-full border-2 transition-colors",
+				"focus-visible:outline-hidden data-disabled:cursor-not-allowed bg-primary block size-4 cursor-pointer rounded-none drop-shadow-none transition-colors",
 				className
 			)}
 			{...props}

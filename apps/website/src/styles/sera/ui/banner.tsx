@@ -14,7 +14,7 @@ export type BannerIconProps = React.HTMLAttributes<HTMLDivElement>
 export type BannerToolbarProps = React.HTMLAttributes<HTMLDivElement>
 
 const bannerVariants = cva(
-	"flex items-center justify-center w-full gap-2 p-2 overflow-hidden",
+	"flex items-center justify-center w-full overflow-hidden gap-3 p-3",
 	{
 		variants: {
 			color: {
@@ -26,15 +26,19 @@ const bannerVariants = cva(
 				warning: "",
 			},
 			variant: {
-				strong: "[&_[data-slot=banner-close]]:text-white",
+				strong: "[&_[data-slot=banner-close]]:text-primary-fg",
 				soft: "[&_[data-slot=banner-close]]:text-[current] [&_[data-slot=banner-title]]:text-fg [&_[data-slot=banner-description]]:text-fg",
 				outline:
-					"border border-soft border-l-0 border-t-0 border-r-0 [&_[data-slot=banner-close]]:text-fg-secondary [&_[data-slot=banner-title]]:text-fg [&_[data-slot=banner-description]]:text-fg-secondary",
+					"border-soft border border-l-0 border-r-0 border-t-0 [&_[data-slot=banner-close]]:text-fg-secondary [&_[data-slot=banner-title]]:text-fg [&_[data-slot=banner-description]]:text-fg-secondary",
 			},
 		},
 		compoundVariants: [
 			// Soft
-			{ color: "neutral", variant: "soft", className: "bg-fill2" },
+			{
+				color: "neutral",
+				variant: "soft",
+				className: "bg-fill2",
+			},
 			{
 				color: "primary",
 				variant: "soft",
@@ -58,8 +62,7 @@ const bannerVariants = cva(
 			{
 				color: "warning",
 				variant: "soft",
-				className:
-					"bg-warning-accent text-warning-text [&_[data-slot=banner-icon]]:text-warning-border",
+				className: "bg-warning-accent text-warning-text",
 			},
 
 			// Strong
@@ -71,16 +74,19 @@ const bannerVariants = cva(
 			{
 				color: "primary",
 				variant: "strong",
-				className: "bg-primary text-white",
+				className: "bg-primary text-primary-fg",
 			},
 			{ color: "info", variant: "strong", className: "bg-info text-white" },
 			{
 				color: "warning",
 				variant: "strong",
-				className:
-					"bg-warning text-warning-fg [&_[data-slot=banner-title]]:text-black",
+				className: "bg-warning text-white",
 			},
-			{ color: "error", variant: "strong", className: "bg-error text-white" },
+			{
+				color: "error",
+				variant: "strong",
+				className: "bg-error text-white",
+			},
 			{
 				color: "success",
 				variant: "strong",
@@ -91,32 +97,32 @@ const bannerVariants = cva(
 			{
 				color: "neutral",
 				variant: "outline",
-				className: "bg-transparent text-fg ",
+				className: "text-fg bg-transparent",
 			},
 			{
 				color: "primary",
 				variant: "outline",
-				className: "bg-transparent text-primary-text",
+				className: "text-primary-text bg-transparent",
 			},
 			{
 				color: "info",
 				variant: "outline",
-				className: "bg-transparent text-info-text",
+				className: "text-info-text bg-transparent",
 			},
 			{
 				color: "success",
 				variant: "outline",
-				className: "bg-transparent text-success-text",
+				className: "text-success-text bg-transparent",
 			},
 			{
 				color: "error",
 				variant: "outline",
-				className: "bg-transparent text-error-text",
+				className: "text-error-text bg-transparent",
 			},
 			{
 				color: "warning",
 				variant: "outline",
-				className: "bg-transparent text-warning-text",
+				className: "text-warning-text bg-transparent",
 			},
 		],
 		defaultVariants: {
@@ -146,9 +152,7 @@ function Banner({
 					onClick={onClose}
 					aria-label="Dismiss"
 					data-slot="banner-close"
-					className={cn(
-						"group flex size-5 shrink-0 cursor-pointer items-center justify-center"
-					)}>
+					className="group flex size-5 shrink-0 cursor-pointer items-center justify-center">
 					<X className="size-5 group-hover:opacity-60" />
 				</button>
 			)}
@@ -184,7 +188,7 @@ function BannerContent({ className, ...props }: BannerContentProps) {
 		<div
 			data-slot="banner-content"
 			className={cn(
-				"flex flex-1 flex-col items-start justify-start gap-0.5 [&_[data-slot=banner-description]]:text-sm [&_[data-slot=banner-title]]:text-sm [&_[data-slot=banner-title]]:font-semibold",
+				"flex flex-1 flex-col items-start justify-start gap-1 [&_[data-slot=banner-description]]:text-sm [&_[data-slot=banner-title]]:text-sm [&_[data-slot=banner-title]]:font-semibold",
 				className
 			)}
 			{...props}

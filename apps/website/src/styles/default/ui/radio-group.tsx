@@ -3,7 +3,7 @@
 import * as React from "react"
 import * as RadioGroupPrimitive from "@radix-ui/react-radio-group"
 import { type VariantProps, cva } from "class-variance-authority"
-import { CircleIcon } from "lucide-react"
+import { Circle } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 type RadioGroupContextType = {
@@ -59,7 +59,7 @@ function RadioGroup({
 	return (
 		<RadioGroupContext.Provider value={ctxValues}>
 			<RadioGroupPrimitive.Root
-				className={cn("grid gap-3", className)}
+				className={cn("grid gap-4", className)}
 				data-slot="radio-group"
 				{...props}>
 				{children}
@@ -86,7 +86,7 @@ function RadioGroupItem({
 			<RadioGroupPrimitive.Indicator
 				data-slot="radio-group-indicator"
 				className="relative flex items-center justify-center">
-				<CircleIcon className="fill-bg stroke-bg absolute left-1/2 top-1/2 size-2 -translate-x-1/2 -translate-y-1/2" />
+				<Circle className="fill-bg stroke-bg absolute left-1/2 top-1/2 size-2 -translate-x-1/2 -translate-y-1/2" />
 			</RadioGroupPrimitive.Indicator>
 		</RadioGroupPrimitive.Item>
 	)

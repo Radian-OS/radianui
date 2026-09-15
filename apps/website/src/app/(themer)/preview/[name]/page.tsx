@@ -20,24 +20,26 @@ export default async function Page({
 		const Component = block.component
 
 		return (
-			<PreviewClient>
-				<Suspense
-					fallback={
-						<div className="bg-fill2 h-10 w-full animate-pulse rounded" />
-					}>
+			<Suspense
+				fallback={
+					<div className="bg-fill2 h-10 w-full animate-pulse rounded" />
+				}>
+				<PreviewClient>
 					<Component />
-				</Suspense>
-			</PreviewClient>
+				</PreviewClient>
+			</Suspense>
 		)
 	}
 
 	return (
-		<PreviewClient>
-			<div className="bg-fill2 min-h-screen overflow-auto p-6">
-				<div className="mx-auto flex w-full max-w-5xl flex-col gap-5">
-					<div className="text-fg-secondary p-6 text-sm">Not found</div>
+		<Suspense fallback={null}>
+			<PreviewClient>
+				<div className="bg-fill2 min-h-screen overflow-auto p-6">
+					<div className="mx-auto flex w-full max-w-5xl flex-col gap-5">
+						<div className="text-fg-secondary p-6 text-sm">Not found</div>
+					</div>
 				</div>
-			</div>
-		</PreviewClient>
+			</PreviewClient>
+		</Suspense>
 	)
 }

@@ -14,16 +14,13 @@ export type AvatarImageProps = React.ComponentProps<
 >
 export type AvatarFallbackProps = React.ComponentProps<
 	typeof AvatarPrimitive.Fallback
-> &
-	VariantProps<typeof avatarFallbackVariants>
+>
 export type AvatarIndicatorProps = React.HTMLAttributes<HTMLDivElement>
-
 export type AvatarStatusProps = React.HTMLAttributes<HTMLDivElement> &
 	VariantProps<typeof avatarStatusVariants>
 
 export type AvatarContextValue = {
 	size: NonNullable<VariantProps<typeof avatarVariants>["size"]>
-	rounded: NonNullable<VariantProps<typeof avatarVariants>["rounded"]>
 }
 
 const AvatarContext = createContext<AvatarContextValue | null>(null)
@@ -37,7 +34,7 @@ function useAvatarContext() {
 }
 
 const avatarVariants = cva(
-	"flex items-center font-semibold justify-center shrink-0 relative",
+	"flex items-center justify-center shrink-0 relative font-semibold",
 	{
 		variants: {
 			size: {
@@ -50,7 +47,6 @@ const avatarVariants = cva(
 				"48": "size-12 text-base",
 				"64": "size-16 text-xl",
 				"80": "size-20 text-2xl",
-				"120": "size-30 border-2",
 			},
 			rounded: {
 				circle: "rounded-full",
@@ -58,15 +54,15 @@ const avatarVariants = cva(
 			},
 		},
 		compoundVariants: [
-			{ size: "16", rounded: "square", class: "rounded-sm" },
-			{ size: "20", rounded: "square", class: "rounded-sm" },
-			{ size: "24", rounded: "square", class: "rounded-md" },
-			{ size: "32", rounded: "square", class: "rounded-md" },
-			{ size: "36", rounded: "square", class: "rounded-lg" },
-			{ size: "40", rounded: "square", class: "rounded-lg" },
-			{ size: "48", rounded: "square", class: "rounded-lg" },
-			{ size: "64", rounded: "square", class: "rounded-xl" },
-			{ size: "80", rounded: "square", class: "rounded-2xl" },
+			{ size: "16", rounded: "square", className: "rounded-md" },
+			{ size: "20", rounded: "square", className: "rounded-md" },
+			{ size: "24", rounded: "square", className: "rounded-lg" },
+			{ size: "32", rounded: "square", className: "rounded-lg" },
+			{ size: "36", rounded: "square", className: "rounded-lg" },
+			{ size: "40", rounded: "square", className: "rounded-lg" },
+			{ size: "48", rounded: "square", className: "rounded-lg" },
+			{ size: "64", rounded: "square", className: "rounded-xl" },
+			{ size: "80", rounded: "square", className: "rounded-2xl" },
 		],
 		defaultVariants: {
 			size: "40",
@@ -76,7 +72,7 @@ const avatarVariants = cva(
 )
 
 const avatarStatusVariants = cva(
-	"absolute z-10 border-bg rounded-full box-content",
+	"absolute z-10 rounded-full box-content border-bg",
 	{
 		variants: {
 			variant: {
@@ -95,7 +91,6 @@ const avatarStatusVariants = cva(
 				"48": "size-3 border-2",
 				"64": "size-3 border-2",
 				"80": "size-4 border-2",
-				"120": "size-6 border-2",
 			},
 		},
 		defaultVariants: {
@@ -105,30 +100,6 @@ const avatarStatusVariants = cva(
 	}
 )
 
-const avatarFallbackVariants = cva("", {
-	variants: {
-		color: {
-			red: "bg-red-accent text-red-text",
-			orange: "bg-orange-accent text-orange-text",
-			amber: "bg-amber-accent text-amber-text",
-			yellow: "bg-yellow-accent text-yellow-text",
-			neon: "bg-neon-accent text-neon-text",
-			green: "bg-green-accent text-green-text",
-			emerald: "bg-emerald-accent text-emerald-text",
-			teal: "bg-teal-accent text-teal-text",
-			cyan: "bg-cyan-accent text-cyan-text",
-			"light-blue": "bg-light-blue-accent text-light-blue-text",
-			blue: "bg-blue-accent text-blue-text",
-			"violet-blue": "bg-violet-blue-accent text-violet-blue-text",
-			purple: "bg-purple-accent text-purple-text",
-			"dark-orchid": "bg-dark-orchid-accent text-dark-orchid-text",
-			fuchsia: "bg-fuchsia-accent text-fuchsia-text",
-			magenta: "bg-magenta-accent text-magenta-text",
-			rose: "bg-rose-accent text-rose-text",
-		},
-	},
-})
-
 function Avatar({
 	className,
 	size = "40",
@@ -136,7 +107,7 @@ function Avatar({
 	...props
 }: AvatarProps) {
 	return (
-		<AvatarContext.Provider value={{ size, rounded }}>
+		<AvatarContext.Provider value={{ size }}>
 			<AvatarPrimitive.Root
 				data-slot="avatar"
 				className={cn(avatarVariants({ size, rounded }), className)}
@@ -161,15 +132,12 @@ function AvatarImage({ className, ...props }: AvatarImageProps) {
 }
 AvatarImage.displayName = "AvatarImage"
 
-function AvatarFallback({ className, color, ...props }: AvatarFallbackProps) {
-	const colorClasses = color ? avatarFallbackVariants({ color }) : ""
-
+function AvatarFallback({ className, ...props }: AvatarFallbackProps) {
 	return (
 		<AvatarPrimitive.Fallback
 			data-slot="avatar-fallback"
 			className={cn(
-				"flex size-full items-center justify-center rounded-[inherit]",
-				colorClasses || "bg-primary-focus text-primary-text",
+				"bg-primary-focus text-primary-text flex size-full items-center justify-center rounded-[inherit]",
 				className
 			)}
 			{...props}
@@ -221,5 +189,4 @@ export {
 	AvatarStatus,
 	avatarStatusVariants,
 	avatarVariants,
-	avatarFallbackVariants,
 }

@@ -11,18 +11,18 @@ export type BadgeProps = Omit<React.HTMLAttributes<HTMLDivElement>, "color"> &
 export type BadgeDotProps = React.HTMLAttributes<HTMLSpanElement>
 
 const badgeVariants = cva(
-	"inline-flex items-center font-medium w-fit whitespace-nowrap transition duration-200 gap-0.5",
+	"inline-flex items-center w-fit whitespace-nowrap transition duration-200 gap-0.5 font-medium",
 	{
 		variants: {
 			variant: {
 				strong: "",
-				outline: "",
+				outline: "bg-transparent",
 				soft: "",
 			},
 			size: {
-				"20": "h-5 px-1 text-xs rounded-md [&_svg]:size-3",
-				"24": "h-6 px-1.5 text-[13px] rounded-md [&_svg]:size-3.5",
-				"28": "h-7 px-1.5 text-sm rounded-md [&_svg]:size-4",
+				"20": "rounded-control-md h-5 px-1.5 text-xs [&_svg]:size-3.5",
+				"24": "rounded-control-md h-6 px-2 text-[13px] [&_svg]:size-3.5",
+				"28": "rounded-control-md h-7 px-2 text-sm [&_svg]:size-4",
 			},
 			color: {
 				primary: "",
@@ -51,71 +51,72 @@ const badgeVariants = cva(
 			},
 		},
 		defaultVariants: {
-			variant: "outline",
+			variant: "soft",
 			size: "24",
-			color: "neutral",
+			color: "primary",
 		},
 		compoundVariants: [
 			// strong
 			{
 				variant: "strong",
 				color: "primary",
-				className: "bg-primary text-primary-fg  border border-alpha",
+				className:
+					"bg-primary border-alpha text-primary-fg border font-semibold",
 			},
 			{
 				variant: "strong",
 				color: "info",
-				className: "bg-info text-info-fg border border-alpha",
+				className: "bg-info border-alpha border font-semibold text-white",
 			},
 			{
 				variant: "strong",
 				color: "success",
-				className: "bg-success text-success-fg border border-alpha",
+				className: "bg-success border-alpha border font-semibold text-white",
 			},
 			{
 				variant: "strong",
 				color: "error",
-				className: "bg-error text-error-fg border border-alpha",
+				className: "bg-error border-alpha border font-semibold text-white",
 			},
 			{
 				variant: "strong",
 				color: "warning",
-				className: "bg-warning text-warning-fg border border-alpha",
+				className: "bg-warning border-alpha border font-semibold text-white",
 			},
 			{
 				variant: "strong",
 				color: "neutral",
 				className:
-					"bg-black-inverse border border-alpha text-white-inverse font-medium",
+					"bg-black-inverse text-white-inverse border-alpha border font-medium",
 			},
 			// outline
 			{
 				variant: "outline",
 				color: "primary",
 				className:
-					"text-primary-text border border-primary-border bg-transparent",
+					"text-primary-text border-primary-border border bg-transparent",
 			},
 			{
 				variant: "outline",
 				color: "info",
-				className: "text-info-text border border-info-border bg-transparent",
+				className: "text-info-text border-info-border border bg-transparent",
 			},
 			{
 				variant: "outline",
 				color: "success",
 				className:
-					"text-success-text border border-success-border bg-transparent",
+					"text-success-text border-success-border border bg-transparent",
 			},
 			{
 				variant: "outline",
 				color: "error",
-				className: "text-error-text border border-error-border bg-transparent",
+				className: "text-error-text border-error-border border bg-transparent",
 			},
 			{
 				variant: "outline",
 				color: "warning",
 				className:
-					"text-warning-text border border-warning-border bg-transparent",
+					"text-warning-text border-warning-border border bg-transparent",
 			},
 			{
 				variant: "outline",
@@ -153,6 +154,7 @@ const badgeVariants = cva(
 				color: "neutral",
 				className: "bg-fill2 text-fg border-soft-alpha",
 			},
+
 			// utility colors (soft)
 			{
 				variant: "soft",
@@ -445,7 +447,7 @@ function BadgeDot({ className, ...props }: BadgeDotProps) {
 			<span
 				data-slot="badge-dot"
 				className={cn(
-					"bg-fg-disabled size-1.5 shrink-0 rounded-full",
+					"size-1.5 shrink-0 rounded-full bg-[currentColor]",
 					className
 				)}
 				{...props}

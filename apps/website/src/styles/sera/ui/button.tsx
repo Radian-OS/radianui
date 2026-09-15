@@ -66,12 +66,12 @@ export const buttonVariants = cva(
 				"smooth-inverted": "",
 			},
 			size: {
-				"28": "[&>svg]:size-4 text-[13px] leading-4.5 px-1 rounded-md",
-				"32": "[&>svg]:size-4.5 text-sm px-1 rounded-md",
-				"36": "[&>svg]:size-5 text-sm px-1 rounded-lg",
-				"40": "[&>svg]:size-5 text-sm px-1 rounded-lg",
-				"44": "[&>svg]:size-5 text-base px-1 rounded-lg",
-				"48": "[&>svg]:size-6 text-base px-1 rounded-lg",
+				"28": "[&>svg]:size-4 text-[13px] leading-4.5 px-1 rounded-none",
+				"32": "[&>svg]:size-4.5 text-sm px-1 rounded-none",
+				"36": "[&>svg]:size-5 text-sm px-1 rounded-none",
+				"40": "[&>svg]:size-5 text-sm px-1 rounded-none",
+				"44": "[&>svg]:size-5 text-base px-1 rounded-none",
+				"48": "[&>svg]:size-6 text-base px-1 rounded-none",
 			},
 			loading: {
 				true: "",
@@ -95,7 +95,7 @@ export const buttonVariants = cva(
 		compoundVariants: [
 			// Default size styles (for buttons with text)
 			{ size: "28", className: "gap-1 h-7 px-2 py-1.5" },
-			{ size: "32", className: "gap-1.5 h-8 px-2.5 py-1.5" },
+			{ size: "32", className: "gap-1.5 h-8 px-2 py-1.5" },
 			{ size: "36", className: "gap-2 h-9 px-3 py-2" },
 			{ size: "40", className: "gap-2 h-10 px-3 py-2.5" },
 			{ size: "44", className: "gap-2 h-11 px-3 py-2.5" },
@@ -212,7 +212,7 @@ export const buttonVariants = cva(
 				variant: "outline",
 				color: "neutral",
 				className:
-					"bg-elevation-level1 font-medium  text-fg border border-border hover:bg-fill1-alpha focus-visible:ring-border",
+					"bg-elevation-level1 font-medium text-fg border border-border hover:bg-fill1-alpha focus-visible:ring-border",
 			},
 
 			// Ghost variant + colors
@@ -297,7 +297,7 @@ export const buttonVariants = cva(
 				variant: "glossy",
 				color: "primary",
 				className:
-					"bg-primary relative hover:bg-primary-hover before:absolute before:inset-x-0 before:top-0 before:h-full before:bg-gradient-to-b before:from-white/20 before:to-transparent before:content-['']  focus-visible:ring-primary  focus-visible:outline-none shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-primary),0_3px_4px_-1px_var(--color-primary-border)]  overflow-hidden text-primary-fg font-medium",
+					"bg-primary relative hover:bg-primary-hover before:absolute before:inset-x-0 before:top-0 before:h-full before:bg-gradient-to-b before:from-white/20 before:to-transparent before:content-['']  focus-visible:ring-primary  focus-visible:outline-none shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-primary),0_3px_4px_-1px_var(--color-primary-border)]  overflow-hidden text-white font-medium",
 			},
 
 			{
@@ -336,7 +336,7 @@ export const buttonVariants = cva(
 				variant: "glossy-inverted",
 				color: "primary",
 				className:
-					"bg-primary relative hover:bg-primary-hover before:absolute before:inset-x-0 before:top-0 before:h-full before:bg-gradient-to-b before:from-transparent before:to-white/20 before:content-['']  focus-visible:ring-primary  focus-visible:outline-none shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-primary),0_3px_4px_-1px_var(--color-primary-border)]  overflow-hidden text-primary-fg font-medium",
+					"bg-primary relative hover:bg-primary-hover before:absolute before:inset-x-0 before:top-0 before:h-full before:bg-gradient-to-b before:from-transparent before:to-white/20 before:content-['']  focus-visible:ring-primary  focus-visible:outline-none shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-primary),0_3px_4px_-1px_var(--color-primary-border)]  overflow-hidden text-white font-medium",
 			},
 
 			{
@@ -375,7 +375,7 @@ export const buttonVariants = cva(
 				variant: "smooth",
 				color: "primary",
 				className:
-					"relative font-medium text-primary-fg focus-visible:ring-primary  focus-visible:outline-none bg-primary overflow-hidden shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-primary)] hover:brightness-110 after:absolute after:inset-0 after:rounded-[inherit] after:bg-gradient-to-b after:from-primary-hover after:to-primary after:-z-10 before:absolute before:inset-0 before:rounded-[inherit] before:border before:border-white/16 before:pointer-events-none before:mask-b-from-98%",
+					"relative font-medium text-white focus-visible:ring-primary  focus-visible:outline-none bg-primary overflow-hidden shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-primary)] hover:brightness-110 after:absolute after:inset-0 after:rounded-[inherit] after:bg-gradient-to-b after:from-primary-hover after:to-primary after:-z-10 before:absolute before:inset-0 before:rounded-[inherit] before:border before:border-white/16 before:pointer-events-none before:mask-b-from-98%",
 			},
 			{
 				variant: "smooth",
@@ -413,7 +413,7 @@ export const buttonVariants = cva(
 				variant: "smooth-inverted",
 				color: "primary",
 				className:
-					"relative font-medium text-primary-fg focus-visible:ring-primary  focus-visible:outline-none bg-primary overflow-hidden shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-primary)] hover:brightness-110 after:absolute after:inset-0 after:rounded-[inherit] after:bg-gradient-to-b after:from-primary after:to-primary-hover after:-z-10 before:absolute before:inset-0 before:rounded-[inherit] before:border before:border-white/16 before:pointer-events-none before:mask-b-from-98%",
+					"relative font-medium text-white focus-visible:ring-primary  focus-visible:outline-none bg-primary overflow-hidden shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-primary)] hover:brightness-110 after:absolute after:inset-0 after:rounded-[inherit] after:bg-gradient-to-b after:from-primary after:to-primary-hover after:-z-10 before:absolute before:inset-0 before:rounded-[inherit] before:border before:border-white/16 before:pointer-events-none before:mask-b-from-98%",
 			},
 			{
 				variant: "smooth-inverted",
@@ -575,7 +575,7 @@ function ButtonGroup({
 ButtonGroup.displayName = "ButtonGroup"
 
 export const compactButtonVariants = cva(
-	"inline-flex whitespace-nowrap items-center justify-center box-border focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-bg-bg disabled:pointer-events-none hover:cursor-pointer w-fit rounded-md",
+	"inline-flex whitespace-nowrap items-center justify-center box-border focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-bg-bg disabled:pointer-events-none hover:cursor-pointer w-fit rounded-none",
 	{
 		variants: {
 			variant: {
@@ -612,7 +612,7 @@ export const compactButtonVariants = cva(
 				variant: "strong",
 				color: "primary",
 				className:
-					"bg-primary font-medium text-primary-fg hover:bg-primary-hover focus-visible:ring-primary focus-visible:outline-none",
+					"bg-primary font-medium text-white hover:bg-primary-hover focus-visible:ring-primary focus-visible:outline-none",
 			},
 			{
 				variant: "strong",
@@ -762,7 +762,7 @@ export const compactButtonVariants = cva(
 				variant: "glossy",
 				color: "primary",
 				className:
-					"before:absolute before:inset-0 before:border before:border-white/44 bg-primary before:pointer-events-none before:bg-gradient-to-b before:from-white/20 before:to-transparent hover:bg-primary-hover  focus-visible:ring-primary  focus-visible:outline-none shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-primary),0_3px_4px_-1px_var(--color-primary-border)]  overflow-hidden hover:brightness-110 before:mask-b-from-0%  text-primary-fg font-medium before:rounded-[inherit]",
+					"before:absolute before:inset-0 before:border before:border-white/44 bg-primary before:pointer-events-none before:bg-gradient-to-b before:from-white/20 before:to-transparent hover:bg-primary-hover  focus-visible:ring-primary  focus-visible:outline-none shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-primary),0_3px_4px_-1px_var(--color-primary-border)]  overflow-hidden hover:brightness-110 before:mask-b-from-0%  text-white font-medium before:rounded-[inherit]",
 			},
 
 			{
@@ -801,7 +801,7 @@ export const compactButtonVariants = cva(
 				variant: "glossy-inverted",
 				color: "primary",
 				className:
-					"before:absolute before:inset-0 focus-visible:ring-primary hover:bg-primary-hover bg-primary focus-visible:outline-none before:border overflow-hidden before:border-white/44 before:mask-b-from-0%   text-primary-fg font-medium before:rounded-[inherit] before:bg-gradient-to-b before:from-transparent before:to-white/20  shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-primary),0_3px_4px_-1px_var(--color-primary-border)]",
+					"before:absolute before:inset-0 focus-visible:ring-primary hover:bg-primary-hover bg-primary focus-visible:outline-none before:border overflow-hidden before:border-white/44 before:mask-b-from-0%   text-white font-medium before:rounded-[inherit] before:bg-gradient-to-b before:from-transparent before:to-white/20  shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-primary),0_3px_4px_-1px_var(--color-primary-border)]",
 			},
 
 			{
@@ -840,7 +840,7 @@ export const compactButtonVariants = cva(
 				variant: "smooth",
 				color: "primary",
 				className:
-					"before:absolute before:bg-gradient-to-b before:from-primary-hover before:to-primary before:mask-b-from-98% bg-primary  before:inset-0 shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0px_0px_1px_var(--color-primary)] focus-visible:ring-primary focus-visible:outline-none before:border overflow-hidden before:border-white/16  hover:brightness-110 before:-z-10 text-primary-fg font-medium before:rounded-[inherit]",
+					"before:absolute before:bg-gradient-to-b before:from-primary-hover before:to-primary before:mask-b-from-98% bg-primary  before:inset-0 shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0px_0px_1px_var(--color-primary)] focus-visible:ring-primary focus-visible:outline-none before:border overflow-hidden before:border-white/16  hover:brightness-110 before:-z-10 text-white font-medium before:rounded-[inherit]",
 			},
 			{
 				variant: "smooth",
@@ -878,7 +878,7 @@ export const compactButtonVariants = cva(
 				variant: "smooth-inverted",
 				color: "primary",
 				className:
-					"before:absolute before:bg-gradient-to-b before:from-primary before:to-primary-hover before:mask-b-from-98% bg-primary  before:inset-0 shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0px_0px_1px_var(--color-primary)] focus-visible:ring-primary focus-visible:outline-none before:border overflow-hidden before:border-white/16  hover:brightness-110 before:-z-10 text-primary-fg font-medium before:rounded-[inherit]",
+					"before:absolute before:bg-gradient-to-b before:from-primary before:to-primary-hover before:mask-b-from-98% bg-primary  before:inset-0 shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0px_0px_1px_var(--color-primary)] focus-visible:ring-primary focus-visible:outline-none before:border overflow-hidden before:border-white/16  hover:brightness-110 before:-z-10 text-white font-medium before:rounded-[inherit]",
 			},
 			{
 				variant: "smooth-inverted",
@@ -946,12 +946,12 @@ CompactButton.displayName = "CompactButton"
 export const iconButtonSizeVariants = cva("", {
 	variants: {
 		size: {
-			"28": "[&>svg]:size-4 rounded-md size-7 p-1.5",
-			"32": "[&>svg]:size-4.5 rounded-md size-8 p-1.75",
-			"36": "[&>svg]:size-5 rounded-lg size-9 p-2",
-			"40": "[&>svg]:size-5 rounded-lg size-10 p-2.5",
-			"44": "[&>svg]:size-5 rounded-lg size-11 p-3",
-			"48": "[&>svg]:size-6 rounded-lg size-12 p-3",
+			"28": "[&>svg]:size-4 size-7 p-1.5 rounded-none",
+			"32": "[&>svg]:size-4.5 size-8 p-1.75 rounded-none",
+			"36": "[&>svg]:size-5 size-9 p-2 rounded-none",
+			"40": "[&>svg]:size-5 size-10 p-2.5 rounded-none",
+			"44": "[&>svg]:size-5 size-11 p-3 rounded-none",
+			"48": "[&>svg]:size-6 size-12 p-3 rounded-none",
 		},
 		variant: {
 			outline: "",

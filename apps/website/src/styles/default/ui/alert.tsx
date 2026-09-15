@@ -19,7 +19,7 @@ export type AlertIconProps = React.HTMLAttributes<HTMLDivElement>
 export type AlertToolbarProps = React.HTMLAttributes<HTMLDivElement>
 
 const alertVariants = cva(
-	"flex items-stretch w-full gap-3 p-3 rounded-lg [&>[data-slot=alert-title]]:font-medium [&>[data-slot=alert-title]]:text-sm [&>[data-slot=alert-title]]:mt-0.75 [&>[data-slot=alert-description]]:text-sm  [&>[data-slot=alert-icon]>svg]:size-5 [&_[data-slot=alert-icon]]:mt-0.75 [&_[data-slot=alert-close]]:mt-0.75",
+	"flex items-stretch w-full gap-3 rounded-lg p-3 [&>[data-slot=alert-title]]:font-medium [&>[data-slot=alert-title]]:text-sm [&>[data-slot=alert-title]]:mt-0.75 [&>[data-slot=alert-description]]:text-sm [&>[data-slot=alert-icon]>svg]:size-5 [&_[data-slot=alert-icon]]:mt-0.75 [&_[data-slot=alert-close]]:mt-0.75",
 	{
 		variants: {
 			color: {
@@ -36,7 +36,7 @@ const alertVariants = cva(
 				"soft-outline":
 					"ring-1 ring-inset [&_[data-slot=alert-title]]:text-fg [&_[data-slot=alert-description]]:text-fg",
 				outline:
-					"border border-soft [&_[data-slot=alert-close]]:text-fg-tertiary [&_[data-slot=alert-title]]:text-fg [&_[data-slot=alert-description]]:text-fg",
+					"border-soft border [&_[data-slot=alert-close]]:text-fg-tertiary [&_[data-slot=alert-title]]:text-fg [&_[data-slot=alert-description]]:text-fg",
 			},
 		},
 		compoundVariants: [
@@ -83,8 +83,7 @@ const alertVariants = cva(
 			{
 				color: "warning",
 				variant: "strong",
-				className:
-					"bg-warning text-warning-fg [&_[data-slot=alert-title]]:text-black",
+				className: "bg-warning text-white",
 			},
 			{ color: "error", variant: "strong", className: "bg-error text-white" },
 			{
@@ -97,7 +96,7 @@ const alertVariants = cva(
 			{
 				color: "neutral",
 				variant: "soft-outline",
-				className: "border-border bg-fill2",
+				className: "bg-fill2 border-border",
 			},
 			{
 				color: "primary",
@@ -129,32 +128,32 @@ const alertVariants = cva(
 			{
 				color: "neutral",
 				variant: "outline",
-				className: "bg-transparent text-fg ",
+				className: "text-fg bg-transparent",
 			},
 			{
 				color: "primary",
 				variant: "outline",
-				className: "bg-transparent text-primary-text",
+				className: "text-primary-text bg-transparent",
 			},
 			{
 				color: "info",
 				variant: "outline",
-				className: "bg-transparent text-info-text",
+				className: "text-info-text bg-transparent",
 			},
 			{
 				color: "success",
 				variant: "outline",
-				className: "bg-transparent text-success-text",
+				className: "text-success-text bg-transparent",
 			},
 			{
 				color: "error",
 				variant: "outline",
-				className: "bg-transparent text-error-text",
+				className: "text-error-text bg-transparent",
 			},
 			{
 				color: "warning",
 				variant: "outline",
-				className: "bg-transparent text-warning-text",
+				className: "text-warning-text bg-transparent",
 			},
 		],
 		defaultVariants: {
