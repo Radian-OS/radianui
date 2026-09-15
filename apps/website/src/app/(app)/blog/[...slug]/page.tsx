@@ -243,7 +243,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
 			<section className="border-soft border">
 				<div className="flex flex-col lg:flex-row lg:items-start">
 					{/* Article Body */}
-					<article className="min-w-0 flex-1 p-5 md:pt-8 md:pb-10 lg:px-35 lg:pb-15">
+					<article className="min-w-0 flex-1 p-5 md:pt-8 md:pb-10 lg:px-20 lg:pb-15 xl:px-35">
 						<blog.data.body components={BlogComponents} />
 					</article>
 
