@@ -90,9 +90,7 @@ export const BlogComponents: MDXComponents = {
 		className,
 		...props
 	}: HTMLAttributes<HTMLParagraphElement>) => (
-		<p
-			className={cn("text-fg-secondary my-4 text-base leading-7", className)}
-			{...props}>
+		<p className={cn("text-fg my-4 text-base leading-7", className)} {...props}>
 			{children}
 		</p>
 	),
@@ -265,7 +263,7 @@ export const BlogComponents: MDXComponents = {
 	th: ({ className, ...props }: React.ComponentProps<"th">) => (
 		<th
 			className={cn(
-				"text-fg px-3 py-2.5 text-left font-medium [&[align=center]]:text-center [&[align=right]]:text-right",
+				"text-fg px-3 py-2.5 text-left font-medium [[align=center]]:text-center [[align=right]]:text-right",
 				className
 			)}
 			{...props}
@@ -274,7 +272,7 @@ export const BlogComponents: MDXComponents = {
 	td: ({ className, ...props }: React.ComponentProps<"td">) => (
 		<td
 			className={cn(
-				"text-fg p-3 text-left font-normal [&[align=center]]:text-center [&[align=right]]:text-right",
+				"text-fg p-3 text-left font-normal [[align=center]]:text-center [[align=right]]:text-right",
 				className
 			)}
 			{...props}

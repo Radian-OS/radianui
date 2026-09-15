@@ -4,7 +4,6 @@ import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import { NormalBlogTableOfContents } from "@/components/blog/blog-normal-table-of-content"
 import { BlogShareButton } from "@/components/blog/blog-share-button"
 import { BlogTableOfContents } from "@/components/blog/blog-table-of-contents"
 import { BlogComponents } from "@/components/blog/mdx-components-blogs"
@@ -144,7 +143,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
 						</span>
 					</div>
 
-					<div className="text-fg-tertiary flex items-center justify-start gap-3 text-sm font-medium uppercase sm:hidden">
+					<div className="text-fg-tertiary flex items-center justify-start gap-3 text-sm font-medium sm:hidden">
 						<span>
 							{new Date(blog.data.date).toLocaleDateString("en-US", {
 								month: "long",
@@ -166,7 +165,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
 								{leadParagraphs.map((paragraph, index) => (
 									<p
 										key={index}
-										className="text-fg-secondary text-base leading-7 font-medium tracking-[-0.16px]">
+										className="text-fg text-base leading-7 font-medium tracking-[-0.16px]">
 										{paragraph}
 									</p>
 								))}
@@ -243,17 +242,14 @@ export default async function BlogPage({ params }: BlogPageProps) {
 			{/* Main Content + Table of Contents Layout */}
 			<section className="border-soft border">
 				<div className="flex flex-col lg:flex-row lg:items-start">
-					<div>
-						{/* <NormalBlogTableOfContents headings={headings} /> */}
-						{/* Article Body */}
-						<article className="p-5 md:pt-8 md:pb-10 lg:px-25 lg:pb-15 xl:w-242">
-							<blog.data.body components={BlogComponents} />
-						</article>
-					</div>
+					{/* Article Body */}
+					<article className="min-w-0 flex-1 p-5 md:pt-8 md:pb-10 lg:px-35 lg:pb-15">
+						<blog.data.body components={BlogComponents} />
+					</article>
 
-					{/* In this Article (Table of Contents) */}
+					{/* Table of Contents */}
 					{headings.length > 0 && (
-						<aside className="border-soft sticky top-10 hidden h-[calc(100vh)] min-w-0 flex-1 overflow-y-auto border-l lg:block lg:py-15">
+						<aside className="border-soft sticky top-10 hidden h-[calc(100vh)] w-95 shrink-0 overflow-y-auto border-l lg:block lg:py-15">
 							<BlogTableOfContents headings={headings} />
 						</aside>
 					)}
