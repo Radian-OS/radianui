@@ -47,8 +47,10 @@ export const blog = defineCollections({
 		frontmatterSchema
 			.extend({
 				date: z.coerce.date(),
+				dateModified: z.coerce.date().optional(),
 				card: z.string().optional(),
 				image: z.string().optional(),
+				seoImages: z.array(z.string()).optional(),
 				img: z.string().optional(),
 				readingTime: z.string().optional(),
 				lead: z.union([z.string(), z.array(z.string())]).optional(),

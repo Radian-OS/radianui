@@ -41,6 +41,7 @@ export async function generateMetadata({
 	const url = absoluteUrl(`/blog/${blog.slugs.join("/")}`)
 	const title = `${blog.data.title} - ${websiteMetadata.name}`
 	const image = absoluteUrl(blog.data.image ?? "/carousel-home.png")
+	const modifiedTime = (blog.data.dateModified ?? blog.data.date).toISOString()
 
 	return {
 		title,
@@ -57,6 +58,7 @@ export async function generateMetadata({
 			description: blog.data.description,
 			url,
 			publishedTime: blog.data.date.toISOString(),
+			modifiedTime,
 			authors: blog.data.author?.map((author) => author.name),
 			images: [{ url: image, alt: blog.data.title }],
 		},
@@ -75,6 +77,12 @@ export default async function BlogPage({ params }: BlogPageProps) {
 
 	const url = absoluteUrl(`/blog/${blog.slugs.join("/")}`)
 	const image = absoluteUrl(blog.data.image ?? "/carousel-home.png")
+	const images = (
+		blog.data.seoImages?.length
+			? blog.data.seoImages
+			: [blog.data.image ?? "/carousel-home.png"]
+	).map((imagePath) => absoluteUrl(imagePath))
+	const dateModified = (blog.data.dateModified ?? blog.data.date).toISOString()
 	const authors =
 		blog.data.author?.map((author) => ({
 			name: author.name,
@@ -106,8 +114,9 @@ export default async function BlogPage({ params }: BlogPageProps) {
 					title: blog.data.title,
 					description: blog.data.description || "",
 					url,
-					image,
+					images,
 					datePublished: blog.data.date.toISOString(),
+					dateModified,
 					authors,
 				})}
 			/>

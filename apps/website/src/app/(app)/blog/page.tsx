@@ -4,6 +4,7 @@ import Link from "next/link"
 import { BlogPostList } from "@/components/blog/blog-post-list"
 import DiagonalDivider from "@/components/home/SvgDivider"
 import { JsonLd } from "@/components/seo/json-ld"
+import { websiteMetadata } from "@/config/website-metadata-config"
 import { blog } from "@/lib/source"
 import { absoluteUrl, getBlogIndexStructuredData } from "@/lib/structured-data"
 import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
@@ -28,7 +29,7 @@ export const metadata: Metadata = {
 		"Radian tips",
 		"industry news",
 	],
-	authors: [{ name: "Radian Team" }],
+	authors: [{ name: websiteMetadata.organizationName }],
 	robots: { index: true, follow: true },
 	alternates: { canonical: blogUrl },
 	openGraph: {
@@ -37,7 +38,7 @@ export const metadata: Metadata = {
 			"Read the latest updates and insights from the Radian UI team. Stay informed about product releases, industry trends, and expert tips.",
 		type: "website",
 		url: blogUrl,
-		siteName: "Radian UI",
+		siteName: websiteMetadata.name,
 		images: [
 			{
 				url: blogImage,
@@ -52,8 +53,8 @@ export const metadata: Metadata = {
 		title: "Radian UI Blogs - Latest Updates & Insights",
 		description:
 			"Stay informed with blogs and updates from the Radian UI team. Discover product news, industry insights, and expert tips.",
-		site: "@Radian UI",
-		creator: "@Radian UI",
+		site: websiteMetadata.xHandle,
+		creator: websiteMetadata.xHandle,
 		images: [blogImage],
 	},
 }
@@ -154,7 +155,7 @@ export default async function BlogPage({ params }: BlogListPageProps) {
 							</div>
 
 							<div className="flex flex-col gap-5">
-								<h1 className="heading-4">{featuredPost.data.title}</h1>
+								<h2 className="heading-4">{featuredPost.data.title}</h2>
 								<p className="text-fg-secondary text-[18px] font-normal">
 									{featuredPost.data.description}
 								</p>

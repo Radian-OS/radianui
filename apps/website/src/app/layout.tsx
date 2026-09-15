@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 	title: `${websiteMetadata.name} - Open Source React Components and Figma Design System`,
 	description:
 		"A complete production-ready React components library, UI blocks, and Figma UI Kit and design system",
-	metadataBase: new URL(process.env.NEXT_PUBLIC_WEBSITE_URL!),
+	metadataBase: new URL(websiteMetadata.url),
 	keywords: [...websiteMetadata.keywords],
 	icons: {
 		icon: "/favicon.ico",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
 		description:
 			"A complete production-ready React components library, UI blocks, and Figma UI Kit and design system",
 		type: "website",
-		url: `${process.env.NEXT_PUBLIC_WEBSITE_URL!}`,
+		url: websiteMetadata.url,
 		images: [
 			{
 				url: `${websiteMetadata.ogImage}`,
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
 		images: [`${websiteMetadata.ogImage}`],
 	},
 	alternates: {
-		canonical: new URL(process.env.NEXT_PUBLIC_WEBSITE_URL!),
+		canonical: new URL(websiteMetadata.url),
 	},
 	robots: {
 		index: true,

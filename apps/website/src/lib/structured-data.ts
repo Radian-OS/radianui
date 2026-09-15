@@ -18,7 +18,8 @@ export function getPublisherSchema(): JsonLdObject {
 	return {
 		"@type": "Organization",
 		"@id": organizationId,
-		name: websiteMetadata.name,
+		name: websiteMetadata.organizationName,
+		alternateName: websiteMetadata.name,
 		url: absoluteUrl("/"),
 		logo: {
 			"@type": "ImageObject",
@@ -50,8 +51,8 @@ export function getHomepageStructuredData(): JsonLdObject {
 			{
 				"@type": "Organization",
 				"@id": organizationId,
-				name: websiteMetadata.name,
-				alternateName: "Radian UI",
+				name: websiteMetadata.organizationName,
+				alternateName: websiteMetadata.name,
 				url: absoluteUrl("/"),
 				logo: {
 					"@type": "ImageObject",
@@ -176,7 +177,7 @@ export function getBlogIndexStructuredData({
 			{
 				"@type": "Blog",
 				"@id": `${url}#blog`,
-				name: "Radian Blog",
+				name: "Radian UI Blog",
 				description:
 					"Product updates, technical guides, and design system insights from the Radian team.",
 				url,
@@ -200,15 +201,17 @@ export function getBlogPostStructuredData({
 	title,
 	description,
 	url,
-	image,
+	images,
 	datePublished,
+	dateModified,
 	authors,
 }: {
 	title: string
 	description: string
 	url: string
-	image: string
+	images: string[]
 	datePublished: string
+	dateModified: string
 	authors: Array<{ name: string; url?: string }>
 }): JsonLdObject {
 	return {
@@ -224,8 +227,9 @@ export function getBlogPostStructuredData({
 					"@type": "WebPage",
 					"@id": url,
 				},
-				image,
+				image: images,
 				datePublished,
+				dateModified,
 				author: authors.map((author) => ({
 					"@type": "Person",
 					name: author.name,

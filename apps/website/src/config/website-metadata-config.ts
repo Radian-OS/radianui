@@ -1,6 +1,10 @@
+const websiteUrl = process.env.NEXT_PUBLIC_WEBSITE_URL || "https://radianui.com"
+
 export const websiteMetadata = {
 	name: "Radian UI",
-	url: process.env.NEXT_PUBLIC_WEBSITE_URL!,
+	organizationName: "Radian OS",
+	url: websiteUrl,
+	xHandle: "@radian_os",
 	keywords: [
 		// Core technologies (for broad discovery)
 		"React",
@@ -24,5 +28,5 @@ export const websiteMetadata = {
 		"RadianUI", // CLI name
 		"radianui", // CLI command (lowercase)
 	],
-	ogImage: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/og/static-og.png`,
+	ogImage: `${websiteUrl}/og/static-og.png`,
 }
