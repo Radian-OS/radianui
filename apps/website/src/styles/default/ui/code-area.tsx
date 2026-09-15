@@ -1,8 +1,6 @@
 "use client"
 
-import { useMemo } from "react"
 import ShikiHighlighter from "react-shiki"
-import type { ShikiTransformer } from "shiki"
 import { cn } from "@/lib/utils"
 
 type CodeAreaProps = {
@@ -142,7 +140,6 @@ type CodeAreaProps = {
 		| "zsh"
 	className?: string
 	lineNumbers?: boolean
-	highlightLineNumbers?: number[]
 	pkg?: string[]
 	tabs?: boolean
 }
@@ -155,25 +152,7 @@ function CodeArea({
 	language,
 	className,
 	lineNumbers = false,
-	highlightLineNumbers,
 }: CodeAreaProps) {
-	const transformers = useMemo<ShikiTransformer[] | undefined>(() => {
-		if (!highlightLineNumbers || highlightLineNumbers.length === 0)
-			return undefined
-		const lineSet = new Set(highlightLineNumbers)
-		return [
-			{
-				name: "highlight-line-numbers",
-				line(node, line) {
-					if (lineSet.has(line)) {
-						this.addClassToHast(node, "rs-highlighted-line")
-					}
-					return node
-				},
-			},
-		]
-	}, [highlightLineNumbers])
-
 	return (
 		<div
 			className={cn(
@@ -186,7 +165,6 @@ function CodeArea({
 				language={language}
 				theme={theme}
 				showLineNumbers={lineNumbers}
-				transformers={transformers}
 				showLanguage={false}>
 				{code.trim()}
 			</ShikiHighlighter>

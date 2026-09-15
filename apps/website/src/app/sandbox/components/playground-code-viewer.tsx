@@ -167,9 +167,6 @@ export function PlaygroundCodeViewer({
 						language="tsx"
 						theme={resolvedTheme === "dark" ? "github-dark" : "github-light"}
 						lineNumbers={true}
-						highlightLineNumbers={
-							targetLineNumber ? [targetLineNumber] : undefined
-						}
 						className="no-scrollbar h-full w-full rounded-none bg-transparent p-0 font-mono text-[13px] leading-relaxed"
 					/>
 				</div>
