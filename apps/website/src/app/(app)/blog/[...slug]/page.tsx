@@ -243,13 +243,13 @@ export default async function BlogPage({ params }: BlogPageProps) {
 			<section className="border-soft border">
 				<div className="flex flex-col lg:flex-row lg:items-start">
 					{/* Article Body */}
-					<article className="min-w-0 flex-1 p-5 md:pt-8 md:pb-10 lg:px-20 lg:pb-15 xl:px-35">
+					<article className="min-w-0 flex-1 p-5 pt-0 md:pb-10 lg:px-20 lg:pb-15 xl:px-35">
 						<blog.data.body components={BlogComponents} />
 					</article>
 
 					{/* Table of Contents */}
 					{headings.length > 0 && (
-						<aside className="border-soft sticky top-10 hidden h-[calc(100vh)] w-95 shrink-0 overflow-y-auto border-l lg:block lg:py-15">
+						<aside className="border-soft sticky top-10 hidden h-[calc(100vh)] w-90 shrink-0 overflow-y-auto border-l lg:block lg:py-15">
 							<BlogTableOfContents headings={headings} />
 						</aside>
 					)}

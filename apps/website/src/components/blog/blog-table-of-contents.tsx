@@ -155,7 +155,7 @@ export function BlogTableOfContents({
 		<nav
 			aria-label="Table of Contents"
 			className="flex h-full flex-col text-sm font-medium">
-			<span className="text-fg-secondary block p-2 pl-7 text-base text-[18px] font-semibold">
+			<span className="text-fg block p-2 pt-0 pl-5 text-base font-semibold">
 				{title}
 			</span>
 
@@ -199,7 +199,7 @@ export function BlogTableOfContents({
 											<div className="bg-border absolute top-0 bottom-0 -left-4 w-px opacity-0 transition-opacity group-hover:opacity-100" />
 										)}
 
-										<span className="block truncate px-2">{heading.text}</span>
+										<span className="block truncate">{heading.text}</span>
 									</Link>
 								</li>
 							)

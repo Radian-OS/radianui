@@ -46,7 +46,7 @@ export const BlogComponents: MDXComponents = {
 		<h2
 			id={id}
 			className={cn(
-				"heading-5 text-fg mt-10 mb-4 scroll-mt-24 font-semibold tracking-tight",
+				"heading-5 text-fg mt-15 mb-4 scroll-mt-24 font-semibold tracking-tight",
 				className
 			)}
 			{...props}>
@@ -171,9 +171,7 @@ export const BlogComponents: MDXComponents = {
 		className,
 		...props
 	}: React.LiHTMLAttributes<HTMLLIElement>) => (
-		<li
-			className={cn("text-fg-secondary pl-1 leading-7", className)}
-			{...props}>
+		<li className={cn("text-fg pl-1 leading-7", className)} {...props}>
 			{children}
 		</li>
 	),
