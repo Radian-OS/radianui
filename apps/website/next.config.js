@@ -280,6 +280,14 @@ const nextConfig = {
 				protocol: "https",
 				hostname: "framerusercontent.com",
 			},
+			{
+				protocol: "https",
+				hostname: "alignui.com",
+			},
+			{
+				protocol: "https",
+				hostname: "pro.alignui.com",
+			},
 		],
 	},
 	compiler: {

@@ -10,9 +10,11 @@ export interface FilesData {
 	verseo: Record<string, string>
 	agentlab: Record<string, string>
 	crisply: Record<string, string>
+	"hero-04": Record<string, string>
 }
 
 export type PreviewKey =
+	| "hero-04"
 	| "crisply"
 	| "agentlab"
 	| "omrix"
@@ -59,6 +61,15 @@ export interface SandboxComponentConfig {
 }
 
 export const sandboxComponents: SandboxComponentConfig[] = [
+	{
+		id: "hero-04",
+		label: "hero-04",
+		filesKey: "hero-04",
+		path: "src/app/sandbox/hero-04",
+		defaultFile: "page.tsx",
+		referenceUrl: "https://pro.alignui.com/block-preview/default/hero-04",
+		previewRoute: "/sandbox/hero-04",
+	},
 	{
 		id: "crisply",
 		label: "crisply",

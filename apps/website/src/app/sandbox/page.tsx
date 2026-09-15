@@ -51,6 +51,15 @@ export default async function PlaygroundPage() {
 	const verseoDir = path.join(process.cwd(), "src/app/sandbox/verseo")
 	const agentlabDir = path.join(process.cwd(), "src/app/sandbox/agentlab")
 	const crisplyDir = path.join(process.cwd(), "src/app/sandbox/crisply")
+	const hero04Dir = path.join(process.cwd(), "src/app/sandbox/hero-04")
+
+	const hero04Files = [
+		"page.tsx",
+		"announcement-banner.tsx",
+		"navbar.tsx",
+		"hero-section.tsx",
+		"logo-strip.tsx",
+	]
 
 	const crisplyFiles = [
 		"page.tsx",
@@ -177,6 +186,7 @@ export default async function PlaygroundPage() {
 	const verseoData: Record<string, string> = {}
 	const agentlabData: Record<string, string> = {}
 	const crisplyData: Record<string, string> = {}
+	const hero04Data: Record<string, string> = {}
 
 	for (const file of omrixFiles) {
 		omrixData[file] = readFileContent(omrixDir, file)
@@ -225,7 +235,12 @@ export default async function PlaygroundPage() {
 		crisplyData[file] = readFileContent(crisplyDir, file)
 	}
 
+	for (const file of hero04Files) {
+		hero04Data[file] = readFileContent(hero04Dir, file)
+	}
+
 	const files = {
+		"hero-04": hero04Data,
 		crisply: crisplyData,
 		agentlab: agentlabData,
 		omrix: omrixData,
