@@ -17,7 +17,14 @@ import { txt } from "@/utils/colors"
 import { FrameworkName } from "@/utils/frameworks"
 import { handleError } from "@/utils/handleError"
 import { logger } from "@/utils/logger"
-import { Color, Font, getRegistryComponents } from "@/utils/registry"
+import {
+	type AssetRegistryType,
+	ASSET_REGISTRIES,
+	Color,
+	Font,
+	getAssetRegistry,
+	getRegistryComponents,
+} from "@/utils/registry"
 import { RawConfig } from "./getConfig"
 
 export type ProjectPrompts = {
@@ -107,22 +114,22 @@ export const promptForNewProject = async (
 		: options.vite
 			? "vite"
 			: (
-					await prompts(
-						{
-							type: "select",
-							name: "framework",
-							message: "Which framework do you want to use?",
-							choices: [
-								{ title: "Next.js", value: "next-app" },
-								{ title: "Vite", value: "vite" },
-							],
-							initial: 0,
-						},
-						{
-							onCancel: () => handlePromptCancel(),
-						}
-					)
-				).framework
+				await prompts(
+					{
+						type: "select",
+						name: "framework",
+						message: "Which framework do you want to use?",
+						choices: [
+							{ title: "Next.js", value: "next-app" },
+							{ title: "Vite", value: "vite" },
+						],
+						initial: 0,
+					},
+					{
+						onCancel: () => handlePromptCancel(),
+					}
+				)
+			).framework
 
 	// Get src dir preference (only for Next.js)
 	const useSrcDir =
@@ -147,53 +154,53 @@ export const promptForNewProject = async (
 	const { brandColor } = options.color
 		? { brandColor: options.color }
 		: await prompts(
-				{
-					type: "select",
-					name: "brandColor",
-					message: "Which color would you like to use as your brand color?",
-					choices: COLORS.map((color) => ({
-						title: chalk.hex(color.hex)(color.title),
-						value: color.value,
-					})),
-					initial: 11,
-				},
-				{
-					onCancel: () => handlePromptCancel(),
-				}
-			)
+			{
+				type: "select",
+				name: "brandColor",
+				message: "Which color would you like to use as your brand color?",
+				choices: COLORS.map((color) => ({
+					title: chalk.hex(color.hex)(color.title),
+					value: color.value,
+				})),
+				initial: 11,
+			},
+			{
+				onCancel: () => handlePromptCancel(),
+			}
+		)
 
 	// Get font
 	const { font } = options.font
 		? { font: options.font }
 		: await prompts(
-				{
-					type: "select",
-					name: "font",
-					message: "Which font would you like to use for your project?",
-					choices: (() => {
-						const defaultFont = FONTS.find(
-							(font) => font.value === DEFAULT_FONT
-						)
-						const otherFonts = FONTS.filter(
-							(font) => font.value !== DEFAULT_FONT
-						)
-						const sortedOtherFonts = otherFonts.sort((a, b) =>
-							a.title.localeCompare(b.title)
-						)
-						const sortedFonts = defaultFont
-							? [defaultFont, ...sortedOtherFonts]
-							: sortedOtherFonts
-						return sortedFonts.map((font) => ({
-							title: font.title,
-							value: font.value,
-						}))
-					})(),
-					initial: 0,
-				},
-				{
-					onCancel: () => handlePromptCancel(),
-				}
-			)
+			{
+				type: "select",
+				name: "font",
+				message: "Which font would you like to use for your project?",
+				choices: (() => {
+					const defaultFont = FONTS.find(
+						(font) => font.value === DEFAULT_FONT
+					)
+					const otherFonts = FONTS.filter(
+						(font) => font.value !== DEFAULT_FONT
+					)
+					const sortedOtherFonts = otherFonts.sort((a, b) =>
+						a.title.localeCompare(b.title)
+					)
+					const sortedFonts = defaultFont
+						? [defaultFont, ...sortedOtherFonts]
+						: sortedOtherFonts
+					return sortedFonts.map((font) => ({
+						title: font.title,
+						value: font.value,
+					}))
+				})(),
+				initial: 0,
+			},
+			{
+				onCancel: () => handlePromptCancel(),
+			}
+		)
 
 	return { projectName, useSrcDir, framework, brandColor, font }
 }
@@ -204,38 +211,38 @@ export async function promptForExistingProject(
 	const { brandColor } = options.color
 		? { brandColor: options.color }
 		: await prompts(
-				{
-					type: "select",
-					name: "brandColor",
-					message: "Which color would you like to use as your brand color?",
-					choices: COLORS.map((color) => ({
-						title: chalk.hex(color.hex)(color.title),
-						value: color.value,
-					})),
-					initial: 11,
-				},
-				{
-					onCancel: () => handlePromptCancel(),
-				}
-			)
+			{
+				type: "select",
+				name: "brandColor",
+				message: "Which color would you like to use as your brand color?",
+				choices: COLORS.map((color) => ({
+					title: chalk.hex(color.hex)(color.title),
+					value: color.value,
+				})),
+				initial: 11,
+			},
+			{
+				onCancel: () => handlePromptCancel(),
+			}
+		)
 
 	const { font } = options.font
 		? { font: options.font }
 		: await prompts(
-				{
-					type: "select",
-					name: "font",
-					message: "Which font would you like to use for your project?",
-					choices: FONTS.map((font) => ({
-						title: font.title,
-						value: font.value,
-					})),
-					initial: 0,
-				},
-				{
-					onCancel: () => handlePromptCancel(),
-				}
-			)
+			{
+				type: "select",
+				name: "font",
+				message: "Which font would you like to use for your project?",
+				choices: FONTS.map((font) => ({
+					title: font.title,
+					value: font.value,
+				})),
+				initial: 0,
+			},
+			{
+				onCancel: () => handlePromptCancel(),
+			}
+		)
 	return { brandColor, font }
 }
 /**
@@ -284,6 +291,85 @@ export async function promptForComponents(
 		return components as string[]
 	} catch (error) {
 		throw new Error("Failed to fetch available components.")
+	}
+}
+
+/**
+ * Prompts the user to select assets (flags, logos, icons, etc.) if they were not provided via CLI.
+ *
+ * @param options - The parsed command options.
+ * @returns A promise resolving to an array of selected asset names.
+ */
+export async function promptForAssets(
+	options: { all?: boolean; assets?: string[]; components?: string[] },
+	assetType?: AssetRegistryType
+): Promise<string[]> {
+	try {
+		let targetAssetType = assetType
+
+		if (!targetAssetType) {
+			const { selectedType } = await prompts(
+				{
+					type: "select",
+					name: "selectedType",
+					message: "Which asset type would you like to add?",
+					choices: Object.entries(ASSET_REGISTRIES).map(([key, config]) => ({
+						title: `${config.label} (${key})`,
+						value: key as AssetRegistryType,
+					})),
+					initial: 0,
+				},
+				{
+					onCancel: () => handlePromptCancel(),
+				}
+			)
+
+			if (!selectedType) {
+				handlePromptCancel()
+			}
+			targetAssetType = selectedType as AssetRegistryType
+		}
+
+		const registryIndex = await getAssetRegistry(targetAssetType)
+		const assetNames = registryIndex.map((asset) => asset.name)
+
+		if (options.all) {
+			return assetNames
+		}
+
+		const preselected = options.assets ?? options.components
+		if (preselected?.length) {
+			return preselected
+		}
+
+		const assetLabel = ASSET_REGISTRIES[targetAssetType]?.label ?? targetAssetType
+
+		const { assets } = await prompts(
+			{
+				type: "autocompleteMultiselect",
+				name: "assets",
+				message: `Which ${assetLabel} would you like to add?`,
+				hint: "Type to filter. Space to select. A to toggle all. Enter to submit.",
+				instructions: false,
+				choices: registryIndex.map((asset) => {
+					const displayName = asset.name.replace(/^[^:]+:/, "")
+					return {
+						title: asset.description
+							? `${asset.description} (${displayName})`
+							: displayName,
+						value: asset.name,
+					}
+				}),
+			},
+			{
+				onCancel: () => handlePromptCancel(),
+			}
+		)
+		return (assets ?? []) as string[]
+	} catch (error) {
+		throw new Error(
+			`Failed to fetch available assets: ${error instanceof Error ? error.message : "unknown error"}`
+		)
 	}
 }
 

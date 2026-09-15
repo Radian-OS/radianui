@@ -27,7 +27,8 @@
 		"generate-colors": "tsx src/scripts/generate-colors.ts",
 		"generate-llms-txt": "tsx src/scripts/generate-llms.ts",
 		"update-icon-slot": "tsx src/scripts/update-icon-slot.ts",
-		"generate-icon": "tsx src/scripts/generate-icon.ts"
+		"generate-icon": "tsx src/scripts/generate-icon.ts",
+		"generate-flags-json": "tsx src/scripts/generate-flags-json.ts"
 	},
 	"dependencies": {
 		"@dnd-kit/core": "^6.3.1",
@@ -43,6 +44,7 @@
 		"@internationalized/date": "^3.12.3",
 		"@next/third-parties": "^16.3.3",
 		"@oslojs/encoding": "^1.1.0",
+		"@radianui/flags": "^0.0.3",
 		"@radix-ui/react-accordion": "^1.2.20",
 		"@radix-ui/react-alert-dialog": "^1.1.23",
 		"@radix-ui/react-aspect-ratio": "^1.1.15",
@@ -97,6 +99,7 @@
 		"fumadocs-mdx": "^15.4.0",
 		"github-slugger": "^2.0.0",
 		"hast-util-to-jsx-runtime": "^2.3.6",
+		"libphonenumber-js": "^1.13.11",
 		"lru-cache": "^11.5.2",
 		"lucide-react": "0.486.0",
 		"motion": "^12.15.0",
@@ -107,8 +110,8 @@
 		"pg": "^8.23.0",
 		"postcss": "^8.5.26",
 		"postcss-selector-parser": "^7.1.5",
-		"posthog-js": "^1.422.5",
-		"posthog-node": "^4.11.1",
+		"posthog-js": "^1.430.3",
+		"posthog-node": "^5.52.1",
 		"react": "^19.2.8",
 		"react-before-after-slider-component": "^1.1.8",
 		"react-currency-input-field": "^3.10.0",

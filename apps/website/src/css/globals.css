@@ -268,7 +268,7 @@
 
 /* Heading 1 */
 @utility heading-1 {
-	@apply font-heading text-[2.25rem] font-semibold leading-[2.75rem];
+	@apply font-heading text-[2.25rem] font-semibold leading-11;
 		letter-spacing: -1px;
 
 
@@ -285,7 +285,7 @@
 
 /* Heading 2 */
 @utility heading-2 {
-	@apply font-heading text-[2rem] font-semibold leading-[2.5rem];
+	@apply font-heading text-[2rem] font-semibold leading-10;
 		letter-spacing: -1px;
 
 	@media (width >=theme(--breakpoint-sm)) {
@@ -301,7 +301,7 @@
 
 /* Heading 3 */
 @utility heading-3 {
-	@apply font-heading text-[1.875rem] font-semibold leading-[2.375rem];
+	@apply font-heading text-[1.875rem] font-semibold leading-9.5;
 		letter-spacing: -0.75px;
 
 	@media (width >=theme(--breakpoint-sm)) {
@@ -317,7 +317,7 @@
 
 /* Heading 4 */
 @utility heading-4 {
-	@apply font-heading text-[1.75rem] font-semibold leading-[2.25rem];
+	@apply font-heading text-[1.75rem] font-semibold leading-9;
 		letter-spacing: -0.5px;
 
 	@media (width >=theme(--breakpoint-sm)) {
@@ -333,29 +333,29 @@
 
 /* Heading 5 */
 @utility heading-5 {
-	@apply font-heading text-[1.5rem] font-semibold leading-[2rem];
+	@apply font-heading text-[1.5rem] font-semibold leading-8;
 		letter-spacing: -0.5px;
 
 }
 
 /* Heading 6 */
 @utility heading-6 {
-	@apply font-heading text-[1.25rem] font-semibold leading-[1.75rem];
+	@apply font-heading text-[1.25rem] font-semibold leading-7;
 		letter-spacing: -0.25px;
 
 }
 
 /* Additional body fonts */
 @utility body-15 {
-	@apply font-body text-[0.9375rem] leading-[1.375];
+	@apply font-body text-[0.9375rem] leading-snug;
 }
 
 @utility text-sm-p {
-	@apply font-body text-sm leading-[1.25rem];
+	@apply font-body text-sm leading-5;
 }
 
 @utility body-13 {
-	@apply font-body text-[0.8125rem] leading-[1.125rem];
+	@apply font-body text-[0.8125rem] leading-4.5;
 }
 
 /* Hides scrollbar in multiple browsers*/

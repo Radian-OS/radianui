@@ -132,7 +132,7 @@ function ResourceShowcase({
 				</h2>
 				<div
 					className={cn(
-						"relative z-20 flex justify-center py-10",
+						"relative z-20 flex justify-center pb-10",
 						contentClassName
 					)}>
 					{children}

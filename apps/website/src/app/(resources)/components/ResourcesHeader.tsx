@@ -9,7 +9,7 @@ export function ResourcesHeader() {
 	const pathname = usePathname()
 	const [isHideForCategory, setIsHideForCategory] = useState(false)
 	const hasStickyResourceFilter =
-		pathname === "/resources/avatar" || pathname === "/resources/flags"
+		pathname === "/resources/avatar" || pathname.startsWith("/resources/flags")
 
 	useEffect(() => {
 		const handleCategorySticky = (event: Event) => {

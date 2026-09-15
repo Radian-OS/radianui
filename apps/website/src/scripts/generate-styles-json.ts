@@ -13,6 +13,7 @@ export type RegistryType = "ui" | "component" | "page" | "hook" | "animated"
 
 type RegistryItem = {
 	name: string
+	description?: string
 	dependencies?: string[]
 	registryDependencies?: string[]
 	files: RegistryFile[]
@@ -40,6 +41,25 @@ const IGNORED_DEPENDENCIES = [
 
 const STYLES_DIRECTORY_PATH = path.resolve("src/styles")
 const PUBLIC_STYLES_PATH = path.resolve("public/r/styles")
+const DOCS_COMPONENTS_PATH = path.resolve("src/content/docs/components")
+
+/**
+ * Extracts the description from a component's MDX documentation frontmatter.
+ * Looks up `src/content/docs/components/<componentName>.mdx` and parses the YAML frontmatter.
+ */
+async function getComponentDescription(
+	componentName: string
+): Promise<string | undefined> {
+	const mdxPath = path.join(DOCS_COMPONENTS_PATH, `${componentName}.mdx`)
+	if (!(await fs.pathExists(mdxPath))) return undefined
+
+	const content = await fs.readFile(mdxPath, "utf-8")
+	const frontmatterMatch = content.match(/^---\n([\s\S]*?)\n---/)
+	if (!frontmatterMatch) return undefined
+
+	const descriptionMatch = frontmatterMatch[1].match(/^description:\s*(.+)$/m)
+	return descriptionMatch?.[1]?.trim()
+}
 
 /**
  * Reads the content of a given file.
@@ -166,12 +186,13 @@ async function writeStylesJSON() {
 
 				const name = component.name.replace(/\.(tsx?|js)$/, "")
 
-				// Extract dependencies and content asynchronously
-				const [dependencyArray, registryDependencyArray, content] =
+				// Extract dependencies, description, and content asynchronously
+				const [dependencyArray, registryDependencyArray, content, description] =
 					await Promise.all([
 						getDependencyArray(filePath),
 						getRegistryDependencyArray(filePath),
 						formatCode(await getContent(filePath)),
+						getComponentDescription(name),
 					])
 
 				// Create the registry file object
@@ -184,6 +205,7 @@ async function writeStylesJSON() {
 				// Construct the registry item
 				const registryItem: RegistryItem = {
 					name,
+					...(description && { description }),
 					files: [registryFile],
 					...(dependencyArray.length > 0 && { dependencies: dependencyArray }),
 					...(registryDependencyArray.length > 0 && {

@@ -9,9 +9,9 @@ const AvatarCTA = () => {
 		<section
 			aria-labelledby="avatar-cta-heading"
 			className="border-soft from-fill1 to-bg-fill2 relative max-w-[1430px] overflow-hidden rounded-[20px] border bg-linear-to-b 2xl:mx-auto">
-			<div className="flex items-center overflow-hidden p-6 sm:p-10 lg:w-[1350px] lg:p-15">
-				<div className="relative z-10 flex w-full flex-col gap-8 lg:max-w-md">
-					<div className="flex w-full flex-col gap-8 lg:w-[532px]">
+			<div className="flex items-center overflow-hidden p-6 sm:p-10 lg:p-15 xl:w-[1350px]">
+				<div className="relative z-10 flex w-full flex-col gap-8 xl:max-w-md">
+					<div className="flex w-full flex-col gap-8 xl:max-w-[532px]">
 						<div className="flex flex-col gap-5">
 							<Badge color="green" variant="soft" size="28">
 								Open Source Library
@@ -93,7 +93,7 @@ const AvatarCTA = () => {
 					</div>
 				</div>
 
-				<div className="pointer-events-none absolute top-0 -right-0 hidden -translate-y-1/2 lg:block">
+				<div className="pointer-events-none absolute top-0 -right-0 hidden -translate-y-1/2 xl:block">
 					{/* Light mode images */}
 					<div className="absolute top-2 -right-70 h-[700px] w-[900px] dark:hidden">
 						<Image

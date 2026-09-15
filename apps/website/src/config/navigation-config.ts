@@ -4,6 +4,7 @@ import {
 	ClipboardCheck,
 	CodeXml,
 	FileText,
+	Flag as FlagIcon,
 	LetterText,
 	PaintBucket,
 	ScrollText,
@@ -221,6 +222,16 @@ const INSTALLATION_ITEMS: NavigationItem[] = [
 	},
 ]
 
+const MISCELLANEOUS_ITEMS: NavigationItem[] = [
+	{
+		title: "Flags",
+		description: "Accessible country flags for React",
+		url: "/docs/miscellaneous/flags",
+		icon: FlagIcon,
+		isNew: true,
+	},
+]
+
 // ===== Blocks Section =====
 const BLOCKS_DATA = [
 	{ title: "Sign In", category: "authentication" },
@@ -302,5 +313,10 @@ export const navigationItems: NavigationSection[] = [
 		title: "Animations",
 		searchIcon: "/search-icons/search-components.svg",
 		items: ANIMATIONS_ITEMS.sort((a, b) => a.title.localeCompare(b.title)),
+	},
+	{
+		title: "Miscellaneous",
+		searchIcon: "/search-icons/search-components.svg",
+		items: MISCELLANEOUS_ITEMS,
 	},
 ]

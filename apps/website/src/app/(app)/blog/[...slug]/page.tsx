@@ -1,15 +1,18 @@
 import React from "react"
+import { ArrowLeft, Dot } from "lucide-react"
 import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import { BlogComponents } from "@/components/mdx-components-blogs"
+import { BlogShareButton } from "@/components/blog/blog-share-button"
+import { BlogTableOfContents } from "@/components/blog/blog-table-of-contents"
+import { BlogComponents } from "@/components/blog/mdx-components-blogs"
 import { JsonLd } from "@/components/seo/json-ld"
 import { websiteMetadata } from "@/config/website-metadata-config"
+import { MdxHeading } from "@/lib/get-mdx-headings"
 import { blog as blogSource } from "@/lib/source"
 import { absoluteUrl, getBlogPostStructuredData } from "@/lib/structured-data"
 import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
-import { Badge } from "@/registry/ui/badge"
 import { Divider } from "@/registry/ui/divider"
 
 interface BlogPageProps {
@@ -37,12 +40,13 @@ export async function generateMetadata({
 
 	const url = absoluteUrl(`/blog/${blog.slugs.join("/")}`)
 	const title = `${blog.data.title} - ${websiteMetadata.name}`
-	const image = absoluteUrl(blog.data.image ?? "/og/static-og.png")
+	const image = absoluteUrl(blog.data.image ?? "/carousel-home.png")
+	const modifiedTime = (blog.data.dateModified ?? blog.data.date).toISOString()
 
 	return {
 		title,
 		description: blog.data.description,
-		authors: blog.data.author?.map((author: any) => ({
+		authors: blog.data.author?.map((author) => ({
 			name: author.name,
 			...(author.link ? { url: author.link } : {}),
 		})),
@@ -54,7 +58,8 @@ export async function generateMetadata({
 			description: blog.data.description,
 			url,
 			publishedTime: blog.data.date.toISOString(),
-			authors: blog.data.author?.map((author: any) => author.name),
+			modifiedTime,
+			authors: blog.data.author?.map((author) => author.name),
 			images: [{ url: image, alt: blog.data.title }],
 		},
 		twitter: {
@@ -71,11 +76,34 @@ export default async function BlogPage({ params }: BlogPageProps) {
 	if (!blog) return notFound()
 
 	const url = absoluteUrl(`/blog/${blog.slugs.join("/")}`)
-	const image = absoluteUrl(blog.data.image ?? "/og/static-og.png")
+	const image = absoluteUrl(blog.data.image ?? "/carousel-home.png")
+	const images = (
+		blog.data.seoImages?.length
+			? blog.data.seoImages
+			: [blog.data.image ?? "/carousel-home.png"]
+	).map((imagePath) => absoluteUrl(imagePath))
+	const dateModified = (blog.data.dateModified ?? blog.data.date).toISOString()
 	const authors =
-		blog.data.author?.map((author: any) => ({
+		blog.data.author?.map((author) => ({
 			name: author.name,
+			username: author.username,
+			avatar: author.avatar,
 			...(author.link ? { url: author.link } : {}),
+		})) ?? []
+
+	const leadParagraphs: string[] = Array.isArray(blog.data.lead)
+		? blog.data.lead
+		: typeof blog.data.lead === "string"
+			? [blog.data.lead]
+			: blog.data.description
+				? [blog.data.description]
+				: []
+
+	const headings: MdxHeading[] =
+		blog.data.toc?.map((item) => ({
+			level: item.depth,
+			text: item.title as string,
+			id: item.url.replace(/^#/, ""),
 		})) ?? []
 
 	return (
@@ -86,75 +114,156 @@ export default async function BlogPage({ params }: BlogPageProps) {
 					title: blog.data.title,
 					description: blog.data.description || "",
 					url,
-					image,
+					images,
 					datePublished: blog.data.date.toISOString(),
+					dateModified,
 					authors,
 				})}
 			/>
-			{/* Blog Title and Meta */}
-			<div className="flex flex-col gap-4">
-				<Badge size="28" variant="soft">
-					{blog.data.card}
-				</Badge>
-				<h1 className="heading-3 font-semibold">{blog.data.title}</h1>
-				<time
-					className="text-fg-secondary text-sm"
-					dateTime={blog.data.date.toISOString()}>
-					{new Date(blog.data.date).toLocaleDateString("en-US", {
-						month: "long",
-						day: "numeric",
-						year: "numeric",
-					})}
-				</time>
-			</div>
 
-			{/* Blog Image */}
-			<div className="py-6">
-				<Image
-					width={500}
-					height={500}
-					className="h-auto w-full rounded-lg object-cover"
-					alt={blog.data.title}
-					src={blog.data.image ?? "/og/static-og.png"}
-				/>
-			</div>
-
-			{/* Author Info */}
-			<div className="flex items-center gap-3">
-				<span className="text-fg-secondary text-sm">Author</span>
-				{blog.data.author?.map((author: any, index: number) =>
-					author.username && author.avatar ? (
+			<section className="border-soft flex w-full max-w-368 flex-col items-center justify-center overflow-hidden border-x">
+				<div
+					className="border-border flex w-full flex-col gap-6 bg-bottom bg-repeat-x p-5 md:pt-10 lg:px-25 lg:pt-16 lg:pb-8 xl:px-46"
+					style={{
+						backgroundImage:
+							"repeating-linear-gradient(to right, var(--color-border) 0, var(--color-border) 12px, transparent 12px, transparent 20px)",
+						backgroundSize: "20px 1px",
+					}}>
+					<div className="flex items-center justify-between xl:w-262.5">
 						<Link
-							target="_blank"
-							rel="noopener noreferrer"
-							href={author.link || "#"}
-							key={author._id}
-							className={`flex items-center gap-3 ${index !== 0 ? "px-3" : ""}`}>
-							<Avatar size="24">
-								<AvatarImage src={author.avatar} />
-								<AvatarFallback>
-									{author.name.charAt(0).toUpperCase()}
-								</AvatarFallback>
-							</Avatar>
-							<span className="flex flex-col">
-								<span className="text-sm font-medium">{author.name}</span>
-								<span className="text-fg-secondary text-xs">
-									{author.username}
-								</span>
-							</span>
+							href="/blog"
+							className="text-fg-secondary hover:text-fg group inline-flex items-center gap-2 text-sm font-medium transition-colors">
+							<ArrowLeft className="size-4 transition-transform group-hover:-translate-x-0.5" />
+							<span>Back to Blogs</span>
 						</Link>
-					) : (
-						<React.Fragment key={author._id || index}></React.Fragment>
-					)
-				)}
-			</div>
-			<Divider className="my-5" />
-			{/* Blog Body */}
-			<div className="pb-5">
-				<div className="flex flex-col gap-12">
-					<blog.data.body components={BlogComponents} />
+						<div className="text-fg-tertiary hidden items-center justify-center gap-3 text-sm font-medium sm:flex">
+							<span>
+								{new Date(blog.data.date).toLocaleDateString("en-US", {
+									month: "long",
+									day: "numeric",
+									year: "numeric",
+								})}
+							</span>
+							<div className="bg-fill4 size-2 shrink-0 rounded-full" />
+							<span>{blog.data.card}</span>
+						</div>
+						<span className="text-fg-tertiary flex items-center text-sm font-medium">
+							[{blog.data.readingTime}]
+						</span>
+					</div>
+
+					<div className="text-fg-tertiary flex items-center justify-start gap-3 text-sm font-medium sm:hidden">
+						<span>
+							{new Date(blog.data.date).toLocaleDateString("en-US", {
+								month: "long",
+								day: "numeric",
+								year: "numeric",
+							})}
+						</span>
+						<div className="bg-fill4 size-2 shrink-0 rounded-full" />
+						<span>{blog.data.card}</span>
+					</div>
 				</div>
-			</div>
+				<div className="flex flex-col gap-5 p-5 md:gap-8 md:py-12 lg:gap-10 lg:px-25 lg:py-16">
+					<div className="flex flex-col gap-5 md:gap-6 lg:w-200">
+						<h1 className="heading-2">{blog.data.title}</h1>
+
+						{/* Lead / Intro Paragraphs */}
+						{leadParagraphs.length > 0 && (
+							<div className="w-full space-y-8">
+								{leadParagraphs.map((paragraph, index) => (
+									<p
+										key={index}
+										className="text-fg text-base leading-7 font-medium tracking-[-0.16px]">
+										{paragraph}
+									</p>
+								))}
+							</div>
+						)}
+					</div>
+					{/* Author & Share Row */}
+					<div className="flex flex-col pt-3 sm:flex-row sm:items-end sm:justify-between">
+						{authors.length > 0 && (
+							<div className="flex flex-col gap-2">
+								<span className="text-fg-secondary text-xs">Author</span>
+								<div className="flex flex-wrap items-center gap-6">
+									{authors.map((author, index) => {
+										const authorKey = author.username || author.name || index
+										const content = (
+											<div className="hover:bg-fill1 -mx-2 flex items-center gap-2.5 rounded-xl p-2">
+												<Avatar size="24">
+													{author.avatar && (
+														<AvatarImage
+															src={author.avatar}
+															alt={author.name}
+														/>
+													)}
+													<AvatarFallback>
+														{author.name
+															? author.name.charAt(0).toUpperCase()
+															: "A"}
+													</AvatarFallback>
+												</Avatar>
+												<div className="flex flex-col">
+													<span className="text-fg text-sm font-medium">
+														{author.name}
+													</span>
+												</div>
+											</div>
+										)
+
+										if (author.url) {
+											return (
+												<Link
+													key={authorKey}
+													target="_blank"
+													rel="noopener noreferrer"
+													href={author.url}>
+													{content}
+												</Link>
+											)
+										}
+
+										return <div key={authorKey}>{content}</div>
+									})}
+								</div>
+							</div>
+						)}
+						<Divider className="my-5 flex sm:hidden" />
+						<div className="self-start sm:self-auto">
+							<BlogShareButton title={blog.data.title} />
+						</div>
+					</div>
+					{/* Hero / Cover Image */}
+					<div className="relative aspect-2/1 w-full overflow-hidden rounded-xl xl:-mx-60 xl:w-[calc(100%+30rem)]">
+						<Image
+							fill
+							src={blog.data.image ?? "/carousel-home.png"}
+							alt={blog.data.title}
+							className="object-cover"
+							priority
+							sizes="(min-width: 1280px) 1100px, (min-width: 1024px) 960px, 100vw"
+						/>
+					</div>
+				</div>
+			</section>
+
+			{/* Main Content + Table of Contents Layout */}
+			<section className="border-soft border">
+				<div className="flex flex-col lg:flex-row lg:items-start">
+					{/* Article Body */}
+					<article className="min-w-0 flex-1 p-5 pt-0 md:pb-10 lg:px-20 lg:pb-15 xl:px-35">
+						<blog.data.body components={BlogComponents} />
+					</article>
+
+					{/* Table of Contents */}
+					{headings.length > 0 && (
+						<aside className="border-soft sticky top-10 hidden h-[calc(100vh)] w-90 shrink-0 overflow-y-auto border-l lg:block lg:py-15">
+							<BlogTableOfContents headings={headings} />
+						</aside>
+					)}
+				</div>
+			</section>
 		</>
 	)
 }
