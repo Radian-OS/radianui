@@ -126,10 +126,9 @@ export function FlagTile({
 					theme="light"
 					side="top"
 					align="start"
-					alignOffset={8}
-					sideOffset={-40}
-					avoidCollisions={false}
-					className="pointer-events-auto w-22 truncate text-center text-xs hover:w-max hover:max-w-none hover:overflow-visible">
+					alignOffset={0}
+					sideOffset={8}
+					className="z-110 text-xs whitespace-nowrap">
 					{displayName}
 				</TooltipContent>
 			</Tooltip>

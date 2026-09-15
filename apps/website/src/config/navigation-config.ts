@@ -226,7 +226,7 @@ const MISCELLANEOUS_ITEMS: NavigationItem[] = [
 	{
 		title: "Flags",
 		description: "Accessible country flags for React",
-		url: "/docs/packages/flags",
+		url: "/docs/miscellaneous/flags",
 		icon: FlagIcon,
 		isNew: true,
 	},

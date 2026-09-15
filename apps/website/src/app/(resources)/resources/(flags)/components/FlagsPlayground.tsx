@@ -9,6 +9,7 @@ import {
 	useState,
 } from "react"
 import { Search } from "lucide-react"
+import { cn } from "@/lib/utils"
 import {
 	Empty,
 	EmptyDescription,
@@ -299,6 +300,7 @@ export default function FlagsPlayground({
 	const [selectedFlag, setSelectedFlag] = useState<FlagName | null>(
 		initialSelectedFlag
 	)
+	const [isSticky, setIsSticky] = useState(false)
 	const ownsDialogHistoryEntryRef = useRef(false)
 	const sentinelRef = useRef<HTMLDivElement>(null)
 	const bottomSentinelRef = useRef<HTMLDivElement>(null)
@@ -313,6 +315,7 @@ export default function FlagsPlayground({
 
 		const dispatchSticky = () => {
 			const isSticky = topScrolledPast && bottomStillVisible
+			setIsSticky(isSticky)
 			window.dispatchEvent(
 				new CustomEvent("resource-filter-sticky", { detail: { isSticky } })
 			)
@@ -341,6 +344,7 @@ export default function FlagsPlayground({
 		return () => {
 			topObserver.disconnect()
 			bottomObserver.disconnect()
+			setIsSticky(false)
 			window.dispatchEvent(
 				new CustomEvent("resource-filter-sticky", {
 					detail: { isSticky: false },
@@ -438,7 +442,11 @@ export default function FlagsPlayground({
 	return (
 		<div className="flex w-full flex-col gap-5 py-2">
 			<div ref={sentinelRef} className="pointer-events-none h-px w-full" />
-			<div className="bg-bg/95 sticky top-0 z-100 py-3 backdrop-blur-sm">
+			<div
+				className={cn(
+					"bg-bg/95 sticky top-0 z-100 border-b border-transparent py-3 backdrop-blur-sm",
+					isSticky && "border-soft"
+				)}>
 				<InputWrapper className="bg-fill1 focus-within:bg-bg h-13 w-full">
 					<FlagShapeDropdown value={shape} onValueChange={handleShapeChange} />
 					<Search aria-hidden="true" />
@@ -491,7 +499,6 @@ export default function FlagsPlayground({
 				shape={shape}
 				open={selectedFlag !== null}
 				onOpenChange={handleDialogOpenChange}
-				onShapeChange={handleShapeChange}
 				onSelectFlag={handleSelectFlag}
 			/>
 		</div>

@@ -1,15 +1,7 @@
 "use client"
 
-import { useMemo, useState } from "react"
-import {
-	Boxes,
-	ChevronDown,
-	CloudDownload,
-	CodeXml,
-	Download,
-	Globe2,
-	Image as ImageIcon,
-} from "lucide-react"
+import { useEffect, useMemo, useState } from "react"
+import { ChevronDown, Download, Image as ImageIcon } from "lucide-react"
 import { toast } from "sonner"
 import PackageManagerTabs, {
 	type Commands,
@@ -30,11 +22,12 @@ import {
 	DropdownMenuRadioItem,
 	DropdownMenuTrigger,
 } from "@/registry/ui/dropdown-menu"
-import { NextjsIcon } from "../../(avatar)/components/AvatarTileMenu"
 import type { FlagName, FlagShape, FlagSize } from "./flags-data"
 import {
 	flagNames,
 	getFlagAssetCode,
+	getFlagCallingCodes,
+	getFlagCountryCodes,
 	getFlagDisplayName,
 	getFlagHtmlMarkup,
 	getFlagNextImageMarkup,
@@ -47,12 +40,11 @@ interface FlagDetailsDialogProps {
 	shape: FlagShape
 	open: boolean
 	onOpenChange: (open: boolean) => void
-	onShapeChange: (shape: FlagShape) => void
 	onSelectFlag: (name: FlagName) => void
 }
 
 const pngSizes: FlagSize[] = [64, 128, 256, 512]
-const MORE_FLAGS_LIMIT = 15
+const MORE_FLAGS_LIMIT = 16
 
 const alphabeticalFlagNames = [...flagNames].sort((first, second) =>
 	getFlagDisplayName(first).localeCompare(getFlagDisplayName(second), "en")
@@ -132,24 +124,30 @@ export function FlagDetailsDialog({
 	shape,
 	open,
 	onOpenChange,
-	onShapeChange,
 	onSelectFlag,
 }: FlagDetailsDialogProps) {
 	const [pngSize, setPngSize] = useState<FlagSize>(512)
+	const [dialogShape, setDialogShape] = useState<FlagShape>(shape)
 	const moreFlags = useMemo(() => (name ? getMoreFlags(name) : []), [name])
+
+	useEffect(() => {
+		if (open) setDialogShape(shape)
+	}, [open, shape])
 
 	if (!name) return null
 
 	const displayName = getFlagDisplayName(name)
 	const assetCode = getFlagAssetCode(name)
 	const packageCommands = getPackageCommands(assetCode)
-	const shapeLabel = shape === "round" ? "Rounded" : "Flat"
-	const previewUrl = getFlagUrl(name, shape, 512)
-	const searchTags =
-		flagSearchTags[name] ??
-		Array.from(
-			new Set([displayName, name, `${displayName} flag`, `${shapeLabel} flag`])
-		)
+	const shapeLabel = dialogShape === "round" ? "Rounded" : "Flat"
+	const previewUrl = getFlagUrl(name, dialogShape, 512)
+	const searchTags = Array.from(
+		new Set([
+			...(flagSearchTags[name] ?? [displayName, name, `${displayName} flag`]),
+			...getFlagCountryCodes(name),
+			...getFlagCallingCodes(name),
+		])
+	)
 
 	const copyText = async (value: string, label: string) => {
 		try {
@@ -162,12 +160,12 @@ export function FlagDetailsDialog({
 
 	const copyPng = async () => {
 		try {
-			const response = await fetch(getFlagUrl(name, shape, pngSize))
+			const response = await fetch(getFlagUrl(name, dialogShape, pngSize))
 			if (!response.ok) throw new Error("Flag request failed")
 			const blob = await response.blob()
 
 			if (!navigator.clipboard.write || !("ClipboardItem" in window)) {
-				await copyText(getFlagUrl(name, shape, pngSize), "PNG URL")
+				await copyText(getFlagUrl(name, dialogShape, pngSize), "PNG URL")
 				return
 			}
 
@@ -200,14 +198,14 @@ export function FlagDetailsDialog({
 			if (format === "svg") {
 				downloadBlob(
 					new Blob([await getSvg()], { type: "image/svg+xml" }),
-					`${safeName}-${shape}.svg`
+					`${safeName}-${dialogShape}.svg`
 				)
 			} else {
-				const response = await fetch(getFlagUrl(name, shape, pngSize))
+				const response = await fetch(getFlagUrl(name, dialogShape, pngSize))
 				if (!response.ok) throw new Error("Flag request failed")
 				downloadBlob(
 					await response.blob(),
-					`${safeName}-${shape}-${pngSize}px.png`
+					`${safeName}-${dialogShape}-${pngSize}px.png`
 				)
 			}
 			toast.success(`${format.toUpperCase()} downloaded`)
@@ -226,8 +224,8 @@ export function FlagDetailsDialog({
 				<div className="grid gap-5 md:grid-cols-[320px_minmax(0,1fr)]">
 					<div className="bg-fill1 relative flex h-60 items-center justify-center rounded-lg p-6 md:h-auto md:min-h-80">
 						<FlagDetailsShapeDropdown
-							value={shape}
-							onValueChange={onShapeChange}
+							value={dialogShape}
+							onValueChange={setDialogShape}
 						/>
 						<img
 							src={previewUrl}
@@ -247,13 +245,12 @@ export function FlagDetailsDialog({
 
 						<div className="flex flex-wrap items-center gap-2">
 							<DropdownMenu>
-								<ButtonGroup size="32" color="primary" variant="strong">
-									<Button onClick={copyPng}>
-										<ImageIcon />
-										PNG
-									</Button>
+								<ButtonGroup size="40" color="primary" variant="strong">
+									<Button onClick={copyPng}>PNG</Button>
 									<DropdownMenuTrigger asChild>
-										<Button aria-label={`PNG size: ${pngSize} pixels`}>
+										<Button
+											className="border-l border-black/20"
+											aria-label={`PNG size: ${pngSize} pixels`}>
 											{pngSize} px
 											<ChevronDown />
 										</Button>
@@ -275,36 +272,20 @@ export function FlagDetailsDialog({
 							</DropdownMenu>
 
 							<Button
-								size="32"
+								size="40"
 								color="primary"
 								variant="strong"
 								onClick={copySvg}>
-								<Boxes />
-								Copy SVG
+								SVG
 							</Button>
 
-							<IconButton
-								size="32"
-								color="primary"
-								variant="strong"
-								className="sm:hidden"
-								aria-label={`Download ${displayName} PNG`}
-								onClick={() => downloadFlag("png")}>
-								<CloudDownload />
-							</IconButton>
-
 							<DropdownMenu>
-								<ButtonGroup
-									size="32"
-									color="primary"
-									variant="strong"
-									className="hidden sm:inline-flex">
-									<Button onClick={() => downloadFlag("png")}>
-										<CloudDownload />
-										Download
-									</Button>
+								<ButtonGroup size="40" color="primary" variant="strong">
+									<Button onClick={() => downloadFlag("png")}>Download</Button>
 									<DropdownMenuTrigger asChild>
-										<IconButton aria-label="Choose download format">
+										<IconButton
+											className="border-l border-black/20"
+											aria-label="Choose download format">
 											<ChevronDown />
 										</IconButton>
 									</DropdownMenuTrigger>
@@ -332,7 +313,6 @@ export function FlagDetailsDialog({
 									color="neutral"
 									variant="outline"
 									onClick={() => copyText(previewUrl, "CDN URL")}>
-									<Globe2 />
 									CDN
 								</Button>
 								<Button
@@ -340,9 +320,11 @@ export function FlagDetailsDialog({
 									color="neutral"
 									variant="outline"
 									onClick={() =>
-										copyText(getFlagHtmlMarkup(name, shape), "React snippet")
+										copyText(
+											getFlagHtmlMarkup(name, dialogShape),
+											"React snippet"
+										)
 									}>
-									<CodeXml />
 									React JS
 								</Button>
 								<Button
@@ -351,11 +333,10 @@ export function FlagDetailsDialog({
 									variant="outline"
 									onClick={() =>
 										copyText(
-											getFlagNextImageMarkup(name, shape),
+											getFlagNextImageMarkup(name, dialogShape),
 											"Next.js snippet"
 										)
 									}>
-									<NextjsIcon />
 									Next JS
 								</Button>
 							</div>
@@ -397,7 +378,7 @@ export function FlagDetailsDialog({
 										aria-label={`View ${moreFlagDisplayName} flag`}
 										onClick={() => onSelectFlag(flagName)}>
 										<img
-											src={getFlagUrl(flagName, shape)}
+											src={getFlagUrl(flagName, dialogShape)}
 											alt=""
 											width={28}
 											height={28}

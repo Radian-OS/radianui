@@ -62,6 +62,7 @@ export const useAvatarPlayground = () => {
 	const [favorites, setFavorites] = useState<Set<string>>(() => new Set())
 	const [isBlocked, setIsBlocked] = useState(false)
 	const [isHydrated, setIsHydrated] = useState(false)
+	const [isSticky, setIsSticky] = useState(false)
 	const sentinelRef = useRef<HTMLDivElement>(null)
 	const bottomSentinelRef = useRef<HTMLDivElement>(null)
 
@@ -75,6 +76,7 @@ export const useAvatarPlayground = () => {
 
 		const dispatchSticky = () => {
 			const isSticky = topScrolledPast && bottomStillVisible
+			setIsSticky(isSticky)
 			window.dispatchEvent(
 				new CustomEvent("resource-filter-sticky", { detail: { isSticky } })
 			)
@@ -103,6 +105,7 @@ export const useAvatarPlayground = () => {
 		return () => {
 			topObserver.disconnect()
 			bottomObserver.disconnect()
+			setIsSticky(false)
 			window.dispatchEvent(
 				new CustomEvent("resource-filter-sticky", {
 					detail: { isSticky: false },
@@ -267,6 +270,7 @@ export const useAvatarPlayground = () => {
 		toggleFavorite,
 		isBlocked,
 		isHydrated,
+		isSticky,
 		sentinelRef,
 		bottomSentinelRef,
 		resolvedTones,

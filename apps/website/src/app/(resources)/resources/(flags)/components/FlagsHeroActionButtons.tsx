@@ -10,7 +10,7 @@ export default function FlagsHeroActionButtons() {
 				className="bg-elevation-level1/20 dark:hover:bg-fill2/40 hover:bg-fill2/40 w-full backdrop-blur-md sm:w-fit"
 				variant="outline"
 				color="neutral">
-				<Link href="/docs/packages/flags">Documentation</Link>
+				<Link href="/docs/miscellaneous/flags">Documentation</Link>
 			</Button>
 			<Button asChild variant="glossy" className="w-full sm:w-fit" size="40">
 				<Link

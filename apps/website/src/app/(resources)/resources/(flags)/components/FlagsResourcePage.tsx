@@ -1,4 +1,7 @@
 import { preconnect } from "react-dom"
+import PackageManagerTabs, {
+	type Commands,
+} from "@/components/package-manager-tabs"
 import { ResourcePage } from "../../components/ResourcePage"
 import FlagsDocs from "../docs/FlagsDocs"
 import FlagsHeroActionButtons from "./FlagsHeroActionButtons"
@@ -14,6 +17,13 @@ const heroFlags = [
 	{ name: "United States", size: "large" },
 	{ name: "Argentina", size: "small" },
 ] as const
+
+const flagPackageCommands: Commands = {
+	pnpm: "pnpm add @radianui/flags",
+	npm: "npm install @radianui/flags",
+	yarn: "yarn add @radianui/flags",
+	bun: "bun add @radianui/flags",
+}
 
 interface FlagsResourcePageProps {
 	initialSelectedFlag?: FlagName | null
@@ -51,7 +61,19 @@ export function FlagsResourcePage({
 			}
 			title="Beautiful, Production-Ready Country Flags 🏁"
 			description="Access a complete collection of country and regional flags, optimized for Figma, React, and modern web applications."
-			actions={<FlagsHeroActionButtons />}
+			actions={
+				<div className="flex w-full max-w-170 flex-col items-center gap-6">
+					<div className="flex w-full flex-col items-center justify-center gap-3 sm:flex-row">
+						<FlagsHeroActionButtons />
+					</div>
+					<div className="flex w-full flex-col gap-2 text-left">
+						<p className="text-fg-secondary text-xs font-medium">
+							Install the flag package
+						</p>
+						<PackageManagerTabs commands={flagPackageCommands} withIcon />
+					</div>
+				</div>
+			}
 			showcaseLabel="Browse free country flag assets"
 			showcase={<FlagsPlayground initialSelectedFlag={initialSelectedFlag} />}
 			documentation={<FlagsDocs />}

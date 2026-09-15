@@ -91,12 +91,21 @@ function getRate(from: CurrencyCode, to: CurrencyCode) {
 	return usdRates[to] / usdRates[from]
 }
 
+function convertAmount(amount: string, rate: number, decimals: number) {
+	if (!amount) return ""
+
+	const numericAmount = Number(amount)
+	if (!Number.isFinite(numericAmount)) return ""
+
+	return (numericAmount * rate).toFixed(decimals)
+}
+
 type CurrencyFieldProps = {
 	amount: string
 	currency: Currency
 	id: string
 	label: string
-	onAmountChange?: (value: string | undefined) => void
+	onAmountChange: (value: string | undefined) => void
 	onCurrencyChange: (value: CurrencyCode) => void
 }
 
@@ -125,8 +134,8 @@ function CurrencyField({
 								<Flag
 									country={currency.country}
 									shape="circle"
-									size={48}
-									className="size-12"
+									size={40}
+									className="size-10"
 								/>
 								<span className="grid min-w-0 gap-0.5">
 									<span className="font-semibold">{currency.code}</span>
@@ -161,7 +170,6 @@ function CurrencyField({
 					groupSeparator=","
 					decimalSeparator="."
 					aria-label={`${label} amount in ${currency.name}`}
-					readOnly={!onAmountChange}
 					onValueChange={onAmountChange}
 					className="text-3xl leading-none font-semibold tracking-tight tabular-nums"
 				/>
@@ -172,18 +180,27 @@ function CurrencyField({
 
 export default function FlagCurrencyConverter() {
 	const [amount, setAmount] = useState("1000")
+	const [sourceField, setSourceField] = useState<"from" | "to">("from")
 	const [from, setFrom] = useState<CurrencyCode>("USD")
 	const [to, setTo] = useState<CurrencyCode>("EUR")
 
 	const fromCurrency = getCurrency(from)
 	const toCurrency = getCurrency(to)
 	const rate = getRate(from, to)
-	const convertedAmount = useMemo(() => {
-		const numericAmount = Number(amount)
-		if (!Number.isFinite(numericAmount)) return ""
-
-		return (numericAmount * rate).toFixed(toCurrency.decimals)
-	}, [amount, rate, toCurrency.decimals])
+	const fromAmount = useMemo(
+		() =>
+			sourceField === "from"
+				? amount
+				: convertAmount(amount, 1 / rate, fromCurrency.decimals),
+		[amount, fromCurrency.decimals, rate, sourceField]
+	)
+	const toAmount = useMemo(
+		() =>
+			sourceField === "to"
+				? amount
+				: convertAmount(amount, rate, toCurrency.decimals),
+		[amount, rate, sourceField, toCurrency.decimals]
+	)
 
 	const formattedRate = rate.toLocaleString("en-US", {
 		minimumFractionDigits: 2,
@@ -193,6 +210,7 @@ export default function FlagCurrencyConverter() {
 	const swapCurrencies = () => {
 		setFrom(to)
 		setTo(from)
+		setSourceField((current) => (current === "from" ? "to" : "from"))
 	}
 
 	return (
@@ -208,9 +226,12 @@ export default function FlagCurrencyConverter() {
 				<CurrencyField
 					id="currency-from"
 					label="From"
-					amount={amount}
+					amount={fromAmount}
 					currency={fromCurrency}
-					onAmountChange={(value) => setAmount(value ?? "")}
+					onAmountChange={(value) => {
+						setSourceField("from")
+						setAmount(value ?? "")
+					}}
 					onCurrencyChange={setFrom}
 				/>
 
@@ -231,8 +252,12 @@ export default function FlagCurrencyConverter() {
 				<CurrencyField
 					id="currency-to"
 					label="To"
-					amount={convertedAmount}
+					amount={toAmount}
 					currency={toCurrency}
+					onAmountChange={(value) => {
+						setSourceField("to")
+						setAmount(value ?? "")
+					}}
 					onCurrencyChange={setTo}
 				/>
 
