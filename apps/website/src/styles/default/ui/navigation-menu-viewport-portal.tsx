@@ -59,7 +59,7 @@ export function NavigationMenuViewportPortal({
 				? createPortal(
 						<div
 							data-slot="navigation-menu-viewport-positioner"
-							className="z-60 fixed isolate flex justify-center"
+							className="fixed isolate z-60 flex justify-center"
 							style={
 								position
 									? {

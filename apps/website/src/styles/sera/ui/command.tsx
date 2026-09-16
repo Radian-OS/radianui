@@ -64,7 +64,7 @@ function CommandDialog({
 			<DialogContent
 				className={cn("overflow-hidden p-0", className)}
 				closeButton={closeButton}>
-				<Cmdk className="[&_[cmdk-group-heading]]:text-fg-secondary **:data-[slot=command-input-wrapper]:h-14 [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:pt-0 [&_[cmdk-group]]:px-2 [&_[cmdk-input-wrapper]_svg]:h-5 [&_[cmdk-input-wrapper]_svg]:w-5 [&_[cmdk-input]]:h-14 [&_[cmdk-item]]:px-3 [&_[cmdk-item]]:py-3.5 [&_[cmdk-item]_svg]:h-5 [&_[cmdk-item]_svg]:w-5">
+				<Cmdk className="[&_[cmdk-group-heading]]:text-fg-secondary **:data-[slot=command-input-wrapper]:h-14 [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group]]:px-2 [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:pt-0 [&_[cmdk-input-wrapper]_svg]:h-5 [&_[cmdk-input-wrapper]_svg]:w-5 [&_[cmdk-input]]:h-14 [&_[cmdk-item]]:px-3 [&_[cmdk-item]]:py-3.5 [&_[cmdk-item]_svg]:h-5 [&_[cmdk-item]_svg]:w-5">
 					{children}
 				</Cmdk>
 			</DialogContent>
@@ -81,7 +81,7 @@ function CommandInput({ className, ...props }: CommandInputProps) {
 			<CmdkInput
 				data-slot="command-input"
 				className={cn(
-					"outline-hidden placeholder:text-fg-tertiary flex h-12 w-full rounded-md bg-transparent text-sm font-normal disabled:cursor-not-allowed disabled:opacity-50",
+					"placeholder:text-fg-tertiary flex h-12 w-full rounded-md bg-transparent text-sm font-normal outline-hidden disabled:cursor-not-allowed disabled:opacity-50",
 					className
 				)}
 				{...props}
@@ -95,7 +95,7 @@ function CommandList({ className, ...props }: CommandListProps) {
 		<CmdkList
 			data-slot="command-list"
 			className={cn(
-				"max-h-[300px] scroll-py-1 overflow-y-auto overflow-x-hidden",
+				"max-h-[300px] scroll-py-1 overflow-x-hidden overflow-y-auto",
 				className
 			)}
 			{...props}
@@ -141,7 +141,7 @@ function CommandItem({ className, ...props }: CommandItemProps) {
 		<CmdkItem
 			data-slot="command-item"
 			className={cn(
-				"outline-hidden data-[selected=true]:bg-fill2-alpha data-[selected=true]:text-fg-secondary [&_svg:not([class*='text-'])]:text-fg-tertiary relative flex cursor-default select-none items-center gap-2 rounded-none px-3 py-2 text-sm data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+				"data-[selected=true]:bg-fill2-alpha data-[selected=true]:text-fg-secondary [&_svg:not([class*='text-'])]:text-fg-tertiary relative flex cursor-default items-center gap-2 rounded-none px-3 py-2 text-sm outline-hidden select-none data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
 				className
 			)}
 			{...props}

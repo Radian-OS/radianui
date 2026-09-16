@@ -292,7 +292,7 @@ function extractClassNameFromAttrs(attrs: string): string {
 export function parseJsxElementAtLine(
 	content: string,
 	targetLine: number,
-	preferButton = false
+	preferTag?: string | boolean
 ): {
 	tag: string
 	className: string
@@ -303,12 +303,15 @@ export function parseJsxElementAtLine(
 	const lines = content.split(/\r?\n/)
 	if (targetLine < 1 || targetLine > lines.length) return null
 
-	// If preferButton is true, check upwards up to 15 lines for an enclosing <Button ...>
+	// If preferTag is provided, check upwards up to 15 lines for the enclosing component
 	let targetSearchLine = targetLine
-	if (preferButton) {
+	if (preferTag) {
+		const tagNameFilter =
+			typeof preferTag === "string" ? preferTag : "[A-Z][A-Za-z0-9_.-]*"
+		const reg = new RegExp(`^\\s*<(${tagNameFilter})(?:\\s|>|\\/|$)`)
 		for (let i = targetLine - 1; i >= Math.max(0, targetLine - 15); i--) {
-			const l = lines[i].trim()
-			if (/<Button(?:\s|>|\/|$)/i.test(l)) {
+			const l = lines[i]
+			if (reg.test(l)) {
 				targetSearchLine = i + 1
 				break
 			}
@@ -374,7 +377,9 @@ export function getFiberSourceDetails(
 	try {
 		const targetElements = [
 			element,
-			element.closest('button, a, [role="button"]'),
+			element.closest(
+				'button, a, input, select, textarea, [role="button"], [role="tab"], [role="checkbox"], [class*="button"], [class*="badge"], [class*="card"]'
+			),
 			element.parentElement,
 		].filter(Boolean) as HTMLElement[]
 
@@ -477,8 +482,8 @@ export function resolveElementSourceDetails(
 	componentFiles: Record<string, string>,
 	defaultFile: string
 ): ResolvedElementDetails {
-	const isButtonLike = !!element.closest(
-		'button, [role="button"], [class*="button"]'
+	const isInteractive = !!element.closest(
+		'button, a, input, select, textarea, [role="button"], [role="tab"], [role="checkbox"], [class*="button"], [class*="badge"], [class*="card"]'
 	)
 
 	// 1. Try React Fiber inspection first
@@ -501,7 +506,7 @@ export function resolveElementSourceDetails(
 		const jsxParsed = parseJsxElementAtLine(
 			componentFiles[file],
 			lineNumber,
-			isButtonLike
+			tag || isInteractive
 		)
 		if (jsxParsed) {
 			if (jsxParsed.tag) {
