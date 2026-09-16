@@ -228,7 +228,7 @@ const ConfigPreferencesDialog = ({
 												id={inputId}
 												value={value}
 												size="sm"
-												className="absolute right-2 top-2"
+												className="absolute top-2 right-2"
 											/>
 										</Label>
 									)

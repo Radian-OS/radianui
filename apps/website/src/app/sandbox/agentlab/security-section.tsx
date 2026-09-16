@@ -36,7 +36,7 @@ export function AgentlabSecuritySection() {
 				<div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
 					{/* Left Title & Compliance Badges */}
 					<div className="lg:col-span-5">
-						<h2 className="heading-2 text-fg font-serif text-3xl font-normal leading-[1.2] tracking-tight sm:text-4xl md:text-5xl">
+						<h2 className="heading-2 text-fg font-serif text-3xl leading-[1.2] font-normal tracking-tight sm:text-4xl md:text-5xl">
 							Enterprise-Grade Security Standards
 						</h2>
 

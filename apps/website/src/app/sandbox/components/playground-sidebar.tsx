@@ -40,7 +40,7 @@ export function PlaygroundSidebar({
 			{/* Sidebar Navigation */}
 			<SidebarContent className="flex-1 space-y-6 overflow-y-auto p-4 group-data-[state=collapsed]:mt-4 group-data-[state=collapsed]:space-y-4 group-data-[state=collapsed]:p-0">
 				<SidebarGroup className="p-0">
-					<SidebarGroupLabel className="text-fg-tertiary flex items-center gap-2 px-2 text-xs font-semibold uppercase tracking-wider group-data-[state=collapsed]:hidden">
+					<SidebarGroupLabel className="text-fg-tertiary flex items-center gap-2 px-2 text-xs font-semibold tracking-wider uppercase group-data-[state=collapsed]:hidden">
 						<span>Components</span>
 					</SidebarGroupLabel>
 					<SidebarGroupContent>

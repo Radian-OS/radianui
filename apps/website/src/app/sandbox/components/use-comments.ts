@@ -13,6 +13,7 @@ export interface DraftComment {
 	positionY: number
 	elementTag: string
 	elementSelector: string
+	elementContent?: string
 	sourceLocation?: SourceLocation | null
 }
 
@@ -74,6 +75,7 @@ export function useComments(
 					componentId,
 					elementTag: draftComment.elementTag,
 					elementSelector: draftComment.elementSelector,
+					elementContent: draftComment.elementContent,
 					positionX: draftComment.positionX,
 					positionY: draftComment.positionY,
 					authorName: formValues.authorName,
@@ -92,6 +94,8 @@ export function useComments(
 							...data.comment,
 							file: file || data.comment.file,
 							lineNumber: lineNumber || data.comment.lineNumber,
+							elementContent:
+								draftComment.elementContent || data.comment.elementContent,
 						},
 					])
 				}
@@ -201,15 +205,32 @@ export function useComments(
 					const posY = Math.max(1, Math.min(99, (pageY / docHeight) * 100))
 
 					const tag = target.tagName.toLowerCase()
-					const classNames =
+
+					// Extract full class name list without internal sandbox classes
+					const rawClasses =
 						typeof target.className === "string"
 							? target.className
-									.split(" ")
-									.filter((c) => c && !c.includes("sandbox-"))
-									.slice(0, 2)
-									.map((c) => `.${c}`)
-									.join("")
-							: ""
+							: (target.className as any)?.baseVal || ""
+					const classNames = rawClasses
+						.split(/\s+/)
+						.filter((c: string) => c && !c.includes("sandbox-"))
+						.join(" ")
+
+					// Extract text content of that specific HTML tag
+					let directText = ""
+					for (const child of Array.from(target.childNodes)) {
+						if (child.nodeType === Node.TEXT_NODE && child.textContent) {
+							directText += " " + child.textContent.trim()
+						}
+					}
+					directText = directText.trim()
+					if (!directText) {
+						directText = (target.textContent || "").trim()
+					}
+					directText = directText.replace(/\s+/g, " ")
+					if (directText.length > 300) {
+						directText = directText.slice(0, 297) + "..."
+					}
 
 					const sourceLocation = resolveElementSourceLocation(
 						target,
@@ -222,6 +243,7 @@ export function useComments(
 						positionY: Math.round(posY * 10) / 10,
 						elementTag: tag,
 						elementSelector: classNames,
+						elementContent: directText,
 						sourceLocation,
 					})
 				}

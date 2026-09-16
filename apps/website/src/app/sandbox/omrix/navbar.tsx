@@ -27,7 +27,7 @@ export function OmrixNavbar() {
 				<Link
 					href="/sandbox/omrix"
 					className="flex items-center gap-2.5 font-bold tracking-tight hover:underline">
-					<div className="bg-neutral shadow-xs flex size-8 items-center justify-center rounded-lg">
+					<div className="bg-neutral flex size-8 items-center justify-center rounded-lg shadow-xs">
 						<Star className="fill-neutral-fg text-neutral-fg size-4" />
 					</div>
 					<span className="text-foreground text-lg font-bold tracking-tight">
@@ -53,7 +53,7 @@ export function OmrixNavbar() {
 						variant="strong"
 						color="neutral"
 						size="36"
-						className="shadow-xs rounded-xl px-5 text-xs font-semibold transition-all hover:scale-105 active:scale-95">
+						className="rounded-xl px-5 text-xs font-semibold shadow-xs transition-all hover:scale-105 active:scale-95">
 						<span>Book a Demo</span>
 					</Button>
 				</div>
@@ -73,7 +73,7 @@ export function OmrixNavbar() {
 
 			{/* Mobile Dropdown Panel */}
 			{isOpen && (
-				<div className="border-border bg-background/95 border-b px-4 pb-6 pt-2 shadow-xl backdrop-blur-lg md:hidden">
+				<div className="border-border bg-background/95 border-b px-4 pt-2 pb-6 shadow-xl backdrop-blur-lg md:hidden">
 					<nav className="flex flex-col gap-3">
 						{navLinks.map((item) => (
 							<Link

@@ -44,7 +44,7 @@ export function RotatingWords({
 				<span
 					aria-hidden="true"
 					key={`word-size-${index}`}
-					className="invisible col-start-1 row-start-1 inline-flex h-[1lh] items-center whitespace-nowrap leading-[inherit]">
+					className="invisible col-start-1 row-start-1 inline-flex h-[1lh] items-center leading-[inherit] whitespace-nowrap">
 					{word}
 				</span>
 			))}
@@ -52,7 +52,7 @@ export function RotatingWords({
 				<motion.span
 					aria-hidden="true"
 					key={`${visibleIndex}-${activeWord}`}
-					className="col-start-1 row-start-1 inline-flex h-[1lh] items-center whitespace-nowrap leading-[inherit]"
+					className="col-start-1 row-start-1 inline-flex h-[1lh] items-center leading-[inherit] whitespace-nowrap"
 					initial={shouldReduceMotion ? false : { opacity: 0, y: "100%" }}
 					animate={{ opacity: 1, y: 0 }}
 					exit={shouldReduceMotion ? undefined : { opacity: 0, y: "-50%" }}

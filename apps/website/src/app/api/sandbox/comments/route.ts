@@ -7,6 +7,7 @@ export interface SandboxComment {
 	componentId: string
 	elementTag: string
 	elementSelector: string
+	elementContent?: string
 	positionX: number
 	positionY: number
 	authorName: string
@@ -40,6 +41,7 @@ async function ensureTable() {
 			CREATE INDEX IF NOT EXISTS idx_sandbox_comments_component ON sandbox_comments(component_id);
 			ALTER TABLE sandbox_comments ADD COLUMN IF NOT EXISTS file TEXT;
 			ALTER TABLE sandbox_comments ADD COLUMN IF NOT EXISTS line_number INTEGER;
+			ALTER TABLE sandbox_comments ADD COLUMN IF NOT EXISTS element_content TEXT;
 		`)
 		isTableInitialized = true
 	} catch (err) {
@@ -60,6 +62,7 @@ export async function GET(request: Request) {
 					component_id AS "componentId",
 					element_tag AS "elementTag",
 					element_selector AS "elementSelector",
+					element_content AS "elementContent",
 					position_x AS "positionX",
 					position_y AS "positionY",
 					author_name AS "authorName",
@@ -80,6 +83,7 @@ export async function GET(request: Request) {
 				component_id AS "componentId",
 				element_tag AS "elementTag",
 				element_selector AS "elementSelector",
+				element_content AS "elementContent",
 				position_x AS "positionX",
 				position_y AS "positionY",
 				author_name AS "authorName",
@@ -112,6 +116,7 @@ export async function POST(request: Request) {
 			componentId,
 			elementTag,
 			elementSelector,
+			elementContent,
 			positionX,
 			positionY,
 			authorName,
@@ -146,6 +151,7 @@ export async function POST(request: Request) {
 				component_id,
 				element_tag,
 				element_selector,
+				element_content,
 				position_x,
 				position_y,
 				author_name,
@@ -154,12 +160,13 @@ export async function POST(request: Request) {
 				line_number,
 				created_at,
 				resolved
-			) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, NOW(), FALSE)
+			) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, NOW(), FALSE)
 			RETURNING 
 				id,
 				component_id AS "componentId",
 				element_tag AS "elementTag",
 				element_selector AS "elementSelector",
+				element_content AS "elementContent",
 				position_x AS "positionX",
 				position_y AS "positionY",
 				author_name AS "authorName",
@@ -173,6 +180,7 @@ export async function POST(request: Request) {
 				componentId,
 				typeof elementTag === "string" ? elementTag : "div",
 				typeof elementSelector === "string" ? elementSelector : "",
+				typeof elementContent === "string" ? elementContent : null,
 				typeof positionX === "number" ? positionX : 0,
 				typeof positionY === "number" ? positionY : 0,
 				finalAuthor,

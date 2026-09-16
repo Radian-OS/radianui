@@ -24,7 +24,7 @@ export type TabsContentProps = React.ComponentProps<
 >
 
 const tabsListStyles = cva(
-	"flex data-[orientation=horizontal]:flex-row data-[orientation=horizontal]:items-center data-[orientation=horizontal]:justify-start data-[orientation=vertical]:items-start data-[orientation=vertical]:justify-center data-[orientation=vertical]:flex-col shrink-0 overflow-x-scroll no-scrollbar",
+	"no-scrollbar flex shrink-0 overflow-x-scroll data-[orientation=horizontal]:flex-row data-[orientation=horizontal]:items-center data-[orientation=horizontal]:justify-start data-[orientation=vertical]:flex-col data-[orientation=vertical]:items-start data-[orientation=vertical]:justify-center",
 	{
 		variants: {
 			size: {
@@ -33,13 +33,13 @@ const tabsListStyles = cva(
 				lg: "data-[orientation=horizontal]:h-11",
 			},
 			width: {
-				fit: "w-max min-w-max max-w-full",
+				fit: "w-max max-w-full min-w-max",
 				full: "data-[orientation=horizontal]:w-full data-[orientation=horizontal]:items-stretch data-[orientation=horizontal]:*:flex-1",
 			},
 			variant: {
 				default: "bg-fill2",
-				open: "data-[orientation=horizontal]:border-b data-[orientation=vertical]:border-r border-border",
-				outline: "border border-border",
+				open: "border-border data-[orientation=horizontal]:border-b data-[orientation=vertical]:border-r",
+				outline: "border-border border",
 				ghost: "",
 				"outline-ghost": "bg-bg",
 			},
@@ -87,7 +87,7 @@ const tabsListStyles = cva(
 )
 
 const tabsTriggerStyles = cva(
-	"inline-flex items-center justify-center gap-1.5 focus-visible:ring focus-visible:ring-offset-1 whitespace-nowrap font-medium outline-none text-fg-secondary data-[state=active]:text-fg w-max data-[orientation=vertical]:w-full [&>svg]:text-fg-tertiary [&>svg]:shrink-0 disabled:text-fg-disabled disabled:[&>svg]:text-fg-disabled disabled:cursor-not-allowed box-border",
+	"text-fg-secondary data-[state=active]:text-fg [&>svg]:text-fg-tertiary disabled:text-fg-disabled disabled:[&>svg]:text-fg-disabled box-border inline-flex w-max items-center justify-center gap-1.5 font-medium whitespace-nowrap outline-none focus-visible:ring focus-visible:ring-offset-1 disabled:cursor-not-allowed data-[orientation=vertical]:w-full [&>svg]:shrink-0",
 	{
 		variants: {
 			size: {
@@ -97,13 +97,13 @@ const tabsTriggerStyles = cva(
 			},
 			variant: {
 				default:
-					"data-[state=active]:border data-[state=active]:border-soft-alpha border border-transparent data-[state=active]:bg-elevation-level2 data-[state=active]:drop-shadow-xs",
+					"data-[state=active]:border-soft-alpha data-[state=active]:bg-elevation-level2 border border-transparent data-[state=active]:border data-[state=active]:drop-shadow-xs",
 				outline:
-					"data-[orientation=horizontal]:not-last:border-r data-[orientation=vertical]:not-last:border-b border-border data-[state=active]:bg-fill2",
-				open: "border-transparent data-[orientation=horizontal]:border-b-2 data-[orientation=vertical]:border-r-2 data-[state=active]:border-primary",
+					"border-border data-[state=active]:bg-fill2 data-[orientation=horizontal]:not-last:border-r data-[orientation=vertical]:not-last:border-b",
+				open: "data-[state=active]:border-primary border-transparent data-[orientation=horizontal]:border-b-2 data-[orientation=vertical]:border-r-2",
 				ghost: "data-[state=active]:bg-fill2",
 				"outline-ghost":
-					"border border-transparent data-[state=active]:border-soft data-[state=active]:bg-bg data-[state=active]:drop-shadow-xs",
+					"data-[state=active]:border-soft data-[state=active]:bg-bg border border-transparent data-[state=active]:drop-shadow-xs",
 			},
 		},
 		compoundVariants: [
@@ -125,7 +125,7 @@ const tabsTriggerStyles = cva(
 			{
 				size: "sm",
 				variant: ["outline", "ghost", "outline-ghost"],
-				className: "data-[orientation=horizontal]:h-7 p-1.5",
+				className: "p-1.5 data-[orientation=horizontal]:h-7",
 			},
 			{
 				size: "md",
@@ -159,19 +159,19 @@ const tabsTriggerStyles = cva(
 				size: "sm",
 				variant: "outline",
 				className:
-					"data-[orientation=horizontal]:first:rounded-l-lg data-[orientation=vertical]:first:rounded-t-lg data-[orientation=horizontal]:last:rounded-r-lg data-[orientation=vertical]:last:rounded-b-lg",
+					"data-[orientation=horizontal]:first:rounded-l-lg data-[orientation=horizontal]:last:rounded-r-lg data-[orientation=vertical]:first:rounded-t-lg data-[orientation=vertical]:last:rounded-b-lg",
 			},
 			{
 				size: "md",
 				variant: "outline",
 				className:
-					"data-[orientation=horizontal]:first:rounded-l-[0.625rem] data-[orientation=vertical]:first:rounded-t-[0.625rem] data-[orientation=horizontal]:last:rounded-r-[0.625rem] data-[orientation=vertical]:last:rounded-b-[0.625rem]",
+					"data-[orientation=horizontal]:first:rounded-l-[0.625rem] data-[orientation=horizontal]:last:rounded-r-[0.625rem] data-[orientation=vertical]:first:rounded-t-[0.625rem] data-[orientation=vertical]:last:rounded-b-[0.625rem]",
 			},
 			{
 				size: "lg",
 				variant: "outline",
 				className:
-					"data-[orientation=horizontal]:h-11 data-[orientation=horizontal]:first:rounded-l-xl data-[orientation=vertical]:first:rounded-t-xl data-[orientation=horizontal]:last:rounded-r-xl data-[orientation=vertical]:last:rounded-b-xl",
+					"data-[orientation=horizontal]:h-11 data-[orientation=horizontal]:first:rounded-l-xl data-[orientation=horizontal]:last:rounded-r-xl data-[orientation=vertical]:first:rounded-t-xl data-[orientation=vertical]:last:rounded-b-xl",
 			},
 			{
 				size: "sm",

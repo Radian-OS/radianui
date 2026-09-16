@@ -50,7 +50,7 @@ export function RapidDevAnimation({ type }: RapidDevAnimationProps) {
 			aria-hidden="true"
 			data-nosnippet="">
 			<div
-				className="absolute left-0 top-0 size-max origin-top-left"
+				className="absolute top-0 left-0 size-max origin-top-left"
 				style={{
 					transform: `translateX(${layout.offsetX}px) scale(${layout.scale})`,
 				}}>

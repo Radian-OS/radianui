@@ -5,7 +5,7 @@ const CodeLanguageJavascriptExample = () => {
 	return (
 		<div className="w-full max-w-2xl">
 			<CodeArea
-				className="max-w-150 w-full"
+				className="w-full max-w-150"
 				language="javascript"
 				theme="tokyo-night"
 				code={`async function fetchUser(userId) {

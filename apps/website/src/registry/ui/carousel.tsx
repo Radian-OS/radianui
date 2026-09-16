@@ -192,7 +192,7 @@ function CarouselPrevious({
 			className={cn(
 				"cn-carousel-previous absolute",
 				orientation === "horizontal"
-					? "-left-12 top-1/2 -translate-y-1/2"
+					? "top-1/2 -left-12 -translate-y-1/2"
 					: "-top-12 left-1/2 -translate-x-1/2 rotate-90",
 				className
 			)}
@@ -228,7 +228,7 @@ function CarouselNext({
 			className={cn(
 				"cn-carousel-next absolute",
 				orientation === "horizontal"
-					? "-right-12 top-1/2 -translate-y-1/2"
+					? "top-1/2 -right-12 -translate-y-1/2"
 					: "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",
 				className
 			)}

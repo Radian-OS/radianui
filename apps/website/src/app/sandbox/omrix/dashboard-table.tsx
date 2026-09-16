@@ -45,7 +45,7 @@ export function OmrixDashboardTable() {
 			<div className="w-full overflow-x-auto">
 				<div className="min-w-[560px]">
 					{/* Table Column Headers */}
-					<div className="text-fg-tertiary border-border/40 grid grid-cols-[2fr_1fr_1fr_1fr_1.5fr] items-center border-b px-5 py-2.5 text-[10px] font-semibold uppercase tracking-wider">
+					<div className="text-fg-tertiary border-border/40 grid grid-cols-[2fr_1fr_1fr_1fr_1.5fr] items-center border-b px-5 py-2.5 text-[10px] font-semibold tracking-wider uppercase">
 						<div>Workflow Name</div>
 						<div>Runs</div>
 						<div>Status</div>

@@ -91,7 +91,7 @@ export function PlaygroundCodeViewer({
 			{/* Inner Code Area Files List */}
 			<div className="border-border bg-fill1/40 flex w-[200px] shrink-0 flex-col border-r">
 				<div className="border-border bg-fill2/20 flex h-[48px] shrink-0 items-center border-b px-4">
-					<span className="text-fg-secondary text-xs font-semibold uppercase tracking-wider">
+					<span className="text-fg-secondary text-xs font-semibold tracking-wider uppercase">
 						Files
 					</span>
 				</div>

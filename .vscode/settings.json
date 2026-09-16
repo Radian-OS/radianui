@@ -9,6 +9,7 @@
   ],
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "oxc.fmt.configPath": ".oxfmtrc.json",
   "prettier.requireConfig": true,
   "prettier.useEditorConfig": false,
   "prettier.configPath": ".prettierrc",

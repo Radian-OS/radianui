@@ -18,7 +18,7 @@ const SwitchContext = React.createContext<SwitchContextType>({
 })
 
 const switchVariants = cva(
-	"relative peer inline-flex shrink-0 cursor-pointer items-center transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border aria-invalid:border-error aria-invalid:ring-error [[data-invalid=true]_&]:border [[data-invalid=true]_&]:border-error [[data-invalid=true]_&]:ring-error bg-fill2-alpha",
+	"peer focus-visible:ring-primary focus-visible:ring-offset-bg aria-invalid:border-error aria-invalid:ring-error [[data-invalid=true]_&]:border-error [[data-invalid=true]_&]:ring-error bg-fill2-alpha relative inline-flex shrink-0 cursor-pointer items-center transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-hidden disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border [[data-invalid=true]_&]:border",
 	{
 		variants: {
 			shape: {
@@ -26,9 +26,9 @@ const switchVariants = cva(
 				square: "rounded-none",
 			},
 			size: {
-				"20": "w-8.5 h-5",
-				"24": "w-10.5 h-6",
-				"32": "w-14 h-8",
+				"20": "h-5 w-8.5",
+				"24": "h-6 w-10.5",
+				"32": "h-8 w-14",
 			},
 			permanent: {
 				true: "bg-fill3",
@@ -44,7 +44,7 @@ const switchVariants = cva(
 )
 
 const switchThumbVariants = cva(
-	"pointer-events-none ring-0 transition-transform data-[state=unchecked]:translate-x-[3px] rtl:data-[state=unchecked]:-translate-x-[3px] rtl:data-[state=checked]:-translate-x-[calc(100%-3px)] flex items-center justify-center data-[state=checked]:bg-primary-fg bg-white shadow-none",
+	"data-[state=checked]:bg-primary-fg pointer-events-none flex items-center justify-center bg-white shadow-none ring-0 transition-transform data-[state=unchecked]:translate-x-[3px] rtl:data-[state=checked]:-translate-x-[calc(100%-3px)] rtl:data-[state=unchecked]:-translate-x-[3px]",
 	{
 		variants: {
 			shape: {
@@ -65,7 +65,7 @@ const switchThumbVariants = cva(
 )
 
 const switchIndicatorVariants = cva(
-	"flex items-center justify-center w-full h-full transition-all duration-200 select-none",
+	"flex h-full w-full items-center justify-center transition-all duration-200 select-none",
 	{
 		variants: {
 			state: {

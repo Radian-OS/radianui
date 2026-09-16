@@ -79,10 +79,10 @@ export default function SwitchCard() {
 							<Label
 								htmlFor={view.id}
 								onClick={(e) => e.preventDefault()}
-								className="text-fg cursor-pointer text-sm font-medium leading-5">
+								className="text-fg cursor-pointer text-sm leading-5 font-medium">
 								{view.title}
 							</Label>
-							<p className="text-fg-tertiary text-sm font-normal leading-5">
+							<p className="text-fg-tertiary text-sm leading-5 font-normal">
 								{view.description}
 							</p>
 						</div>

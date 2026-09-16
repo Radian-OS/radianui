@@ -175,15 +175,15 @@ function DrawerExamplePreview() {
 						src="/drawer-cover.png"
 						width={460}
 					/>
-					<DrawerHeader className="pr-7.5 relative flex flex-row items-center gap-5 pl-5">
+					<DrawerHeader className="relative flex flex-row items-center gap-5 pr-7.5 pl-5">
 						<Avatar
 							rounded="circle"
-							className="size-25 ring-bg ring-offset-bg ring-offset-10 absolute bottom-0 rounded-full ring-2">
+							className="ring-bg ring-offset-bg absolute bottom-0 size-25 rounded-full ring-2 ring-offset-10">
 							<AvatarImage src="/drawer-profile.png" />
 							<AvatarFallback>AR</AvatarFallback>
 						</Avatar>
 						<div className="flex w-full items-center justify-end gap-1 sm:gap-5">
-							<div className="pl-30 flex flex-1 flex-col gap-1">
+							<div className="flex flex-1 flex-col gap-1 pl-30">
 								<DrawerTitle>Alexia Rivas</DrawerTitle>
 								<DrawerDescription>Lead Product Designer</DrawerDescription>
 							</div>
@@ -246,11 +246,11 @@ function DrawerExamplePreview() {
 									</AccordionItem>
 								))}
 							</Accordion>
-							<span className="hover:bg-fill1-alpha flex cursor-pointer items-center gap-4 border border-x-0 border-b-0 border-t px-5 py-4">
+							<span className="hover:bg-fill1-alpha flex cursor-pointer items-center gap-4 border border-x-0 border-t border-b-0 px-5 py-4">
 								<X className="text-error" />
 								<p className="text-sm font-medium">Block Alexia</p>
 							</span>
-							<span className="hover:bg-fill1-alpha flex cursor-pointer items-center gap-4 border border-x-0 border-b border-t px-5 py-4">
+							<span className="hover:bg-fill1-alpha flex cursor-pointer items-center gap-4 border border-x-0 border-t border-b px-5 py-4">
 								<Trash2 className="text-error" />
 								<p className="text-sm font-medium">Delete Conversation</p>
 							</span>

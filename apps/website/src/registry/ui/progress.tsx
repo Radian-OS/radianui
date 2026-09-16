@@ -17,7 +17,7 @@ function Progress({
 	return (
 		<ProgressPrimitive.Root
 			className={cn(
-				"cn-progress translate-z-0 relative w-full transform overflow-hidden",
+				"cn-progress relative w-full translate-z-0 transform overflow-hidden",
 				className
 			)}
 			{...props}>

@@ -86,7 +86,7 @@ export default function CollapsibleBillingCard() {
 
 							{/* Fade mask when collapsed */}
 							{!open && (
-								<div className="from-elevation-level1 pointer-events-none absolute -bottom-5 -left-5 -right-5 h-10 bg-gradient-to-t to-transparent" />
+								<div className="from-elevation-level1 pointer-events-none absolute -right-5 -bottom-5 -left-5 h-10 bg-gradient-to-t to-transparent" />
 							)}
 						</div>
 

@@ -61,7 +61,7 @@ export default function DownloadingProgress() {
 	const progressPercentage = Math.round(downloadProgress)
 
 	return (
-		<div className="max-w-130 mx-auto w-full p-8">
+		<div className="mx-auto w-full max-w-130 p-8">
 			<div className="mb-6 text-center">
 				<h2 className="mb-1 text-xl font-semibold">
 					{isComplete ? "Installation Complete!" : "Workspace Setup"}

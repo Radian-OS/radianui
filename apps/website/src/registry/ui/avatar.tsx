@@ -34,7 +34,7 @@ function useAvatarContext() {
 }
 
 const avatarVariants = cva(
-	"flex items-center justify-center shrink-0 relative cn-avatar",
+	"cn-avatar relative flex shrink-0 items-center justify-center",
 	{
 		variants: {
 			size: {
@@ -72,7 +72,7 @@ const avatarVariants = cva(
 )
 
 const avatarStatusVariants = cva(
-	"absolute z-10 rounded-full box-content cn-avatar-status",
+	"cn-avatar-status absolute z-10 box-content rounded-full",
 	{
 		variants: {
 			variant: {

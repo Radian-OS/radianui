@@ -3,7 +3,7 @@ import { Button } from "@/registry/ui/button"
 
 const ButtonElevatedExample = () => {
 	return (
-		<div className="w-50 flex flex-col items-center justify-center gap-3">
+		<div className="flex w-50 flex-col items-center justify-center gap-3">
 			<Button className="active:bg-primary w-full shadow-[0_2px_4px_0_rgba(35,20,85,0.16),0_-2px_0_0_rgba(0,0,0,0.3)_inset] hover:shadow-[0_2px_4px_0_rgba(35,20,85,0.12),0_-2px_0_0_rgba(0,0,0,0.2)_inset] active:shadow-[0_2px_4px_0_rgba(35,20,85,0.16)]">
 				Elevated Button
 			</Button>

@@ -44,7 +44,7 @@ const activityEvents: ActivityEventItem[] = [
 
 export function OmrixDashboardActivity() {
 	return (
-		<div className="border-border/60 bg-fill1/20 p-4.5 flex flex-col justify-between rounded-xl border">
+		<div className="border-border/60 bg-fill1/20 flex flex-col justify-between rounded-xl border p-4.5">
 			{/* Header */}
 			<div className="mb-4">
 				<h3 className="text-foreground text-sm font-semibold">Live Activity</h3>
@@ -58,7 +58,7 @@ export function OmrixDashboardActivity() {
 					return (
 						<div key={item.title} className="flex items-center gap-3">
 							<div
-								className={`shadow-2xs flex size-8 shrink-0 items-center justify-center rounded-lg border ${item.iconContainerClass}`}>
+								className={`flex size-8 shrink-0 items-center justify-center rounded-lg border shadow-2xs ${item.iconContainerClass}`}>
 								<Icon className={`size-4 ${item.iconClass}`} />
 							</div>
 							<div className="flex flex-col overflow-hidden text-left">

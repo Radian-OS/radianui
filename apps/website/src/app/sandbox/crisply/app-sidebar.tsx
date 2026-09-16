@@ -70,7 +70,7 @@ export function CrisplyAppSidebar() {
 			{/* Brand Header */}
 			<SidebarHeader className="border-border/60 flex flex-row items-center justify-between border-b px-4 py-3.5">
 				<div className="flex items-center gap-2.5">
-					<div className="bg-black-inverse text-white-inverse shadow-xs flex size-7 items-center justify-center rounded-lg">
+					<div className="bg-black-inverse text-white-inverse flex size-7 items-center justify-center rounded-lg shadow-xs">
 						<Waves className="size-4" />
 					</div>
 					<span className="font-heading text-fg text-base font-bold tracking-tight group-data-[state=collapsed]:hidden">
@@ -128,7 +128,7 @@ export function CrisplyAppSidebar() {
 
 				{/* Database Section */}
 				<SidebarGroup className="p-0">
-					<SidebarGroupLabel className="text-fg-tertiary px-2.5 text-[10px] font-bold uppercase tracking-wider group-data-[state=collapsed]:hidden">
+					<SidebarGroupLabel className="text-fg-tertiary px-2.5 text-[10px] font-bold tracking-wider uppercase group-data-[state=collapsed]:hidden">
 						DATABASE
 					</SidebarGroupLabel>
 					<SidebarGroupContent className="mt-1">
@@ -168,7 +168,7 @@ export function CrisplyAppSidebar() {
 											onClick={() => setActiveItem(item.label)}
 											className={`flex w-full items-center gap-2.5 rounded-md px-2.5 py-1.5 text-xs font-medium transition-colors ${
 												isSelected
-													? "bg-fill2 text-fg shadow-2xs font-semibold"
+													? "bg-fill2 text-fg font-semibold shadow-2xs"
 													: "text-fg-secondary hover:bg-fill2 hover:text-fg"
 											}`}>
 											<Icon

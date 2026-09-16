@@ -68,7 +68,7 @@ const AvatarFaq = () => {
 	return (
 		<section
 			aria-labelledby="avatar-faq-heading"
-			className="lg:w-200 mx-auto flex w-full flex-col gap-6">
+			className="mx-auto flex w-full flex-col gap-6 lg:w-200">
 			<div className="flex flex-col gap-8 md:gap-16">
 				<div className="flex flex-col items-center gap-4">
 					<p className="text-primary-text text-center text-sm font-medium">

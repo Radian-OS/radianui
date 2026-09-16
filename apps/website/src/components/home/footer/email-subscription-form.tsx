@@ -69,7 +69,7 @@ export default function EmailSubscription() {
 	return (
 		<div className="flex flex-col items-center justify-center">
 			<Divider className="via-border bg-gradient-to-r from-transparent to-transparent" />
-			<div className="max-w-360 xl:px-7.5 flex w-full flex-col justify-between gap-8 px-5 py-8 md:flex-row md:py-10">
+			<div className="flex w-full max-w-360 flex-col justify-between gap-8 px-5 py-8 md:flex-row md:py-10 xl:px-7.5">
 				<div className="flex w-full flex-col gap-1 xl:max-w-[396px]">
 					<span className="font-base text-fg font-medium">
 						Subscribe to our newsletter

@@ -29,12 +29,12 @@ const images = [
 
 export default function ScrollAreaHorizontalList() {
 	return (
-		<ScrollArea className="w-165 border-soft bg-bg overflow-hidden rounded-xl border p-4 [&_[data-slot=scroll-area-viewport]]:rounded-none">
+		<ScrollArea className="border-soft bg-bg w-165 overflow-hidden rounded-xl border p-4 [&_[data-slot=scroll-area-viewport]]:rounded-none">
 			<div className="flex gap-5">
 				{images.map((image, index) => (
 					<div
 						key={index}
-						className="h-39.5 w-70 relative shrink-0 overflow-hidden rounded-lg">
+						className="relative h-39.5 w-70 shrink-0 overflow-hidden rounded-lg">
 						<Image
 							src={image.src}
 							alt={image.alt}

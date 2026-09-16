@@ -36,7 +36,7 @@ export function ShowcaseGrid() {
 				{showcaseImages.map((item) => (
 					<div
 						key={item.src}
-						className="border-border bg-fill2 shadow-xs group relative h-[320px] overflow-hidden rounded-2xl border sm:h-[380px]">
+						className="border-border bg-fill2 group relative h-[320px] overflow-hidden rounded-2xl border shadow-xs sm:h-[380px]">
 						<Image
 							src={item.src}
 							alt={item.alt}

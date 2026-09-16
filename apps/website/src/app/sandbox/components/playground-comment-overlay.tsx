@@ -176,15 +176,16 @@ export function PlaygroundCommentOverlay({
 							top: `${draftComment.positionY}%`,
 						}}>
 						{/* Draft Pin Icon */}
-						<div className="bg-primary text-primary-fg ring-background size-6.5 relative -left-3 -top-3 flex items-center justify-center rounded-full font-mono text-xs font-bold shadow-md ring-2">
+						<div className="bg-primary text-primary-fg ring-background relative -top-3 -left-3 flex size-6.5 items-center justify-center rounded-full font-mono text-xs font-bold shadow-md ring-2">
 							<span>+</span>
 						</div>
 
 						{/* Draft Form Card */}
-						<div className="absolute left-0 top-5 -translate-x-1/4">
+						<div className="absolute top-5 left-0 -translate-x-1/4">
 							<CommentForm
 								elementTag={draftComment.elementTag}
 								elementSelector={draftComment.elementSelector}
+								elementContent={draftComment.elementContent}
 								sourceLocation={draftComment.sourceLocation}
 								onNavigateToCode={onNavigateToCode}
 								onSubmit={onSubmitDraft}

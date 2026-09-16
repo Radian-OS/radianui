@@ -39,14 +39,14 @@ export function AgentlabProblemSection() {
 			<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 				{/* Category Badge */}
 				<div className="flex justify-center">
-					<div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-white/80">
+					<div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3.5 py-1 text-xs font-semibold tracking-wider text-white/80 uppercase">
 						<span className="text-primary font-bold">—</span>
 						<span>THE PROBLEM</span>
 					</div>
 				</div>
 
 				{/* Section Heading (Rule 13: heading-2) */}
-				<h2 className="heading-2 mx-auto mt-6 max-w-4xl text-center font-serif text-3xl font-normal leading-[1.2] tracking-tight text-white sm:text-4xl md:text-5xl lg:text-6xl">
+				<h2 className="heading-2 mx-auto mt-6 max-w-4xl text-center font-serif text-3xl leading-[1.2] font-normal tracking-tight text-white sm:text-4xl md:text-5xl lg:text-6xl">
 					Most Organizations Operate with{" "}
 					<span className="text-white/50">
 						Broken Data Pipelines, Siloed Teams, and Outdated Workflows.

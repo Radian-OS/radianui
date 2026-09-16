@@ -51,11 +51,11 @@ export function AgentlabFaqSection() {
 				<div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
 					{/* Left Title Column */}
 					<div className="lg:col-span-5">
-						<div className="border-border/80 bg-fill2/70 text-fg-secondary inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-wider">
+						<div className="border-border/80 bg-fill2/70 text-fg-secondary inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-semibold tracking-wider uppercase">
 							<span className="text-primary font-bold">—</span>
 							<span>FAQS</span>
 						</div>
-						<h2 className="heading-2 text-fg mt-4 font-serif text-3xl font-normal leading-[1.2] tracking-tight sm:text-4xl md:text-5xl">
+						<h2 className="heading-2 text-fg mt-4 font-serif text-3xl leading-[1.2] font-normal tracking-tight sm:text-4xl md:text-5xl">
 							Have questions?
 							<br />
 							Find answers

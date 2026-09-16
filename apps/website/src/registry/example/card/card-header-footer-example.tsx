@@ -3,9 +3,9 @@ import { Card } from "@/registry/ui/card"
 
 export default function CardHeaderFooterPreview() {
 	return (
-		<Card className="max-w-95 w-full gap-0 p-0">
+		<Card className="w-full max-w-95 gap-0 p-0">
 			<div className="flex flex-col py-5">
-				<span className="border border-x-0 border-b border-t-0 px-5 pb-2.5 text-base font-semibold">
+				<span className="border border-x-0 border-t-0 border-b px-5 pb-2.5 text-base font-semibold">
 					Analytics Overview
 				</span>
 				<section className="text-fg-secondary px-5 pt-5 text-sm">
@@ -14,7 +14,7 @@ export default function CardHeaderFooterPreview() {
 					attention.
 				</section>
 			</div>
-			<section className="bg-fill1 flex items-center justify-center border border-x-0 border-b-0 border-t p-5">
+			<section className="bg-fill1 flex items-center justify-center border border-x-0 border-t border-b-0 p-5">
 				<Button color="neutral" variant="outline" className="w-full">
 					View Dashboard
 				</Button>

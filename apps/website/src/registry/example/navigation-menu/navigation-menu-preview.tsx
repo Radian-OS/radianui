@@ -310,7 +310,7 @@ function MenuColumn({ section }: { section: MenuSection }) {
 					<li key={title}>
 						<NavigationMenuLink
 							asChild
-							className="min-h-18 group flex flex-row items-start gap-3 rounded-lg p-3">
+							className="group flex min-h-18 flex-row items-start gap-3 rounded-lg p-3">
 							<Link href={href}>
 								<span className="bg-fill1 group-hover:bg-bg flex size-9 shrink-0 items-center justify-center rounded-lg transition-colors">
 									<Icon className="text-fg-secondary size-5" />
@@ -333,7 +333,7 @@ function MenuColumn({ section }: { section: MenuSection }) {
 function ProductPromo() {
 	return (
 		<div className="bg-fill1-alpha flex min-w-0 flex-col gap-3 px-4 py-5">
-			<div className="border-border bg-bg h-38.25 relative overflow-hidden rounded-xl border">
+			<div className="border-border bg-bg relative h-38.25 overflow-hidden rounded-xl border">
 				<Image
 					src="/og/static-og.png"
 					alt="Radian library preview"
@@ -362,7 +362,7 @@ export default function NavigationMenuPreview() {
 	return (
 		<div className="flex w-full min-w-0 items-center justify-center">
 			<NavigationMenu
-				className="w-full min-w-0 max-w-full flex-none md:w-[calc(100vw-2rem)] md:max-w-none"
+				className="w-full max-w-full min-w-0 flex-none md:w-[calc(100vw-2rem)] md:max-w-none"
 				viewportPortal
 				viewportPortalCentered
 				viewportClassName="rounded-2xl">

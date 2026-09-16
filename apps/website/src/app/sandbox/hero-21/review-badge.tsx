@@ -40,7 +40,7 @@ export function ReviewBadge() {
 				{reviewers.map((reviewer, index) => (
 					<div
 						key={reviewer.name}
-						className="border-background shadow-xs relative size-9 overflow-hidden rounded-full border-2 transition-transform duration-200 hover:z-10 hover:scale-110"
+						className="border-background relative size-9 overflow-hidden rounded-full border-2 shadow-xs transition-transform duration-200 hover:z-10 hover:scale-110"
 						style={{ zIndex: reviewers.length - index }}>
 						<Image
 							src={reviewer.imageSrc}

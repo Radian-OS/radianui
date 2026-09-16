@@ -80,7 +80,7 @@ function ImagePreview({ file, onRemove }: ImagePreviewProps) {
 				variant="strong"
 				color="neutral"
 				onClick={() => onRemove(file.id)}
-				className="size-6.5 absolute -right-2 -top-2 rounded-full"
+				className="absolute -top-2 -right-2 size-6.5 rounded-full"
 				aria-label="Remove image">
 				<X />
 			</IconButton>
@@ -122,7 +122,7 @@ export default function ImageUpload() {
 				onDrop={handleDrop}
 				data-dragging={isDragging || undefined}
 				data-files={files.length > 0 || undefined}
-				className="border-input data-[dragging=true]:bg-elevation-level1/50 has-[input:focus]:border-ring has-[input:focus]:ring-ring/50 not-data-[files]:justify-center relative flex min-h-52 flex-col items-center overflow-hidden rounded-xl border border-dashed p-4 transition-colors has-[input:focus]:ring-[3px]">
+				className="border-input data-[dragging=true]:bg-elevation-level1/50 has-[input:focus]:border-ring has-[input:focus]:ring-ring/50 relative flex min-h-52 flex-col items-center overflow-hidden rounded-xl border border-dashed p-4 transition-colors not-data-[files]:justify-center has-[input:focus]:ring-[3px]">
 				<input
 					{...getInputProps()}
 					className="sr-only"
@@ -154,7 +154,7 @@ export default function ImageUpload() {
 						</div>
 					</div>
 				) : (
-					<div className="md:w-100 flex flex-col items-center justify-center px-4 py-3 text-center">
+					<div className="flex flex-col items-center justify-center px-4 py-3 text-center md:w-100">
 						<div
 							className="bg-bg mb-2 flex size-11 shrink-0 items-center justify-center rounded-full border"
 							aria-hidden="true">

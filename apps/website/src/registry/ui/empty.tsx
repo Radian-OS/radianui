@@ -15,7 +15,7 @@ const emptyMediaVariants = cva(
 		variants: {
 			variant: {
 				default: "bg-transparent",
-				icon: "bg-primary-focus text-primary-text border p-3 border-soft flex shrink-0 items-center justify-center rounded-lg [&_svg:not([class*='size-'])]:size-6",
+				icon: "bg-primary-focus text-primary-text border-soft flex shrink-0 items-center justify-center rounded-lg border p-3 [&_svg:not([class*='size-'])]:size-6",
 			},
 		},
 		defaultVariants: {
@@ -29,7 +29,7 @@ function Empty({ className, ...props }: EmptyProps) {
 		<div
 			data-slot="empty"
 			className={cn(
-				"flex min-w-0 flex-1 flex-col items-center justify-center gap-6 text-balance rounded-lg p-5 text-center md:p-10",
+				"flex min-w-0 flex-1 flex-col items-center justify-center gap-6 rounded-lg p-5 text-center text-balance md:p-10",
 				className
 			)}
 			{...props}
@@ -93,7 +93,7 @@ function EmptyAction({ className, ...props }: EmptyActionProps) {
 		<div
 			data-slot="empty-action"
 			className={cn(
-				"flex w-full min-w-0 max-w-xs items-center justify-center gap-2.5 text-balance text-sm",
+				"flex w-full max-w-xs min-w-0 items-center justify-center gap-2.5 text-sm text-balance",
 				className
 			)}
 			{...props}

@@ -62,7 +62,7 @@ export default function Colors() {
 					variant="ghost"
 					color="neutral"
 					className="hover:bg-fill2 text-fg flex size-8 cursor-pointer items-center justify-center rounded-md">
-					<div className="size-4.5 bg-primary border-border rounded-full border" />
+					<div className="bg-primary border-border size-4.5 rounded-full border" />
 				</IconButton>
 			</DropdownMenuTrigger>
 			<DropdownMenuPortal>

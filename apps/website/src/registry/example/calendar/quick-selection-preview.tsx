@@ -56,7 +56,7 @@ function QuickSelectionCalendarPreview() {
 
 	return (
 		<div className="border-border bg-elevation-level1 flex flex-col-reverse overflow-hidden rounded-xl border sm:flex-row">
-			<div className="border-border sm:w-50 text-fg flex w-full flex-col border-t px-1 py-2 sm:border-r sm:border-t-0">
+			<div className="border-border text-fg flex w-full flex-col border-t px-1 py-2 sm:w-50 sm:border-t-0 sm:border-r">
 				<p className="text-fg-tertiary h-8 rounded-sm p-2 text-xs font-medium">
 					SELECT DATE
 				</p>
@@ -64,7 +64,7 @@ function QuickSelectionCalendarPreview() {
 					<span
 						key={value}
 						onClick={() => handleSelect(range, value)}
-						className="hover:bg-fill2-alpha group flex cursor-pointer select-none flex-nowrap items-center justify-between gap-2 rounded-sm p-2 text-sm font-normal leading-5">
+						className="hover:bg-fill2-alpha group flex cursor-pointer flex-nowrap items-center justify-between gap-2 rounded-sm p-2 text-sm leading-5 font-normal select-none">
 						{label}
 						{selectedShortcut === value ? (
 							<Check className="stroke-fg-tertiary" size={16} />

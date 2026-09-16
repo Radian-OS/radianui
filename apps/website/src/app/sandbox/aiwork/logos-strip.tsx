@@ -20,7 +20,7 @@ export function AiworkLogosStrip() {
 	return (
 		<section className="border-border/60 bg-fill1/30 border-y py-12">
 			<div className="mx-auto max-w-5xl px-4 text-center">
-				<p className="text-fg-tertiary text-xs font-semibold uppercase tracking-wider">
+				<p className="text-fg-tertiary text-xs font-semibold tracking-wider uppercase">
 					Trusted by 10,000+ founders &amp; business owners
 				</p>
 

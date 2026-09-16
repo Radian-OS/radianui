@@ -10,7 +10,7 @@ const data = [
 export default function VerticalTabs() {
 	return (
 		<Tabs defaultValue={data[0].value} className="w-105" orientation="vertical">
-			<TabsList className="w-34 h-27">
+			<TabsList className="h-27 w-34">
 				{data.map((item) => (
 					<TabsTrigger
 						className="justify-start"

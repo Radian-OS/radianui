@@ -54,7 +54,7 @@ export function VerseoProblemDifferenceSection() {
 					{/* Left Card: The Friction (Before) */}
 					<div className="border-destructive/20 bg-destructive/5 flex flex-col justify-between rounded-2xl border p-6 md:p-8">
 						<div>
-							<div className="text-destructive flex items-center gap-2 text-xs font-bold uppercase tracking-wider">
+							<div className="text-destructive flex items-center gap-2 text-xs font-bold tracking-wider uppercase">
 								<XCircle className="size-4" />
 								<span>The Content Friction</span>
 							</div>
@@ -89,7 +89,7 @@ export function VerseoProblemDifferenceSection() {
 					{/* Right Card: The Verseo Difference (After) */}
 					<div className="border-primary/30 bg-primary/5 flex flex-col justify-between rounded-2xl border p-6 shadow-sm md:p-8">
 						<div>
-							<div className="text-primary flex items-center gap-2 text-xs font-bold uppercase tracking-wider">
+							<div className="text-primary flex items-center gap-2 text-xs font-bold tracking-wider uppercase">
 								<Sparkles className="size-4" />
 								<span>With Verseo</span>
 							</div>
@@ -102,7 +102,7 @@ export function VerseoProblemDifferenceSection() {
 								{claritySolutions.map((solution) => (
 									<div
 										key={solution}
-										className="border-border/60 bg-background/80 shadow-xs flex items-center gap-3 rounded-xl border p-3.5 backdrop-blur-sm">
+										className="border-border/60 bg-background/80 flex items-center gap-3 rounded-xl border p-3.5 shadow-xs backdrop-blur-sm">
 										<div className="flex size-6 shrink-0 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
 											<CheckCircle2 className="size-4" />
 										</div>

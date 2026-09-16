@@ -13,7 +13,7 @@ export function LogoSection() {
 				<div className="flex flex-col items-center lg:flex-row lg:items-stretch">
 					{/* Left column: Text content */}
 					<div className="flex shrink-0 flex-col justify-center px-8 py-12 sm:px-12 lg:w-[42%] lg:px-16 lg:py-20">
-						<p className="text-fg-secondary mb-4 text-xs font-bold uppercase tracking-[0.14em] sm:text-sm">
+						<p className="text-fg-secondary mb-4 text-xs font-bold tracking-[0.14em] uppercase sm:text-sm">
 							Logo Section
 						</p>
 

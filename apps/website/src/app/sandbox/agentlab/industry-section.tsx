@@ -59,13 +59,13 @@ export function AgentlabIndustrySection() {
 		<section className="border-border/60 bg-bg border-t py-24 md:py-32">
 			<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 				{/* Category Badge */}
-				<div className="border-border/80 bg-fill2/70 text-fg-secondary inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-wider">
+				<div className="border-border/80 bg-fill2/70 text-fg-secondary inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-semibold tracking-wider uppercase">
 					<span className="text-primary font-bold">—</span>
 					<span>INDUSTRY</span>
 				</div>
 
 				{/* Section Heading (Rule 13: heading-2) */}
-				<h2 className="heading-2 text-fg mt-4 font-serif text-3xl font-normal leading-[1.2] tracking-tight sm:text-4xl md:text-5xl">
+				<h2 className="heading-2 text-fg mt-4 font-serif text-3xl leading-[1.2] font-normal tracking-tight sm:text-4xl md:text-5xl">
 					Solutions Across Every Sector
 				</h2>
 
@@ -78,7 +78,7 @@ export function AgentlabIndustrySection() {
 								idx >= 3 ? "sm:border-border/60 sm:border-t" : ""
 							}`}>
 							{/* Icon Square */}
-							<div className="bg-primary/10 shadow-xs relative mb-6 size-20 overflow-hidden rounded-xl transition-transform duration-300 group-hover:scale-105">
+							<div className="bg-primary/10 relative mb-6 size-20 overflow-hidden rounded-xl shadow-xs transition-transform duration-300 group-hover:scale-105">
 								<Image
 									src={item.imageUrl}
 									alt={item.title}

@@ -152,7 +152,7 @@ export function DemoCircles() {
 	return (
 		<>
 			<BackgroundCircles variant={currentVariant} />
-			<div className="absolute right-12 top-12">
+			<div className="absolute top-12 right-12">
 				<button
 					type="button"
 					className="z-10 rounded-md bg-slate-950 px-4 py-1 text-sm font-medium text-white dark:bg-white dark:text-slate-950"

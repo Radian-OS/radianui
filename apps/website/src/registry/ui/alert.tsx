@@ -18,7 +18,7 @@ export type AlertContentProps = React.HTMLAttributes<HTMLDivElement>
 export type AlertIconProps = React.HTMLAttributes<HTMLDivElement>
 export type AlertToolbarProps = React.HTMLAttributes<HTMLDivElement>
 
-const alertVariants = cva("flex items-stretch w-full cn-alert", {
+const alertVariants = cva("cn-alert flex w-full items-stretch", {
 	variants: {
 		color: {
 			neutral: "",

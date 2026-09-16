@@ -45,7 +45,7 @@ export type DrawerCloseProps = {
 }
 
 const drawerVariants = cva(
-	"fixed z-50 flex flex-col overflow-hidden bg-bg gap-5",
+	"bg-bg fixed z-50 flex flex-col gap-5 overflow-hidden",
 	{
 		variants: {
 			variant: {
@@ -54,8 +54,8 @@ const drawerVariants = cva(
 				rounded: "outline-border rounded-xl outline",
 			},
 			direction: {
-				top: "top-0 w-full h-fit left-0 max-h-full",
-				bottom: "bottom-0 left-0 w-full h-fit max-h-full",
+				top: "top-0 left-0 h-fit max-h-full w-full",
+				bottom: "bottom-0 left-0 h-fit max-h-full w-full",
 				right: "top-0 right-0 h-full w-fit max-w-full",
 				left: "top-0 left-0 h-full w-fit max-w-full",
 			},
@@ -95,22 +95,22 @@ const drawerVariants = cva(
 			{
 				handle: true,
 				direction: "top",
-				className: "pb-7.5 pl-5 pr-5 pt-5",
+				className: "pt-5 pr-5 pb-7.5 pl-5",
 			},
 			{
 				handle: true,
 				direction: "bottom",
-				className: "pt-7.5 pb-5 pl-5 pr-5",
+				className: "pt-7.5 pr-5 pb-5 pl-5",
 			},
 			{
 				handle: true,
 				direction: "left",
-				className: "pr-7.5 pb-5 pl-5 pt-5",
+				className: "pt-5 pr-7.5 pb-5 pl-5",
 			},
 			{
 				handle: true,
 				direction: "right",
-				className: "pl-7.5 pb-5 pr-5 pt-5",
+				className: "pt-5 pr-5 pb-5 pl-7.5",
 			},
 			// Rounded directional overrides
 			{
@@ -137,7 +137,7 @@ const drawerVariants = cva(
 	}
 )
 
-const backdropVariants = cva("z-50 fixed", {
+const backdropVariants = cva("fixed z-50", {
 	variants: {
 		backdrop: {
 			overlay: "inset-0 bg-black/50",
@@ -151,14 +151,14 @@ const backdropVariants = cva("z-50 fixed", {
 })
 
 const handleVariants = cva(
-	"absolute! max-h-20! max-w-1.5! z-50! rounded-full! ! bg-border",
+	"! bg-border absolute! z-50! max-h-20! max-w-1.5! rounded-full!",
 	{
 		variants: {
 			direction: {
-				left: "right-3! top-1/2! -translate-y-1/2! h-full! w-1.5!",
-				right: "left-3! top-1/2! -translate-y-1/2! h-full! w-1.5!",
-				top: "bottom-3! left-1/2! -translate-x-1/2! h-1.5! w-full! max-w-20!",
-				bottom: "top-3! left-1/2! -translate-x-1/2! h-1.5! w-full! max-w-20!",
+				left: "top-1/2! right-3! h-full! w-1.5! -translate-y-1/2!",
+				right: "top-1/2! left-3! h-full! w-1.5! -translate-y-1/2!",
+				top: "bottom-3! left-1/2! h-1.5! w-full! max-w-20! -translate-x-1/2!",
+				bottom: "top-3! left-1/2! h-1.5! w-full! max-w-20! -translate-x-1/2!",
 			},
 		},
 		defaultVariants: {

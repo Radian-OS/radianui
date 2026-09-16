@@ -141,7 +141,7 @@ const VirtualizedCommand = ({
 								key={filteredOptions[virtualOption.index].value}
 								disabled={isKeyboardNavActive}
 								className={cn(
-									"absolute left-0 top-0 w-full bg-transparent",
+									"absolute top-0 left-0 w-full bg-transparent",
 									focusedIndex === virtualOption.index &&
 										"bg-accent text-accent-foreground",
 									isKeyboardNavActive &&

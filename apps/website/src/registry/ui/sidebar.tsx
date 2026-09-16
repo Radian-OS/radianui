@@ -119,7 +119,7 @@ export type SidebarMenuSubButtonProps = React.ComponentProps<"a"> & {
 
 export const sidebarMenuButtonVariants = cva(
 	// Structural-only base classes
-	"peer/menu-button cursor-pointer flex w-full items-center gap-2 overflow-hidden p-2 text-left truncate text-sm outline-hidden transition-[width,height,padding] disabled:pointer-events-none disabled:opacity-50 group-has-data-[sidebar=menu-action]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2! [&>span:last-child]:truncate [&>span:last-child]:min-w-0 [&>a:last-child]:truncate [&>a:last-child]:min-w-0 [&>svg]:size-5 [&>svg]:shrink-0 cn-sidebar-menu-button",
+	"peer/menu-button cn-sidebar-menu-button flex w-full cursor-pointer items-center gap-2 truncate overflow-hidden p-2 text-left text-sm outline-hidden transition-[width,height,padding] group-has-data-[sidebar=menu-action]/menu-item:pr-8 group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2! disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&>a:last-child]:min-w-0 [&>a:last-child]:truncate [&>span:last-child]:min-w-0 [&>span:last-child]:truncate [&>svg]:size-5 [&>svg]:shrink-0",
 	{
 		variants: {
 			variant: {
@@ -128,12 +128,12 @@ export const sidebarMenuButtonVariants = cva(
 				neutral: "cn-sidebar-menu-button-variant-neutral",
 			},
 			size: {
-				"28": "h-7 text-xs cn-sidebar-menu-button-size-28",
-				"32": "h-8 text-sm group-data-[state=collapsed]:p-1.5! cn-sidebar-menu-button-size-32",
-				"36": "h-9 text-sm [&>svg]:size-6 group-data-[collapsible=icon]:size-9! group-data-[collapsible=icon]:p-1.5! cn-sidebar-menu-button-size-36",
-				"48": "h-12 text-sm group-data-[collapsible=icon]:p-0! group-data-[collapsible=icon]:[&>svg]:size-6! cn-sidebar-menu-button-size-48",
-				"52": "h-13 text-sm group-data-[collapsible=icon]:p-1.5! cn-sidebar-menu-button-size-52",
-				"56": "h-14 p-4 text-sm [&>svg]:size-6! group-data-[collapsible=icon]:w-full! group-data-[collapsible=icon]:p-4! group-data-[collapsible=icon]:h-14! cn-sidebar-menu-button-size-56",
+				"28": "cn-sidebar-menu-button-size-28 h-7 text-xs",
+				"32": "cn-sidebar-menu-button-size-32 h-8 text-sm group-data-[state=collapsed]:p-1.5!",
+				"36": "cn-sidebar-menu-button-size-36 h-9 text-sm group-data-[collapsible=icon]:size-9! group-data-[collapsible=icon]:p-1.5! [&>svg]:size-6",
+				"48": "cn-sidebar-menu-button-size-48 h-12 text-sm group-data-[collapsible=icon]:p-0! group-data-[collapsible=icon]:[&>svg]:size-6!",
+				"52": "cn-sidebar-menu-button-size-52 h-13 text-sm group-data-[collapsible=icon]:p-1.5!",
+				"56": "cn-sidebar-menu-button-size-56 h-14 p-4 text-sm group-data-[collapsible=icon]:h-14! group-data-[collapsible=icon]:w-full! group-data-[collapsible=icon]:p-4! [&>svg]:size-6!",
 			},
 		},
 		defaultVariants: {
@@ -468,7 +468,7 @@ function Sidebar({
 				style={sidebarThemeVars[theme]}
 				className={cn(
 					// Structural
-					"w-(--sidebar-width) sticky top-0 flex h-svh flex-col",
+					"sticky top-0 flex h-svh w-(--sidebar-width) flex-col",
 					// Style hook
 					"cn-sidebar bg-sidebar text-sidebar-fg",
 					theme === "inverse" && "dark",
@@ -493,7 +493,7 @@ function Sidebar({
 					data-mobile="true"
 					className={cn(
 						// Structural
-						"w-(--sidebar-width) group p-0",
+						"group w-(--sidebar-width) p-0",
 						// Style hook
 						"cn-sidebar bg-sidebar text-sidebar-fg",
 						theme === "inverse" && "dark",
@@ -533,7 +533,7 @@ function Sidebar({
 				data-slot="sidebar-gap"
 				className={cn(
 					// Structural
-					"w-(--sidebar-width) relative bg-transparent",
+					"relative w-(--sidebar-width) bg-transparent",
 					!isResizing && "transition-[width] duration-200 ease-linear",
 					"group-data-[collapsible=offcanvas]:w-0",
 					"group-data-[side=right]:rotate-180",
@@ -548,7 +548,7 @@ function Sidebar({
 				data-slot="sidebar-container"
 				className={cn(
 					// Structural
-					"w-(--sidebar-width) fixed inset-y-0 z-10 hidden h-svh md:flex",
+					"fixed inset-y-0 z-10 hidden h-svh w-(--sidebar-width) md:flex",
 					!isResizing &&
 						"transition-[left,right,width] duration-200 ease-linear",
 					side === "left"
@@ -640,7 +640,7 @@ function SidebarRail({ className, ...props }: SidebarRailProps) {
 			title="Toggle Sidebar"
 			className={cn(
 				// Structural
-				"absolute inset-y-0 z-20 hidden w-4 -translate-x-1/2 transition-all ease-linear after:absolute after:inset-y-0 after:left-1/2 after:w-[2px] group-data-[side=left]:-right-4 group-data-[side=right]:left-0 sm:flex",
+				"absolute inset-y-0 z-20 hidden w-4 -translate-x-1/2 transition-all ease-linear group-data-[side=left]:-right-4 group-data-[side=right]:left-0 after:absolute after:inset-y-0 after:left-1/2 after:w-[2px] sm:flex",
 				"in-data-[side=left]:cursor-w-resize in-data-[side=right]:cursor-e-resize",
 				"[[data-side=left][data-state=collapsed]_&]:cursor-e-resize [[data-side=right][data-state=collapsed]_&]:cursor-w-resize",
 				"group-data-[collapsible=offcanvas]:translate-x-0 group-data-[collapsible=offcanvas]:after:left-full",
@@ -662,7 +662,7 @@ function SidebarInset({ className, ...props }: SidebarInsetProps) {
 			className={cn(
 				// Structural
 				"bg-bg relative flex w-full flex-1 flex-col",
-				"md:peer-data-[variant=inset]:not-peer-data-[collapsible=icon]:peer-data-[state=collapsed]:ml-2 md:peer-data-[variant=inset]:m-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-xl",
+				"md:peer-data-[variant=inset]:m-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:not-peer-data-[collapsible=icon]:peer-data-[state=collapsed]:ml-2",
 				// Style hook
 				"cn-sidebar-inset",
 				className
@@ -748,7 +748,7 @@ function SidebarContent({ className, ...props }: SidebarContentProps) {
 			data-sidebar="content"
 			className={cn(
 				// Structural
-				"group-data-[collapsible=icon]:no-scrollbar flex min-h-0 flex-1 flex-col overflow-auto group-data-[collapsible=icon]:overflow-y-auto group-data-[collapsible=icon]:overflow-x-hidden",
+				"group-data-[collapsible=icon]:no-scrollbar flex min-h-0 flex-1 flex-col overflow-auto group-data-[collapsible=icon]:overflow-x-hidden group-data-[collapsible=icon]:overflow-y-auto",
 				// Style hook
 				"cn-sidebar-content",
 				className
@@ -787,7 +787,7 @@ function SidebarGroupLabel({
 			data-sidebar="group-label"
 			className={cn(
 				// Structural
-				"ring-sidebar-ring outline-hidden flex h-8 shrink-0 items-center rounded-md px-2 text-xs font-medium transition-[margin,opacity] duration-200 ease-linear focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0",
+				"ring-sidebar-ring flex h-8 shrink-0 items-center rounded-md px-2 text-xs font-medium outline-hidden transition-[margin,opacity] duration-200 ease-linear focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0",
 				"group-data-[collapsible=icon]:pointer-events-none group-data-[collapsible=icon]:-mt-8 group-data-[collapsible=icon]:opacity-0",
 				// Style hook
 				"cn-sidebar-group-label",
@@ -810,7 +810,7 @@ function SidebarGroupAction({
 			data-sidebar="group-action"
 			className={cn(
 				// Structural
-				"ring-sidebar-ring outline-hidden absolute right-2 top-3.5 flex aspect-square w-5 items-center justify-center rounded-md p-0 transition-transform focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0",
+				"ring-sidebar-ring absolute top-3.5 right-2 flex aspect-square w-5 items-center justify-center rounded-md p-0 outline-hidden transition-transform focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0",
 				"after:absolute after:-inset-2 md:after:hidden",
 				"group-data-[collapsible=icon]:hidden",
 				// Style hook
@@ -931,7 +931,7 @@ function SidebarMenuAction({
 			data-sidebar="menu-action"
 			className={cn(
 				// Structural
-				"ring-sidebar-ring outline-hidden absolute right-1 top-1.5 flex aspect-square w-5 items-center justify-center rounded-md p-0 transition-transform focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0",
+				"ring-sidebar-ring absolute top-1.5 right-1 flex aspect-square w-5 items-center justify-center rounded-md p-0 outline-hidden transition-transform focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0",
 				"after:absolute after:-inset-2 md:after:hidden",
 				"peer-data-[size=28]/menu-button:top-1",
 				"peer-data-[size=32]/menu-button:top-1.5",
@@ -956,7 +956,7 @@ function SidebarMenuBadge({ className, ...props }: SidebarMenuBadgeProps) {
 			data-sidebar="menu-badge"
 			className={cn(
 				// Structural
-				"pointer-events-none absolute right-2 select-none rounded-md tabular-nums",
+				"pointer-events-none absolute right-2 rounded-md tabular-nums select-none",
 				"peer-data-[size=28]/menu-button:top-1",
 				"peer-data-[size=32]/menu-button:top-1.5",
 				"peer-data-[size=48]/menu-button:top-2.5",
@@ -1000,7 +1000,7 @@ function SidebarMenuSkeleton({
 				/>
 			)}
 			<Skeleton
-				className="max-w-(--skeleton-width) h-4 flex-1"
+				className="h-4 max-w-(--skeleton-width) flex-1"
 				data-sidebar="menu-skeleton-text"
 				style={{ "--skeleton-width": width } as React.CSSProperties}
 			/>
@@ -1058,7 +1058,7 @@ function SidebarMenuSubButton({
 			data-active={isActive}
 			className={cn(
 				// Structural
-				"ring-sidebar-ring outline-hidden flex min-w-0 -translate-x-px items-center gap-2 overflow-hidden rounded-md px-2 focus-visible:ring-2 disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&>a:last-child]:min-w-0 [&>a:last-child]:truncate [&>span:last-child]:min-w-0 [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0",
+				"ring-sidebar-ring flex min-w-0 -translate-x-px items-center gap-2 overflow-hidden rounded-md px-2 outline-hidden focus-visible:ring-2 disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&>a:last-child]:min-w-0 [&>a:last-child]:truncate [&>span:last-child]:min-w-0 [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0",
 				size === "28" && "h-7 text-xs",
 				size === "32" && "h-8 text-sm",
 				"group-data-[collapsible=icon]:hidden",

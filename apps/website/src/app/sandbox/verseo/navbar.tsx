@@ -27,7 +27,7 @@ export function VerseoNavbar() {
 				{/* Verseo Brand Logo */}
 				<Link
 					href="/sandbox/verseo"
-					className="text-foreground flex items-center gap-2 text-base font-black uppercase tracking-wider transition-opacity hover:opacity-90">
+					className="text-foreground flex items-center gap-2 text-base font-black tracking-wider uppercase transition-opacity hover:opacity-90">
 					<div className="bg-foreground text-background flex size-7 items-center justify-center rounded-lg">
 						<Sparkles className="fill-background text-background size-4" />
 					</div>
@@ -76,7 +76,7 @@ export function VerseoNavbar() {
 
 			{/* Mobile Dropdown Menu */}
 			{mobileMenuOpen && (
-				<div className="border-border/60 bg-background/95 border-b px-4 pb-6 pt-2 backdrop-blur-xl md:hidden">
+				<div className="border-border/60 bg-background/95 border-b px-4 pt-2 pb-6 backdrop-blur-xl md:hidden">
 					<nav className="flex flex-col space-y-3">
 						{navItems.map((item) => (
 							<Link

@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState } from "react"
-import { ArrowRight, Code, Trash2, X } from "lucide-react"
+import { ArrowRight, Check, Code, Copy, Trash2, X } from "lucide-react"
 import { Button } from "@/styles/default/ui/button"
 import type { SandboxComment } from "./types"
 
@@ -34,6 +34,7 @@ export function CommentPin({
 }: CommentPinProps) {
 	const [isOpen, setIsOpen] = useState(false)
 	const [isDeleting, setIsDeleting] = useState(false)
+	const [copied, setCopied] = useState(false)
 
 	const handleDelete = async (e: React.MouseEvent) => {
 		e.stopPropagation()
@@ -61,7 +62,7 @@ export function CommentPin({
 					setIsOpen(!isOpen)
 				}}
 				aria-label={`View comment #${index + 1} from ${comment.authorName}`}
-				className="bg-primary text-primary-fg ring-background size-6.5 group relative flex items-center justify-center rounded-full font-mono text-xs font-bold shadow-md ring-2 transition-transform duration-150 hover:scale-110 active:scale-95">
+				className="bg-primary text-primary-fg ring-background group relative flex size-6.5 items-center justify-center rounded-full font-mono text-xs font-bold shadow-md ring-2 transition-transform duration-150 hover:scale-110 active:scale-95">
 				<span>{index + 1}</span>
 				{/* Small pointer tail */}
 				<span className="bg-primary absolute -bottom-1 left-1/2 size-1.5 -translate-x-1/2 rotate-45" />
@@ -71,7 +72,7 @@ export function CommentPin({
 			{isOpen && (
 				<div
 					onClick={(e) => e.stopPropagation()}
-					className="border-border bg-bg animate-in fade-in zoom-in-95 absolute left-0 top-8 z-50 w-72 -translate-x-1/4 rounded-xl border p-3 shadow-xl duration-150">
+					className="border-border bg-bg animate-in fade-in zoom-in-95 absolute top-8 left-0 z-50 w-72 -translate-x-1/4 rounded-xl border p-3 shadow-xl duration-150">
 					{/* Header: Author + Time + Actions */}
 					<div className="flex items-center justify-between gap-2 pb-2">
 						<div className="flex min-w-0 items-center gap-2">
@@ -114,16 +115,57 @@ export function CommentPin({
 
 					{/* Element context (if present) */}
 					{comment.elementTag && (
-						<div className="mb-1.5 flex items-center gap-1 overflow-hidden">
-							<span className="bg-fill3 text-primary shrink-0 rounded px-1.5 py-0.5 font-mono text-[10px] font-semibold">
-								&lt;{comment.elementTag}&gt;
-							</span>
-							{comment.elementSelector && (
-								<span
-									className="text-fg-tertiary truncate font-mono text-[10px]"
-									title={comment.elementSelector}>
-									{comment.elementSelector}
+						<div className="border-border/70 bg-fill2/40 mb-2 rounded-lg border p-2">
+							<div className="mb-1 flex items-center justify-between gap-1.5">
+								<span className="bg-fill3 text-primary shrink-0 rounded px-1.5 py-0.5 font-mono text-[10px] font-semibold">
+									&lt;{comment.elementTag}&gt;
 								</span>
+								{comment.elementSelector && (
+									<button
+										type="button"
+										onClick={() => {
+											const clean = comment.elementSelector.startsWith(".")
+												? comment.elementSelector
+														.split(".")
+														.filter(Boolean)
+														.join(" ")
+												: comment.elementSelector
+											navigator.clipboard.writeText(clean)
+											setCopied(true)
+											setTimeout(() => setCopied(false), 1500)
+										}}
+										title="Copy class names"
+										className="text-fg-tertiary hover:text-fg hover:bg-fill3 flex cursor-pointer items-center gap-1 rounded px-1 py-0.5 text-[10px] font-medium transition-colors">
+										{copied ? (
+											<>
+												<Check className="size-2.5 text-emerald-500" />
+												<span className="font-semibold text-emerald-500">
+													Copied
+												</span>
+											</>
+										) : (
+											<>
+												<Copy className="size-2.5" />
+												<span>Copy</span>
+											</>
+										)}
+									</button>
+								)}
+							</div>
+							{comment.elementSelector && (
+								<div className="text-fg max-h-16 overflow-y-auto font-mono text-[10px] leading-relaxed break-words select-text">
+									{comment.elementSelector.startsWith(".")
+										? comment.elementSelector
+												.split(".")
+												.filter(Boolean)
+												.join(" ")
+										: comment.elementSelector}
+								</div>
+							)}
+							{comment.elementContent && (
+								<div className="border-border/40 text-fg-secondary mt-1.5 border-t pt-1 text-[11px] leading-relaxed break-words italic select-text">
+									&ldquo;{comment.elementContent}&rdquo;
+								</div>
 							)}
 						</div>
 					)}

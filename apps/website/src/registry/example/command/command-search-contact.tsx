@@ -131,7 +131,7 @@ export default function CommandSearchContacts() {
 			</Button>
 			<CommandDialog open={open} onOpenChange={setOpen}>
 				<Command
-					className="**:data-[slot=command-input-wrapper]:border-none **:data-[slot=command-input-wrapper]:p-0 border-none"
+					className="border-none **:data-[slot=command-input-wrapper]:border-none **:data-[slot=command-input-wrapper]:p-0"
 					shouldFilter={false}>
 					{/* Input row */}
 					<div className="flex items-center justify-between gap-2 px-4">
@@ -160,7 +160,7 @@ export default function CommandSearchContacts() {
 									variant={isActive ? "outline" : "soft"}
 									color={isActive ? "primary" : "neutral"}
 									size="24"
-									className="cursor-pointer select-none transition-all">
+									className="cursor-pointer transition-all select-none">
 									{dept}
 									{isActive && <X className="ml-0.5 size-3 opacity-70" />}
 								</Badge>
@@ -247,7 +247,7 @@ function ContactItem({ contact, query }: { contact: Contact; query: string }) {
 				<AvatarFallback>{contact.name.charAt(0)}</AvatarFallback>
 			</Avatar>
 			<div className="flex min-w-0 flex-col">
-				<span className="text-fg text-sm font-medium leading-tight">
+				<span className="text-fg text-sm leading-tight font-medium">
 					{query ? highlightMatch(contact.name, query) : contact.name}
 				</span>
 				<span className="text-fg-secondary truncate text-xs">

@@ -50,7 +50,7 @@ export function CrisplyProfileSection() {
 
 			{/* Avatar & Photo Action Buttons */}
 			<div className="flex flex-wrap items-center gap-6">
-				<div className="border-border/80 shadow-xs relative size-20 overflow-hidden rounded-full border-2">
+				<div className="border-border/80 relative size-20 overflow-hidden rounded-full border-2 shadow-xs">
 					<Image
 						src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&auto=format&fit=crop&q=80"
 						alt="Brian Frederin"

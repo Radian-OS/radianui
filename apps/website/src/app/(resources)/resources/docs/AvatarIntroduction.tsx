@@ -5,7 +5,7 @@ const AvatarIntroduction = () => {
 	return (
 		<section
 			aria-labelledby="avatar-introduction-heading"
-			className="lg:w-200 mx-auto flex w-full flex-col gap-8 md:gap-16">
+			className="mx-auto flex w-full flex-col gap-8 md:gap-16 lg:w-200">
 			<div className="flex flex-col gap-6">
 				<div className="flex flex-col gap-4">
 					<p className="text-primary-text text-sm font-medium">Introduction</p>

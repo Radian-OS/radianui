@@ -45,7 +45,7 @@ export type DrawerCloseProps = {
 }
 
 const drawerVariants = cva(
-	"fixed z-50 flex flex-col overflow-hidden cn-drawer",
+	"cn-drawer fixed z-50 flex flex-col overflow-hidden",
 	{
 		variants: {
 			variant: {
@@ -54,8 +54,8 @@ const drawerVariants = cva(
 				rounded: "cn-drawer-variant-rounded",
 			},
 			direction: {
-				top: "top-0 w-full h-fit left-0 max-h-full",
-				bottom: "bottom-0 left-0 w-full h-fit max-h-full",
+				top: "top-0 left-0 h-fit max-h-full w-full",
+				bottom: "bottom-0 left-0 h-fit max-h-full w-full",
 				right: "top-0 right-0 h-full w-fit max-w-full",
 				left: "top-0 left-0 h-full w-fit max-w-full",
 			},
@@ -137,12 +137,12 @@ const drawerVariants = cva(
 	}
 )
 
-const backdropVariants = cva("z-50 fixed", {
+const backdropVariants = cva("fixed z-50", {
 	variants: {
 		backdrop: {
-			overlay: "inset-0 cn-drawer-backdrop-overlay",
-			blur: "inset-0 cn-drawer-backdrop-blur",
-			transparent: "inset-0 cn-drawer-backdrop-transparent",
+			overlay: "cn-drawer-backdrop-overlay inset-0",
+			blur: "cn-drawer-backdrop-blur inset-0",
+			transparent: "cn-drawer-backdrop-transparent inset-0",
 		},
 	},
 	defaultVariants: {
@@ -151,14 +151,14 @@ const backdropVariants = cva("z-50 fixed", {
 })
 
 const handleVariants = cva(
-	"absolute! max-h-20! max-w-1.5! z-50! rounded-full! cn-drawer-handle!",
+	"cn-drawer-handle! absolute! z-50! max-h-20! max-w-1.5! rounded-full!",
 	{
 		variants: {
 			direction: {
-				left: "right-3! top-1/2! -translate-y-1/2! h-full! w-1.5!",
-				right: "left-3! top-1/2! -translate-y-1/2! h-full! w-1.5!",
-				top: "bottom-3! left-1/2! -translate-x-1/2! h-1.5! w-full! max-w-20!",
-				bottom: "top-3! left-1/2! -translate-x-1/2! h-1.5! w-full! max-w-20!",
+				left: "top-1/2! right-3! h-full! w-1.5! -translate-y-1/2!",
+				right: "top-1/2! left-3! h-full! w-1.5! -translate-y-1/2!",
+				top: "bottom-3! left-1/2! h-1.5! w-full! max-w-20! -translate-x-1/2!",
+				bottom: "top-3! left-1/2! h-1.5! w-full! max-w-20! -translate-x-1/2!",
 			},
 		},
 		defaultVariants: {

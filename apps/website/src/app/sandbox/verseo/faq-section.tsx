@@ -99,7 +99,7 @@ export function VerseoFaqSection() {
 								</button>
 
 								{isOpen && (
-									<div className="border-border/40 border-t px-5 pb-6 pt-3 sm:px-6">
+									<div className="border-border/40 border-t px-5 pt-3 pb-6 sm:px-6">
 										<p className="text-fg-secondary text-xs leading-relaxed sm:text-sm">
 											{faq.answer}
 										</p>

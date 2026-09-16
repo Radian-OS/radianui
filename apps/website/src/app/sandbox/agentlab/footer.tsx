@@ -93,7 +93,7 @@ export function AgentlabFooter() {
 					<div className="grid grid-cols-2 gap-8 sm:grid-cols-4 lg:col-span-8">
 						{footerColumns.map((col) => (
 							<div key={col.title}>
-								<p className="text-xs font-bold uppercase tracking-wider text-white">
+								<p className="text-xs font-bold tracking-wider text-white uppercase">
 									{col.title}
 								</p>
 								<ul className="mt-4 space-y-2.5">

@@ -70,8 +70,8 @@ export default function Page() {
 			/>
 			<div className="min-h-screen w-full overflow-x-hidden">
 				<Background topPosition="top-[700px]">
-					<header className="md:pt-30 pt-15 flex flex-col items-center justify-center gap-12">
-						<div className="max-w-250 flex flex-col items-center justify-center gap-6">
+					<header className="flex flex-col items-center justify-center gap-12 pt-15 md:pt-30">
+						<div className="flex max-w-250 flex-col items-center justify-center gap-6">
 							<Link
 								href="/docs/getting-started/changelog"
 								className="relative h-[32px] rounded-full">
@@ -104,7 +104,7 @@ export default function Page() {
 									</Avatar>
 								))}
 							</div>
-							<div className="md:w-163 flex w-full flex-col items-center justify-center gap-4">
+							<div className="flex w-full flex-col items-center justify-center gap-4 md:w-163">
 								<h1 className="heading-3 text-center">
 									Beautiful, Free UI Avatars Production-Ready for Figma & React
 									👩🏼‍💼
@@ -134,7 +134,7 @@ function VideoPreviewWithBeams() {
 		<section
 			aria-labelledby="avatar-gallery-heading"
 			className="bg-bg border-soft -mx-4 mt-[100px] flex w-[calc(100%+2rem)] justify-center border-t md:-mx-5 md:w-[calc(100%+2.5rem)]">
-			<div className="max-w-368 relative w-full px-4 md:px-5">
+			<div className="relative w-full max-w-368 px-4 md:px-5">
 				<h2 id="avatar-gallery-heading" className="sr-only">
 					Browse 216 free UI avatar illustrations
 				</h2>
@@ -143,23 +143,23 @@ function VideoPreviewWithBeams() {
 				</div>
 
 				<HeroBeamPath
-					className="left-4 top-[-276px] h-[276px] w-[438px] md:left-5"
+					className="top-[-276px] left-4 h-[276px] w-[438px] md:left-5"
 					path={upperHeroBeamPath}
 					viewBox="0 0 438 276"
 				/>
 				<HeroBeamPath
-					className="left-4 top-[-93px] h-[93px] w-[214px] md:left-5"
+					className="top-[-93px] left-4 h-[93px] w-[214px] md:left-5"
 					path={lowerHeroBeamPath}
 					viewBox="0 0 214 93"
 					beamClassName="animate-[var(--animate-beam-flow2)] opacity-0"
 				/>
 				<HeroBeamPath
-					className="right-4 top-[-276px] h-[276px] w-[438px] scale-x-[-1] md:right-5"
+					className="top-[-276px] right-4 h-[276px] w-[438px] scale-x-[-1] md:right-5"
 					path={upperHeroBeamPath}
 					viewBox="0 0 438 276"
 				/>
 				<HeroBeamPath
-					className="right-4 top-[-93px] h-[93px] w-[214px] scale-x-[-1] md:right-5"
+					className="top-[-93px] right-4 h-[93px] w-[214px] scale-x-[-1] md:right-5"
 					path={lowerHeroBeamPath}
 					viewBox="0 0 214 93"
 					beamClassName="animate-[var(--animate-beam-flow2)] opacity-0"

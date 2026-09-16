@@ -41,7 +41,7 @@ export function VerseoHowItWorksSection() {
 			<div className="mx-auto max-w-5xl px-4">
 				{/* Section Header */}
 				<div className="flex flex-col items-center text-center">
-					<div className="border-border/70 bg-background text-fg-secondary shadow-xs mb-4 inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-semibold">
+					<div className="border-border/70 bg-background text-fg-secondary mb-4 inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-semibold shadow-xs">
 						<span>[</span>
 						<span className="text-foreground">how it works</span>
 						<span>]</span>

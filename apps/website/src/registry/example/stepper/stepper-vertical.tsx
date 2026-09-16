@@ -35,7 +35,7 @@ export default function StepperVertical() {
 					<StepperItem
 						key={index}
 						step={index + 1}
-						className="not-last:flex-1 relative items-start">
+						className="relative items-start not-last:flex-1">
 						<StepperTrigger className="items-start gap-2 pb-12 last:pb-0">
 							<StepperIndicator className="data-[state=completed]:bg-success data-[state=completed]:text-white">
 								{index + 1}
@@ -46,7 +46,7 @@ export default function StepperVertical() {
 							</div>
 						</StepperTrigger>
 						{index < steps.length - 1 && (
-							<StepperSeparator className="group-data-[state=completed]/step:bg-success absolute inset-y-0 left-3 top-7 -order-1 m-0 -translate-x-1/2 group-data-[orientation=vertical]/stepper-nav:h-[calc(100%-2rem)]" />
+							<StepperSeparator className="group-data-[state=completed]/step:bg-success absolute inset-y-0 top-7 left-3 -order-1 m-0 -translate-x-1/2 group-data-[orientation=vertical]/stepper-nav:h-[calc(100%-2rem)]" />
 						)}
 					</StepperItem>
 				))}

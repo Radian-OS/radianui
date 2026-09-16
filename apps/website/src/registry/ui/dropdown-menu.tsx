@@ -150,10 +150,10 @@ function DropdownMenuItem({
 			data-slot="dropdown-menu-item"
 			className={cn(
 				"cn-dropdown-item",
-				"relative flex w-full cursor-pointer select-none items-center",
+				"relative flex w-full cursor-pointer items-center select-none",
 				"outline-hidden transition-colors",
 				"focus:bg-fill1-alpha",
-				"data-disabled:pointer-events-none data-disabled:text-fg-disabled data-disabled:[&_*]:text-fg-disabled",
+				"data-disabled:text-fg-disabled data-disabled:[&_*]:text-fg-disabled data-disabled:pointer-events-none",
 				"[&_svg]:text-fg-secondary [&_svg]:pointer-events-none [&_svg]:shrink-0",
 				inset && "cn-dropdown-item-inset",
 				className
@@ -175,7 +175,7 @@ function DropdownMenuCheckboxItem({
 			data-slot="dropdown-menu-checkbox-item"
 			className={cn(
 				"cn-dropdown-checkbox-item",
-				"flex w-full cursor-pointer select-none items-center",
+				"flex w-full cursor-pointer items-center select-none",
 				"outline-hidden",
 				"focus:bg-fill2-alpha",
 				"data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
@@ -229,12 +229,12 @@ function DropdownMenuRadioItem({
 			data-slot="dropdown-menu-radio-item"
 			className={cn(
 				"cn-dropdown-radio-item",
-				"flex w-full cursor-pointer select-none items-center",
+				"flex w-full cursor-pointer items-center select-none",
 				"outline-hidden",
 				"focus:bg-fill2-alpha",
 				"data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
 				"[&_svg]:text-fg-secondary [&_svg]:pointer-events-none [&_svg]:shrink-0",
-				indicatorPosition === "left" ? "pe-2 ps-8" : "pe-8 ps-2",
+				indicatorPosition === "left" ? "ps-8 pe-2" : "ps-2 pe-8",
 				className
 			)}
 			{...props}>
@@ -303,7 +303,7 @@ function DropdownMenuSubTrigger({
 			data-slot="dropdown-menu-sub-trigger"
 			className={cn(
 				"cn-dropdown-sub-trigger",
-				"flex cursor-pointer select-none items-center",
+				"flex cursor-pointer items-center select-none",
 				"outline-hidden transition-colors",
 				"data-[state=open]:bg-fill1-alpha focus:bg-fill2-alpha",
 				"data-disabled:pointer-events-none data-disabled:opacity-50",

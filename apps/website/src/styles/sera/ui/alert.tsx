@@ -19,7 +19,7 @@ export type AlertIconProps = React.HTMLAttributes<HTMLDivElement>
 export type AlertToolbarProps = React.HTMLAttributes<HTMLDivElement>
 
 const alertVariants = cva(
-	"flex items-stretch w-full gap-4 rounded-none p-4 [&>[data-slot=alert-title]]:font-medium [&>[data-slot=alert-title]]:text-sm [&>[data-slot=alert-title]]:mt-0.75 [&>[data-slot=alert-description]]:text-sm [&>[data-slot=alert-icon]>svg]:size-5 [&_[data-slot=alert-icon]]:mt-0.75 [&_[data-slot=alert-close]]:mt-0.75",
+	"flex w-full items-stretch gap-4 rounded-none p-4 [&_[data-slot=alert-close]]:mt-0.75 [&_[data-slot=alert-icon]]:mt-0.75 [&>[data-slot=alert-description]]:text-sm [&>[data-slot=alert-icon]>svg]:size-5 [&>[data-slot=alert-title]]:mt-0.75 [&>[data-slot=alert-title]]:text-sm [&>[data-slot=alert-title]]:font-medium",
 	{
 		variants: {
 			color: {
@@ -34,9 +34,9 @@ const alertVariants = cva(
 				strong: "",
 				soft: "[&_[data-slot=alert-title]]:text-fg [&_[data-slot=alert-description]]:text-fg",
 				"soft-outline":
-					"ring-1 ring-inset [&_[data-slot=alert-title]]:text-fg [&_[data-slot=alert-description]]:text-fg",
+					"[&_[data-slot=alert-title]]:text-fg [&_[data-slot=alert-description]]:text-fg ring-1 ring-inset",
 				outline:
-					"border-soft border [&_[data-slot=alert-close]]:text-fg-tertiary [&_[data-slot=alert-title]]:text-fg [&_[data-slot=alert-description]]:text-fg",
+					"border-soft [&_[data-slot=alert-close]]:text-fg-tertiary [&_[data-slot=alert-title]]:text-fg [&_[data-slot=alert-description]]:text-fg border",
 			},
 		},
 		compoundVariants: [

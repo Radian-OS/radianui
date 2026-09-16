@@ -135,7 +135,7 @@ export function AiworkPricingSection() {
 								/>
 
 								<div
-									className={`mb-3 text-[11px] font-bold uppercase tracking-wider ${
+									className={`mb-3 text-[11px] font-bold tracking-wider uppercase ${
 										plan.isPopular ? "text-white/90" : "text-fg-tertiary"
 									}`}>
 									Sandbox

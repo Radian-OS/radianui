@@ -52,11 +52,11 @@ const CreditCardPreview = () => {
 					<div className="flex">
 						<Input
 							placeholder="MM / YY"
-							className={`rounded-r-none rounded-t-none border-r-0 focus-within:z-30 focus-within:border-r`}
+							className={`rounded-t-none rounded-r-none border-r-0 focus-within:z-30 focus-within:border-r`}
 						/>
 						<Input
 							placeholder="CVC"
-							className="rounded-l-none rounded-t-none"
+							className="rounded-t-none rounded-l-none"
 						/>
 					</div>
 				</div>

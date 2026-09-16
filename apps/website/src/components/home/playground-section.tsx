@@ -85,8 +85,8 @@ export default function PlaygroundSection({
 		<section
 			aria-labelledby="customize-section-title"
 			className="bg-bg relative z-30 mx-auto w-full max-w-[1440px]">
-			<div className="max-w-360 border-soft mx-auto flex w-full flex-col overflow-hidden border border-y-0">
-				<div className="lg:px-15 lg:py-30 flex flex-col gap-4 px-5 py-16 sm:gap-6 sm:px-10">
+			<div className="border-soft mx-auto flex w-full max-w-360 flex-col overflow-hidden border border-y-0">
+				<div className="flex flex-col gap-4 px-5 py-16 sm:gap-6 sm:px-10 lg:px-15 lg:py-30">
 					<Badge size="28" color="primary" variant="soft">
 						<BadgeDot className="bg-primary" />
 						Customize
@@ -94,10 +94,10 @@ export default function PlaygroundSection({
 					<h2
 						id="customize-section-title"
 						className="heading-3 font-heading w-full lg:w-[900px]">
-						<span className="heading-3 text-fg text-[24px] font-medium leading-[36px] md:text-[36px] md:leading-[44px] lg:text-[40px] lg:leading-[52px]">
+						<span className="heading-3 text-fg text-[24px] leading-[36px] font-medium md:text-[36px] md:leading-[44px] lg:text-[40px] lg:leading-[52px]">
 							Flexible by default.{" "}
 						</span>
-						<span className="heading-3 text-fg-secondary text-[24px] font-medium leading-[36px] md:text-[36px] md:leading-[44px] lg:text-[40px] lg:leading-[52px]">
+						<span className="heading-3 text-fg-secondary text-[24px] leading-[36px] font-medium md:text-[36px] md:leading-[44px] lg:text-[40px] lg:leading-[52px]">
 							Personalize colors, fonts, themes, and component properties to
 							match your design system in minutes.
 						</span>
@@ -127,7 +127,7 @@ export default function PlaygroundSection({
 							style={{
 								fontFamily: `${fontName}, ${fontCategory}`,
 							}}
-							className={`sm:h-205 h-190 lg:hidden color-${color}`}>
+							className={`h-190 sm:h-205 lg:hidden color-${color}`}>
 							<div
 								style={{
 									backgroundImage:
@@ -169,7 +169,7 @@ export default function PlaygroundSection({
 							{layouts[layout]}
 						</div>
 						{/* Desktop View */}
-						<div className="not-lg:hidden h-205 flex flex-1 overflow-hidden">
+						<div className="flex h-205 flex-1 overflow-hidden not-lg:hidden">
 							<div className="border-soft h-205 w-1/2 flex-shrink-0 border-r">
 								<Tabs
 									className="h-full gap-0"
@@ -233,7 +233,7 @@ export default function PlaygroundSection({
 								}}
 								className={`relative w-1/2 flex-shrink-0 color-${color}`}>
 								<div className={theme === "light" ? "dark" : "theme-inverse"}>
-									<div className="bg-bg/20 absolute right-4 top-4 z-10 flex h-12 items-center rounded-xl p-1">
+									<div className="bg-bg/20 absolute top-4 right-4 z-10 flex h-12 items-center rounded-xl p-1">
 										<div className="border-border bg-bg flex h-10 items-center gap-1 rounded-lg border p-1 shadow-[0_4px_8px_color-mix(in_srgb,oklch(1_0_0),transparent_88%)] dark:shadow-[0_4px_8px_color-mix(in_srgb,oklch(0_0_0),transparent_60%)]">
 											<div className="border-soft flex h-8 items-center border-r">
 												<Layout />

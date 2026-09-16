@@ -36,7 +36,7 @@ export default function SpinnerOverlay() {
 				</div>
 			</CardContent>
 			{/* Overlay */}
-			<Card className="bg-bg/80 backdrop-blur-xs absolute inset-0 z-10 flex items-center justify-center border-0 shadow-none">
+			<Card className="bg-bg/80 absolute inset-0 z-10 flex items-center justify-center border-0 shadow-none backdrop-blur-xs">
 				<CardContent className="flex grow flex-col items-center justify-center gap-2">
 					<Spinner size={20} variant="activity" className="opacity-60" />
 					<p className="text-fg-tertiary text-xs">Retrying in {time}s...</p>

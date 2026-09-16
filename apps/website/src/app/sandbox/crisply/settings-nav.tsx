@@ -43,7 +43,7 @@ export function CrisplySettingsNav() {
 
 			{/* General Settings Group */}
 			<div className="mt-8">
-				<p className="text-fg-tertiary text-[10px] font-bold uppercase tracking-wider">
+				<p className="text-fg-tertiary text-[10px] font-bold tracking-wider uppercase">
 					GENERAL SETTINGS
 				</p>
 				<nav className="mt-3 space-y-1">
@@ -57,7 +57,7 @@ export function CrisplySettingsNav() {
 								onClick={() => setActiveTab(item.id)}
 								className={`flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-xs font-medium transition-all ${
 									isSelected
-										? "bg-fill2 text-fg shadow-2xs font-semibold"
+										? "bg-fill2 text-fg font-semibold shadow-2xs"
 										: "text-fg-secondary hover:bg-fill1 hover:text-fg"
 								}`}>
 								<Icon
@@ -74,7 +74,7 @@ export function CrisplySettingsNav() {
 
 			{/* Workspace Settings Group */}
 			<div className="mt-8">
-				<p className="text-fg-tertiary text-[10px] font-bold uppercase tracking-wider">
+				<p className="text-fg-tertiary text-[10px] font-bold tracking-wider uppercase">
 					WORKSPACE SETTINGS
 				</p>
 				<nav className="mt-3 space-y-1">
@@ -88,7 +88,7 @@ export function CrisplySettingsNav() {
 								onClick={() => setActiveTab(item.id)}
 								className={`flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-xs font-medium transition-all ${
 									isSelected
-										? "bg-fill2 text-fg shadow-2xs font-semibold"
+										? "bg-fill2 text-fg font-semibold shadow-2xs"
 										: "text-fg-secondary hover:bg-fill1 hover:text-fg"
 								}`}>
 								<Icon

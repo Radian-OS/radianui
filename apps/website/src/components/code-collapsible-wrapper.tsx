@@ -24,7 +24,7 @@ export function CodeCollapsibleWrapper({
 			className={cn("group/collapsible relative", className)}
 			{...props}>
 			<CollapsibleTrigger asChild>
-				<div className="absolute right-9 top-1.5 z-10 flex items-center">
+				<div className="absolute top-1.5 right-9 z-10 flex items-center">
 					<Button variant="ghost" color="neutral" size="28">
 						{isOpened ? "Show Less" : "Show More"}
 					</Button>
@@ -33,7 +33,7 @@ export function CodeCollapsibleWrapper({
 			</CollapsibleTrigger>
 			<CollapsibleContent
 				forceMount
-				className="relative data-[state=closed]:max-h-64 data-[state=closed]:animate-none data-[state=open]:animate-none data-[state=closed]:[content-visibility:auto] [&>figure]:mt-0 [&>figure]:md:!mx-0">
+				className="relative data-[state=closed]:max-h-64 data-[state=closed]:animate-none data-[state=closed]:[content-visibility:auto] data-[state=open]:animate-none [&>figure]:mt-0 [&>figure]:md:!mx-0">
 				{children}
 			</CollapsibleContent>
 			<CollapsibleTrigger className="from-bg/70 to-bg text-fg-tertiary absolute inset-x-2 -bottom-2 flex h-20 items-center justify-center rounded-b-lg bg-gradient-to-b text-sm group-data-[state=open]/collapsible:hidden">

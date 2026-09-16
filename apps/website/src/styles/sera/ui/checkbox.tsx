@@ -13,15 +13,15 @@ type CheckboxProps = React.ComponentProps<typeof CheckboxPrimitive.Root> &
 
 const checkboxVariants = cva(
 	cn(
-		"flex items-center justify-center group peer shrink-0 border focus-visible:outline-none bg-bg text-primary-fg border-border ring-offset-bg focus-visible:ring-primary data-[state=checked]:bg-primary data-[state=checked]:border-primary data-[state=checked]:text-primary-fg data-[state=indeterminate]:bg-primary data-[state=indeterminate]:border-primary data-[state=indeterminate]:text-primary-fg aria-invalid:border-error aria-invalid:ring-error [[data-invalid=true]_&]:border-error [[data-invalid=true]_&]:ring-error",
+		"group peer bg-bg text-primary-fg border-border ring-offset-bg focus-visible:ring-primary data-[state=checked]:bg-primary data-[state=checked]:border-primary data-[state=checked]:text-primary-fg data-[state=indeterminate]:bg-primary data-[state=indeterminate]:border-primary data-[state=indeterminate]:text-primary-fg aria-invalid:border-error aria-invalid:ring-error [[data-invalid=true]_&]:border-error [[data-invalid=true]_&]:ring-error flex shrink-0 items-center justify-center border focus-visible:outline-none",
 		"focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
 	),
 	{
 		variants: {
 			size: {
-				sm: "size-4 [&_svg]:size-3.5 rounded-none",
-				md: "size-5 [&_svg]:size-4 rounded-none",
-				lg: "size-6 [&_svg]:size-4.5 rounded-none",
+				sm: "size-4 rounded-none [&_svg]:size-3.5",
+				md: "size-5 rounded-none [&_svg]:size-4",
+				lg: "size-6 rounded-none [&_svg]:size-4.5",
 			},
 		},
 		defaultVariants: {

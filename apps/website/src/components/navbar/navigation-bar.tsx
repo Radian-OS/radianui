@@ -17,7 +17,7 @@ export function NavigationBar() {
 	return (
 		<>
 			<nav className="border-soft bg-bg/90 sticky top-0 z-50 box-content w-full border-b backdrop-blur-sm">
-				<div className="max-w-368 mx-auto flex w-full items-center justify-between px-4 py-4 md:px-5 lg:gap-4">
+				<div className="mx-auto flex w-full max-w-368 items-center justify-between px-4 py-4 md:px-5 lg:gap-4">
 					<div className="flex h-9 flex-shrink-0 items-center">
 						<WebsiteLogo />
 					</div>
@@ -31,7 +31,7 @@ export function NavigationBar() {
 
 						<FigmaPreviewButton className="not-xl:hidden" />
 
-						<EarlyAccessButton className="not-xl:hidden gap-1.5" />
+						<EarlyAccessButton className="gap-1.5 not-xl:hidden" />
 
 						<DesktopThemeToggler />
 

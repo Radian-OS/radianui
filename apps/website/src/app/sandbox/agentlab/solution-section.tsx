@@ -17,7 +17,7 @@ export function AgentlabSolutionSection() {
 			<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 				{/* Top Section Headline (Rule 13: heading-2) */}
 				<div className="text-center">
-					<h2 className="heading-2 text-fg mx-auto max-w-4xl font-serif text-3xl font-normal leading-[1.18] tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
+					<h2 className="heading-2 text-fg mx-auto max-w-4xl font-serif text-3xl leading-[1.18] font-normal tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
 						Eliminate Operational Friction, Cut Manual Errors, and Increase
 						Deployment Speed by 10x with Enterprise-Grade AI Agent
 						Infrastructure
@@ -28,7 +28,7 @@ export function AgentlabSolutionSection() {
 				<div className="mt-20 grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-16">
 					{/* Left Text */}
 					<div className="lg:col-span-5">
-						<div className="border-border/80 bg-fill2/70 text-fg-secondary inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-wider">
+						<div className="border-border/80 bg-fill2/70 text-fg-secondary inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-semibold tracking-wider uppercase">
 							<span className="text-primary font-bold">—</span>
 							<span>AGENT BUILDER</span>
 						</div>
@@ -72,7 +72,7 @@ export function AgentlabSolutionSection() {
 						{/* Support Agent Card Overlay */}
 						<div className="relative mx-auto mt-4 w-full max-w-md rounded-xl border border-white/40 bg-white/95 p-5 shadow-2xl backdrop-blur-md dark:border-white/10 dark:bg-black/90">
 							<div className="border-border/60 flex items-center justify-between border-b pb-3">
-								<span className="text-fg-secondary text-xs font-bold uppercase tracking-wider">
+								<span className="text-fg-secondary text-xs font-bold tracking-wider uppercase">
 									SUPPORT AGENT
 								</span>
 								<span className="flex size-2 animate-pulse rounded-full bg-emerald-500" />
@@ -117,7 +117,7 @@ export function AgentlabSolutionSection() {
 						{/* Workflow Execution Card Overlay */}
 						<div className="relative mx-auto mt-4 w-full max-w-md rounded-xl border border-white/40 bg-white/95 p-5 shadow-2xl backdrop-blur-md dark:border-white/10 dark:bg-black/90">
 							<div className="border-border/60 flex items-center justify-between border-b pb-3">
-								<span className="text-fg text-xs font-bold uppercase tracking-wider">
+								<span className="text-fg text-xs font-bold tracking-wider uppercase">
 									WORKFLOW - RUNNING
 								</span>
 								<span className="text-primary text-xs font-medium">
@@ -157,7 +157,7 @@ export function AgentlabSolutionSection() {
 
 					{/* Right Text */}
 					<div className="order-1 lg:order-2 lg:col-span-5">
-						<div className="border-border/80 bg-fill2/70 text-fg-secondary inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-wider">
+						<div className="border-border/80 bg-fill2/70 text-fg-secondary inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-semibold tracking-wider uppercase">
 							<span className="text-primary font-bold">—</span>
 							<span>WORKFLOW AUTOMATION</span>
 						</div>
@@ -181,7 +181,7 @@ export function AgentlabSolutionSection() {
 				<div className="mt-28 grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-16">
 					{/* Left Text */}
 					<div className="lg:col-span-5">
-						<div className="border-border/80 bg-fill2/70 text-fg-secondary inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-wider">
+						<div className="border-border/80 bg-fill2/70 text-fg-secondary inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-semibold tracking-wider uppercase">
 							<span className="text-primary font-bold">—</span>
 							<span>ANALYTICS &amp; INSIGHTS</span>
 						</div>
@@ -213,7 +213,7 @@ export function AgentlabSolutionSection() {
 
 						{/* Analytics Card Overlay */}
 						<div className="relative mx-auto mt-4 w-full max-w-md rounded-xl border border-white/40 bg-white/95 p-5 shadow-2xl backdrop-blur-md dark:border-white/10 dark:bg-black/90">
-							<p className="text-fg-secondary text-xs font-bold uppercase tracking-wider">
+							<p className="text-fg-secondary text-xs font-bold tracking-wider uppercase">
 								ANALYTICS OVERVIEW
 							</p>
 
@@ -249,7 +249,7 @@ export function AgentlabSolutionSection() {
 										(height, idx) => (
 											<div
 												key={idx}
-												className="rounded-xs bg-black-inverse hover:bg-primary w-full transition-all duration-300"
+												className="bg-black-inverse hover:bg-primary w-full rounded-xs transition-all duration-300"
 												style={{ height: `${height}%` }}
 											/>
 										)

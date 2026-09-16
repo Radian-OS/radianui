@@ -129,13 +129,13 @@ export function VerseoUseCasesSection() {
 
 								{/* Accordion Content Body */}
 								{isExpanded && (
-									<div className="border-border/40 border-t px-6 pb-7 pt-4 sm:px-7">
+									<div className="border-border/40 border-t px-6 pt-4 pb-7 sm:px-7">
 										<p className="text-fg-secondary max-w-3xl text-sm leading-relaxed md:text-base">
 											{item.description}
 										</p>
 
 										<div className="mt-6">
-											<span className="text-foreground text-xs font-bold uppercase tracking-wider">
+											<span className="text-foreground text-xs font-bold tracking-wider uppercase">
 												Key Deliverables:
 											</span>
 											<div className="mt-2.5 flex flex-wrap gap-2">

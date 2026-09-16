@@ -38,13 +38,13 @@ function DividerPreview() {
 		)
 	}
 	return (
-		<div className="border-soft max-w-100.75 max-h-47.5 size-full rounded-xl border p-4 shadow-md">
+		<div className="border-soft size-full max-h-47.5 max-w-100.75 rounded-xl border p-4 shadow-md">
 			<section className="flex items-center justify-between">
 				<div className="text-base font-medium">January Design Fest</div>
 				<div className="text-fg-tertiary text-sm">Nov 12</div>
 			</section>
 			<Divider orientation="horizontal" className="my-3" />
-			<div className="h-13.5 flex">
+			<div className="flex h-13.5">
 				<section className="flex flex-col gap-0.5">
 					<span className="text-sm font-medium">NOV</span>
 					<span className="heading-5 font-semibold">06</span>

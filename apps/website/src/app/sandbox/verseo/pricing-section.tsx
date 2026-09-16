@@ -63,7 +63,7 @@ export function VerseoPricingSection() {
 			<div className="mx-auto max-w-5xl px-4">
 				{/* Section Header */}
 				<div className="flex flex-col items-center text-center">
-					<div className="border-border/70 bg-background text-fg-secondary shadow-xs mb-4 inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-semibold">
+					<div className="border-border/70 bg-background text-fg-secondary mb-4 inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-semibold shadow-xs">
 						<span>[</span>
 						<span className="text-foreground">pricing</span>
 						<span>]</span>
@@ -80,7 +80,7 @@ export function VerseoPricingSection() {
 					</p>
 
 					{/* Monthly / Annual Billing Toggle */}
-					<div className="border-border/70 bg-background/90 shadow-xs mt-8 inline-flex items-center gap-2 rounded-full border p-1.5">
+					<div className="border-border/70 bg-background/90 mt-8 inline-flex items-center gap-2 rounded-full border p-1.5 shadow-xs">
 						<button
 							type="button"
 							onClick={() => setIsAnnual(false)}
@@ -120,7 +120,7 @@ export function VerseoPricingSection() {
 										: "border-border/70 bg-background/90 hover:border-primary/40 shadow-sm hover:shadow-md"
 								}`}>
 								{tier.popular && (
-									<div className="bg-primary text-primary-fg shadow-xs absolute -top-3 left-1/2 -translate-x-1/2 rounded-full px-3 py-0.5 text-[10px] font-bold uppercase tracking-wider">
+									<div className="bg-primary text-primary-fg absolute -top-3 left-1/2 -translate-x-1/2 rounded-full px-3 py-0.5 text-[10px] font-bold tracking-wider uppercase shadow-xs">
 										Popular
 									</div>
 								)}

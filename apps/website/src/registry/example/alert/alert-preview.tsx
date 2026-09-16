@@ -10,7 +10,7 @@ import { Button } from "@/registry/ui/button"
 
 export default function AlertPreview() {
 	return (
-		<div className="max-w-132.5 flex w-full flex-col items-center gap-6">
+		<div className="flex w-full max-w-132.5 flex-col items-center gap-6">
 			<Alert color="success">
 				<AlertIcon>
 					<CircleCheckBig size={20} />
