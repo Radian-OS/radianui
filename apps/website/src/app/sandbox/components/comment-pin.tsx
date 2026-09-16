@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState } from "react"
-import { ArrowRight, Code, Trash2, X } from "lucide-react"
+import { ArrowRight, Check, Code, Copy, Trash2, X } from "lucide-react"
 import { Button } from "@/styles/default/ui/button"
 import type { SandboxComment } from "./types"
 
@@ -34,6 +34,7 @@ export function CommentPin({
 }: CommentPinProps) {
 	const [isOpen, setIsOpen] = useState(false)
 	const [isDeleting, setIsDeleting] = useState(false)
+	const [copied, setCopied] = useState(false)
 
 	const handleDelete = async (e: React.MouseEvent) => {
 		e.stopPropagation()
@@ -114,16 +115,57 @@ export function CommentPin({
 
 					{/* Element context (if present) */}
 					{comment.elementTag && (
-						<div className="mb-1.5 flex items-center gap-1 overflow-hidden">
-							<span className="bg-fill3 text-primary shrink-0 rounded px-1.5 py-0.5 font-mono text-[10px] font-semibold">
-								&lt;{comment.elementTag}&gt;
-							</span>
-							{comment.elementSelector && (
-								<span
-									className="text-fg-tertiary truncate font-mono text-[10px]"
-									title={comment.elementSelector}>
-									{comment.elementSelector}
+						<div className="border-border/70 bg-fill2/40 mb-2 rounded-lg border p-2">
+							<div className="mb-1 flex items-center justify-between gap-1.5">
+								<span className="bg-fill3 text-primary shrink-0 rounded px-1.5 py-0.5 font-mono text-[10px] font-semibold">
+									&lt;{comment.elementTag}&gt;
 								</span>
+								{comment.elementSelector && (
+									<button
+										type="button"
+										onClick={() => {
+											const clean = comment.elementSelector.startsWith(".")
+												? comment.elementSelector
+														.split(".")
+														.filter(Boolean)
+														.join(" ")
+												: comment.elementSelector
+											navigator.clipboard.writeText(clean)
+											setCopied(true)
+											setTimeout(() => setCopied(false), 1500)
+										}}
+										title="Copy class names"
+										className="text-fg-tertiary hover:text-fg hover:bg-fill3 flex cursor-pointer items-center gap-1 rounded px-1 py-0.5 text-[10px] font-medium transition-colors">
+										{copied ? (
+											<>
+												<Check className="size-2.5 text-emerald-500" />
+												<span className="font-semibold text-emerald-500">
+													Copied
+												</span>
+											</>
+										) : (
+											<>
+												<Copy className="size-2.5" />
+												<span>Copy</span>
+											</>
+										)}
+									</button>
+								)}
+							</div>
+							{comment.elementSelector && (
+								<div className="text-fg max-h-16 select-text overflow-y-auto break-words font-mono text-[10px] leading-relaxed">
+									{comment.elementSelector.startsWith(".")
+										? comment.elementSelector
+												.split(".")
+												.filter(Boolean)
+												.join(" ")
+										: comment.elementSelector}
+								</div>
+							)}
+							{comment.elementContent && (
+								<div className="border-border/40 text-fg-secondary mt-1.5 select-text break-words border-t pt-1 text-[11px] italic leading-relaxed">
+									&ldquo;{comment.elementContent}&rdquo;
+								</div>
 							)}
 						</div>
 					)}

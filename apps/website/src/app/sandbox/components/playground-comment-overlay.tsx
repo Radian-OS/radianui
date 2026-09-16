@@ -185,6 +185,7 @@ export function PlaygroundCommentOverlay({
 							<CommentForm
 								elementTag={draftComment.elementTag}
 								elementSelector={draftComment.elementSelector}
+								elementContent={draftComment.elementContent}
 								sourceLocation={draftComment.sourceLocation}
 								onNavigateToCode={onNavigateToCode}
 								onSubmit={onSubmitDraft}

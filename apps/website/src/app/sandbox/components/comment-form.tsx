@@ -1,8 +1,8 @@
 "use client"
 
-import React from "react"
+import React, { useMemo, useState } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { ArrowRight, Code, Send, X } from "lucide-react"
+import { AlignLeft, ArrowRight, Check, Code, Copy, Send, X } from "lucide-react"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { Button } from "@/styles/default/ui/button"
@@ -34,6 +34,7 @@ export type CommentFormValues = {
 interface CommentFormProps {
 	elementTag: string
 	elementSelector: string
+	elementContent?: string
 	sourceLocation?: SourceLocation | null
 	onNavigateToCode?: (file: string, lineNumber: number) => void
 	onSubmit: (values: CommentFormValues) => Promise<void> | void
@@ -44,6 +45,7 @@ interface CommentFormProps {
 export function CommentForm({
 	elementTag,
 	elementSelector,
+	elementContent,
 	sourceLocation,
 	onNavigateToCode,
 	onSubmit,
@@ -51,6 +53,21 @@ export function CommentForm({
 	isSubmitting = false,
 }: CommentFormProps) {
 	const { user } = useAuth()
+	const [copiedClasses, setCopiedClasses] = useState(false)
+
+	const cleanClasses = useMemo(() => {
+		if (!elementSelector) return ""
+		return elementSelector.startsWith(".")
+			? elementSelector.split(".").filter(Boolean).join(" ")
+			: elementSelector
+	}, [elementSelector])
+
+	const handleCopyClasses = () => {
+		if (!cleanClasses) return
+		navigator.clipboard.writeText(cleanClasses)
+		setCopiedClasses(true)
+		setTimeout(() => setCopiedClasses(false), 1500)
+	}
 
 	const form = useForm<z.infer<typeof commentFormSchema>>({
 		resolver: zodResolver(commentFormSchema),
@@ -72,20 +89,16 @@ export function CommentForm({
 	})
 
 	return (
-		<div className="border-border bg-bg animate-in fade-in zoom-in-95 w-80 rounded-xl border p-3 shadow-xl duration-150">
+		<div className="border-border bg-bg animate-in fade-in zoom-in-95 w-88 rounded-xl border p-3.5 shadow-xl duration-150">
 			{/* Header info */}
-			<div className="mb-2 flex items-center justify-between gap-2">
-				<div className="flex min-w-0 items-center gap-1.5 overflow-hidden">
-					<span className="bg-fill3 text-primary shrink-0 rounded px-1.5 py-0.5 font-mono text-[10px] font-semibold">
+			<div className="border-border/50 mb-2.5 flex items-center justify-between gap-2 border-b pb-2">
+				<div className="flex min-w-0 items-center gap-1.5">
+					<span className="bg-fill3 text-primary shrink-0 rounded px-1.5 py-0.5 font-mono text-[11px] font-semibold">
 						&lt;{elementTag}&gt;
 					</span>
-					{elementSelector && (
-						<span
-							className="text-fg-tertiary truncate font-mono text-[11px]"
-							title={elementSelector}>
-							{elementSelector}
-						</span>
-					)}
+					<span className="text-fg-tertiary text-[11px] font-medium">
+						Element Details
+					</span>
 				</div>
 				<Button
 					type="button"
@@ -97,6 +110,51 @@ export function CommentForm({
 					<X className="size-3.5" />
 				</Button>
 			</div>
+
+			{/* Whole Class Name Data */}
+			{cleanClasses && (
+				<div className="border-border/70 bg-fill2/40 mb-2.5 rounded-lg border p-2">
+					<div className="mb-1 flex items-center justify-between gap-2">
+						<div className="text-fg-tertiary flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wider">
+							<Code className="text-primary size-3" />
+							<span>Class Names</span>
+						</div>
+						<button
+							type="button"
+							onClick={handleCopyClasses}
+							className="text-fg-tertiary hover:text-fg hover:bg-fill3 flex cursor-pointer items-center gap-1 rounded px-1.5 py-0.5 text-[10px] font-medium transition-colors"
+							title="Copy class names">
+							{copiedClasses ? (
+								<>
+									<Check className="size-3 text-emerald-500" />
+									<span className="font-semibold text-emerald-500">Copied</span>
+								</>
+							) : (
+								<>
+									<Copy className="size-3" />
+									<span>Copy</span>
+								</>
+							)}
+						</button>
+					</div>
+					<div className="text-fg max-h-24 select-text overflow-y-auto break-words font-mono text-[11px] leading-relaxed">
+						{cleanClasses}
+					</div>
+				</div>
+			)}
+
+			{/* Content of that specific HTML tag */}
+			{elementContent && (
+				<div className="border-border/70 bg-fill2/40 mb-2.5 rounded-lg border p-2">
+					<div className="text-fg-tertiary mb-1 flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wider">
+						<AlignLeft className="text-primary size-3" />
+						<span>Content</span>
+					</div>
+					<div className="text-fg-secondary max-h-16 select-text overflow-y-auto break-words text-xs italic leading-relaxed">
+						&ldquo;{elementContent}&rdquo;
+					</div>
+				</div>
+			)}
 
 			{/* Source Code Navigation Button */}
 			{sourceLocation && onNavigateToCode && (

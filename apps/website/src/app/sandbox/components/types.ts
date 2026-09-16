@@ -40,6 +40,7 @@ export interface SandboxComment {
 	componentId: string
 	elementTag: string
 	elementSelector: string
+	elementContent?: string
 	positionX: number
 	positionY: number
 	authorName: string
