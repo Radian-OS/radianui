@@ -107,7 +107,7 @@ export function AiworkTestimonialsSection() {
 								</div>
 
 								{/* Quote */}
-								<p className="text-fg-secondary mt-4 text-xs italic leading-relaxed">
+								<p className="text-fg-secondary mt-4 text-xs leading-relaxed italic">
 									{item.quote}
 								</p>
 							</div>

@@ -96,7 +96,7 @@ export function AiworkFaqSection() {
 									</button>
 
 									{isOpen && (
-										<div className="border-border/40 text-fg-secondary border-t px-5 pb-5 pt-3 text-xs leading-relaxed">
+										<div className="border-border/40 text-fg-secondary border-t px-5 pt-3 pb-5 text-xs leading-relaxed">
 											{faq.answer}
 										</div>
 									)}

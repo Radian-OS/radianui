@@ -50,7 +50,7 @@ export function TestimonialSection() {
 	return (
 		<section className="mx-auto max-w-[1440px] px-6 py-12 md:px-12 lg:px-20 xl:px-28">
 			{/* TESTIMONIALS label */}
-			<p className="text-orange-text mb-6 text-xs font-bold uppercase tracking-[0.16em] sm:text-sm">
+			<p className="text-orange-text mb-6 text-xs font-bold tracking-[0.16em] uppercase sm:text-sm">
 				Testimonials
 			</p>
 

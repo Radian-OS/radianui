@@ -138,7 +138,7 @@ export default function SignIn() {
 								control={form.control}
 								name="keepSignedIn"
 								render={({ field }: { field: FieldValues }) => (
-									<FormItem className="flex flex-row items-start space-x-3 space-y-0">
+									<FormItem className="flex flex-row items-start space-y-0 space-x-3">
 										<FormControl>
 											<Checkbox
 												checked={field.value}

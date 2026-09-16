@@ -30,7 +30,7 @@ export function OmrixDashboardHeader() {
 					variant="strong"
 					color="primary"
 					size="32"
-					className="shadow-xs gap-1 rounded-lg px-3 text-xs font-semibold">
+					className="gap-1 rounded-lg px-3 text-xs font-semibold shadow-xs">
 					<Plus className="size-3.5" />
 					<span>New Workflow</span>
 				</Button>
@@ -43,7 +43,7 @@ export function OmrixDashboardHeader() {
 					className="relative size-8 rounded-lg p-0"
 					aria-label="Notifications">
 					<Bell className="size-3.5" />
-					<span className="bg-error ring-background absolute -right-0.5 -top-0.5 size-2 rounded-full ring-2" />
+					<span className="bg-error ring-background absolute -top-0.5 -right-0.5 size-2 rounded-full ring-2" />
 				</Button>
 			</div>
 		</div>

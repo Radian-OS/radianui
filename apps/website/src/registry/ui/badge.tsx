@@ -11,7 +11,7 @@ export type BadgeProps = Omit<React.HTMLAttributes<HTMLDivElement>, "color"> &
 export type BadgeDotProps = React.HTMLAttributes<HTMLSpanElement>
 
 const badgeVariants = cva(
-	"inline-flex items-center font-medium w-fit whitespace-nowrap transition duration-200 gap-0.5 cn-badge",
+	"cn-badge inline-flex w-fit items-center gap-0.5 font-medium whitespace-nowrap transition duration-200",
 	{
 		variants: {
 			variant: {
@@ -271,96 +271,96 @@ const badgeVariants = cva(
 			{
 				variant: "outline",
 				color: "red",
-				className: "text-red-text border border-red-border bg-transparent",
+				className: "text-red-text border-red-border border bg-transparent",
 			},
 			{
 				variant: "outline",
 				color: "orange",
 				className:
-					"text-orange-text border border-orange-border bg-transparent",
+					"text-orange-text border-orange-border border bg-transparent",
 			},
 			{
 				variant: "outline",
 				color: "amber",
-				className: "text-amber-text border border-amber-border bg-transparent",
+				className: "text-amber-text border-amber-border border bg-transparent",
 			},
 			{
 				variant: "outline",
 				color: "yellow",
 				className:
-					"text-yellow-text border border-yellow-border bg-transparent",
+					"text-yellow-text border-yellow-border border bg-transparent",
 			},
 			{
 				variant: "outline",
 				color: "neon",
-				className: "text-neon-text border border-neon-border bg-transparent",
+				className: "text-neon-text border-neon-border border bg-transparent",
 			},
 			{
 				variant: "outline",
 				color: "green",
-				className: "text-green-text border border-green-border bg-transparent",
+				className: "text-green-text border-green-border border bg-transparent",
 			},
 			{
 				variant: "outline",
 				color: "emerald",
 				className:
-					"text-emerald-text border border-emerald-border bg-transparent",
+					"text-emerald-text border-emerald-border border bg-transparent",
 			},
 			{
 				variant: "outline",
 				color: "teal",
-				className: "text-teal-text border border-teal-border bg-transparent",
+				className: "text-teal-text border-teal-border border bg-transparent",
 			},
 			{
 				variant: "outline",
 				color: "cyan",
-				className: "text-cyan-text border border-cyan-border bg-transparent",
+				className: "text-cyan-text border-cyan-border border bg-transparent",
 			},
 			{
 				variant: "outline",
 				color: "light-blue",
 				className:
-					"text-light-blue-text border border-light-blue-border bg-transparent",
+					"text-light-blue-text border-light-blue-border border bg-transparent",
 			},
 			{
 				variant: "outline",
 				color: "blue",
-				className: "text-blue-text border border-blue-border bg-transparent",
+				className: "text-blue-text border-blue-border border bg-transparent",
 			},
 			{
 				variant: "outline",
 				color: "violet-blue",
 				className:
-					"text-violet-blue-text border border-violet-blue-border bg-transparent",
+					"text-violet-blue-text border-violet-blue-border border bg-transparent",
 			},
 			{
 				variant: "outline",
 				color: "purple",
 				className:
-					"text-purple-text border border-purple-border bg-transparent",
+					"text-purple-text border-purple-border border bg-transparent",
 			},
 			{
 				variant: "outline",
 				color: "dark-orchid",
 				className:
-					"text-dark-orchid-text border border-dark-orchid-border bg-transparent",
+					"text-dark-orchid-text border-dark-orchid-border border bg-transparent",
 			},
 			{
 				variant: "outline",
 				color: "fuchsia",
 				className:
-					"text-fuchsia-text border border-fuchsia-border bg-transparent",
+					"text-fuchsia-text border-fuchsia-border border bg-transparent",
 			},
 			{
 				variant: "outline",
 				color: "magenta",
 				className:
-					"text-magenta-text border border-magenta-border bg-transparent",
+					"text-magenta-text border-magenta-border border bg-transparent",
 			},
 			{
 				variant: "outline",
 				color: "rose",
-				className: "text-rose-text border border-rose-border bg-transparent",
+				className: "text-rose-text border-rose-border border bg-transparent",
 			},
 		],
 	}
@@ -402,7 +402,7 @@ Badge.displayName = "Badge"
 
 function BadgeDot({ className, ...props }: BadgeDotProps) {
 	return (
-		<span className="p-0.75 flex shrink-0">
+		<span className="flex shrink-0 p-0.75">
 			<span
 				data-slot="badge-dot"
 				className={cn("cn-badge-dot size-1.5 shrink-0 rounded-full", className)}

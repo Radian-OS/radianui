@@ -11,12 +11,12 @@ import {
 
 export default function CardWithImageExample() {
 	return (
-		<Card className="w-95 h-125 relative justify-between overflow-hidden bg-[url(/media/background-2.jpg)] bg-cover p-5 text-white">
+		<Card className="relative h-125 w-95 justify-between overflow-hidden bg-[url(/media/background-2.jpg)] bg-cover p-5 text-white">
 			{/* Top gradient */}
-			<div className="h-22 absolute left-0 right-0 top-0 z-[1] w-full bg-gradient-to-b from-black/70 to-transparent" />
+			<div className="absolute top-0 right-0 left-0 z-[1] h-22 w-full bg-gradient-to-b from-black/70 to-transparent" />
 
 			{/* Bottom gradient */}
-			<div className="h-37.5 absolute bottom-0 left-0 right-0 z-[1] w-full bg-gradient-to-t from-black/70 to-transparent" />
+			<div className="absolute right-0 bottom-0 left-0 z-[1] h-37.5 w-full bg-gradient-to-t from-black/70 to-transparent" />
 
 			{/* Content above gradients */}
 			<CardHeader className="relative z-[2] flex items-center justify-center gap-3 p-0">

@@ -55,16 +55,16 @@ export function HeroSection() {
 						{/* Vertical Blue Accent Line */}
 						<div
 							aria-hidden="true"
-							className="bg-primary absolute -left-[1.5px] top-10 hidden h-32 w-1 rounded-full lg:block"
+							className="bg-primary absolute top-10 -left-[1.5px] hidden h-32 w-1 rounded-full lg:block"
 						/>
 
 						{/* Tag Pill Badge */}
-						<div className="bg-elevation-level1 border-border/60 mb-5 flex w-fit items-center gap-2 rounded-full border py-1 pl-1.5 pr-3 transition-colors">
+						<div className="bg-elevation-level1 border-border/60 mb-5 flex w-fit items-center gap-2 rounded-full border py-1 pr-3 pl-1.5 transition-colors">
 							<Badge
 								variant="strong"
 								color="primary"
 								size="20"
-								className="rounded-full px-2 text-[10px] font-semibold uppercase tracking-wider">
+								className="rounded-full px-2 text-[10px] font-semibold tracking-wider uppercase">
 								NEW
 							</Badge>
 							<span className="text-fg-muted text-xs font-medium">

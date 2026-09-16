@@ -87,7 +87,7 @@ export function AiworkIntegrationsSection() {
 							className="border-border/70 bg-fill1/50 hover:border-primary/40 hover:bg-fill1 flex flex-col justify-between rounded-2xl border p-6 transition-all duration-300 hover:shadow-md">
 							<div>
 								{/* Rule 9: Use Image with Google favicon service */}
-								<div className="border-border/60 bg-background shadow-xs flex size-11 items-center justify-center rounded-xl border p-2">
+								<div className="border-border/60 bg-background flex size-11 items-center justify-center rounded-xl border p-2 shadow-xs">
 									<Image
 										src={`https://www.google.com/s2/favicons?sz=64&domain=${item.domain}`}
 										alt={`${item.name} Logo`}

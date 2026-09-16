@@ -24,7 +24,7 @@ export type TabsContentProps = React.ComponentProps<
 >
 
 const tabsListStyles = cva(
-	"flex data-[orientation=horizontal]:flex-row data-[orientation=horizontal]:items-center data-[orientation=horizontal]:justify-start data-[orientation=vertical]:items-start data-[orientation=vertical]:justify-center data-[orientation=vertical]:flex-col shrink-0 overflow-x-scroll no-scrollbar",
+	"no-scrollbar flex shrink-0 overflow-x-scroll data-[orientation=horizontal]:flex-row data-[orientation=horizontal]:items-center data-[orientation=horizontal]:justify-start data-[orientation=vertical]:flex-col data-[orientation=vertical]:items-start data-[orientation=vertical]:justify-center",
 	{
 		variants: {
 			size: {
@@ -33,7 +33,7 @@ const tabsListStyles = cva(
 				lg: "data-[orientation=horizontal]:h-11",
 			},
 			width: {
-				fit: "w-max min-w-max max-w-full",
+				fit: "w-max max-w-full min-w-max",
 				full: "data-[orientation=horizontal]:w-full data-[orientation=horizontal]:items-stretch data-[orientation=horizontal]:*:flex-1",
 			},
 			variant: {
@@ -85,7 +85,7 @@ const tabsListStyles = cva(
 )
 
 const tabsTriggerStyles = cva(
-	"inline-flex items-center justify-center gap-1.5 focus-visible:ring focus-visible:ring-offset-1 whitespace-nowrap font-medium outline-none text-fg-secondary data-[state=active]:text-fg w-max data-[orientation=vertical]:w-full [&>svg]:text-fg-tertiary [&>svg]:shrink-0 disabled:text-fg-disabled disabled:[&>svg]:text-fg-disabled disabled:cursor-not-allowed box-border",
+	"text-fg-secondary data-[state=active]:text-fg [&>svg]:text-fg-tertiary disabled:text-fg-disabled disabled:[&>svg]:text-fg-disabled box-border inline-flex w-max items-center justify-center gap-1.5 font-medium whitespace-nowrap outline-none focus-visible:ring focus-visible:ring-offset-1 disabled:cursor-not-allowed data-[orientation=vertical]:w-full [&>svg]:shrink-0",
 	{
 		variants: {
 			size: {
@@ -95,13 +95,13 @@ const tabsTriggerStyles = cva(
 			},
 			variant: {
 				default:
-					"cn-tabs-trigger-variant-default data-[state=active]:border data-[state=active]:border-soft-alpha border border-transparent",
+					"cn-tabs-trigger-variant-default data-[state=active]:border-soft-alpha border border-transparent data-[state=active]:border",
 				outline:
-					"cn-tabs-trigger-variant-outline data-[orientation=horizontal]:not-last:border-r data-[orientation=vertical]:not-last:border-b border-border",
-				open: "cn-tabs-trigger-variant-open border-transparent data-[orientation=horizontal]:border-b-2 data-[orientation=vertical]:border-r-2 data-[state=active]:border-primary",
+					"cn-tabs-trigger-variant-outline border-border data-[orientation=horizontal]:not-last:border-r data-[orientation=vertical]:not-last:border-b",
+				open: "cn-tabs-trigger-variant-open data-[state=active]:border-primary border-transparent data-[orientation=horizontal]:border-b-2 data-[orientation=vertical]:border-r-2",
 				ghost: "cn-tabs-trigger-variant-ghost",
 				"outline-ghost":
-					"cn-tabs-trigger-variant-outline-ghost border border-transparent data-[state=active]:border-soft",
+					"cn-tabs-trigger-variant-outline-ghost data-[state=active]:border-soft border border-transparent",
 			},
 		},
 		compoundVariants: [

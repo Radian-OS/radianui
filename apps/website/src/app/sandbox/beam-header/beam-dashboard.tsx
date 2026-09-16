@@ -135,7 +135,7 @@ export function BeamDashboard() {
 
 				{/* Main Navigation */}
 				<div className="mb-6">
-					<p className="text-fg-tertiary mb-2 px-2 text-[10px] font-semibold uppercase tracking-wider">
+					<p className="text-fg-tertiary mb-2 px-2 text-[10px] font-semibold tracking-wider uppercase">
 						Main
 					</p>
 					<nav className="flex flex-col gap-0.5">
@@ -159,7 +159,7 @@ export function BeamDashboard() {
 
 				{/* Others */}
 				<div>
-					<p className="text-fg-tertiary mb-2 px-2 text-[10px] font-semibold uppercase tracking-wider">
+					<p className="text-fg-tertiary mb-2 px-2 text-[10px] font-semibold tracking-wider uppercase">
 						Others
 					</p>
 					<nav className="flex flex-col gap-0.5">
@@ -222,7 +222,7 @@ export function BeamDashboard() {
 				{/* Table */}
 				<div className="flex-1 overflow-auto">
 					{/* Table Header */}
-					<div className="border-border text-fg-tertiary grid grid-cols-[1fr_1fr_1fr_1fr_1fr_auto] items-center gap-2 border-b px-4 py-2.5 text-[10px] font-semibold uppercase tracking-wider sm:px-6">
+					<div className="border-border text-fg-tertiary grid grid-cols-[1fr_1fr_1fr_1fr_1fr_auto] items-center gap-2 border-b px-4 py-2.5 text-[10px] font-semibold tracking-wider uppercase sm:px-6">
 						<div className="flex items-center gap-1">
 							To / From <ArrowUpDown className="size-2.5" />
 						</div>

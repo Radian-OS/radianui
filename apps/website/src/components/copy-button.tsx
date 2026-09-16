@@ -22,7 +22,7 @@ export function CopyButton({
 
 	return (
 		<Button
-			className={cn("top-4.5 text-fg-secondary absolute right-3", className)}
+			className={cn("text-fg-secondary absolute top-4.5 right-3", className)}
 			data-slot="copy-button"
 			variant="ghost"
 			color="neutral"

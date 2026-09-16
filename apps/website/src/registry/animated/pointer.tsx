@@ -63,7 +63,7 @@ const Pointer = ({ style, children }: PointerProps) => {
 						initial={{ scale: 0, opacity: 0 }}
 						animate={{ scale: 1, opacity: 1 }}
 						exit={{ scale: 0, opacity: 0 }}
-						className="transform-[translate(-50%,-50%)] pointer-events-none fixed z-50"
+						className="pointer-events-none fixed z-50 transform-[translate(-50%,-50%)]"
 						style={{ top: y, left: x, ...style }}>
 						{children || (
 							<svg

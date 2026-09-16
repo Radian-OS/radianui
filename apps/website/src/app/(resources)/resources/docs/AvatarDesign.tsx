@@ -52,7 +52,7 @@ const AvatarDesign = () => {
 	return (
 		<section
 			aria-labelledby="avatar-design-heading"
-			className="lg:w-200 mx-auto flex w-full flex-col gap-6">
+			className="mx-auto flex w-full flex-col gap-6 lg:w-200">
 			<div className="flex flex-col gap-4">
 				<p className="text-primary-text text-sm font-medium">Design</p>
 				<h2 id="avatar-design-heading" className="heading-4">

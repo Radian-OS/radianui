@@ -60,7 +60,7 @@ export function OmrixDashboardSidebar() {
 			<div>
 				{/* Sidebar Logo */}
 				<div className="mb-6 flex items-center gap-2.5 px-2">
-					<div className="bg-neutral shadow-2xs flex size-7 items-center justify-center rounded-md">
+					<div className="bg-neutral flex size-7 items-center justify-center rounded-md shadow-2xs">
 						<Star className="fill-neutral-fg text-neutral-fg size-3.5" />
 					</div>
 					<span className="text-foreground text-sm font-bold tracking-tight">
@@ -72,7 +72,7 @@ export function OmrixDashboardSidebar() {
 				<div className="space-y-5">
 					{navSections.map((section) => (
 						<div key={section.title}>
-							<p className="text-fg-tertiary mb-1.5 px-2 text-[10px] font-semibold uppercase tracking-wider">
+							<p className="text-fg-tertiary mb-1.5 px-2 text-[10px] font-semibold tracking-wider uppercase">
 								{section.title}
 							</p>
 							<div className="space-y-0.5">
@@ -84,7 +84,7 @@ export function OmrixDashboardSidebar() {
 											type="button"
 											className={`flex w-full items-center gap-2.5 rounded-lg px-2.5 py-1.5 text-left text-xs font-medium transition-colors ${
 												item.isActive
-													? "bg-fill2 text-foreground shadow-2xs font-semibold"
+													? "bg-fill2 text-foreground font-semibold shadow-2xs"
 													: "text-fg-secondary hover:bg-fill2/70 hover:text-foreground"
 											}`}>
 											<Icon className="size-3.5 shrink-0 opacity-80" />

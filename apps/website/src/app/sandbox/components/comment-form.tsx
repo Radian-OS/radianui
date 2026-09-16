@@ -115,7 +115,7 @@ export function CommentForm({
 			{cleanClasses && (
 				<div className="border-border/70 bg-fill2/40 mb-2.5 rounded-lg border p-2">
 					<div className="mb-1 flex items-center justify-between gap-2">
-						<div className="text-fg-tertiary flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wider">
+						<div className="text-fg-tertiary flex items-center gap-1 text-[10px] font-semibold tracking-wider uppercase">
 							<Code className="text-primary size-3" />
 							<span>Class Names</span>
 						</div>
@@ -137,7 +137,7 @@ export function CommentForm({
 							)}
 						</button>
 					</div>
-					<div className="text-fg max-h-24 select-text overflow-y-auto break-words font-mono text-[11px] leading-relaxed">
+					<div className="text-fg max-h-24 overflow-y-auto font-mono text-[11px] leading-relaxed break-words select-text">
 						{cleanClasses}
 					</div>
 				</div>
@@ -146,11 +146,11 @@ export function CommentForm({
 			{/* Content of that specific HTML tag */}
 			{elementContent && (
 				<div className="border-border/70 bg-fill2/40 mb-2.5 rounded-lg border p-2">
-					<div className="text-fg-tertiary mb-1 flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wider">
+					<div className="text-fg-tertiary mb-1 flex items-center gap-1 text-[10px] font-semibold tracking-wider uppercase">
 						<AlignLeft className="text-primary size-3" />
 						<span>Content</span>
 					</div>
-					<div className="text-fg-secondary max-h-16 select-text overflow-y-auto break-words text-xs italic leading-relaxed">
+					<div className="text-fg-secondary max-h-16 overflow-y-auto text-xs leading-relaxed break-words italic select-text">
 						&ldquo;{elementContent}&rdquo;
 					</div>
 				</div>
@@ -170,7 +170,7 @@ export function CommentForm({
 							<Code className="size-3.5" />
 						</div>
 						<div className="flex min-w-0 flex-col">
-							<span className="text-fg-tertiary text-[10px] font-medium uppercase tracking-wider">
+							<span className="text-fg-tertiary text-[10px] font-medium tracking-wider uppercase">
 								Source File
 							</span>
 							<span className="text-fg group-hover:text-primary truncate font-mono text-xs font-semibold">

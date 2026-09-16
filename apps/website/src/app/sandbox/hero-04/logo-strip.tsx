@@ -57,7 +57,7 @@ const brandLogos: BrandLogo[] = [
 
 export function LogoStrip() {
 	return (
-		<div className="border-border/60 bg-bg w-full border-b border-t">
+		<div className="border-border/60 bg-bg w-full border-t border-b">
 			<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 				<div className="flex items-center overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] lg:overflow-visible [&::-webkit-scrollbar]:hidden">
 					{brandLogos.map((brand, idx) => (

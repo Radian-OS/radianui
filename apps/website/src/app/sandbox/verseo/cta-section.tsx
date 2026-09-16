@@ -8,7 +8,7 @@ export function VerseoCtaSection() {
 	return (
 		<section className="border-border/40 bg-fill1/30 relative overflow-hidden border-t py-20 md:py-28">
 			{/* Ambient background glow */}
-			<div className="bg-primary/10 pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[400px] w-full max-w-3xl -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl" />
+			<div className="bg-primary/10 pointer-events-none absolute top-1/2 left-1/2 -z-10 h-[400px] w-full max-w-3xl -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl" />
 
 			<div className="mx-auto max-w-5xl px-4">
 				<div className="border-border/80 bg-background/95 overflow-hidden rounded-3xl border p-8 shadow-2xl backdrop-blur-xl md:p-14">

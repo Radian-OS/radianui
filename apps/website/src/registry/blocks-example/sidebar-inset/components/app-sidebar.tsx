@@ -197,7 +197,7 @@ export function AppSidebar() {
 	return (
 		<Sidebar className="px-0" collapsible="icon" variant="inset">
 			<SidebarHeader className="p-0">
-				<div className="group/header relative flex items-center gap-2 px-2.5 pb-2 pt-4 group-data-[state=expanded]:pl-5 group-data-[state=expanded]:pr-3">
+				<div className="group/header relative flex items-center gap-2 px-2.5 pt-4 pb-2 group-data-[state=expanded]:pr-3 group-data-[state=expanded]:pl-5">
 					<div className="z-0 group-data-[state=collapsed]:px-2 group-data-[state=collapsed]:py-1 group-hover/header:group-data-[state=collapsed]:opacity-0">
 						<Logo />
 					</div>
@@ -206,7 +206,7 @@ export function AppSidebar() {
 					</span>
 					<SidebarTrigger
 						size="32"
-						className="group-hover/header:opacity-100! z-10 ml-auto group-data-[collapsible=icon]:absolute group-data-[collapsible=icon]:left-4 group-data-[collapsible=icon]:top-4 group-data-[collapsible=icon]:ml-0 group-data-[state=collapsed]:opacity-0"
+						className="z-10 ml-auto group-hover/header:opacity-100! group-data-[collapsible=icon]:absolute group-data-[collapsible=icon]:top-4 group-data-[collapsible=icon]:left-4 group-data-[collapsible=icon]:ml-0 group-data-[state=collapsed]:opacity-0"
 					/>
 				</div>
 
@@ -380,7 +380,7 @@ export function AppSidebar() {
 								<div>
 									<CircleLogo />
 									<div className="flex flex-col">
-										<span className="text-[13px] font-medium leading-5">
+										<span className="text-[13px] leading-5 font-medium">
 											Version 1.2 Update
 										</span>
 										<span className="text-fg-tertiary flex cursor-pointer items-center truncate text-xs font-normal">

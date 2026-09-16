@@ -49,7 +49,7 @@ export function OmrixDashboardMetrics() {
 			{metrics.map((item) => (
 				<div
 					key={item.label}
-					className={`p-4.5 flex flex-col justify-between rounded-xl border transition-all ${item.cardClass}`}>
+					className={`flex flex-col justify-between rounded-xl border p-4.5 transition-all ${item.cardClass}`}>
 					<span className={`text-xs font-semibold ${item.labelClass}`}>
 						{item.label}
 					</span>

@@ -14,7 +14,7 @@ export type BannerIconProps = React.HTMLAttributes<HTMLDivElement>
 export type BannerToolbarProps = React.HTMLAttributes<HTMLDivElement>
 
 const bannerVariants = cva(
-	"flex items-center justify-center w-full overflow-hidden gap-3 p-3",
+	"flex w-full items-center justify-center gap-3 overflow-hidden p-3",
 	{
 		variants: {
 			color: {
@@ -27,9 +27,9 @@ const bannerVariants = cva(
 			},
 			variant: {
 				strong: "[&_[data-slot=banner-close]]:text-primary-fg",
-				soft: "[&_[data-slot=banner-close]]:text-[current] [&_[data-slot=banner-title]]:text-fg [&_[data-slot=banner-description]]:text-fg",
+				soft: "[&_[data-slot=banner-title]]:text-fg [&_[data-slot=banner-description]]:text-fg [&_[data-slot=banner-close]]:text-[current]",
 				outline:
-					"border-soft border border-l-0 border-r-0 border-t-0 [&_[data-slot=banner-close]]:text-fg-secondary [&_[data-slot=banner-title]]:text-fg [&_[data-slot=banner-description]]:text-fg-secondary",
+					"border-soft [&_[data-slot=banner-close]]:text-fg-secondary [&_[data-slot=banner-title]]:text-fg [&_[data-slot=banner-description]]:text-fg-secondary border border-t-0 border-r-0 border-l-0",
 			},
 		},
 		compoundVariants: [

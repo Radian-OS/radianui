@@ -43,7 +43,7 @@ export function FaqSection() {
 			{/* Top Header */}
 			<div className="mb-10 flex flex-col justify-between gap-6 md:flex-row md:items-end lg:mb-12">
 				<div>
-					<span className="text-fg-secondary text-[11px] font-extrabold uppercase tracking-widest">
+					<span className="text-fg-secondary text-[11px] font-extrabold tracking-widest uppercase">
 						FAQ
 					</span>
 					<h2 className="heading-2 text-fg mt-3 font-bold tracking-tight">
@@ -54,7 +54,7 @@ export function FaqSection() {
 					color="neutral"
 					variant="strong"
 					size="48"
-					className="bg-black-inverse text-white-inverse hover:bg-fg-secondary group inline-flex items-center gap-4 rounded-full pl-6 pr-2.5 text-sm font-semibold transition-all"
+					className="bg-black-inverse text-white-inverse hover:bg-fg-secondary group inline-flex items-center gap-4 rounded-full pr-2.5 pl-6 text-sm font-semibold transition-all"
 					asChild>
 					<Link href="#" className="hover:underline">
 						<span>Start a Project</span>

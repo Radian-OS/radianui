@@ -15,9 +15,9 @@ export function CrisplyTopHeader() {
 					<input
 						type="text"
 						placeholder="Search"
-						className="border-border/80 bg-fill1/40 text-fg placeholder:text-fg-tertiary focus:border-primary focus:bg-bg focus:outline-hidden focus:ring-primary h-9 w-full rounded-lg border pl-9 pr-14 text-xs focus:ring-1"
+						className="border-border/80 bg-fill1/40 text-fg placeholder:text-fg-tertiary focus:border-primary focus:bg-bg focus:ring-primary h-9 w-full rounded-lg border pr-14 pl-9 text-xs focus:ring-1 focus:outline-hidden"
 					/>
-					<div className="border-border bg-bg text-fg-tertiary shadow-2xs absolute right-2.5 flex items-center gap-0.5 rounded-sm border px-1.5 py-0.5 font-mono text-[10px]">
+					<div className="border-border bg-bg text-fg-tertiary absolute right-2.5 flex items-center gap-0.5 rounded-sm border px-1.5 py-0.5 font-mono text-[10px] shadow-2xs">
 						<span>⌘</span>
 						<span>F</span>
 					</div>

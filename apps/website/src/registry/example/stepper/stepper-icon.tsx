@@ -52,7 +52,7 @@ export default function StepperIcon() {
 						step={index + 1}
 						className="relative flex-1 items-center justify-center">
 						<StepperTrigger className="flex flex-col items-center gap-2">
-							<StepperIndicator className="data-[state=inactive]:border-border data-[state=active]:border-primary-border data-[state=inactive]:text-fg-tertiary data-[state=completed]:bg-success data-[state=completed]:border-success-border size-8 border-2 data-[state=inactive]:bg-transparent data-[state=completed]:text-white">
+							<StepperIndicator className="data-[state=inactive]:border-border data-[state=active]:border-primary-border data-[state=inactive]:text-fg-tertiary data-[state=completed]:bg-success data-[state=completed]:border-success-border size-8 border-2 data-[state=completed]:text-white data-[state=inactive]:bg-transparent">
 								{step.icon}
 							</StepperIndicator>
 							<div className="flex flex-col items-center gap-1">
@@ -63,7 +63,7 @@ export default function StepperIcon() {
 						</StepperTrigger>
 
 						{steps.length > index + 1 && (
-							<StepperSeparator className="group-data-[state=completed]/step:bg-success absolute left-[calc(50%+1.25rem)] right-[calc(-60%+1.25rem)] top-4 m-0 group-data-[orientation=horizontal]/stepper-nav:flex-none" />
+							<StepperSeparator className="group-data-[state=completed]/step:bg-success absolute top-4 right-[calc(-60%+1.25rem)] left-[calc(50%+1.25rem)] m-0 group-data-[orientation=horizontal]/stepper-nav:flex-none" />
 						)}
 					</StepperItem>
 				))}

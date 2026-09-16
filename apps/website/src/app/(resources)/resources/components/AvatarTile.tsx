@@ -80,7 +80,7 @@ export const AvatarTile = ({
 
 			<div
 				className={cn(
-					"absolute right-2 top-2 transition-opacity",
+					"absolute top-2 right-2 transition-opacity",
 					open ? "opacity-100" : "opacity-0 group-hover:opacity-100"
 				)}>
 				<DropdownMenu open={open} onOpenChange={setOpen}>
@@ -112,7 +112,7 @@ export const AvatarTile = ({
 				</DropdownMenu>
 			</div>
 
-			<div className="absolute bottom-2 right-2 opacity-0 transition-opacity group-hover:opacity-100">
+			<div className="absolute right-2 bottom-2 opacity-0 transition-opacity group-hover:opacity-100">
 				<div className="hidden sm:block">
 					<Button
 						size="28"

@@ -175,7 +175,7 @@ export function AppSidebar() {
 	return (
 		<Sidebar collapsible="offcanvas">
 			<SidebarHeader className="p-0">
-				<div className="group/header relative flex items-center gap-2 px-2.5 pb-2 pl-5 pt-4">
+				<div className="group/header relative flex items-center gap-2 px-2.5 pt-4 pb-2 pl-5">
 					<div>
 						<Logo />
 					</div>

@@ -96,7 +96,7 @@ const AvatarPlayground = () => {
 							const avatarSrc = await copyRandomAvatar(randomTone)
 							if (avatarSrc) {
 								toast.custom(() => (
-									<div className="bg-black-inverse text-fg-inverse sm:w-78.5 flex w-full items-center gap-2 rounded-[10px] p-2">
+									<div className="bg-black-inverse text-fg-inverse flex w-full items-center gap-2 rounded-[10px] p-2 sm:w-78.5">
 										<img
 											src={avatarSrc}
 											alt=""

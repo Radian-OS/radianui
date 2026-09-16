@@ -65,7 +65,7 @@ export function VerseoFooter() {
 	}
 
 	return (
-		<footer className="border-border/40 bg-background border-t pb-12 pt-16">
+		<footer className="border-border/40 bg-background border-t pt-16 pb-12">
 			<div className="mx-auto max-w-5xl px-4">
 				{/* Top Grid: Brand & Newsletter & Links Columns */}
 				<div className="grid grid-cols-1 gap-10 md:grid-cols-5">
@@ -73,7 +73,7 @@ export function VerseoFooter() {
 					<div className="space-y-4 md:col-span-2">
 						<Link
 							href="/sandbox/verseo"
-							className="text-foreground flex items-center gap-2 text-base font-black uppercase tracking-wider">
+							className="text-foreground flex items-center gap-2 text-base font-black tracking-wider uppercase">
 							<div className="bg-foreground text-background flex size-7 items-center justify-center rounded-lg">
 								<Sparkles className="fill-background text-background size-4" />
 							</div>
@@ -87,7 +87,7 @@ export function VerseoFooter() {
 						</p>
 
 						<div className="pt-2">
-							<span className="text-fg-tertiary text-[11px] font-semibold uppercase tracking-wider">
+							<span className="text-fg-tertiary text-[11px] font-semibold tracking-wider uppercase">
 								[ Contact us through e-mail ]
 							</span>
 							<div className="text-foreground mt-1 flex items-center gap-2 text-sm font-medium">
@@ -102,7 +102,7 @@ export function VerseoFooter() {
 
 						{/* Newsletter Form (Rule 6 & 7: <Form> + Zod validation) */}
 						<div className="pt-4">
-							<span className="text-fg-tertiary text-[11px] font-semibold uppercase tracking-wider">
+							<span className="text-fg-tertiary text-[11px] font-semibold tracking-wider uppercase">
 								[ Newsletter ]
 							</span>
 							<p className="text-fg-secondary mt-1 text-xs">
@@ -155,7 +155,7 @@ export function VerseoFooter() {
 
 					{/* Navigation Links Column (Rule 11: hover:underline, Rule 18: map) */}
 					<div className="space-y-3">
-						<span className="text-foreground text-[11px] font-bold uppercase tracking-wider">
+						<span className="text-foreground text-[11px] font-bold tracking-wider uppercase">
 							[ Navigation ]
 						</span>
 						<ul className="space-y-2 pt-1">
@@ -173,7 +173,7 @@ export function VerseoFooter() {
 
 					{/* Resources Links Column */}
 					<div className="space-y-3">
-						<span className="text-foreground text-[11px] font-bold uppercase tracking-wider">
+						<span className="text-foreground text-[11px] font-bold tracking-wider uppercase">
 							[ Resources ]
 						</span>
 						<ul className="space-y-2 pt-1">
@@ -191,7 +191,7 @@ export function VerseoFooter() {
 
 					{/* Social Links Column */}
 					<div className="space-y-3">
-						<span className="text-foreground text-[11px] font-bold uppercase tracking-wider">
+						<span className="text-foreground text-[11px] font-bold tracking-wider uppercase">
 							[ Social ]
 						</span>
 						<ul className="space-y-2 pt-1">

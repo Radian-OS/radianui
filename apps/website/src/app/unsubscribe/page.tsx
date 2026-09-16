@@ -57,11 +57,11 @@ export default async function UnsubscribePage({
 						alt="Radian"
 						width={150}
 						height={36}
-						className="not-dark:hidden block h-9"
+						className="block h-9 not-dark:hidden"
 						priority
 					/>
 				</Link>
-				<Card className="bg-bg max-w-150 w-full px-16 py-12">
+				<Card className="bg-bg w-full max-w-150 px-16 py-12">
 					<Empty className="gap-8 p-0 md:p-0">
 						<EmptyMedia>
 							<Image

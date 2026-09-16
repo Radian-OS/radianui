@@ -54,7 +54,7 @@ const accordionVariants = cva("w-full", {
 const accordionItemVariants = cva("overflow-hidden", {
 	variants: {
 		variant: {
-			box: "border-border shadow-2xs rounded-lg border last:mb-0",
+			box: "border-border rounded-lg border shadow-2xs last:mb-0",
 			table: "border-b first:rounded-t-xl last:rounded-b-lg last:border-b-0",
 			open: "border-b last:border-b-0",
 		},
@@ -82,7 +82,7 @@ const accordionItemVariants = cva("overflow-hidden", {
 })
 
 const accordionTriggerVariants = cva(
-	"outline-hidden flex flex-1 cursor-pointer items-center justify-between text-left font-medium transition-all",
+	"flex flex-1 cursor-pointer items-center justify-between text-left font-medium outline-hidden transition-all",
 	{
 		variants: {
 			variant: {
@@ -97,7 +97,7 @@ const accordionTriggerVariants = cva(
 			indicator: {
 				chevron: "[&[data-state=open]>.AccordionChevron]:rotate-180",
 				"plus-minus":
-					"[&[data-state=open]>.AccordionPlus>path:last-child]:rotate-90 [&[data-state=open]>.AccordionPlus>path:last-child]:opacity-0 [&[data-state=open]>.AccordionPlus]:rotate-180",
+					"[&[data-state=open]>.AccordionPlus]:rotate-180 [&[data-state=open]>.AccordionPlus>path:last-child]:rotate-90 [&[data-state=open]>.AccordionPlus>path:last-child]:opacity-0",
 			},
 		},
 		compoundVariants: [

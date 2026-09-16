@@ -101,7 +101,7 @@ function ComponentCode({
 	return (
 		<figure
 			data-rehype-pretty-code-figure=""
-			className={cn("[&>pre]:max-h-100 p-2", codeAreaClassName)}>
+			className={cn("p-2 [&>pre]:max-h-100", codeAreaClassName)}>
 			{title && (
 				<figcaption data-rehype-pretty-code-title="" data-language={language}>
 					<span className="bg-bg text-fg-tertiary rounded-md p-1">

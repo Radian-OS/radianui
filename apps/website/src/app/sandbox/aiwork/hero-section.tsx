@@ -7,13 +7,13 @@ import { AiworkDashboardMockup } from "./dashboard-mockup"
 
 export function AiworkHeroSection() {
 	return (
-		<section className="relative overflow-hidden pb-20 pt-12 md:pb-28 md:pt-16">
+		<section className="relative overflow-hidden pt-12 pb-20 md:pt-16 md:pb-28">
 			{/* Ambient blue top glow */}
-			<div className="bg-primary/10 pointer-events-none absolute left-1/2 top-0 -z-10 h-[500px] w-full max-w-5xl -translate-x-1/2 rounded-full blur-3xl" />
+			<div className="bg-primary/10 pointer-events-none absolute top-0 left-1/2 -z-10 h-[500px] w-full max-w-5xl -translate-x-1/2 rounded-full blur-3xl" />
 
 			<div className="mx-auto flex max-w-5xl flex-col items-center px-4 text-center">
 				{/* Trustpilot Review Pill Badge */}
-				<div className="border-border/80 bg-fill2/70 shadow-xs mb-6 inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 backdrop-blur-sm">
+				<div className="border-border/80 bg-fill2/70 mb-6 inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 shadow-xs backdrop-blur-sm">
 					<div className="flex size-4 items-center justify-center rounded-sm bg-[#00b67a] text-white">
 						<Star className="size-2.5 fill-white text-white" />
 					</div>
@@ -28,7 +28,7 @@ export function AiworkHeroSection() {
 				</div>
 
 				{/* Main Hero Heading (Rule 13: heading-1) */}
-				<h1 className="heading-1 text-foreground max-w-4xl text-center text-4xl font-extrabold leading-[1.1] tracking-tight sm:text-5xl sm:leading-[1.1] md:text-6xl md:leading-[1.1] lg:text-7xl lg:leading-[1.1]">
+				<h1 className="heading-1 text-foreground max-w-4xl text-center text-4xl leading-[1.1] font-extrabold tracking-tight sm:text-5xl sm:leading-[1.1] md:text-6xl md:leading-[1.1] lg:text-7xl lg:leading-[1.1]">
 					AI agents for less
 					<br />
 					manual work

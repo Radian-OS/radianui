@@ -10,7 +10,7 @@ export function BeamHeaderSection() {
 	return (
 		<section
 			id="beam-header-section"
-			className="bg-bg relative w-full overflow-hidden px-4 pb-0 pt-12 sm:px-6 sm:pt-16 md:pt-20 lg:px-10 lg:pt-24">
+			className="bg-bg relative w-full overflow-hidden px-4 pt-12 pb-0 sm:px-6 sm:pt-16 md:pt-20 lg:px-10 lg:pt-24">
 			{/* Hero Content */}
 			<div className="relative z-10 mx-auto max-w-3xl text-center">
 				{/* Badge */}
@@ -50,7 +50,7 @@ export function BeamHeaderSection() {
 
 				{/* Logo Section */}
 				<div className="mb-8 text-center md:mb-10">
-					<p className="text-primary-text mb-6 text-xs font-medium uppercase tracking-widest sm:text-sm">
+					<p className="text-primary-text mb-6 text-xs font-medium tracking-widest uppercase sm:text-sm">
 						Making the cloud effortless for 2,500+ companies
 					</p>
 					<BeamLogoStrip />

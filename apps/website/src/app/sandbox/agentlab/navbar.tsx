@@ -65,7 +65,7 @@ export function AgentlabNavbar() {
 						variant="strong"
 						color="neutral"
 						size="36"
-						className="rounded-md px-4 text-xs font-bold uppercase tracking-wider transition-transform active:scale-95">
+						className="rounded-md px-4 text-xs font-bold tracking-wider uppercase transition-transform active:scale-95">
 						<span>GET STARTED</span>
 					</Button>
 				</div>
@@ -86,7 +86,7 @@ export function AgentlabNavbar() {
 
 			{/* Mobile Menu Dropdown */}
 			{mobileMenuOpen && (
-				<div className="border-border/60 bg-bg border-b px-4 pb-6 pt-3 sm:hidden">
+				<div className="border-border/60 bg-bg border-b px-4 pt-3 pb-6 sm:hidden">
 					<nav className="flex flex-col space-y-3">
 						{navLinks.map((item) => (
 							<Link
@@ -105,7 +105,7 @@ export function AgentlabNavbar() {
 								variant="strong"
 								color="neutral"
 								size="36"
-								className="w-full rounded-md text-xs font-bold uppercase tracking-wider">
+								className="w-full rounded-md text-xs font-bold tracking-wider uppercase">
 								<span>GET STARTED</span>
 							</Button>
 						</div>

@@ -51,10 +51,10 @@ export function JamboPricingSection() {
 			className="mx-auto max-w-[1320px] px-4 py-16 sm:px-6 sm:py-20 lg:px-10 lg:py-24">
 			{/* Top Header */}
 			<div className="mb-12 flex flex-col items-center text-center sm:mb-16">
-				<span className="text-fg-secondary text-[11px] font-extrabold uppercase tracking-widest">
+				<span className="text-fg-secondary text-[11px] font-extrabold tracking-widest uppercase">
 					Pricing Plan
 				</span>
-				<h2 className="heading-2 text-fg mt-4 max-w-2xl font-bold leading-tight tracking-tight">
+				<h2 className="heading-2 text-fg mt-4 max-w-2xl leading-tight font-bold tracking-tight">
 					Simply choose the pricing plan that{" "}
 					<span className="text-orange-text">fits you best.</span>
 				</h2>

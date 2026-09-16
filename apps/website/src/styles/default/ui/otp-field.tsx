@@ -20,7 +20,7 @@ type OTPHiddenInputProps = React.ComponentPropsWithoutRef<
 
 const otpInputVariants = cva(
 	cn(
-		"inline-flex appearance-none items-center justify-center text-center p-0 leading-none outline-hidden bg-bg text-fg shadow-2xs border-alpha focus-visible:ring-3 focus-visible:ring-primary-focus focus-visible:border-primary-hover group-has-disabled:cursor-not-allowed group-has-disabled:text-fg-disabled group-has-disabled:bg-fill2-alpha group-has-disabled:placeholder:text-fg-disabled placeholder:text-fg-tertiary rounded-lg border font-semibold",
+		"bg-bg text-fg border-alpha focus-visible:ring-primary-focus focus-visible:border-primary-hover group-has-disabled:text-fg-disabled group-has-disabled:bg-fill2-alpha group-has-disabled:placeholder:text-fg-disabled placeholder:text-fg-tertiary inline-flex appearance-none items-center justify-center rounded-lg border p-0 text-center leading-none font-semibold shadow-2xs outline-none group-has-disabled:cursor-not-allowed focus-visible:ring-3",
 		"group-aria-invalid:border-error group-aria-invalid:ring-error group-aria-invalid:focus-visible:ring-error-focus group-aria-invalid:focus-visible:border-error-hover",
 		"[[data-invalid=true]_&]:border-error [[data-invalid=true]_&]:ring-error [[data-invalid=true]_&]:focus-visible:ring-error-focus [[data-invalid=true]_&]:focus-visible:border-error-hover"
 	),
@@ -62,7 +62,7 @@ function OTPField({
 			data-slot="otp-field"
 			validationType={validationType}
 			className={cn(
-				"has-disabled:cursor-not-allowed group peer flex flex-nowrap gap-1.5",
+				"group peer flex flex-nowrap gap-1.5 has-disabled:cursor-not-allowed",
 				className
 			)}
 			{...props}>

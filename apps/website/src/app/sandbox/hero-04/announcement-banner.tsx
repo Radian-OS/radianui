@@ -16,14 +16,14 @@ export function AnnouncementBanner() {
 					variant="soft"
 					color="info"
 					size="20"
-					className="shrink-0 text-[10px] font-semibold uppercase tracking-wider">
+					className="shrink-0 text-[10px] font-semibold tracking-wider uppercase">
 					NEW
 				</Badge>
 				<span className="text-fg-muted truncate text-xs font-normal">
 					Promote a live event, webinar, or demo in this area
 				</span>
 			</div>
-			<div className="flex md:absolute md:right-4 md:top-1/2 md:-translate-y-1/2">
+			<div className="flex md:absolute md:top-1/2 md:right-4 md:-translate-y-1/2">
 				<button
 					type="button"
 					onClick={() => setIsVisible(false)}

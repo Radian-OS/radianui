@@ -72,7 +72,7 @@ export function PlaygroundHeader({
 				<ChevronRight className="text-fg-tertiary size-3" />
 				<span className="font-medium">{activeComponentConfig.label}</span>
 				<ChevronRight className="text-fg-tertiary size-3" />
-				<span className="text-fg overflow-hidden text-ellipsis font-semibold">
+				<span className="text-fg overflow-hidden font-semibold text-ellipsis">
 					{activeFile}
 				</span>
 			</div>
@@ -198,7 +198,7 @@ export function PlaygroundHeader({
 							<button
 								type="button"
 								className="border-border bg-fill2 text-fg hover:bg-fill3 flex h-7 cursor-pointer items-center gap-1.5 rounded-full border px-2 text-xs font-medium transition-colors focus:outline-none">
-								<span className="size-4.5 bg-primary text-primary-fg flex items-center justify-center rounded-full text-[10px] font-bold">
+								<span className="bg-primary text-primary-fg flex size-4.5 items-center justify-center rounded-full text-[10px] font-bold">
 									{user.firstName.charAt(0).toUpperCase()}
 								</span>
 								<span className="max-w-[85px] truncate">{user.firstName}</span>

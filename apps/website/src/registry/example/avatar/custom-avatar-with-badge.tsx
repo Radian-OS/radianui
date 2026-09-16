@@ -12,7 +12,7 @@ export default function CustomAvatarWithBadgePreview() {
 			<Avatar size="48">
 				<AvatarImage src="/media/female-6.jpg" />
 				<AvatarFallback>CH</AvatarFallback>
-				<AvatarIndicator className="-bottom-0.5 -right-0.5">
+				<AvatarIndicator className="-right-0.5 -bottom-0.5">
 					<div className="bg-error border-alpha ring-offset-bg flex size-4 items-center justify-center rounded-full border text-xs text-white ring ring-transparent ring-offset-2">
 						2
 					</div>
@@ -23,7 +23,7 @@ export default function CustomAvatarWithBadgePreview() {
 				<AvatarFallback className="text-info-text bg-info-focus">
 					AJ
 				</AvatarFallback>
-				<AvatarIndicator className="-right-0.5 -top-0.5">
+				<AvatarIndicator className="-top-0.5 -right-0.5">
 					<div className="bg-info border-alpha ring-offset-bg flex size-4 items-center justify-center rounded-full border text-xs text-white ring ring-transparent ring-offset-2">
 						8
 					</div>

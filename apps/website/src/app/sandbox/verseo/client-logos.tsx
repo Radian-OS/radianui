@@ -52,7 +52,7 @@ export function VerseoClientLogos() {
 	return (
 		<section className="border-border/40 bg-fill1/20 border-y py-10">
 			<div className="mx-auto max-w-5xl px-4">
-				<p className="text-fg-tertiary text-center text-xs font-semibold uppercase tracking-wider">
+				<p className="text-fg-tertiary text-center text-xs font-semibold tracking-wider uppercase">
 					Trusted by modern teams
 				</p>
 

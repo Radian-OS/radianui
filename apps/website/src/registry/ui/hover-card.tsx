@@ -36,7 +36,7 @@ function HoverCardContent({
 		<HoverCardPrimitive.Content
 			data-slot="hover-card-content"
 			className={cn(
-				"cn-hover-card-content outline-hidden z-50 w-64",
+				"cn-hover-card-content z-50 w-64 outline-hidden",
 				"data-[state=open]:animate-in data-[state=closed]:animate-out",
 				"data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
 				"data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",

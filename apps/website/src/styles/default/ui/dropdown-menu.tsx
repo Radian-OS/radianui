@@ -125,7 +125,7 @@ function DropdownMenuContent({
 			data-slot="dropdown-menu-content"
 			align="start"
 			className={cn(
-				"border-border bg-popover drop-shadow-xs min-w-[var(--radix-dropdown-menu-trigger-width)] gap-0.5 rounded-lg border p-1.5",
+				"border-border bg-popover min-w-[var(--radix-dropdown-menu-trigger-width)] gap-0.5 rounded-lg border p-1.5 drop-shadow-xs",
 				"no-scrollbar z-50 flex flex-col overflow-x-visible overflow-y-scroll",
 				"data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
 				className
@@ -150,10 +150,10 @@ function DropdownMenuItem({
 			data-slot="dropdown-menu-item"
 			className={cn(
 				"text-fg focus:bg-fill1-alpha data-disabled:text-fg-disabled data-disabled:[&_*]:text-fg-disabled [&_svg]:text-fg-secondary gap-2 rounded-sm px-2 py-1.5 text-sm [&_svg:not([class*='size-'])]:size-4",
-				"relative flex w-full cursor-pointer select-none items-center",
+				"relative flex w-full cursor-pointer items-center select-none",
 				"outline-hidden transition-colors",
 				"focus:bg-fill1-alpha",
-				"data-disabled:pointer-events-none data-disabled:text-fg-disabled data-disabled:[&_*]:text-fg-disabled",
+				"data-disabled:text-fg-disabled data-disabled:[&_*]:text-fg-disabled data-disabled:pointer-events-none",
 				"[&_svg]:text-fg-secondary [&_svg]:pointer-events-none [&_svg]:shrink-0",
 				inset && "pl-9",
 				className
@@ -175,12 +175,12 @@ function DropdownMenuCheckboxItem({
 			data-slot="dropdown-menu-checkbox-item"
 			className={cn(
 				"focus:bg-fill2-alpha [&_svg]:text-fg-secondary gap-2 rounded-sm py-1.5 text-sm [&_svg:not([class*='size-'])]:size-5",
-				"flex w-full cursor-pointer select-none items-center",
+				"flex w-full cursor-pointer items-center select-none",
 				"outline-hidden",
 				"focus:bg-fill2-alpha",
 				"data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
 				"[&_svg]:text-fg-secondary [&_svg]:pointer-events-none [&_svg]:shrink-0",
-				indicatorPosition === "left" ? "pe-2 ps-8" : "pe-8 ps-2",
+				indicatorPosition === "left" ? "ps-8 pe-2" : "ps-2 pe-8",
 				className
 			)}
 			{...props}>
@@ -225,12 +225,12 @@ function DropdownMenuRadioItem({
 			data-slot="dropdown-menu-radio-item"
 			className={cn(
 				"focus:bg-fill2-alpha [&_svg]:text-fg-secondary gap-2 rounded-sm py-1.5 text-sm [&_svg:not([class*='size-'])]:size-5",
-				"flex w-full cursor-pointer select-none items-center",
+				"flex w-full cursor-pointer items-center select-none",
 				"outline-hidden",
 				"focus:bg-fill2-alpha",
 				"data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
 				"[&_svg]:text-fg-secondary [&_svg]:pointer-events-none [&_svg]:shrink-0",
-				indicatorPosition === "left" ? "pe-2 ps-8" : "pe-8 ps-2",
+				indicatorPosition === "left" ? "ps-8 pe-2" : "ps-2 pe-8",
 				className
 			)}
 			{...props}>
@@ -273,7 +273,7 @@ function DropdownMenuGroup({
 			{title && (
 				<label
 					className={cn(
-						"text-xs/4.5 text-fg-tertiary h-7 p-2 font-medium uppercase",
+						"text-fg-tertiary h-7 p-2 text-xs/4.5 font-medium uppercase",
 						"flex items-center gap-2.5"
 					)}>
 					{title}
@@ -299,7 +299,7 @@ function DropdownMenuSubTrigger({
 			data-slot="dropdown-menu-sub-trigger"
 			className={cn(
 				"data-[state=open]:bg-fill1-alpha focus:bg-fill2-alpha [&_svg]:text-fg-secondary gap-2 rounded-sm px-2 py-1.5 text-sm [&_svg:not([class*='size-'])]:size-4",
-				"flex cursor-pointer select-none items-center",
+				"flex cursor-pointer items-center select-none",
 				"outline-hidden transition-colors",
 				"data-[state=open]:bg-fill1-alpha focus:bg-fill2-alpha",
 				"data-disabled:pointer-events-none data-disabled:opacity-50",
@@ -323,7 +323,7 @@ function DropdownMenuSubContent({
 			<DropdownMenuPrimitive.SubContent
 				data-slot="dropdown-menu-sub-content"
 				className={cn(
-					"border-border bg-popover drop-shadow-xs min-w-36 rounded-lg border p-1.5",
+					"border-border bg-popover min-w-36 rounded-lg border p-1.5 drop-shadow-xs",
 					"z-50 flex flex-col items-stretch justify-start",
 					"data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
 					className

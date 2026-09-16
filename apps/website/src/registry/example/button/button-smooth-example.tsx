@@ -3,7 +3,7 @@ import { Button } from "@/registry/ui/button"
 
 const ButtonSmoothExample = () => {
 	return (
-		<div className="w-50 flex flex-col items-center justify-center gap-3">
+		<div className="flex w-50 flex-col items-center justify-center gap-3">
 			<Button className="w-full" variant="smooth">
 				Top Shine
 			</Button>

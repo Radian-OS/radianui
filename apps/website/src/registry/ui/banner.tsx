@@ -14,7 +14,7 @@ export type BannerIconProps = React.HTMLAttributes<HTMLDivElement>
 export type BannerToolbarProps = React.HTMLAttributes<HTMLDivElement>
 
 const bannerVariants = cva(
-	"flex items-center justify-center w-full overflow-hidden cn-banner",
+	"cn-banner flex w-full items-center justify-center overflow-hidden",
 	{
 		variants: {
 			color: {

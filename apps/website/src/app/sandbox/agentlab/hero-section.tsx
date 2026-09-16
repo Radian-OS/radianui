@@ -58,20 +58,20 @@ export function AgentlabHeroSection() {
 	}
 
 	return (
-		<section className="relative overflow-hidden pb-16 pt-12 md:pb-24 md:pt-16">
+		<section className="relative overflow-hidden pt-12 pb-16 md:pt-16 md:pb-24">
 			<div className="mx-auto flex max-w-7xl flex-col items-center px-4 sm:px-6 lg:px-8">
 				{/* Y Combinator Badge */}
-				<div className="border-border/80 bg-fill2/70 backdrop-blur-xs mb-6 inline-flex items-center gap-2 rounded-md border px-3 py-1.5">
-					<div className="rounded-xs bg-orange flex size-4 items-center justify-center font-mono text-[10px] font-black text-white">
+				<div className="border-border/80 bg-fill2/70 mb-6 inline-flex items-center gap-2 rounded-md border px-3 py-1.5 backdrop-blur-xs">
+					<div className="bg-orange flex size-4 items-center justify-center rounded-xs font-mono text-[10px] font-black text-white">
 						Y
 					</div>
-					<span className="text-fg-secondary text-xs font-semibold uppercase tracking-wider">
+					<span className="text-fg-secondary text-xs font-semibold tracking-wider uppercase">
 						BACKED BY Y COMBINATOR
 					</span>
 				</div>
 
 				{/* Headline (Rule 13: heading-1) */}
-				<h1 className="heading-1 text-fg max-w-4xl text-center font-serif text-4xl font-normal leading-[1.12] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
+				<h1 className="heading-1 text-fg max-w-4xl text-center font-serif text-4xl leading-[1.12] font-normal tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
 					Turn Your AI Product Into a
 					<br className="hidden sm:inline" /> Website That Sells
 				</h1>
@@ -88,14 +88,14 @@ export function AgentlabHeroSection() {
 						variant="outline"
 						color="neutral"
 						size="40"
-						className="border-border bg-bg hover:bg-fill1 rounded-md px-5 text-xs font-bold uppercase tracking-wider transition-colors">
+						className="border-border bg-bg hover:bg-fill1 rounded-md px-5 text-xs font-bold tracking-wider uppercase transition-colors">
 						<span>TALK TO SALES</span>
 					</Button>
 					<Button
 						variant="strong"
 						color="neutral"
 						size="40"
-						className="gap-2 rounded-md px-5 text-xs font-bold uppercase tracking-wider shadow-md transition-transform active:scale-95">
+						className="gap-2 rounded-md px-5 text-xs font-bold tracking-wider uppercase shadow-md transition-transform active:scale-95">
 						<ArrowRight className="size-4" />
 						<span>START FOR FREE</span>
 					</Button>
@@ -120,7 +120,7 @@ export function AgentlabHeroSection() {
 
 						{/* Floating Automation Card */}
 						<div className="relative mx-auto w-full max-w-md rounded-xl border border-white/40 bg-white/95 p-5 shadow-2xl backdrop-blur-md dark:border-white/10 dark:bg-black/90">
-							<p className="text-fg-secondary text-xs font-bold uppercase tracking-wider">
+							<p className="text-fg-secondary text-xs font-bold tracking-wider uppercase">
 								AUTOMATE TASKS WITH AI AGENT
 							</p>
 
@@ -140,14 +140,14 @@ export function AgentlabHeroSection() {
 															{...field}
 															rows={3}
 															placeholder="How can I help you today?"
-															className="text-fg placeholder:text-fg-tertiary focus:border-primary focus:ring-primary/20 border-border bg-bg/80 focus:outline-hidden w-full resize-none rounded-lg border p-3 pr-10 text-xs transition-all focus:ring-2"
+															className="text-fg placeholder:text-fg-tertiary focus:border-primary focus:ring-primary/20 border-border bg-bg/80 w-full resize-none rounded-lg border p-3 pr-10 text-xs transition-all focus:ring-2 focus:outline-hidden"
 														/>
 														<Button
 															type="submit"
 															variant="strong"
 															color="neutral"
 															size="28"
-															className="absolute bottom-2.5 right-2.5 size-7 rounded-md p-0">
+															className="absolute right-2.5 bottom-2.5 size-7 rounded-md p-0">
 															<Send className="size-3.5" />
 															<span className="sr-only">Send prompt</span>
 														</Button>
@@ -168,7 +168,7 @@ export function AgentlabHeroSection() {
 
 							{/* Actions List (Rule 18: mapped array) */}
 							<div className="mt-4">
-								<p className="text-fg-tertiary text-[11px] font-semibold uppercase tracking-wider">
+								<p className="text-fg-tertiary text-[11px] font-semibold tracking-wider uppercase">
 									ACTIONS
 								</p>
 								<div className="mt-2 space-y-1.5">

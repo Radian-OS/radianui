@@ -43,7 +43,7 @@ export default function Signin2() {
 			}}
 			className="bg-elevation-negative flex h-full w-full items-center justify-center px-5 py-4">
 			<div
-				className={`w-100 bg-bg border-border flex ${radiusBorderMap[radius]} border px-6 py-8`}>
+				className={`bg-bg border-border flex w-100 ${radiusBorderMap[radius]} border px-6 py-8`}>
 				<div
 					className={`flex flex-1 flex-col ${spaceMap.gap8[spacing ?? "default"]}`}>
 					<div>
@@ -65,7 +65,7 @@ export default function Signin2() {
 					</div>
 					<div
 						className={`flex flex-col ${spaceMap.gap2[spacing ?? "default"]}`}>
-						<p className="text-2xl font-bold leading-8">Sign In</p>
+						<p className="text-2xl leading-8 font-bold">Sign In</p>
 						<p className="text-fg-secondary text-sm">
 							Don&apos;t have an account?{" "}
 							<Button variant="link" asChild color="primary">
@@ -138,7 +138,7 @@ export default function Signin2() {
 						<div
 							className={`flex items-center ${spaceMap.gap2[spacing ?? "default"]}`}>
 							<Divider className="flex-1" />
-							<span className="text-fg-secondary whitespace-nowrap text-sm font-medium">
+							<span className="text-fg-secondary text-sm font-medium whitespace-nowrap">
 								Or continue with
 							</span>
 							<Divider className="flex-1" />

@@ -128,7 +128,7 @@ const DropdownWithRadioExample = () => {
 						tabIndex={0}
 					/>
 				</DropdownMenuLabel>
-				<section className="flex flex-col items-center justify-between gap-4 px-2 pb-3 pt-2">
+				<section className="flex flex-col items-center justify-between gap-4 px-2 pt-2 pb-3">
 					<div className="flex flex-col gap-3">
 						<span className="text-sm font-medium">Price Range</span>
 						<div className="flex flex-col gap-2">

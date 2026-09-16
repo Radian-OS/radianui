@@ -53,7 +53,7 @@ export function Navbar() {
 
 	return (
 		<header className="border-border/60 bg-bg/95 supports-[backdrop-filter]:bg-bg/80 sticky top-0 z-40 w-full border-b backdrop-blur-md">
-			<div className="lg:h-18 mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+			<div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:h-18 lg:px-8">
 				{/* Left: Brand & Main Navigation */}
 				<div className="flex items-center gap-6">
 					{/* Mobile Menu Button */}
@@ -98,7 +98,7 @@ export function Navbar() {
 								variant="soft"
 								color="info"
 								size="20"
-								className="text-[10px] font-semibold uppercase tracking-wider">
+								className="text-[10px] font-semibold tracking-wider uppercase">
 								NEW
 							</Badge>
 						</Link>
@@ -134,7 +134,7 @@ export function Navbar() {
 													{...field}
 													type="search"
 													placeholder="Search..."
-													className="bg-elevation-level1/70 border-border/60 focus:bg-bg placeholder:text-fg-muted h-8.5 focus:ring-primary w-full rounded-lg pl-9 pr-3 text-sm transition-all focus:ring-1"
+													className="bg-elevation-level1/70 border-border/60 focus:bg-bg placeholder:text-fg-muted focus:ring-primary h-8.5 w-full rounded-lg pr-3 pl-9 text-sm transition-all focus:ring-1"
 												/>
 											</div>
 										</FormControl>
@@ -217,7 +217,7 @@ export function Navbar() {
 														{...field}
 														type="search"
 														placeholder="Search..."
-														className="bg-elevation-level1/80 border-border/60 placeholder:text-fg-muted h-9 w-full rounded-lg pl-9 pr-3 text-sm"
+														className="bg-elevation-level1/80 border-border/60 placeholder:text-fg-muted h-9 w-full rounded-lg pr-3 pl-9 text-sm"
 													/>
 												</div>
 											</FormControl>

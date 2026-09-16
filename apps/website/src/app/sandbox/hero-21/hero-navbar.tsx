@@ -23,11 +23,11 @@ export function HeroNavbar() {
 	return (
 		<header className="bg-background/80 sticky top-0 z-30 w-full backdrop-blur-md">
 			<div className="mx-auto flex max-w-7xl items-center justify-center px-4 py-4 sm:px-8 lg:px-16">
-				<nav className="bg-fill2/80 shadow-xs flex w-full items-center justify-between rounded-full p-1.5 pl-3 pr-2 backdrop-blur-md md:w-auto md:gap-6">
+				<nav className="bg-fill2/80 flex w-full items-center justify-between rounded-full p-1.5 pr-2 pl-3 shadow-xs backdrop-blur-md md:w-auto md:gap-6">
 					{/* Brand Logo */}
 					<Link
 						href="#"
-						className="flex items-center gap-2.5 rounded-full py-1 pl-1 pr-3 hover:underline">
+						className="flex items-center gap-2.5 rounded-full py-1 pr-3 pl-1 hover:underline">
 						<div className="bg-foreground text-background flex size-7 items-center justify-center rounded-full">
 							<Image
 								src="https://images.shadcnspace.com/favicon.ico"

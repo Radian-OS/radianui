@@ -80,7 +80,7 @@ export default function InputForm() {
 	}
 
 	return (
-		<div className="w-100 bg-bg border-border flex rounded-2xl border px-6 py-8">
+		<div className="bg-bg border-border flex w-100 rounded-2xl border px-6 py-8">
 			<div className="flex flex-1 flex-col gap-8">
 				<div>
 					<Logo />

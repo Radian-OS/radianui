@@ -26,7 +26,7 @@ export const BlogComponents: MDXComponents = {
 		...props
 	}: HTMLAttributes<HTMLHeadingElement>) => (
 		<h2
-			className={cn("heading-5 font-semibold! py-5 pt-10", className)}
+			className={cn("heading-5 py-5 pt-10 font-semibold!", className)}
 			{...props}>
 			{children}
 		</h2>
@@ -53,7 +53,7 @@ export const BlogComponents: MDXComponents = {
 			src={src}
 			alt={alt || ""}
 			className={cn(
-				"max-w-200 max-h-100 my-5 h-full w-full rounded-lg object-cover",
+				"my-5 h-full max-h-100 w-full max-w-200 rounded-lg object-cover",
 				className
 			)}
 			height={500}

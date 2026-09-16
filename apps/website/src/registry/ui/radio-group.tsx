@@ -20,8 +20,8 @@ type RadioGroupProps = React.ComponentProps<typeof RadioGroupPrimitive.Root> &
 
 const radioItemVariants = cva(
 	cn(
-		"outline-hidden border-alpha data-[state=checked]:bg-primary disabled:opacity-50 focus-visible:ring-primary focus-visible:ring-offset-bg peer flex aspect-square items-center justify-center rounded-full border transition-all duration-200 focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed data-[state=checked]:border-none",
-		"aria-invalid:border-error-text aria-invalid:ring-error ",
+		"border-alpha data-[state=checked]:bg-primary focus-visible:ring-primary focus-visible:ring-offset-bg peer flex aspect-square items-center justify-center rounded-full border outline-hidden transition-all duration-200 focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:border-none",
+		"aria-invalid:border-error-text aria-invalid:ring-error",
 		"[[data-invalid=true]_&]:border-error-text [[data-invalid=true]_&]:ring-error"
 	),
 	{
@@ -88,7 +88,7 @@ function RadioGroupItem({
 				className="relative flex items-center justify-center">
 				<IconSlot
 					slot="circle"
-					className="fill-bg stroke-bg absolute left-1/2 top-1/2 size-2 -translate-x-1/2 -translate-y-1/2"
+					className="fill-bg stroke-bg absolute top-1/2 left-1/2 size-2 -translate-x-1/2 -translate-y-1/2"
 				/>
 			</RadioGroupPrimitive.Indicator>
 		</RadioGroupPrimitive.Item>

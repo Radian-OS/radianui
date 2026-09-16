@@ -127,7 +127,7 @@ export function AiworkAgentsSection() {
 							key={agent.title}
 							className="border-border/70 bg-fill1/50 hover:border-primary/40 flex flex-col justify-between overflow-hidden rounded-2xl border p-5 transition-all duration-300">
 							<div
-								className={`relative ${agent.aspect} border-border/60 bg-background/80 shadow-xs mb-4 w-full overflow-hidden rounded-xl border`}>
+								className={`relative ${agent.aspect} border-border/60 bg-background/80 mb-4 w-full overflow-hidden rounded-xl border shadow-xs`}>
 								<Image
 									src={agent.imageUrl}
 									alt={agent.title}

@@ -16,7 +16,7 @@ export function HeroSection() {
 			<HeroNavbar />
 
 			{/* Main Hero Body */}
-			<main className="mx-auto flex max-w-7xl flex-col items-center px-4 pb-12 pt-8 sm:px-8 sm:pt-12 md:pt-16 lg:px-16">
+			<main className="mx-auto flex max-w-7xl flex-col items-center px-4 pt-8 pb-12 sm:px-8 sm:pt-12 md:pt-16 lg:px-16">
 				{/* Top Reviews Avatar Cluster */}
 				<div className="mb-6 flex justify-center sm:mb-8">
 					<ReviewBadge />
@@ -36,7 +36,7 @@ export function HeroSection() {
 				</p>
 
 				{/* Call to Action Buttons */}
-				<div className="sm:mb-18 mb-14 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+				<div className="mb-14 flex flex-wrap items-center justify-center gap-3 sm:mb-18 sm:gap-4">
 					<Button
 						color="primary"
 						variant="strong"

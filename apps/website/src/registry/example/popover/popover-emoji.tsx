@@ -23,7 +23,7 @@ export default function PopoverEmoji() {
 				<Avatar size="36">
 					<AvatarImage src="/media/male-1.jpg" />
 					<AvatarFallback>JJ</AvatarFallback>
-					<AvatarIndicator className="bottom-1.5 right-1.5">
+					<AvatarIndicator className="right-1.5 bottom-1.5">
 						<AvatarStatus variant={"online"} />
 					</AvatarIndicator>
 				</Avatar>
@@ -47,7 +47,7 @@ export default function PopoverEmoji() {
 					alt="background"
 					className="rounded-md"
 				/>
-				<div className="max-w-75 flex flex-wrap gap-1.5">
+				<div className="flex max-w-75 flex-wrap gap-1.5">
 					{selectedEmoji.map((emoji) => (
 						<Button
 							variant="outline"
@@ -86,7 +86,7 @@ export default function PopoverEmoji() {
 										className="placeholder:text-fg-tertiary z-10 w-full appearance-none text-sm font-normal focus:outline-0"
 									/>
 								</div>
-								<EmojiPicker.Viewport className="outline-hidden relative flex-1">
+								<EmojiPicker.Viewport className="relative flex-1 outline-hidden">
 									<EmojiPicker.Loading className="text-fg-tertiary absolute inset-0 flex items-center justify-center text-sm">
 										Loading…
 									</EmojiPicker.Loading>
@@ -94,7 +94,7 @@ export default function PopoverEmoji() {
 										No emoji found.
 									</EmojiPicker.Empty>
 									<EmojiPicker.List
-										className="select-none pb-1.5"
+										className="pb-1.5 select-none"
 										components={{
 											CategoryHeader: ({ category, ...props }) => (
 												<div

@@ -57,7 +57,7 @@ export function LogoMarquee() {
 				</p>
 
 				{/* Logo Strip Grid / Carousel */}
-				<div className="mask-[linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] relative w-full overflow-hidden">
+				<div className="relative w-full overflow-hidden mask-[linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
 					<div className="flex w-full items-center justify-around gap-8 py-2 md:justify-center md:gap-14">
 						{brandLogos.map((brand) => (
 							<div

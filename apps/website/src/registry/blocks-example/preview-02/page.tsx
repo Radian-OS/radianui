@@ -72,14 +72,14 @@ function ContributionHistoryCard() {
 
 			<CardContent className="grid grid-cols-2 gap-4 pt-0">
 				<div>
-					<p className="text-fg-tertiary mb-0.5 text-[10px] uppercase tracking-widest">
+					<p className="text-fg-tertiary mb-0.5 text-[10px] tracking-widest uppercase">
 						Upcoming
 					</p>
 					<p className="text-sm font-bold">May 25, 2024</p>
 					<p className="text-fg-tertiary text-xs">$1,000 scheduled</p>
 				</div>
 				<div>
-					<p className="text-fg-tertiary mb-0.5 text-[10px] uppercase tracking-widest">
+					<p className="text-fg-tertiary mb-0.5 text-[10px] tracking-widest uppercase">
 						Auto-Save Plan
 					</p>
 					<p className="text-sm font-bold">Accelerated</p>
@@ -104,7 +104,7 @@ function PayoutThresholdCard() {
 
 	return (
 		<Card className="relative">
-			<button className="text-fg-tertiary hover:text-fg absolute right-4 top-4 transition-colors">
+			<button className="text-fg-tertiary hover:text-fg absolute top-4 right-4 transition-colors">
 				<IconSlot slot="cross" className="h-4 w-4" />
 			</button>
 
@@ -205,7 +205,7 @@ function SavingsTargetsCard() {
 			<CardContent className="space-y-6">
 				{targets.map((t) => (
 					<div key={t.label} className="space-y-2">
-						<p className="text-fg-tertiary text-[10px] font-medium uppercase tracking-widest">
+						<p className="text-fg-tertiary text-[10px] font-medium tracking-widest uppercase">
 							{t.label}
 						</p>
 						<p className="text-3xl font-bold tracking-tight">
@@ -245,7 +245,7 @@ function BuyInvestmentCard() {
 				<div className="space-y-1.5">
 					<Label htmlFor="invest-amount">Amount to Invest</Label>
 					<div className="relative">
-						<span className="text-fg-tertiary absolute left-3 top-1/2 -translate-y-1/2 text-sm">
+						<span className="text-fg-tertiary absolute top-1/2 left-3 -translate-y-1/2 text-sm">
 							$
 						</span>
 						<Input
@@ -297,7 +297,7 @@ function BuyInvestmentCard() {
 function DistributeTrackCard() {
 	return (
 		<Card className="flex flex-col items-center text-center">
-			<CardContent className="flex flex-col items-center gap-3 pb-4 pt-8">
+			<CardContent className="flex flex-col items-center gap-3 pt-8 pb-4">
 				<div className="border-border flex h-10 w-10 items-center justify-center rounded-full border-2 border-dashed">
 					<IconSlot slot="plus" className="text-fg-tertiary h-5 w-5" />
 				</div>
@@ -515,7 +515,7 @@ function RiskAllocationCard() {
 				<Divider />
 
 				<div className="space-y-2.5">
-					<p className="text-fg-tertiary text-xs font-medium uppercase tracking-widest">
+					<p className="text-fg-tertiary text-xs font-medium tracking-widest uppercase">
 						Suggested Allocation
 					</p>
 					{[
@@ -623,7 +623,7 @@ function NotificationPreferencesCard() {
 			<CardContent className="space-y-6">
 				{/* Checkboxes */}
 				<div className="space-y-1.5">
-					<p className="text-fg-tertiary mb-3 text-xs font-medium uppercase tracking-widest">
+					<p className="text-fg-tertiary mb-3 text-xs font-medium tracking-widest uppercase">
 						Alert Types
 					</p>
 					<Card className="gap-0 divide-y overflow-hidden py-1">
@@ -639,10 +639,10 @@ function NotificationPreferencesCard() {
 									className="mt-0.5 shrink-0"
 								/>
 								<div className="min-w-0">
-									<p className="select-none text-sm font-medium leading-tight">
+									<p className="text-sm leading-tight font-medium select-none">
 										{item.label}
 									</p>
-									<p className="text-fg-tertiary mt-0.5 select-none text-xs">
+									<p className="text-fg-tertiary mt-0.5 text-xs select-none">
 										{item.desc}
 									</p>
 								</div>
@@ -662,7 +662,7 @@ function NotificationPreferencesCard() {
 
 				{/* Radio Group */}
 				<div className="space-y-3">
-					<p className="text-fg-tertiary text-xs font-medium uppercase tracking-widest">
+					<p className="text-fg-tertiary text-xs font-medium tracking-widest uppercase">
 						Delivery Frequency
 					</p>
 					<RadioGroup
@@ -683,11 +683,11 @@ function NotificationPreferencesCard() {
 									className={`flex cursor-pointer flex-col gap-1 px-4 py-3 transition-colors`}>
 									<div className="flex items-center gap-2">
 										<RadioGroupItem id={`freq-${f.value}`} value={f.value} />
-										<span className="select-none text-sm font-medium">
+										<span className="text-sm font-medium select-none">
 											{f.label}
 										</span>
 									</div>
-									<p className="text-fg-tertiary select-none pl-6 text-xs">
+									<p className="text-fg-tertiary pl-6 text-xs select-none">
 										{f.desc}
 									</p>
 								</Label>
@@ -798,7 +798,7 @@ function PrivacySettingsCard() {
 			<CardContent className="space-y-6">
 				{Object.entries(grouped).map(([category, items]) => (
 					<div key={category} className="space-y-1">
-						<p className="text-fg-tertiary mb-3 text-[10px] font-medium uppercase tracking-widest">
+						<p className="text-fg-tertiary mb-3 text-[10px] font-medium tracking-widest uppercase">
 							{category}
 						</p>
 						<div className="divide-y overflow-hidden rounded-md border">
@@ -807,7 +807,7 @@ function PrivacySettingsCard() {
 									key={item.key}
 									className="hover:bg-fill1/40 flex items-center justify-between gap-4 px-4 py-3 transition-colors">
 									<div className="min-w-0">
-										<p className="text-sm font-medium leading-tight">
+										<p className="text-sm leading-tight font-medium">
 											{item.label}
 										</p>
 										<p className="text-fg-tertiary mt-0.5 text-xs">
@@ -878,7 +878,7 @@ function ScheduleCard() {
 				/>
 
 				<div className="w-full space-y-1 px-6">
-					<p className="text-fg-tertiary mb-2 text-[10px] font-medium uppercase tracking-widest">
+					<p className="text-fg-tertiary mb-2 text-[10px] font-medium tracking-widest uppercase">
 						{date
 							? date.toLocaleDateString("default", {
 									weekday: "long",

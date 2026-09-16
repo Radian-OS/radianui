@@ -13,15 +13,15 @@ type CheckboxProps = React.ComponentProps<typeof CheckboxPrimitive.Root> &
 
 const checkboxVariants = cva(
 	cn(
-		"flex items-center justify-center group peer shrink-0 border ring-offset-bg focus-visible:outline-none cn-checkbox",
+		"group peer ring-offset-bg cn-checkbox flex shrink-0 items-center justify-center border focus-visible:outline-none",
 		"focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
 	),
 	{
 		variants: {
 			size: {
-				sm: "size-4 [&_svg]:size-3.5 cn-checkbox-sm",
-				md: "size-5 [&_svg]:size-4 cn-checkbox-md",
-				lg: "size-6 [&_svg]:size-4.5 cn-checkbox-lg",
+				sm: "cn-checkbox-sm size-4 [&_svg]:size-3.5",
+				md: "cn-checkbox-md size-5 [&_svg]:size-4",
+				lg: "cn-checkbox-lg size-6 [&_svg]:size-4.5",
 			},
 		},
 		defaultVariants: {

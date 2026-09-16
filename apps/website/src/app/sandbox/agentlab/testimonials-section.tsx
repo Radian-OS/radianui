@@ -86,11 +86,11 @@ export function AgentlabTestimonialsSection() {
 				{/* Top Header */}
 				<div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
 					<div>
-						<div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-white/80">
+						<div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3.5 py-1 text-xs font-semibold tracking-wider text-white/80 uppercase">
 							<span className="text-primary font-bold">—</span>
 							<span>TESTIMONIALS</span>
 						</div>
-						<h2 className="heading-2 mt-4 font-serif text-3xl font-normal leading-[1.2] tracking-tight text-white sm:text-4xl md:text-5xl">
+						<h2 className="heading-2 mt-4 font-serif text-3xl leading-[1.2] font-normal tracking-tight text-white sm:text-4xl md:text-5xl">
 							What People Are Saying
 						</h2>
 					</div>
@@ -99,7 +99,7 @@ export function AgentlabTestimonialsSection() {
 						variant="outline"
 						color="neutral"
 						size="36"
-						className="gap-2 border-white/20 bg-transparent text-xs font-bold uppercase tracking-wider text-white hover:bg-white/10">
+						className="gap-2 border-white/20 bg-transparent text-xs font-bold tracking-wider text-white uppercase hover:bg-white/10">
 						<ArrowUpRight className="size-4" />
 						<span>SEE ALL CASE STUDIES</span>
 					</Button>
@@ -135,13 +135,13 @@ export function AgentlabTestimonialsSection() {
 				<div className="mt-8 grid grid-cols-1 gap-8 rounded-2xl border border-white/10 bg-white/5 p-8 lg:grid-cols-12 lg:gap-12 lg:p-12">
 					{/* Left Quote Graphic */}
 					<div className="lg:col-span-7">
-						<h3 className="heading-3 font-serif text-2xl font-normal leading-[1.25] text-white sm:text-3xl md:text-4xl">
+						<h3 className="heading-3 font-serif text-2xl leading-[1.25] font-normal text-white sm:text-3xl md:text-4xl">
 							&ldquo;{activeTestimonial.headline}&rdquo;
 						</h3>
 					</div>
 
 					{/* Right Author Meta */}
-					<div className="flex flex-col justify-between border-t border-white/10 pt-6 lg:col-span-5 lg:border-l lg:border-t-0 lg:pl-10 lg:pt-0">
+					<div className="flex flex-col justify-between border-t border-white/10 pt-6 lg:col-span-5 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-10">
 						<div className="flex items-center gap-4">
 							<div className="relative size-14 overflow-hidden rounded-full border border-white/20">
 								<Image

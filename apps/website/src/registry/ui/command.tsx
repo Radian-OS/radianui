@@ -79,7 +79,7 @@ function CommandInput({ className, ...props }: CommandInputProps) {
 			<CmdkInput
 				data-slot="command-input"
 				className={cn(
-					"outline-hidden cn-command-input flex w-full rounded-md bg-transparent disabled:cursor-not-allowed disabled:opacity-50",
+					"cn-command-input flex w-full rounded-md bg-transparent outline-hidden disabled:cursor-not-allowed disabled:opacity-50",
 					className
 				)}
 				{...props}
@@ -93,7 +93,7 @@ function CommandList({ className, ...props }: CommandListProps) {
 		<CmdkList
 			data-slot="command-list"
 			className={cn(
-				"cn-command-list overflow-y-auto overflow-x-hidden",
+				"cn-command-list overflow-x-hidden overflow-y-auto",
 				className
 			)}
 			{...props}
@@ -136,7 +136,7 @@ function CommandItem({ className, ...props }: CommandItemProps) {
 		<CmdkItem
 			data-slot="command-item"
 			className={cn(
-				"outline-hidden cn-command-item relative flex cursor-default select-none items-center gap-2 data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+				"cn-command-item relative flex cursor-default items-center gap-2 outline-hidden select-none data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0",
 				className
 			)}
 			{...props}
