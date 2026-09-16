@@ -1,7 +1,7 @@
 "use client"
 
 import { type RefObject, useEffect } from "react"
-import { resolveElementSourceLocation } from "./source-locator"
+import { resolveElementSourceDetails } from "./source-locator"
 import type { PreviewKey, ViewMode } from "./types"
 
 export function useInspectMode(
@@ -77,27 +77,18 @@ export function useInspectMode(
 					target.classList.add("sandbox-inspect-hover")
 
 					const rect = target.getBoundingClientRect()
-					const tag = target.tagName.toLowerCase()
-					const classNames =
-						typeof target.className === "string"
-							? target.className
-									.split(" ")
-									.filter((c) => c && !c.includes("sandbox-inspect"))
-									.slice(0, 2)
-									.map((c) => `.${c}`)
-									.join("")
-							: ""
-					const dims = `${Math.round(rect.width)} × ${Math.round(rect.height)} px`
-					const sourceLoc = resolveElementSourceLocation(
+					const details = resolveElementSourceDetails(
 						target,
 						componentFiles,
 						defaultFile
 					)
-					const sourceText = sourceLoc
-						? ` • ${sourceLoc.file}:${sourceLoc.lineNumber}`
+					const classNames = details.className
+						? `.${details.className.split(/\s+/).slice(0, 2).join(".")}`
 						: ""
+					const dims = `${Math.round(rect.width)} × ${Math.round(rect.height)} px`
+					const sourceText = ` • ${details.file}:${details.lineNumber}`
 
-					badge.textContent = `${tag}${classNames} | ${dims}${sourceText}`
+					badge.textContent = `${details.tag}${classNames} | ${dims}${sourceText}`
 					badge.style.display = "block"
 
 					const badgeTop = rect.top - 26 < 8 ? rect.bottom + 4 : rect.top - 26

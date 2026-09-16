@@ -4,7 +4,7 @@ import { type RefObject, useCallback, useEffect, useState } from "react"
 import type { CommentFormValues } from "./comment-form"
 import {
 	type SourceLocation,
-	resolveElementSourceLocation,
+	resolveElementSourceDetails,
 } from "./source-locator"
 import type { PreviewKey, SandboxComment, ViewMode } from "./types"
 
@@ -204,17 +204,11 @@ export function useComments(
 					const posX = Math.max(1, Math.min(99, (pageX / docWidth) * 100))
 					const posY = Math.max(1, Math.min(99, (pageY / docHeight) * 100))
 
-					const tag = target.tagName.toLowerCase()
-
-					// Extract full class name list without internal sandbox classes
-					const rawClasses =
-						typeof target.className === "string"
-							? target.className
-							: (target.className as any)?.baseVal || ""
-					const classNames = rawClasses
-						.split(/\s+/)
-						.filter((c: string) => c && !c.includes("sandbox-"))
-						.join(" ")
+					const details = resolveElementSourceDetails(
+						target,
+						componentFiles,
+						defaultFile
+					)
 
 					// Extract text content of that specific HTML tag
 					let directText = ""
@@ -232,19 +226,16 @@ export function useComments(
 						directText = directText.slice(0, 297) + "..."
 					}
 
-					const sourceLocation = resolveElementSourceLocation(
-						target,
-						componentFiles,
-						defaultFile
-					)
-
 					setDraftComment({
 						positionX: Math.round(posX * 10) / 10,
 						positionY: Math.round(posY * 10) / 10,
-						elementTag: tag,
-						elementSelector: classNames,
+						elementTag: details.tag,
+						elementSelector: details.className,
 						elementContent: directText,
-						sourceLocation,
+						sourceLocation: {
+							file: details.file,
+							lineNumber: details.lineNumber,
+						},
 					})
 				}
 

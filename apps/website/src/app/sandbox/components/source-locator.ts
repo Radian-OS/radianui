@@ -170,6 +170,14 @@ export function locateSourceElement(
 
 		for (let i = 0; i < lines.length; i++) {
 			const line = lines[i]
+			const trimmed = line.trim()
+			if (
+				trimmed.startsWith("//") ||
+				trimmed.startsWith("{/*") ||
+				trimmed.startsWith("/*")
+			) {
+				continue
+			}
 			const lineNum = i + 1
 			let score = 0
 
@@ -200,7 +208,9 @@ export function locateSourceElement(
 			const tagLower = tag.toLowerCase()
 			if (
 				line.toLowerCase().includes(`<${tagLower}`) ||
-				line.toLowerCase().includes(`</${tagLower}`)
+				line.toLowerCase().includes(`</${tagLower}`) ||
+				(tagLower === "button" && line.includes("<Button")) ||
+				(tagLower === "a" && line.includes("<Link"))
 			) {
 				score += 25
 			}
@@ -245,6 +255,281 @@ export function locateSourceElement(
 	}
 }
 
+export interface ResolvedElementDetails {
+	file: string
+	lineNumber: number
+	tag: string
+	className: string
+}
+
+function extractClassNameFromAttrs(attrs: string): string {
+	let className = ""
+	const strMatch =
+		attrs.match(/className\s*=\s*"([^"]*)"/) ||
+		attrs.match(/className\s*=\s*'([^']*)'/)
+	if (strMatch) {
+		className = strMatch[1]
+	} else {
+		// Match className={...} including multi-line expressions
+		const braceMatch = attrs.match(
+			/className\s*=\s*\{([\s\S]*?)\}(?:\s|\n|\/|>|$)/
+		)
+		if (braceMatch) {
+			const raw = braceMatch[1]
+			const literals: string[] = []
+			const litRegex = /(?:`([^`]*)`|"([^"]*)"|'([^']*)')/g
+			let lm: RegExpExecArray | null
+			while ((lm = litRegex.exec(raw)) !== null) {
+				const val = (lm[1] || lm[2] || lm[3] || "").trim()
+				if (val) literals.push(val)
+			}
+			className = literals.join(" ").trim()
+		}
+	}
+	return className
+}
+
+export function parseJsxElementAtLine(
+	content: string,
+	targetLine: number,
+	preferButton = false
+): {
+	tag: string
+	className: string
+	startLine: number
+	endLine: number
+} | null {
+	if (!content) return null
+	const lines = content.split(/\r?\n/)
+	if (targetLine < 1 || targetLine > lines.length) return null
+
+	// If preferButton is true, check upwards up to 15 lines for an enclosing <Button ...>
+	let targetSearchLine = targetLine
+	if (preferButton) {
+		for (let i = targetLine - 1; i >= Math.max(0, targetLine - 15); i--) {
+			const l = lines[i].trim()
+			if (/<Button(?:\s|>|\/|$)/i.test(l)) {
+				targetSearchLine = i + 1
+				break
+			}
+		}
+	}
+
+	// Search starting from targetSearchLine upwards to find the opening JSX tag
+	let candidateLine = -1
+	for (
+		let i = targetSearchLine - 1;
+		i >= Math.max(0, targetSearchLine - 25);
+		i--
+	) {
+		const l = lines[i].trim()
+		if (
+			l.startsWith("//") ||
+			l.startsWith("{/*") ||
+			l.startsWith("/*") ||
+			l.startsWith("</")
+		) {
+			continue
+		}
+		const tagMatch = l.match(/<([A-Za-z0-9_.-]+)(?:\s|>|\/|$)/)
+		if (tagMatch) {
+			candidateLine = i
+			break
+		}
+	}
+
+	if (candidateLine < 0) return null
+
+	let tagText = ""
+	for (
+		let j = candidateLine;
+		j < Math.min(lines.length, candidateLine + 35);
+		j++
+	) {
+		tagText += (j === candidateLine ? "" : "\n") + lines[j]
+		const match = tagText.match(
+			/<([A-Za-z0-9_.-]+)((?:[^>"']|"[^"]*"|'[^']*'|\{[^}]*\})*?)(\/?>)/
+		)
+		if (match) {
+			const tagName = match[1]
+			const attrs = match[2]
+			const className = extractClassNameFromAttrs(attrs)
+
+			return {
+				tag: tagName,
+				className,
+				startLine: candidateLine + 1,
+				endLine: j + 1,
+			}
+		}
+	}
+
+	return null
+}
+
+export function getFiberSourceDetails(
+	element: HTMLElement,
+	componentFiles: Record<string, string>
+): ResolvedElementDetails | null {
+	try {
+		const targetElements = [
+			element,
+			element.closest('button, a, [role="button"]'),
+			element.parentElement,
+		].filter(Boolean) as HTMLElement[]
+
+		for (const el of targetElements) {
+			const fiberKey = Object.keys(el).find(
+				(k) =>
+					k.startsWith("__reactFiber$") ||
+					k.startsWith("__reactInternalInstance$")
+			)
+			if (!fiberKey) continue
+
+			let fiber = (el as any)[fiberKey]
+			let depth = 0
+			const maxDepth = 40
+			const matchedCandidates: ResolvedElementDetails[] = []
+
+			while (fiber && depth < maxDepth) {
+				depth++
+
+				let file: string | null = null
+				let lineNumber: number | null = null
+
+				if (fiber._debugSource?.fileName) {
+					file = matchComponentFile(fiber._debugSource.fileName, componentFiles)
+					if (file && typeof fiber._debugSource.lineNumber === "number") {
+						lineNumber = fiber._debugSource.lineNumber
+					}
+				}
+
+				if (!file && fiber._debugOwner?._debugSource?.fileName) {
+					file = matchComponentFile(
+						fiber._debugOwner._debugSource.fileName,
+						componentFiles
+					)
+					if (
+						file &&
+						typeof fiber._debugOwner._debugSource.lineNumber === "number"
+					) {
+						lineNumber = fiber._debugOwner._debugSource.lineNumber
+					}
+				}
+
+				if (file && lineNumber && lineNumber > 0) {
+					let tag = ""
+					if (typeof fiber.type === "string") {
+						tag = fiber.type
+					} else if (fiber.type && typeof fiber.type === "function") {
+						tag = fiber.type.displayName || fiber.type.name || ""
+					} else if (fiber.type && typeof fiber.type === "object") {
+						tag =
+							fiber.type.displayName ||
+							fiber.type.render?.displayName ||
+							fiber.type.render?.name ||
+							""
+					}
+					if (!tag) {
+						tag =
+							fiber.elementType?.displayName || fiber.elementType?.name || ""
+					}
+
+					const props = fiber.memoizedProps || fiber.pendingProps
+					const className =
+						props && typeof props.className === "string"
+							? props.className.trim()
+							: ""
+
+					matchedCandidates.push({
+						file,
+						lineNumber,
+						tag: tag || el.tagName.toLowerCase(),
+						className,
+					})
+				}
+
+				fiber = fiber._debugOwner || fiber.return
+			}
+
+			if (matchedCandidates.length > 0) {
+				// Prefer a component like Button, Link, Card, Badge if it has a custom className
+				const componentWithClass = matchedCandidates.find(
+					(c) => /^[A-Z]/.test(c.tag) && c.className.length > 0
+				)
+				if (componentWithClass) return componentWithClass
+
+				const anyComponent = matchedCandidates.find((c) => /^[A-Z]/.test(c.tag))
+				if (anyComponent) return anyComponent
+
+				return matchedCandidates[0]
+			}
+		}
+	} catch {
+		// Ignore fiber traversal errors in sandboxed frames
+	}
+
+	return null
+}
+
+export function resolveElementSourceDetails(
+	element: HTMLElement,
+	componentFiles: Record<string, string>,
+	defaultFile: string
+): ResolvedElementDetails {
+	const isButtonLike = !!element.closest(
+		'button, [role="button"], [class*="button"]'
+	)
+
+	// 1. Try React Fiber inspection first
+	const fiberDetails = getFiberSourceDetails(element, componentFiles)
+
+	let file = fiberDetails?.file
+	let lineNumber = fiberDetails?.lineNumber || 1
+	let tag = fiberDetails?.tag || ""
+	let className = fiberDetails?.className || ""
+
+	// 2. If fiber didn't resolve location, use static locator
+	if (!file || lineNumber <= 0) {
+		const staticLoc = locateSourceElement(element, componentFiles, defaultFile)
+		file = staticLoc.file
+		lineNumber = staticLoc.lineNumber
+	}
+
+	// 3. If we have the source file content, parse JSX around lineNumber to get exact author JSX tag and className
+	if (file && componentFiles[file]) {
+		const jsxParsed = parseJsxElementAtLine(
+			componentFiles[file],
+			lineNumber,
+			isButtonLike
+		)
+		if (jsxParsed) {
+			if (jsxParsed.tag) {
+				tag = jsxParsed.tag
+			}
+			// Prefer exact author-written className from source JSX
+			if (typeof jsxParsed.className === "string") {
+				className = jsxParsed.className
+			}
+			if (jsxParsed.startLine) {
+				lineNumber = jsxParsed.startLine
+			}
+		}
+	}
+
+	// Fallback tag if still empty
+	if (!tag) {
+		tag = element.tagName.toLowerCase()
+	}
+
+	return {
+		file,
+		lineNumber,
+		tag,
+		className,
+	}
+}
+
 /**
  * Top-level locator that tries React Fiber first, then falls back to static AST/text locator.
  */
@@ -253,10 +538,13 @@ export function resolveElementSourceLocation(
 	componentFiles: Record<string, string>,
 	defaultFile: string
 ): SourceLocation {
-	const fiberSource = getFiberSourceLocation(element, componentFiles)
-	if (fiberSource && fiberSource.lineNumber > 0) {
-		return fiberSource
+	const details = resolveElementSourceDetails(
+		element,
+		componentFiles,
+		defaultFile
+	)
+	return {
+		file: details.file,
+		lineNumber: details.lineNumber,
 	}
-
-	return locateSourceElement(element, componentFiles, defaultFile)
 }
