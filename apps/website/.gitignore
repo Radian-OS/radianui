@@ -16,5 +16,6 @@ src/registry/registry-map.ts
 src/registry/blocks-example/index.tsx
 public/llms.txt
 public/llms-full.txt
+*.tsbuildinfo
 
 .source/
