@@ -51,9 +51,16 @@ export interface SandboxComment {
 	lineNumber?: number
 }
 
+export type SandboxCategory =
+	| "full-page"
+	| "hero-section"
+	| "pricing-section"
+	| "other-sections"
+
 export interface SandboxComponentConfig {
 	id: PreviewKey
 	label: string
+	category: SandboxCategory
 	filesKey: keyof FilesData
 	path: string
 	defaultFile: string
@@ -63,17 +70,19 @@ export interface SandboxComponentConfig {
 
 export const sandboxComponents: SandboxComponentConfig[] = [
 	{
-		id: "hero-04",
-		label: "hero-04",
-		filesKey: "hero-04",
-		path: "src/app/sandbox/hero-04",
+		id: "omrix",
+		label: "omrix",
+		category: "full-page",
+		filesKey: "omrix",
+		path: "src/app/sandbox/omrix",
 		defaultFile: "page.tsx",
-		referenceUrl: "https://pro.alignui.com/block-preview/default/hero-04",
-		previewRoute: "/sandbox/hero-04",
+		referenceUrl: "https://omrix.framer.ai/",
+		previewRoute: "/sandbox/omrix",
 	},
 	{
 		id: "crisply",
 		label: "crisply",
+		category: "full-page",
 		filesKey: "crisply",
 		path: "src/app/sandbox/crisply",
 		defaultFile: "page.tsx",
@@ -84,6 +93,7 @@ export const sandboxComponents: SandboxComponentConfig[] = [
 	{
 		id: "agentlab",
 		label: "agentlab",
+		category: "full-page",
 		filesKey: "agentlab",
 		path: "src/app/sandbox/agentlab",
 		defaultFile: "page.tsx",
@@ -91,17 +101,9 @@ export const sandboxComponents: SandboxComponentConfig[] = [
 		previewRoute: "/sandbox/agentlab",
 	},
 	{
-		id: "omrix",
-		label: "omrix",
-		filesKey: "omrix",
-		path: "src/app/sandbox/omrix",
-		defaultFile: "page.tsx",
-		referenceUrl: "https://omrix.framer.ai/",
-		previewRoute: "/sandbox/omrix",
-	},
-	{
 		id: "aiwork",
 		label: "aiwork",
+		category: "full-page",
 		filesKey: "aiwork",
 		path: "src/app/sandbox/aiwork",
 		defaultFile: "page.tsx",
@@ -111,6 +113,7 @@ export const sandboxComponents: SandboxComponentConfig[] = [
 	{
 		id: "verseo",
 		label: "verseo",
+		category: "full-page",
 		filesKey: "verseo",
 		path: "src/app/sandbox/verseo",
 		defaultFile: "page.tsx",
@@ -118,8 +121,19 @@ export const sandboxComponents: SandboxComponentConfig[] = [
 		previewRoute: "/sandbox/verseo",
 	},
 	{
+		id: "hero-04",
+		label: "hero-04",
+		category: "hero-section",
+		filesKey: "hero-04",
+		path: "src/app/sandbox/hero-04",
+		defaultFile: "page.tsx",
+		referenceUrl: "https://pro.alignui.com/block-preview/default/hero-04",
+		previewRoute: "/sandbox/hero-04",
+	},
+	{
 		id: "hero-21",
 		label: "hero-21",
+		category: "hero-section",
 		filesKey: "hero-21",
 		path: "src/app/sandbox/hero-21",
 		defaultFile: "hero-section.tsx",
@@ -127,35 +141,9 @@ export const sandboxComponents: SandboxComponentConfig[] = [
 		previewRoute: "/sandbox/hero-21",
 	},
 	{
-		id: "motion",
-		label: "motion",
-		filesKey: "motion",
-		path: "src/app/sandbox/motion",
-		defaultFile: "logo-section.tsx",
-		referenceUrl: "https://www.flowbase.co/preview/jambo-logo-01",
-		previewRoute: "/sandbox/motion",
-	},
-	{
-		id: "faq",
-		label: "klarheit-faq",
-		filesKey: "klarheit-faq",
-		path: "src/app/sandbox/klarheit-faq",
-		defaultFile: "faq-section.tsx",
-		referenceUrl: "https://www.flowbase.co/preview/klarheit-faq-02",
-		previewRoute: "/sandbox/klarheit-faq",
-	},
-	{
-		id: "testimonials",
-		label: "klarheit-testimonial",
-		filesKey: "klarheit-testimonial",
-		path: "src/app/sandbox/klarheit-testimonial",
-		defaultFile: "testimonial-section.tsx",
-		referenceUrl: "https://www.flowbase.co/preview/klarheit-testimonial-02",
-		previewRoute: "/sandbox/klarheit-testimonial",
-	},
-	{
 		id: "beam-header",
 		label: "beam-header",
+		category: "hero-section",
 		filesKey: "beam-header",
 		path: "src/app/sandbox/beam-header",
 		defaultFile: "beam-header-section.tsx",
@@ -165,10 +153,41 @@ export const sandboxComponents: SandboxComponentConfig[] = [
 	{
 		id: "jambo-pricing",
 		label: "jambo-pricing",
+		category: "pricing-section",
 		filesKey: "jambo-pricing",
 		path: "src/app/sandbox/jambo-pricing",
 		defaultFile: "jambo-pricing-section.tsx",
 		referenceUrl: "https://www.flowbase.co/preview/jambo-pricing-01",
 		previewRoute: "/sandbox/jambo-pricing",
+	},
+	{
+		id: "faq",
+		label: "klarheit-faq",
+		category: "other-sections",
+		filesKey: "klarheit-faq",
+		path: "src/app/sandbox/klarheit-faq",
+		defaultFile: "faq-section.tsx",
+		referenceUrl: "https://www.flowbase.co/preview/klarheit-faq-02",
+		previewRoute: "/sandbox/klarheit-faq",
+	},
+	{
+		id: "testimonials",
+		label: "klarheit-testimonial",
+		category: "other-sections",
+		filesKey: "klarheit-testimonial",
+		path: "src/app/sandbox/klarheit-testimonial",
+		defaultFile: "testimonial-section.tsx",
+		referenceUrl: "https://www.flowbase.co/preview/klarheit-testimonial-02",
+		previewRoute: "/sandbox/klarheit-testimonial",
+	},
+	{
+		id: "motion",
+		label: "motion",
+		category: "other-sections",
+		filesKey: "motion",
+		path: "src/app/sandbox/motion",
+		defaultFile: "logo-section.tsx",
+		referenceUrl: "https://www.flowbase.co/preview/jambo-logo-01",
+		previewRoute: "/sandbox/motion",
 	},
 ]

@@ -5,12 +5,103 @@ const withBundleAnalyzer =
 	process.env.ANALYZE === "true"
 		? (await import("@next/bundle-analyzer")).default({ enabled: true })
 		: (config) => config
-const nextConfig = {
-	eslint: {
-		ignoreDuringBuilds: true,
+
+const LEGACY_DOCUMENTATION_ROUTES = {
+	gettingStarted: ["changelog", "cli", "figma", "installation", "introduction"],
+	installation: {
+		laravel: "manual",
+		manual: "manual",
+		next: "next",
+		vite: "vite",
 	},
+	fundamentals: {
+		colors: "colors",
+		"default-theme": "theme",
+		iconography: "iconography",
+		typography: "typography",
+	},
+	components: {
+		accordion: "accordion",
+		alert: "alert",
+		avatar: "avatar",
+		badge: "badge",
+		banner: "banner",
+		breadcrumb: "breadcrumb",
+		buttons: "button",
+		calendar: "calendar",
+		checkbox: "checkbox",
+		"code-area": "code-area",
+		"currency-amount": "currency-input",
+		"date-picker": "date-picker",
+		divider: "divider",
+		drawer: "drawer",
+		dropdown: "dropdown",
+		"file-upload": "file-upload",
+		forms: "form",
+		"hover-card": "hover-card",
+		"input-otp": "otp-field",
+		inputs: "input",
+		modal: "dialog",
+		pagination: "pagination",
+		"phone-number": "phone-number-input",
+		popover: "popover",
+		"progress-bar": "progress",
+		"radio-group": "radio-group",
+		resizable: "resizable",
+		select: "select",
+		skeleton: "skeleton",
+		slider: "slider",
+		spinner: "spinner",
+		switch: "switch",
+		table: "table",
+		tabs: "tabs",
+		"text-area": "text-area",
+		toast: "sonner",
+		tooltip: "tooltip",
+	},
+}
+
+const legacyDocumentationRedirects = [
+	...LEGACY_DOCUMENTATION_ROUTES.gettingStarted.map((slug) => ({
+		source: `/documentation/${slug}`,
+		destination: `/docs/getting-started/${slug}`,
+		permanent: true,
+	})),
+	...Object.entries(LEGACY_DOCUMENTATION_ROUTES.installation).map(
+		([sourceSlug, destinationSlug]) => ({
+			source: `/documentation/installation/${sourceSlug}`,
+			destination: `/docs/installation/${destinationSlug}`,
+			permanent: true,
+		})
+	),
+	...Object.entries(LEGACY_DOCUMENTATION_ROUTES.fundamentals).map(
+		([sourceSlug, destinationSlug]) => ({
+			source: `/documentation/${sourceSlug}`,
+			destination: `/docs/fundamentals/${destinationSlug}`,
+			permanent: true,
+		})
+	),
+	...Object.entries(LEGACY_DOCUMENTATION_ROUTES.components).map(
+		([sourceSlug, destinationSlug]) => ({
+			source: `/documentation/components/${sourceSlug}`,
+			destination: `/docs/components/${destinationSlug}`,
+			permanent: true,
+		})
+	),
+]
+
+const nextConfig = {
 	async headers() {
 		const headers = [
+			{
+				source: "/_next/static/:path*",
+				headers: [
+					{
+						key: "Cache-Control",
+						value: "public, max-age=31536000, immutable",
+					},
+				],
+			},
 			{
 				source: "/:path*.(svg|ico|png|jpg|jpeg|webp|woff|woff2)",
 				headers: [
@@ -115,11 +206,7 @@ const nextConfig = {
 				destination: "/docs/components/accordion",
 				permanent: true,
 			},
-			{
-				source: "/documentation/:path*",
-				destination: "/docs/:path*",
-				permanent: true,
-			},
+			// ...legacyDocumentationRedirects,
 			{
 				source: "/docs/components",
 				destination: "/docs/components/accordion",
@@ -204,10 +291,7 @@ const nextConfig = {
 		],
 	},
 	compiler: {
-		removeConsole:
-			process.env.NODE_ENV === "production"
-				? { exclude: ["error", "warn"] }
-				: false,
+		removeConsole: false,
 	},
 	experimental: {
 		optimizePackageImports: [
@@ -215,10 +299,6 @@ const nextConfig = {
 			"@radix-ui/react-icons",
 			"@hugeicons/core-free-icons",
 			"@hugeicons/react",
-			"date-fns",
-			"recharts",
-			"culori",
-			"@tanstack/react-table",
 		],
 	},
 	compress: false, // Let cloudflare handle the compression,

@@ -1,30 +1,86 @@
 "use client"
 
-import React from "react"
-import { Folder } from "lucide-react"
+import React, { useEffect, useState } from "react"
+import { Blocks, CreditCard, Folder, Layout, Sparkles } from "lucide-react"
 import { cn } from "@/lib/utils"
+import {
+	Accordion,
+	AccordionContent,
+	AccordionItem,
+	AccordionTrigger,
+} from "@/styles/default/ui/accordion"
 import {
 	Sidebar,
 	SidebarContent,
 	SidebarGroup,
 	SidebarGroupContent,
-	SidebarGroupLabel,
 	SidebarHeader,
 	SidebarMenu,
 	SidebarMenuButton,
 	SidebarMenuItem,
 } from "@/styles/default/ui/sidebar"
-import { type PreviewKey, sandboxComponents } from "./types"
+import {
+	type PreviewKey,
+	type SandboxCategory,
+	sandboxComponents,
+} from "./types"
 
 interface PlaygroundSidebarProps {
 	activeComponent: PreviewKey
 	onSelectComponent: (component: PreviewKey, defaultFile: string) => void
 }
 
+interface CategoryGroup {
+	id: SandboxCategory
+	label: string
+	icon: React.ComponentType<{ className?: string }>
+}
+
+const CATEGORIES: CategoryGroup[] = [
+	{
+		id: "full-page",
+		label: "Full Page",
+		icon: Layout,
+	},
+	{
+		id: "hero-section",
+		label: "Hero Section",
+		icon: Sparkles,
+	},
+	{
+		id: "pricing-section",
+		label: "Pricing Section",
+		icon: CreditCard,
+	},
+	{
+		id: "other-sections",
+		label: "Other Sections",
+		icon: Blocks,
+	},
+]
+
 export function PlaygroundSidebar({
 	activeComponent,
 	onSelectComponent,
 }: PlaygroundSidebarProps) {
+	const activeCategory =
+		sandboxComponents.find((c) => c.id === activeComponent)?.category ||
+		"hero-section"
+
+	const [openCategories, setOpenCategories] = useState<string[]>([
+		"full-page",
+		"hero-section",
+		"pricing-section",
+		"other-sections",
+	])
+
+	// Auto-expand category if activeComponent changes and its category is closed
+	useEffect(() => {
+		if (activeCategory && !openCategories.includes(activeCategory)) {
+			setOpenCategories((prev) => [...prev, activeCategory])
+		}
+	}, [activeCategory, openCategories])
+
 	return (
 		<Sidebar theme="gray" collapsible="icon">
 			{/* Sidebar Header */}
@@ -33,44 +89,89 @@ export function PlaygroundSidebar({
 					<div className="bg-primary text-primary-fg shadow-primary/20 flex h-6 w-6 shrink-0 items-center justify-center rounded-lg text-xs font-black shadow-md">
 						R
 					</div>
-					<span className="group-data-[state=collapsed]:hidden">Sandbox</span>
+					<span className="font-semibold group-data-[state=collapsed]:hidden">
+						Sandbox
+					</span>
 				</div>
 			</SidebarHeader>
 
 			{/* Sidebar Navigation */}
-			<SidebarContent className="flex-1 space-y-6 overflow-y-auto p-4 group-data-[state=collapsed]:mt-4 group-data-[state=collapsed]:space-y-4 group-data-[state=collapsed]:p-0">
+			<SidebarContent className="flex-1 overflow-y-auto px-2.5 py-3 group-data-[state=collapsed]:mt-4 group-data-[state=collapsed]:p-0">
 				<SidebarGroup className="p-0">
-					<SidebarGroupLabel className="text-fg-tertiary flex items-center gap-2 px-2 text-xs font-semibold tracking-wider uppercase group-data-[state=collapsed]:hidden">
-						<span>Components</span>
-					</SidebarGroupLabel>
 					<SidebarGroupContent>
-						<SidebarMenu className="space-y-1">
-							{sandboxComponents.map((item) => {
-								const isActive = activeComponent === item.id
+						<Accordion
+							type="multiple"
+							value={openCategories}
+							onValueChange={setOpenCategories}
+							variant="open"
+							indicator="chevron"
+							size="sm"
+							className="w-full space-y-1.5">
+							{CATEGORIES.map((category) => {
+								const items = sandboxComponents.filter(
+									(item) => item.category === category.id
+								)
+								if (items.length === 0) return null
+
 								return (
-									<SidebarMenuItem key={item.id}>
-										<SidebarMenuButton
-											isActive={isActive}
-											variant={isActive ? "strong" : "neutral"}
-											tooltip={item.path}
-											onClick={() =>
-												onSelectComponent(item.id, item.defaultFile)
-											}
+									<AccordionItem
+										key={category.id}
+										value={category.id}
+										className="border-none">
+										<AccordionTrigger
 											className={cn(
-												"group flex w-full items-center justify-start gap-2.5 rounded-lg px-3 py-2 text-left text-sm font-medium transition-all duration-200",
-												!isActive &&
-													"hover:bg-fill3 text-fg-secondary hover:text-fg",
-												"group-data-[state=collapsed]:p-2!"
+												"hover:bg-fill3/60 group/trigger text-fg-secondary hover:text-fg flex w-full cursor-pointer items-center justify-between rounded-lg px-2 py-1.5 text-xs font-semibold tracking-wider uppercase transition-colors hover:no-underline",
+												"group-data-[state=collapsed]:justify-center group-data-[state=collapsed]:px-1",
+												"[&>.AccordionChevron]:text-fg-tertiary [&>.AccordionChevron]:size-3.5 group-data-[state=collapsed]:[&>.AccordionChevron]:hidden"
 											)}>
-											<Folder className="text-primary size-4 shrink-0" />
-											<span className="flex-1 truncate group-data-[state=collapsed]:hidden">
-												{item.label}
-											</span>
-										</SidebarMenuButton>
-									</SidebarMenuItem>
+											<div className="flex min-w-0 items-center gap-2 group-data-[state=collapsed]:justify-center">
+												<category.icon className="text-fg-tertiary group-hover/trigger:text-primary size-3.5 shrink-0 transition-colors" />
+												<span className="truncate group-data-[state=collapsed]:hidden">
+													{category.label}
+												</span>
+												<span className="bg-fill3 text-fg-tertiary shrink-0 rounded-full px-1.5 py-0.5 text-[10px] font-semibold normal-case group-data-[state=collapsed]:hidden">
+													{items.length}
+												</span>
+											</div>
+										</AccordionTrigger>
+										<AccordionContent className="px-0.5 pt-0.5 pb-1">
+											<SidebarMenu className="space-y-0.5">
+												{items.map((item) => {
+													const isActive = activeComponent === item.id
+													return (
+														<SidebarMenuItem key={item.id}>
+															<SidebarMenuButton
+																isActive={isActive}
+																variant={isActive ? "strong" : "neutral"}
+																tooltip={item.path}
+																onClick={() =>
+																	onSelectComponent(item.id, item.defaultFile)
+																}
+																className={cn(
+																	"group flex w-full items-center justify-start gap-2.5 rounded-lg px-2.5 py-1.5 text-left text-xs font-medium transition-all duration-200",
+																	!isActive &&
+																		"hover:bg-fill3 text-fg-secondary hover:text-fg",
+																	"group-data-[state=collapsed]:p-2!"
+																)}>
+																<Folder
+																	className={cn(
+																		"size-3.5 shrink-0 transition-colors",
+																		isActive ? "text-white" : "text-primary"
+																	)}
+																/>
+																<span className="flex-1 truncate group-data-[state=collapsed]:hidden">
+																	{item.label}
+																</span>
+															</SidebarMenuButton>
+														</SidebarMenuItem>
+													)
+												})}
+											</SidebarMenu>
+										</AccordionContent>
+									</AccordionItem>
 								)
 							})}
-						</SidebarMenu>
+						</Accordion>
 					</SidebarGroupContent>
 				</SidebarGroup>
 			</SidebarContent>
