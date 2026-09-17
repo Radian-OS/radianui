@@ -362,6 +362,9 @@ importers:
       uni:
         specifier: ^0.0.6
         version: 0.0.6
+      unicode-emoji-json:
+        specifier: ^0.9.0
+        version: 0.9.0
       unist-util-visit:
         specifier: ^5.1.0
         version: 5.1.0
@@ -7148,6 +7151,9 @@ packages:
   uni@0.0.6:
     resolution: {integrity: sha512-X/lCwU0q7Bubv9FJFs6EDTL/CF5n4URrpPs07QOkFbFtGAkSXk6mpMYF0qfQ6xfwhvyvWuYfSA3mnQC/pEOtDQ==}
     hasBin: true
+
+  unicode-emoji-json@0.9.0:
+    resolution: {integrity: sha512-HdrQW/7SdbXUsTd8uTATv7LvQJkCSgbAgRCDCtOhQ6xn3EAx+xZHQtRniOXWJK3ywIqPegkNhP4U4EbuFsiQng==}
 
   unicorn-magic@0.1.0:
     resolution: {integrity: sha512-lRfVq8fE8gz6QMBuDM6a+LO3IAzTi05H6gCVaUpir2E1Rwpo4ZUog45KpNXKC/Mn3Yb9UDuHumeFTo9iV/D9FQ==}
@@ -14403,6 +14409,8 @@ snapshots:
       shelljs: 0.3.0
     transitivePeerDependencies:
       - supports-color
+
+  unicode-emoji-json@0.9.0: {}
 
   unicorn-magic@0.1.0: {}
 
