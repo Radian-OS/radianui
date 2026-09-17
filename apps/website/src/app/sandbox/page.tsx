@@ -52,6 +52,32 @@ export default async function PlaygroundPage() {
 	const agentlabDir = path.join(process.cwd(), "src/app/sandbox/agentlab")
 	const crisplyDir = path.join(process.cwd(), "src/app/sandbox/crisply")
 	const hero04Dir = path.join(process.cwd(), "src/app/sandbox/hero-04")
+	const linearDir = path.join(process.cwd(), "src/app/sandbox/linear")
+	const intercomDir = path.join(process.cwd(), "src/app/sandbox/intercom")
+
+	const intercomFiles = [
+		"page.tsx",
+		"trial-banner.tsx",
+		"icon-rail.tsx",
+		"inbox-nav.tsx",
+		"conversation-list.tsx",
+		"chat-area.tsx",
+		"details-sidebar.tsx",
+		"types.ts",
+	]
+
+	const linearFiles = [
+		"page.tsx",
+		"sidebar.tsx",
+		"top-header.tsx",
+		"board-header.tsx",
+		"kanban-column.tsx",
+		"issue-card.tsx",
+		"hidden-columns-sidebar.tsx",
+		"create-issue-dialog.tsx",
+		"bottom-bar.tsx",
+		"types.ts",
+	]
 
 	const hero04Files = [
 		"page.tsx",
@@ -187,6 +213,8 @@ export default async function PlaygroundPage() {
 	const agentlabData: Record<string, string> = {}
 	const crisplyData: Record<string, string> = {}
 	const hero04Data: Record<string, string> = {}
+	const linearData: Record<string, string> = {}
+	const intercomData: Record<string, string> = {}
 
 	for (const file of omrixFiles) {
 		omrixData[file] = readFileContent(omrixDir, file)
@@ -239,7 +267,17 @@ export default async function PlaygroundPage() {
 		hero04Data[file] = readFileContent(hero04Dir, file)
 	}
 
+	for (const file of linearFiles) {
+		linearData[file] = readFileContent(linearDir, file)
+	}
+
+	for (const file of intercomFiles) {
+		intercomData[file] = readFileContent(intercomDir, file)
+	}
+
 	const files = {
+		intercom: intercomData,
+		linear: linearData,
 		"hero-04": hero04Data,
 		crisply: crisplyData,
 		agentlab: agentlabData,

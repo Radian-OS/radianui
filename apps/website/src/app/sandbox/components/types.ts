@@ -11,9 +11,13 @@ export interface FilesData {
 	agentlab: Record<string, string>
 	crisply: Record<string, string>
 	"hero-04": Record<string, string>
+	linear: Record<string, string>
+	intercom: Record<string, string>
 }
 
 export type PreviewKey =
+	| "intercom"
+	| "linear"
 	| "hero-04"
 	| "crisply"
 	| "agentlab"
@@ -69,6 +73,26 @@ export interface SandboxComponentConfig {
 }
 
 export const sandboxComponents: SandboxComponentConfig[] = [
+	{
+		id: "intercom",
+		label: "intercom",
+		category: "full-page",
+		filesKey: "intercom",
+		path: "src/app/sandbox/intercom",
+		defaultFile: "page.tsx",
+		referenceUrl: "https://www.intercom.com",
+		previewRoute: "/sandbox/intercom",
+	},
+	{
+		id: "linear",
+		label: "linear",
+		category: "full-page",
+		filesKey: "linear",
+		path: "src/app/sandbox/linear",
+		defaultFile: "page.tsx",
+		referenceUrl: "https://linear.app",
+		previewRoute: "/sandbox/linear",
+	},
 	{
 		id: "omrix",
 		label: "omrix",
