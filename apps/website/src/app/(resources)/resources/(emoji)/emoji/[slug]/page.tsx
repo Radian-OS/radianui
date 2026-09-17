@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { websiteMetadata } from "@/config/website-metadata-config"
 import { absoluteUrl } from "@/lib/structured-data"
-import { EmojiDetailPage } from "../../components/EmojiDetailPage"
+import { EmojiResourcePage } from "../../components/EmojiResourcePage"
 import {
 	emojis,
 	formatEmojiName,
@@ -72,5 +72,5 @@ export default async function EmojiPage(props: EmojiPageProps) {
 	const emoji = await getEmojiFromParams(props)
 	if (!emoji) notFound()
 
-	return <EmojiDetailPage emoji={emoji} />
+	return <EmojiResourcePage initialSelectedEmoji={emoji} />
 }

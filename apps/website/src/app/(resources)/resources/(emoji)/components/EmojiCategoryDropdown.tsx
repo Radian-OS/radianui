@@ -4,6 +4,7 @@ import type { LucideIcon } from "lucide-react"
 import {
 	ChevronDown,
 	Flag,
+	LayoutGrid,
 	Lightbulb,
 	PawPrint,
 	Plane,
@@ -23,7 +24,7 @@ import {
 	DropdownMenuRadioItem,
 	DropdownMenuTrigger,
 } from "@/registry/ui/dropdown-menu"
-import { emojiGroups } from "./emoji-data"
+import { ALL_EMOJI_CATEGORY, emojiGroups, emojis } from "./emoji-data"
 
 const groupIcons: Record<string, LucideIcon> = {
 	"Smileys & Emotion": Smile,
@@ -47,11 +48,13 @@ export function EmojiCategoryDropdown({
 	onValueChange,
 }: EmojiCategoryDropdownProps) {
 	const activeGroup =
-		emojiGroups.find((group) => group.name === value) ?? emojiGroups[0]
-	const label = activeGroup?.name ?? "Emoji category"
+		value === ALL_EMOJI_CATEGORY
+			? null
+			: (emojiGroups.find((group) => group.name === value) ?? emojiGroups[0])
+	const label = activeGroup?.name ?? ALL_EMOJI_CATEGORY
 	const ActiveIcon = activeGroup
 		? (groupIcons[activeGroup.name] ?? Smile)
-		: Smile
+		: LayoutGrid
 
 	return (
 		<DropdownMenu indicatorPosition="right">
@@ -71,6 +74,14 @@ export function EmojiCategoryDropdown({
 				<DropdownMenuLabel>Categories</DropdownMenuLabel>
 				<DropdownMenuDivider />
 				<DropdownMenuRadioGroup value={value} onValueChange={onValueChange}>
+					<DropdownMenuRadioItem value={ALL_EMOJI_CATEGORY}>
+						<LayoutGrid className="text-fg-secondary size-4" />
+						<span className="flex-1 text-sm font-medium">
+							{ALL_EMOJI_CATEGORY}
+						</span>
+						<span className="text-fg-tertiary text-xs">{emojis.length}</span>
+					</DropdownMenuRadioItem>
+					<DropdownMenuDivider />
 					{emojiGroups.map((group) => {
 						const Icon = groupIcons[group.name] ?? Smile
 

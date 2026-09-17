@@ -2,11 +2,20 @@ import { ResourcePage } from "../../components/ResourcePage"
 import EmojiDocs from "../docs/EmojiDocs"
 import { EmojiHeroActionButtons } from "./EmojiHeroActionButtons"
 import EmojiPlayground from "./EmojiPlayground"
-import { emojis } from "./emoji-data"
+import type { EmojiData } from "./emoji-data"
+import { emojis, formatEmojiName, getEmojiDescription } from "./emoji-data"
 
 const heroEmojis = ["🤩", "👻", "🔥"]
 
-export function EmojiResourcePage() {
+export function EmojiResourcePage({
+	initialSelectedEmoji = null,
+}: {
+	initialSelectedEmoji?: EmojiData | null
+}) {
+	const selectedName = initialSelectedEmoji
+		? formatEmojiName(initialSelectedEmoji.name)
+		: null
+
 	return (
 		<ResourcePage
 			badge={{
@@ -28,11 +37,19 @@ export function EmojiResourcePage() {
 					))}
 				</div>
 			}
-			title="Find, Copy, and Use Every Unicode Emoji"
-			description="Browse emojis by Unicode category, copy them as text, and grab ready-to-use Unicode, HTML, and Next.js snippets."
+			title={
+				initialSelectedEmoji && selectedName
+					? `${selectedName} Emoji ${initialSelectedEmoji.emoji}`
+					: "Find, Copy, and Use Every Unicode Emoji"
+			}
+			description={
+				initialSelectedEmoji
+					? getEmojiDescription(initialSelectedEmoji)
+					: "Browse emojis by Unicode category, copy them as text, and grab Unicode, HTML, SVG, and PNG formats."
+			}
 			actions={<EmojiHeroActionButtons />}
 			showcaseLabel={`Browse ${emojis.length.toLocaleString("en-US")} Unicode emojis`}
-			showcase={<EmojiPlayground />}
+			showcase={<EmojiPlayground initialSelectedEmoji={initialSelectedEmoji} />}
 			documentation={<EmojiDocs />}
 		/>
 	)

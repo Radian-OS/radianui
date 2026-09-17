@@ -6,7 +6,7 @@ import { EmojiResourcePage } from "../components/EmojiResourcePage"
 const pageUrl = absoluteUrl("/resources/emoji")
 const pageTitle = "Free Emoji Library — Copy & Paste Unicode Emojis"
 const pageDescription =
-	"Browse Unicode emojis by category, search by name, and copy emoji text, HTML entities, Unicode escapes, and Next.js snippets."
+	"Browse Unicode emojis by category, search by name, and copy or export emoji text, Unicode, HTML, SVG, and PNG formats."
 const pageImage = absoluteUrl("/media/assets-page/emojis-light.png")
 //something
 export const metadata: Metadata = {

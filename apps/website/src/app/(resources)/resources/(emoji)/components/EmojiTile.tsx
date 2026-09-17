@@ -1,14 +1,27 @@
+import type { MouseEvent } from "react"
 import Link from "next/link"
 import { Button } from "@/registry/ui/button"
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/registry/ui/tooltip"
 import type { EmojiData } from "./emoji-data"
 import { formatEmojiName, getEmojiPagePath } from "./emoji-data"
 
-export function EmojiTile({ emoji }: { emoji: EmojiData }) {
+export function EmojiTile({
+	emoji,
+	onSelect,
+}: {
+	emoji: EmojiData
+	onSelect: (emoji: EmojiData) => void
+}) {
 	const displayName = formatEmojiName(emoji.name)
+	const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
+		if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+
+		event.preventDefault()
+		onSelect(emoji)
+	}
 
 	return (
-		<li className="size-[100px]">
+		<li className="h-[100px] min-w-0">
 			<Tooltip>
 				<TooltipTrigger asChild>
 					<Button
@@ -16,9 +29,11 @@ export function EmojiTile({ emoji }: { emoji: EmojiData }) {
 						size="32"
 						color="neutral"
 						variant="outline"
-						className="bg-bg hover:bg-bg size-[100px] rounded-xl p-0">
+						className="bg-bg hover:bg-bg h-[100px] w-full rounded-xl p-0">
 						<Link
 							href={getEmojiPagePath(emoji)}
+							prefetch={false}
+							onClick={handleClick}
 							aria-label={`View ${displayName} emoji details`}>
 							<span
 								className="flex h-12 w-8 items-center justify-center text-[32px] leading-[48px]"

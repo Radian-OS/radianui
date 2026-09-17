@@ -2,6 +2,7 @@
 
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react"
 import { Search, SearchX } from "lucide-react"
+import { useRouter } from "next/navigation"
 import { cn } from "@/lib/utils"
 import {
 	Empty,
@@ -12,13 +13,40 @@ import {
 } from "@/registry/ui/empty"
 import { Input, InputWrapper } from "@/registry/ui/input"
 import { EmojiCategoryDropdown } from "./EmojiCategoryDropdown"
+import { EmojiDetailsDrawer } from "./EmojiDetailsDrawer"
 import { EmojiTile } from "./EmojiTile"
-import { emojiGroups } from "./emoji-data"
+import type { EmojiData } from "./emoji-data"
+import {
+	ALL_EMOJI_CATEGORY,
+	EMOJI_PAGE_PATH,
+	emojiGroups,
+	emojis,
+	getEmojiBySlug,
+	getEmojiPagePath,
+} from "./emoji-data"
 
-export default function EmojiPlayground() {
+function getEmojiFromPathname(pathname: string) {
+	if (!pathname.startsWith(`${EMOJI_PAGE_PATH}/`)) return null
+
+	const slug = pathname.split("/").filter(Boolean).at(-1)
+	return slug ? getEmojiBySlug(decodeURIComponent(slug)) : null
+}
+
+export default function EmojiPlayground({
+	initialSelectedEmoji = null,
+}: {
+	initialSelectedEmoji?: EmojiData | null
+}) {
+	const router = useRouter()
 	const [query, setQuery] = useState("")
-	const [category, setCategory] = useState(emojiGroups[0]?.name ?? "")
+	const [category, setCategory] = useState(
+		initialSelectedEmoji?.group ?? emojiGroups[0]?.name ?? ALL_EMOJI_CATEGORY
+	)
+	const [selectedEmoji, setSelectedEmoji] = useState<EmojiData | null>(
+		initialSelectedEmoji
+	)
 	const [isSticky, setIsSticky] = useState(false)
+	const ownsDrawerHistoryEntryRef = useRef(false)
 	const sentinelRef = useRef<HTMLDivElement>(null)
 	const bottomSentinelRef = useRef<HTMLDivElement>(null)
 
@@ -73,21 +101,59 @@ export default function EmojiPlayground() {
 		}
 	}, [])
 
-	const visibleGroup = useMemo(() => {
-		const normalizedQuery = query.trim().toLocaleLowerCase("en")
-		const group =
-			emojiGroups.find((item) => item.name === category) ?? emojiGroups[0]
-
-		if (!group) return null
-
-		return {
-			...group,
-			emojis: normalizedQuery
-				? group.emojis.filter((emoji) =>
-						emoji.name.toLocaleLowerCase("en").includes(normalizedQuery)
-					)
-				: group.emojis,
+	useEffect(() => {
+		const handlePopState = () => {
+			setSelectedEmoji(getEmojiFromPathname(window.location.pathname))
+			ownsDrawerHistoryEntryRef.current = Boolean(
+				window.history.state?.radianEmojiDrawer
+			)
 		}
+
+		window.addEventListener("popstate", handlePopState)
+		return () => window.removeEventListener("popstate", handlePopState)
+	}, [])
+
+	const handleSelectEmoji = (emoji: EmojiData) => {
+		const nextPath = getEmojiPagePath(emoji)
+		const nextState = {
+			...window.history.state,
+			radianEmojiDrawer: true,
+		}
+
+		if (selectedEmoji) {
+			window.history.replaceState(nextState, "", nextPath)
+		} else {
+			window.history.pushState(nextState, "", nextPath)
+			ownsDrawerHistoryEntryRef.current = true
+		}
+
+		setSelectedEmoji(emoji)
+	}
+
+	const handleDrawerOpenChange = (open: boolean) => {
+		if (open) return
+
+		setSelectedEmoji(null)
+		if (ownsDrawerHistoryEntryRef.current) {
+			ownsDrawerHistoryEntryRef.current = false
+			window.history.back()
+			return
+		}
+
+		router.replace(EMOJI_PAGE_PATH, { scroll: false })
+	}
+
+	const visibleEmojis = useMemo(() => {
+		const normalizedQuery = query.trim().toLocaleLowerCase("en")
+		const group = emojiGroups.find((item) => item.name === category)
+		const source =
+			category === ALL_EMOJI_CATEGORY ? emojis : (group?.emojis ?? [])
+
+		return normalizedQuery
+			? source.filter((emoji) =>
+					emoji.name.toLocaleLowerCase("en").includes(normalizedQuery)
+				)
+			: source
 	}, [category, query])
 
 	useLayoutEffect(() => {
@@ -124,11 +190,15 @@ export default function EmojiPlayground() {
 				</InputWrapper>
 			</div>
 
-			{visibleGroup?.emojis.length ? (
-				<section aria-label={`${visibleGroup.name} emojis`}>
-					<ul className="grid list-none grid-cols-[repeat(auto-fill,100px)] justify-center gap-3 sm:justify-between">
-						{visibleGroup.emojis.map((emoji) => (
-							<EmojiTile key={emoji.slug} emoji={emoji} />
+			{visibleEmojis.length ? (
+				<section aria-label={`${category} emojis`}>
+					<ul className="grid list-none grid-cols-[repeat(auto-fill,minmax(100px,1fr))] gap-3">
+						{visibleEmojis.map((emoji) => (
+							<EmojiTile
+								key={emoji.slug}
+								emoji={emoji}
+								onSelect={handleSelectEmoji}
+							/>
 						))}
 					</ul>
 				</section>
@@ -151,6 +221,13 @@ export default function EmojiPlayground() {
 			<div
 				ref={bottomSentinelRef}
 				className="pointer-events-none h-px w-full"
+			/>
+
+			<EmojiDetailsDrawer
+				emoji={selectedEmoji}
+				open={selectedEmoji !== null}
+				onOpenChange={handleDrawerOpenChange}
+				onSelectEmoji={handleSelectEmoji}
 			/>
 		</div>
 	)

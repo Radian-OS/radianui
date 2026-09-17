@@ -27,6 +27,7 @@ export interface EmojiGroup {
 }
 
 export const EMOJI_PAGE_PATH = "/resources/emoji"
+export const ALL_EMOJI_CATEGORY = "All Categories"
 
 export const emojiGroups: EmojiGroup[] = (
 	emojiGroupsJson as EmojiGroupSource[]
