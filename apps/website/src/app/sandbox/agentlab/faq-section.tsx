@@ -55,7 +55,7 @@ export function AgentlabFaqSection() {
 							<span className="text-primary font-bold">—</span>
 							<span>FAQS</span>
 						</div>
-						<h2 className="heading-2 text-fg mt-4 font-serif text-3xl leading-[1.2] font-normal tracking-tight sm:text-4xl md:text-5xl">
+						<h2 className="heading-2">
 							Have questions?
 							<br />
 							Find answers

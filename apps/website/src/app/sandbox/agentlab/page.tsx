@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 export default function AgentlabPage() {
 	return (
 		<div
-			className={`${merriweather.variable} bg-bg text-fg selection:bg-primary/20 selection:text-primary min-h-screen font-sans antialiased`}>
+			className={`${merriweather.variable} bg-bg text-fg min-h-screen font-sans antialiased`}>
 			<AgentlabAnnouncementBar />
 			<AgentlabNavbar />
 			<main>

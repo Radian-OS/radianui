@@ -10,6 +10,7 @@ import {
 	Star,
 } from "lucide-react"
 import { IconButton } from "@/styles/default/ui/button"
+import { SidebarTrigger } from "@/styles/default/ui/sidebar"
 
 interface TopHeaderProps {
 	onToggleSidebar?: () => void
@@ -22,18 +23,16 @@ export function TopHeader({ onToggleSidebar }: TopHeaderProps) {
 		<header className="border-border/60 bg-bg sticky top-0 z-30 flex h-12 w-full items-center justify-between border-b px-4 transition-colors">
 			{/* Left: Mobile Toggle & Breadcrumbs */}
 			<div className="flex items-center gap-2 overflow-hidden text-sm">
-				{onToggleSidebar && (
-					<IconButton
-						type="button"
-						variant="ghost"
-						color="neutral"
-						size="28"
-						aria-label="Toggle sidebar"
-						onClick={onToggleSidebar}
-						className="md:hidden">
-						<Menu className="size-4" />
-					</IconButton>
-				)}
+				<SidebarTrigger
+					type="button"
+					variant="ghost"
+					color="neutral"
+					size="28"
+					aria-label="Toggle sidebar"
+					onClick={onToggleSidebar}
+					className="text-fg-muted hover:text-fg md:hidden">
+					<Menu className="size-4" />
+				</SidebarTrigger>
 
 				<div className="flex items-center gap-1.5 truncate">
 					<div className="text-fg-muted flex items-center gap-1.5">

@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useState } from "react"
+import { SidebarProvider } from "@/styles/default/ui/sidebar"
 import { BoardHeader } from "./board-header"
 import { BottomBar } from "./bottom-bar"
 import { CreateIssueDialog } from "./create-issue-dialog"
@@ -159,7 +160,6 @@ const initialIssues: Issue[] = [
 
 export default function LinearBoardPage() {
 	const [issues, setIssues] = useState<Issue[]>(initialIssues)
-	const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false)
 	const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false)
 	const [createDialogStatus, setCreateDialogStatus] =
 		useState<IssueStatus>("todo")
@@ -195,66 +195,47 @@ export default function LinearBoardPage() {
 	]
 
 	return (
-		<div className="bg-bg text-fg flex h-screen w-full overflow-hidden antialiased">
-			{/* Desktop Left Sidebar */}
-			<div className="hidden md:flex">
+		<SidebarProvider defaultWidth="15rem">
+			<div className="bg-bg text-fg flex h-screen w-full overflow-hidden antialiased">
+				{/* Left Native Radian Sidebar */}
 				<Sidebar onOpenNewIssue={() => handleOpenNewIssue("todo")} />
-			</div>
 
-			{/* Mobile Drawer Overlay */}
-			{mobileSidebarOpen && (
-				<div className="fixed inset-0 z-50 flex md:hidden">
-					<div
-						className="fixed inset-0 bg-black/50 backdrop-blur-xs"
-						onClick={() => setMobileSidebarOpen(false)}
-					/>
-					<div className="relative z-10 h-full w-64 shadow-xl">
-						<Sidebar
-							onOpenNewIssue={() => {
-								setMobileSidebarOpen(false)
-								handleOpenNewIssue("todo")
-							}}
-							onCloseMobile={() => setMobileSidebarOpen(false)}
-						/>
-					</div>
+				{/* Right Main Content Panel */}
+				<div className="flex flex-1 flex-col overflow-hidden">
+					{/* Top Breadcrumb Header */}
+					<TopHeader />
+
+					{/* Board Controls & Views Header */}
+					<BoardHeader />
+
+					{/* Kanban Board Horizontal Scrollable Area */}
+					<main className="flex-1 overflow-x-auto overflow-y-auto p-4 [scrollbar-width:thin] sm:p-6">
+						<div className="flex min-h-full items-start gap-6 pb-6">
+							{columns.map((column) => (
+								<KanbanColumn
+									key={column.id}
+									column={column}
+									onAddIssue={(status) => handleOpenNewIssue(status)}
+								/>
+							))}
+
+							{/* Right Collapsible Hidden Columns Panel */}
+							<HiddenColumnsSidebar />
+						</div>
+					</main>
+
+					{/* Fixed Bottom Status Bar */}
+					<BottomBar />
 				</div>
-			)}
 
-			{/* Right Main Content Panel */}
-			<div className="flex flex-1 flex-col overflow-hidden">
-				{/* Top Breadcrumb Header */}
-				<TopHeader onToggleSidebar={() => setMobileSidebarOpen(true)} />
-
-				{/* Board Controls & Views Header */}
-				<BoardHeader />
-
-				{/* Kanban Board Horizontal Scrollable Area */}
-				<main className="flex-1 overflow-x-auto overflow-y-auto p-4 [scrollbar-width:thin] sm:p-6">
-					<div className="flex min-h-full items-start gap-6 pb-6">
-						{columns.map((column) => (
-							<KanbanColumn
-								key={column.id}
-								column={column}
-								onAddIssue={(status) => handleOpenNewIssue(status)}
-							/>
-						))}
-
-						{/* Right Collapsible Hidden Columns Panel */}
-						<HiddenColumnsSidebar />
-					</div>
-				</main>
-
-				{/* Fixed Bottom Status Bar */}
-				<BottomBar />
+				{/* Form-Validated Create Issue Dialog */}
+				<CreateIssueDialog
+					isOpen={isCreateDialogOpen}
+					onClose={() => setIsCreateDialogOpen(false)}
+					onAddIssue={handleAddIssue}
+					defaultStatus={createDialogStatus}
+				/>
 			</div>
-
-			{/* Form-Validated Create Issue Dialog */}
-			<CreateIssueDialog
-				isOpen={isCreateDialogOpen}
-				onClose={() => setIsCreateDialogOpen(false)}
-				onAddIssue={handleAddIssue}
-				defaultStatus={createDialogStatus}
-			/>
-		</div>
+		</SidebarProvider>
 	)
 }

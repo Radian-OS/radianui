@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useState } from "react"
+import { SidebarProvider } from "@/styles/default/ui/sidebar"
 import { ChatArea } from "./chat-area"
 import { ConversationList } from "./conversation-list"
 import { DetailsSidebar } from "./details-sidebar"
@@ -176,9 +177,13 @@ export default function IntercomPage() {
 				{/* Far Left Navigation Icon Rail */}
 				<IconRail />
 
-				{/* Inbox Folders Sidebar */}
-				<div className="hidden md:flex">
-					<InboxNav />
+				{/* Inbox Folders Sidebar (native Radian OS Sidebar) */}
+				<div className="hidden h-full md:flex">
+					<SidebarProvider
+						defaultWidth="14rem"
+						className="h-full min-h-0 w-auto">
+						<InboxNav />
+					</SidebarProvider>
 				</div>
 
 				{/* Conversation List */}

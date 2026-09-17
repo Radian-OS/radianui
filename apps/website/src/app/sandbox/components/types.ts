@@ -76,7 +76,7 @@ export const sandboxComponents: SandboxComponentConfig[] = [
 	{
 		id: "intercom",
 		label: "intercom",
-		category: "full-page",
+		category: "other-sections",
 		filesKey: "intercom",
 		path: "src/app/sandbox/intercom",
 		defaultFile: "page.tsx",
@@ -86,7 +86,7 @@ export const sandboxComponents: SandboxComponentConfig[] = [
 	{
 		id: "linear",
 		label: "linear",
-		category: "full-page",
+		category: "other-sections",
 		filesKey: "linear",
 		path: "src/app/sandbox/linear",
 		defaultFile: "page.tsx",
@@ -96,7 +96,7 @@ export const sandboxComponents: SandboxComponentConfig[] = [
 	{
 		id: "omrix",
 		label: "omrix",
-		category: "full-page",
+		category: "hero-section",
 		filesKey: "omrix",
 		path: "src/app/sandbox/omrix",
 		defaultFile: "page.tsx",
@@ -106,7 +106,7 @@ export const sandboxComponents: SandboxComponentConfig[] = [
 	{
 		id: "crisply",
 		label: "crisply",
-		category: "full-page",
+		category: "other-sections",
 		filesKey: "crisply",
 		path: "src/app/sandbox/crisply",
 		defaultFile: "page.tsx",

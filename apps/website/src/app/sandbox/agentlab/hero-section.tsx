@@ -21,6 +21,7 @@ import {
 	FormItem,
 	FormMessage,
 } from "@/styles/default/ui/form"
+import { TextArea } from "@/styles/default/ui/text-area"
 
 const promptFormSchema = z.object({
 	prompt: z.string().min(2, "Please enter at least 2 characters."),
@@ -71,7 +72,7 @@ export function AgentlabHeroSection() {
 				</div>
 
 				{/* Headline (Rule 13: heading-1) */}
-				<h1 className="heading-1 text-fg max-w-4xl text-center font-serif text-4xl leading-[1.12] font-normal tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
+				<h1 className="heading-1 max-w-4xl text-center font-serif">
 					Turn Your AI Product Into a
 					<br className="hidden sm:inline" /> Website That Sells
 				</h1>
@@ -84,18 +85,10 @@ export function AgentlabHeroSection() {
 
 				{/* CTA Buttons (Rule 15: color prop on every Button) */}
 				<div className="mt-8 flex flex-wrap items-center justify-center gap-3.5">
-					<Button
-						variant="outline"
-						color="neutral"
-						size="40"
-						className="border-border bg-bg hover:bg-fill1 rounded-md px-5 text-xs font-bold tracking-wider uppercase transition-colors">
+					<Button variant="outline" color="neutral" size="40">
 						<span>TALK TO SALES</span>
 					</Button>
-					<Button
-						variant="strong"
-						color="neutral"
-						size="40"
-						className="gap-2 rounded-md px-5 text-xs font-bold tracking-wider uppercase shadow-md transition-transform active:scale-95">
+					<Button variant="strong" color="neutral" size="40">
 						<ArrowRight className="size-4" />
 						<span>START FOR FREE</span>
 					</Button>
@@ -136,11 +129,10 @@ export function AgentlabHeroSection() {
 											<FormItem>
 												<FormControl>
 													<div className="relative">
-														<textarea
+														<TextArea
 															{...field}
 															rows={3}
 															placeholder="How can I help you today?"
-															className="text-fg placeholder:text-fg-tertiary focus:border-primary focus:ring-primary/20 border-border bg-bg/80 w-full resize-none rounded-lg border p-3 pr-10 text-xs transition-all focus:ring-2 focus:outline-hidden"
 														/>
 														<Button
 															type="submit"
@@ -153,7 +145,7 @@ export function AgentlabHeroSection() {
 														</Button>
 													</div>
 												</FormControl>
-												<FormMessage className="text-[11px]" />
+												<FormMessage />
 											</FormItem>
 										)}
 									/>
