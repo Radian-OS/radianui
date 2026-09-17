@@ -8,7 +8,7 @@ const pageTitle = "Free Emoji Library — Copy & Paste Unicode Emojis"
 const pageDescription =
 	"Browse Unicode emojis by category, search by name, and copy emoji text, HTML entities, Unicode escapes, and Next.js snippets."
 const pageImage = absoluteUrl("/media/assets-page/emojis-light.png")
-
+//something
 export const metadata: Metadata = {
 	title: pageTitle,
 	description: pageDescription,
