@@ -260,6 +260,92 @@ export interface ResolvedElementDetails {
 	lineNumber: number
 	tag: string
 	className: string
+	fullCode: string
+	parentTag?: string
+	displayTag?: string
+}
+
+export function normalizeIndentation(text: string): string {
+	const lines = text.split(/\r?\n/)
+	let minIndent = Infinity
+	for (const line of lines) {
+		if (!line.trim()) continue
+		const match = line.match(/^([ \t]*)/)
+		if (match) {
+			const indentLen = match[1].replace(/\t/g, "  ").length
+			if (indentLen < minIndent) {
+				minIndent = indentLen
+			}
+		}
+	}
+	if (minIndent === Infinity || minIndent === 0) return text
+	return lines
+		.map((line) => {
+			if (!line.trim()) return ""
+			let toRemove = minIndent
+			let i = 0
+			while (i < line.length && toRemove > 0) {
+				if (line[i] === "\t") {
+					toRemove -= 2
+					i++
+				} else if (line[i] === " ") {
+					toRemove -= 1
+					i++
+				} else {
+					break
+				}
+			}
+			return line.slice(i)
+		})
+		.join("\n")
+}
+
+export function highlightJsx(code: string): string {
+	if (!code) return ""
+
+	const escapeHtml = (str: string) =>
+		str
+			.replace(/&/g, "&amp;")
+			.replace(/</g, "&lt;")
+			.replace(/>/g, "&gt;")
+			.replace(/"/g, "&quot;")
+			.replace(/'/g, "&#039;")
+
+	const escaped = escapeHtml(code)
+
+	return (
+		escaped
+			// JSX Comments: {/* ... */}
+			.replace(
+				/(\{\/\*[\s\S]*?\*\/\})/g,
+				'<span style="color:#64748b;font-style:italic;">$1</span>'
+			)
+			// Strings: "..." or '...' or `...`
+			.replace(
+				/(&quot;[\s\S]*?&quot;|&#039;[\s\S]*?&#039;|`[\s\S]*?`)/g,
+				'<span style="color:#4ade80;">$1</span>'
+			)
+			// Tag Opening/Closing: &lt;/?[A-Za-z0-9_.-]+
+			.replace(
+				/(&lt;\/?[A-Za-z0-9_.-]+)/g,
+				'<span style="color:#38bdf8;font-weight:600;">$1</span>'
+			)
+			// Tag Closing brackets: /&gt; or &gt;
+			.replace(
+				/(\/?&gt;)/g,
+				'<span style="color:#38bdf8;font-weight:600;">$1</span>'
+			)
+			// Prop names: prop=
+			.replace(
+				/\b([a-zA-Z0-9_-]+)(?==)/g,
+				'<span style="color:#c084fc;">$1</span>'
+			)
+			// Boolean/standalone props
+			.replace(
+				/\b(asChild|disabled|required|autoFocus|readOnly|checked|multiple|open)\b/g,
+				'<span style="color:#c084fc;font-style:italic;">$1</span>'
+			)
+	)
 }
 
 function extractClassNameFromAttrs(attrs: string): string {
@@ -289,6 +375,161 @@ function extractClassNameFromAttrs(attrs: string): string {
 	return className
 }
 
+export function extractCompleteJsxBlock(
+	content: string,
+	targetLine: number,
+	preferTag?: string
+): {
+	tag: string
+	parentTag?: string
+	displayTag: string
+	className: string
+	fullCode: string
+	startLine: number
+	endLine: number
+} | null {
+	if (!content) return null
+	const lines = content.split(/\r?\n/)
+	if (targetLine < 1 || targetLine > lines.length) return null
+
+	// 1. If preferTag provided, search upward for that tag
+	let candidateLine = -1
+	let candidateTag = ""
+
+	if (preferTag && typeof preferTag === "string") {
+		const reg = new RegExp(`^\\s*<(${preferTag})(?:\\s|>|\\/|$)`)
+		for (let i = targetLine - 1; i >= Math.max(0, targetLine - 25); i--) {
+			const m = lines[i].match(reg)
+			if (m) {
+				candidateLine = i
+				candidateTag = m[1]
+				break
+			}
+		}
+	}
+
+	// If not found with preferTag, search upward for the enclosing JSX tag
+	if (candidateLine < 0) {
+		for (let i = targetLine - 1; i >= Math.max(0, targetLine - 25); i--) {
+			const l = lines[i].trim()
+			if (
+				l.startsWith("//") ||
+				l.startsWith("{/*") ||
+				l.startsWith("/*") ||
+				l.startsWith("</")
+			) {
+				continue
+			}
+			const tagMatch = l.match(/<([A-Za-z0-9_.-]+)(?:\s|>|\/|$)/)
+			if (tagMatch) {
+				candidateLine = i
+				candidateTag = tagMatch[1]
+				break
+			}
+		}
+	}
+
+	if (candidateLine < 0) return null
+
+	// 2. Check if this tag is inside an outer wrapper component with `asChild` (e.g. `<Button ... asChild>`)
+	let parentTag: string | undefined
+	let parentStartLine = -1
+
+	for (let i = candidateLine - 1; i >= Math.max(0, candidateLine - 12); i--) {
+		const l = lines[i].trim()
+		if (l.startsWith("</") || l.startsWith("{/*")) break
+		const parentMatch = l.match(/<([A-Z][A-Za-z0-9_.-]*)(?:\s|>|\/|$)/)
+		if (parentMatch) {
+			// Check if the lines between i and candidateLine contain asChild or wrap this element
+			const blockAbove = lines.slice(i, candidateLine).join("\n")
+			if (
+				blockAbove.includes("asChild") ||
+				parentMatch[1] === "Button" ||
+				parentMatch[1] === "Badge"
+			) {
+				parentTag = parentMatch[1]
+				parentStartLine = i
+				break
+			}
+		}
+	}
+
+	// 3. Determine start line and main tag for block extraction
+	// If parentTag with asChild exists, extract from parent so both tags are captured
+	const blockStartLine = parentStartLine >= 0 ? parentStartLine : candidateLine
+	const mainTag = parentTag || candidateTag
+
+	// 4. Find where the tag ends (closing tag or self-closing)
+	let endLine = blockStartLine
+	let foundClosing = false
+
+	// Check if opening tag is self-closing
+	let openTagStr = ""
+	for (
+		let j = blockStartLine;
+		j < Math.min(lines.length, blockStartLine + 15);
+		j++
+	) {
+		openTagStr += lines[j]
+		if (openTagStr.includes("/>")) {
+			endLine = j
+			foundClosing = true
+			break
+		}
+		if (openTagStr.includes(">")) {
+			// Opening tag finished, now look for matching </mainTag>
+			endLine = j
+			break
+		}
+	}
+
+	if (!foundClosing) {
+		// Scan forward for closing tag </mainTag>
+		const closeTagPattern = new RegExp(`</${mainTag}>`)
+		let depth = 0
+		const openTagPattern = new RegExp(`<${mainTag}(?:\\s|>|\\/|$)`)
+
+		for (
+			let j = blockStartLine;
+			j < Math.min(lines.length, blockStartLine + 35);
+			j++
+		) {
+			const line = lines[j]
+			if (openTagPattern.test(line) && !line.includes("/>")) {
+				depth++
+			}
+			if (closeTagPattern.test(line)) {
+				depth--
+				if (depth <= 0) {
+					endLine = j
+					foundClosing = true
+					break
+				}
+			}
+		}
+	}
+
+	// 5. Slice and clean indentation
+	const rawBlock = lines.slice(blockStartLine, endLine + 1).join("\n")
+	const fullCode = normalizeIndentation(rawBlock)
+	const className = extractClassNameFromAttrs(rawBlock)
+
+	const displayTag =
+		parentTag && parentTag !== candidateTag
+			? `${parentTag} asChild › ${candidateTag}`
+			: candidateTag
+
+	return {
+		tag: candidateTag,
+		parentTag,
+		displayTag,
+		className,
+		fullCode,
+		startLine: blockStartLine + 1,
+		endLine: endLine + 1,
+	}
+}
+
 export function parseJsxElementAtLine(
 	content: string,
 	targetLine: number,
@@ -299,81 +540,38 @@ export function parseJsxElementAtLine(
 	startLine: number
 	endLine: number
 } | null {
-	if (!content) return null
-	const lines = content.split(/\r?\n/)
-	if (targetLine < 1 || targetLine > lines.length) return null
-
-	// If preferTag is provided, check upwards up to 15 lines for the enclosing component
-	let targetSearchLine = targetLine
-	if (preferTag) {
-		const tagNameFilter =
-			typeof preferTag === "string" ? preferTag : "[A-Z][A-Za-z0-9_.-]*"
-		const reg = new RegExp(`^\\s*<(${tagNameFilter})(?:\\s|>|\\/|$)`)
-		for (let i = targetLine - 1; i >= Math.max(0, targetLine - 15); i--) {
-			const l = lines[i]
-			if (reg.test(l)) {
-				targetSearchLine = i + 1
-				break
-			}
-		}
+	const block = extractCompleteJsxBlock(
+		content,
+		targetLine,
+		typeof preferTag === "string" ? preferTag : undefined
+	)
+	if (!block) return null
+	return {
+		tag: block.tag,
+		className: block.className,
+		startLine: block.startLine,
+		endLine: block.endLine,
 	}
+}
 
-	// Search starting from targetSearchLine upwards to find the opening JSX tag
-	let candidateLine = -1
-	for (
-		let i = targetSearchLine - 1;
-		i >= Math.max(0, targetSearchLine - 25);
-		i--
-	) {
-		const l = lines[i].trim()
-		if (
-			l.startsWith("//") ||
-			l.startsWith("{/*") ||
-			l.startsWith("/*") ||
-			l.startsWith("</")
-		) {
-			continue
-		}
-		const tagMatch = l.match(/<([A-Za-z0-9_.-]+)(?:\s|>|\/|$)/)
-		if (tagMatch) {
-			candidateLine = i
-			break
-		}
-	}
-
-	if (candidateLine < 0) return null
-
-	let tagText = ""
-	for (
-		let j = candidateLine;
-		j < Math.min(lines.length, candidateLine + 35);
-		j++
-	) {
-		tagText += (j === candidateLine ? "" : "\n") + lines[j]
-		const match = tagText.match(
-			/<([A-Za-z0-9_.-]+)((?:[^>"']|"[^"]*"|'[^']*'|\{[^}]*\})*?)(\/?>)/
-		)
-		if (match) {
-			const tagName = match[1]
-			const attrs = match[2]
-			const className = extractClassNameFromAttrs(attrs)
-
-			return {
-				tag: tagName,
-				className,
-				startLine: candidateLine + 1,
-				endLine: j + 1,
-			}
-		}
-	}
-
-	return null
+export interface FiberMatch {
+	file: string
+	lineNumber: number
+	tag: string
+	className: string
 }
 
 export function getFiberSourceDetails(
 	element: HTMLElement,
 	componentFiles: Record<string, string>
-): ResolvedElementDetails | null {
+): {
+	file: string
+	lineNumber: number
+	tag: string
+	className: string
+	parentTag?: string
+	displayTag?: string
+} | null {
 	try {
 		const targetElements = [
 			element,
@@ -394,7 +592,7 @@ export function getFiberSourceDetails(
 			let fiber = (el as any)[fiberKey]
 			let depth = 0
 			const maxDepth = 40
-			const matchedCandidates: ResolvedElementDetails[] = []
+			const matchedCandidates: FiberMatch[] = []
 
 			while (fiber && depth < maxDepth) {
 				depth++
@@ -458,16 +656,43 @@ export function getFiberSourceDetails(
 			}
 
 			if (matchedCandidates.length > 0) {
-				// Prefer a component like Button, Link, Card, Badge if it has a custom className
-				const componentWithClass = matchedCandidates.find(
-					(c) => /^[A-Z]/.test(c.tag) && c.className.length > 0
+				// Check for both parent component (e.g. Button) and child tag (e.g. Link)
+				const customComponents = matchedCandidates.filter((c) =>
+					/^[A-Z]/.test(c.tag)
 				)
-				if (componentWithClass) return componentWithClass
 
-				const anyComponent = matchedCandidates.find((c) => /^[A-Z]/.test(c.tag))
-				if (anyComponent) return anyComponent
+				let primary = matchedCandidates[0]
+				let parentTag: string | undefined
 
-				return matchedCandidates[0]
+				if (customComponents.length >= 2) {
+					// e.g. [Link, Button] -> primary is Link, parent is Button
+					primary = customComponents[0]
+					parentTag = customComponents[1].tag
+				} else if (customComponents.length === 1) {
+					primary = customComponents[0]
+					// Check if element itself was a child tag like 'a' or 'span'
+					const innerHtmlTag = matchedCandidates.find(
+						(c) => c !== primary && /^[a-z]/.test(c.tag)
+					)
+					if (innerHtmlTag && innerHtmlTag.tag !== primary.tag.toLowerCase()) {
+						parentTag = primary.tag
+						primary = innerHtmlTag
+					}
+				}
+
+				const displayTag =
+					parentTag && parentTag !== primary.tag
+						? `${parentTag} › ${primary.tag}`
+						: primary.tag
+
+				return {
+					file: primary.file,
+					lineNumber: primary.lineNumber,
+					tag: primary.tag,
+					className: primary.className,
+					parentTag,
+					displayTag,
+				}
 			}
 		}
 	} catch {
@@ -492,7 +717,10 @@ export function resolveElementSourceDetails(
 	let file = fiberDetails?.file
 	let lineNumber = fiberDetails?.lineNumber || 1
 	let tag = fiberDetails?.tag || ""
+	let parentTag = fiberDetails?.parentTag
+	let displayTag = fiberDetails?.displayTag
 	let className = fiberDetails?.className || ""
+	let fullCode = ""
 
 	// 2. If fiber didn't resolve location, use static locator
 	if (!file || lineNumber <= 0) {
@@ -501,23 +729,25 @@ export function resolveElementSourceDetails(
 		lineNumber = staticLoc.lineNumber
 	}
 
-	// 3. If we have the source file content, parse JSX around lineNumber to get exact author JSX tag and className
+	// 3. Extract complete author JSX block from source file
 	if (file && componentFiles[file]) {
-		const jsxParsed = parseJsxElementAtLine(
+		const jsxBlock = extractCompleteJsxBlock(
 			componentFiles[file],
 			lineNumber,
-			tag || isInteractive
+			tag || (isInteractive ? "Button" : undefined)
 		)
-		if (jsxParsed) {
-			if (jsxParsed.tag) {
-				tag = jsxParsed.tag
+		if (jsxBlock) {
+			if (jsxBlock.tag) tag = jsxBlock.tag
+			if (jsxBlock.parentTag) parentTag = jsxBlock.parentTag
+			if (jsxBlock.displayTag) displayTag = jsxBlock.displayTag
+			if (typeof jsxBlock.className === "string" && jsxBlock.className) {
+				className = jsxBlock.className
 			}
-			// Prefer exact author-written className from source JSX
-			if (typeof jsxParsed.className === "string") {
-				className = jsxParsed.className
+			if (jsxBlock.fullCode) {
+				fullCode = jsxBlock.fullCode
 			}
-			if (jsxParsed.startLine) {
-				lineNumber = jsxParsed.startLine
+			if (jsxBlock.startLine) {
+				lineNumber = jsxBlock.startLine
 			}
 		}
 	}
@@ -527,11 +757,31 @@ export function resolveElementSourceDetails(
 		tag = element.tagName.toLowerCase()
 	}
 
+	if (!displayTag) {
+		displayTag = parentTag && parentTag !== tag ? `${parentTag} › ${tag}` : tag
+	}
+
+	// Fallback fullCode if extraction didn't find block
+	if (!fullCode) {
+		const innerText = (element.textContent || "").trim()
+		const cleanText =
+			innerText.length > 60 ? innerText.slice(0, 57) + "..." : innerText
+		const classAttr = className ? ` className="${className}"` : ""
+		if (cleanText) {
+			fullCode = `<${tag}${classAttr}>\n  ${cleanText}\n</${tag}>`
+		} else {
+			fullCode = `<${tag}${classAttr} />`
+		}
+	}
+
 	return {
-		file,
+		file: file || defaultFile,
 		lineNumber,
 		tag,
+		parentTag,
+		displayTag,
 		className,
+		fullCode,
 	}
 }
 

@@ -14,6 +14,8 @@ export interface DraftComment {
 	elementTag: string
 	elementSelector: string
 	elementContent?: string
+	elementCode?: string
+	parentTag?: string
 	sourceLocation?: SourceLocation | null
 }
 
@@ -232,6 +234,8 @@ export function useComments(
 						elementTag: details.tag,
 						elementSelector: details.className,
 						elementContent: directText,
+						elementCode: details.fullCode,
+						parentTag: details.parentTag,
 						sourceLocation: {
 							file: details.file,
 							lineNumber: details.lineNumber,
