@@ -48,10 +48,11 @@ const resources: ResourceItem[] = [
 	{
 		title: "Emojis",
 		description:
-			"A vast collection of over 500+ emojis in multiple clear file formats.",
-		comingSoon: true,
+			"Browse 1,900+ Unicode emojis with copy-ready text and code snippets.",
+		comingSoon: false,
 		lightUrl: "/media/assets-page/emojis-light.png",
 		darkUrl: "/media/assets-page/emojis-dark.png",
+		link: "emoji",
 	},
 	{
 		title: "File Format Icons",

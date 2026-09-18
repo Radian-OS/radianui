@@ -11,7 +11,7 @@ export type BadgeProps = Omit<React.HTMLAttributes<HTMLDivElement>, "color"> &
 export type BadgeDotProps = React.HTMLAttributes<HTMLSpanElement>
 
 const badgeVariants = cva(
-	"inline-flex items-center font-medium w-fit whitespace-nowrap transition duration-200 gap-0.5",
+	"inline-flex w-fit items-center gap-0.5 font-medium whitespace-nowrap transition duration-200",
 	{
 		variants: {
 			variant: {
@@ -20,9 +20,9 @@ const badgeVariants = cva(
 				soft: "",
 			},
 			size: {
-				"20": "h-5 px-1 text-xs rounded-md [&_svg]:size-3",
-				"24": "h-6 px-1.5 text-[13px] rounded-md [&_svg]:size-3.5",
-				"28": "h-7 px-1.5 text-sm rounded-md [&_svg]:size-4",
+				"20": "h-5 rounded-md px-1 text-xs [&_svg]:size-3",
+				"24": "h-6 rounded-md px-1.5 text-[13px] [&_svg]:size-3.5",
+				"28": "h-7 rounded-md px-1.5 text-sm [&_svg]:size-4",
 			},
 			color: {
 				primary: "",
@@ -60,62 +60,62 @@ const badgeVariants = cva(
 			{
 				variant: "strong",
 				color: "primary",
-				className: "bg-primary text-primary-fg  border border-alpha",
+				className: "bg-primary text-primary-fg border-alpha border",
 			},
 			{
 				variant: "strong",
 				color: "info",
-				className: "bg-info text-info-fg border border-alpha",
+				className: "bg-info text-info-fg border-alpha border",
 			},
 			{
 				variant: "strong",
 				color: "success",
-				className: "bg-success text-success-fg border border-alpha",
+				className: "bg-success text-success-fg border-alpha border",
 			},
 			{
 				variant: "strong",
 				color: "error",
-				className: "bg-error text-error-fg border border-alpha",
+				className: "bg-error text-error-fg border-alpha border",
 			},
 			{
 				variant: "strong",
 				color: "warning",
-				className: "bg-warning text-warning-fg border border-alpha",
+				className: "bg-warning text-warning-fg border-alpha border",
 			},
 			{
 				variant: "strong",
 				color: "neutral",
 				className:
-					"bg-black-inverse border border-alpha text-white-inverse font-medium",
+					"bg-black-inverse border-alpha text-white-inverse border font-medium",
 			},
 			// outline
 			{
 				variant: "outline",
 				color: "primary",
 				className:
-					"text-primary-text border border-primary-border bg-transparent",
+					"text-primary-text border-primary-border border bg-transparent",
 			},
 			{
 				variant: "outline",
 				color: "info",
-				className: "text-info-text border border-info-border bg-transparent",
+				className: "text-info-text border-info-border border bg-transparent",
 			},
 			{
 				variant: "outline",
 				color: "success",
 				className:
-					"text-success-text border border-success-border bg-transparent",
+					"text-success-text border-success-border border bg-transparent",
 			},
 			{
 				variant: "outline",
 				color: "error",
-				className: "text-error-text border border-error-border bg-transparent",
+				className: "text-error-text border-error-border border bg-transparent",
 			},
 			{
 				variant: "outline",
 				color: "warning",
 				className:
-					"text-warning-text border border-warning-border bg-transparent",
+					"text-warning-text border-warning-border border bg-transparent",
 			},
 			{
 				variant: "outline",
@@ -310,96 +310,96 @@ const badgeVariants = cva(
 			{
 				variant: "outline",
 				color: "red",
-				className: "text-red-text border border-red-border bg-transparent",
+				className: "text-red-text border-red-border border bg-transparent",
 			},
 			{
 				variant: "outline",
 				color: "orange",
 				className:
-					"text-orange-text border border-orange-border bg-transparent",
+					"text-orange-text border-orange-border border bg-transparent",
 			},
 			{
 				variant: "outline",
 				color: "amber",
-				className: "text-amber-text border border-amber-border bg-transparent",
+				className: "text-amber-text border-amber-border border bg-transparent",
 			},
 			{
 				variant: "outline",
 				color: "yellow",
 				className:
-					"text-yellow-text border border-yellow-border bg-transparent",
+					"text-yellow-text border-yellow-border border bg-transparent",
 			},
 			{
 				variant: "outline",
 				color: "neon",
-				className: "text-neon-text border border-neon-border bg-transparent",
+				className: "text-neon-text border-neon-border border bg-transparent",
 			},
 			{
 				variant: "outline",
 				color: "green",
-				className: "text-green-text border border-green-border bg-transparent",
+				className: "text-green-text border-green-border border bg-transparent",
 			},
 			{
 				variant: "outline",
 				color: "emerald",
 				className:
-					"text-emerald-text border border-emerald-border bg-transparent",
+					"text-emerald-text border-emerald-border border bg-transparent",
 			},
 			{
 				variant: "outline",
 				color: "teal",
-				className: "text-teal-text border border-teal-border bg-transparent",
+				className: "text-teal-text border-teal-border border bg-transparent",
 			},
 			{
 				variant: "outline",
 				color: "cyan",
-				className: "text-cyan-text border border-cyan-border bg-transparent",
+				className: "text-cyan-text border-cyan-border border bg-transparent",
 			},
 			{
 				variant: "outline",
 				color: "light-blue",
 				className:
-					"text-light-blue-text border border-light-blue-border bg-transparent",
+					"text-light-blue-text border-light-blue-border border bg-transparent",
 			},
 			{
 				variant: "outline",
 				color: "blue",
-				className: "text-blue-text border border-blue-border bg-transparent",
+				className: "text-blue-text border-blue-border border bg-transparent",
 			},
 			{
 				variant: "outline",
 				color: "violet-blue",
 				className:
-					"text-violet-blue-text border border-violet-blue-border bg-transparent",
+					"text-violet-blue-text border-violet-blue-border border bg-transparent",
 			},
 			{
 				variant: "outline",
 				color: "purple",
 				className:
-					"text-purple-text border border-purple-border bg-transparent",
+					"text-purple-text border-purple-border border bg-transparent",
 			},
 			{
 				variant: "outline",
 				color: "dark-orchid",
 				className:
-					"text-dark-orchid-text border border-dark-orchid-border bg-transparent",
+					"text-dark-orchid-text border-dark-orchid-border border bg-transparent",
 			},
 			{
 				variant: "outline",
 				color: "fuchsia",
 				className:
-					"text-fuchsia-text border border-fuchsia-border bg-transparent",
+					"text-fuchsia-text border-fuchsia-border border bg-transparent",
 			},
 			{
 				variant: "outline",
 				color: "magenta",
 				className:
-					"text-magenta-text border border-magenta-border bg-transparent",
+					"text-magenta-text border-magenta-border border bg-transparent",
 			},
 			{
 				variant: "outline",
 				color: "rose",
-				className: "text-rose-text border border-rose-border bg-transparent",
+				className: "text-rose-text border-rose-border border bg-transparent",
 			},
 		],
 	}

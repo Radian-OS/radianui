@@ -42,7 +42,7 @@ export const alertDialogOverlayVariants = cva(
 		variants: {
 			backdrop: {
 				overlay: "bg-black/50",
-				blur: "backdrop-blur-md bg-black/25",
+				blur: "bg-black/25 backdrop-blur-md",
 				transparent: "bg-transparent",
 			},
 		},

@@ -32,9 +32,8 @@ export const designTools = [
 	{
 		title: "Emoji",
 		description: "A complete emoji collection.",
-		href: "#",
+		href: "/resources/emoji",
 		icon: <Emoji />,
-		release: "coming-soon",
 	},
 	{
 		title: "Brand Logo",

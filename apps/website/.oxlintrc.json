@@ -1,0 +1,34 @@
+{
+    "$schema": "https://raw.githubusercontent.com/oxc-project/oxc/main/npm/oxlint/configuration_schema.json",
+    "plugins": [
+        "typescript",
+        "react",
+        "nextjs",
+        "unicorn",
+        "oxc"
+    ],
+    "ignorePatterns": [
+        "node_modules/**",
+        ".next/**",
+        "out/**",
+        "build/**",
+        "next-env.d.ts",
+        ".source/**",
+        "**/__index__.tsx",
+        "**/__components__/**"
+    ],
+    "rules": {
+        "no-unused-vars": "off",
+        "typescript/no-unused-vars": "off",
+        "typescript/no-explicit-any": "warn",
+        "typescript/ban-ts-comment": "off",
+        "nextjs/no-html-link-for-pages": "off",
+        "nextjs/no-img-element": "off",
+        "react/set-state-in-effect": "off",
+        "react/purity": "off",
+        "react/incompatible-library": "off",
+        "react/static-components": "off",
+        "react-hooks/refs": "off",
+        "react/refs": "off"
+    }
+}

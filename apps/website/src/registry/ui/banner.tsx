@@ -14,7 +14,7 @@ export type BannerIconProps = React.HTMLAttributes<HTMLDivElement>
 export type BannerToolbarProps = React.HTMLAttributes<HTMLDivElement>
 
 const bannerVariants = cva(
-	"flex items-center justify-center w-full gap-2 p-2 overflow-hidden",
+	"flex w-full items-center justify-center gap-2 overflow-hidden p-2",
 	{
 		variants: {
 			color: {
@@ -27,9 +27,9 @@ const bannerVariants = cva(
 			},
 			variant: {
 				strong: "[&_[data-slot=banner-close]]:text-white",
-				soft: "[&_[data-slot=banner-close]]:text-[current] [&_[data-slot=banner-title]]:text-fg [&_[data-slot=banner-description]]:text-fg",
+				soft: "[&_[data-slot=banner-title]]:text-fg [&_[data-slot=banner-description]]:text-fg [&_[data-slot=banner-close]]:text-[current]",
 				outline:
-					"border border-soft border-l-0 border-t-0 border-r-0 [&_[data-slot=banner-close]]:text-fg-secondary [&_[data-slot=banner-title]]:text-fg [&_[data-slot=banner-description]]:text-fg-secondary",
+					"border-soft [&_[data-slot=banner-close]]:text-fg-secondary [&_[data-slot=banner-title]]:text-fg [&_[data-slot=banner-description]]:text-fg-secondary border border-t-0 border-r-0 border-l-0",
 			},
 		},
 		compoundVariants: [
@@ -91,32 +91,32 @@ const bannerVariants = cva(
 			{
 				color: "neutral",
 				variant: "outline",
-				className: "bg-transparent text-fg ",
+				className: "text-fg bg-transparent",
 			},
 			{
 				color: "primary",
 				variant: "outline",
-				className: "bg-transparent text-primary-text",
+				className: "text-primary-text bg-transparent",
 			},
 			{
 				color: "info",
 				variant: "outline",
-				className: "bg-transparent text-info-text",
+				className: "text-info-text bg-transparent",
 			},
 			{
 				color: "success",
 				variant: "outline",
-				className: "bg-transparent text-success-text",
+				className: "text-success-text bg-transparent",
 			},
 			{
 				color: "error",
 				variant: "outline",
-				className: "bg-transparent text-error-text",
+				className: "text-error-text bg-transparent",
 			},
 			{
 				color: "warning",
 				variant: "outline",
-				className: "bg-transparent text-warning-text",
+				className: "text-warning-text bg-transparent",
 			},
 		],
 		defaultVariants: {

@@ -43,7 +43,8 @@ import {
 type NavItem = { label: string; href: string; icon: LucideIcon }
 type NavColumn = { title: string; items: NavItem[] }
 type NavEntry =
-	{ label: string; href: string } | { label: string; columns: NavColumn[] }
+	| { label: string; href: string }
+	| { label: string; columns: NavColumn[] }
 
 const NAV_CONFIG: NavEntry[] = [
 	{ label: "Features", href: "#" },
