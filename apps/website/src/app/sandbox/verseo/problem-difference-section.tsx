@@ -44,7 +44,7 @@ export function VerseoProblemDifferenceSection() {
 					</div>
 
 					{/* Rule 13: heading-2 */}
-					<h2 className="heading-2 text-foreground max-w-2xl text-center text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
+					<h2 className="heading-2 text-foreground max-w-2xl text-center">
 						Where content friction ends, clarity begins
 					</h2>
 				</div>

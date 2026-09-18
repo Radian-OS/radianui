@@ -8,9 +8,7 @@ export function OmrixDashboardHeader() {
 	return (
 		<div className="border-border/60 flex flex-wrap items-center justify-between gap-3 border-b px-6 py-4">
 			{/* Header Title */}
-			<h2 className="heading-6 text-foreground text-base font-bold">
-				Dashboard Overview
-			</h2>
+			<h2 className="heading-6 text-foreground">Dashboard Overview</h2>
 
 			{/* Actions Row */}
 			<div className="flex flex-1 items-center justify-end gap-2.5 sm:flex-initial">

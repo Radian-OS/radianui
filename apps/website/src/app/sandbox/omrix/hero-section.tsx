@@ -36,7 +36,7 @@ export function OmrixHeroSection() {
 				</div>
 
 				{/* Main Hero Headline (Rule 13: heading-1) */}
-				<h1 className="heading-1 text-foreground max-w-4xl text-center text-4xl font-extrabold tracking-tight sm:text-5xl sm:leading-[1.12] md:text-6xl md:leading-[1.1] lg:text-7xl lg:leading-[1.08]">
+				<h1 className="heading-1 text-foreground max-w-4xl text-center">
 					Build Smarter Workflows.
 					<br />
 					Ship Faster. Scale Further.

@@ -46,7 +46,7 @@ export function AgentlabProblemSection() {
 				</div>
 
 				{/* Section Heading (Rule 13: heading-2) */}
-				<h2 className="heading-2 mx-auto mt-6 max-w-4xl text-center font-serif text-3xl leading-[1.2] font-normal tracking-tight text-white sm:text-4xl md:text-5xl lg:text-6xl">
+				<h2 className="heading-2 mx-auto mt-6 max-w-4xl text-center font-serif text-white">
 					Most Organizations Operate with{" "}
 					<span className="text-white/50">
 						Broken Data Pipelines, Siloed Teams, and Outdated Workflows.
@@ -72,7 +72,7 @@ export function AgentlabProblemSection() {
 
 							{/* Card Content */}
 							<div>
-								<h3 className="heading-4 font-serif text-xl font-normal tracking-tight text-white sm:text-2xl">
+								<h3 className="heading-4 font-serif text-white">
 									{item.title}
 								</h3>
 								<p className="mt-3 text-xs leading-relaxed text-white/60 sm:text-sm">

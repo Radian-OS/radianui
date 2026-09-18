@@ -24,7 +24,7 @@ export function HeroSection() {
 
 				{/* Hero Heading */}
 				<div className="mx-auto mb-6 max-w-4xl text-center">
-					<h1 className="heading-1 text-foreground text-center font-medium tracking-tight">
+					<h1 className="heading-1 text-foreground text-center">
 						Turning Great Ideas Into Strong Brand Identities
 					</h1>
 				</div>

@@ -17,7 +17,7 @@ export function AgentlabSolutionSection() {
 			<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 				{/* Top Section Headline (Rule 13: heading-2) */}
 				<div className="text-center">
-					<h2 className="heading-2 text-fg mx-auto max-w-4xl font-serif text-3xl leading-[1.18] font-normal tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
+					<h2 className="heading-2 text-fg mx-auto max-w-4xl font-serif">
 						Eliminate Operational Friction, Cut Manual Errors, and Increase
 						Deployment Speed by 10x with Enterprise-Grade AI Agent
 						Infrastructure
@@ -32,7 +32,7 @@ export function AgentlabSolutionSection() {
 							<span className="text-primary font-bold">—</span>
 							<span>AGENT BUILDER</span>
 						</div>
-						<h3 className="heading-3 text-fg mt-4 font-serif text-2xl font-normal tracking-tight sm:text-3xl md:text-4xl">
+						<h3 className="heading-3 text-fg mt-4 font-serif">
 							Build and Deploy Agents in Minutes
 						</h3>
 						<p className="text-fg-secondary mt-4 text-sm leading-relaxed sm:text-base">
@@ -161,7 +161,7 @@ export function AgentlabSolutionSection() {
 							<span className="text-primary font-bold">—</span>
 							<span>WORKFLOW AUTOMATION</span>
 						</div>
-						<h3 className="heading-3 text-fg mt-4 font-serif text-2xl font-normal tracking-tight sm:text-3xl md:text-4xl">
+						<h3 className="heading-3 text-fg mt-4 font-serif">
 							Automate Complex Multi-Step Workflows
 						</h3>
 						<p className="text-fg-secondary mt-4 text-sm leading-relaxed sm:text-base">
@@ -185,7 +185,7 @@ export function AgentlabSolutionSection() {
 							<span className="text-primary font-bold">—</span>
 							<span>ANALYTICS &amp; INSIGHTS</span>
 						</div>
-						<h3 className="heading-3 text-fg mt-4 font-serif text-2xl font-normal tracking-tight sm:text-3xl md:text-4xl">
+						<h3 className="heading-3 text-fg mt-4 font-serif">
 							Monitor Agent Performance in Real Time
 						</h3>
 						<p className="text-fg-secondary mt-4 text-sm leading-relaxed sm:text-base">

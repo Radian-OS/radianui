@@ -72,8 +72,8 @@ export function HeroSection() {
 							</span>
 						</div>
 
-						{/* Main Heading (Rule 9: heading-1) */}
-						<h1 className="heading-1 text-fg mb-4 tracking-tight">
+						{/* Main Heading (heading-1) */}
+						<h1 className="heading-1 text-fg mb-4">
 							Track your finances with live analytics in one place
 						</h1>
 

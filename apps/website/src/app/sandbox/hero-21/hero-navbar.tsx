@@ -4,6 +4,14 @@ import React, { useState } from "react"
 import { ChevronRight, Menu, X } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import { cn } from "@/lib/utils"
+import {
+	NavigationMenu,
+	NavigationMenuItem,
+	NavigationMenuLink,
+	NavigationMenuList,
+	navigationMenuTriggerStyle,
+} from "@/registry/ui/navigation-menu"
 import { Button } from "@/styles/default/ui/button"
 
 interface NavLink {
@@ -42,17 +50,23 @@ export function HeroNavbar() {
 						</span>
 					</Link>
 
-					{/* Desktop Navigation Links */}
-					<div className="hidden items-center gap-1 md:flex">
-						{navLinks.map((link) => (
-							<Link
-								key={link.label}
-								href={link.href}
-								className="text-fg-secondary hover:text-foreground rounded-full px-4 py-1.5 text-sm font-medium transition-colors hover:underline">
-								{link.label}
-							</Link>
-						))}
-					</div>
+					{/* Desktop Navigation Menu (Rule: use @/registry/ui/navigation-menu) */}
+					<NavigationMenu viewport={false} className="hidden md:flex">
+						<NavigationMenuList className="gap-1">
+							{navLinks.map((link) => (
+								<NavigationMenuItem key={link.label}>
+									<NavigationMenuLink
+										asChild
+										className={cn(
+											navigationMenuTriggerStyle(),
+											"hover:bg-fill1-alpha text-fg-secondary hover:text-foreground rounded-full bg-transparent px-4 py-1.5 text-sm font-medium transition-colors"
+										)}>
+										<Link href={link.href}>{link.label}</Link>
+									</NavigationMenuLink>
+								</NavigationMenuItem>
+							))}
+						</NavigationMenuList>
+					</NavigationMenu>
 
 					{/* Desktop CTA Button */}
 					<div className="hidden md:block">

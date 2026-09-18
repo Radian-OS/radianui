@@ -3,6 +3,16 @@
 import React, { useState } from "react"
 import { ChevronDown, ChevronRight, Menu, X, Zap } from "lucide-react"
 import Link from "next/link"
+import { cn } from "@/lib/utils"
+import {
+	NavigationMenu,
+	NavigationMenuContent,
+	NavigationMenuItem,
+	NavigationMenuLink,
+	NavigationMenuList,
+	NavigationMenuTrigger,
+	navigationMenuTriggerStyle,
+} from "@/registry/ui/navigation-menu"
 import { Button } from "@/styles/default/ui/button"
 
 interface NavItem {
@@ -16,6 +26,29 @@ const navItems: NavItem[] = [
 	{ label: "About", href: "#about" },
 	{ label: "Blog", href: "#blog" },
 	{ label: "Pricing", href: "#pricing" },
+]
+
+const pagesDropdownItems = [
+	{
+		label: "Solutions",
+		href: "#solutions",
+		description: "Explore tailored AI solutions for engineering & operations.",
+	},
+	{
+		label: "Automation",
+		href: "#automation",
+		description: "Autonomous workflow execution and intelligent triggers.",
+	},
+	{
+		label: "Integrations",
+		href: "#integrations",
+		description: "Connect seamlessly with Slack, Jira, GitHub, and more.",
+	},
+	{
+		label: "FAQ",
+		href: "#faq",
+		description: "Frequently asked questions about AIwork.",
+	},
 ]
 
 export function AiworkNavbar() {
@@ -34,21 +67,53 @@ export function AiworkNavbar() {
 					<span className="text-foreground text-base font-bold">AIwork</span>
 				</Link>
 
-				{/* Desktop Nav Links */}
-				<div className="hidden items-center gap-7 md:flex">
-					{navItems.map((item) => (
-						<div key={item.label} className="group relative flex items-center">
-							<Link
-								href={item.href}
-								className="text-fg-secondary hover:text-foreground flex items-center gap-1 text-sm font-medium transition-colors hover:underline">
-								<span>{item.label}</span>
-								{item.hasDropdown && (
-									<ChevronDown className="size-3.5 opacity-70 transition-transform group-hover:rotate-180" />
-								)}
-							</Link>
-						</div>
-					))}
-				</div>
+				{/* Desktop Navigation Menu (Rule: use @/registry/ui/navigation-menu) */}
+				<NavigationMenu viewport={false} className="hidden md:flex">
+					<NavigationMenuList className="gap-2">
+						{navItems.map((item) =>
+							item.hasDropdown ? (
+								<NavigationMenuItem key={item.label}>
+									<NavigationMenuTrigger className="hover:bg-fill1-alpha text-fg-secondary hover:text-foreground bg-transparent text-sm font-medium transition-colors">
+										{item.label}
+									</NavigationMenuTrigger>
+									<NavigationMenuContent
+										align="center"
+										className="border-border/70 bg-elevation-level1 min-w-64 rounded-xl border p-2 shadow-xl backdrop-blur-md">
+										<ul className="flex flex-col gap-1">
+											{pagesDropdownItems.map((sub) => (
+												<li key={sub.label}>
+													<NavigationMenuLink
+														asChild
+														className="hover:bg-fill1-alpha flex flex-col gap-0.5 rounded-lg p-2.5 text-sm transition-colors">
+														<Link href={sub.href}>
+															<span className="text-foreground font-semibold">
+																{sub.label}
+															</span>
+															<span className="text-fg-secondary text-xs">
+																{sub.description}
+															</span>
+														</Link>
+													</NavigationMenuLink>
+												</li>
+											))}
+										</ul>
+									</NavigationMenuContent>
+								</NavigationMenuItem>
+							) : (
+								<NavigationMenuItem key={item.label}>
+									<NavigationMenuLink
+										asChild
+										className={cn(
+											navigationMenuTriggerStyle(),
+											"hover:bg-fill1-alpha text-fg-secondary hover:text-foreground bg-transparent text-sm font-medium transition-colors"
+										)}>
+										<Link href={item.href}>{item.label}</Link>
+									</NavigationMenuLink>
+								</NavigationMenuItem>
+							)
+						)}
+					</NavigationMenuList>
+				</NavigationMenu>
 
 				{/* Desktop CTA Action */}
 				<div className="hidden items-center gap-3 md:flex">
