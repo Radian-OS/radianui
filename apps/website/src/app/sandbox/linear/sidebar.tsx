@@ -87,19 +87,25 @@ export function Sidebar({ onOpenNewIssue, onCloseMobile }: SidebarProps) {
 	]
 
 	return (
-		<RadianSidebar className="border-border/60 bg-bg text-fg flex h-full w-60 shrink-0 flex-col border-r text-sm transition-colors select-none">
+		<RadianSidebar
+			style={
+				{
+					"--color-sidebar-accent": "var(--color-fill2)",
+				} as React.CSSProperties
+			}
+			className="border-border/60 bg-bg text-sidebar-fg flex h-full w-60 shrink-0 flex-col border-r text-sm transition-colors select-none">
 			{/* Workspace Switcher & Top Actions */}
 			<SidebarHeader className="border-border/40 flex h-12 flex-row items-center justify-between border-b px-3">
 				<button
 					type="button"
-					className="hover:bg-elevation-level1/70 -ml-1 flex items-center gap-2 rounded-lg px-2 py-1 text-left transition-colors">
+					className="hover:bg-fill1 -ml-1 flex cursor-pointer items-center gap-2 rounded-lg px-2 py-1 text-left transition-colors">
 					<div className="flex size-5 shrink-0 items-center justify-center rounded-full bg-emerald-600 text-[10px] font-bold text-white">
 						AM
 					</div>
 					<span className="text-fg truncate text-xs font-semibold">
 						AS Mobbin
 					</span>
-					<ChevronDown className="text-fg-muted size-3.5 opacity-60" />
+					<ChevronDown className="text-fg-tertiary size-3.5 opacity-60" />
 				</button>
 
 				<div className="flex items-center gap-0.5">
@@ -109,8 +115,8 @@ export function Sidebar({ onOpenNewIssue, onCloseMobile }: SidebarProps) {
 						color="neutral"
 						size="28"
 						aria-label="Search issues and projects"
-						className="text-fg-muted hover:text-fg">
-						<Search className="size-3.5" />
+						className="text-fg-secondary hover:text-fg">
+						<Search className="size-4" />
 					</IconButton>
 					<IconButton
 						type="button"
@@ -119,8 +125,8 @@ export function Sidebar({ onOpenNewIssue, onCloseMobile }: SidebarProps) {
 						size="28"
 						aria-label="New issue"
 						onClick={onOpenNewIssue}
-						className="text-fg-muted hover:text-fg">
-						<SquarePen className="size-3.5" />
+						className="text-fg-secondary hover:text-fg">
+						<SquarePen className="size-4" />
 					</IconButton>
 				</div>
 			</SidebarHeader>
@@ -137,17 +143,12 @@ export function Sidebar({ onOpenNewIssue, onCloseMobile }: SidebarProps) {
 								return (
 									<SidebarMenuItem key={item.id}>
 										<SidebarMenuButton
-											size="28"
+											size="32"
 											isActive={isActive}
 											tooltip={item.label}
-											onClick={() => handleItemClick(item.id)}
-											className={`flex w-full items-center gap-2.5 rounded-md px-2.5 py-1.5 text-xs font-medium transition-colors ${
-												isActive
-													? "bg-elevation-level1 text-fg font-semibold"
-													: "text-fg-muted hover:bg-elevation-level1/60 hover:text-fg"
-											}`}>
-											<Icon className="size-3.5 shrink-0" />
-											<span>{item.label}</span>
+											onClick={() => handleItemClick(item.id)}>
+											<Icon className="size-4" />
+											<span className="truncate">{item.label}</span>
 										</SidebarMenuButton>
 									</SidebarMenuItem>
 								)
@@ -158,9 +159,9 @@ export function Sidebar({ onOpenNewIssue, onCloseMobile }: SidebarProps) {
 
 				{/* Workspace Section */}
 				<SidebarGroup className="p-0">
-					<SidebarGroupLabel className="text-fg-muted flex w-full items-center justify-between px-2.5 py-1 text-[11px] font-medium">
+					<SidebarGroupLabel className="text-fg-secondary flex w-full items-center justify-between px-2 text-xs font-semibold tracking-wider uppercase">
 						<span>Workspace</span>
-						<ChevronDown className="size-3 opacity-60" />
+						<ChevronDown className="size-3.5 opacity-60" />
 					</SidebarGroupLabel>
 					<SidebarGroupContent className="mt-0.5">
 						<SidebarMenu className="space-y-0.5">
@@ -170,17 +171,12 @@ export function Sidebar({ onOpenNewIssue, onCloseMobile }: SidebarProps) {
 								return (
 									<SidebarMenuItem key={item.id}>
 										<SidebarMenuButton
-											size="28"
+											size="32"
 											isActive={isActive}
 											tooltip={item.label}
-											onClick={() => handleItemClick(item.id)}
-											className={`flex w-full items-center gap-2.5 rounded-md px-2.5 py-1.5 text-xs font-medium transition-colors ${
-												isActive
-													? "bg-elevation-level1 text-fg font-semibold"
-													: "text-fg-muted hover:bg-elevation-level1/60 hover:text-fg"
-											}`}>
-											<Icon className="size-3.5 shrink-0" />
-											<span>{item.label}</span>
+											onClick={() => handleItemClick(item.id)}>
+											<Icon className="size-4" />
+											<span className="truncate">{item.label}</span>
 										</SidebarMenuButton>
 									</SidebarMenuItem>
 								)
@@ -191,15 +187,15 @@ export function Sidebar({ onOpenNewIssue, onCloseMobile }: SidebarProps) {
 
 				{/* Your teams Section */}
 				<SidebarGroup className="p-0">
-					<SidebarGroupLabel className="text-fg-muted flex w-full items-center justify-between px-2.5 py-1 text-[11px] font-medium">
+					<SidebarGroupLabel className="text-fg-secondary flex w-full items-center justify-between px-2 text-xs font-semibold tracking-wider uppercase">
 						<span>Your teams</span>
-						<ChevronDown className="size-3 opacity-60" />
+						<ChevronDown className="size-3.5 opacity-60" />
 					</SidebarGroupLabel>
 					<SidebarGroupContent className="mt-0.5 space-y-0.5">
 						<div className="text-fg flex items-center gap-2 px-2.5 py-1.5 text-xs font-semibold">
-							<Globe className="size-3.5 text-blue-500 dark:text-blue-400" />
+							<Globe className="size-4 text-blue-500 dark:text-blue-400" />
 							<span>AS Mobbin</span>
-							<ChevronDown className="text-fg-muted ml-auto size-3 opacity-60" />
+							<ChevronDown className="text-fg-tertiary ml-auto size-3.5 opacity-60" />
 						</div>
 
 						<SidebarMenu className="space-y-0.5 pl-2">
@@ -209,17 +205,12 @@ export function Sidebar({ onOpenNewIssue, onCloseMobile }: SidebarProps) {
 								return (
 									<SidebarMenuItem key={item.id}>
 										<SidebarMenuButton
-											size="28"
+											size="32"
 											isActive={isActive}
 											tooltip={item.label}
-											onClick={() => handleItemClick(item.id)}
-											className={`flex w-full items-center gap-2.5 rounded-md px-2.5 py-1.5 text-xs font-medium transition-colors ${
-												isActive
-													? "bg-elevation-level1 text-fg font-semibold"
-													: "text-fg-muted hover:bg-elevation-level1/60 hover:text-fg"
-											}`}>
-											<Icon className="size-3.5 shrink-0" />
-											<span>{item.label}</span>
+											onClick={() => handleItemClick(item.id)}>
+											<Icon className="size-4" />
+											<span className="truncate">{item.label}</span>
 										</SidebarMenuButton>
 									</SidebarMenuItem>
 								)
@@ -230,9 +221,9 @@ export function Sidebar({ onOpenNewIssue, onCloseMobile }: SidebarProps) {
 
 				{/* Try Section */}
 				<SidebarGroup className="p-0 pt-1">
-					<SidebarGroupLabel className="text-fg-muted flex w-full items-center justify-between px-2.5 py-1 text-[11px] font-medium">
+					<SidebarGroupLabel className="text-fg-secondary flex w-full items-center justify-between px-2 text-xs font-semibold tracking-wider uppercase">
 						<span>Try</span>
-						<ChevronDown className="size-3 opacity-60" />
+						<ChevronDown className="size-3.5 opacity-60" />
 					</SidebarGroupLabel>
 					<SidebarGroupContent className="mt-0.5">
 						<SidebarMenu className="space-y-0.5">
@@ -240,11 +231,7 @@ export function Sidebar({ onOpenNewIssue, onCloseMobile }: SidebarProps) {
 								if (item.isGitHub) {
 									return (
 										<SidebarMenuItem key={item.id}>
-											<SidebarMenuButton
-												size="28"
-												asChild
-												tooltip={item.label}
-												className="text-fg-muted hover:bg-elevation-level1/60 hover:text-fg flex w-full items-center gap-2.5 rounded-md px-2.5 py-1.5 text-xs font-medium transition-colors">
+											<SidebarMenuButton size="32" asChild tooltip={item.label}>
 												<Link
 													href={item.href || "#"}
 													target="_blank"
@@ -253,11 +240,11 @@ export function Sidebar({ onOpenNewIssue, onCloseMobile }: SidebarProps) {
 													<Image
 														src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
 														alt="GitHub Logo"
-														width={14}
-														height={14}
-														className="size-3.5 shrink-0 dark:invert"
+														width={16}
+														height={16}
+														className="size-4 shrink-0 dark:invert"
 													/>
-													<span>{item.label}</span>
+													<span className="truncate">{item.label}</span>
 												</Link>
 											</SidebarMenuButton>
 										</SidebarMenuItem>
@@ -268,16 +255,12 @@ export function Sidebar({ onOpenNewIssue, onCloseMobile }: SidebarProps) {
 									const Icon = item.icon!
 									return (
 										<SidebarMenuItem key={item.id}>
-											<SidebarMenuButton
-												size="28"
-												asChild
-												tooltip={item.label}
-												className="text-fg-muted hover:bg-elevation-level1/60 hover:text-fg flex w-full items-center gap-2.5 rounded-md px-2.5 py-1.5 text-xs font-medium transition-colors">
+											<SidebarMenuButton size="32" asChild tooltip={item.label}>
 												<Link
 													href={item.href || "#"}
 													className="hover:underline">
-													<Icon className="size-3.5 shrink-0" />
-													<span>{item.label}</span>
+													<Icon className="size-4 shrink-0" />
+													<span className="truncate">{item.label}</span>
 												</Link>
 											</SidebarMenuButton>
 										</SidebarMenuItem>
@@ -288,12 +271,11 @@ export function Sidebar({ onOpenNewIssue, onCloseMobile }: SidebarProps) {
 								return (
 									<SidebarMenuItem key={item.id}>
 										<SidebarMenuButton
-											size="28"
+											size="32"
 											tooltip={item.label}
-											onClick={() => handleItemClick(item.id)}
-											className="text-fg-muted hover:bg-elevation-level1/60 hover:text-fg flex w-full items-center gap-2.5 rounded-md px-2.5 py-1.5 text-xs font-medium transition-colors">
-											<Icon className="size-3.5 shrink-0" />
-											<span>{item.label}</span>
+											onClick={() => handleItemClick(item.id)}>
+											<Icon className="size-4" />
+											<span className="truncate">{item.label}</span>
 										</SidebarMenuButton>
 									</SidebarMenuItem>
 								)

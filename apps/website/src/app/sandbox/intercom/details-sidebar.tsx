@@ -36,7 +36,7 @@ export function DetailsSidebar() {
 	}
 
 	return (
-		<aside className="border-border/60 bg-bg flex h-full w-72 shrink-0 flex-col border-l text-xs transition-colors select-none">
+		<aside className="border-border/60 bg-bg text-fg flex h-full w-72 shrink-0 flex-col border-l text-xs transition-colors select-none">
 			{/* Top Header: Details vs Copilot Tabs + Panel Actions */}
 			<div className="border-border/40 flex h-12 shrink-0 items-center justify-between border-b px-3">
 				<div className="flex items-center gap-1">
@@ -48,8 +48,8 @@ export function DetailsSidebar() {
 						onClick={() => setActiveTab("details")}
 						className={`rounded-md px-2.5 font-medium transition-colors ${
 							activeTab === "details"
-								? "bg-elevation-level1 text-fg font-semibold shadow-xs"
-								: "text-fg-muted hover:text-fg"
+								? "bg-fill2 text-fg font-semibold shadow-xs"
+								: "text-fg-secondary hover:bg-fill1 hover:text-fg"
 						}`}>
 						Details
 					</Button>
@@ -61,8 +61,8 @@ export function DetailsSidebar() {
 						onClick={() => setActiveTab("copilot")}
 						className={`rounded-md px-2.5 font-medium transition-colors ${
 							activeTab === "copilot"
-								? "bg-elevation-level1 text-fg font-semibold shadow-xs"
-								: "text-fg-muted hover:text-fg"
+								? "bg-fill2 text-fg font-semibold shadow-xs"
+								: "text-fg-secondary hover:bg-fill1 hover:text-fg"
 						}`}>
 						Copilot
 					</Button>
@@ -75,8 +75,8 @@ export function DetailsSidebar() {
 						color="neutral"
 						size="28"
 						aria-label="Open in new window"
-						className="text-fg-muted hover:text-fg">
-						<ExternalLink className="size-3.5" />
+						className="text-fg-secondary hover:text-fg">
+						<ExternalLink className="size-4" />
 					</IconButton>
 					<IconButton
 						type="button"
@@ -84,8 +84,8 @@ export function DetailsSidebar() {
 						color="neutral"
 						size="28"
 						aria-label="Close sidebar"
-						className="text-fg-muted hover:text-fg">
-						<PanelRightClose className="size-3.5" />
+						className="text-fg-secondary hover:text-fg">
+						<PanelRightClose className="size-4" />
 					</IconButton>
 				</div>
 			</div>
@@ -95,9 +95,9 @@ export function DetailsSidebar() {
 				{/* Top Meta: Assignee & Team Inbox */}
 				<div className="border-border/40 space-y-2 border-b pb-3">
 					<div className="flex items-center justify-between">
-						<span className="text-fg-muted font-normal">Assignee</span>
+						<span className="text-fg-secondary font-normal">Assignee</span>
 						<div className="text-fg flex items-center gap-1.5 font-medium">
-							<div className="flex size-4.5 items-center justify-center rounded-full bg-amber-500/20 text-[10px] font-bold text-amber-700 dark:text-amber-300">
+							<div className="bg-amber-accent text-amber-text flex size-4.5 items-center justify-center rounded-full text-[10px] font-bold">
 								AS
 							</div>
 							<span>Alex Smith</span>
@@ -105,9 +105,9 @@ export function DetailsSidebar() {
 					</div>
 
 					<div className="flex items-center justify-between">
-						<span className="text-fg-muted font-normal">Team Inbox</span>
+						<span className="text-fg-secondary font-normal">Team Inbox</span>
 						<div className="text-fg flex items-center gap-1.5 font-medium">
-							<Inbox className="text-fg-muted size-3.5" />
+							<Inbox className="text-fg-tertiary size-4" />
 							<span>Admin Support</span>
 						</div>
 					</div>
@@ -118,20 +118,20 @@ export function DetailsSidebar() {
 					<button
 						type="button"
 						onClick={() => setLinksOpen(!linksOpen)}
-						className="text-fg flex w-full items-center justify-between font-semibold">
+						className="text-fg hover:text-fg flex w-full cursor-pointer items-center justify-between font-semibold">
 						<div className="flex items-center gap-2">
-							<Link2 className="text-fg-muted size-3.5" />
+							<Link2 className="text-fg-tertiary size-4" />
 							<span>Links</span>
 						</div>
 						{linksOpen ? (
-							<ChevronDown className="text-fg-muted size-3.5" />
+							<ChevronDown className="text-fg-tertiary size-3.5" />
 						) : (
-							<ChevronRight className="text-fg-muted size-3.5" />
+							<ChevronRight className="text-fg-tertiary size-3.5" />
 						)}
 					</button>
 
 					{linksOpen && (
-						<div className="text-fg-muted space-y-2 pt-1">
+						<div className="text-fg-secondary space-y-2 pt-1">
 							<div className="flex items-center justify-between">
 								<span>Tracker ticket</span>
 								<Plus className="hover:text-fg size-3.5 cursor-pointer" />
@@ -153,36 +153,36 @@ export function DetailsSidebar() {
 					<button
 						type="button"
 						onClick={() => setAttrsOpen(!attrsOpen)}
-						className="text-fg flex w-full items-center justify-between font-semibold">
+						className="text-fg hover:text-fg flex w-full cursor-pointer items-center justify-between font-semibold">
 						<div className="flex items-center gap-2">
-							<MessageSquare className="text-fg-muted size-3.5" />
+							<MessageSquare className="text-fg-tertiary size-4" />
 							<span>Conversation attributes</span>
 						</div>
 						{attrsOpen ? (
-							<ChevronDown className="text-fg-muted size-3.5" />
+							<ChevronDown className="text-fg-tertiary size-3.5" />
 						) : (
-							<ChevronRight className="text-fg-muted size-3.5" />
+							<ChevronRight className="text-fg-tertiary size-3.5" />
 						)}
 					</button>
 
 					{attrsOpen && (
 						<div className="space-y-2 pt-1">
 							<div className="flex items-center justify-between">
-								<span className="text-fg-muted">ID</span>
+								<span className="text-fg-secondary">ID</span>
 								<span className="text-fg font-mono text-[11px]">
 									215471062845035
 								</span>
 							</div>
 							<div className="flex items-center justify-between">
-								<span className="text-fg-muted">Company</span>
-								<span className="text-fg-muted">—</span>
+								<span className="text-fg-secondary">Company</span>
+								<span className="text-fg-tertiary">—</span>
 							</div>
 							<div className="flex items-center justify-between">
-								<span className="text-fg-muted">Brand</span>
+								<span className="text-fg-secondary">Brand</span>
 								<span className="text-fg font-medium">SL Mobbin</span>
 							</div>
 							<div className="flex items-center justify-between">
-								<span className="text-fg-muted">Subject</span>
+								<span className="text-fg-secondary">Subject</span>
 								<button
 									type="button"
 									className="text-primary font-medium hover:underline">
@@ -193,14 +193,14 @@ export function DetailsSidebar() {
 							<div className="pt-1">
 								<Link
 									href="#see-all"
-									className="text-fg-muted hover:text-fg text-[11px] font-medium hover:underline">
+									className="text-fg-tertiary hover:text-fg text-[11px] font-medium hover:underline">
 									See all
 								</Link>
 							</div>
 
 							<div className="flex items-center justify-between pt-1">
-								<span className="text-fg-muted font-normal">Topics</span>
-								<Plus className="text-fg-muted hover:text-fg size-3.5 cursor-pointer" />
+								<span className="text-fg-secondary font-normal">Topics</span>
+								<Plus className="text-fg-tertiary hover:text-fg size-3.5 cursor-pointer" />
 							</div>
 						</div>
 					)}
@@ -211,75 +211,75 @@ export function DetailsSidebar() {
 					<button
 						type="button"
 						onClick={() => toggleSection("leadData")}
-						className="text-fg flex w-full items-center justify-between py-1 font-semibold">
+						className="text-fg hover:text-fg flex w-full cursor-pointer items-center justify-between py-1 font-semibold">
 						<div className="flex items-center gap-2">
-							<User className="text-fg-muted size-3.5" />
+							<User className="text-fg-tertiary size-4" />
 							<span>Lead data</span>
 						</div>
 						{sections.leadData ? (
-							<ChevronDown className="text-fg-muted size-3.5" />
+							<ChevronDown className="text-fg-tertiary size-3.5" />
 						) : (
-							<ChevronRight className="text-fg-muted size-3.5" />
+							<ChevronRight className="text-fg-tertiary size-3.5" />
 						)}
 					</button>
 
 					<button
 						type="button"
 						onClick={() => toggleSection("recentConversations")}
-						className="text-fg flex w-full items-center justify-between py-1 font-semibold">
+						className="text-fg hover:text-fg flex w-full cursor-pointer items-center justify-between py-1 font-semibold">
 						<div className="flex items-center gap-2">
-							<MessageSquare className="text-fg-muted size-3.5" />
+							<MessageSquare className="text-fg-tertiary size-4" />
 							<span>Recent conversations</span>
 						</div>
 						{sections.recentConversations ? (
-							<ChevronDown className="text-fg-muted size-3.5" />
+							<ChevronDown className="text-fg-tertiary size-3.5" />
 						) : (
-							<ChevronRight className="text-fg-muted size-3.5" />
+							<ChevronRight className="text-fg-tertiary size-3.5" />
 						)}
 					</button>
 
 					<button
 						type="button"
 						onClick={() => toggleSection("leadNotes")}
-						className="text-fg flex w-full items-center justify-between py-1 font-semibold">
+						className="text-fg hover:text-fg flex w-full cursor-pointer items-center justify-between py-1 font-semibold">
 						<div className="flex items-center gap-2">
-							<User className="text-fg-muted size-3.5" />
+							<User className="text-fg-tertiary size-4" />
 							<span>Lead notes</span>
 						</div>
 						{sections.leadNotes ? (
-							<ChevronDown className="text-fg-muted size-3.5" />
+							<ChevronDown className="text-fg-tertiary size-3.5" />
 						) : (
-							<ChevronRight className="text-fg-muted size-3.5" />
+							<ChevronRight className="text-fg-tertiary size-3.5" />
 						)}
 					</button>
 
 					<button
 						type="button"
 						onClick={() => toggleSection("leadTags")}
-						className="text-fg flex w-full items-center justify-between py-1 font-semibold">
+						className="text-fg hover:text-fg flex w-full cursor-pointer items-center justify-between py-1 font-semibold">
 						<div className="flex items-center gap-2">
-							<Tag className="text-fg-muted size-3.5" />
+							<Tag className="text-fg-tertiary size-4" />
 							<span>Lead tags</span>
 						</div>
 						{sections.leadTags ? (
-							<ChevronDown className="text-fg-muted size-3.5" />
+							<ChevronDown className="text-fg-tertiary size-3.5" />
 						) : (
-							<ChevronRight className="text-fg-muted size-3.5" />
+							<ChevronRight className="text-fg-tertiary size-3.5" />
 						)}
 					</button>
 
 					<button
 						type="button"
 						onClick={() => toggleSection("leadSegments")}
-						className="text-fg flex w-full items-center justify-between py-1 font-semibold">
+						className="text-fg hover:text-fg flex w-full cursor-pointer items-center justify-between py-1 font-semibold">
 						<div className="flex items-center gap-2">
-							<Users className="text-fg-muted size-3.5" />
+							<Users className="text-fg-tertiary size-4" />
 							<span>Lead segments</span>
 						</div>
 						{sections.leadSegments ? (
-							<ChevronDown className="text-fg-muted size-3.5" />
+							<ChevronDown className="text-fg-tertiary size-3.5" />
 						) : (
-							<ChevronRight className="text-fg-muted size-3.5" />
+							<ChevronRight className="text-fg-tertiary size-3.5" />
 						)}
 					</button>
 				</div>

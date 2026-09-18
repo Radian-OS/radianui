@@ -39,7 +39,7 @@ export function HiddenColumnsSidebar() {
 			<button
 				type="button"
 				onClick={() => setIsOpen(!isOpen)}
-				className="text-fg-muted hover:text-fg flex items-center gap-1.5 text-xs font-medium transition-colors">
+				className="text-fg-secondary hover:text-fg flex cursor-pointer items-center gap-1.5 text-xs font-medium transition-colors">
 				{isOpen ? (
 					<ChevronDown className="size-3.5" />
 				) : (
@@ -56,12 +56,12 @@ export function HiddenColumnsSidebar() {
 						return (
 							<div
 								key={item.id}
-								className="border-border/60 hover:bg-elevation-level1/60 text-fg-muted flex items-center justify-between rounded-lg border border-dashed px-3 py-2.5 text-sm transition-colors">
+								className="border-border/60 hover:bg-fill1 text-fg-secondary flex items-center justify-between rounded-lg border border-dashed px-3 py-2.5 text-sm transition-colors">
 								<div className="flex items-center gap-2.5">
-									<Icon className="text-fg-muted/80 size-4 shrink-0" />
+									<Icon className="text-fg-tertiary size-4 shrink-0" />
 									<span className="font-medium">{item.label}</span>
 								</div>
-								<span className="text-fg-muted/50 text-xs">{item.count}</span>
+								<span className="text-fg-tertiary text-xs">{item.count}</span>
 							</div>
 						)
 					})}

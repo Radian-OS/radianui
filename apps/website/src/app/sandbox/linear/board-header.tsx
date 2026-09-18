@@ -33,8 +33,8 @@ export function BoardHeader() {
 						onClick={() => setActiveTab(tab.id)}
 						className={`rounded-md px-2.5 text-xs font-medium transition-colors ${
 							activeTab === tab.id
-								? "bg-elevation-level1 text-fg font-semibold shadow-xs"
-								: "text-fg-muted hover:text-fg"
+								? "bg-fill2 text-fg font-semibold shadow-xs"
+								: "text-fg-secondary hover:bg-fill1 hover:text-fg"
 						}`}>
 						{tab.label}
 					</Button>
@@ -46,8 +46,8 @@ export function BoardHeader() {
 					color="neutral"
 					size="28"
 					aria-label="Stacked view"
-					className="text-fg-muted hover:text-fg ml-0.5">
-					<Layers className="size-3.5" />
+					className="text-fg-secondary hover:text-fg ml-0.5">
+					<Layers className="size-4" />
 				</IconButton>
 			</div>
 
@@ -59,8 +59,8 @@ export function BoardHeader() {
 					color="neutral"
 					size="28"
 					aria-label="Filter issues"
-					className="text-fg-muted hover:text-fg">
-					<Filter className="size-3.5" />
+					className="text-fg-secondary hover:text-fg">
+					<Filter className="size-4" />
 				</IconButton>
 
 				<IconButton
@@ -69,8 +69,8 @@ export function BoardHeader() {
 					color="neutral"
 					size="28"
 					aria-label="Display options"
-					className="text-fg-muted hover:text-fg">
-					<SlidersHorizontal className="size-3.5" />
+					className="text-fg-secondary hover:text-fg">
+					<SlidersHorizontal className="size-4" />
 				</IconButton>
 
 				<div className="bg-border/60 mx-1 h-3.5 w-px" />
@@ -84,10 +84,10 @@ export function BoardHeader() {
 					onClick={() => setViewMode("board")}
 					className={
 						viewMode === "board"
-							? "bg-elevation-level1 text-fg"
-							: "text-fg-muted hover:text-fg"
+							? "bg-fill2 text-fg shadow-xs"
+							: "text-fg-secondary hover:bg-fill1 hover:text-fg"
 					}>
-					<LayoutGrid className="size-3.5" />
+					<LayoutGrid className="size-4" />
 				</IconButton>
 
 				<IconButton
@@ -99,10 +99,10 @@ export function BoardHeader() {
 					onClick={() => setViewMode("list")}
 					className={
 						viewMode === "list"
-							? "bg-elevation-level1 text-fg"
-							: "text-fg-muted hover:text-fg"
+							? "bg-fill2 text-fg shadow-xs"
+							: "text-fg-secondary hover:bg-fill1 hover:text-fg"
 					}>
-					<List className="size-3.5" />
+					<List className="size-4" />
 				</IconButton>
 			</div>
 		</div>

@@ -60,7 +60,7 @@ export function AiworkNavbar() {
 				{/* Brand Logo */}
 				<Link
 					href="/sandbox/aiwork"
-					className="flex items-center gap-2.5 font-bold tracking-tight hover:underline">
+					className="flex items-center gap-2.5 font-bold tracking-tight">
 					<div className="bg-primary flex size-8 items-center justify-center rounded-lg shadow-sm">
 						<Zap className="size-4 text-white" />
 					</div>

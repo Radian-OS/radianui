@@ -52,7 +52,7 @@ export function CrisplyProfileSection() {
 			<div className="flex flex-wrap items-center gap-6">
 				<div className="border-border/80 relative size-20 overflow-hidden rounded-full border-2 shadow-xs">
 					<Image
-						src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&auto=format&fit=crop&q=80"
+						src="/sandbox/placeholder.svg"
 						alt="Brian Frederin"
 						fill
 						sizes="80px"

@@ -19,6 +19,7 @@ import {
 	Settings,
 	Waves,
 } from "lucide-react"
+import { IconButton } from "@/styles/default/ui/button"
 import {
 	Sidebar,
 	SidebarContent,
@@ -66,7 +67,12 @@ export function CrisplyAppSidebar() {
 		<Sidebar
 			theme="gray"
 			collapsible="icon"
-			className="border-border/80 bg-bg text-fg border-r">
+			style={
+				{
+					"--color-sidebar-accent": "var(--color-fill2)",
+				} as React.CSSProperties
+			}
+			className="border-border/80 bg-bg text-sidebar-fg border-r select-none">
 			{/* Brand Header */}
 			<SidebarHeader className="border-border/60 flex flex-row items-center justify-between border-b px-4 py-3.5">
 				<div className="flex items-center gap-2.5">
@@ -79,25 +85,31 @@ export function CrisplyAppSidebar() {
 				</div>
 
 				{/* History Navigation Buttons */}
-				<div className="text-fg-tertiary flex items-center gap-1 group-data-[state=collapsed]:hidden">
-					<button
+				<div className="flex items-center gap-0.5 group-data-[state=collapsed]:hidden">
+					<IconButton
 						type="button"
+						variant="ghost"
+						color="neutral"
+						size="28"
 						aria-label="Previous page"
-						className="hover:bg-fill2 hover:text-fg flex size-6 items-center justify-center rounded-sm">
+						className="text-fg-secondary hover:text-fg">
 						<ChevronLeft className="size-3.5" />
-					</button>
-					<button
+					</IconButton>
+					<IconButton
 						type="button"
+						variant="ghost"
+						color="neutral"
+						size="28"
 						aria-label="Next page"
-						className="hover:bg-fill2 hover:text-fg flex size-6 items-center justify-center rounded-sm">
+						className="text-fg-secondary hover:text-fg">
 						<ChevronRight className="size-3.5" />
-					</button>
+					</IconButton>
 				</div>
 			</SidebarHeader>
 
 			{/* Main Navigation Content */}
 			<SidebarContent className="space-y-4 px-2 py-3">
-				{/* Top Menu Items (Rule 18: mapped array) */}
+				{/* Top Menu Items */}
 				<SidebarGroup className="p-0">
 					<SidebarGroupContent>
 						<SidebarMenu className="space-y-0.5">
@@ -107,16 +119,14 @@ export function CrisplyAppSidebar() {
 								return (
 									<SidebarMenuItem key={item.label}>
 										<SidebarMenuButton
+											size="32"
 											isActive={isSelected}
 											tooltip={item.label}
-											onClick={() => setActiveItem(item.label)}
-											className="text-fg-secondary hover:bg-fill2 hover:text-fg flex w-full items-center justify-between rounded-md px-2.5 py-1.5 text-xs font-medium">
-											<div className="flex items-center gap-2.5">
-												<Icon className="text-fg-tertiary size-4 shrink-0" />
-												<span>{item.label}</span>
-											</div>
+											onClick={() => setActiveItem(item.label)}>
+											<Icon className="size-4" />
+											<span className="truncate">{item.label}</span>
 											{item.hasSubmenu && (
-												<ChevronDown className="text-fg-tertiary size-3" />
+												<ChevronDown className="text-fg-tertiary ml-auto size-3.5" />
 											)}
 										</SidebarMenuButton>
 									</SidebarMenuItem>
@@ -128,8 +138,8 @@ export function CrisplyAppSidebar() {
 
 				{/* Database Section */}
 				<SidebarGroup className="p-0">
-					<SidebarGroupLabel className="text-fg-tertiary px-2.5 text-[10px] font-bold tracking-wider uppercase group-data-[state=collapsed]:hidden">
-						DATABASE
+					<SidebarGroupLabel className="text-fg-secondary px-2 text-xs font-semibold tracking-wider uppercase group-data-[state=collapsed]:hidden">
+						Database
 					</SidebarGroupLabel>
 					<SidebarGroupContent className="mt-1">
 						<SidebarMenu className="space-y-0.5">
@@ -139,12 +149,12 @@ export function CrisplyAppSidebar() {
 								return (
 									<SidebarMenuItem key={item.label}>
 										<SidebarMenuButton
+											size="32"
 											isActive={isSelected}
 											tooltip={item.label}
-											onClick={() => setActiveItem(item.label)}
-											className="text-fg-secondary hover:bg-fill2 hover:text-fg flex w-full items-center gap-2.5 rounded-md px-2.5 py-1.5 text-xs font-medium">
-											<Icon className="text-fg-tertiary size-4 shrink-0" />
-											<span>{item.label}</span>
+											onClick={() => setActiveItem(item.label)}>
+											<Icon className="size-4" />
+											<span className="truncate">{item.label}</span>
 										</SidebarMenuButton>
 									</SidebarMenuItem>
 								)
@@ -163,20 +173,12 @@ export function CrisplyAppSidebar() {
 								return (
 									<SidebarMenuItem key={item.label}>
 										<SidebarMenuButton
+											size="32"
 											isActive={isSelected}
 											tooltip={item.label}
-											onClick={() => setActiveItem(item.label)}
-											className={`flex w-full items-center gap-2.5 rounded-md px-2.5 py-1.5 text-xs font-medium transition-colors ${
-												isSelected
-													? "bg-fill2 text-fg font-semibold shadow-2xs"
-													: "text-fg-secondary hover:bg-fill2 hover:text-fg"
-											}`}>
-											<Icon
-												className={`size-4 shrink-0 ${
-													isSelected ? "text-fg" : "text-fg-tertiary"
-												}`}
-											/>
-											<span>{item.label}</span>
+											onClick={() => setActiveItem(item.label)}>
+											<Icon className="size-4" />
+											<span className="truncate">{item.label}</span>
 										</SidebarMenuButton>
 									</SidebarMenuItem>
 								)
@@ -187,20 +189,24 @@ export function CrisplyAppSidebar() {
 			</SidebarContent>
 
 			{/* Footer: Workspace Selector */}
-			<SidebarFooter className="border-border/60 border-t p-3">
-				<button
-					type="button"
-					className="border-border/70 bg-fill1 hover:bg-fill2 flex w-full items-center justify-between rounded-lg border p-2 text-left transition-colors">
-					<div className="flex items-center gap-2">
-						<div className="bg-fill3 text-fg flex size-6 shrink-0 items-center justify-center rounded-sm font-mono text-xs font-bold">
-							M
-						</div>
-						<div className="text-fg truncate text-xs font-semibold group-data-[state=collapsed]:hidden">
-							Marketing Team&apos;s
-						</div>
-					</div>
-					<ChevronsUpDown className="text-fg-tertiary size-3.5 shrink-0 group-data-[state=collapsed]:hidden" />
-				</button>
+			<SidebarFooter className="border-border/60 border-t p-2.5">
+				<SidebarMenu>
+					<SidebarMenuItem>
+						<SidebarMenuButton
+							size="36"
+							className="hover:bg-fill2 w-full justify-between">
+							<div className="flex items-center gap-2 truncate">
+								<div className="bg-fill3 text-fg flex size-6 shrink-0 items-center justify-center rounded-sm font-mono text-xs font-bold">
+									M
+								</div>
+								<span className="text-fg truncate text-xs font-semibold group-data-[state=collapsed]:hidden">
+									Marketing Team&apos;s
+								</span>
+							</div>
+							<ChevronsUpDown className="text-fg-tertiary ml-auto size-3.5 shrink-0 group-data-[state=collapsed]:hidden" />
+						</SidebarMenuButton>
+					</SidebarMenuItem>
+				</SidebarMenu>
 			</SidebarFooter>
 		</Sidebar>
 	)

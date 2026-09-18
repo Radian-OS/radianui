@@ -30,10 +30,10 @@ export function IconRail() {
 	return (
 		<nav
 			aria-label="Global Navigation"
-			className="border-border/60 bg-elevation-level1/50 flex w-12 shrink-0 flex-col items-center justify-between border-r py-3 transition-colors select-none">
+			className="border-border/60 bg-bg flex w-14 shrink-0 flex-col items-center justify-between border-r py-3 transition-colors select-none">
 			{/* Top: Intercom Logo + Nav Items */}
 			<div className="flex flex-col items-center gap-4">
-				{/* Brand Logo (Rule 5: Image from public domain / favicon service) */}
+				{/* Brand Logo */}
 				<div className="flex size-8 items-center justify-center rounded-lg bg-black p-1 shadow-xs dark:bg-white/10">
 					<Image
 						src="https://www.google.com/s2/favicons?sz=64&domain=intercom.com"
@@ -45,7 +45,7 @@ export function IconRail() {
 				</div>
 
 				{/* Primary Icons */}
-				<div className="flex flex-col items-center gap-1">
+				<div className="flex flex-col items-center gap-1.5">
 					{topNavItems.map((item) => {
 						const Icon = item.icon
 						const isActive = activeTab === item.id
@@ -60,15 +60,15 @@ export function IconRail() {
 									onClick={() => setActiveTab(item.id)}
 									className={`rounded-lg transition-colors ${
 										isActive
-											? "bg-elevation-level2 text-fg"
-											: "text-fg-muted hover:bg-elevation-level2/60 hover:text-fg"
+											? "bg-fill2 text-fg shadow-xs"
+											: "text-fg-secondary hover:bg-fill2 hover:text-fg"
 									}`}>
-									<Icon className="size-4.5" />
+									<Icon className="size-5" />
 								</IconButton>
 
 								{/* Red Badge Indicator */}
 								{item.badge !== undefined && (
-									<span className="absolute top-1.5 right-1.5 flex size-3.5 items-center justify-center rounded-full bg-amber-500 text-[9px] font-bold text-white shadow-xs">
+									<span className="bg-amber absolute top-1 right-1 flex size-3.5 items-center justify-center rounded-full text-[9px] font-bold text-white shadow-xs">
 										{item.badge}
 									</span>
 								)}
@@ -87,8 +87,8 @@ export function IconRail() {
 					color="neutral"
 					size="32"
 					aria-label="Agent status: Active"
-					className="text-emerald-500 hover:text-emerald-600">
-					<Radio className="size-4" />
+					className="text-emerald hover:bg-fill2">
+					<Radio className="size-4.5" />
 				</IconButton>
 
 				<IconButton
@@ -97,8 +97,8 @@ export function IconRail() {
 					color="neutral"
 					size="32"
 					aria-label="Global search"
-					className="text-fg-muted hover:text-fg">
-					<Search className="size-4" />
+					className="text-fg-secondary hover:bg-fill2 hover:text-fg">
+					<Search className="size-4.5" />
 				</IconButton>
 
 				<IconButton
@@ -107,12 +107,12 @@ export function IconRail() {
 					color="neutral"
 					size="32"
 					aria-label="App settings"
-					className="text-fg-muted hover:text-fg">
-					<Settings className="size-4" />
+					className="text-fg-secondary hover:bg-fill2 hover:text-fg">
+					<Settings className="size-4.5" />
 				</IconButton>
 
 				{/* User Avatar */}
-				<div className="mt-1 flex size-7 cursor-pointer items-center justify-center rounded-full bg-amber-500/20 text-xs font-bold text-amber-700 dark:text-amber-300">
+				<div className="bg-amber-accent text-amber-text mt-1 flex size-7 cursor-pointer items-center justify-center rounded-full text-xs font-bold">
 					AS
 				</div>
 			</div>

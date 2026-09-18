@@ -64,7 +64,7 @@ export function TestimonialSection() {
 
 				{/* Right column: Quote + Author */}
 				<div className="flex flex-col justify-center">
-					<blockquote className="heading-2 text-fg mb-8 leading-[1.2]">
+					<blockquote className="heading-2 text-fg mb-8">
 						{current.quote}
 					</blockquote>
 

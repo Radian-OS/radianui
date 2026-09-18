@@ -124,13 +124,13 @@ export function Navbar() {
 										navigationMenuTriggerStyle(),
 										"hover:bg-elevation-level1 text-fg-muted hover:text-fg h-8 gap-1.5 bg-transparent px-3 text-sm font-medium"
 									)}>
-									<Link href="#products">
+									<Link href="#products" className="flex items-center">
 										<span>Products</span>
 										<Badge
 											variant="soft"
 											color="info"
 											size="20"
-											className="text-[10px] font-semibold tracking-wider uppercase">
+											className="flex text-[10px] font-semibold tracking-wider uppercase">
 											NEW
 										</Badge>
 									</Link>

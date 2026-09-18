@@ -74,7 +74,12 @@ export function InboxNav() {
 	return (
 		<Sidebar
 			collapsible="none"
-			className="border-border/60 bg-bg text-fg flex h-full w-56 shrink-0 flex-col justify-between border-r text-xs transition-colors select-none">
+			style={
+				{
+					"--color-sidebar-accent": "var(--color-fill2)",
+				} as React.CSSProperties
+			}
+			className="border-border/60 bg-bg text-sidebar-fg flex h-full w-56 shrink-0 flex-col justify-between border-r select-none">
 			{/* Sidebar Header: Title, Search, and New Conversation */}
 			<SidebarHeader className="border-border/40 flex h-12 flex-row items-center justify-between border-b px-3">
 				<h2 className="heading-6 text-fg text-sm font-bold">Inbox</h2>
@@ -85,8 +90,8 @@ export function InboxNav() {
 						color="neutral"
 						size="28"
 						aria-label="Search inbox"
-						className="text-fg-muted hover:text-fg">
-						<Search className="size-3.5" />
+						className="text-fg-secondary hover:text-fg">
+						<Search className="size-4" />
 					</IconButton>
 					<IconButton
 						type="button"
@@ -94,8 +99,8 @@ export function InboxNav() {
 						color="neutral"
 						size="28"
 						aria-label="New conversation"
-						className="text-fg-muted hover:text-fg">
-						<Plus className="size-3.5" />
+						className="text-fg-secondary hover:text-fg">
+						<Plus className="size-4" />
 					</IconButton>
 				</div>
 			</SidebarHeader>
@@ -112,25 +117,21 @@ export function InboxNav() {
 								return (
 									<SidebarMenuItem key={item.id}>
 										<SidebarMenuButton
-											size="28"
+											size="32"
 											isActive={isSelected}
 											tooltip={item.label}
-											onClick={() => setActiveFolder(item.id)}
-											className={`flex w-full items-center justify-between rounded-md px-2.5 py-1.5 text-xs font-medium transition-colors ${
-												isSelected
-													? "bg-elevation-level1 text-fg font-semibold shadow-xs"
-													: "text-fg-muted hover:bg-elevation-level1/60 hover:text-fg"
-											}`}>
-											<div className="flex items-center gap-2 truncate">
-												<Icon className="size-3.5 shrink-0" />
-												<span className="truncate">{item.label}</span>
-											</div>
-											{item.count !== undefined && (
-												<span className="text-fg-muted/70 text-[11px]">
-													{item.count}
-												</span>
-											)}
+											onClick={() => setActiveFolder(item.id)}>
+											<Icon className="size-4" />
+											<span className="truncate">{item.label}</span>
 										</SidebarMenuButton>
+										{item.count !== undefined && (
+											<SidebarMenuBadge
+												variant="outline"
+												color="neutral"
+												className="bg-bg text-fg-tertiary">
+												{item.count}
+											</SidebarMenuBadge>
+										)}
 									</SidebarMenuItem>
 								)
 							})}
@@ -142,14 +143,14 @@ export function InboxNav() {
 				<SidebarGroup className="p-0">
 					<SidebarGroupLabel
 						onClick={() => setFinOpen(!finOpen)}
-						className="text-fg-muted hover:text-fg flex w-full cursor-pointer items-center justify-between px-2.5 py-1 text-[11px] font-semibold transition-colors">
+						className="text-fg-secondary hover:text-fg flex w-full cursor-pointer items-center justify-between px-2 text-xs font-semibold tracking-wider uppercase transition-colors">
 						<span>Fin AI Agent</span>
 						<div className="flex items-center gap-1">
-							<Plus className="size-3 opacity-60 hover:opacity-100" />
+							<Plus className="size-3.5 opacity-60 hover:opacity-100" />
 							{finOpen ? (
-								<ChevronDown className="size-3" />
+								<ChevronDown className="size-3.5" />
 							) : (
-								<ChevronRight className="size-3" />
+								<ChevronRight className="size-3.5" />
 							)}
 						</div>
 					</SidebarGroupLabel>
@@ -163,16 +164,11 @@ export function InboxNav() {
 									return (
 										<SidebarMenuItem key={item.id}>
 											<SidebarMenuButton
-												size="28"
+												size="32"
 												isActive={isSelected}
 												tooltip={item.label}
-												onClick={() => setActiveFolder(item.id)}
-												className={`flex w-full items-center gap-2 rounded-md px-2.5 py-1.5 text-xs font-medium transition-colors ${
-													isSelected
-														? "bg-elevation-level1 text-fg font-semibold shadow-xs"
-														: "text-fg-muted hover:bg-elevation-level1/60 hover:text-fg"
-												}`}>
-												<Icon className="size-3.5 shrink-0" />
+												onClick={() => setActiveFolder(item.id)}>
+												<Icon className="size-4" />
 												<span className="truncate">{item.label}</span>
 											</SidebarMenuButton>
 										</SidebarMenuItem>
@@ -187,35 +183,33 @@ export function InboxNav() {
 				<SidebarGroup className="p-0">
 					<SidebarGroupLabel
 						onClick={() => setTeamsOpen(!teamsOpen)}
-						className="text-fg-muted hover:text-fg flex w-full cursor-pointer items-center justify-between px-2.5 py-1 text-[11px] font-semibold transition-colors">
+						className="text-fg-secondary hover:text-fg flex w-full cursor-pointer items-center justify-between px-2 text-xs font-semibold tracking-wider uppercase transition-colors">
 						<span>Team inboxes</span>
 						{teamsOpen ? (
-							<ChevronDown className="size-3" />
+							<ChevronDown className="size-3.5" />
 						) : (
-							<ChevronRight className="size-3" />
+							<ChevronRight className="size-3.5" />
 						)}
 					</SidebarGroupLabel>
 
 					{teamsOpen && (
 						<SidebarGroupContent className="mt-0.5">
-							<SidebarMenu>
+							<SidebarMenu className="space-y-0.5">
 								<SidebarMenuItem>
 									<SidebarMenuButton
-										size="28"
+										size="32"
 										isActive={activeFolder === "team-admin"}
 										tooltip="Admin Support"
-										onClick={() => setActiveFolder("team-admin")}
-										className={`flex w-full items-center justify-between rounded-md px-2.5 py-1.5 text-xs font-medium transition-colors ${
-											activeFolder === "team-admin"
-												? "bg-elevation-level1 text-fg font-semibold shadow-xs"
-												: "text-fg-muted hover:bg-elevation-level1/60 hover:text-fg"
-										}`}>
-										<div className="flex items-center gap-2">
-											<Inbox className="size-3.5" />
-											<span>Admin Support</span>
-										</div>
-										<span className="text-fg-muted/70 text-[11px]">0</span>
+										onClick={() => setActiveFolder("team-admin")}>
+										<Inbox className="size-4" />
+										<span className="truncate">Admin Support</span>
 									</SidebarMenuButton>
+									<SidebarMenuBadge
+										variant="outline"
+										color="neutral"
+										className="bg-bg text-fg-tertiary">
+										0
+									</SidebarMenuBadge>
 								</SidebarMenuItem>
 							</SidebarMenu>
 						</SidebarGroupContent>
@@ -224,11 +218,11 @@ export function InboxNav() {
 
 				{/* Teammates Section */}
 				<SidebarGroup className="p-0">
-					<SidebarGroupLabel className="text-fg-muted flex w-full items-center justify-between px-2.5 py-1 text-[11px] font-semibold">
+					<SidebarGroupLabel className="text-fg-secondary flex w-full items-center justify-between px-2 text-xs font-semibold tracking-wider uppercase">
 						<span>Teammates</span>
 						<div className="flex items-center gap-1">
-							<Plus className="size-3 cursor-pointer opacity-60 hover:opacity-100" />
-							<ChevronRight className="size-3 cursor-pointer opacity-60 hover:opacity-100" />
+							<Plus className="size-3.5 cursor-pointer opacity-60 hover:opacity-100" />
+							<ChevronRight className="size-3.5 cursor-pointer opacity-60 hover:opacity-100" />
 						</div>
 					</SidebarGroupLabel>
 				</SidebarGroup>
@@ -237,12 +231,12 @@ export function InboxNav() {
 				<SidebarGroup className="p-0">
 					<SidebarGroupLabel
 						onClick={() => setViewsOpen(!viewsOpen)}
-						className="text-fg-muted hover:text-fg flex w-full cursor-pointer items-center justify-between px-2.5 py-1 text-[11px] font-semibold transition-colors">
+						className="text-fg-secondary hover:text-fg flex w-full cursor-pointer items-center justify-between px-2 text-xs font-semibold tracking-wider uppercase transition-colors">
 						<span>Views</span>
 						{viewsOpen ? (
-							<ChevronDown className="size-3" />
+							<ChevronDown className="size-3.5" />
 						) : (
-							<ChevronRight className="size-3" />
+							<ChevronRight className="size-3.5" />
 						)}
 					</SidebarGroupLabel>
 
@@ -255,23 +249,21 @@ export function InboxNav() {
 									return (
 										<SidebarMenuItem key={item.id}>
 											<SidebarMenuButton
-												size="28"
+												size="32"
 												isActive={isSelected}
 												tooltip={item.label}
-												onClick={() => setActiveFolder(item.id)}
-												className={`flex w-full items-center justify-between rounded-md px-2.5 py-1.5 text-xs font-medium transition-colors ${
-													isSelected
-														? "bg-elevation-level1 text-fg font-semibold shadow-xs"
-														: "text-fg-muted hover:bg-elevation-level1/60 hover:text-fg"
-												}`}>
-												<div className="flex items-center gap-2">
-													<Icon className="size-3.5" />
-													<span>{item.label}</span>
-												</div>
-												<span className="text-fg-muted/70 text-[11px]">
-													{item.count}
-												</span>
+												onClick={() => setActiveFolder(item.id)}>
+												<Icon className="size-4" />
+												<span className="truncate">{item.label}</span>
 											</SidebarMenuButton>
+											{item.count !== undefined && (
+												<SidebarMenuBadge
+													variant="outline"
+													color="neutral"
+													className="bg-bg text-fg-tertiary">
+													{item.count}
+												</SidebarMenuBadge>
+											)}
 										</SidebarMenuItem>
 									)
 								})}
@@ -301,10 +293,10 @@ export function InboxNav() {
 				<SidebarMenu>
 					<SidebarMenuItem>
 						<SidebarMenuButton
-							size="28"
+							size="32"
 							tooltip="Manage settings"
-							className="text-fg-muted hover:bg-elevation-level1/60 hover:text-fg flex w-full items-center gap-2 rounded-md px-2.5 py-1.5 text-xs font-medium transition-colors">
-							<Sliders className="size-3.5" />
+							onClick={() => setActiveFolder("manage")}>
+							<Sliders className="size-4" />
 							<span>Manage</span>
 						</SidebarMenuButton>
 					</SidebarMenuItem>

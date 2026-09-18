@@ -19,7 +19,7 @@ export function IssueCard({ issue }: IssueCardProps) {
 	const renderStatusIcon = () => {
 		switch (issue.status) {
 			case "todo":
-				return <Circle className="text-fg-muted/60 size-4 shrink-0" />
+				return <Circle className="text-fg-tertiary size-4 shrink-0" />
 			case "in_progress":
 				return (
 					<CircleDot className="size-4 shrink-0 text-amber-500 dark:text-amber-400" />
@@ -29,20 +29,20 @@ export function IssueCard({ issue }: IssueCardProps) {
 					<CheckCircle2 className="size-4 shrink-0 text-blue-500 dark:text-blue-400" />
 				)
 			default:
-				return <Circle className="text-fg-muted/60 size-4 shrink-0" />
+				return <Circle className="text-fg-tertiary size-4 shrink-0" />
 		}
 	}
 
 	return (
 		<div className="bg-bg hover:border-border group border-border/60 relative flex flex-col gap-2.5 rounded-lg border p-3.5 shadow-xs transition-all hover:shadow-sm">
 			{/* Top Header Row: ID, Parent Breadcrumb, AI/Sparkles */}
-			<div className="text-fg-muted flex items-center justify-between text-xs">
+			<div className="text-fg-secondary flex items-center justify-between text-xs">
 				<div className="flex items-center gap-1.5 truncate">
 					<span className="font-medium">{issue.id}</span>
 					{issue.parentTitle && (
 						<>
-							<span className="text-fg-muted/50">›</span>
-							<span className="text-fg-muted/80 truncate">
+							<span className="text-fg-tertiary">›</span>
+							<span className="text-fg-secondary truncate">
 								{issue.parentTitle}
 							</span>
 						</>
@@ -51,7 +51,7 @@ export function IssueCard({ issue }: IssueCardProps) {
 				<button
 					type="button"
 					aria-label="Issue AI actions"
-					className="text-fg-muted/40 hover:text-fg-muted opacity-0 transition-opacity group-hover:opacity-100">
+					className="text-fg-tertiary hover:text-fg opacity-0 transition-opacity group-hover:opacity-100">
 					<Sparkles className="size-3.5" />
 				</button>
 			</div>
@@ -67,13 +67,13 @@ export function IssueCard({ issue }: IssueCardProps) {
 			{/* Badges / Metadata row */}
 			<div className="flex flex-wrap items-center gap-1.5 pt-1">
 				{/* Priority Icon */}
-				<div className="text-fg-muted/70 flex size-5 items-center justify-center rounded">
+				<div className="text-fg-tertiary flex size-5 items-center justify-center rounded">
 					<BarChart2 className="size-3.5 rotate-90" />
 				</div>
 
 				{/* Due Date if any */}
 				{issue.dueDate && (
-					<div className="bg-elevation-level1/60 border-border/40 text-fg-muted inline-flex items-center gap-1 rounded-md border px-2 py-0.5 text-xs">
+					<div className="bg-fill1 border-border text-fg-secondary inline-flex items-center gap-1 rounded-md border px-2 py-0.5 text-xs">
 						<Calendar className="size-3 text-orange-500 dark:text-orange-400" />
 						<span>{issue.dueDate}</span>
 					</div>
@@ -83,7 +83,7 @@ export function IssueCard({ issue }: IssueCardProps) {
 				{issue.tags.map((tag) => (
 					<div
 						key={tag.label}
-						className="bg-elevation-level1/60 border-border/40 text-fg-muted inline-flex items-center gap-1.5 rounded-md border px-2 py-0.5 text-xs font-normal">
+						className="bg-fill1 border-border text-fg-secondary inline-flex items-center gap-1.5 rounded-md border px-2 py-0.5 text-xs font-normal">
 						<span
 							className={`size-1.5 shrink-0 rounded-full ${tag.dotColorClass}`}
 						/>
@@ -93,7 +93,7 @@ export function IssueCard({ issue }: IssueCardProps) {
 			</div>
 
 			{/* Footer: Created date */}
-			<div className="text-fg-muted/70 pt-0.5 text-[11px]">
+			<div className="text-fg-tertiary pt-0.5 text-[11px]">
 				Created {issue.createdDate}
 			</div>
 		</div>

@@ -21,7 +21,7 @@ export function KanbanColumn({ column, onAddIssue }: KanbanColumnProps) {
 	const renderColumnIcon = () => {
 		switch (column.id) {
 			case "todo":
-				return <Circle className="text-fg-muted/70 size-4 shrink-0" />
+				return <Circle className="text-fg-tertiary size-4 shrink-0" />
 			case "in_progress":
 				return (
 					<CircleDot className="size-4 shrink-0 text-amber-500 dark:text-amber-400" />
@@ -31,7 +31,7 @@ export function KanbanColumn({ column, onAddIssue }: KanbanColumnProps) {
 					<CheckCircle2 className="size-4 shrink-0 text-blue-500 dark:text-blue-400" />
 				)
 			default:
-				return <Circle className="text-fg-muted/70 size-4 shrink-0" />
+				return <Circle className="text-fg-tertiary size-4 shrink-0" />
 		}
 	}
 
@@ -42,7 +42,7 @@ export function KanbanColumn({ column, onAddIssue }: KanbanColumnProps) {
 				<div className="flex items-center gap-2">
 					{renderColumnIcon()}
 					<span className="text-fg text-sm font-semibold">{column.title}</span>
-					<span className="text-fg-muted text-xs font-normal">
+					<span className="text-fg-tertiary text-xs font-normal">
 						{column.countDisplay}
 					</span>
 				</div>
@@ -54,7 +54,7 @@ export function KanbanColumn({ column, onAddIssue }: KanbanColumnProps) {
 						color="neutral"
 						size="28"
 						aria-label="Column options"
-						className="text-fg-muted hover:text-fg">
+						className="text-fg-secondary hover:text-fg">
 						<MoreHorizontal className="size-4" />
 					</IconButton>
 					<IconButton
@@ -64,7 +64,7 @@ export function KanbanColumn({ column, onAddIssue }: KanbanColumnProps) {
 						size="28"
 						aria-label={`Add issue to ${column.title}`}
 						onClick={() => onAddIssue?.(column.id)}
-						className="text-fg-muted hover:text-fg">
+						className="text-fg-secondary hover:text-fg">
 						<Plus className="size-4" />
 					</IconButton>
 				</div>

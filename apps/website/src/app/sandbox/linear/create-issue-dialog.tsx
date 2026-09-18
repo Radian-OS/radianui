@@ -101,7 +101,7 @@ export function CreateIssueDialog({
 						size="28"
 						aria-label="Close dialog"
 						onClick={onClose}
-						className="text-fg-muted hover:text-fg">
+						className="text-fg-secondary hover:text-fg">
 						<X className="size-4" />
 					</IconButton>
 				</div>
@@ -123,7 +123,7 @@ export function CreateIssueDialog({
 										<Input
 											{...field}
 											placeholder="e.g. Conduct user feedback session"
-											className="bg-elevation-level1/60 text-sm"
+											className="text-sm"
 										/>
 									</FormControl>
 									<FormMessage />
@@ -143,7 +143,7 @@ export function CreateIssueDialog({
 										<Input
 											{...field}
 											placeholder="e.g. UX, Research, Feature"
-											className="bg-elevation-level1/60 text-sm"
+											className="text-sm"
 										/>
 									</FormControl>
 									<FormMessage />
@@ -164,7 +164,7 @@ export function CreateIssueDialog({
 											{...field}
 											placeholder="Add any additional details or requirements..."
 											rows={3}
-											className="bg-elevation-level1/60 text-sm"
+											className="text-sm"
 										/>
 									</FormControl>
 									<FormMessage />

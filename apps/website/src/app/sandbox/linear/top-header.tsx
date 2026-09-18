@@ -30,20 +30,20 @@ export function TopHeader({ onToggleSidebar }: TopHeaderProps) {
 					size="28"
 					aria-label="Toggle sidebar"
 					onClick={onToggleSidebar}
-					className="text-fg-muted hover:text-fg md:hidden">
+					className="text-fg-secondary hover:text-fg md:hidden">
 					<Menu className="size-4" />
 				</SidebarTrigger>
 
 				<div className="flex items-center gap-1.5 truncate">
-					<div className="text-fg-muted flex items-center gap-1.5">
-						<Globe className="size-3.5 text-blue-500 dark:text-blue-400" />
+					<div className="text-fg-secondary flex items-center gap-1.5">
+						<Globe className="size-4 text-blue-500 dark:text-blue-400" />
 						<span className="hover:text-fg font-medium">AS Mobbin</span>
 					</div>
 
-					<span className="text-fg-muted/40">›</span>
+					<span className="text-fg-tertiary">›</span>
 
 					<div className="flex items-center gap-1.5 truncate">
-						<FileText className="text-fg-muted size-3.5" />
+						<FileText className="text-fg-tertiary size-4" />
 						<span className="text-fg truncate font-semibold">
 							User Insight &amp; Behavior Analytics Dashboard
 						</span>
@@ -57,10 +57,10 @@ export function TopHeader({ onToggleSidebar }: TopHeaderProps) {
 					size="28"
 					aria-label="Star this project"
 					onClick={() => setIsStarred(!isStarred)}
-					className="text-fg-muted hover:text-fg">
+					className="text-fg-secondary hover:text-fg">
 					<Star
-						className={`size-3.5 ${
-							isStarred ? "fill-amber-400 text-amber-400" : "text-fg-muted"
+						className={`size-4 ${
+							isStarred ? "fill-amber-400 text-amber-400" : "text-fg-tertiary"
 						}`}
 					/>
 				</IconButton>
@@ -71,8 +71,8 @@ export function TopHeader({ onToggleSidebar }: TopHeaderProps) {
 					color="neutral"
 					size="28"
 					aria-label="More project options"
-					className="text-fg-muted hover:text-fg">
-					<MoreHorizontal className="size-3.5" />
+					className="text-fg-secondary hover:text-fg">
+					<MoreHorizontal className="size-4" />
 				</IconButton>
 			</div>
 
@@ -84,7 +84,7 @@ export function TopHeader({ onToggleSidebar }: TopHeaderProps) {
 					color="neutral"
 					size="28"
 					aria-label="Copy project link"
-					className="text-fg-muted hover:text-fg">
+					className="text-fg-secondary hover:text-fg">
 					<Link2 className="size-4" />
 				</IconButton>
 			</div>

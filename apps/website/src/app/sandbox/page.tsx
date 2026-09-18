@@ -120,12 +120,6 @@ export default async function PlaygroundPage() {
 		"navbar.tsx",
 		"hero-section.tsx",
 		"dashboard-mockup.tsx",
-		"dashboard-sidebar.tsx",
-		"dashboard-header.tsx",
-		"dashboard-metrics.tsx",
-		"dashboard-chart.tsx",
-		"dashboard-activity.tsx",
-		"dashboard-table.tsx",
 		"logos-strip.tsx",
 	]
 	const motionFiles = [
