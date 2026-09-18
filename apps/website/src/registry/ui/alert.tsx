@@ -19,7 +19,7 @@ export type AlertIconProps = React.HTMLAttributes<HTMLDivElement>
 export type AlertToolbarProps = React.HTMLAttributes<HTMLDivElement>
 
 const alertVariants = cva(
-	"flex items-stretch w-full gap-3 p-3 rounded-lg [&>[data-slot=alert-title]]:font-medium [&>[data-slot=alert-title]]:text-sm [&>[data-slot=alert-title]]:mt-0.75 [&>[data-slot=alert-description]]:text-sm  [&>[data-slot=alert-icon]>svg]:size-5 [&_[data-slot=alert-icon]]:mt-0.75 [&_[data-slot=alert-close]]:mt-0.75",
+	"flex w-full items-stretch gap-3 rounded-lg p-3 [&_[data-slot=alert-close]]:mt-0.75 [&_[data-slot=alert-icon]]:mt-0.75 [&>[data-slot=alert-description]]:text-sm [&>[data-slot=alert-icon]>svg]:size-5 [&>[data-slot=alert-title]]:mt-0.75 [&>[data-slot=alert-title]]:text-sm [&>[data-slot=alert-title]]:font-medium",
 	{
 		variants: {
 			color: {
@@ -34,9 +34,9 @@ const alertVariants = cva(
 				strong: "",
 				soft: "[&_[data-slot=alert-title]]:text-fg [&_[data-slot=alert-description]]:text-fg",
 				"soft-outline":
-					"ring-1 ring-inset [&_[data-slot=alert-title]]:text-fg [&_[data-slot=alert-description]]:text-fg",
+					"[&_[data-slot=alert-title]]:text-fg [&_[data-slot=alert-description]]:text-fg ring-1 ring-inset",
 				outline:
-					"border border-soft [&_[data-slot=alert-close]]:text-fg-tertiary [&_[data-slot=alert-title]]:text-fg [&_[data-slot=alert-description]]:text-fg",
+					"border-soft [&_[data-slot=alert-close]]:text-fg-tertiary [&_[data-slot=alert-title]]:text-fg [&_[data-slot=alert-description]]:text-fg border",
 			},
 		},
 		compoundVariants: [
@@ -129,32 +129,32 @@ const alertVariants = cva(
 			{
 				color: "neutral",
 				variant: "outline",
-				className: "bg-transparent text-fg ",
+				className: "text-fg bg-transparent",
 			},
 			{
 				color: "primary",
 				variant: "outline",
-				className: "bg-transparent text-primary-text",
+				className: "text-primary-text bg-transparent",
 			},
 			{
 				color: "info",
 				variant: "outline",
-				className: "bg-transparent text-info-text",
+				className: "text-info-text bg-transparent",
 			},
 			{
 				color: "success",
 				variant: "outline",
-				className: "bg-transparent text-success-text",
+				className: "text-success-text bg-transparent",
 			},
 			{
 				color: "error",
 				variant: "outline",
-				className: "bg-transparent text-error-text",
+				className: "text-error-text bg-transparent",
 			},
 			{
 				color: "warning",
 				variant: "outline",
-				className: "bg-transparent text-warning-text",
+				className: "text-warning-text bg-transparent",
 			},
 		],
 		defaultVariants: {
