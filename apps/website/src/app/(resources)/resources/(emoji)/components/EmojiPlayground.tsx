@@ -2,7 +2,7 @@
 
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react"
 import { Search, SearchX } from "lucide-react"
-import { useRouter } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 import { cn } from "@/lib/utils"
 import {
 	Empty,
@@ -38,6 +38,7 @@ export default function EmojiPlayground({
 	initialSelectedEmoji?: EmojiData | null
 }) {
 	const router = useRouter()
+	const pathname = usePathname()
 	const [query, setQuery] = useState("")
 	const [category, setCategory] = useState(
 		initialSelectedEmoji?.group ?? emojiGroups[0]?.name ?? ALL_EMOJI_CATEGORY
@@ -102,29 +103,22 @@ export default function EmojiPlayground({
 	}, [])
 
 	useEffect(() => {
-		const handlePopState = () => {
-			setSelectedEmoji(getEmojiFromPathname(window.location.pathname))
-			ownsDrawerHistoryEntryRef.current = Boolean(
-				window.history.state?.radianEmojiDrawer
-			)
-		}
+		const emojiFromPathname = getEmojiFromPathname(pathname)
+		setSelectedEmoji(emojiFromPathname)
 
-		window.addEventListener("popstate", handlePopState)
-		return () => window.removeEventListener("popstate", handlePopState)
-	}, [])
+		if (!emojiFromPathname) {
+			ownsDrawerHistoryEntryRef.current = false
+		}
+	}, [pathname])
 
 	const handleSelectEmoji = (emoji: EmojiData) => {
 		const nextPath = getEmojiPagePath(emoji)
-		const nextState = {
-			...window.history.state,
-			radianEmojiDrawer: true,
-		}
 
 		if (selectedEmoji) {
-			window.history.replaceState(nextState, "", nextPath)
+			router.replace(nextPath, { scroll: false })
 		} else {
-			window.history.pushState(nextState, "", nextPath)
 			ownsDrawerHistoryEntryRef.current = true
+			router.push(nextPath, { scroll: false })
 		}
 
 		setSelectedEmoji(emoji)

@@ -35,6 +35,7 @@ export function EmojiTile({
 							prefetch={false}
 							onClick={handleClick}
 							aria-label={`View ${displayName} emoji details`}>
+							<span className="sr-only">{displayName} emoji</span>
 							<span
 								className="flex h-12 w-8 items-center justify-center text-[32px] leading-[48px]"
 								aria-hidden="true">
