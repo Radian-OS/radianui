@@ -22,16 +22,16 @@ export type TabsContentProps = React.ComponentProps<
 >
 
 const tabsListStyles = cva(
-	"flex data-[orientation=horizontal]:flex-row data-[orientation=horizontal]:h-9 data-[orientation=horizontal]:items-center data-[orientation=horizontal]:justify-start data-[orientation=vertical]:items-start data-[orientation=vertical]:justify-center  data-[orientation=vertical]:flex-col shrink-0 overflow-x-scroll no-scrollbar",
+	"no-scrollbar flex shrink-0 overflow-x-scroll data-[orientation=horizontal]:h-9 data-[orientation=horizontal]:flex-row data-[orientation=horizontal]:items-center data-[orientation=horizontal]:justify-start data-[orientation=vertical]:flex-col data-[orientation=vertical]:items-start data-[orientation=vertical]:justify-center",
 	{
 		variants: {
 			width: {
-				fit: "w-max min-w-max max-w-full",
+				fit: "w-max max-w-full min-w-max",
 				full: "data-[orientation=horizontal]:w-full data-[orientation=horizontal]:items-stretch data-[orientation=horizontal]:*:flex-1",
 			}, // default medium
 			variant: {
 				default: "bg-fill2",
-				open: "data-[orientation=horizontal]:border-b data-[orientation=vertical]:border-r border-border",
+				open: "border-border data-[orientation=horizontal]:border-b data-[orientation=vertical]:border-r",
 				ghost: "",
 			},
 		},
@@ -54,13 +54,13 @@ const tabsListStyles = cva(
 )
 
 const tabsTriggerStyles = cva(
-	"inline-flex items-center justify-center text-sm [&>svg]:size-5 gap-1.5 focus-visible:ring focus-visible:ring-offset-1 whitespace-nowrap font-medium outline-none text-fg-secondary cursor-pointer data-[state=active]:text-fg w-max data-[orientation=vertical]:w-full [&>svg]:text-fg-tertiary [&>svg]:shrink-0 disabled:text-fg-disabled disabled:[&>svg]:text-fg-disabled disabled:cursor-not-allowed box-border",
+	"text-fg-secondary data-[state=active]:text-fg [&>svg]:text-fg-tertiary disabled:text-fg-disabled disabled:[&>svg]:text-fg-disabled box-border inline-flex w-max cursor-pointer items-center justify-center gap-1.5 text-sm font-medium whitespace-nowrap outline-none focus-visible:ring focus-visible:ring-offset-1 disabled:cursor-not-allowed data-[orientation=vertical]:w-full [&>svg]:size-5 [&>svg]:shrink-0",
 	{
 		variants: {
 			variant: {
 				default:
-					"data-[state=active]:bg-elevation-level2 border border-transparent data-[state=active]:border data-[state=active]:border-soft-alpha data-[state=active]:drop-shadow-xs",
-				open: "data-[orientation=horizontal]:border-b-2 data-[orientation=vertical]:border-r-2 border-transparent data-[state=active][orientation=horizontal]:border-b-2 data-[state=active][orientation=vertical]:border-r-2 data-[state=active]:border-primary",
+					"data-[state=active]:bg-elevation-level2 data-[state=active]:border-soft-alpha border border-transparent data-[state=active]:border data-[state=active]:drop-shadow-xs",
+				open: "data-[state=active][orientation=horizontal]:border-b-2 data-[state=active][orientation=vertical]:border-r-2 data-[state=active]:border-primary border-transparent data-[orientation=horizontal]:border-b-2 data-[orientation=vertical]:border-r-2",
 				ghost:
 					"data-[state=active]:bg-primary-accent data-[state=active]:text-primary-text",
 			},
@@ -68,16 +68,16 @@ const tabsTriggerStyles = cva(
 		compoundVariants: [
 			{
 				variant: ["default"],
-				className: "rounded-md px-2.5 py-1.5 h-full",
+				className: "h-full rounded-md px-2.5 py-1.5",
 			},
 			{
 				variant: "open",
 				className:
-					"data-[orientation=horizontal]:py-2 data-[orientation=vertical]:px-2 h-9",
+					"h-9 data-[orientation=horizontal]:py-2 data-[orientation=vertical]:px-2",
 			},
 			{
 				variant: ["ghost"],
-				className: "p-2 data-[state=active]:rounded-lg h-full",
+				className: "h-full p-2 data-[state=active]:rounded-lg",
 			},
 		],
 		defaultVariants: {
