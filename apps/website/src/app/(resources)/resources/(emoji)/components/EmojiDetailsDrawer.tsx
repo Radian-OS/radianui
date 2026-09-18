@@ -30,6 +30,10 @@ import {
 	formatEmojiName,
 	getEmojiCodePoints,
 	getEmojiDescription,
+	getEmojiFaqItems,
+	getEmojiMeaning,
+	getEmojiSequenceInfo,
+	getEmojiShortcode,
 	getRelatedEmojis,
 } from "./emoji-data"
 
@@ -51,25 +55,8 @@ export function EmojiDetailsDrawer({
 	const displayName = formatEmojiName(emoji.name)
 	const relatedEmojis = getRelatedEmojis(emoji)
 	const codepoints = getEmojiCodePoints(emoji.emoji).join(" ")
-	const faqItems = [
-		{
-			question: `What does the ${displayName} emoji mean?`,
-			answer: `${emoji.emoji} is officially named “${emoji.name}” in the emoji dataset and belongs to the ${emoji.group} group. Its intended tone can depend on the message and context in which it appears.`,
-		},
-		{
-			question: `How do I copy the ${displayName} emoji?`,
-			answer: `Select “Copy as Text”, then paste ${emoji.emoji} into any application or field that supports Unicode text.`,
-		},
-		{
-			question: `Which Unicode version includes the ${displayName} emoji?`,
-			answer: `${displayName} is included in Unicode ${emoji.unicode_version} and Emoji ${emoji.emoji_version}. Its codepoint${getEmojiCodePoints(emoji.emoji).length === 1 ? " is" : "s are"} ${codepoints}.`,
-		},
-		{
-			question: `Does the ${displayName} emoji look different on other platforms?`,
-			answer:
-				"Yes. Unicode standardizes the character and meaning, but each platform designs its own artwork, so details can vary across Apple, Google, Microsoft, and other systems.",
-		},
-	]
+	const sequence = getEmojiSequenceInfo(emoji)
+	const faqItems = getEmojiFaqItems(emoji)
 
 	return (
 		<Drawer
@@ -108,8 +95,6 @@ export function EmojiDetailsDrawer({
 
 				<DrawerBody>
 					<div className="flex flex-col gap-12 p-5 sm:p-6">
-						<p className="text-fg-secondary">{getEmojiDescription(emoji)}</p>
-
 						<section
 							aria-labelledby="emoji-drawer-copy-heading"
 							className="flex flex-col gap-5">
@@ -140,6 +125,12 @@ export function EmojiDetailsDrawer({
 										<DetailRow
 											label="Unicode codepoint"
 											value={codepoints}
+											code
+										/>
+										<DetailRow label="Encoding type" value={sequence.label} />
+										<DetailRow
+											label="Shortcode"
+											value={getEmojiShortcode(emoji)}
 											code
 										/>
 										<DetailRow
@@ -223,6 +214,25 @@ export function EmojiDetailsDrawer({
 										<span aria-hidden="true">{relatedEmoji.emoji}</span>
 									</Button>
 								))}
+							</div>
+						</section>
+
+						<section
+							aria-labelledby={`emoji-drawer-about-${emoji.slug}`}
+							className="flex flex-col gap-5">
+							<div className="flex flex-col gap-2">
+								<p className="text-primary-text text-sm font-medium">
+									About this emoji
+								</p>
+								<h2
+									id={`emoji-drawer-about-${emoji.slug}`}
+									className="heading-6">
+									What {displayName} represents
+								</h2>
+							</div>
+							<div className="text-fg-secondary flex flex-col gap-4">
+								<p>{getEmojiMeaning(emoji)}</p>
+								<p>{getEmojiDescription(emoji)}</p>
 							</div>
 						</section>
 

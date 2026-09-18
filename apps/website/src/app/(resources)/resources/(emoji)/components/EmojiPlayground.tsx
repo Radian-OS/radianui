@@ -120,8 +120,6 @@ export default function EmojiPlayground({
 			ownsDrawerHistoryEntryRef.current = true
 			router.push(nextPath, { scroll: false })
 		}
-
-		setSelectedEmoji(emoji)
 	}
 
 	const handleDrawerOpenChange = (open: boolean) => {

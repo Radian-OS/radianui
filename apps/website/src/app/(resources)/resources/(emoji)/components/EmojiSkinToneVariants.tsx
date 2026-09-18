@@ -10,7 +10,7 @@ export function EmojiSkinToneVariants({ emoji }: { emoji: EmojiData }) {
 	if (!variants.length) return null
 
 	return (
-		<div className="grid grid-cols-2 gap-3 sm:grid-cols-5">
+		<div className="grid grid-cols-2 items-stretch gap-3 sm:grid-cols-5">
 			{variants.map((variant) => (
 				<EmojiCopyButton
 					key={variant.label}
@@ -18,12 +18,12 @@ export function EmojiSkinToneVariants({ emoji }: { emoji: EmojiData }) {
 					successLabel={variant.label}
 					color="neutral"
 					variant="outline"
-					className="h-auto min-h-28 flex-col gap-3 rounded-xl px-3 py-4"
+					className="h-auto min-h-28 w-full min-w-0 flex-col gap-3 rounded-xl px-3 py-4"
 					aria-label={`Copy ${variant.label} variant`}>
 					<span className="text-4xl" aria-hidden="true">
 						{variant.emoji}
 					</span>
-					<span className="text-fg-secondary text-center text-xs font-medium whitespace-normal">
+					<span className="text-fg-secondary flex min-h-8 items-center justify-center text-center text-xs font-medium whitespace-normal">
 						{variant.label}
 					</span>
 				</EmojiCopyButton>
