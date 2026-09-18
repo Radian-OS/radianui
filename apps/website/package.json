@@ -103,7 +103,7 @@
 		"libphonenumber-js": "^1.13.13",
 		"lru-cache": "^11.5.2",
 		"lucide-react": "0.486.0",
-		"motion": "^12.15.0",
+		"motion": "^13.2.0",
 		"next": "16.3.5",
 		"next-themes": "^0.4.6",
 		"nuqs": "^2.10.1",
