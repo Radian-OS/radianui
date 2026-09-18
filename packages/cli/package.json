@@ -57,7 +57,7 @@
 	"homepage": "https://radianui.com",
 	"dependencies": {
 		"adm-zip": "^0.6.1",
-		"chalk": "^5.6.2",
+		"chalk": "^6.0.0",
 		"commander": "^15.0.0",
 		"cosmiconfig": "^10.0.1",
 		"dedent": "^1.7.2",
