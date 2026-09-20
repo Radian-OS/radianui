@@ -75,10 +75,9 @@ const LINKS: Link[] = [
 				icon: <UIAvatarIcon />,
 			},
 			{
-				href: "#",
+				href: "/resources/brand-logos",
 				name: "Popular Brand Logos",
 				icon: <PopularBrandLogosIcon />,
-				release: "coming-soon",
 			},
 			{
 				href: "#",

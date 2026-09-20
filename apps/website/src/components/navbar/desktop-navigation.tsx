@@ -38,9 +38,8 @@ export const designTools = [
 	{
 		title: "Brand Logo",
 		description: "Popular company logos.",
-		href: "#",
+		href: "/resources/brand-logos",
 		icon: <BrandLogo />,
-		release: "coming-soon",
 	},
 	{
 		title: "File Format Icons",

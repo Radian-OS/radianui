@@ -24,10 +24,12 @@ const resources: ResourceItem[] = [
 	},
 	{
 		title: "Popular Brand Logos",
-		description: "100+ well-known company logos for your projects.",
-		comingSoon: true,
+		description:
+			"20 popular brands with icons and wordmarks for light and dark interfaces.",
+		comingSoon: false,
 		lightUrl: "/media/assets-page/popular-brands-light.png",
 		darkUrl: "/media/assets-page/popular-brands-dark.png",
+		link: "brand-logos",
 	},
 	{
 		title: "Country Flags",

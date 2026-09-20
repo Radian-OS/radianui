@@ -11,6 +11,7 @@ export function ResourcesHeader() {
 	const hasStickyResourceFilter =
 		pathname === "/resources/avatar" ||
 		pathname === "/resources/emoji" ||
+		pathname.startsWith("/resources/brand-logos") ||
 		pathname.startsWith("/resources/flags")
 
 	useEffect(() => {
