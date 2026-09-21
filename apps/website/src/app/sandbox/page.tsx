@@ -54,6 +54,63 @@ export default async function PlaygroundPage() {
 	const hero04Dir = path.join(process.cwd(), "src/app/sandbox/hero-04")
 	const linearDir = path.join(process.cwd(), "src/app/sandbox/linear")
 	const intercomDir = path.join(process.cwd(), "src/app/sandbox/intercom")
+	const blog1Dir = path.join(process.cwd(), "src/app/sandbox/blog-1")
+	const blog02Dir = path.join(process.cwd(), "src/app/sandbox/blog-02")
+	const zentraDir = path.join(process.cwd(), "src/app/sandbox/zentra")
+	const contact2Dir = path.join(process.cwd(), "src/app/sandbox/contact-2")
+	const contact06Dir = path.join(process.cwd(), "src/app/sandbox/contact-06")
+	const contact01Dir = path.join(process.cwd(), "src/app/sandbox/contact-01")
+
+	const contact01Files = [
+		"page.tsx",
+		"info-panel.tsx",
+		"inquiry-form.tsx",
+		"types.ts",
+	]
+
+	const contact06Files = [
+		"page.tsx",
+		"info-panel.tsx",
+		"quote-form.tsx",
+		"file-dropzone.tsx",
+		"types.ts",
+	]
+
+	const contact2Files = [
+		"page.tsx",
+		"contact-form.tsx",
+		"scope-desk-panel.tsx",
+		"types.ts",
+	]
+
+	const zentraFiles = [
+		"page.tsx",
+		"navbar.tsx",
+		"hero-section.tsx",
+		"featured-card.tsx",
+		"category-filter.tsx",
+		"article-card.tsx",
+		"articles-section.tsx",
+		"newsletter-section.tsx",
+		"footer.tsx",
+		"types.ts",
+	]
+
+	const blog02Files = [
+		"page.tsx",
+		"blog-header.tsx",
+		"blog-card.tsx",
+		"blog-grid.tsx",
+		"types.ts",
+	]
+
+	const blog1Files = [
+		"page.tsx",
+		"blog-header.tsx",
+		"blog-card.tsx",
+		"blog-grid.tsx",
+		"types.ts",
+	]
 
 	const intercomFiles = [
 		"page.tsx",
@@ -209,6 +266,12 @@ export default async function PlaygroundPage() {
 	const hero04Data: Record<string, string> = {}
 	const linearData: Record<string, string> = {}
 	const intercomData: Record<string, string> = {}
+	const blog1Data: Record<string, string> = {}
+	const blog02Data: Record<string, string> = {}
+	const zentraData: Record<string, string> = {}
+	const contact2Data: Record<string, string> = {}
+	const contact06Data: Record<string, string> = {}
+	const contact01Data: Record<string, string> = {}
 
 	for (const file of omrixFiles) {
 		omrixData[file] = readFileContent(omrixDir, file)
@@ -269,7 +332,37 @@ export default async function PlaygroundPage() {
 		intercomData[file] = readFileContent(intercomDir, file)
 	}
 
+	for (const file of blog1Files) {
+		blog1Data[file] = readFileContent(blog1Dir, file)
+	}
+
+	for (const file of blog02Files) {
+		blog02Data[file] = readFileContent(blog02Dir, file)
+	}
+
+	for (const file of zentraFiles) {
+		zentraData[file] = readFileContent(zentraDir, file)
+	}
+
+	for (const file of contact2Files) {
+		contact2Data[file] = readFileContent(contact2Dir, file)
+	}
+
+	for (const file of contact06Files) {
+		contact06Data[file] = readFileContent(contact06Dir, file)
+	}
+
+	for (const file of contact01Files) {
+		contact01Data[file] = readFileContent(contact01Dir, file)
+	}
+
 	const files = {
+		"contact-01": contact01Data,
+		"contact-06": contact06Data,
+		"contact-2": contact2Data,
+		zentra: zentraData,
+		"blog-02": blog02Data,
+		"blog-1": blog1Data,
 		intercom: intercomData,
 		linear: linearData,
 		"hero-04": hero04Data,

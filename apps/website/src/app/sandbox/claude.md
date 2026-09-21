@@ -8,7 +8,7 @@
 - **Icons**: Always use icons from `lucide-react`. Never generate inline SVG code. Import the appropriate icon component from `lucide-react` (e.g. `import { Search, Menu, X } from "lucide-react"`).
 - **Brand/Logo Icons (IMPORTANT)**: Never generate code with `<svg>` tag. Always use an `<Image>` (Next.js) or `<img>` tag referencing the icon from a public source. Use Google's favicon service (`https://www.google.com/s2/favicons?sz=32&domain=<domain>`) or other public CDN URLs (e.g. `https://authjs.dev/img/providers/<provider>.svg`, `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/<name>/<name>-original.svg`). This rule overrides all other icon rules for brand logos.
 - **Images (CRITICAL — PLACEHOLDER RULE)**: Whenever an image is used in the given design (photos, graphics, banners, illustrations, mockups, etc.), rather than making whole components or sourcing external images, just put the placeholder image `/sandbox/placeholder.svg` (located at `apps/website/public/sandbox/placeholder.svg`) simply. In Next.js projects, always use the `<Image>` component from `next/image` (e.g. `<Image src="/sandbox/placeholder.svg" alt="Placeholder" width={800} height={500} />`) instead of the raw HTML `<img>` tag. For non-Next.js projects, use an `<img>` tag. Never use localhost URLs (e.g. `http://localhost:*/assets/*`).
-- **Links**: In Next.js projects, always use the `<Link>` component from `next/link` instead of the raw HTML `<a>` tag for internal navigation. Always add `className="hover:underline"` to `<Link>` elements for visible underline styling.
+- **Links and Link Buttons (CRITICAL — NO UNDERLINE RULE)**: In Next.js projects, always use the `<Link>` component from `next/link` instead of the raw HTML `<a>` tag for internal navigation. NEVER add `underline` or `hover:underline` to `<Link>`, `<a>`, or `<Button asChild><Link>...</Link></Button>` elements. Keep links, button links, card links, and navigation items completely clean without any text decoration underlines.
 - **Responsive Design**: All components must be responsive. Use Tailwind CSS responsive breakpoint prefixes (`sm:`, `md:`, `lg:`, `xl:`) to adapt layouts across screen sizes. Design mobile-first, then layer on styles for larger breakpoints.
 - **Headings**: Always use the corresponding heading utility class defined in the global CSS (`heading-1` through `heading-6`) for heading elements. Match the utility to the heading level (e.g. `<h1 className="heading-1">`, `<h2 className="heading-2">`, etc.). When you add heading utilities, **do NOT add other extra class names** for font size (`text-*`), line height (`leading-*`), font weight (`font-normal`, `font-semibold`), or letter spacing (`tracking-*`). All necessary typography styles (font family `font-heading`, responsive font sizes across breakpoints, line heights, letter spacing, and font weight) are already declared in the global CSS (`globals.css`):
   ```css
@@ -77,4 +77,49 @@
       </SidebarMenu>
     </SidebarGroup>
     ```
+- **Card Component Rule (CRITICAL)**:
+  - Whenever implementing cards or card containers, always use the canonical Radian OS `Card` components (`Card`, `CardHeader`, `CardTitle`, `CardDescription`, `CardAction`, `CardContent`, `CardFooter`) from `@/styles/default/ui/card` (or `@/registry/ui/card`).
+  - Do NOT build custom raw `<div>` card wrappers when standard Card component functionality is required.
+  - When custom padding or banner image flushing is needed (e.g. top banner artwork), override padding/gap cleanly (e.g. `<Card className="p-0 gap-0 overflow-hidden">`) and use `<CardContent>` and `<CardFooter>` for internal spacing.
+  - Example usage:
+    ```tsx
+    import {
+    	Card,
+    	CardHeader,
+    	CardTitle,
+    	CardDescription,
+    	CardContent,
+    	CardFooter,
+    } from "@/styles/default/ui/card"
+
+    <Card className="overflow-hidden">
+    	<CardContent className="p-6">
+    		<CardTitle>Card Title</CardTitle>
+    		<CardDescription>Card description text.</CardDescription>
+    	</CardContent>
+    	<CardFooter className="border-t p-6">
+    		Footer content
+    	</CardFooter>
+    </Card>
+    ```
+- **Avatar Component Rule (CRITICAL)**:
+  - Whenever rendering user avatars, profile pictures, or author thumbnails, always use the canonical Radian OS `Avatar` components (`Avatar`, `AvatarImage`, `AvatarFallback`, `AvatarIndicator`, `AvatarStatus`) from `@/styles/default/ui/avatar` (or `@/registry/ui/avatar`).
+  - Never construct custom raw `<div>` or standalone `<img>` tags for user avatars.
+  - Always specify standard `size` (`"16"`, `"20"`, `"24"`, `"32"`, `"36"`, `"40"`, `"48"`, `"64"`, `"80"`) and `rounded` (`"circle"` or `"square"`).
+  - Always include an `<AvatarFallback>` component (displaying user initials or icon) inside `<Avatar>` for graceful loading and error states.
+  - In Next.js environments, use `/sandbox/placeholder.svg` or public image sources for `<AvatarImage src={...} />`.
+  - Example usage:
+    ```tsx
+    import {
+    	Avatar,
+    	AvatarImage,
+    	AvatarFallback,
+    } from "@/styles/default/ui/avatar"
+
+    <Avatar size="32" rounded="circle" className="border-border border">
+    	<AvatarImage src={author.avatarUrl || "/sandbox/placeholder.svg"} alt={author.name} />
+    	<AvatarFallback className="text-xs font-semibold">{initials}</AvatarFallback>
+    </Avatar>
+    ```
+
 

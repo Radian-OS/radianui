@@ -50,3 +50,54 @@
 - **Never use `text-fg-muted`**: That token does NOT exist in the design system. Always use `text-sidebar-fg` inside the sidebar, or `text-fg-secondary` / `text-fg-tertiary` for secondary/tertiary text.
 - **Icon Size & Typography Consistency**: Keep icon sizes and typography strictly uniform across all menu items (e.g. `size-4` for icons inside `size="32"` buttons, `size-3.5` for chevrons/actions, `text-sm font-medium` or `text-xs` for text). Never mix arbitrary icon sizes across rows.
 - **Badges/Counts**: Always use `<SidebarMenuBadge>` as a sibling inside `<SidebarMenuItem>` (or inside `<SidebarMenuButton asChild>`) instead of custom `span` elements inside ad-hoc flex divs.
+
+## 4. Card Component Rule
+- **Rule**: Whenever implementing cards or card containers, always use the canonical Radian OS `Card` components (`Card`, `CardHeader`, `CardTitle`, `CardDescription`, `CardAction`, `CardContent`, `CardFooter`) from `@/styles/default/ui/card` (or `@/registry/ui/card`).
+- **Do not** build custom raw `<div>` card wrappers when standard Card component functionality is required.
+- **Custom spacing & banners**: When custom padding or image flushing is needed (e.g. top banner artwork), override padding/gap cleanly (e.g. `<Card className="p-0 gap-0 overflow-hidden">`) and use `<CardContent>` and `<CardFooter>` for internal spacing.
+- **Example Usage**:
+  ```tsx
+  import {
+    Card,
+    CardHeader,
+    CardTitle,
+    CardDescription,
+    CardContent,
+    CardFooter,
+  } from "@/styles/default/ui/card"
+
+  <Card className="overflow-hidden">
+    <CardContent className="p-6">
+      <CardTitle>Card Title</CardTitle>
+      <CardDescription>Card description text.</CardDescription>
+    </CardContent>
+    <CardFooter className="border-t p-6">
+      Footer content
+    </CardFooter>
+  </Card>
+  ```
+
+## 5. Avatar Component Rule
+- **Rule**: Whenever rendering user avatars, profile pictures, or author thumbnails, always use the canonical Radian OS `Avatar` components (`Avatar`, `AvatarImage`, `AvatarFallback`, `AvatarIndicator`, `AvatarStatus`) from `@/styles/default/ui/avatar` (or `@/registry/ui/avatar`).
+- **Do not** construct custom raw `<div>` or standalone `<img>` tags for user avatars.
+- **Configuration**: Always specify standard `size` (`"16"`, `"20"`, `"24"`, `"32"`, `"36"`, `"40"`, `"48"`, `"64"`, `"80"`) and `rounded` (`"circle"` or `"square"`).
+- **Fallback**: Always include an `<AvatarFallback>` component (displaying user initials or icon) inside `<Avatar>` for graceful loading and error states.
+- **Example Usage**:
+  ```tsx
+  import {
+    Avatar,
+    AvatarImage,
+    AvatarFallback,
+  } from "@/styles/default/ui/avatar"
+
+  <Avatar size="32" rounded="circle" className="border-border border">
+    <AvatarImage src={author.avatarUrl || "/sandbox/placeholder.svg"} alt={author.name} />
+    <AvatarFallback className="text-xs font-semibold">{initials}</AvatarFallback>
+  </Avatar>
+  ```
+
+## 6. Links and Link Buttons Rule (No Underline)
+- **Rule**: Never add `underline` or `hover:underline` classes to `<Link>`, `<a>`, or `<Button asChild><Link>...</Link></Button>` elements.
+- **Do not** add underline decoration on hover for links, button links, card links, or navbar items. Keep all links clean with color transitions (e.g. `hover:text-fg` or `hover:text-primary`) rather than text underlines.
+
+

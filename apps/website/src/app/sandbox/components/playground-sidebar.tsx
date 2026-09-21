@@ -1,7 +1,15 @@
 "use client"
 
 import React, { useEffect, useState } from "react"
-import { Blocks, CreditCard, Folder, Layout, Sparkles } from "lucide-react"
+import {
+	Blocks,
+	BookOpen,
+	CreditCard,
+	Folder,
+	Layout,
+	Mail,
+	Sparkles,
+} from "lucide-react"
 import { cn } from "@/lib/utils"
 import {
 	Accordion,
@@ -51,6 +59,16 @@ const CATEGORIES: CategoryGroup[] = [
 		id: "pricing-section",
 		label: "Pricing Section",
 		icon: CreditCard,
+	},
+	{
+		id: "blog-section",
+		label: "Blog Section",
+		icon: BookOpen,
+	},
+	{
+		id: "contact-section",
+		label: "Contact Section",
+		icon: Mail,
 	},
 	{
 		id: "other-sections",

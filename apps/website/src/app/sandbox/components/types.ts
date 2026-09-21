@@ -13,9 +13,21 @@ export interface FilesData {
 	"hero-04": Record<string, string>
 	linear: Record<string, string>
 	intercom: Record<string, string>
+	"blog-1": Record<string, string>
+	"blog-02": Record<string, string>
+	zentra: Record<string, string>
+	"contact-2": Record<string, string>
+	"contact-06": Record<string, string>
+	"contact-01": Record<string, string>
 }
 
 export type PreviewKey =
+	| "contact-01"
+	| "contact-06"
+	| "contact-2"
+	| "zentra"
+	| "blog-02"
+	| "blog-1"
 	| "intercom"
 	| "linear"
 	| "hero-04"
@@ -59,6 +71,8 @@ export type SandboxCategory =
 	| "full-page"
 	| "hero-section"
 	| "pricing-section"
+	| "blog-section"
+	| "contact-section"
 	| "other-sections"
 
 export interface SandboxComponentConfig {
@@ -74,9 +88,70 @@ export interface SandboxComponentConfig {
 
 export const sandboxComponents: SandboxComponentConfig[] = [
 	{
+		id: "contact-01",
+		label: "contact-01",
+		category: "contact-section",
+		filesKey: "contact-01",
+		path: "src/app/sandbox/contact-01",
+		defaultFile: "page.tsx",
+		referenceUrl: "https://shadcnspace.com/preview/contact-01",
+		previewRoute: "/sandbox/contact-01",
+	},
+	{
+		id: "contact-06",
+		label: "contact-06",
+		category: "contact-section",
+		filesKey: "contact-06",
+		path: "src/app/sandbox/contact-06",
+		defaultFile: "page.tsx",
+		referenceUrl: "https://shadcnspace.com/preview/contact-06",
+		previewRoute: "/sandbox/contact-06",
+	},
+	{
+		id: "contact-2",
+		label: "contact-2",
+		category: "contact-section",
+		filesKey: "contact-2",
+		path: "src/app/sandbox/contact-2",
+		defaultFile: "page.tsx",
+		referenceUrl: "https://reui.io/preview/base/contact-2",
+		previewRoute: "/sandbox/contact-2",
+	},
+	{
+		id: "zentra",
+		label: "zentra",
+		category: "blog-section",
+		filesKey: "zentra",
+		path: "src/app/sandbox/zentra",
+		defaultFile: "page.tsx",
+		referenceUrl:
+			"https://dribbble.com/shots/27284935-Finance-Blog-Landing-Page-Web-Design-Articles-Newsletter",
+		previewRoute: "/sandbox/zentra",
+	},
+	{
+		id: "blog-02",
+		label: "blog-02",
+		category: "blog-section",
+		filesKey: "blog-02",
+		path: "src/app/sandbox/blog-02",
+		defaultFile: "page.tsx",
+		referenceUrl: "https://shadcnspace.com/preview/blog-02",
+		previewRoute: "/sandbox/blog-02",
+	},
+	{
+		id: "blog-1",
+		label: "blog-1",
+		category: "blog-section",
+		filesKey: "blog-1",
+		path: "src/app/sandbox/blog-1",
+		defaultFile: "page.tsx",
+		referenceUrl: "https://reui.io/preview/base/blog-1",
+		previewRoute: "/sandbox/blog-1",
+	},
+	{
 		id: "intercom",
 		label: "intercom",
-		category: "other-sections",
+		category: "full-page",
 		filesKey: "intercom",
 		path: "src/app/sandbox/intercom",
 		defaultFile: "page.tsx",
