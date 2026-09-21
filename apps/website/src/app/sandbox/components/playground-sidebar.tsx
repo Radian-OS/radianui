@@ -6,8 +6,11 @@ import {
 	BookOpen,
 	CreditCard,
 	Folder,
+	HelpCircle,
+	FileText,
 	Layout,
 	Mail,
+	MousePointerClick,
 	Sparkles,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
@@ -71,6 +74,21 @@ const CATEGORIES: CategoryGroup[] = [
 		icon: Mail,
 	},
 	{
+		id: "cta-section",
+		label: "CTA Section",
+		icon: MousePointerClick,
+	},
+	{
+		id: "faq-section",
+		label: "FAQ Section",
+		icon: HelpCircle,
+	},
+	{
+		id: "form-section",
+		label: "Form Section",
+		icon: FileText,
+	},
+	{
 		id: "other-sections",
 		label: "Other Sections",
 		icon: Blocks,
@@ -89,6 +107,10 @@ export function PlaygroundSidebar({
 		"full-page",
 		"hero-section",
 		"pricing-section",
+		"blog-section",
+		"contact-section",
+		"cta-section",
+		"faq-section",
 		"other-sections",
 	])
 

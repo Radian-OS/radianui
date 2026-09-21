@@ -60,6 +60,85 @@ export default async function PlaygroundPage() {
 	const contact2Dir = path.join(process.cwd(), "src/app/sandbox/contact-2")
 	const contact06Dir = path.join(process.cwd(), "src/app/sandbox/contact-06")
 	const contact01Dir = path.join(process.cwd(), "src/app/sandbox/contact-01")
+	const cta10Dir = path.join(process.cwd(), "src/app/sandbox/cta-10")
+	const cta08Dir = path.join(process.cwd(), "src/app/sandbox/cta-08")
+	const cta07Dir = path.join(process.cwd(), "src/app/sandbox/cta-07")
+	const faq4Dir = path.join(process.cwd(), "src/app/sandbox/faq-4")
+	const faq5Dir = path.join(process.cwd(), "src/app/sandbox/faq-5")
+	const faq03Dir = path.join(process.cwd(), "src/app/sandbox/faq-03")
+	const form1Dir = path.join(process.cwd(), "src/app/sandbox/form-1")
+	const checkoutFormDir = path.join(
+		process.cwd(),
+		"src/app/sandbox/checkout-form"
+	)
+	const longFormDir = path.join(process.cwd(), "src/app/sandbox/long-form")
+
+	const longFormFiles = [
+		"page.tsx",
+		"registration-header.tsx",
+		"long-form.tsx",
+		"account-details-section.tsx",
+		"personal-info-section.tsx",
+		"address-section.tsx",
+		"types.ts",
+	]
+
+	const checkoutFormFiles = [
+		"page.tsx",
+		"checkout-form.tsx",
+		"checkout-header.tsx",
+		"types.ts",
+	]
+
+	const form1Files = [
+		"page.tsx",
+		"profile-form.tsx",
+		"profile-header.tsx",
+		"types.ts",
+	]
+
+	const faq03Files = [
+		"page.tsx",
+		"faq-header.tsx",
+		"faq-accordion.tsx",
+		"stats-grid.tsx",
+		"types.ts",
+	]
+
+	const faq5Files = [
+		"page.tsx",
+		"faq-accordion.tsx",
+		"support-card.tsx",
+		"types.ts",
+	]
+
+	const faq4Files = [
+		"page.tsx",
+		"faq-header.tsx",
+		"faq-accordion.tsx",
+		"types.ts",
+	]
+
+	const cta07Files = [
+		"page.tsx",
+		"cta-header.tsx",
+		"animated-cta-button.tsx",
+		"types.ts",
+	]
+
+	const cta08Files = [
+		"page.tsx",
+		"hero-content.tsx",
+		"action-card.tsx",
+		"types.ts",
+	]
+
+	const cta10Files = [
+		"page.tsx",
+		"cta-content.tsx",
+		"dashboard-preview.tsx",
+		"types.ts",
+	]
 
 	const contact01Files = [
 		"page.tsx",
@@ -272,6 +351,15 @@ export default async function PlaygroundPage() {
 	const contact2Data: Record<string, string> = {}
 	const contact06Data: Record<string, string> = {}
 	const contact01Data: Record<string, string> = {}
+	const cta10Data: Record<string, string> = {}
+	const cta08Data: Record<string, string> = {}
+	const cta07Data: Record<string, string> = {}
+	const faq4Data: Record<string, string> = {}
+	const faq5Data: Record<string, string> = {}
+	const faq03Data: Record<string, string> = {}
+	const form1Data: Record<string, string> = {}
+	const checkoutFormData: Record<string, string> = {}
+	const longFormData: Record<string, string> = {}
 
 	for (const file of omrixFiles) {
 		omrixData[file] = readFileContent(omrixDir, file)
@@ -356,7 +444,52 @@ export default async function PlaygroundPage() {
 		contact01Data[file] = readFileContent(contact01Dir, file)
 	}
 
+	for (const file of cta10Files) {
+		cta10Data[file] = readFileContent(cta10Dir, file)
+	}
+
+	for (const file of cta08Files) {
+		cta08Data[file] = readFileContent(cta08Dir, file)
+	}
+
+	for (const file of cta07Files) {
+		cta07Data[file] = readFileContent(cta07Dir, file)
+	}
+
+	for (const file of faq4Files) {
+		faq4Data[file] = readFileContent(faq4Dir, file)
+	}
+
+	for (const file of faq5Files) {
+		faq5Data[file] = readFileContent(faq5Dir, file)
+	}
+
+	for (const file of faq03Files) {
+		faq03Data[file] = readFileContent(faq03Dir, file)
+	}
+
+	for (const file of form1Files) {
+		form1Data[file] = readFileContent(form1Dir, file)
+	}
+
+	for (const file of checkoutFormFiles) {
+		checkoutFormData[file] = readFileContent(checkoutFormDir, file)
+	}
+
+	for (const file of longFormFiles) {
+		longFormData[file] = readFileContent(longFormDir, file)
+	}
+
 	const files = {
+		"long-form": longFormData,
+		"checkout-form": checkoutFormData,
+		"form-1": form1Data,
+		"faq-03": faq03Data,
+		"faq-5": faq5Data,
+		"faq-4": faq4Data,
+		"cta-07": cta07Data,
+		"cta-08": cta08Data,
+		"cta-10": cta10Data,
 		"contact-01": contact01Data,
 		"contact-06": contact06Data,
 		"contact-2": contact2Data,

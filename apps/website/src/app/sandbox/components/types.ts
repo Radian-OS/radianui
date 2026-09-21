@@ -19,9 +19,27 @@ export interface FilesData {
 	"contact-2": Record<string, string>
 	"contact-06": Record<string, string>
 	"contact-01": Record<string, string>
+	"cta-10": Record<string, string>
+	"cta-08": Record<string, string>
+	"cta-07": Record<string, string>
+	"faq-4": Record<string, string>
+	"faq-5": Record<string, string>
+	"faq-03": Record<string, string>
+	"form-1": Record<string, string>
+	"checkout-form": Record<string, string>
+	"long-form": Record<string, string>
 }
 
 export type PreviewKey =
+	| "long-form"
+	| "checkout-form"
+	| "form-1"
+	| "faq-03"
+	| "faq-5"
+	| "faq-4"
+	| "cta-07"
+	| "cta-08"
+	| "cta-10"
 	| "contact-01"
 	| "contact-06"
 	| "contact-2"
@@ -73,6 +91,9 @@ export type SandboxCategory =
 	| "pricing-section"
 	| "blog-section"
 	| "contact-section"
+	| "cta-section"
+	| "faq-section"
+	| "form-section"
 	| "other-sections"
 
 export interface SandboxComponentConfig {
@@ -87,6 +108,97 @@ export interface SandboxComponentConfig {
 }
 
 export const sandboxComponents: SandboxComponentConfig[] = [
+	{
+		id: "long-form",
+		label: "long-form",
+		category: "form-section",
+		filesKey: "long-form",
+		path: "src/app/sandbox/long-form",
+		defaultFile: "page.tsx",
+		referenceUrl:
+			"https://www.shadcn.io/view/examples/form/long-form-with-many-fields",
+		previewRoute: "/sandbox/long-form",
+	},
+	{
+		id: "checkout-form",
+		label: "checkout-form",
+		category: "form-section",
+		filesKey: "checkout-form",
+		path: "src/app/sandbox/checkout-form",
+		defaultFile: "page.tsx",
+		referenceUrl: "https://www.shadcn.io/view/examples/form/checkout-form",
+		previewRoute: "/sandbox/checkout-form",
+	},
+	{
+		id: "form-1",
+		label: "form-1",
+		category: "form-section",
+		filesKey: "form-1",
+		path: "src/app/sandbox/form-1",
+		defaultFile: "page.tsx",
+		referenceUrl: "https://reui.io/preview/base/form-1",
+		previewRoute: "/sandbox/form-1",
+	},
+	{
+		id: "faq-03",
+		label: "faq-03",
+		category: "faq-section",
+		filesKey: "faq-03",
+		path: "src/app/sandbox/faq-03",
+		defaultFile: "page.tsx",
+		referenceUrl: "https://shadcnspace.com/preview/faq-03",
+		previewRoute: "/sandbox/faq-03",
+	},
+	{
+		id: "faq-5",
+		label: "faq-5",
+		category: "faq-section",
+		filesKey: "faq-5",
+		path: "src/app/sandbox/faq-5",
+		defaultFile: "page.tsx",
+		referenceUrl: "https://reui.io/preview/base/faq-5",
+		previewRoute: "/sandbox/faq-5",
+	},
+	{
+		id: "faq-4",
+		label: "faq-4",
+		category: "faq-section",
+		filesKey: "faq-4",
+		path: "src/app/sandbox/faq-4",
+		defaultFile: "page.tsx",
+		referenceUrl: "https://reui.io/preview/base/faq-4",
+		previewRoute: "/sandbox/faq-4",
+	},
+	{
+		id: "cta-07",
+		label: "cta-07",
+		category: "cta-section",
+		filesKey: "cta-07",
+		path: "src/app/sandbox/cta-07",
+		defaultFile: "page.tsx",
+		referenceUrl: "https://shadcnspace.com/preview/cta-07",
+		previewRoute: "/sandbox/cta-07",
+	},
+	{
+		id: "cta-08",
+		label: "cta-08",
+		category: "cta-section",
+		filesKey: "cta-08",
+		path: "src/app/sandbox/cta-08",
+		defaultFile: "page.tsx",
+		referenceUrl: "https://shadcnspace.com/preview/cta-08",
+		previewRoute: "/sandbox/cta-08",
+	},
+	{
+		id: "cta-10",
+		label: "cta-10",
+		category: "cta-section",
+		filesKey: "cta-10",
+		path: "src/app/sandbox/cta-10",
+		defaultFile: "page.tsx",
+		referenceUrl: "https://shadcnspace.com/preview/cta-10",
+		previewRoute: "/sandbox/cta-10",
+	},
 	{
 		id: "contact-01",
 		label: "contact-01",
@@ -262,7 +374,7 @@ export const sandboxComponents: SandboxComponentConfig[] = [
 	{
 		id: "faq",
 		label: "klarheit-faq",
-		category: "other-sections",
+		category: "faq-section",
 		filesKey: "klarheit-faq",
 		path: "src/app/sandbox/klarheit-faq",
 		defaultFile: "faq-section.tsx",

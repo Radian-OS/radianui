@@ -28,7 +28,7 @@
   	}
   }
   ```
-  Only include layout classes (`max-w-*`), alignment (`text-center`), font overrides if specifically needed (`font-serif`), or color classes (`text-white`, `text-fg`). Example: `<h1 className="heading-1 max-w-4xl text-center font-serif">`. Never duplicate sizing or weight classes.
+  Only include layout classes (`max-w-*`), alignment (`text-center`), font overrides if specifically needed (`font-serif`), or color classes (`text-white`). Example: `<h1 className="heading-1 max-w-4xl text-center font-serif">`. Never duplicate sizing or weight classes.
 - **File Separation**: Each component and page must be in its own separate file. Never define multiple components or pages in a single file. Keep one component per file and import as needed.
 - **Button Colors (CRITICAL — NEVER SKIP)**: Every single `<Button>` component MUST have an explicit `color` prop. No exceptions — this applies to ALL variants including `outline`, `ghost`, `link`, and `solid`. A `<Button>` without a `color` prop is a bug. Inspect the Figma design and pick the correct color. Never default to `primary`. Available colors: `primary`, `neutral`, `error`, `success`, `info`, `warning`. When in doubt, use `neutral` for outline/ghost buttons and `primary` for solid/CTA buttons.
 - **Colors (CRITICAL — NEVER SKIP)**: Always use the global CSS color variables defined in the project's global stylesheet (e.g. `globals.css`). Never use hardcoded color values such as raw hex (`#ff0000`), `rgb()`, `hsl()`, or Tailwind arbitrary values (`text-[#abc]`, `bg-[rgb(...)]`). Always reference the project's CSS custom properties (e.g. `var(--color-primary)`, `var(--color-background)`) or their corresponding Tailwind utility classes (e.g. `text-primary`, `bg-background`, `border-muted`). If a color is not available in the global theme, ask before introducing a new one — do not invent custom colors.
@@ -122,4 +122,4 @@
     </Avatar>
     ```
 
-
+
