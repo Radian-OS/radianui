@@ -60,35 +60,14 @@ const useFontLoader = (
 
 const THEMER_STYLE_ID = "themer-style"
 
-const RADIUS_PRESETS = Object.fromEntries(
-	RADIUS.map((r) => [r.value, r.radius])
-)
-
-const buildRadiusCssText = (preset: string) => {
-	const radii = RADIUS_PRESETS[preset]
-	if (!radii) return ""
-
-	const declarations = Object.entries(radii)
-		.map(([key, value]) => `--${key}: ${value};`)
-		.join("\n")
-
-	return `:root {\n${declarations}\n}\n`
-}
-
 const buildThemerCssText = (
 	cssVars: RegistryThemeCssVars | undefined,
-	radius: string | undefined,
 	inputVariant: string | undefined
 ) => {
 	const parts: string[] = []
 
 	if (cssVars) {
 		parts.push(buildStyleCssText(cssVars))
-	}
-
-	if (radius) {
-		const radiusCss = buildRadiusCssText(radius)
-		if (radiusCss) parts.push(radiusCss)
 	}
 
 	if (inputVariant && inputVariant !== "bordered") {
@@ -129,11 +108,7 @@ export function PreviewClient({ children }: { children: React.ReactNode }) {
 			document.head.appendChild(style)
 		}
 
-		style.textContent = buildThemerCssText(
-			config?.cssVars,
-			params.radius,
-			params.inputVariant
-		)
+		style.textContent = buildThemerCssText(config?.cssVars, params.inputVariant)
 
 		removeManagedBodyClasses(document.body)
 		document.body.classList.add(`style-${params.style}`)
@@ -144,7 +119,7 @@ export function PreviewClient({ children }: { children: React.ReactNode }) {
 				document.head.removeChild(style)
 			}
 		}
-	}, [config, params.radius, params.style, params.inputVariant])
+	}, [config, params.style, params.inputVariant])
 
 	useFontLoader(selectedHeadingFont, "--font-heading")
 	useFontLoader(selectedBodyFont, "--font-body")
@@ -166,6 +141,9 @@ export function PreviewClient({ children }: { children: React.ReactNode }) {
 			if (event.data.type === "radius-change") {
 				setParams({ radius: event.data.radius })
 			}
+			if (event.data.type === "control-radius-change") {
+				setParams({ controlRadius: event.data.controlRadius })
+			}
 			if (event.data.type === "template-change") {
 				setParams({ template: event.data.template })
 			}
@@ -174,6 +152,9 @@ export function PreviewClient({ children }: { children: React.ReactNode }) {
 			}
 			if (event.data.type === "icon-library-change") {
 				setParams({ iconLibrary: event.data.iconLibrary })
+			}
+			if (event.data.type === "secondary-color-change") {
+				setParams({ secondaryColor: event.data.secondaryColor })
 			}
 			if (event.data.type === "input-variant-change") {
 				setParams({ inputVariant: event.data.inputVariant })

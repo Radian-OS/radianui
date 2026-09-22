@@ -739,6 +739,359 @@ export const THEMES = [
 			},
 		},
 	},
+
+	// MARK: netflix
+	{
+		value: "netflix",
+		name: "Netflix",
+		description: "netflix inspired theme",
+		fonts: {
+			heading: "inter",
+			body: "inter",
+		},
+		cssVars: {
+			light: {
+				"--color-primary": "oklch(0.5814 0.2349 27.9869)",
+				"--color-primary-fg": "oklch(0.9800 0.0100 27.9869)",
+				"--color-primary-accent": "oklch(0.9800 0.0100 27.9869)", // Light mode accent
+				"--color-primary-focus": "oklch(0.9500 0.0200 27.9869)",
+				"--color-primary-border": "oklch(0.8000 0.1174 27.9869)",
+				"--color-primary-hover": "oklch(0.5233 0.2349 27.9869)",
+				"--color-primary-text": "oklch(0.5814 0.2349 27.9869)",
+
+				"--color-success": "oklch(0.6334 0.171 148.65)",
+				"--color-success-accent": "oklch(0.9685 0.0336 157.66)",
+				"--color-success-focus": "oklch(0.9489 0.0556 156.34)",
+				"--color-success-border": "oklch(0.7761 0.2117 148.55)",
+				"--color-success-hover": "oklch(0.6901 0.1748 149.64)",
+				"--color-success-text": "oklch(0.5388 0.1339 149.74)",
+				"--color-error": "oklch(0.64 0.22 26.04)",
+				"--color-error-accent": "oklch(0.9465 0.0252 17.61)",
+				"--color-error-focus": "oklch(0.9133 0.0414 17.93)",
+				"--color-error-border": "oklch(0.719 0.1751 22.5)",
+				"--color-error-hover": "oklch(0.6786 0.2095 24.66)",
+				"--color-error-text": "oklch(0.5716 0.2125 27.27)",
+				"--color-warning": "oklch(0.8016 0.1705 73.27)",
+				"--color-warning-accent": "oklch(0.9622 0.0384 83.83)",
+				"--color-warning-focus": "oklch(0.946 0.0574 85.03)",
+				"--color-warning-border": "oklch(0.7318 0.1522 75.09)",
+				"--color-warning-hover": "oklch(0.8342 0.1594 79.51)",
+				"--color-warning-text": "oklch(0.5461 0.1088 77.73)",
+				"--color-info": "oklch(0.6092 0.2041 255.8)",
+				"--color-info-accent": "oklch(0.949 0.0213 245.85)",
+				"--color-info-focus": "oklch(0.9135 0.0358 249.52)",
+				"--color-info-border": "oklch(0.829 0.0811 248.83)",
+				"--color-info-hover": "oklch(0.6722 0.1615 251.56)",
+				"--color-info-text": "oklch(0.6092 0.2041 255.8)",
+
+				"--color-bg": "oklch(0.9612 0.0100 27.9869)",
+				"--color-fill1": "oklch(0.9212 0.0100 27.9869)",
+				"--color-fill2": "oklch(0.8812 0.0100 27.9869)",
+				"--color-fill3": "oklch(0.8412 0.0100 27.9869)",
+				"--color-fill4": "oklch(0.8012 0.0100 27.9869)",
+
+				"--color-fg": "oklch(0.2000 0.0200 27.9869)",
+				"--color-fg-secondary": "oklch(0.4500 0.0200 27.9869)",
+				"--color-fg-tertiary": "oklch(0.6000 0.0200 27.9869)",
+				"--color-fg-disabled": "oklch(0.7000 0.0200 27.9869)",
+				"--color-fg-inverse": "oklch(0.9800 0.0100 27.9869)",
+
+				"--color-border": "oklch(0.7612 0.0100 27.9869)",
+				"--color-alpha":
+					"color-mix(in srgb, oklch(0.5814 0.2349 27.9869), transparent 88%)",
+				"--color-soft": "oklch(0.9112 0.0100 27.9869)",
+				"--color-soft-alpha":
+					"color-mix(in srgb, oklch(0.5814 0.2349 27.9869), transparent 92%)",
+
+				"--color-elevation-negative": "oklch(0.8812 0.0100 27.9869)",
+				"--color-elevation-level1": "oklch(0.9900 0.0100 27.9869)",
+				"--color-elevation-level2": "oklch(0.9950 0.0100 27.9869)",
+
+				"--color-white-inverse": "oklch(0.9900 0.0100 27.9869)",
+				"--color-black-inverse": "oklch(0.1913 0.0100 27.9869)",
+
+				"--color-fill1-alpha":
+					"color-mix(in srgb, oklch(0.5814 0.2349 27.9869), transparent 96%)",
+				"--color-fill2-alpha":
+					"color-mix(in srgb, oklch(0.5814 0.2349 27.9869), transparent 92%)",
+				"--color-fill3-alpha":
+					"color-mix(in srgb, oklch(0.5814 0.2349 27.9869), transparent 88%)",
+				"--color-fill4-alpha":
+					"color-mix(in srgb, oklch(0.5814 0.2349 27.9869), transparent 84%)",
+
+				"--color-card": "var(--color-elevation-level1)",
+				"--color-popover": "var(--color-elevation-level2)",
+
+				"--color-sidebar": "var(--color-fill1)",
+				"--color-sidebar-fg": "var(--color-fg)",
+				"--color-sidebar-accent": "var(--color-fill1-alpha)",
+				"--color-sidebar-accent-fg": "var(--color-fg)",
+				"--color-sidebar-border": "var(--color-border)",
+				"--color-sidebar-ring": "var(--color-fg-secondary)",
+			},
+			dark: {
+				"--color-primary": "oklch(0.5814 0.2349 27.9869)",
+				"--color-primary-fg": "oklch(0.9800 0.0100 27.9869)",
+				"--color-primary-accent": "oklch(0.2326 0.1879 27.9869)",
+				"--color-primary-focus": "oklch(0.2907 0.1879 27.9869)",
+				"--color-primary-border": "oklch(0.4651 0.2114 27.9869)",
+				"--color-primary-hover": "oklch(0.6396 0.2583 27.9869)",
+				"--color-primary-text": "oklch(0.5814 0.2349 27.9869)",
+
+				"--color-success": "oklch(0.6334 0.171 148.65)",
+				"--color-success-accent": "oklch(0.9685 0.0336 157.66)",
+				"--color-success-focus": "oklch(0.9489 0.0556 156.34)",
+				"--color-success-border": "oklch(0.7761 0.2117 148.55)",
+				"--color-success-hover": "oklch(0.6901 0.1748 149.64)",
+				"--color-success-text": "oklch(0.5388 0.1339 149.74)",
+				"--color-error": "oklch(0.64 0.22 26.04)",
+				"--color-error-accent": "oklch(0.9465 0.0252 17.61)",
+				"--color-error-focus": "oklch(0.9133 0.0414 17.93)",
+				"--color-error-border": "oklch(0.719 0.1751 22.5)",
+				"--color-error-hover": "oklch(0.6786 0.2095 24.66)",
+				"--color-error-text": "oklch(0.5716 0.2125 27.27)",
+				"--color-warning": "oklch(0.8016 0.1705 73.27)",
+				"--color-warning-accent": "oklch(0.9622 0.0384 83.83)",
+				"--color-warning-focus": "oklch(0.946 0.0574 85.03)",
+				"--color-warning-border": "oklch(0.7318 0.1522 75.09)",
+				"--color-warning-hover": "oklch(0.8342 0.1594 79.51)",
+				"--color-warning-text": "oklch(0.5461 0.1088 77.73)",
+				"--color-info": "oklch(0.6092 0.2041 255.8)",
+				"--color-info-accent": "oklch(0.949 0.0213 245.85)",
+				"--color-info-focus": "oklch(0.9135 0.0358 249.52)",
+				"--color-info-border": "oklch(0.829 0.0811 248.83)",
+				"--color-info-hover": "oklch(0.6722 0.1615 251.56)",
+				"--color-info-text": "oklch(0.6092 0.2041 255.8)",
+
+				"--color-bg": "oklch(0.1913 0.0100 27.9869)",
+				"--color-fill1": "oklch(0.2313 0.0100 27.9869)",
+				"--color-fill2": "oklch(0.2713 0.0100 27.9869)",
+				"--color-fill3": "oklch(0.3113 0.0100 27.9869)",
+				"--color-fill4": "oklch(0.3513 0.0100 27.9869)",
+
+				"--color-fg": "oklch(0.9200 0.0200 27.9869)",
+				"--color-fg-secondary": "oklch(0.7000 0.0200 27.9869)",
+				"--color-fg-tertiary": "oklch(0.5500 0.0200 27.9869)",
+				"--color-fg-disabled": "oklch(0.4000 0.0200 27.9869)",
+				"--color-fg-inverse": "oklch(0.1500 0.0100 27.9869)",
+
+				"--color-border": "oklch(0.3913 0.0100 27.9869)",
+				"--color-alpha":
+					"color-mix(in srgb, oklch(0.5814 0.2349 27.9869), transparent 85%)",
+				"--color-soft": "oklch(0.2913 0.0100 27.9869)",
+				"--color-soft-alpha":
+					"color-mix(in srgb, oklch(0.5814 0.2349 27.9869), transparent 90%)",
+
+				"--color-elevation-negative": "oklch(0.1913 0.0100 27.9869)",
+				"--color-elevation-level1": "oklch(0.2313 0.0100 27.9869)",
+				"--color-elevation-level2": "oklch(0.2713 0.0100 27.9869)",
+
+				"--color-white-inverse": "oklch(0.9900 0.0100 27.9869)",
+				"--color-black-inverse": "oklch(0.1913 0.0100 27.9869)",
+
+				"--color-fill1-alpha":
+					"color-mix(in srgb, oklch(0.5814 0.2349 27.9869), transparent 96%)",
+				"--color-fill2-alpha":
+					"color-mix(in srgb, oklch(0.5814 0.2349 27.9869), transparent 92%)",
+				"--color-fill3-alpha":
+					"color-mix(in srgb, oklch(0.5814 0.2349 27.9869), transparent 88%)",
+				"--color-fill4-alpha":
+					"color-mix(in srgb, oklch(0.5814 0.2349 27.9869), transparent 84%)",
+
+				"--color-card": "var(--color-elevation-level1)",
+				"--color-popover": "var(--color-elevation-level2)",
+
+				"--color-sidebar": "var(--color-fill1)",
+				"--color-sidebar-fg": "var(--color-fg)",
+				"--color-sidebar-accent": "var(--color-fill1-alpha)",
+				"--color-sidebar-accent-fg": "var(--color-fg)",
+				"--color-sidebar-border": "var(--color-border)",
+				"--color-sidebar-ring": "var(--color-fg-secondary)",
+			},
+			theme: {
+				"--radius-sm": "4px",
+				"--radius-md": "6px",
+				"--radius-lg": "8px",
+				"--radius-xl": "12px",
+			},
+		},
+	},
+	// MARK: spotify
+	{
+		value: "spotify",
+		name: "Spotify",
+		description: "spotify inspired theme",
+		fonts: {
+			heading: "inter",
+			body: "inter",
+		},
+		cssVars: {
+			light: {
+				"--color-primary": "oklch(0.6888 0.1870 148.9208)",
+				"--color-primary-fg": "oklch(0.9800 0.0100 148.9208)",
+				"--color-primary-accent": "oklch(0.9800 0.0100 148.9208)", // Light mode accent
+				"--color-primary-focus": "oklch(0.9500 0.0200 148.9208)",
+				"--color-primary-border": "oklch(0.8000 0.0935 148.9208)",
+				"--color-primary-hover": "oklch(0.6199 0.1870 148.9208)",
+				"--color-primary-text": "oklch(0.6888 0.1870 148.9208)",
+
+				"--color-success": "oklch(0.6334 0.171 148.65)",
+				"--color-success-accent": "oklch(0.9685 0.0336 157.66)",
+				"--color-success-focus": "oklch(0.9489 0.0556 156.34)",
+				"--color-success-border": "oklch(0.7761 0.2117 148.55)",
+				"--color-success-hover": "oklch(0.6901 0.1748 149.64)",
+				"--color-success-text": "oklch(0.5388 0.1339 149.74)",
+				"--color-error": "oklch(0.64 0.22 26.04)",
+				"--color-error-accent": "oklch(0.9465 0.0252 17.61)",
+				"--color-error-focus": "oklch(0.9133 0.0414 17.93)",
+				"--color-error-border": "oklch(0.719 0.1751 22.5)",
+				"--color-error-hover": "oklch(0.6786 0.2095 24.66)",
+				"--color-error-text": "oklch(0.5716 0.2125 27.27)",
+				"--color-warning": "oklch(0.8016 0.1705 73.27)",
+				"--color-warning-accent": "oklch(0.9622 0.0384 83.83)",
+				"--color-warning-focus": "oklch(0.946 0.0574 85.03)",
+				"--color-warning-border": "oklch(0.7318 0.1522 75.09)",
+				"--color-warning-hover": "oklch(0.8342 0.1594 79.51)",
+				"--color-warning-text": "oklch(0.5461 0.1088 77.73)",
+				"--color-info": "oklch(0.6092 0.2041 255.8)",
+				"--color-info-accent": "oklch(0.949 0.0213 245.85)",
+				"--color-info-focus": "oklch(0.9135 0.0358 249.52)",
+				"--color-info-border": "oklch(0.829 0.0811 248.83)",
+				"--color-info-hover": "oklch(0.6722 0.1615 251.56)",
+				"--color-info-text": "oklch(0.6092 0.2041 255.8)",
+
+				"--color-bg": "oklch(0.9401 0.0100 148.9208)",
+				"--color-fill1": "oklch(0.9001 0.0100 148.9208)",
+				"--color-fill2": "oklch(0.8601 0.0100 148.9208)",
+				"--color-fill3": "oklch(0.8201 0.0100 148.9208)",
+				"--color-fill4": "oklch(0.7801 0.0100 148.9208)",
+
+				"--color-fg": "oklch(0.2000 0.0200 148.9208)",
+				"--color-fg-secondary": "oklch(0.4500 0.0200 148.9208)",
+				"--color-fg-tertiary": "oklch(0.6000 0.0200 148.9208)",
+				"--color-fg-disabled": "oklch(0.7000 0.0200 148.9208)",
+				"--color-fg-inverse": "oklch(0.9800 0.0100 148.9208)",
+
+				"--color-border": "oklch(0.7401 0.0100 148.9208)",
+				"--color-alpha":
+					"color-mix(in srgb, oklch(0.6888 0.1870 148.9208), transparent 88%)",
+				"--color-soft": "oklch(0.8901 0.0100 148.9208)",
+				"--color-soft-alpha":
+					"color-mix(in srgb, oklch(0.6888 0.1870 148.9208), transparent 92%)",
+
+				"--color-elevation-negative": "oklch(0.8601 0.0100 148.9208)",
+				"--color-elevation-level1": "oklch(0.9900 0.0100 148.9208)",
+				"--color-elevation-level2": "oklch(0.9950 0.0100 148.9208)",
+
+				"--color-white-inverse": "oklch(0.9900 0.0100 148.9208)",
+				"--color-black-inverse": "oklch(0.1822 0.0100 148.9208)",
+
+				"--color-fill1-alpha":
+					"color-mix(in srgb, oklch(0.6888 0.1870 148.9208), transparent 96%)",
+				"--color-fill2-alpha":
+					"color-mix(in srgb, oklch(0.6888 0.1870 148.9208), transparent 92%)",
+				"--color-fill3-alpha":
+					"color-mix(in srgb, oklch(0.6888 0.1870 148.9208), transparent 88%)",
+				"--color-fill4-alpha":
+					"color-mix(in srgb, oklch(0.6888 0.1870 148.9208), transparent 84%)",
+
+				"--color-card": "var(--color-elevation-level1)",
+				"--color-popover": "var(--color-elevation-level2)",
+
+				"--color-sidebar": "var(--color-fill1)",
+				"--color-sidebar-fg": "var(--color-fg)",
+				"--color-sidebar-accent": "var(--color-fill1-alpha)",
+				"--color-sidebar-accent-fg": "var(--color-fg)",
+				"--color-sidebar-border": "var(--color-border)",
+				"--color-sidebar-ring": "var(--color-fg-secondary)",
+			},
+			dark: {
+				"--color-primary": "oklch(0.6888 0.1870 148.9208)",
+				"--color-primary-fg": "oklch(0.9800 0.0100 148.9208)",
+				"--color-primary-accent": "oklch(0.2755 0.1496 148.9208)",
+				"--color-primary-focus": "oklch(0.3444 0.1496 148.9208)",
+				"--color-primary-border": "oklch(0.5511 0.1683 148.9208)",
+				"--color-primary-hover": "oklch(0.7577 0.2057 148.9208)",
+				"--color-primary-text": "oklch(0.6888 0.1870 148.9208)",
+
+				"--color-success": "oklch(0.6334 0.171 148.65)",
+				"--color-success-accent": "oklch(0.9685 0.0336 157.66)",
+				"--color-success-focus": "oklch(0.9489 0.0556 156.34)",
+				"--color-success-border": "oklch(0.7761 0.2117 148.55)",
+				"--color-success-hover": "oklch(0.6901 0.1748 149.64)",
+				"--color-success-text": "oklch(0.5388 0.1339 149.74)",
+				"--color-error": "oklch(0.64 0.22 26.04)",
+				"--color-error-accent": "oklch(0.9465 0.0252 17.61)",
+				"--color-error-focus": "oklch(0.9133 0.0414 17.93)",
+				"--color-error-border": "oklch(0.719 0.1751 22.5)",
+				"--color-error-hover": "oklch(0.6786 0.2095 24.66)",
+				"--color-error-text": "oklch(0.5716 0.2125 27.27)",
+				"--color-warning": "oklch(0.8016 0.1705 73.27)",
+				"--color-warning-accent": "oklch(0.9622 0.0384 83.83)",
+				"--color-warning-focus": "oklch(0.946 0.0574 85.03)",
+				"--color-warning-border": "oklch(0.7318 0.1522 75.09)",
+				"--color-warning-hover": "oklch(0.8342 0.1594 79.51)",
+				"--color-warning-text": "oklch(0.5461 0.1088 77.73)",
+				"--color-info": "oklch(0.6092 0.2041 255.8)",
+				"--color-info-accent": "oklch(0.949 0.0213 245.85)",
+				"--color-info-focus": "oklch(0.9135 0.0358 249.52)",
+				"--color-info-border": "oklch(0.829 0.0811 248.83)",
+				"--color-info-hover": "oklch(0.6722 0.1615 251.56)",
+				"--color-info-text": "oklch(0.6092 0.2041 255.8)",
+
+				"--color-bg": "oklch(0.1822 0.0100 148.9208)",
+				"--color-fill1": "oklch(0.2222 0.0100 148.9208)",
+				"--color-fill2": "oklch(0.2622 0.0100 148.9208)",
+				"--color-fill3": "oklch(0.3022 0.0100 148.9208)",
+				"--color-fill4": "oklch(0.3422 0.0100 148.9208)",
+
+				"--color-fg": "oklch(0.9200 0.0200 148.9208)",
+				"--color-fg-secondary": "oklch(0.7000 0.0200 148.9208)",
+				"--color-fg-tertiary": "oklch(0.5500 0.0200 148.9208)",
+				"--color-fg-disabled": "oklch(0.4000 0.0200 148.9208)",
+				"--color-fg-inverse": "oklch(0.1500 0.0100 148.9208)",
+
+				"--color-border": "oklch(0.3822 0.0100 148.9208)",
+				"--color-alpha":
+					"color-mix(in srgb, oklch(0.6888 0.1870 148.9208), transparent 85%)",
+				"--color-soft": "oklch(0.2822 0.0100 148.9208)",
+				"--color-soft-alpha":
+					"color-mix(in srgb, oklch(0.6888 0.1870 148.9208), transparent 90%)",
+
+				"--color-elevation-negative": "oklch(0.1822 0.0100 148.9208)",
+				"--color-elevation-level1": "oklch(0.2222 0.0100 148.9208)",
+				"--color-elevation-level2": "oklch(0.2622 0.0100 148.9208)",
+
+				"--color-white-inverse": "oklch(0.9900 0.0100 148.9208)",
+				"--color-black-inverse": "oklch(0.1822 0.0100 148.9208)",
+
+				"--color-fill1-alpha":
+					"color-mix(in srgb, oklch(0.6888 0.1870 148.9208), transparent 96%)",
+				"--color-fill2-alpha":
+					"color-mix(in srgb, oklch(0.6888 0.1870 148.9208), transparent 92%)",
+				"--color-fill3-alpha":
+					"color-mix(in srgb, oklch(0.6888 0.1870 148.9208), transparent 88%)",
+				"--color-fill4-alpha":
+					"color-mix(in srgb, oklch(0.6888 0.1870 148.9208), transparent 84%)",
+
+				"--color-card": "var(--color-elevation-level1)",
+				"--color-popover": "var(--color-elevation-level2)",
+
+				"--color-sidebar": "var(--color-fill1)",
+				"--color-sidebar-fg": "var(--color-fg)",
+				"--color-sidebar-accent": "var(--color-fill1-alpha)",
+				"--color-sidebar-accent-fg": "var(--color-fg)",
+				"--color-sidebar-border": "var(--color-border)",
+				"--color-sidebar-ring": "var(--color-fg-secondary)",
+			},
+			theme: {
+				"--radius-sm": "9999px",
+				"--radius-md": "9999px",
+				"--radius-lg": "9999px",
+				"--radius-xl": "9999px",
+			},
+		},
+	},
 ] as const
 
 export type ThemeValue = (typeof THEMES)[number]["value"]

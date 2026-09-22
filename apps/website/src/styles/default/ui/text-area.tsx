@@ -15,7 +15,7 @@ export type UseCharacterLimitOptions = {
 }
 
 const textareaStyles = cva(
-	"peer w-full focus:outline-hidden text-fg border-alpha drop-shadow-xs focus:border-primary-hover aria-invalid:ring-error aria-invalid:border-error focus:ring-primary-hover/30 disabled:border-soft disabled:bg-fill1 disabled:text-fg-disabled bg-bg border px-2.5 py-2 text-sm font-normal placeholder:text-sm focus:ring-2 disabled:cursor-not-allowed disabled:resize-none",
+	"peer text-fg border-alpha focus:border-primary-hover aria-invalid:ring-error aria-invalid:border-error focus:ring-primary-hover/30 disabled:border-soft disabled:bg-fill1 disabled:text-fg-disabled bg-bg w-full border px-2.5 py-2 text-sm font-normal drop-shadow-xs placeholder:text-sm focus:ring-2 focus:outline-hidden disabled:cursor-not-allowed disabled:resize-none",
 	{
 		variants: {
 			rounded: {

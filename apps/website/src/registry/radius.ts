@@ -40,7 +40,7 @@ export const RADIUS = [
 		name: "Full",
 		type: "registry:radius",
 		radius: {
-			"radius-base": "12px",
+			"radius-base": "14px",
 			"control-radius-base": "calc(infinity * 1px)",
 		},
 	},

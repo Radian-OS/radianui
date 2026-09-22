@@ -70,9 +70,15 @@ export function CreateProjectDialog() {
 	const selectedColor = PRIMARY_COLORS.find(
 		(c) => c.value === params.primaryColor
 	)
+	const selectedSecondaryColor = PRIMARY_COLORS.find(
+		(c) => c.value === params.secondaryColor
+	)
 	const selectedHeadingFont = FONTS.find((f) => f.value === params.headingFont)
 	const selectedBodyFont = FONTS.find((f) => f.value === params.bodyFont)
 	const selectedRadius = RADII.find((r) => r.value === params.radius)
+	const selectedControlRadius = RADII.find(
+		(r) => r.value === params.controlRadius
+	)
 	const selectedInputVariant = INPUT_VARIANTS.find(
 		(v) => v.value === params.inputVariant
 	)
@@ -191,9 +197,18 @@ export function CreateProjectDialog() {
 						<div className="border-border mx-5 flex flex-wrap gap-1.5 rounded-lg border-t pt-4">
 							{selectedColor && (
 								<ThemeSummaryPill
-									label="Color"
+									label="Primary"
 									value={selectedColor.name}
 									colorSwatch={selectedColor.cssVars.light["--color-primary"]}
+								/>
+							)}
+							{selectedSecondaryColor && (
+								<ThemeSummaryPill
+									label="Secondary"
+									value={selectedSecondaryColor.name}
+									colorSwatch={
+										selectedSecondaryColor.cssVars.light["--color-primary"]
+									}
 								/>
 							)}
 							{selectedHeadingFont && (
@@ -206,7 +221,16 @@ export function CreateProjectDialog() {
 								<ThemeSummaryPill label="Body" value={selectedBodyFont.name} />
 							)}
 							{selectedRadius && (
-								<ThemeSummaryPill label="Radius" value={selectedRadius.name} />
+								<ThemeSummaryPill
+									label="Container Radius"
+									value={selectedRadius.name}
+								/>
+							)}
+							{selectedControlRadius && (
+								<ThemeSummaryPill
+									label="Control Radius"
+									value={selectedControlRadius.name}
+								/>
 							)}
 							<ThemeSummaryPill
 								label="Src Dir"

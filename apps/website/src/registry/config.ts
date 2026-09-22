@@ -46,6 +46,9 @@ export const themerConfigSchema = z.object({
 	primaryColor: z
 		.enum(PRIMARY_COLORS.map((color) => color.value))
 		.default("violet-blue"),
+	secondaryColor: z
+		.enum(PRIMARY_COLORS.map((color) => color.value))
+		.default("violet-blue"),
 	baseColor: z.enum(BASE_COLORS.map((color) => color.value)).default("default"),
 	headingFont: z
 		.enum(fontValues, {
@@ -57,6 +60,11 @@ export const themerConfigSchema = z.object({
 		.default("inter"),
 	template: z.enum(TEMPLATES).default("next"),
 	radius: z
+		.enum(radiusValues, {
+			error: "Invalid radius value",
+		})
+		.default("medium"),
+	controlRadius: z
 		.enum(radiusValues, {
 			error: "Invalid radius value",
 		})
@@ -75,10 +83,12 @@ export type ThemerConfig = z.infer<typeof themerConfigSchema>
 
 export const DEFAULT_CONFIG: ThemerConfig = {
 	primaryColor: "violet-blue",
+	secondaryColor: "violet-blue",
 	headingFont: "geist",
 	bodyFont: "inter",
 	template: "next",
 	radius: "medium",
+	controlRadius: "medium",
 	style: "default",
 	name: "my-project",
 	useSrcDir: true,
@@ -99,10 +109,12 @@ export const PRESETS: Preset[] = [
 		title: "Default",
 		description: "Default preset",
 		primaryColor: "violet-blue",
+		secondaryColor: "violet-blue",
 		headingFont: "geist",
 		bodyFont: "inter",
 		template: "next",
 		radius: "medium",
+		controlRadius: "medium",
 		style: "default",
 		useSrcDir: true,
 		iconLibrary: "lucide",
@@ -114,10 +126,12 @@ export const PRESETS: Preset[] = [
 		title: "Sera",
 		description: "Sera preset",
 		primaryColor: "violet-blue",
+		secondaryColor: "violet-blue",
 		headingFont: "playfair-display",
 		bodyFont: "playfair-display",
 		template: "next",
 		radius: "none",
+		controlRadius: "none",
 		style: "sera",
 		useSrcDir: true,
 		iconLibrary: "lucide",
@@ -290,11 +304,33 @@ function normalizePrimaryColorVars(
 	return result
 }
 
+function normalizeSecondaryColorVars(vars?: Record<string, string>) {
+	if (!vars) return {}
+	const result: Record<string, string> = {}
+	for (const [key, value] of Object.entries(vars)) {
+		const normalizedKey = key.startsWith("--") ? key : `--color-${key}`
+		result[normalizedKey.replace("--color-primary", "--color-secondary")] =
+			value
+	}
+	return result
+}
+
 export function buildRegistryConfig(config: ThemerConfig): RegistryConfig {
 	const primaryColor = config.primaryColor ?? DEFAULT_CONFIG.primaryColor
 	const colorEntry = PRIMARY_COLORS.find((c) => c.value === primaryColor)
 	const lightVars = normalizePrimaryColorVars(colorEntry?.cssVars.light)
 	const darkVars = normalizePrimaryColorVars(colorEntry?.cssVars.dark)
+
+	const secondaryColor = config.secondaryColor ?? DEFAULT_CONFIG.secondaryColor
+	const secondaryColorEntry = PRIMARY_COLORS.find(
+		(c) => c.value === secondaryColor
+	)
+	const secondaryLightVars = normalizeSecondaryColorVars(
+		secondaryColorEntry?.cssVars.light
+	)
+	const secondaryDarkVars = normalizeSecondaryColorVars(
+		secondaryColorEntry?.cssVars.dark
+	)
 
 	const baseColorEntry = BASE_COLORS.find((c) => c.value === config.baseColor)
 	const baseLightVars = baseColorEntry?.cssVars.light
@@ -312,9 +348,12 @@ export function buildRegistryConfig(config: ThemerConfig): RegistryConfig {
 
 	const radius = RADIUS.find((r) => r.value === config.radius)
 	if (radius) {
-		for (const [key, value] of Object.entries(radius.radius)) {
-			theme[`--${key}`] = value
-		}
+		theme["--radius-base"] = radius.radius["radius-base"]
+	}
+
+	const controlRadius = RADIUS.find((r) => r.value === config.controlRadius)
+	if (controlRadius) {
+		theme["--control-radius-base"] = controlRadius.radius["control-radius-base"]
 	}
 
 	const inputVariantEntry = INPUT_VARIANTS.find(
@@ -336,11 +375,13 @@ export function buildRegistryConfig(config: ThemerConfig): RegistryConfig {
 			light: {
 				...BASE_THEME.light,
 				...(lightVars || {}),
+				...(secondaryLightVars || {}),
 				...baseLightVars,
 			},
 			dark: {
 				...BASE_THEME.dark,
 				...(darkVars || {}),
+				...(secondaryDarkVars || {}),
 				...baseDarkVars,
 			},
 			theme: {

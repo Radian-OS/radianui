@@ -21,9 +21,12 @@ function ThemerContent() {
 	const iframeSrc = useMemo(() => {
 		const searchParams = new URLSearchParams({
 			component: selectedComponent,
+			primaryColor: params.primaryColor,
+			secondaryColor: params.secondaryColor,
 			headingFont: params.headingFont,
 			bodyFont: params.bodyFont,
 			radius: params.radius,
+			controlRadius: params.controlRadius,
 			template: params.template,
 			style: params.style,
 			useSrcDir: String(params.useSrcDir),
@@ -98,10 +101,24 @@ function ThemerContent() {
 
 	useEffect(() => {
 		postToIframe({
+			type: "control-radius-change",
+			controlRadius: params.controlRadius,
+		})
+	}, [params.controlRadius])
+
+	useEffect(() => {
+		postToIframe({
 			type: "input-variant-change",
 			inputVariant: params.inputVariant,
 		})
 	}, [params.inputVariant])
+
+	useEffect(() => {
+		postToIframe({
+			type: "secondary-color-change",
+			secondaryColor: params.secondaryColor,
+		})
+	}, [params.secondaryColor])
 
 	return (
 		<div className="bg-fill2 flex h-screen w-full">

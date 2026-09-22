@@ -1,7 +1,7 @@
 import { create } from "zustand"
 import { persist } from "zustand/middleware"
 
-type ThemerLockKey = "headingFont" | "bodyFont" | "radius"
+type ThemerLockKey = "headingFont" | "bodyFont" | "radius" | "controlRadius"
 
 type ThemerLocksState = {
 	locked: Record<ThemerLockKey, boolean>
@@ -15,6 +15,7 @@ export const useThemerLocks = create<ThemerLocksState>()(
 				headingFont: false,
 				bodyFont: false,
 				radius: false,
+				controlRadius: false,
 			},
 			toggleLock: (key) =>
 				set((state) => ({

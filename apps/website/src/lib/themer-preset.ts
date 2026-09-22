@@ -21,6 +21,9 @@ const designSystemSearchParams = {
 	primaryColor: parseAsStringLiteral<PrimaryColorValue>(
 		PRIMARY_COLORS.map((color) => color.value)
 	).withDefault(DEFAULT_CONFIG.primaryColor),
+	secondaryColor: parseAsStringLiteral<PrimaryColorValue>(
+		PRIMARY_COLORS.map((color) => color.value)
+	).withDefault(DEFAULT_CONFIG.secondaryColor),
 	baseColor: parseAsStringLiteral<BaseColorValue>(
 		BASE_COLORS.map((color) => color.value)
 	).withDefault(DEFAULT_CONFIG.baseColor),
@@ -33,6 +36,9 @@ const designSystemSearchParams = {
 	radius: parseAsStringLiteral<RadiusValue>(
 		RADIUS.map((r) => r.value)
 	).withDefault(DEFAULT_CONFIG.radius),
+	controlRadius: parseAsStringLiteral<RadiusValue>(
+		RADIUS.map((r) => r.value)
+	).withDefault(DEFAULT_CONFIG.controlRadius),
 	template: parseAsStringLiteral<Template>(TEMPLATES).withDefault(
 		DEFAULT_CONFIG.template
 	),
@@ -58,10 +64,13 @@ function resolvePresetParams(
 ) {
 	const mergedParams = {
 		primaryColor: searchParams.get("primaryColor") ?? rawParams.primaryColor,
+		secondaryColor:
+			searchParams.get("secondaryColor") ?? rawParams.secondaryColor,
 		baseColor: searchParams.get("baseColor") ?? rawParams.baseColor,
 		headingFont: searchParams.get("headingFont") ?? rawParams.headingFont,
 		bodyFont: searchParams.get("bodyFont") ?? rawParams.bodyFont,
 		radius: searchParams.get("radius") ?? rawParams.radius,
+		controlRadius: searchParams.get("controlRadius") ?? rawParams.controlRadius,
 		template: searchParams.get("template") ?? rawParams.template,
 		style: searchParams.get("style") ?? rawParams.style,
 		useSrcDir: searchParams.get("useSrcDir") ?? rawParams.useSrcDir,

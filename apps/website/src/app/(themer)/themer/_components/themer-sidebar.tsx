@@ -51,6 +51,7 @@ const BLOCK_PREVIEWS = [
 	"preview-02",
 	"preview-03",
 	"preview-04",
+	"preview-05",
 	"signin",
 	"signup",
 	"new-password",
@@ -151,10 +152,12 @@ export function ThemerSidebar({
 	)
 
 	useEffect(() => {
-		if (isRadiusDisabled && params.radius !== "none") {
-			setParams({ radius: "none" })
+		if (isRadiusDisabled) {
+			if (params.radius !== "none" || params.controlRadius !== "none") {
+				setParams({ radius: "none", controlRadius: "none" })
+			}
 		}
-	}, [isRadiusDisabled, params.radius, setParams])
+	}, [isRadiusDisabled, params.radius, params.controlRadius, setParams])
 
 	const handleRandomize = useCallback(() => {
 		const style = getRandomItem(STYLES)
@@ -163,6 +166,7 @@ export function ThemerSidebar({
 		const headingFont = getRandomItem(FONTS)
 		const bodyFont = getRandomItem(FONTS)
 		const radius = getRandomItem(RADIUS)
+		const controlRadius = getRandomItem(RADIUS)
 		const iconLibrary = getRandomItem(ICON_LIBRARIES)
 		const isNextRadiusDisabled = RADIUS_DISABLED_STYLES.includes(
 			style.value as StyleValue
@@ -175,6 +179,7 @@ export function ThemerSidebar({
 			iconLibrary: iconLibrary as IconLibrary,
 			...(isNextRadiusDisabled && {
 				radius: "none",
+				controlRadius: "none",
 			}),
 			...(!locked.headingFont && {
 				headingFont: headingFont.value as FontValue,
@@ -185,6 +190,10 @@ export function ThemerSidebar({
 			...(!locked.radius &&
 				!isNextRadiusDisabled && {
 					radius: radius.value as RadiusValue,
+				}),
+			...(!locked.controlRadius &&
+				!isNextRadiusDisabled && {
+					controlRadius: controlRadius.value as RadiusValue,
 				}),
 		})
 	}, [locked, setParams])
@@ -248,6 +257,7 @@ export function ThemerSidebar({
 											headingFont: preset.headingFont,
 											bodyFont: preset.bodyFont,
 											radius: preset.radius,
+											controlRadius: preset.controlRadius,
 											template: preset.template,
 											useSrcDir: preset.useSrcDir,
 										}),
@@ -262,8 +272,13 @@ export function ThemerSidebar({
 											!isNextRadiusDisabled && {
 												radius: params.radius,
 											}),
+										...(locked.controlRadius &&
+											!isNextRadiusDisabled && {
+												controlRadius: params.controlRadius,
+											}),
 										...(isNextRadiusDisabled && {
 											radius: "none",
+											controlRadius: "none",
 										}),
 									})
 								}}>
@@ -298,6 +313,24 @@ export function ThemerSidebar({
 								onClick={() =>
 									setParams({
 										primaryColor: color.value as PrimaryColorValue,
+									})
+								}
+							/>
+						))}
+					</div>
+				</div>
+
+				<div className="flex flex-col gap-3">
+					<SectionLabel>Secondary Color</SectionLabel>
+					<div className="flex flex-wrap gap-2">
+						{PRIMARY_COLORS.map((color) => (
+							<ColorSwatch
+								key={`secondary-${color.value}`}
+								color={color}
+								isSelected={params.secondaryColor === color.value}
+								onClick={() =>
+									setParams({
+										secondaryColor: color.value as PrimaryColorValue,
 									})
 								}
 							/>
@@ -474,9 +507,14 @@ export function ThemerSidebar({
 					</div>
 				</div>
 
-				{/* Radius */}
+				{/* Container Radius */}
 				<div className="flex flex-col gap-3">
-					<SectionLabel>Border Radius</SectionLabel>
+					<SectionLabel>
+						Container Radius{" "}
+						<span className="text-fg-tertiary text-[11px] font-normal">
+							(cards, dialogs, popovers)
+						</span>
+					</SectionLabel>
 					<div className="flex flex-wrap gap-1.5">
 						{RADII.map((radius) => (
 							<RadiusPill
@@ -495,6 +533,37 @@ export function ThemerSidebar({
 							isLocked={locked.radius}
 							disabled={isRadiusDisabled}
 							onToggle={() => toggleLock("radius")}
+						/>
+					</div>
+				</div>
+
+				{/* Control Radius */}
+				<div className="flex flex-col gap-3">
+					<SectionLabel>
+						Control Radius{" "}
+						<span className="text-fg-tertiary text-[11px] font-normal">
+							(buttons, inputs, badges)
+						</span>
+					</SectionLabel>
+					<div className="flex flex-wrap gap-1.5">
+						{RADII.map((radius) => (
+							<RadiusPill
+								key={radius.value}
+								radius={radius}
+								isSelected={
+									(isRadiusDisabled ? "none" : params.controlRadius) ===
+									radius.value
+								}
+								disabled={isRadiusDisabled}
+								onClick={() =>
+									setParams({ controlRadius: radius.value as RadiusValue })
+								}
+							/>
+						))}
+						<RadiusLockPill
+							isLocked={locked.controlRadius}
+							disabled={isRadiusDisabled}
+							onToggle={() => toggleLock("controlRadius")}
 						/>
 					</div>
 				</div>
