@@ -19,6 +19,7 @@ import {
 	ResourcesIcon,
 	ViteIcon,
 } from "@/components/custom/icon"
+import type { ResourceIconName } from "@/components/navbar/resource-icons"
 
 export type NavigationItem = {
 	title: string
@@ -32,6 +33,7 @@ export type NavigationItem = {
 	isUpdated?: boolean
 	isComingSoon?: boolean
 	disabled?: boolean
+	resourceIcon?: ResourceIconName
 	subItems?: NavigationItem[]
 	isExternal?: boolean
 }
@@ -231,6 +233,68 @@ const MISCELLANEOUS_ITEMS: NavigationItem[] = [
 		isNew: true,
 	},
 ]
+
+export const RESOURCE_ITEMS: NavigationItem[] = [
+	{
+		title: "UI Avatars",
+		description: "User avatars for app and dashboard.",
+		url: "/resources/avatar",
+		resourceIcon: "avatar",
+	},
+	{
+		title: "Emoji",
+		description: "A complete emoji collection.",
+		url: "/resources/emoji",
+		resourceIcon: "emoji",
+		isComingSoon: true,
+		disabled: true,
+	},
+	{
+		title: "Brand Logo",
+		description: "Popular company logos.",
+		url: "/resources/brand-logos",
+		resourceIcon: "brand-logo",
+		isComingSoon: true,
+		disabled: true,
+	},
+	{
+		title: "File Format Icons",
+		description: "Common file type icons.",
+		url: "/resources/file-format-icons",
+		resourceIcon: "file-format",
+		isComingSoon: true,
+		disabled: true,
+	},
+	{
+		title: "Country Flags",
+		description: "Flags from around the world.",
+		url: "/resources/flags",
+		resourceIcon: "flags",
+		isComingSoon: true,
+		disabled: true,
+	},
+	{
+		title: "Logo Generator",
+		description: "Generate custom logos instantly.",
+		url: "/resources/logo-generator",
+		resourceIcon: "logo-generator",
+		isComingSoon: true,
+		disabled: true,
+	},
+	{
+		title: "Credit Card",
+		description: "Credit card brand assets.",
+		url: "/resources/credit-card",
+		resourceIcon: "credit-card",
+		isComingSoon: true,
+		disabled: true,
+	},
+]
+
+export const RESOURCE_NAVIGATION_SECTION: NavigationSection = {
+	title: "Resources",
+	items: RESOURCE_ITEMS,
+}
 
 // ===== Blocks Section =====
 const BLOCKS_DATA = [

@@ -1,6 +1,7 @@
 import React from "react"
 import Link from "next/link"
 import { navLinks } from "@/components/navbar/nav-links"
+import { RESOURCE_ITEMS } from "@/config/navigation-config"
 import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
 import {
@@ -11,69 +12,23 @@ import {
 	NavigationMenuList,
 	NavigationMenuTrigger,
 } from "@/registry/ui/navigation-menu"
-import {
-	BrandLogo,
-	CountryFlags,
-	CreditCard,
-	Emoji,
-	FileFormat,
-	LogoGenerator,
-	UIAvatars,
-	ViewTools,
-} from "./nav-icons"
+import { ViewTools } from "./nav-icons"
+import { ResourceIcon } from "./resource-icons"
 
 export const designTools = [
-	{
-		title: "UI Avatars",
-		description: "User avatars for app and dashboard.",
-		href: "/resources/avatar",
-		icon: <UIAvatars />,
-	},
-	{
-		title: "Emoji",
-		description: "A complete emoji collection.",
-		href: "/resources/emoji",
-		icon: <Emoji />,
-	},
-	{
-		title: "Brand Logo",
-		description: "Popular company logos.",
-		href: "/resources/brand-logos",
-		icon: <BrandLogo />,
-	},
-	{
-		title: "File Format Icons",
-		description: "Common file type icons.",
-		href: "#",
-		icon: <FileFormat />,
-		release: "coming-soon",
-	},
-	{
-		title: "Country Flags",
-		description: "Flags from around the world.",
-		href: "#",
-		icon: <CountryFlags />,
-		release: "coming-soon",
-	},
-	{
-		title: "Logo Generator",
-		description: "Generate custom logos instantly.",
-		href: "#",
-		icon: <LogoGenerator />,
-		release: "coming-soon",
-	},
-	{
-		title: "Credit Card",
-		description: "Credit card brand assets.",
-		href: "#",
-		icon: <CreditCard />,
-		release: "coming-soon",
-	},
+	...RESOURCE_ITEMS.map((resource) => ({
+		...resource,
+		icon: resource.resourceIcon ? (
+			<ResourceIcon name={resource.resourceIcon} />
+		) : null,
+	})),
 	{
 		title: "View all tools",
 		description: "Browse every available tool.",
-		href: "/docs/getting-started/resources",
+		url: "/docs/getting-started/resources",
 		icon: <ViewTools />,
+		isComingSoon: true,
+		disabled: true,
 	},
 ]
 
@@ -111,43 +66,49 @@ export function DesktopNavigation() {
 									Design Tools
 								</span>
 								<div className="grid grid-cols-2 gap-2">
-									{designTools.map((tool) => (
-										<NavigationMenuLink
-											key={tool.title}
-											asChild
-											className="flex min-h-16 flex-row gap-3 rounded-lg p-3">
-											<Link href={tool.href ?? "#"} prefetch={false}>
+									{designTools.map((tool) => {
+										const content = (
+											<>
 												<div className="bg-primary-accent flex size-10 shrink-0 items-center justify-center rounded-lg">
 													{tool.icon}
 												</div>
 												<div className="flex flex-col">
 													<div className="flex items-center gap-1.5">
 														<span
-															className={`${tool.release === "coming-soon" ? "text-fg-tertiary" : "text-fg"} text-sm font-medium`}>
+															className={`${tool.isComingSoon ? "text-fg-tertiary" : "text-fg"} text-sm font-medium`}>
 															{tool.title}
 														</span>
-														{tool.release && (
-															<Badge
-																variant="soft"
-																color={
-																	tool.release === "coming-soon"
-																		? "neutral"
-																		: "primary"
-																}
-																size="20">
-																{tool.release === "coming-soon"
-																	? "Coming Soon"
-																	: "Beta"}
+														{tool.isComingSoon ? (
+															<Badge variant="soft" color="neutral" size="20">
+																Coming Soon
 															</Badge>
-														)}
+														) : null}
 													</div>
 													<span className="text-fg-secondary text-sm font-normal">
 														{tool.description}
 													</span>
 												</div>
-											</Link>
-										</NavigationMenuLink>
-									))}
+											</>
+										)
+
+										return tool.disabled ? (
+											<NavigationMenuLink
+												key={tool.title}
+												asChild
+												className="flex min-h-16 cursor-not-allowed flex-row gap-3 rounded-lg p-3 hover:bg-transparent focus:bg-transparent">
+												<div aria-disabled="true">{content}</div>
+											</NavigationMenuLink>
+										) : (
+											<NavigationMenuLink
+												key={tool.title}
+												asChild
+												className="flex min-h-16 flex-row gap-3 rounded-lg p-3">
+												<Link href={tool.url} prefetch={false}>
+													{content}
+												</Link>
+											</NavigationMenuLink>
+										)
+									})}
 								</div>
 							</div>
 							<div className="bg-fill1-alpha flex flex-col gap-1.5 p-3">
