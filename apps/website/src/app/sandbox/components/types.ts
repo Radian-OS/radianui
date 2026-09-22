@@ -40,9 +40,19 @@ export interface FilesData {
 	"login-page-03": Record<string, string>
 	"login-page-04": Record<string, string>
 	"login-page-01": Record<string, string>
+	"vcard-portfolio": Record<string, string>
+	"product-tour": Record<string, string>
+	"onboarding-checklist": Record<string, string>
+	"kishor-portfolio": Record<string, string>
+	"tania-rascia": Record<string, string>
 }
 
 export type PreviewKey =
+	| "tania-rascia"
+	| "kishor-portfolio"
+	| "product-tour"
+	| "onboarding-checklist"
+	| "vcard-portfolio"
 	| "login-page-01"
 	| "login-page-04"
 	| "login-page-03"
@@ -120,6 +130,8 @@ export type SandboxCategory =
 	| "form-section"
 	| "setting-section"
 	| "welcome-screen-section"
+	| "guided-tour-section"
+	| "portfolio-section"
 	| "other-sections"
 
 export interface SandboxComponentConfig {
@@ -134,6 +146,57 @@ export interface SandboxComponentConfig {
 }
 
 export const sandboxComponents: SandboxComponentConfig[] = [
+	{
+		id: "tania-rascia",
+		label: "tania-rascia",
+		category: "portfolio-section",
+		filesKey: "tania-rascia",
+		path: "src/app/sandbox/tania-rascia",
+		defaultFile: "page.tsx",
+		referenceUrl: "https://www.taniarascia.com/",
+		previewRoute: "/sandbox/tania-rascia",
+	},
+	{
+		id: "kishor-portfolio",
+		label: "kishor-portfolio",
+		category: "portfolio-section",
+		filesKey: "kishor-portfolio",
+		path: "src/app/sandbox/kishor-portfolio",
+		defaultFile: "page.tsx",
+		referenceUrl: "https://kishorkumarkhadka.com.np/",
+		previewRoute: "/sandbox/kishor-portfolio",
+	},
+	{
+		id: "product-tour",
+		label: "product-tour",
+		category: "guided-tour-section",
+		filesKey: "product-tour",
+		path: "src/app/sandbox/product-tour",
+		defaultFile: "page.tsx",
+		referenceUrl: "https://www.shadcn.io/view/onboarding/tour",
+		previewRoute: "/sandbox/product-tour",
+	},
+	{
+		id: "onboarding-checklist",
+		label: "onboarding-checklist",
+		category: "guided-tour-section",
+		filesKey: "onboarding-checklist",
+		path: "src/app/sandbox/onboarding-checklist",
+		defaultFile: "page.tsx",
+		referenceUrl:
+			"https://www.shadcn-ui-blocks.com/preview/marketing-pro/product-tours/onboarding-checklist",
+		previewRoute: "/sandbox/onboarding-checklist",
+	},
+	{
+		id: "vcard-portfolio",
+		label: "vcard-portfolio",
+		category: "portfolio-section",
+		filesKey: "vcard-portfolio",
+		path: "src/app/sandbox/vcard-portfolio",
+		defaultFile: "page.tsx",
+		referenceUrl: "https://codewithsadee.github.io/vcard-personal-portfolio/",
+		previewRoute: "/sandbox/vcard-portfolio",
+	},
 	{
 		id: "login-page-01",
 		label: "login-page-01",

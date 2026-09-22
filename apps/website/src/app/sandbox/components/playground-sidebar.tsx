@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react"
 import {
 	Blocks,
 	BookOpen,
+	Briefcase,
+	Compass,
 	CreditCard,
 	Folder,
 	HelpCircle,
@@ -101,6 +103,16 @@ const CATEGORIES: CategoryGroup[] = [
 		icon: LogIn,
 	},
 	{
+		id: "guided-tour-section",
+		label: "Guided Tour",
+		icon: Compass,
+	},
+	{
+		id: "portfolio-section",
+		label: "Portfolio Section",
+		icon: Briefcase,
+	},
+	{
 		id: "other-sections",
 		label: "Other Sections",
 		icon: Blocks,
@@ -123,6 +135,8 @@ export function PlaygroundSidebar({
 		"contact-section",
 		"cta-section",
 		"faq-section",
+		"guided-tour-section",
+		"portfolio-section",
 		"other-sections",
 	])
 

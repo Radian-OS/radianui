@@ -91,6 +91,26 @@ export default async function PlaygroundPage() {
 		process.cwd(),
 		"src/app/sandbox/login-page-04"
 	)
+	const taniaRasciaDir = path.join(
+		process.cwd(),
+		"src/app/sandbox/tania-rascia"
+	)
+	const kishorPortfolioDir = path.join(
+		process.cwd(),
+		"src/app/sandbox/kishor-portfolio"
+	)
+	const productTourDir = path.join(
+		process.cwd(),
+		"src/app/sandbox/product-tour"
+	)
+	const onboardingChecklistDir = path.join(
+		process.cwd(),
+		"src/app/sandbox/onboarding-checklist"
+	)
+	const vcardPortfolioDir = path.join(
+		process.cwd(),
+		"src/app/sandbox/vcard-portfolio"
+	)
 	const loginPage01Dir = path.join(
 		process.cwd(),
 		"src/app/sandbox/login-page-01"
@@ -99,6 +119,73 @@ export default async function PlaygroundPage() {
 		process.cwd(),
 		"src/app/sandbox/integrations-settings"
 	)
+
+	const taniaRasciaFiles = [
+		"page.tsx",
+		"tania-rascia-view.tsx",
+		"tania-sidebar.tsx",
+		"timeline-section.tsx",
+		"latest-posts-section.tsx",
+		"shelves-section.tsx",
+		"series-section.tsx",
+		"projects-grid-section.tsx",
+		"portfolio-footer.tsx",
+		"types.ts",
+	]
+
+	const kishorPortfolioFiles = [
+		"page.tsx",
+		"kishor-portfolio-view.tsx",
+		"portfolio-header.tsx",
+		"hero-profile.tsx",
+		"social-cards.tsx",
+		"personal-projects-section.tsx",
+		"about-section.tsx",
+		"featured-projects-section.tsx",
+		"experience-section.tsx",
+		"certifications-section.tsx",
+		"work-together-card.tsx",
+		"portfolio-footer.tsx",
+		"types.ts",
+	]
+
+	const productTourFiles = [
+		"page.tsx",
+		"product-tour-view.tsx",
+		"product-tour-card.tsx",
+		"tour-card-header.tsx",
+		"tour-step-preview.tsx",
+		"tour-step-content.tsx",
+		"tour-step-dots.tsx",
+		"tour-card-footer.tsx",
+		"tour-completed-card.tsx",
+		"types.ts",
+	]
+
+	const onboardingChecklistFiles = [
+		"page.tsx",
+		"onboarding-checklist-view.tsx",
+		"tour-header.tsx",
+		"tour-features-list.tsx",
+		"tour-feature-item.tsx",
+		"checklist-card.tsx",
+		"checklist-step-item.tsx",
+		"tour-action-buttons.tsx",
+		"types.ts",
+	]
+
+	const vcardPortfolioFiles = [
+		"page.tsx",
+		"vcard-portfolio-view.tsx",
+		"profile-sidebar.tsx",
+		"portfolio-navbar.tsx",
+		"about-section.tsx",
+		"services-section.tsx",
+		"service-card.tsx",
+		"testimonials-section.tsx",
+		"clients-section.tsx",
+		"types.ts",
+	]
 
 	const loginPage01Files = [
 		"page.tsx",
@@ -695,11 +782,44 @@ export default async function PlaygroundPage() {
 		loginPage04Data[file] = readFileContent(loginPage04Dir, file)
 	}
 
+	const taniaRasciaData: Record<string, string> = {}
+	for (const file of taniaRasciaFiles) {
+		taniaRasciaData[file] = readFileContent(taniaRasciaDir, file)
+	}
+
+	const kishorPortfolioData: Record<string, string> = {}
+	for (const file of kishorPortfolioFiles) {
+		kishorPortfolioData[file] = readFileContent(kishorPortfolioDir, file)
+	}
+
+	const productTourData: Record<string, string> = {}
+	for (const file of productTourFiles) {
+		productTourData[file] = readFileContent(productTourDir, file)
+	}
+
+	const onboardingChecklistData: Record<string, string> = {}
+	for (const file of onboardingChecklistFiles) {
+		onboardingChecklistData[file] = readFileContent(
+			onboardingChecklistDir,
+			file
+		)
+	}
+
+	const vcardPortfolioData: Record<string, string> = {}
+	for (const file of vcardPortfolioFiles) {
+		vcardPortfolioData[file] = readFileContent(vcardPortfolioDir, file)
+	}
+
 	for (const file of loginPage01Files) {
 		loginPage01Data[file] = readFileContent(loginPage01Dir, file)
 	}
 
 	const files = {
+		"tania-rascia": taniaRasciaData,
+		"kishor-portfolio": kishorPortfolioData,
+		"product-tour": productTourData,
+		"onboarding-checklist": onboardingChecklistData,
+		"vcard-portfolio": vcardPortfolioData,
 		"login-page-01": loginPage01Data,
 		"login-page-04": loginPage04Data,
 		"login-page-03": loginPage03Data,
