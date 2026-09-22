@@ -7,7 +7,6 @@ import {
 	Globe,
 	SlidersHorizontal,
 	Target,
-	UserCheck,
 	Users,
 	Wrench,
 } from "lucide-react"
@@ -35,16 +34,14 @@ export function CrisplySettingsNav() {
 	const [activeTab, setActiveTab] = useState("account")
 
 	return (
-		<aside className="border-border/70 bg-bg w-full shrink-0 border-r p-6 md:w-60 lg:w-64">
-			{/* Settings Heading (Rule 13: heading-2) */}
-			<h2 className="heading-2 text-fg text-xl font-bold tracking-tight">
-				Account Settings
-			</h2>
+		<aside className="border-border/70 bg-bg w-full shrink-0 border-r p-6 select-none md:w-60 lg:w-64">
+			{/* Settings Heading */}
+			<h2 className="heading-5 text-fg">Account Settings</h2>
 
 			{/* General Settings Group */}
 			<div className="mt-8">
-				<p className="text-fg-tertiary text-[10px] font-bold tracking-wider uppercase">
-					GENERAL SETTINGS
+				<p className="text-fg-secondary text-xs font-semibold tracking-wider uppercase">
+					General Settings
 				</p>
 				<nav className="mt-3 space-y-1">
 					{generalSettings.map((item) => {
@@ -55,9 +52,9 @@ export function CrisplySettingsNav() {
 								key={item.id}
 								type="button"
 								onClick={() => setActiveTab(item.id)}
-								className={`flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-xs font-medium transition-all ${
+								className={`flex w-full cursor-pointer items-center gap-2.5 rounded-lg px-3 py-2 text-xs font-medium transition-all ${
 									isSelected
-										? "bg-fill2 text-fg font-semibold shadow-2xs"
+										? "bg-fill2 text-fg font-semibold shadow-xs"
 										: "text-fg-secondary hover:bg-fill1 hover:text-fg"
 								}`}>
 								<Icon
@@ -74,8 +71,8 @@ export function CrisplySettingsNav() {
 
 			{/* Workspace Settings Group */}
 			<div className="mt-8">
-				<p className="text-fg-tertiary text-[10px] font-bold tracking-wider uppercase">
-					WORKSPACE SETTINGS
+				<p className="text-fg-secondary text-xs font-semibold tracking-wider uppercase">
+					Workspace Settings
 				</p>
 				<nav className="mt-3 space-y-1">
 					{workspaceSettings.map((item) => {
@@ -86,9 +83,9 @@ export function CrisplySettingsNav() {
 								key={item.id}
 								type="button"
 								onClick={() => setActiveTab(item.id)}
-								className={`flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-xs font-medium transition-all ${
+								className={`flex w-full cursor-pointer items-center gap-2.5 rounded-lg px-3 py-2 text-xs font-medium transition-all ${
 									isSelected
-										? "bg-fill2 text-fg font-semibold shadow-2xs"
+										? "bg-fill2 text-fg font-semibold shadow-xs"
 										: "text-fg-secondary hover:bg-fill1 hover:text-fg"
 								}`}>
 								<Icon

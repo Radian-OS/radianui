@@ -66,7 +66,7 @@ export function BeamHeaderSection() {
 							size="44"
 							className="shadow-primary/30 rounded-full px-6 shadow-lg"
 							asChild>
-							<Link href="#" className="hover:underline">
+							<Link href="#">
 								<ChevronsRight className="size-4" />
 								<span>Get Started</span>
 							</Link>

@@ -4,6 +4,16 @@ import React, { useState } from "react"
 import { ChevronDown, Menu, X } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import { cn } from "@/lib/utils"
+import {
+	NavigationMenu,
+	NavigationMenuContent,
+	NavigationMenuItem,
+	NavigationMenuLink,
+	NavigationMenuList,
+	NavigationMenuTrigger,
+	navigationMenuTriggerStyle,
+} from "@/registry/ui/navigation-menu"
 import { Button } from "@/styles/default/ui/button"
 
 interface NavLinkItem {
@@ -17,6 +27,29 @@ const navLinks: NavLinkItem[] = [
 	{ label: "Case Study", href: "#case-study" },
 	{ label: "Pricing", href: "#pricing" },
 	{ label: "Company", href: "#company", hasDropdown: true },
+]
+
+const companyLinks = [
+	{
+		label: "About Us",
+		href: "#about",
+		description: "Learn more about our mission and the team behind AgentLab.",
+	},
+	{
+		label: "Security & Compliance",
+		href: "#security",
+		description: "SOC 2, GDPR, HIPAA enterprise-grade security standards.",
+	},
+	{
+		label: "Industries",
+		href: "#industry",
+		description: "Explore AI agent solutions customized for your sector.",
+	},
+	{
+		label: "Contact Sales",
+		href: "#contact",
+		description: "Speak with our enterprise AI solutions team.",
+	},
 ]
 
 export function AgentlabNavbar() {
@@ -44,20 +77,53 @@ export function AgentlabNavbar() {
 					</span>
 				</Link>
 
-				{/* Desktop Nav Links */}
-				<nav className="hidden items-center gap-8 md:flex">
-					{navLinks.map((item) => (
-						<Link
-							key={item.label}
-							href={item.href}
-							className="text-fg-secondary hover:text-fg flex items-center gap-1 text-sm font-medium transition-colors hover:underline">
-							<span>{item.label}</span>
-							{item.hasDropdown && (
-								<ChevronDown className="text-fg-tertiary size-3.5" />
-							)}
-						</Link>
-					))}
-				</nav>
+				{/* Desktop Navigation Menu (Rule: use @/registry/ui/navigation-menu) */}
+				<NavigationMenu viewport={false} className="hidden md:flex">
+					<NavigationMenuList className="gap-1">
+						{navLinks.map((item) =>
+							item.hasDropdown ? (
+								<NavigationMenuItem key={item.label}>
+									<NavigationMenuTrigger className="hover:bg-fill1-alpha text-fg-secondary hover:text-fg bg-transparent text-sm font-medium transition-colors">
+										{item.label}
+									</NavigationMenuTrigger>
+									<NavigationMenuContent
+										align="center"
+										className="border-border/70 bg-elevation-level1 min-w-64 rounded-xl border p-2 shadow-xl backdrop-blur-md">
+										<ul className="flex flex-col gap-1">
+											{companyLinks.map((sub) => (
+												<li key={sub.label}>
+													<NavigationMenuLink
+														asChild
+														className="hover:bg-fill1-alpha flex flex-col gap-0.5 rounded-lg p-2.5 text-sm transition-colors">
+														<Link href={sub.href}>
+															<span className="text-fg font-semibold">
+																{sub.label}
+															</span>
+															<span className="text-fg-secondary text-xs">
+																{sub.description}
+															</span>
+														</Link>
+													</NavigationMenuLink>
+												</li>
+											))}
+										</ul>
+									</NavigationMenuContent>
+								</NavigationMenuItem>
+							) : (
+								<NavigationMenuItem key={item.label}>
+									<NavigationMenuLink
+										asChild
+										className={cn(
+											navigationMenuTriggerStyle(),
+											"hover:bg-fill1-alpha text-fg-secondary hover:text-fg bg-transparent text-sm font-medium transition-colors"
+										)}>
+										<Link href={item.href}>{item.label}</Link>
+									</NavigationMenuLink>
+								</NavigationMenuItem>
+							)
+						)}
+					</NavigationMenuList>
+				</NavigationMenu>
 
 				{/* Right CTA */}
 				<div className="hidden items-center gap-3 sm:flex">

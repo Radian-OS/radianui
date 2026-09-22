@@ -14,9 +14,7 @@ export function AgentlabCtaBanner() {
 				<div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-16">
 					{/* Left Title */}
 					<div className="lg:col-span-6">
-						<h2 className="heading-2 font-serif text-3xl leading-[1.15] font-normal tracking-tight text-white sm:text-4xl md:text-5xl lg:text-6xl">
-							Ready to Automate your Workflow?
-						</h2>
+						<h2 className="heading-2">Ready to Automate your Workflow?</h2>
 					</div>
 
 					{/* Right Content & Actions */}

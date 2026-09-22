@@ -50,7 +50,7 @@ export function AgentlabRoiSection() {
 					{/* Right Column: Narrative & High-Uptime Metric */}
 					<div className="flex flex-col justify-between lg:pl-6">
 						<div>
-							<h3 className="heading-3 text-fg font-serif text-2xl font-normal tracking-tight sm:text-3xl md:text-4xl">
+							<h3 className="heading-3 text-fg font-serif">
 								Automate your most complex, high-impact multi-step workflows
 							</h3>
 							<p className="text-fg-secondary mt-4 text-sm leading-relaxed sm:text-base">

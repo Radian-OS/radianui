@@ -1,7 +1,7 @@
 "use client"
 
 import { type RefObject, useEffect } from "react"
-import { resolveElementSourceLocation } from "./source-locator"
+import { highlightJsx, resolveElementSourceDetails } from "./source-locator"
 import type { PreviewKey, ViewMode } from "./types"
 
 export function useInspectMode(
@@ -45,15 +45,19 @@ export function useInspectMode(
 				badge.style.zIndex = "999999"
 				badge.style.display = "none"
 				badge.style.pointerEvents = "none"
-				badge.style.padding = "3px 8px"
-				badge.style.borderRadius = "4px"
+				badge.style.maxWidth = "520px"
+				badge.style.minWidth = "240px"
+				badge.style.borderRadius = "8px"
+				badge.style.overflow = "hidden"
+				badge.style.fontFamily =
+					"ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace"
 				badge.style.fontSize = "11px"
-				badge.style.fontFamily = "ui-monospace, monospace"
-				badge.style.fontWeight = "600"
-				badge.style.backgroundColor = "#0284c7"
-				badge.style.color = "#ffffff"
-				badge.style.boxShadow = "0 2px 10px rgba(0,0,0,0.3)"
-				badge.style.transition = "top 0.05s ease, left 0.05s ease"
+				badge.style.lineHeight = "1.4"
+				badge.style.backgroundColor = "#0d1117"
+				badge.style.color = "#e6edf3"
+				badge.style.border = "1px solid rgba(255, 255, 255, 0.18)"
+				badge.style.boxShadow =
+					"0 8px 32px rgba(0, 0, 0, 0.55), 0 2px 8px rgba(0, 0, 0, 0.35)"
 				doc.body.appendChild(badge)
 
 				let currentHovered: HTMLElement | null = null
@@ -77,36 +81,62 @@ export function useInspectMode(
 					target.classList.add("sandbox-inspect-hover")
 
 					const rect = target.getBoundingClientRect()
-					const tag = target.tagName.toLowerCase()
-					const classNames =
-						typeof target.className === "string"
-							? target.className
-									.split(" ")
-									.filter((c) => c && !c.includes("sandbox-inspect"))
-									.slice(0, 2)
-									.map((c) => `.${c}`)
-									.join("")
-							: ""
-					const dims = `${Math.round(rect.width)} × ${Math.round(rect.height)} px`
-					const sourceLoc = resolveElementSourceLocation(
+					const details = resolveElementSourceDetails(
 						target,
 						componentFiles,
 						defaultFile
 					)
-					const sourceText = sourceLoc
-						? ` • ${sourceLoc.file}:${sourceLoc.lineNumber}`
-						: ""
 
-					badge.textContent = `${tag}${classNames} | ${dims}${sourceText}`
+					const dims = `${Math.round(rect.width)} × ${Math.round(rect.height)} px`
+					const sourceText = `${details.file}:${details.lineNumber}`
+					const highlighted = highlightJsx(details.fullCode)
+
+					let tagBadgesHtml = `<span style="background:rgba(56,189,248,0.18);color:#38bdf8;padding:1.5px 6px;border-radius:4px;font-weight:700;">&lt;${details.tag}&gt;</span>`
+					if (details.parentTag && details.parentTag !== details.tag) {
+						tagBadgesHtml = `<span style="background:rgba(192,132,252,0.18);color:#c084fc;padding:1.5px 6px;border-radius:4px;font-weight:700;">&lt;${details.parentTag}&gt;</span><span style="color:#64748b;font-size:10px;margin:0 2px;">›</span>${tagBadgesHtml}`
+					}
+
+					badge.innerHTML = `
+						<div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:6px 10px;background:rgba(255,255,255,0.06);border-bottom:1px solid rgba(255,255,255,0.1);font-size:10.5px;">
+							<div style="display:flex;align-items:center;min-width:0;overflow:hidden;gap:2px;">
+								${tagBadgesHtml}
+							</div>
+							<div style="display:flex;align-items:center;gap:6px;color:#94a3b8;font-size:10px;flex-shrink:0;">
+								<span>${dims}</span>
+								<span>•</span>
+								<span style="color:#cbd5e1;font-weight:600;">${sourceText}</span>
+							</div>
+						</div>
+						<div style="padding:8px 10px;max-height:220px;overflow-y:auto;background:#090d16;">
+							<pre style="margin:0;font-family:inherit;font-size:11px;line-height:1.45;white-space:pre-wrap;word-break:break-word;tab-size:2;color:#f1f5f9;">${highlighted}</pre>
+						</div>
+					`
+
 					badge.style.display = "block"
 
-					const badgeTop = rect.top - 26 < 8 ? rect.bottom + 4 : rect.top - 26
-					const badgeLeft = Math.max(
+					// Intelligent viewport positioning
+					const badgeRect = badge.getBoundingClientRect()
+					const badgeHeight = badgeRect.height || 140
+					const badgeWidth = badgeRect.width || 320
+
+					const clientWidth = doc.documentElement.clientWidth || 800
+					const clientHeight = doc.documentElement.clientHeight || 600
+
+					let badgeTop = rect.top - badgeHeight - 8
+					if (badgeTop < 8) {
+						badgeTop = rect.bottom + 8
+					}
+					if (badgeTop + badgeHeight > clientHeight - 8) {
+						badgeTop = Math.max(8, clientHeight - badgeHeight - 8)
+					}
+
+					let badgeLeft = Math.max(
 						8,
-						Math.min(rect.left, (doc.documentElement.clientWidth || 800) - 220)
+						Math.min(rect.left, clientWidth - badgeWidth - 16)
 					)
-					badge.style.top = `${badgeTop}px`
-					badge.style.left = `${badgeLeft}px`
+
+					badge.style.top = `${Math.round(badgeTop)}px`
+					badge.style.left = `${Math.round(badgeLeft)}px`
 				}
 
 				const handleMouseOut = (e: MouseEvent) => {

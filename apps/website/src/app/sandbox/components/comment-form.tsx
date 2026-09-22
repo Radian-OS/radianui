@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useMemo, useState } from "react"
+import React, { useEffect, useMemo, useState } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { AlignLeft, ArrowRight, Check, Code, Copy, Send, X } from "lucide-react"
 import { useForm } from "react-hook-form"
@@ -35,6 +35,8 @@ interface CommentFormProps {
 	elementTag: string
 	elementSelector: string
 	elementContent?: string
+	elementCode?: string
+	parentTag?: string
 	sourceLocation?: SourceLocation | null
 	onNavigateToCode?: (file: string, lineNumber: number) => void
 	onSubmit: (values: CommentFormValues) => Promise<void> | void
@@ -46,6 +48,8 @@ export function CommentForm({
 	elementTag,
 	elementSelector,
 	elementContent,
+	elementCode,
+	parentTag,
 	sourceLocation,
 	onNavigateToCode,
 	onSubmit,
@@ -53,6 +57,7 @@ export function CommentForm({
 	isSubmitting = false,
 }: CommentFormProps) {
 	const { user } = useAuth()
+	const [copiedCode, setCopiedCode] = useState(false)
 	const [copiedClasses, setCopiedClasses] = useState(false)
 
 	const cleanClasses = useMemo(() => {
@@ -67,6 +72,13 @@ export function CommentForm({
 		navigator.clipboard.writeText(cleanClasses)
 		setCopiedClasses(true)
 		setTimeout(() => setCopiedClasses(false), 1500)
+	}
+
+	const handleCopyCode = () => {
+		if (!elementCode) return
+		navigator.clipboard.writeText(elementCode)
+		setCopiedCode(true)
+		setTimeout(() => setCopiedCode(false), 1500)
 	}
 
 	const form = useForm<z.infer<typeof commentFormSchema>>({
@@ -88,11 +100,29 @@ export function CommentForm({
 		})
 	})
 
+	useEffect(() => {
+		const handleKeyDown = (e: KeyboardEvent) => {
+			if (e.key === "Escape") {
+				onCancel()
+			}
+		}
+		window.addEventListener("keydown", handleKeyDown)
+		return () => window.removeEventListener("keydown", handleKeyDown)
+	}, [onCancel])
+
 	return (
-		<div className="border-border bg-bg animate-in fade-in zoom-in-95 w-88 rounded-xl border p-3.5 shadow-xl duration-150">
+		<div className="border-border bg-bg animate-in fade-in zoom-in-95 flex max-h-[min(540px,calc(100vh-64px))] w-88 max-w-full flex-col overflow-y-auto rounded-xl border p-3.5 shadow-xl duration-150">
 			{/* Header info */}
 			<div className="border-border/50 mb-2.5 flex items-center justify-between gap-2 border-b pb-2">
 				<div className="flex min-w-0 items-center gap-1.5">
+					{parentTag && parentTag !== elementTag && (
+						<>
+							<span className="bg-primary/15 text-primary shrink-0 rounded px-1.5 py-0.5 font-mono text-[11px] font-semibold">
+								&lt;{parentTag}&gt;
+							</span>
+							<span className="text-fg-tertiary text-[10px]">›</span>
+						</>
+					)}
 					<span className="bg-fill3 text-primary shrink-0 rounded px-1.5 py-0.5 font-mono text-[11px] font-semibold">
 						&lt;{elementTag}&gt;
 					</span>
@@ -111,8 +141,56 @@ export function CommentForm({
 				</Button>
 			</div>
 
-			{/* Whole Class Name Data */}
-			{cleanClasses && (
+			{/* Whole HTML / JSX Tag */}
+			{elementCode ? (
+				<div className="border-border/70 bg-fill2/40 mb-2.5 rounded-lg border p-2">
+					<div className="mb-1 flex flex-wrap items-center justify-between gap-1.5">
+						<div className="text-fg-tertiary flex items-center gap-1 text-[10px] font-semibold tracking-wider uppercase">
+							<Code className="text-primary size-3" />
+							<span>JSX Tag</span>
+						</div>
+						<div className="flex items-center gap-1">
+							{cleanClasses && (
+								<button
+									type="button"
+									onClick={handleCopyClasses}
+									className="text-fg-tertiary hover:text-fg hover:bg-fill3 flex cursor-pointer items-center gap-1 rounded px-1.5 py-0.5 text-[10px] font-medium transition-colors"
+									title="Copy class names only">
+									{copiedClasses ? (
+										<span className="font-semibold text-emerald-500">
+											Classes Copied
+										</span>
+									) : (
+										<span>Copy Classes</span>
+									)}
+								</button>
+							)}
+							<button
+								type="button"
+								onClick={handleCopyCode}
+								className="text-fg-tertiary hover:text-fg hover:bg-fill3 flex cursor-pointer items-center gap-1 rounded px-1.5 py-0.5 text-[10px] font-medium transition-colors"
+								title="Copy whole JSX tag">
+								{copiedCode ? (
+									<>
+										<Check className="size-3 text-emerald-500" />
+										<span className="font-semibold text-emerald-500">
+											Copied
+										</span>
+									</>
+								) : (
+									<>
+										<Copy className="size-3" />
+										<span>Copy Tag</span>
+									</>
+								)}
+							</button>
+						</div>
+					</div>
+					<pre className="text-fg max-h-36 overflow-y-auto font-mono text-[11px] leading-relaxed break-words whitespace-pre-wrap select-text">
+						{elementCode}
+					</pre>
+				</div>
+			) : cleanClasses ? (
 				<div className="border-border/70 bg-fill2/40 mb-2.5 rounded-lg border p-2">
 					<div className="mb-1 flex items-center justify-between gap-2">
 						<div className="text-fg-tertiary flex items-center gap-1 text-[10px] font-semibold tracking-wider uppercase">
@@ -141,7 +219,7 @@ export function CommentForm({
 						{cleanClasses}
 					</div>
 				</div>
-			)}
+			) : null}
 
 			{/* Content of that specific HTML tag */}
 			{elementContent && (

@@ -1,6 +1,7 @@
 "use client"
 
 import React, { type RefObject, useEffect, useRef, useState } from "react"
+import { AutoPositionedCard } from "./auto-positioned-card"
 import { CommentForm, type CommentFormValues } from "./comment-form"
 import { CommentPin } from "./comment-pin"
 import type { DeviceSize, SandboxComment } from "./types"
@@ -33,6 +34,7 @@ export function PlaygroundCommentOverlay({
 	isSubmitting = false,
 	isVisible,
 }: PlaygroundCommentOverlayProps) {
+	const containerRef = useRef<HTMLDivElement>(null)
 	const contentLayerRef = useRef<HTMLDivElement>(null)
 	const [dimensions, setDimensions] = useState<{
 		width: number
@@ -41,6 +43,29 @@ export function PlaygroundCommentOverlay({
 		width: 0,
 		height: 0,
 	})
+	const [scrollOffset, setScrollOffset] = useState({ x: 0, y: 0 })
+	const [containerSize, setContainerSize] = useState({ width: 0, height: 0 })
+
+	useEffect(() => {
+		if (!containerRef.current) return
+		const el = containerRef.current
+		const updateSize = () => {
+			if (el.clientWidth > 0 && el.clientHeight > 0) {
+				setContainerSize({
+					width: el.clientWidth,
+					height: el.clientHeight,
+				})
+			}
+		}
+		updateSize()
+		const ro = new ResizeObserver(updateSize)
+		ro.observe(el)
+		window.addEventListener("resize", updateSize)
+		return () => {
+			ro.disconnect()
+			window.removeEventListener("resize", updateSize)
+		}
+	}, [deviceSize, dimensions])
 
 	useEffect(() => {
 		if (!isVisible) return
@@ -63,6 +88,7 @@ export function PlaygroundCommentOverlay({
 					if (!contentLayerRef.current) return
 					const scrollX = win.scrollX ?? doc.documentElement?.scrollLeft ?? 0
 					const scrollY = win.scrollY ?? doc.documentElement?.scrollTop ?? 0
+					setScrollOffset({ x: scrollX, y: scrollY })
 					contentLayerRef.current.style.transform = `translate3d(-${scrollX}px, -${scrollY}px, 0)`
 				}
 
@@ -81,6 +107,12 @@ export function PlaygroundCommentOverlay({
 						if (prev.width === width && prev.height === height) return prev
 						return { width, height }
 					})
+					if (containerRef.current) {
+						setContainerSize({
+							width: containerRef.current.clientWidth,
+							height: containerRef.current.clientHeight,
+						})
+					}
 					updateTransform()
 				}
 
@@ -97,6 +129,9 @@ export function PlaygroundCommentOverlay({
 					if (doc.documentElement) {
 						resizeObserver.observe(doc.documentElement)
 					}
+					if (containerRef.current) {
+						resizeObserver.observe(containerRef.current)
+					}
 				}
 
 				cleanupWin = () => {
@@ -105,31 +140,21 @@ export function PlaygroundCommentOverlay({
 					resizeObserver?.disconnect()
 				}
 			} catch (err) {
-				console.error("Error setting up comment overlay scroll sync:", err)
+				console.error("Error setting up iframe listeners:", err)
 			}
 		}
 
+		attachIframeListeners()
 		const iframe = iframeRef.current
-		if (iframe) {
-			attachIframeListeners()
-			iframe.addEventListener("load", attachIframeListeners)
-		}
-
-		// Periodic check to capture asynchronous images/fonts loading
-		const timer = setInterval(attachIframeListeners, 800)
+		iframe?.addEventListener("load", attachIframeListeners)
 
 		return () => {
-			clearInterval(timer)
+			iframe?.removeEventListener("load", attachIframeListeners)
 			cleanupWin?.()
-			if (iframe) {
-				iframe.removeEventListener("load", attachIframeListeners)
-			}
 		}
-	}, [isVisible, activeComponentId, deviceSize, iframeRef])
+	}, [iframeRef, isVisible])
 
-	if (!isVisible) {
-		return null
-	}
+	if (!isVisible) return null
 
 	const layerWidth = dimensions.width > 0 ? `${dimensions.width}px` : "100%"
 	const layerHeight = dimensions.height > 0 ? `${dimensions.height}px` : "100%"
@@ -144,6 +169,7 @@ export function PlaygroundCommentOverlay({
 
 	return (
 		<div
+			ref={containerRef}
 			onWheel={handleWheel}
 			className="pointer-events-none absolute inset-0 z-20 overflow-hidden">
 			{/* Content layer that matches iframe document size and scrolls with it */}
@@ -161,6 +187,9 @@ export function PlaygroundCommentOverlay({
 						<CommentPin
 							comment={comment}
 							index={index}
+							dimensions={dimensions}
+							scrollOffset={scrollOffset}
+							containerSize={containerSize}
 							onDelete={onDeleteComment}
 							onNavigateToCode={onNavigateToCode}
 						/>
@@ -180,19 +209,28 @@ export function PlaygroundCommentOverlay({
 							<span>+</span>
 						</div>
 
-						{/* Draft Form Card */}
-						<div className="absolute top-5 left-0 -translate-x-1/4">
+						{/* Draft Form Card with Auto-Adjustment */}
+						<AutoPositionedCard
+							positionX={draftComment.positionX}
+							positionY={draftComment.positionY}
+							dimensions={dimensions}
+							scrollOffset={scrollOffset}
+							containerSize={containerSize}
+							defaultCardWidth={352}
+							className="absolute top-0 left-0">
 							<CommentForm
 								elementTag={draftComment.elementTag}
 								elementSelector={draftComment.elementSelector}
 								elementContent={draftComment.elementContent}
+								elementCode={draftComment.elementCode}
+								parentTag={draftComment.parentTag}
 								sourceLocation={draftComment.sourceLocation}
 								onNavigateToCode={onNavigateToCode}
 								onSubmit={onSubmitDraft}
 								onCancel={onCancelDraft}
 								isSubmitting={isSubmitting}
 							/>
-						</div>
+						</AutoPositionedCard>
 					</div>
 				)}
 			</div>

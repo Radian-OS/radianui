@@ -28,7 +28,7 @@ export function AiworkHeroSection() {
 				</div>
 
 				{/* Main Hero Heading (Rule 13: heading-1) */}
-				<h1 className="heading-1 text-foreground max-w-4xl text-center text-4xl leading-[1.1] font-extrabold tracking-tight sm:text-5xl sm:leading-[1.1] md:text-6xl md:leading-[1.1] lg:text-7xl lg:leading-[1.1]">
+				<h1 className="heading-1 text-foreground max-w-4xl text-center">
 					AI agents for less
 					<br />
 					manual work

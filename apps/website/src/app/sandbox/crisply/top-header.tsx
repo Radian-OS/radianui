@@ -36,10 +36,10 @@ export function CrisplyTopHeader() {
 				{/* User Profile Badge */}
 				<button
 					type="button"
-					className="hover:bg-fill2 flex items-center gap-2 rounded-full p-1 transition-colors">
+					className="hover:bg-fill2 flex cursor-pointer items-center gap-2 rounded-full p-1 transition-colors">
 					<div className="border-border relative size-7 overflow-hidden rounded-full border">
 						<Image
-							src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80"
+							src="/sandbox/placeholder.svg"
 							alt="Brian Frederin"
 							fill
 							sizes="28px"
@@ -47,7 +47,7 @@ export function CrisplyTopHeader() {
 						/>
 					</div>
 					<span className="text-fg text-xs font-semibold">Brian F.</span>
-					<ChevronDown className="text-fg-tertiary size-3" />
+					<ChevronDown className="text-fg-tertiary size-3.5" />
 				</button>
 			</div>
 		</header>

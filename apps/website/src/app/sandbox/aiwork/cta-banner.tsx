@@ -21,7 +21,7 @@ export function AiworkCtaBanner() {
 
 					<div className="relative z-10 mx-auto max-w-2xl space-y-5">
 						{/* Rule 13: heading-2 */}
-						<h2 className="heading-2 text-3xl font-extrabold tracking-tight text-white sm:text-4xl md:text-5xl">
+						<h2 className="heading-2 text-white">
 							Let AI take the busywork off
 							<br />
 							your team&#39;s plate

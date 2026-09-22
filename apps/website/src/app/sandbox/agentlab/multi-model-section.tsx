@@ -31,9 +31,7 @@ export function AgentlabMultiModelSection() {
 				{/* Two Column Header */}
 				<div className="grid grid-cols-1 gap-12 border-b border-white/10 pb-16 md:grid-cols-2 md:gap-16">
 					<div>
-						<h3 className="heading-3 font-serif text-2xl font-normal tracking-tight text-white sm:text-3xl">
-							Multi Model AI
-						</h3>
+						<h3 className="heading-3 font-serif text-white">Multi Model AI</h3>
 						<p className="mt-3 text-sm leading-relaxed text-white/60 sm:text-base">
 							Route tasks intelligently to the right AI model — GPT, Claude,
 							DALL-E, or ElevenLabs — based on task type, latency targets, and
@@ -42,9 +40,7 @@ export function AgentlabMultiModelSection() {
 					</div>
 
 					<div>
-						<h3 className="heading-3 font-serif text-2xl font-normal tracking-tight text-white sm:text-3xl">
-							Integration
-						</h3>
+						<h3 className="heading-3 font-serif text-white">Integration</h3>
 						<p className="mt-3 text-sm leading-relaxed text-white/60 sm:text-base">
 							Connect AgentLab to the tools your team already uses — CRMs,
 							support desks, communication hubs, and databases — with native

@@ -94,7 +94,7 @@ export function PlaygroundClient({ files }: PlaygroundClientProps) {
 	}
 
 	return (
-		<SidebarProvider className="h-svh" defaultWidth="13.5rem">
+		<SidebarProvider className="h-svh" defaultWidth="14rem">
 			<PlaygroundSidebar
 				activeComponent={activeComponent}
 				onSelectComponent={handleSelectComponent}

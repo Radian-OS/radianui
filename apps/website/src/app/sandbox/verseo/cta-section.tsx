@@ -22,7 +22,7 @@ export function VerseoCtaSection() {
 							</div>
 
 							{/* Rule 13: heading-2 */}
-							<h2 className="heading-2 text-foreground text-3xl font-extrabold tracking-tight sm:text-4xl">
+							<h2 className="heading-2 text-foreground">
 								Start creating better content today
 							</h2>
 

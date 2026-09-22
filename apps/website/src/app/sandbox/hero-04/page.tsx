@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function Hero04Page() {
 	return (
-		<div className="bg-bg text-fg selection:bg-primary/20 selection:text-primary min-h-screen">
+		<div className="bg-bg text-fg min-h-screen">
 			<AnnouncementBanner />
 			<Navbar />
 			<main>

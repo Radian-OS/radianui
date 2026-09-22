@@ -90,7 +90,7 @@ export function AgentlabTestimonialsSection() {
 							<span className="text-primary font-bold">—</span>
 							<span>TESTIMONIALS</span>
 						</div>
-						<h2 className="heading-2 mt-4 font-serif text-3xl leading-[1.2] font-normal tracking-tight text-white sm:text-4xl md:text-5xl">
+						<h2 className="heading-2 mt-4 font-serif text-white">
 							What People Are Saying
 						</h2>
 					</div>
@@ -135,7 +135,7 @@ export function AgentlabTestimonialsSection() {
 				<div className="mt-8 grid grid-cols-1 gap-8 rounded-2xl border border-white/10 bg-white/5 p-8 lg:grid-cols-12 lg:gap-12 lg:p-12">
 					{/* Left Quote Graphic */}
 					<div className="lg:col-span-7">
-						<h3 className="heading-3 font-serif text-2xl leading-[1.25] font-normal text-white sm:text-3xl md:text-4xl">
+						<h3 className="heading-3 font-serif text-white">
 							&ldquo;{activeTestimonial.headline}&rdquo;
 						</h3>
 					</div>

@@ -3,6 +3,14 @@
 import React, { useState } from "react"
 import { Menu, Star, X } from "lucide-react"
 import Link from "next/link"
+import { cn } from "@/lib/utils"
+import {
+	NavigationMenu,
+	NavigationMenuItem,
+	NavigationMenuLink,
+	NavigationMenuList,
+	navigationMenuTriggerStyle,
+} from "@/registry/ui/navigation-menu"
 import { Button } from "@/styles/default/ui/button"
 
 interface NavLinkItem {
@@ -35,17 +43,23 @@ export function OmrixNavbar() {
 					</span>
 				</Link>
 
-				{/* Desktop Navigation Links */}
-				<nav className="hidden items-center gap-8 md:flex">
-					{navLinks.map((item) => (
-						<Link
-							key={item.label}
-							href={item.href}
-							className="text-fg-secondary hover:text-foreground text-sm font-medium transition-colors hover:underline">
-							{item.label}
-						</Link>
-					))}
-				</nav>
+				{/* Desktop Navigation Menu (Rule: use @/registry/ui/navigation-menu) */}
+				<NavigationMenu viewport={false} className="hidden md:flex">
+					<NavigationMenuList className="gap-1">
+						{navLinks.map((item) => (
+							<NavigationMenuItem key={item.label}>
+								<NavigationMenuLink
+									asChild
+									className={cn(
+										navigationMenuTriggerStyle(),
+										"hover:bg-fill1-alpha text-fg-secondary hover:text-foreground bg-transparent text-sm font-medium transition-colors"
+									)}>
+									<Link href={item.href}>{item.label}</Link>
+								</NavigationMenuLink>
+							</NavigationMenuItem>
+						))}
+					</NavigationMenuList>
+				</NavigationMenu>
 
 				{/* Desktop Action */}
 				<div className="hidden items-center gap-3 md:flex">

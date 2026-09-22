@@ -24,7 +24,7 @@ export function HeroSection() {
 
 				{/* Hero Heading */}
 				<div className="mx-auto mb-6 max-w-4xl text-center">
-					<h1 className="heading-1 text-foreground text-center font-medium tracking-tight">
+					<h1 className="heading-1 text-center">
 						Turning Great Ideas Into Strong Brand Identities
 					</h1>
 				</div>
@@ -43,7 +43,7 @@ export function HeroSection() {
 						size="44"
 						className="group rounded-full px-6 text-sm font-semibold shadow-md sm:px-8"
 						asChild>
-						<Link href="#" className="flex items-center gap-2 hover:underline">
+						<Link href="#" className="flex items-center gap-2">
 							<span>Start a Project — It&apos;s Free</span>
 							<ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" />
 						</Link>

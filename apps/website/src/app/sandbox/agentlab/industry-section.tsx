@@ -65,7 +65,7 @@ export function AgentlabIndustrySection() {
 				</div>
 
 				{/* Section Heading (Rule 13: heading-2) */}
-				<h2 className="heading-2 text-fg mt-4 font-serif text-3xl leading-[1.2] font-normal tracking-tight sm:text-4xl md:text-5xl">
+				<h2 className="heading-2 text-fg mt-4 font-serif">
 					Solutions Across Every Sector
 				</h2>
 
@@ -88,9 +88,7 @@ export function AgentlabIndustrySection() {
 								/>
 							</div>
 
-							<h3 className="heading-4 text-fg font-serif text-xl font-normal sm:text-2xl">
-								{item.title}
-							</h3>
+							<h3 className="heading-4 text-fg font-serif">{item.title}</h3>
 							<p className="text-fg-secondary mt-3 text-xs leading-relaxed sm:text-sm">
 								{item.description}
 							</p>

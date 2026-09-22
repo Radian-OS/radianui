@@ -17,7 +17,7 @@ export function LogoSection() {
 							Logo Section
 						</p>
 
-						<h2 className="heading-3 text-fg mb-8 lg:mb-10">
+						<h2 className="heading-3 mb-8 lg:mb-10">
 							Partnership with over 50+ worldwide companies.
 						</h2>
 

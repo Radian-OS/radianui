@@ -18,12 +18,40 @@ import {
 	FormMessage,
 } from "@/styles/default/ui/form"
 import { Input } from "@/styles/default/ui/input"
+import { cn } from "@/lib/utils"
+import {
+	NavigationMenu,
+	NavigationMenuContent,
+	NavigationMenuItem,
+	NavigationMenuLink,
+	NavigationMenuList,
+	NavigationMenuTrigger,
+	navigationMenuTriggerStyle,
+} from "@/registry/ui/navigation-menu"
 
 const searchSchema = z.object({
 	query: z.string().optional(),
 })
 
 type SearchFormValues = z.infer<typeof searchSchema>
+
+const servicesList = [
+	{
+		title: "Financial Analytics",
+		href: "#analytics",
+		description: "Real-time metrics, live reporting, and cash flow tracking.",
+	},
+	{
+		title: "Expense Management",
+		href: "#expenses",
+		description: "Automate categorization and control company spending.",
+	},
+	{
+		title: "Revenue Forecasting",
+		href: "#forecasting",
+		description: "Predict trends and make data-driven financial decisions.",
+	},
+]
 
 export function Navbar() {
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -86,36 +114,69 @@ export function Navbar() {
 						/>
 					</Link>
 
-					{/* Desktop Navigation Links */}
-					<nav
-						aria-label="Main Navigation"
-						className="hidden items-center gap-1 lg:flex">
-						<Link
-							href="#products"
-							className="text-fg-muted hover:bg-elevation-level1 hover:text-fg inline-flex h-8 items-center gap-1.5 rounded-lg px-3 text-sm font-medium transition-colors hover:underline">
-							<span>Products</span>
-							<Badge
-								variant="soft"
-								color="info"
-								size="20"
-								className="text-[10px] font-semibold tracking-wider uppercase">
-								NEW
-							</Badge>
-						</Link>
+					{/* Desktop Navigation Menu (Rule: use @/registry/ui/navigation-menu) */}
+					<NavigationMenu viewport={false} className="hidden lg:flex">
+						<NavigationMenuList className="gap-1">
+							<NavigationMenuItem>
+								<NavigationMenuLink
+									asChild
+									className={cn(
+										navigationMenuTriggerStyle(),
+										"hover:bg-elevation-level1 text-fg-muted hover:text-fg h-8 gap-1.5 bg-transparent px-3 text-sm font-medium"
+									)}>
+									<Link href="#products" className="flex items-center">
+										<span>Products</span>
+										<Badge
+											variant="soft"
+											color="info"
+											size="20"
+											className="flex text-[10px] font-semibold tracking-wider uppercase">
+											NEW
+										</Badge>
+									</Link>
+								</NavigationMenuLink>
+							</NavigationMenuItem>
 
-						<button
-							type="button"
-							className="text-fg-muted hover:bg-elevation-level1 hover:text-fg inline-flex h-8 cursor-pointer items-center gap-1 rounded-lg px-3 text-sm font-medium transition-colors">
-							<span>Services</span>
-							<ChevronDown className="size-3.5 opacity-60" />
-						</button>
+							<NavigationMenuItem>
+								<NavigationMenuTrigger className="hover:bg-elevation-level1 text-fg-muted hover:text-fg h-8 bg-transparent px-3 text-sm font-medium">
+									Services
+								</NavigationMenuTrigger>
+								<NavigationMenuContent
+									align="center"
+									className="border-border/80 bg-elevation-level1 min-w-64 rounded-xl border p-2 shadow-xl backdrop-blur-md">
+									<ul className="flex flex-col gap-1">
+										{servicesList.map((svc) => (
+											<li key={svc.title}>
+												<NavigationMenuLink
+													asChild
+													className="hover:bg-fill1-alpha flex flex-col gap-0.5 rounded-lg p-2.5 text-sm transition-colors">
+													<Link href={svc.href}>
+														<span className="text-fg font-semibold">
+															{svc.title}
+														</span>
+														<span className="text-fg-secondary text-xs">
+															{svc.description}
+														</span>
+													</Link>
+												</NavigationMenuLink>
+											</li>
+										))}
+									</ul>
+								</NavigationMenuContent>
+							</NavigationMenuItem>
 
-						<Link
-							href="#pricing"
-							className="text-fg-muted hover:bg-elevation-level1 hover:text-fg inline-flex h-8 items-center rounded-lg px-3 text-sm font-medium transition-colors hover:underline">
-							<span>Pricing</span>
-						</Link>
-					</nav>
+							<NavigationMenuItem>
+								<NavigationMenuLink
+									asChild
+									className={cn(
+										navigationMenuTriggerStyle(),
+										"hover:bg-elevation-level1 text-fg-muted hover:text-fg h-8 bg-transparent px-3 text-sm font-medium"
+									)}>
+									<Link href="#pricing">Pricing</Link>
+								</NavigationMenuLink>
+							</NavigationMenuItem>
+						</NavigationMenuList>
+					</NavigationMenu>
 				</div>
 
 				{/* Center: Search Input Bar with Validation Form */}

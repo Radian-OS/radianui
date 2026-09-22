@@ -67,7 +67,7 @@ export function AiworkSolutionsSection() {
 							<span>Solutions</span>
 						</div>
 						{/* Rule 13: heading-2 */}
-						<h2 className="heading-2 text-foreground text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
+						<h2 className="heading-2 text-foreground">
 							Smart AI solutions for
 							<br />
 							modern teams

@@ -46,7 +46,7 @@ export function FaqSection() {
 					<span className="text-fg-secondary text-[11px] font-extrabold tracking-widest uppercase">
 						FAQ
 					</span>
-					<h2 className="heading-2 text-fg mt-3 font-bold tracking-tight">
+					<h2 className="heading-2 mt-3 font-bold">
 						Frequently asked questions.
 					</h2>
 				</div>
@@ -56,7 +56,7 @@ export function FaqSection() {
 					size="48"
 					className="bg-black-inverse text-white-inverse hover:bg-fg-secondary group inline-flex items-center gap-4 rounded-full pr-2.5 pl-6 text-sm font-semibold transition-all"
 					asChild>
-					<Link href="#" className="hover:underline">
+					<Link href="#">
 						<span>Start a Project</span>
 						<div className="bg-orange flex size-9 items-center justify-center rounded-full text-white transition-transform duration-300 group-hover:translate-x-1">
 							<ArrowRight className="size-4 stroke-[2.5]" />
