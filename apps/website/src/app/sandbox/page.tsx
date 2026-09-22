@@ -72,6 +72,162 @@ export default async function PlaygroundPage() {
 		"src/app/sandbox/checkout-form"
 	)
 	const longFormDir = path.join(process.cwd(), "src/app/sandbox/long-form")
+	const hero9Dir = path.join(process.cwd(), "src/app/sandbox/hero-9")
+	const hero12Dir = path.join(process.cwd(), "src/app/sandbox/hero-12")
+	const folioDir = path.join(process.cwd(), "src/app/sandbox/folio")
+	const hero25Dir = path.join(process.cwd(), "src/app/sandbox/hero-25")
+	const ordersDir = path.join(process.cwd(), "src/app/sandbox/orders")
+	const chatgptSettingsDir = path.join(
+		process.cwd(),
+		"src/app/sandbox/chatgpt-settings"
+	)
+	const blog5Dir = path.join(process.cwd(), "src/app/sandbox/blog-5")
+	const blog6Dir = path.join(process.cwd(), "src/app/sandbox/blog-6")
+	const loginPage03Dir = path.join(
+		process.cwd(),
+		"src/app/sandbox/login-page-03"
+	)
+	const loginPage04Dir = path.join(
+		process.cwd(),
+		"src/app/sandbox/login-page-04"
+	)
+	const loginPage01Dir = path.join(
+		process.cwd(),
+		"src/app/sandbox/login-page-01"
+	)
+	const integrationsSettingsDir = path.join(
+		process.cwd(),
+		"src/app/sandbox/integrations-settings"
+	)
+
+	const loginPage01Files = [
+		"page.tsx",
+		"login-card.tsx",
+		"login-brand.tsx",
+		"login-magic-buttons.tsx",
+		"login-form.tsx",
+		"login-orbital-background.tsx",
+		"types.ts",
+	]
+
+	const loginPage04Files = [
+		"page.tsx",
+		"login-page-view.tsx",
+		"login-social-buttons.tsx",
+		"login-form.tsx",
+		"login-dashboard-card.tsx",
+		"types.ts",
+	]
+
+	const loginPage03Files = [
+		"page.tsx",
+		"login-page-view.tsx",
+		"login-brand.tsx",
+		"login-social-buttons.tsx",
+		"login-form.tsx",
+		"login-feature-card.tsx",
+		"types.ts",
+	]
+
+	const blog6Files = [
+		"page.tsx",
+		"blog-article.tsx",
+		"blog-breadcrumbs.tsx",
+		"blog-header.tsx",
+		"blog-author.tsx",
+		"blog-featured-image.tsx",
+		"blog-lead.tsx",
+		"blog-content.tsx",
+		"blog-topics.tsx",
+		"blog-author-bio.tsx",
+		"blog-read-next.tsx",
+		"types.ts",
+	]
+
+	const blog5Files = [
+		"page.tsx",
+		"blog-article.tsx",
+		"blog-hero.tsx",
+		"blog-author.tsx",
+		"blog-content.tsx",
+		"blog-topics.tsx",
+		"blog-author-bio.tsx",
+		"blog-related.tsx",
+		"types.ts",
+	]
+
+	const integrationsSettingsFiles = [
+		"page.tsx",
+		"integrations-view.tsx",
+		"icon-rail.tsx",
+		"settings-sidebar.tsx",
+		"integrations-header.tsx",
+		"integrations-filters.tsx",
+		"integrations-list.tsx",
+		"types.ts",
+	]
+
+	const chatgptSettingsFiles = [
+		"page.tsx",
+		"chatgpt-settings.tsx",
+		"settings-sidebar.tsx",
+		"settings-banner.tsx",
+		"settings-general.tsx",
+		"types.ts",
+	]
+
+	const ordersFiles = [
+		"page.tsx",
+		"orders-view.tsx",
+		"orders-sidebar.tsx",
+		"orders-header.tsx",
+		"orders-metrics.tsx",
+		"orders-filters.tsx",
+		"orders-table.tsx",
+		"orders-pagination.tsx",
+		"types.ts",
+	]
+
+	const hero25Files = [
+		"page.tsx",
+		"hero-25.tsx",
+		"hero-header.tsx",
+		"hero-cta.tsx",
+		"hero-preview.tsx",
+		"hero-background.tsx",
+		"types.ts",
+	]
+
+	const folioFiles = [
+		"page.tsx",
+		"folio-hero.tsx",
+		"hero-badge.tsx",
+		"hero-header.tsx",
+		"hero-cta.tsx",
+		"hero-preview.tsx",
+		"types.ts",
+	]
+
+	const hero12Files = [
+		"page.tsx",
+		"hero-12.tsx",
+		"hero-badge.tsx",
+		"hero-header.tsx",
+		"hero-cta.tsx",
+		"hero-logos.tsx",
+		"hero-preview.tsx",
+		"types.ts",
+	]
+
+	const hero9Files = [
+		"page.tsx",
+		"hero-9.tsx",
+		"hero-header.tsx",
+		"hero-actions.tsx",
+		"hero-tabs.tsx",
+		"hero-preview.tsx",
+		"types.ts",
+	]
 
 	const longFormFiles = [
 		"page.tsx",
@@ -360,6 +516,18 @@ export default async function PlaygroundPage() {
 	const form1Data: Record<string, string> = {}
 	const checkoutFormData: Record<string, string> = {}
 	const longFormData: Record<string, string> = {}
+	const hero9Data: Record<string, string> = {}
+	const hero12Data: Record<string, string> = {}
+	const folioData: Record<string, string> = {}
+	const hero25Data: Record<string, string> = {}
+	const ordersData: Record<string, string> = {}
+	const chatgptSettingsData: Record<string, string> = {}
+	const integrationsSettingsData: Record<string, string> = {}
+	const blog5Data: Record<string, string> = {}
+	const blog6Data: Record<string, string> = {}
+	const loginPage03Data: Record<string, string> = {}
+	const loginPage04Data: Record<string, string> = {}
+	const loginPage01Data: Record<string, string> = {}
 
 	for (const file of omrixFiles) {
 		omrixData[file] = readFileContent(omrixDir, file)
@@ -480,7 +648,70 @@ export default async function PlaygroundPage() {
 		longFormData[file] = readFileContent(longFormDir, file)
 	}
 
+	for (const file of hero9Files) {
+		hero9Data[file] = readFileContent(hero9Dir, file)
+	}
+
+	for (const file of hero12Files) {
+		hero12Data[file] = readFileContent(hero12Dir, file)
+	}
+
+	for (const file of folioFiles) {
+		folioData[file] = readFileContent(folioDir, file)
+	}
+
+	for (const file of hero25Files) {
+		hero25Data[file] = readFileContent(hero25Dir, file)
+	}
+
+	for (const file of ordersFiles) {
+		ordersData[file] = readFileContent(ordersDir, file)
+	}
+
+	for (const file of chatgptSettingsFiles) {
+		chatgptSettingsData[file] = readFileContent(chatgptSettingsDir, file)
+	}
+
+	for (const file of integrationsSettingsFiles) {
+		integrationsSettingsData[file] = readFileContent(
+			integrationsSettingsDir,
+			file
+		)
+	}
+
+	for (const file of blog5Files) {
+		blog5Data[file] = readFileContent(blog5Dir, file)
+	}
+
+	for (const file of blog6Files) {
+		blog6Data[file] = readFileContent(blog6Dir, file)
+	}
+
+	for (const file of loginPage03Files) {
+		loginPage03Data[file] = readFileContent(loginPage03Dir, file)
+	}
+
+	for (const file of loginPage04Files) {
+		loginPage04Data[file] = readFileContent(loginPage04Dir, file)
+	}
+
+	for (const file of loginPage01Files) {
+		loginPage01Data[file] = readFileContent(loginPage01Dir, file)
+	}
+
 	const files = {
+		"login-page-01": loginPage01Data,
+		"login-page-04": loginPage04Data,
+		"login-page-03": loginPage03Data,
+		"blog-6": blog6Data,
+		"blog-5": blog5Data,
+		"integrations-settings": integrationsSettingsData,
+		"chatgpt-settings": chatgptSettingsData,
+		orders: ordersData,
+		"hero-25": hero25Data,
+		folio: folioData,
+		"hero-12": hero12Data,
+		"hero-9": hero9Data,
 		"long-form": longFormData,
 		"checkout-form": checkoutFormData,
 		"form-1": form1Data,

@@ -28,9 +28,33 @@ export interface FilesData {
 	"form-1": Record<string, string>
 	"checkout-form": Record<string, string>
 	"long-form": Record<string, string>
+	"hero-9": Record<string, string>
+	"hero-12": Record<string, string>
+	folio: Record<string, string>
+	"hero-25": Record<string, string>
+	orders: Record<string, string>
+	"chatgpt-settings": Record<string, string>
+	"integrations-settings": Record<string, string>
+	"blog-5": Record<string, string>
+	"blog-6": Record<string, string>
+	"login-page-03": Record<string, string>
+	"login-page-04": Record<string, string>
+	"login-page-01": Record<string, string>
 }
 
 export type PreviewKey =
+	| "login-page-01"
+	| "login-page-04"
+	| "login-page-03"
+	| "blog-6"
+	| "blog-5"
+	| "integrations-settings"
+	| "chatgpt-settings"
+	| "orders"
+	| "hero-25"
+	| "folio"
+	| "hero-12"
+	| "hero-9"
 	| "long-form"
 	| "checkout-form"
 	| "form-1"
@@ -94,6 +118,8 @@ export type SandboxCategory =
 	| "cta-section"
 	| "faq-section"
 	| "form-section"
+	| "setting-section"
+	| "welcome-screen-section"
 	| "other-sections"
 
 export interface SandboxComponentConfig {
@@ -108,6 +134,130 @@ export interface SandboxComponentConfig {
 }
 
 export const sandboxComponents: SandboxComponentConfig[] = [
+	{
+		id: "login-page-01",
+		label: "login-page-01",
+		category: "welcome-screen-section",
+		filesKey: "login-page-01",
+		path: "src/app/sandbox/login-page-01",
+		defaultFile: "page.tsx",
+		referenceUrl:
+			"https://shadcnstudio.com/preview/blocks/base/marketing-ui/login-page/login-page-01",
+		previewRoute: "/sandbox/login-page-01",
+	},
+	{
+		id: "login-page-04",
+		label: "login-page-04",
+		category: "welcome-screen-section",
+		filesKey: "login-page-04",
+		path: "src/app/sandbox/login-page-04",
+		defaultFile: "page.tsx",
+		referenceUrl:
+			"https://shadcnstudio.com/preview/blocks/base/marketing-ui/login-page/login-page-04",
+		previewRoute: "/sandbox/login-page-04",
+	},
+	{
+		id: "login-page-03",
+		label: "login-page-03",
+		category: "welcome-screen-section",
+		filesKey: "login-page-03",
+		path: "src/app/sandbox/login-page-03",
+		defaultFile: "page.tsx",
+		referenceUrl:
+			"https://shadcnstudio.com/preview/blocks/base/marketing-ui/login-page/login-page-03",
+		previewRoute: "/sandbox/login-page-03",
+	},
+	{
+		id: "blog-6",
+		label: "blog-6",
+		category: "blog-section",
+		filesKey: "blog-6",
+		path: "src/app/sandbox/blog-6",
+		defaultFile: "page.tsx",
+		referenceUrl: "https://reui.io/preview/base/blog-6",
+		previewRoute: "/sandbox/blog-6",
+	},
+	{
+		id: "blog-5",
+		label: "blog-5",
+		category: "blog-section",
+		filesKey: "blog-5",
+		path: "src/app/sandbox/blog-5",
+		defaultFile: "page.tsx",
+		referenceUrl: "https://reui.io/preview/base/blog-5",
+		previewRoute: "/sandbox/blog-5",
+	},
+	{
+		id: "integrations-settings",
+		label: "integrations-settings",
+		category: "setting-section",
+		filesKey: "integrations-settings",
+		path: "src/app/sandbox/integrations-settings",
+		defaultFile: "page.tsx",
+		referenceUrl:
+			"https://dribbble.com/shots/22456569-Integrations-settings-page-Untitled-UI",
+		previewRoute: "/sandbox/integrations-settings",
+	},
+	{
+		id: "chatgpt-settings",
+		label: "chatgpt-settings",
+		category: "setting-section",
+		filesKey: "chatgpt-settings",
+		path: "src/app/sandbox/chatgpt-settings",
+		defaultFile: "page.tsx",
+		referenceUrl: "https://chatgpt.com/#settings",
+		previewRoute: "/sandbox/chatgpt-settings",
+	},
+	{
+		id: "orders",
+		label: "orders",
+		category: "setting-section",
+		filesKey: "orders",
+		path: "src/app/sandbox/orders",
+		defaultFile: "page.tsx",
+		referenceUrl: "https://marketing-template.alignui.com/orders",
+		previewRoute: "/sandbox/orders",
+	},
+	{
+		id: "hero-25",
+		label: "hero-25",
+		category: "hero-section",
+		filesKey: "hero-25",
+		path: "src/app/sandbox/hero-25",
+		defaultFile: "page.tsx",
+		referenceUrl: "https://shadcnspace.com/preview/hero-25",
+		previewRoute: "/sandbox/hero-25",
+	},
+	{
+		id: "folio",
+		label: "folio",
+		category: "hero-section",
+		filesKey: "folio",
+		path: "src/app/sandbox/folio",
+		defaultFile: "page.tsx",
+		referenceUrl: "https://ruixen.com/templates/folio",
+		previewRoute: "/sandbox/folio",
+	},
+	{
+		id: "hero-12",
+		label: "hero-12",
+		category: "hero-section",
+		filesKey: "hero-12",
+		path: "src/app/sandbox/hero-12",
+		defaultFile: "page.tsx",
+		referenceUrl: "https://reui.io/preview/base/hero-12",
+		previewRoute: "/sandbox/hero-12",
+	},
+	{
+		id: "hero-9",
+		label: "hero-9",
+		category: "hero-section",
+		filesKey: "hero-9",
+		path: "src/app/sandbox/hero-9",
+		defaultFile: "page.tsx",
+		referenceUrl: "https://reui.io/preview/base/hero-9",
+		previewRoute: "/sandbox/hero-9",
+	},
 	{
 		id: "long-form",
 		label: "long-form",

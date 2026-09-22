@@ -9,8 +9,10 @@ import {
 	HelpCircle,
 	FileText,
 	Layout,
+	LogIn,
 	Mail,
 	MousePointerClick,
+	Settings,
 	Sparkles,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
@@ -87,6 +89,16 @@ const CATEGORIES: CategoryGroup[] = [
 		id: "form-section",
 		label: "Form Section",
 		icon: FileText,
+	},
+	{
+		id: "setting-section",
+		label: "Setting Section",
+		icon: Settings,
+	},
+	{
+		id: "welcome-screen-section",
+		label: "Welcome Screen",
+		icon: LogIn,
 	},
 	{
 		id: "other-sections",
