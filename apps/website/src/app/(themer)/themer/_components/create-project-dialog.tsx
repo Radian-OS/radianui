@@ -6,6 +6,7 @@ import { Check, ClipboardCopy, FolderPlus, Plus, Rocket } from "lucide-react"
 import { useThemerPreset } from "@/lib/themer-preset"
 import { buildRegistryConfig } from "@/registry/config"
 import { FONTS } from "@/registry/fonts"
+import { INPUT_VARIANTS } from "@/registry/input-variants"
 import { PRIMARY_COLORS } from "@/registry/primary-colors"
 import { TEMPLATES, Template } from "@/registry/templates"
 import { Button } from "@/styles/default/ui/button"
@@ -72,6 +73,9 @@ export function CreateProjectDialog() {
 	const selectedHeadingFont = FONTS.find((f) => f.value === params.headingFont)
 	const selectedBodyFont = FONTS.find((f) => f.value === params.bodyFont)
 	const selectedRadius = RADII.find((r) => r.value === params.radius)
+	const selectedInputVariant = INPUT_VARIANTS.find(
+		(v) => v.value === params.inputVariant
+	)
 
 	const {
 		mutate,
@@ -208,6 +212,12 @@ export function CreateProjectDialog() {
 								label="Src Dir"
 								value={params.useSrcDir ? "Yes" : "No"}
 							/>
+							{selectedInputVariant && (
+								<ThemeSummaryPill
+									label="Input"
+									value={selectedInputVariant.name}
+								/>
+							)}
 						</div>
 
 						{/* Form */}

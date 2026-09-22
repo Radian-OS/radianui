@@ -11,6 +11,7 @@ import { BASE_COLORS, BaseColorValue } from "@/registry/base-colors"
 import { DEFAULT_CONFIG } from "@/registry/config"
 import { FONTS, FontValue } from "@/registry/fonts"
 import { ICON_LIBRARIES, IconLibrary } from "@/registry/icon/icon-libraries"
+import { INPUT_VARIANTS, InputVariantValue } from "@/registry/input-variants"
 import { PRIMARY_COLORS, PrimaryColorValue } from "@/registry/primary-colors"
 import { RADIUS, RadiusValue } from "@/registry/radius"
 import { STYLES, StyleValue } from "@/registry/styles"
@@ -42,6 +43,9 @@ const designSystemSearchParams = {
 	iconLibrary: parseAsStringLiteral<IconLibrary>(ICON_LIBRARIES).withDefault(
 		DEFAULT_CONFIG.iconLibrary
 	),
+	inputVariant: parseAsStringLiteral<InputVariantValue>(
+		INPUT_VARIANTS.map((v) => v.value)
+	).withDefault(DEFAULT_CONFIG.inputVariant),
 }
 
 export type DesignSystemSearchParams = inferParserType<
@@ -62,6 +66,7 @@ function resolvePresetParams(
 		style: searchParams.get("style") ?? rawParams.style,
 		useSrcDir: searchParams.get("useSrcDir") ?? rawParams.useSrcDir,
 		iconLibrary: searchParams.get("iconLibrary") ?? rawParams.iconLibrary,
+		inputVariant: searchParams.get("inputVariant") ?? rawParams.inputVariant,
 	} as DesignSystemSearchParams
 	return mergedParams
 }

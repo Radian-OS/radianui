@@ -17,6 +17,7 @@ import {
 	ICON_LIBRARY_LABELS,
 	IconLibrary,
 } from "@/registry/icon/icon-libraries"
+import { INPUT_VARIANTS, InputVariantValue } from "@/registry/input-variants"
 import { PRIMARY_COLORS, PrimaryColorValue } from "@/registry/primary-colors"
 import { RADIUS, RadiusValue } from "@/registry/radius"
 import { STYLES, StyleValue } from "@/registry/styles"
@@ -142,6 +143,9 @@ export function ThemerSidebar({
 		PREVIEW_ITEMS.find((item) => item.value === selectedComponent)?.label ??
 		humanizeName(selectedComponent)
 	const selectedStyle = STYLES.find((t) => t.value === params.style)
+	const selectedInputVariant = INPUT_VARIANTS.find(
+		(v) => v.value === params.inputVariant
+	)
 	const isRadiusDisabled = RADIUS_DISABLED_STYLES.includes(
 		params.style as StyleValue
 	)
@@ -398,6 +402,43 @@ export function ThemerSidebar({
 										value={iconLibrary}
 										onSelect={(e) => e.preventDefault()}>
 										{ICON_LIBRARY_LABELS[iconLibrary]}
+									</DropdownMenuRadioItem>
+								))}
+							</DropdownMenuRadioGroup>
+						</DropdownMenuContent>
+					</DropdownMenu>
+				</div>
+
+				{/* Input Style */}
+				<div className="flex flex-col gap-3">
+					<SectionLabel>Input Style</SectionLabel>
+					<DropdownMenu>
+						<DropdownMenuTrigger className="border-border hover:border-fg-disabled bg-elevation-level2 flex w-full items-center justify-between gap-2 rounded-lg border px-3 py-2 text-sm transition-colors">
+							<span className="text-fg font-medium">
+								{selectedInputVariant?.name ?? "Bordered"}
+							</span>
+							<ChevronDown className="text-fg-tertiary size-3.5 shrink-0" />
+						</DropdownMenuTrigger>
+						<DropdownMenuContent side="right" className="max-h-96 w-64">
+							<DropdownMenuRadioGroup
+								value={params.inputVariant}
+								onValueChange={(value) =>
+									setParams({ inputVariant: value as InputVariantValue })
+								}>
+								{INPUT_VARIANTS.map((variant) => (
+									<DropdownMenuRadioItem
+										key={variant.value}
+										value={variant.value}
+										className="py-2.5"
+										onSelect={(e) => e.preventDefault()}>
+										<div className="flex flex-col gap-1">
+											<span className="text-fg font-medium">
+												{variant.name}
+											</span>
+											<span className="text-fg-tertiary text-xs leading-snug">
+												{variant.description}
+											</span>
+										</div>
 									</DropdownMenuRadioItem>
 								))}
 							</DropdownMenuRadioGroup>

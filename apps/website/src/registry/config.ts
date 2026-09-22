@@ -2,6 +2,7 @@ import z from "zod"
 import { BASE_COLORS } from "./base-colors"
 import { FONTS } from "./fonts"
 import { ICON_LIBRARIES, IconLibrary } from "./icon/icon-libraries"
+import { INPUT_VARIANTS } from "./input-variants"
 import { PRIMARY_COLORS } from "./primary-colors"
 import { RADIUS } from "./radius"
 import { STYLES } from "./styles"
@@ -38,6 +39,8 @@ export const registryConfigSchema = z.object({
 
 export type RegistryConfig = z.infer<typeof registryConfigSchema>
 
+const inputVariantValues = INPUT_VARIANTS.map((v) => v.value)
+
 export const themerConfigSchema = z.object({
 	name: z.string().optional(),
 	primaryColor: z
@@ -65,6 +68,7 @@ export const themerConfigSchema = z.object({
 		.default("default"),
 	useSrcDir: z.boolean().default(true),
 	iconLibrary: z.enum(ICON_LIBRARIES).default("lucide"),
+	inputVariant: z.enum(inputVariantValues).default("bordered"),
 })
 
 export type ThemerConfig = z.infer<typeof themerConfigSchema>
@@ -80,6 +84,7 @@ export const DEFAULT_CONFIG: ThemerConfig = {
 	useSrcDir: true,
 	iconLibrary: "lucide",
 	baseColor: "default",
+	inputVariant: "bordered",
 }
 
 export type Preset = ThemerConfig & {
@@ -102,6 +107,7 @@ export const PRESETS: Preset[] = [
 		useSrcDir: true,
 		iconLibrary: "lucide",
 		baseColor: "default",
+		inputVariant: "bordered",
 	},
 	{
 		name: "sera",
@@ -116,6 +122,7 @@ export const PRESETS: Preset[] = [
 		useSrcDir: true,
 		iconLibrary: "lucide",
 		baseColor: "default",
+		inputVariant: "bordered",
 	},
 ]
 
@@ -310,6 +317,10 @@ export function buildRegistryConfig(config: ThemerConfig): RegistryConfig {
 		}
 	}
 
+	const inputVariantEntry = INPUT_VARIANTS.find(
+		(v) => v.value === config.inputVariant
+	)
+
 	const dependencies = [
 		"class-variance-authority",
 		"tw-animate-css",
@@ -372,6 +383,9 @@ export function buildRegistryConfig(config: ThemerConfig): RegistryConfig {
 				"@apply font-body text-[0.8125rem] leading-[1.125rem];",
 			"@utility no-scrollbar":
 				"-ms-overflow-style: none; scrollbar-width: none; &::-webkit-scrollbar { display: none; }",
+			...(inputVariantEntry &&
+				inputVariantEntry.value !== "bordered" &&
+				inputVariantEntry.projectCss),
 		},
 		dependencies,
 		registryDependencies,

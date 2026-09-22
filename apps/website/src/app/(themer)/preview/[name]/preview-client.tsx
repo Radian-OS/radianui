@@ -5,6 +5,7 @@ import { useThemerPreset } from "@/lib/themer-preset"
 import { buildRegistryConfig } from "@/registry/config"
 import { FONTS } from "@/registry/fonts"
 import { IconLibraryProvider } from "@/registry/icon/icon-library"
+import { INPUT_VARIANTS } from "@/registry/input-variants"
 import { RADIUS } from "@/registry/radius"
 
 const MANAGED_BODY_CLASS_PREFIXES = ["style-"] as const
@@ -76,7 +77,8 @@ const buildRadiusCssText = (preset: string) => {
 
 const buildThemerCssText = (
 	cssVars: RegistryThemeCssVars | undefined,
-	radius: string | undefined
+	radius: string | undefined,
+	inputVariant: string | undefined
 ) => {
 	const parts: string[] = []
 
@@ -87,6 +89,11 @@ const buildThemerCssText = (
 	if (radius) {
 		const radiusCss = buildRadiusCssText(radius)
 		if (radiusCss) parts.push(radiusCss)
+	}
+
+	if (inputVariant && inputVariant !== "bordered") {
+		const entry = INPUT_VARIANTS.find((v) => v.value === inputVariant)
+		if (entry?.previewCss) parts.push(entry.previewCss)
 	}
 
 	return parts.join("\n")
@@ -122,7 +129,11 @@ export function PreviewClient({ children }: { children: React.ReactNode }) {
 			document.head.appendChild(style)
 		}
 
-		style.textContent = buildThemerCssText(config?.cssVars, params.radius)
+		style.textContent = buildThemerCssText(
+			config?.cssVars,
+			params.radius,
+			params.inputVariant
+		)
 
 		removeManagedBodyClasses(document.body)
 		document.body.classList.add(`style-${params.style}`)
@@ -133,7 +144,7 @@ export function PreviewClient({ children }: { children: React.ReactNode }) {
 				document.head.removeChild(style)
 			}
 		}
-	}, [config, params.radius, params.style])
+	}, [config, params.radius, params.style, params.inputVariant])
 
 	useFontLoader(selectedHeadingFont, "--font-heading")
 	useFontLoader(selectedBodyFont, "--font-body")
@@ -163,6 +174,9 @@ export function PreviewClient({ children }: { children: React.ReactNode }) {
 			}
 			if (event.data.type === "icon-library-change") {
 				setParams({ iconLibrary: event.data.iconLibrary })
+			}
+			if (event.data.type === "input-variant-change") {
+				setParams({ inputVariant: event.data.inputVariant })
 			}
 		}
 

@@ -28,6 +28,7 @@ function ThemerContent() {
 			style: params.style,
 			useSrcDir: String(params.useSrcDir),
 			iconLibrary: params.iconLibrary,
+			inputVariant: params.inputVariant,
 		})
 
 		if (params.primaryColor) {
@@ -94,6 +95,13 @@ function ThemerContent() {
 			"*"
 		)
 	}, [params.radius])
+
+	useEffect(() => {
+		postToIframe({
+			type: "input-variant-change",
+			inputVariant: params.inputVariant,
+		})
+	}, [params.inputVariant])
 
 	return (
 		<div className="bg-fill2 flex h-screen w-full">
