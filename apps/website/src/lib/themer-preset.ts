@@ -6,6 +6,7 @@ import {
 	inferParserType,
 	parseAsBoolean,
 	parseAsStringLiteral,
+	parseAsJson,
 } from "nuqs/server"
 import { BASE_COLORS, BaseColorValue } from "@/registry/base-colors"
 import { DEFAULT_CONFIG } from "@/registry/config"
@@ -52,6 +53,15 @@ const designSystemSearchParams = {
 	inputVariant: parseAsStringLiteral<InputVariantValue>(
 		INPUT_VARIANTS.map((v) => v.value)
 	).withDefault(DEFAULT_CONFIG.inputVariant),
+	customColors: parseAsJson<Record<string, string>>(
+		(v) => v as Record<string, string>
+	).withDefault(DEFAULT_CONFIG.customColors),
+	componentOverrides: parseAsJson<
+		Array<{ selector: string; customColorId: string; property: string }>
+	>(
+		(v) =>
+			v as Array<{ selector: string; customColorId: string; property: string }>
+	).withDefault(DEFAULT_CONFIG.componentOverrides),
 }
 
 export type DesignSystemSearchParams = inferParserType<
@@ -76,6 +86,8 @@ function resolvePresetParams(
 		useSrcDir: searchParams.get("useSrcDir") ?? rawParams.useSrcDir,
 		iconLibrary: searchParams.get("iconLibrary") ?? rawParams.iconLibrary,
 		inputVariant: searchParams.get("inputVariant") ?? rawParams.inputVariant,
+		customColors: rawParams.customColors,
+		componentOverrides: rawParams.componentOverrides,
 	} as DesignSystemSearchParams
 	return mergedParams
 }

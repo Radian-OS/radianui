@@ -15,6 +15,8 @@ function ThemerContent() {
 	const [params] = useThemerPreset()
 	const [selectedComponent, setSelectedComponent] =
 		useState<string>("preview-02")
+	const [inspectMode, setInspectMode] = useState(false)
+	const [inspectedElement, setInspectedElement] = useState<string | null>(null)
 
 	const iframeRef = useRef<HTMLIFrameElement>(null)
 
@@ -40,6 +42,15 @@ function ThemerContent() {
 
 		if (params.baseColor) {
 			searchParams.set("baseColor", params.baseColor)
+		}
+		if (params.customColors && Object.keys(params.customColors).length > 0) {
+			searchParams.set("customColors", JSON.stringify(params.customColors))
+		}
+		if (params.componentOverrides && params.componentOverrides.length > 0) {
+			searchParams.set(
+				"componentOverrides",
+				JSON.stringify(params.componentOverrides)
+			)
 		}
 
 		return `/preview/${selectedComponent}?${searchParams.toString()}`
@@ -120,11 +131,47 @@ function ThemerContent() {
 		})
 	}, [params.secondaryColor])
 
+	useEffect(() => {
+		postToIframe({
+			type: "custom-colors-change",
+			customColors: params.customColors,
+		})
+	}, [params.customColors, postToIframe])
+
+	useEffect(() => {
+		postToIframe({
+			type: "component-overrides-change",
+			componentOverrides: params.componentOverrides,
+		})
+	}, [params.componentOverrides, postToIframe])
+
+	useEffect(() => {
+		postToIframe({
+			type: "inspect-mode-change",
+			inspectMode,
+		})
+	}, [inspectMode, postToIframe])
+
+	useEffect(() => {
+		const handleMessage = (event: MessageEvent) => {
+			if (event.data?.type === "element-inspected") {
+				setInspectedElement(event.data.selector)
+				setInspectMode(false) // turn off inspect mode after selection
+			}
+		}
+		window.addEventListener("message", handleMessage)
+		return () => window.removeEventListener("message", handleMessage)
+	}, [])
+
 	return (
 		<div className="bg-fill2 flex h-screen w-full">
 			<ThemerSidebar
 				selectedComponent={selectedComponent}
 				setSelectedComponent={setSelectedComponent}
+				inspectMode={inspectMode}
+				setInspectMode={setInspectMode}
+				inspectedElement={inspectedElement}
+				setInspectedElement={setInspectedElement}
 			/>
 
 			<main className="flex flex-1 flex-col overflow-hidden p-5">

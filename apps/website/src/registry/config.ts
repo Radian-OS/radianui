@@ -77,6 +77,16 @@ export const themerConfigSchema = z.object({
 	useSrcDir: z.boolean().default(true),
 	iconLibrary: z.enum(ICON_LIBRARIES).default("lucide"),
 	inputVariant: z.enum(inputVariantValues).default("bordered"),
+	customColors: z.record(z.string(), z.string()).default({}),
+	componentOverrides: z
+		.array(
+			z.object({
+				selector: z.string(),
+				customColorId: z.string(),
+				property: z.string(),
+			})
+		)
+		.default([]),
 })
 
 export type ThemerConfig = z.infer<typeof themerConfigSchema>
@@ -95,6 +105,8 @@ export const DEFAULT_CONFIG: ThemerConfig = {
 	iconLibrary: "lucide",
 	baseColor: "default",
 	inputVariant: "bordered",
+	customColors: {},
+	componentOverrides: [],
 }
 
 export type Preset = ThemerConfig & {
@@ -120,6 +132,8 @@ export const PRESETS: Preset[] = [
 		iconLibrary: "lucide",
 		baseColor: "default",
 		inputVariant: "bordered",
+		customColors: {},
+		componentOverrides: [],
 	},
 	{
 		name: "sera",
@@ -137,6 +151,8 @@ export const PRESETS: Preset[] = [
 		iconLibrary: "lucide",
 		baseColor: "default",
 		inputVariant: "bordered",
+		customColors: {},
+		componentOverrides: [],
 	},
 ]
 

@@ -46,7 +46,7 @@ function ContributionHistoryCard() {
 	]
 
 	return (
-		<Card className="flex flex-col gap-4">
+		<Card data-themer-id="history-card" className="flex flex-col gap-4">
 			<CardHeader className="pb-0">
 				<CardTitle className="text-base font-semibold">
 					Contribution History
@@ -103,8 +103,10 @@ function PayoutThresholdCard() {
 	const [amount, setAmount] = useState([2500])
 
 	return (
-		<Card className="relative">
-			<button className="text-fg-tertiary hover:text-fg absolute top-4 right-4 transition-colors">
+		<Card data-themer-id="payout-card" className="relative">
+			<button
+				data-themer-id="payout-close-btn"
+				className="text-fg-tertiary hover:text-fg absolute top-4 right-4 transition-colors">
 				<IconSlot slot="cross" className="h-4 w-4" />
 			</button>
 
@@ -132,8 +134,10 @@ function PayoutThresholdCard() {
 					</Select>
 				</div>
 
-				<div className="space-y-3">
-					<div className="flex items-center justify-between">
+				<div data-themer-id="auth-container" className="space-y-3">
+					<div
+						data-themer-id="auth-image-panel"
+						className="flex items-center justify-between">
 						<Label>Minimum Payout Amount</Label>
 						<span className="text-2xl font-bold tracking-tight">
 							${amount[0].toLocaleString()}.00
@@ -163,7 +167,9 @@ function PayoutThresholdCard() {
 			</CardContent>
 
 			<CardFooter>
-				<Button className="w-full">Save Threshold</Button>
+				<Button data-themer-id="auth-submit-btn" className="w-full">
+					Save Threshold
+				</Button>
 			</CardFooter>
 		</Card>
 	)
@@ -914,7 +920,9 @@ function ScheduleCard() {
 // ──────────────────────────────────────────────
 export default function DashboardPage() {
 	return (
-		<div className="bg-elevation-negative min-h-screen p-6">
+		<div
+			data-themer-id="page-container"
+			className="bg-bg font-body min-h-screen w-full px-4 py-8 sm:px-6 md:py-12">
 			<div className="mx-auto max-w-6xl space-y-6">
 				<h1 className="text-2xl font-bold tracking-tight">
 					Financial Dashboard

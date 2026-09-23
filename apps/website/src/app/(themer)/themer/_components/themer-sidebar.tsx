@@ -17,7 +17,7 @@ import {
 	ICON_LIBRARY_LABELS,
 	IconLibrary,
 } from "@/registry/icon/icon-libraries"
-import { INPUT_VARIANTS, InputVariantValue } from "@/registry/input-variants"
+// import { INPUT_VARIANTS, InputVariantValue } from "@/registry/input-variants"
 import { PRIMARY_COLORS, PrimaryColorValue } from "@/registry/primary-colors"
 import { RADIUS, RadiusValue } from "@/registry/radius"
 import { STYLES, StyleValue } from "@/registry/styles"
@@ -39,6 +39,10 @@ import { SectionLabel } from "./section-label"
 interface ThemerSidebarProps {
 	selectedComponent: string
 	setSelectedComponent: (value: string) => void
+	inspectMode: boolean
+	setInspectMode: (value: boolean) => void
+	inspectedElement: string | null
+	setInspectedElement: (value: string | null) => void
 }
 
 const humanizeName = (name: string) =>
@@ -130,6 +134,10 @@ const getRandomItem = <T,>(items: readonly T[]) =>
 export function ThemerSidebar({
 	selectedComponent,
 	setSelectedComponent,
+	inspectMode,
+	setInspectMode,
+	inspectedElement,
+	setInspectedElement,
 }: ThemerSidebarProps) {
 	const [params, setParams] = useThemerPreset()
 	const { locked, toggleLock } = useThemerLocks()
@@ -144,9 +152,9 @@ export function ThemerSidebar({
 		PREVIEW_ITEMS.find((item) => item.value === selectedComponent)?.label ??
 		humanizeName(selectedComponent)
 	const selectedStyle = STYLES.find((t) => t.value === params.style)
-	const selectedInputVariant = INPUT_VARIANTS.find(
-		(v) => v.value === params.inputVariant
-	)
+	// const selectedInputVariant = INPUT_VARIANTS.find(
+	// 	(v) => v.value === params.inputVariant
+	// )
 	const isRadiusDisabled = RADIUS_DISABLED_STYLES.includes(
 		params.style as StyleValue
 	)
@@ -381,6 +389,156 @@ export function ThemerSidebar({
 					</DropdownMenu>
 				</div>
 
+				{/* Custom Colors Section */}
+				<div className="flex flex-col gap-3">
+					<SectionLabel>Custom Colors</SectionLabel>
+					<div className="flex flex-col gap-2">
+						{Object.entries(params.customColors ?? {}).map(([id, color]) => (
+							<div
+								key={id}
+								className="border-border bg-elevation-level2 flex items-center justify-between rounded-md border p-2">
+								<div className="flex items-center gap-2">
+									<input
+										type="color"
+										value={color}
+										className="size-6 shrink-0 cursor-pointer overflow-hidden rounded-sm border-0 bg-transparent p-0"
+										onChange={(e) => {
+											setParams({
+												customColors: {
+													...params.customColors,
+													[id]: e.target.value,
+												},
+											})
+										}}
+									/>
+									<span className="text-fg text-xs">{id}</span>
+								</div>
+								<Button
+									size="28"
+									variant="ghost"
+									color="neutral"
+									onClick={() => {
+										const next = { ...params.customColors }
+										delete next[id]
+										setParams({ customColors: next })
+									}}>
+									✕
+								</Button>
+							</div>
+						))}
+						<Button
+							type="button"
+							variant="outline"
+							size="32"
+							color="neutral"
+							className="w-full"
+							onClick={() => {
+								const id = `custom-${Math.random().toString(36).substring(2, 6)}`
+								setParams({
+									customColors: {
+										...params.customColors,
+										[id]: "#3b82f6",
+									},
+								})
+							}}>
+							Add Custom Color
+						</Button>
+					</div>
+				</div>
+
+				{/* Component Inspect Section */}
+				<div className="flex flex-col gap-3">
+					<SectionLabel>Element Overrides</SectionLabel>
+					<Button
+						type="button"
+						variant={inspectMode ? "strong" : "outline"}
+						color="primary"
+						size="32"
+						className="w-full"
+						onClick={() => setInspectMode(!inspectMode)}>
+						{inspectMode ? "Selecting..." : "Inspect Element"}
+					</Button>
+
+					{inspectedElement && (
+						<div className="border-border bg-elevation-level2 flex flex-col gap-2 rounded-md border p-3">
+							<span
+								className="text-fg overflow-hidden font-mono text-xs text-ellipsis whitespace-nowrap"
+								title={inspectedElement}>
+								{inspectedElement}
+							</span>
+
+							<DropdownMenu>
+								<DropdownMenuTrigger className="border-border hover:border-fg-disabled bg-elevation-level1 flex w-full items-center justify-between gap-2 rounded-lg border px-3 py-2 text-xs transition-colors">
+									<span>Set Custom Color</span>
+									<ChevronDown className="text-fg-tertiary size-3 shrink-0" />
+								</DropdownMenuTrigger>
+								<DropdownMenuContent className="max-h-96 w-48">
+									{Object.entries(params.customColors ?? {}).map(
+										([id, color]) => (
+											<DropdownMenuRadioItem
+												key={id}
+												value={id}
+												onSelect={(e) => {
+													e.preventDefault()
+													setParams({
+														componentOverrides: [
+															...(params.componentOverrides ?? []),
+															{
+																selector: inspectedElement,
+																customColorId: id,
+																property: "background-color",
+															},
+														],
+													})
+													setInspectedElement(null)
+												}}>
+												<div className="flex items-center gap-2">
+													<div
+														className="size-3 rounded-sm"
+														style={{ backgroundColor: color }}
+													/>
+													{id}
+												</div>
+											</DropdownMenuRadioItem>
+										)
+									)}
+								</DropdownMenuContent>
+							</DropdownMenu>
+							<Button
+								size="28"
+								variant="ghost"
+								color="neutral"
+								onClick={() => setInspectedElement(null)}>
+								Cancel
+							</Button>
+						</div>
+					)}
+
+					{params.componentOverrides?.map((override, i) => (
+						<div
+							key={i}
+							className="border-border bg-elevation-level2 flex flex-col gap-1 rounded-md border p-2 text-xs">
+							<span className="overflow-hidden font-mono text-ellipsis whitespace-nowrap opacity-75">
+								{override.selector}
+							</span>
+							<div className="mt-1 flex items-center justify-between">
+								<span>→ {override.customColorId}</span>
+								<Button
+									size="28"
+									variant="ghost"
+									color="error"
+									onClick={() => {
+										const next = [...params.componentOverrides!]
+										next.splice(i, 1)
+										setParams({ componentOverrides: next })
+									}}>
+									✕
+								</Button>
+							</div>
+						</div>
+					))}
+				</div>
+
 				{/* Component Preview */}
 				<div className="flex flex-col gap-3">
 					<SectionLabel>Preview</SectionLabel>
@@ -443,7 +601,7 @@ export function ThemerSidebar({
 				</div>
 
 				{/* Input Style */}
-				<div className="flex flex-col gap-3">
+				{/* <div className="flex flex-col gap-3">
 					<SectionLabel>Input Style</SectionLabel>
 					<DropdownMenu>
 						<DropdownMenuTrigger className="border-border hover:border-fg-disabled bg-elevation-level2 flex w-full items-center justify-between gap-2 rounded-lg border px-3 py-2 text-sm transition-colors">
@@ -477,7 +635,7 @@ export function ThemerSidebar({
 							</DropdownMenuRadioGroup>
 						</DropdownMenuContent>
 					</DropdownMenu>
-				</div>
+				</div> */}
 
 				{/* Typography */}
 				<div className="flex flex-col gap-3">

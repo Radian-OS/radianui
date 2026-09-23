@@ -62,7 +62,13 @@ const THEMER_STYLE_ID = "themer-style"
 
 const buildThemerCssText = (
 	cssVars: RegistryThemeCssVars | undefined,
-	inputVariant: string | undefined
+	inputVariant: string | undefined,
+	customColors?: Record<string, string>,
+	componentOverrides?: Array<{
+		selector: string
+		customColorId: string
+		property: string
+	}>
 ) => {
 	const parts: string[] = []
 
@@ -73,6 +79,28 @@ const buildThemerCssText = (
 	if (inputVariant && inputVariant !== "bordered") {
 		const entry = INPUT_VARIANTS.find((v) => v.value === inputVariant)
 		if (entry?.previewCss) parts.push(entry.previewCss)
+	}
+
+	if (customColors) {
+		const customColorVars = Object.entries(customColors).reduce(
+			(acc, [id, val]) => {
+				acc[`--color-${id}`] = val
+				return acc
+			},
+			{} as Record<string, string>
+		)
+		if (Object.keys(customColorVars).length > 0) {
+			parts.push(buildCssRule(":root", customColorVars))
+		}
+	}
+
+	if (componentOverrides && componentOverrides.length > 0) {
+		const overrideRules = componentOverrides.map((override) => {
+			return `${override.selector} {
+  ${override.property}: var(--color-${override.customColorId}) !important;
+}`
+		})
+		parts.push(overrideRules.join("\n"))
 	}
 
 	return parts.join("\n")
@@ -88,9 +116,30 @@ function removeManagedBodyClasses(body: Element) {
 	}
 }
 
+function getThemerNode(el: Element): Element | null {
+	let current: Element | null = el
+	while (current && current.tagName.toLowerCase() !== "html") {
+		if (current.hasAttribute("data-themer-id")) {
+			return current
+		}
+		current = current.parentElement
+	}
+	return null
+}
+
+function getCssSelector(el: Element): string | null {
+	const node = getThemerNode(el)
+	if (node) {
+		return `[data-themer-id="${node.getAttribute("data-themer-id")}"]`
+	}
+	return null
+}
+
 export function PreviewClient({ children }: { children: React.ReactNode }) {
 	const [params, setParams] = useThemerPreset()
 	const [isReady, setIsReady] = useState(false)
+	const [inspectMode, setInspectMode] = useState(false)
+	const [hoveredElement, setHoveredElement] = useState<HTMLElement | null>(null)
 
 	const selectedHeadingFont = FONTS.find(
 		(font) => font.value === params.headingFont
@@ -108,7 +157,12 @@ export function PreviewClient({ children }: { children: React.ReactNode }) {
 			document.head.appendChild(style)
 		}
 
-		style.textContent = buildThemerCssText(config?.cssVars, params.inputVariant)
+		style.textContent = buildThemerCssText(
+			config?.cssVars,
+			params.inputVariant,
+			params.customColors,
+			params.componentOverrides
+		)
 
 		removeManagedBodyClasses(document.body)
 		document.body.classList.add(`style-${params.style}`)
@@ -119,7 +173,13 @@ export function PreviewClient({ children }: { children: React.ReactNode }) {
 				document.head.removeChild(style)
 			}
 		}
-	}, [config, params.style, params.inputVariant])
+	}, [
+		config,
+		params.style,
+		params.inputVariant,
+		params.customColors,
+		params.componentOverrides,
+	])
 
 	useFontLoader(selectedHeadingFont, "--font-heading")
 	useFontLoader(selectedBodyFont, "--font-body")
@@ -159,6 +219,15 @@ export function PreviewClient({ children }: { children: React.ReactNode }) {
 			if (event.data.type === "input-variant-change") {
 				setParams({ inputVariant: event.data.inputVariant })
 			}
+			if (event.data.type === "inspect-mode-change") {
+				setInspectMode(event.data.inspectMode)
+			}
+			if (event.data.type === "custom-colors-change") {
+				setParams({ customColors: event.data.customColors })
+			}
+			if (event.data.type === "component-overrides-change") {
+				setParams({ componentOverrides: event.data.componentOverrides })
+			}
 		}
 
 		window.addEventListener("message", handleMessage)
@@ -168,11 +237,59 @@ export function PreviewClient({ children }: { children: React.ReactNode }) {
 		}
 	}, [setParams])
 
+	useEffect(() => {
+		if (!inspectMode) {
+			setHoveredElement(null)
+			return
+		}
+
+		const handleMouseOver = (e: MouseEvent) => {
+			e.stopPropagation()
+			const node = getThemerNode(e.target as Element)
+			setHoveredElement(node as HTMLElement | null)
+		}
+
+		const handleClick = (e: MouseEvent) => {
+			e.preventDefault()
+			e.stopPropagation()
+			const target = e.target as HTMLElement
+			const selector = getCssSelector(target)
+			if (selector) {
+				window.parent.postMessage({ type: "element-inspected", selector }, "*")
+				setInspectMode(false)
+				setHoveredElement(null)
+			}
+		}
+
+		document.addEventListener("mouseover", handleMouseOver, true)
+		document.addEventListener("click", handleClick, true)
+
+		return () => {
+			document.removeEventListener("mouseover", handleMouseOver, true)
+			document.removeEventListener("click", handleClick, true)
+		}
+	}, [inspectMode])
+
 	if (!isReady) return null
 
 	return (
 		<IconLibraryProvider value={params.iconLibrary}>
 			{children}
+			{inspectMode && hoveredElement && (
+				<div
+					style={{
+						position: "fixed",
+						top: hoveredElement.getBoundingClientRect().top,
+						left: hoveredElement.getBoundingClientRect().left,
+						width: hoveredElement.getBoundingClientRect().width,
+						height: hoveredElement.getBoundingClientRect().height,
+						backgroundColor: "rgba(59, 130, 246, 0.2)",
+						border: "2px solid rgb(59, 130, 246)",
+						pointerEvents: "none",
+						zIndex: 9999,
+					}}
+				/>
+			)}
 		</IconLibraryProvider>
 	)
 }
