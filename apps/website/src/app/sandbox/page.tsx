@@ -95,6 +95,24 @@ export default async function PlaygroundPage() {
 		process.cwd(),
 		"src/app/sandbox/tania-rascia"
 	)
+	const dataGridColumns2Dir = path.join(
+		process.cwd(),
+		"src/app/sandbox/data-grid-columns-2"
+	)
+	const dataGridColumns5Dir = path.join(
+		process.cwd(),
+		"src/app/sandbox/data-grid-columns-5"
+	)
+	const usersTableDir = path.join(process.cwd(), "src/app/sandbox/users-table")
+	const williamsSamuelDir = path.join(
+		process.cwd(),
+		"src/app/sandbox/williams-samuel"
+	)
+	const victorEkeDir = path.join(process.cwd(), "src/app/sandbox/victor-eke")
+	const projectsTableDir = path.join(
+		process.cwd(),
+		"src/app/sandbox/projects-table"
+	)
 	const kishorPortfolioDir = path.join(
 		process.cwd(),
 		"src/app/sandbox/kishor-portfolio"
@@ -130,6 +148,88 @@ export default async function PlaygroundPage() {
 		"series-section.tsx",
 		"projects-grid-section.tsx",
 		"portfolio-footer.tsx",
+		"types.ts",
+	]
+
+	const dataGridColumns2Files = [
+		"page.tsx",
+		"course-catalog-view.tsx",
+		"course-table.tsx",
+		"course-table-header.tsx",
+		"course-table-tabs.tsx",
+		"course-table-toolbar.tsx",
+		"course-table-row.tsx",
+		"course-table-pagination.tsx",
+		"course-completion-ring.tsx",
+		"types.ts",
+	]
+
+	const dataGridColumns5Files = [
+		"page.tsx",
+		"companies-data-grid-view.tsx",
+		"companies-table.tsx",
+		"companies-header.tsx",
+		"companies-toolbar.tsx",
+		"companies-table-row.tsx",
+		"companies-table-pagination.tsx",
+		"columns-customizer.tsx",
+		"health-progress-bar.tsx",
+		"types.ts",
+	]
+
+	const usersTableFiles = [
+		"page.tsx",
+		"users-table-view.tsx",
+		"users-table.tsx",
+		"users-table-tabs.tsx",
+		"users-table-toolbar.tsx",
+		"users-table-row.tsx",
+		"users-table-pagination.tsx",
+		"users-status-badge.tsx",
+		"import-export-dropdown.tsx",
+		"types.ts",
+	]
+
+	const williamsSamuelFiles = [
+		"page.tsx",
+		"williams-samuel-view.tsx",
+		"williams-navbar.tsx",
+		"hero-section.tsx",
+		"about-section.tsx",
+		"skills-section.tsx",
+		"featured-projects-section.tsx",
+		"featured-project-card.tsx",
+		"noteworthy-projects-section.tsx",
+		"noteworthy-project-card.tsx",
+		"contact-cta-section.tsx",
+		"williams-footer.tsx",
+		"types.ts",
+	]
+
+	const victorEkeFiles = [
+		"page.tsx",
+		"victor-eke-view.tsx",
+		"victor-navbar.tsx",
+		"hero-section.tsx",
+		"social-links-list.tsx",
+		"contribution-graph.tsx",
+		"contribution-cell.tsx",
+		"experience-section.tsx",
+		"experience-card.tsx",
+		"portfolio-footer.tsx",
+		"types.ts",
+	]
+
+	const projectsTableFiles = [
+		"page.tsx",
+		"projects-table-view.tsx",
+		"projects-table.tsx",
+		"projects-table-header.tsx",
+		"projects-table-toolbar.tsx",
+		"projects-table-row.tsx",
+		"projects-table-pagination.tsx",
+		"project-progress-bar.tsx",
+		"project-rating-stars.tsx",
 		"types.ts",
 	]
 
@@ -782,6 +882,36 @@ export default async function PlaygroundPage() {
 		loginPage04Data[file] = readFileContent(loginPage04Dir, file)
 	}
 
+	const williamsSamuelData: Record<string, string> = {}
+	for (const file of williamsSamuelFiles) {
+		williamsSamuelData[file] = readFileContent(williamsSamuelDir, file)
+	}
+
+	const victorEkeData: Record<string, string> = {}
+	for (const file of victorEkeFiles) {
+		victorEkeData[file] = readFileContent(victorEkeDir, file)
+	}
+
+	const projectsTableData: Record<string, string> = {}
+	for (const file of projectsTableFiles) {
+		projectsTableData[file] = readFileContent(projectsTableDir, file)
+	}
+
+	const usersTableData: Record<string, string> = {}
+	for (const file of usersTableFiles) {
+		usersTableData[file] = readFileContent(usersTableDir, file)
+	}
+
+	const dataGridColumns5Data: Record<string, string> = {}
+	for (const file of dataGridColumns5Files) {
+		dataGridColumns5Data[file] = readFileContent(dataGridColumns5Dir, file)
+	}
+
+	const dataGridColumns2Data: Record<string, string> = {}
+	for (const file of dataGridColumns2Files) {
+		dataGridColumns2Data[file] = readFileContent(dataGridColumns2Dir, file)
+	}
+
 	const taniaRasciaData: Record<string, string> = {}
 	for (const file of taniaRasciaFiles) {
 		taniaRasciaData[file] = readFileContent(taniaRasciaDir, file)
@@ -815,6 +945,12 @@ export default async function PlaygroundPage() {
 	}
 
 	const files = {
+		"williams-samuel": williamsSamuelData,
+		"victor-eke": victorEkeData,
+		"projects-table": projectsTableData,
+		"users-table": usersTableData,
+		"data-grid-columns-5": dataGridColumns5Data,
+		"data-grid-columns-2": dataGridColumns2Data,
 		"tania-rascia": taniaRasciaData,
 		"kishor-portfolio": kishorPortfolioData,
 		"product-tour": productTourData,
