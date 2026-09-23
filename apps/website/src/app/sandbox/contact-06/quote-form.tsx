@@ -44,18 +44,18 @@ export function QuoteForm() {
 	}
 
 	return (
-		<div className="rounded-2xl border border-zinc-800/80 bg-[#0a0d14] p-6 text-white shadow-2xl sm:rounded-3xl sm:p-10 lg:p-12">
+		<div className="border-border/80 bg-elevation-level1 text-fg rounded-2xl border p-6 shadow-2xl sm:rounded-3xl sm:p-10 lg:p-12">
 			{/* Form Header */}
 			<div>
-				<h2 className="heading-2 text-white">Get Your Quote</h2>
-				<p className="mt-2 text-xs text-zinc-400 sm:text-sm">
+				<h2 className="heading-2 text-fg">Get Your Quote</h2>
+				<p className="text-fg-secondary mt-2 text-xs sm:text-sm">
 					Fill out the form below to get started on your estimate.
 				</p>
 			</div>
 
 			{/* Success Alert */}
 			{isSubmitted && (
-				<div className="mt-6 flex items-center gap-3 rounded-xl border border-emerald-500/30 bg-emerald-500/10 p-4 text-emerald-400">
+				<div className="border-success-border/30 bg-success-accent/15 text-success mt-6 flex items-center gap-3 rounded-xl border p-4">
 					<CheckCircle2 className="size-5 shrink-0" />
 					<div className="text-xs font-medium">
 						Thank you! Your quote request has been submitted. We will review
@@ -72,7 +72,7 @@ export function QuoteForm() {
 						name="service"
 						render={({ field }) => (
 							<FormItem className="space-y-3">
-								<FormLabel className="text-xs font-medium text-zinc-300">
+								<FormLabel className="text-fg-secondary text-xs font-medium">
 									Service Required
 								</FormLabel>
 								<FormControl>
@@ -87,11 +87,7 @@ export function QuoteForm() {
 													color="neutral"
 													size="32"
 													onClick={() => field.onChange(s)}
-													className={`rounded-lg px-4 text-xs font-medium transition-all ${
-														isSelected
-															? "bg-white text-zinc-950 hover:bg-zinc-200"
-															: "border-zinc-800 bg-zinc-900/80 text-zinc-300 hover:bg-zinc-800 hover:text-white"
-													}`}>
+													className="rounded-lg px-4 text-xs font-medium transition-all">
 													{s}
 												</Button>
 											)
@@ -109,7 +105,7 @@ export function QuoteForm() {
 						name="budget"
 						render={({ field }) => (
 							<FormItem className="space-y-3">
-								<FormLabel className="text-xs font-medium text-zinc-300">
+								<FormLabel className="text-fg-secondary text-xs font-medium">
 									Estimated Budget
 								</FormLabel>
 								<FormControl>
@@ -124,11 +120,7 @@ export function QuoteForm() {
 													color="neutral"
 													size="32"
 													onClick={() => field.onChange(b)}
-													className={`rounded-lg px-4 text-xs font-medium transition-all ${
-														isSelected
-															? "bg-white text-zinc-950 hover:bg-zinc-200"
-															: "border-zinc-800 bg-zinc-900/80 text-zinc-300 hover:bg-zinc-800 hover:text-white"
-													}`}>
+													className="rounded-lg px-4 text-xs font-medium transition-all">
 													{b}
 												</Button>
 											)
@@ -147,7 +139,7 @@ export function QuoteForm() {
 							name="fullName"
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel className="text-xs font-medium text-zinc-300">
+									<FormLabel className="text-fg-secondary text-xs font-medium">
 										Full Name
 									</FormLabel>
 									<FormControl>
@@ -155,7 +147,7 @@ export function QuoteForm() {
 											size="36"
 											placeholder="John Doe"
 											{...field}
-											className="border-zinc-800 bg-zinc-900/60 text-white placeholder:text-zinc-500 focus-visible:border-zinc-600 focus-visible:ring-zinc-600"
+											className="border-border bg-fill2 text-fg placeholder:text-fg-tertiary focus-visible:border-border-active"
 										/>
 									</FormControl>
 									<FormMessage className="text-xs" />
@@ -168,7 +160,7 @@ export function QuoteForm() {
 							name="email"
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel className="text-xs font-medium text-zinc-300">
+									<FormLabel className="text-fg-secondary text-xs font-medium">
 										Email Address
 									</FormLabel>
 									<FormControl>
@@ -177,7 +169,7 @@ export function QuoteForm() {
 											type="email"
 											placeholder="example@company.com"
 											{...field}
-											className="border-zinc-800 bg-zinc-900/60 text-white placeholder:text-zinc-500 focus-visible:border-zinc-600 focus-visible:ring-zinc-600"
+											className="border-border bg-fill2 text-fg placeholder:text-fg-tertiary focus-visible:border-border-active"
 										/>
 									</FormControl>
 									<FormMessage className="text-xs" />
@@ -192,7 +184,7 @@ export function QuoteForm() {
 						name="projectDetails"
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel className="text-xs font-medium text-zinc-300">
+								<FormLabel className="text-fg-secondary text-xs font-medium">
 									Project Details
 								</FormLabel>
 								<FormControl>
@@ -200,7 +192,7 @@ export function QuoteForm() {
 										rows={4}
 										placeholder="Tell us a bit more about your goals and requirements..."
 										{...field}
-										className="resize-none border-zinc-800 bg-zinc-900/60 text-sm text-white placeholder:text-zinc-500 focus-visible:border-zinc-600 focus-visible:ring-zinc-600"
+										className="border-border bg-fill2 text-fg placeholder:text-fg-tertiary focus-visible:border-border-active resize-none text-sm"
 									/>
 								</FormControl>
 								<FormMessage className="text-xs" />
@@ -214,7 +206,7 @@ export function QuoteForm() {
 						name="attachmentName"
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel className="text-xs font-medium text-zinc-300">
+								<FormLabel className="text-fg-secondary text-xs font-medium">
 									Attach a file (Optional)
 								</FormLabel>
 								<FormControl>
@@ -235,7 +227,7 @@ export function QuoteForm() {
 							variant="strong"
 							color="neutral"
 							size="44"
-							className="w-full rounded-xl bg-zinc-200 font-semibold text-zinc-950 shadow-md transition-colors hover:bg-white">
+							className="w-full rounded-xl font-semibold shadow-md transition-colors">
 							Request Quote
 						</Button>
 					</div>

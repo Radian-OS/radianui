@@ -21,10 +21,10 @@ export function ActionCard({ data }: ActionCardProps) {
 	const action = { ...DEFAULT_ACTION_DATA, ...data }
 
 	return (
-		<Card className="border-border/80 bg-background/95 rounded-2xl border p-6 shadow-2xl backdrop-blur-md sm:p-8">
+		<Card className="border-border/80 bg-elevation-level1/95 rounded-2xl border p-6 shadow-2xl backdrop-blur-md sm:p-8">
 			<CardContent className="flex flex-col gap-6 p-0 sm:flex-row sm:items-center sm:justify-between">
 				{/* Callout headline */}
-				<p className="text-foreground max-w-xs text-2xl leading-snug font-medium tracking-tight lg:text-3xl">
+				<p className="text-fg max-w-xs text-2xl leading-snug font-medium tracking-tight lg:text-3xl">
 					{action.titleLine1}{" "}
 					<span className="text-fg-secondary">{action.titleLine2}</span>
 				</p>
@@ -47,7 +47,7 @@ export function ActionCard({ data }: ActionCardProps) {
 						color="neutral"
 						size="48"
 						asChild
-						className="rounded-full bg-white px-6 font-semibold text-zinc-950 shadow-md transition-transform hover:bg-zinc-200 active:scale-95">
+						className="rounded-full px-6 font-semibold shadow-md transition-transform active:scale-95">
 						<Link href={action.primaryButtonHref}>
 							{action.primaryButtonText}
 						</Link>

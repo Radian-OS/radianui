@@ -16,6 +16,7 @@ import {
 import Image from "next/image"
 import Link from "next/link"
 import { IconButton } from "@/styles/default/ui/button"
+import { Avatar, AvatarFallback } from "@/styles/default/ui/avatar"
 import {
 	Sidebar as RadianSidebar,
 	SidebarContent,
@@ -99,9 +100,11 @@ export function Sidebar({ onOpenNewIssue, onCloseMobile }: SidebarProps) {
 				<button
 					type="button"
 					className="hover:bg-fill1 -ml-1 flex cursor-pointer items-center gap-2 rounded-lg px-2 py-1 text-left transition-colors">
-					<div className="flex size-5 shrink-0 items-center justify-center rounded-full bg-emerald-600 text-[10px] font-bold text-white">
-						AM
-					</div>
+					<Avatar size="20" rounded="circle">
+						<AvatarFallback className="bg-success text-success-fg text-[10px] font-bold">
+							AM
+						</AvatarFallback>
+					</Avatar>
 					<span className="text-fg truncate text-xs font-semibold">
 						AS Mobbin
 					</span>

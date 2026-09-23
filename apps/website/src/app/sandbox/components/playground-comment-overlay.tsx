@@ -205,7 +205,7 @@ export function PlaygroundCommentOverlay({
 							top: `${draftComment.positionY}%`,
 						}}>
 						{/* Draft Pin Icon */}
-						<div className="bg-primary text-primary-fg ring-background relative -top-3 -left-3 flex size-6.5 items-center justify-center rounded-full font-mono text-xs font-bold shadow-md ring-2">
+						<div className="bg-primary text-primary-fg ring-bg relative -top-3 -left-3 flex size-6.5 items-center justify-center rounded-full font-mono text-xs font-bold shadow-md ring-2">
 							<span>+</span>
 						</div>
 

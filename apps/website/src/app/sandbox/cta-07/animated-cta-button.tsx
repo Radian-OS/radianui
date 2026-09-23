@@ -18,12 +18,12 @@ export function AnimatedCtaButton({
 			variant="strong"
 			color="neutral"
 			size="48"
-			className="group relative h-12 w-fit overflow-hidden rounded-full border border-transparent bg-white p-1 ps-6 pe-14 font-medium text-zinc-950 shadow-lg transition-all duration-500 hover:bg-white hover:ps-14 hover:pe-6">
+			className="group bg-fg text-bg hover:bg-fg relative h-12 w-fit overflow-hidden rounded-full border border-transparent p-1 ps-6 pe-14 font-medium shadow-lg transition-all duration-500 hover:ps-14 hover:pe-6">
 			<Link href={buttonHref}>
 				<span className="relative z-10 transition-all duration-500">
 					{buttonText}
 				</span>
-				<span className="absolute right-1 flex size-10 items-center justify-center rounded-full bg-zinc-950 text-white transition-all duration-500 group-hover:right-[calc(100%-44px)] group-hover:rotate-45">
+				<span className="bg-bg text-fg absolute right-1 flex size-10 items-center justify-center rounded-full transition-all duration-500 group-hover:right-[calc(100%-44px)] group-hover:rotate-45">
 					<ArrowUpRight className="size-4" />
 				</span>
 			</Link>

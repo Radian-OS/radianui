@@ -14,7 +14,7 @@ import { BLOG_AUTHOR } from "./types"
 
 export function BlogArticle() {
 	return (
-		<article className="bg-background text-foreground min-h-screen w-full px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+		<article className="bg-bg text-fg min-h-screen w-full px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
 			<div className="mx-auto flex max-w-3xl flex-col gap-6 sm:gap-8">
 				{/* 1. Breadcrumbs */}
 				<BlogBreadcrumbs />

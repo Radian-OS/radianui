@@ -30,16 +30,16 @@ export function CtaContent({ data }: CtaContentProps) {
 				variant="outline"
 				color="neutral"
 				size="24"
-				className="mb-4 gap-1.5 rounded-full border-zinc-700 bg-zinc-800/80 px-3 py-1 text-xs font-medium text-zinc-300">
-				<Sparkles className="size-3 text-blue-400" />
+				className="border-border/80 bg-fill2 text-fg-secondary mb-4 gap-1.5 rounded-full px-3 py-1 text-xs font-medium">
+				<Sparkles className="text-info size-3" />
 				{cta.badge}
 			</Badge>
 
 			{/* Main Heading */}
-			<h2 className="heading-2 mb-4 text-white">{cta.heading}</h2>
+			<h2 className="heading-2 text-fg mb-4">{cta.heading}</h2>
 
 			{/* Subtitle / Description */}
-			<p className="mb-8 max-w-lg text-sm leading-relaxed text-zinc-400 sm:text-base">
+			<p className="text-fg-secondary mb-8 max-w-lg text-sm leading-relaxed sm:text-base">
 				{cta.description}
 			</p>
 
@@ -49,7 +49,7 @@ export function CtaContent({ data }: CtaContentProps) {
 				color="neutral"
 				size="44"
 				asChild
-				className="rounded-full bg-white px-6 font-semibold text-zinc-950 shadow-md transition-transform hover:bg-zinc-200 active:scale-95">
+				className="rounded-full px-6 font-semibold shadow-md transition-transform active:scale-95">
 				<Link href={cta.buttonHref}>
 					<span>{cta.buttonText}</span>
 					<ArrowRight className="size-4" />

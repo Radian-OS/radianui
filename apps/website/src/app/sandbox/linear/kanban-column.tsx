@@ -23,13 +23,9 @@ export function KanbanColumn({ column, onAddIssue }: KanbanColumnProps) {
 			case "todo":
 				return <Circle className="text-fg-tertiary size-4 shrink-0" />
 			case "in_progress":
-				return (
-					<CircleDot className="size-4 shrink-0 text-amber-500 dark:text-amber-400" />
-				)
+				return <CircleDot className="text-warning size-4 shrink-0" />
 			case "done":
-				return (
-					<CheckCircle2 className="size-4 shrink-0 text-blue-500 dark:text-blue-400" />
-				)
+				return <CheckCircle2 className="text-primary size-4 shrink-0" />
 			default:
 				return <Circle className="text-fg-tertiary size-4 shrink-0" />
 		}

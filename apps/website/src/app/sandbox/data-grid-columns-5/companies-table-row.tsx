@@ -37,9 +37,9 @@ export function CompaniesTableRow({
 				return (
 					<Badge
 						variant="soft"
-						color="emerald"
+						color="success"
 						size="20"
-						className="border-emerald-500/30">
+						className="border-success-border/30">
 						Committed
 					</Badge>
 				)
@@ -47,9 +47,9 @@ export function CompaniesTableRow({
 				return (
 					<Badge
 						variant="soft"
-						color="amber"
+						color="warning"
 						size="20"
-						className="border-amber-500/30">
+						className="border-warning-border/30">
 						Proposal
 					</Badge>
 				)
@@ -67,9 +67,9 @@ export function CompaniesTableRow({
 				return (
 					<Badge
 						variant="soft"
-						color="purple"
+						color="primary"
 						size="20"
-						className="border-purple-500/30">
+						className="border-primary-border/30">
 						Evaluation
 					</Badge>
 				)
@@ -90,37 +90,37 @@ export function CompaniesTableRow({
 		switch (category) {
 			case "Enterprise":
 				return (
-					<Badge key={category} variant="soft" color="blue" size="20">
+					<Badge key={category} variant="soft" color="info" size="20">
 						Enterprise
 					</Badge>
 				)
 			case "Design partner":
 				return (
-					<Badge key={category} variant="soft" color="purple" size="20">
+					<Badge key={category} variant="soft" color="primary" size="20">
 						Design partner
 					</Badge>
 				)
 			case "Regulated":
 				return (
-					<Badge key={category} variant="soft" color="amber" size="20">
+					<Badge key={category} variant="soft" color="warning" size="20">
 						Regulated
 					</Badge>
 				)
 			case "Expansion":
 				return (
-					<Badge key={category} variant="soft" color="emerald" size="20">
+					<Badge key={category} variant="soft" color="success" size="20">
 						Expansion
 					</Badge>
 				)
 			case "Open source":
 				return (
-					<Badge key={category} variant="soft" color="cyan" size="20">
+					<Badge key={category} variant="soft" color="info" size="20">
 						Open source
 					</Badge>
 				)
 			case "Self-serve":
 				return (
-					<Badge key={category} variant="soft" color="light-blue" size="20">
+					<Badge key={category} variant="soft" color="info" size="20">
 						Self-serve
 					</Badge>
 				)
@@ -156,7 +156,7 @@ export function CompaniesTableRow({
 							/>
 						</div>
 						<div className="flex flex-col">
-							<span className="text-foreground text-xs font-semibold">
+							<span className="text-fg text-xs font-semibold">
 								{company.name}
 							</span>
 							<span className="text-fg-tertiary font-mono text-[11px]">
@@ -183,7 +183,7 @@ export function CompaniesTableRow({
 								{company.owner.initials}
 							</AvatarFallback>
 						</Avatar>
-						<span className="text-foreground text-xs font-medium">
+						<span className="text-fg text-xs font-medium">
 							{company.owner.name}
 						</span>
 					</div>
@@ -200,7 +200,7 @@ export function CompaniesTableRow({
 			{/* ARR */}
 			{columns.arr && (
 				<TableCell className="py-3.5">
-					<span className="text-foreground font-mono text-xs font-semibold">
+					<span className="text-fg font-mono text-xs font-semibold">
 						{company.arr}
 					</span>
 				</TableCell>
@@ -231,7 +231,7 @@ export function CompaniesTableRow({
 							variant="ghost"
 							color="neutral"
 							size="28"
-							className="text-fg-tertiary hover:text-foreground size-7 p-0">
+							className="text-fg-tertiary hover:text-fg size-7 p-0">
 							<MoreHorizontal className="size-4" />
 						</Button>
 					</DropdownMenuTrigger>

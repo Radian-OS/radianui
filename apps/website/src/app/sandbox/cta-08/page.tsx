@@ -5,9 +5,9 @@ import { HeroContent } from "./hero-content"
 
 export default function Cta08Page() {
 	return (
-		<div className="flex min-h-[650px] w-full items-center justify-center bg-black/95 px-4 py-12 sm:px-6 sm:py-20 lg:px-8">
+		<div className="bg-bg flex min-h-[650px] w-full items-center justify-center px-4 py-12 sm:px-6 sm:py-20 lg:px-8">
 			{/* Main Banner Container */}
-			<div className="relative w-full max-w-6xl overflow-hidden rounded-3xl border border-zinc-800/80 shadow-2xl">
+			<div className="border-border/80 relative w-full max-w-6xl overflow-hidden rounded-3xl border shadow-2xl">
 				{/* Background Scenic Landscape Image */}
 				<Image
 					src="https://images.shadcnspace.com/assets/backgrounds/cta-08-bg.webp"

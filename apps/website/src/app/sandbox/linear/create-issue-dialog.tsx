@@ -74,12 +74,12 @@ export function CreateIssueDialog({
 					label: data.tag,
 					dotColorClass:
 						data.tag.toLowerCase() === "research"
-							? "bg-emerald-500"
+							? "bg-success"
 							: data.tag.toLowerCase() === "documentation"
-								? "bg-amber-500"
+								? "bg-warning"
 								: data.tag.toLowerCase() === "feature"
-									? "bg-purple-500"
-									: "bg-cyan-500",
+									? "bg-primary"
+									: "bg-info",
 				},
 			],
 		}

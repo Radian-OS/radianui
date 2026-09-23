@@ -25,7 +25,7 @@ export function FaqHeader({ data }: FaqHeaderProps) {
 			</div>
 
 			{/* Main Title strictly conforming to Rule 2 without redundant font size or weight classes */}
-			<h2 className="heading-1 text-foreground max-w-2xl text-center">
+			<h2 className="heading-1 text-fg max-w-2xl text-center">
 				{header.heading}
 			</h2>
 

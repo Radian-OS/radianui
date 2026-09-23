@@ -60,7 +60,7 @@ export function AiworkFaqSection() {
 						</div>
 
 						{/* Rule 13: heading-2 */}
-						<h2 className="heading-2 text-foreground">
+						<h2 className="heading-2 text-fg">
 							Frequently asked
 							<br />
 							questions?
@@ -84,7 +84,7 @@ export function AiworkFaqSection() {
 										type="button"
 										onClick={() => toggleFaq(idx)}
 										aria-expanded={isOpen}
-										className="text-foreground hover:text-primary flex w-full items-center justify-between p-5 text-left text-sm font-semibold transition-colors">
+										className="text-fg hover:text-primary flex w-full items-center justify-between p-5 text-left text-sm font-semibold transition-colors">
 										<span>{faq.question}</span>
 										<div className="bg-fill2 text-fg-tertiary flex size-6 shrink-0 items-center justify-center rounded-full transition-transform">
 											{isOpen ? (

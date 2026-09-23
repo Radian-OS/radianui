@@ -79,7 +79,7 @@ export function CommentPin({
 					setIsOpen(!isOpen)
 				}}
 				aria-label={`View comment #${index + 1} from ${comment.authorName}`}
-				className="bg-primary text-primary-fg ring-background group relative -top-3.25 -left-3.25 flex size-6.5 items-center justify-center rounded-full font-mono text-xs font-bold shadow-md ring-2 transition-transform duration-150 hover:scale-110 active:scale-95">
+				className="bg-primary text-primary-fg ring-bg group relative -top-3.25 -left-3.25 flex size-6.5 items-center justify-center rounded-full font-mono text-xs font-bold shadow-md ring-2 transition-transform duration-150 hover:scale-110 active:scale-95">
 				<span>{index + 1}</span>
 				{/* Small pointer tail */}
 				<span className="bg-primary absolute -bottom-1 left-1/2 size-1.5 -translate-x-1/2 rotate-45" />

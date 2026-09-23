@@ -67,7 +67,7 @@ export function AiworkSolutionsSection() {
 							<span>Solutions</span>
 						</div>
 						{/* Rule 13: heading-2 */}
-						<h2 className="heading-2 text-foreground">
+						<h2 className="heading-2 text-fg">
 							Smart AI solutions for
 							<br />
 							modern teams
@@ -92,7 +92,7 @@ export function AiworkSolutionsSection() {
 									<div className="bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-fg flex size-11 items-center justify-center rounded-xl transition-colors duration-200">
 										<Icon className="size-5" />
 									</div>
-									<h3 className="text-foreground mt-5 text-lg font-bold">
+									<h3 className="text-fg mt-5 text-lg font-bold">
 										{item.title}
 									</h3>
 									<p className="text-fg-secondary mt-2 text-sm leading-relaxed">

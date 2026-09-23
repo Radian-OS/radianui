@@ -11,38 +11,36 @@ const partnerLogos: PartnerLogo[] = [
 
 export function InfoPanel() {
 	return (
-		<div className="flex flex-col justify-between p-6 text-white sm:p-10 lg:p-14">
+		<div className="text-fg flex flex-col justify-between p-6 sm:p-10 lg:p-14">
 			<div>
-				{/* Eyebrow with emerald status dot */}
-				<div className="flex items-center gap-2 text-sm font-medium text-zinc-300">
-					<span className="inline-block size-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.7)]" />
+				{/* Eyebrow with success status dot */}
+				<div className="text-fg-secondary flex items-center gap-2 text-sm font-medium">
+					<span className="bg-success inline-block size-2 rounded-full shadow-xs" />
 					<span>We can help</span>
 				</div>
 
 				{/* Main Headline with typography utility */}
-				<h1 className="heading-1 mt-6 max-w-lg text-white">
+				<h1 className="heading-1 text-fg mt-6 max-w-lg">
 					Let’s discuss about your project and take it the next level.
 				</h1>
 
 				{/* Contact Details Grid */}
 				<div className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2">
 					<div>
-						<span className="text-xs font-medium tracking-wide text-zinc-500 uppercase">
+						<span className="text-fg-tertiary text-xs font-medium tracking-wide uppercase">
 							Phone
 						</span>
-						<p className="mt-1 text-sm font-semibold text-white">
-							+323-25-8964
-						</p>
+						<p className="text-fg mt-1 text-sm font-semibold">+323-25-8964</p>
 					</div>
 
 					<div>
-						<span className="text-xs font-medium tracking-wide text-zinc-500 uppercase">
+						<span className="text-fg-tertiary text-xs font-medium tracking-wide uppercase">
 							Email
 						</span>
 						<div className="mt-1">
 							<Link
 								href="mailto:me@shadcnspace.com"
-								className="hover:text-primary text-sm font-semibold text-white transition-colors">
+								className="text-fg hover:text-primary text-sm font-semibold transition-colors">
 								me@shadcnspace.com
 							</Link>
 						</div>
@@ -51,18 +49,18 @@ export function InfoPanel() {
 
 				{/* Location */}
 				<div className="mt-8">
-					<span className="text-xs font-medium tracking-wide text-zinc-500 uppercase">
+					<span className="text-fg-tertiary text-xs font-medium tracking-wide uppercase">
 						Location
 					</span>
-					<p className="mt-1 text-sm font-semibold text-white">
+					<p className="text-fg mt-1 text-sm font-semibold">
 						Mark Avenue, Dalls Road, New York
 					</p>
 				</div>
 			</div>
 
 			{/* Trusted by Section */}
-			<div className="mt-14 border-t border-zinc-800/80 pt-8">
-				<span className="text-xs font-medium tracking-wider text-zinc-500 uppercase">
+			<div className="border-border/80 mt-14 border-t pt-8">
+				<span className="text-fg-tertiary text-xs font-medium tracking-wider uppercase">
 					Trusted by
 				</span>
 
@@ -70,8 +68,8 @@ export function InfoPanel() {
 					{partnerLogos.map((partner) => (
 						<div
 							key={partner.name}
-							className="flex items-center gap-2.5 text-zinc-400 transition-opacity hover:opacity-100">
-							<div className="size-6 overflow-hidden rounded-md bg-zinc-800/80 p-0.5">
+							className="text-fg-secondary flex items-center gap-2.5 transition-opacity hover:opacity-100">
+							<div className="bg-fill2 size-6 overflow-hidden rounded-md p-0.5">
 								<Image
 									src={partner.logoUrl}
 									alt={partner.name}
@@ -80,7 +78,7 @@ export function InfoPanel() {
 									className="size-full object-contain brightness-90"
 								/>
 							</div>
-							<span className="text-sm font-bold tracking-tight text-white">
+							<span className="text-fg text-sm font-bold tracking-tight">
 								Logoipsum
 							</span>
 						</div>

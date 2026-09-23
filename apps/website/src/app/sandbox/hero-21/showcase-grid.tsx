@@ -45,7 +45,7 @@ export function ShowcaseGrid() {
 							className="size-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
 						/>
 						{/* Subtle overlay gradient on hover */}
-						<div className="from-background/40 pointer-events-none absolute inset-0 bg-gradient-to-t via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+						<div className="from-bg/40 pointer-events-none absolute inset-0 bg-gradient-to-t via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 					</div>
 				))}
 			</div>

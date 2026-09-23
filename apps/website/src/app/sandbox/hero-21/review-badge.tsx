@@ -40,7 +40,7 @@ export function ReviewBadge() {
 				{reviewers.map((reviewer, index) => (
 					<div
 						key={reviewer.name}
-						className="border-background relative size-9 overflow-hidden rounded-full border-2 shadow-xs transition-transform duration-200 hover:z-10 hover:scale-110"
+						className="border-bg relative size-9 overflow-hidden rounded-full border-2 shadow-xs transition-transform duration-200 hover:z-10 hover:scale-110"
 						style={{ zIndex: reviewers.length - index }}>
 						<Image
 							src={reviewer.imageSrc}
@@ -56,9 +56,8 @@ export function ReviewBadge() {
 			{/* Rating Text with Star */}
 			<div className="flex items-center gap-1.5">
 				<Star className="text-warning size-3.5 fill-current" />
-				<p className="text-foreground text-xs font-medium sm:text-sm">
-					<span className="text-foreground font-bold">4.6</span> Rate by 18,000+
-					Reviews
+				<p className="text-fg text-xs font-medium sm:text-sm">
+					<span className="text-fg font-bold">4.6</span> Rate by 18,000+ Reviews
 				</p>
 			</div>
 		</div>

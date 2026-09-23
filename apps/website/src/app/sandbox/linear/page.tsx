@@ -19,7 +19,7 @@ const initialIssues: Issue[] = [
 		status: "todo",
 		priority: "medium",
 		createdDate: "Mar 31",
-		tags: [{ label: "Documentation", dotColorClass: "bg-amber-500" }],
+		tags: [{ label: "Documentation", dotColorClass: "bg-warning" }],
 	},
 	{
 		id: "AS-10",
@@ -29,8 +29,8 @@ const initialIssues: Issue[] = [
 		dueDate: "Apr 8",
 		createdDate: "Mar 31",
 		tags: [
-			{ label: "Analytics", dotColorClass: "bg-blue-500" },
-			{ label: "Feature", dotColorClass: "bg-purple-500" },
+			{ label: "Analytics", dotColorClass: "bg-info" },
+			{ label: "Feature", dotColorClass: "bg-primary" },
 		],
 	},
 
@@ -42,8 +42,8 @@ const initialIssues: Issue[] = [
 		priority: "medium",
 		createdDate: "Mar 31",
 		tags: [
-			{ label: "Research", dotColorClass: "bg-emerald-500" },
-			{ label: "UX", dotColorClass: "bg-cyan-500" },
+			{ label: "Research", dotColorClass: "bg-success" },
+			{ label: "UX", dotColorClass: "bg-info" },
 		],
 	},
 	{
@@ -53,7 +53,7 @@ const initialIssues: Issue[] = [
 		priority: "high",
 		dueDate: "Apr 7",
 		createdDate: "Mar 31",
-		tags: [{ label: "Feature", dotColorClass: "bg-purple-500" }],
+		tags: [{ label: "Feature", dotColorClass: "bg-primary" }],
 	},
 
 	// Done Column
@@ -64,7 +64,7 @@ const initialIssues: Issue[] = [
 		status: "done",
 		priority: "medium",
 		createdDate: "Mar 31",
-		tags: [{ label: "UX", dotColorClass: "bg-cyan-500" }],
+		tags: [{ label: "UX", dotColorClass: "bg-info" }],
 	},
 	{
 		id: "AS-19",
@@ -73,7 +73,7 @@ const initialIssues: Issue[] = [
 		status: "done",
 		priority: "medium",
 		createdDate: "Mar 31",
-		tags: [{ label: "UX", dotColorClass: "bg-cyan-500" }],
+		tags: [{ label: "UX", dotColorClass: "bg-info" }],
 	},
 	{
 		id: "AS-18",
@@ -82,7 +82,7 @@ const initialIssues: Issue[] = [
 		status: "done",
 		priority: "medium",
 		createdDate: "Mar 31",
-		tags: [{ label: "UX", dotColorClass: "bg-cyan-500" }],
+		tags: [{ label: "UX", dotColorClass: "bg-info" }],
 	},
 	{
 		id: "AS-17",
@@ -91,7 +91,7 @@ const initialIssues: Issue[] = [
 		status: "done",
 		priority: "medium",
 		createdDate: "Mar 31",
-		tags: [{ label: "UX", dotColorClass: "bg-cyan-500" }],
+		tags: [{ label: "UX", dotColorClass: "bg-info" }],
 	},
 	{
 		id: "AS-16",
@@ -100,7 +100,7 @@ const initialIssues: Issue[] = [
 		status: "done",
 		priority: "medium",
 		createdDate: "Mar 31",
-		tags: [{ label: "UX", dotColorClass: "bg-cyan-500" }],
+		tags: [{ label: "UX", dotColorClass: "bg-info" }],
 	},
 	{
 		id: "AS-15",
@@ -109,7 +109,7 @@ const initialIssues: Issue[] = [
 		status: "done",
 		priority: "medium",
 		createdDate: "Mar 31",
-		tags: [{ label: "UX", dotColorClass: "bg-cyan-500" }],
+		tags: [{ label: "UX", dotColorClass: "bg-info" }],
 	},
 	{
 		id: "AS-14",
@@ -118,7 +118,7 @@ const initialIssues: Issue[] = [
 		status: "done",
 		priority: "medium",
 		createdDate: "Mar 30",
-		tags: [{ label: "Research", dotColorClass: "bg-emerald-500" }],
+		tags: [{ label: "Research", dotColorClass: "bg-success" }],
 	},
 	{
 		id: "AS-13",
@@ -127,7 +127,7 @@ const initialIssues: Issue[] = [
 		status: "done",
 		priority: "medium",
 		createdDate: "Mar 30",
-		tags: [{ label: "Documentation", dotColorClass: "bg-amber-500" }],
+		tags: [{ label: "Documentation", dotColorClass: "bg-warning" }],
 	},
 	{
 		id: "AS-8",
@@ -136,7 +136,7 @@ const initialIssues: Issue[] = [
 		status: "done",
 		priority: "high",
 		createdDate: "Mar 29",
-		tags: [{ label: "Analytics", dotColorClass: "bg-blue-500" }],
+		tags: [{ label: "Analytics", dotColorClass: "bg-info" }],
 	},
 	{
 		id: "AS-7",
@@ -145,7 +145,7 @@ const initialIssues: Issue[] = [
 		status: "done",
 		priority: "low",
 		createdDate: "Mar 28",
-		tags: [{ label: "UX", dotColorClass: "bg-cyan-500" }],
+		tags: [{ label: "UX", dotColorClass: "bg-info" }],
 	},
 	{
 		id: "AS-6",
@@ -154,7 +154,7 @@ const initialIssues: Issue[] = [
 		status: "done",
 		priority: "medium",
 		createdDate: "Mar 28",
-		tags: [{ label: "Research", dotColorClass: "bg-emerald-500" }],
+		tags: [{ label: "Research", dotColorClass: "bg-success" }],
 	},
 ]
 

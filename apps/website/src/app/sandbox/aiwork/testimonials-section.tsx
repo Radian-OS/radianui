@@ -2,7 +2,7 @@
 
 import React from "react"
 import { Star } from "lucide-react"
-import Image from "next/image"
+import { Avatar, AvatarFallback, AvatarImage } from "@/styles/default/ui/avatar"
 
 interface TestimonialItem {
 	name: string
@@ -58,9 +58,7 @@ export function AiworkTestimonialsSection() {
 					</div>
 
 					{/* Rule 13: heading-2 */}
-					<h2 className="heading-2 text-foreground mt-4">
-						Trusted by modern teams
-					</h2>
+					<h2 className="heading-2 text-fg mt-4">Trusted by modern teams</h2>
 
 					<p className="text-fg-secondary mt-3 max-w-xl text-sm leading-relaxed md:text-base">
 						Our solution empowers forward-thinking teams to collaborate
@@ -70,49 +68,53 @@ export function AiworkTestimonialsSection() {
 
 				{/* 3 Testimonials Grid */}
 				<div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-3">
-					{testimonials.map((item) => (
-						<div
-							key={item.name}
-							className="border-border/70 bg-fill1/50 hover:border-primary/40 flex flex-col justify-between rounded-2xl border p-6 text-center transition-all duration-300 hover:shadow-md">
-							<div>
-								{/* Avatar (Rule 10: Next.js Image) */}
-								<div className="border-primary/20 mx-auto size-16 overflow-hidden rounded-full border-2 shadow-sm">
-									<Image
-										src={item.avatar}
-										alt={item.name}
-										width={64}
-										height={64}
-										className="size-full object-cover"
-									/>
-								</div>
+					{testimonials.map((item) => {
+						const initials = item.name
+							.split(" ")
+							.map((n) => n[0])
+							.join("")
+						return (
+							<div
+								key={item.name}
+								className="border-border/70 bg-fill1/50 hover:border-primary/40 flex flex-col justify-between rounded-2xl border p-6 text-center transition-all duration-300 hover:shadow-md">
+								<div>
+									{/* Avatar (Rule 5: Radian OS Avatar) */}
+									<div className="mx-auto flex justify-center">
+										<Avatar
+											size="64"
+											rounded="circle"
+											className="border-primary/20 border-2 shadow-sm">
+											<AvatarImage src={item.avatar} alt={item.name} />
+											<AvatarFallback className="text-xs font-semibold">
+												{initials}
+											</AvatarFallback>
+										</Avatar>
+									</div>
 
-								<div className="text-foreground mt-4 font-bold">
-									{item.name}
-								</div>
-								<div className="text-fg-tertiary text-xs">
-									{item.role}, {item.company}
-								</div>
+									<div className="text-fg mt-4 font-bold">{item.name}</div>
+									<div className="text-fg-tertiary text-xs">
+										{item.role}, {item.company}
+									</div>
 
-								{/* 5 Stars Rating */}
-								<div className="mt-3 flex items-center justify-center gap-1">
-									{Array.from({ length: item.rating }).map((_, i) => (
-										<Star
-											key={i}
-											className="size-3.5 fill-amber-400 text-amber-400"
-										/>
-									))}
-									<span className="text-foreground ml-1 text-xs font-bold">
-										5.0
-									</span>
-								</div>
+									{/* 5 Stars Rating */}
+									<div className="mt-3 flex items-center justify-center gap-1">
+										{Array.from({ length: item.rating }).map((_, i) => (
+											<Star
+												key={i}
+												className="fill-warning text-warning size-3.5"
+											/>
+										))}
+										<span className="text-fg ml-1 text-xs font-bold">5.0</span>
+									</div>
 
-								{/* Quote */}
-								<p className="text-fg-secondary mt-4 text-xs leading-relaxed italic">
-									{item.quote}
-								</p>
+									{/* Quote */}
+									<p className="text-fg-secondary mt-4 text-xs leading-relaxed italic">
+										{item.quote}
+									</p>
+								</div>
 							</div>
-						</div>
-					))}
+						)
+					})}
 				</div>
 			</div>
 		</section>

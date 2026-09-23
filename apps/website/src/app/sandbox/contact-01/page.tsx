@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function Contact01Page() {
 	return (
-		<div className="flex min-h-screen items-center justify-center bg-[#05070c] p-4 text-white sm:p-6 lg:p-12">
+		<div className="bg-bg text-fg flex min-h-screen items-center justify-center p-4 sm:p-6 lg:p-12">
 			{/* Main 2-Column Content Container */}
 			<div className="mx-auto w-full max-w-7xl">
 				<div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-16">

@@ -57,9 +57,9 @@ export function CompaniesTable({
 			return <ChevronsUpDown className="text-fg-tertiary size-3.5" />
 		}
 		if (sortOrder === "asc") {
-			return <ArrowUp className="text-foreground size-3.5" />
+			return <ArrowUp className="text-fg size-3.5" />
 		}
-		return <ArrowDown className="text-foreground size-3.5" />
+		return <ArrowDown className="text-fg size-3.5" />
 	}
 
 	return (
@@ -81,7 +81,7 @@ export function CompaniesTable({
 						{columns.company && (
 							<TableHead
 								onClick={() => onSort("name")}
-								className="text-fg-secondary hover:text-foreground cursor-pointer text-xs font-semibold select-none">
+								className="text-fg-secondary hover:text-fg cursor-pointer text-xs font-semibold select-none">
 								<div className="flex items-center gap-1.5">
 									<FileText className="text-fg-tertiary size-3.5" />
 									<span>Company</span>
@@ -94,7 +94,7 @@ export function CompaniesTable({
 						{columns.owner && (
 							<TableHead
 								onClick={() => onSort("owner")}
-								className="text-fg-secondary hover:text-foreground cursor-pointer text-xs font-semibold select-none">
+								className="text-fg-secondary hover:text-fg cursor-pointer text-xs font-semibold select-none">
 								<div className="flex items-center gap-1.5">
 									<User className="text-fg-tertiary size-3.5" />
 									<span>Owner</span>
@@ -107,7 +107,7 @@ export function CompaniesTable({
 						{columns.stage && (
 							<TableHead
 								onClick={() => onSort("stage")}
-								className="text-fg-secondary hover:text-foreground cursor-pointer text-xs font-semibold select-none">
+								className="text-fg-secondary hover:text-fg cursor-pointer text-xs font-semibold select-none">
 								<div className="flex items-center gap-1.5">
 									<Split className="text-fg-tertiary size-3.5" />
 									<span>Stage</span>
@@ -120,7 +120,7 @@ export function CompaniesTable({
 						{columns.arr && (
 							<TableHead
 								onClick={() => onSort("arrValue")}
-								className="text-fg-secondary hover:text-foreground cursor-pointer text-xs font-semibold select-none">
+								className="text-fg-secondary hover:text-fg cursor-pointer text-xs font-semibold select-none">
 								<div className="flex items-center gap-1.5">
 									<DollarSign className="text-fg-tertiary size-3.5" />
 									<span>ARR</span>
@@ -143,7 +143,7 @@ export function CompaniesTable({
 						{columns.health && (
 							<TableHead
 								onClick={() => onSort("health")}
-								className="text-fg-secondary hover:text-foreground cursor-pointer text-xs font-semibold select-none">
+								className="text-fg-secondary hover:text-fg cursor-pointer text-xs font-semibold select-none">
 								<div className="flex items-center gap-1.5">
 									<Hash className="text-fg-tertiary size-3.5" />
 									<span>Health</span>

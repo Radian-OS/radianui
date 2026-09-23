@@ -8,7 +8,7 @@ export function HeroPreview() {
 			{/* Ambient atmospheric backdrop lighting */}
 			<div
 				aria-hidden="true"
-				className="pointer-events-none absolute -top-16 h-72 w-4/5 rounded-full bg-gradient-to-r from-amber-500/10 via-emerald-500/10 to-cyan-500/10 blur-3xl"
+				className="from-warning/10 via-success/10 to-primary/10 pointer-events-none absolute -top-16 h-72 w-4/5 rounded-full bg-gradient-to-r blur-3xl"
 			/>
 
 			{/* Dashboard Frame Container holding placeholder image */}

@@ -55,7 +55,7 @@ interface FaqAccordionProps {
 
 export function FaqAccordion({ items = DEFAULT_FAQ_ITEMS }: FaqAccordionProps) {
 	return (
-		<Card className="border-border/80 bg-background/95 rounded-2xl border p-6 shadow-sm sm:p-8">
+		<Card className="border-border/80 bg-elevation-level1/95 rounded-2xl border p-6 shadow-sm sm:p-8">
 			<Accordion
 				type="single"
 				collapsible
@@ -69,7 +69,7 @@ export function FaqAccordion({ items = DEFAULT_FAQ_ITEMS }: FaqAccordionProps) {
 						key={item.id}
 						value={item.id}
 						className="border-border/60 py-1">
-						<AccordionTrigger className="text-foreground hover:text-foreground py-4 text-base font-semibold transition-colors">
+						<AccordionTrigger className="text-fg hover:text-fg py-4 text-base font-semibold transition-colors">
 							{item.question}
 						</AccordionTrigger>
 						<AccordionContent className="text-fg-secondary pb-4 text-sm leading-relaxed sm:text-base">

@@ -5,7 +5,7 @@ import { FaqHeader } from "./faq-header"
 
 export default function Faq4Page() {
 	return (
-		<div className="flex min-h-[800px] w-full items-center justify-center bg-black/95 px-4 py-20 sm:px-6 lg:px-8">
+		<div className="bg-bg flex min-h-[800px] w-full items-center justify-center px-4 py-20 sm:px-6 lg:px-8">
 			{/* Centered Content Container */}
 			<div className="flex w-full max-w-3xl flex-col items-center gap-10 sm:gap-12">
 				{/* Section Header */}
@@ -19,7 +19,7 @@ export default function Faq4Page() {
 					Still have a question?{" "}
 					<Link
 						href="#contact"
-						className="text-foreground hover:text-fg-secondary font-medium transition-colors">
+						className="text-fg hover:text-fg-secondary font-medium transition-colors">
 						Talk to the team &rarr;
 					</Link>
 				</p>

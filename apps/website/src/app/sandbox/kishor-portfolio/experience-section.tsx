@@ -9,13 +9,13 @@ export function ExperienceSection() {
 	const renderCompanyIcon = (id: string) => {
 		switch (id) {
 			case "launchpad":
-				return <Globe className="size-4 text-sky-400" />
+				return <Globe className="text-info size-4" />
 			case "bottle":
-				return <Building2 className="size-4 text-amber-400" />
+				return <Building2 className="text-warning size-4" />
 			case "personal-projects":
-				return <Code2 className="size-4 text-emerald-400" />
+				return <Code2 className="text-success size-4" />
 			case "transtech":
-				return <Palette className="size-4 text-rose-400" />
+				return <Palette className="text-error size-4" />
 			default:
 				return <Briefcase className="text-fg-secondary size-4" />
 		}

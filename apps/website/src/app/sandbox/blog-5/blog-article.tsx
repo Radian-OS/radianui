@@ -11,7 +11,7 @@ import { BLOG_AUTHOR } from "./types"
 
 export function BlogArticle() {
 	return (
-		<article className="bg-background text-foreground min-h-screen w-full px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+		<article className="bg-bg text-fg min-h-screen w-full px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
 			{/* Top Hero Container */}
 			<div className="mx-auto max-w-4xl">
 				<BlogHero />

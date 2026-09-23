@@ -64,17 +64,17 @@ export function FileDropzone({ value, onChange }: FileDropzoneProps) {
 				className={`relative flex cursor-pointer flex-col items-center justify-center rounded-xl border border-dashed p-6 text-center transition-colors ${
 					isDragging
 						? "border-primary bg-primary/10"
-						: "border-zinc-800 bg-zinc-900/30 hover:border-zinc-700 hover:bg-zinc-900/50"
+						: "border-border bg-fill1 hover:border-border-active hover:bg-fill2"
 				}`}>
 				{value ? (
-					<div className="flex w-full items-center justify-between gap-3 rounded-lg border border-zinc-800 bg-zinc-900/70 p-3 text-left">
+					<div className="border-border bg-fill2 flex w-full items-center justify-between gap-3 rounded-lg border p-3 text-left">
 						<div className="flex items-center gap-2.5 overflow-hidden">
-							<div className="text-primary flex size-8 shrink-0 items-center justify-center rounded-md bg-zinc-800">
+							<div className="text-primary bg-fill3 flex size-8 shrink-0 items-center justify-center rounded-md">
 								<FileText className="size-4" />
 							</div>
 							<div className="truncate text-xs">
-								<p className="truncate font-medium text-white">{value}</p>
-								<p className="text-zinc-500">File attached successfully</p>
+								<p className="text-fg truncate font-medium">{value}</p>
+								<p className="text-fg-tertiary">File attached successfully</p>
 							</div>
 						</div>
 
@@ -84,21 +84,21 @@ export function FileDropzone({ value, onChange }: FileDropzoneProps) {
 							color="neutral"
 							size="28"
 							onClick={handleRemove}
-							className="size-7 p-0 text-zinc-400 hover:text-white"
+							className="text-fg-secondary hover:text-fg size-7 p-0"
 							aria-label="Remove attached file">
 							<X className="size-4" />
 						</Button>
 					</div>
 				) : (
 					<div className="flex flex-col items-center">
-						<div className="mb-3 flex size-10 items-center justify-center rounded-full border border-zinc-800 bg-zinc-900/80 text-zinc-400">
+						<div className="border-border bg-fill2 text-fg-secondary mb-3 flex size-10 items-center justify-center rounded-full border">
 							<UploadCloud className="size-5" />
 						</div>
 
-						<p className="text-xs font-medium text-zinc-200 sm:text-sm">
+						<p className="text-fg text-xs font-medium sm:text-sm">
 							Choose a file or drag &amp; drop it here
 						</p>
-						<p className="mt-1 text-[11px] text-zinc-500 sm:text-xs">
+						<p className="text-fg-tertiary mt-1 text-[11px] sm:text-xs">
 							JPEG, PNG, PDF, and MP4 formats, up to 50 MB.
 						</p>
 
@@ -111,7 +111,7 @@ export function FileDropzone({ value, onChange }: FileDropzoneProps) {
 								e.stopPropagation()
 								inputRef.current?.click()
 							}}
-							className="mt-4 rounded-md border-zinc-700 bg-zinc-900/80 px-4 text-xs font-medium text-zinc-200 transition-colors hover:bg-zinc-800">
+							className="mt-4 rounded-md px-4 text-xs font-medium transition-colors">
 							Browse File
 						</Button>
 					</div>

@@ -70,9 +70,7 @@ export function AiworkPricingSection() {
 					</div>
 
 					{/* Rule 13: heading-2 */}
-					<h2 className="heading-2 text-foreground mt-4">
-						Start small, scale with AI
-					</h2>
+					<h2 className="heading-2 text-fg mt-4">Start small, scale with AI</h2>
 
 					<p className="text-fg-secondary mt-3 max-w-xl text-sm leading-relaxed md:text-base">
 						Flexible plans built for teams automating repetitive tasks and
@@ -94,12 +92,12 @@ export function AiworkPricingSection() {
 								<div className="flex items-center justify-between">
 									<h3
 										className={`text-lg font-bold ${
-											plan.isPopular ? "text-white" : "text-foreground"
+											plan.isPopular ? "text-primary-fg" : "text-fg"
 										}`}>
 										{plan.name}
 									</h3>
 									{plan.badge && (
-										<span className="rounded-full bg-white/20 px-2.5 py-0.5 text-xs font-bold text-white">
+										<span className="bg-primary-fg/20 text-primary-fg rounded-full px-2.5 py-0.5 text-xs font-bold">
 											{plan.badge}
 										</span>
 									)}
@@ -109,13 +107,13 @@ export function AiworkPricingSection() {
 								<div className="mt-4 flex items-baseline gap-1">
 									<span
 										className={`text-4xl font-extrabold tracking-tight ${
-											plan.isPopular ? "text-white" : "text-foreground"
+											plan.isPopular ? "text-primary-fg" : "text-fg"
 										}`}>
 										{plan.price}
 									</span>
 									<span
 										className={`text-xs ${
-											plan.isPopular ? "text-white/80" : "text-fg-tertiary"
+											plan.isPopular ? "text-primary-fg/80" : "text-fg-tertiary"
 										}`}>
 										{plan.period}
 									</span>
@@ -123,20 +121,20 @@ export function AiworkPricingSection() {
 
 								<p
 									className={`mt-2 text-xs leading-relaxed ${
-										plan.isPopular ? "text-white/80" : "text-fg-secondary"
+										plan.isPopular ? "text-primary-fg/80" : "text-fg-secondary"
 									}`}>
 									{plan.subtitle}
 								</p>
 
 								<div
 									className={`my-6 border-t ${
-										plan.isPopular ? "border-white/20" : "border-border/60"
+										plan.isPopular ? "border-primary-fg/20" : "border-border/60"
 									}`}
 								/>
 
 								<div
 									className={`mb-3 text-[11px] font-bold tracking-wider uppercase ${
-										plan.isPopular ? "text-white/90" : "text-fg-tertiary"
+										plan.isPopular ? "text-primary-fg/90" : "text-fg-tertiary"
 									}`}>
 									Sandbox
 								</div>
@@ -150,7 +148,7 @@ export function AiworkPricingSection() {
 											{feat.included ? (
 												<Check
 													className={`size-3.5 shrink-0 ${
-														plan.isPopular ? "text-white" : "text-primary"
+														plan.isPopular ? "text-primary-fg" : "text-primary"
 													}`}
 												/>
 											) : (
@@ -159,9 +157,9 @@ export function AiworkPricingSection() {
 											<span
 												className={
 													plan.isPopular
-														? "text-white"
+														? "text-primary-fg"
 														: feat.included
-															? "text-foreground"
+															? "text-fg"
 															: "text-fg-tertiary line-through"
 												}>
 												{feat.text}
@@ -175,13 +173,9 @@ export function AiworkPricingSection() {
 								{/* Rule 15: Explicit color prop on all Button variants */}
 								<Button
 									variant="strong"
-									color={plan.isPopular ? "neutral" : "neutral"}
+									color={plan.isPopular ? "neutral" : "primary"}
 									size="36"
-									className={`w-full justify-center gap-1.5 rounded-full text-xs font-semibold ${
-										plan.isPopular
-											? "text-primary bg-white hover:bg-white/90"
-											: "bg-foreground text-background hover:bg-foreground/90"
-									}`}>
+									className="w-full justify-center gap-1.5 rounded-full text-xs font-semibold">
 									<span>Get Started</span>
 									<ChevronRight className="size-3.5" />
 								</Button>

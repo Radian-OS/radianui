@@ -9,9 +9,9 @@ interface HealthProgressBarProps {
 
 export function HealthProgressBar({ health }: HealthProgressBarProps) {
 	const getBarColor = (val: number) => {
-		if (val >= 70) return "bg-emerald-400"
-		if (val >= 50) return "bg-amber-400"
-		return "bg-rose-500"
+		if (val >= 70) return "bg-success"
+		if (val >= 50) return "bg-warning"
+		return "bg-error"
 	}
 
 	return (

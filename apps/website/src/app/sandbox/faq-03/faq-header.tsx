@@ -19,7 +19,7 @@ export function FaqHeader({
 							{badge}
 						</span>
 					</div>
-					<h2 className="heading-1 text-foreground">{title}</h2>
+					<h2 className="heading-1 text-fg">{title}</h2>
 				</div>
 			</div>
 		</div>

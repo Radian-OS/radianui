@@ -11,7 +11,8 @@ const blogPosts: BlogPost[] = [
 			"A rebuilt board engine and saved views that remember how you work.",
 		date: "May 28, 2026",
 		readTime: "5 min read",
-		gradientClass: "bg-gradient-to-tr from-blue-950 via-indigo-800 to-blue-600",
+		gradientClass:
+			"bg-gradient-to-tr from-primary/80 via-primary/50 to-info/60",
 		author: {
 			name: "Mira Stone",
 			role: "Product Lead",
@@ -26,8 +27,7 @@ const blogPosts: BlogPost[] = [
 			"How we traced the cost and brought it down without a rewrite.",
 		date: "May 21, 2026",
 		readTime: "8 min read",
-		gradientClass:
-			"bg-gradient-to-tr from-slate-950 via-purple-900 to-pink-600",
+		gradientClass: "bg-gradient-to-tr from-fill3 via-primary/70 to-accent",
 		author: {
 			name: "Leo Grant",
 			role: "Platform Engineer",
@@ -43,7 +43,7 @@ const blogPosts: BlogPost[] = [
 		date: "May 14, 2026",
 		readTime: "6 min read",
 		gradientClass:
-			"bg-gradient-to-tr from-orange-500 via-fuchsia-600 to-cyan-500",
+			"bg-gradient-to-tr from-warning/80 via-primary/60 to-info/60",
 		author: {
 			name: "Nora Vale",
 			role: "Design Systems",

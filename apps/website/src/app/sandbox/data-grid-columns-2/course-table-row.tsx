@@ -25,25 +25,25 @@ export function CourseTableRow({ course }: CourseTableRowProps) {
 		switch (category) {
 			case "Development":
 				return (
-					<Badge variant="soft" color="blue" size="20">
+					<Badge variant="soft" color="info" size="20">
 						Development
 					</Badge>
 				)
 			case "Fundamental":
 				return (
-					<Badge variant="soft" color="amber" size="20">
+					<Badge variant="soft" color="warning" size="20">
 						Fundamental
 					</Badge>
 				)
 			case "Design":
 				return (
-					<Badge variant="soft" color="purple" size="20">
+					<Badge variant="soft" color="primary" size="20">
 						Design
 					</Badge>
 				)
 			case "UI/UX":
 				return (
-					<Badge variant="soft" color="cyan" size="20">
+					<Badge variant="soft" color="info" size="20">
 						UI/UX
 					</Badge>
 				)
@@ -53,7 +53,7 @@ export function CourseTableRow({ course }: CourseTableRowProps) {
 	const renderUrgencyBadge = (urgency: CourseItem["urgency"]) => {
 		if (urgency === "Urgent") {
 			return (
-				<Badge variant="soft" color="rose" size="20">
+				<Badge variant="soft" color="error" size="20">
 					Urgent
 				</Badge>
 			)
@@ -87,7 +87,7 @@ export function CourseTableRow({ course }: CourseTableRowProps) {
 						/>
 					</div>
 					<div className="flex flex-col">
-						<span className="text-foreground text-xs font-semibold">
+						<span className="text-fg text-xs font-semibold">
 							{course.title}
 						</span>
 						<span className="text-fg-tertiary text-[11px]">
@@ -109,7 +109,7 @@ export function CourseTableRow({ course }: CourseTableRowProps) {
 			<TableCell className="py-3">
 				<div className="flex items-center gap-1.5">
 					<BookOpen className="text-fg-tertiary size-3.5" />
-					<span className="text-foreground text-xs font-medium">
+					<span className="text-fg text-xs font-medium">
 						{course.pathCount}
 					</span>
 				</div>
@@ -125,7 +125,9 @@ export function CourseTableRow({ course }: CourseTableRowProps) {
 								<Star
 									key={starIndex}
 									className={`size-3 ${
-										isFilled ? "fill-amber-400 text-amber-400" : "text-muted/30"
+										isFilled
+											? "fill-warning text-warning"
+											: "text-fg-tertiary/40"
 									}`}
 								/>
 							)
@@ -162,7 +164,7 @@ export function CourseTableRow({ course }: CourseTableRowProps) {
 					<button
 						type="button"
 						aria-label="Add assignee"
-						className="border-border/80 text-fg-tertiary hover:border-foreground hover:text-foreground ml-1.5 flex size-5 items-center justify-center rounded-full border border-dashed transition-colors">
+						className="border-border/80 text-fg-tertiary hover:border-fg hover:text-fg ml-1.5 flex size-5 items-center justify-center rounded-full border border-dashed transition-colors">
 						<Plus className="size-2.5" />
 					</button>
 				</div>
@@ -182,7 +184,7 @@ export function CourseTableRow({ course }: CourseTableRowProps) {
 							variant="ghost"
 							color="neutral"
 							size="28"
-							className="text-fg-tertiary hover:text-foreground size-7 p-0">
+							className="text-fg-tertiary hover:text-fg size-7 p-0">
 							<MoreHorizontal className="size-4" />
 						</Button>
 					</DropdownMenuTrigger>

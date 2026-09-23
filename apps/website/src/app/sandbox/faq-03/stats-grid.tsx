@@ -40,7 +40,7 @@ export function StatsGrid({ stats = DEFAULT_STATS }: StatsGridProps) {
 								"border-border flex flex-col items-center justify-center gap-2 px-3 py-12 text-center md:py-16",
 								getStatBorderClass(index)
 							)}>
-							<span className="text-foreground text-4xl font-semibold tracking-tight sm:text-5xl">
+							<span className="text-fg text-4xl font-semibold tracking-tight sm:text-5xl">
 								{item.value}
 							</span>
 							<p className="text-fg-secondary text-base font-normal sm:text-lg">

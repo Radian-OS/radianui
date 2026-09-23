@@ -60,7 +60,7 @@ export function TopHeader({ onToggleSidebar }: TopHeaderProps) {
 					className="text-fg-secondary hover:text-fg">
 					<Star
 						className={`size-4 ${
-							isStarred ? "fill-amber-400 text-amber-400" : "text-fg-tertiary"
+							isStarred ? "fill-warning text-warning" : "text-fg-tertiary"
 						}`}
 					/>
 				</IconButton>
