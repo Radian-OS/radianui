@@ -3,7 +3,6 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react"
 import { Search, SearchX } from "lucide-react"
 import { usePathname, useRouter } from "next/navigation"
-import { cn } from "@/lib/utils"
 import {
 	Empty,
 	EmptyDescription,
@@ -46,7 +45,7 @@ export default function EmojiPlayground({
 	const [selectedEmoji, setSelectedEmoji] = useState<EmojiData | null>(
 		initialSelectedEmoji
 	)
-	const [isSticky, setIsSticky] = useState(false)
+	const [, setIsSticky] = useState(false)
 	const ownsDrawerHistoryEntryRef = useRef(false)
 	const sentinelRef = useRef<HTMLDivElement>(null)
 	const bottomSentinelRef = useRef<HTMLDivElement>(null)
@@ -165,11 +164,7 @@ export default function EmojiPlayground({
 	return (
 		<div id="emoji-collection" className="flex w-full flex-col gap-8 py-2">
 			<div ref={sentinelRef} className="pointer-events-none h-px w-full" />
-			<div
-				className={cn(
-					"bg-bg/95 sticky top-0 z-100 border-b border-transparent py-3 backdrop-blur-sm",
-					isSticky && "border-soft"
-				)}>
+			<div className="bg-bg/95 sticky top-0 z-100 py-3 backdrop-blur-sm">
 				<InputWrapper className="bg-fill1 focus-within:bg-bg h-13 w-full">
 					<EmojiCategoryDropdown value={category} onValueChange={setCategory} />
 					<Search aria-hidden="true" />

@@ -2,8 +2,8 @@
 
 import { useState } from "react"
 import { toast } from "sonner"
+import { cn } from "@/lib/utils"
 import { Button } from "@/registry/ui/button"
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/registry/ui/tooltip"
 import { FlagTileMenu } from "./FlagTileMenu"
 import type { FlagName, FlagShape } from "./flags-data"
 import {
@@ -39,6 +39,7 @@ export function FlagTile({
 	const [copied, setCopied] = useState(false)
 	const displayName = getFlagDisplayName(name)
 	const flagUrl = getFlagUrl(name, shape)
+	const previewSize = shape === "round" ? 32 : 48
 
 	const showCopied = (format: string) => {
 		setCopied(true)
@@ -101,37 +102,30 @@ export function FlagTile({
 
 	return (
 		<li className="group relative size-[142px] shrink-0">
-			<Tooltip>
-				<TooltipTrigger asChild>
-					<Button
-						size="32"
-						color="neutral"
-						variant="outline"
-						className="size-[142px] overflow-hidden rounded-xl p-0"
-						aria-label={`View ${displayName} flag details`}
-						onClick={() => onSelect(name)}>
-						<img
-							src={flagUrl}
-							alt={`${displayName} flag`}
-							width={48}
-							height={48}
-							loading="eager"
-							decoding="async"
-							fetchPriority={priority ? "high" : "auto"}
-							className="absolute top-1/2 left-1/2 size-12 -translate-x-1/2 -translate-y-1/2 object-contain"
-						/>
-					</Button>
-				</TooltipTrigger>
-				<TooltipContent
-					theme="light"
-					side="top"
-					align="start"
-					alignOffset={0}
-					sideOffset={8}
-					className="z-110 text-xs whitespace-nowrap">
+			<Button
+				size="32"
+				color="neutral"
+				variant="outline"
+				className="bg-bg hover:bg-bg size-[142px] overflow-hidden rounded-xl p-0"
+				aria-label={`View ${displayName} flag details`}
+				onClick={() => onSelect(name)}>
+				<img
+					src={flagUrl}
+					alt={`${displayName} flag`}
+					width={previewSize}
+					height={previewSize}
+					loading="eager"
+					decoding="async"
+					fetchPriority={priority ? "high" : "auto"}
+					className={cn(
+						"absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 object-contain",
+						shape === "round" ? "size-8" : "size-12"
+					)}
+				/>
+				<span className="text-fg-secondary absolute inset-x-2 bottom-3 truncate text-xs font-medium transition-opacity duration-200 group-focus-within:opacity-0 group-hover:opacity-0">
 					{displayName}
-				</TooltipContent>
-			</Tooltip>
+				</span>
+			</Button>
 
 			<FlagTileMenu
 				onCopyPng={copyPng}

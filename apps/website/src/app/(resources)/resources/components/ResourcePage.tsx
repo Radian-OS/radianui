@@ -24,6 +24,7 @@ interface ResourcePageProps {
 	titleWidth?: string
 	description: ReactNode
 	actions: ReactNode
+	heroAside?: ReactNode
 	showcaseLabel: string
 	showcase: ReactNode
 	documentation: ReactNode
@@ -39,6 +40,7 @@ export function ResourcePage({
 	titleWidth,
 	description,
 	actions,
+	heroAside,
 	showcaseLabel,
 	showcase,
 	documentation,
@@ -51,52 +53,95 @@ export function ResourcePage({
 			<Background>
 				<header
 					className={cn(
-						"flex flex-col items-center justify-center gap-12 pt-15 md:pt-30",
+						heroAside
+							? "mx-auto flex w-full max-w-360 flex-col gap-12 py-15 lg:flex-row lg:items-center lg:justify-between lg:gap-20 lg:px-[60px] lg:py-[80px]"
+							: "flex flex-col items-center justify-center gap-12 pt-15 md:pt-30",
 						headerClassName
 					)}>
-					<div className="flex max-w-250 flex-col items-center justify-center gap-6">
+					<div
+						className={cn(
+							"flex flex-col",
+							heroAside
+								? "w-full min-w-0 flex-1 items-start gap-9 lg:max-w-[500px] lg:flex-none"
+								: "max-w-250 items-center justify-center gap-6"
+						)}>
 						<Link
 							href={badge.href ?? "/docs/getting-started/resources"}
-							className="relative h-8 rounded-full">
+							className={cn(
+								"relative rounded-full",
+								heroAside ? "h-6" : "h-8"
+							)}>
 							<Badge
 								color="primary"
-								className="h-8 gap-1.5 rounded-full py-1 pl-1"
-								size="28"
+								className={cn(
+									"rounded-full",
+									heroAside
+										? "gap-1 py-0.5 pl-0.5 text-[11px]"
+										: "h-8 gap-1.5 py-1 pl-1"
+								)}
+								size={heroAside ? "24" : "28"}
 								variant="soft">
 								<Badge
 									color="primary"
 									className="rounded-full"
+									size={heroAside ? "20" : undefined}
 									variant="strong">
 									{badge.count}
 								</Badge>
 								{badge.label}
-								<ArrowRight className="size-3.5" />
+								{!heroAside && <ArrowRight className="size-3.5" />}
 							</Badge>
-							<BorderBeam size={50} />
+							<BorderBeam size={heroAside ? 20 : 50} />
 						</Link>
 
 						{heroVisual}
 
 						<div
 							className={cn(
-								"flex w-full flex-col items-center justify-center gap-4 md:w-163",
+								"flex w-full flex-col gap-4",
+								heroAside
+									? "items-start justify-start"
+									: "items-center justify-center md:w-163",
 								titleWidth
 							)}>
-							<h1 className="heading-3 text-center">{title}</h1>
-							<p className="text-fg-secondary text-center text-base font-normal">
+							<h1
+								className={cn(
+									"heading-3",
+									heroAside ? "text-left" : "text-center"
+								)}>
+								{title}
+							</h1>
+							<p
+								className={cn(
+									"text-fg-secondary text-base font-normal",
+									heroAside ? "text-left" : "text-center"
+								)}>
 								{description}
 							</p>
 						</div>
+
+						{heroAside && (
+							<div className="flex w-full flex-col items-start gap-3 sm:flex-row">
+								{actions}
+							</div>
+						)}
 					</div>
 
-					<div className="flex w-full flex-col items-center justify-center gap-3 sm:flex-row">
-						{actions}
-					</div>
+					{heroAside ? (
+						<div className="w-full min-w-0 lg:mr-[100px] lg:max-w-[450px] lg:flex-none">
+							{heroAside}
+						</div>
+					) : (
+						<div className="flex w-full flex-col items-center justify-center gap-3 sm:flex-row">
+							{actions}
+						</div>
+					)}
 				</header>
 
 				<ResourceShowcase
 					label={showcaseLabel}
 					className={showcaseClassName}
+					hideUpperLeftBeam={Boolean(heroAside)}
 					contentClassName={showcaseContentClassName}>
 					{showcase}
 				</ResourceShowcase>
@@ -112,11 +157,13 @@ function ResourceShowcase({
 	label,
 	children,
 	className,
+	hideUpperLeftBeam = false,
 	contentClassName,
 }: {
 	label: string
 	children: ReactNode
 	className?: string
+	hideUpperLeftBeam?: boolean
 	contentClassName?: string
 }) {
 	return (
@@ -138,11 +185,13 @@ function ResourceShowcase({
 					{children}
 				</div>
 
-				<HeroBeamPath
-					className="top-[-276px] left-4 h-[276px] w-[438px] md:left-5"
-					path={upperHeroBeamPath}
-					viewBox="0 0 438 276"
-				/>
+				{!hideUpperLeftBeam && (
+					<HeroBeamPath
+						className="top-[-276px] left-4 h-[276px] w-[438px] md:left-5"
+						path={upperHeroBeamPath}
+						viewBox="0 0 438 276"
+					/>
+				)}
 				<HeroBeamPath
 					className="top-[-93px] left-4 h-[93px] w-[214px] md:left-5"
 					path={lowerHeroBeamPath}
