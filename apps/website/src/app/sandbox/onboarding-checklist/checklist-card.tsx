@@ -54,7 +54,7 @@ export function ChecklistCard({
 			{/* Card Header with Counter and Progress Bar */}
 			<CardHeader className="flex flex-col gap-3 p-0 pb-2">
 				<div className="flex items-center justify-between">
-					<CardTitle className="text-foreground text-sm font-semibold sm:text-base">
+					<CardTitle className="text-fg text-sm font-semibold sm:text-base">
 						Getting started
 					</CardTitle>
 					<span className="text-fg-secondary text-xs font-medium sm:text-sm">
@@ -65,7 +65,7 @@ export function ChecklistCard({
 				{/* Progress bar */}
 				<div className="bg-border/40 relative h-1.5 w-full overflow-hidden rounded-full">
 					<div
-						className="bg-foreground h-full rounded-full transition-all duration-300 ease-out"
+						className="bg-fg h-full rounded-full transition-all duration-300 ease-out"
 						style={{ width: `${progressPercent}%` }}
 					/>
 				</div>
@@ -91,7 +91,7 @@ export function ChecklistCard({
 					variant="ghost"
 					color="neutral"
 					size="28"
-					className="text-fg-secondary hover:text-foreground text-xs"
+					className="text-fg-secondary hover:text-fg text-xs"
 					onClick={onResetTour}>
 					<RotateCcw className="mr-1.5 size-3.5" />
 					Reset

@@ -38,8 +38,8 @@ export function VcardPortfolioView() {
 
 					{activeTab === "resume" && (
 						<div className="flex flex-col gap-4">
-							<h2 className="heading-4 text-foreground">Resume</h2>
-							<div className="h-1.5 w-10 rounded-full bg-amber-400" />
+							<h2 className="heading-4 text-fg">Resume</h2>
+							<div className="bg-warning h-1.5 w-10 rounded-full" />
 							<p className="text-fg-secondary pt-2 text-sm">
 								Over 8 years of experience designing and shipping digital
 								products for high-growth tech companies and creative agencies.
@@ -49,8 +49,8 @@ export function VcardPortfolioView() {
 
 					{activeTab === "portfolio" && (
 						<div className="flex flex-col gap-4">
-							<h2 className="heading-4 text-foreground">Portfolio</h2>
-							<div className="h-1.5 w-10 rounded-full bg-amber-400" />
+							<h2 className="heading-4 text-fg">Portfolio</h2>
+							<div className="bg-warning h-1.5 w-10 rounded-full" />
 							<p className="text-fg-secondary pt-2 text-sm">
 								Featured projects spanning responsive web apps, mobile UI/UX,
 								and brand identity systems.
@@ -60,8 +60,8 @@ export function VcardPortfolioView() {
 
 					{activeTab === "blog" && (
 						<div className="flex flex-col gap-4">
-							<h2 className="heading-4 text-foreground">Blog</h2>
-							<div className="h-1.5 w-10 rounded-full bg-amber-400" />
+							<h2 className="heading-4 text-fg">Blog</h2>
+							<div className="bg-warning h-1.5 w-10 rounded-full" />
 							<p className="text-fg-secondary pt-2 text-sm">
 								Articles on modern UI design, frontend architecture, and design
 								systems.
@@ -71,8 +71,8 @@ export function VcardPortfolioView() {
 
 					{activeTab === "contact" && (
 						<div className="flex flex-col gap-4">
-							<h2 className="heading-4 text-foreground">Contact</h2>
-							<div className="h-1.5 w-10 rounded-full bg-amber-400" />
+							<h2 className="heading-4 text-fg">Contact</h2>
+							<div className="bg-warning h-1.5 w-10 rounded-full" />
 							<p className="text-fg-secondary pt-2 text-sm">
 								Have a project in mind or want to collaborate? Feel free to
 								reach out anytime.

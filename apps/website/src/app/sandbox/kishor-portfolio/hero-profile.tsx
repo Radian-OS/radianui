@@ -33,10 +33,10 @@ export function HeroProfile() {
 				{/* Name, Verified Badge, and Tagline */}
 				<div className="flex flex-col gap-1">
 					<div className="flex items-center gap-1.5">
-						<h1 className="text-foreground text-xl font-bold tracking-tight sm:text-2xl">
+						<h1 className="text-fg text-xl font-bold tracking-tight sm:text-2xl">
 							Kishor K. Khadka
 						</h1>
-						<BadgeCheck className="text-background size-5 fill-blue-500" />
+						<BadgeCheck className="text-bg fill-info size-5" />
 					</div>
 					<p className="text-fg-secondary text-xs sm:text-sm">
 						Building things that work
@@ -62,7 +62,7 @@ export function HeroProfile() {
 					<Mail className="text-fg-tertiary size-3.5" />
 					<Link
 						href="mailto:imkishor24@gmail.com"
-						className="hover:text-foreground transition-colors">
+						className="hover:text-fg transition-colors">
 						imkishor24@gmail.com
 					</Link>
 				</div>

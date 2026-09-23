@@ -39,7 +39,7 @@ export function IntegrationsView() {
 	}, [integrations, activeCategory, searchQuery])
 
 	return (
-		<SidebarProvider defaultOpen className="bg-background min-h-screen w-full">
+		<SidebarProvider defaultOpen className="bg-bg min-h-screen w-full">
 			<div className="flex min-h-screen w-full">
 				{/* 1. Primary Left Icon Rail */}
 				<IconRail
@@ -56,7 +56,7 @@ export function IntegrationsView() {
 				/>
 
 				{/* 3. Main Content Panel */}
-				<main className="bg-background flex-1 overflow-y-auto p-4 sm:p-6 lg:p-10">
+				<main className="bg-bg flex-1 overflow-y-auto p-4 sm:p-6 lg:p-10">
 					<div className="mx-auto flex max-w-5xl flex-col gap-6">
 						<IntegrationsHeader
 							isSidebarOpen={sidebarOpen}

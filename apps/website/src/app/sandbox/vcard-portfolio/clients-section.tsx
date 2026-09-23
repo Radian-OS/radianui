@@ -20,16 +20,16 @@ export function ClientsSection() {
 
 	return (
 		<div className="flex flex-col gap-5">
-			<h2 className="heading-5 text-foreground">Clients</h2>
+			<h2 className="heading-5 text-fg">Clients</h2>
 
 			{/* 4 Client brand cards */}
 			<div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
 				{CLIENTS.map((client) => (
 					<div
 						key={client.id}
-						className="group border-border/70 bg-elevation-level1/20 flex flex-col items-center justify-center gap-1.5 rounded-2xl border p-5 text-center transition-all hover:border-amber-400/40">
+						className="border-border/70 bg-elevation-level1/20 hover:border-warning-border/40 group flex flex-col items-center justify-center gap-1.5 rounded-2xl border p-5 text-center transition-all">
 						{renderLogoIcon(client.id)}
-						<span className="text-fg-secondary group-hover:text-foreground text-xs font-bold tracking-wider transition-colors">
+						<span className="text-fg-secondary group-hover:text-fg text-xs font-bold tracking-wider transition-colors">
 							{client.name}
 						</span>
 						<span className="text-fg-tertiary text-[10px]">
@@ -41,7 +41,7 @@ export function ClientsSection() {
 
 			{/* Scroll indicator */}
 			<div className="bg-border/40 mx-auto mt-2 h-1.5 w-48 overflow-hidden rounded-full">
-				<div className="h-full w-24 rounded-full bg-amber-400 transition-all duration-300" />
+				<div className="bg-warning h-full w-24 rounded-full transition-all duration-300" />
 			</div>
 		</div>
 	)

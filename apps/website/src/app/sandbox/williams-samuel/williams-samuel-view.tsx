@@ -12,7 +12,7 @@ import { WilliamsFooter } from "./williams-footer"
 
 export function WilliamsSamuelView() {
 	return (
-		<div className="dark min-h-screen w-full bg-[#0d0d0d] text-white selection:bg-emerald-500/30 selection:text-emerald-300">
+		<div className="dark bg-bg text-fg selection:bg-success-accent selection:text-success-text min-h-screen w-full">
 			<WilliamsNavbar />
 			<div className="mx-auto flex w-full max-w-5xl flex-col px-4 sm:px-6 lg:px-8">
 				<HeroSection />

@@ -16,7 +16,7 @@ interface AccountDetailsSectionProps {
 export function AccountDetailsSection({ form }: AccountDetailsSectionProps) {
 	return (
 		<div className="space-y-4">
-			<h3 className="heading-6 text-foreground">Account Details</h3>
+			<h3 className="heading-6 text-fg">Account Details</h3>
 			<FormField
 				control={form.control}
 				name="username"

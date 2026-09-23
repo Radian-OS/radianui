@@ -26,8 +26,8 @@ export function VictorNavbar() {
 			<Link
 				href="/sandbox/victor-eke"
 				aria-label="Victor Eke Home"
-				className="flex size-10 items-center justify-center rounded-lg border border-white/10 bg-neutral-900 shadow-md transition hover:border-white/20">
-				<span className="font-serif text-lg font-bold tracking-wide text-white italic">
+				className="border-border bg-elevation-level1 hover:border-alpha flex size-10 items-center justify-center rounded-lg border shadow-md transition">
+				<span className="text-fg font-serif text-lg font-bold tracking-wide italic">
 					eke
 				</span>
 			</Link>
@@ -57,7 +57,7 @@ export function VictorNavbar() {
 					color="neutral"
 					variant="ghost"
 					size="32"
-					className="size-9 rounded-full border border-emerald-500/20 bg-neutral-900/80 p-0 text-emerald-400 hover:border-emerald-500/40 hover:bg-neutral-800 hover:text-emerald-300"
+					className="border-success-border bg-fill1-alpha text-success hover:border-success-border hover:bg-fill2 hover:text-success-hover size-9 rounded-full border p-0"
 					aria-label="Toggle network status">
 					<Globe className="size-4" />
 				</Button>

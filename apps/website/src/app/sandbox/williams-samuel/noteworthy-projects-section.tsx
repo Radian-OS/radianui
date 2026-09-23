@@ -7,7 +7,7 @@ import { NoteworthyProjectCard } from "./noteworthy-project-card"
 export function NoteworthyProjectsSection() {
 	return (
 		<section className="flex flex-col gap-8 py-20">
-			<h3 className="heading-3 text-center text-white">
+			<h3 className="heading-3 text-fg text-center">
 				Other Noteworthy Projects
 			</h3>
 

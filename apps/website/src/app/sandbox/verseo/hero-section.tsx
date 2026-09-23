@@ -49,14 +49,14 @@ export function VerseoHeroSection() {
 
 			<div className="mx-auto flex max-w-5xl flex-col items-center px-4 text-center">
 				{/* Top Tag Pill */}
-				<div className="border-border/70 bg-background/80 text-fg-secondary mb-6 inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-semibold shadow-xs backdrop-blur-sm">
+				<div className="border-border/70 bg-bg/80 text-fg-secondary mb-6 inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-semibold shadow-xs backdrop-blur-sm">
 					<span>[</span>
-					<span className="text-foreground">AI writing tool</span>
+					<span className="text-fg">AI writing tool</span>
 					<span>]</span>
 				</div>
 
 				{/* Rule 13: heading-1 */}
-				<h1 className="heading-1 text-foreground max-w-4xl text-center">
+				<h1 className="heading-1 text-fg max-w-4xl text-center">
 					Write better content.
 					<br />
 					Faster. With AI
@@ -81,7 +81,7 @@ export function VerseoHeroSection() {
 						variant="outline"
 						color="neutral"
 						size="40"
-						className="bg-background hover:bg-fill2 rounded-xl px-6 text-sm font-semibold">
+						className="bg-bg hover:bg-fill2 rounded-xl px-6 text-sm font-semibold">
 						<span>Try Demo</span>
 					</Button>
 				</div>
@@ -89,7 +89,7 @@ export function VerseoHeroSection() {
 				{/* Floating Interactive Prompt Card & Browser Mockup Preview */}
 				<div className="relative mt-12 w-full max-w-4xl md:mt-16">
 					{/* Floating Prompt Input Widget */}
-					<div className="border-border/80 bg-background/95 relative z-20 mx-auto -mb-8 w-full max-w-xl rounded-2xl border p-3.5 shadow-2xl backdrop-blur-xl transition-all sm:p-4">
+					<div className="border-border/80 bg-bg/95 relative z-20 mx-auto -mb-8 w-full max-w-xl rounded-2xl border p-3.5 shadow-2xl backdrop-blur-xl transition-all sm:p-4">
 						<div className="border-border/40 flex items-center gap-2 border-b pb-3">
 							<Sparkles className="text-primary size-4 shrink-0 animate-pulse" />
 							<input
@@ -97,7 +97,7 @@ export function VerseoHeroSection() {
 								value={promptInput}
 								onChange={(e) => setPromptInput(e.target.value)}
 								placeholder="What do you want to write today?"
-								className="text-foreground placeholder-fg-tertiary w-full bg-transparent text-xs focus:outline-none sm:text-sm"
+								className="text-fg placeholder-fg-tertiary w-full bg-transparent text-xs focus:outline-none sm:text-sm"
 							/>
 						</div>
 
@@ -115,7 +115,7 @@ export function VerseoHeroSection() {
 											className={`flex items-center gap-1.5 rounded-lg px-2.5 py-1 text-[11px] font-semibold transition-all ${
 												isActive
 													? "border-primary/30 bg-primary/10 text-primary border shadow-xs"
-													: "border-border/50 bg-fill1 text-fg-secondary hover:bg-fill2 hover:text-foreground border"
+													: "border-border/50 bg-fill1 text-fg-secondary hover:bg-fill2 hover:text-fg border"
 											}`}>
 											<Icon className="size-3" />
 											<span>{chip.label}</span>
@@ -125,14 +125,14 @@ export function VerseoHeroSection() {
 							</div>
 
 							{/* Audio Waveform Action Icon */}
-							<div className="bg-foreground text-background flex size-7 items-center justify-center rounded-lg shadow-xs">
+							<div className="bg-fg text-fg-inverse flex size-7 items-center justify-center rounded-lg shadow-xs">
 								<AudioWaveform className="size-3.5" />
 							</div>
 						</div>
 					</div>
 
 					{/* High-Fidelity Browser Window Mockup (Rule 17: direct public image asset) */}
-					<div className="border-border/80 bg-background/80 overflow-hidden rounded-2xl border p-2 shadow-2xl backdrop-blur-sm sm:p-3">
+					<div className="border-border/80 bg-bg/80 overflow-hidden rounded-2xl border p-2 shadow-2xl backdrop-blur-sm sm:p-3">
 						<div className="border-border/60 bg-fill1/30 relative aspect-[2151/720] w-full overflow-hidden rounded-xl border">
 							<Image
 								src="https://framerusercontent.com/images/yj2cqScVkBBWEyJJVdm9obYl4OU.png"

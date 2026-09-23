@@ -8,13 +8,13 @@ export function FeaturedProjectsSection() {
 	return (
 		<section id="projects" className="flex flex-col gap-10 py-20">
 			<div className="flex flex-col gap-3">
-				<span className="font-mono text-xs font-bold tracking-widest text-emerald-400 uppercase">
+				<span className="text-success font-mono text-xs font-bold tracking-widest uppercase">
 					MY PROJECTS
 				</span>
 
-				<h2 className="heading-2 text-white">Some Things I Built</h2>
+				<h2 className="heading-2 text-fg">Some Things I Built</h2>
 
-				<p className="max-w-2xl text-sm leading-relaxed text-neutral-400 sm:text-base">
+				<p className="text-fg-secondary max-w-2xl text-sm leading-relaxed sm:text-base">
 					I like to stay busy and always have a project in the works. Take a
 					look at some of the applications I&apos;ve have built
 				</p>

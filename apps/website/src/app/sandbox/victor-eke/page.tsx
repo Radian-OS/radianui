@@ -5,7 +5,7 @@ import { VictorEkeView } from "./victor-eke-view"
 
 export default function VictorEkePage() {
 	return (
-		<main className="text-foreground min-h-screen w-full bg-[#121212]">
+		<main className="bg-bg text-fg min-h-screen w-full">
 			<VictorEkeView />
 		</main>
 	)

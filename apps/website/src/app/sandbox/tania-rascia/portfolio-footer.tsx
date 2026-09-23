@@ -11,25 +11,25 @@ export function PortfolioFooter() {
 			<div className="flex flex-wrap items-center gap-5">
 				<Link
 					href="#"
-					className="hover:text-foreground flex items-center gap-1.5 transition-colors">
+					className="hover:text-fg flex items-center gap-1.5 transition-colors">
 					<Mail className="text-fg-tertiary size-3.5" />
 					<span>Email signup</span>
 				</Link>
 				<Link
 					href="#"
-					className="hover:text-foreground flex items-center gap-1.5 transition-colors">
+					className="hover:text-fg flex items-center gap-1.5 transition-colors">
 					<Rss className="text-fg-tertiary size-3.5" />
 					<span>RSS feed</span>
 				</Link>
 				<Link
 					href="#"
-					className="hover:text-foreground flex items-center gap-1.5 transition-colors">
+					className="hover:text-fg flex items-center gap-1.5 transition-colors">
 					<Twitter className="text-fg-tertiary size-3.5" />
 					<span>Bluesky</span>
 				</Link>
 				<Link
 					href="#"
-					className="hover:text-foreground flex items-center gap-1.5 transition-colors">
+					className="hover:text-fg flex items-center gap-1.5 transition-colors">
 					<Coffee className="text-fg-tertiary size-3.5" />
 					<span>Buy me a coffee</span>
 				</Link>
@@ -37,16 +37,16 @@ export function PortfolioFooter() {
 
 			{/* Tech Stack Badges */}
 			<div className="flex flex-wrap items-center gap-2.5">
-				<div className="border-border/70 bg-elevation-level1/40 flex items-center gap-1.5 rounded-lg border px-3 py-1 text-[11px] font-semibold text-purple-400">
-					<span className="size-2 rounded-full bg-purple-500" />
+				<div className="border-border/70 bg-elevation-level1/40 text-primary flex items-center gap-1.5 rounded-lg border px-3 py-1 text-[11px] font-semibold">
+					<span className="bg-primary size-2 rounded-full" />
 					<span>Gatsby</span>
 				</div>
-				<div className="border-border/70 bg-elevation-level1/40 text-foreground flex items-center gap-1.5 rounded-lg border px-3 py-1 text-[11px] font-semibold">
+				<div className="border-border/70 bg-elevation-level1/40 text-fg flex items-center gap-1.5 rounded-lg border px-3 py-1 text-[11px] font-semibold">
 					<Github className="size-3.5" />
 					<span>GitHub</span>
 				</div>
-				<div className="border-border/70 bg-elevation-level1/40 flex items-center gap-1.5 rounded-lg border px-3 py-1 text-[11px] font-semibold text-emerald-400">
-					<span className="size-2 rounded-full bg-emerald-500" />
+				<div className="border-border/70 bg-elevation-level1/40 text-success flex items-center gap-1.5 rounded-lg border px-3 py-1 text-[11px] font-semibold">
+					<span className="bg-success size-2 rounded-full" />
 					<span>Netlify</span>
 				</div>
 			</div>

@@ -5,7 +5,7 @@ import React from "react"
 export function AboutSection() {
 	return (
 		<div className="flex flex-col gap-3.5 pt-4">
-			<h2 className="heading-5 text-foreground">About</h2>
+			<h2 className="heading-5 text-fg">About</h2>
 
 			<div className="text-fg-secondary flex flex-col gap-3 text-xs leading-relaxed sm:text-sm">
 				<p>
@@ -19,9 +19,7 @@ export function AboutSection() {
 					for validating ideas quickly and solving real problems.
 				</p>
 				<p>
-					<span className="text-foreground font-semibold">
-						My approach is simple:
-					</span>{" "}
+					<span className="text-fg font-semibold">My approach is simple:</span>{" "}
 					Spot real problems, build fast, stay practical, and iterate in the
 					open.
 				</p>

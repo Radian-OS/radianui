@@ -11,9 +11,9 @@ export function WilliamsFooter() {
 	}
 
 	return (
-		<footer className="mt-12 flex flex-col gap-6 border-t border-white/10 py-10 sm:flex-row sm:items-center sm:justify-between">
+		<footer className="border-border mt-12 flex flex-col gap-6 border-t py-10 sm:flex-row sm:items-center sm:justify-between">
 			{/* Left: Copyright */}
-			<p className="font-mono text-xs text-neutral-400">
+			<p className="text-fg-secondary font-mono text-xs">
 				&copy; 2026 Williams Samuel
 			</p>
 
@@ -23,14 +23,14 @@ export function WilliamsFooter() {
 					href="https://github.com"
 					target="_blank"
 					rel="noopener noreferrer"
-					className="font-mono text-xs text-neutral-400 transition-colors hover:text-white">
+					className="text-fg-secondary hover:text-fg font-mono text-xs transition-colors">
 					github
 				</a>
 				<a
 					href="https://twitter.com"
 					target="_blank"
 					rel="noopener noreferrer"
-					className="font-mono text-xs text-neutral-400 transition-colors hover:text-white">
+					className="text-fg-secondary hover:text-fg font-mono text-xs transition-colors">
 					twitter
 				</a>
 				<Button
@@ -38,7 +38,7 @@ export function WilliamsFooter() {
 					variant="ghost"
 					size="28"
 					onClick={scrollToTop}
-					className="h-auto p-0 font-mono text-xs text-neutral-400 transition-colors hover:bg-transparent hover:text-white">
+					className="text-fg-secondary hover:text-fg h-auto p-0 font-mono text-xs transition-colors hover:bg-transparent">
 					scroll to top &uArr;
 				</Button>
 			</div>

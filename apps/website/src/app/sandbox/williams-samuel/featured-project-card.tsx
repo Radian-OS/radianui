@@ -16,7 +16,7 @@ export function FeaturedProjectCard({ project }: FeaturedProjectCardProps) {
 				project.reverseLayout ? "lg:flex-row-reverse" : "lg:flex-row"
 			}`}>
 			{/* Project Image Preview */}
-			<div className="w-full overflow-hidden rounded-2xl border border-white/10 bg-neutral-900 shadow-2xl lg:w-1/2">
+			<div className="border-border bg-card w-full overflow-hidden rounded-2xl border shadow-2xl lg:w-1/2">
 				<Image
 					src={project.imageSrc}
 					alt={project.title}
@@ -28,13 +28,13 @@ export function FeaturedProjectCard({ project }: FeaturedProjectCardProps) {
 
 			{/* Project Details */}
 			<div className="flex w-full flex-col items-start gap-4 lg:w-1/2">
-				<span className="font-mono text-3xl font-bold text-neutral-500 sm:text-4xl">
+				<span className="text-fg-tertiary font-mono text-3xl font-bold sm:text-4xl">
 					{project.number}
 				</span>
 
-				<h3 className="heading-3 text-white">{project.title}</h3>
+				<h3 className="heading-3 text-fg">{project.title}</h3>
 
-				<p className="text-sm leading-relaxed text-neutral-300 sm:text-base">
+				<p className="text-fg-secondary text-sm leading-relaxed sm:text-base">
 					{project.description}
 				</p>
 
@@ -46,7 +46,7 @@ export function FeaturedProjectCard({ project }: FeaturedProjectCardProps) {
 							variant="soft"
 							color="neutral"
 							size="24"
-							className="rounded-md border border-white/10 bg-neutral-800/80 font-mono text-xs text-neutral-300">
+							className="border-border bg-fill1 text-fg-secondary rounded-md border font-mono text-xs">
 							{tag}
 						</Badge>
 					))}
@@ -58,14 +58,14 @@ export function FeaturedProjectCard({ project }: FeaturedProjectCardProps) {
 						href={project.liveUrl}
 						target="_blank"
 						rel="noopener noreferrer"
-						className="inline-flex items-center gap-1 font-mono text-sm font-semibold text-white transition-colors hover:text-emerald-400">
+						className="text-fg hover:text-success inline-flex items-center gap-1 font-mono text-sm font-semibold transition-colors">
 						Live Site &rarr;
 					</a>
 					<a
 						href={project.githubUrl}
 						target="_blank"
 						rel="noopener noreferrer"
-						className="inline-flex items-center gap-1 font-mono text-sm font-semibold text-white transition-colors hover:text-emerald-400">
+						className="text-fg hover:text-success inline-flex items-center gap-1 font-mono text-sm font-semibold transition-colors">
 						Github &rarr;
 					</a>
 				</div>

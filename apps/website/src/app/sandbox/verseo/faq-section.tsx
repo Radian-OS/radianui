@@ -57,12 +57,12 @@ export function VerseoFaqSection() {
 				<div className="flex flex-col items-center text-center">
 					<div className="border-border/70 bg-fill1 text-fg-secondary mb-4 inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-semibold">
 						<span>[</span>
-						<span className="text-foreground">faq</span>
+						<span className="text-fg">faq</span>
 						<span>]</span>
 					</div>
 
 					{/* Rule 13: heading-2 */}
-					<h2 className="heading-2 text-foreground text-center">
+					<h2 className="heading-2 text-fg text-center">
 						Everything you need to know
 					</h2>
 
@@ -79,12 +79,12 @@ export function VerseoFaqSection() {
 						return (
 							<div
 								key={faq.question}
-								className="border-border/70 bg-background/90 hover:border-border overflow-hidden rounded-2xl border transition-all duration-200">
+								className="border-border/70 bg-elevation-level1/90 hover:border-border overflow-hidden rounded-2xl border transition-all duration-200">
 								<button
 									type="button"
 									onClick={() => toggleFaq(idx)}
 									className="flex w-full items-center justify-between p-5 text-left transition-colors sm:p-6">
-									<span className="text-foreground flex items-center gap-3 text-sm font-bold sm:text-base">
+									<span className="text-fg flex items-center gap-3 text-sm font-bold sm:text-base">
 										<HelpCircle className="text-primary size-4 shrink-0" />
 										<span>{faq.question}</span>
 									</span>

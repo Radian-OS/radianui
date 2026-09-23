@@ -17,7 +17,7 @@ export function ProjectProgressBar({ step, total }: ProjectProgressBarProps) {
 			</span>
 			<div className="bg-elevation-level1/60 h-1 w-12 overflow-hidden rounded-full">
 				<div
-					className="bg-foreground h-full rounded-full transition-all duration-300"
+					className="bg-fg h-full rounded-full transition-all duration-300"
 					style={{ width: `${Math.min(100, Math.max(0, percentage))}%` }}
 				/>
 			</div>

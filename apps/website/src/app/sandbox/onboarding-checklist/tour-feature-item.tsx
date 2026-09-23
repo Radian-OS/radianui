@@ -24,11 +24,11 @@ export function TourFeatureItem({ feature }: TourFeatureItemProps) {
 
 	return (
 		<div className="flex items-start gap-4">
-			<div className="border-border/80 bg-elevation-level1/40 text-foreground flex size-10 shrink-0 items-center justify-center rounded-xl border shadow-xs">
+			<div className="border-border/80 bg-elevation-level1/40 text-fg flex size-10 shrink-0 items-center justify-center rounded-xl border shadow-xs">
 				{renderIcon()}
 			</div>
 			<div className="flex flex-col">
-				<h3 className="text-foreground text-sm font-semibold sm:text-base">
+				<h3 className="text-fg text-sm font-semibold sm:text-base">
 					{feature.title}
 				</h3>
 				<p className="text-fg-secondary mt-0.5 text-xs leading-relaxed sm:text-sm">

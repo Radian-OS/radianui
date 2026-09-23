@@ -11,7 +11,7 @@ import { FEATURED_PROJECTS } from "./types"
 export function FeaturedProjectsSection() {
 	return (
 		<div id="projects" className="flex flex-col gap-4 pt-4">
-			<h2 className="heading-5 text-foreground">Projects</h2>
+			<h2 className="heading-5 text-fg">Projects</h2>
 
 			{/* 2x2 Projects Grid */}
 			<div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -30,7 +30,7 @@ export function FeaturedProjectsSection() {
 
 							{/* Card Content */}
 							<CardContent className="flex flex-col gap-2.5 p-4">
-								<h3 className="text-foreground group-hover:text-primary line-clamp-2 text-xs font-semibold transition-colors sm:text-sm">
+								<h3 className="text-fg group-hover:text-primary line-clamp-2 text-xs font-semibold transition-colors sm:text-sm">
 									{project.title}
 								</h3>
 								<div className="text-fg-secondary flex items-center gap-2 pt-0.5 text-[11px]">

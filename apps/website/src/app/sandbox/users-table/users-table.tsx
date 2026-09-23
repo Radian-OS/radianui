@@ -50,9 +50,9 @@ export function UsersTable({
 			return <ChevronsUpDown className="text-fg-tertiary size-3.5" />
 		}
 		if (sortOrder === "asc") {
-			return <ArrowUp className="text-foreground size-3.5" />
+			return <ArrowUp className="text-fg size-3.5" />
 		}
-		return <ArrowDown className="text-foreground size-3.5" />
+		return <ArrowDown className="text-fg size-3.5" />
 	}
 
 	return (
@@ -73,7 +73,7 @@ export function UsersTable({
 						{/* Name */}
 						<TableHead
 							onClick={() => onSort("name")}
-							className="text-fg-secondary hover:text-foreground cursor-pointer text-xs font-semibold select-none">
+							className="text-fg-secondary hover:text-fg cursor-pointer text-xs font-semibold select-none">
 							<div className="flex items-center gap-1.5">
 								<span>Name</span>
 								{renderSortIcon("name")}
@@ -83,7 +83,7 @@ export function UsersTable({
 						{/* Address */}
 						<TableHead
 							onClick={() => onSort("address")}
-							className="text-fg-secondary hover:text-foreground cursor-pointer text-xs font-semibold select-none">
+							className="text-fg-secondary hover:text-fg cursor-pointer text-xs font-semibold select-none">
 							<div className="flex items-center gap-1.5">
 								<span>Address</span>
 								{renderSortIcon("address")}
@@ -93,7 +93,7 @@ export function UsersTable({
 						{/* Signed up as */}
 						<TableHead
 							onClick={() => onSort("signedUpAs")}
-							className="text-fg-secondary hover:text-foreground cursor-pointer text-xs font-semibold select-none">
+							className="text-fg-secondary hover:text-fg cursor-pointer text-xs font-semibold select-none">
 							<div className="flex items-center gap-1.5">
 								<span>Signed up as</span>
 								{renderSortIcon("signedUpAs")}
@@ -103,7 +103,7 @@ export function UsersTable({
 						{/* Email */}
 						<TableHead
 							onClick={() => onSort("email")}
-							className="text-fg-secondary hover:text-foreground cursor-pointer text-xs font-semibold select-none">
+							className="text-fg-secondary hover:text-fg cursor-pointer text-xs font-semibold select-none">
 							<div className="flex items-center gap-1.5">
 								<span>Email</span>
 								{renderSortIcon("email")}
@@ -113,7 +113,7 @@ export function UsersTable({
 						{/* Phone */}
 						<TableHead
 							onClick={() => onSort("phone")}
-							className="text-fg-secondary hover:text-foreground cursor-pointer text-xs font-semibold select-none">
+							className="text-fg-secondary hover:text-fg cursor-pointer text-xs font-semibold select-none">
 							<div className="flex items-center gap-1.5">
 								<span>Phone</span>
 								{renderSortIcon("phone")}

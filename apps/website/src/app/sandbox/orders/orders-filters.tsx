@@ -27,7 +27,7 @@ export function OrdersFilters({
 						value={searchQuery}
 						onChange={(e) => onSearchChange(e.target.value)}
 						placeholder="Search orders..."
-						className="border-border bg-card text-foreground placeholder:text-fg-secondary/60 h-9 w-full rounded-lg border pr-3 pl-9 text-sm focus:border-orange-500 focus:outline-none"
+						className="border-border bg-card text-fg placeholder:text-fg-secondary/60 focus:border-primary-border h-9 w-full rounded-lg border pr-3 pl-9 text-sm focus:outline-none"
 					/>
 				</div>
 

@@ -24,10 +24,8 @@ export function PortfolioNavbar({
 								type="button"
 								onClick={() => onSelectTab(tab.id)}
 								className={cn(
-									"cursor-pointer text-xs font-medium transition-colors hover:text-amber-400 sm:text-sm",
-									isActive
-										? "font-semibold text-amber-400"
-										: "text-fg-secondary"
+									"hover:text-warning cursor-pointer text-xs font-medium transition-colors sm:text-sm",
+									isActive ? "text-warning font-semibold" : "text-fg-secondary"
 								)}>
 								{tab.label}
 							</button>

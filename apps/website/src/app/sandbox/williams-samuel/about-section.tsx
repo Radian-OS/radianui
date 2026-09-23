@@ -7,11 +7,11 @@ export function AboutSection() {
 	return (
 		<section
 			id="about"
-			className="-mx-4 w-screen border-y border-white/5 bg-neutral-900/50 px-4 py-20 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+			className="border-border bg-elevation-level1/50 -mx-4 w-screen border-y px-4 py-20 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
 			<div className="mx-auto flex max-w-5xl flex-col items-center gap-12 lg:flex-row lg:items-start lg:gap-16">
 				{/* Left: Portrait Photo */}
 				<div className="flex w-full items-center justify-center lg:w-5/12">
-					<div className="relative overflow-hidden rounded-2xl border border-white/10 bg-neutral-800 shadow-2xl">
+					<div className="border-border bg-card relative overflow-hidden rounded-2xl border shadow-2xl">
 						<Image
 							src="/sandbox/placeholder.svg"
 							alt="Williams Samuel"
@@ -24,13 +24,13 @@ export function AboutSection() {
 
 				{/* Right: Bio Information */}
 				<div className="flex flex-1 flex-col items-start gap-6">
-					<span className="font-mono text-xs font-bold tracking-widest text-emerald-400 uppercase">
+					<span className="text-success font-mono text-xs font-bold tracking-widest uppercase">
 						WHO IS WILLIAMS SAMUEL?
 					</span>
 
-					<h2 className="heading-2 text-white">A Bit About Me</h2>
+					<h2 className="heading-2 text-fg">A Bit About Me</h2>
 
-					<div className="flex flex-col gap-4 text-sm leading-relaxed text-neutral-300 sm:text-base">
+					<div className="text-fg-secondary flex flex-col gap-4 text-sm leading-relaxed sm:text-base">
 						<p>
 							I&apos;m passionate about deciphering challenging problems and
 							creating exceptional digital experience.

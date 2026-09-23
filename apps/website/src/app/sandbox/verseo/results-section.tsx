@@ -50,12 +50,12 @@ export function VerseoResultsSection() {
 				<div className="flex flex-col items-center text-center">
 					<div className="border-border/70 bg-fill1 text-fg-secondary mb-4 inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-semibold">
 						<span>[</span>
-						<span className="text-foreground">results</span>
+						<span className="text-fg">results</span>
 						<span>]</span>
 					</div>
 
 					{/* Rule 13: heading-2 */}
-					<h2 className="heading-2 text-foreground max-w-2xl text-center">
+					<h2 className="heading-2 text-fg max-w-2xl text-center">
 						See the impact instantly
 					</h2>
 
@@ -72,20 +72,20 @@ export function VerseoResultsSection() {
 						return (
 							<div
 								key={item.title}
-								className="border-border/70 bg-background/90 hover:border-primary/40 flex flex-col justify-between rounded-2xl border p-6 shadow-sm transition-all duration-300 hover:shadow-md md:p-8">
+								className="border-border/70 bg-bg/90 hover:border-primary/40 flex flex-col justify-between rounded-2xl border p-6 shadow-sm transition-all duration-300 hover:shadow-md md:p-8">
 								<div>
 									<div className="flex items-center justify-between">
 										<div className="bg-primary/10 text-primary flex size-10 items-center justify-center rounded-xl">
 											<Icon className="size-5" />
 										</div>
-										<span className="flex items-center gap-1 text-[11px] font-bold text-emerald-600 dark:text-emerald-400">
+										<span className="text-success flex items-center gap-1 text-[11px] font-bold">
 											<TrendingUp className="size-3" />
 											<span>Verified</span>
 										</span>
 									</div>
 
 									<div className="mt-6">
-										<div className="text-foreground text-3xl font-extrabold tracking-tight sm:text-4xl">
+										<div className="text-fg text-3xl font-extrabold tracking-tight sm:text-4xl">
 											{item.stat}
 										</div>
 										<span className="text-fg-tertiary text-xs font-semibold">
@@ -93,7 +93,7 @@ export function VerseoResultsSection() {
 										</span>
 									</div>
 
-									<h3 className="text-foreground mt-5 text-lg font-bold">
+									<h3 className="text-fg mt-5 text-lg font-bold">
 										{item.title}
 									</h3>
 

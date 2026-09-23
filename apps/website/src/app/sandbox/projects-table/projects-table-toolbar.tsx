@@ -90,7 +90,7 @@ export function ProjectsTableToolbar({
 					className="border-border/70 bg-elevation-level1/20 gap-2 text-xs font-medium">
 					<SlidersHorizontal className="size-3.5" />
 					<span>Filter</span>
-					<span className="bg-foreground text-background flex size-4 items-center justify-center rounded-full text-[10px] font-bold">
+					<span className="bg-fg text-fg-inverse flex size-4 items-center justify-center rounded-full text-[10px] font-bold">
 						5
 					</span>
 				</Button>

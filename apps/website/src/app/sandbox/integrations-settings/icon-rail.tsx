@@ -42,8 +42,8 @@ export function IconRail({
 			{/* Top Brand & Main Navigation */}
 			<div className="flex flex-col items-center gap-6">
 				{/* Brand Logo */}
-				<div className="flex size-10 items-center justify-center rounded-xl bg-gradient-to-tr from-purple-700 via-purple-600 to-indigo-500 text-white shadow-sm">
-					<Zap className="size-5 fill-white text-white" />
+				<div className="bg-primary text-primary-fg flex size-10 items-center justify-center rounded-xl shadow-sm">
+					<Zap className="size-5 fill-current" />
 				</div>
 
 				{/* Nav Icons */}
@@ -89,7 +89,7 @@ export function IconRail({
 					<Badge
 						color="primary"
 						size="20"
-						className="pointer-events-none absolute -top-1 -right-1 flex size-4 items-center justify-center rounded-full p-0 text-[10px] font-semibold text-white">
+						className="text-primary-fg pointer-events-none absolute -top-1 -right-1 flex size-4 items-center justify-center rounded-full p-0 text-[10px] font-semibold">
 						2
 					</Badge>
 				</div>

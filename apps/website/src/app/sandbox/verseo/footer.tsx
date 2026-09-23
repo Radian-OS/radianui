@@ -65,7 +65,7 @@ export function VerseoFooter() {
 	}
 
 	return (
-		<footer className="border-border/40 bg-background border-t pt-16 pb-12">
+		<footer className="border-border/40 bg-bg border-t pt-16 pb-12">
 			<div className="mx-auto max-w-5xl px-4">
 				{/* Top Grid: Brand & Newsletter & Links Columns */}
 				<div className="grid grid-cols-1 gap-10 md:grid-cols-5">
@@ -73,9 +73,9 @@ export function VerseoFooter() {
 					<div className="space-y-4 md:col-span-2">
 						<Link
 							href="/sandbox/verseo"
-							className="text-foreground flex items-center gap-2 text-base font-black tracking-wider uppercase">
-							<div className="bg-foreground text-background flex size-7 items-center justify-center rounded-lg">
-								<Sparkles className="fill-background text-background size-4" />
+							className="text-fg flex items-center gap-2 text-base font-black tracking-wider uppercase">
+							<div className="bg-fg text-fg-inverse flex size-7 items-center justify-center rounded-lg">
+								<Sparkles className="fill-fg-inverse text-fg-inverse size-4" />
 							</div>
 							<span>VERSEO</span>
 						</Link>
@@ -90,11 +90,11 @@ export function VerseoFooter() {
 							<span className="text-fg-tertiary text-[11px] font-semibold tracking-wider uppercase">
 								[ Contact us through e-mail ]
 							</span>
-							<div className="text-foreground mt-1 flex items-center gap-2 text-sm font-medium">
+							<div className="text-fg mt-1 flex items-center gap-2 text-sm font-medium">
 								<Mail className="text-primary size-4" />
 								<a
 									href="mailto:verseo@gmail.com"
-									className="hover:text-primary hover:underline">
+									className="hover:text-primary transition-colors">
 									verseo@gmail.com
 								</a>
 							</div>
@@ -110,7 +110,7 @@ export function VerseoFooter() {
 							</p>
 
 							{subscribed ? (
-								<div className="mt-3 flex items-center gap-2 rounded-xl border border-emerald-500/20 bg-emerald-500/10 p-3 text-xs font-semibold text-emerald-600 dark:text-emerald-400">
+								<div className="border-success-border/30 bg-success-accent text-success-text mt-3 flex items-center gap-2 rounded-xl border p-3 text-xs font-semibold">
 									<CheckCircle2 className="size-4" />
 									<span>Thank you for subscribing!</span>
 								</div>
@@ -133,7 +133,7 @@ export function VerseoFooter() {
 																{...field}
 															/>
 														</FormControl>
-														<FormMessage className="text-destructive text-[11px]" />
+														<FormMessage className="text-error text-[11px]" />
 													</FormItem>
 												)}
 											/>
@@ -153,9 +153,9 @@ export function VerseoFooter() {
 						</div>
 					</div>
 
-					{/* Navigation Links Column (Rule 11: hover:underline, Rule 18: map) */}
+					{/* Navigation Links Column (Rule 18: map) */}
 					<div className="space-y-3">
-						<span className="text-foreground text-[11px] font-bold tracking-wider uppercase">
+						<span className="text-fg text-[11px] font-bold tracking-wider uppercase">
 							[ Navigation ]
 						</span>
 						<ul className="space-y-2 pt-1">
@@ -163,7 +163,7 @@ export function VerseoFooter() {
 								<li key={item.label}>
 									<Link
 										href={item.href}
-										className="text-fg-secondary hover:text-foreground text-xs transition-colors hover:underline">
+										className="text-fg-secondary hover:text-fg text-xs transition-colors">
 										{item.label}
 									</Link>
 								</li>
@@ -173,7 +173,7 @@ export function VerseoFooter() {
 
 					{/* Resources Links Column */}
 					<div className="space-y-3">
-						<span className="text-foreground text-[11px] font-bold tracking-wider uppercase">
+						<span className="text-fg text-[11px] font-bold tracking-wider uppercase">
 							[ Resources ]
 						</span>
 						<ul className="space-y-2 pt-1">
@@ -181,7 +181,7 @@ export function VerseoFooter() {
 								<li key={item.label}>
 									<Link
 										href={item.href}
-										className="text-fg-secondary hover:text-foreground text-xs transition-colors hover:underline">
+										className="text-fg-secondary hover:text-fg text-xs transition-colors">
 										{item.label}
 									</Link>
 								</li>
@@ -191,7 +191,7 @@ export function VerseoFooter() {
 
 					{/* Social Links Column */}
 					<div className="space-y-3">
-						<span className="text-foreground text-[11px] font-bold tracking-wider uppercase">
+						<span className="text-fg text-[11px] font-bold tracking-wider uppercase">
 							[ Social ]
 						</span>
 						<ul className="space-y-2 pt-1">
@@ -203,7 +203,7 @@ export function VerseoFooter() {
 											href={item.href}
 											target="_blank"
 											rel="noopener noreferrer"
-											className="text-fg-secondary hover:text-foreground inline-flex items-center gap-2 text-xs transition-colors hover:underline">
+											className="text-fg-secondary hover:text-fg inline-flex items-center gap-2 text-xs transition-colors">
 											<Icon className="size-3.5" />
 											<span>{item.label}</span>
 										</a>

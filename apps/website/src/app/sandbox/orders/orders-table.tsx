@@ -119,13 +119,11 @@ export function OrdersTable({ orders }: OrdersTableProps) {
 								</TableCell>
 
 								{/* Date */}
-								<TableCell className="text-foreground text-xs">
-									{order.date}
-								</TableCell>
+								<TableCell className="text-fg text-xs">{order.date}</TableCell>
 
 								{/* Status Badge */}
 								<TableCell>
-									<span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-2.5 py-0.5 text-xs font-medium text-emerald-400">
+									<span className="border-success-border/20 bg-success-accent text-success-text inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-xs font-medium">
 										<Check className="size-3 stroke-[2.5]" />
 										<span>{order.status}</span>
 									</span>
@@ -146,19 +144,19 @@ export function OrdersTable({ orders }: OrdersTableProps) {
 												{initials}
 											</AvatarFallback>
 										</Avatar>
-										<span className="text-foreground text-xs font-medium">
+										<span className="text-fg text-xs font-medium">
 											{order.customer.name}
 										</span>
 									</div>
 								</TableCell>
 
 								{/* Purchased Item */}
-								<TableCell className="text-foreground max-w-xs truncate text-xs">
+								<TableCell className="text-fg max-w-xs truncate text-xs">
 									{order.purchased}
 								</TableCell>
 
 								{/* Revenue */}
-								<TableCell className="text-foreground text-xs font-medium">
+								<TableCell className="text-fg text-xs font-medium">
 									{order.revenue}
 								</TableCell>
 
@@ -168,7 +166,7 @@ export function OrdersTable({ orders }: OrdersTableProps) {
 										variant="ghost"
 										color="neutral"
 										size="32"
-										className="text-fg-secondary hover:text-foreground size-8 p-0">
+										className="text-fg-secondary hover:text-fg size-8 p-0">
 										<MoreHorizontal className="size-4" />
 									</Button>
 								</TableCell>

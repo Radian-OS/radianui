@@ -50,9 +50,7 @@ export function UsersTableRow({
 							{user.initials}
 						</AvatarFallback>
 					</Avatar>
-					<span className="text-foreground text-xs font-medium">
-						{user.name}
-					</span>
+					<span className="text-fg text-xs font-medium">{user.name}</span>
 				</div>
 			</TableCell>
 
@@ -84,7 +82,7 @@ export function UsersTableRow({
 					color="neutral"
 					size="28"
 					onClick={() => onDownloadUser?.(user)}
-					className="text-fg-tertiary hover:text-foreground size-7 p-0">
+					className="text-fg-tertiary hover:text-fg size-7 p-0">
 					<Download className="size-3.5" />
 				</Button>
 			</TableCell>

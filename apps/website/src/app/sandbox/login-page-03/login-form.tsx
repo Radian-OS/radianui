@@ -46,7 +46,7 @@ export function LoginForm() {
 
 			{/* Heading & Subtitle */}
 			<div className="flex flex-col gap-1">
-				<h1 className="heading-2 text-foreground font-bold">Welcome Back</h1>
+				<h1 className="heading-2 text-fg font-bold">Welcome Back</h1>
 				<p className="text-fg-secondary text-xs sm:text-sm">
 					Welcome back! Select method to login:
 				</p>
@@ -60,7 +60,7 @@ export function LoginForm() {
 				<div className="absolute inset-0 flex items-center">
 					<div className="border-border/60 w-full border-t" />
 				</div>
-				<span className="bg-background text-fg-tertiary relative px-3 text-xs">
+				<span className="bg-bg text-fg-tertiary relative px-3 text-xs">
 					Or continue with Email
 				</span>
 			</div>

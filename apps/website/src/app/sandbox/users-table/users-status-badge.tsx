@@ -17,7 +17,7 @@ export function UsersStatusBadge({ status }: UsersStatusBadgeProps) {
 				color="neutral"
 				size="20"
 				className="border-border/70 bg-elevation-level1/40 text-fg-secondary gap-1 px-2 py-0.5 text-[11px] font-medium">
-				<Check className="size-3 text-emerald-400" />
+				<Check className="text-success size-3" />
 				<span>Valid account</span>
 			</Badge>
 		)
@@ -26,10 +26,10 @@ export function UsersStatusBadge({ status }: UsersStatusBadgeProps) {
 	return (
 		<Badge
 			variant="soft"
-			color="amber"
+			color="warning"
 			size="20"
-			className="gap-1 border-amber-500/30 bg-amber-500/10 px-2 py-0.5 text-[11px] font-medium text-amber-400">
-			<AlertTriangle className="size-3 text-amber-400" />
+			className="border-warning-border/30 bg-warning-accent text-warning-text gap-1 px-2 py-0.5 text-[11px] font-medium">
+			<AlertTriangle className="text-warning size-3" />
 			<span>Fake account</span>
 		</Badge>
 	)

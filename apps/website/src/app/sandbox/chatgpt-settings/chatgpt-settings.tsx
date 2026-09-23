@@ -33,7 +33,7 @@ export function ChatgptSettings() {
 					) : (
 						<div className="bg-card flex flex-1 flex-col overflow-y-auto">
 							<div className="border-border/40 flex items-center justify-between border-b px-6 py-4">
-								<h2 className="heading-4 text-foreground">
+								<h2 className="heading-4 text-fg">
 									{currentTabItem?.label || "Settings"}
 								</h2>
 							</div>

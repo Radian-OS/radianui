@@ -39,12 +39,12 @@ export function VerseoProblemDifferenceSection() {
 				<div className="flex flex-col items-center text-center">
 					<div className="border-border/70 bg-fill1 text-fg-secondary mb-4 inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-semibold">
 						<span>[</span>
-						<span className="text-foreground">problem &amp; difference</span>
+						<span className="text-fg">problem &amp; difference</span>
 						<span>]</span>
 					</div>
 
 					{/* Rule 13: heading-2 */}
-					<h2 className="heading-2 text-foreground max-w-2xl text-center">
+					<h2 className="heading-2 text-fg max-w-2xl text-center">
 						Where content friction ends, clarity begins
 					</h2>
 				</div>
@@ -52,9 +52,9 @@ export function VerseoProblemDifferenceSection() {
 				{/* Comparison Grid: Friction vs Clarity (Rule 18: map) */}
 				<div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-2">
 					{/* Left Card: The Friction (Before) */}
-					<div className="border-destructive/20 bg-destructive/5 flex flex-col justify-between rounded-2xl border p-6 md:p-8">
+					<div className="border-error-border/30 bg-error-accent/30 flex flex-col justify-between rounded-2xl border p-6 md:p-8">
 						<div>
-							<div className="text-destructive flex items-center gap-2 text-xs font-bold tracking-wider uppercase">
+							<div className="text-error flex items-center gap-2 text-xs font-bold tracking-wider uppercase">
 								<XCircle className="size-4" />
 								<span>The Content Friction</span>
 							</div>
@@ -62,7 +62,7 @@ export function VerseoProblemDifferenceSection() {
 							<div className="mt-6 space-y-6">
 								{frictionPoints.map((item) => (
 									<div key={item.title} className="space-y-2">
-										<h3 className="text-foreground text-base font-bold">
+										<h3 className="text-fg text-base font-bold">
 											{item.title}
 										</h3>
 										<ul className="space-y-1.5 pl-1">
@@ -70,7 +70,7 @@ export function VerseoProblemDifferenceSection() {
 												<li
 													key={point}
 													className="text-fg-secondary flex items-center gap-2 text-xs">
-													<span className="bg-destructive/60 size-1 rounded-full" />
+													<span className="bg-error size-1 rounded-full" />
 													<span>{point}</span>
 												</li>
 											))}
@@ -80,7 +80,7 @@ export function VerseoProblemDifferenceSection() {
 							</div>
 						</div>
 
-						<div className="border-border/60 bg-background/60 text-fg-tertiary mt-8 rounded-xl border p-3 text-center text-xs font-medium">
+						<div className="border-border/60 bg-bg/60 text-fg-tertiary mt-8 rounded-xl border p-3 text-center text-xs font-medium">
 							Traditional writing workflows waste 10+ hours every week on
 							revisions.
 						</div>
@@ -94,7 +94,7 @@ export function VerseoProblemDifferenceSection() {
 								<span>With Verseo</span>
 							</div>
 
-							<h3 className="text-foreground mt-4 text-xl font-bold tracking-tight sm:text-2xl">
+							<h3 className="text-fg mt-4 text-xl font-bold tracking-tight sm:text-2xl">
 								A clear system for fast, high-converting content
 							</h3>
 
@@ -102,11 +102,11 @@ export function VerseoProblemDifferenceSection() {
 								{claritySolutions.map((solution) => (
 									<div
 										key={solution}
-										className="border-border/60 bg-background/80 flex items-center gap-3 rounded-xl border p-3.5 shadow-xs backdrop-blur-sm">
-										<div className="flex size-6 shrink-0 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
+										className="border-border/60 bg-bg/80 flex items-center gap-3 rounded-xl border p-3.5 shadow-xs backdrop-blur-sm">
+										<div className="bg-success-accent text-success-text flex size-6 shrink-0 items-center justify-center rounded-full">
 											<CheckCircle2 className="size-4" />
 										</div>
-										<span className="text-foreground text-xs font-semibold sm:text-sm">
+										<span className="text-fg text-xs font-semibold sm:text-sm">
 											{solution}
 										</span>
 									</div>

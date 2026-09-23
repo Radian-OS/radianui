@@ -38,7 +38,7 @@ export function OrdersSidebar() {
 					type="button"
 					className="hover:bg-sidebar-accent flex w-full cursor-pointer items-center justify-between rounded-lg p-1 transition-colors">
 					<div className="flex items-center gap-3">
-						<div className="flex size-9 items-center justify-center rounded-full bg-gradient-to-tr from-amber-600 via-orange-500 to-amber-400 text-sm font-bold text-white shadow-xs">
+						<div className="bg-primary text-primary-fg flex size-9 items-center justify-center rounded-full text-sm font-bold shadow-xs">
 							C
 						</div>
 						<div className="flex flex-col text-left">
@@ -91,17 +91,13 @@ export function OrdersSidebar() {
 							</SidebarMenuItem>
 
 							<SidebarMenuItem>
-								<SidebarMenuButton
-									asChild
-									isActive
-									size="36"
-									className="relative font-medium text-orange-400 data-[active=true]:bg-orange-500/10 data-[active=true]:text-orange-400">
+								<SidebarMenuButton asChild isActive size="36">
 									<Link href="#" className="flex items-center justify-between">
 										<div className="flex items-center gap-2">
-											<ShoppingBag className="size-4 text-orange-400" />
+											<ShoppingBag className="size-4" />
 											<span className="text-sm">Orders</span>
 										</div>
-										<ChevronRight className="size-3.5 text-orange-400" />
+										<ChevronRight className="size-3.5" />
 									</Link>
 								</SidebarMenuButton>
 							</SidebarMenuItem>
@@ -174,7 +170,7 @@ export function OrdersSidebar() {
 								<span className="text-sidebar-fg text-xs font-semibold">
 									James Brown
 								</span>
-								<CheckCircle2 className="text-sidebar size-3.5 fill-blue-500" />
+								<CheckCircle2 className="text-sidebar fill-info size-3.5" />
 							</div>
 							<span className="text-sidebar-fg/60 text-[11px]">
 								james@alignui.com

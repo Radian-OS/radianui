@@ -25,14 +25,14 @@ export function ChecklistStepItem({
 	const renderIcon = () => {
 		if (isCompleted) {
 			return (
-				<div className="bg-foreground text-background flex size-5.5 shrink-0 items-center justify-center rounded-full shadow-xs">
+				<div className="bg-fg text-fg-inverse flex size-5.5 shrink-0 items-center justify-center rounded-full shadow-xs">
 					<Check className="size-3.5 stroke-[3]" />
 				</div>
 			)
 		}
 		if (isActive) {
 			return (
-				<div className="text-foreground flex size-5.5 shrink-0 items-center justify-center">
+				<div className="text-fg flex size-5.5 shrink-0 items-center justify-center">
 					<CircleDot className="size-5.5 stroke-[2.2]" />
 				</div>
 			)
@@ -60,8 +60,8 @@ export function ChecklistStepItem({
 						className={cn(
 							"text-sm font-semibold transition-colors",
 							isActive || isCompleted
-								? "text-foreground"
-								: "text-fg-secondary group-hover:text-foreground"
+								? "text-fg"
+								: "text-fg-secondary group-hover:text-fg"
 						)}>
 						{step.title}
 					</span>

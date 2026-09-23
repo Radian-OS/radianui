@@ -12,7 +12,7 @@ export function ShelvesSection() {
 			{/* Section Header */}
 			<div className="flex flex-col gap-1">
 				<div className="flex items-center gap-3">
-					<h2 className="heading-4 text-foreground">Shelves</h2>
+					<h2 className="heading-4 text-fg">Shelves</h2>
 					<Button
 						type="button"
 						variant="outline"
@@ -34,10 +34,10 @@ export function ShelvesSection() {
 						<Card className="border-border/70 bg-elevation-level1/20 hover:border-border hover:bg-elevation-level1/40 h-full rounded-2xl border p-5 shadow-xs transition-all duration-200">
 							<CardContent className="flex flex-col gap-2.5 p-0">
 								<div className="flex items-center justify-between">
-									<h3 className="text-foreground text-sm font-bold transition-colors group-hover:text-rose-400">
+									<h3 className="text-fg group-hover:text-primary text-sm font-bold transition-colors">
 										{shelf.title}
 									</h3>
-									<span className="border-border/60 bg-elevation-level1/60 rounded-full border px-2 py-0.5 text-[10px] font-bold text-rose-400">
+									<span className="border-border/60 bg-elevation-level1/60 text-primary rounded-full border px-2 py-0.5 text-[10px] font-bold">
 										{shelf.count}
 									</span>
 								</div>

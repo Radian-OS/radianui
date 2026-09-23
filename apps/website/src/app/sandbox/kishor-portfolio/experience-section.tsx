@@ -23,7 +23,7 @@ export function ExperienceSection() {
 
 	return (
 		<div className="flex flex-col gap-4 pt-4">
-			<h2 className="heading-5 text-foreground">Experience</h2>
+			<h2 className="heading-5 text-fg">Experience</h2>
 
 			<div className="flex flex-col gap-4">
 				{EXPERIENCES.map((exp: ExperienceItem) => (
@@ -35,18 +35,16 @@ export function ExperienceSection() {
 							<div className="flex flex-col gap-1">
 								<div className="flex items-center gap-2">
 									{renderCompanyIcon(exp.id)}
-									<span className="text-foreground text-sm font-bold">
+									<span className="text-fg text-sm font-bold">
 										{exp.company}
 									</span>
 									{exp.isCurrent && (
-										<span className="size-1.5 rounded-full bg-sky-400 shadow-xs" />
+										<span className="bg-info size-1.5 rounded-full shadow-xs" />
 									)}
 								</div>
 
 								<div className="flex flex-wrap items-center gap-2 text-xs">
-									<span className="text-foreground font-semibold">
-										{exp.role}
-									</span>
+									<span className="text-fg font-semibold">{exp.role}</span>
 									<span className="text-fg-tertiary">•</span>
 									<span className="text-fg-secondary">{exp.typePeriod}</span>
 								</div>

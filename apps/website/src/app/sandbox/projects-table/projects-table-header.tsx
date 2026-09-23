@@ -13,7 +13,7 @@ export function ProjectsTableHeader({
 }: ProjectsTableHeaderProps) {
 	return (
 		<div className="flex items-center justify-between">
-			<h1 className="heading-4 text-foreground">Project</h1>
+			<h1 className="heading-4 text-fg">Project</h1>
 
 			<Button
 				type="button"

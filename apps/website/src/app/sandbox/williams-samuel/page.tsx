@@ -5,7 +5,7 @@ import { WilliamsSamuelView } from "./williams-samuel-view"
 
 export default function WilliamsSamuelPage() {
 	return (
-		<main className="text-foreground min-h-screen w-full bg-[#0d0d0d]">
+		<main className="bg-bg text-fg min-h-screen w-full">
 			<WilliamsSamuelView />
 		</main>
 	)

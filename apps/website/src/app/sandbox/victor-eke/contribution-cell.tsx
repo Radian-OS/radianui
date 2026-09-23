@@ -13,11 +13,11 @@ interface ContributionCellProps {
 }
 
 const LEVEL_CLASSES: Record<ContributionDay["level"], string> = {
-	0: "bg-neutral-800/70 hover:bg-neutral-700",
-	1: "bg-emerald-950 border border-emerald-800/50 hover:bg-emerald-900",
-	2: "bg-emerald-700 hover:bg-emerald-600",
-	3: "bg-emerald-500 hover:bg-emerald-400",
-	4: "bg-emerald-400 hover:bg-emerald-300",
+	0: "bg-fill2 hover:bg-fill3",
+	1: "bg-fill3 border border-success-border hover:bg-fill4",
+	2: "bg-success-accent hover:bg-success-focus",
+	3: "bg-success hover:bg-success-hover",
+	4: "bg-success-hover hover:bg-success-focus",
 }
 
 export function ContributionCell({ day }: ContributionCellProps) {
@@ -27,7 +27,7 @@ export function ContributionCell({ day }: ContributionCellProps) {
 				<button
 					type="button"
 					aria-label={`${day.count} contributions on ${day.date}`}
-					className={`size-2.5 rounded-xs transition-colors focus-visible:ring-1 focus-visible:ring-emerald-400 focus-visible:outline-none sm:size-3 ${LEVEL_CLASSES[day.level]}`}
+					className={`focus-visible:ring-success size-2.5 rounded-xs transition-colors focus-visible:ring-1 focus-visible:outline-none sm:size-3 ${LEVEL_CLASSES[day.level]}`}
 				/>
 			</TooltipTrigger>
 			<TooltipContent side="top" className="text-xs">

@@ -14,18 +14,18 @@ export function OrdersMetrics() {
 							{metric.label}
 						</span>
 						<div className="mt-2 flex items-baseline gap-2.5">
-							<span className="text-foreground text-2xl font-bold sm:text-3xl">
+							<span className="text-fg text-2xl font-bold sm:text-3xl">
 								{metric.value}
 							</span>
 
 							{metric.changeType === "positive" && (
-								<span className="inline-flex items-center rounded-sm bg-emerald-500/10 px-1.5 py-0.5 text-[11px] font-semibold text-emerald-500">
+								<span className="bg-success-accent text-success-text inline-flex items-center rounded-sm px-1.5 py-0.5 text-[11px] font-semibold">
 									{metric.change}
 								</span>
 							)}
 
 							{metric.changeType === "negative" && (
-								<span className="inline-flex items-center rounded-sm bg-emerald-500/10 px-1.5 py-0.5 text-[11px] font-semibold text-emerald-500">
+								<span className="bg-error-accent text-error-text inline-flex items-center rounded-sm px-1.5 py-0.5 text-[11px] font-semibold">
 									{metric.change}
 								</span>
 							)}

@@ -33,12 +33,12 @@ export function UsersTableTabs({
 						className={cn(
 							"relative pb-3 text-xs transition-colors",
 							isActive
-								? "text-foreground font-semibold"
-								: "text-fg-secondary hover:text-foreground font-medium"
+								? "text-fg font-semibold"
+								: "text-fg-secondary hover:text-fg font-medium"
 						)}>
 						<span>{tab.label}</span>
 						{isActive && (
-							<span className="bg-foreground absolute right-0 bottom-0 left-0 h-0.5 rounded-full" />
+							<span className="bg-fg absolute right-0 bottom-0 left-0 h-0.5 rounded-full" />
 						)}
 					</button>
 				)

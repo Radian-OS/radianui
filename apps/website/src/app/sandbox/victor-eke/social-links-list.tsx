@@ -13,7 +13,7 @@ export function SocialLinksList() {
 					href={link.url}
 					target="_blank"
 					rel="noopener noreferrer"
-					className="group flex items-center gap-2 rounded-full border border-white/10 bg-neutral-900/60 px-3 py-1.5 text-xs font-medium text-neutral-300 transition-colors hover:border-white/20 hover:bg-neutral-800 hover:text-white">
+					className="group border-border bg-fill1 hover:border-alpha hover:bg-fill2 hover:text-fg text-fg-secondary flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-medium transition-colors">
 					<Image
 						src={`https://www.google.com/s2/favicons?sz=32&domain=${link.domain}`}
 						alt={`${link.name} logo`}

@@ -12,11 +12,9 @@ import { TimelineSection } from "./timeline-section"
 
 export function TaniaRasciaView() {
 	return (
-		<SidebarProvider
-			defaultOpen
-			className="bg-background text-foreground min-h-screen w-full">
+		<SidebarProvider defaultOpen className="bg-bg text-fg min-h-screen w-full">
 			<TaniaSidebar />
-			<SidebarInset className="bg-background flex min-w-0 flex-1 flex-col overflow-y-auto">
+			<SidebarInset className="bg-bg flex min-w-0 flex-1 flex-col overflow-y-auto">
 				<div className="mx-auto flex w-full max-w-4xl flex-col px-6 py-8 sm:px-10 sm:py-12">
 					<TimelineSection />
 					<LatestPostsSection />

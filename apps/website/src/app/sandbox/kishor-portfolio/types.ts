@@ -40,7 +40,7 @@ export const PERSONAL_PROJECTS: PersonalProject[] = [
 		title: "aNepali.com - Nepali Font Library",
 		date: "May, 2024",
 		badgeLetter: "अ",
-		badgeColorClass: "bg-rose-500/20 text-rose-400 border-rose-500/30",
+		badgeColorClass: "bg-error-accent text-error-text border-error-border",
 		url: "https://anepali.com",
 	},
 	{
@@ -48,7 +48,7 @@ export const PERSONAL_PROJECTS: PersonalProject[] = [
 		title: "Text Styles Creator - Figma Plugin",
 		date: "June, 2023",
 		badgeLetter: "T",
-		badgeColorClass: "bg-sky-500/20 text-sky-400 border-sky-500/30",
+		badgeColorClass: "bg-info-accent text-info-text border-info-border",
 		url: "https://figma.com",
 	},
 	{
@@ -56,7 +56,8 @@ export const PERSONAL_PROJECTS: PersonalProject[] = [
 		title: "Blank - Minimalist Expense Tracker",
 		date: "June, 2025",
 		badgeIcon: "wallet",
-		badgeColorClass: "bg-blue-500/20 text-blue-400 border-blue-500/30",
+		badgeColorClass:
+			"bg-primary-accent text-primary-text border-primary-border",
 		url: "#",
 	},
 	{
@@ -64,7 +65,8 @@ export const PERSONAL_PROJECTS: PersonalProject[] = [
 		title: "Alfie Jump - Casual Platformer Game",
 		date: "July, 2022",
 		badgeIcon: "game",
-		badgeColorClass: "bg-emerald-500/20 text-emerald-400 border-emerald-500/30",
+		badgeColorClass:
+			"bg-success-accent text-success-text border-success-border",
 		url: "#",
 	},
 ]

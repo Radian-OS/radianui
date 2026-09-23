@@ -25,11 +25,11 @@ interface SettingsGeneralProps {
 
 const ACCENT_COLORS: Record<AccentColor, { label: string; dotClass: string }> =
 	{
-		default: { label: "Default", dotClass: "bg-zinc-400" },
-		blue: { label: "Blue", dotClass: "bg-blue-500" },
-		green: { label: "Green", dotClass: "bg-emerald-500" },
-		purple: { label: "Purple", dotClass: "bg-purple-500" },
-		orange: { label: "Orange", dotClass: "bg-orange-500" },
+		default: { label: "Default", dotClass: "bg-fg-secondary" },
+		blue: { label: "Blue", dotClass: "bg-info" },
+		green: { label: "Green", dotClass: "bg-success" },
+		purple: { label: "Purple", dotClass: "bg-primary" },
+		orange: { label: "Orange", dotClass: "bg-warning" },
 	}
 
 export function SettingsGeneral({ onClose }: SettingsGeneralProps) {
@@ -44,7 +44,7 @@ export function SettingsGeneral({ onClose }: SettingsGeneralProps) {
 		<div className="bg-card flex flex-1 flex-col overflow-y-auto">
 			{/* Top Header */}
 			<div className="border-border/40 flex items-center justify-between border-b px-6 py-4">
-				<h2 className="heading-4 text-foreground">General</h2>
+				<h2 className="heading-4 text-fg">General</h2>
 				<IconButton
 					variant="ghost"
 					color="neutral"

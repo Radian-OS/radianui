@@ -11,10 +11,8 @@ export function WorkTogetherCard() {
 		<Card className="border-border/80 bg-elevation-level1/20 mt-4 rounded-2xl border p-6 text-center shadow-xs">
 			<CardContent className="flex flex-col items-center gap-3.5 p-0">
 				<div className="flex items-center gap-2">
-					<Calendar className="size-4 text-sky-400" />
-					<h3 className="heading-6 text-foreground">
-						Let&apos;s Work Together
-					</h3>
+					<Calendar className="text-info size-4" />
+					<h3 className="heading-6 text-fg">Let&apos;s Work Together</h3>
 				</div>
 				<p className="text-fg-secondary max-w-md text-xs leading-relaxed sm:text-sm">
 					I&apos;m currently open to work and ready to help bring your ideas to

@@ -50,14 +50,14 @@ export function VerseoExamplesSection() {
 			<div className="mx-auto max-w-5xl px-4">
 				{/* Section Header */}
 				<div className="flex flex-col items-center text-center">
-					<div className="border-border/70 bg-background text-fg-secondary mb-4 inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-semibold shadow-xs">
+					<div className="border-border/70 bg-elevation-level1 text-fg-secondary mb-4 inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-semibold shadow-xs">
 						<span>[</span>
-						<span className="text-foreground">examples</span>
+						<span className="text-fg">examples</span>
 						<span>]</span>
 					</div>
 
 					{/* Rule 13: heading-2 */}
-					<h2 className="heading-2 text-foreground max-w-2xl text-center">
+					<h2 className="heading-2 text-fg max-w-2xl text-center">
 						See what you can create with Verseo
 					</h2>
 
@@ -72,7 +72,7 @@ export function VerseoExamplesSection() {
 					{examples.map((item) => (
 						<div
 							key={item.title}
-							className="border-border/70 bg-background/90 hover:border-primary/40 flex flex-col justify-between overflow-hidden rounded-2xl border p-5 shadow-sm transition-all duration-300 hover:shadow-md">
+							className="border-border/70 bg-elevation-level1/90 hover:border-primary/40 flex flex-col justify-between overflow-hidden rounded-2xl border p-5 shadow-sm transition-all duration-300 hover:shadow-md">
 							<div>
 								{/* Graphic Asset Mockup */}
 								<div className="border-border/60 bg-fill1 relative aspect-[756/472] w-full overflow-hidden rounded-xl border">
@@ -90,7 +90,7 @@ export function VerseoExamplesSection() {
 										{item.category}
 									</span>
 
-									<h3 className="text-foreground mt-1 text-lg font-bold">
+									<h3 className="text-fg mt-1 text-lg font-bold">
 										{item.title}
 									</h3>
 

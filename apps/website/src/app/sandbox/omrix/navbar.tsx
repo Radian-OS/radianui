@@ -29,16 +29,16 @@ export function OmrixNavbar() {
 	const [isOpen, setIsOpen] = useState(false)
 
 	return (
-		<header className="border-border/40 bg-background/80 sticky top-0 z-50 w-full border-b backdrop-blur-md">
+		<header className="border-border/40 bg-bg/80 sticky top-0 z-50 w-full border-b backdrop-blur-md">
 			<div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
 				{/* Brand Logo */}
 				<Link
 					href="/sandbox/omrix"
-					className="flex items-center gap-2.5 font-bold tracking-tight hover:underline">
-					<div className="bg-neutral flex size-8 items-center justify-center rounded-lg shadow-xs">
-						<Star className="fill-neutral-fg text-neutral-fg size-4" />
+					className="flex items-center gap-2.5 font-bold tracking-tight">
+					<div className="bg-primary text-primary-fg flex size-8 items-center justify-center rounded-lg shadow-xs">
+						<Star className="size-4 fill-current" />
 					</div>
-					<span className="text-foreground text-lg font-bold tracking-tight">
+					<span className="text-fg text-lg font-bold tracking-tight">
 						OMRIX
 					</span>
 				</Link>
@@ -52,7 +52,7 @@ export function OmrixNavbar() {
 									asChild
 									className={cn(
 										navigationMenuTriggerStyle(),
-										"hover:bg-fill1-alpha text-fg-secondary hover:text-foreground bg-transparent text-sm font-medium transition-colors"
+										"hover:bg-fill1-alpha text-fg-secondary hover:text-fg bg-transparent text-sm font-medium transition-colors"
 									)}>
 									<Link href={item.href}>{item.label}</Link>
 								</NavigationMenuLink>
@@ -87,14 +87,14 @@ export function OmrixNavbar() {
 
 			{/* Mobile Dropdown Panel */}
 			{isOpen && (
-				<div className="border-border bg-background/95 border-b px-4 pt-2 pb-6 shadow-xl backdrop-blur-lg md:hidden">
+				<div className="border-border bg-elevation-level1/95 border-b px-4 pt-2 pb-6 shadow-xl backdrop-blur-lg md:hidden">
 					<nav className="flex flex-col gap-3">
 						{navLinks.map((item) => (
 							<Link
 								key={item.label}
 								href={item.href}
 								onClick={() => setIsOpen(false)}
-								className="text-fg-secondary hover:text-foreground py-2 text-sm font-medium hover:underline">
+								className="text-fg-secondary hover:text-fg py-2 text-sm font-medium transition-colors">
 								{item.label}
 							</Link>
 						))}

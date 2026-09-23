@@ -19,13 +19,13 @@ export function ProfileSidebar() {
 	const renderIcon = (iconName: ContactInfo["iconName"]) => {
 		switch (iconName) {
 			case "mail":
-				return <Mail className="size-4 text-amber-400" />
+				return <Mail className="text-warning size-4" />
 			case "phone":
-				return <Phone className="size-4 text-amber-400" />
+				return <Phone className="text-warning size-4" />
 			case "calendar":
-				return <Calendar className="size-4 text-amber-400" />
+				return <Calendar className="text-warning size-4" />
 			case "map-pin":
-				return <MapPin className="size-4 text-amber-400" />
+				return <MapPin className="text-warning size-4" />
 		}
 	}
 
@@ -48,7 +48,7 @@ export function ProfileSidebar() {
 
 				{/* Name & Badge */}
 				<div className="flex flex-col items-center gap-2 text-center">
-					<h2 className="text-foreground text-xl font-bold tracking-tight">
+					<h2 className="text-fg text-xl font-bold tracking-tight">
 						Richard hanrick
 					</h2>
 					<span className="border-border/60 bg-elevation-level1/60 text-fg-secondary rounded-lg border px-3.5 py-1 text-xs font-medium">
@@ -73,11 +73,11 @@ export function ProfileSidebar() {
 								{item.href ? (
 									<Link
 										href={item.href}
-										className="text-foreground truncate text-xs font-medium transition-colors hover:text-amber-400">
+										className="text-fg hover:text-warning truncate text-xs font-medium transition-colors">
 										{item.value}
 									</Link>
 								) : (
-									<span className="text-foreground truncate text-xs font-medium">
+									<span className="text-fg truncate text-xs font-medium">
 										{item.value}
 									</span>
 								)}
@@ -91,19 +91,19 @@ export function ProfileSidebar() {
 					<Link
 						href="#"
 						aria-label="Facebook"
-						className="hover:text-foreground transition-colors">
+						className="hover:text-fg transition-colors">
 						<Facebook className="size-4" />
 					</Link>
 					<Link
 						href="#"
 						aria-label="Twitter"
-						className="hover:text-foreground transition-colors">
+						className="hover:text-fg transition-colors">
 						<Twitter className="size-4" />
 					</Link>
 					<Link
 						href="#"
 						aria-label="Instagram"
-						className="hover:text-foreground transition-colors">
+						className="hover:text-fg transition-colors">
 						<Instagram className="size-4" />
 					</Link>
 				</div>

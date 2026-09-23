@@ -63,14 +63,14 @@ export function ContributionGraph() {
 	return (
 		<section className="flex flex-col gap-6 py-8">
 			{/* Pure heading utility as per AGENTS.md & claude.md */}
-			<h2 className="heading-4 text-white">Contribution Graph</h2>
+			<h2 className="heading-4 text-fg">Contribution Graph</h2>
 
 			<div className="flex flex-col gap-4 lg:flex-row lg:items-start">
 				{/* Calendar Heatmap Container Card */}
-				<Card className="flex-1 overflow-x-auto border-white/10 bg-neutral-900/60 p-6 shadow-xl backdrop-blur-sm">
+				<Card className="border-border bg-card flex-1 overflow-x-auto p-6 shadow-xl backdrop-blur-sm">
 					<CardContent className="flex min-w-[620px] flex-col gap-4 p-0">
 						{/* Months Header Labels */}
-						<div className="grid grid-cols-12 text-xs text-neutral-400">
+						<div className="text-fg-secondary grid grid-cols-12 text-xs">
 							{MONTHS.map((month) => (
 								<span key={month} className="text-left font-mono">
 									{month}
@@ -88,17 +88,17 @@ export function ContributionGraph() {
 						</div>
 
 						{/* Bottom Status Bar */}
-						<div className="flex items-center justify-between pt-2 text-xs text-neutral-400">
+						<div className="text-fg-secondary flex items-center justify-between pt-2 text-xs">
 							<span className="font-mono">{currentYearData.label}</span>
 
 							{/* Legend */}
 							<div className="flex items-center gap-1.5 font-mono">
 								<span>Less</span>
-								<span className="size-2.5 rounded-xs bg-neutral-800" />
-								<span className="size-2.5 rounded-xs border border-emerald-800/50 bg-emerald-950" />
-								<span className="size-2.5 rounded-xs bg-emerald-700" />
-								<span className="size-2.5 rounded-xs bg-emerald-500" />
-								<span className="size-2.5 rounded-xs bg-emerald-400" />
+								<span className="bg-fill2 size-2.5 rounded-xs" />
+								<span className="border-success-border bg-fill3 size-2.5 rounded-xs border" />
+								<span className="bg-success-accent size-2.5 rounded-xs" />
+								<span className="bg-success size-2.5 rounded-xs" />
+								<span className="bg-success-hover size-2.5 rounded-xs" />
 								<span>More</span>
 							</div>
 						</div>
@@ -118,8 +118,8 @@ export function ContributionGraph() {
 								onClick={() => setActiveYear(item.year)}
 								className={`min-w-16 rounded-xl font-mono text-sm transition-all ${
 									isActive
-										? "bg-emerald-500 font-bold text-white shadow-md shadow-emerald-900/40 hover:bg-emerald-400"
-										: "border border-white/10 bg-neutral-900/80 text-neutral-400 hover:border-white/20 hover:bg-neutral-800 hover:text-white"
+										? "bg-success text-success-fg hover:bg-success-hover font-bold shadow-md"
+										: "border-border bg-fill1 text-fg-secondary hover:border-alpha hover:bg-fill2 hover:text-fg border"
 								}`}>
 								{item.year}
 							</Button>

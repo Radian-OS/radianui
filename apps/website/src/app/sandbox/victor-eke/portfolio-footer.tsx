@@ -11,9 +11,9 @@ const TECH_STACK = [
 
 export function PortfolioFooter() {
 	return (
-		<footer className="mt-12 flex flex-col gap-6 border-t border-white/10 py-8 sm:flex-row sm:items-center sm:justify-between">
+		<footer className="border-border mt-12 flex flex-col gap-6 border-t py-8 sm:flex-row sm:items-center sm:justify-between">
 			{/* Built with badges */}
-			<div className="flex flex-wrap items-center gap-3 text-xs text-neutral-400">
+			<div className="text-fg-secondary flex flex-wrap items-center gap-3 text-xs">
 				<span className="font-mono">Built with:</span>
 				<div className="flex items-center gap-2">
 					{TECH_STACK.map((tech) => (
@@ -22,7 +22,7 @@ export function PortfolioFooter() {
 							href={tech.url}
 							target="_blank"
 							rel="noopener noreferrer"
-							className="group flex items-center gap-1.5 rounded-md border border-white/10 bg-neutral-900/60 px-2 py-1 text-xs text-neutral-300 transition-colors hover:border-white/20 hover:bg-neutral-800 hover:text-white">
+							className="group border-border bg-fill1 hover:border-alpha hover:bg-fill2 hover:text-fg text-fg-secondary flex items-center gap-1.5 rounded-md border px-2 py-1 text-xs transition-colors">
 							<Image
 								src={`https://www.google.com/s2/favicons?sz=32&domain=${tech.domain}`}
 								alt={`${tech.name} logo`}
@@ -38,7 +38,7 @@ export function PortfolioFooter() {
 			</div>
 
 			{/* Copyright notice */}
-			<p className="font-mono text-xs text-neutral-500">
+			<p className="text-fg-tertiary font-mono text-xs">
 				Copyright &copy; Victor Eke 2026 All rights Reserved
 			</p>
 		</footer>

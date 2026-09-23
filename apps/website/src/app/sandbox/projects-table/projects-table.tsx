@@ -49,9 +49,9 @@ export function ProjectsTable({
 			return <ChevronsUpDown className="text-fg-tertiary size-3.5" />
 		}
 		if (sortOrder === "asc") {
-			return <ArrowUp className="text-foreground size-3.5" />
+			return <ArrowUp className="text-fg size-3.5" />
 		}
-		return <ArrowDown className="text-foreground size-3.5" />
+		return <ArrowDown className="text-fg size-3.5" />
 	}
 
 	return (
@@ -72,7 +72,7 @@ export function ProjectsTable({
 						{/* Name */}
 						<TableHead
 							onClick={() => onSort("name")}
-							className="text-fg-secondary hover:text-foreground cursor-pointer text-xs font-semibold select-none">
+							className="text-fg-secondary hover:text-fg cursor-pointer text-xs font-semibold select-none">
 							<div className="flex items-center gap-1.5">
 								<span>Name</span>
 								{renderSortIcon("name")}
@@ -98,7 +98,7 @@ export function ProjectsTable({
 						{/* Progress */}
 						<TableHead
 							onClick={() => onSort("progress")}
-							className="text-fg-secondary hover:text-foreground cursor-pointer text-xs font-semibold select-none">
+							className="text-fg-secondary hover:text-fg cursor-pointer text-xs font-semibold select-none">
 							<div className="flex items-center gap-1.5">
 								<span>Progress</span>
 								{renderSortIcon("progress")}
@@ -108,7 +108,7 @@ export function ProjectsTable({
 						{/* Deadline */}
 						<TableHead
 							onClick={() => onSort("deadline")}
-							className="text-fg-secondary hover:text-foreground cursor-pointer text-xs font-semibold select-none">
+							className="text-fg-secondary hover:text-fg cursor-pointer text-xs font-semibold select-none">
 							<div className="flex items-center gap-1.5">
 								<span>Deadline</span>
 								{renderSortIcon("deadline")}
@@ -118,7 +118,7 @@ export function ProjectsTable({
 						{/* Rating */}
 						<TableHead
 							onClick={() => onSort("rating")}
-							className="text-fg-secondary hover:text-foreground cursor-pointer pr-4 text-xs font-semibold select-none">
+							className="text-fg-secondary hover:text-fg cursor-pointer pr-4 text-xs font-semibold select-none">
 							<div className="flex items-center gap-1.5">
 								<span>Rating</span>
 								{renderSortIcon("rating")}

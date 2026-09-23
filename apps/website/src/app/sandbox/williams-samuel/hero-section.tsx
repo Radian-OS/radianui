@@ -10,13 +10,13 @@ export function HeroSection() {
 		<section className="flex flex-col items-center justify-between gap-12 py-16 sm:py-24 lg:flex-row">
 			{/* Left Column: Eyebrow, Heading, Bio, CTA */}
 			<div className="flex max-w-xl flex-col items-start gap-6">
-				<span className="font-mono text-xs font-bold tracking-widest text-emerald-400 uppercase">
+				<span className="text-success font-mono text-xs font-bold tracking-widest uppercase">
 					HI THERE 👋 , I&apos;M
 				</span>
 
-				<h1 className="heading-1 text-white">Williams Samuel</h1>
+				<h1 className="heading-1 text-fg">Williams Samuel</h1>
 
-				<p className="max-w-lg text-base leading-relaxed text-neutral-400 sm:text-lg">
+				<p className="text-fg-secondary max-w-lg text-base leading-relaxed sm:text-lg">
 					A Lagos, Nigeria based self-taught Frontend Developer who specializes
 					in building exceptional digital experience.
 				</p>
@@ -26,14 +26,14 @@ export function HeroSection() {
 					color="neutral"
 					variant="outline"
 					size="40"
-					className="rounded-md border border-emerald-400 px-6 font-mono text-xs font-semibold tracking-widest text-emerald-400 uppercase transition-colors hover:bg-emerald-400/10 hover:text-emerald-300 sm:text-sm">
+					className="border-success-border text-success hover:bg-success-accent hover:text-success-hover rounded-md border px-6 font-mono text-xs font-semibold tracking-widest uppercase transition-colors sm:text-sm">
 					<Link href="#contact">HIRE ME</Link>
 				</Button>
 			</div>
 
 			{/* Right Column: 3D Workstation Illustration */}
 			<div className="flex w-full items-center justify-center lg:w-1/2">
-				<div className="relative flex w-full max-w-md items-center justify-center rounded-2xl border border-white/5 bg-neutral-900/40 p-8 shadow-2xl backdrop-blur-sm">
+				<div className="border-border bg-card relative flex w-full max-w-md items-center justify-center rounded-2xl border p-8 shadow-2xl backdrop-blur-sm">
 					<Image
 						src="/sandbox/placeholder.svg"
 						alt="3D Workstation Illustration"

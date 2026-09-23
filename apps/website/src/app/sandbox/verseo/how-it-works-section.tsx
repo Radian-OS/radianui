@@ -41,14 +41,14 @@ export function VerseoHowItWorksSection() {
 			<div className="mx-auto max-w-5xl px-4">
 				{/* Section Header */}
 				<div className="flex flex-col items-center text-center">
-					<div className="border-border/70 bg-background text-fg-secondary mb-4 inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-semibold shadow-xs">
+					<div className="border-border/70 bg-bg text-fg-secondary mb-4 inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-semibold shadow-xs">
 						<span>[</span>
-						<span className="text-foreground">how it works</span>
+						<span className="text-fg">how it works</span>
 						<span>]</span>
 					</div>
 
 					{/* Rule 13: heading-2 */}
-					<h2 className="heading-2 text-foreground max-w-2xl text-center">
+					<h2 className="heading-2 text-fg max-w-2xl text-center">
 						Turn any idea into ready-to-use content in seconds
 					</h2>
 
@@ -70,18 +70,18 @@ export function VerseoHowItWorksSection() {
 						return (
 							<div
 								key={step.stepNumber}
-								className="border-border/70 bg-background/90 hover:border-primary/40 flex flex-col justify-between rounded-2xl border p-6 shadow-sm transition-all duration-300">
+								className="border-border/70 bg-bg/90 hover:border-primary/40 flex flex-col justify-between rounded-2xl border p-6 shadow-sm transition-all duration-300">
 								<div>
 									<div className="flex items-center justify-between">
 										<span className="text-primary font-mono text-xs font-bold">
 											{step.stepNumber}
 										</span>
-										<div className="bg-fill2 text-foreground flex size-8 items-center justify-center rounded-lg">
+										<div className="bg-fill2 text-fg flex size-8 items-center justify-center rounded-lg">
 											<Icon className="size-4" />
 										</div>
 									</div>
 
-									<h3 className="text-foreground mt-4 text-lg font-bold">
+									<h3 className="text-fg mt-4 text-lg font-bold">
 										{step.title}
 									</h3>
 
@@ -95,7 +95,7 @@ export function VerseoHowItWorksSection() {
 				</div>
 
 				{/* Official Workflow Preview Mockup Graphic (Rule 17: direct public image asset) */}
-				<div className="border-border/80 bg-background/90 mt-10 overflow-hidden rounded-2xl border p-2 shadow-2xl backdrop-blur-sm sm:p-3">
+				<div className="border-border/80 bg-bg/90 mt-10 overflow-hidden rounded-2xl border p-2 shadow-2xl backdrop-blur-sm sm:p-3">
 					<div className="border-border/60 bg-fill1 relative aspect-[1040/530] w-full overflow-hidden rounded-xl border">
 						<Image
 							src="https://framerusercontent.com/images/2uCm8cnVOvjGE6PdFkpqiqkTM.png"

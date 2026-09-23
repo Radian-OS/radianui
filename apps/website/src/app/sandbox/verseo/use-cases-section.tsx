@@ -68,12 +68,12 @@ export function VerseoUseCasesSection() {
 				<div className="flex flex-col items-center text-center">
 					<div className="border-border/70 bg-fill1 text-fg-secondary mb-4 inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-semibold">
 						<span>[</span>
-						<span className="text-foreground">use cases</span>
+						<span className="text-fg">use cases</span>
 						<span>]</span>
 					</div>
 
 					{/* Rule 13: heading-2 */}
-					<h2 className="heading-2 text-foreground max-w-2xl text-center">
+					<h2 className="heading-2 text-fg max-w-2xl text-center">
 						Built for how you actually create content
 					</h2>
 
@@ -94,7 +94,7 @@ export function VerseoUseCasesSection() {
 								className={`overflow-hidden rounded-2xl border transition-all duration-300 ${
 									isExpanded
 										? "border-primary/40 bg-primary/[0.02] shadow-md"
-										: "border-border/70 bg-background/80 hover:border-border"
+										: "border-border/70 bg-bg/80 hover:border-border"
 								}`}>
 								{/* Accordion Header Bar */}
 								<button
@@ -105,11 +105,11 @@ export function VerseoUseCasesSection() {
 										<span className="text-fg-tertiary font-mono text-xs font-bold sm:text-sm">
 											{item.number}
 										</span>
-										<div className="bg-fill2 text-foreground flex size-9 items-center justify-center rounded-xl">
+										<div className="bg-fill2 text-fg flex size-9 items-center justify-center rounded-xl">
 											<Icon className="size-4" />
 										</div>
 										<div>
-											<h3 className="text-foreground text-lg font-bold sm:text-xl">
+											<h3 className="text-fg text-lg font-bold sm:text-xl">
 												{item.title}
 											</h3>
 											<span className="text-fg-secondary text-xs">
@@ -135,14 +135,14 @@ export function VerseoUseCasesSection() {
 										</p>
 
 										<div className="mt-6">
-											<span className="text-foreground text-xs font-bold tracking-wider uppercase">
+											<span className="text-fg text-xs font-bold tracking-wider uppercase">
 												Key Deliverables:
 											</span>
 											<div className="mt-2.5 flex flex-wrap gap-2">
 												{item.deliverables.map((deliv) => (
 													<span
 														key={deliv}
-														className="border-border/70 bg-fill1 text-foreground rounded-lg border px-3 py-1.5 text-xs font-medium">
+														className="border-border/70 bg-fill1 text-fg rounded-lg border px-3 py-1.5 text-xs font-medium">
 														✓ {deliv}
 													</span>
 												))}

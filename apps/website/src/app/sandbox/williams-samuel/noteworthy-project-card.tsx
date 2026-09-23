@@ -11,9 +11,9 @@ interface NoteworthyProjectCardProps {
 
 export function NoteworthyProjectCard({ project }: NoteworthyProjectCardProps) {
 	return (
-		<Card className="gap-0 overflow-hidden rounded-2xl border-white/10 bg-neutral-900/60 p-0 shadow-xl transition-all duration-300 hover:border-white/20 hover:bg-neutral-900">
+		<Card className="border-border bg-card hover:border-alpha hover:bg-fill1 gap-0 overflow-hidden rounded-2xl border p-0 shadow-xl transition-all duration-300">
 			{/* Top Banner Artwork */}
-			<div className="relative aspect-video w-full overflow-hidden bg-neutral-800">
+			<div className="bg-fill2 relative aspect-video w-full overflow-hidden">
 				<Image
 					src={project.imageSrc}
 					alt={project.title}
@@ -25,9 +25,9 @@ export function NoteworthyProjectCard({ project }: NoteworthyProjectCardProps) {
 
 			{/* Card Body */}
 			<CardContent className="flex flex-col gap-3 p-6">
-				<h4 className="text-lg font-bold text-white">{project.title}</h4>
+				<h4 className="text-fg text-lg font-bold">{project.title}</h4>
 
-				<p className="text-xs leading-relaxed text-neutral-400 sm:text-sm">
+				<p className="text-fg-secondary text-xs leading-relaxed sm:text-sm">
 					{project.description}
 				</p>
 
@@ -36,7 +36,7 @@ export function NoteworthyProjectCard({ project }: NoteworthyProjectCardProps) {
 					{project.tags.map((tag) => (
 						<span
 							key={tag}
-							className="font-mono text-xs font-semibold text-emerald-400">
+							className="text-success font-mono text-xs font-semibold">
 							{tag}
 						</span>
 					))}

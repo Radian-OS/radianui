@@ -37,9 +37,7 @@ export function ProjectsTableRow({
 			{/* Name & Subtitle */}
 			<TableCell className="py-3">
 				<div className="flex flex-col">
-					<span className="text-foreground text-xs font-semibold">
-						{project.name}
-					</span>
+					<span className="text-fg text-xs font-semibold">{project.name}</span>
 					<span className="text-fg-tertiary text-[11px]">
 						{project.category}
 					</span>
