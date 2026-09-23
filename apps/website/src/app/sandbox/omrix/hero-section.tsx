@@ -23,20 +23,20 @@ export function OmrixHeroSection() {
 			<div className="border-border/30 pointer-events-none absolute inset-0 -z-20 bg-[linear-gradient(to_right,var(--color-border)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-border)_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-35" />
 
 			{/* Ambient Glowing Orbs on Left and Right (matching reference) */}
-			<div className="bg-purple/15 pointer-events-none absolute top-1/3 -left-48 -z-10 h-[500px] w-[500px] rounded-full blur-[120px]" />
-			<div className="bg-amber/15 pointer-events-none absolute top-1/3 -right-48 -z-10 h-[500px] w-[500px] rounded-full blur-[120px]" />
+			<div className="bg-primary/15 pointer-events-none absolute top-1/3 -left-48 -z-10 h-[500px] w-[500px] rounded-full blur-[120px]" />
+			<div className="bg-warning/15 pointer-events-none absolute top-1/3 -right-48 -z-10 h-[500px] w-[500px] rounded-full blur-[120px]" />
 
 			<div className="mx-auto flex max-w-6xl flex-col items-center px-4 text-center sm:px-6 lg:px-8">
 				{/* Beta Announcement Pill Badge */}
-				<div className="border-border/80 bg-background/90 hover:border-border mb-8 inline-flex items-center gap-2 rounded-full border px-4 py-1.5 shadow-xs backdrop-blur-sm transition-all">
+				<div className="border-border/80 bg-elevation-level1/90 hover:border-border mb-8 inline-flex items-center gap-2 rounded-full border px-4 py-1.5 shadow-xs backdrop-blur-sm transition-all">
 					<Layers className="text-fg-secondary size-3.5" />
-					<span className="text-foreground text-[11px] font-semibold tracking-wider uppercase sm:text-xs">
+					<span className="text-fg text-[11px] font-semibold tracking-wider uppercase sm:text-xs">
 						Now in Public Beta — Join 10,000+ Teams
 					</span>
 				</div>
 
 				{/* Main Hero Headline (Rule 13: heading-1) */}
-				<h1 className="heading-1 text-foreground max-w-4xl text-center">
+				<h1 className="heading-1 text-fg max-w-4xl text-center">
 					Build Smarter Workflows.
 					<br />
 					Ship Faster. Scale Further.

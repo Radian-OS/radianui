@@ -30,14 +30,14 @@ export function VerseoNavbar() {
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
 	return (
-		<header className="border-border/40 bg-background/80 sticky top-0 z-50 w-full border-b backdrop-blur-md">
+		<header className="border-border/40 bg-bg/80 sticky top-0 z-50 w-full border-b backdrop-blur-md">
 			<div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
 				{/* Verseo Brand Logo */}
 				<Link
 					href="/sandbox/verseo"
-					className="text-foreground flex items-center gap-2 text-base font-black tracking-wider uppercase transition-opacity hover:opacity-90">
-					<div className="bg-foreground text-background flex size-7 items-center justify-center rounded-lg">
-						<Sparkles className="fill-background text-background size-4" />
+					className="text-fg flex items-center gap-2 text-base font-black tracking-wider uppercase transition-opacity hover:opacity-90">
+					<div className="bg-fg text-fg-inverse flex size-7 items-center justify-center rounded-lg">
+						<Sparkles className="fill-fg-inverse text-fg-inverse size-4" />
 					</div>
 					<span>VERSEO</span>
 				</Link>
@@ -51,7 +51,7 @@ export function VerseoNavbar() {
 									asChild
 									className={cn(
 										navigationMenuTriggerStyle(),
-										"hover:bg-fill1-alpha text-fg-secondary hover:text-foreground bg-transparent text-sm font-medium transition-colors"
+										"hover:bg-fill1-alpha text-fg-secondary hover:text-fg bg-transparent text-sm font-medium transition-colors"
 									)}>
 									<Link href={item.href}>{item.label}</Link>
 								</NavigationMenuLink>
@@ -90,14 +90,14 @@ export function VerseoNavbar() {
 
 			{/* Mobile Dropdown Menu */}
 			{mobileMenuOpen && (
-				<div className="border-border/60 bg-background/95 border-b px-4 pt-2 pb-6 backdrop-blur-xl md:hidden">
+				<div className="border-border/60 bg-bg/95 border-b px-4 pt-2 pb-6 backdrop-blur-xl md:hidden">
 					<nav className="flex flex-col space-y-3">
 						{navItems.map((item) => (
 							<Link
 								key={item.label}
 								href={item.href}
 								onClick={() => setMobileMenuOpen(false)}
-								className="text-fg-secondary hover:text-foreground text-sm font-medium transition-colors hover:underline">
+								className="text-fg-secondary hover:text-fg text-sm font-medium transition-colors">
 								{item.label}
 							</Link>
 						))}

@@ -6,7 +6,7 @@ import { LoginForm } from "./login-form"
 
 export function LoginPageView() {
 	return (
-		<div className="bg-background flex min-h-screen w-full flex-col lg:flex-row">
+		<div className="bg-bg flex min-h-screen w-full flex-col lg:flex-row">
 			{/* Left Column: Dark Dashboard Showcase */}
 			<div className="flex w-full p-4 sm:p-6 lg:w-1/2 lg:p-0">
 				<LoginDashboardCard />

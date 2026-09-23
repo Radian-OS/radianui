@@ -31,7 +31,7 @@ export function IntegrationsHeader({
 				)}
 
 				<div className="flex flex-col">
-					<h1 className="heading-2 text-foreground">Integrations</h1>
+					<h1 className="heading-2 text-fg">Integrations</h1>
 					<p className="text-fg-secondary mt-1 text-sm">
 						Supercharge your workflow and connect the tools you and your team
 						uses every day.

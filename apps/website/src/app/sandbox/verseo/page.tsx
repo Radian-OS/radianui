@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 
 export default function VerseoPage() {
 	return (
-		<div className="bg-background text-foreground min-h-screen">
+		<div className="bg-bg text-fg min-h-screen">
 			<VerseoNavbar />
 			<main>
 				<VerseoHeroSection />

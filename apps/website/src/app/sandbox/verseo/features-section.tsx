@@ -54,14 +54,14 @@ export function VerseoFeaturesSection() {
 			<div className="mx-auto max-w-5xl px-4">
 				{/* Section Header */}
 				<div className="flex flex-col items-center text-center">
-					<div className="border-border/70 bg-background text-fg-secondary mb-4 inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-semibold shadow-xs">
+					<div className="border-border/70 bg-bg text-fg-secondary mb-4 inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-semibold shadow-xs">
 						<span>[</span>
-						<span className="text-foreground">features</span>
+						<span className="text-fg">features</span>
 						<span>]</span>
 					</div>
 
 					{/* Rule 13: heading-2 */}
-					<h2 className="heading-2 text-foreground max-w-2xl text-center">
+					<h2 className="heading-2 text-fg max-w-2xl text-center">
 						Everything you need to create better content
 					</h2>
 
@@ -78,13 +78,13 @@ export function VerseoFeaturesSection() {
 						return (
 							<div
 								key={feature.title}
-								className="border-border/70 bg-background/90 hover:border-primary/40 group flex flex-col justify-between rounded-2xl border p-6 shadow-sm transition-all duration-300 hover:shadow-md md:p-8">
+								className="border-border/70 bg-bg/90 hover:border-primary/40 group flex flex-col justify-between rounded-2xl border p-6 shadow-sm transition-all duration-300 hover:shadow-md md:p-8">
 								<div>
 									<div className="bg-primary/10 text-primary flex size-11 items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-105">
 										<Icon className="size-5" />
 									</div>
 
-									<h3 className="text-foreground mt-5 text-xl font-bold tracking-tight">
+									<h3 className="text-fg mt-5 text-xl font-bold tracking-tight">
 										{feature.title}
 									</h3>
 

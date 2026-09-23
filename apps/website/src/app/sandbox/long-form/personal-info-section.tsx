@@ -16,7 +16,7 @@ interface PersonalInfoSectionProps {
 export function PersonalInfoSection({ form }: PersonalInfoSectionProps) {
 	return (
 		<div className="space-y-4">
-			<h3 className="heading-6 text-foreground">Personal Information</h3>
+			<h3 className="heading-6 text-fg">Personal Information</h3>
 			<div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
 				<FormField
 					control={form.control}

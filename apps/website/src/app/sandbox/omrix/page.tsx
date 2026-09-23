@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function OmrixPage() {
 	return (
-		<div className="bg-background text-foreground min-h-screen">
+		<div className="bg-bg text-fg min-h-screen">
 			<OmrixNavbar />
 			<main>
 				<OmrixHeroSection />

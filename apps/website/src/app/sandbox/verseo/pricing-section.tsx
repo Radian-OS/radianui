@@ -63,14 +63,14 @@ export function VerseoPricingSection() {
 			<div className="mx-auto max-w-5xl px-4">
 				{/* Section Header */}
 				<div className="flex flex-col items-center text-center">
-					<div className="border-border/70 bg-background text-fg-secondary mb-4 inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-semibold shadow-xs">
+					<div className="border-border/70 bg-bg text-fg-secondary mb-4 inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-semibold shadow-xs">
 						<span>[</span>
-						<span className="text-foreground">pricing</span>
+						<span className="text-fg">pricing</span>
 						<span>]</span>
 					</div>
 
 					{/* Rule 13: heading-2 */}
-					<h2 className="heading-2 text-foreground max-w-2xl text-center">
+					<h2 className="heading-2 text-fg max-w-2xl text-center">
 						Choose the plan that grows with you
 					</h2>
 
@@ -80,14 +80,14 @@ export function VerseoPricingSection() {
 					</p>
 
 					{/* Monthly / Annual Billing Toggle */}
-					<div className="border-border/70 bg-background/90 mt-8 inline-flex items-center gap-2 rounded-full border p-1.5 shadow-xs">
+					<div className="border-border/70 bg-bg/90 mt-8 inline-flex items-center gap-2 rounded-full border p-1.5 shadow-xs">
 						<button
 							type="button"
 							onClick={() => setIsAnnual(false)}
 							className={`rounded-full px-4 py-1.5 text-xs font-semibold transition-all ${
 								!isAnnual
-									? "bg-foreground text-background shadow-xs"
-									: "text-fg-secondary hover:text-foreground"
+									? "bg-fg text-fg-inverse shadow-xs"
+									: "text-fg-secondary hover:text-fg"
 							}`}>
 							Monthly
 						</button>
@@ -96,8 +96,8 @@ export function VerseoPricingSection() {
 							onClick={() => setIsAnnual(true)}
 							className={`flex items-center gap-1.5 rounded-full px-4 py-1.5 text-xs font-semibold transition-all ${
 								isAnnual
-									? "bg-foreground text-background shadow-xs"
-									: "text-fg-secondary hover:text-foreground"
+									? "bg-fg text-fg-inverse shadow-xs"
+									: "text-fg-secondary hover:text-fg"
 							}`}>
 							<span>Annual</span>
 							<span className="bg-primary/20 text-primary rounded px-1.5 py-0.5 text-[10px] font-bold">
@@ -116,8 +116,8 @@ export function VerseoPricingSection() {
 								key={tier.name}
 								className={`relative flex flex-col justify-between rounded-2xl border p-6 transition-all duration-300 sm:p-8 ${
 									tier.popular
-										? "border-primary bg-background ring-primary/20 shadow-xl ring-2"
-										: "border-border/70 bg-background/90 hover:border-primary/40 shadow-sm hover:shadow-md"
+										? "border-primary bg-bg ring-primary/20 shadow-xl ring-2"
+										: "border-border/70 bg-bg/90 hover:border-primary/40 shadow-sm hover:shadow-md"
 								}`}>
 								{tier.popular && (
 									<div className="bg-primary text-primary-fg absolute -top-3 left-1/2 -translate-x-1/2 rounded-full px-3 py-0.5 text-[10px] font-bold tracking-wider uppercase shadow-xs">
@@ -126,15 +126,13 @@ export function VerseoPricingSection() {
 								)}
 
 								<div>
-									<h3 className="text-foreground text-xl font-bold">
-										{tier.name}
-									</h3>
+									<h3 className="text-fg text-xl font-bold">{tier.name}</h3>
 									<p className="text-fg-secondary mt-1 text-xs">
 										{tier.description}
 									</p>
 
 									<div className="mt-6 flex items-baseline gap-1">
-										<span className="text-foreground text-4xl font-extrabold tracking-tight sm:text-5xl">
+										<span className="text-fg text-4xl font-extrabold tracking-tight sm:text-5xl">
 											${price}
 										</span>
 										<span className="text-fg-tertiary text-xs font-medium">
@@ -146,7 +144,7 @@ export function VerseoPricingSection() {
 										{tier.features.map((feat) => (
 											<div
 												key={feat}
-												className="text-foreground flex items-center gap-2.5 text-xs sm:text-sm">
+												className="text-fg flex items-center gap-2.5 text-xs sm:text-sm">
 												<div className="bg-primary/10 text-primary flex size-4 shrink-0 items-center justify-center rounded-full">
 													<Check className="size-2.5" />
 												</div>

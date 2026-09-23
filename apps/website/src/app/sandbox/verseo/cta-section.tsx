@@ -11,18 +11,18 @@ export function VerseoCtaSection() {
 			<div className="bg-primary/10 pointer-events-none absolute top-1/2 left-1/2 -z-10 h-[400px] w-full max-w-3xl -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl" />
 
 			<div className="mx-auto max-w-5xl px-4">
-				<div className="border-border/80 bg-background/95 overflow-hidden rounded-3xl border p-8 shadow-2xl backdrop-blur-xl md:p-14">
+				<div className="border-border/80 bg-elevation-level1/95 overflow-hidden rounded-3xl border p-8 shadow-2xl backdrop-blur-xl md:p-14">
 					<div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
 						{/* Left: Text & CTAs */}
 						<div className="space-y-5">
 							<div className="border-border/70 bg-fill1 text-fg-secondary inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-semibold">
 								<span>[</span>
-								<span className="text-foreground">ready to start?</span>
+								<span className="text-fg">ready to start?</span>
 								<span>]</span>
 							</div>
 
 							{/* Rule 13: heading-2 */}
-							<h2 className="heading-2 text-foreground">
+							<h2 className="heading-2 text-fg">
 								Start creating better content today
 							</h2>
 
@@ -59,14 +59,14 @@ export function VerseoCtaSection() {
 									<Terminal className="size-3.5" />
 									<span>verseo_engine.sh</span>
 								</div>
-								<span className="flex items-center gap-1 text-[10px] font-bold text-emerald-600 dark:text-emerald-400">
+								<span className="text-success flex items-center gap-1 text-[10px] font-bold">
 									<Sparkles className="size-3" />
 									<span>ACTIVE</span>
 								</span>
 							</div>
 
 							<div className="text-fg-secondary mt-4 space-y-2.5">
-								<div className="text-foreground">
+								<div className="text-fg">
 									<span className="text-primary font-bold">
 										content_request:
 									</span>{" "}
@@ -80,10 +80,8 @@ export function VerseoCtaSection() {
 									<div>→ optimizing messaging clarity</div>
 								</div>
 
-								<div className="border-border/30 text-foreground border-t pt-2">
-									<span className="font-bold text-emerald-600 dark:text-emerald-400">
-										output:
-									</span>
+								<div className="border-border/30 text-fg border-t pt-2">
+									<span className="text-success font-bold">output:</span>
 									<div className="text-fg-secondary space-y-0.5 pl-3 text-[11px]">
 										<div>+ compelling value proposition headline</div>
 										<div>+ benefit-driven modular features</div>
@@ -91,7 +89,7 @@ export function VerseoCtaSection() {
 									</div>
 								</div>
 
-								<div className="mt-3 flex items-center gap-1.5 rounded-lg border border-emerald-500/20 bg-emerald-500/10 p-2 text-[11px] font-bold text-emerald-600 dark:text-emerald-400">
+								<div className="border-success-border/30 bg-success-accent/15 text-success mt-3 flex items-center gap-1.5 rounded-lg border p-2 text-[11px] font-bold">
 									<CheckCircle2 className="size-3.5" />
 									<span>status: ready to publish ✓</span>
 								</div>

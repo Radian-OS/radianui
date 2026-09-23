@@ -11,7 +11,7 @@ export function CheckoutHeader({
 }: CheckoutHeaderProps) {
 	return (
 		<div className="space-y-1">
-			<h2 className="heading-3 text-foreground">{title}</h2>
+			<h2 className="heading-3 text-fg">{title}</h2>
 			<p className="text-fg-secondary text-sm">{subtitle}</p>
 		</div>
 	)

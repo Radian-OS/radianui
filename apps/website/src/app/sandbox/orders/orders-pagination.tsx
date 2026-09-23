@@ -23,8 +23,8 @@ export function OrdersPagination() {
 		<div className="flex flex-col items-center justify-between gap-4 pt-2 sm:flex-row">
 			{/* Left text */}
 			<div className="text-fg-secondary text-xs">
-				Page <span className="text-foreground font-medium">{currentPage}</span>{" "}
-				of <span className="text-foreground font-medium">16</span>
+				Page <span className="text-fg font-medium">{currentPage}</span> of{" "}
+				<span className="text-fg font-medium">16</span>
 			</div>
 
 			{/* Center Pagination Controls */}
@@ -36,7 +36,7 @@ export function OrdersPagination() {
 							variant="ghost"
 							color="neutral"
 							size="32"
-							className="text-fg-secondary hover:text-foreground size-8 p-0"
+							className="text-fg-secondary hover:text-fg size-8 p-0"
 							onClick={() => setCurrentPage(1)}
 							disabled={currentPage === 1}>
 							<ChevronsLeft className="size-4" />
@@ -49,7 +49,7 @@ export function OrdersPagination() {
 							variant="ghost"
 							color="neutral"
 							size="32"
-							className="text-fg-secondary hover:text-foreground size-8 p-0"
+							className="text-fg-secondary hover:text-fg size-8 p-0"
 							onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
 							disabled={currentPage === 1}>
 							<ChevronLeft className="size-4" />
@@ -68,8 +68,8 @@ export function OrdersPagination() {
 									onClick={() => setCurrentPage(pageNum)}
 									className={`size-8 p-0 text-xs font-medium ${
 										isActive
-											? "bg-foreground text-background"
-											: "text-fg-secondary hover:text-foreground"
+											? "bg-fg text-fg-inverse"
+											: "text-fg-secondary hover:text-fg"
 									}`}>
 									{pageNum}
 								</Button>
@@ -89,7 +89,7 @@ export function OrdersPagination() {
 							color="neutral"
 							size="32"
 							onClick={() => setCurrentPage(16)}
-							className="text-fg-secondary hover:text-foreground size-8 p-0 text-xs font-medium">
+							className="text-fg-secondary hover:text-fg size-8 p-0 text-xs font-medium">
 							16
 						</Button>
 					</PaginationItem>
@@ -100,7 +100,7 @@ export function OrdersPagination() {
 							variant="ghost"
 							color="neutral"
 							size="32"
-							className="text-fg-secondary hover:text-foreground size-8 p-0"
+							className="text-fg-secondary hover:text-fg size-8 p-0"
 							onClick={() => setCurrentPage((p) => Math.min(16, p + 1))}
 							disabled={currentPage === 16}>
 							<ChevronRight className="size-4" />
@@ -113,7 +113,7 @@ export function OrdersPagination() {
 							variant="ghost"
 							color="neutral"
 							size="32"
-							className="text-fg-secondary hover:text-foreground size-8 p-0"
+							className="text-fg-secondary hover:text-fg size-8 p-0"
 							onClick={() => setCurrentPage(16)}
 							disabled={currentPage === 16}>
 							<ChevronsRight className="size-4" />

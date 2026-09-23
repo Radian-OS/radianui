@@ -8,10 +8,10 @@ export function PortfolioFooter() {
 	return (
 		<footer className="border-border/60 text-fg-secondary mt-8 flex items-center justify-between border-t py-6 text-xs">
 			<div className="flex flex-col gap-0.5">
-				<span className="text-foreground font-semibold">Kishor K. Khadka</span>
+				<span className="text-fg font-semibold">Kishor K. Khadka</span>
 				<Link
 					href="mailto:imkishor24@gmail.com"
-					className="text-fg-secondary hover:text-foreground transition-colors">
+					className="text-fg-secondary hover:text-fg transition-colors">
 					imkishor24@gmail.com
 				</Link>
 			</div>
@@ -22,7 +22,7 @@ export function PortfolioFooter() {
 					target="_blank"
 					rel="noreferrer"
 					aria-label="LinkedIn"
-					className="text-fg-secondary hover:text-foreground transition-colors">
+					className="text-fg-secondary hover:text-fg transition-colors">
 					<Linkedin className="size-4" />
 				</Link>
 				<Link
@@ -30,7 +30,7 @@ export function PortfolioFooter() {
 					target="_blank"
 					rel="noreferrer"
 					aria-label="Instagram"
-					className="text-fg-secondary hover:text-foreground transition-colors">
+					className="text-fg-secondary hover:text-fg transition-colors">
 					<Instagram className="size-4" />
 				</Link>
 			</div>

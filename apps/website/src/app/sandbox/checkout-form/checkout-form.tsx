@@ -43,7 +43,7 @@ export function CheckoutForm() {
 			<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
 				{/* Contact */}
 				<div className="space-y-4">
-					<h3 className="heading-6 text-foreground">Contact</h3>
+					<h3 className="heading-6 text-fg">Contact</h3>
 					<FormField
 						control={form.control}
 						name="email"
@@ -68,7 +68,7 @@ export function CheckoutForm() {
 
 				{/* Payment Method */}
 				<div className="space-y-4">
-					<h3 className="heading-6 text-foreground">Payment Method</h3>
+					<h3 className="heading-6 text-fg">Payment Method</h3>
 					<FormField
 						control={form.control}
 						name="cardName"
@@ -133,7 +133,7 @@ export function CheckoutForm() {
 
 				{/* Billing Address */}
 				<div className="space-y-4">
-					<h3 className="heading-6 text-foreground">Billing Address</h3>
+					<h3 className="heading-6 text-fg">Billing Address</h3>
 					<FormField
 						control={form.control}
 						name="billingAddress"
@@ -208,7 +208,7 @@ export function CheckoutForm() {
 					variant="strong"
 					color="neutral"
 					size="44"
-					className="bg-foreground text-background hover:bg-foreground/90 w-full font-medium">
+					className="w-full font-medium">
 					Complete Purchase
 				</Button>
 			</form>

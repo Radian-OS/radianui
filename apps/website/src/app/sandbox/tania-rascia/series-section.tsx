@@ -10,31 +10,31 @@ export function SeriesSection() {
 		switch (type) {
 			case "js":
 				return (
-					<div className="flex size-7 items-center justify-center rounded-md bg-amber-500/20 text-xs font-bold text-amber-400">
+					<div className="bg-warning-accent text-warning-text flex size-7 items-center justify-center rounded-md text-xs font-bold">
 						JS
 					</div>
 				)
 			case "dom":
 				return (
-					<div className="flex size-7 items-center justify-center rounded-md bg-sky-500/20 text-sky-400">
+					<div className="bg-info-accent text-info-text flex size-7 items-center justify-center rounded-md">
 						<Globe className="size-4" />
 					</div>
 				)
 			case "wordpress":
 				return (
-					<div className="flex size-7 items-center justify-center rounded-md bg-blue-500/20 text-blue-400">
+					<div className="bg-primary-accent text-primary-text flex size-7 items-center justify-center rounded-md">
 						<Layers className="size-4" />
 					</div>
 				)
 			case "review":
 				return (
-					<div className="flex size-7 items-center justify-center rounded-md bg-rose-500/20 text-rose-400">
+					<div className="bg-error-accent text-error-text flex size-7 items-center justify-center rounded-md">
 						<PartyPopper className="size-4" />
 					</div>
 				)
 			case "redesign":
 				return (
-					<div className="text-fg-secondary flex size-7 items-center justify-center rounded-md bg-zinc-500/20">
+					<div className="bg-fill2 text-fg-secondary flex size-7 items-center justify-center rounded-md">
 						<HardDrive className="size-4" />
 					</div>
 				)
@@ -45,7 +45,7 @@ export function SeriesSection() {
 		<div className="flex flex-col gap-4 pt-8">
 			{/* Section Header */}
 			<div className="flex flex-col gap-1">
-				<h2 className="heading-4 text-foreground">Series</h2>
+				<h2 className="heading-4 text-fg">Series</h2>
 				<p className="text-fg-secondary text-xs sm:text-sm">
 					Some things I wrote span years or dozens of parts.
 				</p>
@@ -62,7 +62,7 @@ export function SeriesSection() {
 							{renderSeriesIcon(item.iconType)}
 						</div>
 						<div className="flex flex-col gap-1">
-							<h3 className="text-foreground text-xs font-bold transition-colors group-hover:text-rose-400 sm:text-sm">
+							<h3 className="text-fg group-hover:text-primary text-xs font-bold transition-colors sm:text-sm">
 								{item.title}
 							</h3>
 							<p className="text-fg-secondary text-xs leading-relaxed">

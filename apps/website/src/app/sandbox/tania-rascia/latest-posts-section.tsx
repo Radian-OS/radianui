@@ -10,11 +10,11 @@ export function LatestPostsSection() {
 	const renderPostIcon = (type: BlogPost["iconType"]) => {
 		switch (type) {
 			case "lightning":
-				return <Zap className="size-4 text-amber-400" />
+				return <Zap className="text-warning size-4" />
 			case "doc":
-				return <FileText className="size-4 text-sky-400" />
+				return <FileText className="text-info size-4" />
 			case "disk":
-				return <HardDrive className="size-4 text-rose-400" />
+				return <HardDrive className="text-primary size-4" />
 		}
 	}
 
@@ -22,7 +22,7 @@ export function LatestPostsSection() {
 		<div id="blog" className="flex flex-col gap-4 pt-8">
 			{/* Section Header */}
 			<div className="flex items-center gap-3">
-				<h2 className="heading-4 text-foreground">Latest</h2>
+				<h2 className="heading-4 text-fg">Latest</h2>
 				<Button
 					type="button"
 					variant="outline"
@@ -45,7 +45,7 @@ export function LatestPostsSection() {
 								{renderPostIcon(post.iconType)}
 							</div>
 							<div className="flex flex-col">
-								<span className="text-foreground text-xs font-semibold transition-colors group-hover:text-rose-400 sm:text-sm">
+								<span className="text-fg group-hover:text-primary text-xs font-semibold transition-colors sm:text-sm">
 									{post.title}
 								</span>
 								<span className="text-fg-tertiary text-[11px]">

@@ -8,14 +8,14 @@ import { TESTIMONIALS } from "./types"
 export function TestimonialsSection() {
 	return (
 		<div className="flex flex-col gap-5">
-			<h2 className="heading-5 text-foreground">Testimonials</h2>
+			<h2 className="heading-5 text-fg">Testimonials</h2>
 
 			{/* 2-column testimonial cards */}
 			<div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
 				{TESTIMONIALS.map((testimonial) => (
 					<Card
 						key={testimonial.id}
-						className="border-border/70 bg-elevation-level1/20 relative rounded-2xl border p-5 shadow-xs transition-all hover:border-amber-400/30">
+						className="border-border/70 bg-elevation-level1/20 hover:border-warning-border/30 relative rounded-2xl border p-5 shadow-xs transition-all">
 						<CardContent className="flex flex-col gap-3.5 p-0">
 							<div className="flex items-center gap-3">
 								<Avatar
@@ -34,7 +34,7 @@ export function TestimonialsSection() {
 									</AvatarFallback>
 								</Avatar>
 								<div className="flex flex-col">
-									<span className="text-foreground text-sm font-bold">
+									<span className="text-fg text-sm font-bold">
 										{testimonial.name}
 									</span>
 								</div>
@@ -49,7 +49,7 @@ export function TestimonialsSection() {
 
 			{/* Scroll / Carousel progress indicator */}
 			<div className="bg-border/40 mx-auto mt-2 h-1.5 w-48 overflow-hidden rounded-full">
-				<div className="h-full w-24 rounded-full bg-amber-400 transition-all duration-300" />
+				<div className="bg-warning h-full w-24 rounded-full transition-all duration-300" />
 			</div>
 		</div>
 	)

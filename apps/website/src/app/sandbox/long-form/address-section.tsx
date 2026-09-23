@@ -16,7 +16,7 @@ interface AddressSectionProps {
 export function AddressSection({ form }: AddressSectionProps) {
 	return (
 		<div className="space-y-4">
-			<h3 className="heading-6 text-foreground">Address</h3>
+			<h3 className="heading-6 text-fg">Address</h3>
 			<FormField
 				control={form.control}
 				name="street"

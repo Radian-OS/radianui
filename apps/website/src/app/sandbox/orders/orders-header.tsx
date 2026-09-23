@@ -13,11 +13,11 @@ export function OrdersHeader() {
 					variant="outline"
 					color="neutral"
 					size="36"
-					className="text-fg-secondary hover:text-foreground size-9 p-0">
+					className="text-fg-secondary hover:text-fg size-9 p-0">
 					<History className="size-4" />
 				</Button>
 				<div>
-					<h1 className="heading-3 text-foreground">Orders</h1>
+					<h1 className="heading-3 text-fg">Orders</h1>
 					<p className="text-fg-secondary text-xs sm:text-sm">
 						Manage and track your orders
 					</p>
@@ -30,7 +30,7 @@ export function OrdersHeader() {
 					variant="ghost"
 					color="neutral"
 					size="36"
-					className="text-fg-secondary hover:text-foreground size-9 p-0">
+					className="text-fg-secondary hover:text-fg size-9 p-0">
 					<Search className="size-4" />
 				</Button>
 
@@ -38,16 +38,16 @@ export function OrdersHeader() {
 					variant="ghost"
 					color="neutral"
 					size="36"
-					className="text-fg-secondary hover:text-foreground relative size-9 p-0">
+					className="text-fg-secondary hover:text-fg relative size-9 p-0">
 					<Bell className="size-4" />
-					<span className="absolute top-2 right-2 size-2 rounded-full bg-orange-500" />
+					<span className="bg-primary absolute top-2 right-2 size-2 rounded-full" />
 				</Button>
 
 				<Button
 					variant="strong"
 					color="primary"
 					size="36"
-					className="gap-1.5 bg-gradient-to-r from-amber-600 to-orange-500 font-medium text-white shadow-xs hover:from-amber-500 hover:to-orange-400">
+					className="gap-1.5 font-medium shadow-xs">
 					<Plus className="size-4" />
 					<span>New Products</span>
 				</Button>

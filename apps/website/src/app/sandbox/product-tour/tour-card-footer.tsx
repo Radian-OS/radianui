@@ -25,7 +25,7 @@ export function TourCardFooter({
 				variant="ghost"
 				color="neutral"
 				size="36"
-				className="text-fg-secondary hover:text-foreground disabled:text-fg-disabled gap-1.5 px-3 text-xs font-medium"
+				className="text-fg-secondary hover:text-fg disabled:text-fg-disabled gap-1.5 px-3 text-xs font-medium"
 				onClick={onPrev}
 				disabled={isFirstStep}>
 				<ChevronLeft className="size-4" />

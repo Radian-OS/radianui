@@ -5,7 +5,7 @@ import { LoginPageView } from "./login-page-view"
 
 export default function LoginPage03Page() {
 	return (
-		<main className="bg-background text-foreground min-h-screen w-full">
+		<main className="bg-bg text-fg min-h-screen w-full">
 			<LoginPageView />
 		</main>
 	)

@@ -27,7 +27,7 @@ export function TourStepDots({
 						className={cn(
 							"size-1.5 rounded-full transition-all duration-200 hover:scale-125",
 							isActive
-								? "bg-foreground scale-110"
+								? "bg-fg scale-110"
 								: "bg-border/90 hover:bg-fg-secondary"
 						)}
 					/>

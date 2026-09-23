@@ -45,9 +45,21 @@ export interface FilesData {
 	"onboarding-checklist": Record<string, string>
 	"kishor-portfolio": Record<string, string>
 	"tania-rascia": Record<string, string>
+	"data-grid-columns-2": Record<string, string>
+	"data-grid-columns-5": Record<string, string>
+	"users-table": Record<string, string>
+	"projects-table": Record<string, string>
+	"victor-eke": Record<string, string>
+	"williams-samuel": Record<string, string>
 }
 
 export type PreviewKey =
+	| "williams-samuel"
+	| "victor-eke"
+	| "projects-table"
+	| "users-table"
+	| "data-grid-columns-5"
+	| "data-grid-columns-2"
 	| "tania-rascia"
 	| "kishor-portfolio"
 	| "product-tour"
@@ -132,6 +144,7 @@ export type SandboxCategory =
 	| "welcome-screen-section"
 	| "guided-tour-section"
 	| "portfolio-section"
+	| "table-section"
 	| "other-sections"
 
 export interface SandboxComponentConfig {
@@ -146,6 +159,68 @@ export interface SandboxComponentConfig {
 }
 
 export const sandboxComponents: SandboxComponentConfig[] = [
+	{
+		id: "williams-samuel",
+		label: "williams-samuel",
+		category: "portfolio-section",
+		filesKey: "williams-samuel",
+		path: "src/app/sandbox/williams-samuel",
+		defaultFile: "page.tsx",
+		referenceUrl: "https://williamssam.netlify.app/",
+		previewRoute: "/sandbox/williams-samuel",
+	},
+	{
+		id: "victor-eke",
+		label: "victor-eke",
+		category: "portfolio-section",
+		filesKey: "victor-eke",
+		path: "src/app/sandbox/victor-eke",
+		defaultFile: "page.tsx",
+		referenceUrl: "https://victoreke.com/",
+		previewRoute: "/sandbox/victor-eke",
+	},
+	{
+		id: "projects-table",
+		label: "projects-table",
+		category: "table-section",
+		filesKey: "projects-table",
+		path: "src/app/sandbox/projects-table",
+		defaultFile: "page.tsx",
+		referenceUrl:
+			"https://preline.co/templates/dashboards/admin-dashboard/index.html",
+		previewRoute: "/sandbox/projects-table",
+	},
+	{
+		id: "users-table",
+		label: "users-table",
+		category: "table-section",
+		filesKey: "users-table",
+		path: "src/app/sandbox/users-table",
+		defaultFile: "page.tsx",
+		referenceUrl:
+			"https://preline.co/templates/dashboards/admin-dashboard/index.html?page=users.html",
+		previewRoute: "/sandbox/users-table",
+	},
+	{
+		id: "data-grid-columns-5",
+		label: "data-grid-columns-5",
+		category: "table-section",
+		filesKey: "data-grid-columns-5",
+		path: "src/app/sandbox/data-grid-columns-5",
+		defaultFile: "page.tsx",
+		referenceUrl: "https://reui.io/preview/base/data-grid-columns-5",
+		previewRoute: "/sandbox/data-grid-columns-5",
+	},
+	{
+		id: "data-grid-columns-2",
+		label: "data-grid-columns-2",
+		category: "table-section",
+		filesKey: "data-grid-columns-2",
+		path: "src/app/sandbox/data-grid-columns-2",
+		defaultFile: "page.tsx",
+		referenceUrl: "https://reui.io/preview/base/data-grid-columns-2",
+		previewRoute: "/sandbox/data-grid-columns-2",
+	},
 	{
 		id: "tania-rascia",
 		label: "tania-rascia",

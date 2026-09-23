@@ -50,12 +50,12 @@ export function VerseoTestimonialsSection() {
 				<div className="flex flex-col items-center text-center">
 					<div className="border-border/70 bg-fill1 text-fg-secondary mb-4 inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-semibold">
 						<span>[</span>
-						<span className="text-foreground">testimonials</span>
+						<span className="text-fg">testimonials</span>
 						<span>]</span>
 					</div>
 
 					{/* Rule 13: heading-2 */}
-					<h2 className="heading-2 text-foreground max-w-2xl text-center">
+					<h2 className="heading-2 text-fg max-w-2xl text-center">
 						Loved by teams that create content every day
 					</h2>
 
@@ -71,19 +71,19 @@ export function VerseoTestimonialsSection() {
 					{testimonials.map((item) => (
 						<div
 							key={item.author}
-							className="border-border/70 bg-background/90 hover:border-primary/40 flex flex-col justify-between rounded-2xl border p-6 shadow-sm transition-all duration-300 hover:shadow-md md:p-8">
+							className="border-border/70 bg-bg/90 hover:border-primary/40 flex flex-col justify-between rounded-2xl border p-6 shadow-sm transition-all duration-300 hover:shadow-md md:p-8">
 							<div>
 								{/* Star Rating */}
 								<div className="flex items-center gap-1.5">
-									<div className="flex gap-1 text-amber-500">
+									<div className="text-warning flex gap-1">
 										{Array.from({ length: 5 }).map((_, i) => (
 											<Star
 												key={i}
-												className="size-3.5 fill-amber-500 text-amber-500"
+												className="fill-warning text-warning size-3.5"
 											/>
 										))}
 									</div>
-									<span className="text-foreground font-mono text-xs font-bold">
+									<span className="text-fg font-mono text-xs font-bold">
 										{item.rating}
 									</span>
 								</div>
@@ -106,9 +106,7 @@ export function VerseoTestimonialsSection() {
 									/>
 								</div>
 								<div>
-									<div className="text-foreground text-sm font-bold">
-										{item.author}
-									</div>
+									<div className="text-fg text-sm font-bold">{item.author}</div>
 									<div className="text-fg-tertiary text-xs">{item.role}</div>
 								</div>
 							</div>

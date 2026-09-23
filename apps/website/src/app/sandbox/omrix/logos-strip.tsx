@@ -58,9 +58,9 @@ export function OmrixLogosStrip() {
 					{companyLogos.map((company, index) => (
 						<div
 							key={`${company.name}-${index}`}
-							className="text-fg-secondary hover:text-foreground flex items-center gap-2.5 opacity-70 transition-all hover:opacity-100">
+							className="text-fg-secondary hover:text-fg flex items-center gap-2.5 opacity-70 transition-all hover:opacity-100">
 							{company.badge ? (
-								<span className="bg-neutral text-neutral-fg flex size-5.5 items-center justify-center rounded-xs text-[11px] font-black">
+								<span className="bg-primary text-primary-fg flex size-5.5 items-center justify-center rounded-xs text-[11px] font-black">
 									{company.badge}
 								</span>
 							) : (

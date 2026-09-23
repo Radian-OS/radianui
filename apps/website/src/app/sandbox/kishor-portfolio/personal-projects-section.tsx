@@ -22,7 +22,7 @@ export function PersonalProjectsSection() {
 
 	return (
 		<div className="flex flex-col gap-3.5 pt-2">
-			<h2 className="heading-5 text-foreground">Personal projects</h2>
+			<h2 className="heading-5 text-fg">Personal projects</h2>
 
 			<div className="divide-border/60 border-border/70 bg-elevation-level1/10 flex flex-col divide-y rounded-xl border">
 				{PERSONAL_PROJECTS.map((project) => (
@@ -41,7 +41,7 @@ export function PersonalProjectsSection() {
 								{renderBadge(project)}
 							</div>
 							<div className="flex flex-col">
-								<span className="text-foreground group-hover:text-primary text-xs font-semibold transition-colors">
+								<span className="text-fg group-hover:text-primary text-xs font-semibold transition-colors">
 									{project.title}
 								</span>
 								<span className="text-fg-secondary text-[11px]">
@@ -49,7 +49,7 @@ export function PersonalProjectsSection() {
 								</span>
 							</div>
 						</div>
-						<Link2 className="text-fg-tertiary group-hover:text-foreground size-4 transition-colors" />
+						<Link2 className="text-fg-tertiary group-hover:text-fg size-4 transition-colors" />
 					</Link>
 				))}
 			</div>

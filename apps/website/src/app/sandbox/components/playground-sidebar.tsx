@@ -16,6 +16,7 @@ import {
 	MousePointerClick,
 	Settings,
 	Sparkles,
+	Table2,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import {
@@ -111,6 +112,11 @@ const CATEGORIES: CategoryGroup[] = [
 		id: "portfolio-section",
 		label: "Portfolio Section",
 		icon: Briefcase,
+	},
+	{
+		id: "table-section",
+		label: "Table Section",
+		icon: Table2,
 	},
 	{
 		id: "other-sections",

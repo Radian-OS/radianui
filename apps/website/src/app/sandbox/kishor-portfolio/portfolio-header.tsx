@@ -21,7 +21,7 @@ export function PortfolioHeader() {
 						<NavigationMenuLink asChild>
 							<Link
 								href="#home"
-								className="text-foreground hover:text-fg-secondary text-xs font-medium transition-colors sm:text-sm">
+								className="text-fg hover:text-fg-secondary text-xs font-medium transition-colors sm:text-sm">
 								Home
 							</Link>
 						</NavigationMenuLink>
@@ -30,7 +30,7 @@ export function PortfolioHeader() {
 						<NavigationMenuLink asChild>
 							<Link
 								href="#projects"
-								className="text-fg-secondary hover:text-foreground text-xs font-medium transition-colors sm:text-sm">
+								className="text-fg-secondary hover:text-fg text-xs font-medium transition-colors sm:text-sm">
 								Projects
 							</Link>
 						</NavigationMenuLink>
@@ -46,7 +46,7 @@ export function PortfolioHeader() {
 					color="neutral"
 					size="32"
 					aria-label="Toggle theme"
-					className="text-fg-secondary hover:text-foreground">
+					className="text-fg-secondary hover:text-fg">
 					<Moon className="size-4" />
 				</IconButton>
 

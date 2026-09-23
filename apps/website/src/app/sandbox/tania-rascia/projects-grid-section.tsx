@@ -14,8 +14,8 @@ export function ProjectsGridSection() {
 			<div className="flex flex-col gap-1">
 				<div className="flex items-center gap-3">
 					<div className="flex items-center gap-2">
-						<Github className="text-foreground size-5" />
-						<h2 className="heading-4 text-foreground">Projects</h2>
+						<Github className="text-fg size-5" />
+						<h2 className="heading-4 text-fg">Projects</h2>
 					</div>
 					<Button
 						type="button"
@@ -41,7 +41,7 @@ export function ProjectsGridSection() {
 							<span className="text-fg-tertiary font-mono text-[11px]">
 								{project.year}
 							</span>
-							<h3 className="text-sm font-bold text-rose-400 transition-colors hover:text-rose-300">
+							<h3 className="text-primary hover:text-primary-hover text-sm font-bold transition-colors">
 								{project.title}
 							</h3>
 							<p className="text-fg-secondary text-xs leading-relaxed">
@@ -54,21 +54,21 @@ export function ProjectsGridSection() {
 							{project.articleUrl && (
 								<Link
 									href={project.articleUrl}
-									className="text-rose-400 transition-colors hover:text-rose-300">
+									className="text-primary hover:text-primary-hover transition-colors">
 									Article
 								</Link>
 							)}
 							{project.demoUrl && (
 								<Link
 									href={project.demoUrl}
-									className="text-rose-400 transition-colors hover:text-rose-300">
+									className="text-primary hover:text-primary-hover transition-colors">
 									Demo
 								</Link>
 							)}
 							{project.sourceUrl && (
 								<Link
 									href={project.sourceUrl}
-									className="text-rose-400 transition-colors hover:text-rose-300">
+									className="text-primary hover:text-primary-hover transition-colors">
 									Source
 								</Link>
 							)}

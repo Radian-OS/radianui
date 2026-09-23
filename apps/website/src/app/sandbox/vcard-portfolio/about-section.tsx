@@ -7,8 +7,8 @@ export function AboutSection() {
 		<div className="flex flex-col gap-4">
 			{/* Heading with accent underline */}
 			<div className="flex flex-col gap-2">
-				<h1 className="heading-4 text-foreground">About Me</h1>
-				<div className="h-1.5 w-10 rounded-full bg-amber-400" />
+				<h1 className="heading-4 text-fg">About Me</h1>
+				<div className="bg-warning h-1.5 w-10 rounded-full" />
 			</div>
 
 			{/* Bio descriptions */}

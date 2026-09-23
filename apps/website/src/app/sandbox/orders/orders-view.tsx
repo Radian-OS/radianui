@@ -25,13 +25,13 @@ export function OrdersView() {
 	}, [searchQuery])
 
 	return (
-		<SidebarProvider defaultOpen className="bg-background min-h-screen w-full">
+		<SidebarProvider defaultOpen className="bg-bg min-h-screen w-full">
 			<div className="flex w-full">
 				{/* Sidebar */}
 				<OrdersSidebar />
 
 				{/* Main Content Area */}
-				<main className="bg-background flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">
+				<main className="bg-bg flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">
 					<div className="mx-auto flex max-w-7xl flex-col gap-6">
 						<OrdersHeader />
 						<OrdersMetrics />
