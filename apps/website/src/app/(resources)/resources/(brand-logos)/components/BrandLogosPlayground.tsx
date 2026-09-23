@@ -11,13 +11,16 @@ import {
 	EmptyTitle,
 } from "@/registry/ui/empty"
 import { Input, InputWrapper } from "@/registry/ui/input"
+import { BrandLogoCategoryDropdown } from "./BrandLogoCategoryDropdown"
 import { BrandLogoDetailsDialog } from "./BrandLogoDetailsDialog"
 import { BrandLogoOptions } from "./BrandLogoOptions"
 import { BrandLogoTile } from "./BrandLogoTile"
 import type { BrandLogoId, BrandLogoVariant } from "./brand-logos-data"
 import {
+	ALL_BRAND_LOGO_CATEGORY,
 	BRAND_LOGOS_PAGE_PATH,
 	brandLogos,
+	getBrandLogo,
 	getBrandLogoFromSlug,
 	getBrandLogoPagePath,
 	getBrandLogoSearchTerms,
@@ -40,6 +43,11 @@ export default function BrandLogosPlayground({
 	initialSelectedBrand = null,
 }: BrandLogosPlaygroundProps) {
 	const [query, setQuery] = useState("")
+	const [category, setCategory] = useState(
+		initialSelectedBrand
+			? getBrandLogo(initialSelectedBrand).category
+			: ALL_BRAND_LOGO_CATEGORY
+	)
 	const [variant, setVariant] = useState<BrandLogoVariant>("icon")
 	const [selectedBrand, setSelectedBrand] = useState<BrandLogoId | null>(
 		initialSelectedBrand
@@ -153,10 +161,14 @@ export default function BrandLogosPlayground({
 	}
 
 	const visibleLogos = useMemo(() => {
+		const source =
+			category === ALL_BRAND_LOGO_CATEGORY
+				? brandLogos
+				: brandLogos.filter((brand) => brand.category === category)
 		const normalizedQuery = query.toLowerCase().replace(/[^a-z0-9]/g, "")
-		if (!normalizedQuery) return brandLogos
+		if (!normalizedQuery) return source
 
-		return brandLogos.filter((brand) =>
+		return source.filter((brand) =>
 			getBrandLogoSearchTerms(brand.id).some((term) =>
 				term
 					.toLowerCase()
@@ -164,7 +176,7 @@ export default function BrandLogosPlayground({
 					.includes(normalizedQuery)
 			)
 		)
-	}, [query])
+	}, [category, query])
 
 	useLayoutEffect(() => {
 		const topSentinel = sentinelRef.current
@@ -177,21 +189,25 @@ export default function BrandLogosPlayground({
 		if (sentinelRect.top < pinnedSentinelTop) {
 			window.scrollBy({ top: sentinelRect.top - pinnedSentinelTop })
 		}
-	}, [query, variant])
+	}, [category, query, variant])
 
 	return (
-		<div className="flex w-full flex-col gap-5 py-2">
+		<div id="brand-logo-collection" className="flex w-full flex-col gap-8 py-2">
 			<div ref={sentinelRef} className="pointer-events-none h-px w-full" />
 			<div
 				className={cn(
-					"bg-bg/95 sticky top-0 z-100 flex flex-col gap-2 border-b border-transparent py-3 backdrop-blur-sm sm:flex-row",
+					"bg-bg/95 sticky top-0 z-100 border-b border-transparent py-3 backdrop-blur-sm",
 					isSticky && "border-soft"
 				)}>
-				<BrandLogoOptions
-					variant={variant}
-					onVariantChange={handleVariantChange}
-				/>
-				<InputWrapper className="bg-fill1 focus-within:bg-bg h-10 min-w-0 flex-1">
+				<InputWrapper className="bg-bg h-13 w-full">
+					<BrandLogoCategoryDropdown
+						value={category}
+						onValueChange={setCategory}
+					/>
+					<BrandLogoOptions
+						variant={variant}
+						onVariantChange={handleVariantChange}
+					/>
 					<Search aria-hidden="true" />
 					<Input
 						value={query}
@@ -203,7 +219,7 @@ export default function BrandLogosPlayground({
 			</div>
 
 			{visibleLogos.length ? (
-				<ul className="grid list-none grid-cols-2 gap-x-3 gap-y-5 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+				<ul className="grid list-none grid-cols-[repeat(auto-fill,142px)] justify-center gap-x-3 gap-y-5 sm:justify-between">
 					{visibleLogos.map((brand, index) => (
 						<BrandLogoTile
 							key={brand.id}
@@ -221,9 +237,9 @@ export default function BrandLogosPlayground({
 							<SearchX />
 						</EmptyMedia>
 						<EmptyHeader>
-							<EmptyTitle>No results for &quot;{query}&quot;</EmptyTitle>
+							<EmptyTitle>No brand logos found</EmptyTitle>
 							<EmptyDescription>
-								Try another company name or a broader keyword.
+								Try another name or choose a different category.
 							</EmptyDescription>
 						</EmptyHeader>
 					</Empty>

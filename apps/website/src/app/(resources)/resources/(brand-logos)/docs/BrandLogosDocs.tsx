@@ -59,9 +59,9 @@ const designPoints = [
 
 const developmentPoints = [
 	{
-		title: "Prefer SVG for responsive interfaces",
+		title: "Choose the export your workflow needs",
 		description:
-			"SVG remains crisp at any density and is the best default for most web layouts. Use PNG for tools that cannot render SVG.",
+			"Use the transparent PNG directly, or create an SVG wrapper in the browser when a tool or handoff requires an SVG file.",
 	},
 	{
 		title: "Select variants from your theme state",
@@ -89,7 +89,7 @@ const faqItems = [
 	{
 		question: "What logo variants are included?",
 		answer:
-			"Every included brand has an icon and a wordmark for light and dark surfaces. Each combination is available as SVG and transparent PNG, for eight assets per brand.",
+			"Every included brand has a transparent PNG icon and wordmark for light and dark surfaces. The browser can also generate an SVG wrapper for any of those four assets.",
 	},
 	{
 		question: "When should I use the light or dark option?",
@@ -99,7 +99,7 @@ const faqItems = [
 	{
 		question: "Should I use SVG or PNG?",
 		answer:
-			"Use SVG for most interfaces because it scales without losing quality. Use PNG when a platform or export workflow requires a raster image.",
+			"Use the source PNG for direct rendering. Choose SVG when your workflow requires that file type; Radian generates it in the browser from the active PNG instead of requesting an upstream SVG.",
 	},
 	{
 		question: "Can I recolor or reshape a brand logo?",
@@ -129,8 +129,8 @@ export default function BrandLogosDocs() {
 				</p>
 				<p>
 					Each brand includes a compact icon and a full wordmark, tuned for
-					light and dark interfaces. SVG and transparent PNG formats cover both
-					responsive product UI and raster-only workflows.
+					light and dark interfaces. Transparent PNGs render directly, while SVG
+					exports are generated on demand in the browser.
 				</p>
 			</ResourceTextSection>
 
@@ -164,9 +164,9 @@ export default function BrandLogosDocs() {
 				title="Reliable logo implementation"
 				points={developmentPoints}>
 				<p>
-					The collection follows a consistent CDN path: theme, format, variant,
-					and brand ID. Keeping these choices explicit makes logo rendering easy
-					to test and maintain across a product.
+					The collection follows a consistent CDN path: theme, colorway, format,
+					category, variant, and brand ID. Keeping these choices explicit makes
+					logo rendering easy to test and maintain across a product.
 				</p>
 			</ResourceTextSection>
 

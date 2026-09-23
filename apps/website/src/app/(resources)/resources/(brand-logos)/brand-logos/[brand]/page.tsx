@@ -32,7 +32,7 @@ export async function generateMetadata({
 	const title = `${brand.name} Logo – Free SVG & PNG Download`
 	const description = `Preview, copy, and download the ${brand.name} logo as an icon or wordmark for light and dark interfaces.`
 	const url = absoluteUrl(getBrandLogoPagePath(brand.id))
-	const image = getBrandLogoUrl(brand.id, "light", "icon", "png")
+	const image = getBrandLogoUrl(brand.id, "light", "icon")
 
 	return {
 		title,
@@ -45,7 +45,7 @@ export async function generateMetadata({
 			description,
 			url,
 			images: [
-				{ url: image, width: 48, height: 48, alt: `${brand.name} logo` },
+				{ url: image, width: 64, height: 64, alt: `${brand.name} logo` },
 			],
 		},
 		twitter: {

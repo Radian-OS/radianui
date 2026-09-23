@@ -12,8 +12,18 @@ import {
 	getBrandLogo,
 	getBrandLogoHtmlMarkup,
 	getBrandLogoNextImageMarkup,
+	getBrandLogoSvgMarkup,
 	getBrandLogoUrl,
 } from "./brand-logos-data"
+
+function blobToDataUrl(blob: Blob) {
+	return new Promise<string>((resolve, reject) => {
+		const reader = new FileReader()
+		reader.onload = () => resolve(String(reader.result))
+		reader.onerror = () => reject(reader.error)
+		reader.readAsDataURL(blob)
+	})
+}
 
 interface BrandLogoTileProps {
 	id: BrandLogoId
@@ -32,9 +42,9 @@ export function BrandLogoTile({
 	const { resolvedTheme } = useTheme()
 	const activeTheme = resolvedTheme === "dark" ? "dark" : "light"
 	const brand = getBrandLogo(id)
-	const svgUrl = getBrandLogoUrl(id, activeTheme, variant, "svg")
-	const lightSvgUrl = getBrandLogoUrl(id, "light", variant, "svg")
-	const darkSvgUrl = getBrandLogoUrl(id, "dark", variant, "svg")
+	const pngUrl = getBrandLogoUrl(id, activeTheme, variant)
+	const lightPngUrl = getBrandLogoUrl(id, "light", variant)
+	const darkPngUrl = getBrandLogoUrl(id, "dark", variant)
 
 	const showCopied = (format: string) => {
 		setCopied(true)
@@ -53,9 +63,12 @@ export function BrandLogoTile({
 
 	const copySvg = async () => {
 		try {
-			const response = await fetch(svgUrl)
+			const response = await fetch(pngUrl)
 			if (!response.ok) throw new Error("Logo request failed")
-			await navigator.clipboard.writeText(await response.text())
+			const imageHref = await blobToDataUrl(await response.blob())
+			await navigator.clipboard.writeText(
+				getBrandLogoSvgMarkup(id, variant, imageHref)
+			)
 			showCopied("SVG")
 		} catch {
 			toast.error("Could not copy SVG")
@@ -63,7 +76,6 @@ export function BrandLogoTile({
 	}
 
 	const copyPng = async () => {
-		const pngUrl = getBrandLogoUrl(id, activeTheme, variant, "png")
 		try {
 			if (!navigator.clipboard.write || !("ClipboardItem" in window)) {
 				await copyText(pngUrl, "PNG URL")
@@ -82,22 +94,22 @@ export function BrandLogoTile({
 	}
 
 	return (
-		<li className="group relative min-w-0">
+		<li className="group relative size-[142px] min-w-0">
 			<Tooltip>
 				<TooltipTrigger asChild>
 					<Button
 						size="32"
 						color="neutral"
 						variant="outline"
-						className="bg-bg h-[142px] w-full overflow-hidden rounded-xl p-0"
+						className="bg-bg hover:bg-bg size-[142px] overflow-hidden rounded-xl p-0"
 						aria-label={`View ${brand.name} ${variant} details`}
 						onClick={() => onSelect(id)}>
 						<img
-							src={lightSvgUrl}
+							src={lightPngUrl}
 							alt={`${brand.name} ${variant}`}
-							width={variant === "icon" ? 48 : 180}
-							height={48}
-							loading="eager"
+							width={variant === "icon" ? 64 : 240}
+							height={64}
+							loading={priority ? "eager" : "lazy"}
 							decoding="async"
 							fetchPriority={priority ? "high" : "auto"}
 							className={cn(
@@ -106,11 +118,11 @@ export function BrandLogoTile({
 							)}
 						/>
 						<img
-							src={darkSvgUrl}
+							src={darkPngUrl}
 							alt=""
-							width={variant === "icon" ? 48 : 180}
-							height={48}
-							loading="eager"
+							width={variant === "icon" ? 64 : 240}
+							height={64}
+							loading={priority ? "eager" : "lazy"}
 							decoding="async"
 							fetchPriority={priority ? "high" : "auto"}
 							className={cn(
@@ -131,7 +143,7 @@ export function BrandLogoTile({
 			<BrandLogoTileMenu
 				onCopyPng={copyPng}
 				onCopySvg={copySvg}
-				onCopyUrl={() => copyText(svgUrl, "CDN URL")}
+				onCopyUrl={() => copyText(pngUrl, "CDN URL")}
 				onCopyNextImage={() =>
 					copyText(
 						getBrandLogoNextImageMarkup(id, activeTheme, variant),
@@ -156,10 +168,6 @@ export function BrandLogoTile({
 					{copied ? "Copied" : "Copy SVG"}
 				</Button>
 			</div>
-
-			<p className="text-fg-secondary mt-2 truncate px-1 text-center text-xs font-medium">
-				{brand.name}
-			</p>
 		</li>
 	)
 }

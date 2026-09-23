@@ -31,6 +31,7 @@ import {
 	getBrandLogo,
 	getBrandLogoHtmlMarkup,
 	getBrandLogoNextImageMarkup,
+	getBrandLogoSvgMarkup,
 	getBrandLogoUrl,
 } from "./brand-logos-data"
 
@@ -43,6 +44,15 @@ interface BrandLogoDetailsDialogProps {
 }
 
 const MORE_LOGOS_LIMIT = 12
+
+function blobToDataUrl(blob: Blob) {
+	return new Promise<string>((resolve, reject) => {
+		const reader = new FileReader()
+		reader.onload = () => resolve(String(reader.result))
+		reader.onerror = () => reject(reader.error)
+		reader.readAsDataURL(blob)
+	})
+}
 
 function downloadBlob(blob: Blob, filename: string) {
 	const objectUrl = URL.createObjectURL(blob)
@@ -84,10 +94,9 @@ export function BrandLogoDetailsDialog({
 	if (!id) return null
 
 	const brand = getBrandLogo(id)
-	const svgUrl = getBrandLogoUrl(id, activeTheme, dialogVariant, "svg")
-	const pngUrl = getBrandLogoUrl(id, activeTheme, dialogVariant, "png")
-	const lightSvgUrl = getBrandLogoUrl(id, "light", dialogVariant, "svg")
-	const darkSvgUrl = getBrandLogoUrl(id, "dark", dialogVariant, "svg")
+	const pngUrl = getBrandLogoUrl(id, activeTheme, dialogVariant)
+	const lightPngUrl = getBrandLogoUrl(id, "light", dialogVariant)
+	const darkPngUrl = getBrandLogoUrl(id, "dark", dialogVariant)
 	const searchTags = Array.from(
 		new Set([
 			brand.name,
@@ -108,9 +117,10 @@ export function BrandLogoDetailsDialog({
 	}
 
 	const getSvg = async () => {
-		const response = await fetch(svgUrl)
+		const response = await fetch(pngUrl)
 		if (!response.ok) throw new Error("Logo request failed")
-		return response.text()
+		const imageHref = await blobToDataUrl(await response.blob())
+		return getBrandLogoSvgMarkup(id, dialogVariant, imageHref)
 	}
 
 	const copySvg = async () => {
@@ -175,7 +185,7 @@ export function BrandLogoDetailsDialog({
 							/>
 						</div>
 						<img
-							src={lightSvgUrl}
+							src={lightPngUrl}
 							alt={`${brand.name} ${dialogVariant}`}
 							width={dialogVariant === "icon" ? 96 : 270}
 							height={dialogVariant === "icon" ? 96 : 72}
@@ -185,7 +195,7 @@ export function BrandLogoDetailsDialog({
 							)}
 						/>
 						<img
-							src={darkSvgUrl}
+							src={darkPngUrl}
 							alt=""
 							width={dialogVariant === "icon" ? 96 : 270}
 							height={dialogVariant === "icon" ? 96 : 72}
@@ -202,12 +212,6 @@ export function BrandLogoDetailsDialog({
 								{brand.name} {dialogVariant === "icon" ? "Icon" : "Wordmark"}
 							</DialogTitle>
 						</div>
-
-						<p className="text-fg-secondary text-sm">
-							The preview automatically matches your active theme. SVG scales
-							cleanly at any size; the transparent PNG is provided at 48 px
-							high.
-						</p>
 
 						<div className="flex flex-wrap items-center gap-2">
 							<Button size="40" onClick={copyPng}>
@@ -255,7 +259,7 @@ export function BrandLogoDetailsDialog({
 									size="32"
 									color="neutral"
 									variant="outline"
-									onClick={() => copyText(svgUrl, "CDN URL")}>
+									onClick={() => copyText(pngUrl, "CDN URL")}>
 									CDN URL
 								</Button>
 								<Button
@@ -331,7 +335,7 @@ export function BrandLogoDetailsDialog({
 									size="32"
 									color="neutral"
 									variant="outline"
-									className="bg-bg size-14.5 p-0"
+									className="bg-bg hover:bg-bg size-14.5 p-0"
 									aria-label={`View ${moreBrand.name} logo`}
 									onClick={() => onSelectBrand(moreBrand.id)}>
 									<img

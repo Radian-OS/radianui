@@ -6,7 +6,9 @@ import BrandLogosHeroActions from "./BrandLogosHeroActions"
 import BrandLogosPlayground from "./BrandLogosPlayground"
 import type { BrandLogoId } from "./brand-logos-data"
 import {
+	BRAND_LOGO_ASSET_COUNT,
 	BRAND_LOGO_CDN_ORIGIN,
+	brandLogos,
 	getBrandLogo,
 	getBrandLogoUrl,
 } from "./brand-logos-data"
@@ -29,8 +31,8 @@ export function BrandLogosResourcePage({
 	return (
 		<ResourcePage
 			badge={{
-				count: "20 Brands",
-				label: "160 Ready-to-Use Logo Assets",
+				count: `${brandLogos.length} Brands`,
+				label: `${BRAND_LOGO_ASSET_COUNT.toLocaleString("en-US")} Ready-to-Use Logo Assets`,
 			}}
 			heroVisual={
 				<div className="flex items-center -space-x-2">
@@ -46,8 +48,8 @@ export function BrandLogosResourcePage({
 								<img
 									src={getBrandLogoUrl(id, "light", "icon")}
 									alt={`${brand.name} logo`}
-									width={48}
-									height={48}
+									width={64}
+									height={64}
 									className={cn(
 										"object-contain dark:hidden",
 										size === "large" ? "size-12" : "size-8"
@@ -56,8 +58,8 @@ export function BrandLogosResourcePage({
 								<img
 									src={getBrandLogoUrl(id, "dark", "icon")}
 									alt=""
-									width={48}
-									height={48}
+									width={64}
+									height={64}
 									className={cn(
 										"hidden object-contain dark:block",
 										size === "large" ? "size-12" : "size-8"
@@ -69,7 +71,7 @@ export function BrandLogosResourcePage({
 				</div>
 			}
 			title="Popular Brand Logos for Every Interface"
-			description="Browse a growing collection of polished brand icons and wordmarks, with light and dark variants in SVG and transparent PNG formats."
+			description="Browse 244 polished brand icons and wordmarks across 12 categories, with transparent PNGs for light and dark interfaces and browser-generated SVG exports."
 			actions={<BrandLogosHeroActions />}
 			showcaseLabel="Browse free brand logo assets"
 			showcase={
