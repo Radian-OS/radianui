@@ -19,9 +19,7 @@ export function CtaHeader({
 	return (
 		<div className="flex flex-col items-center gap-4 text-center sm:gap-5">
 			{/* Main Title strictly adhering to Rule 2 (no redundant size/weight classes) */}
-			<h2 className="heading-1 text-foreground max-w-3xl text-center">
-				{heading}
-			</h2>
+			<h2 className="heading-1 text-fg max-w-3xl text-center">{heading}</h2>
 
 			{/* Subtitle */}
 			<p className="text-fg-secondary max-w-xl text-center text-base">

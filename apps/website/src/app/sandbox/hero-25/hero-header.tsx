@@ -4,7 +4,7 @@ import { HERO_25_DATA } from "./types"
 export function HeroHeader() {
 	return (
 		<div className="flex flex-col items-center gap-4 text-center">
-			<h1 className="heading-1 text-foreground max-w-3xl text-center">
+			<h1 className="heading-1 text-fg max-w-3xl text-center">
 				{HERO_25_DATA.title}
 			</h1>
 

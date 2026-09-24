@@ -40,7 +40,7 @@ export function BlogCard({ post }: BlogCardProps) {
 						<span>{post.readTime}</span>
 					</div>
 
-					<h3 className="heading-6 text-fg leading-snug">
+					<h3 className="heading-6 text-fg">
 						<Link href={`/sandbox/blog-1#${post.slug}`} className="text-fg">
 							{post.title}
 						</Link>

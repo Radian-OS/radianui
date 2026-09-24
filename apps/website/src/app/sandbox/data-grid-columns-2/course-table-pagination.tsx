@@ -76,7 +76,7 @@ export function CourseTablePagination({
 								size="28"
 								disabled={currentPage <= 1}
 								onClick={() => onPageChange(currentPage - 1)}
-								className="text-fg-secondary hover:text-foreground size-7 p-0 disabled:opacity-30">
+								className="text-fg-secondary hover:text-fg size-7 p-0 disabled:opacity-30">
 								<ChevronLeft className="size-3.5" />
 							</Button>
 						</PaginationItem>
@@ -95,8 +95,8 @@ export function CourseTablePagination({
 										className={cn(
 											"size-7 p-0 font-mono text-xs",
 											isActive
-												? "bg-elevation-level1 text-foreground border-border/80 border font-bold"
-												: "text-fg-secondary hover:text-foreground"
+												? "bg-elevation-level1 text-fg border-border/80 border font-bold"
+												: "text-fg-secondary hover:text-fg"
 										)}>
 										{page}
 									</Button>
@@ -113,7 +113,7 @@ export function CourseTablePagination({
 								size="28"
 								disabled={currentPage >= totalPages}
 								onClick={() => onPageChange(currentPage + 1)}
-								className="text-fg-secondary hover:text-foreground size-7 p-0 disabled:opacity-30">
+								className="text-fg-secondary hover:text-fg size-7 p-0 disabled:opacity-30">
 								<ChevronRight className="size-3.5" />
 							</Button>
 						</PaginationItem>

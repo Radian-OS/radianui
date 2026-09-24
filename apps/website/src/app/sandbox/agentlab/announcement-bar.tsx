@@ -13,7 +13,7 @@ export function AgentlabAnnouncementBar() {
 				href="https://agentlab.framer.ai"
 				target="_blank"
 				rel="noopener noreferrer"
-				className="flex items-center gap-1.5 transition-opacity hover:underline hover:opacity-80">
+				className="flex items-center gap-1.5 transition-opacity hover:opacity-80">
 				<span>AgentLab Raises $5M+ Seed to Build the Future</span>
 				<ArrowRight className="size-3.5 shrink-0" />
 			</Link>

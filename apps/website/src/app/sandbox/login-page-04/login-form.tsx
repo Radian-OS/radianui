@@ -43,7 +43,7 @@ export function LoginForm() {
 		<div className="flex w-full max-w-md flex-col gap-6">
 			{/* Top Heading */}
 			<div className="flex flex-col items-center gap-1 text-center">
-				<h1 className="heading-2 text-fg flex items-center justify-center gap-2 font-bold">
+				<h1 className="heading-2 text-fg flex items-center justify-center gap-2">
 					<span>Welcome Back</span>
 					<span className="text-2xl">👋</span>
 				</h1>

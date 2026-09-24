@@ -34,9 +34,9 @@ export function CourseTable({
 			return <ChevronsUpDown className="text-fg-tertiary size-3.5" />
 		}
 		if (sortOrder === "asc") {
-			return <ArrowUp className="text-foreground size-3.5" />
+			return <ArrowUp className="text-fg size-3.5" />
 		}
-		return <ArrowDown className="text-foreground size-3.5" />
+		return <ArrowDown className="text-fg size-3.5" />
 	}
 
 	return (
@@ -47,7 +47,7 @@ export function CourseTable({
 						{/* Course Column */}
 						<TableHead
 							onClick={() => onSort("title")}
-							className="text-fg-secondary hover:text-foreground cursor-pointer text-xs font-semibold select-none">
+							className="text-fg-secondary hover:text-fg cursor-pointer text-xs font-semibold select-none">
 							<div className="flex items-center gap-1.5">
 								<span>Course</span>
 								{renderSortIcon("title")}
@@ -65,7 +65,7 @@ export function CourseTable({
 						{/* Path Column */}
 						<TableHead
 							onClick={() => onSort("pathCount")}
-							className="text-fg-secondary hover:text-foreground cursor-pointer text-xs font-semibold select-none">
+							className="text-fg-secondary hover:text-fg cursor-pointer text-xs font-semibold select-none">
 							<div className="flex items-center gap-1.5">
 								<span>Path</span>
 								{renderSortIcon("pathCount")}
@@ -75,7 +75,7 @@ export function CourseTable({
 						{/* Score Column */}
 						<TableHead
 							onClick={() => onSort("score")}
-							className="text-fg-secondary hover:text-foreground cursor-pointer text-xs font-semibold select-none">
+							className="text-fg-secondary hover:text-fg cursor-pointer text-xs font-semibold select-none">
 							<div className="flex items-center gap-1.5">
 								<span>Score</span>
 								{renderSortIcon("score")}
@@ -93,7 +93,7 @@ export function CourseTable({
 						{/* Completion Column */}
 						<TableHead
 							onClick={() => onSort("completion")}
-							className="text-fg-secondary hover:text-foreground cursor-pointer text-xs font-semibold select-none">
+							className="text-fg-secondary hover:text-fg cursor-pointer text-xs font-semibold select-none">
 							<div className="flex items-center gap-1.5">
 								<span>Completion</span>
 								{renderSortIcon("completion")}

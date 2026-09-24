@@ -8,7 +8,7 @@ export function HeroLogos() {
 			{BRAND_LOGOS.map((logo) => (
 				<div
 					key={logo.name}
-					className="hover:text-foreground flex items-center gap-2 text-sm font-medium transition-colors">
+					className="hover:text-fg flex items-center gap-2 text-sm font-medium transition-colors">
 					<Image
 						src={`https://www.google.com/s2/favicons?sz=32&domain=${logo.domain}`}
 						alt={logo.name}

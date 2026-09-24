@@ -29,14 +29,14 @@ export function HeroNavbar() {
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
 	return (
-		<header className="bg-background/80 sticky top-0 z-30 w-full backdrop-blur-md">
+		<header className="bg-bg/80 sticky top-0 z-30 w-full backdrop-blur-md">
 			<div className="mx-auto flex max-w-7xl items-center justify-center px-4 py-4 sm:px-8 lg:px-16">
 				<nav className="bg-fill2/80 flex w-full items-center justify-between rounded-full p-1.5 pr-2 pl-3 shadow-xs backdrop-blur-md md:w-auto md:gap-6">
 					{/* Brand Logo */}
 					<Link
 						href="#"
-						className="flex items-center gap-2.5 rounded-full py-1 pr-3 pl-1 hover:underline">
-						<div className="bg-foreground text-background flex size-7 items-center justify-center rounded-full">
+						className="flex items-center gap-2.5 rounded-full py-1 pr-3 pl-1">
+						<div className="bg-primary text-primary-fg flex size-7 items-center justify-center rounded-full">
 							<Image
 								src="https://images.shadcnspace.com/favicon.ico"
 								alt="Logo"
@@ -45,7 +45,7 @@ export function HeroNavbar() {
 								className="size-4.5 rounded-full invert dark:invert-0"
 							/>
 						</div>
-						<span className="text-foreground text-sm font-bold tracking-tight">
+						<span className="text-fg text-sm font-bold tracking-tight">
 							shadcnspace<span className="text-primary">.</span>
 						</span>
 					</Link>
@@ -59,7 +59,7 @@ export function HeroNavbar() {
 										asChild
 										className={cn(
 											navigationMenuTriggerStyle(),
-											"hover:bg-fill1-alpha text-fg-secondary hover:text-foreground rounded-full bg-transparent px-4 py-1.5 text-sm font-medium transition-colors"
+											"hover:bg-fill1-alpha text-fg-secondary hover:text-fg rounded-full bg-transparent px-4 py-1.5 text-sm font-medium transition-colors"
 										)}>
 										<Link href={link.href}>{link.label}</Link>
 									</NavigationMenuLink>
@@ -76,9 +76,7 @@ export function HeroNavbar() {
 							size="36"
 							className="group rounded-full px-5 text-sm font-semibold"
 							asChild>
-							<Link
-								href="#"
-								className="flex items-center gap-1 hover:underline">
+							<Link href="#" className="flex items-center gap-1">
 								<span>Get Started</span>
 								<ChevronRight className="size-4 transition-transform duration-200 group-hover:translate-x-0.5" />
 							</Link>
@@ -106,14 +104,14 @@ export function HeroNavbar() {
 
 			{/* Mobile Dropdown Menu */}
 			{isMobileMenuOpen && (
-				<div className="border-border bg-background border-b px-6 py-4 shadow-lg md:hidden">
+				<div className="border-border bg-elevation-level1 border-b px-6 py-4 shadow-lg md:hidden">
 					<div className="flex flex-col gap-3">
 						{navLinks.map((link) => (
 							<Link
 								key={link.label}
 								href={link.href}
 								onClick={() => setIsMobileMenuOpen(false)}
-								className="text-fg-secondary hover:text-foreground text-sm font-medium hover:underline">
+								className="text-fg-secondary hover:text-fg text-sm font-medium transition-colors">
 								{link.label}
 							</Link>
 						))}
@@ -124,9 +122,7 @@ export function HeroNavbar() {
 								size="36"
 								className="w-full justify-center rounded-full"
 								asChild>
-								<Link
-									href="#"
-									className="flex items-center gap-1 hover:underline">
+								<Link href="#" className="flex items-center gap-1">
 									<span>Get Started</span>
 									<ChevronRight className="size-4" />
 								</Link>

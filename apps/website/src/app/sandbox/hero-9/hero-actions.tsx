@@ -11,14 +11,14 @@ export function HeroActions() {
 			{/* Star rating & reviews */}
 			<div className="flex flex-col items-start gap-1 sm:items-end">
 				<div className="flex items-center gap-1">
-					<Star className="size-4 fill-amber-400 text-amber-400" />
-					<Star className="size-4 fill-amber-400 text-amber-400" />
-					<Star className="size-4 fill-amber-400 text-amber-400" />
-					<Star className="size-4 fill-amber-400 text-amber-400" />
-					<StarHalf className="size-4 fill-amber-400 text-amber-400" />
+					<Star className="fill-warning text-warning size-4" />
+					<Star className="fill-warning text-warning size-4" />
+					<Star className="fill-warning text-warning size-4" />
+					<Star className="fill-warning text-warning size-4" />
+					<StarHalf className="fill-warning text-warning size-4" />
 				</div>
 				<div className="flex items-center gap-1.5 text-xs">
-					<span className="text-foreground font-semibold">
+					<span className="text-fg font-semibold">
 						{HERO_ACTIONS_DATA.ratingText}
 					</span>
 					<span className="text-fg-secondary">

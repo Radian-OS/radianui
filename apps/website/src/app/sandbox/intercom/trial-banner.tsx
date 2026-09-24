@@ -6,13 +6,15 @@ import { Button } from "@/styles/default/ui/button"
 
 export function TrialBanner() {
 	return (
-		<div className="text-fg flex min-h-10 w-full flex-wrap items-center justify-between gap-3 border-b border-purple-200/80 bg-purple-100/70 px-4 py-1.5 text-xs transition-colors select-none dark:border-purple-800/40 dark:bg-purple-950/40">
+		<div className="text-fg border-primary-border/40 bg-primary/10 flex min-h-10 w-full flex-wrap items-center justify-between gap-3 border-b px-4 py-1.5 text-xs transition-colors select-none">
 			{/* Left trial message */}
 			<div className="flex items-center gap-1.5 font-normal">
 				<span>You have</span>
 				<span className="font-bold">8 days left</span>
 				<span>in your</span>
-				<Link href="#trial" className="font-medium underline hover:underline">
+				<Link
+					href="#trial"
+					className="text-primary hover:text-primary-hover font-medium">
 					Advanced trial
 				</Link>
 				<span>. Includes unlimited Fin usage.</span>
@@ -22,7 +24,7 @@ export function TrialBanner() {
 			<div className="flex items-center gap-4">
 				<Link
 					href="#specialist"
-					className="text-fg-secondary hover:text-fg font-medium hover:underline">
+					className="text-fg-secondary hover:text-fg font-medium">
 					Talk to a product specialist
 				</Link>
 				<Button

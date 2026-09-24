@@ -4,7 +4,7 @@ import { FOLIO_HERO_DATA } from "./types"
 export function HeroHeader() {
 	return (
 		<div className="flex flex-col items-center gap-5 text-center">
-			<h1 className="heading-1 text-foreground max-w-4xl text-center font-serif">
+			<h1 className="heading-1 text-fg max-w-4xl text-center font-serif">
 				{FOLIO_HERO_DATA.titleLine1} <br className="hidden sm:inline" />
 				{FOLIO_HERO_DATA.titleLine2}
 			</h1>

@@ -54,7 +54,7 @@ export function JamboPricingSection() {
 				<span className="text-fg-secondary text-[11px] font-extrabold tracking-widest uppercase">
 					Pricing Plan
 				</span>
-				<h2 className="heading-2 mt-4 max-w-2xl font-bold">
+				<h2 className="heading-2 mt-4 max-w-2xl">
 					Simply choose the pricing plan that{" "}
 					<span className="text-orange-text">fits you best.</span>
 				</h2>

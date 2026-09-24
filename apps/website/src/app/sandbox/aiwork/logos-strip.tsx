@@ -30,7 +30,7 @@ export function AiworkLogosStrip() {
 						return (
 							<div
 								key={logo.name}
-								className="text-fg-tertiary hover:text-foreground flex items-center gap-2 transition-colors duration-200">
+								className="text-fg-tertiary hover:text-fg flex items-center gap-2 transition-colors duration-200">
 								<Icon className="size-5 opacity-70" />
 								<span className="text-base font-bold tracking-tight">
 									{logo.name}

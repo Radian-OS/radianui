@@ -50,7 +50,7 @@ export function BlogContent() {
 
 			{/* Pull Quote Callout */}
 			<div className="border-border/50 my-2 border-y py-6">
-				<blockquote className="heading-5 text-fg font-medium">
+				<blockquote className="heading-5 text-fg">
 					&ldquo;{ARTICLE_QUOTE}&rdquo;
 				</blockquote>
 			</div>

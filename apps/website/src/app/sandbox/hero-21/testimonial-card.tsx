@@ -11,7 +11,7 @@ export function TestimonialCard() {
 				<div className="bg-fill3 text-primary flex size-8 items-center justify-center rounded-lg">
 					<Quote className="size-4" />
 				</div>
-				<p className="text-foreground text-xl leading-snug font-normal sm:text-2xl">
+				<p className="text-fg text-xl leading-snug font-normal sm:text-2xl">
 					&ldquo;Working with them helped us turn scattered ideas into a
 					powerful &amp; consistent.&rdquo;
 				</p>
@@ -19,7 +19,7 @@ export function TestimonialCard() {
 
 			{/* Author Details */}
 			<div className="border-border/50 mt-8 flex flex-col gap-0.5 border-t pt-4">
-				<p className="text-foreground text-sm font-semibold">Jonathan Doe</p>
+				<p className="text-fg text-sm font-semibold">Jonathan Doe</p>
 				<p className="text-fg-tertiary text-xs">
 					Head of Finance @SHADCN SPACE
 				</p>

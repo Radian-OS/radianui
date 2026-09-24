@@ -7,6 +7,7 @@ import Image from "next/image"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { Button } from "@/styles/default/ui/button"
+import { Avatar, AvatarFallback, AvatarImage } from "@/styles/default/ui/avatar"
 import {
 	Form,
 	FormControl,
@@ -44,21 +45,17 @@ export function CrisplyProfileSection() {
 	return (
 		<section className="space-y-6">
 			{/* Section Heading (Rule 13: heading-3) */}
-			<h3 className="heading-3 text-fg text-lg font-bold tracking-tight">
-				My Profile
-			</h3>
+			<h3 className="heading-3 text-fg">My Profile</h3>
 
 			{/* Avatar & Photo Action Buttons */}
 			<div className="flex flex-wrap items-center gap-6">
-				<div className="border-border/80 relative size-20 overflow-hidden rounded-full border-2 shadow-xs">
-					<Image
-						src="/sandbox/placeholder.svg"
-						alt="Brian Frederin"
-						fill
-						sizes="80px"
-						className="object-cover"
-					/>
-				</div>
+				<Avatar
+					size="80"
+					rounded="circle"
+					className="border-border/80 border-2 shadow-xs">
+					<AvatarImage src="/sandbox/placeholder.svg" alt="Brian Frederin" />
+					<AvatarFallback className="text-xl font-bold">BF</AvatarFallback>
+				</Avatar>
 
 				<div className="space-y-2">
 					<div className="flex flex-wrap items-center gap-2.5">

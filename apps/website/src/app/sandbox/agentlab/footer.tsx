@@ -62,7 +62,7 @@ export function AgentlabFooter() {
 						<div>
 							<Link
 								href="/sandbox/agentlab"
-								className="flex items-center gap-2.5 transition-opacity hover:underline hover:opacity-90">
+								className="flex items-center gap-2.5 transition-opacity hover:opacity-90">
 								<div className="relative flex size-6 items-center justify-center">
 									<Image
 										src="https://framerusercontent.com/images/D2lhgnJj2kr5EiY0FgikXyptXco.svg"
@@ -101,7 +101,7 @@ export function AgentlabFooter() {
 										<li key={link.label}>
 											<Link
 												href={link.href}
-												className="text-xs text-white/60 transition-colors hover:text-white hover:underline">
+												className="text-xs text-white/60 transition-colors hover:text-white">
 												{link.label}
 											</Link>
 										</li>

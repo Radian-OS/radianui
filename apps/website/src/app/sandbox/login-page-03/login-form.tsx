@@ -46,7 +46,7 @@ export function LoginForm() {
 
 			{/* Heading & Subtitle */}
 			<div className="flex flex-col gap-1">
-				<h1 className="heading-2 text-fg font-bold">Welcome Back</h1>
+				<h1 className="heading-2 text-fg">Welcome Back</h1>
 				<p className="text-fg-secondary text-xs sm:text-sm">
 					Welcome back! Select method to login:
 				</p>

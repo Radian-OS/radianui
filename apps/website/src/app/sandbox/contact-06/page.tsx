@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function Contact06Page() {
 	return (
-		<div className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-zinc-950 text-white">
+		<div className="bg-bg text-fg relative flex min-h-screen w-full items-center justify-center overflow-hidden">
 			{/* Scenic Landscape Backdrop with Next.js Image */}
 			<div className="absolute inset-0 -z-10">
 				<Image
@@ -23,8 +23,8 @@ export default function Contact06Page() {
 					className="object-cover opacity-25"
 				/>
 				{/* Dark vignette gradients */}
-				<div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/80 to-zinc-950/60" />
-				<div className="absolute inset-0 bg-gradient-to-r from-zinc-950/90 via-transparent to-zinc-950/90" />
+				<div className="from-bg via-bg/80 to-bg/60 absolute inset-0 bg-gradient-to-t" />
+				<div className="from-bg/90 to-bg/90 absolute inset-0 bg-gradient-to-r via-transparent" />
 			</div>
 
 			{/* Main 2-Column Content Container */}

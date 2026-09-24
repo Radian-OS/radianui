@@ -16,7 +16,7 @@ export function ProjectRatingStars({ rating }: ProjectRatingStarsProps) {
 					<Star
 						key={starIndex}
 						className={`size-3 ${
-							isFilled ? "fill-blue-500 text-blue-500" : "text-muted/30"
+							isFilled ? "fill-primary text-primary" : "text-fg-tertiary/30"
 						}`}
 					/>
 				)

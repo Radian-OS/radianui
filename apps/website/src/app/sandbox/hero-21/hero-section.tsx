@@ -11,7 +11,7 @@ import { ShowcaseGrid } from "./showcase-grid"
 
 export function HeroSection() {
 	return (
-		<div className="bg-background text-foreground relative min-h-screen w-full overflow-hidden">
+		<div className="bg-bg text-fg relative min-h-screen w-full overflow-hidden">
 			{/* Pill Floating Navbar */}
 			<HeroNavbar />
 
@@ -55,7 +55,7 @@ export function HeroSection() {
 						size="44"
 						className="rounded-full px-6 text-sm font-medium sm:px-8"
 						asChild>
-						<Link href="#" className="hover:underline">
+						<Link href="#">
 							<span>Learn More</span>
 						</Link>
 					</Button>

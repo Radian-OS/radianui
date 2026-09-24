@@ -46,9 +46,7 @@ export function AiworkHowItWorksSection() {
 					</div>
 
 					{/* Rule 13: heading-2 */}
-					<h2 className="heading-2 text-foreground mt-4">
-						Setup your AI workflows
-					</h2>
+					<h2 className="heading-2 text-fg mt-4">Setup your AI workflows</h2>
 
 					<p className="text-fg-secondary mt-3 max-w-xl text-sm leading-relaxed md:text-base">
 						Deploy intelligent AI agents without technical effort. Just connect
@@ -74,7 +72,7 @@ export function AiworkHowItWorksSection() {
 										</span>
 									</div>
 
-									<h3 className="text-foreground mt-5 text-xl font-bold">
+									<h3 className="text-fg mt-5 text-xl font-bold">
 										{item.title}
 									</h3>
 

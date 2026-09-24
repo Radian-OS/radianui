@@ -43,7 +43,7 @@ export function AiworkAutomationSection() {
 					</div>
 
 					{/* Rule 13: heading-2 */}
-					<h2 className="heading-2 text-foreground mt-4">
+					<h2 className="heading-2 text-fg mt-4">
 						AI agents built to remove
 						<br />
 						manual work permanently
@@ -60,7 +60,7 @@ export function AiworkAutomationSection() {
 								className="border-border/70 bg-fill1/40 hover:border-primary/40 grid grid-cols-1 items-center gap-8 rounded-3xl border p-6 transition-all duration-300 md:grid-cols-2 md:p-10">
 								{/* Mockup Graphic (Rule 17: high-fidelity direct asset) */}
 								<div
-									className={`border-border/60 bg-background/90 relative aspect-[1936/1680] w-full overflow-hidden rounded-2xl border shadow-sm ${
+									className={`border-border/60 bg-elevation-level1/90 relative aspect-[1936/1680] w-full overflow-hidden rounded-2xl border shadow-sm ${
 										isImageLeft ? "order-1" : "order-1 md:order-2"
 									}`}>
 									<Image
@@ -77,7 +77,7 @@ export function AiworkAutomationSection() {
 									className={`space-y-4 ${
 										isImageLeft ? "order-2" : "order-2 md:order-1"
 									}`}>
-									<h3 className="text-foreground text-2xl font-bold tracking-tight md:text-3xl">
+									<h3 className="text-fg text-2xl font-bold tracking-tight md:text-3xl">
 										{feature.title}
 									</h3>
 									<p className="text-fg-secondary text-sm leading-relaxed md:text-base">

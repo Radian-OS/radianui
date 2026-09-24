@@ -73,11 +73,11 @@ export function AiworkFooter() {
 					<div className="space-y-4 lg:col-span-4">
 						<Link
 							href="/sandbox/aiwork"
-							className="flex items-center gap-2.5 font-bold tracking-tight hover:underline">
+							className="flex items-center gap-2.5 font-bold tracking-tight">
 							<div className="bg-primary flex size-8 items-center justify-center rounded-lg shadow-sm">
 								<Zap className="size-4 text-white" />
 							</div>
-							<span className="text-foreground text-lg font-bold">AIwork</span>
+							<span className="text-fg text-lg font-bold">AIwork</span>
 						</Link>
 
 						<p className="text-fg-secondary max-w-sm text-xs leading-relaxed">
@@ -96,7 +96,7 @@ export function AiworkFooter() {
 										target="_blank"
 										rel="noopener noreferrer"
 										aria-label={soc.label}
-										className="bg-fill2 hover:bg-fill3 text-fg-secondary hover:text-foreground flex size-8 items-center justify-center rounded-full transition-colors">
+										className="bg-fill2 hover:bg-fill3 text-fg-secondary hover:text-fg flex size-8 items-center justify-center rounded-full transition-colors">
 										<Icon className="size-3.5" />
 									</a>
 								)
@@ -106,14 +106,13 @@ export function AiworkFooter() {
 
 					{/* Company Column */}
 					<div className="space-y-3 lg:col-span-2">
-						<div className="text-foreground text-sm font-bold">Company</div>
+						<div className="text-fg text-sm font-bold">Company</div>
 						<ul className="space-y-2">
 							{companyLinks.map((item) => (
 								<li key={item.label}>
-									{/* Rule 11: Link with className="hover:underline" */}
 									<Link
 										href={item.href}
-										className="text-fg-secondary hover:text-foreground text-xs transition-colors hover:underline">
+										className="text-fg-secondary hover:text-fg text-xs transition-colors">
 										{item.label}
 									</Link>
 								</li>
@@ -123,14 +122,13 @@ export function AiworkFooter() {
 
 					{/* Product Column */}
 					<div className="space-y-3 lg:col-span-2">
-						<div className="text-foreground text-sm font-bold">Product</div>
+						<div className="text-fg text-sm font-bold">Product</div>
 						<ul className="space-y-2">
 							{productLinks.map((item) => (
 								<li key={item.label}>
-									{/* Rule 11: Link with className="hover:underline" */}
 									<Link
 										href={item.href}
-										className="text-fg-secondary hover:text-foreground text-xs transition-colors hover:underline">
+										className="text-fg-secondary hover:text-fg text-xs transition-colors">
 										{item.label}
 									</Link>
 								</li>
@@ -140,7 +138,7 @@ export function AiworkFooter() {
 
 					{/* Newsletter Column */}
 					<div className="space-y-3 lg:col-span-4">
-						<div className="text-foreground text-sm font-bold">Newsletter</div>
+						<div className="text-fg text-sm font-bold">Newsletter</div>
 						<p className="text-fg-secondary text-xs leading-relaxed">
 							Get tips, product updates, and insights on working smarter with
 							AI.
@@ -148,7 +146,7 @@ export function AiworkFooter() {
 
 						{/* Rule 6 & 7: Form with zod & react-hook-form */}
 						{subscribed ? (
-							<div className="rounded-xl border border-emerald-500/20 bg-emerald-500/10 p-3 text-xs font-semibold text-emerald-600 dark:text-emerald-400">
+							<div className="border-success-border/30 bg-success-accent/15 text-success rounded-xl border p-3 text-xs font-semibold">
 								Thank you for subscribing!
 							</div>
 						) : (
@@ -194,10 +192,10 @@ export function AiworkFooter() {
 				<div className="border-border/60 text-fg-tertiary mt-12 flex flex-col items-center justify-between gap-4 border-t pt-8 text-xs sm:flex-row">
 					<div>© 2025 AIwork. All rights reserved.</div>
 					<div className="flex items-center gap-4">
-						<Link href="#privacy" className="hover:underline">
+						<Link href="#privacy" className="hover:text-fg transition-colors">
 							Privacy
 						</Link>
-						<Link href="#terms" className="hover:underline">
+						<Link href="#terms" className="hover:text-fg transition-colors">
 							Terms
 						</Link>
 						<span>Powered by Framer</span>

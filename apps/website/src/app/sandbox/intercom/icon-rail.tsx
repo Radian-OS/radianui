@@ -14,6 +14,7 @@ import {
 } from "lucide-react"
 import Image from "next/image"
 import { IconButton } from "@/styles/default/ui/button"
+import { Avatar, AvatarFallback } from "@/styles/default/ui/avatar"
 
 export function IconRail() {
 	const [activeTab, setActiveTab] = useState("inbox")
@@ -112,9 +113,11 @@ export function IconRail() {
 				</IconButton>
 
 				{/* User Avatar */}
-				<div className="bg-amber-accent text-amber-text mt-1 flex size-7 cursor-pointer items-center justify-center rounded-full text-xs font-bold">
-					AS
-				</div>
+				<Avatar size="32" rounded="circle" className="mt-1 cursor-pointer">
+					<AvatarFallback className="bg-warning-accent text-warning text-xs font-bold">
+						AS
+					</AvatarFallback>
+				</Avatar>
 			</div>
 		</nav>
 	)

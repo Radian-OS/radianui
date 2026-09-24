@@ -5,6 +5,7 @@ import { ArrowUpRight, CheckCircle2 } from "lucide-react"
 import Image from "next/image"
 import { Badge } from "@/styles/default/ui/badge"
 import { Button } from "@/styles/default/ui/button"
+import { Avatar, AvatarFallback, AvatarImage } from "@/styles/default/ui/avatar"
 
 const featureBulletPoints = [
 	"View real-time cash flow",
@@ -67,7 +68,7 @@ export function HeroSection() {
 								className="rounded-full px-2 text-[10px] font-semibold tracking-wider uppercase">
 								NEW
 							</Badge>
-							<span className="text-fg-muted text-xs font-medium">
+							<span className="text-fg-secondary text-xs font-medium">
 								All-in-one analytics for growth
 							</span>
 						</div>
@@ -78,7 +79,7 @@ export function HeroSection() {
 						</h1>
 
 						{/* Subheading */}
-						<p className="text-fg-muted mb-6 text-base leading-relaxed sm:text-lg">
+						<p className="text-fg-secondary mb-6 text-base leading-relaxed sm:text-lg">
 							Monitor income, forecast trends, and categorize expenses{" "}
 							<span className="text-fg font-medium">
 								across every account — all in real time.
@@ -90,7 +91,7 @@ export function HeroSection() {
 							{featureBulletPoints.map((text) => (
 								<div key={text} className="flex items-center gap-3">
 									<CheckCircle2 className="text-primary size-5 shrink-0" />
-									<span className="text-fg-muted text-sm font-normal sm:text-base">
+									<span className="text-fg-secondary text-sm font-normal sm:text-base">
 										{text}
 									</span>
 								</div>
@@ -120,23 +121,20 @@ export function HeroSection() {
 						<div className="flex flex-col gap-3 sm:flex-row sm:items-center">
 							<div className="flex items-center">
 								{socialProofAvatars.map((avatar, idx) => (
-									<div
+									<Avatar
 										key={avatar.id}
-										className={`border-bg relative size-6 shrink-0 overflow-hidden rounded-full border-2 ${
+										size="24"
+										rounded="circle"
+										className={`border-bg shrink-0 border-2 ${
 											idx > 0 ? "-ml-2" : ""
 										}`}>
-										<Image
-											src={avatar.src}
-											alt={avatar.alt}
-											width={24}
-											height={24}
-											className="size-full object-cover"
-										/>
-									</div>
+										<AvatarImage src={avatar.src} alt={avatar.alt} />
+										<AvatarFallback className="text-[10px]">U</AvatarFallback>
+									</Avatar>
 								))}
 							</div>
-							<div className="text-fg-muted text-xs sm:text-sm">
-								<span className="text-fg-muted/60 hidden sm:inline">— </span>
+							<div className="text-fg-secondary text-xs sm:text-sm">
+								<span className="text-fg-tertiary hidden sm:inline">— </span>
 								rated <span className="text-fg font-medium">4.8/5</span> by 200+
 								SMB founders
 							</div>

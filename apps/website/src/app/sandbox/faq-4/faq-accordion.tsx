@@ -73,7 +73,7 @@ export function FaqAccordion({ items = DEFAULT_FAQ_ITEMS }: FaqAccordionProps) {
 					key={item.id}
 					value={item.id}
 					className="border-border/60 py-1">
-					<AccordionTrigger className="text-foreground hover:text-foreground py-4 text-base font-semibold transition-colors">
+					<AccordionTrigger className="text-fg hover:text-fg py-4 text-base font-semibold transition-colors">
 						{item.question}
 					</AccordionTrigger>
 					<AccordionContent className="text-fg-secondary pb-4 text-sm leading-relaxed sm:text-base">

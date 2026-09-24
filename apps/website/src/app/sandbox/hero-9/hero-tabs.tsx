@@ -23,8 +23,8 @@ export function HeroTabs({ activeTab, onTabChange }: HeroTabsProps) {
 							className={cn(
 								"cursor-pointer px-3 py-3 text-center text-xs font-medium transition-colors sm:px-6 sm:py-3.5 sm:text-sm",
 								isActive
-									? "bg-card text-foreground font-semibold"
-									: "bg-muted/30 text-fg-secondary hover:bg-muted/60 hover:text-foreground"
+									? "bg-card text-fg font-semibold"
+									: "bg-fill1/40 text-fg-secondary hover:bg-fill1/80 hover:text-fg"
 							)}>
 							{tab.label}
 						</button>

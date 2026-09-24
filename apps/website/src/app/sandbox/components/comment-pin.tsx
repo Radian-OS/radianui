@@ -79,7 +79,7 @@ export function CommentPin({
 					setIsOpen(!isOpen)
 				}}
 				aria-label={`View comment #${index + 1} from ${comment.authorName}`}
-				className="bg-primary text-primary-fg ring-background group relative -top-3.25 -left-3.25 flex size-6.5 items-center justify-center rounded-full font-mono text-xs font-bold shadow-md ring-2 transition-transform duration-150 hover:scale-110 active:scale-95">
+				className="bg-primary text-primary-fg ring-bg group relative -top-3.25 -left-3.25 flex size-6.5 items-center justify-center rounded-full font-mono text-xs font-bold shadow-md ring-2 transition-transform duration-150 hover:scale-110 active:scale-95">
 				<span>{index + 1}</span>
 				{/* Small pointer tail */}
 				<span className="bg-primary absolute -bottom-1 left-1/2 size-1.5 -translate-x-1/2 rotate-45" />
@@ -163,8 +163,8 @@ export function CommentPin({
 											className="text-fg-tertiary hover:text-fg hover:bg-fill3 flex cursor-pointer items-center gap-1 rounded px-1 py-0.5 text-[10px] font-medium transition-colors">
 											{copied ? (
 												<>
-													<Check className="size-2.5 text-emerald-500" />
-													<span className="font-semibold text-emerald-500">
+													<Check className="text-success size-2.5" />
+													<span className="text-success font-semibold">
 														Copied
 													</span>
 												</>

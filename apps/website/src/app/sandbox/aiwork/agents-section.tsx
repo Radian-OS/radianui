@@ -80,9 +80,7 @@ export function AiworkAgentsSection() {
 					</div>
 
 					{/* Rule 13: heading-2 */}
-					<h2 className="heading-2 text-foreground mt-4">
-						Intelligent AI agents work
-					</h2>
+					<h2 className="heading-2 text-fg mt-4">Intelligent AI agents work</h2>
 
 					<p className="text-fg-secondary mt-4 max-w-2xl text-sm leading-relaxed md:text-base">
 						Our AI agents handle tasks, learn from operational behavior, and
@@ -98,7 +96,7 @@ export function AiworkAgentsSection() {
 							key={agent.title}
 							className="border-border/70 bg-fill1/50 hover:border-primary/40 flex flex-col justify-between overflow-hidden rounded-2xl border p-5 transition-all duration-300">
 							<div
-								className={`relative ${agent.aspect} border-border/60 bg-background/80 mb-5 w-full overflow-hidden rounded-xl border shadow-sm`}>
+								className={`relative ${agent.aspect} border-border/60 bg-elevation-level1/80 mb-5 w-full overflow-hidden rounded-xl border shadow-sm`}>
 								<Image
 									src={agent.imageUrl}
 									alt={agent.title}
@@ -109,9 +107,7 @@ export function AiworkAgentsSection() {
 							</div>
 
 							<div>
-								<h3 className="text-foreground text-xl font-bold">
-									{agent.title}
-								</h3>
+								<h3 className="text-fg text-xl font-bold">{agent.title}</h3>
 								<p className="text-fg-secondary mt-2 text-sm leading-relaxed">
 									{agent.description}
 								</p>
@@ -127,7 +123,7 @@ export function AiworkAgentsSection() {
 							key={agent.title}
 							className="border-border/70 bg-fill1/50 hover:border-primary/40 flex flex-col justify-between overflow-hidden rounded-2xl border p-5 transition-all duration-300">
 							<div
-								className={`relative ${agent.aspect} border-border/60 bg-background/80 mb-4 w-full overflow-hidden rounded-xl border shadow-xs`}>
+								className={`relative ${agent.aspect} border-border/60 bg-elevation-level1/80 mb-4 w-full overflow-hidden rounded-xl border shadow-xs`}>
 								<Image
 									src={agent.imageUrl}
 									alt={agent.title}
@@ -138,9 +134,7 @@ export function AiworkAgentsSection() {
 							</div>
 
 							<div>
-								<h3 className="text-foreground text-lg font-bold">
-									{agent.title}
-								</h3>
+								<h3 className="text-fg text-lg font-bold">{agent.title}</h3>
 								<p className="text-fg-secondary mt-1.5 text-xs leading-relaxed">
 									{agent.description}
 								</p>

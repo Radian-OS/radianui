@@ -51,14 +51,14 @@ export function InquiryForm() {
 	}
 
 	return (
-		<Card className="gap-0 overflow-hidden rounded-2xl border border-zinc-800/80 bg-[#0b0e14] p-0 text-white shadow-2xl sm:rounded-3xl">
+		<Card className="border-border/80 bg-elevation-level1 text-fg gap-0 overflow-hidden rounded-2xl border p-0 shadow-2xl sm:rounded-3xl">
 			<CardContent className="p-6 sm:p-10 lg:p-12">
 				{/* Title with typography utility */}
-				<h2 className="heading-2 text-white">Start the project</h2>
+				<h2 className="heading-2 text-fg">Start the project</h2>
 
 				{/* Success Alert */}
 				{isSubmitted && (
-					<div className="mt-6 flex items-center gap-3 rounded-xl border border-emerald-500/30 bg-emerald-500/10 p-4 text-emerald-400">
+					<div className="border-success-border/30 bg-success-accent/15 text-success mt-6 flex items-center gap-3 rounded-xl border p-4">
 						<CheckCircle2 className="size-5 shrink-0" />
 						<div className="text-xs font-medium">
 							Thank you! Your project inquiry has been received. We will get
@@ -83,7 +83,7 @@ export function InquiryForm() {
 												size="36"
 												placeholder="First name"
 												{...field}
-												className="h-11 rounded-lg border-zinc-800 bg-zinc-900/60 text-white placeholder:text-zinc-500 focus-visible:border-zinc-700"
+												className="border-border bg-fill2 text-fg placeholder:text-fg-tertiary focus-visible:border-border-active h-11 rounded-lg"
 											/>
 										</FormControl>
 										<FormMessage className="text-xs" />
@@ -101,7 +101,7 @@ export function InquiryForm() {
 												size="36"
 												placeholder="Last name"
 												{...field}
-												className="h-11 rounded-lg border-zinc-800 bg-zinc-900/60 text-white placeholder:text-zinc-500 focus-visible:border-zinc-700"
+												className="border-border bg-fill2 text-fg placeholder:text-fg-tertiary focus-visible:border-border-active h-11 rounded-lg"
 											/>
 										</FormControl>
 										<FormMessage className="text-xs" />
@@ -122,7 +122,7 @@ export function InquiryForm() {
 											type="email"
 											placeholder="youremail@website.com"
 											{...field}
-											className="h-11 rounded-lg border-zinc-800 bg-zinc-900/60 text-white placeholder:text-zinc-500 focus-visible:border-zinc-700"
+											className="border-border bg-fill2 text-fg placeholder:text-fg-tertiary focus-visible:border-border-active h-11 rounded-lg"
 										/>
 									</FormControl>
 									<FormMessage className="text-xs" />
@@ -140,11 +140,11 @@ export function InquiryForm() {
 										onValueChange={field.onChange}
 										defaultValue={field.value}>
 										<FormControl>
-											<SelectTrigger className="h-11 rounded-lg border-zinc-800 bg-zinc-900/60 text-sm text-white focus-visible:border-zinc-700 data-placeholder:text-zinc-500">
+											<SelectTrigger className="border-border bg-fill2 text-fg focus-visible:border-border-active data-placeholder:text-fg-tertiary h-11 rounded-lg text-sm">
 												<SelectValue placeholder="Choose a service" />
 											</SelectTrigger>
 										</FormControl>
-										<SelectContent className="border-zinc-800 bg-zinc-900 text-white">
+										<SelectContent className="border-border bg-elevation-level2 text-fg">
 											{serviceOptions.map((opt) => (
 												<SelectItem key={opt} value={opt}>
 													{opt}
@@ -168,7 +168,7 @@ export function InquiryForm() {
 											rows={4}
 											placeholder="Let us know about your project"
 											{...field}
-											className="resize-none rounded-lg border-zinc-800 bg-zinc-900/60 text-sm text-white placeholder:text-zinc-500 focus-visible:border-zinc-700"
+											className="border-border bg-fill2 text-fg placeholder:text-fg-tertiary focus-visible:border-border-active resize-none rounded-lg text-sm"
 										/>
 									</FormControl>
 									<FormMessage className="text-xs" />
@@ -187,11 +187,11 @@ export function InquiryForm() {
 											checked={field.value}
 											onCheckedChange={field.onChange}
 											size="sm"
-											className="data-[state=checked]:bg-primary data-[state=checked]:border-primary mt-0.5 border-zinc-700"
+											className="data-[state=checked]:bg-primary data-[state=checked]:border-primary border-border mt-0.5"
 										/>
 									</FormControl>
 									<div className="space-y-1 leading-none">
-										<FormLabel className="cursor-pointer text-xs font-normal text-zinc-400">
+										<FormLabel className="text-fg-secondary cursor-pointer text-xs font-normal">
 											I have read and acknowledge the Terms and Conditions
 										</FormLabel>
 										<FormMessage className="text-xs" />

@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 
 export default function AiworkPage() {
 	return (
-		<div className="bg-background text-foreground min-h-screen">
+		<div className="bg-bg text-fg min-h-screen">
 			<AiworkNavbar />
 			<main>
 				<AiworkHeroSection />

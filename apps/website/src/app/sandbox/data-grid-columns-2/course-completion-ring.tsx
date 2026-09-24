@@ -19,9 +19,9 @@ export function CourseCompletionRing({
 	const strokeDashoffset = circumference - (percentage / 100) * circumference
 
 	const getProgressColor = (val: number) => {
-		if (val >= 80) return "text-emerald-400 stroke-emerald-400"
-		if (val >= 50) return "text-amber-500 stroke-amber-500"
-		return "text-rose-500 stroke-rose-500"
+		if (val >= 80) return "text-success stroke-success"
+		if (val >= 50) return "text-warning stroke-warning"
+		return "text-error stroke-error"
 	}
 
 	return (
@@ -32,7 +32,7 @@ export function CourseCompletionRing({
 					cx="9"
 					cy="9"
 					r={radius}
-					className="stroke-muted/30"
+					className="stroke-border"
 					strokeWidth="2"
 					fill="transparent"
 				/>
@@ -52,9 +52,7 @@ export function CourseCompletionRing({
 					fill="transparent"
 				/>
 			</svg>
-			<span className="text-foreground text-xs font-semibold">
-				{percentage}%
-			</span>
+			<span className="text-fg text-xs font-semibold">{percentage}%</span>
 		</div>
 	)
 }

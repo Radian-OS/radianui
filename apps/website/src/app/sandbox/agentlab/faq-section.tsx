@@ -76,9 +76,7 @@ export function AgentlabFaqSection() {
 										type="button"
 										onClick={() => toggle(idx)}
 										className="text-fg hover:text-primary flex w-full items-start justify-between gap-4 text-left transition-colors">
-										<span className="heading-4 font-serif text-lg font-normal sm:text-xl">
-											{faq.question}
-										</span>
+										<span className="heading-4 font-serif">{faq.question}</span>
 										<div className="border-border bg-fill2 text-fg flex size-7 shrink-0 items-center justify-center rounded-full border">
 											{isOpen ? (
 												<Minus className="size-3.5" />

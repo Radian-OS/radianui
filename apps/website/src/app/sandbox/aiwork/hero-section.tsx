@@ -14,21 +14,21 @@ export function AiworkHeroSection() {
 			<div className="mx-auto flex max-w-5xl flex-col items-center px-4 text-center">
 				{/* Trustpilot Review Pill Badge */}
 				<div className="border-border/80 bg-fill2/70 mb-6 inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 shadow-xs backdrop-blur-sm">
-					<div className="flex size-4 items-center justify-center rounded-sm bg-[#00b67a] text-white">
+					<div className="bg-success flex size-4 items-center justify-center rounded-sm text-white">
 						<Star className="size-2.5 fill-white text-white" />
 					</div>
-					<span className="text-foreground text-xs font-medium">
+					<span className="text-fg text-xs font-medium">
 						4.8 (2500+) Reviews on
 					</span>
 					<span className="text-fg-tertiary">|</span>
-					<span className="text-foreground flex items-center gap-1 text-xs font-bold">
-						<Star className="size-3 fill-[#00b67a] text-[#00b67a]" />
+					<span className="text-fg flex items-center gap-1 text-xs font-bold">
+						<Star className="fill-success text-success size-3" />
 						<span>trustpilot</span>
 					</span>
 				</div>
 
 				{/* Main Hero Heading (Rule 13: heading-1) */}
-				<h1 className="heading-1 text-foreground max-w-4xl text-center">
+				<h1 className="heading-1 text-fg max-w-4xl text-center">
 					AI agents for less
 					<br />
 					manual work

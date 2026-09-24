@@ -74,7 +74,7 @@ export function ContactForm() {
 
 				{/* Submission Confirmation */}
 				{isSubmitted && (
-					<div className="mt-6 flex items-center gap-3 rounded-xl border border-emerald-500/30 bg-emerald-500/10 p-4 text-emerald-400">
+					<div className="border-success-border/30 bg-success-accent/15 text-success mt-6 flex items-center gap-3 rounded-xl border p-4">
 						<CheckCircle2 className="size-5 shrink-0" />
 						<div className="text-xs font-medium">
 							Thank you for sharing your brief! We will get back to you within
@@ -291,7 +291,7 @@ export function ContactForm() {
 								variant="strong"
 								color="neutral"
 								size="36"
-								className="rounded-lg bg-white px-5 text-sm font-semibold text-zinc-950 shadow-sm transition-colors hover:bg-zinc-200">
+								className="rounded-lg px-5 text-sm font-semibold shadow-sm transition-colors">
 								Send Project Brief
 							</Button>
 						</div>

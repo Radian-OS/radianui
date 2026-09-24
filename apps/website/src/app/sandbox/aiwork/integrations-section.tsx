@@ -69,9 +69,7 @@ export function AiworkIntegrationsSection() {
 					</div>
 
 					{/* Rule 13: heading-2 */}
-					<h2 className="heading-2 text-foreground mt-4">
-						Instant Integrations
-					</h2>
+					<h2 className="heading-2 text-fg mt-4">Instant Integrations</h2>
 
 					<p className="text-fg-secondary mt-3 max-w-xl text-sm leading-relaxed md:text-base">
 						Connect with the tools you already rely on to automate end-to-end
@@ -87,7 +85,7 @@ export function AiworkIntegrationsSection() {
 							className="border-border/70 bg-fill1/50 hover:border-primary/40 hover:bg-fill1 flex flex-col justify-between rounded-2xl border p-6 transition-all duration-300 hover:shadow-md">
 							<div>
 								{/* Rule 9: Use Image with Google favicon service */}
-								<div className="border-border/60 bg-background flex size-11 items-center justify-center rounded-xl border p-2 shadow-xs">
+								<div className="border-border/60 bg-elevation-level1 flex size-11 items-center justify-center rounded-xl border p-2 shadow-xs">
 									<Image
 										src={`https://www.google.com/s2/favicons?sz=64&domain=${item.domain}`}
 										alt={`${item.name} Logo`}
@@ -98,9 +96,7 @@ export function AiworkIntegrationsSection() {
 									/>
 								</div>
 
-								<h3 className="text-foreground mt-4 text-lg font-bold">
-									{item.name}
-								</h3>
+								<h3 className="text-fg mt-4 text-lg font-bold">{item.name}</h3>
 
 								<p className="text-fg-secondary mt-2 text-xs leading-relaxed">
 									{item.description}

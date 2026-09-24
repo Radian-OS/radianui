@@ -44,7 +44,7 @@ export function ProfileForm() {
 			<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
 				{/* Photo Row */}
 				<div className="grid grid-cols-1 items-center gap-2 sm:grid-cols-12 sm:gap-6">
-					<span className="text-foreground text-sm font-medium sm:col-span-4">
+					<span className="text-fg text-sm font-medium sm:col-span-4">
 						Photo
 					</span>
 					<div className="flex items-center gap-3 sm:col-span-8">
@@ -79,7 +79,7 @@ export function ProfileForm() {
 					name="fullName"
 					render={({ field }) => (
 						<FormItem className="grid grid-cols-1 items-center gap-2 sm:grid-cols-12 sm:gap-6">
-							<FormLabel className="text-foreground text-sm font-medium sm:col-span-4">
+							<FormLabel className="text-fg text-sm font-medium sm:col-span-4">
 								Full Name
 							</FormLabel>
 							<div className="flex flex-col gap-1 sm:col-span-8">
@@ -99,7 +99,7 @@ export function ProfileForm() {
 					render={({ field }) => (
 						<FormItem className="grid grid-cols-1 items-center gap-2 sm:grid-cols-12 sm:gap-6">
 							<div className="flex items-center gap-1.5 sm:col-span-4">
-								<FormLabel className="text-foreground text-sm font-medium">
+								<FormLabel className="text-fg text-sm font-medium">
 									Birth Date
 								</FormLabel>
 								<Info className="text-fg-tertiary size-3.5" />
@@ -121,7 +121,7 @@ export function ProfileForm() {
 					render={({ field }) => (
 						<FormItem className="grid grid-cols-1 items-center gap-2 sm:grid-cols-12 sm:gap-6">
 							<div className="flex items-center gap-1.5 sm:col-span-4">
-								<FormLabel className="text-foreground text-sm font-medium">
+								<FormLabel className="text-fg text-sm font-medium">
 									Availability Date
 								</FormLabel>
 								<Info className="text-fg-tertiary size-3.5" />
@@ -142,7 +142,7 @@ export function ProfileForm() {
 					name="company"
 					render={({ field }) => (
 						<FormItem className="grid grid-cols-1 items-center gap-2 sm:grid-cols-12 sm:gap-6">
-							<FormLabel className="text-foreground text-sm font-medium sm:col-span-4">
+							<FormLabel className="text-fg text-sm font-medium sm:col-span-4">
 								Company
 							</FormLabel>
 							<div className="flex flex-col gap-1 sm:col-span-8">
@@ -161,7 +161,7 @@ export function ProfileForm() {
 					name="specialties"
 					render={({ field }) => (
 						<FormItem className="grid grid-cols-1 items-center gap-2 sm:grid-cols-12 sm:gap-6">
-							<FormLabel className="text-foreground text-sm font-medium sm:col-span-4">
+							<FormLabel className="text-fg text-sm font-medium sm:col-span-4">
 								Specialties
 							</FormLabel>
 							<div className="flex flex-col gap-1 sm:col-span-8">
@@ -170,14 +170,14 @@ export function ProfileForm() {
 										{field.value.map((tag) => (
 											<span
 												key={tag}
-												className="bg-fill2 text-foreground inline-flex items-center gap-1 rounded-md px-2 py-0.5 text-xs font-medium">
+												className="bg-fill2 text-fg inline-flex items-center gap-1 rounded-md px-2 py-0.5 text-xs font-medium">
 												<span>{tag}</span>
 												<button
 													type="button"
 													onClick={() =>
 														field.onChange(field.value.filter((t) => t !== tag))
 													}
-													className="text-fg-tertiary hover:text-foreground transition-colors">
+													className="text-fg-tertiary hover:text-fg transition-colors">
 													<X className="size-3" />
 												</button>
 											</span>
@@ -199,7 +199,7 @@ export function ProfileForm() {
 													e.currentTarget.value = ""
 												}
 											}}
-											className="text-foreground placeholder:text-fg-tertiary min-w-[100px] flex-1 bg-transparent text-xs focus:outline-hidden"
+											className="text-fg placeholder:text-fg-tertiary min-w-[100px] flex-1 bg-transparent text-xs focus:outline-hidden"
 										/>
 									</div>
 								</FormControl>
@@ -216,7 +216,7 @@ export function ProfileForm() {
 					render={({ field }) => (
 						<FormItem className="grid grid-cols-1 items-center gap-2 sm:grid-cols-12 sm:gap-6">
 							<div className="flex items-center gap-1.5 sm:col-span-4">
-								<FormLabel className="text-foreground text-sm font-medium">
+								<FormLabel className="text-fg text-sm font-medium">
 									Dismissal Time
 								</FormLabel>
 								<Info className="text-fg-tertiary size-3.5" />
@@ -237,7 +237,7 @@ export function ProfileForm() {
 					name="phoneNumber"
 					render={({ field }) => (
 						<FormItem className="grid grid-cols-1 items-center gap-2 sm:grid-cols-12 sm:gap-6">
-							<FormLabel className="text-foreground text-sm font-medium sm:col-span-4">
+							<FormLabel className="text-fg text-sm font-medium sm:col-span-4">
 								Phone Number
 							</FormLabel>
 							<div className="flex flex-col gap-1 sm:col-span-8">
@@ -256,7 +256,7 @@ export function ProfileForm() {
 					name="visibility"
 					render={({ field }) => (
 						<FormItem className="grid grid-cols-1 items-center gap-2 sm:grid-cols-12 sm:gap-6">
-							<FormLabel className="text-foreground text-sm font-medium sm:col-span-4">
+							<FormLabel className="text-fg text-sm font-medium sm:col-span-4">
 								Visibility
 							</FormLabel>
 							<div className="flex flex-col gap-1 sm:col-span-8">
@@ -284,7 +284,7 @@ export function ProfileForm() {
 					name="availableToHire"
 					render={({ field }) => (
 						<FormItem className="grid grid-cols-1 items-center gap-2 sm:grid-cols-12 sm:gap-6">
-							<FormLabel className="text-foreground text-sm font-medium sm:col-span-4">
+							<FormLabel className="text-fg text-sm font-medium sm:col-span-4">
 								Availability
 							</FormLabel>
 							<div className="flex items-center gap-3 sm:col-span-8">
@@ -294,7 +294,7 @@ export function ProfileForm() {
 										onCheckedChange={field.onChange}
 									/>
 								</FormControl>
-								<span className="text-foreground text-sm font-normal">
+								<span className="text-fg text-sm font-normal">
 									Available to hire
 								</span>
 							</div>
@@ -323,7 +323,7 @@ export function ProfileForm() {
 							variant="strong"
 							color="neutral"
 							size="36"
-							className="gap-1.5 bg-white font-medium text-zinc-950 hover:bg-zinc-200">
+							className="gap-1.5 font-medium">
 							<Save className="size-3.5" />
 							<span>Save changes</span>
 						</Button>

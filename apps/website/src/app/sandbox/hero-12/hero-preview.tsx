@@ -8,11 +8,11 @@ export function HeroPreview() {
 			{/* Ambient background glow */}
 			<div
 				aria-hidden="true"
-				className="pointer-events-none absolute -top-12 h-64 w-3/4 rounded-full bg-blue-500/20 blur-3xl"
+				className="bg-primary/20 pointer-events-none absolute -top-12 h-64 w-3/4 rounded-full blur-3xl"
 			/>
 
-			{/* Blue gradient showcase container */}
-			<Card className="relative w-full max-w-6xl overflow-hidden rounded-3xl border border-blue-500/30 bg-gradient-to-b from-blue-600 via-blue-600/90 to-blue-800/80 p-3 shadow-2xl shadow-blue-500/20 sm:p-5 md:p-6">
+			{/* Gradient showcase container */}
+			<Card className="border-primary-border/30 shadow-primary/20 from-primary via-primary/90 to-primary/80 relative w-full max-w-6xl overflow-hidden rounded-3xl border bg-gradient-to-b p-3 shadow-2xl sm:p-5 md:p-6">
 				<Image
 					src="/sandbox/placeholder.svg"
 					alt="Dashboard Preview"

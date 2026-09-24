@@ -36,7 +36,7 @@ export function TopHeader({ onToggleSidebar }: TopHeaderProps) {
 
 				<div className="flex items-center gap-1.5 truncate">
 					<div className="text-fg-secondary flex items-center gap-1.5">
-						<Globe className="size-4 text-blue-500 dark:text-blue-400" />
+						<Globe className="text-primary size-4" />
 						<span className="hover:text-fg font-medium">AS Mobbin</span>
 					</div>
 
@@ -60,7 +60,7 @@ export function TopHeader({ onToggleSidebar }: TopHeaderProps) {
 					className="text-fg-secondary hover:text-fg">
 					<Star
 						className={`size-4 ${
-							isStarred ? "fill-amber-400 text-amber-400" : "text-fg-tertiary"
+							isStarred ? "fill-warning text-warning" : "text-fg-tertiary"
 						}`}
 					/>
 				</IconButton>

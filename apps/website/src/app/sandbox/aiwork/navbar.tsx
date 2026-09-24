@@ -56,7 +56,7 @@ export function AiworkNavbar() {
 
 	return (
 		<header className="sticky top-4 z-50 mx-auto w-full max-w-5xl px-4">
-			<nav className="border-border/80 bg-background/85 flex items-center justify-between rounded-full border px-5 py-2.5 shadow-sm backdrop-blur-md">
+			<nav className="border-border/80 bg-elevation-level1/85 flex items-center justify-between rounded-full border px-5 py-2.5 shadow-sm backdrop-blur-md">
 				{/* Brand Logo */}
 				<Link
 					href="/sandbox/aiwork"
@@ -64,7 +64,7 @@ export function AiworkNavbar() {
 					<div className="bg-primary flex size-8 items-center justify-center rounded-lg shadow-sm">
 						<Zap className="size-4 text-white" />
 					</div>
-					<span className="text-foreground text-base font-bold">AIwork</span>
+					<span className="text-fg text-base font-bold">AIwork</span>
 				</Link>
 
 				{/* Desktop Navigation Menu (Rule: use @/registry/ui/navigation-menu) */}
@@ -73,7 +73,7 @@ export function AiworkNavbar() {
 						{navItems.map((item) =>
 							item.hasDropdown ? (
 								<NavigationMenuItem key={item.label}>
-									<NavigationMenuTrigger className="hover:bg-fill1-alpha text-fg-secondary hover:text-foreground bg-transparent text-sm font-medium transition-colors">
+									<NavigationMenuTrigger className="hover:bg-fill1-alpha text-fg-secondary hover:text-fg bg-transparent text-sm font-medium transition-colors">
 										{item.label}
 									</NavigationMenuTrigger>
 									<NavigationMenuContent
@@ -86,7 +86,7 @@ export function AiworkNavbar() {
 														asChild
 														className="hover:bg-fill1-alpha flex flex-col gap-0.5 rounded-lg p-2.5 text-sm transition-colors">
 														<Link href={sub.href}>
-															<span className="text-foreground font-semibold">
+															<span className="text-fg font-semibold">
 																{sub.label}
 															</span>
 															<span className="text-fg-secondary text-xs">
@@ -105,7 +105,7 @@ export function AiworkNavbar() {
 										asChild
 										className={cn(
 											navigationMenuTriggerStyle(),
-											"hover:bg-fill1-alpha text-fg-secondary hover:text-foreground bg-transparent text-sm font-medium transition-colors"
+											"hover:bg-fill1-alpha text-fg-secondary hover:text-fg bg-transparent text-sm font-medium transition-colors"
 										)}>
 										<Link href={item.href}>{item.label}</Link>
 									</NavigationMenuLink>
@@ -146,13 +146,13 @@ export function AiworkNavbar() {
 
 			{/* Mobile Dropdown Panel */}
 			{mobileMenuOpen && (
-				<div className="border-border bg-background/95 mt-2 flex flex-col gap-3 rounded-2xl border p-4 shadow-xl backdrop-blur-lg md:hidden">
+				<div className="border-border bg-elevation-level1/95 mt-2 flex flex-col gap-3 rounded-2xl border p-4 shadow-xl backdrop-blur-lg md:hidden">
 					{navItems.map((item) => (
 						<Link
 							key={item.label}
 							href={item.href}
 							onClick={() => setMobileMenuOpen(false)}
-							className="text-fg-secondary hover:text-foreground py-2 text-sm font-medium hover:underline">
+							className="text-fg-secondary hover:text-fg py-2 text-sm font-medium transition-colors">
 							{item.label}
 						</Link>
 					))}

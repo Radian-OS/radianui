@@ -18,7 +18,7 @@ export function CourseTableHeader({
 	return (
 		<div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
 			<div className="flex flex-col gap-1">
-				<h1 className="heading-4 text-foreground">Course Catalog</h1>
+				<h1 className="heading-4 text-fg">Course Catalog</h1>
 				<p className="text-fg-secondary flex items-center gap-1.5 text-xs">
 					<span>{publishedCount} published</span>
 					<span>•</span>

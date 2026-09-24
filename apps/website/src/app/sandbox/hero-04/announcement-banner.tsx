@@ -19,7 +19,7 @@ export function AnnouncementBanner() {
 					className="shrink-0 text-[10px] font-semibold tracking-wider uppercase">
 					NEW
 				</Badge>
-				<span className="text-fg-muted truncate text-xs font-normal">
+				<span className="text-fg-secondary truncate text-xs font-normal">
 					Promote a live event, webinar, or demo in this area
 				</span>
 			</div>
@@ -28,7 +28,7 @@ export function AnnouncementBanner() {
 					type="button"
 					onClick={() => setIsVisible(false)}
 					aria-label="Dismiss banner"
-					className="text-fg-muted hover:text-fg flex size-5 cursor-pointer items-center justify-center rounded-md transition-colors">
+					className="text-fg-secondary hover:text-fg flex size-5 cursor-pointer items-center justify-center rounded-md transition-colors">
 					<X className="size-3.5" />
 				</button>
 			</div>

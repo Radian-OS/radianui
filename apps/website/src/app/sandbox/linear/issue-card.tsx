@@ -21,13 +21,9 @@ export function IssueCard({ issue }: IssueCardProps) {
 			case "todo":
 				return <Circle className="text-fg-tertiary size-4 shrink-0" />
 			case "in_progress":
-				return (
-					<CircleDot className="size-4 shrink-0 text-amber-500 dark:text-amber-400" />
-				)
+				return <CircleDot className="text-warning size-4 shrink-0" />
 			case "done":
-				return (
-					<CheckCircle2 className="size-4 shrink-0 text-blue-500 dark:text-blue-400" />
-				)
+				return <CheckCircle2 className="text-primary size-4 shrink-0" />
 			default:
 				return <Circle className="text-fg-tertiary size-4 shrink-0" />
 		}
@@ -74,7 +70,7 @@ export function IssueCard({ issue }: IssueCardProps) {
 				{/* Due Date if any */}
 				{issue.dueDate && (
 					<div className="bg-fill1 border-border text-fg-secondary inline-flex items-center gap-1 rounded-md border px-2 py-0.5 text-xs">
-						<Calendar className="size-3 text-orange-500 dark:text-orange-400" />
+						<Calendar className="text-warning size-3" />
 						<span>{issue.dueDate}</span>
 					</div>
 				)}

@@ -16,7 +16,7 @@ export function BlogCard({ article }: BlogCardProps) {
 			<CardContent className="flex flex-col gap-6 p-0">
 				{/* Article Cover Image with Smooth Rounded Corners and Hover Zoom */}
 				<div
-					className={`relative w-full overflow-hidden rounded-2xl bg-zinc-900/80 ${
+					className={`bg-elevation-level1 relative w-full overflow-hidden rounded-2xl ${
 						article.isFeatured
 							? "aspect-[16/10] sm:aspect-[16/10]"
 							: "aspect-[16/10]"
@@ -50,7 +50,7 @@ export function BlogCard({ article }: BlogCardProps) {
 
 					{/* Article Title */}
 					<h3
-						className={`text-fg leading-snug font-semibold ${
+						className={`text-fg ${
 							article.isFeatured ? "heading-5" : "heading-6"
 						}`}>
 						<Link href={`/sandbox/blog-02#${article.slug}`} className="text-fg">

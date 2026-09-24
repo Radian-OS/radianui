@@ -16,6 +16,7 @@ import {
 import Image from "next/image"
 import Link from "next/link"
 import { IconButton } from "@/styles/default/ui/button"
+import { Avatar, AvatarFallback } from "@/styles/default/ui/avatar"
 import {
 	Sidebar as RadianSidebar,
 	SidebarContent,
@@ -99,9 +100,11 @@ export function Sidebar({ onOpenNewIssue, onCloseMobile }: SidebarProps) {
 				<button
 					type="button"
 					className="hover:bg-fill1 -ml-1 flex cursor-pointer items-center gap-2 rounded-lg px-2 py-1 text-left transition-colors">
-					<div className="flex size-5 shrink-0 items-center justify-center rounded-full bg-emerald-600 text-[10px] font-bold text-white">
-						AM
-					</div>
+					<Avatar size="20" rounded="circle">
+						<AvatarFallback className="bg-success text-success-fg text-[10px] font-bold">
+							AM
+						</AvatarFallback>
+					</Avatar>
 					<span className="text-fg truncate text-xs font-semibold">
 						AS Mobbin
 					</span>
@@ -193,7 +196,7 @@ export function Sidebar({ onOpenNewIssue, onCloseMobile }: SidebarProps) {
 					</SidebarGroupLabel>
 					<SidebarGroupContent className="mt-0.5 space-y-0.5">
 						<div className="text-fg flex items-center gap-2 px-2.5 py-1.5 text-xs font-semibold">
-							<Globe className="size-4 text-blue-500 dark:text-blue-400" />
+							<Globe className="text-primary size-4" />
 							<span>AS Mobbin</span>
 							<ChevronDown className="text-fg-tertiary ml-auto size-3.5 opacity-60" />
 						</div>
@@ -235,8 +238,7 @@ export function Sidebar({ onOpenNewIssue, onCloseMobile }: SidebarProps) {
 												<Link
 													href={item.href || "#"}
 													target="_blank"
-													rel="noreferrer"
-													className="hover:underline">
+													rel="noreferrer">
 													<Image
 														src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
 														alt="GitHub Logo"
@@ -256,9 +258,7 @@ export function Sidebar({ onOpenNewIssue, onCloseMobile }: SidebarProps) {
 									return (
 										<SidebarMenuItem key={item.id}>
 											<SidebarMenuButton size="32" asChild tooltip={item.label}>
-												<Link
-													href={item.href || "#"}
-													className="hover:underline">
+												<Link href={item.href || "#"}>
 													<Icon className="size-4 shrink-0" />
 													<span className="truncate">{item.label}</span>
 												</Link>

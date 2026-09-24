@@ -32,7 +32,7 @@ export function HeroCta() {
 					href={FOLIO_HERO_DATA.creditLinkHref}
 					target="_blank"
 					rel="noopener noreferrer"
-					className="text-foreground hover:text-fg-secondary transition-colors">
+					className="text-fg hover:text-fg-secondary transition-colors">
 					{FOLIO_HERO_DATA.creditLinkText}
 				</Link>
 			</p>

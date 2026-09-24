@@ -37,9 +37,7 @@ export function CrisplySecuritySection() {
 	return (
 		<section className="space-y-6 pt-6">
 			{/* Section Heading (Rule 13: heading-3) */}
-			<h3 className="heading-3 text-fg text-lg font-bold tracking-tight">
-				Account Security
-			</h3>
+			<h3 className="heading-3 text-fg">Account Security</h3>
 
 			{/* Form with Zod validation */}
 			<Form {...form}>

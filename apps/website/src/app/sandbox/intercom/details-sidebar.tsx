@@ -16,6 +16,7 @@ import {
 } from "lucide-react"
 import Link from "next/link"
 import { Button, IconButton } from "@/styles/default/ui/button"
+import { Avatar, AvatarFallback } from "@/styles/default/ui/avatar"
 
 export function DetailsSidebar() {
 	const [activeTab, setActiveTab] = useState<"details" | "copilot">("details")
@@ -97,9 +98,11 @@ export function DetailsSidebar() {
 					<div className="flex items-center justify-between">
 						<span className="text-fg-secondary font-normal">Assignee</span>
 						<div className="text-fg flex items-center gap-1.5 font-medium">
-							<div className="bg-amber-accent text-amber-text flex size-4.5 items-center justify-center rounded-full text-[10px] font-bold">
-								AS
-							</div>
+							<Avatar size="20" rounded="circle">
+								<AvatarFallback className="bg-warning-accent text-warning text-[10px] font-bold">
+									AS
+								</AvatarFallback>
+							</Avatar>
 							<span>Alex Smith</span>
 						</div>
 					</div>
@@ -185,7 +188,7 @@ export function DetailsSidebar() {
 								<span className="text-fg-secondary">Subject</span>
 								<button
 									type="button"
-									className="text-primary font-medium hover:underline">
+									className="text-primary hover:text-primary-hover font-medium">
 									+ Add
 								</button>
 							</div>
@@ -193,7 +196,7 @@ export function DetailsSidebar() {
 							<div className="pt-1">
 								<Link
 									href="#see-all"
-									className="text-fg-tertiary hover:text-fg text-[11px] font-medium hover:underline">
+									className="text-fg-tertiary hover:text-fg text-[11px] font-medium">
 									See all
 								</Link>
 							</div>

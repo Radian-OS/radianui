@@ -29,7 +29,7 @@ export function CompaniesToolbar({
 			<div className="flex flex-1 flex-wrap items-center gap-2">
 				{/* Compound Search Box */}
 				<div className="border-border/80 bg-elevation-level1/20 focus-within:border-border flex h-8 w-full max-w-sm items-center rounded-lg border px-2.5 transition-colors">
-					<div className="text-foreground border-border/60 flex items-center gap-1.5 border-r pr-2 text-xs font-medium">
+					<div className="text-fg border-border/60 flex items-center gap-1.5 border-r pr-2 text-xs font-medium">
 						<FileText className="text-fg-tertiary size-3.5" />
 						<span>Company</span>
 					</div>
@@ -47,7 +47,7 @@ export function CompaniesToolbar({
 					<button
 						type="button"
 						aria-label="Filter options"
-						className="text-fg-tertiary hover:text-foreground shrink-0 transition-colors">
+						className="text-fg-tertiary hover:text-fg shrink-0 transition-colors">
 						<MoreVertical className="size-3.5" />
 					</button>
 				</div>

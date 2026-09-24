@@ -117,14 +117,14 @@ export default function SigninForm() {
 			<div className="border-border bg-bg w-full max-w-md rounded-2xl border px-6 py-8 shadow-sm">
 				<div className="flex flex-1 flex-col gap-6">
 					<div className="flex flex-col gap-2">
-						<h1 className="heading-5 font-semibold">Sign In</h1>
+						<h1 className="heading-5">Sign In</h1>
 						<p className="text-fg-secondary text-sm">
 							Enter your credentials to access the sandbox
 						</p>
 					</div>
 
 					{serverError && (
-						<div className="border-danger/30 bg-danger/10 text-danger rounded-lg border p-3 text-xs">
+						<div className="border-error-border/30 bg-error-accent/15 text-error rounded-lg border p-3 text-xs">
 							{serverError}
 						</div>
 					)}

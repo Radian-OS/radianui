@@ -65,7 +65,7 @@ export function FaqAccordion({
 			<div className="mx-auto max-w-7xl px-4 lg:px-8 xl:px-16">
 				<div className="border-border border-x">
 					<div className="grid grid-cols-1 lg:grid-cols-2">
-						<div className="bg-muted/10 flex h-full w-full items-center justify-center overflow-hidden">
+						<div className="bg-fill1/30 flex h-full w-full items-center justify-center overflow-hidden">
 							<Image
 								src={imageSrc}
 								alt={imageAlt}
@@ -88,7 +88,7 @@ export function FaqAccordion({
 										key={item.id}
 										value={item.id}
 										className="flex flex-col gap-2 px-4 py-6 sm:p-6">
-										<AccordionTrigger className="text-foreground cursor-pointer p-0 text-lg font-medium hover:no-underline">
+										<AccordionTrigger className="text-fg cursor-pointer p-0 text-lg font-medium hover:no-underline">
 											{item.question}
 										</AccordionTrigger>
 										<AccordionContent className="text-fg-secondary pt-2 text-base leading-relaxed font-normal">
