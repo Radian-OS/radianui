@@ -23,6 +23,7 @@ Always use RadianUI components:
 1. **Check First**: Look in `@/components/ui/` (or your configured `ui` alias in `components.json`) to see if the component is already present.
 2. **Auto-Add Missing Components**: If a required RadianUI component is not yet in the project, immediately install it using `npx radianui@latest add <component>`.
 3. **Import & Use**: Always import and use the RadianUI component rather than writing native HTML elements.
+4. **NEVER Override Component Styles**: RadianUI components are pre-styled to be production-ready. Do NOT pass custom `className` properties to components from `@/components/ui` unless explicitly requested by the user or required to achieve specific styling goals.
 
 ### HTML Element to RadianUI Component Mapping
 
