@@ -5,7 +5,6 @@ import { useTheme } from "next-themes"
 import { toast } from "sonner"
 import { cn } from "@/lib/utils"
 import { Button } from "@/registry/ui/button"
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/registry/ui/tooltip"
 import { BrandLogoTileMenu } from "./BrandLogoTileMenu"
 import type { BrandLogoId, BrandLogoVariant } from "./brand-logos-data"
 import {
@@ -95,50 +94,43 @@ export function BrandLogoTile({
 
 	return (
 		<li className="group relative size-[142px] min-w-0">
-			<Tooltip>
-				<TooltipTrigger asChild>
-					<Button
-						size="32"
-						color="neutral"
-						variant="outline"
-						className="bg-bg hover:bg-bg size-[142px] overflow-hidden rounded-xl p-0"
-						aria-label={`View ${brand.name} ${variant} details`}
-						onClick={() => onSelect(id)}>
-						<img
-							src={lightPngUrl}
-							alt={`${brand.name} ${variant}`}
-							width={variant === "icon" ? 64 : 240}
-							height={64}
-							loading={priority ? "eager" : "lazy"}
-							decoding="async"
-							fetchPriority={priority ? "high" : "auto"}
-							className={cn(
-								"object-contain dark:hidden",
-								variant === "icon" ? "size-12" : "h-12 w-[80%] max-w-45"
-							)}
-						/>
-						<img
-							src={darkPngUrl}
-							alt=""
-							width={variant === "icon" ? 64 : 240}
-							height={64}
-							loading={priority ? "eager" : "lazy"}
-							decoding="async"
-							fetchPriority={priority ? "high" : "auto"}
-							className={cn(
-								"hidden object-contain dark:block",
-								variant === "icon" ? "size-12" : "h-12 w-[80%] max-w-45"
-							)}
-						/>
-					</Button>
-				</TooltipTrigger>
-				<TooltipContent
-					theme="light"
-					side="top"
-					className="z-110 text-xs whitespace-nowrap">
+			<Button
+				size="32"
+				color="neutral"
+				variant="outline"
+				className="bg-bg hover:bg-bg size-[142px] overflow-hidden rounded-xl p-0"
+				aria-label={`View ${brand.name} ${variant} details`}
+				onClick={() => onSelect(id)}>
+				<img
+					src={lightPngUrl}
+					alt={`${brand.name} ${variant}`}
+					width={variant === "icon" ? 64 : 240}
+					height={64}
+					loading={priority ? "eager" : "lazy"}
+					decoding="async"
+					fetchPriority={priority ? "high" : "auto"}
+					className={cn(
+						"object-contain dark:hidden",
+						variant === "icon" ? "size-12" : "h-12 w-[80%] max-w-45"
+					)}
+				/>
+				<img
+					src={darkPngUrl}
+					alt=""
+					width={variant === "icon" ? 64 : 240}
+					height={64}
+					loading={priority ? "eager" : "lazy"}
+					decoding="async"
+					fetchPriority={priority ? "high" : "auto"}
+					className={cn(
+						"hidden object-contain dark:block",
+						variant === "icon" ? "size-12" : "h-12 w-[80%] max-w-45"
+					)}
+				/>
+				<span className="text-fg-secondary absolute inset-x-2 bottom-3 truncate text-xs font-medium transition-opacity duration-200 group-focus-within:opacity-0 group-hover:opacity-0">
 					{brand.name}
-				</TooltipContent>
-			</Tooltip>
+				</span>
+			</Button>
 
 			<BrandLogoTileMenu
 				onCopyPng={copyPng}

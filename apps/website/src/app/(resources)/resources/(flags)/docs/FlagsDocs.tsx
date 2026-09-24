@@ -1,10 +1,13 @@
-import Image from "next/image"
+import { type CountryCode, Flag } from "@radianui/flags"
+import { Check } from "lucide-react"
+import { Card } from "@/registry/ui/card"
 import { ResourceLibraryCTA } from "../../components/ResourceCTA"
 import {
 	ResourceDocs,
 	ResourceFaq,
 	ResourceTextSection,
 } from "../../components/ResourceDocs"
+import FlagUseCasesMarquee from "./FlagUseCasesMarquee"
 
 const useCasePoints = [
 	{
@@ -145,6 +148,42 @@ const developmentPoints = [
 	},
 ]
 
+interface CurrencyOption {
+	country?: CountryCode
+	emoji?: string
+	code: string
+	name: string
+	symbol: string
+	selected?: boolean
+}
+
+const countryOptions = [
+	{ country: "CA", name: "Canada", dialCode: "+1" },
+	{ country: "CN", name: "China", dialCode: "+86", selected: true },
+	{ country: "ID", name: "Indonesia", dialCode: "+62" },
+	{ country: "SE", name: "Sweden", dialCode: "+46" },
+	{ country: "GB", name: "United Kingdom", dialCode: "+44" },
+	{ country: "US", name: "United States", dialCode: "+1" },
+	{ country: "DE", name: "Germany", dialCode: "+00" },
+] as const satisfies ReadonlyArray<{
+	country: CountryCode
+	name: string
+	dialCode: string
+	selected?: boolean
+}>
+
+const popularCurrencies = [
+	{ country: "US", code: "USD", name: "US Dollar", symbol: "$" },
+	{ emoji: "🇪🇺", code: "EUR", name: "Euro", symbol: "€", selected: true },
+	{ country: "GB", code: "GBP", name: "British Pound", symbol: "£" },
+	{ country: "JP", code: "JPY", name: "Japanese Yen", symbol: "¥" },
+] as const satisfies readonly CurrencyOption[]
+
+const asiaPacificCurrencies = [
+	{ country: "IN", code: "INR", name: "Indian Rupee", symbol: "₹" },
+	{ country: "NP", code: "NPR", name: "Nepalese Rupee", symbol: "रू" },
+] as const satisfies readonly CurrencyOption[]
+
 const faqItems = [
 	{
 		question: "Can I use these country flags in commercial products?",
@@ -180,7 +219,7 @@ export default function FlagsDocs() {
 				id="flag-introduction-heading"
 				eyebrow="Introduction"
 				title="What are Country Flag Icons?"
-				visual={<FlagCollectionImage />}>
+				visual={<FlagCollectionCard />}>
 				<p>
 					Country flag icons are visual representations of national flags used
 					to help users quickly identify countries in a user interface. Because
@@ -202,7 +241,8 @@ export default function FlagsDocs() {
 				id="flag-use-cases-heading"
 				eyebrow="Use cases"
 				title="Common Country flag icon UI layouts and patterns"
-				points={useCasePoints}>
+				points={useCasePoints}
+				visual={<FlagUseCasesMarquee />}>
 				<p>
 					Country flag icons are a familiar visual element in products that
 					support users around the world. Whether they&apos;re used in country
@@ -249,23 +289,88 @@ export default function FlagsDocs() {
 	)
 }
 
-function FlagCollectionImage() {
+function FlagCollectionCard() {
 	return (
-		<div className="mx-auto w-full lg:w-200">
-			<Image
-				src="/media/assets-page/flags-light.png"
-				alt="Grid of country flags in a light interface"
-				width={800}
-				height={504}
-				className="border-soft w-full rounded-xl border md:rounded-[20px] dark:hidden"
-			/>
-			<Image
-				src="/media/assets-page/flags-dark.png"
-				alt="Grid of country flags in a dark interface"
-				width={800}
-				height={504}
-				className="border-soft hidden w-full rounded-xl border md:rounded-[20px] dark:block"
-			/>
+		<div className="border-soft bg-fill2 mx-auto flex h-100 w-full items-end justify-end gap-4 overflow-hidden rounded-2xl border pl-4 sm:gap-8 sm:pl-8 lg:w-200 lg:gap-14">
+			<Card className="border-soft w-[284px] shrink-0 translate-y-4 gap-0 rounded-lg py-0 shadow-sm">
+				<div className="border-soft text-fg-tertiary flex h-10 items-center border-b px-3 text-xs">
+					Search
+				</div>
+				<p className="text-fg-tertiary px-3 pt-3 pb-2 text-[11px] font-medium tracking-wide uppercase">
+					All country
+				</p>
+				<ul className="pb-3">
+					{countryOptions.map((country) => (
+						<li
+							key={country.country}
+							className="flex h-7.5 items-center gap-2 px-3 text-xs">
+							<Flag country={country.country} size={20} />
+							<span>{country.name}</span>
+							<span className="text-fg-secondary">{country.dialCode}</span>
+							{"selected" in country && country.selected ? (
+								<Check className="text-fg-tertiary ml-auto size-4" />
+							) : null}
+						</li>
+					))}
+				</ul>
+			</Card>
+
+			<Card className="border-soft w-[310px] shrink-0 translate-y-4 gap-0 rounded-lg border-r-0 py-0 shadow-sm">
+				<CurrencyGroup label="Popular" currencies={popularCurrencies} />
+				<CurrencyGroup
+					label="Asia Pacific"
+					currencies={asiaPacificCurrencies}
+					bordered
+				/>
+			</Card>
+		</div>
+	)
+}
+
+function CurrencyGroup({
+	label,
+	currencies,
+	bordered = false,
+}: {
+	label: string
+	currencies: readonly CurrencyOption[]
+	bordered?: boolean
+}) {
+	return (
+		<div className={bordered ? "border-soft border-t" : undefined}>
+			<p className="text-fg-tertiary px-3 pt-3 pb-2 text-[11px] font-medium tracking-wide uppercase">
+				{label}
+			</p>
+			<ul>
+				{currencies.map((currency) => (
+					<li
+						key={currency.code}
+						className={
+							currency.selected
+								? "bg-fill1 flex h-12 items-center gap-2 px-3"
+								: "flex h-12 items-center gap-2 px-3"
+						}>
+						{currency.country ? (
+							<Flag country={currency.country} size={28} />
+						) : (
+							<span
+								aria-hidden="true"
+								className="flex size-7 items-center justify-center text-xl leading-none">
+								{currency.emoji}
+							</span>
+						)}
+						<span className="flex min-w-0 flex-col">
+							<span className="text-xs font-medium">{currency.code}</span>
+							<span className="text-fg-secondary truncate text-[11px]">
+								{currency.name} ({currency.symbol})
+							</span>
+						</span>
+						{currency.selected ? (
+							<Check className="text-fg-tertiary ml-auto size-4" />
+						) : null}
+					</li>
+				))}
+			</ul>
 		</div>
 	)
 }
