@@ -252,6 +252,9 @@ const nextConfig = {
 	compiler: {
 		removeConsole: false,
 	},
+	eslint: {
+		ignoreDuringBuilds: true,
+	},
 	experimental: {
 		optimizePackageImports: [
 			"lucide-react",
