@@ -51,11 +51,11 @@ export default function PopoverGuide() {
 					Open Tour
 				</Button>
 			</PopoverTrigger>
-			<PopoverContent className="max-w-100 flex w-full flex-col gap-5">
+			<PopoverContent className="flex w-full max-w-100 flex-col gap-5">
 				{/* Header */}
 				<div className="flex flex-col gap-2">
 					<div className="flex items-start justify-between gap-1">
-						<span className="text-fg text-base font-semibold leading-snug">
+						<span className="text-fg text-base leading-snug font-semibold">
 							{current.title}
 						</span>
 						<CompactButton
@@ -68,7 +68,7 @@ export default function PopoverGuide() {
 					</div>
 
 					{/* Body */}
-					<p className="text-fg-secondary text-sm font-normal leading-relaxed">
+					<p className="text-fg-secondary text-sm leading-relaxed font-normal">
 						{current.description}
 					</p>
 				</div>

@@ -2,16 +2,23 @@
 
 import * as React from "react"
 import {
-	ColumnDef,
-	ColumnFiltersState,
-	SortingState,
-	VisibilityState,
+	type ColumnDef,
+	type ColumnFiltersState,
+	type ColumnVisibilityState,
+	type SortingState,
+	columnFilteringFeature,
+	columnResizingFeature,
+	columnSizingFeature,
+	columnVisibilityFeature,
+	createFilteredRowModel,
+	createPaginatedRowModel,
+	createSortedRowModel,
 	flexRender,
-	getCoreRowModel,
-	getFilteredRowModel,
-	getPaginationRowModel,
-	getSortedRowModel,
-	useReactTable,
+	rowPaginationFeature,
+	rowSelectionFeature,
+	rowSortingFeature,
+	tableFeatures,
+	useTable,
 } from "@tanstack/react-table"
 import { ChevronsUpDown } from "lucide-react"
 import { Checkbox } from "@/registry/ui/checkbox"
@@ -23,6 +30,19 @@ import {
 	TableHeader,
 	TableRow,
 } from "@/registry/ui/table"
+
+const features = tableFeatures({
+	columnFilteringFeature,
+	rowSortingFeature,
+	rowPaginationFeature,
+	rowSelectionFeature,
+	columnVisibilityFeature,
+	columnResizingFeature,
+	columnSizingFeature,
+	filteredRowModel: createFilteredRowModel(),
+	sortedRowModel: createSortedRowModel(),
+	paginatedRowModel: createPaginatedRowModel(),
+})
 
 const data: Payment[] = [
 	{
@@ -70,7 +90,7 @@ export type Payment = {
 	email: string
 }
 
-export const columns: ColumnDef<Payment>[] = [
+export const columns: ColumnDef<typeof features, Payment>[] = [
 	{
 		id: "select",
 		header: ({ table }) => (
@@ -144,18 +164,15 @@ export default function BasicDataTable() {
 		[]
 	)
 	const [columnVisibility, setColumnVisibility] =
-		React.useState<VisibilityState>({})
+		React.useState<ColumnVisibilityState>({})
 	const [rowSelection, setRowSelection] = React.useState({})
 
-	const table = useReactTable({
+	const table = useTable({
+		features,
 		data,
 		columns,
 		onSortingChange: setSorting,
 		onColumnFiltersChange: setColumnFilters,
-		getCoreRowModel: getCoreRowModel(),
-		getPaginationRowModel: getPaginationRowModel(),
-		getSortedRowModel: getSortedRowModel(),
-		getFilteredRowModel: getFilteredRowModel(),
 		onColumnVisibilityChange: setColumnVisibility,
 		onRowSelectionChange: setRowSelection,
 		state: {

@@ -40,7 +40,7 @@ export function NavigationBar({
 					sticky ? "sticky top-0" : "relative",
 					className
 				)}>
-				<div className="max-w-368 mx-auto flex w-full items-center justify-between px-4 py-4 md:px-5 lg:gap-4">
+				<div className="mx-auto flex w-full max-w-368 items-center justify-between px-4 py-4 md:px-5 lg:gap-4">
 					<div className="flex h-9 flex-shrink-0 items-center">
 						<WebsiteLogo />
 					</div>
@@ -54,7 +54,7 @@ export function NavigationBar({
 
 						<FigmaPreviewButton className="not-xl:hidden" />
 
-						<EarlyAccessButton className="not-xl:hidden gap-1.5" />
+						<EarlyAccessButton className="gap-1.5 not-xl:hidden" />
 
 						<DesktopThemeToggler />
 

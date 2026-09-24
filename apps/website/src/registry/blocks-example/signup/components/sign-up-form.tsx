@@ -140,7 +140,7 @@ export default function SignUpForm() {
 	}
 
 	return (
-		<div className="w-100 bg-bg flex">
+		<div className="bg-bg flex w-100">
 			<div className="flex flex-1 flex-col gap-8">
 				<div className="flex flex-1 flex-col gap-6">
 					<div>
@@ -254,7 +254,7 @@ export default function SignUpForm() {
 				<div className="flex flex-1 flex-col gap-6">
 					<div className="flex items-center gap-2">
 						<Divider className="flex-1" />
-						<span className="text-fg-secondary whitespace-nowrap text-sm font-medium">
+						<span className="text-fg-secondary text-sm font-medium whitespace-nowrap">
 							Or continue with
 						</span>
 						<Divider className="flex-1" />

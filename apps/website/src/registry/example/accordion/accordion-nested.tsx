@@ -74,7 +74,7 @@ export default function AccordionNested() {
 							<AccordionTrigger className="justify-start gap-2.5 px-3 [&_svg]:-order-1">
 								Can I add my own components?
 							</AccordionTrigger>
-							<AccordionContent className="!ps-10.5 !pb-3 !pe-3">
+							<AccordionContent className="!ps-10.5 !pe-3 !pb-3">
 								A flexible theming system built with design tokens enables easy
 								switching between light, dark, and custom themes while also
 								maintaining consistent component styling.
@@ -84,7 +84,7 @@ export default function AccordionNested() {
 							<AccordionTrigger className="justify-start gap-2.5 px-3 [&_svg]:-order-1">
 								How does layout scaling work?
 							</AccordionTrigger>
-							<AccordionContent className="!ps-10.5 !pb-3 !pe-3">
+							<AccordionContent className="!ps-10.5 !pe-3 !pb-3">
 								Radian UI applies responsive grid variables, adjusting columns
 								and spacing automatically for each device mode.
 							</AccordionContent>

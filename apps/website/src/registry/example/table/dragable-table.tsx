@@ -20,14 +20,20 @@ import {
 } from "@dnd-kit/sortable"
 import { CSS } from "@dnd-kit/utilities"
 import {
-	Cell,
-	ColumnDef,
-	Header,
-	SortingState,
+	type Cell,
+	type ColumnDef,
+	type Header,
+	type SortingState,
+	columnOrderingFeature,
+	columnResizingFeature,
+	columnSizingFeature,
+	columnVisibilityFeature,
+	createSortedRowModel,
 	flexRender,
-	getCoreRowModel,
-	getSortedRowModel,
-	useReactTable,
+	rowSelectionFeature,
+	rowSortingFeature,
+	tableFeatures,
+	useTable,
 } from "@tanstack/react-table"
 import { ChevronDownIcon, ChevronUpIcon, GripVerticalIcon } from "lucide-react"
 import { Badge } from "@/registry/ui/badge"
@@ -40,6 +46,16 @@ import {
 	TableHeader,
 	TableRow,
 } from "@/registry/ui/table"
+
+const features = tableFeatures({
+	rowSortingFeature,
+	rowSelectionFeature,
+	columnOrderingFeature,
+	columnResizingFeature,
+	columnSizingFeature,
+	columnVisibilityFeature,
+	sortedRowModel: createSortedRowModel(),
+})
 
 type Item = {
 	id: string
@@ -109,7 +125,7 @@ const data: Item[] = [
 	},
 ]
 
-const columns: ColumnDef<Item>[] = [
+const columns: ColumnDef<typeof features, Item>[] = [
 	{
 		id: "name",
 		header: "Name",
@@ -173,12 +189,11 @@ export default function Component() {
 		columns.map((column) => column.id as string)
 	)
 
-	const table = useReactTable({
+	const table = useTable({
+		features,
 		data,
 		columns,
 		columnResizeMode: "onChange",
-		getCoreRowModel: getCoreRowModel(),
-		getSortedRowModel: getSortedRowModel(),
 		onSortingChange: setSorting,
 		state: {
 			sorting,
@@ -259,7 +274,7 @@ export default function Component() {
 const DraggableTableHeader = ({
 	header,
 }: {
-	header: Header<Item, unknown>
+	header: Header<typeof features, Item, unknown>
 }) => {
 	const {
 		attributes,
@@ -357,7 +372,11 @@ const DraggableTableHeader = ({
 	)
 }
 
-const DragAlongCell = ({ cell }: { cell: Cell<Item, unknown> }) => {
+const DragAlongCell = ({
+	cell,
+}: {
+	cell: Cell<typeof features, Item, unknown>
+}) => {
 	const { isDragging, setNodeRef, transform, transition } = useSortable({
 		id: cell.column.id,
 	})

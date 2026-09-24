@@ -29,7 +29,7 @@ const BannerSuccessExample = () => {
 		}, 1500)
 	}
 	return (
-		<div className="max-w-160 flex w-full flex-col items-center justify-center gap-6">
+		<div className="flex w-full max-w-160 flex-col items-center justify-center gap-6">
 			{bannerVisible1 && (
 				<Banner onClose={handleClose1} color="success" variant="strong">
 					<BannerContent className="flex gap-2 px-1 sm:flex-row sm:items-center sm:justify-center">

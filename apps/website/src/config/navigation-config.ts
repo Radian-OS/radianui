@@ -4,11 +4,13 @@ import {
 	ClipboardCheck,
 	CodeXml,
 	FileText,
+	Flag as FlagIcon,
 	LetterText,
 	PaintBucket,
 	ScrollText,
 	SquareTerminal,
 	SunMoon,
+	Zap,
 } from "lucide-react"
 import type { LucideIcon } from "lucide-react"
 import {
@@ -189,6 +191,12 @@ const GETTING_STARTED_ITEMS: NavigationItem[] = [
 		isNew: true,
 	},
 	{
+		title: "Skills",
+		url: "/docs/getting-started/skills",
+		icon: Zap,
+		isNew: true,
+	},
+	{
 		title: "llms.txt",
 		url: "/llms.txt",
 		icon: FileText,
@@ -211,6 +219,16 @@ const INSTALLATION_ITEMS: NavigationItem[] = [
 		title: "Manual",
 		url: "/docs/installation/manual",
 		icon: CodeXml,
+	},
+]
+
+const MISCELLANEOUS_ITEMS: NavigationItem[] = [
+	{
+		title: "Flags",
+		description: "Accessible country flags for React",
+		url: "/docs/miscellaneous/flags",
+		icon: FlagIcon,
+		isNew: true,
 	},
 ]
 
@@ -295,5 +313,10 @@ export const navigationItems: NavigationSection[] = [
 		title: "Animations",
 		searchIcon: "/search-icons/search-components.svg",
 		items: ANIMATIONS_ITEMS.sort((a, b) => a.title.localeCompare(b.title)),
+	},
+	{
+		title: "Miscellaneous",
+		searchIcon: "/search-icons/search-components.svg",
+		items: MISCELLANEOUS_ITEMS,
 	},
 ]

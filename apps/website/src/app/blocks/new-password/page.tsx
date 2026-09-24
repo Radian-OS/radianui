@@ -13,7 +13,7 @@ export default function Page({ fullScreen = true }: NewPasswordProps) {
 				"h-full w-full": !fullScreen,
 				"h-screen w-screen": fullScreen,
 			})}>
-			<div className="w-100 bg-bg flex">
+			<div className="bg-bg flex w-100">
 				<div className="flex flex-1 flex-col gap-8">
 					<div className="flex flex-1 flex-col gap-6">
 						<div>

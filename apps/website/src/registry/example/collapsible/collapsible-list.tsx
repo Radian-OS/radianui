@@ -81,7 +81,7 @@ export default function CollapsibleList() {
 
 	return (
 		<div className="flex items-center justify-center">
-			<div className="max-w-100 w-full">
+			<div className="w-full max-w-100">
 				<Collapsible
 					className="flex flex-col"
 					open={open}
@@ -90,8 +90,8 @@ export default function CollapsibleList() {
 						<NotificationCard notification={first} />
 						{!open && (
 							<>
-								<div className="bg-bg border-soft absolute left-3 right-3 top-full -z-10 h-2 rounded-b-xl border-x border-b" />
-								<div className="bg-bg border-soft absolute left-6 right-6 top-full -z-20 h-2 translate-y-2 rounded-b-xl border-x border-b" />
+								<div className="bg-bg border-soft absolute top-full right-3 left-3 -z-10 h-2 rounded-b-xl border-x border-b" />
+								<div className="bg-bg border-soft absolute top-full right-6 left-6 -z-20 h-2 translate-y-2 rounded-b-xl border-x border-b" />
 							</>
 						)}
 					</div>

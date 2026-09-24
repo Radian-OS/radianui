@@ -1,8 +1,111 @@
 ---
 title: Installation
-description: Learn how to install and set up the project.
+description: Install Radian UI in Next.js or Vite with Tailwind CSS. Use the CLI or manual setup to add accessible, customizable React components to your project.
 ---
 
-## Frameworks
+Radian UI is an open-source React component library built with **Tailwind CSS**
+and accessible primitives. Install it in a new or existing project with the
+Radian UI CLI, or follow the manual setup if you want complete control over each
+file and dependency.
+
+Unlike a traditional component package, Radian UI adds the component source code
+directly to your project. You can customize the markup, styles, variants, and
+behavior without waiting for changes to an external library.
+
+## Choose your installation method
+
+Select the guide that matches your React project. Radian UI supports **Next.js**
+and **Vite**, with a manual installation option for custom setups.
 
 <Installation />
+
+### Next.js
+
+Use the [Next.js installation guide](/docs/installation/next) to configure
+Radian UI in a new or existing Next.js application. The guide covers Tailwind
+CSS, TypeScript import aliases, project initialization, and adding your first
+component.
+
+### Vite
+
+Use the [Vite installation guide](/docs/installation/vite) for a React and
+TypeScript project powered by Vite. It includes Tailwind CSS setup, the Vite
+plugin, path aliases, and the Radian UI CLI workflow.
+
+### Manual setup
+
+Choose the [manual installation guide](/docs/installation/manual) if you prefer
+to install dependencies and configure styles, utilities, aliases, and
+`components.json` yourself.
+
+## Quick start with the Radian UI CLI
+
+The CLI is the fastest way to configure Radian UI. Run the initialization command
+from your project directory:
+
+```bash
+npx radianui@latest init
+```
+
+<br />
+The CLI detects your framework and guides you through the project configuration,
+including your source directory, brand color, and font. It then creates the
+Radian UI configuration, installs the required dependencies, adds shared
+utilities, and configures the CSS variables used by the design system.
+<br />
+After initialization, add only the React components your application needs:
+
+```bash
+npx radianui@latest add button
+```
+
+<br />
+You can also add multiple components in one command:
+
+```bash
+npx radianui@latest add button card dialog
+```
+
+<br />
+The generated files are placed in the aliases defined by `components.json`, so
+the components become part of your codebase and can be edited like any other
+React or TypeScript file. See the [CLI documentation](/docs/getting-started/cli)
+for all commands and options.
+
+## Before you install
+
+Make sure your project has the following:
+
+- A Next.js or Vite React project using TypeScript
+- Tailwind CSS for component styling
+- An npm, pnpm, Yarn, or Bun package manager
+- A configured `@/*` import alias for your project source files
+
+<br />
+
+If you are starting from an empty directory, the CLI can scaffold a new Next.js
+or Vite project before configuring Radian UI. For an existing project, it keeps
+your application structure and adds the files required by the component system.
+
+## What installation adds to your project
+
+Radian UI installation prepares the shared foundation used by its components:
+
+- A `components.json` file for component paths and aliases
+- Tailwind CSS theme variables and design tokens
+- A `cn` utility for composing and merging class names
+- Component-specific dependencies when they are required
+- Editable component source files instead of a closed runtime package
+
+Once setup is complete, browse the [React component
+documentation](/docs/components/accordion#installation) and add the components you need. Each
+component page includes installation commands, previews, usage examples, and API
+details to help you build a consistent interface.
+
+## Updating and customizing components
+
+Because Radian UI uses an open-code model, you own every installed component.
+You can change Tailwind CSS classes, add variants, update accessible behavior,
+or connect components to your application state. This approach works well for
+product teams that need a customizable React design system without being locked
+into package-level styling decisions.

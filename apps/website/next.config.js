@@ -94,24 +94,6 @@ const nextConfig = {
 	async headers() {
 		const headers = [
 			{
-				source: "/:path*.(svg|ico|png|jpg|jpeg|webp|woff|woff2)",
-				headers: [
-					{
-						key: "Cache-Control",
-						value: "public, max-age=31536000, immutable",
-					},
-				],
-			},
-			{
-				source: "/static/:path*",
-				headers: [
-					{
-						key: "Cache-Control",
-						value: "public, max-age=2592000, immutable",
-					},
-				],
-			},
-			{
 				source: "/blocks/:path*",
 				headers: [{ key: "Access-Control-Allow-Origin", value: "*" }],
 			},
@@ -175,6 +157,21 @@ const nextConfig = {
 	async redirects() {
 		return [
 			{
+				source: "/docs/getting-started/flags",
+				destination: "/docs/packages/flags",
+				permanent: true,
+			},
+			{
+				source: "/docs/components/flag",
+				destination: "/docs/packages/flags",
+				permanent: true,
+			},
+			{
+				source: "/docs/flags",
+				destination: "/docs/packages/flags",
+				permanent: true,
+			},
+			{
 				source: "/documentation",
 				destination: "/docs/getting-started/introduction",
 				permanent: true,
@@ -205,8 +202,7 @@ const nextConfig = {
 	skipTrailingSlashRedirect: true,
 	pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
 	images: {
-		minimumCacheTTL: 864000,
-		qualities: [75, 80],
+		qualities: [75, 80, 100],
 		remotePatterns: [
 			{
 				protocol: "https",

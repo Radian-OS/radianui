@@ -31,8 +31,8 @@ export default function Page() {
 			<main className="min-h-screen w-full overflow-x-hidden">
 				<section aria-labelledby="home-page-title">
 					<Background>
-						<div className="md:pt-30 pt-15 relative z-30 flex flex-col items-center justify-center gap-10">
-							<div className="max-w-250 flex flex-col items-center justify-center">
+						<div className="relative z-30 flex flex-col items-center justify-center gap-10 pt-15 md:pt-30">
+							<div className="flex max-w-250 flex-col items-center justify-center">
 								<Link
 									href="/docs/getting-started/changelog"
 									prefetch={false}
@@ -85,16 +85,16 @@ export default function Page() {
 
 				<DeferredHomeSection section="playground" minHeight={1300} />
 
-				<div className="max-w-360 mx-auto w-full" aria-hidden="true">
-					<div className="border-soft w-full overflow-clip border-b border-t lg:border-l lg:border-r">
+				<div className="mx-auto w-full max-w-360" aria-hidden="true">
+					<div className="border-soft w-full overflow-clip border-t border-b lg:border-r lg:border-l">
 						<DiagonalDivider />
 					</div>
 				</div>
 
 				<DeferredHomeSection section="ui-blocks" minHeight={1400} />
 
-				<div className="max-w-360 mx-auto w-full" aria-hidden="true">
-					<div className="border-soft w-full overflow-clip border-b border-t lg:border-l lg:border-r">
+				<div className="mx-auto w-full max-w-360" aria-hidden="true">
+					<div className="border-soft w-full overflow-clip border-t border-b lg:border-r lg:border-l">
 						<DiagonalDivider />
 					</div>
 				</div>
@@ -117,30 +117,30 @@ function VideoPreviewWithBeams() {
 				Interactive preview of the Radian UI component library and design
 				system.
 			</figcaption>
-			<div className="bg-primary/45 dark:bg-primary/60 z-25 absolute left-1/2 top-1/2 mx-auto hidden aspect-video w-[90%] max-w-[1300px] -translate-x-1/2 -translate-y-1/2 rounded-full rounded-b-none blur-[50px] md:blur-[100px] lg:w-[85%] lg:blur-[130px] 2xl:w-[70%] dark:block"></div>
-			<div className="max-w-368 z-35 relative w-full px-4 md:px-5">
+			<div className="bg-primary/45 dark:bg-primary/60 absolute top-1/2 left-1/2 z-25 mx-auto hidden aspect-video w-[90%] max-w-[1300px] -translate-x-1/2 -translate-y-1/2 rounded-full rounded-b-none blur-[50px] md:blur-[100px] lg:w-[85%] lg:blur-[130px] 2xl:w-[70%] dark:block"></div>
+			<div className="relative z-35 w-full max-w-368 px-4 md:px-5">
 				<div className="relative z-20 flex justify-center">
 					<VideoDialogPreview />
 				</div>
 
 				<HeroBeamPath
-					className="left-4 top-[-276px] h-[276px] w-[438px] md:left-5"
+					className="top-[-276px] left-4 h-[276px] w-[438px] md:left-5"
 					path={upperHeroBeamPath}
 					viewBox="0 0 438 276"
 				/>
 				<HeroBeamPath
-					className="left-4 top-[-93px] h-[93px] w-[214px] md:left-5"
+					className="top-[-93px] left-4 h-[93px] w-[214px] md:left-5"
 					path={lowerHeroBeamPath}
 					viewBox="0 0 214 93"
 					beamClassName="animate-[var(--animate-beam-flow2)] opacity-0"
 				/>
 				<HeroBeamPath
-					className="right-4 top-[-276px] h-[276px] w-[438px] scale-x-[-1] md:right-5"
+					className="top-[-276px] right-4 h-[276px] w-[438px] scale-x-[-1] md:right-5"
 					path={upperHeroBeamPath}
 					viewBox="0 0 438 276"
 				/>
 				<HeroBeamPath
-					className="right-4 top-[-93px] h-[93px] w-[214px] scale-x-[-1] md:right-5"
+					className="top-[-93px] right-4 h-[93px] w-[214px] scale-x-[-1] md:right-5"
 					path={lowerHeroBeamPath}
 					viewBox="0 0 214 93"
 					beamClassName="animate-[var(--animate-beam-flow2)] opacity-0"

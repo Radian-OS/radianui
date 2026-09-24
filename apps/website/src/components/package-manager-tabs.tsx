@@ -235,7 +235,7 @@ export default function PackageManagerTabs({
 						code={commands[manager]}
 						lineNumbers={false}
 						className={cn(
-							"border-soft max-w-full rounded-[10px] border",
+							"border-soft max-w-full rounded-[10px] border [&_pre]:!px-4 [&_pre]:!py-3.5",
 							className
 						)}
 					/>

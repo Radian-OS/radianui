@@ -9,7 +9,7 @@ export default function SlideWithTooltip() {
 	const [open, setOpen] = React.useState(false)
 
 	return (
-		<div className="w-100 flex gap-2">
+		<div className="flex w-100 gap-2">
 			<Slider
 				className="flex-1"
 				value={[value]}

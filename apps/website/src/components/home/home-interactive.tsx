@@ -110,7 +110,7 @@ const HomeInteractive = () => {
 				onValueChange={handleTabChange}
 				className="h-full">
 				<div className="flex justify-between">
-					<div className="flex overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+					<div className="flex [scrollbar-width:none] overflow-x-auto [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
 						<TabsList className="mx-auto shrink-0 bg-transparent">
 							{PAGES.map((page, idx) => (
 								<TabsTrigger key={`${page.value}-${idx}`} value={page.value}>

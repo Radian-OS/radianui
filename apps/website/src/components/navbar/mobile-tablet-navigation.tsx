@@ -36,7 +36,7 @@ function MobileAccordionTrigger({
 			<div className="flex">
 				<AccordionPrimitive.Trigger
 					type="button"
-					className={`text-fg outline-hidden flex flex-1 cursor-pointer items-center justify-between py-3 text-left font-medium transition-all data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50 [&[data-state=open]>.AccordionChevron]:rotate-180 ${className ?? ""}`.trim()}>
+					className={`text-fg flex flex-1 cursor-pointer items-center justify-between py-3 text-left font-medium outline-hidden transition-all data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50 [&[data-state=open]>.AccordionChevron]:rotate-180 ${className ?? ""}`.trim()}>
 					<span className="flex-1 text-left">{children}</span>
 					<ChevronDown className="AccordionChevron text-fg-tertiary size-5 shrink-0 transition-transform duration-200" />
 				</AccordionPrimitive.Trigger>
@@ -86,7 +86,7 @@ export function MobileNavigation({
 
 	return (
 		<nav
-			className={`bg-bg z-100 fixed right-0 top-0 flex h-screen w-full transform flex-col overflow-y-auto px-4 transition-transform duration-300 ease-in-out md:px-5 ${
+			className={`bg-bg fixed top-0 right-0 z-100 flex h-screen w-full transform flex-col overflow-y-auto px-4 transition-transform duration-300 ease-in-out md:px-5 ${
 				isMobileMenuOpen && isReady ? "translate-x-0" : "translate-x-full"
 			}`}>
 			{/* Top Bar */}
@@ -108,7 +108,7 @@ export function MobileNavigation({
 				</div>
 			</div>
 
-			<div className="flex flex-col items-center justify-center gap-3 pb-4 pt-6 sm:hidden">
+			<div className="flex flex-col items-center justify-center gap-3 pt-6 pb-4 sm:hidden">
 				<EarlyAccessButton size={"44"} className="w-full" />
 				<FigmaPreviewButton size={"44"} className="w-full" />
 			</div>

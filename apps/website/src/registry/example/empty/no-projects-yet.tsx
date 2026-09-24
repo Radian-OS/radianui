@@ -15,8 +15,8 @@ export default function NoProjectsYet() {
 		<Empty>
 			<EmptyMedia
 				variant="icon"
-				className="border-soft shadow-2xs rounded-full border">
-				<span className="bg-bg border-soft shadow-2xs flex items-center justify-center rounded-[inherit] border p-3.5">
+				className="border-soft rounded-full border shadow-2xs">
+				<span className="bg-bg border-soft flex items-center justify-center rounded-[inherit] border p-3.5 shadow-2xs">
 					<Database />
 				</span>
 			</EmptyMedia>

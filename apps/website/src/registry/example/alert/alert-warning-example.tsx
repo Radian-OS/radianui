@@ -11,7 +11,7 @@ import { Button } from "@/registry/ui/button"
 
 const AlertWarningExample = () => {
 	return (
-		<div className="max-w-135 flex w-full flex-col items-center justify-center gap-3">
+		<div className="flex w-full max-w-135 flex-col items-center justify-center gap-3">
 			<Alert color="warning" variant="soft-outline" close>
 				<AlertIcon>
 					<TriangleAlert size={20} />

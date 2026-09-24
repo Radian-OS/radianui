@@ -20,6 +20,10 @@ export const transform = async (
 	content: string,
 	config: RawConfig
 ): Promise<string> => {
+	if (!/\.(tsx?|jsx?)$/.test(filePath)) {
+		return content
+	}
+
 	const sourceFile = project.createSourceFile(filePath, content)
 
 	try {

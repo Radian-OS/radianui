@@ -79,7 +79,7 @@ export function GetProductUpdatesDialog() {
 		<Dialog defaultOpen>
 			<DialogContent
 				backdrop="blur"
-				className="max-w-85 md:max-w-170 flex w-full flex-col gap-0 overflow-hidden p-0 md:flex-row">
+				className="flex w-full max-w-85 flex-col gap-0 overflow-hidden p-0 md:max-w-170 md:flex-row">
 				{/* Left Side - Graphic Background */}
 				<div className="relative hidden w-full overflow-hidden md:flex md:w-1/2">
 					<Image

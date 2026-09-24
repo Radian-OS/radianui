@@ -10,7 +10,7 @@ export default function Page() {
 		<SidebarProvider>
 			<AppSidebar />
 			<SidebarInset>
-				<header className="bg-bg p-4.5 flex shrink-0 items-center gap-2 border-b">
+				<header className="bg-bg flex shrink-0 items-center gap-2 border-b p-4.5">
 					<SidebarTrigger className="md:hidden" />
 					<span className="font-medium">Inbox</span>
 				</header>

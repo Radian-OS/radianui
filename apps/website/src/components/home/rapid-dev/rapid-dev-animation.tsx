@@ -49,7 +49,7 @@ export function RapidDevAnimation({ type }: RapidDevAnimationProps) {
 			className="rapid-animation-viewport bg-fill1 relative h-[240px] w-full max-w-[1440px] overflow-hidden md:h-[430px] lg:h-[720px]"
 			data-nosnippet="">
 			<div
-				className="absolute left-0 top-0 size-max origin-top-left"
+				className="absolute top-0 left-0 size-max origin-top-left"
 				style={{
 					transform: `translateX(${layout.offsetX}px) scale(${layout.scale})`,
 				}}>

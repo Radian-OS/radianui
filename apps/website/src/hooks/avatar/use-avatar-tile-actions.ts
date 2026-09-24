@@ -1,16 +1,14 @@
 "use client"
 
-import { createElement } from "react"
 import { useState } from "react"
 import { toast } from "sonner"
-import { showCopiedToast } from "@/app/(resources)/resources/components/CopiedToast"
+import { showCopiedToast } from "@/app/(resources)/resources/(avatar)/components/CopiedToast"
 import {
 	GRADIENT_MAP,
 	SOLID_COLOR_MAP,
 	generateEditableSvg,
 	resolveRadianColor,
 } from "@/constants/avatar-playground-utils"
-import { AVATAR_SHADOW_MAP } from "@/constants/avatar-shadow-map"
 import { createCompositeBlob } from "@/hooks/avatar/create-composite-blob"
 
 interface UseAvatarTileActionsOptions {
@@ -18,6 +16,7 @@ interface UseAvatarTileActionsOptions {
 	index: number
 	tone: string
 	copyFormat: string
+	showShadow: boolean
 	shouldApplyShadow: boolean
 }
 
@@ -28,6 +27,7 @@ export const useAvatarTileActions = ({
 	index,
 	tone,
 	copyFormat,
+	showShadow,
 	shouldApplyShadow,
 }: UseAvatarTileActionsOptions) => {
 	const [copied, setCopied] = useState(false)
@@ -63,39 +63,39 @@ export const useAvatarTileActions = ({
 		await handleCopyTransparentPng()
 	}
 
-	// 1. Copy PNG (composite with background + shadow)
+	// 1. Copy PNG (composite with background + shadow, or raw transparent if tone === "none")
 	const handleCopyPng = async () => {
+		if (tone === "none") {
+			await handleCopyTransparentPng()
+			return
+		}
+		const blobPromise = createCompositeBlob(
+			tone,
+			src,
+			showShadow,
+			shouldApplyShadow,
+			index,
+			"png"
+		).then((blob) => {
+			if (!blob) throw new Error("PNG generation failed")
+			return blob
+		})
+
 		try {
-			const pngBlobPromise = createCompositeBlob(
-				tone,
-				src,
-				shouldApplyShadow,
-				index,
-				"png"
-			).then((blob) => {
-				if (!blob) throw new Error("PNG generation failed")
-				return blob
-			})
 			await navigator.clipboard.write([
-				new ClipboardItem({ "image/png": pngBlobPromise }),
+				new ClipboardItem({ "image/png": blobPromise }),
 			])
 			markCopied()
 			showCopiedToast({
 				src,
 				index,
 				tone,
-				showShadow: shouldApplyShadow,
+				showShadow,
 				description: "PNG has been copied to your clipboard.",
 			})
 		} catch {
 			try {
-				const blob = await createCompositeBlob(
-					tone,
-					src,
-					shouldApplyShadow,
-					index,
-					"png"
-				)
+				const blob = await blobPromise
 				if (!blob) return
 				await navigator.clipboard.write([
 					new ClipboardItem({ "image/png": blob }),
@@ -105,7 +105,7 @@ export const useAvatarTileActions = ({
 					src,
 					index,
 					tone,
-					showShadow: shouldApplyShadow,
+					showShadow,
 					description: "PNG has been copied to your clipboard.",
 				})
 			} catch {
@@ -161,12 +161,15 @@ export const useAvatarTileActions = ({
 	// 3. Figma Frame (editable SVG string)
 	const handleCopyFigmaFrame = async () => {
 		try {
-			const svgBlobPromise = generateEditableSvg(tone, src, index).then(
-				(svg) => {
-					if (!svg) throw new Error("SVG generation failed")
-					return new Blob([svg], { type: "text/plain" })
-				}
-			)
+			const svgBlobPromise = generateEditableSvg(
+				tone,
+				src,
+				index,
+				showShadow
+			).then((svg) => {
+				if (!svg) throw new Error("SVG generation failed")
+				return new Blob([svg], { type: "text/plain" })
+			})
 			await navigator.clipboard.write([
 				new ClipboardItem({ "text/plain": svgBlobPromise }),
 			])
@@ -176,11 +179,11 @@ export const useAvatarTileActions = ({
 				index,
 				tone,
 				showShadow: shouldApplyShadow,
-				description: "Figma Frame has been copied to your clipboard.",
+				description: "SVG has been copied to your clipboard.",
 			})
 		} catch {
 			try {
-				const svg = await generateEditableSvg(tone, src, index)
+				const svg = await generateEditableSvg(tone, src, index, showShadow)
 				if (!svg) return
 				await navigator.clipboard.writeText(svg)
 				markCopied()
@@ -240,37 +243,19 @@ export const useAvatarTileActions = ({
 		return ""
 	}
 
+	const getBackgroundColor = (): string => {
+		if (tone.startsWith("#")) return tone
+
+		if (SOLID_COLOR_MAP[tone]) return SOLID_COLOR_MAP[tone]
+
+		return ""
+	}
+
 	// 5. Next JS <Image> Tag
 	const handleCopyNextImageTag = async () => {
-		const bgCss = getBackgroundCss()
-		const shadowSrc = AVATAR_SHADOW_MAP[index]
+		const bgColor = getBackgroundColor()
 
-		const lines = [
-			`<div style={{ position: "relative", width: 512, height: 512, overflow: "hidden"${
-				bgCss
-					? `, ${bgCss
-							.split(";")
-							.filter(Boolean)
-							.map((s) => {
-								const [k, ...v] = s.split(":")
-								const camel = k
-									.trim()
-									.replace(/-([a-z])/g, (_, c) => c.toUpperCase())
-								return `${camel}: "${v.join(":").trim()}"`
-							})
-							.join(", ")}`
-					: ""
-			} }}>`,
-			`  <Image src="${src}" alt="Avatar illustration ${index + 1}" fill style={{ objectFit: "cover" }} />`,
-		]
-		if (shadowSrc) {
-			lines.push(
-				`  <Image src="${shadowSrc}" alt="" fill style={{ objectFit: "cover", mixBlendMode: "hard-light", pointerEvents: "none" }} />`
-			)
-		}
-		lines.push(`</div>`)
-
-		const snippet = lines.join("\n")
+		const snippet = `<Image src="${src}" alt="Avatar" width={200} height={200} style={{ objectFit: "cover", backgroundColor: "${bgColor}" }} />`
 		try {
 			await navigator.clipboard.writeText(snippet)
 			markCopied()
@@ -288,21 +273,9 @@ export const useAvatarTileActions = ({
 
 	// 6. HTML <IMG> Tag
 	const handleCopyHtmlImgTag = async () => {
-		const bgCss = getBackgroundCss()
-		const shadowSrc = AVATAR_SHADOW_MAP[index]
+		const bgColor = getBackgroundColor()
 
-		const lines = [
-			`<div style="position: relative; width: 512px; height: 512px; overflow: hidden;${bgCss ? ` ${bgCss}` : ""}">`,
-			`  <img src="${src}" alt="Avatar illustration ${index + 1}" style="width: 100%; height: 100%; object-fit: cover;" />`,
-		]
-		if (shadowSrc) {
-			lines.push(
-				`  <img src="${shadowSrc}" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; mix-blend-mode: hard-light; pointer-events: none;" />`
-			)
-		}
-		lines.push(`</div>`)
-
-		const snippet = lines.join("\n")
+		const snippet = `<img src="${src}" alt="Avatar" style="width: 200px; height: 100%; object-fit: cover; background-color: ${bgColor};" />`
 		try {
 			await navigator.clipboard.writeText(snippet)
 			markCopied()
@@ -318,40 +291,45 @@ export const useAvatarTileActions = ({
 		}
 	}
 
-	// 7. Download PNG
+	// 7. Download PNG / JPG / WebP
 	const handleDownload = async (
 		format: AvatarDownloadFormats,
 		e?: { stopPropagation?: () => void }
 	) => {
 		e?.stopPropagation?.()
 
-		// if (copyFormat === "editable-bg") {
-		// 	const svg = await generateEditableSvg(tone, src, index)
-		// 	if (!svg) return
-		// 	const blob = new Blob([svg], { type: "image/svg+xml" })
-		// 	const link = document.createElement("a")
-		// 	link.download = `avatar-${index + 1}-editable.svg`
-		// 	link.href = URL.createObjectURL(blob)
-		// 	link.click()
-		// 	URL.revokeObjectURL(link.href)
-		// 	toast.success("Downloading SVG...")
-		// 	return
-		// }
+		// For transparent PNGs, download the raw lossless source asset directly to avoid canvas compression/re-encoding
+		if (tone === "none" && format === "png") {
+			try {
+				const res = await fetch(src)
+				const blob = await res.blob()
+				const link = document.createElement("a")
+				link.download = `avatar-${index + 1}.png`
+				link.href = URL.createObjectURL(blob)
+				link.click()
+				URL.revokeObjectURL(link.href)
+				toast.success("Downloading PNG...")
+				return
+			} catch {
+				// Fallback to canvas composite if direct fetch fails
+			}
+		}
 
 		const blob = await createCompositeBlob(
 			tone,
 			src,
+			showShadow,
 			shouldApplyShadow,
 			index,
 			format
 		)
 		if (!blob) return
 		const link = document.createElement("a")
-		link.download = `avatar-${index + 1}.jpg`
+		link.download = `avatar-${index + 1}.${format}`
 		link.href = URL.createObjectURL(blob)
 		link.click()
 		URL.revokeObjectURL(link.href)
-		toast.success("Downloading JPG...")
+		toast.success(`Downloading ${format.toUpperCase()}...`)
 	}
 
 	return {

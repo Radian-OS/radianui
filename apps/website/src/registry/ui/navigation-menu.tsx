@@ -184,7 +184,7 @@ function NavigationMenuViewportPortal({
 				? createPortal(
 						<div
 							data-slot="navigation-menu-viewport-positioner"
-							className="z-60 fixed isolate flex justify-center"
+							className="fixed isolate z-60 flex justify-center"
 							style={
 								position
 									? {
@@ -234,7 +234,7 @@ function NavigationMenuViewport({
 	return (
 		<div
 			data-slot="navigation-menu-viewport-positioner"
-			className="absolute left-0 top-full isolate z-50 flex w-full justify-center">
+			className="absolute top-full left-0 isolate z-50 flex w-full justify-center">
 			{viewport}
 		</div>
 	)
@@ -248,7 +248,7 @@ function NavigationMenuLink({
 		<NavigationMenuPrimitive.Link
 			data-slot="navigation-menu-link"
 			className={cn(
-				"hover:bg-fill1-alpha hover:text-fg focus:bg-fill1-alpha focus:text-fg focus-visible:ring-fill4/50 data-[active=true]:bg-fill1 data-[active=true]:text-fg data-[active=true]:hover:bg-fill1-alpha data-[active=true]:focus:bg-fill1-alpha [&_svg:not([class*='text-'])]:text-fg-secondary flex cursor-pointer flex-col gap-1 rounded-sm p-2 text-sm outline-none transition-all focus-visible:outline-1 focus-visible:ring-[3px] [&_svg:not([class*='size-'])]:size-4",
+				"hover:bg-fill1-alpha hover:text-fg focus:bg-fill1-alpha focus:text-fg focus-visible:ring-fill4/50 data-[active=true]:bg-fill1 data-[active=true]:text-fg data-[active=true]:hover:bg-fill1-alpha data-[active=true]:focus:bg-fill1-alpha [&_svg:not([class*='text-'])]:text-fg-secondary flex cursor-pointer flex-col gap-1 rounded-sm p-2 text-sm transition-all outline-none focus-visible:ring-[3px] focus-visible:outline-1 [&_svg:not([class*='size-'])]:size-4",
 				className
 			)}
 			{...props}

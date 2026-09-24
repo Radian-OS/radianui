@@ -34,7 +34,7 @@ export default function Page({ fullScreen = true }: SigninProps) {
 					/>
 				</div>
 				<div className="bg-bg flex h-full w-full flex-1 shrink-0 items-center justify-center p-5">
-					<div className="w-90 flex flex-col gap-8">
+					<div className="flex w-90 flex-col gap-8">
 						<div className="flex flex-1 flex-col gap-6">
 							<div>
 								<Image
@@ -98,7 +98,7 @@ export default function Page({ fullScreen = true }: SigninProps) {
 						<div className="flex flex-1 flex-col gap-6">
 							<div className="flex items-center gap-2">
 								<Divider className="flex-1" />
-								<span className="text-fg-tertiary whitespace-nowrap text-sm font-medium">
+								<span className="text-fg-tertiary text-sm font-medium whitespace-nowrap">
 									Or continue with
 								</span>
 								<Divider className="flex-1" />

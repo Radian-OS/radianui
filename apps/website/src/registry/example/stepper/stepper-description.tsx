@@ -44,7 +44,7 @@ export default function StepperDescriptionExample() {
 						</StepperTrigger>
 
 						{steps.length > index + 1 && (
-							<StepperSeparator className="group-data-[state=completed]/step:bg-primary absolute inset-x-0 left-[calc(50%+0.875rem)] top-2.5 m-0 group-data-[orientation=horizontal]/stepper-nav:w-[calc(100%-2rem+0.225rem)] group-data-[orientation=horizontal]/stepper-nav:flex-none" />
+							<StepperSeparator className="group-data-[state=completed]/step:bg-primary absolute inset-x-0 top-2.5 left-[calc(50%+0.875rem)] m-0 group-data-[orientation=horizontal]/stepper-nav:w-[calc(100%-2rem+0.225rem)] group-data-[orientation=horizontal]/stepper-nav:flex-none" />
 						)}
 					</StepperItem>
 				))}

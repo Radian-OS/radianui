@@ -40,6 +40,13 @@ const eslintConfig = tseslint.config(
 			"@typescript-eslint/ban-ts-comment": "off",
 			"react-hooks/static-components": "off",
 		},
+	},
+	{
+		settings: {
+			react: {
+				version: "19",
+			},
+		},
 	}
 )
 

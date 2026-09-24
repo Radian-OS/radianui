@@ -1,8 +1,13 @@
 import type { CSSProperties } from "react"
+import { createCompositeBlob } from "@/hooks/avatar/create-composite-blob"
 import { AVATAR_SHADOW_MAP } from "./avatar-shadow-map"
-import { SOLID_COLORS } from "./tone-filter-data"
+import {
+	RADIAN_COLORS,
+	SOLID_COLORS,
+	formatColorName,
+} from "./tone-filter-data"
 
-export const AVATAR_BLEND_OPACITY = 0.15
+export const AVATAR_BLEND_OPACITY = 0.08
 
 export const SOLID_COLOR_MAP: Record<string, string> = Object.fromEntries(
 	SOLID_COLORS.map((c) => {
@@ -66,47 +71,50 @@ export const GRADIENT_MAP: Record<string, GradientDef> = Object.fromEntries(
 	])
 )
 
+const TONE_STYLE_CACHE = new Map<string, CSSProperties>()
+
 export function getToneStyle(tone: string): CSSProperties {
+	const cached = TONE_STYLE_CACHE.get(tone)
+	if (cached) return cached
+
+	let style: CSSProperties = {}
 	if (tone === "none") {
-		return { backgroundColor: "transparent" }
-	}
-	if (SOLID_COLOR_MAP[tone]) {
-		return { backgroundColor: SOLID_COLOR_MAP[tone] }
-	}
-	const gradient = GRADIENT_MAP[tone]
-	if (gradient) {
+		style = { backgroundColor: "transparent" }
+	} else if (SOLID_COLOR_MAP[tone]) {
+		style = { backgroundColor: SOLID_COLOR_MAP[tone] }
+	} else if (GRADIENT_MAP[tone]) {
+		const gradient = GRADIENT_MAP[tone]
 		if (gradient.base) {
-			return {
+			style = {
 				backgroundColor: gradient.base,
 				backgroundImage: `linear-gradient(180deg, ${gradient.overlayFrom} 0%, ${gradient.overlayTo} 100%)`,
 			}
+		} else {
+			style = {
+				background: `linear-gradient(135deg, ${gradient.from}, ${gradient.to})`,
+			}
 		}
-		return {
-			background: `linear-gradient(135deg, ${gradient.from}, ${gradient.to})`,
-		}
-	}
-	if (tone.startsWith("grad-custom:")) {
+	} else if (tone.startsWith("grad-custom:")) {
 		const parts = tone.split(":")
-		return {
+		style = {
 			background: `linear-gradient(135deg, ${parts[1]}, ${parts[2]})`,
 		}
-	}
-	if (tone.startsWith("radian:")) {
+	} else if (tone.startsWith("radian:")) {
 		const colorName = tone.slice("radian:".length)
-		return { backgroundColor: `var(--color-${colorName}-focus)` }
-	}
-	if (tone.startsWith("#")) {
-		return { backgroundColor: tone }
-	}
-	if (tone.startsWith("http") || tone.startsWith("/")) {
-		return {
+		style = { backgroundColor: `var(--color-${colorName}-focus)` }
+	} else if (tone.startsWith("#")) {
+		style = { backgroundColor: tone }
+	} else if (tone.startsWith("http") || tone.startsWith("/")) {
+		style = {
 			backgroundImage: `url(${tone})`,
 			backgroundSize: "104% 104%",
 			backgroundPosition: "center",
 			backgroundRepeat: "no-repeat",
 		}
 	}
-	return {}
+
+	TONE_STYLE_CACHE.set(tone, style)
+	return style
 }
 
 /**
@@ -124,49 +132,62 @@ export function resolveRadianColor(tone: string): string {
 	return resolved || "#f3f4f6"
 }
 
-export const AVATARS = Array.from(
-	{ length: 216 },
-	(_, i) =>
-		`https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/avatars/src/${i + 1}.png`
+export const AVATAR_CDN_CONFIG = {
+	baseUrl:
+		"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@v1.0.2/packages",
+	uncompressedPath: "/uncompressed-avatars/src",
+	compressedPath: "/avatars/src",
+	extension: ".png",
+	total: 216,
+}
+
+export const getAvatarUrl = (index: number, compressed: boolean = false) => {
+	const path = compressed
+		? AVATAR_CDN_CONFIG.compressedPath
+		: AVATAR_CDN_CONFIG.uncompressedPath
+	return `${AVATAR_CDN_CONFIG.baseUrl}${path}/${index + 1}${AVATAR_CDN_CONFIG.extension}`
+}
+
+export const AVATARS = Array.from({ length: AVATAR_CDN_CONFIG.total }, (_, i) =>
+	getAvatarUrl(i, false)
 )
 
 // Maps each category to the avatar numbers (1-indexed) that belong to it.
 // "all" is handled separately and shows every avatar.
 export const CATEGORY_AVATAR_MAP: Record<string, number[]> = {
 	professional: [
-		9, 11, 31, 32, 40, 52, 71, 72, 80, 85, 89, 90, 92, 100, 101, 110, 118, 125,
-		132, 136, 139, 142, 144, 156, 173, 195, 201, 202, 203, 204, 205, 206, 207,
-		208, 209, 210, 211, 212, 213, 214, 215, 216,
+		9, 11, 22, 27, 31, 32, 40, 41, 48, 52, 71, 72, 78, 79, 80, 83, 85, 89, 90,
+		91, 92, 93, 100, 101, 105, 118, 125, 132, 133, 136, 139, 142, 144, 156, 158,
+		169, 173, 182, 195, 196, 202, 208, 210, 214,
 	],
 	casual: [
-		1, 2, 3, 4, 5, 6, 7, 8, 10, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23,
-		24, 25, 26, 27, 28, 29, 30, 33, 34, 35, 36, 37, 38, 39, 41, 42, 43, 44, 45,
-		46, 47, 48, 49, 50, 51, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65,
-		66, 67, 68, 69, 70, 73, 74, 75, 76, 77, 78, 79, 81, 82, 83, 84, 86, 87, 88,
-		91, 93, 94, 95, 96, 97, 98, 99, 102, 103, 104, 105, 106, 107, 108, 109, 111,
-		112, 113, 114, 115, 116, 117, 119, 120, 121, 122, 123, 124, 126, 127, 128,
-		129, 130, 131, 133, 134, 135, 137, 138, 140, 141, 143, 145, 146, 147, 148,
-		149, 150, 151, 152, 153, 154, 155, 157, 158, 159, 160, 161, 162, 163, 164,
-		165, 166, 167, 168, 169, 170, 171, 172, 174, 175, 176, 177, 178, 179, 180,
-		181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 196,
-		197, 198, 199, 200,
+		1, 2, 3, 4, 5, 6, 7, 8, 10, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 23, 24,
+		25, 26, 28, 29, 30, 33, 34, 35, 36, 37, 38, 39, 42, 43, 44, 45, 46, 47, 49,
+		50, 51, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69,
+		70, 73, 74, 75, 76, 77, 81, 82, 84, 86, 87, 88, 94, 95, 96, 97, 98, 99, 102,
+		103, 104, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 119,
+		120, 121, 122, 123, 124, 126, 127, 128, 129, 130, 131, 134, 135, 137, 138,
+		140, 141, 143, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 157,
+		159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 170, 171, 172, 174, 175,
+		176, 177, 178, 179, 180, 181, 183, 184, 185, 186, 187, 188, 189, 190, 191,
+		192, 193, 194, 197, 198, 199, 200, 201, 204, 206, 209, 211, 212, 213, 215,
+		216,
 	],
 	male: [
 		1, 3, 4, 6, 8, 10, 12, 14, 16, 18, 20, 21, 23, 24, 26, 29, 31, 34, 35, 38,
-		39, 41, 42, 45, 46, 48, 50, 51, 53, 55, 56, 57, 59, 61, 63, 67, 68, 70, 71,
-		72, 73, 74, 76, 77, 78, 81, 87, 94, 100, 102, 103, 104, 105, 107, 108, 113,
-		115, 116, 117, 118, 119, 120, 124, 125, 126, 127, 128, 129, 130, 133, 135,
-		136, 137, 142, 144, 145, 146, 149, 150, 151, 155, 159, 160, 162, 164, 165,
-		166, 167, 169, 174, 180, 183, 185, 186, 187, 188, 190, 194, 195, 198, 199,
-		200,
+		39, 42, 45, 46, 50, 51, 53, 55, 56, 57, 59, 61, 63, 67, 68, 70, 71, 72, 73,
+		74, 76, 77, 78, 81, 87, 94, 100, 102, 103, 104, 105, 107, 108, 113, 115,
+		116, 117, 118, 119, 120, 124, 125, 126, 127, 128, 129, 130, 133, 135, 136,
+		137, 142, 144, 145, 146, 149, 150, 151, 155, 159, 160, 162, 164, 165, 166,
+		167, 169, 174, 180, 183, 185, 186, 187, 188, 190, 194, 195, 198, 199, 200,
 	],
 	female: [
 		2, 5, 7, 9, 11, 13, 15, 17, 19, 22, 25, 27, 28, 30, 32, 33, 36, 37, 40, 43,
-		44, 47, 49, 52, 54, 58, 60, 62, 64, 65, 66, 69, 75, 79, 80, 82, 83, 84, 85,
-		86, 88, 89, 90, 91, 92, 93, 95, 96, 97, 98, 99, 101, 106, 109, 110, 111,
-		112, 114, 121, 122, 123, 131, 132, 134, 138, 139, 140, 141, 143, 147, 148,
-		152, 153, 154, 156, 157, 158, 161, 163, 168, 170, 171, 172, 173, 175, 176,
-		177, 178, 179, 181, 182, 184, 189, 191, 192, 193, 196, 197,
+		44, 47, 49, 52, 54, 58, 60, 62, 64, 65, 66, 69, 75, 79, 80, 82, 84, 85, 86,
+		88, 89, 90, 91, 92, 93, 95, 96, 97, 98, 99, 101, 106, 109, 110, 111, 112,
+		114, 121, 122, 123, 131, 132, 134, 138, 139, 140, 141, 143, 147, 148, 152,
+		153, 154, 156, 157, 161, 163, 168, 170, 171, 172, 173, 175, 176, 177, 178,
+		179, 181, 184, 189, 191, 192, 193, 196, 197,
 	],
 }
 
@@ -175,33 +196,53 @@ export const CATEGORY_AVATAR_MAP: Record<string, number[]> = {
  * avatar. Keep this in one place so filtered and customized avatars retain the
  * same identity while their background description changes.
  */
+const HEX_TO_SOLID_COLOR_NAME: Record<string, string> = Object.fromEntries(
+	SOLID_COLORS.map((c) => {
+		const match = c.className.match(/bg-\[(#[0-9a-fA-F]+)\]/i)
+		const hex = match ? match[1].toLowerCase() : ""
+		return [hex, formatColorName(c.id)]
+	}).filter(([hex]) => Boolean(hex))
+)
+
 export function getAvatarAltText(avatarNumber: number, tone: string): string {
 	const style = CATEGORY_AVATAR_MAP.professional.includes(avatarNumber)
-		? "professional"
-		: "casual"
+		? "Professional"
+		: "Casual"
 	const presentation = CATEGORY_AVATAR_MAP.female.includes(avatarNumber)
 		? "female"
 		: "male"
 
-	let background = "neutral background"
+	let background = "neutral"
 	if (tone === "none") {
-		background = "transparent background"
-	} else if (tone.startsWith("#")) {
-		background = `${tone} background`
+		background = "transparent"
 	} else if (tone.startsWith("radian:")) {
-		background = `${tone.slice("radian:".length).replaceAll("-", " ")} background`
+		const radian = RADIAN_COLORS.find((c) => c.id === tone)
+		background = radian
+			? radian.label
+			: formatColorName(tone.slice("radian:".length))
+	} else if (SOLID_COLORS.some((c) => c.id === tone)) {
+		background = formatColorName(tone)
+	} else if (HEX_TO_SOLID_COLOR_NAME[tone.toLowerCase()]) {
+		background = HEX_TO_SOLID_COLOR_NAME[tone.toLowerCase()]
+	} else if (tone.startsWith("#")) {
+		background = tone
 	} else if (tone.startsWith("http") || tone.startsWith("/")) {
 		const filename = tone.split("/").pop()?.split("?")[0] ?? "custom"
-		const name = filename
+		background = filename
 			.replace(/^(IMG|Grad)-/, "")
 			.replace(/\.[^.]+$/, "")
 			.replace(/%20/gi, " ")
-		background = `${name} background`
+	} else if (tone.startsWith("grad-custom:")) {
+		const parts = tone.split(":")
+		background = `${parts[1]} to ${parts[2]}`
+	} else if (tone.startsWith("grad-")) {
+		const baseId = tone.replace(/^grad-/, "")
+		background = formatColorName(baseId)
 	} else if (tone !== "neutral") {
-		background = `${tone.replace(/^grad-/, "").replaceAll("/", " ")} background`
+		background = formatColorName(tone)
 	}
 
-	return `${style[0].toUpperCase()}${style.slice(1)} ${presentation} UI avatar illustration ${avatarNumber} on a ${background}`
+	return `${style} ${presentation} UI avatar on "${background}" background image, avatar=${avatarNumber}.png`
 }
 
 export function randomHexColor(): string {
@@ -233,34 +274,34 @@ async function fetchImageAsDataUrl(url: string): Promise<string> {
 	if (cached) return cached
 
 	const res = await fetch(url)
-	const buffer = await res.arrayBuffer()
-	const contentType = res.headers.get("content-type") || "image/png"
+	const blob = await res.blob()
 
-	// Convert ArrayBuffer to base64 in chunks to avoid call stack limits
-	const bytes = new Uint8Array(buffer)
-	let binary = ""
-	const chunkSize = 8192
-	for (let i = 0; i < bytes.length; i += chunkSize) {
-		binary += String.fromCharCode(...bytes.subarray(i, i + chunkSize))
-	}
-	const base64 = btoa(binary)
-	const dataUrl = `data:${contentType};base64,${base64}`
-
-	imageDataUrlCache.set(url, dataUrl)
-	return dataUrl
+	return new Promise<string>((resolve, reject) => {
+		const reader = new FileReader()
+		reader.onloadend = () => {
+			const dataUrl = (reader.result as string) || ""
+			imageDataUrlCache.set(url, dataUrl)
+			resolve(dataUrl)
+		}
+		reader.onerror = reject
+		reader.readAsDataURL(blob)
+	})
 }
 
 export async function generateEditableSvg(
 	tone: string,
 	src: string,
-	avatarIndex?: number
+	avatarIndex?: number,
+	showShadow: boolean = true
 ): Promise<string> {
-	const size = 512
+	const size = 1024
 
 	// Kick off avatar & shadow fetch in parallel
 	const avatarPromise = fetchImageAsDataUrl(src).catch(() => "")
 	const shadowSrc =
-		typeof avatarIndex === "number" ? AVATAR_SHADOW_MAP[avatarIndex] : undefined
+		typeof avatarIndex === "number" && tone !== "none" && showShadow
+			? AVATAR_SHADOW_MAP[avatarIndex]
+			: undefined
 	const shadowPromise = shadowSrc
 		? fetchImageAsDataUrl(shadowSrc).catch(() => "")
 		: Promise.resolve("")
@@ -293,59 +334,116 @@ export async function generateEditableSvg(
 		}
 	}
 
+	// --- 1.5 Determine SVG tint overlay --------------------------------------
+	let tintElement = ""
+	if (tone !== "none" && tone !== "neutral") {
+		let innerTint = ""
+		if (SOLID_COLOR_MAP[tone]) {
+			innerTint = `<rect width="${size}" height="${size}" fill="${SOLID_COLOR_MAP[tone]}" />`
+		} else if (GRADIENT_MAP[tone]) {
+			const g = GRADIENT_MAP[tone]
+			if (g.base) {
+				innerTint = `<rect width="${size}" height="${size}" fill="${g.base}" />\n<rect width="${size}" height="${size}" fill="url(#bg-grad)" />`
+			} else {
+				innerTint = `<rect width="${size}" height="${size}" fill="url(#bg-grad)" />`
+			}
+		} else if (tone.startsWith("grad-custom:")) {
+			innerTint = `<rect width="${size}" height="${size}" fill="url(#bg-grad)" />`
+		} else if (tone.startsWith("#")) {
+			innerTint = `<rect width="${size}" height="${size}" fill="${tone}" />`
+		} else if (tone.startsWith("radian:")) {
+			innerTint = `<rect width="${size}" height="${size}" fill="${resolveRadianColor(tone)}" />`
+		} else if (tone.startsWith("http") || tone.startsWith("/")) {
+			const imageTint = getImageBackgroundTint(tone)
+			if (imageTint) {
+				innerTint = `<rect width="${size}" height="${size}" fill="${imageTint}" />`
+			} else {
+				try {
+					const base64 = await fetchImageAsDataUrl(tone)
+					innerTint = `<image href="${base64}" width="${size}" height="${size}" preserveAspectRatio="xMidYMid slice" />`
+				} catch {
+					// Fallback if image fails to load
+				}
+			}
+		}
+
+		if (innerTint) {
+			tintElement = `<g id="tint-overlay" data-locked="true" locked="true" style="mix-blend-mode:color-burn;" opacity="${AVATAR_BLEND_OPACITY}" pointer-events="none">\n${innerTint}\n</g>`
+		}
+	}
+
 	// --- 2. Await avatar & shadow data URLs ----------------------------------
 	const avatarDataUrl = await avatarPromise
 	if (!avatarDataUrl) return ""
 	const shadowDataUrl = await shadowPromise
 
-	// --- 3. Assemble SVG: Frame (with fill) → avatar + shadow ----------------
+	// --- 3. Assemble SVG: Background → shadow (hard-light) → avatar → tint ---
 	return [
 		`<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">`,
 		bgElement ? `<!-- Background Layer -->\n${bgElement}` : "",
-		`<image id="avatar" data-locked="true" locked="true" href="${avatarDataUrl}" width="${size}" height="${size}" />`,
 		shadowDataUrl
 			? `<image id="shadow" data-locked="true" locked="true" style="mix-blend-mode:hard-light" href="${shadowDataUrl}" width="${size}" height="${size}" />`
 			: "",
+		`<image id="avatar" data-locked="true" locked="true" href="${avatarDataUrl}" width="${size}" height="${size}" />`,
+		tintElement ? `<!-- Tint Overlay -->\n${tintElement}` : "",
 		`</svg>`,
 	].join("\n")
 }
 
 /**
- * Picks a random avatar, generates an editable SVG with the given background
- * tone, and copies it to the clipboard as text so it can be pasted in Figma.
+ * Picks a random avatar, renders it onto a composite canvas with the given
+ * background tone and shadow, and copies it to the clipboard as a PNG image.
  * Returns the avatar image URL and index on success, or `null` on failure.
  *
  * @param tone - The background tone to apply. Defaults to `"none"` (transparent).
+ * @param showShadow - Whether to apply the shadow overlay. Defaults to `true`.
  */
 export async function copyRandomAvatar(
-	tone: string = "none"
+	tone: string = "none",
+	showShadow: boolean = true
 ): Promise<{ src: string; index: number } | null> {
-	const avatarIndex = Math.floor(Math.random() * AVATARS.length)
-	const src = AVATARS[avatarIndex]
+	const avatarIndex = Math.floor(Math.random() * AVATAR_CDN_CONFIG.total)
+	// Use compressed avatar for ~3x faster network loading and minimal memory footprint
+	const src = getAvatarUrl(avatarIndex, true)
+	const isNeutralBackground = tone === "none" || tone === "neutral"
+	const shouldApplyShadow = !isNeutralBackground
 
-	// Create the ClipboardItem synchronously (required by Safari) with a
-	// deferred Promise for the actual blob content.
-	const svgBlobPromise = generateEditableSvg(tone, src, avatarIndex).then(
-		(svg) => {
-			if (!svg) throw new Error("SVG generation failed")
-			return new Blob([svg], { type: "text/plain" })
-		}
-	)
+	const blobPromise = createCompositeBlob(
+		tone,
+		src,
+		showShadow,
+		shouldApplyShadow,
+		avatarIndex,
+		"png"
+	).then((blob) => {
+		if (!blob) throw new Error("PNG generation failed")
+		return blob
+	})
 
 	try {
+		// 1. Direct write with Promise (Safari / iOS requires synchronous call in gesture)
 		await navigator.clipboard.write([
-			new ClipboardItem({ "text/plain": svgBlobPromise }),
+			new ClipboardItem({ "image/png": blobPromise }),
 		])
 		return { src, index: avatarIndex }
 	} catch {
-		// Fallback for browsers that don't support Promise in ClipboardItem
 		try {
-			const svg = await generateEditableSvg(tone, src, avatarIndex)
-			if (!svg) return null
-			await navigator.clipboard.writeText(svg)
+			// 2. Fallback for Chromium / Firefox where Promise inside ClipboardItem is unsupported
+			const blob = await blobPromise
+			if (!blob) return null
+			await navigator.clipboard.write([
+				new ClipboardItem({ "image/png": blob }),
+			])
 			return { src, index: avatarIndex }
 		} catch {
-			return null
+			// 3. Fallback for restricted mobile browsers that don't support copying image blobs:
+			// Copy image URL so clipboard operation doesn't crash or fail silently
+			try {
+				await navigator.clipboard.writeText(src)
+				return { src, index: avatarIndex }
+			} catch {
+				return null
+			}
 		}
 	}
 }

@@ -160,7 +160,7 @@ function CodeArea({
 				className
 			)}>
 			<ShikiHighlighter
-				as={`pre`}
+				as="div"
 				className="[&_pre]:no-scrollbar h-full w-full [&_pre]:h-full [&_pre]:w-full"
 				language={language}
 				theme={theme}

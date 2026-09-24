@@ -145,7 +145,7 @@ export function BadgeShowcaseCard() {
 			<CardContent className="space-y-5">
 				{/* Variants */}
 				<div className="space-y-2">
-					<p className="text-fg-tertiary text-[10px] font-medium uppercase tracking-widest">
+					<p className="text-fg-tertiary text-[10px] font-medium tracking-widest uppercase">
 						Variants
 					</p>
 					<div className="flex flex-wrap gap-2">
@@ -159,7 +159,7 @@ export function BadgeShowcaseCard() {
 
 				{/* Semantic colors */}
 				<div className="space-y-2">
-					<p className="text-fg-tertiary text-[10px] font-medium uppercase tracking-widest">
+					<p className="text-fg-tertiary text-[10px] font-medium tracking-widest uppercase">
 						Semantic
 					</p>
 					<div className="flex flex-wrap gap-2">
@@ -190,7 +190,7 @@ export function BadgeShowcaseCard() {
 
 				{/* Sizes */}
 				<div className="space-y-2">
-					<p className="text-fg-tertiary text-[10px] font-medium uppercase tracking-widest">
+					<p className="text-fg-tertiary text-[10px] font-medium tracking-widest uppercase">
 						In context
 					</p>
 					<div className="flex items-center gap-3">
@@ -435,7 +435,7 @@ export function CheckboxShowcaseCard() {
 			<CardContent className="space-y-5">
 				{/* Select all with indeterminate */}
 				<div className="space-y-2">
-					<p className="text-fg-tertiary text-[10px] font-medium uppercase tracking-widest">
+					<p className="text-fg-tertiary text-[10px] font-medium tracking-widest uppercase">
 						Group with select-all
 					</p>
 					<div className="divide-y overflow-hidden rounded-md border">
@@ -446,7 +446,7 @@ export function CheckboxShowcaseCard() {
 								}
 								onCheckedChange={toggleAll}
 							/>
-							<span className="select-none text-sm font-medium">
+							<span className="text-sm font-medium select-none">
 								Select all features
 							</span>
 						</label>
@@ -460,7 +460,7 @@ export function CheckboxShowcaseCard() {
 										setFeatures((prev) => ({ ...prev, [key]: !prev[key] }))
 									}
 								/>
-								<span className="select-none text-sm">
+								<span className="text-sm select-none">
 									{featureLabels[key]}
 								</span>
 							</label>
@@ -472,7 +472,7 @@ export function CheckboxShowcaseCard() {
 
 				{/* Standalone */}
 				<div className="space-y-3">
-					<p className="text-fg-tertiary text-[10px] font-medium uppercase tracking-widest">
+					<p className="text-fg-tertiary text-[10px] font-medium tracking-widest uppercase">
 						Standalone
 					</p>
 					<label className="flex cursor-pointer items-start gap-3">
@@ -483,10 +483,10 @@ export function CheckboxShowcaseCard() {
 							onCheckedChange={() => setAgreed((v) => !v)}
 						/>
 						<div>
-							<p className="select-none text-sm font-medium leading-tight">
+							<p className="text-sm leading-tight font-medium select-none">
 								I agree to the Terms of Service
 							</p>
-							<p className="text-fg-tertiary mt-0.5 select-none text-xs">
+							<p className="text-fg-tertiary mt-0.5 text-xs select-none">
 								By checking this box you accept our privacy policy and terms.
 							</p>
 						</div>
@@ -495,11 +495,11 @@ export function CheckboxShowcaseCard() {
 					{/* Disabled */}
 					<label className="flex cursor-not-allowed items-center gap-3 opacity-50">
 						<Checkbox disabled checked />
-						<span className="select-none text-sm">Pre-selected (disabled)</span>
+						<span className="text-sm select-none">Pre-selected (disabled)</span>
 					</label>
 					<label className="flex cursor-not-allowed items-center gap-3 opacity-50">
 						<Checkbox disabled />
-						<span className="select-none text-sm">Unavailable option</span>
+						<span className="text-sm select-none">Unavailable option</span>
 					</label>
 				</div>
 			</CardContent>
@@ -561,7 +561,7 @@ export function SwitchShowcaseCard() {
 							key={item.key}
 							className="hover:bg-fill1/40 flex items-center justify-between gap-4 px-4 py-3 transition-colors">
 							<div>
-								<p className="text-sm font-medium leading-tight">
+								<p className="text-sm leading-tight font-medium">
 									{item.label}
 								</p>
 								<p className="text-fg-tertiary mt-0.5 text-xs">{item.desc}</p>
@@ -578,7 +578,7 @@ export function SwitchShowcaseCard() {
 
 				{/* Inline simple */}
 				<div className="space-y-2">
-					<p className="text-fg-tertiary text-[10px] font-medium uppercase tracking-widest">
+					<p className="text-fg-tertiary text-[10px] font-medium tracking-widest uppercase">
 						Inline & disabled
 					</p>
 					<div className="flex items-center gap-3">
@@ -643,7 +643,7 @@ export function RadioGroupShowcaseCard() {
 			<CardContent className="space-y-6">
 				{/* Card-style */}
 				<div className="space-y-2">
-					<p className="text-fg-tertiary text-[10px] font-medium uppercase tracking-widest">
+					<p className="text-fg-tertiary text-[10px] font-medium tracking-widest uppercase">
 						Card style
 					</p>
 					<RadioGroup
@@ -679,7 +679,7 @@ export function RadioGroupShowcaseCard() {
 
 				{/* Vertical list */}
 				<div className="space-y-2">
-					<p className="text-fg-tertiary text-[10px] font-medium uppercase tracking-widest">
+					<p className="text-fg-tertiary text-[10px] font-medium tracking-widest uppercase">
 						Vertical list
 					</p>
 					<RadioGroup
@@ -692,7 +692,7 @@ export function RadioGroupShowcaseCard() {
 								htmlFor={`del-${opt.value}`}
 								className="hover:bg-fill1/40 flex cursor-pointer items-center gap-3 rounded-md px-3 py-2.5 transition-colors">
 								<RadioGroupItem id={`del-${opt.value}`} value={opt.value} />
-								<span className="select-none text-sm">{opt.label}</span>
+								<span className="text-sm select-none">{opt.label}</span>
 							</label>
 						))}
 					</RadioGroup>
@@ -825,7 +825,7 @@ export function ProgressShowcaseCard() {
 			<CardContent className="space-y-6">
 				{/* Default */}
 				<div className="space-y-2">
-					<p className="text-fg-tertiary text-[10px] font-medium uppercase tracking-widest">
+					<p className="text-fg-tertiary text-[10px] font-medium tracking-widest uppercase">
 						Default
 					</p>
 					<div className="space-y-1.5">
@@ -841,7 +841,7 @@ export function ProgressShowcaseCard() {
 
 				{/* Colored per task */}
 				<div className="space-y-3">
-					<p className="text-fg-tertiary text-[10px] font-medium uppercase tracking-widest">
+					<p className="text-fg-tertiary text-[10px] font-medium tracking-widest uppercase">
 						Task breakdown
 					</p>
 					{tasks.map((t) => (
@@ -859,7 +859,7 @@ export function ProgressShowcaseCard() {
 
 				{/* Sizes */}
 				<div className="space-y-3">
-					<p className="text-fg-tertiary text-[10px] font-medium uppercase tracking-widest">
+					<p className="text-fg-tertiary text-[10px] font-medium tracking-widest uppercase">
 						Sizes
 					</p>
 					<Progress value={60} className="h-1" />
@@ -872,7 +872,7 @@ export function ProgressShowcaseCard() {
 
 				{/* Empty and full */}
 				<div className="space-y-2">
-					<p className="text-fg-tertiary text-[10px] font-medium uppercase tracking-widest">
+					<p className="text-fg-tertiary text-[10px] font-medium tracking-widest uppercase">
 						Edge cases
 					</p>
 					<div className="flex items-center gap-3">
@@ -919,7 +919,7 @@ export function ScrollAreaShowcaseCard() {
 			<CardContent className="space-y-5">
 				{/* Vertical */}
 				<div className="space-y-2">
-					<p className="text-fg-tertiary text-[10px] font-medium uppercase tracking-widest">
+					<p className="text-fg-tertiary text-[10px] font-medium tracking-widest uppercase">
 						Vertical — 20 items
 					</p>
 					<ScrollArea className="h-52 rounded-md border">
@@ -948,7 +948,7 @@ export function ScrollAreaShowcaseCard() {
 
 				{/* Horizontal */}
 				<div className="space-y-2">
-					<p className="text-fg-tertiary text-[10px] font-medium uppercase tracking-widest">
+					<p className="text-fg-tertiary text-[10px] font-medium tracking-widest uppercase">
 						Horizontal — wide content
 					</p>
 					<ScrollArea className="rounded-md border">
@@ -996,7 +996,7 @@ export function DividerShowcaseCard() {
 			<CardContent className="space-y-6">
 				{/* Plain */}
 				<div className="space-y-2">
-					<p className="text-fg-tertiary text-[10px] font-medium uppercase tracking-widest">
+					<p className="text-fg-tertiary text-[10px] font-medium tracking-widest uppercase">
 						Plain
 					</p>
 					<div className="space-y-3">
@@ -1008,7 +1008,7 @@ export function DividerShowcaseCard() {
 
 				{/* With label */}
 				<div className="space-y-2">
-					<p className="text-fg-tertiary text-[10px] font-medium uppercase tracking-widest">
+					<p className="text-fg-tertiary text-[10px] font-medium tracking-widest uppercase">
 						With label
 					</p>
 					<div className="space-y-3">
@@ -1028,7 +1028,7 @@ export function DividerShowcaseCard() {
 
 				{/* In a summary breakdown */}
 				<div className="space-y-2">
-					<p className="text-fg-tertiary text-[10px] font-medium uppercase tracking-widest">
+					<p className="text-fg-tertiary text-[10px] font-medium tracking-widest uppercase">
 						Order summary
 					</p>
 					<div className="space-y-2 text-sm">

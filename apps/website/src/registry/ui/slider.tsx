@@ -28,7 +28,7 @@ function Slider({
 		<SliderPrimitive.Root
 			data-slot="slider"
 			className={cn(
-				"data-disabled:opacity-50 relative flex touch-none select-none items-center",
+				"relative flex touch-none items-center select-none data-disabled:opacity-50",
 				"data-[orientation=vertical]:w-auto data-[orientation=vertical]:flex-col",
 				classNames?.sliderRoot,
 				className
@@ -63,7 +63,7 @@ function SliderThumb({ className, ...props }: SliderThumbProps) {
 		<SliderPrimitive.Thumb
 			data-slot="slider-thumb"
 			className={cn(
-				"border-primary bg-bg drop-shadow-xs focus-visible:outline-hidden data-disabled:cursor-not-allowed block size-4 cursor-pointer rounded-full border-2 transition-colors",
+				"border-primary bg-bg block size-4 cursor-pointer rounded-full border-2 drop-shadow-xs transition-colors focus-visible:outline-hidden data-disabled:cursor-not-allowed",
 				className
 			)}
 			{...props}

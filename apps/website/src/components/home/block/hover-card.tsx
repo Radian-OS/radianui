@@ -42,7 +42,7 @@ export default function HoverCard() {
 				<div className="bg-primary-focus relative h-16">
 					<Avatar
 						size="80"
-						className="border-bg border-6 absolute bottom-0 left-4 translate-y-1/2">
+						className="border-bg absolute bottom-0 left-4 translate-y-1/2 border-6">
 						<AvatarImage
 							src={logoImage ? getImageSrc(logoImage) : profile.avatar}
 						/>
@@ -53,7 +53,7 @@ export default function HoverCard() {
 				</div>
 
 				<div
-					className={`flex flex-col ${spaceMap.gap4[spacing ?? "default"]} px-4 pb-4 pt-14`}>
+					className={`flex flex-col ${spaceMap.gap4[spacing ?? "default"]} px-4 pt-14 pb-4`}>
 					<div className="flex flex-col gap-1">
 						<div className="flex items-center gap-1">
 							<p className="font-medium">{profile.name}</p>

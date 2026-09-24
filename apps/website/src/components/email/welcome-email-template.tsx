@@ -40,7 +40,7 @@ export default function WelcomeEmailTemplate({
 					/>
 				</Head>
 				<Body className="bg-bg">
-					<Container className="max-w-150 my-3">
+					<Container className="my-3 max-w-150">
 						{/* Welcome To The Community Section */}
 						<Section>
 							<Img
@@ -51,7 +51,7 @@ export default function WelcomeEmailTemplate({
 							<Heading
 								as="h1"
 								m={0}
-								className="text-fg my-12 text-2xl font-semibold leading-8">
+								className="text-fg my-12 text-2xl leading-8 font-semibold">
 								Welcome to the Community 👋🏻
 							</Heading>
 							<Text className="text-fg m-0 text-base leading-7">
@@ -70,7 +70,7 @@ export default function WelcomeEmailTemplate({
 							<Heading
 								as="h2"
 								m={0}
-								className="text-fg mb-3 text-[1.25rem] font-semibold leading-7">
+								className="text-fg mb-3 text-[1.25rem] leading-7 font-semibold">
 								Figma Community File
 							</Heading>
 							<Text className="text-fg m-0 text-base leading-7">
@@ -113,7 +113,7 @@ export default function WelcomeEmailTemplate({
 							<Heading
 								as="h2"
 								m={0}
-								className="text-fg mb-3 text-[1.25rem] font-semibold leading-7">
+								className="text-fg mb-3 text-[1.25rem] leading-7 font-semibold">
 								Documentation for Development
 							</Heading>
 							<Text className="text-fg m-0 text-base leading-7">
@@ -154,7 +154,7 @@ export default function WelcomeEmailTemplate({
 								<Heading
 									as="h2"
 									m={0}
-									className="text-fg mb-3 text-[1.25rem] font-semibold leading-7">
+									className="text-fg mb-3 text-[1.25rem] leading-7 font-semibold">
 									Getting Started
 								</Heading>
 								<Text className="text-fg m-0 text-base leading-7">
@@ -166,7 +166,7 @@ export default function WelcomeEmailTemplate({
 									<Heading
 										as="h3"
 										m={0}
-										className="text-fg text-lg font-semibold leading-7">
+										className="text-fg text-lg leading-7 font-semibold">
 										Theme Design To Your New Project
 									</Heading>
 									<Link href={`${baseUrl}/docs/fundamentals/theme`}>
@@ -191,7 +191,7 @@ export default function WelcomeEmailTemplate({
 									<Heading
 										as="h3"
 										m={0}
-										className="text-fg text-lg font-semibold leading-7">
+										className="text-fg text-lg leading-7 font-semibold">
 										Navigating Documentation
 									</Heading>
 									<Link href={`${baseUrl}/docs/getting-started/introduction`}>
@@ -216,7 +216,7 @@ export default function WelcomeEmailTemplate({
 									<Heading
 										as="h3"
 										m={0}
-										className="text-fg text-lg font-semibold leading-7">
+										className="text-fg text-lg leading-7 font-semibold">
 										Examples and Blocks
 									</Heading>
 									<Link href={`https://blocks.radianui.com/`}>
@@ -247,7 +247,7 @@ export default function WelcomeEmailTemplate({
 							<Heading
 								as="h2"
 								m={0}
-								className="text-fg mb-3 text-[1.25rem] font-semibold leading-7">
+								className="text-fg mb-3 text-[1.25rem] leading-7 font-semibold">
 								Community &amp; Support
 							</Heading>
 

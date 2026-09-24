@@ -11,6 +11,7 @@ describe("e2e | radianui --help", () => {
     expect(stdout).toContain("Usage: radianui")
     expect(stdout).toMatch(/^\s*init\b/m)
     expect(stdout).toMatch(/^\s*add\b/m)
+    expect(stdout).toMatch(/^\s*info\b/m)
   })
 
   it("accepts the -h alias", async () => {
@@ -49,5 +50,15 @@ describe("e2e | radianui add --help", () => {
     expect(stdout).toContain("-a, --all")
     expect(stdout).toContain("-c, --cwd")
     expect(stdout).toContain("-o, --overwrite")
+  })
+})
+
+describe("e2e | radianui info --help", () => {
+  it("documents the cwd and json flags", async () => {
+    const { stdout, exitCode } = await cli.run(["info", "--help"])
+
+    expect(exitCode).toBe(0)
+    expect(stdout).toContain("-c, --cwd")
+    expect(stdout).toContain("--json")
   })
 })

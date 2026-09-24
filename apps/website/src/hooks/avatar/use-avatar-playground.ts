@@ -9,16 +9,18 @@ import {
 import {
 	BACKGROUNDS,
 	GRADIENT_IMAGES,
-} from "@/app/(resources)/resources/components/ToneFilterDropdown"
+} from "@/app/(resources)/resources/(avatar)/components/ToneFilterDropdown"
 import {
 	AVATARS,
 	CATEGORY_AVATAR_MAP,
 	SOLID_COLOR_MAP,
+	getAvatarUrl,
 } from "@/constants/avatar-playground-utils"
 
 const FAVORITES_STORAGE_KEY = "radian-avatar-favorites"
 const TONE_STORAGE_KEY = "radian-avatar-tone"
 const SHADOW_STORAGE_KEY = "radian-avatar-shadow"
+const COMPRESSED_AVATARS_STORAGE_KEY = "radian-avatar-compressed"
 
 export type ColorMode = "static" | "radian"
 
@@ -53,12 +55,14 @@ export const useAvatarPlayground = () => {
 	const [tone, setTone] = useState("pick-color")
 	const [randomTrigger, setRandomTrigger] = useState(0)
 	const [configOpen, setConfigOpen] = useState(false)
-	const [copyFormat, setCopyFormat] = useState("editable-bg")
+	const [copyFormat, setCopyFormat] = useState("image")
 	const [colorMode, setColorMode] = useState<ColorMode>("static")
 	const [showShadow, setShowShadow] = useState(true)
+	const [useCompressedAvatars, setUseCompressedAvatars] = useState(false)
 	const [favorites, setFavorites] = useState<Set<string>>(() => new Set())
 	const [isBlocked, setIsBlocked] = useState(false)
 	const [isHydrated, setIsHydrated] = useState(false)
+	const [isSticky, setIsSticky] = useState(false)
 	const sentinelRef = useRef<HTMLDivElement>(null)
 	const bottomSentinelRef = useRef<HTMLDivElement>(null)
 
@@ -72,8 +76,9 @@ export const useAvatarPlayground = () => {
 
 		const dispatchSticky = () => {
 			const isSticky = topScrolledPast && bottomStillVisible
+			setIsSticky(isSticky)
 			window.dispatchEvent(
-				new CustomEvent("avatar-filter-sticky", { detail: { isSticky } })
+				new CustomEvent("resource-filter-sticky", { detail: { isSticky } })
 			)
 		}
 
@@ -100,8 +105,11 @@ export const useAvatarPlayground = () => {
 		return () => {
 			topObserver.disconnect()
 			bottomObserver.disconnect()
+			setIsSticky(false)
 			window.dispatchEvent(
-				new CustomEvent("avatar-filter-sticky", { detail: { isSticky: false } })
+				new CustomEvent("resource-filter-sticky", {
+					detail: { isSticky: false },
+				})
 			)
 		}
 	}, [])
@@ -118,6 +126,10 @@ export const useAvatarPlayground = () => {
 		const savedShadow = localStorage.getItem(SHADOW_STORAGE_KEY)
 		if (savedShadow !== null) {
 			setShowShadow(savedShadow === "true")
+		}
+		const savedCompressed = localStorage.getItem(COMPRESSED_AVATARS_STORAGE_KEY)
+		if (savedCompressed !== null) {
+			setUseCompressedAvatars(savedCompressed === "true")
 		}
 		setIsHydrated(true)
 	}, [])
@@ -154,6 +166,13 @@ export const useAvatarPlayground = () => {
 		localStorage.setItem(SHADOW_STORAGE_KEY, String(value))
 		startTransition(() => {
 			setShowShadow(value)
+		})
+	}, [])
+
+	const handleUseCompressedAvatarsChange = useCallback((value: boolean) => {
+		localStorage.setItem(COMPRESSED_AVATARS_STORAGE_KEY, String(value))
+		startTransition(() => {
+			setUseCompressedAvatars(value)
 		})
 	}, [])
 
@@ -203,12 +222,16 @@ export const useAvatarPlayground = () => {
 
 	const displayedAvatars = useMemo(
 		() =>
-			AVATARS.map((src, index) => ({ src, index }))
-				.filter(({ src }) => {
+			AVATARS.map((src, index) => ({
+				src,
+				displaySrc: getAvatarUrl(index, useCompressedAvatars),
+				index,
+			}))
+				.filter(({ src, index }) => {
 					if (category === "favorites") {
 						return favorites.has(src)
 					}
-					const avatarNumber = Number(src.match(/\d+/)?.[0])
+					const avatarNumber = index + 1
 					return (
 						category === "all" ||
 						CATEGORY_AVATAR_MAP[category]?.includes(avatarNumber)
@@ -225,7 +248,7 @@ export const useAvatarPlayground = () => {
 					}
 					return a.index - b.index
 				}),
-		[category, favorites, favoritesArray]
+		[category, favorites, favoritesArray, useCompressedAvatars]
 	)
 
 	return {
@@ -241,10 +264,13 @@ export const useAvatarPlayground = () => {
 		setColorMode,
 		showShadow,
 		handleShowShadowChange,
+		useCompressedAvatars,
+		handleUseCompressedAvatarsChange,
 		favorites,
 		toggleFavorite,
 		isBlocked,
 		isHydrated,
+		isSticky,
 		sentinelRef,
 		bottomSentinelRef,
 		resolvedTones,

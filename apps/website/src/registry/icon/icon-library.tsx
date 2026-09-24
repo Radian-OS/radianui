@@ -113,7 +113,7 @@ IconSlot.displayName = "IconSlot"
 
 export function createIconSlot(slot: IconSlotName) {
 	const IconSlotComponent = React.forwardRef<SVGSVGElement, ThemedIconProps>(
-		(props, ref) => <IconSlot ref={ref} slot={slot} {...props} />
+		(props, ref) => <IconSlot ref={ref} {...props} slot={slot} />
 	)
 	IconSlotComponent.displayName = `IconSlot(${slot})`
 	return IconSlotComponent

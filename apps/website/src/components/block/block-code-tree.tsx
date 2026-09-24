@@ -25,14 +25,14 @@ export function BlockCodeTree({
 			<div className="bg-bg border-soft-alpha relative flex h-full w-full overflow-hidden rounded-xl border">
 				<div
 					className={cn(
-						"bg-bg border-r-soft-alpha absolute left-0 top-0 z-40 block h-full min-w-[280px] border-r transition-all duration-300 ease-out",
+						"bg-bg border-r-soft-alpha absolute top-0 left-0 z-40 block h-full min-w-[280px] border-r transition-all duration-300 ease-out",
 						{
 							"-translate-x-full": !showLeftOverlay,
 							"translate-x-0 shadow-xl": showLeftOverlay,
 						}
 					)}
 					onClick={(e) => e.stopPropagation()}>
-					<div className="h-13 border-soft-alpha text-fg-secondary flex items-center gap-2.5 border-b px-4 py-3">
+					<div className="border-soft-alpha text-fg-secondary flex h-13 items-center gap-2.5 border-b px-4 py-3">
 						<IconButton
 							variant="ghost"
 							color="neutral"

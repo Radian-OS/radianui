@@ -9,7 +9,7 @@ import {
 
 function BannerVariantsExample() {
 	return (
-		<div className="max-w-160 flex w-full flex-col items-center justify-center gap-6">
+		<div className="flex w-full max-w-160 flex-col items-center justify-center gap-6">
 			<Banner variant="outline">
 				<BannerIcon>
 					<Sparkles size={20} />

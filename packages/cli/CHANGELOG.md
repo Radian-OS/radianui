@@ -1,5 +1,42 @@
 # radianui
 
+## 0.4.0
+
+### Minor Changes
+
+- 1304630: Add `search` command to find components and blocks by name or description with fuzzy matching and type filtering
+- 2ff2d28: Add `info` command to display RadianUI project configuration and diagnostics:
+
+  - Detect and display `utility.css` (`utilityCssFile`) in `getProjectInfo` and `info` output
+  - Include `llms.txt` documentation link and full `components.json` configuration details
+  - Update unit and integration tests for `getProjectInfo` and `info`
+
+- fbd3a9e: Add `add-asset` command to install static registry assets:
+
+  - Add `add-asset` (alias `asset`) command to download static assets (such as country flags) directly into projects
+  - Support interactive asset selection prompt and registry type selection
+  - Add flexible asset matching by ISO code, name, filename, and description
+  - Add support for `--all`, `--overwrite`, and `--cwd` flags
+  - Support static asset file placement via `file.targetDir` (e.g. `public/assets/...`)
+  - Bypass AST / `ts-morph` transformation for static files like `.svg`
+  - Add unit and integration tests for `addAsset` command and file creation
+
+### Patch Changes
+
+- 55ed295: Remove unused dependencies (@clack/prompts, kleur, node-fetch, deepmerge, json5) to optimize CLI install size and speed
+
+## 0.3.8
+
+### Patch Changes
+
+- e3781a9: Include cn utils dependencies in install list
+
+## 0.3.7
+
+### Patch Changes
+
+- 8c22041: Pin zod version and add logic to create cn utils file for existing projects
+
 ## 0.3.6
 
 ### Patch Changes

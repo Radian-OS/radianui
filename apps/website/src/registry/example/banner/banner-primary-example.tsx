@@ -10,7 +10,7 @@ import { Button } from "@/registry/ui/button"
 
 const BannerPrimaryExamples = () => {
 	return (
-		<div className="max-w-160 flex w-full flex-col items-center justify-center gap-6">
+		<div className="flex w-full max-w-160 flex-col items-center justify-center gap-6">
 			<Banner className="w-full" variant="strong">
 				<BannerIcon>
 					<Info size={20} />

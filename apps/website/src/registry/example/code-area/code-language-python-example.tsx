@@ -5,7 +5,7 @@ const CodeLanguagePythonExample = () => {
 	return (
 		<div className="w-full max-w-2xl">
 			<CodeArea
-				className="max-w-150 w-full"
+				className="w-full max-w-150"
 				language="python"
 				theme="tokyo-night"
 				code={`def calculate_total(items):

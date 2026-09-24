@@ -65,7 +65,7 @@ export default function CardSigninExample() {
 
 	return (
 		<Form {...form}>
-			<form className="max-w-95 w-full" onSubmit={form.handleSubmit(onSubmit)}>
+			<form className="w-full max-w-95" onSubmit={form.handleSubmit(onSubmit)}>
 				<Card className="w-full px-6">
 					<CardHeader className="flex flex-col gap-6 px-0 pb-2">
 						<Image

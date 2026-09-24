@@ -37,7 +37,7 @@ function BadgeExamplePreview() {
 			<Badge
 				variant="outline"
 				color="neutral"
-				className="rounded-full py-1 pl-1 pr-2">
+				className="rounded-full py-1 pr-2 pl-1">
 				<Avatar size="16">
 					<AvatarImage
 						src="https://randomuser.me/api/portraits/men/1.jpg"

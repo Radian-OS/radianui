@@ -24,7 +24,7 @@ export default function PopoverEmoji2() {
 				<Avatar size="36">
 					<AvatarImage src="/media/male-1.jpg" />
 					<AvatarFallback>JJ</AvatarFallback>
-					<AvatarIndicator className="bottom-1.5 right-1.5">
+					<AvatarIndicator className="right-1.5 bottom-1.5">
 						<AvatarStatus variant={"online"} />
 					</AvatarIndicator>
 				</Avatar>
@@ -48,7 +48,7 @@ export default function PopoverEmoji2() {
 					alt="Background2"
 					className="rounded-md"
 				/>
-				<div className="max-w-75 flex flex-wrap gap-1.5">
+				<div className="flex max-w-75 flex-wrap gap-1.5">
 					{selectedEmoji.map((emoji) => (
 						<Button
 							variant="outline"

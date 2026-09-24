@@ -1,0 +1,86 @@
+{
+	"name": "@radianui/flags",
+	"version": "0.0.3",
+	"description": "Accessible, type-safe SVG country flag components for React and Next.js using ISO 3166-1 country codes.",
+	"type": "module",
+	"sideEffects": false,
+	"main": "./dist/index.js",
+	"module": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js",
+			"default": "./dist/index.js"
+		},
+		"./metadata": {
+			"types": "./dist/metadata.d.ts",
+			"import": "./dist/metadata.js",
+			"default": "./dist/metadata.js"
+		},
+		"./package.json": "./package.json",
+		"./source/*": "./source/*"
+	},
+	"files": [
+		"dist",
+		"source",
+		"LICENSE",
+		"README.md"
+	],
+	"scripts": {
+		"build": "pnpm validate:source && pnpm generate && tsup",
+		"check-types": "pnpm generate && tsc --noEmit",
+		"dev": "pnpm generate && tsup --watch",
+		"generate": "tsx scripts/generate.ts",
+		"sync:manifest": "tsx scripts/sync-manifest.ts",
+		"test": "pnpm generate && tsx scripts/test.tsx",
+		"validate:source": "tsx scripts/validate-source.ts",
+		"prepack": "pnpm build",
+		"prepublishOnly": "pnpm check-types && pnpm test"
+	},
+	"keywords": [
+		"country-flags",
+		"country-flag",
+		"flags",
+		"react",
+		"react-flags",
+		"react-country-flags",
+		"nextjs",
+		"typescript",
+		"svg",
+		"iso-3166",
+		"accessible",
+		"accessibility",
+		"radianui"
+	],
+	"author": "RadianOS <radianos44@gmail.com> (https://radianui.com)",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Radian-OS/radianui.git",
+		"directory": "packages/country-flags"
+	},
+	"homepage": "https://radianui.com/resources/flags",
+	"bugs": {
+		"url": "https://github.com/Radian-OS/radianui/issues"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"engines": {
+		"node": ">=18"
+	},
+	"peerDependencies": {
+		"react": "^18.2.0 || ^19.0.0"
+	},
+	"devDependencies": {
+		"@types/node": "^26.5.1",
+		"@types/react": "^19.3.0",
+		"@types/react-dom": "^19.3.0",
+		"react": "^19.3.0",
+		"react-dom": "^19.3.0",
+		"tsup": "^8.5.1",
+		"tsx": "^4.23.12",
+		"typescript": "^5.9.3"
+	}
+}

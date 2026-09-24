@@ -4,7 +4,7 @@ import { Skeleton } from "@/registry/ui/skeleton"
 
 function DividerTextPreview() {
 	return (
-		<div className="max-w-100 flex w-full flex-col items-center gap-4">
+		<div className="flex w-full max-w-100 flex-col items-center gap-4">
 			<div className="flex w-full flex-col gap-2">
 				<Skeleton className="bg-fill2 h-4 w-20 rounded-sm" />
 				<Skeleton className="bg-fill2 h-6 w-full rounded-sm" />

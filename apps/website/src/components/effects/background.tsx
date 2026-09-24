@@ -9,12 +9,12 @@ export default function Background({
 	return (
 		<div className="relative w-full px-4 md:px-5">
 			{/* Neutral background overlay */}
-			<div className="from-bg via-bg/0 to-bg bg-linear-to-b absolute inset-0 top-[380px] z-20 h-full max-h-[600px] w-full to-90% md:max-h-[960px]" />
+			<div className="from-bg via-bg/0 to-bg pointer-events-none absolute inset-0 top-[380px] z-20 max-h-[600px] w-full bg-linear-to-b to-90% md:max-h-[960px]" />
 
 			<div className="pointer-events-none absolute -inset-x-4 top-0 z-[25] mx-auto hidden h-full w-full max-w-[1440px] md:-inset-x-5 lg:block">
 				<div className="relative mx-auto h-full max-w-[1440px] px-4 md:px-5">
-					<div className="bg-soft absolute left-0 top-0 z-30 h-full w-px" />
-					<div className="bg-soft absolute right-0 top-0 z-30 h-full w-px" />
+					<div className="bg-soft absolute top-0 left-0 z-30 h-full w-px" />
+					<div className="bg-soft absolute top-0 right-0 z-30 h-full w-px" />
 				</div>
 			</div>
 
@@ -23,7 +23,7 @@ export default function Background({
 
 			{/* flickering grid */}
 			<FlickeringGrid
-				className="absolute inset-0 top-[380px] z-10 max-h-[600px] w-full overflow-hidden md:max-h-[960px]"
+				className="absolute inset-0 top-[380px] z-10 h-auto max-h-[600px] w-full overflow-hidden md:max-h-[960px]"
 				squareSize={3}
 				gridGap={6}
 				color="#6B7280"
