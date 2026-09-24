@@ -127,9 +127,6 @@ export function BrandLogoTile({
 						variant === "icon" ? "size-12" : "h-12 w-[80%] max-w-45"
 					)}
 				/>
-				<span className="text-fg-secondary absolute inset-x-2 bottom-3 truncate text-xs font-medium transition-opacity duration-200 group-focus-within:opacity-0 group-hover:opacity-0">
-					{brand.name}
-				</span>
 			</Button>
 
 			<BrandLogoTileMenu
