@@ -1,21 +1,7 @@
 {
-  "eslint.workingDirectories": [
-    {
-      "pattern": "apps/*/"
-    },
-    {
-      "pattern": "packages/*/"
-    }
-  ],
   "editor.formatOnSave": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.defaultFormatter": "oxc.oxc-vscode",
   "oxc.fmt.configPath": ".oxfmtrc.json",
-  "prettier.requireConfig": true,
-  "prettier.useEditorConfig": false,
-  "prettier.configPath": ".prettierrc",
-  "prettier.resolveGlobalModules": false,
-  "prettier.ignorePath": ".prettierignore",
-  "prettier.prettierPath": "./node_modules/prettier",
   "editor.quickSuggestions": {
     "strings": true
   },
@@ -51,8 +37,5 @@
   ],
   "[xml]": {
     "editor.defaultFormatter": "redhat.vscode-xml"
-  },
-  "[tailwindcss]": {
-    "editor.defaultFormatter": "numso.prettier-standard-vscode"
   }
 }
