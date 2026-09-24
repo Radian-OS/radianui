@@ -30,7 +30,7 @@ import {
 	DropdownMenuTrigger,
 } from "@/styles/default/ui/dropdown-menu"
 import { Tabs, TabsList, TabsTrigger } from "@/styles/default/ui/tabs"
-import { ColorSwatch } from "./color-swatch"
+import { ColorPaletteSelector } from "./color-palette-selector"
 import { CreateProjectDialog } from "./create-project-dialog"
 import { FontCombobox } from "./font-combobox"
 import { RADII, RadiusLockPill, RadiusPill } from "./radius-pill"
@@ -207,7 +207,7 @@ export function ThemerSidebar({
 	}, [locked, setParams])
 
 	return (
-		<aside className="bg-elevation-level1 border-border flex w-80 shrink-0 flex-col border-r">
+		<aside className="bg-elevation-level1 border-border flex w-85 shrink-0 flex-col border-r">
 			{/* Header */}
 			<div className="border-border flex flex-col gap-1 border-b px-5 py-4">
 				<div className="flex items-center gap-2">
@@ -309,41 +309,34 @@ export function ThemerSidebar({
 					</DropdownMenu>
 				</div>
 
-				{/* Color Section */}
+				{/* Color Palette Section */}
 				<div className="flex flex-col gap-3">
-					<SectionLabel>Primary Color</SectionLabel>
-					<div className="flex flex-wrap gap-2">
-						{PRIMARY_COLORS.map((color) => (
-							<ColorSwatch
-								key={color.value}
-								color={color}
-								isSelected={params.primaryColor === color.value}
-								onClick={() =>
-									setParams({
-										primaryColor: color.value as PrimaryColorValue,
-									})
-								}
-							/>
-						))}
-					</div>
-				</div>
-
-				<div className="flex flex-col gap-3">
-					<SectionLabel>Secondary Color</SectionLabel>
-					<div className="flex flex-wrap gap-2">
-						{PRIMARY_COLORS.map((color) => (
-							<ColorSwatch
-								key={`secondary-${color.value}`}
-								color={color}
-								isSelected={params.secondaryColor === color.value}
-								onClick={() =>
-									setParams({
-										secondaryColor: color.value as PrimaryColorValue,
-									})
-								}
-							/>
-						))}
-					</div>
+					<SectionLabel>Colors</SectionLabel>
+					<ColorPaletteSelector
+						mainColorValue={params.primaryColor}
+						onMainColorChange={(value) =>
+							setParams({ primaryColor: value as PrimaryColorValue })
+						}
+						extraColors={
+							[
+								params.customColors?.["palette-0"],
+								params.customColors?.["palette-1"],
+								params.customColors?.["palette-2"],
+								params.customColors?.["palette-3"],
+							].filter(Boolean) as string[]
+						}
+						onExtraColorsChange={(colors) => {
+							const next = { ...params.customColors }
+							delete next["palette-0"]
+							delete next["palette-1"]
+							delete next["palette-2"]
+							delete next["palette-3"]
+							colors.forEach((c, i) => {
+								next[`palette-${i}`] = c
+							})
+							setParams({ customColors: next })
+						}}
+					/>
 				</div>
 
 				{/* Base Color Section */}
@@ -389,63 +382,6 @@ export function ThemerSidebar({
 					</DropdownMenu>
 				</div>
 
-				{/* Custom Colors Section */}
-				<div className="flex flex-col gap-3">
-					<SectionLabel>Custom Colors</SectionLabel>
-					<div className="flex flex-col gap-2">
-						{Object.entries(params.customColors ?? {}).map(([id, color]) => (
-							<div
-								key={id}
-								className="border-border bg-elevation-level2 flex items-center justify-between rounded-md border p-2">
-								<div className="flex items-center gap-2">
-									<input
-										type="color"
-										value={color}
-										className="size-6 shrink-0 cursor-pointer overflow-hidden rounded-sm border-0 bg-transparent p-0"
-										onChange={(e) => {
-											setParams({
-												customColors: {
-													...params.customColors,
-													[id]: e.target.value,
-												},
-											})
-										}}
-									/>
-									<span className="text-fg text-xs">{id}</span>
-								</div>
-								<Button
-									size="28"
-									variant="ghost"
-									color="neutral"
-									onClick={() => {
-										const next = { ...params.customColors }
-										delete next[id]
-										setParams({ customColors: next })
-									}}>
-									✕
-								</Button>
-							</div>
-						))}
-						<Button
-							type="button"
-							variant="outline"
-							size="32"
-							color="neutral"
-							className="w-full"
-							onClick={() => {
-								const id = `custom-${Math.random().toString(36).substring(2, 6)}`
-								setParams({
-									customColors: {
-										...params.customColors,
-										[id]: "#3b82f6",
-									},
-								})
-							}}>
-							Add Custom Color
-						</Button>
-					</div>
-				</div>
-
 				{/* Component Inspect Section */}
 				<div className="flex flex-col gap-3">
 					<SectionLabel>Element Overrides</SectionLabel>
@@ -473,34 +409,43 @@ export function ThemerSidebar({
 									<ChevronDown className="text-fg-tertiary size-3 shrink-0" />
 								</DropdownMenuTrigger>
 								<DropdownMenuContent className="max-h-96 w-48">
-									{Object.entries(params.customColors ?? {}).map(
-										([id, color]) => (
-											<DropdownMenuRadioItem
-												key={id}
-												value={id}
-												onSelect={(e) => {
-													e.preventDefault()
-													setParams({
-														componentOverrides: [
-															...(params.componentOverrides ?? []),
-															{
-																selector: inspectedElement,
-																customColorId: id,
-																property: "background-color",
-															},
-														],
-													})
-													setInspectedElement(null)
-												}}>
-												<div className="flex items-center gap-2">
-													<div
-														className="size-3 rounded-sm"
-														style={{ backgroundColor: color }}
-													/>
-													{id}
-												</div>
-											</DropdownMenuRadioItem>
-										)
+									{["primary", ...Object.keys(params.customColors ?? {})].map(
+										(id) => {
+											const isPrimary = id === "primary"
+											const color = isPrimary
+												? params.primaryColor
+												: params.customColors?.[id]
+											const actualColor =
+												PRIMARY_COLORS.find((c) => c.value === color)?.cssVars
+													.light["--color-primary"] ?? color
+											return (
+												<DropdownMenuRadioItem
+													key={id}
+													value={id}
+													onSelect={(e) => {
+														e.preventDefault()
+														setParams({
+															componentOverrides: [
+																...(params.componentOverrides ?? []),
+																{
+																	selector: inspectedElement,
+																	customColorId: id,
+																	property: "background-color",
+																},
+															],
+														})
+														setInspectedElement(null)
+													}}>
+													<div className="flex items-center gap-2">
+														<div
+															className="size-3 rounded-sm"
+															style={{ backgroundColor: actualColor }}
+														/>
+														{isPrimary ? "Primary Color" : id}
+													</div>
+												</DropdownMenuRadioItem>
+											)
+										}
 									)}
 								</DropdownMenuContent>
 							</DropdownMenu>

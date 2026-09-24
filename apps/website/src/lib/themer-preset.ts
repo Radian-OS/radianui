@@ -6,6 +6,7 @@ import {
 	inferParserType,
 	parseAsBoolean,
 	parseAsStringLiteral,
+	parseAsString,
 	parseAsJson,
 } from "nuqs/server"
 import { BASE_COLORS, BaseColorValue } from "@/registry/base-colors"
@@ -19,12 +20,7 @@ import { STYLES, StyleValue } from "@/registry/styles"
 import { TEMPLATES, Template } from "@/registry/templates"
 
 const designSystemSearchParams = {
-	primaryColor: parseAsStringLiteral<PrimaryColorValue>(
-		PRIMARY_COLORS.map((color) => color.value)
-	).withDefault(DEFAULT_CONFIG.primaryColor),
-	secondaryColor: parseAsStringLiteral<PrimaryColorValue>(
-		PRIMARY_COLORS.map((color) => color.value)
-	).withDefault(DEFAULT_CONFIG.secondaryColor),
+	primaryColor: parseAsString.withDefault(DEFAULT_CONFIG.primaryColor),
 	baseColor: parseAsStringLiteral<BaseColorValue>(
 		BASE_COLORS.map((color) => color.value)
 	).withDefault(DEFAULT_CONFIG.baseColor),
@@ -50,9 +46,6 @@ const designSystemSearchParams = {
 	iconLibrary: parseAsStringLiteral<IconLibrary>(ICON_LIBRARIES).withDefault(
 		DEFAULT_CONFIG.iconLibrary
 	),
-	inputVariant: parseAsStringLiteral<InputVariantValue>(
-		INPUT_VARIANTS.map((v) => v.value)
-	).withDefault(DEFAULT_CONFIG.inputVariant),
 	customColors: parseAsJson<Record<string, string>>(
 		(v) => v as Record<string, string>
 	).withDefault(DEFAULT_CONFIG.customColors),
@@ -74,8 +67,6 @@ function resolvePresetParams(
 ) {
 	const mergedParams = {
 		primaryColor: searchParams.get("primaryColor") ?? rawParams.primaryColor,
-		secondaryColor:
-			searchParams.get("secondaryColor") ?? rawParams.secondaryColor,
 		baseColor: searchParams.get("baseColor") ?? rawParams.baseColor,
 		headingFont: searchParams.get("headingFont") ?? rawParams.headingFont,
 		bodyFont: searchParams.get("bodyFont") ?? rawParams.bodyFont,
@@ -85,7 +76,6 @@ function resolvePresetParams(
 		style: searchParams.get("style") ?? rawParams.style,
 		useSrcDir: searchParams.get("useSrcDir") ?? rawParams.useSrcDir,
 		iconLibrary: searchParams.get("iconLibrary") ?? rawParams.iconLibrary,
-		inputVariant: searchParams.get("inputVariant") ?? rawParams.inputVariant,
 		customColors: rawParams.customColors,
 		componentOverrides: rawParams.componentOverrides,
 	} as DesignSystemSearchParams

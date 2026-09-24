@@ -12,7 +12,7 @@ import { useThemerPreset } from "@/lib/themer-preset"
 import { ThemerSidebar } from "./_components/themer-sidebar"
 
 function ThemerContent() {
-	const [params] = useThemerPreset()
+	const [params, setParams] = useThemerPreset()
 	const [selectedComponent, setSelectedComponent] =
 		useState<string>("preview-02")
 	const [inspectMode, setInspectMode] = useState(false)
@@ -24,7 +24,6 @@ function ThemerContent() {
 		const searchParams = new URLSearchParams({
 			component: selectedComponent,
 			primaryColor: params.primaryColor,
-			secondaryColor: params.secondaryColor,
 			headingFont: params.headingFont,
 			bodyFont: params.bodyFont,
 			radius: params.radius,
@@ -33,7 +32,6 @@ function ThemerContent() {
 			style: params.style,
 			useSrcDir: String(params.useSrcDir),
 			iconLibrary: params.iconLibrary,
-			inputVariant: params.inputVariant,
 		})
 
 		if (params.primaryColor) {
@@ -119,20 +117,6 @@ function ThemerContent() {
 
 	useEffect(() => {
 		postToIframe({
-			type: "input-variant-change",
-			inputVariant: params.inputVariant,
-		})
-	}, [params.inputVariant])
-
-	useEffect(() => {
-		postToIframe({
-			type: "secondary-color-change",
-			secondaryColor: params.secondaryColor,
-		})
-	}, [params.secondaryColor])
-
-	useEffect(() => {
-		postToIframe({
 			type: "custom-colors-change",
 			customColors: params.customColors,
 		})
@@ -152,16 +136,33 @@ function ThemerContent() {
 		})
 	}, [inspectMode, postToIframe])
 
+	const paramsRef = useRef(params)
+	useEffect(() => {
+		paramsRef.current = params
+	}, [params])
+
 	useEffect(() => {
 		const handleMessage = (event: MessageEvent) => {
 			if (event.data?.type === "element-inspected") {
 				setInspectedElement(event.data.selector)
 				setInspectMode(false) // turn off inspect mode after selection
 			}
+			if (event.data?.type === "add-component-override") {
+				setParams({
+					componentOverrides: [
+						...(paramsRef.current.componentOverrides ?? []),
+						{
+							selector: event.data.selector,
+							customColorId: event.data.customColorId,
+							property: "background-color",
+						},
+					],
+				})
+			}
 		}
 		window.addEventListener("message", handleMessage)
 		return () => window.removeEventListener("message", handleMessage)
-	}, [])
+	}, [setParams])
 
 	return (
 		<div className="bg-fill2 flex h-screen w-full">

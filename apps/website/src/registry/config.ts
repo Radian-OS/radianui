@@ -7,6 +7,7 @@ import { PRIMARY_COLORS } from "./primary-colors"
 import { RADIUS } from "./radius"
 import { STYLES } from "./styles"
 import { TEMPLATES } from "./templates"
+import { generateCustomColorShades } from "@/lib/shade-generator"
 
 const fontValues = FONTS.map((font) => font.value)
 const radiusValues = RADIUS.map((radius) => radius.value)
@@ -43,12 +44,7 @@ const inputVariantValues = INPUT_VARIANTS.map((v) => v.value)
 
 export const themerConfigSchema = z.object({
 	name: z.string().optional(),
-	primaryColor: z
-		.enum(PRIMARY_COLORS.map((color) => color.value))
-		.default("violet-blue"),
-	secondaryColor: z
-		.enum(PRIMARY_COLORS.map((color) => color.value))
-		.default("violet-blue"),
+	primaryColor: z.string().default("violet-blue"),
 	baseColor: z.enum(BASE_COLORS.map((color) => color.value)).default("default"),
 	headingFont: z
 		.enum(fontValues, {
@@ -76,7 +72,6 @@ export const themerConfigSchema = z.object({
 		.default("default"),
 	useSrcDir: z.boolean().default(true),
 	iconLibrary: z.enum(ICON_LIBRARIES).default("lucide"),
-	inputVariant: z.enum(inputVariantValues).default("bordered"),
 	customColors: z.record(z.string(), z.string()).default({}),
 	componentOverrides: z
 		.array(
@@ -93,7 +88,6 @@ export type ThemerConfig = z.infer<typeof themerConfigSchema>
 
 export const DEFAULT_CONFIG: ThemerConfig = {
 	primaryColor: "violet-blue",
-	secondaryColor: "violet-blue",
 	headingFont: "geist",
 	bodyFont: "inter",
 	template: "next",
@@ -104,7 +98,6 @@ export const DEFAULT_CONFIG: ThemerConfig = {
 	useSrcDir: true,
 	iconLibrary: "lucide",
 	baseColor: "default",
-	inputVariant: "bordered",
 	customColors: {},
 	componentOverrides: [],
 }
@@ -121,7 +114,6 @@ export const PRESETS: Preset[] = [
 		title: "Default",
 		description: "Default preset",
 		primaryColor: "violet-blue",
-		secondaryColor: "violet-blue",
 		headingFont: "geist",
 		bodyFont: "inter",
 		template: "next",
@@ -131,7 +123,6 @@ export const PRESETS: Preset[] = [
 		useSrcDir: true,
 		iconLibrary: "lucide",
 		baseColor: "default",
-		inputVariant: "bordered",
 		customColors: {},
 		componentOverrides: [],
 	},
@@ -140,7 +131,6 @@ export const PRESETS: Preset[] = [
 		title: "Sera",
 		description: "Sera preset",
 		primaryColor: "violet-blue",
-		secondaryColor: "violet-blue",
 		headingFont: "playfair-display",
 		bodyFont: "playfair-display",
 		template: "next",
@@ -150,7 +140,6 @@ export const PRESETS: Preset[] = [
 		useSrcDir: true,
 		iconLibrary: "lucide",
 		baseColor: "default",
-		inputVariant: "bordered",
 		customColors: {},
 		componentOverrides: [],
 	},
@@ -320,33 +309,21 @@ function normalizePrimaryColorVars(
 	return result
 }
 
-function normalizeSecondaryColorVars(vars?: Record<string, string>) {
-	if (!vars) return {}
-	const result: Record<string, string> = {}
-	for (const [key, value] of Object.entries(vars)) {
-		const normalizedKey = key.startsWith("--") ? key : `--color-${key}`
-		result[normalizedKey.replace("--color-primary", "--color-secondary")] =
-			value
-	}
-	return result
-}
-
 export function buildRegistryConfig(config: ThemerConfig): RegistryConfig {
 	const primaryColor = config.primaryColor ?? DEFAULT_CONFIG.primaryColor
-	const colorEntry = PRIMARY_COLORS.find((c) => c.value === primaryColor)
-	const lightVars = normalizePrimaryColorVars(colorEntry?.cssVars.light)
-	const darkVars = normalizePrimaryColorVars(colorEntry?.cssVars.dark)
 
-	const secondaryColor = config.secondaryColor ?? DEFAULT_CONFIG.secondaryColor
-	const secondaryColorEntry = PRIMARY_COLORS.find(
-		(c) => c.value === secondaryColor
-	)
-	const secondaryLightVars = normalizeSecondaryColorVars(
-		secondaryColorEntry?.cssVars.light
-	)
-	const secondaryDarkVars = normalizeSecondaryColorVars(
-		secondaryColorEntry?.cssVars.dark
-	)
+	let lightVars: Record<string, string> = {}
+	let darkVars: Record<string, string> = {}
+
+	if (primaryColor.startsWith("#")) {
+		const generated = generateCustomColorShades(primaryColor)
+		lightVars = normalizePrimaryColorVars(generated)
+		darkVars = normalizePrimaryColorVars(generated)
+	} else {
+		const colorEntry = PRIMARY_COLORS.find((c) => c.value === primaryColor)
+		lightVars = normalizePrimaryColorVars(colorEntry?.cssVars.light)
+		darkVars = normalizePrimaryColorVars(colorEntry?.cssVars.dark)
+	}
 
 	const baseColorEntry = BASE_COLORS.find((c) => c.value === config.baseColor)
 	const baseLightVars = baseColorEntry?.cssVars.light
@@ -372,10 +349,6 @@ export function buildRegistryConfig(config: ThemerConfig): RegistryConfig {
 		theme["--control-radius-base"] = controlRadius.radius["control-radius-base"]
 	}
 
-	const inputVariantEntry = INPUT_VARIANTS.find(
-		(v) => v.value === config.inputVariant
-	)
-
 	const dependencies = [
 		"class-variance-authority",
 		"tw-animate-css",
@@ -391,13 +364,11 @@ export function buildRegistryConfig(config: ThemerConfig): RegistryConfig {
 			light: {
 				...BASE_THEME.light,
 				...(lightVars || {}),
-				...(secondaryLightVars || {}),
 				...baseLightVars,
 			},
 			dark: {
 				...BASE_THEME.dark,
 				...(darkVars || {}),
-				...(secondaryDarkVars || {}),
 				...baseDarkVars,
 			},
 			theme: {
@@ -440,9 +411,6 @@ export function buildRegistryConfig(config: ThemerConfig): RegistryConfig {
 				"@apply font-body text-[0.8125rem] leading-[1.125rem];",
 			"@utility no-scrollbar":
 				"-ms-overflow-style: none; scrollbar-width: none; &::-webkit-scrollbar { display: none; }",
-			...(inputVariantEntry &&
-				inputVariantEntry.value !== "bordered" &&
-				inputVariantEntry.projectCss),
 		},
 		dependencies,
 		registryDependencies,

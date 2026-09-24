@@ -5,8 +5,8 @@ import { useThemerPreset } from "@/lib/themer-preset"
 import { buildRegistryConfig } from "@/registry/config"
 import { FONTS } from "@/registry/fonts"
 import { IconLibraryProvider } from "@/registry/icon/icon-library"
-import { INPUT_VARIANTS } from "@/registry/input-variants"
-import { RADIUS } from "@/registry/radius"
+import { PRIMARY_COLORS } from "@/registry/primary-colors"
+import { generateCustomColorShades } from "@/lib/shade-generator"
 
 const MANAGED_BODY_CLASS_PREFIXES = ["style-"] as const
 
@@ -62,7 +62,6 @@ const THEMER_STYLE_ID = "themer-style"
 
 const buildThemerCssText = (
 	cssVars: RegistryThemeCssVars | undefined,
-	inputVariant: string | undefined,
 	customColors?: Record<string, string>,
 	componentOverrides?: Array<{
 		selector: string
@@ -76,16 +75,26 @@ const buildThemerCssText = (
 		parts.push(buildStyleCssText(cssVars))
 	}
 
-	if (inputVariant && inputVariant !== "bordered") {
-		const entry = INPUT_VARIANTS.find((v) => v.value === inputVariant)
-		if (entry?.previewCss) parts.push(entry.previewCss)
-	}
-
 	if (customColors) {
 		const customColorVars = Object.entries(customColors).reduce(
 			(acc, [id, val]) => {
-				acc[`--color-${id}`] = val
-				return acc
+				let shades: Record<string, string> = {}
+
+				if (val.startsWith("#")) {
+					shades = generateCustomColorShades(val, id)
+				} else {
+					const preset = PRIMARY_COLORS.find((c) => c.value === val)
+					if (preset) {
+						for (const [key, v] of Object.entries(preset.cssVars.light)) {
+							const newKey = key.replace("--color-primary", `--color-${id}`)
+							shades[newKey] = v
+						}
+					} else {
+						shades[`--color-${id}`] = val
+					}
+				}
+
+				return { ...acc, ...shades }
 			},
 			{} as Record<string, string>
 		)
@@ -96,11 +105,19 @@ const buildThemerCssText = (
 
 	if (componentOverrides && componentOverrides.length > 0) {
 		const overrideRules = componentOverrides.map((override) => {
-			return `${override.selector} {
-  ${override.property}: var(--color-${override.customColorId}) !important;
-}`
+			let rules = `  ${override.property}: var(--color-${override.customColorId}) !important;`
+
+			if (override.property === "background-color") {
+				rules += `
+  color: var(--color-${override.customColorId}-fg) !important;
+  --color-fg: var(--color-${override.customColorId}-fg);
+  --color-fg-secondary: color-mix(in srgb, var(--color-${override.customColorId}-fg) 80%, transparent);
+  --color-fg-tertiary: color-mix(in srgb, var(--color-${override.customColorId}-fg) 60%, transparent);`
+			}
+
+			return `${override.selector} {\n${rules}\n}`
 		})
-		parts.push(overrideRules.join("\n"))
+		parts.push(overrideRules.join("\n\n"))
 	}
 
 	return parts.join("\n")
@@ -140,6 +157,13 @@ export function PreviewClient({ children }: { children: React.ReactNode }) {
 	const [isReady, setIsReady] = useState(false)
 	const [inspectMode, setInspectMode] = useState(false)
 	const [hoveredElement, setHoveredElement] = useState<HTMLElement | null>(null)
+	const [selectedElement, setSelectedElement] = useState<HTMLElement | null>(
+		null
+	)
+	const [selectedSelector, setSelectedSelector] = useState<string | null>(null)
+	const [clickPos, setClickPos] = useState<{ x: number; y: number } | null>(
+		null
+	)
 
 	const selectedHeadingFont = FONTS.find(
 		(font) => font.value === params.headingFont
@@ -159,7 +183,6 @@ export function PreviewClient({ children }: { children: React.ReactNode }) {
 
 		style.textContent = buildThemerCssText(
 			config?.cssVars,
-			params.inputVariant,
 			params.customColors,
 			params.componentOverrides
 		)
@@ -173,13 +196,7 @@ export function PreviewClient({ children }: { children: React.ReactNode }) {
 				document.head.removeChild(style)
 			}
 		}
-	}, [
-		config,
-		params.style,
-		params.inputVariant,
-		params.customColors,
-		params.componentOverrides,
-	])
+	}, [config, params.style, params.customColors, params.componentOverrides])
 
 	useFontLoader(selectedHeadingFont, "--font-heading")
 	useFontLoader(selectedBodyFont, "--font-body")
@@ -212,12 +229,6 @@ export function PreviewClient({ children }: { children: React.ReactNode }) {
 			}
 			if (event.data.type === "icon-library-change") {
 				setParams({ iconLibrary: event.data.iconLibrary })
-			}
-			if (event.data.type === "secondary-color-change") {
-				setParams({ secondaryColor: event.data.secondaryColor })
-			}
-			if (event.data.type === "input-variant-change") {
-				setParams({ inputVariant: event.data.inputVariant })
 			}
 			if (event.data.type === "inspect-mode-change") {
 				setInspectMode(event.data.inspectMode)
@@ -255,6 +266,10 @@ export function PreviewClient({ children }: { children: React.ReactNode }) {
 			const target = e.target as HTMLElement
 			const selector = getCssSelector(target)
 			if (selector) {
+				setSelectedElement(target)
+				setSelectedSelector(selector)
+				setClickPos({ x: e.clientX, y: e.clientY })
+				// Tell the parent window to turn off the inspect mode button state
 				window.parent.postMessage({ type: "element-inspected", selector }, "*")
 				setInspectMode(false)
 				setHoveredElement(null)
@@ -289,6 +304,126 @@ export function PreviewClient({ children }: { children: React.ReactNode }) {
 						zIndex: 9999,
 					}}
 				/>
+			)}
+			{selectedElement && selectedSelector && clickPos && (
+				<div
+					style={{
+						position: "absolute",
+						top: clickPos.y + window.scrollY + 12,
+						left: Math.max(8, clickPos.x + window.scrollX + 12),
+						backgroundColor: "white",
+						border: "1px solid var(--color-border)",
+						borderRadius: "8px",
+						padding: "8px",
+						zIndex: 10000,
+						boxShadow: "0 4px 12px -2px rgb(0 0 0 / 0.15)",
+						display: "flex",
+						flexDirection: "column",
+						gap: "4px",
+						minWidth: "160px",
+					}}>
+					<div
+						style={{
+							fontSize: "12px",
+							fontWeight: "600",
+							marginBottom: "4px",
+							color: "#111",
+							padding: "0 4px",
+						}}>
+						Set Custom Color
+					</div>
+					{["primary", ...Object.keys(params.customColors || {})].map((id) => {
+						const isPrimary = id === "primary"
+						const actualColorHex = isPrimary
+							? params.primaryColor
+							: params.customColors?.[id]
+						// We can use the generated CSS variable for the preview box, but we need to resolve primary color if it's a preset
+						let previewBg = `var(--color-${id})`
+
+						// If they chose primary and it's a preset like violet-blue, our CSS variables have it stored as --color-primary
+						if (
+							isPrimary &&
+							actualColorHex &&
+							!actualColorHex.startsWith("#")
+						) {
+							const preset = PRIMARY_COLORS.find(
+								(c) => c.value === actualColorHex
+							)
+							if (preset) previewBg = preset.cssVars.light["--color-primary"]
+						}
+
+						return (
+							<button
+								key={id}
+								onClick={() => {
+									window.parent.postMessage(
+										{
+											type: "add-component-override",
+											selector: selectedSelector,
+											customColorId: id,
+										},
+										"*"
+									)
+									setSelectedElement(null)
+									setSelectedSelector(null)
+								}}
+								style={{
+									display: "flex",
+									alignItems: "center",
+									gap: "8px",
+									padding: "6px 8px",
+									fontSize: "12px",
+									borderRadius: "6px",
+									border: "none",
+									background: "transparent",
+									cursor: "pointer",
+									color: "#333",
+									fontWeight: "500",
+								}}
+								onMouseOver={(e) =>
+									(e.currentTarget.style.backgroundColor = "rgba(0,0,0,0.06)")
+								}
+								onMouseOut={(e) =>
+									(e.currentTarget.style.backgroundColor = "transparent")
+								}>
+								<div
+									style={{
+										width: "14px",
+										height: "14px",
+										borderRadius: "3px",
+										backgroundColor: previewBg,
+										border: "1px solid rgba(0,0,0,0.1)",
+									}}
+								/>
+								{id === "primary" ? "Primary Color" : id}
+							</button>
+						)
+					})}
+					<button
+						onClick={() => {
+							setSelectedElement(null)
+							setSelectedSelector(null)
+						}}
+						style={{
+							marginTop: "6px",
+							padding: "6px",
+							fontSize: "12px",
+							fontWeight: "500",
+							background: "rgba(0,0,0,0.04)",
+							border: "none",
+							borderRadius: "6px",
+							cursor: "pointer",
+							color: "#555",
+						}}
+						onMouseOver={(e) =>
+							(e.currentTarget.style.backgroundColor = "rgba(0,0,0,0.08)")
+						}
+						onMouseOut={(e) =>
+							(e.currentTarget.style.backgroundColor = "rgba(0,0,0,0.04)")
+						}>
+						Cancel
+					</button>
+				</div>
 			)}
 		</IconLibraryProvider>
 	)

@@ -1,0 +1,1 @@
+import { PRIMARY_COLORS } from '@/registry/primary-colors'
