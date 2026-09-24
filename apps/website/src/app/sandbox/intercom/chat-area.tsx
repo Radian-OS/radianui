@@ -16,6 +16,7 @@ import {
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { Button, IconButton } from "@/styles/default/ui/button"
+import { Avatar, AvatarFallback } from "@/styles/default/ui/avatar"
 import {
 	Form,
 	FormControl,
@@ -55,9 +56,7 @@ export function ChatArea({ conversation, onSendMessage }: ChatAreaProps) {
 		<div className="bg-bg flex h-full flex-1 flex-col overflow-hidden text-xs transition-colors">
 			{/* Top Conversation Header */}
 			<div className="border-border/60 flex h-12 shrink-0 items-center justify-between border-b px-4">
-				<h3 className="heading-5 text-fg text-base font-bold">
-					{conversation.name}
-				</h3>
+				<h3 className="heading-5 text-fg">{conversation.name}</h3>
 
 				<div className="flex items-center gap-1">
 					<IconButton
@@ -70,7 +69,7 @@ export function ChatArea({ conversation, onSendMessage }: ChatAreaProps) {
 						className="text-fg-secondary hover:text-fg">
 						<Star
 							className={`size-4 ${
-								isStarred ? "fill-amber-400 text-amber-400" : "text-fg-tertiary"
+								isStarred ? "fill-warning text-warning" : "text-fg-tertiary"
 							}`}
 						/>
 					</IconButton>
@@ -127,12 +126,14 @@ export function ChatArea({ conversation, onSendMessage }: ChatAreaProps) {
 						}`}>
 						{/* Inbound user avatar */}
 						{msg.isUser && (
-							<div
-								className={`flex size-6 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white shadow-xs ${
-									msg.avatarBgClass || "bg-rose-400"
-								}`}>
-								{msg.avatarText || "-"}
-							</div>
+							<Avatar
+								size="24"
+								rounded="circle"
+								className={`shrink-0 ${msg.avatarBgClass || "bg-error"} font-bold text-white`}>
+								<AvatarFallback className="bg-transparent text-[11px] font-bold text-inherit">
+									{msg.avatarText || "-"}
+								</AvatarFallback>
+							</Avatar>
 						)}
 
 						{/* Message bubble */}
@@ -144,7 +145,7 @@ export function ChatArea({ conversation, onSendMessage }: ChatAreaProps) {
 								className={`rounded-2xl px-4 py-2.5 text-xs leading-relaxed sm:text-sm ${
 									msg.isUser
 										? "bg-card border-border text-fg rounded-tl-sm border shadow-xs"
-										: "rounded-tr-sm bg-blue-100 text-blue-950 dark:bg-blue-950/70 dark:text-blue-100"
+										: "bg-primary/10 text-fg border-primary-border/20 rounded-tr-sm border"
 								}`}>
 								{msg.content}
 							</div>
@@ -154,7 +155,7 @@ export function ChatArea({ conversation, onSendMessage }: ChatAreaProps) {
 								{!msg.isUser && (
 									<div className="text-fg-tertiary flex items-center gap-1">
 										<span>•</span>
-										<Sparkles className="size-3 text-blue-500" />
+										<Sparkles className="text-primary size-3" />
 									</div>
 								)}
 							</div>

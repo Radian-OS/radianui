@@ -163,8 +163,8 @@ export function CommentPin({
 											className="text-fg-tertiary hover:text-fg hover:bg-fill3 flex cursor-pointer items-center gap-1 rounded px-1 py-0.5 text-[10px] font-medium transition-colors">
 											{copied ? (
 												<>
-													<Check className="size-2.5 text-emerald-500" />
-													<span className="font-semibold text-emerald-500">
+													<Check className="text-success size-2.5" />
+													<span className="text-success font-semibold">
 														Copied
 													</span>
 												</>

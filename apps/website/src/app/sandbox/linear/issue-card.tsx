@@ -70,7 +70,7 @@ export function IssueCard({ issue }: IssueCardProps) {
 				{/* Due Date if any */}
 				{issue.dueDate && (
 					<div className="bg-fill1 border-border text-fg-secondary inline-flex items-center gap-1 rounded-md border px-2 py-0.5 text-xs">
-						<Calendar className="size-3 text-orange-500 dark:text-orange-400" />
+						<Calendar className="text-warning size-3" />
 						<span>{issue.dueDate}</span>
 					</div>
 				)}

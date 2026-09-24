@@ -28,9 +28,7 @@ export function ConversationList({
 			<div className="border-border/40 flex h-12 items-center justify-between border-b px-3">
 				<div className="flex items-center gap-2">
 					<CreditCard className="text-fg-secondary size-4" />
-					<h3 className="heading-6 text-fg text-sm font-semibold">
-						Alex Smith
-					</h3>
+					<h3 className="heading-6 text-fg">Alex Smith</h3>
 				</div>
 
 				<div className="flex items-center gap-1.5">

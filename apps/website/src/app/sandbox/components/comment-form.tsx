@@ -157,7 +157,7 @@ export function CommentForm({
 									className="text-fg-tertiary hover:text-fg hover:bg-fill3 flex cursor-pointer items-center gap-1 rounded px-1.5 py-0.5 text-[10px] font-medium transition-colors"
 									title="Copy class names only">
 									{copiedClasses ? (
-										<span className="font-semibold text-emerald-500">
+										<span className="text-success font-semibold">
 											Classes Copied
 										</span>
 									) : (
@@ -172,10 +172,8 @@ export function CommentForm({
 								title="Copy whole JSX tag">
 								{copiedCode ? (
 									<>
-										<Check className="size-3 text-emerald-500" />
-										<span className="font-semibold text-emerald-500">
-											Copied
-										</span>
+										<Check className="text-success size-3" />
+										<span className="text-success font-semibold">Copied</span>
 									</>
 								) : (
 									<>
@@ -204,8 +202,8 @@ export function CommentForm({
 							title="Copy class names">
 							{copiedClasses ? (
 								<>
-									<Check className="size-3 text-emerald-500" />
-									<span className="font-semibold text-emerald-500">Copied</span>
+									<Check className="text-success size-3" />
+									<span className="text-success font-semibold">Copied</span>
 								</>
 							) : (
 								<>

@@ -61,7 +61,7 @@ export function AgentlabNavbar() {
 				{/* Logo */}
 				<Link
 					href="/sandbox/agentlab"
-					className="flex items-center gap-2.5 transition-opacity hover:underline hover:opacity-90">
+					className="flex items-center gap-2.5 transition-opacity hover:opacity-90">
 					<div className="relative flex size-6 items-center justify-center">
 						<Image
 							src="https://framerusercontent.com/images/qHjpjWRtd4BPA2HhIAgyBH8pjA.svg"
@@ -159,7 +159,7 @@ export function AgentlabNavbar() {
 								key={item.label}
 								href={item.href}
 								onClick={() => setMobileMenuOpen(false)}
-								className="text-fg-secondary hover:text-fg flex items-center justify-between py-1.5 text-sm font-medium hover:underline">
+								className="text-fg-secondary hover:text-fg flex items-center justify-between py-1.5 text-sm font-medium">
 								<span>{item.label}</span>
 								{item.hasDropdown && (
 									<ChevronDown className="text-fg-tertiary size-4" />

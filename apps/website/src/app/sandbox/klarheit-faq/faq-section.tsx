@@ -46,9 +46,7 @@ export function FaqSection() {
 					<span className="text-fg-secondary text-[11px] font-extrabold tracking-widest uppercase">
 						FAQ
 					</span>
-					<h2 className="heading-2 mt-3 font-bold">
-						Frequently asked questions.
-					</h2>
+					<h2 className="heading-2 mt-3">Frequently asked questions.</h2>
 				</div>
 				<Button
 					color="neutral"

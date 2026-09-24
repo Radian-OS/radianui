@@ -219,7 +219,7 @@ export function PlaygroundHeader({
 									await signOut()
 									window.location.href = "/sandbox/auth/sign-in"
 								}}
-								className="text-danger cursor-pointer gap-2 text-xs">
+								className="text-error cursor-pointer gap-2 text-xs">
 								<LogOut className="size-3.5" />
 								<span>Sign Out</span>
 							</DropdownMenuItem>

@@ -9,7 +9,7 @@ export function LoginDashboardCard() {
 		<div className="border-border bg-elevation-level2 relative flex min-h-[560px] w-full flex-col justify-between overflow-hidden rounded-3xl border p-8 sm:min-h-[640px] sm:p-12 lg:min-h-screen lg:rounded-none lg:p-16">
 			{/* Top Heading Content */}
 			<div className="relative z-10 flex flex-col gap-3">
-				<h2 className="heading-2 text-fg max-w-lg font-bold">
+				<h2 className="heading-2 text-fg max-w-lg">
 					Welcome back! Please sign in to your Shadcn Studio account
 				</h2>
 				<p className="text-fg-secondary max-w-md text-xs leading-relaxed sm:text-sm">

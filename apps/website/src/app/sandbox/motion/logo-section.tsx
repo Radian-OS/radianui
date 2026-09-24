@@ -28,9 +28,7 @@ export function LogoSection() {
 								size="48"
 								className="rounded-full px-8 font-semibold"
 								asChild>
-								<Link href="#" className="hover:underline">
-									Read Testimonials
-								</Link>
+								<Link href="#">Read Testimonials</Link>
 							</Button>
 						</div>
 					</div>

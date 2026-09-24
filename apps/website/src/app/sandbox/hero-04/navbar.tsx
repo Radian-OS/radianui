@@ -10,6 +10,7 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { Badge } from "@/styles/default/ui/badge"
 import { Button, IconButton } from "@/styles/default/ui/button"
+import { Avatar, AvatarFallback, AvatarImage } from "@/styles/default/ui/avatar"
 import {
 	Form,
 	FormControl,
@@ -102,9 +103,7 @@ export function Navbar() {
 					</div>
 
 					{/* Brand Logo */}
-					<Link
-						href="/sandbox/hero-04"
-						className="flex items-center gap-2 hover:underline">
+					<Link href="/sandbox/hero-04" className="flex items-center gap-2">
 						<Image
 							src="/icons/hero-04-logo.svg"
 							alt="Logo"
@@ -122,7 +121,7 @@ export function Navbar() {
 									asChild
 									className={cn(
 										navigationMenuTriggerStyle(),
-										"hover:bg-elevation-level1 text-fg-muted hover:text-fg h-8 gap-1.5 bg-transparent px-3 text-sm font-medium"
+										"hover:bg-elevation-level1 text-fg-secondary hover:text-fg h-8 gap-1.5 bg-transparent px-3 text-sm font-medium"
 									)}>
 									<Link href="#products" className="flex items-center">
 										<span>Products</span>
@@ -138,7 +137,7 @@ export function Navbar() {
 							</NavigationMenuItem>
 
 							<NavigationMenuItem>
-								<NavigationMenuTrigger className="hover:bg-elevation-level1 text-fg-muted hover:text-fg h-8 bg-transparent px-3 text-sm font-medium">
+								<NavigationMenuTrigger className="hover:bg-elevation-level1 text-fg-secondary hover:text-fg h-8 bg-transparent px-3 text-sm font-medium">
 									Services
 								</NavigationMenuTrigger>
 								<NavigationMenuContent
@@ -170,7 +169,7 @@ export function Navbar() {
 									asChild
 									className={cn(
 										navigationMenuTriggerStyle(),
-										"hover:bg-elevation-level1 text-fg-muted hover:text-fg h-8 bg-transparent px-3 text-sm font-medium"
+										"hover:bg-elevation-level1 text-fg-secondary hover:text-fg h-8 bg-transparent px-3 text-sm font-medium"
 									)}>
 									<Link href="#pricing">Pricing</Link>
 								</NavigationMenuLink>
@@ -190,12 +189,12 @@ export function Navbar() {
 									<FormItem className="relative w-full space-y-0">
 										<FormControl>
 											<div className="relative flex w-full items-center">
-												<Search className="text-fg-muted pointer-events-none absolute left-3 size-4" />
+												<Search className="text-fg-tertiary pointer-events-none absolute left-3 size-4" />
 												<Input
 													{...field}
 													type="search"
 													placeholder="Search..."
-													className="bg-elevation-level1/70 border-border/60 focus:bg-bg placeholder:text-fg-muted focus:ring-primary h-8.5 w-full rounded-lg pr-3 pl-9 text-sm transition-all focus:ring-1"
+													className="bg-elevation-level1/70 border-border/60 focus:bg-bg placeholder:text-fg-tertiary focus:ring-primary h-8.5 w-full rounded-lg pr-3 pl-9 text-sm transition-all focus:ring-1"
 												/>
 											</div>
 										</FormControl>
@@ -226,7 +225,7 @@ export function Navbar() {
 							size="32"
 							aria-label="Toggle theme"
 							onClick={toggleTheme}
-							className="text-fg-muted hover:text-fg hidden lg:inline-flex">
+							className="text-fg-secondary hover:text-fg hidden lg:inline-flex">
 							{resolvedTheme === "dark" ? (
 								<Sun className="size-4" />
 							) : (
@@ -242,20 +241,22 @@ export function Navbar() {
 						color="neutral"
 						size="32"
 						aria-label="Bookmarks"
-						className="text-fg-muted hover:text-fg hidden lg:inline-flex">
+						className="text-fg-secondary hover:text-fg hidden lg:inline-flex">
 						<Bookmark className="size-4" />
 					</IconButton>
 
 					{/* Profile Avatar with Chevron */}
 					<div className="hover:bg-elevation-level1/60 flex cursor-pointer items-center gap-1 rounded-full p-0.5 transition-colors">
-						<Image
-							src="https://alignui.com/images/avatar/illustration/james.png"
-							alt="User Avatar"
-							width={32}
-							height={32}
-							className="size-8 rounded-full object-cover"
-						/>
-						<ChevronDown className="text-fg-muted size-3.5" />
+						<Avatar size="32" rounded="circle" className="border-border border">
+							<AvatarImage
+								src="https://alignui.com/images/avatar/illustration/james.png"
+								alt="User Avatar"
+							/>
+							<AvatarFallback className="text-xs font-semibold">
+								JA
+							</AvatarFallback>
+						</Avatar>
+						<ChevronDown className="text-fg-tertiary size-3.5" />
 					</div>
 				</div>
 			</div>
@@ -273,12 +274,12 @@ export function Navbar() {
 										<FormItem className="relative w-full space-y-0">
 											<FormControl>
 												<div className="relative flex w-full items-center">
-													<Search className="text-fg-muted pointer-events-none absolute left-3 size-4" />
+													<Search className="text-fg-tertiary pointer-events-none absolute left-3 size-4" />
 													<Input
 														{...field}
 														type="search"
 														placeholder="Search..."
-														className="bg-elevation-level1/80 border-border/60 placeholder:text-fg-muted h-9 w-full rounded-lg pr-3 pl-9 text-sm"
+														className="bg-elevation-level1/80 border-border/60 placeholder:text-fg-tertiary h-9 w-full rounded-lg pr-3 pl-9 text-sm"
 													/>
 												</div>
 											</FormControl>
@@ -294,7 +295,7 @@ export function Navbar() {
 						<Link
 							href="#products"
 							onClick={() => setMobileMenuOpen(false)}
-							className="text-fg-muted hover:bg-elevation-level1 hover:text-fg flex items-center justify-between rounded-lg px-3 py-2 text-sm font-medium hover:underline">
+							className="text-fg-secondary hover:bg-elevation-level1 hover:text-fg flex items-center justify-between rounded-lg px-3 py-2 text-sm font-medium">
 							<span>Products</span>
 							<Badge variant="soft" color="info" size="20">
 								NEW
@@ -304,14 +305,14 @@ export function Navbar() {
 						<Link
 							href="#services"
 							onClick={() => setMobileMenuOpen(false)}
-							className="text-fg-muted hover:bg-elevation-level1 hover:text-fg flex items-center justify-between rounded-lg px-3 py-2 text-sm font-medium hover:underline">
+							className="text-fg-secondary hover:bg-elevation-level1 hover:text-fg flex items-center justify-between rounded-lg px-3 py-2 text-sm font-medium">
 							<span>Services</span>
 						</Link>
 
 						<Link
 							href="#pricing"
 							onClick={() => setMobileMenuOpen(false)}
-							className="text-fg-muted hover:bg-elevation-level1 hover:text-fg flex items-center justify-between rounded-lg px-3 py-2 text-sm font-medium hover:underline">
+							className="text-fg-secondary hover:bg-elevation-level1 hover:text-fg flex items-center justify-between rounded-lg px-3 py-2 text-sm font-medium">
 							<span>Pricing</span>
 						</Link>
 

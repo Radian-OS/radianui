@@ -10,9 +10,7 @@ export function CrisplySupportAccessSection() {
 	return (
 		<section className="space-y-6 pt-6">
 			{/* Section Heading (Rule 13: heading-3) */}
-			<h3 className="heading-3 text-fg text-lg font-bold tracking-tight">
-				Support Access
-			</h3>
+			<h3 className="heading-3 text-fg">Support Access</h3>
 
 			<div className="space-y-6">
 				{/* Support access toggle */}

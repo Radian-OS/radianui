@@ -18,7 +18,7 @@ export function LoginFeatureCard() {
 
 			{/* Top Heading Content */}
 			<div className="relative z-10 flex flex-col gap-3">
-				<h2 className="heading-2 text-fg max-w-md font-bold">
+				<h2 className="heading-2 text-fg max-w-md">
 					Welcome back! Please sign in to your Shadcn Studio account
 				</h2>
 				<p className="text-fg-secondary max-w-sm text-xs leading-relaxed sm:text-sm">

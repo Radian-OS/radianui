@@ -75,7 +75,7 @@ export function AgentlabSolutionSection() {
 								<span className="text-fg-secondary text-xs font-bold tracking-wider uppercase">
 									SUPPORT AGENT
 								</span>
-								<span className="flex size-2 animate-pulse rounded-full bg-emerald-500" />
+								<span className="bg-success flex size-2 animate-pulse rounded-full" />
 							</div>
 
 							<div className="mt-4 space-y-3">
@@ -259,7 +259,7 @@ export function AgentlabSolutionSection() {
 
 							<div className="border-border/60 mt-4 flex items-center justify-between border-t pt-3 text-xs">
 								<div className="flex items-center gap-2">
-									<span className="size-2 rounded-full bg-emerald-500" />
+									<span className="bg-success size-2 rounded-full" />
 									<span className="text-fg font-medium">Research Agent</span>
 								</div>
 								<span className="text-fg font-bold">342 tasks</span>

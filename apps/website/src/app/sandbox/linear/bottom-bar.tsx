@@ -29,7 +29,7 @@ export function BottomBar() {
 					<button
 						type="button"
 						onClick={() => setFilterHidden(false)}
-						className="text-fg flex cursor-pointer items-center gap-1 font-medium transition-colors hover:underline">
+						className="text-fg hover:text-primary flex cursor-pointer items-center gap-1 font-medium transition-colors">
 						<span>Clear Filters</span>
 						<X className="size-3.5" />
 					</button>

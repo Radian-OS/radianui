@@ -2,8 +2,8 @@
 
 import React from "react"
 import { ChevronDown, HelpCircle, Search } from "lucide-react"
-import Image from "next/image"
 import Link from "next/link"
+import { Avatar, AvatarFallback, AvatarImage } from "@/styles/default/ui/avatar"
 
 export function CrisplyTopHeader() {
 	return (
@@ -28,7 +28,7 @@ export function CrisplyTopHeader() {
 			<div className="flex items-center gap-5">
 				<Link
 					href="#help"
-					className="text-fg-secondary hover:text-fg flex items-center gap-1.5 text-xs font-medium transition-colors hover:underline">
+					className="text-fg-secondary hover:text-fg flex items-center gap-1.5 text-xs font-medium transition-colors">
 					<HelpCircle className="text-fg-tertiary size-4" />
 					<span>Help Center</span>
 				</Link>
@@ -37,15 +37,12 @@ export function CrisplyTopHeader() {
 				<button
 					type="button"
 					className="hover:bg-fill2 flex cursor-pointer items-center gap-2 rounded-full p-1 transition-colors">
-					<div className="border-border relative size-7 overflow-hidden rounded-full border">
-						<Image
-							src="/sandbox/placeholder.svg"
-							alt="Brian Frederin"
-							fill
-							sizes="28px"
-							className="object-cover"
-						/>
-					</div>
+					<Avatar size="32" rounded="circle" className="border-border border">
+						<AvatarImage src="/sandbox/placeholder.svg" alt="Brian Frederin" />
+						<AvatarFallback className="text-[11px] font-semibold">
+							BF
+						</AvatarFallback>
+					</Avatar>
 					<span className="text-fg text-xs font-semibold">Brian F.</span>
 					<ChevronDown className="text-fg-tertiary size-3.5" />
 				</button>

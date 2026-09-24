@@ -82,7 +82,7 @@ export function InboxNav() {
 			className="border-border/60 bg-bg text-sidebar-fg flex h-full w-56 shrink-0 flex-col justify-between border-r select-none">
 			{/* Sidebar Header: Title, Search, and New Conversation */}
 			<SidebarHeader className="border-border/40 flex h-12 flex-row items-center justify-between border-b px-3">
-				<h2 className="heading-6 text-fg text-sm font-bold">Inbox</h2>
+				<h2 className="heading-6 text-fg">Inbox</h2>
 				<div className="flex items-center gap-0.5">
 					<IconButton
 						type="button"
@@ -275,16 +275,16 @@ export function InboxNav() {
 
 			{/* Sidebar Footer: Onboarding Card & Manage */}
 			<SidebarFooter className="border-border/40 space-y-2 border-t p-2">
-				{/* Dark onboarding card */}
-				<div className="rounded-xl bg-zinc-900 p-3 text-white shadow-md dark:bg-zinc-800">
+				{/* Onboarding card */}
+				<div className="border-border/60 bg-elevation-level1 text-fg rounded-xl border p-3 shadow-md">
 					<div className="flex items-center justify-between">
 						<div className="flex items-center gap-2">
-							<div className="size-2 rounded-full bg-emerald-400" />
+							<div className="bg-success size-2 rounded-full" />
 							<span className="text-xs font-semibold">Get set up</span>
 						</div>
-						<ChevronUp className="size-3.5 text-zinc-400" />
+						<ChevronUp className="text-fg-secondary size-3.5" />
 					</div>
-					<p className="mt-1.5 text-[11px] leading-snug text-zinc-400">
+					<p className="text-fg-secondary mt-1.5 text-[11px] leading-snug">
 						Add content to power your AI and Help Center
 					</p>
 				</div>
