@@ -22,8 +22,11 @@ import {
 	DropdownMenuRadioItem,
 	DropdownMenuTrigger,
 } from "@/registry/ui/dropdown-menu"
+import { getFlagSvgMarkup, renderFlagPng } from "./flag-assets"
+import { FlagImage } from "./FlagImage"
 import type { FlagName, FlagShape, FlagSize } from "./flags-data"
 import {
+	FLAG_PNG_SIZES,
 	flagNames,
 	getFlagAssetCode,
 	getFlagCallingCodes,
@@ -31,8 +34,7 @@ import {
 	getFlagDisplayName,
 	getFlagHtmlMarkup,
 	getFlagNextImageMarkup,
-	getFlagSvgMarkup,
-	getFlagUrl,
+	getFlagSvgUrl,
 } from "./flags-data"
 
 interface FlagDetailsDialogProps {
@@ -43,7 +45,6 @@ interface FlagDetailsDialogProps {
 	onSelectFlag: (name: FlagName) => void
 }
 
-const pngSizes: FlagSize[] = [64, 128, 256, 512]
 const MORE_FLAGS_LIMIT = 16
 
 const alphabeticalFlagNames = [...flagNames].sort((first, second) =>
@@ -99,15 +100,6 @@ function getMoreFlags(name: FlagName) {
 		.filter((flagName) => flagName !== name)
 }
 
-function blobToDataUrl(blob: Blob) {
-	return new Promise<string>((resolve, reject) => {
-		const reader = new FileReader()
-		reader.onload = () => resolve(String(reader.result))
-		reader.onerror = () => reject(reader.error)
-		reader.readAsDataURL(blob)
-	})
-}
-
 function downloadBlob(blob: Blob, filename: string) {
 	const objectUrl = URL.createObjectURL(blob)
 	const link = document.createElement("a")
@@ -140,7 +132,7 @@ export function FlagDetailsDialog({
 	const assetCode = getFlagAssetCode(name)
 	const packageCommands = getPackageCommands(assetCode)
 	const shapeLabel = dialogShape === "round" ? "Rounded" : "Flat"
-	const previewUrl = getFlagUrl(name, dialogShape, 512)
+	const svgUrl = getFlagSvgUrl(name)
 	const searchTags = Array.from(
 		new Set([
 			...(flagSearchTags[name] ?? [displayName, name, `${displayName} flag`]),
@@ -160,15 +152,7 @@ export function FlagDetailsDialog({
 
 	const copyPng = async () => {
 		try {
-			const response = await fetch(getFlagUrl(name, dialogShape, pngSize))
-			if (!response.ok) throw new Error("Flag request failed")
-			const blob = await response.blob()
-
-			if (!navigator.clipboard.write || !("ClipboardItem" in window)) {
-				await copyText(getFlagUrl(name, dialogShape, pngSize), "PNG URL")
-				return
-			}
-
+			const blob = await renderFlagPng(name, dialogShape, pngSize)
 			await navigator.clipboard.write([
 				new ClipboardItem({ "image/png": blob }),
 			])
@@ -178,11 +162,7 @@ export function FlagDetailsDialog({
 		}
 	}
 
-	const getSvg = async () => {
-		const response = await fetch(previewUrl)
-		if (!response.ok) throw new Error("Flag request failed")
-		return getFlagSvgMarkup(name, await blobToDataUrl(await response.blob()))
-	}
+	const getSvg = () => getFlagSvgMarkup(name, dialogShape)
 
 	const copySvg = async () => {
 		try {
@@ -201,10 +181,8 @@ export function FlagDetailsDialog({
 					`${safeName}-${dialogShape}.svg`
 				)
 			} else {
-				const response = await fetch(getFlagUrl(name, dialogShape, pngSize))
-				if (!response.ok) throw new Error("Flag request failed")
 				downloadBlob(
-					await response.blob(),
+					await renderFlagPng(name, dialogShape, pngSize),
 					`${safeName}-${dialogShape}-${pngSize}px.png`
 				)
 			}
@@ -227,12 +205,11 @@ export function FlagDetailsDialog({
 							value={dialogShape}
 							onValueChange={setDialogShape}
 						/>
-						<img
-							src={previewUrl}
+						<FlagImage
+							name={name}
+							shape={dialogShape}
+							size={160}
 							alt={`${displayName} ${shapeLabel.toLowerCase()} flag`}
-							width={160}
-							height={160}
-							className="size-40 object-contain"
 						/>
 					</div>
 
@@ -262,7 +239,7 @@ export function FlagDetailsDialog({
 										onValueChange={(value) =>
 											setPngSize(Number(value) as FlagSize)
 										}>
-										{pngSizes.map((size) => (
+										{FLAG_PNG_SIZES.map((size) => (
 											<DropdownMenuRadioItem key={size} value={String(size)}>
 												{size} px
 											</DropdownMenuRadioItem>
@@ -312,7 +289,7 @@ export function FlagDetailsDialog({
 									size="32"
 									color="neutral"
 									variant="outline"
-									onClick={() => copyText(previewUrl, "CDN URL")}>
+									onClick={() => copyText(svgUrl, "SVG CDN URL")}>
 									CDN
 								</Button>
 								<Button
@@ -377,12 +354,11 @@ export function FlagDetailsDialog({
 										className="size-[50px] p-0"
 										aria-label={`View ${moreFlagDisplayName} flag`}
 										onClick={() => onSelectFlag(flagName)}>
-										<img
-											src={getFlagUrl(flagName, dialogShape)}
+										<FlagImage
+											name={flagName}
+											shape={dialogShape}
+											size={28}
 											alt=""
-											width={28}
-											height={28}
-											className="size-7 object-contain"
 										/>
 									</Button>
 								)

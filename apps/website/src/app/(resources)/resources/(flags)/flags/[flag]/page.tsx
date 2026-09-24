@@ -9,7 +9,7 @@ import {
 	getFlagNameFromSlug,
 	getFlagPagePath,
 	getFlagSlug,
-	getFlagUrl,
+	getFlagSvgUrl,
 } from "../../components/flags-data"
 
 interface FlagPageProps {
@@ -35,7 +35,7 @@ export async function generateMetadata({
 	const title = `${displayName} Flag – Free PNG & SVG Download`
 	const description = `Preview, copy, and download the ${displayName} flag as a flat or rounded PNG or SVG asset for React, Figma, and the web.`
 	const url = absoluteUrl(getFlagPagePath(flag))
-	const image = getFlagUrl(flag, "flat", 512)
+	const image = getFlagSvgUrl(flag)
 
 	return {
 		title,

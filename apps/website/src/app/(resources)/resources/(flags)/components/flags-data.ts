@@ -10,11 +10,28 @@ export const FLAG_CDN_ORIGIN = "https://cdn.jsdelivr.net"
 export const FLAGS_PAGE_PATH = "/resources/flags"
 
 const FLAG_CDN_ROOT =
-	"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/country-flags/src/64px"
+	"https://cdn.jsdelivr.net/gh/Radian-OS/radian-resources@main/packages/country-flags/src/flags"
 
 export type FlagName = FlagMetadata["id"]
 export type FlagShape = "flat" | "round"
 export type FlagSize = 16 | 24 | 32 | 64 | 128 | 256 | 512
+export type FlagViewBox = readonly [
+	x: number,
+	y: number,
+	width: number,
+	height: number,
+]
+
+export const FLAG_PNG_SIZES: readonly FlagSize[] = [
+	16, 24, 32, 64, 128, 256, 512,
+]
+
+export const FLAG_SVG_VIEW_BOX: FlagViewBox = [0, 0, 24, 24]
+
+const DEFAULT_CIRCLE_VIEW_BOX: FlagViewBox = [4.1378, 4.1378, 15.7244, 15.7244]
+const circleViewBoxOverrides: Partial<Record<FlagName, FlagViewBox>> = {
+	nepal: [0, 6.6207, 10.7586, 10.7586],
+}
 
 export const flagNames: FlagName[] = [...flagMetadata]
 	.sort((first, second) => first.cdnName.localeCompare(second.cdnName, "en"))
@@ -89,27 +106,58 @@ export function getFlagPagePath(name: FlagName) {
 	return `${FLAGS_PAGE_PATH}/${getFlagSlug(name)}`
 }
 
-export function getFlagUrl(
-	name: FlagName,
-	shape: FlagShape = "flat",
-	size: FlagSize = 64
-) {
-	const folder = shape === "round" ? "circle" : "flat"
-	const cdnName = getFlagMetadata(name).cdnName
-	return `${FLAG_CDN_ROOT.replace("/64px", `/${size}px`)}/${folder}/${encodeURIComponent(cdnName)}.png`
+export function getFlagSvgUrl(name: FlagName) {
+	return `${FLAG_CDN_ROOT}/${encodeURIComponent(getFlagMetadata(name).id)}.svg`
 }
 
-export function getFlagSvgMarkup(name: FlagName, imageHref: string) {
-	return `<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 64 64" role="img" aria-label="${getFlagDisplayName(name)} flag"><image href="${imageHref}" width="64" height="64" /></svg>`
+export function getFlagViewBox(name: FlagName, shape: FlagShape): FlagViewBox {
+	return shape === "round"
+		? (circleViewBoxOverrides[name] ?? DEFAULT_CIRCLE_VIEW_BOX)
+		: FLAG_SVG_VIEW_BOX
+}
+
+export function getFlagImageLayout(name: FlagName, size: number) {
+	const [x, y, width] = getFlagViewBox(name, "round")
+	const imageSize = (size * FLAG_SVG_VIEW_BOX[2]) / width
+
+	return {
+		imageSize,
+		left: (-x * size) / width,
+		top: (-y * size) / width,
+	}
+}
+
+function formatNumber(value: number) {
+	return Number(value.toFixed(3))
 }
 
 export function getFlagNextImageMarkup(
 	name: FlagName,
 	shape: FlagShape = "flat"
 ) {
-	return `<Image src="${getFlagUrl(name, shape)}" alt="${getFlagDisplayName(name)} flag" width={48} height={48} />`
+	const url = getFlagSvgUrl(name)
+	const alt = `${getFlagDisplayName(name)} flag`
+
+	if (shape === "flat") {
+		return `<Image unoptimized src="${url}" alt="${alt}" width={48} height={48} />`
+	}
+
+	const { imageSize, left, top } = getFlagImageLayout(name, 48)
+	const intrinsicSize = Math.ceil(imageSize)
+
+	return `<span style={{ position: "relative", display: "inline-block", width: 48, height: 48, overflow: "hidden", borderRadius: "9999px" }}><Image unoptimized src="${url}" alt="${alt}" width={${intrinsicSize}} height={${intrinsicSize}} style={{ position: "absolute", width: ${formatNumber(imageSize)}, height: ${formatNumber(imageSize)}, left: ${formatNumber(left)}, top: ${formatNumber(top)}, maxWidth: "none" }} /></span>`
 }
 
 export function getFlagHtmlMarkup(name: FlagName, shape: FlagShape = "flat") {
-	return `<img src="${getFlagUrl(name, shape)}" alt="${getFlagDisplayName(name)} flag" width="48" height="48" />`
+	const url = getFlagSvgUrl(name)
+	const alt = `${getFlagDisplayName(name)} flag`
+
+	if (shape === "flat") {
+		return `<img src="${url}" alt="${alt}" width="48" height="48" />`
+	}
+
+	const { imageSize, left, top } = getFlagImageLayout(name, 48)
+	const intrinsicSize = Math.ceil(imageSize)
+
+	return `<span style="position:relative;display:inline-block;width:48px;height:48px;overflow:hidden;border-radius:9999px"><img src="${url}" alt="${alt}" width="${intrinsicSize}" height="${intrinsicSize}" style="position:absolute;width:${formatNumber(imageSize)}px;height:${formatNumber(imageSize)}px;left:${formatNumber(left)}px;top:${formatNumber(top)}px;max-width:none" /></span>`
 }

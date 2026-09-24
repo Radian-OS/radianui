@@ -16,7 +16,7 @@ import {
 	EmptyMedia,
 	EmptyTitle,
 } from "@/registry/ui/empty"
-import { Input, InputWrapper } from "@/registry/ui/input"
+import { Input, InputGroup, InputWrapper } from "@/registry/ui/input"
 import { FlagDetailsDialog } from "./FlagDetailsDialog"
 import { FlagShapeDropdown } from "./FlagShapeDropdown"
 import { FlagTile } from "./FlagTile"
@@ -442,16 +442,20 @@ export default function FlagsPlayground({
 		<div className="flex w-full flex-col gap-5 py-2">
 			<div ref={sentinelRef} className="pointer-events-none h-px w-full" />
 			<div className="bg-bg/95 sticky top-0 z-100 py-3 backdrop-blur-sm">
-				<InputWrapper className="bg-fill1 focus-within:bg-bg h-13 w-full">
+				<InputGroup className="w-full">
 					<FlagShapeDropdown value={shape} onValueChange={handleShapeChange} />
-					<Search aria-hidden="true" />
-					<Input
-						value={query}
-						onChange={(event) => setQuery(event.target.value)}
-						placeholder="Search by name, ISO code, or dial code (e.g. Japan, +81)..."
-						aria-label="Search flags by country name, ISO code, or dialing code"
-					/>
-				</InputWrapper>
+					<InputWrapper
+						size="44"
+						className="bg-bg focus-within:bg-bg min-w-0 flex-1 rounded-l-none shadow-none">
+						<Search aria-hidden="true" />
+						<Input
+							value={query}
+							onChange={(event) => setQuery(event.target.value)}
+							placeholder="Search country name, iso codes or phone number"
+							aria-label="Search flags by country name, ISO code, or phone number"
+						/>
+					</InputWrapper>
+				</InputGroup>
 			</div>
 
 			{visibleFlags.length ? (

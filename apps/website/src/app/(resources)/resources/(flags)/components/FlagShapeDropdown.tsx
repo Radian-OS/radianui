@@ -1,6 +1,7 @@
 "use client"
 
 import { ChevronDown, Circle, RectangleHorizontal } from "lucide-react"
+import { cn } from "@/lib/utils"
 import { Button } from "@/registry/ui/button"
 import {
 	DropdownMenu,
@@ -16,26 +17,31 @@ import type { FlagShape } from "./flags-data"
 interface FlagShapeDropdownProps {
 	value: FlagShape
 	onValueChange: (value: FlagShape) => void
+	className?: string
 }
 
 export function FlagShapeDropdown({
 	value,
 	onValueChange,
+	className,
 }: FlagShapeDropdownProps) {
 	const isRound = value === "round"
 	const label = isRound ? "Round" : "Flat"
-	const ActiveIcon = isRound ? Circle : RectangleHorizontal
 
 	return (
 		<DropdownMenu indicatorPosition="right">
 			<DropdownMenuTrigger asChild>
 				<Button
+					size="44"
 					color="neutral"
 					variant="outline"
+					className={cn(
+						"bg-bg hover:bg-bg active:bg-bg data-[state=open]:bg-bg focus-visible:bg-bg w-[105px] justify-between rounded-r-none border-r-0 shadow-none",
+						className
+					)}
 					aria-label={`Flag style: ${label}`}>
-					<ActiveIcon className="text-fg-secondary" />
 					{label}
-					<ChevronDown className="text-fg-secondary" aria-hidden="true" />
+					<ChevronDown aria-hidden="true" />
 				</Button>
 			</DropdownMenuTrigger>
 

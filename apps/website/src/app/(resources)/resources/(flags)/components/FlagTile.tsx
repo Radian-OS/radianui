@@ -2,16 +2,16 @@
 
 import { useState } from "react"
 import { toast } from "sonner"
-import { cn } from "@/lib/utils"
 import { Button } from "@/registry/ui/button"
+import { getFlagSvgMarkup, renderFlagPng } from "./flag-assets"
+import { FlagImage } from "./FlagImage"
 import { FlagTileMenu } from "./FlagTileMenu"
 import type { FlagName, FlagShape } from "./flags-data"
 import {
 	getFlagDisplayName,
 	getFlagHtmlMarkup,
 	getFlagNextImageMarkup,
-	getFlagSvgMarkup,
-	getFlagUrl,
+	getFlagSvgUrl,
 } from "./flags-data"
 
 interface FlagTileProps {
@@ -19,15 +19,6 @@ interface FlagTileProps {
 	shape: FlagShape
 	priority?: boolean
 	onSelect: (name: FlagName) => void
-}
-
-function blobToDataUrl(blob: Blob) {
-	return new Promise<string>((resolve, reject) => {
-		const reader = new FileReader()
-		reader.onload = () => resolve(String(reader.result))
-		reader.onerror = () => reject(reader.error)
-		reader.readAsDataURL(blob)
-	})
 }
 
 export function FlagTile({
@@ -38,8 +29,8 @@ export function FlagTile({
 }: FlagTileProps) {
 	const [copied, setCopied] = useState(false)
 	const displayName = getFlagDisplayName(name)
-	const flagUrl = getFlagUrl(name, shape)
-	const previewSize = shape === "round" ? 32 : 48
+	const flagUrl = getFlagSvgUrl(name)
+	const previewSize = shape === "round" ? 40 : 48
 
 	const showCopied = (format: string) => {
 		setCopied(true)
@@ -58,11 +49,7 @@ export function FlagTile({
 
 	const copySvg = async () => {
 		try {
-			const response = await fetch(flagUrl)
-			if (!response.ok) throw new Error("Flag request failed")
-
-			const imageHref = await blobToDataUrl(await response.blob())
-			const svgMarkup = getFlagSvgMarkup(name, imageHref)
+			const svgMarkup = await getFlagSvgMarkup(name, shape)
 
 			if (navigator.clipboard.write && "ClipboardItem" in window) {
 				await navigator.clipboard.write([
@@ -83,14 +70,7 @@ export function FlagTile({
 
 	const copyPng = async () => {
 		try {
-			const response = await fetch(flagUrl)
-			if (!response.ok) throw new Error("Flag request failed")
-
-			const imageBlob = await response.blob()
-			const pngBlob =
-				imageBlob.type === "image/png"
-					? imageBlob
-					: new Blob([imageBlob], { type: "image/png" })
+			const pngBlob = await renderFlagPng(name, shape, 64)
 			await navigator.clipboard.write([
 				new ClipboardItem({ "image/png": pngBlob }),
 			])
@@ -106,21 +86,16 @@ export function FlagTile({
 				size="32"
 				color="neutral"
 				variant="outline"
-				className="bg-bg hover:bg-bg size-[142px] overflow-hidden rounded-xl p-0"
+				className="bg-bg hover:bg-bg size-[142px] overflow-hidden rounded-xl p-0 pb-6"
 				aria-label={`View ${displayName} flag details`}
 				onClick={() => onSelect(name)}>
-				<img
-					src={flagUrl}
-					alt={`${displayName} flag`}
-					width={previewSize}
-					height={previewSize}
+				<FlagImage
+					name={name}
+					shape={shape}
+					size={previewSize}
 					loading="eager"
 					decoding="async"
 					fetchPriority={priority ? "high" : "auto"}
-					className={cn(
-						"absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 object-contain",
-						shape === "round" ? "size-8" : "size-12"
-					)}
 				/>
 				<span className="text-fg-secondary absolute inset-x-2 bottom-3 truncate text-xs font-medium transition-opacity duration-200 group-focus-within:opacity-0 group-hover:opacity-0">
 					{displayName}
