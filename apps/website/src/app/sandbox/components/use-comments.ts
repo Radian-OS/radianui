@@ -32,13 +32,11 @@ export function useComments(
 	const [draftComment, setDraftComment] = useState<DraftComment | null>(null)
 	const [isSubmitting, setIsSubmitting] = useState(false)
 
-	// Fetch comments from database
+	// Fetch all comments from database
 	const fetchComments = useCallback(async () => {
 		setIsLoading(true)
 		try {
-			const res = await fetch(
-				`/api/sandbox/comments?componentId=${componentId}`
-			)
+			const res = await fetch("/api/sandbox/comments")
 			if (res.ok) {
 				const data = await res.json()
 				setComments(data.comments || [])
@@ -48,12 +46,15 @@ export function useComments(
 		} finally {
 			setIsLoading(false)
 		}
-	}, [componentId])
+	}, [])
 
 	useEffect(() => {
 		fetchComments()
-		setDraftComment(null)
 	}, [fetchComments])
+
+	useEffect(() => {
+		setDraftComment(null)
+	}, [componentId])
 
 	useEffect(() => {
 		if (viewMode !== "inspect" || !isCommentsEnabled) {
@@ -121,6 +122,32 @@ export function useComments(
 			}
 		} catch (err) {
 			console.error("Failed to delete comment:", err)
+		}
+	}
+
+	// Toggle comment resolved state
+	const toggleResolveComment = async (id: string, resolved: boolean) => {
+		try {
+			const res = await fetch("/api/sandbox/comments", {
+				method: "PATCH",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({ id, resolved }),
+			})
+			if (res.ok) {
+				setComments((prev) =>
+					prev.map((c) =>
+						c.id === id
+							? {
+									...c,
+									resolved,
+									status: resolved ? "resolved" : "pending",
+								}
+							: c
+					)
+				)
+			}
+		} catch (err) {
+			console.error("Failed to toggle resolve comment:", err)
 		}
 	}
 
@@ -278,14 +305,18 @@ export function useComments(
 		defaultFile,
 	])
 
+	const activeComments = comments.filter((c) => c.componentId === componentId)
+
 	return {
-		comments,
+		allComments: comments,
+		comments: activeComments,
 		isLoading,
 		draftComment,
 		setDraftComment,
 		isSubmitting,
 		addComment,
 		deleteComment,
+		toggleResolveComment,
 		refreshComments: fetchComments,
 	}
 }

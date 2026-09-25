@@ -18,7 +18,7 @@ export function HeroPreview() {
 					alt="Dashboard Preview"
 					width={1200}
 					height={300}
-					className="h-auto w-full rounded-2xl border border-white/10 object-cover shadow-2xl"
+					className="aspect-video h-auto w-full rounded-2xl border border-white/10 object-cover shadow-2xl"
 					priority
 				/>
 			</Card>

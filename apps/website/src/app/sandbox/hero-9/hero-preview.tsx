@@ -17,7 +17,7 @@ export function HeroPreview() {
 					alt="Dashboard Preview"
 					width={1200}
 					height={300}
-					className="border-border/40 h-auto w-full rounded-lg border object-cover shadow-inner"
+					className="border-border/40 aspect-video h-auto w-full rounded-lg border object-cover shadow-inner"
 					priority
 				/>
 			</div>

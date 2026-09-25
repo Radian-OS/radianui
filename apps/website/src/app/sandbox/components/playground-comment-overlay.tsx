@@ -16,6 +16,10 @@ interface PlaygroundCommentOverlayProps {
 	onCancelDraft: () => void
 	onSubmitDraft: (values: CommentFormValues) => Promise<void> | void
 	onDeleteComment: (id: string) => Promise<void> | void
+	onToggleResolveComment?: (
+		id: string,
+		resolved: boolean
+	) => Promise<void> | void
 	onNavigateToCode?: (file: string, lineNumber: number) => void
 	isSubmitting?: boolean
 	isVisible: boolean
@@ -30,6 +34,7 @@ export function PlaygroundCommentOverlay({
 	onCancelDraft,
 	onSubmitDraft,
 	onDeleteComment,
+	onToggleResolveComment,
 	onNavigateToCode,
 	isSubmitting = false,
 	isVisible,
@@ -191,6 +196,7 @@ export function PlaygroundCommentOverlay({
 							scrollOffset={scrollOffset}
 							containerSize={containerSize}
 							onDelete={onDeleteComment}
+							onToggleResolve={onToggleResolveComment}
 							onNavigateToCode={onNavigateToCode}
 						/>
 					</div>

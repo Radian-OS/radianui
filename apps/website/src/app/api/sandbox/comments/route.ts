@@ -14,6 +14,7 @@ export interface SandboxComment {
 	content: string
 	createdAt: string
 	resolved: boolean
+	status?: "pending" | "resolved"
 	file?: string
 	lineNumber?: number
 }
@@ -70,7 +71,8 @@ export async function GET(request: Request) {
 					file,
 					line_number AS "lineNumber",
 					created_at AS "createdAt",
-					resolved
+					resolved,
+					CASE WHEN resolved = TRUE THEN 'resolved' ELSE 'pending' END AS "status"
 				FROM sandbox_comments
 				ORDER BY created_at ASC`
 			)
@@ -91,7 +93,8 @@ export async function GET(request: Request) {
 				file,
 				line_number AS "lineNumber",
 				created_at AS "createdAt",
-				resolved
+				resolved,
+				CASE WHEN resolved = TRUE THEN 'resolved' ELSE 'pending' END AS "status"
 			FROM sandbox_comments
 			WHERE component_id = $1
 			ORDER BY created_at ASC`,
@@ -174,7 +177,8 @@ export async function POST(request: Request) {
 				file,
 				line_number AS "lineNumber",
 				created_at AS "createdAt",
-				resolved`,
+				resolved,
+				CASE WHEN resolved = TRUE THEN 'resolved' ELSE 'pending' END AS "status"`,
 			[
 				id,
 				componentId,
@@ -196,6 +200,73 @@ export async function POST(request: Request) {
 		const details = error instanceof Error ? error.message : String(error)
 		return NextResponse.json(
 			{ error: "Failed to save comment", details },
+			{ status: 500 }
+		)
+	}
+}
+
+export async function PATCH(request: Request) {
+	try {
+		await ensureTable()
+		const body = await request.json()
+		const { id, resolved, status } = body
+
+		if (!id || typeof id !== "string") {
+			return NextResponse.json(
+				{ error: "id parameter is required" },
+				{ status: 400 }
+			)
+		}
+
+		let isResolved: boolean
+		if (typeof resolved === "boolean") {
+			isResolved = resolved
+		} else if (status === "resolved") {
+			isResolved = true
+		} else if (status === "pending") {
+			isResolved = false
+		} else {
+			return NextResponse.json(
+				{
+					error:
+						"resolved boolean or status ('pending' | 'resolved') is required",
+				},
+				{ status: 400 }
+			)
+		}
+
+		const result = await pool.query(
+			`UPDATE sandbox_comments
+			SET resolved = $1
+			WHERE id = $2
+			RETURNING 
+				id,
+				component_id AS "componentId",
+				element_tag AS "elementTag",
+				element_selector AS "elementSelector",
+				element_content AS "elementContent",
+				position_x AS "positionX",
+				position_y AS "positionY",
+				author_name AS "authorName",
+				content,
+				file,
+				line_number AS "lineNumber",
+				created_at AS "createdAt",
+				resolved,
+				CASE WHEN resolved = TRUE THEN 'resolved' ELSE 'pending' END AS "status"`,
+			[isResolved, id]
+		)
+
+		if (result.rowCount === 0) {
+			return NextResponse.json({ error: "Comment not found" }, { status: 404 })
+		}
+
+		return NextResponse.json({ comment: result.rows[0] })
+	} catch (error) {
+		console.error("Failed to update sandbox comment:", error)
+		const details = error instanceof Error ? error.message : String(error)
+		return NextResponse.json(
+			{ error: "Failed to update comment", details },
 			{ status: 500 }
 		)
 	}

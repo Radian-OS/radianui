@@ -2,9 +2,10 @@
 
 import React, { useEffect, useState } from "react"
 import { ArrowRight, Check, Code, Copy, Trash2, X } from "lucide-react"
+import { cn } from "@/lib/utils"
 import { Button } from "@/styles/default/ui/button"
 import { AutoPositionedCard } from "./auto-positioned-card"
-import type { SandboxComment } from "./types"
+import { isCommentResolved, type SandboxComment } from "./types"
 
 interface CommentPinProps {
 	comment: SandboxComment
@@ -14,6 +15,7 @@ interface CommentPinProps {
 	containerSize?: { width: number; height: number }
 	onDelete: (id: string) => Promise<void> | void
 	onNavigateToCode?: (file: string, lineNumber: number) => void
+	onToggleResolve?: (id: string, resolved: boolean) => Promise<void> | void
 }
 
 function formatDate(dateStr: string) {
@@ -38,10 +40,13 @@ export function CommentPin({
 	containerSize = { width: 0, height: 0 },
 	onDelete,
 	onNavigateToCode,
+	onToggleResolve,
 }: CommentPinProps) {
 	const [isOpen, setIsOpen] = useState(false)
 	const [isDeleting, setIsDeleting] = useState(false)
+	const [isResolving, setIsResolving] = useState(false)
 	const [copied, setCopied] = useState(false)
+	const resolved = isCommentResolved(comment)
 
 	useEffect(() => {
 		if (!isOpen) return
@@ -78,11 +83,19 @@ export function CommentPin({
 					e.stopPropagation()
 					setIsOpen(!isOpen)
 				}}
-				aria-label={`View comment #${index + 1} from ${comment.authorName}`}
-				className="bg-primary text-primary-fg ring-bg group relative -top-3.25 -left-3.25 flex size-6.5 items-center justify-center rounded-full font-mono text-xs font-bold shadow-md ring-2 transition-transform duration-150 hover:scale-110 active:scale-95">
+				aria-label={`View comment #${index + 1} from ${comment.authorName} (${resolved ? "Resolved" : "Pending"})`}
+				className={cn(
+					"ring-bg group relative -top-3.25 -left-3.25 flex size-6.5 items-center justify-center rounded-full font-mono text-xs font-bold shadow-md ring-2 transition-transform duration-150 hover:scale-110 active:scale-95",
+					resolved ? "bg-emerald-600 text-white" : "bg-primary text-primary-fg"
+				)}>
 				<span>{index + 1}</span>
 				{/* Small pointer tail */}
-				<span className="bg-primary absolute -bottom-1 left-1/2 size-1.5 -translate-x-1/2 rotate-45" />
+				<span
+					className={cn(
+						"absolute -bottom-1 left-1/2 size-1.5 -translate-x-1/2 rotate-45",
+						resolved ? "bg-emerald-600" : "bg-primary"
+					)}
+				/>
 			</button>
 
 			{/* Comment Card Popover with Auto-Adjustment */}
@@ -115,6 +128,32 @@ export function CommentPin({
 							</div>
 
 							<div className="flex shrink-0 items-center gap-1">
+								{onToggleResolve && (
+									<Button
+										type="button"
+										variant={resolved ? "soft" : "ghost"}
+										color={resolved ? "success" : "neutral"}
+										size="28"
+										loading={isResolving}
+										onClick={async (e) => {
+											e.stopPropagation()
+											setIsResolving(true)
+											try {
+												await onToggleResolve(comment.id, !resolved)
+											} finally {
+												setIsResolving(false)
+											}
+										}}
+										title={resolved ? "Mark as Pending" : "Mark as Resolved"}
+										className={cn(
+											"text-xs",
+											resolved
+												? "text-success hover:bg-success/20"
+												: "text-fg-tertiary hover:text-success hover:bg-success/10"
+										)}>
+										<Check className="size-3.5" />
+									</Button>
+								)}
 								<Button
 									type="button"
 									variant="ghost"

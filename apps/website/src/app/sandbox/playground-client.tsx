@@ -58,12 +58,14 @@ export function PlaygroundClient({ files }: PlaygroundClientProps) {
 
 	// Figma-style comments hook with element source location resolution
 	const {
+		allComments,
 		comments,
 		draftComment,
 		setDraftComment,
 		isSubmitting,
 		addComment,
 		deleteComment,
+		toggleResolveComment,
 	} = useComments(
 		iframeRef,
 		activeComponent,
@@ -98,6 +100,10 @@ export function PlaygroundClient({ files }: PlaygroundClientProps) {
 			<PlaygroundSidebar
 				activeComponent={activeComponent}
 				onSelectComponent={handleSelectComponent}
+				comments={allComments}
+				onToggleResolveComment={toggleResolveComment}
+				onDeleteComment={deleteComment}
+				onNavigateToCode={handleNavigateToCode}
 			/>
 
 			<SidebarInset className="bg-bg relative flex min-h-0 flex-1 flex-col overflow-hidden">
@@ -138,6 +144,7 @@ export function PlaygroundClient({ files }: PlaygroundClientProps) {
 								onCancelDraft={() => setDraftComment(null)}
 								onSubmitDraft={addComment}
 								onDeleteComment={deleteComment}
+								onToggleResolveComment={toggleResolveComment}
 								onNavigateToCode={handleNavigateToCode}
 								isSubmitting={isSubmitting}
 								isCommentsVisible={viewMode === "inspect" && isCommentsEnabled}

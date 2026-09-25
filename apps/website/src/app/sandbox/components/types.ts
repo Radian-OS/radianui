@@ -115,6 +115,9 @@ export interface SourceLocation {
 	lineNumber: number
 }
 
+export type CommentStatus = "pending" | "resolved"
+export type CommentStatusFilter = "all" | "pending" | "resolved"
+
 export interface SandboxComment {
 	id: string
 	componentId: string
@@ -127,8 +130,21 @@ export interface SandboxComment {
 	content: string
 	createdAt: string
 	resolved: boolean
+	status?: CommentStatus
 	file?: string
 	lineNumber?: number
+}
+
+export function isCommentResolved(comment: SandboxComment): boolean {
+	return (
+		comment.resolved === true ||
+		(comment.resolved as unknown as string) === "resolved" ||
+		comment.status === "resolved"
+	)
+}
+
+export function getCommentStatus(comment: SandboxComment): CommentStatus {
+	return isCommentResolved(comment) ? "resolved" : "pending"
 }
 
 export type SandboxCategory =

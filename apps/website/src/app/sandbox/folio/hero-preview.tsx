@@ -18,7 +18,7 @@ export function HeroPreview() {
 					alt="Folio Dashboard Preview"
 					width={1200}
 					height={300}
-					className="border-border/30 h-auto w-full rounded-xl border object-cover shadow-lg"
+					className="border-border/30 aspect-video h-auto w-full rounded-xl border object-cover shadow-lg"
 					priority
 				/>
 			</Card>
