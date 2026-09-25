@@ -10,6 +10,7 @@ import {
 } from "lucide-react"
 import { IconButton } from "@/styles/default/ui/button"
 import type { Conversation } from "./types"
+import { Badge } from "@/registry/ui/badge"
 
 interface ConversationListProps {
 	conversations: Conversation[]
@@ -32,9 +33,7 @@ export function ConversationList({
 				</div>
 
 				<div className="flex items-center gap-1.5">
-					<span className="bg-fill1 border-border text-fg rounded-full border px-2 py-0.5 text-[11px] font-medium">
-						5 Open
-					</span>
+					<Badge>5 Open</Badge>
 					<button
 						type="button"
 						className="text-fg-secondary hover:text-fg flex cursor-pointer items-center gap-1 text-[11px] font-medium transition-colors">

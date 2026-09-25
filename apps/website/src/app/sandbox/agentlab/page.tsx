@@ -16,13 +16,6 @@ import { AgentlabSecuritySection } from "./security-section"
 import { AgentlabSolutionSection } from "./solution-section"
 import { AgentlabTestimonialsSection } from "./testimonials-section"
 
-const merriweather = Merriweather({
-	weight: ["300", "400", "700"],
-	subsets: ["latin"],
-	variable: "--font-merriweather",
-	display: "swap",
-})
-
 export const metadata: Metadata = {
 	title: "AgentLab — AI Workflow & Automation Platform",
 	description:
@@ -31,8 +24,7 @@ export const metadata: Metadata = {
 
 export default function AgentlabPage() {
 	return (
-		<div
-			className={`${merriweather.variable} bg-bg text-fg min-h-screen font-sans antialiased`}>
+		<div className={`bg-bg text-fg min-h-screen font-sans antialiased`}>
 			<AgentlabAnnouncementBar />
 			<AgentlabNavbar />
 			<main>

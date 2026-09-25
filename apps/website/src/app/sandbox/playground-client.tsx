@@ -32,7 +32,7 @@ export function PlaygroundClient({ files }: PlaygroundClientProps) {
 		}
 	}, [user, isLoading, router])
 
-	const [activeComponent, setActiveComponent] = useState<PreviewKey>("hero-21")
+	const [activeComponent, setActiveComponent] = useState<PreviewKey>("agentlab")
 	const [activeFile, setActiveFile] = useState<string>("hero-section.tsx")
 	const [viewMode, setViewMode] = useState<ViewMode>("preview")
 	const [deviceSize, setDeviceSize] = useState<DeviceSize>("desktop")

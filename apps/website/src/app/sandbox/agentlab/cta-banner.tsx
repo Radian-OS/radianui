@@ -19,27 +19,19 @@ export function AgentlabCtaBanner() {
 
 					{/* Right Content & Actions */}
 					<div className="flex flex-col items-start lg:col-span-6">
-						<p className="text-sm leading-relaxed text-white/70 sm:text-base">
+						<p className="text-white-inverse/70 text-sm leading-relaxed sm:text-base">
 							Deploy intelligent agents, eliminate repetitive manual steps,
 							reduce operational costs, and deliver results faster than ever
 							before.
 						</p>
 
 						<div className="mt-8 flex flex-wrap items-center gap-4">
-							<Button
-								variant="strong"
-								color="neutral"
-								size="40"
-								className="gap-2 rounded-md bg-white font-bold text-black uppercase shadow-lg hover:bg-white/90 active:scale-95">
+							<Button variant="strong" color="neutral" size="40">
 								<ArrowRight className="size-4" />
 								<span>TALK TO SALES</span>
 							</Button>
 
-							<Button
-								variant="outline"
-								color="neutral"
-								size="40"
-								className="rounded-md border-white/30 bg-transparent text-xs font-bold tracking-wider text-white uppercase hover:bg-white/10">
+							<Button variant="outline" color="neutral" size="40">
 								<span>VIEW PRICING</span>
 							</Button>
 						</div>
