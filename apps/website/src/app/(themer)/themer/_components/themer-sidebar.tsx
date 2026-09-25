@@ -3,8 +3,10 @@
 import { useCallback, useEffect, useState } from "react"
 import { ChevronDown, MoonIcon, Palette, SunIcon, Type } from "lucide-react"
 import { useTheme } from "next-themes"
+import ntc from "ntcjs"
 import { useThemerLocks } from "@/lib/themer-locks"
 import { useThemerPreset } from "@/lib/themer-preset"
+import { generateCustomColorShades } from "@/lib/shade-generator"
 import {
 	BASE_COLORS,
 	BASE_COLORS_MAP,
@@ -408,42 +410,100 @@ export function ThemerSidebar({
 									<span>Set Custom Color</span>
 									<ChevronDown className="text-fg-tertiary size-3 shrink-0" />
 								</DropdownMenuTrigger>
-								<DropdownMenuContent className="max-h-96 w-48">
+								<DropdownMenuContent className="max-h-96 w-56 overflow-y-auto p-2">
 									{["primary", ...Object.keys(params.customColors ?? {})].map(
-										(id) => {
-											const isPrimary = id === "primary"
+										(baseId) => {
+											const isPrimary = baseId === "primary"
 											const color = isPrimary
 												? params.primaryColor
-												: params.customColors?.[id]
-											const actualColor =
-												PRIMARY_COLORS.find((c) => c.value === color)?.cssVars
-													.light["--color-primary"] ?? color
+												: params.customColors?.[baseId]
+
+											const preset = PRIMARY_COLORS.find(
+												(c) => c.value === color
+											)
+											const generatedShades =
+												color && color.startsWith("#")
+													? generateCustomColorShades(color, baseId)
+													: null
+
+											const shades = [
+												{
+													id: `${baseId}-accent`,
+													label: "Accent (Lightest)",
+													suffix: "-accent",
+												},
+												{
+													id: `${baseId}-focus`,
+													label: "Focus",
+													suffix: "-focus",
+												},
+												{
+													id: `${baseId}-border`,
+													label: "Border",
+													suffix: "-border",
+												},
+												{ id: baseId, label: "Base", suffix: "" },
+												{
+													id: `${baseId}-hover`,
+													label: "Hover",
+													suffix: "-hover",
+												},
+												{
+													id: `${baseId}-text`,
+													label: "Text (Darkest)",
+													suffix: "-text",
+												},
+											]
+
 											return (
-												<DropdownMenuRadioItem
-													key={id}
-													value={id}
-													onSelect={(e) => {
-														e.preventDefault()
-														setParams({
-															componentOverrides: [
-																...(params.componentOverrides ?? []),
-																{
-																	selector: inspectedElement,
-																	customColorId: id,
-																	property: "background-color",
-																},
-															],
-														})
-														setInspectedElement(null)
-													}}>
-													<div className="flex items-center gap-2">
-														<div
-															className="size-3 rounded-sm"
-															style={{ backgroundColor: actualColor }}
-														/>
-														{isPrimary ? "Primary Color" : id}
+												<div
+													key={baseId}
+													className="mb-3 flex flex-col gap-1.5 last:mb-0">
+													<span className="text-fg-tertiary text-xs font-medium">
+														{isPrimary
+															? "Primary"
+															: color && color.startsWith("#")
+																? ntc.name(color)[1]
+																: baseId}
+													</span>
+													<div className="flex gap-1">
+														{shades.map((shade) => {
+															let actualColor = color
+															if (preset) {
+																actualColor =
+																	preset.cssVars.light[
+																		`--color-primary${shade.suffix}` as keyof typeof preset.cssVars.light
+																	]
+															} else if (generatedShades) {
+																actualColor =
+																	generatedShades[`--color-${shade.id}`]
+															}
+
+															return (
+																<button
+																	key={shade.id}
+																	title={shade.label}
+																	className="focus:ring-ring h-6 flex-1 rounded-sm border border-black/10 shadow-sm transition-transform hover:scale-110 focus:ring-2 focus:outline-none"
+																	style={{ backgroundColor: actualColor }}
+																	onClick={(e) => {
+																		e.preventDefault()
+																		setParams({
+																			componentOverrides: [
+																				...(params.componentOverrides ?? []),
+																				{
+																					selector: inspectedElement,
+																					customColorId: shade.id,
+																					property: "background-color",
+																				},
+																			],
+																		})
+																		setInspectedElement(null)
+																	}}
+																/>
+															)
+														})}
 													</div>
-												</DropdownMenuRadioItem>
+												</div>
 											)
 										}
 									)}

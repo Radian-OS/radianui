@@ -14,6 +14,8 @@ import { cn } from "@/lib/utils"
 import { Badge } from "@/registry/ui/badge"
 import { CustomColorPicker } from "./custom-color-picker"
 
+import ntc from "ntcjs"
+
 function ShadeItem({
 	label,
 	value,
@@ -75,8 +77,9 @@ function getColorByValue(value: string): PrimaryColor | undefined {
 
 	if (value.startsWith("#")) {
 		const generated = generateCustomColorShades(value)
+		const colorName = ntc.name(value)[1]
 		return {
-			name: "Custom",
+			name: colorName,
 			value: value,
 			cssVars: {
 				light: generated,

@@ -7,6 +7,7 @@ import { FONTS } from "@/registry/fonts"
 import { IconLibraryProvider } from "@/registry/icon/icon-library"
 import { PRIMARY_COLORS } from "@/registry/primary-colors"
 import { generateCustomColorShades } from "@/lib/shade-generator"
+import ntc from "ntcjs"
 
 const MANAGED_BODY_CLASS_PREFIXES = ["style-"] as const
 
@@ -108,11 +109,15 @@ const buildThemerCssText = (
 			let rules = `  ${override.property}: var(--color-${override.customColorId}) !important;`
 
 			if (override.property === "background-color") {
+				const baseId = override.customColorId.replace(
+					/-(accent|focus|border|hover|text)$/,
+					""
+				)
 				rules += `
-  color: var(--color-${override.customColorId}-fg) !important;
-  --color-fg: var(--color-${override.customColorId}-fg);
-  --color-fg-secondary: color-mix(in srgb, var(--color-${override.customColorId}-fg) 80%, transparent);
-  --color-fg-tertiary: color-mix(in srgb, var(--color-${override.customColorId}-fg) 60%, transparent);`
+  color: var(--color-${baseId}-fg) !important;
+  --color-fg: var(--color-${baseId}-fg);
+  --color-fg-secondary: color-mix(in srgb, var(--color-${baseId}-fg) 80%, transparent);
+  --color-fg-tertiary: color-mix(in srgb, var(--color-${baseId}-fg) 60%, transparent);`
 			}
 
 			return `${override.selector} {\n${rules}\n}`
@@ -332,73 +337,104 @@ export function PreviewClient({ children }: { children: React.ReactNode }) {
 						}}>
 						Set Custom Color
 					</div>
-					{["primary", ...Object.keys(params.customColors || {})].map((id) => {
-						const isPrimary = id === "primary"
-						const actualColorHex = isPrimary
-							? params.primaryColor
-							: params.customColors?.[id]
-						// We can use the generated CSS variable for the preview box, but we need to resolve primary color if it's a preset
-						let previewBg = `var(--color-${id})`
+					{["primary", ...Object.keys(params.customColors || {})].map(
+						(baseId) => {
+							const isPrimary = baseId === "primary"
+							const actualColorHex = isPrimary
+								? params.primaryColor
+								: params.customColors?.[baseId]
 
-						// If they chose primary and it's a preset like violet-blue, our CSS variables have it stored as --color-primary
-						if (
-							isPrimary &&
-							actualColorHex &&
-							!actualColorHex.startsWith("#")
-						) {
-							const preset = PRIMARY_COLORS.find(
-								(c) => c.value === actualColorHex
-							)
-							if (preset) previewBg = preset.cssVars.light["--color-primary"]
-						}
+							const shades = [
+								{ id: `${baseId}-accent`, label: "Accent", suffix: "-accent" },
+								{ id: `${baseId}-focus`, label: "Focus", suffix: "-focus" },
+								{ id: `${baseId}-border`, label: "Border", suffix: "-border" },
+								{ id: baseId, label: "Base", suffix: "" },
+								{ id: `${baseId}-hover`, label: "Hover", suffix: "-hover" },
+								{ id: `${baseId}-text`, label: "Text", suffix: "-text" },
+							]
 
-						return (
-							<button
-								key={id}
-								onClick={() => {
-									window.parent.postMessage(
-										{
-											type: "add-component-override",
-											selector: selectedSelector,
-											customColorId: id,
-										},
-										"*"
-									)
-									setSelectedElement(null)
-									setSelectedSelector(null)
-								}}
-								style={{
-									display: "flex",
-									alignItems: "center",
-									gap: "8px",
-									padding: "6px 8px",
-									fontSize: "12px",
-									borderRadius: "6px",
-									border: "none",
-									background: "transparent",
-									cursor: "pointer",
-									color: "#333",
-									fontWeight: "500",
-								}}
-								onMouseOver={(e) =>
-									(e.currentTarget.style.backgroundColor = "rgba(0,0,0,0.06)")
-								}
-								onMouseOut={(e) =>
-									(e.currentTarget.style.backgroundColor = "transparent")
-								}>
+							return (
 								<div
+									key={baseId}
 									style={{
-										width: "14px",
-										height: "14px",
-										borderRadius: "3px",
-										backgroundColor: previewBg,
-										border: "1px solid rgba(0,0,0,0.1)",
-									}}
-								/>
-								{id === "primary" ? "Primary Color" : id}
-							</button>
-						)
-					})}
+										display: "flex",
+										flexDirection: "column",
+										gap: "6px",
+										marginBottom: "8px",
+									}}>
+									<div
+										style={{
+											fontSize: "11px",
+											fontWeight: "500",
+											color: "#666",
+											padding: "0 4px",
+										}}>
+										{isPrimary
+											? "Primary"
+											: actualColorHex && actualColorHex.startsWith("#")
+												? ntc.name(actualColorHex)[1]
+												: baseId}
+									</div>
+									<div
+										style={{ display: "flex", gap: "4px", padding: "0 4px" }}>
+										{shades.map((shade) => {
+											let previewBg = `var(--color-${shade.id})`
+
+											if (
+												isPrimary &&
+												actualColorHex &&
+												!actualColorHex.startsWith("#")
+											) {
+												const preset = PRIMARY_COLORS.find(
+													(c) => c.value === actualColorHex
+												)
+												if (preset)
+													previewBg =
+														preset.cssVars.light[
+															`--color-primary${shade.suffix}` as keyof typeof preset.cssVars.light
+														]
+											}
+
+											return (
+												<button
+													key={shade.id}
+													title={shade.label}
+													onClick={() => {
+														window.parent.postMessage(
+															{
+																type: "add-component-override",
+																selector: selectedSelector,
+																customColorId: shade.id,
+															},
+															"*"
+														)
+														setSelectedElement(null)
+														setSelectedSelector(null)
+													}}
+													style={{
+														flex: 1,
+														height: "20px",
+														borderRadius: "4px",
+														border: "1px solid rgba(0,0,0,0.1)",
+														backgroundColor: previewBg,
+														cursor: "pointer",
+														boxShadow: "0 1px 2px rgba(0,0,0,0.05)",
+														transition: "transform 0.1s ease",
+													}}
+													onMouseOver={(e) =>
+														(e.currentTarget.style.transform = "scale(1.15)")
+													}
+													onMouseOut={(e) =>
+														(e.currentTarget.style.transform = "scale(1)")
+													}
+												/>
+											)
+										})}
+									</div>
+								</div>
+							)
+						}
+					)}
 					<button
 						onClick={() => {
 							setSelectedElement(null)

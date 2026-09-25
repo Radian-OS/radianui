@@ -427,7 +427,9 @@ function RecentTransactionsCard() {
 							<div key={tx.name} className="flex items-center gap-3 px-6 py-3">
 								<div className="bg-fill1 flex h-9 w-9 shrink-0 items-center justify-center rounded-full">
 									<IconSlot
-										slot={tx.icon as any}
+										slot={
+											tx.icon as React.ComponentProps<typeof IconSlot>["slot"]
+										}
 										className="text-fg-tertiary h-4 w-4"
 									/>
 								</div>
