@@ -16,7 +16,7 @@ export function HeroPreview() {
 					src="/sandbox/placeholder.svg"
 					alt="Dashboard Preview"
 					width={1200}
-					height={675}
+					height={300}
 					className="border-border/40 h-auto w-full rounded-lg border object-cover shadow-inner"
 					priority
 				/>

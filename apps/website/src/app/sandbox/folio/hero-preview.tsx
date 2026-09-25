@@ -17,7 +17,7 @@ export function HeroPreview() {
 					src="/sandbox/placeholder.svg"
 					alt="Folio Dashboard Preview"
 					width={1200}
-					height={675}
+					height={300}
 					className="border-border/30 h-auto w-full rounded-xl border object-cover shadow-lg"
 					priority
 				/>
