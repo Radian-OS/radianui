@@ -50,10 +50,20 @@ const designSystemSearchParams = {
 		(v) => v as Record<string, string>
 	).withDefault(DEFAULT_CONFIG.customColors),
 	componentOverrides: parseAsJson<
-		Array<{ selector: string; customColorId: string; property: string }>
+		Array<{
+			selector: string
+			customColorId?: string
+			property: string
+			value?: string
+		}>
 	>(
 		(v) =>
-			v as Array<{ selector: string; customColorId: string; property: string }>
+			v as Array<{
+				selector: string
+				customColorId?: string
+				property: string
+				value?: string
+			}>
 	).withDefault(DEFAULT_CONFIG.componentOverrides),
 }
 

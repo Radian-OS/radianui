@@ -77,8 +77,9 @@ export const themerConfigSchema = z.object({
 		.array(
 			z.object({
 				selector: z.string(),
-				customColorId: z.string(),
+				customColorId: z.string().optional(),
 				property: z.string(),
+				value: z.string().optional(),
 			})
 		)
 		.default([]),

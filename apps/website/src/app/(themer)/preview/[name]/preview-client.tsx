@@ -8,6 +8,7 @@ import { IconLibraryProvider } from "@/registry/icon/icon-library"
 import { PRIMARY_COLORS } from "@/registry/primary-colors"
 import { generateCustomColorShades } from "@/lib/shade-generator"
 import ntc from "ntcjs"
+import { Type, ChevronDown, CheckSquare, X } from "lucide-react"
 
 const MANAGED_BODY_CLASS_PREFIXES = ["style-"] as const
 
@@ -66,8 +67,9 @@ const buildThemerCssText = (
 	customColors?: Record<string, string>,
 	componentOverrides?: Array<{
 		selector: string
-		customColorId: string
+		customColorId?: string
 		property: string
+		value?: string
 	}>
 ) => {
 	const parts: string[] = []
@@ -102,27 +104,6 @@ const buildThemerCssText = (
 		if (Object.keys(customColorVars).length > 0) {
 			parts.push(buildCssRule(":root", customColorVars))
 		}
-	}
-
-	if (componentOverrides && componentOverrides.length > 0) {
-		const overrideRules = componentOverrides.map((override) => {
-			let rules = `  ${override.property}: var(--color-${override.customColorId}) !important;`
-
-			if (override.property === "background-color") {
-				const baseId = override.customColorId.replace(
-					/-(accent|focus|border|hover|text)$/,
-					""
-				)
-				rules += `
-  color: var(--color-${baseId}-fg) !important;
-  --color-fg: var(--color-${baseId}-fg);
-  --color-fg-secondary: color-mix(in srgb, var(--color-${baseId}-fg) 80%, transparent);
-  --color-fg-tertiary: color-mix(in srgb, var(--color-${baseId}-fg) 60%, transparent);`
-			}
-
-			return `${override.selector} {\n${rules}\n}`
-		})
-		parts.push(overrideRules.join("\n\n"))
 	}
 
 	return parts.join("\n")
@@ -202,6 +183,97 @@ export function PreviewClient({ children }: { children: React.ReactNode }) {
 			}
 		}
 	}, [config, params.style, params.customColors, params.componentOverrides])
+
+	useLayoutEffect(() => {
+		const applyOverrides = () => {
+			if (!params.componentOverrides || params.componentOverrides.length === 0)
+				return
+
+			params.componentOverrides.forEach((override) => {
+				const elements = document.querySelectorAll(override.selector)
+				elements.forEach((el) => {
+					if (el instanceof HTMLElement) {
+						if (override.value) {
+							el.style.setProperty(
+								override.property,
+								override.value,
+								"important"
+							)
+						} else if (override.customColorId) {
+							el.style.setProperty(
+								override.property,
+								`var(--color-${override.customColorId})`,
+								"important"
+							)
+							if (override.property === "background-color") {
+								const baseId = override.customColorId.replace(
+									/-(accent|focus|border|hover|text)$/,
+									""
+								)
+								el.style.setProperty(
+									"color",
+									`var(--color-${baseId}-fg)`,
+									"important"
+								)
+								el.style.setProperty("--color-fg", `var(--color-${baseId}-fg)`)
+								el.style.setProperty(
+									"--color-fg-secondary",
+									`color-mix(in srgb, var(--color-${baseId}-fg) 80%, transparent)`
+								)
+								el.style.setProperty(
+									"--color-fg-tertiary",
+									`color-mix(in srgb, var(--color-${baseId}-fg) 60%, transparent)`
+								)
+							}
+						}
+					}
+				})
+			})
+		}
+
+		applyOverrides()
+
+		const observer = new MutationObserver((mutations) => {
+			let shouldApply = false
+			for (const mutation of mutations) {
+				if (
+					mutation.type === "childList" ||
+					(mutation.type === "attributes" && mutation.attributeName === "class")
+				) {
+					shouldApply = true
+					break
+				}
+			}
+			if (shouldApply) applyOverrides()
+		})
+
+		observer.observe(document.body, {
+			childList: true,
+			subtree: true,
+			attributes: true,
+			attributeFilter: ["class"],
+		})
+
+		return () => {
+			observer.disconnect()
+			if (params.componentOverrides) {
+				params.componentOverrides.forEach((override) => {
+					const elements = document.querySelectorAll(override.selector)
+					elements.forEach((el) => {
+						if (el instanceof HTMLElement) {
+							el.style.removeProperty(override.property)
+							if (override.property === "background-color") {
+								el.style.removeProperty("color")
+								el.style.removeProperty("--color-fg")
+								el.style.removeProperty("--color-fg-secondary")
+								el.style.removeProperty("--color-fg-tertiary")
+							}
+						}
+					})
+				})
+			}
+		}
+	}, [params.componentOverrides])
 
 	useFontLoader(selectedHeadingFont, "--font-heading")
 	useFontLoader(selectedBodyFont, "--font-body")
@@ -311,156 +383,446 @@ export function PreviewClient({ children }: { children: React.ReactNode }) {
 				/>
 			)}
 			{selectedElement && selectedSelector && clickPos && (
-				<div
-					style={{
-						position: "absolute",
-						top: clickPos.y + window.scrollY + 12,
-						left: Math.max(8, clickPos.x + window.scrollX + 12),
-						backgroundColor: "white",
-						border: "1px solid var(--color-border)",
-						borderRadius: "8px",
-						padding: "8px",
-						zIndex: 10000,
-						boxShadow: "0 4px 12px -2px rgb(0 0 0 / 0.15)",
-						display: "flex",
-						flexDirection: "column",
-						gap: "4px",
-						minWidth: "160px",
-					}}>
-					<div
-						style={{
-							fontSize: "12px",
-							fontWeight: "600",
-							marginBottom: "4px",
-							color: "#111",
-							padding: "0 4px",
-						}}>
-						Set Custom Color
-					</div>
-					{["primary", ...Object.keys(params.customColors || {})].map(
-						(baseId) => {
-							const isPrimary = baseId === "primary"
-							const actualColorHex = isPrimary
-								? params.primaryColor
-								: params.customColors?.[baseId]
-
-							const shades = [
-								{ id: `${baseId}-accent`, label: "Accent", suffix: "-accent" },
-								{ id: `${baseId}-focus`, label: "Focus", suffix: "-focus" },
-								{ id: `${baseId}-border`, label: "Border", suffix: "-border" },
-								{ id: baseId, label: "Base", suffix: "" },
-								{ id: `${baseId}-hover`, label: "Hover", suffix: "-hover" },
-								{ id: `${baseId}-text`, label: "Text", suffix: "-text" },
-							]
-
-							return (
-								<div
-									key={baseId}
-									style={{
-										display: "flex",
-										flexDirection: "column",
-										gap: "6px",
-										marginBottom: "8px",
-									}}>
-									<div
-										style={{
-											fontSize: "11px",
-											fontWeight: "500",
-											color: "#666",
-											padding: "0 4px",
-										}}>
-										{isPrimary
-											? "Primary"
-											: actualColorHex && actualColorHex.startsWith("#")
-												? ntc.name(actualColorHex)[1]
-												: baseId}
-									</div>
-									<div
-										style={{ display: "flex", gap: "4px", padding: "0 4px" }}>
-										{shades.map((shade) => {
-											let previewBg = `var(--color-${shade.id})`
-
-											if (
-												isPrimary &&
-												actualColorHex &&
-												!actualColorHex.startsWith("#")
-											) {
-												const preset = PRIMARY_COLORS.find(
-													(c) => c.value === actualColorHex
-												)
-												if (preset)
-													previewBg =
-														preset.cssVars.light[
-															`--color-primary${shade.suffix}` as keyof typeof preset.cssVars.light
-														]
-											}
-
-											return (
-												<button
-													key={shade.id}
-													title={shade.label}
-													onClick={() => {
-														window.parent.postMessage(
-															{
-																type: "add-component-override",
-																selector: selectedSelector,
-																customColorId: shade.id,
-															},
-															"*"
-														)
-														setSelectedElement(null)
-														setSelectedSelector(null)
-													}}
-													style={{
-														flex: 1,
-														height: "20px",
-														borderRadius: "4px",
-														border: "1px solid rgba(0,0,0,0.1)",
-														backgroundColor: previewBg,
-														cursor: "pointer",
-														boxShadow: "0 1px 2px rgba(0,0,0,0.05)",
-														transition: "transform 0.1s ease",
-													}}
-													onMouseOver={(e) =>
-														(e.currentTarget.style.transform = "scale(1.15)")
-													}
-													onMouseOut={(e) =>
-														(e.currentTarget.style.transform = "scale(1)")
-													}
-												/>
-											)
-										})}
-									</div>
-								</div>
-							)
-						}
-					)}
-					<button
-						onClick={() => {
-							setSelectedElement(null)
-							setSelectedSelector(null)
-						}}
-						style={{
-							marginTop: "6px",
-							padding: "6px",
-							fontSize: "12px",
-							fontWeight: "500",
-							background: "rgba(0,0,0,0.04)",
-							border: "none",
-							borderRadius: "6px",
-							cursor: "pointer",
-							color: "#555",
-						}}
-						onMouseOver={(e) =>
-							(e.currentTarget.style.backgroundColor = "rgba(0,0,0,0.08)")
-						}
-						onMouseOut={(e) =>
-							(e.currentTarget.style.backgroundColor = "rgba(0,0,0,0.04)")
-						}>
-						Cancel
-					</button>
-				</div>
+				<ElementInspectorPopover
+					selectedSelector={selectedSelector}
+					clickPos={clickPos}
+					params={params}
+					selectedElement={selectedElement}
+					onClose={() => {
+						setSelectedElement(null)
+						setSelectedSelector(null)
+					}}
+				/>
 			)}
 		</IconLibraryProvider>
+	)
+}
+
+function ElementInspectorPopover({
+	selectedSelector,
+	clickPos,
+	params,
+	selectedElement,
+	onClose,
+}: {
+	selectedSelector: string
+	clickPos: { x: number; y: number }
+	params: any
+	selectedElement: HTMLElement
+	onClose: () => void
+}) {
+	const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
+	const [currentStyles, setCurrentStyles] = useState({
+		fontSize: "16",
+		fontWeight: "400",
+	})
+
+	useEffect(() => {
+		if (selectedElement) {
+			const computed = window.getComputedStyle(selectedElement)
+			setCurrentStyles({
+				fontSize: computed.fontSize.replace("px", ""),
+				fontWeight: computed.fontWeight,
+			})
+		}
+	}, [selectedElement])
+
+	const applyOverride = (
+		property: string,
+		value?: string,
+		customColorId?: string
+	) => {
+		window.parent.postMessage(
+			{
+				type: "add-component-override",
+				selector: selectedSelector,
+				customColorId,
+				property,
+				value,
+			},
+			"*"
+		)
+	}
+
+	const renderColorMatrix = (property: string) => {
+		return (
+			<div
+				style={{
+					position: "absolute",
+					top: "60px",
+					left: 0,
+					right: 0,
+					backgroundColor: "#fff",
+					border: "1px solid #e5e5e5",
+					borderRadius: "8px",
+					padding: "8px",
+					zIndex: 100,
+					maxHeight: "250px",
+					overflowY: "auto",
+					boxShadow: "0 10px 25px -5px rgb(0 0 0 / 0.1)",
+				}}>
+				{["primary", ...Object.keys(params.customColors || {})].map(
+					(baseId) => {
+						const isPrimary = baseId === "primary"
+						const actualColorHex = isPrimary
+							? params.primaryColor
+							: params.customColors?.[baseId]
+						const shades = [
+							{ id: `${baseId}-accent`, label: "Accent", suffix: "-accent" },
+							{ id: `${baseId}-focus`, label: "Focus", suffix: "-focus" },
+							{ id: `${baseId}-border`, label: "Border", suffix: "-border" },
+							{ id: baseId, label: "Base", suffix: "" },
+							{ id: `${baseId}-hover`, label: "Hover", suffix: "-hover" },
+							{ id: `${baseId}-text`, label: "Text", suffix: "-text" },
+						]
+
+						return (
+							<div
+								key={baseId}
+								style={{
+									display: "flex",
+									flexDirection: "column",
+									gap: "6px",
+									marginBottom: "8px",
+								}}>
+								<div
+									style={{
+										fontSize: "11px",
+										fontWeight: "500",
+										color: "#666",
+										padding: "0 4px",
+									}}>
+									{isPrimary
+										? "Primary"
+										: actualColorHex && actualColorHex.startsWith("#")
+											? ntc.name(actualColorHex)[1]
+											: PRIMARY_COLORS.find((c) => c.value === actualColorHex)
+													?.name || baseId}
+								</div>
+								<div style={{ display: "flex", gap: "4px", padding: "0 4px" }}>
+									{shades.map((shade) => {
+										let previewBg = `var(--color-${shade.id})`
+										if (
+											isPrimary &&
+											actualColorHex &&
+											!actualColorHex.startsWith("#")
+										) {
+											const preset = PRIMARY_COLORS.find(
+												(c) => c.value === actualColorHex
+											)
+											if (preset)
+												previewBg =
+													preset.cssVars.light[
+														`--color-primary${shade.suffix}` as keyof typeof preset.cssVars.light
+													]
+										}
+
+										return (
+											<button
+												key={shade.id}
+												title={shade.label}
+												onClick={(e) => {
+													e.stopPropagation()
+													applyOverride(property, undefined, shade.id)
+												}}
+												style={{
+													flex: 1,
+													height: "20px",
+													borderRadius: "4px",
+													border: "1px solid rgba(0,0,0,0.1)",
+													backgroundColor: previewBg,
+													cursor: "pointer",
+													boxShadow: "0 1px 2px rgba(0,0,0,0.05)",
+													transition: "transform 0.1s ease",
+												}}
+												onMouseOver={(e) =>
+													(e.currentTarget.style.transform = "scale(1.15)")
+												}
+												onMouseOut={(e) =>
+													(e.currentTarget.style.transform = "scale(1)")
+												}
+											/>
+										)
+									})}
+								</div>
+							</div>
+						)
+					}
+				)}
+			</div>
+		)
+	}
+
+	return (
+		<div
+			style={{
+				position: "absolute",
+				top: clickPos.y + window.scrollY + 12,
+				left: Math.max(8, clickPos.x + window.scrollX + 12),
+				backgroundColor: "#f9f9f9",
+				border: "1px solid var(--color-border)",
+				borderRadius: "8px",
+				padding: "16px",
+				zIndex: 10000,
+				boxShadow: "0 4px 20px -2px rgb(0 0 0 / 0.15)",
+				display: "flex",
+				flexDirection: "column",
+				gap: "16px",
+				width: "280px",
+				fontFamily: "Inter, sans-serif",
+			}}>
+			<div
+				style={{
+					display: "flex",
+					justifyContent: "space-between",
+					alignItems: "center",
+				}}>
+				<div style={{ fontSize: "14px", fontWeight: "600", color: "#111" }}>
+					Inspect Element
+				</div>
+				<button
+					onClick={onClose}
+					style={{
+						background: "none",
+						border: "none",
+						cursor: "pointer",
+						padding: "4px",
+						borderRadius: "4px",
+						color: "#666",
+					}}
+					onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "#eee")}
+					onMouseOut={(e) =>
+						(e.currentTarget.style.backgroundColor = "transparent")
+					}>
+					<X size={16} />
+				</button>
+			</div>
+
+			<div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+				<div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+					<label style={{ fontSize: "13px", color: "#555" }}>Font size</label>
+					<div
+						style={{
+							display: "flex",
+							alignItems: "center",
+							border: "1px solid #e5e5e5",
+							borderRadius: "6px",
+							backgroundColor: "#fff",
+							padding: "0 8px",
+							height: "36px",
+						}}>
+						<Type size={16} color="#666" style={{ marginRight: "8px" }} />
+						<input
+							type="number"
+							value={currentStyles.fontSize}
+							onChange={(e) => {
+								setCurrentStyles((s) => ({ ...s, fontSize: e.target.value }))
+								if (e.target.value) {
+									applyOverride("font-size", `${e.target.value}px`)
+								}
+							}}
+							style={{
+								border: "none",
+								outline: "none",
+								width: "100%",
+								fontSize: "14px",
+								color: "#111",
+							}}
+						/>
+					</div>
+				</div>
+
+				<div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+					<label style={{ fontSize: "13px", color: "#555" }}>Font weight</label>
+					<div
+						style={{
+							display: "flex",
+							alignItems: "center",
+							border: "1px solid #e5e5e5",
+							borderRadius: "6px",
+							backgroundColor: "#fff",
+							padding: "0 8px",
+							height: "36px",
+							position: "relative",
+						}}>
+						<select
+							defaultValue={currentStyles.fontWeight}
+							onChange={(e) => applyOverride("font-weight", e.target.value)}
+							style={{
+								appearance: "none",
+								border: "none",
+								outline: "none",
+								width: "100%",
+								fontSize: "14px",
+								color: "#111",
+								backgroundColor: "transparent",
+								cursor: "pointer",
+							}}>
+							<option value="300">Light</option>
+							<option value="400">Regular</option>
+							<option value="500">Medium</option>
+							<option value="600">Semibold</option>
+							<option value="700">Bold</option>
+						</select>
+						<ChevronDown
+							size={16}
+							color="#666"
+							style={{
+								pointerEvents: "none",
+								position: "absolute",
+								right: "8px",
+							}}
+						/>
+					</div>
+				</div>
+			</div>
+
+			<div
+				style={{
+					fontSize: "14px",
+					fontWeight: "600",
+					color: "#111",
+					marginTop: "4px",
+				}}>
+				Color
+			</div>
+
+			<div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+				<div
+					style={{
+						display: "flex",
+						flexDirection: "column",
+						gap: "6px",
+						position: "relative",
+					}}>
+					<label style={{ fontSize: "13px", color: "#555" }}>Text</label>
+					<div
+						onClick={() =>
+							setActiveDropdown(activeDropdown === "color" ? null : "color")
+						}
+						style={{
+							display: "flex",
+							alignItems: "center",
+							border: "1px solid #e5e5e5",
+							borderRadius: "6px",
+							backgroundColor: "#fff",
+							padding: "0 8px",
+							height: "36px",
+							cursor: "pointer",
+							justifyContent: "space-between",
+						}}>
+						<div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+							<div
+								style={{
+									width: "16px",
+									height: "16px",
+									borderRadius: "4px",
+									backgroundColor: "var(--color-bg)",
+									border: "1px solid #ddd",
+								}}
+							/>
+							<span style={{ fontSize: "14px", color: "#111" }}>
+								Select Color...
+							</span>
+						</div>
+						<ChevronDown size={16} color="#666" />
+					</div>
+					{activeDropdown === "color" && renderColorMatrix("color")}
+				</div>
+
+				<div
+					style={{
+						display: "flex",
+						flexDirection: "column",
+						gap: "6px",
+						position: "relative",
+					}}>
+					<label style={{ fontSize: "13px", color: "#555" }}>Background</label>
+					<div
+						onClick={() =>
+							setActiveDropdown(
+								activeDropdown === "background-color"
+									? null
+									: "background-color"
+							)
+						}
+						style={{
+							display: "flex",
+							alignItems: "center",
+							border: "1px solid #e5e5e5",
+							borderRadius: "6px",
+							backgroundColor: "#fff",
+							padding: "0 8px",
+							height: "36px",
+							cursor: "pointer",
+							justifyContent: "space-between",
+						}}>
+						<div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+							<CheckSquare size={16} color="#ccc" />
+							<span style={{ fontSize: "14px", color: "#111" }}>
+								Select Color...
+							</span>
+						</div>
+						<ChevronDown size={16} color="#666" />
+					</div>
+					{activeDropdown === "background-color" &&
+						renderColorMatrix("background-color")}
+				</div>
+			</div>
+
+			<div
+				style={{
+					fontSize: "14px",
+					fontWeight: "600",
+					color: "#111",
+					marginTop: "4px",
+				}}>
+				Border
+			</div>
+
+			<div
+				style={{
+					display: "flex",
+					flexDirection: "column",
+					gap: "6px",
+					position: "relative",
+				}}>
+				<label style={{ fontSize: "13px", color: "#555" }}>Border color</label>
+				<div
+					onClick={() =>
+						setActiveDropdown(
+							activeDropdown === "border-color" ? null : "border-color"
+						)
+					}
+					style={{
+						display: "flex",
+						alignItems: "center",
+						border: "1px solid #e5e5e5",
+						borderRadius: "6px",
+						backgroundColor: "#fff",
+						padding: "0 8px",
+						height: "36px",
+						cursor: "pointer",
+						justifyContent: "space-between",
+					}}>
+					<div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+						<div
+							style={{
+								width: "16px",
+								height: "16px",
+								borderRadius: "4px",
+								backgroundColor: "var(--color-bg)",
+								border: "1px solid #ddd",
+							}}
+						/>
+						<span style={{ fontSize: "14px", color: "#111" }}>
+							Select Color...
+						</span>
+					</div>
+					<ChevronDown size={16} color="#666" />
+				</div>
+				{activeDropdown === "border-color" && renderColorMatrix("border-color")}
+			</div>
+		</div>
 	)
 }

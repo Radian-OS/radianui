@@ -148,15 +148,24 @@ function ThemerContent() {
 				setInspectMode(false) // turn off inspect mode after selection
 			}
 			if (event.data?.type === "add-component-override") {
+				const newOverride = {
+					selector: event.data.selector,
+					customColorId: event.data.customColorId,
+					property: event.data.property || "background-color",
+					value: event.data.value,
+				}
+
+				const existing = paramsRef.current.componentOverrides ?? []
+				const filtered = existing.filter(
+					(o) =>
+						!(
+							o.selector === newOverride.selector &&
+							o.property === newOverride.property
+						)
+				)
+
 				setParams({
-					componentOverrides: [
-						...(paramsRef.current.componentOverrides ?? []),
-						{
-							selector: event.data.selector,
-							customColorId: event.data.customColorId,
-							property: "background-color",
-						},
-					],
+					componentOverrides: [...filtered, newOverride],
 				})
 			}
 		}

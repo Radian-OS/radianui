@@ -518,30 +518,6 @@ export function ThemerSidebar({
 							</Button>
 						</div>
 					)}
-
-					{params.componentOverrides?.map((override, i) => (
-						<div
-							key={i}
-							className="border-border bg-elevation-level2 flex flex-col gap-1 rounded-md border p-2 text-xs">
-							<span className="overflow-hidden font-mono text-ellipsis whitespace-nowrap opacity-75">
-								{override.selector}
-							</span>
-							<div className="mt-1 flex items-center justify-between">
-								<span>→ {override.customColorId}</span>
-								<Button
-									size="28"
-									variant="ghost"
-									color="error"
-									onClick={() => {
-										const next = [...params.componentOverrides!]
-										next.splice(i, 1)
-										setParams({ componentOverrides: next })
-									}}>
-									✕
-								</Button>
-							</div>
-						</div>
-					))}
 				</div>
 
 				{/* Component Preview */}
