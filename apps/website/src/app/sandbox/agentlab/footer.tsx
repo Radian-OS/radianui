@@ -54,7 +54,7 @@ const footerColumns: FooterColumn[] = [
 
 export function AgentlabFooter() {
 	return (
-		<footer className="bg-black-inverse text-white-inverse border-t border-white/10 py-16 md:py-24">
+		<footer className="bg-black-inverse text-white-inverse border-white-inverse/10 border-t py-16 md:py-24">
 			<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 				<div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
 					{/* Brand Column */}
@@ -72,20 +72,22 @@ export function AgentlabFooter() {
 										className="size-6 object-contain brightness-0 invert"
 									/>
 								</div>
-								<span className="font-heading text-xl font-bold tracking-tight text-white">
+								<span className="font-heading text-xl font-bold tracking-tight">
 									AgentLab
 								</span>
 							</Link>
 
-							<p className="mt-4 max-w-xs text-xs leading-relaxed text-white/60 sm:text-sm">
+							<p className="text-white-inverse/60 mt-4 max-w-xs text-xs leading-relaxed sm:text-sm">
 								Building the future of intelligent automation with AI agents
 								that think, act, and deliver across enterprise operations.
 							</p>
 						</div>
 
-						<p className="mt-8 text-xs text-white/40 sm:mt-12">
+						<p className="text-white-inverse/40 mt-8 text-xs sm:mt-12">
 							&copy; {new Date().getFullYear()} Design &amp; Developed by{" "}
-							<span className="font-medium text-white/70">Amani Design</span>
+							<span className="text-white-inverse/70 font-medium">
+								Amani Design
+							</span>
 						</p>
 					</div>
 
@@ -93,7 +95,7 @@ export function AgentlabFooter() {
 					<div className="grid grid-cols-2 gap-8 sm:grid-cols-4 lg:col-span-8">
 						{footerColumns.map((col) => (
 							<div key={col.title}>
-								<p className="text-xs font-bold tracking-wider text-white uppercase">
+								<p className="text-white-inverse text-xs font-bold tracking-wider uppercase">
 									{col.title}
 								</p>
 								<ul className="mt-4 space-y-2.5">
@@ -101,7 +103,7 @@ export function AgentlabFooter() {
 										<li key={link.label}>
 											<Link
 												href={link.href}
-												className="text-xs text-white/60 transition-colors hover:text-white">
+												className="text-white-inverse/60 hover:text-white-inverse text-xs transition-colors">
 												{link.label}
 											</Link>
 										</li>

@@ -4,6 +4,7 @@ import React, { useState } from "react"
 import { ArrowUpRight } from "lucide-react"
 import Image from "next/image"
 import { Button } from "@/styles/default/ui/button"
+import { Badge } from "@/registry/ui/badge"
 
 interface TestimonialItem {
 	id: string
@@ -86,11 +87,11 @@ export function AgentlabTestimonialsSection() {
 				{/* Top Header */}
 				<div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
 					<div>
-						<div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3.5 py-1 text-xs font-semibold tracking-wider text-white/80 uppercase">
+						<Badge>
 							<span className="text-primary font-bold">—</span>
 							<span>TESTIMONIALS</span>
-						</div>
-						<h2 className="heading-2 mt-4 font-serif text-white">
+						</Badge>
+						<h2 className="heading-2 text-white-inverse mt-4 font-serif">
 							What People Are Saying
 						</h2>
 					</div>
@@ -99,14 +100,14 @@ export function AgentlabTestimonialsSection() {
 						variant="outline"
 						color="neutral"
 						size="36"
-						className="gap-2 border-white/20 bg-transparent text-xs font-bold tracking-wider text-white uppercase hover:bg-white/10">
+						className="uppercase">
 						<ArrowUpRight className="size-4" />
 						<span>SEE ALL CASE STUDIES</span>
 					</Button>
 				</div>
 
 				{/* Brand Tabs (Rule 18: mapped array) */}
-				<div className="mt-14 grid grid-cols-2 border border-white/10 sm:grid-cols-4">
+				<div className="mt-14 grid grid-cols-2 sm:grid-cols-4">
 					{testimonials.map((item) => {
 						const isSelected = activeTab === item.id
 						return (
@@ -116,8 +117,8 @@ export function AgentlabTestimonialsSection() {
 								onClick={() => setActiveTab(item.id)}
 								className={`flex h-16 items-center justify-center border-b-2 px-4 transition-all ${
 									isSelected
-										? "border-primary bg-white/10"
-										: "border-transparent bg-white/5 opacity-60 hover:opacity-100"
+										? "border-primary bg-white-inverse/10"
+										: "border-transparent opacity-60 hover:opacity-100"
 								}`}>
 								<Image
 									src={item.logoUrl}
@@ -132,18 +133,18 @@ export function AgentlabTestimonialsSection() {
 				</div>
 
 				{/* Active Testimonial Showcase */}
-				<div className="mt-8 grid grid-cols-1 gap-8 rounded-2xl border border-white/10 bg-white/5 p-8 lg:grid-cols-12 lg:gap-12 lg:p-12">
+				<div className="border-border/10 bg-fg/5 mt-8 grid grid-cols-1 gap-8 rounded-2xl border p-8 lg:grid-cols-12 lg:gap-12 lg:p-12">
 					{/* Left Quote Graphic */}
 					<div className="lg:col-span-7">
-						<h3 className="heading-3 font-serif text-white">
+						<h3 className="heading-3 text-white-inverse font-serif">
 							&ldquo;{activeTestimonial.headline}&rdquo;
 						</h3>
 					</div>
 
 					{/* Right Author Meta */}
-					<div className="flex flex-col justify-between border-t border-white/10 pt-6 lg:col-span-5 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-10">
+					<div className="border-white-inverse/10 flex flex-col justify-between border-t pt-6 lg:col-span-5 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-10">
 						<div className="flex items-center gap-4">
-							<div className="relative size-14 overflow-hidden rounded-full border border-white/20">
+							<div className="border-white-inverse/20 relative size-14 overflow-hidden rounded-full border">
 								<Image
 									src={activeTestimonial.avatarUrl}
 									alt={activeTestimonial.authorName}
@@ -153,16 +154,16 @@ export function AgentlabTestimonialsSection() {
 								/>
 							</div>
 							<div>
-								<div className="text-sm font-bold text-white">
+								<div className="text-white-inverse text-sm font-bold">
 									{activeTestimonial.authorName}
 								</div>
-								<div className="text-xs text-white/60">
+								<div className="text-white-inverse/60 text-xs">
 									{activeTestimonial.authorRole}
 								</div>
 							</div>
 						</div>
 
-						<p className="mt-6 text-xs leading-relaxed text-white/70 sm:text-sm">
+						<p className="text-white-inverse/70 mt-6 text-xs leading-relaxed sm:text-sm">
 							{activeTestimonial.quote}
 						</p>
 					</div>

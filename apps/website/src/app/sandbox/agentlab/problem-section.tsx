@@ -2,6 +2,7 @@
 
 import React from "react"
 import Image from "next/image"
+import { Badge } from "@/registry/ui/badge"
 
 interface ProblemCardItem {
 	title: string
@@ -39,16 +40,16 @@ export function AgentlabProblemSection() {
 			<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 				{/* Category Badge */}
 				<div className="flex justify-center">
-					<div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3.5 py-1 text-xs font-semibold tracking-wider text-white/80 uppercase">
+					<Badge>
 						<span className="text-primary font-bold">—</span>
 						<span>THE PROBLEM</span>
-					</div>
+					</Badge>
 				</div>
 
 				{/* Section Heading (Rule 13: heading-2) */}
-				<h2 className="heading-2 mx-auto mt-6 max-w-4xl text-center font-serif text-white">
+				<h2 className="heading-2 text-white-inverse mx-auto mt-6 max-w-4xl text-center font-serif">
 					Most Organizations Operate with{" "}
-					<span className="text-white/50">
+					<span className="text-white-inverse/50">
 						Broken Data Pipelines, Siloed Teams, and Outdated Workflows.
 					</span>
 				</h2>
@@ -58,7 +59,7 @@ export function AgentlabProblemSection() {
 					{problemCards.map((item) => (
 						<div
 							key={item.title}
-							className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-8 transition-all duration-300 hover:border-white/20 hover:bg-white/[0.08]">
+							className="group border-border bg-elevation-level relative flex flex-col justify-between overflow-hidden rounded-2xl border p-8 transition-all duration-300 hover:border-white/20">
 							{/* 3D Icon Graphic */}
 							<div className="relative mb-8 h-44 w-full sm:h-52">
 								<Image
@@ -72,10 +73,10 @@ export function AgentlabProblemSection() {
 
 							{/* Card Content */}
 							<div>
-								<h3 className="heading-4 font-serif text-white">
+								<h3 className="heading-4 text-white-inverse font-serif">
 									{item.title}
 								</h3>
-								<p className="mt-3 text-xs leading-relaxed text-white/60 sm:text-sm">
+								<p className="text-white-inverse/60 mt-3 text-xs leading-relaxed sm:text-sm">
 									{item.description}
 								</p>
 							</div>
