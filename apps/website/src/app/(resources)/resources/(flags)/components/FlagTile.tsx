@@ -81,12 +81,12 @@ export function FlagTile({
 	}
 
 	return (
-		<li className="group relative size-[142px] shrink-0">
+		<li className="group relative aspect-square w-full min-w-0 sm:size-[142px]">
 			<Button
 				size="32"
 				color="neutral"
 				variant="outline"
-				className="bg-bg hover:bg-bg size-[142px] overflow-hidden rounded-xl p-0 pb-6"
+				className="bg-bg hover:bg-bg size-full overflow-hidden rounded-xl p-0 pb-6"
 				aria-label={`View ${displayName} flag details`}
 				onClick={() => onSelect(name)}>
 				<FlagImage
