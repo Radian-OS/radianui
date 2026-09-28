@@ -1,6 +1,4 @@
-FROM node:20-alpine AS base
-
-RUN apk update && apk add --no-cache libc6-compat
+FROM node:20-slim AS base
 
 # Stage 1: Prune the workspace
 FROM base AS builder
@@ -13,7 +11,7 @@ RUN turbo prune website --docker
 # Stage 2: Install dependencies
 FROM base AS installer
 WORKDIR /app
-RUN npm isntall -g pnpm
+RUN npm install -g pnpm
 COPY --from=builder /app/out/json/ .
 COPY --from=builder /app/out/pnpm-lock.yaml ./pnpm-lock.yaml
 RUN pnpm install --frozen-lockfile
