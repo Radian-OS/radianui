@@ -13,7 +13,7 @@ RUN turbo prune website --docker
 # Stage 2: Install dependencies
 FROM base AS installer
 WORKDIR /app
-RUN npm isntall -g npm
+RUN npm isntall -g pnpm
 COPY --from=builder /app/out/json/ .
 COPY --from=builder /app/out/pnpm-lock.yaml ./pnpm-lock.yaml
 RUN pnpm install --frozen-lockfile
