@@ -67,7 +67,7 @@ export function EmojiCategoryDropdown({
 					color="neutral"
 					variant="outline"
 					className={cn(
-						"bg-bg hover:bg-bg active:bg-bg data-[state=open]:bg-bg focus-visible:bg-bg shrink-0",
+						"bg-bg hover:bg-bg active:bg-bg data-[state=open]:bg-bg focus-visible:bg-bg shrink-0 text-[14px]",
 						className
 					)}
 					aria-label={`Emoji category: ${label}`}>
