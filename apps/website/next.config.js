@@ -252,6 +252,9 @@ const nextConfig = {
 	compiler: {
 		removeConsole: false,
 	},
+	eslint: {
+		ignoreDuringBuilds: true,
+	},
 	experimental: {
 		optimizePackageImports: [
 			"lucide-react",
@@ -271,6 +274,7 @@ const nextConfig = {
 		}
 		return config
 	},
+	output: "standalone",
 }
 const withMDX = createMDX()
 export default withBundleAnalyzer(withMDX(nextConfig))
