@@ -9,7 +9,7 @@ import { PortfolioFooter } from "./portfolio-footer"
 
 export function VictorEkeView() {
 	return (
-		<div className="dark bg-bg text-fg selection:bg-success-accent selection:text-success-text min-h-screen w-full">
+		<div className="dark bg-bg text-fg min-h-screen w-full">
 			<div className="mx-auto flex w-full max-w-5xl flex-col px-4 sm:px-6 lg:px-8">
 				<VictorNavbar />
 				<HeroSection />

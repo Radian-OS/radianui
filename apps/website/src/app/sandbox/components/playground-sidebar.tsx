@@ -215,7 +215,8 @@ export function PlaygroundSidebar({
 	}, [activeComponent, activeCategory, openCategories])
 
 	// Three-state resolution filter: "all" | "pending" | "resolved"
-	const [statusFilter, setStatusFilter] = useState<CommentStatusFilter>("all")
+	const [statusFilter, setStatusFilter] =
+		useState<CommentStatusFilter>("pending")
 
 	// Modal state for viewing all comment data when clicked
 	const [isCommentsModalOpen, setIsCommentsModalOpen] = useState(false)
@@ -316,15 +317,6 @@ export function PlaygroundSidebar({
 							}
 							className="w-full">
 							<TabsList className="bg-fill3/80 grid h-7 w-full grid-cols-3 p-0.5">
-								<TabsTrigger
-									value="all"
-									className="h-6 gap-1 px-1 text-[10px] font-semibold tracking-tight"
-									title="All comments">
-									<span>All</span>
-									<span className="font-mono text-[9px] opacity-75">
-										({totalAllComments})
-									</span>
-								</TabsTrigger>
 								<TabsTrigger
 									value="pending"
 									className="h-6 gap-1 px-1 text-[10px] font-semibold tracking-tight data-[state=active]:text-amber-500"
@@ -477,7 +469,9 @@ export function PlaygroundSidebar({
 
 			{/* All Comment Data Viewer Dialog (Opens when clicked) */}
 			<Dialog open={isCommentsModalOpen} onOpenChange={setIsCommentsModalOpen}>
-				<DialogContent className="border-border bg-bg flex max-h-[85vh] w-full max-w-2xl flex-col gap-4 overflow-hidden rounded-2xl p-5 shadow-2xl">
+				<DialogContent
+					closeButton="hidden"
+					className="border-border bg-bg flex max-h-[85vh] w-full max-w-2xl flex-col gap-4 overflow-hidden rounded-2xl p-5 shadow-2xl">
 					<DialogHeader className="border-border/70 gap-1 border-b pb-3 text-left">
 						<div className="flex items-center justify-between gap-3 pr-6">
 							<div className="flex items-center gap-2">
@@ -526,17 +520,6 @@ export function PlaygroundSidebar({
 								}
 								className="w-full sm:w-auto">
 								<TabsList className="bg-fill2 h-7 p-0.5">
-									<TabsTrigger
-										value="all"
-										className="h-6 px-2.5 text-xs font-semibold">
-										All (
-										{selectedComponentForModal
-											? comments.filter(
-													(c) => c.componentId === selectedComponentForModal
-												).length
-											: totalAllComments}
-										)
-									</TabsTrigger>
 									<TabsTrigger
 										value="pending"
 										className="h-6 px-2.5 text-xs font-semibold data-[state=active]:text-amber-500">
