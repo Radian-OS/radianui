@@ -1,0 +1,8 @@
+npm-debug.log
+Dockerfile
+.dockerignore
+**/node_modules
+**/.git
+**/.turbo
+**/.next
+**/.pnpm-store
