@@ -1,5 +1,6 @@
 "use client"
 
+import { cn } from "@/lib/utils"
 import type { LucideIcon } from "lucide-react"
 import {
 	ChevronDown,
@@ -41,11 +42,13 @@ const groupIcons: Record<string, LucideIcon> = {
 interface EmojiCategoryDropdownProps {
 	value: string
 	onValueChange: (value: string) => void
+	className?: string
 }
 
 export function EmojiCategoryDropdown({
 	value,
 	onValueChange,
+	className,
 }: EmojiCategoryDropdownProps) {
 	const activeGroup =
 		value === ALL_EMOJI_CATEGORY
@@ -60,9 +63,13 @@ export function EmojiCategoryDropdown({
 		<DropdownMenu indicatorPosition="right">
 			<DropdownMenuTrigger asChild>
 				<Button
+					size="44"
 					color="neutral"
 					variant="outline"
-					className="shrink-0"
+					className={cn(
+						"bg-bg hover:bg-bg active:bg-bg data-[state=open]:bg-bg focus-visible:bg-bg shrink-0",
+						className
+					)}
 					aria-label={`Emoji category: ${label}`}>
 					<ActiveIcon className="text-fg-secondary" />
 					<span className="hidden sm:inline">{label}</span>

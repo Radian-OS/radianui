@@ -36,7 +36,7 @@ export function FlagShapeDropdown({
 					color="neutral"
 					variant="outline"
 					className={cn(
-						"bg-bg hover:bg-bg active:bg-bg data-[state=open]:bg-bg focus-visible:bg-bg w-[105px] justify-between rounded-r-none border-r-0 shadow-none",
+						"bg-bg hover:bg-bg active:bg-bg data-[state=open]:bg-bg focus-visible:bg-bg w-[105px] justify-between rounded-r-none border-r-0 text-[14px] shadow-none",
 						className
 					)}
 					aria-label={`Flag style: ${label}`}>

@@ -4,6 +4,8 @@ import { Button } from "@/registry/ui/button"
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/registry/ui/tooltip"
 import type { EmojiData } from "./emoji-data"
 import { formatEmojiName, getEmojiPagePath } from "./emoji-data"
+import { FlagImage } from "../../(flags)/components/FlagImage"
+import { getFlagNameFromSlug } from "../../(flags)/components/flags-data"
 
 export function EmojiTile({
 	emoji,
@@ -13,6 +15,12 @@ export function EmojiTile({
 	onSelect: (emoji: EmojiData) => void
 }) {
 	const displayName = formatEmojiName(emoji.name)
+	const isFlag = emoji.group === "Flags"
+	const flagName = isFlag
+		? getFlagNameFromSlug(emoji.slug.replace(/^flag_/, "")) ||
+			getFlagNameFromSlug(emoji.slug.replace(/^flag_/, "").replace(/_/g, "-"))
+		: null
+
 	const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
 		if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
 
@@ -39,7 +47,11 @@ export function EmojiTile({
 							<span
 								className="flex h-12 w-8 items-center justify-center text-[32px] leading-[48px]"
 								aria-hidden="true">
-								{emoji.emoji}
+								{isFlag && flagName ? (
+									<FlagImage name={flagName} shape="flat" size={32} />
+								) : (
+									emoji.emoji
+								)}
 							</span>
 						</Link>
 					</Button>

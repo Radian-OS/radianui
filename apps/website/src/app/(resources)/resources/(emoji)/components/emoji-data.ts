@@ -453,3 +453,49 @@ export function getRelatedEmojis(emoji: EmojiData, limit = 8) {
 		.filter((item) => item.slug !== emoji.slug)
 		.slice(0, limit)
 }
+
+const supportedEmojiCache = new Map<string, boolean>()
+
+export function isEmojiSupported(emoji: string): boolean {
+	if (typeof document === "undefined") return true
+	if (supportedEmojiCache.has(emoji)) return supportedEmojiCache.get(emoji)!
+
+	const canvas = document.createElement("canvas")
+	canvas.width = 16
+	canvas.height = 16
+	const ctx = canvas.getContext("2d", { willReadFrequently: true })
+
+	if (!ctx) return true
+
+	ctx.textBaseline = "top"
+	ctx.font = "16px Arial"
+
+	ctx.fillText("\uFFFF", 0, 0)
+	const missingData = ctx.getImageData(0, 0, 16, 16).data
+
+	ctx.clearRect(0, 0, 16, 16)
+	ctx.fillText(emoji, 0, 0)
+	const emojiData = ctx.getImageData(0, 0, 16, 16).data
+
+	let isSupported = false
+	let isEmpty = true
+
+	for (let i = 0; i < emojiData.length; i += 4) {
+		if (
+			emojiData[i] !== missingData[i] ||
+			emojiData[i + 1] !== missingData[i + 1] ||
+			emojiData[i + 2] !== missingData[i + 2] ||
+			emojiData[i + 3] !== missingData[i + 3]
+		) {
+			isSupported = true
+		}
+		if (emojiData[i + 3] > 0) {
+			isEmpty = false
+		}
+	}
+
+	if (isEmpty) isSupported = false
+
+	supportedEmojiCache.set(emoji, isSupported)
+	return isSupported
+}

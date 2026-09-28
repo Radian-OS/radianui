@@ -44,6 +44,7 @@ export function FlagsResourcePage({
 				</div>
 			}
 			showcaseLabel="Browse free country flag assets"
+			showcaseClassName="!mt-0"
 			showcase={<FlagsPlayground initialSelectedFlag={initialSelectedFlag} />}
 			documentation={<FlagsDocs />}
 		/>

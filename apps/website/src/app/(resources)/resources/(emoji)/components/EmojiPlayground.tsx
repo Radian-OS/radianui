@@ -2,7 +2,6 @@
 
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react"
 import { Search, SearchX } from "lucide-react"
-import { usePathname, useRouter } from "next/navigation"
 import {
 	Empty,
 	EmptyDescription,
@@ -10,7 +9,7 @@ import {
 	EmptyMedia,
 	EmptyTitle,
 } from "@/registry/ui/empty"
-import { Input, InputWrapper } from "@/registry/ui/input"
+import { Input, InputGroup, InputWrapper } from "@/registry/ui/input"
 import { EmojiCategoryDropdown } from "./EmojiCategoryDropdown"
 import { EmojiDetailsDrawer } from "./EmojiDetailsDrawer"
 import { EmojiTile } from "./EmojiTile"
@@ -22,6 +21,7 @@ import {
 	emojis,
 	getEmojiBySlug,
 	getEmojiPagePath,
+	isEmojiSupported,
 } from "./emoji-data"
 
 function getEmojiFromPathname(pathname: string) {
@@ -36,11 +36,9 @@ export default function EmojiPlayground({
 }: {
 	initialSelectedEmoji?: EmojiData | null
 }) {
-	const router = useRouter()
-	const pathname = usePathname()
 	const [query, setQuery] = useState("")
 	const [category, setCategory] = useState(
-		initialSelectedEmoji?.group ?? emojiGroups[0]?.name ?? ALL_EMOJI_CATEGORY
+		initialSelectedEmoji?.group ?? ALL_EMOJI_CATEGORY
 	)
 	const [selectedEmoji, setSelectedEmoji] = useState<EmojiData | null>(
 		initialSelectedEmoji
@@ -102,23 +100,32 @@ export default function EmojiPlayground({
 	}, [])
 
 	useEffect(() => {
-		const emojiFromPathname = getEmojiFromPathname(pathname)
-		setSelectedEmoji(emojiFromPathname)
-
-		if (!emojiFromPathname) {
-			ownsDrawerHistoryEntryRef.current = false
+		const handlePopState = () => {
+			setSelectedEmoji(getEmojiFromPathname(window.location.pathname))
+			ownsDrawerHistoryEntryRef.current = Boolean(
+				window.history.state?.radianEmojiDialog
+			)
 		}
-	}, [pathname])
+
+		window.addEventListener("popstate", handlePopState)
+		return () => window.removeEventListener("popstate", handlePopState)
+	}, [])
 
 	const handleSelectEmoji = (emoji: EmojiData) => {
 		const nextPath = getEmojiPagePath(emoji)
+		const nextState = {
+			...window.history.state,
+			radianEmojiDialog: true,
+		}
 
 		if (selectedEmoji) {
-			router.replace(nextPath, { scroll: false })
+			window.history.replaceState(nextState, "", nextPath)
 		} else {
+			window.history.pushState(nextState, "", nextPath)
 			ownsDrawerHistoryEntryRef.current = true
-			router.push(nextPath, { scroll: false })
 		}
+
+		setSelectedEmoji(emoji)
 	}
 
 	const handleDrawerOpenChange = (open: boolean) => {
@@ -131,7 +138,11 @@ export default function EmojiPlayground({
 			return
 		}
 
-		router.replace(EMOJI_PAGE_PATH, { scroll: false })
+		window.history.replaceState(
+			{ ...window.history.state, radianEmojiDialog: false },
+			"",
+			EMOJI_PAGE_PATH
+		)
 	}
 
 	const visibleEmojis = useMemo(() => {
@@ -140,11 +151,15 @@ export default function EmojiPlayground({
 		const source =
 			category === ALL_EMOJI_CATEGORY ? emojis : (group?.emojis ?? [])
 
-		return normalizedQuery
-			? source.filter((emoji) =>
-					emoji.name.toLocaleLowerCase("en").includes(normalizedQuery)
-				)
-			: source
+		return (
+			normalizedQuery
+				? source.filter((emoji) =>
+						emoji.name.toLocaleLowerCase("en").includes(normalizedQuery)
+					)
+				: source
+		).filter(
+			(emoji) => emoji.group === "Flags" || isEmojiSupported(emoji.emoji)
+		)
 	}, [category, query])
 
 	useLayoutEffect(() => {
@@ -165,16 +180,24 @@ export default function EmojiPlayground({
 		<div id="emoji-collection" className="flex w-full flex-col gap-8 py-2">
 			<div ref={sentinelRef} className="pointer-events-none h-px w-full" />
 			<div className="bg-bg/95 sticky top-0 z-100 py-3 backdrop-blur-sm">
-				<InputWrapper className="bg-fill1 focus-within:bg-bg h-13 w-full">
-					<EmojiCategoryDropdown value={category} onValueChange={setCategory} />
-					<Search aria-hidden="true" />
-					<Input
-						value={query}
-						onChange={(event) => setQuery(event.target.value)}
-						placeholder="Search emojis by name (e.g. grinning face, rocket)..."
-						aria-label="Search emojis by name"
+				<InputGroup className="w-full">
+					<EmojiCategoryDropdown
+						value={category}
+						onValueChange={setCategory}
+						className="rounded-r-none border-r-0"
 					/>
-				</InputWrapper>
+					<InputWrapper
+						size="44"
+						className="bg-bg focus-within:bg-bg min-w-0 flex-1 rounded-l-none shadow-none">
+						<Search aria-hidden="true" />
+						<Input
+							value={query}
+							onChange={(event) => setQuery(event.target.value)}
+							placeholder="Search emojis by name (e.g. grinning face, rocket)..."
+							aria-label="Search emojis by name"
+						/>
+					</InputWrapper>
+				</InputGroup>
 			</div>
 
 			{visibleEmojis.length ? (

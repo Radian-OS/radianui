@@ -25,6 +25,8 @@ import { Table, TableBody, TableCell, TableRow } from "@/registry/ui/table"
 import { ResourceFaq } from "../../components/ResourceDocs"
 import { EmojiCopyActions } from "./EmojiCopyActions"
 import { EmojiSkinToneVariants } from "./EmojiSkinToneVariants"
+import { FlagImage } from "../../(flags)/components/FlagImage"
+import { getFlagNameFromSlug } from "../../(flags)/components/flags-data"
 import type { EmojiData } from "./emoji-data"
 import {
 	formatEmojiName,
@@ -57,6 +59,11 @@ export function EmojiDetailsDrawer({
 	const codepoints = getEmojiCodePoints(emoji.emoji).join(" ")
 	const sequence = getEmojiSequenceInfo(emoji)
 	const faqItems = getEmojiFaqItems(emoji)
+	const isFlag = emoji.group === "Flags"
+	const flagName = isFlag
+		? getFlagNameFromSlug(emoji.slug.replace(/^flag_/, "")) ||
+			getFlagNameFromSlug(emoji.slug.replace(/^flag_/, "").replace(/_/g, "-"))
+		: null
 
 	return (
 		<Drawer
@@ -70,7 +77,11 @@ export function EmojiDetailsDrawer({
 					<span
 						className="flex size-16 shrink-0 items-center justify-center text-5xl leading-none"
 						aria-hidden="true">
-						{emoji.emoji}
+						{isFlag && flagName ? (
+							<FlagImage name={flagName} shape="flat" size={64} />
+						) : (
+							emoji.emoji
+						)}
 					</span>
 					<div className="flex min-w-0 flex-1 flex-col gap-1.5">
 						<Badge color="primary" variant="soft" size="24" className="w-fit">
@@ -211,7 +222,34 @@ export function EmojiDetailsDrawer({
 										className="aspect-square h-auto w-full p-0 text-3xl"
 										aria-label={`View ${formatEmojiName(relatedEmoji.name)} emoji details`}
 										onClick={() => onSelectEmoji(relatedEmoji)}>
-										<span aria-hidden="true">{relatedEmoji.emoji}</span>
+										<span aria-hidden="true">
+											{relatedEmoji.group === "Flags" &&
+											(getFlagNameFromSlug(
+												relatedEmoji.slug.replace(/^flag_/, "")
+											) ||
+												getFlagNameFromSlug(
+													relatedEmoji.slug
+														.replace(/^flag_/, "")
+														.replace(/_/g, "-")
+												)) ? (
+												<FlagImage
+													name={
+														(getFlagNameFromSlug(
+															relatedEmoji.slug.replace(/^flag_/, "")
+														) ||
+															getFlagNameFromSlug(
+																relatedEmoji.slug
+																	.replace(/^flag_/, "")
+																	.replace(/_/g, "-")
+															))!
+													}
+													shape="flat"
+													size={32}
+												/>
+											) : (
+												relatedEmoji.emoji
+											)}
+										</span>
 									</Button>
 								))}
 							</div>
