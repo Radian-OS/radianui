@@ -14,8 +14,6 @@ import {
 const countries = [
 	{ code: "US", name: "United States" },
 	{ code: "IN", name: "India" },
-	{ code: "CN", name: "China" },
-	{ code: "GB", name: "United Kingdom" },
 	{ code: "JP", name: "Japan" },
 ] as const satisfies ReadonlyArray<{ code: CountryCode; name: string }>
 

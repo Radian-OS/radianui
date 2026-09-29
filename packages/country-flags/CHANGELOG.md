@@ -1,5 +1,14 @@
 # @radianui/flags
 
+## 1.0.0
+
+### Major Changes
+
+- Release the typed React country flag component API as stable.
+- Document installation, shapes, sizing, accessibility, TypeScript helpers,
+  metadata, SVG assets, CLI usage, and the complete public API.
+- Add complete examples featuring the United States, India, and Japan.
+
 ## 0.0.3
 
 ### Patch Changes

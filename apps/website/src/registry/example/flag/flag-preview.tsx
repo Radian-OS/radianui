@@ -9,15 +9,8 @@ export default function FlagPreview() {
 				className="drop-shadow-sm"
 				aria-label="United States"
 			/>
-			<Flag country="GB" shape="circle" size={48} aria-label="United Kingdom" />
+			<Flag country="IN" shape="circle" size={48} aria-label="India" />
 			<Flag country="JP" size={48} aria-label="Japan" />
-			<Flag
-				country="DE"
-				shape="circle"
-				size={48}
-				style={{ opacity: 0.9 }}
-				aria-label="Germany"
-			/>
 		</div>
 	)
 }

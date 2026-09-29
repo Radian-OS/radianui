@@ -32,14 +32,6 @@ const currencies = [
 		decimals: 2,
 	},
 	{
-		code: "EUR",
-		country: "DE",
-		countryName: "Germany",
-		name: "Euro",
-		symbol: "€",
-		decimals: 2,
-	},
-	{
 		code: "INR",
 		country: "IN",
 		countryName: "India",
@@ -55,14 +47,6 @@ const currencies = [
 		symbol: "¥",
 		decimals: 0,
 	},
-	{
-		code: "CNY",
-		country: "CN",
-		countryName: "China",
-		name: "Chinese Yuan",
-		symbol: "¥",
-		decimals: 2,
-	},
 ] as const satisfies ReadonlyArray<{
 	code: string
 	country: CountryCode
@@ -77,10 +61,8 @@ type Currency = (typeof currencies)[number]
 
 const usdRates: Record<CurrencyCode, number> = {
 	USD: 1,
-	EUR: 0.92,
 	INR: 83.1,
 	JPY: 149.5,
-	CNY: 7.24,
 }
 
 function getCurrency(code: CurrencyCode) {
@@ -182,7 +164,7 @@ export default function FlagCurrencyConverter() {
 	const [amount, setAmount] = useState("1000")
 	const [sourceField, setSourceField] = useState<"from" | "to">("from")
 	const [from, setFrom] = useState<CurrencyCode>("USD")
-	const [to, setTo] = useState<CurrencyCode>("EUR")
+	const [to, setTo] = useState<CurrencyCode>("INR")
 
 	const fromCurrency = getCurrency(from)
 	const toCurrency = getCurrency(to)
@@ -218,7 +200,7 @@ export default function FlagCurrencyConverter() {
 			<CardHeader className="border-soft border-b p-6">
 				<CardTitle>Currency converter</CardTitle>
 				<CardDescription>
-					Convert between five currencies using hardcoded example rates.
+					Convert between USD, INR, and JPY using hardcoded example rates.
 				</CardDescription>
 			</CardHeader>
 

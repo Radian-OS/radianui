@@ -11,10 +11,11 @@ links:
       icon: npm.svg
 ---
 
-`@radianui/flags` is RadianUI's dedicated country flag package for React and
-React frameworks. It provides tree-shakeable SVG flags, supported ISO 3166-1
-alpha-2 country codes, flat and circle shapes, flexible sizing, TypeScript
-types, and accessible labelling.
+`@radianui/flags` is RadianUI's stable country flag package for React and
+React frameworks. It renders type-safe inline SVG flags with no image loader or
+runtime asset requests. The package includes ISO 3166-1 alpha-2 country codes,
+flat and circle shapes, flexible sizing, TypeScript helpers, accessible
+labelling, and complete catalog metadata.
 
 [Browse every available flag](/resources/flags) or
 [view the package on npm](https://www.npmjs.com/package/@radianui/flags).
@@ -36,12 +37,15 @@ types, and accessible labelling.
 	withIcon
 />
 
+The package supports React 18.2 and React 19 and requires Node.js 18 or newer.
+
 ---
 
 ## Usage
 
-Import `Flag` and pass a supported uppercase country code. The `country` prop is
-required and `shape` defaults to `flat`.
+Import `Flag` and pass a supported uppercase ISO 3166-1 alpha-2 country code.
+The `country` prop is required, `shape` defaults to `flat`, and `size` defaults
+to `24` pixels. This example renders the United States, India, and Japan.
 
 ```tsx showLineNumbers title="country-flags.tsx"
 import { Flag } from "@radianui/flags"
@@ -49,8 +53,8 @@ import { Flag } from "@radianui/flags"
 export function CountryFlags() {
 	return (
 		<div className="flex items-center gap-3">
-			<Flag country="US" />
-			<Flag country="GB" shape="circle" />
+			<Flag country="US" aria-label="United States" />
+			<Flag country="IN" shape="circle" aria-label="India" />
 			<Flag country="JP" size={32} aria-label="Japan" />
 		</div>
 	)
@@ -64,7 +68,8 @@ export function CountryFlags() {
 ### Shapes
 
 Use `flat` to preserve the source artwork in its square view box. Use `circle`
-to crop and scale the artwork into a consistent circular frame.
+to crop and scale the artwork into a consistent circular frame. The preview
+uses India so you can compare both shapes with the same artwork.
 
 <br />
 <ComponentPreview path="flag/flag-shapes" />
@@ -72,7 +77,8 @@ to crop and scale the artwork into a consistent circular frame.
 ### Sizes
 
 The default size is `24`. A numeric value is rendered in pixels, while a string
-can use any valid SVG length such as `2rem`.
+can use any valid SVG length such as `2rem`. The preview shows Japan from 16 to
+64 pixels.
 
 <br />
 
@@ -86,12 +92,17 @@ can use any valid SVG length such as `2rem`.
 ### Country select
 
 The package can be composed with RadianUI components. This example uses a
-type-safe `CountryCode` with the Radian Select and Label components.
+type-safe `CountryCode` with the Radian Select and Label components to choose
+the United States, India, or Japan.
 
 <br />
 <ComponentPreview path="flag/flag-country-select" />
 
 ### Flags in a currency converter
+
+Use flags alongside explicit currency and country names to make financial
+interfaces easier to scan. This example includes USD for the United States,
+INR for India, and JPY for Japan. Its exchange rates are static demo data.
 
 <br />
 <ComponentPreview path="flag/flag-currency-converter" height={720} />
@@ -105,8 +116,8 @@ default when nearby text already names the country.
 
 ```tsx
 <span className="flex items-center gap-2">
-	<Flag country="DE" />
-	Germany
+	<Flag country="IN" />
+	India
 </span>
 ```
 
@@ -116,7 +127,7 @@ component then renders with `role="img"` and remains available to assistive
 technology.
 
 ```tsx
-<Flag country="DE" aria-label="Germany" />
+<Flag country="JP" aria-label="Japan" />
 ```
 
 <br />
@@ -134,7 +145,7 @@ attributes.
 
 ```tsx
 <Flag
-	country="FR"
+	country="US"
 	shape="circle"
 	size={40}
 	className="shrink-0 drop-shadow-sm"
@@ -153,15 +164,21 @@ width and height so the flag remains square and both dimensions stay in sync.
 ## Country helpers
 
 Use the exported country list and name helper when building selectors, menus,
-or validation rules.
+or validation rules. `CountryCode` catches unsupported or incorrectly cased
+codes at compile time.
 
 ```tsx
 import { type CountryCode, countryCodes, getCountryName } from "@radianui/flags"
 
-const country: CountryCode = "IN"
+const featuredCountries: CountryCode[] = ["US", "IN", "JP"]
 
-console.log(countryCodes)
-console.log(getCountryName(country)) // "India"
+const options = featuredCountries.map((code) => ({
+	code,
+	name: getCountryName(code),
+}))
+
+console.log(countryCodes.includes("US")) // true
+console.log(options)
 ```
 
 ---
@@ -172,7 +189,7 @@ Use the package when you want a React component. If you need an individual raw
 SVG asset instead, the RadianUI CLI writes it to your configured assets folder.
 
 ```bash
-npx radianui@latest add-asset flag US
+npx radianui@latest add-asset flag US IN JP
 ```
 
 <br />
