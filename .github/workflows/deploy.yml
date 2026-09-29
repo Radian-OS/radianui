@@ -39,6 +39,21 @@ jobs:
             type=raw,value=latest,enable={{is_default_branch}}
             type=ref,event=branch
 
+      - name: Validate production build variables
+        if: github.ref_name == 'main'
+        env:
+          NEXT_PUBLIC_POSTHOG_KEY: ${{ vars.NEXT_PUBLIC_POSTHOG_KEY }}
+          NEXT_PUBLIC_AHREFS_ANALYTICS_KEY: ${{ vars.NEXT_PUBLIC_AHREFS_ANALYTICS_KEY }}
+        run: |
+          if [ -z "$NEXT_PUBLIC_POSTHOG_KEY" ]; then
+            echo "::error::NEXT_PUBLIC_POSTHOG_KEY is not configured in the GitHub main environment"
+            exit 1
+          fi
+          if [ -z "$NEXT_PUBLIC_AHREFS_ANALYTICS_KEY" ]; then
+            echo "::error::NEXT_PUBLIC_AHREFS_ANALYTICS_KEY is not configured in the GitHub main environment"
+            exit 1
+          fi
+
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
@@ -46,6 +61,12 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          build-args: |
+            NEXT_PUBLIC_DEPLOYMENT_ENV=${{ github.ref_name == 'main' && 'PROD' || 'DEV' }}
+            NEXT_PUBLIC_WEBSITE_URL=${{ vars.NEXT_PUBLIC_WEBSITE_URL || 'https://radianui.com' }}
+            NEXT_PUBLIC_BLOCKS_URL=${{ vars.NEXT_PUBLIC_BLOCKS_URL || 'https://blocks.radianui.com' }}
+            NEXT_PUBLIC_POSTHOG_KEY=${{ vars.NEXT_PUBLIC_POSTHOG_KEY }}
+            NEXT_PUBLIC_AHREFS_ANALYTICS_KEY=${{ vars.NEXT_PUBLIC_AHREFS_ANALYTICS_KEY }}
 
       - name: Trigger Coolify Deployment
         run: |
