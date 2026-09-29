@@ -312,6 +312,7 @@ const nextConfig = {
 		}
 		return config
 	},
+	output: "standalone",
 }
 const withMDX = createMDX()
 export default withBundleAnalyzer(withMDX(nextConfig))
