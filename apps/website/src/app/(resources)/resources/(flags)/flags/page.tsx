@@ -8,9 +8,9 @@ import {
 import { FlagsResourcePage } from "../components/FlagsResourcePage"
 
 const pageUrl = absoluteUrl("/resources/flags")
-const pageTitle = "All Country Flags for React and Figma | Radian UI"
+const pageTitle = "All Country Flags – SVG, PNG & React Icons | Radian"
 const pageDescription =
-	"Browse 250+ country flags and flags of the world with names. Install the React npm package for development, or use SVG and PNG assets in any design tool."
+	"Browse 250+ national flags of the world with names and ISO codes. Install the React npm package or download flag icons as SVG and PNG for Figma."
 const pageImage = absoluteUrl("/media/assets-page/flags-light.png")
 export const metadata: Metadata = {
 	title: pageTitle,

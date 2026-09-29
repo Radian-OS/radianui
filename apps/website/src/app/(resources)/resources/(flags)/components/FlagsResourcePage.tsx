@@ -7,7 +7,7 @@ import FlagsDocs from "../docs/FlagsDocs"
 import FlagsHeroActionButtons from "./FlagsHeroActionButtons"
 import FlagsPlayground from "./FlagsPlayground"
 import type { FlagName } from "./flags-data"
-import { FLAG_CDN_ORIGIN } from "./flags-data"
+import { FLAG_CDN_ORIGIN, getFlagDisplayName } from "./flags-data"
 
 const flagPackageCommands: Commands = {
 	pnpm: "pnpm add @radianui/flags",
@@ -25,6 +25,16 @@ export function FlagsResourcePage({
 }: FlagsResourcePageProps) {
 	preconnect(FLAG_CDN_ORIGIN, { crossOrigin: "anonymous" })
 
+	const selectedFlagName = initialSelectedFlag
+		? getFlagDisplayName(initialSelectedFlag)
+		: null
+	const title = selectedFlagName
+		? `${selectedFlagName} Flag – SVG & PNG Download`
+		: "All Country Flags for React and Figma"
+	const description = selectedFlagName
+		? `Download the ${selectedFlagName} flag as a flat or rounded SVG or PNG icon for React, Figma, and other design tools.`
+		: "Browse 250+ country flags of the world with names and ISO codes. Install the npm package for React, or download flag icons as SVG and PNG images for Figma and any design tool."
+
 	return (
 		<ResourcePage
 			badge={{
@@ -34,8 +44,8 @@ export function FlagsResourcePage({
 			}}
 			showHeroBeams={false}
 			heroVisual={null}
-			title="All Country Flags for React and Figma"
-			description="Browse 250+ flags of the world with country names and ISO codes. Install the npm package for React development, or use the SVG and PNG flag assets in Figma and any design tool."
+			title={title}
+			description={description}
 			actions={<FlagsHeroActionButtons />}
 			heroAside={
 				<div className="flex w-full flex-col gap-2 text-left">
@@ -45,7 +55,7 @@ export function FlagsResourcePage({
 					<PackageManagerTabs commands={flagPackageCommands} withIcon />
 				</div>
 			}
-			showcaseLabel="Browse flags of the world with names"
+			showcaseLabel="All Country Flags with Names"
 			showcaseClassName="!mt-0"
 			showcase={<FlagsPlayground initialSelectedFlag={initialSelectedFlag} />}
 			documentation={<FlagsDocs />}

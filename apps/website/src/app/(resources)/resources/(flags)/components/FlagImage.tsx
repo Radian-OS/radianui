@@ -23,7 +23,7 @@ export function FlagImage({
 	name,
 	shape,
 	size,
-	alt = `${getFlagDisplayName(name)} flag`,
+	alt = `Flag of ${getFlagDisplayName(name)}`,
 	className,
 	imageClassName,
 	...imageProps

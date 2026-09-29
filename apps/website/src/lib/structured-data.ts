@@ -93,6 +93,78 @@ export function getHomepageStructuredData(): JsonLdObject {
 	}
 }
 
+export function getFaqPageStructuredData(
+	items: Array<{ question: string; answer: string }>
+): JsonLdObject {
+	return {
+		"@context": "https://schema.org",
+		"@type": "FAQPage",
+		mainEntity: items.map((item) => ({
+			"@type": "Question",
+			name: item.question,
+			acceptedAnswer: {
+				"@type": "Answer",
+				text: item.answer,
+			},
+		})),
+	}
+}
+
+export function getResourceCollectionStructuredData({
+	path,
+	name,
+	description,
+	image,
+	imageWidth,
+	imageHeight,
+	breadcrumbName,
+	imageGallery = false,
+}: {
+	path: string
+	name: string
+	description: string
+	image: string
+	imageWidth: number
+	imageHeight: number
+	breadcrumbName: string
+	imageGallery?: boolean
+}): JsonLdObject {
+	const url = absoluteUrl(path)
+
+	return {
+		"@context": "https://schema.org",
+		"@graph": [
+			{
+				"@type": imageGallery
+					? ["CollectionPage", "ImageGallery"]
+					: "CollectionPage",
+				"@id": `${url}#collection`,
+				name,
+				description,
+				url,
+				isAccessibleForFree: true,
+				publisher: getPublisherSchema(),
+				isPartOf: { "@id": websiteId },
+				primaryImageOfPage: {
+					"@type": "ImageObject",
+					url: image,
+					width: imageWidth,
+					height: imageHeight,
+				},
+				inLanguage: "en",
+			},
+			getBreadcrumbSchema([
+				{ name: "Home", item: absoluteUrl("/") },
+				{
+					name: "Resources",
+					item: absoluteUrl("/docs/getting-started/resources"),
+				},
+				{ name: breadcrumbName },
+			]),
+		],
+	}
+}
+
 export function getDocStructuredData({
 	title,
 	description,
@@ -167,7 +239,7 @@ export function getAvatarResourceStructuredData(): JsonLdObject {
 export function getFlagsResourceStructuredData(): JsonLdObject {
 	const url = absoluteUrl("/resources/flags")
 	const description =
-		"Browse more than 250 country flags and flags of the world with names. Install the npm package for React development, or use the SVG and PNG assets in any design tool."
+		"Browse 250+ national flags of the world with names and ISO codes. Install the React npm package or download flag icons as SVG and PNG for Figma."
 
 	return {
 		"@context": "https://schema.org",
@@ -175,7 +247,7 @@ export function getFlagsResourceStructuredData(): JsonLdObject {
 			{
 				"@type": ["CollectionPage", "ImageGallery"],
 				"@id": `${url}#collection`,
-				name: "All Country Flags for React and Figma",
+				name: "All Country Flags – SVG, PNG & React Icons",
 				description,
 				url,
 				keywords:

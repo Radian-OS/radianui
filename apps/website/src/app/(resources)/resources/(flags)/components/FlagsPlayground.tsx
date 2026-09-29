@@ -2,6 +2,7 @@
 
 import {
 	SVGProps,
+	startTransition,
 	useCallback,
 	useEffect,
 	useLayoutEffect,
@@ -373,8 +374,10 @@ export default function FlagsPlayground({
 	}, [])
 
 	const handleShapeChange = useCallback((nextShape: FlagShape) => {
+		startTransition(() => {
+			setShape(nextShape)
+		})
 		window.localStorage.setItem(FLAG_SHAPE_STORAGE_KEY, nextShape)
-		setShape(nextShape)
 	}, [])
 
 	const handleSelectFlag = useCallback(
@@ -455,7 +458,7 @@ export default function FlagsPlayground({
 						<Input
 							value={query}
 							onChange={(event) => setQuery(event.target.value)}
-							placeholder="Search country name, iso codes or phone number"
+							placeholder="Search by country name, ISO code, or dial code."
 							aria-label="Search flags by country name, ISO code, or phone number"
 						/>
 					</InputWrapper>
