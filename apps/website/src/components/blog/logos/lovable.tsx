@@ -6,7 +6,7 @@ export function LovableLogo() {
 			viewBox="0 0 95 16"
 			fill="none"
 			xmlns="http://www.w3.org/2000/svg">
-			<g clip-path="url(#clip0_7480_9554)">
+			<g clipPath="url(#clip0_7480_9554)">
 				<path
 					d="M88.4699 15.936C87.3081 15.936 86.2986 15.7144 85.4418 15.2715C84.5849 14.8212 83.9168 14.1459 83.4375 13.2455C82.9656 12.3451 82.7295 11.2303 82.7295 9.90146C82.7295 8.63791 82.9764 7.54865 83.4702 6.63368C83.9641 5.71144 84.6466 5.01068 85.518 4.53142C86.3895 4.05214 87.3806 3.8125 88.4918 3.8125C89.5592 3.8125 90.5068 4.04488 91.3347 4.50963C92.1625 4.97438 92.8052 5.64971 93.2627 6.53565C93.7274 7.42157 93.9597 8.48179 93.9597 9.71628C93.9597 10.1592 93.9561 10.5115 93.9489 10.7728H85.2675V8.48542H91.8466L90.6049 8.91023C90.6049 8.31477 90.5178 7.81734 90.3434 7.41795C90.1764 7.01129 89.9295 6.7063 89.6028 6.50297C89.276 6.29964 88.8802 6.19798 88.4155 6.19798C87.929 6.19798 87.5005 6.3178 87.1301 6.55743C86.7671 6.78981 86.4838 7.13837 86.2806 7.60312C86.0844 8.06787 85.9864 8.62702 85.9864 9.28058V10.4025C85.9864 11.0706 86.088 11.637 86.2914 12.1017C86.4948 12.5665 86.7852 12.9187 87.1628 13.1584C87.5404 13.3907 87.987 13.5069 88.5026 13.5069C89.069 13.5069 89.5374 13.3616 89.9077 13.0712C90.2781 12.7734 90.5104 12.3559 90.6049 11.8185H93.9053C93.8037 12.6609 93.5168 13.3907 93.0448 14.0079C92.58 14.6252 91.9592 15.1009 91.1821 15.4349C90.4052 15.7689 89.5011 15.936 88.4699 15.936Z"
 					fill="var(--color-fg)"
@@ -44,8 +44,8 @@ export function LovableLogo() {
 					width="17"
 					height="16">
 					<path
-						fill-rule="evenodd"
-						clip-rule="evenodd"
+						fillRule="evenodd"
+						clipRule="evenodd"
 						d="M4.60808 0C7.15359 0 9.21713 2.06899 9.21713 4.6212V6.37755H10.751C13.2966 6.37755 15.3601 8.44653 15.3601 10.9987C15.3601 13.551 13.2966 15.6199 10.751 15.6199H-0.000976562V4.6212C-0.000976562 2.06899 2.06257 0 4.60808 0Z"
 						fill="url(#paint0_linear_7480_9554)"
 					/>
@@ -85,8 +85,8 @@ export function LovableLogo() {
 					width="30.1171"
 					height="30.1171"
 					filterUnits="userSpaceOnUse"
-					color-interpolation-filters="sRGB">
-					<feFlood flood-opacity="0" result="BackgroundImageFix" />
+					colorInterpolationFilters="sRGB">
+					<feFlood floodOpacity="0" result="BackgroundImageFix" />
 					<feBlend
 						mode="normal"
 						in="SourceGraphic"
@@ -105,8 +105,8 @@ export function LovableLogo() {
 					width="35.9549"
 					height="30.1171"
 					filterUnits="userSpaceOnUse"
-					color-interpolation-filters="sRGB">
-					<feFlood flood-opacity="0" result="BackgroundImageFix" />
+					colorInterpolationFilters="sRGB">
+					<feFlood floodOpacity="0" result="BackgroundImageFix" />
 					<feBlend
 						mode="normal"
 						in="SourceGraphic"
@@ -125,8 +125,8 @@ export function LovableLogo() {
 					width="30.1171"
 					height="27.5858"
 					filterUnits="userSpaceOnUse"
-					color-interpolation-filters="sRGB">
-					<feFlood flood-opacity="0" result="BackgroundImageFix" />
+					colorInterpolationFilters="sRGB">
+					<feFlood floodOpacity="0" result="BackgroundImageFix" />
 					<feBlend
 						mode="normal"
 						in="SourceGraphic"
@@ -145,8 +145,8 @@ export function LovableLogo() {
 					width="21.827"
 					height="21.828"
 					filterUnits="userSpaceOnUse"
-					color-interpolation-filters="sRGB">
-					<feFlood flood-opacity="0" result="BackgroundImageFix" />
+					colorInterpolationFilters="sRGB">
+					<feFlood floodOpacity="0" result="BackgroundImageFix" />
 					<feBlend
 						mode="normal"
 						in="SourceGraphic"

@@ -16,17 +16,17 @@ author:
 
 ## ESLint Wasn't the Problem
 
-ESLint is still one of the most capable tools in the JavaScript ecosystem. Its rules, plugins, integrations, and years of community knowledge make it a dependable choice for projects of every size.
+ESLint is still one of the most capable tools in the JavaScript ecosystem. It's rules, plugins, integrations and years of community knowledge make it a dependable choice for projects of every size.
 
 Our problem was the feedback loop. As the project expanded, the lint step became slow enough that developers were more likely to wait for CI instead of running it locally. CI also spent time on checks that should have returned almost immediately.
 
-That created a simple problem: the tool was useful, but people were using it less often because it felt expensive to run. Adding more plugins improved coverage, yet also made the lint step heavier. We wanted to keep useful static checks without making developers wait for them.
+That created a simple problem: the tool was useful but people were using it less often because it felt expensive to run. Adding more plugins improved coverage, yet also made the lint step heavier. We wanted to keep useful static checks without making developers wait for them.
 
 ## What Oxlint Changes
 
 [Oxlint](https://oxc.rs/docs/guide/usage/linter) is a JavaScript and TypeScript linter built on the Oxc toolchain. It is written in Rust and designed to process large codebases with much less runtime overhead than a traditional Node.js linting setup.
 
-The practical difference is speed. Oxlint's official benchmarks report that it can be **50 to 100 times faster than ESLint**, although the result for any project depends on its size, rules, plugins, and cache state. We did not treat that headline number as a promise. What mattered was that linting became fast enough to run as a normal part of development again.
+The practical difference is speed. Oxlint's official benchmarks report that it can be **50 to 100 times faster than ESLint**, although the result for any project depends on its size, rules, plugins and cache state. We did not treat that headline number as a promise. What mattered was that linting became fast enough to run as a normal part of development again.
 
 Oxlint also includes native rule sets for common JavaScript and TypeScript workflows. React, Next.js, import, Unicorn, and JSX accessibility rules are among the available built-in plugins, so many projects can cover their everyday checks without installing a separate package for every rule family.
 
@@ -35,7 +35,7 @@ Oxlint also includes native rule sets for common JavaScript and TypeScript workf
 A faster linter is only useful if it still catches the problems your team cares about. Before removing ESLint, we had to answer a few questions.
 
 - **Does every important rule have an equivalent?** Similar rule names do not always mean identical behavior or options.
-- **What happens to framework-specific checks?** React, Next.js, and accessibility rules needed deliberate verification.
+- **What happens to framework-specific checks?** React, Next.js and accessibility rules needed deliberate verification.
 - **Do we rely on custom plugins?** Oxlint supports ESLint-compatible JavaScript plugins, but that support is still evolving and should be tested against the plugins a project actually uses.
 - **Do we need type-aware rules?** Oxlint supports type-aware linting through an additional package, but it is a separate capability with its own TypeScript requirements.
 - **Are disabled rules still intentional?** A migration is a good time to review old exceptions instead of copying them forever.
@@ -117,7 +117,7 @@ In that setup, [`eslint-plugin-oxlint`](https://oxc.rs/docs/guide/usage/linter/m
 Oxlint is worth considering when:
 
 - Linting is a noticeable bottleneck locally or in CI.
-- Your project is mainly JavaScript, TypeScript, JSX, or TSX.
+- Your project is mainly JavaScript, TypeScript, JSX or TSX.
 - Most of your checks come from common rule sets.
 - Your team wants a fast first pass that developers will run frequently.
 
