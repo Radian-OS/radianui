@@ -32,7 +32,10 @@ const AvatarCTA = () => {
 					<div className="flex flex-col items-center gap-3 sm:flex-row">
 						<Button variant="glossy" className="w-full" asChild>
 							<Link
-								href={process.env.NEXT_PUBLIC_BLOCKS_URL!}
+								href={
+									process.env.NEXT_PUBLIC_BLOCKS_URL ||
+									"https://blocks.radianui.com"
+								}
 								className="flex gap-1.5">
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
