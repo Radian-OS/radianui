@@ -7,7 +7,7 @@ export default function FlagSizes() {
 		<div className="flex flex-wrap items-end justify-center gap-6">
 			{sizes.map((size) => (
 				<div key={size} className="flex flex-col items-center gap-2">
-					<Flag country="CN" size={size} />
+					<Flag country="JP" size={size} />
 					<span className="text-muted-foreground text-xs">{size}px</span>
 				</div>
 			))}

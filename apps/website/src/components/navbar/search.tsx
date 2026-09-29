@@ -2,7 +2,10 @@
 
 import { useCallback, useEffect, useRef, useState } from "react"
 import { Search } from "lucide-react"
-import { navigationItems } from "@/config/navigation-config"
+import {
+	navigationItems,
+	RESOURCE_NAVIGATION_SECTION,
+} from "@/config/navigation-config"
 import { Badge } from "@/styles/default/ui/badge"
 import { Button, IconButton } from "@/styles/default/ui/button"
 import {
@@ -24,11 +27,11 @@ export function SearchDocs() {
 	const [isOpen, setIsOpen] = useState(false)
 	const [searchTerm, setSearchTerm] = useState<string>("")
 	const [selectedIndex, setSelectedIndex] = useState(-1)
-	const itemRefs = useRef<(HTMLLIElement | null)[]>([])
+	const itemRefs = useRef<(HTMLElement | null)[]>([])
 	const drawerRef = useRef<HTMLDivElement | null>(null)
 
 	// Filter sidebar items based on the search term
-	const filteredItems = navigationItems
+	const filteredItems = [...navigationItems, RESOURCE_NAVIGATION_SECTION]
 		.filter((section) => section.title !== "Animations") // 👈 Add this line
 		.map((section) => ({
 			...section,

@@ -38,7 +38,6 @@ const AvatarPlayground = () => {
 		toggleFavorite,
 		isBlocked,
 		isHydrated,
-		isSticky,
 		sentinelRef,
 		bottomSentinelRef,
 		resolvedTones,
@@ -49,11 +48,7 @@ const AvatarPlayground = () => {
 	return (
 		<div className="flex w-full flex-col gap-4 py-2">
 			<div ref={sentinelRef} className="pointer-events-none h-px w-full" />
-			<div
-				className={cn(
-					"bg-bg/95 sticky top-0 z-100 flex w-full items-center justify-between border-b border-transparent py-3 backdrop-blur-sm",
-					isSticky && "border-soft"
-				)}>
+			<div className="bg-bg/95 sticky top-0 z-100 flex w-full items-center justify-between py-3 backdrop-blur-sm">
 				<CategoryFilterDropdown
 					value={category}
 					onChange={setCategory}

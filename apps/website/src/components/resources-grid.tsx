@@ -24,7 +24,8 @@ const resources: ResourceItem[] = [
 	},
 	{
 		title: "Popular Brand Logos",
-		description: "100+ well-known company logos for your projects.",
+		description:
+			"20 popular brands with icons and wordmarks for light and dark interfaces.",
 		comingSoon: true,
 		lightUrl: "/media/assets-page/popular-brands-light.png",
 		darkUrl: "/media/assets-page/popular-brands-dark.png",
@@ -33,9 +34,10 @@ const resources: ResourceItem[] = [
 		title: "Country Flags",
 		description:
 			"Over 250 flags from different nations in rectangular and circular shapes.",
-		comingSoon: true,
+		comingSoon: false,
 		lightUrl: "/media/assets-page/flags-light.png",
 		darkUrl: "/media/assets-page/flags-dark.png",
+		link: "flags",
 	},
 	{
 		title: "Credit Cards",
@@ -48,7 +50,7 @@ const resources: ResourceItem[] = [
 	{
 		title: "Emojis",
 		description:
-			"A vast collection of over 500+ emojis in multiple clear file formats.",
+			"Browse 1,900+ Unicode emojis with copy-ready text and code snippets.",
 		comingSoon: true,
 		lightUrl: "/media/assets-page/emojis-light.png",
 		darkUrl: "/media/assets-page/emojis-dark.png",

@@ -1,8 +1,0 @@
-dist
-node_modules
-.next
-build
-.contentlayer
-.husky
-public
-tailwind.config.ts

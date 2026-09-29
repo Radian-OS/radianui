@@ -1,4 +1,6 @@
 import type { ReactNode } from "react"
+import { JsonLd } from "@/components/seo/json-ld"
+import { getFaqPageStructuredData } from "@/lib/structured-data"
 import {
 	Accordion,
 	AccordionContent,
@@ -90,44 +92,53 @@ export function ResourceTextSection({
 export function ResourceFaq({
 	id,
 	items,
+	description = "Everything you need to know before adding these assets to your design or application.",
 }: {
 	id: string
 	items: ResourceFaqItem[]
+	description?: string
 }) {
 	return (
-		<section
-			aria-labelledby={id}
-			className="mx-auto flex w-full flex-col gap-6 lg:w-200">
-			<div className="flex flex-col gap-8 md:gap-16">
-				<div className="flex flex-col items-center gap-4">
-					<p className="text-primary-text text-center text-sm font-medium">
-						FAQ
-					</p>
-					<h2 id={id} className="heading-4 text-center">
-						Frequently Asked Questions
-					</h2>
-					<p className="text-fg-secondary text-center text-base font-normal md:w-[590px]">
-						Everything you need to know before adding these assets to your
-						design or application.
-					</p>
+		<>
+			<JsonLd
+				id={`${id}-structured-data`}
+				data={getFaqPageStructuredData(items)}
+			/>
+			<section
+				aria-labelledby={id}
+				className="mx-auto flex w-full flex-col gap-6 lg:w-200">
+				<div className="flex flex-col gap-8 md:gap-16">
+					<div className="flex flex-col items-center gap-4">
+						<p className="text-primary-text text-center text-sm font-medium">
+							FAQ
+						</p>
+						<h2 id={id} className="heading-4 text-center">
+							Frequently Asked Questions
+						</h2>
+						<p className="text-fg-secondary text-center text-base font-normal md:w-[590px]">
+							{description}
+						</p>
+					</div>
+					<div className="flex gap-1">
+						<Accordion
+							type="single"
+							indicator="plus-minus"
+							className="w-full"
+							collapsible>
+							{items.map((item, index) => (
+								<AccordionItem value={`${index + 1}`} key={item.question}>
+									<AccordionTrigger className="data-[state=open]:bg-bg text-base">
+										{item.question}
+									</AccordionTrigger>
+									<AccordionContent className="group-data-[state=open]:bg-bg text-base">
+										{item.answer}
+									</AccordionContent>
+								</AccordionItem>
+							))}
+						</Accordion>
+					</div>
 				</div>
-				<Accordion
-					type="single"
-					indicator="plus-minus"
-					className="w-full"
-					collapsible>
-					{items.map((item, index) => (
-						<AccordionItem value={`${index + 1}`} key={item.question}>
-							<AccordionTrigger className="data-[state=closed]:bg-fill1 data-[state=open]:bg-bg">
-								{item.question}
-							</AccordionTrigger>
-							<AccordionContent className="group-data-[state=closed]:bg-fill1 group-data-[state=open]:bg-bg">
-								{item.answer}
-							</AccordionContent>
-						</AccordionItem>
-					))}
-				</Accordion>
-			</div>
-		</section>
+			</section>
+		</>
 	)
 }

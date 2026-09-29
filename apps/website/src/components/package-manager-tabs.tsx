@@ -3,11 +3,9 @@
 import React, { SVGProps } from "react"
 import type { JSX } from "react"
 import { Check, Clipboard } from "lucide-react"
-import { useTheme } from "next-themes"
 import { usePreferences } from "@/lib/preferences"
 import { cn } from "@/lib/utils"
 import { IconButton } from "@/styles/default/ui/button"
-import { CodeArea } from "@/styles/default/ui/code-area"
 import {
 	Tabs,
 	TabsContent,
@@ -163,12 +161,71 @@ const BunIcon = (props: SVGProps<SVGSVGElement>) => (
 	</svg>
 )
 
+function highlightCommand(command: string) {
+	const parts = command.trim().split(/(\s+)/)
+	let isFirstToken = true
+
+	return parts.map((part, index) => {
+		if (/^\s+$/.test(part)) return part
+
+		if (isFirstToken) {
+			isFirstToken = false
+			return (
+				<span key={index} className="text-primary font-medium">
+					{part}
+				</span>
+			)
+		}
+
+		if (["add", "install", "dlx", "add-asset", "flag"].includes(part)) {
+			return (
+				<span key={index} className="text-fg-secondary">
+					{part}
+				</span>
+			)
+		}
+
+		if (part.startsWith("@") || part.includes("/")) {
+			return (
+				<span key={index} className="text-fg-primary">
+					{part}
+				</span>
+			)
+		}
+
+		return (
+			<span key={index} className="text-fg-primary">
+				{part}
+			</span>
+		)
+	})
+}
+
+function CustomCodeArea({
+	code,
+	className,
+}: {
+	code: string
+	className?: string
+}) {
+	return (
+		<div
+			className={cn(
+				"border-soft bg-bg text-fg-primary no-scrollbar relative box-border max-w-full overflow-x-auto rounded-[10px] border px-4 py-3.5 font-mono text-sm leading-relaxed select-text",
+				className
+			)}>
+			<pre className="no-scrollbar m-0 overflow-visible p-0 font-mono text-sm leading-normal">
+				<code>{highlightCommand(code)}</code>
+			</pre>
+		</div>
+	)
+}
+
 export default function PackageManagerTabs({
 	commands,
 	className,
 	withIcon = false,
 }: PackageManagerTabsProps) {
-	const { theme } = useTheme()
 	// Replace local state with Zustand store
 	const { packageManager, setPackageManager } = usePreferences()
 
@@ -227,18 +284,7 @@ export default function PackageManagerTabs({
 			</div>
 			{pkg.map((manager) => (
 				<TabsContent key={manager} value={manager}>
-					<CodeArea
-						language="bash"
-						theme={
-							theme === "dark" ? "github-dark-high-contrast" : "github-light"
-						}
-						code={commands[manager]}
-						lineNumbers={false}
-						className={cn(
-							"border-soft max-w-full rounded-[10px] border [&_pre]:!px-4 [&_pre]:!py-3.5",
-							className
-						)}
-					/>
+					<CustomCodeArea code={commands[manager]} className={className} />
 				</TabsContent>
 			))}
 		</Tabs>

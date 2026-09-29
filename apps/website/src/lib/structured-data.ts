@@ -93,6 +93,78 @@ export function getHomepageStructuredData(): JsonLdObject {
 	}
 }
 
+export function getFaqPageStructuredData(
+	items: Array<{ question: string; answer: string }>
+): JsonLdObject {
+	return {
+		"@context": "https://schema.org",
+		"@type": "FAQPage",
+		mainEntity: items.map((item) => ({
+			"@type": "Question",
+			name: item.question,
+			acceptedAnswer: {
+				"@type": "Answer",
+				text: item.answer,
+			},
+		})),
+	}
+}
+
+export function getResourceCollectionStructuredData({
+	path,
+	name,
+	description,
+	image,
+	imageWidth,
+	imageHeight,
+	breadcrumbName,
+	imageGallery = false,
+}: {
+	path: string
+	name: string
+	description: string
+	image: string
+	imageWidth: number
+	imageHeight: number
+	breadcrumbName: string
+	imageGallery?: boolean
+}): JsonLdObject {
+	const url = absoluteUrl(path)
+
+	return {
+		"@context": "https://schema.org",
+		"@graph": [
+			{
+				"@type": imageGallery
+					? ["CollectionPage", "ImageGallery"]
+					: "CollectionPage",
+				"@id": `${url}#collection`,
+				name,
+				description,
+				url,
+				isAccessibleForFree: true,
+				publisher: getPublisherSchema(),
+				isPartOf: { "@id": websiteId },
+				primaryImageOfPage: {
+					"@type": "ImageObject",
+					url: image,
+					width: imageWidth,
+					height: imageHeight,
+				},
+				inLanguage: "en",
+			},
+			getBreadcrumbSchema([
+				{ name: "Home", item: absoluteUrl("/") },
+				{
+					name: "Resources",
+					item: absoluteUrl("/docs/getting-started/resources"),
+				},
+				{ name: breadcrumbName },
+			]),
+		],
+	}
+}
+
 export function getDocStructuredData({
 	title,
 	description,
@@ -159,6 +231,82 @@ export function getAvatarResourceStructuredData(): JsonLdObject {
 					item: absoluteUrl("/docs/getting-started/resources"),
 				},
 				{ name: "UI Avatars" },
+			]),
+		],
+	}
+}
+
+export function getFlagsResourceStructuredData(): JsonLdObject {
+	const url = absoluteUrl("/resources/flags")
+	const description =
+		"Browse 250+ national flags of the world with names and ISO codes. Install the React npm package or download flag icons as SVG and PNG for Figma."
+
+	return {
+		"@context": "https://schema.org",
+		"@graph": [
+			{
+				"@type": ["CollectionPage", "ImageGallery"],
+				"@id": `${url}#collection`,
+				name: "All Country Flags – SVG, PNG & React Icons",
+				description,
+				url,
+				keywords:
+					"country flags, flags of the world, all country flags, national flags, flag icons, flag PNG, flag images, world flags with names, flags for maps, flag design, React flag icons, country flag npm package, country flags for designers, country flags for developers",
+				isAccessibleForFree: true,
+				publisher: getPublisherSchema(),
+				isPartOf: { "@id": websiteId },
+				primaryImageOfPage: {
+					"@type": "ImageObject",
+					url: absoluteUrl("/media/assets-page/flags-light.png"),
+					width: 664,
+					height: 418,
+				},
+				inLanguage: "en",
+			},
+			getBreadcrumbSchema([
+				{ name: "Home", item: absoluteUrl("/") },
+				{
+					name: "Resources",
+					item: absoluteUrl("/docs/getting-started/resources"),
+				},
+				{ name: "Country Flags" },
+			]),
+		],
+	}
+}
+
+export function getFlagImageStructuredData({
+	name,
+	url,
+	image,
+}: {
+	name: string
+	url: string
+	image: string
+}): JsonLdObject {
+	return {
+		"@context": "https://schema.org",
+		"@graph": [
+			{
+				"@type": "ImageObject",
+				"@id": `${url}#image`,
+				name: `${name} Flag`,
+				caption: `${name} flag icon available in SVG and PNG formats.`,
+				contentUrl: image,
+				url,
+				encodingFormat: "image/svg+xml",
+				representativeOfPage: true,
+				isAccessibleForFree: true,
+				creator: getPublisherSchema(),
+				inLanguage: "en",
+			},
+			getBreadcrumbSchema([
+				{ name: "Home", item: absoluteUrl("/") },
+				{
+					name: "Country Flags",
+					item: absoluteUrl("/resources/flags"),
+				},
+				{ name: `${name} Flag` },
 			]),
 		],
 	}

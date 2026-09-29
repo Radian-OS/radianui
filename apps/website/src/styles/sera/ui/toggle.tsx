@@ -18,19 +18,19 @@ const toggleVariants = cva(
 		variants: {
 			variant: {
 				ghost:
-					"bg-transparent text-fg hover:bg-fill1 focus-visible:ring-border" +
+					"text-fg hover:bg-fill1 focus-visible:ring-border bg-transparent" +
 					" data-[state=on]:bg-fill1 data-[state=on]:text-fg data-[state=on]:border-transparent",
 				outline:
-					"border bg-transparent border-border text-fg hover:bg-fill1-alpha focus-visible:ring-border" +
+					"border-border text-fg hover:bg-fill1-alpha focus-visible:ring-border border bg-transparent" +
 					" data-[state=on]:bg-fill1 data-[state=on]:text-fg data-[state=on]:border-fill4",
 			},
 			size: {
-				"28": "h-7 px-2 py-1.5 text-[13px] gap-1 [&>svg]:size-4 rounded-md",
-				"32": "h-8 px-2.5 py-1.5 text-sm gap-1.5 [&>svg]:size-4.5 rounded-md",
-				"36": "h-9 px-3 py-2 text-sm gap-2 [&>svg]:size-5 rounded-lg",
-				"40": "h-10 px-3 py-2.5 text-sm gap-2 [&>svg]:size-5 rounded-lg",
-				"44": "h-11 px-3 py-2.5 text-base gap-2 [&>svg]:size-5 rounded-lg",
-				"48": "h-12 px-4 py-3 text-base gap-2 [&>svg]:size-6 rounded-lg",
+				"28": "h-7 gap-1 rounded-md px-2 py-1.5 text-[13px] [&>svg]:size-4",
+				"32": "h-8 gap-1.5 rounded-md px-2.5 py-1.5 text-sm [&>svg]:size-4.5",
+				"36": "h-9 gap-2 rounded-lg px-3 py-2 text-sm [&>svg]:size-5",
+				"40": "h-10 gap-2 rounded-lg px-3 py-2.5 text-sm [&>svg]:size-5",
+				"44": "h-11 gap-2 rounded-lg px-3 py-2.5 text-base [&>svg]:size-5",
+				"48": "h-12 gap-2 rounded-lg px-4 py-3 text-base [&>svg]:size-6",
 			},
 		},
 		defaultVariants: {
