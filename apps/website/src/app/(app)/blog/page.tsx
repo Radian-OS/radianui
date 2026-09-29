@@ -132,7 +132,7 @@ export default async function BlogPage({ params }: BlogListPageProps) {
 				/>
 				{featuredPost && (
 					<Link
-						href={featuredPost.url}
+						href={featuredPost.url ?? "#"}
 						className="border-soft flex flex-col border-y md:flex-row">
 						<div className="group relative aspect-video w-full overflow-hidden md:aspect-auto md:flex-1 md:basis-1/2">
 							<Image

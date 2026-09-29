@@ -30,7 +30,10 @@ export default function UIBlocksSection() {
 						<Link
 							target="_blank"
 							rel="noopener noreferrer"
-							href={process.env.NEXT_PUBLIC_BLOCKS_URL!}>
+							href={
+								process.env.NEXT_PUBLIC_BLOCKS_URL ||
+								"https://blocks.radianui.com"
+							}>
 							Explore UI Blocks <ArrowUpRight aria-hidden="true" />
 						</Link>
 					</Button>

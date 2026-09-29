@@ -363,8 +363,8 @@ export function BlogPostList({ posts, postsPerPage }: BlogPostListProps) {
 						<div className="relative grid grid-cols-1 gap-6 p-0 md:grid-cols-2 md:px-5 lg:grid-cols-3 lg:p-0">
 							{paginatedPosts.map((post) => (
 								<Link
-									key={post.url}
-									href={post.url}
+									key={post.url ?? "unknown"}
+									href={post.url ?? "#"}
 									className="group border-soft bg-bg relative flex flex-col overflow-hidden border transition-colors">
 									<div className="bg-fill1 relative aspect-video w-full overflow-hidden">
 										<Image
