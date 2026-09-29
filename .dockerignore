@@ -6,3 +6,4 @@ Dockerfile
 **/.turbo
 **/.next
 **/.pnpm-store
+**/.env*
