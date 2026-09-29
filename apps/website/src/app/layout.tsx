@@ -12,11 +12,14 @@ import { cn } from "@/lib/utils"
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
 
+const WEBSITE_URL =
+	process.env.NEXT_PUBLIC_WEBSITE_URL || "https://radianui.com"
+
 export const metadata: Metadata = {
 	title: `${websiteMetadata.name} - Open Source React Components and Figma Design System`,
 	description:
 		"A complete production-ready React components library, UI blocks, and Figma UI Kit and design system",
-	metadataBase: new URL(process.env.NEXT_PUBLIC_WEBSITE_URL!),
+	metadataBase: new URL(WEBSITE_URL),
 	keywords: [...websiteMetadata.keywords],
 	icons: {
 		icon: "/favicon.ico",
@@ -28,7 +31,7 @@ export const metadata: Metadata = {
 		description:
 			"A complete production-ready React components library, UI blocks, and Figma UI Kit and design system",
 		type: "website",
-		url: `${process.env.NEXT_PUBLIC_WEBSITE_URL!}`,
+		url: WEBSITE_URL,
 		images: [
 			{
 				url: `${websiteMetadata.ogImage}`,
@@ -45,7 +48,7 @@ export const metadata: Metadata = {
 		images: [`${websiteMetadata.ogImage}`],
 	},
 	alternates: {
-		canonical: new URL(process.env.NEXT_PUBLIC_WEBSITE_URL!),
+		canonical: new URL(WEBSITE_URL),
 	},
 	robots: {
 		index: true,
