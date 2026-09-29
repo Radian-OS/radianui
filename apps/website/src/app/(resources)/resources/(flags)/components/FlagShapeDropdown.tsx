@@ -1,5 +1,6 @@
 "use client"
 
+import { useRef, useState } from "react"
 import { ChevronDown, Circle, RectangleHorizontal } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/registry/ui/button"
@@ -25,13 +26,21 @@ export function FlagShapeDropdown({
 	onValueChange,
 	className,
 }: FlagShapeDropdownProps) {
+	const [open, setOpen] = useState(false)
+	const triggerRef = useRef<HTMLButtonElement>(null)
 	const isRound = value === "round"
 	const label = isRound ? "Round" : "Flat"
 
+	const handleValueChange = (nextValue: string) => {
+		onValueChange(nextValue as FlagShape)
+		setOpen(false)
+	}
+
 	return (
-		<DropdownMenu indicatorPosition="right">
+		<DropdownMenu open={open} onOpenChange={setOpen} indicatorPosition="right">
 			<DropdownMenuTrigger asChild>
 				<Button
+					ref={triggerRef}
 					size="44"
 					color="neutral"
 					variant="outline"
@@ -45,17 +54,28 @@ export function FlagShapeDropdown({
 				</Button>
 			</DropdownMenuTrigger>
 
-			<DropdownMenuContent className="w-60">
+			<DropdownMenuContent
+				className="w-60"
+				onCloseAutoFocus={(event) => event.preventDefault()}
+				onPointerDownOutside={(event) => {
+					const originalTarget = (event.detail?.originalEvent?.target ??
+						event.target) as Node | null
+					if (originalTarget && triggerRef.current?.contains(originalTarget)) {
+						event.preventDefault()
+					}
+				}}>
 				<DropdownMenuLabel>Flag Style</DropdownMenuLabel>
 				<DropdownMenuDivider />
-				<DropdownMenuRadioGroup
-					value={value}
-					onValueChange={(nextValue) => onValueChange(nextValue as FlagShape)}>
-					<DropdownMenuRadioItem value="round">
+				<DropdownMenuRadioGroup value={value} onValueChange={handleValueChange}>
+					<DropdownMenuRadioItem
+						value="round"
+						onSelect={() => handleValueChange("round")}>
 						<Circle className="text-fg-secondary size-4" />
 						<span className="flex-1 text-sm font-medium">Round</span>
 					</DropdownMenuRadioItem>
-					<DropdownMenuRadioItem value="flat">
+					<DropdownMenuRadioItem
+						value="flat"
+						onSelect={() => handleValueChange("flat")}>
 						<RectangleHorizontal className="text-fg-secondary size-4" />
 						<span className="flex-1 text-sm font-medium">Flat</span>
 					</DropdownMenuRadioItem>

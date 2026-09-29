@@ -24,6 +24,7 @@ import {
 	DropdownMenuItem,
 	DropdownMenuTrigger,
 } from "@/registry/ui/dropdown-menu"
+import { showBrandLogoToast } from "./BrandLogoToast"
 import { BrandLogoOptions } from "./BrandLogoOptions"
 import type { BrandLogoId, BrandLogoVariant } from "./brand-logos-data"
 import {
@@ -106,11 +107,18 @@ export function BrandLogoDetailsDialog({
 			dialogVariant,
 		])
 	)
+	const showToast = (description: string, title?: string) => {
+		showBrandLogoToast({
+			logoUrl: pngUrl,
+			description,
+			title,
+		})
+	}
 
 	const copyText = async (value: string, label: string) => {
 		try {
 			await navigator.clipboard.writeText(value)
-			toast.success(`${label} copied to clipboard`)
+			showToast(`${label} has been copied to your clipboard.`)
 		} catch {
 			toast.error(`Could not copy ${label}`)
 		}
@@ -143,7 +151,7 @@ export function BrandLogoDetailsDialog({
 			await navigator.clipboard.write([
 				new ClipboardItem({ "image/png": await response.blob() }),
 			])
-			toast.success("PNG copied to clipboard")
+			showToast("PNG has been copied to your clipboard.")
 		} catch {
 			toast.error("Could not copy PNG")
 		}
@@ -162,7 +170,10 @@ export function BrandLogoDetailsDialog({
 				if (!response.ok) throw new Error("Logo request failed")
 				downloadBlob(await response.blob(), filename)
 			}
-			toast.success(`${format.toUpperCase()} downloaded`)
+			showToast(
+				`${format.toUpperCase()} has been downloaded.`,
+				"Download Complete"
+			)
 		} catch {
 			toast.error(`Could not download ${format.toUpperCase()}`)
 		}

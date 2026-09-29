@@ -1,5 +1,6 @@
 "use client"
 
+import { memo } from "react"
 import {
 	CodeXml,
 	Image as ImageIcon,
@@ -26,7 +27,7 @@ interface FlagTileMenuProps {
 	onCopyHtmlImage: () => void
 }
 
-export function FlagTileMenu({
+export const FlagTileMenu = memo(function FlagTileMenu({
 	onCopyPng,
 	onCopySvg,
 	onCopyUrl,
@@ -80,4 +81,4 @@ export function FlagTileMenu({
 			</DropdownMenu>
 		</div>
 	)
-}
+})

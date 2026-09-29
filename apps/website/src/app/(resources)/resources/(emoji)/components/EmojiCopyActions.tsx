@@ -6,6 +6,7 @@ import { toast } from "sonner"
 import { Button } from "@/registry/ui/button"
 import { Card } from "@/registry/ui/card"
 import { EmojiCopyButton } from "./EmojiCopyButton"
+import { showEmojiToast } from "./EmojiToast"
 import type { EmojiData } from "./emoji-data"
 import {
 	formatEmojiName,
@@ -58,7 +59,11 @@ export function EmojiCopyActions({ emoji }: { emoji: EmojiData }) {
 			new Blob([svgMarkup], { type: "image/svg+xml;charset=utf-8" }),
 			`${getEmojiFilename(emoji)}.svg`
 		)
-		toast.success("SVG downloaded")
+		showEmojiToast({
+			emoji: emoji.emoji,
+			title: "Download Complete",
+			description: "SVG has been downloaded.",
+		})
 	}
 
 	const downloadPng = () => {
@@ -87,7 +92,11 @@ export function EmojiCopyActions({ emoji }: { emoji: EmojiData }) {
 			}
 
 			downloadBlob(blob, `${getEmojiFilename(emoji)}-${pngExportSize}px.png`)
-			toast.success("PNG downloaded")
+			showEmojiToast({
+				emoji: emoji.emoji,
+				title: "Download Complete",
+				description: "PNG has been downloaded.",
+			})
 		}, "image/png")
 	}
 
@@ -95,6 +104,7 @@ export function EmojiCopyActions({ emoji }: { emoji: EmojiData }) {
 		<div className="flex flex-col gap-8">
 			<div className="flex flex-wrap gap-2">
 				<EmojiCopyButton
+					emoji={emoji.emoji}
 					value={emoji.emoji}
 					successLabel="Emoji text"
 					size="40"
@@ -103,6 +113,7 @@ export function EmojiCopyActions({ emoji }: { emoji: EmojiData }) {
 					Copy as Text
 				</EmojiCopyButton>
 				<EmojiCopyButton
+					emoji={emoji.emoji}
 					value={svgMarkup}
 					successLabel="SVG"
 					size="40"
@@ -112,6 +123,7 @@ export function EmojiCopyActions({ emoji }: { emoji: EmojiData }) {
 					Copy SVG
 				</EmojiCopyButton>
 				<EmojiCopyButton
+					emoji={emoji.emoji}
 					value={getEmojiHtmlSnippet(emoji)}
 					successLabel="HTML"
 					size="40"
@@ -120,6 +132,7 @@ export function EmojiCopyActions({ emoji }: { emoji: EmojiData }) {
 					Copy HTML
 				</EmojiCopyButton>
 				<EmojiCopyButton
+					emoji={emoji.emoji}
 					value={getEmojiCodePoints(emoji.emoji).join(" ")}
 					successLabel="Unicode codepoint"
 					size="40"
@@ -160,6 +173,7 @@ export function EmojiCopyActions({ emoji }: { emoji: EmojiData }) {
 								{format.value}
 							</code>
 							<EmojiCopyButton
+								emoji={emoji.emoji}
 								value={format.value}
 								successLabel={format.label}
 								size="32"

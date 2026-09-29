@@ -1,6 +1,13 @@
 "use client"
 
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react"
+import {
+	useCallback,
+	useEffect,
+	useLayoutEffect,
+	useMemo,
+	useRef,
+	useState,
+} from "react"
 import { Search, SearchX } from "lucide-react"
 import {
 	Empty,
@@ -21,8 +28,10 @@ import {
 	emojis,
 	getEmojiBySlug,
 	getEmojiPagePath,
-	isEmojiSupported,
 } from "./emoji-data"
+
+const INITIAL_EMOJI_LIMIT = 120
+const EMOJI_BATCH_SIZE = 120
 
 function getEmojiFromPathname(pathname: string) {
 	if (!pathname.startsWith(`${EMOJI_PAGE_PATH}/`)) return null
@@ -43,6 +52,7 @@ export default function EmojiPlayground({
 	const [selectedEmoji, setSelectedEmoji] = useState<EmojiData | null>(
 		initialSelectedEmoji
 	)
+	const [displayLimit, setDisplayLimit] = useState(INITIAL_EMOJI_LIMIT)
 	const [, setIsSticky] = useState(false)
 	const ownsDrawerHistoryEntryRef = useRef(false)
 	const sentinelRef = useRef<HTMLDivElement>(null)
@@ -111,22 +121,30 @@ export default function EmojiPlayground({
 		return () => window.removeEventListener("popstate", handlePopState)
 	}, [])
 
-	const handleSelectEmoji = (emoji: EmojiData) => {
-		const nextPath = getEmojiPagePath(emoji)
-		const nextState = {
-			...window.history.state,
-			radianEmojiDialog: true,
-		}
+	const handleSelectEmoji = useCallback(
+		(emoji: EmojiData) => {
+			const nextPath = getEmojiPagePath(emoji)
+			const nextState = {
+				...window.history.state,
+				radianEmojiDialog: true,
+			}
 
-		if (selectedEmoji) {
-			window.history.replaceState(nextState, "", nextPath)
-		} else {
-			window.history.pushState(nextState, "", nextPath)
-			ownsDrawerHistoryEntryRef.current = true
-		}
+			if (selectedEmoji) {
+				window.history.replaceState(nextState, "", nextPath)
+			} else {
+				window.history.pushState(nextState, "", nextPath)
+				ownsDrawerHistoryEntryRef.current = true
+			}
 
-		setSelectedEmoji(emoji)
-	}
+			setSelectedEmoji(emoji)
+		},
+		[selectedEmoji]
+	)
+
+	const handleCategoryChange = useCallback((nextCategory: string) => {
+		setCategory(nextCategory)
+		setDisplayLimit(INITIAL_EMOJI_LIMIT)
+	}, [])
 
 	const handleDrawerOpenChange = (open: boolean) => {
 		if (open) return
@@ -151,16 +169,37 @@ export default function EmojiPlayground({
 		const source =
 			category === ALL_EMOJI_CATEGORY ? emojis : (group?.emojis ?? [])
 
-		return (
-			normalizedQuery
-				? source.filter((emoji) =>
-						emoji.name.toLocaleLowerCase("en").includes(normalizedQuery)
-					)
-				: source
-		).filter(
-			(emoji) => emoji.group === "Flags" || isEmojiSupported(emoji.emoji)
-		)
+		return normalizedQuery
+			? source.filter((emoji) =>
+					emoji.name.toLocaleLowerCase("en").includes(normalizedQuery)
+				)
+			: source
 	}, [category, query])
+
+	const renderedEmojis = useMemo(
+		() => visibleEmojis.slice(0, displayLimit),
+		[visibleEmojis, displayLimit]
+	)
+
+	useEffect(() => {
+		const bottomSentinel = bottomSentinelRef.current
+		if (!bottomSentinel) return
+
+		const observer = new IntersectionObserver(
+			([entry]) => {
+				if (entry.isIntersecting) {
+					setDisplayLimit((prev) => {
+						if (prev >= visibleEmojis.length) return prev
+						return Math.min(prev + EMOJI_BATCH_SIZE, visibleEmojis.length)
+					})
+				}
+			},
+			{ rootMargin: "600px 0px" }
+		)
+
+		observer.observe(bottomSentinel)
+		return () => observer.disconnect()
+	}, [visibleEmojis.length])
 
 	useLayoutEffect(() => {
 		const topSentinel = sentinelRef.current
@@ -183,7 +222,7 @@ export default function EmojiPlayground({
 				<InputGroup className="w-full">
 					<EmojiCategoryDropdown
 						value={category}
-						onValueChange={setCategory}
+						onValueChange={handleCategoryChange}
 						className="rounded-r-none border-r-0"
 					/>
 					<InputWrapper
@@ -192,7 +231,10 @@ export default function EmojiPlayground({
 						<Search aria-hidden="true" />
 						<Input
 							value={query}
-							onChange={(event) => setQuery(event.target.value)}
+							onChange={(event) => {
+								setQuery(event.target.value)
+								setDisplayLimit(INITIAL_EMOJI_LIMIT)
+							}}
 							placeholder="Search emojis by name (e.g. grinning face, rocket)..."
 							aria-label="Search emojis by name"
 						/>
@@ -203,7 +245,7 @@ export default function EmojiPlayground({
 			{visibleEmojis.length ? (
 				<section aria-label={`${category} emojis`}>
 					<ul className="grid list-none grid-cols-[repeat(auto-fill,minmax(100px,1fr))] gap-3">
-						{visibleEmojis.map((emoji) => (
+						{renderedEmojis.map((emoji) => (
 							<EmojiTile
 								key={emoji.slug}
 								emoji={emoji}

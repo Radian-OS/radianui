@@ -1,8 +1,8 @@
 "use client"
 
 import Link from "next/link"
-import { toast } from "sonner"
 import { Button } from "@/registry/ui/button"
+import { showEmojiToast } from "./EmojiToast"
 import { emojis } from "./emoji-data"
 
 export function EmojiHeroActionButtons() {
@@ -11,7 +11,10 @@ export function EmojiHeroActionButtons() {
 		if (!randomEmoji) return
 
 		navigator.clipboard.writeText(randomEmoji.emoji)
-		toast.success(`Copied ${randomEmoji.emoji} to clipboard`)
+		showEmojiToast({
+			emoji: randomEmoji.emoji,
+			description: `${randomEmoji.emoji} has been copied to your clipboard.`,
+		})
 	}
 
 	return (

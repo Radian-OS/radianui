@@ -31,6 +31,8 @@ interface ResourcePageProps {
 	headerClassName?: string
 	showcaseClassName?: string
 	showcaseContentClassName?: string
+	showHeroBeams?: boolean
+	animatedHeroBeams?: boolean
 }
 
 export function ResourcePage({
@@ -47,6 +49,8 @@ export function ResourcePage({
 	headerClassName,
 	showcaseClassName,
 	showcaseContentClassName,
+	showHeroBeams = true,
+	animatedHeroBeams = true,
 }: ResourcePageProps) {
 	return (
 		<div className="min-h-screen w-full">
@@ -66,32 +70,23 @@ export function ResourcePage({
 								: "max-w-250 items-center justify-center gap-6"
 						)}>
 						<Link
-							href={badge.href ?? "/docs/getting-started/resources"}
-							className={cn(
-								"relative rounded-full",
-								heroAside ? "h-6" : "h-8"
-							)}>
+							href={badge.href ?? "/docs/getting-started/changelog"}
+							className="relative h-8 rounded-full">
 							<Badge
 								color="primary"
-								className={cn(
-									"rounded-full",
-									heroAside
-										? "gap-1 py-0.5 pl-0.5 text-[11px]"
-										: "h-8 gap-1.5 py-1 pl-1"
-								)}
-								size={heroAside ? "24" : "28"}
+								className="h-8 gap-1.5 rounded-full py-1 pl-1"
+								size="28"
 								variant="soft">
 								<Badge
 									color="primary"
 									className="rounded-full"
-									size={heroAside ? "20" : undefined}
 									variant="strong">
 									{badge.count}
 								</Badge>
 								{badge.label}
-								{!heroAside && <ArrowRight className="size-3.5" />}
+								<ArrowRight className="size-3.5" />
 							</Badge>
-							<BorderBeam size={heroAside ? 20 : 50} />
+							<BorderBeam size={50} />
 						</Link>
 
 						{heroVisual}
@@ -142,6 +137,8 @@ export function ResourcePage({
 					label={showcaseLabel}
 					className={showcaseClassName}
 					hideUpperLeftBeam={Boolean(heroAside)}
+					showHeroBeams={showHeroBeams}
+					animatedHeroBeams={animatedHeroBeams}
 					contentClassName={showcaseContentClassName}>
 					{showcase}
 				</ResourceShowcase>
@@ -158,12 +155,16 @@ function ResourceShowcase({
 	children,
 	className,
 	hideUpperLeftBeam = false,
+	showHeroBeams = true,
+	animatedHeroBeams = true,
 	contentClassName,
 }: {
 	label: string
 	children: ReactNode
 	className?: string
 	hideUpperLeftBeam?: boolean
+	showHeroBeams?: boolean
+	animatedHeroBeams?: boolean
 	contentClassName?: string
 }) {
 	return (
@@ -185,30 +186,38 @@ function ResourceShowcase({
 					{children}
 				</div>
 
-				{!hideUpperLeftBeam && (
+				{showHeroBeams && !hideUpperLeftBeam && (
 					<HeroBeamPath
 						className="top-[-276px] left-4 h-[276px] w-[438px] md:left-5"
 						path={upperHeroBeamPath}
 						viewBox="0 0 438 276"
+						animated={animatedHeroBeams}
 					/>
 				)}
-				<HeroBeamPath
-					className="top-[-93px] left-4 h-[93px] w-[214px] md:left-5"
-					path={lowerHeroBeamPath}
-					viewBox="0 0 214 93"
-					beamClassName="animate-[var(--animate-beam-flow2)] opacity-0"
-				/>
-				<HeroBeamPath
-					className="top-[-276px] right-4 h-[276px] w-[438px] scale-x-[-1] md:right-5"
-					path={upperHeroBeamPath}
-					viewBox="0 0 438 276"
-				/>
-				<HeroBeamPath
-					className="top-[-93px] right-4 h-[93px] w-[214px] scale-x-[-1] md:right-5"
-					path={lowerHeroBeamPath}
-					viewBox="0 0 214 93"
-					beamClassName="animate-[var(--animate-beam-flow2)] opacity-0"
-				/>
+				{showHeroBeams && (
+					<>
+						<HeroBeamPath
+							className="top-[-93px] left-4 h-[93px] w-[214px] md:left-5"
+							path={lowerHeroBeamPath}
+							viewBox="0 0 214 93"
+							beamClassName="animate-[var(--animate-beam-flow2)] opacity-0"
+							animated={animatedHeroBeams}
+						/>
+						<HeroBeamPath
+							className="top-[-276px] right-4 h-[276px] w-[438px] scale-x-[-1] md:right-5"
+							path={upperHeroBeamPath}
+							viewBox="0 0 438 276"
+							animated={animatedHeroBeams}
+						/>
+						<HeroBeamPath
+							className="top-[-93px] right-4 h-[93px] w-[214px] scale-x-[-1] md:right-5"
+							path={lowerHeroBeamPath}
+							viewBox="0 0 214 93"
+							beamClassName="animate-[var(--animate-beam-flow2)] opacity-0"
+							animated={animatedHeroBeams}
+						/>
+					</>
+				)}
 			</div>
 		</section>
 	)
@@ -219,11 +228,13 @@ function HeroBeamPath({
 	path,
 	viewBox,
 	beamClassName = "animate-[var(--animate-beam-flow)]",
+	animated = true,
 }: {
 	className: string
 	path: string
 	viewBox: string
 	beamClassName?: string
+	animated?: boolean
 }) {
 	return (
 		<svg
@@ -238,15 +249,17 @@ function HeroBeamPath({
 				strokeWidth="1"
 				vectorEffect="non-scaling-stroke"
 			/>
-			<path
-				d={path}
-				stroke="var(--color-primary)"
-				strokeWidth="1"
-				strokeLinecap="round"
-				vectorEffect="non-scaling-stroke"
-				pathLength="1000"
-				className={`${beamClassName} [stroke-dasharray:50_1000] [stroke-dashoffset:0]`}
-			/>
+			{animated && (
+				<path
+					d={path}
+					stroke="var(--color-primary)"
+					strokeWidth="1"
+					strokeLinecap="round"
+					vectorEffect="non-scaling-stroke"
+					pathLength="1000"
+					className={`${beamClassName} [stroke-dasharray:50_1000] [stroke-dashoffset:0]`}
+				/>
+			)}
 		</svg>
 	)
 }

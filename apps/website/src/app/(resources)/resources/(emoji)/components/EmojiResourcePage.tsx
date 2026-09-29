@@ -21,6 +21,7 @@ export function EmojiResourcePage({
 			badge={{
 				count: `${emojis.length.toLocaleString("en-US")} Emojis`,
 				label: "Unicode Emoji Collection",
+				href: "/docs/getting-started/changelog",
 			}}
 			heroVisual={
 				<div className="flex items-center justify-center" aria-hidden="true">

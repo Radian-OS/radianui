@@ -24,6 +24,7 @@ import {
 } from "@/registry/ui/dropdown-menu"
 import { getFlagSvgMarkup, renderFlagPng } from "./flag-assets"
 import { FlagImage } from "./FlagImage"
+import { showFlagToast } from "./FlagToast"
 import type { FlagName, FlagShape, FlagSize } from "./flags-data"
 import {
 	FLAG_PNG_SIZES,
@@ -140,11 +141,14 @@ export function FlagDetailsDialog({
 			...getFlagCallingCodes(name),
 		])
 	)
+	const showToast = (description: string, title?: string) => {
+		showFlagToast({ name, shape: dialogShape, description, title })
+	}
 
 	const copyText = async (value: string, label: string) => {
 		try {
 			await navigator.clipboard.writeText(value)
-			toast.success(`${label} copied to clipboard`)
+			showToast(`${label} has been copied to your clipboard.`)
 		} catch {
 			toast.error(`Could not copy ${label}`)
 		}
@@ -156,7 +160,7 @@ export function FlagDetailsDialog({
 			await navigator.clipboard.write([
 				new ClipboardItem({ "image/png": blob }),
 			])
-			toast.success("PNG copied to clipboard")
+			showToast("PNG has been copied to your clipboard.")
 		} catch {
 			toast.error("Could not copy PNG")
 		}
@@ -186,7 +190,10 @@ export function FlagDetailsDialog({
 					`${safeName}-${dialogShape}-${pngSize}px.png`
 				)
 			}
-			toast.success(`${format.toUpperCase()} downloaded`)
+			showToast(
+				`${format.toUpperCase()} has been downloaded.`,
+				"Download Complete"
+			)
 		} catch {
 			toast.error(`Could not download ${format.toUpperCase()}`)
 		}

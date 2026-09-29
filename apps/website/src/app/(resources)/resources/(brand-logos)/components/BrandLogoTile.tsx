@@ -6,6 +6,7 @@ import { toast } from "sonner"
 import { cn } from "@/lib/utils"
 import { Button } from "@/registry/ui/button"
 import { BrandLogoTileMenu } from "./BrandLogoTileMenu"
+import { showBrandLogoToast } from "./BrandLogoToast"
 import type { BrandLogoId, BrandLogoVariant } from "./brand-logos-data"
 import {
 	getBrandLogo,
@@ -47,7 +48,10 @@ export function BrandLogoTile({
 
 	const showCopied = (format: string) => {
 		setCopied(true)
-		toast.success(`${format} copied to clipboard`)
+		showBrandLogoToast({
+			logoUrl: pngUrl,
+			description: `${format} has been copied to your clipboard.`,
+		})
 		window.setTimeout(() => setCopied(false), 1600)
 	}
 

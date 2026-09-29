@@ -1,6 +1,4 @@
-import { type CountryCode, Flag } from "@radianui/flags"
-import { Check } from "lucide-react"
-import { Card } from "@/registry/ui/card"
+import Image from "next/image"
 import { ResourceLibraryCTA } from "../../components/ResourceCTA"
 import {
 	ResourceDocs,
@@ -33,7 +31,7 @@ const useCasePoints = [
 	{
 		title: "Maps & Analytics",
 		description:
-			"Visualize country-based data, user distribution, rankings, and reports.",
+			"Use flags for maps, dashboards, rankings, and country-based analytics without making users decode location data.",
 	},
 	{
 		title: "Sports & Global Events",
@@ -74,7 +72,7 @@ const designPoints = [
 			"Avoid cropping, stretching, or applying heavy effects that make flags difficult to identify.",
 	},
 	{
-		title: "Use Appropirate sizes",
+		title: "Use appropriate sizes",
 		description:
 			"Select flag sizes that remain clear without overpowering surrounding content in lists, cards, or tables.",
 	},
@@ -148,52 +146,36 @@ const developmentPoints = [
 	},
 ]
 
-interface CurrencyOption {
-	country?: CountryCode
-	emoji?: string
-	code: string
-	name: string
-	symbol: string
-	selected?: boolean
-}
-
-const countryOptions = [
-	{ country: "CA", name: "Canada", dialCode: "+1" },
-	{ country: "CN", name: "China", dialCode: "+86", selected: true },
-	{ country: "ID", name: "Indonesia", dialCode: "+62" },
-	{ country: "SE", name: "Sweden", dialCode: "+46" },
-	{ country: "GB", name: "United Kingdom", dialCode: "+44" },
-	{ country: "US", name: "United States", dialCode: "+1" },
-	{ country: "DE", name: "Germany", dialCode: "+00" },
-] as const satisfies ReadonlyArray<{
-	country: CountryCode
-	name: string
-	dialCode: string
-	selected?: boolean
-}>
-
-const popularCurrencies = [
-	{ country: "US", code: "USD", name: "US Dollar", symbol: "$" },
-	{ emoji: "🇪🇺", code: "EUR", name: "Euro", symbol: "€", selected: true },
-	{ country: "GB", code: "GBP", name: "British Pound", symbol: "£" },
-	{ country: "JP", code: "JPY", name: "Japanese Yen", symbol: "¥" },
-] as const satisfies readonly CurrencyOption[]
-
-const asiaPacificCurrencies = [
-	{ country: "IN", code: "INR", name: "Indian Rupee", symbol: "₹" },
-	{ country: "NP", code: "NPR", name: "Nepalese Rupee", symbol: "रू" },
-] as const satisfies readonly CurrencyOption[]
-
 const faqItems = [
+	{
+		question: "Does this collection include all country flags with names?",
+		answer:
+			"The library includes more than 250 country and regional flags. You can search the world flags by country name, ISO code, or international calling code, then open any result to copy or download it.",
+	},
+	{
+		question: "Can developers and designers both use this flag library?",
+		answer:
+			"Yes. React developers can install the npm package, while designers can download SVG or PNG assets for Figma and any other design tool that supports those formats. The npm package itself is specifically for React.",
+	},
 	{
 		question: "Can I use these country flags in commercial products?",
 		answer:
 			"Yes. The flag assets can be used in personal and commercial interfaces. Check any jurisdiction-specific restrictions when a government emblem has regulated usage.",
 	},
 	{
-		question: "Which format should I use in a web application?",
+		question: "Should I use country flag SVG or flag PNG files?",
 		answer:
-			"SVG is the best default for interfaces because it stays sharp at every size and is typically lightweight. PNG is useful when a platform cannot render SVG files.",
+			"SVG is the best default for interfaces because it stays sharp at every size and is typically lightweight. Flag PNG images are useful for presentations, static exports, and platforms that cannot render SVG files.",
+	},
+	{
+		question: "Are these flag icons the same as flag emojis?",
+		answer:
+			"No. Flag emojis are Unicode characters whose appearance changes by platform. These flag icons are consistent SVG and PNG assets that give you control over shape, size, and rendering.",
+	},
+	{
+		question: "Can I find Nordic, African, and Spanish-speaking country flags?",
+		answer:
+			"Yes. The collection includes Nordic flags, African country flags, and flags for Spanish-speaking countries. Search by a country name or ISO code to find each regional set.",
 	},
 	{
 		question: "Should flags be used for language selection?",
@@ -214,33 +196,31 @@ const faqItems = [
 
 export default function FlagsDocs() {
 	return (
-		<ResourceDocs label="Country flag design and development guide">
+		<ResourceDocs label="Country flag design and React development guide">
 			<ResourceTextSection
 				id="flag-introduction-heading"
 				eyebrow="Introduction"
-				title="What are Country Flag Icons?"
+				title="Country and Nation Flags for Design and Development"
 				visual={<FlagCollectionCard />}>
 				<p>
-					Country flag icons are visual representations of national flags used
-					to help users quickly identify countries in a user interface. Because
-					they&apos;re instantly recognizable, they make it easier to navigate
-					international features and understand location-based information at a
-					glance.
+					Country flag icons are scalable representations of national flags that
+					help users identify countries in an interface. This collection brings
+					together flags of the world with country names, ISO codes, and calling
+					codes, making each flag image easier to find and use.
 				</p>
 				<p>
-					You&apos;ll commonly find country flag icons in websites, mobile apps,
-					and global products such as country selectors, phone number inputs,
-					shipping forms, travel platforms, and analytics dashboards. When used
-					consistently and paired with clear text labels where needed, they
-					improve recognition, reduce scanning time, and create a more intuitive
-					user experience.
+					The collection supports both design and development workflows.
+					Designers can use the downloaded SVG and PNG flag images in Figma and
+					any design tool that supports these formats. React developers can
+					install the npm package and use the flag components directly in their
+					applications.
 				</p>
 			</ResourceTextSection>
 
 			<ResourceTextSection
 				id="flag-use-cases-heading"
 				eyebrow="Use cases"
-				title="Common Country flag icon UI layouts and patterns"
+				title="How to Use Country Flags in Maps, Selectors, and Apps"
 				points={useCasePoints}
 				visual={<FlagUseCasesMarquee />}>
 				<p>
@@ -255,30 +235,29 @@ export default function FlagsDocs() {
 			<ResourceTextSection
 				id="flag-design-heading"
 				eyebrow="Design"
-				title="Country Flag UI Design Best Practices"
+				title="Best Design Practices for Country Flag Icons and Images"
 				points={designPoints}>
 				<p>
-					Country flag icons should be easy to recognize, visually consistent,
-					and used appropriately across your interface. Whether they appear in
-					forms, navigation, dashboards, or international experiences, following
-					these best practices helps create a clear and reliable user
-					experience.
+					For design work, the SVG and PNG country flag assets can be used in
+					Figma, Sketch, Adobe tools, presentations, and other software that
+					support common image formats. Keep the flag design recognizable,
+					visually consistent, and paired with a country label when the context
+					is not obvious.
 				</p>
 			</ResourceTextSection>
 
 			<ResourceTextSection
 				id="flag-development-heading"
 				eyebrow="Development"
-				title="Country Flag Development Practices"
+				title="Best Development Practices for Country Flag Components and Assets"
 				points={developmentPoints}>
 				<p>
-					Country flag icons are used in many parts of modern applications, so
-					it&apos;s important to build them with flexibility and reliability in
-					mind. By handling standardized country codes, optimized assets,
-					localization, and accessibility from the start, you can create a
-					component that&apos;s easy to maintain and reuse throughout your
-					product. Here are some development best practices for country flag
-					icons:
+					For React development, install the @radianui/flags npm package and use
+					the components directly in your application. The npm package is built
+					for React; developers using other frameworks can download and use the
+					SVG or PNG assets instead. Standardized country codes, optimized
+					files, localization, and accessible labels keep implementations
+					reliable.
 				</p>
 			</ResourceTextSection>
 
@@ -291,86 +270,23 @@ export default function FlagsDocs() {
 
 function FlagCollectionCard() {
 	return (
-		<div className="border-soft bg-fill2 mx-auto flex h-100 w-full items-end justify-end gap-4 overflow-hidden rounded-2xl border pl-4 sm:gap-8 sm:pl-8 lg:w-200 lg:gap-14">
-			<Card className="border-soft w-[284px] shrink-0 translate-y-4 gap-0 rounded-lg py-0 shadow-sm">
-				<div className="border-soft text-fg-tertiary flex h-10 items-center border-b px-3 text-xs">
-					Search
-				</div>
-				<p className="text-fg-tertiary px-3 pt-3 pb-2 text-[11px] font-medium tracking-wide uppercase">
-					All country
-				</p>
-				<ul className="pb-3">
-					{countryOptions.map((country) => (
-						<li
-							key={country.country}
-							className="flex h-7.5 items-center gap-2 px-3 text-xs">
-							<Flag country={country.country} size={20} />
-							<span>{country.name}</span>
-							<span className="text-fg-secondary">{country.dialCode}</span>
-							{"selected" in country && country.selected ? (
-								<Check className="text-fg-tertiary ml-auto size-4" />
-							) : null}
-						</li>
-					))}
-				</ul>
-			</Card>
-
-			<Card className="border-soft w-[310px] shrink-0 translate-y-4 gap-0 rounded-lg border-r-0 py-0 shadow-sm">
-				<CurrencyGroup label="Popular" currencies={popularCurrencies} />
-				<CurrencyGroup
-					label="Asia Pacific"
-					currencies={asiaPacificCurrencies}
-					bordered
-				/>
-			</Card>
-		</div>
-	)
-}
-
-function CurrencyGroup({
-	label,
-	currencies,
-	bordered = false,
-}: {
-	label: string
-	currencies: readonly CurrencyOption[]
-	bordered?: boolean
-}) {
-	return (
-		<div className={bordered ? "border-soft border-t" : undefined}>
-			<p className="text-fg-tertiary px-3 pt-3 pb-2 text-[11px] font-medium tracking-wide uppercase">
-				{label}
-			</p>
-			<ul>
-				{currencies.map((currency) => (
-					<li
-						key={currency.code}
-						className={
-							currency.selected
-								? "bg-fill1 flex h-12 items-center gap-2 px-3"
-								: "flex h-12 items-center gap-2 px-3"
-						}>
-						{currency.country ? (
-							<Flag country={currency.country} size={28} />
-						) : (
-							<span
-								aria-hidden="true"
-								className="flex size-7 items-center justify-center text-xl leading-none">
-								{currency.emoji}
-							</span>
-						)}
-						<span className="flex min-w-0 flex-col">
-							<span className="text-xs font-medium">{currency.code}</span>
-							<span className="text-fg-secondary truncate text-[11px]">
-								{currency.name} ({currency.symbol})
-							</span>
-						</span>
-						{currency.selected ? (
-							<Check className="text-fg-tertiary ml-auto size-4" />
-						) : null}
-					</li>
-				))}
-			</ul>
+		<div className="border-soft bg-fill2 relative mx-auto h-100 w-full overflow-hidden rounded-2xl border lg:w-200">
+			<Image
+				src="/flags/cover/flag-cover-image.png"
+				alt="Country flag selector and currency picker interface"
+				fill
+				sizes="(min-width: 1024px) 800px, 100vw"
+				className="object-cover dark:hidden"
+				unoptimized
+			/>
+			<Image
+				src="/flags/cover/flag-cover-image-dark.png"
+				alt="Country flag selector and currency picker interface in dark mode"
+				fill
+				sizes="(min-width: 1024px) 800px, 100vw"
+				className="hidden object-cover dark:block"
+				unoptimized
+			/>
 		</div>
 	)
 }

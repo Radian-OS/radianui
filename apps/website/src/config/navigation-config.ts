@@ -270,8 +270,6 @@ export const RESOURCE_ITEMS: NavigationItem[] = [
 		description: "Flags from around the world.",
 		url: "/resources/flags",
 		resourceIcon: "flags",
-		isComingSoon: true,
-		disabled: true,
 	},
 	{
 		title: "Logo Generator",

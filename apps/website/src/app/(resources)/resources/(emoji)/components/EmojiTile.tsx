@@ -1,4 +1,4 @@
-import type { MouseEvent } from "react"
+import { type MouseEvent, memo } from "react"
 import Link from "next/link"
 import { Button } from "@/registry/ui/button"
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/registry/ui/tooltip"
@@ -7,7 +7,7 @@ import { formatEmojiName, getEmojiPagePath } from "./emoji-data"
 import { FlagImage } from "../../(flags)/components/FlagImage"
 import { getFlagNameFromSlug } from "../../(flags)/components/flags-data"
 
-export function EmojiTile({
+export const EmojiTile = memo(function EmojiTile({
 	emoji,
 	onSelect,
 }: {
@@ -65,4 +65,4 @@ export function EmojiTile({
 			</Tooltip>
 		</li>
 	)
-}
+})

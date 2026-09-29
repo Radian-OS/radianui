@@ -2,6 +2,7 @@
 
 import {
 	SVGProps,
+	useCallback,
 	useEffect,
 	useLayoutEffect,
 	useMemo,
@@ -371,27 +372,30 @@ export default function FlagsPlayground({
 		return () => window.removeEventListener("popstate", handlePopState)
 	}, [])
 
-	const handleShapeChange = (nextShape: FlagShape) => {
-		setShape(nextShape)
+	const handleShapeChange = useCallback((nextShape: FlagShape) => {
 		window.localStorage.setItem(FLAG_SHAPE_STORAGE_KEY, nextShape)
-	}
+		setShape(nextShape)
+	}, [])
 
-	const handleSelectFlag = (name: FlagName) => {
-		const nextPath = getFlagPagePath(name)
-		const nextState = {
-			...window.history.state,
-			radianFlagDialog: true,
-		}
+	const handleSelectFlag = useCallback(
+		(name: FlagName) => {
+			const nextPath = getFlagPagePath(name)
+			const nextState = {
+				...window.history.state,
+				radianFlagDialog: true,
+			}
 
-		if (selectedFlag) {
-			window.history.replaceState(nextState, "", nextPath)
-		} else {
-			window.history.pushState(nextState, "", nextPath)
-			ownsDialogHistoryEntryRef.current = true
-		}
+			if (selectedFlag) {
+				window.history.replaceState(nextState, "", nextPath)
+			} else {
+				window.history.pushState(nextState, "", nextPath)
+				ownsDialogHistoryEntryRef.current = true
+			}
 
-		setSelectedFlag(name)
-	}
+			setSelectedFlag(name)
+		},
+		[selectedFlag]
+	)
 
 	const handleDialogOpenChange = (open: boolean) => {
 		if (open) return

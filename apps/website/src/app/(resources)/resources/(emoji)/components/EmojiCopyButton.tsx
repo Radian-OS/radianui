@@ -3,17 +3,20 @@
 import type { ComponentProps } from "react"
 import { toast } from "sonner"
 import { Button } from "@/registry/ui/button"
+import { showEmojiToast } from "./EmojiToast"
 
 interface EmojiCopyButtonProps extends Omit<
 	ComponentProps<typeof Button>,
 	"onClick"
 > {
 	value: string
+	emoji: string
 	successLabel: string
 }
 
 export function EmojiCopyButton({
 	value,
+	emoji,
 	successLabel,
 	children,
 	...props
@@ -21,7 +24,10 @@ export function EmojiCopyButton({
 	const copy = async () => {
 		try {
 			await navigator.clipboard.writeText(value)
-			toast.success(`${successLabel} copied to clipboard`)
+			showEmojiToast({
+				emoji,
+				description: `${successLabel} has been copied to your clipboard.`,
+			})
 		} catch {
 			toast.error(`Could not copy ${successLabel.toLowerCase()}`)
 		}

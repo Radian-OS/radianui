@@ -1,10 +1,12 @@
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
+import { JsonLd } from "@/components/seo/json-ld"
 import { websiteMetadata } from "@/config/website-metadata-config"
-import { absoluteUrl } from "@/lib/structured-data"
+import { absoluteUrl, getFlagImageStructuredData } from "@/lib/structured-data"
 import { FlagsResourcePage } from "../../components/FlagsResourcePage"
 import {
 	flagNames,
+	getFlagCountryCodes,
 	getFlagDisplayName,
 	getFlagNameFromSlug,
 	getFlagPagePath,
@@ -33,13 +35,25 @@ export async function generateMetadata({
 
 	const displayName = getFlagDisplayName(flag)
 	const title = `${displayName} Flag – Free PNG & SVG Download`
-	const description = `Preview, copy, and download the ${displayName} flag as a flat or rounded PNG or SVG asset for React, Figma, and the web.`
+	const description = `Use the ${displayName} flag in React through the npm package, or download its flat and rounded SVG and PNG assets for Figma and other design tools.`
 	const url = absoluteUrl(getFlagPagePath(flag))
 	const image = getFlagSvgUrl(flag)
+	const countryCodes = getFlagCountryCodes(flag)
 
 	return {
 		title,
 		description,
+		keywords: [
+			`${displayName} flag`,
+			`${displayName} flag PNG`,
+			`${displayName} flag SVG`,
+			`${displayName} flag icon`,
+			`${displayName} flag image`,
+			`${displayName} flag for React`,
+			`${displayName} flag for Figma`,
+			...countryCodes.map((code) => `${code} flag`),
+			...(flag === "united-states" ? ["American flag PNG"] : []),
+		],
 		alternates: { canonical: url },
 		openGraph: {
 			siteName: websiteMetadata.name,
@@ -64,5 +78,21 @@ export default async function FlagPage(props: FlagPageProps) {
 	const flag = await getFlagFromParams(props)
 	if (!flag) notFound()
 
-	return <FlagsResourcePage initialSelectedFlag={flag} />
+	const displayName = getFlagDisplayName(flag)
+	const url = absoluteUrl(getFlagPagePath(flag))
+	const image = getFlagSvgUrl(flag)
+
+	return (
+		<>
+			<JsonLd
+				id="flag-image-structured-data"
+				data={getFlagImageStructuredData({
+					name: displayName,
+					url,
+					image,
+				})}
+			/>
+			<FlagsResourcePage initialSelectedFlag={flag} />
+		</>
+	)
 }

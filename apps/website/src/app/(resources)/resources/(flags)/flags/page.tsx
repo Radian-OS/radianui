@@ -1,16 +1,36 @@
 import type { Metadata } from "next"
+import { JsonLd } from "@/components/seo/json-ld"
 import { websiteMetadata } from "@/config/website-metadata-config"
-import { absoluteUrl } from "@/lib/structured-data"
+import {
+	absoluteUrl,
+	getFlagsResourceStructuredData,
+} from "@/lib/structured-data"
 import { FlagsResourcePage } from "../components/FlagsResourcePage"
 
 const pageUrl = absoluteUrl("/resources/flags")
-const pageTitle = "Free Country Flag Pack – SVG Flags for React & Figma"
+const pageTitle = "All Country Flags for React and Figma | Radian UI"
 const pageDescription =
-	"Browse production-ready country flags for React and Figma. Search, copy, and use rectangular or circular SVG flags in your next interface."
+	"Browse 250+ country flags and flags of the world with names. Install the React npm package for development, or use SVG and PNG assets in any design tool."
 const pageImage = absoluteUrl("/media/assets-page/flags-light.png")
 export const metadata: Metadata = {
 	title: pageTitle,
 	description: pageDescription,
+	keywords: [
+		"country flags",
+		"flags of the world",
+		"all country flags",
+		"national flags",
+		"flag icons",
+		"flag PNG",
+		"flag images",
+		"world flags with names",
+		"flags for maps",
+		"flag design",
+		"React flag icons",
+		"country flag npm package",
+		"country flags for designers",
+		"country flags for developers",
+	],
 	alternates: { canonical: pageUrl },
 	openGraph: {
 		siteName: websiteMetadata.name,
@@ -29,5 +49,13 @@ export const metadata: Metadata = {
 }
 
 export default function Page() {
-	return <FlagsResourcePage />
+	return (
+		<>
+			<JsonLd
+				id="flags-resource-structured-data"
+				data={getFlagsResourceStructuredData()}
+			/>
+			<FlagsResourcePage />
+		</>
+	)
 }

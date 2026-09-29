@@ -14,6 +14,7 @@ export function EmojiSkinToneVariants({ emoji }: { emoji: EmojiData }) {
 			{variants.map((variant) => (
 				<EmojiCopyButton
 					key={variant.label}
+					emoji={variant.emoji}
 					value={variant.emoji}
 					successLabel={variant.label}
 					color="neutral"

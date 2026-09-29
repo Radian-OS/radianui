@@ -1,11 +1,12 @@
 "use client"
 
-import { useState } from "react"
+import { memo, useCallback, useState } from "react"
 import { toast } from "sonner"
 import { Button } from "@/registry/ui/button"
 import { getFlagSvgMarkup, renderFlagPng } from "./flag-assets"
 import { FlagImage } from "./FlagImage"
 import { FlagTileMenu } from "./FlagTileMenu"
+import { showFlagToast } from "./FlagToast"
 import type { FlagName, FlagShape } from "./flags-data"
 import {
 	getFlagDisplayName,
@@ -21,7 +22,7 @@ interface FlagTileProps {
 	onSelect: (name: FlagName) => void
 }
 
-export function FlagTile({
+export const FlagTile = memo(function FlagTile({
 	name,
 	shape,
 	priority = false,
@@ -32,22 +33,32 @@ export function FlagTile({
 	const flagUrl = getFlagSvgUrl(name)
 	const previewSize = shape === "round" ? 40 : 48
 
-	const showCopied = (format: string) => {
-		setCopied(true)
-		toast.success(`${format} copied to clipboard`)
-		window.setTimeout(() => setCopied(false), 1600)
-	}
+	const showCopied = useCallback(
+		(format: string) => {
+			setCopied(true)
+			showFlagToast({
+				name,
+				shape,
+				description: `${format} has been copied to your clipboard.`,
+			})
+			window.setTimeout(() => setCopied(false), 1600)
+		},
+		[name, shape]
+	)
 
-	const copyText = async (value: string, label: string) => {
-		try {
-			await navigator.clipboard.writeText(value)
-			showCopied(label)
-		} catch {
-			toast.error(`Could not copy ${label}`)
-		}
-	}
+	const copyText = useCallback(
+		async (value: string, label: string) => {
+			try {
+				await navigator.clipboard.writeText(value)
+				showCopied(label)
+			} catch {
+				toast.error(`Could not copy ${label}`)
+			}
+		},
+		[showCopied]
+	)
 
-	const copySvg = async () => {
+	const copySvg = useCallback(async () => {
 		try {
 			const svgMarkup = await getFlagSvgMarkup(name, shape)
 
@@ -66,9 +77,9 @@ export function FlagTile({
 		} catch {
 			toast.error("Could not copy SVG")
 		}
-	}
+	}, [name, shape, showCopied])
 
-	const copyPng = async () => {
+	const copyPng = useCallback(async () => {
 		try {
 			const pngBlob = await renderFlagPng(name, shape, 64)
 			await navigator.clipboard.write([
@@ -78,7 +89,19 @@ export function FlagTile({
 		} catch {
 			toast.error("Could not copy PNG")
 		}
-	}
+	}, [name, shape, showCopied])
+
+	const handleCopyUrl = useCallback(() => {
+		copyText(flagUrl, "URL")
+	}, [copyText, flagUrl])
+
+	const handleCopyNextImage = useCallback(() => {
+		copyText(getFlagNextImageMarkup(name, shape), "Next.js markup")
+	}, [copyText, name, shape])
+
+	const handleCopyHtmlImage = useCallback(() => {
+		copyText(getFlagHtmlMarkup(name, shape), "HTML markup")
+	}, [copyText, name, shape])
 
 	return (
 		<li className="group relative aspect-square w-full min-w-0 sm:size-[142px]">
@@ -93,7 +116,7 @@ export function FlagTile({
 					name={name}
 					shape={shape}
 					size={previewSize}
-					loading="eager"
+					loading={priority ? "eager" : "lazy"}
 					decoding="async"
 					fetchPriority={priority ? "high" : "auto"}
 				/>
@@ -105,13 +128,9 @@ export function FlagTile({
 			<FlagTileMenu
 				onCopyPng={copyPng}
 				onCopySvg={copySvg}
-				onCopyUrl={() => copyText(flagUrl, "URL")}
-				onCopyNextImage={() =>
-					copyText(getFlagNextImageMarkup(name, shape), "Next.js markup")
-				}
-				onCopyHtmlImage={() =>
-					copyText(getFlagHtmlMarkup(name, shape), "HTML markup")
-				}
+				onCopyUrl={handleCopyUrl}
+				onCopyNextImage={handleCopyNextImage}
+				onCopyHtmlImage={handleCopyHtmlImage}
 			/>
 
 			<div className="absolute inset-x-0 bottom-0 z-20 p-2 opacity-0 transition-opacity duration-200 group-focus-within:opacity-100 group-hover:opacity-100">
@@ -126,4 +145,4 @@ export function FlagTile({
 			</div>
 		</li>
 	)
-}
+})

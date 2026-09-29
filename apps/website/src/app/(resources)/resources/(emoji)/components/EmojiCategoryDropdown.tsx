@@ -77,7 +77,9 @@ export function EmojiCategoryDropdown({
 				</Button>
 			</DropdownMenuTrigger>
 
-			<DropdownMenuContent className="w-64">
+			<DropdownMenuContent
+				className="w-64"
+				onCloseAutoFocus={(event) => event.preventDefault()}>
 				<DropdownMenuLabel>Categories</DropdownMenuLabel>
 				<DropdownMenuDivider />
 				<DropdownMenuRadioGroup value={value} onValueChange={onValueChange}>
