@@ -13,6 +13,7 @@ import {
 	AccordionContent,
 	AccordionItem,
 } from "@/registry/ui/accordion"
+import { Badge } from "@/registry/ui/badge"
 import { IconButton } from "@/registry/ui/button"
 import { additionalLinks, designTools } from "./desktop-navigation"
 import EarlyAccessButton from "./early-access-button"
@@ -168,16 +169,36 @@ export function MobileNavigation({
 									<div className="text-fg-tertiary w-full py-2 text-xs font-medium uppercase">
 										Design Tools
 									</div>
-									{designTools.map((tool) => (
-										<Link
-											onClick={() => setIsMobileMenuOpen(false)}
-											key={tool.title}
-											className="text-fg flex w-full items-center py-3 font-normal"
-											href={tool.href}
-											prefetch={false}>
-											{tool.title}
-										</Link>
-									))}
+									{designTools.map((tool) => {
+										const content = (
+											<>
+												<span>{tool.title}</span>
+												{tool.isComingSoon ? (
+													<Badge size="20" variant="soft" color="neutral">
+														Coming Soon
+													</Badge>
+												) : null}
+											</>
+										)
+
+										return tool.disabled ? (
+											<div
+												key={tool.title}
+												aria-disabled="true"
+												className="text-fg-tertiary flex w-full cursor-not-allowed items-center justify-between gap-2 py-3 font-normal">
+												{content}
+											</div>
+										) : (
+											<Link
+												onClick={() => setIsMobileMenuOpen(false)}
+												key={tool.title}
+												className="text-fg flex w-full items-center justify-between gap-2 py-3 font-normal"
+												href={tool.url}
+												prefetch={false}>
+												{content}
+											</Link>
+										)
+									})}
 									<div className="text-fg-tertiary mt-2 w-full py-2 text-xs font-medium uppercase">
 										Additional Links
 									</div>

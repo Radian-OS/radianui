@@ -164,6 +164,82 @@ export function getAvatarResourceStructuredData(): JsonLdObject {
 	}
 }
 
+export function getFlagsResourceStructuredData(): JsonLdObject {
+	const url = absoluteUrl("/resources/flags")
+	const description =
+		"Browse more than 250 country flags and flags of the world with names. Install the npm package for React development, or use the SVG and PNG assets in any design tool."
+
+	return {
+		"@context": "https://schema.org",
+		"@graph": [
+			{
+				"@type": ["CollectionPage", "ImageGallery"],
+				"@id": `${url}#collection`,
+				name: "All Country Flags for React and Figma",
+				description,
+				url,
+				keywords:
+					"country flags, flags of the world, all country flags, national flags, flag icons, flag PNG, flag images, world flags with names, flags for maps, flag design, React flag icons, country flag npm package, country flags for designers, country flags for developers",
+				isAccessibleForFree: true,
+				publisher: getPublisherSchema(),
+				isPartOf: { "@id": websiteId },
+				primaryImageOfPage: {
+					"@type": "ImageObject",
+					url: absoluteUrl("/media/assets-page/flags-light.png"),
+					width: 664,
+					height: 418,
+				},
+				inLanguage: "en",
+			},
+			getBreadcrumbSchema([
+				{ name: "Home", item: absoluteUrl("/") },
+				{
+					name: "Resources",
+					item: absoluteUrl("/docs/getting-started/resources"),
+				},
+				{ name: "Country Flags" },
+			]),
+		],
+	}
+}
+
+export function getFlagImageStructuredData({
+	name,
+	url,
+	image,
+}: {
+	name: string
+	url: string
+	image: string
+}): JsonLdObject {
+	return {
+		"@context": "https://schema.org",
+		"@graph": [
+			{
+				"@type": "ImageObject",
+				"@id": `${url}#image`,
+				name: `${name} Flag`,
+				caption: `${name} flag icon available in SVG and PNG formats.`,
+				contentUrl: image,
+				url,
+				encodingFormat: "image/svg+xml",
+				representativeOfPage: true,
+				isAccessibleForFree: true,
+				creator: getPublisherSchema(),
+				inLanguage: "en",
+			},
+			getBreadcrumbSchema([
+				{ name: "Home", item: absoluteUrl("/") },
+				{
+					name: "Country Flags",
+					item: absoluteUrl("/resources/flags"),
+				},
+				{ name: `${name} Flag` },
+			]),
+		],
+	}
+}
+
 export function getBlogIndexStructuredData({
 	posts,
 }: {

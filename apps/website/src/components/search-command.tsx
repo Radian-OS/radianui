@@ -5,6 +5,7 @@ import Link from "next/link"
 import { NavigationItem } from "@/config/navigation-config"
 import { Badge } from "@/styles/default/ui/badge"
 import { DialogClose } from "@/styles/default/ui/dialog"
+import { ResourceIcon } from "./navbar/resource-icons"
 
 type Props = {
 	searchTerm: string
@@ -16,7 +17,7 @@ type Props = {
 		searchIcon?: string
 	}[]
 	setSelectedIndex: React.Dispatch<React.SetStateAction<number>>
-	itemRefs: React.RefObject<(HTMLLIElement | null)[]>
+	itemRefs: React.RefObject<(HTMLElement | null)[]>
 	selectedIndex: number
 }
 
@@ -81,28 +82,62 @@ export default function SearchCommand({
 												.reduce((acc, sec) => acc + sec.items.length, 0) +
 											itemIndex
 
+										const content = (
+											<>
+												<span className="flex min-w-0 items-center gap-2">
+													{section.searchIcon ? (
+														<Image
+															height={24}
+															width={24}
+															src={section.searchIcon}
+															alt="Search icon"
+														/>
+													) : null}
+													{!section.searchIcon &&
+													item.resourceIcon &&
+													!item.disabled ? (
+														<span
+															className="flex size-6 shrink-0 items-center justify-center"
+															aria-hidden="true">
+															<ResourceIcon name={item.resourceIcon} />
+														</span>
+													) : null}
+													<span className="truncate">{item.title}</span>
+												</span>
+												{item.isComingSoon ? (
+													<Badge size="20" variant="soft" color="neutral">
+														Coming Soon
+													</Badge>
+												) : null}
+											</>
+										)
+										const itemClassName = `flex items-center justify-between gap-2 rounded-md px-2 py-1.5 text-sm font-medium ${selectedIndex === globalIndex ? "bg-fill2" : ""}`
+
 										return (
-											<DialogClose asChild key={item.title}>
-												<Link
-													href={item.url}
-													target={item.isExternal ? "_blank" : "_self"}>
-													<li
+											<li key={item.title}>
+												{item.disabled ? (
+													<div
 														ref={(el) => {
 															itemRefs.current[globalIndex] = el
 														}}
-														className={`hover:bg-text/4 flex cursor-pointer items-center gap-2 rounded-md px-2 py-1.5 text-sm font-medium ${selectedIndex === globalIndex ? "bg-fill2" : ""}`}>
-														{section.searchIcon ? (
-															<Image
-																height={24}
-																width={24}
-																src={section.searchIcon}
-																alt="Search icon"
-															/>
-														) : null}
-														{item.title}
-													</li>
-												</Link>
-											</DialogClose>
+														aria-disabled="true"
+														className={`${itemClassName} text-fg-tertiary cursor-not-allowed`}>
+														{content}
+													</div>
+												) : (
+													<DialogClose asChild>
+														<Link
+															ref={(el) => {
+																itemRefs.current[globalIndex] = el
+															}}
+															className={`${itemClassName} hover:bg-text/4 cursor-pointer`}
+															href={item.url}
+															target={item.isExternal ? "_blank" : "_self"}>
+															{content}
+														</Link>
+													</DialogClose>
+												)}
+											</li>
 										)
 									})}
 								</ul>

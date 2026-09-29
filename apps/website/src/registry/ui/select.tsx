@@ -58,22 +58,16 @@ export type SelectDividerProps = React.ComponentProps<
 const SelectContext = React.createContext<SelectContextType | null>(null)
 
 const selectTriggerVariants = cva(
-	`
-    flex bg-bg w-full items-center outline-none border border-border shadow-xs shadow-black/5 transition-shadow 
-    text-fg data-placeholder:text-fg-tertiary focus-visible:ring-primary-focus  focus-visible:border-primary focus-visible:outline-none focus-visible:ring-2 
-    disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 
-    aria-invalid:border-error aria-invalid:ring-error
-    [[data-invalid=true]_&]:border-error [[data-invalid=true]_&]:ring-error
-  `,
+	`bg-bg border-border text-fg data-placeholder:text-fg-tertiary focus-visible:ring-primary-focus focus-visible:border-primary aria-invalid:border-error aria-invalid:ring-error [[data-invalid=true]_&]:border-error [[data-invalid=true]_&]:ring-error flex w-full items-center border shadow-xs shadow-black/5 transition-shadow outline-none focus-visible:ring-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1`,
 	{
 		variants: {
 			size: {
-				"28": "gap-0.5 h-7 px-2 py-1.5 text-[13px] rounded-md",
-				"32": "gap-0.5 h-8 px-2 py-1.5 text-sm rounded-md",
-				"36": "gap-1 h-9 px-2.5 py-2 text-sm rounded-lg",
-				"40": "gap-1 h-10 px-3 py-2.5 text-sm rounded-lg",
-				"44": "gap-1 h-11 px-3 py-2.5 text-base rounded-lg",
-				"48": "gap-1 h-12 px-3.5 py-3 text-base rounded-lg",
+				"28": "h-7 gap-0.5 rounded-md px-2 py-1.5 text-[13px]",
+				"32": "h-8 gap-0.5 rounded-md px-2 py-1.5 text-sm",
+				"36": "h-9 gap-1 rounded-lg px-2.5 py-2 text-sm",
+				"40": "h-10 gap-1 rounded-lg px-3 py-2.5 text-sm",
+				"44": "h-11 gap-1 rounded-lg px-3 py-2.5 text-base",
+				"48": "h-12 gap-1 rounded-lg px-3.5 py-3 text-base",
 			},
 		},
 		defaultVariants: {

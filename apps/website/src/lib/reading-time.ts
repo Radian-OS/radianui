@@ -7,7 +7,7 @@
  */
 export function calculateReadingTime(
 	source?: string,
-	wordsPerMinute = 200
+	wordsPerMinute = 300
 ): string {
 	if (!source) return "1 min read"
 

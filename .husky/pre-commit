@@ -28,8 +28,8 @@ echo "$STAGED_FILES" | grep -q "^apps/website/" && {
         exit 1
     }
     
-    # Run Prettier only on staged website files
-    echo "🎨 Formatting code with Prettier for website..."
+    # Run Oxfmt only on staged website files
+    echo "🎨 Formatting code with Oxfmt for website..."
     pnpm --filter website run format:write || exit 1
     
     # If on main branch, generate component JSON for website
@@ -44,7 +44,7 @@ echo "$STAGED_FILES" | grep -q "^apps/website/" && {
         }
     }
     
-    # Re-stage website files that were modified by Prettier
+    # Re-stage website files that were modified by Oxfmt
     printf '%s\n' "$STAGED_FILES" | while IFS= read -r FILE; do
         [ -z "$FILE" ] && continue
 

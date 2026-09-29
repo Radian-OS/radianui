@@ -1,0 +1,159 @@
+---
+title: "Why We Migrated from ESLint to Oxlint"
+description: "Learn why we moved from ESLint to Oxlint, how we checked rule coverage, and what to consider before migrating your JavaScript or TypeScript project."
+date: "2026-09-28"
+dateModified: "2026-09-28"
+card: "Guides"
+image: "/og/static-og.png"
+seoImages:
+  - "/og/static-og.png"
+lead:
+  - "ESLint had been part of the project from the beginning. It was familiar, flexible, and backed by a huge plugin ecosystem. But as the codebase grew, linting became slow enough to interrupt local development and add noticeable time to CI."
+  - "We moved to Oxlint to make that feedback loop faster. The goal was not to prove that one tool is always better than the other. It was to keep the checks we relied on while making linting feel almost invisible."
+author:
+  - name: "Editorial Team"
+---
+
+## ESLint Wasn't the Problem
+
+ESLint is still one of the most capable tools in the JavaScript ecosystem. It's rules, plugins, integrations and years of community knowledge make it a dependable choice for projects of every size.
+
+Our problem was the feedback loop. As the project expanded, the lint step became slow enough that developers were more likely to wait for CI instead of running it locally. CI also spent time on checks that should have returned almost immediately.
+
+That created a simple problem: the tool was useful but people were using it less often because it felt expensive to run. Adding more plugins improved coverage, yet also made the lint step heavier. We wanted to keep useful static checks without making developers wait for them.
+
+## What Oxlint Changes
+
+[Oxlint](https://oxc.rs/docs/guide/usage/linter) is a JavaScript and TypeScript linter built on the Oxc toolchain. It is written in Rust and designed to process large codebases with much less runtime overhead than a traditional Node.js linting setup.
+
+The practical difference is speed. Oxlint's official benchmarks report that it can be **50 to 100 times faster than ESLint**, although the result for any project depends on its size, rules, plugins and cache state. We did not treat that headline number as a promise. What mattered was that linting became fast enough to run as a normal part of development again.
+
+Oxlint also includes native rule sets for common JavaScript and TypeScript workflows. React, Next.js, import, Unicorn, and JSX accessibility rules are among the available built-in plugins, so many projects can cover their everyday checks without installing a separate package for every rule family.
+
+## Why We Didn't Switch in One Step
+
+A faster linter is only useful if it still catches the problems your team cares about. Before removing ESLint, we had to answer a few questions.
+
+- **Does every important rule have an equivalent?** Similar rule names do not always mean identical behavior or options.
+- **What happens to framework-specific checks?** React, Next.js and accessibility rules needed deliberate verification.
+- **Do we rely on custom plugins?** Oxlint supports ESLint-compatible JavaScript plugins, but that support is still evolving and should be tested against the plugins a project actually uses.
+- **Do we need type-aware rules?** Oxlint supports type-aware linting through an additional package, but it is a separate capability with its own TypeScript requirements.
+- **Are disabled rules still intentional?** A migration is a good time to review old exceptions instead of copying them forever.
+
+This rule audit was more important than converting the configuration file. A generated config can save time, but it cannot decide which protections are essential for your codebase.
+
+## How We Migrated
+
+We treated the move as a short, staged migration rather than a one-command replacement.
+
+1. **Installed Oxlint beside ESLint.** Oxlint became the default fast pass, while the old ESLint command remained available as a fallback.
+2. **Translated the existing configuration.** We mapped the rule sets, ignore patterns, and project-specific exceptions that still mattered.
+3. **Compared the results.** We ran both tools over the repository and investigated meaningful differences instead of assuming that silence meant equivalent coverage.
+4. **Adjusted the Oxlint config.** We enabled the TypeScript, React, Next.js, Unicorn, and Oxc plugins used by the website and documented the exceptions the project needed.
+5. **Removed ESLint after validation.** Once the new setup covered our requirements, we deleted the temporary ESLint script, config, and dependencies.
+
+The final script is intentionally small:
+
+```json title="apps/website/package.json"
+{
+	"scripts": {
+		"lint": "oxlint"
+	}
+}
+```
+
+The configuration stays explicit about the plugins and paths used by the project:
+
+```json title="apps/website/.oxlintrc.json"
+{
+	"plugins": ["typescript", "react", "nextjs", "unicorn", "oxc"],
+	"ignorePatterns": ["node_modules/**", ".next/**", "out/**", "build/**"]
+}
+```
+
+The result is a simpler lint command with fewer lint-related dependencies. More importantly, it gives developers feedback quickly enough that running lint locally no longer feels like a separate task.
+
+## A Simple Migration Path
+
+If you want to try the same approach, start by adding Oxlint without deleting ESLint:
+
+```bash
+pnpm add -D oxlint
+pnpm oxlint
+```
+
+Projects using an ESLint flat config can use the official migration tool to generate an initial Oxlint configuration:
+
+```bash
+pnpm dlx @oxlint/migrate
+```
+
+Then compare the output of both linters. Check unsupported rules, differences in options, ignore patterns, framework plugins, and any custom rules your team owns. The [official migration guide](https://oxc.rs/docs/guide/usage/linter/migrate-from-eslint) recommends running both tools during an incremental migration when some required rules are not yet covered.
+
+Once the results match your requirements, update the project script:
+
+```json
+{
+	"scripts": {
+		"lint": "oxlint"
+	}
+}
+```
+
+If you still need a few ESLint-only rules, keep a focused fallback instead:
+
+```json
+{
+	"scripts": {
+		"lint": "oxlint && eslint ."
+	}
+}
+```
+
+In that setup, [`eslint-plugin-oxlint`](https://oxc.rs/docs/guide/usage/linter/migrate-from-eslint#disabling-overlapping-rules-in-eslint) can disable rules already handled by Oxlint so the two tools do not report the same issue twice.
+
+## Should You Switch?
+
+Oxlint is worth considering when:
+
+- Linting is a noticeable bottleneck locally or in CI.
+- Your project is mainly JavaScript, TypeScript, JSX or TSX.
+- Most of your checks come from common rule sets.
+- Your team wants a fast first pass that developers will run frequently.
+
+Staying with ESLint may be the better choice for now when:
+
+- Your project depends on a specialized plugin that does not work in Oxlint.
+- You have many custom rules with behavior that is difficult to reproduce.
+- Your current lint step is already fast and stable.
+- Migrating would create more maintenance work than it removes.
+
+There is no need to turn the choice into an all-or-nothing debate. Running Oxlint first and keeping ESLint only for the remaining checks is a reasonable transition strategy.
+
+## Frequently Asked Questions
+
+### Is Oxlint a complete replacement for ESLint?
+
+It can be for many projects, but not automatically for every project. Oxlint covers hundreds of rules and several popular plugin families, while its JavaScript plugin compatibility continues to mature. Audit the rules your project enables before removing ESLint.
+
+### How much faster is Oxlint?
+
+Oxlint reports 50–100x improvements in its own benchmarks. Real-world gains vary with repository size, enabled rules, plugin use, and whether ESLint is running with a warm cache. Measure both tools in your own CI environment before setting expectations.
+
+### Does Oxlint support React and TypeScript?
+
+Yes. Oxlint parses JavaScript, TypeScript, JSX, and TSX, and it includes native React and TypeScript rule sets. Enable the plugins and rules you need in your configuration rather than assuming every available rule runs by default.
+
+### What about accessibility rules?
+
+Oxlint includes a built-in `jsx-a11y` plugin with many familiar accessibility rules. Rule coverage and behavior can still differ from an existing ESLint setup, especially when custom components are mapped to native elements. Compare the [available plugin coverage](https://oxc.rs/docs/guide/usage/linter/plugins) before removing your old checks.
+
+### Can I migrate my ESLint config automatically?
+
+The `@oxlint/migrate` package can convert supported ESLint flat configs and preserve many rules, overrides, globals, and ignore patterns. Legacy `.eslintrc` configurations may need to be converted to a flat config first or migrated manually.
+
+## The Takeaway
+
+We migrated because linting had become slow enough to work against the habit it was supposed to encourage. Oxlint shortened that feedback loop and let us simplify the final setup, but the successful part of the migration was not the package swap. It was checking rule coverage, comparing results, and removing the old tool only after the new one met the project's needs.
+
+If linting is already fast and your ESLint setup gives you exactly the coverage you need, there is no urgent reason to change it. If linting has become something your team avoids running, Oxlint is worth testing. Start with both, measure the difference, and migrate only as far as your rule coverage allows.

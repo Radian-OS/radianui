@@ -15,24 +15,16 @@ export type InputWrapperProps = React.ComponentProps<"div"> &
 	VariantProps<typeof inputWrapperVariants>
 
 const inputVariants = cva(
-	`
-	flex w-full items-center bg-bg border border-alpha transition-[color,box-shadow] text-fg placeholder:text-fg-tertiary 
-	focus-visible:ring-primary-focus  focus-visible:border-primary focus-visible:outline-none focus-visible:ring-2   
-	disabled:cursor-not-allowed disabled:opacity-60 disabled:text-fg-disabled disabled:bg-fill2-alpha
-	[&[readonly]]:bg-fill1 [&[readonly]]:cursor-not-allowed
-	file:h-full [&[type=file]]:py-0 file:border-solid file:border-alpha file:bg-transparent 
-	file:font-medium file:not-italic file:text-fg file:p-0 file:border-0 file:border-e
-	aria-invalid:border-error aria-invalid:ring-error-focus
-  `,
+	`bg-bg border-alpha text-fg placeholder:text-fg-tertiary focus-visible:ring-primary-focus focus-visible:border-primary disabled:text-fg-disabled disabled:bg-fill2-alpha [&[readonly]]:bg-fill1 file:border-alpha file:text-fg aria-invalid:border-error aria-invalid:ring-error-focus flex w-full items-center border transition-[color,box-shadow] file:h-full file:border-0 file:border-e file:border-solid file:bg-transparent file:p-0 file:font-medium file:not-italic focus-visible:ring-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-60 [&[readonly]]:cursor-not-allowed [&[type=file]]:py-0`,
 	{
 		variants: {
 			size: {
-				"28": "h-7 text-[13px] px-2 rounded-md file:pe-1.5 file:me-1.5",
-				"32": "h-8 text-sm px-2 rounded-md file:pe-3 file:me-3",
-				"36": "h-9 text-sm px-2.5 rounded-lg file:pe-2.5 file:me-2.5",
-				"40": "h-10 text-sm px-3 rounded-lg file:pe-3 file:me-3",
-				"44": "h-11 text-base px-3 rounded-lg file:pe-3.5 file:me-3.5",
-				"48": "h-12 text-base px-3.5 rounded-lg file:pe-3.5 file:me-3.5",
+				"28": "h-7 rounded-md px-2 text-[13px] file:me-1.5 file:pe-1.5",
+				"32": "h-8 rounded-md px-2 text-sm file:me-3 file:pe-3",
+				"36": "h-9 rounded-lg px-2.5 text-sm file:me-2.5 file:pe-2.5",
+				"40": "h-10 rounded-lg px-3 text-sm file:me-3 file:pe-3",
+				"44": "h-11 rounded-lg px-3 text-base file:me-3.5 file:pe-3.5",
+				"48": "h-12 rounded-lg px-3.5 text-base file:me-3.5 file:pe-3.5",
 			},
 		},
 		defaultVariants: {
@@ -42,20 +34,20 @@ const inputVariants = cva(
 )
 
 const inputAddonVariants = cva(
-	"flex items-center shrink-0 justify-center bg-elevation-level1 border border-alpha shadow-xs shadow-[rgba(0,0,0,0.05)] text-fg-secondary [&_svg]:text-fg-tertiary",
+	"bg-elevation-level1 border-alpha text-fg-secondary [&_svg]:text-fg-tertiary flex shrink-0 items-center justify-center border shadow-xs shadow-[rgba(0,0,0,0.05)]",
 	{
 		variants: {
 			size: {
-				"28": "h-7 min-w-7 text-[13px]  px-2 rounded-md [&_svg:not([class*=size-])]:size-4",
-				"32": "h-8 min-w-8 text-sm px-2  rounded-md [&_svg:not([class*=size-])]:size-4.5",
-				"36": "h-9 min-w-9 text-sm px-2.5 rounded-lg [&_svg:not([class*=size-])]:size-5",
-				"40": "h-10 min-w-10 text-sm px-3 rounded-lg [&_svg:not([class*=size-])]:size-5",
-				"44": "h-11 min-w-11 text-base px-3 rounded-lg [&_svg:not([class*=size-])]:size-5",
-				"48": "h-12 min-w-12 text-base px-3.5 rounded-lg [&_svg:not([class*=size-])]:size-5",
+				"28": "h-7 min-w-7 rounded-md px-2 text-[13px] [&_svg:not([class*=size-])]:size-4",
+				"32": "h-8 min-w-8 rounded-md px-2 text-sm [&_svg:not([class*=size-])]:size-4.5",
+				"36": "h-9 min-w-9 rounded-lg px-2.5 text-sm [&_svg:not([class*=size-])]:size-5",
+				"40": "h-10 min-w-10 rounded-lg px-3 text-sm [&_svg:not([class*=size-])]:size-5",
+				"44": "h-11 min-w-11 rounded-lg px-3 text-base [&_svg:not([class*=size-])]:size-5",
+				"48": "h-12 min-w-12 rounded-lg px-3.5 text-base [&_svg:not([class*=size-])]:size-5",
 			},
 			mode: {
 				default: "",
-				icon: "px-0 justify-center",
+				icon: "justify-center px-0",
 			},
 		},
 		defaultVariants: {
@@ -66,23 +58,7 @@ const inputAddonVariants = cva(
 )
 
 const inputGroupVariants = cva(
-	`
-	flex items-stretch
-	[&_:is([data-slot=input],[data-slot=currency-input])]:grow
-	[&_[data-slot=input-addon]:has(+:is([data-slot=input],[data-slot=currency-input]))]:rounded-e-none [&_[data-slot=input-addon]:has(+:is([data-slot=input],[data-slot=currency-input]))]:border-e-0
-	[&_[data-slot=input-addon]:has(+[data-slot=datefield])]:rounded-e-none [&_[data-slot=input-addon]:has(+[data-slot=datefield])]:border-e-0 
-	[&_:is([data-slot=input],[data-slot=currency-input])+[data-slot=input-addon]]:rounded-s-none [&_:is([data-slot=input],[data-slot=currency-input])+[data-slot=input-addon]]:border-s-0
-	[&_[data-slot=input-addon]:has(+[data-slot=button])]:rounded-e-none
-	[&_:is([data-slot=input],[data-slot=currency-input])+[data-slot=button]]:rounded-s-none
-	[&_[data-slot=button]+:is([data-slot=input],[data-slot=currency-input])]:rounded-s-none
-	[&_[data-slot=input-addon]+:is([data-slot=input],[data-slot=currency-input])]:rounded-s-none
-	[&_[data-slot=input-addon]+[data-slot=datefield]]:[&_:is([data-slot=input],[data-slot=currency-input])]:rounded-s-none
-	[&_[data-slot=datefield]:has(+[data-slot=input-addon])]:[&_:is([data-slot=input],[data-slot=currency-input])]:rounded-e-none
-	[&_:is([data-slot=input],[data-slot=currency-input]):has(+[data-slot=button])]:rounded-e-none
-	[&_:is([data-slot=input],[data-slot=currency-input]):has(+[data-slot=input-addon])]:rounded-e-none
-	[&_[data-slot=datefield]]:grow
-	[&_[data-slot=datefield]+[data-slot=input-addon]]:rounded-s-none [&_[data-slot=datefield]+[data-slot=input-addon]]:border-s-0
-  `,
+	`flex items-stretch [&_:is([data-slot=input],[data-slot=currency-input])]:grow [&_:is([data-slot=input],[data-slot=currency-input])+[data-slot=button]]:rounded-s-none [&_:is([data-slot=input],[data-slot=currency-input])+[data-slot=input-addon]]:rounded-s-none [&_:is([data-slot=input],[data-slot=currency-input])+[data-slot=input-addon]]:border-s-0 [&_:is([data-slot=input],[data-slot=currency-input]):has(+[data-slot=button])]:rounded-e-none [&_:is([data-slot=input],[data-slot=currency-input]):has(+[data-slot=input-addon])]:rounded-e-none [&_[data-slot=button]+:is([data-slot=input],[data-slot=currency-input])]:rounded-s-none [&_[data-slot=datefield]]:grow [&_[data-slot=datefield]+[data-slot=input-addon]]:rounded-s-none [&_[data-slot=datefield]+[data-slot=input-addon]]:border-s-0 [&_[data-slot=datefield]:has(+[data-slot=input-addon])]:[&_:is([data-slot=input],[data-slot=currency-input])]:rounded-e-none [&_[data-slot=input-addon]+:is([data-slot=input],[data-slot=currency-input])]:rounded-s-none [&_[data-slot=input-addon]+[data-slot=datefield]]:[&_:is([data-slot=input],[data-slot=currency-input])]:rounded-s-none [&_[data-slot=input-addon]:has(+:is([data-slot=input],[data-slot=currency-input]))]:rounded-e-none [&_[data-slot=input-addon]:has(+:is([data-slot=input],[data-slot=currency-input]))]:border-e-0 [&_[data-slot=input-addon]:has(+[data-slot=button])]:rounded-e-none [&_[data-slot=input-addon]:has(+[data-slot=datefield])]:rounded-e-none [&_[data-slot=input-addon]:has(+[data-slot=datefield])]:border-e-0`,
 	{
 		variants: {},
 		defaultVariants: {},
@@ -90,52 +66,19 @@ const inputGroupVariants = cva(
 )
 
 const inputWrapperVariants = cva(
-	`
-	flex items-center gap-1.5
-	has-[:focus-visible]:ring-primary-accent
-	has-[:focus-visible]:border-primary
-	has-[:focus-visible]:outline-none 
-	has-[:focus-visible]:ring-2
-
-	
-	[&_[data-slot=datefield]]:grow 
-	[&_:is([data-slot=input],[data-slot=currency-input])]:rounded-none
-	[&_:is([data-slot=input],[data-slot=currency-input])]:data-focus-within:ring-transparent  
-	[&_:is([data-slot=input],[data-slot=currency-input])]:data-focus-within:ring-0
-	[&_:is([data-slot=input],[data-slot=currency-input])]:data-focus-within:border-0
-	[&_:is([data-slot=input],[data-slot=currency-input])]:flex 
-	[&_:is([data-slot=input],[data-slot=currency-input])]:w-full 
-    [&_:is([data-slot=input],[data-slot=currency-input])]:outline-none 
-    [&_:is([data-slot=input],[data-slot=currency-input])]:transition-colors 
-	[&_:is([data-slot=input],[data-slot=currency-input])]:text-fg
-	[&_:is([data-slot=input],[data-slot=currency-input])]:placeholder:text-fg-tertiary 
-	[&_:is([data-slot=input],[data-slot=currency-input])]:p-0
-	[&_:is([data-slot=input],[data-slot=currency-input])]:border-0 
-	[&_:is([data-slot=input],[data-slot=currency-input])]:bg-transparent 
-	[&_:is([data-slot=input],[data-slot=currency-input])]:shadow-none 
-	[&_:is([data-slot=input],[data-slot=currency-input])]:focus-visible:ring-0 
-	[&_:is([data-slot=input],[data-slot=currency-input])]:h-auto 
-	[&_:is([data-slot=input],[data-slot=currency-input])]:disabled:cursor-not-allowed
-	[&_:is([data-slot=input],[data-slot=currency-input])]:disabled:opacity-50
-
-	[&_svg]:text-fg-tertiary
-	[&_svg]:shrink-0
-
-	has-[[aria-invalid=true]]:border-error
-	has-[[aria-invalid=true]]:ring-error-accent   
-  `,
+	`has-[:focus-visible]:ring-primary-accent has-[:focus-visible]:border-primary [&_:is([data-slot=input],[data-slot=currency-input])]:text-fg [&_:is([data-slot=input],[data-slot=currency-input])]:placeholder:text-fg-tertiary [&_svg]:text-fg-tertiary has-[[aria-invalid=true]]:border-error has-[[aria-invalid=true]]:ring-error-accent flex items-center gap-1.5 has-[:focus-visible]:ring-2 has-[:focus-visible]:outline-none [&_:is([data-slot=input],[data-slot=currency-input])]:flex [&_:is([data-slot=input],[data-slot=currency-input])]:h-auto [&_:is([data-slot=input],[data-slot=currency-input])]:w-full [&_:is([data-slot=input],[data-slot=currency-input])]:rounded-none [&_:is([data-slot=input],[data-slot=currency-input])]:border-0 [&_:is([data-slot=input],[data-slot=currency-input])]:bg-transparent [&_:is([data-slot=input],[data-slot=currency-input])]:p-0 [&_:is([data-slot=input],[data-slot=currency-input])]:shadow-none [&_:is([data-slot=input],[data-slot=currency-input])]:transition-colors [&_:is([data-slot=input],[data-slot=currency-input])]:outline-none [&_:is([data-slot=input],[data-slot=currency-input])]:focus-visible:ring-0 [&_:is([data-slot=input],[data-slot=currency-input])]:disabled:cursor-not-allowed [&_:is([data-slot=input],[data-slot=currency-input])]:disabled:opacity-50 [&_:is([data-slot=input],[data-slot=currency-input])]:data-focus-within:border-0 [&_:is([data-slot=input],[data-slot=currency-input])]:data-focus-within:ring-0 [&_:is([data-slot=input],[data-slot=currency-input])]:data-focus-within:ring-transparent [&_[data-slot=datefield]]:grow [&_svg]:shrink-0`,
 	{
 		variants: {
 			size: {
-				"28": "gap-1.5 h-7 [&_svg:not([class*=size-])]:size-4",
-				"32": "gap-2 h-8 [&_svg:not([class*=size-])]:size-4.5",
-				"36": "gap-2 h-9 [&_svg:not([class*=size-])]:size-5",
-				"40": "gap-2 h-10 [&_svg:not([class*=size-])]:size-5",
-				"44": "gap-2 h-11 [&_svg:not([class*=size-])]:size-5",
-				"48": "gap-2 h-12 [&_svg:not([class*=size-])]:size-5",
+				"28": "h-7 gap-1.5 [&_svg:not([class*=size-])]:size-4",
+				"32": "h-8 gap-2 [&_svg:not([class*=size-])]:size-4.5",
+				"36": "h-9 gap-2 [&_svg:not([class*=size-])]:size-5",
+				"40": "h-10 gap-2 [&_svg:not([class*=size-])]:size-5",
+				"44": "h-11 gap-2 [&_svg:not([class*=size-])]:size-5",
+				"48": "h-12 gap-2 [&_svg:not([class*=size-])]:size-5",
 			},
 			disabled: {
-				true: "cursor-not-allowed opacity-60 bg-fill1 has-[:focus-visible]:ring-0 has-[:focus-visible]:border-alpha [&_svg]:text-fg-tertiary",
+				true: "bg-fill1 has-[:focus-visible]:border-alpha [&_svg]:text-fg-tertiary cursor-not-allowed opacity-60 has-[:focus-visible]:ring-0",
 				false: "",
 			},
 		},

@@ -15,7 +15,7 @@
  */
 import { promises as fs } from "fs"
 import path from "path"
-import prettier from "prettier"
+import { format as formatCode } from "oxfmt"
 import { ICON_SLOT_REPLACEMENTS } from "@/registry/icon/icon-slot"
 
 // ---------------------------------------------------------------------------
@@ -44,14 +44,33 @@ async function writeIfChanged(filePath: string, content: string) {
 	return true
 }
 
-let prettierConfigPromise: Promise<prettier.Options | null> | null = null
+let oxfmtConfigPromise: Promise<Record<string, unknown>> | null = null
+
+async function loadOxfmtConfig(): Promise<Record<string, unknown>> {
+	const candidates = [
+		path.join(process.cwd(), ".oxfmtrc.json"),
+		path.join(process.cwd(), "../../.oxfmtrc.json"),
+	]
+	for (const candidate of candidates) {
+		try {
+			const raw = await fs.readFile(candidate, "utf8")
+			return JSON.parse(raw)
+		} catch {
+			// Continue
+		}
+	}
+	return {}
+}
 
 async function formatSource(content: string, filePath: string) {
-	prettierConfigPromise ??= prettier.resolveConfig(
-		path.join(process.cwd(), "package.json")
-	)
-	const prettierConfig = (await prettierConfigPromise) ?? {}
-	return prettier.format(content, { ...prettierConfig, filepath: filePath })
+	oxfmtConfigPromise ??= loadOxfmtConfig()
+	const config = await oxfmtConfigPromise
+	try {
+		const res = await formatCode(filePath, content, config)
+		return res.code ?? content
+	} catch {
+		return content
+	}
 }
 
 // ---------------------------------------------------------------------------

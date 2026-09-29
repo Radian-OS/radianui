@@ -111,22 +111,24 @@ export function ResourceFaq({
 						design or application.
 					</p>
 				</div>
-				<Accordion
-					type="single"
-					indicator="plus-minus"
-					className="w-full"
-					collapsible>
-					{items.map((item, index) => (
-						<AccordionItem value={`${index + 1}`} key={item.question}>
-							<AccordionTrigger className="data-[state=closed]:bg-fill1 data-[state=open]:bg-bg">
-								{item.question}
-							</AccordionTrigger>
-							<AccordionContent className="group-data-[state=closed]:bg-fill1 group-data-[state=open]:bg-bg">
-								{item.answer}
-							</AccordionContent>
-						</AccordionItem>
-					))}
-				</Accordion>
+				<div className="flex gap-1">
+					<Accordion
+						type="single"
+						indicator="plus-minus"
+						className="w-full"
+						collapsible>
+						{items.map((item, index) => (
+							<AccordionItem value={`${index + 1}`} key={item.question}>
+								<AccordionTrigger className="data-[state=open]:bg-bg text-base">
+									{item.question}
+								</AccordionTrigger>
+								<AccordionContent className="group-data-[state=open]:bg-bg text-base">
+									{item.answer}
+								</AccordionContent>
+							</AccordionItem>
+						))}
+					</Accordion>
+				</div>
 			</div>
 		</section>
 	)

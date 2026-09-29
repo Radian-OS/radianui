@@ -81,10 +81,9 @@ const LINKS: Link[] = [
 				release: "coming-soon",
 			},
 			{
-				href: "#",
+				href: "/resources/flags",
 				name: "UI Country Flags",
 				icon: <UICountryFlagsIcon />,
-				release: "coming-soon",
 			},
 			{
 				href: "#",
@@ -244,7 +243,7 @@ export default function FooterNavigation() {
 													? "noopener noreferrer"
 													: undefined
 											}>
-											{linkItem.icon && linkItem.icon}
+											{linkItem.icon}
 											{linkItem.name}
 											{linkItem.release ? (
 												<ReleaseBadge release={linkItem.release} />

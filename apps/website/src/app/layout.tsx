@@ -19,9 +19,25 @@ export const metadata: Metadata = {
 	metadataBase: new URL(websiteMetadata.url),
 	keywords: [...websiteMetadata.keywords],
 	icons: {
-		icon: "/favicon.ico",
-		shortcut: "/favicon-32x32.png",
-		apple: "/apple-touch-icon.png",
+		icon: [
+			{
+				url: "/favicon.ico",
+				type: "image/x-icon",
+				sizes: "16x16 32x32 48x48",
+			},
+			{ url: "/favicon-16x16.png", type: "image/png", sizes: "16x16" },
+			{ url: "/favicon-32x32.png", type: "image/png", sizes: "32x32" },
+			{ url: "/favicon-96x96.png", type: "image/png", sizes: "96x96" },
+		],
+		shortcut: {
+			url: "/favicon.ico",
+			type: "image/x-icon",
+		},
+		apple: {
+			url: "/apple-touch-icon.png",
+			type: "image/png",
+			sizes: "180x180",
+		},
 	},
 	openGraph: {
 		siteName: websiteMetadata.name,

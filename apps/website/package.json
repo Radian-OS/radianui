@@ -9,9 +9,9 @@
 		"start": "next start",
 		"db:generate": "drizzle-kit generate",
 		"db:migrate": "drizzle-kit migrate",
-		"format:write": "prettier --log-level silent --write \"**/*.{ts,tsx,mdx}\" --cache",
-		"format:check": "prettier --check \"**/*.{ts,tsx,mdx}\" --cache",
-		"lint": "eslint",
+		"format:write": "oxfmt --write \"**/*.{ts,tsx,mdx}\"",
+		"format:check": "oxfmt --check \"**/*.{ts,tsx,mdx}\"",
+		"lint": "oxlint",
 		"typecheck": "tsc --noEmit",
 		"postbuild": "next-sitemap --config next-sitemap.config.cjs",
 		"generate-build-artifacts": "pnpm run generate-registry-files && pnpm run build:llms",
@@ -133,6 +133,7 @@
 		"tailwindcss-animate": "^1.0.7",
 		"ts-morph": "^28.0.0",
 		"uni": "^0.0.6",
+		"unicode-emoji-json": "^0.9.0",
 		"unist-util-visit": "^5.1.0",
 		"vaul": "^1.1.2",
 		"web-vitals": "^6.2.1",
@@ -149,14 +150,13 @@
 		"@types/react": "^19.3.0",
 		"@types/react-dom": "^19.3.0",
 		"concurrently": "^10.0.5",
-		"eslint": "^10.10.0",
-		"eslint-config-next": "16.3.5",
 		"next-sitemap": "^4.2.3",
+		"oxfmt": "^0.68.0",
+		"oxlint": "^1.83.0",
 		"rehype-slug": "^6.0.0",
 		"tailwindcss": "^4.3.3",
 		"tsx": "^4.23.13",
 		"tw-animate-css": "^1.4.0",
-		"typescript": "^5.8.2",
-		"typescript-eslint": "^8.70.0"
+		"typescript": "^5.8.2"
 	}
 }
