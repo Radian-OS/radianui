@@ -3,7 +3,7 @@ export const navLinks = [
 	{ name: "Documentation", link: "/docs/getting-started/introduction" },
 	{
 		name: "UI Blocks",
-		link: process.env.NEXT_PUBLIC_BLOCKS_URL!,
+		link: process.env.NEXT_PUBLIC_BLOCKS_URL || "https://blocks.radianui.com",
 		isExternal: true,
 	},
 ]
