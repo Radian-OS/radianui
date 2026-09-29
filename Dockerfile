@@ -38,7 +38,7 @@ COPY --from=installer --chown=nextjs:nodejs /app/apps/website/.next/standalone .
 COPY --from=installer --chown=nextjs:nodejs /app/apps/website/.next/static ./apps/website/.next/static
 COPY --from=installer --chown=nextjs:nodejs /app/apps/website/public ./apps/website/public
 
-ENV PORT=300
+ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
 
 EXPOSE 3000
