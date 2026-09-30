@@ -10,7 +10,7 @@ import {
 
 export interface ResourceDocPoint {
 	title: string
-	description: string
+	description: ReactNode
 }
 
 export interface ResourceFaqItem {
@@ -43,6 +43,7 @@ interface ResourceTextSectionProps {
 	after?: ReactNode
 	visual?: ReactNode
 	wide?: boolean
+	pointSeparator?: string
 }
 
 export function ResourceTextSection({
@@ -54,6 +55,7 @@ export function ResourceTextSection({
 	after,
 	visual,
 	wide = false,
+	pointSeparator = "-",
 }: ResourceTextSectionProps) {
 	return (
 		<section
@@ -75,8 +77,8 @@ export function ResourceTextSection({
 						<ul className="flex list-disc flex-col gap-4 pl-5">
 							{points.map((point) => (
 								<li key={point.title}>
-									<span className="font-semibold">{point.title}</span> -{" "}
-									{point.description}
+									<span className="font-semibold">{point.title}</span>{" "}
+									{pointSeparator} {point.description}
 								</li>
 							))}
 						</ul>
@@ -92,10 +94,12 @@ export function ResourceTextSection({
 export function ResourceFaq({
 	id,
 	items,
+	title = "Frequently Asked Questions",
 	description = "Everything you need to know before adding these assets to your design or application.",
 }: {
 	id: string
 	items: ResourceFaqItem[]
+	title?: string
 	description?: string
 }) {
 	return (
@@ -113,7 +117,7 @@ export function ResourceFaq({
 							FAQ
 						</p>
 						<h2 id={id} className="heading-4 text-center">
-							Frequently Asked Questions
+							{title}
 						</h2>
 						<p className="text-fg-secondary text-center text-base font-normal md:w-[590px]">
 							{description}

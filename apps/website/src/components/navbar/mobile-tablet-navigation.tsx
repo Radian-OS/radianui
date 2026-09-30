@@ -174,7 +174,11 @@ export function MobileNavigation({
 											<>
 												<span>{tool.title}</span>
 												{tool.isComingSoon ? (
-													<Badge size="20" variant="soft" color="neutral">
+													<Badge
+														size="20"
+														variant="soft"
+														color="neutral"
+														className="text-fg-disabled">
 														Coming Soon
 													</Badge>
 												) : null}

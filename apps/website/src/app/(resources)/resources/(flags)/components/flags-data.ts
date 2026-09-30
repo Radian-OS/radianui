@@ -40,6 +40,24 @@ export const flagNames: FlagName[] = [...flagMetadata]
 const flagMetadataById = new Map<FlagName, FlagMetadata>(
 	flagMetadata.map((flag) => [flag.id, flag])
 )
+
+const flagDisplayNameOverrides: Partial<Record<FlagName, string>> = {
+	"cape-verde": "Cabo Verde",
+	"east-timor": "Timor-Leste",
+	"ivory-coast": "Côte d'Ivoire",
+	"republic-of-macedonia": "North Macedonia",
+	swaziland: "Eswatini",
+}
+
+const flagSearchAliases: Partial<Record<FlagName, readonly string[]>> = {
+	"cape-verde": ["Cape Verde"],
+	"czech-republic": ["Czechia"],
+	"east-timor": ["East Timor"],
+	"ivory-coast": ["Ivory Coast"],
+	"republic-of-macedonia": ["Macedonia", "Republic of Macedonia"],
+	swaziland: ["Swaziland"],
+}
+
 const phoneCountryCodes = new Set<string>(getPhoneCountries())
 
 function getFlagMetadata(name: FlagName) {
@@ -53,7 +71,7 @@ function getFlagMetadata(name: FlagName) {
 }
 
 export function getFlagDisplayName(name: FlagName) {
-	return getFlagMetadata(name).name
+	return flagDisplayNameOverrides[name] ?? getFlagMetadata(name).name
 }
 
 export function getFlagCountryCodes(name: FlagName): readonly string[] {
@@ -87,9 +105,11 @@ export function getFlagSearchTerms(name: FlagName) {
 	return [
 		metadata.id,
 		metadata.name,
+		getFlagDisplayName(name),
 		metadata.cdnName,
 		...metadata.codes,
 		...getFlagCallingCodes(name),
+		...(flagSearchAliases[name] ?? []),
 	]
 }
 

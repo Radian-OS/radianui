@@ -49,6 +49,7 @@ export default function FlagUseCasesMarquee() {
 			<InfiniteScroll
 				duration={60}
 				pauseOnHover={false}
+				hideClonesFromAssistiveTechnology
 				className="[--gap:2rem]">
 				{useCasePreviews.map((preview) => (
 					<Card key={preview.light} className={previewClassName}>

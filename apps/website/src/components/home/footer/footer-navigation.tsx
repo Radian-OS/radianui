@@ -75,15 +75,15 @@ const LINKS: Link[] = [
 				icon: <UIAvatarIcon />,
 			},
 			{
+				href: "/resources/flags",
+				name: "UI Country Flags",
+				icon: <UICountryFlagsIcon />,
+			},
+			{
 				href: "#",
 				name: "Popular Brand Logos",
 				icon: <PopularBrandLogosIcon />,
 				release: "coming-soon",
-			},
-			{
-				href: "/resources/flags",
-				name: "UI Country Flags",
-				icon: <UICountryFlagsIcon />,
 			},
 			{
 				href: "#",
