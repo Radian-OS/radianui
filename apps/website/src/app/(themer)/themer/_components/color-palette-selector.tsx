@@ -144,11 +144,11 @@ function ColorBlock({
 			title: "Pastel",
 			items: [
 				{
-					label: `${color.name} • Lighter`,
+					label: "--color-primary-accent",
 					value: color.cssVars.light["--color-primary-accent"],
 				},
 				{
-					label: `${color.name} • Light`,
+					label: "--color-primary-focus",
 					value: color.cssVars.light["--color-primary-focus"],
 				},
 			],
@@ -157,16 +157,16 @@ function ColorBlock({
 			title: "Mid-Tone",
 			items: [
 				{
-					label: `${color.name} • Border`,
+					label: "--color-primary-border",
 					value: color.cssVars.light["--color-primary-border"],
 				},
 				{
-					label: color.name,
+					label: "--color-primary",
 					value: color.cssVars.light["--color-primary"],
 					badge: "Base",
 				},
 				{
-					label: `${color.name} • Dark`,
+					label: "--color-primary-hover",
 					value: color.cssVars.light["--color-primary-hover"],
 				},
 			],
@@ -175,8 +175,12 @@ function ColorBlock({
 			title: "Deep",
 			items: [
 				{
-					label: `${color.name} • Darker`,
+					label: "--color-primary-text",
 					value: color.cssVars.light["--color-primary-text"],
+				},
+				{
+					label: "--color-primary-fg",
+					value: color.cssVars.light["--color-primary-fg"],
 				},
 			],
 		},

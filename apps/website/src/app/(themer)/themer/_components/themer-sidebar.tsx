@@ -429,29 +429,34 @@ export function ThemerSidebar({
 											const shades = [
 												{
 													id: `${baseId}-accent`,
-													label: "Accent (Lightest)",
+													label: `--color-${baseId}-accent`,
 													suffix: "-accent",
 												},
 												{
 													id: `${baseId}-focus`,
-													label: "Focus",
+													label: `--color-${baseId}-focus`,
 													suffix: "-focus",
 												},
 												{
 													id: `${baseId}-border`,
-													label: "Border",
+													label: `--color-${baseId}-border`,
 													suffix: "-border",
 												},
-												{ id: baseId, label: "Base", suffix: "" },
+												{ id: baseId, label: `--color-${baseId}`, suffix: "" },
 												{
 													id: `${baseId}-hover`,
-													label: "Hover",
+													label: `--color-${baseId}-hover`,
 													suffix: "-hover",
 												},
 												{
 													id: `${baseId}-text`,
-													label: "Text (Darkest)",
+													label: `--color-${baseId}-text`,
 													suffix: "-text",
+												},
+												{
+													id: `${baseId}-fg`,
+													label: `--color-${baseId}-fg`,
+													suffix: "-fg",
 												},
 											]
 

@@ -125,10 +125,8 @@ export function generateCustomColorShades(
 	// Calculate primary, avoiding out of gamut colors
 	const primaryC = fitChroma(L, C, H)
 
-	// Generate FG color. If luminance is > 0.45, use dark text (#111), else white (#fff).
-	// We'll return it as an oklch value for consistency.
 	const luminance = relLuminance(L, primaryC, H)
-	const isLight = luminance > 0.45
+	const isLight = luminance > 0.62
 	// #111 = approx oklch(0.2 0 0)
 	// #fff = approx oklch(1 0 0)
 	const fg = isLight ? "oklch(0.2 0 0)" : "oklch(1 0 0)"
