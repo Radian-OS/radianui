@@ -242,6 +242,12 @@ export const RESOURCE_ITEMS: NavigationItem[] = [
 		resourceIcon: "avatar",
 	},
 	{
+		title: "Country Flags",
+		description: "Flags from around the world.",
+		url: "/resources/flags",
+		resourceIcon: "flags",
+	},
+	{
 		title: "Emoji",
 		description: "A complete emoji collection.",
 		url: "/resources/emoji",
@@ -264,12 +270,6 @@ export const RESOURCE_ITEMS: NavigationItem[] = [
 		resourceIcon: "file-format",
 		isComingSoon: true,
 		disabled: true,
-	},
-	{
-		title: "Country Flags",
-		description: "Flags from around the world.",
-		url: "/resources/flags",
-		resourceIcon: "flags",
 	},
 	{
 		title: "Logo Generator",

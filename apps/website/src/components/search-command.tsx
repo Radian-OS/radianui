@@ -105,7 +105,11 @@ export default function SearchCommand({
 													<span className="truncate">{item.title}</span>
 												</span>
 												{item.isComingSoon ? (
-													<Badge size="20" variant="soft" color="neutral">
+													<Badge
+														size="20"
+														variant="soft"
+														color="neutral"
+														className="text-fg-disabled">
 														Coming Soon
 													</Badge>
 												) : null}

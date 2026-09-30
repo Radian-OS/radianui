@@ -34,7 +34,7 @@ const useCasePoints = [
 			"Show a user's country or region in profiles, directories, and member lists.",
 	},
 	{
-		title: "Sports & Global Events",
+		title: "Sports & global events",
 		description:
 			"Help users quickly identify countries competing in tournaments and global events.",
 	},
@@ -97,7 +97,7 @@ const developmentPoints = [
 	{
 		title: "Map flags from ISO country codes",
 		description:
-			"Use ISO 3166-1 alpha-2 codes (like INR, IT, US) as the single source of truth so assets and mappings never drift apart.",
+			"Use ISO 3166-1 alpha-2 codes (like NP, IT, US) as the single source of truth so assets and mappings never drift apart.",
 	},
 	{
 		title: "Load only what you need",
@@ -121,8 +121,13 @@ const developmentPoints = [
 	},
 	{
 		title: "Label flags for screen readers",
-		description:
-			"Use alt='Flag of Italy' or an aria-label. If the country name is already shown next to the flag, use an empty alt so it isn't announced twice.",
+		description: (
+			<>
+				Use <code>{'alt="Flag of Italy"'}</code> or an aria-label. If the
+				country name is already shown next to the flag, use an empty alt so it
+				isn't announced twice.
+			</>
+		),
 	},
 ]
 
@@ -168,6 +173,11 @@ const faqItems = [
 			"Yes. Besides sovereign countries, the collection includes the United Nations and a range of territories and regions, like Wales and the Åland Islands. Check the flag grid for the full list.",
 	},
 	{
+		question: "How should circular flag variants be made?",
+		answer:
+			"Crop the flag into a circle from the center and keep the most recognizable part of the design visible. Avoid stretching. Check flags with off-center details, and add a thin border to light flags so the edges don't disappear.",
+	},
+	{
 		question: "How do I make a flag selector accessible?",
 		answer:
 			"Give the control a visible country name, a programmatic label, keyboard navigation, and a selected state. Treat the flag itself as decorative when the name is already announced.",
@@ -176,11 +186,6 @@ const faqItems = [
 		question: "Should flags be used for language selection?",
 		answer:
 			"Usually not. A flag represents a country, not a language, and many languages are spoken in several countries. Use the language name (like 'Español') as the main label, and only add a flag as a supporting visual if it helps.",
-	},
-	{
-		question: "How do I make a flag selector accessible?",
-		answer:
-			"Never rely on the flag alone. Show the country name next to it, use alt text or an aria-label on each flag, make the list keyboard-navigable, and add search so users can find a country without scrolling.",
 	},
 ]
 
@@ -216,6 +221,7 @@ export default function FlagsDocs() {
 				eyebrow="Use cases"
 				title="How to Use Country Flags in Maps, Selectors, and Apps"
 				points={useCasePoints}
+				pointSeparator="–"
 				visual={<FlagUseCasesMarquee />}>
 				<p>
 					Country flag icons are a familiar visual in products with a global
@@ -229,7 +235,8 @@ export default function FlagsDocs() {
 				id="flag-design-heading"
 				eyebrow="Design"
 				title="Best Design Practices for Country Flag Icons and Images"
-				points={designPoints}>
+				points={designPoints}
+				pointSeparator="–">
 				<p>
 					Use the SVG and PNG flag assets in Figma, Sketch, Adobe tools, and
 					presentations. Whatever tool you pick, keep the flag design
@@ -242,7 +249,8 @@ export default function FlagsDocs() {
 				id="flag-development-heading"
 				eyebrow="Development"
 				title="Best Development Practices for Country Flag Components and Assets"
-				points={developmentPoints}>
+				points={developmentPoints}
+				pointSeparator="–">
 				<p>
 					For React, install the @radianui/flags npm package and use the flag
 					components directly in your app. Using another framework? Download the
@@ -252,7 +260,11 @@ export default function FlagsDocs() {
 				</p>
 			</ResourceTextSection>
 
-			<ResourceFaq id="flag-faq-heading" items={faqItems} />
+			<ResourceFaq
+				id="flag-faq-heading"
+				title="Country Flags FAQ: Icons, SVG, PNG, and Emojis"
+				items={faqItems}
+			/>
 
 			<ResourceLibraryCTA id="flag-cta-heading" />
 		</ResourceDocs>

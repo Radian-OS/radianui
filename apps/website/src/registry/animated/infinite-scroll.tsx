@@ -12,6 +12,7 @@ type InfiniteScrollProps = {
 	vertical?: boolean
 	className?: string
 	children?: React.ReactNode
+	hideClonesFromAssistiveTechnology?: boolean
 }
 
 const infiniteScrollX = css`
@@ -57,6 +58,7 @@ const InfiniteScroll = ({
 	paused = false,
 	className,
 	children,
+	hideClonesFromAssistiveTechnology = false,
 }: InfiniteScrollProps) => {
 	return (
 		<div
@@ -79,6 +81,9 @@ const InfiniteScroll = ({
 				.map((_, i) => (
 					<div
 						key={i}
+						aria-hidden={
+							hideClonesFromAssistiveTechnology && i > 0 ? true : undefined
+						}
 						style={paused ? { animationPlayState: "paused" } : undefined}
 						className={cn(
 							"flex shrink-0 justify-around [gap:var(--gap)]",

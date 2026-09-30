@@ -27,8 +27,6 @@ export const designTools = [
 		description: "Browse every available tool.",
 		url: "/docs/getting-started/resources",
 		icon: <ViewTools />,
-		isComingSoon: true,
-		disabled: true,
 	},
 ]
 
@@ -69,7 +67,8 @@ export function DesktopNavigation() {
 									{designTools.map((tool) => {
 										const content = (
 											<>
-												<div className="bg-primary-accent flex size-10 shrink-0 items-center justify-center rounded-lg">
+												<div
+													className={`${tool.disabled ? "bg-fill2 text-fg-disabled [&_path]:fill-current [&_rect]:fill-current" : "bg-primary-accent"} flex size-10 shrink-0 items-center justify-center rounded-lg`}>
 													{tool.icon}
 												</div>
 												<div className="flex flex-col">
@@ -79,12 +78,17 @@ export function DesktopNavigation() {
 															{tool.title}
 														</span>
 														{tool.isComingSoon ? (
-															<Badge variant="soft" color="neutral" size="20">
+															<Badge
+																variant="soft"
+																color="neutral"
+																size="20"
+																className="text-fg-disabled">
 																Coming Soon
 															</Badge>
 														) : null}
 													</div>
-													<span className="text-fg-secondary text-sm font-normal">
+													<span
+														className={`${tool.disabled ? "text-fg-disabled" : "text-fg-secondary"} text-sm font-normal`}>
 														{tool.description}
 													</span>
 												</div>

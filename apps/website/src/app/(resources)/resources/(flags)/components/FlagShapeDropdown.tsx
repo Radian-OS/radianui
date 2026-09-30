@@ -1,7 +1,7 @@
 "use client"
 
 import { useRef, useState } from "react"
-import { ChevronDown, Circle, RectangleHorizontal } from "lucide-react"
+import { ChevronDown } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/registry/ui/button"
 import {
@@ -70,13 +70,11 @@ export function FlagShapeDropdown({
 					<DropdownMenuRadioItem
 						value="round"
 						onSelect={() => handleValueChange("round")}>
-						<Circle className="text-fg-secondary size-4" />
 						<span className="flex-1 text-sm font-medium">Round</span>
 					</DropdownMenuRadioItem>
 					<DropdownMenuRadioItem
 						value="flat"
 						onSelect={() => handleValueChange("flat")}>
-						<RectangleHorizontal className="text-fg-secondary size-4" />
 						<span className="flex-1 text-sm font-medium">Flat</span>
 					</DropdownMenuRadioItem>
 				</DropdownMenuRadioGroup>
