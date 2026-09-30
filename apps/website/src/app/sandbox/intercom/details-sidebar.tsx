@@ -37,7 +37,7 @@ export function DetailsSidebar() {
 	}
 
 	return (
-		<aside className="border-border/60 bg-bg text-fg flex h-full w-72 shrink-0 flex-col border-l text-xs transition-colors select-none">
+		<aside className="border-border text-fg flex h-full w-72 shrink-0 flex-col border-l text-xs transition-colors select-none">
 			{/* Top Header: Details vs Copilot Tabs + Panel Actions */}
 			<div className="border-border/40 flex h-12 shrink-0 items-center justify-between border-b px-3">
 				<div className="flex items-center gap-1">
@@ -57,7 +57,6 @@ export function DetailsSidebar() {
 					<Button
 						type="button"
 						variant="ghost"
-						color={activeTab === "copilot" ? "primary" : "neutral"}
 						size="28"
 						onClick={() => setActiveTab("copilot")}
 						className={`rounded-md px-2.5 font-medium transition-colors ${

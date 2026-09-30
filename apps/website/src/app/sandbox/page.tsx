@@ -1,15 +1,8 @@
 import fs from "fs"
-import type { Metadata } from "next"
 import { redirect } from "next/navigation"
 import path from "path"
 import { getCurrentUser } from "@/lib/auth"
 import { PlaygroundClient } from "./playground-client"
-
-export const metadata: Metadata = {
-	title: "Interactive Component Playground — Radian OS",
-	description:
-		"Explore Radian UI components in our interactive sandbox. Test live previews on mobile, tablet, and desktop viewports, read source code, and toggle light/dark modes.",
-}
 
 // Function to read file content safely
 function readFileContent(dirPath: string, fileName: string): string {

@@ -54,7 +54,7 @@ const footerColumns: FooterColumn[] = [
 
 export function AgentlabFooter() {
 	return (
-		<footer className="bg-black-inverse text-white-inverse border-white-inverse/10 border-t py-16 md:py-24">
+		<footer className="bg-black-inverse text-white-inverse border-white-inverse border-t py-16 md:py-24">
 			<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 				<div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
 					{/* Brand Column */}
@@ -77,15 +77,15 @@ export function AgentlabFooter() {
 								</span>
 							</Link>
 
-							<p className="text-white-inverse/60 mt-4 max-w-xs text-xs leading-relaxed sm:text-sm">
+							<p className="text-white-inverse mt-4 max-w-xs text-xs leading-relaxed sm:text-sm">
 								Building the future of intelligent automation with AI agents
 								that think, act, and deliver across enterprise operations.
 							</p>
 						</div>
 
-						<p className="text-white-inverse/40 mt-8 text-xs sm:mt-12">
+						<p className="text-white-inverse mt-8 text-xs sm:mt-12">
 							&copy; {new Date().getFullYear()} Design &amp; Developed by{" "}
-							<span className="text-white-inverse/70 font-medium">
+							<span className="text-white-inverse font-medium">
 								Amani Design
 							</span>
 						</p>
@@ -103,7 +103,7 @@ export function AgentlabFooter() {
 										<li key={link.label}>
 											<Link
 												href={link.href}
-												className="text-white-inverse/60 hover:text-white-inverse text-xs transition-colors">
+												className="text-white-inverse hover:text-white-inverse text-xs transition-colors">
 												{link.label}
 											</Link>
 										</li>

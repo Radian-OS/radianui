@@ -56,10 +56,10 @@ const industries: IndustryItem[] = [
 
 export function AgentlabIndustrySection() {
 	return (
-		<section className="border-border/60 bg-bg border-t py-24 md:py-32">
+		<section className="border-border bg-bg border-t py-24 md:py-32">
 			<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 				{/* Category Badge */}
-				<div className="border-border/80 bg-fill2/70 text-fg-secondary inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-semibold tracking-wider uppercase">
+				<div className="border-soft bg-fill2 text-fg-secondary inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-semibold tracking-wider">
 					<span className="text-primary font-bold">—</span>
 					<span>INDUSTRY</span>
 				</div>
@@ -70,15 +70,15 @@ export function AgentlabIndustrySection() {
 				</h2>
 
 				{/* 3x2 Grid (Rule 18: mapped array) */}
-				<div className="divide-border/60 border-border/60 mt-14 grid grid-cols-1 divide-y border-y sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-3">
+				<div className="divide-border border-border mt-14 grid grid-cols-1 divide-y border-y sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-3">
 					{industries.map((item, idx) => (
 						<div
 							key={item.title}
-							className={`hover:bg-fill1/50 group p-8 transition-colors ${
-								idx >= 3 ? "sm:border-border/60 sm:border-t" : ""
+							className={`hover:bg-fill1 group p-8 transition-colors ${
+								idx >= 3 ? "sm:border-border sm:border-t" : ""
 							}`}>
 							{/* Icon Square */}
-							<div className="bg-primary/10 relative mb-6 size-20 overflow-hidden rounded-xl shadow-xs transition-transform duration-300 group-hover:scale-105">
+							<div className="bg-primary relative mb-6 size-20 overflow-hidden rounded-xl shadow-xs transition-transform duration-300 group-hover:scale-105">
 								<Image
 									src={item.imageUrl}
 									alt={item.title}

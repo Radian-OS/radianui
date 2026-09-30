@@ -17,9 +17,9 @@ export function AgentlabRoiSection() {
 	return (
 		<section
 			id="case-study"
-			className="border-border/60 bg-fill1/40 border-t py-24 md:py-32">
+			className="border-border bg-fill1 border-t py-24 md:py-32">
 			<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-				<div className="border-border/80 bg-bg grid grid-cols-1 items-center gap-12 rounded-3xl border p-8 shadow-sm md:p-12 lg:grid-cols-2 lg:gap-16">
+				<div className="border-border bg-bg grid grid-cols-1 items-center gap-12 rounded-3xl border p-8 shadow-sm md:p-12 lg:grid-cols-2 lg:gap-16">
 					{/* Left Column: Metrics & Chart */}
 					<div className="flex flex-col justify-between">
 						<div className="grid grid-cols-2 gap-6">
@@ -60,7 +60,7 @@ export function AgentlabRoiSection() {
 							</p>
 						</div>
 
-						<div className="border-border/60 mt-12 border-t pt-8">
+						<div className="border-border mt-12 border-t pt-8">
 							<div className="text-fg font-serif text-4xl font-normal sm:text-5xl">
 								99.9%
 							</div>

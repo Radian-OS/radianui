@@ -79,7 +79,7 @@ export function InboxNav() {
 					"--color-sidebar-accent": "var(--color-fill2)",
 				} as React.CSSProperties
 			}
-			className="border-border/60 bg-bg text-sidebar-fg flex h-full w-56 shrink-0 flex-col justify-between border-r select-none">
+			className="border-border bg-bg text-sidebar-fg flex h-full w-56 shrink-0 flex-col justify-between border-r select-none">
 			{/* Sidebar Header: Title, Search, and New Conversation */}
 			<SidebarHeader className="border-border/40 flex h-12 flex-row items-center justify-between border-b px-3">
 				<h2 className="heading-6 text-fg">Inbox</h2>
@@ -117,7 +117,6 @@ export function InboxNav() {
 								return (
 									<SidebarMenuItem key={item.id}>
 										<SidebarMenuButton
-											size="32"
 											isActive={isSelected}
 											tooltip={item.label}
 											onClick={() => setActiveFolder(item.id)}>
@@ -164,7 +163,6 @@ export function InboxNav() {
 									return (
 										<SidebarMenuItem key={item.id}>
 											<SidebarMenuButton
-												size="32"
 												isActive={isSelected}
 												tooltip={item.label}
 												onClick={() => setActiveFolder(item.id)}>
@@ -197,7 +195,6 @@ export function InboxNav() {
 							<SidebarMenu className="space-y-0.5">
 								<SidebarMenuItem>
 									<SidebarMenuButton
-										size="32"
 										isActive={activeFolder === "team-admin"}
 										tooltip="Admin Support"
 										onClick={() => setActiveFolder("team-admin")}>
@@ -207,7 +204,7 @@ export function InboxNav() {
 									<SidebarMenuBadge
 										variant="outline"
 										color="neutral"
-										className="bg-bg text-fg-tertiary">
+										className="text-fg-tertiary">
 										0
 									</SidebarMenuBadge>
 								</SidebarMenuItem>
@@ -249,7 +246,6 @@ export function InboxNav() {
 									return (
 										<SidebarMenuItem key={item.id}>
 											<SidebarMenuButton
-												size="32"
 												isActive={isSelected}
 												tooltip={item.label}
 												onClick={() => setActiveFolder(item.id)}>
@@ -260,7 +256,7 @@ export function InboxNav() {
 												<SidebarMenuBadge
 													variant="outline"
 													color="neutral"
-													className="bg-bg text-fg-tertiary">
+													className="text-fg-tertiary">
 													{item.count}
 												</SidebarMenuBadge>
 											)}
@@ -274,9 +270,9 @@ export function InboxNav() {
 			</SidebarContent>
 
 			{/* Sidebar Footer: Onboarding Card & Manage */}
-			<SidebarFooter className="border-border/40 space-y-2 border-t p-2">
+			<SidebarFooter className="border-border space-y-2 border-t p-2">
 				{/* Onboarding card */}
-				<div className="border-border/60 bg-elevation-level1 text-fg rounded-xl border p-3 shadow-md">
+				<div className="border-border bg-elevation-level1 rounded-xl border p-3">
 					<div className="flex items-center justify-between">
 						<div className="flex items-center gap-2">
 							<div className="bg-success size-2 rounded-full" />
@@ -284,7 +280,7 @@ export function InboxNav() {
 						</div>
 						<ChevronUp className="text-fg-secondary size-3.5" />
 					</div>
-					<p className="text-fg-secondary mt-1.5 text-[11px] leading-snug">
+					<p className="text-fg-secondary mt-1.5 text-xs leading-snug">
 						Add content to power your AI and Help Center
 					</p>
 				</div>
@@ -293,7 +289,6 @@ export function InboxNav() {
 				<SidebarMenu>
 					<SidebarMenuItem>
 						<SidebarMenuButton
-							size="32"
 							tooltip="Manage settings"
 							onClick={() => setActiveFolder("manage")}>
 							<Sliders className="size-4" />

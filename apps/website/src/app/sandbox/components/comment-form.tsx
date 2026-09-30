@@ -113,20 +113,20 @@ export function CommentForm({
 	return (
 		<div className="border-border bg-bg animate-in fade-in zoom-in-95 flex max-h-[min(540px,calc(100vh-64px))] w-88 max-w-full flex-col overflow-y-auto rounded-xl border p-3.5 shadow-xl duration-150">
 			{/* Header info */}
-			<div className="border-border/50 mb-2.5 flex items-center justify-between gap-2 border-b pb-2">
+			<div className="border-border mb-2.5 flex items-center justify-between gap-2 border-b pb-2">
 				<div className="flex min-w-0 items-center gap-1.5">
 					{parentTag && parentTag !== elementTag && (
 						<>
-							<span className="bg-primary/15 text-primary shrink-0 rounded px-1.5 py-0.5 font-mono text-[11px] font-semibold">
+							<span className="bg-primary text-primary-text shrink-0 rounded px-1.5 py-0.5 font-mono text-xs font-semibold">
 								&lt;{parentTag}&gt;
 							</span>
-							<span className="text-fg-tertiary text-[10px]">›</span>
+							<span className="text-fg-tertiary text-xs">›</span>
 						</>
 					)}
-					<span className="bg-fill3 text-primary shrink-0 rounded px-1.5 py-0.5 font-mono text-[11px] font-semibold">
+					<span className="bg-fill3 text-primary shrink-0 rounded px-1.5 py-0.5 font-mono text-xs font-semibold">
 						&lt;{elementTag}&gt;
 					</span>
-					<span className="text-fg-tertiary text-[11px] font-medium">
+					<span className="text-fg-tertiary text-xs font-medium">
 						Element Details
 					</span>
 				</div>
@@ -143,18 +143,18 @@ export function CommentForm({
 
 			{/* Whole HTML / JSX Tag */}
 			{elementCode ? (
-				<div className="border-border/70 bg-fill2/40 mb-2.5 rounded-lg border p-2">
+				<div className="border-border bg-fill2 mb-2.5 rounded-lg border p-2">
 					<div className="mb-1 flex flex-wrap items-center justify-between gap-1.5">
-						<div className="text-fg-tertiary flex items-center gap-1 text-[10px] font-semibold tracking-wider uppercase">
+						<div className="text-fg-tertiary flex items-center gap-1 text-xs font-semibold tracking-wider">
 							<Code className="text-primary size-3" />
 							<span>JSX Tag</span>
 						</div>
 						<div className="flex items-center gap-1">
 							{cleanClasses && (
-								<button
+								<Button
 									type="button"
+									size="28"
 									onClick={handleCopyClasses}
-									className="text-fg-tertiary hover:text-fg hover:bg-fill3 flex cursor-pointer items-center gap-1 rounded px-1.5 py-0.5 text-[10px] font-medium transition-colors"
 									title="Copy class names only">
 									{copiedClasses ? (
 										<span className="text-success font-semibold">
@@ -163,7 +163,7 @@ export function CommentForm({
 									) : (
 										<span>Copy Classes</span>
 									)}
-								</button>
+								</Button>
 							)}
 							<button
 								type="button"
@@ -184,14 +184,14 @@ export function CommentForm({
 							</button>
 						</div>
 					</div>
-					<pre className="text-fg max-h-36 overflow-y-auto font-mono text-[11px] leading-relaxed break-words whitespace-pre-wrap select-text">
+					<pre className="text-fg max-h-36 overflow-y-auto font-mono text-xs leading-relaxed break-words whitespace-pre-wrap select-text">
 						{elementCode}
 					</pre>
 				</div>
 			) : cleanClasses ? (
-				<div className="border-border/70 bg-fill2/40 mb-2.5 rounded-lg border p-2">
+				<div className="border-border bg-fill2 mb-2.5 rounded-lg border p-2">
 					<div className="mb-1 flex items-center justify-between gap-2">
-						<div className="text-fg-tertiary flex items-center gap-1 text-[10px] font-semibold tracking-wider uppercase">
+						<div className="text-fg-tertiary flex items-center gap-1 text-xs font-semibold tracking-wider uppercase">
 							<Code className="text-primary size-3" />
 							<span>Class Names</span>
 						</div>
@@ -240,13 +240,13 @@ export function CommentForm({
 						onNavigateToCode(sourceLocation.file, sourceLocation.lineNumber)
 					}
 					title={`Go to ${sourceLocation.file}:${sourceLocation.lineNumber} in code editor`}
-					className="border-border bg-fill2/70 hover:bg-fill3 hover:border-primary/40 group mb-2.5 flex w-full cursor-pointer items-center justify-between gap-2 rounded-lg border px-2.5 py-1.5 text-left transition-all duration-150 active:scale-[0.98]">
+					className="border-border bg-fill2 hover:bg-fill3 hover:border-primary/40 group mb-2.5 flex w-full cursor-pointer items-center justify-between gap-2 rounded-lg border px-2.5 py-1.5 text-left transition-all duration-150 active:scale-[0.98]">
 					<div className="flex min-w-0 items-center gap-2">
 						<div className="bg-primary/15 text-primary group-hover:bg-primary group-hover:text-primary-fg flex size-6 shrink-0 items-center justify-center rounded-md transition-colors">
 							<Code className="size-3.5" />
 						</div>
 						<div className="flex min-w-0 flex-col">
-							<span className="text-fg-tertiary text-[10px] font-medium tracking-wider uppercase">
+							<span className="text-fg-tertiary text-xs font-medium tracking-wider uppercase">
 								Source File
 							</span>
 							<span className="text-fg group-hover:text-primary truncate font-mono text-xs font-semibold">

@@ -62,8 +62,8 @@ export function AgentlabHeroSection() {
 		<section className="relative overflow-hidden pt-12 pb-16 md:pt-16 md:pb-24">
 			<div className="mx-auto flex max-w-7xl flex-col items-center px-4 sm:px-6 lg:px-8">
 				{/* Y Combinator Badge */}
-				<div className="border-border/80 bg-fill2/70 mb-6 inline-flex items-center gap-2 rounded-md border px-3 py-1.5 backdrop-blur-xs">
-					<div className="bg-orange flex size-4 items-center justify-center rounded-xs font-mono text-[10px] font-black text-white">
+				<div className="border-border bg-fill2 mb-6 inline-flex items-center gap-2 rounded-md border px-3 py-1.5 backdrop-blur-xs">
+					<div className="bg-orange flex size-4 items-center justify-center rounded-xs font-mono text-xs font-black text-white">
 						Y
 					</div>
 					<span className="text-fg-secondary text-xs font-semibold tracking-wider uppercase">
@@ -73,8 +73,7 @@ export function AgentlabHeroSection() {
 
 				{/* Headline (Rule 13: heading-1) */}
 				<h1 className="heading-1 max-w-4xl text-center font-serif">
-					Turn Your AI Product Into a
-					<br className="hidden sm:inline" /> Website That Sells
+					Turn Your AI Product Into a website that sells
 				</h1>
 
 				{/* Subtitle */}
@@ -97,7 +96,7 @@ export function AgentlabHeroSection() {
 				{/* Hero Visuals Grid */}
 				<div className="mt-12 grid w-full grid-cols-1 gap-6 lg:grid-cols-12 lg:gap-8">
 					{/* Left Visual: 3D Cubes + Floating Agent Card */}
-					<div className="border-border/60 bg-fill2 relative flex min-h-[460px] flex-col justify-center overflow-hidden rounded-2xl border p-6 shadow-xl sm:p-8 lg:col-span-8">
+					<div className="border-border bg-fill2 relative flex min-h-115 flex-col justify-center overflow-hidden rounded-2xl border p-6 shadow-xl sm:p-8 lg:col-span-8">
 						{/* Background 3D isometric mockup */}
 						<div className="absolute inset-0 -z-10">
 							<Image
@@ -160,7 +159,7 @@ export function AgentlabHeroSection() {
 
 							{/* Actions List (Rule 18: mapped array) */}
 							<div className="mt-4">
-								<p className="text-fg-tertiary text-[11px] font-semibold tracking-wider uppercase">
+								<p className="text-fg-tertiary text-xs font-semibold tracking-wider">
 									ACTIONS
 								</p>
 								<div className="mt-2 space-y-1.5">
@@ -174,8 +173,8 @@ export function AgentlabHeroSection() {
 												onClick={() => setActiveAction(action.id)}
 												className={`flex w-full items-center gap-2.5 rounded-lg border px-3 py-2 text-left text-xs font-semibold tracking-wide transition-all ${
 													isSelected
-														? "border-border bg-fill2 text-fg shadow-xs"
-														: "bg-fill1/60 text-fg-secondary hover:bg-fill2 border-transparent"
+														? "border-border bg-fill2 text-fg"
+														: "bg-fill1 text-fg-secondary hover:bg-fill2 border-transparent"
 												}`}>
 												<div className="bg-black-inverse text-white-inverse flex size-5 shrink-0 items-center justify-center rounded-sm">
 													<Icon className="size-3" />
@@ -190,7 +189,7 @@ export function AgentlabHeroSection() {
 					</div>
 
 					{/* Right Visual: Portrait Image */}
-					<div className="border-border/60 bg-fill2 relative min-h-[460px] overflow-hidden rounded-2xl border shadow-xl lg:col-span-4">
+					<div className="border-soft bg-fill2 relative min-h-115 overflow-hidden rounded-2xl border lg:col-span-4">
 						<Image
 							src="https://framerusercontent.com/images/wJo5NFOD9xOtFS68OXbtzXivQ0.png"
 							alt="Engineer monitoring AI agents"

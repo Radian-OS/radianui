@@ -51,7 +51,7 @@ const brandLogos: BrandLogo[] = [
 
 export function AgentlabLogoMarquee() {
 	return (
-		<section className="border-border/60 bg-bg/50 border-y py-10">
+		<section className="border-border border-y py-10">
 			<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 				<div className="flex flex-wrap items-center justify-around gap-8 sm:gap-12 md:gap-16">
 					{brandLogos.map((logo, index) => (

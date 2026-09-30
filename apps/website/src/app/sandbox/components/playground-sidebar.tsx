@@ -284,7 +284,7 @@ export function PlaygroundSidebar({
 							title="View comments overview"
 							className="text-fg-secondary hover:text-fg flex cursor-pointer items-center gap-1.5 rounded-md px-1.5 py-0.5 text-xs transition-colors group-data-[state=collapsed]:hidden">
 							<MessageSquare className="text-primary size-3.5" />
-							<span className="text-[11px] font-semibold">
+							<span className="text-xs font-semibold">
 								{statusFilter === "all"
 									? totalAllComments
 									: statusFilter === "pending"
@@ -297,7 +297,7 @@ export function PlaygroundSidebar({
 					{/* 3-State Filter: All, Pending, Resolved */}
 					<div className="flex flex-col gap-1.5 group-data-[state=collapsed]:hidden">
 						<div className="text-fg-secondary flex items-center justify-between px-0.5 text-[11px] font-medium">
-							<span className="flex items-center gap-1 text-[11px]">
+							<span className="flex items-center gap-1 text-xs">
 								<span>Review Filter</span>
 							</span>
 							{totalAllComments > 0 && (
@@ -316,22 +316,22 @@ export function PlaygroundSidebar({
 								setStatusFilter(val as CommentStatusFilter)
 							}
 							className="w-full">
-							<TabsList className="bg-fill3/80 grid h-7 w-full grid-cols-3 p-0.5">
+							<TabsList className="bg-fill3 grid h-7 w-full grid-cols-3 p-0.5">
 								<TabsTrigger
 									value="pending"
-									className="h-6 gap-1 px-1 text-[10px] font-semibold tracking-tight data-[state=active]:text-amber-500"
+									className="data-[state=active]:text-warning-text h-6 gap-1 px-1 text-xs font-semibold tracking-tight"
 									title="Pending comments">
 									<span>Pending</span>
-									<span className="font-mono text-[9px] opacity-75">
+									<span className="font-mono text-xs opacity-75">
 										({totalPendingComments})
 									</span>
 								</TabsTrigger>
 								<TabsTrigger
 									value="resolved"
-									className="h-6 gap-1 px-1 text-[10px] font-semibold tracking-tight data-[state=active]:text-emerald-500"
+									className="data-[state=active]:text-success-text h-6 gap-1 px-1 text-xs font-semibold tracking-tight"
 									title="Resolved comments">
 									<span>Resolved</span>
-									<span className="font-mono text-[9px] opacity-75">
+									<span className="font-mono text-xs opacity-75">
 										({totalResolvedComments})
 									</span>
 								</TabsTrigger>
@@ -369,7 +369,7 @@ export function PlaygroundSidebar({
 											className="border-none">
 											<AccordionTrigger
 												className={cn(
-													"hover:bg-fill3/60 group/trigger text-fg-secondary hover:text-fg flex w-full cursor-pointer items-center justify-between rounded-lg px-2 py-1.5 text-xs font-semibold tracking-wider uppercase transition-colors hover:no-underline",
+													"hover:bg-fill3 group/trigger text-fg-secondary hover:text-fg flex w-full cursor-pointer items-center justify-between rounded-lg px-2 py-1.5 text-xs font-semibold tracking-wider uppercase transition-colors hover:no-underline",
 													"group-data-[state=collapsed]:justify-center group-data-[state=collapsed]:px-1",
 													"[&>.AccordionChevron]:text-fg-tertiary [&>.AccordionChevron]:size-3.5 group-data-[state=collapsed]:[&>.AccordionChevron]:hidden"
 												)}>
@@ -444,9 +444,9 @@ export function PlaygroundSidebar({
 																		className={cn(
 																			"pointer-events-auto cursor-pointer transition-transform hover:scale-110 active:scale-95",
 																			statusFilter === "pending" &&
-																				"border-amber-500/35 bg-amber-500/15 font-semibold text-amber-500",
+																				"border-warning-border bg-warning text-warning-text font-semibold",
 																			statusFilter === "resolved" &&
-																				"border-emerald-500/35 bg-emerald-500/15 font-semibold text-emerald-500",
+																				"border-success-border bg-success text-success-text font-semibold",
 																			statusFilter === "all" &&
 																				"border-border bg-fill2 text-fg hover:bg-fill3"
 																		)}>
@@ -472,10 +472,10 @@ export function PlaygroundSidebar({
 				<DialogContent
 					closeButton="hidden"
 					className="border-border bg-bg flex max-h-[85vh] w-full max-w-2xl flex-col gap-4 overflow-hidden rounded-2xl p-5 shadow-2xl">
-					<DialogHeader className="border-border/70 gap-1 border-b pb-3 text-left">
+					<DialogHeader className="border-border gap-1 border-b pb-3 text-left">
 						<div className="flex items-center justify-between gap-3 pr-6">
 							<div className="flex items-center gap-2">
-								<div className="bg-primary/10 text-primary flex size-7 items-center justify-center rounded-lg">
+								<div className="bg-primary text-primary flex size-7 items-center justify-center rounded-lg">
 									<MessageSquare className="size-4" />
 								</div>
 								<div>
@@ -522,7 +522,7 @@ export function PlaygroundSidebar({
 								<TabsList className="bg-fill2 h-7 p-0.5">
 									<TabsTrigger
 										value="pending"
-										className="h-6 px-2.5 text-xs font-semibold data-[state=active]:text-amber-500">
+										className="data-[state=active]:text-warning-text h-6 px-2.5 text-xs font-semibold">
 										Pending (
 										{selectedComponentForModal
 											? comments.filter(
@@ -535,7 +535,7 @@ export function PlaygroundSidebar({
 									</TabsTrigger>
 									<TabsTrigger
 										value="resolved"
-										className="h-6 px-2.5 text-xs font-semibold data-[state=active]:text-emerald-500">
+										className="data-[state=active]:text-success-text h-6 px-2.5 text-xs font-semibold">
 										Resolved (
 										{selectedComponentForModal
 											? comments.filter(
@@ -588,8 +588,8 @@ export function PlaygroundSidebar({
 									<Card
 										key={comment.id}
 										className={cn(
-											"border-border bg-fill1/40 hover:border-border-hover relative gap-0 overflow-hidden p-0 shadow-xs transition-colors",
-											resolved && "bg-fill1/20 border-emerald-500/20"
+											"border-border bg-fill1 hover:border-border-hover relative gap-0 overflow-hidden p-0 shadow-xs transition-colors",
+											resolved && "border-success-border"
 										)}>
 										<CardContent className="space-y-2.5 p-4">
 											{/* Comment Card Header: Author, Time, Component, Status Badge, Actions */}
@@ -612,7 +612,7 @@ export function PlaygroundSidebar({
 															<Badge
 																color={resolved ? "success" : "warning"}
 																size="20"
-																className="gap-1 text-[10px] font-semibold">
+																className="gap-1 text-xs font-semibold">
 																{resolved ? (
 																	<>
 																		<Check className="size-2.5" />
@@ -629,7 +629,7 @@ export function PlaygroundSidebar({
 														<span className="text-fg-tertiary text-[10px]">
 															{formatDate(comment.createdAt)}
 															{comment.componentId && (
-																<span className="text-primary ml-1.5 font-mono text-[10px]">
+																<span className="text-primary ml-1.5 font-mono text-xs">
 																	@{comment.componentId}
 																</span>
 															)}
@@ -693,7 +693,7 @@ export function PlaygroundSidebar({
 																}
 															}}
 															title="Delete comment"
-															className="text-fg-tertiary hover:text-error">
+															className="text-fg-tertiary hover:text-error-hover">
 															<Trash2 className="size-3.5" />
 														</Button>
 													)}
@@ -702,19 +702,19 @@ export function PlaygroundSidebar({
 
 											{/* Element Target Context (if present) */}
 											{comment.elementTag && (
-												<div className="border-border/60 bg-fill2/50 rounded-lg border p-2 text-xs">
+												<div className="border-border bg-fill2 rounded-lg border p-2 text-xs">
 													<div className="mb-1 flex items-center gap-1.5">
-														<span className="bg-fill3 text-primary rounded px-1.5 py-0.5 font-mono text-[10px] font-bold">
+														<span className="bg-fill3 text-primary rounded px-1.5 py-0.5 font-mono text-xs font-bold">
 															&lt;{comment.elementTag}&gt;
 														</span>
 														{comment.elementSelector && (
-															<span className="text-fg-tertiary max-w-[320px] truncate font-mono text-[10px]">
+															<span className="text-fg-tertiary max-w-[320px] truncate font-mono text-xs">
 																{comment.elementSelector}
 															</span>
 														)}
 													</div>
 													{comment.elementContent && (
-														<p className="text-fg-secondary line-clamp-2 text-[11px] italic">
+														<p className="text-fg-secondary line-clamp-2 text-xs italic">
 															&ldquo;{comment.elementContent}&rdquo;
 														</p>
 													)}
@@ -739,7 +739,7 @@ export function PlaygroundSidebar({
 														setIsCommentsModalOpen(false)
 													}}
 													title={`Jump to ${comment.file}:${comment.lineNumber || 1} in code viewer`}
-													className="border-border bg-fill2/70 hover:bg-fill3 hover:border-primary/40 group flex w-full cursor-pointer items-center justify-between rounded-lg border px-2.5 py-1.5 text-left transition-colors">
+													className="border-border bg-fill2 hover:bg-fill3 hover:border-primary-hover group flex w-full cursor-pointer items-center justify-between rounded-lg border px-2.5 py-1.5 text-left transition-colors">
 													<div className="flex items-center gap-1.5 font-mono text-xs">
 														<Code className="text-primary size-3.5" />
 														<span className="text-fg group-hover:text-primary font-semibold">
@@ -751,7 +751,7 @@ export function PlaygroundSidebar({
 															)}
 														</span>
 													</div>
-													<div className="text-primary flex items-center gap-1 text-[11px] font-semibold">
+													<div className="text-primary flex items-center gap-1 text-xs font-semibold">
 														<span>Go to line</span>
 														<ArrowRight className="size-3 transition-transform group-hover:translate-x-0.5" />
 													</div>
@@ -759,7 +759,7 @@ export function PlaygroundSidebar({
 											)}
 
 											{/* ALL DATA OF THE COMMENT TEXT */}
-											<div className="border-border/50 border-t pt-2">
+											<div className="border-border border-t pt-2">
 												<p className="text-fg text-xs leading-relaxed font-normal whitespace-pre-wrap select-text">
 													{comment.content}
 												</p>

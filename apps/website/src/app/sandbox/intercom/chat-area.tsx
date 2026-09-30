@@ -4,11 +4,10 @@ import React, { useState } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import {
 	Archive,
+	Check,
 	ChevronDown,
 	Moon,
 	MoreHorizontal,
-	Send,
-	Sparkles,
 	Star,
 	UserCheck,
 	Zap,
@@ -24,7 +23,8 @@ import {
 	FormItem,
 	FormMessage,
 } from "@/styles/default/ui/form"
-import type { Conversation, Message } from "./types"
+import type { Conversation } from "./types"
+import { TextArea } from "@/registry/ui/text-area"
 
 const chatMessageSchema = z.object({
 	messageText: z.string().min(1, "Message cannot be empty"),
@@ -53,10 +53,10 @@ export function ChatArea({ conversation, onSendMessage }: ChatAreaProps) {
 	}
 
 	return (
-		<div className="bg-bg flex h-full flex-1 flex-col overflow-hidden text-xs transition-colors">
+		<div className="flex h-full flex-1 flex-col overflow-hidden text-xs transition-colors">
 			{/* Top Conversation Header */}
-			<div className="border-border/60 flex h-12 shrink-0 items-center justify-between border-b px-4">
-				<h3 className="heading-5 text-fg">{conversation.name}</h3>
+			<div className="border-border flex h-12 shrink-0 items-center justify-between border-b px-4">
+				<h3 className="heading-6 text-base">{conversation.name}</h3>
 
 				<div className="flex items-center gap-1">
 					<IconButton
@@ -65,11 +65,10 @@ export function ChatArea({ conversation, onSendMessage }: ChatAreaProps) {
 						color="neutral"
 						size="28"
 						aria-label="Star conversation"
-						onClick={() => setIsStarred(!isStarred)}
-						className="text-fg-secondary hover:text-fg">
+						onClick={() => setIsStarred(!isStarred)}>
 						<Star
 							className={`size-4 ${
-								isStarred ? "fill-warning text-warning" : "text-fg-tertiary"
+								isStarred ? "fill-warning text-warning" : ""
 							}`}
 						/>
 					</IconButton>
@@ -79,8 +78,7 @@ export function ChatArea({ conversation, onSendMessage }: ChatAreaProps) {
 						variant="ghost"
 						color="neutral"
 						size="28"
-						aria-label="More options"
-						className="text-fg-secondary hover:text-fg">
+						aria-label="More options">
 						<MoreHorizontal className="size-4" />
 					</IconButton>
 
@@ -89,8 +87,7 @@ export function ChatArea({ conversation, onSendMessage }: ChatAreaProps) {
 						variant="ghost"
 						color="neutral"
 						size="28"
-						aria-label="Archive conversation"
-						className="text-fg-secondary hover:text-fg">
+						aria-label="Archive conversation">
 						<Archive className="size-4" />
 					</IconButton>
 
@@ -99,8 +96,7 @@ export function ChatArea({ conversation, onSendMessage }: ChatAreaProps) {
 						variant="ghost"
 						color="neutral"
 						size="28"
-						aria-label="Snooze"
-						className="text-fg-secondary hover:text-fg">
+						aria-label="Snooze">
 						<Moon className="size-4" />
 					</IconButton>
 
@@ -109,8 +105,7 @@ export function ChatArea({ conversation, onSendMessage }: ChatAreaProps) {
 						variant="ghost"
 						color="neutral"
 						size="28"
-						aria-label="Assign / Close"
-						className="text-fg-secondary hover:text-fg">
+						aria-label="Assign / Close">
 						<UserCheck className="size-4" />
 					</IconButton>
 				</div>
@@ -126,13 +121,8 @@ export function ChatArea({ conversation, onSendMessage }: ChatAreaProps) {
 						}`}>
 						{/* Inbound user avatar */}
 						{msg.isUser && (
-							<Avatar
-								size="24"
-								rounded="circle"
-								className={`shrink-0 ${msg.avatarBgClass || "bg-error"} font-bold text-white`}>
-								<AvatarFallback className="bg-transparent text-[11px] font-bold text-inherit">
-									{msg.avatarText || "-"}
-								</AvatarFallback>
+							<Avatar size="24" rounded="circle">
+								<AvatarFallback>{msg.avatarText}</AvatarFallback>
 							</Avatar>
 						)}
 
@@ -144,18 +134,18 @@ export function ChatArea({ conversation, onSendMessage }: ChatAreaProps) {
 							<div
 								className={`rounded-2xl px-4 py-2.5 text-xs leading-relaxed sm:text-sm ${
 									msg.isUser
-										? "bg-card border-border text-fg rounded-tl-sm border shadow-xs"
-										: "bg-primary/10 text-fg border-primary-border/20 rounded-tr-sm border"
+										? "bg-card border-border text-fg rounded-tl-sm border "
+										: "bg-primary text-fg border-primary-border rounded-tr-sm border"
 								}`}>
 								{msg.content}
 							</div>
 
-							<div className="text-fg-secondary flex items-center gap-1.5 text-[11px]">
+							<div className="text-fg-secondary flex items-center gap-1.5 text-sm">
 								<span>{msg.time}</span>
 								{!msg.isUser && (
 									<div className="text-fg-tertiary flex items-center gap-1">
 										<span>•</span>
-										<Sparkles className="text-primary size-3" />
+										<Check className="text-primary size-3" />
 									</div>
 								)}
 							</div>
@@ -165,16 +155,14 @@ export function ChatArea({ conversation, onSendMessage }: ChatAreaProps) {
 			</div>
 
 			{/* Bottom Message Composer */}
-			<div className="border-border/60 border-t p-4">
-				<div className="border-border/60 bg-bg focus-within:border-border rounded-xl border p-3 shadow-xs">
+			<div className="border-border border-t p-4">
+				<div className="border-border bg-bg focus-within:border-border rounded-xl border p-3 shadow-xs">
 					{/* Composer Channel dropdown */}
-					<div className="border-border/40 flex items-center justify-between border-b pb-2">
-						<button
-							type="button"
-							className="hover:bg-fill1 text-fg -ml-1 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-semibold transition-colors">
+					<div className="border-border flex items-center justify-between border-b pb-2">
+						<Button color="neutral" size="28" type="button">
 							<span>Facebook</span>
 							<ChevronDown className="text-fg-tertiary size-3.5" />
-						</button>
+						</Button>
 					</div>
 
 					{/* Form with Textarea Input */}
@@ -186,11 +174,10 @@ export function ChatArea({ conversation, onSendMessage }: ChatAreaProps) {
 								render={({ field }) => (
 									<FormItem className="space-y-0">
 										<FormControl>
-											<textarea
+											<TextArea
 												{...field}
 												rows={3}
 												placeholder="Use ⌘K for shortcuts"
-												className="placeholder:text-fg-tertiary text-fg w-full resize-none bg-transparent text-xs outline-none sm:text-sm"
 												onKeyDown={(e) => {
 													if (e.key === "Enter" && !e.shiftKey) {
 														e.preventDefault()
@@ -199,7 +186,7 @@ export function ChatArea({ conversation, onSendMessage }: ChatAreaProps) {
 												}}
 											/>
 										</FormControl>
-										<FormMessage className="text-[11px]" />
+										<FormMessage className="text-xs" />
 									</FormItem>
 								)}
 							/>
@@ -211,8 +198,7 @@ export function ChatArea({ conversation, onSendMessage }: ChatAreaProps) {
 									variant="ghost"
 									color="neutral"
 									size="28"
-									aria-label="Macros and saved replies"
-									className="text-fg-secondary hover:text-fg">
+									aria-label="Macros and saved replies">
 									<Zap className="size-4" />
 								</IconButton>
 

@@ -56,7 +56,7 @@ export function AgentlabNavbar() {
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
 	return (
-		<header className="border-border/60 bg-bg/95 sticky top-0 z-50 w-full border-b backdrop-blur-md transition-all">
+		<header className="border-border sticky top-0 z-50 w-full border-b backdrop-blur-md transition-all">
 			<div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
 				{/* Logo */}
 				<Link
@@ -88,7 +88,7 @@ export function AgentlabNavbar() {
 									</NavigationMenuTrigger>
 									<NavigationMenuContent
 										align="center"
-										className="border-border/70 bg-elevation-level1 min-w-64 rounded-xl border p-2 shadow-xl backdrop-blur-md">
+										className="border-border bg-elevation-level1 min-w-64 rounded-xl border p-2 shadow-xl backdrop-blur-md">
 										<ul className="flex flex-col gap-1">
 											{companyLinks.map((sub) => (
 												<li key={sub.label}>

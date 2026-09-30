@@ -8,7 +8,7 @@ export function AgentlabCtaBanner() {
 	return (
 		<section className="bg-black-inverse text-white-inverse relative overflow-hidden py-24 md:py-32">
 			{/* Subtle ambient glow */}
-			<div className="bg-primary/20 pointer-events-none absolute top-1/2 left-1/2 -z-10 h-96 w-full max-w-4xl -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl" />
+			<div className="bg-primary pointer-events-none absolute top-1/2 left-1/2 -z-10 h-96 w-full max-w-4xl -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl" />
 
 			<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 				<div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-16">
@@ -19,7 +19,7 @@ export function AgentlabCtaBanner() {
 
 					{/* Right Content & Actions */}
 					<div className="flex flex-col items-start lg:col-span-6">
-						<p className="text-white-inverse/70 text-sm leading-relaxed sm:text-base">
+						<p className="text-white-inverse text-sm leading-relaxed sm:text-base">
 							Deploy intelligent agents, eliminate repetitive manual steps,
 							reduce operational costs, and deliver results faster than ever
 							before.

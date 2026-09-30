@@ -1,6 +1,5 @@
 "use client"
 
-import React, { useState } from "react"
 import {
 	BarChart2,
 	BookOpen,
@@ -15,10 +14,9 @@ import {
 import Image from "next/image"
 import { IconButton } from "@/styles/default/ui/button"
 import { Avatar, AvatarFallback } from "@/styles/default/ui/avatar"
+import { Badge } from "@/registry/ui/badge"
 
 export function IconRail() {
-	const [activeTab, setActiveTab] = useState("inbox")
-
 	const topNavItems = [
 		{ id: "inbox", icon: Inbox, label: "Inbox", badge: 5 },
 		{ id: "fin-ai", icon: Sparkles, label: "Fin AI Agent" },
@@ -31,11 +29,11 @@ export function IconRail() {
 	return (
 		<nav
 			aria-label="Global Navigation"
-			className="border-border/60 bg-bg flex w-14 shrink-0 flex-col items-center justify-between border-r py-3 transition-colors select-none">
+			className="border-border flex w-14 shrink-0 flex-col items-center justify-between border-r py-3 transition-colors select-none">
 			{/* Top: Intercom Logo + Nav Items */}
 			<div className="flex flex-col items-center gap-4">
 				{/* Brand Logo */}
-				<div className="flex size-8 items-center justify-center rounded-lg bg-black p-1 shadow-xs dark:bg-white/10">
+				<div className="flex size-8 items-center justify-center rounded-lg p-1 shadow-xs">
 					<Image
 						src="https://www.google.com/s2/favicons?sz=64&domain=intercom.com"
 						alt="Intercom Logo"
@@ -49,29 +47,25 @@ export function IconRail() {
 				<div className="flex flex-col items-center gap-1.5">
 					{topNavItems.map((item) => {
 						const Icon = item.icon
-						const isActive = activeTab === item.id
 						return (
 							<div key={item.id} className="relative">
 								<IconButton
 									type="button"
+									color="neutral"
 									variant="ghost"
-									color={isActive ? "primary" : "neutral"}
-									size="36"
 									aria-label={item.label}
-									onClick={() => setActiveTab(item.id)}
-									className={`rounded-lg transition-colors ${
-										isActive
-											? "bg-fill2 text-fg shadow-xs"
-											: "text-fg-secondary hover:bg-fill2 hover:text-fg"
-									}`}>
+									// onClick={() => setActiveTab(item.id)}
+								>
 									<Icon className="size-5" />
 								</IconButton>
 
 								{/* Red Badge Indicator */}
 								{item.badge !== undefined && (
-									<span className="bg-amber absolute top-1 right-1 flex size-3.5 items-center justify-center rounded-full text-[9px] font-bold text-white shadow-xs">
+									<Badge
+										color="warning"
+										className="absolute top-1 right-1 flex size-4 items-center justify-center rounded-full text-[9px] font-bold">
 										{item.badge}
-									</span>
+									</Badge>
 								)}
 							</div>
 						)
@@ -86,37 +80,29 @@ export function IconRail() {
 					type="button"
 					variant="ghost"
 					color="neutral"
-					size="32"
-					aria-label="Agent status: Active"
-					className="text-emerald hover:bg-fill2">
-					<Radio className="size-4.5" />
+					aria-label="Agent status: Active">
+					<Radio className="size-5" />
 				</IconButton>
 
 				<IconButton
 					type="button"
 					variant="ghost"
 					color="neutral"
-					size="32"
-					aria-label="Global search"
-					className="text-fg-secondary hover:bg-fill2 hover:text-fg">
-					<Search className="size-4.5" />
+					aria-label="Global search">
+					<Search className="size-5" />
 				</IconButton>
 
 				<IconButton
 					type="button"
 					variant="ghost"
 					color="neutral"
-					size="32"
-					aria-label="App settings"
-					className="text-fg-secondary hover:bg-fill2 hover:text-fg">
-					<Settings className="size-4.5" />
+					aria-label="App settings">
+					<Settings className="size-5" />
 				</IconButton>
 
 				{/* User Avatar */}
 				<Avatar size="32" rounded="circle" className="mt-1 cursor-pointer">
-					<AvatarFallback className="bg-warning-accent text-warning text-xs font-bold">
-						AS
-					</AvatarFallback>
+					<AvatarFallback>AS</AvatarFallback>
 				</Avatar>
 			</div>
 		</nav>

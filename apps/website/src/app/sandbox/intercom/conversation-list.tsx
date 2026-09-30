@@ -11,6 +11,7 @@ import {
 import { IconButton } from "@/styles/default/ui/button"
 import type { Conversation } from "./types"
 import { Badge } from "@/registry/ui/badge"
+import { Avatar, AvatarFallback } from "@/registry/ui/avatar"
 
 interface ConversationListProps {
 	conversations: Conversation[]
@@ -24,22 +25,19 @@ export function ConversationList({
 	onSelectConversation,
 }: ConversationListProps) {
 	return (
-		<div className="border-border/60 bg-bg flex h-full w-72 shrink-0 flex-col justify-between border-r text-xs transition-colors select-none">
+		<div className="border-border flex h-full w-72 shrink-0 flex-col justify-between border-r text-xs transition-colors select-none">
 			{/* Top Bar: Assignee Name, 5 Open, Sort */}
-			<div className="border-border/40 flex h-12 items-center justify-between border-b px-3">
-				<div className="flex items-center gap-2">
-					<CreditCard className="text-fg-secondary size-4" />
-					<h3 className="heading-6 text-fg">Alex Smith</h3>
+			<div className="border-border flex h-12 items-center justify-between gap-2 border-b px-3">
+				<div className="flex min-w-0 items-center gap-2">
+					<CreditCard className="text-fg-secondary size-4 shrink-0" />
+					<h3 className="heading-6 text-fg truncate text-base">Alex Smith</h3>
 				</div>
 
 				<div className="flex items-center gap-1.5">
-					<Badge>5 Open</Badge>
-					<button
-						type="button"
-						className="text-fg-secondary hover:text-fg flex cursor-pointer items-center gap-1 text-[11px] font-medium transition-colors">
-						<span>Last activity</span>
+					<Badge size="20">5 Open</Badge>
+					<IconButton type="button" color="neutral" variant="ghost" size="28">
 						<ArrowDownUp className="size-3" />
-					</button>
+					</IconButton>
 				</div>
 			</div>
 
@@ -59,10 +57,9 @@ export function ConversationList({
 							{/* Card header row */}
 							<div className="flex items-center justify-between">
 								<div className="flex items-center gap-2.5">
-									<div
-										className={`flex size-6 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white shadow-xs ${item.avatarBgClass}`}>
-										{item.avatarText}
-									</div>
+									<Avatar size="24" rounded="circle">
+										<AvatarFallback>{item.avatarText}</AvatarFallback>
+									</Avatar>
 									<span
 										className={`text-xs font-semibold ${
 											isActive ? "text-fg" : "text-fg/85"
@@ -79,7 +76,7 @@ export function ConversationList({
 											color="neutral"
 											size="28"
 											aria-label="Conversation options"
-											className="text-fg-secondary hover:text-fg -mr-1">
+											className="-mr-1">
 											<MoreHorizontal className="size-3.5" />
 										</IconButton>
 									)}
@@ -99,7 +96,7 @@ export function ConversationList({
 			</div>
 
 			{/* Bottom layout switchers */}
-			<div className="border-border/40 flex h-10 items-center justify-center border-t px-3">
+			<div className="border-border flex h-10 items-center justify-center border-t px-3">
 				<div className="bg-fill1 border-border flex items-center rounded-full border p-0.5 shadow-xs">
 					<button
 						type="button"

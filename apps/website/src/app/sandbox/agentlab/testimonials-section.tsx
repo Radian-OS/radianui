@@ -96,11 +96,7 @@ export function AgentlabTestimonialsSection() {
 						</h2>
 					</div>
 
-					<Button
-						variant="outline"
-						color="neutral"
-						size="36"
-						className="uppercase">
+					<Button variant="outline" color="neutral" size="36">
 						<ArrowUpRight className="size-4" />
 						<span>SEE ALL CASE STUDIES</span>
 					</Button>
@@ -117,7 +113,7 @@ export function AgentlabTestimonialsSection() {
 								onClick={() => setActiveTab(item.id)}
 								className={`flex h-16 items-center justify-center border-b-2 px-4 transition-all ${
 									isSelected
-										? "border-primary bg-white-inverse/10"
+										? "border-primary bg-white-inverse"
 										: "border-transparent opacity-60 hover:opacity-100"
 								}`}>
 								<Image
@@ -133,7 +129,7 @@ export function AgentlabTestimonialsSection() {
 				</div>
 
 				{/* Active Testimonial Showcase */}
-				<div className="border-border/10 bg-fg/5 mt-8 grid grid-cols-1 gap-8 rounded-2xl border p-8 lg:grid-cols-12 lg:gap-12 lg:p-12">
+				<div className="border-border bg-fg mt-8 grid grid-cols-1 gap-8 rounded-2xl border p-8 lg:grid-cols-12 lg:gap-12 lg:p-12">
 					{/* Left Quote Graphic */}
 					<div className="lg:col-span-7">
 						<h3 className="heading-3 text-white-inverse font-serif">
@@ -142,9 +138,9 @@ export function AgentlabTestimonialsSection() {
 					</div>
 
 					{/* Right Author Meta */}
-					<div className="border-white-inverse/10 flex flex-col justify-between border-t pt-6 lg:col-span-5 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-10">
+					<div className="border-white-inverse flex flex-col justify-between border-t pt-6 lg:col-span-5 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-10">
 						<div className="flex items-center gap-4">
-							<div className="border-white-inverse/20 relative size-14 overflow-hidden rounded-full border">
+							<div className="border-white-inverse relative size-14 overflow-hidden rounded-full border">
 								<Image
 									src={activeTestimonial.avatarUrl}
 									alt={activeTestimonial.authorName}
