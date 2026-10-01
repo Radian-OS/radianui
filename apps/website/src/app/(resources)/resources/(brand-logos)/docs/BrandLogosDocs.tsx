@@ -4,7 +4,11 @@ import {
 	ResourceFaq,
 	ResourceTextSection,
 } from "../../components/ResourceDocs"
-import { getBrandLogo, getBrandLogoUrl } from "../components/brand-logos-data"
+import {
+	getBrandLogo,
+	getBrandLogoSvgUrl,
+	getBrandLogoUrl,
+} from "../components/brand-logos-data"
 
 const useCasePoints = [
 	{
@@ -61,7 +65,7 @@ const developmentPoints = [
 	{
 		title: "Choose the export your workflow needs",
 		description:
-			"Use the transparent PNG directly, or create an SVG wrapper in the browser when a tool or handoff requires an SVG file.",
+			"Use the vector SVG directly for crisp scalable rendering, or export a high-resolution PNG in the browser when raster assets are required.",
 	},
 	{
 		title: "Select variants from your theme state",
@@ -89,17 +93,17 @@ const faqItems = [
 	{
 		question: "What logo variants are included?",
 		answer:
-			"Every included brand has a transparent PNG icon and wordmark for light and dark surfaces. The browser can also generate an SVG wrapper for any of those four assets.",
+			"Every brand includes vector SVG icon and wordmark assets across light and dark surfaces and colored or neutral palettes (8 states per brand). High-resolution PNGs can be exported dynamically from any state in the browser.",
 	},
 	{
 		question: "When should I use the light or dark option?",
 		answer:
-			"Use the light option on light backgrounds and the dark option on dark backgrounds. These labels describe the intended surface, not necessarily the dominant color in every logo.",
+			"Use the light option on light backgrounds and the dark option on dark backgrounds. These labels describe the intended surface contrast, not necessarily the dominant color in every logo.",
 	},
 	{
 		question: "Should I use SVG or PNG?",
 		answer:
-			"Use the source PNG for direct rendering. Choose SVG when your workflow requires that file type; Radian generates it in the browser from the active PNG instead of requesting an upstream SVG.",
+			"Use SVG as the primary source of truth for scalable, vector-sharp graphics across any screen density. When your workflow requires raster files (such as presentations or image pipelines), you can copy or download PNGs rendered directly from the vector SVG.",
 	},
 	{
 		question: "Can I recolor or reshape a brand logo?",
@@ -128,9 +132,10 @@ export default function BrandLogosDocs() {
 					assets.
 				</p>
 				<p>
-					Each brand includes a compact icon and a full wordmark, tuned for
-					light and dark interfaces. Transparent PNGs render directly, while SVG
-					exports are generated on demand in the browser.
+					Each brand includes a compact icon and a full wordmark, provided in
+					light and dark themes as well as colored and neutral colorways. Vector
+					SVGs serve as the single source of truth, while high-resolution PNGs
+					can be rendered and exported on demand in the browser.
 				</p>
 			</ResourceTextSection>
 
@@ -164,9 +169,10 @@ export default function BrandLogosDocs() {
 				title="Reliable logo implementation"
 				points={developmentPoints}>
 				<p>
-					The collection follows a consistent CDN path: theme, colorway, format,
-					category, variant, and brand ID. Keeping these choices explicit makes
-					logo rendering easy to test and maintain across a product.
+					The collection follows a consistent CDN path: theme, colorway,
+					category, variant, and brand ID with SVG files. Keeping these choices
+					explicit makes logo rendering easy to test and maintain across a
+					product.
 				</p>
 			</ResourceTextSection>
 
@@ -195,14 +201,14 @@ function BrandLogoCollection() {
 						key={id}
 						className="bg-bg border-soft flex h-36 items-center justify-center rounded-xl border p-5">
 						<img
-							src={getBrandLogoUrl(id, "light", "wordmark")}
+							src={getBrandLogoSvgUrl(id, "light", "colored", "wordmark")}
 							alt={`${brand.name} wordmark`}
 							width={180}
 							height={48}
 							className="h-12 w-full max-w-45 object-contain dark:hidden"
 						/>
 						<img
-							src={getBrandLogoUrl(id, "dark", "wordmark")}
+							src={getBrandLogoSvgUrl(id, "dark", "colored", "wordmark")}
 							alt=""
 							width={180}
 							height={48}

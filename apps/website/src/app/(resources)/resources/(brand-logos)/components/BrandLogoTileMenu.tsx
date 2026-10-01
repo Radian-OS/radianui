@@ -1,5 +1,6 @@
 "use client"
 
+import { memo } from "react"
 import {
 	CodeXml,
 	Image as ImageIcon,
@@ -26,7 +27,7 @@ interface BrandLogoTileMenuProps {
 	onCopyHtmlImage: () => void
 }
 
-export function BrandLogoTileMenu({
+export const BrandLogoTileMenu = memo(function BrandLogoTileMenu({
 	onCopyPng,
 	onCopySvg,
 	onCopyUrl,
@@ -79,4 +80,4 @@ export function BrandLogoTileMenu({
 			</DropdownMenu>
 		</div>
 	)
-}
+})

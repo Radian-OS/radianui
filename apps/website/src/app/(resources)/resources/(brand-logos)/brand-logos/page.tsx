@@ -6,7 +6,7 @@ import { BrandLogosResourcePage } from "../components/BrandLogosResourcePage"
 const pageUrl = absoluteUrl("/resources/brand-logos")
 const pageTitle = "Free Brand Logos – SVG & PNG Icons and Wordmarks"
 const pageDescription =
-	"Browse 244 free brand icons and wordmarks for light and dark interfaces. Copy transparent PNGs or generate and download SVG files in your browser."
+	"Browse 244 free brand icons and wordmarks in light, dark, colored, and neutral states. Copy raw SVG code, access direct CDN URLs, or export high-res PNGs in your browser."
 const pageImage = absoluteUrl("/media/assets-page/popular-brands-light.png")
 
 export const metadata: Metadata = {

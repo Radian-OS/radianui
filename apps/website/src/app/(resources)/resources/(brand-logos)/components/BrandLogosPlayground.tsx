@@ -1,6 +1,14 @@
 "use client"
 
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react"
+import {
+	startTransition,
+	useCallback,
+	useEffect,
+	useLayoutEffect,
+	useMemo,
+	useRef,
+	useState,
+} from "react"
 import { Search, SearchX } from "lucide-react"
 import {
 	Empty,
@@ -9,12 +17,15 @@ import {
 	EmptyMedia,
 	EmptyTitle,
 } from "@/registry/ui/empty"
-import { Input, InputWrapper } from "@/registry/ui/input"
+import { Input, InputGroup, InputWrapper } from "@/registry/ui/input"
 import { BrandLogoCategoryDropdown } from "./BrandLogoCategoryDropdown"
 import { BrandLogoDetailsDialog } from "./BrandLogoDetailsDialog"
-import { BrandLogoOptions } from "./BrandLogoOptions"
 import { BrandLogoTile } from "./BrandLogoTile"
-import type { BrandLogoId, BrandLogoVariant } from "./brand-logos-data"
+import type {
+	BrandLogoColorway,
+	BrandLogoId,
+	BrandLogoVariant,
+} from "./brand-logos-data"
 import {
 	ALL_BRAND_LOGO_CATEGORY,
 	BRAND_LOGOS_PAGE_PATH,
@@ -26,6 +37,9 @@ import {
 } from "./brand-logos-data"
 
 const BRAND_LOGO_VARIANT_STORAGE_KEY = "radian-brand-logos-variant"
+const BRAND_LOGO_COLORWAY_STORAGE_KEY = "radian-brand-logos-colorway"
+const INITIAL_LOGOS_LIMIT = 72
+const LOGOS_BATCH_SIZE = 72
 
 interface BrandLogosPlaygroundProps {
 	initialSelectedBrand?: BrandLogoId | null
@@ -42,15 +56,13 @@ export default function BrandLogosPlayground({
 	initialSelectedBrand = null,
 }: BrandLogosPlaygroundProps) {
 	const [query, setQuery] = useState("")
-	const [category, setCategory] = useState(
-		initialSelectedBrand
-			? getBrandLogo(initialSelectedBrand).category
-			: ALL_BRAND_LOGO_CATEGORY
-	)
+	const [category, setCategory] = useState(ALL_BRAND_LOGO_CATEGORY)
 	const [variant, setVariant] = useState<BrandLogoVariant>("icon")
+	const [colorway, setColorway] = useState<BrandLogoColorway>("colored")
 	const [selectedBrand, setSelectedBrand] = useState<BrandLogoId | null>(
 		initialSelectedBrand
 	)
+	const [displayLimit, setDisplayLimit] = useState(INITIAL_LOGOS_LIMIT)
 	const [, setIsSticky] = useState(false)
 	const ownsDialogHistoryEntryRef = useRef(false)
 	const sentinelRef = useRef<HTMLDivElement>(null)
@@ -62,6 +74,12 @@ export default function BrandLogosPlayground({
 		)
 		if (savedVariant === "icon" || savedVariant === "wordmark") {
 			setVariant(savedVariant)
+		}
+		const savedColorway = window.localStorage.getItem(
+			BRAND_LOGO_COLORWAY_STORAGE_KEY
+		)
+		if (savedColorway === "colored" || savedColorway === "neutral") {
+			setColorway(savedColorway)
 		}
 	}, [])
 
@@ -125,24 +143,48 @@ export default function BrandLogosPlayground({
 		return () => window.removeEventListener("popstate", handlePopState)
 	}, [])
 
-	const handleVariantChange = (nextVariant: BrandLogoVariant) => {
-		setVariant(nextVariant)
-		window.localStorage.setItem(BRAND_LOGO_VARIANT_STORAGE_KEY, nextVariant)
-	}
+	const handleCategoryChange = useCallback((nextCategory: string) => {
+		startTransition(() => {
+			setCategory(nextCategory)
+			setDisplayLimit(INITIAL_LOGOS_LIMIT)
+		})
+	}, [])
 
-	const handleSelectBrand = (id: BrandLogoId) => {
-		const nextState = {
-			...window.history.state,
-			radianBrandLogoDialog: true,
-		}
-		if (selectedBrand) {
-			window.history.replaceState(nextState, "", getBrandLogoPagePath(id))
-		} else {
-			window.history.pushState(nextState, "", getBrandLogoPagePath(id))
-			ownsDialogHistoryEntryRef.current = true
-		}
-		setSelectedBrand(id)
-	}
+	const handleVariantChange = useCallback((nextVariant: BrandLogoVariant) => {
+		startTransition(() => {
+			setVariant(nextVariant)
+			setDisplayLimit(INITIAL_LOGOS_LIMIT)
+		})
+		window.localStorage.setItem(BRAND_LOGO_VARIANT_STORAGE_KEY, nextVariant)
+	}, [])
+
+	const handleColorwayChange = useCallback(
+		(nextColorway: BrandLogoColorway) => {
+			startTransition(() => {
+				setColorway(nextColorway)
+				setDisplayLimit(INITIAL_LOGOS_LIMIT)
+			})
+			window.localStorage.setItem(BRAND_LOGO_COLORWAY_STORAGE_KEY, nextColorway)
+		},
+		[]
+	)
+
+	const handleSelectBrand = useCallback(
+		(id: BrandLogoId) => {
+			const nextState = {
+				...window.history.state,
+				radianBrandLogoDialog: true,
+			}
+			if (selectedBrand) {
+				window.history.replaceState(nextState, "", getBrandLogoPagePath(id))
+			} else {
+				window.history.pushState(nextState, "", getBrandLogoPagePath(id))
+				ownsDialogHistoryEntryRef.current = true
+			}
+			setSelectedBrand(id)
+		},
+		[selectedBrand]
+	)
 
 	const handleDialogOpenChange = (open: boolean) => {
 		if (open) return
@@ -177,6 +219,31 @@ export default function BrandLogosPlayground({
 		)
 	}, [category, query])
 
+	const renderedLogos = useMemo(
+		() => visibleLogos.slice(0, displayLimit),
+		[visibleLogos, displayLimit]
+	)
+
+	useEffect(() => {
+		const bottomSentinel = bottomSentinelRef.current
+		if (!bottomSentinel) return
+
+		const observer = new IntersectionObserver(
+			([entry]) => {
+				if (entry.isIntersecting) {
+					setDisplayLimit((prev) => {
+						if (prev >= visibleLogos.length) return prev
+						return Math.min(prev + LOGOS_BATCH_SIZE, visibleLogos.length)
+					})
+				}
+			},
+			{ rootMargin: "600px 0px" }
+		)
+
+		observer.observe(bottomSentinel)
+		return () => observer.disconnect()
+	}, [visibleLogos.length])
+
 	useLayoutEffect(() => {
 		const topSentinel = sentinelRef.current
 		const playground = topSentinel?.parentElement
@@ -188,38 +255,47 @@ export default function BrandLogosPlayground({
 		if (sentinelRect.top < pinnedSentinelTop) {
 			window.scrollBy({ top: sentinelRect.top - pinnedSentinelTop })
 		}
-	}, [category, query, variant])
+	}, [category, query, variant, colorway])
 
 	return (
 		<div id="brand-logo-collection" className="flex w-full flex-col gap-8 py-2">
 			<div ref={sentinelRef} className="pointer-events-none h-px w-full" />
 			<div className="bg-bg/95 sticky top-0 z-100 py-3 backdrop-blur-sm">
-				<InputWrapper className="bg-bg h-13 w-full">
+				<InputGroup className="w-full">
 					<BrandLogoCategoryDropdown
 						value={category}
-						onValueChange={setCategory}
-					/>
-					<BrandLogoOptions
+						onValueChange={handleCategoryChange}
 						variant={variant}
 						onVariantChange={handleVariantChange}
+						colorway={colorway}
+						onColorwayChange={handleColorwayChange}
+						className="rounded-r-none border-r-0"
 					/>
-					<Search aria-hidden="true" />
-					<Input
-						value={query}
-						onChange={(event) => setQuery(event.target.value)}
-						placeholder="Search brand logos (e.g. OpenAI, React, design)..."
-						aria-label="Search brand logos"
-					/>
-				</InputWrapper>
+					<InputWrapper
+						size="44"
+						className="bg-bg focus-within:bg-bg min-w-0 flex-1 rounded-l-none shadow-none">
+						<Search aria-hidden="true" />
+						<Input
+							value={query}
+							onChange={(event) => {
+								setQuery(event.target.value)
+								setDisplayLimit(INITIAL_LOGOS_LIMIT)
+							}}
+							placeholder="Search brand logos (e.g. OpenAI, ChatGPT, React)..."
+							aria-label="Search brand logos"
+						/>
+					</InputWrapper>
+				</InputGroup>
 			</div>
 
 			{visibleLogos.length ? (
-				<ul className="grid list-none grid-cols-[repeat(auto-fill,142px)] justify-center gap-x-3 gap-y-5 sm:justify-between">
-					{visibleLogos.map((brand, index) => (
+				<ul className="grid w-full list-none grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 lg:gap-5">
+					{renderedLogos.map((brand, index) => (
 						<BrandLogoTile
 							key={brand.id}
 							id={brand.id}
 							variant={variant}
+							colorway={colorway}
 							priority={index < 12}
 							onSelect={handleSelectBrand}
 						/>
@@ -249,6 +325,7 @@ export default function BrandLogosPlayground({
 			<BrandLogoDetailsDialog
 				id={selectedBrand}
 				variant={variant}
+				colorway={colorway}
 				open={selectedBrand !== null}
 				onOpenChange={handleDialogOpenChange}
 				onSelectBrand={handleSelectBrand}

@@ -10,6 +10,7 @@ import {
 	BRAND_LOGO_CDN_ORIGIN,
 	brandLogos,
 	getBrandLogo,
+	getBrandLogoSvgUrl,
 	getBrandLogoUrl,
 } from "./brand-logos-data"
 
@@ -46,7 +47,7 @@ export function BrandLogosResourcePage({
 									size === "large" ? "z-10 size-20" : "size-14"
 								)}>
 								<img
-									src={getBrandLogoUrl(id, "light", "icon")}
+									src={getBrandLogoSvgUrl(id, "light", "colored", "icon")}
 									alt={`${brand.name} logo`}
 									width={64}
 									height={64}
@@ -56,7 +57,7 @@ export function BrandLogosResourcePage({
 									)}
 								/>
 								<img
-									src={getBrandLogoUrl(id, "dark", "icon")}
+									src={getBrandLogoSvgUrl(id, "dark", "colored", "icon")}
 									alt=""
 									width={64}
 									height={64}
@@ -71,7 +72,7 @@ export function BrandLogosResourcePage({
 				</div>
 			}
 			title="Popular Brand Logos for Every Interface"
-			description="Browse 244 polished brand icons and wordmarks across 12 categories, with transparent PNGs for light and dark interfaces and browser-generated SVG exports."
+			description="Browse 244 polished brand icons and wordmarks across 12 categories. Vector SVGs as the single source of truth across light, dark, colored, and neutral states, with one-click SVG copying, direct CDN URLs, and high-res PNG export."
 			actions={<BrandLogosHeroActions />}
 			showcaseLabel="Browse free brand logo assets"
 			showcase={

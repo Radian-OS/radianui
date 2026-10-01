@@ -24,47 +24,39 @@ import {
 	DropdownMenuItem,
 	DropdownMenuTrigger,
 } from "@/registry/ui/dropdown-menu"
-import { showBrandLogoToast } from "./BrandLogoToast"
+import {
+	downloadBlob,
+	fetchBrandLogoSvg,
+	renderBrandLogoPng,
+} from "./brand-logo-assets"
 import { BrandLogoOptions } from "./BrandLogoOptions"
-import type { BrandLogoId, BrandLogoVariant } from "./brand-logos-data"
+import { showBrandLogoToast } from "./BrandLogoToast"
+import type {
+	BrandLogoColorway,
+	BrandLogoId,
+	BrandLogoVariant,
+} from "./brand-logos-data"
 import {
 	brandLogos,
 	getBrandLogo,
+	getBrandLogoDisplayUrl,
+	getBrandLogoFallbackUrl,
 	getBrandLogoHtmlMarkup,
 	getBrandLogoNextImageMarkup,
-	getBrandLogoSvgMarkup,
-	getBrandLogoUrl,
+	getBrandLogoSvgUrl,
+	registerBrandLogoFallback,
 } from "./brand-logos-data"
 
 interface BrandLogoDetailsDialogProps {
 	id: BrandLogoId | null
 	variant: BrandLogoVariant
+	colorway?: BrandLogoColorway
 	open: boolean
 	onOpenChange: (open: boolean) => void
 	onSelectBrand: (id: BrandLogoId) => void
 }
 
 const MORE_LOGOS_LIMIT = 12
-
-function blobToDataUrl(blob: Blob) {
-	return new Promise<string>((resolve, reject) => {
-		const reader = new FileReader()
-		reader.onload = () => resolve(String(reader.result))
-		reader.onerror = () => reject(reader.error)
-		reader.readAsDataURL(blob)
-	})
-}
-
-function downloadBlob(blob: Blob, filename: string) {
-	const objectUrl = URL.createObjectURL(blob)
-	const link = document.createElement("a")
-	link.href = objectUrl
-	link.download = filename
-	document.body.appendChild(link)
-	link.click()
-	link.remove()
-	URL.revokeObjectURL(objectUrl)
-}
 
 function getMoreLogos(id: BrandLogoId) {
 	const selectedIndex = brandLogos.findIndex((brand) => brand.id === id)
@@ -78,6 +70,7 @@ function getMoreLogos(id: BrandLogoId) {
 export function BrandLogoDetailsDialog({
 	id,
 	variant,
+	colorway = "colored",
 	open,
 	onOpenChange,
 	onSelectBrand,
@@ -85,19 +78,32 @@ export function BrandLogoDetailsDialog({
 	const { resolvedTheme } = useTheme()
 	const activeTheme = resolvedTheme === "dark" ? "dark" : "light"
 	const [dialogVariant, setDialogVariant] = useState<BrandLogoVariant>(variant)
+	const [dialogColorway, setDialogColorway] =
+		useState<BrandLogoColorway>(colorway)
 	const moreLogos = useMemo(() => (id ? getMoreLogos(id) : []), [id])
 
 	useEffect(() => {
 		if (!open) return
 		setDialogVariant(variant)
-	}, [open, variant])
+		setDialogColorway(colorway)
+	}, [open, variant, colorway])
 
 	if (!id) return null
 
 	const brand = getBrandLogo(id)
-	const pngUrl = getBrandLogoUrl(id, activeTheme, dialogVariant)
-	const lightPngUrl = getBrandLogoUrl(id, "light", dialogVariant)
-	const darkPngUrl = getBrandLogoUrl(id, "dark", dialogVariant)
+	const activeSvgUrl = getBrandLogoSvgUrl(
+		id,
+		activeTheme,
+		dialogColorway,
+		dialogVariant
+	)
+	const activeDisplayUrl = getBrandLogoDisplayUrl(
+		id,
+		activeTheme,
+		dialogColorway,
+		dialogVariant
+	)
+
 	const searchTags = Array.from(
 		new Set([
 			brand.name,
@@ -105,11 +111,13 @@ export function BrandLogoDetailsDialog({
 			...brand.aliases,
 			`${brand.name} logo`,
 			dialogVariant,
+			dialogColorway,
 		])
 	)
+
 	const showToast = (description: string, title?: string) => {
 		showBrandLogoToast({
-			logoUrl: pngUrl,
+			logoUrl: activeDisplayUrl,
 			description,
 			title,
 		})
@@ -124,51 +132,62 @@ export function BrandLogoDetailsDialog({
 		}
 	}
 
-	const getSvg = async () => {
-		const response = await fetch(pngUrl)
-		if (!response.ok) throw new Error("Logo request failed")
-		const imageHref = await blobToDataUrl(await response.blob())
-		return getBrandLogoSvgMarkup(id, dialogVariant, imageHref)
-	}
-
 	const copySvg = async () => {
 		try {
-			await copyText(await getSvg(), "SVG")
+			const svgMarkup = await fetchBrandLogoSvg(
+				id,
+				activeTheme,
+				dialogColorway,
+				dialogVariant
+			)
+			await navigator.clipboard.writeText(svgMarkup)
+			showToast("SVG code has been copied to your clipboard.")
 		} catch {
-			toast.error("Could not copy SVG")
+			toast.error("Could not copy SVG code")
 		}
 	}
 
 	const copyPng = async () => {
 		try {
 			if (!navigator.clipboard.write || !("ClipboardItem" in window)) {
-				await copyText(pngUrl, "PNG URL")
+				await copyText(activeSvgUrl, "CDN URL")
 				return
 			}
 
-			const response = await fetch(pngUrl)
-			if (!response.ok) throw new Error("Logo request failed")
+			const blob = await renderBrandLogoPng(
+				id,
+				activeTheme,
+				dialogColorway,
+				dialogVariant
+			)
 			await navigator.clipboard.write([
-				new ClipboardItem({ "image/png": await response.blob() }),
+				new ClipboardItem({ "image/png": blob }),
 			])
-			showToast("PNG has been copied to your clipboard.")
+			showToast("PNG image has been copied to your clipboard.")
 		} catch {
-			toast.error("Could not copy PNG")
+			toast.error("Could not copy PNG image")
 		}
 	}
 
 	const downloadLogo = async (format: "png" | "svg") => {
 		try {
-			const filename = `${id}-${activeTheme}-${dialogVariant}.${format}`
+			const filename = `${id}-${activeTheme}-${dialogColorway}-${dialogVariant}.${format}`
 			if (format === "svg") {
-				downloadBlob(
-					new Blob([await getSvg()], { type: "image/svg+xml" }),
-					filename
+				const svgMarkup = await fetchBrandLogoSvg(
+					id,
+					activeTheme,
+					dialogColorway,
+					dialogVariant
 				)
+				downloadBlob(new Blob([svgMarkup], { type: "image/svg+xml" }), filename)
 			} else {
-				const response = await fetch(pngUrl)
-				if (!response.ok) throw new Error("Logo request failed")
-				downloadBlob(await response.blob(), filename)
+				const blob = await renderBrandLogoPng(
+					id,
+					activeTheme,
+					dialogColorway,
+					dialogVariant
+				)
+				downloadBlob(blob, filename)
 			}
 			showToast(
 				`${format.toUpperCase()} has been downloaded.`,
@@ -192,27 +211,36 @@ export function BrandLogoDetailsDialog({
 							<BrandLogoOptions
 								variant={dialogVariant}
 								onVariantChange={setDialogVariant}
+								colorway={dialogColorway}
+								onColorwayChange={setDialogColorway}
 								compact
 							/>
 						</div>
 						<img
-							src={lightPngUrl}
+							src={activeDisplayUrl}
 							alt={`${brand.name} ${dialogVariant}`}
 							width={dialogVariant === "icon" ? 96 : 270}
 							height={dialogVariant === "icon" ? 96 : 72}
+							onError={(e) => {
+								registerBrandLogoFallback(id)
+								const fallback = getBrandLogoFallbackUrl(
+									id,
+									activeTheme,
+									dialogColorway,
+									dialogVariant
+								)
+								if (
+									e.currentTarget.src !== fallback &&
+									!e.currentTarget.src.endsWith(fallback)
+								) {
+									e.currentTarget.src = fallback
+								}
+							}}
 							className={cn(
-								"object-contain dark:hidden",
-								dialogVariant === "icon" ? "size-24" : "h-18 w-full max-w-67.5"
-							)}
-						/>
-						<img
-							src={darkPngUrl}
-							alt=""
-							width={dialogVariant === "icon" ? 96 : 270}
-							height={dialogVariant === "icon" ? 96 : 72}
-							className={cn(
-								"hidden object-contain dark:block",
-								dialogVariant === "icon" ? "size-24" : "h-18 w-full max-w-67.5"
+								"object-contain",
+								dialogVariant === "icon"
+									? "size-20 sm:size-24"
+									: "h-16 w-full max-w-67.5 sm:h-18"
 							)}
 						/>
 					</div>
@@ -270,20 +298,15 @@ export function BrandLogoDetailsDialog({
 									size="32"
 									color="neutral"
 									variant="outline"
-									onClick={() => copyText(pngUrl, "CDN URL")}>
+									onClick={() => copyText(activeSvgUrl, "CDN URL")}>
 									CDN URL
 								</Button>
 								<Button
 									size="32"
 									color="neutral"
 									variant="outline"
-									onClick={() =>
-										copyText(
-											getBrandLogoHtmlMarkup(id, activeTheme, dialogVariant),
-											"HTML markup"
-										)
-									}>
-									HTML
+									onClick={copySvg}>
+									SVG Code
 								</Button>
 								<Button
 									size="32"
@@ -294,78 +317,107 @@ export function BrandLogoDetailsDialog({
 											getBrandLogoNextImageMarkup(
 												id,
 												activeTheme,
+												dialogColorway,
 												dialogVariant
 											),
 											"Next.js markup"
 										)
 									}>
-									Next.js
+									Next.js &lt;Image&gt;
+								</Button>
+								<Button
+									size="32"
+									color="neutral"
+									variant="outline"
+									onClick={() =>
+										copyText(
+											getBrandLogoHtmlMarkup(
+												id,
+												activeTheme,
+												dialogColorway,
+												dialogVariant
+											),
+											"HTML markup"
+										)
+									}>
+									HTML &lt;img&gt;
 								</Button>
 							</div>
 						</div>
 
 						<div className="flex flex-col gap-2">
 							<p className="text-fg-secondary text-xs font-medium">
-								Available assets
+								Properties
 							</p>
+							<div className="grid grid-cols-2 gap-2 text-sm sm:grid-cols-3">
+								<div className="bg-bg border-soft rounded-lg border p-2.5">
+									<p className="text-fg-tertiary text-xs">Category</p>
+									<p className="font-medium">{brand.categoryLabel}</p>
+								</div>
+								<div className="bg-bg border-soft rounded-lg border p-2.5">
+									<p className="text-fg-tertiary text-xs">Variant</p>
+									<p className="font-medium capitalize">{dialogVariant}</p>
+								</div>
+								<div className="bg-bg border-soft rounded-lg border p-2.5">
+									<p className="text-fg-tertiary text-xs">Colorway</p>
+									<p className="font-medium capitalize">{dialogColorway}</p>
+								</div>
+							</div>
+						</div>
+
+						<div className="flex flex-col gap-2">
+							<p className="text-fg-secondary text-xs font-medium">Tags</p>
 							<div className="flex flex-wrap gap-1.5">
-								{["Light", "Dark", "Icon", "Wordmark", "SVG", "PNG"].map(
-									(option) => (
-										<Badge
-											key={option}
-											size="24"
-											color="neutral"
-											variant="outline">
-											{option}
-										</Badge>
-									)
-								)}
+								{searchTags.map((tag) => (
+									<Badge key={tag} color="neutral" variant="soft" size="24">
+										{tag}
+									</Badge>
+								))}
 							</div>
 						</div>
 					</div>
 				</div>
 
-				<div className="mt-6 flex flex-col gap-6">
-					<div className="flex flex-col gap-2">
-						<p className="text-fg-secondary text-xs font-medium">Search tags</p>
-						<div className="flex flex-wrap gap-1.5">
-							{searchTags.map((tag) => (
-								<Badge key={tag} size="24" color="neutral" variant="outline">
-									{tag}
-								</Badge>
-							))}
-						</div>
-					</div>
-
-					<div className="flex flex-col gap-2">
-						<p className="text-fg-secondary text-xs font-medium">More logos</p>
-						<div className="grid grid-cols-[repeat(auto-fill,58px)] gap-2">
-							{moreLogos.map((moreBrand) => (
-								<Button
-									key={moreBrand.id}
-									size="32"
-									color="neutral"
-									variant="outline"
-									className="bg-bg hover:bg-bg size-14.5 p-0"
-									aria-label={`View ${moreBrand.name} logo`}
-									onClick={() => onSelectBrand(moreBrand.id)}>
-									<img
-										src={getBrandLogoUrl(moreBrand.id, "light", "icon")}
-										alt=""
-										width={32}
-										height={32}
-										className="size-8 object-contain dark:hidden"
-									/>
-									<img
-										src={getBrandLogoUrl(moreBrand.id, "dark", "icon")}
-										alt=""
-										width={32}
-										height={32}
-										className="hidden size-8 object-contain dark:block"
-									/>
-								</Button>
-							))}
-						</div>
+				<div className="mt-8 flex flex-col gap-3">
+					<p className="text-fg font-medium">More brand logos</p>
+					<div className="grid grid-cols-3 gap-2 sm:grid-cols-6 md:grid-cols-12">
+						{moreLogos.map((item) => (
+							<Button
+								key={item.id}
+								size="36"
+								color="neutral"
+								variant="outline"
+								onClick={() => onSelectBrand(item.id)}
+								className="bg-bg hover:bg-bg aspect-square size-full p-2">
+								<img
+									src={getBrandLogoDisplayUrl(
+										item.id,
+										activeTheme,
+										dialogColorway,
+										"icon"
+									)}
+									alt={item.name}
+									width={24}
+									height={24}
+									onError={(e) => {
+										registerBrandLogoFallback(item.id)
+										const fallback = getBrandLogoFallbackUrl(
+											item.id,
+											activeTheme,
+											dialogColorway,
+											"icon"
+										)
+										if (
+											e.currentTarget.src !== fallback &&
+											!e.currentTarget.src.endsWith(fallback)
+										) {
+											e.currentTarget.src = fallback
+										}
+									}}
+									className="size-7 object-contain"
+								/>
+							</Button>
+						))}
 					</div>
 				</div>
 			</DialogContent>

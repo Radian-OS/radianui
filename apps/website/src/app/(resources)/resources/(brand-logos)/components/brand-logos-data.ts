@@ -8,6 +8,7 @@ const BRAND_LOGO_CDN_ROOT =
 	"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src"
 
 export type BrandLogoTheme = "light" | "dark"
+export type BrandLogoColorway = "colored" | "neutral"
 export type BrandLogoVariant = "icon" | "wordmark"
 export type BrandLogoId = string
 export type BrandLogoCategorySlug = string
@@ -37,6 +38,7 @@ const brandNameOverrides: Record<string, string> = {
 	"aws-dynamodb": "AWS DynamoDB",
 	"aws-lambda": "AWS Lambda",
 	"cash-app": "Cash App",
+	chatgpt: "ChatGPT",
 	circleci: "CircleCI",
 	cloudflare: "Cloudflare",
 	cockroachdb: "CockroachDB",
@@ -105,6 +107,7 @@ const brandAliases: Record<string, readonly string[]> = {
 	anthropic: ["ai"],
 	bitbucket: ["atlassian", "git"],
 	canva: ["design"],
+	chatgpt: ["openai", "ai", "gpt"],
 	claude: ["anthropic", "ai"],
 	figma: ["design"],
 	framer: ["design", "website"],
@@ -150,7 +153,7 @@ export const brandLogos: readonly BrandLogo[] = brandLogoCategories.flatMap(
 		}))
 )
 
-export const BRAND_LOGO_ASSET_COUNT = brandLogos.length * 4
+export const BRAND_LOGO_ASSET_COUNT = brandLogos.length * 8
 
 const brandLogosById = new Map<BrandLogoId, BrandLogo>(
 	brandLogos.map((brand) => [brand.id, brand])
@@ -175,58 +178,135 @@ export function getBrandLogoSearchTerms(id: BrandLogoId) {
 	return [brand.id, brand.name, brand.categoryLabel, ...brand.aliases]
 }
 
-export function getBrandLogoUrl(
+export function getLogoDimensions(variant: BrandLogoVariant) {
+	return variant === "icon"
+		? { width: 24, height: 24 }
+		: { width: 180, height: 48 }
+}
+
+export function getBrandLogoSvgUrl(
 	id: BrandLogoId,
 	theme: BrandLogoTheme = "light",
+	colorway: BrandLogoColorway = "colored",
 	variant: BrandLogoVariant = "icon"
 ) {
 	const brand = getBrandLogo(id)
-	return `${BRAND_LOGO_CDN_ROOT}/${theme}/colored/png/${brand.category}/${variant}/${id}.png`
+	return `${BRAND_LOGO_CDN_ROOT}/${theme}/${colorway}/${brand.category}/${variant}/${brand.id}.svg`
 }
 
-function getLogoDimensions(variant: BrandLogoVariant) {
-	return variant === "icon"
-		? { width: 64, height: 64 }
-		: { width: 240, height: 64 }
-}
-
-function escapeXmlText(value: string) {
-	return value
-		.replaceAll("&", "&amp;")
-		.replaceAll("<", "&lt;")
-		.replaceAll(">", "&gt;")
-}
-
-function escapeXmlAttribute(value: string) {
-	return escapeXmlText(value).replaceAll('"', "&quot;")
-}
-
-export function getBrandLogoSvgMarkup(
+export function getBrandLogoUrl(
 	id: BrandLogoId,
-	variant: BrandLogoVariant,
-	imageHref: string
-) {
-	const brand = getBrandLogo(id)
-	const { width, height } = getLogoDimensions(variant)
-	return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" role="img" aria-label="${escapeXmlAttribute(brand.name)} ${variant}"><image href="${escapeXmlAttribute(imageHref)}" width="${width}" height="${height}" preserveAspectRatio="xMidYMid meet" /></svg>`
+	theme: BrandLogoTheme = "light",
+	colorwayOrVariant: BrandLogoColorway | BrandLogoVariant = "colored",
+	maybeVariant: BrandLogoVariant = "icon"
+): string {
+	const colorway: BrandLogoColorway =
+		colorwayOrVariant === "icon" || colorwayOrVariant === "wordmark"
+			? "colored"
+			: colorwayOrVariant
+	const variant: BrandLogoVariant =
+		colorwayOrVariant === "icon" || colorwayOrVariant === "wordmark"
+			? colorwayOrVariant
+			: maybeVariant
+	return getBrandLogoSvgUrl(id, theme, colorway, variant)
 }
 
 export function getBrandLogoHtmlMarkup(
 	id: BrandLogoId,
-	theme: BrandLogoTheme,
-	variant: BrandLogoVariant
+	theme: BrandLogoTheme = "light",
+	colorway: BrandLogoColorway = "colored",
+	variant: BrandLogoVariant = "icon"
 ) {
 	const brand = getBrandLogo(id)
 	const { width, height } = getLogoDimensions(variant)
-	return `<img src="${getBrandLogoUrl(id, theme, variant)}" alt="${brand.name} ${variant}" width="${width}" height="${height}" />`
+	return `<img src="${getBrandLogoSvgUrl(id, theme, colorway, variant)}" alt="${brand.name} ${variant}" width="${width}" height="${height}" />`
 }
 
 export function getBrandLogoNextImageMarkup(
 	id: BrandLogoId,
-	theme: BrandLogoTheme,
-	variant: BrandLogoVariant
+	theme: BrandLogoTheme = "light",
+	colorway: BrandLogoColorway = "colored",
+	variant: BrandLogoVariant = "icon"
 ) {
 	const brand = getBrandLogo(id)
 	const { width, height } = getLogoDimensions(variant)
-	return `<Image src="${getBrandLogoUrl(id, theme, variant)}" alt="${brand.name} ${variant}" width={${width}} height={${height}} />`
+	return `<Image src="${getBrandLogoSvgUrl(id, theme, colorway, variant)}" alt="${brand.name} ${variant}" width={${width}} height={${height}} />`
+}
+
+const PRIVACY_SENSITIVE_BRAND_IDS = new Set<string>([
+	"amplitude",
+	"datadog",
+	"hotjar",
+	"intercom",
+	"klaviyo",
+	"mailchimp",
+	"mixpanel",
+	"optimizely",
+	"sentry",
+])
+
+const dynamicFallbackBrands = new Set<string>()
+
+if (typeof window !== "undefined") {
+	try {
+		const stored = JSON.parse(
+			window.sessionStorage.getItem("radian-fallback-brands") || "[]"
+		) as string[]
+		for (const id of stored) {
+			dynamicFallbackBrands.add(id)
+		}
+	} catch {
+		// Ignore storage errors
+	}
+}
+
+export function registerBrandLogoFallback(id: BrandLogoId) {
+	dynamicFallbackBrands.add(id)
+	if (typeof window !== "undefined") {
+		try {
+			const existing = JSON.parse(
+				window.sessionStorage.getItem("radian-fallback-brands") || "[]"
+			) as string[]
+			if (!existing.includes(id)) {
+				window.sessionStorage.setItem(
+					"radian-fallback-brands",
+					JSON.stringify([...existing, id])
+				)
+			}
+		} catch {
+			// Ignore storage access errors
+		}
+	}
+}
+
+export function isBrandLogoFallbackRequired(id: BrandLogoId) {
+	return PRIVACY_SENSITIVE_BRAND_IDS.has(id) || dynamicFallbackBrands.has(id)
+}
+
+export function getBrandLogoFallbackUrl(
+	id: BrandLogoId,
+	theme: BrandLogoTheme = "light",
+	colorway: BrandLogoColorway = "colored",
+	variant: BrandLogoVariant = "icon"
+) {
+	const brand = getBrandLogo(id)
+	const path = `src/${theme}/${colorway}/${brand.category}/${variant}/${brand.id}.svg`
+	const token =
+		typeof btoa === "function"
+			? btoa(path)
+			: Buffer.from(path).toString("base64")
+	return `/api/brand-logos?token=${encodeURIComponent(token)}`
+}
+
+export function getBrandLogoDisplayUrl(
+	id: BrandLogoId,
+	theme: BrandLogoTheme = "light",
+	colorway: BrandLogoColorway = "colored",
+	variant: BrandLogoVariant = "icon"
+) {
+	// Privacy-sensitive brands are commonly blocked by ad blockers / privacy filters
+	// when their name appears in a third-party CDN URL. Using the proxy URL avoids that.
+	return isBrandLogoFallbackRequired(id)
+		? getBrandLogoFallbackUrl(id, theme, colorway, variant)
+		: getBrandLogoSvgUrl(id, theme, colorway, variant)
 }

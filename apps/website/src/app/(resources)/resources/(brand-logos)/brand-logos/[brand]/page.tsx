@@ -30,7 +30,7 @@ export async function generateMetadata({
 	if (!brand) return {}
 
 	const title = `${brand.name} Logo – Free SVG & PNG Download`
-	const description = `Preview, copy, and download the ${brand.name} logo as an icon or wordmark for light and dark interfaces.`
+	const description = `Preview, copy SVG code, get direct CDN URLs, and download the ${brand.name} logo as vector SVG or high-res PNG in light, dark, colored, and neutral states.`
 	const url = absoluteUrl(getBrandLogoPagePath(brand.id))
 	const image = getBrandLogoUrl(brand.id, "light", "icon")
 
