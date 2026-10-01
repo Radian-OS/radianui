@@ -1,9 +1,12 @@
+import "noto-color-emoji-flags"
 import { ResourcePage } from "../../components/ResourcePage"
 import EmojiDocs from "../docs/EmojiDocs"
 import { EmojiHeroActionButtons } from "./EmojiHeroActionButtons"
 import EmojiPlayground from "./EmojiPlayground"
+import { EmojiText } from "./EmojiText"
 import type { EmojiData } from "./emoji-data"
 import { emojis, formatEmojiName, getEmojiDescription } from "./emoji-data"
+import styles from "./emoji-font.module.css"
 
 const heroEmojis = ["🤩", "👻", "🔥"]
 
@@ -39,14 +42,26 @@ export function EmojiResourcePage({
 				</div>
 			}
 			title={
-				initialSelectedEmoji && selectedName
-					? `${selectedName} Emoji ${initialSelectedEmoji.emoji}`
-					: "Find, Copy, and Use Every Unicode Emoji"
+				initialSelectedEmoji && selectedName ? (
+					<>
+						{selectedName} Emoji{" "}
+						<span className={styles.emojiFont}>
+							{initialSelectedEmoji.emoji}
+						</span>
+					</>
+				) : (
+					"Find, Copy, and Use Every Unicode Emoji"
+				)
 			}
 			description={
-				initialSelectedEmoji
-					? getEmojiDescription(initialSelectedEmoji)
-					: "Browse emojis by Unicode category, copy them as text, and grab Unicode, HTML, SVG, and PNG formats."
+				initialSelectedEmoji ? (
+					<EmojiText
+						emoji={initialSelectedEmoji}
+						text={getEmojiDescription(initialSelectedEmoji)}
+					/>
+				) : (
+					"Browse emojis by Unicode category, copy them as text, and grab Unicode, HTML, SVG, and PNG formats."
+				)
 			}
 			actions={<EmojiHeroActionButtons />}
 			showcaseLabel={`Browse ${emojis.length.toLocaleString("en-US")} Unicode emojis`}

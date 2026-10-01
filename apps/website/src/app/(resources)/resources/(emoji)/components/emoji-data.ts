@@ -28,6 +28,8 @@ export interface EmojiGroup {
 
 export const EMOJI_PAGE_PATH = "/resources/emoji"
 export const ALL_EMOJI_CATEGORY = "All Categories"
+export const FLAG_EMOJI_FONT_FAMILY = "Noto Color Emoji Flags"
+export const EMOJI_FONT_STACK = `"${FLAG_EMOJI_FONT_FAMILY}", "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif`
 
 export const emojiGroups: EmojiGroup[] = (
 	emojiGroupsJson as EmojiGroupSource[]
@@ -120,7 +122,7 @@ export function getEmojiSvgMarkup(emoji: EmojiData, size = 512) {
 	const label = escapeMarkup(`${formatEmojiName(emoji.name)} emoji`)
 	const glyphSize = Math.round(size * 0.625)
 
-	return `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" role="img" aria-label="${label}"><title>${label}</title><text x="50%" y="50%" text-anchor="middle" dominant-baseline="central" font-size="${glyphSize}" font-family="Apple Color Emoji, Segoe UI Emoji, Noto Color Emoji, sans-serif">${emoji.emoji}</text></svg>`
+	return `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" role="img" aria-label="${label}"><title>${label}</title><text x="50%" y="50%" text-anchor="middle" dominant-baseline="central" font-size="${glyphSize}" font-family='${EMOJI_FONT_STACK}'>${emoji.emoji}</text></svg>`
 }
 
 export function getEmojiShortcode(emoji: EmojiData) {

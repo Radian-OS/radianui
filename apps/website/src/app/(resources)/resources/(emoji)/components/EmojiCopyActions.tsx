@@ -6,9 +6,12 @@ import { toast } from "sonner"
 import { Button } from "@/registry/ui/button"
 import { Card } from "@/registry/ui/card"
 import { EmojiCopyButton } from "./EmojiCopyButton"
+import { EmojiText } from "./EmojiText"
 import { showEmojiToast } from "./EmojiToast"
 import type { EmojiData } from "./emoji-data"
 import {
+	EMOJI_FONT_STACK,
+	FLAG_EMOJI_FONT_FAMILY,
 	formatEmojiName,
 	getEmojiCodePoints,
 	getEmojiHtmlEntity,
@@ -18,6 +21,7 @@ import {
 	getEmojiUnicodeEscape,
 	getEmojiUriEncoded,
 } from "./emoji-data"
+import styles from "./emoji-font.module.css"
 
 const legibilitySizes = [16, 24, 32, 48, 64] as const
 const svgExportSize = 512
@@ -66,7 +70,7 @@ export function EmojiCopyActions({ emoji }: { emoji: EmojiData }) {
 		})
 	}
 
-	const downloadPng = () => {
+	const downloadPng = async () => {
 		const canvas = document.createElement("canvas")
 		canvas.width = pngExportSize
 		canvas.height = pngExportSize
@@ -77,10 +81,23 @@ export function EmojiCopyActions({ emoji }: { emoji: EmojiData }) {
 			return
 		}
 
+		const fontSize = Math.round(pngExportSize * pngGlyphScale)
+		if (emoji.group === "Flags") {
+			try {
+				await document.fonts.load(
+					`400 ${fontSize}px "${FLAG_EMOJI_FONT_FAMILY}"`,
+					emoji.emoji
+				)
+			} catch {
+				toast.error("Could not load the flag emoji font")
+				return
+			}
+		}
+
 		context.clearRect(0, 0, pngExportSize, pngExportSize)
 		context.imageSmoothingEnabled = true
 		context.imageSmoothingQuality = "high"
-		context.font = `${Math.round(pngExportSize * pngGlyphScale)}px "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif`
+		context.font = `${fontSize}px ${EMOJI_FONT_STACK}`
 		context.textAlign = "center"
 		context.textBaseline = "middle"
 		context.fillText(emoji.emoji, pngExportSize / 2, pngExportSize / 2)
@@ -170,7 +187,7 @@ export function EmojiCopyActions({ emoji }: { emoji: EmojiData }) {
 								{format.label}
 							</span>
 							<code className="bg-fill1 min-w-0 overflow-x-auto rounded-md px-2.5 py-2 text-xs whitespace-nowrap">
-								{format.value}
+								<EmojiText emoji={emoji} text={format.value} />
 							</code>
 							<EmojiCopyButton
 								emoji={emoji.emoji}
@@ -200,6 +217,7 @@ export function EmojiCopyActions({ emoji }: { emoji: EmojiData }) {
 							key={size}
 							className="border-soft flex min-h-28 flex-col items-center justify-center gap-3 border-r border-b p-4 last:border-r-0 sm:border-b-0">
 							<span
+								className={styles.emojiFont}
 								style={{
 									fontSize: size,
 									lineHeight: `${Math.max(size, 24)}px`,

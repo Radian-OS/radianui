@@ -25,8 +25,7 @@ import { Table, TableBody, TableCell, TableRow } from "@/registry/ui/table"
 import { ResourceFaq } from "../../components/ResourceDocs"
 import { EmojiCopyActions } from "./EmojiCopyActions"
 import { EmojiSkinToneVariants } from "./EmojiSkinToneVariants"
-import { FlagImage } from "../../(flags)/components/FlagImage"
-import { getFlagNameFromSlug } from "../../(flags)/components/flags-data"
+import { EmojiText } from "./EmojiText"
 import type { EmojiData } from "./emoji-data"
 import {
 	formatEmojiName,
@@ -38,6 +37,7 @@ import {
 	getEmojiShortcode,
 	getRelatedEmojis,
 } from "./emoji-data"
+import styles from "./emoji-font.module.css"
 
 interface EmojiDetailsDrawerProps {
 	emoji: EmojiData | null
@@ -59,12 +59,6 @@ export function EmojiDetailsDrawer({
 	const codepoints = getEmojiCodePoints(emoji.emoji).join(" ")
 	const sequence = getEmojiSequenceInfo(emoji)
 	const faqItems = getEmojiFaqItems(emoji)
-	const isFlag = emoji.group === "Flags"
-	const flagName = isFlag
-		? getFlagNameFromSlug(emoji.slug.replace(/^flag_/, "")) ||
-			getFlagNameFromSlug(emoji.slug.replace(/^flag_/, "").replace(/_/g, "-"))
-		: null
-
 	return (
 		<Drawer
 			open={open}
@@ -75,13 +69,9 @@ export function EmojiDetailsDrawer({
 			<DrawerContent className="w-[calc(100%-1rem)] max-w-[900px] gap-0 p-0">
 				<DrawerHeader className="border-soft relative flex-row items-center gap-4 border-b p-5 pr-16 sm:p-6 sm:pr-16">
 					<span
-						className="flex size-16 shrink-0 items-center justify-center text-5xl leading-none"
+						className={`${styles.emojiFont} flex size-16 shrink-0 items-center justify-center text-5xl leading-none`}
 						aria-hidden="true">
-						{isFlag && flagName ? (
-							<FlagImage name={flagName} shape="flat" size={64} />
-						) : (
-							emoji.emoji
-						)}
+						{emoji.emoji}
 					</span>
 					<div className="flex min-w-0 flex-1 flex-col gap-1.5">
 						<Badge color="primary" variant="soft" size="24" className="w-fit">
@@ -222,33 +212,8 @@ export function EmojiDetailsDrawer({
 										className="aspect-square h-auto w-full p-0 text-3xl"
 										aria-label={`View ${formatEmojiName(relatedEmoji.name)} emoji details`}
 										onClick={() => onSelectEmoji(relatedEmoji)}>
-										<span aria-hidden="true">
-											{relatedEmoji.group === "Flags" &&
-											(getFlagNameFromSlug(
-												relatedEmoji.slug.replace(/^flag_/, "")
-											) ||
-												getFlagNameFromSlug(
-													relatedEmoji.slug
-														.replace(/^flag_/, "")
-														.replace(/_/g, "-")
-												)) ? (
-												<FlagImage
-													name={
-														(getFlagNameFromSlug(
-															relatedEmoji.slug.replace(/^flag_/, "")
-														) ||
-															getFlagNameFromSlug(
-																relatedEmoji.slug
-																	.replace(/^flag_/, "")
-																	.replace(/_/g, "-")
-															))!
-													}
-													shape="flat"
-													size={32}
-												/>
-											) : (
-												relatedEmoji.emoji
-											)}
+										<span className={styles.emojiFont} aria-hidden="true">
+											{relatedEmoji.emoji}
 										</span>
 									</Button>
 								))}
@@ -269,8 +234,12 @@ export function EmojiDetailsDrawer({
 								</h2>
 							</div>
 							<div className="text-fg-secondary flex flex-col gap-4">
-								<p>{getEmojiMeaning(emoji)}</p>
-								<p>{getEmojiDescription(emoji)}</p>
+								<p>
+									<EmojiText emoji={emoji} text={getEmojiMeaning(emoji)} />
+								</p>
+								<p>
+									<EmojiText emoji={emoji} text={getEmojiDescription(emoji)} />
+								</p>
 							</div>
 						</section>
 
