@@ -126,7 +126,7 @@ export function generateCustomColorShades(
 	const primaryC = fitChroma(L, C, H)
 
 	const luminance = relLuminance(L, primaryC, H)
-	const isLight = luminance > 0.62
+	const isLight = luminance > 0.3
 	// #111 = approx oklch(0.2 0 0)
 	// #fff = approx oklch(1 0 0)
 	const fg = isLight ? "oklch(0.2 0 0)" : "oklch(1 0 0)"
