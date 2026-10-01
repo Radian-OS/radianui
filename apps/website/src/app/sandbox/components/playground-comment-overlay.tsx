@@ -41,6 +41,7 @@ export function PlaygroundCommentOverlay({
 }: PlaygroundCommentOverlayProps) {
 	const containerRef = useRef<HTMLDivElement>(null)
 	const contentLayerRef = useRef<HTMLDivElement>(null)
+	const [focusedCommentId, setFocusedCommentId] = useState<string | null>(null)
 	const [dimensions, setDimensions] = useState<{
 		width: number
 		height: number
@@ -71,6 +72,16 @@ export function PlaygroundCommentOverlay({
 			window.removeEventListener("resize", updateSize)
 		}
 	}, [deviceSize, dimensions])
+
+	// Listen for focus-comment events dispatched from the comments panel
+	useEffect(() => {
+		const handleFocusComment = (e: Event) => {
+			const customEvent = e as CustomEvent<{ commentId: string }>
+			setFocusedCommentId(customEvent.detail.commentId)
+		}
+		window.addEventListener("focus-comment", handleFocusComment)
+		return () => window.removeEventListener("focus-comment", handleFocusComment)
+	}, [])
 
 	useEffect(() => {
 		if (!isVisible) return
@@ -188,7 +199,10 @@ export function PlaygroundCommentOverlay({
 				}}>
 				{/* Existing Comment Pins (clickable via pointer-events-auto) */}
 				{comments.map((comment, index) => (
-					<div key={comment.id} className="pointer-events-auto">
+					<div
+						key={comment.id}
+						className="pointer-events-auto"
+						data-comment-pin-id={comment.id}>
 						<CommentPin
 							comment={comment}
 							index={index}
@@ -198,6 +212,8 @@ export function PlaygroundCommentOverlay({
 							onDelete={onDeleteComment}
 							onToggleResolve={onToggleResolveComment}
 							onNavigateToCode={onNavigateToCode}
+							isFocused={focusedCommentId === comment.id}
+							onClearFocus={() => setFocusedCommentId(null)}
 						/>
 					</div>
 				))}

@@ -16,6 +16,7 @@ import {
 	Zap,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { ScrollArea } from "@/registry/ui/scroll-area"
 import {
 	Accordion,
 	AccordionContent,
@@ -129,120 +130,119 @@ export function PlaygroundSidebar({
 			</SidebarHeader>
 
 			{/* Sidebar Accordion Categories */}
-			<SidebarContent className="flex-1 space-y-1 overflow-y-auto px-2 py-3">
-				<SidebarGroup className="p-0">
-					<SidebarGroupContent>
-						<Accordion
-							type="multiple"
-							value={openCategories}
-							onValueChange={setOpenCategories}
-							variant="open"
-							// indicator="none"
-							size="sm"
-							className="w-full space-y-1">
-							{SIDEBAR_CATEGORIES.map((category, catIndex) => {
-								const items = sandboxComponents.filter(
-									(item) => item.category === category.id
-								)
-								if (items.length === 0) return null
+			<SidebarContent className="flex-1 overflow-hidden">
+				<ScrollArea className="h-full px-2 py-3">
+					<SidebarGroup className="p-0">
+						<SidebarGroupContent>
+							<Accordion
+								type="multiple"
+								value={openCategories}
+								onValueChange={setOpenCategories}
+								variant="open"
+								// indicator="none"
+								size="sm"
+								className="w-full space-y-1">
+								{SIDEBAR_CATEGORIES.map((category, catIndex) => {
+									const items = sandboxComponents.filter(
+										(item) => item.category === category.id
+									)
+									if (items.length === 0) return null
 
-								const catPendingCount = pendingComments.filter((c) =>
-									items.some((item) => item.id === c.componentId)
-								).length
-								const CategoryIcon = category.icon
+									const catPendingCount = pendingComments.filter((c) =>
+										items.some((item) => item.id === c.componentId)
+									).length
+									const CategoryIcon = category.icon
 
-								return (
-									<React.Fragment key={category.id}>
-										{catIndex > 0 && !isCollapsed && (
-											<div className="border-soft my-1 border-t border-dashed" />
-										)}
-										<AccordionItem value={category.id} className="border-none">
-											<AccordionTrigger
-												className={cn(
-													"text-fg-secondary flex w-full cursor-pointer items-center justify-between rounded-lg px-2 py-2 text-xs font-semibold tracking-wider uppercase transition-colors hover:no-underline",
-													isCollapsed && "justify-center px-0 py-1.5"
-												)}>
-												{isCollapsed ? (
-													<div
-														className="text-fg-secondary relative flex size-8 items-center justify-center rounded-lg"
-														title={category.label}>
-														<CategoryIcon className="size-4 shrink-0" />
-														{catPendingCount > 0 && (
+									return (
+										<React.Fragment key={category.id}>
+											{catIndex > 0 && !isCollapsed && (
+												<div className="border-soft my-1 border-t border-dashed" />
+											)}
+											<AccordionItem
+												value={category.id}
+												className="border-none">
+												<AccordionTrigger
+													className={cn(
+														"text-fg-secondary flex w-full cursor-pointer items-center justify-between rounded-lg px-2 py-2 text-xs font-semibold tracking-wider uppercase transition-colors hover:no-underline [&_svg]:-order-1",
+														isCollapsed && "justify-center px-0 py-1.5"
+													)}>
+													{isCollapsed ? (
+														<div
+															className="text-fg-secondary relative flex size-8 items-center justify-center rounded-lg"
+															title={category.label}>
+															<CategoryIcon className="size-4 shrink-0" />
 															<span className="bg-primary absolute top-1 right-1 size-2 rounded-full ring-2" />
-														)}
-													</div>
-												) : (
-													<>
-														<div className="flex min-w-0 items-center gap-1.5">
-															<ChevronDown className="AccordionChevron text-fg-secondary size-3.5 shrink-0 transition-transform duration-200" />
-															<span>{category.label}</span>
 														</div>
-														{catPendingCount > 0 && (
+													) : (
+														<>
+															<div className="flex min-w-0 items-center gap-1.5">
+																<span>{category.label}</span>
+															</div>
 															<span className="bg-bg text-fg-secondary ml-auto rounded px-1.5 py-0.5 text-xs font-medium normal-case">
 																{catPendingCount}
 															</span>
-														)}
-													</>
-												)}
-											</AccordionTrigger>
+														</>
+													)}
+												</AccordionTrigger>
 
-											{!isCollapsed && (
-												<AccordionContent className="px-0 pt-0.5 pb-1">
-													<SidebarMenu className="space-y-0.5">
-														{items.map((item) => {
-															const isActive = activeComponent === item.id
-															const itemPendingCount = pendingComments.filter(
-																(c) => c.componentId === item.id
-															).length
+												{!isCollapsed && (
+													<AccordionContent className="px-0 pt-0.5 pb-1">
+														<SidebarMenu className="space-y-0.5">
+															{items.map((item) => {
+																const isActive = activeComponent === item.id
+																const itemPendingCount = pendingComments.filter(
+																	(c) => c.componentId === item.id
+																).length
 
-															return (
-																<SidebarMenuItem
-																	key={item.id}
-																	className="relative">
-																	<SidebarMenuButton
-																		isActive={isActive}
-																		variant="neutral"
-																		onClick={() =>
-																			onSelectComponent(
-																				item.id,
-																				item.defaultFile
-																			)
-																		}
-																		className={cn(
-																			"flex w-full cursor-pointer items-center justify-between rounded-lg py-1.5 pr-3 pl-7 text-xs font-medium transition-all",
-																			isActive
-																				? "bg-fill1-alpha text-primary-text hover:text-primary-text font-semibold"
-																				: "text-fg-secondary hover:bg-fill1-alpha"
-																		)}>
-																		<span className="truncate">
-																			{item.label}
-																		</span>
-																	</SidebarMenuButton>
-
-																	{itemPendingCount > 0 && (
-																		<SidebarMenuBadge
+																return (
+																	<SidebarMenuItem
+																		key={item.id}
+																		className="relative">
+																		<SidebarMenuButton
+																			isActive={isActive}
+																			variant="neutral"
+																			onClick={() =>
+																				onSelectComponent(
+																					item.id,
+																					item.defaultFile
+																				)
+																			}
 																			className={cn(
-																				"bg-bg pointer-events-none rounded px-1.5 py-0.5 text-xs font-medium transition-all",
+																				"flex w-full cursor-pointer items-center justify-between rounded-lg py-1.5 pr-3 pl-7 text-xs font-medium transition-all",
 																				isActive
-																					? "text-primary-text"
-																					: "text-fg-secondary"
+																					? "bg-fill1-alpha text-primary-text hover:text-primary-text font-semibold"
+																					: "text-fg-secondary hover:bg-fill1-alpha"
 																			)}>
-																			{itemPendingCount}
-																		</SidebarMenuBadge>
-																	)}
-																</SidebarMenuItem>
-															)
-														})}
-													</SidebarMenu>
-												</AccordionContent>
-											)}
-										</AccordionItem>
-									</React.Fragment>
-								)
-							})}
-						</Accordion>
-					</SidebarGroupContent>
-				</SidebarGroup>
+																			<span className="truncate">
+																				{item.label}
+																			</span>
+																		</SidebarMenuButton>
+
+																		{itemPendingCount > 0 && (
+																			<SidebarMenuBadge
+																				className={cn(
+																					"bg-bg pointer-events-none rounded px-1.5 py-0.5 text-xs font-medium transition-all",
+																					isActive
+																						? "text-primary-text"
+																						: "text-fg-secondary"
+																				)}>
+																				{itemPendingCount}
+																			</SidebarMenuBadge>
+																		)}
+																	</SidebarMenuItem>
+																)
+															})}
+														</SidebarMenu>
+													</AccordionContent>
+												)}
+											</AccordionItem>
+										</React.Fragment>
+									)
+								})}
+							</Accordion>
+						</SidebarGroupContent>
+					</SidebarGroup>
+				</ScrollArea>
 			</SidebarContent>
 		</Sidebar>
 	)

@@ -103,6 +103,21 @@ export function PlaygroundClient({ files }: PlaygroundClientProps) {
 		setViewMode("code")
 	}
 
+	const handleFocusComment = (commentId: string) => {
+		// Switch to preview so the comment overlay is visible
+		if (viewMode === "code") {
+			setViewMode("preview")
+		}
+		// Ensure comments overlay is visible
+		if (!isCommentsVisible) {
+			setIsCommentsVisible(true)
+		}
+		// Dispatch a custom event so the overlay can scroll to + open the pin
+		window.dispatchEvent(
+			new CustomEvent("focus-comment", { detail: { commentId } })
+		)
+	}
+
 	return (
 		<SidebarProvider className="h-svh" defaultWidth="16rem">
 			<PlaygroundSidebar
@@ -172,7 +187,7 @@ export function PlaygroundClient({ files }: PlaygroundClientProps) {
 					onToggleResolve={toggleResolveComment}
 					onDeleteComment={deleteComment}
 					onSelectComponent={handleSelectComponent}
-					onNavigateToCode={handleNavigateToCode}
+					onFocusComment={handleFocusComment}
 				/>
 			</SidebarInset>
 		</SidebarProvider>

@@ -44,7 +44,7 @@ export function PlaygroundPreview({
 	isCommentsVisible,
 }: PlaygroundPreviewProps) {
 	return (
-		<div className="bg-bg relative flex flex-1 flex-col items-center overflow-y-auto bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:16px_16px] p-6 dark:bg-[radial-gradient(#1e293b_1px,transparent_1px)]">
+		<div className="bg-fill1 relative flex flex-1 flex-col items-center overflow-y-auto bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:16px_16px] p-6 dark:bg-[radial-gradient(#1e293b_1px,transparent_1px)]">
 			<div
 				className={cn(
 					"relative flex h-full min-h-[600px] flex-col transition-all duration-300",
@@ -62,9 +62,6 @@ export function PlaygroundPreview({
 							className="bg-bg h-full w-full border-0"
 							title={`${activeComponentConfig.label} Component Preview`}
 						/>
-
-						{/* Right Scroll Indicator Line matching Image 1 & 2 */}
-						<div className="bg-bg pointer-events-none absolute top-1/2 right-1.5 h-28 w-1 -translate-y-1/2 rounded-full opacity-60" />
 
 						{/* Figma-like Comment Pins & Form Overlay */}
 						<PlaygroundCommentOverlay

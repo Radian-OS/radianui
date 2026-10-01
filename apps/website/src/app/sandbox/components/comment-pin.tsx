@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { ArrowRight, Check, Code, Copy, Trash2, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { AutoPositionedCard } from "./auto-positioned-card"
@@ -15,6 +15,8 @@ interface CommentPinProps {
 	onDelete: (id: string) => Promise<void> | void
 	onNavigateToCode?: (file: string, lineNumber: number) => void
 	onToggleResolve?: (id: string, resolved: boolean) => Promise<void> | void
+	isFocused?: boolean
+	onClearFocus?: () => void
 }
 
 function formatDate(dateStr: string) {
@@ -41,12 +43,32 @@ export function CommentPin({
 	onDelete,
 	onNavigateToCode,
 	onToggleResolve,
+	isFocused,
+	onClearFocus,
 }: CommentPinProps) {
+	const pinRef = useRef<HTMLDivElement>(null)
 	const [isOpen, setIsOpen] = useState(false)
 	const [isDeleting, setIsDeleting] = useState(false)
 	const [isResolving, setIsResolving] = useState(false)
 	const [copied, setCopied] = useState(false)
 	const resolved = isCommentResolved(comment)
+
+	// Auto-open and scroll into view when focused from the panel
+	useEffect(() => {
+		if (!isFocused) return
+		setIsOpen(true)
+		// Scroll the pin wrapper into view in the overlay container
+		if (pinRef.current) {
+			pinRef.current.scrollIntoView({
+				behavior: "smooth",
+				block: "center",
+				inline: "center",
+			})
+		}
+		// Clear focus after a short delay so re-clicking the same comment works
+		const timer = setTimeout(() => onClearFocus?.(), 600)
+		return () => clearTimeout(timer)
+	}, [isFocused, onClearFocus])
 
 	useEffect(() => {
 		if (!isOpen) return
@@ -74,7 +96,11 @@ export function CommentPin({
 
 	return (
 		<div
-			className="absolute z-20"
+			ref={pinRef}
+			className={cn(
+				"absolute z-20 transition-transform duration-300",
+				isFocused && "scale-125"
+			)}
 			style={{
 				left: `${comment.positionX}%`,
 				top: `${comment.positionY}%`,

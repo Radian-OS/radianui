@@ -4,8 +4,18 @@ import React from "react"
 import { ArrowRight } from "lucide-react"
 import Link from "next/link"
 import { Button } from "@/registry/ui/button"
-import { FaqAccordion, FaqItem } from "./faq-accordion"
+import {
+	Accordion,
+	AccordionContent,
+	AccordionItem,
+	AccordionTrigger,
+} from "@/styles/default/ui/accordion"
 import { StatCard } from "./stat-card"
+
+export interface FaqItem {
+	question: string
+	answer: string
+}
 
 const faqList: FaqItem[] = [
 	{
@@ -79,15 +89,27 @@ export function FaqSection() {
 				</div>
 
 				{/* Right Side: FAQ Accordion List */}
-				<div className="flex flex-col gap-4">
+				<Accordion
+					type="single"
+					collapsible
+					variant="box"
+					size="lg"
+					indicator="plus-minus"
+					className="flex flex-col gap-3">
 					{faqList.map((item, index) => (
-						<FaqAccordion
+						<AccordionItem
 							key={index}
-							question={item.question}
-							answer={item.answer}
-						/>
+							value={`faq-${index}`}
+							className="border-border bg-elevation-level1 hover:border-fg-tertiary/30 rounded-2xl border transition-all duration-300">
+							<AccordionTrigger className="p-5 text-sm font-bold sm:text-base">
+								{item.question}
+							</AccordionTrigger>
+							<AccordionContent className="px-5 pb-5 text-xs leading-relaxed sm:text-sm">
+								{item.answer}
+							</AccordionContent>
+						</AccordionItem>
 					))}
-				</div>
+				</Accordion>
 			</div>
 		</section>
 	)
