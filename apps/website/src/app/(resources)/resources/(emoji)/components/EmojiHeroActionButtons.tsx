@@ -1,13 +1,34 @@
 "use client"
 
+import { useEffect, useState } from "react"
 import Link from "next/link"
 import { Button } from "@/registry/ui/button"
 import { showEmojiToast } from "./EmojiToast"
-import { emojis } from "./emoji-data"
+import type { EmojiData } from "./emoji-data"
+import { getSupportedEmojis } from "./emoji-support"
 
 export function EmojiHeroActionButtons() {
+	const [supportedEmojis, setSupportedEmojis] = useState<EmojiData[] | null>(
+		null
+	)
+
+	useEffect(() => {
+		let isCurrent = true
+
+		getSupportedEmojis().then((nextEmojis) => {
+			if (isCurrent) setSupportedEmojis(nextEmojis)
+		})
+
+		return () => {
+			isCurrent = false
+		}
+	}, [])
+
 	const handleCopyRandom = () => {
-		const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)]
+		if (!supportedEmojis?.length) return
+
+		const randomEmoji =
+			supportedEmojis[Math.floor(Math.random() * supportedEmojis.length)]
 		if (!randomEmoji) return
 
 		navigator.clipboard.writeText(randomEmoji.emoji)
@@ -29,6 +50,7 @@ export function EmojiHeroActionButtons() {
 			</Button>
 			<Button
 				onClick={handleCopyRandom}
+				disabled={!supportedEmojis?.length}
 				variant="glossy"
 				className="w-full sm:w-fit"
 				size="40">

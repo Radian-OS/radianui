@@ -17,6 +17,7 @@ import {
 	EmptyTitle,
 } from "@/registry/ui/empty"
 import { Input, InputGroup, InputWrapper } from "@/registry/ui/input"
+import { Spinner } from "@/registry/ui/spinner"
 import { EmojiCategoryDropdown } from "./EmojiCategoryDropdown"
 import { EmojiDetailsDrawer } from "./EmojiDetailsDrawer"
 import { EmojiTile } from "./EmojiTile"
@@ -29,6 +30,7 @@ import {
 	getEmojiBySlug,
 	getEmojiPagePath,
 } from "./emoji-data"
+import { getSupportedEmojis } from "./emoji-support"
 
 const INITIAL_EMOJI_LIMIT = 120
 const EMOJI_BATCH_SIZE = 120
@@ -53,10 +55,27 @@ export default function EmojiPlayground({
 		initialSelectedEmoji
 	)
 	const [displayLimit, setDisplayLimit] = useState(INITIAL_EMOJI_LIMIT)
+	const [supportedEmojiSlugs, setSupportedEmojiSlugs] =
+		useState<Set<string> | null>(null)
 	const [, setIsSticky] = useState(false)
 	const ownsDrawerHistoryEntryRef = useRef(false)
 	const sentinelRef = useRef<HTMLDivElement>(null)
 	const bottomSentinelRef = useRef<HTMLDivElement>(null)
+
+	useEffect(() => {
+		let isCurrent = true
+
+		getSupportedEmojis().then((supportedEmojis) => {
+			if (!isCurrent) return
+			setSupportedEmojiSlugs(
+				new Set(supportedEmojis.map((emoji) => emoji.slug))
+			)
+		})
+
+		return () => {
+			isCurrent = false
+		}
+	}, [])
 
 	useEffect(() => {
 		const topSentinel = sentinelRef.current
@@ -164,17 +183,20 @@ export default function EmojiPlayground({
 	}
 
 	const visibleEmojis = useMemo(() => {
+		if (!supportedEmojiSlugs) return []
+
 		const normalizedQuery = query.trim().toLocaleLowerCase("en")
 		const group = emojiGroups.find((item) => item.name === category)
 		const source =
 			category === ALL_EMOJI_CATEGORY ? emojis : (group?.emojis ?? [])
 
-		return normalizedQuery
-			? source.filter((emoji) =>
-					emoji.name.toLocaleLowerCase("en").includes(normalizedQuery)
-				)
-			: source
-	}, [category, query])
+		return source.filter(
+			(emoji) =>
+				supportedEmojiSlugs.has(emoji.slug) &&
+				(!normalizedQuery ||
+					emoji.name.toLocaleLowerCase("en").includes(normalizedQuery))
+		)
+	}, [category, query, supportedEmojiSlugs])
 
 	const renderedEmojis = useMemo(
 		() => visibleEmojis.slice(0, displayLimit),
@@ -217,6 +239,11 @@ export default function EmojiPlayground({
 
 	return (
 		<div id="emoji-collection" className="flex w-full flex-col gap-8 py-2">
+			<p className="sr-only" aria-live="polite">
+				{supportedEmojiSlugs
+					? `${supportedEmojiSlugs.size} emojis are supported by this browser.`
+					: "Checking emoji support."}
+			</p>
 			<div ref={sentinelRef} className="pointer-events-none h-px w-full" />
 			<div className="bg-bg/95 sticky top-0 z-100 py-3 backdrop-blur-sm">
 				<InputGroup className="w-full">
@@ -242,7 +269,12 @@ export default function EmojiPlayground({
 				</InputGroup>
 			</div>
 
-			{visibleEmojis.length ? (
+			{supportedEmojiSlugs === null ? (
+				<div className="text-fg-secondary flex min-h-64 items-center justify-center gap-3 text-sm">
+					<Spinner variant="simple" />
+					Checking emoji support…
+				</div>
+			) : visibleEmojis.length ? (
 				<section aria-label={`${category} emojis`}>
 					<ul className="grid list-none grid-cols-[repeat(auto-fill,minmax(100px,1fr))] gap-3">
 						{renderedEmojis.map((emoji) => (
@@ -280,6 +312,7 @@ export default function EmojiPlayground({
 				open={selectedEmoji !== null}
 				onOpenChange={handleDrawerOpenChange}
 				onSelectEmoji={handleSelectEmoji}
+				supportedEmojiSlugs={supportedEmojiSlugs}
 			/>
 		</div>
 	)

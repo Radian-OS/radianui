@@ -44,6 +44,7 @@ interface EmojiDetailsDrawerProps {
 	open: boolean
 	onOpenChange: (open: boolean) => void
 	onSelectEmoji: (emoji: EmojiData) => void
+	supportedEmojiSlugs: Set<string> | null
 }
 
 export function EmojiDetailsDrawer({
@@ -51,11 +52,15 @@ export function EmojiDetailsDrawer({
 	open,
 	onOpenChange,
 	onSelectEmoji,
+	supportedEmojiSlugs,
 }: EmojiDetailsDrawerProps) {
 	if (!emoji) return null
 
 	const displayName = formatEmojiName(emoji.name)
-	const relatedEmojis = getRelatedEmojis(emoji)
+	const relatedEmojis = getRelatedEmojis(emoji).filter(
+		(relatedEmoji) =>
+			!supportedEmojiSlugs || supportedEmojiSlugs.has(relatedEmoji.slug)
+	)
 	const codepoints = getEmojiCodePoints(emoji.emoji).join(" ")
 	const sequence = getEmojiSequenceInfo(emoji)
 	const faqItems = getEmojiFaqItems(emoji)
