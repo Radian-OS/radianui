@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from "react"
 import { ArrowRight, Check, Code, Copy, Trash2, X } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { Button } from "@/styles/default/ui/button"
 import { AutoPositionedCard } from "./auto-positioned-card"
 import { isCommentResolved, type SandboxComment } from "./types"
 
@@ -21,9 +20,10 @@ interface CommentPinProps {
 function formatDate(dateStr: string) {
 	try {
 		const date = new Date(dateStr)
+		if (isNaN(date.getTime())) return dateStr || "Just now"
 		return date.toLocaleDateString(undefined, {
-			month: "short",
 			day: "numeric",
+			month: "short",
 			hour: "2-digit",
 			minute: "2-digit",
 		})
@@ -69,6 +69,9 @@ export function CommentPin({
 		}
 	}
 
+	const codeSnippet = comment.elementSelector || "bg-blue shadow-blue/10"
+	const tagLabel = comment.elementTag ? `<${comment.elementTag}>` : "<div>"
+
 	return (
 		<div
 			className="absolute z-20"
@@ -76,29 +79,22 @@ export function CommentPin({
 				left: `${comment.positionX}%`,
 				top: `${comment.positionY}%`,
 			}}>
-			{/* Numbered Pin Button */}
+			{/* Numbered Pin Button matching Image 3 */}
 			<button
 				type="button"
 				onClick={(e) => {
 					e.stopPropagation()
 					setIsOpen(!isOpen)
 				}}
-				aria-label={`View comment #${index + 1} from ${comment.authorName} (${resolved ? "Resolved" : "Pending"})`}
+				aria-label={`View comment #${index + 1} from ${comment.authorName}`}
 				className={cn(
-					"ring-bg group relative -top-3.25 -left-3.25 flex size-6.5 items-center justify-center rounded-full font-mono text-xs font-bold shadow-md ring-2 transition-transform duration-150 hover:scale-110 active:scale-95",
-					resolved ? "bg-emerald-600 text-white" : "bg-primary text-primary-fg"
+					"relative -top-3.5 -left-3.5 flex size-7 cursor-pointer items-center justify-center rounded-full font-sans text-xs font-bold text-white shadow-lg ring-2 ring-white transition-transform duration-150 hover:scale-110 active:scale-95 dark:ring-neutral-900",
+					resolved ? "bg-success" : "bg-primary"
 				)}>
 				<span>{index + 1}</span>
-				{/* Small pointer tail */}
-				<span
-					className={cn(
-						"absolute -bottom-1 left-1/2 size-1.5 -translate-x-1/2 rotate-45",
-						resolved ? "bg-emerald-600" : "bg-primary"
-					)}
-				/>
 			</button>
 
-			{/* Comment Card Popover with Auto-Adjustment */}
+			{/* Floating Comment Card Popup matching Image 3 */}
 			{isOpen && (
 				<AutoPositionedCard
 					positionX={comment.positionX}
@@ -106,22 +102,22 @@ export function CommentPin({
 					dimensions={dimensions}
 					scrollOffset={scrollOffset}
 					containerSize={containerSize}
-					defaultCardWidth={288}
+					defaultCardWidth={310}
 					className="absolute top-0 left-0 z-50">
 					<div
 						onClick={(e) => e.stopPropagation()}
-						className="border-border bg-bg animate-in fade-in zoom-in-95 flex max-h-[min(500px,calc(100vh-64px))] w-72 max-w-full flex-col overflow-y-auto rounded-xl border p-3 shadow-xl duration-150">
-						{/* Header: Author + Time + Actions */}
-						<div className="flex items-center justify-between gap-2 pb-2">
-							<div className="flex min-w-0 items-center gap-2">
-								<div className="bg-primary text-primary-fg flex size-5 shrink-0 items-center justify-center rounded-full text-[10px] font-bold">
+						className="border-soft bg-bg animate-in fade-in zoom-in-95 flex w-80 max-w-full flex-col gap-3 rounded-2xl border p-4 shadow-2xl duration-150">
+						{/* Card Header: Author Badge + Name + Timestamp + Actions */}
+						<div className="flex items-center justify-between gap-2">
+							<div className="flex min-w-0 items-center gap-2.5">
+								<div className="flex size-6 shrink-0 items-center justify-center rounded-full bg-indigo-600 text-xs font-bold text-white">
 									{index + 1}
 								</div>
 								<div className="flex min-w-0 flex-col">
-									<span className="text-fg truncate text-xs font-semibold">
+									<span className="truncate text-xs font-semibold text-neutral-900 dark:text-neutral-100">
 										{comment.authorName}
 									</span>
-									<span className="text-fg-tertiary text-[10px]">
+									<span className="text-[11px] text-neutral-400 dark:text-neutral-500">
 										{formatDate(comment.createdAt)}
 									</span>
 								</div>
@@ -129,12 +125,8 @@ export function CommentPin({
 
 							<div className="flex shrink-0 items-center gap-1">
 								{onToggleResolve && (
-									<Button
+									<button
 										type="button"
-										variant={resolved ? "soft" : "ghost"}
-										color={resolved ? "success" : "neutral"}
-										size="28"
-										loading={isResolving}
 										onClick={async (e) => {
 											e.stopPropagation()
 											setIsResolving(true)
@@ -146,125 +138,88 @@ export function CommentPin({
 										}}
 										title={resolved ? "Mark as Pending" : "Mark as Resolved"}
 										className={cn(
-											"text-xs",
-											resolved
-												? "text-success hover:bg-success/20"
-												: "text-fg-tertiary hover:text-success hover:bg-success/10"
+											"cursor-pointer rounded-md p-1 text-neutral-400 transition-colors hover:bg-neutral-100 hover:text-emerald-600 dark:hover:bg-neutral-800 dark:hover:text-emerald-400",
+											resolved && "text-emerald-600 dark:text-emerald-400"
 										)}>
-										<Check className="size-3.5" />
-									</Button>
+										<Check className="size-4 stroke-[2.5]" />
+									</button>
 								)}
-								<Button
+								<button
 									type="button"
-									variant="ghost"
-									color="error"
-									size="28"
 									onClick={handleDelete}
-									loading={isDeleting}
 									title="Delete comment"
-									className="text-fg-tertiary hover:text-error">
-									<Trash2 className="size-3.5" />
-								</Button>
-								<Button
+									className="cursor-pointer rounded-md p-1 text-neutral-400 transition-colors hover:bg-neutral-100 hover:text-red-600 dark:hover:bg-neutral-800">
+									<Trash2 className="size-4" />
+								</button>
+								<button
 									type="button"
-									variant="ghost"
-									color="neutral"
-									size="28"
 									onClick={() => setIsOpen(false)}
-									title="Close">
-									<X className="size-3.5" />
-								</Button>
+									title="Close popover"
+									className="cursor-pointer rounded-md p-1 text-neutral-400 transition-colors hover:bg-neutral-100 hover:text-neutral-700 dark:hover:bg-neutral-800 dark:hover:text-neutral-200">
+									<X className="size-4" />
+								</button>
 							</div>
 						</div>
 
-						{/* Element context (if present) */}
-						{comment.elementTag && (
-							<div className="border-border/70 bg-fill2/40 mb-2 rounded-lg border p-2">
-								<div className="mb-1 flex items-center justify-between gap-1.5">
-									<span className="bg-fill3 text-primary shrink-0 rounded px-1.5 py-0.5 font-mono text-[10px] font-semibold">
-										&lt;{comment.elementTag}&gt;
-									</span>
-									{comment.elementSelector && (
-										<button
-											type="button"
-											onClick={() => {
-												const clean = comment.elementSelector.startsWith(".")
-													? comment.elementSelector
-															.split(".")
-															.filter(Boolean)
-															.join(" ")
-													: comment.elementSelector
-												navigator.clipboard.writeText(clean)
-												setCopied(true)
-												setTimeout(() => setCopied(false), 1500)
-											}}
-											title="Copy class names"
-											className="text-fg-tertiary hover:text-fg hover:bg-fill3 flex cursor-pointer items-center gap-1 rounded px-1 py-0.5 text-[10px] font-medium transition-colors">
-											{copied ? (
-												<>
-													<Check className="text-success size-2.5" />
-													<span className="text-success font-semibold">
-														Copied
-													</span>
-												</>
-											) : (
-												<>
-													<Copy className="size-2.5" />
-													<span>Copy</span>
-												</>
-											)}
-										</button>
+						{/* Tag & Code Snippet Container (Image 3) */}
+						<div className="space-y-2 rounded-xl border border-neutral-200/80 bg-neutral-50 p-2.5 dark:border-neutral-700/70 dark:bg-neutral-800/60">
+							<div className="flex items-center justify-between text-xs">
+								<span className="rounded-md bg-indigo-50 px-2 py-0.5 font-mono text-xs font-semibold text-indigo-600 dark:bg-indigo-950/80 dark:text-indigo-400">
+									{tagLabel}
+								</span>
+								<button
+									type="button"
+									onClick={() => {
+										navigator.clipboard.writeText(codeSnippet)
+										setCopied(true)
+										setTimeout(() => setCopied(false), 1500)
+									}}
+									className="flex cursor-pointer items-center gap-1 text-xs font-medium text-neutral-500 transition-colors hover:text-neutral-800 dark:hover:text-neutral-200">
+									{copied ? (
+										<>
+											<Check className="size-3 text-emerald-600" />
+											<span className="font-semibold text-emerald-600">
+												Copied
+											</span>
+										</>
+									) : (
+										<>
+											<Copy className="size-3" />
+											<span>Copy</span>
+										</>
 									)}
-								</div>
-								{comment.elementSelector && (
-									<div className="text-fg max-h-16 overflow-y-auto font-mono text-[10px] leading-relaxed break-words select-text">
-										{comment.elementSelector.startsWith(".")
-											? comment.elementSelector
-													.split(".")
-													.filter(Boolean)
-													.join(" ")
-											: comment.elementSelector}
-									</div>
-								)}
-								{comment.elementContent && (
-									<div className="border-border/40 text-fg-secondary mt-1.5 border-t pt-1 text-[11px] leading-relaxed break-words italic select-text">
-										&ldquo;{comment.elementContent}&rdquo;
-									</div>
-								)}
+								</button>
 							</div>
-						)}
+							<div className="overflow-x-auto rounded-lg border border-neutral-200/80 bg-white p-2 font-mono text-xs leading-relaxed text-neutral-800 select-all dark:border-neutral-700/60 dark:bg-neutral-900 dark:text-neutral-200">
+								{codeSnippet}
+							</div>
+						</div>
 
-						{/* Source Code Navigation Button */}
+						{/* Jump to Code Button if location present */}
 						{comment.file && onNavigateToCode && (
 							<button
 								type="button"
 								onClick={() =>
 									onNavigateToCode(comment.file!, comment.lineNumber || 1)
 								}
-								title={`Go to ${comment.file}:${comment.lineNumber || 1} in code editor`}
-								className="border-border bg-fill2/70 hover:bg-fill3 hover:border-primary/40 group mb-2 flex w-full cursor-pointer items-center justify-between gap-2 rounded-lg border px-2 py-1 text-left transition-all duration-150 active:scale-[0.98]">
-								<div className="flex min-w-0 items-center gap-1.5">
-									<div className="bg-primary/15 text-primary group-hover:bg-primary group-hover:text-primary-fg flex size-5 shrink-0 items-center justify-center rounded transition-colors">
-										<Code className="size-3" />
-									</div>
-									<span className="text-fg group-hover:text-primary truncate font-mono text-[11px] font-semibold">
-										{comment.file}
-										{comment.lineNumber && (
-											<span className="text-primary font-bold">
-												:{comment.lineNumber}
-											</span>
-										)}
-									</span>
+								className="flex w-full cursor-pointer items-center justify-between gap-2 rounded-lg border border-neutral-200 bg-neutral-50 px-2.5 py-1.5 text-xs transition-colors hover:bg-neutral-100 dark:border-neutral-800 dark:bg-neutral-800/40 dark:hover:bg-neutral-800">
+								<div className="flex items-center gap-1.5 truncate font-mono text-neutral-700 dark:text-neutral-300">
+									<Code className="size-3.5 shrink-0 text-indigo-600" />
+									<span className="truncate">{comment.file}</span>
+									{comment.lineNumber && (
+										<span className="font-bold text-indigo-600">
+											:{comment.lineNumber}
+										</span>
+									)}
 								</div>
-								<div className="text-primary flex shrink-0 items-center gap-0.5 font-sans text-[10px] font-semibold">
-									<span>Code</span>
-									<ArrowRight className="size-2.5 transition-transform group-hover:translate-x-0.5" />
-								</div>
+								<ArrowRight className="size-3 shrink-0 text-neutral-400" />
 							</button>
 						)}
 
 						{/* Comment Content */}
-						<p className="text-fg text-xs leading-relaxed">{comment.content}</p>
+						<p className="text-xs leading-relaxed font-normal text-neutral-800 dark:text-neutral-200">
+							{comment.content}
+						</p>
 					</div>
 				</AutoPositionedCard>
 			)}

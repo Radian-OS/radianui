@@ -44,17 +44,17 @@ export function PlaygroundPreview({
 	isCommentsVisible,
 }: PlaygroundPreviewProps) {
 	return (
-		<div className="flex flex-1 flex-col items-center overflow-y-auto">
+		<div className="bg-bg relative flex flex-1 flex-col items-center overflow-y-auto bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:16px_16px] p-6 dark:bg-[radial-gradient(#1e293b_1px,transparent_1px)]">
 			<div
 				className={cn(
-					"flex h-full min-h-[500px] flex-col gap-6 transition-all duration-300",
+					"relative flex h-full min-h-[600px] flex-col transition-all duration-300",
 					deviceSize === "mobile" && "w-[375px]",
 					deviceSize === "tablet" && "w-[768px]",
-					deviceSize === "desktop" && "w-full"
+					deviceSize === "desktop" && "w-full max-w-6xl"
 				)}>
-				{/* Component Preview Card */}
-				<div className="text-fg flex flex-1 flex-col overflow-hidden">
-					<div className="bg-bg text-fg relative flex flex-1 overflow-hidden">
+				{/* Component Preview Floating Card matching Image 1 & 2 */}
+				<div className="border-soft bg-bg relative flex flex-1 flex-col overflow-hidden rounded-2xl border">
+					<div className="relative flex flex-1 overflow-hidden">
 						<iframe
 							ref={iframeRef}
 							key={activeComponentConfig.id}
@@ -62,6 +62,9 @@ export function PlaygroundPreview({
 							className="bg-bg h-full w-full border-0"
 							title={`${activeComponentConfig.label} Component Preview`}
 						/>
+
+						{/* Right Scroll Indicator Line matching Image 1 & 2 */}
+						<div className="bg-bg pointer-events-none absolute top-1/2 right-1.5 h-28 w-1 -translate-y-1/2 rounded-full opacity-60" />
 
 						{/* Figma-like Comment Pins & Form Overlay */}
 						<PlaygroundCommentOverlay

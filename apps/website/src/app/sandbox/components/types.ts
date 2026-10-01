@@ -667,8 +667,8 @@ export const sandboxComponents: SandboxComponentConfig[] = [
 	},
 	{
 		id: "jambo-pricing",
-		label: "jambo-pricing",
-		category: "pricing-section",
+		label: "Jambo Signup",
+		category: "welcome-screen-section",
 		filesKey: "jambo-pricing",
 		path: "src/app/sandbox/jambo-pricing",
 		defaultFile: "jambo-pricing-section.tsx",

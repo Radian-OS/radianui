@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation"
 import { SidebarInset, SidebarProvider } from "@/styles/default/ui/sidebar"
 import { useAuth } from "./auth/auth-context"
 import { PlaygroundCodeViewer } from "./components/playground-code-viewer"
+import { PlaygroundCommentsPanel } from "./components/playground-comments-panel"
 import { PlaygroundHeader } from "./components/playground-header"
 import { PlaygroundPreview } from "./components/playground-preview"
 import { PlaygroundSidebar } from "./components/playground-sidebar"
@@ -32,11 +33,13 @@ export function PlaygroundClient({ files }: PlaygroundClientProps) {
 		}
 	}, [user, isLoading, router])
 
-	const [activeComponent, setActiveComponent] = useState<PreviewKey>("agentlab")
-	const [activeFile, setActiveFile] = useState<string>("hero-section.tsx")
+	const [activeComponent, setActiveComponent] =
+		useState<PreviewKey>("jambo-pricing")
+	const [activeFile, setActiveFile] = useState<string>("page.tsx")
 	const [viewMode, setViewMode] = useState<ViewMode>("preview")
 	const [deviceSize, setDeviceSize] = useState<DeviceSize>("desktop")
-	const [isCommentsEnabled, setIsCommentsEnabled] = useState(false)
+	const [isCommentsPanelOpen, setIsCommentsPanelOpen] = useState(true)
+	const [isCommentsVisible, setIsCommentsVisible] = useState(true)
 	const [targetLineNumber, setTargetLineNumber] = useState<number | null>(null)
 
 	const iframeRef = useRef<HTMLIFrameElement>(null)
@@ -56,7 +59,7 @@ export function PlaygroundClient({ files }: PlaygroundClientProps) {
 		activeComponentConfig.defaultFile
 	)
 
-	// Figma-style comments hook with element source location resolution
+	// Figma-style comments hook
 	const {
 		allComments,
 		comments,
@@ -66,21 +69,26 @@ export function PlaygroundClient({ files }: PlaygroundClientProps) {
 		addComment,
 		deleteComment,
 		toggleResolveComment,
+		refreshComments,
 	} = useComments(
 		iframeRef,
 		activeComponent,
 		viewMode,
-		isCommentsEnabled,
+		isCommentsVisible,
 		componentFiles,
 		activeComponentConfig.defaultFile
 	)
 
 	const handleSelectComponent = (
 		component: PreviewKey,
-		defaultFile: string
+		defaultFile?: string
 	) => {
 		setActiveComponent(component)
-		setActiveFile(defaultFile)
+		const targetFile =
+			defaultFile ??
+			sandboxComponents.find((c) => c.id === component)?.defaultFile ??
+			"page.tsx"
+		setActiveFile(targetFile)
 		setTargetLineNumber(null)
 	}
 
@@ -96,7 +104,7 @@ export function PlaygroundClient({ files }: PlaygroundClientProps) {
 	}
 
 	return (
-		<SidebarProvider className="h-svh" defaultWidth="14rem">
+		<SidebarProvider className="h-svh" defaultWidth="16rem">
 			<PlaygroundSidebar
 				activeComponent={activeComponent}
 				onSelectComponent={handleSelectComponent}
@@ -106,34 +114,27 @@ export function PlaygroundClient({ files }: PlaygroundClientProps) {
 				onNavigateToCode={handleNavigateToCode}
 			/>
 
-			<SidebarInset className="bg-bg relative flex min-h-0 flex-1 flex-col overflow-hidden">
-				<PlaygroundHeader
-					activeComponentConfig={activeComponentConfig}
-					activeFile={activeFile}
-					viewMode={viewMode}
-					onViewModeChange={(mode) => {
-						setViewMode(mode)
-						if (mode !== "inspect") {
-							setIsCommentsEnabled(false)
-							setDraftComment(null)
-						} else {
-							setIsCommentsEnabled(true)
+			<SidebarInset className="relative flex min-h-0 flex-1 flex-row overflow-hidden bg-white dark:bg-neutral-950">
+				{/* Main Left Workspace (Header + Preview/Code Viewer) */}
+				<div className="flex min-h-0 min-w-0 flex-1 flex-col overflow-hidden">
+					<PlaygroundHeader
+						activeComponentConfig={activeComponentConfig}
+						activeFile={activeFile}
+						viewMode={viewMode}
+						onViewModeChange={setViewMode}
+						deviceSize={deviceSize}
+						onDeviceSizeChange={setDeviceSize}
+						isCommentsPanelOpen={isCommentsPanelOpen}
+						onToggleCommentsPanel={() =>
+							setIsCommentsPanelOpen((prev) => !prev)
 						}
-					}}
-					deviceSize={deviceSize}
-					onDeviceSizeChange={setDeviceSize}
-					isCommentsEnabled={isCommentsEnabled}
-					onToggleComments={(enabled) => {
-						setIsCommentsEnabled(enabled)
-						if (!enabled) {
-							setDraftComment(null)
-						}
-					}}
-					commentsCount={comments.length}
-				/>
+						isCommentsVisible={isCommentsVisible}
+						onToggleCommentsVisible={setIsCommentsVisible}
+						commentsCount={allComments.length}
+						onRefreshComments={refreshComments}
+					/>
 
-				<div className="flex min-h-0 flex-1 overflow-hidden">
-					<div className="flex h-full min-h-0 flex-1 flex-col overflow-hidden">
+					<div className="relative flex min-h-0 flex-1 flex-col overflow-hidden">
 						{(viewMode === "preview" || viewMode === "inspect") && (
 							<PlaygroundPreview
 								activeComponentConfig={activeComponentConfig}
@@ -147,7 +148,7 @@ export function PlaygroundClient({ files }: PlaygroundClientProps) {
 								onToggleResolveComment={toggleResolveComment}
 								onNavigateToCode={handleNavigateToCode}
 								isSubmitting={isSubmitting}
-								isCommentsVisible={viewMode === "inspect" && isCommentsEnabled}
+								isCommentsVisible={isCommentsVisible}
 							/>
 						)}
 
@@ -162,6 +163,17 @@ export function PlaygroundClient({ files }: PlaygroundClientProps) {
 						)}
 					</div>
 				</div>
+
+				{/* Right Comments Side Panel starting from the very top */}
+				<PlaygroundCommentsPanel
+					comments={comments}
+					activeComponent={activeComponent}
+					isOpen={isCommentsPanelOpen}
+					onToggleResolve={toggleResolveComment}
+					onDeleteComment={deleteComment}
+					onSelectComponent={handleSelectComponent}
+					onNavigateToCode={handleNavigateToCode}
+				/>
 			</SidebarInset>
 		</SidebarProvider>
 	)
