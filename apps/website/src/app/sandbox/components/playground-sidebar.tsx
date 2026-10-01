@@ -137,7 +137,7 @@ export function PlaygroundSidebar({
 							value={openCategories}
 							onValueChange={setOpenCategories}
 							variant="open"
-							indicator="none"
+							// indicator="none"
 							size="sm"
 							className="w-full space-y-1">
 							{SIDEBAR_CATEGORIES.map((category, catIndex) => {
