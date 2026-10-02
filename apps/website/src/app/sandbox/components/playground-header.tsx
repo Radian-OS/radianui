@@ -16,7 +16,13 @@ import {
 } from "lucide-react"
 import { useTheme } from "next-themes"
 import { SidebarTrigger } from "@/styles/default/ui/sidebar"
-import type { DeviceSize, SandboxComponentConfig, ViewMode } from "./types"
+import {
+	type DeviceSize,
+	type SandboxComment,
+	type SandboxComponentConfig,
+	type ViewMode,
+	isCommentResolved,
+} from "./types"
 import { Button } from "@/styles/default/ui/button"
 import { Badge } from "@/registry/ui/badge"
 
@@ -31,7 +37,9 @@ interface PlaygroundHeaderProps {
 	onToggleCommentsPanel: () => void
 	isCommentsVisible: boolean
 	onToggleCommentsVisible: (visible: boolean) => void
+	comments?: SandboxComment[]
 	commentsCount?: number
+	unresolvedCommentsCount?: number
 	onRefreshComments?: () => void
 }
 
@@ -46,7 +54,9 @@ export function PlaygroundHeader({
 	onToggleCommentsPanel,
 	// isCommentsVisible,
 	// onToggleCommentsVisible,
+	comments,
 	commentsCount = 0,
+	unresolvedCommentsCount,
 	onRefreshComments,
 }: PlaygroundHeaderProps) {
 	const { resolvedTheme, setTheme } = useTheme()
@@ -92,6 +102,12 @@ export function PlaygroundHeader({
 		onToggleCommentsPanel()
 		onRefreshComments?.()
 	}
+
+	const unresolvedCount =
+		unresolvedCommentsCount ??
+		(comments
+			? comments.filter((c) => !isCommentResolved(c)).length
+			: commentsCount)
 
 	return (
 		<header className="border-soft bg-bg sticky top-0 z-10 flex h-14 items-center justify-between border-b p-2.5 px-4">
@@ -239,7 +255,7 @@ export function PlaygroundHeader({
 						title="Toggle comments panel">
 						<span>Comments</span>
 						<Badge size="20" variant="outline">
-							{commentsCount}
+							{unresolvedCount}
 						</Badge>
 					</Button>
 				</div>

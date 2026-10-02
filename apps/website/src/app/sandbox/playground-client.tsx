@@ -14,6 +14,7 @@ import {
 	type FilesData,
 	type PreviewKey,
 	type ViewMode,
+	isCommentResolved,
 	sandboxComponents,
 } from "./components/types"
 import { useComments } from "./components/use-comments"
@@ -78,6 +79,10 @@ export function PlaygroundClient({ files }: PlaygroundClientProps) {
 		componentFiles,
 		activeComponentConfig.defaultFile
 	)
+
+	const unresolvedCommentsCount = allComments.filter(
+		(c) => !isCommentResolved(c)
+	).length
 
 	const handleSelectComponent = (
 		component: PreviewKey,
@@ -145,7 +150,9 @@ export function PlaygroundClient({ files }: PlaygroundClientProps) {
 						}
 						isCommentsVisible={isCommentsVisible}
 						onToggleCommentsVisible={setIsCommentsVisible}
-						commentsCount={allComments.length}
+						comments={allComments}
+						commentsCount={unresolvedCommentsCount}
+						unresolvedCommentsCount={unresolvedCommentsCount}
 						onRefreshComments={refreshComments}
 					/>
 
@@ -181,7 +188,7 @@ export function PlaygroundClient({ files }: PlaygroundClientProps) {
 
 				{/* Right Comments Side Panel starting from the very top */}
 				<PlaygroundCommentsPanel
-					comments={comments}
+					comments={allComments}
 					activeComponent={activeComponent}
 					isOpen={isCommentsPanelOpen}
 					onToggleResolve={toggleResolveComment}

@@ -130,6 +130,61 @@ export default async function PlaygroundPage() {
 		process.cwd(),
 		"src/app/sandbox/integrations-settings"
 	)
+	const login07Dir = path.join(process.cwd(), "src/app/sandbox/login-07")
+	const hero16Dir = path.join(process.cwd(), "src/app/sandbox/hero-16")
+	const cta09Dir = path.join(process.cwd(), "src/app/sandbox/cta-09")
+	const pricing05Dir = path.join(process.cwd(), "src/app/sandbox/pricing-05")
+	const testimonial02Dir = path.join(
+		process.cwd(),
+		"src/app/sandbox/testimonial-02"
+	)
+
+	const login07Files = [
+		"page.tsx",
+		"left-panel.tsx",
+		"login-form.tsx",
+		"social-login.tsx",
+		"testimonial-card.tsx",
+		"testimonials-carousel.tsx",
+		"trusted-brands.tsx",
+		"types.ts",
+	]
+
+	const hero16Files = [
+		"page.tsx",
+		"announcement-badge.tsx",
+		"hero-content.tsx",
+		"hero-section.tsx",
+		"logo-strip.tsx",
+		"navbar.tsx",
+		"social-proof.tsx",
+		"types.ts",
+	]
+
+	const cta09Files = [
+		"page.tsx",
+		"cta-header.tsx",
+		"service-gallery.tsx",
+		"types.ts",
+	]
+
+	const pricing05Files = [
+		"page.tsx",
+		"pricing-card.tsx",
+		"pricing-cards.tsx",
+		"pricing-header.tsx",
+		"trusted-partners.tsx",
+		"types.ts",
+	]
+
+	const testimonial02Files = [
+		"page.tsx",
+		"logo-strip.tsx",
+		"testimonial-card.tsx",
+		"testimonial-header.tsx",
+		"testimonial-slider.tsx",
+		"types.ts",
+	]
 
 	const taniaRasciaFiles = [
 		"page.tsx",
@@ -708,6 +763,11 @@ export default async function PlaygroundPage() {
 	const loginPage03Data: Record<string, string> = {}
 	const loginPage04Data: Record<string, string> = {}
 	const loginPage01Data: Record<string, string> = {}
+	const login07Data: Record<string, string> = {}
+	const hero16Data: Record<string, string> = {}
+	const cta09Data: Record<string, string> = {}
+	const pricing05Data: Record<string, string> = {}
+	const testimonial02Data: Record<string, string> = {}
 
 	for (const file of omrixFiles) {
 		omrixData[file] = readFileContent(omrixDir, file)
@@ -937,7 +997,32 @@ export default async function PlaygroundPage() {
 		loginPage01Data[file] = readFileContent(loginPage01Dir, file)
 	}
 
+	for (const file of login07Files) {
+		login07Data[file] = readFileContent(login07Dir, file)
+	}
+
+	for (const file of hero16Files) {
+		hero16Data[file] = readFileContent(hero16Dir, file)
+	}
+
+	for (const file of cta09Files) {
+		cta09Data[file] = readFileContent(cta09Dir, file)
+	}
+
+	for (const file of pricing05Files) {
+		pricing05Data[file] = readFileContent(pricing05Dir, file)
+	}
+
+	for (const file of testimonial02Files) {
+		testimonial02Data[file] = readFileContent(testimonial02Dir, file)
+	}
+
 	const files = {
+		"login-07": login07Data,
+		"hero-16": hero16Data,
+		"cta-09": cta09Data,
+		"pricing-05": pricing05Data,
+		"testimonial-02": testimonial02Data,
 		"williams-samuel": williamsSamuelData,
 		"victor-eke": victorEkeData,
 		"projects-table": projectsTableData,

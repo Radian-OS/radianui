@@ -211,9 +211,7 @@ export function PlaygroundCommentsPanel({
 						<TabsTrigger value="unresolved">
 							Unresolved ({unresolvedComments.length})
 						</TabsTrigger>
-						<TabsTrigger value="resolved">
-							Resolved ({resolvedComments.length})
-						</TabsTrigger>
+						<TabsTrigger value="resolved">Resolved</TabsTrigger>
 					</TabsList>
 				</div>
 

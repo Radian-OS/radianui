@@ -1,4 +1,5 @@
 export interface FilesData {
+	"login-07": Record<string, string>
 	omrix: Record<string, string>
 	motion: Record<string, string>
 	"beam-header": Record<string, string>
@@ -22,6 +23,8 @@ export interface FilesData {
 	"cta-10": Record<string, string>
 	"cta-08": Record<string, string>
 	"cta-07": Record<string, string>
+	"cta-09": Record<string, string>
+	"pricing-05": Record<string, string>
 	"faq-4": Record<string, string>
 	"faq-5": Record<string, string>
 	"faq-03": Record<string, string>
@@ -30,6 +33,7 @@ export interface FilesData {
 	"long-form": Record<string, string>
 	"hero-9": Record<string, string>
 	"hero-12": Record<string, string>
+	"hero-16": Record<string, string>
 	folio: Record<string, string>
 	"hero-25": Record<string, string>
 	orders: Record<string, string>
@@ -51,9 +55,11 @@ export interface FilesData {
 	"projects-table": Record<string, string>
 	"victor-eke": Record<string, string>
 	"williams-samuel": Record<string, string>
+	"testimonial-02": Record<string, string>
 }
 
 export type PreviewKey =
+	| "login-07"
 	| "williams-samuel"
 	| "victor-eke"
 	| "projects-table"
@@ -76,6 +82,7 @@ export type PreviewKey =
 	| "hero-25"
 	| "folio"
 	| "hero-12"
+	| "hero-16"
 	| "hero-9"
 	| "long-form"
 	| "checkout-form"
@@ -86,6 +93,8 @@ export type PreviewKey =
 	| "cta-07"
 	| "cta-08"
 	| "cta-10"
+	| "cta-09"
+	| "pricing-05"
 	| "contact-01"
 	| "contact-06"
 	| "contact-2"
@@ -106,6 +115,7 @@ export type PreviewKey =
 	| "hero-21"
 	| "aiwork"
 	| "verseo"
+	| "testimonial-02"
 
 export type ViewMode = "preview" | "inspect" | "code"
 export type DeviceSize = "desktop" | "tablet" | "mobile"
@@ -175,6 +185,56 @@ export interface SandboxComponentConfig {
 }
 
 export const sandboxComponents: SandboxComponentConfig[] = [
+	{
+		id: "login-07",
+		label: "login-07",
+		category: "welcome-screen-section",
+		filesKey: "login-07",
+		path: "src/app/sandbox/login-07",
+		defaultFile: "page.tsx",
+		referenceUrl: "https://shadcnspace.com/preview/login-07",
+		previewRoute: "/sandbox/login-07",
+	},
+	{
+		id: "hero-16",
+		label: "hero-16",
+		category: "hero-section",
+		filesKey: "hero-16",
+		path: "src/app/sandbox/hero-16",
+		defaultFile: "page.tsx",
+		referenceUrl: "https://shadcnspace.com/preview/hero-16",
+		previewRoute: "/sandbox/hero-16",
+	},
+	{
+		id: "cta-09",
+		label: "cta-09",
+		category: "cta-section",
+		filesKey: "cta-09",
+		path: "src/app/sandbox/cta-09",
+		defaultFile: "page.tsx",
+		referenceUrl: "https://shadcnspace.com/preview/cta-09",
+		previewRoute: "/sandbox/cta-09",
+	},
+	{
+		id: "pricing-05",
+		label: "pricing-05",
+		category: "pricing-section",
+		filesKey: "pricing-05",
+		path: "src/app/sandbox/pricing-05",
+		defaultFile: "page.tsx",
+		referenceUrl: "https://shadcnspace.com/preview/pricing-05",
+		previewRoute: "/sandbox/pricing-05",
+	},
+	{
+		id: "testimonial-02",
+		label: "testimonial-02",
+		category: "other-sections",
+		filesKey: "testimonial-02",
+		path: "src/app/sandbox/testimonial-02",
+		defaultFile: "page.tsx",
+		referenceUrl: "https://shadcnspace.com/preview/testimonial-02",
+		previewRoute: "/sandbox/testimonial-02",
+	},
 	{
 		id: "williams-samuel",
 		label: "williams-samuel",

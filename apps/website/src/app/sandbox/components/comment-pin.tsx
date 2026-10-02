@@ -70,6 +70,18 @@ export function CommentPin({
 		return () => clearTimeout(timer)
 	}, [isFocused, onClearFocus])
 
+	// Close this pin when a different comment gets focused
+	useEffect(() => {
+		const handleOtherFocus = (e: Event) => {
+			const customEvent = e as CustomEvent<{ commentId: string }>
+			if (customEvent.detail.commentId !== comment.id) {
+				setIsOpen(false)
+			}
+		}
+		window.addEventListener("focus-comment", handleOtherFocus)
+		return () => window.removeEventListener("focus-comment", handleOtherFocus)
+	}, [comment.id])
+
 	useEffect(() => {
 		if (!isOpen) return
 		const handleKeyDown = (e: KeyboardEvent) => {
