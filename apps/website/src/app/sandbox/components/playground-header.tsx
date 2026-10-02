@@ -67,6 +67,28 @@ export function PlaygroundHeader({
 		setMounted(true)
 	}, [])
 
+	// Shortcut key Ctrl + C / Cmd + C to toggle comment mode
+	useEffect(() => {
+		const handleKeyDown = (e: KeyboardEvent) => {
+			if ((e.ctrlKey || e.metaKey) && (e.key === "c" || e.key === "C")) {
+				const activeEl = document.activeElement as HTMLElement | null
+				const isInput =
+					activeEl?.tagName === "INPUT" ||
+					activeEl?.tagName === "TEXTAREA" ||
+					activeEl?.isContentEditable
+				const hasSelection = Boolean(window.getSelection()?.toString())
+
+				if (!isInput && !hasSelection) {
+					e.preventDefault()
+					onViewModeChange(viewMode === "inspect" ? "preview" : "inspect")
+				}
+			}
+		}
+
+		window.addEventListener("keydown", handleKeyDown)
+		return () => window.removeEventListener("keydown", handleKeyDown)
+	}, [viewMode, onViewModeChange])
+
 	// Format category label for breadcrumb (e.g. welcome-screen-section -> Signup)
 	const categoryBreadcrumb = (() => {
 		const cat = activeComponentConfig.category
@@ -76,6 +98,7 @@ export function PlaygroundHeader({
 		if (cat === "cta-section") return "CTA"
 		if (cat === "blog-section") return "Blog"
 		if (cat === "faq-section") return "FAQ"
+		if (cat === "testimonial-section") return "Testimonial"
 		if (cat === "portfolio-section") return "Portfolio"
 		if (cat === "table-section") return "Table"
 		return "Blocks"
@@ -130,7 +153,7 @@ export function PlaygroundHeader({
 					<button
 						type="button"
 						onClick={() => onDeviceSizeChange("desktop")}
-						title="Desktop View"
+						title="Desktop View (Full Width)"
 						className={`cursor-pointer rounded-md p-1.5 transition-colors ${
 							deviceSize === "desktop"
 								? "bg-bg text-fg"
@@ -167,8 +190,8 @@ export function PlaygroundHeader({
 						}
 						title={
 							viewMode === "inspect"
-								? "Exit Inspect Mode"
-								: "Inspect Element Code on Hover"
+								? "Exit Comment Mode (Ctrl + C)"
+								: "Toggle Comment Mode (Ctrl + C)"
 						}
 						className={`cursor-pointer rounded-md p-1.5 transition-colors ${
 							viewMode === "inspect"

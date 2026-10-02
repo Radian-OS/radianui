@@ -60,6 +60,73 @@ export function PlaygroundClient({ files }: PlaygroundClientProps) {
 		activeComponentConfig.defaultFile
 	)
 
+	// Shortcut key Ctrl + C / Cmd + C to toggle comment mode (inspect mode) across window and iframe
+	useEffect(() => {
+		const toggleCommentMode = () => {
+			setViewMode((prev) => (prev === "inspect" ? "preview" : "inspect"))
+		}
+
+		const handleKeyDown = (e: KeyboardEvent) => {
+			if ((e.ctrlKey || e.metaKey) && (e.key === "c" || e.key === "C")) {
+				const activeEl = document.activeElement as HTMLElement | null
+				const isInput =
+					activeEl?.tagName === "INPUT" ||
+					activeEl?.tagName === "TEXTAREA" ||
+					activeEl?.isContentEditable
+				const hasSelection = Boolean(window.getSelection()?.toString())
+
+				if (!isInput && !hasSelection) {
+					e.preventDefault()
+					toggleCommentMode()
+				}
+			}
+		}
+
+		window.addEventListener("keydown", handleKeyDown)
+
+		const iframe = iframeRef.current
+		const handleIframeKeyDown = (e: KeyboardEvent) => {
+			if ((e.ctrlKey || e.metaKey) && (e.key === "c" || e.key === "C")) {
+				const iframeDoc = iframe?.contentDocument
+				const activeEl = iframeDoc?.activeElement as HTMLElement | null
+				const isInput =
+					activeEl?.tagName === "INPUT" ||
+					activeEl?.tagName === "TEXTAREA" ||
+					activeEl?.isContentEditable
+				const win = iframe?.contentWindow
+				const hasSelection = Boolean(win?.getSelection()?.toString())
+
+				if (!isInput && !hasSelection) {
+					e.preventDefault()
+					toggleCommentMode()
+				}
+			}
+		}
+
+		const attachIframeKeydown = () => {
+			try {
+				const win = iframe?.contentWindow
+				if (!win) return
+				win.removeEventListener("keydown", handleIframeKeyDown)
+				win.addEventListener("keydown", handleIframeKeyDown)
+			} catch {}
+		}
+
+		attachIframeKeydown()
+		iframe?.addEventListener("load", attachIframeKeydown)
+
+		return () => {
+			window.removeEventListener("keydown", handleKeyDown)
+			iframe?.removeEventListener("load", attachIframeKeydown)
+			try {
+				iframe?.contentWindow?.removeEventListener(
+					"keydown",
+					handleIframeKeyDown
+				)
+			} catch {}
+		}
+	}, [iframeRef])
+
 	// Figma-style comments hook
 	const {
 		allComments,
@@ -109,6 +176,13 @@ export function PlaygroundClient({ files }: PlaygroundClientProps) {
 	}
 
 	const handleFocusComment = (commentId: string) => {
+		const targetComment = allComments.find((c) => c.id === commentId)
+		if (
+			targetComment?.componentId &&
+			targetComment.componentId !== activeComponent
+		) {
+			handleSelectComponent(targetComment.componentId as PreviewKey)
+		}
 		// Switch to preview so the comment overlay is visible
 		if (viewMode === "code") {
 			setViewMode("preview")
@@ -118,9 +192,14 @@ export function PlaygroundClient({ files }: PlaygroundClientProps) {
 			setIsCommentsVisible(true)
 		}
 		// Dispatch a custom event so the overlay can scroll to + open the pin
-		window.dispatchEvent(
-			new CustomEvent("focus-comment", { detail: { commentId } })
-		)
+		const dispatch = () => {
+			window.dispatchEvent(
+				new CustomEvent("focus-comment", { detail: { commentId } })
+			)
+		}
+		dispatch()
+		setTimeout(dispatch, 250)
+		setTimeout(dispatch, 600)
 	}
 
 	return (

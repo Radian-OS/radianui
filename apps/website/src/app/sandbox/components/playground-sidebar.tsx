@@ -8,6 +8,7 @@ import {
 	FileText,
 	Folder,
 	HelpCircle,
+	MessageSquareQuote,
 	Settings,
 	Sparkles,
 	Table,
@@ -67,6 +68,7 @@ const SIDEBAR_CATEGORIES: SidebarCategoryDef[] = [
 	{ id: "cta-section", label: "CTA", icon: Zap },
 	{ id: "blog-section", label: "BLOG", icon: FileText },
 	{ id: "faq-section", label: "FAQ", icon: HelpCircle },
+	{ id: "testimonial-section", label: "TESTIMONIAL", icon: MessageSquareQuote },
 	{ id: "portfolio-section", label: "PORTFOLIO", icon: Briefcase },
 	{ id: "table-section", label: "TABLE", icon: Table },
 	{ id: "setting-section", label: "SETTINGS", icon: Settings },
@@ -91,6 +93,7 @@ export function PlaygroundSidebar({
 		"pricing-section",
 		"cta-section",
 		"blog-section",
+		"testimonial-section",
 		"portfolio-section",
 	])
 

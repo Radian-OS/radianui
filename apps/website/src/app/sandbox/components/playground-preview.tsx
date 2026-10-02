@@ -50,7 +50,7 @@ export function PlaygroundPreview({
 					"relative flex h-full min-h-[600px] flex-col transition-all duration-300",
 					deviceSize === "mobile" && "w-[375px]",
 					deviceSize === "tablet" && "w-[768px]",
-					deviceSize === "desktop" && "w-full max-w-6xl"
+					deviceSize === "desktop" && "w-full max-w-none"
 				)}>
 				{/* Component Preview Floating Card matching Image 1 & 2 */}
 				<div className="border-soft bg-bg relative flex flex-1 flex-col overflow-hidden rounded-2xl border">

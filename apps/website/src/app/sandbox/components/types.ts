@@ -165,6 +165,7 @@ export type SandboxCategory =
 	| "contact-section"
 	| "cta-section"
 	| "faq-section"
+	| "testimonial-section"
 	| "form-section"
 	| "setting-section"
 	| "welcome-screen-section"
@@ -228,7 +229,7 @@ export const sandboxComponents: SandboxComponentConfig[] = [
 	{
 		id: "testimonial-02",
 		label: "testimonial-02",
-		category: "other-sections",
+		category: "testimonial-section",
 		filesKey: "testimonial-02",
 		path: "src/app/sandbox/testimonial-02",
 		defaultFile: "page.tsx",
@@ -748,7 +749,7 @@ export const sandboxComponents: SandboxComponentConfig[] = [
 	{
 		id: "testimonials",
 		label: "klarheit-testimonial",
-		category: "other-sections",
+		category: "testimonial-section",
 		filesKey: "klarheit-testimonial",
 		path: "src/app/sandbox/klarheit-testimonial",
 		defaultFile: "testimonial-section.tsx",
