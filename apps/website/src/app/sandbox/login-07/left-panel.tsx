@@ -47,21 +47,21 @@ export function LeftPanel() {
 			<div className="relative z-10 my-auto flex w-full flex-col gap-8 py-6 lg:gap-10">
 				{/* Headline and Subtitle */}
 				<div className="flex max-w-[480px] flex-col gap-3.5 pr-6 pl-10 sm:pr-8 sm:pl-16 lg:pl-20 xl:pl-28 2xl:pl-32">
-					<h2 className="heading-4">Start securely. Scale confidently.</h2>
+					<h2 className="heading-4">Build faster. Design better.</h2>
 					<p className="text-fg text-sm leading-relaxed sm:text-base">
-						Authenticate quickly and securely. Designed to keep your team moving
-						while protecting every account.
+						Join thousands of creators using Radian to ship beautiful products
+						in record time. Your next big idea starts here.
 					</p>
 				</div>
 
 				{/* Testimonial Cards Moving Marquee - edge to edge touching both ends */}
-				<div className="w-full overflow-hidden px-0">
+				<div className="hidden w-full overflow-hidden px-0 lg:block">
 					<TestimonialsCarousel />
 				</div>
 
-				{/* Bottom Brands - sharing content alignment line */}
-				<div className="w-full px-6 sm:px-8 lg:pr-0 lg:pl-20 xl:pl-28 2xl:pl-32">
-					<div className="mx-auto max-w-[420px] lg:mx-0">
+				{/* Bottom Brands - centered on all screens */}
+				<div className="hidden w-full justify-center px-6 sm:px-8 lg:flex">
+					<div className="w-full max-w-[420px]">
 						<TrustedBrands />
 					</div>
 				</div>

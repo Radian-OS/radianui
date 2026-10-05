@@ -29,10 +29,8 @@ export function LoginHeader() {
 				/>
 			</Link>
 			<div className="flex flex-col gap-1 text-center">
-				<h1 className="text-fg text-center text-2xl font-medium">
-					Welcome to Shadcn Space
-				</h1>
-				<p className="text-fg-secondary text-sm font-normal">
+				<h1 className="heading-4 text-center">Welcome to Shadcn Space</h1>
+				<p className="text-fg-secondary text-base font-normal">
 					Login to your account now
 				</p>
 			</div>

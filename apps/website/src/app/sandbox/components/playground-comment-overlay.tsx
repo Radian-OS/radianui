@@ -4,7 +4,11 @@ import React, { type RefObject, useEffect, useRef, useState } from "react"
 import { AutoPositionedCard } from "./auto-positioned-card"
 import { CommentForm, type CommentFormValues } from "./comment-form"
 import { CommentPin } from "./comment-pin"
-import type { DeviceSize, SandboxComment } from "./types"
+import {
+	type DeviceSize,
+	type SandboxComment,
+	isCommentResolved,
+} from "./types"
 import type { DraftComment } from "./use-comments"
 
 interface PlaygroundCommentOverlayProps {
@@ -198,25 +202,29 @@ export function PlaygroundCommentOverlay({
 					willChange: "transform",
 				}}>
 				{/* Existing Comment Pins (clickable via pointer-events-auto) */}
-				{comments.map((comment, index) => (
-					<div
-						key={comment.id}
-						className="pointer-events-auto"
-						data-comment-pin-id={comment.id}>
-						<CommentPin
-							comment={comment}
-							index={index}
-							dimensions={dimensions}
-							scrollOffset={scrollOffset}
-							containerSize={containerSize}
-							onDelete={onDeleteComment}
-							onToggleResolve={onToggleResolveComment}
-							onNavigateToCode={onNavigateToCode}
-							isFocused={focusedCommentId === comment.id}
-							onClearFocus={() => setFocusedCommentId(null)}
-						/>
-					</div>
-				))}
+				{comments.map((comment, index) => {
+					if (isCommentResolved(comment) && focusedCommentId !== comment.id)
+						return null
+					return (
+						<div
+							key={comment.id}
+							className="pointer-events-auto"
+							data-comment-pin-id={comment.id}>
+							<CommentPin
+								comment={comment}
+								index={index}
+								dimensions={dimensions}
+								scrollOffset={scrollOffset}
+								containerSize={containerSize}
+								onDelete={onDeleteComment}
+								onToggleResolve={onToggleResolveComment}
+								onNavigateToCode={onNavigateToCode}
+								isFocused={focusedCommentId === comment.id}
+								onClearFocus={() => setFocusedCommentId(null)}
+							/>
+						</div>
+					)
+				})}
 
 				{/* Draft Comment Placement Pin & Form */}
 				{draftComment && (

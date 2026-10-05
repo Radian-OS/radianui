@@ -13,7 +13,7 @@ export function TrustedBrands({
 	brands = BRAND_LOGOS,
 }: TrustedBrandsProps) {
 	return (
-		<div className="mx-auto flex w-full max-w-[420px] flex-col items-center gap-5">
+		<div className="flex w-full flex-col items-center gap-5">
 			{/* Divider with text */}
 			<div className="flex w-full items-center justify-center gap-3">
 				<div className="h-px flex-1 bg-white/20" />

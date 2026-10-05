@@ -46,9 +46,7 @@ export function LoginForm() {
 						name="email"
 						render={({ field }) => (
 							<FormItem className="space-y-1.5">
-								<FormLabel className="text-fg-secondary text-sm font-normal">
-									Email*
-								</FormLabel>
+								<FormLabel>Email*</FormLabel>
 								<FormControl>
 									<Input
 										type="email"
@@ -67,9 +65,7 @@ export function LoginForm() {
 						name="password"
 						render={({ field }) => (
 							<FormItem className="space-y-1.5">
-								<FormLabel className="text-fg-secondary text-sm font-normal">
-									Password*
-								</FormLabel>
+								<FormLabel>Password*</FormLabel>
 								<FormControl>
 									<Input
 										type="password"
@@ -105,7 +101,7 @@ export function LoginForm() {
 
 						<Link
 							href="#forgot-password"
-							className="text-fg hover:text-primary text-sm font-medium transition-colors">
+							className="text-fg text-sm font-medium transition-colors hover:underline">
 							Forgot Password?
 						</Link>
 					</div>
@@ -117,7 +113,7 @@ export function LoginForm() {
 					variant="strong"
 					color="neutral"
 					size="40"
-					className="w-full font-medium"
+					className="w-full"
 					onClick={() => form.handleSubmit(onSubmit)()}>
 					Sign in
 				</Button>
@@ -127,7 +123,7 @@ export function LoginForm() {
 					Don&apos;t have an account?{" "}
 					<Link
 						href="#create-account"
-						className="text-fg hover:text-primary font-medium transition-colors">
+						className="text-fg font-medium transition-colors hover:underline">
 						Create an account
 					</Link>
 				</p>

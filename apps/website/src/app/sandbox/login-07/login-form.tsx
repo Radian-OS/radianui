@@ -23,6 +23,14 @@ export function LoginForm() {
 	const [showPassword, setShowPassword] = useState(false)
 	const [isSubmitted, setIsSubmitted] = useState(false)
 
+	function togglePasswordVisibility(e: React.MouseEvent) {
+		e.preventDefault()
+		e.stopPropagation()
+		setShowPassword((prev) => !prev)
+	}
+
+	const IconComponent = showPassword ? EyeOff : Eye
+
 	const form = useForm<LoginFormValues>({
 		resolver: zodResolver(loginSchema),
 		defaultValues: {
@@ -41,8 +49,8 @@ export function LoginForm() {
 		<div className="flex w-full max-w-[400px] flex-col gap-6">
 			{/* Form Heading & Subtitle */}
 			<div className="flex flex-col items-center gap-1 text-center">
-				<h1 className="heading-3">Welcome Back</h1>
-				<p className="text-fg-secondary text-base">Sign in to continue.</p>
+				<h1 className="heading-5">Welcome Back</h1>
+				<p className="text-fg-secondary text-sm">Sign in to continue.</p>
 			</div>
 
 			{/* Form */}
@@ -88,19 +96,13 @@ export function LoginForm() {
 												placeholder="Enter your password"
 												type={showPassword ? "text" : "password"}
 												autoComplete="current-password"
+												className="peer"
 												{...field}
 											/>
-											<IconButton
-												type="button"
-												variant="ghost"
-												color="neutral"
-												size="36"
-												aria-label={
-													showPassword ? "Hide password" : "Show password"
-												}
-												onClick={() => setShowPassword((prev) => !prev)}>
-												{showPassword ? <EyeOff /> : <Eye />}
-											</IconButton>
+											<IconComponent
+												className="hover:text-fg peer-disabled:text-fg-disabled cursor-pointer peer-disabled:pointer-events-none"
+												onMouseDown={togglePasswordVisibility}
+											/>
 										</InputWrapper>
 									</FormControl>
 									<FormMessage className="text-error text-xs" />
@@ -133,7 +135,7 @@ export function LoginForm() {
 
 							<Link
 								href="#forgot-password"
-								className="text-fg hover:text-fg-secondary text-sm font-medium transition-colors">
+								className="text-fg text-sm font-medium transition-colors hover:underline">
 								Forgot Password?
 							</Link>
 						</div>
@@ -166,7 +168,7 @@ export function LoginForm() {
 				Don&apos;t have an account?{" "}
 				<Link
 					href="#signup"
-					className="text-fg hover:text-fg-secondary font-medium transition-colors">
+					className="text-fg font-medium transition-colors hover:underline">
 					Create an account
 				</Link>
 			</p>

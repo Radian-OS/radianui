@@ -67,10 +67,10 @@ export function PlaygroundHeader({
 		setMounted(true)
 	}, [])
 
-	// Shortcut key Ctrl + C / Cmd + C to toggle comment mode
+	// Shortcut key C to toggle comment mode
 	useEffect(() => {
 		const handleKeyDown = (e: KeyboardEvent) => {
-			if ((e.ctrlKey || e.metaKey) && (e.key === "c" || e.key === "C")) {
+			if (!e.ctrlKey && !e.metaKey && (e.key === "c" || e.key === "C")) {
 				const activeEl = document.activeElement as HTMLElement | null
 				const isInput =
 					activeEl?.tagName === "INPUT" ||

@@ -1,18 +1,18 @@
 "use client"
 
-import React from "react"
 import { Button } from "@/registry/ui/button"
+import { Divider } from "@/styles/default/ui/divider"
 
 export function SocialLogin() {
 	return (
 		<div className="flex w-full flex-col gap-3">
 			{/* Divider */}
 			<div className="my-1 flex w-full items-center gap-4">
-				<div className="bg-border h-px flex-1" />
+				<Divider className="flex-1" />
 				<p className="text-fg-secondary shrink-0 text-sm whitespace-nowrap">
 					Or continue with
 				</p>
-				<div className="bg-bg h-px flex-1" />
+				<Divider className="flex-1" />
 			</div>
 
 			{/* Social Buttons */}

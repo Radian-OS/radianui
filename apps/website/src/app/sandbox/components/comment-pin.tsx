@@ -65,10 +65,7 @@ export function CommentPin({
 				inline: "center",
 			})
 		}
-		// Clear focus after a short delay so re-clicking the same comment works
-		const timer = setTimeout(() => onClearFocus?.(), 600)
-		return () => clearTimeout(timer)
-	}, [isFocused, onClearFocus])
+	}, [isFocused])
 
 	// Close this pin when a different comment gets focused
 	useEffect(() => {
@@ -87,11 +84,24 @@ export function CommentPin({
 		const handleKeyDown = (e: KeyboardEvent) => {
 			if (e.key === "Escape") {
 				setIsOpen(false)
+				onClearFocus?.()
 			}
 		}
+		const handleClickOutside = () => {
+			setIsOpen(false)
+			onClearFocus?.()
+		}
+
 		window.addEventListener("keydown", handleKeyDown)
-		return () => window.removeEventListener("keydown", handleKeyDown)
-	}, [isOpen])
+		window.addEventListener("click", handleClickOutside)
+		window.addEventListener("blur", handleClickOutside)
+
+		return () => {
+			window.removeEventListener("keydown", handleKeyDown)
+			window.removeEventListener("click", handleClickOutside)
+			window.removeEventListener("blur", handleClickOutside)
+		}
+	}, [isOpen, onClearFocus])
 
 	const handleDelete = async (e: React.MouseEvent) => {
 		e.stopPropagation()
@@ -109,10 +119,7 @@ export function CommentPin({
 	return (
 		<div
 			ref={pinRef}
-			className={cn(
-				"absolute z-20 transition-transform duration-300",
-				isFocused && "scale-125"
-			)}
+			className="absolute z-20"
 			style={{
 				left: `${comment.positionX}%`,
 				top: `${comment.positionY}%`,
@@ -122,12 +129,23 @@ export function CommentPin({
 				type="button"
 				onClick={(e) => {
 					e.stopPropagation()
-					setIsOpen(!isOpen)
+					const nextState = !isOpen
+					setIsOpen(nextState)
+					if (nextState) {
+						window.dispatchEvent(
+							new CustomEvent("focus-comment", {
+								detail: { commentId: comment.id },
+							})
+						)
+					} else {
+						onClearFocus?.()
+					}
 				}}
 				aria-label={`View comment #${index + 1} from ${comment.authorName}`}
 				className={cn(
-					"relative -top-3.5 -left-3.5 flex size-7 cursor-pointer items-center justify-center rounded-full font-sans text-xs font-bold text-white shadow-lg ring-2 ring-white transition-transform duration-150 hover:scale-110 active:scale-95 dark:ring-neutral-900",
-					resolved ? "bg-success" : "bg-primary"
+					"relative -top-3.5 -left-3.5 flex size-7 cursor-pointer items-center justify-center rounded-full font-sans text-xs font-bold text-white shadow-lg ring-2 ring-white transition-transform duration-300 hover:scale-110 active:scale-95 dark:ring-neutral-900",
+					resolved ? "bg-success" : "bg-primary",
+					isFocused && "scale-125 hover:scale-125"
 				)}>
 				<span>{index + 1}</span>
 			</button>
@@ -191,7 +209,10 @@ export function CommentPin({
 								</button>
 								<button
 									type="button"
-									onClick={() => setIsOpen(false)}
+									onClick={() => {
+										setIsOpen(false)
+										onClearFocus?.()
+									}}
 									title="Close popover"
 									className="cursor-pointer rounded-md p-1 text-neutral-400 transition-colors hover:bg-neutral-100 hover:text-neutral-700 dark:hover:bg-neutral-800 dark:hover:text-neutral-200">
 									<X className="size-4" />
