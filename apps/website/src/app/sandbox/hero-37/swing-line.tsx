@@ -12,8 +12,8 @@ interface SwingLineProps {
 
 function ClipPeg() {
 	return (
-		<span className="bg-black-inverse absolute top-0 left-1/2 z-20 flex h-5 w-4 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-[5px] shadow-xs ring-1 ring-black/10">
-			<span className="bg-white-inverse size-1.5 rounded-full" />
+		<span className="absolute top-0 left-1/2 z-10 flex size-5 -translate-x-1/2 items-center justify-center rounded-md bg-[#09090b] shadow-sm dark:bg-white">
+			<span className="absolute top-1 size-1.5 rounded-full bg-white dark:bg-[#09090b]" />
 		</span>
 	)
 }
@@ -21,22 +21,13 @@ function ClipPeg() {
 function ModelCard({ item }: { item: ModelItem }) {
 	const Icon = item.icon
 	return (
-		<div className="relative flex flex-col items-center">
+		<div className="relative flex flex-col items-center pt-2.5">
 			<ClipPeg />
 			<div
 				className={cn(
-					"relative flex w-full flex-col items-center gap-4 rounded-3xl border border-black/[0.05] p-5 py-8 shadow-xs backdrop-blur-xs transition-shadow hover:shadow-md dark:border-white/[0.08]",
+					"flex w-full flex-col items-center gap-4 rounded-2xl p-4 py-8 transition-shadow hover:shadow-md",
 					item.color ?? "bg-card"
 				)}>
-				{/* Speech Bubble / Thread-like Tail at bottom-left */}
-				<div
-					aria-hidden="true"
-					className={cn(
-						"pointer-events-none absolute -bottom-2 -left-4 -z-10 h-6 w-14 rounded-l-2xl rounded-tr-xs opacity-95",
-						item.color ?? "bg-card"
-					)}
-				/>
-
 				{/* Circular Brand Icon */}
 				<span className="flex size-16 items-center justify-center overflow-hidden rounded-full bg-black/5 shadow-2xs dark:bg-white/10">
 					{item.image ? (
@@ -65,8 +56,8 @@ function ModelCard({ item }: { item: ModelItem }) {
 export function SwingLine({ items = DEFAULT_MODELS }: SwingLineProps) {
 	const r = items.length
 	const i = 4 * r
-	const CARD_WIDTH = 214
-	const CARD_SPACING = 244
+	const CARD_WIDTH = 188
+	const CARD_SPACING = 220
 	const l = CARD_SPACING * r
 
 	const containerRef = useRef<HTMLDivElement>(null)
@@ -179,7 +170,7 @@ export function SwingLine({ items = DEFAULT_MODELS }: SwingLineProps) {
 				forces[idx] = 0
 				continue
 			}
-			const dist = CARD_SPACING * idx + scrollX.current + 107 - curMouseX
+			const dist = CARD_SPACING * idx + scrollX.current + 94 - curMouseX
 			const gauss = Math.exp(-(dist * dist) / 61250)
 			forces[idx] = 34 * gauss * speedMultiplier
 		}
@@ -208,7 +199,7 @@ export function SwingLine({ items = DEFAULT_MODELS }: SwingLineProps) {
 				Math.sin(
 					Math.PI *
 						Math.min(
-							Math.max((CARD_SPACING * idx + scrollX.current + 107) / width, 0),
+							Math.max((CARD_SPACING * idx + scrollX.current + 94) / width, 0),
 							1
 						)
 				)
@@ -234,7 +225,7 @@ export function SwingLine({ items = DEFAULT_MODELS }: SwingLineProps) {
 				const frac = relIdx - floorIdx
 				const c1 = ((floorIdx % i) + i) % i
 				const c2 = (((floorIdx + 1) % i) + i) % i
-				const yPos = 16 + sagY + (disp[c1] + (disp[c2] - disp[c1]) * frac)
+				const yPos = 30 + sagY + (disp[c1] + (disp[c2] - disp[c1]) * frac)
 				pathD += `${step === 0 ? "M" : "L"}${xPos.toFixed(1)},${yPos.toFixed(1)} `
 			}
 			pathRef.current.setAttribute("d", pathD.trim())
@@ -263,28 +254,28 @@ export function SwingLine({ items = DEFAULT_MODELS }: SwingLineProps) {
 			onPanStart={handlePanStart}
 			onPan={handlePan}
 			onPanEnd={handlePanEnd}
-			className="relative h-80 w-full cursor-grab touch-none overflow-x-hidden overflow-y-visible select-none active:cursor-grabbing sm:h-96"
+			className="relative h-[460px] w-full cursor-grab touch-none overflow-x-hidden overflow-y-visible select-none active:cursor-grabbing sm:h-[480px]"
 			aria-hidden="true">
 			{/* Edge Fades */}
 			<div className="from-bg pointer-events-none absolute inset-y-0 left-0 z-20 w-12 bg-gradient-to-r to-transparent sm:w-28" />
 			<div className="from-bg pointer-events-none absolute inset-y-0 right-0 z-20 w-12 bg-gradient-to-l to-transparent sm:w-28" />
 
 			{/* Dynamic Wire / Thread SVG (Behind black clips) */}
-			<svg className="pointer-events-none absolute inset-x-0 top-0 z-0 h-20 w-full overflow-visible">
+			<svg className="pointer-events-none absolute inset-x-0 top-0 z-0 h-24 w-full overflow-visible">
 				<path
 					ref={pathRef}
 					fill="none"
 					stroke="currentColor"
-					strokeWidth="1"
-					className="text-border transition-colors dark:text-white/15"
+					strokeWidth="1.5"
+					className="text-border transition-colors"
 				/>
 			</svg>
 
 			{/* Sliding Items Container (In front of thread) */}
 			<div
 				ref={trackRef}
-				className="absolute top-4 left-0 z-10 flex items-start will-change-transform"
-				style={{ gap: 30 }}>
+				className="absolute top-6 left-0 z-10 flex items-start will-change-transform"
+				style={{ gap: 32 }}>
 				{repeatedItems.map(({ item, slot, key }) => (
 					<div
 						key={key}

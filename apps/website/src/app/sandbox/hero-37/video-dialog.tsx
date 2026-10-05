@@ -28,7 +28,7 @@ export function VideoDialog({
 					variant="outline"
 					color="neutral"
 					size="40"
-					className="group hover:bg-card-hover gap-2 rounded-lg px-5 font-medium shadow-2xs transition-all active:scale-98">
+					className="hover:bg-fill2 hover:text-fg cursor-pointer gap-2 rounded-lg px-5 font-medium transition-colors active:scale-98">
 					<Play className="size-3.5 fill-current" />
 					<span>{label}</span>
 				</Button>
