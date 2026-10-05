@@ -23,7 +23,7 @@ export const EmojiTile = memo(function EmojiTile({
 	}
 
 	return (
-		<li className="h-[100px] min-w-0">
+		<li className="size-[100px] min-w-0">
 			<Tooltip>
 				<TooltipTrigger asChild>
 					<Button
@@ -31,7 +31,7 @@ export const EmojiTile = memo(function EmojiTile({
 						size="32"
 						color="neutral"
 						variant="outline"
-						className="bg-bg hover:bg-bg h-[100px] w-full rounded-xl p-0">
+						className="bg-bg hover:bg-bg size-full rounded-xl p-0">
 						<Link
 							href={getEmojiPagePath(emoji)}
 							prefetch={false}

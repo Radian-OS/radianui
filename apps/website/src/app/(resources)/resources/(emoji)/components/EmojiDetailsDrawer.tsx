@@ -22,17 +22,12 @@ import {
 	DrawerTitle,
 } from "@/registry/ui/drawer"
 import { Table, TableBody, TableCell, TableRow } from "@/registry/ui/table"
-import { ResourceFaq } from "../../components/ResourceDocs"
 import { EmojiCopyActions } from "./EmojiCopyActions"
 import { EmojiSkinToneVariants } from "./EmojiSkinToneVariants"
-import { EmojiText } from "./EmojiText"
 import type { EmojiData } from "./emoji-data"
 import {
 	formatEmojiName,
 	getEmojiCodePoints,
-	getEmojiDescription,
-	getEmojiFaqItems,
-	getEmojiMeaning,
 	getEmojiSequenceInfo,
 	getEmojiShortcode,
 	getRelatedEmojis,
@@ -63,7 +58,6 @@ export function EmojiDetailsDrawer({
 	)
 	const codepoints = getEmojiCodePoints(emoji.emoji).join(" ")
 	const sequence = getEmojiSequenceInfo(emoji)
-	const faqItems = getEmojiFaqItems(emoji)
 	return (
 		<Drawer
 			open={open}
@@ -224,34 +218,6 @@ export function EmojiDetailsDrawer({
 								))}
 							</div>
 						</section>
-
-						<section
-							aria-labelledby={`emoji-drawer-about-${emoji.slug}`}
-							className="flex flex-col gap-5">
-							<div className="flex flex-col gap-2">
-								<p className="text-primary-text text-sm font-medium">
-									About this emoji
-								</p>
-								<h2
-									id={`emoji-drawer-about-${emoji.slug}`}
-									className="heading-6">
-									What {displayName} represents
-								</h2>
-							</div>
-							<div className="text-fg-secondary flex flex-col gap-4">
-								<p>
-									<EmojiText emoji={emoji} text={getEmojiMeaning(emoji)} />
-								</p>
-								<p>
-									<EmojiText emoji={emoji} text={getEmojiDescription(emoji)} />
-								</p>
-							</div>
-						</section>
-
-						<ResourceFaq
-							id={`emoji-drawer-faq-${emoji.slug}`}
-							items={faqItems}
-						/>
 					</div>
 				</DrawerBody>
 			</DrawerContent>

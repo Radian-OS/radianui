@@ -276,7 +276,7 @@ export default function EmojiPlayground({
 				</div>
 			) : visibleEmojis.length ? (
 				<section aria-label={`${category} emojis`}>
-					<ul className="grid list-none grid-cols-[repeat(auto-fill,minmax(100px,1fr))] gap-3">
+					<ul className="grid list-none grid-cols-[repeat(auto-fill,100px)] justify-between gap-3">
 						{renderedEmojis.map((emoji) => (
 							<EmojiTile
 								key={emoji.slug}

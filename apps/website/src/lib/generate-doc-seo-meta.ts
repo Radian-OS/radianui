@@ -36,7 +36,8 @@ export const DOCS_SEO_CONFIG = {
 	],
 	categories: {
 		[DocsSeoCategory.Components]: {
-			title: "{pageName} — Open Source React/Tailwind Component | {brandName}",
+			title:
+				"{brandName} {pageName} – Free Open Source React Tailwind {pageName}",
 			fallbackSummary:
 				"{pageName} provides an accessible interface element for common user interactions",
 			descriptionClosing:

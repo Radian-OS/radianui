@@ -131,14 +131,14 @@ export const BrandLogoTile = memo(function BrandLogoTile({
 				size="32"
 				color="neutral"
 				variant="outline"
-				className="bg-bg hover:bg-bg size-full overflow-hidden rounded-2xl p-0"
+				className="bg-bg hover:bg-bg size-full overflow-hidden rounded-2xl px-0 py-0"
 				aria-label={`View ${brand.name} ${variant} details`}
 				onClick={() => onSelect(id)}>
 				<img
 					src={lightDisplayUrl}
 					alt={`${brand.name} ${variant}`}
-					width={variant === "icon" ? 24 : 180}
-					height={variant === "icon" ? 24 : 48}
+					width={variant === "icon" ? 48 : 180}
+					height={48}
 					loading={priority ? "eager" : "lazy"}
 					decoding="async"
 					fetchPriority={priority ? "high" : "auto"}
@@ -159,14 +159,14 @@ export const BrandLogoTile = memo(function BrandLogoTile({
 					}}
 					className={cn(
 						"object-contain dark:hidden",
-						variant === "icon" ? "size-[45%]" : "h-[28%] w-[82%]"
+						variant === "icon" ? "size-12 shrink-0" : "h-[28%] w-full"
 					)}
 				/>
 				<img
 					src={darkDisplayUrl}
 					alt=""
-					width={variant === "icon" ? 24 : 180}
-					height={variant === "icon" ? 24 : 48}
+					width={variant === "icon" ? 48 : 180}
+					height={48}
 					loading={priority ? "eager" : "lazy"}
 					decoding="async"
 					fetchPriority={priority ? "high" : "auto"}
@@ -187,7 +187,7 @@ export const BrandLogoTile = memo(function BrandLogoTile({
 					}}
 					className={cn(
 						"hidden object-contain dark:block",
-						variant === "icon" ? "size-[45%]" : "h-[28%] w-[82%]"
+						variant === "icon" ? "size-12 shrink-0" : "h-[28%] w-full"
 					)}
 				/>
 			</Button>
