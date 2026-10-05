@@ -1,65 +1,66 @@
 "use client"
 
 import React from "react"
-import { Star } from "lucide-react"
-import Image from "next/image"
+import { Avatar, AvatarFallback, AvatarImage } from "@/styles/default/ui/avatar"
 
 interface Reviewer {
 	name: string
+	initials: string
 	imageSrc: string
 }
 
 const reviewers: Reviewer[] = [
 	{
 		name: "Alex",
+		initials: "AL",
 		imageSrc: "https://images.shadcnspace.com/assets/profiles/rough.webp",
 	},
 	{
 		name: "Jessica",
+		initials: "JE",
 		imageSrc: "https://images.shadcnspace.com/assets/profiles/jessica.webp",
 	},
 	{
 		name: "Albert",
+		initials: "AB",
 		imageSrc: "https://images.shadcnspace.com/assets/profiles/albert.webp",
 	},
 	{
 		name: "Linda",
+		initials: "LI",
 		imageSrc: "https://images.shadcnspace.com/assets/profiles/linda.webp",
 	},
 	{
 		name: "Tom",
+		initials: "TO",
 		imageSrc: "https://images.shadcnspace.com/assets/profiles/tom.webp",
 	},
 ]
 
 export function ReviewBadge() {
 	return (
-		<div className="inline-flex flex-col items-center gap-3 sm:flex-row">
-			{/* Overlapping Avatar Stack */}
-			<div className="flex items-center -space-x-2">
+		<div className="flex flex-col items-center gap-3 sm:flex-row">
+			{/* Overlapping Avatar Stack using canonical Radian UI Avatar */}
+			<div className="flex items-center -space-x-2.5 pr-1">
 				{reviewers.map((reviewer, index) => (
-					<div
+					<Avatar
 						key={reviewer.name}
-						className="border-bg relative size-9 overflow-hidden rounded-full border-2 shadow-xs transition-transform duration-200 hover:z-10 hover:scale-110"
+						size="40"
+						rounded="circle"
+						className="border-background border-2 shadow-2xs transition-transform duration-200 hover:z-20 hover:scale-110"
 						style={{ zIndex: reviewers.length - index }}>
-						<Image
-							src={reviewer.imageSrc}
-							alt={reviewer.name}
-							width={36}
-							height={36}
-							className="size-full object-cover"
-						/>
-					</div>
+						<AvatarImage src={reviewer.imageSrc} alt={reviewer.name} />
+						<AvatarFallback className="text-xs font-medium">
+							{reviewer.initials}
+						</AvatarFallback>
+					</Avatar>
 				))}
 			</div>
 
-			{/* Rating Text with Star */}
-			<div className="flex items-center gap-1.5">
-				<Star className="text-warning size-3.5 fill-current" />
-				<p className="text-fg text-xs font-medium sm:text-sm">
-					<span className="text-fg font-bold">4.6</span> Rate by 18,000+ Reviews
-				</p>
-			</div>
+			{/* Review Rating Count */}
+			<p className="text-sm font-normal text-[#030712] dark:text-white">
+				4.6 Rate by 18,000+ Reviews
+			</p>
 		</div>
 	)
 }

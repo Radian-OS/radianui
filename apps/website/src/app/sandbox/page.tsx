@@ -130,6 +130,8 @@ export default async function PlaygroundPage() {
 		process.cwd(),
 		"src/app/sandbox/integrations-settings"
 	)
+	const hero37Dir = path.join(process.cwd(), "src/app/sandbox/hero-37")
+	const login04Dir = path.join(process.cwd(), "src/app/sandbox/login-04")
 	const login07Dir = path.join(process.cwd(), "src/app/sandbox/login-07")
 	const hero16Dir = path.join(process.cwd(), "src/app/sandbox/hero-16")
 	const cta09Dir = path.join(process.cwd(), "src/app/sandbox/cta-09")
@@ -138,6 +140,26 @@ export default async function PlaygroundPage() {
 		process.cwd(),
 		"src/app/sandbox/testimonial-02"
 	)
+
+	const hero37Files = [
+		"page.tsx",
+		"hero-section.tsx",
+		"navbar.tsx",
+		"swing-line.tsx",
+		"video-dialog.tsx",
+		"data.tsx",
+		"types.ts",
+	]
+
+	const login04Files = [
+		"page.tsx",
+		"login-view.tsx",
+		"login-header.tsx",
+		"login-form.tsx",
+		"social-buttons.tsx",
+		"left-showcase.tsx",
+		"types.ts",
+	]
 
 	const login07Files = [
 		"page.tsx",
@@ -763,6 +785,8 @@ export default async function PlaygroundPage() {
 	const loginPage03Data: Record<string, string> = {}
 	const loginPage04Data: Record<string, string> = {}
 	const loginPage01Data: Record<string, string> = {}
+	const hero37Data: Record<string, string> = {}
+	const login04Data: Record<string, string> = {}
 	const login07Data: Record<string, string> = {}
 	const hero16Data: Record<string, string> = {}
 	const cta09Data: Record<string, string> = {}
@@ -997,6 +1021,14 @@ export default async function PlaygroundPage() {
 		loginPage01Data[file] = readFileContent(loginPage01Dir, file)
 	}
 
+	for (const file of hero37Files) {
+		hero37Data[file] = readFileContent(hero37Dir, file)
+	}
+
+	for (const file of login04Files) {
+		login04Data[file] = readFileContent(login04Dir, file)
+	}
+
 	for (const file of login07Files) {
 		login07Data[file] = readFileContent(login07Dir, file)
 	}
@@ -1018,6 +1050,8 @@ export default async function PlaygroundPage() {
 	}
 
 	const files = {
+		"hero-37": hero37Data,
+		"login-04": login04Data,
 		"login-07": login07Data,
 		"hero-16": hero16Data,
 		"cta-09": cta09Data,

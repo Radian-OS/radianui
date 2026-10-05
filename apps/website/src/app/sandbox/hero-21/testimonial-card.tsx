@@ -1,28 +1,20 @@
 "use client"
 
 import React from "react"
-import { Quote } from "lucide-react"
 
 export function TestimonialCard() {
 	return (
-		<div className="border-border bg-fill1/60 flex h-full min-h-[320px] flex-col justify-between rounded-2xl border p-6 shadow-xs backdrop-blur-sm sm:min-h-[380px] sm:p-8">
-			{/* Quote Icon & Content */}
-			<div className="flex flex-col gap-4">
-				<div className="bg-fill3 text-primary flex size-8 items-center justify-center rounded-lg">
-					<Quote className="size-4" />
-				</div>
-				<p className="text-fg text-xl leading-snug font-normal sm:text-2xl">
-					&ldquo;Working with them helped us turn scattered ideas into a
-					powerful &amp; consistent.&rdquo;
-				</p>
-			</div>
+		<div className="border-border flex h-full w-full flex-col justify-between rounded-xl border bg-gray-950 p-8 shadow-xs dark:bg-zinc-950">
+			{/* Main Quote Text */}
+			<p className="text-2xl leading-snug font-normal text-white">
+				&ldquo;Working with them helped us turn scattered ideas into a powerful
+				&amp; consistent.&rdquo;
+			</p>
 
-			{/* Author Details */}
-			<div className="border-border/50 mt-8 flex flex-col gap-0.5 border-t pt-4">
-				<p className="text-fg text-sm font-semibold">Jonathan Doe</p>
-				<p className="text-fg-tertiary text-xs">
-					Head of Finance @SHADCN SPACE
-				</p>
+			{/* Author Information */}
+			<div className="flex flex-col gap-0.5 pt-4">
+				<p className="text-sm font-medium text-white">Jonathan Doe</p>
+				<p className="text-xs text-white/50">Head of Finance @SHADCN SPACE</p>
 			</div>
 		</div>
 	)

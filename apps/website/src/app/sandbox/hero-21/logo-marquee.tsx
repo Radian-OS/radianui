@@ -11,76 +11,74 @@ interface BrandLogo {
 
 const brandLogos: BrandLogo[] = [
 	{
-		name: "Logoipsum 1",
-		lightSrc:
-			"https://images.shadcnspace.com/assets/brand-logo/logoipsum-muted-1.svg",
-		darkSrc:
-			"https://images.shadcnspace.com/assets/brand-logo/logoipsum-muted-white-1.svg",
+		name: "Notion",
+		lightSrc: "/brands/hero-21/notion-light.svg",
+		darkSrc: "/brands/hero-21/notion-dark.svg",
 	},
 	{
-		name: "Logoipsum 2",
-		lightSrc:
-			"https://images.shadcnspace.com/assets/brand-logo/logoipsum-muted-2.svg",
-		darkSrc:
-			"https://images.shadcnspace.com/assets/brand-logo/logoipsum-muted-white-2.svg",
+		name: "Stripe",
+		lightSrc: "/brands/hero-21/stripe-light.svg",
+		darkSrc: "/brands/hero-21/stripe-dark.svg",
 	},
 	{
-		name: "Logoipsum 3",
-		lightSrc:
-			"https://images.shadcnspace.com/assets/brand-logo/logoipsum-muted-3.svg",
-		darkSrc:
-			"https://images.shadcnspace.com/assets/brand-logo/logoipsum-muted-white-3.svg",
+		name: "Slack",
+		lightSrc: "/brands/hero-21/slack-light.svg",
+		darkSrc: "/brands/hero-21/slack-dark.svg",
 	},
 	{
-		name: "Logoipsum 4",
-		lightSrc:
-			"https://images.shadcnspace.com/assets/brand-logo/logoipsum-muted-4.svg",
-		darkSrc:
-			"https://images.shadcnspace.com/assets/brand-logo/logoipsum-muted-white-4.svg",
+		name: "Linear",
+		lightSrc: "/brands/hero-21/linear-light.svg",
+		darkSrc: "/brands/hero-21/linear-dark.svg",
 	},
 	{
-		name: "Logoipsum 5",
-		lightSrc:
-			"https://images.shadcnspace.com/assets/brand-logo/logoipsum-muted-5.svg",
-		darkSrc:
-			"https://images.shadcnspace.com/assets/brand-logo/logoipsum-muted-white-5.svg",
+		name: "Vercel",
+		lightSrc: "/brands/hero-21/vercel-light.svg",
+		darkSrc: "/brands/hero-21/vercel-dark.svg",
+	},
+	{
+		name: "Figma",
+		lightSrc: "/brands/hero-21/figma-light.svg",
+		darkSrc: "/brands/hero-21/figma-dark.svg",
 	},
 ]
 
 export function LogoMarquee() {
 	return (
-		<div className="w-full py-8 sm:py-12">
+		<div className="w-full py-6 sm:py-10">
 			<div className="mx-auto flex max-w-7xl flex-col items-center gap-6 px-4">
 				{/* Section Label */}
-				<p className="text-fg-tertiary text-xs font-semibold tracking-wider sm:text-sm">
+				<p className="text-sm font-normal text-[#4B5563] md:text-base dark:text-[#9CA3AF]">
 					Brands that trusted us
 				</p>
 
-				{/* Logo Strip Grid / Carousel */}
+				{/* Continuous Infinite Animated Marquee */}
 				<div className="relative w-full overflow-hidden mask-[linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-					<div className="flex w-full items-center justify-around gap-8 py-2 md:justify-center md:gap-14">
-						{brandLogos.map((brand) => (
-							<div
-								key={brand.name}
-								className="flex shrink-0 items-center justify-center opacity-70 transition-opacity duration-300 hover:opacity-100">
-								{/* Light mode logo */}
-								<Image
-									src={brand.lightSrc}
-									alt={brand.name}
-									width={140}
-									height={36}
-									className="h-7 w-auto object-contain dark:hidden"
-								/>
-								{/* Dark mode logo */}
-								<Image
-									src={brand.darkSrc}
-									alt={brand.name}
-									width={140}
-									height={36}
-									className="hidden h-7 w-auto object-contain dark:block"
-								/>
-							</div>
-						))}
+					<div className="hero21-marquee-track flex w-max items-center gap-4 py-2 pr-4">
+						{/* Render 4 duplicated sets of logos with exact 16px gap for seamless infinite looping */}
+						{[...brandLogos, ...brandLogos, ...brandLogos, ...brandLogos].map(
+							(brand, idx) => (
+								<div
+									key={`${brand.name}-${idx}`}
+									className="flex shrink-0 items-center transition-opacity duration-300">
+									{/* Light mode logo (180x48px) */}
+									<Image
+										src={brand.lightSrc}
+										alt={brand.name}
+										width={180}
+										height={48}
+										className="h-12 w-[180px] object-contain dark:hidden"
+									/>
+									{/* Dark mode logo (180x48px) */}
+									<Image
+										src={brand.darkSrc}
+										alt={brand.name}
+										width={180}
+										height={48}
+										className="hidden h-12 w-[180px] object-contain dark:block"
+									/>
+								</div>
+							)
+						)}
 					</div>
 				</div>
 			</div>

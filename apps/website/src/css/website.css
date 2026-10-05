@@ -1697,3 +1697,97 @@
 		transparent 100%
 	);
 }
+
+/* Hero-21 Button Expanding Bubble Hover Animation matching reference exactly */
+.btn-hero-primary {
+	position: relative;
+	overflow: hidden;
+}
+
+.btn-hero-primary .btn-bubble {
+	position: absolute;
+	left: 50%;
+	top: 100%;
+	width: 2.5rem;
+	height: 2.5rem;
+	border-radius: 9999px;
+	pointer-events: none;
+	transform: translate(-50%, -50%) scale(0);
+	transition: transform 700ms cubic-bezier(0.4, 0, 0.2, 1);
+	will-change: transform;
+}
+
+.btn-hero-primary:hover .btn-bubble {
+	transform: translate(-50%, -50%) scale(18);
+}
+
+.btn-hero-primary .btn-label {
+	transition: color 300ms ease;
+}
+
+.btn-hero-primary:hover .btn-label {
+	color: #fb923c !important;
+}
+
+.btn-hero-primary .btn-arrow {
+	display: inline-block;
+	transition: transform 300ms ease;
+}
+
+.btn-hero-primary:hover .btn-arrow {
+	transform: rotate(-45deg);
+}
+
+.btn-hero-secondary {
+	position: relative;
+	overflow: hidden;
+}
+
+.btn-hero-secondary .btn-bubble {
+	position: absolute;
+	left: 50%;
+	top: 100%;
+	width: 2.5rem;
+	height: 2.5rem;
+	border-radius: 9999px;
+	pointer-events: none;
+	transform: translate(-50%, -50%) scale(0);
+	transition: transform 700ms cubic-bezier(0.4, 0, 0.2, 1);
+	will-change: transform;
+}
+
+.btn-hero-secondary:hover .btn-bubble {
+	transform: translate(-50%, -50%) scale(18);
+}
+
+.btn-hero-secondary .btn-label {
+	transition: color 300ms ease;
+}
+
+.btn-hero-secondary:hover .btn-label {
+	color: #ffffff !important;
+}
+
+:is(.dark *) .btn-hero-secondary:hover .btn-label {
+	color: #030712 !important;
+}
+
+@keyframes hero21Marquee {
+	0% {
+		transform: translateX(0%);
+	}
+	100% {
+		transform: translateX(-50%);
+	}
+}
+
+.hero21-marquee-track {
+	display: flex;
+	width: max-content;
+	animation: hero21Marquee 25s linear infinite;
+}
+
+.hero21-marquee-track:hover {
+	animation-play-state: paused;
+}
+

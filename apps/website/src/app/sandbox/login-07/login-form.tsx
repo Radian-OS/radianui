@@ -41,8 +41,8 @@ export function LoginForm() {
 		<div className="flex w-full max-w-[400px] flex-col gap-6">
 			{/* Form Heading & Subtitle */}
 			<div className="flex flex-col items-center gap-1 text-center">
-				<h1 className="text-fg text-2xl font-medium">Welcome Back</h1>
-				<p className="text-fg-secondary text-sm">Sign in to continue.</p>
+				<h1 className="heading-3">Welcome Back</h1>
+				<p className="text-fg-secondary text-base">Sign in to continue.</p>
 			</div>
 
 			{/* Form */}
@@ -57,12 +57,10 @@ export function LoginForm() {
 							name="emailOrUsername"
 							render={({ field }) => (
 								<FormItem className="flex flex-col gap-1.5">
-									<FormLabel className="text-fg-secondary text-sm font-normal">
-										Email or username
-									</FormLabel>
+									<FormLabel>Email or username</FormLabel>
 									<FormControl>
 										<InputWrapper size="36">
-											<Mail className="text-fg-tertiary size-4" />
+											<Mail />
 											<Input
 												placeholder="Enter your email or username"
 												type="text"
@@ -82,12 +80,10 @@ export function LoginForm() {
 							name="password"
 							render={({ field }) => (
 								<FormItem className="flex flex-col gap-1.5">
-									<FormLabel className="text-fg-secondary text-sm font-normal">
-										Password
-									</FormLabel>
+									<FormLabel>Password</FormLabel>
 									<FormControl>
 										<InputWrapper size="36">
-											<Lock className="text-fg-tertiary size-4" />
+											<Lock />
 											<Input
 												placeholder="Enter your password"
 												type={showPassword ? "text" : "password"}
@@ -98,16 +94,12 @@ export function LoginForm() {
 												type="button"
 												variant="ghost"
 												color="neutral"
-												size="28"
+												size="36"
 												aria-label={
 													showPassword ? "Hide password" : "Show password"
 												}
 												onClick={() => setShowPassword((prev) => !prev)}>
-												{showPassword ? (
-													<EyeOff className="text-fg-secondary size-4" />
-												) : (
-													<Eye className="text-fg-secondary size-4" />
-												)}
+												{showPassword ? <EyeOff /> : <Eye />}
 											</IconButton>
 										</InputWrapper>
 									</FormControl>
@@ -132,9 +124,7 @@ export function LoginForm() {
 												className="cursor-pointer"
 											/>
 										</FormControl>
-										<FormLabel
-											htmlFor="remember"
-											className="text-fg cursor-pointer text-sm leading-none font-normal select-none">
+										<FormLabel htmlFor="remember" className="select-none">
 											Remember me
 										</FormLabel>
 									</FormItem>
@@ -155,7 +145,7 @@ export function LoginForm() {
 						variant="strong"
 						color="neutral"
 						size="36"
-						className="w-full cursor-pointer rounded-lg text-sm font-medium shadow-xs">
+						className="w-full">
 						Sign in
 					</Button>
 				</form>

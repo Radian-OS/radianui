@@ -100,4 +100,50 @@
 - **Rule**: Never add `underline` or `hover:underline` classes to `<Link>`, `<a>`, or `<Button asChild><Link>...</Link></Button>` elements.
 - **Do not** add underline decoration on hover for links, button links, card links, or navbar items. Keep all links clean with color transitions (e.g. `hover:text-fg` or `hover:text-primary`) rather than text underlines.
 
+## 7. Animation Rule (Motion Only — No CSS Animations)
+- **Rule**: When implementing any animation (such as marquees, continuous scrolling tracks, carousels, fades, reveals, hover effects, interactive sliding elements, or entrance transitions), **always use `motion/react`** (`motion`, `useAnimationFrame`, `useMotionValue`, `AnimatePresence`, etc.).
+- **Do NOT use CSS `@keyframes` or CSS utility animations** (`animate-marquee-left`, `animate-marquee-right`, custom CSS keyframes, etc.). Always implement animations exclusively using `motion/react` for buttery-smooth performance, hardware acceleration, pause-on-hover control, and seamless infinite looping.
+- **Example Usage**:
+  ```tsx
+  import { motion, useAnimationFrame, useMotionValue } from "motion/react"
+
+  const x = useMotionValue(0)
+  const isHovered = useRef(false)
+  const trackRef = useRef<HTMLDivElement>(null)
+
+  useAnimationFrame((_, delta) => {
+    if (isHovered.current || !trackRef.current) return
+    const halfWidth = trackRef.current.scrollWidth / 2
+    if (halfWidth <= 0) return
+
+    const current = x.get()
+    let next = current - (32 * delta) / 1000
+    if (Math.abs(next) >= halfWidth) {
+      next += halfWidth
+    }
+    x.set(next)
+  })
+
+  return (
+    <div
+      className="w-full overflow-hidden py-1"
+      onMouseEnter={() => { isHovered.current = true }}
+      onMouseLeave={() => { isHovered.current = false }}>
+      <motion.div ref={trackRef} style={{ x }} className="flex w-max will-change-transform">
+        <div className="flex shrink-0 gap-5 pr-5">
+          {items.map((item) => (
+            <ItemCard key={`track1-${item.id}`} item={item} />
+          ))}
+        </div>
+        <div className="flex shrink-0 gap-5 pr-5">
+          {items.map((item) => (
+            <ItemCard key={`track2-${item.id}`} item={item} />
+          ))}
+        </div>
+      </motion.div>
+    </div>
+  )
+  ```
+
+
 

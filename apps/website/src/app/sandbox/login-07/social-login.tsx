@@ -1,7 +1,7 @@
 "use client"
 
 import React from "react"
-import { Button } from "@/styles/default/ui/button"
+import { Button } from "@/registry/ui/button"
 
 export function SocialLogin() {
 	return (
@@ -12,7 +12,7 @@ export function SocialLogin() {
 				<p className="text-fg-secondary shrink-0 text-sm whitespace-nowrap">
 					Or continue with
 				</p>
-				<div className="bg-border h-px flex-1" />
+				<div className="bg-bg h-px flex-1" />
 			</div>
 
 			{/* Social Buttons */}
@@ -22,7 +22,7 @@ export function SocialLogin() {
 					variant="outline"
 					color="neutral"
 					size="36"
-					className="text-fg w-full justify-center gap-2 rounded-lg text-sm font-medium shadow-xs">
+					className="w-full">
 					<img
 						src="https://images.shadcnspace.com/assets/svgs/icon-google.svg"
 						alt="Google"
@@ -38,7 +38,7 @@ export function SocialLogin() {
 					variant="outline"
 					color="neutral"
 					size="36"
-					className="text-fg w-full justify-center gap-2 rounded-lg text-sm font-medium shadow-xs">
+					className="w-full">
 					<img
 						src="https://images.shadcnspace.com/assets/svgs/auth/apple-light.svg"
 						alt="Apple"
@@ -61,7 +61,7 @@ export function SocialLogin() {
 					variant="outline"
 					color="neutral"
 					size="36"
-					className="text-fg w-full justify-center gap-2 rounded-lg text-sm font-medium shadow-xs">
+					className="w-full">
 					<img
 						src="https://images.shadcnspace.com/assets/svgs/icon-github.svg"
 						alt="GitHub"

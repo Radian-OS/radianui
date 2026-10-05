@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useEffect, useRef, useState } from "react"
-import { Check, ListFilter, Search, X } from "lucide-react"
+import { ListFilter, Search, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/registry/ui/tabs"
 import {
@@ -31,10 +31,14 @@ function formatRelativeTime(dateStr: string) {
 		const diffMins = Math.floor(diffMs / (1000 * 60))
 		if (diffMins < 1) return "Just now"
 		if (diffMins < 60) return `${diffMins}m ago`
-		const diffHours = Math.floor(diffMins / (1000 * 60 * 60))
+		const diffHours = Math.floor(diffMins / 60)
 		if (diffHours < 24) return `${diffHours}h ago`
 		const diffDays = Math.floor(diffHours / 24)
-		return `${diffDays}d ago`
+		if (diffDays < 30) return `${diffDays}d ago`
+		const diffMonths = Math.floor(diffDays / 30)
+		if (diffMonths < 12) return `${diffMonths}mo ago`
+		const diffYears = Math.floor(diffDays / 365)
+		return `${diffYears}y ago`
 	} catch {
 		return "Just now"
 	}
@@ -45,14 +49,12 @@ function CommentCard({
 	index,
 	isFixed,
 	isSelected,
-	onToggleResolve,
 	onSelectComment,
 }: {
 	comment: SandboxComment
 	index: number
 	isFixed: boolean
 	isSelected?: boolean
-	onToggleResolve: (id: string, resolved: boolean) => Promise<void> | void
 	onSelectComment: (comment: SandboxComment) => void
 }) {
 	const cardRef = useRef<HTMLDivElement>(null)
@@ -87,7 +89,7 @@ function CommentCard({
 					? "bg-fill1-alpha border-primary-border/60 ring-primary/20 ring-1"
 					: "hover:bg-fill1-alpha/60"
 			)}>
-			{/* Header row: #01 • Component Label + Time + Checkbox */}
+			{/* Header row: #01 • Component Label + Time */}
 			<div className="text-fg-secondary flex items-center justify-between text-xs font-medium">
 				<div className="flex min-w-0 items-center gap-1.5 truncate">
 					<span className="shrink-0 font-mono text-[11px]">{displayIndex}</span>
@@ -97,36 +99,10 @@ function CommentCard({
 						title={componentLabel}>
 						{componentLabel}
 					</span>
-					{/* {comment.elementSelector &&
-						comment.elementSelector !== componentLabel && (
-							<>
-								<span className="shrink-0">•</span>
-								<span
-									className="text-fg-secondary max-w-[80px] truncate text-[11px]"
-									title={comment.elementSelector}>
-									{comment.elementSelector}
-								</span>
-							</>
-						)} */}
 				</div>
-				<div className="flex shrink-0 items-center gap-2">
-					<span>{formatRelativeTime(comment.createdAt)}</span>
-					<button
-						type="button"
-						onClick={(e) => {
-							e.stopPropagation()
-							onToggleResolve(comment.id, !isFixed)
-						}}
-						title={isFixed ? "Mark as unresolved" : "Mark as resolved"}
-						className={cn(
-							"flex size-4 cursor-pointer items-center justify-center rounded border transition-colors",
-							isFixed
-								? "bg-primary border-primary-border text-fg"
-								: "border-soft bg-bg hover:border-primary-border"
-						)}>
-						{isFixed && <Check className="size-3 stroke-[3]" />}
-					</button>
-				</div>
+				<span className="shrink-0 text-[11px]">
+					{formatRelativeTime(comment.createdAt)}
+				</span>
 			</div>
 
 			{/* Comment Text Body */}
@@ -187,7 +163,6 @@ function CommentsList({
 						index={index}
 						isFixed={isFixed}
 						isSelected={selectedCommentId === comment.id}
-						onToggleResolve={onToggleResolve}
 						onSelectComment={onSelectComment}
 					/>
 				)

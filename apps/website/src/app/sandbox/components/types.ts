@@ -1,4 +1,6 @@
 export interface FilesData {
+	"hero-37": Record<string, string>
+	"login-04": Record<string, string>
 	"login-07": Record<string, string>
 	omrix: Record<string, string>
 	motion: Record<string, string>
@@ -59,6 +61,8 @@ export interface FilesData {
 }
 
 export type PreviewKey =
+	| "hero-37"
+	| "login-04"
 	| "login-07"
 	| "williams-samuel"
 	| "victor-eke"
@@ -186,6 +190,26 @@ export interface SandboxComponentConfig {
 }
 
 export const sandboxComponents: SandboxComponentConfig[] = [
+	{
+		id: "hero-37",
+		label: "hero-37",
+		category: "hero-section",
+		filesKey: "hero-37",
+		path: "src/app/sandbox/hero-37",
+		defaultFile: "page.tsx",
+		referenceUrl: "https://shadcnspace.com/preview/hero-37",
+		previewRoute: "/sandbox/hero-37",
+	},
+	{
+		id: "login-04",
+		label: "login-04",
+		category: "welcome-screen-section",
+		filesKey: "login-04",
+		path: "src/app/sandbox/login-04",
+		defaultFile: "page.tsx",
+		referenceUrl: "https://shadcnspace.com/preview/login-04",
+		previewRoute: "/sandbox/login-04",
+	},
 	{
 		id: "login-07",
 		label: "login-07",

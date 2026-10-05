@@ -37,12 +37,9 @@ export function LeftPanel() {
 
 			{/* Top Branding - moved further right and slightly lower, sharing common alignment line */}
 			<div className="relative z-10 pt-4 pl-10 sm:pt-6 sm:pl-16 lg:pt-8 lg:pl-20 xl:pl-28 2xl:pl-32">
-				<Link href="#" className="inline-block w-fit">
-					<img
-						src="https://images.shadcnspace.com/assets/logo/shadcnspace-logo-white.svg"
-						alt="shadcnspace."
-						className="h-8 w-auto"
-					/>
+				<Link href="#" className="flex w-fit items-center gap-2">
+					<img src="/logo.svg" alt="Radian" className="size-8 shrink-0" />
+					<h1 className="heading-6">Radian</h1>
 				</Link>
 			</div>
 
@@ -50,10 +47,8 @@ export function LeftPanel() {
 			<div className="relative z-10 my-auto flex w-full flex-col gap-8 py-6 lg:gap-10">
 				{/* Headline and Subtitle */}
 				<div className="flex max-w-[480px] flex-col gap-3.5 pr-6 pl-10 sm:pr-8 sm:pl-16 lg:pl-20 xl:pl-28 2xl:pl-32">
-					<h2 className="text-3xl font-medium tracking-tight text-white sm:text-4xl">
-						Start securely. Scale confidently.
-					</h2>
-					<p className="text-sm leading-relaxed text-white/60 sm:text-base">
+					<h2 className="heading-4">Start securely. Scale confidently.</h2>
+					<p className="text-fg text-sm leading-relaxed sm:text-base">
 						Authenticate quickly and securely. Designed to keep your team moving
 						while protecting every account.
 					</p>
@@ -65,8 +60,8 @@ export function LeftPanel() {
 				</div>
 
 				{/* Bottom Brands - sharing content alignment line */}
-				<div className="w-full pr-6 pl-10 sm:pr-8 sm:pl-16 lg:pl-20 xl:pl-28 2xl:pl-32">
-					<div className="max-w-[420px]">
+				<div className="w-full px-6 sm:px-8 lg:pr-0 lg:pl-20 xl:pl-28 2xl:pl-32">
+					<div className="mx-auto max-w-[420px] lg:mx-0">
 						<TrustedBrands />
 					</div>
 				</div>
