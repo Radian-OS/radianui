@@ -133,7 +133,7 @@ export const FlagTile = memo(function FlagTile({
 						decoding="async"
 						fetchPriority={priority ? "high" : "auto"}
 					/>
-					<span className="text-fg-secondary absolute inset-x-2 bottom-3 truncate text-xs font-medium transition-opacity duration-200 group-focus-within:opacity-0 group-hover:opacity-0">
+					<span className="text-fg-secondary absolute inset-x-2 bottom-3 truncate text-center text-xs font-medium transition-opacity duration-200 group-focus-within:opacity-0 group-hover:opacity-0">
 						{displayName}
 					</span>
 				</Link>

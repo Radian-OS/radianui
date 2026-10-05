@@ -159,9 +159,7 @@ export const BrandLogoTile = memo(function BrandLogoTile({
 					}}
 					className={cn(
 						"object-contain dark:hidden",
-						variant === "icon"
-							? "size-14 sm:size-16"
-							: "h-10 w-[78%] max-w-52 sm:h-12"
+						variant === "icon" ? "size-[45%]" : "h-[28%] w-[82%]"
 					)}
 				/>
 				<img
@@ -189,9 +187,7 @@ export const BrandLogoTile = memo(function BrandLogoTile({
 					}}
 					className={cn(
 						"hidden object-contain dark:block",
-						variant === "icon"
-							? "size-14 sm:size-16"
-							: "h-10 w-[78%] max-w-52 sm:h-12"
+						variant === "icon" ? "size-[45%]" : "h-[28%] w-[82%]"
 					)}
 				/>
 			</Button>
