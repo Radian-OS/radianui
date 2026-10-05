@@ -1,6 +1,7 @@
 "use client"
 
-import { memo, useCallback, useState } from "react"
+import { type MouseEvent, memo, useCallback, useState } from "react"
+import Link from "next/link"
 import { toast } from "sonner"
 import { Button } from "@/registry/ui/button"
 import { getFlagSvgMarkup, renderFlagPng } from "./flag-assets"
@@ -12,6 +13,7 @@ import {
 	getFlagDisplayName,
 	getFlagHtmlMarkup,
 	getFlagNextImageMarkup,
+	getFlagPagePath,
 	getFlagSvgUrl,
 } from "./flags-data"
 
@@ -103,26 +105,38 @@ export const FlagTile = memo(function FlagTile({
 		copyText(getFlagHtmlMarkup(name, shape), "HTML markup")
 	}, [copyText, name, shape])
 
+	const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
+		if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+
+		event.preventDefault()
+		onSelect(name)
+	}
+
 	return (
 		<li className="group relative aspect-square w-full min-w-0 sm:size-[142px]">
 			<Button
+				asChild
 				size="32"
 				color="neutral"
 				variant="outline"
-				className="bg-bg hover:bg-bg size-full overflow-hidden rounded-xl p-0 pb-6"
-				aria-label={`View ${displayName} flag details`}
-				onClick={() => onSelect(name)}>
-				<FlagImage
-					name={name}
-					shape={shape}
-					size={previewSize}
-					loading={priority ? "eager" : "lazy"}
-					decoding="async"
-					fetchPriority={priority ? "high" : "auto"}
-				/>
-				<span className="text-fg-secondary absolute inset-x-2 bottom-3 truncate text-xs font-medium transition-opacity duration-200 group-focus-within:opacity-0 group-hover:opacity-0">
-					{displayName}
-				</span>
+				className="bg-bg hover:bg-bg size-full overflow-hidden rounded-xl p-0 pb-6">
+				<Link
+					href={getFlagPagePath(name)}
+					prefetch={false}
+					onClick={handleClick}
+					aria-label={`View ${displayName} flag details`}>
+					<FlagImage
+						name={name}
+						shape={shape}
+						size={previewSize}
+						loading={priority ? "eager" : "lazy"}
+						decoding="async"
+						fetchPriority={priority ? "high" : "auto"}
+					/>
+					<span className="text-fg-secondary absolute inset-x-2 bottom-3 truncate text-xs font-medium transition-opacity duration-200 group-focus-within:opacity-0 group-hover:opacity-0">
+						{displayName}
+					</span>
+				</Link>
 			</Button>
 
 			<FlagTileMenu

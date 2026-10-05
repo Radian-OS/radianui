@@ -275,6 +275,9 @@ importers:
       next-themes:
         specifier: ^0.4.6
         version: 0.4.6(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      noto-color-emoji-flags:
+        specifier: 1.0.0
+        version: 1.0.0
       nuqs:
         specifier: ^2.10.1
         version: 2.10.1(next@16.3.5(@opentelemetry/api@1.9.0)(@types/node@26.5.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react@19.3.0)
@@ -5252,6 +5255,9 @@ packages:
   node-releases@2.0.55:
     resolution: {integrity: sha512-mIrE/Cw9y+9Au6dS5vDKDhQza9YvG6w+ZrS6X+ZzA7yFW/soAeaups4Qzn1bL6g5FVy8WtP79+0j82oPIbqRjQ==}
     engines: {node: '>=18'}
+
+  noto-color-emoji-flags@1.0.0:
+    resolution: {integrity: sha512-FwZqpE343M7gPWzeAapGloB3JO23r1ueKMXnScHYsx2cDNxApQRILug4oWVBc2417DBtAMdpUZTmUSMKJGXURg==}
 
   npm-registry@0.1.13:
     resolution: {integrity: sha512-dpzoGKyp2zuZn0xrUILUU5hauQW1Ho5UEQJ3WsxnMdRAvNqK7Z5QAtkgtjfQEPNpr7CC+LuUouZgdIOVc+9iYA==}
@@ -11163,6 +11169,8 @@ snapshots:
       - babel-plugin-macros
 
   node-releases@2.0.55: {}
+
+  noto-color-emoji-flags@1.0.0: {}
 
   npm-registry@0.1.13:
     dependencies:
