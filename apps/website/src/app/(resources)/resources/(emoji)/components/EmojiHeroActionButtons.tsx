@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react"
 import Link from "next/link"
+import { toast } from "sonner"
 import { Button } from "@/registry/ui/button"
 import { showEmojiToast } from "./EmojiToast"
 import type { EmojiData } from "./emoji-data"
@@ -24,18 +25,22 @@ export function EmojiHeroActionButtons() {
 		}
 	}, [])
 
-	const handleCopyRandom = () => {
+	const handleCopyRandom = async () => {
 		if (!supportedEmojis?.length) return
 
 		const randomEmoji =
 			supportedEmojis[Math.floor(Math.random() * supportedEmojis.length)]
 		if (!randomEmoji) return
 
-		navigator.clipboard.writeText(randomEmoji.emoji)
-		showEmojiToast({
-			emoji: randomEmoji.emoji,
-			description: `${randomEmoji.emoji} has been copied to your clipboard.`,
-		})
+		try {
+			await navigator.clipboard.writeText(randomEmoji.emoji)
+			showEmojiToast({
+				emoji: randomEmoji.emoji,
+				description: `${randomEmoji.emoji} has been copied to your clipboard.`,
+			})
+		} catch {
+			toast.error("Could not copy emoji")
+		}
 	}
 
 	return (

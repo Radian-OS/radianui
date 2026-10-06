@@ -17,7 +17,7 @@ import {
 	EmptyTitle,
 } from "@/registry/ui/empty"
 import { Input, InputGroup, InputWrapper } from "@/registry/ui/input"
-import { Spinner } from "@/registry/ui/spinner"
+import { Button } from "@/registry/ui/button"
 import { EmojiCategoryDropdown } from "./EmojiCategoryDropdown"
 import { EmojiDetailsDrawer } from "./EmojiDetailsDrawer"
 import { EmojiTile } from "./EmojiTile"
@@ -183,8 +183,6 @@ export default function EmojiPlayground({
 	}
 
 	const visibleEmojis = useMemo(() => {
-		if (!supportedEmojiSlugs) return []
-
 		const normalizedQuery = query.trim().toLocaleLowerCase("en")
 		const group = emojiGroups.find((item) => item.name === category)
 		const source =
@@ -192,7 +190,7 @@ export default function EmojiPlayground({
 
 		return source.filter(
 			(emoji) =>
-				supportedEmojiSlugs.has(emoji.slug) &&
+				(!supportedEmojiSlugs || supportedEmojiSlugs.has(emoji.slug)) &&
 				(!normalizedQuery ||
 					emoji.name.toLocaleLowerCase("en").includes(normalizedQuery))
 		)
@@ -241,14 +239,15 @@ export default function EmojiPlayground({
 		<div id="emoji-collection" className="flex w-full flex-col gap-8 py-2">
 			<p className="sr-only" aria-live="polite">
 				{supportedEmojiSlugs
-					? `${supportedEmojiSlugs.size} emojis are supported by this browser.`
-					: "Checking emoji support."}
+					? `${supportedEmojiSlugs.size} emojis available in this browser.`
+					: `${emojis.length} emojis in the collection.`}
 			</p>
 			<div ref={sentinelRef} className="pointer-events-none h-px w-full" />
 			<div className="bg-bg/95 sticky top-0 z-100 py-3 backdrop-blur-sm">
 				<InputGroup className="w-full">
 					<EmojiCategoryDropdown
 						value={category}
+						supportedEmojiSlugs={supportedEmojiSlugs}
 						onValueChange={handleCategoryChange}
 						className="rounded-r-none border-r-0"
 					/>
@@ -269,14 +268,9 @@ export default function EmojiPlayground({
 				</InputGroup>
 			</div>
 
-			{supportedEmojiSlugs === null ? (
-				<div className="text-fg-secondary flex min-h-64 items-center justify-center gap-3 text-sm">
-					<Spinner variant="simple" />
-					Checking emoji support…
-				</div>
-			) : visibleEmojis.length ? (
+			{visibleEmojis.length ? (
 				<section aria-label={`${category} emojis`}>
-					<ul className="grid list-none grid-cols-[repeat(auto-fill,100px)] justify-between gap-3">
+					<ul className="grid w-full list-none grid-cols-[repeat(auto-fill,minmax(100px,1fr))] gap-3">
 						{renderedEmojis.map((emoji) => (
 							<EmojiTile
 								key={emoji.slug}
@@ -285,6 +279,17 @@ export default function EmojiPlayground({
 							/>
 						))}
 					</ul>
+					{renderedEmojis.length < visibleEmojis.length ? (
+						<Button
+							color="neutral"
+							variant="outline"
+							className="mt-5"
+							onClick={() =>
+								setDisplayLimit((limit) => limit + EMOJI_BATCH_SIZE)
+							}>
+							Load more emojis
+						</Button>
+					) : null}
 				</section>
 			) : (
 				<div className="flex min-h-64 items-center justify-center">

@@ -1,14 +1,14 @@
 import type { Metadata } from "next"
+import { JsonLd } from "@/components/seo/json-ld"
 import { websiteMetadata } from "@/config/website-metadata-config"
 import { absoluteUrl } from "@/lib/structured-data"
 import { EmojiResourcePage } from "../components/EmojiResourcePage"
 
 const pageUrl = absoluteUrl("/resources/emoji")
-const pageTitle = "Free Emoji Library — Copy & Paste Unicode Emojis"
+const pageTitle = "Copy and Paste Emojis for Free | Radian UI"
 const pageDescription =
-	"Browse Unicode emojis by category, search by name, and copy or export emoji text, Unicode, HTML, SVG, and PNG formats."
+	"Find smiley faces, hearts, and more in our free emoji list. Search by name or category, then copy and paste your favorite into a message."
 const pageImage = absoluteUrl("/media/assets-page/emojis-light.png")
-//something
 export const metadata: Metadata = {
 	title: pageTitle,
 	description: pageDescription,
@@ -30,5 +30,28 @@ export const metadata: Metadata = {
 }
 
 export default function Page() {
-	return <EmojiResourcePage />
+	return (
+		<>
+			<JsonLd
+				id="emoji-application-structured-data"
+				data={{
+					"@context": "https://schema.org",
+					"@type": "WebApplication",
+					"@id": `${pageUrl}#application`,
+					name: "Radian UI Emoji Copy and Paste",
+					url: pageUrl,
+					description: pageDescription,
+					applicationCategory: "UtilitiesApplication",
+					operatingSystem: "Any",
+					isAccessibleForFree: true,
+					publisher: {
+						"@type": "Organization",
+						name: websiteMetadata.organizationName,
+						url: absoluteUrl("/"),
+					},
+				}}
+			/>
+			<EmojiResourcePage />
+		</>
+	)
 }

@@ -53,7 +53,7 @@ function detectSupportedEmojiVersion() {
 		if (supportsColorEmoji(emoji)) return version
 	}
 
-	return 0
+	return null
 }
 
 function needsSequenceCheck(emoji: string) {
@@ -103,7 +103,7 @@ async function detectSupportedEmojis() {
 		// Sequence measurement below filters regional flags if the font fails.
 	}
 
-	let supportedVersion: number
+	let supportedVersion: number | null
 	try {
 		supportedVersion = detectSupportedEmojiVersion()
 	} catch {
@@ -111,6 +111,9 @@ async function detectSupportedEmojis() {
 		// preserve the catalog instead of incorrectly hiding every emoji.
 		supportedVersion = Number(emojiVersionTests[0][1])
 	}
+
+	// A failed color probe is inconclusive (for example, monochrome fonts).
+	if (supportedVersion === null) return emojis
 
 	const supportsSequence = createSequenceSupportChecker()
 
@@ -123,7 +126,15 @@ async function detectSupportedEmojis() {
 
 export function getSupportedEmojis() {
 	if (!supportedEmojisPromise) {
-		supportedEmojisPromise = detectSupportedEmojis()
+		let timeout: number
+		supportedEmojisPromise = Promise.race([
+			detectSupportedEmojis(),
+			new Promise<EmojiData[]>((resolve) => {
+				timeout = window.setTimeout(() => resolve(emojis), 3000)
+			}),
+		])
+			.catch(() => emojis)
+			.finally(() => window.clearTimeout(timeout))
 	}
 
 	return supportedEmojisPromise

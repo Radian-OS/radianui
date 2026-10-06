@@ -50,7 +50,7 @@ export function EmojiResourcePage({
 						</span>
 					</>
 				) : (
-					"Find, Copy, and Use Every Unicode Emoji"
+					"Copy and paste your favorite emojis"
 				)
 			}
 			description={
@@ -60,7 +60,7 @@ export function EmojiResourcePage({
 						text={getEmojiDescription(initialSelectedEmoji)}
 					/>
 				) : (
-					"Browse emojis by Unicode category, copy them as text, and grab Unicode, HTML, SVG, and PNG formats."
+					"Find just the right face, heart, or gesture. Browse the collection, select an emoji, and choose Copy as Text. It’s free, and there’s no sign-up."
 				)
 			}
 			actions={<EmojiHeroActionButtons />}

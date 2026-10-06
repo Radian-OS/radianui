@@ -23,7 +23,7 @@ export const EmojiTile = memo(function EmojiTile({
 	}
 
 	return (
-		<li className="size-[100px] min-w-0">
+		<li className="aspect-square w-full min-w-0">
 			<Tooltip>
 				<TooltipTrigger asChild>
 					<Button

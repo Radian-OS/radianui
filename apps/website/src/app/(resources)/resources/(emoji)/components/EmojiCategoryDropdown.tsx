@@ -1,20 +1,7 @@
 "use client"
 
 import { cn } from "@/lib/utils"
-import type { LucideIcon } from "lucide-react"
-import {
-	ChevronDown,
-	Flag,
-	LayoutGrid,
-	Lightbulb,
-	PawPrint,
-	Plane,
-	Shapes,
-	Smile,
-	Trophy,
-	Users,
-	Utensils,
-} from "lucide-react"
+import { ChevronDown } from "lucide-react"
 import { Button } from "@/registry/ui/button"
 import {
 	DropdownMenu,
@@ -27,37 +14,49 @@ import {
 } from "@/registry/ui/dropdown-menu"
 import { ALL_EMOJI_CATEGORY, emojiGroups, emojis } from "./emoji-data"
 
-const groupIcons: Record<string, LucideIcon> = {
-	"Smileys & Emotion": Smile,
-	"People & Body": Users,
-	"Animals & Nature": PawPrint,
-	"Food & Drink": Utensils,
-	"Travel & Places": Plane,
-	Activities: Trophy,
-	Objects: Lightbulb,
-	Symbols: Shapes,
-	Flags: Flag,
+const groupEmojis: Record<string, string> = {
+	"Smileys & Emotion": "😁",
+	"People & Body": "👋",
+	"Animals & Nature": "🐶",
+	"Food & Drink": "🍎",
+	"Travel & Places": "🌍",
+	Activities: "🎃",
+	Objects: "👓",
+	Symbols: "🔕",
+	Flags: "🏁",
+}
+
+function CategoryEmoji({ emoji }: { emoji: string }) {
+	return (
+		<span
+			className="flex size-5 shrink-0 items-center justify-center text-base leading-none"
+			aria-hidden="true">
+			{emoji}
+		</span>
+	)
 }
 
 interface EmojiCategoryDropdownProps {
 	value: string
 	onValueChange: (value: string) => void
 	className?: string
+	supportedEmojiSlugs?: Set<string> | null
 }
 
 export function EmojiCategoryDropdown({
 	value,
 	onValueChange,
 	className,
+	supportedEmojiSlugs = null,
 }: EmojiCategoryDropdownProps) {
 	const activeGroup =
 		value === ALL_EMOJI_CATEGORY
 			? null
 			: (emojiGroups.find((group) => group.name === value) ?? emojiGroups[0])
 	const label = activeGroup?.name ?? ALL_EMOJI_CATEGORY
-	const ActiveIcon = activeGroup
-		? (groupIcons[activeGroup.name] ?? Smile)
-		: LayoutGrid
+	const activeEmoji = activeGroup
+		? (groupEmojis[activeGroup.name] ?? "😁")
+		: "📦"
 
 	return (
 		<DropdownMenu indicatorPosition="right">
@@ -71,7 +70,7 @@ export function EmojiCategoryDropdown({
 						className
 					)}
 					aria-label={`Emoji category: ${label}`}>
-					<ActiveIcon className="text-fg-secondary" />
+					<CategoryEmoji emoji={activeEmoji} />
 					<span className="hidden sm:inline">{label}</span>
 					<ChevronDown className="text-fg-secondary" aria-hidden="true" />
 				</Button>
@@ -84,22 +83,28 @@ export function EmojiCategoryDropdown({
 				<DropdownMenuDivider />
 				<DropdownMenuRadioGroup value={value} onValueChange={onValueChange}>
 					<DropdownMenuRadioItem value={ALL_EMOJI_CATEGORY}>
-						<LayoutGrid className="text-fg-secondary size-4" />
+						<CategoryEmoji emoji="📦" />
 						<span className="flex-1 text-sm font-medium">
 							{ALL_EMOJI_CATEGORY}
 						</span>
-						<span className="text-fg-tertiary text-xs">{emojis.length}</span>
+						<span className="text-fg-tertiary text-xs">
+							{supportedEmojiSlugs?.size ?? emojis.length}
+						</span>
 					</DropdownMenuRadioItem>
 					<DropdownMenuDivider />
 					{emojiGroups.map((group) => {
-						const Icon = groupIcons[group.name] ?? Smile
+						const categoryEmoji = groupEmojis[group.name] ?? "😁"
 
 						return (
 							<DropdownMenuRadioItem key={group.slug} value={group.name}>
-								<Icon className="text-fg-secondary size-4" />
+								<CategoryEmoji emoji={categoryEmoji} />
 								<span className="flex-1 text-sm font-medium">{group.name}</span>
 								<span className="text-fg-tertiary text-xs">
-									{group.emojis.length}
+									{supportedEmojiSlugs
+										? group.emojis.filter((emoji) =>
+												supportedEmojiSlugs.has(emoji.slug)
+											).length
+										: group.emojis.length}
 								</span>
 							</DropdownMenuRadioItem>
 						)
