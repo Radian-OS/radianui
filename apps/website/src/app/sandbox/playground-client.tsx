@@ -35,7 +35,7 @@ export function PlaygroundClient({ files }: PlaygroundClientProps) {
 	}, [user, isLoading, router])
 
 	const [activeComponent, setActiveComponent] =
-		useState<PreviewKey>("jambo-pricing")
+		useState<PreviewKey>("signin-12")
 	const [activeFile, setActiveFile] = useState<string>("page.tsx")
 	const [viewMode, setViewMode] = useState<ViewMode>("preview")
 	const [deviceSize, setDeviceSize] = useState<DeviceSize>("desktop")

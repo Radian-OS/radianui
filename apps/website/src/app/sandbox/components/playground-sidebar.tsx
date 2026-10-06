@@ -62,6 +62,7 @@ interface SidebarCategoryDef {
 
 const SIDEBAR_CATEGORIES: SidebarCategoryDef[] = [
 	{ id: "welcome-screen-section", label: "SIGNUP", icon: UserPlus },
+	{ id: "sign-in-section", label: "SIGN IN", icon: UserPlus },
 	{ id: "hero-section", label: "HERO", icon: Sparkles },
 	{ id: "pricing-section", label: "PRICING", icon: Tag },
 	{ id: "cta-section", label: "CTA", icon: Zap },

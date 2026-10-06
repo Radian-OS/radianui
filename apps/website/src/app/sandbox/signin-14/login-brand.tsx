@@ -2,7 +2,6 @@
 
 import React from "react"
 import Link from "next/link"
-import { Asterisk } from "lucide-react"
 
 export function LoginBrand() {
 	return (

@@ -1,125 +1,64 @@
-export interface FilesData {
-	"hero-37": Record<string, string>
-	"login-04": Record<string, string>
-	"login-07": Record<string, string>
-	omrix: Record<string, string>
-	motion: Record<string, string>
-	"beam-header": Record<string, string>
-	"jambo-pricing": Record<string, string>
-	"klarheit-faq": Record<string, string>
-	"klarheit-testimonial": Record<string, string>
-	"hero-21": Record<string, string>
-	aiwork: Record<string, string>
-	verseo: Record<string, string>
-	agentlab: Record<string, string>
-	crisply: Record<string, string>
-	"hero-04": Record<string, string>
-	linear: Record<string, string>
-	intercom: Record<string, string>
-	"blog-1": Record<string, string>
-	"blog-02": Record<string, string>
-	zentra: Record<string, string>
-	"contact-2": Record<string, string>
-	"contact-06": Record<string, string>
-	"contact-01": Record<string, string>
-	"cta-10": Record<string, string>
-	"cta-08": Record<string, string>
-	"cta-07": Record<string, string>
-	"cta-09": Record<string, string>
-	"pricing-05": Record<string, string>
-	"faq-4": Record<string, string>
-	"faq-5": Record<string, string>
-	"faq-03": Record<string, string>
-	"form-1": Record<string, string>
-	"checkout-form": Record<string, string>
-	"long-form": Record<string, string>
-	"hero-9": Record<string, string>
-	"hero-12": Record<string, string>
-	"hero-16": Record<string, string>
-	folio: Record<string, string>
-	"hero-25": Record<string, string>
-	orders: Record<string, string>
-	"chatgpt-settings": Record<string, string>
-	"integrations-settings": Record<string, string>
-	"blog-5": Record<string, string>
-	"blog-6": Record<string, string>
-	"login-page-03": Record<string, string>
-	"login-page-04": Record<string, string>
-	"login-page-01": Record<string, string>
-	"vcard-portfolio": Record<string, string>
-	"product-tour": Record<string, string>
-	"onboarding-checklist": Record<string, string>
-	"kishor-portfolio": Record<string, string>
-	"tania-rascia": Record<string, string>
-	"data-grid-columns-2": Record<string, string>
-	"data-grid-columns-5": Record<string, string>
-	"users-table": Record<string, string>
-	"projects-table": Record<string, string>
-	"victor-eke": Record<string, string>
-	"williams-samuel": Record<string, string>
-	"testimonial-02": Record<string, string>
-}
-
+export type FilesData = Record<string, Record<string, string>>
 export type PreviewKey =
-	| "hero-37"
-	| "login-04"
-	| "login-07"
-	| "williams-samuel"
-	| "victor-eke"
-	| "projects-table"
-	| "users-table"
-	| "data-grid-columns-5"
-	| "data-grid-columns-2"
-	| "tania-rascia"
-	| "kishor-portfolio"
-	| "product-tour"
-	| "onboarding-checklist"
-	| "vcard-portfolio"
-	| "login-page-01"
-	| "login-page-04"
-	| "login-page-03"
-	| "blog-6"
-	| "blog-5"
-	| "integrations-settings"
-	| "chatgpt-settings"
-	| "orders"
-	| "hero-25"
-	| "folio"
-	| "hero-12"
-	| "hero-16"
-	| "hero-9"
-	| "long-form"
-	| "checkout-form"
-	| "form-1"
+	| "hero-01"
+	| "signin-12"
+	| "signin-13"
+	| "portfolio-01"
+	| "portfolio-02"
+	| "table-01"
+	| "table-02"
+	| "table-03"
+	| "table-04"
+	| "portfolio-03"
+	| "portfolio-04"
+	| "tour-01"
+	| "tour-02"
+	| "portfolio-05"
+	| "signin-14"
+	| "signin-15"
+	| "signin-16"
+	| "blog-01"
+	| "blog-04"
+	| "setting-01"
+	| "setting-02"
+	| "setting-03"
+	| "hero-03"
+	| "hero-08"
+	| "hero-05"
+	| "hero-02"
+	| "hero-06"
+	| "form-01"
+	| "form-02"
+	| "form-03"
+	| "faq-01"
+	| "faq-02"
 	| "faq-03"
-	| "faq-5"
-	| "faq-4"
-	| "cta-07"
-	| "cta-08"
-	| "cta-10"
-	| "cta-09"
-	| "pricing-05"
+	| "cta-02"
+	| "cta-03"
+	| "cta-04"
+	| "cta-01"
+	| "pricing-01"
 	| "contact-01"
-	| "contact-06"
-	| "contact-2"
-	| "zentra"
+	| "contact-02"
+	| "contact-03"
+	| "blog-03"
 	| "blog-02"
-	| "blog-1"
-	| "intercom"
-	| "linear"
+	| "blog-05"
+	| "full-page-01"
+	| "other-01"
 	| "hero-04"
-	| "crisply"
-	| "agentlab"
-	| "omrix"
-	| "motion"
-	| "faq"
-	| "beam-header"
-	| "jambo-pricing"
-	| "testimonials"
-	| "hero-21"
-	| "aiwork"
-	| "verseo"
+	| "other-02"
+	| "full-page-02"
+	| "hero-07"
+	| "other-03"
+	| "faq-04"
+	| "hero-10"
+	| "pricing-02"
 	| "testimonial-02"
+	| "hero-09"
+	| "full-page-03"
+	| "full-page-04"
+	| "testimonial-01"
 
 export type ViewMode = "preview" | "inspect" | "code"
 export type DeviceSize = "desktop" | "tablet" | "mobile"
@@ -176,6 +115,7 @@ export type SandboxCategory =
 	| "guided-tour-section"
 	| "portfolio-section"
 	| "table-section"
+	| "sign-in-section"
 	| "other-sections"
 
 export interface SandboxComponentConfig {
@@ -191,342 +131,362 @@ export interface SandboxComponentConfig {
 
 export const sandboxComponents: SandboxComponentConfig[] = [
 	{
-		id: "hero-37",
-		label: "hero-37",
+		id: "hero-01",
+		label: "hero-01",
 		category: "hero-section",
-		filesKey: "hero-37",
-		path: "src/app/sandbox/hero-37",
+		filesKey: "hero-01",
+		path: "src/app/sandbox/hero-01",
 		defaultFile: "page.tsx",
 		referenceUrl: "https://shadcnspace.com/preview/hero-37",
-		previewRoute: "/sandbox/hero-37",
+		previewRoute: "/sandbox/hero-01",
 	},
 	{
-		id: "login-04",
-		label: "login-04",
-		category: "welcome-screen-section",
-		filesKey: "login-04",
-		path: "src/app/sandbox/login-04",
+		id: "signin-12",
+		label: "signin-12",
+		category: "sign-in-section",
+		filesKey: "signin-12",
+		path: "src/app/sandbox/signin-12",
 		defaultFile: "page.tsx",
 		referenceUrl: "https://shadcnspace.com/preview/login-04",
-		previewRoute: "/sandbox/login-04",
+		previewRoute: "/sandbox/signin-12",
 	},
 	{
-		id: "login-07",
-		label: "login-07",
-		category: "welcome-screen-section",
-		filesKey: "login-07",
-		path: "src/app/sandbox/login-07",
+		id: "signin-13",
+		label: "signin-13",
+		category: "sign-in-section",
+		filesKey: "signin-13",
+		path: "src/app/sandbox/signin-13",
 		defaultFile: "page.tsx",
 		referenceUrl: "https://shadcnspace.com/preview/login-07",
-		previewRoute: "/sandbox/login-07",
+		previewRoute: "/sandbox/signin-13",
 	},
 	{
-		id: "hero-16",
-		label: "hero-16",
+		id: "hero-02",
+		label: "hero-02",
 		category: "hero-section",
-		filesKey: "hero-16",
-		path: "src/app/sandbox/hero-16",
+		filesKey: "hero-02",
+		path: "src/app/sandbox/hero-02",
 		defaultFile: "page.tsx",
 		referenceUrl: "https://shadcnspace.com/preview/hero-16",
-		previewRoute: "/sandbox/hero-16",
+		previewRoute: "/sandbox/hero-02",
 	},
 	{
-		id: "cta-09",
-		label: "cta-09",
+		id: "cta-01",
+		label: "cta-01",
 		category: "cta-section",
-		filesKey: "cta-09",
-		path: "src/app/sandbox/cta-09",
+		filesKey: "cta-01",
+		path: "src/app/sandbox/cta-01",
 		defaultFile: "page.tsx",
 		referenceUrl: "https://shadcnspace.com/preview/cta-09",
-		previewRoute: "/sandbox/cta-09",
+		previewRoute: "/sandbox/cta-01",
 	},
 	{
-		id: "pricing-05",
-		label: "pricing-05",
+		id: "pricing-01",
+		label: "pricing-01",
 		category: "pricing-section",
-		filesKey: "pricing-05",
-		path: "src/app/sandbox/pricing-05",
+		filesKey: "pricing-01",
+		path: "src/app/sandbox/pricing-01",
 		defaultFile: "page.tsx",
 		referenceUrl: "https://shadcnspace.com/preview/pricing-05",
-		previewRoute: "/sandbox/pricing-05",
+		previewRoute: "/sandbox/pricing-01",
 	},
 	{
-		id: "testimonial-02",
-		label: "testimonial-02",
+		id: "testimonial-01",
+		label: "testimonial-01",
 		category: "testimonial-section",
-		filesKey: "testimonial-02",
-		path: "src/app/sandbox/testimonial-02",
+		filesKey: "testimonial-01",
+		path: "src/app/sandbox/testimonial-01",
 		defaultFile: "page.tsx",
 		referenceUrl: "https://shadcnspace.com/preview/testimonial-02",
-		previewRoute: "/sandbox/testimonial-02",
+		previewRoute: "/sandbox/testimonial-01",
 	},
 	{
-		id: "williams-samuel",
-		label: "williams-samuel",
+		id: "portfolio-01",
+		label: "portfolio-01",
 		category: "portfolio-section",
-		filesKey: "williams-samuel",
-		path: "src/app/sandbox/williams-samuel",
+		filesKey: "portfolio-01",
+		path: "src/app/sandbox/portfolio-01",
 		defaultFile: "page.tsx",
 		referenceUrl: "https://williamssam.netlify.app/",
-		previewRoute: "/sandbox/williams-samuel",
+		previewRoute: "/sandbox/portfolio-01",
 	},
 	{
-		id: "victor-eke",
-		label: "victor-eke",
+		id: "portfolio-02",
+		label: "portfolio-02",
 		category: "portfolio-section",
-		filesKey: "victor-eke",
-		path: "src/app/sandbox/victor-eke",
+		filesKey: "portfolio-02",
+		path: "src/app/sandbox/portfolio-02",
 		defaultFile: "page.tsx",
 		referenceUrl: "https://victoreke.com/",
-		previewRoute: "/sandbox/victor-eke",
+		previewRoute: "/sandbox/portfolio-02",
 	},
 	{
-		id: "projects-table",
-		label: "projects-table",
+		id: "table-01",
+		label: "table-01",
 		category: "table-section",
-		filesKey: "projects-table",
-		path: "src/app/sandbox/projects-table",
+		filesKey: "table-01",
+		path: "src/app/sandbox/table-01",
 		defaultFile: "page.tsx",
 		referenceUrl:
 			"https://preline.co/templates/dashboards/admin-dashboard/index.html",
-		previewRoute: "/sandbox/projects-table",
+		previewRoute: "/sandbox/table-01",
 	},
 	{
-		id: "users-table",
-		label: "users-table",
+		id: "table-02",
+		label: "table-02",
 		category: "table-section",
-		filesKey: "users-table",
-		path: "src/app/sandbox/users-table",
+		filesKey: "table-02",
+		path: "src/app/sandbox/table-02",
 		defaultFile: "page.tsx",
 		referenceUrl:
 			"https://preline.co/templates/dashboards/admin-dashboard/index.html?page=users.html",
-		previewRoute: "/sandbox/users-table",
+		previewRoute: "/sandbox/table-02",
 	},
 	{
-		id: "data-grid-columns-5",
-		label: "data-grid-columns-5",
+		id: "table-03",
+		label: "table-03",
 		category: "table-section",
-		filesKey: "data-grid-columns-5",
-		path: "src/app/sandbox/data-grid-columns-5",
+		filesKey: "table-03",
+		path: "src/app/sandbox/table-03",
 		defaultFile: "page.tsx",
 		referenceUrl: "https://reui.io/preview/base/data-grid-columns-5",
-		previewRoute: "/sandbox/data-grid-columns-5",
+		previewRoute: "/sandbox/table-03",
 	},
 	{
-		id: "data-grid-columns-2",
-		label: "data-grid-columns-2",
+		id: "table-04",
+		label: "table-04",
 		category: "table-section",
-		filesKey: "data-grid-columns-2",
-		path: "src/app/sandbox/data-grid-columns-2",
+		filesKey: "table-04",
+		path: "src/app/sandbox/table-04",
 		defaultFile: "page.tsx",
 		referenceUrl: "https://reui.io/preview/base/data-grid-columns-2",
-		previewRoute: "/sandbox/data-grid-columns-2",
+		previewRoute: "/sandbox/table-04",
 	},
 	{
-		id: "tania-rascia",
-		label: "tania-rascia",
+		id: "portfolio-03",
+		label: "portfolio-03",
 		category: "portfolio-section",
-		filesKey: "tania-rascia",
-		path: "src/app/sandbox/tania-rascia",
+		filesKey: "portfolio-03",
+		path: "src/app/sandbox/portfolio-03",
 		defaultFile: "page.tsx",
 		referenceUrl: "https://www.taniarascia.com/",
-		previewRoute: "/sandbox/tania-rascia",
+		previewRoute: "/sandbox/portfolio-03",
 	},
 	{
-		id: "kishor-portfolio",
-		label: "kishor-portfolio",
+		id: "portfolio-04",
+		label: "portfolio-04",
 		category: "portfolio-section",
-		filesKey: "kishor-portfolio",
-		path: "src/app/sandbox/kishor-portfolio",
+		filesKey: "portfolio-04",
+		path: "src/app/sandbox/portfolio-04",
 		defaultFile: "page.tsx",
 		referenceUrl: "https://kishorkumarkhadka.com.np/",
-		previewRoute: "/sandbox/kishor-portfolio",
+		previewRoute: "/sandbox/portfolio-04",
 	},
 	{
-		id: "product-tour",
-		label: "product-tour",
+		id: "tour-01",
+		label: "tour-01",
 		category: "guided-tour-section",
-		filesKey: "product-tour",
-		path: "src/app/sandbox/product-tour",
+		filesKey: "tour-01",
+		path: "src/app/sandbox/tour-01",
 		defaultFile: "page.tsx",
 		referenceUrl: "https://www.shadcn.io/view/onboarding/tour",
-		previewRoute: "/sandbox/product-tour",
+		previewRoute: "/sandbox/tour-01",
 	},
 	{
-		id: "onboarding-checklist",
-		label: "onboarding-checklist",
+		id: "tour-02",
+		label: "tour-02",
 		category: "guided-tour-section",
-		filesKey: "onboarding-checklist",
-		path: "src/app/sandbox/onboarding-checklist",
+		filesKey: "tour-02",
+		path: "src/app/sandbox/tour-02",
 		defaultFile: "page.tsx",
 		referenceUrl:
 			"https://www.shadcn-ui-blocks.com/preview/marketing-pro/product-tours/onboarding-checklist",
-		previewRoute: "/sandbox/onboarding-checklist",
+		previewRoute: "/sandbox/tour-02",
 	},
 	{
-		id: "vcard-portfolio",
-		label: "vcard-portfolio",
+		id: "portfolio-05",
+		label: "portfolio-05",
 		category: "portfolio-section",
-		filesKey: "vcard-portfolio",
-		path: "src/app/sandbox/vcard-portfolio",
+		filesKey: "portfolio-05",
+		path: "src/app/sandbox/portfolio-05",
 		defaultFile: "page.tsx",
 		referenceUrl: "https://codewithsadee.github.io/vcard-personal-portfolio/",
-		previewRoute: "/sandbox/vcard-portfolio",
+		previewRoute: "/sandbox/portfolio-05",
 	},
 	{
-		id: "login-page-01",
-		label: "login-page-01",
-		category: "welcome-screen-section",
-		filesKey: "login-page-01",
-		path: "src/app/sandbox/login-page-01",
+		id: "signin-14",
+		label: "signin-14",
+		category: "sign-in-section",
+		filesKey: "signin-14",
+		path: "src/app/sandbox/signin-14",
 		defaultFile: "page.tsx",
 		referenceUrl:
 			"https://shadcnstudio.com/preview/blocks/base/marketing-ui/login-page/login-page-01",
-		previewRoute: "/sandbox/login-page-01",
+		previewRoute: "/sandbox/signin-14",
 	},
 	{
-		id: "login-page-04",
-		label: "login-page-04",
-		category: "welcome-screen-section",
-		filesKey: "login-page-04",
-		path: "src/app/sandbox/login-page-04",
+		id: "signin-15",
+		label: "signin-15",
+		category: "sign-in-section",
+		filesKey: "signin-15",
+		path: "src/app/sandbox/signin-15",
 		defaultFile: "page.tsx",
 		referenceUrl:
 			"https://shadcnstudio.com/preview/blocks/base/marketing-ui/login-page/login-page-04",
-		previewRoute: "/sandbox/login-page-04",
+		previewRoute: "/sandbox/signin-15",
 	},
 	{
-		id: "login-page-03",
-		label: "login-page-03",
-		category: "welcome-screen-section",
-		filesKey: "login-page-03",
-		path: "src/app/sandbox/login-page-03",
+		id: "signin-16",
+		label: "signin-16",
+		category: "sign-in-section",
+		filesKey: "signin-16",
+		path: "src/app/sandbox/signin-16",
 		defaultFile: "page.tsx",
 		referenceUrl:
 			"https://shadcnstudio.com/preview/blocks/base/marketing-ui/login-page/login-page-03",
-		previewRoute: "/sandbox/login-page-03",
+		previewRoute: "/sandbox/signin-16",
 	},
 	{
-		id: "blog-6",
-		label: "blog-6",
+		id: "blog-01",
+		label: "blog-01",
 		category: "blog-section",
-		filesKey: "blog-6",
-		path: "src/app/sandbox/blog-6",
+		filesKey: "blog-01",
+		path: "src/app/sandbox/blog-01",
 		defaultFile: "page.tsx",
 		referenceUrl: "https://reui.io/preview/base/blog-6",
-		previewRoute: "/sandbox/blog-6",
+		previewRoute: "/sandbox/blog-01",
 	},
 	{
-		id: "blog-5",
-		label: "blog-5",
+		id: "blog-04",
+		label: "blog-04",
 		category: "blog-section",
-		filesKey: "blog-5",
-		path: "src/app/sandbox/blog-5",
+		filesKey: "blog-04",
+		path: "src/app/sandbox/blog-04",
 		defaultFile: "page.tsx",
 		referenceUrl: "https://reui.io/preview/base/blog-5",
-		previewRoute: "/sandbox/blog-5",
+		previewRoute: "/sandbox/blog-04",
 	},
 	{
-		id: "integrations-settings",
-		label: "integrations-settings",
+		id: "setting-01",
+		label: "setting-01",
 		category: "setting-section",
-		filesKey: "integrations-settings",
-		path: "src/app/sandbox/integrations-settings",
+		filesKey: "setting-01",
+		path: "src/app/sandbox/setting-01",
 		defaultFile: "page.tsx",
 		referenceUrl:
 			"https://dribbble.com/shots/22456569-Integrations-settings-page-Untitled-UI",
-		previewRoute: "/sandbox/integrations-settings",
+		previewRoute: "/sandbox/setting-01",
 	},
 	{
-		id: "chatgpt-settings",
-		label: "chatgpt-settings",
+		id: "setting-02",
+		label: "setting-02",
 		category: "setting-section",
-		filesKey: "chatgpt-settings",
-		path: "src/app/sandbox/chatgpt-settings",
+		filesKey: "setting-02",
+		path: "src/app/sandbox/setting-02",
 		defaultFile: "page.tsx",
 		referenceUrl: "https://chatgpt.com/#settings",
-		previewRoute: "/sandbox/chatgpt-settings",
+		previewRoute: "/sandbox/setting-02",
 	},
 	{
-		id: "orders",
-		label: "orders",
+		id: "setting-03",
+		label: "setting-03",
 		category: "setting-section",
-		filesKey: "orders",
-		path: "src/app/sandbox/orders",
+		filesKey: "setting-03",
+		path: "src/app/sandbox/setting-03",
 		defaultFile: "page.tsx",
 		referenceUrl: "https://marketing-template.alignui.com/orders",
-		previewRoute: "/sandbox/orders",
+		previewRoute: "/sandbox/setting-03",
 	},
 	{
-		id: "hero-25",
-		label: "hero-25",
+		id: "hero-03",
+		label: "hero-03",
 		category: "hero-section",
-		filesKey: "hero-25",
-		path: "src/app/sandbox/hero-25",
+		filesKey: "hero-03",
+		path: "src/app/sandbox/hero-03",
 		defaultFile: "page.tsx",
 		referenceUrl: "https://shadcnspace.com/preview/hero-25",
-		previewRoute: "/sandbox/hero-25",
+		previewRoute: "/sandbox/hero-03",
 	},
 	{
-		id: "folio",
-		label: "folio",
+		id: "hero-08",
+		label: "hero-08",
 		category: "hero-section",
-		filesKey: "folio",
-		path: "src/app/sandbox/folio",
+		filesKey: "hero-08",
+		path: "src/app/sandbox/hero-08",
 		defaultFile: "page.tsx",
 		referenceUrl: "https://ruixen.com/templates/folio",
-		previewRoute: "/sandbox/folio",
+		previewRoute: "/sandbox/hero-08",
 	},
 	{
-		id: "hero-12",
-		label: "hero-12",
+		id: "hero-05",
+		label: "hero-05",
 		category: "hero-section",
-		filesKey: "hero-12",
-		path: "src/app/sandbox/hero-12",
+		filesKey: "hero-05",
+		path: "src/app/sandbox/hero-05",
 		defaultFile: "page.tsx",
 		referenceUrl: "https://reui.io/preview/base/hero-12",
-		previewRoute: "/sandbox/hero-12",
+		previewRoute: "/sandbox/hero-05",
 	},
 	{
-		id: "hero-9",
-		label: "hero-9",
+		id: "hero-06",
+		label: "hero-06",
 		category: "hero-section",
-		filesKey: "hero-9",
-		path: "src/app/sandbox/hero-9",
+		filesKey: "hero-06",
+		path: "src/app/sandbox/hero-06",
 		defaultFile: "page.tsx",
 		referenceUrl: "https://reui.io/preview/base/hero-9",
-		previewRoute: "/sandbox/hero-9",
+		previewRoute: "/sandbox/hero-06",
 	},
 	{
-		id: "long-form",
-		label: "long-form",
+		id: "form-01",
+		label: "form-01",
 		category: "form-section",
-		filesKey: "long-form",
-		path: "src/app/sandbox/long-form",
+		filesKey: "form-01",
+		path: "src/app/sandbox/form-01",
 		defaultFile: "page.tsx",
 		referenceUrl:
 			"https://www.shadcn.io/view/examples/form/long-form-with-many-fields",
-		previewRoute: "/sandbox/long-form",
+		previewRoute: "/sandbox/form-01",
 	},
 	{
-		id: "checkout-form",
-		label: "checkout-form",
+		id: "form-02",
+		label: "form-02",
 		category: "form-section",
-		filesKey: "checkout-form",
-		path: "src/app/sandbox/checkout-form",
+		filesKey: "form-02",
+		path: "src/app/sandbox/form-02",
 		defaultFile: "page.tsx",
 		referenceUrl: "https://www.shadcn.io/view/examples/form/checkout-form",
-		previewRoute: "/sandbox/checkout-form",
+		previewRoute: "/sandbox/form-02",
 	},
 	{
-		id: "form-1",
-		label: "form-1",
+		id: "form-03",
+		label: "form-03",
 		category: "form-section",
-		filesKey: "form-1",
-		path: "src/app/sandbox/form-1",
+		filesKey: "form-03",
+		path: "src/app/sandbox/form-03",
 		defaultFile: "page.tsx",
 		referenceUrl: "https://reui.io/preview/base/form-1",
-		previewRoute: "/sandbox/form-1",
+		previewRoute: "/sandbox/form-03",
+	},
+	{
+		id: "faq-01",
+		label: "faq-01",
+		category: "faq-section",
+		filesKey: "faq-01",
+		path: "src/app/sandbox/faq-04-04-01",
+		defaultFile: "page.tsx",
+		referenceUrl: "https://shadcnspace.com/preview/faq-03",
+		previewRoute: "/sandbox/faq-01",
+	},
+	{
+		id: "faq-02",
+		label: "faq-02",
+		category: "faq-section",
+		filesKey: "faq-02",
+		path: "src/app/sandbox/faq-02",
+		defaultFile: "page.tsx",
+		referenceUrl: "https://reui.io/preview/base/faq-5",
+		previewRoute: "/sandbox/faq-02",
 	},
 	{
 		id: "faq-03",
@@ -535,58 +495,38 @@ export const sandboxComponents: SandboxComponentConfig[] = [
 		filesKey: "faq-03",
 		path: "src/app/sandbox/faq-03",
 		defaultFile: "page.tsx",
-		referenceUrl: "https://shadcnspace.com/preview/faq-03",
+		referenceUrl: "https://reui.io/preview/base/faq-4",
 		previewRoute: "/sandbox/faq-03",
 	},
 	{
-		id: "faq-5",
-		label: "faq-5",
-		category: "faq-section",
-		filesKey: "faq-5",
-		path: "src/app/sandbox/faq-5",
-		defaultFile: "page.tsx",
-		referenceUrl: "https://reui.io/preview/base/faq-5",
-		previewRoute: "/sandbox/faq-5",
-	},
-	{
-		id: "faq-4",
-		label: "faq-4",
-		category: "faq-section",
-		filesKey: "faq-4",
-		path: "src/app/sandbox/faq-4",
-		defaultFile: "page.tsx",
-		referenceUrl: "https://reui.io/preview/base/faq-4",
-		previewRoute: "/sandbox/faq-4",
-	},
-	{
-		id: "cta-07",
-		label: "cta-07",
+		id: "cta-02",
+		label: "cta-02",
 		category: "cta-section",
-		filesKey: "cta-07",
-		path: "src/app/sandbox/cta-07",
+		filesKey: "cta-02",
+		path: "src/app/sandbox/cta-02",
 		defaultFile: "page.tsx",
 		referenceUrl: "https://shadcnspace.com/preview/cta-07",
-		previewRoute: "/sandbox/cta-07",
+		previewRoute: "/sandbox/cta-02",
 	},
 	{
-		id: "cta-08",
-		label: "cta-08",
+		id: "cta-03",
+		label: "cta-03",
 		category: "cta-section",
-		filesKey: "cta-08",
-		path: "src/app/sandbox/cta-08",
+		filesKey: "cta-03",
+		path: "src/app/sandbox/cta-03",
 		defaultFile: "page.tsx",
 		referenceUrl: "https://shadcnspace.com/preview/cta-08",
-		previewRoute: "/sandbox/cta-08",
+		previewRoute: "/sandbox/cta-03",
 	},
 	{
-		id: "cta-10",
-		label: "cta-10",
+		id: "cta-04",
+		label: "cta-04",
 		category: "cta-section",
-		filesKey: "cta-10",
-		path: "src/app/sandbox/cta-10",
+		filesKey: "cta-04",
+		path: "src/app/sandbox/cta-04",
 		defaultFile: "page.tsx",
 		referenceUrl: "https://shadcnspace.com/preview/cta-10",
-		previewRoute: "/sandbox/cta-10",
+		previewRoute: "/sandbox/cta-04",
 	},
 	{
 		id: "contact-01",
@@ -599,195 +539,195 @@ export const sandboxComponents: SandboxComponentConfig[] = [
 		previewRoute: "/sandbox/contact-01",
 	},
 	{
-		id: "contact-06",
-		label: "contact-06",
+		id: "contact-02",
+		label: "contact-02",
 		category: "contact-section",
-		filesKey: "contact-06",
-		path: "src/app/sandbox/contact-06",
+		filesKey: "contact-02",
+		path: "src/app/sandbox/contact-02",
 		defaultFile: "page.tsx",
 		referenceUrl: "https://shadcnspace.com/preview/contact-06",
-		previewRoute: "/sandbox/contact-06",
+		previewRoute: "/sandbox/contact-02",
 	},
 	{
-		id: "contact-2",
-		label: "contact-2",
+		id: "contact-03",
+		label: "contact-03",
 		category: "contact-section",
-		filesKey: "contact-2",
-		path: "src/app/sandbox/contact-2",
+		filesKey: "contact-03",
+		path: "src/app/sandbox/contact-03",
 		defaultFile: "page.tsx",
 		referenceUrl: "https://reui.io/preview/base/contact-2",
-		previewRoute: "/sandbox/contact-2",
+		previewRoute: "/sandbox/contact-03",
 	},
 	{
-		id: "zentra",
-		label: "zentra",
+		id: "blog-03",
+		label: "blog-03",
 		category: "blog-section",
-		filesKey: "zentra",
-		path: "src/app/sandbox/zentra",
+		filesKey: "blog-03",
+		path: "src/app/sandbox/blog-03",
 		defaultFile: "page.tsx",
 		referenceUrl:
 			"https://dribbble.com/shots/27284935-Finance-Blog-Landing-Page-Web-Design-Articles-Newsletter",
-		previewRoute: "/sandbox/zentra",
+		previewRoute: "/sandbox/blog-03",
 	},
 	{
-		id: "blog-02",
-		label: "blog-02",
+		id: "blog-04",
+		label: "blog-04",
 		category: "blog-section",
-		filesKey: "blog-02",
+		filesKey: "blog-04",
 		path: "src/app/sandbox/blog-02",
 		defaultFile: "page.tsx",
 		referenceUrl: "https://shadcnspace.com/preview/blog-02",
 		previewRoute: "/sandbox/blog-02",
 	},
 	{
-		id: "blog-1",
-		label: "blog-1",
+		id: "blog-05",
+		label: "blog-05",
 		category: "blog-section",
-		filesKey: "blog-1",
-		path: "src/app/sandbox/blog-1",
+		filesKey: "blog-05",
+		path: "src/app/sandbox/blog-05",
 		defaultFile: "page.tsx",
 		referenceUrl: "https://reui.io/preview/base/blog-1",
-		previewRoute: "/sandbox/blog-1",
+		previewRoute: "/sandbox/blog-05",
 	},
 	{
-		id: "intercom",
-		label: "intercom",
+		id: "full-page-01",
+		label: "full-page-01",
 		category: "full-page",
-		filesKey: "intercom",
-		path: "src/app/sandbox/intercom",
+		filesKey: "full-page-01",
+		path: "src/app/sandbox/full-page-01",
 		defaultFile: "page.tsx",
 		referenceUrl: "https://www.intercom.com",
-		previewRoute: "/sandbox/intercom",
+		previewRoute: "/sandbox/full-page-01",
 	},
 	{
-		id: "linear",
-		label: "linear",
+		id: "other-01",
+		label: "other-01",
 		category: "other-sections",
-		filesKey: "linear",
-		path: "src/app/sandbox/linear",
+		filesKey: "other-01",
+		path: "src/app/sandbox/other-01",
 		defaultFile: "page.tsx",
 		referenceUrl: "https://linear.app",
-		previewRoute: "/sandbox/linear",
+		previewRoute: "/sandbox/other-01",
 	},
 	{
-		id: "omrix",
-		label: "omrix",
+		id: "hero-07",
+		label: "hero-07",
 		category: "hero-section",
-		filesKey: "omrix",
-		path: "src/app/sandbox/omrix",
+		filesKey: "hero-07",
+		path: "src/app/sandbox/hero-07",
 		defaultFile: "page.tsx",
 		referenceUrl: "https://omrix.framer.ai/",
-		previewRoute: "/sandbox/omrix",
+		previewRoute: "/sandbox/hero-07",
 	},
 	{
-		id: "crisply",
-		label: "crisply",
+		id: "other-02",
+		label: "other-02",
 		category: "other-sections",
-		filesKey: "crisply",
-		path: "src/app/sandbox/crisply",
+		filesKey: "other-02",
+		path: "src/app/sandbox/other-02",
 		defaultFile: "page.tsx",
 		referenceUrl:
 			"https://dribbble.com/shots/25800159-Cripsly-Account-Settings-CRM-Dashboard",
-		previewRoute: "/sandbox/crisply",
+		previewRoute: "/sandbox/other-02",
 	},
 	{
-		id: "agentlab",
-		label: "agentlab",
+		id: "full-page-02",
+		label: "full-page-02",
 		category: "full-page",
-		filesKey: "agentlab",
-		path: "src/app/sandbox/agentlab",
+		filesKey: "full-page-02",
+		path: "src/app/sandbox/full-page-02",
 		defaultFile: "page.tsx",
 		referenceUrl: "https://agentlab.framer.ai/",
-		previewRoute: "/sandbox/agentlab",
+		previewRoute: "/sandbox/full-page-02",
 	},
 	{
-		id: "aiwork",
-		label: "aiwork",
+		id: "full-page-03",
+		label: "full-page-03",
 		category: "full-page",
-		filesKey: "aiwork",
-		path: "src/app/sandbox/aiwork",
+		filesKey: "full-page-03",
+		path: "src/app/sandbox/full-page-03",
 		defaultFile: "page.tsx",
 		referenceUrl: "https://aiwork.framer.website/",
-		previewRoute: "/sandbox/aiwork",
+		previewRoute: "/sandbox/full-page-03",
 	},
 	{
-		id: "verseo",
-		label: "verseo",
+		id: "full-page-04",
+		label: "full-page-04",
 		category: "full-page",
-		filesKey: "verseo",
-		path: "src/app/sandbox/verseo",
+		filesKey: "full-page-04",
+		path: "src/app/sandbox/full-page-04",
 		defaultFile: "page.tsx",
 		referenceUrl: "https://verseo.framer.website/",
-		previewRoute: "/sandbox/verseo",
+		previewRoute: "/sandbox/full-page-04",
 	},
 	{
-		id: "hero-04",
-		label: "hero-04",
+		id: "hero-08",
+		label: "hero-08",
 		category: "hero-section",
-		filesKey: "hero-04",
+		filesKey: "hero-08",
 		path: "src/app/sandbox/hero-04",
 		defaultFile: "page.tsx",
 		referenceUrl: "https://pro.alignui.com/block-preview/default/hero-04",
 		previewRoute: "/sandbox/hero-04",
 	},
 	{
-		id: "hero-21",
-		label: "hero-21",
+		id: "hero-09",
+		label: "hero-09",
 		category: "hero-section",
-		filesKey: "hero-21",
-		path: "src/app/sandbox/hero-21",
+		filesKey: "hero-09",
+		path: "src/app/sandbox/hero-09",
 		defaultFile: "hero-section.tsx",
 		referenceUrl: "https://shadcnspace.com/preview/hero-21",
-		previewRoute: "/sandbox/hero-21",
+		previewRoute: "/sandbox/hero-09",
 	},
 	{
-		id: "beam-header",
-		label: "beam-header",
+		id: "hero-10",
+		label: "hero-10",
 		category: "hero-section",
-		filesKey: "beam-header",
-		path: "src/app/sandbox/beam-header",
+		filesKey: "hero-10",
+		path: "src/app/sandbox/hero-10",
 		defaultFile: "beam-header-section.tsx",
 		referenceUrl: "https://www.flowbase.co/preview/beam-header-01",
-		previewRoute: "/sandbox/beam-header",
+		previewRoute: "/sandbox/hero-10",
 	},
 	{
-		id: "jambo-pricing",
+		id: "pricing-02",
 		label: "Jambo Pricing",
 		category: "pricing-section",
-		filesKey: "jambo-pricing",
-		path: "src/app/sandbox/jambo-pricing",
+		filesKey: "pricing-02",
+		path: "src/app/sandbox/pricing-02",
 		defaultFile: "jambo-pricing-section.tsx",
 		referenceUrl: "https://www.flowbase.co/preview/jambo-pricing-01",
-		previewRoute: "/sandbox/jambo-pricing",
+		previewRoute: "/sandbox/pricing-02",
 	},
 	{
-		id: "faq",
-		label: "klarheit-faq",
+		id: "faq-04",
+		label: "faq-04",
 		category: "faq-section",
-		filesKey: "klarheit-faq",
-		path: "src/app/sandbox/klarheit-faq",
+		filesKey: "faq-04",
+		path: "src/app/sandbox/faq-04",
 		defaultFile: "faq-section.tsx",
 		referenceUrl: "https://www.flowbase.co/preview/klarheit-faq-02",
-		previewRoute: "/sandbox/klarheit-faq",
+		previewRoute: "/sandbox/faq-04",
 	},
 	{
-		id: "testimonials",
-		label: "klarheit-testimonial",
+		id: "testimonial-02",
+		label: "testimonial-02",
 		category: "testimonial-section",
-		filesKey: "klarheit-testimonial",
-		path: "src/app/sandbox/klarheit-testimonial",
+		filesKey: "testimonial-02",
+		path: "src/app/sandbox/testimonial-02",
 		defaultFile: "testimonial-section.tsx",
 		referenceUrl: "https://www.flowbase.co/preview/klarheit-testimonial-02",
-		previewRoute: "/sandbox/klarheit-testimonial",
+		previewRoute: "/sandbox/testimonial-02",
 	},
 	{
-		id: "motion",
-		label: "motion",
+		id: "other-03",
+		label: "other-03",
 		category: "other-sections",
-		filesKey: "motion",
-		path: "src/app/sandbox/motion",
+		filesKey: "other-03",
+		path: "src/app/sandbox/other-03",
 		defaultFile: "logo-section.tsx",
 		referenceUrl: "https://www.flowbase.co/preview/jambo-logo-01",
-		previewRoute: "/sandbox/motion",
+		previewRoute: "/sandbox/other-03",
 	},
 ]
