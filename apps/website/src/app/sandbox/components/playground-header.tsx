@@ -67,28 +67,6 @@ export function PlaygroundHeader({
 		setMounted(true)
 	}, [])
 
-	// Shortcut key C to toggle comment mode
-	useEffect(() => {
-		const handleKeyDown = (e: KeyboardEvent) => {
-			if (!e.ctrlKey && !e.metaKey && (e.key === "c" || e.key === "C")) {
-				const activeEl = document.activeElement as HTMLElement | null
-				const isInput =
-					activeEl?.tagName === "INPUT" ||
-					activeEl?.tagName === "TEXTAREA" ||
-					activeEl?.isContentEditable
-				const hasSelection = Boolean(window.getSelection()?.toString())
-
-				if (!isInput && !hasSelection) {
-					e.preventDefault()
-					onViewModeChange(viewMode === "inspect" ? "preview" : "inspect")
-				}
-			}
-		}
-
-		window.addEventListener("keydown", handleKeyDown)
-		return () => window.removeEventListener("keydown", handleKeyDown)
-	}, [viewMode, onViewModeChange])
-
 	// Format category label for breadcrumb (e.g. welcome-screen-section -> Signup)
 	const categoryBreadcrumb = (() => {
 		const cat = activeComponentConfig.category

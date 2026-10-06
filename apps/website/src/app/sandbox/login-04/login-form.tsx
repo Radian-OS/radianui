@@ -38,73 +38,70 @@ export function LoginForm() {
 			<form
 				onSubmit={form.handleSubmit(onSubmit)}
 				noValidate
-				className="w-full space-y-6">
-				<div className="space-y-4">
-					{/* Email Field with default Input (no extra class names) */}
+				className="flex w-full flex-col gap-5">
+				<FormField
+					control={form.control}
+					name="email"
+					render={({ field }) => (
+						<FormItem>
+							<FormLabel>Email*</FormLabel>
+							<FormControl>
+								<Input
+									type="email"
+									placeholder="example@shadcnspace.com"
+									{...field}
+								/>
+							</FormControl>
+							<FormMessage />
+						</FormItem>
+					)}
+				/>
+
+				{/* Password Field with default Input (no extra class names) */}
+				<FormField
+					control={form.control}
+					name="password"
+					render={({ field }) => (
+						<FormItem>
+							<FormLabel>Password*</FormLabel>
+							<FormControl>
+								<Input
+									type="password"
+									placeholder="Enter your password"
+									{...field}
+								/>
+							</FormControl>
+							<FormMessage />
+						</FormItem>
+					)}
+				/>
+
+				{/* Remember Device & Forgot Password Row */}
+				<div className="flex flex-wrap items-center justify-between gap-4 pt-1 text-sm">
 					<FormField
 						control={form.control}
-						name="email"
+						name="rememberMe"
 						render={({ field }) => (
-							<FormItem className="space-y-1.5">
-								<FormLabel>Email*</FormLabel>
+							<FormItem className="flex flex-row items-center gap-2 space-y-0">
 								<FormControl>
-									<Input
-										type="email"
-										placeholder="example@shadcnspace.com"
-										{...field}
+									<Checkbox
+										size="sm"
+										checked={field.value}
+										onCheckedChange={field.onChange}
 									/>
 								</FormControl>
-								<FormMessage />
+								<FormLabel className="text-fg-secondary cursor-pointer text-sm font-normal">
+									Remember this device
+								</FormLabel>
 							</FormItem>
 						)}
 					/>
 
-					{/* Password Field with default Input (no extra class names) */}
-					<FormField
-						control={form.control}
-						name="password"
-						render={({ field }) => (
-							<FormItem className="space-y-1.5">
-								<FormLabel>Password*</FormLabel>
-								<FormControl>
-									<Input
-										type="password"
-										placeholder="Enter your password"
-										{...field}
-									/>
-								</FormControl>
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
-
-					{/* Remember Device & Forgot Password Row */}
-					<div className="flex flex-wrap items-center justify-between gap-4 pt-1 text-sm">
-						<FormField
-							control={form.control}
-							name="rememberMe"
-							render={({ field }) => (
-								<FormItem className="flex flex-row items-center gap-2 space-y-0">
-									<FormControl>
-										<Checkbox
-											size="sm"
-											checked={field.value}
-											onCheckedChange={field.onChange}
-										/>
-									</FormControl>
-									<FormLabel className="text-fg-secondary cursor-pointer text-sm font-normal">
-										Remember this device
-									</FormLabel>
-								</FormItem>
-							)}
-						/>
-
-						<Link
-							href="#forgot-password"
-							className="text-fg text-sm font-medium transition-colors hover:underline">
-							Forgot Password?
-						</Link>
-					</div>
+					<Link
+						href="#forgot-password"
+						className="text-fg text-sm font-medium transition-colors hover:underline">
+						Forgot Password?
+					</Link>
 				</div>
 
 				{/* Solid Submit Button */}

@@ -43,7 +43,7 @@ export function LoginForm() {
 		<div className="flex w-full max-w-md flex-col gap-6">
 			{/* Top Heading */}
 			<div className="flex flex-col items-center gap-1 text-center">
-				<h1 className="heading-2 text-fg flex items-center justify-center gap-2">
+				<h1 className="heading-2 flex items-center justify-center gap-2">
 					<span>Welcome Back</span>
 					<span className="text-2xl">👋</span>
 				</h1>
@@ -58,7 +58,7 @@ export function LoginForm() {
 			{/* Divider */}
 			<div className="relative my-0.5 flex items-center justify-center">
 				<div className="absolute inset-0 flex items-center">
-					<div className="border-border/60 w-full border-t" />
+					<div className="border-soft w-full border-t" />
 				</div>
 				<span className="bg-bg text-fg-tertiary relative px-3 text-xs">Or</span>
 			</div>
@@ -73,7 +73,7 @@ export function LoginForm() {
 						control={form.control}
 						name="name"
 						render={({ field }) => (
-							<FormItem className="space-y-1">
+							<FormItem>
 								<FormControl>
 									<Input placeholder="Enter your name" {...field} />
 								</FormControl>
@@ -87,7 +87,7 @@ export function LoginForm() {
 						control={form.control}
 						name="email"
 						render={({ field }) => (
-							<FormItem className="space-y-1">
+							<FormItem>
 								<FormControl>
 									<Input
 										placeholder="Enter your email address"
@@ -106,7 +106,7 @@ export function LoginForm() {
 						control={form.control}
 						name="password"
 						render={({ field }) => (
-							<FormItem className="space-y-1">
+							<FormItem>
 								<FormControl>
 									<InputWrapper size="36">
 										<Input
@@ -138,12 +138,12 @@ export function LoginForm() {
 					/>
 
 					{/* Remember Me and Forgot Password */}
-					<div className="flex items-center justify-between pt-1">
+					<div className="flex items-center justify-between">
 						<FormField
 							control={form.control}
 							name="rememberMe"
 							render={({ field }) => (
-								<FormItem className="flex items-center gap-2 space-y-0">
+								<FormItem className="flex flex-row items-center gap-2">
 									<FormControl>
 										<Checkbox
 											size="sm"
@@ -151,7 +151,7 @@ export function LoginForm() {
 											onCheckedChange={field.onChange}
 										/>
 									</FormControl>
-									<FormLabel className="text-fg-secondary text-xs font-medium hover:cursor-pointer">
+									<FormLabel className="text-xs font-medium hover:cursor-pointer">
 										Remember Me
 									</FormLabel>
 								</FormItem>
@@ -160,7 +160,7 @@ export function LoginForm() {
 
 						<Link
 							href="#"
-							className="text-fg hover:text-primary text-xs font-medium transition-colors">
+							className="text-fg text-xs font-medium transition-colors hover:underline">
 							Forgot Password?
 						</Link>
 					</div>
@@ -171,8 +171,8 @@ export function LoginForm() {
 						variant="strong"
 						color="neutral"
 						size="40"
-						className="mt-2 w-full font-medium shadow-xs">
-						Sign in to Shadcn Studio
+						className="w-full">
+						Sign in to Radian
 					</Button>
 				</form>
 			</Form>
@@ -187,9 +187,7 @@ export function LoginForm() {
 			{/* Footer Link */}
 			<p className="text-fg-secondary text-center text-xs">
 				Don&apos;t have an account yet?{" "}
-				<Link
-					href="#"
-					className="text-fg hover:text-primary font-semibold transition-colors">
+				<Link href="#" className="text-fg font-semibold hover:underline">
 					Sign Up
 				</Link>
 			</p>

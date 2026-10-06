@@ -18,18 +18,16 @@ export function LoginMagicButtons({ onSelectRole }: LoginMagicButtonsProps) {
 					type="button"
 					variant="outline"
 					color="neutral"
-					size="36"
 					onClick={() => onSelectRole?.("user")}
-					className="w-full text-xs font-medium">
+					className="w-full">
 					Login as User
 				</Button>
 				<Button
 					type="button"
 					variant="outline"
 					color="neutral"
-					size="36"
 					onClick={() => onSelectRole?.("admin")}
-					className="w-full text-xs font-medium">
+					className="w-full">
 					Login as Admin
 				</Button>
 			</div>

@@ -4,7 +4,6 @@ import React, { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import {
 	Briefcase,
-	ChevronDown,
 	FileText,
 	Folder,
 	HelpCircle,
@@ -87,15 +86,9 @@ export function PlaygroundSidebar({
 		sandboxComponents.find((c) => c.id === activeComponent)?.category ||
 		"welcome-screen-section"
 
-	const [openCategories, setOpenCategories] = useState<string[]>([
-		"welcome-screen-section",
-		"hero-section",
-		"pricing-section",
-		"cta-section",
-		"blog-section",
-		"testimonial-section",
-		"portfolio-section",
-	])
+	const [openCategories, setOpenCategories] = useState<string[]>(
+		activeCategory ? [activeCategory] : []
+	)
 
 	const pendingComments = comments.filter(
 		(c) => !c.resolved && c.status !== "resolved"

@@ -37,7 +37,7 @@ export function BlogContent() {
 			{/* Section 3: Release Quality Work */}
 			{ARTICLE_SECTIONS.slice(2, 3).map((section) => (
 				<section key={section.id} className="flex flex-col gap-4">
-					<h2 className="heading-3 text-fg">{section.title}</h2>
+					<h2 className="heading-3">{section.title}</h2>
 					{section.paragraphs.map((p, i) => (
 						<p
 							key={i}
@@ -49,8 +49,8 @@ export function BlogContent() {
 			))}
 
 			{/* Pull Quote Callout */}
-			<div className="border-border/50 my-2 border-y py-6">
-				<blockquote className="heading-5 text-fg">
+			<div className="border-soft my-2 border-y py-6">
+				<blockquote className="heading-5">
 					&ldquo;{ARTICLE_QUOTE}&rdquo;
 				</blockquote>
 			</div>

@@ -14,17 +14,10 @@ export function LeftShowcase() {
 						href="#"
 						className="flex shrink-0 items-center justify-center transition-transform hover:scale-105"
 						aria-label="Home">
-						<Image
-							src="https://images.shadcnspace.com/assets/logo/logo-icon-white.svg"
-							alt="Shadcn Space Logo"
-							width={48}
-							height={48}
-							className="size-12"
-							priority
-						/>
+						<img src="/logo.svg" alt="Radian Logo" className="size-12" />
 					</Link>
 					<h2 className="max-w-sm text-center text-[30px] leading-9 font-medium text-white">
-						Welcome Back to Your Creative Space
+						Welcome Back to Radian
 					</h2>
 				</div>
 
@@ -38,12 +31,12 @@ export function LeftShowcase() {
 						playsInline
 						poster="/sandbox/placeholder.svg">
 						<source
-							src="https://images.shadcnspace.com/assets/video/wave-video-loop.mp4"
+							src="https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/blocks/src/video/login-04.mp4"
 							type="video/mp4"
 						/>
 					</video>
-					{/* Subtle overlay gradient to ensure text readability */}
-					<div className="absolute inset-0 bg-black/20" />
+					{/* Primary Color Blend Overlay */}
+					<div className="bg-primary absolute inset-0 mix-blend-color" />
 				</div>
 			</div>
 		</div>

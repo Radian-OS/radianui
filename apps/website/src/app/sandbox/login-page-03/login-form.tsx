@@ -46,7 +46,7 @@ export function LoginForm() {
 
 			{/* Heading & Subtitle */}
 			<div className="flex flex-col gap-1">
-				<h1 className="heading-2 text-fg">Welcome Back</h1>
+				<h1 className="heading-2">Welcome Back</h1>
 				<p className="text-fg-secondary text-xs sm:text-sm">
 					Welcome back! Select method to login:
 				</p>
@@ -56,11 +56,12 @@ export function LoginForm() {
 			<LoginSocialButtons />
 
 			{/* Divider */}
-			<div className="relative my-1 flex items-center justify-center">
+			<div className="relative my-0.5 flex items-center justify-center">
 				<div className="absolute inset-0 flex items-center">
-					<div className="border-border/60 w-full border-t" />
+					<div className="border-soft w-full border-t" />
 				</div>
 				<span className="bg-bg text-fg-tertiary relative px-3 text-xs">
+					{" "}
 					Or continue with Email
 				</span>
 			</div>
@@ -75,10 +76,8 @@ export function LoginForm() {
 						control={form.control}
 						name="email"
 						render={({ field }) => (
-							<FormItem className="flex flex-col gap-1.5">
-								<FormLabel className="text-fg text-xs font-semibold">
-									Email address*
-								</FormLabel>
+							<FormItem>
+								<FormLabel>Email address*</FormLabel>
 								<FormControl>
 									<Input
 										placeholder="Enter your email address"
@@ -97,10 +96,8 @@ export function LoginForm() {
 						control={form.control}
 						name="password"
 						render={({ field }) => (
-							<FormItem className="flex flex-col gap-1.5">
-								<FormLabel className="text-fg text-xs font-semibold">
-									Password*
-								</FormLabel>
+							<FormItem>
+								<FormLabel>Password*</FormLabel>
 								<FormControl>
 									<InputWrapper size="36">
 										<Input
@@ -119,9 +116,9 @@ export function LoginForm() {
 											}
 											onClick={() => setShowPassword((prev) => !prev)}>
 											{showPassword ? (
-												<EyeOff className="text-fg-secondary size-4" />
+												<EyeOff className="size-4" />
 											) : (
-												<Eye className="text-fg-secondary size-4" />
+												<Eye className="size-4" />
 											)}
 										</IconButton>
 									</InputWrapper>
@@ -137,7 +134,7 @@ export function LoginForm() {
 							control={form.control}
 							name="rememberMe"
 							render={({ field }) => (
-								<FormItem className="flex items-center gap-2 space-y-0">
+								<FormItem className="flex flex-row items-center gap-2">
 									<FormControl>
 										<Checkbox
 											size="sm"
@@ -154,7 +151,7 @@ export function LoginForm() {
 
 						<Link
 							href="#"
-							className="text-fg hover:text-primary text-xs font-medium transition-colors">
+							className="text-fg text-xs font-medium transition-colors hover:underline">
 							Forgot Password?
 						</Link>
 					</div>
@@ -165,8 +162,8 @@ export function LoginForm() {
 						variant="strong"
 						color="neutral"
 						size="40"
-						className="mt-2 w-full font-medium shadow-xs">
-						Sign in to Shadcn Studio
+						className="w-full">
+						Sign in to Radian
 					</Button>
 				</form>
 			</Form>
@@ -183,7 +180,7 @@ export function LoginForm() {
 				New on our platform?{" "}
 				<Link
 					href="#"
-					className="text-fg hover:text-primary font-semibold transition-colors">
+					className="text-fg font-semibold transition-colors hover:underline">
 					Create an account
 				</Link>
 			</p>

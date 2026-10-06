@@ -1,7 +1,6 @@
 "use client"
 
 import React from "react"
-import Image from "next/image"
 import { Button } from "@/styles/default/ui/button"
 
 export function SocialButtons() {
@@ -13,11 +12,9 @@ export function SocialButtons() {
 				color="neutral"
 				size="36"
 				className="w-full flex-1 gap-2 font-medium">
-				<Image
-					src="https://images.shadcnspace.com/assets/svgs/icon-google.svg"
+				<img
+					src="https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/colored/technology/icon/google.svg"
 					alt="Google"
-					width={16}
-					height={16}
 					className="size-4"
 				/>
 				<span>Sign in with Google</span>
@@ -29,12 +26,15 @@ export function SocialButtons() {
 				color="neutral"
 				size="36"
 				className="w-full flex-1 gap-2 font-medium">
-				<Image
-					src="https://images.shadcnspace.com/assets/svgs/icon-github.svg"
+				<img
+					src="https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/light/neutral/development/icon/github.svg"
 					alt="Github"
-					width={16}
-					height={16}
-					className="size-4 dark:invert"
+					className="block size-4 dark:hidden"
+				/>
+				<img
+					src="https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/neutral/development/icon/github.svg"
+					alt="Github"
+					className="hidden size-4 dark:block"
 				/>
 				<span>Sign in with Github</span>
 			</Button>

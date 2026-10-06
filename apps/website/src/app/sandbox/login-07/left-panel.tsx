@@ -7,7 +7,7 @@ import { TrustedBrands } from "./trusted-brands"
 
 export function LeftPanel() {
 	return (
-		<div className="dark relative flex w-full shrink-0 flex-col justify-between overflow-hidden bg-[#080c16] px-0 py-8 text-white sm:py-10 lg:min-h-screen lg:w-[45%] lg:py-12 xl:w-[43%]">
+		<div className="dark relative flex w-full shrink-0 flex-col justify-between overflow-hidden bg-black px-0 py-8 text-white sm:py-10 lg:min-h-screen lg:w-[45%] lg:py-12 xl:w-[43%]">
 			{/* Background Video from reference */}
 			<video
 				className="pointer-events-none absolute inset-0 size-full scale-125 object-cover opacity-60 mix-blend-screen"
@@ -21,18 +21,10 @@ export function LeftPanel() {
 				/>
 			</video>
 
-			{/* Ambient Gradient Overlays matching reference lighting */}
+			{/* Primary Color Tint Overlay */}
 			<div
 				aria-hidden="true"
-				className="pointer-events-none absolute -top-20 -left-20 h-[600px] w-[600px] rounded-full bg-[radial-gradient(circle_at_top_left,rgba(251,146,60,0.65)_0%,rgba(234,88,12,0.45)_30%,rgba(194,65,12,0.2)_55%,transparent_75%)] mix-blend-screen blur-2xl"
-			/>
-			<div
-				aria-hidden="true"
-				className="pointer-events-none absolute -right-16 -bottom-24 h-[550px] w-[550px] rounded-full bg-[radial-gradient(circle_at_bottom_right,rgba(99,102,241,0.35)_0%,rgba(59,130,246,0.18)_40%,transparent_70%)] mix-blend-screen blur-3xl"
-			/>
-			<div
-				aria-hidden="true"
-				className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/60"
+				className="bg-primary/80 pointer-events-none absolute inset-0 mix-blend-color"
 			/>
 
 			{/* Top Branding - moved further right and slightly lower, sharing common alignment line */}

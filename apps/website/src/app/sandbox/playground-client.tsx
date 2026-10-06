@@ -60,14 +60,14 @@ export function PlaygroundClient({ files }: PlaygroundClientProps) {
 		activeComponentConfig.defaultFile
 	)
 
-	// Shortcut key Ctrl + C / Cmd + C to toggle comment mode (inspect mode) across window and iframe
+	// Shortcut key C to toggle comment mode (inspect mode) across window and iframe
 	useEffect(() => {
 		const toggleCommentMode = () => {
 			setViewMode((prev) => (prev === "inspect" ? "preview" : "inspect"))
 		}
 
 		const handleKeyDown = (e: KeyboardEvent) => {
-			if ((e.ctrlKey || e.metaKey) && (e.key === "c" || e.key === "C")) {
+			if (!e.ctrlKey && !e.metaKey && (e.key === "c" || e.key === "C")) {
 				const activeEl = document.activeElement as HTMLElement | null
 				const isInput =
 					activeEl?.tagName === "INPUT" ||
@@ -82,50 +82,20 @@ export function PlaygroundClient({ files }: PlaygroundClientProps) {
 			}
 		}
 
-		window.addEventListener("keydown", handleKeyDown)
-
-		const iframe = iframeRef.current
-		const handleIframeKeyDown = (e: KeyboardEvent) => {
-			if ((e.ctrlKey || e.metaKey) && (e.key === "c" || e.key === "C")) {
-				const iframeDoc = iframe?.contentDocument
-				const activeEl = iframeDoc?.activeElement as HTMLElement | null
-				const isInput =
-					activeEl?.tagName === "INPUT" ||
-					activeEl?.tagName === "TEXTAREA" ||
-					activeEl?.isContentEditable
-				const win = iframe?.contentWindow
-				const hasSelection = Boolean(win?.getSelection()?.toString())
-
-				if (!isInput && !hasSelection) {
-					e.preventDefault()
-					toggleCommentMode()
-				}
+		const handleMessage = (e: MessageEvent) => {
+			if (e.data?.type === "TOGGLE_COMMENT_MODE") {
+				toggleCommentMode()
 			}
 		}
 
-		const attachIframeKeydown = () => {
-			try {
-				const win = iframe?.contentWindow
-				if (!win) return
-				win.removeEventListener("keydown", handleIframeKeyDown)
-				win.addEventListener("keydown", handleIframeKeyDown)
-			} catch {}
-		}
-
-		attachIframeKeydown()
-		iframe?.addEventListener("load", attachIframeKeydown)
+		window.addEventListener("keydown", handleKeyDown)
+		window.addEventListener("message", handleMessage)
 
 		return () => {
 			window.removeEventListener("keydown", handleKeyDown)
-			iframe?.removeEventListener("load", attachIframeKeydown)
-			try {
-				iframe?.contentWindow?.removeEventListener(
-					"keydown",
-					handleIframeKeyDown
-				)
-			} catch {}
+			window.removeEventListener("message", handleMessage)
 		}
-	}, [iframeRef])
+	}, [])
 
 	// Figma-style comments hook
 	const {

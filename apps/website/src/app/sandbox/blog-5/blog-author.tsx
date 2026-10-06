@@ -16,8 +16,8 @@ export function BlogAuthor({ author }: BlogAuthorProps) {
 		.toUpperCase()
 
 	return (
-		<div className="border-border/80 bg-elevation-level1/70 flex w-fit items-center gap-3 rounded-full border px-3.5 py-1.5 shadow-2xs backdrop-blur-xs">
-			<Avatar size="32" rounded="circle" className="border-border/60 border">
+		<div className="border-soft bg-elevation-level1 flex w-fit items-center gap-3 rounded-full border px-3.5 py-1.5">
+			<Avatar size="32" rounded="circle">
 				<AvatarImage src={author.avatarUrl} alt={author.name} />
 				<AvatarFallback className="text-fg text-[11px] font-semibold">
 					{initials}
@@ -26,7 +26,7 @@ export function BlogAuthor({ author }: BlogAuthorProps) {
 
 			<div className="flex flex-col">
 				<span className="text-fg text-xs font-semibold">{author.name}</span>
-				<span className="text-fg-secondary text-[11px]">
+				<span className="text-fg-secondary text-xs">
 					{author.role} <span className="opacity-40">|</span> {author.date}{" "}
 					<span className="opacity-40">|</span> {author.readTime}
 				</span>

@@ -37,7 +37,7 @@ export function LoginForm() {
 	const handleSelectRole = (role: "user" | "admin") => {
 		form.setValue(
 			"email",
-			role === "admin" ? "admin@shadcnstudio.com" : "user@shadcnstudio.com"
+			role === "admin" ? "admin@radian.com" : "user@radian.com"
 		)
 		form.setValue("password", "password123")
 	}
@@ -55,16 +55,14 @@ export function LoginForm() {
 			<Form {...form}>
 				<form
 					onSubmit={form.handleSubmit(onSubmit)}
-					className="flex flex-col gap-4">
+					className="flex flex-col gap-5">
 					{/* Email Field */}
 					<FormField
 						control={form.control}
 						name="email"
 						render={({ field }) => (
-							<FormItem className="flex flex-col gap-1.5">
-								<FormLabel className="text-fg text-xs font-semibold">
-									Email address*
-								</FormLabel>
+							<FormItem>
+								<FormLabel>Email address*</FormLabel>
 								<FormControl>
 									<Input
 										placeholder="Enter your email address"
@@ -73,7 +71,7 @@ export function LoginForm() {
 										{...field}
 									/>
 								</FormControl>
-								<FormMessage className="text-error text-xs" />
+								<FormMessage />
 							</FormItem>
 						)}
 					/>
@@ -84,9 +82,7 @@ export function LoginForm() {
 						name="password"
 						render={({ field }) => (
 							<FormItem className="flex flex-col gap-1.5">
-								<FormLabel className="text-fg text-xs font-semibold">
-									Password*
-								</FormLabel>
+								<FormLabel>Password*</FormLabel>
 								<FormControl>
 									<InputWrapper size="36">
 										<Input
@@ -100,19 +96,20 @@ export function LoginForm() {
 											variant="ghost"
 											color="neutral"
 											size="28"
+											className="hover:bg-transparent"
 											aria-label={
 												showPassword ? "Hide password" : "Show password"
 											}
 											onClick={() => setShowPassword((prev) => !prev)}>
 											{showPassword ? (
-												<EyeOff className="text-fg-secondary size-4" />
+												<EyeOff className="size-4" />
 											) : (
-												<Eye className="text-fg-secondary size-4" />
+												<Eye className="size-4" />
 											)}
 										</IconButton>
 									</InputWrapper>
 								</FormControl>
-								<FormMessage className="text-error text-xs" />
+								<FormMessage />
 							</FormItem>
 						)}
 					/>
@@ -123,7 +120,7 @@ export function LoginForm() {
 							control={form.control}
 							name="rememberMe"
 							render={({ field }) => (
-								<FormItem className="flex items-center gap-2 space-y-0">
+								<FormItem className="flex flex-row items-center gap-2">
 									<FormControl>
 										<Checkbox
 											size="sm"
@@ -131,7 +128,7 @@ export function LoginForm() {
 											onCheckedChange={field.onChange}
 										/>
 									</FormControl>
-									<FormLabel className="text-fg-secondary text-xs font-medium hover:cursor-pointer">
+									<FormLabel className="text-xs font-medium hover:cursor-pointer">
 										Remember Me
 									</FormLabel>
 								</FormItem>
@@ -140,7 +137,7 @@ export function LoginForm() {
 
 						<Link
 							href="#"
-							className="text-fg hover:text-primary text-xs font-medium transition-colors">
+							className="text-fg text-xs font-medium transition-colors hover:underline">
 							Forgot Password?
 						</Link>
 					</div>
@@ -151,8 +148,8 @@ export function LoginForm() {
 						variant="strong"
 						color="neutral"
 						size="40"
-						className="mt-1 w-full font-medium shadow-xs">
-						Sign in to Shadcn Studio
+						className="w-full">
+						Sign in to Radian
 					</Button>
 				</form>
 			</Form>
@@ -167,9 +164,7 @@ export function LoginForm() {
 			{/* Create Account Link */}
 			<p className="text-fg-secondary text-center text-xs">
 				New on our platform?{" "}
-				<Link
-					href="#"
-					className="text-fg hover:text-primary font-semibold transition-colors">
+				<Link href="#" className="text-fg font-semibold hover:underline">
 					Create an account
 				</Link>
 			</p>
@@ -177,7 +172,7 @@ export function LoginForm() {
 			{/* Divider */}
 			<div className="relative my-0.5 flex items-center justify-center">
 				<div className="absolute inset-0 flex items-center">
-					<div className="border-border/60 w-full border-t" />
+					<div className="border-soft w-full border-t" />
 				</div>
 				<span className="bg-card text-fg-tertiary relative px-3 text-xs">
 					or
@@ -187,10 +182,10 @@ export function LoginForm() {
 			{/* Bottom Sign In With Google */}
 			<Button
 				type="button"
-				variant="ghost"
+				variant="outline"
 				color="neutral"
 				size="36"
-				className="text-fg hover:text-primary w-full text-xs font-semibold">
+				className="w-full">
 				Sign in with google
 			</Button>
 		</div>

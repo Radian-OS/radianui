@@ -20,12 +20,12 @@ export function LoginSocialButtons({
 				color="neutral"
 				size="36"
 				onClick={onGoogleLogin}
-				className="w-full gap-2 text-xs font-medium">
-				{/* Rule 9: Google logo from Google favicon service */}
+				className="w-full">
+				{/* Google logo from Radian resources */}
 				<img
-					src="https://www.google.com/s2/favicons?sz=32&domain=google.com"
+					src="https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/colored/technology/icon/google.svg"
 					alt="Google"
-					className="size-4 object-contain"
+					className="size-6 object-contain"
 				/>
 				<span>Login with Google</span>
 			</Button>
@@ -36,12 +36,12 @@ export function LoginSocialButtons({
 				color="neutral"
 				size="36"
 				onClick={onFacebookLogin}
-				className="w-full gap-2 text-xs font-medium">
-				{/* Rule 9: Facebook logo from Google favicon service */}
+				className="w-full">
+				{/* Facebook logo from Radian resources */}
 				<img
-					src="https://www.google.com/s2/favicons?sz=32&domain=facebook.com"
+					src="https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/colored/social-content/icon/facebook.svg"
 					alt="Facebook"
-					className="size-4 object-contain"
+					className="size-6 object-contain"
 				/>
 				<span>Login with Facebook</span>
 			</Button>
