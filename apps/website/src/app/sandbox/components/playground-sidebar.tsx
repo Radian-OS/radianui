@@ -14,6 +14,7 @@ import {
 	Tag,
 	UserPlus,
 	Zap,
+	Layout,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { ScrollArea } from "@/registry/ui/scroll-area"
@@ -72,6 +73,7 @@ const SIDEBAR_CATEGORIES: SidebarCategoryDef[] = [
 	{ id: "portfolio-section", label: "PORTFOLIO", icon: Briefcase },
 	{ id: "table-section", label: "TABLE", icon: Table },
 	{ id: "setting-section", label: "SETTINGS", icon: Settings },
+	{ id: "full-page", label: "FULL PAGE", icon: Layout },
 	{ id: "other-sections", label: "OTHER", icon: Folder },
 ]
 

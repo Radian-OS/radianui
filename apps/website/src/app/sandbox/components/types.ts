@@ -661,10 +661,10 @@ export const sandboxComponents: SandboxComponentConfig[] = [
 		previewRoute: "/sandbox/full-page-04",
 	},
 	{
-		id: "hero-08",
-		label: "hero-08",
+		id: "hero-04",
+		label: "hero-04",
 		category: "hero-section",
-		filesKey: "hero-08",
+		filesKey: "hero-04",
 		path: "src/app/sandbox/hero-04",
 		defaultFile: "page.tsx",
 		referenceUrl: "https://pro.alignui.com/block-preview/default/hero-04",
@@ -692,7 +692,7 @@ export const sandboxComponents: SandboxComponentConfig[] = [
 	},
 	{
 		id: "pricing-02",
-		label: "Jambo Pricing",
+		label: "pricing-02",
 		category: "pricing-section",
 		filesKey: "pricing-02",
 		path: "src/app/sandbox/pricing-02",
