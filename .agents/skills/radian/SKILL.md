@@ -25,6 +25,12 @@ Always use RadianUI components:
 3. **Import & Use**: Always import and use the RadianUI component rather than writing native HTML elements.
 4. **NEVER Override Component Styles**: RadianUI components are pre-styled to be production-ready. Do NOT pass custom `className` properties to components from `@/components/ui` unless explicitly requested by the user or required to achieve specific styling goals.
 
+### Scrolling: Always Use ScrollArea
+
+**Whenever UI content has vertical or horizontal scroll behavior, use the RadianUI `ScrollArea` component.** This includes overflowing dialogs, drawers, popovers, lists, tables, and panels, including overflow that occurs only on smaller screens. Do not implement these scrollable regions with bare containers using `overflow-auto`, `overflow-scroll`, `overflow-y-auto`, or `overflow-x-auto` alone.
+
+Check the configured UI directory for `scroll-area`; if missing, add it with `npx radianui@latest add scroll-area`. Constrain the available height or width so the viewport scrolls when needed, and use `ScrollBar` with the appropriate orientation for horizontal scrolling. Keep padding inside the viewport and avoid nested scroll regions for the same content. Normal document scrolling does not require wrapping the entire page in `ScrollArea`.
+
 ### HTML Element to RadianUI Component Mapping
 
 | Bare HTML Element (DO NOT USE)         | RadianUI Component (ALWAYS USE)                          | CLI Add Command                                     | Import Path                     |
