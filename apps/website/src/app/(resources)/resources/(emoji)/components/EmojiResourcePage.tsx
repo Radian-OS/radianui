@@ -2,7 +2,7 @@ import { ResourcePage } from "../../components/ResourcePage"
 import EmojiDocs from "../docs/EmojiDocs"
 import { EmojiHeroActionButtons } from "./EmojiHeroActionButtons"
 import EmojiPlayground from "./EmojiPlayground"
-import { EmojiReference, EmojiCategoryLinks } from "./EmojiReference"
+import { EmojiReference } from "./EmojiReference"
 import { EmojiText } from "./EmojiText"
 import type { EmojiData } from "./emoji-data"
 import {
@@ -74,10 +74,7 @@ export function EmojiResourcePage({
 				initialSelectedEmoji ? (
 					<EmojiReference emoji={initialSelectedEmoji} />
 				) : (
-					<>
-						<EmojiCategoryLinks />
-						<EmojiDocs />
-					</>
+					<EmojiDocs />
 				)
 			}
 		/>

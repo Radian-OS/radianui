@@ -4,7 +4,6 @@ import { Table, TableBody, TableCell, TableRow } from "@/registry/ui/table"
 import { EmojiText } from "./EmojiText"
 import { EmojiSkinToneVariants } from "./EmojiSkinToneVariants"
 import {
-	emojiGroups,
 	formatEmojiName,
 	getEmojiCodePoints,
 	getEmojiHtmlEntity,
@@ -124,41 +123,5 @@ export function EmojiReference({ emoji }: { emoji: EmojiData }) {
 				Browse all emojis
 			</Link>
 		</article>
-	)
-}
-
-export function EmojiCategoryLinks() {
-	return (
-		<section
-			className="mx-auto flex max-w-4xl flex-col gap-6 px-4 py-8"
-			aria-labelledby="emoji-category-links">
-			<h2 id="emoji-category-links" className="text-xl font-semibold">
-				Explore emoji names and Unicode details
-			</h2>
-			<p className="text-fg-secondary">
-				Choose an emoji reference below, or use the searchable collection above
-				to find a specific character.
-			</p>
-			<div className="grid gap-6 sm:grid-cols-2">
-				{emojiGroups.map((group) => (
-					<section key={group.slug} className="flex flex-col gap-3">
-						<h3 className="font-semibold">{group.name}</h3>
-						<ul className="flex flex-col gap-2">
-							{group.emojis.slice(0, 8).map((item) => (
-								<li key={item.slug}>
-									<Link
-										prefetch={false}
-										href={getEmojiPagePath(item)}
-										className={linkStyle}>
-										<span className="font-emoji">{item.emoji}</span>{" "}
-										{formatEmojiName(item.name)}
-									</Link>
-								</li>
-							))}
-						</ul>
-					</section>
-				))}
-			</div>
-		</section>
 	)
 }
