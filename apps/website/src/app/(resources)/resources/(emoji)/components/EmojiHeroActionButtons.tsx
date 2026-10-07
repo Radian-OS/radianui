@@ -16,6 +16,16 @@ export function EmojiHeroActionButtons() {
 				<Link href="/docs/getting-started/resources">Explore Resources</Link>
 			</Button>
 			<EmojiPickerPopover />
+			<Button
+				asChild
+				size="40"
+				variant="outline"
+				color="neutral"
+				className="bg-elevation-level1/20 w-full backdrop-blur-md sm:w-fit">
+				<Link href="/docs/components/popover#emoji-reaction-picker">
+					Get the code
+				</Link>
+			</Button>
 		</>
 	)
 }

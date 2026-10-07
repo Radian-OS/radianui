@@ -1,4 +1,3 @@
-import "noto-color-emoji-flags"
 import { ResourcePage } from "../../components/ResourcePage"
 import EmojiDocs from "../docs/EmojiDocs"
 import { EmojiHeroActionButtons } from "./EmojiHeroActionButtons"

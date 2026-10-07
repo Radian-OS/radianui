@@ -93,11 +93,36 @@ import {
 
 <ComponentPreview path="popover/popover-guide" />
 
+### Emoji Reaction Picker
+
+A reaction bar with search, categories, skin tones, recent selections, and a virtualized emoji list.
+
+<ComponentPreview
+	path="popover/popover-emoji-picker"
+	title="Emoji Reaction Picker"
+/>
+
+Install `unicode-emoji-json`, `@tanstack/react-virtual`, and `noto-color-emoji-flags` alongside the Popover, Input, Button, Scroll Area, and Sonner components. Add `@import "noto-color-emoji-flags";` to your global stylesheet and a `font-emoji` utility using the emoji font stack below.
+
+<br/>
+```css
+@utility font-emoji {
+  font-family: "Noto Color Emoji Flags", "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+}
+```
+<br/>
+Copy these supporting files into `lib/emoji`:
+<br/>
+<ComponentSource src="lib/emoji/emoji-data.ts" title="lib/emoji/emoji-data.ts" collapsible />
+<br/>
+<ComponentSource src="lib/emoji/emoji-support.ts" title="lib/emoji/emoji-support.ts" collapsible />
+<br/>
 ### Emoji Picker with frimousse
 
 Lightweight and fast, focused on core emojis with minimal overhead. Best for
 performance-sensitive UI.
 
+<br />
 <ComponentPreview path="popover/popover-emoji" />
 
 ### Emoji Picker with emoji-mart
