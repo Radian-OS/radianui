@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { JsonLd } from "@/components/seo/json-ld"
 import { notFound } from "next/navigation"
 import { websiteMetadata } from "@/config/website-metadata-config"
 import { absoluteUrl } from "@/lib/structured-data"
@@ -7,7 +8,6 @@ import {
 	emojis,
 	formatEmojiName,
 	getEmojiBySlug,
-	getEmojiKeywords,
 	getEmojiMetadataDescription,
 	getEmojiPagePath,
 } from "../../components/emoji-data"
@@ -42,7 +42,6 @@ export async function generateMetadata({
 	return {
 		title,
 		description,
-		keywords: getEmojiKeywords(emoji),
 		alternates: { canonical: url },
 		openGraph: {
 			siteName: websiteMetadata.name,
@@ -72,5 +71,45 @@ export default async function EmojiPage(props: EmojiPageProps) {
 	const emoji = await getEmojiFromParams(props)
 	if (!emoji) notFound()
 
-	return <EmojiResourcePage initialSelectedEmoji={emoji} />
+	const url = absoluteUrl(getEmojiPagePath(emoji))
+	const name = `${formatEmojiName(emoji.name)} Emoji`
+	return (
+		<>
+			<JsonLd
+				id="emoji-reference-structured-data"
+				data={{
+					"@context": "https://schema.org",
+					"@type": "WebPage",
+					"@id": `${url}#webpage`,
+					url,
+					name,
+					description: getEmojiMetadataDescription(emoji),
+					isPartOf: {
+						"@type": "CollectionPage",
+						"@id": absoluteUrl("/resources/emoji"),
+						name: "Emoji collection",
+					},
+					breadcrumb: {
+						"@type": "BreadcrumbList",
+						itemListElement: [
+							{
+								"@type": "ListItem",
+								position: 1,
+								name: "Resources",
+								item: absoluteUrl("/resources"),
+							},
+							{
+								"@type": "ListItem",
+								position: 2,
+								name: "Emojis",
+								item: absoluteUrl("/resources/emoji"),
+							},
+							{ "@type": "ListItem", position: 3, name, item: url },
+						],
+					},
+				}}
+			/>
+			<EmojiResourcePage initialSelectedEmoji={emoji} />
+		</>
+	)
 }

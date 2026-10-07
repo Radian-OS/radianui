@@ -1,10 +1,24 @@
 "use client"
 
-import type { ReactNode } from "react"
-import { Copy, Download, FileCode2, Image as ImageIcon } from "lucide-react"
+import { useState, type ReactNode } from "react"
+import {
+	ChevronDown,
+	Copy,
+	Download,
+	FileCode2,
+	Image as ImageIcon,
+} from "lucide-react"
 import { toast } from "sonner"
-import { Button } from "@/registry/ui/button"
+import { Button, ButtonGroup, IconButton } from "@/registry/ui/button"
 import { Card } from "@/registry/ui/card"
+import {
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuItem,
+	DropdownMenuRadioGroup,
+	DropdownMenuRadioItem,
+	DropdownMenuTrigger,
+} from "@/registry/ui/dropdown-menu"
 import { EmojiCopyButton } from "./EmojiCopyButton"
 import { EmojiText } from "./EmojiText"
 import { showEmojiToast } from "./EmojiToast"
@@ -25,7 +39,7 @@ import styles from "./emoji-font.module.css"
 
 const legibilitySizes = [16, 24, 32, 48, 64] as const
 const svgExportSize = 512
-const pngExportSize = 2048
+const pngSizes = [16, 24, 32, 64, 128, 256, 512] as const
 const pngGlyphScale = 0.78
 
 function downloadBlob(blob: Blob, filename: string) {
@@ -43,7 +57,14 @@ function getEmojiFilename(emoji: EmojiData) {
 	return `${emoji.slug}-emoji`
 }
 
-export function EmojiCopyActions({ emoji }: { emoji: EmojiData }) {
+export function EmojiCopyActions({
+	emoji,
+	compact = false,
+}: {
+	emoji: EmojiData
+	compact?: boolean
+}) {
+	const [pngExportSize, setPngExportSize] = useState(512)
 	const svgMarkup = getEmojiSvgMarkup(emoji, svgExportSize)
 	const displayName = formatEmojiName(emoji.name)
 	const formats = [
@@ -116,6 +137,84 @@ export function EmojiCopyActions({ emoji }: { emoji: EmojiData }) {
 			})
 		}, "image/png")
 	}
+
+	if (compact)
+		return (
+			<div className="flex flex-wrap gap-2">
+				<EmojiCopyButton
+					emoji={emoji.emoji}
+					value={emoji.emoji}
+					successLabel="Emoji text"
+					size="32"
+					variant="strong">
+					Text
+				</EmojiCopyButton>
+				<EmojiCopyButton
+					emoji={emoji.emoji}
+					value={svgMarkup}
+					successLabel="SVG"
+					size="32"
+					variant="strong">
+					SVG
+				</EmojiCopyButton>
+				<DropdownMenu>
+					<ButtonGroup size="32" color="primary" variant="strong">
+						<Button onClick={downloadPng}>PNG</Button>
+						<DropdownMenuTrigger asChild>
+							<Button
+								aria-label={`PNG size: ${pngExportSize} pixels`}
+								className="border-alpha border-l">
+								{pngExportSize} px
+								<ChevronDown />
+							</Button>
+						</DropdownMenuTrigger>
+					</ButtonGroup>
+					<DropdownMenuContent align="start">
+						<DropdownMenuRadioGroup
+							value={String(pngExportSize)}
+							onValueChange={(value) => setPngExportSize(Number(value))}>
+							{pngSizes.map((size) => (
+								<DropdownMenuRadioItem key={size} value={String(size)}>
+									{size} px
+								</DropdownMenuRadioItem>
+							))}
+						</DropdownMenuRadioGroup>
+					</DropdownMenuContent>
+				</DropdownMenu>
+				<DropdownMenu>
+					<ButtonGroup size="32" color="neutral" variant="outline">
+						<Button onClick={downloadSvg}>
+							<Download />
+							Download
+						</Button>
+						<DropdownMenuTrigger asChild>
+							<IconButton aria-label="Choose download format">
+								<ChevronDown />
+							</IconButton>
+						</DropdownMenuTrigger>
+					</ButtonGroup>
+					<DropdownMenuContent align="end">
+						<DropdownMenuItem onSelect={downloadSvg}>
+							<FileCode2 />
+							SVG
+						</DropdownMenuItem>
+						<DropdownMenuItem onSelect={() => void downloadPng()}>
+							<ImageIcon />
+							PNG
+						</DropdownMenuItem>
+					</DropdownMenuContent>
+				</DropdownMenu>
+				<EmojiCopyButton
+					emoji={emoji.emoji}
+					value={getEmojiHtmlSnippet(emoji)}
+					successLabel="HTML"
+					size="32"
+					color="neutral"
+					variant="outline">
+					HTML Code
+				</EmojiCopyButton>
+			</div>
+		)
 
 	return (
 		<div className="flex flex-col gap-8">

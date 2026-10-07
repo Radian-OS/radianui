@@ -2,9 +2,14 @@ import { ResourcePage } from "../../components/ResourcePage"
 import EmojiDocs from "../docs/EmojiDocs"
 import { EmojiHeroActionButtons } from "./EmojiHeroActionButtons"
 import EmojiPlayground from "./EmojiPlayground"
+import { EmojiReference, EmojiCategoryLinks } from "./EmojiReference"
 import { EmojiText } from "./EmojiText"
 import type { EmojiData } from "./emoji-data"
-import { emojis, formatEmojiName, getEmojiDescription } from "./emoji-data"
+import {
+	emojis,
+	formatEmojiName,
+	getEmojiMetadataDescription,
+} from "./emoji-data"
 import styles from "./emoji-font.module.css"
 
 const heroEmojis = ["🤩", "👻", "🔥"]
@@ -56,7 +61,7 @@ export function EmojiResourcePage({
 				initialSelectedEmoji ? (
 					<EmojiText
 						emoji={initialSelectedEmoji}
-						text={getEmojiDescription(initialSelectedEmoji)}
+						text={getEmojiMetadataDescription(initialSelectedEmoji)}
 					/>
 				) : (
 					"Browse our free emoji list for smiley faces, hearts, and symbols. Search by name or category, select an emoji, and choose Copy as Text."
@@ -65,7 +70,16 @@ export function EmojiResourcePage({
 			actions={<EmojiHeroActionButtons />}
 			showcaseLabel={`Browse ${emojis.length.toLocaleString("en-US")} Unicode emojis`}
 			showcase={<EmojiPlayground initialSelectedEmoji={initialSelectedEmoji} />}
-			documentation={<EmojiDocs />}
+			documentation={
+				initialSelectedEmoji ? (
+					<EmojiReference emoji={initialSelectedEmoji} />
+				) : (
+					<>
+						<EmojiCategoryLinks />
+						<EmojiDocs />
+					</>
+				)
+			}
 		/>
 	)
 }

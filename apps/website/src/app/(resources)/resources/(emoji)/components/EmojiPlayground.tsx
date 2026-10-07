@@ -19,7 +19,7 @@ import {
 import { Input, InputGroup, InputWrapper } from "@/registry/ui/input"
 import { Button } from "@/registry/ui/button"
 import { EmojiCategoryDropdown } from "./EmojiCategoryDropdown"
-import { EmojiDetailsDrawer } from "./EmojiDetailsDrawer"
+import { EmojiDetailsDialog } from "./EmojiDetailsDialog"
 import { EmojiTile } from "./EmojiTile"
 import type { EmojiData } from "./emoji-data"
 import {
@@ -312,7 +312,7 @@ export default function EmojiPlayground({
 				className="pointer-events-none h-px w-full"
 			/>
 
-			<EmojiDetailsDrawer
+			<EmojiDetailsDialog
 				emoji={selectedEmoji}
 				open={selectedEmoji !== null}
 				onOpenChange={handleDrawerOpenChange}

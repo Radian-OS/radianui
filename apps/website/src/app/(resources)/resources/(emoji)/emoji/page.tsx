@@ -5,9 +5,9 @@ import { absoluteUrl } from "@/lib/structured-data"
 import { EmojiResourcePage } from "../components/EmojiResourcePage"
 
 const pageUrl = absoluteUrl("/resources/emoji")
-const pageTitle = "Copy and Paste Emojis for Free | Radian UI"
+const pageTitle = "Copy and Paste Emojis, PNG & SVG Downloads | Radian UI"
 const pageDescription =
-	"Copy and paste emojis for messages, posts, and apps. Browse our free emoji list for smiley faces, hearts, stars, and symbols. No sign-up needed."
+	"Search emojis by name or category, copy and paste Unicode text, or download PNG and SVG files. Browse emoji names, code points, and skin tone variants for free."
 const pageImage = absoluteUrl("/media/assets-page/emojis-light.png")
 export const metadata: Metadata = {
 	title: pageTitle,
@@ -49,6 +49,18 @@ export default function Page() {
 						name: websiteMetadata.organizationName,
 						url: absoluteUrl("/"),
 					},
+				}}
+			/>
+			<JsonLd
+				id="emoji-collection-structured-data"
+				data={{
+					"@context": "https://schema.org",
+					"@type": "CollectionPage",
+					"@id": pageUrl,
+					url: pageUrl,
+					name: "Unicode emoji collection",
+					description: pageDescription,
+					mainEntity: { "@id": `${pageUrl}#application` },
 				}}
 			/>
 			<EmojiResourcePage />
