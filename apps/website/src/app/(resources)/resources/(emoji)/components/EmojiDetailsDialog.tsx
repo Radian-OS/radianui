@@ -20,6 +20,7 @@ import {
 	DrawerDescription,
 	DrawerClose,
 } from "@/registry/ui/drawer"
+import { ScrollArea } from "@/registry/ui/scroll-area"
 import { Table, TableBody, TableCell, TableRow } from "@/registry/ui/table"
 import { EmojiFlagGuidance } from "./EmojiFlagGuidance"
 import { EmojiCopyActions } from "./EmojiCopyActions"
@@ -248,14 +249,22 @@ export function EmojiDetailsDialog({
 			onOpenChange={onOpenChange}
 			direction="left"
 			variant="default">
-			<DrawerContent className="h-dvh max-h-dvh w-full max-w-full gap-6 overflow-y-auto p-6 pb-[max(24px,env(safe-area-inset-bottom))] after:hidden!">
-				{content}
+			<DrawerContent className="h-dvh max-h-dvh w-full max-w-full gap-0 overflow-hidden p-0 after:hidden!">
+				<ScrollArea className="min-h-0 flex-1" type="auto">
+					<div className="relative flex flex-col gap-6 p-6 pb-[max(24px,env(safe-area-inset-bottom))]">
+						{content}
+					</div>
+				</ScrollArea>
 			</DrawerContent>
 		</Drawer>
 	) : (
 		<Dialog open={open} onOpenChange={onOpenChange}>
-			<DialogContent className="max-h-[calc(100dvh-2rem)] gap-6 overflow-y-auto rounded-xl p-6 sm:max-w-[720px]">
-				{content}
+			<DialogContent className="max-h-[calc(100dvh-2rem)] gap-0 overflow-hidden rounded-xl p-0 sm:max-w-[720px]">
+				<ScrollArea
+					className="min-h-0 [&_[data-slot=scroll-area-viewport]]:max-h-[calc(100dvh-2rem)]"
+					type="auto">
+					<div className="relative flex flex-col gap-6 p-6">{content}</div>
+				</ScrollArea>
 			</DialogContent>
 		</Dialog>
 	)
