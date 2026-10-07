@@ -14,17 +14,17 @@ const useCasePoints = [
 	{
 		title: "Messages and reactions",
 		description:
-			"A smiley face can soften a short reply, a laughing emoji fits a joke, and a heart can show appreciation. Choose one that matches the conversation.",
+			"A smiley face can make a short reply feel friendlier. Use a laughing emoji to share a joke or a heart emoji to show love, thanks, or support. Let the conversation guide your choice.",
 	},
 	{
 		title: "Birthdays and celebrations",
 		description:
-			"Add a birthday emoji to a greeting or a little confetti when someone shares good news. A small detail can make a familiar message feel more personal.",
+			"Add a birthday emoji to a greeting, confetti to a milestone announcement, or a Christmas tree emoji to a holiday invitation. Keep the date, place, and other details in words.",
 	},
 	{
 		title: "Posts, captions, and invitations",
 		description:
-			"Set the mood for dinner plans, a trip, or a holiday gathering. Keep the details in words so the invitation still makes sense without the emoji.",
+			"A sushi emoji can set the scene for dinner plans, while a star can highlight a favorite moment in a caption. Choose a few that add something to the message, and leave enough room for the text.",
 	},
 	{
 		title: "Websites and apps",
@@ -42,7 +42,7 @@ const designPoints = [
 	{
 		title: "Check how it looks on other devices",
 		description:
-			"The same character can have different artwork on a phone and a laptop. Preview it on the devices your audience uses, especially when the expression matters.",
+			"An iPhone emoji may look different on Android or Windows because each system supplies its own artwork. Preview the same character on the devices your audience uses, especially when a facial expression matters.",
 	},
 	{
 		title: "Leave enough room",
@@ -63,49 +63,51 @@ const designPoints = [
 
 const developmentPoints = [
 	{
-		title: "Keep the whole character together",
+		title: "Store emojis as text",
 		description:
-			"Use UTF-8 for HTML and data exchange. Some emojis contain several code points; slicing a JavaScript string at an arbitrary position can split one apart.",
+			"Save the selected Unicode character with the message, reaction, or label it belongs to. Use UTF-8 when storing or sending it, and preserve the full sequence: skin tone modifiers and joined characters are part of the emoji.",
 	},
 	{
 		title: "Keep emoji data separate from the UI",
 		description: (
 			<>
-				The collection uses <code>unicode-emoji-json</code> for character names,
-				categories, and version information. Keeping that data separate makes it
-				easier to update your picker without rewriting the interface.
+				This collection uses <code>unicode-emoji-json</code> for emoji names,
+				categories, version information, and skin tone support. Use those fields
+				to power search and category filters in your own React emoji picker,
+				while storing the selected character as its value.
 			</>
 		),
 	},
 	{
-		title: "Build a picker with familiar controls",
+		title: "Connect the picker to an action",
 		description: (
 			<>
-				Combine a labeled{" "}
+				Use a{" "}
+				<Link href="/docs/components/popover" className={linkClassName}>
+					popover
+				</Link>{" "}
+				for a compact reaction picker, with a labeled{" "}
 				<Link href="/docs/components/input" className={linkClassName}>
 					search input
-				</Link>
-				,{" "}
-				<Link href="/docs/components/dropdown-menu" className={linkClassName}>
-					category dropdown
-				</Link>
-				, and{" "}
+				</Link>{" "}
+				and emoji{" "}
 				<Link href="/docs/components/button" className={linkClassName}>
 					buttons
 				</Link>
-				. Give keyboard users a clear focus state and announce copy results.
+				. On selection, insert the character into a message or save it as a
+				reaction. Give each button an accessible name and a visible focus state.
 			</>
 		),
 	},
 	{
-		title: "Handle copying and missing fonts",
+		title: "Make copying reliable",
 		description:
-			"Show a success message only after the clipboard write finishes, and explain when it fails. Keep text labels available when a device cannot display a character.",
+			"If your feature lets people copy and paste emojis, wait for the clipboard write to finish before showing success. Explain a failed copy and let them try again without losing their selection.",
 	},
 	{
-		title: "Pick the format you need",
+		title: "Check rendering on your target devices",
 		description:
-			"Use text for messages and editable content. A PNG captures the displayed artwork, while this tool’s SVG references a font and may look different elsewhere. Shortcodes work only if your app has a parser that recognizes them.",
+			"Emoji fonts determine how the character looks, so preview messages and reactions on the phones and browsers your app supports. Keep names available for unsupported characters, and leave room for the glyph so it does not get clipped.",
 	},
 ]
 
@@ -121,9 +123,14 @@ const faqItems = [
 			"Yes. You can browse and copy emojis without paying or creating an account. Copying as text also means there’s no image to download before you can paste it into a message.",
 	},
 	{
+		question: "Can I copy a heart or star emoji?",
+		answer:
+			"Yes. Search for heart or star, select the one you want, and choose Copy as Text. You can paste emoji symbols such as ❤️ or ⭐ into a message, caption, or project label. Their appearance depends on the app and device displaying them.",
+	},
+	{
 		question: "How do I know what an emoji means?",
 		answer:
-			"Look at the expression and the message around it. A heart might express love, thanks, or support, depending on the conversation. Emoji meanings can vary between people and cultures, so add words when your message needs to be precise.",
+			"The name helps identify the character, but emoji meanings depend on the conversation. A heart can express love or support, and a laughing face can signal amusement or a playful reply. Meanings also vary between people and cultures, so add words when you need to be precise.",
 	},
 	{
 		question: "What is the difference between an emoji, emoticon, and kaomoji?",
@@ -131,7 +138,7 @@ const faqItems = [
 			"An emoji is a picture character, such as 😊. An emoticon builds a face from text, such as :-), while a kaomoji is usually read upright, like (^_^). This collection contains emojis rather than text faces.",
 	},
 	{
-		question: "Why does the same emoji look different on another device?",
+		question: "Why do emojis look different on iPhone and Android?",
 		answer:
 			"Apple, Google, Microsoft, and other providers draw their own versions. Copying keeps the character, but the receiving device or app chooses the artwork. Older software may also support fewer characters.",
 	},
@@ -141,7 +148,7 @@ const faqItems = [
 			"The app or device may be missing the font support it needs, or the text may have been decoded incorrectly. Try updating your software, and check that the full character was copied. Some unsupported combinations appear as separate symbols instead.",
 	},
 	{
-		question: "How do I open the emoji keyboard on my device?",
+		question: "What are the emoji keyboard shortcuts?",
 		answer:
 			"Press Win + period on Windows or Control + Command + Space on Mac. On iPhone, tap the emoji or globe key. On Android, look for your keyboard’s emoji button; its position depends on the keyboard you use.",
 	},
@@ -151,7 +158,7 @@ const faqItems = [
 			"Yes, for characters that support it. Open the details and choose one of the skin tone options to copy that version. You’ll find these choices on eligible people and gestures.",
 	},
 	{
-		question: "Is there a blue verification tick I can copy?",
+		question: "Is there a blue tick emoji for verification?",
 		answer:
 			"There isn’t a dedicated Unicode emoji for a blue verification badge. You can use ✅ or ✔️ as a check mark, but copying either one does not verify an account. Each service issues its own verification badges.",
 	},
@@ -178,26 +185,19 @@ export default function EmojiDocs() {
 			<ResourceTextSection
 				id="emoji-introduction-heading"
 				eyebrow="Introduction"
-				title="Find the Right Emoji"
+				title="Find and Copy the Emoji You Need"
 				visual={<EmojiCollectionCard />}>
 				<p>
-					Sometimes a smile or a heart says what a few extra words would. Search
-					our emoji list by name or browse a category to find one that fits.
-					Open its details, choose Copy as Text, and paste it wherever
-					you&apos;re writing.
+					This free emoji list helps you find a character for a message,
+					caption, or app. Browse smiley faces and hearts for a reply, or find a
+					star to mark a favorite. Search by name or category, select an emoji,
+					and choose Copy as Text. Then paste it where you&apos;re writing.
 				</p>
 				<p>
-					An emoji is a picture character used in text. The word comes from
-					Japanese: <em>e</em> means picture and <em>moji</em> means character.
-					You&apos;ll find familiar faces alongside food, animals, gestures,
-					flags, and everyday objects. You can read more about how these
-					characters work in the{" "}
-					<a
-						href="https://unicode.org/faq/emoji_dingbats.html"
-						className={linkClassName}>
-						Unicode emoji FAQ
-					</a>
-					.
+					There are also hand gestures, animals, food, travel, and symbols. Open
+					the details to see a character&apos;s name and code values, or choose
+					a skin tone where supported. These are Unicode characters you can use
+					alongside your text, with no account or image download needed.
 				</p>
 			</ResourceTextSection>
 
@@ -223,37 +223,32 @@ export default function EmojiDocs() {
 				pointSeparator="–">
 				<p>
 					Emoji meanings depend on context: a fire emoji might refer to a flame
-					or express excitement, while a sad face can show sympathy as well as
-					disappointment. Think about who will see it, keep the tone
-					appropriate, and make important information clear in words.
+					or express excitement, while a sad emoji can show sympathy as well as
+					disappointment. A happy face in a casual chat may feel out of place in
+					an error message. Match the expression to the situation, and keep
+					important information clear in words.
 				</p>
 			</ResourceTextSection>
 
 			<ResourceTextSection
 				id="emoji-development-heading"
 				eyebrow="Development"
-				title="Add Emojis to Your App"
+				title="Use Emojis in Websites and React Apps"
 				points={developmentPoints}
 				pointSeparator="–">
 				<p>
-					You can paste Unicode emojis straight into HTML or React content. The
-					device&apos;s font supplies the artwork, so you don&apos;t need an
-					image file for every character. The details panel also offers code
-					values, HTML snippets, and downloads when your project calls for them.
+					Use Unicode emojis to add reactions to comments, expressions to chat
+					messages, or recognizable labels to a workspace. Copy a character from
+					this collection and use it as text in HTML or React. The details panel
+					also provides Unicode code points, JavaScript escapes, and HTML
+					entities when you need a code representation.
 				</p>
 				<p>
-					If you&apos;re building your own picker, the Radian UI controls linked
-					below give you a starting point. Follow the{" "}
-					<Link
-						href="/docs/getting-started/installation"
-						className={linkClassName}>
-						Radian UI installation guide
-					</Link>
-					. For country selectors, our{" "}
-					<Link href="/resources/flags" className={linkClassName}>
-						country flag icons
-					</Link>{" "}
-					are another option when you need the same artwork across devices.
+					For a React emoji picker, start with the interaction your app needs:
+					inserting text at the cursor, adding a reaction, or choosing a project
+					icon. Let users search by name and browse categories, then pass the
+					selected emoji to that action. The Radian UI components below can help
+					you build those controls around your own emoji data.
 				</p>
 			</ResourceTextSection>
 

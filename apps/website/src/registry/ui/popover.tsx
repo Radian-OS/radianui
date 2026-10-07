@@ -53,4 +53,6 @@ function PopoverContent({
 }
 PopoverContent.displayName = PopoverPrimitive.Content.displayName
 
-export { Popover, PopoverContent, PopoverTrigger }
+const PopoverAnchor = PopoverPrimitive.Anchor
+
+export { Popover, PopoverAnchor, PopoverContent, PopoverTrigger }

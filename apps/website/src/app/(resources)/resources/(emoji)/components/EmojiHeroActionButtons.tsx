@@ -1,48 +1,10 @@
 "use client"
 
-import { useEffect, useState } from "react"
 import Link from "next/link"
-import { toast } from "sonner"
 import { Button } from "@/registry/ui/button"
-import { showEmojiToast } from "./EmojiToast"
-import type { EmojiData } from "./emoji-data"
-import { getSupportedEmojis } from "./emoji-support"
+import { EmojiPickerPopover } from "./EmojiPickerPopover"
 
 export function EmojiHeroActionButtons() {
-	const [supportedEmojis, setSupportedEmojis] = useState<EmojiData[] | null>(
-		null
-	)
-
-	useEffect(() => {
-		let isCurrent = true
-
-		getSupportedEmojis().then((nextEmojis) => {
-			if (isCurrent) setSupportedEmojis(nextEmojis)
-		})
-
-		return () => {
-			isCurrent = false
-		}
-	}, [])
-
-	const handleCopyRandom = async () => {
-		if (!supportedEmojis?.length) return
-
-		const randomEmoji =
-			supportedEmojis[Math.floor(Math.random() * supportedEmojis.length)]
-		if (!randomEmoji) return
-
-		try {
-			await navigator.clipboard.writeText(randomEmoji.emoji)
-			showEmojiToast({
-				emoji: randomEmoji.emoji,
-				description: `${randomEmoji.emoji} has been copied to your clipboard.`,
-			})
-		} catch {
-			toast.error("Could not copy emoji")
-		}
-	}
-
 	return (
 		<>
 			<Button
@@ -53,14 +15,7 @@ export function EmojiHeroActionButtons() {
 				color="neutral">
 				<Link href="/docs/getting-started/resources">Explore Resources</Link>
 			</Button>
-			<Button
-				onClick={handleCopyRandom}
-				disabled={!supportedEmojis?.length}
-				variant="glossy"
-				className="w-full sm:w-fit"
-				size="40">
-				Copy Random Emoji
-			</Button>
+			<EmojiPickerPopover />
 		</>
 	)
 }

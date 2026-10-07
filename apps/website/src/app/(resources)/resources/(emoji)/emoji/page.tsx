@@ -7,7 +7,7 @@ import { EmojiResourcePage } from "../components/EmojiResourcePage"
 const pageUrl = absoluteUrl("/resources/emoji")
 const pageTitle = "Copy and Paste Emojis for Free | Radian UI"
 const pageDescription =
-	"Find smiley faces, hearts, and more in our free emoji list. Search by name or category, then copy and paste your favorite into a message."
+	"Copy and paste emojis for messages, posts, and apps. Browse our free emoji list for smiley faces, hearts, stars, and symbols. No sign-up needed."
 const pageImage = absoluteUrl("/media/assets-page/emojis-light.png")
 export const metadata: Metadata = {
 	title: pageTitle,

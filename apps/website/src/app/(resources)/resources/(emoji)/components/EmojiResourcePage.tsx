@@ -60,7 +60,7 @@ export function EmojiResourcePage({
 						text={getEmojiDescription(initialSelectedEmoji)}
 					/>
 				) : (
-					"Find just the right face, heart, or gesture. Browse the collection, select an emoji, and choose Copy as Text. It’s free, and there’s no sign-up."
+					"Browse our free emoji list for smiley faces, hearts, and symbols. Search by name or category, select an emoji, and choose Copy as Text."
 				)
 			}
 			actions={<EmojiHeroActionButtons />}
