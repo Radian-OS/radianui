@@ -1,5 +1,7 @@
 "use client"
 
+import { useLayoutEffect, useState } from "react"
+
 import { Copy } from "lucide-react"
 import { Badge, BadgeDot } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
@@ -42,6 +44,29 @@ export function EmojiDetailsDialog({
 	onSelectEmoji,
 	supportedEmojiSlugs,
 }: EmojiDetailsDialogProps) {
+	const [relatedRow, setRelatedRow] = useState<HTMLDivElement | null>(null)
+	const [relatedCount, setRelatedCount] = useState(1)
+	useLayoutEffect(() => {
+		if (!relatedRow) return
+		const breakpoint = window.matchMedia("(min-width: 640px)")
+		const measure = () => {
+			const minimumSize = breakpoint.matches ? 58 : 44
+			setRelatedCount(
+				Math.max(
+					1,
+					Math.floor((relatedRow.clientWidth + 8) / (minimumSize + 8))
+				)
+			)
+		}
+		measure()
+		const observer = new ResizeObserver(measure)
+		observer.observe(relatedRow)
+		breakpoint.addEventListener("change", measure)
+		return () => {
+			observer.disconnect()
+			breakpoint.removeEventListener("change", measure)
+		}
+	}, [relatedRow])
 	if (!emoji) return null
 	const displayName = formatEmojiName(emoji.name)
 	const related = getRelatedEmojis(emoji, 10).filter(
@@ -166,8 +191,10 @@ export function EmojiDetailsDialog({
 						<h2 id="emoji-dialog-related" className="text-fg-secondary text-xs">
 							Related {emoji.group} emoji
 						</h2>
-						<div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,44px),1fr))] gap-2 sm:grid-cols-[repeat(auto-fit,minmax(58px,1fr))]">
-							{related.map((item) => (
+						<div
+							ref={setRelatedRow}
+							className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,44px),1fr))] gap-2 sm:grid-cols-[repeat(auto-fit,minmax(58px,1fr))]">
+							{related.slice(0, relatedCount).map((item) => (
 								<Button
 									key={item.slug}
 									size="32"
