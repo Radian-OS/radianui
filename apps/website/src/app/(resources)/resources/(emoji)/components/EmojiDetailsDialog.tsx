@@ -1,10 +1,10 @@
 "use client"
 
-import { useLayoutEffect, useState } from "react"
+import { useEffect, useLayoutEffect, useState } from "react"
 
-import { Copy } from "lucide-react"
+import { Copy, X } from "lucide-react"
 import { Badge, BadgeDot } from "@/registry/ui/badge"
-import { Button } from "@/registry/ui/button"
+import { Button, IconButton } from "@/registry/ui/button"
 import {
 	Dialog,
 	DialogContent,
@@ -12,7 +12,16 @@ import {
 	DialogTitle,
 	DialogDescription,
 } from "@/registry/ui/dialog"
+import {
+	Drawer,
+	DrawerContent,
+	DrawerHeader,
+	DrawerTitle,
+	DrawerDescription,
+	DrawerClose,
+} from "@/registry/ui/drawer"
 import { Table, TableBody, TableCell, TableRow } from "@/registry/ui/table"
+import { EmojiFlagGuidance } from "./EmojiFlagGuidance"
 import { EmojiCopyActions } from "./EmojiCopyActions"
 import { EmojiCopyButton } from "./EmojiCopyButton"
 import { EmojiText } from "./EmojiText"
@@ -44,6 +53,14 @@ export function EmojiDetailsDialog({
 	onSelectEmoji,
 	supportedEmojiSlugs,
 }: EmojiDetailsDialogProps) {
+	const [mobile, setMobile] = useState(false)
+	useEffect(() => {
+		const media = window.matchMedia("(max-width: 639px)")
+		const update = () => setMobile(media.matches)
+		update()
+		media.addEventListener("change", update)
+		return () => media.removeEventListener("change", update)
+	}, [])
 	const [relatedRow, setRelatedRow] = useState<HTMLDivElement | null>(null)
 	const [relatedCount, setRelatedCount] = useState(1)
 	useLayoutEffect(() => {
@@ -86,132 +103,159 @@ export function EmojiDetailsDialog({
 			value: emoji.skin_tone_support ? "Yes" : "No",
 		},
 	]
-	return (
-		<Dialog open={open} onOpenChange={onOpenChange}>
-			<DialogContent className="max-h-[calc(100dvh-2rem)] gap-6 overflow-y-auto rounded-xl p-6 sm:max-w-[720px]">
-				<DialogHeader className="flex-row items-center gap-6 space-y-0 p-0">
-					<span
-						className="font-emoji bg-fill1 border-soft flex size-[78px] shrink-0 items-center justify-center rounded-lg border text-4xl"
-						aria-hidden="true">
-						{emoji.emoji}
-					</span>
-					<div className="flex min-w-0 flex-1 flex-col gap-2">
-						<Badge
-							size="20"
-							variant="soft"
-							color="neutral"
-							className="w-fit max-w-full">
-							<BadgeDot />
-							{emoji.group}
-						</Badge>
-						<DialogTitle className="gap-2 text-xl font-semibold [&>span]:min-w-0 [&>span]:break-words">
-							{displayName}
-						</DialogTitle>
-						<DialogDescription className="sr-only">
-							Copy, download, and explore information about the {displayName}{" "}
-							emoji.
-						</DialogDescription>
-					</div>
-				</DialogHeader>
-				<EmojiCopyActions emoji={emoji} compact />
+	const Header = mobile ? DrawerHeader : DialogHeader
+	const Title = mobile ? DrawerTitle : DialogTitle
+	const Description = mobile ? DrawerDescription : DialogDescription
+	const content = (
+		<>
+			<Header className="flex-row items-center gap-6 space-y-0 p-0">
+				<span
+					className="font-emoji bg-fill1 border-soft flex size-[78px] shrink-0 items-center justify-center rounded-lg border text-4xl"
+					aria-hidden="true">
+					{emoji.emoji}
+				</span>
+				<div className="flex min-w-0 flex-1 flex-col gap-2">
+					<Badge
+						size="20"
+						variant="soft"
+						color="neutral"
+						className="w-fit max-w-full">
+						<BadgeDot />
+						{emoji.group}
+					</Badge>
+					<Title className="gap-2 text-xl font-semibold [&>span]:min-w-0 [&>span]:break-words">
+						{displayName}
+					</Title>
+					{mobile && (
+						<DrawerClose>
+							<IconButton
+								size="28"
+								variant="ghost"
+								color="neutral"
+								className="absolute top-4 right-4"
+								aria-label="Close emoji details">
+								<X />
+							</IconButton>
+						</DrawerClose>
+					)}
+					<Description className="sr-only">
+						Copy, download, and explore information about the {displayName}{" "}
+						emoji.
+					</Description>
+				</div>
+			</Header>
+			<EmojiCopyActions emoji={emoji} compact />
+			<section
+				aria-labelledby="emoji-dialog-information"
+				className="flex min-w-0 flex-col gap-3">
+				<h2 id="emoji-dialog-information" className="text-fg-secondary text-xs">
+					Emoji Information
+				</h2>
+				<div className="border-soft overflow-hidden rounded-lg border">
+					<Table className="table-fixed text-[13px]">
+						<TableBody>
+							{details.map((detail) => (
+								<TableRow key={detail.label} className="group/row border-soft">
+									<TableCell className="bg-fill1 text-fg-secondary border-soft group-hover/row:bg-fill2 w-[30%] border-r px-3 py-2 text-[13px] font-medium whitespace-normal transition-colors">
+										{detail.label}
+									</TableCell>
+									<TableCell className="group-hover/row:bg-fill1 px-3 py-2 text-[13px] font-normal whitespace-normal transition-colors">
+										<div className="flex min-w-0 items-center gap-2">
+											<span className="min-w-0 flex-1 [overflow-wrap:anywhere] break-words">
+												<EmojiText emoji={emoji} text={detail.value} />
+											</span>
+											{detail.label !== "Skin Tone Support" && (
+												<EmojiCopyButton
+													emoji={emoji.emoji}
+													value={detail.value}
+													successLabel={detail.label}
+													size="32"
+													variant="ghost"
+													color="neutral"
+													className="text-fg-tertiary shrink-0 px-1"
+													aria-label={`Copy ${detail.label}`}>
+													<Copy />
+												</EmojiCopyButton>
+											)}
+										</div>
+									</TableCell>
+								</TableRow>
+							))}
+						</TableBody>
+					</Table>
+				</div>
+			</section>
+			{emoji.group === "Flags" && <EmojiFlagGuidance compact />}
+			{variants.length > 0 && (
 				<section
-					aria-labelledby="emoji-dialog-information"
-					className="flex min-w-0 flex-col gap-3">
-					<h2
-						id="emoji-dialog-information"
-						className="text-fg-secondary text-xs">
-						Emoji Information
+					aria-labelledby="emoji-dialog-tones"
+					className="flex flex-col gap-3">
+					<h2 id="emoji-dialog-tones" className="text-fg-secondary text-xs">
+						Skin tone options
 					</h2>
-					<div className="border-soft overflow-hidden rounded-lg border">
-						<Table className="table-fixed text-[13px]">
-							<TableBody>
-								{details.map((detail) => (
-									<TableRow
-										key={detail.label}
-										className="group/row border-soft">
-										<TableCell className="bg-fill1 text-fg-secondary border-soft group-hover/row:bg-fill2 w-[30%] border-r px-3 py-2 text-[13px] font-medium whitespace-normal transition-colors">
-											{detail.label}
-										</TableCell>
-										<TableCell className="group-hover/row:bg-fill1 px-3 py-2 text-[13px] font-normal whitespace-normal transition-colors">
-											<div className="flex min-w-0 items-center gap-2">
-												<span className="min-w-0 flex-1 [overflow-wrap:anywhere] break-words">
-													<EmojiText emoji={emoji} text={detail.value} />
-												</span>
-												{detail.label !== "Skin Tone Support" && (
-													<EmojiCopyButton
-														emoji={emoji.emoji}
-														value={detail.value}
-														successLabel={detail.label}
-														size="32"
-														variant="ghost"
-														color="neutral"
-														className="text-fg-tertiary shrink-0 px-1"
-														aria-label={`Copy ${detail.label}`}>
-														<Copy />
-													</EmojiCopyButton>
-												)}
-											</div>
-										</TableCell>
-									</TableRow>
-								))}
-							</TableBody>
-						</Table>
+					<div className="flex flex-wrap gap-2">
+						{variants.map((variant) => (
+							<EmojiCopyButton
+								key={variant.label}
+								emoji={variant.emoji}
+								value={variant.emoji}
+								successLabel={variant.label}
+								size="32"
+								variant="outline"
+								color="neutral"
+								aria-label={`Copy ${variant.label}`}>
+								<span className="font-emoji text-xl" aria-hidden="true">
+									{variant.emoji}
+								</span>
+							</EmojiCopyButton>
+						))}
 					</div>
 				</section>
-				{variants.length > 0 && (
-					<section
-						aria-labelledby="emoji-dialog-tones"
-						className="flex flex-col gap-3">
-						<h2 id="emoji-dialog-tones" className="text-fg-secondary text-xs">
-							Skin tone options
-						</h2>
-						<div className="flex flex-wrap gap-2">
-							{variants.map((variant) => (
-								<EmojiCopyButton
-									key={variant.label}
-									emoji={variant.emoji}
-									value={variant.emoji}
-									successLabel={variant.label}
-									size="32"
-									variant="outline"
-									color="neutral"
-									aria-label={`Copy ${variant.label}`}>
-									<span className="font-emoji text-xl" aria-hidden="true">
-										{variant.emoji}
-									</span>
-								</EmojiCopyButton>
-							))}
-						</div>
-					</section>
-				)}
-				{related.length > 0 && (
-					<section
-						aria-labelledby="emoji-dialog-related"
-						className="flex min-w-0 flex-col gap-3">
-						<h2 id="emoji-dialog-related" className="text-fg-secondary text-xs">
-							Related {emoji.group} emoji
-						</h2>
-						<div
-							ref={setRelatedRow}
-							className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,44px),1fr))] gap-2 sm:grid-cols-[repeat(auto-fit,minmax(58px,1fr))]">
-							{related.slice(0, relatedCount).map((item) => (
-								<Button
-									key={item.slug}
-									size="32"
-									color="neutral"
-									variant="outline"
-									className="aspect-square h-auto w-full max-w-[58px] justify-self-center rounded-lg p-0"
-									aria-label={`View ${formatEmojiName(item.name)} emoji details`}
-									title={formatEmojiName(item.name)}
-									onClick={() => onSelectEmoji(item)}>
-									<span className="font-emoji text-2xl" aria-hidden="true">
-										{item.emoji}
-									</span>
-								</Button>
-							))}
-						</div>
-					</section>
-				)}
+			)}
+			{related.length > 0 && (
+				<section
+					aria-labelledby="emoji-dialog-related"
+					className="flex min-w-0 flex-col gap-3">
+					<h2 id="emoji-dialog-related" className="text-fg-secondary text-xs">
+						Related {emoji.group} emoji
+					</h2>
+					<div
+						ref={setRelatedRow}
+						className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,44px),1fr))] gap-2 sm:grid-cols-[repeat(auto-fit,minmax(58px,1fr))]">
+						{related.slice(0, relatedCount).map((item) => (
+							<Button
+								key={item.slug}
+								size="32"
+								color="neutral"
+								variant="outline"
+								className="aspect-square h-auto w-full max-w-[58px] justify-self-center rounded-lg p-0"
+								aria-label={`View ${formatEmojiName(item.name)} emoji details`}
+								title={formatEmojiName(item.name)}
+								onClick={() => onSelectEmoji(item)}>
+								<span className="font-emoji text-2xl" aria-hidden="true">
+									{item.emoji}
+								</span>
+							</Button>
+						))}
+					</div>
+				</section>
+			)}
+		</>
+	)
+	return mobile ? (
+		<Drawer
+			open={open}
+			onOpenChange={onOpenChange}
+			direction="left"
+			variant="default">
+			<DrawerContent className="h-dvh max-h-dvh w-full max-w-full gap-6 overflow-y-auto p-6 pb-[max(24px,env(safe-area-inset-bottom))] after:hidden!">
+				{content}
+			</DrawerContent>
+		</Drawer>
+	) : (
+		<Dialog open={open} onOpenChange={onOpenChange}>
+			<DialogContent className="max-h-[calc(100dvh-2rem)] gap-6 overflow-y-auto rounded-xl p-6 sm:max-w-[720px]">
+				{content}
 			</DialogContent>
 		</Dialog>
 	)

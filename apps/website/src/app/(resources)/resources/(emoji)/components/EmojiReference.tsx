@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { Card } from "@/registry/ui/card"
 import { Table, TableBody, TableCell, TableRow } from "@/registry/ui/table"
+import { EmojiFlagGuidance } from "./EmojiFlagGuidance"
 import { EmojiText } from "./EmojiText"
 import { EmojiSkinToneVariants } from "./EmojiSkinToneVariants"
 import {
@@ -93,6 +94,7 @@ export function EmojiReference({ emoji }: { emoji: EmojiData }) {
 					character sequence.
 				</p>
 			</section>
+			{emoji.group === "Flags" && <EmojiFlagGuidance />}
 			{emoji.skin_tone_support && (
 				<section className="flex flex-col gap-3">
 					<h2 className="text-lg font-semibold">{name} skin tone variants</h2>

@@ -1,6 +1,7 @@
 "use client"
 
 import type { ComponentProps } from "react"
+import { cacheCopiedEmojiSkinTone } from "@/lib/emoji/emoji-skin-tone"
 import { toast } from "sonner"
 import { Button } from "@/registry/ui/button"
 import { showEmojiToast } from "./EmojiToast"
@@ -24,6 +25,7 @@ export function EmojiCopyButton({
 	const copy = async () => {
 		try {
 			await navigator.clipboard.writeText(value)
+			if (value === emoji) cacheCopiedEmojiSkinTone(value)
 			showEmojiToast({
 				emoji,
 				description: `${successLabel} has been copied to your clipboard.`,

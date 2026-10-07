@@ -17,6 +17,11 @@ import {
 } from "lucide-react"
 import { useVirtualizer } from "@tanstack/react-virtual"
 import { toast } from "sonner"
+import {
+	cacheCopiedEmojiSkinTone,
+	emojiSkinToneEvent,
+	readEmojiSkinTone,
+} from "@/lib/emoji/emoji-skin-tone"
 import { cn } from "@/lib/utils"
 import { IconButton } from "@/registry/ui/button"
 import { Input, InputWrapper } from "@/registry/ui/input"
@@ -83,6 +88,18 @@ export default function PopoverEmojiPicker({
 			current = false
 		}
 	}, [])
+	useEffect(() => {
+		setTone(readEmojiSkinTone())
+		const syncTone = (event: Event) =>
+			setTone((event as CustomEvent<number>).detail)
+		const syncStorage = () => setTone(readEmojiSkinTone())
+		window.addEventListener(emojiSkinToneEvent, syncTone)
+		window.addEventListener("storage", syncStorage)
+		return () => {
+			window.removeEventListener(emojiSkinToneEvent, syncTone)
+			window.removeEventListener("storage", syncStorage)
+		}
+	}, [])
 	const available = supported ?? emojis
 	const byEmoji = useMemo(
 		() => new Map(available.map((item) => [item.emoji, item])),
@@ -119,6 +136,7 @@ export default function PopoverEmojiPicker({
 		const value = glyph(item)
 		try {
 			await navigator.clipboard.writeText(value)
+			cacheCopiedEmojiSkinTone(value)
 			const next = [
 				item.emoji,
 				...recent.filter((emoji) => emoji !== item.emoji),
