@@ -145,7 +145,8 @@ export function EmojiCopyActions({
 					value={emoji.emoji}
 					successLabel="Emoji text"
 					size="32"
-					variant="strong">
+					variant="strong"
+					className="max-sm:flex-auto">
 					Text
 				</EmojiCopyButton>
 				<EmojiCopyButton
@@ -153,12 +154,19 @@ export function EmojiCopyActions({
 					value={svgMarkup}
 					successLabel="SVG"
 					size="32"
-					variant="strong">
+					variant="strong"
+					className="max-sm:flex-auto">
 					SVG
 				</EmojiCopyButton>
 				<DropdownMenu>
-					<ButtonGroup size="32" color="primary" variant="strong">
-						<Button onClick={downloadPng}>PNG</Button>
+					<ButtonGroup
+						size="32"
+						color="primary"
+						variant="strong"
+						className="max-sm:flex-auto">
+						<Button className="max-sm:flex-1" onClick={downloadPng}>
+							PNG
+						</Button>
 						<DropdownMenuTrigger asChild>
 							<Button
 								aria-label={`PNG size: ${pngExportSize} pixels`}
@@ -181,8 +189,12 @@ export function EmojiCopyActions({
 					</DropdownMenuContent>
 				</DropdownMenu>
 				<DropdownMenu>
-					<ButtonGroup size="32" color="neutral" variant="outline">
-						<Button onClick={downloadSvg}>
+					<ButtonGroup
+						size="32"
+						color="neutral"
+						variant="outline"
+						className="max-sm:flex-auto">
+						<Button className="max-sm:flex-1" onClick={downloadSvg}>
 							<Download />
 							Download
 						</Button>
@@ -209,7 +221,8 @@ export function EmojiCopyActions({
 					successLabel="HTML"
 					size="32"
 					color="neutral"
-					variant="outline">
+					variant="outline"
+					className="max-sm:flex-auto">
 					HTML Code
 				</EmojiCopyButton>
 			</div>

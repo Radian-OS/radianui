@@ -1,6 +1,6 @@
 ---
 title: Manual Installation
-description: Set up Radian UI manually with Tailwind CSS v4, shared styles, emoji fonts, import aliases, and component configuration in Next.js or Vite.
+description: Set up Radian UI manually with Tailwind CSS v4, shared styles, import aliases, and component configuration in Next.js or Vite.
 ---
 
 Use this guide to configure an existing React and TypeScript project without running `radianui init`. The examples use a `src` directory, the default component style, and Lucide icons. If you prefer automatic setup, follow the [Next.js](/docs/installation/next) or [Vite](/docs/installation/vite) guide.
@@ -10,14 +10,14 @@ Use this guide to configure an existing React and TypeScript project without run
 Run this command from your project root:
 
 ```bash
-npm install class-variance-authority clsx tailwind-merge lucide-react tw-animate-css noto-color-emoji-flags @radix-ui/react-slot
+npm install class-variance-authority clsx tailwind-merge lucide-react tw-animate-css @radix-ui/react-slot
 ```
 
 <br />
-These packages provide component variants, class merging, icons, animations,
-emoji flag fonts, and the Slot primitive used by Button and Badge. Other
-components may need additional dependencies; install the packages listed in each
-component's manual installation instructions.
+These packages provide component variants, class merging, icons, animations, and
+the Slot primitive used by Button and Badge. Other components may need
+additional dependencies; install the packages listed in each component's manual
+installation instructions.
 
 The shared styles use Tailwind CSS v4 and `tw-animate-css`. You do not need `tailwindcss-animate` for this setup.
 
@@ -121,18 +121,7 @@ The global stylesheet already includes:
 ```css
 @import "tailwindcss";
 @import "tw-animate-css";
-@import "noto-color-emoji-flags";
 @import "./utility.css";
-```
-
-<br />
-It also includes the `font-emoji` utility. Use that class for emoji content,
-including flags that some platforms do not render with their default fonts:
-
-```tsx
-<span className="font-emoji" role="img" aria-label="Nepal flag">
-	🇳🇵
-</span>
 ```
 
 <br />
@@ -244,4 +233,3 @@ If something is missing:
 - **Unstyled components:** Check that the app imports your global stylesheet, Tailwind's build plugin is enabled, and `utility.css` sits beside the global stylesheet.
 - **Unresolved imports:** Make sure the `@/*` alias matches your directory structure. Vite needs the runtime alias in `vite.config.ts` too.
 - **Missing package or component:** Install the dependencies and supporting files listed on the component's documentation page.
-- **Missing flag emojis:** Verify that `noto-color-emoji-flags` is installed, the global stylesheet imports it, and the element uses `font-emoji`.

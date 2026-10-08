@@ -23,14 +23,6 @@ const resources: ResourceItem[] = [
 		link: "avatar",
 	},
 	{
-		title: "Popular Brand Logos",
-		description:
-			"20 popular brands with icons and wordmarks for light and dark interfaces.",
-		comingSoon: true,
-		lightUrl: "/media/assets-page/popular-brands-light.png",
-		darkUrl: "/media/assets-page/popular-brands-dark.png",
-	},
-	{
 		title: "Country Flags",
 		description:
 			"Over 250 flags from different nations in rectangular and circular shapes.",
@@ -40,20 +32,29 @@ const resources: ResourceItem[] = [
 		link: "flags",
 	},
 	{
+		title: "Emojis",
+		description:
+			"Browse 1,900+ Unicode emojis with copy-ready text and code snippets.",
+		comingSoon: false,
+		lightUrl: "/media/assets-page/emojis-light.png",
+		darkUrl: "/media/assets-page/emojis-dark.png",
+		link: "emoji",
+	},
+	{
+		title: "Popular Brand Logos",
+		description:
+			"20 popular brands with icons and wordmarks for light and dark interfaces.",
+		comingSoon: true,
+		lightUrl: "/media/assets-page/popular-brands-light.png",
+		darkUrl: "/media/assets-page/popular-brands-dark.png",
+	},
+	{
 		title: "Credit Cards",
 		description:
 			"Top credit card logos offered in light and dark color schemes.",
 		comingSoon: true,
 		lightUrl: "/media/assets-page/credit-cards-light.png",
 		darkUrl: "/media/assets-page/credit-cards-dark.png",
-	},
-	{
-		title: "Emojis",
-		description:
-			"Browse 1,900+ Unicode emojis with copy-ready text and code snippets.",
-		comingSoon: true,
-		lightUrl: "/media/assets-page/emojis-light.png",
-		darkUrl: "/media/assets-page/emojis-dark.png",
 	},
 	{
 		title: "File Format Icons",

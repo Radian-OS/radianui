@@ -102,25 +102,59 @@ A reaction bar with search, categories, skin tones, recent selections, and a vir
 	title="Emoji Reaction Picker"
 />
 
-Install `unicode-emoji-json` and `@tanstack/react-virtual` alongside the Popover, Input, Button, Scroll Area, and Sonner components. Radian CLI initialization includes the `noto-color-emoji-flags` package, its global font import, and the `font-emoji` utility. For older projects, install that font package and add `@import "noto-color-emoji-flags";` and the utility below to your global stylesheet.
+Install [`unicode-emoji-json`](https://www.npmjs.com/package/unicode-emoji-json) ([documentation](https://github.com/muan/unicode-emoji-json#readme)) and [`@tanstack/react-virtual`](https://www.npmjs.com/package/@tanstack/react-virtual) ([documentation](https://tanstack.com/virtual/latest/docs/framework/react/react-virtual)) alongside the Popover, Input, Button, Scroll Area, and Sonner components. For flag font support in this example, manually install [`noto-color-emoji-flags`](https://www.npmjs.com/package/noto-color-emoji-flags) ([documentation](https://github.com/malekpour/noto-color-emoji-flags#readme)) and add `@import "noto-color-emoji-flags";` and the utility below to your global stylesheet.
 
-<br/>
+<br />
+The font and CSS work together: `noto-color-emoji-flags` supplies country and
+subdivision flag glyphs that some platform fonts lack, especially on Windows,
+where flags can appear as two-letter codes. Its CSS import registers the web
+font; the `font-emoji` utility applies it to the picker and falls back to Apple,
+Segoe UI, or Noto emoji fonts for smileys, people, and other characters.
+Installing the package alone does not apply the font.
+<br />
+Keep the import before other CSS rules and use `font-emoji` on emoji elements,
+as this example does. This improves rendering across platforms, although newer
+emojis still depend on the browser and available system fonts. The flag subset
+does not provide every emoji or make their artwork identical across devices.
+This setup is added manually for the example; the CLI does not install the font
+or add these styles.
+
+<br />
+
 ```css
+@import "noto-color-emoji-flags";
+
 @utility font-emoji {
-  font-family: "Noto Color Emoji Flags", "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+	font-family:
+		"Noto Color Emoji Flags", "Apple Color Emoji", "Segoe UI Emoji",
+		"Noto Color Emoji", sans-serif;
 }
 ```
-<br/>
+
+<br />
 Copy these supporting files into `lib/emoji`:
-<br/>
-<ComponentSource src="lib/emoji/emoji-data.ts" title="lib/emoji/emoji-data.ts" collapsible />
-<br/>
-<ComponentSource src="lib/emoji/emoji-support.ts" title="lib/emoji/emoji-support.ts" collapsible />
-<ComponentSource src="lib/emoji/emoji-skin-tone.ts" title="lib/emoji/emoji-skin-tone.ts" collapsible />
-<br/>
+<br />
+<ComponentSource
+	src="lib/emoji/emoji-data.ts"
+	title="lib/emoji/emoji-data.ts"
+	collapsible
+/>
+<br />
+<ComponentSource
+	src="lib/emoji/emoji-support.ts"
+	title="lib/emoji/emoji-support.ts"
+	collapsible
+/>
+<br />
+<ComponentSource
+	src="lib/emoji/emoji-skin-tone.ts"
+	title="lib/emoji/emoji-skin-tone.ts"
+	collapsible
+/>
+<br />
 ### Emoji Picker with frimousse
 
-Lightweight and fast, focused on core emojis with minimal overhead. Best for
+[`frimousse`](https://www.npmjs.com/package/frimousse) ([documentation](https://frimousse.liveblocks.io)) is lightweight and fast, focused on core emojis with minimal overhead. Best for
 performance-sensitive UI.
 
 <br />
@@ -128,9 +162,10 @@ performance-sensitive UI.
 
 ### Emoji Picker with emoji-mart
 
-Feature-rich, with recents and category tabs. Best when functionality and
+[`@emoji-mart/react`](https://www.npmjs.com/package/@emoji-mart/react) and [`@emoji-mart/data`](https://www.npmjs.com/package/@emoji-mart/data) ([documentation](https://github.com/missive/emoji-mart#readme)) provide recents and category tabs. Best when functionality and
 browsing options are priorities.
 
+<br />
 <ComponentPreview path="popover/popover-emoji2" />
 
 ---
@@ -225,3 +260,4 @@ The floating panel that appears when the popover is open.
 		},
 	]}
 />
+```

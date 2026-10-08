@@ -15,7 +15,6 @@ import { createComponentsJson } from "@/utils/createComponentsJson"
 import { createUtilsFile } from "@/utils/createUtilsFile"
 import { installDependencies } from "@/utils/dependencyInstaller"
 import { type FrameworkName } from "@/utils/frameworks"
-import { ensureEmojiCss } from "@/utils/ensureEmojiCss"
 import { generateThemeCss } from "@/utils/generateCss"
 import { getConfig } from "@/utils/getConfig"
 import { getGlobalCssV4, getUtilityCssV4 } from "@/utils/getGlobalCss"
@@ -73,7 +72,7 @@ export async function executeInitFromConfig(config: InitConfig) {
 			]
 	await installDependencies(
 		projectPath,
-		[...new Set([...dependencies, "noto-color-emoji-flags"])],
+		dependencies,
 		"Installing dependencies"
 	)
 
@@ -189,8 +188,6 @@ async function applyCss(config: InitConfig, projectPath: string) {
 			await fs.writeFile(utilityCssPath, utilityCss, "utf-8")
 		}
 	}
-	const css = await fs.readFile(cssPath, "utf-8")
-	await fs.writeFile(cssPath, ensureEmojiCss(css), "utf-8")
 }
 
 // ── Components ────────────────────────────────────────────────────────────

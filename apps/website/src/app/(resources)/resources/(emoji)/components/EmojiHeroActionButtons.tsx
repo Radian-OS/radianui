@@ -10,20 +10,22 @@ export function EmojiHeroActionButtons() {
 			<Button
 				asChild
 				size="40"
-				className="bg-elevation-level1/20 dark:hover:bg-fill2/40 hover:bg-fill2/40 w-full backdrop-blur-md sm:w-fit"
+				className="bg-elevation-level1/20 dark:hover:bg-fill2/40 hover:bg-fill2/40 order-2 w-full backdrop-blur-md sm:order-1 sm:w-fit"
 				variant="outline"
 				color="neutral">
 				<Link href="/docs/getting-started/resources">Explore Resources</Link>
 			</Button>
-			<EmojiPickerPopover />
+			<div className="order-1 flex justify-center sm:order-2">
+				<EmojiPickerPopover />
+			</div>
 			<Button
 				asChild
 				size="40"
-				variant="outline"
-				color="neutral"
-				className="bg-elevation-level1/20 w-full backdrop-blur-md sm:w-fit">
+				variant="glossy"
+				color="primary"
+				className="order-3 w-full sm:w-fit">
 				<Link href="/docs/components/popover#emoji-reaction-picker">
-					Get this Code
+					Get Code
 				</Link>
 			</Button>
 		</>

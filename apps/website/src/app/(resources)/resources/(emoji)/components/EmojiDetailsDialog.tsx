@@ -2,9 +2,9 @@
 
 import { useEffect, useLayoutEffect, useState } from "react"
 
-import { Copy, X } from "lucide-react"
+import { Copy } from "lucide-react"
 import { Badge, BadgeDot } from "@/registry/ui/badge"
-import { Button, IconButton } from "@/registry/ui/button"
+import { Button } from "@/registry/ui/button"
 import {
 	Dialog,
 	DialogContent,
@@ -18,7 +18,6 @@ import {
 	DrawerHeader,
 	DrawerTitle,
 	DrawerDescription,
-	DrawerClose,
 } from "@/registry/ui/drawer"
 import { ScrollArea } from "@/registry/ui/scroll-area"
 import { Table, TableBody, TableCell, TableRow } from "@/registry/ui/table"
@@ -124,21 +123,12 @@ export function EmojiDetailsDialog({
 						<BadgeDot />
 						{emoji.group}
 					</Badge>
-					<Title className="gap-2 text-xl font-semibold [&>span]:min-w-0 [&>span]:break-words">
+					<Title
+						{...(!mobile ? { closeButton: false } : {})}
+						className="gap-2 text-xl font-semibold [&>span]:min-w-0 [&>span]:break-words">
 						{displayName}
 					</Title>
-					{mobile && (
-						<DrawerClose>
-							<IconButton
-								size="28"
-								variant="ghost"
-								color="neutral"
-								className="absolute top-4 right-4"
-								aria-label="Close emoji details">
-								<X />
-							</IconButton>
-						</DrawerClose>
-					)}
+
 					<Description className="sr-only">
 						Copy, download, and explore information about the {displayName}{" "}
 						emoji.
@@ -156,24 +146,31 @@ export function EmojiDetailsDialog({
 					<Table className="table-fixed text-[13px]">
 						<TableBody>
 							{details.map((detail) => (
-								<TableRow key={detail.label} className="group/row border-soft">
-									<TableCell className="bg-fill1 text-fg-secondary border-soft group-hover/row:bg-fill2 w-[30%] border-r px-3 py-2 text-[13px] font-medium whitespace-normal transition-colors">
+								<TableRow
+									key={detail.label}
+									className="border-soft [&:has(td):hover]:bg-transparent">
+									<TableCell
+										className="bg-fill1 text-fg-secondary border-soft w-[30%] truncate border-r px-3 py-[3px] text-[13px] font-medium"
+										title={detail.label}>
 										{detail.label}
 									</TableCell>
-									<TableCell className="group-hover/row:bg-fill1 px-3 py-2 text-[13px] font-normal whitespace-normal transition-colors">
-										<div className="flex min-w-0 items-center gap-2">
-											<span className="min-w-0 flex-1 [overflow-wrap:anywhere] break-words">
+									<TableCell className="px-3 py-[3px] text-[13px] font-normal whitespace-nowrap">
+										<div className="flex min-h-8 min-w-0 items-center gap-2">
+											<span
+												className="min-w-0 flex-1 truncate"
+												title={detail.value}>
 												<EmojiText emoji={emoji} text={detail.value} />
 											</span>
 											{detail.label !== "Skin Tone Support" && (
 												<EmojiCopyButton
+													iconOnly
 													emoji={emoji.emoji}
 													value={detail.value}
 													successLabel={detail.label}
 													size="32"
 													variant="ghost"
 													color="neutral"
-													className="text-fg-tertiary shrink-0 px-1"
+													className="text-fg-tertiary shrink-0"
 													aria-label={`Copy ${detail.label}`}>
 													<Copy />
 												</EmojiCopyButton>
@@ -247,9 +244,9 @@ export function EmojiDetailsDialog({
 		<Drawer
 			open={open}
 			onOpenChange={onOpenChange}
-			direction="left"
-			variant="default">
-			<DrawerContent className="h-dvh max-h-dvh w-full max-w-full gap-0 overflow-hidden p-0 after:hidden!">
+			direction="bottom"
+			variant="float">
+			<DrawerContent className="h-[90dvh] max-h-[90dvh] max-w-full gap-0 overflow-hidden p-0 after:hidden!">
 				<ScrollArea className="min-h-0 flex-1" type="auto">
 					<div className="relative flex flex-col gap-6 p-6 pb-[max(24px,env(safe-area-inset-bottom))]">
 						{content}

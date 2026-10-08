@@ -14,7 +14,7 @@ Run directly via npx (no install needed):
 npx radianui@latest init
 ```
 
-Then follow the prompts to choose framework, source directory, brand color, font, component style, and icon library. Initialization also installs shared global styles, the color palette, and the emoji flag font.
+Then follow the prompts to choose framework, source directory, brand color, font, component style, and icon library. Initialization also installs shared global styles and the color palette.
 
 ---
 

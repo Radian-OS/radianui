@@ -51,7 +51,6 @@ export const DEFAULT_ICON_LIBRARY: IconLibrary = "lucide"
 export const DEFAULT_USE_SRC_DIR = true
 export const MAX_PROJECT_NAME_LENGTH = 128
 export const PROJECT_DEPENDENCIES = [
-	"noto-color-emoji-flags",
 	"tw-animate-css",
 	"class-variance-authority",
 	"clsx",

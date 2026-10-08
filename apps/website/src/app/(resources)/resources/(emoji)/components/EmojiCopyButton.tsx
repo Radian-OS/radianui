@@ -3,13 +3,14 @@
 import type { ComponentProps } from "react"
 import { cacheCopiedEmojiSkinTone } from "@/lib/emoji/emoji-skin-tone"
 import { toast } from "sonner"
-import { Button } from "@/registry/ui/button"
+import { Button, IconButton } from "@/registry/ui/button"
 import { showEmojiToast } from "./EmojiToast"
 
 interface EmojiCopyButtonProps extends Omit<
 	ComponentProps<typeof Button>,
 	"onClick"
 > {
+	iconOnly?: boolean
 	value: string
 	emoji: string
 	successLabel: string
@@ -19,6 +20,7 @@ export function EmojiCopyButton({
 	value,
 	emoji,
 	successLabel,
+	iconOnly = false,
 	children,
 	...props
 }: EmojiCopyButtonProps) {
@@ -35,9 +37,10 @@ export function EmojiCopyButton({
 		}
 	}
 
+	const Component = iconOnly ? IconButton : Button
 	return (
-		<Button {...props} onClick={copy}>
+		<Component {...props} onClick={copy}>
 			{children}
-		</Button>
+		</Component>
 	)
 }

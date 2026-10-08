@@ -269,7 +269,7 @@ export default function PopoverEmojiPicker({
 				<div className="flex shrink-0 items-center gap-2 p-3">
 					<InputWrapper
 						size="32"
-						className="bg-fill1 min-w-0 flex-1 border-transparent has-[:focus-visible]:border-transparent has-[:focus-visible]:ring-0">
+						className="bg-fill1-alpha min-w-0 flex-1 border-transparent has-[:focus-visible]:border-transparent has-[:focus-visible]:ring-0">
 						<Search />
 						<Input
 							aria-label="Search emojis"
@@ -303,7 +303,7 @@ export default function PopoverEmojiPicker({
 							aria-pressed={category === "frequent"}
 							className={cn(
 								"text-fg-tertiary",
-								category === "frequent" && "bg-blue-accent/60 text-blue-text"
+								category === "frequent" && "bg-fill1"
 							)}
 							onClick={() => jump("frequent")}>
 							<History />
@@ -322,7 +322,7 @@ export default function PopoverEmojiPicker({
 								aria-pressed={category === group.slug}
 								className={cn(
 									"text-fg-tertiary",
-									category === group.slug && "bg-blue-accent/60 text-blue-text"
+									category === group.slug && "bg-fill1"
 								)}
 								onClick={() => jump(group.slug)}>
 								<Icon />
