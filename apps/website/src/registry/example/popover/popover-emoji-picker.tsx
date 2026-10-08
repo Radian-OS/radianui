@@ -303,7 +303,7 @@ export default function PopoverEmojiPicker({
 							aria-pressed={category === "frequent"}
 							className={cn(
 								"text-fg-tertiary",
-								category === "frequent" && "bg-fill1"
+								category === "frequent" && "bg-fill2!"
 							)}
 							onClick={() => jump("frequent")}>
 							<History />
@@ -322,7 +322,7 @@ export default function PopoverEmojiPicker({
 								aria-pressed={category === group.slug}
 								className={cn(
 									"text-fg-tertiary",
-									category === group.slug && "bg-fill1"
+									category === group.slug && "bg-fill2!"
 								)}
 								onClick={() => jump(group.slug)}>
 								<Icon />

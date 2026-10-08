@@ -6,7 +6,7 @@ import { EmojiPickerPopover } from "./EmojiPickerPopover"
 
 export function EmojiHeroActionButtons() {
 	return (
-		<>
+		<div className="grid w-full grid-cols-2 gap-3 sm:flex sm:w-auto sm:items-center">
 			<Button
 				asChild
 				size="40"
@@ -15,7 +15,7 @@ export function EmojiHeroActionButtons() {
 				color="neutral">
 				<Link href="/docs/getting-started/resources">Explore Resources</Link>
 			</Button>
-			<div className="order-1 flex justify-center sm:order-2">
+			<div className="order-1 col-span-2 flex justify-center sm:order-2">
 				<EmojiPickerPopover />
 			</div>
 			<Button
@@ -28,6 +28,6 @@ export function EmojiHeroActionButtons() {
 					Get Code
 				</Link>
 			</Button>
-		</>
+		</div>
 	)
 }

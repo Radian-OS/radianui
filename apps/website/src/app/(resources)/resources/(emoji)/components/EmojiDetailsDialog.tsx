@@ -245,9 +245,13 @@ export function EmojiDetailsDialog({
 			open={open}
 			onOpenChange={onOpenChange}
 			direction="bottom"
-			variant="float">
-			<DrawerContent className="h-[90dvh] max-h-[90dvh] max-w-full gap-0 overflow-hidden p-0 after:hidden!">
-				<ScrollArea className="min-h-0 flex-1" type="auto">
+			variant="float"
+			handle
+			scrollLockTimeout={0}>
+			<DrawerContent className="h-auto max-h-[90dvh] max-w-full gap-0 overflow-hidden p-0 pt-7 after:hidden!">
+				<ScrollArea
+					className="min-h-0 [&_[data-slot=scroll-area-viewport]]:max-h-[calc(90dvh-1.75rem)]"
+					type="auto">
 					<div className="relative flex flex-col gap-6 p-6 pb-[max(24px,env(safe-area-inset-bottom))]">
 						{content}
 					</div>
