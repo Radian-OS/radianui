@@ -740,7 +740,7 @@ export const sandboxComponents: SandboxComponentConfig[] = [
 		filesKey: "signup-12",
 		path: "src/app/sandbox/signup-12",
 		defaultFile: "page.tsx",
-		referenceUrl: "",
+		referenceUrl: "https://reui.io/preview/base/auth-1",
 		previewRoute: "/sandbox/signup-12",
 	},
 	{
@@ -750,7 +750,7 @@ export const sandboxComponents: SandboxComponentConfig[] = [
 		filesKey: "signup-13",
 		path: "src/app/sandbox/signup-13",
 		defaultFile: "page.tsx",
-		referenceUrl: "",
+		referenceUrl: "https://reui.io/preview/base/auth-5",
 		previewRoute: "/sandbox/signup-13",
 	},
 ]

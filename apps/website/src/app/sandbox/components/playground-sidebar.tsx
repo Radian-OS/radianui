@@ -151,9 +151,6 @@ export function PlaygroundSidebar({
 									)
 									if (items.length === 0) return null
 
-									const catPendingCount = pendingComments.filter((c) =>
-										items.some((item) => item.id === c.componentId)
-									).length
 									const CategoryIcon = category.icon
 
 									return (
@@ -182,7 +179,7 @@ export function PlaygroundSidebar({
 																<span>{category.label}</span>
 															</div>
 															<span className="bg-bg text-fg-secondary ml-auto rounded px-1.5 py-0.5 text-xs font-medium normal-case">
-																{catPendingCount}
+																{items.length}
 															</span>
 														</>
 													)}

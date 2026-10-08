@@ -5,7 +5,6 @@ import { AuthForm } from "./auth-form"
 import { AuthHeader } from "./auth-header"
 import { EditorialPanel } from "./editorial-panel"
 import { SocialButtons } from "./social-buttons"
-import { ThemeToggle } from "./theme-toggle"
 
 export const metadata: Metadata = {
 	title: "Sign up to ReUI — Auth 1 Sandbox",
@@ -16,9 +15,6 @@ export const metadata: Metadata = {
 export default function Auth1Page() {
 	return (
 		<div className="relative flex min-h-screen w-full items-center justify-center overflow-hidden">
-			{/* Theme Toggle Button for quick light/dark testing */}
-			<ThemeToggle />
-
 			{/* Animated Grid with Subtle Floating Boxes in Background */}
 			<AnimatedGridBackground />
 

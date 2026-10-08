@@ -52,40 +52,40 @@ export function GradientWave() {
 			{/* Blob 1: Luminous Electric Blue aura (upper right) */}
 			<div
 				ref={orb1Ref}
-				className="absolute -top-[10%] right-[5%] h-[580px] w-[580px] rounded-full blur-[96px] will-change-transform sm:right-[12%]"
+				className="absolute -top-[20%] -right-[10%] h-[1000px] w-[1000px] rounded-full blur-[140px] will-change-transform sm:-right-[5%] sm:h-[1300px] sm:w-[1300px] sm:blur-[180px]"
 				style={{
 					background:
-						"radial-gradient(circle at 45% 45%, color-mix(in oklab, var(--color-primary) 17%, transparent), color-mix(in oklab, var(--color-primary) 6%, transparent) 55%, transparent 75%)",
+						"radial-gradient(circle at 45% 45%, color-mix(in oklab, var(--color-primary) 10%, transparent), color-mix(in oklab, var(--color-primary) 4%, transparent) 70%, transparent 95%)",
 				}}
 			/>
 
 			{/* Blob 2: Radiant Violet / Purple aura (mid-left & center) */}
 			<div
 				ref={orb2Ref}
-				className="absolute top-[16%] left-[10%] h-[600px] w-[600px] rounded-full blur-[100px] will-change-transform sm:left-[22%]"
+				className="absolute top-[10%] -left-[10%] h-[1100px] w-[1100px] rounded-full blur-[150px] will-change-transform sm:-left-[5%] sm:h-[1400px] sm:w-[1400px] sm:blur-[200px]"
 				style={{
 					background:
-						"radial-gradient(circle at 50% 50%, color-mix(in oklab, var(--color-primary) 16%, transparent), color-mix(in oklab, var(--color-primary) 5%, transparent) 60%, transparent 80%)",
+						"radial-gradient(circle at 50% 50%, color-mix(in oklab, var(--color-primary) 9%, transparent), color-mix(in oklab, var(--color-primary) 3%, transparent) 75%, transparent 100%)",
 				}}
 			/>
 
 			{/* Blob 3: Soft Royal Blue aura (lower right & bottom) */}
 			<div
 				ref={orb3Ref}
-				className="absolute top-[48%] right-[15%] h-[560px] w-[560px] rounded-full blur-[96px] will-change-transform sm:right-[25%]"
+				className="absolute top-[40%] -right-[10%] h-[1000px] w-[1000px] rounded-full blur-[140px] will-change-transform sm:-right-[5%] sm:h-[1300px] sm:w-[1300px] sm:blur-[180px]"
 				style={{
 					background:
-						"radial-gradient(circle at 45% 45%, color-mix(in oklab, var(--color-primary) 14%, transparent), color-mix(in oklab, var(--color-primary) 5%, transparent) 55%, transparent 75%)",
+						"radial-gradient(circle at 45% 45%, color-mix(in oklab, var(--color-primary) 8%, transparent), color-mix(in oklab, var(--color-primary) 3%, transparent) 70%, transparent 95%)",
 				}}
 			/>
 
 			{/* Blob 4: Delicate Sky Blue accent (upper center & top-left) */}
 			<div
 				ref={orb4Ref}
-				className="absolute -top-[5%] left-[20%] h-[500px] w-[500px] rounded-full blur-[90px] will-change-transform sm:left-[35%]"
+				className="absolute -top-[15%] -left-[10%] h-[950px] w-[950px] rounded-full blur-[130px] will-change-transform sm:left-[10%] sm:h-[1200px] sm:w-[1200px] sm:blur-[170px]"
 				style={{
 					background:
-						"radial-gradient(circle at 50% 50%, color-mix(in oklab, var(--color-primary) 13%, transparent), color-mix(in oklab, var(--color-primary) 4%, transparent) 60%, transparent 75%)",
+						"radial-gradient(circle at 50% 50%, color-mix(in oklab, var(--color-primary) 7%, transparent), color-mix(in oklab, var(--color-primary) 2%, transparent) 75%, transparent 95%)",
 				}}
 			/>
 

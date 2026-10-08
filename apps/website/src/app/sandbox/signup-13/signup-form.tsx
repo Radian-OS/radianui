@@ -44,7 +44,7 @@ export function SignupForm() {
 
 	return (
 		<div className="border-border w-full rounded-2xl border p-1.5">
-			<Card className="bg-card border-border w-full gap-0 rounded-xl border py-0">
+			<Card className="bg-bg border-border w-full gap-0 rounded-xl border py-0">
 				<CardContent className="flex flex-col gap-7 p-6 sm:gap-8">
 					<div className="flex flex-col gap-2">
 						<CardTitle className="text-xl tracking-tight">
