@@ -8,77 +8,88 @@ description: Add dark mode to your Vite application
 <CodeCollapsibleWrapper>
 
 ```tsx showLineNumbers title="components/theme-provider.tsx"
-import { createContext, useContext, useEffect, useState } from "react"
+import {
+	createContext,
+	useContext,
+	useEffect,
+	useState,
+	type ReactNode,
+} from "react"
 
 type Theme = "dark" | "light" | "system"
+type ResolvedTheme = "dark" | "light"
 
 type ThemeProviderProps = {
-	children: React.ReactNode
+	children: ReactNode
 	defaultTheme?: Theme
 	storageKey?: string
 }
 
 type ThemeProviderState = {
 	theme: Theme
+	resolvedTheme: ResolvedTheme
 	setTheme: (theme: Theme) => void
 }
 
-const initialState: ThemeProviderState = {
-	theme: "system",
-	setTheme: () => null,
-}
-
-const ThemeProviderContext = createContext<ThemeProviderState>(initialState)
+const ThemeProviderContext = createContext<ThemeProviderState | undefined>(
+	undefined
+)
 
 export function ThemeProvider({
 	children,
 	defaultTheme = "system",
 	storageKey = "vite-ui-theme",
-	...props
 }: ThemeProviderProps) {
-	const [theme, setTheme] = useState<Theme>(
-		() => (localStorage.getItem(storageKey) as Theme) || defaultTheme
-	)
+	const [theme, setThemeState] = useState<Theme>(() => {
+		try {
+			const saved = localStorage.getItem(storageKey)
+			return saved === "light" || saved === "dark" || saved === "system"
+				? saved
+				: defaultTheme
+		} catch {
+			return defaultTheme
+		}
+	})
+	const [resolvedTheme, setResolvedTheme] = useState<ResolvedTheme>("light")
 
 	useEffect(() => {
-		const root = window.document.documentElement
-
-		root.classList.remove("light", "dark")
-
-		if (theme === "system") {
-			const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
-				.matches
-				? "dark"
-				: "light"
-
-			root.classList.add(systemTheme)
-			return
+		const media = window.matchMedia("(prefers-color-scheme: dark)")
+		const applyTheme = () => {
+			const resolved =
+				theme === "system" ? (media.matches ? "dark" : "light") : theme
+			const root = document.documentElement
+			root.classList.remove("light", "dark")
+			root.classList.add(resolved)
+			root.style.colorScheme = resolved
+			setResolvedTheme(resolved)
 		}
 
-		root.classList.add(theme)
+		applyTheme()
+		media.addEventListener("change", applyTheme)
+		return () => media.removeEventListener("change", applyTheme)
 	}, [theme])
 
-	const value = {
-		theme,
-		setTheme: (theme: Theme) => {
-			localStorage.setItem(storageKey, theme)
-			setTheme(theme)
-		},
+	const setTheme = (nextTheme: Theme) => {
+		try {
+			localStorage.setItem(storageKey, nextTheme)
+		} catch {
+			// Theme changes still work when browser storage is unavailable.
+		}
+		setThemeState(nextTheme)
 	}
 
 	return (
-		<ThemeProviderContext.Provider {...props} value={value}>
+		<ThemeProviderContext.Provider value={{ theme, resolvedTheme, setTheme }}>
 			{children}
 		</ThemeProviderContext.Provider>
 	)
 }
 
-export const useTheme = () => {
+export function useTheme() {
 	const context = useContext(ThemeProviderContext)
-
-	if (context === undefined)
+	if (context === undefined) {
 		throw new Error("useTheme must be used within a ThemeProvider")
-
+	}
 	return context
 }
 ```
@@ -94,8 +105,8 @@ import { ThemeProvider } from "@/components/theme-provider"
 
 function App() {
 	return (
-		<ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-			{children}
+		<ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
+			<main>Your application content</main>
 		</ThemeProvider>
 	)
 }
@@ -103,20 +114,24 @@ function App() {
 export default App
 ```
 
+Install the Button component if it is not already present: `npx radianui@latest add button`.
+
+The provider applies the `.dark` class used by the shared global styles and follows operating system theme changes when `theme` is `system`. The toggle uses `resolvedTheme` so it works for system mode too.
+
 ## Create a Theme Toggler
 
 ```tsx showLineNumbers title="components/theme-toggler.tsx"
 import { useEffect, useState } from "react"
 import { Loader2, MoonIcon, SunIcon } from "lucide-react"
 import { useTheme } from "@/components/theme-provider"
-import { Button, IconButton } from "@/components/ui/button"
+import { IconButton } from "@/components/ui/button"
 
 export function ThemeToggler() {
 	const [mounted, setMounted] = useState(false)
-	const { theme, setTheme } = useTheme()
+	const { resolvedTheme, setTheme } = useTheme()
 
 	const toggleTheme = () => {
-		setTheme(theme === "light" ? "dark" : "light")
+		setTheme(resolvedTheme === "light" ? "dark" : "light")
 	}
 
 	useEffect(() => {
@@ -125,15 +140,23 @@ export function ThemeToggler() {
 
 	if (!mounted) {
 		return (
-			<IconButton variant="outline" color="neutral" disabled>
-				<Loader2 className="size-5 animate-spin" />
+			<IconButton
+				variant="outline"
+				color="neutral"
+				aria-label="Loading theme"
+				disabled>
+				<Loader2 className="animate-spin" />
 			</IconButton>
 		)
 	}
 
 	return (
-		<IconButton variant="outline" color="neutral" onClick={toggleTheme}>
-			{theme === "light" ? <MoonIcon /> : <SunIcon />}
+		<IconButton
+			variant="outline"
+			color="neutral"
+			aria-label="Toggle color theme"
+			onClick={toggleTheme}>
+			{resolvedTheme === "light" ? <MoonIcon /> : <SunIcon />}
 		</IconButton>
 	)
 }
@@ -147,7 +170,7 @@ import { ThemeToggler } from "@/components/theme-toggler"
 export function NavigationBar() {
 	return (
 		<nav>
-			// ....
+			{/* Navigation content */}
 			<ThemeToggler />
 		</nav>
 	)

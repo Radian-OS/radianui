@@ -2,7 +2,6 @@ import {
 	ResourceToastPreview,
 	showResourceToast,
 } from "../../components/ResourceToast"
-import styles from "./emoji-font.module.css"
 
 export function showEmojiToast({
 	emoji,
@@ -19,7 +18,7 @@ export function showEmojiToast({
 		preview: (
 			<ResourceToastPreview>
 				<span
-					className={`${styles.emojiFont} text-[32px] leading-none`}
+					className={`font-emoji text-[32px] leading-none`}
 					aria-hidden="true">
 					{emoji}
 				</span>

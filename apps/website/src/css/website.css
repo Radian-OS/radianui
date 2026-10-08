@@ -1,4 +1,3 @@
-@import "noto-color-emoji-flags";
 @import "./rapid-dev/cursor-ide-card.css" layer(components);
 @import "./rapid-dev/figma-ui-card.css" layer(components);
 @import "./rapid-dev/library-docs-card.css" layer(components);
@@ -1657,9 +1656,4 @@
 	.card-6-reference-tile {
 		animation-play-state: paused;
 	}
-}
-
-/* Emoji font stack, including flag support on Windows and Chromium. */
-@utility font-emoji {
- font-family: "Noto Color Emoji Flags", "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", var(--font-body), sans-serif;
 }

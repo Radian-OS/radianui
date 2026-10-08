@@ -118,7 +118,7 @@ import { Spinner } from "@/components/ui/spinner"
 		{
 			question: "How do I change the speed of the rotation?",
 			answer:
-				"Open your tailwind.config.ts file. You can override the spin animation timing by modifying the animation key. For example, changing spin 1s linear infinite to spin 2s linear infinite will slow down the rotation for a more deliberate, sophisticated feel.",
+				"The default and simple variants use Tailwind v4's animate-spin utility. Set --animate-spin: spin 2s linear infinite in an @theme block in your global stylesheet to slow them down globally. The activity and wave variants define their own keyframes inside the component.",
 		},
 		{
 			question: "How do I correctly make this accessible?",

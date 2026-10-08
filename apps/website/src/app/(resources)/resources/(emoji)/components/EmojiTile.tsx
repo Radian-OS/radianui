@@ -4,7 +4,6 @@ import { Button } from "@/registry/ui/button"
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/registry/ui/tooltip"
 import type { EmojiData } from "./emoji-data"
 import { formatEmojiName, getEmojiPagePath } from "./emoji-data"
-import styles from "./emoji-font.module.css"
 
 export const EmojiTile = memo(function EmojiTile({
 	emoji,
@@ -39,7 +38,7 @@ export const EmojiTile = memo(function EmojiTile({
 							aria-label={`View ${displayName} emoji details`}>
 							<span className="sr-only">{displayName} emoji</span>
 							<span
-								className={`${styles.emojiFont} flex h-12 w-8 items-center justify-center text-[32px] leading-[48px]`}
+								className={`font-emoji flex h-12 w-8 items-center justify-center text-[32px] leading-[48px]`}
 								aria-hidden="true">
 								{emoji.emoji}
 							</span>

@@ -1,53 +1,170 @@
 ---
 title: Manual Installation
-description: Add dependencies to your project manually.
+description: Set up Radian UI manually with Tailwind CSS v4, shared styles, emoji fonts, import aliases, and component configuration in Next.js or Vite.
 ---
 
-{/* <Manual /> */}
+Use this guide to configure an existing React and TypeScript project without running `radianui init`. The examples use a `src` directory, the default component style, and Lucide icons. If you prefer automatic setup, follow the [Next.js](/docs/installation/next) or [Vite](/docs/installation/vite) guide.
 
-## Add Tailwind CSS
+## Install the shared dependencies
 
-Components are styled using Tailwind CSS. You need to install Tailwind CSS in your project.
-
-<br />
-{/* <Link href="https://tailwindcss.com/docs/installation" className="underline underline-offset-4" target="_blank" rel="noopener noreferrer">
-	Follow the Tailwind CSS installation instructions to get started.
-</Link> */}
-[Follow the Tailwind CSS installation instructions to get
-started.](https://tailwindcss.com/docs/installation)
-
-## Add dependencies
-
-Add the following dependencies to your project:
+Run this command from your project root:
 
 ```bash
-npm install tailwindcss-animate class-variance-authority clsx tailwind-merge lucide-react tw-animate-css
+npm install class-variance-authority clsx tailwind-merge lucide-react tw-animate-css noto-color-emoji-flags @radix-ui/react-slot
 ```
 
-## Configure path aliases
+<br />
+These packages provide component variants, class merging, icons, animations,
+emoji flag fonts, and the Slot primitive used by Button and Badge. Other
+components may need additional dependencies; install the packages listed in each
+component's manual installation instructions.
 
-Configure the path aliases in your tsconfig.json file.
+The shared styles use Tailwind CSS v4 and `tw-animate-css`. You do not need `tailwindcss-animate` for this setup.
 
-```json title="tsconfig.json" showLineNumbers
+## Configure Tailwind CSS
+
+Follow the section for your framework. If Tailwind v4 is already configured, keep your existing build configuration and continue to the shared styles below.
+
+### Next.js
+
+Install the Tailwind PostCSS integration:
+
+```bash
+npm install -D tailwindcss @tailwindcss/postcss postcss
+```
+
+Create or update `postcss.config.mjs`, preserving any other plugins your project needs:
+
+```js title="postcss.config.mjs"
+export default {
+	plugins: {
+		"@tailwindcss/postcss": {},
+	},
+}
+```
+
+See the [official Tailwind Next.js guide](https://tailwindcss.com/docs/installation/framework-guides/nextjs) for framework-specific setup.
+
+### Vite
+
+Install Tailwind and its Vite integration. The alias configuration below also needs Node.js types:
+
+```bash
+npm install -D tailwindcss @tailwindcss/vite @types/node
+```
+
+<br />
+Add the Tailwind plugin and resolve `@` to your source directory. Preserve any
+existing Vite plugins:
+
+```ts title="vite.config.ts"
+import { fileURLToPath, URL } from "node:url"
+import react from "@vitejs/plugin-react"
+import tailwindcss from "@tailwindcss/vite"
+import { defineConfig } from "vite"
+
+export default defineConfig({
+	plugins: [react(), tailwindcss()],
+	resolve: {
+		alias: {
+			"@": fileURLToPath(new URL("./src", import.meta.url)),
+		},
+	},
+})
+```
+
+<br />
+This example assumes the standard Vite React template with
+`@vitejs/plugin-react` installed. If you use a different React plugin, keep it
+instead.
+
+See the [official Tailwind Vite guide](https://tailwindcss.com/docs/installation/using-vite).
+
+## Configure TypeScript aliases
+
+Merge this configuration into `tsconfig.json`. For Vite projects with split TypeScript configuration, add it to `tsconfig.app.json` as well so the app compiler resolves component imports:
+
+```json title="tsconfig.json"
 {
 	"compilerOptions": {
 		"baseUrl": ".",
 		"paths": {
-			"@/*": ["./*"]
+			"@/*": ["./src/*"]
 		}
 	}
 }
 ```
 
-## Configure styles
+<br />
+For a project without `src`, use `"@/*": ["./*"]`. Update Vite's runtime alias
+to the same directory; TypeScript aliases alone do not configure Vite's module
+resolution.
 
-Add the following to your styles/globals.css file.
+## Add both shared stylesheets
 
+Copy the complete global stylesheet into `src/app/globals.css` for Next.js or `src/globals.css` for Vite:
+
+<br />
 <CodeCollapsibleFileWrapper file="globals.css" />
+<br />
+Copy the palette stylesheet into `utility.css` **in the same directory**. The
+global stylesheet imports it through `./utility.css`:
+<br />
+<CodeCollapsibleFileWrapper file="utility.css" />
+<br />
+The files are also available as [globals.css](/css/globals.css) and
+[utility.css](/css/utility.css). Copy these shared files; the website's
+`website.css` is not part of the project setup.
 
-## Add a cn helper
+The global stylesheet already includes:
 
-```tsx showLineNumbers title="lib/utils.ts"
+```css
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "noto-color-emoji-flags";
+@import "./utility.css";
+```
+
+<br />
+It also includes the `font-emoji` utility. Use that class for emoji content,
+including flags that some platforms do not render with their default fonts:
+
+```tsx
+<span className="font-emoji" role="img" aria-label="Nepal flag">
+	🇳🇵
+</span>
+```
+
+<br />
+Keep CSS imports at the top of the stylesheet. When merging into an existing
+file, include each import once and keep the Radian theme variables and color
+palette. Dark colors activate under a `.dark` ancestor; add that class to your
+root element through your theme controls when using dark mode.
+
+## Load the stylesheet in your app
+
+For Next.js App Router, import the stylesheet once in the root layout:
+
+```tsx title="src/app/layout.tsx"
+import "./globals.css"
+```
+
+<br />
+For Vite, import it in your entry file:
+
+```tsx title="src/main.tsx"
+import "./globals.css"
+```
+
+<br />
+These are additions to your existing files; keep your layout and application
+mounting code.
+
+## Add the cn helper
+
+Create `src/lib/utils.ts`:
+
+```ts title="src/lib/utils.ts" showLineNumbers
 import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
 
@@ -56,13 +173,19 @@ export function cn(...inputs: ClassValue[]) {
 }
 ```
 
-## Create a components.json file
+<br />
+For a project without `src`, create `lib/utils.ts` instead.
 
-Create the file in root of your project
+## Create components.json
 
-```json showLineNumbers title="components.json"
+Create this file at the project root, alongside `package.json`:
+
+```json title="components.json" showLineNumbers
 {
 	"$schema": "https://radianui.com/schema.json",
+	"style": "default",
+	"iconLibrary": "lucide",
+	"hasSrcDir": true,
 	"aliases": {
 		"components": "@/components",
 		"utils": "@/lib/utils",
@@ -70,9 +193,55 @@ Create the file in root of your project
 		"animated": "@/components/animated",
 		"lib": "@/lib",
 		"hooks": "@/hooks"
-	},
-	"hasSrcDir": true
+	}
 }
 ```
 
-Now you are good to go and you can add components.
+<br />
+Set `hasSrcDir` to `false` if your source files live at the project root. The
+aliases must match your TypeScript and framework configuration. Choose `sera`
+instead of `default` if you want that component style, and follow the selected
+components' source and dependency instructions.
+
+## Add your first component
+
+You can use the CLI to copy components after completing manual setup:
+
+```bash
+npx radianui@latest add button
+```
+
+<br />
+Or open the [Button manual installation
+instructions](/docs/components/button#installation), install its dependencies,
+and copy the component and its supporting files into your configured
+directories. Copying only the main component file is not enough when it imports
+other components such as Spinner.
+
+Then use the lowercase filename generated by the CLI:
+
+```tsx title="src/app/page.tsx"
+import { Button } from "@/components/ui/button"
+
+export default function Page() {
+	return (
+		<Button size="36" variant="strong">
+			Get started
+		</Button>
+	)
+}
+```
+
+<br />
+In Vite, the same component can be used in `src/App.tsx`.
+
+## Check the setup
+
+Start your app with `npm run dev` and confirm that the button has Radian styling. Run your project's build command before publishing.
+
+If something is missing:
+
+- **Unstyled components:** Check that the app imports your global stylesheet, Tailwind's build plugin is enabled, and `utility.css` sits beside the global stylesheet.
+- **Unresolved imports:** Make sure the `@/*` alias matches your directory structure. Vite needs the runtime alias in `vite.config.ts` too.
+- **Missing package or component:** Install the dependencies and supporting files listed on the component's documentation page.
+- **Missing flag emojis:** Verify that `noto-color-emoji-flags` is installed, the global stylesheet imports it, and the element uses `font-emoji`.

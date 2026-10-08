@@ -10,7 +10,6 @@ import {
 	formatEmojiName,
 	getEmojiMetadataDescription,
 } from "./emoji-data"
-import styles from "./emoji-font.module.css"
 
 const heroEmojis = ["🤩", "👻", "🔥"]
 
@@ -49,9 +48,7 @@ export function EmojiResourcePage({
 				initialSelectedEmoji && selectedName ? (
 					<>
 						{selectedName} Emoji{" "}
-						<span className={styles.emojiFont}>
-							{initialSelectedEmoji.emoji}
-						</span>
+						<span className="font-emoji">{initialSelectedEmoji.emoji}</span>
 					</>
 				) : (
 					"Copy and paste your favorite emojis"

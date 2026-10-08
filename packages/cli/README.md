@@ -14,7 +14,7 @@ Run directly via npx (no install needed):
 npx radianui@latest init
 ```
 
-Then follow the prompts to choose framework, src directory, brand color, and font.
+Then follow the prompts to choose framework, source directory, brand color, font, component style, and icon library. Initialization also installs shared global styles, the color palette, and the emoji flag font.
 
 ---
 
@@ -26,10 +26,10 @@ Initialize a new project or configure an existing one.
 
 ```bash
 # Create a new Vite React+TS app
-npx radianui init my-app --vite
+npx radianui@latest init my-app --vite
 
 # Create a new Next.js project
-npx radianui init --next
+npx radianui@latest init --next
 ```
 
 Notes:
@@ -44,16 +44,16 @@ Add UI components or blocks to your project. Resolves registry dependencies auto
 
 ```bash
 # Pick from an interactive list
-npx radianui add
+npx radianui@latest add
 
 # Add specific components
-npx radianui add button card alert
+npx radianui@latest add button card alert
 
 # Add all UI components
-npx radianui add --all
+npx radianui@latest add --all
 
 # Overwrite existing files without prompts
-npx radianui add button --overwrite
+npx radianui@latest add button --overwrite
 ```
 
 Behavior:
@@ -61,6 +61,36 @@ Behavior:
 - If no project is detected, you'll be prompted to create one before adding components.
 - Files are created under your configured aliases (see `components.json`).
 - When adding blocks, required assets are downloaded into `public/` automatically.
+
+### `add-asset`
+
+Download country flags into your project's public assets directory:
+
+```bash
+npx radianui@latest add-asset flag US GB NP
+npx radianui@latest add-asset flag --all
+```
+
+### `search`
+
+Find components and blocks by name or description:
+
+```bash
+npx radianui@latest search dialog
+npx radianui@latest search sidebar --filter block --limit 5
+```
+
+### `info`
+
+Inspect project configuration and installed components:
+
+```bash
+npx radianui@latest info
+npx radianui@latest info --json
+```
+
+`init` also supports `--preset <code>`, `--style default|sera`, and
+`--icon-library lucide|hugeicons`. See the full CLI reference for all options.
 
 ---
 
@@ -70,7 +100,7 @@ Beyond components, Radian provides free, ready-to-use design assets:
 
 - **[Figma Design System](https://www.figma.com/design/ZB8gTZwafZOYY7rdJjSRz6/%E2%9D%96-Preview-%E2%9D%96-Radian-Design-System-%E2%9D%96-Version-0.3)** — The full component library as an editable Figma file, kept in sync with the code
 - **[UI Avatars](https://radianui.com/resources/avatar)** — 216+ free, royalty free avatar illustrations, available as SVG, PNG, HTML embed, or a matching Figma frame
-- **[Full resource hub](https://radianui.com/docs/getting-started/resources)** — Browse everything in one place; more asset packs (brand logos, flags, file icons, emojis) are actively in progress
+- **[Full resource hub](https://radianui.com/docs/getting-started/resources)** — Browse everything in one place; including the available flags and emoji collections
 
 ---
 

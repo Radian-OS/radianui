@@ -158,7 +158,7 @@ import { toast } from "sonner"
 		{
 			question: "Why aren't the toasts animating correctly?",
 			answer:
-				"Sonner relies on standard Tailwind CSS keyframes for its smooth entry and exit transitions. Ensure your tailwind.config.ts includes the necessary animation and keyframe definitions provided during the CLI installation. If these are missing, the toasts may simply appear or vanish without the smooth sliding effect.",
+				"Sonner includes its own toast animations and does not require Tailwind configuration keyframes. Check that Sonner's styles are loaded and that application CSS does not override its transition or animation rules.",
 		},
 	]}
 />

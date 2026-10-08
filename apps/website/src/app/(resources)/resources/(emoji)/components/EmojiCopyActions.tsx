@@ -35,7 +35,6 @@ import {
 	getEmojiUnicodeEscape,
 	getEmojiUriEncoded,
 } from "./emoji-data"
-import styles from "./emoji-font.module.css"
 
 const legibilitySizes = [16, 24, 32, 48, 64] as const
 const svgExportSize = 512
@@ -316,7 +315,7 @@ export function EmojiCopyActions({
 							key={size}
 							className="border-soft flex min-h-28 flex-col items-center justify-center gap-3 border-r border-b p-4 last:border-r-0 sm:border-b-0">
 							<span
-								className={styles.emojiFont}
+								className="font-emoji"
 								style={{
 									fontSize: size,
 									lineHeight: `${Math.max(size, 24)}px`,

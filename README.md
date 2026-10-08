@@ -74,7 +74,7 @@ pnpm dlx radianui@latest add button
 
 The component source is added directly to your project, giving you full control over customization and implementation.
 
-**[Read the installation documentation →](https://radianui.com/docs/getting-started/introduction)**
+**[Read the installation documentation →](https://radianui.com/docs/getting-started/installation)**
 
 ---
 
@@ -84,7 +84,7 @@ Explore the complete Radian UI documentation for installation guides, components
 
 ### Documentation
 
-**https://radianui.com/documentation**
+**https://radianui.com/docs/getting-started/introduction**
 
 Explore:
 
@@ -205,18 +205,12 @@ Available workflows include:
 - Next.js
 - Figma
 
-### More resources are coming
+### Flags and emojis
 
-The Radian UI resource library is growing and is designed to include assets such as:
+- **[Country flags](https://radianui.com/resources/flags)** — Browse flags and download assets for your project.
+- **[Emojis](https://radianui.com/resources/emoji)** — Search, copy, and download emojis with Unicode information and skin tone support.
 
-- 🏢 Popular brand logos
-- 🌍 Country flags
-- 💳 Credit card icons
-- 😀 Emojis
-- 👤 UI avatars
-- And more
-
-> Some resource collections are still being developed. Check the Resources page for the latest available assets.
+Visit the [Resources hub](https://radianui.com/docs/getting-started/resources) for all available collections.
 
 ---
 
@@ -290,7 +284,7 @@ You are free to use, modify, and distribute Radian UI in personal and commercial
 
 **Beautiful React components, a complete Figma design system, UI blocks, and free design resources.**
 
-[Website](https://radianui.com) · [Docs](https://radianui.com/documentation) · [Figma](https://www.figma.com/design/ZB8gTZwafZOYY7rdJjSRz6/%E2%9D%96-Preview-%E2%9D%96-Radian-Design-System-%E2%9D%96-Version-0.3?t=gjwvT9g2QCeoST8E-0) · [Resources](https://radianui.com/docs/getting-started/resources) · [GitHub](https://github.com/Radian-os/radianui)
+[Website](https://radianui.com) · [Docs](https://radianui.com/docs/getting-started/introduction) · [Figma](https://www.figma.com/design/ZB8gTZwafZOYY7rdJjSRz6/%E2%9D%96-Preview-%E2%9D%96-Radian-Design-System-%E2%9D%96-Version-0.3?t=gjwvT9g2QCeoST8E-0) · [Resources](https://radianui.com/docs/getting-started/resources) · [GitHub](https://github.com/Radian-os/radianui)
 
 <br />
 

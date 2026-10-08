@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import "noto-color-emoji-flags";
 @import "./utility.css";
 
 @custom-variant dark (&:is(.dark *));
@@ -361,4 +362,9 @@
 		display: none;
 		/* Chrome, Safari and Opera */
 	}
+}
+
+/* Emoji font stack, including flag support on Windows and Chromium. */
+@utility font-emoji {
+ font-family: "Noto Color Emoji Flags", "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", var(--font-body, sans-serif);
 }
