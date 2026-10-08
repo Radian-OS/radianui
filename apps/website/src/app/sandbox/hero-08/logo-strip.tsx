@@ -70,12 +70,12 @@ const brandLogos: BrandLogo[] = [
 	},
 ]
 
-export function LogoStrip({ delay = 1.15 }: { delay?: number }) {
+export function LogoStrip({ delay = 0.3 }: { delay?: number }) {
 	return (
 		<motion.div
-			initial={{ opacity: 0, y: 12 }}
-			animate={{ opacity: 1, y: 0 }}
-			transition={{ duration: 0.5, delay, ease: [0.16, 1, 0.3, 1] }}
+			initial={{ opacity: 0, filter: "blur(10px)", y: 30 }}
+			animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+			transition={{ duration: 0.55, delay, ease: [0.16, 1, 0.3, 1] }}
 			className="border-border/60 bg-bg w-full cursor-default border-t border-b select-none">
 			<div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8">
 				<div className="flex items-center overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] xl:overflow-visible [&::-webkit-scrollbar]:hidden">

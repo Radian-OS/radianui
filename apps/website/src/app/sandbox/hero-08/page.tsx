@@ -1,6 +1,5 @@
 import React from "react"
 import type { Metadata } from "next"
-import { AnnouncementBanner } from "./announcement-banner"
 import { HeroSection } from "./hero-section"
 import { LogoStrip } from "./logo-strip"
 import { Navbar } from "./navbar"

@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import { ChevronLeft, ChevronRight, Info } from "lucide-react"
 import { motion, AnimatePresence } from "motion/react"
 import { Card, CardContent } from "@/styles/default/ui/card"
@@ -51,30 +51,102 @@ const CATEGORIES: CategoryMetric[] = [
 // Exactly 37 vertical bars matching the reference design
 const TOTAL_BARS = 37
 
-export function RevenueCategoryCard({
-	className = "",
-	delay = 1.1,
-}: {
-	className?: string
-	delay?: number
-}) {
-	const [currentIndex, setCurrentIndex] = useState(0)
-	const [isLoaded, setIsLoaded] = useState(false)
+function useAnimatedCounter(
+	target: number,
+	isStarted: boolean,
+	isFullyInitialized: boolean
+) {
+	const [value, setValue] = useState(0)
+	const prevValRef = useRef(0)
 
 	useEffect(() => {
-		// Delay bar fill slightly so the card entrance settles first
-		const timer = setTimeout(
+		if (!isStarted) return
+
+		const startVal = isFullyInitialized ? prevValRef.current : 0
+		const endVal = target
+		const duration = isFullyInitialized ? 200 : 380
+		let startTime: number | null = null
+		let animId: number
+
+		const step = (timestamp: number) => {
+			if (!startTime) startTime = timestamp
+			const elapsed = timestamp - startTime
+			const progress = Math.min(elapsed / duration, 1)
+			// Smooth ease-out quad for brisk, lively count-up
+			const ease = 1 - Math.pow(1 - progress, 2.5)
+			const current = Math.round(startVal + (endVal - startVal) * ease)
+			setValue(current)
+
+			if (progress < 1) {
+				animId = requestAnimationFrame(step)
+			} else {
+				prevValRef.current = endVal
+			}
+		}
+
+		animId = requestAnimationFrame(step)
+		return () => cancelAnimationFrame(animId)
+	}, [target, isStarted, isFullyInitialized])
+
+	return isStarted ? value : 0
+}
+
+export function RevenueCategoryCard({
+	className = "",
+	cardEntranceDelay = 0.8,
+}: {
+	className?: string
+	cardEntranceDelay?: number
+}) {
+	const [currentIndex, setCurrentIndex] = useState(0)
+	const [cardSettled, setCardSettled] = useState(false)
+	const [chartActive, setChartActive] = useState(false)
+	const [footerActive, setFooterActive] = useState(false)
+	const [isFullyInitialized, setIsFullyInitialized] = useState(false)
+
+	useEffect(() => {
+		// 1. As the card lands, immediately start counter and bar fill with zero pause at 0%
+		const startTimer = setTimeout(
 			() => {
-				setIsLoaded(true)
+				setCardSettled(true)
+				setChartActive(true)
 			},
-			Math.round((delay + 0.15) * 1000)
+			Math.round((cardEntranceDelay + 0.28) * 1000)
 		)
-		return () => clearTimeout(timer)
-	}, [delay])
+
+		// 2. Revenue numbers highlight as bars and counter finish
+		const footerTimer = setTimeout(
+			() => {
+				setFooterActive(true)
+			},
+			Math.round((cardEntranceDelay + 0.68) * 1000)
+		)
+
+		// 3. Mark full initial sequence as complete
+		const initTimer = setTimeout(
+			() => {
+				setIsFullyInitialized(true)
+			},
+			Math.round((cardEntranceDelay + 0.85) * 1000)
+		)
+
+		return () => {
+			clearTimeout(startTimer)
+			clearTimeout(footerTimer)
+			clearTimeout(initTimer)
+		}
+	}, [cardEntranceDelay])
 
 	const currentCategory = CATEGORIES[currentIndex]
 	const activeBarsCount = Math.round(
 		(currentCategory.percentage / 100) * TOTAL_BARS
+	)
+
+	// Animated count-up for percentage
+	const displayedPercentage = useAnimatedCounter(
+		currentCategory.percentage,
+		cardSettled,
+		isFullyInitialized
 	)
 
 	const handlePrev = (e: React.MouseEvent) => {
@@ -89,17 +161,17 @@ export function RevenueCategoryCard({
 
 	return (
 		<motion.div
-			initial={{ opacity: 0, y: 14 }}
-			animate={{ opacity: 1, y: 0 }}
+			initial={{ opacity: 0, x: 60 }}
+			animate={{ opacity: 1, x: 0 }}
 			transition={{
-				duration: 0.5,
-				delay,
+				duration: 0.42,
+				delay: cardEntranceDelay,
 				ease: [0.16, 1, 0.3, 1],
 			}}
 			className={`w-[336px] select-none sm:w-[346px] ${className}`}>
 			<Card className="gap-0 rounded-[20px] border border-neutral-200/90 bg-white p-4.5 shadow-[0_12px_32px_rgba(0,0,0,0.08)] transition-shadow sm:p-5 dark:border-neutral-800 dark:bg-neutral-900 dark:shadow-[0_16px_40px_rgba(0,0,0,0.45)]">
 				<CardContent className="flex flex-col gap-2.5 p-0">
-					{/* Header Row */}
+					{/* Header Row — Visible with card content */}
 					<div className="flex items-center justify-between">
 						<div className="flex items-center gap-1.5">
 							<span className="text-[13.5px] leading-none font-medium text-neutral-700 dark:text-neutral-300">
@@ -132,19 +204,11 @@ export function RevenueCategoryCard({
 						</Button>
 					</div>
 
-					{/* Metrics Stat Row */}
+					{/* Metrics Stat Row — Visible with card, counter counts up briskly without pause */}
 					<div className="flex items-baseline gap-2 pt-0.5">
-						<AnimatePresence mode="wait" initial={false}>
-							<motion.span
-								key={`stat-${currentCategory.id}`}
-								initial={{ opacity: 0, y: 3 }}
-								animate={{ opacity: 1, y: 0 }}
-								exit={{ opacity: 0, y: -3 }}
-								transition={{ duration: 0.15 }}
-								className="text-[28px] leading-none font-bold tracking-tight text-neutral-950 sm:text-[30px] dark:text-white">
-								{currentCategory.percentage}%
-							</motion.span>
-						</AnimatePresence>
+						<span className="text-[28px] leading-none font-bold tracking-tight text-neutral-950 sm:text-[30px] dark:text-white">
+							{displayedPercentage}%
+						</span>
 
 						<AnimatePresence mode="wait" initial={false}>
 							<motion.span
@@ -163,7 +227,7 @@ export function RevenueCategoryCard({
 						</span>
 					</div>
 
-					{/* Thin Vertical Segmented Progress Bars (37 Bars stretching edge-to-edge) */}
+					{/* 37 Segmented Bar Slots — Visible tracks, purple bars fill from left to right */}
 					<div
 						className="my-0.5 flex h-[26px] w-full items-end gap-[2px] py-1 sm:gap-[2.5px]"
 						role="meter"
@@ -175,32 +239,28 @@ export function RevenueCategoryCard({
 							const isActive = idx < activeBarsCount
 
 							return (
-								<motion.div
+								<div
 									key={`bar-${currentCategory.id}-${idx}`}
-									initial={{ scaleY: 0 }}
-									animate={{ scaleY: isLoaded ? 1 : 0 }}
-									whileHover={{
-										y: -3.5,
-										transition: { duration: 0.12, ease: "easeOut" },
-									}}
-									whileTap={{ scaleY: 0.95 }}
-									transition={{
-										duration: 0.35,
-										delay: idx * 0.008,
-										ease: [0.16, 1, 0.3, 1],
-									}}
-									style={{ originY: 1 }}
-									className={`h-[22px] min-w-0 flex-1 cursor-pointer rounded-[1.5px] transition-colors sm:h-[24px] ${
-										isActive
-											? "bg-primary hover:bg-primary/90"
-											: "bg-neutral-200/90 hover:bg-neutral-300 dark:bg-neutral-800 dark:hover:bg-neutral-700"
-									}`}
-								/>
+									className="relative h-[22px] min-w-0 flex-1 overflow-hidden rounded-[1.5px] bg-neutral-200/80 sm:h-[24px] dark:bg-neutral-800">
+									{isActive && (
+										<motion.div
+											initial={{ scaleY: 0 }}
+											animate={{ scaleY: chartActive ? 1 : 0 }}
+											style={{ originY: 1 }}
+											transition={{
+												duration: 0.25,
+												delay: isFullyInitialized ? 0 : idx * 0.011,
+												ease: [0.16, 1, 0.3, 1],
+											}}
+											className="bg-primary hover:bg-primary/90 size-full rounded-[1.5px] transition-colors"
+										/>
+									)}
+								</div>
 							)
 						})}
 					</div>
 
-					{/* Bottom Footer Row */}
+					{/* Bottom Footer Row — Visible with card, revenue numbers highlight after bars fill */}
 					<div className="flex items-center justify-between pt-0.5">
 						{/* Category Selector with Chevrons */}
 						<div className="flex items-center gap-2">
@@ -236,8 +296,11 @@ export function RevenueCategoryCard({
 							</div>
 						</div>
 
-						{/* Total Revenue & Change */}
-						<div className="flex items-center gap-1.5 text-[12.5px] font-medium">
+						{/* Total Revenue & Change Numbers */}
+						<motion.div
+							animate={footerActive ? { scale: [1, 1.05, 1] } : { scale: 1 }}
+							transition={{ duration: 0.35, ease: "easeOut" }}
+							className="flex items-center gap-1.5 text-[12.5px] font-medium">
 							<AnimatePresence mode="wait" initial={false}>
 								<motion.span
 									key={`tot-rev-${currentCategory.id}`}
@@ -261,7 +324,7 @@ export function RevenueCategoryCard({
 									{currentCategory.totalChange}
 								</motion.span>
 							</AnimatePresence>
-						</div>
+						</motion.div>
 					</div>
 				</CardContent>
 			</Card>

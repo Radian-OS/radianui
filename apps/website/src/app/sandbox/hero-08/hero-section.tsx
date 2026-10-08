@@ -4,12 +4,10 @@ import React from "react"
 import { ArrowUpRight, CheckCircle2 } from "lucide-react"
 import Image from "next/image"
 import { motion } from "motion/react"
-import { Badge } from "@/styles/default/ui/badge"
 import { Button } from "@/styles/default/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/styles/default/ui/avatar"
 import { RevenueCategoryCard } from "./revenue-category-card"
 
-// Utility function to get the initials of a name
 function getInitials(name: string) {
 	const parts = name.trim().split(" ")
 	if (parts.length === 1) {
@@ -67,30 +65,29 @@ export function HeroSection() {
 				<div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-8 xl:gap-10">
 					{/* Left Column: Hero Content */}
 					<div className="border-border/60 relative flex flex-col justify-center lg:col-span-6 lg:border-l lg:pl-10 xl:col-span-6 xl:pl-14">
-						{/* Stage 0: Vertical Accent Line — Animates first before everything else */}
+						{/* Vertical Accent Line */}
 						<motion.div
 							aria-hidden="true"
 							initial={{ scaleY: 0, opacity: 0 }}
 							animate={{ scaleY: 1, opacity: 1 }}
 							transition={{
 								duration: 0.45,
-								delay: 0.02,
+								delay: 0.05,
 								ease: [0.16, 1, 0.3, 1],
 							}}
 							style={{ originY: 0 }}
 							className="bg-primary absolute top-1 -left-[1.25px] hidden h-[175px] w-[2.5px] rounded-full sm:h-[180px] lg:block lg:h-[185px]"
 						/>
 
-						{/* Stage 1: Headline Block (Tag pill badge + Heading) */}
+						{/* 1. Badge — Blur fade-up from down */}
 						<motion.div
-							initial={{ opacity: 0, y: 14, filter: "blur(4px)" }}
-							animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+							initial={{ opacity: 0, filter: "blur(10px)", y: 30 }}
+							animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
 							transition={{
-								duration: 0.5,
-								delay: 0.1,
+								duration: 0.55,
+								delay: 0.08,
 								ease: [0.16, 1, 0.3, 1],
 							}}>
-							{/* Tag Pill Badge — NEW has a white background with primary text */}
 							<div className="border-border/40 mb-5 flex w-fit items-center gap-2 rounded-full border bg-neutral-100/90 py-1 pr-3.5 pl-1.5 transition-colors dark:bg-neutral-800/80">
 								<span className="text-primary rounded-full bg-white px-2 py-0.5 text-[10px] font-bold tracking-wider uppercase shadow-xs dark:bg-neutral-900">
 									NEW
@@ -99,8 +96,17 @@ export function HeroSection() {
 									All-in-one analytics for growth
 								</span>
 							</div>
+						</motion.div>
 
-							{/* Main Heading — Exactly 3 lines, 56px, 550 weight */}
+						{/* 2. Headline — Blur fade-up from down */}
+						<motion.div
+							initial={{ opacity: 0, filter: "blur(10px)", y: 30 }}
+							animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+							transition={{
+								duration: 0.55,
+								delay: 0.12,
+								ease: [0.16, 1, 0.3, 1],
+							}}>
 							<h1
 								style={{ fontWeight: 550 }}
 								className="text-fg mb-5 max-w-[530px] text-4xl leading-[1.1] font-[550] tracking-[-0.03em] sm:text-5xl lg:text-[56px] xl:max-w-[560px]">
@@ -108,22 +114,30 @@ export function HeroSection() {
 							</h1>
 						</motion.div>
 
-						{/* Stage 2: Subtext Block (Description + Feature Bullet Points) */}
+						{/* 3. Description — Blur fade-up from down */}
 						<motion.div
-							initial={{ opacity: 0, y: 14, filter: "blur(4px)" }}
-							animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+							initial={{ opacity: 0, filter: "blur(10px)", y: 30 }}
+							animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
 							transition={{
-								duration: 0.5,
-								delay: 0.35,
+								duration: 0.55,
+								delay: 0.16,
 								ease: [0.16, 1, 0.3, 1],
 							}}>
-							{/* Subheading — 16px font size in ONE single uniform color */}
 							<p className="mb-7 max-w-[480px] text-[16px] leading-relaxed text-neutral-600 dark:text-neutral-400">
 								Monitor income, forecast trends, and categorize expenses across
 								every account — all in real time.
 							</p>
+						</motion.div>
 
-							{/* Bullet Points List — Primary check circle matching button color */}
+						{/* 4. Feature List — Blur fade-up from down */}
+						<motion.div
+							initial={{ opacity: 0, filter: "blur(10px)", y: 30 }}
+							animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+							transition={{
+								duration: 0.55,
+								delay: 0.2,
+								ease: [0.16, 1, 0.3, 1],
+							}}>
 							<div className="mb-8 flex flex-col gap-3.5">
 								{featureBulletPoints.map((text) => (
 									<div key={text} className="flex items-center gap-3">
@@ -139,16 +153,15 @@ export function HeroSection() {
 							</div>
 						</motion.div>
 
-						{/* Stage 3: CTA & Social Proof Rating Block */}
+						{/* 5. Buttons — Blur fade-up from down */}
 						<motion.div
-							initial={{ opacity: 0, y: 14, filter: "blur(4px)" }}
-							animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+							initial={{ opacity: 0, filter: "blur(10px)", y: 30 }}
+							animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
 							transition={{
-								duration: 0.5,
-								delay: 0.6,
+								duration: 0.55,
+								delay: 0.24,
 								ease: [0.16, 1, 0.3, 1],
 							}}>
-							{/* CTA Buttons — 40px height matching Radian UI size="40" */}
 							<div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-center">
 								<Button
 									variant="strong"
@@ -166,31 +179,38 @@ export function HeroSection() {
 									Talk to finance team
 								</Button>
 							</div>
+						</motion.div>
 
-							{/* Social Proof Row — Canonical Radian UI AvatarGroup */}
-							<div className="flex flex-wrap items-center gap-4 sm:gap-5">
-								<div className="flex -space-x-2.5">
-									{socialProofAvatars.map((avatar) => (
-										<Avatar
-											key={avatar.id}
-											size="32"
-											rounded="circle"
-											className="border-bg bg-bg shrink-0 border-2 contrast-110 grayscale">
-											<AvatarImage src={avatar.src} alt={avatar.alt} />
-											<AvatarFallback className="text-xs font-semibold">
-												{getInitials(avatar.alt)}
-											</AvatarFallback>
-										</Avatar>
-									))}
+						{/* 6. Social Proof Section — Blur fade-up from down */}
+						<motion.div
+							initial={{ opacity: 0, filter: "blur(10px)", y: 30 }}
+							animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+							transition={{
+								duration: 0.55,
+								delay: 0.28,
+								ease: [0.16, 1, 0.3, 1],
+							}}>
+							<div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
+								{socialProofAvatars.map((avatar) => (
 									<Avatar
+										key={avatar.id}
 										size="32"
 										rounded="circle"
-										className="border-bg shrink-0 border-4 hover:z-10">
+										className="border-bg bg-bg shrink-0 border-2 contrast-110 grayscale">
+										<AvatarImage src={avatar.src} alt={avatar.alt} />
 										<AvatarFallback className="text-xs font-semibold">
-											+9
+											{getInitials(avatar.alt)}
 										</AvatarFallback>
 									</Avatar>
-								</div>
+								))}
+								<Avatar
+									size="32"
+									rounded="circle"
+									className="border-bg shrink-0 border-4 hover:z-10">
+									<AvatarFallback className="text-xs font-semibold">
+										+9
+									</AvatarFallback>
+								</Avatar>
 								<p className="text-sm font-normal text-neutral-500 dark:text-neutral-400">
 									— rated 4.8/5 by 200+ SMB founders
 								</p>
@@ -198,33 +218,33 @@ export function HeroSection() {
 						</motion.div>
 					</div>
 
-					{/* Right Column: Hero Visual Graphic with Stage 4 Image & Stage 5 UI Card */}
+					{/* Right Column: Hero Visual Graphic with Hero Image & Floating Analytics Card */}
 					<div className="flex items-center justify-center self-center lg:col-span-6 xl:col-span-6">
-						{/* Stage 4: Hero Visual Graphic Image Container */}
-						<motion.div
-							initial={{ opacity: 0, y: 14 }}
-							animate={{ opacity: 1, y: 0 }}
-							transition={{
-								duration: 0.5,
-								delay: 0.75,
-								ease: [0.16, 1, 0.3, 1],
-							}}
-							className="relative w-full max-w-[480px] sm:max-w-[500px] xl:max-w-[530px]">
-							{/* Clean Hero Visual Graphic */}
-							<Image
-								src="/sandbox/hero-04-woman-clean-v2.png"
-								alt="Hero analytics dashboard preview with live revenue metrics"
-								width={620}
-								height={640}
-								priority
-								className="h-auto w-full object-contain"
-							/>
+						<div className="relative w-full max-w-[480px] sm:max-w-[500px] xl:max-w-[530px]">
+							{/* Hero Image — Blur fade-up from down together with hero content */}
+							<motion.div
+								initial={{ opacity: 0, filter: "blur(10px)", y: 30 }}
+								animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+								transition={{
+									duration: 0.55,
+									delay: 0.16,
+									ease: [0.16, 1, 0.3, 1],
+								}}>
+								<Image
+									src="/sandbox/hero-04-woman-clean-v2.png"
+									alt="Hero analytics dashboard preview with live revenue metrics"
+									width={620}
+									height={640}
+									priority
+									className="h-auto w-full object-contain"
+								/>
+							</motion.div>
 
-							{/* Stage 5: Floating Interactive UI Card — Subtle staggered entrance after the image appears */}
+							{/* Floating Analytics Card — Slides in from right ONLY after all hero content and logos have revealed */}
 							<div className="absolute -right-2 bottom-10 z-20 sm:-right-4 sm:bottom-14 md:-right-6 md:bottom-16 lg:-right-8 lg:bottom-20">
-								<RevenueCategoryCard delay={0.95} />
+								<RevenueCategoryCard cardEntranceDelay={0.8} />
 							</div>
-						</motion.div>
+						</div>
 					</div>
 				</div>
 			</div>
