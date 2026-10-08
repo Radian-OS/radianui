@@ -10,33 +10,31 @@ export function SocialButtons() {
 				type="button"
 				variant="outline"
 				color="neutral"
-				size="36"
-				className="w-full flex-1 gap-2 font-medium">
+				className="w-full">
 				<img
 					src="https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/colored/technology/icon/google.svg"
 					alt="Google"
-					className="size-4"
+					className="size-5"
 				/>
-				<span>Sign in with Google</span>
+				Sign in with Google
 			</Button>
 
 			<Button
 				type="button"
 				variant="outline"
 				color="neutral"
-				size="36"
-				className="w-full flex-1 gap-2 font-medium">
+				className="w-full">
 				<img
 					src="https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/light/neutral/development/icon/github.svg"
 					alt="Github"
-					className="block size-4 dark:hidden"
+					className="block size-5 dark:hidden"
 				/>
 				<img
 					src="https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/neutral/development/icon/github.svg"
 					alt="Github"
-					className="hidden size-4 dark:block"
+					className="hidden size-5 dark:block"
 				/>
-				<span>Sign in with Github</span>
+				Sign in with Github
 			</Button>
 		</div>
 	)

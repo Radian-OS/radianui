@@ -21,62 +21,49 @@ export function SocialLogin() {
 					type="button"
 					variant="outline"
 					color="neutral"
-					size="36"
 					className="w-full">
 					<img
 						src="https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/colored/technology/icon/google.svg"
 						alt="Google"
-						width={16}
-						height={16}
-						className="size-4 shrink-0"
+						className="size-5 shrink-0"
 					/>
-					<span>Continue with Google</span>
+					Continue with Google
 				</Button>
 
 				<Button
 					type="button"
 					variant="outline"
 					color="neutral"
-					size="36"
 					className="w-full">
 					<img
 						src="https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/light/neutral/finance-payments/icon/apple-pay.svg"
 						alt="Apple"
-						width={16}
-						height={16}
-						className="block size-4 shrink-0 dark:hidden"
+						className="block size-5 shrink-0 dark:hidden"
 					/>
 					<img
 						src="https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/neutral/finance-payments/icon/apple-pay.svg"
 						alt="Apple"
-						width={16}
-						height={16}
-						className="hidden size-4 shrink-0 dark:block"
+						className="hidden size-5 shrink-0 dark:block"
 					/>
-					<span>Continue with Apple</span>
+					Continue with Apple
 				</Button>
 
 				<Button
 					type="button"
 					variant="outline"
 					color="neutral"
-					size="36"
 					className="w-full">
 					<img
 						src="https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/light/neutral/development/icon/github.svg"
 						alt="GitHub"
-						width={16}
-						height={16}
-						className="block size-4 shrink-0 dark:hidden"
+						className="block size-5 shrink-0 dark:hidden"
 					/>
 					<img
 						src="https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/neutral/development/icon/github.svg"
 						alt="GitHub"
-						width={16}
-						height={16}
-						className="hidden size-4 shrink-0 dark:block"
+						className="hidden size-5 shrink-0 dark:block"
 					/>
-					<span>Continue with Github</span>
+					Continue with Github
 				</Button>
 			</div>
 		</div>

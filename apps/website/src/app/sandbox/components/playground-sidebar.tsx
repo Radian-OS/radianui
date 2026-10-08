@@ -15,6 +15,7 @@ import {
 	UserPlus,
 	Zap,
 	Layout,
+	Lock,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { ScrollArea } from "@/registry/ui/scroll-area"
@@ -64,6 +65,7 @@ interface SidebarCategoryDef {
 const SIDEBAR_CATEGORIES: SidebarCategoryDef[] = [
 	{ id: "welcome-screen-section", label: "SIGNUP", icon: UserPlus },
 	{ id: "sign-in-section", label: "SIGN IN", icon: UserPlus },
+	{ id: "auth-section", label: "AUTH", icon: Lock },
 	{ id: "hero-section", label: "HERO", icon: Sparkles },
 	{ id: "pricing-section", label: "PRICING", icon: Tag },
 	{ id: "cta-section", label: "CTA", icon: Zap },

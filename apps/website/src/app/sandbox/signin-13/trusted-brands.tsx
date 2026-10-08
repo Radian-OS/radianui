@@ -1,8 +1,5 @@
-"use client"
-
-import React, { useEffect, useState } from "react"
-import { useTheme } from "next-themes"
 import { BRAND_LOGOS, type BrandLogo } from "./types"
+import { Divider } from "@/styles/default/ui/divider"
 
 interface TrustedBrandsProps {
 	title?: string
@@ -13,21 +10,15 @@ export function TrustedBrands({
 	title = "Chosen by top engineering teams",
 	brands = BRAND_LOGOS,
 }: TrustedBrandsProps) {
-	const { resolvedTheme } = useTheme()
-	const [mounted, setMounted] = useState(false)
-
-	useEffect(() => {
-		setMounted(true)
-	}, [])
 	return (
 		<div className="flex w-full flex-col items-center gap-5">
 			{/* Divider with text */}
 			<div className="flex w-full items-center justify-center gap-3">
-				<div className="h-px flex-1 bg-white" />
+				<Divider className="flex-1 bg-white/20" />
 				<p className="shrink-0 text-xs font-normal whitespace-nowrap text-white sm:text-sm">
 					{title}
 				</p>
-				<div className="h-px flex-1 bg-white" />
+				<Divider className="flex-1 bg-white/20" />
 			</div>
 
 			{/* Logos */}

@@ -25,19 +25,22 @@ export const FEATURE_AVATARS: UserAvatarItem[] = [
 	{
 		id: "1",
 		name: "Alex Vance",
-		avatarUrl: "/sandbox/placeholder.svg",
+		avatarUrl:
+			"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@v1.0.2/packages/uncompressed-avatars/src/11.png",
 		initials: "AV",
 	},
 	{
 		id: "2",
 		name: "Sarah Miller",
-		avatarUrl: "/sandbox/placeholder.svg",
+		avatarUrl:
+			"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@v1.0.2/packages/uncompressed-avatars/src/42.png",
 		initials: "SM",
 	},
 	{
 		id: "3",
 		name: "David Kim",
-		avatarUrl: "/sandbox/placeholder.svg",
+		avatarUrl:
+			"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@v1.0.2/packages/uncompressed-avatars/src/108.png",
 		initials: "DK",
 	},
 ]

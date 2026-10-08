@@ -16,6 +16,7 @@ import {
 	FormMessage,
 } from "@/styles/default/ui/form"
 import { Input, InputWrapper } from "@/styles/default/ui/input"
+import { Divider } from "@/styles/default/ui/divider"
 import { LoginBrand } from "./login-brand"
 import { LoginSocialButtons } from "./login-social-buttons"
 import { loginSchema, type LoginFormValues } from "./types"
@@ -56,14 +57,10 @@ export function LoginForm() {
 			<LoginSocialButtons />
 
 			{/* Divider */}
-			<div className="relative my-0.5 flex items-center justify-center">
-				<div className="absolute inset-0 flex items-center">
-					<div className="border-soft w-full border-t" />
-				</div>
-				<span className="bg-bg text-fg-tertiary relative px-3 text-xs">
-					{" "}
-					Or continue with Email
-				</span>
+			<div className="my-0.5 flex w-full items-center gap-3">
+				<Divider className="flex-1" />
+				<span className="text-fg-tertiary text-sm">Or continue with Email</span>
+				<Divider className="flex-1" />
 			</div>
 
 			{/* Validated React Hook Form */}

@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Bookmark, ChevronDown, Menu, Moon, Search, Sun, X } from "lucide-react"
 import { useTheme } from "next-themes"
-import Image from "next/image"
 import Link from "next/link"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
@@ -82,7 +81,7 @@ export function Navbar() {
 
 	return (
 		<header className="border-border/60 bg-bg/95 supports-[backdrop-filter]:bg-bg/80 sticky top-0 z-40 w-full border-b backdrop-blur-md">
-			<div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:h-18 lg:px-8">
+			<div className="flex h-16 w-full items-center justify-between gap-4 px-4 sm:px-6 lg:h-18 lg:px-8 xl:px-12">
 				{/* Left: Brand & Main Navigation */}
 				<div className="flex items-center gap-6">
 					{/* Mobile Menu Button */}
@@ -104,13 +103,38 @@ export function Navbar() {
 
 					{/* Brand Logo */}
 					<Link href="/sandbox/hero-04" className="flex items-center gap-2">
-						<Image
-							src="/icons/hero-04-logo.svg"
-							alt="Logo"
-							width={28}
-							height={28}
-							className="size-7 shrink-0 object-contain"
-						/>
+						<svg
+							width="28"
+							height="28"
+							viewBox="0 0 28 28"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+							className="text-primary size-7 shrink-0">
+							<path
+								d="M14 9.33333L10.0333 7V2.33333L14 0L17.9667 2.33333V7L14 9.33333Z"
+								fill="currentColor"
+							/>
+							<path
+								d="M21.9333 14L17.9667 11.6667V7L21.9333 4.66667L25.9 7V11.6667L21.9333 14Z"
+								fill="currentColor"
+							/>
+							<path
+								d="M17.9667 21V16.3333L21.9333 14L25.9 16.3333V21L21.9333 23.3333L17.9667 21Z"
+								fill="currentColor"
+							/>
+							<path
+								d="M10.0333 21L14 18.6667L17.9667 21V25.6667L14 28L10.0333 25.6667V21Z"
+								fill="currentColor"
+							/>
+							<path
+								d="M6.06667 14L10.0333 16.3333V21L6.06667 23.3333L2.10001 21V16.3333L6.06667 14Z"
+								fill="currentColor"
+							/>
+							<path
+								d="M6.06667 14L10.0333 11.6667V7L6.06667 4.66667L2.10001 7V11.6667L6.06667 14Z"
+								fill="currentColor"
+							/>
+						</svg>
 					</Link>
 
 					{/* Desktop Navigation Menu (Rule: use @/registry/ui/navigation-menu) */}
@@ -121,15 +145,17 @@ export function Navbar() {
 									asChild
 									className={cn(
 										navigationMenuTriggerStyle(),
-										"hover:bg-elevation-level1 text-fg-secondary hover:text-fg h-8 gap-1.5 bg-transparent px-3 text-sm font-medium"
+										"hover:bg-elevation-level1 text-fg-secondary hover:text-fg inline-flex h-8 flex-row items-center gap-2 bg-transparent px-3 text-sm font-medium whitespace-nowrap"
 									)}>
-									<Link href="#products" className="flex items-center">
+									<Link
+										href="#products"
+										className="inline-flex flex-row items-center gap-2 whitespace-nowrap">
 										<span>Products</span>
 										<Badge
 											variant="soft"
-											color="info"
+											color="primary"
 											size="20"
-											className="flex text-[10px] font-semibold tracking-wider uppercase">
+											className="shrink-0 rounded-full px-1.5 text-[10px] font-semibold tracking-wider uppercase">
 											NEW
 										</Badge>
 									</Link>

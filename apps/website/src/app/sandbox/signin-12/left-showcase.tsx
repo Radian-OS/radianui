@@ -1,10 +1,20 @@
 "use client"
 
-import React from "react"
+import React, { useState, useEffect, useRef } from "react"
 import Image from "next/image"
 import Link from "next/link"
+import { Skeleton } from "@/styles/default/ui/skeleton"
 
 export function LeftShowcase() {
+	const [isVideoLoaded, setIsVideoLoaded] = useState(false)
+	const videoRef = useRef<HTMLVideoElement>(null)
+
+	useEffect(() => {
+		if (videoRef.current && videoRef.current.readyState >= 3) {
+			setIsVideoLoaded(true)
+		}
+	}, [])
+
 	return (
 		<div className="dark hidden shrink-0 overflow-hidden select-none lg:flex lg:w-lg">
 			<div className="relative flex size-full flex-col items-center justify-center bg-black p-12 text-center text-white lg:p-16">
@@ -16,20 +26,27 @@ export function LeftShowcase() {
 						aria-label="Home">
 						<img src="/logo.svg" alt="Radian Logo" className="size-12" />
 					</Link>
-					<h2 className="max-w-sm text-center text-[30px] leading-9 font-medium text-white">
+					<h2 className="heading-4 max-w-sm text-center text-white">
 						Welcome Back to Radian
 					</h2>
 				</div>
 
 				{/* Ambient Dark Wave Video */}
 				<div className="absolute inset-0 z-0 size-full overflow-hidden">
+					{!isVideoLoaded && (
+						<Skeleton className="absolute inset-0 z-0 size-full rounded-none" />
+					)}
 					<video
-						className="size-full object-cover"
+						ref={videoRef}
+						className={`size-full object-cover transition-opacity duration-1000 ${
+							isVideoLoaded ? "opacity-100" : "opacity-0"
+						}`}
 						autoPlay
 						loop
 						muted
 						playsInline
-						poster="/sandbox/placeholder.svg">
+						onLoadedData={() => setIsVideoLoaded(true)}
+						onCanPlay={() => setIsVideoLoaded(true)}>
 						<source
 							src="https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/blocks/src/video/login-04.mp4"
 							type="video/mp4"

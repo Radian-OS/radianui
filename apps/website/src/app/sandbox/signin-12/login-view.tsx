@@ -5,6 +5,7 @@ import { LeftShowcase } from "./left-showcase"
 import { LoginHeader } from "./login-header"
 import { SocialButtons } from "./social-buttons"
 import { LoginForm } from "./login-form"
+import { Divider } from "@/styles/default/ui/divider"
 
 export function LoginView() {
 	return (
@@ -22,8 +23,10 @@ export function LoginView() {
 					<SocialButtons />
 
 					{/* Divider */}
-					<div className="text-fg-secondary before:bg-border after:bg-border flex w-full items-center gap-3 text-sm before:h-px before:flex-1 before:content-[''] after:h-px after:flex-1 after:content-['']">
-						or sign in with
+					<div className="flex w-full items-center gap-3">
+						<Divider className="flex-1" />
+						<span className="text-fg-secondary text-sm">or sign in with</span>
+						<Divider className="flex-1" />
 					</div>
 
 					{/* Credentials Form */}

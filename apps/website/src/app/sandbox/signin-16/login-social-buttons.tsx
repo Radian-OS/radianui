@@ -18,32 +18,30 @@ export function LoginSocialButtons({
 				type="button"
 				variant="outline"
 				color="neutral"
-				size="36"
 				onClick={onGoogleLogin}
 				className="w-full">
 				{/* Google logo via Radian resources */}
 				<img
 					src="https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/colored/technology/icon/google.svg"
 					alt="Google"
-					className="size-6 object-contain"
+					className="size-5 shrink-0"
 				/>
-				<span>Login with Google</span>
+				Login with Google
 			</Button>
 
 			<Button
 				type="button"
 				variant="outline"
 				color="neutral"
-				size="36"
 				onClick={onFacebookLogin}
 				className="w-full">
 				{/* Facebook logo via Radian resources */}
 				<img
 					src="https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/colored/social-content/icon/facebook.svg"
 					alt="Facebook"
-					className="size-6 object-contain"
+					className="size-5 shrink-0"
 				/>
-				<span>Login with Facebook</span>
+				Login with Facebook
 			</Button>
 		</div>
 	)
