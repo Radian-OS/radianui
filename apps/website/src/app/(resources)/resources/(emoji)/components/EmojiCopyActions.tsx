@@ -32,6 +32,7 @@ import {
 	getEmojiHtmlSnippet,
 	getEmojiShortcode,
 	getEmojiSvgMarkup,
+	getEmojiGlyphPosition,
 	getEmojiUnicodeEscape,
 	getEmojiUriEncoded,
 } from "./emoji-data"
@@ -80,7 +81,9 @@ export function EmojiCopyActions({
 
 	const downloadSvg = () => {
 		downloadBlob(
-			new Blob([svgMarkup], { type: "image/svg+xml;charset=utf-8" }),
+			new Blob([getEmojiSvgMarkup(emoji, svgExportSize)], {
+				type: "image/svg+xml;charset=utf-8",
+			}),
 			`${getEmojiFilename(emoji)}.svg`
 		)
 		showEmojiToast({
@@ -118,9 +121,13 @@ export function EmojiCopyActions({
 		context.imageSmoothingEnabled = true
 		context.imageSmoothingQuality = "high"
 		context.font = `${fontSize}px ${EMOJI_FONT_STACK}`
-		context.textAlign = "center"
-		context.textBaseline = "middle"
-		context.fillText(emoji.emoji, pngExportSize / 2, pngExportSize / 2)
+		context.textAlign = "left"
+		context.textBaseline = "alphabetic"
+		const position = getEmojiGlyphPosition(
+			context.measureText(emoji.emoji),
+			pngExportSize
+		)
+		context.fillText(emoji.emoji, position.x, position.y)
 
 		canvas.toBlob((blob) => {
 			if (!blob) {

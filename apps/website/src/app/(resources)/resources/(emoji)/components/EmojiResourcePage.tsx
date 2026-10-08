@@ -64,6 +64,7 @@ export function EmojiResourcePage({
 					"Browse our free emoji list for smiley faces, hearts, and symbols. Search by name or category, select an emoji, and choose Copy as Text."
 				)
 			}
+			headerClassName="max-sm:gap-6"
 			actions={<EmojiHeroActionButtons />}
 			showcaseLabel={`Browse ${emojis.length.toLocaleString("en-US")} Unicode emojis`}
 			showcase={<EmojiPlayground initialSelectedEmoji={initialSelectedEmoji} />}

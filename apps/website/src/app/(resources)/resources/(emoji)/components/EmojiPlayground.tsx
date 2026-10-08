@@ -27,6 +27,7 @@ import {
 	EMOJI_PAGE_PATH,
 	emojiGroups,
 	emojis,
+	matchesEmojiSearch,
 	getEmojiBySlug,
 	getEmojiPagePath,
 } from "./emoji-data"
@@ -191,8 +192,7 @@ export default function EmojiPlayground({
 		return source.filter(
 			(emoji) =>
 				(!supportedEmojiSlugs || supportedEmojiSlugs.has(emoji.slug)) &&
-				(!normalizedQuery ||
-					emoji.name.toLocaleLowerCase("en").includes(normalizedQuery))
+				(!normalizedQuery || matchesEmojiSearch(emoji, normalizedQuery))
 		)
 	}, [category, query, supportedEmojiSlugs])
 

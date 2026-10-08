@@ -118,11 +118,34 @@ export function getEmojiHtmlSnippet(emoji: EmojiData) {
 	return `<span role="img" aria-label="${escapeMarkup(emoji.name)}">${emoji.emoji}</span>`
 }
 
+/** Center the actual painted glyph bounds rather than the font's line box. */
+export function getEmojiGlyphPosition(metrics: TextMetrics, size: number) {
+	return {
+		x:
+			(size + metrics.actualBoundingBoxLeft - metrics.actualBoundingBoxRight) /
+			2,
+		y:
+			(size +
+				metrics.actualBoundingBoxAscent -
+				metrics.actualBoundingBoxDescent) /
+			2,
+	}
+}
+
 export function getEmojiSvgMarkup(emoji: EmojiData, size = 512) {
 	const label = escapeMarkup(`${formatEmojiName(emoji.name)} emoji`)
 	const glyphSize = Math.round(size * 0.625)
-
-	return `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" role="img" aria-label="${label}"><title>${label}</title><text x="50%" y="50%" text-anchor="middle" dominant-baseline="central" font-size="${glyphSize}" font-family='${EMOJI_FONT_STACK}'>${emoji.emoji}</text></svg>`
+	let position = { x: size / 2, y: (size + glyphSize * 0.8) / 2 }
+	if (typeof document !== "undefined") {
+		const context = document.createElement("canvas").getContext("2d")
+		if (context) {
+			context.font = `${glyphSize}px ${EMOJI_FONT_STACK}`
+			context.textAlign = "left"
+			context.textBaseline = "alphabetic"
+			position = getEmojiGlyphPosition(context.measureText(emoji.emoji), size)
+		}
+	}
+	return `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" role="img" aria-label="${label}"><title>${label}</title><text x="${position.x}" y="${position.y}" text-anchor="start" font-size="${glyphSize}" font-family='${EMOJI_FONT_STACK}'>${emoji.emoji}</text></svg>`
 }
 
 export function getEmojiShortcode(emoji: EmojiData) {
@@ -454,4 +477,57 @@ export function getRelatedEmojis(emoji: EmojiData, limit = 8) {
 		.slice(start, start + limit + 1)
 		.filter((item) => item.slug !== emoji.slug)
 		.slice(0, limit)
+}
+
+function normalizeEmojiSearch(value: string) {
+	return value.toLowerCase().replace(/[_-]/g, " ").replace(/\s+/g, " ").trim()
+}
+
+const emojiSearchIndex = new Map<EmojiData, string>()
+
+/** Search source metadata and the copy-ready representations shown in emoji details. */
+export function matchesEmojiSearch(emoji: EmojiData, search: string) {
+	const query = normalizeEmojiSearch(search)
+	if (!query) return true
+	let indexed = emojiSearchIndex.get(emoji)
+	if (!indexed) {
+		const codePoints = getEmojiCodePoints(emoji.emoji)
+		const characters = Array.from(emoji.emoji)
+		const utf16 = emoji.emoji
+			.split("")
+			.map(
+				(character) =>
+					`\\u${character.charCodeAt(0).toString(16).padStart(4, "0")}`
+			)
+			.join("")
+		indexed = normalizeEmojiSearch(
+			[
+				...Object.entries(emoji).flatMap(([key, value]) => [
+					String(value),
+					`${key}: ${value}`,
+				]),
+				getEmojiShortcode(emoji),
+				codePoints.join(" "),
+				codePoints.map((point) => point.slice(2)).join(" "),
+				getEmojiUnicodeEscape(emoji.emoji),
+				utf16,
+				getEmojiHtmlEntity(emoji.emoji),
+				characters
+					.map((character) => `&#${character.codePointAt(0)};`)
+					.join(""),
+				getEmojiUriEncoded(emoji.emoji),
+				getEmojiHtmlSnippet(emoji),
+				emoji.skin_tone_support
+					? "skin tone support yes"
+					: "skin tone support no",
+			].join(" ")
+		)
+		emojiSearchIndex.set(emoji, indexed)
+	}
+	// Match pasted variants to their base emoji, including skin tones and presentation selectors.
+	const pasted = search
+		.trim()
+		.replace(/[\uFE0E\uFE0F\u{1F3FB}-\u{1F3FF}]/gu, "")
+	const base = emoji.emoji.replace(/[\uFE0E\uFE0F\u{1F3FB}-\u{1F3FF}]/gu, "")
+	return indexed.includes(query) || pasted === base
 }

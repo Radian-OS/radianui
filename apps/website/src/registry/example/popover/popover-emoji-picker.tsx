@@ -22,6 +22,7 @@ import {
 	emojiSkinToneEvent,
 	readEmojiSkinTone,
 } from "@/lib/emoji/emoji-skin-tone"
+import { matchesEmojiSearch } from "@/lib/emoji/emoji-data"
 import { cn } from "@/lib/utils"
 import { IconButton } from "@/registry/ui/button"
 import { Input, InputWrapper } from "@/registry/ui/input"
@@ -121,8 +122,7 @@ export default function PopoverEmojiPicker({
 				emojis: (supported ?? group.emojis).filter(
 					(item) =>
 						item.group === group.name &&
-						(!query ||
-							`${item.name} ${item.group}`.toLowerCase().includes(query))
+						(!query || matchesEmojiSearch(item, query))
 				),
 			}))
 			.filter((group) => group.emojis.length)
