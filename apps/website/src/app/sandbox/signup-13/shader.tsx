@@ -1,10 +1,8 @@
 "use client"
 
 import React, { useEffect, useRef } from "react"
-import Image from "next/image"
-import Link from "next/link"
 
-function Login03Shader() {
+export function Shader() {
 	const canvasRef = useRef<HTMLCanvasElement>(null)
 
 	useEffect(() => {
@@ -27,6 +25,7 @@ function Login03Shader() {
 
       uniform vec2 resolution;
       uniform float time;
+      uniform vec3 primaryColor;
 
       float random (in float x) {
           return fract(sin(x) * 1e4);
@@ -46,21 +45,17 @@ function Login03Shader() {
                  / (vScreenSize.y / fMosaicScal.y);
 
           float t = time * 0.06 + random(uv.x) * 0.4;
-
           float lineWidth = 0.0008;
 
-          vec3 color = vec3(0.0);
-
-          for(int j = 0; j < 3; j++){
-              for(int i = 0; i < 5; i++){
-                  color[j] += lineWidth * float(i * i) /
-                      abs(fract(t - 0.01 * float(j)
-                      + float(i) * 0.01) - length(uv));
-              }
+          float intensity = 0.0;
+          for(int i = 0; i < 5; i++){
+              intensity += lineWidth * float(i * i) /
+                  abs(fract(t + float(i) * 0.01) - length(uv));
           }
 
-          gl_FragColor = vec4(color.b, color.g, color.r, 1.0);
+          gl_FragColor = vec4(primaryColor * intensity, 1.0);
       }
+
     `
 
 		const createShader = (type: number, source: string) => {
@@ -81,6 +76,58 @@ function Login03Shader() {
 		gl.attachShader(program, fs)
 		gl.linkProgram(program)
 		gl.useProgram(program)
+
+		// Get primary color from CSS
+		const tempEl = document.createElement("div")
+		tempEl.style.color = "var(--color-primary)"
+		tempEl.style.display = "none"
+		if (canvas.parentElement) {
+			canvas.parentElement.appendChild(tempEl)
+		} else {
+			document.body.appendChild(tempEl)
+		}
+
+		const computedColor = getComputedStyle(tempEl).color
+
+		if (tempEl.parentElement) {
+			tempEl.parentElement.removeChild(tempEl)
+		}
+
+		// Fallback purple: #9981F8
+		let pr = 153 / 255,
+			pg = 129 / 255,
+			pb = 248 / 255
+
+		const rgbMatch = computedColor.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/)
+		if (rgbMatch) {
+			pr = parseInt(rgbMatch[1]) / 255
+			pg = parseInt(rgbMatch[2]) / 255
+			pb = parseInt(rgbMatch[3]) / 255
+		} else {
+			// Try to parse modern color spaces (like oklch) using a 1x1 canvas
+			try {
+				const tempCanvas = document.createElement("canvas")
+				tempCanvas.width = 1
+				tempCanvas.height = 1
+				const ctx = tempCanvas.getContext("2d", { willReadFrequently: true })
+				if (ctx) {
+					ctx.fillStyle = "#ffffff" // sentinel color
+					ctx.fillStyle = computedColor
+					ctx.fillRect(0, 0, 1, 1)
+					const data = ctx.getImageData(0, 0, 1, 1).data
+					if (data[0] !== 255 || data[1] !== 255 || data[2] !== 255) {
+						pr = data[0] / 255
+						pg = data[1] / 255
+						pb = data[2] / 255
+					}
+				}
+			} catch (e) {
+				console.error("Canvas color parsing failed", e)
+			}
+		}
+
+		const primaryColorLoc = gl.getUniformLocation(program, "primaryColor")
+		gl.uniform3f(primaryColorLoc, pr, pg, pb)
 
 		const vertices = new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1])
 		const buffer = gl.createBuffer()
@@ -123,42 +170,4 @@ function Login03Shader() {
 	}, [])
 
 	return <canvas ref={canvasRef} className="absolute inset-0 size-full" />
-}
-
-export function LeftShowcase() {
-	return (
-		<div className="dark hidden shrink-0 overflow-hidden select-none lg:flex lg:w-lg">
-			<div className="relative flex size-full flex-col items-center justify-center overflow-hidden bg-black p-12 text-center text-white lg:p-16">
-				{/* Center Content Box */}
-				<div className="z-10 flex max-w-sm flex-col items-center gap-6">
-					<Link
-						href="#"
-						className="flex shrink-0 items-center justify-center transition-transform hover:scale-105"
-						aria-label="Home">
-						<Image
-							src="https://images.shadcnspace.com/assets/logo/logo-icon-white.svg"
-							alt="Shadcn Space Logo"
-							width={48}
-							height={48}
-							className="size-12"
-							priority
-						/>
-					</Link>
-					<p className="max-w-sm text-center text-[30px] leading-9 font-medium text-white">
-						Welcome Back to Your Creative Space
-					</p>
-				</div>
-
-				{/* Visual Animation from login-03 */}
-				<div className="absolute inset-0 z-0 size-full overflow-hidden">
-					<Login03Shader />
-					{/* Subtle overlay gradient to ensure high contrast and readability */}
-					<div
-						aria-hidden="true"
-						className="pointer-events-none absolute inset-0 bg-black/25"
-					/>
-				</div>
-			</div>
-		</div>
-	)
 }

@@ -25,8 +25,7 @@ export function ThemeToggle() {
 				color="neutral"
 				size="32"
 				aria-label="Toggle theme"
-				onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
-				className="bg-bg/80 border-border/70 shadow-xs backdrop-blur-md">
+				onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}>
 				{resolvedTheme === "dark" ? (
 					<Sun className="size-4" />
 				) : (

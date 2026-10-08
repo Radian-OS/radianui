@@ -47,46 +47,13 @@ function computePerimeterCells(
 
 	for (let c = 0; c < cols; c++) {
 		for (let r = 0; r < rows; r++) {
-			// STRICTLY EXCLUDE: anything inside or behind the form
+			// ONLY INCLUDE: anything inside the form area
 			if (
 				c >= formBounds.colMin &&
 				c <= formBounds.colMax &&
 				r >= formBounds.rowMin &&
 				r <= formBounds.rowMax
 			) {
-				continue
-			}
-
-			// STRICTLY EXCLUDE: anything inside or behind the image
-			if (
-				c >= imageBounds.colMin &&
-				c <= imageBounds.colMax &&
-				r >= imageBounds.rowMin &&
-				r <= imageBounds.rowMax
-			) {
-				continue
-			}
-
-			// Distance to form
-			const dFormX = Math.max(0, formBounds.colMin - c, c - formBounds.colMax)
-			const dFormY = Math.max(0, formBounds.rowMin - r, r - formBounds.rowMax)
-			const dForm = Math.max(dFormX, dFormY)
-
-			// Distance to image
-			const dImageX = Math.max(
-				0,
-				imageBounds.colMin - c,
-				c - imageBounds.colMax
-			)
-			const dImageY = Math.max(
-				0,
-				imageBounds.rowMin - r,
-				r - imageBounds.rowMax
-			)
-			const dImage = Math.max(dImageX, dImageY)
-
-			// Must be within close perimeter around form or image (<= 3 grid cells)
-			if (Math.min(dForm, dImage) <= maxDistance) {
 				cells.push([c, r])
 			}
 		}
@@ -163,6 +130,7 @@ export function AnimatedGridPattern({
 	const id = useId()
 	const containerRef = useRef<HTMLDivElement | null>(null)
 	const [dimensions, setDimensions] = useState({ width: 1440, height: 900 })
+	const perimeterCellsRef = useRef<[number, number][]>([])
 	const [squares, setSquares] = useState<Square[]>(() =>
 		buildInitialSquares(numSquares, 1440, 900, width, height, duration)
 	)
@@ -217,18 +185,14 @@ export function AnimatedGridPattern({
 				3
 			)
 
+			perimeterCellsRef.current = perimeterCells
 			if (perimeterCells.length === 0) return
 
-			// Pick distinct perimeter cells evenly distributed around form and image
-			const step = Math.max(1, Math.floor(perimeterCells.length / numSquares))
 			const newSquares: Square[] = []
-
 			for (let i = 0; i < numSquares; i++) {
-				const pickIndex =
-					(i * step + Math.floor(pseudoRandom(i + 13) * step)) %
-					perimeterCells.length
+				const pickIndex = Math.floor(Math.random() * perimeterCells.length)
 				newSquares.push({
-					id: i,
+					id: Math.random(),
 					pos: perimeterCells[pickIndex],
 					delay: (i % 8) * 0.4,
 					duration: duration + ((i % 5) - 2) * 0.35,
@@ -277,7 +241,7 @@ export function AnimatedGridPattern({
 			<svg
 				aria-hidden="true"
 				className={cn(
-					"pointer-events-none absolute inset-0 h-full w-full fill-none stroke-black/[0.02] text-black dark:stroke-white/[0.03] dark:text-white",
+					"stroke-fg/5 text-fg pointer-events-none absolute inset-0 h-full w-full fill-none",
 					className
 				)}
 				{...props}>
@@ -313,11 +277,28 @@ export function AnimatedGridPattern({
 								}}
 								transition={{
 									duration: sqDuration,
-									repeat: Infinity,
-									repeatType: "loop",
 									delay,
-									repeatDelay,
 									ease: "easeInOut",
+								}}
+								onAnimationComplete={() => {
+									setSquares((prev) =>
+										prev.map((sq) => {
+											if (sq.id === squareId) {
+												const cells = perimeterCellsRef.current
+												const newPos =
+													cells.length > 0
+														? cells[Math.floor(Math.random() * cells.length)]
+														: sq.pos
+												return {
+													...sq,
+													id: Math.random(),
+													pos: newPos,
+													delay: repeatDelay,
+												}
+											}
+											return sq
+										})
+									)
 								}}
 								width={width - 1}
 								height={height - 1}
@@ -346,7 +327,7 @@ export function AnimatedGridBackground({
 			<AnimatedGridPattern
 				width={cellSize}
 				height={cellSize}
-				numSquares={28}
+				numSquares={1}
 				maxOpacity={0.05}
 				duration={4.5}
 				repeatDelay={0.6}

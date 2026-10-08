@@ -4,14 +4,15 @@ import React from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/styles/default/ui/button"
+import { Divider } from "@/styles/default/ui/divider"
 
 export function SocialButtons() {
 	return (
 		<div className="mt-4 flex flex-col gap-4">
 			{/* Divider */}
 			<div className="relative flex items-center justify-center">
-				<div className="border-border absolute inset-0 flex items-center">
-					<span className="border-border w-full border-t" />
+				<div className="absolute inset-0 flex items-center">
+					<Divider />
 				</div>
 				<span className="bg-bg text-fg-tertiary relative px-3 text-xs font-normal">
 					Or continue with
@@ -24,41 +25,38 @@ export function SocialButtons() {
 					type="button"
 					variant="outline"
 					color="neutral"
-					size="36"
-					className="h-9 w-full cursor-pointer gap-2.5 rounded-xl">
-					<Image
-						src="https://authjs.dev/img/providers/google.svg"
+					className="w-full">
+					<img
+						src="https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/colored/technology/icon/google.svg"
 						alt="Google"
-						width={16}
-						height={16}
-						className="size-4 shrink-0"
+						className="size-5 shrink-0"
 					/>
-					<span className="text-sm font-medium">Google</span>
+					Google
 				</Button>
 
 				<Button
 					type="button"
 					variant="outline"
 					color="neutral"
-					size="36"
-					className="h-9 w-full cursor-pointer gap-2.5 rounded-xl">
-					<Image
-						src="https://authjs.dev/img/providers/github.svg"
-						alt="Github"
-						width={16}
-						height={16}
-						className="size-4 shrink-0 dark:invert"
+					className="w-full">
+					<img
+						src="https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/light/neutral/development/icon/github.svg"
+						alt="GitHub"
+						className="block size-5 shrink-0 dark:hidden"
 					/>
-					<span className="text-sm font-medium">Github</span>
+					<img
+						src="https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/neutral/development/icon/github.svg"
+						alt="GitHub"
+						className="hidden size-5 shrink-0 dark:block"
+					/>
+					Github
 				</Button>
 			</div>
 
 			{/* Footer Sign In Link */}
 			<div className="text-center text-sm">
 				<span className="text-fg-secondary">Already have an account? </span>
-				<Link
-					href="#signin"
-					className="text-fg hover:text-primary font-semibold transition-colors">
+				<Link href="#signin" className="text-fg font-semibold hover:underline">
 					Sign in
 				</Link>
 			</div>

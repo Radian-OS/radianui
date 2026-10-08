@@ -63,15 +63,17 @@ interface SidebarCategoryDef {
 }
 
 const SIDEBAR_CATEGORIES: SidebarCategoryDef[] = [
-	{ id: "welcome-screen-section", label: "SIGNUP", icon: UserPlus },
+	{ id: "welcome-screen-section", label: "WELCOME", icon: UserPlus },
 	{ id: "sign-in-section", label: "SIGN IN", icon: UserPlus },
-	{ id: "auth-section", label: "AUTH", icon: Lock },
+	{ id: "signup-section", label: "SIGNUP", icon: Lock },
+	{ id: "guided-tour-section", label: "TOUR", icon: Sparkles },
 	{ id: "hero-section", label: "HERO", icon: Sparkles },
 	{ id: "pricing-section", label: "PRICING", icon: Tag },
 	{ id: "cta-section", label: "CTA", icon: Zap },
 	{ id: "blog-section", label: "BLOG", icon: FileText },
 	{ id: "faq-section", label: "FAQ", icon: HelpCircle },
 	{ id: "testimonial-section", label: "TESTIMONIAL", icon: MessageSquareQuote },
+	{ id: "form-section", label: "FORM", icon: FileText },
 	{ id: "portfolio-section", label: "PORTFOLIO", icon: Briefcase },
 	{ id: "table-section", label: "TABLE", icon: Table },
 	{ id: "setting-section", label: "SETTINGS", icon: Settings },

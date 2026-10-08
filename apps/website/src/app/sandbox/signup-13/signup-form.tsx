@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { ArrowRight, Eye, EyeOff } from "lucide-react"
 import { Button } from "@/styles/default/ui/button"
+import { Divider } from "@/styles/default/ui/divider"
 import {
 	Card,
 	CardContent,
@@ -23,6 +24,7 @@ import {
 import { Input } from "@/styles/default/ui/input"
 import { SocialButtons } from "./social-buttons"
 import { signupSchema, type SignupFormValues } from "./types"
+import { IconButton } from "@/registry/ui/button"
 
 export function SignupForm() {
 	const [showPassword, setShowPassword] = useState(false)
@@ -41,10 +43,10 @@ export function SignupForm() {
 	}
 
 	return (
-		<div className="w-full rounded-2xl border border-zinc-300/50 bg-zinc-200/25 p-1.5 shadow-2xl shadow-black/[0.05] backdrop-blur-sm dark:border-zinc-700/50 dark:bg-zinc-800/25">
-			<Card className="bg-card w-full gap-0 rounded-xl border border-zinc-200/80 py-0 shadow-none dark:border-zinc-800/90">
-				<CardContent className="space-y-7 p-6 sm:space-y-8">
-					<div className="space-y-2">
+		<div className="border-border w-full rounded-2xl border p-1.5">
+			<Card className="bg-card border-border w-full gap-0 rounded-xl border py-0">
+				<CardContent className="flex flex-col gap-7 p-6 sm:gap-8">
+					<div className="flex flex-col gap-2">
 						<CardTitle className="text-xl tracking-tight">
 							Start your 14-day trial
 						</CardTitle>
@@ -56,11 +58,11 @@ export function SignupForm() {
 					<SocialButtons />
 
 					<div className="flex items-center gap-3">
-						<div className="bg-border h-px flex-1" />
-						<span className="text-fg-tertiary text-xs tracking-wide uppercase">
+						<Divider className="flex-1" />
+						<span className="text-fg-tertiary text-sm tracking-wide uppercase">
 							or
 						</span>
-						<div className="bg-border h-px flex-1" />
+						<Divider className="flex-1" />
 					</div>
 
 					<Form {...form}>
@@ -74,7 +76,7 @@ export function SignupForm() {
 									control={form.control}
 									name="email"
 									render={({ field }) => (
-										<FormItem className="gap-2">
+										<FormItem>
 											<FormLabel htmlFor="auth-5-email">Work email</FormLabel>
 											<FormControl>
 												<Input
@@ -95,7 +97,7 @@ export function SignupForm() {
 									control={form.control}
 									name="password"
 									render={({ field }) => (
-										<FormItem className="gap-2">
+										<FormItem>
 											<FormLabel htmlFor="auth-5-password">Password</FormLabel>
 											<FormControl>
 												<div className="relative">
@@ -106,9 +108,12 @@ export function SignupForm() {
 														placeholder="8+ characters"
 														{...field}
 													/>
-													<button
+													<IconButton
 														type="button"
-														className="text-fg-tertiary hover:text-fg absolute top-1/2 right-2.5 -translate-y-1/2 cursor-pointer transition-colors"
+														variant="ghost"
+														color="neutral"
+														size="28"
+														className="absolute top-1/2 right-2.5 -translate-y-1/2"
 														aria-label={
 															showPassword ? "Hide password" : "Show password"
 														}
@@ -119,7 +124,7 @@ export function SignupForm() {
 														) : (
 															<Eye className="size-4" aria-hidden="true" />
 														)}
-													</button>
+													</IconButton>
 												</div>
 											</FormControl>
 											<FormMessage />
@@ -131,7 +136,7 @@ export function SignupForm() {
 							<Button
 								type="submit"
 								color="primary"
-								className="mt-1.5 w-full cursor-pointer">
+								className="w-full cursor-pointer">
 								<span>
 									{isSubmitted ? "Account created!" : "Start free trial"}
 								</span>
@@ -140,9 +145,7 @@ export function SignupForm() {
 
 							<p className="text-fg-secondary text-center text-sm">
 								Already have an account?{" "}
-								<Link
-									href="#"
-									className="text-fg hover:text-primary font-medium transition-colors">
+								<Link href="#" className="text-fg font-medium hover:underline">
 									Sign in
 								</Link>
 							</p>

@@ -9,8 +9,8 @@ export function AuthHeader() {
 			{/* ReUI Squircle Logo Badge */}
 			<div className="mb-3.5 flex items-center justify-center">
 				<Image
-					src="/sandbox/reui-logo.png"
-					alt="ReUI Logo"
+					src="/logo.svg"
+					alt="Radian UI Logo"
 					width={42}
 					height={42}
 					priority
@@ -19,10 +19,12 @@ export function AuthHeader() {
 			</div>
 
 			{/* Heading & Subtitle */}
-			<h1 className="text-fg text-2xl font-semibold tracking-tight">Sign up</h1>
-			<p className="text-fg-secondary mt-1 text-sm font-normal">
-				Create your account to get started.
-			</p>
+			<div className="flex flex-col gap-1">
+				<h1 className="heading-4">Sign up</h1>
+				<p className="text-fg-secondary text-sm font-normal">
+					Create your account to get started.
+				</p>
+			</div>
 		</div>
 	)
 }

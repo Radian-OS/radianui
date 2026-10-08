@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 export default function Auth1Page() {
 	return (
-		<div className="bg-bg text-fg relative flex min-h-screen w-full items-center justify-center overflow-hidden">
+		<div className="relative flex min-h-screen w-full items-center justify-center overflow-hidden">
 			{/* Theme Toggle Button for quick light/dark testing */}
 			<ThemeToggle />
 

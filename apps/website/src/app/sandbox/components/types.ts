@@ -59,8 +59,8 @@ export type PreviewKey =
 	| "full-page-03"
 	| "full-page-04"
 	| "testimonial-01"
-	| "auth-1"
-	| "auth-2"
+	| "signup-12"
+	| "signup-13"
 
 export type ViewMode = "preview" | "inspect" | "code"
 export type DeviceSize = "desktop" | "tablet" | "mobile"
@@ -118,7 +118,7 @@ export type SandboxCategory =
 	| "portfolio-section"
 	| "table-section"
 	| "sign-in-section"
-	| "auth-section"
+	| "signup-section"
 	| "other-sections"
 
 export interface SandboxComponentConfig {
@@ -490,6 +490,16 @@ export const sandboxComponents: SandboxComponentConfig[] = [
 		previewRoute: "/sandbox/blog-01",
 	},
 	{
+		id: "blog-02",
+		label: "blog-02",
+		category: "blog-section",
+		filesKey: "blog-02",
+		path: "src/app/sandbox/blog-02",
+		defaultFile: "page.tsx",
+		referenceUrl: "https://shadcnspace.com/preview/blog-02",
+		previewRoute: "/sandbox/blog-02",
+	},
+	{
 		id: "blog-03",
 		label: "blog-03",
 		category: "blog-section",
@@ -509,16 +519,6 @@ export const sandboxComponents: SandboxComponentConfig[] = [
 		defaultFile: "page.tsx",
 		referenceUrl: "https://reui.io/preview/base/blog-5",
 		previewRoute: "/sandbox/blog-04",
-	},
-	{
-		id: "blog-04",
-		label: "blog-04",
-		category: "blog-section",
-		filesKey: "blog-04",
-		path: "src/app/sandbox/blog-02",
-		defaultFile: "page.tsx",
-		referenceUrl: "https://shadcnspace.com/preview/blog-02",
-		previewRoute: "/sandbox/blog-02",
 	},
 	{
 		id: "blog-05",
@@ -597,7 +597,7 @@ export const sandboxComponents: SandboxComponentConfig[] = [
 		label: "faq-01",
 		category: "faq-section",
 		filesKey: "faq-01",
-		path: "src/app/sandbox/faq-04-04-01",
+		path: "src/app/sandbox/faq-01",
 		defaultFile: "page.tsx",
 		referenceUrl: "https://shadcnspace.com/preview/faq-03",
 		previewRoute: "/sandbox/faq-01",
@@ -734,23 +734,23 @@ export const sandboxComponents: SandboxComponentConfig[] = [
 		previewRoute: "/sandbox/other-03",
 	},
 	{
-		id: "auth-1",
-		label: "auth-1",
-		category: "auth-section",
-		filesKey: "auth-1",
-		path: "src/app/sandbox/auth-1",
+		id: "signup-12",
+		label: "signup-12",
+		category: "signup-section",
+		filesKey: "signup-12",
+		path: "src/app/sandbox/signup-12",
 		defaultFile: "page.tsx",
 		referenceUrl: "",
-		previewRoute: "/sandbox/auth-1",
+		previewRoute: "/sandbox/signup-12",
 	},
 	{
-		id: "auth-2",
-		label: "auth-2",
-		category: "auth-section",
-		filesKey: "auth-2",
-		path: "src/app/sandbox/auth-2",
+		id: "signup-13",
+		label: "signup-13",
+		category: "signup-section",
+		filesKey: "signup-13",
+		path: "src/app/sandbox/signup-13",
 		defaultFile: "page.tsx",
 		referenceUrl: "",
-		previewRoute: "/sandbox/auth-2",
+		previewRoute: "/sandbox/signup-13",
 	},
 ]

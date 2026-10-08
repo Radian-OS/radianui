@@ -55,7 +55,7 @@ export function GradientWave() {
 				className="absolute -top-[10%] right-[5%] h-[580px] w-[580px] rounded-full blur-[96px] will-change-transform sm:right-[12%]"
 				style={{
 					background:
-						"radial-gradient(circle at 45% 45%, rgba(59, 130, 246, 0.17), rgba(99, 102, 241, 0.06) 55%, transparent 75%)",
+						"radial-gradient(circle at 45% 45%, color-mix(in oklab, var(--color-primary) 17%, transparent), color-mix(in oklab, var(--color-primary) 6%, transparent) 55%, transparent 75%)",
 				}}
 			/>
 
@@ -65,7 +65,7 @@ export function GradientWave() {
 				className="absolute top-[16%] left-[10%] h-[600px] w-[600px] rounded-full blur-[100px] will-change-transform sm:left-[22%]"
 				style={{
 					background:
-						"radial-gradient(circle at 50% 50%, rgba(168, 85, 247, 0.16), rgba(147, 51, 234, 0.05) 60%, transparent 80%)",
+						"radial-gradient(circle at 50% 50%, color-mix(in oklab, var(--color-primary) 16%, transparent), color-mix(in oklab, var(--color-primary) 5%, transparent) 60%, transparent 80%)",
 				}}
 			/>
 
@@ -75,7 +75,7 @@ export function GradientWave() {
 				className="absolute top-[48%] right-[15%] h-[560px] w-[560px] rounded-full blur-[96px] will-change-transform sm:right-[25%]"
 				style={{
 					background:
-						"radial-gradient(circle at 45% 45%, rgba(37, 99, 235, 0.14), rgba(59, 130, 246, 0.05) 55%, transparent 75%)",
+						"radial-gradient(circle at 45% 45%, color-mix(in oklab, var(--color-primary) 14%, transparent), color-mix(in oklab, var(--color-primary) 5%, transparent) 55%, transparent 75%)",
 				}}
 			/>
 
@@ -85,7 +85,7 @@ export function GradientWave() {
 				className="absolute -top-[5%] left-[20%] h-[500px] w-[500px] rounded-full blur-[90px] will-change-transform sm:left-[35%]"
 				style={{
 					background:
-						"radial-gradient(circle at 50% 50%, rgba(14, 165, 233, 0.13), rgba(59, 130, 246, 0.04) 60%, transparent 75%)",
+						"radial-gradient(circle at 50% 50%, color-mix(in oklab, var(--color-primary) 13%, transparent), color-mix(in oklab, var(--color-primary) 4%, transparent) 60%, transparent 75%)",
 				}}
 			/>
 

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function Login04Page() {
 	return (
-		<main className="bg-bg text-fg min-h-screen w-full">
+		<main className="min-h-screen w-full">
 			<LoginView />
 		</main>
 	)
