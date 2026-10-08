@@ -248,7 +248,9 @@ export function EmojiDetailsDialog({
 			variant="float"
 			handle
 			scrollLockTimeout={0}>
-			<DrawerContent className="h-auto max-h-[90dvh] max-w-full gap-0 overflow-hidden p-0 pt-7 after:hidden!">
+			{/* Vaul stops its scroll-parent check at overflowing dialogs. This invisible
+			    pixel keeps content-sized drawers from checking the scrolled page behind them. */}
+			<DrawerContent className="h-auto max-h-[90dvh] max-w-full gap-0 overflow-hidden p-0 pt-7 before:pointer-events-none before:absolute before:top-full before:h-px before:w-px before:content-[''] after:hidden!">
 				<ScrollArea
 					className="min-h-0 [&_[data-slot=scroll-area-viewport]]:max-h-[calc(90dvh-1.75rem)]"
 					type="auto">
