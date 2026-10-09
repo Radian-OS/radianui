@@ -54,6 +54,8 @@ export type PreviewKey =
 	| "faq-04"
 	| "hero-10"
 	| "pricing-02"
+	| "pricing-03"
+	| "pricing-04"
 	| "testimonial-02"
 	| "hero-09"
 	| "full-page-03"
@@ -369,6 +371,26 @@ export const sandboxComponents: SandboxComponentConfig[] = [
 		defaultFile: "jambo-pricing-section.tsx",
 		referenceUrl: "https://www.flowbase.co/preview/jambo-pricing-01",
 		previewRoute: "/sandbox/pricing-02",
+	},
+	{
+		id: "pricing-03",
+		label: "pricing-03",
+		category: "pricing-section",
+		filesKey: "pricing-03",
+		path: "src/app/sandbox/pricing-03",
+		defaultFile: "Pricing1.tsx",
+		referenceUrl: "",
+		previewRoute: "/sandbox/pricing-03",
+	},
+	{
+		id: "pricing-04",
+		label: "pricing-04",
+		category: "pricing-section",
+		filesKey: "pricing-04",
+		path: "src/app/sandbox/pricing-04",
+		defaultFile: "Pricing2.tsx",
+		referenceUrl: "",
+		previewRoute: "/sandbox/pricing-04",
 	},
 	{
 		id: "testimonial-01",
