@@ -79,9 +79,63 @@ export function EmojiCopyActions({
 		{ label: "HTML", value: getEmojiHtmlSnippet(emoji) },
 	]
 
-	const downloadSvg = () => {
+	const resolveSvg = async () => {
+		await document.fonts.load(
+			`400 ${Math.round(svgExportSize * 0.625)}px ${EMOJI_FONT_STACK}`,
+			emoji.emoji
+		)
+		// Embed the glyph pixels so Figma cannot substitute a font or baseline.
+		const canvas = document.createElement("canvas")
+		canvas.width = canvas.height = svgExportSize
+		const context = canvas.getContext("2d")
+		if (!context) throw new Error("Could not render emoji SVG")
+		context.font = `${Math.round(svgExportSize * 0.625)}px ${EMOJI_FONT_STACK}`
+		context.textAlign = "left"
+		context.textBaseline = "alphabetic"
+		const position = getEmojiGlyphPosition(
+			context.measureText(emoji.emoji),
+			svgExportSize
+		)
+		context.fillText(emoji.emoji, position.x, position.y)
+		const pixels = context.getImageData(0, 0, svgExportSize, svgExportSize).data
+		let left = svgExportSize,
+			top = svgExportSize,
+			right = -1,
+			bottom = -1
+		for (let y = 0; y < svgExportSize; y++) {
+			for (let x = 0; x < svgExportSize; x++) {
+				if (pixels[(y * svgExportSize + x) * 4 + 3] === 0) continue
+				left = Math.min(left, x)
+				right = Math.max(right, x)
+				top = Math.min(top, y)
+				bottom = Math.max(bottom, y)
+			}
+		}
+		if (right < left) throw new Error("Emoji rendered without visible pixels")
+		const width = right - left + 1,
+			height = bottom - top + 1
+		const glyph = document.createElement("canvas")
+		glyph.width = width
+		glyph.height = height
+		const glyphContext = glyph.getContext("2d")
+		if (!glyphContext) throw new Error("Could not crop emoji SVG")
+		glyphContext.drawImage(
+			canvas,
+			left,
+			top,
+			width,
+			height,
+			0,
+			0,
+			width,
+			height
+		)
+		return `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="512" height="512" viewBox="0 0 512 512"><image x="${(svgExportSize - width) / 2}" y="${(svgExportSize - height) / 2}" width="${width}" height="${height}" xlink:href="${glyph.toDataURL("image/png")}" /></svg>`
+	}
+
+	const downloadSvg = async () => {
 		downloadBlob(
-			new Blob([getEmojiSvgMarkup(emoji, svgExportSize)], {
+			new Blob([await resolveSvg()], {
 				type: "image/svg+xml;charset=utf-8",
 			}),
 			`${getEmojiFilename(emoji)}.svg`
@@ -93,7 +147,7 @@ export function EmojiCopyActions({
 		})
 	}
 
-	const downloadPng = async () => {
+	const exportPng = async (copy = false) => {
 		const canvas = document.createElement("canvas")
 		canvas.width = pngExportSize
 		canvas.height = pngExportSize
@@ -129,19 +183,36 @@ export function EmojiCopyActions({
 		)
 		context.fillText(emoji.emoji, position.x, position.y)
 
-		canvas.toBlob((blob) => {
-			if (!blob) {
-				toast.error("Could not create PNG")
-				return
-			}
-
+		const blob = await new Promise<Blob | null>((resolve) =>
+			canvas.toBlob(resolve, "image/png")
+		)
+		if (!blob) {
+			toast.error("Could not create PNG")
+			return
+		}
+		if (copy) {
+			await navigator.clipboard.write([
+				new ClipboardItem({ "image/png": blob }),
+			])
+		} else {
 			downloadBlob(blob, `${getEmojiFilename(emoji)}-${pngExportSize}px.png`)
-			showEmojiToast({
-				emoji: emoji.emoji,
-				title: "Download Complete",
-				description: "PNG has been downloaded.",
-			})
-		}, "image/png")
+		}
+		showEmojiToast({
+			emoji: emoji.emoji,
+			title: copy ? "Copied" : "Download Complete",
+			description: copy
+				? "PNG has been copied to your clipboard."
+				: "PNG has been downloaded.",
+		})
+	}
+
+	const downloadPng = () => exportPng()
+	const copyPng = async () => {
+		try {
+			await exportPng(true)
+		} catch {
+			toast.error("Could not copy PNG")
+		}
 	}
 
 	if (compact)
@@ -159,6 +230,7 @@ export function EmojiCopyActions({
 				<EmojiCopyButton
 					emoji={emoji.emoji}
 					value={svgMarkup}
+					resolveValue={resolveSvg}
 					successLabel="SVG"
 					size="32"
 					variant="strong"
@@ -171,7 +243,7 @@ export function EmojiCopyActions({
 						color="primary"
 						variant="strong"
 						className="max-sm:flex-auto">
-						<Button className="max-sm:flex-1" onClick={downloadPng}>
+						<Button className="max-sm:flex-1" onClick={copyPng}>
 							PNG
 						</Button>
 						<DropdownMenuTrigger asChild>
@@ -250,6 +322,7 @@ export function EmojiCopyActions({
 				<EmojiCopyButton
 					emoji={emoji.emoji}
 					value={svgMarkup}
+					resolveValue={resolveSvg}
 					successLabel="SVG"
 					size="40"
 					color="neutral"

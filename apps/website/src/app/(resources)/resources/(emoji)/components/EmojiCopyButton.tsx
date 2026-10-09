@@ -11,6 +11,7 @@ interface EmojiCopyButtonProps extends Omit<
 	"onClick"
 > {
 	iconOnly?: boolean
+	resolveValue?: () => Promise<string>
 	value: string
 	emoji: string
 	successLabel: string
@@ -18,6 +19,7 @@ interface EmojiCopyButtonProps extends Omit<
 
 export function EmojiCopyButton({
 	value,
+	resolveValue,
 	emoji,
 	successLabel,
 	iconOnly = false,
@@ -26,7 +28,9 @@ export function EmojiCopyButton({
 }: EmojiCopyButtonProps) {
 	const copy = async () => {
 		try {
-			await navigator.clipboard.writeText(value)
+			await navigator.clipboard.writeText(
+				resolveValue ? await resolveValue() : value
+			)
 			if (value === emoji) cacheCopiedEmojiSkinTone(value)
 			showEmojiToast({
 				emoji,

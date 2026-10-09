@@ -137,12 +137,24 @@ export function getEmojiSvgMarkup(emoji: EmojiData, size = 512) {
 	const glyphSize = Math.round(size * 0.625)
 	let position = { x: size / 2, y: (size + glyphSize * 0.8) / 2 }
 	if (typeof document !== "undefined") {
-		const context = document.createElement("canvas").getContext("2d")
-		if (context) {
-			context.font = `${glyphSize}px ${EMOJI_FONT_STACK}`
-			context.textAlign = "left"
-			context.textBaseline = "alphabetic"
-			position = getEmojiGlyphPosition(context.measureText(emoji.emoji), size)
+		const namespace = "http://www.w3.org/2000/svg"
+		const svg = document.createElementNS(namespace, "svg")
+		const text = document.createElementNS(namespace, "text")
+		svg.style.cssText =
+			"position:fixed;left:-10000px;top:0;visibility:hidden;pointer-events:none"
+		text.setAttribute("font-size", String(glyphSize))
+		text.setAttribute("font-family", EMOJI_FONT_STACK)
+		text.textContent = emoji.emoji
+		svg.append(text)
+		document.body.append(svg)
+		try {
+			const bounds = text.getBBox()
+			position = {
+				x: (size - bounds.width) / 2 - bounds.x,
+				y: (size - bounds.height) / 2 - bounds.y,
+			}
+		} finally {
+			svg.remove()
 		}
 	}
 	return `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" role="img" aria-label="${label}"><title>${label}</title><text x="${position.x}" y="${position.y}" text-anchor="start" font-size="${glyphSize}" font-family='${EMOJI_FONT_STACK}'>${emoji.emoji}</text></svg>`
