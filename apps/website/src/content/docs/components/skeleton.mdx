@@ -141,7 +141,7 @@ import { Skeleton } from "@/components/ui/skeleton"
 		{
 			question: "How do I change the speed of the pulsing animation?",
 			answer:
-				"Open your tailwind.config.ts file. The component relies on Tailwind's default pulse animation (which typically runs at a 2-second duration). You can easily override the keyframes and animation timings in your config to make the pulse faster or swap it for a shimmering gradient effect.",
+				"Skeleton uses Tailwind v4's animate-pulse utility. Override --animate-pulse in an @theme block in your global stylesheet to change its timing, or pass a custom animation class to an individual Skeleton. No tailwind.config.ts is required.",
 		},
 	]}
 />

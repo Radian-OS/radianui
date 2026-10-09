@@ -5,11 +5,12 @@ description: Use the CLI to scaffold projects, add components and static assets,
 
 ## init
 
-Use the **`init`** command to initialize configuration and dependencies for a new project.
+Use the **`init`** command to initialize configuration and dependencies for a new or existing project.
 
 <br />
 The **`init`** command installs dependencies, adds the Radian UI utilities, and
-configures CSS variables and theme tokens for the project.
+configures CSS variables and theme tokens for the project. It installs the
+shared `globals.css` and `utility.css` stylesheets.
 
 ```bash
 npx radianui@latest init [project-name]
@@ -31,11 +32,18 @@ Options:
   --useSrc                     use src directory
   --color <color>              set brand color
   --font <font>                set default font
+  --preset <code>              generate project from a generated preset
+  --style <style>              set style (default: "default")
+  --icon-library <library>     set icon library
   -s, --skipPrompts            skip confirmation prompts (default: false)
   -d, --defaultConfigurations  use default configurations (default: false)
   -c, --cwd <cwd>              current working directory (default: process.cwd())
   -h, --help                   display help for command
 ```
+
+The available styles are `default` and `sera`; icon libraries are `lucide` and
+`hugeicons`. In an empty directory, `init` scaffolds a Next.js or Vite app. In an
+existing project, it configures that app without scaffolding it again.
 
 ## add
 
@@ -49,7 +57,6 @@ npx radianui@latest add [components...]
 You will be presented with the installation process:
 
 ```bash title="Terminal"
-RadianUI v0.3.8
 √ Checking registry
 √ Installing dependencies
 
@@ -78,7 +85,7 @@ Options:
 
 ## add-asset
 
-Use the **`add-asset`** command to install static registry assets (such as country flags, brand logos, or file icons) directly into your project's static assets directory (e.g. `public/assets/flags/`).
+Use the **`add-asset`** command to install static registry assets (country flags) directly into your project's static assets directory (e.g. `public/assets/flags/`).
 
 ```bash
 npx radianui@latest add-asset [assetType] [assets...]
@@ -104,10 +111,10 @@ npx radianui@latest add-asset flag --all
 ```bash title="Terminal"
 Usage: radianui add-asset [options] [assetType] [assets...]
 
-add static assets (flag, logos, icons) to your project
+add static assets to your project
 
 Arguments:
-  assetType        the type of asset (e.g. flag, logo) or asset identifier (e.g. flag:US-24x24)
+  assetType        the type of asset (flag) or asset identifier (e.g. flag:US-24x24)
   assets...        the specific asset names or codes to add
 
 Options:

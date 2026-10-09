@@ -252,8 +252,6 @@ export const RESOURCE_ITEMS: NavigationItem[] = [
 		description: "A complete emoji collection.",
 		url: "/resources/emoji",
 		resourceIcon: "emoji",
-		isComingSoon: true,
-		disabled: true,
 	},
 	{
 		title: "Brand Logo",

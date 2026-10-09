@@ -8,6 +8,9 @@ const registry: Record<
 	"popover-align": React.lazy(
 		() => import("@/registry/example/popover/popover-align")
 	),
+	"popover-emoji-picker": React.lazy(
+		() => import("@/registry/example/popover/popover-emoji-picker")
+	),
 	"popover-emoji": React.lazy(
 		() => import("@/registry/example/popover/popover-emoji")
 	),

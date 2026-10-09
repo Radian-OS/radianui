@@ -43,7 +43,7 @@ The command above will add the `Button` component to your project. You can then
 include it like this:
 
 ```tsx showLineNumbers title="app.tsx"
-import { Button } from "@/components/ui/Button"
+import { Button } from "@/components/ui/button"
 
 export default function App() {
 	return (
@@ -103,7 +103,9 @@ npx radianui@latest init
 <br />
 The CLI will automatically detect your Next.js framework and Tailwind
 configuration. You will be asked a few questions to configure your project, such
-as brand color and font.
+as brand color, font, component style, and icon library. The CLI installs the
+shared global styles and color palette. Keep your app entry point importing the
+stylesheet that the CLI updates.
 
 ### Add Components
 
@@ -118,7 +120,7 @@ The command above will add the `Button` component to your project. You can then
 include it like this:
 
 ```tsx showLineNumbers title="app.tsx"
-import { Button } from "@/components/ui/Button"
+import { Button } from "@/components/ui/button"
 
 export default function App() {
 	return (

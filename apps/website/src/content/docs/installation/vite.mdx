@@ -42,7 +42,7 @@ The command above will add the `Button` component to your project. You can then
 include it like this:
 
 ```tsx title="app.tsx" showLineNumbers
-import { Button } from "@/components/ui/Button"
+import { Button } from "@/components/ui/button"
 
 export default function App() {
 	return (
@@ -64,7 +64,8 @@ npm install tailwindcss @tailwindcss/vite
 ```
 
 <br />
-Replace everything in `src/index.css` with the following:
+Add the Tailwind import at the top of your existing `src/index.css`, preserving
+your application styles. Make sure `src/main.tsx` imports this stylesheet:
 
 ```css title="src/index.css" showLineNumbers
 @import "tailwindcss";
@@ -117,7 +118,7 @@ npm install -D @types/node
 ```
 
 ```ts showLineNumbers title="vite.config.ts"
-import path from "path"
+import { fileURLToPath, URL } from "node:url"
 import tailwindcss from "@tailwindcss/vite"
 import react from "@vitejs/plugin-react"
 import { defineConfig } from "vite"
@@ -126,9 +127,9 @@ export default defineConfig({
 	plugins: [react(), tailwindcss()],
 	resolve: {
 		alias: {
-			"@": path.resolve(\_\_dirname, "./src")
-		}
-	}
+			"@": fileURLToPath(new URL("./src", import.meta.url)),
+		},
+	},
 })
 ```
 
@@ -141,7 +142,9 @@ npx radianui@latest init
 <br />
 The CLI will automatically detect your Vite framework and Tailwind
 configuration. You will be asked a few questions to configure your project, such
-as brand color and font.
+as brand color, font, component style, and icon library. The CLI installs the
+shared global styles and color palette. Keep your app entry point importing the
+stylesheet that the CLI updates.
 
 ### Add Components
 
@@ -156,7 +159,7 @@ The command above will add the `Button` component to your project. You can then
 include it like this:
 
 ```tsx title="app.tsx" showLineNumbers
-import { Button } from "@/components/ui/Button"
+import { Button } from "@/components/ui/button"
 
 export default function App() {
 	return (

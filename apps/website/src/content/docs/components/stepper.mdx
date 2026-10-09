@@ -65,30 +65,34 @@ const steps = [
 	{ step: 3, title: "Payment", description: "Billing method" },
 ]
 
-<Stepper defaultValue={1} className="space-y-6">
-	<StepperNav>
-		{steps.map((item, index) => (
-			<StepperItem key={item.step} step={item.step}>
-				<StepperTrigger>
-					<StepperIndicator>{item.step}</StepperIndicator>
-					<span className="text-left">
-						<StepperTitle>{item.title}</StepperTitle>
-						<StepperDescription>{item.description}</StepperDescription>
-					</span>
-				</StepperTrigger>
-				{index < steps.length - 1 && <StepperSeparator />}
-			</StepperItem>
-		))}
-	</StepperNav>
+export function CheckoutStepper() {
+	return (
+		<Stepper defaultValue={1} className="space-y-6">
+			<StepperNav>
+				{steps.map((item, index) => (
+					<StepperItem key={item.step} step={item.step}>
+						<StepperTrigger>
+							<StepperIndicator>{item.step}</StepperIndicator>
+							<span className="text-left">
+								<StepperTitle>{item.title}</StepperTitle>
+								<StepperDescription>{item.description}</StepperDescription>
+							</span>
+						</StepperTrigger>
+						{index < steps.length - 1 && <StepperSeparator />}
+					</StepperItem>
+				))}
+			</StepperNav>
 
-	<StepperPanel>
-		{steps.map((item) => (
-			<StepperContent key={item.step} value={item.step}>
-				{item.title}
-			</StepperContent>
-		))}
-	</StepperPanel>
-</Stepper>
+			<StepperPanel>
+				{steps.map((item) => (
+					<StepperContent key={item.step} value={item.step}>
+						{item.title}
+					</StepperContent>
+				))}
+			</StepperPanel>
+		</Stepper>
+	)
+}
 ```
 
 ---

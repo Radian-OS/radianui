@@ -80,6 +80,11 @@ const LINKS: Link[] = [
 				icon: <UICountryFlagsIcon />,
 			},
 			{
+				href: "/resources/emoji",
+				name: "Emoji Collection",
+				icon: <EmojiCollectionIcon />,
+			},
+			{
 				href: "#",
 				name: "Popular Brand Logos",
 				icon: <PopularBrandLogosIcon />,
@@ -89,12 +94,6 @@ const LINKS: Link[] = [
 				href: "#",
 				name: "Credit Card Icons",
 				icon: <UICountryFlagsIcon />,
-				release: "coming-soon",
-			},
-			{
-				href: "#",
-				name: "Emoji Collection",
-				icon: <EmojiCollectionIcon />,
 				release: "coming-soon",
 			},
 			{

@@ -63,7 +63,7 @@ import {
 	SidebarMenuItem,
 	SidebarProvider,
 	SidebarTrigger,
-} from "@/registry/ui/sidebar"
+} from "@/components/ui/sidebar"
 ```
 
 ### Code
@@ -441,7 +441,10 @@ function AppHeader() {
 Override mobile drawer width
 
 ```tsx showLineNumbers
-<SidebarProvider style={{ "--sidebar-width-mobile": "22rem" }}>
+<SidebarProvider
+	style={{ "--sidebar-width-mobile": "22rem" } as React.CSSProperties}>
+	{/* Sidebar and application content */}
+</SidebarProvider>
 ```
 
 > The mobile `Drawer` includes a visually hidden `DialogTitle` for screen reader support. Cookie-based persistence only applies on desktop, mobile Drawer state is session-only.
@@ -484,7 +487,7 @@ Override mobile drawer width
 		{
 			question: "How does it handle mobile screens?",
 			answer:
-				"The standard Radian implementation utilizes a custom hook (like useIsMobile) alongside a global <SidebarProvider>. On small screens, the persistent desktop <aside> is removed, and a designated trigger button opens a Radian Sheet containing your <Sidebar> content, ensuring a flawless touch experience.",
+				"The standard Radian implementation utilizes a custom hook (like useIsMobile) alongside a global <SidebarProvider>. On small screens, the persistent desktop <aside> is removed, and a designated trigger button opens a Radian Drawer containing your <Sidebar> content, ensuring a flawless touch experience.",
 		},
 		{
 			question: "How do I make it collapse into an icon-only rail?",

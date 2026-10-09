@@ -261,6 +261,7 @@ const nextConfig = {
       "@radix-ui/react-icons",
       "@hugeicons/core-free-icons",
       "@hugeicons/react",
+      "date-fns",
     ],
   },
   compress: false, // Let cloudflare handle the compression,
@@ -275,6 +276,7 @@ const nextConfig = {
     return config;
   },
   output: "standalone",
+  serverExternalPackages: ["ts-morph", "typescript", "shiki"],
 };
 const withMDX = createMDX();
 export default withBundleAnalyzer(withMDX(nextConfig));

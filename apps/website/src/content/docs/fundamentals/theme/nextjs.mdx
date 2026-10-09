@@ -16,6 +16,8 @@ npm install next-themes
 ## Create a Theme Provider
 
 ```tsx showLineNumbers title="components/theme-provider.tsx"
+"use client"
+
 import * as React from "react"
 import { ThemeProvider as NextThemesProvider } from "next-themes"
 
@@ -49,12 +51,9 @@ export default function RootLayout({
 	children: React.ReactNode
 }>) {
 	return (
-		<html lang="en">
+		<html lang="en" suppressHydrationWarning>
 			<body className="antialiased">
-				<ThemeProvider
-					attribute="class"
-					defaultTheme="system"
-					suppressHydrationWarning>
+				<ThemeProvider attribute="class" defaultTheme="system" enableSystem>
 					{children}
 				</ThemeProvider>
 			</body>
@@ -62,6 +61,10 @@ export default function RootLayout({
 	)
 }
 ```
+
+Install the Button component if it is not already present: `npx radianui@latest add button`.
+
+The provider uses `attribute="class"` to match Radian's dark theme styles. See the [next-themes documentation](https://github.com/pacocoursey/next-themes) for its system theme and hydration behavior.
 
 ## Create a Theme Toggler
 
@@ -71,7 +74,7 @@ export default function RootLayout({
 import { useEffect, useState } from "react"
 import { Loader2, MoonIcon, SunIcon } from "lucide-react"
 import { useTheme } from "next-themes"
-import { Button, IconButton } from "@/components/ui/button"
+import { IconButton } from "@/components/ui/button"
 
 export function ThemeToggler() {
 	// This component is only rendered on the client, so we can use useEffect to set the mounted state
@@ -90,14 +93,22 @@ export function ThemeToggler() {
 
 	if (!mounted) {
 		return (
-			<IconButton variant="outline" color="neutral" disabled>
-				<Loader2 className="size-5 animate-spin" />
+			<IconButton
+				variant="outline"
+				color="neutral"
+				aria-label="Loading theme"
+				disabled>
+				<Loader2 className="animate-spin" />
 			</IconButton>
 		)
 	}
 
 	return (
-		<IconButton variant="outline" color="neutral" onClick={toggleTheme}>
+		<IconButton
+			variant="outline"
+			color="neutral"
+			aria-label="Toggle color theme"
+			onClick={toggleTheme}>
 			{resolvedTheme === "light" ? <MoonIcon /> : <SunIcon />}
 		</IconButton>
 	)
@@ -112,7 +123,7 @@ import { ThemeToggler } from "@/components/theme-toggler"
 export function NavigationBar() {
 	return (
 		<nav>
-			// ....
+			{/* Navigation content */}
 			<ThemeToggler />
 		</nav>
 	)
