@@ -98,7 +98,6 @@ const accordionTriggerVariants = cva(
 				chevron: "[&[data-state=open]>.AccordionChevron]:rotate-180",
 				"plus-minus":
 					"[&[data-state=open]>.AccordionPlus]:rotate-180 [&[data-state=open]>.AccordionPlus>path:last-child]:rotate-90 [&[data-state=open]>.AccordionPlus>path:last-child]:opacity-0",
-				none: "",
 			},
 		},
 		compoundVariants: [
@@ -196,18 +195,17 @@ function useAccordion() {
 function Accordion({
 	size = "sm",
 	variant = "box",
-	indicator,
+	indicator = "chevron",
 	className,
 	children,
 	...props
 }: AccordionProps) {
-	const resolvedIndicator = indicator === undefined ? "chevron" : indicator
 	return (
 		<AccordionContext.Provider
 			value={{
 				size: size ?? "sm",
 				variant: variant ?? "box",
-				indicator: resolvedIndicator,
+				indicator: indicator ?? "chevron",
 			}}>
 			<AccordionPrimitive.Root
 				data-slot="accordion"
