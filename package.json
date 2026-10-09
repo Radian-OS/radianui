@@ -39,7 +39,7 @@
 	"devDependencies": {
 		"@commitlint/cli": "^19.8.1",
 		"@commitlint/config-conventional": "^19.8.1",
-		"@types/node": "^22.14.0",
+		"@types/node": "^26.6.3",
 		"husky": "^9.1.7",
 		"oxfmt": "^0.68.0",
 		"oxlint": "^1.83.0",
