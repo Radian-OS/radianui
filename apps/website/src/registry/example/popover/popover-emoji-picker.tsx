@@ -273,8 +273,8 @@ export default function PopoverEmojiPicker({
 						className="bg-fill1-alpha min-w-0 flex-1 border-transparent has-[:focus-visible]:border-transparent has-[:focus-visible]:ring-0">
 						<Search />
 						<Input
-							aria-label="Search emojis"
-							placeholder="Search"
+							aria-label="Search emojis by name, pasted emoji, category, Unicode, or metadata"
+							placeholder="Search or paste emoji"
 							value={search}
 							onChange={(event) => setSearch(event.target.value)}
 						/>

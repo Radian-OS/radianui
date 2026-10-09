@@ -261,8 +261,8 @@ export default function EmojiPlayground({
 								setQuery(event.target.value)
 								setDisplayLimit(INITIAL_EMOJI_LIMIT)
 							}}
-							placeholder="Search emojis by name (e.g. grinning face, rocket)..."
-							aria-label="Search emojis by name"
+							placeholder="Search or paste emoji"
+							aria-label="Search emojis by name, pasted emoji, category, Unicode, or metadata"
 						/>
 					</InputWrapper>
 				</InputGroup>
