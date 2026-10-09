@@ -54,25 +54,27 @@ function TooltipContent({
 	...props
 }: TooltipContentProps) {
 	return (
-		<TooltipPrimitive.Content
-			data-slot="tooltip-content"
-			data-theme={theme}
-			align={align}
-			side={side}
-			sideOffset={withArrow ? sideOffset / 2 : sideOffset}
-			className={cn(tooltipContentVariants({ theme }), className)}
-			{...props}>
-			{children}
-			{withArrow && (
-				<TooltipPrimitive.Arrow
-					data-slot="tooltip-arrow"
-					data-theme={theme}
-					width={12}
-					height={7}
-					className="data-[theme=light]:fill-elevation-level1 data-[theme=default]:fill-black-inverse -mt-0.5 rounded-md data-[theme=light]:drop-shadow-[0_1px_0_var(--color-border)]"
-				/>
-			)}
-		</TooltipPrimitive.Content>
+		<TooltipPrimitive.Portal>
+			<TooltipPrimitive.Content
+				data-slot="tooltip-content"
+				data-theme={theme}
+				align={align}
+				side={side}
+				sideOffset={withArrow ? sideOffset / 2 : sideOffset}
+				className={cn(tooltipContentVariants({ theme }), className)}
+				{...props}>
+				{children}
+				{withArrow && (
+					<TooltipPrimitive.Arrow
+						data-slot="tooltip-arrow"
+						data-theme={theme}
+						width={12}
+						height={7}
+						className="data-[theme=light]:fill-elevation-level1 data-[theme=default]:fill-black-inverse -mt-0.5 rounded-md data-[theme=light]:drop-shadow-[0_1px_0_var(--color-border)]"
+					/>
+				)}
+			</TooltipPrimitive.Content>
+		</TooltipPrimitive.Portal>
 	)
 }
 TooltipContent.displayName = TooltipPrimitive.Content.displayName
