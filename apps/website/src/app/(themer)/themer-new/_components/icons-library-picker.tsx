@@ -7,8 +7,23 @@ import {
 	DropdownMenuRadioItem,
 	DropdownMenuTrigger,
 } from "@/styles/default/ui/dropdown-menu"
+import {
+	HugeIcon,
+	LucideIcon,
+	MageIcon,
+	PhosphorIcon,
+	TablerIcon,
+} from "./icons"
 
-export default function CornerPicker() {
+const ICONS = [
+	{ icon: LucideIcon, label: "Lucide" },
+	{ icon: HugeIcon, label: "Hugeicons" },
+	{ icon: PhosphorIcon, label: "Phosphor" },
+	{ icon: TablerIcon, label: "Tabler Icons" },
+	{ icon: MageIcon, label: "Mage Icons" },
+]
+
+export default function IconLibraryPicker() {
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
@@ -16,24 +31,24 @@ export default function CornerPicker() {
 					className="bg-fill1-alpha w-full justify-between text-[13px]"
 					variant="soft"
 					color="neutral">
-					<span>Radius</span>{" "}
-					<span className="text-fg-tertiary font-medium">Default</span>
+					<span>Library</span>{" "}
+					<span className="text-fg-tertiary font-medium">Lucide</span>
 				</Button>
 			</DropdownMenuTrigger>
 			<DropdownMenuContent
 				side="right"
-				align="start"
+				align="end"
 				sideOffset={20}
 				className="min-w-[280px] shadow-sm">
 				<DropdownMenuLabel className="text-fg-tertiary">
-					Radius
+					Icons
 				</DropdownMenuLabel>
 				<DropdownMenuRadioGroup>
-					<DropdownMenuRadioItem value="default">Default</DropdownMenuRadioItem>
-					<DropdownMenuRadioItem value="flat">Flat</DropdownMenuRadioItem>
-					<DropdownMenuRadioItem value="fun">Fun</DropdownMenuRadioItem>
-					<DropdownMenuRadioItem value="rounded">Rounded</DropdownMenuRadioItem>
-					<DropdownMenuRadioItem value="custom">Custom</DropdownMenuRadioItem>
+					{ICONS.map((item) => (
+						<DropdownMenuRadioItem key={item.label} value={item.label}>
+							<item.icon /> {item.label}
+						</DropdownMenuRadioItem>
+					))}
 				</DropdownMenuRadioGroup>
 			</DropdownMenuContent>
 		</DropdownMenu>

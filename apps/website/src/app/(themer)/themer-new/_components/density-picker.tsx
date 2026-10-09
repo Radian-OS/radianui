@@ -26,7 +26,11 @@ export default function DensityPicker() {
 					<span className="text-fg-tertiary font-medium">Default</span>
 				</Button>
 			</DropdownMenuTrigger>
-			<DropdownMenuContent side="right" align="start" sideOffset={20}>
+			<DropdownMenuContent
+				side="right"
+				align="start"
+				sideOffset={20}
+				className="min-w-[280px] shadow-sm">
 				<div className="flex items-center justify-between">
 					<DropdownMenuLabel className="text-fg-tertiary">
 						Density
@@ -37,7 +41,7 @@ export default function DensityPicker() {
 								<Info />
 							</CompactButton>
 						</TooltipTrigger>
-						<TooltipContent>
+						<TooltipContent className="max-w-fit" withArrow>
 							Changes the spacing scale across your interface
 						</TooltipContent>
 					</Tooltip>

@@ -221,7 +221,7 @@ export default function FontPicker(
 				align="start"
 				side="right"
 				sideOffset={20}
-				className="w-[280px] rounded-lg p-0">
+				className="w-[280px] rounded-lg p-0 shadow-sm">
 				<FontList />
 			</PopoverContent>
 		</Popover>

@@ -1,9 +1,9 @@
 "use client"
 
 import React from "react"
-import { ChevronLeft, ChevronRight } from "lucide-react"
 import { type ChevronProps, DayPicker } from "react-day-picker"
 import { cn } from "@/lib/utils"
+import { IconSlot } from "@/registry/icon/icon-library"
 
 export type CalendarProps = React.ComponentProps<typeof DayPicker>
 
@@ -42,8 +42,12 @@ function Calendar({
 			components={{
 				Chevron: (props: ChevronProps) => {
 					if (props.orientation === "left")
-						return <ChevronLeft size={16} className="text-fg-tertiary" />
-					return <ChevronRight size={16} className="text-fg-tertiary" />
+						return (
+							<IconSlot slot="left" size={16} className="text-fg-tertiary" />
+						)
+					return (
+						<IconSlot slot="right" size={16} className="text-fg-tertiary" />
+					)
 				},
 			}}
 			className={cn("bg-card border-border rounded-xl border p-3", className)}

@@ -3,8 +3,8 @@
 import React from "react"
 import * as AccordionPrimitive from "@radix-ui/react-accordion"
 import { type VariantProps, cva } from "class-variance-authority"
-import { ChevronDown, Plus } from "lucide-react"
 import { cn as classNames } from "@/lib/utils"
+import { IconSlot } from "@/registry/icon/icon-library"
 
 export type AccordionContextType = {
 	size?: VariantProps<typeof accordionVariants>["size"]
@@ -254,13 +254,15 @@ function AccordionTrigger({
 				{...props}>
 				{children}
 				{indicator === "chevron" && (
-					<ChevronDown
+					<IconSlot
+						slot="down"
 						className="AccordionChevron shrink-0 transition-transform duration-200"
 						aria-hidden
 					/>
 				)}
 				{indicator === "plus-minus" && (
-					<Plus
+					<IconSlot
+						slot="plus"
 						className="AccordionPlus shrink-0 transition-transform duration-200"
 						aria-hidden
 					/>

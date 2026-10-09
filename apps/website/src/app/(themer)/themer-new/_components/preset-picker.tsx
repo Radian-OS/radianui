@@ -90,7 +90,7 @@ export default function PresetPicker() {
 				align="start"
 				side="right"
 				sideOffset={20}
-				className="w-[280px] rounded-lg p-0">
+				className="w-[280px] rounded-lg p-0 shadow-sm">
 				<Command className="border-0 p-0">
 					<CommandInput />
 					<CommandList className="max-h-none overflow-visible">

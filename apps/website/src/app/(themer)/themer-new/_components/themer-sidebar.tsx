@@ -27,16 +27,18 @@ import {
 	CodeXml,
 } from "lucide-react"
 import PresetPicker from "./preset-picker"
-import { GoogleIcon } from "./icons"
+import { GoogleIcon, RadianIcon } from "./icons"
 import FontPicker from "./font-picker"
 import CornerPicker from "./corner-picker"
 import DensityPicker from "./density-picker"
+import IconLibraryPicker from "./icons-library-picker"
 
 export function ThemerSidebar() {
 	return (
 		<Sidebar collapsible="icon">
-			<SidebarHeader className="border-border flex h-14 shrink-0 flex-row items-center justify-between border-b p-4">
-				{/* Top area if needed, maybe presets */}
+			<SidebarHeader className="border-border flex h-12 shrink-0 flex-row items-center justify-start gap-2 border-b px-3 py-3.5">
+				<RadianIcon />
+				<span className="text-fg text-sm font-medium">Radian theme</span>
 			</SidebarHeader>
 			<SidebarContent>
 				<SidebarGroup>
@@ -187,28 +189,17 @@ export function ThemerSidebar() {
 					<SidebarGroupLabel className="text-sidebar-fg/70 mb-2 px-0 font-normal">
 						Icons
 					</SidebarGroupLabel>
-					<div className="border-border bg-fill1-alpha flex items-center justify-between rounded-lg border p-1 text-sm">
-						<span className="text-sidebar-fg ml-3 font-medium">Icon pack</span>
-						<Select defaultValue="mage">
-							<SelectTrigger className="text-sidebar-fg/70 w-auto border-none bg-transparent shadow-none focus-visible:ring-0">
-								<SelectValue placeholder="Select pack" />
-							</SelectTrigger>
-							<SelectContent>
-								<SelectItem value="mage">Mage Icons</SelectItem>
-								<SelectItem value="lucide">Lucide</SelectItem>
-							</SelectContent>
-						</Select>
-					</div>
+					<IconLibraryPicker />
 				</SidebarGroup>
 			</SidebarContent>
 
-			<SidebarFooter className="border-border flex flex-row gap-2 border-t p-4">
-				<Button variant="outline" className="bg-fill1 flex-1" color="neutral">
-					<Shuffle className="mr-2 size-4" />
+			<SidebarFooter className="border-border flex flex-row gap-3 border-t px-3 py-3.5">
+				<Button size="32" variant="outline" className="flex-1" color="neutral">
+					<Shuffle className="text-fg-secondary size-4" />
 					Shuffle all
 				</Button>
-				<Button variant="outline" className="bg-fill1 flex-1" color="neutral">
-					<Lock className="mr-2 size-4" />
+				<Button size="32" variant="outline" className="w-fit" color="neutral">
+					<Lock className="text-fg-secondary size-4" />
 					Lock all
 				</Button>
 			</SidebarFooter>

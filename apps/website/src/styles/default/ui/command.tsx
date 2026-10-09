@@ -8,8 +8,8 @@ import {
 	CommandList as CmdkList,
 	CommandSeparator as CmdkSeparator,
 } from "cmdk"
-import { Search } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { IconSlot } from "@/registry/icon/icon-library"
 import {
 	Dialog,
 	DialogContent,
@@ -77,7 +77,7 @@ function CommandInput({ className, ...props }: CommandInputProps) {
 		<div
 			data-slot="command-input-wrapper"
 			className="flex h-10 items-center gap-2 border-b px-3 py-2.5">
-			<Search className="text-fg-secondary size-4 shrink-0" />
+			<IconSlot slot="search" className="text-fg-secondary size-4 shrink-0" />
 			<CmdkInput
 				data-slot="command-input"
 				className={cn(

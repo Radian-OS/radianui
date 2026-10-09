@@ -1,7 +1,7 @@
 import * as React from "react"
 import { type VariantProps, cva } from "class-variance-authority"
-import { X } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { IconSlot } from "@/registry/icon/icon-library"
 
 export type BannerProps = Omit<React.HTMLAttributes<HTMLDivElement>, "color"> &
 	VariantProps<typeof bannerVariants> & {
@@ -153,7 +153,7 @@ function Banner({
 					aria-label="Dismiss"
 					data-slot="banner-close"
 					className="group flex size-5 shrink-0 cursor-pointer items-center justify-center">
-					<X className="size-5 group-hover:opacity-60" />
+					<IconSlot slot="cross" className="size-5 group-hover:opacity-60" />
 				</button>
 			)}
 		</div>
