@@ -1,3 +1,5 @@
+"use client"
+
 import { Badge } from "@/styles/default/ui/badge"
 import { useState } from "react"
 import { Switch } from "@/styles/default/ui/switch"
