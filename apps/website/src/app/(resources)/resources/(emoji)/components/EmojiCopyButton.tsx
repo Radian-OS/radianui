@@ -6,16 +6,14 @@ import { toast } from "sonner"
 import { Button, IconButton } from "@/registry/ui/button"
 import { showEmojiToast } from "./EmojiToast"
 
-interface EmojiCopyButtonProps extends Omit<
-	ComponentProps<typeof Button>,
-	"onClick"
-> {
+type EmojiCopyButtonProps = Omit<ComponentProps<typeof Button>, "onClick"> & {
 	iconOnly?: boolean
-	resolveValue?: () => Promise<string>
-	value: string
 	emoji: string
 	successLabel: string
-}
+} & (
+		| { value: string; resolveValue?: never }
+		| { value?: never; resolveValue: () => Promise<string> }
+	)
 
 export function EmojiCopyButton({
 	value,

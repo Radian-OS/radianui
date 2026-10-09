@@ -1,5 +1,6 @@
 "use client"
 
+import { getEmojiVectorSvg } from "@/lib/emoji/emoji-vector"
 import { useState, type ReactNode } from "react"
 import {
 	ChevronDown,
@@ -31,14 +32,12 @@ import {
 	getEmojiHtmlEntity,
 	getEmojiHtmlSnippet,
 	getEmojiShortcode,
-	getEmojiSvgMarkup,
 	getEmojiGlyphPosition,
 	getEmojiUnicodeEscape,
 	getEmojiUriEncoded,
 } from "./emoji-data"
 
 const legibilitySizes = [16, 24, 32, 48, 64] as const
-const svgExportSize = 512
 const pngSizes = [16, 24, 32, 64, 128, 256, 512] as const
 const pngGlyphScale = 0.78
 
@@ -65,7 +64,6 @@ export function EmojiCopyActions({
 	compact?: boolean
 }) {
 	const [pngExportSize, setPngExportSize] = useState(512)
-	const svgMarkup = getEmojiSvgMarkup(emoji, svgExportSize)
 	const displayName = formatEmojiName(emoji.name)
 	const formats = [
 		{
@@ -79,72 +77,22 @@ export function EmojiCopyActions({
 		{ label: "HTML", value: getEmojiHtmlSnippet(emoji) },
 	]
 
-	const resolveSvg = async () => {
-		await document.fonts.load(
-			`400 ${Math.round(svgExportSize * 0.625)}px ${EMOJI_FONT_STACK}`,
-			emoji.emoji
-		)
-		// Embed the glyph pixels so Figma cannot substitute a font or baseline.
-		const canvas = document.createElement("canvas")
-		canvas.width = canvas.height = svgExportSize
-		const context = canvas.getContext("2d")
-		if (!context) throw new Error("Could not render emoji SVG")
-		context.font = `${Math.round(svgExportSize * 0.625)}px ${EMOJI_FONT_STACK}`
-		context.textAlign = "left"
-		context.textBaseline = "alphabetic"
-		const position = getEmojiGlyphPosition(
-			context.measureText(emoji.emoji),
-			svgExportSize
-		)
-		context.fillText(emoji.emoji, position.x, position.y)
-		const pixels = context.getImageData(0, 0, svgExportSize, svgExportSize).data
-		let left = svgExportSize,
-			top = svgExportSize,
-			right = -1,
-			bottom = -1
-		for (let y = 0; y < svgExportSize; y++) {
-			for (let x = 0; x < svgExportSize; x++) {
-				if (pixels[(y * svgExportSize + x) * 4 + 3] === 0) continue
-				left = Math.min(left, x)
-				right = Math.max(right, x)
-				top = Math.min(top, y)
-				bottom = Math.max(bottom, y)
-			}
-		}
-		if (right < left) throw new Error("Emoji rendered without visible pixels")
-		const width = right - left + 1,
-			height = bottom - top + 1
-		const glyph = document.createElement("canvas")
-		glyph.width = width
-		glyph.height = height
-		const glyphContext = glyph.getContext("2d")
-		if (!glyphContext) throw new Error("Could not crop emoji SVG")
-		glyphContext.drawImage(
-			canvas,
-			left,
-			top,
-			width,
-			height,
-			0,
-			0,
-			width,
-			height
-		)
-		return `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="512" height="512" viewBox="0 0 512 512"><image x="${(svgExportSize - width) / 2}" y="${(svgExportSize - height) / 2}" width="${width}" height="${height}" xlink:href="${glyph.toDataURL("image/png")}" /></svg>`
-	}
+	const resolveSvg = () => getEmojiVectorSvg(emoji)
 
 	const downloadSvg = async () => {
-		downloadBlob(
-			new Blob([await resolveSvg()], {
-				type: "image/svg+xml;charset=utf-8",
-			}),
-			`${getEmojiFilename(emoji)}.svg`
-		)
-		showEmojiToast({
-			emoji: emoji.emoji,
-			title: "Download Complete",
-			description: "SVG has been downloaded.",
-		})
+		try {
+			downloadBlob(
+				new Blob([await resolveSvg()], { type: "image/svg+xml;charset=utf-8" }),
+				`${getEmojiFilename(emoji)}.svg`
+			)
+			showEmojiToast({
+				emoji: emoji.emoji,
+				title: "Download Complete",
+				description: "SVG has been downloaded.",
+			})
+		} catch {
+			toast.error("Could not export SVG. Please try again.")
+		}
 	}
 
 	const exportPng = async (copy = false) => {
@@ -229,7 +177,6 @@ export function EmojiCopyActions({
 				</EmojiCopyButton>
 				<EmojiCopyButton
 					emoji={emoji.emoji}
-					value={svgMarkup}
 					resolveValue={resolveSvg}
 					successLabel="SVG"
 					size="32"
@@ -321,7 +268,6 @@ export function EmojiCopyActions({
 				</EmojiCopyButton>
 				<EmojiCopyButton
 					emoji={emoji.emoji}
-					value={svgMarkup}
 					resolveValue={resolveSvg}
 					successLabel="SVG"
 					size="40"

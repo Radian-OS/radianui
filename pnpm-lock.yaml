@@ -254,6 +254,9 @@ importers:
       github-slugger:
         specifier: ^2.0.0
         version: 2.0.0
+      harfbuzzjs:
+        specifier: 1.6.3
+        version: 1.6.3
       hast-util-to-jsx-runtime:
         specifier: ^2.3.6
         version: 2.3.6
@@ -4544,6 +4547,9 @@ packages:
     resolution: {integrity: sha512-nmT2T0lljbxdQZfspsno9hgrG3Uir6Ks5afism62poxqBM6sDnMEuPmzTq8XN0OEwqKLLdh1jQI3qyE66Nzb3w==}
     engines: {node: '>=6'}
     deprecated: this library is no longer supported
+
+  harfbuzzjs@1.6.3:
+    resolution: {integrity: sha512-R5Mfo1UUvQmZJmtScP7fBLKYKnYu82ZdtFT7WbQYeGb3Ut5PR3xfFCJ5/FjbcW5SAfb9cqCSny/KNjp+NJBx0w==}
 
   hasown@2.0.4:
     resolution: {integrity: sha512-T2UbfbBEF32wiepXIsMlTW9+dDYC6wMh/t/vYA4tuOMKqWz/n3vr1NFSxQiyP+zk2mXsoMA/i/7qV6LKut1t1A==}
@@ -10188,6 +10194,8 @@ snapshots:
     dependencies:
       ajv: 6.15.0
       har-schema: 2.0.0
+
+  harfbuzzjs@1.6.3: {}
 
   hasown@2.0.4:
     dependencies:
