@@ -21,6 +21,11 @@ export function cacheCopiedEmojiSkinTone(character: string) {
 	if (!emojis.some((item) => item.emoji === base && item.skin_tone_support))
 		return
 	const tone = skinTones.findIndex((item) => character.includes(item.modifier))
+	cacheEmojiSkinTone(tone)
+}
+
+export function cacheEmojiSkinTone(tone: number) {
+	if (!Number.isInteger(tone) || tone < -1 || tone >= skinTones.length) return
 	try {
 		localStorage.setItem(storageKey, String(tone))
 	} catch {

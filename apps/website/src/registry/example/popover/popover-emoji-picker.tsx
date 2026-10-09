@@ -19,6 +19,7 @@ import { useVirtualizer } from "@tanstack/react-virtual"
 import { toast } from "sonner"
 import {
 	cacheCopiedEmojiSkinTone,
+	cacheEmojiSkinTone,
 	emojiSkinToneEvent,
 	readEmojiSkinTone,
 } from "@/lib/emoji/emoji-skin-tone"
@@ -283,7 +284,7 @@ export default function PopoverEmojiPicker({
 						color="neutral"
 						size="32"
 						onClick={() =>
-							setTone((current) => (current === 4 ? -1 : current + 1))
+							cacheEmojiSkinTone(tone === skinTones.length - 1 ? -1 : tone + 1)
 						}
 						aria-label={`Skin tone: ${tone < 0 ? "Default" : skinTones[tone]?.label}. Click to change.`}>
 						<span className={cn("font-emoji", "text-xl")} aria-hidden="true">
