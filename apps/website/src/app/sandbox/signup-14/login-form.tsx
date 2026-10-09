@@ -16,40 +16,40 @@ import {
 	FormMessage,
 } from "@/styles/default/ui/form"
 import { Input, InputWrapper } from "@/styles/default/ui/input"
-import { Divider } from "@/styles/default/ui/divider"
 import { LoginBrand } from "./login-brand"
 import { LoginSocialButtons } from "./login-social-buttons"
-import { loginSchema, type LoginFormValues } from "./types"
+import { signupSchema, type SignupFormValues } from "./types"
 
 export function LoginForm() {
 	const [showPassword, setShowPassword] = useState(false)
-	const [submittedData, setSubmittedData] = useState<LoginFormValues | null>(
+	const [submittedData, setSubmittedData] = useState<SignupFormValues | null>(
 		null
 	)
 
-	const form = useForm<LoginFormValues>({
-		resolver: zodResolver(loginSchema),
+	const form = useForm<SignupFormValues>({
+		resolver: zodResolver(signupSchema),
 		defaultValues: {
 			email: "",
 			password: "",
-			rememberMe: false,
 		},
 	})
 
-	const onSubmit = (data: LoginFormValues) => {
+	const onSubmit = (data: SignupFormValues) => {
 		setSubmittedData(data)
 	}
 
 	return (
-		<div className="flex w-full max-w-md flex-col gap-6">
+		<div className="flex w-full max-w-lg flex-col gap-6">
 			{/* Top Brand Logo */}
 			<LoginBrand />
 
 			{/* Heading & Subtitle */}
-			<div className="flex flex-col gap-1">
-				<h1 className="heading-2">Welcome Back</h1>
-				<p className="text-fg-secondary text-xs sm:text-sm">
-					Welcome back! Select method to login:
+			<div>
+				<h2 className="text-fg mb-1 text-2xl font-bold tracking-tight">
+					Create an account
+				</h2>
+				<p className="text-fg-secondary text-sm">
+					Sign up to get started with shadcn/studio.
 				</p>
 			</div>
 
@@ -57,10 +57,12 @@ export function LoginForm() {
 			<LoginSocialButtons />
 
 			{/* Divider */}
-			<div className="my-0.5 flex w-full items-center gap-3">
-				<Divider className="flex-1" />
-				<span className="text-fg-tertiary text-sm">Or continue with Email</span>
-				<Divider className="flex-1" />
+			<div className="flex items-center gap-4">
+				<div className="bg-border h-px flex-1" />
+				<p className="text-fg-secondary text-xs whitespace-nowrap sm:text-sm">
+					Or continue with email
+				</p>
+				<div className="bg-border h-px flex-1" />
 			</div>
 
 			{/* Validated React Hook Form */}
@@ -73,13 +75,16 @@ export function LoginForm() {
 						control={form.control}
 						name="email"
 						render={({ field }) => (
-							<FormItem>
-								<FormLabel>Email address*</FormLabel>
+							<FormItem className="flex flex-col gap-1.5">
+								<FormLabel className="text-fg text-sm font-medium">
+									Email address*
+								</FormLabel>
 								<FormControl>
 									<Input
-										placeholder="Enter your email address"
+										placeholder="you@example.com"
 										type="email"
 										autoComplete="email"
+										className="bg-bg focus-visible:bg-primary/10 h-10"
 										{...field}
 									/>
 								</FormControl>
@@ -88,19 +93,22 @@ export function LoginForm() {
 						)}
 					/>
 
-					{/* Password Field with Eye Toggle */}
+					{/* Password Field */}
 					<FormField
 						control={form.control}
 						name="password"
 						render={({ field }) => (
-							<FormItem>
-								<FormLabel>Password*</FormLabel>
+							<FormItem className="flex flex-col gap-1.5">
+								<FormLabel className="text-fg text-sm font-medium">
+									Password*
+								</FormLabel>
 								<FormControl>
 									<InputWrapper size="36">
 										<Input
-											placeholder="••••••••••••••"
+											placeholder="Create a password"
 											type={showPassword ? "text" : "password"}
-											autoComplete="current-password"
+											autoComplete="new-password"
+											className="h-10 border-neutral-200 bg-white placeholder:text-neutral-400 dark:border-neutral-800 dark:bg-neutral-900 dark:placeholder:text-neutral-500"
 											{...field}
 										/>
 										<IconButton
@@ -113,9 +121,9 @@ export function LoginForm() {
 											}
 											onClick={() => setShowPassword((prev) => !prev)}>
 											{showPassword ? (
-												<EyeOff className="size-4" />
+												<EyeOff className="text-fg-secondary size-4" />
 											) : (
-												<Eye className="size-4" />
+												<Eye className="text-fg-secondary size-4" />
 											)}
 										</IconButton>
 									</InputWrapper>
@@ -125,42 +133,14 @@ export function LoginForm() {
 						)}
 					/>
 
-					{/* Remember Me and Forgot Password */}
-					<div className="flex items-center justify-between pt-1">
-						<FormField
-							control={form.control}
-							name="rememberMe"
-							render={({ field }) => (
-								<FormItem className="flex flex-row items-center gap-2">
-									<FormControl>
-										<Checkbox
-											size="sm"
-											checked={field.value}
-											onCheckedChange={field.onChange}
-										/>
-									</FormControl>
-									<FormLabel className="text-fg-secondary text-xs font-medium hover:cursor-pointer">
-										Remember Me
-									</FormLabel>
-								</FormItem>
-							)}
-						/>
-
-						<Link
-							href="#"
-							className="text-fg hover:text-fg-secondary text-xs font-medium transition-colors">
-							Forgot Password?
-						</Link>
-					</div>
-
 					{/* Submit Button */}
 					<Button
 						type="submit"
 						variant="strong"
 						color="neutral"
 						size="40"
-						className="w-full">
-						Sign in to Radian
+						className="mt-2 h-10 w-full font-medium shadow-xs">
+						Create account
 					</Button>
 				</form>
 			</Form>
@@ -168,17 +148,17 @@ export function LoginForm() {
 			{/* Success Message for testing validation */}
 			{submittedData && (
 				<div className="border-success/30 bg-success/10 text-success rounded-lg border p-3 text-xs">
-					Signed in successfully with {submittedData.email}
+					Account created successfully for {submittedData.email}
 				</div>
 			)}
 
 			{/* Footer Link */}
-			<p className="text-fg-secondary text-center text-xs">
-				New on our platform?{" "}
+			<p className="text-fg-secondary text-center text-sm">
+				Already have an account?{" "}
 				<Link
 					href="#"
-					className="text-fg hover:text-fg-secondary font-semibold transition-colors">
-					Create an account
+					className="text-fg hover:text-primary font-bold transition-colors">
+					Log in
 				</Link>
 			</p>
 		</div>

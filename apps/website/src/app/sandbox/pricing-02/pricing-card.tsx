@@ -31,31 +31,29 @@ export function PricingCard({
 }: PricingCardProps) {
 	return (
 		<div
-			className={`flex flex-col rounded-3xl border p-6 transition-all duration-300 sm:p-8 ${
+			className={`flex flex-col gap-8 rounded-3xl border p-6 transition-all duration-300 sm:p-8 ${
 				isFeatured
-					? "border-primary-border bg-elevation-level1 shadow-primary/5 shadow-xl"
-					: "border-border bg-elevation-level1 shadow-sm"
+					? "border-primary-border bg-elevation-level1"
+					: "border-border bg-elevation-level1"
 			} hover:shadow-md`}>
 			{/* Header */}
-			<div className="mb-6">
-				<h3 className="heading-3 text-fg flex items-center gap-1.5">
+			<div className="flex flex-col">
+				<h3 className="heading-3 flex items-center gap-1.5">
 					{name}
-					{isFeatured && <span className="text-orange-text font-bold">+</span>}
+					{isFeatured && <span className="text-primary-text font-bold">+</span>}
 				</h3>
-				<p className="text-fg-tertiary mt-1.5 text-sm">{subtitle}</p>
+				<p className="text-fg-tertiary text-sm">{subtitle}</p>
 			</div>
 
 			{/* Price Box */}
 			<div
-				className={`mb-8 flex items-center justify-between rounded-2xl p-4 sm:p-5 ${
-					isFeatured
-						? "bg-orange-accent/40 dark:bg-orange-accent/10"
-						: "bg-fill2"
+				className={`flex items-center justify-between rounded-2xl p-4 sm:p-5 ${
+					isFeatured ? "bg-primary-accent" : "bg-fill2"
 				}`}>
 				<div className="flex items-baseline gap-2">
 					<span
 						className={`text-4xl font-extrabold tracking-tight ${
-							isFeatured ? "text-orange-text" : "text-fg"
+							isFeatured ? "text-primary-text" : "text-fg"
 						}`}>
 						{price}
 					</span>
@@ -64,21 +62,14 @@ export function PricingCard({
 					</span>
 				</div>
 				<Button
-					color={isFeatured ? "neutral" : "neutral"}
-					variant={isFeatured ? "strong" : "outline"}
-					size="40"
-					onClick={onButtonClick}
-					className={`rounded-full px-5 text-sm font-semibold transition-transform duration-200 active:scale-95 ${
-						isFeatured
-							? "bg-black-inverse text-white-inverse hover:bg-fg-secondary"
-							: ""
-					}`}>
+					color={isFeatured ? "primary" : "neutral"}
+					onClick={onButtonClick}>
 					{buttonLabel}
 				</Button>
 			</div>
 
 			{/* Features List */}
-			<div className="mb-8 flex-1">
+			<div className="flex-1">
 				<ul className="flex flex-col gap-6">
 					{features.map((feature, index) => (
 						<li key={index} className="flex items-start gap-3.5">
@@ -89,7 +80,7 @@ export function PricingCard({
 								<p className="text-fg text-sm font-bold">
 									{feature.title}
 									{feature.highlightTitleText && (
-										<span className="text-orange-text font-bold">
+										<span className="text-primary-text font-bold">
 											{" "}
 											{feature.highlightTitleText}
 										</span>
@@ -105,9 +96,9 @@ export function PricingCard({
 			</div>
 
 			{/* Footer Description */}
-			<div className="border-border mt-6 border-t pt-6">
+			<div className="border-border flex flex-col gap-1 border-t pt-6">
 				<p className="text-fg text-xs font-bold">More description here</p>
-				<p className="text-fg-tertiary mt-1 text-xs">
+				<p className="text-fg-tertiary text-xs">
 					Lorem ipsum aliquam erat volutpat – cras dapibus.
 				</p>
 			</div>

@@ -159,7 +159,7 @@ export function LoginForm() {
 
 						<Link
 							href="#"
-							className="text-fg text-xs font-medium transition-colors hover:underline">
+							className="text-fg hover:text-fg-secondary text-xs font-medium transition-colors">
 							Forgot Password?
 						</Link>
 					</div>
@@ -186,7 +186,9 @@ export function LoginForm() {
 			{/* Footer Link */}
 			<p className="text-fg-secondary text-center text-xs">
 				Don&apos;t have an account yet?{" "}
-				<Link href="#" className="text-fg font-semibold hover:underline">
+				<Link
+					href="#"
+					className="text-fg hover:text-fg-secondary font-semibold transition-colors">
 					Sign Up
 				</Link>
 			</p>

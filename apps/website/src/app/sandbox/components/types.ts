@@ -61,6 +61,8 @@ export type PreviewKey =
 	| "testimonial-01"
 	| "signup-12"
 	| "signup-13"
+	| "signup-14"
+	| "signup-15"
 
 export type ViewMode = "preview" | "inspect" | "code"
 export type DeviceSize = "desktop" | "tablet" | "mobile"
@@ -285,6 +287,28 @@ export const sandboxComponents: SandboxComponentConfig[] = [
 		referenceUrl:
 			"https://shadcnstudio.com/preview/blocks/base/marketing-ui/login-page/login-page-03",
 		previewRoute: "/sandbox/signin-16",
+	},
+	{
+		id: "signup-14",
+		label: "signup-14",
+		category: "signup-section",
+		filesKey: "signup-14",
+		path: "src/app/sandbox/signup-14",
+		defaultFile: "page.tsx",
+		referenceUrl:
+			"https://shadcnstudio.com/preview/blocks/base/marketing-ui/login-page/login-page-03",
+		previewRoute: "/sandbox/signup-14",
+	},
+	{
+		id: "signup-15",
+		label: "signup-15",
+		category: "signup-section",
+		filesKey: "signup-15",
+		path: "src/app/sandbox/signup-15",
+		defaultFile: "page.tsx",
+		referenceUrl:
+			"https://shadcnstudio.com/preview/blocks/base/marketing-ui/login-page/login-page-04",
+		previewRoute: "/sandbox/signup-15",
 	},
 	{
 		id: "cta-01",
