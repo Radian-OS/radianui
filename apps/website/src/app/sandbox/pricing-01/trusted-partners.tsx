@@ -1,51 +1,33 @@
 "use client"
 
 import React from "react"
-import {
-	Boxes,
-	Globe,
-	Infinity as InfinityIcon,
-	Link2,
-	SunMedium,
-} from "lucide-react"
+import Image from "next/image"
 
 interface PartnerItem {
-	id: string
 	name: string
-	icon: React.ElementType
-	colorClass: string
+	src: string
 }
 
 const PARTNERS: PartnerItem[] = [
 	{
-		id: "1",
-		name: "Logoipsum",
-		icon: Link2,
-		colorClass: "text-blue-500",
+		name: "Dribbble",
+		src: "https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/colored/design-creative/icon/dribbble.svg",
 	},
 	{
-		id: "2",
-		name: "Logoipsum",
-		icon: SunMedium,
-		colorClass: "text-orange-500",
+		name: "Figma",
+		src: "https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/colored/design-creative/icon/figma.svg",
 	},
 	{
-		id: "3",
-		name: "Logoipsum",
-		icon: InfinityIcon,
-		colorClass: "text-emerald-500",
+		name: "Slack",
+		src: "https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/colored/productivity-work/icon/slack.svg",
 	},
 	{
-		id: "4",
-		name: "Logoipsum",
-		icon: Globe,
-		colorClass: "text-cyan-500",
+		name: "Teams",
+		src: "https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/colored/productivity-work/icon/teams.svg",
 	},
 	{
-		id: "5",
-		name: "logoipsum*",
-		icon: Boxes,
-		colorClass: "text-rose-500",
+		name: "Docker",
+		src: "https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/colored/cloud-devops/icon/docker.svg",
 	},
 ]
 
@@ -65,19 +47,23 @@ export function TrustedPartners({
 			</p>
 
 			<div className="flex flex-wrap items-center justify-center gap-8 sm:gap-12 md:gap-16">
-				{partners.map((partner) => {
-					const Icon = partner.icon
-					return (
-						<div
-							key={partner.id}
-							className="flex items-center gap-2 transition-opacity duration-200 hover:opacity-80">
-							<Icon className={`size-5 ${partner.colorClass}`} />
-							<span className="text-fg text-base font-bold tracking-tight">
-								{partner.name}
-							</span>
-						</div>
-					)
-				})}
+				{partners.map((partner, index) => (
+					<div
+						key={`${partner.name}-${index}`}
+						className="flex items-center gap-2 opacity-50 grayscale transition-all duration-200 hover:opacity-100 hover:grayscale-0">
+						<Image
+							src={partner.src}
+							alt={`${partner.name} Logo`}
+							width={20}
+							height={20}
+							className="object-contain"
+							unoptimized
+						/>
+						<span className="text-fg text-base font-bold tracking-tight">
+							{partner.name}
+						</span>
+					</div>
+				))}
 			</div>
 		</div>
 	)

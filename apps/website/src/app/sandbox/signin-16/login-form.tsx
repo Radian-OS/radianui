@@ -16,6 +16,7 @@ import {
 	FormMessage,
 } from "@/styles/default/ui/form"
 import { Input, InputWrapper } from "@/styles/default/ui/input"
+import { Divider } from "@/styles/default/ui/divider"
 import { LoginSocialButtons } from "./login-social-buttons"
 import { loginSchema, type LoginFormValues } from "./types"
 
@@ -43,9 +44,8 @@ export function LoginForm() {
 		<div className="flex w-full max-w-md flex-col gap-6">
 			{/* Top Heading */}
 			<div className="flex flex-col items-center gap-1 text-center">
-				<h1 className="heading-2 flex items-center justify-center gap-2">
-					<span>Welcome Back</span>
-					<span className="text-2xl">👋</span>
+				<h1 className="heading-2">
+					<span>Welcome Back👋</span>
 				</h1>
 				<p className="text-fg-secondary text-xs sm:text-sm">
 					Lets get started with your 30 days free trial
@@ -56,11 +56,10 @@ export function LoginForm() {
 			<LoginSocialButtons />
 
 			{/* Divider */}
-			<div className="relative my-0.5 flex items-center justify-center">
-				<div className="absolute inset-0 flex items-center">
-					<div className="border-soft w-full border-t" />
-				</div>
-				<span className="bg-bg text-fg-tertiary relative px-3 text-xs">Or</span>
+			<div className="flex w-full items-center gap-3">
+				<Divider className="flex-1" />
+				<span className="text-fg-tertiary text-sm">Or</span>
+				<Divider className="flex-1" />
 			</div>
 
 			{/* Validated React Hook Form with 3 Fields */}
@@ -160,7 +159,7 @@ export function LoginForm() {
 
 						<Link
 							href="#"
-							className="text-fg text-xs font-medium transition-colors hover:underline">
+							className="text-fg hover:text-fg-secondary text-xs font-medium transition-colors">
 							Forgot Password?
 						</Link>
 					</div>
@@ -187,7 +186,9 @@ export function LoginForm() {
 			{/* Footer Link */}
 			<p className="text-fg-secondary text-center text-xs">
 				Don&apos;t have an account yet?{" "}
-				<Link href="#" className="text-fg font-semibold hover:underline">
+				<Link
+					href="#"
+					className="text-fg hover:text-fg-secondary font-semibold transition-colors">
 					Sign Up
 				</Link>
 			</p>

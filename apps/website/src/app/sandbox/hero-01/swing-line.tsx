@@ -12,8 +12,8 @@ interface SwingLineProps {
 
 function ClipPeg() {
 	return (
-		<span className="absolute top-0 left-1/2 z-10 flex size-5 -translate-x-1/2 items-center justify-center rounded-md bg-[#09090b] shadow-sm dark:bg-white">
-			<span className="absolute top-1 size-1.5 rounded-full bg-white dark:bg-[#09090b]" />
+		<span className="bg-fg absolute top-0 left-1/2 z-10 flex size-5 -translate-x-1/2 items-center justify-center rounded-md">
+			<span className="bg-bg absolute top-1 size-1.5 rounded-full" />
 		</span>
 	)
 }
@@ -25,11 +25,10 @@ function ModelCard({ item }: { item: ModelItem }) {
 			<ClipPeg />
 			<div
 				className={cn(
-					"flex w-full flex-col items-center gap-4 rounded-2xl p-4 py-8 transition-shadow hover:shadow-md",
-					item.color ?? "bg-card"
+					"hover:border-soft flex w-full flex-col items-center gap-4 rounded-2xl p-4 py-8 transition-shadow hover:shadow-md"
 				)}>
 				{/* Circular Brand Icon */}
-				<span className="flex size-16 items-center justify-center overflow-hidden rounded-full bg-black/5 shadow-2xs dark:bg-white/10">
+				<span className="bg-fill2 flex size-16 items-center justify-center overflow-hidden rounded-full">
 					{item.image ? (
 						<img
 							src={item.image}

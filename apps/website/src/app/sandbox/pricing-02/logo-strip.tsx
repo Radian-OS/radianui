@@ -3,15 +3,30 @@ import Image from "next/image"
 
 interface LogoItem {
 	name: string
-	domain: string
+	src: string
 }
 
 const partnerLogos: LogoItem[] = [
-	{ name: "Notion", domain: "notion.so" },
-	{ name: "Dribbble", domain: "dribbble.com" },
-	{ name: "Figma", domain: "figma.com" },
-	{ name: "Slack", domain: "slack.com" },
-	{ name: "Notion Alt", domain: "notion.so" },
+	{
+		name: "Dribbble",
+		src: "https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/colored/design-creative/icon/dribbble.svg",
+	},
+	{
+		name: "Figma",
+		src: "https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/colored/design-creative/icon/figma.svg",
+	},
+	{
+		name: "Slack",
+		src: "https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/colored/productivity-work/icon/slack.svg",
+	},
+	{
+		name: "Teams",
+		src: "https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/colored/productivity-work/icon/teams.svg",
+	},
+	{
+		name: "Docker",
+		src: "https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/colored/cloud-devops/icon/docker.svg",
+	},
 ]
 
 export function LogoStrip() {
@@ -23,7 +38,7 @@ export function LogoStrip() {
 						key={`${logo.name}-${index}`}
 						className="relative flex items-center justify-center opacity-40 grayscale transition-all hover:opacity-80 hover:grayscale-0">
 						<Image
-							src={`https://www.google.com/s2/favicons?sz=64&domain=${logo.domain}`}
+							src={logo.src}
 							alt={`${logo.name} Logo`}
 							width={24}
 							height={24}

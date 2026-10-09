@@ -21,31 +21,27 @@ interface PricingCardProps {
 export function PricingCard({ plan }: PricingCardProps) {
 	return (
 		<Card
-			className={`border-border/80 bg-elevation-level1 relative flex flex-col gap-0 overflow-hidden rounded-3xl p-0 shadow-sm transition-all duration-300 hover:shadow-md ${
+			className={`border-soft bg-elevation-level1 relative flex flex-col gap-0 overflow-hidden rounded-3xl p-0 shadow-sm transition-all duration-300 hover:shadow-md ${
 				plan.isPopular ? "ring-primary/20 ring-1" : ""
 			}`}>
 			{/* Top Subtle Gradient for Most Popular Plan */}
 			{plan.isPopular && (
 				<div
 					aria-hidden="true"
-					className="pointer-events-none absolute inset-x-0 top-0 h-64 bg-gradient-to-b from-blue-500/10 via-blue-500/5 to-transparent dark:from-blue-500/20 dark:via-blue-500/10"
+					className="from-primary/50 via-primary-accent pointer-events-none absolute inset-x-0 top-0 h-64 bg-gradient-to-b to-transparent"
 				/>
 			)}
 
 			{/* Top Header & Pricing Section */}
-			<CardHeader className="border-border/60 relative z-10 flex flex-col gap-5 border-b p-6 sm:p-8">
+			<CardHeader className="border-soft relative z-10 flex flex-col gap-5 border-b p-6 sm:p-8">
 				<div className="flex items-center justify-between gap-2">
 					<CardTitle className="text-fg text-base font-semibold">
 						{plan.name}
 					</CardTitle>
 
 					{plan.isPopular && (
-						<Badge
-							variant="strong"
-							color="blue"
-							size="24"
-							className="gap-1 rounded-full px-3 text-xs font-semibold shadow-xs">
-							<Zap className="size-3 fill-current" />
+						<Badge variant="strong">
+							<Zap className="fill-current" />
 							<span>{plan.badgeText || "Most popular"}</span>
 						</Badge>
 					)}
@@ -69,7 +65,7 @@ export function PricingCard({ plan }: PricingCardProps) {
 					color="neutral"
 					size="44"
 					asChild
-					className="w-full justify-between rounded-full pr-1.5 pl-6 font-semibold shadow-xs transition-transform active:scale-95">
+					className="w-full justify-between rounded-full pr-1.5 pl-6 font-semibold">
 					<Link href={plan.buttonHref}>
 						<span className="mx-auto">{plan.buttonText}</span>
 						<span className="bg-bg text-fg flex size-8 shrink-0 items-center justify-center rounded-full shadow-xs">

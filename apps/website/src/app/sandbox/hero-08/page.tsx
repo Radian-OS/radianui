@@ -1,6 +1,5 @@
 import React from "react"
 import type { Metadata } from "next"
-import { AnnouncementBanner } from "./announcement-banner"
 import { HeroSection } from "./hero-section"
 import { LogoStrip } from "./logo-strip"
 import { Navbar } from "./navbar"
@@ -14,7 +13,6 @@ export const metadata: Metadata = {
 export default function Hero04Page() {
 	return (
 		<div className="bg-bg text-fg min-h-screen">
-			<AnnouncementBanner />
 			<Navbar />
 			<main>
 				<HeroSection />

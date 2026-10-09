@@ -16,6 +16,7 @@ import {
 	FormMessage,
 } from "@/styles/default/ui/form"
 import { Input, InputWrapper } from "@/styles/default/ui/input"
+import { Divider } from "@/styles/default/ui/divider"
 import { LoginMagicButtons } from "./login-magic-buttons"
 import { loginSchema, type LoginFormValues } from "./types"
 
@@ -170,13 +171,10 @@ export function LoginForm() {
 			</p>
 
 			{/* Divider */}
-			<div className="relative my-0.5 flex items-center justify-center">
-				<div className="absolute inset-0 flex items-center">
-					<div className="border-soft w-full border-t" />
-				</div>
-				<span className="bg-card text-fg-tertiary relative px-3 text-xs">
-					or
-				</span>
+			<div className="flex w-full items-center gap-3">
+				<Divider className="flex-1" />
+				<span className="text-fg-tertiary text-sm">or</span>
+				<Divider className="flex-1" />
 			</div>
 
 			{/* Bottom Sign In With Google */}

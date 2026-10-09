@@ -24,11 +24,7 @@ export function VideoDialog({
 	return (
 		<Dialog open={open} onOpenChange={setOpen}>
 			<DialogTrigger asChild>
-				<Button
-					variant="outline"
-					color="neutral"
-					size="40"
-					className="hover:bg-fill2 hover:text-fg cursor-pointer gap-2 rounded-lg px-5 font-medium transition-colors active:scale-98">
+				<Button variant="outline" color="neutral">
 					<Play className="size-3.5 fill-current" />
 					<span>{label}</span>
 				</Button>
@@ -36,7 +32,7 @@ export function VideoDialog({
 			<DialogContent
 				backdrop="blackOverlay"
 				closeButton="hidden"
-				className="border-border gap-0 overflow-hidden rounded-2xl bg-black p-0 sm:max-w-2xl">
+				className="border-soft gap-0 overflow-hidden rounded-2xl bg-black p-0 sm:max-w-2xl">
 				<DialogTitle className="sr-only">Demo Video</DialogTitle>
 				<button
 					type="button"

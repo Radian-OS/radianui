@@ -5,8 +5,8 @@ import { LoginForm } from "./login-form"
 
 export default function Login07Page() {
 	return (
-		<main className="bg-bg min-h-screen w-full">
-			<div className="bg-bg flex min-h-screen w-full flex-col lg:flex-row">
+		<main className="min-h-screen w-full">
+			<div className="flex min-h-screen w-full flex-col lg:flex-row">
 				{/* Left Visual & Testimonial Showcase */}
 				<LeftPanel />
 

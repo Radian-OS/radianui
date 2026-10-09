@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function Hero37Page() {
 	return (
-		<main className="bg-bg text-fg selection:bg-primary/20 selection:text-primary min-h-screen w-full">
+		<main className="min-h-screen w-full">
 			<Navbar />
 			<HeroSection />
 		</main>

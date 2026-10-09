@@ -1,6 +1,8 @@
 "use client"
 
 import React from "react"
+import { Badge } from "@/registry/ui/badge"
+import { Divider } from "@/registry/ui/divider"
 import { LogoStrip } from "./logo-strip"
 import { FeatureItem, PricingCard } from "./pricing-card"
 import { Rating } from "./rating"
@@ -48,20 +50,18 @@ export function JamboPricingSection() {
 	return (
 		<section
 			id="jambo-pricing-section"
-			className="mx-auto max-w-[1320px] px-4 py-16 sm:px-6 sm:py-20 lg:px-10 lg:py-24">
+			className="mx-auto flex max-w-[1320px] flex-col gap-12 px-4 py-16 sm:gap-16 sm:px-6 sm:py-20 lg:px-10 lg:py-24">
 			{/* Top Header */}
-			<div className="mb-12 flex flex-col items-center text-center sm:mb-16">
-				<span className="text-fg-secondary text-[11px] font-extrabold tracking-widest uppercase">
-					Pricing Plan
-				</span>
+			<div className="flex flex-col items-center text-center">
+				<Badge variant="soft">Pricing Plan</Badge>
 				<h2 className="heading-2 mt-4 max-w-2xl">
 					Simply choose the pricing plan that{" "}
-					<span className="text-orange-text">fits you best.</span>
+					<span className="text-primary">fits you best.</span>
 				</h2>
 			</div>
 
 			{/* Pricing Cards Grid */}
-			<div className="mx-auto mb-16 grid max-w-4xl grid-cols-1 gap-8 md:grid-cols-2 lg:gap-10">
+			<div className="mx-auto grid w-full max-w-4xl grid-cols-1 gap-8 md:grid-cols-2 lg:gap-10">
 				<PricingCard
 					name="Jambo"
 					subtitle="Best for personal and basic needs."
@@ -81,7 +81,7 @@ export function JamboPricingSection() {
 			</div>
 
 			{/* Divider */}
-			<div className="bg-border mx-auto mb-16 h-px max-w-4xl" />
+			<Divider className="mx-auto max-w-4xl" />
 
 			{/* Rating and Logos footer */}
 			<div className="flex flex-col items-center gap-12">

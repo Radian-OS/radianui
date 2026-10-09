@@ -15,6 +15,7 @@ import {
 	UserPlus,
 	Zap,
 	Layout,
+	Lock,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { ScrollArea } from "@/registry/ui/scroll-area"
@@ -62,14 +63,17 @@ interface SidebarCategoryDef {
 }
 
 const SIDEBAR_CATEGORIES: SidebarCategoryDef[] = [
-	{ id: "welcome-screen-section", label: "SIGNUP", icon: UserPlus },
+	{ id: "welcome-screen-section", label: "WELCOME", icon: UserPlus },
 	{ id: "sign-in-section", label: "SIGN IN", icon: UserPlus },
+	{ id: "signup-section", label: "SIGNUP", icon: Lock },
+	{ id: "guided-tour-section", label: "TOUR", icon: Sparkles },
 	{ id: "hero-section", label: "HERO", icon: Sparkles },
 	{ id: "pricing-section", label: "PRICING", icon: Tag },
 	{ id: "cta-section", label: "CTA", icon: Zap },
 	{ id: "blog-section", label: "BLOG", icon: FileText },
 	{ id: "faq-section", label: "FAQ", icon: HelpCircle },
 	{ id: "testimonial-section", label: "TESTIMONIAL", icon: MessageSquareQuote },
+	{ id: "form-section", label: "FORM", icon: FileText },
 	{ id: "portfolio-section", label: "PORTFOLIO", icon: Briefcase },
 	{ id: "table-section", label: "TABLE", icon: Table },
 	{ id: "setting-section", label: "SETTINGS", icon: Settings },
@@ -147,9 +151,6 @@ export function PlaygroundSidebar({
 									)
 									if (items.length === 0) return null
 
-									const catPendingCount = pendingComments.filter((c) =>
-										items.some((item) => item.id === c.componentId)
-									).length
 									const CategoryIcon = category.icon
 
 									return (
@@ -178,7 +179,7 @@ export function PlaygroundSidebar({
 																<span>{category.label}</span>
 															</div>
 															<span className="bg-bg text-fg-secondary ml-auto rounded px-1.5 py-0.5 text-xs font-medium normal-case">
-																{catPendingCount}
+																{items.length}
 															</span>
 														</>
 													)}

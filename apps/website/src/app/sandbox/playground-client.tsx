@@ -29,9 +29,9 @@ export function PlaygroundClient({ files }: PlaygroundClientProps) {
 	const router = useRouter()
 
 	useEffect(() => {
-		if (!isLoading && !user) {
-			router.replace("/sandbox/auth/sign-in?callbackUrl=/sandbox")
-		}
+		// if (!isLoading && !user) {
+		// 	router.replace("/sandbox/auth/sign-in?callbackUrl=/sandbox")
+		// }
 	}, [user, isLoading, router])
 
 	const [activeComponent, setActiveComponent] =

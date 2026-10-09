@@ -7,7 +7,7 @@ import { TrustedBrands } from "./trusted-brands"
 
 export function LeftPanel() {
 	return (
-		<div className="dark relative flex w-full shrink-0 flex-col justify-between overflow-hidden bg-black px-0 py-8 text-white sm:py-10 lg:min-h-screen lg:w-[45%] lg:py-12 xl:w-[43%]">
+		<div className="dark relative hidden w-full shrink-0 flex-col justify-between overflow-hidden bg-black px-0 py-8 text-white sm:py-10 lg:flex lg:min-h-screen lg:w-[45%] lg:py-12 xl:w-[43%]">
 			{/* Background Video from reference */}
 			<video
 				className="pointer-events-none absolute inset-0 size-full scale-125 object-cover opacity-60 mix-blend-screen"
@@ -47,7 +47,7 @@ export function LeftPanel() {
 				</div>
 
 				{/* Testimonial Cards Moving Marquee - edge to edge touching both ends */}
-				<div className="hidden w-full overflow-hidden px-0 lg:block">
+				<div className="w-full overflow-hidden px-0">
 					<TestimonialsCarousel />
 				</div>
 

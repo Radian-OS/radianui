@@ -1,5 +1,3 @@
-import type { LucideIcon } from "lucide-react"
-
 export interface NavItem {
 	name: string
 	href: string
@@ -11,9 +9,6 @@ export interface ModelItem {
 	label: string
 	tag: string
 	icon: React.ComponentType<{ className?: string }>
-	rating: string
-	reviews: string
-	color: string
 	image?: string
 }
 

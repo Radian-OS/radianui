@@ -2,6 +2,7 @@
 
 import React from "react"
 import Image from "next/image"
+import { motion } from "motion/react"
 
 interface BrandLogo {
 	id: string
@@ -12,91 +13,101 @@ interface BrandLogo {
 
 const brandLogos: BrandLogo[] = [
 	{
-		id: "synergy",
-		name: "Synergy™",
-		lightSrc: "https://alignui.com/images/blocks/hero-1-brand-1-400.svg",
-		darkSrc: "https://alignui.com/images/blocks/hero-1-brand-1-400-dark.svg",
+		id: "linear",
+		name: "Linear",
+		lightSrc:
+			"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/light/neutral/productivity-work/wordmark/linear.svg",
+		darkSrc:
+			"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/neutral/productivity-work/wordmark/linear.svg",
 	},
 	{
-		id: "horizon",
-		name: "Horizon™",
-		lightSrc: "https://alignui.com/images/blocks/hero-1-brand-2-400.svg",
-		darkSrc: "https://alignui.com/images/blocks/hero-1-brand-2-400-dark.svg",
+		id: "slack",
+		name: "Slack",
+		lightSrc:
+			"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/light/neutral/productivity-work/wordmark/slack.svg",
+		darkSrc:
+			"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/neutral/productivity-work/wordmark/slack.svg",
 	},
 	{
-		id: "catalyst",
-		name: "Catalyst™",
-		lightSrc: "https://alignui.com/images/blocks/hero-1-brand-3-400.svg",
-		darkSrc: "https://alignui.com/images/blocks/hero-1-brand-3-400-dark.svg",
+		id: "discord",
+		name: "Discord",
+		lightSrc:
+			"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/light/neutral/social-content/wordmark/discord.svg",
+		darkSrc:
+			"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/neutral/social-content/wordmark/discord.svg",
 	},
 	{
-		id: "phoenix",
-		name: "Phoenix™",
-		lightSrc: "https://alignui.com/images/blocks/hero-1-brand-4-400.svg",
-		darkSrc: "https://alignui.com/images/blocks/hero-1-brand-4-400-dark.svg",
+		id: "github",
+		name: "GitHub",
+		lightSrc:
+			"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/light/neutral/development/wordmark/github.svg",
+		darkSrc:
+			"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/neutral/development/wordmark/github.svg",
 	},
 	{
-		id: "pulse",
-		name: "Pulse™",
-		lightSrc: "https://alignui.com/images/blocks/hero-1-brand-5-400.svg",
-		darkSrc: "https://alignui.com/images/blocks/hero-1-brand-5-400-dark.svg",
+		id: "vercel",
+		name: "Vercel",
+		lightSrc:
+			"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/light/neutral/cloud-devops/wordmark/vercel.svg",
+		darkSrc:
+			"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/neutral/cloud-devops/wordmark/vercel.svg",
 	},
 	{
-		id: "solaris",
-		name: "Solaris™",
-		lightSrc: "https://alignui.com/images/blocks/hero-1-brand-6-400.svg",
-		darkSrc: "https://alignui.com/images/blocks/hero-1-brand-6-400-dark.svg",
+		id: "stripe",
+		name: "Stripe",
+		lightSrc:
+			"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/light/neutral/finance-payments/wordmark/stripe.svg",
+		darkSrc:
+			"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/neutral/finance-payments/wordmark/stripe.svg",
 	},
 	{
-		id: "aurora",
-		name: "Aurora™",
-		lightSrc: "https://alignui.com/images/blocks/hero-1-brand-7-400.svg",
-		darkSrc: "https://alignui.com/images/blocks/hero-1-brand-7-400-dark.svg",
+		id: "airtable",
+		name: "Airtable",
+		lightSrc:
+			"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/light/neutral/productivity-work/wordmark/airtable.svg",
+		darkSrc:
+			"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/neutral/productivity-work/wordmark/airtable.svg",
 	},
 ]
 
-export function LogoStrip() {
+export function LogoStrip({ delay = 0.3 }: { delay?: number }) {
 	return (
-		<div className="border-border/60 bg-bg w-full border-t border-b">
-			<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-				<div className="flex items-center overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] lg:overflow-visible [&::-webkit-scrollbar]:hidden">
+		<motion.div
+			initial={{ opacity: 0, filter: "blur(10px)", y: 30 }}
+			animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+			transition={{ duration: 0.55, delay, ease: [0.16, 1, 0.3, 1] }}
+			className="border-border/60 bg-bg w-full cursor-default border-t border-b select-none">
+			<div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8">
+				<div className="flex items-center overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] xl:overflow-visible [&::-webkit-scrollbar]:hidden">
 					{brandLogos.map((brand, idx) => (
 						<div
 							key={brand.id}
-							className="flex shrink-0 items-center lg:w-full lg:shrink">
+							className="flex min-w-[160px] shrink-0 items-center justify-center xl:w-full xl:min-w-0 xl:shrink">
 							<div
-								className={`flex w-full items-center justify-center px-6 py-5 sm:px-8 lg:px-2 lg:py-6 ${
+								className={`flex w-full items-center justify-center px-4 py-5 sm:px-6 sm:py-6 xl:px-2 xl:py-6 ${
 									idx !== brandLogos.length - 1
-										? "lg:border-border/60 lg:border-r"
+										? "border-border/60 border-r"
 										: ""
 								}`}>
 								<Image
 									src={brand.lightSrc}
 									alt={brand.name}
-									width={106}
-									height={24}
-									className="h-6 w-auto object-contain lg:h-5 xl:h-6 dark:hidden"
+									width={143}
+									height={38}
+									className="pointer-events-none h-[38px] w-auto opacity-45 select-none dark:hidden"
 								/>
 								<Image
 									src={brand.darkSrc}
 									alt={brand.name}
-									width={106}
-									height={24}
-									className="hidden h-6 w-auto object-contain lg:h-5 xl:h-6 dark:block"
+									width={143}
+									height={38}
+									className="pointer-events-none hidden h-[38px] w-auto opacity-40 select-none dark:block"
 								/>
 							</div>
-
-							{/* Mobile vertical separator between items */}
-							{idx !== brandLogos.length - 1 && (
-								<div
-									aria-hidden="true"
-									className="bg-border/60 h-8 w-px shrink-0 lg:hidden"
-								/>
-							)}
 						</div>
 					))}
 				</div>
 			</div>
-		</div>
+		</motion.div>
 	)
 }
