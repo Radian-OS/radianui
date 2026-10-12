@@ -53,6 +53,26 @@ function loadHugeicons(): Promise<Record<IconSlotName, IconSvgElement>> {
 	return hugeiconsPromise
 }
 
+type PhosphorIconComponent = React.ComponentType<React.SVGProps<SVGSVGElement>>
+let phosphorMap: Record<IconSlotName, PhosphorIconComponent> | null = null
+let phosphorPromise: Promise<
+	Record<IconSlotName, PhosphorIconComponent>
+> | null = null
+
+function loadPhosphor(): Promise<Record<IconSlotName, PhosphorIconComponent>> {
+	if (phosphorMap) return Promise.resolve(phosphorMap)
+	if (!phosphorPromise) {
+		phosphorPromise = import("./maps/phosphor").then((mod) => {
+			phosphorMap = mod.PHOSPHOR_ICON_MAP as unknown as Record<
+				IconSlotName,
+				PhosphorIconComponent
+			>
+			return phosphorMap
+		})
+	}
+	return phosphorPromise
+}
+
 export const IconSlot = React.forwardRef<
 	SVGSVGElement,
 	ThemedIconProps & { slot: IconSlotName }
@@ -63,6 +83,9 @@ export const IconSlot = React.forwardRef<
 	React.useEffect(() => {
 		if (iconLibrary === "hugeicons" && !hugeiconsMap) {
 			loadHugeicons().then(() => forceUpdate())
+		}
+		if (iconLibrary === "phosphor" && !phosphorMap) {
+			loadPhosphor().then(() => forceUpdate())
 		}
 	}, [iconLibrary])
 
@@ -77,6 +100,13 @@ export const IconSlot = React.forwardRef<
 					{...props}
 				/>
 			)
+		}
+	}
+
+	if (iconLibrary === "phosphor" && phosphorMap) {
+		const PhosphorComponent = phosphorMap[slot]
+		if (PhosphorComponent) {
+			return <PhosphorComponent ref={ref} {...props} />
 		}
 	}
 

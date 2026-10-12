@@ -7,13 +7,13 @@ import {
 	DropdownMenuRadioItem,
 	DropdownMenuTrigger,
 } from "@/styles/default/ui/dropdown-menu"
-import { HugeIcon, LucideIcon } from "./icons"
+import { HugeIcon, LucideIcon, PhosphorIcon } from "./icons"
 import { ICON_LIBRARIES, IconLibrary } from "@/registry/icon/icon-libraries"
 
 const ICONS = [
 	{ icon: LucideIcon, label: "Lucide", value: "lucide" },
 	{ icon: HugeIcon, label: "Hugeicons", value: "hugeicons" },
-	// { icon: PhosphorIcon, label: "Phosphor", value: 'phosphor' },
+	{ icon: PhosphorIcon, label: "Phosphor", value: "phosphor" },
 	// { icon: TablerIcon, label: "Tabler Icons", value: 'tablericons' },
 	// { icon: MageIcon, label: "Mage Icons", value: 'mageicons' },
 ]
@@ -58,7 +58,8 @@ export default function IconLibraryPicker({
 						return (
 							<DropdownMenuRadioItem
 								key={iconLibrary.label}
-								value={iconLibrary.value}>
+								value={iconLibrary.value}
+								onSelect={(e) => e.preventDefault()}>
 								<iconLibrary.icon /> {iconLibrary.label}
 							</DropdownMenuRadioItem>
 						)

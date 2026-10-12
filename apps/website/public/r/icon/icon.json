@@ -2,561 +2,673 @@
   {
     "slot": "down",
     "lucideIcon": "ChevronDown",
-    "hugeiconsIcon": "ArrowDown01Icon"
+    "hugeiconsIcon": "ArrowDown01Icon",
+    "phosphorIcon": "CaretDown"
   },
   {
     "slot": "up",
     "lucideIcon": "ChevronUp",
-    "hugeiconsIcon": "ArrowUp01Icon"
+    "hugeiconsIcon": "ArrowUp01Icon",
+    "phosphorIcon": "CaretUp"
   },
   {
     "slot": "right",
     "lucideIcon": "ChevronRight",
-    "hugeiconsIcon": "ArrowRight01Icon"
+    "hugeiconsIcon": "ArrowRight01Icon",
+    "phosphorIcon": "CaretRight"
   },
   {
     "slot": "left",
     "lucideIcon": "ChevronLeft",
-    "hugeiconsIcon": "ArrowLeft01Icon"
+    "hugeiconsIcon": "ArrowLeft01Icon",
+    "phosphorIcon": "CaretLeft"
   },
   {
     "slot": "threeDot",
     "lucideIcon": "MoreHorizontal",
-    "hugeiconsIcon": "MoreHorizontalIcon"
+    "hugeiconsIcon": "MoreHorizontalIcon",
+    "phosphorIcon": "DotsThree"
   },
   {
     "slot": "plus",
     "lucideIcon": "Plus",
-    "hugeiconsIcon": "Add01Icon"
+    "hugeiconsIcon": "Add01Icon",
+    "phosphorIcon": "Plus"
   },
   {
     "slot": "check",
     "lucideIcon": "Check",
-    "hugeiconsIcon": "Tick01Icon"
+    "hugeiconsIcon": "Tick01Icon",
+    "phosphorIcon": "Check"
   },
   {
     "slot": "cross",
     "lucideIcon": "X",
-    "hugeiconsIcon": "Cancel01Icon"
+    "hugeiconsIcon": "Cancel01Icon",
+    "phosphorIcon": "X"
   },
   {
     "slot": "minus",
     "lucideIcon": "Minus",
-    "hugeiconsIcon": "MinusSignIcon"
+    "hugeiconsIcon": "MinusSignIcon",
+    "phosphorIcon": "Minus"
   },
   {
     "slot": "search",
     "lucideIcon": "Search",
-    "hugeiconsIcon": "Search01Icon"
+    "hugeiconsIcon": "Search01Icon",
+    "phosphorIcon": "MagnifyingGlass"
   },
   {
     "slot": "circle",
     "lucideIcon": "Circle",
-    "hugeiconsIcon": "CircleIcon"
+    "hugeiconsIcon": "CircleIcon",
+    "phosphorIcon": "Circle"
   },
   {
     "slot": "grip",
     "lucideIcon": "GripVertical",
-    "hugeiconsIcon": "More01Icon"
+    "hugeiconsIcon": "More01Icon",
+    "phosphorIcon": "DotsSixVertical"
   },
   {
     "slot": "left-panel",
     "lucideIcon": "PanelLeft",
-    "hugeiconsIcon": "PanelLeftIcon"
+    "hugeiconsIcon": "PanelLeftIcon",
+    "phosphorIcon": "SidebarSimple"
   },
   {
     "slot": "setting",
     "lucideIcon": "Settings",
-    "hugeiconsIcon": "Setting07Icon"
+    "hugeiconsIcon": "Setting07Icon",
+    "phosphorIcon": "Gear"
   },
   {
     "slot": "car",
     "lucideIcon": "Car",
-    "hugeiconsIcon": "Car03Icon"
+    "hugeiconsIcon": "Car03Icon",
+    "phosphorIcon": "Car"
   },
   {
     "slot": "coffee",
     "lucideIcon": "Coffee",
-    "hugeiconsIcon": "Coffee02Icon"
+    "hugeiconsIcon": "Coffee02Icon",
+    "phosphorIcon": "Coffee"
   },
   {
     "slot": "cart",
     "lucideIcon": "ShoppingCart",
-    "hugeiconsIcon": "ShoppingCart02Icon"
+    "hugeiconsIcon": "ShoppingCart02Icon",
+    "phosphorIcon": "ShoppingCart"
   },
   {
     "slot": "tv",
     "lucideIcon": "Tv",
-    "hugeiconsIcon": "Tv01Icon"
+    "hugeiconsIcon": "Tv01Icon",
+    "phosphorIcon": "Television"
   },
   {
     "slot": "card",
     "lucideIcon": "CreditCard",
-    "hugeiconsIcon": "CreditCardIcon"
+    "hugeiconsIcon": "CreditCardIcon",
+    "phosphorIcon": "CreditCard"
   },
   {
     "slot": "eye",
     "lucideIcon": "Eye",
-    "hugeiconsIcon": "EyeIcon"
+    "hugeiconsIcon": "EyeIcon",
+    "phosphorIcon": "Eye"
   },
   {
     "slot": "alert",
     "lucideIcon": "AlertCircle",
-    "hugeiconsIcon": "AlertCircleIcon"
+    "hugeiconsIcon": "AlertCircleIcon",
+    "phosphorIcon": "WarningCircle"
   },
   {
     "slot": "eyeoff",
     "lucideIcon": "EyeOff",
-    "hugeiconsIcon": "ViewOffSlashIcon"
+    "hugeiconsIcon": "ViewOffSlashIcon",
+    "phosphorIcon": "EyeSlash"
   },
   {
     "slot": "lock",
     "lucideIcon": "Lock",
-    "hugeiconsIcon": "LockPasswordIcon"
+    "hugeiconsIcon": "LockPasswordIcon",
+    "phosphorIcon": "Lock"
   },
   {
     "slot": "logout",
     "lucideIcon": "LogOut",
-    "hugeiconsIcon": "Logout01Icon"
+    "hugeiconsIcon": "Logout01Icon",
+    "phosphorIcon": "SignOut"
   },
   {
     "slot": "user",
     "lucideIcon": "User",
-    "hugeiconsIcon": "User02Icon"
+    "hugeiconsIcon": "User02Icon",
+    "phosphorIcon": "User"
   },
   {
     "slot": "mail",
     "lucideIcon": "Mail",
-    "hugeiconsIcon": "Mail01Icon"
+    "hugeiconsIcon": "Mail01Icon",
+    "phosphorIcon": "Envelope"
   },
   {
     "slot": "upload",
     "lucideIcon": "Upload",
-    "hugeiconsIcon": "PanelRightIcon"
+    "hugeiconsIcon": "PanelRightIcon",
+    "phosphorIcon": "UploadSimple"
   },
   {
     "slot": "book",
     "lucideIcon": "BookOpen",
-    "hugeiconsIcon": "BookOpenIcon"
+    "hugeiconsIcon": "BookOpenIcon",
+    "phosphorIcon": "BookOpen"
   },
   {
     "slot": "briefcase",
     "lucideIcon": "Briefcase",
-    "hugeiconsIcon": "BriefcaseIcon"
+    "hugeiconsIcon": "BriefcaseIcon",
+    "phosphorIcon": "Briefcase"
   },
   {
     "slot": "ellipsis",
     "lucideIcon": "Ellipsis",
-    "hugeiconsIcon": "More01Icon"
+    "hugeiconsIcon": "More01Icon",
+    "phosphorIcon": "DotsThree"
   },
   {
     "slot": "lightbulb",
     "lucideIcon": "Lightbulb",
-    "hugeiconsIcon": "LightbulbOffIcon"
+    "hugeiconsIcon": "LightbulbOffIcon",
+    "phosphorIcon": "Lightbulb"
   },
   {
     "slot": "pencil",
     "lucideIcon": "Pencil",
-    "hugeiconsIcon": "Edit01Icon"
+    "hugeiconsIcon": "Edit01Icon",
+    "phosphorIcon": "PencilSimple"
   },
   {
     "slot": "link",
     "lucideIcon": "Link2",
-    "hugeiconsIcon": "Link01Icon"
+    "hugeiconsIcon": "Link01Icon",
+    "phosphorIcon": "Link"
   },
   {
     "slot": "building",
     "lucideIcon": "Building2",
-    "hugeiconsIcon": "Building01Icon"
+    "hugeiconsIcon": "Building01Icon",
+    "phosphorIcon": "Buildings"
   },
   {
     "slot": "group",
     "lucideIcon": "Group",
-    "hugeiconsIcon": "Group01Icon"
+    "hugeiconsIcon": "Group01Icon",
+    "phosphorIcon": "UsersThree"
   },
   {
     "slot": "smartphone",
     "lucideIcon": "Smartphone",
-    "hugeiconsIcon": "SmartPhone01Icon"
+    "hugeiconsIcon": "SmartPhone01Icon",
+    "phosphorIcon": "DeviceMobile"
   },
   {
     "slot": "monitor",
     "lucideIcon": "Monitor",
-    "hugeiconsIcon": "MonitorDotIcon"
+    "hugeiconsIcon": "MonitorDotIcon",
+    "phosphorIcon": "Desktop"
   },
   {
     "slot": "dashboard",
     "lucideIcon": "LayoutDashboard",
-    "hugeiconsIcon": "DashboardCircleIcon"
+    "hugeiconsIcon": "DashboardCircleIcon",
+    "phosphorIcon": "SquaresFour"
   },
   {
     "slot": "globe",
     "lucideIcon": "Globe",
-    "hugeiconsIcon": "GlobeIcon"
+    "hugeiconsIcon": "GlobeIcon",
+    "phosphorIcon": "Globe"
   },
   {
     "slot": "scroll",
     "lucideIcon": "Scroll",
-    "hugeiconsIcon": "ScrollIcon"
+    "hugeiconsIcon": "ScrollIcon",
+    "phosphorIcon": "Scroll"
   },
   {
     "slot": "home",
     "lucideIcon": "Home",
-    "hugeiconsIcon": "Home01Icon"
+    "hugeiconsIcon": "Home01Icon",
+    "phosphorIcon": "House"
   },
   {
     "slot": "calendar",
     "lucideIcon": "CalendarDays",
-    "hugeiconsIcon": "Calendar01Icon"
+    "hugeiconsIcon": "Calendar01Icon",
+    "phosphorIcon": "Calendar"
   },
   {
     "slot": "image",
     "lucideIcon": "Image",
-    "hugeiconsIcon": "Image01Icon"
+    "hugeiconsIcon": "Image01Icon",
+    "phosphorIcon": "Image"
   },
   {
     "slot": "inbox",
     "lucideIcon": "Inbox",
-    "hugeiconsIcon": "InboxIcon"
+    "hugeiconsIcon": "InboxIcon",
+    "phosphorIcon": "Tray"
   },
   {
     "slot": "send",
     "lucideIcon": "Send",
-    "hugeiconsIcon": "MailSendIcon"
+    "hugeiconsIcon": "MailSendIcon",
+    "phosphorIcon": "PaperPlaneTilt"
   },
   {
     "slot": "notebook",
     "lucideIcon": "NotebookPen",
-    "hugeiconsIcon": "Notebook01Icon"
+    "hugeiconsIcon": "Notebook01Icon",
+    "phosphorIcon": "Notebook"
   },
   {
     "slot": "blocks",
     "lucideIcon": "Blocks",
-    "hugeiconsIcon": "DashboardSquare01Icon"
+    "hugeiconsIcon": "DashboardSquare01Icon",
+    "phosphorIcon": "Cube"
   },
   {
     "slot": "lifebuoy",
     "lucideIcon": "LifeBuoy",
-    "hugeiconsIcon": "LifebuoyIcon"
+    "hugeiconsIcon": "LifebuoyIcon",
+    "phosphorIcon": "Lifebuoy"
   },
   {
     "slot": "external-link",
     "lucideIcon": "ExternalLink",
-    "hugeiconsIcon": "LinkSquare01Icon"
+    "hugeiconsIcon": "LinkSquare01Icon",
+    "phosphorIcon": "ArrowSquareOut"
   },
   {
     "slot": "info",
     "lucideIcon": "Info",
-    "hugeiconsIcon": "InformationCircleIcon"
+    "hugeiconsIcon": "InformationCircleIcon",
+    "phosphorIcon": "Info"
   },
   {
     "slot": "headset",
     "lucideIcon": "Headset",
-    "hugeiconsIcon": "HeadsetIcon"
+    "hugeiconsIcon": "HeadsetIcon",
+    "phosphorIcon": "Headset"
   },
   {
     "slot": "badge-check",
     "lucideIcon": "BadgeCheck",
-    "hugeiconsIcon": "Certificate01Icon"
+    "hugeiconsIcon": "Certificate01Icon",
+    "phosphorIcon": "SealCheck"
   },
   {
     "slot": "bell",
     "lucideIcon": "Bell",
-    "hugeiconsIcon": "Notification02Icon"
+    "hugeiconsIcon": "Notification02Icon",
+    "phosphorIcon": "Bell"
   },
   {
     "slot": "chevrons-up-down",
     "lucideIcon": "ChevronsUpDown",
-    "hugeiconsIcon": "ArrowUpDownIcon"
+    "hugeiconsIcon": "ArrowUpDownIcon",
+    "phosphorIcon": "CaretUpDown"
   },
   {
     "slot": "sparkles",
     "lucideIcon": "Sparkles",
-    "hugeiconsIcon": "SparklesIcon"
+    "hugeiconsIcon": "SparklesIcon",
+    "phosphorIcon": "Sparkle"
   },
   {
     "slot": "crown",
     "lucideIcon": "Crown",
-    "hugeiconsIcon": "CrownIcon"
+    "hugeiconsIcon": "CrownIcon",
+    "phosphorIcon": "Crown"
   },
   {
     "slot": "arrow-up-right",
     "lucideIcon": "ArrowUpRight",
-    "hugeiconsIcon": "ArrowUpRight01Icon"
+    "hugeiconsIcon": "ArrowUpRight01Icon",
+    "phosphorIcon": "ArrowUpRight"
   },
   {
     "slot": "radio",
     "lucideIcon": "Radio",
-    "hugeiconsIcon": "RadioIcon"
+    "hugeiconsIcon": "RadioIcon",
+    "phosphorIcon": "Radio"
   },
   {
     "slot": "pie-chart",
     "lucideIcon": "PieChart",
-    "hugeiconsIcon": "PieChart01Icon"
+    "hugeiconsIcon": "PieChart01Icon",
+    "phosphorIcon": "ChartPie"
   },
   {
     "slot": "file-code",
     "lucideIcon": "FileCode2",
-    "hugeiconsIcon": "FileCodeIcon"
+    "hugeiconsIcon": "FileCodeIcon",
+    "phosphorIcon": "FileCode"
   },
   {
     "slot": "database",
     "lucideIcon": "DatabaseZap",
-    "hugeiconsIcon": "Database01Icon"
+    "hugeiconsIcon": "Database01Icon",
+    "phosphorIcon": "Database"
   },
   {
     "slot": "flask",
     "lucideIcon": "FlaskConical",
-    "hugeiconsIcon": "EcoLabIcon"
+    "hugeiconsIcon": "EcoLabIcon",
+    "phosphorIcon": "Flask"
   },
   {
     "slot": "scroll-text",
     "lucideIcon": "ScrollText",
-    "hugeiconsIcon": "Note01Icon"
+    "hugeiconsIcon": "Note01Icon",
+    "phosphorIcon": "Scroll"
   },
   {
     "slot": "alert-triangle",
     "lucideIcon": "TriangleAlert",
-    "hugeiconsIcon": "Alert01Icon"
+    "hugeiconsIcon": "Alert01Icon",
+    "phosphorIcon": "Warning"
   },
   {
     "slot": "cog",
     "lucideIcon": "Cog",
-    "hugeiconsIcon": "Settings01Icon"
+    "hugeiconsIcon": "Settings01Icon",
+    "phosphorIcon": "Gear"
   },
   {
     "slot": "help-circle",
     "lucideIcon": "CircleHelp",
-    "hugeiconsIcon": "HelpCircleIcon"
+    "hugeiconsIcon": "HelpCircleIcon",
+    "phosphorIcon": "Question"
   },
   {
     "slot": "arrow-left-line",
     "lucideIcon": "ArrowLeftToLine",
-    "hugeiconsIcon": "ArrowLeft02Icon"
+    "hugeiconsIcon": "ArrowLeft02Icon",
+    "phosphorIcon": "ArrowLineLeft"
   },
   {
     "slot": "arrow-right-line",
     "lucideIcon": "ArrowRightToLine",
-    "hugeiconsIcon": "ArrowRight02Icon"
+    "hugeiconsIcon": "ArrowRight02Icon",
+    "phosphorIcon": "ArrowLineRight"
   },
   {
     "slot": "gauge",
     "lucideIcon": "Gauge",
-    "hugeiconsIcon": "DashboardSquare01Icon"
+    "hugeiconsIcon": "DashboardSquare01Icon",
+    "phosphorIcon": "Gauge"
   },
   {
     "slot": "archive",
     "lucideIcon": "Archive",
-    "hugeiconsIcon": "ArchiveIcon"
+    "hugeiconsIcon": "ArchiveIcon",
+    "phosphorIcon": "Archive"
   },
   {
     "slot": "file-box",
     "lucideIcon": "FileBox",
-    "hugeiconsIcon": "PackageIcon"
+    "hugeiconsIcon": "PackageIcon",
+    "phosphorIcon": "Package"
   },
   {
     "slot": "shopping-bag",
     "lucideIcon": "ShoppingBag",
-    "hugeiconsIcon": "ShoppingBag01Icon"
+    "hugeiconsIcon": "ShoppingBag01Icon",
+    "phosphorIcon": "Handbag"
   },
   {
     "slot": "truck",
     "lucideIcon": "Truck",
-    "hugeiconsIcon": "DeliveryTruck01Icon"
+    "hugeiconsIcon": "DeliveryTruck01Icon",
+    "phosphorIcon": "Truck"
   },
   {
     "slot": "receipt",
     "lucideIcon": "ReceiptText",
-    "hugeiconsIcon": "Invoice01Icon"
+    "hugeiconsIcon": "Invoice01Icon",
+    "phosphorIcon": "Receipt"
   },
   {
     "slot": "badge-percent",
     "lucideIcon": "BadgePercent",
-    "hugeiconsIcon": "PercentIcon"
+    "hugeiconsIcon": "PercentIcon",
+    "phosphorIcon": "Percent"
   },
   {
     "slot": "ticket",
     "lucideIcon": "TicketCheck",
-    "hugeiconsIcon": "Ticket01Icon"
+    "hugeiconsIcon": "Ticket01Icon",
+    "phosphorIcon": "Ticket"
   },
   {
     "slot": "star",
     "lucideIcon": "Star",
-    "hugeiconsIcon": "StarIcon"
+    "hugeiconsIcon": "StarIcon",
+    "phosphorIcon": "Star"
   },
   {
     "slot": "users",
     "lucideIcon": "Users",
-    "hugeiconsIcon": "UserGroupIcon"
+    "hugeiconsIcon": "UserGroupIcon",
+    "phosphorIcon": "Users"
   },
   {
     "slot": "store",
     "lucideIcon": "Store",
-    "hugeiconsIcon": "Store01Icon"
+    "hugeiconsIcon": "Store01Icon",
+    "phosphorIcon": "Storefront"
   },
   {
     "slot": "settings-2",
     "lucideIcon": "Settings2",
-    "hugeiconsIcon": "Settings02Icon"
+    "hugeiconsIcon": "Settings02Icon",
+    "phosphorIcon": "GearSix"
   },
   {
     "slot": "palette",
     "lucideIcon": "Palette",
-    "hugeiconsIcon": "PaintBoardIcon"
+    "hugeiconsIcon": "PaintBoardIcon",
+    "phosphorIcon": "Palette"
   },
   {
     "slot": "box",
     "lucideIcon": "Box",
-    "hugeiconsIcon": "PackageIcon"
+    "hugeiconsIcon": "PackageIcon",
+    "phosphorIcon": "Package"
   },
   {
     "slot": "bar-chart",
     "lucideIcon": "BarChart3",
-    "hugeiconsIcon": "BarChartIcon"
+    "hugeiconsIcon": "BarChartIcon",
+    "phosphorIcon": "ChartBar"
   },
   {
     "slot": "clock",
     "lucideIcon": "Clock",
-    "hugeiconsIcon": "Clock01Icon"
+    "hugeiconsIcon": "Clock01Icon",
+    "phosphorIcon": "Clock"
   },
   {
     "slot": "calendar-check",
     "lucideIcon": "CalendarCheck",
-    "hugeiconsIcon": "CalendarCheckIn01Icon"
+    "hugeiconsIcon": "CalendarCheckIn01Icon",
+    "phosphorIcon": "CalendarCheck"
   },
   {
     "slot": "heart",
     "lucideIcon": "Heart",
-    "hugeiconsIcon": "FavouriteIcon"
+    "hugeiconsIcon": "FavouriteIcon",
+    "phosphorIcon": "Heart"
   },
   {
     "slot": "link",
     "lucideIcon": "Link",
-    "hugeiconsIcon": "Link01Icon"
+    "hugeiconsIcon": "Link01Icon",
+    "phosphorIcon": "Link"
   },
   {
     "slot": "file-question",
     "lucideIcon": "FileQuestion",
-    "hugeiconsIcon": "FileQuestionMarkIcon"
+    "hugeiconsIcon": "FileQuestionMarkIcon",
+    "phosphorIcon": "FileText"
   },
   {
     "slot": "zap",
     "lucideIcon": "Zap",
-    "hugeiconsIcon": "FlashIcon"
+    "hugeiconsIcon": "FlashIcon",
+    "phosphorIcon": "Lightning"
   },
   {
     "slot": "calendar-clock",
     "lucideIcon": "CalendarClock",
-    "hugeiconsIcon": "Calendar02Icon"
+    "hugeiconsIcon": "Calendar02Icon",
+    "phosphorIcon": "Calendar"
   },
   {
     "slot": "clipboard-check",
     "lucideIcon": "ClipboardCheck",
-    "hugeiconsIcon": "ClipboardIcon"
+    "hugeiconsIcon": "ClipboardIcon",
+    "phosphorIcon": "ClipboardText"
   },
   {
     "slot": "door",
     "lucideIcon": "DoorOpen",
-    "hugeiconsIcon": "DoorOpenIcon"
+    "hugeiconsIcon": "DoorOpenIcon",
+    "phosphorIcon": "Door"
   },
   {
     "slot": "file-text",
     "lucideIcon": "FileText",
-    "hugeiconsIcon": "FileAttachmentIcon"
+    "hugeiconsIcon": "FileAttachmentIcon",
+    "phosphorIcon": "FileText"
   },
   {
     "slot": "file-warning",
     "lucideIcon": "FileWarning",
-    "hugeiconsIcon": "Shield01Icon"
+    "hugeiconsIcon": "Shield01Icon",
+    "phosphorIcon": "FileText"
   },
   {
     "slot": "megaphone",
     "lucideIcon": "Megaphone",
-    "hugeiconsIcon": "Megaphone01Icon"
+    "hugeiconsIcon": "Megaphone01Icon",
+    "phosphorIcon": "Megaphone"
   },
   {
     "slot": "timer",
     "lucideIcon": "Timer",
-    "hugeiconsIcon": "Timer01Icon"
+    "hugeiconsIcon": "Timer01Icon",
+    "phosphorIcon": "Timer"
   },
   {
     "slot": "wrench",
     "lucideIcon": "Wrench",
-    "hugeiconsIcon": "WrenchIcon"
+    "hugeiconsIcon": "WrenchIcon",
+    "phosphorIcon": "Wrench"
   },
   {
     "slot": "clock-fading",
     "lucideIcon": "ClockFading",
-    "hugeiconsIcon": "Clock01Icon"
+    "hugeiconsIcon": "Clock01Icon",
+    "phosphorIcon": "ClockCountdown"
   },
   {
     "slot": "contact",
     "lucideIcon": "Contact",
-    "hugeiconsIcon": "ContactIcon"
+    "hugeiconsIcon": "ContactIcon",
+    "phosphorIcon": "AddressBook"
   },
   {
     "slot": "git-branch",
     "lucideIcon": "GitBranch",
-    "hugeiconsIcon": "GitBranchIcon"
+    "hugeiconsIcon": "GitBranchIcon",
+    "phosphorIcon": "GitBranch"
   },
   {
     "slot": "headphones",
     "lucideIcon": "Headphones",
-    "hugeiconsIcon": "HeadphonesIcon"
+    "hugeiconsIcon": "HeadphonesIcon",
+    "phosphorIcon": "Headphones"
   },
   {
     "slot": "messages-square",
     "lucideIcon": "MessagesSquare",
-    "hugeiconsIcon": "Message01Icon"
+    "hugeiconsIcon": "Message01Icon",
+    "phosphorIcon": "Chats"
   },
   {
     "slot": "repeat",
     "lucideIcon": "Repeat",
-    "hugeiconsIcon": "RepeatIcon"
+    "hugeiconsIcon": "RepeatIcon",
+    "phosphorIcon": "Repeat"
   },
   {
     "slot": "check-square",
     "lucideIcon": "SquareCheck",
-    "hugeiconsIcon": "TaskDone01Icon"
+    "hugeiconsIcon": "TaskDone01Icon",
+    "phosphorIcon": "CheckSquare"
   },
   {
     "slot": "users-2",
     "lucideIcon": "Users2",
-    "hugeiconsIcon": "UserGroupIcon"
+    "hugeiconsIcon": "UserGroupIcon",
+    "phosphorIcon": "Users"
   },
   {
     "slot": "arrow-right",
     "lucideIcon": "ArrowRight",
-    "hugeiconsIcon": "ArrowRight01Icon"
+    "hugeiconsIcon": "ArrowRight01Icon",
+    "phosphorIcon": "ArrowRight"
   },
   {
     "slot": "ellipsis-vertical",
     "lucideIcon": "EllipsisVertical",
-    "hugeiconsIcon": "MoreVerticalIcon"
+    "hugeiconsIcon": "MoreVerticalIcon",
+    "phosphorIcon": "DotsThreeVertical"
   },
   {
     "slot": "contrast",
     "lucideIcon": "Contrast",
-    "hugeiconsIcon": "Sun01Icon"
+    "hugeiconsIcon": "Sun01Icon",
+    "phosphorIcon": "CircleHalf"
   },
   {
     "slot": "shapes",
     "lucideIcon": "Shapes",
-    "hugeiconsIcon": "ShapeCollectionIcon"
+    "hugeiconsIcon": "ShapeCollectionIcon",
+    "phosphorIcon": "Shapes"
   },
   {
     "slot": "arrow-left",
     "lucideIcon": "ArrowLeft",
-    "hugeiconsIcon": "ArrowLeft01Icon"
+    "hugeiconsIcon": "ArrowLeft01Icon",
+    "phosphorIcon": "ArrowLeft"
   },
   {
     "slot": "quote",
     "lucideIcon": "Quote",
-    "hugeiconsIcon": "QuoteUpIcon"
+    "hugeiconsIcon": "QuoteUpIcon",
+    "phosphorIcon": "Quotes"
   },
   {
     "slot": "trash",
     "lucideIcon": "Trash",
-    "hugeiconsIcon": "Delete01Icon"
+    "hugeiconsIcon": "Delete01Icon",
+    "phosphorIcon": "Trash"
   }
 ]
