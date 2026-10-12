@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import {
 	Briefcase,
+	Building2,
 	FileText,
 	Folder,
 	HelpCircle,
@@ -70,6 +71,7 @@ const SIDEBAR_CATEGORIES: SidebarCategoryDef[] = [
 	{ id: "signup-section", label: "SIGNUP", icon: Lock },
 	{ id: "guided-tour-section", label: "TOUR", icon: Sparkles },
 	{ id: "hero-section", label: "HERO", icon: Sparkles },
+	{ id: "social-proof-section", label: "SOCIAL PROOF", icon: Building2 },
 	{ id: "feature-section", label: "FEATURE", icon: Layers },
 	{ id: "pricing-section", label: "PRICING", icon: Tag },
 	{ id: "cta-section", label: "CTA", icon: Zap },

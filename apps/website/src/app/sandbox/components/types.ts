@@ -76,7 +76,6 @@ export type PreviewKey =
 	| "signup-13"
 	| "signup-14"
 	| "signup-15"
-	| "socialProofCompanies"
 	| "social-proof-01"
 	| "social-proof-02"
 	| "social-proof-03"
@@ -143,6 +142,7 @@ export function getCommentStatus(comment: SandboxComment): CommentStatus {
 export type SandboxCategory =
 	| "full-page"
 	| "hero-section"
+	| "social-proof-section"
 	| "feature-section"
 	| "pricing-section"
 	| "blog-section"
@@ -405,6 +405,26 @@ export const sandboxComponents: SandboxComponentConfig[] = [
 		referenceUrl:
 			"https://shadcnstudio.com/preview/blocks/base/marketing-ui/login-page/login-page-03",
 		previewRoute: "/sandbox/signin-16",
+	},
+	{
+		id: "signup-12",
+		label: "signup-12",
+		category: "signup-section",
+		filesKey: "signup-12",
+		path: "src/app/sandbox/signup-12",
+		defaultFile: "page.tsx",
+		referenceUrl: "https://reui.io/preview/base/auth-1",
+		previewRoute: "/sandbox/signup-12",
+	},
+	{
+		id: "signup-13",
+		label: "signup-13",
+		category: "signup-section",
+		filesKey: "signup-13",
+		path: "src/app/sandbox/signup-13",
+		defaultFile: "page.tsx",
+		referenceUrl: "https://reui.io/preview/base/auth-5",
+		previewRoute: "/sandbox/signup-13",
 	},
 	{
 		id: "signup-14",
@@ -1026,39 +1046,9 @@ export const sandboxComponents: SandboxComponentConfig[] = [
 		previewRoute: "/sandbox/other-03",
 	},
 	{
-		id: "signup-12",
-		label: "signup-12",
-		category: "signup-section",
-		filesKey: "signup-12",
-		path: "src/app/sandbox/signup-12",
-		defaultFile: "page.tsx",
-		referenceUrl: "https://reui.io/preview/base/auth-1",
-		previewRoute: "/sandbox/signup-12",
-	},
-	{
-		id: "signup-13",
-		label: "signup-13",
-		category: "signup-section",
-		filesKey: "signup-13",
-		path: "src/app/sandbox/signup-13",
-		defaultFile: "page.tsx",
-		referenceUrl: "https://reui.io/preview/base/auth-5",
-		previewRoute: "/sandbox/signup-13",
-	},
-	{
-		id: "socialProofCompanies",
-		label: "social-proof-companies",
-		category: "other-sections",
-		filesKey: "socialProofCompanies",
-		path: "src/app/sandbox/socialProofCompanies",
-		defaultFile: "page.tsx",
-		referenceUrl: "https://dev.radianui.com/resources/brand-logos",
-		previewRoute: "/sandbox/socialProofCompanies",
-	},
-	{
 		id: "social-proof-01",
 		label: "social-proof-01",
-		category: "other-sections",
+		category: "social-proof-section",
 		filesKey: "social-proof-01",
 		path: "src/app/sandbox/social-proof-01",
 		defaultFile: "social-proof.tsx",
@@ -1068,7 +1058,7 @@ export const sandboxComponents: SandboxComponentConfig[] = [
 	{
 		id: "social-proof-02",
 		label: "social-proof-02",
-		category: "other-sections",
+		category: "social-proof-section",
 		filesKey: "social-proof-02",
 		path: "src/app/sandbox/social-proof-02",
 		defaultFile: "social-proof.tsx",
@@ -1078,7 +1068,7 @@ export const sandboxComponents: SandboxComponentConfig[] = [
 	{
 		id: "social-proof-03",
 		label: "social-proof-03",
-		category: "other-sections",
+		category: "social-proof-section",
 		filesKey: "social-proof-03",
 		path: "src/app/sandbox/social-proof-03",
 		defaultFile: "social-proof.tsx",
@@ -1088,7 +1078,7 @@ export const sandboxComponents: SandboxComponentConfig[] = [
 	{
 		id: "social-proof-04",
 		label: "social-proof-04",
-		category: "other-sections",
+		category: "social-proof-section",
 		filesKey: "social-proof-04",
 		path: "src/app/sandbox/social-proof-04",
 		defaultFile: "social-proof.tsx",

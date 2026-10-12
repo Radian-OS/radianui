@@ -13,7 +13,7 @@ export function LoginPageView() {
 			</div>
 
 			{/* Right Showcase Card Column */}
-			<div className="hidden h-screen bg-neutral-100 p-6 lg:flex lg:flex-col dark:bg-neutral-900">
+			<div className="dark:bg-bg hidden h-screen bg-white p-6 lg:flex lg:flex-col">
 				<LoginFeatureCard />
 			</div>
 		</div>

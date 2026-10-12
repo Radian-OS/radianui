@@ -7,11 +7,7 @@ export function FeatureSection() {
 		<div className="mx-auto flex max-w-screen-xl flex-col gap-10 px-5 py-8 sm:px-6 sm:py-15">
 			<div className="flex flex-col gap-5 lg:items-center lg:gap-6">
 				<div className="flex flex-col gap-3 lg:items-center">
-					<Badge
-						variant="outline"
-						className="bg-bg max-w-fit rounded-full px-3 py-1">
-						<span className="text-sm font-medium capitalize">Features</span>
-					</Badge>
+					<Badge variant="outline">Features</Badge>
 					<h2 className="heading-2 max-w-3xl lg:text-center">
 						Turn ideas into projects
 					</h2>

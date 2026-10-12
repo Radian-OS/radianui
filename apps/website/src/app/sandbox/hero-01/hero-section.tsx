@@ -51,7 +51,7 @@ export function HeroSection({
 				className="pointer-events-none absolute inset-x-0 top-0 z-0 h-[600px] overflow-hidden [mask-image:linear-gradient(to_bottom,black_20%,transparent_100%)] opacity-30 [-webkit-mask-image:linear-gradient(to_bottom,black_20%,transparent_100%)] sm:h-[680px] dark:opacity-20">
 				<div className="bg-warning/40 absolute -top-32 -left-[12%] h-96 w-[58%] origin-top rounded-[50%] blur-[100px]" />
 				<div className="bg-danger/25 absolute -top-36 left-[22%] h-96 w-[56%] origin-top rounded-[50%] blur-[100px]" />
-				<div className="bg-info/35 absolute -top-32 -right-[12%] h-96 w-[58%] origin-top rounded-[50%] blur-[100px]" />
+				<div className="bg-primary/35 absolute -top-32 -right-[12%] h-96 w-[58%] origin-top rounded-[50%] blur-[100px]" />
 			</div>
 
 			{/* Centered Content Container */}
@@ -62,7 +62,9 @@ export function HeroSection({
 				className="relative z-10 mx-auto flex w-full max-w-7xl flex-col items-center gap-8 px-4 pt-32 pb-8 text-center sm:px-8 sm:pt-40 lg:px-16">
 				{/* Transparent Badge */}
 				<motion.div variants={itemVariants}>
-					<Badge>{badge}</Badge>
+					<Badge color="neutral" variant="outline">
+						{badge}
+					</Badge>
 				</motion.div>
 
 				{/* 2-Line Headline matching reference: 60px and 500 weight */}
@@ -82,7 +84,7 @@ export function HeroSection({
 				<motion.div
 					variants={itemVariants}
 					className="flex flex-wrap items-center justify-center gap-4">
-					<Button asChild className="group cursor-pointer">
+					<Button size="40" asChild className="group cursor-pointer">
 						<Link href={primaryCta.href}>
 							<span>{primaryCta.label}</span>
 							<ArrowUpRight className="size-4 transition-transform duration-300 group-hover:rotate-45" />

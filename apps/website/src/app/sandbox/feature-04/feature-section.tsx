@@ -5,35 +5,35 @@ const features = [
 		title: "Seamless Integration",
 		description:
 			"Blend seamlessly with the tools you already use, allowing for a smooth development process",
-		image: "Gradient.webp",
+		image: "/sandbox/placeholder.svg",
 		colSpan: "lg:col-span-2 sm:col-span-2",
 	},
 	{
 		title: "Ready-to-use Components",
 		description:
 			"Comprehensive library of UI components that are ready to be implemented",
-		image: "Gradient.webp",
+		image: "/sandbox/placeholder.svg",
 		colSpan: "lg:col-span-2 sm:col-span-2",
 	},
 	{
 		title: "Advanced Component Version Control",
 		description:
 			"Maintain control over component updates with Radian's version control system",
-		image: "Gradient.webp",
+		image: "/sandbox/placeholder.svg",
 		colSpan: "lg:col-span-2 sm:col-span-2",
 	},
 	{
 		title: "Customizable Themes",
 		description:
 			"Easily customize themes to match your brand and make your product stands out visually",
-		image: "Gradient.webp",
+		image: "/sandbox/placeholder.svg",
 		colSpan: "lg:col-span-3 sm:col-span-2",
 	},
 	{
 		title: "Collaborative Design Libraries",
 		description:
 			"Blend seamlessly with the tools you already use, allowing for a smooth development process",
-		image: "Gradient.webp",
+		image: "/sandbox/placeholder.svg",
 		colSpan: "lg:col-span-3 sm:col-span-4",
 	},
 ]
@@ -43,11 +43,7 @@ export function FeatureSection() {
 		<div className="mx-auto flex max-w-screen-xl flex-col gap-10 px-5 py-8 sm:px-6 sm:py-15">
 			<div className="flex flex-col items-center gap-5 lg:gap-6">
 				<div className="flex flex-col items-center gap-3">
-					<Badge
-						variant="outline"
-						className="bg-bg max-w-fit rounded-full px-3 py-1">
-						<span className="text-sm font-medium capitalize">Features</span>
-					</Badge>
+					<Badge variant="outline">Features</Badge>
 					<h2 className="heading-2 max-w-3xl text-center">
 						Turn ideas into projects
 					</h2>

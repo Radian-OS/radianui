@@ -25,36 +25,31 @@ const featureBulletPoints = [
 	"Identify high-risk categories",
 ]
 
-const socialProofAvatars = [
+export const people = [
 	{
-		id: "1",
-		src: "/sandbox/hero-founder-1.png",
-		alt: "Founder 1",
+		name: "Noah Brooks",
+		image:
+			"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@v1.0.2/packages/src/2.png",
 	},
 	{
-		id: "2",
-		src: "/sandbox/hero-founder-2.png",
-		alt: "Founder 2",
+		name: "Liam Reed",
+		image:
+			"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@v1.0.2/packages/src/10.png",
 	},
 	{
-		id: "3",
-		src: "/sandbox/hero-founder-3.png",
-		alt: "Founder 3",
+		name: "Ethan Cole",
+		image:
+			"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@v1.0.2/packages/src/11.png",
 	},
 	{
-		id: "4",
-		src: "/sandbox/hero-founder-4.png",
-		alt: "Founder 4",
+		name: "Ava Patel",
+		image:
+			"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@v1.0.2/packages/src/3.png",
 	},
 	{
-		id: "5",
-		src: "/sandbox/hero-founder-5.png",
-		alt: "Founder 5",
-	},
-	{
-		id: "6",
-		src: "/sandbox/hero-founder-6.png",
-		alt: "Founder 6",
+		name: "Mia Chen",
+		image:
+			"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@v1.0.2/packages/src/13.png",
 	},
 ]
 
@@ -191,27 +186,29 @@ export function HeroSection() {
 								ease: [0.16, 1, 0.3, 1],
 							}}>
 							<div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
-								{socialProofAvatars.map((avatar) => (
+								<div className="flex -space-x-2.5">
+									{people.map((person) => (
+										<Avatar
+											key={person.name}
+											size="40"
+											rounded="circle"
+											className="border-bg bg-bg border hover:z-10">
+											<AvatarImage src={person.image} alt={person.name} />
+											<AvatarFallback>
+												{getInitials(person.name)}
+											</AvatarFallback>
+										</Avatar>
+									))}
 									<Avatar
-										key={avatar.id}
-										size="32"
+										size="40"
 										rounded="circle"
-										className="border-bg bg-bg shrink-0 border-2 contrast-110 grayscale">
-										<AvatarImage src={avatar.src} alt={avatar.alt} />
-										<AvatarFallback className="text-xs font-semibold">
-											{getInitials(avatar.alt)}
+										className="border-bg border hover:z-10">
+										<AvatarFallback className="text-sm font-semibold">
+											+9
 										</AvatarFallback>
 									</Avatar>
-								))}
-								<Avatar
-									size="32"
-									rounded="circle"
-									className="border-bg shrink-0 border-4 hover:z-10">
-									<AvatarFallback className="text-xs font-semibold">
-										+9
-									</AvatarFallback>
-								</Avatar>
-								<p className="text-sm font-normal text-neutral-500 dark:text-neutral-400">
+								</div>
+								<p className="text-fg text-sm font-normal">
 									— rated 4.8/5 by 200+ SMB founders
 								</p>
 							</div>
