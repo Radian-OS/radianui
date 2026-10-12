@@ -23,13 +23,10 @@ export function CTA8() {
 					</div>
 
 					<div className="flex flex-col items-center gap-3 sm:flex-row sm:gap-4">
-						<Button
-							variant="outline"
-							size="40"
-							className="order-2 w-full sm:order-1 sm:w-fit">
+						<Button variant="outline" size="40" className="w-full">
 							Get Started
 						</Button>
-						<Button size="40" className="order-1 w-full sm:order-2 sm:w-fit">
+						<Button size="40" className="w-full">
 							Browse Components
 						</Button>
 					</div>
@@ -40,12 +37,6 @@ export function CTA8() {
 					<div className="border-border/60 bg-elevation-level1/80 relative flex size-full max-w-md items-center justify-center rounded-xl border p-8 shadow-lg backdrop-blur-md">
 						<div className="flex flex-col items-center gap-3 text-center">
 							<div className="from-primary to-info size-12 rounded-xl bg-gradient-to-tr shadow-md" />
-							<p className="text-fg text-sm font-semibold">
-								Component Library Preview
-							</p>
-							<p className="text-fg-tertiary text-xs">
-								Production-ready UI components built with Radian OS
-							</p>
 						</div>
 					</div>
 				</div>

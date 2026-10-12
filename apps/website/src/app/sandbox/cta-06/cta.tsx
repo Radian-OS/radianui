@@ -22,13 +22,10 @@ export function CTA6() {
 					</div>
 
 					<div className="flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
-						<Button
-							variant="outline"
-							size="40"
-							className="order-2 w-full sm:order-1 sm:w-fit">
+						<Button variant="outline" size="40" className="w-full">
 							Get Started
 						</Button>
-						<Button size="40" className="order-1 w-full sm:order-2 sm:w-fit">
+						<Button size="40" className="w-full">
 							Browse Components
 						</Button>
 					</div>
