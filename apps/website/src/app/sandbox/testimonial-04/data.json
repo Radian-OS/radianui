@@ -1,0 +1,52 @@
+{
+	"testimonials": [
+		{
+			"id": 1,
+			"name": "Nick Bayer",
+			"caption": "VP of Engineering, Open Systems",
+			"avatar": "/sandbox/hero-founder-1.png",
+			"initials": "NB",
+			"content": "Building products in a large organization can be a very lengthy and expensive process. With Radian we cut development costs and delivery time by more than 60%."
+		},
+		{
+			"id": 2,
+			"name": "Sarah Jenkins",
+			"caption": "Lead Product Architect, Vercel Partner",
+			"avatar": "/sandbox/hero-founder-2.png",
+			"initials": "SJ",
+			"content": "The token architecture and unified spacing in Radian saved our team weeks of custom boilerplate work. Easily the best design system integration we've adopted."
+		},
+		{
+			"id": 3,
+			"name": "Alex Rivera",
+			"caption": "Founding Engineer, NexusAI",
+			"avatar": "/sandbox/hero-founder-3.png",
+			"initials": "AR",
+			"content": "Radian's component ergonomics feel natural and modern. We went from raw wireframes to customer-facing SaaS production release in under two weeks."
+		},
+		{
+			"id": 4,
+			"name": "Elena Rostova",
+			"caption": "Director of Technology, Apex Digital",
+			"avatar": "/sandbox/hero-founder-4.png",
+			"initials": "ER",
+			"content": "Accessible, beautifully designed, and highly customizable. It effortlessly handles dark mode contrast and responsive viewports without hacks."
+		},
+		{
+			"id": 5,
+			"name": "Marcus Vance",
+			"caption": "Head of Design, HyperScale Labs",
+			"avatar": "/sandbox/hero-founder-5.png",
+			"initials": "MV",
+			"content": "Our developers and designers finally speak the exact same language thanks to Radian's clean component interfaces and predictable typography scale."
+		},
+		{
+			"id": 6,
+			"name": "Sophia Chen",
+			"caption": "Co-founder & CTO, Pulse Metrics",
+			"avatar": "/sandbox/hero-founder-6.png",
+			"initials": "SC",
+			"content": "Shipping clean, high-performance dashboards with Radian gives our users the enterprise-grade polish they demand on day one."
+		}
+	]
+}

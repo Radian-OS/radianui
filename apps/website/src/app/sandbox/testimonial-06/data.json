@@ -1,0 +1,64 @@
+{
+	"testimonials": [
+		{
+			"id": 1,
+			"name": "Nick Bayer",
+			"handle": "@nickbayer",
+			"avatar": "/sandbox/hero-founder-1.png",
+			"initials": "NB",
+			"brandLogo": "https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/neutral/productivity-work/icon/notion.svg",
+			"content": "Building products in a large organization can be a very lengthy and expensive process. With Radian we cut development costs and time by more than 60%.",
+			"time": "10:01 PM · Oct 12, 2026"
+		},
+		{
+			"id": 2,
+			"name": "Sarah Jenkins",
+			"handle": "@sarahjenkins",
+			"avatar": "/sandbox/hero-founder-2.png",
+			"initials": "SJ",
+			"brandLogo": "https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/neutral/development/icon/github.svg",
+			"content": "The token architecture and unified spacing in Radian saved our team weeks of boilerplate. The component API ergonomics are fantastic.",
+			"time": "9:42 PM · Oct 11, 2026"
+		},
+		{
+			"id": 3,
+			"name": "Alex Rivera",
+			"handle": "@arivera_dev",
+			"avatar": "/sandbox/hero-founder-3.png",
+			"initials": "AR",
+			"brandLogo": "https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/neutral/ai/icon/openai.svg",
+			"content": "We shipped our new customer portal in record time. Design system maintenance is now effortless and fully synchronized.",
+			"time": "8:15 PM · Oct 10, 2026"
+		},
+		{
+			"id": 4,
+			"name": "Elena Rostova",
+			"handle": "@elena_ux",
+			"avatar": "/sandbox/hero-founder-4.png",
+			"initials": "ER",
+			"brandLogo": "https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/neutral/design-creative/icon/figma.svg",
+			"content": "Our developers and product designers finally speak the exact same language thanks to Radian's clean component tokens and layouts.",
+			"time": "7:30 PM · Oct 09, 2026"
+		},
+		{
+			"id": 5,
+			"name": "Marcus Vance",
+			"handle": "@marcusvance",
+			"avatar": "/sandbox/hero-founder-5.png",
+			"initials": "MV",
+			"brandLogo": "https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/neutral/productivity-work/icon/slack.svg",
+			"content": "Accessibility, seamless theme switching, and top-tier performance right out of the box. Essential foundation for any serious web app.",
+			"time": "6:20 PM · Oct 08, 2026"
+		},
+		{
+			"id": 6,
+			"name": "Sophia Chen",
+			"handle": "@sophiachen",
+			"avatar": "/sandbox/hero-founder-6.png",
+			"initials": "SC",
+			"brandLogo": "https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/neutral/social-content/icon/discord.svg",
+			"content": "From landing page hero sections to complex dashboard tables, Radian gives us uncompromised craft and production readiness.",
+			"time": "4:11 PM · Oct 07, 2026"
+		}
+	]
+}

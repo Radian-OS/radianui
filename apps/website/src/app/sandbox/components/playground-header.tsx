@@ -72,6 +72,7 @@ export function PlaygroundHeader({
 		const cat = activeComponentConfig.category
 		if (cat === "welcome-screen-section") return "Signup"
 		if (cat === "hero-section") return "Hero"
+		if (cat === "feature-section") return "Feature"
 		if (cat === "pricing-section") return "Pricing"
 		if (cat === "cta-section") return "CTA"
 		if (cat === "blog-section") return "Blog"
@@ -79,6 +80,7 @@ export function PlaygroundHeader({
 		if (cat === "testimonial-section") return "Testimonial"
 		if (cat === "portfolio-section") return "Portfolio"
 		if (cat === "table-section") return "Table"
+		if (cat === "footer-section") return "Footer"
 		return "Blocks"
 	})()
 

@@ -37,6 +37,10 @@ export type PreviewKey =
 	| "cta-03"
 	| "cta-04"
 	| "cta-01"
+	| "cta-05"
+	| "cta-06"
+	| "cta-07"
+	| "cta-08"
 	| "pricing-01"
 	| "contact-01"
 	| "contact-02"
@@ -53,7 +57,16 @@ export type PreviewKey =
 	| "other-03"
 	| "faq-04"
 	| "hero-10"
+	| "hero-11"
+	| "hero-12"
+	| "hero-13"
+	| "hero-14"
+	| "hero-15"
+	| "hero-16"
+	| "hero-17"
+	| "hero-18"
 	| "pricing-02"
+	| "pricing-03"
 	| "testimonial-02"
 	| "hero-09"
 	| "full-page-03"
@@ -63,6 +76,29 @@ export type PreviewKey =
 	| "signup-13"
 	| "signup-14"
 	| "signup-15"
+	| "socialProofCompanies"
+	| "social-proof-01"
+	| "social-proof-02"
+	| "social-proof-03"
+	| "social-proof-04"
+	| "feature-01"
+	| "feature-02"
+	| "feature-03"
+	| "feature-04"
+	| "testimonial-03"
+	| "testimonial-04"
+	| "testimonial-05"
+	| "testimonial-06"
+	| "faq-05"
+	| "faq-06"
+	| "faq-07"
+	| "faq-08"
+	| "faq-09"
+	| "faq-10"
+	| "footer-01"
+	| "footer-02"
+	| "footer-03"
+	| "footer-04"
 
 export type ViewMode = "preview" | "inspect" | "code"
 export type DeviceSize = "desktop" | "tablet" | "mobile"
@@ -107,6 +143,7 @@ export function getCommentStatus(comment: SandboxComment): CommentStatus {
 export type SandboxCategory =
 	| "full-page"
 	| "hero-section"
+	| "feature-section"
 	| "pricing-section"
 	| "blog-section"
 	| "contact-section"
@@ -115,6 +152,7 @@ export type SandboxCategory =
 	| "testimonial-section"
 	| "form-section"
 	| "setting-section"
+	| "footer-section"
 	| "welcome-screen-section"
 	| "guided-tour-section"
 	| "portfolio-section"
@@ -236,6 +274,86 @@ export const sandboxComponents: SandboxComponentConfig[] = [
 		previewRoute: "/sandbox/hero-10",
 	},
 	{
+		id: "hero-11",
+		label: "hero-11",
+		category: "hero-section",
+		filesKey: "hero-11",
+		path: "src/app/sandbox/hero-11",
+		defaultFile: "hero-section.tsx",
+		referenceUrl: "https://shadcnspace.com/preview/hero-11",
+		previewRoute: "/sandbox/hero-11",
+	},
+	{
+		id: "hero-12",
+		label: "hero-12",
+		category: "hero-section",
+		filesKey: "hero-12",
+		path: "src/app/sandbox/hero-12",
+		defaultFile: "hero-section.tsx",
+		referenceUrl: "https://shadcnspace.com/preview/hero-12",
+		previewRoute: "/sandbox/hero-12",
+	},
+	{
+		id: "hero-13",
+		label: "hero-13",
+		category: "hero-section",
+		filesKey: "hero-13",
+		path: "src/app/sandbox/hero-13",
+		defaultFile: "hero-section.tsx",
+		referenceUrl: "https://shadcnspace.com/preview/hero-13",
+		previewRoute: "/sandbox/hero-13",
+	},
+	{
+		id: "hero-14",
+		label: "hero-14",
+		category: "hero-section",
+		filesKey: "hero-14",
+		path: "src/app/sandbox/hero-14",
+		defaultFile: "hero-section.tsx",
+		referenceUrl: "https://shadcnspace.com/preview/hero-14",
+		previewRoute: "/sandbox/hero-14",
+	},
+	{
+		id: "hero-15",
+		label: "hero-15",
+		category: "hero-section",
+		filesKey: "hero-15",
+		path: "src/app/sandbox/hero-15",
+		defaultFile: "hero-section.tsx",
+		referenceUrl: "https://shadcnspace.com/preview/hero-15",
+		previewRoute: "/sandbox/hero-15",
+	},
+	{
+		id: "hero-16",
+		label: "hero-16",
+		category: "hero-section",
+		filesKey: "hero-16",
+		path: "src/app/sandbox/hero-16",
+		defaultFile: "hero-section.tsx",
+		referenceUrl: "https://shadcnspace.com/preview/hero-16",
+		previewRoute: "/sandbox/hero-16",
+	},
+	{
+		id: "hero-17",
+		label: "hero-17",
+		category: "hero-section",
+		filesKey: "hero-17",
+		path: "src/app/sandbox/hero-17",
+		defaultFile: "hero-section.tsx",
+		referenceUrl: "https://shadcnspace.com/preview/hero-17",
+		previewRoute: "/sandbox/hero-17",
+	},
+	{
+		id: "hero-18",
+		label: "hero-18",
+		category: "hero-section",
+		filesKey: "hero-18",
+		path: "src/app/sandbox/hero-18",
+		defaultFile: "hero-section.tsx",
+		referenceUrl: "https://shadcnspace.com/preview/hero-18",
+		previewRoute: "/sandbox/hero-18",
+	},
+	{
 		id: "signin-12",
 		label: "signin-12",
 		category: "sign-in-section",
@@ -351,6 +469,46 @@ export const sandboxComponents: SandboxComponentConfig[] = [
 		previewRoute: "/sandbox/cta-04",
 	},
 	{
+		id: "cta-05",
+		label: "cta-05",
+		category: "cta-section",
+		filesKey: "cta-05",
+		path: "src/app/sandbox/cta-05",
+		defaultFile: "page.tsx",
+		referenceUrl: "https://shadcnspace.com/preview/cta-01",
+		previewRoute: "/sandbox/cta-05",
+	},
+	{
+		id: "cta-06",
+		label: "cta-06",
+		category: "cta-section",
+		filesKey: "cta-06",
+		path: "src/app/sandbox/cta-06",
+		defaultFile: "page.tsx",
+		referenceUrl: "https://shadcnspace.com/preview/cta-02",
+		previewRoute: "/sandbox/cta-06",
+	},
+	{
+		id: "cta-07",
+		label: "cta-07",
+		category: "cta-section",
+		filesKey: "cta-07",
+		path: "src/app/sandbox/cta-07",
+		defaultFile: "page.tsx",
+		referenceUrl: "https://shadcnspace.com/preview/cta-03",
+		previewRoute: "/sandbox/cta-07",
+	},
+	{
+		id: "cta-08",
+		label: "cta-08",
+		category: "cta-section",
+		filesKey: "cta-08",
+		path: "src/app/sandbox/cta-08",
+		defaultFile: "page.tsx",
+		referenceUrl: "https://shadcnspace.com/preview/cta-04",
+		previewRoute: "/sandbox/cta-08",
+	},
+	{
 		id: "pricing-01",
 		label: "pricing-01",
 		category: "pricing-section",
@@ -371,6 +529,16 @@ export const sandboxComponents: SandboxComponentConfig[] = [
 		previewRoute: "/sandbox/pricing-02",
 	},
 	{
+		id: "pricing-03",
+		label: "pricing-03",
+		category: "pricing-section",
+		filesKey: "pricing-03",
+		path: "src/app/sandbox/pricing-03",
+		defaultFile: "pricing.tsx",
+		referenceUrl: "",
+		previewRoute: "/sandbox/pricing-03",
+	},
+	{
 		id: "testimonial-01",
 		label: "testimonial-01",
 		category: "testimonial-section",
@@ -389,6 +557,46 @@ export const sandboxComponents: SandboxComponentConfig[] = [
 		defaultFile: "testimonial-section.tsx",
 		referenceUrl: "https://www.flowbase.co/preview/klarheit-testimonial-02",
 		previewRoute: "/sandbox/testimonial-02",
+	},
+	{
+		id: "testimonial-03",
+		label: "testimonial-03",
+		category: "testimonial-section",
+		filesKey: "testimonial-03",
+		path: "src/app/sandbox/testimonial-03",
+		defaultFile: "testimonial.tsx",
+		referenceUrl: "",
+		previewRoute: "/sandbox/testimonial-03",
+	},
+	{
+		id: "testimonial-04",
+		label: "testimonial-04",
+		category: "testimonial-section",
+		filesKey: "testimonial-04",
+		path: "src/app/sandbox/testimonial-04",
+		defaultFile: "testimonial.tsx",
+		referenceUrl: "",
+		previewRoute: "/sandbox/testimonial-04",
+	},
+	{
+		id: "testimonial-05",
+		label: "testimonial-05",
+		category: "testimonial-section",
+		filesKey: "testimonial-05",
+		path: "src/app/sandbox/testimonial-05",
+		defaultFile: "testimonial.tsx",
+		referenceUrl: "",
+		previewRoute: "/sandbox/testimonial-05",
+	},
+	{
+		id: "testimonial-06",
+		label: "testimonial-06",
+		category: "testimonial-section",
+		filesKey: "testimonial-06",
+		path: "src/app/sandbox/testimonial-06",
+		defaultFile: "testimonial.tsx",
+		referenceUrl: "",
+		previewRoute: "/sandbox/testimonial-06",
 	},
 	{
 		id: "portfolio-01",
@@ -657,6 +865,66 @@ export const sandboxComponents: SandboxComponentConfig[] = [
 		previewRoute: "/sandbox/faq-04",
 	},
 	{
+		id: "faq-05",
+		label: "faq-05",
+		category: "faq-section",
+		filesKey: "faq-05",
+		path: "src/app/sandbox/faq-05",
+		defaultFile: "faq-section.tsx",
+		referenceUrl: "",
+		previewRoute: "/sandbox/faq-05",
+	},
+	{
+		id: "faq-06",
+		label: "faq-06",
+		category: "faq-section",
+		filesKey: "faq-06",
+		path: "src/app/sandbox/faq-06",
+		defaultFile: "faq-section.tsx",
+		referenceUrl: "",
+		previewRoute: "/sandbox/faq-06",
+	},
+	{
+		id: "faq-07",
+		label: "faq-07",
+		category: "faq-section",
+		filesKey: "faq-07",
+		path: "src/app/sandbox/faq-07",
+		defaultFile: "faq-section.tsx",
+		referenceUrl: "",
+		previewRoute: "/sandbox/faq-07",
+	},
+	{
+		id: "faq-08",
+		label: "faq-08",
+		category: "faq-section",
+		filesKey: "faq-08",
+		path: "src/app/sandbox/faq-08",
+		defaultFile: "faq-section.tsx",
+		referenceUrl: "",
+		previewRoute: "/sandbox/faq-08",
+	},
+	{
+		id: "faq-09",
+		label: "faq-09",
+		category: "faq-section",
+		filesKey: "faq-09",
+		path: "src/app/sandbox/faq-09",
+		defaultFile: "faq-section.tsx",
+		referenceUrl: "",
+		previewRoute: "/sandbox/faq-09",
+	},
+	{
+		id: "faq-10",
+		label: "faq-10",
+		category: "faq-section",
+		filesKey: "faq-10",
+		path: "src/app/sandbox/faq-10",
+		defaultFile: "faq-section.tsx",
+		referenceUrl: "",
+		previewRoute: "/sandbox/faq-10",
+	},
+	{
 		id: "contact-01",
 		label: "contact-01",
 		category: "contact-section",
@@ -776,5 +1044,135 @@ export const sandboxComponents: SandboxComponentConfig[] = [
 		defaultFile: "page.tsx",
 		referenceUrl: "https://reui.io/preview/base/auth-5",
 		previewRoute: "/sandbox/signup-13",
+	},
+	{
+		id: "socialProofCompanies",
+		label: "social-proof-companies",
+		category: "other-sections",
+		filesKey: "socialProofCompanies",
+		path: "src/app/sandbox/socialProofCompanies",
+		defaultFile: "page.tsx",
+		referenceUrl: "https://dev.radianui.com/resources/brand-logos",
+		previewRoute: "/sandbox/socialProofCompanies",
+	},
+	{
+		id: "social-proof-01",
+		label: "social-proof-01",
+		category: "other-sections",
+		filesKey: "social-proof-01",
+		path: "src/app/sandbox/social-proof-01",
+		defaultFile: "social-proof.tsx",
+		referenceUrl: "https://dev.radianui.com/resources/brand-logos",
+		previewRoute: "/sandbox/social-proof-01",
+	},
+	{
+		id: "social-proof-02",
+		label: "social-proof-02",
+		category: "other-sections",
+		filesKey: "social-proof-02",
+		path: "src/app/sandbox/social-proof-02",
+		defaultFile: "social-proof.tsx",
+		referenceUrl: "https://dev.radianui.com/resources/brand-logos",
+		previewRoute: "/sandbox/social-proof-02",
+	},
+	{
+		id: "social-proof-03",
+		label: "social-proof-03",
+		category: "other-sections",
+		filesKey: "social-proof-03",
+		path: "src/app/sandbox/social-proof-03",
+		defaultFile: "social-proof.tsx",
+		referenceUrl: "https://dev.radianui.com/resources/brand-logos",
+		previewRoute: "/sandbox/social-proof-03",
+	},
+	{
+		id: "social-proof-04",
+		label: "social-proof-04",
+		category: "other-sections",
+		filesKey: "social-proof-04",
+		path: "src/app/sandbox/social-proof-04",
+		defaultFile: "social-proof.tsx",
+		referenceUrl: "https://dev.radianui.com/resources/brand-logos",
+		previewRoute: "/sandbox/social-proof-04",
+	},
+	{
+		id: "feature-01",
+		label: "feature-01",
+		category: "feature-section",
+		filesKey: "feature-01",
+		path: "src/app/sandbox/feature-01",
+		defaultFile: "feature-section.tsx",
+		referenceUrl: "",
+		previewRoute: "/sandbox/feature-01",
+	},
+	{
+		id: "feature-02",
+		label: "feature-02",
+		category: "feature-section",
+		filesKey: "feature-02",
+		path: "src/app/sandbox/feature-02",
+		defaultFile: "feature-section.tsx",
+		referenceUrl: "",
+		previewRoute: "/sandbox/feature-02",
+	},
+	{
+		id: "feature-03",
+		label: "feature-03",
+		category: "feature-section",
+		filesKey: "feature-03",
+		path: "src/app/sandbox/feature-03",
+		defaultFile: "feature-section.tsx",
+		referenceUrl: "",
+		previewRoute: "/sandbox/feature-03",
+	},
+	{
+		id: "feature-04",
+		label: "feature-04",
+		category: "feature-section",
+		filesKey: "feature-04",
+		path: "src/app/sandbox/feature-04",
+		defaultFile: "feature-section.tsx",
+		referenceUrl: "",
+		previewRoute: "/sandbox/feature-04",
+	},
+	{
+		id: "footer-01",
+		label: "footer-01",
+		category: "footer-section",
+		filesKey: "footer-01",
+		path: "src/app/sandbox/footer-01",
+		defaultFile: "footer.tsx",
+		referenceUrl: "",
+		previewRoute: "/sandbox/footer-01",
+	},
+	{
+		id: "footer-02",
+		label: "footer-02",
+		category: "footer-section",
+		filesKey: "footer-02",
+		path: "src/app/sandbox/footer-02",
+		defaultFile: "footer.tsx",
+		referenceUrl: "",
+		previewRoute: "/sandbox/footer-02",
+	},
+	{
+		id: "footer-03",
+		label: "footer-03",
+		category: "footer-section",
+		filesKey: "footer-03",
+		path: "src/app/sandbox/footer-03",
+		defaultFile: "footer.tsx",
+		referenceUrl: "",
+		previewRoute: "/sandbox/footer-03",
+	},
+	{
+		id: "footer-04",
+		label: "footer-04",
+		category: "footer-section",
+		filesKey: "footer-04",
+		path: "src/app/sandbox/footer-04",
+		defaultFile: "footer.tsx",
+		referenceUrl: "",
+		previewRoute: "/sandbox/footer-04",
 	},
 ]

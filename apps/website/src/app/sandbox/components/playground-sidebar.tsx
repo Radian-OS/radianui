@@ -16,6 +16,8 @@ import {
 	Zap,
 	Layout,
 	Lock,
+	Layers,
+	PanelBottom,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { ScrollArea } from "@/registry/ui/scroll-area"
@@ -68,6 +70,7 @@ const SIDEBAR_CATEGORIES: SidebarCategoryDef[] = [
 	{ id: "signup-section", label: "SIGNUP", icon: Lock },
 	{ id: "guided-tour-section", label: "TOUR", icon: Sparkles },
 	{ id: "hero-section", label: "HERO", icon: Sparkles },
+	{ id: "feature-section", label: "FEATURE", icon: Layers },
 	{ id: "pricing-section", label: "PRICING", icon: Tag },
 	{ id: "cta-section", label: "CTA", icon: Zap },
 	{ id: "blog-section", label: "BLOG", icon: FileText },
@@ -77,6 +80,7 @@ const SIDEBAR_CATEGORIES: SidebarCategoryDef[] = [
 	{ id: "portfolio-section", label: "PORTFOLIO", icon: Briefcase },
 	{ id: "table-section", label: "TABLE", icon: Table },
 	{ id: "setting-section", label: "SETTINGS", icon: Settings },
+	{ id: "footer-section", label: "FOOTER", icon: PanelBottom },
 	{ id: "full-page", label: "FULL PAGE", icon: Layout },
 	{ id: "other-sections", label: "OTHER", icon: Folder },
 ]

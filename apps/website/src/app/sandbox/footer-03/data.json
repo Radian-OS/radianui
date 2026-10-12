@@ -1,0 +1,60 @@
+{
+	"copyright": "© 2026 Radian OS LLC. All rights reserved.",
+	"sections": [
+		{
+			"title": "Product",
+			"links": [
+				{ "label": "Watch Demo", "href": "#" },
+				{ "label": "Pricing", "href": "#" },
+				{ "label": "Features", "href": "#" },
+				{ "label": "Product Roadmap", "href": "#" },
+				{ "label": "Download App", "href": "#" }
+			]
+		},
+		{
+			"title": "Features",
+			"links": [
+				{ "label": "Radian Components", "href": "#" },
+				{ "label": "Starter Kit", "href": "#" },
+				{ "label": "Modular Themes", "href": "#" },
+				{ "label": "Logo Dark Mode", "href": "#" },
+				{ "label": "Component Blocks", "href": "#" }
+			]
+		},
+		{
+			"title": "Company",
+			"links": [
+				{ "label": "About", "href": "#" },
+				{ "label": "Careers", "href": "#" },
+				{ "label": "Customers", "href": "#" },
+				{ "label": "Newsroom", "href": "#" },
+				{ "label": "Become a Partner", "href": "#" }
+			]
+		},
+		{
+			"title": "Resources",
+			"links": [
+				{ "label": "Help Center", "href": "#" },
+				{ "label": "Blog Articles", "href": "#" },
+				{ "label": "FAQs", "href": "#" },
+				{ "label": "Contact Us", "href": "#" },
+				{ "label": "Community", "href": "#" }
+			]
+		},
+		{
+			"title": "Legal",
+			"links": [
+				{ "label": "Terms of Service", "href": "#" },
+				{ "label": "Privacy Policy", "href": "#" },
+				{ "label": "Cookie Policy", "href": "#" },
+				{ "label": "Security", "href": "#" }
+			]
+		}
+	],
+	"socialLinks": [
+		{ "label": "GitHub", "href": "https://github.com/Radian-os", "icon": "github" },
+		{ "label": "Twitter", "href": "https://twitter.com", "icon": "twitter" },
+		{ "label": "YouTube", "href": "https://youtube.com", "icon": "youtube" },
+		{ "label": "LinkedIn", "href": "https://linkedin.com", "icon": "linkedin" }
+	]
+}
