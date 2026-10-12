@@ -39,8 +39,25 @@ import {
 	TooltipContent,
 	TooltipTrigger,
 } from "@/styles/default/ui/tooltip"
+import { useThemerPreset } from "@/lib/themer-preset"
+import { FONTS, FontValue } from "@/registry/fonts"
 
 export function ThemerSidebar() {
+	const [params, setParams] = useThemerPreset()
+
+	const selectedHeadingFont = FONTS.find(
+		(font) => params.headingFont === font.value
+	)
+	const selectedBodyFont = FONTS.find((font) => params.bodyFont === font.value)
+
+	const formatCategory = (cat?: string) => {
+		if (!cat) return "Sans-Serif"
+		return cat
+			.split("-")
+			.map((s) => s.charAt(0).toUpperCase() + s.slice(1))
+			.join(" ")
+	}
+
 	return (
 		<Sidebar collapsible="icon">
 			<SidebarHeader className="border-border flex h-12 shrink-0 flex-row items-center justify-start gap-2 border-b px-3 py-3.5">
@@ -101,9 +118,6 @@ export function ThemerSidebar() {
 						{/* Tertiary */}
 						<div className="col-span-1 flex h-[64px] flex-col justify-between overflow-hidden rounded-lg bg-[#d946ef] p-2 text-white shadow-sm">
 							<div className="flex items-start justify-between">
-								<span className="mr-1 truncate text-xs font-semibold">
-									Tertiary
-								</span>
 								<Lock className="size-3 shrink-0 opacity-70" />
 							</div>
 							<div className="mt-auto flex gap-1">
@@ -116,9 +130,6 @@ export function ThemerSidebar() {
 						{/* Quaternary */}
 						<div className="col-span-1 flex h-[64px] flex-col justify-between overflow-hidden rounded-lg bg-[#14b8a6] p-2 text-white shadow-sm">
 							<div className="flex items-start justify-between">
-								<span className="mr-1 truncate text-xs font-semibold">
-									Quaternary
-								</span>
 								<Lock className="size-3 shrink-0 opacity-70" />
 							</div>
 							<div className="mt-auto flex gap-1">
@@ -169,19 +180,39 @@ export function ThemerSidebar() {
 					<div className="flex flex-col gap-3">
 						<FontPicker
 							label="Heading"
-							fontName="Manrope"
-							fontClass="font-sans"
+							fontName={selectedHeadingFont?.name || "Geist"}
+							fontClass={
+								selectedHeadingFont?.category === "serif"
+									? "font-serif"
+									: selectedHeadingFont?.category === "monospace"
+										? "font-mono"
+										: "font-sans"
+							}
 							provider="Google"
-							type="Sans"
+							type={formatCategory(selectedHeadingFont?.category)}
 							icon={<GoogleIcon size={14} />}
+							value={params.headingFont}
+							onValueChange={(value) =>
+								setParams({ headingFont: value as FontValue })
+							}
 						/>
 						<FontPicker
 							label="Body"
-							fontName="JetBrains Mono"
-							fontClass="font-mono"
+							fontName={selectedBodyFont?.name || "JetBrains Mono"}
+							fontClass={
+								selectedBodyFont?.category === "serif"
+									? "font-serif"
+									: selectedBodyFont?.category === "sans-serif"
+										? "font-sans"
+										: "font-mono"
+							}
 							provider="Google"
-							type="Mono"
+							type={formatCategory(selectedBodyFont?.category || "monospace")}
 							icon={<GoogleIcon size={14} />}
+							value={params.bodyFont}
+							onValueChange={(value) =>
+								setParams({ bodyFont: value as FontValue })
+							}
 						/>
 					</div>
 				</SidebarGroup>

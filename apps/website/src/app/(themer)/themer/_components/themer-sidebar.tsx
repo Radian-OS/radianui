@@ -58,6 +58,7 @@ const BLOCK_PREVIEWS = [
 	"preview-03",
 	"preview-04",
 	"preview-05",
+	"preview-06",
 	"signin",
 	"signup",
 	"new-password",

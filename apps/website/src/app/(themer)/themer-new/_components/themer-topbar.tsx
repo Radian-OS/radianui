@@ -21,17 +21,26 @@ import {
 import PagePicker from "./page-picker"
 import { Tabs, TabsList, TabsTrigger } from "@/styles/default/ui/tabs"
 
-export function ThemerTopbar() {
+interface ThemerTopbarProps {
+	selectedComponent?: string
+	onSelectComponent?: (value: string) => void
+}
+
+export function ThemerTopbar({
+	selectedComponent,
+	onSelectComponent,
+}: ThemerTopbarProps) {
 	return (
 		<header className="border-border bg-bg flex h-12 shrink-0 items-center justify-between border-b px-3 py-3.5">
 			<div className="hidden items-center gap-2.5 md:flex">
-				<PagePicker />
+				<PagePicker
+					selectedComponent={selectedComponent}
+					onSelect={onSelectComponent}
+				/>
 				<span className="text-soft-alpha text-xs">|</span>
 				<span className="text-fg-secondary text-sm font-normal">
 					Want a full site?{" "}
-					<a
-						href="#"
-						className="text-fg hover:text-primary underline transition-colors">
+					<a href="#" className="text-fg hover:text-primary transition-colors">
 						Open Radian&apos;s builder
 					</a>
 				</span>
