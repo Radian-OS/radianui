@@ -84,7 +84,7 @@ export function LoginForm() {
 										placeholder="you@example.com"
 										type="email"
 										autoComplete="email"
-										className="bg-bg focus-visible:bg-primary/10 h-10"
+										className="h-10 border-neutral-200 bg-white placeholder:text-neutral-400 focus-visible:bg-[#edf2fe]/50 dark:border-neutral-800 dark:bg-neutral-900 dark:placeholder:text-neutral-500 dark:focus-visible:bg-neutral-800"
 										{...field}
 									/>
 								</FormControl>
@@ -155,9 +155,7 @@ export function LoginForm() {
 			{/* Footer Link */}
 			<p className="text-fg-secondary text-center text-sm">
 				Already have an account?{" "}
-				<Link
-					href="#"
-					className="text-fg hover:text-primary font-bold transition-colors">
+				<Link href="#" className="text-fg font-bold">
 					Log in
 				</Link>
 			</p>

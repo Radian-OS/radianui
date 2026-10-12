@@ -25,10 +25,10 @@ function ModelCard({ item }: { item: ModelItem }) {
 			<ClipPeg />
 			<div
 				className={cn(
-					"hover:border-soft flex w-full flex-col items-center gap-4 rounded-2xl p-4 py-8 transition-shadow hover:shadow-md"
+					"hover:border-soft bg-fill1 flex w-full flex-col items-center gap-4 rounded-2xl p-4 py-8 transition-shadow hover:shadow-md"
 				)}>
 				{/* Circular Brand Icon */}
-				<span className="bg-fill2 flex size-16 items-center justify-center overflow-hidden rounded-full">
+				<span className="bg-bg flex size-16 items-center justify-center overflow-hidden rounded-full">
 					{item.image ? (
 						<img
 							src={item.image}

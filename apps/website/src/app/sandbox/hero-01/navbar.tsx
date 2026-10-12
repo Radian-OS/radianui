@@ -51,7 +51,7 @@ export function Navbar({
 	return (
 		<header className="fixed top-0 z-50 w-full">
 			<div className="mx-auto w-full max-w-6xl px-4 py-4 sm:px-8 lg:px-16">
-				<nav className="border-soft flex items-center justify-between gap-4 rounded-2xl border px-4 py-2 backdrop-blur-md">
+				<nav className="border-soft bg-elevation-level1 flex items-center justify-between gap-4 rounded-2xl border px-4 py-2">
 					{/* Brand Logo */}
 					<BrandLogo />
 
@@ -70,7 +70,7 @@ export function Navbar({
 													"relative cursor-pointer rounded-lg px-3 py-1.5 text-sm font-medium transition-colors select-none",
 													isActive
 														? "text-fg"
-														: "text-fg-secondary hover:bg-fill3"
+														: "text-fg-secondary hover:bg-elevation-level2"
 												)}>
 												<Link
 													href={item.href}

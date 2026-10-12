@@ -11,7 +11,7 @@ export function LoginPageView() {
 			<LoginDashboardCard />
 
 			{/* Right Column: Centered Signup Form */}
-			<div className="flex h-full flex-col items-center justify-center overflow-y-auto bg-white py-10 text-neutral-900 sm:px-5">
+			<div className="bg-bg text-fg flex h-full flex-col items-center justify-center overflow-y-auto py-10 sm:px-5">
 				<LoginForm />
 			</div>
 		</div>
