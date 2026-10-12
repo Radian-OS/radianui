@@ -25,6 +25,7 @@ import {
 	Paintbrush,
 	Component,
 	CodeXml,
+	Info,
 } from "lucide-react"
 import PresetPicker from "./preset-picker"
 import { GoogleIcon, RadianIcon } from "./icons"
@@ -32,6 +33,12 @@ import FontPicker from "./font-picker"
 import CornerPicker from "./corner-picker"
 import DensityPicker from "./density-picker"
 import IconLibraryPicker from "./icons-library-picker"
+import AppearanceModePicker from "./appearance-mode-picker"
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipTrigger,
+} from "@/styles/default/ui/tooltip"
 
 export function ThemerSidebar() {
 	return (
@@ -128,13 +135,24 @@ export function ThemerSidebar() {
 					</div>
 
 					{/* Zinc Grey Tint Bar */}
-					<div className="mt-4 flex flex-col gap-2">
-						<div className="text-sidebar-fg/70 flex justify-between text-xs">
-							<span>Zinc Grey</span>
-							<span>Tinted by primary</span>
+					<div className="bg-fill2 mt-4 flex flex-col gap-3 rounded-lg p-2.5">
+						<div className="flex justify-between text-xs">
+							<span className="text-fg font-medium">Zinc Grey</span>
+							<div className="flex items-center gap-1.5">
+								<span className="text-fg-tertiary font-normal">
+									Tinted by primary
+								</span>
+								<Tooltip>
+									<TooltipTrigger>
+										<Info className="text-fg-tertiary size-3.5" />
+									</TooltipTrigger>
+									<TooltipContent withArrow>
+										Change neutral base color
+									</TooltipContent>
+								</Tooltip>
+							</div>
 						</div>
-						<div className="flex h-4 w-full overflow-hidden rounded-sm">
-							<div className="flex-1 bg-zinc-200" />
+						<div className="flex h-4 w-full gap-0.5 overflow-hidden rounded-sm">
 							<div className="flex-1 bg-zinc-400" />
 							<div className="flex-1 bg-zinc-500" />
 							<div className="flex-1 bg-zinc-600" />
@@ -186,10 +204,17 @@ export function ThemerSidebar() {
 
 				{/* Icons */}
 				<SidebarGroup>
-					<SidebarGroupLabel className="text-sidebar-fg/70 mb-2 px-0 font-normal">
+					<SidebarGroupLabel className="text-fg-tertiary mb-2 px-0 font-normal">
 						Icons
 					</SidebarGroupLabel>
 					<IconLibraryPicker />
+				</SidebarGroup>
+
+				<SidebarGroup>
+					<SidebarGroupLabel className="text-fg-tertiary mb-2 px-0 font-normal">
+						Appearance Mode
+					</SidebarGroupLabel>
+					<AppearanceModePicker />
 				</SidebarGroup>
 			</SidebarContent>
 

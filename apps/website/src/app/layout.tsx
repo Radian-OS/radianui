@@ -72,6 +72,12 @@ export default async function RootLayout({
 		<html lang="en" suppressHydrationWarning>
 			<head>
 				<AhrefsAnalytics />
+				<link rel="preconnect" href="https://fonts.googleapis.com" />
+				<link
+					rel="preconnect"
+					href="https://fonts.gstatic.com"
+					crossOrigin="anonymous"
+				/>
 			</head>
 			<body
 				className={cn(

@@ -15,37 +15,23 @@ import {
 import { ScrollArea } from "@/styles/default/ui/scroll-area"
 import { CommandInput as CmdkInput } from "cmdk"
 import { ChevronDown, Search } from "lucide-react"
-import { queryOptions, useQuery, useQueryClient } from "@tanstack/react-query"
+import fontsData from "@/data/google-fonts.json"
 import { useVirtualizer } from "@tanstack/react-virtual"
 import { Button } from "@/styles/default/ui/button"
 import {
 	DropdownMenu,
 	DropdownMenuContent,
-	DropdownMenuItem,
 	DropdownMenuRadioGroup,
 	DropdownMenuRadioItem,
 	DropdownMenuTrigger,
 } from "@/styles/default/ui/dropdown-menu"
-
-const KEY = "AIzaSyA-gBaSLW_XNgUD-H2lXfiT0GlmR0-9d3M"
-
-const fontsQueryOptions = queryOptions({
-	queryKey: ["google-fonts"],
-	staleTime: Infinity,
-	queryFn: () =>
-		fetch(
-			`https://www.googleapis.com/webfonts/v1/webfonts?key=${KEY}&sort=popularity`
-		)
-			.then((r) => r.json())
-			.then((d) => d.items as { family: string }[]),
-})
 
 const loaded = new Set<string>()
 
 async function loadPreview(family: string) {
 	if (loaded.has(family)) return
 	loaded.add(family)
-	const url = `https://fonts.googleapis.com/css2?family=${family.replace(/ /g, "+")}&text=${encodeURIComponent(family)}&display=swap`
+	const url = `https://fonts.googleapis.com/css2?family=${family.replace(/ /g, "+")}&text=${encodeURIComponent(family)}`
 	const css = await fetch(url).then((r) => r.text())
 	const style = document.createElement("style")
 	style.textContent = css.replace(
@@ -114,16 +100,30 @@ function FontCard({
 	)
 }
 
+const CATEGORY_LABELS: Record<string, string> = {
+	all: "All",
+	"sans-serif": "Sans Serif",
+	serif: "Serif",
+	display: "Display",
+	monospace: "Monospace",
+	handwriting: "Handwriting",
+}
+
 function FontList() {
 	const [search, setSearch] = React.useState("")
+	const [category, setCategory] = React.useState("all")
 	const ref = useRef<HTMLDivElement>(null)
 
-	const { data: fonts = [] } = useQuery(fontsQueryOptions)
+	const fonts = fontsData.fonts
 
 	const filteredFonts = React.useMemo(() => {
 		const lower = search.toLowerCase()
-		return fonts.filter((f) => f.family.toLowerCase().includes(lower))
-	}, [fonts, search])
+		return fonts.filter(
+			(f) =>
+				f.family.toLowerCase().includes(lower) &&
+				(category === "all" || f.category === category)
+		)
+	}, [fonts, search, category])
 
 	const virt = useVirtualizer({
 		count: filteredFonts.length,
@@ -149,22 +149,19 @@ function FontList() {
 							color="neutral"
 							variant="soft"
 							className="w-full justify-start">
-							Style: All <ChevronDown className="text-fg-tertiary ml-auto" />
+							Style: {CATEGORY_LABELS[category]}{" "}
+							<ChevronDown className="text-fg-tertiary ml-auto" />
 						</Button>
 					</DropdownMenuTrigger>
 					<DropdownMenuContent className="min-w-[130px]" align="end">
-						<DropdownMenuRadioGroup>
-							<DropdownMenuRadioItem value="all">All</DropdownMenuRadioItem>
-							<DropdownMenuRadioItem value="sans-serif">
-								Sans Serif
-							</DropdownMenuRadioItem>
-							<DropdownMenuRadioItem value="serif">Serif</DropdownMenuRadioItem>
-							<DropdownMenuRadioItem value="display">
-								Display
-							</DropdownMenuRadioItem>
-							<DropdownMenuRadioItem value="monospace">
-								Monospace
-							</DropdownMenuRadioItem>
+						<DropdownMenuRadioGroup
+							value={category}
+							onValueChange={setCategory}>
+							{Object.entries(CATEGORY_LABELS).map(([value, label]) => (
+								<DropdownMenuRadioItem key={value} value={value}>
+									{label}
+								</DropdownMenuRadioItem>
+							))}
 						</DropdownMenuRadioGroup>
 					</DropdownMenuContent>
 				</DropdownMenu>
@@ -174,7 +171,7 @@ function FontList() {
 				{filteredFonts.length === 0 && (
 					<CommandEmpty>No font found.</CommandEmpty>
 				)}
-				<ScrollArea ref={ref} className="h-72">
+				<ScrollArea ref={ref} className="h-100">
 					<div
 						style={{
 							height: virt.getTotalSize(),
@@ -194,7 +191,7 @@ function FontList() {
 										width: "calc(100% - 12px)",
 										height: row.size,
 										transform: `translateY(${row.start}px)`,
-										// fontFamily: `"preview-${family}", sans-serif`,
+										fontFamily: `"preview-${family}", sans-serif`,
 									}}>
 									{family}
 								</CommandItem>
@@ -210,11 +207,16 @@ function FontList() {
 export default function FontPicker(
 	props: React.ComponentProps<typeof FontCard>
 ) {
-	const queryClient = useQueryClient()
-	const prefetch = () => queryClient.prefetchQuery(fontsQueryOptions)
+	React.useEffect(() => {
+		fontsData.fonts.reduce(
+			(p, font) => p.then(() => loadPreview(font.family)),
+			Promise.resolve()
+		)
+	}, [])
+
 	return (
 		<Popover>
-			<PopoverTrigger asChild onPointerEnter={prefetch} onFocus={prefetch}>
+			<PopoverTrigger asChild>
 				<FontCard {...props} />
 			</PopoverTrigger>
 			<PopoverContent

@@ -852,7 +852,7 @@
 	}
 
 	.cn-command-item {
-		@apply data-[selected=true]:bg-fill2-alpha data-[selected=true]:text-fg-secondary;
+		@apply data-[selected=true]:bg-fill2-alpha;
 		@apply [&_svg:not([class*='text-'])]:text-fg-tertiary;
 		@apply rounded-sm px-2 py-1.5 text-sm;
 		@apply [&_svg:not([class*='size-'])]:size-4;

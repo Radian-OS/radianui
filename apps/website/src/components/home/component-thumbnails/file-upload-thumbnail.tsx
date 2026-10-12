@@ -98,7 +98,7 @@ const FileUploadThumbnail = (props: React.SVGProps<SVGSVGElement>) => (
 				width="34"
 				height="34"
 				filterUnits="userSpaceOnUse"
-				color-interpolation-filters="sRGB">
+				colorInterpolationFilters="sRGB">
 				<feFlood flood-opacity="0" result="BackgroundImageFix" />
 				<feColorMatrix
 					in="SourceAlpha"
@@ -132,7 +132,7 @@ const FileUploadThumbnail = (props: React.SVGProps<SVGSVGElement>) => (
 				width="15.1713"
 				height="14.125"
 				filterUnits="userSpaceOnUse"
-				color-interpolation-filters="sRGB">
+				colorInterpolationFilters="sRGB">
 				<feFlood flood-opacity="0" result="BackgroundImageFix" />
 				<feColorMatrix
 					in="SourceAlpha"

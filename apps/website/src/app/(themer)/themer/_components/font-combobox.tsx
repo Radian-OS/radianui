@@ -92,11 +92,12 @@ export function FontCombobox({
 
 		if (list.scrollTop + list.clientHeight >= list.scrollHeight - 5) {
 			if (visibleCount >= FONTS.length) return
-			setLoading(true)
-			setTimeout(() => {
-				setVisibleCount((prev) => Math.min(prev + FONT_PAGE_SIZE, FONTS.length))
-				setLoading(false)
-			}, 500)
+			setVisibleCount((prev) => Math.min(prev + FONT_PAGE_SIZE, FONTS.length))
+			// setLoading(true)
+			// setTimeout(() => {
+			// 	setVisibleCount((prev) => Math.min(prev + FONT_PAGE_SIZE, FONTS.length))
+			// 	setLoading(false)
+			// }, 500)
 		}
 	}
 

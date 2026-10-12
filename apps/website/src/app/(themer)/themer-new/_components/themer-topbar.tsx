@@ -38,8 +38,8 @@ export function ThemerTopbar() {
 			</div>
 
 			<div className="flex items-center gap-2.5">
-				<Tabs>
-					<TabsList size="sm" defaultValue="desktop">
+				<Tabs defaultValue="desktop">
+					<TabsList size="sm">
 						<TabsTrigger value="desktop">
 							<Monitor className="size-4" />
 						</TabsTrigger>
@@ -53,8 +53,8 @@ export function ThemerTopbar() {
 				</Tabs>
 
 				<div className="bg-soft-alpha h-4 w-px" />
-				<Tabs>
-					<TabsList size="sm" defaultValue={"preview"}>
+				<Tabs defaultValue="preview">
+					<TabsList size="sm">
 						<TabsTrigger value="preview">
 							<Eye className="size-4" />
 						</TabsTrigger>
