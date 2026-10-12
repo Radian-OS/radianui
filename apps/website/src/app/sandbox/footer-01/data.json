@@ -1,0 +1,16 @@
+{
+	"copyright": "© 2026 Radian OS LLC. All rights reserved.",
+	"navLinks": [
+		{ "label": "About", "href": "#" },
+		{ "label": "Pricing", "href": "#" },
+		{ "label": "Blog", "href": "#" },
+		{ "label": "Privacy Policy", "href": "#" },
+		{ "label": "Terms of Service", "href": "#" }
+	],
+	"socialLinks": [
+		{ "label": "GitHub", "href": "https://github.com/Radian-os", "icon": "github" },
+		{ "label": "Twitter", "href": "https://twitter.com", "icon": "twitter" },
+		{ "label": "YouTube", "href": "https://youtube.com", "icon": "youtube" },
+		{ "label": "LinkedIn", "href": "https://linkedin.com", "icon": "linkedin" }
+	]
+}

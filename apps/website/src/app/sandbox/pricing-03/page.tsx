@@ -1,9 +1,9 @@
-import Pricing1 from "./Pricing1"
+import Pricing from "./pricing"
 
 export default function Page() {
 	return (
-		<main className="bg-bg text-fg min-h-screen">
-			<Pricing1 />
+		<main className="min-h-screen">
+			<Pricing />
 		</main>
 	)
 }

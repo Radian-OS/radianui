@@ -1,0 +1,180 @@
+{
+	"brand": {
+		"name": "Radian",
+		"logo": "/radian-full-89x24.svg",
+		"tagline": "Empowering the next generation of digital thinkers, builders, and creatives."
+	},
+	"copyright": "© 2026 Radian OS LLC. All rights reserved.",
+	"columnGroups": [
+		{
+			"sections": [
+				{
+					"title": "Product",
+					"links": [
+						{ "label": "Watch Demo", "href": "#" },
+						{ "label": "Pricing", "href": "#" },
+						{ "label": "Features", "href": "#" },
+						{ "label": "Product Roadmap", "href": "#" },
+						{ "label": "Download App", "href": "#" }
+					]
+				},
+				{
+					"title": "Features",
+					"links": [
+						{ "label": "Radian Components", "href": "#" },
+						{ "label": "Starter Kit", "href": "#" },
+						{ "label": "Modular Themes", "href": "#" },
+						{ "label": "Logo Dark Mode", "href": "#" }
+					]
+				}
+			]
+		},
+		{
+			"sections": [
+				{
+					"title": "Company",
+					"links": [
+						{ "label": "About", "href": "#" },
+						{ "label": "Careers", "href": "#" },
+						{ "label": "Customers", "href": "#" },
+						{ "label": "Newsroom", "href": "#" }
+					]
+				},
+				{
+					"title": "Comparison",
+					"links": [
+						{ "label": "Radian vs Tailwind UI", "href": "#" },
+						{ "label": "Radian vs Shadcn UI", "href": "#" },
+						{ "label": "Radian vs Material UI", "href": "#" },
+						{ "label": "Radian vs Chakra UI", "href": "#" }
+					]
+				}
+			]
+		},
+		{
+			"sections": [
+				{
+					"title": "Resources",
+					"links": [
+						{ "label": "Help Center", "href": "#" },
+						{ "label": "Blog Articles", "href": "#" },
+						{ "label": "FAQs", "href": "#" },
+						{ "label": "Contact Us", "href": "#" }
+					]
+				},
+				{
+					"title": "Integrations",
+					"links": [
+						{ "label": "Figma Plugin", "href": "#" },
+						{ "label": "Next.js Template", "href": "#" },
+						{ "label": "Vite React Kit", "href": "#" },
+						{ "label": "Tailwind v4 Setup", "href": "#" }
+					]
+				}
+			]
+		},
+		{
+			"sections": [
+				{
+					"title": "Community",
+					"links": [
+						{ "label": "Discord Server", "href": "#" },
+						{ "label": "GitHub Discussions", "href": "#" },
+						{ "label": "Instagram", "href": "#" },
+						{ "label": "Twitter / X", "href": "#" }
+					]
+				},
+				{
+					"title": "Legal",
+					"links": [
+						{ "label": "Terms of Service", "href": "#" },
+						{ "label": "Privacy Policy", "href": "#" },
+						{ "label": "Cookie Policy", "href": "#" },
+						{ "label": "Security", "href": "#" }
+					]
+				}
+			]
+		}
+	],
+	"allSections": [
+		{
+			"title": "Product",
+			"links": [
+				{ "label": "Watch Demo", "href": "#" },
+				{ "label": "Pricing", "href": "#" },
+				{ "label": "Features", "href": "#" },
+				{ "label": "Product Roadmap", "href": "#" },
+				{ "label": "Download App", "href": "#" }
+			]
+		},
+		{
+			"title": "Features",
+			"links": [
+				{ "label": "Radian Components", "href": "#" },
+				{ "label": "Starter Kit", "href": "#" },
+				{ "label": "Modular Themes", "href": "#" },
+				{ "label": "Logo Dark Mode", "href": "#" }
+			]
+		},
+		{
+			"title": "Company",
+			"links": [
+				{ "label": "About", "href": "#" },
+				{ "label": "Careers", "href": "#" },
+				{ "label": "Customers", "href": "#" },
+				{ "label": "Newsroom", "href": "#" }
+			]
+		},
+		{
+			"title": "Comparison",
+			"links": [
+				{ "label": "Radian vs Tailwind UI", "href": "#" },
+				{ "label": "Radian vs Shadcn UI", "href": "#" },
+				{ "label": "Radian vs Material UI", "href": "#" },
+				{ "label": "Radian vs Chakra UI", "href": "#" }
+			]
+		},
+		{
+			"title": "Resources",
+			"links": [
+				{ "label": "Help Center", "href": "#" },
+				{ "label": "Blog Articles", "href": "#" },
+				{ "label": "FAQs", "href": "#" },
+				{ "label": "Contact Us", "href": "#" }
+			]
+		},
+		{
+			"title": "Integrations",
+			"links": [
+				{ "label": "Figma Plugin", "href": "#" },
+				{ "label": "Next.js Template", "href": "#" },
+				{ "label": "Vite React Kit", "href": "#" },
+				{ "label": "Tailwind v4 Setup", "href": "#" }
+			]
+		},
+		{
+			"title": "Community",
+			"links": [
+				{ "label": "Discord Server", "href": "#" },
+				{ "label": "GitHub Discussions", "href": "#" },
+				{ "label": "Instagram", "href": "#" },
+				{ "label": "Twitter / X", "href": "#" }
+			]
+		},
+		{
+			"title": "Legal",
+			"links": [
+				{ "label": "Terms of Service", "href": "#" },
+				{ "label": "Privacy Policy", "href": "#" },
+				{ "label": "Cookie Policy", "href": "#" },
+				{ "label": "Security", "href": "#" }
+			]
+		}
+	],
+	"socialLinks": [
+		{ "label": "GitHub", "href": "https://github.com/Radian-os", "icon": "github" },
+		{ "label": "Twitter", "href": "https://twitter.com", "icon": "twitter" },
+		{ "label": "YouTube", "href": "https://youtube.com", "icon": "youtube" },
+		{ "label": "LinkedIn", "href": "https://linkedin.com", "icon": "linkedin" }
+	]
+}

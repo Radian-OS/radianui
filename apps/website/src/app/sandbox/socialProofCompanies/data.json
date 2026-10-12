@@ -1,0 +1,58 @@
+{
+	"companies": [
+		"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/neutral/ai/icon/anthropic.svg",
+		"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/neutral/ai/icon/copilot.svg",
+		"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/neutral/ai/icon/openai.svg",
+		"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/neutral/ai/icon/claude.svg",
+		"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/neutral/ai/icon/perplexity.svg",
+		"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/neutral/ai/icon/gemini.svg",
+		"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/neutral/technology/icon/google.svg",
+		"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/neutral/development/icon/github.svg",
+		"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/neutral/productivity-work/icon/slack.svg",
+		"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/neutral/social-content/icon/discord.svg",
+		"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/neutral/design-creative/icon/figma.svg",
+		"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/neutral/cloud-devops/icon/docker.svg"
+	],
+	"coloredCompanies": [
+		"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/colored/ai/icon/anthropic.svg",
+		"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/colored/ai/icon/copilot.svg",
+		"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/colored/ai/icon/openai.svg",
+		"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/colored/ai/icon/claude.svg",
+		"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/colored/ai/icon/perplexity.svg",
+		"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/colored/ai/icon/gemini.svg",
+		"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/colored/technology/icon/google.svg",
+		"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/colored/development/icon/github.svg",
+		"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/colored/productivity-work/icon/slack.svg",
+		"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/colored/social-content/icon/discord.svg",
+		"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/colored/design-creative/icon/figma.svg",
+		"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/colored/cloud-devops/icon/docker.svg"
+	],
+	"neutralLogos": [
+		{ "name": "Anthropic", "src": "https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/neutral/ai/icon/anthropic.svg" },
+		{ "name": "Copilot", "src": "https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/neutral/ai/icon/copilot.svg" },
+		{ "name": "OpenAI", "src": "https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/neutral/ai/icon/openai.svg" },
+		{ "name": "Claude", "src": "https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/neutral/ai/icon/claude.svg" },
+		{ "name": "Perplexity", "src": "https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/neutral/ai/icon/perplexity.svg" },
+		{ "name": "Gemini", "src": "https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/neutral/ai/icon/gemini.svg" },
+		{ "name": "Google", "src": "https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/neutral/technology/icon/google.svg" },
+		{ "name": "GitHub", "src": "https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/neutral/development/icon/github.svg" },
+		{ "name": "Slack", "src": "https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/neutral/productivity-work/icon/slack.svg" },
+		{ "name": "Discord", "src": "https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/neutral/social-content/icon/discord.svg" },
+		{ "name": "Figma", "src": "https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/neutral/design-creative/icon/figma.svg" },
+		{ "name": "Docker", "src": "https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/neutral/cloud-devops/icon/docker.svg" }
+	],
+	"coloredLogos": [
+		{ "name": "Anthropic", "src": "https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/colored/ai/icon/anthropic.svg" },
+		{ "name": "Copilot", "src": "https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/colored/ai/icon/copilot.svg" },
+		{ "name": "OpenAI", "src": "https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/colored/ai/icon/openai.svg" },
+		{ "name": "Claude", "src": "https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/colored/ai/icon/claude.svg" },
+		{ "name": "Perplexity", "src": "https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/colored/ai/icon/perplexity.svg" },
+		{ "name": "Gemini", "src": "https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/colored/ai/icon/gemini.svg" },
+		{ "name": "Google", "src": "https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/colored/technology/icon/google.svg" },
+		{ "name": "GitHub", "src": "https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/colored/development/icon/github.svg" },
+		{ "name": "Slack", "src": "https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/colored/productivity-work/icon/slack.svg" },
+		{ "name": "Discord", "src": "https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/colored/social-content/icon/discord.svg" },
+		{ "name": "Figma", "src": "https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/colored/design-creative/icon/figma.svg" },
+		{ "name": "Docker", "src": "https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/colored/cloud-devops/icon/docker.svg" }
+	]
+}
