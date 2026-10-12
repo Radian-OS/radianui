@@ -92,6 +92,7 @@ export function ThemerTopbar({
 					size="28"
 					color="neutral"
 					aria-label="Toggle theme"
+					title="Toggle theme"
 					onClick={toggleTheme}>
 					{mounted && resolvedTheme === "dark" ? (
 						<Sun className="text-fg-tertiary size-4" />

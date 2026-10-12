@@ -31,7 +31,7 @@ export default function IconLibraryPicker({
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
 				<Button
-					className="bg-fill1-alpha w-full justify-between text-[13px]"
+					className="bg-fill1-alpha w-full justify-between text-[13px] select-none"
 					variant="soft"
 					color="neutral">
 					<span>Library</span>{" "}

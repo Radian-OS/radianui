@@ -250,10 +250,11 @@ export default function FontPicker(
 	props: React.ComponentProps<typeof FontCard>
 ) {
 	React.useEffect(() => {
-		if (props.fontName) {
-			loadPreview(props.fontName)
-		}
-	}, [props.fontName])
+		FONTS.reduce(
+			(p, font) => p.then(() => loadPreview(font.name)),
+			Promise.resolve()
+		)
+	}, [])
 
 	return (
 		<Popover>

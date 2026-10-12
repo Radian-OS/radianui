@@ -24,7 +24,7 @@ export default function AppearanceModePicker() {
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
 				<Button
-					className="bg-fill1-alpha w-full justify-between text-[13px]"
+					className="bg-fill1-alpha w-full justify-between text-[13px] select-none"
 					variant="soft"
 					color="neutral">
 					<span>Default Mode</span>{" "}
