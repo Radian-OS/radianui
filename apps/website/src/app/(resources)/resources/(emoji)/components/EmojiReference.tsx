@@ -47,7 +47,7 @@ export function EmojiReference({ emoji }: { emoji: EmojiData }) {
 			<nav
 				aria-label="Breadcrumb"
 				className="text-fg-secondary flex flex-wrap gap-2 text-sm">
-				<Link href="/resources">Resources</Link>
+				<Link href="/docs/getting-started/resources">Resources</Link>
 				<span aria-hidden="true">/</span>
 				<Link href="/resources/emoji">Emojis</Link>
 				<span aria-hidden="true">/</span>

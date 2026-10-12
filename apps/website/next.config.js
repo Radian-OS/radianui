@@ -158,17 +158,17 @@ const nextConfig = {
     return [
       {
         source: "/docs/getting-started/flags",
-        destination: "/docs/packages/flags",
+        destination: "/docs/miscellaneous/flags",
         permanent: true,
       },
       {
         source: "/docs/components/flag",
-        destination: "/docs/packages/flags",
+        destination: "/docs/miscellaneous/flags",
         permanent: true,
       },
       {
         source: "/docs/flags",
-        destination: "/docs/packages/flags",
+        destination: "/docs/miscellaneous/flags",
         permanent: true,
       },
       {
@@ -276,6 +276,9 @@ const nextConfig = {
     return config;
   },
   output: "standalone",
+  outputFileTracingIncludes: {
+    "/api/block-code/*": ["./src/registry/blocks-example/**/*.{ts,tsx,css}"],
+  },
   serverExternalPackages: ["ts-morph", "typescript", "shiki"],
 };
 const withMDX = createMDX();

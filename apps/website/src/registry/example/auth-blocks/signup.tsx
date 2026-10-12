@@ -37,7 +37,7 @@ const SignUp = () => {
 							<div className="flex justify-between">
 								<p className="text-fg-secondary text-sm font-medium">
 									Already have an account?{" "}
-									<Link href={"/signup"}>
+									<Link href="/blocks/signin">
 										<span className="text-fg">Sign in</span>
 									</Link>
 								</p>

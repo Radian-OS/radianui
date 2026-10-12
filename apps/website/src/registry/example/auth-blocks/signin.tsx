@@ -37,7 +37,7 @@ const SignIn = () => {
 							<h1 className="text-2xl font-semibold">Sign in</h1>
 							<p className="text-fg-secondary text-sm font-medium">
 								Don&apos;t have an account yet?{" "}
-								<Link href={"/signup"}>
+								<Link href="/blocks/signup">
 									<span className="text-fg">Sign up</span>
 								</Link>
 							</p>
