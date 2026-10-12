@@ -4,13 +4,6 @@ import { useEffect, useState } from "react"
 import { useTheme } from "next-themes"
 import { Button, IconButton } from "@/styles/default/ui/button"
 import {
-	Select,
-	SelectContent,
-	SelectItem,
-	SelectTrigger,
-	SelectValue,
-} from "@/styles/default/ui/select"
-import {
 	Monitor,
 	Tablet,
 	Smartphone,
@@ -23,14 +16,20 @@ import {
 import PagePicker from "./page-picker"
 import { Tabs, TabsList, TabsTrigger } from "@/styles/default/ui/tabs"
 
+export type DeviceSize = "desktop" | "tablet" | "mobile"
+
 interface ThemerTopbarProps {
 	selectedComponent?: string
 	onSelectComponent?: (value: string) => void
+	device?: DeviceSize
+	onDeviceChange?: (value: DeviceSize) => void
 }
 
 export function ThemerTopbar({
 	selectedComponent,
 	onSelectComponent,
+	device = "desktop",
+	onDeviceChange,
 }: ThemerTopbarProps) {
 	const [mounted, setMounted] = useState(false)
 	const { resolvedTheme, setTheme } = useTheme()
@@ -59,15 +58,17 @@ export function ThemerTopbar({
 			</div>
 
 			<div className="flex items-center gap-2.5">
-				<Tabs defaultValue="desktop">
+				<Tabs
+					value={device}
+					onValueChange={(val) => onDeviceChange?.(val as DeviceSize)}>
 					<TabsList size="sm">
-						<TabsTrigger value="desktop">
+						<TabsTrigger value="desktop" title="Desktop View">
 							<Monitor className="size-4" />
 						</TabsTrigger>
-						<TabsTrigger value="tablet">
+						<TabsTrigger value="tablet" title="Tablet View">
 							<Tablet className="size-4" />
 						</TabsTrigger>
-						<TabsTrigger value="mobile">
+						<TabsTrigger value="mobile" title="Mobile View">
 							<Smartphone className="size-4" />
 						</TabsTrigger>
 					</TabsList>

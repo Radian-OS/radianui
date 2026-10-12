@@ -2,7 +2,8 @@
 
 import { SidebarProvider, SidebarInset } from "@/styles/default/ui/sidebar"
 import { ThemerSidebar } from "./_components/themer-sidebar"
-import { ThemerTopbar } from "./_components/themer-topbar"
+import { DeviceSize, ThemerTopbar } from "./_components/themer-topbar"
+import { cn } from "@/lib/utils"
 import {
 	Suspense,
 	useCallback,
@@ -12,13 +13,12 @@ import {
 	useState,
 } from "react"
 import { useThemerPreset } from "@/lib/themer-preset"
-import { useTheme } from "next-themes"
 
 function ThemerPage() {
 	const [params, setParams] = useThemerPreset()
-	const { resolvedTheme } = useTheme()
 	const [selectedComponent, setSelectedComponent] =
 		useState<string>("preview-06")
+	const [device, setDevice] = useState<DeviceSize>("desktop")
 	const iframeRef = useRef<HTMLIFrameElement>(null)
 
 	const iframeSrc = useMemo(() => {
@@ -81,14 +81,23 @@ function ThemerPage() {
 				<ThemerTopbar
 					selectedComponent={selectedComponent}
 					onSelectComponent={setSelectedComponent}
+					device={device}
+					onDeviceChange={setDevice}
 				/>
 				<div
 					className="relative flex flex-1 flex-col overflow-auto p-4 md:p-8"
 					style={{
-						backgroundImage: "radial-gradient(#e5e7eb 1px, transparent 1px)",
+						backgroundImage:
+							"radial-gradient(var(--color-fill2-alpha) 1px, transparent 1px)",
 						backgroundSize: "20px 20px",
 					}}>
-					<div className="border-border bg-bg flex flex-1 overflow-hidden rounded-xl border shadow-sm">
+					<div
+						className={cn(
+							"border-border bg-bg mx-auto flex flex-1 overflow-hidden rounded-xl border shadow-sm transition-all duration-200",
+							device === "mobile" && "w-[375px]",
+							device === "tablet" && "w-[768px]",
+							device === "desktop" && "w-full"
+						)}>
 						<iframe
 							ref={iframeRef}
 							src={iframeSrc}
