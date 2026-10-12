@@ -238,7 +238,10 @@ export function ThemerSidebar() {
 					<SidebarGroupLabel className="text-fg-tertiary mb-2 px-0 font-normal">
 						Icons
 					</SidebarGroupLabel>
-					<IconLibraryPicker />
+					<IconLibraryPicker
+						value={params.iconLibrary}
+						onValueChange={(value) => setParams({ iconLibrary: value })}
+					/>
 				</SidebarGroup>
 
 				<SidebarGroup>

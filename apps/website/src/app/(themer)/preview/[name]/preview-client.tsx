@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useLayoutEffect, useMemo, useState } from "react"
+import { useTheme } from "next-themes"
 import { useThemerPreset } from "@/lib/themer-preset"
 import { buildRegistryConfig } from "@/registry/config"
 import { FONTS, type Font } from "@/registry/fonts"
@@ -110,6 +111,7 @@ function removeManagedBodyClasses(body: Element) {
 
 export function PreviewClient({ children }: { children: React.ReactNode }) {
 	const [params, setParams] = useThemerPreset()
+	const { setTheme: setClientTheme } = useTheme()
 	const [isReady, setIsReady] = useState(false)
 
 	const selectedHeadingFont = FONTS.find(

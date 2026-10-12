@@ -1,5 +1,7 @@
 "use client"
 
+import { useEffect, useState } from "react"
+import { useTheme } from "next-themes"
 import { Button, IconButton } from "@/styles/default/ui/button"
 import {
 	Select,
@@ -30,6 +32,16 @@ export function ThemerTopbar({
 	selectedComponent,
 	onSelectComponent,
 }: ThemerTopbarProps) {
+	const [mounted, setMounted] = useState(false)
+	const { resolvedTheme, setTheme } = useTheme()
+
+	useEffect(() => {
+		setMounted(true)
+	}, [])
+
+	const toggleTheme = () => {
+		setTheme(resolvedTheme === "dark" ? "light" : "dark")
+	}
 	return (
 		<header className="border-border bg-bg flex h-12 shrink-0 items-center justify-between border-b px-3 py-3.5">
 			<div className="hidden items-center gap-2.5 md:flex">
@@ -75,8 +87,17 @@ export function ThemerTopbar({
 
 				<div className="bg-soft-alpha h-4 w-px" />
 
-				<IconButton variant="ghost" size="28" color="neutral">
-					<Moon className="text-fg-tertiary size-4" />
+				<IconButton
+					variant="ghost"
+					size="28"
+					color="neutral"
+					aria-label="Toggle theme"
+					onClick={toggleTheme}>
+					{mounted && resolvedTheme === "dark" ? (
+						<Sun className="text-fg-tertiary size-4" />
+					) : (
+						<Moon className="text-fg-tertiary size-4" />
+					)}
 				</IconButton>
 
 				<div className="bg-soft-alpha h-4 w-px" />

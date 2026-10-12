@@ -12,7 +12,6 @@ export interface FontItem {
 	readonly name: string
 	readonly type: "registry:font"
 	readonly category: FontCategory
-	readonly fontType: FontCategory
 	readonly font: {
 		readonly family: string
 		readonly provider: string
@@ -32,7 +31,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Inter",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Inter', sans-serif",
 			provider: "google",
@@ -47,7 +45,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Roboto",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Roboto', sans-serif",
 			provider: "google",
@@ -62,7 +59,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Open Sans",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Open Sans', sans-serif",
 			provider: "google",
@@ -77,7 +73,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Manrope",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Manrope', sans-serif",
 			provider: "google",
@@ -92,7 +87,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Geist",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Geist', sans-serif",
 			provider: "google",
@@ -107,7 +101,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Rubik",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Rubik', sans-serif",
 			provider: "google",
@@ -122,7 +115,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "DM Sans",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'DM Sans', sans-serif",
 			provider: "google",
@@ -137,7 +129,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Lato",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Lato', sans-serif",
 			provider: "google",
@@ -152,7 +143,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Raleway",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Raleway', sans-serif",
 			provider: "google",
@@ -167,7 +157,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Work Sans",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Work Sans', sans-serif",
 			provider: "google",
@@ -182,7 +171,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "IBM Plex Sans",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'IBM Plex Sans', sans-serif",
 			provider: "google",
@@ -197,7 +185,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Figtree",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Figtree', sans-serif",
 			provider: "google",
@@ -212,7 +199,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "ABeeZee",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'ABeeZee', sans-serif",
 			provider: "google",
@@ -227,7 +213,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "AR One Sans",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'AR One Sans', sans-serif",
 			provider: "google",
@@ -242,7 +227,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Architects Daughter",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Architects Daughter', sans-serif",
 			provider: "google",
@@ -257,7 +241,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Abel",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Abel', sans-serif",
 			provider: "google",
@@ -272,7 +255,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Aclonica",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Aclonica', sans-serif",
 			provider: "google",
@@ -287,7 +269,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Acme",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Acme', sans-serif",
 			provider: "google",
@@ -302,7 +283,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Actor",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Actor', sans-serif",
 			provider: "google",
@@ -317,7 +297,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Advent Pro",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Advent Pro', sans-serif",
 			provider: "google",
@@ -332,7 +311,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Afacad",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Afacad', sans-serif",
 			provider: "google",
@@ -347,7 +325,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Afacad Flux",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Afacad Flux', sans-serif",
 			provider: "google",
@@ -362,7 +339,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Agdasima",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Agdasima', sans-serif",
 			provider: "google",
@@ -377,7 +353,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Akatab",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Akatab', sans-serif",
 			provider: "google",
@@ -392,7 +367,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Akshar",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Akshar', sans-serif",
 			provider: "google",
@@ -407,7 +381,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Alan Sans",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Alan Sans', sans-serif",
 			provider: "google",
@@ -422,7 +395,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Alata",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Alata', sans-serif",
 			provider: "google",
@@ -437,7 +409,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Alatsi",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Alatsi', sans-serif",
 			provider: "google",
@@ -452,7 +423,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Albert Sans",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Albert Sans', sans-serif",
 			provider: "google",
@@ -467,7 +437,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Aldrich",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Aldrich', sans-serif",
 			provider: "google",
@@ -482,7 +451,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Alef",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Alef', sans-serif",
 			provider: "google",
@@ -497,7 +465,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Alegreya Sans",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Alegreya Sans', sans-serif",
 			provider: "google",
@@ -512,7 +479,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Alegreya Sans SC",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Alegreya Sans SC', sans-serif",
 			provider: "google",
@@ -527,7 +493,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Alexandria",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Alexandria', sans-serif",
 			provider: "google",
@@ -542,7 +507,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Allerta",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Allerta', sans-serif",
 			provider: "google",
@@ -557,7 +521,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Allerta Stencil",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Allerta Stencil', sans-serif",
 			provider: "google",
@@ -572,7 +535,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Almarai",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Almarai', sans-serif",
 			provider: "google",
@@ -587,7 +549,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Alumni Sans",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Alumni Sans', sans-serif",
 			provider: "google",
@@ -602,7 +563,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Alumni Sans Collegiate One",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Alumni Sans Collegiate One', sans-serif",
 			provider: "google",
@@ -617,7 +577,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Alumni Sans Pinstripe",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Alumni Sans Pinstripe', sans-serif",
 			provider: "google",
@@ -632,7 +591,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Alumni Sans SC",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Alumni Sans SC', sans-serif",
 			provider: "google",
@@ -647,7 +605,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Amaranth",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Amaranth', sans-serif",
 			provider: "google",
@@ -662,7 +619,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Amiko",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Amiko', sans-serif",
 			provider: "google",
@@ -677,7 +633,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Anaheim",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Anaheim', sans-serif",
 			provider: "google",
@@ -692,7 +647,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Ancizar Sans",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Ancizar Sans', sans-serif",
 			provider: "google",
@@ -707,7 +661,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Andika",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Andika', sans-serif",
 			provider: "google",
@@ -722,7 +675,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Anek Bangla",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Anek Bangla', sans-serif",
 			provider: "google",
@@ -737,7 +689,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Anek Devanagari",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Anek Devanagari', sans-serif",
 			provider: "google",
@@ -752,7 +703,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Anek Gujarati",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Anek Gujarati', sans-serif",
 			provider: "google",
@@ -767,7 +717,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Anek Gurmukhi",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Anek Gurmukhi', sans-serif",
 			provider: "google",
@@ -782,7 +731,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Anek Kannada",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Anek Kannada', sans-serif",
 			provider: "google",
@@ -797,7 +745,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Anek Latin",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Anek Latin', sans-serif",
 			provider: "google",
@@ -812,7 +759,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Anek Malayalam",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Anek Malayalam', sans-serif",
 			provider: "google",
@@ -827,7 +773,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Anek Odia",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Anek Odia', sans-serif",
 			provider: "google",
@@ -842,7 +787,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Anek Tamil",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Anek Tamil', sans-serif",
 			provider: "google",
@@ -857,7 +801,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Anek Telugu",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Anek Telugu', sans-serif",
 			provider: "google",
@@ -872,7 +815,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Anta",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Anta', sans-serif",
 			provider: "google",
@@ -887,7 +829,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Antic",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Antic', sans-serif",
 			provider: "google",
@@ -902,7 +843,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Anton",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Anton', sans-serif",
 			provider: "google",
@@ -917,7 +857,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Anton SC",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Anton SC', sans-serif",
 			provider: "google",
@@ -932,7 +871,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Antonio",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Antonio', sans-serif",
 			provider: "google",
@@ -947,7 +885,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Anuphan",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Anuphan', sans-serif",
 			provider: "google",
@@ -962,7 +899,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Archivo",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Archivo', sans-serif",
 			provider: "google",
@@ -977,7 +913,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Archivo Black",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Archivo Black', sans-serif",
 			provider: "google",
@@ -992,7 +927,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Archivo Narrow",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Archivo Narrow', sans-serif",
 			provider: "google",
@@ -1007,7 +941,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Arimo",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Arimo', sans-serif",
 			provider: "google",
@@ -1022,7 +955,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Armata",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Armata', sans-serif",
 			provider: "google",
@@ -1037,7 +969,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Arsenal",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Arsenal', sans-serif",
 			provider: "google",
@@ -1052,7 +983,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Arsenal SC",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Arsenal SC', sans-serif",
 			provider: "google",
@@ -1067,7 +997,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Arya",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Arya', sans-serif",
 			provider: "google",
@@ -1082,7 +1011,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Asap",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Asap', sans-serif",
 			provider: "google",
@@ -1097,7 +1025,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Asap Condensed",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Asap Condensed', sans-serif",
 			provider: "google",
@@ -1112,7 +1039,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Asimovian",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Asimovian', sans-serif",
 			provider: "google",
@@ -1127,7 +1053,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Assistant",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Assistant', sans-serif",
 			provider: "google",
@@ -1142,7 +1067,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Asta Sans",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Asta Sans', sans-serif",
 			provider: "google",
@@ -1157,7 +1081,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Athiti",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Athiti', sans-serif",
 			provider: "google",
@@ -1172,7 +1095,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Atkinson Hyperlegible",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Atkinson Hyperlegible', sans-serif",
 			provider: "google",
@@ -1187,7 +1109,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Atkinson Hyperlegible Mono",
 		type: "registry:font",
 		category: "monospace",
-		fontType: "monospace",
 		font: {
 			family: "'Atkinson Hyperlegible Mono', sans-serif",
 			provider: "google",
@@ -1202,7 +1123,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Atkinson Hyperlegible Next",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Atkinson Hyperlegible Next', sans-serif",
 			provider: "google",
@@ -1217,7 +1137,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Average Sans",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Average Sans', sans-serif",
 			provider: "google",
@@ -1232,7 +1151,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "B612",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'B612', sans-serif",
 			provider: "google",
@@ -1247,7 +1165,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "BBH Sans Bartle",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'BBH Sans Bartle', sans-serif",
 			provider: "google",
@@ -1262,7 +1179,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "BBH Sans Bogle",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'BBH Sans Bogle', sans-serif",
 			provider: "google",
@@ -1277,7 +1193,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "BBH Sans Hegarty",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'BBH Sans Hegarty', sans-serif",
 			provider: "google",
@@ -1292,7 +1207,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "BIZ UDGothic",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'BIZ UDGothic', sans-serif",
 			provider: "google",
@@ -1307,7 +1221,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "BIZ UDPGothic",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'BIZ UDPGothic', sans-serif",
 			provider: "google",
@@ -1322,7 +1235,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Bai Jamjuree",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Bai Jamjuree', sans-serif",
 			provider: "google",
@@ -1337,7 +1249,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Barlow",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Barlow', sans-serif",
 			provider: "google",
@@ -1352,7 +1263,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Barlow Condensed",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Barlow Condensed', sans-serif",
 			provider: "google",
@@ -1367,7 +1277,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Barlow Semi Condensed",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Barlow Semi Condensed', sans-serif",
 			provider: "google",
@@ -1382,7 +1291,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Basic",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Basic', sans-serif",
 			provider: "google",
@@ -1397,7 +1305,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Bayon",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Bayon', sans-serif",
 			provider: "google",
@@ -1412,7 +1319,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Be Vietnam Pro",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Be Vietnam Pro', sans-serif",
 			provider: "google",
@@ -1427,7 +1333,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Bebas Neue",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Bebas Neue', sans-serif",
 			provider: "google",
@@ -1442,7 +1347,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Beiruti",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Beiruti', sans-serif",
 			provider: "google",
@@ -1457,7 +1361,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Belanosima",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Belanosima', sans-serif",
 			provider: "google",
@@ -1472,7 +1375,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Belleza",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Belleza', sans-serif",
 			provider: "google",
@@ -1487,7 +1389,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "BenchNine",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'BenchNine', sans-serif",
 			provider: "google",
@@ -1502,7 +1403,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Biryani",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Biryani', sans-serif",
 			provider: "google",
@@ -1517,7 +1417,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Black Han Sans",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Black Han Sans', sans-serif",
 			provider: "google",
@@ -1532,7 +1431,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Blinker",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Blinker', sans-serif",
 			provider: "google",
@@ -1547,7 +1445,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Braah One",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Braah One', sans-serif",
 			provider: "google",
@@ -1562,7 +1459,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Bricolage Grotesque",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Bricolage Grotesque', sans-serif",
 			provider: "google",
@@ -1577,7 +1473,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Bubbler One",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Bubbler One', sans-serif",
 			provider: "google",
@@ -1592,7 +1487,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Bytesized",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Bytesized', sans-serif",
 			provider: "google",
@@ -1607,7 +1501,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Cabin",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Cabin', sans-serif",
 			provider: "google",
@@ -1622,7 +1515,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Cabin Condensed",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Cabin Condensed', sans-serif",
 			provider: "google",
@@ -1637,7 +1529,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Cagliostro",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Cagliostro', sans-serif",
 			provider: "google",
@@ -1652,7 +1543,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Cairo",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Cairo', sans-serif",
 			provider: "google",
@@ -1667,7 +1557,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Cairo Play",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Cairo Play', sans-serif",
 			provider: "google",
@@ -1682,7 +1571,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Cal Sans",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Cal Sans', sans-serif",
 			provider: "google",
@@ -1697,7 +1585,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Cambay",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Cambay', sans-serif",
 			provider: "google",
@@ -1712,7 +1599,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Candal",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Candal', sans-serif",
 			provider: "google",
@@ -1727,7 +1613,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Cantarell",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Cantarell', sans-serif",
 			provider: "google",
@@ -1742,7 +1627,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Cantora One",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Cantora One', sans-serif",
 			provider: "google",
@@ -1757,7 +1641,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Capriola",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Capriola', sans-serif",
 			provider: "google",
@@ -1772,7 +1655,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Carlito",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Carlito', sans-serif",
 			provider: "google",
@@ -1787,7 +1669,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Carme",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Carme', sans-serif",
 			provider: "google",
@@ -1802,7 +1683,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Carrois Gothic",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Carrois Gothic', sans-serif",
 			provider: "google",
@@ -1817,7 +1697,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Carrois Gothic SC",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Carrois Gothic SC', sans-serif",
 			provider: "google",
@@ -1832,7 +1711,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Cascadia Code",
 		type: "registry:font",
 		category: "monospace",
-		fontType: "monospace",
 		font: {
 			family: "'Cascadia Code', sans-serif",
 			provider: "google",
@@ -1847,7 +1725,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Cascadia Mono",
 		type: "registry:font",
 		category: "monospace",
-		fontType: "monospace",
 		font: {
 			family: "'Cascadia Mono', sans-serif",
 			provider: "google",
@@ -1862,7 +1739,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Catamaran",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Catamaran', sans-serif",
 			provider: "google",
@@ -1877,7 +1753,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Chakra Petch",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Chakra Petch', sans-serif",
 			provider: "google",
@@ -1892,7 +1767,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Changa",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Changa', sans-serif",
 			provider: "google",
@@ -1907,7 +1781,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Chathura",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Chathura', sans-serif",
 			provider: "google",
@@ -1922,7 +1795,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Chau Philomene One",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Chau Philomene One', sans-serif",
 			provider: "google",
@@ -1937,7 +1809,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Chiron GoRound TC",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Chiron GoRound TC', sans-serif",
 			provider: "google",
@@ -1952,7 +1823,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Chiron Hei HK",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Chiron Hei HK', sans-serif",
 			provider: "google",
@@ -1967,7 +1837,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Chivo",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Chivo', sans-serif",
 			provider: "google",
@@ -1982,7 +1851,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Chocolate Classical Sans",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Chocolate Classical Sans', sans-serif",
 			provider: "google",
@@ -1997,7 +1865,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Comme",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Comme', sans-serif",
 			provider: "google",
@@ -2012,7 +1879,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Commissioner",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Commissioner', sans-serif",
 			provider: "google",
@@ -2027,7 +1893,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Convergence",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Convergence', sans-serif",
 			provider: "google",
@@ -2042,7 +1907,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Cossette Texte",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Cossette Texte', sans-serif",
 			provider: "google",
@@ -2057,7 +1921,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Cossette Titre",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Cossette Titre', sans-serif",
 			provider: "google",
@@ -2072,7 +1935,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Cuprum",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Cuprum', sans-serif",
 			provider: "google",
@@ -2087,7 +1949,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Darker Grotesque",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Darker Grotesque', sans-serif",
 			provider: "google",
@@ -2102,7 +1963,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Days One",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Days One', sans-serif",
 			provider: "google",
@@ -2117,7 +1977,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Denk One",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Denk One', sans-serif",
 			provider: "google",
@@ -2132,7 +1991,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Dhurjati",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Dhurjati', sans-serif",
 			provider: "google",
@@ -2147,7 +2005,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Didact Gothic",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Didact Gothic', sans-serif",
 			provider: "google",
@@ -2162,7 +2019,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Do Hyeon",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Do Hyeon', sans-serif",
 			provider: "google",
@@ -2177,7 +2033,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Dongle",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Dongle', sans-serif",
 			provider: "google",
@@ -2192,7 +2047,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Doppio One",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Doppio One', sans-serif",
 			provider: "google",
@@ -2207,7 +2061,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Dorsa",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Dorsa', sans-serif",
 			provider: "google",
@@ -2222,7 +2075,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Dosis",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Dosis', sans-serif",
 			provider: "google",
@@ -2237,7 +2089,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "DotGothic16",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'DotGothic16', sans-serif",
 			provider: "google",
@@ -2252,7 +2103,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Doto",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Doto', sans-serif",
 			provider: "google",
@@ -2267,7 +2117,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Duru Sans",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Duru Sans', sans-serif",
 			provider: "google",
@@ -2282,7 +2131,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Economica",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Economica', sans-serif",
 			provider: "google",
@@ -2297,7 +2145,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "El Messiri",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'El Messiri', sans-serif",
 			provider: "google",
@@ -2312,7 +2159,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Electrolize",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Electrolize', sans-serif",
 			provider: "google",
@@ -2327,7 +2173,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Elms Sans",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Elms Sans', sans-serif",
 			provider: "google",
@@ -2342,7 +2187,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Encode Sans",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Encode Sans', sans-serif",
 			provider: "google",
@@ -2357,7 +2201,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Encode Sans Condensed",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Encode Sans Condensed', sans-serif",
 			provider: "google",
@@ -2372,7 +2215,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Encode Sans Expanded",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Encode Sans Expanded', sans-serif",
 			provider: "google",
@@ -2387,7 +2229,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Encode Sans SC",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Encode Sans SC', sans-serif",
 			provider: "google",
@@ -2402,7 +2243,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Encode Sans Semi Condensed",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Encode Sans Semi Condensed', sans-serif",
 			provider: "google",
@@ -2417,7 +2257,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Encode Sans Semi Expanded",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Encode Sans Semi Expanded', sans-serif",
 			provider: "google",
@@ -2432,7 +2271,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Englebert",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Englebert', sans-serif",
 			provider: "google",
@@ -2447,7 +2285,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Epilogue",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Epilogue', sans-serif",
 			provider: "google",
@@ -2462,7 +2299,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Epunda Sans",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Epunda Sans', sans-serif",
 			provider: "google",
@@ -2477,7 +2313,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Exo",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Exo', sans-serif",
 			provider: "google",
@@ -2492,7 +2327,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Exo 2",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Exo 2', sans-serif",
 			provider: "google",
@@ -2507,7 +2341,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Faculty Glyphic",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Faculty Glyphic', sans-serif",
 			provider: "google",
@@ -2522,7 +2355,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Fahkwang",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Fahkwang', sans-serif",
 			provider: "google",
@@ -2537,7 +2369,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Familjen Grotesk",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Familjen Grotesk', sans-serif",
 			provider: "google",
@@ -2552,7 +2383,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Farro",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Farro', sans-serif",
 			provider: "google",
@@ -2567,7 +2397,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Federo",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Federo', sans-serif",
 			provider: "google",
@@ -2582,7 +2411,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Finlandica",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Finlandica', sans-serif",
 			provider: "google",
@@ -2597,7 +2425,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Fira Sans",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Fira Sans', sans-serif",
 			provider: "google",
@@ -2612,7 +2439,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Fira Sans Condensed",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Fira Sans Condensed', sans-serif",
 			provider: "google",
@@ -2627,7 +2453,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Fira Sans Extra Condensed",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Fira Sans Extra Condensed', sans-serif",
 			provider: "google",
@@ -2642,7 +2467,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Fjalla One",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Fjalla One', sans-serif",
 			provider: "google",
@@ -2657,7 +2481,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Francois One",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Francois One', sans-serif",
 			provider: "google",
@@ -2672,7 +2495,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Fredoka",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Fredoka', sans-serif",
 			provider: "google",
@@ -2687,7 +2509,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Fresca",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Fresca', sans-serif",
 			provider: "google",
@@ -2702,7 +2523,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Funnel Sans",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Funnel Sans', sans-serif",
 			provider: "google",
@@ -2717,7 +2537,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Fustat",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Fustat', sans-serif",
 			provider: "google",
@@ -2732,7 +2551,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "GFS Neohellenic",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'GFS Neohellenic', sans-serif",
 			provider: "google",
@@ -2747,7 +2565,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Gafata",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Gafata', sans-serif",
 			provider: "google",
@@ -2762,7 +2579,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Galdeano",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Galdeano', sans-serif",
 			provider: "google",
@@ -2777,7 +2593,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Gantari",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Gantari', sans-serif",
 			provider: "google",
@@ -2792,7 +2607,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Gasoek One",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Gasoek One', sans-serif",
 			provider: "google",
@@ -2807,7 +2621,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Gayathri",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Gayathri', sans-serif",
 			provider: "google",
@@ -2822,7 +2635,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Gemunu Libre",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Gemunu Libre', sans-serif",
 			provider: "google",
@@ -2837,7 +2649,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Genos",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Genos', sans-serif",
 			provider: "google",
@@ -2852,7 +2663,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Geo",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Geo', sans-serif",
 			provider: "google",
@@ -2867,7 +2677,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Geologica",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Geologica', sans-serif",
 			provider: "google",
@@ -2882,7 +2691,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Georama",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Georama', sans-serif",
 			provider: "google",
@@ -2897,7 +2705,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Gidole",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Gidole', sans-serif",
 			provider: "google",
@@ -2912,7 +2719,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Gidugu",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Gidugu', sans-serif",
 			provider: "google",
@@ -2927,7 +2733,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Glory",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Glory', sans-serif",
 			provider: "google",
@@ -2942,7 +2747,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Golos Text",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Golos Text', sans-serif",
 			provider: "google",
@@ -2957,7 +2761,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Gothic A1",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Gothic A1', sans-serif",
 			provider: "google",
@@ -2972,7 +2775,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Gotu",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Gotu', sans-serif",
 			provider: "google",
@@ -2987,7 +2789,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Gowun Dodum",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Gowun Dodum', sans-serif",
 			provider: "google",
@@ -3002,7 +2803,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Gruppo",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Gruppo', sans-serif",
 			provider: "google",
@@ -3017,7 +2817,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Gudea",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Gudea', sans-serif",
 			provider: "google",
@@ -3032,7 +2831,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Gurajada",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Gurajada', sans-serif",
 			provider: "google",
@@ -3047,7 +2845,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Hammersmith One",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Hammersmith One', sans-serif",
 			provider: "google",
@@ -3062,7 +2859,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Hanken Grotesk",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Hanken Grotesk', sans-serif",
 			provider: "google",
@@ -3077,7 +2873,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Harmattan",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Harmattan', sans-serif",
 			provider: "google",
@@ -3092,7 +2887,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Hedvig Letters Sans",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Hedvig Letters Sans', sans-serif",
 			provider: "google",
@@ -3107,7 +2901,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Heebo",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Heebo', sans-serif",
 			provider: "google",
@@ -3122,7 +2915,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Hind",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Hind', sans-serif",
 			provider: "google",
@@ -3137,7 +2929,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Hind Guntur",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Hind Guntur', sans-serif",
 			provider: "google",
@@ -3152,7 +2943,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Hind Madurai",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Hind Madurai', sans-serif",
 			provider: "google",
@@ -3167,7 +2957,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Hind Mysuru",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Hind Mysuru', sans-serif",
 			provider: "google",
@@ -3182,7 +2971,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Hind Siliguri",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Hind Siliguri', sans-serif",
 			provider: "google",
@@ -3197,7 +2985,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Hind Vadodara",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Hind Vadodara', sans-serif",
 			provider: "google",
@@ -3212,7 +2999,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Homenaje",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Homenaje', sans-serif",
 			provider: "google",
@@ -3227,7 +3013,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Host Grotesk",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Host Grotesk', sans-serif",
 			provider: "google",
@@ -3242,7 +3027,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Hubballi",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Hubballi', sans-serif",
 			provider: "google",
@@ -3257,7 +3041,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Hubot Sans",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Hubot Sans', sans-serif",
 			provider: "google",
@@ -3272,7 +3055,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Huninn",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Huninn', sans-serif",
 			provider: "google",
@@ -3287,7 +3069,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "IBM Plex Sans Arabic",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'IBM Plex Sans Arabic', sans-serif",
 			provider: "google",
@@ -3302,7 +3083,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "IBM Plex Sans Condensed",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'IBM Plex Sans Condensed', sans-serif",
 			provider: "google",
@@ -3317,7 +3097,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "IBM Plex Sans Devanagari",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'IBM Plex Sans Devanagari', sans-serif",
 			provider: "google",
@@ -3332,7 +3111,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "IBM Plex Sans Hebrew",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'IBM Plex Sans Hebrew', sans-serif",
 			provider: "google",
@@ -3347,7 +3125,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "IBM Plex Sans JP",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'IBM Plex Sans JP', sans-serif",
 			provider: "google",
@@ -3362,7 +3139,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "IBM Plex Sans KR",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'IBM Plex Sans KR', sans-serif",
 			provider: "google",
@@ -3377,7 +3153,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "IBM Plex Sans Thai",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'IBM Plex Sans Thai', sans-serif",
 			provider: "google",
@@ -3392,7 +3167,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "IBM Plex Sans Thai Looped",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'IBM Plex Sans Thai Looped', sans-serif",
 			provider: "google",
@@ -3407,7 +3181,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Imprima",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Imprima', sans-serif",
 			provider: "google",
@@ -3422,7 +3195,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Inclusive Sans",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Inclusive Sans', sans-serif",
 			provider: "google",
@@ -3437,7 +3209,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Inder",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Inder', sans-serif",
 			provider: "google",
@@ -3452,7 +3223,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Inria Sans",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Inria Sans', sans-serif",
 			provider: "google",
@@ -3467,7 +3237,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Instrument Sans",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Instrument Sans', sans-serif",
 			provider: "google",
@@ -3482,7 +3251,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Inter Tight",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Inter Tight', sans-serif",
 			provider: "google",
@@ -3497,7 +3265,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Istok Web",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Istok Web', sans-serif",
 			provider: "google",
@@ -3512,7 +3279,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Italiana",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Italiana', sans-serif",
 			provider: "google",
@@ -3527,7 +3293,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Jaldi",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Jaldi', sans-serif",
 			provider: "google",
@@ -3542,7 +3307,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Jaro",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Jaro', sans-serif",
 			provider: "google",
@@ -3557,7 +3321,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Jockey One",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Jockey One', sans-serif",
 			provider: "google",
@@ -3572,7 +3335,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Josefin Sans",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Josefin Sans', sans-serif",
 			provider: "google",
@@ -3587,7 +3349,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Jost",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Jost', sans-serif",
 			provider: "google",
@@ -3602,7 +3363,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Jua",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Jua', sans-serif",
 			provider: "google",
@@ -3617,7 +3377,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Julius Sans One",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Julius Sans One', sans-serif",
 			provider: "google",
@@ -3632,7 +3391,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Jura",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Jura', sans-serif",
 			provider: "google",
@@ -3647,7 +3405,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "K2D",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'K2D', sans-serif",
 			provider: "google",
@@ -3662,7 +3419,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Kanchenjunga",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Kanchenjunga', sans-serif",
 			provider: "google",
@@ -3677,7 +3433,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Kanit",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Kanit', sans-serif",
 			provider: "google",
@@ -3692,7 +3447,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Kantumruy Pro",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Kantumruy Pro', sans-serif",
 			provider: "google",
@@ -3707,7 +3461,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Karla",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Karla', sans-serif",
 			provider: "google",
@@ -3722,7 +3475,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Karla Tamil Inclined",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Karla Tamil Inclined', sans-serif",
 			provider: "google",
@@ -3737,7 +3489,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Karla Tamil Upright",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Karla Tamil Upright', sans-serif",
 			provider: "google",
@@ -3752,7 +3503,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Kdam Thmor Pro",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Kdam Thmor Pro', sans-serif",
 			provider: "google",
@@ -3767,7 +3517,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Kedebideri",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Kedebideri', sans-serif",
 			provider: "google",
@@ -3782,7 +3531,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Khand",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Khand', sans-serif",
 			provider: "google",
@@ -3797,7 +3545,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Khmer",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Khmer', sans-serif",
 			provider: "google",
@@ -3812,7 +3559,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Khula",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Khula', sans-serif",
 			provider: "google",
@@ -3827,7 +3573,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Kite One",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Kite One', sans-serif",
 			provider: "google",
@@ -3842,7 +3587,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "KoHo",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'KoHo', sans-serif",
 			provider: "google",
@@ -3857,7 +3601,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Kodchasan",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Kodchasan', sans-serif",
 			provider: "google",
@@ -3872,7 +3615,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Kosugi",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Kosugi', sans-serif",
 			provider: "google",
@@ -3887,7 +3629,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Kosugi Maru",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Kosugi Maru', sans-serif",
 			provider: "google",
@@ -3902,7 +3643,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Krona One",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Krona One', sans-serif",
 			provider: "google",
@@ -3917,7 +3657,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Krub",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Krub', sans-serif",
 			provider: "google",
@@ -3932,7 +3671,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Kufam",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Kufam', sans-serif",
 			provider: "google",
@@ -3947,7 +3685,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Kulim Park",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Kulim Park', sans-serif",
 			provider: "google",
@@ -3962,7 +3699,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Kumbh Sans",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Kumbh Sans', sans-serif",
 			provider: "google",
@@ -3977,7 +3713,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "LXGW Marker Gothic",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'LXGW Marker Gothic', sans-serif",
 			provider: "google",
@@ -3992,7 +3727,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Lalezar",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Lalezar', sans-serif",
 			provider: "google",
@@ -4007,7 +3741,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "League Gothic",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'League Gothic', sans-serif",
 			provider: "google",
@@ -4022,7 +3755,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "League Spartan",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'League Spartan', sans-serif",
 			provider: "google",
@@ -4037,7 +3769,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Lexend",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Lexend', sans-serif",
 			provider: "google",
@@ -4052,7 +3783,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Lexend Deca",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Lexend Deca', sans-serif",
 			provider: "google",
@@ -4067,7 +3797,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Lexend Exa",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Lexend Exa', sans-serif",
 			provider: "google",
@@ -4082,7 +3811,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Lexend Giga",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Lexend Giga', sans-serif",
 			provider: "google",
@@ -4097,7 +3825,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Lexend Mega",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Lexend Mega', sans-serif",
 			provider: "google",
@@ -4112,7 +3839,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Lexend Peta",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Lexend Peta', sans-serif",
 			provider: "google",
@@ -4127,7 +3853,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Lexend Tera",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Lexend Tera', sans-serif",
 			provider: "google",
@@ -4142,7 +3867,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Lexend Zetta",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Lexend Zetta', sans-serif",
 			provider: "google",
@@ -4157,7 +3881,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Libertinus Sans",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Libertinus Sans', sans-serif",
 			provider: "google",
@@ -4172,7 +3895,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Libre Franklin",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Libre Franklin', sans-serif",
 			provider: "google",
@@ -4187,7 +3909,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Liter",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Liter', sans-serif",
 			provider: "google",
@@ -4202,7 +3923,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Livvic",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Livvic', sans-serif",
 			provider: "google",
@@ -4217,7 +3937,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Lunasima",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Lunasima', sans-serif",
 			provider: "google",
@@ -4232,7 +3951,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "M PLUS 1",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'M PLUS 1', sans-serif",
 			provider: "google",
@@ -4247,7 +3965,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "M PLUS 1p",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'M PLUS 1p', sans-serif",
 			provider: "google",
@@ -4262,7 +3979,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "M PLUS 2",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'M PLUS 2', sans-serif",
 			provider: "google",
@@ -4277,7 +3993,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "M PLUS Code Latin",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'M PLUS Code Latin', sans-serif",
 			provider: "google",
@@ -4292,7 +4007,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "M PLUS Rounded 1c",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'M PLUS Rounded 1c', sans-serif",
 			provider: "google",
@@ -4307,7 +4021,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Mada",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Mada', sans-serif",
 			provider: "google",
@@ -4322,7 +4035,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Madimi One",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Madimi One', sans-serif",
 			provider: "google",
@@ -4337,7 +4049,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Magra",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Magra', sans-serif",
 			provider: "google",
@@ -4352,7 +4063,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Mako",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Mako', sans-serif",
 			provider: "google",
@@ -4367,7 +4077,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Mallanna",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Mallanna', sans-serif",
 			provider: "google",
@@ -4382,7 +4091,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Mandali",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Mandali', sans-serif",
 			provider: "google",
@@ -4397,7 +4105,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Manjari",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Manjari', sans-serif",
 			provider: "google",
@@ -4412,7 +4119,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Marmelad",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Marmelad', sans-serif",
 			provider: "google",
@@ -4427,7 +4133,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Martel Sans",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Martel Sans', sans-serif",
 			provider: "google",
@@ -4442,7 +4147,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Marvel",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Marvel', sans-serif",
 			provider: "google",
@@ -4457,7 +4161,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Matangi",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Matangi', sans-serif",
 			provider: "google",
@@ -4472,7 +4175,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Matemasie",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Matemasie', sans-serif",
 			provider: "google",
@@ -4487,7 +4189,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Maven Pro",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Maven Pro', sans-serif",
 			provider: "google",
@@ -4502,7 +4203,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Meera Inimai",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Meera Inimai', sans-serif",
 			provider: "google",
@@ -4517,7 +4217,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Menbere",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Menbere', sans-serif",
 			provider: "google",
@@ -4532,7 +4231,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Merriweather Sans",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Merriweather Sans', sans-serif",
 			provider: "google",
@@ -4547,7 +4245,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Metrophobic",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Metrophobic', sans-serif",
 			provider: "google",
@@ -4562,7 +4259,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Michroma",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Michroma', sans-serif",
 			provider: "google",
@@ -4577,7 +4273,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Mina",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Mina', sans-serif",
 			provider: "google",
@@ -4592,7 +4287,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Mingzat",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Mingzat', sans-serif",
 			provider: "google",
@@ -4607,7 +4301,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Miriam Libre",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Miriam Libre', sans-serif",
 			provider: "google",
@@ -4622,7 +4315,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Mitr",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Mitr', sans-serif",
 			provider: "google",
@@ -4637,7 +4329,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Mochiy Pop One",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Mochiy Pop One', sans-serif",
 			provider: "google",
@@ -4652,7 +4343,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Mochiy Pop P One",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Mochiy Pop P One', sans-serif",
 			provider: "google",
@@ -4667,7 +4357,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Moderustic",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Moderustic', sans-serif",
 			provider: "google",
@@ -4682,7 +4371,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Mohave",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Mohave', sans-serif",
 			provider: "google",
@@ -4697,7 +4385,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Molengo",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Molengo', sans-serif",
 			provider: "google",
@@ -4712,7 +4399,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Momo Signature",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Momo Signature', sans-serif",
 			provider: "google",
@@ -4727,7 +4413,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Momo Trust Display",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Momo Trust Display', sans-serif",
 			provider: "google",
@@ -4742,7 +4427,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Momo Trust Sans",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Momo Trust Sans', sans-serif",
 			provider: "google",
@@ -4757,7 +4441,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Mona Sans",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Mona Sans', sans-serif",
 			provider: "google",
@@ -4772,7 +4455,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Monda",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Monda', sans-serif",
 			provider: "google",
@@ -4787,7 +4469,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Monomaniac One",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Monomaniac One', sans-serif",
 			provider: "google",
@@ -4802,7 +4483,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Montserrat",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Montserrat', sans-serif",
 			provider: "google",
@@ -4817,7 +4497,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Montserrat Alternates",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Montserrat Alternates', sans-serif",
 			provider: "google",
@@ -4832,7 +4511,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Montserrat Underline",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Montserrat Underline', sans-serif",
 			provider: "google",
@@ -4847,7 +4525,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Mooli",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Mooli', sans-serif",
 			provider: "google",
@@ -4862,7 +4539,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Moulpali",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Moulpali', sans-serif",
 			provider: "google",
@@ -4877,7 +4553,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Mouse Memoirs",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Mouse Memoirs', sans-serif",
 			provider: "google",
@@ -4892,7 +4567,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Mozilla Headline",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Mozilla Headline', sans-serif",
 			provider: "google",
@@ -4907,7 +4581,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Mozilla Text",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Mozilla Text', sans-serif",
 			provider: "google",
@@ -4922,7 +4595,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Mukta",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Mukta', sans-serif",
 			provider: "google",
@@ -4937,7 +4609,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Mukta Mahee",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Mukta Mahee', sans-serif",
 			provider: "google",
@@ -4952,7 +4623,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Mukta Malar",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Mukta Malar', sans-serif",
 			provider: "google",
@@ -4967,7 +4637,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Mukta Vaani",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Mukta Vaani', sans-serif",
 			provider: "google",
@@ -4982,7 +4651,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Mulish",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Mulish', sans-serif",
 			provider: "google",
@@ -4997,7 +4665,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Murecho",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Murecho', sans-serif",
 			provider: "google",
@@ -5012,7 +4679,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "NTR",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'NTR', sans-serif",
 			provider: "google",
@@ -5027,7 +4693,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Nanum Gothic",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Nanum Gothic', sans-serif",
 			provider: "google",
@@ -5042,7 +4707,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Narnoor",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Narnoor', sans-serif",
 			provider: "google",
@@ -5057,7 +4721,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Nata Sans",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Nata Sans', sans-serif",
 			provider: "google",
@@ -5072,7 +4735,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "National Park",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'National Park', sans-serif",
 			provider: "google",
@@ -5087,7 +4749,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "New Amsterdam",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'New Amsterdam', sans-serif",
 			provider: "google",
@@ -5102,7 +4763,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "News Cycle",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'News Cycle', sans-serif",
 			provider: "google",
@@ -5117,7 +4777,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Niramit",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Niramit', sans-serif",
 			provider: "google",
@@ -5132,7 +4791,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Nobile",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Nobile', sans-serif",
 			provider: "google",
@@ -5147,7 +4805,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Nokora",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Nokora', sans-serif",
 			provider: "google",
@@ -5162,7 +4819,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Notable",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Notable', sans-serif",
 			provider: "google",
@@ -5177,7 +4833,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Color Emoji",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Color Emoji', sans-serif",
 			provider: "google",
@@ -5192,7 +4847,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Emoji",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Emoji', sans-serif",
 			provider: "google",
@@ -5207,7 +4861,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Kufi Arabic",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Kufi Arabic', sans-serif",
 			provider: "google",
@@ -5222,7 +4875,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Music",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Music', sans-serif",
 			provider: "google",
@@ -5237,7 +4889,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans', sans-serif",
 			provider: "google",
@@ -5252,7 +4903,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Adlam",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Adlam', sans-serif",
 			provider: "google",
@@ -5267,7 +4917,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Adlam Unjoined",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Adlam Unjoined', sans-serif",
 			provider: "google",
@@ -5282,7 +4931,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Anatolian Hieroglyphs",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Anatolian Hieroglyphs', sans-serif",
 			provider: "google",
@@ -5297,7 +4945,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Arabic",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Arabic', sans-serif",
 			provider: "google",
@@ -5312,7 +4959,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Armenian",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Armenian', sans-serif",
 			provider: "google",
@@ -5327,7 +4973,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Avestan",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Avestan', sans-serif",
 			provider: "google",
@@ -5342,7 +4987,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Balinese",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Balinese', sans-serif",
 			provider: "google",
@@ -5357,7 +5001,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Bamum",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Bamum', sans-serif",
 			provider: "google",
@@ -5372,7 +5015,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Bassa Vah",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Bassa Vah', sans-serif",
 			provider: "google",
@@ -5387,7 +5029,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Batak",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Batak', sans-serif",
 			provider: "google",
@@ -5402,7 +5043,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Bengali",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Bengali', sans-serif",
 			provider: "google",
@@ -5417,7 +5057,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Bhaiksuki",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Bhaiksuki', sans-serif",
 			provider: "google",
@@ -5432,7 +5071,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Brahmi",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Brahmi', sans-serif",
 			provider: "google",
@@ -5447,7 +5085,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Buginese",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Buginese', sans-serif",
 			provider: "google",
@@ -5462,7 +5099,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Buhid",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Buhid', sans-serif",
 			provider: "google",
@@ -5477,7 +5113,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Canadian Aboriginal",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Canadian Aboriginal', sans-serif",
 			provider: "google",
@@ -5492,7 +5127,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Carian",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Carian', sans-serif",
 			provider: "google",
@@ -5507,7 +5141,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Caucasian Albanian",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Caucasian Albanian', sans-serif",
 			provider: "google",
@@ -5522,7 +5155,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Chakma",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Chakma', sans-serif",
 			provider: "google",
@@ -5537,7 +5169,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Cham",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Cham', sans-serif",
 			provider: "google",
@@ -5552,7 +5183,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Cherokee",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Cherokee', sans-serif",
 			provider: "google",
@@ -5567,7 +5197,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Chorasmian",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Chorasmian', sans-serif",
 			provider: "google",
@@ -5582,7 +5211,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Coptic",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Coptic', sans-serif",
 			provider: "google",
@@ -5597,7 +5225,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Cuneiform",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Cuneiform', sans-serif",
 			provider: "google",
@@ -5612,7 +5239,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Cypriot",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Cypriot', sans-serif",
 			provider: "google",
@@ -5627,7 +5253,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Cypro Minoan",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Cypro Minoan', sans-serif",
 			provider: "google",
@@ -5642,7 +5267,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Deseret",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Deseret', sans-serif",
 			provider: "google",
@@ -5657,7 +5281,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Devanagari",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Devanagari', sans-serif",
 			provider: "google",
@@ -5672,7 +5295,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Display",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Display', sans-serif",
 			provider: "google",
@@ -5687,7 +5309,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Duployan",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Duployan', sans-serif",
 			provider: "google",
@@ -5702,7 +5323,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Egyptian Hieroglyphs",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Egyptian Hieroglyphs', sans-serif",
 			provider: "google",
@@ -5717,7 +5337,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Elbasan",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Elbasan', sans-serif",
 			provider: "google",
@@ -5732,7 +5351,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Elymaic",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Elymaic', sans-serif",
 			provider: "google",
@@ -5747,7 +5365,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Ethiopic",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Ethiopic', sans-serif",
 			provider: "google",
@@ -5762,7 +5379,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Georgian",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Georgian', sans-serif",
 			provider: "google",
@@ -5777,7 +5393,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Glagolitic",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Glagolitic', sans-serif",
 			provider: "google",
@@ -5792,7 +5407,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Gothic",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Gothic', sans-serif",
 			provider: "google",
@@ -5807,7 +5421,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Grantha",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Grantha', sans-serif",
 			provider: "google",
@@ -5822,7 +5435,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Gujarati",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Gujarati', sans-serif",
 			provider: "google",
@@ -5837,7 +5449,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Gunjala Gondi",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Gunjala Gondi', sans-serif",
 			provider: "google",
@@ -5852,7 +5463,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Gurmukhi",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Gurmukhi', sans-serif",
 			provider: "google",
@@ -5867,7 +5477,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans HK",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans HK', sans-serif",
 			provider: "google",
@@ -5882,7 +5491,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Hanifi Rohingya",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Hanifi Rohingya', sans-serif",
 			provider: "google",
@@ -5897,7 +5505,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Hanunoo",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Hanunoo', sans-serif",
 			provider: "google",
@@ -5912,7 +5519,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Hatran",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Hatran', sans-serif",
 			provider: "google",
@@ -5927,7 +5533,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Hebrew",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Hebrew', sans-serif",
 			provider: "google",
@@ -5942,7 +5547,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Imperial Aramaic",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Imperial Aramaic', sans-serif",
 			provider: "google",
@@ -5957,7 +5561,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Indic Siyaq Numbers",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Indic Siyaq Numbers', sans-serif",
 			provider: "google",
@@ -5972,7 +5575,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Inscriptional Pahlavi",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Inscriptional Pahlavi', sans-serif",
 			provider: "google",
@@ -5987,7 +5589,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Inscriptional Parthian",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Inscriptional Parthian', sans-serif",
 			provider: "google",
@@ -6002,7 +5603,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans JP",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans JP', sans-serif",
 			provider: "google",
@@ -6017,7 +5617,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Javanese",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Javanese', sans-serif",
 			provider: "google",
@@ -6032,7 +5631,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans KR",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans KR', sans-serif",
 			provider: "google",
@@ -6047,7 +5645,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Kaithi",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Kaithi', sans-serif",
 			provider: "google",
@@ -6062,7 +5659,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Kannada",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Kannada', sans-serif",
 			provider: "google",
@@ -6077,7 +5673,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Kawi",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Kawi', sans-serif",
 			provider: "google",
@@ -6092,7 +5687,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Kayah Li",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Kayah Li', sans-serif",
 			provider: "google",
@@ -6107,7 +5701,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Kharoshthi",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Kharoshthi', sans-serif",
 			provider: "google",
@@ -6122,7 +5715,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Khmer",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Khmer', sans-serif",
 			provider: "google",
@@ -6137,7 +5729,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Khojki",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Khojki', sans-serif",
 			provider: "google",
@@ -6152,7 +5743,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Khudawadi",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Khudawadi', sans-serif",
 			provider: "google",
@@ -6167,7 +5757,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Lao",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Lao', sans-serif",
 			provider: "google",
@@ -6182,7 +5771,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Lao Looped",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Lao Looped', sans-serif",
 			provider: "google",
@@ -6197,7 +5785,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Lepcha",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Lepcha', sans-serif",
 			provider: "google",
@@ -6212,7 +5799,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Limbu",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Limbu', sans-serif",
 			provider: "google",
@@ -6227,7 +5813,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Linear A",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Linear A', sans-serif",
 			provider: "google",
@@ -6242,7 +5827,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Linear B",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Linear B', sans-serif",
 			provider: "google",
@@ -6257,7 +5841,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Lisu",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Lisu', sans-serif",
 			provider: "google",
@@ -6272,7 +5855,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Lycian",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Lycian', sans-serif",
 			provider: "google",
@@ -6287,7 +5869,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Lydian",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Lydian', sans-serif",
 			provider: "google",
@@ -6302,7 +5883,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Mahajani",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Mahajani', sans-serif",
 			provider: "google",
@@ -6317,7 +5897,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Malayalam",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Malayalam', sans-serif",
 			provider: "google",
@@ -6332,7 +5911,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Mandaic",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Mandaic', sans-serif",
 			provider: "google",
@@ -6347,7 +5925,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Manichaean",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Manichaean', sans-serif",
 			provider: "google",
@@ -6362,7 +5939,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Marchen",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Marchen', sans-serif",
 			provider: "google",
@@ -6377,7 +5953,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Masaram Gondi",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Masaram Gondi', sans-serif",
 			provider: "google",
@@ -6392,7 +5967,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Math",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Math', sans-serif",
 			provider: "google",
@@ -6407,7 +5981,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Mayan Numerals",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Mayan Numerals', sans-serif",
 			provider: "google",
@@ -6422,7 +5995,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Medefaidrin",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Medefaidrin', sans-serif",
 			provider: "google",
@@ -6437,7 +6009,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Meetei Mayek",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Meetei Mayek', sans-serif",
 			provider: "google",
@@ -6452,7 +6023,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Mende Kikakui",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Mende Kikakui', sans-serif",
 			provider: "google",
@@ -6467,7 +6037,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Meroitic",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Meroitic', sans-serif",
 			provider: "google",
@@ -6482,7 +6051,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Miao",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Miao', sans-serif",
 			provider: "google",
@@ -6497,7 +6065,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Modi",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Modi', sans-serif",
 			provider: "google",
@@ -6512,7 +6079,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Mongolian",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Mongolian', sans-serif",
 			provider: "google",
@@ -6527,7 +6093,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Mono",
 		type: "registry:font",
 		category: "monospace",
-		fontType: "monospace",
 		font: {
 			family: "'Noto Sans Mono', sans-serif",
 			provider: "google",
@@ -6542,7 +6107,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Mro",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Mro', sans-serif",
 			provider: "google",
@@ -6557,7 +6121,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Multani",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Multani', sans-serif",
 			provider: "google",
@@ -6572,7 +6135,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Myanmar",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Myanmar', sans-serif",
 			provider: "google",
@@ -6587,7 +6149,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans NKo",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans NKo', sans-serif",
 			provider: "google",
@@ -6602,7 +6163,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans NKo Unjoined",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans NKo Unjoined', sans-serif",
 			provider: "google",
@@ -6617,7 +6177,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Nabataean",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Nabataean', sans-serif",
 			provider: "google",
@@ -6632,7 +6191,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Nag Mundari",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Nag Mundari', sans-serif",
 			provider: "google",
@@ -6647,7 +6205,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Nandinagari",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Nandinagari', sans-serif",
 			provider: "google",
@@ -6662,7 +6219,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans New Tai Lue",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans New Tai Lue', sans-serif",
 			provider: "google",
@@ -6677,7 +6233,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Newa",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Newa', sans-serif",
 			provider: "google",
@@ -6692,7 +6247,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Nushu",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Nushu', sans-serif",
 			provider: "google",
@@ -6707,7 +6261,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Ogham",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Ogham', sans-serif",
 			provider: "google",
@@ -6722,7 +6275,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Ol Chiki",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Ol Chiki', sans-serif",
 			provider: "google",
@@ -6737,7 +6289,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Old Hungarian",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Old Hungarian', sans-serif",
 			provider: "google",
@@ -6752,7 +6303,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Old Italic",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Old Italic', sans-serif",
 			provider: "google",
@@ -6767,7 +6317,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Old North Arabian",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Old North Arabian', sans-serif",
 			provider: "google",
@@ -6782,7 +6331,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Old Permic",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Old Permic', sans-serif",
 			provider: "google",
@@ -6797,7 +6345,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Old Persian",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Old Persian', sans-serif",
 			provider: "google",
@@ -6812,7 +6359,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Old Sogdian",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Old Sogdian', sans-serif",
 			provider: "google",
@@ -6827,7 +6373,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Old South Arabian",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Old South Arabian', sans-serif",
 			provider: "google",
@@ -6842,7 +6387,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Old Turkic",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Old Turkic', sans-serif",
 			provider: "google",
@@ -6857,7 +6401,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Oriya",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Oriya', sans-serif",
 			provider: "google",
@@ -6872,7 +6415,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Osage",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Osage', sans-serif",
 			provider: "google",
@@ -6887,7 +6429,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Osmanya",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Osmanya', sans-serif",
 			provider: "google",
@@ -6902,7 +6443,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Pahawh Hmong",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Pahawh Hmong', sans-serif",
 			provider: "google",
@@ -6917,7 +6457,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Palmyrene",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Palmyrene', sans-serif",
 			provider: "google",
@@ -6932,7 +6471,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Pau Cin Hau",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Pau Cin Hau', sans-serif",
 			provider: "google",
@@ -6947,7 +6485,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans PhagsPa",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans PhagsPa', sans-serif",
 			provider: "google",
@@ -6962,7 +6499,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Phoenician",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Phoenician', sans-serif",
 			provider: "google",
@@ -6977,7 +6513,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Psalter Pahlavi",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Psalter Pahlavi', sans-serif",
 			provider: "google",
@@ -6992,7 +6527,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Rejang",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Rejang', sans-serif",
 			provider: "google",
@@ -7007,7 +6541,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Runic",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Runic', sans-serif",
 			provider: "google",
@@ -7022,7 +6555,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans SC",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans SC', sans-serif",
 			provider: "google",
@@ -7037,7 +6569,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Samaritan",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Samaritan', sans-serif",
 			provider: "google",
@@ -7052,7 +6583,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Saurashtra",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Saurashtra', sans-serif",
 			provider: "google",
@@ -7067,7 +6597,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Sharada",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Sharada', sans-serif",
 			provider: "google",
@@ -7082,7 +6611,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Shavian",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Shavian', sans-serif",
 			provider: "google",
@@ -7097,7 +6625,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Siddham",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Siddham', sans-serif",
 			provider: "google",
@@ -7112,7 +6639,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans SignWriting",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans SignWriting', sans-serif",
 			provider: "google",
@@ -7127,7 +6653,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Sinhala",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Sinhala', sans-serif",
 			provider: "google",
@@ -7142,7 +6667,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Sogdian",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Sogdian', sans-serif",
 			provider: "google",
@@ -7157,7 +6681,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Sora Sompeng",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Sora Sompeng', sans-serif",
 			provider: "google",
@@ -7172,7 +6695,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Soyombo",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Soyombo', sans-serif",
 			provider: "google",
@@ -7187,7 +6709,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Sundanese",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Sundanese', sans-serif",
 			provider: "google",
@@ -7202,7 +6723,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Sunuwar",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Sunuwar', sans-serif",
 			provider: "google",
@@ -7217,7 +6737,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Syloti Nagri",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Syloti Nagri', sans-serif",
 			provider: "google",
@@ -7232,7 +6751,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Symbols",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Symbols', sans-serif",
 			provider: "google",
@@ -7247,7 +6765,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Symbols 2",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Symbols 2', sans-serif",
 			provider: "google",
@@ -7262,7 +6779,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Syriac",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Syriac', sans-serif",
 			provider: "google",
@@ -7277,7 +6793,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Syriac Eastern",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Syriac Eastern', sans-serif",
 			provider: "google",
@@ -7292,7 +6807,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Syriac Western",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Syriac Western', sans-serif",
 			provider: "google",
@@ -7307,7 +6821,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans TC",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans TC', sans-serif",
 			provider: "google",
@@ -7322,7 +6835,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Tagalog",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Tagalog', sans-serif",
 			provider: "google",
@@ -7337,7 +6849,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Tagbanwa",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Tagbanwa', sans-serif",
 			provider: "google",
@@ -7352,7 +6863,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Tai Le",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Tai Le', sans-serif",
 			provider: "google",
@@ -7367,7 +6877,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Tai Tham",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Tai Tham', sans-serif",
 			provider: "google",
@@ -7382,7 +6891,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Tai Viet",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Tai Viet', sans-serif",
 			provider: "google",
@@ -7397,7 +6905,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Takri",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Takri', sans-serif",
 			provider: "google",
@@ -7412,7 +6919,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Tamil",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Tamil', sans-serif",
 			provider: "google",
@@ -7427,7 +6933,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Tamil Supplement",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Tamil Supplement', sans-serif",
 			provider: "google",
@@ -7442,7 +6947,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Tangsa",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Tangsa', sans-serif",
 			provider: "google",
@@ -7457,7 +6961,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Telugu",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Telugu', sans-serif",
 			provider: "google",
@@ -7472,7 +6975,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Thaana",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Thaana', sans-serif",
 			provider: "google",
@@ -7487,7 +6989,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Thai",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Thai', sans-serif",
 			provider: "google",
@@ -7502,7 +7003,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Thai Looped",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Thai Looped', sans-serif",
 			provider: "google",
@@ -7517,7 +7017,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Tifinagh",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Tifinagh', sans-serif",
 			provider: "google",
@@ -7532,7 +7031,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Tirhuta",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Tirhuta', sans-serif",
 			provider: "google",
@@ -7547,7 +7045,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Ugaritic",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Ugaritic', sans-serif",
 			provider: "google",
@@ -7562,7 +7059,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Vai",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Vai', sans-serif",
 			provider: "google",
@@ -7577,7 +7073,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Vithkuqi",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Vithkuqi', sans-serif",
 			provider: "google",
@@ -7592,7 +7087,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Wancho",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Wancho', sans-serif",
 			provider: "google",
@@ -7607,7 +7101,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Warang Citi",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Warang Citi', sans-serif",
 			provider: "google",
@@ -7622,7 +7115,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Yi",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Yi', sans-serif",
 			provider: "google",
@@ -7637,7 +7129,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Zanabazar Square",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Zanabazar Square', sans-serif",
 			provider: "google",
@@ -7652,7 +7143,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Traditional Nushu",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Traditional Nushu', sans-serif",
 			provider: "google",
@@ -7667,7 +7157,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Znamenny Musical Notation",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Znamenny Musical Notation', sans-serif",
 			provider: "google",
@@ -7682,7 +7171,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Numans",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Numans', sans-serif",
 			provider: "google",
@@ -7697,7 +7185,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Nunito",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Nunito', sans-serif",
 			provider: "google",
@@ -7712,7 +7199,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Nunito Sans",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Nunito Sans', sans-serif",
 			provider: "google",
@@ -7727,7 +7213,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Nuosu SIL",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Nuosu SIL', sans-serif",
 			provider: "google",
@@ -7742,7 +7227,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Ojuju",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Ojuju', sans-serif",
 			provider: "google",
@@ -7757,7 +7241,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Onest",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Onest', sans-serif",
 			provider: "google",
@@ -7772,7 +7255,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Orbit",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Orbit', sans-serif",
 			provider: "google",
@@ -7787,7 +7269,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Orbitron",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Orbitron', sans-serif",
 			provider: "google",
@@ -7802,7 +7283,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Orienta",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Orienta', sans-serif",
 			provider: "google",
@@ -7817,7 +7297,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Oswald",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Oswald', sans-serif",
 			provider: "google",
@@ -7832,7 +7311,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Outfit",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Outfit', sans-serif",
 			provider: "google",
@@ -7847,7 +7325,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Overpass",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Overpass', sans-serif",
 			provider: "google",
@@ -7862,7 +7339,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Oxygen",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Oxygen', sans-serif",
 			provider: "google",
@@ -7877,7 +7353,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "PT Sans",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'PT Sans', sans-serif",
 			provider: "google",
@@ -7892,7 +7367,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "PT Sans Caption",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'PT Sans Caption', sans-serif",
 			provider: "google",
@@ -7907,7 +7381,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "PT Sans Narrow",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'PT Sans Narrow', sans-serif",
 			provider: "google",
@@ -7922,7 +7395,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Padauk",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Padauk', sans-serif",
 			provider: "google",
@@ -7937,7 +7409,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Palanquin",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Palanquin', sans-serif",
 			provider: "google",
@@ -7952,7 +7423,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Palanquin Dark",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Palanquin Dark', sans-serif",
 			provider: "google",
@@ -7967,7 +7437,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Parkinsans",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Parkinsans', sans-serif",
 			provider: "google",
@@ -7982,7 +7451,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Pathway Extreme",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Pathway Extreme', sans-serif",
 			provider: "google",
@@ -7997,7 +7465,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Pathway Gothic One",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Pathway Gothic One', sans-serif",
 			provider: "google",
@@ -8012,7 +7479,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Pattaya",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Pattaya', sans-serif",
 			provider: "google",
@@ -8027,7 +7493,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Pavanam",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Pavanam', sans-serif",
 			provider: "google",
@@ -8042,7 +7507,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Paytone One",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Paytone One', sans-serif",
 			provider: "google",
@@ -8057,7 +7521,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Phetsarath",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Phetsarath', sans-serif",
 			provider: "google",
@@ -8072,7 +7535,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Philosopher",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Philosopher', sans-serif",
 			provider: "google",
@@ -8087,7 +7549,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Play",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Play', sans-serif",
 			provider: "google",
@@ -8102,7 +7563,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Plus Jakarta Sans",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Plus Jakarta Sans', sans-serif",
 			provider: "google",
@@ -8117,7 +7577,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Playfair Display",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Playfair Display', serif",
 			provider: "google",
@@ -8132,7 +7591,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Pontano Sans",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Pontano Sans', sans-serif",
 			provider: "google",
@@ -8147,7 +7605,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Poppins",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Poppins', sans-serif",
 			provider: "google",
@@ -8162,7 +7619,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Port Lligat Sans",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Port Lligat Sans', sans-serif",
 			provider: "google",
@@ -8177,7 +7633,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Pragati Narrow",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Pragati Narrow', sans-serif",
 			provider: "google",
@@ -8192,7 +7647,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Preahvihear",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Preahvihear', sans-serif",
 			provider: "google",
@@ -8207,7 +7661,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Prompt",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Prompt', sans-serif",
 			provider: "google",
@@ -8222,7 +7675,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Proza Libre",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Proza Libre', sans-serif",
 			provider: "google",
@@ -8237,7 +7689,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Public Sans",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Public Sans', sans-serif",
 			provider: "google",
@@ -8252,7 +7703,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Puritan",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Puritan', sans-serif",
 			provider: "google",
@@ -8267,7 +7717,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Qahiri",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Qahiri', sans-serif",
 			provider: "google",
@@ -8282,7 +7731,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Quantico",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Quantico', sans-serif",
 			provider: "google",
@@ -8297,7 +7745,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Quattrocento Sans",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Quattrocento Sans', sans-serif",
 			provider: "google",
@@ -8312,7 +7759,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Questrial",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Questrial', sans-serif",
 			provider: "google",
@@ -8327,7 +7773,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Quicksand",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Quicksand', sans-serif",
 			provider: "google",
@@ -8342,7 +7787,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "REM",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'REM', sans-serif",
 			provider: "google",
@@ -8357,7 +7801,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Radio Canada",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Radio Canada', sans-serif",
 			provider: "google",
@@ -8372,7 +7815,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Radio Canada Big",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Radio Canada Big', sans-serif",
 			provider: "google",
@@ -8387,7 +7829,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Rajdhani",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Rajdhani', sans-serif",
 			provider: "google",
@@ -8402,7 +7843,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Ramabhadra",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Ramabhadra', sans-serif",
 			provider: "google",
@@ -8417,7 +7857,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Rambla",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Rambla', sans-serif",
 			provider: "google",
@@ -8432,7 +7871,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Rationale",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Rationale', sans-serif",
 			provider: "google",
@@ -8447,7 +7885,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Readex Pro",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Readex Pro', sans-serif",
 			provider: "google",
@@ -8462,7 +7899,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Recursive",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Recursive', sans-serif",
 			provider: "google",
@@ -8477,7 +7913,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Red Hat Display",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Red Hat Display', sans-serif",
 			provider: "google",
@@ -8492,7 +7927,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Red Hat Text",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Red Hat Text', sans-serif",
 			provider: "google",
@@ -8507,7 +7941,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Reddit Sans",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Reddit Sans', sans-serif",
 			provider: "google",
@@ -8522,7 +7955,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Reddit Sans Condensed",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Reddit Sans Condensed', sans-serif",
 			provider: "google",
@@ -8537,7 +7969,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Reem Kufi",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Reem Kufi', sans-serif",
 			provider: "google",
@@ -8552,7 +7983,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Reem Kufi Fun",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Reem Kufi Fun', sans-serif",
 			provider: "google",
@@ -8567,7 +7997,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Reem Kufi Ink",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Reem Kufi Ink', sans-serif",
 			provider: "google",
@@ -8582,7 +8011,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Rethink Sans",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Rethink Sans', sans-serif",
 			provider: "google",
@@ -8597,7 +8025,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Roboto Condensed",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Roboto Condensed', sans-serif",
 			provider: "google",
@@ -8612,7 +8039,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Roboto Flex",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Roboto Flex', sans-serif",
 			provider: "google",
@@ -8627,7 +8053,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "RocknRoll One",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'RocknRoll One', sans-serif",
 			provider: "google",
@@ -8642,7 +8067,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Ropa Sans",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Ropa Sans', sans-serif",
 			provider: "google",
@@ -8657,7 +8081,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Rosario",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Rosario', sans-serif",
 			provider: "google",
@@ -8672,7 +8095,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Rubik Mono One",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Rubik Mono One', sans-serif",
 			provider: "google",
@@ -8687,7 +8109,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Ruda",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Ruda', sans-serif",
 			provider: "google",
@@ -8702,7 +8123,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Ruluko",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Ruluko', sans-serif",
 			provider: "google",
@@ -8717,7 +8137,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Rum Raisin",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Rum Raisin', sans-serif",
 			provider: "google",
@@ -8732,7 +8151,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Russo One",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Russo One', sans-serif",
 			provider: "google",
@@ -8747,7 +8165,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "SUSE",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'SUSE', sans-serif",
 			provider: "google",
@@ -8762,7 +8179,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "SUSE Mono",
 		type: "registry:font",
 		category: "monospace",
-		fontType: "monospace",
 		font: {
 			family: "'SUSE Mono', sans-serif",
 			provider: "google",
@@ -8777,7 +8193,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Saira",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Saira', sans-serif",
 			provider: "google",
@@ -8792,7 +8207,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Saira Condensed",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Saira Condensed', sans-serif",
 			provider: "google",
@@ -8807,7 +8221,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Saira Extra Condensed",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Saira Extra Condensed', sans-serif",
 			provider: "google",
@@ -8822,7 +8235,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Saira Semi Condensed",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Saira Semi Condensed', sans-serif",
 			provider: "google",
@@ -8837,7 +8249,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Sankofa Display",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Sankofa Display', sans-serif",
 			provider: "google",
@@ -8852,7 +8263,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Sansation",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Sansation', sans-serif",
 			provider: "google",
@@ -8867,7 +8277,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Sansita",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Sansita', sans-serif",
 			provider: "google",
@@ -8882,7 +8291,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Sarabun",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Sarabun', sans-serif",
 			provider: "google",
@@ -8897,7 +8305,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Sarala",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Sarala', sans-serif",
 			provider: "google",
@@ -8912,7 +8319,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Sarpanch",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Sarpanch', sans-serif",
 			provider: "google",
@@ -8927,7 +8333,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Savate",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Savate', sans-serif",
 			provider: "google",
@@ -8942,7 +8347,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Sawarabi Gothic",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Sawarabi Gothic', sans-serif",
 			provider: "google",
@@ -8957,7 +8361,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Scada",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Scada', sans-serif",
 			provider: "google",
@@ -8972,7 +8375,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Schibsted Grotesk",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Schibsted Grotesk', sans-serif",
 			provider: "google",
@@ -8987,7 +8389,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Science Gothic",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Science Gothic', sans-serif",
 			provider: "google",
@@ -9002,7 +8403,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Secular One",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Secular One', sans-serif",
 			provider: "google",
@@ -9017,7 +8417,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Sen",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Sen', sans-serif",
 			provider: "google",
@@ -9032,7 +8431,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Seymour One",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Seymour One', sans-serif",
 			provider: "google",
@@ -9047,7 +8445,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Shanti",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Shanti', sans-serif",
 			provider: "google",
@@ -9062,7 +8459,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Share",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Share', sans-serif",
 			provider: "google",
@@ -9077,7 +8473,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Share Tech",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Share Tech', sans-serif",
 			provider: "google",
@@ -9092,7 +8487,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Shippori Antique",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Shippori Antique', sans-serif",
 			provider: "google",
@@ -9107,7 +8501,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Shippori Antique B1",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Shippori Antique B1', sans-serif",
 			provider: "google",
@@ -9122,7 +8515,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Siemreap",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Siemreap', sans-serif",
 			provider: "google",
@@ -9137,7 +8529,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Signika",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Signika', sans-serif",
 			provider: "google",
@@ -9152,7 +8543,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Signika Negative",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Signika Negative', sans-serif",
 			provider: "google",
@@ -9167,7 +8557,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Sintony",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Sintony', sans-serif",
 			provider: "google",
@@ -9182,7 +8571,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Sirivennela",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Sirivennela', sans-serif",
 			provider: "google",
@@ -9197,7 +8585,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Six Caps",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Six Caps', sans-serif",
 			provider: "google",
@@ -9212,7 +8599,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Smooch Sans",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Smooch Sans', sans-serif",
 			provider: "google",
@@ -9227,7 +8613,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Snippet",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Snippet', sans-serif",
 			provider: "google",
@@ -9242,7 +8627,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Sofia Sans",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Sofia Sans', sans-serif",
 			provider: "google",
@@ -9257,7 +8641,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Sofia Sans Condensed",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Sofia Sans Condensed', sans-serif",
 			provider: "google",
@@ -9272,7 +8655,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Sofia Sans Extra Condensed",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Sofia Sans Extra Condensed', sans-serif",
 			provider: "google",
@@ -9287,7 +8669,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Sofia Sans Semi Condensed",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Sofia Sans Semi Condensed', sans-serif",
 			provider: "google",
@@ -9302,7 +8683,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Sono",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Sono', sans-serif",
 			provider: "google",
@@ -9317,7 +8697,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Sora",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Sora', sans-serif",
 			provider: "google",
@@ -9332,7 +8711,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Sour Gummy",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Sour Gummy', sans-serif",
 			provider: "google",
@@ -9347,7 +8725,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Source Sans 3",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Source Sans 3', sans-serif",
 			provider: "google",
@@ -9362,7 +8739,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Space Grotesk",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Space Grotesk', sans-serif",
 			provider: "google",
@@ -9377,7 +8753,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Special Gothic",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Special Gothic', sans-serif",
 			provider: "google",
@@ -9392,7 +8767,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Special Gothic Condensed One",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Special Gothic Condensed One', sans-serif",
 			provider: "google",
@@ -9407,7 +8781,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Special Gothic Expanded One",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Special Gothic Expanded One', sans-serif",
 			provider: "google",
@@ -9422,7 +8795,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Spinnaker",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Spinnaker', sans-serif",
 			provider: "google",
@@ -9437,7 +8809,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Spline Sans",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Spline Sans', sans-serif",
 			provider: "google",
@@ -9452,7 +8823,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Stack Sans Headline",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Stack Sans Headline', sans-serif",
 			provider: "google",
@@ -9467,7 +8837,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Stack Sans Notch",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Stack Sans Notch', sans-serif",
 			provider: "google",
@@ -9482,7 +8851,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Stack Sans Text",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Stack Sans Text', sans-serif",
 			provider: "google",
@@ -9497,7 +8865,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Stick",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Stick', sans-serif",
 			provider: "google",
@@ -9512,7 +8879,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Stick No Bills",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Stick No Bills', sans-serif",
 			provider: "google",
@@ -9527,7 +8893,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Story Script",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Story Script', sans-serif",
 			provider: "google",
@@ -9542,7 +8907,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Strait",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Strait', sans-serif",
 			provider: "google",
@@ -9557,7 +8921,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Stylish",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Stylish', sans-serif",
 			provider: "google",
@@ -9572,7 +8935,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Sulphur Point",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Sulphur Point', sans-serif",
 			provider: "google",
@@ -9587,7 +8949,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Sunflower",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Sunflower', sans-serif",
 			provider: "google",
@@ -9602,7 +8963,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Syncopate",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Syncopate', sans-serif",
 			provider: "google",
@@ -9617,7 +8977,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Syne",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Syne', sans-serif",
 			provider: "google",
@@ -9632,7 +8991,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "TASA Explorer",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'TASA Explorer', sans-serif",
 			provider: "google",
@@ -9647,7 +9005,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "TASA Orbiter",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'TASA Orbiter', sans-serif",
 			provider: "google",
@@ -9662,7 +9019,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Tac One",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Tac One', sans-serif",
 			provider: "google",
@@ -9677,7 +9033,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Tajawal",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Tajawal', sans-serif",
 			provider: "google",
@@ -9692,7 +9047,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Tauri",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Tauri', sans-serif",
 			provider: "google",
@@ -9707,7 +9061,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Teachers",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Teachers', sans-serif",
 			provider: "google",
@@ -9722,7 +9075,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Teko",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Teko', sans-serif",
 			provider: "google",
@@ -9737,7 +9089,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Telex",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Telex', sans-serif",
 			provider: "google",
@@ -9752,7 +9103,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Tenali Ramakrishna",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Tenali Ramakrishna', sans-serif",
 			provider: "google",
@@ -9767,7 +9117,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Tenor Sans",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Tenor Sans', sans-serif",
 			provider: "google",
@@ -9782,7 +9131,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Text Me One",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Text Me One', sans-serif",
 			provider: "google",
@@ -9797,7 +9145,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Thasadith",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Thasadith', sans-serif",
 			provider: "google",
@@ -9812,7 +9159,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "TikTok Sans",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'TikTok Sans', sans-serif",
 			provider: "google",
@@ -9827,7 +9173,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Timmana",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Timmana', sans-serif",
 			provider: "google",
@@ -9842,7 +9187,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Tiny5",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Tiny5', sans-serif",
 			provider: "google",
@@ -9857,7 +9201,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Tirra",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Tirra', sans-serif",
 			provider: "google",
@@ -9872,7 +9215,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Titillium Web",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Titillium Web', sans-serif",
 			provider: "google",
@@ -9887,7 +9229,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Tomorrow",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Tomorrow', sans-serif",
 			provider: "google",
@@ -9902,7 +9243,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Trispace",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Trispace', sans-serif",
 			provider: "google",
@@ -9917,7 +9257,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Truculenta",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Truculenta', sans-serif",
 			provider: "google",
@@ -9932,7 +9271,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Tsukimi Rounded",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Tsukimi Rounded', sans-serif",
 			provider: "google",
@@ -9947,7 +9285,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Tuffy",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Tuffy', sans-serif",
 			provider: "google",
@@ -9962,7 +9299,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Ubuntu",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Ubuntu', sans-serif",
 			provider: "google",
@@ -9977,7 +9313,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Ubuntu Condensed",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Ubuntu Condensed', sans-serif",
 			provider: "google",
@@ -9992,7 +9327,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Ubuntu Sans",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Ubuntu Sans', sans-serif",
 			provider: "google",
@@ -10007,7 +9341,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Unbounded",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Unbounded', sans-serif",
 			provider: "google",
@@ -10022,7 +9355,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Urbanist",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Urbanist', sans-serif",
 			provider: "google",
@@ -10037,7 +9369,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Varela",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Varela', sans-serif",
 			provider: "google",
@@ -10052,7 +9383,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Varela Round",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Varela Round', sans-serif",
 			provider: "google",
@@ -10067,7 +9397,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Varta",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Varta', sans-serif",
 			provider: "google",
@@ -10082,7 +9411,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Vazirmatn",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Vazirmatn', sans-serif",
 			provider: "google",
@@ -10097,7 +9425,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Vend Sans",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Vend Sans', sans-serif",
 			provider: "google",
@@ -10112,7 +9439,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Viga",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Viga', sans-serif",
 			provider: "google",
@@ -10127,7 +9453,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Voces",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Voces', sans-serif",
 			provider: "google",
@@ -10142,7 +9467,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Voltaire",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Voltaire', sans-serif",
 			provider: "google",
@@ -10157,7 +9481,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "WDXL Lubrifont JP N",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'WDXL Lubrifont JP N', sans-serif",
 			provider: "google",
@@ -10172,7 +9495,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "WDXL Lubrifont SC",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'WDXL Lubrifont SC', sans-serif",
 			provider: "google",
@@ -10187,7 +9509,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "WDXL Lubrifont TC",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'WDXL Lubrifont TC', sans-serif",
 			provider: "google",
@@ -10202,7 +9523,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Wendy One",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Wendy One', sans-serif",
 			provider: "google",
@@ -10217,7 +9537,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Winky Rough",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Winky Rough', sans-serif",
 			provider: "google",
@@ -10232,7 +9551,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Winky Sans",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Winky Sans', sans-serif",
 			provider: "google",
@@ -10247,7 +9565,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Wire One",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Wire One', sans-serif",
 			provider: "google",
@@ -10262,7 +9579,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Wix Madefor Display",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Wix Madefor Display', sans-serif",
 			provider: "google",
@@ -10277,7 +9593,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Wix Madefor Text",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Wix Madefor Text', sans-serif",
 			provider: "google",
@@ -10292,7 +9607,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Yaldevi",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Yaldevi', sans-serif",
 			provider: "google",
@@ -10307,7 +9621,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Yanone Kaffeesatz",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Yanone Kaffeesatz', sans-serif",
 			provider: "google",
@@ -10322,7 +9635,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Yantramanav",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Yantramanav', sans-serif",
 			provider: "google",
@@ -10337,7 +9649,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Ysabeau",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Ysabeau', sans-serif",
 			provider: "google",
@@ -10352,7 +9663,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Ysabeau Infant",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Ysabeau Infant', sans-serif",
 			provider: "google",
@@ -10367,7 +9677,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Ysabeau Office",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Ysabeau Office', sans-serif",
 			provider: "google",
@@ -10382,7 +9691,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Ysabeau SC",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Ysabeau SC', sans-serif",
 			provider: "google",
@@ -10397,7 +9705,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Yusei Magic",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Yusei Magic', sans-serif",
 			provider: "google",
@@ -10412,7 +9719,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "ZCOOL KuaiLe",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'ZCOOL KuaiLe', sans-serif",
 			provider: "google",
@@ -10427,7 +9733,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "ZCOOL QingKe HuangYou",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'ZCOOL QingKe HuangYou', sans-serif",
 			provider: "google",
@@ -10442,7 +9747,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "ZCOOL XiaoWei",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'ZCOOL XiaoWei', sans-serif",
 			provider: "google",
@@ -10457,7 +9761,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Zain",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Zain', sans-serif",
 			provider: "google",
@@ -10472,7 +9775,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Zalando Sans",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Zalando Sans', sans-serif",
 			provider: "google",
@@ -10487,7 +9789,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Zalando Sans Expanded",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Zalando Sans Expanded', sans-serif",
 			provider: "google",
@@ -10502,7 +9803,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Zalando Sans SemiExpanded",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Zalando Sans SemiExpanded', sans-serif",
 			provider: "google",
@@ -10517,7 +9817,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Zen Kaku Gothic Antique",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Zen Kaku Gothic Antique', sans-serif",
 			provider: "google",
@@ -10532,7 +9831,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Zen Kaku Gothic New",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Zen Kaku Gothic New', sans-serif",
 			provider: "google",
@@ -10547,7 +9845,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Zen Kurenaido",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Zen Kurenaido', sans-serif",
 			provider: "google",
@@ -10562,7 +9859,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Zen Maru Gothic",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Zen Maru Gothic', sans-serif",
 			provider: "google",
@@ -10577,7 +9873,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "ADLaM Display",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'ADLaM Display', sans-serif",
 			provider: "google",
@@ -10592,7 +9887,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Abhaya Libre",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Abhaya Libre', serif",
 			provider: "google",
@@ -10607,7 +9901,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Aboreto",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Aboreto', sans-serif",
 			provider: "google",
@@ -10622,7 +9915,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Abril Fatface",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Abril Fatface', sans-serif",
 			provider: "google",
@@ -10637,7 +9929,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Abyssinica SIL",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Abyssinica SIL', serif",
 			provider: "google",
@@ -10652,7 +9943,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Adamina",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Adamina', serif",
 			provider: "google",
@@ -10667,7 +9957,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Aguafina Script",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Aguafina Script', cursive",
 			provider: "google",
@@ -10682,7 +9971,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Akaya Kanadaka",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Akaya Kanadaka', sans-serif",
 			provider: "google",
@@ -10697,7 +9985,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Akaya Telivigala",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Akaya Telivigala', sans-serif",
 			provider: "google",
@@ -10712,7 +9999,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Akronim",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Akronim', sans-serif",
 			provider: "google",
@@ -10727,7 +10013,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Aladin",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Aladin', sans-serif",
 			provider: "google",
@@ -10742,7 +10027,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Alegreya",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Alegreya', serif",
 			provider: "google",
@@ -10765,7 +10049,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Alegreya SC",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Alegreya SC', serif",
 			provider: "google",
@@ -10788,7 +10071,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Aleo",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Aleo', serif",
 			provider: "google",
@@ -10803,7 +10085,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Alex Brush",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Alex Brush', cursive",
 			provider: "google",
@@ -10818,7 +10099,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Alfa Slab One",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Alfa Slab One', sans-serif",
 			provider: "google",
@@ -10833,7 +10113,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Alice",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Alice', serif",
 			provider: "google",
@@ -10848,7 +10127,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Alike",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Alike', serif",
 			provider: "google",
@@ -10863,7 +10141,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Alike Angular",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Alike Angular', serif",
 			provider: "google",
@@ -10878,7 +10155,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Alkalami",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Alkalami', serif",
 			provider: "google",
@@ -10893,7 +10169,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Alkatra",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Alkatra', sans-serif",
 			provider: "google",
@@ -10908,7 +10183,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Allan",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Allan', sans-serif",
 			provider: "google",
@@ -10923,7 +10197,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Allison",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Allison', cursive",
 			provider: "google",
@@ -10938,7 +10211,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Allura",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Allura', cursive",
 			provider: "google",
@@ -10953,7 +10225,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Almendra",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Almendra', serif",
 			provider: "google",
@@ -10968,7 +10239,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Almendra Display",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Almendra Display', sans-serif",
 			provider: "google",
@@ -10983,7 +10253,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Almendra SC",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Almendra SC', serif",
 			provider: "google",
@@ -10998,7 +10267,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Alumni Sans Inline One",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Alumni Sans Inline One', sans-serif",
 			provider: "google",
@@ -11013,7 +10281,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Amarante",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Amarante', sans-serif",
 			provider: "google",
@@ -11028,7 +10295,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Amatic SC",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Amatic SC', cursive",
 			provider: "google",
@@ -11043,7 +10309,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Amethysta",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Amethysta', serif",
 			provider: "google",
@@ -11058,7 +10323,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Amiri",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Amiri', serif",
 			provider: "google",
@@ -11073,7 +10337,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Amiri Quran",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Amiri Quran', serif",
 			provider: "google",
@@ -11088,7 +10351,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Amita",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Amita', cursive",
 			provider: "google",
@@ -11103,7 +10365,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Andada Pro",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Andada Pro', serif",
 			provider: "google",
@@ -11118,7 +10379,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Angkor",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Angkor', sans-serif",
 			provider: "google",
@@ -11133,7 +10393,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Annie Use Your Telescope",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Annie Use Your Telescope', cursive",
 			provider: "google",
@@ -11148,7 +10407,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Anonymous Pro",
 		type: "registry:font",
 		category: "monospace",
-		fontType: "monospace",
 		font: {
 			family: "'Anonymous Pro', monospace",
 			provider: "google",
@@ -11163,7 +10421,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Antic Didone",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Antic Didone', serif",
 			provider: "google",
@@ -11178,7 +10435,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Antic Slab",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Antic Slab', serif",
 			provider: "google",
@@ -11193,7 +10449,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Anybody",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Anybody', sans-serif",
 			provider: "google",
@@ -11208,7 +10463,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Aoboshi One",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Aoboshi One', serif",
 			provider: "google",
@@ -11223,7 +10477,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Arapey",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Arapey', serif",
 			provider: "google",
@@ -11238,7 +10491,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Arbutus",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Arbutus', serif",
 			provider: "google",
@@ -11253,7 +10505,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Arbutus Slab",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Arbutus Slab', serif",
 			provider: "google",
@@ -11268,7 +10519,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Are You Serious",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Are You Serious', cursive",
 			provider: "google",
@@ -11283,7 +10533,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Aref Ruqaa",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Aref Ruqaa', serif",
 			provider: "google",
@@ -11298,7 +10547,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Aref Ruqaa Ink",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Aref Ruqaa Ink', serif",
 			provider: "google",
@@ -11313,7 +10561,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Arima",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Arima', sans-serif",
 			provider: "google",
@@ -11336,7 +10583,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Arima Madurai",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Arima Madurai', sans-serif",
 			provider: "google",
@@ -11351,7 +10597,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Arizonia",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Arizonia', cursive",
 			provider: "google",
@@ -11366,7 +10611,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Artifika",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Artifika', serif",
 			provider: "google",
@@ -11381,7 +10625,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Arvo",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Arvo', serif",
 			provider: "google",
@@ -11396,7 +10639,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Asar",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Asar', serif",
 			provider: "google",
@@ -11411,7 +10653,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Asset",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Asset', sans-serif",
 			provider: "google",
@@ -11426,7 +10667,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Astloch",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Astloch', sans-serif",
 			provider: "google",
@@ -11441,7 +10681,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Asul",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Asul', sans-serif",
 			provider: "google",
@@ -11456,7 +10695,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Atma",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Atma', sans-serif",
 			provider: "google",
@@ -11471,7 +10709,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Atomic Age",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Atomic Age', sans-serif",
 			provider: "google",
@@ -11486,7 +10723,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Aubrey",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Aubrey', sans-serif",
 			provider: "google",
@@ -11501,7 +10737,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Audiowide",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Audiowide', sans-serif",
 			provider: "google",
@@ -11516,7 +10751,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Autour One",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Autour One', sans-serif",
 			provider: "google",
@@ -11531,7 +10765,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Average",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Average', serif",
 			provider: "google",
@@ -11546,7 +10779,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Averia Gruesa Libre",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Averia Gruesa Libre', sans-serif",
 			provider: "google",
@@ -11561,7 +10793,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Averia Libre",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Averia Libre', sans-serif",
 			provider: "google",
@@ -11576,7 +10807,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Averia Sans Libre",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Averia Sans Libre', sans-serif",
 			provider: "google",
@@ -11591,7 +10821,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Averia Serif Libre",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Averia Serif Libre', sans-serif",
 			provider: "google",
@@ -11606,7 +10835,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Azeret Mono",
 		type: "registry:font",
 		category: "monospace",
-		fontType: "monospace",
 		font: {
 			family: "'Azeret Mono', monospace",
 			provider: "google",
@@ -11621,7 +10849,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "B612 Mono",
 		type: "registry:font",
 		category: "monospace",
-		fontType: "monospace",
 		font: {
 			family: "'B612 Mono', monospace",
 			provider: "google",
@@ -11636,7 +10863,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "BIZ UDMincho",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'BIZ UDMincho', serif",
 			provider: "google",
@@ -11651,7 +10877,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "BIZ UDPMincho",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'BIZ UDPMincho', serif",
 			provider: "google",
@@ -11666,7 +10891,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Babylonica",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Babylonica', cursive",
 			provider: "google",
@@ -11681,7 +10905,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Bacasime Antique",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Bacasime Antique', serif",
 			provider: "google",
@@ -11696,7 +10919,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Bad Script",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Bad Script', cursive",
 			provider: "google",
@@ -11711,7 +10933,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Bagel Fat One",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Bagel Fat One', sans-serif",
 			provider: "google",
@@ -11726,7 +10947,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Bahiana",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Bahiana', sans-serif",
 			provider: "google",
@@ -11741,7 +10961,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Bahianita",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Bahianita', sans-serif",
 			provider: "google",
@@ -11756,7 +10975,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Bakbak One",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Bakbak One', sans-serif",
 			provider: "google",
@@ -11771,7 +10989,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Ballet",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Ballet', cursive",
 			provider: "google",
@@ -11786,7 +11003,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Baloo 2",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Baloo 2', sans-serif",
 			provider: "google",
@@ -11801,7 +11017,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Baloo Bhai 2",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Baloo Bhai 2', sans-serif",
 			provider: "google",
@@ -11816,7 +11031,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Baloo Bhaijaan 2",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Baloo Bhaijaan 2', sans-serif",
 			provider: "google",
@@ -11831,7 +11045,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Baloo Bhaina 2",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Baloo Bhaina 2', sans-serif",
 			provider: "google",
@@ -11846,7 +11059,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Baloo Chettan 2",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Baloo Chettan 2', sans-serif",
 			provider: "google",
@@ -11861,7 +11073,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Baloo Da 2",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Baloo Da 2', sans-serif",
 			provider: "google",
@@ -11876,7 +11087,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Baloo Paaji 2",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Baloo Paaji 2', sans-serif",
 			provider: "google",
@@ -11891,7 +11101,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Baloo Tamma 2",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Baloo Tamma 2', sans-serif",
 			provider: "google",
@@ -11906,7 +11115,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Baloo Tammudu 2",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Baloo Tammudu 2', sans-serif",
 			provider: "google",
@@ -11921,7 +11129,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Baloo Thambi 2",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Baloo Thambi 2', sans-serif",
 			provider: "google",
@@ -11936,7 +11143,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Balsamiq Sans",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Balsamiq Sans', sans-serif",
 			provider: "google",
@@ -11951,7 +11157,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Balthazar",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Balthazar', serif",
 			provider: "google",
@@ -11966,7 +11171,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Bangers",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Bangers', sans-serif",
 			provider: "google",
@@ -11981,7 +11185,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Barriecito",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Barriecito', sans-serif",
 			provider: "google",
@@ -11996,7 +11199,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Barrio",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Barrio', sans-serif",
 			provider: "google",
@@ -12011,7 +11213,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Baskervville",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Baskervville', serif",
 			provider: "google",
@@ -12026,7 +11227,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Battambang",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Battambang', sans-serif",
 			provider: "google",
@@ -12041,7 +11241,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Baumans",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Baumans', sans-serif",
 			provider: "google",
@@ -12056,7 +11255,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Beau Rivage",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Beau Rivage', cursive",
 			provider: "google",
@@ -12071,7 +11269,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Belgrano",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Belgrano', serif",
 			provider: "google",
@@ -12086,7 +11283,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Bellefair",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Bellefair', serif",
 			provider: "google",
@@ -12101,7 +11297,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Bellota",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Bellota', sans-serif",
 			provider: "google",
@@ -12116,7 +11311,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Bellota Text",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Bellota Text', sans-serif",
 			provider: "google",
@@ -12131,7 +11325,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Benne",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Benne', serif",
 			provider: "google",
@@ -12146,7 +11339,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Bentham",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Bentham', serif",
 			provider: "google",
@@ -12161,7 +11353,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Berkshire Swash",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Berkshire Swash', cursive",
 			provider: "google",
@@ -12176,7 +11367,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Besley",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Besley', serif",
 			provider: "google",
@@ -12191,7 +11381,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Beth Ellen",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Beth Ellen', cursive",
 			provider: "google",
@@ -12206,7 +11395,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Bevan",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Bevan', serif",
 			provider: "google",
@@ -12221,7 +11409,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "BhuTuka Expanded One",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'BhuTuka Expanded One', serif",
 			provider: "google",
@@ -12236,7 +11423,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Big Shoulders Display",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Big Shoulders Display', sans-serif",
 			provider: "google",
@@ -12251,7 +11437,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Big Shoulders Inline Display",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Big Shoulders Inline Display', sans-serif",
 			provider: "google",
@@ -12266,7 +11451,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Big Shoulders Inline Text",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Big Shoulders Inline Text', sans-serif",
 			provider: "google",
@@ -12281,7 +11465,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Big Shoulders Stencil Display",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Big Shoulders Stencil Display', sans-serif",
 			provider: "google",
@@ -12296,7 +11479,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Big Shoulders Stencil Text",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Big Shoulders Stencil Text', sans-serif",
 			provider: "google",
@@ -12311,7 +11493,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Big Shoulders Text",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Big Shoulders Text', sans-serif",
 			provider: "google",
@@ -12326,7 +11507,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Bigelow Rules",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Bigelow Rules', sans-serif",
 			provider: "google",
@@ -12341,7 +11521,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Bigshot One",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Bigshot One', sans-serif",
 			provider: "google",
@@ -12356,7 +11535,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Bilbo",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Bilbo', cursive",
 			provider: "google",
@@ -12371,7 +11549,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Bilbo Swash Caps",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Bilbo Swash Caps', cursive",
 			provider: "google",
@@ -12386,7 +11563,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "BioRhyme",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'BioRhyme', serif",
 			provider: "google",
@@ -12401,7 +11577,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "BioRhyme Expanded",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'BioRhyme Expanded', serif",
 			provider: "google",
@@ -12416,7 +11591,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Birthstone",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Birthstone', cursive",
 			provider: "google",
@@ -12431,7 +11605,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Birthstone Bounce",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Birthstone Bounce', cursive",
 			provider: "google",
@@ -12446,7 +11619,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Bitter",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Bitter', serif",
 			provider: "google",
@@ -12461,7 +11633,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Black And White Picture",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Black And White Picture', sans-serif",
 			provider: "google",
@@ -12476,7 +11647,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Black Ops One",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Black Ops One', sans-serif",
 			provider: "google",
@@ -12491,7 +11661,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Blaka",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Blaka', sans-serif",
 			provider: "google",
@@ -12506,7 +11675,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Blaka Hollow",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Blaka Hollow', sans-serif",
 			provider: "google",
@@ -12521,7 +11689,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Blaka Ink",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Blaka Ink', sans-serif",
 			provider: "google",
@@ -12536,7 +11703,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Bodoni Moda",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Bodoni Moda', serif",
 			provider: "google",
@@ -12551,7 +11717,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Bokor",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Bokor', sans-serif",
 			provider: "google",
@@ -12566,7 +11731,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Bona Nova",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Bona Nova', serif",
 			provider: "google",
@@ -12589,7 +11753,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Bonbon",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Bonbon', cursive",
 			provider: "google",
@@ -12604,7 +11767,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Bonheur Royale",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Bonheur Royale', cursive",
 			provider: "google",
@@ -12619,7 +11781,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Boogaloo",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Boogaloo', sans-serif",
 			provider: "google",
@@ -12634,7 +11795,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Borel",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Borel', cursive",
 			provider: "google",
@@ -12649,7 +11809,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Bowlby One",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Bowlby One', sans-serif",
 			provider: "google",
@@ -12664,7 +11823,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Bowlby One SC",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Bowlby One SC', sans-serif",
 			provider: "google",
@@ -12679,7 +11837,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Brawler",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Brawler', serif",
 			provider: "google",
@@ -12694,7 +11851,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Bree Serif",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Bree Serif', serif",
 			provider: "google",
@@ -12709,7 +11865,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Bruno Ace",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Bruno Ace', sans-serif",
 			provider: "google",
@@ -12724,7 +11879,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Bruno Ace SC",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Bruno Ace SC', sans-serif",
 			provider: "google",
@@ -12739,7 +11893,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Brygada 1918",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Brygada 1918', serif",
 			provider: "google",
@@ -12761,7 +11914,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Bubblegum Sans",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Bubblegum Sans', sans-serif",
 			provider: "google",
@@ -12776,7 +11928,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Buda",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Buda', sans-serif",
 			provider: "google",
@@ -12791,7 +11942,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Buenard",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Buenard', serif",
 			provider: "google",
@@ -12806,7 +11956,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Bungee",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Bungee', sans-serif",
 			provider: "google",
@@ -12821,7 +11970,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Bungee Hairline",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Bungee Hairline', sans-serif",
 			provider: "google",
@@ -12836,7 +11984,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Bungee Inline",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Bungee Inline', sans-serif",
 			provider: "google",
@@ -12851,7 +11998,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Bungee Outline",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Bungee Outline', sans-serif",
 			provider: "google",
@@ -12866,7 +12012,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Bungee Shade",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Bungee Shade', sans-serif",
 			provider: "google",
@@ -12881,7 +12026,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Bungee Spice",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Bungee Spice', sans-serif",
 			provider: "google",
@@ -12896,7 +12040,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Butcherman",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Butcherman', sans-serif",
 			provider: "google",
@@ -12911,7 +12054,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Butterfly Kids",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Butterfly Kids', cursive",
 			provider: "google",
@@ -12926,7 +12068,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Cabin Sketch",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Cabin Sketch', sans-serif",
 			provider: "google",
@@ -12941,7 +12082,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Caesar Dressing",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Caesar Dressing', sans-serif",
 			provider: "google",
@@ -12956,7 +12096,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Caladea",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Caladea', serif",
 			provider: "google",
@@ -12971,7 +12110,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Calistoga",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Calistoga', sans-serif",
 			provider: "google",
@@ -12986,7 +12124,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Calligraffitti",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Calligraffitti', cursive",
 			provider: "google",
@@ -13001,7 +12138,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Cambo",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Cambo', serif",
 			provider: "google",
@@ -13016,7 +12152,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Cantata One",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Cantata One', serif",
 			provider: "google",
@@ -13031,7 +12166,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Caprasimo",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Caprasimo', sans-serif",
 			provider: "google",
@@ -13046,7 +12180,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Caramel",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Caramel', cursive",
 			provider: "google",
@@ -13061,7 +12194,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Carattere",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Carattere', cursive",
 			provider: "google",
@@ -13076,7 +12208,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Cardo",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Cardo', serif",
 			provider: "google",
@@ -13091,7 +12222,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Carter One",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Carter One', sans-serif",
 			provider: "google",
@@ -13106,7 +12236,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Castoro",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Castoro', serif",
 			provider: "google",
@@ -13121,7 +12250,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Castoro Titling",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Castoro Titling', sans-serif",
 			provider: "google",
@@ -13136,7 +12264,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Caudex",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Caudex', serif",
 			provider: "google",
@@ -13151,7 +12278,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Caveat",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Caveat', cursive",
 			provider: "google",
@@ -13166,7 +12292,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Caveat Brush",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Caveat Brush', cursive",
 			provider: "google",
@@ -13181,7 +12306,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Cedarville Cursive",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Cedarville Cursive', cursive",
 			provider: "google",
@@ -13196,7 +12320,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Ceviche One",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Ceviche One', sans-serif",
 			provider: "google",
@@ -13211,7 +12334,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Changa One",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Changa One', sans-serif",
 			provider: "google",
@@ -13226,7 +12348,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Chango",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Chango', sans-serif",
 			provider: "google",
@@ -13241,7 +12362,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Charis SIL",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Charis SIL', serif",
 			provider: "google",
@@ -13256,7 +12376,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Charm",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Charm', cursive",
 			provider: "google",
@@ -13271,7 +12390,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Charmonman",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Charmonman', cursive",
 			provider: "google",
@@ -13286,7 +12404,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Chela One",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Chela One', sans-serif",
 			provider: "google",
@@ -13301,7 +12418,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Chelsea Market",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Chelsea Market', sans-serif",
 			provider: "google",
@@ -13316,7 +12432,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Chenla",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Chenla', sans-serif",
 			provider: "google",
@@ -13331,7 +12446,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Cherish",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Cherish', cursive",
 			provider: "google",
@@ -13346,7 +12460,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Cherry Bomb One",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Cherry Bomb One', sans-serif",
 			provider: "google",
@@ -13361,7 +12474,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Cherry Cream Soda",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Cherry Cream Soda', sans-serif",
 			provider: "google",
@@ -13376,7 +12488,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Cherry Swash",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Cherry Swash', sans-serif",
 			provider: "google",
@@ -13391,7 +12502,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Chewy",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Chewy', sans-serif",
 			provider: "google",
@@ -13406,7 +12516,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Chicle",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Chicle', sans-serif",
 			provider: "google",
@@ -13421,7 +12530,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Chilanka",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Chilanka', cursive",
 			provider: "google",
@@ -13436,7 +12544,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Chivo Mono",
 		type: "registry:font",
 		category: "monospace",
-		fontType: "monospace",
 		font: {
 			family: "'Chivo Mono', monospace",
 			provider: "google",
@@ -13451,7 +12558,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Chokokutai",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Chokokutai', sans-serif",
 			provider: "google",
@@ -13466,7 +12572,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Chonburi",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Chonburi', sans-serif",
 			provider: "google",
@@ -13481,7 +12586,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Cinzel",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Cinzel', serif",
 			provider: "google",
@@ -13496,7 +12600,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Cinzel Decorative",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Cinzel Decorative', sans-serif",
 			provider: "google",
@@ -13511,7 +12614,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Clicker Script",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Clicker Script', cursive",
 			provider: "google",
@@ -13526,7 +12628,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Climate Crisis",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Climate Crisis', sans-serif",
 			provider: "google",
@@ -13541,7 +12642,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Coda",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Coda', sans-serif",
 			provider: "google",
@@ -13556,7 +12656,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Coda Caption",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Coda Caption', sans-serif",
 			provider: "google",
@@ -13571,7 +12670,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Codystar",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Codystar', sans-serif",
 			provider: "google",
@@ -13586,7 +12684,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Coiny",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Coiny', sans-serif",
 			provider: "google",
@@ -13601,7 +12698,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Combo",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Combo', sans-serif",
 			provider: "google",
@@ -13616,7 +12712,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Comfortaa",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Comfortaa', sans-serif",
 			provider: "google",
@@ -13638,7 +12733,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Comforter",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Comforter', cursive",
 			provider: "google",
@@ -13653,7 +12747,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Comforter Brush",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Comforter Brush', cursive",
 			provider: "google",
@@ -13668,7 +12761,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Comic Neue",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Comic Neue', cursive",
 			provider: "google",
@@ -13683,7 +12775,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Coming Soon",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Coming Soon', cursive",
 			provider: "google",
@@ -13698,7 +12789,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Concert One",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Concert One', sans-serif",
 			provider: "google",
@@ -13713,7 +12803,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Condiment",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Condiment', cursive",
 			provider: "google",
@@ -13728,7 +12817,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Content",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Content', sans-serif",
 			provider: "google",
@@ -13743,7 +12831,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Contrail One",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Contrail One', sans-serif",
 			provider: "google",
@@ -13758,7 +12845,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Cookie",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Cookie', cursive",
 			provider: "google",
@@ -13773,7 +12859,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Copse",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Copse', serif",
 			provider: "google",
@@ -13788,7 +12873,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Corben",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Corben', sans-serif",
 			provider: "google",
@@ -13803,7 +12887,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Corinthia",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Corinthia', cursive",
 			provider: "google",
@@ -13818,7 +12901,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Cormorant",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Cormorant', serif",
 			provider: "google",
@@ -13833,7 +12915,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Cormorant Garamond",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Cormorant Garamond', serif",
 			provider: "google",
@@ -13848,7 +12929,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Cormorant Infant",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Cormorant Infant', serif",
 			provider: "google",
@@ -13863,7 +12943,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Cormorant SC",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Cormorant SC', serif",
 			provider: "google",
@@ -13878,7 +12957,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Cormorant Unicase",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Cormorant Unicase', serif",
 			provider: "google",
@@ -13893,7 +12971,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Cormorant Upright",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Cormorant Upright', serif",
 			provider: "google",
@@ -13908,7 +12985,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Courgette",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Courgette', cursive",
 			provider: "google",
@@ -13923,7 +12999,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Courier Prime",
 		type: "registry:font",
 		category: "monospace",
-		fontType: "monospace",
 		font: {
 			family: "'Courier Prime', monospace",
 			provider: "google",
@@ -13938,7 +13013,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Cousine",
 		type: "registry:font",
 		category: "monospace",
-		fontType: "monospace",
 		font: {
 			family: "'Cousine', monospace",
 			provider: "google",
@@ -13962,7 +13036,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Coustard",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Coustard', serif",
 			provider: "google",
@@ -13977,7 +13050,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Covered By Your Grace",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Covered By Your Grace', cursive",
 			provider: "google",
@@ -13992,7 +13064,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Crafty Girls",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Crafty Girls', cursive",
 			provider: "google",
@@ -14007,7 +13078,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Creepster",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Creepster', sans-serif",
 			provider: "google",
@@ -14022,7 +13092,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Crete Round",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Crete Round', serif",
 			provider: "google",
@@ -14037,7 +13106,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Crimson Pro",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Crimson Pro', serif",
 			provider: "google",
@@ -14052,7 +13120,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Crimson Text",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Crimson Text', serif",
 			provider: "google",
@@ -14067,7 +13134,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Croissant One",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Croissant One', sans-serif",
 			provider: "google",
@@ -14082,7 +13148,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Crushed",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Crushed', sans-serif",
 			provider: "google",
@@ -14097,7 +13162,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Cute Font",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Cute Font', sans-serif",
 			provider: "google",
@@ -14112,7 +13176,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Cutive",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Cutive', serif",
 			provider: "google",
@@ -14127,7 +13190,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Cutive Mono",
 		type: "registry:font",
 		category: "monospace",
-		fontType: "monospace",
 		font: {
 			family: "'Cutive Mono', monospace",
 			provider: "google",
@@ -14142,7 +13204,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "DM Mono",
 		type: "registry:font",
 		category: "monospace",
-		fontType: "monospace",
 		font: {
 			family: "'DM Mono', monospace",
 			provider: "google",
@@ -14157,7 +13218,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "DM Serif Display",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'DM Serif Display', serif",
 			provider: "google",
@@ -14172,7 +13232,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "DM Serif Text",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'DM Serif Text', serif",
 			provider: "google",
@@ -14187,7 +13246,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Dai Banna SIL",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Dai Banna SIL', serif",
 			provider: "google",
@@ -14202,7 +13260,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Damion",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Damion', cursive",
 			provider: "google",
@@ -14217,7 +13274,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Dancing Script",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Dancing Script', cursive",
 			provider: "google",
@@ -14232,7 +13288,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Dangrek",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Dangrek', sans-serif",
 			provider: "google",
@@ -14247,7 +13302,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Darumadrop One",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Darumadrop One', sans-serif",
 			provider: "google",
@@ -14262,7 +13316,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "David Libre",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'David Libre', serif",
 			provider: "google",
@@ -14277,7 +13330,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Dawning of a New Day",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Dawning of a New Day', cursive",
 			provider: "google",
@@ -14292,7 +13344,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Dekko",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Dekko', cursive",
 			provider: "google",
@@ -14307,7 +13358,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Dela Gothic One",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Dela Gothic One', sans-serif",
 			provider: "google",
@@ -14329,7 +13379,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Delicious Handrawn",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Delicious Handrawn', cursive",
 			provider: "google",
@@ -14344,7 +13393,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Delius",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Delius', cursive",
 			provider: "google",
@@ -14359,7 +13407,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Delius Swash Caps",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Delius Swash Caps', cursive",
 			provider: "google",
@@ -14374,7 +13421,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Delius Unicase",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Delius Unicase', cursive",
 			provider: "google",
@@ -14389,7 +13435,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Della Respira",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Della Respira', serif",
 			provider: "google",
@@ -14404,7 +13449,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Devonshire",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Devonshire', cursive",
 			provider: "google",
@@ -14419,7 +13463,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Diphylleia",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Diphylleia', serif",
 			provider: "google",
@@ -14434,7 +13477,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Diplomata",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Diplomata', sans-serif",
 			provider: "google",
@@ -14449,7 +13491,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Diplomata SC",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Diplomata SC', sans-serif",
 			provider: "google",
@@ -14464,7 +13505,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Dokdo",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Dokdo', sans-serif",
 			provider: "google",
@@ -14479,7 +13519,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Domine",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Domine', serif",
 			provider: "google",
@@ -14494,7 +13533,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Donegal One",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Donegal One', serif",
 			provider: "google",
@@ -14509,7 +13547,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Dr Sugiyama",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Dr Sugiyama', cursive",
 			provider: "google",
@@ -14524,7 +13561,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "DynaPuff",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'DynaPuff', sans-serif",
 			provider: "google",
@@ -14539,7 +13575,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Dynalight",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Dynalight', sans-serif",
 			provider: "google",
@@ -14554,7 +13589,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "EB Garamond",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'EB Garamond', serif",
 			provider: "google",
@@ -14577,7 +13611,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Eagle Lake",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Eagle Lake', cursive",
 			provider: "google",
@@ -14592,7 +13625,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "East Sea Dokdo",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'East Sea Dokdo', cursive",
 			provider: "google",
@@ -14607,7 +13639,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Eater",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Eater', sans-serif",
 			provider: "google",
@@ -14622,7 +13653,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Eczar",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Eczar', serif",
 			provider: "google",
@@ -14637,7 +13667,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Edu NSW ACT Foundation",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Edu NSW ACT Foundation', cursive",
 			provider: "google",
@@ -14652,7 +13681,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Edu QLD Beginner",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Edu QLD Beginner', cursive",
 			provider: "google",
@@ -14667,7 +13695,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Edu SA Beginner",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Edu SA Beginner', cursive",
 			provider: "google",
@@ -14682,7 +13709,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Edu TAS Beginner",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Edu TAS Beginner', cursive",
 			provider: "google",
@@ -14697,7 +13723,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Edu VIC WA NT Beginner",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Edu VIC WA NT Beginner', cursive",
 			provider: "google",
@@ -14712,7 +13737,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Elsie",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Elsie', sans-serif",
 			provider: "google",
@@ -14727,7 +13751,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Elsie Swash Caps",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Elsie Swash Caps', sans-serif",
 			provider: "google",
@@ -14742,7 +13765,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Emblema One",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Emblema One', sans-serif",
 			provider: "google",
@@ -14757,7 +13779,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Emilys Candy",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Emilys Candy', sans-serif",
 			provider: "google",
@@ -14772,7 +13793,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Engagement",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Engagement', cursive",
 			provider: "google",
@@ -14787,7 +13807,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Enriqueta",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Enriqueta', serif",
 			provider: "google",
@@ -14802,7 +13821,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Ephesis",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Ephesis', cursive",
 			provider: "google",
@@ -14817,7 +13835,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Erica One",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Erica One', sans-serif",
 			provider: "google",
@@ -14832,7 +13849,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Esteban",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Esteban', serif",
 			provider: "google",
@@ -14847,7 +13863,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Estonia",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Estonia', cursive",
 			provider: "google",
@@ -14862,7 +13877,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Euphoria Script",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Euphoria Script', cursive",
 			provider: "google",
@@ -14877,7 +13891,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Ewert",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Ewert', sans-serif",
 			provider: "google",
@@ -14892,7 +13905,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Expletus Sans",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Expletus Sans', sans-serif",
 			provider: "google",
@@ -14907,7 +13919,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Explora",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Explora', cursive",
 			provider: "google",
@@ -14922,7 +13933,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Fanwood Text",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Fanwood Text', serif",
 			provider: "google",
@@ -14937,7 +13947,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Farsan",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Farsan', sans-serif",
 			provider: "google",
@@ -14952,7 +13961,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Fascinate",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Fascinate', sans-serif",
 			provider: "google",
@@ -14967,7 +13975,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Fascinate Inline",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Fascinate Inline', sans-serif",
 			provider: "google",
@@ -14982,7 +13989,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Faster One",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Faster One', sans-serif",
 			provider: "google",
@@ -14997,7 +14003,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Fasthand",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Fasthand', sans-serif",
 			provider: "google",
@@ -15012,7 +14017,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Fauna One",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Fauna One', serif",
 			provider: "google",
@@ -15027,7 +14031,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Faustina",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Faustina', serif",
 			provider: "google",
@@ -15042,7 +14045,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Federant",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Federant', sans-serif",
 			provider: "google",
@@ -15057,7 +14059,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Felipa",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Felipa', cursive",
 			provider: "google",
@@ -15072,7 +14073,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Fenix",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Fenix', serif",
 			provider: "google",
@@ -15087,7 +14087,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Festive",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Festive', cursive",
 			provider: "google",
@@ -15102,7 +14101,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Finger Paint",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Finger Paint', sans-serif",
 			provider: "google",
@@ -15117,7 +14115,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Fira Code",
 		type: "registry:font",
 		category: "monospace",
-		fontType: "monospace",
 		font: {
 			family: "'Fira Code', monospace",
 			provider: "google",
@@ -15139,7 +14136,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Fira Mono",
 		type: "registry:font",
 		category: "monospace",
-		fontType: "monospace",
 		font: {
 			family: "'Fira Mono', monospace",
 			provider: "google",
@@ -15161,7 +14157,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Fjord One",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Fjord One', serif",
 			provider: "google",
@@ -15176,7 +14171,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Flamenco",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Flamenco', sans-serif",
 			provider: "google",
@@ -15191,7 +14185,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Flavors",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Flavors', sans-serif",
 			provider: "google",
@@ -15206,7 +14199,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Fleur De Leah",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Fleur De Leah', cursive",
 			provider: "google",
@@ -15221,7 +14213,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Flow Block",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Flow Block', sans-serif",
 			provider: "google",
@@ -15236,7 +14227,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Flow Circular",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Flow Circular', sans-serif",
 			provider: "google",
@@ -15251,7 +14241,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Flow Rounded",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Flow Rounded', sans-serif",
 			provider: "google",
@@ -15266,7 +14255,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Foldit",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Foldit', sans-serif",
 			provider: "google",
@@ -15281,7 +14269,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Fondamento",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Fondamento', cursive",
 			provider: "google",
@@ -15296,7 +14283,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Fontdiner Swanky",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Fontdiner Swanky', sans-serif",
 			provider: "google",
@@ -15311,7 +14297,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Forum",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Forum', sans-serif",
 			provider: "google",
@@ -15326,7 +14311,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Fragment Mono",
 		type: "registry:font",
 		category: "monospace",
-		fontType: "monospace",
 		font: {
 			family: "'Fragment Mono', monospace",
 			provider: "google",
@@ -15341,7 +14325,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Frank Ruhl Libre",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Frank Ruhl Libre', serif",
 			provider: "google",
@@ -15356,7 +14339,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Fraunces",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Fraunces', serif",
 			provider: "google",
@@ -15371,7 +14353,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Freckle Face",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Freckle Face', sans-serif",
 			provider: "google",
@@ -15386,7 +14367,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Fredericka the Great",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Fredericka the Great', sans-serif",
 			provider: "google",
@@ -15401,7 +14381,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Freehand",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Freehand', sans-serif",
 			provider: "google",
@@ -15416,7 +14395,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Frijole",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Frijole', sans-serif",
 			provider: "google",
@@ -15431,7 +14409,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Fruktur",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Fruktur', sans-serif",
 			provider: "google",
@@ -15446,7 +14423,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Fugaz One",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Fugaz One', sans-serif",
 			provider: "google",
@@ -15461,7 +14437,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Fuggles",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Fuggles', cursive",
 			provider: "google",
@@ -15476,7 +14451,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Fuzzy Bubbles",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Fuzzy Bubbles', cursive",
 			provider: "google",
@@ -15491,7 +14465,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "GFS Didot",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'GFS Didot', serif",
 			provider: "google",
@@ -15506,7 +14479,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Gabarito",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Gabarito', sans-serif",
 			provider: "google",
@@ -15521,7 +14493,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Gabriela",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Gabriela', serif",
 			provider: "google",
@@ -15536,7 +14507,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Gaegu",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Gaegu', cursive",
 			provider: "google",
@@ -15551,7 +14521,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Gajraj One",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Gajraj One', sans-serif",
 			provider: "google",
@@ -15566,7 +14535,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Galada",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Galada', sans-serif",
 			provider: "google",
@@ -15581,7 +14549,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Galindo",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Galindo', sans-serif",
 			provider: "google",
@@ -15596,7 +14563,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Gamja Flower",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Gamja Flower', cursive",
 			provider: "google",
@@ -15611,7 +14577,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Gelasio",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Gelasio', serif",
 			provider: "google",
@@ -15626,7 +14591,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Gentium Book Plus",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Gentium Book Plus', serif",
 			provider: "google",
@@ -15649,7 +14613,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Gentium Plus",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Gentium Plus', serif",
 			provider: "google",
@@ -15672,7 +14635,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Geostar",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Geostar', sans-serif",
 			provider: "google",
@@ -15687,7 +14649,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Geostar Fill",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Geostar Fill', sans-serif",
 			provider: "google",
@@ -15702,7 +14663,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Germania One",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Germania One', sans-serif",
 			provider: "google",
@@ -15717,7 +14677,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Gideon Roman",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Gideon Roman', sans-serif",
 			provider: "google",
@@ -15732,7 +14691,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Gilda Display",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Gilda Display', serif",
 			provider: "google",
@@ -15747,7 +14705,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Girassol",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Girassol', sans-serif",
 			provider: "google",
@@ -15762,7 +14719,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Give You Glory",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Give You Glory', cursive",
 			provider: "google",
@@ -15777,7 +14733,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Glass Antiqua",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Glass Antiqua', sans-serif",
 			provider: "google",
@@ -15792,7 +14747,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Glegoo",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Glegoo', serif",
 			provider: "google",
@@ -15807,7 +14761,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Gloock",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Gloock', serif",
 			provider: "google",
@@ -15822,7 +14775,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Gloria Hallelujah",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Gloria Hallelujah', cursive",
 			provider: "google",
@@ -15837,7 +14789,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Gluten",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Gluten', sans-serif",
 			provider: "google",
@@ -15852,7 +14803,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Goblin One",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Goblin One', sans-serif",
 			provider: "google",
@@ -15867,7 +14817,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Gochi Hand",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Gochi Hand', cursive",
 			provider: "google",
@@ -15882,7 +14831,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Goldman",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Goldman', sans-serif",
 			provider: "google",
@@ -15897,7 +14845,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Gorditas",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Gorditas', sans-serif",
 			provider: "google",
@@ -15912,7 +14859,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Goudy Bookletter 1911",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Goudy Bookletter 1911', serif",
 			provider: "google",
@@ -15927,7 +14873,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Gowun Batang",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Gowun Batang', serif",
 			provider: "google",
@@ -15942,7 +14887,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Graduate",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Graduate', serif",
 			provider: "google",
@@ -15957,7 +14901,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Grand Hotel",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Grand Hotel', cursive",
 			provider: "google",
@@ -15972,7 +14915,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Grandiflora One",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Grandiflora One', serif",
 			provider: "google",
@@ -15987,7 +14929,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Grandstander",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Grandstander', sans-serif",
 			provider: "google",
@@ -16002,7 +14943,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Grape Nuts",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Grape Nuts', cursive",
 			provider: "google",
@@ -16017,7 +14957,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Gravitas One",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Gravitas One', sans-serif",
 			provider: "google",
@@ -16032,7 +14971,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Great Vibes",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Great Vibes', cursive",
 			provider: "google",
@@ -16047,7 +14985,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Grechen Fuemen",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Grechen Fuemen', cursive",
 			provider: "google",
@@ -16062,7 +14999,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Grenze",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Grenze', serif",
 			provider: "google",
@@ -16077,7 +15013,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Grenze Gotisch",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Grenze Gotisch', sans-serif",
 			provider: "google",
@@ -16092,7 +15027,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Grey Qo",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Grey Qo', cursive",
 			provider: "google",
@@ -16107,7 +15041,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Griffy",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Griffy', sans-serif",
 			provider: "google",
@@ -16122,7 +15055,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Gugi",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Gugi', sans-serif",
 			provider: "google",
@@ -16137,7 +15069,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Gulzar",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Gulzar', serif",
 			provider: "google",
@@ -16152,7 +15083,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Gupter",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Gupter', serif",
 			provider: "google",
@@ -16167,7 +15097,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Gwendolyn",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Gwendolyn', cursive",
 			provider: "google",
@@ -16182,7 +15111,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Habibi",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Habibi', serif",
 			provider: "google",
@@ -16197,7 +15125,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Hachi Maru Pop",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Hachi Maru Pop', cursive",
 			provider: "google",
@@ -16212,7 +15139,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Hahmlet",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Hahmlet', serif",
 			provider: "google",
@@ -16227,7 +15153,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Halant",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Halant', serif",
 			provider: "google",
@@ -16242,7 +15167,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Hanalei",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Hanalei', sans-serif",
 			provider: "google",
@@ -16257,7 +15181,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Hanalei Fill",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Hanalei Fill', sans-serif",
 			provider: "google",
@@ -16272,7 +15195,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Handjet",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Handjet', sans-serif",
 			provider: "google",
@@ -16297,7 +15219,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Handlee",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Handlee', cursive",
 			provider: "google",
@@ -16312,7 +15233,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Hanuman",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Hanuman', serif",
 			provider: "google",
@@ -16327,7 +15247,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Happy Monkey",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Happy Monkey', sans-serif",
 			provider: "google",
@@ -16342,7 +15261,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Headland One",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Headland One', serif",
 			provider: "google",
@@ -16357,7 +15275,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Henny Penny",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Henny Penny', sans-serif",
 			provider: "google",
@@ -16372,7 +15289,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Hepta Slab",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Hepta Slab', serif",
 			provider: "google",
@@ -16387,7 +15303,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Herr Von Muellerhoff",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Herr Von Muellerhoff', cursive",
 			provider: "google",
@@ -16402,7 +15317,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Hi Melody",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Hi Melody', cursive",
 			provider: "google",
@@ -16417,7 +15331,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Hina Mincho",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Hina Mincho', serif",
 			provider: "google",
@@ -16432,7 +15345,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Holtwood One SC",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Holtwood One SC', serif",
 			provider: "google",
@@ -16447,7 +15359,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Homemade Apple",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Homemade Apple', cursive",
 			provider: "google",
@@ -16462,7 +15373,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Hurricane",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Hurricane', cursive",
 			provider: "google",
@@ -16477,7 +15387,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "IBM Plex Mono",
 		type: "registry:font",
 		category: "monospace",
-		fontType: "monospace",
 		font: {
 			family: "'IBM Plex Mono', monospace",
 			provider: "google",
@@ -16492,7 +15401,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "IBM Plex Serif",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'IBM Plex Serif', serif",
 			provider: "google",
@@ -16507,7 +15415,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "IM Fell DW Pica",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'IM Fell DW Pica', serif",
 			provider: "google",
@@ -16522,7 +15429,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "IM Fell DW Pica SC",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'IM Fell DW Pica SC', serif",
 			provider: "google",
@@ -16537,7 +15443,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "IM Fell Double Pica",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'IM Fell Double Pica', serif",
 			provider: "google",
@@ -16552,7 +15457,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "IM Fell Double Pica SC",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'IM Fell Double Pica SC', serif",
 			provider: "google",
@@ -16567,7 +15471,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "IM Fell English",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'IM Fell English', serif",
 			provider: "google",
@@ -16582,7 +15485,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "IM Fell English SC",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'IM Fell English SC', serif",
 			provider: "google",
@@ -16597,7 +15499,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "IM Fell French Canon",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'IM Fell French Canon', serif",
 			provider: "google",
@@ -16612,7 +15513,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "IM Fell French Canon SC",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'IM Fell French Canon SC', serif",
 			provider: "google",
@@ -16627,7 +15527,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "IM Fell Great Primer",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'IM Fell Great Primer', serif",
 			provider: "google",
@@ -16642,7 +15541,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "IM Fell Great Primer SC",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'IM Fell Great Primer SC', serif",
 			provider: "google",
@@ -16657,7 +15555,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Ibarra Real Nova",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Ibarra Real Nova', serif",
 			provider: "google",
@@ -16672,7 +15569,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Iceberg",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Iceberg', sans-serif",
 			provider: "google",
@@ -16687,7 +15583,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Iceland",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Iceland', sans-serif",
 			provider: "google",
@@ -16702,7 +15597,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Imbue",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Imbue', serif",
 			provider: "google",
@@ -16717,7 +15611,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Imperial Script",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Imperial Script', cursive",
 			provider: "google",
@@ -16732,7 +15625,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Inconsolata",
 		type: "registry:font",
 		category: "monospace",
-		fontType: "monospace",
 		font: {
 			family: "'Inconsolata', monospace",
 			provider: "google",
@@ -16747,7 +15639,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Indie Flower",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Indie Flower', cursive",
 			provider: "google",
@@ -16762,7 +15653,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Ingrid Darling",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Ingrid Darling', cursive",
 			provider: "google",
@@ -16777,7 +15667,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Inika",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Inika', serif",
 			provider: "google",
@@ -16792,7 +15681,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Inknut Antiqua",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Inknut Antiqua', serif",
 			provider: "google",
@@ -16807,7 +15695,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Inria Serif",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Inria Serif', serif",
 			provider: "google",
@@ -16822,7 +15709,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Inspiration",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Inspiration', cursive",
 			provider: "google",
@@ -16837,7 +15723,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Instrument Serif",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Instrument Serif', serif",
 			provider: "google",
@@ -16852,7 +15737,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Irish Grover",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Irish Grover', sans-serif",
 			provider: "google",
@@ -16867,7 +15751,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Island Moments",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Island Moments', cursive",
 			provider: "google",
@@ -16882,7 +15765,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Italianno",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Italianno', cursive",
 			provider: "google",
@@ -16897,7 +15779,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Itim",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Itim', cursive",
 			provider: "google",
@@ -16912,7 +15793,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Jacques Francois",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Jacques Francois', serif",
 			provider: "google",
@@ -16927,7 +15807,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Jacques Francois Shadow",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Jacques Francois Shadow', sans-serif",
 			provider: "google",
@@ -16942,7 +15821,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "JetBrains Mono",
 		type: "registry:font",
 		category: "monospace",
-		fontType: "monospace",
 		font: {
 			family: "'JetBrains Mono', monospace",
 			provider: "google",
@@ -16964,7 +15842,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Jim Nightshade",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Jim Nightshade', cursive",
 			provider: "google",
@@ -16979,7 +15856,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Joan",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Joan', serif",
 			provider: "google",
@@ -16994,7 +15870,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Jolly Lodger",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Jolly Lodger', sans-serif",
 			provider: "google",
@@ -17009,7 +15884,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Jomhuria",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Jomhuria', sans-serif",
 			provider: "google",
@@ -17024,7 +15898,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Jomolhari",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Jomolhari', serif",
 			provider: "google",
@@ -17039,7 +15912,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Josefin Slab",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Josefin Slab', serif",
 			provider: "google",
@@ -17054,7 +15926,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Joti One",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Joti One', sans-serif",
 			provider: "google",
@@ -17069,7 +15940,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Judson",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Judson', serif",
 			provider: "google",
@@ -17084,7 +15954,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Julee",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Julee', cursive",
 			provider: "google",
@@ -17099,7 +15968,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Junge",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Junge', serif",
 			provider: "google",
@@ -17114,7 +15982,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Just Another Hand",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Just Another Hand', cursive",
 			provider: "google",
@@ -17129,7 +15996,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Just Me Again Down Here",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Just Me Again Down Here', cursive",
 			provider: "google",
@@ -17144,7 +16010,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Kablammo",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Kablammo', sans-serif",
 			provider: "google",
@@ -17159,7 +16024,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Kadwa",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Kadwa', serif",
 			provider: "google",
@@ -17174,7 +16038,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Kaisei Decol",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Kaisei Decol', serif",
 			provider: "google",
@@ -17189,7 +16052,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Kaisei HarunoUmi",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Kaisei HarunoUmi', serif",
 			provider: "google",
@@ -17204,7 +16066,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Kaisei Opti",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Kaisei Opti', serif",
 			provider: "google",
@@ -17219,7 +16080,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Kaisei Tokumin",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Kaisei Tokumin', serif",
 			provider: "google",
@@ -17234,7 +16094,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Kalam",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Kalam', cursive",
 			provider: "google",
@@ -17249,7 +16108,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Kameron",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Kameron', serif",
 			provider: "google",
@@ -17264,7 +16122,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Karantina",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Karantina', sans-serif",
 			provider: "google",
@@ -17279,7 +16136,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Karma",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Karma', serif",
 			provider: "google",
@@ -17294,7 +16150,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Katibeh",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Katibeh', sans-serif",
 			provider: "google",
@@ -17309,7 +16164,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Kaushan Script",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Kaushan Script', cursive",
 			provider: "google",
@@ -17324,7 +16178,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Kavivanar",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Kavivanar', cursive",
 			provider: "google",
@@ -17339,7 +16192,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Kavoon",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Kavoon', sans-serif",
 			provider: "google",
@@ -17354,7 +16206,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Keania One",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Keania One', sans-serif",
 			provider: "google",
@@ -17369,7 +16220,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Kelly Slab",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Kelly Slab', sans-serif",
 			provider: "google",
@@ -17384,7 +16234,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Kenia",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Kenia', sans-serif",
 			provider: "google",
@@ -17399,7 +16248,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Kings",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Kings', cursive",
 			provider: "google",
@@ -17414,7 +16262,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Kirang Haerang",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Kirang Haerang', sans-serif",
 			provider: "google",
@@ -17429,7 +16276,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Kiwi Maru",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Kiwi Maru', serif",
 			provider: "google",
@@ -17444,7 +16290,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Klee One",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Klee One', cursive",
 			provider: "google",
@@ -17459,7 +16304,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Knewave",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Knewave', sans-serif",
 			provider: "google",
@@ -17474,7 +16318,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Koh Santepheap",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Koh Santepheap', serif",
 			provider: "google",
@@ -17489,7 +16332,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Kolker Brush",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Kolker Brush', cursive",
 			provider: "google",
@@ -17504,7 +16346,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Konkhmer Sleokchher",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Konkhmer Sleokchher', sans-serif",
 			provider: "google",
@@ -17519,7 +16360,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Kotta One",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Kotta One', serif",
 			provider: "google",
@@ -17534,7 +16374,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Koulen",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Koulen', sans-serif",
 			provider: "google",
@@ -17549,7 +16388,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Kranky",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Kranky', sans-serif",
 			provider: "google",
@@ -17564,7 +16402,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Kreon",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Kreon', serif",
 			provider: "google",
@@ -17579,7 +16416,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Kristi",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Kristi', cursive",
 			provider: "google",
@@ -17594,7 +16430,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Kumar One",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Kumar One', sans-serif",
 			provider: "google",
@@ -17609,7 +16444,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Kumar One Outline",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Kumar One Outline', sans-serif",
 			provider: "google",
@@ -17624,7 +16458,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Kurale",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Kurale', serif",
 			provider: "google",
@@ -17639,7 +16472,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "La Belle Aurore",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'La Belle Aurore', cursive",
 			provider: "google",
@@ -17654,7 +16486,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Labrada",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Labrada', serif",
 			provider: "google",
@@ -17669,7 +16500,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Lacquer",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Lacquer', sans-serif",
 			provider: "google",
@@ -17684,7 +16514,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Laila",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Laila', sans-serif",
 			provider: "google",
@@ -17699,7 +16528,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Lakki Reddy",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Lakki Reddy', cursive",
 			provider: "google",
@@ -17714,7 +16542,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Lancelot",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Lancelot', sans-serif",
 			provider: "google",
@@ -17729,7 +16556,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Langar",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Langar', sans-serif",
 			provider: "google",
@@ -17744,7 +16570,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Lateef",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Lateef', serif",
 			provider: "google",
@@ -17759,7 +16584,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Lavishly Yours",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Lavishly Yours', cursive",
 			provider: "google",
@@ -17774,7 +16598,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "League Script",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'League Script', cursive",
 			provider: "google",
@@ -17789,7 +16612,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Leckerli One",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Leckerli One', cursive",
 			provider: "google",
@@ -17804,7 +16626,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Ledger",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Ledger', serif",
 			provider: "google",
@@ -17819,7 +16640,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Lekton",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Lekton', sans-serif",
 			provider: "google",
@@ -17834,7 +16654,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Lemon",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Lemon', sans-serif",
 			provider: "google",
@@ -17849,7 +16668,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Lemonada",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Lemonada', sans-serif",
 			provider: "google",
@@ -17864,7 +16682,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Libre Barcode 128",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Libre Barcode 128', sans-serif",
 			provider: "google",
@@ -17879,7 +16696,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Libre Barcode 128 Text",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Libre Barcode 128 Text', sans-serif",
 			provider: "google",
@@ -17894,7 +16710,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Libre Barcode 39",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Libre Barcode 39', sans-serif",
 			provider: "google",
@@ -17909,7 +16724,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Libre Barcode 39 Extended",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Libre Barcode 39 Extended', sans-serif",
 			provider: "google",
@@ -17924,7 +16738,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Libre Barcode 39 Extended Text",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Libre Barcode 39 Extended Text', sans-serif",
 			provider: "google",
@@ -17939,7 +16752,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Libre Barcode 39 Text",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Libre Barcode 39 Text', sans-serif",
 			provider: "google",
@@ -17954,7 +16766,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Libre Barcode EAN13 Text",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Libre Barcode EAN13 Text', sans-serif",
 			provider: "google",
@@ -17969,7 +16780,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Libre Baskerville",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Libre Baskerville', serif",
 			provider: "google",
@@ -17984,7 +16794,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Libre Bodoni",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Libre Bodoni', serif",
 			provider: "google",
@@ -17999,7 +16808,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Libre Caslon Display",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Libre Caslon Display', serif",
 			provider: "google",
@@ -18014,7 +16822,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Libre Caslon Text",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Libre Caslon Text', serif",
 			provider: "google",
@@ -18029,7 +16836,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Licorice",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Licorice', cursive",
 			provider: "google",
@@ -18044,7 +16850,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Life Savers",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Life Savers', sans-serif",
 			provider: "google",
@@ -18059,7 +16864,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Lilita One",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Lilita One', sans-serif",
 			provider: "google",
@@ -18074,7 +16878,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Lily Script One",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Lily Script One', sans-serif",
 			provider: "google",
@@ -18089,7 +16892,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Limelight",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Limelight', sans-serif",
 			provider: "google",
@@ -18104,7 +16906,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Linden Hill",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Linden Hill', serif",
 			provider: "google",
@@ -18119,7 +16920,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Lisu Bosa",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Lisu Bosa', serif",
 			provider: "google",
@@ -18134,7 +16934,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Literata",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Literata', serif",
 			provider: "google",
@@ -18157,7 +16956,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Liu Jian Mao Cao",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Liu Jian Mao Cao', cursive",
 			provider: "google",
@@ -18172,7 +16970,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Lobster",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Lobster', sans-serif",
 			provider: "google",
@@ -18187,7 +16984,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Lobster Two",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Lobster Two', sans-serif",
 			provider: "google",
@@ -18202,7 +16998,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Londrina Outline",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Londrina Outline', sans-serif",
 			provider: "google",
@@ -18217,7 +17012,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Londrina Shadow",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Londrina Shadow', sans-serif",
 			provider: "google",
@@ -18232,7 +17026,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Londrina Sketch",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Londrina Sketch', sans-serif",
 			provider: "google",
@@ -18247,7 +17040,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Londrina Solid",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Londrina Solid', sans-serif",
 			provider: "google",
@@ -18262,7 +17054,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Long Cang",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Long Cang', cursive",
 			provider: "google",
@@ -18277,7 +17068,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Lora",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Lora', serif",
 			provider: "google",
@@ -18292,7 +17082,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Love Light",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Love Light', cursive",
 			provider: "google",
@@ -18307,7 +17096,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Love Ya Like A Sister",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Love Ya Like A Sister', sans-serif",
 			provider: "google",
@@ -18322,7 +17110,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Loved by the King",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Loved by the King', cursive",
 			provider: "google",
@@ -18337,7 +17124,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Lovers Quarrel",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Lovers Quarrel', cursive",
 			provider: "google",
@@ -18352,7 +17138,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Luckiest Guy",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Luckiest Guy', sans-serif",
 			provider: "google",
@@ -18367,7 +17152,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Lugrasimo",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Lugrasimo', cursive",
 			provider: "google",
@@ -18382,7 +17166,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Lumanosimo",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Lumanosimo', cursive",
 			provider: "google",
@@ -18397,7 +17180,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Lusitana",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Lusitana', serif",
 			provider: "google",
@@ -18412,7 +17194,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Lustria",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Lustria', serif",
 			provider: "google",
@@ -18427,7 +17208,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Luxurious Roman",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Luxurious Roman', sans-serif",
 			provider: "google",
@@ -18442,7 +17222,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Luxurious Script",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Luxurious Script', cursive",
 			provider: "google",
@@ -18457,7 +17236,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "M PLUS 1 Code",
 		type: "registry:font",
 		category: "monospace",
-		fontType: "monospace",
 		font: {
 			family: "'M PLUS 1 Code', monospace",
 			provider: "google",
@@ -18472,7 +17250,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Ma Shan Zheng",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Ma Shan Zheng', cursive",
 			provider: "google",
@@ -18487,7 +17264,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Macondo",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Macondo', sans-serif",
 			provider: "google",
@@ -18502,7 +17278,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Macondo Swash Caps",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Macondo Swash Caps', sans-serif",
 			provider: "google",
@@ -18517,7 +17292,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Maiden Orange",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Maiden Orange', serif",
 			provider: "google",
@@ -18532,7 +17306,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Maitree",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Maitree', serif",
 			provider: "google",
@@ -18547,7 +17320,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Major Mono Display",
 		type: "registry:font",
 		category: "monospace",
-		fontType: "monospace",
 		font: {
 			family: "'Major Mono Display', monospace",
 			provider: "google",
@@ -18562,7 +17334,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Mali",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Mali', cursive",
 			provider: "google",
@@ -18577,7 +17348,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Mansalva",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Mansalva', cursive",
 			provider: "google",
@@ -18592,7 +17362,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Manuale",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Manuale', serif",
 			provider: "google",
@@ -18607,7 +17376,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Marcellus",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Marcellus', serif",
 			provider: "google",
@@ -18622,7 +17390,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Marcellus SC",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Marcellus SC', serif",
 			provider: "google",
@@ -18637,7 +17404,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Marck Script",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Marck Script', cursive",
 			provider: "google",
@@ -18652,7 +17418,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Margarine",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Margarine', sans-serif",
 			provider: "google",
@@ -18667,7 +17432,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Marhey",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Marhey', sans-serif",
 			provider: "google",
@@ -18682,7 +17446,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Markazi Text",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Markazi Text', serif",
 			provider: "google",
@@ -18697,7 +17460,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Marko One",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Marko One', serif",
 			provider: "google",
@@ -18712,7 +17474,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Martel",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Martel', serif",
 			provider: "google",
@@ -18727,7 +17488,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Martian Mono",
 		type: "registry:font",
 		category: "monospace",
-		fontType: "monospace",
 		font: {
 			family: "'Martian Mono', monospace",
 			provider: "google",
@@ -18742,7 +17502,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Mate",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Mate', serif",
 			provider: "google",
@@ -18757,7 +17516,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Mate SC",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Mate SC', serif",
 			provider: "google",
@@ -18772,7 +17530,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Material Icons Outlined",
 		type: "registry:font",
 		category: "monospace",
-		fontType: "monospace",
 		font: {
 			family: "'Material Icons Outlined', monospace",
 			provider: "google",
@@ -18787,7 +17544,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Material Icons Round",
 		type: "registry:font",
 		category: "monospace",
-		fontType: "monospace",
 		font: {
 			family: "'Material Icons Round', monospace",
 			provider: "google",
@@ -18802,7 +17558,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Material Icons Sharp",
 		type: "registry:font",
 		category: "monospace",
-		fontType: "monospace",
 		font: {
 			family: "'Material Icons Sharp', monospace",
 			provider: "google",
@@ -18817,7 +17572,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Material Icons Two Tone",
 		type: "registry:font",
 		category: "monospace",
-		fontType: "monospace",
 		font: {
 			family: "'Material Icons Two Tone', monospace",
 			provider: "google",
@@ -18832,7 +17586,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Material Symbols Outlined",
 		type: "registry:font",
 		category: "monospace",
-		fontType: "monospace",
 		font: {
 			family: "'Material Symbols Outlined', monospace",
 			provider: "google",
@@ -18847,7 +17600,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Material Symbols Rounded",
 		type: "registry:font",
 		category: "monospace",
-		fontType: "monospace",
 		font: {
 			family: "'Material Symbols Rounded', monospace",
 			provider: "google",
@@ -18862,7 +17614,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Material Symbols Sharp",
 		type: "registry:font",
 		category: "monospace",
-		fontType: "monospace",
 		font: {
 			family: "'Material Symbols Sharp', monospace",
 			provider: "google",
@@ -18877,7 +17628,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "McLaren",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'McLaren', sans-serif",
 			provider: "google",
@@ -18892,7 +17642,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Mea Culpa",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Mea Culpa', cursive",
 			provider: "google",
@@ -18907,7 +17656,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Meddon",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Meddon', cursive",
 			provider: "google",
@@ -18922,7 +17670,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "MedievalSharp",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'MedievalSharp', sans-serif",
 			provider: "google",
@@ -18937,7 +17684,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Medula One",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Medula One', sans-serif",
 			provider: "google",
@@ -18952,7 +17698,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Megrim",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Megrim', sans-serif",
 			provider: "google",
@@ -18967,7 +17712,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Meie Script",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Meie Script', cursive",
 			provider: "google",
@@ -18982,7 +17726,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Meow Script",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Meow Script', cursive",
 			provider: "google",
@@ -18997,7 +17740,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Merienda",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Merienda', cursive",
 			provider: "google",
@@ -19012,7 +17754,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Merriweather",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Merriweather', serif",
 			provider: "google",
@@ -19027,7 +17768,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Metal",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Metal', sans-serif",
 			provider: "google",
@@ -19042,7 +17782,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Metal Mania",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Metal Mania', sans-serif",
 			provider: "google",
@@ -19057,7 +17796,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Metamorphous",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Metamorphous', sans-serif",
 			provider: "google",
@@ -19072,7 +17810,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Milonga",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Milonga', sans-serif",
 			provider: "google",
@@ -19087,7 +17824,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Miltonian",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Miltonian', sans-serif",
 			provider: "google",
@@ -19102,7 +17838,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Miltonian Tattoo",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Miltonian Tattoo', sans-serif",
 			provider: "google",
@@ -19117,7 +17852,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Miniver",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Miniver', sans-serif",
 			provider: "google",
@@ -19132,7 +17866,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Mirza",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Mirza', serif",
 			provider: "google",
@@ -19147,7 +17880,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Miss Fajardose",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Miss Fajardose', cursive",
 			provider: "google",
@@ -19162,7 +17894,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Modak",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Modak', sans-serif",
 			provider: "google",
@@ -19177,7 +17908,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Modern Antiqua",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Modern Antiqua', sans-serif",
 			provider: "google",
@@ -19192,7 +17922,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Mogra",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Mogra', sans-serif",
 			provider: "google",
@@ -19207,7 +17936,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Moirai One",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Moirai One', sans-serif",
 			provider: "google",
@@ -19222,7 +17950,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Molle",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Molle', cursive",
 			provider: "google",
@@ -19237,7 +17964,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Monofett",
 		type: "registry:font",
 		category: "monospace",
-		fontType: "monospace",
 		font: {
 			family: "'Monofett', monospace",
 			provider: "google",
@@ -19252,7 +17978,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Monoton",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Monoton', sans-serif",
 			provider: "google",
@@ -19267,7 +17992,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Monsieur La Doulaise",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Monsieur La Doulaise', cursive",
 			provider: "google",
@@ -19282,7 +18006,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Montaga",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Montaga', serif",
 			provider: "google",
@@ -19297,7 +18020,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Montagu Slab",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Montagu Slab', serif",
 			provider: "google",
@@ -19312,7 +18034,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "MonteCarlo",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'MonteCarlo', cursive",
 			provider: "google",
@@ -19327,7 +18048,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Montez",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Montez', cursive",
 			provider: "google",
@@ -19342,7 +18062,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Montserrat Subrayada",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Montserrat Subrayada', sans-serif",
 			provider: "google",
@@ -19357,7 +18076,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Moo Lah Lah",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Moo Lah Lah', sans-serif",
 			provider: "google",
@@ -19372,7 +18090,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Moon Dance",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Moon Dance', cursive",
 			provider: "google",
@@ -19387,7 +18104,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Moul",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Moul', sans-serif",
 			provider: "google",
@@ -19402,7 +18118,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Mountains of Christmas",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Mountains of Christmas', sans-serif",
 			provider: "google",
@@ -19417,7 +18132,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Mr Bedfort",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Mr Bedfort', cursive",
 			provider: "google",
@@ -19432,7 +18146,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Mr Dafoe",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Mr Dafoe', cursive",
 			provider: "google",
@@ -19447,7 +18160,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Mr De Haviland",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Mr De Haviland', cursive",
 			provider: "google",
@@ -19462,7 +18174,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Mrs Saint Delafield",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Mrs Saint Delafield', cursive",
 			provider: "google",
@@ -19477,7 +18188,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Mrs Sheppards",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Mrs Sheppards', cursive",
 			provider: "google",
@@ -19492,7 +18202,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Ms Madi",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Ms Madi', cursive",
 			provider: "google",
@@ -19507,7 +18216,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "MuseoModerno",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'MuseoModerno', sans-serif",
 			provider: "google",
@@ -19522,7 +18230,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "My Soul",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'My Soul', cursive",
 			provider: "google",
@@ -19537,7 +18244,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Mynerve",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Mynerve', cursive",
 			provider: "google",
@@ -19552,7 +18258,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Mystery Quest",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Mystery Quest', sans-serif",
 			provider: "google",
@@ -19567,7 +18272,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Nabla",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Nabla', sans-serif",
 			provider: "google",
@@ -19582,7 +18286,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Nanum Brush Script",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Nanum Brush Script', cursive",
 			provider: "google",
@@ -19597,7 +18300,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Nanum Gothic Coding",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Nanum Gothic Coding', cursive",
 			provider: "google",
@@ -19612,7 +18314,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Nanum Myeongjo",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Nanum Myeongjo', serif",
 			provider: "google",
@@ -19627,7 +18328,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Nanum Pen Script",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Nanum Pen Script', cursive",
 			provider: "google",
@@ -19642,7 +18342,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Neonderthaw",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Neonderthaw', cursive",
 			provider: "google",
@@ -19657,7 +18356,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Nerko One",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Nerko One', cursive",
 			provider: "google",
@@ -19672,7 +18370,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Neucha",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Neucha', cursive",
 			provider: "google",
@@ -19687,7 +18384,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Neuton",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Neuton', serif",
 			provider: "google",
@@ -19702,7 +18398,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "New Rocker",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'New Rocker', sans-serif",
 			provider: "google",
@@ -19717,7 +18412,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "New Tegomin",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'New Tegomin', serif",
 			provider: "google",
@@ -19732,7 +18426,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Newsreader",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Newsreader', serif",
 			provider: "google",
@@ -19747,7 +18440,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Niconne",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Niconne', cursive",
 			provider: "google",
@@ -19762,7 +18454,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Nixie One",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Nixie One', sans-serif",
 			provider: "google",
@@ -19777,7 +18468,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Norican",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Norican', cursive",
 			provider: "google",
@@ -19792,7 +18482,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Nosifer",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Nosifer', sans-serif",
 			provider: "google",
@@ -19807,7 +18496,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Nothing You Could Do",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Nothing You Could Do', cursive",
 			provider: "google",
@@ -19822,7 +18510,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noticia Text",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Noticia Text', serif",
 			provider: "google",
@@ -19837,7 +18524,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Naskh Arabic",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Noto Naskh Arabic', serif",
 			provider: "google",
@@ -19852,7 +18538,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Nastaliq Urdu",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Noto Nastaliq Urdu', serif",
 			provider: "google",
@@ -19867,7 +18552,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Rashi Hebrew",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Noto Rashi Hebrew', serif",
 			provider: "google",
@@ -19882,7 +18566,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Sans Phags Pa",
 		type: "registry:font",
 		category: "sans-serif",
-		fontType: "sans-serif",
 		font: {
 			family: "'Noto Sans Phags Pa', sans-serif",
 			provider: "google",
@@ -19897,7 +18580,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Serif",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Noto Serif', serif",
 			provider: "google",
@@ -19920,7 +18602,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Serif Ahom",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Noto Serif Ahom', serif",
 			provider: "google",
@@ -19935,7 +18616,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Serif Armenian",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Noto Serif Armenian', serif",
 			provider: "google",
@@ -19950,7 +18630,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Serif Balinese",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Noto Serif Balinese', serif",
 			provider: "google",
@@ -19965,7 +18644,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Serif Bengali",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Noto Serif Bengali', serif",
 			provider: "google",
@@ -19980,7 +18658,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Serif Devanagari",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Noto Serif Devanagari', serif",
 			provider: "google",
@@ -19995,7 +18672,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Serif Display",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Noto Serif Display', serif",
 			provider: "google",
@@ -20018,7 +18694,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Serif Dogra",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Noto Serif Dogra', serif",
 			provider: "google",
@@ -20033,7 +18708,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Serif Ethiopic",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Noto Serif Ethiopic', serif",
 			provider: "google",
@@ -20048,7 +18722,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Serif Georgian",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Noto Serif Georgian', serif",
 			provider: "google",
@@ -20063,7 +18736,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Serif Grantha",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Noto Serif Grantha', serif",
 			provider: "google",
@@ -20078,7 +18750,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Serif Gujarati",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Noto Serif Gujarati', serif",
 			provider: "google",
@@ -20093,7 +18764,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Serif Gurmukhi",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Noto Serif Gurmukhi', serif",
 			provider: "google",
@@ -20108,7 +18778,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Serif HK",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Noto Serif HK', serif",
 			provider: "google",
@@ -20129,7 +18798,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Serif Hebrew",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Noto Serif Hebrew', serif",
 			provider: "google",
@@ -20144,7 +18812,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Serif JP",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Noto Serif JP', serif",
 			provider: "google",
@@ -20159,7 +18826,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Serif KR",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Noto Serif KR', serif",
 			provider: "google",
@@ -20174,7 +18840,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Serif Kannada",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Noto Serif Kannada', serif",
 			provider: "google",
@@ -20189,7 +18854,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Serif Khitan Small Script",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Noto Serif Khitan Small Script', serif",
 			provider: "google",
@@ -20204,7 +18868,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Serif Khmer",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Noto Serif Khmer', serif",
 			provider: "google",
@@ -20219,7 +18882,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Serif Khojki",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Noto Serif Khojki', serif",
 			provider: "google",
@@ -20234,7 +18896,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Serif Lao",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Noto Serif Lao', serif",
 			provider: "google",
@@ -20249,7 +18910,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Serif Makasar",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Noto Serif Makasar', serif",
 			provider: "google",
@@ -20264,7 +18924,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Serif Malayalam",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Noto Serif Malayalam', serif",
 			provider: "google",
@@ -20279,7 +18938,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Serif Myanmar",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Noto Serif Myanmar', serif",
 			provider: "google",
@@ -20294,7 +18952,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Serif NP Hmong",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Noto Serif NP Hmong', serif",
 			provider: "google",
@@ -20309,7 +18966,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Serif Oriya",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Noto Serif Oriya', serif",
 			provider: "google",
@@ -20324,7 +18980,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Serif Ottoman Siyaq",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Noto Serif Ottoman Siyaq', serif",
 			provider: "google",
@@ -20339,7 +18994,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Serif SC",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Noto Serif SC', serif",
 			provider: "google",
@@ -20354,7 +19008,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Serif Sinhala",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Noto Serif Sinhala', serif",
 			provider: "google",
@@ -20369,7 +19022,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Serif TC",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Noto Serif TC', serif",
 			provider: "google",
@@ -20384,7 +19036,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Serif Tamil",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Noto Serif Tamil', serif",
 			provider: "google",
@@ -20399,7 +19050,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Serif Tangut",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Noto Serif Tangut', serif",
 			provider: "google",
@@ -20414,7 +19064,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Serif Telugu",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Noto Serif Telugu', serif",
 			provider: "google",
@@ -20429,7 +19078,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Serif Thai",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Noto Serif Thai', serif",
 			provider: "google",
@@ -20444,7 +19092,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Serif Tibetan",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Noto Serif Tibetan', serif",
 			provider: "google",
@@ -20459,7 +19106,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Serif Toto",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Noto Serif Toto', serif",
 			provider: "google",
@@ -20474,7 +19120,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Serif Vithkuqi",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Noto Serif Vithkuqi', serif",
 			provider: "google",
@@ -20489,7 +19134,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Noto Serif Yezidi",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Noto Serif Yezidi', serif",
 			provider: "google",
@@ -20504,7 +19148,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Nova Cut",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Nova Cut', sans-serif",
 			provider: "google",
@@ -20519,7 +19162,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Nova Flat",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Nova Flat', sans-serif",
 			provider: "google",
@@ -20534,7 +19176,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Nova Mono",
 		type: "registry:font",
 		category: "monospace",
-		fontType: "monospace",
 		font: {
 			family: "'Nova Mono', monospace",
 			provider: "google",
@@ -20549,7 +19190,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Nova Oval",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Nova Oval', sans-serif",
 			provider: "google",
@@ -20564,7 +19204,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Nova Round",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Nova Round', sans-serif",
 			provider: "google",
@@ -20579,7 +19218,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Nova Script",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Nova Script', sans-serif",
 			provider: "google",
@@ -20594,7 +19232,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Nova Slim",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Nova Slim', sans-serif",
 			provider: "google",
@@ -20609,7 +19246,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Nova Square",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Nova Square', sans-serif",
 			provider: "google",
@@ -20624,7 +19260,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Odibee Sans",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Odibee Sans', sans-serif",
 			provider: "google",
@@ -20639,7 +19274,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Odor Mean Chey",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Odor Mean Chey', serif",
 			provider: "google",
@@ -20654,7 +19288,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Offside",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Offside', sans-serif",
 			provider: "google",
@@ -20669,7 +19302,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Oi",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Oi', sans-serif",
 			provider: "google",
@@ -20692,7 +19324,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Old Standard TT",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Old Standard TT', serif",
 			provider: "google",
@@ -20707,7 +19338,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Oldenburg",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Oldenburg', sans-serif",
 			provider: "google",
@@ -20722,7 +19352,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Ole",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Ole', cursive",
 			provider: "google",
@@ -20737,7 +19366,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Oleo Script",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Oleo Script', sans-serif",
 			provider: "google",
@@ -20752,7 +19380,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Oleo Script Swash Caps",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Oleo Script Swash Caps', sans-serif",
 			provider: "google",
@@ -20767,7 +19394,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Oooh Baby",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Oooh Baby', cursive",
 			provider: "google",
@@ -20782,7 +19408,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Oranienbaum",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Oranienbaum', serif",
 			provider: "google",
@@ -20797,7 +19422,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Oregano",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Oregano', sans-serif",
 			provider: "google",
@@ -20812,7 +19436,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Orelega One",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Orelega One', sans-serif",
 			provider: "google",
@@ -20827,7 +19450,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Original Surfer",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Original Surfer', sans-serif",
 			provider: "google",
@@ -20842,7 +19464,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Over the Rainbow",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Over the Rainbow', cursive",
 			provider: "google",
@@ -20857,7 +19478,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Overlock",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Overlock', sans-serif",
 			provider: "google",
@@ -20872,7 +19492,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Overlock SC",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Overlock SC', sans-serif",
 			provider: "google",
@@ -20887,7 +19506,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Overpass Mono",
 		type: "registry:font",
 		category: "monospace",
-		fontType: "monospace",
 		font: {
 			family: "'Overpass Mono', monospace",
 			provider: "google",
@@ -20902,7 +19520,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Ovo",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Ovo', serif",
 			provider: "google",
@@ -20917,7 +19534,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Oxanium",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Oxanium', sans-serif",
 			provider: "google",
@@ -20932,7 +19548,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Oxygen Mono",
 		type: "registry:font",
 		category: "monospace",
-		fontType: "monospace",
 		font: {
 			family: "'Oxygen Mono', monospace",
 			provider: "google",
@@ -20947,7 +19562,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "PT Mono",
 		type: "registry:font",
 		category: "monospace",
-		fontType: "monospace",
 		font: {
 			family: "'PT Mono', monospace",
 			provider: "google",
@@ -20962,7 +19576,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "PT Serif",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'PT Serif', serif",
 			provider: "google",
@@ -20977,7 +19590,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "PT Serif Caption",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'PT Serif Caption', serif",
 			provider: "google",
@@ -20992,7 +19604,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Pacifico",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Pacifico', cursive",
 			provider: "google",
@@ -21007,7 +19618,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Padyakke Expanded One",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Padyakke Expanded One', serif",
 			provider: "google",
@@ -21022,7 +19632,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Palette Mosaic",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Palette Mosaic', sans-serif",
 			provider: "google",
@@ -21037,7 +19646,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Pangolin",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Pangolin', cursive",
 			provider: "google",
@@ -21052,7 +19660,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Paprika",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Paprika', sans-serif",
 			provider: "google",
@@ -21067,7 +19674,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Parisienne",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Parisienne', cursive",
 			provider: "google",
@@ -21082,7 +19688,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Passero One",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Passero One', sans-serif",
 			provider: "google",
@@ -21097,7 +19702,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Passion One",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Passion One', sans-serif",
 			provider: "google",
@@ -21112,7 +19716,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Passions Conflict",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Passions Conflict', cursive",
 			provider: "google",
@@ -21127,7 +19730,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Patrick Hand",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Patrick Hand', cursive",
 			provider: "google",
@@ -21142,7 +19744,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Patrick Hand SC",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Patrick Hand SC', cursive",
 			provider: "google",
@@ -21157,7 +19758,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Patua One",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Patua One', sans-serif",
 			provider: "google",
@@ -21172,7 +19772,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Peddana",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Peddana', serif",
 			provider: "google",
@@ -21187,7 +19786,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Peralta",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Peralta', serif",
 			provider: "google",
@@ -21202,7 +19800,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Permanent Marker",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Permanent Marker', cursive",
 			provider: "google",
@@ -21217,7 +19814,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Petemoss",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Petemoss', cursive",
 			provider: "google",
@@ -21232,7 +19828,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Petit Formal Script",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Petit Formal Script', cursive",
 			provider: "google",
@@ -21247,7 +19842,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Petrona",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Petrona', serif",
 			provider: "google",
@@ -21262,7 +19856,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Phudu",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Phudu', sans-serif",
 			provider: "google",
@@ -21277,7 +19870,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Piazzolla",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Piazzolla', serif",
 			provider: "google",
@@ -21300,7 +19892,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Piedra",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Piedra', sans-serif",
 			provider: "google",
@@ -21315,7 +19906,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Pinyon Script",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Pinyon Script', cursive",
 			provider: "google",
@@ -21330,7 +19920,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Pirata One",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Pirata One', sans-serif",
 			provider: "google",
@@ -21345,7 +19934,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Pixelify Sans",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Pixelify Sans', sans-serif",
 			provider: "google",
@@ -21360,7 +19948,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Plaster",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Plaster', sans-serif",
 			provider: "google",
@@ -21375,7 +19962,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Playball",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Playball', sans-serif",
 			provider: "google",
@@ -21390,7 +19976,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Playfair",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Playfair', serif",
 			provider: "google",
@@ -21405,7 +19990,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Playfair Display SC",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Playfair Display SC', serif",
 			provider: "google",
@@ -21420,7 +20004,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Playpen Sans",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Playpen Sans', cursive",
 			provider: "google",
@@ -21435,7 +20018,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Podkova",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Podkova', serif",
 			provider: "google",
@@ -21450,7 +20032,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Poiret One",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Poiret One', sans-serif",
 			provider: "google",
@@ -21465,7 +20046,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Poller One",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Poller One', sans-serif",
 			provider: "google",
@@ -21480,7 +20060,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Poltawski Nowy",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Poltawski Nowy', serif",
 			provider: "google",
@@ -21495,7 +20074,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Poly",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Poly', serif",
 			provider: "google",
@@ -21510,7 +20088,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Pompiere",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Pompiere', sans-serif",
 			provider: "google",
@@ -21525,7 +20102,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Poor Story",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Poor Story', sans-serif",
 			provider: "google",
@@ -21540,7 +20116,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Port Lligat Slab",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Port Lligat Slab', serif",
 			provider: "google",
@@ -21555,7 +20130,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Potta One",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Potta One', sans-serif",
 			provider: "google",
@@ -21570,7 +20144,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Praise",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Praise', cursive",
 			provider: "google",
@@ -21585,7 +20158,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Prata",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Prata', serif",
 			provider: "google",
@@ -21600,7 +20172,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Press Start 2P",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Press Start 2P', sans-serif",
 			provider: "google",
@@ -21615,7 +20186,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Pridi",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Pridi', serif",
 			provider: "google",
@@ -21630,7 +20200,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Princess Sofia",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Princess Sofia', cursive",
 			provider: "google",
@@ -21645,7 +20214,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Prociono",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Prociono', serif",
 			provider: "google",
@@ -21660,7 +20228,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Prosto One",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Prosto One', sans-serif",
 			provider: "google",
@@ -21675,7 +20242,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Puppies Play",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Puppies Play', cursive",
 			provider: "google",
@@ -21690,7 +20256,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Purple Purse",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Purple Purse', sans-serif",
 			provider: "google",
@@ -21705,7 +20270,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Quando",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Quando', serif",
 			provider: "google",
@@ -21720,7 +20284,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Quattrocento",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Quattrocento', serif",
 			provider: "google",
@@ -21735,7 +20298,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Quintessential",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Quintessential', cursive",
 			provider: "google",
@@ -21750,7 +20312,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Qwigley",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Qwigley', cursive",
 			provider: "google",
@@ -21765,7 +20326,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Qwitcher Grypen",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Qwitcher Grypen', cursive",
 			provider: "google",
@@ -21780,7 +20340,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Racing Sans One",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Racing Sans One', sans-serif",
 			provider: "google",
@@ -21795,7 +20354,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Radley",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Radley', serif",
 			provider: "google",
@@ -21810,7 +20368,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Rakkas",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Rakkas', sans-serif",
 			provider: "google",
@@ -21825,7 +20382,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Raleway Dots",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Raleway Dots', sans-serif",
 			provider: "google",
@@ -21840,7 +20396,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Ramaraja",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Ramaraja', serif",
 			provider: "google",
@@ -21855,7 +20410,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Rammetto One",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Rammetto One', sans-serif",
 			provider: "google",
@@ -21870,7 +20424,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Rampart One",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Rampart One', sans-serif",
 			provider: "google",
@@ -21885,7 +20438,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Ranchers",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Ranchers', sans-serif",
 			provider: "google",
@@ -21900,7 +20452,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Rancho",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Rancho', cursive",
 			provider: "google",
@@ -21915,7 +20466,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Ranga",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Ranga', sans-serif",
 			provider: "google",
@@ -21930,7 +20480,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Rasa",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Rasa', serif",
 			provider: "google",
@@ -21945,7 +20494,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Ravi Prakash",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Ravi Prakash', sans-serif",
 			provider: "google",
@@ -21960,7 +20508,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Red Hat Mono",
 		type: "registry:font",
 		category: "monospace",
-		fontType: "monospace",
 		font: {
 			family: "'Red Hat Mono', monospace",
 			provider: "google",
@@ -21975,7 +20522,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Red Rose",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Red Rose', sans-serif",
 			provider: "google",
@@ -21990,7 +20536,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Redacted",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Redacted', sans-serif",
 			provider: "google",
@@ -22005,7 +20550,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Redacted Script",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Redacted Script', sans-serif",
 			provider: "google",
@@ -22020,7 +20564,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Redressed",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Redressed', cursive",
 			provider: "google",
@@ -22035,7 +20578,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Reenie Beanie",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Reenie Beanie', cursive",
 			provider: "google",
@@ -22050,7 +20592,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Reggae One",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Reggae One', sans-serif",
 			provider: "google",
@@ -22065,7 +20606,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Revalia",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Revalia', sans-serif",
 			provider: "google",
@@ -22080,7 +20620,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Rhodium Libre",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Rhodium Libre', serif",
 			provider: "google",
@@ -22095,7 +20634,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Ribeye",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Ribeye', sans-serif",
 			provider: "google",
@@ -22110,7 +20648,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Ribeye Marrow",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Ribeye Marrow', sans-serif",
 			provider: "google",
@@ -22125,7 +20662,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Righteous",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Righteous', sans-serif",
 			provider: "google",
@@ -22140,7 +20676,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Risque",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Risque', sans-serif",
 			provider: "google",
@@ -22155,7 +20690,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Road Rage",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Road Rage', sans-serif",
 			provider: "google",
@@ -22170,7 +20704,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Roboto Mono",
 		type: "registry:font",
 		category: "monospace",
-		fontType: "monospace",
 		font: {
 			family: "'Roboto Mono', monospace",
 			provider: "google",
@@ -22192,7 +20725,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Roboto Serif",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Roboto Serif', serif",
 			provider: "google",
@@ -22207,7 +20739,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Roboto Slab",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Roboto Slab', serif",
 			provider: "google",
@@ -22230,7 +20761,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Rochester",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Rochester', cursive",
 			provider: "google",
@@ -22245,7 +20775,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Rock 3D",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Rock 3D', sans-serif",
 			provider: "google",
@@ -22260,7 +20789,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Rock Salt",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Rock Salt', cursive",
 			provider: "google",
@@ -22275,7 +20803,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Rokkitt",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Rokkitt', serif",
 			provider: "google",
@@ -22290,7 +20817,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Romanesco",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Romanesco', cursive",
 			provider: "google",
@@ -22305,7 +20831,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Rosarivo",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Rosarivo', serif",
 			provider: "google",
@@ -22320,7 +20845,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Rouge Script",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Rouge Script', cursive",
 			provider: "google",
@@ -22335,7 +20859,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Rowdies",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Rowdies', sans-serif",
 			provider: "google",
@@ -22350,7 +20873,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Rozha One",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Rozha One', serif",
 			provider: "google",
@@ -22365,7 +20887,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Rubik 80s Fade",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Rubik 80s Fade', sans-serif",
 			provider: "google",
@@ -22380,7 +20901,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Rubik Beastly",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Rubik Beastly', sans-serif",
 			provider: "google",
@@ -22395,7 +20915,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Rubik Bubbles",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Rubik Bubbles', sans-serif",
 			provider: "google",
@@ -22410,7 +20929,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Rubik Burned",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Rubik Burned', sans-serif",
 			provider: "google",
@@ -22425,7 +20943,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Rubik Dirt",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Rubik Dirt', sans-serif",
 			provider: "google",
@@ -22440,7 +20957,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Rubik Distressed",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Rubik Distressed', sans-serif",
 			provider: "google",
@@ -22455,7 +20971,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Rubik Gemstones",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Rubik Gemstones', sans-serif",
 			provider: "google",
@@ -22470,7 +20985,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Rubik Glitch",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Rubik Glitch', sans-serif",
 			provider: "google",
@@ -22485,7 +20999,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Rubik Iso",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Rubik Iso', sans-serif",
 			provider: "google",
@@ -22500,7 +21013,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Rubik Marker Hatch",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Rubik Marker Hatch', sans-serif",
 			provider: "google",
@@ -22515,7 +21027,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Rubik Maze",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Rubik Maze', sans-serif",
 			provider: "google",
@@ -22530,7 +21041,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Rubik Microbe",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Rubik Microbe', sans-serif",
 			provider: "google",
@@ -22545,7 +21055,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Rubik Moonrocks",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Rubik Moonrocks', sans-serif",
 			provider: "google",
@@ -22560,7 +21069,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Rubik Pixels",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Rubik Pixels', sans-serif",
 			provider: "google",
@@ -22575,7 +21083,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Rubik Puddles",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Rubik Puddles', sans-serif",
 			provider: "google",
@@ -22590,7 +21097,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Rubik Spray Paint",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Rubik Spray Paint', sans-serif",
 			provider: "google",
@@ -22605,7 +21111,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Rubik Storm",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Rubik Storm', sans-serif",
 			provider: "google",
@@ -22620,7 +21125,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Rubik Vinyl",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Rubik Vinyl', sans-serif",
 			provider: "google",
@@ -22635,7 +21139,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Rubik Wet Paint",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Rubik Wet Paint', sans-serif",
 			provider: "google",
@@ -22650,7 +21153,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Rufina",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Rufina', serif",
 			provider: "google",
@@ -22665,7 +21167,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Ruge Boogie",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Ruge Boogie', cursive",
 			provider: "google",
@@ -22680,7 +21181,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Ruslan Display",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Ruslan Display', sans-serif",
 			provider: "google",
@@ -22695,7 +21195,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Ruthie",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Ruthie', cursive",
 			provider: "google",
@@ -22710,7 +21209,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Ruwudu",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Ruwudu', serif",
 			provider: "google",
@@ -22725,7 +21223,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Rye",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Rye', sans-serif",
 			provider: "google",
@@ -22740,7 +21237,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "STIX Two Text",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'STIX Two Text', serif",
 			provider: "google",
@@ -22762,7 +21258,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Sacramento",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Sacramento', cursive",
 			provider: "google",
@@ -22777,7 +21272,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Sahitya",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Sahitya', serif",
 			provider: "google",
@@ -22792,7 +21286,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Sail",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Sail', sans-serif",
 			provider: "google",
@@ -22807,7 +21300,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Saira Stencil One",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Saira Stencil One', sans-serif",
 			provider: "google",
@@ -22822,7 +21314,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Salsa",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Salsa', sans-serif",
 			provider: "google",
@@ -22837,7 +21328,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Sanchez",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Sanchez', serif",
 			provider: "google",
@@ -22852,7 +21342,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Sancreek",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Sancreek', sans-serif",
 			provider: "google",
@@ -22867,7 +21356,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Sansita Swashed",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Sansita Swashed', sans-serif",
 			provider: "google",
@@ -22882,7 +21370,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Sarina",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Sarina', sans-serif",
 			provider: "google",
@@ -22897,7 +21384,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Sassy Frass",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Sassy Frass', cursive",
 			provider: "google",
@@ -22912,7 +21398,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Satisfy",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Satisfy', cursive",
 			provider: "google",
@@ -22927,7 +21412,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Sawarabi Mincho",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Sawarabi Mincho', serif",
 			provider: "google",
@@ -22942,7 +21426,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Scheherazade New",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Scheherazade New', serif",
 			provider: "google",
@@ -22957,7 +21440,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Schoolbell",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Schoolbell', cursive",
 			provider: "google",
@@ -22972,7 +21454,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Scope One",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Scope One', serif",
 			provider: "google",
@@ -22987,7 +21468,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Seaweed Script",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Seaweed Script', sans-serif",
 			provider: "google",
@@ -23002,7 +21482,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Sedgwick Ave",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Sedgwick Ave', cursive",
 			provider: "google",
@@ -23017,7 +21496,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Sedgwick Ave Display",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Sedgwick Ave Display', cursive",
 			provider: "google",
@@ -23032,7 +21510,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Send Flowers",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Send Flowers', cursive",
 			provider: "google",
@@ -23047,7 +21524,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Sevillana",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Sevillana', sans-serif",
 			provider: "google",
@@ -23062,7 +21538,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Shadows Into Light",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Shadows Into Light', cursive",
 			provider: "google",
@@ -23077,7 +21552,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Shadows Into Light Two",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Shadows Into Light Two', cursive",
 			provider: "google",
@@ -23092,7 +21566,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Shalimar",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Shalimar', cursive",
 			provider: "google",
@@ -23107,7 +21580,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Shantell Sans",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Shantell Sans', sans-serif",
 			provider: "google",
@@ -23122,7 +21594,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Share Tech Mono",
 		type: "registry:font",
 		category: "monospace",
-		fontType: "monospace",
 		font: {
 			family: "'Share Tech Mono', monospace",
 			provider: "google",
@@ -23137,7 +21608,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Shippori Mincho",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Shippori Mincho', serif",
 			provider: "google",
@@ -23152,7 +21622,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Shippori Mincho B1",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Shippori Mincho B1', serif",
 			provider: "google",
@@ -23167,7 +21636,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Shizuru",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Shizuru', sans-serif",
 			provider: "google",
@@ -23182,7 +21650,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Shojumaru",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Shojumaru', sans-serif",
 			provider: "google",
@@ -23197,7 +21664,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Short Stack",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Short Stack', cursive",
 			provider: "google",
@@ -23212,7 +21678,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Shrikhand",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Shrikhand', sans-serif",
 			provider: "google",
@@ -23227,7 +21692,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Sigmar",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Sigmar', sans-serif",
 			provider: "google",
@@ -23242,7 +21706,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Sigmar One",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Sigmar One', sans-serif",
 			provider: "google",
@@ -23257,7 +21720,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Silkscreen",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Silkscreen', sans-serif",
 			provider: "google",
@@ -23272,7 +21734,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Simonetta",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Simonetta', sans-serif",
 			provider: "google",
@@ -23287,7 +21748,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Single Day",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Single Day', sans-serif",
 			provider: "google",
@@ -23302,7 +21762,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Sirin Stencil",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Sirin Stencil', sans-serif",
 			provider: "google",
@@ -23317,7 +21776,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Skranji",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Skranji', sans-serif",
 			provider: "google",
@@ -23332,7 +21790,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Slabo 13px",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Slabo 13px', serif",
 			provider: "google",
@@ -23347,7 +21804,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Slabo 27px",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Slabo 27px', serif",
 			provider: "google",
@@ -23362,7 +21818,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Slackey",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Slackey', sans-serif",
 			provider: "google",
@@ -23377,7 +21832,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Slackside One",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Slackside One', cursive",
 			provider: "google",
@@ -23392,7 +21846,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Smokum",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Smokum', sans-serif",
 			provider: "google",
@@ -23407,7 +21860,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Smooch",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Smooch', cursive",
 			provider: "google",
@@ -23422,7 +21874,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Smythe",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Smythe', sans-serif",
 			provider: "google",
@@ -23437,7 +21888,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Sniglet",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Sniglet', sans-serif",
 			provider: "google",
@@ -23452,7 +21902,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Snowburst One",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Snowburst One', sans-serif",
 			provider: "google",
@@ -23467,7 +21916,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Sofadi One",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Sofadi One', sans-serif",
 			provider: "google",
@@ -23482,7 +21930,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Sofia",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Sofia', cursive",
 			provider: "google",
@@ -23497,7 +21944,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Solitreo",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Solitreo', cursive",
 			provider: "google",
@@ -23512,7 +21958,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Solway",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Solway', serif",
 			provider: "google",
@@ -23527,7 +21972,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Sometype Mono",
 		type: "registry:font",
 		category: "monospace",
-		fontType: "monospace",
 		font: {
 			family: "'Sometype Mono', monospace",
 			provider: "google",
@@ -23542,7 +21986,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Song Myung",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Song Myung', serif",
 			provider: "google",
@@ -23557,7 +22000,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Sonsie One",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Sonsie One', sans-serif",
 			provider: "google",
@@ -23572,7 +22014,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Sorts Mill Goudy",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Sorts Mill Goudy', serif",
 			provider: "google",
@@ -23587,7 +22028,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Source Code Pro",
 		type: "registry:font",
 		category: "monospace",
-		fontType: "monospace",
 		font: {
 			family: "'Source Code Pro', monospace",
 			provider: "google",
@@ -23610,7 +22050,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Source Serif 4",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Source Serif 4', serif",
 			provider: "google",
@@ -23632,7 +22071,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Space Mono",
 		type: "registry:font",
 		category: "monospace",
-		fontType: "monospace",
 		font: {
 			family: "'Space Mono', monospace",
 			provider: "google",
@@ -23647,7 +22085,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Special Elite",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Special Elite', sans-serif",
 			provider: "google",
@@ -23662,7 +22099,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Spectral",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Spectral', serif",
 			provider: "google",
@@ -23677,7 +22113,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Spectral SC",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Spectral SC', serif",
 			provider: "google",
@@ -23692,7 +22127,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Spicy Rice",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Spicy Rice', sans-serif",
 			provider: "google",
@@ -23707,7 +22141,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Spirax",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Spirax', sans-serif",
 			provider: "google",
@@ -23722,7 +22155,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Splash",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Splash', cursive",
 			provider: "google",
@@ -23737,7 +22169,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Spline Sans Mono",
 		type: "registry:font",
 		category: "monospace",
-		fontType: "monospace",
 		font: {
 			family: "'Spline Sans Mono', monospace",
 			provider: "google",
@@ -23752,7 +22183,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Squada One",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Squada One', sans-serif",
 			provider: "google",
@@ -23767,7 +22197,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Square Peg",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Square Peg', cursive",
 			provider: "google",
@@ -23782,7 +22211,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Sree Krushnadevaraya",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Sree Krushnadevaraya', serif",
 			provider: "google",
@@ -23797,7 +22225,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Sriracha",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Sriracha', cursive",
 			provider: "google",
@@ -23812,7 +22239,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Srisakdi",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Srisakdi', sans-serif",
 			provider: "google",
@@ -23827,7 +22253,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Staatliches",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Staatliches', sans-serif",
 			provider: "google",
@@ -23842,7 +22267,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Stalemate",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Stalemate', cursive",
 			provider: "google",
@@ -23857,7 +22281,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Stalinist One",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Stalinist One', sans-serif",
 			provider: "google",
@@ -23872,7 +22295,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Stardos Stencil",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Stardos Stencil', sans-serif",
 			provider: "google",
@@ -23887,7 +22309,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Stint Ultra Condensed",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Stint Ultra Condensed', serif",
 			provider: "google",
@@ -23902,7 +22323,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Stint Ultra Expanded",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Stint Ultra Expanded', serif",
 			provider: "google",
@@ -23917,7 +22337,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Stoke",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Stoke', serif",
 			provider: "google",
@@ -23932,7 +22351,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Style Script",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Style Script', cursive",
 			provider: "google",
@@ -23947,7 +22365,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Sue Ellen Francisco",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Sue Ellen Francisco', cursive",
 			provider: "google",
@@ -23962,7 +22379,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Suez One",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Suez One', serif",
 			provider: "google",
@@ -23977,7 +22393,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Sumana",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Sumana', serif",
 			provider: "google",
@@ -23992,7 +22407,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Sunshiney",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Sunshiney', cursive",
 			provider: "google",
@@ -24007,7 +22421,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Supermercado One",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Supermercado One', sans-serif",
 			provider: "google",
@@ -24022,7 +22435,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Sura",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Sura', serif",
 			provider: "google",
@@ -24037,7 +22449,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Suranna",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Suranna', serif",
 			provider: "google",
@@ -24052,7 +22463,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Suravaram",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Suravaram', serif",
 			provider: "google",
@@ -24067,7 +22477,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Suwannaphum",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Suwannaphum', serif",
 			provider: "google",
@@ -24082,7 +22491,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Swanky and Moo Moo",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Swanky and Moo Moo', cursive",
 			provider: "google",
@@ -24097,7 +22505,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Syne Mono",
 		type: "registry:font",
 		category: "monospace",
-		fontType: "monospace",
 		font: {
 			family: "'Syne Mono', monospace",
 			provider: "google",
@@ -24112,7 +22519,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Syne Tactile",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Syne Tactile', sans-serif",
 			provider: "google",
@@ -24127,7 +22533,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Tai Heritage Pro",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Tai Heritage Pro', serif",
 			provider: "google",
@@ -24142,7 +22547,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Tangerine",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Tangerine', cursive",
 			provider: "google",
@@ -24157,7 +22561,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Tapestry",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Tapestry', cursive",
 			provider: "google",
@@ -24172,7 +22575,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Taprom",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Taprom', sans-serif",
 			provider: "google",
@@ -24187,7 +22589,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Taviraj",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Taviraj', serif",
 			provider: "google",
@@ -24202,7 +22603,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Tektur",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Tektur', sans-serif",
 			provider: "google",
@@ -24224,7 +22624,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Texturina",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Texturina', serif",
 			provider: "google",
@@ -24239,7 +22638,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "The Girl Next Door",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'The Girl Next Door', cursive",
 			provider: "google",
@@ -24254,7 +22652,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "The Nautigal",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'The Nautigal', cursive",
 			provider: "google",
@@ -24269,7 +22666,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Tienne",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Tienne', serif",
 			provider: "google",
@@ -24284,7 +22680,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Tillana",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Tillana', sans-serif",
 			provider: "google",
@@ -24299,7 +22694,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Tilt Neon",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Tilt Neon', sans-serif",
 			provider: "google",
@@ -24314,7 +22708,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Tilt Prism",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Tilt Prism', sans-serif",
 			provider: "google",
@@ -24329,7 +22722,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Tilt Warp",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Tilt Warp', sans-serif",
 			provider: "google",
@@ -24344,7 +22736,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Tinos",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Tinos', serif",
 			provider: "google",
@@ -24368,7 +22759,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Tiro Bangla",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Tiro Bangla', serif",
 			provider: "google",
@@ -24383,7 +22773,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Tiro Devanagari Hindi",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Tiro Devanagari Hindi', serif",
 			provider: "google",
@@ -24398,7 +22787,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Tiro Devanagari Marathi",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Tiro Devanagari Marathi', serif",
 			provider: "google",
@@ -24413,7 +22801,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Tiro Devanagari Sanskrit",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Tiro Devanagari Sanskrit', serif",
 			provider: "google",
@@ -24428,7 +22815,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Tiro Gurmukhi",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Tiro Gurmukhi', serif",
 			provider: "google",
@@ -24443,7 +22829,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Tiro Kannada",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Tiro Kannada', serif",
 			provider: "google",
@@ -24458,7 +22843,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Tiro Tamil",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Tiro Tamil', serif",
 			provider: "google",
@@ -24473,7 +22857,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Tiro Telugu",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Tiro Telugu', serif",
 			provider: "google",
@@ -24488,7 +22871,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Titan One",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Titan One', sans-serif",
 			provider: "google",
@@ -24503,7 +22885,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Tourney",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Tourney', sans-serif",
 			provider: "google",
@@ -24518,7 +22899,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Trade Winds",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Trade Winds', sans-serif",
 			provider: "google",
@@ -24533,7 +22913,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Train One",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Train One', sans-serif",
 			provider: "google",
@@ -24548,7 +22927,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Trirong",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Trirong', serif",
 			provider: "google",
@@ -24563,7 +22941,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Trocchi",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Trocchi', serif",
 			provider: "google",
@@ -24578,7 +22955,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Trochut",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Trochut', sans-serif",
 			provider: "google",
@@ -24593,7 +22969,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Trykker",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Trykker', serif",
 			provider: "google",
@@ -24608,7 +22983,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Tulpen One",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Tulpen One', sans-serif",
 			provider: "google",
@@ -24623,7 +22997,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Turret Road",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Turret Road', sans-serif",
 			provider: "google",
@@ -24638,7 +23011,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Twinkle Star",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Twinkle Star', cursive",
 			provider: "google",
@@ -24653,7 +23025,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Ubuntu Mono",
 		type: "registry:font",
 		category: "monospace",
-		fontType: "monospace",
 		font: {
 			family: "'Ubuntu Mono', monospace",
 			provider: "google",
@@ -24675,7 +23046,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Uchen",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Uchen', serif",
 			provider: "google",
@@ -24690,7 +23060,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Ultra",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Ultra', serif",
 			provider: "google",
@@ -24705,7 +23074,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Uncial Antiqua",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Uncial Antiqua', sans-serif",
 			provider: "google",
@@ -24720,7 +23088,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Underdog",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Underdog', sans-serif",
 			provider: "google",
@@ -24735,7 +23102,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Unica One",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Unica One', sans-serif",
 			provider: "google",
@@ -24750,7 +23116,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "UnifrakturCook",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'UnifrakturCook', sans-serif",
 			provider: "google",
@@ -24765,7 +23130,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "UnifrakturMaguntia",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'UnifrakturMaguntia', sans-serif",
 			provider: "google",
@@ -24780,7 +23144,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Unkempt",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Unkempt', sans-serif",
 			provider: "google",
@@ -24795,7 +23158,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Unlock",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Unlock', sans-serif",
 			provider: "google",
@@ -24810,7 +23172,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Unna",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Unna', serif",
 			provider: "google",
@@ -24825,7 +23186,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Updock",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Updock', cursive",
 			provider: "google",
@@ -24840,7 +23200,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "VT323",
 		type: "registry:font",
 		category: "monospace",
-		fontType: "monospace",
 		font: {
 			family: "'VT323', monospace",
 			provider: "google",
@@ -24855,7 +23214,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Vampiro One",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Vampiro One', sans-serif",
 			provider: "google",
@@ -24870,7 +23228,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Vast Shadow",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Vast Shadow', serif",
 			provider: "google",
@@ -24885,7 +23242,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Vesper Libre",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Vesper Libre', serif",
 			provider: "google",
@@ -24900,7 +23256,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Viaoda Libre",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Viaoda Libre', sans-serif",
 			provider: "google",
@@ -24915,7 +23270,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Vibes",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Vibes', sans-serif",
 			provider: "google",
@@ -24930,7 +23284,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Vibur",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Vibur', cursive",
 			provider: "google",
@@ -24945,7 +23298,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Victor Mono",
 		type: "registry:font",
 		category: "monospace",
-		fontType: "monospace",
 		font: {
 			family: "'Victor Mono', monospace",
 			provider: "google",
@@ -24967,7 +23319,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Vidaloka",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Vidaloka', serif",
 			provider: "google",
@@ -24982,7 +23333,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Vina Sans",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Vina Sans', sans-serif",
 			provider: "google",
@@ -24997,7 +23347,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Volkhov",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Volkhov', serif",
 			provider: "google",
@@ -25012,7 +23361,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Vollkorn",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Vollkorn', serif",
 			provider: "google",
@@ -25034,7 +23382,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Vollkorn SC",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Vollkorn SC', serif",
 			provider: "google",
@@ -25049,7 +23396,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Vujahday Script",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Vujahday Script', cursive",
 			provider: "google",
@@ -25064,7 +23410,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Waiting for the Sunrise",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Waiting for the Sunrise', cursive",
 			provider: "google",
@@ -25079,7 +23424,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Wallpoet",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Wallpoet', sans-serif",
 			provider: "google",
@@ -25094,7 +23438,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Walter Turncoat",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Walter Turncoat', cursive",
 			provider: "google",
@@ -25109,7 +23452,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Warnes",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Warnes', sans-serif",
 			provider: "google",
@@ -25124,7 +23466,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Water Brush",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Water Brush', cursive",
 			provider: "google",
@@ -25139,7 +23480,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Waterfall",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Waterfall', cursive",
 			provider: "google",
@@ -25154,7 +23494,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Wavefont",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Wavefont', sans-serif",
 			provider: "google",
@@ -25169,7 +23508,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Wellfleet",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Wellfleet', serif",
 			provider: "google",
@@ -25184,7 +23522,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Whisper",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Whisper', cursive",
 			provider: "google",
@@ -25199,7 +23536,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "WindSong",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'WindSong', cursive",
 			provider: "google",
@@ -25214,7 +23550,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Xanh Mono",
 		type: "registry:font",
 		category: "monospace",
-		fontType: "monospace",
 		font: {
 			family: "'Xanh Mono', monospace",
 			provider: "google",
@@ -25229,7 +23564,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Yatra One",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Yatra One', sans-serif",
 			provider: "google",
@@ -25244,7 +23578,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Yellowtail",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Yellowtail', cursive",
 			provider: "google",
@@ -25259,7 +23592,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Yeon Sung",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Yeon Sung', sans-serif",
 			provider: "google",
@@ -25274,7 +23606,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Yeseva One",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Yeseva One', sans-serif",
 			provider: "google",
@@ -25289,7 +23620,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Yesteryear",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Yesteryear', cursive",
 			provider: "google",
@@ -25304,7 +23634,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Yomogi",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Yomogi', cursive",
 			provider: "google",
@@ -25319,7 +23648,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Young Serif",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Young Serif', serif",
 			provider: "google",
@@ -25334,7 +23662,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Yrsa",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Yrsa', serif",
 			provider: "google",
@@ -25349,7 +23676,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Yuji Boku",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Yuji Boku', serif",
 			provider: "google",
@@ -25364,7 +23690,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Yuji Hentaigana Akari",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Yuji Hentaigana Akari', cursive",
 			provider: "google",
@@ -25379,7 +23704,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Yuji Hentaigana Akebono",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Yuji Hentaigana Akebono', cursive",
 			provider: "google",
@@ -25394,7 +23718,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Yuji Mai",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Yuji Mai', serif",
 			provider: "google",
@@ -25409,7 +23732,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Yuji Syuku",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Yuji Syuku', serif",
 			provider: "google",
@@ -25424,7 +23746,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Zen Antique",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Zen Antique', serif",
 			provider: "google",
@@ -25439,7 +23760,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Zen Antique Soft",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Zen Antique Soft', serif",
 			provider: "google",
@@ -25454,7 +23774,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Zen Dots",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Zen Dots', sans-serif",
 			provider: "google",
@@ -25469,7 +23788,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Zen Loop",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Zen Loop', sans-serif",
 			provider: "google",
@@ -25484,7 +23802,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Zen Old Mincho",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Zen Old Mincho', serif",
 			provider: "google",
@@ -25499,7 +23816,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Zen Tokyo Zoo",
 		type: "registry:font",
 		category: "display",
-		fontType: "display",
 		font: {
 			family: "'Zen Tokyo Zoo', sans-serif",
 			provider: "google",
@@ -25514,7 +23830,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Zeyada",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Zeyada', cursive",
 			provider: "google",
@@ -25529,7 +23844,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Zhi Mang Xing",
 		type: "registry:font",
 		category: "handwriting",
-		fontType: "handwriting",
 		font: {
 			family: "'Zhi Mang Xing', cursive",
 			provider: "google",
@@ -25544,7 +23858,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Zilla Slab",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Zilla Slab', serif",
 			provider: "google",
@@ -25559,7 +23872,6 @@ export const FONTS: readonly FontItem[] = [
 		name: "Zilla Slab Highlight",
 		type: "registry:font",
 		category: "serif",
-		fontType: "serif",
 		font: {
 			family: "'Zilla Slab Highlight', serif",
 			provider: "google",

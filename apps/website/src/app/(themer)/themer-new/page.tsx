@@ -12,11 +12,13 @@ import {
 	useState,
 } from "react"
 import { useThemerPreset } from "@/lib/themer-preset"
+import { useTheme } from "next-themes"
 
 function ThemerPage() {
 	const [params, setParams] = useThemerPreset()
+	const { resolvedTheme } = useTheme()
 	const [selectedComponent, setSelectedComponent] =
-		useState<string>("preview-03")
+		useState<string>("preview-06")
 	const iframeRef = useRef<HTMLIFrameElement>(null)
 
 	const iframeSrc = useMemo(() => {
@@ -40,14 +42,9 @@ function ThemerPage() {
 		if (params.baseColor) {
 			searchParams.set("baseColor", params.baseColor)
 		}
-		if (params.customColors && Object.keys(params.customColors).length > 0) {
-			searchParams.set("customColors", JSON.stringify(params.customColors))
-		}
-		if (params.componentOverrides && params.componentOverrides.length > 0) {
-			searchParams.set(
-				"componentOverrides",
-				JSON.stringify(params.componentOverrides)
-			)
+
+		if (params.iconLibrary) {
+			searchParams.set("iconLibrary", params.iconLibrary)
 		}
 
 		return `/preview/${selectedComponent}?${searchParams.toString()}`
@@ -66,7 +63,14 @@ function ThemerPage() {
 
 	useEffect(() => {
 		postToIframe({ type: "body-font-change", bodyFont: params.bodyFont })
-	}, [params.bodyFont])
+	}, [params.bodyFont, postToIframe])
+
+	useEffect(() => {
+		postToIframe({
+			type: "icon-library-change",
+			iconLibrary: params.iconLibrary,
+		})
+	}, [params.iconLibrary])
 
 	return (
 		<SidebarProvider

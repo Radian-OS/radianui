@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react"
+import { useTheme } from "next-themes"
 import { Button } from "@/styles/default/ui/button"
 import {
 	DropdownMenu,
@@ -9,6 +11,15 @@ import {
 } from "@/styles/default/ui/dropdown-menu"
 
 export default function AppearanceModePicker() {
+	const [mounted, setMounted] = useState(false)
+	const { resolvedTheme, setTheme } = useTheme()
+
+	useEffect(() => {
+		setMounted(true)
+	}, [])
+
+	const currentMode = mounted && resolvedTheme === "dark" ? "Dark" : "Light"
+
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
@@ -17,7 +28,7 @@ export default function AppearanceModePicker() {
 					variant="soft"
 					color="neutral">
 					<span>Default Mode</span>{" "}
-					<span className="text-fg-tertiary font-medium">Light</span>
+					<span className="text-fg-tertiary font-medium">{currentMode}</span>
 				</Button>
 			</DropdownMenuTrigger>
 			<DropdownMenuContent
@@ -28,7 +39,9 @@ export default function AppearanceModePicker() {
 				<DropdownMenuLabel className="text-fg-tertiary">
 					Appearance Mode
 				</DropdownMenuLabel>
-				<DropdownMenuRadioGroup>
+				<DropdownMenuRadioGroup
+					value={mounted && resolvedTheme ? resolvedTheme : "light"}
+					onValueChange={(val) => setTheme(val)}>
 					<DropdownMenuRadioItem value="light">Light</DropdownMenuRadioItem>
 					<DropdownMenuRadioItem value="dark">Dark</DropdownMenuRadioItem>
 				</DropdownMenuRadioGroup>

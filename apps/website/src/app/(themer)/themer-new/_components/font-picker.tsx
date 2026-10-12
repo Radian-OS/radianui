@@ -154,10 +154,7 @@ function FontList({
 		return FONTS.filter(
 			(f) =>
 				f.name.toLowerCase().includes(lower) &&
-				(category === "all" ||
-					f.category === category ||
-					(category === "sans-serif" &&
-						(f.category === "sans-serif" || (f as any).fontType === "sans")))
+				(category === "all" || f.category === category)
 		)
 	}, [search, category])
 
