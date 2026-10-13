@@ -10,7 +10,6 @@ import {
 import { useAvatarPlayground } from "@/hooks/avatar/use-avatar-playground"
 import { cn } from "@/lib/utils"
 import { IconButton } from "@/registry/ui/button"
-import { Skeleton } from "@/registry/ui/skeleton"
 import { AvatarTile } from "./AvatarTile"
 import CategoryFilterDropdown from "./CategoryFilterDropdown"
 import ConfigPreferencesDialog from "./ConfigPreferencesDialog"
@@ -37,7 +36,6 @@ const AvatarPlayground = () => {
 		favorites,
 		toggleFavorite,
 		isBlocked,
-		isHydrated,
 		sentinelRef,
 		bottomSentinelRef,
 		resolvedTones,
@@ -100,15 +98,7 @@ const AvatarPlayground = () => {
 				</div>
 			</div>
 
-			{!isHydrated ? (
-				<div
-					aria-label="Loading avatars"
-					className="grid grid-cols-3 gap-3 sm:grid-cols-5 md:grid-cols-7">
-					{Array.from({ length: 42 }).map((_, i) => (
-						<Skeleton key={i} className="aspect-square w-full rounded-xl" />
-					))}
-				</div>
-			) : displayedAvatars.length === 0 ? (
+			{displayedAvatars.length === 0 ? (
 				<div className="border-soft bg-bg/50 flex flex-col items-center justify-center rounded-xl border border-dashed py-16 text-center">
 					{category === "favorites" ? (
 						<>
@@ -130,7 +120,6 @@ const AvatarPlayground = () => {
 				</div>
 			) : (
 				<ul
-					suppressHydrationWarning
 					aria-label="Available UI avatar illustrations"
 					className={cn(
 						"grid list-none grid-cols-3 gap-3 sm:grid-cols-5 md:grid-cols-6",
