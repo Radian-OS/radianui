@@ -72,12 +72,9 @@ export function TestimonialSection() {
 				className="border-border bg-bg relative flex flex-col-reverse overflow-hidden rounded-2xl border select-none lg:flex-row">
 				{/* Content Panel */}
 				<div className="flex flex-col items-start justify-center gap-6 p-6 sm:gap-8 sm:p-10 lg:w-3/5 lg:p-16">
-					<div className="h-8">
-						<img
-							className="h-full w-auto object-contain dark:brightness-200"
-							src={current.logo}
-							alt="Company Logo"
-						/>
+					<div className="flex items-center gap-2">
+						<img src="/logo.svg" alt="Radian" className="size-8 shrink-0" />
+						<h1 className="heading-6">Radian</h1>
 					</div>
 
 					<AnimatePresence mode="wait">

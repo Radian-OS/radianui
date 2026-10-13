@@ -67,6 +67,8 @@ export type PreviewKey =
 	| "hero-18"
 	| "pricing-02"
 	| "pricing-03"
+	| "pricing-04"
+	| "pricing-05"
 	| "testimonial-02"
 	| "hero-09"
 	| "full-page-03"
@@ -557,6 +559,26 @@ export const sandboxComponents: SandboxComponentConfig[] = [
 		defaultFile: "pricing.tsx",
 		referenceUrl: "",
 		previewRoute: "/sandbox/pricing-03",
+	},
+	{
+		id: "pricing-04",
+		label: "pricing-04",
+		category: "pricing-section",
+		filesKey: "pricing-04",
+		path: "src/app/sandbox/pricing-04",
+		defaultFile: "pricing-section.tsx",
+		referenceUrl: "https://dribbble.com/shots/27157027-SaaS-Pricing-Page",
+		previewRoute: "/sandbox/pricing-04",
+	},
+	{
+		id: "pricing-05",
+		label: "pricing-05",
+		category: "pricing-section",
+		filesKey: "pricing-05",
+		path: "src/app/sandbox/pricing-05",
+		defaultFile: "pricing-section.tsx",
+		referenceUrl: "https://dribbble.com/shots/24074397-Pricing-Untitled-UI",
+		previewRoute: "/sandbox/pricing-05",
 	},
 	{
 		id: "testimonial-01",

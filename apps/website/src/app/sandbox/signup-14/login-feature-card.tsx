@@ -1,10 +1,15 @@
 "use client"
 
-import React, { useState } from "react"
+import React from "react"
 import { ArrowLeft, ArrowRight } from "lucide-react"
-import { AnimatePresence, motion } from "motion/react"
-import { IconButton } from "@/styles/default/ui/button"
 import { Card } from "@/styles/default/ui/card"
+import {
+	Carousel,
+	CarouselContent,
+	CarouselItem,
+	CarouselNext,
+	CarouselPrevious,
+} from "@/styles/default/ui/carousel"
 
 const TESTIMONIALS = [
 	{
@@ -38,19 +43,6 @@ const TESTIMONIALS = [
 ]
 
 export function LoginFeatureCard() {
-	const [currentIndex, setCurrentIndex] = useState(0)
-	const [direction, setDirection] = useState(1)
-
-	const handlePrev = () => {
-		setDirection(-1)
-		setCurrentIndex((prev) => (prev === 0 ? TESTIMONIALS.length - 1 : prev - 1))
-	}
-
-	const handleNext = () => {
-		setDirection(1)
-		setCurrentIndex((prev) => (prev === TESTIMONIALS.length - 1 ? 0 : prev + 1))
-	}
-
 	return (
 		<Card className="relative flex h-full flex-col justify-between overflow-hidden rounded-3xl border-0 bg-neutral-950 p-0 text-white shadow-xl dark:bg-neutral-950">
 			{/* Ambient Video Background Layer from Google Flow */}
@@ -71,54 +63,46 @@ export function LoginFeatureCard() {
 
 			{/* Bottom Testimonial Section with Carousel Controls */}
 			<div className="relative z-10 mt-auto flex flex-col gap-5 p-6 sm:p-8">
-				<div className="relative min-h-[90px] overflow-hidden">
-					<AnimatePresence mode="wait" initial={false}>
-						<motion.div
-							key={currentIndex}
-							initial={{ opacity: 0, x: direction * 20 }}
-							animate={{ opacity: 1, x: 0 }}
-							exit={{ opacity: 0, x: direction * -20 }}
-							transition={{ duration: 0.28, ease: "easeInOut" }}
-							className="flex flex-col gap-4">
-							<p className="text-base leading-snug font-medium text-white drop-shadow-md sm:text-lg xl:text-xl">
-								&ldquo;{TESTIMONIALS[currentIndex].quote}&rdquo;
-							</p>
+				<Carousel opts={{ loop: true }} className="relative w-full">
+					<CarouselContent>
+						{TESTIMONIALS.map((testimonial) => (
+							<CarouselItem key={testimonial.id}>
+								<div className="flex flex-col gap-4 pr-24 sm:pr-28">
+									<p className="text-base leading-snug font-medium text-white drop-shadow-md sm:text-lg xl:text-xl">
+										&ldquo;{testimonial.quote}&rdquo;
+									</p>
 
-							<div className="flex items-end justify-between gap-4 pt-1">
-								<div className="flex flex-col gap-0.5">
-									<span className="text-sm font-semibold text-white drop-shadow-sm sm:text-base">
-										{TESTIMONIALS[currentIndex].author}
-									</span>
-									<span className="text-xs text-white/75 drop-shadow-sm sm:text-sm">
-										{TESTIMONIALS[currentIndex].role}
-									</span>
+									<div className="flex flex-col gap-0.5 pt-1">
+										<span className="text-sm font-semibold text-white drop-shadow-sm sm:text-base">
+											{testimonial.author}
+										</span>
+										<span className="text-xs text-white/75 drop-shadow-sm sm:text-sm">
+											{testimonial.role}
+										</span>
+									</div>
 								</div>
+							</CarouselItem>
+						))}
+					</CarouselContent>
 
-								{/* Navigation Controls using Radian OS IconButton */}
-								<div className="flex shrink-0 items-center gap-2.5">
-									<IconButton
-										type="button"
-										variant="outline"
-										size="40"
-										onClick={handlePrev}
-										className="size-10 rounded-full border border-white/25 bg-white/10 text-white backdrop-blur-xs transition-all hover:border-white/50 hover:bg-white/20 active:scale-95"
-										aria-label="Previous testimonial">
-										<ArrowLeft className="size-4.5 stroke-[1.75]" />
-									</IconButton>
-									<IconButton
-										type="button"
-										variant="outline"
-										size="40"
-										onClick={handleNext}
-										className="size-10 rounded-full border border-white/25 bg-white/10 text-white backdrop-blur-xs transition-all hover:border-white/50 hover:bg-white/20 active:scale-95"
-										aria-label="Next testimonial">
-										<ArrowRight className="size-4.5 stroke-[1.75]" />
-									</IconButton>
-								</div>
-							</div>
-						</motion.div>
-					</AnimatePresence>
-				</div>
+					{/* Navigation Controls using Radian OS Carousel Buttons */}
+					<div className="absolute right-0 bottom-0 flex shrink-0 items-center gap-2.5">
+						<CarouselPrevious
+							variant="outline"
+							size="40"
+							className="static size-10 translate-y-0 rounded-full border border-white/25 bg-white/10 text-white backdrop-blur-xs transition-all hover:border-white/50 hover:bg-white/20 active:scale-95"
+							aria-label="Previous testimonial">
+							<ArrowLeft className="size-4.5 stroke-[1.75]" />
+						</CarouselPrevious>
+						<CarouselNext
+							variant="outline"
+							size="40"
+							className="static size-10 translate-y-0 rounded-full border border-white/25 bg-white/10 text-white backdrop-blur-xs transition-all hover:border-white/50 hover:bg-white/20 active:scale-95"
+							aria-label="Next testimonial">
+							<ArrowRight className="size-4.5 stroke-[1.75]" />
+						</CarouselNext>
+					</div>
+				</Carousel>
 			</div>
 		</Card>
 	)

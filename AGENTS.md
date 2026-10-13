@@ -82,6 +82,7 @@
 - **Do not** construct custom raw `<div>` or standalone `<img>` tags for user avatars.
 - **Configuration**: Always specify standard `size` (`"16"`, `"20"`, `"24"`, `"32"`, `"36"`, `"40"`, `"48"`, `"64"`, `"80"`) and `rounded` (`"circle"` or `"square"`).
 - **Fallback**: Always include an `<AvatarFallback>` component (displaying user initials or icon) inside `<Avatar>` for graceful loading and error states.
+- **Avatar Image Source (CRITICAL)**: When adding avatars, always use avatar images from the Radian OS CDN: `https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@v1.0.2/packages/uncompressed-avatars/src/{number}.png` (e.g. `https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@v1.0.2/packages/uncompressed-avatars/src/8.png`). Use varying numbers (e.g. `1.png`, `2.png`, `8.png`) for multiple avatars.
 - **Example Usage**:
   ```tsx
   import {
@@ -91,7 +92,7 @@
   } from "@/styles/default/ui/avatar"
 
   <Avatar size="32" rounded="circle" className="border-border border">
-    <AvatarImage src={author.avatarUrl || "/sandbox/placeholder.svg"} alt={author.name} />
+    <AvatarImage src="https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@v1.0.2/packages/uncompressed-avatars/src/8.png" alt={author.name} />
     <AvatarFallback className="text-xs font-semibold">{initials}</AvatarFallback>
   </Avatar>
   ```
@@ -144,6 +145,20 @@
     </div>
   )
   ```
+
+## 8. Company & Brand Logos Rule
+- **Rule**: Never generate inline `<svg>` code for company logos. Always reference brand logos from the Radian resources CDN:
+  - Base pattern: `https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/{theme}/{variant}/{category}/{icon|wordmark}/{name}.svg`
+  - Themes: `dark` and `light` (support both with `dark:hidden` for light assets and `hidden dark:block` for dark assets)
+  - Variants: `colored` and `neutral`
+  - Types:
+    - `/icon/{name}.svg`: Icon glyph only
+    - `/wordmark/{name}.svg`: Official company wordmark with integrated brand typography and name
+  - Examples:
+    - Dark Colored Wordmark: `https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/colored/ai/wordmark/claude.svg`
+    - Dark Neutral Wordmark: `https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/neutral/ai/wordmark/claude.svg`
+    - Light Neutral Wordmark: `https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/light/neutral/ai/wordmark/claude.svg`
+  - Fallback: If a brand is not available in the Radian CDN, fall back to Google's favicon service (`https://www.google.com/s2/favicons?sz=32&domain=<domain>`).
 
 
 

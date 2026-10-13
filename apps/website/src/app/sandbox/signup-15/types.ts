@@ -13,3 +13,28 @@ export type SignupFormValues = z.infer<typeof signupSchema>
 // Backwards-compatible aliases
 export const loginSchema = signupSchema
 export type LoginFormValues = SignupFormValues
+
+export interface SocialProvider {
+	id: string
+	label: string
+	iconUrl: string
+	iconDarkUrl?: string
+	invertInDark?: boolean
+}
+
+export const SOCIAL_PROVIDERS: SocialProvider[] = [
+	{
+		id: "google",
+		label: "Google",
+		iconUrl:
+			"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/colored/technology/icon/google.svg",
+	},
+	{
+		id: "apple",
+		label: "Apple",
+		iconUrl:
+			"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/light/neutral/technology/icon/apple.svg",
+		iconDarkUrl:
+			"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/neutral/technology/icon/apple.svg",
+	},
+]

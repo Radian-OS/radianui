@@ -21,9 +21,7 @@ export function FaqSection() {
 				<p className="text-fg-secondary text-base">
 					Most commonly asked questions about Radian. Can't find what you're
 					looking for? Check out our{" "}
-					<a
-						href="#"
-						className="text-primary hover:text-primary/80 transition-colors">
+					<a href="#" className="text-fg hover:underline">
 						documentation
 					</a>
 					.
@@ -31,7 +29,7 @@ export function FaqSection() {
 			</div>
 
 			<div className="mx-auto w-full max-w-3xl">
-				<div className="border-border bg-elevation-level1 overflow-hidden rounded-xl border">
+				<div className="bg-elevation-level1 rounded-xl">
 					<Accordion
 						type="single"
 						collapsible
