@@ -172,9 +172,29 @@
 		}
 	],
 	"socialLinks": [
-		{ "label": "GitHub", "href": "https://github.com/Radian-os", "icon": "github" },
-		{ "label": "Twitter", "href": "https://twitter.com", "icon": "twitter" },
-		{ "label": "YouTube", "href": "https://youtube.com", "icon": "youtube" },
-		{ "label": "LinkedIn", "href": "https://linkedin.com", "icon": "linkedin" }
+		{
+			"label": "GitHub",
+			"href": "https://github.com/Radian-os",
+			"iconUrl": "https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/light/neutral/development/icon/github.svg",
+			"iconDarkUrl": "https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/neutral/development/icon/github.svg"
+		},
+		{
+			"label": "Twitter",
+			"href": "https://twitter.com",
+			"iconUrl": "https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/light/neutral/social-content/icon/x.svg",
+			"iconDarkUrl": "https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/neutral/social-content/icon/x.svg"
+		},
+		{
+			"label": "YouTube",
+			"href": "https://youtube.com",
+			"iconUrl": "https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/light/neutral/social-content/icon/youtube.svg",
+			"iconDarkUrl": "https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/neutral/social-content/icon/youtube.svg"
+		},
+		{
+			"label": "LinkedIn",
+			"href": "https://linkedin.com",
+			"iconUrl": "https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/light/neutral/social-content/icon/linkedin.svg",
+			"iconDarkUrl": "https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/neutral/social-content/icon/linkedin.svg"
+		}
 	]
 }

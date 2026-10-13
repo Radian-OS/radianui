@@ -49,7 +49,7 @@ export function LoginForm() {
 					Create an account
 				</h2>
 				<p className="text-fg-secondary text-sm">
-					Sign up to get started with shadcn/studio.
+					Sign up to get started with Radian
 				</p>
 			</div>
 

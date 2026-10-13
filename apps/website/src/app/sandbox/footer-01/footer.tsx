@@ -1,5 +1,4 @@
 import React from "react"
-import { Github, Twitter, Youtube, Linkedin } from "lucide-react"
 import data from "./data.json"
 
 export function Footer() {
@@ -25,38 +24,26 @@ export function Footer() {
 
 				{/* Social Media Links */}
 				<div className="text-fg-secondary flex items-center gap-4">
-					<a
-						href="https://github.com/Radian-os"
-						aria-label="GitHub"
-						target="_blank"
-						rel="noreferrer"
-						className="hover:text-fg transition-colors">
-						<Github className="size-5" />
-					</a>
-					<a
-						href="https://twitter.com"
-						aria-label="Twitter"
-						target="_blank"
-						rel="noreferrer"
-						className="hover:text-fg transition-colors">
-						<Twitter className="size-5" />
-					</a>
-					<a
-						href="https://youtube.com"
-						aria-label="YouTube"
-						target="_blank"
-						rel="noreferrer"
-						className="hover:text-fg transition-colors">
-						<Youtube className="size-5" />
-					</a>
-					<a
-						href="https://linkedin.com"
-						aria-label="LinkedIn"
-						target="_blank"
-						rel="noreferrer"
-						className="hover:text-fg transition-colors">
-						<Linkedin className="size-5" />
-					</a>
+					{data.socialLinks.map((link) => (
+						<a
+							key={link.label}
+							href={link.href}
+							aria-label={link.label}
+							target="_blank"
+							rel="noreferrer"
+							className="transition-opacity hover:opacity-80">
+							<img
+								src={link.iconUrl}
+								alt={link.label}
+								className="size-5 dark:hidden"
+							/>
+							<img
+								src={link.iconDarkUrl}
+								alt={link.label}
+								className="hidden size-5 dark:block"
+							/>
+						</a>
+					))}
 				</div>
 			</div>
 		</footer>
