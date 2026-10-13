@@ -6,7 +6,18 @@
 - **Forms**: Always use the `<Form>` component (from the project's components/ui folder) instead of the raw HTML `<form>` tag.
 - **Form Validation**: Every generated form MUST include validation. Use `zod` for schema definition and `react-hook-form` with `@hookform/resolvers/zod` for integration. Define a Zod schema for all form fields with appropriate rules (e.g. `z.string().min(1, "Required")`, `z.string().email()`, `z.string().min(8)` for passwords, etc.). Display inline error messages below each field. Never generate a form without validation.
 - **Icons**: Always use icons from `lucide-react`. Never generate inline SVG code. Import the appropriate icon component from `lucide-react` (e.g. `import { Search, Menu, X } from "lucide-react"`).
-- **Brand/Logo Icons (IMPORTANT)**: Never generate code with `<svg>` tag. Always use an `<Image>` (Next.js) or `<img>` tag referencing the icon from a public source. Use Google's favicon service (`https://www.google.com/s2/favicons?sz=32&domain=<domain>`) or other public CDN URLs (e.g. `https://authjs.dev/img/providers/<provider>.svg`, `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/<name>/<name>-original.svg`). This rule overrides all other icon rules for brand logos.
+- **Brand/Logo Icons (IMPORTANT)**: Never generate code with `<svg>` tag. Always use an `<Image>` (Next.js) or `<img>` tag referencing the icon or wordmark from the Radian brand logos CDN:
+  - Base pattern: `https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/{theme}/{variant}/{category}/{icon|wordmark}/{name}.svg`
+  - Themes: `dark` and `light` (support both with `dark:hidden` and `hidden dark:block`)
+  - Variants: `colored` and `neutral`
+  - Types:
+    - `/icon/{name}.svg`: Icon glyph only
+    - `/wordmark/{name}.svg`: Official company wordmark with brand name integrated
+  - Examples:
+    - Dark Colored Wordmark: `https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/colored/ai/wordmark/claude.svg`
+    - Dark Neutral Wordmark: `https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/neutral/ai/wordmark/claude.svg`
+    - Light Neutral Wordmark: `https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/light/neutral/ai/wordmark/claude.svg`
+  - If a brand is not in the Radian CDN, fall back to Google's favicon service (`https://www.google.com/s2/favicons?sz=32&domain=<domain>`). This rule overrides all other icon rules for brand logos.
 - **Images (CRITICAL — PLACEHOLDER RULE)**: Whenever an image is used in the given design (photos, graphics, banners, illustrations, mockups, etc.), rather than making whole components or sourcing external images, just put the placeholder image `/sandbox/placeholder.svg` (located at `apps/website/public/sandbox/placeholder.svg`) simply. In Next.js projects, always use the `<Image>` component from `next/image` (e.g. `<Image src="/sandbox/placeholder.svg" alt="Placeholder" width={800} height={500} />`) instead of the raw HTML `<img>` tag. For non-Next.js projects, use an `<img>` tag. Never use localhost URLs (e.g. `http://localhost:*/assets/*`).
 - **Links and Link Buttons (CRITICAL — NO UNDERLINE RULE)**: In Next.js projects, always use the `<Link>` component from `next/link` instead of the raw HTML `<a>` tag for internal navigation. NEVER add `underline` or `hover:underline` to `<Link>`, `<a>`, or `<Button asChild><Link>...</Link></Button>` elements. Keep links, button links, card links, and navigation items completely clean without any text decoration underlines.
 - **Responsive Design**: All components must be responsive. Use Tailwind CSS responsive breakpoint prefixes (`sm:`, `md:`, `lg:`, `xl:`) to adapt layouts across screen sizes. Design mobile-first, then layer on styles for larger breakpoints.
@@ -107,7 +118,7 @@
   - Never construct custom raw `<div>` or standalone `<img>` tags for user avatars.
   - Always specify standard `size` (`"16"`, `"20"`, `"24"`, `"32"`, `"36"`, `"40"`, `"48"`, `"64"`, `"80"`) and `rounded` (`"circle"` or `"square"`).
   - Always include an `<AvatarFallback>` component (displaying user initials or icon) inside `<Avatar>` for graceful loading and error states.
-  - In Next.js environments, use `/sandbox/placeholder.svg` or public image sources for `<AvatarImage src={...} />`.
+  - **Avatar Image Source (CRITICAL)**: When adding avatars, always use avatar images from the Radian OS CDN: `https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@v1.0.2/packages/uncompressed-avatars/src/{number}.png` (e.g. `https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@v1.0.2/packages/uncompressed-avatars/src/8.png`). Use varying numbers (e.g. `1.png`, `2.png`, `8.png`) for multiple avatars.
   - Example usage:
     ```tsx
     import {
@@ -117,7 +128,7 @@
     } from "@/styles/default/ui/avatar"
 
     <Avatar size="32" rounded="circle" className="border-border border">
-    	<AvatarImage src={author.avatarUrl || "/sandbox/placeholder.svg"} alt={author.name} />
+    	<AvatarImage src="https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@v1.0.2/packages/uncompressed-avatars/src/8.png" alt={author.name} />
     	<AvatarFallback className="text-xs font-semibold">{initials}</AvatarFallback>
     </Avatar>
     ```

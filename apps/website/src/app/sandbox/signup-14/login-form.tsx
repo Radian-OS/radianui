@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Eye, EyeOff } from "lucide-react"
 import { Button, IconButton } from "@/styles/default/ui/button"
-import { Checkbox } from "@/styles/default/ui/checkbox"
+import { Divider } from "@/styles/default/ui/divider"
 import {
 	Form,
 	FormControl,
@@ -58,11 +58,11 @@ export function LoginForm() {
 
 			{/* Divider */}
 			<div className="flex items-center gap-4">
-				<div className="bg-border h-px flex-1" />
+				<Divider className="flex-1" />
 				<p className="text-fg-secondary text-xs whitespace-nowrap sm:text-sm">
 					Or continue with email
 				</p>
-				<div className="bg-border h-px flex-1" />
+				<Divider className="flex-1" />
 			</div>
 
 			{/* Validated React Hook Form */}
@@ -84,7 +84,6 @@ export function LoginForm() {
 										placeholder="you@example.com"
 										type="email"
 										autoComplete="email"
-										className="h-10 border-neutral-200 bg-white placeholder:text-neutral-400 focus-visible:bg-[#edf2fe]/50 dark:border-neutral-800 dark:bg-neutral-900 dark:placeholder:text-neutral-500 dark:focus-visible:bg-neutral-800"
 										{...field}
 									/>
 								</FormControl>
@@ -108,7 +107,6 @@ export function LoginForm() {
 											placeholder="Create a password"
 											type={showPassword ? "text" : "password"}
 											autoComplete="new-password"
-											className="h-10 border-neutral-200 bg-white placeholder:text-neutral-400 dark:border-neutral-800 dark:bg-neutral-900 dark:placeholder:text-neutral-500"
 											{...field}
 										/>
 										<IconButton

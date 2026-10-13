@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Eye, EyeOff } from "lucide-react"
 import { Button } from "@/styles/default/ui/button"
+import { Divider } from "@/styles/default/ui/divider"
 import {
 	Form,
 	FormControl,
@@ -122,9 +123,9 @@ export function LoginForm() {
 
 			{/* Divider */}
 			<div className="flex w-full items-center gap-4">
-				<div className="h-px flex-1 bg-neutral-200" />
+				<Divider className="flex-1" />
 				<span className="text-fg text-sm">Or continue with</span>
-				<div className="h-px flex-1 bg-neutral-200" />
+				<Divider className="flex-1" />
 			</div>
 
 			{/* Social Authentication Buttons */}

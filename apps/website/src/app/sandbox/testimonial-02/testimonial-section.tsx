@@ -3,6 +3,7 @@
 import React, { useCallback, useState } from "react"
 import { ArrowLeft, ArrowRight } from "lucide-react"
 import { TestimonialCard } from "./testimonial-card"
+import { Divider } from "@/styles/default/ui/divider"
 
 const testimonials = [
 	{
@@ -48,29 +49,27 @@ export function TestimonialSection() {
 	const current = testimonials[activeIndex]
 
 	return (
-		<section className="mx-auto max-w-[1440px] px-6 py-12 md:px-12 lg:px-20 xl:px-28">
-			{/* TESTIMONIALS label */}
-			<p className="text-orange-text mb-6 text-xs font-bold tracking-[0.16em] uppercase sm:text-sm">
-				Testimonials
-			</p>
-
-			{/* Divider */}
-			<div className="bg-border mb-10 h-px w-full lg:mb-14" />
+		<section className="mx-auto flex max-w-[1440px] flex-col gap-10 px-6 py-12 md:px-12 lg:gap-14 lg:px-20 xl:px-28">
+			{/* Header: Label + Divider */}
+			<div className="flex flex-col gap-6">
+				<h1 className="heading-4 uppercase">Testimonials</h1>
+				<Divider />
+			</div>
 
 			{/* Main testimonial content */}
-			<div className="mb-10 grid grid-cols-1 gap-8 lg:mb-14 lg:grid-cols-[minmax(200px,380px)_1fr] lg:gap-16">
+			<div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:gap-16">
 				{/* Left column: Brand image card */}
-				<TestimonialCard brand={current.brand} image={current.image} />
+				<div className="w-full shrink-0 lg:max-w-[380px]">
+					<TestimonialCard brand={current.brand} image={current.image} />
+				</div>
 
 				{/* Right column: Quote + Author */}
-				<div className="flex flex-col justify-center">
-					<blockquote className="heading-2 text-fg mb-8">
-						{current.quote}
-					</blockquote>
+				<div className="flex flex-1 flex-col justify-center gap-8">
+					<blockquote className="heading-2 text-fg">{current.quote}</blockquote>
 
-					<div>
+					<div className="flex flex-col gap-1">
 						<p className="text-fg text-base font-semibold">{current.name}</p>
-						<p className="text-fg-tertiary mt-1 text-sm">{current.title}</p>
+						<p className="text-fg-tertiary text-sm">{current.title}</p>
 					</div>
 				</div>
 			</div>
@@ -92,7 +91,7 @@ export function TestimonialSection() {
 					<button
 						onClick={goToNext}
 						aria-label="Next testimonial"
-						className="bg-orange flex h-12 w-12 cursor-pointer items-center justify-center rounded-full text-white transition-colors hover:opacity-90 active:scale-95">
+						className="bg-primary text-primary-fg hover:bg-primary-hover flex h-12 w-12 cursor-pointer items-center justify-center rounded-full transition-colors active:scale-95">
 						<ArrowRight className="h-5 w-5" />
 					</button>
 				</div>
