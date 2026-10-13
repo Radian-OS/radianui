@@ -1,5 +1,13 @@
 export const DENSITY = [
 	{
+		value: "compact",
+		name: "Compact",
+		type: "registry:density",
+		density: {
+			spacing: "0.188rem",
+		},
+	},
+	{
 		value: "default",
 		name: "Default",
 		type: "registry:density",
@@ -8,11 +16,11 @@ export const DENSITY = [
 		},
 	},
 	{
-		value: "compact",
-		name: "Compact",
+		value: "relaxed",
+		name: "Relaxed",
 		type: "registry:density",
 		density: {
-			spacing: "0.188rem",
+			spacing: "0.281rem",
 		},
 	},
 	{

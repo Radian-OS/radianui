@@ -31,7 +31,9 @@ export default function DensityPicker({
 		onValueChange ?? ((val: DensityValue) => setPresetParams({ density: val }))
 
 	const selectedDensity =
-		DENSITIES.find((d) => d.value === currentValue) ?? DENSITIES[0]
+		DENSITIES.find((d) => d.value === currentValue) ??
+		DENSITIES.find((d) => d.value === "default") ??
+		DENSITIES[0]
 
 	return (
 		<DropdownMenu>
