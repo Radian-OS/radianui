@@ -96,7 +96,7 @@ export default async function EmojiPage(props: EmojiPageProps) {
 								"@type": "ListItem",
 								position: 1,
 								name: "Resources",
-								item: absoluteUrl("/resources"),
+								item: absoluteUrl("/docs/getting-started/resources"),
 							},
 							{
 								"@type": "ListItem",

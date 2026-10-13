@@ -49,7 +49,7 @@ export const getBlock = React.cache(async (name: string) => {
 const readFile = React.cache(async (filePath: string) => {
 	let fullPath = ""
 	try {
-		fullPath = path.join(process.cwd(), "src", filePath)
+		fullPath = path.join(process.cwd(), "src", filePath.replaceAll("\\", "/"))
 		return await fs.readFile(fullPath, "utf-8")
 	} catch (e) {
 		console.error("Error reading file:", fullPath || filePath, e)
@@ -57,42 +57,27 @@ const readFile = React.cache(async (filePath: string) => {
 	}
 })
 
-export async function DisplayBlock({
-	name,
-	title,
-}: {
-	name: string
-	title: string
-}) {
+export function DisplayBlock({ name, title }: { name: string; title: string }) {
+	if (!Object.hasOwn(Index, name)) return <h1>Block not found</h1>
+
+	return <DisplayBlockClient title={title} name={name} />
+}
+
+export async function getBlockCode(name: string) {
+	if (!Object.hasOwn(Index, name)) return null
 	const block = await getBlock(name)
-	if (!block) return <h1>Block not found</h1>
+	if (!block) return null
 
 	const mappedFiles: FlatFile[] = block.files.map((file) => ({
 		content: formatCode(file.content),
 		path: getFilePathname(file.type, file.name, name.split("-")[0]),
 	}))
-
 	const [nodes, highlightedFiles] = await Promise.all([
 		getCachedFileTree(mappedFiles),
 		getCachedHighlightedFiles(mappedFiles),
 	])
 
-	const highlightedFilesWithMappedPaths = highlightedFiles.map(
-		(file, index) => ({
-			...file,
-			path: mappedFiles[index].path,
-		})
-	)
-
-	return (
-		<DisplayBlockClient
-			title={title}
-			name={name}
-			nodes={nodes!}
-			highlightedFiles={highlightedFilesWithMappedPaths}
-			mappedFiles={mappedFiles}
-		/>
-	)
+	return { nodes, highlightedFiles, mappedFiles }
 }
 
 const getCachedFileTree = React.cache(async (mappedFiles: FlatFile[]) => {
