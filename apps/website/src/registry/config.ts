@@ -20,6 +20,8 @@ const ICON_DEPENDENCIES: Record<IconLibrary, string[]> = {
 	lucide: ["lucide-react"],
 	hugeicons: ["@hugeicons/react", "@hugeicons/core-free-icons"],
 	phosphor: ["@phosphor-icons/react"],
+	tabler: ["@tabler/icons-react"],
+	heroicons: ["@heroicons/react"],
 }
 
 export const registryConfigSchema = z.object({

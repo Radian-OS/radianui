@@ -7,14 +7,21 @@ import {
 	DropdownMenuRadioItem,
 	DropdownMenuTrigger,
 } from "@/styles/default/ui/dropdown-menu"
-import { HugeIcon, LucideIcon, PhosphorIcon } from "./icons"
+import {
+	HeroiconsIcon,
+	HugeIcon,
+	LucideIcon,
+	PhosphorIcon,
+	TablerIcon,
+} from "./icons"
 import { ICON_LIBRARIES, IconLibrary } from "@/registry/icon/icon-libraries"
 
 const ICONS = [
 	{ icon: LucideIcon, label: "Lucide", value: "lucide" },
 	{ icon: HugeIcon, label: "Hugeicons", value: "hugeicons" },
 	{ icon: PhosphorIcon, label: "Phosphor", value: "phosphor" },
-	// { icon: TablerIcon, label: "Tabler Icons", value: 'tablericons' },
+	{ icon: TablerIcon, label: "Tabler", value: "tabler" },
+	{ icon: HeroiconsIcon, label: "Heroicons", value: "heroicons" },
 	// { icon: MageIcon, label: "Mage Icons", value: 'mageicons' },
 ]
 

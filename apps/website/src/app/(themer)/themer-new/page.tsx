@@ -17,7 +17,7 @@ import { useThemerPreset } from "@/lib/themer-preset"
 function ThemerPage() {
 	const [params, setParams] = useThemerPreset()
 	const [selectedComponent, setSelectedComponent] =
-		useState<string>("preview-06")
+		useState<string>("preview-03")
 	const [device, setDevice] = useState<DeviceSize>("desktop")
 	const iframeRef = useRef<HTMLIFrameElement>(null)
 

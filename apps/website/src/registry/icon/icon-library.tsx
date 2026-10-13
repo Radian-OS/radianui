@@ -73,6 +73,44 @@ function loadPhosphor(): Promise<Record<IconSlotName, PhosphorIconComponent>> {
 	return phosphorPromise
 }
 
+type TablerIconComponent = React.ComponentType<React.SVGProps<SVGSVGElement>>
+let tablerMap: Record<IconSlotName, TablerIconComponent> | null = null
+let tablerPromise: Promise<Record<IconSlotName, TablerIconComponent>> | null =
+	null
+
+function loadTabler(): Promise<Record<IconSlotName, TablerIconComponent>> {
+	if (tablerMap) return Promise.resolve(tablerMap)
+	if (!tablerPromise) {
+		tablerPromise = import("./maps/tabler").then((mod) => {
+			tablerMap = mod.TABLER_ICON_MAP as unknown as Record<
+				IconSlotName,
+				TablerIconComponent
+			>
+			return tablerMap
+		})
+	}
+	return tablerPromise
+}
+
+type HeroiconsComponent = React.ComponentType<React.SVGProps<SVGSVGElement>>
+let heroiconsMap: Record<IconSlotName, HeroiconsComponent> | null = null
+let heroiconsPromise: Promise<Record<IconSlotName, HeroiconsComponent>> | null =
+	null
+
+function loadHeroicons(): Promise<Record<IconSlotName, HeroiconsComponent>> {
+	if (heroiconsMap) return Promise.resolve(heroiconsMap)
+	if (!heroiconsPromise) {
+		heroiconsPromise = import("./maps/heroicons").then((mod) => {
+			heroiconsMap = mod.HEROICONS_ICON_MAP as unknown as Record<
+				IconSlotName,
+				HeroiconsComponent
+			>
+			return heroiconsMap
+		})
+	}
+	return heroiconsPromise
+}
+
 export const IconSlot = React.forwardRef<
 	SVGSVGElement,
 	ThemedIconProps & { slot: IconSlotName }
@@ -86,6 +124,12 @@ export const IconSlot = React.forwardRef<
 		}
 		if (iconLibrary === "phosphor" && !phosphorMap) {
 			loadPhosphor().then(() => forceUpdate())
+		}
+		if (iconLibrary === "tabler" && !tablerMap) {
+			loadTabler().then(() => forceUpdate())
+		}
+		if (iconLibrary === "heroicons" && !heroiconsMap) {
+			loadHeroicons().then(() => forceUpdate())
 		}
 	}, [iconLibrary])
 
@@ -107,6 +151,22 @@ export const IconSlot = React.forwardRef<
 		const PhosphorComponent = phosphorMap[slot]
 		if (PhosphorComponent) {
 			return <PhosphorComponent ref={ref} {...props} />
+		}
+	}
+
+	if (iconLibrary === "tabler" && tablerMap) {
+		const TablerComponent = tablerMap[slot]
+		if (TablerComponent) {
+			return <TablerComponent ref={ref} strokeWidth={strokeWidth} {...props} />
+		}
+	}
+
+	if (iconLibrary === "heroicons" && heroiconsMap) {
+		const HeroiconComponent = heroiconsMap[slot]
+		if (HeroiconComponent) {
+			return (
+				<HeroiconComponent ref={ref} strokeWidth={strokeWidth} {...props} />
+			)
 		}
 	}
 
