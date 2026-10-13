@@ -18,6 +18,7 @@ const cssValueSchema = z.union([z.string(), z.record(z.string(), z.string())])
 const ICON_DEPENDENCIES: Record<IconLibrary, string[]> = {
 	lucide: ["lucide-react"],
 	hugeicons: ["@hugeicons/react", "@hugeicons/core-free-icons"],
+	phosphor: ["@phosphor-icons/react"],
 }
 
 export const registryConfigSchema = z.object({

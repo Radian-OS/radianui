@@ -154,10 +154,7 @@ function FontList({
 		return FONTS.filter(
 			(f) =>
 				f.name.toLowerCase().includes(lower) &&
-				(category === "all" ||
-					f.category === category ||
-					(category === "sans-serif" &&
-						(f.category === "sans-serif" || (f as any).fontType === "sans")))
+				(category === "all" || f.category === category)
 		)
 	}, [search, category])
 
@@ -253,10 +250,11 @@ export default function FontPicker(
 	props: React.ComponentProps<typeof FontCard>
 ) {
 	React.useEffect(() => {
-		if (props.fontName) {
-			loadPreview(props.fontName)
-		}
-	}, [props.fontName])
+		FONTS.reduce(
+			(p, font) => p.then(() => loadPreview(font.name)),
+			Promise.resolve()
+		)
+	}, [])
 
 	return (
 		<Popover>

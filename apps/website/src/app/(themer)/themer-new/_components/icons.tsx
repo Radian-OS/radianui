@@ -471,17 +471,17 @@ export function LucideIcon() {
 			xmlns="http://www.w3.org/2000/svg">
 			<path
 				d="M11.499 9.98062C11.499 8.32405 10.156 6.98113 8.49949 6.98113C6.84292 6.98113 5.5 8.32405 5.5 9.98062C5.5 13.2938 8.18583 15.9796 11.499 15.9796C14.8121 15.9796 17.498 13.2938 17.498 9.98062C17.498 7.31558 16.3394 4.92112 14.4985 3.27344"
-				stroke="#5E636E"
+				stroke="var(--color-fg-secondary)"
 				strokeWidth="1.25"
-				stroke-linecap="round"
-				stroke-linejoin="round"
+				strokeLinecap="round"
+				strokeLinejoin="round"
 			/>
 			<path
 				d="M8.49898 9.97945C8.49898 11.636 9.84193 12.9789 11.4985 12.9789C13.155 12.9789 14.498 11.636 14.498 9.97945C14.498 6.6663 11.8121 3.98047 8.49898 3.98047C5.18583 3.98047 2.5 6.6663 2.5 9.97945C2.5 12.6671 3.67825 15.0795 5.54638 16.7283"
-				stroke="#5E636E"
+				stroke="var(--color-fg-secondary)"
 				strokeWidth="1.25"
-				stroke-linecap="round"
-				stroke-linejoin="round"
+				strokeLinecap="round"
+				strokeLinejoin="round"
 			/>
 		</svg>
 	)
@@ -499,22 +499,22 @@ export function HugeIcon() {
 				d="M2 8H18"
 				stroke="#5E636E"
 				strokeWidth="1.2"
-				stroke-linecap="round"
-				stroke-linejoin="round"
+				strokeLinecap="round"
+				strokeLinejoin="round"
 			/>
 			<path
 				d="M16.8031 8H3.20312L3.78995 12.6946C4.08192 15.0303 4.2279 16.1982 5.02187 16.8991C5.81584 17.6 6.99279 17.6 9.34672 17.6H10.6595C13.0134 17.6 14.1904 17.6 14.9844 16.8991C15.7783 16.1982 15.9243 15.0303 16.2163 12.6946L16.8031 8Z"
-				stroke="#5E636E"
+				stroke="var(--color-fg-secondary)"
 				strokeWidth="1.2"
-				stroke-linecap="round"
-				stroke-linejoin="round"
+				strokeLinecap="round"
+				strokeLinejoin="round"
 			/>
 			<path
 				d="M4.40234 7.59844C4.40234 4.72656 6.90955 2.39844 10.0023 2.39844C13.0951 2.39844 15.6023 4.72656 15.6023 7.59844"
-				stroke="#5E636E"
+				stroke="var(--color-fg-secondary)"
 				strokeWidth="1.2"
-				stroke-linecap="round"
-				stroke-linejoin="round"
+				strokeLinecap="round"
+				strokeLinejoin="round"
 			/>
 		</svg>
 	)

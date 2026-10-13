@@ -31,7 +31,11 @@ export default function PagePicker({
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
-				<Button size="28" variant="outline" color="neutral">
+				<Button
+					size="28"
+					variant="outline"
+					color="neutral"
+					className="select-none">
 					<span>{currentLabel}</span>{" "}
 					<ChevronDown className="text-fg-secondary" />
 				</Button>
