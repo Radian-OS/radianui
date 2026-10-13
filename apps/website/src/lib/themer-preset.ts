@@ -11,6 +11,7 @@ import {
 } from "nuqs/server"
 import { BASE_COLORS, BaseColorValue } from "@/registry/base-colors"
 import { DEFAULT_CONFIG } from "@/registry/config"
+import { DENSITIES, DensityValue } from "@/registry/density"
 import { FONTS, FontValue } from "@/registry/fonts"
 import { ICON_LIBRARIES, IconLibrary } from "@/registry/icon/icon-libraries"
 import { INPUT_VARIANTS, InputVariantValue } from "@/registry/input-variants"
@@ -42,6 +43,9 @@ const designSystemSearchParams = {
 	style: parseAsStringLiteral<StyleValue>(
 		STYLES.map((style) => style.value)
 	).withDefault(DEFAULT_CONFIG.style),
+	density: parseAsStringLiteral<DensityValue>(
+		DENSITIES.map((d) => d.value)
+	).withDefault(DEFAULT_CONFIG.density),
 	useSrcDir: parseAsBoolean.withDefault(DEFAULT_CONFIG.useSrcDir),
 	iconLibrary: parseAsStringLiteral<IconLibrary>(ICON_LIBRARIES).withDefault(
 		DEFAULT_CONFIG.iconLibrary
@@ -84,6 +88,7 @@ function resolvePresetParams(
 		controlRadius: searchParams.get("controlRadius") ?? rawParams.controlRadius,
 		template: searchParams.get("template") ?? rawParams.template,
 		style: searchParams.get("style") ?? rawParams.style,
+		density: (searchParams.get("density") as DensityValue) ?? rawParams.density,
 		useSrcDir: searchParams.get("useSrcDir") ?? rawParams.useSrcDir,
 		iconLibrary: searchParams.get("iconLibrary") ?? rawParams.iconLibrary,
 		customColors: rawParams.customColors,

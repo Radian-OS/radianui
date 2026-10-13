@@ -33,6 +33,7 @@ function ThemerPage() {
 			style: params.style,
 			useSrcDir: String(params.useSrcDir),
 			iconLibrary: params.iconLibrary,
+			density: params.density,
 		})
 
 		if (params.primaryColor) {
@@ -47,6 +48,10 @@ function ThemerPage() {
 			searchParams.set("iconLibrary", params.iconLibrary)
 		}
 
+		if (params.density) {
+			searchParams.set("density", params.density)
+		}
+
 		return `/preview/${selectedComponent}?${searchParams.toString()}`
 	}, [selectedComponent])
 
@@ -59,7 +64,7 @@ function ThemerPage() {
 			type: "heading-font-change",
 			headingFont: params.headingFont,
 		})
-	}, [params.headingFont])
+	}, [params.headingFont, postToIframe])
 
 	useEffect(() => {
 		postToIframe({ type: "body-font-change", bodyFont: params.bodyFont })
@@ -70,7 +75,14 @@ function ThemerPage() {
 			type: "icon-library-change",
 			iconLibrary: params.iconLibrary,
 		})
-	}, [params.iconLibrary])
+	}, [params.iconLibrary, postToIframe])
+
+	useEffect(() => {
+		postToIframe({
+			type: "density-change",
+			density: params.density,
+		})
+	}, [params.density, postToIframe])
 
 	return (
 		<SidebarProvider

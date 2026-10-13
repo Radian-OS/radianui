@@ -141,7 +141,7 @@ export function PreviewClient({ children }: { children: React.ReactNode }) {
 				document.head.removeChild(style)
 			}
 		}
-	}, [config, params.style, params.customColors])
+	}, [config, params.style, params.density, params.customColors])
 
 	useFontLoader(selectedHeadingFont, "--font-heading")
 	useFontLoader(selectedBodyFont, "--font-body")
@@ -174,6 +174,9 @@ export function PreviewClient({ children }: { children: React.ReactNode }) {
 			}
 			if (event.data.type === "icon-library-change") {
 				setParams({ iconLibrary: event.data.iconLibrary })
+			}
+			if (event.data.type === "density-change") {
+				setParams({ density: event.data.density })
 			}
 		}
 

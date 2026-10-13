@@ -230,7 +230,10 @@ export function ThemerSidebar() {
 					<SidebarGroupLabel className="text-fg-tertiary px-0 font-medium">
 						Density
 					</SidebarGroupLabel>
-					<DensityPicker />
+					<DensityPicker
+						value={params.density}
+						onValueChange={(value) => setParams({ density: value })}
+					/>
 				</SidebarGroup>
 
 				{/* Icons */}

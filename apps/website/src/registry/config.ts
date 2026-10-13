@@ -1,8 +1,8 @@
 import z from "zod"
 import { BASE_COLORS } from "./base-colors"
+import { DENSITIES } from "./density"
 import { FONTS } from "./fonts"
 import { ICON_LIBRARIES, IconLibrary } from "./icon/icon-libraries"
-import { INPUT_VARIANTS } from "./input-variants"
 import { PRIMARY_COLORS } from "./primary-colors"
 import { RADIUS } from "./radius"
 import { STYLES } from "./styles"
@@ -12,6 +12,7 @@ import { generateCustomColorShades } from "@/lib/shade-generator"
 const fontValues = FONTS.map((font) => font.value)
 const radiusValues = RADIUS.map((radius) => radius.value)
 const styleValues = STYLES.map((style) => style.value)
+const densityValues = DENSITIES.map((density) => density.value)
 
 const cssValueSchema = z.union([z.string(), z.record(z.string(), z.string())])
 
@@ -41,8 +42,6 @@ export const registryConfigSchema = z.object({
 
 export type RegistryConfig = z.infer<typeof registryConfigSchema>
 
-const inputVariantValues = INPUT_VARIANTS.map((v) => v.value)
-
 export const themerConfigSchema = z.object({
 	name: z.string().optional(),
 	primaryColor: z.string().default("violet-blue"),
@@ -71,6 +70,7 @@ export const themerConfigSchema = z.object({
 			error: "Invalid style valiue",
 		})
 		.default("default"),
+	density: z.enum(densityValues).default("default"),
 	useSrcDir: z.boolean().default(true),
 	iconLibrary: z.enum(ICON_LIBRARIES).default("lucide"),
 	customColors: z.record(z.string(), z.string()).default({}),
@@ -96,6 +96,7 @@ export const DEFAULT_CONFIG: ThemerConfig = {
 	radius: "medium",
 	controlRadius: "medium",
 	style: "default",
+	density: "default",
 	name: "my-project",
 	useSrcDir: true,
 	iconLibrary: "lucide",
@@ -122,6 +123,7 @@ export const PRESETS: Preset[] = [
 		radius: "medium",
 		controlRadius: "medium",
 		style: "default",
+		density: "default",
 		useSrcDir: true,
 		iconLibrary: "lucide",
 		baseColor: "default",
@@ -139,6 +141,7 @@ export const PRESETS: Preset[] = [
 		radius: "none",
 		controlRadius: "none",
 		style: "sera",
+		density: "default",
 		useSrcDir: true,
 		iconLibrary: "lucide",
 		baseColor: "default",
@@ -349,6 +352,11 @@ export function buildRegistryConfig(config: ThemerConfig): RegistryConfig {
 	const controlRadius = RADIUS.find((r) => r.value === config.controlRadius)
 	if (controlRadius) {
 		theme["--control-radius-base"] = controlRadius.radius["control-radius-base"]
+	}
+
+	const density = DENSITIES.find((d) => d.value === config.density)
+	if (density) {
+		theme["--spacing"] = density.density.spacing
 	}
 
 	const dependencies = [
