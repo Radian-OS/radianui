@@ -4,14 +4,14 @@ import { SOCIAL_PROVIDERS } from "./types"
 
 export function LoginSocialButtons() {
 	return (
-		<div className="flex gap-3">
+		<div className="grid w-full grid-cols-1 gap-2.5 sm:grid-cols-2 sm:gap-3">
 			{SOCIAL_PROVIDERS.map((provider) => (
 				<Button
 					key={provider.id}
 					type="button"
 					variant="outline"
 					color="neutral"
-					className="w-full">
+					className="w-full justify-center">
 					{provider.iconDarkUrl ? (
 						<>
 							<Image
@@ -41,7 +41,7 @@ export function LoginSocialButtons() {
 							unoptimized
 						/>
 					)}
-					<span>{provider.label}</span>
+					<span className="truncate">{provider.label}</span>
 				</Button>
 			))}
 		</div>

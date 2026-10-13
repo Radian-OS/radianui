@@ -49,7 +49,7 @@ export function LoginForm() {
 
 			{/* Top Heading & Subtitle */}
 			<div className="flex flex-col items-center gap-1.5 text-center">
-				<h2 className="heading-2">Sign up to Radian</h2>
+				<h2 className="heading-4">Sign up to Radian</h2>
 				<p className="text-fg-secondary text-sm">
 					Create your account to get started.
 				</p>

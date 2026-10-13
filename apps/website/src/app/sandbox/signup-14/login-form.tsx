@@ -39,15 +39,13 @@ export function LoginForm() {
 	}
 
 	return (
-		<div className="flex w-full max-w-lg flex-col gap-6">
+		<div className="flex w-full max-w-md flex-col gap-5 sm:gap-6">
 			{/* Top Brand Logo */}
 			<LoginBrand />
 
 			{/* Heading & Subtitle */}
 			<div>
-				<h2 className="text-fg mb-1 text-2xl font-bold tracking-tight">
-					Create an account
-				</h2>
+				<h2 className="heading-4 mb-1">Create an account</h2>
 				<p className="text-fg-secondary text-sm">
 					Sign up to get started with Radian
 				</p>
@@ -75,10 +73,8 @@ export function LoginForm() {
 						control={form.control}
 						name="email"
 						render={({ field }) => (
-							<FormItem className="flex flex-col gap-1.5">
-								<FormLabel className="text-fg text-sm font-medium">
-									Email address*
-								</FormLabel>
+							<FormItem>
+								<FormLabel>Email address</FormLabel>
 								<FormControl>
 									<Input
 										placeholder="you@example.com"
@@ -97,10 +93,8 @@ export function LoginForm() {
 						control={form.control}
 						name="password"
 						render={({ field }) => (
-							<FormItem className="flex flex-col gap-1.5">
-								<FormLabel className="text-fg text-sm font-medium">
-									Password*
-								</FormLabel>
+							<FormItem>
+								<FormLabel>Password</FormLabel>
 								<FormControl>
 									<InputWrapper size="36">
 										<Input
@@ -153,7 +147,7 @@ export function LoginForm() {
 			{/* Footer Link */}
 			<p className="text-fg-secondary text-center text-sm">
 				Already have an account?{" "}
-				<Link href="#" className="text-fg font-bold">
+				<Link href="#" className="text-fg hover:underline">
 					Log in
 				</Link>
 			</p>

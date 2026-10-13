@@ -5,8 +5,8 @@ import { TRUSTED_COMPANIES } from "./pricing-data"
 
 export function PricingLogos() {
 	return (
-		<div className="border-border/40 w-full border-t pt-16 pb-12">
-			<div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-8 px-6 sm:px-8">
+		<div className="border-soft w-full border-t pt-16 pb-12">
+			<div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-2 px-6 sm:px-8">
 				{TRUSTED_COMPANIES.map((company) => (
 					<div
 						key={company.name}
@@ -15,13 +15,13 @@ export function PricingLogos() {
 						<img
 							src={company.lightSrc}
 							alt={company.name}
-							className="h-7 w-auto object-contain dark:hidden"
+							className="h-12 w-auto object-contain dark:hidden"
 						/>
 						{/* Dark mode wordmark (contains logo + company name) */}
 						<img
 							src={company.darkSrc}
 							alt={company.name}
-							className="hidden h-7 w-auto object-contain dark:block"
+							className="hidden h-12 w-auto object-contain dark:block"
 						/>
 					</div>
 				))}

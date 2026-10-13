@@ -78,6 +78,7 @@ export type PreviewKey =
 	| "signup-13"
 	| "signup-14"
 	| "signup-15"
+	| "signup-16"
 	| "social-proof-01"
 	| "social-proof-02"
 	| "social-proof-03"
@@ -1186,5 +1187,16 @@ export const sandboxComponents: SandboxComponentConfig[] = [
 		defaultFile: "footer.tsx",
 		referenceUrl: "",
 		previewRoute: "/sandbox/footer-04",
+	},
+	{
+		id: "signup-16",
+		label: "sign up 16",
+		category: "signup-section",
+		filesKey: "signup-16",
+		path: "src/app/sandbox/signup-16",
+		defaultFile: "page.tsx",
+		referenceUrl:
+			"https://shadcnstudio.com/preview/blocks/base/marketing-ui/login-page/login-page-03",
+		previewRoute: "/sandbox/signup-16",
 	},
 ]
