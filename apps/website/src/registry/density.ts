@@ -8,6 +8,14 @@ export const DENSITY = [
 		},
 	},
 	{
+		value: "cozy",
+		name: "Cozy",
+		type: "registry:density",
+		density: {
+			spacing: "0.219rem",
+		},
+	},
+	{
 		value: "default",
 		name: "Default",
 		type: "registry:density",
