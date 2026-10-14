@@ -45,15 +45,15 @@ function BadgeInteractiveExample() {
 					const person = getPerson(label)
 
 					return (
-						<Badge key={label} color="neutral" variant="outline" size="28">
-							<Avatar size="16" rounded="circle">
+						<Badge key={label} color="neutral" variant="outline" size="lg">
+							<Avatar size="3xs" rounded="circle">
 								<AvatarImage src={person.image} />
 								<AvatarFallback>{person.initials}</AvatarFallback>
 							</Avatar>
 							{person.name}
 							<CompactButton
 								aria-label={`Remove ${person.name}`}
-								size="20"
+								size="sm"
 								variant="ghost"
 								color="neutral"
 								className="[&>svg]:!h-3.5! !p-0 [&>svg]:!w-3.5"
@@ -68,7 +68,7 @@ function BadgeInteractiveExample() {
 					<DropdownMenuTrigger asChild>
 						<CompactButton
 							aria-label="Add person"
-							size="24"
+							size="md"
 							variant="outline"
 							color="neutral">
 							<Plus />
@@ -84,7 +84,7 @@ function BadgeInteractiveExample() {
 								onCheckedChange={(checked) =>
 									checked ? add(person.name) : remove(person.name)
 								}>
-								<Avatar size="16" rounded="circle">
+								<Avatar size="3xs" rounded="circle">
 									<AvatarImage src={person.image} />
 									<AvatarFallback>{person.initials}</AvatarFallback>
 								</Avatar>

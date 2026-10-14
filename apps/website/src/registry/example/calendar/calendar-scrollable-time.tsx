@@ -80,7 +80,7 @@ export default function CalendarScrollableTime() {
 											key={timeSlot}
 											variant="outline"
 											color="neutral"
-											size="32"
+											size="lg"
 											className={cn(
 												"text-fg-secondary hover:bg-fill2-alpha w-full justify-center px-2 py-1.5 text-sm font-medium",
 												{

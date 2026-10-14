@@ -78,7 +78,7 @@ export default function FileUploadProgress() {
 				{/* Close */}
 				<CompactButton
 					aria-label="Close Button"
-					size="20"
+					size="sm"
 					variant="ghost"
 					color="neutral"
 					className="self-start">

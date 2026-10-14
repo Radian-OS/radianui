@@ -60,7 +60,7 @@ export default function PopoverGuide() {
 						</span>
 						<CompactButton
 							aria-label="Close Button"
-							size="20"
+							size="sm"
 							variant="ghost"
 							color="neutral">
 							<X />
@@ -83,12 +83,12 @@ export default function PopoverGuide() {
 							onClick={handleSkip}
 							variant="ghost"
 							color="primary"
-							size="32">
+							size="lg">
 							Skip
 						</Button>
 						<Button
 							onClick={handleNext}
-							size="32"
+							size="lg"
 							variant="strong"
 							color="primary">
 							{step < steps.length - 1 ? "Next" : "Done"}

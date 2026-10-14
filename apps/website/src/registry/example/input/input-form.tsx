@@ -101,7 +101,7 @@ export default function InputForm() {
 									<FormItem>
 										<FormLabel>Email Address</FormLabel>
 										<FormControl>
-											<Input size="36" type="email" {...field} />
+											<Input size="md" type="email" {...field} />
 										</FormControl>
 										<FormMessage />
 									</FormItem>
@@ -114,7 +114,7 @@ export default function InputForm() {
 									<FormItem>
 										<FormLabel>Password</FormLabel>
 										<FormControl>
-											<Input size="36" type="password" {...field} />
+											<Input size="md" type="password" {...field} />
 										</FormControl>
 										<FormMessage />
 									</FormItem>

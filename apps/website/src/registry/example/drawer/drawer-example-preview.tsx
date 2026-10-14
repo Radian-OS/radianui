@@ -187,42 +187,42 @@ function DrawerExamplePreview() {
 								<DrawerTitle>Alexia Rivas</DrawerTitle>
 								<DrawerDescription>Lead Product Designer</DrawerDescription>
 							</div>
-							<IconButton size="40" color="neutral" variant="ghost">
+							<IconButton size="lg" color="neutral" variant="ghost">
 								<EllipsisVertical />
 							</IconButton>
 						</div>
 					</DrawerHeader>
 					<DrawerBody className="flex w-full flex-col gap-6">
 						<div className="flex items-center gap-2 px-6">
-							<Button className="w-full" size="40">
+							<Button className="w-full" size="lg">
 								<PhoneCall />
 							</Button>
 							<Button
 								className="w-full"
 								color="neutral"
 								variant="outline"
-								size="40">
+								size="lg">
 								<MessageSquareText />
 							</Button>
 							<Button
 								className="w-full"
 								color="neutral"
 								variant="outline"
-								size="40">
+								size="lg">
 								<MessageSquareText />
 							</Button>
 							<Button
 								className="w-full"
 								color="neutral"
 								variant="outline"
-								size="40">
+								size="lg">
 								<Mail />
 							</Button>
 							<Button
 								className="w-full"
 								color="neutral"
 								variant="outline"
-								size="40">
+								size="lg">
 								<Search />
 							</Button>
 						</div>

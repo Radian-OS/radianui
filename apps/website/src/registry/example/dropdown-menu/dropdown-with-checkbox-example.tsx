@@ -53,7 +53,7 @@ const DropdownWithCheckboxExample = () => {
 						setWorkspaceChecked("debcon", checked === true)
 					}
 					onSelect={(event) => event.preventDefault()}>
-					<Avatar size="32" rounded="square">
+					<Avatar size="sm" rounded="square">
 						<AvatarImage src="/media/debcon.png" alt="debcon" />
 						<AvatarFallback>DC</AvatarFallback>
 					</Avatar>
@@ -71,7 +71,7 @@ const DropdownWithCheckboxExample = () => {
 						setWorkspaceChecked("xavion", checked === true)
 					}
 					onSelect={(event) => event.preventDefault()}>
-					<Avatar size="32" rounded="square">
+					<Avatar size="sm" rounded="square">
 						<AvatarImage src="/media/xavion.png" alt="xavion" />
 						<AvatarFallback>XV</AvatarFallback>
 					</Avatar>
@@ -89,7 +89,7 @@ const DropdownWithCheckboxExample = () => {
 						setWorkspaceChecked("qubio", checked === true)
 					}
 					onSelect={(event) => event.preventDefault()}>
-					<Avatar size="32" rounded="square">
+					<Avatar size="sm" rounded="square">
 						<AvatarImage src="/media/qubio.png" alt="qubio" />
 						<AvatarFallback>QB</AvatarFallback>
 					</Avatar>
@@ -107,7 +107,7 @@ const DropdownWithCheckboxExample = () => {
 						setWorkspaceChecked("personal", checked === true)
 					}
 					onSelect={(event) => event.preventDefault()}>
-					<Avatar size="32" rounded="square">
+					<Avatar size="sm" rounded="square">
 						<AvatarImage src="/media/personal.png" alt="personal" />
 						<AvatarFallback>AB</AvatarFallback>
 					</Avatar>

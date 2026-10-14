@@ -4,10 +4,10 @@ import { Avatar, AvatarFallback } from "@/registry/ui/avatar"
 export default function AvatarFallbackPreview() {
 	return (
 		<div className="flex gap-6">
-			<Avatar size="48">
+			<Avatar size="xl">
 				<AvatarFallback color="blue">SM</AvatarFallback>
 			</Avatar>
-			<Avatar size="48">
+			<Avatar size="xl">
 				<AvatarFallback className="bg-fill4 overflow-hidden">
 					<svg
 						width="100"

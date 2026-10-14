@@ -90,7 +90,7 @@ export default function Page() {
 							You have 3 days left in your trial. Need more time?
 						</BannerDescription>
 						<div className="pl-1">
-							<Button size="28" color="neutral">
+							<Button size="lg" color="neutral">
 								Contact sales
 							</Button>
 						</div>
@@ -105,7 +105,7 @@ export default function Page() {
 							Save 30% on all annual plans — limited time only.
 						</BannerDescription>
 						<div className="pl-1">
-							<Button size="28">Explore</Button>
+							<Button size="lg">Explore</Button>
 						</div>
 					</Banner>
 				</div>

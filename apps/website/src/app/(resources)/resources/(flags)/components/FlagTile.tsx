@@ -116,7 +116,7 @@ export const FlagTile = memo(function FlagTile({
 		<li className="group relative aspect-square w-full min-w-0 sm:size-[142px]">
 			<Button
 				asChild
-				size="32"
+				size="sm"
 				color="neutral"
 				variant="outline"
 				className="bg-bg hover:bg-bg size-full overflow-hidden rounded-xl p-0 pb-6">
@@ -149,7 +149,7 @@ export const FlagTile = memo(function FlagTile({
 
 			<div className="absolute inset-x-0 bottom-0 z-20 p-2 opacity-0 transition-opacity duration-200 group-focus-within:opacity-100 group-hover:opacity-100">
 				<Button
-					size="28"
+					size="xs"
 					color="neutral"
 					variant="outline"
 					className="bg-bg w-full"

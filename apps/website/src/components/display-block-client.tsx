@@ -94,7 +94,7 @@ export function DisplayBlockClient({
 								<IconButton
 									variant="outline"
 									color="neutral"
-									size="28"
+									size="xs"
 									className="text-fg-secondary"
 									asChild>
 									<Link href={`/view/${name}`} passHref target="_blank">

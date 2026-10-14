@@ -41,7 +41,7 @@ export default function HoverCard() {
 				className={`border-border bg-bg flex w-80 flex-col overflow-hidden ${radiusBorderMap[radius]} border p-0`}>
 				<div className="bg-primary-focus relative h-16">
 					<Avatar
-						size="80"
+						size="3xl"
 						className="border-bg absolute bottom-0 left-4 translate-y-1/2 border-6">
 						<AvatarImage
 							src={logoImage ? getImageSrc(logoImage) : profile.avatar}

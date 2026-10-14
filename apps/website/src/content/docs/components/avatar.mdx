@@ -61,7 +61,7 @@ import {
 ### Code
 
 ```tsx showLineNumbers title=" "
-<Avatar size="48" rounded="circle">
+<Avatar size="xl" rounded="circle">
 	<AvatarImage src="https://radianui.com/logo.png" />
 	<AvatarFallback>RS</AvatarFallback>
 	<AvatarIndicator>
@@ -179,8 +179,8 @@ The root container that groups all avatar sub-components and controls the shared
 	data={[
 		{
 			name: "size",
-			values: ["16", "20", "24", "32", "40", "48", "56", "64", "80"],
-			defaultValue: "40",
+			values: ["3xs", "2xs", "xs", "sm", "md", "lg", "xl", "2xl", "3xl"],
+			defaultValue: "lg",
 			required: false,
 			description: "Sets the size of the avatar",
 		},
@@ -221,8 +221,8 @@ A small colored badge indicating the user's current presence state such as onlin
 		},
 		{
 			name: "size",
-			values: ["16", "20", "24", "32", "40", "48", "56", "64", "80"],
-			defaultValue: "40",
+			values: ["3xs", "2xs", "xs", "sm", "md", "lg", "xl", "2xl", "3xl"],
+			defaultValue: "lg",
 			required: false,
 			description: "Sets the size of the avatar status",
 		},

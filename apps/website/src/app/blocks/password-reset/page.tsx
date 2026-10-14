@@ -35,7 +35,7 @@ export default function Page({ fullScreen = true }: VerificationProps) {
 							<div className="flex flex-col gap-5">
 								<div data-slot="form-item" className="flex flex-col gap-1.5">
 									<Label htmlFor="email-input">Email Address</Label>
-									<Input id="email-input" size="36" type="email" />
+									<Input id="email-input" size="md" type="email" />
 								</div>
 							</div>
 							<Button className="w-full">Send Reset Instructions</Button>

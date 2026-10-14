@@ -66,12 +66,12 @@ export const buttonVariants = cva(
 				"smooth-inverted": "",
 			},
 			size: {
-				"28": "rounded-md px-1 text-[13px] leading-4.5 [&>svg]:size-4",
-				"32": "rounded-md px-1 text-sm [&>svg]:size-4.5",
-				"36": "rounded-lg px-1 text-sm [&>svg]:size-5",
-				"40": "rounded-lg px-1 text-sm [&>svg]:size-5",
-				"44": "rounded-lg px-1 text-base [&>svg]:size-5",
-				"48": "rounded-lg px-1 text-base [&>svg]:size-6",
+				xs: "cn-btn-size-xs px-1 text-[13px] leading-4.5 [&>svg]:size-4",
+				sm: "cn-btn-size-sm px-1 text-sm [&>svg]:size-4.5",
+				md: "cn-btn-size-md px-1 text-sm [&>svg]:size-5",
+				lg: "cn-btn-size-lg px-1 text-sm [&>svg]:size-5",
+				xl: "cn-btn-size-xl px-1 text-base [&>svg]:size-5",
+				"2xl": "cn-btn-size-2xl px-1 text-base [&>svg]:size-6",
 			},
 			loading: {
 				true: "",
@@ -88,18 +88,18 @@ export const buttonVariants = cva(
 		},
 		defaultVariants: {
 			variant: "strong",
-			size: "36",
+			size: "md",
 			color: "primary",
 			loading: false,
 		},
 		compoundVariants: [
 			// Default size styles (for buttons with text)
-			{ size: "28", className: "h-7 gap-1 px-2 py-1.5" },
-			{ size: "32", className: "h-8 gap-1.5 px-2.5 py-1.5" },
-			{ size: "36", className: "h-9 gap-2 px-3 py-2" },
-			{ size: "40", className: "h-10 gap-2 px-3 py-2.5" },
-			{ size: "44", className: "h-11 gap-2 px-3 py-2.5" },
-			{ size: "48", className: "h-12 gap-2 px-4 py-3" },
+			{ size: "xs", className: "h-7 gap-1 px-2 py-1.5" },
+			{ size: "sm", className: "h-8 gap-1.5 px-2 py-1.5" },
+			{ size: "md", className: "h-9 gap-2 px-3 py-2" },
+			{ size: "lg", className: "h-10 gap-2 px-3 py-2.5" },
+			{ size: "xl", className: "h-11 gap-2 px-3 py-2.5" },
+			{ size: "2xl", className: "h-12 gap-2 px-4 py-3" },
 
 			// Strong variant + colors
 			{
@@ -455,10 +455,19 @@ export const buttonVariants = cva(
 	}
 )
 
+const buttonSpinnerSizes: Record<string, number> = {
+	xs: 14,
+	sm: 16,
+	md: 18,
+	lg: 18,
+	xl: 20,
+	"2xl": 22,
+}
+
 function Button({
 	loading = false,
 	variant = "strong",
-	size = "36",
+	size = "md",
 	color = "primary",
 	className,
 	children,
@@ -498,7 +507,10 @@ function Button({
 			disabled={disabled}
 			{...validProps}>
 			{loading && (
-				<Spinner variant="simple" size={size ? Number(size) : undefined} />
+				<Spinner
+					variant="simple"
+					size={size ? buttonSpinnerSizes[size] || 18 : undefined}
+				/>
 			)}
 			{children}
 		</Comp>
@@ -510,7 +522,7 @@ function ButtonGroup({
 	className,
 	children,
 	variant = "outline",
-	size = "36",
+	size = "md",
 	color = "neutral",
 	...props
 }: ButtonGroupProps) {
@@ -589,8 +601,8 @@ export const compactButtonVariants = cva(
 				"smooth-inverted": "",
 			},
 			size: {
-				"20": "h-5 w-5 p-0.5 [&>svg]:!h-4 [&>svg]:!w-4",
-				"24": "h-6 w-6 p-1 [&>svg]:!h-4 [&>svg]:!w-4",
+				sm: "h-5 w-5 p-0.5 [&>svg]:!h-4 [&>svg]:!w-4",
+				md: "h-6 w-6 p-1 [&>svg]:!h-4 [&>svg]:!w-4",
 			},
 			color: {
 				primary: "",
@@ -603,7 +615,7 @@ export const compactButtonVariants = cva(
 		},
 		defaultVariants: {
 			variant: "strong",
-			size: "24",
+			size: "md",
 			color: "primary",
 		},
 		compoundVariants: [
@@ -914,10 +926,15 @@ export const compactButtonVariants = cva(
 	}
 )
 
+const compactButtonSpinnerSizes: Record<string, number> = {
+	sm: 12,
+	md: 14,
+}
+
 function CompactButton({
 	loading = false,
 	variant = "strong",
-	size = "24",
+	size = "md",
 	color = "primary",
 	className,
 	children,
@@ -935,7 +952,14 @@ function CompactButton({
 
 	return (
 		<Comp className={combinedClass} disabled={disabled} {...props}>
-			{loading ? <Spinner variant="simple" size={Number(size)} /> : children}
+			{loading ? (
+				<Spinner
+					variant="simple"
+					size={size ? compactButtonSpinnerSizes[size] || 14 : undefined}
+				/>
+			) : (
+				children
+			)}
 		</Comp>
 	)
 }
@@ -946,12 +970,12 @@ CompactButton.displayName = "CompactButton"
 export const iconButtonSizeVariants = cva("", {
 	variants: {
 		size: {
-			"28": "size-7 rounded-md p-1.5 [&>svg]:size-4",
-			"32": "size-8 rounded-md p-1.75 [&>svg]:size-4.5",
-			"36": "size-9 rounded-lg p-2 [&>svg]:size-5",
-			"40": "size-10 rounded-lg p-2.5 [&>svg]:size-5",
-			"44": "size-11 rounded-lg p-3 [&>svg]:size-5",
-			"48": "size-12 rounded-lg p-3 [&>svg]:size-6",
+			xs: "cn-icon-btn-size-xs size-7 p-1.5 [&>svg]:size-4",
+			sm: "cn-icon-btn-size-sm size-8 p-1.75 [&>svg]:size-4.5",
+			md: "cn-icon-btn-size-md size-9 p-2 [&>svg]:size-5",
+			lg: "cn-icon-btn-size-lg size-10 p-2.5 [&>svg]:size-5",
+			xl: "cn-icon-btn-size-xl size-11 p-3 [&>svg]:size-5",
+			"2xl": "cn-icon-btn-size-2xl size-12 p-3 [&>svg]:size-6",
 		},
 		variant: {
 			outline: "",
@@ -960,19 +984,19 @@ export const iconButtonSizeVariants = cva("", {
 	},
 	compoundVariants: [
 		// Adjusted padding for outline variant (accounting for border)
-		{ variant: "outline", size: "28", className: "p-1.25" },
-		{ variant: "outline", size: "32", className: "p-1.5" },
-		{ variant: "outline", size: "36", className: "p-1.75" },
-		{ variant: "outline", size: "40", className: "p-2.25" },
-		{ variant: "outline", size: "44", className: "p-2.75" },
-		{ variant: "outline", size: "48", className: "p-2.75" },
+		{ variant: "outline", size: "xs", className: "p-1.25" },
+		{ variant: "outline", size: "sm", className: "p-1.5" },
+		{ variant: "outline", size: "md", className: "p-1.75" },
+		{ variant: "outline", size: "lg", className: "p-2.25" },
+		{ variant: "outline", size: "xl", className: "p-2.75" },
+		{ variant: "outline", size: "2xl", className: "p-2.75" },
 	],
 })
 
 function IconButton({
 	loading = false,
 	variant = "strong",
-	size = "36",
+	size = "md",
 	color = "primary",
 	className,
 	children,
@@ -981,7 +1005,7 @@ function IconButton({
 	...props
 }: IconButtonProps) {
 	const iconButtonClass = cn(
-		buttonVariants({ variant, size: "36", color })
+		buttonVariants({ variant, size: "md", color })
 			.split(" ")
 			.filter(
 				(cls) =>
@@ -1011,7 +1035,10 @@ function IconButton({
 			disabled={disabled}
 			{...props}>
 			{loading ? (
-				<Spinner variant="simple" size={size ? Number(size) : undefined} />
+				<Spinner
+					variant="simple"
+					size={size ? buttonSpinnerSizes[size] || 18 : undefined}
+				/>
 			) : (
 				children
 			)}

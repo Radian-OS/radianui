@@ -80,7 +80,7 @@ function TimePickerCalendarPreview() {
 										key={timeSlot}
 										variant="ghost"
 										color="neutral"
-										size="32"
+										size="lg"
 										className="text-fg hover:bg-fill2-alpha w-full justify-start px-2 py-1.5 text-sm font-normal"
 										onClick={() => setTime(timeSlot)}
 										disabled={!available}>

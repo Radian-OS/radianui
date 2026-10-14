@@ -39,7 +39,7 @@ export default function HoverCardPostImagesAndStats() {
 	return (
 		<HoverCard>
 			<HoverCardTrigger className="group flex cursor-pointer items-center gap-3">
-				<Avatar size="40">
+				<Avatar size="lg">
 					<AvatarImage src={profile.avatar} />
 					<AvatarFallback>{profile.name.charAt(0)}</AvatarFallback>
 				</Avatar>
@@ -55,7 +55,7 @@ export default function HoverCardPostImagesAndStats() {
 			</HoverCardTrigger>
 			<HoverCardContent className="w-80 space-y-4">
 				<div className="flex items-center gap-2">
-					<Avatar size="64">
+					<Avatar size="2xl">
 						<AvatarImage src={profile.avatar} />
 						<AvatarFallback>{profile.name.charAt(0)}</AvatarFallback>
 					</Avatar>

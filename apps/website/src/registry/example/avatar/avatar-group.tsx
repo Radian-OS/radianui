@@ -40,14 +40,14 @@ export default function AvatarGroup() {
 		<div className="flex -space-x-2.5">
 			{people.map((person) => (
 				<Avatar
-					size="32"
+					size="sm"
 					className="border-bg border-4 hover:z-10"
 					key={person.name}>
 					<AvatarImage src={person.image} />
 					<AvatarFallback>{getInitials(person.name)}</AvatarFallback>
 				</Avatar>
 			))}
-			<Avatar size="32" className="border-bg border-4 hover:z-10">
+			<Avatar size="sm" className="border-bg border-4 hover:z-10">
 				<AvatarFallback className="text-sm font-semibold">+9</AvatarFallback>
 			</Avatar>
 		</div>

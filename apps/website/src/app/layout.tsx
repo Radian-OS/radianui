@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { Inter } from "next/font/google"
+import { Inter, Geist } from "next/font/google"
 import { Toaster } from "sonner"
 import AhrefsAnalytics from "@/components/ahrefs-analytics"
 import { PostHogProvider } from "@/components/posthog-provider"
@@ -11,6 +11,7 @@ import "@/css/globals.css"
 import { cn } from "@/lib/utils"
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
+const geist = Geist({ subsets: ["latin"], variable: "--font-geist" })
 
 export const metadata: Metadata = {
 	title: `${websiteMetadata.name} - Open Source React Components and Figma Design System`,
@@ -90,7 +91,8 @@ export default async function RootLayout({
 			<body
 				className={cn(
 					"style-default relative min-h-svh antialiased",
-					inter.variable
+					inter.variable,
+					geist.variable
 				)}>
 				<ReactQueryProvider>
 					<PostHogProvider>

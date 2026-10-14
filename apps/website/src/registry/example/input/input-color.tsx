@@ -11,7 +11,7 @@ const ColorInput = () => {
 		<div className="flex w-80 flex-col gap-6">
 			<div className="flex flex-col gap-2">
 				<Label>Color Input</Label>
-				<InputWrapper size="40">
+				<InputWrapper size="lg">
 					<Label className="relative size-5 shrink-0 cursor-pointer overflow-hidden rounded-md">
 						<span
 							className="block size-full"

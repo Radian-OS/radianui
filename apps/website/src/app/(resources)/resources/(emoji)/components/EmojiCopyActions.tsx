@@ -170,7 +170,7 @@ export function EmojiCopyActions({
 					emoji={emoji.emoji}
 					value={emoji.emoji}
 					successLabel="Emoji text"
-					size="32"
+					size="sm"
 					variant="strong"
 					className="max-sm:flex-auto">
 					Text
@@ -179,14 +179,14 @@ export function EmojiCopyActions({
 					emoji={emoji.emoji}
 					resolveValue={resolveSvg}
 					successLabel="SVG"
-					size="32"
+					size="sm"
 					variant="strong"
 					className="max-sm:flex-auto">
 					SVG
 				</EmojiCopyButton>
 				<DropdownMenu>
 					<ButtonGroup
-						size="32"
+						size="sm"
 						color="primary"
 						variant="strong"
 						className="max-sm:flex-auto">
@@ -216,7 +216,7 @@ export function EmojiCopyActions({
 				</DropdownMenu>
 				<DropdownMenu>
 					<ButtonGroup
-						size="32"
+						size="sm"
 						color="neutral"
 						variant="outline"
 						className="max-sm:flex-auto">
@@ -245,7 +245,7 @@ export function EmojiCopyActions({
 					emoji={emoji.emoji}
 					value={getEmojiHtmlSnippet(emoji)}
 					successLabel="HTML"
-					size="32"
+					size="sm"
 					color="neutral"
 					variant="outline"
 					className="max-sm:flex-auto">
@@ -261,7 +261,7 @@ export function EmojiCopyActions({
 					emoji={emoji.emoji}
 					value={emoji.emoji}
 					successLabel="Emoji text"
-					size="40"
+					size="lg"
 					variant="strong">
 					<Copy />
 					Copy as Text
@@ -270,7 +270,7 @@ export function EmojiCopyActions({
 					emoji={emoji.emoji}
 					resolveValue={resolveSvg}
 					successLabel="SVG"
-					size="40"
+					size="lg"
 					color="neutral"
 					variant="outline">
 					<FileCode2 />
@@ -280,7 +280,7 @@ export function EmojiCopyActions({
 					emoji={emoji.emoji}
 					value={getEmojiHtmlSnippet(emoji)}
 					successLabel="HTML"
-					size="40"
+					size="lg"
 					color="neutral"
 					variant="outline">
 					Copy HTML
@@ -289,7 +289,7 @@ export function EmojiCopyActions({
 					emoji={emoji.emoji}
 					value={getEmojiCodePoints(emoji.emoji).join(" ")}
 					successLabel="Unicode codepoint"
-					size="40"
+					size="lg"
 					color="neutral"
 					variant="outline">
 					Copy Unicode
@@ -330,7 +330,7 @@ export function EmojiCopyActions({
 								emoji={emoji.emoji}
 								value={format.value}
 								successLabel={format.label}
-								size="32"
+								size="sm"
 								color="neutral"
 								variant="ghost"
 								aria-label={`Copy ${format.label}`}>
@@ -381,7 +381,7 @@ function EmojiExportButton({
 	children: ReactNode
 }) {
 	return (
-		<Button size="40" color="neutral" variant="outline" onClick={onClick}>
+		<Button size="lg" color="neutral" variant="outline" onClick={onClick}>
 			{icon}
 			{children}
 		</Button>

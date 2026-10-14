@@ -6,7 +6,7 @@ function BadgeNested() {
 	return (
 		<div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
 			<Badge
-				size="28"
+				size="lg"
 				variant="strong"
 				className="h-8 gap-2 rounded-full py-1 pr-[10px] pl-1"
 				color="neutral">
@@ -17,12 +17,12 @@ function BadgeNested() {
 				<ArrowRight />
 			</Badge>
 			<Badge
-				size="28"
+				size="lg"
 				variant="soft"
 				className="h-8 gap-2 rounded-full py-1.5 pr-1.5 pl-2.5">
 				<span className="text-sm">Save 17% off</span>
 				<Badge
-					size="20"
+					size="sm"
 					className="rounded-full"
 					variant="strong"
 					color="primary">

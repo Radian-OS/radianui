@@ -11,7 +11,7 @@ export default function UIBlocksSection() {
 			className="bg-bg relative z-30 mx-auto w-full max-w-[1440px]">
 			<header className="border-soft mx-auto flex w-full max-w-360 flex-col overflow-hidden border border-y-0">
 				<div className="flex flex-col gap-4 px-5 py-16 sm:gap-6 sm:px-10 lg:px-15 lg:py-30">
-					<Badge size="28" variant="soft" color="primary">
+					<Badge size="lg" variant="soft" color="primary">
 						<BadgeDot className="bg-primary" />
 						UI Blocks
 					</Badge>

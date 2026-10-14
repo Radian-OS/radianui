@@ -28,7 +28,7 @@ function BannerExamplePreview() {
 					<Button
 						className="bg-white text-black hover:bg-white"
 						color="neutral"
-						size="28">
+						size="lg">
 						Talk to Sales
 					</Button>
 				</div>

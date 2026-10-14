@@ -20,7 +20,7 @@ function BadgeRoundedExample() {
 				variant="strong"
 				color="success"
 				className="rounded-full py-1 pr-2 pl-1">
-				<Avatar size="16">
+				<Avatar size="3xs">
 					<AvatarImage
 						src="https://randomuser.me/api/portraits/men/1.jpg"
 						alt="man5"

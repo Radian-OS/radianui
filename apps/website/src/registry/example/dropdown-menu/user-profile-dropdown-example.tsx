@@ -14,7 +14,7 @@ const UserMenuDropdownExample = () => {
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild className="cursor-pointer">
-				<Avatar size="40">
+				<Avatar size="lg">
 					<AvatarImage src="https://randomuser.me/api/portraits/men/1.jpg" />
 					<AvatarFallback>WM</AvatarFallback>
 				</Avatar>
@@ -23,7 +23,7 @@ const UserMenuDropdownExample = () => {
 				align="center"
 				className="[&_svg]:text-fg-secondary w-80 space-y-0.5">
 				<div className="flex w-full items-center gap-2.5 p-2">
-					<Avatar size="36">
+					<Avatar size="md">
 						<AvatarImage src="https://randomuser.me/api/portraits/men/1.jpg" />
 						<AvatarFallback>WM</AvatarFallback>
 					</Avatar>
@@ -33,7 +33,7 @@ const UserMenuDropdownExample = () => {
 							wames@radian.com
 						</p>
 					</div>
-					<Badge variant="strong" color="primary" size="24">
+					<Badge variant="strong" color="primary" size="md">
 						PRO
 					</Badge>
 				</div>

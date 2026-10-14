@@ -27,7 +27,7 @@ export const EmojiTile = memo(function EmojiTile({
 				<TooltipTrigger asChild>
 					<Button
 						asChild
-						size="32"
+						size="sm"
 						color="neutral"
 						variant="outline"
 						className="bg-bg hover:bg-bg size-full rounded-xl p-0">

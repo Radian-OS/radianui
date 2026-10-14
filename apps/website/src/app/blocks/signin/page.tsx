@@ -63,7 +63,7 @@ export default function Page({ fullScreen = true }: SigninProps) {
 											className="text-fg text-sm font-medium">
 											Email Address
 										</Label>
-										<Input id="email" name="email" size="36" type="email" />
+										<Input id="email" name="email" size="md" type="email" />
 									</div>
 									<div className="flex flex-col gap-1.5">
 										<Label
@@ -74,7 +74,7 @@ export default function Page({ fullScreen = true }: SigninProps) {
 										<Input
 											id="password"
 											name="password"
-											size="36"
+											size="md"
 											type="password"
 										/>
 									</div>

@@ -9,7 +9,7 @@ import {
 export default function CustomAvatarWithBadgePreview() {
 	return (
 		<div className="flex gap-6">
-			<Avatar size="48">
+			<Avatar size="xl">
 				<AvatarImage src="/media/female-6.jpg" />
 				<AvatarFallback>CH</AvatarFallback>
 				<AvatarIndicator className="-right-0.5 -bottom-0.5">
@@ -18,7 +18,7 @@ export default function CustomAvatarWithBadgePreview() {
 					</div>
 				</AvatarIndicator>
 			</Avatar>
-			<Avatar size="48" rounded="square">
+			<Avatar size="xl" rounded="square">
 				<AvatarImage src="/media/male-5.jpg" />
 				<AvatarFallback className="text-info-text bg-info-focus">
 					AJ

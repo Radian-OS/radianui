@@ -47,7 +47,7 @@ export default function CodeSnippet({
 					className="text-fg-secondary"
 					variant="ghost"
 					color="neutral"
-					size={"28"}
+					size="lg"
 					aria-label="Copy command"
 					onClick={copy}>
 					{copied ? <Check size={20} /> : <Clipboard size={20} />}

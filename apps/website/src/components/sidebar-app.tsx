@@ -53,17 +53,17 @@ export default function Sidebar() {
 												<span className="truncate">{item.title}</span>
 											</div>
 											{item.isComingSoon && (
-												<Badge size="20" variant="soft" color="warning">
+												<Badge size="sm" variant="soft" color="warning">
 													Coming Soon
 												</Badge>
 											)}
 											{item.isUpdated && (
-												<Badge size="20" variant="soft" color="info">
+												<Badge size="sm" variant="soft" color="info">
 													Updated
 												</Badge>
 											)}
 											{item.isNew && (
-												<Badge size="20" variant="soft" color="success">
+												<Badge size="sm" variant="soft" color="success">
 													New
 												</Badge>
 											)}

@@ -9,14 +9,14 @@ const ButtonWithBadgeExample = () => {
 			<Button variant="outline" color="neutral">
 				<Printer className="text-fg-secondary" />
 				Print
-				<Badge size="20" variant="outline" color="neutral">
+				<Badge size="sm" variant="outline" color="neutral">
 					⌘P
 				</Badge>
 			</Button>
 			<Button variant="outline" color="neutral">
 				<CloudDownload className="text-fg-secondary" />
 				Download
-				<Badge size="20" variant="outline" color="neutral">
+				<Badge size="sm" variant="outline" color="neutral">
 					12
 				</Badge>
 			</Button>

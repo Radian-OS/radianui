@@ -39,7 +39,7 @@ export default function HoverCardGroupQuickView() {
 			</HoverCardTrigger>
 			<HoverCardContent className="w-80 space-y-4">
 				<div className="flex items-center justify-between">
-					<Avatar size="48">
+					<Avatar size="xl">
 						<AvatarImage src={organization.logo} />
 						<AvatarFallback>{organization.name.charAt(0)}</AvatarFallback>
 					</Avatar>
@@ -48,7 +48,7 @@ export default function HoverCardGroupQuickView() {
 						<div className="flex -space-x-2">
 							{organization.members.slice(0, 4).map((member) => (
 								<Avatar
-									size="24"
+									size="xs"
 									className="border-bg border-2 hover:z-10"
 									key={member.name}>
 									<AvatarImage src={member.image} />
@@ -73,14 +73,14 @@ export default function HoverCardGroupQuickView() {
 						aria-label="Heart Button"
 						variant="outline"
 						color="neutral"
-						size={"36"}>
+						size="md">
 						<Heart />
 					</IconButton>
 					<div className="flex items-center justify-center gap-2">
-						<Button variant={"outline"} color="neutral" size={"36"}>
+						<Button variant={"outline"} color="neutral" size="md">
 							View
 						</Button>
-						<Button size={"36"}>Join</Button>
+						<Button size="md">Join</Button>
 					</div>
 				</div>
 			</HoverCardContent>

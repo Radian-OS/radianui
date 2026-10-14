@@ -98,7 +98,7 @@ export function BrandLogoCategoryDropdown({
 			<DropdownMenuTrigger asChild>
 				<Button
 					ref={triggerRef}
-					size="44"
+					size="xl"
 					color="neutral"
 					variant="outline"
 					className={cn(

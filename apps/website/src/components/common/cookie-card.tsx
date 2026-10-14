@@ -18,7 +18,7 @@ const CookieCard = () => {
 						These cookies are necessary for website functionality.
 					</p>
 				</span>
-				<Switch defaultChecked size="24" />
+				<Switch defaultChecked size="md" />
 			</span>
 			<span className="flex items-center justify-between gap-2">
 				<span>
@@ -27,7 +27,7 @@ const CookieCard = () => {
 						These cookies enable personalized features on the site.
 					</p>
 				</span>
-				<Switch defaultChecked size="24" />
+				<Switch defaultChecked size="md" />
 			</span>
 			<Button className="w-full" variant="outline" color="primary">
 				Save preferences

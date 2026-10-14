@@ -67,7 +67,7 @@ function EarlyAccessButton({
 	const stars = useGithubStars()
 	return (
 		<Button
-			size={size ?? "36"}
+			size={size ?? "md"}
 			variant={variant ?? "smooth"}
 			color={"primary"}
 			className={cn(className)}
@@ -79,7 +79,7 @@ function EarlyAccessButton({
 				<GithubIcon />
 				Github
 				{stars !== null && (
-					<Badge variant="strong" size="20" color="primary">
+					<Badge variant="strong" size="sm" color="primary">
 						{stars.toLocaleString("en-US")}
 					</Badge>
 				)}

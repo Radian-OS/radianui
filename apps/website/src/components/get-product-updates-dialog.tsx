@@ -30,10 +30,7 @@ import { Label } from "@/styles/default/ui/label"
 import { Spinner } from "@/styles/default/ui/spinner"
 
 const formSchema = z.object({
-	email: z
-		.string()
-		.min(1, "Email is required")
-		.email("Please enter a valid email address."),
+	email: z.string().email("Please enter a valid email address."),
 })
 
 type FormData = z.infer<typeof formSchema>

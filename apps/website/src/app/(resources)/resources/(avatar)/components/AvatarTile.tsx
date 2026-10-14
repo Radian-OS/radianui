@@ -206,7 +206,7 @@ export const AvatarTile = React.memo(
 
 				<CompactButton
 					aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}
-					size="24"
+					size="md"
 					variant="ghost"
 					color="neutral"
 					className={cn(
@@ -233,7 +233,7 @@ export const AvatarTile = React.memo(
 
 				<div className="absolute inset-x-0 bottom-0 z-30 hidden p-3 opacity-0 transition-opacity duration-200 group-hover:opacity-100 lg:block">
 					<Button
-						size="28"
+						size="sm"
 						color="neutral"
 						variant="outline"
 						className="w-full border-none bg-white text-black hover:[background:linear-gradient(rgba(0,0,0,0.10),rgba(0,0,0,0.10)),_#fff]"

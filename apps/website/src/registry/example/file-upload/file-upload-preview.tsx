@@ -157,7 +157,7 @@ export default function DocumentUpload() {
 					{files.length > 1 && (
 						<div>
 							<Button
-								size="28"
+								size="lg"
 								variant="outline"
 								color="neutral"
 								onClick={clearFiles}>

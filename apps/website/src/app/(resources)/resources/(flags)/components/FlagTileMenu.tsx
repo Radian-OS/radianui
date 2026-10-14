@@ -40,7 +40,7 @@ export const FlagTileMenu = memo(function FlagTileMenu({
 				<DropdownMenuTrigger asChild>
 					<CompactButton
 						aria-label="Open flag copy options"
-						size="24"
+						size="md"
 						variant="ghost"
 						color="neutral">
 						<MoreHorizontal className="size-4" />

@@ -64,7 +64,7 @@ export default function TypographyPlayground() {
 						<Button
 							variant="outline"
 							color="neutral"
-							size="36"
+							size="md"
 							autoFocus={false}>
 							Font: {selectedFont} <ChevronDown />
 						</Button>
@@ -93,7 +93,7 @@ export default function TypographyPlayground() {
 				<div
 					className={`flex flex-col gap-10 rounded-xl border px-6 py-8 ${FONTS[selectedFont]}`}>
 					<div className="flex flex-col gap-3 border-b pb-4">
-						<Badge variant="soft" color="primary" size="24">
+						<Badge variant="soft" color="primary" size="md">
 							Heading 2
 						</Badge>
 						<span className={`text-5xl leading-[3.5rem] font-semibold`}>
@@ -107,7 +107,7 @@ export default function TypographyPlayground() {
 						</p>
 					</div>
 					<div className="flex flex-col gap-3">
-						<Badge variant="soft" color="primary" size="24">
+						<Badge variant="soft" color="primary" size="md">
 							Heading 4
 						</Badge>
 						<span className={`text-[2rem] leading-[2.5rem] font-semibold`}>
@@ -125,7 +125,7 @@ export default function TypographyPlayground() {
 						declared, &quot;then every chart should begin with a coin.&quot;
 					</div>
 					<div className="flex flex-col gap-3">
-						<Badge variant="soft" color="primary" size="24">
+						<Badge variant="soft" color="primary" size="md">
 							Heading 6
 						</Badge>
 						<span className={`heading-6`}>Cartographers&apos; Revolt</span>
@@ -138,7 +138,7 @@ export default function TypographyPlayground() {
 						</p>
 					</div>
 					<div className="flex flex-col gap-3">
-						<Badge variant="soft" color="primary" size="24">
+						<Badge variant="soft" color="primary" size="md">
 							Heading 6
 						</Badge>
 						<span className={`heading-6 ${FONTS[selectedFont]}`}>
@@ -160,7 +160,7 @@ export default function TypographyPlayground() {
 						</ul>
 					</div>
 					<div className="flex flex-col gap-3">
-						<Badge variant="soft" color="primary" size="24">
+						<Badge variant="soft" color="primary" size="md">
 							Heading 6
 						</Badge>
 						<span className={`heading-6`}>Frequently asked questions</span>
@@ -203,7 +203,7 @@ export default function TypographyPlayground() {
 				<div
 					className={`flex flex-col gap-10 rounded-xl border px-6 py-8 ${FONTS[selectedFont]}`}>
 					<div className="flex flex-col gap-3 border-b pb-4">
-						<Badge variant="soft" color="primary" size="24">
+						<Badge variant="soft" color="primary" size="md">
 							Heading 2
 						</Badge>
 						<span className={`text-[2.5rem] leading-[3rem] font-semibold`}>
@@ -217,7 +217,7 @@ export default function TypographyPlayground() {
 						</p>
 					</div>
 					<div className="flex flex-col gap-3">
-						<Badge variant="soft" color="primary" size="24">
+						<Badge variant="soft" color="primary" size="md">
 							Heading 4
 						</Badge>
 						<span
@@ -236,7 +236,7 @@ export default function TypographyPlayground() {
 						declared, &quot;then every chart should begin with a coin.&quot;
 					</div>
 					<div className="flex flex-col gap-3">
-						<Badge variant="soft" color="primary" size="24">
+						<Badge variant="soft" color="primary" size="md">
 							Heading 6
 						</Badge>
 						<span className={`heading-6`}>Cartographers&apos; Revolt</span>
@@ -249,7 +249,7 @@ export default function TypographyPlayground() {
 						</p>
 					</div>
 					<div className="flex flex-col gap-3">
-						<Badge variant="soft" color="primary" size="24">
+						<Badge variant="soft" color="primary" size="md">
 							Heading 6
 						</Badge>
 						<span className={`heading-6`}>
@@ -271,7 +271,7 @@ export default function TypographyPlayground() {
 						</ul>
 					</div>
 					<div className="flex flex-col gap-3">
-						<Badge variant="soft" color="primary" size="24">
+						<Badge variant="soft" color="primary" size="md">
 							Heading 6
 						</Badge>
 						<span className={`heading-6`}>Frequently asked questions</span>
@@ -314,7 +314,7 @@ export default function TypographyPlayground() {
 				<div
 					className={`flex flex-col gap-10 rounded-xl border px-6 py-8 ${FONTS[selectedFont]}`}>
 					<div className="flex flex-col gap-3 border-b pb-4">
-						<Badge variant="soft" color="primary" size="24">
+						<Badge variant="soft" color="primary" size="md">
 							Heading 2
 						</Badge>
 						<span className={`text-[2.25rem] leading-[2.75rem] font-semibold`}>
@@ -328,7 +328,7 @@ export default function TypographyPlayground() {
 						</p>
 					</div>
 					<div className="flex flex-col gap-3">
-						<Badge variant="soft" color="primary" size="24">
+						<Badge variant="soft" color="primary" size="md">
 							Heading 4
 						</Badge>
 						<span className={`text-[1.75rem] leading-[2.25rem] font-semibold`}>
@@ -346,7 +346,7 @@ export default function TypographyPlayground() {
 						declared, &quot;then every chart should begin with a coin.&quot;
 					</div>
 					<div className="flex flex-col gap-3">
-						<Badge variant="soft" color="primary" size="24">
+						<Badge variant="soft" color="primary" size="md">
 							Heading 6
 						</Badge>
 						<span className={`heading-6`}>Cartographers&apos; Revolt</span>
@@ -359,7 +359,7 @@ export default function TypographyPlayground() {
 						</p>
 					</div>
 					<div className="flex flex-col gap-3">
-						<Badge variant="soft" color="primary" size="24">
+						<Badge variant="soft" color="primary" size="md">
 							Heading 6
 						</Badge>
 						<span className={`heading-6`}>
@@ -381,7 +381,7 @@ export default function TypographyPlayground() {
 						</ul>
 					</div>
 					<div className="flex flex-col gap-3">
-						<Badge variant="soft" color="primary" size="24">
+						<Badge variant="soft" color="primary" size="md">
 							Heading 6
 						</Badge>
 						<span className={`heading-6`}>Frequently asked questions</span>
