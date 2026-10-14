@@ -19,6 +19,7 @@ import {
 	Lock,
 	Layers,
 	PanelBottom,
+	Compass,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { ScrollArea } from "@/registry/ui/scroll-area"
@@ -70,6 +71,7 @@ const SIDEBAR_CATEGORIES: SidebarCategoryDef[] = [
 	{ id: "sign-in-section", label: "SIGN IN", icon: UserPlus },
 	{ id: "signup-section", label: "SIGNUP", icon: Lock },
 	{ id: "guided-tour-section", label: "TOUR", icon: Sparkles },
+	{ id: "navigation-section", label: "NAVIGATION", icon: Compass },
 	{ id: "hero-section", label: "HERO", icon: Sparkles },
 	{ id: "social-proof-section", label: "SOCIAL PROOF", icon: Building2 },
 	{ id: "feature-section", label: "FEATURE", icon: Layers },
