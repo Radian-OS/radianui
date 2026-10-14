@@ -15,6 +15,7 @@ import type {
 } from "./brand-logos-data"
 import {
 	getBrandLogo,
+	getBrandLogoPagePath,
 	getBrandLogoDisplayUrl,
 	getBrandLogoFallbackUrl,
 	getBrandLogoHtmlMarkup,
@@ -132,64 +133,79 @@ export const BrandLogoTile = memo(function BrandLogoTile({
 				color="neutral"
 				variant="outline"
 				className="bg-bg hover:bg-bg size-full overflow-hidden rounded-2xl px-0 py-0"
-				aria-label={`View ${brand.name} ${variant} details`}
-				onClick={() => onSelect(id)}>
-				<img
-					src={lightDisplayUrl}
-					alt={`${brand.name} ${variant}`}
-					width={variant === "icon" ? 48 : 180}
-					height={48}
-					loading={priority ? "eager" : "lazy"}
-					decoding="async"
-					fetchPriority={priority ? "high" : "auto"}
-					onError={(e) => {
-						registerBrandLogoFallback(id)
-						const fallback = getBrandLogoFallbackUrl(
-							id,
-							"light",
-							colorway,
-							variant
-						)
+				asChild>
+				<a
+					href={getBrandLogoPagePath(id)}
+					aria-label={`View ${brand.name} logo details`}
+					onClick={(event) => {
 						if (
-							e.currentTarget.src !== fallback &&
-							!e.currentTarget.src.endsWith(fallback)
-						) {
-							e.currentTarget.src = fallback
-						}
-					}}
-					className={cn(
-						"object-contain dark:hidden",
-						variant === "icon" ? "size-12 shrink-0" : "h-[28%] w-full"
-					)}
-				/>
-				<img
-					src={darkDisplayUrl}
-					alt=""
-					width={variant === "icon" ? 48 : 180}
-					height={48}
-					loading={priority ? "eager" : "lazy"}
-					decoding="async"
-					fetchPriority={priority ? "high" : "auto"}
-					onError={(e) => {
-						registerBrandLogoFallback(id)
-						const fallback = getBrandLogoFallbackUrl(
-							id,
-							"dark",
-							colorway,
-							variant
+							event.button !== 0 ||
+							event.metaKey ||
+							event.ctrlKey ||
+							event.shiftKey ||
+							event.altKey
 						)
-						if (
-							e.currentTarget.src !== fallback &&
-							!e.currentTarget.src.endsWith(fallback)
-						) {
-							e.currentTarget.src = fallback
-						}
-					}}
-					className={cn(
-						"hidden object-contain dark:block",
-						variant === "icon" ? "size-12 shrink-0" : "h-[28%] w-full"
-					)}
-				/>
+							return
+						event.preventDefault()
+						onSelect(id)
+					}}>
+					<img
+						src={lightDisplayUrl}
+						alt={`${brand.name} ${variant}`}
+						width={variant === "icon" ? 48 : 180}
+						height={48}
+						loading={priority ? "eager" : "lazy"}
+						decoding="async"
+						fetchPriority={priority ? "high" : "auto"}
+						onError={(e) => {
+							registerBrandLogoFallback(id)
+							const fallback = getBrandLogoFallbackUrl(
+								id,
+								"light",
+								colorway,
+								variant
+							)
+							if (
+								e.currentTarget.src !== fallback &&
+								!e.currentTarget.src.endsWith(fallback)
+							) {
+								e.currentTarget.src = fallback
+							}
+						}}
+						className={cn(
+							"object-contain dark:hidden",
+							variant === "icon" ? "size-12 shrink-0" : "h-[28%] w-full"
+						)}
+					/>
+					<img
+						src={darkDisplayUrl}
+						alt=""
+						width={variant === "icon" ? 48 : 180}
+						height={48}
+						loading={priority ? "eager" : "lazy"}
+						decoding="async"
+						fetchPriority={priority ? "high" : "auto"}
+						onError={(e) => {
+							registerBrandLogoFallback(id)
+							const fallback = getBrandLogoFallbackUrl(
+								id,
+								"dark",
+								colorway,
+								variant
+							)
+							if (
+								e.currentTarget.src !== fallback &&
+								!e.currentTarget.src.endsWith(fallback)
+							) {
+								e.currentTarget.src = fallback
+							}
+						}}
+						className={cn(
+							"hidden object-contain dark:block",
+							variant === "icon" ? "size-12 shrink-0" : "h-[28%] w-full"
+						)}
+					/>
+				</a>
 			</Button>
 
 			<BrandLogoTileMenu

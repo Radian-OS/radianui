@@ -173,6 +173,11 @@ export function getBrandLogoPagePath(id: BrandLogoId) {
 	return `${BRAND_LOGOS_PAGE_PATH}/${id}`
 }
 
+export function getBrandLogoMetadataDescription(id: BrandLogoId) {
+	const brand = getBrandLogo(id)
+	return `Download the ${brand.name} logo in SVG and PNG. Get icons and wordmarks, copy SVG code, or use CDN links with light and dark mode variants.`
+}
+
 export function getBrandLogoSearchTerms(id: BrandLogoId) {
 	const brand = getBrandLogo(id)
 	return [brand.id, brand.name, brand.categoryLabel, ...brand.aliases]

@@ -69,6 +69,11 @@ export default function BrandLogosPlayground({
 	const bottomSentinelRef = useRef<HTMLDivElement>(null)
 
 	useEffect(() => {
+		setSelectedBrand(initialSelectedBrand)
+		ownsDialogHistoryEntryRef.current = false
+	}, [initialSelectedBrand])
+
+	useEffect(() => {
 		const savedVariant = window.localStorage.getItem(
 			BRAND_LOGO_VARIANT_STORAGE_KEY
 		)
