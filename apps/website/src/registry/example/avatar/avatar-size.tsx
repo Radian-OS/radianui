@@ -20,39 +20,39 @@ export default function AvatarSize() {
 	const fallback = getAvatarFallback(profile.name)
 	return (
 		<div className="flex flex-wrap items-center justify-center gap-3">
-			<Avatar size="16">
+			<Avatar size="3xs">
 				<AvatarImage src={profile.avatar} />
 				<AvatarFallback>{fallback}</AvatarFallback>
 			</Avatar>
-			<Avatar size="20">
+			<Avatar size="2xs">
 				<AvatarImage src={profile.avatar} />
 				<AvatarFallback>{fallback}</AvatarFallback>
 			</Avatar>
-			<Avatar size="24">
+			<Avatar size="xs">
 				<AvatarImage src={profile.avatar} />
 				<AvatarFallback>{fallback}</AvatarFallback>
 			</Avatar>
-			<Avatar size="32">
+			<Avatar size="sm">
 				<AvatarImage src={profile.avatar} />
 				<AvatarFallback>{fallback}</AvatarFallback>
 			</Avatar>
-			<Avatar size="36">
+			<Avatar size="md">
 				<AvatarImage src={profile.avatar} />
 				<AvatarFallback>{fallback}</AvatarFallback>
 			</Avatar>
-			<Avatar size="40">
+			<Avatar size="lg">
 				<AvatarImage src={profile.avatar} />
 				<AvatarFallback>{fallback}</AvatarFallback>
 			</Avatar>
-			<Avatar size="48">
+			<Avatar size="xl">
 				<AvatarImage src={profile.avatar} />
 				<AvatarFallback>{fallback}</AvatarFallback>
 			</Avatar>
-			<Avatar size="64">
+			<Avatar size="2xl">
 				<AvatarImage src={profile.avatar} />
 				<AvatarFallback>{fallback}</AvatarFallback>
 			</Avatar>
-			<Avatar size="80">
+			<Avatar size="3xl">
 				<AvatarImage src={profile.avatar} />
 				<AvatarFallback>{fallback}</AvatarFallback>
 			</Avatar>

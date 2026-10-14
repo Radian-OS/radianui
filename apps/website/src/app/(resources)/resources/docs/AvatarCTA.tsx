@@ -13,7 +13,7 @@ const AvatarCTA = () => {
 				<div className="relative z-10 flex w-full flex-col gap-5 lg:max-w-md">
 					<div className="flex w-full flex-col gap-8 lg:w-[532px]">
 						<div className="flex flex-col gap-5">
-							<Badge color="green" variant="soft" size="28">
+							<Badge color="green" variant="soft" size="lg">
 								Open Source Library
 							</Badge>
 

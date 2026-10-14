@@ -264,7 +264,7 @@ export function CreateProjectDialog() {
 								</div>
 								<SwitchWrapper>
 									<Switch
-										size="20"
+										size="sm"
 										checked={isVite ? true : params.useSrcDir}
 										disabled={isVite}
 										onCheckedChange={(checked) =>

@@ -16,16 +16,16 @@ const inputVariants = cva(
 	{
 		variants: {
 			size: {
-				"28": "cn-input-28 h-7 file:me-1.5 file:pe-1.5",
-				"32": "cn-input-32 h-8 file:me-3 file:pe-3",
-				"36": "cn-input-36 h-9 file:me-2.5 file:pe-2.5",
-				"40": "cn-input-40 h-10 file:me-3 file:pe-3",
-				"44": "cn-input-44 h-11 file:me-3.5 file:pe-3.5",
-				"48": "cn-input-48 h-12 file:me-3.5 file:pe-3.5",
+				xs: "cn-input-xs h-7 file:me-1.5 file:pe-1.5",
+				sm: "cn-input-sm h-8 file:me-3 file:pe-3",
+				md: "cn-input-md h-9 file:me-2.5 file:pe-2.5",
+				lg: "cn-input-lg h-10 file:me-3 file:pe-3",
+				xl: "cn-input-xl h-11 file:me-3.5 file:pe-3.5",
+				"2xl": "cn-input-2xl h-12 file:me-3.5 file:pe-3.5",
 			},
 		},
 		defaultVariants: {
-			size: "36",
+			size: "md",
 		},
 	}
 )
@@ -35,12 +35,13 @@ const inputAddonVariants = cva(
 	{
 		variants: {
 			size: {
-				"28": "cn-input-addon-28 h-7 min-w-7 [&_svg:not([class*=size-])]:size-4",
-				"32": "cn-input-addon-32 h-8 min-w-8 [&_svg:not([class*=size-])]:size-4.5",
-				"36": "cn-input-addon-36 h-9 min-w-9 [&_svg:not([class*=size-])]:size-5",
-				"40": "cn-input-addon-40 h-10 min-w-10 [&_svg:not([class*=size-])]:size-5",
-				"44": "cn-input-addon-44 h-11 min-w-11 [&_svg:not([class*=size-])]:size-5",
-				"48": "cn-input-addon-48 h-12 min-w-12 [&_svg:not([class*=size-])]:size-5",
+				xs: "cn-input-addon-xs h-7 min-w-7 [&_svg:not([class*=size-])]:size-4",
+				sm: "cn-input-addon-sm h-8 min-w-8 [&_svg:not([class*=size-])]:size-4.5",
+				md: "cn-input-addon-md h-9 min-w-9 [&_svg:not([class*=size-])]:size-5",
+				lg: "cn-input-addon-lg h-10 min-w-10 [&_svg:not([class*=size-])]:size-5",
+				xl: "cn-input-addon-xl h-11 min-w-11 [&_svg:not([class*=size-])]:size-5",
+				"2xl":
+					"cn-input-addon-2xl h-12 min-w-12 [&_svg:not([class*=size-])]:size-5",
 			},
 			mode: {
 				default: "",
@@ -48,7 +49,7 @@ const inputAddonVariants = cva(
 			},
 		},
 		defaultVariants: {
-			size: "36",
+			size: "md",
 			mode: "default",
 		},
 	}
@@ -67,12 +68,12 @@ const inputWrapperVariants = cva(
 	{
 		variants: {
 			size: {
-				"28": "cn-input-wrapper-28 [&_svg:not([class*=size-])]:size-4",
-				"32": "cn-input-wrapper-32 [&_svg:not([class*=size-])]:size-4.5",
-				"36": "cn-input-wrapper-36 [&_svg:not([class*=size-])]:size-5",
-				"40": "cn-input-wrapper-40 [&_svg:not([class*=size-])]:size-5",
-				"44": "cn-input-wrapper-44 [&_svg:not([class*=size-])]:size-5",
-				"48": "cn-input-wrapper-48 [&_svg:not([class*=size-])]:size-5",
+				xs: "cn-input-wrapper-xs [&_svg:not([class*=size-])]:size-4",
+				sm: "cn-input-wrapper-sm [&_svg:not([class*=size-])]:size-4.5",
+				md: "cn-input-wrapper-md [&_svg:not([class*=size-])]:size-5",
+				lg: "cn-input-wrapper-lg [&_svg:not([class*=size-])]:size-5",
+				xl: "cn-input-wrapper-xl [&_svg:not([class*=size-])]:size-5",
+				"2xl": "cn-input-wrapper-2xl [&_svg:not([class*=size-])]:size-5",
 			},
 			disabled: {
 				true: "cn-input-wrapper-disabled has-[:focus-visible]:border-alpha has-[:focus-visible]:ring-0",
@@ -80,7 +81,7 @@ const inputWrapperVariants = cva(
 			},
 		},
 		defaultVariants: {
-			size: "36",
+			size: "md",
 			disabled: false,
 		},
 	}

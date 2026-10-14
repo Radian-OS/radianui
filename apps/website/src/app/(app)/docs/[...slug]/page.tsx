@@ -130,7 +130,7 @@ export default async function Page({ params }: DocPageProps) {
 							<div className="flex flex-wrap items-center gap-2 pb-10">
 								{doc.data.links.github && (
 									<Badge
-										size="28"
+										size="lg"
 										variant="outline"
 										color="neutral"
 										className="shadow-2xs"
@@ -162,7 +162,7 @@ export default async function Page({ params }: DocPageProps) {
 										return (
 											<Badge
 												key={href}
-												size="28"
+												size="lg"
 												variant="outline"
 												color="neutral"
 												className="shadow-2xs"
@@ -206,7 +206,7 @@ export default async function Page({ params }: DocPageProps) {
 									<IconButton
 										asChild
 										color="neutral"
-										size="28"
+										size="xs"
 										variant="soft"
 										aria-label="Open Figma design">
 										<Link
@@ -228,7 +228,7 @@ export default async function Page({ params }: DocPageProps) {
 										asChild
 										variant="outline"
 										color="neutral"
-										size="28"
+										size="xs"
 										className="text-fg-secondary">
 										<Link href="#installation">
 											<SquareTerminal className="text-fg-secondary size-4" />{" "}

@@ -9,7 +9,7 @@ const BadgeAvatarExample = () => {
 				className="rounded-full py-1 pr-2 pl-1"
 				variant="outline"
 				color="neutral">
-				<Avatar size="16">
+				<Avatar size="3xs">
 					<AvatarImage
 						src="https://randomuser.me/api/portraits/men/1.jpg"
 						alt="man1"
@@ -19,7 +19,7 @@ const BadgeAvatarExample = () => {
 				Jean Marine
 			</Badge>
 			<Badge className="rounded-full py-1 pr-2 pl-1" variant="soft">
-				<Avatar size="16">
+				<Avatar size="3xs">
 					<AvatarImage
 						src="https://randomuser.me/api/portraits/men/1.jpg"
 						alt="man2"
@@ -32,7 +32,7 @@ const BadgeAvatarExample = () => {
 				className="rounded-full py-1 pr-2 pl-1"
 				variant="outline"
 				color="primary">
-				<Avatar size="16">
+				<Avatar size="3xs">
 					<AvatarImage
 						src="https://randomuser.me/api/portraits/men/1.jpg"
 						alt="man3"
@@ -45,7 +45,7 @@ const BadgeAvatarExample = () => {
 				className="rounded-full py-1 pr-2 pl-1"
 				variant="strong"
 				color="primary">
-				<Avatar size="16">
+				<Avatar size="3xs">
 					<AvatarImage
 						src="https://randomuser.me/api/portraits/men/1.jpg"
 						alt="man4"

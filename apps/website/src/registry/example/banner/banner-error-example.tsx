@@ -52,7 +52,7 @@ const BannerErrorExample = () => {
 					</BannerDescription>
 				</BannerContent>
 				<div className="hidden sm:flex sm:items-center">
-					<Button size="28" variant="outline" color="error">
+					<Button size="lg" variant="outline" color="error">
 						View Settings
 					</Button>
 				</div>

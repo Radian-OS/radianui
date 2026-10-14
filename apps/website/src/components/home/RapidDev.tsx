@@ -23,7 +23,7 @@ const RapidDev = () => {
 			className="bg-bg relative z-30 mx-auto w-full max-w-[1440px]">
 			<div className="border-soft mx-auto flex w-full max-w-360 flex-col overflow-hidden border border-t-0">
 				<div className="flex flex-col gap-4 px-5 py-16 sm:gap-6 sm:px-10 lg:px-15 lg:py-30">
-					<Badge color="primary" size="28" variant="soft">
+					<Badge color="primary" size="lg" variant="soft">
 						<BadgeDot className="bg-primary" />
 						Rapid Development
 					</Badge>

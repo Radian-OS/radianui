@@ -10,7 +10,7 @@ import {
 export default function AvatarStatusPreview() {
 	return (
 		<div className="flex flex-wrap items-center justify-center gap-6">
-			<Avatar size="48">
+			<Avatar size="xl">
 				<AvatarImage src="/media/female-6.jpg" />
 				<AvatarFallback>CH</AvatarFallback>
 				<AvatarIndicator className="right-2 bottom-2">
@@ -18,7 +18,7 @@ export default function AvatarStatusPreview() {
 				</AvatarIndicator>
 			</Avatar>
 
-			<Avatar size="48">
+			<Avatar size="xl">
 				<AvatarImage src="/media/female-2.jpg" />
 				<AvatarFallback color="red">AJ</AvatarFallback>
 				<AvatarIndicator className="right-2 bottom-2">
@@ -26,7 +26,7 @@ export default function AvatarStatusPreview() {
 				</AvatarIndicator>
 			</Avatar>
 
-			<Avatar size="48">
+			<Avatar size="xl">
 				<AvatarImage src="/media/male-6.jpg" />
 				<AvatarFallback className="bg-fill4 overflow-hidden">
 					<svg
@@ -57,7 +57,7 @@ export default function AvatarStatusPreview() {
 				</AvatarIndicator>
 			</Avatar>
 
-			<Avatar size="48">
+			<Avatar size="xl">
 				<AvatarImage src="/media/male-2.jpg" />
 				<AvatarFallback className="bg-fill4 overflow-hidden">
 					<svg

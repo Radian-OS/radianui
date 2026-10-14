@@ -11,7 +11,7 @@ export default function CardBillingExample() {
 				<span className="text-base font-semibold">
 					7 days remaining in cycle
 				</span>
-				<Badge variant="soft" size="20" color="violet-blue">
+				<Badge variant="soft" size="sm" color="violet-blue">
 					Billing
 				</Badge>
 			</div>

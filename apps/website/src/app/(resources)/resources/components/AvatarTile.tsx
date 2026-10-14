@@ -87,7 +87,7 @@ export const AvatarTile = ({
 					<DropdownMenuTrigger asChild>
 						<CompactButton
 							aria-label="Button with Down Arrow"
-							size="20"
+							size="sm"
 							variant="ghost"
 							color="neutral"
 							onClick={(e) => e.stopPropagation()}>
@@ -115,7 +115,7 @@ export const AvatarTile = ({
 			<div className="absolute right-2 bottom-2 opacity-0 transition-opacity group-hover:opacity-100">
 				<div className="hidden sm:block">
 					<Button
-						size="28"
+						size="lg"
 						color="neutral"
 						variant="strong"
 						onClick={handleCopy}>
@@ -128,7 +128,7 @@ export const AvatarTile = ({
 				</div>
 				<IconButton
 					aria-label="Copy Button"
-					size="28"
+					size="lg"
 					color="neutral"
 					variant="strong"
 					className="block sm:hidden"

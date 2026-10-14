@@ -44,7 +44,7 @@ export default function DropdownPreview() {
 					<PencilLine />
 					Edit
 					<DropdownMenuShortcut>
-						<Badge size="20" variant="outline" color="neutral">
+						<Badge size="sm" variant="outline" color="neutral">
 							⌘E
 						</Badge>
 					</DropdownMenuShortcut>
@@ -53,7 +53,7 @@ export default function DropdownPreview() {
 					<Copy />
 					Duplicate
 					<DropdownMenuShortcut>
-						<Badge size="20" variant="outline" color="neutral">
+						<Badge size="sm" variant="outline" color="neutral">
 							⌘D
 						</Badge>
 					</DropdownMenuShortcut>
@@ -96,7 +96,7 @@ export default function DropdownPreview() {
 					<Trash2 />
 					Delete
 					<DropdownMenuShortcut>
-						<Badge size="20" variant="outline" color="neutral">
+						<Badge size="sm" variant="outline" color="neutral">
 							⌫
 						</Badge>
 					</DropdownMenuShortcut>

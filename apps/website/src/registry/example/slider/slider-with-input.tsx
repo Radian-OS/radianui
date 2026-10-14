@@ -17,7 +17,7 @@ export default function SlideWithInput() {
 			</Slider>
 			<Input
 				className="w-18"
-				size="32"
+				size="lg"
 				value={value}
 				onChange={(e) => {
 					if (!e.target.value) return

@@ -16,7 +16,7 @@ function PreviousNextButtons({
 
 	return (
 		<footer className={cn("flex items-center justify-between", className)}>
-			<Button asChild color="neutral" size={"36"} variant="outline">
+			<Button asChild color="neutral" size="xs" variant="outline">
 				<Link
 					href={prev?.url ?? "#"}
 					className={cn(!prev && "invisible")}
@@ -28,7 +28,7 @@ function PreviousNextButtons({
 				</Link>
 			</Button>
 
-			<Button asChild color="neutral" size={"36"} variant="outline">
+			<Button asChild color="neutral" size="xs" variant="outline">
 				<Link
 					href={next?.url ?? "#"}
 					className={cn(!next && "invisible")}

@@ -165,7 +165,7 @@ function DialogTitle({
 				<DialogPrimitive.Close asChild>
 					<CompactButton
 						aria-label="Close Button"
-						size="24"
+						size="md"
 						variant="soft"
 						color="neutral">
 						<IconSlot slot="cross" />

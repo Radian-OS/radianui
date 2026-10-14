@@ -19,7 +19,7 @@ export default function FigmaPreviewButton({
 }: FigmaPreviewButtonProps) {
 	return (
 		<Button
-			size={size ?? "36"}
+			size={size ?? "md"}
 			variant={variant ?? "outline"}
 			color={color ?? "neutral"}
 			className={className}

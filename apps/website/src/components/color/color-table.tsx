@@ -45,7 +45,7 @@ export const ColorTable = ({ data }: { data: ColorData[] }) => {
 							<TableRow key={prop.token} className="last:[&>td]:border-b-0">
 								<TableCell className="border-soft w-[160px] border-r border-b px-2 py-3 text-sm">
 									<span className="flex items-center gap-2 whitespace-nowrap">
-										<Badge variant="outline" color="neutral" size="20">
+										<Badge variant="outline" color="neutral" size="sm">
 											<Palette size="14" /> {prop.token}
 										</Badge>
 									</span>

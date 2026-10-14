@@ -229,7 +229,7 @@ function ColorBlock({
 									/>
 								))}
 						</div>
-						{isMain && <Badge size="20">Main</Badge>}
+						{isMain && <Badge size="sm">Main</Badge>}
 					</div>
 				</button>
 			</PopoverTrigger>

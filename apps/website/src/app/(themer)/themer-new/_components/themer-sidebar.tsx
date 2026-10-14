@@ -256,11 +256,11 @@ export function ThemerSidebar() {
 			</SidebarContent>
 
 			<SidebarFooter className="border-border flex flex-row gap-3 border-t px-3 py-3.5">
-				<Button size="32" variant="outline" className="flex-1" color="neutral">
+				<Button size="lg" variant="outline" className="flex-1" color="neutral">
 					<Shuffle className="text-fg-secondary size-4" />
 					Shuffle all
 				</Button>
-				<Button size="32" variant="outline" className="w-fit" color="neutral">
+				<Button size="lg" variant="outline" className="w-fit" color="neutral">
 					<Lock className="text-fg-secondary size-4" />
 					Lock all
 				</Button>

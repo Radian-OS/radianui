@@ -102,8 +102,8 @@ export function MobileNavigation({
 			</div>
 
 			<div className="flex flex-col items-center justify-center gap-3 pt-6 pb-4 sm:hidden">
-				<EarlyAccessButton size={"44"} className="w-full" />
-				<FigmaPreviewButton size={"44"} className="w-full" />
+				<EarlyAccessButton size="xl" className="w-full" />
+				<FigmaPreviewButton size="xl" className="w-full" />
 			</div>
 
 			<div className="text-fg">

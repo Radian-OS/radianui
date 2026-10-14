@@ -116,7 +116,7 @@ export function AgentlabCtaBanner() {
 							<Button
 								variant="strong"
 								color="neutral"
-								size="40"
+								size="lg"
 								className="gap-2 rounded-md bg-white font-bold uppercase shadow-lg active:scale-95"
 								data-themer-id="auto-button-14">
 								<ArrowRight
@@ -129,7 +129,7 @@ export function AgentlabCtaBanner() {
 							<Button
 								variant="outline"
 								color="neutral"
-								size="40"
+								size="lg"
 								className="rounded-md border-white/30 bg-transparent text-xs font-bold tracking-wider text-white uppercase hover:bg-white/10"
 								data-themer-id="auto-button-17">
 								<span data-themer-id="auto-span-18">VIEW PRICING</span>
@@ -496,14 +496,14 @@ export function AgentlabHeroSection() {
 					<Button
 						variant="outline"
 						color="neutral"
-						size="40"
+						size="lg"
 						data-themer-id="auto-button-64">
 						<span data-themer-id="auto-span-65">TALK TO SALES</span>
 					</Button>
 					<Button
 						variant="strong"
 						color="neutral"
-						size="40"
+						size="lg"
 						data-themer-id="auto-button-66">
 						<ArrowRight
 							className="size-4"
@@ -575,7 +575,7 @@ export function AgentlabHeroSection() {
 															type="submit"
 															variant="strong"
 															color="neutral"
-															size="28"
+															size="lg"
 															className="absolute right-2.5 bottom-2.5 size-7 rounded-md p-0"
 															data-themer-id="auto-button-83">
 															<Send
@@ -1124,7 +1124,7 @@ export function AgentlabNavbar() {
 					<Button
 						variant="strong"
 						color="neutral"
-						size="36"
+						size="md"
 						className="rounded-md px-4 text-xs font-bold tracking-wider uppercase transition-transform active:scale-95"
 						data-themer-id="auto-button-150">
 						<span data-themer-id="auto-span-151">GET STARTED</span>
@@ -1174,7 +1174,7 @@ export function AgentlabNavbar() {
 							<Button
 								variant="strong"
 								color="neutral"
-								size="36"
+								size="md"
 								className="w-full rounded-md text-xs font-bold tracking-wider uppercase"
 								data-themer-id="auto-button-161">
 								<span data-themer-id="auto-span-162">GET STARTED</span>
@@ -2023,7 +2023,7 @@ export function AgentlabTestimonialsSection() {
 					<Button
 						variant="outline"
 						color="neutral"
-						size="36"
+						size="md"
 						className="gap-2 border-white/20 bg-transparent text-xs font-bold tracking-wider text-white uppercase hover:bg-white/10"
 						data-themer-id="auto-button-301">
 						<ArrowUpRight

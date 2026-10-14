@@ -42,7 +42,7 @@ export default function PopoverPreview() {
 			</PopoverTrigger>
 			<PopoverContent className="flex w-80 flex-col gap-4">
 				<div className="flex items-start justify-between">
-					<Avatar size="48">
+					<Avatar size="xl">
 						<AvatarImage src={profile.avatar} />
 						<AvatarFallback>CH</AvatarFallback>
 						<AvatarIndicator className="right-0 bottom-0">
@@ -50,13 +50,13 @@ export default function PopoverPreview() {
 						</AvatarIndicator>
 					</Avatar>
 					<div className="flex items-center gap-2">
-						<IconButton color="neutral" variant="outline" size="28">
+						<IconButton color="neutral" variant="outline" size="lg">
 							<CalendarIcon />
 						</IconButton>
-						<IconButton color="neutral" variant="outline" size="28">
+						<IconButton color="neutral" variant="outline" size="lg">
 							<MailIcon />
 						</IconButton>
-						<Button size="28" color="primary">
+						<Button size="lg" color="primary">
 							Follow
 						</Button>
 					</div>
@@ -66,7 +66,7 @@ export default function PopoverPreview() {
 					<div className="flex flex-col gap-1">
 						<div className="flex items-center gap-1.5">
 							<span className="text-base font-medium">{profile.name}</span>
-							<Badge size="20" variant="outline" color="neutral">
+							<Badge size="sm" variant="outline" color="neutral">
 								{profile.username}
 							</Badge>
 						</div>

@@ -78,7 +78,7 @@ export default function Page() {
 								<Badge
 									color="primary"
 									className="h-8 gap-1.5 rounded-full py-1 pl-1"
-									size="28"
+									size="lg"
 									variant="soft">
 									<Badge
 										color="primary"
@@ -94,7 +94,9 @@ export default function Page() {
 							<div className="flex items-center -space-x-2">
 								{people.map((person) => (
 									<Avatar
-										size={`${person.image === "/avatar/header-2.jpg" ? "80" : "48"}`}
+										size={
+											person.image === "/avatar/header-2.jpg" ? "3xl" : "xl"
+										}
 										key={person.image}>
 										<AvatarImage
 											className={`${person.image === "/avatar/header-2.jpg" ? "z-10" : ""}`}

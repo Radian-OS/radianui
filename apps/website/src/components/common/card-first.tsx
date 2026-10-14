@@ -8,10 +8,10 @@ const CardFirst = () => {
 		<div className="bg-bg border-border relative w-full overflow-hidden rounded-xl border">
 			<div className="from-primary-text to-primary-accent h-[80px] w-full bg-gradient-to-r"></div>
 			<div className="absolute top-14 flex w-full items-end justify-between px-5">
-				<Avatar className="border-bg border-4" size="64" rounded="circle">
+				<Avatar className="border-bg border-4" size="2xl" rounded="circle">
 					<AvatarFallback>NM</AvatarFallback>
 				</Avatar>
-				<Badge size="20" variant="outline" color="primary">
+				<Badge size="sm" variant="outline" color="primary">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						width="15"

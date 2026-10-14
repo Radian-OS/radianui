@@ -113,7 +113,7 @@ export type SidebarMenuSubProps = React.ComponentProps<"ul">
 export type SidebarMenuSubItemProps = React.ComponentProps<"li">
 export type SidebarMenuSubButtonProps = React.ComponentProps<"a"> & {
 	asChild?: boolean
-	size?: "28" | "32"
+	size?: "xs" | "sm"
 	isActive?: boolean
 }
 
@@ -128,17 +128,18 @@ export const sidebarMenuButtonVariants = cva(
 				neutral: "cn-sidebar-menu-button-variant-neutral",
 			},
 			size: {
-				"28": "cn-sidebar-menu-button-size-28 h-7 text-xs",
-				"32": "cn-sidebar-menu-button-size-32 h-8 text-sm group-data-[state=collapsed]:p-1.5!",
-				"36": "cn-sidebar-menu-button-size-36 h-9 text-sm group-data-[collapsible=icon]:size-9! group-data-[collapsible=icon]:p-1.5! [&>svg]:size-6",
-				"48": "cn-sidebar-menu-button-size-48 h-12 text-sm group-data-[collapsible=icon]:p-0! group-data-[collapsible=icon]:[&>svg]:size-6!",
-				"52": "cn-sidebar-menu-button-size-52 h-13 text-sm group-data-[collapsible=icon]:p-1.5!",
-				"56": "cn-sidebar-menu-button-size-56 h-14 p-4 text-sm group-data-[collapsible=icon]:h-14! group-data-[collapsible=icon]:w-full! group-data-[collapsible=icon]:p-4! [&>svg]:size-6!",
+				xs: "cn-sidebar-menu-button-size-xs h-7 text-xs",
+				sm: "cn-sidebar-menu-button-size-sm h-8 text-sm group-data-[state=collapsed]:p-1.5!",
+				md: "cn-sidebar-menu-button-size-md h-9 text-sm group-data-[collapsible=icon]:size-9! group-data-[collapsible=icon]:p-1.5! [&>svg]:size-6",
+				lg: "cn-sidebar-menu-button-size-lg h-12 text-sm group-data-[collapsible=icon]:p-0! group-data-[collapsible=icon]:[&>svg]:size-6!",
+				xl: "cn-sidebar-menu-button-size-xl h-13 text-sm group-data-[collapsible=icon]:p-1.5!",
+				"2xl":
+					"cn-sidebar-menu-button-size-2xl h-14 p-4 text-sm group-data-[collapsible=icon]:h-14! group-data-[collapsible=icon]:w-full! group-data-[collapsible=icon]:p-4! [&>svg]:size-6!",
 			},
 		},
 		defaultVariants: {
 			variant: "neutral",
-			size: "32",
+			size: "sm",
 		},
 	}
 )
@@ -612,7 +613,7 @@ function SidebarTrigger({
 			aria-label="Sidebar Button"
 			variant="ghost"
 			color="neutral"
-			size="32"
+			size="sm"
 			className={className}
 			onClick={handleClick}
 			{...props}>
@@ -676,7 +677,7 @@ function SidebarInput({ className, ...props }: SidebarInputProps) {
 	return (
 		<Input
 			data-slot="sidebar-input"
-			size={"32"}
+			size={"sm"}
 			data-sidebar="input"
 			className={cn(
 				// Structural
@@ -880,7 +881,7 @@ function SidebarMenuButton({
 	asChild = false,
 	isActive = false,
 	variant = "neutral",
-	size = "32",
+	size = "sm",
 	tooltip,
 	className,
 	...props
@@ -933,9 +934,9 @@ function SidebarMenuAction({
 				// Structural
 				"ring-sidebar-ring absolute top-1.5 right-1 flex aspect-square w-5 items-center justify-center rounded-md p-0 outline-hidden transition-transform focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0",
 				"after:absolute after:-inset-2 md:after:hidden",
-				"peer-data-[size=28]/menu-button:top-1",
-				"peer-data-[size=32]/menu-button:top-1.5",
-				"peer-data-[size=48]/menu-button:top-2.5",
+				"peer-data-[size=xs]/menu-button:top-1",
+				"peer-data-[size=sm]/menu-button:top-1.5",
+				"peer-data-[size=lg]/menu-button:top-2.5",
 				"group-data-[collapsible=icon]:hidden",
 				showOnHover &&
 					"group-focus-within/menu-item:opacity-100 group-hover/menu-item:opacity-100 data-[state=open]:opacity-100 md:opacity-0",
@@ -957,16 +958,16 @@ function SidebarMenuBadge({ className, ...props }: SidebarMenuBadgeProps) {
 			className={cn(
 				// Structural
 				"pointer-events-none absolute right-2 rounded-md tabular-nums select-none",
-				"peer-data-[size=28]/menu-button:top-1",
-				"peer-data-[size=32]/menu-button:top-1.5",
-				"peer-data-[size=48]/menu-button:top-2.5",
+				"peer-data-[size=xs]/menu-button:top-1",
+				"peer-data-[size=sm]/menu-button:top-1.5",
+				"peer-data-[size=lg]/menu-button:top-2.5",
 				"group-data-[collapsible=icon]:hidden",
 				// Style hook
 				"cn-sidebar-menu-badge",
 				className
 			)}
 			color="neutral"
-			size="20"
+			size="sm"
 			{...props}
 		/>
 	)
@@ -1044,7 +1045,7 @@ function SidebarMenuSubItem({ className, ...props }: SidebarMenuSubItemProps) {
 
 function SidebarMenuSubButton({
 	asChild = false,
-	size = "32",
+	size = "sm",
 	isActive = false,
 	className,
 	...props
@@ -1059,8 +1060,8 @@ function SidebarMenuSubButton({
 			className={cn(
 				// Structural
 				"ring-sidebar-ring flex min-w-0 -translate-x-px items-center gap-2 overflow-hidden rounded-md px-2 outline-hidden focus-visible:ring-2 disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&>a:last-child]:min-w-0 [&>a:last-child]:truncate [&>span:last-child]:min-w-0 [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0",
-				size === "28" && "h-7 text-xs",
-				size === "32" && "h-8 text-sm",
+				size === "xs" && "h-7 text-xs",
+				size === "sm" && "h-8 text-sm",
 				"group-data-[collapsible=icon]:hidden",
 				// Style hook
 				"cn-sidebar-menu-sub-button",

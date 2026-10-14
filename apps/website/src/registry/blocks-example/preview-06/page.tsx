@@ -367,7 +367,7 @@ export default function Preview06Page() {
 						</div>
 
 						<IconButton
-							size="32"
+							size="lg"
 							variant="outline"
 							color="neutral"
 							aria-label="Refresh">
@@ -376,7 +376,7 @@ export default function Preview06Page() {
 
 						<div className="relative">
 							<IconButton
-								size="32"
+								size="lg"
 								variant="outline"
 								color="neutral"
 								aria-label="Settings">
@@ -386,7 +386,7 @@ export default function Preview06Page() {
 						</div>
 
 						{/* Canonical Avatar Component */}
-						<Avatar size="32" rounded="circle" className="border-border border">
+						<Avatar size="sm" rounded="circle" className="border-border border">
 							<AvatarImage
 								src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&crop=faces"
 								alt="Elena Rostova"
@@ -404,7 +404,7 @@ export default function Preview06Page() {
 				<div className="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
 					<div className="space-y-1">
 						<div className="flex items-center gap-2">
-							<Badge color="primary" variant="soft" size="20">
+							<Badge color="primary" variant="soft" size="sm">
 								<BadgeDot /> Production Fleet
 							</Badge>
 							<span className="text-fg-tertiary text-xs">/</span>
@@ -420,11 +420,11 @@ export default function Preview06Page() {
 					</div>
 
 					<div className="flex flex-wrap items-center gap-3">
-						<Button variant="outline" color="neutral" size="36">
+						<Button variant="outline" color="neutral" size="md">
 							<Sliders className="size-4" />
 							Cluster Config
 						</Button>
-						<Button color="primary" size="36">
+						<Button color="primary" size="md">
 							<Plus className="size-4" />
 							Deploy New Swarm
 						</Button>
@@ -448,7 +448,7 @@ export default function Preview06Page() {
 								<span className="font-heading text-2xl font-semibold tracking-tight">
 									48 / 50
 								</span>
-								<Badge color="success" size="20" variant="soft">
+								<Badge color="success" size="sm" variant="soft">
 									+12.4%
 								</Badge>
 							</div>
@@ -478,7 +478,7 @@ export default function Preview06Page() {
 								<span className="text-fg-secondary text-xs font-medium">
 									tok/sec
 								</span>
-								<Badge color="primary" size="20" variant="soft">
+								<Badge color="primary" size="sm" variant="soft">
 									P99: 58ms
 								</Badge>
 							</div>
@@ -505,7 +505,7 @@ export default function Preview06Page() {
 								<span className="font-heading text-2xl font-semibold tracking-tight">
 									84.2%
 								</span>
-								<Badge color="warning" size="20" variant="soft">
+								<Badge color="warning" size="sm" variant="soft">
 									Optimal
 								</Badge>
 							</div>
@@ -565,10 +565,10 @@ export default function Preview06Page() {
 						</TabsList>
 
 						<div className="hidden items-center gap-2 sm:flex">
-							<Badge color="neutral" size="24" variant="outline">
+							<Badge color="neutral" size="md" variant="outline">
 								<span className="font-mono text-xs">TLS 1.3 Strict</span>
 							</Badge>
-							<Badge color="success" size="24" variant="soft">
+							<Badge color="success" size="md" variant="soft">
 								<BadgeDot /> Distributed Mesh OK
 							</Badge>
 						</div>
@@ -609,7 +609,7 @@ export default function Preview06Page() {
 													className="hover:bg-fill1/60 flex flex-col gap-4 p-4 transition-colors sm:flex-row sm:items-center sm:justify-between">
 													<div className="flex items-center gap-3.5">
 														<Avatar
-															size="40"
+															size="lg"
 															rounded="circle"
 															className="border-border border">
 															<AvatarImage
@@ -633,7 +633,7 @@ export default function Preview06Page() {
 																	{agent.name}
 																</span>
 																<Badge
-																	size="20"
+																	size="sm"
 																	color={
 																		agent.status === "running"
 																			? "success"
@@ -683,13 +683,13 @@ export default function Preview06Page() {
 															<Button
 																variant="outline"
 																color="neutral"
-																size="28">
+																size="lg">
 																Inspect
 															</Button>
 															<DropdownMenu>
 																<DropdownMenuTrigger asChild>
 																	<IconButton
-																		size="28"
+																		size="lg"
 																		variant="ghost"
 																		color="neutral"
 																		aria-label="Agent options">
@@ -719,7 +719,7 @@ export default function Preview06Page() {
 										<span className="text-fg-secondary text-xs">
 											Showing 4 of 48 distributed workers across 6 node regions
 										</span>
-										<Button variant="link" color="primary" size="28">
+										<Button variant="link" color="primary" size="lg">
 											View All Agents
 											<ArrowRight className="size-3.5" />
 										</Button>
@@ -739,7 +739,7 @@ export default function Preview06Page() {
 													accelerators.
 												</CardDescription>
 											</div>
-											<Badge color="primary" size="20" variant="soft">
+											<Badge color="primary" size="sm" variant="soft">
 												Auto-Balancing ON
 											</Badge>
 										</div>
@@ -887,7 +887,7 @@ export default function Preview06Page() {
 												</span>
 											</div>
 											<Button
-												size="28"
+												size="lg"
 												variant="ghost"
 												color="neutral"
 												onClick={handleCopy}>
@@ -918,7 +918,7 @@ export default function Preview06Page() {
 											<CardTitle className="font-heading text-base font-semibold">
 												Interactive Prompt Synthesizer
 											</CardTitle>
-											<Badge color="primary" size="20" variant="soft">
+											<Badge color="primary" size="sm" variant="soft">
 												Inference Lab
 											</Badge>
 										</div>
@@ -976,20 +976,20 @@ export default function Preview06Page() {
 
 										<div className="flex flex-wrap items-center justify-between gap-3 pt-2">
 											<div className="flex items-center gap-2">
-												<Badge color="neutral" size="20">
+												<Badge color="neutral" size="sm">
 													Temp: {temperature[0]}
 												</Badge>
-												<Badge color="neutral" size="20">
+												<Badge color="neutral" size="sm">
 													Top-P: 0.95
 												</Badge>
-												<Badge color="neutral" size="20">
+												<Badge color="neutral" size="sm">
 													Max: {maxTokens[0]} tok
 												</Badge>
 											</div>
 
 											<Button
 												color="primary"
-												size="36"
+												size="md"
 												onClick={handleRunInference}
 												disabled={isGenerating}>
 												{isGenerating ? (
@@ -1057,7 +1057,7 @@ export default function Preview06Page() {
 										<span className="text-fg-tertiary text-xs">
 											Auto-logged to internal telemetry
 										</span>
-										<Button variant="outline" color="neutral" size="28">
+										<Button variant="outline" color="neutral" size="lg">
 											<Copy className="size-3.5" />
 											Copy Output
 										</Button>
@@ -1081,7 +1081,7 @@ export default function Preview06Page() {
 											actions.
 										</CardDescription>
 									</div>
-									<Button variant="outline" color="neutral" size="28">
+									<Button variant="outline" color="neutral" size="lg">
 										Export Audit Log (.JSONL)
 									</Button>
 								</div>
@@ -1109,7 +1109,7 @@ export default function Preview06Page() {
 											</div>
 
 											<div className="flex items-center gap-3">
-												<Badge color={log.badgeColor} size="20" variant="soft">
+												<Badge color={log.badgeColor} size="sm" variant="soft">
 													{log.badgeText}
 												</Badge>
 												<span className="text-fg-tertiary text-xs">

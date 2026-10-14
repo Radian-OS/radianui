@@ -37,7 +37,7 @@ export default function CollapsibleBillingCard() {
 						<span className="text-fg text-base font-semibold">
 							7 days remaining in cycle
 						</span>
-						<Badge variant="soft" color="primary" size="20">
+						<Badge variant="soft" color="primary" size="sm">
 							Billing
 						</Badge>
 					</div>

@@ -48,7 +48,7 @@
 - **Rule**: Whenever implementing a sidebar or sidebar navigation, always use the canonical Radian OS `Sidebar` components (`Sidebar`, `SidebarHeader`, `SidebarContent`, `SidebarFooter`, `SidebarGroup`, `SidebarGroupContent`, `SidebarGroupLabel`, `SidebarMenu`, `SidebarMenuItem`, `SidebarMenuButton`, `SidebarMenuBadge`) from `@/styles/default/ui/sidebar` (or `@/registry/ui/sidebar` / `@/components/ui/sidebar`).
 - **Do not add custom `hover:bg-...` overrides or ad-hoc background classes to `SidebarMenuButton`**. The component's built-in styles already handle hover (`hover:bg-sidebar-accent hover:text-sidebar-accent-fg`) and active states (`isActive` -> `data-[active=true]:bg-sidebar-accent!`). Overriding with classes like `hover:bg-elevation-level1/60` breaks hover functionality because `elevation-level1` is pure white.
 - **Never use `text-fg-muted`**: That token does NOT exist in the design system. Always use `text-sidebar-fg` inside the sidebar, or `text-fg-secondary` / `text-fg-tertiary` for secondary/tertiary text.
-- **Icon Size & Typography Consistency**: Keep icon sizes and typography strictly uniform across all menu items (e.g. `size-4` for icons inside `size="32"` buttons, `size-3.5` for chevrons/actions, `text-sm font-medium` or `text-xs` for text). Never mix arbitrary icon sizes across rows.
+- **Icon Size & Typography Consistency**: Keep icon sizes and typography strictly uniform across all menu items (e.g. `size-4` for icons inside `size="sm"` buttons, `size-3.5` for chevrons/actions, `text-sm font-medium` or `text-xs` for text). Never mix arbitrary icon sizes across rows.
 - **Badges/Counts**: Always use `<SidebarMenuBadge>` as a sibling inside `<SidebarMenuItem>` (or inside `<SidebarMenuButton asChild>`) instead of custom `span` elements inside ad-hoc flex divs.
 
 ## 4. Card Component Rule
@@ -80,7 +80,7 @@
 ## 5. Avatar Component Rule
 - **Rule**: Whenever rendering user avatars, profile pictures, or author thumbnails, always use the canonical Radian OS `Avatar` components (`Avatar`, `AvatarImage`, `AvatarFallback`, `AvatarIndicator`, `AvatarStatus`) from `@/styles/default/ui/avatar` (or `@/registry/ui/avatar`).
 - **Do not** construct custom raw `<div>` or standalone `<img>` tags for user avatars.
-- **Configuration**: Always specify standard `size` (`"16"`, `"20"`, `"24"`, `"32"`, `"36"`, `"40"`, `"48"`, `"64"`, `"80"`) and `rounded` (`"circle"` or `"square"`).
+- **Configuration**: Always specify standard `size` (`"3xs"`, `"2xs"`, `"xs"`, `"sm"`, `"md"`, `"lg"`, `"xl"`, `"2xl"`, `"3xl"`) and `rounded` (`"circle"` or `"square"`).
 - **Fallback**: Always include an `<AvatarFallback>` component (displaying user initials or icon) inside `<Avatar>` for graceful loading and error states.
 - **Avatar Image Source (CRITICAL)**: When adding avatars, always use avatar images from the Radian OS CDN: `https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@v1.0.2/packages/uncompressed-avatars/src/{number}.png` (e.g. `https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@v1.0.2/packages/uncompressed-avatars/src/8.png`). Use varying numbers (e.g. `1.png`, `2.png`, `8.png`) for multiple avatars.
 - **Example Usage**:
@@ -91,7 +91,7 @@
     AvatarFallback,
   } from "@/styles/default/ui/avatar"
 
-  <Avatar size="32" rounded="circle" className="border-border border">
+  <Avatar size="sm" rounded="circle" className="border-border border">
     <AvatarImage src="https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@v1.0.2/packages/uncompressed-avatars/src/8.png" alt={author.name} />
     <AvatarFallback className="text-xs font-semibold">{initials}</AvatarFallback>
   </Avatar>

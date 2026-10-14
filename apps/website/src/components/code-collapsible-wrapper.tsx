@@ -25,7 +25,7 @@ export function CodeCollapsibleWrapper({
 			{...props}>
 			<CollapsibleTrigger asChild>
 				<div className="absolute top-1.5 right-9 z-10 flex items-center">
-					<Button variant="ghost" color="neutral" size="28">
+					<Button variant="ghost" color="neutral" size="lg">
 						{isOpened ? "Show Less" : "Show More"}
 					</Button>
 					<Divider orientation="vertical" className="mx-1.5 !h-4" />

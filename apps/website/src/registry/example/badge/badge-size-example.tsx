@@ -4,14 +4,14 @@ import { Badge } from "@/registry/ui/badge"
 function BadgeSizeExample() {
 	return (
 		<div className="flex justify-center gap-3">
-			<Badge variant="outline" color="neutral" size="20">
-				Size 20
+			<Badge variant="outline" color="neutral" size="sm">
+				Size sm
 			</Badge>
-			<Badge variant="outline" color="neutral" size="24">
-				Size 24
+			<Badge variant="outline" color="neutral" size="md">
+				Size md
 			</Badge>
-			<Badge variant="outline" color="neutral" size="28">
-				Size 28
+			<Badge variant="outline" color="neutral" size="lg">
+				Size lg
 			</Badge>
 		</div>
 	)

@@ -5,39 +5,39 @@ import { Label } from "@/registry/ui/label"
 const InputSize = () => {
 	return (
 		<div className="flex w-80 flex-col gap-6">
-			{/* Input size 28 */}
+			{/* Input size xs */}
 			<div className="flex flex-col gap-1.5">
-				<Label htmlFor="input-size-28">Size 28</Label>
-				<Input id="input-size-28" size="28" />
+				<Label htmlFor="input-size-xs">Size xs</Label>
+				<Input id="input-size-xs" size="xs" />
 			</div>
 
-			{/* Input size 32 */}
+			{/* Input size sm */}
 			<div className="flex flex-col gap-1.5">
-				<Label htmlFor="input-size-32">Size 32</Label>
-				<Input id="input-size-32" size="32" />
+				<Label htmlFor="input-size-sm">Size sm</Label>
+				<Input id="input-size-sm" size="sm" />
 			</div>
-			{/* Input size 36 */}
+			{/* Input size md */}
 			<div className="flex flex-col gap-1.5">
-				<Label htmlFor="input-size-36">Size 36</Label>
-				<Input id="input-size-36" size="36" />
-			</div>
-
-			{/* Input size 40 */}
-			<div className="flex flex-col gap-1.5">
-				<Label htmlFor="input-size-40">Size 40</Label>
-				<Input id="input-size-40" size="40" />
+				<Label htmlFor="input-size-md">Size md</Label>
+				<Input id="input-size-md" size="md" />
 			</div>
 
-			{/* Input size 44 */}
+			{/* Input size lg */}
 			<div className="flex flex-col gap-1.5">
-				<Label htmlFor="input-size-44">Size 44</Label>
-				<Input id="input-size-44" size="44" />
+				<Label htmlFor="input-size-lg">Size lg</Label>
+				<Input id="input-size-lg" size="lg" />
 			</div>
 
-			{/* Input size 48 */}
+			{/* Input size xl */}
 			<div className="flex flex-col gap-1.5">
-				<Label htmlFor="input-size-48">Size 48</Label>
-				<Input id="input-size-48" size="48" />
+				<Label htmlFor="input-size-xl">Size xl</Label>
+				<Input id="input-size-xl" size="xl" />
+			</div>
+
+			{/* Input size 2xl */}
+			<div className="flex flex-col gap-1.5">
+				<Label htmlFor="input-size-2xl">Size 2xl</Label>
+				<Input id="input-size-2xl" size="2xl" />
 			</div>
 		</div>
 	)

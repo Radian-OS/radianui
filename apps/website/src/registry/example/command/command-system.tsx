@@ -141,7 +141,7 @@ export default function CommandSystemCommands() {
 									onClick={() => setActiveCategory(cat)}
 									variant={isActive ? "outline" : "soft"}
 									color={isActive ? "primary" : "neutral"}
-									size="24"
+									size="md"
 									className="cursor-pointer transition-all select-none">
 									{cat}
 									{isActive && <X className="ml-0.5 size-3 opacity-70" />}
@@ -174,7 +174,7 @@ export default function CommandSystemCommands() {
 													</span>
 												</div>
 												<CommandShortcut className="text-fg-tertiary ml-4 shrink-0 font-mono text-xs">
-													<Badge variant="soft" color="neutral" size="20">
+													<Badge variant="soft" color="neutral" size="sm">
 														{cmd.shortcut}
 													</Badge>
 												</CommandShortcut>

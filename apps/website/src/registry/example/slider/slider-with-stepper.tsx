@@ -12,7 +12,7 @@ export default function SliderWithStepper() {
 		<div className="flex w-100 items-center gap-2">
 			<IconButton
 				aria-label="Reduce Button"
-				size="28"
+				size="lg"
 				variant="outline"
 				color="neutral"
 				onClick={() => setValue((prev) => Math.max(prev - 10, 0))}>
@@ -26,7 +26,7 @@ export default function SliderWithStepper() {
 			</Slider>
 			<IconButton
 				aria-label="Increase Button"
-				size="28"
+				size="lg"
 				variant="outline"
 				color="neutral"
 				onClick={() => setValue((prev) => Math.min(prev + 10, 100))}>

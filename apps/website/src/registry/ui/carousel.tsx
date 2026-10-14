@@ -175,7 +175,7 @@ function CarouselPrevious({
 	className,
 	variant = "outline",
 	color = "neutral",
-	size = "32",
+	size = "sm",
 	children,
 	...props
 }: Omit<React.ComponentProps<typeof IconButton>, "children"> & {
@@ -210,7 +210,7 @@ function CarouselNext({
 	className,
 	variant = "outline",
 	color = "neutral",
-	size = "32",
+	size = "sm",
 	children,
 	...props
 }: Omit<React.ComponentProps<typeof IconButton>, "children"> & {

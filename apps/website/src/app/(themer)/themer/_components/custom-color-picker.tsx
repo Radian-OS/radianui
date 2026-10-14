@@ -173,7 +173,7 @@ export function CustomColorPicker({
 							spellCheck={false}
 						/>
 						<Button
-							size="28"
+							size="lg"
 							variant="ghost"
 							color="neutral"
 							className="bg-elevation-level3 hover:bg-elevation-level4 absolute top-1 right-1 h-6 px-2 text-[11px]"

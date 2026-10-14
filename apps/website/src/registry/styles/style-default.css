@@ -273,31 +273,31 @@
 	}
 
 	/* Size variants */
-	.cn-avatar-size-16 {
+	.cn-avatar-size-3xs {
 		@apply size-4 text-xs;
 	}
-	.cn-avatar-size-20 {
+	.cn-avatar-size-2xs {
 		@apply size-5 text-xs;
 	}
-	.cn-avatar-size-24 {
+	.cn-avatar-size-xs {
 		@apply size-6 text-xs;
 	}
-	.cn-avatar-size-32 {
+	.cn-avatar-size-sm {
 		@apply size-8 text-sm;
 	}
-	.cn-avatar-size-36 {
+	.cn-avatar-size-md {
 		@apply size-9 text-sm;
 	}
-	.cn-avatar-size-40 {
+	.cn-avatar-size-lg {
 		@apply size-10 text-sm;
 	}
-	.cn-avatar-size-48 {
+	.cn-avatar-size-xl {
 		@apply size-12 text-base;
 	}
-	.cn-avatar-size-64 {
+	.cn-avatar-size-2xl {
 		@apply size-16 text-xl;
 	}
-	.cn-avatar-size-80 {
+	.cn-avatar-size-3xl {
 		@apply size-20 text-2xl;
 	}
 
@@ -307,31 +307,31 @@
 	}
 
 	/* Square compound variants */
-	.cn-avatar-square-16 {
+	.cn-avatar-square-3xs {
 		@apply rounded-md;
 	}
-	.cn-avatar-square-20 {
+	.cn-avatar-square-2xs {
 		@apply rounded-md;
 	}
-	.cn-avatar-square-24 {
+	.cn-avatar-square-xs {
 		@apply rounded-lg;
 	}
-	.cn-avatar-square-32 {
+	.cn-avatar-square-sm {
 		@apply rounded-lg;
 	}
-	.cn-avatar-square-36 {
+	.cn-avatar-square-md {
 		@apply rounded-lg;
 	}
-	.cn-avatar-square-40 {
+	.cn-avatar-square-lg {
 		@apply rounded-lg;
 	}
-	.cn-avatar-square-48 {
+	.cn-avatar-square-xl {
 		@apply rounded-lg;
 	}
-	.cn-avatar-square-64 {
+	.cn-avatar-square-2xl {
 		@apply rounded-xl;
 	}
-	.cn-avatar-square-80 {
+	.cn-avatar-square-3xl {
 		@apply rounded-2xl;
 	}
 
@@ -365,31 +365,31 @@
 	}
 
 	/* Status size variants */
-	.cn-avatar-status-size-16 {
+	.cn-avatar-status-size-3xs {
 		@apply size-1 border;
 	}
-	.cn-avatar-status-size-20 {
+	.cn-avatar-status-size-2xs {
 		@apply size-1 border;
 	}
-	.cn-avatar-status-size-24 {
+	.cn-avatar-status-size-xs {
 		@apply size-1.5 border-2;
 	}
-	.cn-avatar-status-size-32 {
+	.cn-avatar-status-size-sm {
 		@apply size-1.5 border-2;
 	}
-	.cn-avatar-status-size-36 {
+	.cn-avatar-status-size-md {
 		@apply size-1.5 border-2;
 	}
-	.cn-avatar-status-size-40 {
+	.cn-avatar-status-size-lg {
 		@apply size-2 border-2;
 	}
-	.cn-avatar-status-size-48 {
+	.cn-avatar-status-size-xl {
 		@apply size-3 border-2;
 	}
-	.cn-avatar-status-size-64 {
+	.cn-avatar-status-size-2xl {
 		@apply size-3 border-2;
 	}
-	.cn-avatar-status-size-80 {
+	.cn-avatar-status-size-3xl {
 		@apply size-4 border-2;
 	}
 
@@ -406,13 +406,13 @@
 	}
 
 	/* Size variants */
-	.cn-badge-size-20 {
+	.cn-badge-size-sm {
 		@apply rounded-control-md h-5 px-1.5 text-xs [&_svg]:size-3.5;
 	}
-	.cn-badge-size-24 {
+	.cn-badge-size-md {
 		@apply rounded-control-md h-6 px-2 text-[13px] [&_svg]:size-3.5;
 	}
-	.cn-badge-size-28 {
+	.cn-badge-size-lg {
 		@apply rounded-control-md h-7 px-2 text-sm [&_svg]:size-4;
 	}
 
@@ -615,22 +615,22 @@
 	/* MARK: Button */
 
 	/* Base size rounded tokens (extracted from size variant string) */
-	.cn-btn-size-28 {
+	.cn-btn-size-xs {
 		@apply rounded-control-md;
 	}
-	.cn-btn-size-32 {
+	.cn-btn-size-sm {
 		@apply rounded-control-md;
 	}
-	.cn-btn-size-36 {
+	.cn-btn-size-md {
 		@apply rounded-control-lg;
 	}
-	.cn-btn-size-40 {
+	.cn-btn-size-lg {
 		@apply rounded-control-lg;
 	}
-	.cn-btn-size-44 {
+	.cn-btn-size-xl {
 		@apply rounded-control-lg;
 	}
-	.cn-btn-size-48 {
+	.cn-btn-size-2xl {
 		@apply rounded-control-lg;
 	}
 
@@ -641,22 +641,22 @@
 
 	/* MARK: IconButton */
 
-	.cn-icon-btn-size-28 {
+	.cn-icon-btn-size-xs {
 		@apply rounded-md;
 	}
-	.cn-icon-btn-size-32 {
+	.cn-icon-btn-size-sm {
 		@apply rounded-md;
 	}
-	.cn-icon-btn-size-36 {
+	.cn-icon-btn-size-md {
 		@apply rounded-lg;
 	}
-	.cn-icon-btn-size-40 {
+	.cn-icon-btn-size-lg {
 		@apply rounded-lg;
 	}
-	.cn-icon-btn-size-44 {
+	.cn-icon-btn-size-xl {
 		@apply rounded-lg;
 	}
-	.cn-icon-btn-size-48 {
+	.cn-icon-btn-size-2xl {
 		@apply rounded-lg;
 	}
 
@@ -1118,27 +1118,27 @@
 	}
 
 	/* Input sizes */
-	.cn-input-28 {
+	.cn-input-xs {
 		@apply rounded-control-md px-2 text-[13px];
 	}
 
-	.cn-input-32 {
+	.cn-input-sm {
 		@apply rounded-control-md px-2 text-sm;
 	}
 
-	.cn-input-36 {
+	.cn-input-md {
 		@apply rounded-control-lg px-2.5 text-sm;
 	}
 
-	.cn-input-40 {
+	.cn-input-lg {
 		@apply rounded-control-lg px-3 text-sm;
 	}
 
-	.cn-input-44 {
+	.cn-input-xl {
 		@apply rounded-control-lg px-3 text-base;
 	}
 
-	.cn-input-48 {
+	.cn-input-2xl {
 		@apply rounded-control-lg px-3.5 text-base;
 	}
 
@@ -1148,27 +1148,27 @@
 	}
 
 	/* InputAddon sizes */
-	.cn-input-addon-28 {
+	.cn-input-addon-xs {
 		@apply rounded-md px-2 text-[13px];
 	}
 
-	.cn-input-addon-32 {
+	.cn-input-addon-sm {
 		@apply rounded-md px-2 text-sm;
 	}
 
-	.cn-input-addon-36 {
+	.cn-input-addon-md {
 		@apply rounded-lg px-2.5 text-sm;
 	}
 
-	.cn-input-addon-40 {
+	.cn-input-addon-lg {
 		@apply rounded-lg px-3 text-sm;
 	}
 
-	.cn-input-addon-44 {
+	.cn-input-addon-xl {
 		@apply rounded-lg px-3 text-base;
 	}
 
-	.cn-input-addon-48 {
+	.cn-input-addon-2xl {
 		@apply rounded-lg px-3.5 text-base;
 	}
 
@@ -1177,27 +1177,27 @@
 	}
 
 	/* InputWrapper sizes */
-	.cn-input-wrapper-28 {
+	.cn-input-wrapper-xs {
 		@apply gap-1.5;
 	}
 
-	.cn-input-wrapper-32 {
+	.cn-input-wrapper-sm {
 		@apply gap-2;
 	}
 
-	.cn-input-wrapper-36 {
+	.cn-input-wrapper-md {
 		@apply gap-2;
 	}
 
-	.cn-input-wrapper-40 {
+	.cn-input-wrapper-lg {
 		@apply gap-2;
 	}
 
-	.cn-input-wrapper-44 {
+	.cn-input-wrapper-xl {
 		@apply gap-2;
 	}
 
-	.cn-input-wrapper-48 {
+	.cn-input-wrapper-2xl {
 		@apply gap-2;
 	}
 
@@ -1216,27 +1216,27 @@
 		@apply bg-bg text-fg shadow-2xs border-alpha focus-visible:ring-3 focus-visible:ring-primary-focus focus-visible:border-primary-hover group-has-disabled:cursor-not-allowed group-has-disabled:text-fg-disabled group-has-disabled:bg-fill2-alpha group-has-disabled:placeholder:text-fg-disabled placeholder:text-fg-tertiary rounded-lg border font-semibold;
 	}
 
-	.cn-otp-input-28 {
+	.cn-otp-input-xs {
 		@apply size-7 text-[13px];
 	}
 
-	.cn-otp-input-32 {
+	.cn-otp-input-sm {
 		@apply size-8 text-sm;
 	}
 
-	.cn-otp-input-36 {
+	.cn-otp-input-md {
 		@apply size-9 text-sm;
 	}
 
-	.cn-otp-input-40 {
+	.cn-otp-input-lg {
 		@apply size-10 text-sm;
 	}
 
-	.cn-otp-input-44 {
+	.cn-otp-input-xl {
 		@apply size-11 text-base;
 	}
 
-	.cn-otp-input-48 {
+	.cn-otp-input-2xl {
 		@apply size-12 text-base;
 	}
 
@@ -1287,27 +1287,27 @@
 		@apply bg-bg border-border shadow-xs text-fg data-placeholder:text-fg-tertiary focus-visible:ring-primary-focus focus-visible:border-primary aria-invalid:border-error aria-invalid:ring-error [[data-invalid=true]_&]:border-error [[data-invalid=true]_&]:ring-error border shadow-black/5 focus-visible:outline-none focus-visible:ring-2 disabled:cursor-not-allowed disabled:opacity-50;
 	}
 
-	.cn-select-trigger-28 {
+	.cn-select-trigger-xs {
 		@apply rounded-control-md h-7 px-2 py-1.5 text-[13px];
 	}
 
-	.cn-select-trigger-32 {
+	.cn-select-trigger-sm {
 		@apply rounded-control-md h-8 px-2 py-1.5 text-sm;
 	}
 
-	.cn-select-trigger-36 {
+	.cn-select-trigger-md {
 		@apply rounded-control-lg h-9 px-2.5 py-2 text-sm;
 	}
 
-	.cn-select-trigger-40 {
+	.cn-select-trigger-lg {
 		@apply rounded-control-lg h-10 px-3 py-2.5 text-sm;
 	}
 
-	.cn-select-trigger-44 {
+	.cn-select-trigger-xl {
 		@apply rounded-control-lg h-11 px-3 py-2.5 text-base;
 	}
 
-	.cn-select-trigger-48 {
+	.cn-select-trigger-2xl {
 		@apply rounded-control-lg h-12 px-3.5 py-3 text-base;
 	}
 

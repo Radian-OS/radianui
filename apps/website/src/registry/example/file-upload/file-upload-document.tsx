@@ -230,7 +230,7 @@ function FileRow({
 				{isUploading ? (
 					<CompactButton
 						aria-label="Close Button"
-						size="24"
+						size="md"
 						variant="soft"
 						color="neutral"
 						onClick={() => onCancel(id)}>
@@ -238,11 +238,11 @@ function FileRow({
 					</CompactButton>
 				) : (
 					<>
-						<CompactButton size="20" variant="ghost" color="neutral">
+						<CompactButton size="sm" variant="ghost" color="neutral">
 							<Download />
 						</CompactButton>
 						<CompactButton
-							size="20"
+							size="sm"
 							variant="ghost"
 							color="neutral"
 							onClick={() => onRemove(id)}>
@@ -339,7 +339,7 @@ export default function FileUpload({ onContinue, onCancel }: FileUploadProps) {
 					</div>
 					<Button
 						type="button"
-						size="28"
+						size="lg"
 						onClick={(e) => {
 							e.stopPropagation()
 							actions.openFileDialog()

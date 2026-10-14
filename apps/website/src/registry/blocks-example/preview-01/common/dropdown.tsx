@@ -17,7 +17,7 @@ const Dropdown = () => {
 		<div className="bg-elevation-level1 border-soft w-full rounded-[10px] border">
 			<div className="p-1">
 				<div className="flex items-center gap-3 p-2">
-					<Avatar size="36" rounded="circle">
+					<Avatar size="md" rounded="circle">
 						<AvatarImage src="https://randomuser.me/api/portraits/men/1.jpg" />
 						<AvatarFallback>SS</AvatarFallback>
 					</Avatar>
@@ -27,7 +27,7 @@ const Dropdown = () => {
 							saru@radian.com
 						</p>
 					</span>
-					<Badge variant="strong" color="primary" size="24">
+					<Badge variant="strong" color="primary" size="md">
 						PRO
 					</Badge>
 				</div>

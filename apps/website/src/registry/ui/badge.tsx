@@ -20,9 +20,9 @@ const badgeVariants = cva(
 				soft: "",
 			},
 			size: {
-				"20": "cn-badge-size-20",
-				"24": "cn-badge-size-24",
-				"28": "cn-badge-size-28",
+				sm: "cn-badge-size-sm",
+				md: "cn-badge-size-md",
+				lg: "cn-badge-size-lg",
 			},
 			color: {
 				primary: "",
@@ -52,7 +52,7 @@ const badgeVariants = cva(
 		},
 		defaultVariants: {
 			variant: "soft",
-			size: "24",
+			size: "md",
 			color: "primary",
 		},
 		compoundVariants: [

@@ -22,14 +22,14 @@ export default function CardFancyExample() {
 						<Badge
 							color="neutral"
 							className="text-primary-text border-0"
-							size="24"
+							size="md"
 							variant="outline">
 							<Download />
 						</Badge>
 						<Badge
 							color="neutral"
 							className="text-primary-text bg-primary-accent rounded-none border-0"
-							size="24"
+							size="md"
 							variant="outline">
 							141k/week
 						</Badge>

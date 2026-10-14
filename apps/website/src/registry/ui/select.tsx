@@ -51,16 +51,16 @@ const selectTriggerVariants = cva(
 	{
 		variants: {
 			size: {
-				"28": "cn-select-trigger-28 gap-0.5",
-				"32": "cn-select-trigger-32 gap-0.5",
-				"36": "cn-select-trigger-36 gap-1",
-				"40": "cn-select-trigger-40 gap-1",
-				"44": "cn-select-trigger-44 gap-1",
-				"48": "cn-select-trigger-48 gap-1",
+				xs: "cn-select-trigger-xs gap-0.5",
+				sm: "cn-select-trigger-sm gap-0.5",
+				md: "cn-select-trigger-md gap-1",
+				lg: "cn-select-trigger-lg gap-1",
+				xl: "cn-select-trigger-xl gap-1",
+				"2xl": "cn-select-trigger-2xl gap-1",
 			},
 		},
 		defaultVariants: {
-			size: "36",
+			size: "md",
 		},
 	}
 )

@@ -114,7 +114,7 @@ export default function SigninForm() {
 								<FormItem>
 									<FormLabel>Email Address</FormLabel>
 									<FormControl>
-										<Input size="36" type="email" {...field} />
+										<Input size="md" type="email" {...field} />
 									</FormControl>
 									<FormMessage />
 								</FormItem>
@@ -127,7 +127,7 @@ export default function SigninForm() {
 								<FormItem>
 									<div className="flex items-center justify-between">
 										<FormLabel htmlFor="password">Password</FormLabel>
-										<Button variant="link" asChild color="primary" size="28">
+										<Button variant="link" asChild color="primary" size="lg">
 											<Link href="#">Forgot Password?</Link>
 										</Button>
 									</div>

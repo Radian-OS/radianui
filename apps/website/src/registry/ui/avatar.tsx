@@ -38,15 +38,15 @@ const avatarVariants = cva(
 	{
 		variants: {
 			size: {
-				"16": "cn-avatar-size-16",
-				"20": "cn-avatar-size-20",
-				"24": "cn-avatar-size-24",
-				"32": "cn-avatar-size-32",
-				"36": "cn-avatar-size-36",
-				"40": "cn-avatar-size-40",
-				"48": "cn-avatar-size-48",
-				"64": "cn-avatar-size-64",
-				"80": "cn-avatar-size-80",
+				"3xs": "cn-avatar-size-3xs",
+				"2xs": "cn-avatar-size-2xs",
+				xs: "cn-avatar-size-xs",
+				sm: "cn-avatar-size-sm",
+				md: "cn-avatar-size-md",
+				lg: "cn-avatar-size-lg",
+				xl: "cn-avatar-size-xl",
+				"2xl": "cn-avatar-size-2xl",
+				"3xl": "cn-avatar-size-3xl",
 			},
 			rounded: {
 				circle: "cn-avatar-rounded-circle",
@@ -54,18 +54,18 @@ const avatarVariants = cva(
 			},
 		},
 		compoundVariants: [
-			{ size: "16", rounded: "square", className: "cn-avatar-square-16" },
-			{ size: "20", rounded: "square", className: "cn-avatar-square-20" },
-			{ size: "24", rounded: "square", className: "cn-avatar-square-24" },
-			{ size: "32", rounded: "square", className: "cn-avatar-square-32" },
-			{ size: "36", rounded: "square", className: "cn-avatar-square-36" },
-			{ size: "40", rounded: "square", className: "cn-avatar-square-40" },
-			{ size: "48", rounded: "square", className: "cn-avatar-square-48" },
-			{ size: "64", rounded: "square", className: "cn-avatar-square-64" },
-			{ size: "80", rounded: "square", className: "cn-avatar-square-80" },
+			{ size: "3xs", rounded: "square", className: "cn-avatar-square-3xs" },
+			{ size: "2xs", rounded: "square", className: "cn-avatar-square-2xs" },
+			{ size: "xs", rounded: "square", className: "cn-avatar-square-xs" },
+			{ size: "sm", rounded: "square", className: "cn-avatar-square-sm" },
+			{ size: "md", rounded: "square", className: "cn-avatar-square-md" },
+			{ size: "lg", rounded: "square", className: "cn-avatar-square-lg" },
+			{ size: "xl", rounded: "square", className: "cn-avatar-square-xl" },
+			{ size: "2xl", rounded: "square", className: "cn-avatar-square-2xl" },
+			{ size: "3xl", rounded: "square", className: "cn-avatar-square-3xl" },
 		],
 		defaultVariants: {
-			size: "40",
+			size: "lg",
 			rounded: "circle",
 		},
 	}
@@ -82,27 +82,27 @@ const avatarStatusVariants = cva(
 				away: "cn-avatar-status-away",
 			},
 			size: {
-				"16": "cn-avatar-status-size-16",
-				"20": "cn-avatar-status-size-20",
-				"24": "cn-avatar-status-size-24",
-				"32": "cn-avatar-status-size-32",
-				"36": "cn-avatar-status-size-36",
-				"40": "cn-avatar-status-size-40",
-				"48": "cn-avatar-status-size-48",
-				"64": "cn-avatar-status-size-64",
-				"80": "cn-avatar-status-size-80",
+				"3xs": "cn-avatar-status-size-3xs",
+				"2xs": "cn-avatar-status-size-2xs",
+				xs: "cn-avatar-status-size-xs",
+				sm: "cn-avatar-status-size-sm",
+				md: "cn-avatar-status-size-md",
+				lg: "cn-avatar-status-size-lg",
+				xl: "cn-avatar-status-size-xl",
+				"2xl": "cn-avatar-status-size-2xl",
+				"3xl": "cn-avatar-status-size-3xl",
 			},
 		},
 		defaultVariants: {
 			variant: "online",
-			size: "40",
+			size: "lg",
 		},
 	}
 )
 
 function Avatar({
 	className,
-	size = "40",
+	size = "lg",
 	rounded = "circle",
 	...props
 }: AvatarProps) {

@@ -136,7 +136,7 @@ export function DesktopNavigation() {
 																		? "neutral"
 																		: "primary"
 																}
-																size="20">
+																size="sm">
 																{tool.release === "coming-soon"
 																	? "Coming Soon"
 																	: "Beta"}

@@ -32,7 +32,7 @@ export default function PagePicker({
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
 				<Button
-					size="28"
+					size="lg"
 					variant="outline"
 					color="neutral"
 					className="select-none">

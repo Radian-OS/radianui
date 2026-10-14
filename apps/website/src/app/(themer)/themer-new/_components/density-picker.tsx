@@ -59,7 +59,7 @@ export default function DensityPicker({
 					</DropdownMenuLabel>
 					<Tooltip>
 						<TooltipTrigger asChild>
-							<CompactButton variant="ghost" color="neutral" size="20">
+							<CompactButton variant="ghost" color="neutral" size="sm">
 								<Info />
 							</CompactButton>
 						</TooltipTrigger>

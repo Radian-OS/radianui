@@ -36,7 +36,7 @@ export default function AvatarHeroActionButtons() {
 		<>
 			<Button
 				asChild
-				size="40"
+				size="lg"
 				className="bg-elevation-level1/20 dark:hover:bg-fill2/40 hover:bg-fill2/40 w-full backdrop-blur-md sm:w-fit"
 				variant="outline"
 				color="neutral">
@@ -47,7 +47,7 @@ export default function AvatarHeroActionButtons() {
 			<Button
 				variant="glossy"
 				className="w-full sm:w-fit"
-				size="40"
+				size="lg"
 				onClick={handleCopyRandom}>
 				<Dices className="size-5" />
 				Copy Random Avatar

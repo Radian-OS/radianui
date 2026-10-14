@@ -392,7 +392,7 @@ export function ThemerSidebar({
 						type="button"
 						variant={inspectMode ? "strong" : "outline"}
 						color="primary"
-						size="32"
+						size="lg"
 						className="w-full"
 						onClick={() => setInspectMode(!inspectMode)}>
 						{inspectMode ? "Selecting..." : "Inspect Element"}
@@ -516,7 +516,7 @@ export function ThemerSidebar({
 								</DropdownMenuContent>
 							</DropdownMenu>
 							<Button
-								size="28"
+								size="lg"
 								variant="ghost"
 								color="neutral"
 								onClick={() => setInspectedElement(null)}>

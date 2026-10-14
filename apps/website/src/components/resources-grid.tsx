@@ -103,7 +103,7 @@ export function ResourcesGrid() {
 									{resource.title}
 								</span>
 								{resource.comingSoon && (
-									<Badge variant="soft" color="amber" size="20">
+									<Badge variant="soft" color="amber" size="sm">
 										Coming Soon
 									</Badge>
 								)}

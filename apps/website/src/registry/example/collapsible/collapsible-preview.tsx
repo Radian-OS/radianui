@@ -173,7 +173,7 @@ function CollapsibleHeader({
 					aria-label="Collapsible Button"
 					variant="outline"
 					color="neutral"
-					size="32">
+					size="lg">
 					<ChevronDown
 						className={cn(
 							"transition-transform duration-200",

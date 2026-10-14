@@ -20,9 +20,9 @@ const badgeVariants = cva(
 				soft: "",
 			},
 			size: {
-				"20": "h-5 rounded-none px-2 text-xs [&_svg]:size-3.5",
-				"24": "h-6 rounded-none px-2.5 text-[13px] [&_svg]:size-3.5",
-				"28": "h-7 rounded-none px-3 text-sm [&_svg]:size-4",
+				sm: "h-5 rounded-none px-2 text-xs [&_svg]:size-3.5",
+				md: "h-6 rounded-none px-2.5 text-[13px] [&_svg]:size-3.5",
+				lg: "h-7 rounded-none px-3 text-sm [&_svg]:size-4",
 			},
 			color: {
 				primary: "",
@@ -52,7 +52,7 @@ const badgeVariants = cva(
 		},
 		defaultVariants: {
 			variant: "soft",
-			size: "24",
+			size: "md",
 			color: "primary",
 		},
 		compoundVariants: [

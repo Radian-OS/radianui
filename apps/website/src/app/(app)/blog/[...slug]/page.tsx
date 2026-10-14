@@ -92,7 +92,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
 			/>
 			{/* Blog Title and Meta */}
 			<div className="flex flex-col gap-4">
-				<Badge size="28" variant="soft">
+				<Badge size="lg" variant="soft">
 					{blog.data.card}
 				</Badge>
 				<h1 className="heading-3 font-semibold">{blog.data.title}</h1>
@@ -129,7 +129,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
 							href={author.link || "#"}
 							key={author._id}
 							className={`flex items-center gap-3 ${index !== 0 ? "px-3" : ""}`}>
-							<Avatar size="24">
+							<Avatar size="xs">
 								<AvatarImage src={author.avatar} />
 								<AvatarFallback>
 									{author.name.charAt(0).toUpperCase()}

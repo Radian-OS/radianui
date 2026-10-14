@@ -82,7 +82,7 @@ export default async function UnsubscribePage({
 							</EmptyDescription>
 						</EmptyHeader>
 						<EmptyAction className="max-w-full">
-							<Button size={"40"} asChild>
+							<Button size="lg" asChild>
 								<Link href="/">Go to Homepage</Link>
 							</Button>
 						</EmptyAction>

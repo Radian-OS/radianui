@@ -26,9 +26,9 @@ const switchVariants = cva(
 				square: "cn-switch-shape-square",
 			},
 			size: {
-				"20": "cn-switch-20 h-5 w-8.5",
-				"24": "cn-switch-24 h-6 w-10.5",
-				"32": "cn-switch-32 h-8 w-14",
+				sm: "cn-switch-sm h-5 w-8.5",
+				md: "cn-switch-md h-6 w-10.5",
+				lg: "cn-switch-lg h-8 w-14",
 			},
 			permanent: {
 				true: "cn-switch-permanent",
@@ -38,7 +38,7 @@ const switchVariants = cva(
 		defaultVariants: {
 			shape: "pill",
 			permanent: false,
-			size: "24",
+			size: "md",
 		},
 	}
 )
@@ -52,14 +52,14 @@ const switchThumbVariants = cva(
 				square: "cn-switch-thumb-shape-square",
 			},
 			size: {
-				"20": "cn-switch-thumb-20 size-3.5 data-[state=checked]:translate-x-4",
-				"24": "cn-switch-thumb-24 size-4.5 data-[state=checked]:translate-x-5",
-				"32": "cn-switch-thumb-32 size-6 data-[state=checked]:translate-x-7",
+				sm: "cn-switch-thumb-sm size-3.5 data-[state=checked]:translate-x-4",
+				md: "cn-switch-thumb-md size-4.5 data-[state=checked]:translate-x-5",
+				lg: "cn-switch-thumb-lg size-6 data-[state=checked]:translate-x-7",
 			},
 		},
 		defaultVariants: {
 			shape: "pill",
-			size: "24",
+			size: "md",
 		},
 	}
 )
