@@ -26,7 +26,7 @@ export default function Auth1Page() {
 					{/* Left Column: Sign-up Credentials Form */}
 					<div
 						data-auth-form
-						className="mx-auto w-full max-w-[360px] shrink-0 sm:max-w-[380px] lg:mx-0">
+						className="mx-auto flex w-full max-w-[360px] shrink-0 flex-col gap-6 sm:max-w-[380px] lg:mx-0">
 						<AuthHeader />
 						<AuthForm />
 						<SocialButtons />

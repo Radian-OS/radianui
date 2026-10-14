@@ -13,7 +13,7 @@ export function TestimonialCard({ testimonial }: TestimonialCardProps) {
 	return (
 		<Card className="relative isolate h-[220px] w-[260px] shrink-0 overflow-hidden rounded-2xl border border-white/10 bg-white/[0.05] p-6 shadow-none ring-0 backdrop-blur-xl transition-all duration-300 hover:border-white/20 hover:bg-white/[0.08]">
 			<CardContent className="flex h-full flex-col justify-between p-0">
-				<p className="line-clamp-4 text-sm leading-relaxed font-normal text-white/90">
+				<p className="line-clamp-4 text-sm leading-relaxed font-normal text-white">
 					&ldquo;{testimonial.quote}&rdquo;
 				</p>
 

@@ -25,7 +25,7 @@ export function LoginView() {
 					{/* Divider */}
 					<div className="flex w-full items-center gap-3">
 						<Divider className="flex-1" />
-						<span className="text-fg-secondary text-sm">or sign in with</span>
+						<span className="text-fg-secondary">or sign in with</span>
 						<Divider className="flex-1" />
 					</div>
 

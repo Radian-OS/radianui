@@ -620,6 +620,36 @@ export function getFiberSourceDetails(
 					}
 				}
 
+				if (!file) {
+					const debugStack = fiber._debugStack || fiber._debugOwner?._debugStack
+					if (debugStack) {
+						const stackStr =
+							typeof debugStack === "string"
+								? debugStack
+								: debugStack?.stack || ""
+						if (stackStr) {
+							const stackLines = stackStr.split("\n")
+							for (const stackLine of stackLines) {
+								for (const fName of Object.keys(componentFiles)) {
+									const regex = new RegExp(
+										`[/\\\\]?(${fName.replace(".", "\\.")}):(\\d+)`
+									)
+									const match = stackLine.match(regex)
+									if (match && match[2]) {
+										const lineNum = parseInt(match[2], 10)
+										if (!isNaN(lineNum) && lineNum > 0) {
+											file = fName
+											lineNumber = lineNum
+											break
+										}
+									}
+								}
+								if (file) break
+							}
+						}
+					}
+				}
+
 				if (file && lineNumber && lineNumber > 0) {
 					let tag = ""
 					if (typeof fiber.type === "string") {
@@ -707,10 +737,6 @@ export function resolveElementSourceDetails(
 	componentFiles: Record<string, string>,
 	defaultFile: string
 ): ResolvedElementDetails {
-	const isInteractive = !!element.closest(
-		'button, a, input, select, textarea, [role="button"], [role="tab"], [role="checkbox"], [class*="button"], [class*="badge"], [class*="card"]'
-	)
-
 	// 1. Try React Fiber inspection first
 	const fiberDetails = getFiberSourceDetails(element, componentFiles)
 
@@ -734,7 +760,7 @@ export function resolveElementSourceDetails(
 		const jsxBlock = extractCompleteJsxBlock(
 			componentFiles[file],
 			lineNumber,
-			tag || (isInteractive ? "Button" : undefined)
+			tag && /^[A-Z]/.test(tag) ? tag : undefined
 		)
 		if (jsxBlock) {
 			if (jsxBlock.tag) tag = jsxBlock.tag

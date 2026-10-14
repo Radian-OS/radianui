@@ -26,6 +26,14 @@ export function LoginForm() {
 		null
 	)
 
+	const IconComponent = showPassword ? EyeOff : Eye
+
+	function togglePasswordVisibility(e: React.MouseEvent) {
+		e.preventDefault()
+		e.stopPropagation()
+		setShowPassword((prev) => !prev)
+	}
+
 	const form = useForm<LoginFormValues>({
 		resolver: zodResolver(loginSchema),
 		defaultValues: {
@@ -41,13 +49,13 @@ export function LoginForm() {
 	}
 
 	return (
-		<div className="flex w-full max-w-md flex-col gap-6">
+		<div className="flex w-full max-w-md flex-col gap-8">
 			{/* Top Heading */}
 			<div className="flex flex-col items-center gap-1 text-center">
-				<h1 className="heading-2">
+				<h1 className="heading-4">
 					<span>Welcome Back👋</span>
 				</h1>
-				<p className="text-fg-secondary text-xs sm:text-sm">
+				<p className="text-fg-secondary text-sm">
 					Lets get started with your 30 days free trial
 				</p>
 			</div>
@@ -76,7 +84,7 @@ export function LoginForm() {
 								<FormControl>
 									<Input placeholder="Enter your name" {...field} />
 								</FormControl>
-								<FormMessage className="text-error text-xs" />
+								<FormMessage />
 							</FormItem>
 						)}
 					/>
@@ -95,7 +103,7 @@ export function LoginForm() {
 										{...field}
 									/>
 								</FormControl>
-								<FormMessage className="text-error text-xs" />
+								<FormMessage />
 							</FormItem>
 						)}
 					/>
@@ -107,31 +115,20 @@ export function LoginForm() {
 						render={({ field }) => (
 							<FormItem>
 								<FormControl>
-									<InputWrapper size="md">
+									<InputWrapper>
 										<Input
-											placeholder="••••••••••••••"
+											placeholder="Enter your password"
 											type={showPassword ? "text" : "password"}
 											autoComplete="current-password"
 											{...field}
 										/>
-										<IconButton
-											type="button"
-											variant="ghost"
-											color="neutral"
-											size="lg"
-											aria-label={
-												showPassword ? "Hide password" : "Show password"
-											}
-											onClick={() => setShowPassword((prev) => !prev)}>
-											{showPassword ? (
-												<EyeOff className="text-fg-secondary size-4" />
-											) : (
-												<Eye className="text-fg-secondary size-4" />
-											)}
-										</IconButton>
+										<IconComponent
+											className="hover:text-fg peer-disabled:text-fg-disabled cursor-pointer peer-disabled:pointer-events-none"
+											onMouseDown={togglePasswordVisibility}
+										/>
 									</InputWrapper>
 								</FormControl>
-								<FormMessage className="text-error text-xs" />
+								<FormMessage />
 							</FormItem>
 						)}
 					/>
@@ -150,16 +147,14 @@ export function LoginForm() {
 											onCheckedChange={field.onChange}
 										/>
 									</FormControl>
-									<FormLabel className="text-xs font-medium hover:cursor-pointer">
+									<FormLabel className="font-medium hover:cursor-pointer">
 										Remember Me
 									</FormLabel>
 								</FormItem>
 							)}
 						/>
 
-						<Link
-							href="#"
-							className="text-fg hover:text-fg-secondary text-xs font-medium transition-colors">
+						<Link href="#" className="text-sm hover:underline">
 							Forgot Password?
 						</Link>
 					</div>
@@ -184,11 +179,9 @@ export function LoginForm() {
 			)}
 
 			{/* Footer Link */}
-			<p className="text-fg-secondary text-center text-xs">
+			<p className="text-fg-secondary text-center text-sm">
 				Don&apos;t have an account yet?{" "}
-				<Link
-					href="#"
-					className="text-fg hover:text-fg-secondary font-semibold transition-colors">
+				<Link href="#" className="text-fg hover:hover">
 					Sign Up
 				</Link>
 			</p>

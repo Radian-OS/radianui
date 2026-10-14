@@ -1,7 +1,6 @@
 "use client"
 
 import React, { useState, useEffect, useRef } from "react"
-import Image from "next/image"
 import Link from "next/link"
 import { Skeleton } from "@/styles/default/ui/skeleton"
 
@@ -16,8 +15,8 @@ export function LeftShowcase() {
 	}, [])
 
 	return (
-		<div className="dark hidden shrink-0 overflow-hidden select-none lg:flex lg:w-lg">
-			<div className="relative flex size-full flex-col items-center justify-center bg-black p-12 text-center text-white lg:p-16">
+		<div className="hidden shrink-0 overflow-hidden select-none lg:flex lg:w-lg">
+			<div className="relative flex size-full flex-col items-center justify-center pb-6 text-center">
 				{/* Content Box */}
 				<div className="z-10 flex size-full flex-col items-center justify-between">
 					<div className="flex w-full flex-1 items-center justify-center">
@@ -28,7 +27,7 @@ export function LeftShowcase() {
 							<img src="/logo.svg" alt="Radian Logo" className="size-12" />
 						</Link>
 					</div>
-					<h2 className="heading-4 max-w-sm text-center text-white">
+					<h2 className="heading-4 text-center text-white">
 						Welcome Back to Radian
 					</h2>
 				</div>

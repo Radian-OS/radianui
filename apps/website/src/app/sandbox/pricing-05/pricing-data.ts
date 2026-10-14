@@ -124,18 +124,4 @@ export const TRUSTED_COMPANIES: BrandCompany[] = [
 		darkSrc:
 			"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/neutral/development/wordmark/github.svg",
 	},
-	{
-		name: "Stripe",
-		lightSrc:
-			"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/light/neutral/finance-payments/wordmark/stripe.svg",
-		darkSrc:
-			"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/neutral/finance-payments/wordmark/stripe.svg",
-	},
-	{
-		name: "Vercel",
-		lightSrc:
-			"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/light/neutral/cloud-devops/wordmark/vercel.svg",
-		darkSrc:
-			"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/neutral/cloud-devops/wordmark/vercel.svg",
-	},
 ]

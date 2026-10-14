@@ -24,11 +24,19 @@ import {
 import { Input } from "@/styles/default/ui/input"
 import { SocialButtons } from "./social-buttons"
 import { signupSchema, type SignupFormValues } from "./types"
-import { IconButton } from "@/registry/ui/button"
+import { InputWrapper } from "@/registry/ui/input"
 
 export function SignupForm() {
 	const [showPassword, setShowPassword] = useState(false)
 	const [isSubmitted, setIsSubmitted] = useState(false)
+
+	const IconComponent = showPassword ? EyeOff : Eye
+
+	function togglePasswordVisibility(e: React.MouseEvent) {
+		e.preventDefault()
+		e.stopPropagation()
+		setShowPassword((prev) => !prev)
+	}
 
 	const form = useForm<SignupFormValues>({
 		resolver: zodResolver(signupSchema),
@@ -43,13 +51,11 @@ export function SignupForm() {
 	}
 
 	return (
-		<div className="border-border w-full rounded-2xl border p-1.5">
-			<Card className="bg-bg border-border w-full gap-0 rounded-xl border py-0">
+		<div className="border-soft w-full rounded-2xl border p-1">
+			<Card className="bg-bg border-soft w-full gap-0 rounded-xl border py-0">
 				<CardContent className="flex flex-col gap-7 p-6 sm:gap-8">
 					<div className="flex flex-col gap-2">
-						<CardTitle className="text-xl tracking-tight">
-							Start your 14-day trial
-						</CardTitle>
+						<CardTitle className="heading-4">Start your 14-day trial</CardTitle>
 						<CardDescription>
 							No credit card. No sales call. Just ship.
 						</CardDescription>
@@ -83,7 +89,7 @@ export function SignupForm() {
 													id="auth-5-email"
 													type="email"
 													autoComplete="email"
-													placeholder="you@company.com"
+													placeholder="info@radianui.com"
 													{...field}
 												/>
 											</FormControl>
@@ -100,32 +106,18 @@ export function SignupForm() {
 										<FormItem>
 											<FormLabel htmlFor="auth-5-password">Password</FormLabel>
 											<FormControl>
-												<div className="relative">
+												<InputWrapper>
 													<Input
-														id="auth-5-password"
+														placeholder="Enter your password"
 														type={showPassword ? "text" : "password"}
-														autoComplete="new-password"
-														placeholder="8+ characters"
+														autoComplete="current-password"
 														{...field}
 													/>
-													<IconButton
-														type="button"
-														variant="ghost"
-														color="neutral"
-														size="lg"
-														className="absolute top-1/2 right-2.5 -translate-y-1/2"
-														aria-label={
-															showPassword ? "Hide password" : "Show password"
-														}
-														aria-pressed={showPassword}
-														onClick={() => setShowPassword((prev) => !prev)}>
-														{showPassword ? (
-															<EyeOff className="size-4" aria-hidden="true" />
-														) : (
-															<Eye className="size-4" aria-hidden="true" />
-														)}
-													</IconButton>
-												</div>
+													<IconComponent
+														className="hover:text-fg peer-disabled:text-fg-disabled cursor-pointer peer-disabled:pointer-events-none"
+														onMouseDown={togglePasswordVisibility}
+													/>
+												</InputWrapper>
 											</FormControl>
 											<FormMessage />
 										</FormItem>

@@ -31,12 +31,12 @@ export function ImpressionsCard() {
 	return (
 		/* Outer Acrylic Translucent Glass Rim ("Transparent Border") */
 		<div className="relative rounded-[28px] border border-white/75 bg-white/45 p-2 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.1),0_0_0_1px_rgba(255,255,255,0.6)] backdrop-blur-xl sm:p-2.5">
-			<Card className="w-full gap-5 rounded-[20px] border border-neutral-100/90 bg-white p-6 text-neutral-900 shadow-xs">
+			<Card className="w-full gap-5 rounded-[20px] border border-white bg-white p-6 text-black">
 				{/* Card Header: Eye Icon + Title on Left, Metric + Trend on Right */}
 				<CardHeader className="flex flex-row items-center justify-between p-0">
 					{/* Left: Icon & Title */}
 					<div className="flex items-center gap-3">
-						<div className="flex size-10 items-center justify-center rounded-full bg-[#EEF2FF] text-[#3154F5]">
+						<div className="text-info flex size-10 items-center justify-center rounded-full bg-white">
 							<Eye className="size-5 stroke-[2.2]" />
 						</div>
 						<CardTitle className="text-base font-semibold tracking-tight text-neutral-900">
@@ -46,10 +46,10 @@ export function ImpressionsCard() {
 
 					{/* Right: Total Value + Trend Indicator */}
 					<div className="flex items-baseline gap-2 text-right">
-						<span className="text-xl font-bold tracking-tight text-neutral-900">
+						<span className="text-xl font-bold tracking-tight text-black">
 							43,105
 						</span>
-						<span className="inline-flex items-center text-xs font-semibold text-rose-500">
+						<span className="text-error-text inline-flex items-center text-xs font-semibold">
 							<ArrowDownRight className="mr-0.5 size-3.5 stroke-[2.5]" />
 							34.08%
 						</span>
@@ -75,7 +75,7 @@ export function ImpressionsCard() {
 								{Y_AXIS_TICKS.map((tick) => (
 									<div
 										key={`grid-${tick}`}
-										className="w-full border-b border-dashed border-neutral-100"
+										className="w-full border-b border-dashed border-white"
 									/>
 								))}
 							</div>
@@ -88,7 +88,7 @@ export function ImpressionsCard() {
 										className="group flex flex-col items-center">
 										{/* Tooltip on Hover */}
 										<div className="pointer-events-none mb-1 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
-											<span className="rounded bg-neutral-900 px-1.5 py-0.5 text-[10px] font-medium text-white shadow-xs">
+											<span className="rounded bg-black px-1.5 py-0.5 text-[10px] font-medium text-white shadow-xs">
 												{bar.value}
 											</span>
 										</div>
@@ -96,7 +96,7 @@ export function ImpressionsCard() {
 										{/* Vertical Bar */}
 										<div
 											style={{ height: `${bar.heightPercent}%` }}
-											className="w-5 rounded-t-lg bg-[#3154F5] shadow-xs transition-all duration-300 group-hover:brightness-110 sm:w-6"
+											className="bg-info w-5 rounded-t-lg shadow-xs transition-all duration-300 group-hover:brightness-110 sm:w-6"
 										/>
 									</div>
 								))}

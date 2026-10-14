@@ -7,9 +7,9 @@ import { Shader } from "./shader"
 export function LeftShowcase() {
 	return (
 		<div className="dark hidden shrink-0 overflow-hidden select-none lg:flex lg:w-lg">
-			<div className="relative flex size-full flex-col overflow-hidden bg-black p-12 text-white lg:p-16">
+			<div className="relative flex size-full flex-col overflow-hidden p-5 text-white">
 				{/* Content Box */}
-				<div className="z-10 flex size-full flex-col items-start justify-between">
+				<div className="z-10 flex size-full flex-col items-center justify-between">
 					<div className="flex w-full flex-1 items-center justify-center">
 						<Link
 							href="#"
@@ -25,9 +25,7 @@ export function LeftShowcase() {
 							/>
 						</Link>
 					</div>
-					<h1 className="heading-4 max-w-sm text-left text-white">
-						Welcome Back to Radian
-					</h1>
+					<h1 className="heading-4">Welcome Back to Radian</h1>
 				</div>
 
 				{/* Visual Animation*/}

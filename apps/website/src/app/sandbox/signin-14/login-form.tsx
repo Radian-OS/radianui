@@ -5,8 +5,7 @@ import Link from "next/link"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Eye, EyeOff } from "lucide-react"
-import { Button, IconButton } from "@/styles/default/ui/button"
-import { Checkbox } from "@/styles/default/ui/checkbox"
+import { Button } from "@/styles/default/ui/button"
 import {
 	Form,
 	FormControl,
@@ -25,6 +24,14 @@ export function LoginForm() {
 	const [submittedData, setSubmittedData] = useState<LoginFormValues | null>(
 		null
 	)
+
+	const IconComponent = showPassword ? EyeOff : Eye
+
+	function togglePasswordVisibility(e: React.MouseEvent) {
+		e.preventDefault()
+		e.stopPropagation()
+		setShowPassword((prev) => !prev)
+	}
 
 	const form = useForm<LoginFormValues>({
 		resolver: zodResolver(loginSchema),
@@ -63,7 +70,7 @@ export function LoginForm() {
 						name="email"
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel>Email address*</FormLabel>
+								<FormLabel>Email address</FormLabel>
 								<FormControl>
 									<Input
 										placeholder="Enter your email address"
@@ -82,66 +89,31 @@ export function LoginForm() {
 						control={form.control}
 						name="password"
 						render={({ field }) => (
-							<FormItem className="flex flex-col gap-1.5">
-								<FormLabel>Password*</FormLabel>
+							<FormItem>
+								<FormLabel className="flex justify-between">
+									Password
+									<Link href="#" className="hover:underline">
+										Forgot Password?
+									</Link>
+								</FormLabel>
 								<FormControl>
-									<InputWrapper size="md">
+									<InputWrapper>
 										<Input
-											placeholder="••••••••••••••"
+											placeholder="Enter your password"
 											type={showPassword ? "text" : "password"}
 											autoComplete="current-password"
 											{...field}
 										/>
-										<IconButton
-											type="button"
-											variant="ghost"
-											color="neutral"
-											size="lg"
-											className="hover:bg-transparent"
-											aria-label={
-												showPassword ? "Hide password" : "Show password"
-											}
-											onClick={() => setShowPassword((prev) => !prev)}>
-											{showPassword ? (
-												<EyeOff className="size-4" />
-											) : (
-												<Eye className="size-4" />
-											)}
-										</IconButton>
+										<IconComponent
+											className="hover:text-fg peer-disabled:text-fg-disabled cursor-pointer peer-disabled:pointer-events-none"
+											onMouseDown={togglePasswordVisibility}
+										/>
 									</InputWrapper>
 								</FormControl>
 								<FormMessage />
 							</FormItem>
 						)}
 					/>
-
-					{/* Remember Me and Forgot Password */}
-					<div className="flex items-center justify-between pt-0.5">
-						<FormField
-							control={form.control}
-							name="rememberMe"
-							render={({ field }) => (
-								<FormItem className="flex flex-row items-center gap-2">
-									<FormControl>
-										<Checkbox
-											size="sm"
-											checked={field.value}
-											onCheckedChange={field.onChange}
-										/>
-									</FormControl>
-									<FormLabel className="text-xs font-medium hover:cursor-pointer">
-										Remember Me
-									</FormLabel>
-								</FormItem>
-							)}
-						/>
-
-						<Link
-							href="#"
-							className="text-fg text-xs font-medium transition-colors hover:underline">
-							Forgot Password?
-						</Link>
-					</div>
 
 					{/* Submit Button */}
 					<Button
@@ -163,7 +135,7 @@ export function LoginForm() {
 			)}
 
 			{/* Create Account Link */}
-			<p className="text-fg-secondary text-center text-xs">
+			<p className="text-fg-secondary text-center text-sm">
 				New on our platform?{" "}
 				<Link href="#" className="text-fg font-semibold hover:underline">
 					Create an account
@@ -173,7 +145,7 @@ export function LoginForm() {
 			{/* Divider */}
 			<div className="flex w-full items-center gap-3">
 				<Divider className="flex-1" />
-				<span className="text-fg-tertiary text-sm">or</span>
+				<span className="text-fg-tertiary text-sm">OR</span>
 				<Divider className="flex-1" />
 			</div>
 

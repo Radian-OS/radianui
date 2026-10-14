@@ -4,7 +4,7 @@ import { SignupForm } from "./signup-form"
 
 export default function Auth5Page() {
 	return (
-		<div className="bg-bg text-fg relative flex min-h-svh w-full items-stretch overflow-hidden">
+		<div className="relative flex min-h-svh w-full items-stretch overflow-hidden">
 			{/* Left Column: Split-screen ambient video showcase */}
 			<LeftShowcase />
 

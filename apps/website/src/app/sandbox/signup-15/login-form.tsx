@@ -49,7 +49,7 @@ export function LoginForm() {
 
 			{/* Top Heading & Subtitle */}
 			<div className="flex flex-col items-center gap-1.5 text-center">
-				<h2 className="heading-2">Sign up to Radian</h2>
+				<h2 className="heading-4">Sign up to Radian</h2>
 				<p className="text-fg-secondary text-sm">
 					Create your account to get started.
 				</p>
@@ -74,7 +74,7 @@ export function LoginForm() {
 										{...field}
 									/>
 								</FormControl>
-								<FormMessage className="text-error text-xs" />
+								<FormMessage />
 							</FormItem>
 						)}
 					/>
@@ -109,7 +109,7 @@ export function LoginForm() {
 										</button>
 									</div>
 								</FormControl>
-								<FormMessage className="text-error text-xs" />
+								<FormMessage className="text-error" />
 							</FormItem>
 						)}
 					/>
@@ -139,7 +139,7 @@ export function LoginForm() {
 			)}
 
 			{/* Footer Link */}
-			<p className="text-center text-sm text-neutral-500">
+			<p className="text-fg-secondary text-center text-sm">
 				Already have an account?{" "}
 				<Link href="#" className="text-fg font-semibold hover:underline">
 					Sign in

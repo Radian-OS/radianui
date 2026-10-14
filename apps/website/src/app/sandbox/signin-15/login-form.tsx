@@ -5,8 +5,7 @@ import Link from "next/link"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Eye, EyeOff } from "lucide-react"
-import { Button, IconButton } from "@/styles/default/ui/button"
-import { Checkbox } from "@/styles/default/ui/checkbox"
+import { Button } from "@/styles/default/ui/button"
 import {
 	Form,
 	FormControl,
@@ -27,6 +26,14 @@ export function LoginForm() {
 		null
 	)
 
+	const IconComponent = showPassword ? EyeOff : Eye
+
+	function togglePasswordVisibility(e: React.MouseEvent) {
+		e.preventDefault()
+		e.stopPropagation()
+		setShowPassword((prev) => !prev)
+	}
+
 	const form = useForm<LoginFormValues>({
 		resolver: zodResolver(loginSchema),
 		defaultValues: {
@@ -41,14 +48,14 @@ export function LoginForm() {
 	}
 
 	return (
-		<div className="flex w-full max-w-md flex-col gap-6">
+		<div className="flex w-full max-w-md flex-col gap-8">
 			{/* Top Brand Logo */}
 			<LoginBrand />
 
 			{/* Heading & Subtitle */}
 			<div className="flex flex-col gap-1">
-				<h1 className="heading-2">Welcome Back</h1>
-				<p className="text-fg-secondary text-xs sm:text-sm">
+				<h1 className="heading-4">Welcome Back</h1>
+				<p className="text-fg-secondary text-sm">
 					Welcome back! Select method to login:
 				</p>
 			</div>
@@ -57,7 +64,7 @@ export function LoginForm() {
 			<LoginSocialButtons />
 
 			{/* Divider */}
-			<div className="my-0.5 flex w-full items-center gap-3">
+			<div className="flex w-full items-center gap-3">
 				<Divider className="flex-1" />
 				<span className="text-fg-tertiary text-sm">Or continue with Email</span>
 				<Divider className="flex-1" />
@@ -74,7 +81,7 @@ export function LoginForm() {
 						name="email"
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel>Email address*</FormLabel>
+								<FormLabel>Email address</FormLabel>
 								<FormControl>
 									<Input
 										placeholder="Enter your email address"
@@ -83,7 +90,7 @@ export function LoginForm() {
 										{...field}
 									/>
 								</FormControl>
-								<FormMessage className="text-error text-xs" />
+								<FormMessage />
 							</FormItem>
 						)}
 					/>
@@ -94,65 +101,30 @@ export function LoginForm() {
 						name="password"
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel>Password*</FormLabel>
+								<FormLabel className="flex justify-between">
+									Password
+									<Link href="#" className="hover:underline">
+										Forgot Password?
+									</Link>
+								</FormLabel>{" "}
 								<FormControl>
-									<InputWrapper size="md">
+									<InputWrapper>
 										<Input
-											placeholder="••••••••••••••"
+											placeholder="Enter your password"
 											type={showPassword ? "text" : "password"}
 											autoComplete="current-password"
 											{...field}
 										/>
-										<IconButton
-											type="button"
-											variant="ghost"
-											color="neutral"
-											size="lg"
-											aria-label={
-												showPassword ? "Hide password" : "Show password"
-											}
-											onClick={() => setShowPassword((prev) => !prev)}>
-											{showPassword ? (
-												<EyeOff className="size-4" />
-											) : (
-												<Eye className="size-4" />
-											)}
-										</IconButton>
+										<IconComponent
+											className="hover:text-fg peer-disabled:text-fg-disabled cursor-pointer peer-disabled:pointer-events-none"
+											onMouseDown={togglePasswordVisibility}
+										/>
 									</InputWrapper>
 								</FormControl>
-								<FormMessage className="text-error text-xs" />
+								<FormMessage />
 							</FormItem>
 						)}
 					/>
-
-					{/* Remember Me and Forgot Password */}
-					<div className="flex items-center justify-between pt-1">
-						<FormField
-							control={form.control}
-							name="rememberMe"
-							render={({ field }) => (
-								<FormItem className="flex flex-row items-center gap-2">
-									<FormControl>
-										<Checkbox
-											size="sm"
-											checked={field.value}
-											onCheckedChange={field.onChange}
-										/>
-									</FormControl>
-									<FormLabel className="text-fg-secondary text-xs font-medium hover:cursor-pointer">
-										Remember Me
-									</FormLabel>
-								</FormItem>
-							)}
-						/>
-
-						<Link
-							href="#"
-							className="text-fg hover:text-fg-secondary text-xs font-medium transition-colors">
-							Forgot Password?
-						</Link>
-					</div>
-
 					{/* Submit Button */}
 					<Button
 						type="submit"
@@ -173,11 +145,9 @@ export function LoginForm() {
 			)}
 
 			{/* Footer Link */}
-			<p className="text-fg-secondary text-center text-xs">
+			<p className="text-fg-secondary text-center text-sm">
 				New on our platform?{" "}
-				<Link
-					href="#"
-					className="text-fg hover:text-fg-secondary font-semibold transition-colors">
+				<Link href="#" className="text-fg font-semibold hover:underline">
 					Create an account
 				</Link>
 			</p>

@@ -1,7 +1,7 @@
 "use client"
 
+import { Button } from "@/registry/ui/button"
 import React from "react"
-import { Button } from "@/styles/default/ui/button"
 
 interface LoginMagicButtonsProps {
 	onSelectRole?: (role: "user" | "admin") => void

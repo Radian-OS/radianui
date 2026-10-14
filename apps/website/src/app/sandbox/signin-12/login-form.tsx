@@ -1,11 +1,10 @@
 "use client"
 
-import React, { useState } from "react"
+import React from "react"
 import Link from "next/link"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Button } from "@/styles/default/ui/button"
-import { Checkbox } from "@/styles/default/ui/checkbox"
 import {
 	Form,
 	FormControl,
@@ -18,8 +17,6 @@ import { Input } from "@/styles/default/ui/input"
 import { loginSchema, type LoginFormValues } from "./types"
 
 export function LoginForm() {
-	const [isSubmitted, setIsSubmitted] = useState(false)
-
 	const form = useForm<LoginFormValues>({
 		resolver: zodResolver(loginSchema),
 		defaultValues: {
@@ -30,7 +27,8 @@ export function LoginForm() {
 	})
 
 	const onSubmit = (_data: LoginFormValues) => {
-		setIsSubmitted(true)
+		// Handle form submission logic here
+		console.log("Form submitted:", _data)
 	}
 
 	return (
@@ -44,11 +42,11 @@ export function LoginForm() {
 					name="email"
 					render={({ field }) => (
 						<FormItem>
-							<FormLabel>Email*</FormLabel>
+							<FormLabel>Email</FormLabel>
 							<FormControl>
 								<Input
 									type="email"
-									placeholder="example@shadcnspace.com"
+									placeholder="info@radianui.com"
 									{...field}
 								/>
 							</FormControl>
@@ -63,7 +61,12 @@ export function LoginForm() {
 					name="password"
 					render={({ field }) => (
 						<FormItem>
-							<FormLabel>Password*</FormLabel>
+							<FormLabel className="flex justify-between">
+								Password
+								<Link href="#forgot-password" className="hover:underline">
+									Forgot Password?
+								</Link>
+							</FormLabel>
 							<FormControl>
 								<Input
 									type="password"
@@ -75,34 +78,6 @@ export function LoginForm() {
 						</FormItem>
 					)}
 				/>
-
-				{/* Remember Device & Forgot Password Row */}
-				<div className="flex flex-wrap items-center justify-between gap-4 pt-1 text-sm">
-					<FormField
-						control={form.control}
-						name="rememberMe"
-						render={({ field }) => (
-							<FormItem className="flex flex-row items-center gap-2 space-y-0">
-								<FormControl>
-									<Checkbox
-										size="sm"
-										checked={field.value}
-										onCheckedChange={field.onChange}
-									/>
-								</FormControl>
-								<FormLabel className="text-fg-secondary cursor-pointer text-sm font-normal">
-									Remember this device
-								</FormLabel>
-							</FormItem>
-						)}
-					/>
-
-					<Link
-						href="#forgot-password"
-						className="text-fg text-sm font-medium transition-colors hover:underline">
-						Forgot Password?
-					</Link>
-				</div>
 
 				{/* Solid Submit Button */}
 				<Button
