@@ -100,7 +100,7 @@ export function ContactForm() {
 										</FormLabel>
 										<FormControl>
 											<Input
-												size="36"
+												size="md"
 												placeholder="Mira"
 												{...field}
 												className="bg-elevation-level1/40 border-border/80 text-fg placeholder:text-fg-tertiary"
@@ -121,7 +121,7 @@ export function ContactForm() {
 										</FormLabel>
 										<FormControl>
 											<Input
-												size="36"
+												size="md"
 												placeholder="Stone"
 												{...field}
 												className="bg-elevation-level1/40 border-border/80 text-fg placeholder:text-fg-tertiary"
@@ -144,7 +144,7 @@ export function ContactForm() {
 									</FormLabel>
 									<FormControl>
 										<Input
-											size="36"
+											size="md"
 											type="email"
 											placeholder="mira@northstar.co"
 											{...field}
@@ -168,7 +168,7 @@ export function ContactForm() {
 										</FormLabel>
 										<FormControl>
 											<Input
-												size="36"
+												size="md"
 												placeholder="Northstar Labs"
 												{...field}
 												className="bg-elevation-level1/40 border-border/80 text-fg placeholder:text-fg-tertiary"
@@ -221,7 +221,7 @@ export function ContactForm() {
 										</FormLabel>
 										<FormControl>
 											<Input
-												size="36"
+												size="md"
 												placeholder="$ 25,000 to 75,000"
 												{...field}
 												className="bg-elevation-level1/40 border-border/80 text-fg placeholder:text-fg-tertiary"
@@ -290,7 +290,7 @@ export function ContactForm() {
 								type="submit"
 								variant="strong"
 								color="neutral"
-								size="36"
+								size="md"
 								className="rounded-lg px-5 text-sm font-semibold shadow-sm transition-colors">
 								Send Project Brief
 							</Button>

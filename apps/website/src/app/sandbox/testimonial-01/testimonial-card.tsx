@@ -76,7 +76,7 @@ export function TestimonialCard({
 							type="button"
 							variant="outline"
 							color="neutral"
-							size="28"
+							size="lg"
 							onClick={onPrev}
 							disabled={!hasPrev}
 							className="bg-bg/85 hover:bg-bg size-8 rounded-full p-0 shadow-sm backdrop-blur-md"
@@ -87,7 +87,7 @@ export function TestimonialCard({
 							type="button"
 							variant="outline"
 							color="neutral"
-							size="28"
+							size="lg"
 							onClick={onNext}
 							disabled={!hasNext}
 							className="bg-bg/85 hover:bg-bg size-8 rounded-full p-0 shadow-sm backdrop-blur-md"

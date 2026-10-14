@@ -25,7 +25,7 @@ export function TourActionButtons({
 				type="button"
 				variant="strong"
 				color="neutral"
-				size="40"
+				size="lg"
 				className="px-5 font-semibold shadow-xs"
 				onClick={onStartSetup}>
 				Start your setup
@@ -36,7 +36,7 @@ export function TourActionButtons({
 					type="button"
 					variant="outline"
 					color="neutral"
-					size="40"
+					size="lg"
 					className="px-3.5 text-xs font-medium"
 					onClick={onPrevStep}
 					disabled={isFirstStep}
@@ -48,7 +48,7 @@ export function TourActionButtons({
 					type="button"
 					variant="outline"
 					color="neutral"
-					size="40"
+					size="lg"
 					className="px-3.5 text-xs font-medium"
 					onClick={onNextStep}
 					disabled={isLastStep}

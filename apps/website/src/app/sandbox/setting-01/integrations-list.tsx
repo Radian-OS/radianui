@@ -73,7 +73,7 @@ export function IntegrationsList({
 						<Button
 							variant="ghost"
 							color="neutral"
-							size="32"
+							size="lg"
 							onClick={() => onManageIntegration?.(item.id)}
 							className="text-fg-secondary hover:text-fg">
 							<Settings className="size-4" />
@@ -81,7 +81,7 @@ export function IntegrationsList({
 						</Button>
 
 						<Switch
-							size="24"
+							size="md"
 							shape="pill"
 							checked={item.enabled}
 							onCheckedChange={(checked) =>

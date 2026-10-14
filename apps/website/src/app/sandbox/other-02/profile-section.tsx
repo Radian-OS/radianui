@@ -50,7 +50,7 @@ export function CrisplyProfileSection() {
 			{/* Avatar & Photo Action Buttons */}
 			<div className="flex flex-wrap items-center gap-6">
 				<Avatar
-					size="80"
+					size="3xl"
 					rounded="circle"
 					className="border-border/80 border-2 shadow-xs">
 					<AvatarImage src="/sandbox/placeholder.svg" alt="Brian Frederin" />
@@ -63,7 +63,7 @@ export function CrisplyProfileSection() {
 							type="button"
 							variant="strong"
 							color="neutral"
-							size="36"
+							size="md"
 							className="gap-1.5 rounded-lg px-4 text-xs font-semibold">
 							<Plus className="size-3.5" />
 							<span>Change Image</span>
@@ -73,7 +73,7 @@ export function CrisplyProfileSection() {
 							type="button"
 							variant="outline"
 							color="neutral"
-							size="36"
+							size="md"
 							className="rounded-lg px-4 text-xs font-semibold">
 							<span>Remove Image</span>
 						</Button>

@@ -33,7 +33,7 @@ export function HeroActions() {
 					asChild
 					variant="strong"
 					color="neutral"
-					size="40"
+					size="lg"
 					className="inline-flex items-center gap-2">
 					<Link
 						href={HERO_ACTIONS_DATA.cursorUrl}
@@ -55,7 +55,7 @@ export function HeroActions() {
 					asChild
 					variant="outline"
 					color="neutral"
-					size="40"
+					size="lg"
 					className="inline-flex items-center gap-2">
 					<Link
 						href={HERO_ACTIONS_DATA.figmaUrl}

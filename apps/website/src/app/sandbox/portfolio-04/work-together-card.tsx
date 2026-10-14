@@ -23,7 +23,7 @@ export function WorkTogetherCard() {
 						type="button"
 						variant="outline"
 						color="neutral"
-						size="36"
+						size="md"
 						className="rounded-full px-4 text-xs font-medium shadow-xs">
 						<Calendar className="mr-1.5 size-3.5" />
 						Book a Call
@@ -32,7 +32,7 @@ export function WorkTogetherCard() {
 						type="button"
 						variant="outline"
 						color="neutral"
-						size="36"
+						size="md"
 						className="rounded-full px-4 text-xs font-medium shadow-xs"
 						asChild>
 						<Link href="mailto:imkishor24@gmail.com">

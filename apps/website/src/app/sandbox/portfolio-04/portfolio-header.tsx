@@ -44,7 +44,7 @@ export function PortfolioHeader() {
 					type="button"
 					variant="ghost"
 					color="neutral"
-					size="32"
+					size="lg"
 					aria-label="Toggle theme"
 					className="text-fg-secondary hover:text-fg">
 					<Moon className="size-4" />
@@ -54,7 +54,7 @@ export function PortfolioHeader() {
 					type="button"
 					variant="outline"
 					color="neutral"
-					size="32"
+					size="lg"
 					className="rounded-full px-3.5 text-xs font-medium shadow-xs">
 					Book a Call
 				</Button>

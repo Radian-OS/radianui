@@ -52,7 +52,7 @@ export function CategoryFilter({
 								key={cat}
 								variant={isActive ? "strong" : "ghost"}
 								color="neutral"
-								size="32"
+								size="lg"
 								onClick={() => onSelectCategory(cat)}
 								className={`rounded-full px-4 text-xs font-medium transition-colors ${
 									isActive
@@ -69,12 +69,12 @@ export function CategoryFilter({
 				<div className="w-full md:w-72">
 					<InputGroup className="w-full">
 						<InputAddon
-							size="36"
+							size="md"
 							className="text-fg-tertiary border-e-0 bg-transparent ps-3 pe-0">
 							<Search className="size-4" />
 						</InputAddon>
 						<Input
-							size="36"
+							size="md"
 							type="text"
 							placeholder="Search articles, keyword..."
 							value={searchQuery}

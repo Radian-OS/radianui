@@ -64,7 +64,7 @@ export function OrdersSidebar() {
 					<SidebarGroupContent className="mt-1">
 						<SidebarMenu>
 							<SidebarMenuItem>
-								<SidebarMenuButton asChild size="36">
+								<SidebarMenuButton asChild size="md">
 									<Link href="#">
 										<LayoutGrid className="text-sidebar-fg/70 size-4" />
 										<span className="text-sm">Overview</span>
@@ -73,7 +73,7 @@ export function OrdersSidebar() {
 							</SidebarMenuItem>
 
 							<SidebarMenuItem>
-								<SidebarMenuButton asChild size="36">
+								<SidebarMenuButton asChild size="md">
 									<Link href="#">
 										<BarChart3 className="text-sidebar-fg/70 size-4" />
 										<span className="text-sm">Analytics</span>
@@ -82,7 +82,7 @@ export function OrdersSidebar() {
 							</SidebarMenuItem>
 
 							<SidebarMenuItem>
-								<SidebarMenuButton asChild size="36">
+								<SidebarMenuButton asChild size="md">
 									<Link href="#">
 										<Package className="text-sidebar-fg/70 size-4" />
 										<span className="text-sm">Products</span>
@@ -91,7 +91,7 @@ export function OrdersSidebar() {
 							</SidebarMenuItem>
 
 							<SidebarMenuItem>
-								<SidebarMenuButton asChild isActive size="36">
+								<SidebarMenuButton asChild isActive size="md">
 									<Link href="#" className="flex items-center justify-between">
 										<div className="flex items-center gap-2">
 											<ShoppingBag className="size-4" />
@@ -103,7 +103,7 @@ export function OrdersSidebar() {
 							</SidebarMenuItem>
 
 							<SidebarMenuItem>
-								<SidebarMenuButton asChild size="36">
+								<SidebarMenuButton asChild size="md">
 									<Link href="#">
 										<Percent className="text-sidebar-fg/70 size-4" />
 										<span className="text-sm">Discounts</span>
@@ -112,7 +112,7 @@ export function OrdersSidebar() {
 							</SidebarMenuItem>
 
 							<SidebarMenuItem>
-								<SidebarMenuButton asChild size="36">
+								<SidebarMenuButton asChild size="md">
 									<Link href="#">
 										<Sparkles className="text-sidebar-fg/70 size-4" />
 										<span className="text-sm">Apps</span>
@@ -131,7 +131,7 @@ export function OrdersSidebar() {
 					<SidebarGroupContent className="mt-1">
 						<SidebarMenu>
 							<SidebarMenuItem>
-								<SidebarMenuButton asChild size="36">
+								<SidebarMenuButton asChild size="md">
 									<Link href="#">
 										<Settings className="text-sidebar-fg/70 size-4" />
 										<span className="text-sm">Settings</span>
@@ -140,7 +140,7 @@ export function OrdersSidebar() {
 							</SidebarMenuItem>
 
 							<SidebarMenuItem>
-								<SidebarMenuButton asChild size="36">
+								<SidebarMenuButton asChild size="md">
 									<Link href="#">
 										<Headphones className="text-sidebar-fg/70 size-4" />
 										<span className="text-sm">Support</span>
@@ -156,7 +156,7 @@ export function OrdersSidebar() {
 			<SidebarFooter className="border-sidebar-border border-t p-4">
 				<div className="flex items-center justify-between">
 					<div className="flex items-center gap-3">
-						<Avatar size="36" rounded="circle" className="border-border border">
+						<Avatar size="md" rounded="circle" className="border-border border">
 							<AvatarImage
 								src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=80&h=80&fit=crop"
 								alt="James Brown"

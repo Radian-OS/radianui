@@ -34,7 +34,7 @@ export function CourseTableToolbar({
 				<div className="w-full sm:w-[170px]">
 					<Select value={selectedCategory} onValueChange={onCategoryChange}>
 						<SelectTrigger
-							size="32"
+							size="lg"
 							className="border-border/70 bg-elevation-level1/20 text-xs">
 							<SelectValue placeholder="All categories" />
 						</SelectTrigger>
@@ -66,7 +66,7 @@ export function CourseTableToolbar({
 					type="button"
 					variant="outline"
 					color="neutral"
-					size="32"
+					size="lg"
 					onClick={onOpenSettings}
 					className="border-border/70 bg-elevation-level1/20 gap-2 text-xs font-medium">
 					<Settings2 className="size-3.5" />

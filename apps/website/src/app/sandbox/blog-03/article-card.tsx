@@ -48,7 +48,7 @@ export function ArticleCard({ article }: ArticleCardProps) {
 			{/* Card Footer with Author Avatar and Published Date */}
 			<CardFooter className="border-border/50 flex items-center justify-between border-t px-6 py-4">
 				<div className="flex items-center gap-2.5">
-					<Avatar size="24" rounded="circle" className="border-border border">
+					<Avatar size="xs" rounded="circle" className="border-border border">
 						<AvatarImage
 							src="/sandbox/placeholder.svg"
 							alt={article.author.name}

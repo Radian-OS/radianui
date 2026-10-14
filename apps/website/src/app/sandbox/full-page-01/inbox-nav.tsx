@@ -88,7 +88,7 @@ export function InboxNav() {
 						type="button"
 						variant="ghost"
 						color="neutral"
-						size="28"
+						size="lg"
 						aria-label="Search inbox"
 						className="text-fg-secondary hover:text-fg">
 						<Search className="size-4" />
@@ -97,7 +97,7 @@ export function InboxNav() {
 						type="button"
 						variant="ghost"
 						color="neutral"
-						size="28"
+						size="lg"
 						aria-label="New conversation"
 						className="text-fg-secondary hover:text-fg">
 						<Plus className="size-4" />

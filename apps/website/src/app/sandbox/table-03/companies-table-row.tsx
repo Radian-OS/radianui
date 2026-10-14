@@ -38,7 +38,7 @@ export function CompaniesTableRow({
 					<Badge
 						variant="soft"
 						color="success"
-						size="20"
+						size="sm"
 						className="border-success-border/30">
 						Committed
 					</Badge>
@@ -48,7 +48,7 @@ export function CompaniesTableRow({
 					<Badge
 						variant="soft"
 						color="warning"
-						size="20"
+						size="sm"
 						className="border-warning-border/30">
 						Proposal
 					</Badge>
@@ -58,7 +58,7 @@ export function CompaniesTableRow({
 					<Badge
 						variant="soft"
 						color="neutral"
-						size="20"
+						size="sm"
 						className="text-fg-secondary">
 						Renewal
 					</Badge>
@@ -68,7 +68,7 @@ export function CompaniesTableRow({
 					<Badge
 						variant="soft"
 						color="primary"
-						size="20"
+						size="sm"
 						className="border-primary-border/30">
 						Evaluation
 					</Badge>
@@ -78,7 +78,7 @@ export function CompaniesTableRow({
 					<Badge
 						variant="soft"
 						color="neutral"
-						size="20"
+						size="sm"
 						className="text-fg-secondary">
 						Discovery
 					</Badge>
@@ -90,37 +90,37 @@ export function CompaniesTableRow({
 		switch (category) {
 			case "Enterprise":
 				return (
-					<Badge key={category} variant="soft" color="info" size="20">
+					<Badge key={category} variant="soft" color="info" size="sm">
 						Enterprise
 					</Badge>
 				)
 			case "Design partner":
 				return (
-					<Badge key={category} variant="soft" color="primary" size="20">
+					<Badge key={category} variant="soft" color="primary" size="sm">
 						Design partner
 					</Badge>
 				)
 			case "Regulated":
 				return (
-					<Badge key={category} variant="soft" color="warning" size="20">
+					<Badge key={category} variant="soft" color="warning" size="sm">
 						Regulated
 					</Badge>
 				)
 			case "Expansion":
 				return (
-					<Badge key={category} variant="soft" color="success" size="20">
+					<Badge key={category} variant="soft" color="success" size="sm">
 						Expansion
 					</Badge>
 				)
 			case "Open source":
 				return (
-					<Badge key={category} variant="soft" color="info" size="20">
+					<Badge key={category} variant="soft" color="info" size="sm">
 						Open source
 					</Badge>
 				)
 			case "Self-serve":
 				return (
-					<Badge key={category} variant="soft" color="info" size="20">
+					<Badge key={category} variant="soft" color="info" size="sm">
 						Self-serve
 					</Badge>
 				)
@@ -172,7 +172,7 @@ export function CompaniesTableRow({
 				<TableCell className="py-3.5">
 					<div className="flex items-center gap-2">
 						<Avatar
-							size="20"
+							size="2xs"
 							rounded="circle"
 							className="border-border/60 border">
 							<AvatarImage
@@ -230,7 +230,7 @@ export function CompaniesTableRow({
 							type="button"
 							variant="ghost"
 							color="neutral"
-							size="28"
+							size="lg"
 							className="text-fg-tertiary hover:text-fg size-7 p-0">
 							<MoreHorizontal className="size-4" />
 						</Button>

@@ -84,7 +84,7 @@ export function HeroSection({
 				<motion.div
 					variants={itemVariants}
 					className="flex flex-wrap items-center justify-center gap-4">
-					<Button size="40" asChild className="group cursor-pointer">
+					<Button size="lg" asChild className="group cursor-pointer">
 						<Link href={primaryCta.href}>
 							<span>{primaryCta.label}</span>
 							<ArrowUpRight className="size-4 transition-transform duration-300 group-hover:rotate-45" />

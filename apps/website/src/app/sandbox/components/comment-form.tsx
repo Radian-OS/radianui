@@ -134,7 +134,7 @@ export function CommentForm({
 					type="button"
 					variant="ghost"
 					color="neutral"
-					size="28"
+					size="lg"
 					onClick={onCancel}
 					className="shrink-0">
 					<X className="size-3.5" />
@@ -153,7 +153,7 @@ export function CommentForm({
 							{cleanClasses && (
 								<Button
 									type="button"
-									size="28"
+									size="lg"
 									onClick={handleCopyClasses}
 									title="Copy class names only">
 									{copiedClasses ? (
@@ -292,7 +292,7 @@ export function CommentForm({
 							type="button"
 							variant="ghost"
 							color="neutral"
-							size="28"
+							size="lg"
 							onClick={onCancel}
 							disabled={isSubmitting}
 							className="h-7 text-xs">
@@ -302,7 +302,7 @@ export function CommentForm({
 							type="submit"
 							variant="strong"
 							color="primary"
-							size="28"
+							size="lg"
 							loading={isSubmitting}
 							className="h-7 gap-1 text-xs font-semibold">
 							<Send className="size-3" />

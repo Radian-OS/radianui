@@ -28,13 +28,13 @@ export function SettingsBanner({ onDismiss, onSetupMfa }: SettingsBannerProps) {
 			</div>
 
 			<div className="flex items-center gap-2 self-end sm:self-center">
-				<Button variant="strong" color="neutral" size="32" onClick={onSetupMfa}>
+				<Button variant="strong" color="neutral" size="lg" onClick={onSetupMfa}>
 					Set up MFA
 				</Button>
 				<IconButton
 					variant="ghost"
 					color="neutral"
-					size="28"
+					size="lg"
 					aria-label="Dismiss banner"
 					onClick={onDismiss}>
 					<X className="text-fg-secondary size-4" />

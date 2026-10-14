@@ -97,14 +97,14 @@ export function SettingsSidebar({
 						<IconButton
 							variant="ghost"
 							color="neutral"
-							size="28"
+							size="lg"
 							aria-label="Search settings">
 							<Search className="text-sidebar-fg/70 size-3.5" />
 						</IconButton>
 						<IconButton
 							variant="ghost"
 							color="neutral"
-							size="28"
+							size="lg"
 							aria-label="Collapse sidebar"
 							onClick={onToggleCollapse}>
 							<ChevronsLeft className="text-sidebar-fg/70 size-4" />
@@ -143,7 +143,7 @@ export function SettingsSidebar({
 											return (
 												<SidebarMenuItem key={item.id}>
 													<SidebarMenuButton
-														size="32"
+														size="lg"
 														variant={isActive ? "soft" : "neutral"}
 														isActive={isActive}
 														onClick={() => onSelectItem(item.id)}
@@ -160,7 +160,7 @@ export function SettingsSidebar({
 														<SidebarMenuBadge
 															variant="outline"
 															color="neutral"
-															size="20"
+															size="sm"
 															className="text-fg-secondary text-[11px] font-semibold">
 															{item.badge}
 														</SidebarMenuBadge>

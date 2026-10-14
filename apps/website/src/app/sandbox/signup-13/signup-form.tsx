@@ -112,7 +112,7 @@ export function SignupForm() {
 														type="button"
 														variant="ghost"
 														color="neutral"
-														size="28"
+														size="lg"
 														className="absolute top-1/2 right-2.5 -translate-y-1/2"
 														aria-label={
 															showPassword ? "Hide password" : "Show password"

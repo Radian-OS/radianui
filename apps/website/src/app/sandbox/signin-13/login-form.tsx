@@ -67,7 +67,7 @@ export function LoginForm() {
 								<FormItem className="flex flex-col gap-1.5">
 									<FormLabel>Email or username</FormLabel>
 									<FormControl>
-										<InputWrapper size="36">
+										<InputWrapper size="md">
 											<Mail />
 											<Input
 												placeholder="Enter your email or username"
@@ -90,7 +90,7 @@ export function LoginForm() {
 								<FormItem className="flex flex-col gap-1.5">
 									<FormLabel>Password</FormLabel>
 									<FormControl>
-										<InputWrapper size="36">
+										<InputWrapper size="md">
 											<Lock />
 											<Input
 												placeholder="Enter your password"
@@ -146,7 +146,7 @@ export function LoginForm() {
 						type="submit"
 						variant="strong"
 						color="neutral"
-						size="36"
+						size="md"
 						className="w-full">
 						Sign in
 					</Button>

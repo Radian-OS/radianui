@@ -30,7 +30,7 @@ export function PricingHero() {
 						{REVIEW_AVATARS.map((user) => (
 							<Avatar
 								key={user.name}
-								size="36"
+								size="md"
 								rounded="circle"
 								className="bg-fg">
 								<AvatarImage src={user.url} alt={user.name} />
@@ -69,7 +69,7 @@ export function PricingHero() {
 						value="annual"
 						className="flex items-center gap-2 rounded-lg px-4 py-2 text-sm">
 						<span>Annual billing</span>
-						<Badge variant="soft" color="neutral" size="20">
+						<Badge variant="soft" color="neutral" size="sm">
 							Save 16%
 						</Badge>
 					</TabsTrigger>

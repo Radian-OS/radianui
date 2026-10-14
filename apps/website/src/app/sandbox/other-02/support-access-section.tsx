@@ -46,7 +46,7 @@ export function CrisplySupportAccessSection() {
 						type="button"
 						variant="outline"
 						color="neutral"
-						size="36"
+						size="md"
 						className="shrink-0 rounded-lg px-4 text-xs font-semibold">
 						<span>Log out</span>
 					</Button>
@@ -68,7 +68,7 @@ export function CrisplySupportAccessSection() {
 						type="button"
 						variant="outline"
 						color="error"
-						size="36"
+						size="md"
 						className="shrink-0 rounded-lg px-4 text-xs font-semibold">
 						<span>Delete Account</span>
 					</Button>

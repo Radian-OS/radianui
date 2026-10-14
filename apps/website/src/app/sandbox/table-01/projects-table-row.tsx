@@ -52,7 +52,7 @@ export function ProjectsTableRow({
 							key={tag}
 							variant="soft"
 							color="neutral"
-							size="20"
+							size="sm"
 							className="border-border/70 bg-elevation-level1/40 text-fg-secondary px-2 py-0.5 text-[11px] font-medium">
 							{tag}
 						</Badge>
@@ -67,7 +67,7 @@ export function ProjectsTableRow({
 						<div key={assignee.id} className="relative">
 							{assignee.avatarUrl ? (
 								<Avatar
-									size="20"
+									size="2xs"
 									rounded="circle"
 									className="border-card ring-border/40 border-2 ring-1">
 									<AvatarImage

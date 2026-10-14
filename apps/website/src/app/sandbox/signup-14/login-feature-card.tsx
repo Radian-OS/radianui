@@ -89,14 +89,14 @@ export function LoginFeatureCard() {
 					<div className="absolute right-0 bottom-0 flex shrink-0 items-center gap-2.5">
 						<CarouselPrevious
 							variant="outline"
-							size="40"
+							size="lg"
 							className="static size-10 translate-y-0 rounded-full border border-white/25 bg-white/10 text-white backdrop-blur-xs transition-all hover:border-white/50 hover:bg-white/20 active:scale-95"
 							aria-label="Previous testimonial">
 							<ArrowLeft className="size-4.5 stroke-[1.75]" />
 						</CarouselPrevious>
 						<CarouselNext
 							variant="outline"
-							size="40"
+							size="lg"
 							className="static size-10 translate-y-0 rounded-full border border-white/25 bg-white/10 text-white backdrop-blur-xs transition-all hover:border-white/50 hover:bg-white/20 active:scale-95"
 							aria-label="Next testimonial">
 							<ArrowRight className="size-4.5 stroke-[1.75]" />

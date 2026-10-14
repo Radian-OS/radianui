@@ -61,7 +61,7 @@ export function FaqSection() {
 				<Button
 					color="neutral"
 					variant="strong"
-					size="48"
+					size="2xl"
 					className="bg-black-inverse text-white-inverse hover:bg-fg-secondary group inline-flex items-center gap-4 rounded-full pr-2.5 pl-6 text-sm font-semibold transition-all"
 					asChild>
 					<Link href="#">

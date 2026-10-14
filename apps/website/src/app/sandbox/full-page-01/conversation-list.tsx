@@ -34,8 +34,8 @@ export function ConversationList({
 				</div>
 
 				<div className="flex items-center gap-1.5">
-					<Badge size="20">5 Open</Badge>
-					<IconButton type="button" color="neutral" variant="ghost" size="28">
+					<Badge size="sm">5 Open</Badge>
+					<IconButton type="button" color="neutral" variant="ghost" size="lg">
 						<ArrowDownUp className="size-3" />
 					</IconButton>
 				</div>
@@ -57,7 +57,7 @@ export function ConversationList({
 							{/* Card header row */}
 							<div className="flex items-center justify-between">
 								<div className="flex items-center gap-2.5">
-									<Avatar size="24" rounded="circle">
+									<Avatar size="xs" rounded="circle">
 										<AvatarFallback>{item.avatarText}</AvatarFallback>
 									</Avatar>
 									<span
@@ -74,7 +74,7 @@ export function ConversationList({
 											type="button"
 											variant="ghost"
 											color="neutral"
-											size="28"
+											size="lg"
 											aria-label="Conversation options"
 											className="-mr-1">
 											<MoreHorizontal className="size-3.5" />

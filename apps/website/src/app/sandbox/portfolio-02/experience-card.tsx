@@ -31,7 +31,7 @@ export function ExperienceCard({ item }: ExperienceCardProps) {
 				{/* Top Row: Logo & Job Details */}
 				<div className="flex items-start gap-4">
 					<Avatar
-						size="40"
+						size="lg"
 						rounded="square"
 						className="border-border bg-fill2 shrink-0 border">
 						<AvatarImage

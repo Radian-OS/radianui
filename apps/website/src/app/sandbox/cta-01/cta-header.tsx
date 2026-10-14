@@ -54,7 +54,7 @@ export function CtaHeader({
 						<Button
 							variant="strong"
 							color="neutral"
-							size="44"
+							size="xl"
 							asChild
 							className="gap-2 rounded-lg px-5 font-medium transition-transform active:scale-95">
 							<Link href={primaryButton.href}>
@@ -66,7 +66,7 @@ export function CtaHeader({
 						<Button
 							variant="soft"
 							color="neutral"
-							size="44"
+							size="xl"
 							asChild
 							className="gap-2 rounded-lg px-5 font-medium transition-transform active:scale-95">
 							<Link href={secondaryButton.href}>

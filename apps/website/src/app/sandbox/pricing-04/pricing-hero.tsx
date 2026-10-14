@@ -52,7 +52,7 @@ export function PricingHero() {
 					<span className="text-fg-secondary text-xs font-medium tracking-wide uppercase">
 						Annual Discount
 					</span>
-					<Badge variant="soft" color="success" size="20">
+					<Badge variant="soft" color="success" size="sm">
 						%40
 					</Badge>
 				</Badge>

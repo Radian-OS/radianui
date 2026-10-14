@@ -45,7 +45,7 @@ export function DetailsSidebar() {
 						type="button"
 						variant="ghost"
 						color={activeTab === "details" ? "primary" : "neutral"}
-						size="28"
+						size="lg"
 						onClick={() => setActiveTab("details")}
 						className={`rounded-md px-2.5 font-medium transition-colors ${
 							activeTab === "details"
@@ -57,7 +57,7 @@ export function DetailsSidebar() {
 					<Button
 						type="button"
 						variant="ghost"
-						size="28"
+						size="lg"
 						onClick={() => setActiveTab("copilot")}
 						className={`rounded-md px-2.5 font-medium transition-colors ${
 							activeTab === "copilot"
@@ -73,7 +73,7 @@ export function DetailsSidebar() {
 						type="button"
 						variant="ghost"
 						color="neutral"
-						size="28"
+						size="lg"
 						aria-label="Open in new window"
 						className="text-fg-secondary hover:text-fg">
 						<ExternalLink className="size-4" />
@@ -82,7 +82,7 @@ export function DetailsSidebar() {
 						type="button"
 						variant="ghost"
 						color="neutral"
-						size="28"
+						size="lg"
 						aria-label="Close sidebar"
 						className="text-fg-secondary hover:text-fg">
 						<PanelRightClose className="size-4" />
@@ -97,7 +97,7 @@ export function DetailsSidebar() {
 					<div className="flex items-center justify-between">
 						<span className="text-fg-secondary font-normal">Assignee</span>
 						<div className="text-fg flex items-center gap-1.5 font-medium">
-							<Avatar size="20" rounded="circle">
+							<Avatar size="2xs" rounded="circle">
 								<AvatarFallback className="bg-warning-accent text-warning text-[10px] font-bold">
 									AS
 								</AvatarFallback>

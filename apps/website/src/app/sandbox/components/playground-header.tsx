@@ -251,14 +251,14 @@ export function PlaygroundHeader({
 				{/* "Comments 8" Pill Button & Dropdown matching Image 1 & 2 */}
 				<div className="relative flex items-center gap-1">
 					<Button
-						size="28"
+						size="lg"
 						color="primary"
 						variant="soft"
 						type="button"
 						onClick={handlePillClick}
 						title="Toggle comments panel">
 						<span>Comments</span>
-						<Badge size="20" variant="outline">
+						<Badge size="sm" variant="outline">
 							{unresolvedCount}
 						</Badge>
 					</Button>

@@ -10,7 +10,7 @@ export function HeroCta() {
 				asChild
 				variant="strong"
 				color="neutral"
-				size="44"
+				size="xl"
 				className="rounded-full px-7 shadow-md">
 				<Link
 					href={HERO_25_DATA.ctaHref}

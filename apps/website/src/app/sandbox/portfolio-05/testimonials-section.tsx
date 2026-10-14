@@ -19,7 +19,7 @@ export function TestimonialsSection() {
 						<CardContent className="flex flex-col gap-3.5 p-0">
 							<div className="flex items-center gap-3">
 								<Avatar
-									size="40"
+									size="lg"
 									rounded="circle"
 									className="border-border/60 border">
 									<AvatarImage

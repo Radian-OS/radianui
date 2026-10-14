@@ -34,7 +34,7 @@ export function ActionCard({ data }: ActionCardProps) {
 					<Button
 						variant="outline"
 						color="neutral"
-						size="48"
+						size="2xl"
 						asChild
 						className="rounded-full px-6 font-medium">
 						<Link href={action.secondaryButtonHref}>
@@ -45,7 +45,7 @@ export function ActionCard({ data }: ActionCardProps) {
 					<Button
 						variant="strong"
 						color="neutral"
-						size="48"
+						size="2xl"
 						asChild
 						className="rounded-full px-6 font-semibold shadow-md transition-transform active:scale-95">
 						<Link href={action.primaryButtonHref}>

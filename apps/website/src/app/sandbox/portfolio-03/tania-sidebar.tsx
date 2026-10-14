@@ -57,7 +57,7 @@ export function TaniaSidebar() {
 					<SidebarGroupContent>
 						<SidebarMenu>
 							<SidebarMenuItem>
-								<SidebarMenuButton asChild size="32" isActive>
+								<SidebarMenuButton asChild size="lg" isActive>
 									<Link href="#blog">
 										<FileText className="size-4" />
 										<span>Blog</span>
@@ -66,7 +66,7 @@ export function TaniaSidebar() {
 							</SidebarMenuItem>
 
 							<SidebarMenuItem>
-								<SidebarMenuButton asChild size="32">
+								<SidebarMenuButton asChild size="lg">
 									<Link href="#shelves">
 										<Search className="size-4" />
 										<span>Shelves</span>
@@ -75,7 +75,7 @@ export function TaniaSidebar() {
 							</SidebarMenuItem>
 
 							<SidebarMenuItem>
-								<SidebarMenuButton asChild size="32">
+								<SidebarMenuButton asChild size="lg">
 									<Link href="#projects">
 										<Code className="size-4" />
 										<span>Projects</span>
@@ -84,7 +84,7 @@ export function TaniaSidebar() {
 							</SidebarMenuItem>
 
 							<SidebarMenuItem>
-								<SidebarMenuButton asChild size="32">
+								<SidebarMenuButton asChild size="lg">
 									<Link href="#about">
 										<User className="size-4" />
 										<span>About me</span>

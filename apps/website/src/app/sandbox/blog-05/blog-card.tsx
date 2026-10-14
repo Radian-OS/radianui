@@ -55,7 +55,7 @@ export function BlogCard({ post }: BlogCardProps) {
 			{/* Card Footer: Author with Avatar & Read Action */}
 			<CardFooter className="border-border/40 flex items-center justify-between border-t p-5 pt-4 sm:px-6">
 				<div className="flex items-center gap-2.5">
-					<Avatar size="32" rounded="circle" className="border-border border">
+					<Avatar size="sm" rounded="circle" className="border-border border">
 						<AvatarImage
 							src={post.author.avatarUrl || "/sandbox/placeholder.svg"}
 							alt={post.author.name}

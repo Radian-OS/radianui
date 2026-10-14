@@ -26,10 +26,10 @@ export function CTA7() {
 						<Input
 							type="email"
 							placeholder="Your work email"
-							size="40"
+							size="lg"
 							className="bg-elevation-level1 text-base text-ellipsis sm:w-80"
 						/>
-						<Button size="40" className="w-full sm:w-fit">
+						<Button size="lg" className="w-full sm:w-fit">
 							Start your 14 days trial
 						</Button>
 					</div>

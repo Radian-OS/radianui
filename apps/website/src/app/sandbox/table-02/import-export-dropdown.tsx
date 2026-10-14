@@ -34,7 +34,7 @@ export function ImportExportDropdown({
 					type="button"
 					variant="outline"
 					color="neutral"
-					size="32"
+					size="lg"
 					className="border-border/70 bg-elevation-level1/20 gap-1.5 text-xs font-medium">
 					<ArrowDownUp className="text-fg-tertiary size-3.5" />
 					<span>Import / Export</span>

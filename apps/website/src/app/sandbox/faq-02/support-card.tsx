@@ -40,7 +40,7 @@ export function SupportCard({
 				<Button
 					variant="strong"
 					color="neutral"
-					size="44"
+					size="xl"
 					asChild
 					className="w-full rounded-xl font-medium">
 					<Link

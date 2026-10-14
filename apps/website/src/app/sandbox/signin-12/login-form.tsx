@@ -109,7 +109,7 @@ export function LoginForm() {
 					type="submit"
 					variant="strong"
 					color="neutral"
-					size="40"
+					size="lg"
 					className="w-full"
 					onClick={() => form.handleSubmit(onSubmit)()}>
 					Sign in

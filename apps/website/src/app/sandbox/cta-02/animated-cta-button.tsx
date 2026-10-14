@@ -17,7 +17,7 @@ export function AnimatedCtaButton({
 			asChild
 			variant="strong"
 			color="neutral"
-			size="48"
+			size="2xl"
 			className="group bg-fg text-bg hover:bg-fg relative h-12 w-fit overflow-hidden rounded-full border border-transparent p-1 ps-6 pe-14 font-medium shadow-lg transition-all duration-500 hover:ps-14 hover:pe-6">
 			<Link href={buttonHref}>
 				<span className="relative z-10 transition-all duration-500">

@@ -42,7 +42,7 @@ export function SocialProof({
 				{reviewers.map((rev) => (
 					<Avatar
 						key={rev.id}
-						size="40"
+						size="lg"
 						rounded="circle"
 						className="border-bg border-2 shadow-xs">
 						<AvatarImage src={rev.avatarUrl} alt={rev.name} />

@@ -88,7 +88,7 @@ export function AiworkAutomationSection() {
 										<Button
 											variant="outline"
 											color="neutral"
-											size="36"
+											size="md"
 											className="gap-1.5 rounded-full px-4 text-xs font-semibold">
 											<span>View Details</span>
 											<ChevronRight className="size-3.5" />

@@ -78,13 +78,13 @@ export function SettingsSidebar({
 					<IconButton
 						variant="ghost"
 						color="neutral"
-						size="32"
+						size="lg"
 						aria-label="Close"
 						onClick={onClose}>
 						<X className="text-sidebar-fg size-4" />
 					</IconButton>
 				</div>
-				<InputWrapper size="32">
+				<InputWrapper size="lg">
 					<Search className="text-sidebar-fg/60 size-4" />
 					<Input
 						placeholder="Search settings"
@@ -105,7 +105,7 @@ export function SettingsSidebar({
 								return (
 									<SidebarMenuItem key={item.id}>
 										<SidebarMenuButton
-											size="32"
+											size="lg"
 											variant="neutral"
 											isActive={isActive}
 											onClick={() => onSelectTab(item.id)}>

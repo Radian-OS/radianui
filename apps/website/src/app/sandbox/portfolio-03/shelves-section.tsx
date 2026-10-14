@@ -17,7 +17,7 @@ export function ShelvesSection() {
 						type="button"
 						variant="outline"
 						color="neutral"
-						size="28"
+						size="lg"
 						className="h-6 rounded-md px-2 text-[11px] font-medium">
 						All Shelves
 					</Button>

@@ -56,7 +56,7 @@ export function VictorNavbar() {
 				<Button
 					color="neutral"
 					variant="ghost"
-					size="32"
+					size="lg"
 					className="border-success-border bg-fill1-alpha text-success hover:border-success-border hover:bg-fill2 hover:text-success-hover size-9 rounded-full border p-0"
 					aria-label="Toggle network status">
 					<Globe className="size-4" />

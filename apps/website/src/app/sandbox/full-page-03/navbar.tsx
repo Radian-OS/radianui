@@ -120,7 +120,7 @@ export function AiworkNavbar() {
 					<Button
 						variant="outline"
 						color="neutral"
-						size="36"
+						size="md"
 						className="gap-1.5 rounded-full px-4 text-xs font-semibold">
 						<span>Book a demo</span>
 						<ChevronRight className="size-3.5" />
@@ -132,7 +132,7 @@ export function AiworkNavbar() {
 					<Button
 						variant="ghost"
 						color="neutral"
-						size="32"
+						size="lg"
 						onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
 						aria-label="Toggle Navigation">
 						{mobileMenuOpen ? (
@@ -160,7 +160,7 @@ export function AiworkNavbar() {
 						<Button
 							variant="outline"
 							color="neutral"
-							size="36"
+							size="md"
 							className="w-full justify-center rounded-full text-xs font-semibold">
 							<span>Book a demo</span>
 							<ChevronRight className="size-3.5" />

@@ -90,7 +90,7 @@ export function Navbar() {
 							type="button"
 							variant="ghost"
 							color="neutral"
-							size="32"
+							size="lg"
 							aria-label="Toggle navigation menu"
 							onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
 							{mobileMenuOpen ? (
@@ -154,7 +154,7 @@ export function Navbar() {
 										<Badge
 											variant="soft"
 											color="primary"
-											size="20"
+											size="sm"
 											className="shrink-0 rounded-full px-1.5 text-[10px] font-semibold tracking-wider uppercase">
 											NEW
 										</Badge>
@@ -237,7 +237,7 @@ export function Navbar() {
 					<Button
 						variant="outline"
 						color="neutral"
-						size="32"
+						size="lg"
 						className="hidden rounded-lg px-3 text-xs font-medium lg:inline-flex">
 						Create
 					</Button>
@@ -248,7 +248,7 @@ export function Navbar() {
 							type="button"
 							variant="ghost"
 							color="neutral"
-							size="32"
+							size="lg"
 							aria-label="Toggle theme"
 							onClick={toggleTheme}
 							className="text-fg-secondary hover:text-fg hidden lg:inline-flex">
@@ -265,7 +265,7 @@ export function Navbar() {
 						type="button"
 						variant="ghost"
 						color="neutral"
-						size="32"
+						size="lg"
 						aria-label="Bookmarks"
 						className="text-fg-secondary hover:text-fg hidden lg:inline-flex">
 						<Bookmark className="size-4" />
@@ -273,7 +273,7 @@ export function Navbar() {
 
 					{/* Profile Avatar with Chevron */}
 					<div className="hover:bg-elevation-level1/60 flex cursor-pointer items-center gap-1 rounded-full p-0.5 transition-colors">
-						<Avatar size="32" rounded="circle" className="border-border border">
+						<Avatar size="sm" rounded="circle" className="border-border border">
 							<AvatarImage
 								src="https://alignui.com/images/avatar/illustration/james.png"
 								alt="User Avatar"
@@ -323,7 +323,7 @@ export function Navbar() {
 							onClick={() => setMobileMenuOpen(false)}
 							className="text-fg-secondary hover:bg-elevation-level1 hover:text-fg flex items-center justify-between rounded-lg px-3 py-2 text-sm font-medium">
 							<span>Products</span>
-							<Badge variant="soft" color="info" size="20">
+							<Badge variant="soft" color="info" size="sm">
 								NEW
 							</Badge>
 						</Link>
@@ -346,7 +346,7 @@ export function Navbar() {
 							<Button
 								variant="outline"
 								color="neutral"
-								size="36"
+								size="md"
 								className="w-full justify-center">
 								Create
 							</Button>

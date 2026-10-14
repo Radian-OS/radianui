@@ -130,7 +130,7 @@ export function AgentlabNavbar() {
 					<Button
 						variant="strong"
 						color="neutral"
-						size="36"
+						size="md"
 						className="rounded-md px-4 text-xs font-bold tracking-wider uppercase transition-transform active:scale-95">
 						<span>GET STARTED</span>
 					</Button>
@@ -170,7 +170,7 @@ export function AgentlabNavbar() {
 							<Button
 								variant="strong"
 								color="neutral"
-								size="36"
+								size="md"
 								className="w-full rounded-md text-xs font-bold tracking-wider uppercase">
 								<span>GET STARTED</span>
 							</Button>

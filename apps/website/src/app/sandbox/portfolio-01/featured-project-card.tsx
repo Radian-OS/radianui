@@ -45,7 +45,7 @@ export function FeaturedProjectCard({ project }: FeaturedProjectCardProps) {
 							key={tag}
 							variant="soft"
 							color="neutral"
-							size="24"
+							size="md"
 							className="border-border bg-fill1 text-fg-secondary rounded-md border font-mono text-xs">
 							{tag}
 						</Badge>

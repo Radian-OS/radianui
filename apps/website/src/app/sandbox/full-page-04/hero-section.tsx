@@ -73,14 +73,14 @@ export function VerseoHeroSection() {
 					<Button
 						variant="strong"
 						color="primary"
-						size="40"
+						size="lg"
 						className="rounded-xl px-6 text-sm font-semibold shadow-md transition-transform hover:scale-[1.02] active:scale-[0.98]">
 						<span>Get Started</span>
 					</Button>
 					<Button
 						variant="outline"
 						color="neutral"
-						size="40"
+						size="lg"
 						className="bg-bg hover:bg-fill2 rounded-xl px-6 text-sm font-semibold">
 						<span>Try Demo</span>
 					</Button>

@@ -58,7 +58,7 @@ export function ProjectsTableToolbar({
 							type="button"
 							variant="outline"
 							color="neutral"
-							size="32"
+							size="lg"
 							className="border-border/70 bg-elevation-level1/20 gap-1.5 text-xs font-medium">
 							<ArrowDownUp className="text-fg-tertiary size-3.5" />
 							<span>Import / Export</span>
@@ -85,7 +85,7 @@ export function ProjectsTableToolbar({
 					type="button"
 					variant="outline"
 					color="neutral"
-					size="32"
+					size="lg"
 					onClick={onOpenFilter}
 					className="border-border/70 bg-elevation-level1/20 gap-2 text-xs font-medium">
 					<SlidersHorizontal className="size-3.5" />

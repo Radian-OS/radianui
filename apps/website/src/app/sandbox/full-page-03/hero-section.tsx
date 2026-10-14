@@ -46,7 +46,7 @@ export function AiworkHeroSection() {
 					<Button
 						variant="strong"
 						color="primary"
-						size="40"
+						size="lg"
 						className="shadow-primary/30 gap-2 rounded-full px-6 text-sm font-semibold shadow-xl transition-all hover:scale-105 active:scale-95">
 						<span>Get Early Access</span>
 						<ArrowRight className="size-4" />

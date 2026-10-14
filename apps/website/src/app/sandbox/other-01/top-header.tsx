@@ -27,7 +27,7 @@ export function TopHeader({ onToggleSidebar }: TopHeaderProps) {
 					type="button"
 					variant="ghost"
 					color="neutral"
-					size="28"
+					size="lg"
 					aria-label="Toggle sidebar"
 					onClick={onToggleSidebar}
 					className="text-fg-secondary hover:text-fg md:hidden">
@@ -54,7 +54,7 @@ export function TopHeader({ onToggleSidebar }: TopHeaderProps) {
 					type="button"
 					variant="ghost"
 					color="neutral"
-					size="28"
+					size="lg"
 					aria-label="Star this project"
 					onClick={() => setIsStarred(!isStarred)}
 					className="text-fg-secondary hover:text-fg">
@@ -69,7 +69,7 @@ export function TopHeader({ onToggleSidebar }: TopHeaderProps) {
 					type="button"
 					variant="ghost"
 					color="neutral"
-					size="28"
+					size="lg"
 					aria-label="More project options"
 					className="text-fg-secondary hover:text-fg">
 					<MoreHorizontal className="size-4" />
@@ -82,7 +82,7 @@ export function TopHeader({ onToggleSidebar }: TopHeaderProps) {
 					type="button"
 					variant="ghost"
 					color="neutral"
-					size="28"
+					size="lg"
 					aria-label="Copy project link"
 					className="text-fg-secondary hover:text-fg">
 					<Link2 className="size-4" />

@@ -15,7 +15,7 @@ export function BottomBar() {
 					type="button"
 					variant="ghost"
 					color="neutral"
-					size="28"
+					size="lg"
 					aria-label="Help and resources"
 					className="text-fg-secondary hover:text-fg">
 					<HelpCircle className="size-4" />
@@ -44,7 +44,7 @@ export function BottomBar() {
 					type="button"
 					variant="ghost"
 					color="neutral"
-					size="28"
+					size="lg"
 					className="text-fg-secondary hover:text-fg flex items-center gap-1.5 px-2 text-xs font-medium">
 					<Send className="size-3.5 -rotate-45" />
 					<span>Ask Linear</span>
@@ -54,7 +54,7 @@ export function BottomBar() {
 					type="button"
 					variant="ghost"
 					color="neutral"
-					size="28"
+					size="lg"
 					aria-label="Recent issue history"
 					className="text-fg-secondary hover:text-fg">
 					<History className="size-4" />

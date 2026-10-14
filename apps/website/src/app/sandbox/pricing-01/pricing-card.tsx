@@ -63,7 +63,7 @@ export function PricingCard({ plan }: PricingCardProps) {
 				<Button
 					variant="strong"
 					color="neutral"
-					size="44"
+					size="xl"
 					asChild
 					className="w-full justify-between rounded-full pr-1.5 pl-6 font-semibold">
 					<Link href={plan.buttonHref}>

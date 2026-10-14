@@ -13,7 +13,7 @@ export function HeroProfile() {
 				{/* Avatar with Nepal Flag Badge */}
 				<div className="relative">
 					<Avatar
-						size="80"
+						size="3xl"
 						rounded="circle"
 						className="border-border/80 size-20 border-2 shadow-md">
 						<AvatarImage

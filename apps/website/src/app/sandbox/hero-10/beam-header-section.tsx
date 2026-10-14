@@ -63,7 +63,7 @@ export function BeamHeaderSection() {
 						<Button
 							color="primary"
 							variant="strong"
-							size="44"
+							size="xl"
 							className="shadow-primary/30 rounded-full px-6 shadow-lg"
 							asChild>
 							<Link href="#">

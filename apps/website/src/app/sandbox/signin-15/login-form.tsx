@@ -96,7 +96,7 @@ export function LoginForm() {
 							<FormItem>
 								<FormLabel>Password*</FormLabel>
 								<FormControl>
-									<InputWrapper size="36">
+									<InputWrapper size="md">
 										<Input
 											placeholder="••••••••••••••"
 											type={showPassword ? "text" : "password"}
@@ -107,7 +107,7 @@ export function LoginForm() {
 											type="button"
 											variant="ghost"
 											color="neutral"
-											size="28"
+											size="lg"
 											aria-label={
 												showPassword ? "Hide password" : "Show password"
 											}
@@ -158,7 +158,7 @@ export function LoginForm() {
 						type="submit"
 						variant="strong"
 						color="neutral"
-						size="40"
+						size="lg"
 						className="w-full">
 						Sign in to Radian
 					</Button>

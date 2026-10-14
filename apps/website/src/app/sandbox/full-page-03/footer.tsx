@@ -162,7 +162,7 @@ export function AiworkFooter() {
 												<FormControl>
 													<Input
 														placeholder="Email address"
-														size="36"
+														size="md"
 														className="text-xs"
 														{...field}
 													/>
@@ -177,7 +177,7 @@ export function AiworkFooter() {
 										type="submit"
 										variant="strong"
 										color="primary"
-										size="36"
+										size="md"
 										className="gap-1 rounded-xl px-4 text-xs font-semibold">
 										<span>Subscribe</span>
 										<ChevronRight className="size-3.5" />

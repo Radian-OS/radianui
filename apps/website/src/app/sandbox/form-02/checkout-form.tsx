@@ -207,7 +207,7 @@ export function CheckoutForm() {
 					type="submit"
 					variant="strong"
 					color="neutral"
-					size="44"
+					size="xl"
 					className="w-full font-medium">
 					Complete Purchase
 				</Button>

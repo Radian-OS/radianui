@@ -24,11 +24,11 @@ export function CTA5() {
 					<div className="flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
 						<Button
 							variant="outline"
-							size="40"
+							size="lg"
 							className="order-2 w-full sm:order-1 sm:w-fit">
 							Get Started
 						</Button>
-						<Button size="40" className="order-1 w-full sm:order-2 sm:w-fit">
+						<Button size="lg" className="order-1 w-full sm:order-2 sm:w-fit">
 							Browse Components
 						</Button>
 					</div>

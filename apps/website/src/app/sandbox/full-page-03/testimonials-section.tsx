@@ -81,7 +81,7 @@ export function AiworkTestimonialsSection() {
 									{/* Avatar (Rule 5: Radian OS Avatar) */}
 									<div className="mx-auto flex justify-center">
 										<Avatar
-											size="64"
+											size="2xl"
 											rounded="circle"
 											className="border-primary/20 border-2 shadow-sm">
 											<AvatarImage src={item.avatar} alt={item.name} />

@@ -48,7 +48,7 @@ export function FeaturedCard() {
 						<div className="border-border/50 mt-8 flex items-center justify-between border-t pt-6">
 							<div className="flex items-center gap-3">
 								<Avatar
-									size="32"
+									size="sm"
 									rounded="circle"
 									className="border-border border">
 									<AvatarImage

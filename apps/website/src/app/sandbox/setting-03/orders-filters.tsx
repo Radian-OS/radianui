@@ -35,7 +35,7 @@ export function OrdersFilters({
 				<Button
 					variant="outline"
 					color="neutral"
-					size="36"
+					size="md"
 					className="gap-2 text-xs font-normal">
 					<span>Last 7 days</span>
 					<ChevronDown className="text-fg-secondary size-3.5" />
@@ -45,7 +45,7 @@ export function OrdersFilters({
 				<Button
 					variant="outline"
 					color="neutral"
-					size="36"
+					size="md"
 					className="gap-2 text-xs font-normal">
 					<Calendar className="text-fg-secondary size-3.5" />
 					<span>Feb 04 - Feb 11, 2024</span>
@@ -57,7 +57,7 @@ export function OrdersFilters({
 				<Button
 					variant="outline"
 					color="neutral"
-					size="36"
+					size="md"
 					className="gap-2 text-xs font-normal">
 					<span>{status}</span>
 					<ChevronDown className="text-fg-secondary size-3.5" />
@@ -66,7 +66,7 @@ export function OrdersFilters({
 				<Button
 					variant="outline"
 					color="neutral"
-					size="36"
+					size="md"
 					className="gap-1.5 text-xs font-normal">
 					<Filter className="text-fg-secondary size-3.5" />
 					<span>Filter</span>
@@ -75,7 +75,7 @@ export function OrdersFilters({
 				<Button
 					variant="outline"
 					color="neutral"
-					size="36"
+					size="md"
 					className="gap-1.5 text-xs font-normal">
 					<Download className="text-fg-secondary size-3.5" />
 					<span>Export</span>

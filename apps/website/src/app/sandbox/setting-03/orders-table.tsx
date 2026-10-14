@@ -133,7 +133,7 @@ export function OrdersTable({ orders }: OrdersTableProps) {
 								<TableCell>
 									<div className="flex items-center gap-2.5">
 										<Avatar
-											size="24"
+											size="xs"
 											rounded="circle"
 											className="border-border border">
 											<AvatarImage
@@ -165,7 +165,7 @@ export function OrdersTable({ orders }: OrdersTableProps) {
 									<Button
 										variant="ghost"
 										color="neutral"
-										size="32"
+										size="lg"
 										className="text-fg-secondary hover:text-fg size-8 p-0">
 										<MoreHorizontal className="size-4" />
 									</Button>

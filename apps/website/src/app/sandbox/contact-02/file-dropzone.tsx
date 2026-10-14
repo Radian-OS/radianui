@@ -82,7 +82,7 @@ export function FileDropzone({ value, onChange }: FileDropzoneProps) {
 							type="button"
 							variant="ghost"
 							color="neutral"
-							size="28"
+							size="lg"
 							onClick={handleRemove}
 							className="text-fg-secondary hover:text-fg size-7 p-0"
 							aria-label="Remove attached file">
@@ -106,7 +106,7 @@ export function FileDropzone({ value, onChange }: FileDropzoneProps) {
 							type="button"
 							variant="outline"
 							color="neutral"
-							size="32"
+							size="lg"
 							onClick={(e) => {
 								e.stopPropagation()
 								inputRef.current?.click()

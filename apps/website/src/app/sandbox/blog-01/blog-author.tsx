@@ -17,7 +17,7 @@ export function BlogAuthor({ author }: BlogAuthorProps) {
 
 	return (
 		<div className="border-border/80 bg-elevation-level1/70 flex w-fit items-center gap-3 rounded-full border px-3.5 py-1.5 shadow-2xs backdrop-blur-xs">
-			<Avatar size="32" rounded="circle" className="border-border/60 border">
+			<Avatar size="sm" rounded="circle" className="border-border/60 border">
 				<AvatarImage src={author.avatarUrl} alt={author.name} />
 				<AvatarFallback className="text-fg text-[11px] font-semibold">
 					{initials}

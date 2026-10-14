@@ -51,7 +51,7 @@ export function FeaturedProjectsSection() {
 					type="button"
 					variant="outline"
 					color="neutral"
-					size="32"
+					size="lg"
 					className="rounded-full px-4 text-xs font-medium shadow-xs">
 					All projects
 					<ArrowRight className="ml-1 size-3.5" />

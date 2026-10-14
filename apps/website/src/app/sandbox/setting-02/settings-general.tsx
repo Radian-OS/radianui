@@ -48,7 +48,7 @@ export function SettingsGeneral({ onClose }: SettingsGeneralProps) {
 				<IconButton
 					variant="ghost"
 					color="neutral"
-					size="32"
+					size="lg"
 					aria-label="Close settings dialog"
 					onClick={onClose}>
 					<X className="text-fg-secondary size-4" />
@@ -70,7 +70,7 @@ export function SettingsGeneral({ onClose }: SettingsGeneralProps) {
 						<Select
 							value={appearance}
 							onValueChange={(val) => setAppearance(val as AppearanceMode)}>
-							<SelectTrigger size="32" className="w-[140px]">
+							<SelectTrigger size="lg" className="w-[140px]">
 								<SelectValue />
 							</SelectTrigger>
 							<SelectContent>
@@ -87,7 +87,7 @@ export function SettingsGeneral({ onClose }: SettingsGeneralProps) {
 						<Select
 							value={contrast}
 							onValueChange={(val) => setContrast(val as ContrastMode)}>
-							<SelectTrigger size="32" className="w-[140px]">
+							<SelectTrigger size="lg" className="w-[140px]">
 								<SelectValue />
 							</SelectTrigger>
 							<SelectContent>
@@ -104,7 +104,7 @@ export function SettingsGeneral({ onClose }: SettingsGeneralProps) {
 						<Select
 							value={accentColor}
 							onValueChange={(val) => setAccentColor(val as AccentColor)}>
-							<SelectTrigger size="32" className="w-[140px]">
+							<SelectTrigger size="lg" className="w-[140px]">
 								<div className="flex items-center gap-2">
 									<span
 										className={`size-2.5 shrink-0 rounded-full ${ACCENT_COLORS[accentColor].dotClass}`}
@@ -133,7 +133,7 @@ export function SettingsGeneral({ onClose }: SettingsGeneralProps) {
 						<Select
 							value={language}
 							onValueChange={(val) => setLanguage(val as LanguageOption)}>
-							<SelectTrigger size="32" className="w-[140px]">
+							<SelectTrigger size="lg" className="w-[140px]">
 								<SelectValue />
 							</SelectTrigger>
 							<SelectContent>
@@ -159,7 +159,7 @@ export function SettingsGeneral({ onClose }: SettingsGeneralProps) {
 							</p>
 						</div>
 						<Switch
-							size="24"
+							size="md"
 							shape="pill"
 							checked={dictationEnabled}
 							onCheckedChange={setDictationEnabled}

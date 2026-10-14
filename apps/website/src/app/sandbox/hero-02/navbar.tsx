@@ -63,7 +63,7 @@ export function Navbar() {
 						<Button
 							variant="outline"
 							color="neutral"
-							size="36"
+							size="md"
 							asChild
 							className="rounded-full px-4 text-xs font-medium">
 							<Link href="#get-started">Get Started</Link>
@@ -72,7 +72,7 @@ export function Navbar() {
 						<Button
 							variant="strong"
 							color="neutral"
-							size="36"
+							size="md"
 							asChild
 							className="gap-1.5 rounded-full px-4 text-xs font-medium">
 							<Link href="#book-demo">
@@ -88,7 +88,7 @@ export function Navbar() {
 							type="button"
 							variant="outline"
 							color="neutral"
-							size="36"
+							size="md"
 							className="rounded-full p-2"
 							onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
 							aria-label="Toggle Navigation Menu">
@@ -124,7 +124,7 @@ export function Navbar() {
 							<Button
 								variant="outline"
 								color="neutral"
-								size="36"
+								size="md"
 								asChild
 								className="w-full rounded-full text-xs font-medium">
 								<Link href="#get-started">Get Started</Link>
@@ -132,7 +132,7 @@ export function Navbar() {
 							<Button
 								variant="strong"
 								color="neutral"
-								size="36"
+								size="md"
 								asChild
 								className="w-full justify-center gap-1.5 rounded-full text-xs font-medium">
 								<Link href="#book-demo">

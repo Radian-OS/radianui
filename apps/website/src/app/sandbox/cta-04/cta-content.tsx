@@ -29,7 +29,7 @@ export function CtaContent({ data }: CtaContentProps) {
 			<Badge
 				variant="outline"
 				color="neutral"
-				size="24"
+				size="md"
 				className="border-border/80 bg-fill2 text-fg-secondary mb-4 gap-1.5 rounded-full px-3 py-1 text-xs font-medium">
 				<Sparkles className="text-info size-3" />
 				{cta.badge}
@@ -47,7 +47,7 @@ export function CtaContent({ data }: CtaContentProps) {
 			<Button
 				variant="strong"
 				color="neutral"
-				size="44"
+				size="xl"
 				asChild
 				className="rounded-full px-6 font-semibold shadow-md transition-transform active:scale-95">
 				<Link href={cta.buttonHref}>

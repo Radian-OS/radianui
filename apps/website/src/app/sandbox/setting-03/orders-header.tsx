@@ -12,7 +12,7 @@ export function OrdersHeader() {
 				<Button
 					variant="outline"
 					color="neutral"
-					size="36"
+					size="md"
 					className="text-fg-secondary hover:text-fg size-9 p-0">
 					<History className="size-4" />
 				</Button>
@@ -29,7 +29,7 @@ export function OrdersHeader() {
 				<Button
 					variant="ghost"
 					color="neutral"
-					size="36"
+					size="md"
 					className="text-fg-secondary hover:text-fg size-9 p-0">
 					<Search className="size-4" />
 				</Button>
@@ -37,7 +37,7 @@ export function OrdersHeader() {
 				<Button
 					variant="ghost"
 					color="neutral"
-					size="36"
+					size="md"
 					className="text-fg-secondary hover:text-fg relative size-9 p-0">
 					<Bell className="size-4" />
 					<span className="bg-primary absolute top-2 right-2 size-2 rounded-full" />
@@ -46,7 +46,7 @@ export function OrdersHeader() {
 				<Button
 					variant="strong"
 					color="primary"
-					size="36"
+					size="md"
 					className="gap-1.5 font-medium shadow-xs">
 					<Plus className="size-4" />
 					<span>New Products</span>

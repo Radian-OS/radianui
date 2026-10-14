@@ -67,7 +67,7 @@ export function InfoPanel() {
 					<Button
 						variant="strong"
 						color="neutral"
-						size="36"
+						size="md"
 						asChild
 						className="rounded-lg px-5 text-xs font-semibold shadow-sm transition-colors">
 						<Link href="#book-call">Book a free call</Link>

@@ -45,7 +45,7 @@ export function ReviewBadge() {
 				{reviewers.map((reviewer, index) => (
 					<Avatar
 						key={reviewer.name}
-						size="40"
+						size="lg"
 						rounded="circle"
 						className="border-background border-2 shadow-2xs transition-transform duration-200 hover:z-20 hover:scale-110"
 						style={{ zIndex: reviewers.length - index }}>

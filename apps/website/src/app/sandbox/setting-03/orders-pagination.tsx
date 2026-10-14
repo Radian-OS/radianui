@@ -35,7 +35,7 @@ export function OrdersPagination() {
 						<Button
 							variant="ghost"
 							color="neutral"
-							size="32"
+							size="lg"
 							className="text-fg-secondary hover:text-fg size-8 p-0"
 							onClick={() => setCurrentPage(1)}
 							disabled={currentPage === 1}>
@@ -48,7 +48,7 @@ export function OrdersPagination() {
 						<Button
 							variant="ghost"
 							color="neutral"
-							size="32"
+							size="lg"
 							className="text-fg-secondary hover:text-fg size-8 p-0"
 							onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
 							disabled={currentPage === 1}>
@@ -64,7 +64,7 @@ export function OrdersPagination() {
 								<Button
 									variant={isActive ? "strong" : "ghost"}
 									color="neutral"
-									size="32"
+									size="lg"
 									onClick={() => setCurrentPage(pageNum)}
 									className={`size-8 p-0 text-xs font-medium ${
 										isActive
@@ -87,7 +87,7 @@ export function OrdersPagination() {
 						<Button
 							variant="ghost"
 							color="neutral"
-							size="32"
+							size="lg"
 							onClick={() => setCurrentPage(16)}
 							className="text-fg-secondary hover:text-fg size-8 p-0 text-xs font-medium">
 							16
@@ -99,7 +99,7 @@ export function OrdersPagination() {
 						<Button
 							variant="ghost"
 							color="neutral"
-							size="32"
+							size="lg"
 							className="text-fg-secondary hover:text-fg size-8 p-0"
 							onClick={() => setCurrentPage((p) => Math.min(16, p + 1))}
 							disabled={currentPage === 16}>
@@ -112,7 +112,7 @@ export function OrdersPagination() {
 						<Button
 							variant="ghost"
 							color="neutral"
-							size="32"
+							size="lg"
 							className="text-fg-secondary hover:text-fg size-8 p-0"
 							onClick={() => setCurrentPage(16)}
 							disabled={currentPage === 16}>
@@ -127,7 +127,7 @@ export function OrdersPagination() {
 				<Button
 					variant="outline"
 					color="neutral"
-					size="32"
+					size="lg"
 					className="gap-2 text-xs font-normal">
 					<span>7 / page</span>
 					<ChevronDown className="text-fg-secondary size-3.5" />

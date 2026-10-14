@@ -25,7 +25,7 @@ export function LogoSection() {
 							<Button
 								color="neutral"
 								variant="strong"
-								size="48"
+								size="2xl"
 								className="rounded-full px-8 font-semibold"
 								asChild>
 								<Link href="#">Read Testimonials</Link>

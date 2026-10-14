@@ -48,7 +48,7 @@ export function ProfileForm() {
 						Photo
 					</span>
 					<div className="flex items-center gap-3 sm:col-span-8">
-						<Avatar size="40" rounded="circle" className="border-border border">
+						<Avatar size="lg" rounded="circle" className="border-border border">
 							<AvatarImage src="/sandbox/placeholder.svg" alt="Noa Brooks" />
 							<AvatarFallback>NB</AvatarFallback>
 						</Avatar>
@@ -56,7 +56,7 @@ export function ProfileForm() {
 							type="button"
 							variant="outline"
 							color="neutral"
-							size="32"
+							size="lg"
 							className="gap-1.5 text-xs font-medium">
 							<Upload className="size-3.5" />
 							<span>Change</span>
@@ -65,7 +65,7 @@ export function ProfileForm() {
 							type="button"
 							variant="outline"
 							color="neutral"
-							size="32"
+							size="lg"
 							className="gap-1.5 text-xs font-medium">
 							<X className="size-3.5" />
 							<span>Remove</span>
@@ -312,7 +312,7 @@ export function ProfileForm() {
 							type="button"
 							variant="outline"
 							color="neutral"
-							size="36"
+							size="md"
 							onClick={() => form.reset()}
 							className="gap-1.5 font-medium">
 							<RotateCcw className="size-3.5" />
@@ -322,7 +322,7 @@ export function ProfileForm() {
 							type="submit"
 							variant="strong"
 							color="neutral"
-							size="36"
+							size="md"
 							className="gap-1.5 font-medium">
 							<Save className="size-3.5" />
 							<span>Save changes</span>

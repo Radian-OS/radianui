@@ -30,7 +30,7 @@ export function TourCardHeader({
 				type="button"
 				variant="ghost"
 				color="neutral"
-				size="28"
+				size="lg"
 				className="text-fg-secondary hover:text-fg text-xs font-medium transition-colors"
 				onClick={onSkip}>
 				Skip Tour

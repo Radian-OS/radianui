@@ -159,7 +159,7 @@ export function VerseoPricingSection() {
 									<Button
 										variant={tier.popular ? "strong" : "outline"}
 										color={tier.popular ? "primary" : "neutral"}
-										size="40"
+										size="lg"
 										className="w-full justify-center rounded-xl text-xs font-bold tracking-tight">
 										<span>Get Started</span>
 									</Button>

@@ -25,25 +25,25 @@ export function CourseTableRow({ course }: CourseTableRowProps) {
 		switch (category) {
 			case "Development":
 				return (
-					<Badge variant="soft" color="info" size="20">
+					<Badge variant="soft" color="info" size="sm">
 						Development
 					</Badge>
 				)
 			case "Fundamental":
 				return (
-					<Badge variant="soft" color="warning" size="20">
+					<Badge variant="soft" color="warning" size="sm">
 						Fundamental
 					</Badge>
 				)
 			case "Design":
 				return (
-					<Badge variant="soft" color="primary" size="20">
+					<Badge variant="soft" color="primary" size="sm">
 						Design
 					</Badge>
 				)
 			case "UI/UX":
 				return (
-					<Badge variant="soft" color="info" size="20">
+					<Badge variant="soft" color="info" size="sm">
 						UI/UX
 					</Badge>
 				)
@@ -53,7 +53,7 @@ export function CourseTableRow({ course }: CourseTableRowProps) {
 	const renderUrgencyBadge = (urgency: CourseItem["urgency"]) => {
 		if (urgency === "Urgent") {
 			return (
-				<Badge variant="soft" color="error" size="20">
+				<Badge variant="soft" color="error" size="sm">
 					Urgent
 				</Badge>
 			)
@@ -62,7 +62,7 @@ export function CourseTableRow({ course }: CourseTableRowProps) {
 			<Badge
 				variant="soft"
 				color="neutral"
-				size="20"
+				size="sm"
 				className="text-fg-tertiary">
 				Not Urgent
 			</Badge>
@@ -146,7 +146,7 @@ export function CourseTableRow({ course }: CourseTableRowProps) {
 						{visibleAssignees.map((assignee) => (
 							<Avatar
 								key={assignee.id}
-								size="20"
+								size="2xs"
 								rounded="circle"
 								className="border-card ring-border/40 border-2 ring-1">
 								<AvatarImage src={assignee.avatarUrl} alt={assignee.name} />
@@ -183,7 +183,7 @@ export function CourseTableRow({ course }: CourseTableRowProps) {
 							type="button"
 							variant="ghost"
 							color="neutral"
-							size="28"
+							size="lg"
 							className="text-fg-tertiary hover:text-fg size-7 p-0">
 							<MoreHorizontal className="size-4" />
 						</Button>

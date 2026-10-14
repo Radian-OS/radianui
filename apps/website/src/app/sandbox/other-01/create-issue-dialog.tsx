@@ -98,7 +98,7 @@ export function CreateIssueDialog({
 						type="button"
 						variant="ghost"
 						color="neutral"
-						size="28"
+						size="lg"
 						aria-label="Close dialog"
 						onClick={onClose}
 						className="text-fg-secondary hover:text-fg">
@@ -178,11 +178,11 @@ export function CreateIssueDialog({
 								type="button"
 								variant="outline"
 								color="neutral"
-								size="32"
+								size="lg"
 								onClick={onClose}>
 								Cancel
 							</Button>
-							<Button type="submit" variant="strong" color="primary" size="32">
+							<Button type="submit" variant="strong" color="primary" size="lg">
 								Create Issue
 							</Button>
 						</div>

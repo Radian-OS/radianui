@@ -53,7 +53,7 @@ export function OmrixHeroSection() {
 					<Button
 						variant="strong"
 						color="primary"
-						size="44"
+						size="xl"
 						className="shadow-primary/25 rounded-xl px-7 text-sm font-semibold shadow-lg transition-all hover:scale-105 active:scale-95">
 						<span>Start Free Trial</span>
 					</Button>
@@ -61,7 +61,7 @@ export function OmrixHeroSection() {
 					<Button
 						variant="strong"
 						color="neutral"
-						size="44"
+						size="xl"
 						className="rounded-xl px-7 text-sm font-semibold shadow-xs transition-all hover:scale-105 active:scale-95">
 						<span>Book a Demo</span>
 					</Button>

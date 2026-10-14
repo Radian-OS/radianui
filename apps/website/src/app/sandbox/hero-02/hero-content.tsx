@@ -37,7 +37,7 @@ export function HeroContent({
 				<Button
 					variant="strong"
 					color="neutral"
-					size="44"
+					size="xl"
 					asChild
 					className="gap-2 rounded-full px-6 font-medium shadow-xs transition-transform active:scale-95">
 					<Link href="#get-started">
@@ -49,7 +49,7 @@ export function HeroContent({
 				<Button
 					variant="outline"
 					color="neutral"
-					size="44"
+					size="xl"
 					asChild
 					className="gap-2.5 rounded-full px-5 font-medium transition-transform active:scale-95">
 					<Link href="#google-signin">

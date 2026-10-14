@@ -142,7 +142,7 @@ export function VerseoFooter() {
 												type="submit"
 												variant="strong"
 												color="primary"
-												size="36"
+												size="md"
 												className="shrink-0 rounded-xl px-4 text-xs font-bold">
 												<span>Join</span>
 											</Button>

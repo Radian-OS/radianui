@@ -24,7 +24,7 @@ export function VideoDialog({
 	return (
 		<Dialog open={open} onOpenChange={setOpen}>
 			<DialogTrigger asChild>
-				<Button size="40" variant="outline" color="neutral">
+				<Button size="lg" variant="outline" color="neutral">
 					<Play className="size-3.5 fill-current" />
 					<span>{label}</span>
 				</Button>

@@ -23,7 +23,7 @@ export function TrialBanner() {
 					className="text-fg-secondary hover:text-fg font-medium">
 					Talk to a product specialist
 				</Link>
-				<Button type="button" variant="strong" color="neutral" size="28">
+				<Button type="button" variant="strong" color="neutral" size="lg">
 					Buy Intercom
 				</Button>
 			</div>

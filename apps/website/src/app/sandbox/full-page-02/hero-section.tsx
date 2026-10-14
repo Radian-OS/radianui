@@ -84,10 +84,10 @@ export function AgentlabHeroSection() {
 
 				{/* CTA Buttons (Rule 15: color prop on every Button) */}
 				<div className="mt-8 flex flex-wrap items-center justify-center gap-3.5">
-					<Button variant="outline" color="neutral" size="40">
+					<Button variant="outline" color="neutral" size="lg">
 						<span>TALK TO SALES</span>
 					</Button>
-					<Button variant="strong" color="neutral" size="40">
+					<Button variant="strong" color="neutral" size="lg">
 						<ArrowRight className="size-4" />
 						<span>START FOR FREE</span>
 					</Button>
@@ -137,7 +137,7 @@ export function AgentlabHeroSection() {
 															type="submit"
 															variant="strong"
 															color="neutral"
-															size="28"
+															size="lg"
 															className="absolute right-2.5 bottom-2.5 size-7 rounded-md p-0">
 															<Send className="size-3.5" />
 															<span className="sr-only">Send prompt</span>

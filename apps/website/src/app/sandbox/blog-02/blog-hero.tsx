@@ -53,7 +53,7 @@ export function BlogHero({
 				<Badge
 					variant="soft"
 					color="neutral"
-					size="24"
+					size="md"
 					className="border border-white bg-white text-black backdrop-blur-md">
 					{badge}
 				</Badge>

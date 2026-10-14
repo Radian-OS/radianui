@@ -44,14 +44,14 @@ export function LoginFeatureCard() {
 							{FEATURE_AVATARS.map((user) => (
 								<Avatar
 									key={user.id}
-									size="32"
+									size="sm"
 									rounded="circle"
 									className="bg-fg">
 									<AvatarImage src={user.avatarUrl} alt={user.name} />
 									<AvatarFallback className="">{user.initials}</AvatarFallback>
 								</Avatar>
 							))}
-							<Avatar size="32" rounded="circle">
+							<Avatar size="sm" rounded="circle">
 								<AvatarFallback>+36</AvatarFallback>
 							</Avatar>
 						</div>

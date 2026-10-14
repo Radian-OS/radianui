@@ -6,7 +6,7 @@ import { HERO_12_DATA } from "./types"
 export function HeroCta() {
 	return (
 		<div className="flex flex-wrap items-center justify-center gap-3">
-			<Button asChild variant="strong" color="neutral" size="40">
+			<Button asChild variant="strong" color="neutral" size="lg">
 				<Link
 					href={HERO_12_DATA.primaryCtaHref}
 					target="_blank"
@@ -15,7 +15,7 @@ export function HeroCta() {
 				</Link>
 			</Button>
 
-			<Button asChild variant="outline" color="neutral" size="40">
+			<Button asChild variant="outline" color="neutral" size="lg">
 				<Link
 					href={HERO_12_DATA.secondaryCtaHref}
 					target="_blank"

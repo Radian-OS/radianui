@@ -39,7 +39,7 @@ export function UsersTableToolbar({
 					type="button"
 					variant="outline"
 					color="neutral"
-					size="32"
+					size="lg"
 					onClick={onOpenFilter}
 					className="border-border/70 bg-elevation-level1/20 gap-2 text-xs font-medium">
 					<SlidersHorizontal className="size-3.5" />

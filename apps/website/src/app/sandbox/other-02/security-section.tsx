@@ -63,7 +63,7 @@ export function CrisplySecuritySection() {
 										type="button"
 										variant="outline"
 										color="neutral"
-										size="40"
+										size="lg"
 										className="shrink-0 rounded-lg px-4 text-xs font-semibold">
 										<span>Change email</span>
 									</Button>
@@ -96,7 +96,7 @@ export function CrisplySecuritySection() {
 										type="button"
 										variant="outline"
 										color="neutral"
-										size="40"
+										size="lg"
 										className="shrink-0 rounded-lg px-4 text-xs font-semibold">
 										<span>Change password</span>
 									</Button>

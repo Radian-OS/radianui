@@ -65,7 +65,7 @@ export function VerseoNavbar() {
 					<Button
 						variant="strong"
 						color="primary"
-						size="36"
+						size="md"
 						className="rounded-lg px-4 text-xs font-bold tracking-tight shadow-sm transition-transform hover:scale-[1.02] active:scale-[0.98]">
 						<span>Get Template Free</span>
 					</Button>
@@ -76,7 +76,7 @@ export function VerseoNavbar() {
 					<Button
 						variant="ghost"
 						color="neutral"
-						size="36"
+						size="md"
 						onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
 						aria-label="Toggle Navigation Menu">
 						{mobileMenuOpen ? (
@@ -105,7 +105,7 @@ export function VerseoNavbar() {
 							<Button
 								variant="strong"
 								color="primary"
-								size="36"
+								size="md"
 								className="w-full justify-center rounded-lg text-xs font-bold">
 								<span>Get Template Free</span>
 							</Button>

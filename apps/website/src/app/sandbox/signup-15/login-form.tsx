@@ -115,7 +115,7 @@ export function LoginForm() {
 					/>
 
 					{/* Submit Button */}
-					<Button type="submit" size="40" className="mt-1 w-full">
+					<Button type="submit" size="lg" className="mt-1 w-full">
 						Sign up
 					</Button>
 				</form>

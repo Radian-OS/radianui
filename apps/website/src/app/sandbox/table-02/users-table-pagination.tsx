@@ -35,7 +35,7 @@ export function UsersTablePagination({
 							type="button"
 							variant="ghost"
 							color="neutral"
-							size="28"
+							size="lg"
 							disabled={currentPage <= 1}
 							onClick={() => onPageChange(currentPage - 1)}
 							className="text-fg-secondary hover:text-fg size-7 p-0 disabled:opacity-30">
@@ -60,7 +60,7 @@ export function UsersTablePagination({
 							type="button"
 							variant="ghost"
 							color="neutral"
-							size="28"
+							size="lg"
 							disabled={currentPage >= totalPages}
 							onClick={() => onPageChange(currentPage + 1)}
 							className="text-fg-secondary hover:text-fg size-7 p-0 disabled:opacity-30">

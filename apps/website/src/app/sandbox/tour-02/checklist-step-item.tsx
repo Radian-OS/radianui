@@ -74,7 +74,7 @@ export function ChecklistStepItem({
 					type="button"
 					variant="strong"
 					color="neutral"
-					size="28"
+					size="lg"
 					className="h-7 shrink-0 rounded-lg px-3 text-xs font-semibold shadow-xs"
 					onClick={(e) => {
 						e.stopPropagation()

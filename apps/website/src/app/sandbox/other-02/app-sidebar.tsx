@@ -90,7 +90,7 @@ export function CrisplyAppSidebar() {
 						type="button"
 						variant="ghost"
 						color="neutral"
-						size="28"
+						size="lg"
 						aria-label="Previous page"
 						className="text-fg-secondary hover:text-fg">
 						<ChevronLeft className="size-3.5" />
@@ -99,7 +99,7 @@ export function CrisplyAppSidebar() {
 						type="button"
 						variant="ghost"
 						color="neutral"
-						size="28"
+						size="lg"
 						aria-label="Next page"
 						className="text-fg-secondary hover:text-fg">
 						<ChevronRight className="size-3.5" />
@@ -119,7 +119,7 @@ export function CrisplyAppSidebar() {
 								return (
 									<SidebarMenuItem key={item.label}>
 										<SidebarMenuButton
-											size="32"
+											size="lg"
 											isActive={isSelected}
 											tooltip={item.label}
 											onClick={() => setActiveItem(item.label)}>
@@ -149,7 +149,7 @@ export function CrisplyAppSidebar() {
 								return (
 									<SidebarMenuItem key={item.label}>
 										<SidebarMenuButton
-											size="32"
+											size="lg"
 											isActive={isSelected}
 											tooltip={item.label}
 											onClick={() => setActiveItem(item.label)}>
@@ -173,7 +173,7 @@ export function CrisplyAppSidebar() {
 								return (
 									<SidebarMenuItem key={item.label}>
 										<SidebarMenuButton
-											size="32"
+											size="lg"
 											isActive={isSelected}
 											tooltip={item.label}
 											onClick={() => setActiveItem(item.label)}>
@@ -193,7 +193,7 @@ export function CrisplyAppSidebar() {
 				<SidebarMenu>
 					<SidebarMenuItem>
 						<SidebarMenuButton
-							size="36"
+							size="md"
 							className="hover:bg-fill2 w-full justify-between">
 							<div className="flex items-center gap-2 truncate">
 								<div className="bg-fill3 text-fg flex size-6 shrink-0 items-center justify-center rounded-sm font-mono text-xs font-bold">

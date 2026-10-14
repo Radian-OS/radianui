@@ -37,7 +37,7 @@ export function AiworkCtaBanner() {
 							<Button
 								variant="strong"
 								color="neutral"
-								size="40"
+								size="lg"
 								className="gap-2 rounded-full px-6 text-sm font-semibold shadow-xl transition-transform hover:scale-105 active:scale-95">
 								<span>Get 14 days free trial</span>
 								<ChevronRight className="size-4" />

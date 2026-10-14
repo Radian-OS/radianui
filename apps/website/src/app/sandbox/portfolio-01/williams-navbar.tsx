@@ -22,7 +22,7 @@ export function WilliamsNavbar() {
 					href="/sandbox/williams-samuel"
 					aria-label="Williams Samuel Home"
 					className="flex items-center gap-2">
-					<Avatar size="32" rounded="circle" className="border-border border">
+					<Avatar size="sm" rounded="circle" className="border-border border">
 						<AvatarImage src="/sandbox/placeholder.svg" alt="Williams Samuel" />
 						<AvatarFallback className="text-fg text-xs font-bold">
 							WS

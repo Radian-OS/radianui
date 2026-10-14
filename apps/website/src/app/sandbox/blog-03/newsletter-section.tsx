@@ -80,7 +80,7 @@ export function NewsletterSection() {
 											<FormItem className="flex-1">
 												<FormControl>
 													<Input
-														size="44"
+														size="xl"
 														type="email"
 														placeholder="Enter your email"
 														{...field}
@@ -96,7 +96,7 @@ export function NewsletterSection() {
 										type="submit"
 										variant="strong"
 										color="neutral"
-										size="44"
+										size="xl"
 										className="rounded-control-lg text-primary h-11 shrink-0 bg-white px-7 font-semibold transition-colors hover:bg-white/90">
 										Subscribe
 									</Button>

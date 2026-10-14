@@ -33,7 +33,7 @@ export function TestimonialSection() {
 									{/* User Info & Brand Header */}
 									<div className="flex items-center justify-between gap-3">
 										<div className="flex items-center gap-3">
-											<Avatar size="40" rounded="circle">
+											<Avatar size="lg" rounded="circle">
 												<AvatarImage src={item.avatar} alt={item.name} />
 												<AvatarFallback className="text-xs font-semibold">
 													{item.initials}

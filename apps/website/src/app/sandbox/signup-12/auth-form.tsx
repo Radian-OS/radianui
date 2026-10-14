@@ -111,7 +111,7 @@ export function AuthForm() {
 						<FormItem>
 							<FormLabel>Password</FormLabel>
 							<FormControl>
-								<InputWrapper size="36">
+								<InputWrapper size="md">
 									<Input
 										placeholder="Enter your password"
 										type={showPassword ? "text" : "password"}
@@ -122,7 +122,7 @@ export function AuthForm() {
 										type="button"
 										color="neutral"
 										variant="ghost"
-										size="28"
+										size="lg"
 										onClick={() => setShowPassword((prev) => !prev)}
 										aria-label={
 											showPassword ? "Hide password" : "Show password"

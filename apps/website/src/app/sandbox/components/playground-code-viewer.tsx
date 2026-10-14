@@ -141,7 +141,7 @@ export function PlaygroundCodeViewer({
 					<Button
 						variant="outline"
 						color="neutral"
-						size="28"
+						size="lg"
 						onClick={handleCopy}
 						className="text-fg-secondary hover:text-fg font-semibold">
 						{copied ? (

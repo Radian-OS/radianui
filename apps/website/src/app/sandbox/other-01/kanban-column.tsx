@@ -48,7 +48,7 @@ export function KanbanColumn({ column, onAddIssue }: KanbanColumnProps) {
 						type="button"
 						variant="ghost"
 						color="neutral"
-						size="28"
+						size="lg"
 						aria-label="Column options"
 						className="text-fg-secondary hover:text-fg">
 						<MoreHorizontal className="size-4" />
@@ -57,7 +57,7 @@ export function KanbanColumn({ column, onAddIssue }: KanbanColumnProps) {
 						type="button"
 						variant="ghost"
 						color="neutral"
-						size="28"
+						size="lg"
 						aria-label={`Add issue to ${column.title}`}
 						onClick={() => onAddIssue?.(column.id)}
 						className="text-fg-secondary hover:text-fg">

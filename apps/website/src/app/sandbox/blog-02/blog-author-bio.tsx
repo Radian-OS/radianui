@@ -13,7 +13,7 @@ export function BlogAuthorBio() {
 
 	return (
 		<div className="border-border/50 flex items-start gap-4 border-b pb-8">
-			<Avatar size="40" rounded="circle" className="border-border/60 border">
+			<Avatar size="lg" rounded="circle" className="border-border/60 border">
 				<AvatarImage src={BLOG_AUTHOR.avatarUrl} alt={BLOG_AUTHOR.name} />
 				<AvatarFallback className="text-fg text-xs font-semibold">
 					{initials}

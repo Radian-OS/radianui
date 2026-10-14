@@ -57,7 +57,7 @@ export function CompaniesToolbar({
 					type="button"
 					variant="outline"
 					color="neutral"
-					size="32"
+					size="lg"
 					onClick={onOpenFilter}
 					className="border-border/70 bg-elevation-level1/20 gap-1.5 text-xs font-medium">
 					<Filter className="size-3.5" />
@@ -73,7 +73,7 @@ export function CompaniesToolbar({
 					type="button"
 					variant="outline"
 					color="neutral"
-					size="32"
+					size="lg"
 					onClick={onOpenSettings}
 					className="border-border/70 bg-elevation-level1/20 gap-1.5 text-xs font-medium">
 					<Settings2 className="size-3.5" />

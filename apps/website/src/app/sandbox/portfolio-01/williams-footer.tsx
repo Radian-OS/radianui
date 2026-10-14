@@ -36,7 +36,7 @@ export function WilliamsFooter() {
 				<Button
 					color="neutral"
 					variant="ghost"
-					size="28"
+					size="lg"
 					onClick={scrollToTop}
 					className="text-fg-secondary hover:text-fg h-auto p-0 font-mono text-xs transition-colors hover:bg-transparent">
 					scroll to top &uArr;

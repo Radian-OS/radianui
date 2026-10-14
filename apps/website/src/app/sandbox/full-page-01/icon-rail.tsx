@@ -101,7 +101,7 @@ export function IconRail() {
 				</IconButton>
 
 				{/* User Avatar */}
-				<Avatar size="32" rounded="circle" className="mt-1 cursor-pointer">
+				<Avatar size="sm" rounded="circle" className="mt-1 cursor-pointer">
 					<AvatarFallback>AS</AvatarFallback>
 				</Avatar>
 			</div>

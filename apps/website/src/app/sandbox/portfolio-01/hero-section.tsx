@@ -25,7 +25,7 @@ export function HeroSection() {
 					asChild
 					color="neutral"
 					variant="outline"
-					size="40"
+					size="lg"
 					className="border-success-border text-success hover:bg-success-accent hover:text-success-hover rounded-md border px-6 font-mono text-xs font-semibold tracking-widest uppercase transition-colors sm:text-sm">
 					<Link href="#contact">HIRE ME</Link>
 				</Button>

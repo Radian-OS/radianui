@@ -27,7 +27,7 @@ export function TestimonialCard({ testimonial }: TestimonialCardProps) {
 						</span>
 					</div>
 
-					<Avatar size="32" rounded="circle" className="bg-white">
+					<Avatar size="sm" rounded="circle" className="bg-white">
 						<AvatarImage src={testimonial.avatarUrl} alt={testimonial.author} />
 						<AvatarFallback>{testimonial.initials}</AvatarFallback>
 					</Avatar>

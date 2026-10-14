@@ -23,10 +23,10 @@ export function CTA8() {
 					</div>
 
 					<div className="flex flex-col items-center gap-3 sm:flex-row sm:gap-4">
-						<Button variant="outline" size="40" className="w-full">
+						<Button variant="outline" size="lg" className="w-full">
 							Get Started
 						</Button>
-						<Button size="40" className="w-full">
+						<Button size="lg" className="w-full">
 							Browse Components
 						</Button>
 					</div>

@@ -59,7 +59,7 @@ export function IconRail({
 								key={item.id}
 								variant={isActive ? "soft" : "ghost"}
 								color={isActive ? "primary" : "neutral"}
-								size="36"
+								size="md"
 								aria-label={item.label}
 								onClick={() => {
 									onSelectRailItem?.(item.id)
@@ -82,20 +82,20 @@ export function IconRail({
 					<IconButton
 						variant="ghost"
 						color="neutral"
-						size="36"
+						size="md"
 						aria-label="Notifications">
 						<Bell className="text-fg-secondary size-5" />
 					</IconButton>
 					<Badge
 						color="primary"
-						size="20"
+						size="sm"
 						className="text-primary-fg pointer-events-none absolute -top-1 -right-1 flex size-4 items-center justify-center rounded-full p-0 text-[10px] font-semibold">
 						2
 					</Badge>
 				</div>
 
 				{/* User Avatar */}
-				<Avatar size="36" rounded="circle" className="border-border border">
+				<Avatar size="md" rounded="circle" className="border-border border">
 					<AvatarImage src="/sandbox/placeholder.svg" alt="User avatar" />
 					<AvatarFallback className="text-xs font-semibold">OR</AvatarFallback>
 				</Avatar>

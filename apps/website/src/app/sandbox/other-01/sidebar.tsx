@@ -100,7 +100,7 @@ export function Sidebar({ onOpenNewIssue, onCloseMobile }: SidebarProps) {
 				<button
 					type="button"
 					className="hover:bg-fill1 -ml-1 flex cursor-pointer items-center gap-2 rounded-lg px-2 py-1 text-left transition-colors">
-					<Avatar size="20" rounded="circle">
+					<Avatar size="2xs" rounded="circle">
 						<AvatarFallback className="bg-success text-success-fg text-[10px] font-bold">
 							AM
 						</AvatarFallback>
@@ -116,7 +116,7 @@ export function Sidebar({ onOpenNewIssue, onCloseMobile }: SidebarProps) {
 						type="button"
 						variant="ghost"
 						color="neutral"
-						size="28"
+						size="lg"
 						aria-label="Search issues and projects"
 						className="text-fg-secondary hover:text-fg">
 						<Search className="size-4" />
@@ -125,7 +125,7 @@ export function Sidebar({ onOpenNewIssue, onCloseMobile }: SidebarProps) {
 						type="button"
 						variant="ghost"
 						color="neutral"
-						size="28"
+						size="lg"
 						aria-label="New issue"
 						onClick={onOpenNewIssue}
 						className="text-fg-secondary hover:text-fg">
@@ -146,7 +146,7 @@ export function Sidebar({ onOpenNewIssue, onCloseMobile }: SidebarProps) {
 								return (
 									<SidebarMenuItem key={item.id}>
 										<SidebarMenuButton
-											size="32"
+											size="lg"
 											isActive={isActive}
 											tooltip={item.label}
 											onClick={() => handleItemClick(item.id)}>
@@ -174,7 +174,7 @@ export function Sidebar({ onOpenNewIssue, onCloseMobile }: SidebarProps) {
 								return (
 									<SidebarMenuItem key={item.id}>
 										<SidebarMenuButton
-											size="32"
+											size="lg"
 											isActive={isActive}
 											tooltip={item.label}
 											onClick={() => handleItemClick(item.id)}>
@@ -208,7 +208,7 @@ export function Sidebar({ onOpenNewIssue, onCloseMobile }: SidebarProps) {
 								return (
 									<SidebarMenuItem key={item.id}>
 										<SidebarMenuButton
-											size="32"
+											size="lg"
 											isActive={isActive}
 											tooltip={item.label}
 											onClick={() => handleItemClick(item.id)}>
@@ -234,7 +234,7 @@ export function Sidebar({ onOpenNewIssue, onCloseMobile }: SidebarProps) {
 								if (item.isGitHub) {
 									return (
 										<SidebarMenuItem key={item.id}>
-											<SidebarMenuButton size="32" asChild tooltip={item.label}>
+											<SidebarMenuButton size="lg" asChild tooltip={item.label}>
 												<Link
 													href={item.href || "#"}
 													target="_blank"
@@ -257,7 +257,7 @@ export function Sidebar({ onOpenNewIssue, onCloseMobile }: SidebarProps) {
 									const Icon = item.icon!
 									return (
 										<SidebarMenuItem key={item.id}>
-											<SidebarMenuButton size="32" asChild tooltip={item.label}>
+											<SidebarMenuButton size="lg" asChild tooltip={item.label}>
 												<Link href={item.href || "#"}>
 													<Icon className="size-4 shrink-0" />
 													<span className="truncate">{item.label}</span>
@@ -271,7 +271,7 @@ export function Sidebar({ onOpenNewIssue, onCloseMobile }: SidebarProps) {
 								return (
 									<SidebarMenuItem key={item.id}>
 										<SidebarMenuButton
-											size="32"
+											size="lg"
 											tooltip={item.label}
 											onClick={() => handleItemClick(item.id)}>
 											<Icon className="size-4" />

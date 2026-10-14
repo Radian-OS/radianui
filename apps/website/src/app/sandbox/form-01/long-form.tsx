@@ -34,7 +34,7 @@ export function LongForm() {
 					type="submit"
 					variant="strong"
 					color="neutral"
-					size="44"
+					size="xl"
 					className="w-full">
 					Complete Registration
 				</Button>

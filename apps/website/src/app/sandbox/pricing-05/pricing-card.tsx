@@ -52,7 +52,7 @@ export function PricingCard({ plan, billingCycle }: PricingCardProps) {
 					<Button
 						variant="strong"
 						color="neutral"
-						size="40"
+						size="lg"
 						className="w-full font-semibold">
 						{plan.buttonText}
 					</Button>

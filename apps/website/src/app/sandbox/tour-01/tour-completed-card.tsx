@@ -27,7 +27,7 @@ export function TourCompletedCard({ onRestart }: TourCompletedCardProps) {
 					type="button"
 					variant="strong"
 					color="neutral"
-					size="36"
+					size="md"
 					className="mt-2 gap-2 font-medium shadow-xs"
 					onClick={onRestart}>
 					<RotateCcw className="size-3.5" />

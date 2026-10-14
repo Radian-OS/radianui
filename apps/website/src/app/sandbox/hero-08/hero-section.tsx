@@ -161,7 +161,7 @@ export function HeroSection() {
 								<Button
 									variant="strong"
 									color="primary"
-									size="40"
+									size="lg"
 									className="h-10 w-full gap-2 rounded-xl px-4.5 font-medium sm:w-auto">
 									<span>Start tracking free</span>
 									<ArrowUpRight className="size-4" />
@@ -169,7 +169,7 @@ export function HeroSection() {
 								<Button
 									variant="soft"
 									color="neutral"
-									size="40"
+									size="lg"
 									className="h-10 w-full rounded-xl px-4.5 font-medium sm:w-auto">
 									Talk to finance team
 								</Button>
@@ -190,7 +190,7 @@ export function HeroSection() {
 									{people.map((person) => (
 										<Avatar
 											key={person.name}
-											size="40"
+											size="lg"
 											rounded="circle"
 											className="border-bg bg-bg border hover:z-10">
 											<AvatarImage src={person.image} alt={person.name} />
@@ -200,7 +200,7 @@ export function HeroSection() {
 										</Avatar>
 									))}
 									<Avatar
-										size="40"
+										size="lg"
 										rounded="circle"
 										className="border-bg border hover:z-10">
 										<AvatarFallback className="text-sm font-semibold">

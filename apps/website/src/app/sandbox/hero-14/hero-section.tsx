@@ -30,10 +30,10 @@ export function HeroSection() {
 
 				{/* Action Buttons */}
 				<div className="flex w-full flex-col justify-center gap-3 sm:flex-row sm:items-center sm:gap-4">
-					<Button className="w-full sm:w-fit" size="40">
+					<Button className="w-full sm:w-fit" size="lg">
 						Browse Components
 					</Button>
-					<Button className="w-full sm:w-fit" variant="outline" size="40">
+					<Button className="w-full sm:w-fit" variant="outline" size="lg">
 						Get Started
 					</Button>
 				</div>

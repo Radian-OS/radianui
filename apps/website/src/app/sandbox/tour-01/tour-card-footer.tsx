@@ -24,7 +24,7 @@ export function TourCardFooter({
 				type="button"
 				variant="ghost"
 				color="neutral"
-				size="36"
+				size="md"
 				className="text-fg-secondary hover:text-fg disabled:text-fg-disabled gap-1.5 px-3 text-xs font-medium"
 				onClick={onPrev}
 				disabled={isFirstStep}>
@@ -36,7 +36,7 @@ export function TourCardFooter({
 				type="button"
 				variant="outline"
 				color="neutral"
-				size="36"
+				size="md"
 				className="hover:bg-elevation-level1/40 gap-1.5 rounded-lg px-4 text-xs font-medium shadow-xs"
 				onClick={onNext}>
 				{isLastStep ? "Finish" : "Next"}

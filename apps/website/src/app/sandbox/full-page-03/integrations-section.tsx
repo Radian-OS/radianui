@@ -108,7 +108,7 @@ export function AiworkIntegrationsSection() {
 								<Button
 									variant="outline"
 									color="neutral"
-									size="32"
+									size="lg"
 									asChild
 									className="gap-1.5 rounded-full px-3.5 text-xs font-medium">
 									<a href={item.url} target="_blank" rel="noopener noreferrer">

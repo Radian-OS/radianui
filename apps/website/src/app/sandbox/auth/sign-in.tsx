@@ -140,7 +140,7 @@ export default function SigninForm() {
 											<FormItem>
 												<FormLabel>Email Address</FormLabel>
 												<FormControl>
-													<Input size="36" type="email" {...field} />
+													<Input size="md" type="email" {...field} />
 												</FormControl>
 												<FormMessage />
 											</FormItem>
@@ -158,7 +158,7 @@ export default function SigninForm() {
 													<InputWrapper>
 														<Input
 															{...field}
-															size="36"
+															size="md"
 															type={showPassword ? "text" : "password"}
 															ref={inputRef}
 															className="peer"

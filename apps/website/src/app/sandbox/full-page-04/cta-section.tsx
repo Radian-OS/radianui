@@ -37,7 +37,7 @@ export function VerseoCtaSection() {
 								<Button
 									variant="strong"
 									color="primary"
-									size="40"
+									size="lg"
 									className="gap-2 rounded-xl px-6 text-sm font-semibold shadow-md transition-transform hover:scale-[1.02] active:scale-[0.98]">
 									<span>Get Started Free</span>
 									<ArrowRight className="size-4" />
@@ -45,7 +45,7 @@ export function VerseoCtaSection() {
 								<Button
 									variant="outline"
 									color="neutral"
-									size="40"
+									size="lg"
 									className="rounded-xl px-6 text-sm font-semibold">
 									<span>Contact Sales</span>
 								</Button>

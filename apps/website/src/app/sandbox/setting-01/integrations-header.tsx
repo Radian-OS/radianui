@@ -22,7 +22,7 @@ export function IntegrationsHeader({
 					<IconButton
 						variant="outline"
 						color="neutral"
-						size="36"
+						size="md"
 						aria-label="Expand settings navigation"
 						onClick={onToggleSidebar}
 						className="text-fg-secondary hover:text-fg mt-0.5 shrink-0">
@@ -43,7 +43,7 @@ export function IntegrationsHeader({
 				<Button
 					variant="outline"
 					color="neutral"
-					size="36"
+					size="md"
 					onClick={onAddCustomIntegration}>
 					<Plus className="size-4" />
 					Custom integration

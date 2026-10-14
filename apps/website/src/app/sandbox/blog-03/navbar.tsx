@@ -84,7 +84,7 @@ export function Navbar() {
 					<Button
 						variant="ghost"
 						color="neutral"
-						size="36"
+						size="md"
 						onClick={() => setMobileOpen(!mobileOpen)}
 						aria-label={mobileOpen ? "Close menu" : "Open menu"}>
 						{mobileOpen ? (

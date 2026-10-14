@@ -38,7 +38,7 @@ export function BlogCard({ article }: BlogCardProps) {
 						<Badge
 							variant="soft"
 							color="neutral"
-							size="20"
+							size="sm"
 							className="rounded-md px-2 py-0.5 text-xs font-medium">
 							{article.category}
 						</Badge>

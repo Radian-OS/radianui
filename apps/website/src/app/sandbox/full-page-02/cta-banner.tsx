@@ -26,12 +26,12 @@ export function AgentlabCtaBanner() {
 						</p>
 
 						<div className="mt-8 flex flex-wrap items-center gap-4">
-							<Button variant="strong" color="neutral" size="40">
+							<Button variant="strong" color="neutral" size="lg">
 								<ArrowRight className="size-4" />
 								<span>TALK TO SALES</span>
 							</Button>
 
-							<Button variant="outline" color="neutral" size="40">
+							<Button variant="outline" color="neutral" size="lg">
 								<span>VIEW PRICING</span>
 							</Button>
 						</div>

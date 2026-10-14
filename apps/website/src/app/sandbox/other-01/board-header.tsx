@@ -29,7 +29,7 @@ export function BoardHeader() {
 						key={tab.id}
 						variant="ghost"
 						color={activeTab === tab.id ? "primary" : "neutral"}
-						size="28"
+						size="lg"
 						onClick={() => setActiveTab(tab.id)}
 						className={`rounded-md px-2.5 text-xs font-medium transition-colors ${
 							activeTab === tab.id
@@ -44,7 +44,7 @@ export function BoardHeader() {
 					type="button"
 					variant="ghost"
 					color="neutral"
-					size="28"
+					size="lg"
 					aria-label="Stacked view"
 					className="text-fg-secondary hover:text-fg ml-0.5">
 					<Layers className="size-4" />
@@ -57,7 +57,7 @@ export function BoardHeader() {
 					type="button"
 					variant="ghost"
 					color="neutral"
-					size="28"
+					size="lg"
 					aria-label="Filter issues"
 					className="text-fg-secondary hover:text-fg">
 					<Filter className="size-4" />
@@ -67,7 +67,7 @@ export function BoardHeader() {
 					type="button"
 					variant="ghost"
 					color="neutral"
-					size="28"
+					size="lg"
 					aria-label="Display options"
 					className="text-fg-secondary hover:text-fg">
 					<SlidersHorizontal className="size-4" />
@@ -79,7 +79,7 @@ export function BoardHeader() {
 					type="button"
 					variant="ghost"
 					color={viewMode === "board" ? "primary" : "neutral"}
-					size="28"
+					size="lg"
 					aria-label="Kanban board view"
 					onClick={() => setViewMode("board")}
 					className={
@@ -94,7 +94,7 @@ export function BoardHeader() {
 					type="button"
 					variant="ghost"
 					color={viewMode === "list" ? "primary" : "neutral"}
-					size="28"
+					size="lg"
 					aria-label="List view"
 					onClick={() => setViewMode("list")}
 					className={

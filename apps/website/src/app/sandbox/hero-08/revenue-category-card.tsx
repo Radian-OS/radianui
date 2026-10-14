@@ -198,7 +198,7 @@ export function RevenueCategoryCard({
 						<Button
 							variant="outline"
 							color="neutral"
-							size="28"
+							size="lg"
 							className="h-[24px] rounded-[7px] px-2 text-[11px] font-medium">
 							Details
 						</Button>

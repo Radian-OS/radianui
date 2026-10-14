@@ -46,7 +46,7 @@ export function IntegrationsFilters({
 
 			{/* Search Input */}
 			<div className="w-full sm:w-64">
-				<InputWrapper size="32">
+				<InputWrapper size="lg">
 					<Search className="text-fg-secondary size-4" />
 					<Input
 						placeholder="Search"

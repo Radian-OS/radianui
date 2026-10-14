@@ -16,7 +16,7 @@ export function BlogTopics() {
 						key={topic}
 						variant="outline"
 						color="neutral"
-						size="24"
+						size="md"
 						className="bg-elevation-level1/50 text-fg-secondary hover:text-fg text-xs font-medium transition-colors">
 						{topic}
 					</Badge>

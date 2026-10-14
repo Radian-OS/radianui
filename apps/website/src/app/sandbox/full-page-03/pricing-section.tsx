@@ -174,7 +174,7 @@ export function AiworkPricingSection() {
 								<Button
 									variant="strong"
 									color={plan.isPopular ? "neutral" : "primary"}
-									size="36"
+									size="md"
 									className="w-full justify-center gap-1.5 rounded-full text-xs font-semibold">
 									<span>Get Started</span>
 									<ChevronRight className="size-3.5" />

@@ -40,7 +40,7 @@ export function UsersTableRow({
 			<TableCell className="py-3">
 				<div className="flex items-center gap-2.5">
 					<Avatar
-						size="24"
+						size="xs"
 						rounded="circle"
 						className="border-border/60 bg-elevation-level1/50 border">
 						{user.avatarUrl && (
@@ -80,7 +80,7 @@ export function UsersTableRow({
 					type="button"
 					variant="ghost"
 					color="neutral"
-					size="28"
+					size="lg"
 					onClick={() => onDownloadUser?.(user)}
 					className="text-fg-tertiary hover:text-fg size-7 p-0">
 					<Download className="size-3.5" />

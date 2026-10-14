@@ -114,7 +114,7 @@ export function ContributionGraph() {
 								key={item.year}
 								color={isActive ? "success" : "neutral"}
 								variant={isActive ? "strong" : "soft"}
-								size="36"
+								size="md"
 								onClick={() => setActiveYear(item.year)}
 								className={`min-w-16 rounded-xl font-mono text-sm transition-all ${
 									isActive

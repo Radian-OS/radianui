@@ -46,7 +46,7 @@ export function CourseTablePagination({
 						value={String(pageSize)}
 						onValueChange={(val) => onPageSizeChange(Number(val))}>
 						<SelectTrigger
-							size="28"
+							size="lg"
 							className="border-border/70 bg-elevation-level1/20 text-xs">
 							<SelectValue />
 						</SelectTrigger>
@@ -73,7 +73,7 @@ export function CourseTablePagination({
 								type="button"
 								variant="ghost"
 								color="neutral"
-								size="28"
+								size="lg"
 								disabled={currentPage <= 1}
 								onClick={() => onPageChange(currentPage - 1)}
 								className="text-fg-secondary hover:text-fg size-7 p-0 disabled:opacity-30">
@@ -90,7 +90,7 @@ export function CourseTablePagination({
 										type="button"
 										variant={isActive ? "strong" : "ghost"}
 										color="neutral"
-										size="28"
+										size="lg"
 										onClick={() => onPageChange(page)}
 										className={cn(
 											"size-7 p-0 font-mono text-xs",
@@ -110,7 +110,7 @@ export function CourseTablePagination({
 								type="button"
 								variant="ghost"
 								color="neutral"
-								size="28"
+								size="lg"
 								disabled={currentPage >= totalPages}
 								onClick={() => onPageChange(currentPage + 1)}
 								className="text-fg-secondary hover:text-fg size-7 p-0 disabled:opacity-30">

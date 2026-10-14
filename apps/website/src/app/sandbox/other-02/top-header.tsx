@@ -37,7 +37,7 @@ export function CrisplyTopHeader() {
 				<button
 					type="button"
 					className="hover:bg-fill2 flex cursor-pointer items-center gap-2 rounded-full p-1 transition-colors">
-					<Avatar size="32" rounded="circle" className="border-border border">
+					<Avatar size="sm" rounded="circle" className="border-border border">
 						<AvatarImage src="/sandbox/placeholder.svg" alt="Brian Frederin" />
 						<AvatarFallback className="text-[11px] font-semibold">
 							BF

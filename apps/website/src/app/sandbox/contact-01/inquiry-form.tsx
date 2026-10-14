@@ -80,7 +80,7 @@ export function InquiryForm() {
 									<FormItem>
 										<FormControl>
 											<Input
-												size="36"
+												size="md"
 												placeholder="First name"
 												{...field}
 												className="border-border bg-fill2 text-fg placeholder:text-fg-tertiary focus-visible:border-border-active h-11 rounded-lg"
@@ -98,7 +98,7 @@ export function InquiryForm() {
 									<FormItem>
 										<FormControl>
 											<Input
-												size="36"
+												size="md"
 												placeholder="Last name"
 												{...field}
 												className="border-border bg-fill2 text-fg placeholder:text-fg-tertiary focus-visible:border-border-active h-11 rounded-lg"
@@ -118,7 +118,7 @@ export function InquiryForm() {
 								<FormItem>
 									<FormControl>
 										<Input
-											size="36"
+											size="md"
 											type="email"
 											placeholder="youremail@website.com"
 											{...field}
@@ -206,7 +206,7 @@ export function InquiryForm() {
 								type="submit"
 								variant="strong"
 								color="primary"
-								size="44"
+								size="xl"
 								className="w-full rounded-xl text-sm font-semibold shadow-md transition-colors">
 								Submit Inquiry
 							</Button>

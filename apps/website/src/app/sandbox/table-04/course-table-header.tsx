@@ -30,7 +30,7 @@ export function CourseTableHeader({
 				type="button"
 				variant="strong"
 				color="primary"
-				size="32"
+				size="lg"
 				onClick={onAddCourse}
 				className="gap-1.5 text-xs font-semibold">
 				<Plus className="size-4" />

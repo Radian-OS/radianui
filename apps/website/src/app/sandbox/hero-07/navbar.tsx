@@ -66,7 +66,7 @@ export function OmrixNavbar() {
 					<Button
 						variant="strong"
 						color="neutral"
-						size="36"
+						size="md"
 						className="rounded-xl px-5 text-xs font-semibold shadow-xs transition-all hover:scale-105 active:scale-95">
 						<span>Book a Demo</span>
 					</Button>
@@ -77,7 +77,7 @@ export function OmrixNavbar() {
 					<Button
 						variant="ghost"
 						color="neutral"
-						size="32"
+						size="lg"
 						onClick={() => setIsOpen(!isOpen)}
 						aria-label="Toggle navigation menu">
 						{isOpen ? <X className="size-5" /> : <Menu className="size-5" />}
@@ -102,7 +102,7 @@ export function OmrixNavbar() {
 							<Button
 								variant="strong"
 								color="neutral"
-								size="36"
+								size="md"
 								className="w-full justify-center rounded-xl text-xs font-semibold">
 								<span>Book a Demo</span>
 							</Button>

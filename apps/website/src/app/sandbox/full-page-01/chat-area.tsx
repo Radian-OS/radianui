@@ -63,7 +63,7 @@ export function ChatArea({ conversation, onSendMessage }: ChatAreaProps) {
 						type="button"
 						variant="ghost"
 						color="neutral"
-						size="28"
+						size="lg"
 						aria-label="Star conversation"
 						onClick={() => setIsStarred(!isStarred)}>
 						<Star
@@ -77,7 +77,7 @@ export function ChatArea({ conversation, onSendMessage }: ChatAreaProps) {
 						type="button"
 						variant="ghost"
 						color="neutral"
-						size="28"
+						size="lg"
 						aria-label="More options">
 						<MoreHorizontal className="size-4" />
 					</IconButton>
@@ -86,7 +86,7 @@ export function ChatArea({ conversation, onSendMessage }: ChatAreaProps) {
 						type="button"
 						variant="ghost"
 						color="neutral"
-						size="28"
+						size="lg"
 						aria-label="Archive conversation">
 						<Archive className="size-4" />
 					</IconButton>
@@ -95,7 +95,7 @@ export function ChatArea({ conversation, onSendMessage }: ChatAreaProps) {
 						type="button"
 						variant="ghost"
 						color="neutral"
-						size="28"
+						size="lg"
 						aria-label="Snooze">
 						<Moon className="size-4" />
 					</IconButton>
@@ -104,7 +104,7 @@ export function ChatArea({ conversation, onSendMessage }: ChatAreaProps) {
 						type="button"
 						variant="ghost"
 						color="neutral"
-						size="28"
+						size="lg"
 						aria-label="Assign / Close">
 						<UserCheck className="size-4" />
 					</IconButton>
@@ -121,7 +121,7 @@ export function ChatArea({ conversation, onSendMessage }: ChatAreaProps) {
 						}`}>
 						{/* Inbound user avatar */}
 						{msg.isUser && (
-							<Avatar size="24" rounded="circle">
+							<Avatar size="xs" rounded="circle">
 								<AvatarFallback>{msg.avatarText}</AvatarFallback>
 							</Avatar>
 						)}
@@ -159,7 +159,7 @@ export function ChatArea({ conversation, onSendMessage }: ChatAreaProps) {
 				<div className="border-border bg-bg focus-within:border-border rounded-xl border p-3 shadow-xs">
 					{/* Composer Channel dropdown */}
 					<div className="border-border flex items-center justify-between border-b pb-2">
-						<Button color="neutral" size="28" type="button">
+						<Button color="neutral" size="lg" type="button">
 							<span>Facebook</span>
 							<ChevronDown className="text-fg-tertiary size-3.5" />
 						</Button>
@@ -197,7 +197,7 @@ export function ChatArea({ conversation, onSendMessage }: ChatAreaProps) {
 									type="button"
 									variant="ghost"
 									color="neutral"
-									size="28"
+									size="lg"
 									aria-label="Macros and saved replies">
 									<Zap className="size-4" />
 								</IconButton>
@@ -207,7 +207,7 @@ export function ChatArea({ conversation, onSendMessage }: ChatAreaProps) {
 										type="submit"
 										variant="strong"
 										color="primary"
-										size="32"
+										size="lg"
 										className="gap-1 rounded-lg px-3 text-xs font-semibold">
 										<span>Send</span>
 										<ChevronDown className="size-3 opacity-80" />

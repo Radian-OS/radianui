@@ -8,7 +8,7 @@ export function TestimonialSection() {
 	return (
 		<div className="bg-bg-subtle/50 w-full px-5 py-15 sm:py-20 md:px-16">
 			<div className="mx-auto flex max-w-screen-md flex-col items-center justify-center gap-6 text-center sm:gap-8">
-				<Avatar size="64" rounded="circle" className="border-border border-2">
+				<Avatar size="2xl" rounded="circle" className="border-border border-2">
 					<AvatarImage src={avatar} alt={author} />
 					<AvatarFallback className="text-base font-semibold">
 						{initials}

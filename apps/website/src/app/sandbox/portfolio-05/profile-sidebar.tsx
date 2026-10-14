@@ -34,7 +34,7 @@ export function ProfileSidebar() {
 			<CardContent className="flex w-full flex-col items-center gap-5 p-0">
 				{/* Avatar Container */}
 				<div className="border-border/60 bg-elevation-level1/40 flex size-32 items-center justify-center rounded-2xl border p-2 shadow-xs">
-					<Avatar size="80" rounded="square" className="size-28 rounded-xl">
+					<Avatar size="3xl" rounded="square" className="size-28 rounded-xl">
 						<AvatarImage
 							src="/sandbox/placeholder.svg"
 							alt="Richard hanrick"

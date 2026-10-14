@@ -90,7 +90,7 @@ export function ChecklistCard({
 					type="button"
 					variant="ghost"
 					color="neutral"
-					size="28"
+					size="lg"
 					className="text-fg-secondary hover:text-fg text-xs"
 					onClick={onResetTour}>
 					<RotateCcw className="mr-1.5 size-3.5" />
@@ -102,7 +102,7 @@ export function ChecklistCard({
 						type="button"
 						variant="outline"
 						color="neutral"
-						size="32"
+						size="lg"
 						className="px-3 text-xs font-medium"
 						onClick={onPrevStep}
 						disabled={currentActiveIndex === 0}>
@@ -113,7 +113,7 @@ export function ChecklistCard({
 						type="button"
 						variant="outline"
 						color="neutral"
-						size="32"
+						size="lg"
 						className="px-3 text-xs font-medium"
 						onClick={onNextStep}
 						disabled={currentActiveIndex === steps.length - 1}>

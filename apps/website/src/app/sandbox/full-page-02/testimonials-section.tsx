@@ -96,7 +96,7 @@ export function AgentlabTestimonialsSection() {
 						</h2>
 					</div>
 
-					<Button variant="outline" color="neutral" size="36">
+					<Button variant="outline" color="neutral" size="md">
 						<ArrowUpRight className="size-4" />
 						<span>SEE ALL CASE STUDIES</span>
 					</Button>

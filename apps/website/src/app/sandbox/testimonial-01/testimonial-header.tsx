@@ -17,7 +17,7 @@ export function TestimonialHeader({
 			<Badge
 				variant="strong"
 				color="neutral"
-				size="24"
+				size="md"
 				className="rounded-full px-3 font-medium">
 				{badgeText}
 			</Badge>

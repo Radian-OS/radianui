@@ -85,7 +85,7 @@ export function QuoteForm() {
 													type="button"
 													variant={isSelected ? "strong" : "outline"}
 													color="neutral"
-													size="32"
+													size="lg"
 													onClick={() => field.onChange(s)}
 													className="rounded-lg px-4 text-xs font-medium transition-all">
 													{s}
@@ -118,7 +118,7 @@ export function QuoteForm() {
 													type="button"
 													variant={isSelected ? "strong" : "outline"}
 													color="neutral"
-													size="32"
+													size="lg"
 													onClick={() => field.onChange(b)}
 													className="rounded-lg px-4 text-xs font-medium transition-all">
 													{b}
@@ -144,7 +144,7 @@ export function QuoteForm() {
 									</FormLabel>
 									<FormControl>
 										<Input
-											size="36"
+											size="md"
 											placeholder="John Doe"
 											{...field}
 											className="border-border bg-fill2 text-fg placeholder:text-fg-tertiary focus-visible:border-border-active"
@@ -165,7 +165,7 @@ export function QuoteForm() {
 									</FormLabel>
 									<FormControl>
 										<Input
-											size="36"
+											size="md"
 											type="email"
 											placeholder="example@company.com"
 											{...field}
@@ -226,7 +226,7 @@ export function QuoteForm() {
 							type="submit"
 							variant="strong"
 							color="neutral"
-							size="44"
+							size="xl"
 							className="w-full rounded-xl font-semibold shadow-md transition-colors">
 							Request Quote
 						</Button>

@@ -22,7 +22,7 @@ export function ContactCtaSection() {
 					asChild
 					color="neutral"
 					variant="ghost"
-					size="40"
+					size="lg"
 					className="hover:text-success text-fg p-0 font-mono text-sm font-bold tracking-wider transition-colors hover:bg-transparent">
 					<a href="mailto:hello@williamssamuel.dev">GET IN TOUCH &rarr;</a>
 				</Button>

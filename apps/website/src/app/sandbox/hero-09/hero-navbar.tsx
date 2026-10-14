@@ -92,7 +92,7 @@ export function HeroNavbar() {
 						<Button
 							variant="strong"
 							color="neutral"
-							size="40"
+							size="lg"
 							className="group h-10 cursor-pointer gap-2 rounded-full border-none bg-black px-5 text-sm font-medium text-white shadow-xs transition-all hover:bg-black/85 active:scale-98 dark:bg-white dark:text-black dark:hover:bg-white/85"
 							asChild>
 							<Link href="#get-started" className="flex items-center gap-2">
@@ -107,7 +107,7 @@ export function HeroNavbar() {
 						<Button
 							variant="strong"
 							color="neutral"
-							size="36"
+							size="md"
 							className="size-10 cursor-pointer rounded-full border-none bg-black p-0 text-white dark:bg-white dark:text-black"
 							onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
 							aria-label="Toggle Navigation Menu">
@@ -143,7 +143,7 @@ export function HeroNavbar() {
 							<Button
 								variant="strong"
 								color="neutral"
-								size="40"
+								size="lg"
 								className="h-10 w-full cursor-pointer justify-center rounded-full border-none bg-black font-medium text-white hover:bg-black/85 dark:bg-white dark:text-black dark:hover:bg-white/85"
 								asChild>
 								<Link
