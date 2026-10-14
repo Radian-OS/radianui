@@ -7,7 +7,7 @@ import { TrustedBrands } from "./trusted-brands"
 
 export function LeftPanel() {
 	return (
-		<div className="dark relative hidden w-full shrink-0 flex-col justify-between overflow-hidden bg-black px-0 py-8 text-white sm:py-10 lg:flex lg:min-h-screen lg:w-[45%] lg:py-12 xl:w-[43%]">
+		<div className="relative hidden w-full shrink-0 flex-col justify-between overflow-hidden bg-black text-white select-none lg:flex lg:min-h-screen lg:w-[43%] lg:py-10">
 			{/* Background Video from reference */}
 			<video
 				className="pointer-events-none absolute inset-0 size-full scale-125 object-cover opacity-60 mix-blend-screen"
@@ -24,7 +24,7 @@ export function LeftPanel() {
 			{/* Primary Color Tint Overlay */}
 			<div
 				aria-hidden="true"
-				className="bg-primary/80 pointer-events-none absolute inset-0 mix-blend-color"
+				className="bg-primary pointer-events-none absolute inset-0 mix-blend-color"
 			/>
 
 			{/* Top Branding - moved further right and slightly lower, sharing common alignment line */}
@@ -36,11 +36,11 @@ export function LeftPanel() {
 			</div>
 
 			{/* Center Section: Heading, Subtitle, Testimonials & Brands */}
-			<div className="relative z-10 my-auto flex w-full flex-col gap-8 py-6 lg:gap-10">
+			<div className="relative z-10 my-auto flex w-full flex-col gap-8 lg:gap-10">
 				{/* Headline and Subtitle */}
-				<div className="flex max-w-[480px] flex-col gap-3.5 pr-6 pl-10 sm:pr-8 sm:pl-16 lg:pl-20 xl:pl-28 2xl:pl-32">
+				<div className="flex max-w-[480px] flex-col gap-3 lg:pl-20 xl:pl-28 2xl:pl-32">
 					<h2 className="heading-4">Build faster. Design better.</h2>
-					<p className="text-fg text-sm leading-relaxed sm:text-base">
+					<p className="text-sm leading-relaxed">
 						Join thousands of creators using Radian to ship beautiful products
 						in record time. Your next big idea starts here.
 					</p>

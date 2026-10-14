@@ -5,13 +5,11 @@ import { Divider } from "@/styles/default/ui/divider"
 
 export function SocialLogin() {
 	return (
-		<div className="flex w-full flex-col gap-3">
+		<div className="flex w-full flex-col gap-4">
 			{/* Divider */}
-			<div className="my-1 flex w-full items-center gap-4">
+			<div className="flex w-full items-center gap-4">
 				<Divider className="flex-1" />
-				<p className="text-fg-secondary shrink-0 text-sm whitespace-nowrap">
-					Or continue with
-				</p>
+				<p className="text-fg-secondary text-sm">Or continue with</p>
 				<Divider className="flex-1" />
 			</div>
 

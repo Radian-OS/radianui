@@ -29,7 +29,7 @@ export function TrustedBrands({
 							key={brand.alt}
 							src={brand.src}
 							alt={brand.alt}
-							className="h-7 w-auto opacity-70 transition-opacity hover:opacity-100"
+							className="h-9 w-auto opacity-70 transition-opacity hover:opacity-100"
 						/>
 					)
 				})}

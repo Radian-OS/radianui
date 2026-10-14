@@ -21,14 +21,14 @@ export default function Login07Page() {
 					</div>
 
 					{/* Bottom Terms & Privacy pinned lower to the bottom */}
-					<div className="text-fg-secondary flex items-center justify-center gap-5 py-2 text-xs">
-						<Link href="#terms" className="hover:text-fg transition-colors">
+					<div className="flex items-center justify-center gap-5 text-sm">
+						<Link href="#terms" className="hover:underline">
 							Terms
 						</Link>
-						<Link href="#privacy" className="hover:text-fg transition-colors">
+						<Link href="#privacy" className="hover:underline">
 							Privacy
 						</Link>
-						<Link href="#support" className="hover:text-fg transition-colors">
+						<Link href="#support" className="hover:underline">
 							Support
 						</Link>
 					</div>

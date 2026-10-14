@@ -10,13 +10,11 @@ export function SocialButtons() {
 	return (
 		<div className="mt-4 flex flex-col gap-4">
 			{/* Divider */}
-			<div className="relative flex items-center justify-center">
-				<div className="absolute inset-0 flex items-center">
-					<Divider />
-				</div>
-				<span className="bg-bg text-fg-tertiary relative px-3 text-xs font-normal">
-					Or continue with
-				</span>
+
+			<div className="flex w-full items-center gap-3">
+				<Divider className="flex-1" />
+				<span className="text-fg-tertiary text-sm">Or continue with</span>
+				<Divider className="flex-1" />
 			</div>
 
 			{/* Social Button Grid (Google & Github) with size 36 */}

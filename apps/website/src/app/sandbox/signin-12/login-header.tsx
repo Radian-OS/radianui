@@ -14,9 +14,7 @@ export function LoginHeader() {
 			</Link>
 			<div className="flex flex-col gap-1 text-center">
 				<h1 className="heading-4 text-center">Welcome to Radian</h1>
-				<p className="text-fg-secondary text-base font-normal">
-					Login to your account now
-				</p>
+				<p className="text-fg-secondary">Login to your account now</p>
 			</div>
 		</div>
 	)

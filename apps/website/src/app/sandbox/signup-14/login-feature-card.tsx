@@ -86,7 +86,7 @@ export function LoginFeatureCard() {
 	)
 
 	return (
-		<Card className="relative flex h-full flex-col justify-between overflow-hidden rounded-3xl border-0 bg-neutral-950 p-0 text-white shadow-xl dark:bg-neutral-950">
+		<Card className="bg-bg relative flex h-full flex-col justify-between overflow-hidden rounded-3xl border-0 p-0 text-white shadow-xl">
 			{/* Ambient Video Background Layer from Google Flow */}
 			{videoBackground}
 
@@ -98,7 +98,7 @@ export function LoginFeatureCard() {
 						loop: true,
 						containScroll: false,
 					}}
-					plugins={[Fade(), AutoPlay({ delay: 6000 })]}
+					plugins={[Fade(), AutoPlay({ delay: 20000 })]}
 					className="relative w-full">
 					<CarouselContent className="ml-0">
 						{TESTIMONIALS.map((testimonial) => (
@@ -129,30 +129,15 @@ export function LoginFeatureCard() {
 							color="neutral"
 							className="static translate-none rounded-full border border-white/25 bg-white/10 text-white backdrop-blur-xs transition-all hover:border-white/50 hover:bg-white/20 active:scale-95"
 							aria-label="Previous testimonial">
-							<ArrowLeft className="size-4.5 stroke-[1.75]" />
+							<ArrowLeft className="size-4.5" />
 						</CarouselPrevious>
-						{/* <div className="flex items-center gap-1.5 px-0.5">
-							{TESTIMONIALS.map((t, index) => (
-								<button
-									key={t.id}
-									onClick={() => api?.scrollTo(index)}
-									className={cn(
-										"h-1.5 rounded-full transition-all duration-300",
-										selectedIndex === index
-											? "w-5 bg-white"
-											: "w-1.5 bg-white/40 hover:bg-white/70"
-									)}
-									aria-label={`Go to testimonial ${index + 1}`}
-								/>
-							))}
-						</div> */}
 						<CarouselNext
 							variant="outline"
 							size="40"
 							color="neutral"
 							className="static translate-none rounded-full border border-white/25 bg-white/10 text-white backdrop-blur-xs transition-all hover:border-white/50 hover:bg-white/20 active:scale-95"
 							aria-label="Next testimonial">
-							<ArrowRight className="size-4.5 stroke-[1.75]" />
+							<ArrowRight className="size-4.5" />
 						</CarouselNext>
 					</div>
 				</Carousel>

@@ -16,11 +16,18 @@ import {
 } from "@/styles/default/ui/form"
 import { Input, InputWrapper } from "@/styles/default/ui/input"
 import { signUpSchema, type SignUpFormValues } from "./types"
-import { IconButton } from "@/registry/ui/button"
 
 export function AuthForm() {
 	const [showPassword, setShowPassword] = useState(false)
 	const [isSubmitted, setIsSubmitted] = useState(false)
+
+	const IconComponent = showPassword ? EyeOff : Eye
+
+	function togglePasswordVisibility(e: React.MouseEvent) {
+		e.preventDefault()
+		e.stopPropagation()
+		setShowPassword((prev) => !prev)
+	}
 
 	const form = useForm<SignUpFormValues>({
 		resolver: zodResolver(signUpSchema),
@@ -103,7 +110,6 @@ export function AuthForm() {
 					)}
 				/>
 
-				{/* Password Field with size 36 InputWrapper and Eye Toggle */}
 				<FormField
 					control={form.control}
 					name="password"
@@ -111,28 +117,17 @@ export function AuthForm() {
 						<FormItem>
 							<FormLabel>Password</FormLabel>
 							<FormControl>
-								<InputWrapper size="36">
+								<InputWrapper>
 									<Input
 										placeholder="Enter your password"
 										type={showPassword ? "text" : "password"}
-										autoComplete="new-password"
+										autoComplete="current-password"
 										{...field}
 									/>
-									<IconButton
-										type="button"
-										color="neutral"
-										variant="ghost"
-										size="28"
-										onClick={() => setShowPassword((prev) => !prev)}
-										aria-label={
-											showPassword ? "Hide password" : "Show password"
-										}>
-										{showPassword ? (
-											<Eye className="size-4" />
-										) : (
-											<EyeOff className="size-4" />
-										)}
-									</IconButton>
+									<IconComponent
+										className="hover:text-fg peer-disabled:text-fg-disabled cursor-pointer peer-disabled:pointer-events-none"
+										onMouseDown={togglePasswordVisibility}
+									/>
 								</InputWrapper>
 							</FormControl>
 							<FormMessage />

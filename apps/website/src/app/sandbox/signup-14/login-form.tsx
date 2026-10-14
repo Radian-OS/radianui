@@ -5,7 +5,7 @@ import Link from "next/link"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Eye, EyeOff } from "lucide-react"
-import { Button, IconButton } from "@/styles/default/ui/button"
+import { Button } from "@/styles/default/ui/button"
 import { Divider } from "@/styles/default/ui/divider"
 import {
 	Form,
@@ -26,6 +26,14 @@ export function LoginForm() {
 		null
 	)
 
+	const IconComponent = showPassword ? EyeOff : Eye
+
+	function togglePasswordVisibility(e: React.MouseEvent) {
+		e.preventDefault()
+		e.stopPropagation()
+		setShowPassword((prev) => !prev)
+	}
+
 	const form = useForm<SignupFormValues>({
 		resolver: zodResolver(signupSchema),
 		defaultValues: {
@@ -44,8 +52,8 @@ export function LoginForm() {
 			<LoginBrand />
 
 			{/* Heading & Subtitle */}
-			<div>
-				<h2 className="heading-4 mb-1">Create an account</h2>
+			<div className="flex flex-col gap-1">
+				<h2 className="heading-4">Create an account</h2>
 				<p className="text-fg-secondary text-sm">
 					Sign up to get started with Radian
 				</p>
@@ -57,9 +65,7 @@ export function LoginForm() {
 			{/* Divider */}
 			<div className="flex items-center gap-4">
 				<Divider className="flex-1" />
-				<p className="text-fg-secondary text-xs whitespace-nowrap sm:text-sm">
-					Or continue with email
-				</p>
+				<p className="text-fg-secondary text-sm">Or continue with email</p>
 				<Divider className="flex-1" />
 			</div>
 
@@ -77,13 +83,13 @@ export function LoginForm() {
 								<FormLabel>Email address</FormLabel>
 								<FormControl>
 									<Input
-										placeholder="you@example.com"
+										placeholder="info@radianui.com"
 										type="email"
 										autoComplete="email"
 										{...field}
 									/>
 								</FormControl>
-								<FormMessage className="text-error text-xs" />
+								<FormMessage />
 							</FormItem>
 						)}
 					/>
@@ -96,31 +102,20 @@ export function LoginForm() {
 							<FormItem>
 								<FormLabel>Password</FormLabel>
 								<FormControl>
-									<InputWrapper size="36">
+									<InputWrapper>
 										<Input
-											placeholder="Create a password"
+											placeholder="Enter your password"
 											type={showPassword ? "text" : "password"}
-											autoComplete="new-password"
+											autoComplete="current-password"
 											{...field}
 										/>
-										<IconButton
-											type="button"
-											variant="ghost"
-											color="neutral"
-											size="28"
-											aria-label={
-												showPassword ? "Hide password" : "Show password"
-											}
-											onClick={() => setShowPassword((prev) => !prev)}>
-											{showPassword ? (
-												<EyeOff className="text-fg-secondary size-4" />
-											) : (
-												<Eye className="text-fg-secondary size-4" />
-											)}
-										</IconButton>
+										<IconComponent
+											className="hover:text-fg peer-disabled:text-fg-disabled cursor-pointer peer-disabled:pointer-events-none"
+											onMouseDown={togglePasswordVisibility}
+										/>
 									</InputWrapper>
 								</FormControl>
-								<FormMessage className="text-error text-xs" />
+								<FormMessage />
 							</FormItem>
 						)}
 					/>
@@ -147,7 +142,7 @@ export function LoginForm() {
 			{/* Footer Link */}
 			<p className="text-fg-secondary text-center text-sm">
 				Already have an account?{" "}
-				<Link href="#" className="text-fg hover:underline">
+				<Link href="#" className="text-fg font-bold hover:underline">
 					Log in
 				</Link>
 			</p>
