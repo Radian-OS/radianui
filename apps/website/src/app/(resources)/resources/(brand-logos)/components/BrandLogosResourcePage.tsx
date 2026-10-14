@@ -71,8 +71,8 @@ export function BrandLogosResourcePage({
 					})}
 				</div>
 			}
-			title="Popular Brand Logos for Every Interface"
-			description="Browse 244 polished brand icons and wordmarks across 12 categories. Vector SVGs as the single source of truth across light, dark, colored, and neutral states, with one-click SVG copying, direct CDN URLs, and high-res PNG export."
+			title="Free Brand Logos in SVG and PNG"
+			description="Find brand icons and wordmarks for your website or app. Browse 244 brands across 12 categories, copy SVG code, download SVG or PNG files, and choose variants for light and dark backgrounds."
 			actions={<BrandLogosHeroActions />}
 			showcaseLabel="Browse free brand logo assets"
 			showcase={

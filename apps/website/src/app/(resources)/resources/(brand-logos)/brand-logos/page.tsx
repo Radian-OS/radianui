@@ -4,9 +4,9 @@ import { absoluteUrl } from "@/lib/structured-data"
 import { BrandLogosResourcePage } from "../components/BrandLogosResourcePage"
 
 const pageUrl = absoluteUrl("/resources/brand-logos")
-const pageTitle = "Free Brand Logos – SVG & PNG Icons and Wordmarks"
+const pageTitle = "Free Brand Logos SVG & PNG Download | Radian Resources"
 const pageDescription =
-	"Browse 244 free brand icons and wordmarks in light, dark, colored, and neutral states. Copy raw SVG code, access direct CDN URLs, or export high-res PNGs in your browser."
+	"Download free brand logos in SVG and PNG. Browse 244 brand icons and wordmarks, copy SVG code, and choose light or dark variants for websites and apps."
 const pageImage = absoluteUrl("/media/assets-page/popular-brands-light.png")
 
 export const metadata: Metadata = {

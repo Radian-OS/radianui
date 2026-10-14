@@ -7,7 +7,6 @@ import {
 import {
 	getBrandLogo,
 	getBrandLogoSvgUrl,
-	getBrandLogoUrl,
 } from "../components/brand-logos-data"
 
 const useCasePoints = [
@@ -22,9 +21,9 @@ const useCasePoints = [
 			"Pair familiar provider marks with clear labels in social sign-in and account-linking experiences.",
 	},
 	{
-		title: "Technology showcases",
+		title: "Tech stack logos for websites",
 		description:
-			"Present the tools behind a product in landing pages, documentation, case studies, and developer portals.",
+			"Show React, Next.js, Tailwind CSS, GitHub, and other tools in a tech stack section, portfolio, documentation site, or developer portal.",
 	},
 	{
 		title: "Dashboards and reports",
@@ -63,9 +62,9 @@ const designPoints = [
 
 const developmentPoints = [
 	{
-		title: "Choose the export your workflow needs",
+		title: "Download brand logos as SVG or PNG",
 		description:
-			"Use the vector SVG directly for crisp scalable rendering, or export a high-resolution PNG in the browser when raster assets are required.",
+			"Download SVG files for scalable website graphics. Export PNG files for slide decks, mockups, or tools that need a raster image.",
 	},
 	{
 		title: "Select variants from your theme state",
@@ -78,9 +77,9 @@ const developmentPoints = [
 			"Set explicit width and height values to prevent layout shifts while remote assets load.",
 	},
 	{
-		title: "Pin CDN versions in production",
+		title: "Use stable asset URLs in production",
 		description:
-			"Replace the main branch in CDN URLs with a release tag when you need immutable, cache-stable assets.",
+			"The supplied CDN URLs follow the main branch. For a fixed version, save the SVG locally or pin the URL to a specific commit from the source repository.",
 	},
 	{
 		title: "Keep brand names alongside asset IDs",
@@ -91,9 +90,19 @@ const developmentPoints = [
 
 const faqItems = [
 	{
-		question: "What logo variants are included?",
+		question: "How do I download free brand logos?",
 		answer:
-			"Every brand includes vector SVG icon and wordmark assets across light and dark surfaces and colored or neutral palettes (8 states per brand). High-resolution PNGs can be exported dynamically from any state in the browser.",
+			"Search for a brand or filter by category, then open a logo to choose an icon or wordmark, background theme, and colorway. Use Download SVG for a vector file or Download PNG for a raster image. You can also copy SVG code, copy a PNG, or use the direct CDN URL.",
+	},
+	{
+		question: "Can I use these brand logos in React or Next.js?",
+		answer:
+			"Yes. Download an SVG into your public folder and reference it with an image element, or use the supplied CDN URL as the image source. Set dimensions and descriptive alt text. The resource provides SVG assets rather than a React component package; raw SVG markup needs JSX attribute conversion before you paste it inline into a component.",
+	},
+	{
+		question: "What does this free brand logo library include?",
+		answer:
+			"Browse 244 brands across 12 categories, including AI, development, design, social platforms, and payments. Each brand has SVG icons and wordmarks in light, dark, colored, and neutral variants: eight assets per brand. You can also export PNGs in your browser.",
 	},
 	{
 		question: "When should I use the light or dark option?",
@@ -101,7 +110,7 @@ const faqItems = [
 			"Use the light option on light backgrounds and the dark option on dark backgrounds. These labels describe the intended surface contrast, not necessarily the dominant color in every logo.",
 	},
 	{
-		question: "Should I use SVG or PNG?",
+		question: "Should I download brand logos in SVG or PNG?",
 		answer:
 			"Use SVG as the primary source of truth for scalable, vector-sharp graphics across any screen density. When your workflow requires raster files (such as presentations or image pipelines), you can copy or download PNGs rendered directly from the vector SVG.",
 	},
@@ -123,26 +132,32 @@ export default function BrandLogosDocs() {
 			<ResourceTextSection
 				id="brand-logo-introduction-heading"
 				eyebrow="Introduction"
-				title="A practical brand logo library"
+				title="A free brand logo library for websites and apps"
 				visual={<BrandLogoCollection />}>
 				<p>
-					Brand logos make products and integrations recognizable at a glance.
-					This collection packages commonly used marks into predictable,
-					URL-safe paths so designers and developers can use the same source
-					assets.
+					Find free brand logos for the services your product uses. Radian
+					Resources brings together 244 brands across 12 categories, from AI and
+					developer tools to social platforms and payment providers. Search by
+					brand name or browse a category to find the right mark.
 				</p>
 				<p>
-					Each brand includes a compact icon and a full wordmark, provided in
-					light and dark themes as well as colored and neutral colorways. Vector
-					SVGs serve as the single source of truth, while high-resolution PNGs
-					can be rendered and exported on demand in the browser.
+					Choose a compact brand icon for a button or list, or a wordmark when
+					you want the name visible. Each brand includes eight SVG assets: icons
+					and wordmarks in colored and neutral versions for light and dark
+					backgrounds. Preview the variant before adding it to your design.
+				</p>
+				<p>
+					Download brand logos in SVG or PNG, copy SVG code, or use a direct CDN
+					URL. SVG stays sharp when resized; PNG works well in presentations and
+					image editors. The files are free to access, while each brand owner's
+					usage guidelines still apply to its marks.
 				</p>
 			</ResourceTextSection>
 
 			<ResourceTextSection
 				id="brand-logo-use-cases-heading"
 				eyebrow="Use cases"
-				title="Where brand logos help users"
+				title="Brand icons for integrations, sign-in, and tech stacks"
 				points={useCasePoints}>
 				<p>
 					Use a brand mark when recognition helps a user choose, connect, or
@@ -166,13 +181,14 @@ export default function BrandLogosDocs() {
 			<ResourceTextSection
 				id="brand-logo-development-heading"
 				eyebrow="Development"
-				title="Reliable logo implementation"
+				title="Using SVG brand logos in React and Next.js"
 				points={developmentPoints}>
 				<p>
-					The collection follows a consistent CDN path: theme, colorway,
-					category, variant, and brand ID with SVG files. Keeping these choices
-					explicit makes logo rendering easy to test and maintain across a
-					product.
+					For brand logos in React or Next.js, download an SVG into your public
+					folder and use its path in an image element, or copy the CDN URL from
+					the logo details. Add the brand name as alt text and set a size that
+					preserves the original proportions. If you paste raw SVG code into
+					JSX, convert attributes such as class to className first.
 				</p>
 			</ResourceTextSection>
 
