@@ -1,28 +1,24 @@
 ---
-title: "Why We Migrated from ESLint to Oxlint"
-description: "Learn why we moved from ESLint to Oxlint, how we checked rule coverage, and what to consider before migrating your JavaScript or TypeScript project."
+title: "Oxlint Migration: Faster JavaScript & TypeScript Linting"
+description: "Fast, Rust‑based linting for JavaScript & TypeScript—boost speed, cut CI time, and keep code quality."
 date: "2026-09-28"
 dateModified: "2026-09-28"
 card: "Guides"
-image: "/og/static-og.png"
+image: "https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/blog/src/eslint-vs-oxlint-cover.png"
 seoImages:
-  - "/og/static-og.png"
+  - "https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/blog/src/eslint-vs-oslint-chart.png"
 lead:
-  - "ESLint had been part of the project from the beginning. It was familiar, flexible, and backed by a huge plugin ecosystem. But as the codebase grew, linting became slow enough to interrupt local development and add noticeable time to CI."
-  - "We moved to Oxlint to make that feedback loop faster. The goal was not to prove that one tool is always better than the other. It was to keep the checks we relied on while making linting feel almost invisible."
+  - "We started with ESLint because it was the trusty sidekick everyone knew. But as our codebase grew, linting slowed us down like a sleepy turtle. 🐢💤"
+  - "Enter Oxlint! It turbo‑boosted our feedback loop, making linting feel almost invisible. ⚡️"
 author:
   - name: "Ashmit Bastola"
     link: "https://www.linkedin.com/in/ashmit-bastola-80968b273/"
     avatar: "/blog/avatar/ashmit.jfif"
 ---
 
-## ESLint Wasn't the Problem
+## Oxlint Migration: Faster JavaScript & TypeScript Linting
 
-ESLint is still one of the most capable tools in the JavaScript ecosystem. It's rules, plugins, integrations and years of community knowledge make it a dependable choice for projects of every size.
-
-Our problem was the feedback loop. As the project expanded, the lint step became slow enough that developers were more likely to wait for CI instead of running it locally. CI also spent time on checks that should have returned almost immediately.
-
-That created a simple problem: the tool was useful but people were using it less often because it felt expensive to run. Adding more plugins improved coverage, yet also made the lint step heavier. We wanted to keep useful static checks without making developers wait for them.
+ESLint is powerful, but as our codebase grew the lint step slowed developers down, leading to a reliance on CI instead of local checks.
 
 ## What Oxlint Changes
 
@@ -31,6 +27,8 @@ That created a simple problem: the tool was useful but people were using it less
 The practical difference is speed. Oxlint's official benchmarks report that it can be **50 to 100 times faster than ESLint**, although the result for any project depends on its size, rules, plugins and cache state. We did not treat that headline number as a promise. What mattered was that linting became fast enough to run as a normal part of development again.
 
 Oxlint also includes native rule sets for common JavaScript and TypeScript workflows. React, Next.js, import, Unicorn, and JSX accessibility rules are among the available built-in plugins, so many projects can cover their everyday checks without installing a separate package for every rule family.
+
+![Oxlint vs ESLint speed chart](https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/blog/src/eslint-vs-oslint-chart.png)
 
 ## Why We Didn't Switch in One Step
 
