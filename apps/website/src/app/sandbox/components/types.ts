@@ -101,6 +101,8 @@ export type PreviewKey =
 	| "footer-02"
 	| "footer-03"
 	| "footer-04"
+	| "nav-1"
+	| "nav-2"
 
 export type ViewMode = "preview" | "inspect" | "code"
 export type DeviceSize = "desktop" | "tablet" | "mobile"
@@ -163,6 +165,7 @@ export type SandboxCategory =
 	| "sign-in-section"
 	| "signup-section"
 	| "other-sections"
+	| "navigation-section"
 
 export interface SandboxComponentConfig {
 	id: PreviewKey
@@ -1198,5 +1201,26 @@ export const sandboxComponents: SandboxComponentConfig[] = [
 		referenceUrl:
 			"https://shadcnstudio.com/preview/blocks/base/marketing-ui/login-page/login-page-03",
 		previewRoute: "/sandbox/signup-16",
+	},
+	{
+		id: "nav-1",
+		label: "nav-1",
+		category: "navigation-section",
+		filesKey: "nav-1",
+		path: "src/app/sandbox/nav-1",
+		defaultFile: "navbar.tsx",
+		referenceUrl: "https://attio.com",
+		previewRoute: "/sandbox/nav-1",
+	},
+	{
+		id: "nav-2",
+		label: "nav-2",
+		category: "navigation-section",
+		filesKey: "nav-2",
+		path: "src/app/sandbox/nav-2",
+		defaultFile: "navbar.tsx",
+		referenceUrl:
+			"https://www.shadcn-ui-blocks.com/preview/marketing-pro/navbars/mega-menu-nav",
+		previewRoute: "/sandbox/nav-2",
 	},
 ]
