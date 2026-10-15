@@ -2,7 +2,7 @@ import React, { HTMLAttributes } from "react"
 import { MDXComponents } from "mdx/types"
 import Image from "next/image"
 import Link from "next/link"
-import { CopyButton } from "@/components/copy-button"
+import { components as DocsComponents } from "@/components/mdx-components-docs"
 import PackageManagerTabs, {
 	PackageManagerTabsProps,
 } from "@/components/package-manager-tabs"
@@ -190,57 +190,10 @@ export const BlogComponents: MDXComponents = {
 		</blockquote>
 	),
 	hr: () => <Divider className="my-8" />,
-	pre: ({ className, children, ...props }: React.ComponentProps<"pre">) => (
-		<pre
-			className={cn(
-				"bg-bg no-scrollbar border-border my-6 min-w-0 overflow-x-auto overflow-y-auto overscroll-x-contain rounded-lg border p-4 text-sm outline-none",
-				className
-			)}
-			{...props}>
-			{children}
-		</pre>
-	),
-	code: ({
-		className,
-		__raw__,
-		__src__,
-		__npm__,
-		__yarn__,
-		__pnpm__,
-		__bun__,
-		...props
-	}: React.ComponentProps<"code"> & {
-		__raw__?: string
-		__src__?: string
-		__npm__?: string
-		__yarn__?: string
-		__pnpm__?: string
-		__bun__?: string
-	}) => {
-		// Inline code
-		if (
-			typeof props.children === "string" &&
-			!className?.includes("language-")
-		) {
-			return (
-				<code
-					className={cn(
-						"bg-fill2 text-fg rounded-md px-1.5 py-0.5 font-mono text-sm wrap-break-word",
-						className
-					)}
-					{...props}
-				/>
-			)
-		}
-
-		// Code block with copy button
-		return (
-			<div className="relative">
-				{__raw__ && <CopyButton value={__raw__} src={__src__} />}
-				<code className={cn(className)} {...props} />
-			</div>
-		)
-	},
+	figure: DocsComponents.figure,
+	figcaption: DocsComponents.figcaption,
+	pre: DocsComponents.pre,
+	code: DocsComponents.code,
 	table: ({ className, ...props }: React.ComponentProps<"table">) => (
 		<div className="no-scrollbar my-5 w-full overflow-y-auto">
 			<table

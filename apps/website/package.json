@@ -5,6 +5,7 @@
 	"private": true,
 	"scripts": {
 		"dev": "next dev --port 3001",
+		"sync:brand-logos": "tsx src/scripts/sync-brand-logos-manifest.ts",
 		"build": "tsx src/scripts/build.ts",
 		"start": "next start",
 		"db:generate": "drizzle-kit generate",
