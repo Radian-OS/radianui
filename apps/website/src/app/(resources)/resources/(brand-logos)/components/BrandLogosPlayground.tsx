@@ -69,7 +69,6 @@ export default function BrandLogosPlayground({
 		initialSelectedBrand
 	)
 	const [displayLimit, setDisplayLimit] = useState(INITIAL_LOGOS_LIMIT)
-	const [, setIsSticky] = useState(false)
 	const ownsDialogHistoryEntryRef = useRef(false)
 	const sentinelRef = useRef<HTMLDivElement>(null)
 	const bottomSentinelRef = useRef<HTMLDivElement>(null)
@@ -103,7 +102,6 @@ export default function BrandLogosPlayground({
 		let bottomStillVisible = true
 		const dispatchSticky = () => {
 			const nextIsSticky = topScrolledPast && bottomStillVisible
-			setIsSticky(nextIsSticky)
 			window.dispatchEvent(
 				new CustomEvent("resource-filter-sticky", {
 					detail: { isSticky: nextIsSticky },
@@ -133,7 +131,6 @@ export default function BrandLogosPlayground({
 		return () => {
 			topObserver.disconnect()
 			bottomObserver.disconnect()
-			setIsSticky(false)
 			window.dispatchEvent(
 				new CustomEvent("resource-filter-sticky", {
 					detail: { isSticky: false },
@@ -180,22 +177,19 @@ export default function BrandLogosPlayground({
 		[]
 	)
 
-	const handleSelectBrand = useCallback(
-		(id: BrandLogoId) => {
-			const nextState = {
-				...window.history.state,
-				radianBrandLogoDialog: true,
-			}
-			if (selectedBrand) {
-				window.history.replaceState(nextState, "", getBrandLogoPagePath(id))
-			} else {
-				window.history.pushState(nextState, "", getBrandLogoPagePath(id))
-				ownsDialogHistoryEntryRef.current = true
-			}
-			setSelectedBrand(id)
-		},
-		[selectedBrand]
-	)
+	const handleSelectBrand = useCallback((id: BrandLogoId) => {
+		const nextState = {
+			...window.history.state,
+			radianBrandLogoDialog: true,
+		}
+		if (getBrandFromPathname(window.location.pathname)) {
+			window.history.replaceState(nextState, "", getBrandLogoPagePath(id))
+		} else {
+			window.history.pushState(nextState, "", getBrandLogoPagePath(id))
+			ownsDialogHistoryEntryRef.current = true
+		}
+		setSelectedBrand(id)
+	}, [])
 
 	const handleDialogOpenChange = (open: boolean) => {
 		if (open) return
@@ -301,10 +295,9 @@ export default function BrandLogosPlayground({
 
 			{visibleLogos.length ? (
 				<ul className="grid w-full list-none grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 lg:gap-5">
-					{renderedLogos.map((brand, index) => (
+					{renderedLogos.map((brand) => (
 						<BrandLogoTile
 							key={brand.id}
-							priority={index < INITIAL_LOGOS_LIMIT}
 							id={brand.id}
 							variant={variant}
 							colorway={colorway}

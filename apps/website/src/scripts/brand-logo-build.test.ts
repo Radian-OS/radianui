@@ -5,7 +5,7 @@ import { join } from "node:path"
 import { tmpdir } from "node:os"
 import { getBrandLogoBuildCommands } from "./brand-logo-build"
 
-test("default production build does not depend on the brand-logo feature or network sync", () => {
+test("explicit opt-out builds do not depend on the brand-logo feature or network sync", () => {
 	assert.deepEqual(
 		getBrandLogoBuildCommands("/missing-brand-logo-feature", false),
 		[]

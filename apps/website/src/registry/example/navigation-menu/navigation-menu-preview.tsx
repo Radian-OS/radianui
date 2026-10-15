@@ -338,6 +338,7 @@ function ProductPromo() {
 					src="/og/static-og.png"
 					alt="Radian library preview"
 					fill
+					sizes="(min-width: 768px) 234px, calc(100vw - 64px)"
 					className="object-cover"
 				/>
 			</div>

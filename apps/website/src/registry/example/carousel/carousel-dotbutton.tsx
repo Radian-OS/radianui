@@ -67,6 +67,7 @@ export default function CarouselDotButton() {
 									src={image.src}
 									alt={image.alt}
 									fill
+									sizes="(max-width: 384px) calc(100vw - 8px), 376px"
 									className="object-cover"
 								/>
 							</AspectRatio>

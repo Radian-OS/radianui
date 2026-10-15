@@ -2,11 +2,11 @@ import { execSync } from "child_process"
 import { getBrandLogoBuildCommands } from "./brand-logo-build"
 import { fileURLToPath } from "node:url"
 
-// Upstream logo downloads are optional until the brand-logo feature is released.
+// Include the static logo assets in every deployment unless explicitly opted out.
 const commands = [
 	...getBrandLogoBuildCommands(
 		fileURLToPath(new URL("../../", import.meta.url)),
-		process.env.SYNC_BRAND_LOGOS === "true"
+		process.env.SYNC_BRAND_LOGOS !== "false"
 	),
 	"pnpm exec fumadocs-mdx",
 	"pnpm run generate-examples-json",

@@ -134,6 +134,7 @@ function ResourceLibraryVisual() {
 					src="/avatar/Table.png"
 					alt="User management table demonstrating Radian UI blocks"
 					fill
+					sizes="900px"
 					className="object-contain"
 				/>
 			</div>
@@ -142,6 +143,7 @@ function ResourceLibraryVisual() {
 					src="/avatar/Dropdown.png"
 					alt="Account navigation dropdown demonstrating a Radian UI block"
 					fill
+					sizes="400px"
 					className="object-contain"
 				/>
 			</div>
@@ -150,6 +152,7 @@ function ResourceLibraryVisual() {
 					src="/avatar/Table-1.png"
 					alt="User management table demonstrating Radian UI blocks in dark mode"
 					fill
+					sizes="900px"
 					className="object-contain"
 				/>
 			</div>
@@ -158,6 +161,7 @@ function ResourceLibraryVisual() {
 					src="/avatar/Dropdown-1.png"
 					alt="Account navigation dropdown demonstrating a Radian UI block in dark mode"
 					fill
+					sizes="400px"
 					className="object-contain"
 				/>
 			</div>

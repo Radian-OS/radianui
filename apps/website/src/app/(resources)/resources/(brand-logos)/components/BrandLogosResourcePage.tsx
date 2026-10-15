@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { preconnect } from "react-dom"
+import type { CSSProperties } from "react"
 import { cn } from "@/lib/utils"
 import { ResourcePage } from "../../components/ResourcePage"
 import BrandLogosDocs from "../docs/BrandLogosDocs"
@@ -8,10 +8,10 @@ import BrandLogosPlayground from "./BrandLogosPlayground"
 import type { BrandLogoId } from "./brand-logos-data"
 import {
 	BRAND_LOGO_ASSET_COUNT,
-	BRAND_LOGO_CDN_ORIGIN,
 	brandLogos,
 	getBrandLogo,
 	getBrandLogoSvgUrl,
+	getBrandLogoDisplayUrl,
 	getBrandLogoMetadataDescription,
 } from "./brand-logos-data"
 
@@ -31,10 +31,10 @@ export function BrandLogosResourcePage({
 	const selectedBrand = initialSelectedBrand
 		? getBrandLogo(initialSelectedBrand)
 		: null
-	preconnect(BRAND_LOGO_CDN_ORIGIN, { crossOrigin: "anonymous" })
 
 	return (
 		<ResourcePage
+			animatedHeroBeams={false}
 			badge={{
 				count: `${brandLogos.length} Brands`,
 				label: `${BRAND_LOGO_ASSET_COUNT.toLocaleString("en-US")} Ready-to-Use Logo Assets`,
@@ -50,23 +50,17 @@ export function BrandLogosResourcePage({
 									"bg-bg border-soft relative flex items-center justify-center rounded-2xl border shadow-sm",
 									size === "large" ? "z-10 size-20" : "size-14"
 								)}>
-								<img
-									src={getBrandLogoSvgUrl(id, "light", "colored", "icon")}
-									alt={`${brand.name} logo`}
-									width={64}
-									height={64}
+								<span
+									role="img"
+									aria-label={`${brand.name} logo`}
+									style={
+										{
+											"--logo-light": `url("${getBrandLogoDisplayUrl(id, "light")}")`,
+											"--logo-dark": `url("${getBrandLogoDisplayUrl(id, "dark")}")`,
+										} as CSSProperties
+									}
 									className={cn(
-										"object-contain dark:hidden",
-										size === "large" ? "size-12" : "size-8"
-									)}
-								/>
-								<img
-									src={getBrandLogoSvgUrl(id, "dark", "colored", "icon")}
-									alt=""
-									width={64}
-									height={64}
-									className={cn(
-										"hidden object-contain dark:block",
+										"bg-[image:var(--logo-light)] bg-contain bg-center bg-no-repeat dark:bg-[image:var(--logo-dark)]",
 										size === "large" ? "size-12" : "size-8"
 									)}
 								/>

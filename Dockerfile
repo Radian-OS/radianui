@@ -20,7 +20,7 @@ RUN pnpm install --frozen-lockfile
 COPY --from=builder /app/out/full/ .
 RUN npm install -g turbo
 
-ARG SYNC_BRAND_LOGOS=false
+ARG SYNC_BRAND_LOGOS=true
 ARG NEXT_PUBLIC_DEPLOYMENT_ENV=DEV
 ARG NEXT_PUBLIC_WEBSITE_URL=https://radianui.com
 ARG NEXT_PUBLIC_BLOCKS_URL=https://blocks.radianui.com

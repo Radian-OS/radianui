@@ -1,11 +1,9 @@
 "use client"
 
-import { memo, useCallback, useState } from "react"
-import { useBrandLogoTheme } from "./use-brand-logo-theme"
+import { memo, useCallback, useState, type CSSProperties } from "react"
 import { toast } from "sonner"
 import { cn } from "@/lib/utils"
 import { Button } from "@/registry/ui/button"
-import { fetchBrandLogoSvg, renderBrandLogoPng } from "./brand-logo-assets"
 import { BrandLogoTileMenu } from "./BrandLogoTileMenu"
 import { showBrandLogoToast } from "./BrandLogoToast"
 import type {
@@ -17,17 +15,21 @@ import {
 	getBrandLogo,
 	getBrandLogoPagePath,
 	getBrandLogoDisplayUrl,
-	getBrandLogoFallbackUrl,
 	getBrandLogoHtmlMarkup,
 	getBrandLogoNextImageMarkup,
 	getBrandLogoSvgUrl,
 } from "./brand-logos-data"
 
+function currentTheme() {
+	return document.documentElement.classList.contains("dark")
+		? ("dark" as const)
+		: ("light" as const)
+}
+
 interface BrandLogoTileProps {
 	id: BrandLogoId
 	variant: BrandLogoVariant
 	colorway?: BrandLogoColorway
-	priority?: boolean
 	onSelect: (id: BrandLogoId) => void
 }
 
@@ -35,31 +37,25 @@ export const BrandLogoTile = memo(function BrandLogoTile({
 	id,
 	variant,
 	colorway = "colored",
-	priority = false,
 	onSelect,
 }: BrandLogoTileProps) {
 	const [copied, setCopied] = useState(false)
-	const activeTheme = useBrandLogoTheme()
 	const brand = getBrandLogo(id)
-
-	const lightSvgUrl = getBrandLogoSvgUrl(id, "light", colorway, variant)
-	const darkSvgUrl = getBrandLogoSvgUrl(id, "dark", colorway, variant)
-	const lightDisplayUrl = getBrandLogoDisplayUrl(id, "light", colorway, variant)
-	const darkDisplayUrl = getBrandLogoDisplayUrl(id, "dark", colorway, variant)
-	const activeSvgUrl = activeTheme === "dark" ? darkSvgUrl : lightSvgUrl
-	const activeDisplayUrl =
-		activeTheme === "dark" ? darkDisplayUrl : lightDisplayUrl
+	const previewStyle = {
+		"--logo-light": `url("${getBrandLogoDisplayUrl(id, "light", colorway, variant)}")`,
+		"--logo-dark": `url("${getBrandLogoDisplayUrl(id, "dark", colorway, variant)}")`,
+	} as CSSProperties
 
 	const showCopied = useCallback(
 		(format: string) => {
 			setCopied(true)
 			showBrandLogoToast({
-				logoUrl: activeDisplayUrl,
+				logoUrl: getBrandLogoDisplayUrl(id, currentTheme(), colorway, variant),
 				description: `${format} has been copied to your clipboard.`,
 			})
 			window.setTimeout(() => setCopied(false), 1600)
 		},
-		[activeDisplayUrl]
+		[id, colorway, variant]
 	)
 
 	const copyText = useCallback(
@@ -76,27 +72,32 @@ export const BrandLogoTile = memo(function BrandLogoTile({
 
 	const copySvg = useCallback(async () => {
 		try {
-			const svgMarkup = await fetchBrandLogoSvg(
-				id,
-				activeTheme,
-				colorway,
-				variant
+			const { fetchBrandLogoSvg } = await import("./brand-logo-assets")
+			await navigator.clipboard.writeText(
+				await fetchBrandLogoSvg(id, currentTheme(), colorway, variant)
 			)
-			await navigator.clipboard.writeText(svgMarkup)
 			showCopied("SVG code")
 		} catch {
 			toast.error("Could not copy SVG code")
 		}
-	}, [id, activeTheme, colorway, variant, showCopied])
+	}, [id, colorway, variant, showCopied])
 
 	const copyPng = useCallback(async () => {
 		try {
 			if (!navigator.clipboard.write || !("ClipboardItem" in window)) {
-				await copyText(activeSvgUrl, "CDN URL")
+				await copyText(
+					getBrandLogoSvgUrl(id, currentTheme(), colorway, variant),
+					"CDN URL"
+				)
 				return
 			}
-
-			const blob = await renderBrandLogoPng(id, activeTheme, colorway, variant)
+			const { renderBrandLogoPng } = await import("./brand-logo-assets")
+			const blob = await renderBrandLogoPng(
+				id,
+				currentTheme(),
+				colorway,
+				variant
+			)
 			await navigator.clipboard.write([
 				new ClipboardItem({ "image/png": blob }),
 			])
@@ -104,25 +105,26 @@ export const BrandLogoTile = memo(function BrandLogoTile({
 		} catch {
 			toast.error("Could not copy PNG image")
 		}
-	}, [id, activeTheme, colorway, variant, activeSvgUrl, copyText, showCopied])
+	}, [id, colorway, variant, copyText, showCopied])
 
 	const handleCopyUrl = useCallback(() => {
-		copyText(activeSvgUrl, "CDN URL")
-	}, [copyText, activeSvgUrl])
-
+		void copyText(
+			getBrandLogoSvgUrl(id, currentTheme(), colorway, variant),
+			"CDN URL"
+		)
+	}, [copyText, id, colorway, variant])
 	const handleCopyNextImage = useCallback(() => {
-		copyText(
-			getBrandLogoNextImageMarkup(id, activeTheme, colorway, variant),
+		void copyText(
+			getBrandLogoNextImageMarkup(id, currentTheme(), colorway, variant),
 			"Next.js markup"
 		)
-	}, [copyText, id, activeTheme, colorway, variant])
-
+	}, [copyText, id, colorway, variant])
 	const handleCopyHtmlImage = useCallback(() => {
-		copyText(
-			getBrandLogoHtmlMarkup(id, activeTheme, colorway, variant),
+		void copyText(
+			getBrandLogoHtmlMarkup(id, currentTheme(), colorway, variant),
 			"HTML markup"
 		)
-	}, [copyText, id, activeTheme, colorway, variant])
+	}, [copyText, id, colorway, variant])
 
 	return (
 		<li className="group relative aspect-square w-full min-w-0">
@@ -147,31 +149,17 @@ export const BrandLogoTile = memo(function BrandLogoTile({
 						event.preventDefault()
 						onSelect(id)
 					}}>
-					<img
-						src={activeDisplayUrl}
-						alt={`${brand.name} ${variant}`}
-						width={variant === "icon" ? 48 : 180}
-						height={48}
-						loading={priority ? "eager" : "lazy"}
-						decoding="async"
-						onError={(event) => {
-							const fallback = getBrandLogoFallbackUrl(
-								id,
-								activeTheme,
-								colorway,
-								variant
-							)
-							if (!event.currentTarget.src.endsWith(fallback))
-								event.currentTarget.src = fallback
-						}}
+					<span
+						role="img"
+						aria-label={`${brand.name} ${variant}`}
+						style={previewStyle}
 						className={cn(
-							"object-contain",
+							"bg-[image:var(--logo-light)] bg-contain bg-center bg-no-repeat dark:bg-[image:var(--logo-dark)]",
 							variant === "icon" ? "size-12 shrink-0" : "h-[28%] w-full"
 						)}
 					/>
 				</a>
 			</Button>
-
 			<BrandLogoTileMenu
 				onCopyPng={copyPng}
 				onCopySvg={copySvg}
@@ -179,7 +167,6 @@ export const BrandLogoTile = memo(function BrandLogoTile({
 				onCopyNextImage={handleCopyNextImage}
 				onCopyHtmlImage={handleCopyHtmlImage}
 			/>
-
 			<div className="absolute inset-x-3 bottom-3 z-20 opacity-0 transition-opacity group-focus-within:opacity-100 group-hover:opacity-100">
 				<Button
 					size="28"
