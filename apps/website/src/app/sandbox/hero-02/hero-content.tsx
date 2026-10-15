@@ -54,10 +54,10 @@ export function HeroContent({
 					className="gap-2.5 rounded-full px-5 font-medium transition-transform active:scale-95">
 					<Link href="#google-signin">
 						<Image
-							src="https://www.google.com/s2/favicons?sz=32&domain=google.com"
+							src="https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/colored/technology/icon/google.svg"
 							alt="Google"
-							width={16}
-							height={16}
+							width={20}
+							height={20}
 							className="rounded-xs"
 						/>
 						<span>Sign In with Google</span>

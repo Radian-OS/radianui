@@ -15,16 +15,16 @@ export interface FolioHeroData {
 
 export const FOLIO_HERO_DATA: FolioHeroData = {
 	badgeText: "Simplify Charts — Open Source",
-	badgeHref: "https://ruixen.com",
+	badgeHref: "https://radianui.com",
 	titleLine1: "Making Data",
 	titleLine2: "Intelligence Accessible",
 	description:
 		"Folio builds AI-powered tools that help teams query databases, visualize data, and make faster decisions — without writing SQL.",
 	primaryCtaText: "Explore Folio",
-	primaryCtaHref: "https://ruixen.com",
+	primaryCtaHref: "https://radianui.com",
 	secondaryCtaText: "Get in Touch",
-	secondaryCtaHref: "https://ruixen.com",
+	secondaryCtaHref: "https://radianui.com",
 	creditPrefix: "Crafted with",
-	creditLinkText: "Ruixen UI",
-	creditLinkHref: "https://ruixen.com",
+	creditLinkText: "Radian UI",
+	creditLinkHref: "https://radianui.com",
 }

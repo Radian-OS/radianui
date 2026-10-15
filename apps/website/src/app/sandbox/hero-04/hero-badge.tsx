@@ -1,17 +1,31 @@
 import React from "react"
 import Link from "next/link"
 import { ChevronRight } from "lucide-react"
+import { Badge } from "@/styles/default/ui/badge"
+import { cn } from "@/lib/utils"
 import { FOLIO_HERO_DATA } from "./types"
 
-export function HeroBadge() {
+interface HeroBadgeProps {
+	text?: string
+	href?: string
+	className?: string
+}
+
+export function HeroBadge({
+	text = FOLIO_HERO_DATA.badgeText,
+	href = FOLIO_HERO_DATA.badgeHref,
+	className,
+}: HeroBadgeProps) {
 	return (
-		<Link
-			href={FOLIO_HERO_DATA.badgeHref}
-			target="_blank"
-			rel="noopener noreferrer"
-			className="group border-border bg-card/60 text-fg-secondary hover:border-border/80 hover:text-fg inline-flex items-center gap-1.5 rounded-full border px-4 py-1.5 text-xs font-medium shadow-xs backdrop-blur-xs transition-colors">
-			<span>{FOLIO_HERO_DATA.badgeText}</span>
-			<ChevronRight className="text-fg-secondary size-3.5 transition-transform group-hover:translate-x-0.5" />
-		</Link>
+		<Badge
+			asChild
+			variant="outline"
+			color="neutral"
+			className={cn("group gap-1.5 rounded-full px-4", className)}>
+			<Link href={href} target="_blank" rel="noopener noreferrer">
+				<span className="text-fg-secondary">{text}</span>
+				<ChevronRight className="text-fg-secondary size-3.5 transition-transform group-hover:translate-x-0.5" />
+			</Link>
+		</Badge>
 	)
 }
