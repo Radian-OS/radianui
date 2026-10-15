@@ -1,6 +1,7 @@
 import { execSync } from "child_process"
 
 const commands = [
+	"pnpm run sync:brand-logos",
 	"pnpm exec fumadocs-mdx",
 	"pnpm run generate-examples-json",
 	"pnpm run generate-example-registry",

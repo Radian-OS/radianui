@@ -3,10 +3,11 @@ import { websiteMetadata } from "@/config/website-metadata-config"
 import { absoluteUrl } from "@/lib/structured-data"
 import { BrandLogosResourcePage } from "../components/BrandLogosResourcePage"
 
+import { brandLogos } from "../components/brand-logos-data"
+
 const pageUrl = absoluteUrl("/resources/brand-logos")
 const pageTitle = "Brand Logos & Tech Company Logos | SVG, PNG & CDN"
-const pageDescription =
-	"Explore 244+ brand and tech company logos. Download SVG and PNG, copy SVG code, or use CDN links with light and dark mode support."
+const pageDescription = `Explore ${brandLogos.length}+ brand and tech company logos. Download SVG and PNG, copy SVG code, or use CDN links with light and dark mode support.`
 const pageImage = absoluteUrl("/media/assets-page/popular-brands-light.png")
 
 export const metadata: Metadata = {

@@ -84,7 +84,7 @@ export function BrandLogosResourcePage({
 			description={
 				selectedBrand
 					? getBrandLogoMetadataDescription(selectedBrand.id)
-					: "Explore 244+ brand and tech company logos across AI, development, cloud, data, design, business, and gaming. Download SVG and PNG, copy SVG code, or use CDN links with light and dark mode support."
+					: `Explore ${brandLogos.length}+ brand and tech company logos across AI, development, cloud, data, design, business, and gaming. Download SVG and PNG, copy SVG code, or use CDN links with light and dark mode support.`
 			}
 			actions={<BrandLogosHeroActions />}
 			showcaseLabel="Browse free brand logo assets"

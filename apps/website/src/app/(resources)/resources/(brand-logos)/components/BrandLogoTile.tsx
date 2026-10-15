@@ -150,58 +150,25 @@ export const BrandLogoTile = memo(function BrandLogoTile({
 						onSelect(id)
 					}}>
 					<img
-						src={lightDisplayUrl}
+						src={activeDisplayUrl}
 						alt={`${brand.name} ${variant}`}
 						width={variant === "icon" ? 48 : 180}
 						height={48}
 						loading={priority ? "eager" : "lazy"}
 						decoding="async"
-						fetchPriority={priority ? "high" : "auto"}
-						onError={(e) => {
+						onError={(event) => {
 							registerBrandLogoFallback(id)
 							const fallback = getBrandLogoFallbackUrl(
 								id,
-								"light",
+								activeTheme,
 								colorway,
 								variant
 							)
-							if (
-								e.currentTarget.src !== fallback &&
-								!e.currentTarget.src.endsWith(fallback)
-							) {
-								e.currentTarget.src = fallback
-							}
+							if (!event.currentTarget.src.endsWith(fallback))
+								event.currentTarget.src = fallback
 						}}
 						className={cn(
-							"object-contain dark:hidden",
-							variant === "icon" ? "size-12 shrink-0" : "h-[28%] w-full"
-						)}
-					/>
-					<img
-						src={darkDisplayUrl}
-						alt=""
-						width={variant === "icon" ? 48 : 180}
-						height={48}
-						loading={priority ? "eager" : "lazy"}
-						decoding="async"
-						fetchPriority={priority ? "high" : "auto"}
-						onError={(e) => {
-							registerBrandLogoFallback(id)
-							const fallback = getBrandLogoFallbackUrl(
-								id,
-								"dark",
-								colorway,
-								variant
-							)
-							if (
-								e.currentTarget.src !== fallback &&
-								!e.currentTarget.src.endsWith(fallback)
-							) {
-								e.currentTarget.src = fallback
-							}
-						}}
-						className={cn(
-							"hidden object-contain dark:block",
+							"object-contain",
 							variant === "icon" ? "size-12 shrink-0" : "h-[28%] w-full"
 						)}
 					/>

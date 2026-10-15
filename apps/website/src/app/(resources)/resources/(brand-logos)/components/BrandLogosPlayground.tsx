@@ -9,6 +9,7 @@ import {
 	useRef,
 	useState,
 } from "react"
+import dynamic from "next/dynamic"
 import { Search, SearchX } from "lucide-react"
 import {
 	Empty,
@@ -19,7 +20,6 @@ import {
 } from "@/registry/ui/empty"
 import { Input, InputGroup, InputWrapper } from "@/registry/ui/input"
 import { BrandLogoCategoryDropdown } from "./BrandLogoCategoryDropdown"
-import { BrandLogoDetailsDialog } from "./BrandLogoDetailsDialog"
 import { BrandLogoTile } from "./BrandLogoTile"
 import type {
 	BrandLogoColorway,
@@ -36,10 +36,16 @@ import {
 	getBrandLogoSearchTerms,
 } from "./brand-logos-data"
 
+const BrandLogoDetailsDialog = dynamic(() =>
+	import("./BrandLogoDetailsDialog").then(
+		(module) => module.BrandLogoDetailsDialog
+	)
+)
+
 const BRAND_LOGO_VARIANT_STORAGE_KEY = "radian-brand-logos-variant"
 const BRAND_LOGO_COLORWAY_STORAGE_KEY = "radian-brand-logos-colorway"
-const INITIAL_LOGOS_LIMIT = 72
-const LOGOS_BATCH_SIZE = 72
+const INITIAL_LOGOS_LIMIT = 24
+const LOGOS_BATCH_SIZE = 24
 
 interface BrandLogosPlaygroundProps {
 	initialSelectedBrand?: BrandLogoId | null
@@ -295,13 +301,12 @@ export default function BrandLogosPlayground({
 
 			{visibleLogos.length ? (
 				<ul className="grid w-full list-none grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 lg:gap-5">
-					{renderedLogos.map((brand, index) => (
+					{renderedLogos.map((brand) => (
 						<BrandLogoTile
 							key={brand.id}
 							id={brand.id}
 							variant={variant}
 							colorway={colorway}
-							priority={index < 12}
 							onSelect={handleSelectBrand}
 						/>
 					))}
@@ -327,14 +332,16 @@ export default function BrandLogosPlayground({
 				className="pointer-events-none h-px w-full"
 			/>
 
-			<BrandLogoDetailsDialog
-				id={selectedBrand}
-				variant={variant}
-				colorway={colorway}
-				open={selectedBrand !== null}
-				onOpenChange={handleDialogOpenChange}
-				onSelectBrand={handleSelectBrand}
-			/>
+			{selectedBrand !== null && (
+				<BrandLogoDetailsDialog
+					id={selectedBrand}
+					variant={variant}
+					colorway={colorway}
+					open={selectedBrand !== null}
+					onOpenChange={handleDialogOpenChange}
+					onSelectBrand={handleSelectBrand}
+				/>
+			)}
 		</div>
 	)
 }

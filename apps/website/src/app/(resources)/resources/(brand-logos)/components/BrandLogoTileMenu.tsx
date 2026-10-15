@@ -17,7 +17,7 @@ import {
 	DropdownMenuLabel,
 	DropdownMenuTrigger,
 } from "@/registry/ui/dropdown-menu"
-import { NextjsIcon } from "../../(avatar)/components/AvatarTileMenu"
+import { NextjsIcon } from "../../components/NextjsIcon"
 
 interface BrandLogoTileMenuProps {
 	onCopyPng: () => void

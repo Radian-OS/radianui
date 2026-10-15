@@ -1,4 +1,4 @@
-import brandLogosManifest from "./brand-logos-manifest.json"
+import brandLogosManifest from "./brand-logos-manifest.generated.json"
 
 export const BRAND_LOGO_CDN_ORIGIN = "https://cdn.jsdelivr.net"
 export const BRAND_LOGOS_PAGE_PATH = "/resources/brand-logos"
@@ -29,6 +29,7 @@ export interface BrandLogo {
 }
 
 const brandNameOverrides: Record<string, string> = {
+	radianui: "Radian UI",
 	"amazon-pay": "Amazon Pay",
 	"american-express": "American Express",
 	"android-studio": "Android Studio",
@@ -138,7 +139,7 @@ export const brandLogoCategories: readonly BrandLogoCategory[] =
 	brandLogosManifest.categories.map((category) => ({
 		slug: category.slug,
 		label: category.label,
-		count: category.count,
+		count: category.brands.length,
 		brands: category.brands,
 	}))
 
@@ -252,36 +253,10 @@ const PRIVACY_SENSITIVE_BRAND_IDS = new Set<string>([
 
 const dynamicFallbackBrands = new Set<string>()
 
-if (typeof window !== "undefined") {
-	try {
-		const stored = JSON.parse(
-			window.sessionStorage.getItem("radian-fallback-brands") || "[]"
-		) as string[]
-		for (const id of stored) {
-			dynamicFallbackBrands.add(id)
-		}
-	} catch {
-		// Ignore storage errors
-	}
-}
-
+// Keep render-time URL selection identical on the server and during hydration.
+// Failed image requests register a fallback for subsequent renders in this page session.
 export function registerBrandLogoFallback(id: BrandLogoId) {
 	dynamicFallbackBrands.add(id)
-	if (typeof window !== "undefined") {
-		try {
-			const existing = JSON.parse(
-				window.sessionStorage.getItem("radian-fallback-brands") || "[]"
-			) as string[]
-			if (!existing.includes(id)) {
-				window.sessionStorage.setItem(
-					"radian-fallback-brands",
-					JSON.stringify([...existing, id])
-				)
-			}
-		} catch {
-			// Ignore storage access errors
-		}
-	}
 }
 
 export function isBrandLogoFallbackRequired(id: BrandLogoId) {

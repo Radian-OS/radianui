@@ -1,6 +1,7 @@
 {
   "version": 2,
   "pathTemplate": "src/{theme}/{colorway}/{category}/{variant}/{brand}.svg",
+  "format": "svg",
   "themes": [
     "light",
     "dark"
@@ -9,22 +10,14 @@
     "colored",
     "neutral"
   ],
-  "format": "svg",
-  "brandCount": 244,
-  "assetCount": 1952,
   "variants": [
     "icon",
     "wordmark"
   ],
-  "nominalDimensions": {
-    "icon": "24x24",
-    "wordmark": "180x48"
-  },
   "categories": [
     {
       "slug": "ai",
       "label": "AI",
-      "count": 22,
       "brands": [
         "anthropic",
         "chatgpt",
@@ -48,12 +41,12 @@
         "perplexity",
         "stability-ai",
         "windsurf"
-      ]
+      ],
+      "count": 22
     },
     {
       "slug": "business-marketing",
       "label": "Business & Marketing",
-      "count": 23,
       "brands": [
         "algolia",
         "amplitude",
@@ -78,12 +71,12 @@
         "wordpress",
         "zapier",
         "zendesk"
-      ]
+      ],
+      "count": 23
     },
     {
       "slug": "cloud-devops",
       "label": "Cloud & DevOps",
-      "count": 22,
       "brands": [
         "ansible",
         "aws",
@@ -107,12 +100,12 @@
         "terraform",
         "travis-ci",
         "vercel"
-      ]
+      ],
+      "count": 22
     },
     {
       "slug": "database-data",
       "label": "Database & Data",
-      "count": 19,
       "brands": [
         "aws-dynamodb",
         "cassandra",
@@ -133,12 +126,12 @@
         "snowflake",
         "sqlite",
         "supabase"
-      ]
+      ],
+      "count": 19
     },
     {
       "slug": "design-creative",
       "label": "Design & Creative",
-      "count": 13,
       "brands": [
         "adobe",
         "affinity",
@@ -153,12 +146,12 @@
         "miro",
         "sketch",
         "zeplin"
-      ]
+      ],
+      "count": 13
     },
     {
       "slug": "development",
       "label": "Development",
-      "count": 32,
       "brands": [
         "bitbucket",
         "bun",
@@ -192,12 +185,12 @@
         "swift",
         "typescript",
         "yarn"
-      ]
+      ],
+      "count": 32
     },
     {
       "slug": "entertainment-gaming",
       "label": "Entertainment & Gaming",
-      "count": 7,
       "brands": [
         "disney",
         "netflix",
@@ -206,12 +199,12 @@
         "spotify",
         "unity",
         "unreal-engine"
-      ]
+      ],
+      "count": 7
     },
     {
       "slug": "finance-payments",
       "label": "Finance & Payments",
-      "count": 23,
       "brands": [
         "airwallex",
         "alipay",
@@ -236,12 +229,12 @@
         "visa",
         "wechat-pay",
         "wise"
-      ]
+      ],
+      "count": 23
     },
     {
       "slug": "frameworks",
       "label": "Frameworks",
-      "count": 28,
       "brands": [
         "angular",
         "astro",
@@ -271,12 +264,12 @@
         "vite",
         "vue",
         "webpack"
-      ]
+      ],
+      "count": 28
     },
     {
       "slug": "productivity-work",
       "label": "Productivity & Work",
-      "count": 20,
       "brands": [
         "airtable",
         "asana",
@@ -298,12 +291,12 @@
         "todoist",
         "trello",
         "zoom"
-      ]
+      ],
+      "count": 20
     },
     {
       "slug": "social-content",
       "label": "Social & Content",
-      "count": 15,
       "brands": [
         "discord",
         "facebook",
@@ -320,12 +313,12 @@
         "whatsapp",
         "x",
         "youtube"
-      ]
+      ],
+      "count": 15
     },
     {
       "slug": "technology",
       "label": "Technology",
-      "count": 21,
       "brands": [
         "acer",
         "amazon",
@@ -348,7 +341,14 @@
         "vs-code",
         "xcode",
         "xiaomi"
-      ]
+      ],
+      "count": 21
     }
-  ]
+  ],
+  "brandCount": 245,
+  "assetCount": 1960,
+  "nominalDimensions": {
+    "icon": "24x24",
+    "wordmark": "180x48"
+  }
 }

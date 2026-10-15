@@ -5,6 +5,8 @@ import {
 	ResourceTextSection,
 } from "../../components/ResourceDocs"
 import {
+	brandLogos,
+	brandLogoCategories,
 	getBrandLogo,
 	getBrandLogoSvgUrl,
 } from "../components/brand-logos-data"
@@ -134,8 +136,7 @@ const faqItems = [
 	},
 	{
 		question: "What does this free brand logo library include?",
-		answer:
-			"Browse 244 brands across 12 categories, including AI, development, design, social platforms, and payments. Each brand has SVG icons and wordmarks in light, dark, colored, and neutral variants: eight assets per brand. You can also export PNGs in your browser.",
+		answer: `Browse ${brandLogos.length} brands across ${brandLogoCategories.length} categories, including AI, development, design, social platforms, and payments. Each brand has SVG icons and wordmarks in light, dark, colored, and neutral variants: eight assets per brand. You can also export PNGs in your browser.`,
 	},
 	{
 		question: "When should I use the light or dark option?",
@@ -169,7 +170,8 @@ export default function BrandLogosDocs() {
 				visual={<BrandLogoCollection />}>
 				<p>
 					Need a Google logo for a sign-in screen, a Microsoft wordmark for an
-					integration page, or a React icon for your portfolio? Browse 244
+					integration page, or a React icon for your portfolio? Browse{" "}
+					{brandLogos.length}
 					brands in one place and choose the version that fits your layout.
 				</p>
 				<p>
@@ -256,6 +258,7 @@ function BrandLogoCollection() {
 						<img
 							src={getBrandLogoSvgUrl(id, "light", "colored", "wordmark")}
 							alt={`${brand.name} wordmark`}
+							loading="lazy"
 							width={180}
 							height={48}
 							className="h-12 w-full max-w-45 object-contain dark:hidden"
@@ -263,6 +266,7 @@ function BrandLogoCollection() {
 						<img
 							src={getBrandLogoSvgUrl(id, "dark", "colored", "wordmark")}
 							alt=""
+							loading="lazy"
 							width={180}
 							height={48}
 							className="hidden h-12 w-full max-w-45 object-contain dark:block"
