@@ -27,6 +27,7 @@ import {
 	CodeXml,
 	Info,
 } from "lucide-react"
+import PrimaryColorPicker from "./primary-color-picker"
 import PresetPicker from "./preset-picker"
 import { GoogleIcon, RadianIcon } from "./icons"
 import FontPicker from "./font-picker"
@@ -79,26 +80,10 @@ export function ThemerSidebar() {
 					</SidebarGroupLabel>
 					<div className="grid grid-cols-3 gap-2">
 						{/* Primary */}
-						<div className="col-span-1 row-span-2 flex h-[136px] flex-col justify-between overflow-hidden rounded-lg bg-[#10b981] p-2 text-white shadow-sm">
-							<div className="flex items-start justify-between">
-								<span className="text-xs font-semibold">Primary</span>
-								<Lock className="size-3 opacity-70" />
-							</div>
-							<div className="flex flex-col gap-0.5">
-								<span className="mb-1 w-fit rounded-sm bg-white/20 px-1.5 py-0.5 text-[10px] leading-none">
-									Main
-								</span>
-								<span className="truncate text-xs font-medium">
-									Royal Emerald
-								</span>
-								<div className="mt-1 flex gap-1">
-									<div className="h-1 w-full rounded-full bg-white/30" />
-									<div className="h-1 w-full rounded-full bg-white/30" />
-									<div className="h-1 w-full rounded-full bg-white/30" />
-									<div className="h-1 w-full rounded-full bg-white" />
-								</div>
-							</div>
-						</div>
+						<PrimaryColorPicker
+							value={params.primaryColor}
+							onChange={(val) => setParams({ primaryColor: val })}
+						/>
 
 						{/* Secondary */}
 						<div className="col-span-1 flex h-[64px] flex-col justify-between overflow-hidden rounded-lg bg-[#f97316] p-2 text-white shadow-sm">
