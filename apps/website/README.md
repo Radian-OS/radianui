@@ -55,3 +55,5 @@ Commit `brand-logo-assets-version.generated.json` with the generated catalog. De
 Logo asset generation defaults to enabled in the build script and Dockerfile. Deployment workflows inherit this default without branch-specific settings. Turbo caches the generated public assets and version files together with `.next`; restoring a build must restore both.
 
 Brand-logo tile and hero previews use CSS theme selection with stable server markup. Theme changes do not require a hydration hook or a second render of every tile. The use-case carousel loads near the viewport and pauses when it leaves that area.
+
+If the brand-logo page is absent from a release branch, the build automatically skips both logo sync steps, even with the default Docker setting. No logo manifest or assets are needed in that case. When the page is present, its required sync scripts must be present too; incomplete feature deployments fail explicitly.

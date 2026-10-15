@@ -6,8 +6,17 @@ export function getBrandLogoBuildCommands(
 	enabled: boolean
 ): string[] {
 	if (!enabled) return []
+	// The feature may be intentionally absent from a release branch.
+	if (
+		!existsSync(
+			join(
+				directory,
+				"src/app/(resources)/resources/(brand-logos)/brand-logos/page.tsx"
+			)
+		)
+	)
+		return []
 	const required = [
-		"src/app/(resources)/resources/(brand-logos)/brand-logos/page.tsx",
 		"src/scripts/sync-brand-logos-manifest.ts",
 		"src/scripts/sync-brand-logo-assets.ts",
 	]

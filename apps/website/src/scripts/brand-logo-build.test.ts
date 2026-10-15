@@ -12,10 +12,27 @@ test("explicit opt-out builds do not depend on the brand-logo feature or network
 	)
 })
 
+test("enabled builds skip the feature when its page and sync scripts are absent", () => {
+	const root = mkdtempSync(join(tmpdir(), "brand-logo-absent-"))
+	try {
+		assert.deepEqual(getBrandLogoBuildCommands(root, true), [])
+	} finally {
+		rmSync(root, { recursive: true, force: true })
+	}
+})
+
 test("explicit sync rejects incomplete deployments and runs both sync steps when complete", () => {
 	const root = mkdtempSync(join(tmpdir(), "brand-logo-build-"))
 	try {
-		assert.throws(() => getBrandLogoBuildCommands(root, true), /requires/)
+		assert.deepEqual(getBrandLogoBuildCommands(root, true), [])
+		const page =
+			"src/app/(resources)/resources/(brand-logos)/brand-logos/page.tsx"
+		mkdirSync(join(root, page, ".."), { recursive: true })
+		writeFileSync(join(root, page), "")
+		assert.throws(
+			() => getBrandLogoBuildCommands(root, true),
+			/requires.*sync-brand-logos-manifest/
+		)
 		for (const path of [
 			"src/app/(resources)/resources/(brand-logos)/brand-logos/page.tsx",
 			"src/scripts/sync-brand-logos-manifest.ts",

@@ -2,9 +2,25 @@ import { createHash } from "node:crypto"
 import { mkdir, readFile, writeFile, access, rename } from "node:fs/promises"
 import { dirname, join } from "node:path"
 import { fileURLToPath } from "node:url"
-import manifest from "../app/(resources)/resources/(brand-logos)/components/brand-logos-manifest.generated.json"
+interface BrandLogoManifest {
+	categories: Array<{ slug: string; brands: string[] }>
+	themes: string[]
+	colorways: string[]
+	variants: string[]
+}
 
 const root = fileURLToPath(new URL("../../", import.meta.url))
+// Read only when this sync script is executed; absent feature files must not
+// create a compile-time dependency in releases that omit brand logos.
+const manifest = JSON.parse(
+	await readFile(
+		join(
+			root,
+			"src/app/(resources)/resources/(brand-logos)/components/brand-logos-manifest.generated.json"
+		),
+		"utf8"
+	)
+) as BrandLogoManifest
 const versionFile = join(
 	root,
 	"src/app/(resources)/resources/(brand-logos)/components/brand-logo-assets-version.generated.json"

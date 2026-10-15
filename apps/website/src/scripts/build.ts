@@ -2,7 +2,7 @@ import { execSync } from "child_process"
 import { getBrandLogoBuildCommands } from "./brand-logo-build"
 import { fileURLToPath } from "node:url"
 
-// Include the static logo assets in every deployment unless explicitly opted out.
+// Sync assets by default when the brand-logo page exists; skip absent features.
 const commands = [
 	...getBrandLogoBuildCommands(
 		fileURLToPath(new URL("../../", import.meta.url)),
