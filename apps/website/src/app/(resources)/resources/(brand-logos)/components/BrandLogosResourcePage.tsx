@@ -13,7 +13,6 @@ import {
 	getBrandLogo,
 	getBrandLogoSvgUrl,
 	getBrandLogoMetadataDescription,
-	getBrandLogoPagePath,
 } from "./brand-logos-data"
 
 const heroLogos = [
@@ -134,29 +133,6 @@ export function BrandLogosResourcePage({
 						</section>
 					) : null}
 					<BrandLogosDocs />
-					<section
-						aria-labelledby="brand-logo-directory-heading"
-						className="mx-auto flex w-full max-w-200 flex-col gap-6 px-5 py-8">
-						<h2 id="brand-logo-directory-heading" className="heading-4">
-							Browse brand and tech company logos
-						</h2>
-						<p>
-							Find Google, Microsoft, and other company logos. Each page
-							includes SVG and PNG downloads, icons, wordmarks, and CDN links.
-						</p>
-						<ul className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-							{brandLogos.map((brand) => (
-								<li key={brand.id}>
-									<Link
-										href={getBrandLogoPagePath(brand.id)}
-										prefetch={false}
-										className="text-primary-text underline">
-										{brand.name} logo
-									</Link>
-								</li>
-							))}
-						</ul>
-					</section>
 				</>
 			}
 		/>

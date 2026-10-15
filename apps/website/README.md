@@ -45,3 +45,8 @@ pnpm run sync:brand-logo-assets /absolute/path/to/radian-resources/packages/bran
 ```
 
 Commit `brand-logo-assets-version.generated.json` with the generated catalog. Deployment must include the generated `public` directory, as with other Next.js static assets.
+
+
+### Resource image sitemap
+
+`pnpm run generate:image-sitemap` scans available resource pages and public images and writes `public/resources/image-sitemap.xml`. The development and production build commands run it before Next.js starts or compiles. Next.js serves the XML as a public static file; no deployed route scans source directories. The scanner and its tests live in `scripts/`, outside the server source tree, so they do not expand Next.js output-file tracing. Regenerate it after adding images to a running development checkout, or restart the dev server.
