@@ -48,6 +48,7 @@ export async function GET(request: NextRequest) {
 	try {
 		const upstreamUrl = `${CDN_BASE}/${assetPath}`
 		const response = await fetch(upstreamUrl, {
+			signal: AbortSignal.timeout(10000),
 			headers: {
 				"User-Agent": "RadianUI-BrandLogoProxy/1.0",
 			},

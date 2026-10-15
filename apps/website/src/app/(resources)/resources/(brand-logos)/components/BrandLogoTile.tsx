@@ -1,7 +1,7 @@
 "use client"
 
 import { memo, useCallback, useState } from "react"
-import { useTheme } from "next-themes"
+import { useBrandLogoTheme } from "./use-brand-logo-theme"
 import { toast } from "sonner"
 import { cn } from "@/lib/utils"
 import { Button } from "@/registry/ui/button"
@@ -21,7 +21,6 @@ import {
 	getBrandLogoHtmlMarkup,
 	getBrandLogoNextImageMarkup,
 	getBrandLogoSvgUrl,
-	registerBrandLogoFallback,
 } from "./brand-logos-data"
 
 interface BrandLogoTileProps {
@@ -40,8 +39,7 @@ export const BrandLogoTile = memo(function BrandLogoTile({
 	onSelect,
 }: BrandLogoTileProps) {
 	const [copied, setCopied] = useState(false)
-	const { resolvedTheme } = useTheme()
-	const activeTheme = resolvedTheme === "dark" ? "dark" : "light"
+	const activeTheme = useBrandLogoTheme()
 	const brand = getBrandLogo(id)
 
 	const lightSvgUrl = getBrandLogoSvgUrl(id, "light", colorway, variant)
@@ -157,7 +155,6 @@ export const BrandLogoTile = memo(function BrandLogoTile({
 						loading={priority ? "eager" : "lazy"}
 						decoding="async"
 						onError={(event) => {
-							registerBrandLogoFallback(id)
 							const fallback = getBrandLogoFallbackUrl(
 								id,
 								activeTheme,

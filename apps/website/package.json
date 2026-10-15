@@ -4,7 +4,8 @@
 	"type": "module",
 	"private": true,
 	"scripts": {
-		"dev": "next dev --port 3001",
+		"dev": "tsx src/scripts/sync-brand-logo-assets.ts --ensure && next dev --port 3001",
+		"sync:brand-logo-assets": "tsx src/scripts/sync-brand-logo-assets.ts",
 		"sync:brand-logos": "tsx src/scripts/sync-brand-logos-manifest.ts",
 		"build": "tsx src/scripts/build.ts",
 		"start": "next start",

@@ -1,15 +1,13 @@
+import Image from "next/image"
+import BrandLogoUseCasesMarquee from "./BrandLogoUseCasesMarquee"
+import { brandLogoCover } from "../components/brand-logo-previews"
 import { ResourceLibraryCTA } from "../../components/ResourceCTA"
 import {
 	ResourceDocs,
 	ResourceFaq,
 	ResourceTextSection,
 } from "../../components/ResourceDocs"
-import {
-	brandLogos,
-	brandLogoCategories,
-	getBrandLogo,
-	getBrandLogoSvgUrl,
-} from "../components/brand-logos-data"
+import { brandLogos, brandLogoCategories } from "../components/brand-logos-data"
 
 const featurePoints = [
 	{
@@ -198,7 +196,8 @@ export default function BrandLogosDocs() {
 				id="brand-logo-use-cases-heading"
 				eyebrow="Use cases"
 				title="Where to use these logos"
-				points={useCasePoints}>
+				points={useCasePoints}
+				visual={<BrandLogoUseCasesMarquee />}>
 				<p>
 					Use logos to identify the tools and services a page refers to. Keep
 					the company name nearby when someone needs to choose a provider or
@@ -237,43 +236,23 @@ export default function BrandLogosDocs() {
 	)
 }
 
-const collectionIds = [
-	"adobe",
-	"figma",
-	"github",
-	"openai",
-	"react",
-	"tailwind-css",
-] as const
-
 function BrandLogoCollection() {
 	return (
-		<div className="mx-auto grid w-full grid-cols-2 gap-3 sm:grid-cols-3 lg:w-200">
-			{collectionIds.map((id) => {
-				const brand = getBrandLogo(id)
-				return (
-					<div
-						key={id}
-						className="bg-bg border-soft flex h-36 items-center justify-center rounded-xl border p-5">
-						<img
-							src={getBrandLogoSvgUrl(id, "light", "colored", "wordmark")}
-							alt={`${brand.name} wordmark`}
-							loading="lazy"
-							width={180}
-							height={48}
-							className="h-12 w-full max-w-45 object-contain dark:hidden"
-						/>
-						<img
-							src={getBrandLogoSvgUrl(id, "dark", "colored", "wordmark")}
-							alt=""
-							loading="lazy"
-							width={180}
-							height={48}
-							className="hidden h-12 w-full max-w-45 object-contain dark:block"
-						/>
-					</div>
-				)
-			})}
+		<div className="border-soft bg-fill2 relative mx-auto h-100 w-full overflow-hidden rounded-2xl border lg:w-200">
+			<Image
+				src={brandLogoCover.light}
+				alt={brandLogoCover.alt}
+				fill
+				sizes="(min-width: 1024px) 800px, 100vw"
+				className="object-cover dark:hidden"
+			/>
+			<Image
+				src={brandLogoCover.dark}
+				alt={`${brandLogoCover.alt} in dark mode`}
+				fill
+				sizes="(min-width: 1024px) 800px, 100vw"
+				className="hidden object-cover dark:block"
+			/>
 		</div>
 	)
 }

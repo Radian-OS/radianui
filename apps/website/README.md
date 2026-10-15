@@ -30,3 +30,18 @@ pnpm run sync:brand-logos /absolute/path/to/radian-resources/packages/brand-logo
 ```
 
 Commit the generated snapshot when refreshing it. Upstream asset additions become public on the next website build and deployment; local development uses the snapshot until you sync again.
+
+
+### Local logo images
+
+The grid and logo dialogs display static SVGs from `public/_brand-assets/<revision>/`. These generated files come from the resources repo and are ignored by Git; upstream CDN links remain available for users to copy.
+
+Production builds sync the manifest and SVG files before `next build`. Downloads use a pinned upstream commit, bounded concurrency, timeouts, and skip files already available for that revision. Development checks the local files before starting Next.js and prepares them if missing.
+
+To prepare assets from the local resources checkout after syncing its manifest:
+
+```sh
+pnpm run sync:brand-logo-assets /absolute/path/to/radian-resources/packages/brand-logos/manifest.json
+```
+
+Commit `brand-logo-assets-version.generated.json` with the generated catalog. Deployment must include the generated `public` directory, as with other Next.js static assets.

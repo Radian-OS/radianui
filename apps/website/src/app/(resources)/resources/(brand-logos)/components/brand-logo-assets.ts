@@ -6,7 +6,7 @@ import type {
 } from "./brand-logos-data"
 import {
 	getBrandLogoFallbackUrl,
-	getBrandLogoSvgUrl,
+	getBrandLogoLocalUrl,
 	getLogoDimensions,
 } from "./brand-logos-data"
 
@@ -48,12 +48,14 @@ export async function fetchBrandLogoSvg(
 		}
 	}
 
-	const cdnUrl = getBrandLogoSvgUrl(id, theme, colorway, variant)
+	const cdnUrl = getBrandLogoLocalUrl(id, theme, colorway, variant)
 	const fallbackUrl = getBrandLogoFallbackUrl(id, theme, colorway, variant)
 
 	const svgPromise = (async () => {
 		try {
-			const response = await fetch(cdnUrl)
+			const response = await fetch(cdnUrl, {
+				signal: AbortSignal.timeout(8000),
+			})
 			if (response.ok) {
 				const svg = await response.text()
 				if (/^\s*<svg\b/i.test(svg)) {
@@ -73,7 +75,9 @@ export async function fetchBrandLogoSvg(
 			// Ignore CDN failure and proceed to safe proxy fallback
 		}
 
-		const fallbackResponse = await fetch(fallbackUrl)
+		const fallbackResponse = await fetch(fallbackUrl, {
+			signal: AbortSignal.timeout(10000),
+		})
 		if (!fallbackResponse.ok) {
 			throw new Error(`Could not fetch ${id} SVG (${fallbackResponse.status})`)
 		}

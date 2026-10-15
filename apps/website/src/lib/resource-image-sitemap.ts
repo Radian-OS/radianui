@@ -1,3 +1,7 @@
+import {
+	brandLogoCover,
+	brandLogoUseCasePreviews,
+} from "@/app/(resources)/resources/(brand-logos)/components/brand-logo-previews"
 import brandLogosManifest from "@/app/(resources)/resources/(brand-logos)/components/brand-logos-manifest.generated.json"
 import type {
 	BrandLogoTheme,
@@ -68,9 +72,17 @@ export function generateResourceImageSitemap() {
 		},
 		{
 			path: "/resources/brand-logos",
-			images: brandLogos.map((brand) =>
-				getBrandLogoSvgUrl(brand.id, "light", "colored", "icon")
-			),
+			images: [
+				brandLogoCover.light,
+				brandLogoCover.dark,
+				...brandLogoUseCasePreviews.flatMap((preview) => [
+					preview.light,
+					preview.dark,
+				]),
+				...brandLogos.map((brand) =>
+					getBrandLogoSvgUrl(brand.id, "light", "colored", "icon")
+				),
+			],
 		},
 		...flagNames.map((name) => ({
 			path: getFlagPagePath(name),

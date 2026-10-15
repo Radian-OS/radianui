@@ -1,3 +1,4 @@
+import assetVersion from "./brand-logo-assets-version.generated.json"
 import brandLogosManifest from "./brand-logos-manifest.generated.json"
 
 export const BRAND_LOGO_CDN_ORIGIN = "https://cdn.jsdelivr.net"
@@ -239,30 +240,6 @@ export function getBrandLogoNextImageMarkup(
 	return `<Image src="${getBrandLogoSvgUrl(id, theme, colorway, variant)}" alt="${brand.name} ${variant}" width={${width}} height={${height}} />`
 }
 
-const PRIVACY_SENSITIVE_BRAND_IDS = new Set<string>([
-	"amplitude",
-	"datadog",
-	"hotjar",
-	"intercom",
-	"klaviyo",
-	"mailchimp",
-	"mixpanel",
-	"optimizely",
-	"sentry",
-])
-
-const dynamicFallbackBrands = new Set<string>()
-
-// Keep render-time URL selection identical on the server and during hydration.
-// Failed image requests register a fallback for subsequent renders in this page session.
-export function registerBrandLogoFallback(id: BrandLogoId) {
-	dynamicFallbackBrands.add(id)
-}
-
-export function isBrandLogoFallbackRequired(id: BrandLogoId) {
-	return PRIVACY_SENSITIVE_BRAND_IDS.has(id) || dynamicFallbackBrands.has(id)
-}
-
 export function getBrandLogoFallbackUrl(
 	id: BrandLogoId,
 	theme: BrandLogoTheme = "light",
@@ -278,15 +255,26 @@ export function getBrandLogoFallbackUrl(
 	return `/api/brand-logos?token=${encodeURIComponent(token)}`
 }
 
+export function getBrandLogoLocalUrl(
+	id: BrandLogoId,
+	theme: BrandLogoTheme = "light",
+	colorway: BrandLogoColorway = "colored",
+	variant: BrandLogoVariant = "icon"
+) {
+	const brand = getBrandLogo(id)
+	const path = `src/${theme}/${colorway}/${brand.category}/${variant}/${brand.id}.svg`
+	const token = btoa(path)
+		.replace(/\+/g, "-")
+		.replace(/\//g, "_")
+		.replace(/=+$/, "")
+	return `/_brand-assets/${assetVersion.revision}/${token}.svg`
+}
+
 export function getBrandLogoDisplayUrl(
 	id: BrandLogoId,
 	theme: BrandLogoTheme = "light",
 	colorway: BrandLogoColorway = "colored",
 	variant: BrandLogoVariant = "icon"
 ) {
-	// Privacy-sensitive brands are commonly blocked by ad blockers / privacy filters
-	// when their name appears in a third-party CDN URL. Using the proxy URL avoids that.
-	return isBrandLogoFallbackRequired(id)
-		? getBrandLogoFallbackUrl(id, theme, colorway, variant)
-		: getBrandLogoSvgUrl(id, theme, colorway, variant)
+	return getBrandLogoLocalUrl(id, theme, colorway, variant)
 }

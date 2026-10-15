@@ -7,7 +7,7 @@ import {
 	Download,
 	Image as ImageIcon,
 } from "lucide-react"
-import { useTheme } from "next-themes"
+import { useBrandLogoTheme } from "./use-brand-logo-theme"
 import { toast } from "sonner"
 import { cn } from "@/lib/utils"
 import { Badge } from "@/registry/ui/badge"
@@ -44,7 +44,6 @@ import {
 	getBrandLogoHtmlMarkup,
 	getBrandLogoNextImageMarkup,
 	getBrandLogoSvgUrl,
-	registerBrandLogoFallback,
 } from "./brand-logos-data"
 
 interface BrandLogoDetailsDialogProps {
@@ -75,8 +74,7 @@ export function BrandLogoDetailsDialog({
 	onOpenChange,
 	onSelectBrand,
 }: BrandLogoDetailsDialogProps) {
-	const { resolvedTheme } = useTheme()
-	const activeTheme = resolvedTheme === "dark" ? "dark" : "light"
+	const activeTheme = useBrandLogoTheme()
 	const [dialogVariant, setDialogVariant] = useState<BrandLogoVariant>(variant)
 	const [dialogColorway, setDialogColorway] =
 		useState<BrandLogoColorway>(colorway)
@@ -222,7 +220,6 @@ export function BrandLogoDetailsDialog({
 							width={dialogVariant === "icon" ? 96 : 270}
 							height={dialogVariant === "icon" ? 96 : 72}
 							onError={(e) => {
-								registerBrandLogoFallback(id)
 								const fallback = getBrandLogoFallbackUrl(
 									id,
 									activeTheme,
@@ -400,7 +397,6 @@ export function BrandLogoDetailsDialog({
 									width={24}
 									height={24}
 									onError={(e) => {
-										registerBrandLogoFallback(item.id)
 										const fallback = getBrandLogoFallbackUrl(
 											item.id,
 											activeTheme,

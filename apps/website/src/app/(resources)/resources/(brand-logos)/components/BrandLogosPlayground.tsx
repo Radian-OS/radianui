@@ -248,7 +248,7 @@ export default function BrandLogosPlayground({
 					})
 				}
 			},
-			{ rootMargin: "600px 0px" }
+			{ rootMargin: "1200px 0px" }
 		)
 
 		observer.observe(bottomSentinel)
@@ -301,9 +301,10 @@ export default function BrandLogosPlayground({
 
 			{visibleLogos.length ? (
 				<ul className="grid w-full list-none grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 lg:gap-5">
-					{renderedLogos.map((brand) => (
+					{renderedLogos.map((brand, index) => (
 						<BrandLogoTile
 							key={brand.id}
+							priority={index < INITIAL_LOGOS_LIMIT}
 							id={brand.id}
 							variant={variant}
 							colorway={colorway}
