@@ -90,7 +90,7 @@ export function ThemerTopbar({
 
 				<IconButton
 					variant="ghost"
-					size="lg"
+					size="xs"
 					color="neutral"
 					aria-label="Toggle theme"
 					title="Toggle theme"
@@ -104,7 +104,7 @@ export function ThemerTopbar({
 
 				<div className="bg-soft-alpha h-4 w-px" />
 
-				<Button color="primary" size="lg">
+				<Button color="primary" size="xs">
 					<Plus />
 					Create Project
 				</Button>
