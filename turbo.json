@@ -10,6 +10,7 @@
 				"^build"
 			],
 			"env": [
+				"SYNC_BRAND_LOGOS",
 				"DATABASE_URL",
 				"NEXT_PUBLIC_*",
 				"RESEND_API_KEY",

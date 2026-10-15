@@ -1,20 +1,13 @@
 import { execSync } from "child_process"
-import { existsSync } from "node:fs"
+import { getBrandLogoBuildCommands } from "./brand-logo-build"
 import { fileURLToPath } from "node:url"
 
-const hasBrandLogos = existsSync(
-	fileURLToPath(
-		new URL(
-			"../app/(resources)/resources/(brand-logos)/brand-logos/page.tsx",
-			import.meta.url
-		)
-	)
-)
-
+// Upstream logo downloads are optional until the brand-logo feature is released.
 const commands = [
-	...(hasBrandLogos
-		? ["pnpm run sync:brand-logos", "pnpm run sync:brand-logo-assets"]
-		: []),
+	...getBrandLogoBuildCommands(
+		fileURLToPath(new URL("../../", import.meta.url)),
+		process.env.SYNC_BRAND_LOGOS === "true"
+	),
 	"pnpm exec fumadocs-mdx",
 	"pnpm run generate-examples-json",
 	"pnpm run generate-example-registry",
