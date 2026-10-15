@@ -241,7 +241,7 @@
     {
       "slug": "frameworks",
       "label": "Frameworks",
-      "count": 27,
+      "count": 28,
       "brands": [
         "angular",
         "astro",
@@ -258,6 +258,7 @@
         "nestjs",
         "nextjs",
         "nuxtjs",
+        "radianui",
         "react",
         "redux",
         "remix",
