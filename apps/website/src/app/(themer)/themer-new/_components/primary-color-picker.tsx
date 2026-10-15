@@ -171,21 +171,29 @@ export default function PrimaryColorPicker({
 		formatColor(colorInfo.hex, "Hex")
 	)
 
+	const hsvRef = React.useRef(hsvState)
+	hsvRef.current = hsvState
+
 	const svAreaRef = React.useRef<HTMLDivElement>(null)
 	const hueBarRef = React.useRef<HTMLDivElement>(null)
 
 	// Sync when external value changes
 	React.useEffect(() => {
-		const currentHex = formatHex({ mode: "hsv", ...hsvState })?.toLowerCase()
+		const currentHex = formatHex({
+			mode: "hsv",
+			...hsvRef.current,
+		})?.toLowerCase()
 		if (colorInfo.hex.toLowerCase() !== currentHex) {
 			const parsed = parse(colorInfo.hex)
 			if (parsed) {
 				const hsv = toHsv(parsed)
-				setHsvState({
-					h: hsv.h !== undefined && !isNaN(hsv.h) ? hsv.h : hsvState.h,
+				const next = {
+					h: hsv.h !== undefined && !isNaN(hsv.h) ? hsv.h : hsvRef.current.h,
 					s: hsv.s !== undefined && !isNaN(hsv.s) ? hsv.s : 0,
 					v: hsv.v !== undefined && !isNaN(hsv.v) ? hsv.v : 1,
-				})
+				}
+				hsvRef.current = next
+				setHsvState(next)
 				setDisplayInput(formatColor(colorInfo.hex, colorFormat))
 			}
 		}
@@ -209,12 +217,11 @@ export default function PrimaryColorPicker({
 			const s = x / rect.width
 			const v = 1 - y / rect.height
 
-			setHsvState((prev) => {
-				const next = { ...prev, s, v }
-				const newHex = formatHex({ mode: "hsv", ...next }) || "#000000"
-				syncColor(newHex, next)
-				return next
-			})
+			const next = { ...hsvRef.current, s, v }
+			hsvRef.current = next
+			setHsvState(next)
+			const newHex = formatHex({ mode: "hsv", ...next }) || "#000000"
+			syncColor(newHex, next)
 		}
 
 		updateFromPointer(e.clientX, e.clientY)
@@ -240,12 +247,11 @@ export default function PrimaryColorPicker({
 			const x = Math.max(0, Math.min(clientX - rect.left, rect.width))
 			const h = (x / rect.width) * 360
 
-			setHsvState((prev) => {
-				const next = { ...prev, h }
-				const newHex = formatHex({ mode: "hsv", ...next }) || "#000000"
-				syncColor(newHex, next)
-				return next
-			})
+			const next = { ...hsvRef.current, h }
+			hsvRef.current = next
+			setHsvState(next)
+			const newHex = formatHex({ mode: "hsv", ...next }) || "#000000"
+			syncColor(newHex, next)
 		}
 
 		updateFromPointer(e.clientX)
@@ -271,10 +277,20 @@ export default function PrimaryColorPicker({
 		if (parsed) {
 			const hsvVal = toHsv(parsed)
 			const nextHsv = {
-				h: hsvVal.h !== undefined && !isNaN(hsvVal.h) ? hsvVal.h : hsvState.h,
-				s: hsvVal.s !== undefined && !isNaN(hsvVal.s) ? hsvVal.s : hsvState.s,
-				v: hsvVal.v !== undefined && !isNaN(hsvVal.v) ? hsvVal.v : hsvState.v,
+				h:
+					hsvVal.h !== undefined && !isNaN(hsvVal.h)
+						? hsvVal.h
+						: hsvRef.current.h,
+				s:
+					hsvVal.s !== undefined && !isNaN(hsvVal.s)
+						? hsvVal.s
+						: hsvRef.current.s,
+				v:
+					hsvVal.v !== undefined && !isNaN(hsvVal.v)
+						? hsvVal.v
+						: hsvRef.current.v,
 			}
+			hsvRef.current = nextHsv
 			setHsvState(nextHsv)
 			const newHex = formatHex(parsed)
 			if (newHex) {
@@ -299,6 +315,7 @@ export default function PrimaryColorPicker({
 		const s = 0.72 + Math.random() * 0.25
 		const v = 0.75 + Math.random() * 0.2
 		const nextHsv = { h, s, v }
+		hsvRef.current = nextHsv
 		setHsvState(nextHsv)
 		const newHex = formatHex({ mode: "hsv", ...nextHsv }) || "#10b981"
 		syncColor(newHex, nextHsv)
@@ -397,6 +414,7 @@ export default function PrimaryColorPicker({
 				side="right"
 				sideOffset={16}
 				collisionPadding={16}
+				onOpenAutoFocus={(e) => e.preventDefault()}
 				className="w-[300px] px-2.5 py-1.5 shadow-sm select-none">
 				{/* Header */}
 				<div className="flex items-center justify-between p-1 pb-2">

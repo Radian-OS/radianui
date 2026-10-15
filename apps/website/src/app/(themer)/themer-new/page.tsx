@@ -68,6 +68,13 @@ function ThemerPage() {
 
 	useEffect(() => {
 		postToIframe({
+			type: "base-color-change",
+			baseColor: params.baseColor,
+		})
+	}, [params.baseColor, postToIframe])
+
+	useEffect(() => {
+		postToIframe({
 			type: "heading-font-change",
 			headingFont: params.headingFont,
 		})

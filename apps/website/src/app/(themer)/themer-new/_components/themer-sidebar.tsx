@@ -28,6 +28,7 @@ import {
 	Info,
 } from "lucide-react"
 import PrimaryColorPicker from "./primary-color-picker"
+import BaseColorPicker from "./base-color-picker"
 import PresetPicker from "./preset-picker"
 import { GoogleIcon, RadianIcon } from "./icons"
 import FontPicker from "./font-picker"
@@ -42,6 +43,7 @@ import {
 } from "@/styles/default/ui/tooltip"
 import { useThemerPreset } from "@/lib/themer-preset"
 import { FONTS, FontValue } from "@/registry/fonts"
+import { BaseColorValue } from "@/registry/base-colors"
 
 export function ThemerSidebar() {
 	const [params, setParams] = useThemerPreset()
@@ -58,6 +60,11 @@ export function ThemerSidebar() {
 			.map((s) => s.charAt(0).toUpperCase() + s.slice(1))
 			.join(" ")
 	}
+
+	const handlePrimaryColorChange = (val: string) =>
+		setParams({ primaryColor: val })
+	const handleBaseColorChange = (val: BaseColorValue) =>
+		setParams({ baseColor: val })
 
 	return (
 		<Sidebar collapsible="icon">
@@ -82,7 +89,7 @@ export function ThemerSidebar() {
 						{/* Primary */}
 						<PrimaryColorPicker
 							value={params.primaryColor}
-							onChange={(val) => setParams({ primaryColor: val })}
+							onChange={handlePrimaryColorChange}
 						/>
 
 						{/* Secondary */}
@@ -129,33 +136,18 @@ export function ThemerSidebar() {
 							<Plus className="size-4" />
 						</div>
 					</div>
+				</SidebarGroup>
 
-					{/* Zinc Grey Tint Bar */}
-					<div className="bg-fill2 mt-4 flex flex-col gap-3 rounded-lg p-2.5">
-						<div className="flex justify-between text-xs">
-							<span className="text-fg font-medium">Zinc Grey</span>
-							<div className="flex items-center gap-1.5">
-								<span className="text-fg-tertiary font-normal">
-									Tinted by primary
-								</span>
-								<Tooltip>
-									<TooltipTrigger>
-										<Info className="text-fg-tertiary size-3.5" />
-									</TooltipTrigger>
-									<TooltipContent withArrow>
-										Change neutral base color
-									</TooltipContent>
-								</Tooltip>
-							</div>
-						</div>
-						<div className="flex h-4 w-full gap-0.5 overflow-hidden rounded-sm">
-							<div className="flex-1 bg-zinc-400" />
-							<div className="flex-1 bg-zinc-500" />
-							<div className="flex-1 bg-zinc-600" />
-							<div className="flex-1 bg-zinc-800" />
-							<div className="flex-1 bg-zinc-950" />
-						</div>
-					</div>
+				{/* Neutral Base */}
+				<SidebarGroup>
+					<SidebarGroupLabel className="text-fg-tertiary px-0 font-medium">
+						Neutral Base
+					</SidebarGroupLabel>
+					<BaseColorPicker
+						baseColor={params.baseColor}
+						primaryColor={params.primaryColor}
+						onBaseColorChange={handleBaseColorChange}
+					/>
 				</SidebarGroup>
 
 				<SidebarGroup>
