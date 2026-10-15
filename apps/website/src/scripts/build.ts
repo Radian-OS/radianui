@@ -1,8 +1,20 @@
 import { execSync } from "child_process"
+import { existsSync } from "node:fs"
+import { fileURLToPath } from "node:url"
+
+const hasBrandLogos = existsSync(
+	fileURLToPath(
+		new URL(
+			"../app/(resources)/resources/(brand-logos)/brand-logos/page.tsx",
+			import.meta.url
+		)
+	)
+)
 
 const commands = [
-	"pnpm run sync:brand-logos",
-	"pnpm run sync:brand-logo-assets",
+	...(hasBrandLogos
+		? ["pnpm run sync:brand-logos", "pnpm run sync:brand-logo-assets"]
+		: []),
 	"pnpm exec fumadocs-mdx",
 	"pnpm run generate-examples-json",
 	"pnpm run generate-example-registry",

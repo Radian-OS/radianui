@@ -1,53 +1,114 @@
 import assert from "node:assert/strict"
 import { test } from "node:test"
-import { resources } from "@/config/resource-previews"
+import { mkdtempSync, mkdirSync, writeFileSync, rmSync } from "node:fs"
+import { tmpdir } from "node:os"
+import { join } from "node:path"
 import { AVATARS } from "@/constants/avatar-playground-utils"
 import { generateResourceImageSitemap } from "./resource-image-sitemap"
 
-test("new resource previews and avatar images are discovered without a sitemap edit", () => {
-	const avatarCount = AVATARS.length
-	const resourceCount = resources.length
+function fixture() {
+	const root = mkdtempSync(join(tmpdir(), "resource-sitemap-"))
+	const options = {
+		publicDirectory: join(root, "public"),
+		appDirectory: join(root, "app"),
+	}
+	function file(path: string, body = "fixture") {
+		mkdirSync(join(root, path, ".."), { recursive: true })
+		writeFileSync(join(root, path), body)
+	}
+	file("app/resources/avatar/page.tsx")
+	file("app/resources/flags/page.tsx")
+	return {
+		options,
+		file,
+		cleanup: () => rmSync(root, { recursive: true, force: true }),
+	}
+}
+
+test("production without brand-logo routes or generated assets still produces a sitemap", () => {
+	const f = fixture()
 	try {
-		AVATARS.push("https://example.com/new-avatar.png")
-		resources.push({
-			title: "New resource",
-			description: "A newly registered resource",
-			link: "new-resource",
-			lightUrl: "/new-light.svg?one=1&two=2",
-			darkUrl: "/new-dark.svg",
-		})
-		const xml = generateResourceImageSitemap()
-		assert.ok(xml.includes("https://example.com/new-avatar.png"))
-		assert.ok(xml.includes("/resources/new-resource</loc>"))
-		assert.ok(xml.includes("/new-light.svg?one=1&amp;two=2</image:loc>"))
-		assert.ok(xml.includes("/new-dark.svg</image:loc>"))
+		f.file("public/media/assets-page/avatars-light.png")
+		const xml = generateResourceImageSitemap(f.options)
+		assert.ok(xml.includes("/resources/avatar</loc>"))
+		assert.ok(xml.includes("/resources/flags</loc>"))
+		assert.ok(!xml.includes("brand-logos"))
+		assert.ok(!xml.includes("avatars-dark.png"))
 	} finally {
-		AVATARS.length = avatarCount
-		resources.length = resourceCount
+		f.cleanup()
 	}
 })
 
-test("large collections retain every image without exceeding 1,000 images per URL entry", () => {
+test("only existing public images are included and new images are discovered automatically", () => {
+	const f = fixture()
+	try {
+		f.file("public/flags/cover/light.png")
+		let xml = generateResourceImageSitemap(f.options)
+		assert.ok(xml.includes("/flags/cover/light.png"))
+		assert.ok(!xml.includes("/flags/cover/dark.png"))
+		f.file("public/flags/cover/dark.png")
+		f.file("public/flags/notes.txt")
+		xml = generateResourceImageSitemap(f.options)
+		assert.ok(xml.includes("/flags/cover/dark.png"))
+		assert.ok(!xml.includes("notes.txt"))
+	} finally {
+		f.cleanup()
+	}
+})
+
+test("unused brand-logo public files do not create URLs for undeployed pages", () => {
+	const f = fixture()
+	try {
+		f.file("public/brand-logos/cover/light.png")
+		assert.ok(!generateResourceImageSitemap(f.options).includes("brand-logos"))
+	} finally {
+		f.cleanup()
+	}
+})
+
+test("brand-logo pages only list available static SVGs from the active revision", () => {
+	const f = fixture()
+	try {
+		const revision = "a".repeat(20)
+		f.file("app/(resources)/resources/(brand-logos)/brand-logos/page.tsx")
+		f.file(
+			"app/(resources)/resources/(brand-logos)/brand-logos/[brand]/page.tsx"
+		)
+		f.file(
+			"app/(resources)/resources/(brand-logos)/components/brand-logo-assets-version.generated.json",
+			JSON.stringify({ revision })
+		)
+		const name = Buffer.from(
+			"src/light/colored/frameworks/icon/radianui.svg"
+		).toString("base64url")
+		f.file(`public/_brand-assets/${revision}/${name}.svg`, "<svg />")
+		f.file(`public/_brand-assets/${"b".repeat(20)}/${name}.svg`, "<svg />")
+		const xml = generateResourceImageSitemap(f.options)
+		assert.ok(xml.includes("/resources/brand-logos/radianui</loc>"))
+		assert.ok(xml.includes(`/_brand-assets/${revision}/${name}.svg`))
+		assert.ok(!xml.includes("b".repeat(20)))
+		assert.ok(
+			!xml.includes(
+				"cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos"
+			)
+		)
+	} finally {
+		f.cleanup()
+	}
+})
+
+test("large collections retain every image without exceeding 1,000 images per entry", () => {
+	const f = fixture()
 	const count = AVATARS.length
 	try {
 		for (let index = 0; index < 1001; index++)
 			AVATARS.push(`https://example.com/avatar-${index}.png`)
-		const xml = generateResourceImageSitemap()
+		const xml = generateResourceImageSitemap(f.options)
 		assert.ok(xml.includes("https://example.com/avatar-1000.png"))
-		for (const entry of xml.matchAll(/<url>(.*?)<\/url>/g)) {
+		for (const entry of xml.matchAll(/<url>(.*?)<\/url>/g))
 			assert.ok((entry[1].match(/<image:image>/g) ?? []).length <= 1000)
-		}
 	} finally {
 		AVATARS.length = count
+		f.cleanup()
 	}
-})
-
-test("Radian UI has all eight logo variants on its own sitemap URL", () => {
-	const xml = generateResourceImageSitemap()
-	const entry = [...xml.matchAll(/<url>(.*?)<\/url>/g)].find(([_, body]) =>
-		body.includes("/resources/brand-logos/radianui</loc>")
-	)
-	assert.ok(entry)
-	assert.equal((entry[1].match(/<image:image>/g) ?? []).length, 8)
-	assert.ok(entry[1].includes("/dark/neutral/frameworks/wordmark/radianui.svg"))
 })
