@@ -27,18 +27,6 @@ export function HeroBackground() {
 				className="pointer-events-none absolute top-4 right-0 -z-10 h-auto w-auto opacity-70"
 				unoptimized
 			/>
-
-			{/* Foreground rolling green hill and tree */}
-			<div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 w-full overflow-hidden leading-none">
-				<Image
-					src="https://images.shadcnspace.com/assets/hero-img/bottom-tree-img.webp"
-					alt="Rolling meadow with tree"
-					width={1440}
-					height={240}
-					className="h-auto w-full object-cover"
-					unoptimized
-				/>
-			</div>
 		</>
 	)
 }

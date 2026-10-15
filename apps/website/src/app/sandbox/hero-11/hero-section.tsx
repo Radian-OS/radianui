@@ -50,11 +50,7 @@ export function HeroSection() {
 			</div>
 
 			{/* Hero Preview Banner */}
-			<div className="from-primary/20 via-primary-accent/30 to-info/20 border-border relative flex h-56 items-center justify-center overflow-hidden rounded-2xl border bg-gradient-to-br sm:h-96 lg:h-[36rem]">
-				<div className="border-border/60 bg-elevation-level1/80 flex items-center gap-3 rounded-xl border px-6 py-4 shadow-xl backdrop-blur-md">
-					<div className="from-primary to-info size-8 rounded-lg bg-gradient-to-tr" />
-				</div>
-			</div>
+			<div className="from-primary/20 via-primary-accent/30 to-info/20 border-border relative flex h-56 items-center justify-center overflow-hidden rounded-2xl border bg-gradient-to-br sm:h-96 lg:h-[36rem]"></div>
 		</div>
 	)
 }

@@ -8,21 +8,24 @@ import type { Reviewer } from "./types"
 const DEFAULT_REVIEWERS: Reviewer[] = [
 	{
 		id: "rev-1",
-		name: "Alex",
-		avatarUrl: "https://images.shadcnspace.com/assets/profiles/alex.webp",
-		initials: "AM",
+		name: "Alex Vance",
+		avatarUrl:
+			"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@v1.0.2/packages/uncompressed-avatars/src/11.png",
+		initials: "AV",
 	},
 	{
 		id: "rev-2",
-		name: "Jessica",
-		avatarUrl: "https://images.shadcnspace.com/assets/profiles/jessica.webp",
-		initials: "JC",
+		name: "Sarah Miller",
+		avatarUrl:
+			"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@v1.0.2/packages/uncompressed-avatars/src/42.png",
+		initials: "SM",
 	},
 	{
 		id: "rev-3",
-		name: "Albert",
-		avatarUrl: "https://images.shadcnspace.com/assets/profiles/albert.webp",
-		initials: "AF",
+		name: "David Kim",
+		avatarUrl:
+			"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@v1.0.2/packages/uncompressed-avatars/src/108.png",
+		initials: "DK",
 	},
 ]
 

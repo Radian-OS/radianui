@@ -2,9 +2,17 @@
 
 import React, { useState } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { ChevronRight, Menu, X } from "lucide-react"
 import { Button } from "@/styles/default/ui/button"
-import { Tabs, TabsList, TabsTrigger } from "@/styles/default/ui/tabs"
+import {
+	NavigationMenu,
+	NavigationMenuItem,
+	NavigationMenuLink,
+	NavigationMenuList,
+	navigationMenuTriggerStyle,
+} from "@/registry/ui/navigation-menu"
+import { cn } from "@/lib/utils"
 import type { NavItem } from "./types"
 
 const NAV_ITEMS: NavItem[] = [
@@ -22,40 +30,45 @@ export function Navbar() {
 		<header className="bg-bg w-full">
 			<nav className="mx-auto max-w-7xl px-4 lg:px-8 xl:px-16">
 				<div className="border-border flex items-center justify-between border-x px-4 py-4 lg:px-10">
-					{/* Left Group: Brand Logo & Navigation Tabs */}
+					{/* Left Group: Brand Logo & Navigation Menu */}
 					<div className="flex items-center gap-6 lg:gap-8">
 						{/* Brand Logo */}
-						<Link href="#" className="flex items-center gap-2.5">
-							<div className="bg-fg text-bg flex size-8 items-center justify-center rounded-full text-sm font-bold shadow-xs">
-								S
-							</div>
-							<span className="text-fg text-base font-bold tracking-tight">
-								shadcnspace.
-							</span>
+						<Link
+							href="#hero"
+							className="flex w-fit shrink-0 items-center gap-2">
+							<Image
+								src="/logo.svg"
+								alt="Radian"
+								width={32}
+								height={32}
+								className="size-8 shrink-0"
+							/>
+							<h1 className="heading-6">Radian</h1>
 						</Link>
 
-						{/* Navigation using canonical Tabs component */}
-						<div className="hidden lg:flex">
-							<Tabs
-								value={activeTab}
-								onValueChange={setActiveTab}
-								className="w-auto">
-								<TabsList
-									variant="ghost"
-									className="bg-fill2 gap-0 rounded-full p-0.5 data-[orientation=horizontal]:h-auto"
-									style={{ borderRadius: "9999px" }}>
-									{NAV_ITEMS.map((item) => (
-										<TabsTrigger
-											key={item.value}
-											value={item.value}
-											className="text-fg-secondary hover:text-fg data-[state=active]:bg-card data-[state=active]:text-fg rounded-full! px-4 py-1.5 text-sm font-medium transition-all data-[orientation=horizontal]:h-auto data-[state=active]:rounded-full! data-[state=active]:shadow-xs"
-											style={{ borderRadius: "9999px" }}>
-											{item.label}
-										</TabsTrigger>
-									))}
-								</TabsList>
-							</Tabs>
-						</div>
+						{/* Desktop Navigation Menu (Rule 1: use @/registry/ui/navigation-menu) */}
+						<NavigationMenu viewport={false} className="hidden lg:flex">
+							<NavigationMenuList className="gap-1">
+								{NAV_ITEMS.map((item) => (
+									<NavigationMenuItem key={item.value}>
+										<NavigationMenuLink
+											asChild
+											active={item.value === activeTab}
+											className={cn(
+												navigationMenuTriggerStyle(),
+												"text-fg-secondary hover:text-fg hover:bg-fill2 bg-transparent text-sm font-medium transition-colors",
+												item.value === activeTab && "bg-fill2 text-fg"
+											)}>
+											<Link
+												href={item.href || "#"}
+												onClick={() => setActiveTab(item.value)}>
+												{item.label}
+											</Link>
+										</NavigationMenuLink>
+									</NavigationMenuItem>
+								))}
+							</NavigationMenuList>
+						</NavigationMenu>
 					</div>
 
 					{/* Right Action Buttons */}
@@ -109,12 +122,16 @@ export function Navbar() {
 								<Link
 									key={item.value}
 									href={item.href || "#"}
-									onClick={() => setMobileMenuOpen(false)}
-									className={`rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
+									onClick={() => {
+										setActiveTab(item.value)
+										setMobileMenuOpen(false)
+									}}
+									className={cn(
+										"rounded-lg px-3 py-2 text-sm font-medium transition-colors",
 										activeTab === item.value
 											? "bg-fill2 text-fg"
 											: "text-fg-secondary hover:text-fg"
-									}`}>
+									)}>
 									{item.label}
 								</Link>
 							))}

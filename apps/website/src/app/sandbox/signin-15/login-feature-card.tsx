@@ -1,7 +1,6 @@
 "use client"
 
 import React from "react"
-import { Asterisk } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/styles/default/ui/avatar"
 import { Card } from "@/styles/default/ui/card"
 import { FEATURE_AVATARS } from "./types"

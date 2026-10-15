@@ -1,13 +1,38 @@
 import Image from "next/image"
 
 const logos = [
-	{ name: "Coda", domain: "coda.io" },
-	{ name: "Dokey", domain: "dokey.io" },
-	{ name: "Webflow", domain: "webflow.com" },
-	{ name: "GitLab", domain: "gitlab.com" },
-	{ name: "Clearbit", domain: "clearbit.com" },
-	{ name: "Stripe", domain: "stripe.com" },
-	{ name: "Slack", domain: "slack.com" },
+	{
+		name: "Claude",
+		src: "https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/colored/ai/icon/claude.svg",
+	},
+	{
+		name: "Gemini",
+		src: "https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/colored/ai/icon/gemini.svg",
+	},
+	{
+		name: "Hugging Face",
+		src: "https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/colored/ai/icon/hugging-face.svg",
+	},
+	{
+		name: "Perplexity",
+		src: "https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/colored/ai/icon/perplexity.svg",
+	},
+	{
+		name: "Auth0",
+		src: "https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/colored/business-marketing/icon/auth0.svg",
+	},
+	{
+		name: "AWS",
+		src: "https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/colored/cloud-devops/icon/aws.svg",
+	},
+	{
+		name: "Cloudflare",
+		src: "https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/colored/cloud-devops/icon/cloudflare.svg",
+	},
+	{
+		name: "Kubernetes",
+		src: "https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/colored/cloud-devops/icon/kubernetes.svg",
+	},
 ]
 
 export function BeamLogoStrip() {
@@ -16,13 +41,13 @@ export function BeamLogoStrip() {
 			{logos.map((logo) => (
 				<div
 					key={logo.name}
-					className="flex items-center gap-2 opacity-50 transition-opacity hover:opacity-80">
+					className="flex items-center gap-2 opacity-75 transition-opacity duration-200 hover:opacity-100">
 					<Image
-						src={`https://www.google.com/s2/favicons?sz=32&domain=${logo.domain}`}
+						src={logo.src}
 						alt={`${logo.name} logo`}
 						width={20}
 						height={20}
-						className="grayscale"
+						className="size-5 object-contain"
 						unoptimized
 					/>
 					<span className="text-fg-tertiary text-xs font-semibold sm:text-sm">

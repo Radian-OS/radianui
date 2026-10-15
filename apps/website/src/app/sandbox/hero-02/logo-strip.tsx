@@ -6,29 +6,39 @@ import type { BrandLogo } from "./types"
 
 const DEFAULT_LOGOS: BrandLogo[] = [
 	{
-		id: "1",
-		name: "Brand 1",
-		src: "https://images.shadcnspace.com/assets/brand-logo/logo-icon-1.svg",
+		id: "anthropic",
+		name: "Anthropic",
+		src: "https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/light/neutral/ai/icon/anthropic.svg",
+		darkSrc:
+			"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/neutral/ai/icon/anthropic.svg",
 	},
 	{
-		id: "2",
-		name: "Brand 2",
-		src: "https://images.shadcnspace.com/assets/brand-logo/logo-icon-2.svg",
+		id: "copilot",
+		name: "Copilot",
+		src: "https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/light/neutral/ai/icon/copilot.svg",
+		darkSrc:
+			"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/neutral/ai/icon/copilot.svg",
 	},
 	{
-		id: "3",
-		name: "Brand 3",
-		src: "https://images.shadcnspace.com/assets/brand-logo/logo-icon-3.svg",
+		id: "openai",
+		name: "OpenAI",
+		src: "https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/light/neutral/ai/icon/openai.svg",
+		darkSrc:
+			"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/neutral/ai/icon/openai.svg",
 	},
 	{
-		id: "4",
-		name: "Brand 4",
-		src: "https://images.shadcnspace.com/assets/brand-logo/logo-icon-4.svg",
+		id: "claude",
+		name: "Claude",
+		src: "https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/light/neutral/ai/icon/claude.svg",
+		darkSrc:
+			"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/neutral/ai/icon/claude.svg",
 	},
 	{
-		id: "5",
-		name: "Brand 5",
-		src: "https://images.shadcnspace.com/assets/brand-logo/logo-icon-5.svg",
+		id: "perplexity",
+		name: "Perplexity",
+		src: "https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/light/neutral/ai/icon/perplexity.svg",
+		darkSrc:
+			"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/neutral/ai/icon/perplexity.svg",
 	},
 ]
 
@@ -41,20 +51,39 @@ export function LogoStrip({ logos = DEFAULT_LOGOS }: LogoStripProps) {
 		<div className="border-border bg-bg w-full border-b">
 			<div className="mx-auto max-w-7xl px-4 lg:px-8 xl:px-16">
 				<div className="border-border divide-border grid grid-cols-2 divide-x divide-y border-x sm:grid-cols-3 sm:divide-y-0 md:grid-cols-5">
-					{logos.map((logo) => (
-						<div
-							key={logo.id}
-							className="flex h-20 items-center justify-center px-6 py-4 transition-opacity duration-200 hover:opacity-75">
-							<Image
-								src={logo.src}
-								alt={logo.name}
-								width={135}
-								height={32}
-								unoptimized
-								className="h-8 w-auto object-contain dark:brightness-0 dark:invert"
-							/>
-						</div>
-					))}
+					{logos.map((logo) => {
+						const lightSrc = logo.src.includes("/dark/")
+							? logo.src.replace("/dark/", "/light/")
+							: logo.src
+						const darkSrc =
+							logo.darkSrc ||
+							(logo.src.includes("/light/")
+								? logo.src.replace("/light/", "/dark/")
+								: logo.src)
+
+						return (
+							<div
+								key={logo.id}
+								className="flex h-20 items-center justify-center px-6 py-4 transition-opacity duration-200 hover:opacity-75">
+								<Image
+									src={lightSrc}
+									alt={logo.name}
+									width={32}
+									height={32}
+									unoptimized
+									className="h-8 w-auto object-contain opacity-70 transition-opacity duration-200 hover:opacity-100 dark:hidden"
+								/>
+								<Image
+									src={darkSrc}
+									alt={logo.name}
+									width={32}
+									height={32}
+									unoptimized
+									className="hidden h-8 w-auto object-contain opacity-70 transition-opacity duration-200 hover:opacity-100 dark:block"
+								/>
+							</div>
+						)
+					})}
 				</div>
 			</div>
 		</div>

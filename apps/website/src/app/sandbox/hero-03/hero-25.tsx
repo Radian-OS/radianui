@@ -8,14 +8,18 @@ import { HeroPreview } from "./hero-preview"
 
 export function Hero25() {
 	return (
-		<section className="relative flex min-h-screen w-full flex-col items-center justify-between overflow-hidden px-4 pt-16 sm:px-6 sm:pt-20 md:px-8 md:pt-24">
+		<section className="relative flex min-h-screen w-full flex-col items-center justify-between overflow-hidden pt-12 sm:pt-16 md:pt-20">
+			{/* Background sky lighting gradient and clouds */}
 			<HeroBackground />
 
-			<div className="relative z-10 mx-auto flex w-full max-w-4xl flex-col items-center gap-6 text-center">
+			{/* Header title, description, and CTA button */}
+			<div className="relative z-30 mx-auto flex w-full max-w-4xl flex-col items-center gap-6 px-4 text-center sm:px-6">
 				<HeroHeader />
 				<HeroCta />
-				<HeroPreview />
 			</div>
+
+			{/* Attached preview card with foreground rolling tree meadow */}
+			<HeroPreview />
 		</section>
 	)
 }

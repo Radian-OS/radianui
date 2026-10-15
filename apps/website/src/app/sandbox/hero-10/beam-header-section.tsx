@@ -2,6 +2,7 @@
 
 import { ChevronsRight, Zap } from "lucide-react"
 import Link from "next/link"
+import { Badge } from "@/styles/default/ui/badge"
 import { Button } from "@/registry/ui/button"
 import { BeamDashboard } from "./beam-dashboard"
 import { BeamLogoStrip } from "./beam-logo-strip"
@@ -10,24 +11,26 @@ export function BeamHeaderSection() {
 	return (
 		<section
 			id="beam-header-section"
-			className="bg-bg relative w-full overflow-hidden px-4 pt-12 pb-0 sm:px-6 sm:pt-16 md:pt-20 lg:px-10 lg:pt-24">
+			className="bg-bg relative flex w-full flex-col items-center gap-10 overflow-hidden px-4 pt-12 pb-0 sm:gap-14 sm:px-6 sm:pt-16 md:gap-16 md:pt-20 lg:px-10 lg:pt-24">
 			{/* Hero Content */}
-			<div className="relative z-10 mx-auto max-w-3xl text-center">
+			<div className="relative z-10 mx-auto flex max-w-3xl flex-col items-center gap-6 text-center">
 				{/* Badge */}
-				<div className="border-border bg-fill2 mb-6 inline-flex items-center gap-2 rounded-full border px-4 py-1.5">
+				<Badge
+					variant="outline"
+					color="neutral"
+					size="lg"
+					className="gap-2 rounded-full px-4">
 					<Zap className="text-primary size-3.5" />
-					<span className="text-fg-secondary text-xs font-medium sm:text-sm">
-						Empower Innovation!
-					</span>
-				</div>
+					<span>Empower Innovation!</span>
+				</Badge>
 
 				{/* Heading */}
-				<h1 className="heading-1 text-fg mb-6">
+				<h1 className="heading-1 text-fg">
 					Shaping innovation one beam at a time
 				</h1>
 
 				{/* Subheading */}
-				<p className="text-fg-secondary mx-auto mb-10 max-w-xl text-sm leading-relaxed sm:text-base md:mb-14">
+				<p className="text-fg-secondary max-w-xl text-sm leading-relaxed sm:text-base">
 					Lorem ipsum dolor sit{" "}
 					<span className="text-fg font-semibold">amet consectetur</span> Lectus
 					massa sodales at sit aliquet velit ipsum Elementum turpis enim
@@ -38,7 +41,7 @@ export function BeamHeaderSection() {
 			</div>
 
 			{/* Dashboard Preview with Glow & CTA */}
-			<div className="relative z-10 mx-auto max-w-5xl">
+			<div className="relative z-10 flex w-full max-w-5xl flex-col items-center gap-8 md:gap-10">
 				{/* Purple glow behind dashboard */}
 				<div
 					className="pointer-events-none absolute -top-16 left-1/2 -z-10 h-[400px] w-[600px] -translate-x-1/2 rounded-full opacity-40 blur-[120px] sm:h-[500px] sm:w-[800px]"
@@ -49,15 +52,15 @@ export function BeamHeaderSection() {
 				/>
 
 				{/* Logo Section */}
-				<div className="mb-8 text-center md:mb-10">
-					<p className="text-primary-text mb-6 text-xs font-medium tracking-widest uppercase sm:text-sm">
+				<div className="flex flex-col items-center gap-6 text-center">
+					<p className="text-primary-text text-xs font-medium tracking-widest uppercase sm:text-sm">
 						Making the cloud effortless for 2,500+ companies
 					</p>
 					<BeamLogoStrip />
 				</div>
 
 				{/* Dashboard Container with floating CTA */}
-				<div className="relative">
+				<div className="relative w-full">
 					{/* Floating Get Started Button */}
 					<div className="absolute -top-5 left-1/2 z-20 -translate-x-1/2">
 						<Button
