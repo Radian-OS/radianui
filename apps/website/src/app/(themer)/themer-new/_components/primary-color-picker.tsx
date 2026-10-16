@@ -531,27 +531,6 @@ export default function PrimaryColorPicker({
 							)}
 						</button>
 					</InputWrapper>
-					{/* <div className="border-border bg-fill1 focus-within:border-ring focus-within:ring-ring flex h-8 flex-1 items-center justify-between rounded-lg border px-2.5 transition-colors focus-within:ring-1"> */}
-					{/* <input
-							type="text"
-							value={displayInput}
-							onChange={handleInputChange}
-							onBlur={handleInputBlur}
-							spellCheck={false}
-							className="text-fg w-full bg-transparent font-mono text-xs uppercase outline-hidden"
-						/>
-						<button
-							type="button"
-							onClick={handleCopyInput}
-							className="text-fg-tertiary hover:text-fg ml-1 shrink-0 p-0.5 transition-colors"
-							aria-label="Copy color value">
-							{copiedInput ? (
-								<Check className="size-3.5 text-emerald-500" />
-							) : (
-								<Copy className="size-3.5" />
-							)}
-						</button> */}
-					{/* </div> */}
 				</div>
 
 				{/* Shades breakdown */}

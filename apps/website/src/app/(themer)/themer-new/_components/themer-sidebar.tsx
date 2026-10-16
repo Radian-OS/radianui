@@ -7,26 +7,9 @@ import {
 	SidebarGroup,
 	SidebarGroupLabel,
 	SidebarHeader,
-	SidebarMenu,
-	SidebarMenuItem,
 } from "@/styles/default/ui/sidebar"
-import { Button, IconButton } from "@/styles/default/ui/button"
-import {
-	Select,
-	SelectContent,
-	SelectItem,
-	SelectTrigger,
-	SelectValue,
-} from "@/styles/default/ui/select"
-import {
-	Lock,
-	Shuffle,
-	Plus,
-	Paintbrush,
-	Component,
-	CodeXml,
-	Info,
-} from "lucide-react"
+import { Button } from "@/styles/default/ui/button"
+import { Lock, Shuffle, Plus } from "lucide-react"
 import PrimaryColorPicker from "./primary-color-picker"
 import BaseColorPicker from "./base-color-picker"
 import PresetPicker from "./preset-picker"
@@ -36,11 +19,6 @@ import CornerPicker from "./corner-picker"
 import DensityPicker from "./density-picker"
 import IconLibraryPicker from "./icons-library-picker"
 import AppearanceModePicker from "./appearance-mode-picker"
-import {
-	Tooltip,
-	TooltipContent,
-	TooltipTrigger,
-} from "@/styles/default/ui/tooltip"
 import { useThemerPreset } from "@/lib/themer-preset"
 import { FONTS, FontValue } from "@/registry/fonts"
 import { BaseColorValue } from "@/registry/base-colors"
