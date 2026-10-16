@@ -37,47 +37,54 @@ const toHsv = converter("hsv")
 
 type ColorFormat = "Hex" | "RGB" | "HSL"
 
-interface PrimaryColorInfo {
-	name: string
-	hex: string
-	shades: Record<string, string>
+const SHADE_GROUPS = [
+	{
+		label: "Pastel",
+		tokens: [
+			"--color-primary-fg",
+			"--color-primary-accent",
+			"--color-primary-focus",
+		],
+	},
+	{
+		label: "Mid tones",
+		tokens: [
+			"--color-primary",
+			"--color-primary-text",
+			"--color-primary-border",
+			"--color-primary-hover",
+		],
+	},
+]
+
+function hexToHsv(hex: string, fallbackH = 0) {
+	const parsed = parse(hex)
+	if (!parsed) return { h: fallbackH, s: 0, v: 1 }
+	const hsv = toHsv(parsed)
+	return {
+		h: hsv.h !== undefined && !isNaN(hsv.h) ? hsv.h : fallbackH,
+		s: hsv.s ?? 0,
+		v: hsv.v ?? 1,
+	}
 }
 
-function resolvePrimaryColorInfo(value?: string): PrimaryColorInfo {
-	const defaultHex = "#623DF5"
-
-	if (!value) {
-		return {
-			name: "Violet Blue",
-			hex: defaultHex,
-			shades: generateCustomColorShades(defaultHex, "primary"),
-		}
-	}
-
-	if (value.startsWith("#")) {
-		const shades = generateCustomColorShades(value, "primary")
-		const preset = PRIMARY_COLORS.find(
-			(c) =>
-				formatHex(parse(c.cssVars.light["--color-primary"]))?.toLowerCase() ===
+function resolvePrimaryColorInfo(value = "#623DF5") {
+	const preset = PRIMARY_COLORS.find(
+		(c) =>
+			c.value === value ||
+			formatHex(parse(c.cssVars.light["--color-primary"]))?.toLowerCase() ===
 				value.toLowerCase()
-		)
-		const name = preset ? preset.name : ntc.name(value)[1] || "Custom"
-		return { name, hex: value, shades }
-	}
-
-	const preset = PRIMARY_COLORS.find((c) => c.value === value)
+	)
 	if (preset) {
-		const hex =
-			formatHex(parse(preset.cssVars.light["--color-primary"])) || defaultHex
 		return {
 			name: preset.name,
-			hex,
-			shades: preset.cssVars.light,
+			hex:
+				formatHex(parse(preset.cssVars.light["--color-primary"])) || "#623DF5",
+			shades: preset.cssVars.light as Record<string, string>,
 		}
 	}
-
 	return {
-		name: "Custom",
+		name: value.startsWith("#") ? ntc.name(value)[1] || "Custom" : "Custom",
 		hex: value,
 		shades: generateCustomColorShades(value, "primary"),
 	}
@@ -91,9 +98,13 @@ function formatColor(hex: string, format: ColorFormat): string {
 	return (formatHex(parsed) || hex).toUpperCase()
 }
 
-interface PrimaryColorPickerProps {
-	value?: string
-	onChange: (value: string) => void
+function startDrag(onMove: (e: PointerEvent) => void) {
+	const onUp = () => {
+		window.removeEventListener("pointermove", onMove)
+		window.removeEventListener("pointerup", onUp)
+	}
+	window.addEventListener("pointermove", onMove)
+	window.addEventListener("pointerup", onUp)
 }
 
 function ShadeRow({
@@ -107,16 +118,13 @@ function ShadeRow({
 }) {
 	const [copied, setCopied] = React.useState(false)
 
-	const handleCopy = (e: React.MouseEvent) => {
-		e.stopPropagation()
-		navigator.clipboard.writeText(value)
-		setCopied(true)
-		setTimeout(() => setCopied(false), 1500)
-	}
-
 	return (
 		<div
-			onClick={handleCopy}
+			onClick={() => {
+				navigator.clipboard.writeText(value)
+				setCopied(true)
+				setTimeout(() => setCopied(false), 1500)
+			}}
 			title={`Click to copy: ${value}`}
 			className="hover:bg-fill2 group -mx-1.5 flex cursor-pointer items-center justify-between rounded-md px-1.5 py-1 transition-colors">
 			<div className="flex items-center gap-2.5">
@@ -143,6 +151,11 @@ function ShadeRow({
 	)
 }
 
+interface PrimaryColorPickerProps {
+	value?: string
+	onChange: (value: string) => void
+}
+
 export default function PrimaryColorPicker({
 	value,
 	onChange,
@@ -154,214 +167,78 @@ export default function PrimaryColorPicker({
 
 	const colorInfo = React.useMemo(() => resolvePrimaryColorInfo(value), [value])
 
-	const [hsvState, setHsvState] = React.useState(() => {
-		const parsed = parse(colorInfo.hex)
-		if (parsed) {
-			const hsv = toHsv(parsed)
-			return {
-				h: hsv.h !== undefined && !isNaN(hsv.h) ? hsv.h : 0,
-				s: hsv.s !== undefined && !isNaN(hsv.s) ? hsv.s : 0,
-				v: hsv.v !== undefined && !isNaN(hsv.v) ? hsv.v : 1,
-			}
-		}
-		return { h: 160, s: 0.9, v: 0.72 }
-	})
-
+	const [hsvState, setHsvState] = React.useState(() => hexToHsv(colorInfo.hex))
 	const [displayInput, setDisplayInput] = React.useState(() =>
 		formatColor(colorInfo.hex, "Hex")
 	)
 
-	const hsvRef = React.useRef(hsvState)
-	hsvRef.current = hsvState
-
-	const svAreaRef = React.useRef<HTMLDivElement>(null)
-	const hueBarRef = React.useRef<HTMLDivElement>(null)
-
 	// Sync when external value changes
 	React.useEffect(() => {
-		const currentHex = formatHex({
-			mode: "hsv",
-			...hsvRef.current,
-		})?.toLowerCase()
+		const currentHex = formatHex({ mode: "hsv", ...hsvState })?.toLowerCase()
 		if (colorInfo.hex.toLowerCase() !== currentHex) {
-			const parsed = parse(colorInfo.hex)
-			if (parsed) {
-				const hsv = toHsv(parsed)
-				const next = {
-					h: hsv.h !== undefined && !isNaN(hsv.h) ? hsv.h : hsvRef.current.h,
-					s: hsv.s !== undefined && !isNaN(hsv.s) ? hsv.s : 0,
-					v: hsv.v !== undefined && !isNaN(hsv.v) ? hsv.v : 1,
-				}
-				hsvRef.current = next
-				setHsvState(next)
-				setDisplayInput(formatColor(colorInfo.hex, colorFormat))
-			}
+			setHsvState((prev) => hexToHsv(colorInfo.hex, prev.h))
+			setDisplayInput(formatColor(colorInfo.hex, colorFormat))
 		}
-	}, [colorInfo.hex, colorFormat])
+	}, [colorInfo.hex])
 
-	const syncColor = React.useCallback(
-		(newHex: string, nextHsv: { h: number; s: number; v: number }) => {
-			setDisplayInput(formatColor(newHex, colorFormat))
-			onChange(newHex)
-		},
-		[colorFormat, onChange]
-	)
+	const updateHsv = (next: { h: number; s: number; v: number }) => {
+		setHsvState(next)
+		const hex = formatHex({ mode: "hsv", ...next }) || "#000000"
+		setDisplayInput(formatColor(hex, colorFormat))
+		onChange(hex)
+	}
 
 	const handleSvPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
-		if (!svAreaRef.current) return
-		const rect = svAreaRef.current.getBoundingClientRect()
-
-		const updateFromPointer = (clientX: number, clientY: number) => {
-			const x = Math.max(0, Math.min(clientX - rect.left, rect.width))
-			const y = Math.max(0, Math.min(clientY - rect.top, rect.height))
-			const s = x / rect.width
-			const v = 1 - y / rect.height
-
-			const next = { ...hsvRef.current, s, v }
-			hsvRef.current = next
-			setHsvState(next)
-			const newHex = formatHex({ mode: "hsv", ...next }) || "#000000"
-			syncColor(newHex, next)
+		const rect = e.currentTarget.getBoundingClientRect()
+		const h = hsvState.h
+		const update = (x: number, y: number) => {
+			const s = Math.max(0, Math.min(x - rect.left, rect.width)) / rect.width
+			const v =
+				1 - Math.max(0, Math.min(y - rect.top, rect.height)) / rect.height
+			updateHsv({ h, s, v })
 		}
-
-		updateFromPointer(e.clientX, e.clientY)
-
-		const handlePointerMove = (ev: PointerEvent) => {
-			updateFromPointer(ev.clientX, ev.clientY)
-		}
-
-		const handlePointerUp = () => {
-			window.removeEventListener("pointermove", handlePointerMove)
-			window.removeEventListener("pointerup", handlePointerUp)
-		}
-
-		window.addEventListener("pointermove", handlePointerMove)
-		window.addEventListener("pointerup", handlePointerUp)
+		update(e.clientX, e.clientY)
+		startDrag((ev) => update(ev.clientX, ev.clientY))
 	}
 
 	const handleHuePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
-		if (!hueBarRef.current) return
-		const rect = hueBarRef.current.getBoundingClientRect()
-
-		const updateFromPointer = (clientX: number) => {
-			const x = Math.max(0, Math.min(clientX - rect.left, rect.width))
-			const h = (x / rect.width) * 360
-
-			const next = { ...hsvRef.current, h }
-			hsvRef.current = next
-			setHsvState(next)
-			const newHex = formatHex({ mode: "hsv", ...next }) || "#000000"
-			syncColor(newHex, next)
+		const rect = e.currentTarget.getBoundingClientRect()
+		const { s, v } = hsvState
+		const update = (x: number) => {
+			const h =
+				(Math.max(0, Math.min(x - rect.left, rect.width)) / rect.width) * 360
+			updateHsv({ h, s, v })
 		}
-
-		updateFromPointer(e.clientX)
-
-		const handlePointerMove = (ev: PointerEvent) => {
-			updateFromPointer(ev.clientX)
-		}
-
-		const handlePointerUp = () => {
-			window.removeEventListener("pointermove", handlePointerMove)
-			window.removeEventListener("pointerup", handlePointerUp)
-		}
-
-		window.addEventListener("pointermove", handlePointerMove)
-		window.addEventListener("pointerup", handlePointerUp)
+		update(e.clientX)
+		startDrag((ev) => update(ev.clientX))
 	}
 
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const val = e.target.value
 		setDisplayInput(val)
-
 		const parsed = parse(val)
 		if (parsed) {
-			const hsvVal = toHsv(parsed)
-			const nextHsv = {
-				h:
-					hsvVal.h !== undefined && !isNaN(hsvVal.h)
-						? hsvVal.h
-						: hsvRef.current.h,
-				s:
-					hsvVal.s !== undefined && !isNaN(hsvVal.s)
-						? hsvVal.s
-						: hsvRef.current.s,
-				v:
-					hsvVal.v !== undefined && !isNaN(hsvVal.v)
-						? hsvVal.v
-						: hsvRef.current.v,
-			}
-			hsvRef.current = nextHsv
-			setHsvState(nextHsv)
 			const newHex = formatHex(parsed)
 			if (newHex) {
+				setHsvState((prev) => hexToHsv(newHex, prev.h))
 				onChange(newHex)
 			}
 		}
 	}
 
-	const handleInputBlur = () => {
-		setDisplayInput(formatColor(colorInfo.hex, colorFormat))
-	}
-
-	const handleCopyInput = () => {
-		navigator.clipboard.writeText(displayInput)
-		setCopiedInput(true)
-		setTimeout(() => setCopiedInput(false), 1500)
-	}
-
 	const handleShuffle = () => {
 		if (isLocked) return
-		const h = Math.floor(Math.random() * 360)
-		const s = 0.72 + Math.random() * 0.25
-		const v = 0.75 + Math.random() * 0.2
-		const nextHsv = { h, s, v }
-		hsvRef.current = nextHsv
-		setHsvState(nextHsv)
-		const newHex = formatHex({ mode: "hsv", ...nextHsv }) || "#10b981"
-		syncColor(newHex, nextHsv)
+		updateHsv({
+			h: Math.floor(Math.random() * 360),
+			s: 0.72 + Math.random() * 0.25,
+			v: 0.75 + Math.random() * 0.2,
+		})
 	}
 
-	const hueColor =
-		formatHex({ mode: "hsv", h: hsvState.h, s: 1, v: 1 }) || "#ff0000"
-
-	const isLight =
-		colorInfo.shades["--color-primary-fg"]?.includes("0.2") || false
-	const textColor = isLight ? "#18181b" : "#ffffff"
-
-	const pastelShades = [
-		{
-			token: "--color-primary-fg",
-			value: colorInfo.shades["--color-primary-fg"] || "#ffffff",
-		},
-		{
-			token: "--color-primary-accent",
-			value: colorInfo.shades["--color-primary-accent"] || colorInfo.hex,
-		},
-		{
-			token: "--color-primary-focus",
-			value: colorInfo.shades["--color-primary-focus"] || colorInfo.hex,
-		},
-	]
-
-	const midToneShades = [
-		{
-			token: "--color-primary",
-			value: colorInfo.shades["--color-primary"] || colorInfo.hex,
-			isBase: true,
-		},
-		{
-			token: "--color-primary-text",
-			value: colorInfo.shades["--color-primary-text"] || colorInfo.hex,
-		},
-		{
-			token: "--color-primary-border",
-			value: colorInfo.shades["--color-primary-border"] || colorInfo.hex,
-		},
-		{
-			token: "--color-primary-hover",
-			value: colorInfo.shades["--color-primary-hover"] || colorInfo.hex,
-		},
-	]
+	const hueColor = `hsl(${hsvState.h} 100% 50%)`
+	const textColor = colorInfo.shades["--color-primary-fg"]?.includes("0.2")
+		? "#18181b"
+		: "#ffffff"
 
 	return (
 		<Popover open={open} onOpenChange={setOpen}>
@@ -453,7 +330,6 @@ export default function PrimaryColorPicker({
 
 				{/* SV 2D Area */}
 				<div
-					ref={svAreaRef}
 					onPointerDown={handleSvPointerDown}
 					className="border-fill4 relative h-44 w-full cursor-crosshair touch-none overflow-hidden rounded-lg border"
 					style={{ backgroundColor: hueColor }}>
@@ -470,7 +346,6 @@ export default function PrimaryColorPicker({
 
 				{/* Hue Slider */}
 				<div
-					ref={hueBarRef}
 					onPointerDown={handleHuePointerDown}
 					className="relative mt-3 flex h-4 w-full cursor-pointer touch-none items-center rounded-full"
 					style={{
@@ -498,15 +373,16 @@ export default function PrimaryColorPicker({
 							</button>
 						</DropdownMenuTrigger>
 						<DropdownMenuContent align="start" className="min-w-[100px]">
-							<DropdownMenuItem onClick={() => setColorFormat("Hex")}>
-								Hex
-							</DropdownMenuItem>
-							<DropdownMenuItem onClick={() => setColorFormat("RGB")}>
-								RGB
-							</DropdownMenuItem>
-							<DropdownMenuItem onClick={() => setColorFormat("HSL")}>
-								HSL
-							</DropdownMenuItem>
+							{(["Hex", "RGB", "HSL"] as const).map((fmt) => (
+								<DropdownMenuItem
+									key={fmt}
+									onClick={() => {
+										setColorFormat(fmt)
+										setDisplayInput(formatColor(colorInfo.hex, fmt))
+									}}>
+									{fmt}
+								</DropdownMenuItem>
+							))}
 						</DropdownMenuContent>
 					</DropdownMenu>
 
@@ -515,13 +391,19 @@ export default function PrimaryColorPicker({
 							type="text"
 							value={displayInput}
 							onChange={handleInputChange}
-							onBlur={handleInputBlur}
+							onBlur={() =>
+								setDisplayInput(formatColor(colorInfo.hex, colorFormat))
+							}
 							spellCheck={false}
 							className="text-xs"
 						/>
 						<button
 							type="button"
-							onClick={handleCopyInput}
+							onClick={() => {
+								navigator.clipboard.writeText(displayInput)
+								setCopiedInput(true)
+								setTimeout(() => setCopiedInput(false), 1500)
+							}}
 							className="text-fg-tertiary hover:text-fg shrink-0 p-0.5 transition-colors"
 							aria-label="Copy color value">
 							{copiedInput ? (
@@ -535,36 +417,26 @@ export default function PrimaryColorPicker({
 
 				{/* Shades breakdown */}
 				<div className="mt-4 flex flex-col gap-3">
-					{/* Pastel */}
-					<div>
-						<span className="text-fg-tertiary text-xs font-medium">Pastel</span>
-						<div className="mt-2 flex flex-col gap-1.5">
-							{pastelShades.map((shade) => (
-								<ShadeRow
-									key={shade.token}
-									token={shade.token}
-									value={shade.value}
-								/>
-							))}
+					{SHADE_GROUPS.map(({ label, tokens }) => (
+						<div key={label}>
+							<span className="text-fg-tertiary text-xs font-medium">
+								{label}
+							</span>
+							<div className="mt-2 flex flex-col gap-1.5">
+								{tokens.map((token) => (
+									<ShadeRow
+										key={token}
+										token={token}
+										value={
+											colorInfo.shades[token] ||
+											(token.endsWith("-fg") ? "#ffffff" : colorInfo.hex)
+										}
+										isBase={token === "--color-primary"}
+									/>
+								))}
+							</div>
 						</div>
-					</div>
-
-					{/* Mid tones */}
-					<div>
-						<span className="text-fg-tertiary text-xs font-medium">
-							Mid tones
-						</span>
-						<div className="mt-2 flex flex-col gap-1.5">
-							{midToneShades.map((shade) => (
-								<ShadeRow
-									key={shade.token}
-									token={shade.token}
-									value={shade.value}
-									isBase={shade.isBase}
-								/>
-							))}
-						</div>
-					</div>
+					))}
 				</div>
 			</PopoverContent>
 		</Popover>
