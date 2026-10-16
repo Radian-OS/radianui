@@ -67,6 +67,7 @@ export default function CarouselAutoplay() {
 								src={image.src}
 								alt={image.alt}
 								fill
+								sizes="(max-width: 384px) 100vw, 384px"
 								className="rounded-2xl object-cover"
 							/>
 						</AspectRatio>

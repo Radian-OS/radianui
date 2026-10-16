@@ -5,6 +5,7 @@ import { css } from "@emotion/css"
 import { cn } from "@/lib/utils"
 
 type InfiniteScrollProps = {
+	repetitions?: number
 	duration?: number
 	pauseOnHover?: boolean
 	paused?: boolean
@@ -52,6 +53,7 @@ const getClass = (isVertical: boolean) => {
 
 const InfiniteScroll = ({
 	duration = 20,
+	repetitions = 4,
 	reverse = false,
 	vertical = false,
 	pauseOnHover = true,
@@ -76,7 +78,7 @@ const InfiniteScroll = ({
 					"--duration": `${duration}s`,
 				} as React.CSSProperties
 			}>
-			{Array(4)
+			{Array(repetitions)
 				.fill(0)
 				.map((_, i) => (
 					<div

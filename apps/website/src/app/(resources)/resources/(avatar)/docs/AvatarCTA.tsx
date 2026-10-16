@@ -103,6 +103,7 @@ const AvatarCTA = () => {
 							src="/avatar/Table.png"
 							alt="User management table demonstrating avatars in a Radian UI layout"
 							fill
+							sizes="900px"
 							className="object-contain"
 						/>
 					</div>
@@ -111,6 +112,7 @@ const AvatarCTA = () => {
 							src="/avatar/Dropdown.png"
 							alt="Account navigation dropdown demonstrating a user avatar"
 							fill
+							sizes="400px"
 							className="object-contain"
 						/>
 					</div>
@@ -121,6 +123,7 @@ const AvatarCTA = () => {
 							src="/avatar/Table-1.png"
 							alt="User management table demonstrating avatars in a dark Radian UI layout"
 							fill
+							sizes="900px"
 							className="object-contain"
 						/>
 					</div>
@@ -129,6 +132,7 @@ const AvatarCTA = () => {
 							src="/avatar/Dropdown-1.png"
 							alt="Dark account navigation dropdown demonstrating a user avatar"
 							fill
+							sizes="400px"
 							className="object-contain"
 						/>
 					</div>

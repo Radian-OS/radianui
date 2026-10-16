@@ -86,6 +86,7 @@ export function GetProductUpdatesDialog() {
 						src="/get-product-updates-light.png"
 						alt="get-early-updates-light"
 						fill
+						sizes="340px"
 						className="object-cover dark:hidden"
 						unoptimized
 						priority
@@ -94,6 +95,7 @@ export function GetProductUpdatesDialog() {
 						src="/get-product-updates-dark.png"
 						alt="get-early-updates-dark"
 						fill
+						sizes="340px"
 						className="hidden object-cover dark:block"
 						unoptimized
 						priority

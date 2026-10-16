@@ -10,6 +10,7 @@
 				"^build"
 			],
 			"env": [
+				"SYNC_BRAND_LOGOS",
 				"DATABASE_URL",
 				"NEXT_PUBLIC_*",
 				"RESEND_API_KEY",
@@ -21,6 +22,10 @@
 			],
 			"outputs": [
 				".next/**",
+				"public/_brand-assets/**",
+				"public/resources/image-sitemap.xml",
+				"src/app/(resources)/resources/(brand-logos)/components/brand-logo-assets-version.generated.json",
+				"src/app/(resources)/resources/(brand-logos)/components/brand-logos-manifest.generated.json",
 				"!.next/cache/**",
 				"dist/**"
 			]

@@ -95,6 +95,7 @@ export default function DialogWithForm() {
 								src="/dialog-bg.png"
 								alt="Profile banner"
 								fill
+								sizes="(max-width: 532px) calc(100vw - 32px), 500px"
 								className="absolute inset-0 object-cover"
 							/>
 							<div className="absolute inset-0 flex items-center justify-center gap-2">

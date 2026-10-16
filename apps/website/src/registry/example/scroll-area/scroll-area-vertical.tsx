@@ -39,6 +39,7 @@ export default function ScrollAreaVerticalList() {
 							src={image.src}
 							alt={image.alt}
 							fill
+							sizes="280px"
 							className="object-cover"
 						/>
 					</div>

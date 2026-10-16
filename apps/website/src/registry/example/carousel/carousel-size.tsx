@@ -49,6 +49,7 @@ export default function CarouselSize() {
 								src={image.src}
 								alt={image.alt}
 								fill
+								sizes="(min-width: 1024px) 128px, (min-width: 768px) 192px, (max-width: 384px) 100vw, 384px"
 								className="rounded-2xl object-cover"
 							/>
 						</AspectRatio>

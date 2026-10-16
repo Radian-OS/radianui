@@ -12,6 +12,7 @@ export default function AspectRatioPreview() {
 					src={"/media/background-2.jpg"}
 					alt="Aspect Ratio Preview"
 					fill
+					sizes="(max-width: 450px) 100vw, 450px"
 					className="object-cover"
 				/>
 			</AspectRatio>
