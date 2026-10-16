@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import { motion, useDragControls } from "motion/react"
 import { converter, formatHex, formatHsl, formatRgb, parse } from "culori"
 import {
 	Check,
@@ -10,6 +11,7 @@ import {
 	Lock,
 	Shuffle,
 	Unlock,
+	X,
 } from "lucide-react"
 import {
 	Popover,
@@ -160,6 +162,7 @@ export default function PrimaryColorPicker({
 	value,
 	onChange,
 }: PrimaryColorPickerProps) {
+	const dragControls = useDragControls()
 	const [isLocked, setIsLocked] = React.useState(false)
 	const [colorFormat, setColorFormat] = React.useState<ColorFormat>("Hex")
 	const [copiedInput, setCopiedInput] = React.useState(false)
@@ -292,152 +295,183 @@ export default function PrimaryColorPicker({
 				sideOffset={16}
 				collisionPadding={16}
 				onOpenAutoFocus={(e) => e.preventDefault()}
-				className="w-[300px] px-2.5 py-1.5 shadow-sm select-none">
-				{/* Header */}
-				<div className="flex items-center justify-between p-1 pb-2">
-					<span className="text-fg-secondary text-[13px] font-medium">
-						Primary colour
-					</span>
-					<div className="flex items-center gap-2">
-						<Tooltip>
-							<TooltipTrigger asChild>
-								<button
-									type="button"
-									className="text-fg-tertiary hover:text-fg rounded-md p-1 transition-colors"
-									aria-label="Color information">
-									<Info className="size-4" />
-								</button>
-							</TooltipTrigger>
-							<TooltipContent withArrow>
-								Primary color generates all semantic shades and tokens
-							</TooltipContent>
-						</Tooltip>
-
-						<Tooltip>
-							<TooltipTrigger asChild>
-								<button
-									type="button"
-									onClick={handleShuffle}
-									className="text-fg-tertiary hover:text-fg rounded-md p-1 transition-colors"
-									aria-label="Randomize primary color">
-									<Shuffle className="size-4" />
-								</button>
-							</TooltipTrigger>
-							<TooltipContent withArrow>Shuffle color</TooltipContent>
-						</Tooltip>
-					</div>
-				</div>
-
-				{/* SV 2D Area */}
-				<div
-					onPointerDown={handleSvPointerDown}
-					className="border-fill4 relative h-44 w-full cursor-crosshair touch-none overflow-hidden rounded-lg border"
-					style={{ backgroundColor: hueColor }}>
-					<div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-white to-transparent" />
-					<div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black to-transparent" />
+				className="w-auto border-none bg-transparent p-0 shadow-none">
+				<motion.div
+					drag
+					dragControls={dragControls}
+					dragListener={false}
+					dragMomentum={false}
+					onDragStart={() => {
+						document.querySelectorAll("iframe").forEach((el) => {
+							el.style.pointerEvents = "none"
+						})
+					}}
+					onDragEnd={() => {
+						document.querySelectorAll("iframe").forEach((el) => {
+							el.style.pointerEvents = ""
+						})
+					}}
+					className="bg-popover border-border w-[300px] rounded-lg border px-2.5 py-1.5 shadow-sm will-change-transform select-none">
+					{/* Header */}
 					<div
-						className="pointer-events-none absolute size-5 -translate-x-1/2 -translate-y-1/2 rounded-full border-[2.5px] border-white shadow-[0_1px_4px_rgba(0,0,0,0.35)] transition-none"
-						style={{
-							left: `${hsvState.s * 100}%`,
-							top: `${(1 - hsvState.v) * 100}%`,
+						onPointerDown={(e) => {
+							if (!(e.target as HTMLElement).closest("button")) {
+								dragControls.start(e)
+							}
 						}}
-					/>
-				</div>
+						className="flex cursor-grab items-center justify-between p-1 pb-2 active:cursor-grabbing">
+						<span className="text-fg-secondary text-[13px] font-medium">
+							Primary colour
+						</span>
+						<div className="flex items-center gap-2">
+							<Tooltip>
+								<TooltipTrigger asChild>
+									<button
+										type="button"
+										className="text-fg-tertiary hover:text-fg rounded-md p-1 transition-colors"
+										aria-label="Color information">
+										<Info className="size-4" />
+									</button>
+								</TooltipTrigger>
+								<TooltipContent withArrow>
+									Primary color generates all semantic shades and tokens
+								</TooltipContent>
+							</Tooltip>
 
-				{/* Hue Slider */}
-				<div
-					onPointerDown={handleHuePointerDown}
-					className="relative mt-3 flex h-4 w-full cursor-pointer touch-none items-center rounded-full"
-					style={{
-						background:
-							"linear-gradient(to right, #ff0000 0%, #ffff00 17%, #00ff00 33%, #00ffff 50%, #0000ff 67%, #ff00ff 83%, #ff0000 100%)",
-					}}>
-					<div
-						className="pointer-events-none absolute size-4.5 -translate-x-1/2 rounded-full border-2 border-white shadow-[0_1px_3px_rgba(0,0,0,0.3)]"
-						style={{
-							left: `${(hsvState.h / 360) * 100}%`,
-							backgroundColor: hueColor,
-						}}
-					/>
-				</div>
+							<Tooltip>
+								<TooltipTrigger asChild>
+									<button
+										type="button"
+										onClick={handleShuffle}
+										className="text-fg-tertiary hover:text-fg rounded-md p-1 transition-colors"
+										aria-label="Randomize primary color">
+										<Shuffle className="size-4" />
+									</button>
+								</TooltipTrigger>
+								<TooltipContent withArrow>Shuffle color</TooltipContent>
+							</Tooltip>
 
-				{/* Format and Input Row */}
-				<div className="mt-3 flex items-center gap-2">
-					<DropdownMenu>
-						<DropdownMenuTrigger asChild>
 							<button
 								type="button"
-								className="border-border bg-fill1 hover:bg-fill2 text-fg flex h-7 shrink-0 cursor-pointer items-center gap-1 rounded-lg border px-2.5 text-xs font-medium transition-colors">
-								<span>{colorFormat}</span>
-								<ChevronDown className="text-fg-tertiary size-3" />
+								onClick={() => setOpen(false)}
+								className="text-fg-tertiary hover:text-fg rounded-md p-1 transition-colors"
+								aria-label="Close color picker">
+								<X className="size-4" />
 							</button>
-						</DropdownMenuTrigger>
-						<DropdownMenuContent align="start" className="min-w-[100px]">
-							{(["Hex", "RGB", "HSL"] as const).map((fmt) => (
-								<DropdownMenuItem
-									key={fmt}
-									onClick={() => {
-										setColorFormat(fmt)
-										setDisplayInput(formatColor(colorInfo.hex, fmt))
-									}}>
-									{fmt}
-								</DropdownMenuItem>
-							))}
-						</DropdownMenuContent>
-					</DropdownMenu>
-
-					<InputWrapper size="xs">
-						<Input
-							type="text"
-							value={displayInput}
-							onChange={handleInputChange}
-							onBlur={() =>
-								setDisplayInput(formatColor(colorInfo.hex, colorFormat))
-							}
-							spellCheck={false}
-							className="text-xs"
-						/>
-						<button
-							type="button"
-							onClick={() => {
-								navigator.clipboard.writeText(displayInput)
-								setCopiedInput(true)
-								setTimeout(() => setCopiedInput(false), 1500)
-							}}
-							className="text-fg-tertiary hover:text-fg shrink-0 p-0.5 transition-colors"
-							aria-label="Copy color value">
-							{copiedInput ? (
-								<Check className="size-4" />
-							) : (
-								<Copy className="size-4" />
-							)}
-						</button>
-					</InputWrapper>
-				</div>
-
-				{/* Shades breakdown */}
-				<div className="mt-4 flex flex-col gap-3">
-					{SHADE_GROUPS.map(({ label, tokens }) => (
-						<div key={label}>
-							<span className="text-fg-tertiary text-xs font-medium">
-								{label}
-							</span>
-							<div className="mt-2 flex flex-col gap-1.5">
-								{tokens.map((token) => (
-									<ShadeRow
-										key={token}
-										token={token}
-										value={
-											colorInfo.shades[token] ||
-											(token.endsWith("-fg") ? "#ffffff" : colorInfo.hex)
-										}
-										isBase={token === "--color-primary"}
-									/>
-								))}
-							</div>
 						</div>
-					))}
-				</div>
+					</div>
+
+					{/* SV 2D Area */}
+					<div
+						onPointerDown={handleSvPointerDown}
+						className="border-fill4 relative h-44 w-full cursor-crosshair touch-none overflow-hidden rounded-lg border"
+						style={{ backgroundColor: hueColor }}>
+						<div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-white to-transparent" />
+						<div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black to-transparent" />
+						<div
+							className="pointer-events-none absolute size-5 -translate-x-1/2 -translate-y-1/2 rounded-full border-[2.5px] border-white shadow-[0_1px_4px_rgba(0,0,0,0.35)] transition-none"
+							style={{
+								left: `${hsvState.s * 100}%`,
+								top: `${(1 - hsvState.v) * 100}%`,
+							}}
+						/>
+					</div>
+
+					{/* Hue Slider */}
+					<div
+						onPointerDown={handleHuePointerDown}
+						className="relative mt-3 flex h-4 w-full cursor-pointer touch-none items-center rounded-full"
+						style={{
+							background:
+								"linear-gradient(to right, #ff0000 0%, #ffff00 17%, #00ff00 33%, #00ffff 50%, #0000ff 67%, #ff00ff 83%, #ff0000 100%)",
+						}}>
+						<div
+							className="pointer-events-none absolute size-4.5 -translate-x-1/2 rounded-full border-2 border-white shadow-[0_1px_3px_rgba(0,0,0,0.3)]"
+							style={{
+								left: `${(hsvState.h / 360) * 100}%`,
+								backgroundColor: hueColor,
+							}}
+						/>
+					</div>
+
+					{/* Format and Input Row */}
+					<div className="mt-3 flex items-center gap-2">
+						<DropdownMenu>
+							<DropdownMenuTrigger asChild>
+								<button
+									type="button"
+									className="border-border bg-fill1 hover:bg-fill2 text-fg flex h-7 shrink-0 cursor-pointer items-center gap-1 rounded-lg border px-2.5 text-xs font-medium transition-colors">
+									<span>{colorFormat}</span>
+									<ChevronDown className="text-fg-tertiary size-3" />
+								</button>
+							</DropdownMenuTrigger>
+							<DropdownMenuContent align="start" className="min-w-[100px]">
+								{(["Hex", "RGB", "HSL"] as const).map((fmt) => (
+									<DropdownMenuItem
+										key={fmt}
+										onClick={() => {
+											setColorFormat(fmt)
+											setDisplayInput(formatColor(colorInfo.hex, fmt))
+										}}>
+										{fmt}
+									</DropdownMenuItem>
+								))}
+							</DropdownMenuContent>
+						</DropdownMenu>
+
+						<InputWrapper size="xs">
+							<Input
+								type="text"
+								value={displayInput}
+								onChange={handleInputChange}
+								onBlur={() =>
+									setDisplayInput(formatColor(colorInfo.hex, colorFormat))
+								}
+								spellCheck={false}
+								className="text-xs"
+							/>
+							<button
+								type="button"
+								onClick={() => {
+									navigator.clipboard.writeText(displayInput)
+									setCopiedInput(true)
+									setTimeout(() => setCopiedInput(false), 1500)
+								}}
+								className="text-fg-tertiary hover:text-fg shrink-0 p-0.5 transition-colors"
+								aria-label="Copy color value">
+								{copiedInput ? (
+									<Check className="size-4" />
+								) : (
+									<Copy className="size-4" />
+								)}
+							</button>
+						</InputWrapper>
+					</div>
+
+					{/* Shades breakdown */}
+					<div className="mt-4 flex flex-col gap-3">
+						{SHADE_GROUPS.map(({ label, tokens }) => (
+							<div key={label}>
+								<span className="text-fg-tertiary text-xs font-medium">
+									{label}
+								</span>
+								<div className="mt-2 flex flex-col gap-1.5">
+									{tokens.map((token) => (
+										<ShadeRow
+											key={token}
+											token={token}
+											value={
+												colorInfo.shades[token] ||
+												(token.endsWith("-fg") ? "#ffffff" : colorInfo.hex)
+											}
+											isBase={token === "--color-primary"}
+										/>
+									))}
+								</div>
+							</div>
+						))}
+					</div>
+				</motion.div>
 			</PopoverContent>
 		</Popover>
 	)
