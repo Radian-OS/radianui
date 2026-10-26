@@ -183,7 +183,7 @@ export default function CornerPicker() {
 					</DropdownMenuRadioItem>
 				</DropdownMenuRadioGroup>
 
-				<Divider className="my-1" />
+				{isAdvanced && <Divider className="my-1" />}
 
 				{isAdvanced && (
 					<div
