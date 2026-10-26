@@ -164,8 +164,8 @@ export function ThemerSidebar({
 
 	useEffect(() => {
 		if (isRadiusDisabled) {
-			if (params.radius !== "none" || params.controlRadius !== "none") {
-				setParams({ radius: "none", controlRadius: "none" })
+			if (params.radius !== "flat" || params.controlRadius !== "flat") {
+				setParams({ radius: "flat", controlRadius: "flat" })
 			}
 		}
 	}, [isRadiusDisabled, params.radius, params.controlRadius, setParams])
@@ -189,8 +189,8 @@ export function ThemerSidebar({
 			baseColor: baseColor.value as BaseColorValue,
 			iconLibrary: iconLibrary as IconLibrary,
 			...(isNextRadiusDisabled && {
-				radius: "none",
-				controlRadius: "none",
+				radius: "flat",
+				controlRadius: "flat",
 			}),
 			...(!locked.headingFont && {
 				headingFont: headingFont.value as FontValue,
@@ -288,8 +288,8 @@ export function ThemerSidebar({
 												controlRadius: params.controlRadius,
 											}),
 										...(isNextRadiusDisabled && {
-											radius: "none",
-											controlRadius: "none",
+											radius: "flat",
+											controlRadius: "flat",
 										}),
 									})
 								}}>
@@ -666,7 +666,7 @@ export function ThemerSidebar({
 								key={radius.value}
 								radius={radius}
 								isSelected={
-									(isRadiusDisabled ? "none" : params.radius) === radius.value
+									(isRadiusDisabled ? "flat" : params.radius) === radius.value
 								}
 								disabled={isRadiusDisabled}
 								onClick={() =>
@@ -696,7 +696,7 @@ export function ThemerSidebar({
 								key={radius.value}
 								radius={radius}
 								isSelected={
-									(isRadiusDisabled ? "none" : params.controlRadius) ===
+									(isRadiusDisabled ? "flat" : params.controlRadius) ===
 									radius.value
 								}
 								disabled={isRadiusDisabled}

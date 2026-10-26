@@ -98,6 +98,20 @@ function ThemerPage() {
 		})
 	}, [params.density, postToIframe])
 
+	useEffect(() => {
+		postToIframe({
+			type: "radius-change",
+			radius: params.radius,
+		})
+	}, [params.radius, postToIframe])
+
+	useEffect(() => {
+		postToIframe({
+			type: "control-radius-change",
+			controlRadius: params.controlRadius,
+		})
+	}, [params.controlRadius, postToIframe])
+
 	return (
 		<SidebarProvider
 			style={{ "--sidebar-width": "430px" } as React.CSSProperties}>

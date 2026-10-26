@@ -31,12 +31,8 @@ const designSystemSearchParams = {
 	bodyFont: parseAsStringLiteral<FontValue>(
 		FONTS.map((font) => font.value)
 	).withDefault(DEFAULT_CONFIG.bodyFont),
-	radius: parseAsStringLiteral<RadiusValue>(
-		RADIUS.map((r) => r.value)
-	).withDefault(DEFAULT_CONFIG.radius),
-	controlRadius: parseAsStringLiteral<RadiusValue>(
-		RADIUS.map((r) => r.value)
-	).withDefault(DEFAULT_CONFIG.controlRadius),
+	radius: parseAsString.withDefault(DEFAULT_CONFIG.radius),
+	controlRadius: parseAsString.withDefault(DEFAULT_CONFIG.controlRadius),
 	template: parseAsStringLiteral<Template>(TEMPLATES).withDefault(
 		DEFAULT_CONFIG.template
 	),

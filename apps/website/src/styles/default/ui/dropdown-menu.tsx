@@ -224,7 +224,7 @@ function DropdownMenuRadioItem({
 		<DropdownMenuPrimitive.RadioItem
 			data-slot="dropdown-menu-radio-item"
 			className={cn(
-				"focus:bg-fill2-alpha [&_svg]:text-fg-secondary gap-2 rounded-sm py-1.5 text-sm [&_svg:not([class*='size-'])]:size-5",
+				"focus:bg-fill2-alpha [&_svg]:text-fg-secondary relative gap-2 rounded-sm py-1.5 text-sm [&_svg:not([class*='size-'])]:size-5",
 				"flex w-full cursor-pointer items-center select-none",
 				"outline-hidden",
 				"focus:bg-fill2-alpha",

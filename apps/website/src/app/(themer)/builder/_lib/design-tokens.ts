@@ -47,7 +47,7 @@ export interface DesignTokens {
 export const DEFAULT_DESIGN_TOKENS: DesignTokens = {
 	primaryColor: "violet-blue",
 	baseColor: "default",
-	radius: "medium",
+	radius: "default",
 	headingFont: "geist",
 	bodyFont: "inter",
 	darkMode: false,

@@ -1,25 +1,7 @@
 export const RADIUS = [
 	{
-		value: "none",
-		name: "None",
-		type: "registry:radius",
-		radius: {
-			"radius-base": "0px",
-			"control-radius-base": "0px",
-		},
-	},
-	{
-		value: "small",
-		name: "Small",
-		type: "registry:radius",
-		radius: {
-			"radius-base": "6px",
-			"control-radius-base": "6px",
-		},
-	},
-	{
-		value: "medium",
-		name: "Medium",
+		value: "default",
+		name: "Default",
 		type: "registry:radius",
 		radius: {
 			"radius-base": "8px",
@@ -27,20 +9,30 @@ export const RADIUS = [
 		},
 	},
 	{
-		value: "large",
-		name: "Large",
+		value: "flat",
+		name: "Flat",
 		type: "registry:radius",
 		radius: {
-			"radius-base": "10px",
-			"control-radius-base": "10px",
+			"radius-base": "0px",
+			"control-radius-base": "0px",
+		},
+	},
+
+	{
+		value: "fun",
+		name: "Fun",
+		type: "registry:radius",
+		radius: {
+			"radius-base": "12px",
+			"control-radius-base": "12px",
 		},
 	},
 	{
-		value: "full",
-		name: "Full",
+		value: "rounded",
+		name: "Rounded",
 		type: "registry:radius",
 		radius: {
-			"radius-base": "14px",
+			"radius-base": "16px",
 			"control-radius-base": "calc(infinity * 1px)",
 		},
 	},

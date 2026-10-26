@@ -8,11 +8,9 @@ import {
 
 export const RADII = [
 	{ name: "Default", value: "default" },
-	{ name: "None", value: "none" },
-	{ name: "Small", value: "small" },
-	{ name: "Medium", value: "medium" },
-	{ name: "Large", value: "large" },
-	{ name: "Full", value: "full" },
+	{ name: "Flat", value: "flat" },
+	{ name: "Fun", value: "fun" },
+	{ name: "Rounded", value: "rounded" },
 ] as const
 
 export function RadiusPill({

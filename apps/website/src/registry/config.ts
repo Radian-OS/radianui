@@ -57,16 +57,8 @@ export const themerConfigSchema = z.object({
 		.enum(fontValues, { error: "Invalid font value" })
 		.default("inter"),
 	template: z.enum(TEMPLATES).default("next"),
-	radius: z
-		.enum(radiusValues, {
-			error: "Invalid radius value",
-		})
-		.default("medium"),
-	controlRadius: z
-		.enum(radiusValues, {
-			error: "Invalid radius value",
-		})
-		.default("medium"),
+	radius: z.string().default("default"),
+	controlRadius: z.string().default("default"),
 	style: z
 		.enum(styleValues, {
 			error: "Invalid style valiue",
@@ -95,8 +87,8 @@ export const DEFAULT_CONFIG: ThemerConfig = {
 	headingFont: "geist",
 	bodyFont: "inter",
 	template: "next",
-	radius: "medium",
-	controlRadius: "medium",
+	radius: "default",
+	controlRadius: "default",
 	style: "default",
 	density: "default",
 	name: "my-project",
@@ -122,8 +114,8 @@ export const PRESETS: Preset[] = [
 		headingFont: "geist",
 		bodyFont: "inter",
 		template: "next",
-		radius: "medium",
-		controlRadius: "medium",
+		radius: "default",
+		controlRadius: "default",
 		style: "default",
 		density: "default",
 		useSrcDir: true,
@@ -140,8 +132,8 @@ export const PRESETS: Preset[] = [
 		headingFont: "playfair-display",
 		bodyFont: "playfair-display",
 		template: "next",
-		radius: "none",
-		controlRadius: "none",
+		radius: "flat",
+		controlRadius: "flat",
 		style: "sera",
 		density: "default",
 		useSrcDir: true,
@@ -346,15 +338,22 @@ export function buildRegistryConfig(config: ThemerConfig): RegistryConfig {
 
 	if (config.bodyFont) theme["--font-body"] = bodyFont?.font.family || ""
 
-	const radius = RADIUS.find((r) => r.value === config.radius)
-	if (radius) {
-		theme["--radius-base"] = radius.radius["radius-base"]
+	const resolveRadius = (
+		val: string,
+		key: "radius-base" | "control-radius-base"
+	) => {
+		const preset = RADIUS.find((r) => r.value === val)
+		if (preset) return preset.radius[key]
+		return val.endsWith("px") || val.includes("calc") ? val : `${val}px`
 	}
 
-	const controlRadius = RADIUS.find((r) => r.value === config.controlRadius)
-	if (controlRadius) {
-		theme["--control-radius-base"] = controlRadius.radius["control-radius-base"]
-	}
+	if (config.radius)
+		theme["--radius-base"] = resolveRadius(config.radius, "radius-base")
+	if (config.controlRadius)
+		theme["--control-radius-base"] = resolveRadius(
+			config.controlRadius,
+			"control-radius-base"
+		)
 
 	const density = DENSITIES.find((d) => d.value === config.density)
 	if (density) {

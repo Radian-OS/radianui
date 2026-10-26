@@ -11,6 +11,7 @@ import {
 	Lock,
 	Shuffle,
 	Unlock,
+	X,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import {
@@ -385,7 +386,7 @@ export default function PrimaryColorPicker({
 										</button>
 									</TooltipTrigger>
 									<TooltipContent withArrow>
-										Primary color generates all semantic shades and tokens
+										The shades for the picked color are generated automatically
 									</TooltipContent>
 								</Tooltip>
 
@@ -401,6 +402,14 @@ export default function PrimaryColorPicker({
 									</TooltipTrigger>
 									<TooltipContent withArrow>Shuffle color</TooltipContent>
 								</Tooltip>
+
+								<button
+									type="button"
+									onClick={() => setOpen(false)}
+									className="text-fg-tertiary hover:text-fg rounded-md p-1 transition-colors"
+									aria-label="Close color picker">
+									<X className="size-4" />
+								</button>
 							</div>
 						</div>
 
@@ -543,7 +552,7 @@ export default function PrimaryColorPicker({
 											)}>
 											<div className="flex items-center gap-2.5">
 												<div
-													className="size-4 shrink-0 rounded-[4px]"
+													className="size-4 shrink-0 rounded-[6px]"
 													style={{ backgroundColor: swatchColor }}
 												/>
 												<span className="text-fg text-xs font-normal">
