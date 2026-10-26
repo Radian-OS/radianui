@@ -73,13 +73,12 @@ test("brand-logo pages list CDN images without a generated local mirror", () => 
 		f.file(
 			"app/(resources)/resources/(brand-logos)/brand-logos/[brand]/page.tsx"
 		)
-		f.file(
-			"app/(resources)/resources/(brand-logos)/components/brand-logos-catalog.json",
-			JSON.stringify({
+		const xml = generateResourceImageSitemap({
+			...f.options,
+			brandManifest: {
 				categories: [{ slug: "frameworks", brands: ["radianui"] }],
-			})
-		)
-		const xml = generateResourceImageSitemap(f.options)
+			},
+		})
 		assert.ok(xml.includes("/resources/brand-logos/radianui</loc>"))
 		assert.ok(
 			xml.includes(

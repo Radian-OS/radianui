@@ -1,4 +1,4 @@
-import { existsSync, readdirSync, statSync, readFileSync } from "node:fs"
+import { existsSync, readdirSync, statSync } from "node:fs"
 import { join, resolve, relative, sep } from "node:path"
 import { resources } from "@/config/resource-previews"
 import { AVATAR_SHADOW_MAP } from "@/constants/avatar-shadow-map"
@@ -38,6 +38,9 @@ function escapeXml(value: string) {
 }
 
 export interface ResourceImageSitemapOptions {
+	brandManifest?: {
+		categories: readonly { slug: string; brands: readonly string[] }[]
+	}
 	publicDirectory?: string
 	appDirectory?: string
 }
@@ -132,24 +135,15 @@ export function generateResourceImageSitemap(
 	}
 	// The catalog contains metadata only; every logo image is served by jsDelivr.
 	if (pageExists("/resources/brand-logos")) {
-		const catalogPath = join(
-			appDirectory,
-			"(resources)/resources/(brand-logos)/components/brand-logos-catalog.json"
-		)
-		if (existsSync(catalogPath)) {
-			const catalog = JSON.parse(readFileSync(catalogPath, "utf8")) as {
-				categories: { slug: string; brands: string[] }[]
-			}
-			for (const category of catalog.categories) {
-				for (const brand of category.brands) {
-					const images = ["icon", "wordmark"].map(
-						(variant) =>
-							`https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/light/colored/${category.slug}/${variant}/${brand}.svg`
-					)
-					entries.push({ path: "/resources/brand-logos", images: [images[0]] })
-					const path = `/resources/brand-logos/${brand}`
-					if (pageExists(path)) entries.push({ path, images })
-				}
+		for (const category of options.brandManifest?.categories ?? []) {
+			for (const brand of category.brands) {
+				const images = ["icon", "wordmark"].map(
+					(variant) =>
+						`https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/light/colored/${category.slug}/${variant}/${brand}.svg`
+				)
+				entries.push({ path: "/resources/brand-logos", images: [images[0]] })
+				const path = `/resources/brand-logos/${brand}`
+				if (pageExists(path)) entries.push({ path, images })
 			}
 		}
 	}

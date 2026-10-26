@@ -1,44 +1,23 @@
-import type {
-	BrandLogoColorway,
-	BrandLogoId,
-	BrandLogoTheme,
-	BrandLogoVariant,
-} from "./brand-logos-data"
-import { getBrandLogoSvgUrl, getLogoDimensions } from "./brand-logos-data"
+import type { BrandLogoVariant } from "./brand-logos-data"
+import { getLogoDimensions } from "./brand-logos-data"
 
 const svgCache = new Map<string, Promise<string>>()
 
-function getCacheKey(
-	id: BrandLogoId,
-	theme: BrandLogoTheme,
-	colorway: BrandLogoColorway,
-	variant: BrandLogoVariant
-) {
-	return `${id}:${theme}:${colorway}:${variant}`
-}
-
-export async function fetchBrandLogoSvg(
-	id: BrandLogoId,
-	theme: BrandLogoTheme = "light",
-	colorway: BrandLogoColorway = "colored",
-	variant: BrandLogoVariant = "icon"
-): Promise<string> {
-	const key = getCacheKey(id, theme, colorway, variant)
+export async function fetchBrandLogoSvg(url: string): Promise<string> {
+	const key = url
 	const cached = svgCache.get(key)
 	if (cached) return cached
 
 	const svgPromise = (async () => {
-		const response = await fetch(
-			getBrandLogoSvgUrl(id, theme, colorway, variant),
-			{
-				signal: AbortSignal.timeout(15000),
-			}
-		)
+		const response = await fetch(url, {
+			signal: AbortSignal.timeout(15000),
+		})
 		if (!response.ok) {
-			throw new Error(`Could not fetch ${id} SVG (${response.status})`)
+			throw new Error(`Could not fetch ${url} SVG (${response.status})`)
 		}
 		const svg = (await response.text()).trim()
-		if (!/^<svg\b/i.test(svg)) throw new Error(`Invalid SVG response for ${id}`)
+		if (!/^<svg\b/i.test(svg))
+			throw new Error(`Invalid SVG response for ${url}`)
 		return svg
 	})()
 	svgCache.set(key, svgPromise)
@@ -65,13 +44,11 @@ export function loadSvgImage(svg: string) {
 }
 
 export async function renderBrandLogoPng(
-	id: BrandLogoId,
-	theme: BrandLogoTheme = "light",
-	colorway: BrandLogoColorway = "colored",
+	url: string,
 	variant: BrandLogoVariant = "icon",
 	scale = 4
 ): Promise<Blob> {
-	const svg = await fetchBrandLogoSvg(id, theme, colorway, variant)
+	const svg = await fetchBrandLogoSvg(url)
 	const { image, objectUrl } = await loadSvgImage(svg)
 
 	try {

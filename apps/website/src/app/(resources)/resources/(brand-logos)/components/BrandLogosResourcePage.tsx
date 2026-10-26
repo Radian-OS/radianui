@@ -7,13 +7,10 @@ import BrandLogosHeroActions from "./BrandLogosHeroActions"
 import BrandLogosPlayground from "./BrandLogosPlayground"
 import type { BrandLogoId } from "./brand-logos-data"
 import {
-	BRAND_LOGO_ASSET_COUNT,
-	brandLogos,
-	getBrandLogo,
-	getBrandLogoSvgUrl,
-	getBrandLogoDisplayUrl,
-	getBrandLogoMetadataDescription,
-} from "./brand-logos-data"
+	getBrandLogoCatalog,
+	getBrandLogosManifest,
+} from "./brand-logos-server"
+import { BrandLogoCatalogProvider } from "./BrandLogoCatalogProvider"
 
 const heroLogos = [
 	{ id: "figma", size: "small" },
@@ -25,9 +22,18 @@ interface BrandLogosResourcePageProps {
 	initialSelectedBrand?: BrandLogoId | null
 }
 
-export function BrandLogosResourcePage({
+export async function BrandLogosResourcePage({
 	initialSelectedBrand = null,
 }: BrandLogosResourcePageProps) {
+	const manifest = await getBrandLogosManifest()
+	const {
+		BRAND_LOGO_ASSET_COUNT,
+		brandLogos,
+		getBrandLogo,
+		getBrandLogoSvgUrl,
+		getBrandLogoDisplayUrl,
+		getBrandLogoMetadataDescription,
+	} = await getBrandLogoCatalog()
 	const selectedBrand = initialSelectedBrand
 		? getBrandLogo(initialSelectedBrand)
 		: null
@@ -82,7 +88,9 @@ export function BrandLogosResourcePage({
 			actions={<BrandLogosHeroActions />}
 			showcaseLabel="Browse free brand logo assets"
 			showcase={
-				<BrandLogosPlayground initialSelectedBrand={initialSelectedBrand} />
+				<BrandLogoCatalogProvider manifest={manifest}>
+					<BrandLogosPlayground initialSelectedBrand={initialSelectedBrand} />
+				</BrandLogoCatalogProvider>
 			}
 			documentation={
 				<>

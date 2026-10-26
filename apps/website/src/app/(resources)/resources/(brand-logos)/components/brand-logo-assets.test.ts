@@ -1,7 +1,13 @@
 import assert from "node:assert/strict"
 import test from "node:test"
 import { fetchBrandLogoSvg } from "./brand-logo-assets"
-import { getBrandLogoDisplayUrl, getBrandLogoSvgUrl } from "./brand-logos-data"
+import { createBrandLogoCatalog } from "./brand-logos-data"
+const { getBrandLogoDisplayUrl, getBrandLogoSvgUrl } = createBrandLogoCatalog({
+	categories: [
+		{ slug: "frameworks", label: "Frameworks", count: 1, brands: ["react"] },
+		{ slug: "technology", label: "Technology", count: 1, brands: ["sony"] },
+	],
+})
 
 test("previews and SVG exports use the public CDN for every variant", async () => {
 	const originalFetch = globalThis.fetch
@@ -23,7 +29,7 @@ test("previews and SVG exports use the public CDN for every variant", async () =
 						getBrandLogoSvgUrl("react", theme, colorway, variant),
 						expected
 					)
-					await fetchBrandLogoSvg("react", theme, colorway, variant)
+					await fetchBrandLogoSvg(expected)
 					assert.equal(urls.at(-1), expected)
 				}
 			}
@@ -44,8 +50,8 @@ test("a failed CDN response can be retried without a proxy", async () => {
 			: new Response("<svg/>")
 	}
 	try {
-		await assert.rejects(fetchBrandLogoSvg("sony"), /503/)
-		assert.equal(await fetchBrandLogoSvg("sony"), "<svg/>")
+		await assert.rejects(fetchBrandLogoSvg(getBrandLogoSvgUrl("sony")), /503/)
+		assert.equal(await fetchBrandLogoSvg(getBrandLogoSvgUrl("sony")), "<svg/>")
 		assert.equal(calls, 2)
 	} finally {
 		globalThis.fetch = originalFetch

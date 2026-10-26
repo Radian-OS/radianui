@@ -4,32 +4,31 @@ import { notFound } from "next/navigation"
 import { websiteMetadata } from "@/config/website-metadata-config"
 import { absoluteUrl } from "@/lib/structured-data"
 import { BrandLogosResourcePage } from "../../components/BrandLogosResourcePage"
-import {
-	brandLogos,
-	getBrandLogoFromSlug,
-	getBrandLogoPagePath,
-	getBrandLogoMetadataDescription,
-	getBrandLogoUrl,
-} from "../../components/brand-logos-data"
+import { getBrandLogoCatalog } from "../../components/brand-logos-server"
 
 interface BrandLogoPageProps {
 	params: Promise<{ brand: string }>
 }
 
 async function getBrandFromParams({ params }: BrandLogoPageProps) {
+	const { getBrandLogoFromSlug } = await getBrandLogoCatalog()
 	const { brand } = await params
 	return getBrandLogoFromSlug(brand)
 }
 
-export const dynamicParams = false
-
+export const revalidate = 3600
 export function generateStaticParams() {
-	return brandLogos.map((brand) => ({ brand: brand.id }))
+	return []
 }
 
 export async function generateMetadata({
 	params,
 }: BrandLogoPageProps): Promise<Metadata> {
+	const {
+		getBrandLogoMetadataDescription,
+		getBrandLogoPagePath,
+		getBrandLogoUrl,
+	} = await getBrandLogoCatalog()
 	const brand = await getBrandFromParams({ params })
 	if (!brand) return {}
 
@@ -62,6 +61,8 @@ export async function generateMetadata({
 }
 
 export default async function BrandLogoPage(props: BrandLogoPageProps) {
+	const { getBrandLogoMetadataDescription, getBrandLogoPagePath } =
+		await getBrandLogoCatalog()
 	const brand = await getBrandFromParams(props)
 	if (!brand) notFound()
 

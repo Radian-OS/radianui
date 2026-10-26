@@ -15,7 +15,7 @@ The authoritative manifest lives in `radian-resources/packages/brand-logos/manif
 
 Logo previews, SVG copies and downloads, and PNG exports load the original SVGs directly from jsDelivr. No local asset mirror, proxy, synchronization commands, or build flags are required.
 
-`brand-logos-catalog.json` contains the category and brand metadata used for routes, search, and counts. It does not contain images. Update this catalog when adding or removing brands from the resources repository.
+The upstream `packages/brand-logos/manifest.json` is fetched through jsDelivr and validated on the server. It supplies categories, routes, search, counts, and metadata. Next.js caches it for one hour; new brands can resolve without a website rebuild. The image sitemap fetches the same manifest when generated. No local catalog JSON is maintained.
 
 ### Resource image sitemap
 
