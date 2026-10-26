@@ -4,10 +4,8 @@
 	"type": "module",
 	"private": true,
 	"scripts": {
-		"dev": "tsx src/scripts/sync-brand-logo-assets.ts --ensure && pnpm run generate:image-sitemap && next dev --port 3001",
+		"dev": "pnpm run generate:image-sitemap && next dev --port 3001",
 		"generate:image-sitemap": "node --import tsx scripts/generate-image-sitemap.ts",
-		"sync:brand-logo-assets": "tsx src/scripts/sync-brand-logo-assets.ts",
-		"sync:brand-logos": "tsx src/scripts/sync-brand-logos-manifest.ts",
 		"build": "tsx src/scripts/build.ts",
 		"start": "next start",
 		"db:generate": "drizzle-kit generate",

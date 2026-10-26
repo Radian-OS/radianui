@@ -4,11 +4,7 @@ import type {
 	BrandLogoTheme,
 	BrandLogoVariant,
 } from "./brand-logos-data"
-import {
-	getBrandLogoFallbackUrl,
-	getBrandLogoLocalUrl,
-	getLogoDimensions,
-} from "./brand-logos-data"
+import { getBrandLogoSvgUrl, getLogoDimensions } from "./brand-logos-data"
 
 const svgCache = new Map<string, Promise<string>>()
 
@@ -21,8 +17,6 @@ function getCacheKey(
 	return `${id}:${theme}:${colorway}:${variant}`
 }
 
-const SVG_STORAGE_PREFIX = "radian-brand-svg:"
-
 export async function fetchBrandLogoSvg(
 	id: BrandLogoId,
 	theme: BrandLogoTheme = "light",
@@ -33,67 +27,20 @@ export async function fetchBrandLogoSvg(
 	const cached = svgCache.get(key)
 	if (cached) return cached
 
-	if (typeof window !== "undefined") {
-		try {
-			const persisted = window.sessionStorage.getItem(
-				`${SVG_STORAGE_PREFIX}${key}`
-			)
-			if (persisted && /^\s*<svg\b/i.test(persisted)) {
-				const resolved = Promise.resolve(persisted)
-				svgCache.set(key, resolved)
-				return resolved
-			}
-		} catch {
-			// Storage access might fail in restricted contexts
-		}
-	}
-
-	const cdnUrl = getBrandLogoLocalUrl(id, theme, colorway, variant)
-	const fallbackUrl = getBrandLogoFallbackUrl(id, theme, colorway, variant)
-
 	const svgPromise = (async () => {
-		try {
-			const response = await fetch(cdnUrl, {
-				signal: AbortSignal.timeout(8000),
-			})
-			if (response.ok) {
-				const svg = await response.text()
-				if (/^\s*<svg\b/i.test(svg)) {
-					const trimmed = svg.trim()
-					try {
-						window.sessionStorage.setItem(
-							`${SVG_STORAGE_PREFIX}${key}`,
-							trimmed
-						)
-					} catch {
-						// Quota exceeded
-					}
-					return trimmed
-				}
+		const response = await fetch(
+			getBrandLogoSvgUrl(id, theme, colorway, variant),
+			{
+				signal: AbortSignal.timeout(15000),
 			}
-		} catch {
-			// Ignore CDN failure and proceed to safe proxy fallback
+		)
+		if (!response.ok) {
+			throw new Error(`Could not fetch ${id} SVG (${response.status})`)
 		}
-
-		const fallbackResponse = await fetch(fallbackUrl, {
-			signal: AbortSignal.timeout(10000),
-		})
-		if (!fallbackResponse.ok) {
-			throw new Error(`Could not fetch ${id} SVG (${fallbackResponse.status})`)
-		}
-		const svg = await fallbackResponse.text()
-		if (!/^\s*<svg\b/i.test(svg)) {
-			throw new Error(`Invalid SVG response for ${id}`)
-		}
-		const trimmed = svg.trim()
-		try {
-			window.sessionStorage.setItem(`${SVG_STORAGE_PREFIX}${key}`, trimmed)
-		} catch {
-			// Quota exceeded
-		}
-		return trimmed
+		const svg = (await response.text()).trim()
+		if (!/^<svg\b/i.test(svg)) throw new Error(`Invalid SVG response for ${id}`)
+		return svg
 	})()
-
 	svgCache.set(key, svgPromise)
 	svgPromise.catch(() => svgCache.delete(key))
 	return svgPromise

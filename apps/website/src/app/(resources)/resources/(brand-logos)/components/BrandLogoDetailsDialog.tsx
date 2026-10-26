@@ -40,7 +40,6 @@ import {
 	brandLogos,
 	getBrandLogo,
 	getBrandLogoDisplayUrl,
-	getBrandLogoFallbackUrl,
 	getBrandLogoHtmlMarkup,
 	getBrandLogoNextImageMarkup,
 	getBrandLogoSvgUrl,
@@ -220,20 +219,6 @@ export function BrandLogoDetailsDialog({
 							alt={`${brand.name} ${dialogVariant}`}
 							width={dialogVariant === "icon" ? 96 : 270}
 							height={dialogVariant === "icon" ? 96 : 72}
-							onError={(e) => {
-								const fallback = getBrandLogoFallbackUrl(
-									id,
-									activeTheme,
-									dialogColorway,
-									dialogVariant
-								)
-								if (
-									e.currentTarget.src !== fallback &&
-									!e.currentTarget.src.endsWith(fallback)
-								) {
-									e.currentTarget.src = fallback
-								}
-							}}
 							className={cn(
 								"object-contain",
 								dialogVariant === "icon"
@@ -397,20 +382,6 @@ export function BrandLogoDetailsDialog({
 									alt={item.name}
 									width={24}
 									height={24}
-									onError={(e) => {
-										const fallback = getBrandLogoFallbackUrl(
-											item.id,
-											activeTheme,
-											dialogColorway,
-											"icon"
-										)
-										if (
-											e.currentTarget.src !== fallback &&
-											!e.currentTarget.src.endsWith(fallback)
-										) {
-											e.currentTarget.src = fallback
-										}
-									}}
 									className="size-7 object-contain"
 								/>
 							</Button>

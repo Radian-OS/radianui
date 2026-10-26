@@ -1,5 +1,4 @@
-import assetVersion from "./brand-logo-assets-version.generated.json"
-import brandLogosManifest from "./brand-logos-manifest.generated.json"
+import brandLogosManifest from "./brand-logos-catalog.json"
 
 export const BRAND_LOGO_CDN_ORIGIN = "https://cdn.jsdelivr.net"
 export const BRAND_LOGOS_PAGE_PATH = "/resources/brand-logos"
@@ -240,41 +239,5 @@ export function getBrandLogoNextImageMarkup(
 	return `<Image src="${getBrandLogoSvgUrl(id, theme, colorway, variant)}" alt="${brand.name} ${variant}" width={${width}} height={${height}} />`
 }
 
-export function getBrandLogoFallbackUrl(
-	id: BrandLogoId,
-	theme: BrandLogoTheme = "light",
-	colorway: BrandLogoColorway = "colored",
-	variant: BrandLogoVariant = "icon"
-) {
-	const brand = getBrandLogo(id)
-	const path = `src/${theme}/${colorway}/${brand.category}/${variant}/${brand.id}.svg`
-	const token =
-		typeof btoa === "function"
-			? btoa(path)
-			: Buffer.from(path).toString("base64")
-	return `/api/brand-logos?token=${encodeURIComponent(token)}`
-}
-
-export function getBrandLogoLocalUrl(
-	id: BrandLogoId,
-	theme: BrandLogoTheme = "light",
-	colorway: BrandLogoColorway = "colored",
-	variant: BrandLogoVariant = "icon"
-) {
-	const brand = getBrandLogo(id)
-	const path = `src/${theme}/${colorway}/${brand.category}/${variant}/${brand.id}.svg`
-	const token = btoa(path)
-		.replace(/\+/g, "-")
-		.replace(/\//g, "_")
-		.replace(/=+$/, "")
-	return `/_brand-assets/${assetVersion.revision}/${token}.svg`
-}
-
-export function getBrandLogoDisplayUrl(
-	id: BrandLogoId,
-	theme: BrandLogoTheme = "light",
-	colorway: BrandLogoColorway = "colored",
-	variant: BrandLogoVariant = "icon"
-) {
-	return getBrandLogoLocalUrl(id, theme, colorway, variant)
-}
+// Previews and exports use the same public CDN asset as copied links.
+export const getBrandLogoDisplayUrl = getBrandLogoSvgUrl
