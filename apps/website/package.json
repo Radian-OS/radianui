@@ -131,7 +131,7 @@
 		"rehype-pretty-code": "^0.14.5",
 		"remark": "^15.0.1",
 		"resend": "^6.28.0",
-		"sharp": "^0.35.4",
+		"sharp": "^0.35.5",
 		"shiki": "^4.4.3",
 		"sonner": "^2.0.8",
 		"tailwind-merge": "^3.6.0",
