@@ -15,6 +15,7 @@ import {
 } from "lucide-react"
 import PagePicker from "./page-picker"
 import { Tabs, TabsList, TabsTrigger } from "@/styles/default/ui/tabs"
+import { CreateProjectDialog } from "./create-project-dialog"
 
 export type DeviceSize = "desktop" | "tablet" | "mobile"
 
@@ -104,10 +105,12 @@ export function ThemerTopbar({
 
 				<div className="bg-soft-alpha h-4 w-px" />
 
-				<Button color="primary" size="xs">
-					<Plus />
-					Create Project
-				</Button>
+				<CreateProjectDialog>
+					<Button color="primary" size="xs">
+						<Plus />
+						Create Project
+					</Button>
+				</CreateProjectDialog>
 			</div>
 		</header>
 	)

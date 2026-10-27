@@ -105,7 +105,7 @@ export function GetProductUpdatesDialog() {
 					<div className="flex flex-col gap-4">
 						<Image src="/logo.svg" alt="radian_logo" width={36} height={36} />
 						<div className="flex flex-col gap-1">
-							<DialogTitle closeButton={false}>Get Product Updates</DialogTitle>
+							<DialogTitle>Get Product Updates</DialogTitle>
 							<DialogDescription>
 								Subscribe to receive updates on new components, UI blocks, and
 								key milestones as we build.
