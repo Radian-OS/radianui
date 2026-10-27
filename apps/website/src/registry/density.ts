@@ -4,7 +4,7 @@ export const DENSITY = [
 		name: "Compact",
 		type: "registry:density",
 		density: {
-			spacing: "0.1875rem",
+			spacing: "3px",
 		},
 	},
 	{
@@ -12,7 +12,7 @@ export const DENSITY = [
 		name: "Cozy",
 		type: "registry:density",
 		density: {
-			spacing: "0.21875rem",
+			spacing: "3.5px",
 		},
 	},
 	{
@@ -20,7 +20,7 @@ export const DENSITY = [
 		name: "Default",
 		type: "registry:density",
 		density: {
-			spacing: "0.25rem",
+			spacing: "4px",
 		},
 	},
 	{
@@ -28,7 +28,7 @@ export const DENSITY = [
 		name: "Relaxed",
 		type: "registry:density",
 		density: {
-			spacing: "0.28125rem",
+			spacing: "4.5px",
 		},
 	},
 	{
@@ -36,7 +36,7 @@ export const DENSITY = [
 		name: "Spacious",
 		type: "registry:density",
 		density: {
-			spacing: "0.3125rem",
+			spacing: "5px",
 		},
 	},
 ] as const
