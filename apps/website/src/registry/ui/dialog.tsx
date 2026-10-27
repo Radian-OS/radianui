@@ -27,7 +27,7 @@ type DialogFooterProps = React.HTMLAttributes<HTMLDivElement>
 type DialogTitleProps = React.ComponentPropsWithoutRef<
 	typeof DialogPrimitive.Title
 > & {
-	closeButton?: boolean
+	closeButton?: "hidden" | "visible"
 }
 
 type DialogDescriptionProps = React.ComponentPropsWithoutRef<
@@ -82,7 +82,7 @@ function DialogContent({
 	className,
 	children,
 	backdrop,
-	closeButton = "visible",
+	closeButton = "hidden",
 	...props
 }: DialogContentProps) {
 	return (
@@ -152,7 +152,7 @@ DialogFooter.displayName = "DialogFooter"
 
 function DialogTitle({
 	className,
-	closeButton = true,
+	closeButton = "hidden",
 	children,
 	...props
 }: DialogTitleProps) {
@@ -162,7 +162,7 @@ function DialogTitle({
 			className={cn("cn-dialog-title", className)}
 			{...props}>
 			<span className="self-center">{children}</span>
-			{closeButton && (
+			{closeButton === "visible" && (
 				<DialogPrimitive.Close asChild>
 					<CompactButton
 						aria-label="Close Button"

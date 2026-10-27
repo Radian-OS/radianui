@@ -37,7 +37,7 @@ export default function DialogDestructive() {
 							</div>
 						</DialogTitle>
 						<div className="flex flex-col gap-1">
-							<DialogTitle closeButton={false}>Confirm deletion</DialogTitle>
+							<DialogTitle closeButton="hidden">Confirm deletion</DialogTitle>
 							<DialogDescription>
 								You are about to permanently delete this resource. Enter the
 								confirmation text below to proceed.
