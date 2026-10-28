@@ -345,14 +345,7 @@ export function AgentlabFooter() {
 								<div
 									className="relative flex size-6 items-center justify-center"
 									data-themer-id="auto-div-43">
-									<Image
-										src="https://framerusercontent.com/images/D2lhgnJj2kr5EiY0FgikXyptXco.svg"
-										alt="AgentLab White Logo"
-										width={24}
-										height={24}
-										className="size-6 object-contain brightness-0 invert"
-										data-themer-id="auto-image-44"
-									/>
+									<div data-themer-id="auto-image-44" />
 								</div>
 								<span
 									className="font-heading text-xl font-bold tracking-tight text-white"
@@ -525,15 +518,7 @@ export function AgentlabHeroSection() {
 						<div
 							className="absolute inset-0 -z-10"
 							data-themer-id="auto-div-71">
-							<Image
-								src="https://framerusercontent.com/images/uJE8NQyYXC4kBsQ6uhdSVoUQPzM.png"
-								alt="3D Crystal AI Agent Foundation"
-								fill
-								sizes="(max-width: 1024px) 100vw, 66vw"
-								className="object-cover object-center"
-								priority
-								data-themer-id="auto-image-72"
-							/>
+							<div data-themer-id="auto-image-72" />
 							<div
 								className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"
 								data-themer-id="auto-div-73"
@@ -651,15 +636,7 @@ export function AgentlabHeroSection() {
 					<div
 						className="border-border/60 bg-fill2 relative min-h-[460px] overflow-hidden rounded-2xl border shadow-xl lg:col-span-4"
 						data-themer-id="auto-div-95">
-						<Image
-							src="https://framerusercontent.com/images/wJo5NFOD9xOtFS68OXbtzXivQ0.png"
-							alt="Engineer monitoring AI agents"
-							fill
-							sizes="(max-width: 1024px) 100vw, 33vw"
-							className="object-cover object-center"
-							priority
-							data-themer-id="auto-image-96"
-						/>
+						<div data-themer-id="auto-image-96" />
 						<div
 							className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"
 							data-themer-id="auto-div-97"
@@ -674,7 +651,6 @@ export function AgentlabHeroSection() {
 interface IndustryItem {
 	title: string
 	description: string
-	imageUrl: string
 }
 
 const industries: IndustryItem[] = [
@@ -682,43 +658,31 @@ const industries: IndustryItem[] = [
 		title: "Finance",
 		description:
 			"Automate account inquiries and fraud detection while maintaining SOC 2 compliance.",
-		imageUrl:
-			"https://framerusercontent.com/images/AQbPdqKasj6Mg3iV4jMK95WPRCM.png",
 	},
 	{
 		title: "Healthcare",
 		description:
 			"Patient scheduling, prescription refills, and care coordination with full HIPAA compliance standards.",
-		imageUrl:
-			"https://framerusercontent.com/images/SmH4euiZ3JokwWRNyZrJQyLtlLY.png",
 	},
 	{
 		title: "E-commerce",
 		description:
 			"Handle order tracking, returns processing, and product recommendations at scale during peak seasons.",
-		imageUrl:
-			"https://framerusercontent.com/images/wdhlHkmmD4nzkOj8GrECeEq108.png",
 	},
 	{
 		title: "Education",
 		description:
 			"Student enrollment support and course recommendations for modern learning platforms.",
-		imageUrl:
-			"https://framerusercontent.com/images/JQzWA4NShfz9Wnr2WD5YRTj9A.png",
 	},
 	{
 		title: "Enterprise",
 		description:
 			"IT helpdesk automation, employee onboarding workflows, and internal request management at scale.",
-		imageUrl:
-			"https://framerusercontent.com/images/pdhZaMaOSIzBG5FaYTQR034OyRk.png",
 	},
 	{
 		title: "Insurance",
 		description:
 			"Claims status updates, policy inquiries, and document collection with secure data handling protocols.",
-		imageUrl:
-			"https://framerusercontent.com/images/sGnTnbdWuAoVaLMV90SkJYNLAWM.png",
 	},
 ]
 
@@ -765,14 +729,7 @@ export function AgentlabIndustrySection() {
 							<div
 								className="bg-primary/10 relative mb-6 size-20 overflow-hidden rounded-xl shadow-xs transition-transform duration-300 group-hover:scale-105"
 								data-themer-id="auto-div-106">
-								<Image
-									src={item.imageUrl}
-									alt={item.title}
-									fill
-									sizes="80px"
-									className="object-contain p-2"
-									data-themer-id="auto-image-107"
-								/>
+								<div data-themer-id="auto-image-107" />
 							</div>
 
 							<h3
@@ -795,48 +752,15 @@ export function AgentlabIndustrySection() {
 
 interface BrandLogo {
 	name: string
-	url: string
-	width: number
-	height: number
 }
 
 const brandLogos: BrandLogo[] = [
-	{
-		name: "Craftgram",
-		url: "https://framerusercontent.com/images/0tQJ7SlKdpCZUVbUjxOEy57XRhA.svg",
-		width: 96,
-		height: 30,
-	},
-	{
-		name: "Pulse",
-		url: "https://framerusercontent.com/images/hsbt5NG4UUe3LO7ERSFGv8A0PrA.svg",
-		width: 94,
-		height: 27,
-	},
-	{
-		name: "Swift",
-		url: "https://framerusercontent.com/images/O7fimt1JVKhKUjjZOGgeAWTdLQ.svg",
-		width: 120,
-		height: 25,
-	},
-	{
-		name: "ZenZap",
-		url: "https://framerusercontent.com/images/yg73mxfKVqYxGdl9PXd5goIE.svg",
-		width: 80,
-		height: 21,
-	},
-	{
-		name: "Sparkle",
-		url: "https://framerusercontent.com/images/6Fbv7vEmmB0WPOWiVDEZNhoZ0.svg",
-		width: 68,
-		height: 19,
-	},
-	{
-		name: "ZenZap Duplicate",
-		url: "https://framerusercontent.com/images/yg73mxfKVqYxGdl9PXd5goIE.svg",
-		width: 80,
-		height: 21,
-	},
+	{ name: "Craftgram" },
+	{ name: "Pulse" },
+	{ name: "Swift" },
+	{ name: "ZenZap" },
+	{ name: "Sparkle" },
+	{ name: "ZenZap" },
 ]
 
 export function AgentlabLogoMarquee() {
@@ -854,16 +778,13 @@ export function AgentlabLogoMarquee() {
 					{brandLogos.map((logo, index) => (
 						<div
 							key={`${logo.name}-${index}`}
-							className="flex items-center justify-center opacity-70 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0 dark:invert"
+							className="flex items-center justify-center opacity-70 transition-all duration-300 hover:opacity-100"
 							data-themer-id="auto-div-113">
-							<Image
-								src={logo.url}
-								alt={logo.name}
-								width={logo.width}
-								height={logo.height}
-								className="h-7 w-auto object-contain"
-								data-themer-id="auto-image-114"
-							/>
+							<span
+								className="font-heading text-fg-secondary text-sm font-semibold tracking-wider uppercase"
+								data-themer-id="auto-image-114">
+								{logo.name}
+							</span>
 						</div>
 					))}
 				</div>
@@ -1028,15 +949,7 @@ export function AgentlabNavbar() {
 					<div
 						className="relative flex size-6 items-center justify-center"
 						data-themer-id="auto-div-132">
-						<Image
-							src="https://framerusercontent.com/images/qHjpjWRtd4BPA2HhIAgyBH8pjA.svg"
-							alt="AgentLab Logo"
-							width={24}
-							height={24}
-							className="size-6 object-contain"
-							priority
-							data-themer-id="auto-image-133"
-						/>
+						<div data-themer-id="auto-image-133" />
 					</div>
 					<span
 						className="text-fg font-heading text-xl font-bold tracking-tight"
@@ -1190,7 +1103,6 @@ export function AgentlabNavbar() {
 interface ProblemCardItem {
 	title: string
 	description: string
-	imageUrl: string
 }
 
 const problemCards: ProblemCardItem[] = [
@@ -1198,22 +1110,16 @@ const problemCards: ProblemCardItem[] = [
 		title: "No Unified Agent Layer",
 		description:
 			"Fragmented tools and disconnected automations lead to chaotic task delegation, high maintenance overhead, and inconsistent outputs.",
-		imageUrl:
-			"https://framerusercontent.com/images/Um7kpW33X62N4GTAd2zbgaxoTdc.png",
 	},
 	{
 		title: "Time-Consuming Tasks",
 		description:
 			"Repetitive, manual operations drain team bandwidth, slow down customer-facing workflows, and increase operational costs.",
-		imageUrl:
-			"https://framerusercontent.com/images/sNfkiiKpmA5n0lXmgjZgrZkvCk.png",
 	},
 	{
 		title: "Zero Process Visibility",
 		description:
 			"Lack of centralized tracking and real-time observability leaves organizations blind to pipeline bottlenecks and silent task failures.",
-		imageUrl:
-			"https://framerusercontent.com/images/vBQrwmEehzRwXON1C4YwQsAp8M.png",
 	},
 ]
 
@@ -1263,14 +1169,7 @@ export function AgentlabProblemSection() {
 							<div
 								className="relative mb-8 h-44 w-full sm:h-52"
 								data-themer-id="auto-div-173">
-								<Image
-									src={item.imageUrl}
-									alt={item.title}
-									fill
-									sizes="(max-width: 768px) 100vw, 33vw"
-									className="object-contain object-left transition-transform duration-500 group-hover:scale-105"
-									data-themer-id="auto-image-174"
-								/>
+								<div data-themer-id="auto-image-174" />
 							</div>
 
 							{/* Card Content */}
@@ -1343,14 +1242,7 @@ export function AgentlabRoiSection() {
 						<div
 							className="from-primary/5 to-primary/10 relative mt-10 h-48 w-full overflow-hidden rounded-xl bg-gradient-to-b p-4 sm:h-56"
 							data-themer-id="auto-div-186">
-							<Image
-								src="https://framerusercontent.com/images/hEq2lGnA6G6ziYMb2M9sqX6hSdU.png"
-								alt="Growth trajectory analytics curve"
-								fill
-								sizes="(max-width: 1024px) 100vw, 50vw"
-								className="object-contain object-bottom"
-								data-themer-id="auto-image-187"
-							/>
+							<div data-themer-id="auto-image-187" />
 						</div>
 					</div>
 
@@ -1569,14 +1461,7 @@ export function AgentlabSolutionSection() {
 						<div
 							className="absolute inset-0 -z-10"
 							data-themer-id="auto-div-224">
-							<Image
-								src="https://framerusercontent.com/images/i6BW3QgDJgD0jVkXifqeODXE59c.png"
-								alt="Agent Builder Preview Graphic"
-								fill
-								sizes="(max-width: 1024px) 100vw, 58vw"
-								className="object-cover object-center"
-								data-themer-id="auto-image-225"
-							/>
+							<div data-themer-id="auto-image-225" />
 						</div>
 
 						{/* Support Agent Card Overlay */}
@@ -1643,14 +1528,7 @@ export function AgentlabSolutionSection() {
 						<div
 							className="absolute inset-0 -z-10"
 							data-themer-id="auto-div-239">
-							<Image
-								src="https://framerusercontent.com/images/xQagQ8uubfx7UqGyS04prpQ8IEE.png"
-								alt="Workflow Automation Preview"
-								fill
-								sizes="(max-width: 1024px) 100vw, 58vw"
-								className="object-cover object-center"
-								data-themer-id="auto-image-240"
-							/>
+							<div data-themer-id="auto-image-240" />
 						</div>
 
 						{/* Workflow Execution Card Overlay */}
@@ -1800,14 +1678,7 @@ export function AgentlabSolutionSection() {
 						<div
 							className="absolute inset-0 -z-10"
 							data-themer-id="auto-div-270">
-							<Image
-								src="https://framerusercontent.com/images/CXipLKeSIdL0cDkxv4uZJivb2E.png"
-								alt="Analytics Background Graphic"
-								fill
-								sizes="(max-width: 1024px) 100vw, 58vw"
-								className="object-cover object-center"
-								data-themer-id="auto-image-271"
-							/>
+							<div data-themer-id="auto-image-271" />
 						</div>
 
 						{/* Analytics Card Overlay */}
@@ -1918,7 +1789,6 @@ export function AgentlabSolutionSection() {
 interface TestimonialItem {
 	id: string
 	companyName: string
-	logoUrl: string
 	headline: string
 	quote: string
 	authorName: string
@@ -1930,8 +1800,6 @@ const testimonials: TestimonialItem[] = [
 	{
 		id: "zenzap",
 		companyName: "ZenZap",
-		logoUrl:
-			"https://framerusercontent.com/images/yg73mxfKVqYxGdl9PXd5goIE.svg",
 		headline:
 			"The orchestration layer simplifies complex workflows and makes easier to manage.",
 		quote:
@@ -1944,8 +1812,6 @@ const testimonials: TestimonialItem[] = [
 	{
 		id: "sparkle",
 		companyName: "Sparkle",
-		logoUrl:
-			"https://framerusercontent.com/images/6Fbv7vEmmB0WPOWiVDEZNhoZ0.svg",
 		headline: "Deployed our first 10 production agents in less than two weeks.",
 		quote:
 			"We cut customer support resolution times by 65% in the first month alone. The guardrails and fallback mechanisms are unmatched.",
@@ -1957,8 +1823,6 @@ const testimonials: TestimonialItem[] = [
 	{
 		id: "craftgram",
 		companyName: "Craftgram",
-		logoUrl:
-			"https://framerusercontent.com/images/0tQJ7SlKdpCZUVbUjxOEy57XRhA.svg",
 		headline:
 			"Automated our entire multi-step lead enrichment pipeline without writing glue code.",
 		quote:
@@ -1971,8 +1835,6 @@ const testimonials: TestimonialItem[] = [
 	{
 		id: "pulse",
 		companyName: "Pulse",
-		logoUrl:
-			"https://framerusercontent.com/images/hsbt5NG4UUe3LO7ERSFGv8A0PrA.svg",
 		headline:
 			"99.9% uptime SLA and real-time observability across all AI tasks.",
 		quote:
@@ -2051,14 +1913,11 @@ export function AgentlabTestimonialsSection() {
 										: "border-transparent bg-white/5 opacity-60 hover:opacity-100"
 								}`}
 								data-themer-id="auto-button-305">
-								<Image
-									src={item.logoUrl}
-									alt={item.companyName}
-									width={80}
-									height={22}
-									className="h-5 w-auto object-contain brightness-0 invert"
-									data-themer-id="auto-image-306"
-								/>
+								<span
+									className="font-heading text-sm font-semibold tracking-wide text-white"
+									data-themer-id="auto-image-306">
+									{item.companyName}
+								</span>
 							</button>
 						)
 					})}

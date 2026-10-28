@@ -1,11 +1,13 @@
 "use client"
 
 import { useEffect, useLayoutEffect, useMemo, useState } from "react"
+import { useTheme } from "next-themes"
 import { useThemerPreset } from "@/lib/themer-preset"
 import { buildRegistryConfig } from "@/registry/config"
-import { FONTS } from "@/registry/fonts"
+import { FONTS, type Font } from "@/registry/fonts"
 import { IconLibraryProvider } from "@/registry/icon/icon-library"
-import { RADIUS } from "@/registry/radius"
+import { PRIMARY_COLORS } from "@/registry/primary-colors"
+import { generateCustomColorShades } from "@/lib/shade-generator"
 
 const MANAGED_BODY_CLASS_PREFIXES = ["style-"] as const
 
@@ -36,10 +38,7 @@ const buildStyleCssText = (cssVars: RegistryThemeCssVars) => {
 	return [lightVars, darkVars].join("\n")
 }
 
-const useFontLoader = (
-	font: (typeof FONTS)[number] | undefined,
-	cssVar: string
-) => {
+const useFontLoader = (font: Font | undefined, cssVar: string) => {
 	useEffect(() => {
 		if (!font) return
 
@@ -59,24 +58,9 @@ const useFontLoader = (
 
 const THEMER_STYLE_ID = "themer-style"
 
-const RADIUS_PRESETS = Object.fromEntries(
-	RADIUS.map((r) => [r.value, r.radius])
-)
-
-const buildRadiusCssText = (preset: string) => {
-	const radii = RADIUS_PRESETS[preset]
-	if (!radii) return ""
-
-	const declarations = Object.entries(radii)
-		.map(([key, value]) => `--${key}: ${value};`)
-		.join("\n")
-
-	return `:root {\n${declarations}\n}\n`
-}
-
 const buildThemerCssText = (
 	cssVars: RegistryThemeCssVars | undefined,
-	radius: string | undefined
+	customColors?: Record<string, string>
 ) => {
 	const parts: string[] = []
 
@@ -84,9 +68,32 @@ const buildThemerCssText = (
 		parts.push(buildStyleCssText(cssVars))
 	}
 
-	if (radius) {
-		const radiusCss = buildRadiusCssText(radius)
-		if (radiusCss) parts.push(radiusCss)
+	if (customColors) {
+		const customColorVars = Object.entries(customColors).reduce(
+			(acc, [id, val]) => {
+				let shades: Record<string, string> = {}
+
+				if (val.startsWith("#")) {
+					shades = generateCustomColorShades(val, id)
+				} else {
+					const preset = PRIMARY_COLORS.find((c) => c.value === val)
+					if (preset) {
+						for (const [key, v] of Object.entries(preset.cssVars.light)) {
+							const newKey = key.replace("--color-primary", `--color-${id}`)
+							shades[newKey] = v
+						}
+					} else {
+						shades[`--color-${id}`] = val
+					}
+				}
+
+				return { ...acc, ...shades }
+			},
+			{} as Record<string, string>
+		)
+		if (Object.keys(customColorVars).length > 0) {
+			parts.push(buildCssRule(":root", customColorVars))
+		}
 	}
 
 	return parts.join("\n")
@@ -104,6 +111,7 @@ function removeManagedBodyClasses(body: Element) {
 
 export function PreviewClient({ children }: { children: React.ReactNode }) {
 	const [params, setParams] = useThemerPreset()
+	const { setTheme: setClientTheme } = useTheme()
 	const [isReady, setIsReady] = useState(false)
 
 	const selectedHeadingFont = FONTS.find(
@@ -122,7 +130,7 @@ export function PreviewClient({ children }: { children: React.ReactNode }) {
 			document.head.appendChild(style)
 		}
 
-		style.textContent = buildThemerCssText(config?.cssVars, params.radius)
+		style.textContent = buildThemerCssText(config?.cssVars, params.customColors)
 
 		removeManagedBodyClasses(document.body)
 		document.body.classList.add(`style-${params.style}`)
@@ -133,7 +141,7 @@ export function PreviewClient({ children }: { children: React.ReactNode }) {
 				document.head.removeChild(style)
 			}
 		}
-	}, [config, params.radius, params.style])
+	}, [config, params.style, params.density, params.customColors])
 
 	useFontLoader(selectedHeadingFont, "--font-heading")
 	useFontLoader(selectedBodyFont, "--font-body")
@@ -155,6 +163,9 @@ export function PreviewClient({ children }: { children: React.ReactNode }) {
 			if (event.data.type === "radius-change") {
 				setParams({ radius: event.data.radius })
 			}
+			if (event.data.type === "control-radius-change") {
+				setParams({ controlRadius: event.data.controlRadius })
+			}
 			if (event.data.type === "template-change") {
 				setParams({ template: event.data.template })
 			}
@@ -163,6 +174,9 @@ export function PreviewClient({ children }: { children: React.ReactNode }) {
 			}
 			if (event.data.type === "icon-library-change") {
 				setParams({ iconLibrary: event.data.iconLibrary })
+			}
+			if (event.data.type === "density-change") {
+				setParams({ density: event.data.density })
 			}
 		}
 

@@ -165,9 +165,7 @@ export function SearchDocs() {
 					</Button>
 				</DialogTrigger>
 				<DialogContent className="bg-fill3 border-alpha h-150 w-125 gap-0 rounded-2xl border p-1">
-					<DialogTitle closeButton={false} className="hidden">
-						Command Search
-					</DialogTitle>
+					<DialogTitle className="hidden">Command Search</DialogTitle>
 					<SearchCommand {...searchCommandProps} />
 				</DialogContent>
 			</Dialog>

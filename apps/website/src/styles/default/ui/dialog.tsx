@@ -1,9 +1,9 @@
 import * as React from "react"
 import * as DialogPrimitive from "@radix-ui/react-dialog"
 import { type VariantProps, cva } from "class-variance-authority"
-import { X } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { CompactButton } from "@/styles/default/ui/button"
+import { IconSlot } from "@/registry/icon/icon-library"
+import { CompactButton } from "./button"
 
 type Backdrop = VariantProps<typeof dialogOverlayVariants>["backdrop"]
 
@@ -17,6 +17,7 @@ type DialogContentProps = React.ComponentPropsWithoutRef<
 	typeof DialogPrimitive.Content
 > & {
 	backdrop?: Backdrop
+	closeButton?: "hidden" | "visible" | "hover"
 }
 
 type DialogHeaderProps = React.HTMLAttributes<HTMLDivElement>
@@ -26,7 +27,7 @@ type DialogFooterProps = React.HTMLAttributes<HTMLDivElement>
 type DialogTitleProps = React.ComponentPropsWithoutRef<
 	typeof DialogPrimitive.Title
 > & {
-	closeButton?: boolean
+	closeButton?: "hidden" | "visible"
 }
 
 type DialogDescriptionProps = React.ComponentPropsWithoutRef<
@@ -38,10 +39,10 @@ const dialogOverlayVariants = cva(
 	{
 		variants: {
 			backdrop: {
-				blackOverlay: "bg-black/50",
 				whiteOverlay: "bg-white/50",
-				blur: "backdrop-blur-sm",
-				transparent: "bg-transparent",
+				blackOverlay: "bg-black/50",
+				blur: "cn-dialog-overlay-backdrop-blur",
+				transparent: "cn-dialog-overlay-backdrop-transparent",
 			},
 		},
 		defaultVariants: {
@@ -81,6 +82,7 @@ function DialogContent({
 	className,
 	children,
 	backdrop,
+	closeButton = "hidden",
 	...props
 }: DialogContentProps) {
 	return (
@@ -89,11 +91,24 @@ function DialogContent({
 			<DialogPrimitive.Content
 				data-slot="dialog-content"
 				className={cn(
-					"bg-bg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 border-alpha group fixed top-1/2 left-1/2 z-50 flex w-full max-w-[calc(100%-2rem)] -translate-x-1/2 -translate-y-1/2 flex-col rounded-2xl border shadow-lg duration-200 sm:max-w-lg",
+					"data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 cn-dialog-content group fixed top-1/2 left-1/2 z-50 flex w-full max-w-lg -translate-x-1/2 -translate-y-1/2 flex-col duration-200",
 					className
 				)}
 				{...props}>
 				{children}
+				{closeButton !== "hidden" && (
+					<DialogPrimitive.Close asChild>
+						<button
+							type="button"
+							className={cn(
+								"cn-dialog-close-button absolute top-3 right-3 box-border inline-flex h-6 w-6 items-center justify-center font-medium whitespace-nowrap hover:cursor-pointer focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none [&>svg]:!h-4 [&>svg]:!w-4",
+								closeButton === "hover" && "cn-dialog-close-button-hover"
+							)}
+							aria-label="Close">
+							<IconSlot slot="cross" />
+						</button>
+					</DialogPrimitive.Close>
+				)}
 			</DialogPrimitive.Content>
 		</DialogPortal>
 	)
@@ -104,7 +119,10 @@ function DialogHeader({ className, ...props }: DialogHeaderProps) {
 	return (
 		<div
 			data-slot="dialog-header"
-			className={cn("flex flex-col space-y-1 p-5 text-left", className)}
+			className={cn(
+				"cn-dialog-header flex flex-col text-center sm:text-left",
+				className
+			)}
 			{...props}
 		/>
 	)
@@ -116,11 +134,7 @@ function DialogBody({
 	...props
 }: React.HTMLAttributes<HTMLDivElement>) {
 	return (
-		<div
-			data-slot="dialog-body"
-			className={cn("border-soft border-t p-5", className)}
-			{...props}
-		/>
+		<div data-slot="dialog-body" className={cn("", className)} {...props} />
 	)
 }
 DialogBody.displayName = "DialogBody"
@@ -129,10 +143,7 @@ function DialogFooter({ className, ...props }: DialogFooterProps) {
 	return (
 		<div
 			data-slot="dialog-footer"
-			className={cn(
-				"border-soft flex justify-end gap-2 border-t p-4",
-				className
-			)}
+			className={cn("cn-dialog-footer flex justify-end", className)}
 			{...props}
 		/>
 	)
@@ -141,27 +152,24 @@ DialogFooter.displayName = "DialogFooter"
 
 function DialogTitle({
 	className,
-	closeButton = true,
+	closeButton = "hidden",
 	children,
 	...props
 }: DialogTitleProps) {
 	return (
 		<DialogPrimitive.Title
 			data-slot="dialog-title"
-			className={cn(
-				"flex items-start justify-between text-base font-medium",
-				className
-			)}
+			className={cn("cn-dialog-title", className)}
 			{...props}>
 			<span className="self-center">{children}</span>
-			{closeButton && (
+			{closeButton === "visible" && (
 				<DialogPrimitive.Close asChild>
 					<CompactButton
 						aria-label="Close Button"
 						size="md"
 						variant="soft"
 						color="neutral">
-						<X />
+						<IconSlot slot="cross" />
 					</CompactButton>
 				</DialogPrimitive.Close>
 			)}
@@ -174,7 +182,7 @@ function DialogDescription({ className, ...props }: DialogDescriptionProps) {
 	return (
 		<DialogPrimitive.Description
 			data-slot="dialog-description"
-			className={cn("text-fg-secondary text-sm/5 leading-tight", className)}
+			className={cn("cn-dialog-description", className)}
 			{...props}
 		/>
 	)

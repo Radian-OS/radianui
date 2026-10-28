@@ -1,21 +1,27 @@
 import z from "zod"
 import { BASE_COLORS } from "./base-colors"
+import { DENSITIES } from "./density"
 import { FONTS } from "./fonts"
 import { ICON_LIBRARIES, IconLibrary } from "./icon/icon-libraries"
 import { PRIMARY_COLORS } from "./primary-colors"
 import { RADIUS } from "./radius"
 import { STYLES } from "./styles"
 import { TEMPLATES } from "./templates"
+import { generateCustomColorShades } from "@/lib/shade-generator"
 
 const fontValues = FONTS.map((font) => font.value)
 const radiusValues = RADIUS.map((radius) => radius.value)
 const styleValues = STYLES.map((style) => style.value)
+const densityValues = DENSITIES.map((density) => density.value)
 
 const cssValueSchema = z.union([z.string(), z.record(z.string(), z.string())])
 
 const ICON_DEPENDENCIES: Record<IconLibrary, string[]> = {
 	lucide: ["lucide-react"],
 	hugeicons: ["@hugeicons/react", "@hugeicons/core-free-icons"],
+	phosphor: ["@phosphor-icons/react"],
+	tabler: ["@tabler/icons-react"],
+	heroicons: ["@heroicons/react"],
 }
 
 export const registryConfigSchema = z.object({
@@ -40,9 +46,7 @@ export type RegistryConfig = z.infer<typeof registryConfigSchema>
 
 export const themerConfigSchema = z.object({
 	name: z.string().optional(),
-	primaryColor: z
-		.enum(PRIMARY_COLORS.map((color) => color.value))
-		.default("violet-blue"),
+	primaryColor: z.string().default("violet-blue"),
 	baseColor: z.enum(BASE_COLORS.map((color) => color.value)).default("default"),
 	headingFont: z
 		.enum(fontValues, {
@@ -53,18 +57,27 @@ export const themerConfigSchema = z.object({
 		.enum(fontValues, { error: "Invalid font value" })
 		.default("inter"),
 	template: z.enum(TEMPLATES).default("next"),
-	radius: z
-		.enum(radiusValues, {
-			error: "Invalid radius value",
-		})
-		.default("medium"),
+	radius: z.string().default("default"),
+	controlRadius: z.string().default("default"),
 	style: z
 		.enum(styleValues, {
 			error: "Invalid style valiue",
 		})
 		.default("default"),
+	density: z.enum(densityValues).default("default"),
 	useSrcDir: z.boolean().default(true),
 	iconLibrary: z.enum(ICON_LIBRARIES).default("lucide"),
+	customColors: z.record(z.string(), z.string()).default({}),
+	componentOverrides: z
+		.array(
+			z.object({
+				selector: z.string(),
+				customColorId: z.string().optional(),
+				property: z.string(),
+				value: z.string().optional(),
+			})
+		)
+		.default([]),
 })
 
 export type ThemerConfig = z.infer<typeof themerConfigSchema>
@@ -74,12 +87,16 @@ export const DEFAULT_CONFIG: ThemerConfig = {
 	headingFont: "geist",
 	bodyFont: "inter",
 	template: "next",
-	radius: "medium",
+	radius: "default",
+	controlRadius: "default",
 	style: "default",
+	density: "default",
 	name: "my-project",
 	useSrcDir: true,
 	iconLibrary: "lucide",
 	baseColor: "default",
+	customColors: {},
+	componentOverrides: [],
 }
 
 export type Preset = ThemerConfig & {
@@ -97,11 +114,15 @@ export const PRESETS: Preset[] = [
 		headingFont: "geist",
 		bodyFont: "inter",
 		template: "next",
-		radius: "medium",
+		radius: "default",
+		controlRadius: "default",
 		style: "default",
+		density: "default",
 		useSrcDir: true,
 		iconLibrary: "lucide",
 		baseColor: "default",
+		customColors: {},
+		componentOverrides: [],
 	},
 	{
 		name: "sera",
@@ -111,11 +132,15 @@ export const PRESETS: Preset[] = [
 		headingFont: "playfair-display",
 		bodyFont: "playfair-display",
 		template: "next",
-		radius: "none",
+		radius: "flat",
+		controlRadius: "flat",
 		style: "sera",
+		density: "default",
 		useSrcDir: true,
 		iconLibrary: "lucide",
 		baseColor: "default",
+		customColors: {},
+		componentOverrides: [],
 	},
 ]
 
@@ -285,9 +310,19 @@ function normalizePrimaryColorVars(
 
 export function buildRegistryConfig(config: ThemerConfig): RegistryConfig {
 	const primaryColor = config.primaryColor ?? DEFAULT_CONFIG.primaryColor
-	const colorEntry = PRIMARY_COLORS.find((c) => c.value === primaryColor)
-	const lightVars = normalizePrimaryColorVars(colorEntry?.cssVars.light)
-	const darkVars = normalizePrimaryColorVars(colorEntry?.cssVars.dark)
+
+	let lightVars: Record<string, string> = {}
+	let darkVars: Record<string, string> = {}
+
+	if (primaryColor.startsWith("#")) {
+		const generated = generateCustomColorShades(primaryColor)
+		lightVars = normalizePrimaryColorVars(generated)
+		darkVars = normalizePrimaryColorVars(generated)
+	} else {
+		const colorEntry = PRIMARY_COLORS.find((c) => c.value === primaryColor)
+		lightVars = normalizePrimaryColorVars(colorEntry?.cssVars.light)
+		darkVars = normalizePrimaryColorVars(colorEntry?.cssVars.dark)
+	}
 
 	const baseColorEntry = BASE_COLORS.find((c) => c.value === config.baseColor)
 	const baseLightVars = baseColorEntry?.cssVars.light
@@ -303,11 +338,26 @@ export function buildRegistryConfig(config: ThemerConfig): RegistryConfig {
 
 	if (config.bodyFont) theme["--font-body"] = bodyFont?.font.family || ""
 
-	const radius = RADIUS.find((r) => r.value === config.radius)
-	if (radius) {
-		for (const [key, value] of Object.entries(radius.radius)) {
-			theme[`--${key}`] = value
-		}
+	const resolveRadius = (
+		val: string,
+		key: "radius-base" | "control-radius-base"
+	) => {
+		const preset = RADIUS.find((r) => r.value === val)
+		if (preset) return preset.radius[key]
+		return val.endsWith("px") || val.includes("calc") ? val : `${val}px`
+	}
+
+	if (config.radius)
+		theme["--radius-base"] = resolveRadius(config.radius, "radius-base")
+	if (config.controlRadius)
+		theme["--control-radius-base"] = resolveRadius(
+			config.controlRadius,
+			"control-radius-base"
+		)
+
+	const density = DENSITIES.find((d) => d.value === config.density)
+	if (density) {
+		theme["--spacing"] = density.density.spacing
 	}
 
 	const dependencies = [

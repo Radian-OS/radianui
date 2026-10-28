@@ -124,7 +124,7 @@ export function EmojiDetailsDialog({
 						{emoji.group}
 					</Badge>
 					<Title
-						{...(!mobile ? { closeButton: false } : {})}
+						{...(!mobile ? { closeButton: "hidden" } : {})}
 						className="gap-2 text-xl font-semibold [&>span]:min-w-0 [&>span]:break-words">
 						{displayName}
 					</Title>
