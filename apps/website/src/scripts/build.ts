@@ -15,6 +15,7 @@ const commands = [
 	"pnpm run update-icon-slot",
 	"pnpm run generate:image-sitemap",
 	"next build",
+	"pnpm run generate:sitemap",
 ]
 
 function main() {

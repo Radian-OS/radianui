@@ -14,7 +14,7 @@
 		"format:check": "oxfmt --check \"**/*.{ts,tsx,mdx}\"",
 		"lint": "oxlint",
 		"typecheck": "tsc --noEmit",
-		"postbuild": "next-sitemap --config next-sitemap.config.cjs",
+		"generate:sitemap": "node --import tsx scripts/generate-sitemap.ts",
 		"generate-build-artifacts": "pnpm run generate-registry-files && pnpm run build:llms",
 		"generate-registry-files": "pnpm run generate-component-json && pnpm run generate-examples-json && pnpm run generate-example-registry && pnpm run generate-blocks-index",
 		"generate-component-json": "tsx src/scripts/generate-component-json.ts",
