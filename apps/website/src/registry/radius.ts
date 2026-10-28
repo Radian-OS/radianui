@@ -1,47 +1,39 @@
 export const RADIUS = [
 	{
-		value: "none",
-		name: "None",
+		value: "default",
+		name: "Default",
 		type: "registry:radius",
 		radius: {
-			radius: "0px",
-			"control-radius": "0px",
+			"radius-base": "8px",
+			"control-radius-base": "8px",
 		},
 	},
 	{
-		value: "small",
-		name: "Small",
+		value: "flat",
+		name: "Flat",
 		type: "registry:radius",
 		radius: {
-			radius: "6px",
-			"control-radius": "6px",
+			"radius-base": "0px",
+			"control-radius-base": "0px",
+		},
+	},
+
+	{
+		value: "fun",
+		name: "Fun",
+		type: "registry:radius",
+		radius: {
+			"radius-base": "12px",
+			"control-radius-base": "12px",
 		},
 	},
 	{
-		value: "medium",
-		name: "Medium",
+		value: "rounded",
+		name: "Rounded",
 		type: "registry:radius",
 		radius: {
-			radius: "8px",
-			"control-radius": "8px",
-		},
-	},
-	{
-		value: "large",
-		name: "Large",
-		type: "registry:radius",
-		radius: {
-			radius: "10px",
-			"control-radius": "10px",
-		},
-	},
-	{
-		value: "full",
-		name: "Full",
-		type: "registry:radius",
-		radius: {
-			radius: "12px",
-			"control-radius": "calc(infinity * 1px)",
+			"radius-base": "16px",
+			"control-radius-base": "calc(infinity * 1px)",
 		},
 	},
 ] as const

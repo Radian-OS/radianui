@@ -6,20 +6,19 @@ import {
 	inferParserType,
 	parseAsBoolean,
 	parseAsStringLiteral,
+	parseAsString,
+	parseAsJson,
 } from "nuqs/server"
 import { BASE_COLORS, BaseColorValue } from "@/registry/base-colors"
 import { DEFAULT_CONFIG } from "@/registry/config"
+import { DENSITIES, DensityValue } from "@/registry/density"
 import { FONTS, FontValue } from "@/registry/fonts"
 import { ICON_LIBRARIES, IconLibrary } from "@/registry/icon/icon-libraries"
-import { PRIMARY_COLORS, PrimaryColorValue } from "@/registry/primary-colors"
-import { RADIUS, RadiusValue } from "@/registry/radius"
 import { STYLES, StyleValue } from "@/registry/styles"
 import { TEMPLATES, Template } from "@/registry/templates"
 
 const designSystemSearchParams = {
-	primaryColor: parseAsStringLiteral<PrimaryColorValue>(
-		PRIMARY_COLORS.map((color) => color.value)
-	).withDefault(DEFAULT_CONFIG.primaryColor),
+	primaryColor: parseAsString.withDefault(DEFAULT_CONFIG.primaryColor),
 	baseColor: parseAsStringLiteral<BaseColorValue>(
 		BASE_COLORS.map((color) => color.value)
 	).withDefault(DEFAULT_CONFIG.baseColor),
@@ -29,19 +28,40 @@ const designSystemSearchParams = {
 	bodyFont: parseAsStringLiteral<FontValue>(
 		FONTS.map((font) => font.value)
 	).withDefault(DEFAULT_CONFIG.bodyFont),
-	radius: parseAsStringLiteral<RadiusValue>(
-		RADIUS.map((r) => r.value)
-	).withDefault(DEFAULT_CONFIG.radius),
+	radius: parseAsString.withDefault(DEFAULT_CONFIG.radius),
+	controlRadius: parseAsString.withDefault(DEFAULT_CONFIG.controlRadius),
 	template: parseAsStringLiteral<Template>(TEMPLATES).withDefault(
 		DEFAULT_CONFIG.template
 	),
 	style: parseAsStringLiteral<StyleValue>(
 		STYLES.map((style) => style.value)
 	).withDefault(DEFAULT_CONFIG.style),
+	density: parseAsStringLiteral<DensityValue>(
+		DENSITIES.map((d) => d.value)
+	).withDefault(DEFAULT_CONFIG.density),
 	useSrcDir: parseAsBoolean.withDefault(DEFAULT_CONFIG.useSrcDir),
 	iconLibrary: parseAsStringLiteral<IconLibrary>(ICON_LIBRARIES).withDefault(
 		DEFAULT_CONFIG.iconLibrary
 	),
+	customColors: parseAsJson<Record<string, string>>(
+		(v) => v as Record<string, string>
+	).withDefault(DEFAULT_CONFIG.customColors),
+	componentOverrides: parseAsJson<
+		Array<{
+			selector: string
+			customColorId?: string
+			property: string
+			value?: string
+		}>
+	>(
+		(v) =>
+			v as Array<{
+				selector: string
+				customColorId?: string
+				property: string
+				value?: string
+			}>
+	).withDefault(DEFAULT_CONFIG.componentOverrides),
 }
 
 export type DesignSystemSearchParams = inferParserType<
@@ -58,10 +78,14 @@ function resolvePresetParams(
 		headingFont: searchParams.get("headingFont") ?? rawParams.headingFont,
 		bodyFont: searchParams.get("bodyFont") ?? rawParams.bodyFont,
 		radius: searchParams.get("radius") ?? rawParams.radius,
+		controlRadius: searchParams.get("controlRadius") ?? rawParams.controlRadius,
 		template: searchParams.get("template") ?? rawParams.template,
 		style: searchParams.get("style") ?? rawParams.style,
+		density: (searchParams.get("density") as DensityValue) ?? rawParams.density,
 		useSrcDir: searchParams.get("useSrcDir") ?? rawParams.useSrcDir,
 		iconLibrary: searchParams.get("iconLibrary") ?? rawParams.iconLibrary,
+		customColors: rawParams.customColors,
+		componentOverrides: rawParams.componentOverrides,
 	} as DesignSystemSearchParams
 	return mergedParams
 }
