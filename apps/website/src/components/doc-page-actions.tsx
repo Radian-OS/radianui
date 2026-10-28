@@ -69,7 +69,7 @@ export function DocPageActions({ slugAsParams, title }: DocPageActionsProps) {
 			<Button
 				variant="outline"
 				color="neutral"
-				size="28"
+				size="xs"
 				onClick={handleCopyPage}
 				className="rounded-r-none border-r-0">
 				{copied ? (
@@ -84,7 +84,7 @@ export function DocPageActions({ slugAsParams, title }: DocPageActionsProps) {
 					<Button
 						color="neutral"
 						variant="outline"
-						size="28"
+						size="xs"
 						className="rounded-l-none px-1">
 						<ChevronDown className="text-fg-secondary size-3.5" />
 					</Button>

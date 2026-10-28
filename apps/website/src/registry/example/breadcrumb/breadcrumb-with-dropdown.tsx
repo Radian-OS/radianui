@@ -31,7 +31,7 @@ function BreadcrumbWithDropdown() {
 				<BreadcrumbItem>
 					<DropdownMenu>
 						<DropdownMenuTrigger asChild>
-							<Button color="neutral" variant="outline" size={"32"}>
+							<Button color="neutral" variant="outline" size="lg">
 								Installation
 								<ChevronDown />
 							</Button>

@@ -10,7 +10,7 @@ export default function OTPFieldDisabled() {
 				className="text-fg-disabled cursor-not-allowed">
 				One Time Password
 			</Label>
-			<OTPField size="44" placeholder="000000" disabled>
+			<OTPField size="xl" placeholder="000000" disabled>
 				{Array.from({ length: 6 }).map((_, index) => (
 					<OTPInput key={index} index={index} />
 				))}

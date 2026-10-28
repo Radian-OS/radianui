@@ -268,7 +268,7 @@ function ReleaseBadge({
 	return (
 		<Badge
 			color={release === "beta" ? "primary" : "neutral"}
-			size="20"
+			size="sm"
 			variant="soft">
 			{release === "beta" ? "Beta" : "Soon"}
 		</Badge>

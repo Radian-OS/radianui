@@ -223,17 +223,17 @@ export function BrandLogoDetailsDialog({
 						</div>
 
 						<div className="flex flex-wrap items-center gap-2">
-							<Button size="40" onClick={copyPng}>
+							<Button size="lg" onClick={copyPng}>
 								<ImageIcon />
 								Copy PNG
 							</Button>
-							<Button size="40" onClick={copySvg}>
+							<Button size="lg" onClick={copySvg}>
 								<CodeXml />
 								Copy SVG
 							</Button>
 
 							<DropdownMenu>
-								<ButtonGroup size="40" color="neutral" variant="outline">
+								<ButtonGroup size="lg" color="neutral" variant="outline">
 									<Button onClick={() => downloadLogo("svg")}>
 										<Download />
 										Download
@@ -265,21 +265,21 @@ export function BrandLogoDetailsDialog({
 							</p>
 							<div className="flex flex-wrap gap-2">
 								<Button
-									size="32"
+									size="sm"
 									color="neutral"
 									variant="outline"
 									onClick={() => copyText(activeSvgUrl, "CDN URL")}>
 									CDN URL
 								</Button>
 								<Button
-									size="32"
+									size="sm"
 									color="neutral"
 									variant="outline"
 									onClick={copySvg}>
 									SVG Code
 								</Button>
 								<Button
-									size="32"
+									size="sm"
 									color="neutral"
 									variant="outline"
 									onClick={() =>
@@ -296,7 +296,7 @@ export function BrandLogoDetailsDialog({
 									Next.js &lt;Image&gt;
 								</Button>
 								<Button
-									size="32"
+									size="sm"
 									color="neutral"
 									variant="outline"
 									onClick={() =>
@@ -339,7 +339,7 @@ export function BrandLogoDetailsDialog({
 							<p className="text-fg-secondary text-xs font-medium">Tags</p>
 							<div className="flex flex-wrap gap-1.5">
 								{searchTags.map((tag) => (
-									<Badge key={tag} color="neutral" variant="soft" size="24">
+									<Badge key={tag} color="neutral" variant="soft" size="md">
 										{tag}
 									</Badge>
 								))}
@@ -354,7 +354,7 @@ export function BrandLogoDetailsDialog({
 						{moreLogos.map((item) => (
 							<Button
 								key={item.id}
-								size="36"
+								size="md"
 								color="neutral"
 								variant="outline"
 								onClick={() => onSelectBrand(item.id)}

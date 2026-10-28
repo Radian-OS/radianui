@@ -25,14 +25,14 @@ const CustomBadge = () => {
 export default function CustomAvatarStatusPreview() {
 	return (
 		<div className="flex gap-6">
-			<Avatar size="48">
+			<Avatar size="xl">
 				<AvatarImage src="/media/female-3.jpg" />
 				<AvatarFallback>CH</AvatarFallback>
 				<AvatarIndicator className="right-0 bottom-0">
 					<CustomBadge />
 				</AvatarIndicator>
 			</Avatar>
-			<Avatar size="48">
+			<Avatar size="xl">
 				<AvatarImage src="/media/male-3.jpg" />
 				<AvatarFallback className="text-warning bg-warning/10">
 					AJ

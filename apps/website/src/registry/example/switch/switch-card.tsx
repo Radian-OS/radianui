@@ -90,7 +90,7 @@ export default function SwitchCard() {
 						{/* Switch */}
 						<SwitchWrapper className="self-start" id={view.id}>
 							<Switch
-								size="20"
+								size="sm"
 								checked={checkedMap[view.id]}
 								onCheckedChange={() => toggle(view.id)}
 								onClick={(e) => e.stopPropagation()}

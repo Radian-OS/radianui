@@ -11,7 +11,7 @@ export function VersionDisplayBadge({
 	className,
 }: VersionDisplayBadgeProps) {
 	return (
-		<Badge variant="outline" size="24" color="neutral" className={className}>
+		<Badge variant="outline" size="md" color="neutral" className={className}>
 			{`v${version}`}
 		</Badge>
 	)

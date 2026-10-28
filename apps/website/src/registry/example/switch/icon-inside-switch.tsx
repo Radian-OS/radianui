@@ -12,7 +12,7 @@ export default function IconInsideSwitch() {
 	return (
 		<div className="flex items-center gap-2.5">
 			<SwitchWrapper>
-				<Switch id={id} size={"32"} checked={isOn} onCheckedChange={setIsOn}>
+				<Switch id={id} size="lg" checked={isOn} onCheckedChange={setIsOn}>
 					<SwitchIndicator
 						state={isOn ? "on" : "off"}
 						className="text-fg-secondary text-[8px] font-semibold">

@@ -116,7 +116,7 @@ export function EmojiDetailsDialog({
 				</span>
 				<div className="flex min-w-0 flex-1 flex-col gap-2">
 					<Badge
-						size="20"
+						size="sm"
 						variant="soft"
 						color="neutral"
 						className="w-fit max-w-full">
@@ -167,7 +167,7 @@ export function EmojiDetailsDialog({
 													emoji={emoji.emoji}
 													value={detail.value}
 													successLabel={detail.label}
-													size="32"
+													size="sm"
 													variant="ghost"
 													color="neutral"
 													className="text-fg-tertiary shrink-0"
@@ -198,7 +198,7 @@ export function EmojiDetailsDialog({
 								emoji={variant.emoji}
 								value={variant.emoji}
 								successLabel={variant.label}
-								size="32"
+								size="sm"
 								variant="outline"
 								color="neutral"
 								aria-label={`Copy ${variant.label}`}>
@@ -223,7 +223,7 @@ export function EmojiDetailsDialog({
 						{related.slice(0, relatedCount).map((item) => (
 							<Button
 								key={item.slug}
-								size="32"
+								size="sm"
 								color="neutral"
 								variant="outline"
 								className="aspect-square h-auto w-full max-w-[58px] justify-self-center rounded-lg p-0"

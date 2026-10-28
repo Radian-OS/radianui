@@ -276,7 +276,7 @@ export default function PackageManagerTabs({
 					className="text-fg-secondary"
 					variant="ghost"
 					color="neutral"
-					size={"28"}
+					size="xs"
 					aria-label="Copy command"
 					onClick={handleCopy}>
 					{copied ? <Check size={20} /> : <Clipboard size={20} />}

@@ -117,7 +117,7 @@ export type SidebarMenuSubProps = React.ComponentProps<"ul">
 export type SidebarMenuSubItemProps = React.ComponentProps<"li">
 export type SidebarMenuSubButtonProps = React.ComponentProps<"a"> & {
 	asChild?: boolean
-	size?: "28" | "32"
+	size?: "xs" | "sm"
 	isActive?: boolean
 }
 
@@ -133,17 +133,18 @@ export const sidebarMenuButtonVariants = cva(
 					"text-sidebar-fg data-[active=true]:bg-sidebar-accent! rounded-md",
 			},
 			size: {
-				"28": "h-7 text-xs",
-				"32": "h-8 text-sm group-data-[state=collapsed]:p-1.5!",
-				"36": "h-9 text-sm group-data-[collapsible=icon]:size-9! group-data-[collapsible=icon]:p-1.5! [&>svg]:size-6",
-				"48": "h-12 text-sm group-data-[collapsible=icon]:p-0! group-data-[collapsible=icon]:[&>svg]:size-6!",
-				"52": "h-13 text-sm group-data-[collapsible=icon]:p-1.5!",
-				"56": "h-14 p-4 text-sm group-data-[collapsible=icon]:h-14! group-data-[collapsible=icon]:w-full! group-data-[collapsible=icon]:p-4! [&>svg]:size-6!",
+				xs: "h-7 text-xs",
+				sm: "h-8 text-sm group-data-[state=collapsed]:p-1.5!",
+				md: "h-9 text-sm group-data-[collapsible=icon]:size-9! group-data-[collapsible=icon]:p-1.5! [&>svg]:size-6",
+				lg: "h-12 text-sm group-data-[collapsible=icon]:p-0! group-data-[collapsible=icon]:[&>svg]:size-6!",
+				xl: "h-13 text-sm group-data-[collapsible=icon]:p-1.5!",
+				"2xl":
+					"h-14 p-4 text-sm group-data-[collapsible=icon]:h-14! group-data-[collapsible=icon]:w-full! group-data-[collapsible=icon]:p-4! [&>svg]:size-6!",
 			},
 		},
 		defaultVariants: {
 			variant: "neutral",
-			size: "32",
+			size: "sm",
 		},
 	}
 )
@@ -615,7 +616,7 @@ function SidebarTrigger({
 			aria-label="Sidebar Button"
 			variant="ghost"
 			color="neutral"
-			size="32"
+			size="sm"
 			className={className}
 			onClick={handleClick}
 			{...props}>
@@ -673,7 +674,7 @@ function SidebarInput({ className, ...props }: SidebarInputProps) {
 	return (
 		<Input
 			data-slot="sidebar-input"
-			size={"32"}
+			size={"sm"}
 			data-sidebar="input"
 			className={cn("w-full shadow-none", className)}
 			{...props}
@@ -823,7 +824,7 @@ function SidebarMenuButton({
 	asChild = false,
 	isActive = false,
 	variant = "neutral",
-	size = "32",
+	size = "sm",
 	tooltip,
 	className,
 	...props
@@ -875,9 +876,9 @@ function SidebarMenuAction({
 			className={cn(
 				"text-sidebar-fg ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-fg peer-hover/menu-button:text-sidebar-accent-fg absolute top-1.5 right-1 flex aspect-square w-5 items-center justify-center rounded-md p-0 outline-hidden transition-transform focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0",
 				"after:absolute after:-inset-2 md:after:hidden",
-				"peer-data-[size=28]/menu-button:top-1",
-				"peer-data-[size=32]/menu-button:top-1.5",
-				"peer-data-[size=48]/menu-button:top-2.5",
+				"peer-data-[size=xs]/menu-button:top-1",
+				"peer-data-[size=sm]/menu-button:top-1.5",
+				"peer-data-[size=lg]/menu-button:top-2.5",
 				"group-data-[collapsible=icon]:hidden",
 				showOnHover &&
 					"peer-data-[active=true]/menu-button:text-sidebar-accent-fg group-focus-within/menu-item:opacity-100 group-hover/menu-item:opacity-100 data-[state=open]:opacity-100 md:opacity-0",
@@ -896,14 +897,14 @@ function SidebarMenuBadge({ className, ...props }: SidebarMenuBadgeProps) {
 			className={cn(
 				"pointer-events-none absolute right-2 rounded-md tabular-nums select-none",
 				"border px-1.5 py-0.5",
-				"peer-data-[size=28]/menu-button:top-1",
-				"peer-data-[size=32]/menu-button:top-1.5",
-				"peer-data-[size=48]/menu-button:top-2.5",
+				"peer-data-[size=xs]/menu-button:top-1",
+				"peer-data-[size=sm]/menu-button:top-1.5",
+				"peer-data-[size=lg]/menu-button:top-2.5",
 				"group-data-[collapsible=icon]:hidden",
 				className
 			)}
 			color="neutral"
-			size="20"
+			size="sm"
 			{...props}
 		/>
 	)
@@ -966,7 +967,7 @@ function SidebarMenuSubItem({ className, ...props }: SidebarMenuSubItemProps) {
 
 function SidebarMenuSubButton({
 	asChild = false,
-	size = "32",
+	size = "sm",
 	isActive = false,
 	className,
 	...props
@@ -980,8 +981,8 @@ function SidebarMenuSubButton({
 			data-active={isActive}
 			className={cn(
 				"text-sidebar-fg ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-fg data-[active=true]:bg-sidebar-accent data-[active=true]:text-sidebar-accent-fg [&>svg]:text-sidebar-accent-fg flex min-w-0 -translate-x-px items-center gap-2 overflow-hidden rounded-md px-2 outline-hidden focus-visible:ring-2 disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&>a:last-child]:min-w-0 [&>a:last-child]:truncate [&>span:last-child]:min-w-0 [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0",
-				size === "28" && "h-7 text-xs",
-				size === "32" && "h-8 text-sm",
+				size === "xs" && "h-7 text-xs",
+				size === "sm" && "h-8 text-sm",
 				"group-data-[collapsible=icon]:hidden",
 				className
 			)}

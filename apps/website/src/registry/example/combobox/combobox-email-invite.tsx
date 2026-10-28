@@ -48,7 +48,7 @@ export default function ComboboxEmailInvite() {
 								<CommandItem
 									key={d.email}
 									onSelect={() => toggleSelection(d.email)}>
-									<Avatar size="20">
+									<Avatar size="2xs">
 										<AvatarImage src={d.icon} />
 									</Avatar>
 									{d.email}

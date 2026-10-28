@@ -28,12 +28,12 @@ const BannerExample = () => {
 					</BannerDescription>
 				</BannerContent>
 				<section className="flex flex-shrink-0 items-center justify-center gap-2 px-1 sm:gap-3">
-					<ButtonGroup size="32" className="hidden md:flex">
+					<ButtonGroup size="lg" className="hidden md:flex">
 						<Button>00h</Button>
 						<Button>00m</Button>
 						<Button>00s</Button>
 					</ButtonGroup>
-					<Button size="28" className="hidden sm:flex">
+					<Button size="lg" className="hidden sm:flex">
 						Buy Now
 					</Button>
 					<X className="size-4 cursor-pointer sm:size-5" />

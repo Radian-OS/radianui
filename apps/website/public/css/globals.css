@@ -121,6 +121,23 @@
 	--color-sidebar-accent-fg: var(--color-fg);
 	--color-sidebar-border: var(--color-border);
 	--color-sidebar-ring: var(--color-fg-secondary);
+
+	--radius-base: 8px;
+	/* Radius for control category(these components can get fully rounded) - Button/Input/Select/OTP/Badge */
+	--control-radius-base: 8px;
+
+	--radius-control-md: round(down, calc(var(--control-radius-base) * 0.8), 1px);
+	--radius-control-lg: var(--control-radius-base);
+	--radius-control-xl: round(down, calc(var(--control-radius-base) * 1.5), 1px);
+
+	--radius-xs: round(down, calc(var(--radius-base) * 0.3), 1px);
+	--radius-sm: round(down, calc(var(--radius-base) * 0.6), 1px);
+	--radius-md: round(down, calc(var(--radius-base) * 0.8), 1px);
+	--radius-lg: var(--radius-base);
+	--radius-xl: round(down, calc(var(--radius-base) * 1.5), 1px);
+	--radius-2xl: calc(var(--radius-base) * 2);
+	--radius-3xl: calc(var(--radius-base) * 3);
+	--radius-4xl: calc(var(--radius-base) * 4);
 }
 
 .dark {

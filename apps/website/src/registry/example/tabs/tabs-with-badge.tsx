@@ -35,7 +35,7 @@ export default function TabsWithBadge() {
 					<TabsTrigger key={item.value} value={item.value}>
 						{item.icon}
 						{item.label}
-						<Badge color="neutral" size="20" variant="outline">
+						<Badge color="neutral" size="sm" variant="outline">
 							{item.count}
 						</Badge>
 					</TabsTrigger>

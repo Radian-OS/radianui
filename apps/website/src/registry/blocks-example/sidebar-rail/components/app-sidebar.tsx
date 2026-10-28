@@ -218,19 +218,16 @@ export function AppSidebar() {
 					<span className="truncate font-semibold group-data-[collapsible=icon]:hidden">
 						Debcon
 					</span>
-					<SidebarTrigger
-						size="32"
-						className="z-10 ml-auto group-hover/header:opacity-100! group-data-[collapsible=icon]:absolute group-data-[collapsible=icon]:top-4 group-data-[collapsible=icon]:left-4 group-data-[collapsible=icon]:ml-0 group-data-[state=collapsed]:opacity-0"
-					/>
+					<SidebarTrigger className="z-10 ml-auto group-hover/header:opacity-100! group-data-[collapsible=icon]:absolute group-data-[collapsible=icon]:top-4 group-data-[collapsible=icon]:left-4 group-data-[collapsible=icon]:ml-0 group-data-[state=collapsed]:opacity-0" />
 				</div>
 
 				<div className="w-full px-3 py-2">
 					<InputWrapper
 						className="group-data-[state=collapsed]:hidden"
-						size="36">
+						size="md">
 						<Search className="text-fg-tertiary" />
 						<Input ref={inputRef} type="search" placeholder="Search" />
-						<Badge size="20" color="neutral" variant="outline">
+						<Badge size="sm" color="neutral" variant="outline">
 							⌘ /
 						</Badge>
 					</InputWrapper>
@@ -242,7 +239,7 @@ export function AppSidebar() {
 								inputRef.current?.focus()
 							}, 200)
 						}}
-						size="36"
+						size="md"
 						variant="outline"
 						color="neutral"
 						className="group-data-[mobile=true]:hidden group-data-[state=expanded]:hidden">
@@ -264,7 +261,7 @@ export function AppSidebar() {
 									return (
 										<SidebarMenuItem key={item.label}>
 											<SidebarMenuButton
-												size="32"
+												size="sm"
 												isActive={item.isActive}
 												tooltip={item.label}
 												asChild>

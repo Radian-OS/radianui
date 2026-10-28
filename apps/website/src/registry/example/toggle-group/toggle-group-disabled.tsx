@@ -3,7 +3,7 @@ import { ToggleGroup, ToggleGroupItem } from "@/registry/ui/toggle-group"
 
 export default function ToggleGroupDisabled() {
 	return (
-		<ToggleGroup disabled type="multiple" size="32">
+		<ToggleGroup disabled type="multiple" size="lg">
 			<ToggleGroupItem className="p-1.5" value="bold" aria-label="Toggle bold">
 				<Bold className="text-fg-secondary" />
 			</ToggleGroupItem>

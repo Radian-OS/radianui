@@ -6,7 +6,7 @@ function SvgButtonExample() {
 		<div className="flex flex-col items-center justify-center gap-5">
 			<div className="flex items-center justify-center gap-6">
 				<Button
-					size="44"
+					size="xl"
 					className="[&>svg]:size-24"
 					variant="outline"
 					color="neutral">
@@ -111,7 +111,7 @@ function SvgButtonExample() {
 					</svg>
 				</Button>
 				<Button
-					size="44"
+					size="xl"
 					className="[&>svg]:size-24"
 					color="neutral"
 					variant="outline">
@@ -212,7 +212,7 @@ function SvgButtonExample() {
 				</Button>
 			</div>
 			<div className="flex items-center justify-center gap-6">
-				<Button size="44" className="[&>svg]:size-24" color="neutral">
+				<Button size="xl" className="[&>svg]:size-24" color="neutral">
 					<svg
 						className="text-white-inverse"
 						width={119}
@@ -315,7 +315,7 @@ function SvgButtonExample() {
 					</svg>
 				</Button>
 
-				<Button size="44" className="[&>svg]:size-24" color="neutral">
+				<Button size="xl" className="[&>svg]:size-24" color="neutral">
 					<svg
 						width="93"
 						height="28"

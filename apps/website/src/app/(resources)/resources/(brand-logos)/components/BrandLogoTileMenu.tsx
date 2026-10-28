@@ -40,7 +40,7 @@ export const BrandLogoTileMenu = memo(function BrandLogoTileMenu({
 				<DropdownMenuTrigger asChild>
 					<CompactButton
 						aria-label="Open brand logo copy options"
-						size="24"
+						size="md"
 						variant="soft"
 						color="neutral">
 						<MoreHorizontal />

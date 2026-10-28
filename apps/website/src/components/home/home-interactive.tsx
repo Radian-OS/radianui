@@ -139,7 +139,7 @@ const HomeInteractive = () => {
 							color="neutral"
 							aria-label="Copy Add Block Command Button"
 							variant="ghost"
-							size="28">
+							size="lg">
 							{copied ? (
 								<Check size={16} className="stroke-fg-tertiary shrink-0" />
 							) : (

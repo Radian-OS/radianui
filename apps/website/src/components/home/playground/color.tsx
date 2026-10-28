@@ -57,7 +57,7 @@ export default function Colors() {
 		<DropdownMenu indicatorPosition="right">
 			<DropdownMenuTrigger asChild>
 				<IconButton
-					size="32"
+					size="lg"
 					aria-label="Change Primary Color"
 					variant="ghost"
 					color="neutral"

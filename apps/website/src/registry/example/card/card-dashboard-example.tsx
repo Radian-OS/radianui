@@ -35,25 +35,25 @@ export default function CardDashboardExample() {
 			<Divider className="border-soft h-0 border-t border-dashed bg-transparent" />
 			<CardFooter className="flex justify-between p-0">
 				<div className="flex flex-1 items-center gap-2">
-					<Badge size="28" variant="soft" color="dark-orchid">
+					<Badge size="lg" variant="soft" color="dark-orchid">
 						<Calendar /> Today
 					</Badge>
 					<Badge
-						size="28"
+						size="lg"
 						className="text-fg-secondary"
 						variant="soft"
 						color="neutral">
 						<Users /> 12
 					</Badge>
 					<Badge
-						size="28"
+						size="lg"
 						className="text-fg-secondary"
 						variant="soft"
 						color="neutral">
 						<Paperclip /> 7
 					</Badge>
 					<Badge
-						size="28"
+						size="lg"
 						className="text-fg-secondary"
 						variant="soft"
 						color="neutral">

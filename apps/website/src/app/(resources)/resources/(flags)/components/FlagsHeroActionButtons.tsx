@@ -8,7 +8,7 @@ const flagsFigmaUrl =
 export default function FlagsHeroActionButtons() {
 	return (
 		<>
-			<Button asChild variant="glossy" className="w-full sm:w-fit" size="40">
+			<Button asChild variant="glossy" className="w-full sm:w-fit" size="lg">
 				<Link
 					href="https://www.npmjs.com/package/@radianui/flags"
 					target="_blank"
@@ -18,16 +18,16 @@ export default function FlagsHeroActionButtons() {
 			</Button>
 			<Button
 				asChild
-				size="40"
-				className="bg-elevation-level1/20 dark:hover:bg-fill2/40 hover:bg-fill2/40 w-full backdrop-blur-md sm:w-fit"
+				size="lg"
+				className="bg-elevation-level1/20 dark:hover:bg-fill2/lg hover:bg-fill2/40 w-full backdrop-blur-md sm:w-fit"
 				variant="outline"
 				color="neutral">
 				<Link href="/docs/miscellaneous/flags">Documentation</Link>
 			</Button>
 			<Button
 				asChild
-				size="40"
-				className="bg-elevation-level1/20 dark:hover:bg-fill2/40 hover:bg-fill2/40 w-full backdrop-blur-md sm:w-fit"
+				size="lg"
+				className="bg-elevation-level1/20 dark:hover:bg-fill2/lg hover:bg-fill2/40 w-full backdrop-blur-md sm:w-fit"
 				variant="outline"
 				color="neutral">
 				<Link href={flagsFigmaUrl} target="_blank" rel="noopener noreferrer">

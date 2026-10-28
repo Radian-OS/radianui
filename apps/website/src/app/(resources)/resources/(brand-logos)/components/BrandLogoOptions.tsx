@@ -50,7 +50,7 @@ export function BrandLogoOptions({
 			<DropdownMenuTrigger asChild>
 				<Button
 					ref={triggerRef}
-					size={compact ? "28" : "44"}
+					size={compact ? "xs" : "xl"}
 					color="neutral"
 					variant={compact ? "soft" : "outline"}
 					className={cn(

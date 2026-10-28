@@ -29,9 +29,9 @@ const switchVariants = cva(
 				square: "rounded-md",
 			},
 			size: {
-				"20": "h-5 w-8.5",
-				"24": "h-6 w-10.5",
-				"32": "h-8 w-14",
+				sm: "h-5 w-8.5",
+				md: "h-6 w-10.5",
+				lg: "h-8 w-14",
 			},
 			permanent: {
 				true: "bg-fill3",
@@ -41,7 +41,7 @@ const switchVariants = cva(
 		defaultVariants: {
 			shape: "pill",
 			permanent: false,
-			size: "24",
+			size: "md",
 		},
 	}
 )
@@ -56,14 +56,14 @@ const switchThumbVariants = cva(
 				square: "rounded-sm",
 			},
 			size: {
-				"20": "size-3.5 data-[state=checked]:translate-x-4",
-				"24": "size-4.5 data-[state=checked]:translate-x-5",
-				"32": "size-6 data-[state=checked]:translate-x-7",
+				sm: "size-3.5 data-[state=checked]:translate-x-4",
+				md: "size-4.5 data-[state=checked]:translate-x-5",
+				lg: "size-6 data-[state=checked]:translate-x-7",
 			},
 		},
 		defaultVariants: {
 			shape: "pill",
-			size: "24",
+			size: "md",
 		},
 	}
 )

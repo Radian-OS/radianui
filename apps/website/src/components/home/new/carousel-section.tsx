@@ -184,7 +184,7 @@ export default function CarouselSection() {
 					headingId="design-at-scale-title"
 					centered
 					badge={
-						<Badge color="violet-blue" size="28" variant="soft">
+						<Badge color="violet-blue" size="lg" variant="soft">
 							<BadgeDot className="text-violet-blue-text" />
 							Design at Scale
 						</Badge>
@@ -236,7 +236,7 @@ export default function CarouselSection() {
 				<SectionHeader
 					headingId="product-teams-title"
 					badge={
-						<Badge size="28" color="violet-blue" variant="soft">
+						<Badge size="lg" color="violet-blue" variant="soft">
 							<Sparkles />
 							Extended Build Experience
 						</Badge>

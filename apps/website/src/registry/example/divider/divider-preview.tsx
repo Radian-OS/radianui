@@ -69,7 +69,7 @@ function DividerPreview() {
 					<div className="flex -space-x-2">
 						{people.map((person) => (
 							<Avatar
-								size="20"
+								size="2xs"
 								className="border-bg box-content border-2 hover:z-10"
 								key={person.name}>
 								<AvatarImage src={person.image} />

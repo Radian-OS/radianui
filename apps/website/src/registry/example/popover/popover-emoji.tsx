@@ -20,7 +20,7 @@ export default function PopoverEmoji() {
 	return (
 		<div className="flex gap-2.5">
 			<div>
-				<Avatar size="36">
+				<Avatar size="md">
 					<AvatarImage src="/media/male-1.jpg" />
 					<AvatarFallback>JJ</AvatarFallback>
 					<AvatarIndicator className="right-1.5 bottom-1.5">
@@ -52,7 +52,7 @@ export default function PopoverEmoji() {
 						<Button
 							variant="outline"
 							color="neutral"
-							size="28"
+							size="lg"
 							key={emoji}
 							onClick={() =>
 								setSelectedEmoji((prev) => prev.filter((e) => e !== emoji))
@@ -62,7 +62,7 @@ export default function PopoverEmoji() {
 					))}
 					<Popover open={open} onOpenChange={setOpen}>
 						<PopoverTrigger asChild>
-							<Button variant="outline" color="neutral" size="28">
+							<Button variant="outline" color="neutral" size="lg">
 								<SmilePlus />
 							</Button>
 						</PopoverTrigger>

@@ -32,7 +32,7 @@ export function BlogShareButton({ title }: { title: string }) {
 	}
 
 	return (
-		<Button variant="ghost" color="neutral" size="28" onClick={handleShare}>
+		<Button variant="ghost" color="neutral" size="xs" onClick={handleShare}>
 			{copied ? <Check className="size-4.5" /> : <Share2 className="size-4" />}
 			<span>Share</span>
 		</Button>

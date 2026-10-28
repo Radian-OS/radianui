@@ -305,10 +305,10 @@ export default function CommandSearchIntegration() {
 							<div className="text-fg-tertiaryflex flex items-center gap-4 text-xs">
 								<span className="flex items-center gap-2">
 									<div className="flex items-center gap-1">
-										<Badge size="20" color="neutral" variant="soft">
+										<Badge size="sm" color="neutral" variant="soft">
 											<ArrowUp className="size-3.5" />
 										</Badge>
-										<Badge size="20" color="neutral" variant="soft">
+										<Badge size="sm" color="neutral" variant="soft">
 											<ArrowDown className="size-3.5" />
 										</Badge>
 									</div>
@@ -316,7 +316,7 @@ export default function CommandSearchIntegration() {
 								</span>
 								<span className="flex items-center gap-2">
 									Close
-									<Badge size="20" color="neutral" variant="soft">
+									<Badge size="sm" color="neutral" variant="soft">
 										ESC
 									</Badge>
 								</span>
@@ -324,13 +324,13 @@ export default function CommandSearchIntegration() {
 
 							<div className="text-fg-tertiary flex gap-4 text-xs">
 								<span className="flex items-center gap-2">
-									<Badge size="20" color="neutral" variant="soft">
+									<Badge size="sm" color="neutral" variant="soft">
 										⇧+⏎
 									</Badge>
 									Visit website
 								</span>
 								<span className="flex items-center gap-2">
-									<Badge size="20" color="neutral" variant="soft">
+									<Badge size="sm" color="neutral" variant="soft">
 										⏎
 									</Badge>
 									View Integration

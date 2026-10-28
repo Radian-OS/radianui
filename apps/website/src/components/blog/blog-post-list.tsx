@@ -401,7 +401,7 @@ export function BlogPostList({ posts, postsPerPage }: BlogPostListProps) {
 												{post.data.author &&
 													post.data.author.map((person) => (
 														<Avatar
-															size="24"
+															size="xs"
 															className="border-bg border-2 hover:z-10"
 															key={person.name}>
 															{person.avatar && (

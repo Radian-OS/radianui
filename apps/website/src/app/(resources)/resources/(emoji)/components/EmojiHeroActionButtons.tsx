@@ -9,8 +9,8 @@ export function EmojiHeroActionButtons() {
 		<div className="grid w-full grid-cols-2 gap-x-3 gap-y-6 sm:flex sm:w-auto sm:items-center sm:gap-3">
 			<Button
 				asChild
-				size="40"
-				className="bg-elevation-level1/20 dark:hover:bg-fill2/40 hover:bg-fill2/40 order-2 w-full backdrop-blur-md sm:order-1 sm:w-fit"
+				size="lg"
+				className="bg-elevation-level1/20 dark:hover:bg-fill2/lg hover:bg-fill2/40 order-2 w-full backdrop-blur-md sm:order-1 sm:w-fit"
 				variant="outline"
 				color="neutral">
 				<Link href="/docs/getting-started/resources">Explore Resources</Link>
@@ -20,7 +20,7 @@ export function EmojiHeroActionButtons() {
 			</div>
 			<Button
 				asChild
-				size="40"
+				size="lg"
 				variant="glossy"
 				color="primary"
 				className="order-3 w-full sm:w-fit">

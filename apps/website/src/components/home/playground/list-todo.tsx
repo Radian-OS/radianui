@@ -80,21 +80,21 @@ export default function ListTodos() {
 						<AccordionContent className="flex gap-1.5">
 							<Button
 								variant="outline"
-								size="28"
+								size="lg"
 								color={spacing === "compact" ? "primary" : "neutral"}
 								onClick={() => handleSpacingClick("compact")}>
 								Compact
 							</Button>
 							<Button
 								variant="outline"
-								size="28"
+								size="lg"
 								color={spacing === "default" ? "primary" : "neutral"}
 								onClick={() => handleSpacingClick("default")}>
 								Default
 							</Button>
 							<Button
 								variant="outline"
-								size="28"
+								size="lg"
 								color={spacing === "spacious" ? "primary" : "neutral"}
 								onClick={() => handleSpacingClick("spacious")}>
 								Spacious
@@ -107,21 +107,21 @@ export default function ListTodos() {
 							<div className="flex gap-1.5">
 								<Button
 									variant="outline"
-									size="28"
+									size="lg"
 									color={size === "default" ? "primary" : "neutral"}
 									onClick={() => handleSizeClick("default")}>
 									Default-36
 								</Button>
 								<Button
 									variant="outline"
-									size="28"
+									size="lg"
 									color={size === "small" ? "primary" : "neutral"}
 									onClick={() => handleSizeClick("small")}>
 									Small-32
 								</Button>
 								<Button
 									variant="outline"
-									size="28"
+									size="lg"
 									color={size === "large" ? "primary" : "neutral"}
 									onClick={() => handleSizeClick("large")}>
 									Large-40
@@ -138,7 +138,7 @@ export default function ListTodos() {
 							<div className="flex items-center gap-2">
 								<Switch
 									onCheckedChange={() => handleLabelClick(!label)}
-									size="20"
+									size="sm"
 									checked={label}
 									id="Label"
 								/>
@@ -148,7 +148,7 @@ export default function ListTodos() {
 								<Switch
 									onCheckedChange={() => handlePlaceholderClick(!placeholder)}
 									checked={placeholder}
-									size="20"
+									size="sm"
 									id="Placeholder"
 								/>
 								<Label htmlFor="Placeholder">Placholder</Label>
@@ -157,7 +157,7 @@ export default function ListTodos() {
 								<Switch
 									onCheckedChange={() => handleIconClick(!icon)}
 									checked={icon}
-									size="20"
+									size="sm"
 									id="Icon"
 								/>
 								<Label htmlFor="Icon">Icon</Label>
@@ -169,28 +169,28 @@ export default function ListTodos() {
 						<AccordionContent className="flex gap-1.5">
 							<Button
 								variant="outline"
-								size="28"
+								size="lg"
 								color={button === "default" ? "primary" : "neutral"}
 								onClick={() => handleButtonClick("default")}>
 								Default
 							</Button>
 							<Button
 								variant="outline"
-								size="28"
+								size="lg"
 								color={button === "gradient" ? "primary" : "neutral"}
 								onClick={() => handleButtonClick("gradient")}>
 								Gradient
 							</Button>
 							<Button
 								variant="outline"
-								size="28"
+								size="lg"
 								color={button === "fancy" ? "primary" : "neutral"}
 								onClick={() => handleButtonClick("fancy")}>
 								Fancy
 							</Button>
 							<Button
 								variant="outline"
-								size="28"
+								size="lg"
 								color={button === "elevated" ? "primary" : "neutral"}
 								onClick={() => handleButtonClick("elevated")}>
 								Elevated

@@ -174,7 +174,7 @@ export default function CollapsibleMenu() {
 	return (
 		<div className="border-soft bg-bg flex w-full max-w-67.5 flex-col rounded-xl border text-sm shadow-xs">
 			<header className="flex items-center gap-2 px-4 py-3">
-				<Avatar size="40">
+				<Avatar size="lg">
 					<AvatarImage src="/media/female-3.jpg" alt="Amelie Laurent" />
 					<AvatarFallback>AL</AvatarFallback>
 					<AvatarStatus variant={"online"} className="right-0 bottom-0" />

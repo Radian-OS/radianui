@@ -452,7 +452,7 @@ export default function FlagsPlayground({
 				<InputGroup className="w-full">
 					<FlagShapeDropdown value={shape} onValueChange={handleShapeChange} />
 					<InputWrapper
-						size="44"
+						size="xl"
 						className="bg-bg focus-within:bg-bg min-w-0 flex-1 rounded-l-none shadow-none">
 						<Search aria-hidden="true" />
 						<Input

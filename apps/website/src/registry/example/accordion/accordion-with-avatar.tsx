@@ -84,12 +84,12 @@ export default function AccordionWithAvatarAndBadge() {
 				<AccordionItem value={item.id.toString()} key={item.id}>
 					<AccordionTrigger>
 						<div className="flex items-center gap-2.5">
-							<Avatar size="24" rounded="square" className="shrink-0">
+							<Avatar size="xs" rounded="square" className="shrink-0">
 								<AvatarImage src={item.avatar} />
 								<AvatarFallback>{item.name.charAt(0)}</AvatarFallback>
 							</Avatar>
 							<span>{item.trigger}</span>
-							<Badge size="20" variant="soft" color={item.badge.color}>
+							<Badge size="sm" variant="soft" color={item.badge.color}>
 								{item.badge.label}
 							</Badge>
 						</div>

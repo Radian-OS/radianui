@@ -9,7 +9,7 @@ export default function ToggleFormattingToolbar() {
 			<Toggle
 				variant="ghost"
 				className="p-1.5"
-				size="32"
+				size="lg"
 				aria-label="Toggle bold">
 				<BoldIcon className="text-fg-secondary" />
 			</Toggle>
@@ -17,14 +17,14 @@ export default function ToggleFormattingToolbar() {
 				defaultPressed
 				variant="ghost"
 				className="p-1.5"
-				size="32"
+				size="lg"
 				aria-label="Toggle italic">
 				<ItalicIcon className="text-fg-secondary" />
 			</Toggle>
 			<Toggle
 				className="p-1.5"
 				variant="ghost"
-				size="32"
+				size="lg"
 				aria-label="Toggle underline">
 				<UnderlineIcon className="text-fg-secondary !size-5" />
 			</Toggle>

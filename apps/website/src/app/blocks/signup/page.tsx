@@ -55,14 +55,14 @@ export default function Signup({ fullScreen = true }: SignupProps) {
 									<Label htmlFor="firstName" className="text-sm font-medium">
 										First Name
 									</Label>
-									<Input id="firstName" size="36" type="text" />
+									<Input id="firstName" size="md" type="text" />
 								</div>
 
 								<div className="flex flex-col gap-1.5">
 									<Label htmlFor="email" className="text-sm font-medium">
 										Email Address
 									</Label>
-									<Input id="email" size="36" type="email" />
+									<Input id="email" size="md" type="email" />
 								</div>
 
 								<div className="flex flex-col gap-1.5">

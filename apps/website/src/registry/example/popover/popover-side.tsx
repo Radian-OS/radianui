@@ -28,7 +28,7 @@ function ProfileCard() {
 	return (
 		<div className="flex w-80 flex-col gap-3">
 			<div className="flex items-start justify-between">
-				<Avatar size="48">
+				<Avatar size="xl">
 					<AvatarImage src={profile.avatar} />
 					<AvatarFallback>CH</AvatarFallback>
 					<AvatarIndicator className="right-0 bottom-0">
@@ -62,13 +62,13 @@ function ProfileCard() {
 					</AvatarIndicator>
 				</Avatar>
 				<div className="flex items-center gap-2">
-					<IconButton color="neutral" variant="outline" size="28">
+					<IconButton color="neutral" variant="outline" size="lg">
 						<CalendarIcon />
 					</IconButton>
-					<IconButton color="neutral" variant="outline" size="28">
+					<IconButton color="neutral" variant="outline" size="lg">
 						<MailIcon />
 					</IconButton>
-					<Button size="28" color="primary">
+					<Button size="lg" color="primary">
 						Follow
 					</Button>
 				</div>
@@ -78,7 +78,7 @@ function ProfileCard() {
 				<div className="flex flex-col gap-1">
 					<div className="flex items-center gap-1.5">
 						<span className="text-base font-medium">{profile.name}</span>
-						<Badge size="20" variant="outline" color="neutral">
+						<Badge size="sm" variant="outline" color="neutral">
 							{profile.username}
 						</Badge>
 					</div>
@@ -99,7 +99,7 @@ export default function PopoverSide() {
 		<div className="flex flex-wrap items-center justify-center gap-3">
 			<Popover>
 				<PopoverTrigger asChild>
-					<Button size={"32"} color="neutral" variant="outline">
+					<Button size="lg" color="neutral" variant="outline">
 						<ChevronLeft />
 						Left
 					</Button>
@@ -111,7 +111,7 @@ export default function PopoverSide() {
 
 			<Popover>
 				<PopoverTrigger asChild>
-					<Button size={"32"} color="neutral" variant="outline">
+					<Button size="lg" color="neutral" variant="outline">
 						<ChevronUp />
 						Top
 					</Button>
@@ -123,7 +123,7 @@ export default function PopoverSide() {
 
 			<Popover>
 				<PopoverTrigger asChild>
-					<Button size={"32"} color="neutral" variant="outline">
+					<Button size="lg" color="neutral" variant="outline">
 						<ChevronRight />
 						Right
 					</Button>
@@ -135,7 +135,7 @@ export default function PopoverSide() {
 
 			<Popover>
 				<PopoverTrigger asChild>
-					<Button size={"32"} color="neutral" variant="outline">
+					<Button size="lg" color="neutral" variant="outline">
 						<ChevronDown />
 						Bottom
 					</Button>

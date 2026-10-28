@@ -81,7 +81,7 @@ export function DesktopNavigation() {
 															<Badge
 																variant="soft"
 																color="neutral"
-																size="20"
+																size="sm"
 																className="text-fg-disabled">
 																Coming Soon
 															</Badge>

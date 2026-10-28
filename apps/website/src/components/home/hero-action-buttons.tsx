@@ -6,14 +6,14 @@ import { Button } from "@/styles/default/ui/button"
 export default function HeroActionButtons() {
 	return (
 		<>
-			<Button variant="smooth" className="w-full sm:w-fit" size="40" asChild>
+			<Button variant="smooth" className="w-full sm:w-fit" size="lg" asChild>
 				<Link href="/docs/getting-started/introduction" prefetch={false}>
 					Read Documentation
 				</Link>
 			</Button>
 			<Button
 				asChild
-				size="40"
+				size="lg"
 				className="bg-elevation-level1/20 dark:hover:bg-fill2/40 hover:bg-fill2/40 w-full backdrop-blur-md sm:w-fit"
 				variant="outline"
 				color="neutral">

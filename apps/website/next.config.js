@@ -279,7 +279,13 @@ const nextConfig = {
   outputFileTracingIncludes: {
     "/api/block-code/*": ["./src/registry/blocks-example/**/*.{ts,tsx,css}"],
   },
-  serverExternalPackages: ["ts-morph", "typescript", "shiki"],
+  serverExternalPackages: [
+    "ts-morph",
+    "typescript",
+    "shiki",
+    "prettier",
+    "@react-email/render",
+  ],
 };
 const withMDX = createMDX();
 export default withBundleAnalyzer(withMDX(nextConfig));

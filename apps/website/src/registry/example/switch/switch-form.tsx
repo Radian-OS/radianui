@@ -51,7 +51,7 @@ export default function SwitchForm() {
 									<div className="border-border has-data-[state=checked]:border-primary-border relative flex w-full items-start gap-2 rounded-xl border p-4">
 										<FormControl>
 											<Switch
-												size={"20"}
+												size="sm"
 												id={id}
 												checked={field.value}
 												onCheckedChange={field.onChange}

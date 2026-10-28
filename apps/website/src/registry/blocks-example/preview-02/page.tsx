@@ -88,7 +88,7 @@ function ContributionHistoryCard() {
 			</CardContent>
 
 			<CardFooter>
-				<Button className="w-full" variant="glossy" size="32">
+				<Button className="w-full" variant="glossy" size="lg">
 					View Full Report
 				</Button>
 			</CardFooter>
@@ -197,7 +197,7 @@ function SavingsTargetsCard() {
 					</CardTitle>
 					<CardDescription>Active milestones for 2024</CardDescription>
 				</div>
-				<Button size="32" variant="outline">
+				<Button size="lg" variant="outline">
 					New Goal
 				</Button>
 			</CardHeader>
@@ -310,7 +310,7 @@ function DistributeTrackCard() {
 				</div>
 			</CardContent>
 			<CardFooter>
-				<Button size="32">Create Release</Button>
+				<Button size="lg">Create Release</Button>
 			</CardFooter>
 		</Card>
 	)
@@ -544,7 +544,7 @@ function RiskAllocationCard() {
 			</CardContent>
 
 			<CardFooter>
-				<Button className="w-full" variant="glossy" size="32">
+				<Button className="w-full" variant="glossy" size="lg">
 					Apply Allocation
 				</Button>
 			</CardFooter>
@@ -698,10 +698,10 @@ function NotificationPreferencesCard() {
 			</CardContent>
 
 			<CardFooter className="justify-end gap-2">
-				<Button variant="smooth" size="32">
+				<Button variant="smooth" size="lg">
 					Reset to Defaults
 				</Button>
-				<Button variant="smooth" size="32">
+				<Button variant="smooth" size="lg">
 					Save Preferences
 				</Button>
 			</CardFooter>
@@ -830,13 +830,13 @@ function PrivacySettingsCard() {
 			<CardFooter className="justify-end gap-2">
 				<Button
 					variant="outline"
-					size="32"
+					size="lg"
 					onClick={() =>
 						setValues(Object.fromEntries(settings.map((s) => [s.key, false])))
 					}>
 					Disable All
 				</Button>
-				<Button size="32">Save Settings</Button>
+				<Button size="lg">Save Settings</Button>
 			</CardFooter>
 		</Card>
 	)
@@ -901,7 +901,7 @@ function ScheduleCard() {
 			</CardContent>
 
 			<CardFooter>
-				<Button className="w-full" size="32" variant="outline">
+				<Button className="w-full" size="lg" variant="outline">
 					Add Event
 				</Button>
 			</CardFooter>

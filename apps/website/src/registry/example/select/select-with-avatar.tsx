@@ -23,7 +23,7 @@ export default function SelectWithBadge() {
 						</SelectLabel>
 						<SelectItem value="1">
 							<span className="flex items-center gap-2">
-								<Avatar size="24">
+								<Avatar size="xs">
 									<AvatarImage src="https://randomuser.me/api/portraits/men/1.jpg" />
 								</Avatar>
 								<span>Alan Bold</span>
@@ -31,7 +31,7 @@ export default function SelectWithBadge() {
 						</SelectItem>
 						<SelectItem value="2">
 							<span className="flex items-center gap-2">
-								<Avatar size="24">
+								<Avatar size="xs">
 									<AvatarImage src="https://randomuser.me/api/portraits/men/2.jpg" />
 								</Avatar>
 								<span>Ethan James</span>
@@ -39,7 +39,7 @@ export default function SelectWithBadge() {
 						</SelectItem>
 						<SelectItem value="3">
 							<span className="flex items-center gap-2">
-								<Avatar size="24">
+								<Avatar size="xs">
 									<AvatarImage src="https://randomuser.me/api/portraits/men/3.jpg" />
 								</Avatar>
 								<span>Nina Clark</span>
@@ -47,7 +47,7 @@ export default function SelectWithBadge() {
 						</SelectItem>
 						<SelectItem value="4">
 							<span className="flex items-center gap-2">
-								<Avatar size="24">
+								<Avatar size="xs">
 									<AvatarImage src="https://randomuser.me/api/portraits/men/4.jpg" />
 								</Avatar>
 								<span>Sean Otto</span>

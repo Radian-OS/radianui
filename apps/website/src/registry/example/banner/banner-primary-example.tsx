@@ -25,7 +25,7 @@ const BannerPrimaryExamples = () => {
 					<Button
 						className="text-fg-secondary bg-white hover:bg-white"
 						color="neutral"
-						size="28">
+						size="lg">
 						Talk to Sales
 					</Button>
 				</div>
