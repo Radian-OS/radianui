@@ -587,7 +587,7 @@ function ButtonGroup({
 ButtonGroup.displayName = "ButtonGroup"
 
 export const compactButtonVariants = cva(
-	"focus-visible:ring-offset-bg-bg box-border inline-flex w-fit items-center justify-center rounded-md whitespace-nowrap hover:cursor-pointer focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none",
+	"focus-visible:ring-offset-bg box-border inline-flex w-fit items-center justify-center rounded-md whitespace-nowrap hover:cursor-pointer focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none",
 	{
 		variants: {
 			variant: {
@@ -730,7 +730,7 @@ export const compactButtonVariants = cva(
 				variant: "outline",
 				color: "neutral",
 				className:
-					"bg-elevation-level1 text-fg-secondary border-border hover:bg-fill1-alpha focus-visible:ring-border border font-medium",
+					"bg-elevation-level1 text-fg-secondary border-border hover:bg-fill1-alpha focus-visible:ring-fg-secondary border font-medium",
 			},
 
 			// Ghost variant + colors
