@@ -46,6 +46,7 @@ export default function CarouselPreview() {
 									src={image.src}
 									alt={image.alt}
 									fill
+									sizes="(max-width: 320px) calc(100vw - 8px), 312px"
 									className="object-cover"
 								/>
 							</AspectRatio>

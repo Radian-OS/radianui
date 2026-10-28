@@ -131,6 +131,7 @@ export default function CarouselScale() {
 								src={image.src}
 								alt={image.alt}
 								fill
+								sizes="(max-width: 576px) 33vw, 192px"
 								className="rounded-2xl object-cover"
 							/>
 						</AspectRatio>

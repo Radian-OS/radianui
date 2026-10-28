@@ -50,6 +50,7 @@ export default function CarouselLoop() {
 								src={image.src}
 								alt={image.alt}
 								fill
+								sizes="(max-width: 384px) 50vw, 192px"
 								className="rounded-2xl object-cover"
 							/>
 						</AspectRatio>

@@ -87,8 +87,8 @@ const LINKS: Link[] = [
 			{
 				href: "#",
 				name: "Popular Brand Logos",
-				icon: <PopularBrandLogosIcon />,
 				release: "coming-soon",
+				icon: <PopularBrandLogosIcon />,
 			},
 			{
 				href: "#",

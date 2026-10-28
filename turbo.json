@@ -21,6 +21,7 @@
 			],
 			"outputs": [
 				".next/**",
+				"public/resources/image-sitemap.xml",
 				"!.next/cache/**",
 				"dist/**"
 			]

@@ -20,3 +20,5 @@ public/llms-full.txt
 .source/
 
 tsconfig.tsbuildinfo
+# Generated before next build / next dev from available resource images
+/public/resources/image-sitemap.xml

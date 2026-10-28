@@ -1,4 +1,6 @@
 import {
+	applyMdxPreset,
+	type DefaultMDXOptions,
 	defineCollections,
 	defineConfig,
 	defineDocs,
@@ -8,6 +10,24 @@ import rehypePrettyCode from "rehype-pretty-code"
 import { z } from "zod"
 import { transformers } from "@/lib/highlight-code"
 import { calculateReadingTime } from "@/lib/reading-time"
+
+const mdxOptions: DefaultMDXOptions = {
+	rehypePlugins: (plugins) => {
+		plugins.shift()
+		plugins.push([
+			rehypePrettyCode,
+			{
+				theme: {
+					dark: "github-dark-high-contrast",
+					light: "github-light-default",
+				},
+				transformers,
+			},
+		])
+
+		return plugins
+	},
+}
 
 // Docs collection — maps to src/content/docs/**/*.mdx
 export const { docs, meta } = defineDocs({
@@ -43,6 +63,11 @@ export const { docs, meta } = defineDocs({
 export const blog = defineCollections({
 	type: "doc",
 	dir: "src/content/blog",
+	mdxOptions: applyMdxPreset({
+		...mdxOptions,
+		// Blog images render as regular img elements; CDN availability must not block compilation.
+		remarkImageOptions: { external: false },
+	}),
 	schema: (ctx) =>
 		frontmatterSchema
 			.extend({
@@ -71,22 +96,4 @@ export const blog = defineCollections({
 			})),
 })
 
-export default defineConfig({
-	mdxOptions: {
-		rehypePlugins: (plugins) => {
-			plugins.shift()
-			plugins.push([
-				rehypePrettyCode,
-				{
-					theme: {
-						dark: "github-dark-high-contrast",
-						light: "github-light-default",
-					},
-					transformers,
-				},
-			])
-
-			return plugins
-		},
-	},
-})
+export default defineConfig({ mdxOptions })

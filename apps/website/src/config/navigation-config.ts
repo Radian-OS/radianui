@@ -254,7 +254,7 @@ export const RESOURCE_ITEMS: NavigationItem[] = [
 		resourceIcon: "emoji",
 	},
 	{
-		title: "Brand Logo",
+		title: "Brand Logos",
 		description: "Popular company logos.",
 		url: "/resources/brand-logos",
 		resourceIcon: "brand-logo",

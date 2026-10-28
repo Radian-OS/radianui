@@ -13,6 +13,7 @@ const commands = [
 	"pnpm run generate-flags-json",
 	"pnpm run generate-llms-txt",
 	"pnpm run update-icon-slot",
+	"pnpm run generate:image-sitemap",
 	"next build",
 ]
 

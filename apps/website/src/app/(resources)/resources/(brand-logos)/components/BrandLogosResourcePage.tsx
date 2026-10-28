@@ -1,0 +1,142 @@
+import Link from "next/link"
+import type { CSSProperties } from "react"
+import { cn } from "@/lib/utils"
+import { ResourcePage } from "../../components/ResourcePage"
+import BrandLogosDocs from "../docs/BrandLogosDocs"
+import BrandLogosHeroActions from "./BrandLogosHeroActions"
+import BrandLogosPlayground from "./BrandLogosPlayground"
+import type { BrandLogoId } from "./brand-logos-data"
+import {
+	getBrandLogoCatalog,
+	getBrandLogosManifest,
+} from "./brand-logos-server"
+import { BrandLogoCatalogProvider } from "./BrandLogoCatalogProvider"
+
+const heroLogos = [
+	{ id: "figma", size: "small" },
+	{ id: "openai", size: "large" },
+	{ id: "react", size: "small" },
+] as const
+
+interface BrandLogosResourcePageProps {
+	initialSelectedBrand?: BrandLogoId | null
+}
+
+export async function BrandLogosResourcePage({
+	initialSelectedBrand = null,
+}: BrandLogosResourcePageProps) {
+	const manifest = await getBrandLogosManifest()
+	const {
+		BRAND_LOGO_ASSET_COUNT,
+		brandLogos,
+		getBrandLogo,
+		getBrandLogoSvgUrl,
+		getBrandLogoDisplayUrl,
+		getBrandLogoMetadataDescription,
+	} = await getBrandLogoCatalog()
+	const selectedBrand = initialSelectedBrand
+		? getBrandLogo(initialSelectedBrand)
+		: null
+
+	return (
+		<ResourcePage
+			animatedHeroBeams={false}
+			badge={{
+				count: `${brandLogos.length} Brands`,
+				label: `${BRAND_LOGO_ASSET_COUNT.toLocaleString("en-US")} Ready-to-Use Logo Assets`,
+			}}
+			heroVisual={
+				<div className="flex items-center -space-x-2">
+					{heroLogos.map(({ id, size }) => {
+						const brand = getBrandLogo(id)
+						return (
+							<div
+								key={id}
+								className={cn(
+									"bg-bg border-soft relative flex items-center justify-center rounded-2xl border shadow-sm",
+									size === "large" ? "z-10 size-20" : "size-14"
+								)}>
+								<span
+									role="img"
+									aria-label={`${brand.name} logo`}
+									style={
+										{
+											"--logo-light": `url("${getBrandLogoDisplayUrl(id, "light")}")`,
+											"--logo-dark": `url("${getBrandLogoDisplayUrl(id, "dark")}")`,
+										} as CSSProperties
+									}
+									className={cn(
+										"bg-[image:var(--logo-light)] bg-contain bg-center bg-no-repeat dark:bg-[image:var(--logo-dark)]",
+										size === "large" ? "size-12" : "size-8"
+									)}
+								/>
+							</div>
+						)
+					})}
+				</div>
+			}
+			title={
+				selectedBrand
+					? `${selectedBrand.name} Logo SVG & PNG`
+					: "Brand & Tech Company Logos"
+			}
+			description={
+				selectedBrand
+					? getBrandLogoMetadataDescription(selectedBrand.id)
+					: `Explore ${brandLogos.length}+ brand and tech company logos across AI, development, cloud, data, design, business, and gaming. Download SVG and PNG, copy SVG code, or use CDN links with light and dark mode support.`
+			}
+			actions={<BrandLogosHeroActions />}
+			showcaseLabel="Browse free brand logo assets"
+			showcase={
+				<BrandLogoCatalogProvider manifest={manifest}>
+					<BrandLogosPlayground initialSelectedBrand={initialSelectedBrand} />
+				</BrandLogoCatalogProvider>
+			}
+			documentation={
+				<>
+					{selectedBrand ? (
+						<section
+							aria-label={`${selectedBrand.name} logo downloads`}
+							className="mx-auto flex w-full max-w-200 flex-col gap-4 px-5 py-8">
+							<h2 className="heading-4">
+								Download the {selectedBrand.name} logo
+							</h2>
+							<p>
+								Get the {selectedBrand.name} logo as a compact icon or a full
+								wordmark. Choose colored or neutral artwork for light and dark
+								backgrounds. Open the logo details to download SVG or PNG, copy
+								SVG code, or copy its CDN link.
+							</p>
+							<p>
+								Use SVG for scalable website graphics and PNG for presentations
+								or image editors. Preserve the logo's proportions and follow the
+								brand owner's usage guidelines.
+							</p>
+							<Link
+								href={getBrandLogoSvgUrl(
+									selectedBrand.id,
+									"light",
+									"colored",
+									"icon"
+								)}
+								className="text-primary-text underline">
+								{selectedBrand.name} logo SVG
+							</Link>
+							<Link
+								href={getBrandLogoSvgUrl(
+									selectedBrand.id,
+									"light",
+									"colored",
+									"wordmark"
+								)}
+								className="text-primary-text underline">
+								{selectedBrand.name} wordmark SVG
+							</Link>
+						</section>
+					) : null}
+					<BrandLogosDocs />
+				</>
+			}
+		/>
+	)
+}

@@ -7,3 +7,19 @@ Build next generation of world class products and solutions. **Use this to make 
 ## Documentation
 
 Visit https://radianui.com/docs/getting-started/introduction to view the documentation.
+
+
+## Brand logo catalog
+
+The authoritative manifest lives in `radian-resources/packages/brand-logos/manifest.json`, alongside the SVG files. Add and remove brands there.
+
+Logo previews, SVG copies and downloads, and PNG exports load the original SVGs directly from jsDelivr. No local asset mirror, proxy, synchronization commands, or build flags are required.
+
+The upstream `packages/brand-logos/manifest.json` is fetched through jsDelivr and validated on the server. It supplies categories, routes, search, counts, and metadata. Next.js caches it for one hour; new brands can resolve without a website rebuild. The image sitemap fetches the same manifest when generated. No local catalog JSON is maintained.
+
+### Resource image sitemap
+
+`pnpm run generate:image-sitemap` scans available resource pages and public images and writes `public/resources/image-sitemap.xml`. The development and production build commands run it before Next.js starts or compiles. Next.js serves the XML as a public static file; no deployed route scans source directories. The scanner and its tests live in `scripts/`, outside the server source tree, so they do not expand Next.js output-file tracing. Regenerate it after adding images to a running development checkout, or restart the dev server.
+
+
+Brand-logo tile and hero previews use CSS theme selection with stable server markup. Theme changes do not require a hydration hook or a second render of every tile.
