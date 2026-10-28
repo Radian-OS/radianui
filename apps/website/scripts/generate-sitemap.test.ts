@@ -23,6 +23,11 @@ function fixture() {
 		JSON.stringify({ name: "sitemap-fixture", private: true })
 	)
 	mkdirSync(join(root, "public"))
+	mkdirSync(join(root, "public/resources"))
+	writeFileSync(
+		join(root, "public/resources/image-sitemap.xml"),
+		"<urlset></urlset>"
+	)
 	mkdirSync(join(root, ".next"))
 	writeFileSync(
 		join(root, "next-sitemap.config.cjs"),
@@ -83,10 +88,12 @@ test("page sitemap discovers built routes and removes stale branch outputs", () 
 		const robots = readFileSync(join(f.root, "public/robots.txt"), "utf8")
 		assert.ok(robots.includes("/sitemap.xml"))
 		assert.ok(robots.includes("/resources/image-sitemap.xml"))
-		routes.push(
-			"/blog/why-we-migrated-from-eslint-to-oxlint",
-			"/resources/brand-logos/react"
+		// On-demand resource details are not present in Next's prerender manifest.
+		writeFileSync(
+			join(f.root, "public/resources/image-sitemap.xml"),
+			"<urlset><url><loc>https://example.com/resources/brand-logos/react</loc></url><url><loc>https://example.com/resources/flags/nepal</loc></url></urlset>"
 		)
+		routes.push("/blog/why-we-migrated-from-eslint-to-oxlint")
 		writeFileSync(
 			manifest,
 			JSON.stringify({
@@ -99,6 +106,7 @@ test("page sitemap discovers built routes and removes stale branch outputs", () 
 		xml = readFileSync(join(f.root, "public/sitemap-0.xml"), "utf8")
 		assert.ok(xml.includes("/blog/why-we-migrated-from-eslint-to-oxlint</loc>"))
 		assert.ok(xml.includes("/resources/brand-logos/react</loc>"))
+		assert.equal(xml.split("/resources/flags/nepal</loc>").length - 1, 1)
 	} finally {
 		f.cleanup()
 	}
