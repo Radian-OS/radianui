@@ -54,7 +54,7 @@ const InviteCard = () => {
 								{emailMembers.map((member, index) => (
 									<div key={index}>
 										<div className="flex items-center gap-3">
-											<Avatar size="36" rounded="circle">
+											<Avatar size="md" rounded="circle">
 												<AvatarFallback>{member.fallback}</AvatarFallback>
 											</Avatar>
 											<span className="grow">
@@ -80,7 +80,7 @@ const InviteCard = () => {
 								{emailMembers.map((member, index) => (
 									<div key={index}>
 										<div className="flex items-center gap-3">
-											<Avatar size="36" rounded="circle">
+											<Avatar size="md" rounded="circle">
 												<AvatarFallback>{member.fallback}</AvatarFallback>
 											</Avatar>
 											<span className="grow">

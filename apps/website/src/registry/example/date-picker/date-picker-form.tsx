@@ -109,7 +109,7 @@ export default function DatePickerForm() {
 						</FormItem>
 					)}
 				/>
-				<Button type="submit" className="w-full" size={"32"}>
+				<Button type="submit" className="w-full" size="lg">
 					Submit
 				</Button>
 			</form>

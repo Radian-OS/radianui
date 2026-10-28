@@ -227,7 +227,7 @@ export default function Component() {
 							setCurrentPage(0) // Reset to first page when changing rows per page
 						}}>
 						<SelectTrigger
-							size="32"
+							size="lg"
 							id={id}
 							className="w-fit whitespace-nowrap">
 							<SelectValue placeholder="Select number of results" />
@@ -261,7 +261,7 @@ export default function Component() {
 							{/* First page button */}
 							<PaginationItem>
 								<IconButton
-									size="32"
+									size="lg"
 									color="neutral"
 									variant="outline"
 									className="disabled:pointer-events-none disabled:opacity-50"
@@ -278,7 +278,7 @@ export default function Component() {
 							{/* Previous page button */}
 							<PaginationItem>
 								<IconButton
-									size="32"
+									size="lg"
 									color="neutral"
 									variant="outline"
 									className="disabled:pointer-events-none disabled:opacity-50"
@@ -295,7 +295,7 @@ export default function Component() {
 							{/* Next page button */}
 							<PaginationItem>
 								<IconButton
-									size="32"
+									size="lg"
 									variant="outline"
 									color="neutral"
 									className="disabled:pointer-events-none disabled:opacity-50"
@@ -312,7 +312,7 @@ export default function Component() {
 							{/* Last page button */}
 							<PaginationItem>
 								<IconButton
-									size="32"
+									size="lg"
 									variant="outline"
 									color="neutral"
 									className="disabled:pointer-events-none disabled:opacity-50"

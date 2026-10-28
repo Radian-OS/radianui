@@ -5,8 +5,8 @@ export default function OTPFieldSize() {
 	return (
 		<div className="flex flex-col justify-center gap-3">
 			<div className="flex flex-col justify-center space-y-1.5">
-				<Label htmlFor="one-time-password">Size - 28</Label>
-				<OTPField size="28">
+				<Label htmlFor="one-time-password">Size - xs</Label>
+				<OTPField size="xs">
 					{Array.from({ length: 6 }).map((_, index) => (
 						<OTPInput key={index} index={index} />
 					))}
@@ -14,8 +14,8 @@ export default function OTPFieldSize() {
 				</OTPField>
 			</div>
 			<div className="flex flex-col justify-center space-y-1.5">
-				<Label htmlFor="one-time-password">Size - 32</Label>
-				<OTPField size="32">
+				<Label htmlFor="one-time-password">Size - sm</Label>
+				<OTPField size="sm">
 					{Array.from({ length: 6 }).map((_, index) => (
 						<OTPInput key={index} index={index} />
 					))}
@@ -23,8 +23,8 @@ export default function OTPFieldSize() {
 				</OTPField>
 			</div>
 			<div className="flex flex-col justify-center space-y-1.5">
-				<Label htmlFor="one-time-password">Size - 36</Label>
-				<OTPField size="36">
+				<Label htmlFor="one-time-password">Size - md</Label>
+				<OTPField size="md">
 					{Array.from({ length: 6 }).map((_, index) => (
 						<OTPInput key={index} index={index} />
 					))}
@@ -32,8 +32,8 @@ export default function OTPFieldSize() {
 				</OTPField>
 			</div>
 			<div className="flex flex-col justify-center space-y-1.5">
-				<Label htmlFor="one-time-password">Size - 40</Label>
-				<OTPField size="40">
+				<Label htmlFor="one-time-password">Size - lg</Label>
+				<OTPField size="lg">
 					{Array.from({ length: 6 }).map((_, index) => (
 						<OTPInput key={index} index={index} />
 					))}
@@ -41,8 +41,8 @@ export default function OTPFieldSize() {
 				</OTPField>
 			</div>
 			<div className="flex flex-col justify-center space-y-1.5">
-				<Label htmlFor="one-time-password">Size - 44</Label>
-				<OTPField size="44">
+				<Label htmlFor="one-time-password">Size - xl</Label>
+				<OTPField size="xl">
 					{Array.from({ length: 6 }).map((_, index) => (
 						<OTPInput key={index} index={index} />
 					))}
@@ -50,8 +50,8 @@ export default function OTPFieldSize() {
 				</OTPField>
 			</div>
 			<div className="flex flex-col justify-center space-y-1.5">
-				<Label htmlFor="one-time-password">Size - 48</Label>
-				<OTPField size="48">
+				<Label htmlFor="one-time-password">Size - 2xl</Label>
+				<OTPField size="2xl">
 					{Array.from({ length: 6 }).map((_, index) => (
 						<OTPInput key={index} index={index} />
 					))}

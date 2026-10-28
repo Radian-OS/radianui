@@ -21,7 +21,7 @@ export default function CTASection() {
 						</p>
 					</div>
 					<div className="z-40 flex items-center gap-3">
-						<Button variant="outline" color="neutral" size="40" asChild>
+						<Button variant="outline" color="neutral" size="lg" asChild>
 							<Link href="/docs/getting-started/figma">
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
@@ -55,7 +55,7 @@ export default function CTASection() {
 						</Button>
 						<Button
 							className="border-primary-hover w-full border bg-gradient-to-b from-[#6347EB] to-[#5133CF] shadow-lg ring-[1.5px] ring-[#5B3FE0] hover:from-[#6A52F2] hover:to-[#5B3FE0]"
-							size="40"
+							size="lg"
 							asChild>
 							<Link href="/docs/installation/next">Start in Code Editor</Link>
 						</Button>

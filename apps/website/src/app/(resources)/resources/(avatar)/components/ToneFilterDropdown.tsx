@@ -175,7 +175,7 @@ export function ToneFilterDropdown({
 					<CompactButton
 						onClick={() => setOpen(false)}
 						color="neutral"
-						size="20"
+						size="sm"
 						variant="soft">
 						<X />
 					</CompactButton>
@@ -194,7 +194,7 @@ export function ToneFilterDropdown({
 								type="button"
 								onClick={() => onChange("none")}
 								color="neutral"
-								size="28"
+								size="lg"
 								variant="outline"
 								title="Clear Background"
 								aria-label="Clear Background">
@@ -206,7 +206,7 @@ export function ToneFilterDropdown({
 								type="button"
 								onClick={() => onChange("pick-color")}
 								color="neutral"
-								size="28"
+								size="lg"
 								variant="outline"
 								title="Random Color"
 								aria-label="Random Color"

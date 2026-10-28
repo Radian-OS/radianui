@@ -24,7 +24,7 @@ export default function HoverCardUserMiniProfile() {
 	return (
 		<HoverCard>
 			<HoverCardTrigger className="group flex cursor-pointer items-center gap-2">
-				<Avatar size="24">
+				<Avatar size="xs">
 					<AvatarImage src={profile.avatar} />
 					<AvatarFallback>{profile.name.charAt(0)}</AvatarFallback>
 				</Avatar>
@@ -34,7 +34,7 @@ export default function HoverCardUserMiniProfile() {
 			</HoverCardTrigger>
 			<HoverCardContent className="w-80 space-y-4 rounded-xl">
 				<div className="flex items-center justify-between">
-					<Avatar size="48">
+					<Avatar size="xl">
 						<AvatarImage src={profile.avatar} />
 						<AvatarFallback>{profile.name.charAt(0)}</AvatarFallback>
 						<AvatarIndicator className="right-0 bottom-0">
@@ -62,24 +62,24 @@ export default function HoverCardUserMiniProfile() {
 							aria-label="Calendar Button"
 							variant="outline"
 							color="neutral"
-							size={"28"}>
+							size="lg">
 							<Calendar />
 						</IconButton>
 						<IconButton
 							aria-label="Mail Button"
 							variant="outline"
 							color="neutral"
-							size={"28"}>
+							size="lg">
 							<Mail />
 						</IconButton>
-						<Button size="28">Follow</Button>
+						<Button size="lg">Follow</Button>
 					</div>
 				</div>
 				<div className="flex flex-col gap-3">
 					<div className="flex flex-col gap-0.5">
 						<div className="flex items-center gap-1.5">
 							<p className="font-medium">{profile.name}</p>
-							<Badge size={"20"} variant={"outline"} color={"neutral"}>
+							<Badge size="sm" variant={"outline"} color={"neutral"}>
 								{profile.username}
 							</Badge>
 						</div>

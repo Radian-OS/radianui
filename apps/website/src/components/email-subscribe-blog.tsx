@@ -78,7 +78,7 @@ export const EmailSubscribeBlog = () => {
 							<FormItem className="w-full sm:flex-1">
 								<FormControl>
 									<Input
-										size="40"
+										size="lg"
 										type="email"
 										placeholder="Email Address"
 										{...field}
@@ -99,7 +99,7 @@ export const EmailSubscribeBlog = () => {
 					<Button
 						type="submit"
 						disabled={form.formState.isSubmitting}
-						size="40"
+						size="lg"
 						variant={"glossy"}
 						className="w-full sm:w-23.5">
 						{form.formState.isSubmitting ? (

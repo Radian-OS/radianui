@@ -130,7 +130,7 @@ export const BrandLogoTile = memo(function BrandLogoTile({
 	return (
 		<li className="group relative aspect-square w-full min-w-0">
 			<Button
-				size="32"
+				size="sm"
 				color="neutral"
 				variant="outline"
 				className="bg-bg hover:bg-bg size-full overflow-hidden rounded-2xl px-0 py-0"
@@ -170,7 +170,7 @@ export const BrandLogoTile = memo(function BrandLogoTile({
 			/>
 			<div className="absolute inset-x-3 bottom-3 z-20 opacity-0 transition-opacity group-focus-within:opacity-100 group-hover:opacity-100">
 				<Button
-					size="28"
+					size="xs"
 					color="neutral"
 					variant="outline"
 					className="bg-bg w-full"

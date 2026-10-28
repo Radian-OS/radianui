@@ -29,11 +29,11 @@ export const radiusBorderMap: Record<string, string> = {
 	fun: "rounded-3xl",
 }
 
-export const sizeMap: Record<string, "36" | "32" | "40" | "28" | "44" | "48"> =
+export const sizeMap: Record<string, "xs" | "sm" | "md" | "lg" | "xl" | "2xl"> =
 	{
-		default: "36",
-		small: "32",
-		large: "40",
+		default: "md",
+		small: "sm",
+		large: "lg",
 	}
 
 export const spaceMap = {

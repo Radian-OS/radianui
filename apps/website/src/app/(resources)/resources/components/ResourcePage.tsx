@@ -75,7 +75,7 @@ export function ResourcePage({
 							<Badge
 								color="primary"
 								className="h-8 gap-1.5 rounded-full py-1 pl-1"
-								size="28"
+								size="lg"
 								variant="soft">
 								<Badge
 									color="primary"

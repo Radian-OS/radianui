@@ -188,10 +188,10 @@ export function AppSidebar() {
 				</div>
 
 				<div className="w-full px-3 py-2">
-					<InputWrapper size="36">
+					<InputWrapper size="md">
 						<Search className="text-fg-tertiary" />
 						<Input type="search" placeholder="Search" />
-						<Badge size="20" color="neutral" variant="outline">
+						<Badge size="sm" color="neutral" variant="outline">
 							⌘ /
 						</Badge>
 					</InputWrapper>
@@ -211,7 +211,7 @@ export function AppSidebar() {
 									return (
 										<SidebarMenuItem key={item.label}>
 											<SidebarMenuButton
-												size="32"
+												size="sm"
 												isActive={item.isActive}
 												tooltip={item.label}
 												asChild>

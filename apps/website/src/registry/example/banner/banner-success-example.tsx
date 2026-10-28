@@ -54,7 +54,7 @@ const BannerSuccessExample = () => {
 						Get the Desktop app Now!
 					</BannerTitle>
 					<div className="flex items-center justify-center gap-3 pr-1">
-						<Button size="28" color="success" variant="outline">
+						<Button size="lg" color="success" variant="outline">
 							Download
 						</Button>
 					</div>

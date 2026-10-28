@@ -136,7 +136,7 @@ export default function ImageUpload() {
 							</h3>
 							<Button
 								variant="outline"
-								size="32"
+								size="lg"
 								onClick={openFileDialog}
 								disabled={files.length >= maxFiles}>
 								<UploadIcon

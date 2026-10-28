@@ -7,7 +7,7 @@ import {
 	SelectValue,
 } from "@/registry/ui/select"
 
-const Sizes = ["28", "32", "36", "40", "44", "48"] as const
+const Sizes = ["xs", "sm", "md", "lg", "xl", "2xl"] as const
 
 function SelectComponent({ size }: { size: (typeof Sizes)[number] }) {
 	return (

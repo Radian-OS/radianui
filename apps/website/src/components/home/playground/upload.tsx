@@ -108,7 +108,7 @@ export default function Uploads() {
 								onClick={openFileDialog}
 								variant="outline"
 								color="neutral"
-								size="28">
+								size="lg">
 								Browse Files
 							</Button>
 						</div>

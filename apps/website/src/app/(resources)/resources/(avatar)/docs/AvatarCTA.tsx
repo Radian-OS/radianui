@@ -13,7 +13,7 @@ const AvatarCTA = () => {
 				<div className="relative z-10 flex w-full flex-col gap-8 xl:max-w-md">
 					<div className="flex w-full flex-col gap-8 xl:max-w-[532px]">
 						<div className="flex flex-col gap-5">
-							<Badge color="green" variant="soft" size="28">
+							<Badge color="green" variant="soft" size="lg">
 								Open Source Library
 							</Badge>
 
@@ -29,7 +29,7 @@ const AvatarCTA = () => {
 					</div>
 
 					<div className="flex flex-col items-center gap-3 sm:flex-row">
-						<Button variant="glossy" className="w-full" size="40" asChild>
+						<Button variant="glossy" className="w-full" size="lg" asChild>
 							<Link
 								href={
 									process.env.NEXT_PUBLIC_BLOCKS_URL ||
@@ -58,7 +58,7 @@ const AvatarCTA = () => {
 							variant="outline"
 							className="w-full"
 							color="neutral"
-							size="40"
+							size="lg"
 							asChild>
 							<Link
 								href="https://www.figma.com/community/file/1601125934366184350/radian-design-system-version-0-1-2"

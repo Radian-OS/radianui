@@ -7,24 +7,24 @@ function CompactButtonExample() {
 		<div className="flex flex-wrap items-center justify-center gap-3">
 			<CompactButton
 				aria-label="Button with Down Arrow"
-				size="20"
+				size="sm"
 				variant="outline"
 				color="neutral">
 				<ChevronDown className="text-fg-secondary" />
 			</CompactButton>
 			<CompactButton
 				aria-label="Close Button"
-				size="20"
+				size="sm"
 				variant="soft"
 				color="neutral">
 				<X />
 			</CompactButton>
-			<CompactButton size="24" variant="outline" color="neutral">
+			<CompactButton size="md" variant="outline" color="neutral">
 				<ChevronDown className="text-fg-secondary" />
 			</CompactButton>
 			<CompactButton
 				aria-label="Close Button"
-				size="24"
+				size="md"
 				variant="soft"
 				color="neutral">
 				<X />

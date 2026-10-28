@@ -229,7 +229,7 @@ export function FlagDetailsDialog({
 
 						<div className="flex flex-wrap items-center gap-2">
 							<DropdownMenu>
-								<ButtonGroup size="40" color="primary" variant="strong">
+								<ButtonGroup size="lg" color="primary" variant="strong">
 									<Button onClick={copyPng}>PNG</Button>
 									<DropdownMenuTrigger asChild>
 										<Button
@@ -256,7 +256,7 @@ export function FlagDetailsDialog({
 							</DropdownMenu>
 
 							<Button
-								size="40"
+								size="lg"
 								color="primary"
 								variant="strong"
 								onClick={copySvg}>
@@ -264,7 +264,7 @@ export function FlagDetailsDialog({
 							</Button>
 
 							<DropdownMenu>
-								<ButtonGroup size="40" color="primary" variant="strong">
+								<ButtonGroup size="lg" color="primary" variant="strong">
 									<Button onClick={() => downloadFlag("png")}>Download</Button>
 									<DropdownMenuTrigger asChild>
 										<IconButton
@@ -293,14 +293,14 @@ export function FlagDetailsDialog({
 							</p>
 							<div className="flex flex-wrap gap-2">
 								<Button
-									size="32"
+									size="sm"
 									color="neutral"
 									variant="outline"
 									onClick={() => copyText(svgUrl, "SVG CDN URL")}>
 									CDN
 								</Button>
 								<Button
-									size="32"
+									size="sm"
 									color="neutral"
 									variant="outline"
 									onClick={() =>
@@ -312,7 +312,7 @@ export function FlagDetailsDialog({
 									React JS
 								</Button>
 								<Button
-									size="32"
+									size="sm"
 									color="neutral"
 									variant="outline"
 									onClick={() =>
@@ -340,7 +340,7 @@ export function FlagDetailsDialog({
 						<p className="text-fg-secondary text-xs font-medium">Search Tags</p>
 						<div className="flex flex-wrap gap-1.5">
 							{searchTags.map((tag) => (
-								<Badge key={tag} size="24" color="neutral" variant="outline">
+								<Badge key={tag} size="md" color="neutral" variant="outline">
 									{tag}
 								</Badge>
 							))}
@@ -355,7 +355,7 @@ export function FlagDetailsDialog({
 								return (
 									<Button
 										key={flagName}
-										size="32"
+										size="sm"
 										color="neutral"
 										variant="outline"
 										className="size-[50px] p-0"
@@ -394,7 +394,7 @@ function FlagDetailsShapeDropdown({
 			<DropdownMenu indicatorPosition="right">
 				<DropdownMenuTrigger asChild>
 					<Button
-						size="28"
+						size="xs"
 						color="neutral"
 						variant="soft"
 						aria-label={`Flag style: ${label}`}>

@@ -68,7 +68,7 @@ const TablePreview = () => {
 							<TableCell>{data.email}</TableCell>
 							<TableCell>
 								<Badge
-									size="20"
+									size="sm"
 									className={cn(
 										data.status === "Inactive" &&
 											"bg-elevation-level1 text-fg-secondary",

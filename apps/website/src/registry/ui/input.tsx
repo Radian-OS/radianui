@@ -19,16 +19,16 @@ const inputVariants = cva(
 	{
 		variants: {
 			size: {
-				"28": "h-7 rounded-md px-2 text-[13px] file:me-1.5 file:pe-1.5",
-				"32": "h-8 rounded-md px-2 text-sm file:me-3 file:pe-3",
-				"36": "h-9 rounded-lg px-2.5 text-sm file:me-2.5 file:pe-2.5",
-				"40": "h-10 rounded-lg px-3 text-sm file:me-3 file:pe-3",
-				"44": "h-11 rounded-lg px-3 text-base file:me-3.5 file:pe-3.5",
-				"48": "h-12 rounded-lg px-3.5 text-base file:me-3.5 file:pe-3.5",
+				xs: "cn-input-xs h-7 file:me-1.5 file:pe-1.5",
+				sm: "cn-input-sm h-8 file:me-3 file:pe-3",
+				md: "cn-input-md h-9 file:me-2.5 file:pe-2.5",
+				lg: "cn-input-lg h-10 file:me-3 file:pe-3",
+				xl: "cn-input-xl h-11 file:me-3.5 file:pe-3.5",
+				"2xl": "cn-input-2xl h-12 file:me-3.5 file:pe-3.5",
 			},
 		},
 		defaultVariants: {
-			size: "36",
+			size: "md",
 		},
 	}
 )
@@ -38,12 +38,13 @@ const inputAddonVariants = cva(
 	{
 		variants: {
 			size: {
-				"28": "h-7 min-w-7 rounded-md px-2 text-[13px] [&_svg:not([class*=size-])]:size-4",
-				"32": "h-8 min-w-8 rounded-md px-2 text-sm [&_svg:not([class*=size-])]:size-4.5",
-				"36": "h-9 min-w-9 rounded-lg px-2.5 text-sm [&_svg:not([class*=size-])]:size-5",
-				"40": "h-10 min-w-10 rounded-lg px-3 text-sm [&_svg:not([class*=size-])]:size-5",
-				"44": "h-11 min-w-11 rounded-lg px-3 text-base [&_svg:not([class*=size-])]:size-5",
-				"48": "h-12 min-w-12 rounded-lg px-3.5 text-base [&_svg:not([class*=size-])]:size-5",
+				xs: "cn-input-addon-xs h-7 min-w-7 [&_svg:not([class*=size-])]:size-4",
+				sm: "cn-input-addon-sm h-8 min-w-8 [&_svg:not([class*=size-])]:size-4.5",
+				md: "cn-input-addon-md h-9 min-w-9 [&_svg:not([class*=size-])]:size-5",
+				lg: "cn-input-addon-lg h-10 min-w-10 [&_svg:not([class*=size-])]:size-5",
+				xl: "cn-input-addon-xl h-11 min-w-11 [&_svg:not([class*=size-])]:size-5",
+				"2xl":
+					"cn-input-addon-2xl h-12 min-w-12 [&_svg:not([class*=size-])]:size-5",
 			},
 			mode: {
 				default: "",
@@ -51,7 +52,7 @@ const inputAddonVariants = cva(
 			},
 		},
 		defaultVariants: {
-			size: "36",
+			size: "md",
 			mode: "default",
 		},
 	}
@@ -70,12 +71,12 @@ const inputWrapperVariants = cva(
 	{
 		variants: {
 			size: {
-				"28": "h-7 gap-1.5 [&_svg:not([class*=size-])]:size-4",
-				"32": "h-8 gap-2 [&_svg:not([class*=size-])]:size-4.5",
-				"36": "h-9 gap-2 [&_svg:not([class*=size-])]:size-5",
-				"40": "h-10 gap-2 [&_svg:not([class*=size-])]:size-5",
-				"44": "h-11 gap-2 [&_svg:not([class*=size-])]:size-5",
-				"48": "h-12 gap-2 [&_svg:not([class*=size-])]:size-5",
+				xs: "cn-input-wrapper-xs [&_svg:not([class*=size-])]:size-4",
+				sm: "cn-input-wrapper-sm [&_svg:not([class*=size-])]:size-4.5",
+				md: "cn-input-wrapper-md [&_svg:not([class*=size-])]:size-5",
+				lg: "cn-input-wrapper-lg [&_svg:not([class*=size-])]:size-5",
+				xl: "cn-input-wrapper-xl [&_svg:not([class*=size-])]:size-5",
+				"2xl": "cn-input-wrapper-2xl [&_svg:not([class*=size-])]:size-5",
 			},
 			disabled: {
 				true: "bg-fill1 has-[:focus-visible]:border-alpha [&_svg]:text-fg-tertiary cursor-not-allowed opacity-60 has-[:focus-visible]:ring-0",
@@ -83,7 +84,7 @@ const inputWrapperVariants = cva(
 			},
 		},
 		defaultVariants: {
-			size: "36",
+			size: "md",
 			disabled: false,
 		},
 	}

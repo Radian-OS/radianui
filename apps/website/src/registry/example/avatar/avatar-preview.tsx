@@ -7,7 +7,7 @@ const profile = {
 
 export default function AvatarPreview() {
 	return (
-		<Avatar size="48" rounded="circle">
+		<Avatar size="xl" rounded="circle">
 			<AvatarImage src={profile.avatar} />
 			<AvatarFallback>{profile.name.charAt(0)}</AvatarFallback>
 		</Avatar>

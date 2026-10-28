@@ -29,16 +29,16 @@ const otpInputVariants = cva(
 	{
 		variants: {
 			size: {
-				"28": "size-7 text-[13px]",
-				"32": "size-8 text-sm",
-				"36": "size-9 text-sm",
-				"40": "size-10 text-sm",
-				"44": "size-11 text-base",
-				"48": "size-12 text-base",
+				xs: "cn-otp-input-xs",
+				sm: "cn-otp-input-sm",
+				md: "cn-otp-input-md",
+				lg: "cn-otp-input-lg",
+				xl: "cn-otp-input-xl",
+				"2xl": "cn-otp-input-2xl",
 			},
 		},
 		defaultVariants: {
-			size: "40",
+			size: "lg",
 		},
 	}
 )
@@ -57,7 +57,7 @@ function OTPField({
 	validationType = "alphanumeric",
 	...props
 }: OTPFieldProps) {
-	const { size = "40" } = props as OTPContextType
+	const { size = "lg" } = props as OTPContextType
 	const ctx = React.useMemo(() => ({ size }), [size])
 	return (
 		<OneTimePasswordFieldPrimitive.Root
