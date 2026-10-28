@@ -34,7 +34,7 @@ export async function generateMetadata({
 	if (!emoji) return {}
 
 	const displayName = formatEmojiName(emoji.name)
-	const title = `${displayName} Emoji — Meaning, Copy & Paste, Unicode`
+	const title = `${emoji.emoji} ${displayName} Emoji — Meaning, Copy & Paste, Unicode`
 	const description = getEmojiMetadataDescription(emoji)
 	const url = absoluteUrl(getEmojiPagePath(emoji))
 	const image = absoluteUrl("/media/assets-page/emojis-light.png")

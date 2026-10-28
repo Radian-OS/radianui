@@ -8,6 +8,7 @@ import { FONTS, type Font } from "@/registry/fonts"
 import { IconLibraryProvider } from "@/registry/icon/icon-library"
 import { PRIMARY_COLORS } from "@/registry/primary-colors"
 import { generateCustomColorShades } from "@/lib/shade-generator"
+import { ScrollArea, ScrollBar } from "@/styles/default/ui/scroll-area"
 
 const MANAGED_BODY_CLASS_PREFIXES = ["style-"] as const
 
@@ -201,7 +202,10 @@ export function PreviewClient({ children }: { children: React.ReactNode }) {
 
 	return (
 		<IconLibraryProvider value={params.iconLibrary}>
-			{children}
+			<ScrollArea className="h-dvh w-full overflow-hidden" type="auto">
+				{children}
+				<ScrollBar orientation="horizontal" />
+			</ScrollArea>
 		</IconLibraryProvider>
 	)
 }

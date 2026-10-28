@@ -23,6 +23,7 @@ import { EmojiDetailsDialog } from "./EmojiDetailsDialog"
 import { EmojiTile } from "./EmojiTile"
 import type { EmojiData } from "./emoji-data"
 import {
+	formatEmojiName,
 	ALL_EMOJI_CATEGORY,
 	EMOJI_PAGE_PATH,
 	emojiGroups,
@@ -62,6 +63,13 @@ export default function EmojiPlayground({
 	const ownsDrawerHistoryEntryRef = useRef(false)
 	const sentinelRef = useRef<HTMLDivElement>(null)
 	const bottomSentinelRef = useRef<HTMLDivElement>(null)
+
+	// Native history updates do not run Next.js metadata generation.
+	useEffect(() => {
+		document.title = selectedEmoji
+			? `${selectedEmoji.emoji} ${formatEmojiName(selectedEmoji.name)} Emoji — Meaning, Copy & Paste, Unicode`
+			: "Copy and Paste Emojis, PNG & SVG Downloads | Radian UI"
+	}, [selectedEmoji])
 
 	useEffect(() => {
 		let isCurrent = true
