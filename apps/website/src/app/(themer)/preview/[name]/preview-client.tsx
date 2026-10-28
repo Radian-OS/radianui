@@ -69,30 +69,40 @@ const buildThemerCssText = (
 	}
 
 	if (customColors) {
-		const customColorVars = Object.entries(customColors).reduce(
-			(acc, [id, val]) => {
-				let shades: Record<string, string> = {}
+		const customLightVars: Record<string, string> = {}
+		const customDarkVars: Record<string, string> = {}
 
-				if (val.startsWith("#")) {
-					shades = generateCustomColorShades(val, id)
-				} else {
-					const preset = PRIMARY_COLORS.find((c) => c.value === val)
-					if (preset) {
-						for (const [key, v] of Object.entries(preset.cssVars.light)) {
-							const newKey = key.replace("--color-primary", `--color-${id}`)
-							shades[newKey] = v
-						}
-					} else {
-						shades[`--color-${id}`] = val
+		for (const [id, val] of Object.entries(customColors)) {
+			if (val.startsWith("#")) {
+				Object.assign(
+					customLightVars,
+					generateCustomColorShades(val, id, "light")
+				)
+				Object.assign(
+					customDarkVars,
+					generateCustomColorShades(val, id, "dark")
+				)
+			} else {
+				const preset = PRIMARY_COLORS.find((c) => c.value === val)
+				if (preset) {
+					for (const [key, v] of Object.entries(preset.cssVars.light)) {
+						customLightVars[key.replace("--color-primary", `--color-${id}`)] = v
 					}
+					for (const [key, v] of Object.entries(preset.cssVars.dark)) {
+						customDarkVars[key.replace("--color-primary", `--color-${id}`)] = v
+					}
+				} else {
+					customLightVars[`--color-${id}`] = val
+					customDarkVars[`--color-${id}`] = val
 				}
+			}
+		}
 
-				return { ...acc, ...shades }
-			},
-			{} as Record<string, string>
-		)
-		if (Object.keys(customColorVars).length > 0) {
-			parts.push(buildCssRule(":root", customColorVars))
+		if (Object.keys(customLightVars).length > 0) {
+			parts.push(buildCssRule(":root", customLightVars))
+		}
+		if (Object.keys(customDarkVars).length > 0) {
+			parts.push(buildCssRule(".dark", customDarkVars))
 		}
 	}
 
