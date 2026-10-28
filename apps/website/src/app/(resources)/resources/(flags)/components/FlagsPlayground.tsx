@@ -24,6 +24,7 @@ import { FlagShapeDropdown } from "./FlagShapeDropdown"
 import { FlagTile } from "./FlagTile"
 import type { FlagName, FlagShape } from "./flags-data"
 import {
+	getFlagDisplayName,
 	FLAGS_PAGE_PATH,
 	flagNames,
 	getFlagNameFromSlug,
@@ -305,6 +306,13 @@ export default function FlagsPlayground({
 	const ownsDialogHistoryEntryRef = useRef(false)
 	const sentinelRef = useRef<HTMLDivElement>(null)
 	const bottomSentinelRef = useRef<HTMLDivElement>(null)
+
+	// Native history updates do not run Next.js metadata generation.
+	useEffect(() => {
+		document.title = selectedFlag
+			? `${getFlagDisplayName(selectedFlag)} Flag – Free PNG & SVG Download`
+			: "All Country Flags – SVG, PNG & React Icons | Radian"
+	}, [selectedFlag])
 
 	useEffect(() => {
 		const topSentinel = sentinelRef.current
