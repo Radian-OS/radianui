@@ -11,14 +11,7 @@ import type {
 	BrandLogoId,
 	BrandLogoVariant,
 } from "./brand-logos-data"
-import {
-	getBrandLogo,
-	getBrandLogoPagePath,
-	getBrandLogoDisplayUrl,
-	getBrandLogoHtmlMarkup,
-	getBrandLogoNextImageMarkup,
-	getBrandLogoSvgUrl,
-} from "./brand-logos-data"
+import { useBrandLogoCatalog } from "./BrandLogoCatalogProvider"
 
 function currentTheme() {
 	return document.documentElement.classList.contains("dark")
@@ -39,6 +32,14 @@ export const BrandLogoTile = memo(function BrandLogoTile({
 	colorway = "colored",
 	onSelect,
 }: BrandLogoTileProps) {
+	const {
+		getBrandLogo,
+		getBrandLogoPagePath,
+		getBrandLogoDisplayUrl,
+		getBrandLogoHtmlMarkup,
+		getBrandLogoNextImageMarkup,
+		getBrandLogoSvgUrl,
+	} = useBrandLogoCatalog()
 	const [copied, setCopied] = useState(false)
 	const brand = getBrandLogo(id)
 	const previewStyle = {
@@ -55,7 +56,7 @@ export const BrandLogoTile = memo(function BrandLogoTile({
 			})
 			window.setTimeout(() => setCopied(false), 1600)
 		},
-		[id, colorway, variant]
+		[id, colorway, variant, getBrandLogoDisplayUrl]
 	)
 
 	const copyText = useCallback(
@@ -74,13 +75,15 @@ export const BrandLogoTile = memo(function BrandLogoTile({
 		try {
 			const { fetchBrandLogoSvg } = await import("./brand-logo-assets")
 			await navigator.clipboard.writeText(
-				await fetchBrandLogoSvg(id, currentTheme(), colorway, variant)
+				await fetchBrandLogoSvg(
+					getBrandLogoSvgUrl(id, currentTheme(), colorway, variant)
+				)
 			)
 			showCopied("SVG code")
 		} catch {
 			toast.error("Could not copy SVG code")
 		}
-	}, [id, colorway, variant, showCopied])
+	}, [id, colorway, variant, showCopied, getBrandLogoSvgUrl])
 
 	const copyPng = useCallback(async () => {
 		try {
@@ -93,9 +96,7 @@ export const BrandLogoTile = memo(function BrandLogoTile({
 			}
 			const { renderBrandLogoPng } = await import("./brand-logo-assets")
 			const blob = await renderBrandLogoPng(
-				id,
-				currentTheme(),
-				colorway,
+				getBrandLogoSvgUrl(id, currentTheme(), colorway, variant),
 				variant
 			)
 			await navigator.clipboard.write([
@@ -105,31 +106,31 @@ export const BrandLogoTile = memo(function BrandLogoTile({
 		} catch {
 			toast.error("Could not copy PNG image")
 		}
-	}, [id, colorway, variant, copyText, showCopied])
+	}, [id, colorway, variant, copyText, showCopied, getBrandLogoSvgUrl])
 
 	const handleCopyUrl = useCallback(() => {
 		void copyText(
 			getBrandLogoSvgUrl(id, currentTheme(), colorway, variant),
 			"CDN URL"
 		)
-	}, [copyText, id, colorway, variant])
+	}, [copyText, id, colorway, variant, getBrandLogoSvgUrl])
 	const handleCopyNextImage = useCallback(() => {
 		void copyText(
 			getBrandLogoNextImageMarkup(id, currentTheme(), colorway, variant),
 			"Next.js markup"
 		)
-	}, [copyText, id, colorway, variant])
+	}, [copyText, id, colorway, variant, getBrandLogoNextImageMarkup])
 	const handleCopyHtmlImage = useCallback(() => {
 		void copyText(
 			getBrandLogoHtmlMarkup(id, currentTheme(), colorway, variant),
 			"HTML markup"
 		)
-	}, [copyText, id, colorway, variant])
+	}, [copyText, id, colorway, variant, getBrandLogoHtmlMarkup])
 
 	return (
 		<li className="group relative aspect-square w-full min-w-0">
 			<Button
-				size="32"
+				size="sm"
 				color="neutral"
 				variant="outline"
 				className="bg-bg hover:bg-bg size-full overflow-hidden rounded-2xl px-0 py-0"
@@ -169,7 +170,7 @@ export const BrandLogoTile = memo(function BrandLogoTile({
 			/>
 			<div className="absolute inset-x-3 bottom-3 z-20 opacity-0 transition-opacity group-focus-within:opacity-100 group-hover:opacity-100">
 				<Button
-					size="28"
+					size="xs"
 					color="neutral"
 					variant="outline"
 					className="bg-bg w-full"

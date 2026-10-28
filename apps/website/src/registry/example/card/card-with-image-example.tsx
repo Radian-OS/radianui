@@ -20,7 +20,7 @@ export default function CardWithImageExample() {
 
 			{/* Content above gradients */}
 			<CardHeader className="relative z-[2] flex items-center justify-center gap-3 p-0">
-				<Avatar size="40">
+				<Avatar size="lg">
 					<AvatarImage src="/media/female-5.jpg" />
 					<AvatarFallback>AM</AvatarFallback>
 				</Avatar>
@@ -28,7 +28,7 @@ export default function CardWithImageExample() {
 					<span className="text-base font-semibold">Anna Murreum</span>
 					<span className="text-sm">anna@radian.com</span>
 				</div>
-				<Badge size="24" variant="soft" color="violet-blue">
+				<Badge size="md" variant="soft" color="violet-blue">
 					New
 				</Badge>
 			</CardHeader>

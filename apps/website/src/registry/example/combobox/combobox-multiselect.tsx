@@ -62,7 +62,7 @@ export default function ComboboxTags() {
 									(d) => d.value === val
 								)
 								return department ? (
-									<Badge key={val} variant="outline" color="neutral" size="20">
+									<Badge key={val} variant="outline" color="neutral" size="sm">
 										<BadgeDot className={department.state} />
 										{department.label}
 										<X

@@ -1,13 +1,6 @@
 import { execSync } from "child_process"
-// import { getBrandLogoBuildCommands } from "./brand-logo-build"
-// import { fileURLToPath } from "node:url"
 
-// Sync assets by default when the brand-logo page exists; skip absent features.
 const commands = [
-	// ...getBrandLogoBuildCommands(
-	// 	fileURLToPath(new URL("../../", import.meta.url)),
-	// 	process.env.SYNC_BRAND_LOGOS !== "false"
-	// ),
 	"pnpm exec fumadocs-mdx",
 	"pnpm run generate-examples-json",
 	"pnpm run generate-example-registry",
@@ -22,6 +15,7 @@ const commands = [
 	"pnpm run update-icon-slot",
 	"pnpm run generate:image-sitemap",
 	"next build",
+	"pnpm run generate:sitemap",
 ]
 
 function main() {

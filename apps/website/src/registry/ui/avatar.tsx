@@ -41,16 +41,15 @@ const avatarVariants = cva(
 	{
 		variants: {
 			size: {
-				"16": "size-4 text-xs",
-				"20": "size-5 text-xs",
-				"24": "size-6 text-xs",
-				"32": "size-8 text-sm",
-				"36": "size-9 text-sm",
-				"40": "size-10 text-sm",
-				"48": "size-12 text-base",
-				"64": "size-16 text-xl",
-				"80": "size-20 text-2xl",
-				"120": "size-30 border-2",
+				"3xs": "cn-avatar-size-3xs",
+				"2xs": "cn-avatar-size-2xs",
+				xs: "cn-avatar-size-xs",
+				sm: "cn-avatar-size-sm",
+				md: "cn-avatar-size-md",
+				lg: "cn-avatar-size-lg",
+				xl: "cn-avatar-size-xl",
+				"2xl": "cn-avatar-size-2xl",
+				"3xl": "cn-avatar-size-3xl",
 			},
 			rounded: {
 				circle: "rounded-full",
@@ -58,18 +57,18 @@ const avatarVariants = cva(
 			},
 		},
 		compoundVariants: [
-			{ size: "16", rounded: "square", class: "rounded-sm" },
-			{ size: "20", rounded: "square", class: "rounded-sm" },
-			{ size: "24", rounded: "square", class: "rounded-md" },
-			{ size: "32", rounded: "square", class: "rounded-md" },
-			{ size: "36", rounded: "square", class: "rounded-lg" },
-			{ size: "40", rounded: "square", class: "rounded-lg" },
-			{ size: "48", rounded: "square", class: "rounded-lg" },
-			{ size: "64", rounded: "square", class: "rounded-xl" },
-			{ size: "80", rounded: "square", class: "rounded-2xl" },
+			{ size: "3xs", rounded: "square", className: "cn-avatar-square-3xs" },
+			{ size: "2xs", rounded: "square", className: "cn-avatar-square-2xs" },
+			{ size: "xs", rounded: "square", className: "cn-avatar-square-xs" },
+			{ size: "sm", rounded: "square", className: "cn-avatar-square-sm" },
+			{ size: "md", rounded: "square", className: "cn-avatar-square-md" },
+			{ size: "lg", rounded: "square", className: "cn-avatar-square-lg" },
+			{ size: "xl", rounded: "square", className: "cn-avatar-square-xl" },
+			{ size: "2xl", rounded: "square", className: "cn-avatar-square-2xl" },
+			{ size: "3xl", rounded: "square", className: "cn-avatar-square-3xl" },
 		],
 		defaultVariants: {
-			size: "40",
+			size: "lg",
 			rounded: "circle",
 		},
 	}
@@ -86,21 +85,20 @@ const avatarStatusVariants = cva(
 				away: "bg-info",
 			},
 			size: {
-				"16": "size-1 border",
-				"20": "size-1 border",
-				"24": "size-1.5 border-2",
-				"32": "size-1.5 border-2",
-				"36": "size-1.5 border-2",
-				"40": "size-2 border-2",
-				"48": "size-3 border-2",
-				"64": "size-3 border-2",
-				"80": "size-4 border-2",
-				"120": "size-6 border-2",
+				"3xs": "cn-avatar-status-size-3xs",
+				"2xs": "cn-avatar-status-size-2xs",
+				xs: "cn-avatar-status-size-xs",
+				sm: "cn-avatar-status-size-sm",
+				md: "cn-avatar-status-size-md",
+				lg: "cn-avatar-status-size-lg",
+				xl: "cn-avatar-status-size-xl",
+				"2xl": "cn-avatar-status-size-2xl",
+				"3xl": "cn-avatar-status-size-3xl",
 			},
 		},
 		defaultVariants: {
 			variant: "online",
-			size: "40",
+			size: "lg",
 		},
 	}
 )
@@ -131,7 +129,7 @@ const avatarFallbackVariants = cva("", {
 
 function Avatar({
 	className,
-	size = "40",
+	size = "lg",
 	rounded = "circle",
 	...props
 }: AvatarProps) {

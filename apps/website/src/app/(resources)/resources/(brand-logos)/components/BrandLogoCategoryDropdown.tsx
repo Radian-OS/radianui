@@ -38,11 +38,8 @@ import {
 	DropdownMenuTrigger,
 } from "@/registry/ui/dropdown-menu"
 import type { BrandLogoColorway, BrandLogoVariant } from "./brand-logos-data"
-import {
-	ALL_BRAND_LOGO_CATEGORY,
-	brandLogoCategories,
-	brandLogos,
-} from "./brand-logos-data"
+import { ALL_BRAND_LOGO_CATEGORY } from "./brand-logos-data"
+import { useBrandLogoCatalog } from "./BrandLogoCatalogProvider"
 
 const categoryIcons: Record<string, LucideIcon> = {
 	ai: Bot,
@@ -78,6 +75,7 @@ export function BrandLogoCategoryDropdown({
 	onColorwayChange,
 	className,
 }: BrandLogoCategoryDropdownProps) {
+	const { brandLogoCategories, brandLogos } = useBrandLogoCatalog()
 	const [open, setOpen] = useState(false)
 	const triggerRef = useRef<HTMLButtonElement>(null)
 
@@ -100,7 +98,7 @@ export function BrandLogoCategoryDropdown({
 			<DropdownMenuTrigger asChild>
 				<Button
 					ref={triggerRef}
-					size="44"
+					size="xl"
 					color="neutral"
 					variant="outline"
 					className={cn(

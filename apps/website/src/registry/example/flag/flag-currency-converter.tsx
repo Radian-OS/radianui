@@ -103,7 +103,7 @@ function CurrencyField({
 		<div className="grid gap-2">
 			<Label htmlFor={id}>{label}</Label>
 			<InputWrapper
-				size="48"
+				size="2xl"
 				className="h-auto flex-col items-stretch gap-4 rounded-xl p-4">
 				<Select
 					value={currency.code}
@@ -221,7 +221,7 @@ export default function FlagCurrencyConverter() {
 					<div className="border-soft absolute inset-x-0 border-t" />
 					<IconButton
 						type="button"
-						size="36"
+						size="md"
 						variant="outline"
 						color="neutral"
 						aria-label="Swap currencies"

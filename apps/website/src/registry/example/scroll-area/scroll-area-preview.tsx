@@ -209,7 +209,7 @@ const columns: ColumnDef<typeof features, UserData>[] = [
 			const userDetails = row.getValue("user_details") as UserDetails
 			return (
 				<div className="flex items-center gap-3">
-					<Avatar rounded="circle" size="24">
+					<Avatar rounded="circle" size="xs">
 						<AvatarImage src={userDetails.imageSrc} />
 						<AvatarFallback>{getInitials(userDetails.name)}</AvatarFallback>
 					</Avatar>
@@ -244,7 +244,7 @@ const columns: ColumnDef<typeof features, UserData>[] = [
 		accessorKey: "status",
 		cell: ({ row }) => (
 			<Badge
-				size="20"
+				size="sm"
 				variant="soft"
 				color={
 					row.getValue("status") === "Inactive"

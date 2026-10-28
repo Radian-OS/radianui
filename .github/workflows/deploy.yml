@@ -71,7 +71,7 @@ jobs:
       - name: Trigger Coolify Deployment
         run: |
           if [ -n "${{ secrets.COOLIFY_WEBHOOK_URL }}" ]; then
-            curl --request GET '${{ secrets.COOLIFY_WEBHOOK_URL }}' --header 'Authorization: Bearer ${{ secrets.COOLIFY_TOKEN }}'
+            curl --request POST '${{ secrets.COOLIFY_WEBHOOK_URL }}' --header 'Authorization: Bearer ${{ secrets.COOLIFY_TOKEN }}'
           else
             echo "::warning ::No COOLIFY_WEBHOOK_URL secret found for environment '${{ github.ref_name }}'"
           fi

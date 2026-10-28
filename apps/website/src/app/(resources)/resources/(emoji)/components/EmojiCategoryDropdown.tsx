@@ -62,7 +62,7 @@ export function EmojiCategoryDropdown({
 		<DropdownMenu indicatorPosition="right">
 			<DropdownMenuTrigger asChild>
 				<Button
-					size="44"
+					size="xl"
 					color="neutral"
 					variant="outline"
 					className={cn(

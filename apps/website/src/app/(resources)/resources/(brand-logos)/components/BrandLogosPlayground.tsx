@@ -29,12 +29,8 @@ import type {
 import {
 	ALL_BRAND_LOGO_CATEGORY,
 	BRAND_LOGOS_PAGE_PATH,
-	brandLogos,
-	getBrandLogo,
-	getBrandLogoFromSlug,
-	getBrandLogoPagePath,
-	getBrandLogoSearchTerms,
 } from "./brand-logos-data"
+import { useBrandLogoCatalog } from "./BrandLogoCatalogProvider"
 
 const BrandLogoDetailsDialog = dynamic(() =>
 	import("./BrandLogoDetailsDialog").then(
@@ -51,7 +47,10 @@ interface BrandLogosPlaygroundProps {
 	initialSelectedBrand?: BrandLogoId | null
 }
 
-function getBrandFromPathname(pathname: string) {
+function getBrandFromPathname(
+	pathname: string,
+	getBrandLogoFromSlug: import("./brand-logos-data").BrandLogoCatalog["getBrandLogoFromSlug"]
+) {
 	const slug = pathname.split("/").filter(Boolean).at(-1)
 	return slug && pathname.startsWith(`${BRAND_LOGOS_PAGE_PATH}/`)
 		? (getBrandLogoFromSlug(slug)?.id ?? null)
@@ -61,6 +60,13 @@ function getBrandFromPathname(pathname: string) {
 export default function BrandLogosPlayground({
 	initialSelectedBrand = null,
 }: BrandLogosPlaygroundProps) {
+	const {
+		brandLogos,
+		getBrandLogo,
+		getBrandLogoFromSlug,
+		getBrandLogoPagePath,
+		getBrandLogoSearchTerms,
+	} = useBrandLogoCatalog()
 	const [query, setQuery] = useState("")
 	const [category, setCategory] = useState(ALL_BRAND_LOGO_CATEGORY)
 	const [variant, setVariant] = useState<BrandLogoVariant>("icon")
@@ -72,6 +78,13 @@ export default function BrandLogosPlayground({
 	const ownsDialogHistoryEntryRef = useRef(false)
 	const sentinelRef = useRef<HTMLDivElement>(null)
 	const bottomSentinelRef = useRef<HTMLDivElement>(null)
+
+	// Native history updates do not run Next.js metadata generation.
+	useEffect(() => {
+		document.title = selectedBrand
+			? `${getBrandLogo(selectedBrand).name} Logo SVG & PNG | Radian UI`
+			: "Brand Logos & Tech Company Logos | SVG, PNG & CDN"
+	}, [selectedBrand, getBrandLogo])
 
 	useEffect(() => {
 		setSelectedBrand(initialSelectedBrand)
@@ -141,7 +154,9 @@ export default function BrandLogosPlayground({
 
 	useEffect(() => {
 		const handlePopState = () => {
-			setSelectedBrand(getBrandFromPathname(window.location.pathname))
+			setSelectedBrand(
+				getBrandFromPathname(window.location.pathname, getBrandLogoFromSlug)
+			)
 			ownsDialogHistoryEntryRef.current = Boolean(
 				window.history.state?.radianBrandLogoDialog
 			)
@@ -149,7 +164,7 @@ export default function BrandLogosPlayground({
 
 		window.addEventListener("popstate", handlePopState)
 		return () => window.removeEventListener("popstate", handlePopState)
-	}, [])
+	}, [getBrandLogoFromSlug])
 
 	const handleCategoryChange = useCallback((nextCategory: string) => {
 		startTransition(() => {
@@ -177,19 +192,24 @@ export default function BrandLogosPlayground({
 		[]
 	)
 
-	const handleSelectBrand = useCallback((id: BrandLogoId) => {
-		const nextState = {
-			...window.history.state,
-			radianBrandLogoDialog: true,
-		}
-		if (getBrandFromPathname(window.location.pathname)) {
-			window.history.replaceState(nextState, "", getBrandLogoPagePath(id))
-		} else {
-			window.history.pushState(nextState, "", getBrandLogoPagePath(id))
-			ownsDialogHistoryEntryRef.current = true
-		}
-		setSelectedBrand(id)
-	}, [])
+	const handleSelectBrand = useCallback(
+		(id: BrandLogoId) => {
+			const nextState = {
+				...window.history.state,
+				radianBrandLogoDialog: true,
+			}
+			if (
+				getBrandFromPathname(window.location.pathname, getBrandLogoFromSlug)
+			) {
+				window.history.replaceState(nextState, "", getBrandLogoPagePath(id))
+			} else {
+				window.history.pushState(nextState, "", getBrandLogoPagePath(id))
+				ownsDialogHistoryEntryRef.current = true
+			}
+			setSelectedBrand(id)
+		},
+		[getBrandLogoFromSlug, getBrandLogoPagePath]
+	)
 
 	const handleDialogOpenChange = (open: boolean) => {
 		if (open) return
@@ -222,7 +242,7 @@ export default function BrandLogosPlayground({
 					.includes(normalizedQuery)
 			)
 		)
-	}, [category, query])
+	}, [category, query, brandLogos, getBrandLogoSearchTerms])
 
 	const renderedLogos = useMemo(
 		() => visibleLogos.slice(0, displayLimit),
@@ -277,7 +297,7 @@ export default function BrandLogosPlayground({
 						className="rounded-r-none border-r-0"
 					/>
 					<InputWrapper
-						size="44"
+						size="xl"
 						className="bg-bg focus-within:bg-bg min-w-0 flex-1 rounded-l-none shadow-none">
 						<Search aria-hidden="true" />
 						<Input

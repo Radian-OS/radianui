@@ -36,15 +36,7 @@ import type {
 	BrandLogoId,
 	BrandLogoVariant,
 } from "./brand-logos-data"
-import {
-	brandLogos,
-	getBrandLogo,
-	getBrandLogoDisplayUrl,
-	getBrandLogoFallbackUrl,
-	getBrandLogoHtmlMarkup,
-	getBrandLogoNextImageMarkup,
-	getBrandLogoSvgUrl,
-} from "./brand-logos-data"
+import { useBrandLogoCatalog } from "./BrandLogoCatalogProvider"
 
 interface BrandLogoDetailsDialogProps {
 	id: BrandLogoId | null
@@ -57,7 +49,10 @@ interface BrandLogoDetailsDialogProps {
 
 const MORE_LOGOS_LIMIT = 12
 
-function getMoreLogos(id: BrandLogoId) {
+function getMoreLogos(
+	brandLogos: readonly import("./brand-logos-data").BrandLogo[],
+	id: BrandLogoId
+) {
 	const selectedIndex = brandLogos.findIndex((brand) => brand.id === id)
 	const ordered = [
 		...brandLogos.slice(selectedIndex + 1),
@@ -74,12 +69,23 @@ export function BrandLogoDetailsDialog({
 	onOpenChange,
 	onSelectBrand,
 }: BrandLogoDetailsDialogProps) {
+	const {
+		brandLogos,
+		getBrandLogo,
+		getBrandLogoDisplayUrl,
+		getBrandLogoHtmlMarkup,
+		getBrandLogoNextImageMarkup,
+		getBrandLogoSvgUrl,
+	} = useBrandLogoCatalog()
 	const { resolvedTheme } = useTheme()
 	const activeTheme = resolvedTheme === "dark" ? "dark" : "light"
 	const [dialogVariant, setDialogVariant] = useState<BrandLogoVariant>(variant)
 	const [dialogColorway, setDialogColorway] =
 		useState<BrandLogoColorway>(colorway)
-	const moreLogos = useMemo(() => (id ? getMoreLogos(id) : []), [id])
+	const moreLogos = useMemo(
+		() => (id ? getMoreLogos(brandLogos, id) : []),
+		[brandLogos, id]
+	)
 
 	useEffect(() => {
 		if (!open) return
@@ -133,12 +139,7 @@ export function BrandLogoDetailsDialog({
 
 	const copySvg = async () => {
 		try {
-			const svgMarkup = await fetchBrandLogoSvg(
-				id,
-				activeTheme,
-				dialogColorway,
-				dialogVariant
-			)
+			const svgMarkup = await fetchBrandLogoSvg(activeSvgUrl)
 			await navigator.clipboard.writeText(svgMarkup)
 			showToast("SVG code has been copied to your clipboard.")
 		} catch {
@@ -153,12 +154,7 @@ export function BrandLogoDetailsDialog({
 				return
 			}
 
-			const blob = await renderBrandLogoPng(
-				id,
-				activeTheme,
-				dialogColorway,
-				dialogVariant
-			)
+			const blob = await renderBrandLogoPng(activeSvgUrl, dialogVariant)
 			await navigator.clipboard.write([
 				new ClipboardItem({ "image/png": blob }),
 			])
@@ -172,20 +168,10 @@ export function BrandLogoDetailsDialog({
 		try {
 			const filename = `${id}-${activeTheme}-${dialogColorway}-${dialogVariant}.${format}`
 			if (format === "svg") {
-				const svgMarkup = await fetchBrandLogoSvg(
-					id,
-					activeTheme,
-					dialogColorway,
-					dialogVariant
-				)
+				const svgMarkup = await fetchBrandLogoSvg(activeSvgUrl)
 				downloadBlob(new Blob([svgMarkup], { type: "image/svg+xml" }), filename)
 			} else {
-				const blob = await renderBrandLogoPng(
-					id,
-					activeTheme,
-					dialogColorway,
-					dialogVariant
-				)
+				const blob = await renderBrandLogoPng(activeSvgUrl, dialogVariant)
 				downloadBlob(blob, filename)
 			}
 			showToast(
@@ -220,20 +206,6 @@ export function BrandLogoDetailsDialog({
 							alt={`${brand.name} ${dialogVariant}`}
 							width={dialogVariant === "icon" ? 96 : 270}
 							height={dialogVariant === "icon" ? 96 : 72}
-							onError={(e) => {
-								const fallback = getBrandLogoFallbackUrl(
-									id,
-									activeTheme,
-									dialogColorway,
-									dialogVariant
-								)
-								if (
-									e.currentTarget.src !== fallback &&
-									!e.currentTarget.src.endsWith(fallback)
-								) {
-									e.currentTarget.src = fallback
-								}
-							}}
 							className={cn(
 								"object-contain",
 								dialogVariant === "icon"
@@ -251,17 +223,17 @@ export function BrandLogoDetailsDialog({
 						</div>
 
 						<div className="flex flex-wrap items-center gap-2">
-							<Button size="40" onClick={copyPng}>
+							<Button size="lg" onClick={copyPng}>
 								<ImageIcon />
 								Copy PNG
 							</Button>
-							<Button size="40" onClick={copySvg}>
+							<Button size="lg" onClick={copySvg}>
 								<CodeXml />
 								Copy SVG
 							</Button>
 
 							<DropdownMenu>
-								<ButtonGroup size="40" color="neutral" variant="outline">
+								<ButtonGroup size="lg" color="neutral" variant="outline">
 									<Button onClick={() => downloadLogo("svg")}>
 										<Download />
 										Download
@@ -293,21 +265,21 @@ export function BrandLogoDetailsDialog({
 							</p>
 							<div className="flex flex-wrap gap-2">
 								<Button
-									size="32"
+									size="sm"
 									color="neutral"
 									variant="outline"
 									onClick={() => copyText(activeSvgUrl, "CDN URL")}>
 									CDN URL
 								</Button>
 								<Button
-									size="32"
+									size="sm"
 									color="neutral"
 									variant="outline"
 									onClick={copySvg}>
 									SVG Code
 								</Button>
 								<Button
-									size="32"
+									size="sm"
 									color="neutral"
 									variant="outline"
 									onClick={() =>
@@ -324,7 +296,7 @@ export function BrandLogoDetailsDialog({
 									Next.js &lt;Image&gt;
 								</Button>
 								<Button
-									size="32"
+									size="sm"
 									color="neutral"
 									variant="outline"
 									onClick={() =>
@@ -367,7 +339,7 @@ export function BrandLogoDetailsDialog({
 							<p className="text-fg-secondary text-xs font-medium">Tags</p>
 							<div className="flex flex-wrap gap-1.5">
 								{searchTags.map((tag) => (
-									<Badge key={tag} color="neutral" variant="soft" size="24">
+									<Badge key={tag} color="neutral" variant="soft" size="md">
 										{tag}
 									</Badge>
 								))}
@@ -382,7 +354,7 @@ export function BrandLogoDetailsDialog({
 						{moreLogos.map((item) => (
 							<Button
 								key={item.id}
-								size="36"
+								size="md"
 								color="neutral"
 								variant="outline"
 								onClick={() => onSelectBrand(item.id)}
@@ -397,20 +369,6 @@ export function BrandLogoDetailsDialog({
 									alt={item.name}
 									width={24}
 									height={24}
-									onError={(e) => {
-										const fallback = getBrandLogoFallbackUrl(
-											item.id,
-											activeTheme,
-											dialogColorway,
-											"icon"
-										)
-										if (
-											e.currentTarget.src !== fallback &&
-											!e.currentTarget.src.endsWith(fallback)
-										) {
-											e.currentTarget.src = fallback
-										}
-									}}
 									className="size-7 object-contain"
 								/>
 							</Button>

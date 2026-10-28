@@ -7,13 +7,13 @@ function BadgeExamplePreview() {
 	return (
 		<div className="flex flex-wrap items-center justify-center gap-3">
 			<Badge
-				size="20"
+				size="sm"
 				className="rounded-full"
 				variant="strong"
 				color="success">
 				New
 			</Badge>
-			<Badge color="neutral" variant="outline" size="24">
+			<Badge color="neutral" variant="outline" size="md">
 				<BadgeDot />
 				Neutral
 			</Badge>
@@ -38,7 +38,7 @@ function BadgeExamplePreview() {
 				variant="outline"
 				color="neutral"
 				className="rounded-full py-1 pr-2 pl-1">
-				<Avatar size="16">
+				<Avatar size="3xs">
 					<AvatarImage
 						src="https://randomuser.me/api/portraits/men/1.jpg"
 						alt="User"

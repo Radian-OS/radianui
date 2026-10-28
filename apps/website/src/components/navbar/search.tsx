@@ -157,7 +157,7 @@ export function SearchDocs() {
 						</span>
 						<Badge
 							className="text-fg-secondary"
-							size="20"
+							size="sm"
 							variant="outline"
 							color="neutral">
 							⌘K

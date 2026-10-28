@@ -191,7 +191,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
 										const authorKey = author.username || author.name || index
 										const content = (
 											<div className="hover:bg-fill1 -mx-2 flex items-center gap-2.5 rounded-xl p-2">
-												<Avatar size="24">
+												<Avatar size="xs">
 													{author.avatar && (
 														<AvatarImage
 															src={author.avatar}

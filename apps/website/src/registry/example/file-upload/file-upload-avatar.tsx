@@ -37,7 +37,7 @@ export default function FileUploadAvatar() {
 
 				{/* Avatar */}
 				<Avatar
-					size="48"
+					size="xl"
 					rounded="square"
 					className="cursor-pointer self-start"
 					onClick={!previewUrl ? openFileDialog : undefined}>
@@ -86,13 +86,13 @@ export default function FileUploadAvatar() {
 								variant="outline"
 								color="error"
 								onClick={handleRemove}
-								size="28">
+								size="lg">
 								Remove
 							</Button>
 							<Button
 								variant="outline"
 								color="neutral"
-								size="28"
+								size="lg"
 								onClick={openFileDialog}>
 								Change
 							</Button>
@@ -101,7 +101,7 @@ export default function FileUploadAvatar() {
 						<Button
 							variant="outline"
 							color="neutral"
-							size="28"
+							size="lg"
 							onClick={openFileDialog}
 							className="w-fit">
 							<Upload />

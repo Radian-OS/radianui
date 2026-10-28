@@ -51,8 +51,8 @@ import { Switch } from "@/components/ui/switch"
 
 ### Code
 
-```tsx showLineNumbers title=" "
-<Switch size="24" />
+```tsx showLineNumbers title="/components/ui/switch.tsx"
+<Switch size="md" />
 ```
 
 ---
@@ -146,7 +146,7 @@ import { Switch } from "@/components/ui/switch"
 		{
 			question: "How do I change the size of the switch?",
 			answer:
-				'You adjust the sizing with the help of size prop (e.g.; size="24") classes on the root <Switch> element or classes like h-5 w-9 can be modified in the switch.tsx source file to perfectly match your brand\'s density requirements.',
+				'You adjust the sizing with the help of size prop (e.g.; size="md") classes on the root <Switch> element or classes like h-5 w-9 can be modified in the switch.tsx source file to perfectly match your brand\'s density requirements.',
 		},
 		{
 			question: "How do I integrate this with React Hook Form?",
@@ -176,8 +176,8 @@ The root container. Alias for `Switch.Root` from Radix UI.
 	data={[
 		{
 			name: "size",
-			values: ["20", "24"],
-			defaultValue: "20",
+			values: ["sm", "md", "lg"],
+			defaultValue: "md",
 			description: "Controls the size of switch",
 		},
 		{

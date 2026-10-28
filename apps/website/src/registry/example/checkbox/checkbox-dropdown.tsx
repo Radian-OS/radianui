@@ -92,7 +92,7 @@ const CheckboxDropdown = () => {
 							<Badge
 								key={item.id}
 								variant="outline"
-								size="20"
+								size="sm"
 								className="text-fg-tertiary">
 								{item.label}
 								<X onClick={(e) => remove(item.id, e)} />
@@ -123,7 +123,7 @@ const CheckboxDropdown = () => {
 							<span className="text-fg flex-1 text-sm font-normal">
 								{item.label}
 							</span>
-							<Badge variant="soft" color={item.badgeColor} size="20">
+							<Badge variant="soft" color={item.badgeColor} size="sm">
 								{item.category}
 							</Badge>
 						</DropdownMenuItem>

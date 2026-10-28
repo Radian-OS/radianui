@@ -27,8 +27,8 @@ export function SidebarFooterUser() {
 			<SidebarMenuItem>
 				<DropdownMenu>
 					<DropdownMenuTrigger asChild>
-						<SidebarMenuButton size="48">
-							<Avatar size="32">
+						<SidebarMenuButton size="lg">
+							<Avatar size="sm">
 								<AvatarImage src="/media/male-3.jpg" />
 								<AvatarFallback>JS</AvatarFallback>
 							</Avatar>

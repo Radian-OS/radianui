@@ -30,7 +30,6 @@ import {
 	DropdownMenuTrigger,
 } from "@/registry/ui/dropdown-menu"
 
-export { NextjsIcon } from "../../components/NextjsIcon"
 import { NextjsIcon } from "../../components/NextjsIcon"
 
 const Html5Icon = (props: React.SVGProps<SVGSVGElement>) => (
@@ -94,7 +93,7 @@ export const AvatarTileMenu = ({
 					<DropdownMenuTrigger asChild>
 						<CompactButton
 							aria-label="Button with Down Arrow"
-							size="24"
+							size="md"
 							variant="ghost"
 							color="neutral"
 							className="opacity-0 transition-opacity group-hover:bg-transparent group-hover:opacity-100 hover:bg-black/10 data-[state=open]:opacity-100"
@@ -219,7 +218,7 @@ export const AvatarTileMenu = ({
 								<Button
 									variant="ghost"
 									color="neutral"
-									size="40"
+									size="lg"
 									className="w-full justify-start gap-2"
 									onClick={() => {
 										onToggleFavorite()
@@ -247,7 +246,7 @@ export const AvatarTileMenu = ({
 								<Button
 									variant="ghost"
 									color="neutral"
-									size="40"
+									size="lg"
 									className="w-full justify-start gap-2"
 									onClick={() => {
 										handleCopyPng()
@@ -259,7 +258,7 @@ export const AvatarTileMenu = ({
 								<Button
 									variant="ghost"
 									color="neutral"
-									size="40"
+									size="lg"
 									className="w-full justify-start gap-2"
 									onClick={() => {
 										handleCopyTransparentPng()
@@ -271,7 +270,7 @@ export const AvatarTileMenu = ({
 								<Button
 									variant="ghost"
 									color="neutral"
-									size="40"
+									size="lg"
 									className="w-full justify-start gap-2"
 									onClick={() => {
 										handleCopyFigmaFrame()
@@ -318,7 +317,7 @@ export const AvatarTileMenu = ({
 								<Button
 									variant="ghost"
 									color="neutral"
-									size="40"
+									size="lg"
 									className="w-full justify-start gap-2"
 									onClick={() => {
 										handleCopyUrlTransparent()
@@ -330,7 +329,7 @@ export const AvatarTileMenu = ({
 								<Button
 									variant="ghost"
 									color="neutral"
-									size="40"
+									size="lg"
 									className="w-full justify-start gap-2"
 									onClick={() => {
 										handleCopyNextImageTag()
@@ -342,7 +341,7 @@ export const AvatarTileMenu = ({
 								<Button
 									variant="ghost"
 									color="neutral"
-									size="40"
+									size="lg"
 									className="w-full justify-start gap-2"
 									onClick={() => {
 										handleCopyHtmlImgTag()
@@ -362,7 +361,7 @@ export const AvatarTileMenu = ({
 								<Button
 									variant="ghost"
 									color="neutral"
-									size="40"
+									size="lg"
 									className="w-full justify-start gap-2"
 									onClick={() => {
 										handleDownload("jpg")
@@ -374,7 +373,7 @@ export const AvatarTileMenu = ({
 								<Button
 									variant="ghost"
 									color="neutral"
-									size="40"
+									size="lg"
 									className="w-full justify-start gap-2"
 									onClick={() => {
 										handleDownload("png")
@@ -386,7 +385,7 @@ export const AvatarTileMenu = ({
 								<Button
 									variant="ghost"
 									color="neutral"
-									size="40"
+									size="lg"
 									className="w-full justify-start gap-2"
 									onClick={() => {
 										handleDownload("webp")

@@ -7,7 +7,7 @@ import {
 	ResourceFaq,
 	ResourceTextSection,
 } from "../../components/ResourceDocs"
-import { brandLogos, brandLogoCategories } from "../components/brand-logos-data"
+import { getBrandLogoCatalog } from "../components/brand-logos-server"
 
 const featurePoints = [
 	{
@@ -121,7 +121,7 @@ const developmentPoints = [
 	},
 ]
 
-const faqItems = [
+const getFaqItems = (brandCount: number, categoryCount: number) => [
 	{
 		question: "How do I download free brand logos?",
 		answer:
@@ -134,7 +134,7 @@ const faqItems = [
 	},
 	{
 		question: "What does this free brand logo library include?",
-		answer: `Browse ${brandLogos.length} brands across ${brandLogoCategories.length} categories, including AI, development, design, social platforms, and payments. Each brand has SVG icons and wordmarks in light, dark, colored, and neutral variants: eight assets per brand. You can also export PNGs in your browser.`,
+		answer: `Browse ${brandCount} brands across ${categoryCount} categories, including AI, development, design, social platforms, and payments. Each brand has SVG icons and wordmarks in light, dark, colored, and neutral variants: eight assets per brand. You can also export PNGs in your browser.`,
 	},
 	{
 		question: "When should I use the light or dark option?",
@@ -158,7 +158,9 @@ const faqItems = [
 	},
 ]
 
-export default function BrandLogosDocs() {
+export default async function BrandLogosDocs() {
+	const { brandLogos, brandLogoCategories } = await getBrandLogoCatalog()
+	const faqItems = getFaqItems(brandLogos.length, brandLogoCategories.length)
 	return (
 		<ResourceDocs label="Brand logo design and development guide">
 			<ResourceTextSection

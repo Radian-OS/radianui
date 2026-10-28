@@ -106,7 +106,7 @@ export default function SearchCommand({
 												</span>
 												{item.isComingSoon ? (
 													<Badge
-														size="20"
+														size="sm"
 														variant="soft"
 														color="neutral"
 														className="text-fg-disabled">
@@ -160,14 +160,14 @@ export default function SearchCommand({
 			<div className="text-fg-tertiary hidden items-center gap-4 p-4 text-sm md:flex">
 				<div className="flex items-center gap-2">
 					<Badge
-						size="20"
+						size="sm"
 						className="uppercase"
 						variant="outline"
 						color="neutral">
 						<ArrowUp size={16} />
 					</Badge>
 					<Badge
-						size="20"
+						size="sm"
 						className="uppercase"
 						variant="outline"
 						color="neutral">
@@ -178,7 +178,7 @@ export default function SearchCommand({
 				<div className="flex w-full justify-between">
 					<div className="flex items-center gap-2">
 						<Badge
-							size="20"
+							size="sm"
 							className="uppercase"
 							variant="outline"
 							color="neutral">
@@ -189,7 +189,7 @@ export default function SearchCommand({
 					<div className="flex items-center gap-2">
 						<span>Close</span>
 						<Badge
-							size="20"
+							size="sm"
 							className="uppercase"
 							variant="outline"
 							color="neutral">

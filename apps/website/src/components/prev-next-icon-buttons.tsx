@@ -20,7 +20,7 @@ function PreviousNextIconButtons({
 				<IconButton
 					asChild
 					color="neutral"
-					size="28"
+					size="xs"
 					variant="outline"
 					aria-label="Previous page">
 					<Link href={prev.url}>
@@ -30,7 +30,7 @@ function PreviousNextIconButtons({
 			) : (
 				<IconButton
 					color="neutral"
-					size="28"
+					size="xs"
 					variant="outline"
 					disabled
 					aria-label="Previous page">
@@ -41,7 +41,7 @@ function PreviousNextIconButtons({
 				<IconButton
 					asChild
 					color="neutral"
-					size="28"
+					size="xs"
 					variant="outline"
 					aria-label="Next page">
 					<Link href={next.url}>
@@ -51,7 +51,7 @@ function PreviousNextIconButtons({
 			) : (
 				<IconButton
 					color="neutral"
-					size="28"
+					size="xs"
 					variant="outline"
 					disabled
 					aria-label="Next page">

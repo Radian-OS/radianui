@@ -1,4 +1,4 @@
-import { existsSync, readdirSync, statSync, readFileSync } from "node:fs"
+import { existsSync, readdirSync, statSync } from "node:fs"
 import { join, resolve, relative, sep } from "node:path"
 import { resources } from "@/config/resource-previews"
 import { AVATAR_SHADOW_MAP } from "@/constants/avatar-shadow-map"
@@ -38,6 +38,9 @@ function escapeXml(value: string) {
 }
 
 export interface ResourceImageSitemapOptions {
+	brandManifest?: {
+		categories: readonly { slug: string; brands: readonly string[] }[]
+	}
 	publicDirectory?: string
 	appDirectory?: string
 }
@@ -130,42 +133,17 @@ export function generateResourceImageSitemap(
 					images: [getFlagSvgUrl(name)],
 				})
 	}
-	// Optional logo assets are discovered from the deployed public files. No imports
-	// from the brand-logo feature: this module works when that feature is omitted.
+	// The catalog contains metadata only; every logo image is served by jsDelivr.
 	if (pageExists("/resources/brand-logos")) {
-		const versionPath = join(
-			appDirectory,
-			"(resources)/resources/(brand-logos)/components/brand-logo-assets-version.generated.json"
-		)
-		if (existsSync(versionPath)) {
-			const { revision } = JSON.parse(readFileSync(versionPath, "utf8")) as {
-				revision?: string
-			}
-			if (revision && /^[a-f0-9]{20,40}$/.test(revision)) {
-				for (const file of filesIn(
-					join(publicDirectory, "_brand-assets", revision)
-				)) {
-					if (!file.endsWith(".svg")) continue
-					const encoded = relative(
-						join(publicDirectory, "_brand-assets", revision),
-						file
-					).replace(/\.svg$/, "")
-					const assetPath = Buffer.from(encoded, "base64url").toString("utf8")
-					const match =
-						/^src\/(light|dark)\/(colored|neutral)\/[a-z0-9-]+\/(icon|wordmark)\/([a-z0-9-]+)\.svg$/.exec(
-							assetPath
-						)
-					if (!match) continue
-					const image = `/${relative(publicDirectory, file).split(sep).join("/")}`
-					const path = `/resources/brand-logos/${match[4]}`
-					if (pageExists(path)) entries.push({ path, images: [image] })
-					if (
-						match[1] === "light" &&
-						match[2] === "colored" &&
-						match[3] === "icon"
-					)
-						entries.push({ path: "/resources/brand-logos", images: [image] })
-				}
+		for (const category of options.brandManifest?.categories ?? []) {
+			for (const brand of category.brands) {
+				const images = ["icon", "wordmark"].map(
+					(variant) =>
+						`https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/light/colored/${category.slug}/${variant}/${brand}.svg`
+				)
+				entries.push({ path: "/resources/brand-logos", images: [images[0]] })
+				const path = `/resources/brand-logos/${brand}`
+				if (pageExists(path)) entries.push({ path, images })
 			}
 		}
 	}

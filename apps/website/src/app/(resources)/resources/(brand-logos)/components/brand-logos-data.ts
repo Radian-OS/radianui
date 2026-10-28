@@ -1,6 +1,3 @@
-import assetVersion from "./brand-logo-assets-version.generated.json"
-import brandLogosManifest from "./brand-logos-manifest.generated.json"
-
 export const BRAND_LOGO_CDN_ORIGIN = "https://cdn.jsdelivr.net"
 export const BRAND_LOGOS_PAGE_PATH = "/resources/brand-logos"
 export const ALL_BRAND_LOGO_CATEGORY = "All categories"
@@ -136,145 +133,132 @@ function formatBrandLogoName(id: string) {
 	)
 }
 
-export const brandLogoCategories: readonly BrandLogoCategory[] =
-	brandLogosManifest.categories.map((category) => ({
-		slug: category.slug,
-		label: category.label,
-		count: category.brands.length,
-		brands: category.brands,
-	}))
-
-export const brandLogos: readonly BrandLogo[] = brandLogoCategories.flatMap(
-	(category) =>
-		category.brands.map((id) => ({
-			id,
-			name: formatBrandLogoName(id),
-			category: category.slug,
-			categoryLabel: category.label,
-			aliases: brandAliases[id] ?? [],
-		}))
-)
-
-export const BRAND_LOGO_ASSET_COUNT = brandLogos.length * 8
-
-const brandLogosById = new Map<BrandLogoId, BrandLogo>(
-	brandLogos.map((brand) => [brand.id, brand])
-)
-
-export function getBrandLogo(id: BrandLogoId) {
-	const brand = brandLogosById.get(id)
-	if (!brand) throw new Error(`Missing brand logo metadata for ${id}`)
-	return brand
-}
-
-export function getBrandLogoFromSlug(slug: string) {
-	return brandLogosById.get(slug.toLowerCase()) ?? null
-}
-
-export function getBrandLogoPagePath(id: BrandLogoId) {
-	return `${BRAND_LOGOS_PAGE_PATH}/${id}`
-}
-
-export function getBrandLogoMetadataDescription(id: BrandLogoId) {
-	const brand = getBrandLogo(id)
-	return `Download the ${brand.name} logo in SVG and PNG. Get icons and wordmarks, copy SVG code, or use CDN links with light and dark mode variants.`
-}
-
-export function getBrandLogoSearchTerms(id: BrandLogoId) {
-	const brand = getBrandLogo(id)
-	return [brand.id, brand.name, brand.categoryLabel, ...brand.aliases]
-}
-
 export function getLogoDimensions(variant: BrandLogoVariant) {
 	return variant === "icon"
 		? { width: 24, height: 24 }
 		: { width: 180, height: 48 }
 }
 
-export function getBrandLogoSvgUrl(
-	id: BrandLogoId,
-	theme: BrandLogoTheme = "light",
-	colorway: BrandLogoColorway = "colored",
-	variant: BrandLogoVariant = "icon"
-) {
-	const brand = getBrandLogo(id)
-	return `${BRAND_LOGO_CDN_ROOT}/${theme}/${colorway}/${brand.category}/${variant}/${brand.id}.svg`
+export interface BrandLogosManifest {
+	categories: readonly BrandLogoCategory[]
 }
+export function createBrandLogoCatalog(brandLogosManifest: BrandLogosManifest) {
+	const brandLogoCategories: readonly BrandLogoCategory[] =
+		brandLogosManifest.categories.map((category) => ({
+			slug: category.slug,
+			label: category.label,
+			count: category.brands.length,
+			brands: category.brands,
+		}))
 
-export function getBrandLogoUrl(
-	id: BrandLogoId,
-	theme: BrandLogoTheme = "light",
-	colorwayOrVariant: BrandLogoColorway | BrandLogoVariant = "colored",
-	maybeVariant: BrandLogoVariant = "icon"
-): string {
-	const colorway: BrandLogoColorway =
-		colorwayOrVariant === "icon" || colorwayOrVariant === "wordmark"
-			? "colored"
-			: colorwayOrVariant
-	const variant: BrandLogoVariant =
-		colorwayOrVariant === "icon" || colorwayOrVariant === "wordmark"
-			? colorwayOrVariant
-			: maybeVariant
-	return getBrandLogoSvgUrl(id, theme, colorway, variant)
-}
+	const brandLogos: readonly BrandLogo[] = brandLogoCategories.flatMap(
+		(category) =>
+			category.brands.map((id) => ({
+				id,
+				name: formatBrandLogoName(id),
+				category: category.slug,
+				categoryLabel: category.label,
+				aliases: brandAliases[id] ?? [],
+			}))
+	)
 
-export function getBrandLogoHtmlMarkup(
-	id: BrandLogoId,
-	theme: BrandLogoTheme = "light",
-	colorway: BrandLogoColorway = "colored",
-	variant: BrandLogoVariant = "icon"
-) {
-	const brand = getBrandLogo(id)
-	const { width, height } = getLogoDimensions(variant)
-	return `<img src="${getBrandLogoSvgUrl(id, theme, colorway, variant)}" alt="${brand.name} ${variant}" width="${width}" height="${height}" />`
-}
+	const BRAND_LOGO_ASSET_COUNT = brandLogos.length * 8
 
-export function getBrandLogoNextImageMarkup(
-	id: BrandLogoId,
-	theme: BrandLogoTheme = "light",
-	colorway: BrandLogoColorway = "colored",
-	variant: BrandLogoVariant = "icon"
-) {
-	const brand = getBrandLogo(id)
-	const { width, height } = getLogoDimensions(variant)
-	return `<Image src="${getBrandLogoSvgUrl(id, theme, colorway, variant)}" alt="${brand.name} ${variant}" width={${width}} height={${height}} />`
-}
+	const brandLogosById = new Map<BrandLogoId, BrandLogo>(
+		brandLogos.map((brand) => [brand.id, brand])
+	)
 
-export function getBrandLogoFallbackUrl(
-	id: BrandLogoId,
-	theme: BrandLogoTheme = "light",
-	colorway: BrandLogoColorway = "colored",
-	variant: BrandLogoVariant = "icon"
-) {
-	const brand = getBrandLogo(id)
-	const path = `src/${theme}/${colorway}/${brand.category}/${variant}/${brand.id}.svg`
-	const token =
-		typeof btoa === "function"
-			? btoa(path)
-			: Buffer.from(path).toString("base64")
-	return `/api/brand-logos?token=${encodeURIComponent(token)}`
-}
+	function getBrandLogo(id: BrandLogoId) {
+		const brand = brandLogosById.get(id)
+		if (!brand) throw new Error(`Missing brand logo metadata for ${id}`)
+		return brand
+	}
 
-export function getBrandLogoLocalUrl(
-	id: BrandLogoId,
-	theme: BrandLogoTheme = "light",
-	colorway: BrandLogoColorway = "colored",
-	variant: BrandLogoVariant = "icon"
-) {
-	const brand = getBrandLogo(id)
-	const path = `src/${theme}/${colorway}/${brand.category}/${variant}/${brand.id}.svg`
-	const token = btoa(path)
-		.replace(/\+/g, "-")
-		.replace(/\//g, "_")
-		.replace(/=+$/, "")
-	return `/_brand-assets/${assetVersion.revision}/${token}.svg`
-}
+	function getBrandLogoFromSlug(slug: string) {
+		return brandLogosById.get(slug.toLowerCase()) ?? null
+	}
 
-export function getBrandLogoDisplayUrl(
-	id: BrandLogoId,
-	theme: BrandLogoTheme = "light",
-	colorway: BrandLogoColorway = "colored",
-	variant: BrandLogoVariant = "icon"
-) {
-	return getBrandLogoLocalUrl(id, theme, colorway, variant)
+	function getBrandLogoPagePath(id: BrandLogoId) {
+		return `${BRAND_LOGOS_PAGE_PATH}/${id}`
+	}
+
+	function getBrandLogoMetadataDescription(id: BrandLogoId) {
+		const brand = getBrandLogo(id)
+		return `Download the ${brand.name} logo in SVG and PNG. Get icons and wordmarks, copy SVG code, or use CDN links with light and dark mode variants.`
+	}
+
+	function getBrandLogoSearchTerms(id: BrandLogoId) {
+		const brand = getBrandLogo(id)
+		return [brand.id, brand.name, brand.categoryLabel, ...brand.aliases]
+	}
+
+	function getBrandLogoSvgUrl(
+		id: BrandLogoId,
+		theme: BrandLogoTheme = "light",
+		colorway: BrandLogoColorway = "colored",
+		variant: BrandLogoVariant = "icon"
+	) {
+		const brand = getBrandLogo(id)
+		return `${BRAND_LOGO_CDN_ROOT}/${theme}/${colorway}/${brand.category}/${variant}/${brand.id}.svg`
+	}
+
+	function getBrandLogoUrl(
+		id: BrandLogoId,
+		theme: BrandLogoTheme = "light",
+		colorwayOrVariant: BrandLogoColorway | BrandLogoVariant = "colored",
+		maybeVariant: BrandLogoVariant = "icon"
+	): string {
+		const colorway: BrandLogoColorway =
+			colorwayOrVariant === "icon" || colorwayOrVariant === "wordmark"
+				? "colored"
+				: colorwayOrVariant
+		const variant: BrandLogoVariant =
+			colorwayOrVariant === "icon" || colorwayOrVariant === "wordmark"
+				? colorwayOrVariant
+				: maybeVariant
+		return getBrandLogoSvgUrl(id, theme, colorway, variant)
+	}
+
+	function getBrandLogoHtmlMarkup(
+		id: BrandLogoId,
+		theme: BrandLogoTheme = "light",
+		colorway: BrandLogoColorway = "colored",
+		variant: BrandLogoVariant = "icon"
+	) {
+		const brand = getBrandLogo(id)
+		const { width, height } = getLogoDimensions(variant)
+		return `<img src="${getBrandLogoSvgUrl(id, theme, colorway, variant)}" alt="${brand.name} ${variant}" width="${width}" height="${height}" />`
+	}
+
+	function getBrandLogoNextImageMarkup(
+		id: BrandLogoId,
+		theme: BrandLogoTheme = "light",
+		colorway: BrandLogoColorway = "colored",
+		variant: BrandLogoVariant = "icon"
+	) {
+		const brand = getBrandLogo(id)
+		const { width, height } = getLogoDimensions(variant)
+		return `<Image src="${getBrandLogoSvgUrl(id, theme, colorway, variant)}" alt="${brand.name} ${variant}" width={${width}} height={${height}} />`
+	}
+
+	// Previews and exports use the same public CDN asset as copied links.
+	const getBrandLogoDisplayUrl = getBrandLogoSvgUrl
+
+	return {
+		brandLogoCategories,
+		brandLogos,
+		BRAND_LOGO_ASSET_COUNT,
+		getBrandLogo,
+		getBrandLogoFromSlug,
+		getBrandLogoPagePath,
+		getBrandLogoMetadataDescription,
+		getBrandLogoSearchTerms,
+		getLogoDimensions,
+		getBrandLogoSvgUrl,
+		getBrandLogoUrl,
+		getBrandLogoHtmlMarkup,
+		getBrandLogoNextImageMarkup,
+		getBrandLogoDisplayUrl,
+	}
 }
+export type BrandLogoCatalog = ReturnType<typeof createBrandLogoCatalog>

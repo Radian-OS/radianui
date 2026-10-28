@@ -94,10 +94,6 @@ const nextConfig = {
   async headers() {
     const headers = [
       {
-        source: "/_brand-assets/:path*",
-        headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
-      },
-      {
         source: "/blocks/:path*",
         headers: [{ key: "Access-Control-Allow-Origin", value: "*" }],
       },
@@ -283,7 +279,13 @@ const nextConfig = {
   outputFileTracingIncludes: {
     "/api/block-code/*": ["./src/registry/blocks-example/**/*.{ts,tsx,css}"],
   },
-  serverExternalPackages: ["ts-morph", "typescript", "shiki"],
+  serverExternalPackages: [
+    "ts-morph",
+    "typescript",
+    "shiki",
+    "prettier",
+    "@react-email/render",
+  ],
 };
 const withMDX = createMDX();
 export default withBundleAnalyzer(withMDX(nextConfig));

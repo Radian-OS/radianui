@@ -38,7 +38,7 @@ const Component = () => {
 			<div className="border-soft mx-auto flex max-w-360 flex-col overflow-hidden border border-t-0">
 				<div className="flex flex-col gap-8 px-5 py-16 sm:px-10 lg:px-15 lg:py-30">
 					<div className="flex flex-col gap-4 sm:gap-6">
-						<Badge color="primary" size="28" variant="soft">
+						<Badge color="primary" size="lg" variant="soft">
 							<ComponentIcon className="text-primary size-4" />
 							Components
 						</Badge>
@@ -63,7 +63,7 @@ const Component = () => {
 							<IconButton
 								aria-label="Show previous components"
 								color="neutral"
-								size="32"
+								size="lg"
 								variant="outline"
 								onClick={handlePrev}>
 								<ChevronLeft className="text-fg-secondary" />
@@ -71,7 +71,7 @@ const Component = () => {
 							<IconButton
 								aria-label="Show next components"
 								color="neutral"
-								size="32"
+								size="lg"
 								variant="outline"
 								onClick={handleNext}>
 								<ChevronRight className="text-fg-secondary" />

@@ -2,7 +2,7 @@ import React from "react"
 import { BookmarkIcon } from "lucide-react"
 import { Toggle } from "@/registry/ui/toggle"
 
-const sizes = ["28", "32", "36", "40", "44", "48"] as const
+const sizes = ["xs", "sm", "md", "lg", "xl", "2xl"] as const
 
 const ToggleSizesExample = () => {
 	return (

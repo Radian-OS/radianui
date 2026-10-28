@@ -66,32 +66,26 @@ test("unused brand-logo public files do not create URLs for undeployed pages", (
 	}
 })
 
-test("brand-logo pages only list available static SVGs from the active revision", () => {
+test("brand-logo pages list CDN images without a generated local mirror", () => {
 	const f = fixture()
 	try {
-		const revision = "a".repeat(20)
 		f.file("app/(resources)/resources/(brand-logos)/brand-logos/page.tsx")
 		f.file(
 			"app/(resources)/resources/(brand-logos)/brand-logos/[brand]/page.tsx"
 		)
-		f.file(
-			"app/(resources)/resources/(brand-logos)/components/brand-logo-assets-version.generated.json",
-			JSON.stringify({ revision })
-		)
-		const name = Buffer.from(
-			"src/light/colored/frameworks/icon/radianui.svg"
-		).toString("base64url")
-		f.file(`public/_brand-assets/${revision}/${name}.svg`, "<svg />")
-		f.file(`public/_brand-assets/${"b".repeat(20)}/${name}.svg`, "<svg />")
-		const xml = generateResourceImageSitemap(f.options)
+		const xml = generateResourceImageSitemap({
+			...f.options,
+			brandManifest: {
+				categories: [{ slug: "frameworks", brands: ["radianui"] }],
+			},
+		})
 		assert.ok(xml.includes("/resources/brand-logos/radianui</loc>"))
-		assert.ok(xml.includes(`/_brand-assets/${revision}/${name}.svg`))
-		assert.ok(!xml.includes("b".repeat(20)))
 		assert.ok(
-			!xml.includes(
-				"cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos"
+			xml.includes(
+				"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/light/colored/frameworks/icon/radianui.svg"
 			)
 		)
+		assert.ok(!xml.includes("_brand-assets"))
 	} finally {
 		f.cleanup()
 	}

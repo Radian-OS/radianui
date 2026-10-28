@@ -45,7 +45,7 @@ const EmailCode = () => {
 						<div className="space-y-5">
 							<div className="flex flex-col gap-1.5"></div>
 							<Label htmlFor="one-time-password">Enter Verification Code</Label>
-							<OTPField size="44" placeholder="000000" className="w-[320px]">
+							<OTPField size="xl" placeholder="000000" className="w-[320px]">
 								{Array.from({ length: 6 }).map((_, index) => (
 									<OTPInput key={index} index={index} />
 								))}

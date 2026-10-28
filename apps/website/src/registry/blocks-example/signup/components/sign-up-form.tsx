@@ -169,7 +169,7 @@ export default function SignUpForm() {
 											<FormItem className="flex-1">
 												<FormLabel>First Name</FormLabel>
 												<FormControl>
-													<Input size="36" type="text" {...field} />
+													<Input size="md" type="text" {...field} />
 												</FormControl>
 												<FormMessage />
 											</FormItem>
@@ -182,7 +182,7 @@ export default function SignUpForm() {
 											<FormItem className="flex-1">
 												<FormLabel>Last Name</FormLabel>
 												<FormControl>
-													<Input size="36" type="text" {...field} />
+													<Input size="md" type="text" {...field} />
 												</FormControl>
 												<FormMessage />
 											</FormItem>
@@ -196,7 +196,7 @@ export default function SignUpForm() {
 										<FormItem>
 											<FormLabel>Email Address</FormLabel>
 											<FormControl>
-												<Input size="36" type="email" {...field} />
+												<Input size="md" type="email" {...field} />
 											</FormControl>
 											<FormMessage />
 										</FormItem>

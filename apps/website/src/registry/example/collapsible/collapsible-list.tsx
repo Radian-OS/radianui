@@ -104,7 +104,7 @@ export default function CollapsibleList() {
 
 					<div className={cn("flex justify-center", open ? "mt-6" : "mt-10")}>
 						<CollapsibleTrigger asChild>
-							<Button color="neutral" size="28" variant="outline">
+							<Button color="neutral" size="lg" variant="outline">
 								{open ? "Collapse" : "Show All"}
 								<ChevronDown
 									className={cn(

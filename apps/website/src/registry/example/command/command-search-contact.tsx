@@ -159,7 +159,7 @@ export default function CommandSearchContacts() {
 									onClick={() => toggleFilter(dept)}
 									variant={isActive ? "outline" : "soft"}
 									color={isActive ? "primary" : "neutral"}
-									size="24"
+									size="md"
 									className="cursor-pointer transition-all select-none">
 									{dept}
 									{isActive && <X className="ml-0.5 size-3 opacity-70" />}
@@ -207,10 +207,10 @@ export default function CommandSearchContacts() {
 						<div className="text-fg-tertiary flex items-center gap-4 text-xs">
 							<span className="flex items-center gap-2">
 								<div className="flex items-center gap-1">
-									<Badge size="20" color="neutral" variant="soft">
+									<Badge size="sm" color="neutral" variant="soft">
 										<ArrowUp className="size-3.5" />
 									</Badge>
-									<Badge size="20" color="neutral" variant="soft">
+									<Badge size="sm" color="neutral" variant="soft">
 										<ArrowDown className="size-3.5" />
 									</Badge>
 								</div>
@@ -218,13 +218,13 @@ export default function CommandSearchContacts() {
 							</span>
 							<span className="flex items-center gap-2">
 								Close
-								<Badge size="20" color="neutral" variant="soft">
+								<Badge size="sm" color="neutral" variant="soft">
 									ESC
 								</Badge>
 							</span>
 						</div>
 						<span className="text-fg-tertiary flex items-center gap-2 text-sm">
-							<Badge size="20" color="neutral" variant="soft">
+							<Badge size="sm" color="neutral" variant="soft">
 								⏎
 							</Badge>
 							Select
@@ -242,7 +242,7 @@ function ContactItem({ contact, query }: { contact: Contact; query: string }) {
 			key={contact.id}
 			value={contact.id}
 			className="flex items-center gap-2.5 rounded-md p-2">
-			<Avatar size="32" rounded="circle">
+			<Avatar size="sm" rounded="circle">
 				<AvatarImage src={contact.avatar} />
 				<AvatarFallback>{contact.name.charAt(0)}</AvatarFallback>
 			</Avatar>

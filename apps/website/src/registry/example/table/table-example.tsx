@@ -387,7 +387,7 @@ const columns: ColumnDef<typeof features, UserData>[] = [
 			const userDetails = row.getValue("user_details") as UserDetails
 			return (
 				<div className="flex items-center gap-3">
-					<Avatar rounded="square" size="36">
+					<Avatar rounded="square" size="md">
 						<AvatarImage src={userDetails.imageSrc} />
 						<AvatarFallback>{getInitials(userDetails.name)}</AvatarFallback>
 					</Avatar>
@@ -413,14 +413,14 @@ const columns: ColumnDef<typeof features, UserData>[] = [
 				<div className="flex -space-x-2.5">
 					{people.slice(0, avatarCount).map((person) => (
 						<Avatar
-							size="20"
+							size="2xs"
 							className="border-bg border-2 hover:z-10"
 							key={person.name}>
 							<AvatarImage src={person.image} />
 							<AvatarFallback>{getInitials(person.name)}</AvatarFallback>
 						</Avatar>
 					))}
-					<Avatar size="20" className="border-bg border-2 hover:z-10">
+					<Avatar size="2xs" className="border-bg border-2 hover:z-10">
 						<AvatarFallback>{row.getValue("teamMembers")}</AvatarFallback>
 					</Avatar>
 				</div>
@@ -443,7 +443,7 @@ const columns: ColumnDef<typeof features, UserData>[] = [
 		accessorKey: "status",
 		cell: ({ row }) => (
 			<Badge
-				size="20"
+				size="sm"
 				variant="soft"
 				color={
 					row.getValue("status") === "Inactive"
@@ -659,7 +659,7 @@ export default function Component() {
 							table.setPageSize(Number(value))
 						}}>
 						<SelectTrigger
-							size="32"
+							size="lg"
 							id={id}
 							className="w-fit whitespace-nowrap">
 							<SelectValue placeholder="Select number of results" />
@@ -706,7 +706,7 @@ export default function Component() {
 							{/* First page button */}
 							<PaginationItem>
 								<IconButton
-									size="32"
+									size="lg"
 									variant="outline"
 									className="disabled:pointer-events-none disabled:opacity-50"
 									onClick={() => table.firstPage()}
@@ -718,7 +718,7 @@ export default function Component() {
 							{/* Previous page button */}
 							<PaginationItem>
 								<IconButton
-									size="32"
+									size="lg"
 									variant="outline"
 									className="disabled:pointer-events-none disabled:opacity-50"
 									onClick={() => table.previousPage()}
@@ -730,7 +730,7 @@ export default function Component() {
 							{/* Next page button */}
 							<PaginationItem>
 								<IconButton
-									size="32"
+									size="lg"
 									variant="outline"
 									className="disabled:pointer-events-none disabled:opacity-50"
 									onClick={() => table.nextPage()}
@@ -742,7 +742,7 @@ export default function Component() {
 							{/* Last page button */}
 							<PaginationItem>
 								<IconButton
-									size="32"
+									size="lg"
 									variant="outline"
 									className="disabled:pointer-events-none disabled:opacity-50"
 									onClick={() => table.lastPage()}

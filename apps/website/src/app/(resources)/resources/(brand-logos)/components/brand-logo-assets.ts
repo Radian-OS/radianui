@@ -1,99 +1,25 @@
-import type {
-	BrandLogoColorway,
-	BrandLogoId,
-	BrandLogoTheme,
-	BrandLogoVariant,
-} from "./brand-logos-data"
-import {
-	getBrandLogoFallbackUrl,
-	getBrandLogoLocalUrl,
-	getLogoDimensions,
-} from "./brand-logos-data"
+import type { BrandLogoVariant } from "./brand-logos-data"
+import { getLogoDimensions } from "./brand-logos-data"
 
 const svgCache = new Map<string, Promise<string>>()
 
-function getCacheKey(
-	id: BrandLogoId,
-	theme: BrandLogoTheme,
-	colorway: BrandLogoColorway,
-	variant: BrandLogoVariant
-) {
-	return `${id}:${theme}:${colorway}:${variant}`
-}
-
-const SVG_STORAGE_PREFIX = "radian-brand-svg:"
-
-export async function fetchBrandLogoSvg(
-	id: BrandLogoId,
-	theme: BrandLogoTheme = "light",
-	colorway: BrandLogoColorway = "colored",
-	variant: BrandLogoVariant = "icon"
-): Promise<string> {
-	const key = getCacheKey(id, theme, colorway, variant)
+export async function fetchBrandLogoSvg(url: string): Promise<string> {
+	const key = url
 	const cached = svgCache.get(key)
 	if (cached) return cached
 
-	if (typeof window !== "undefined") {
-		try {
-			const persisted = window.sessionStorage.getItem(
-				`${SVG_STORAGE_PREFIX}${key}`
-			)
-			if (persisted && /^\s*<svg\b/i.test(persisted)) {
-				const resolved = Promise.resolve(persisted)
-				svgCache.set(key, resolved)
-				return resolved
-			}
-		} catch {
-			// Storage access might fail in restricted contexts
-		}
-	}
-
-	const cdnUrl = getBrandLogoLocalUrl(id, theme, colorway, variant)
-	const fallbackUrl = getBrandLogoFallbackUrl(id, theme, colorway, variant)
-
 	const svgPromise = (async () => {
-		try {
-			const response = await fetch(cdnUrl, {
-				signal: AbortSignal.timeout(8000),
-			})
-			if (response.ok) {
-				const svg = await response.text()
-				if (/^\s*<svg\b/i.test(svg)) {
-					const trimmed = svg.trim()
-					try {
-						window.sessionStorage.setItem(
-							`${SVG_STORAGE_PREFIX}${key}`,
-							trimmed
-						)
-					} catch {
-						// Quota exceeded
-					}
-					return trimmed
-				}
-			}
-		} catch {
-			// Ignore CDN failure and proceed to safe proxy fallback
-		}
-
-		const fallbackResponse = await fetch(fallbackUrl, {
-			signal: AbortSignal.timeout(10000),
+		const response = await fetch(url, {
+			signal: AbortSignal.timeout(15000),
 		})
-		if (!fallbackResponse.ok) {
-			throw new Error(`Could not fetch ${id} SVG (${fallbackResponse.status})`)
+		if (!response.ok) {
+			throw new Error(`Could not fetch ${url} SVG (${response.status})`)
 		}
-		const svg = await fallbackResponse.text()
-		if (!/^\s*<svg\b/i.test(svg)) {
-			throw new Error(`Invalid SVG response for ${id}`)
-		}
-		const trimmed = svg.trim()
-		try {
-			window.sessionStorage.setItem(`${SVG_STORAGE_PREFIX}${key}`, trimmed)
-		} catch {
-			// Quota exceeded
-		}
-		return trimmed
+		const svg = (await response.text()).trim()
+		if (!/^<svg\b/i.test(svg))
+			throw new Error(`Invalid SVG response for ${url}`)
+		return svg
 	})()
-
 	svgCache.set(key, svgPromise)
 	svgPromise.catch(() => svgCache.delete(key))
 	return svgPromise
@@ -118,13 +44,11 @@ export function loadSvgImage(svg: string) {
 }
 
 export async function renderBrandLogoPng(
-	id: BrandLogoId,
-	theme: BrandLogoTheme = "light",
-	colorway: BrandLogoColorway = "colored",
+	url: string,
 	variant: BrandLogoVariant = "icon",
 	scale = 4
 ): Promise<Blob> {
-	const svg = await fetchBrandLogoSvg(id, theme, colorway, variant)
+	const svg = await fetchBrandLogoSvg(url)
 	const { image, objectUrl } = await loadSvgImage(svg)
 
 	try {

@@ -111,7 +111,7 @@ export default function DialogWithForm() {
 							<div className="absolute bottom-0 left-5 translate-y-1/2">
 								<Avatar
 									rounded="square"
-									size="80"
+									size="3xl"
 									className="ring-bg ring-offset-bg z-10 rounded-2xl ring-2 ring-offset-2">
 									<AvatarImage src="/media/female-3.jpg" />
 									<AvatarFallback>CH</AvatarFallback>
@@ -147,7 +147,7 @@ export default function DialogWithForm() {
 								<div className="flex gap-2">
 									<Button
 										type="button"
-										size="28"
+										size="lg"
 										variant="outline"
 										color="neutral">
 										<Link className="size-3.5" />
@@ -155,7 +155,7 @@ export default function DialogWithForm() {
 									</Button>
 									<Button
 										type="button"
-										size="28"
+										size="lg"
 										variant="outline"
 										color="neutral">
 										View profile

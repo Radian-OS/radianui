@@ -28,7 +28,7 @@ export default function SwitchErrorCard() {
 					<div className="flex items-center gap-1.5">
 						<span className="text-fg text-sm font-semibold">Label</span>
 						<span className="text-fg-subtle text-sm">(Sublabel)</span>
-						<Badge color="error" variant="soft" size="20">
+						<Badge color="error" variant="soft" size="sm">
 							New
 						</Badge>
 					</div>
@@ -41,7 +41,7 @@ export default function SwitchErrorCard() {
 				<SwitchWrapper className="self-start">
 					<Switch
 						id={id}
-						size="20"
+						size="sm"
 						checked={checked}
 						onCheckedChange={setChecked}
 						className={cn(checked && "data-[state=checked]:bg-error")}

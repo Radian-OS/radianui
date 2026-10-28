@@ -27,7 +27,7 @@ const ProgressPreview = () => {
 				aria-label="Re-Preview Button"
 				variant="outline"
 				color="neutral"
-				size="28"
+				size="lg"
 				onClick={handleRefresh}
 				className="absolute top-0 right-0 m-2">
 				<RotateCw />

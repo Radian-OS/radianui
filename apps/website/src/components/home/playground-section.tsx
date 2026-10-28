@@ -87,7 +87,7 @@ export default function PlaygroundSection({
 			className="bg-bg relative z-30 mx-auto w-full max-w-[1440px]">
 			<div className="border-soft mx-auto flex w-full max-w-360 flex-col overflow-hidden border border-y-0">
 				<div className="flex flex-col gap-4 px-5 py-16 sm:gap-6 sm:px-10 lg:px-15 lg:py-30">
-					<Badge size="28" color="primary" variant="soft">
+					<Badge size="lg" color="primary" variant="soft">
 						<BadgeDot className="bg-primary" />
 						Customize
 					</Badge>

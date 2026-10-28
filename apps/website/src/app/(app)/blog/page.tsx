@@ -165,7 +165,7 @@ export default async function BlogPage({ params }: BlogListPageProps) {
 									{featuredPost.data.author &&
 										featuredPost.data.author.map((person) => (
 											<Avatar
-												size="32"
+												size="sm"
 												className="border-bg border-4 hover:z-10"
 												key={person.name}>
 												{person.avatar && <AvatarImage src={person.avatar} />}

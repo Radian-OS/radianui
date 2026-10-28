@@ -195,19 +195,19 @@ export function BadgeShowcaseCard() {
 					</p>
 					<div className="flex items-center gap-3">
 						<p className="text-sm font-medium">Invoice #1042</p>
-						<Badge variant="soft" size="20">
+						<Badge variant="soft" size="sm">
 							Paid
 						</Badge>
 					</div>
 					<div className="flex items-center gap-3">
 						<p className="text-sm font-medium">Deploy v2.4.1</p>
-						<Badge variant="outline" color="warning" size="20">
+						<Badge variant="outline" color="warning" size="sm">
 							In Progress
 						</Badge>
 					</div>
 					<div className="flex items-center gap-3">
 						<p className="text-sm font-medium">Plan: Pro</p>
-						<Badge size="20">Upgraded</Badge>
+						<Badge size="sm">Upgraded</Badge>
 					</div>
 				</div>
 			</CardContent>
@@ -505,7 +505,7 @@ export function CheckboxShowcaseCard() {
 			</CardContent>
 
 			<CardFooter>
-				<Button size="32" disabled={!agreed} className="w-full">
+				<Button size="lg" disabled={!agreed} className="w-full">
 					Continue
 				</Button>
 			</CardFooter>
@@ -1020,7 +1020,7 @@ export function DividerShowcaseCard() {
 							</span>
 							<Divider className="flex-1" />
 						</div>
-						<Button variant="outline" className="w-full" size="32">
+						<Button variant="outline" className="w-full" size="lg">
 							Continue with Google
 						</Button>
 					</div>

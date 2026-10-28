@@ -85,8 +85,9 @@ const LINKS: Link[] = [
 				icon: <EmojiCollectionIcon />,
 			},
 			{
-				href: "/resources/brand-logos",
+				href: "#",
 				name: "Popular Brand Logos",
+				release: "coming-soon",
 				icon: <PopularBrandLogosIcon />,
 			},
 			{
@@ -267,7 +268,7 @@ function ReleaseBadge({
 	return (
 		<Badge
 			color={release === "beta" ? "primary" : "neutral"}
-			size="20"
+			size="sm"
 			variant="soft">
 			{release === "beta" ? "Beta" : "Soon"}
 		</Badge>

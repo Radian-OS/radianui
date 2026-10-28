@@ -208,7 +208,7 @@ export default function PopoverEmojiPicker({
 				key={item.slug}
 				variant="ghost"
 				color="neutral"
-				size="40"
+				size="lg"
 				className="w-full rounded-lg"
 				aria-label={`Copy ${item.name}`}
 				title={formatEmojiName(item.name)}
@@ -234,7 +234,7 @@ export default function PopoverEmojiPicker({
 								key={value}
 								variant="ghost"
 								color="neutral"
-								size="36"
+								size="md"
 								className="group rounded-full"
 								aria-label={`Copy ${item.name}`}
 								onClick={() => void copy(item)}>
@@ -254,7 +254,7 @@ export default function PopoverEmojiPicker({
 						<IconButton
 							variant="ghost"
 							color="neutral"
-							size="36"
+							size="md"
 							className="text-fg-tertiary rounded-full"
 							aria-label="Open emoji picker">
 							<Plus />
@@ -269,7 +269,7 @@ export default function PopoverEmojiPicker({
 				className="flex max-h-[var(--radix-popover-content-available-height)] w-90 max-w-[calc(100vw-2rem)] flex-col overflow-hidden rounded-2xl p-0">
 				<div className="flex shrink-0 items-center gap-2 p-3">
 					<InputWrapper
-						size="32"
+						size="sm"
 						className="bg-fill1-alpha min-w-0 flex-1 border-transparent has-[:focus-visible]:border-transparent has-[:focus-visible]:ring-0">
 						<Search />
 						<Input
@@ -282,7 +282,7 @@ export default function PopoverEmojiPicker({
 					<IconButton
 						variant="ghost"
 						color="neutral"
-						size="32"
+						size="sm"
 						onClick={() =>
 							cacheEmojiSkinTone(tone === skinTones.length - 1 ? -1 : tone + 1)
 						}
@@ -297,7 +297,7 @@ export default function PopoverEmojiPicker({
 					className="flex shrink-0 justify-between gap-0.5 px-3 pb-2">
 					{frequent.length > 0 && (
 						<IconButton
-							size="28"
+							size="xs"
 							variant="ghost"
 							color="neutral"
 							aria-label="Frequently used"
@@ -315,7 +315,7 @@ export default function PopoverEmojiPicker({
 						return (
 							<IconButton
 								key={group.slug}
-								size="28"
+								size="xs"
 								variant="ghost"
 								color="neutral"
 								aria-label={group.name}

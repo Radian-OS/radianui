@@ -22,6 +22,3 @@ public/llms-full.txt
 tsconfig.tsbuildinfo
 # Generated before next build / next dev from available resource images
 /public/resources/image-sitemap.xml
-
-# Generated static SVG mirror (refresh with sync:brand-logo-assets)
-/public/_brand-assets/

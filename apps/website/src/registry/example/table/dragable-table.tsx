@@ -155,7 +155,7 @@ const columns: ColumnDef<typeof features, Item>[] = [
 		accessorKey: "status",
 		cell: ({ row }) => (
 			<Badge
-				size="20"
+				size="sm"
 				variant="soft"
 				color={
 					row.getValue("status") === "Inactive"
