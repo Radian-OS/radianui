@@ -89,6 +89,10 @@ export function contrastVsWhite(L: number, C: number, H: number) {
 	return 1.05 / (relLuminance(L, C, H) + 0.05)
 }
 
+export function contrastVsDark(L: number, C: number, H: number) {
+	return (relLuminance(L, C, H) + 0.05) / 0.07
+}
+
 const TEXT_CONTRAST_TARGET = 5.2
 
 export function textShade(L: number, C: number, H: number) {
@@ -109,7 +113,25 @@ export function textShade(L: number, C: number, H: number) {
 	return { l, c: fitChroma(l, C * (1 - frac), H) }
 }
 
-const ROLE_T = { hover: 0.12, border: 0.24, focus: 0.81, accent: 0.9 }
+export function darkTextShade(L: number, C: number, H: number) {
+	const baseC = fitChroma(L, C, H)
+	if (contrastVsDark(L, baseC, H) >= TEXT_CONTRAST_TARGET) {
+		return { l: L, c: baseC }
+	}
+	let lo = L
+	let hi = 1
+	for (let i = 0; i < 40; i++) {
+		const mid = (lo + hi) / 2
+		const c = fitChroma(mid, C, H)
+		if (contrastVsDark(mid, c, H) < TEXT_CONTRAST_TARGET) lo = mid
+		else hi = mid
+	}
+	const l = (lo + hi) / 2
+	const frac = (l - L) / (1 - L || 1)
+	return { l, c: fitChroma(l, C * (1 - 0.3 * frac), H) }
+}
+
+const LIGHT_ROLE_T = { hover: 0.12, border: 0.24, focus: 0.81, accent: 0.9 }
 
 export function formatOklch(L: number, C: number, H: number) {
 	return `oklch(${L.toFixed(4)} ${C.toFixed(4)} ${H.toFixed(2)})`
@@ -117,27 +139,57 @@ export function formatOklch(L: number, C: number, H: number) {
 
 export function generateCustomColorShades(
 	hex: string,
-	prefix: string = "primary"
+	prefix: string = "primary",
+	mode: "light" | "dark" = "light"
 ) {
 	const [L, C, H] = toOklch(rgbToOklab(hexToRgb(hex)))
-	const text = textShade(L, C, H)
-
-	// Calculate primary, avoiding out of gamut colors
 	const primaryC = fitChroma(L, C, H)
-
 	const luminance = relLuminance(L, primaryC, H)
 	const isLight = luminance > 0.3
-	// #111 = approx oklch(0.2 0 0)
-	// #fff = approx oklch(1 0 0)
 	const fg = isLight ? "oklch(0.2 0 0)" : "oklch(1 0 0)"
 
+	if (mode === "dark") {
+		const text = darkTextShade(L, C, H)
+		const hoverL = L + 0.12 * (1 - L)
+		const borderL = L <= 0.56 ? L : Math.min(L, 0.44 + luminance * 0.18)
+		const focusL = 0.26 + luminance * 0.22
+		const accentL = 0.24 + luminance * 0.06
+
+		return {
+			[`--color-${prefix}`]: formatOklch(L, primaryC, H),
+			[`--color-${prefix}-fg`]: fg,
+			[`--color-${prefix}-text`]: formatOklch(text.l, text.c, H),
+			[`--color-${prefix}-hover`]: formatOklch(
+				hoverL,
+				fitChroma(hoverL, C * 0.88, H),
+				H
+			),
+			[`--color-${prefix}-border`]: formatOklch(
+				borderL,
+				fitChroma(borderL, C * (L <= 0.56 ? 1 : 0.8), H),
+				H
+			),
+			[`--color-${prefix}-focus`]: formatOklch(
+				focusL,
+				fitChroma(focusL, C * 0.5, H),
+				H
+			),
+			[`--color-${prefix}-accent`]: formatOklch(
+				accentL,
+				fitChroma(accentL, C * 0.32, H),
+				H
+			),
+		} as Record<string, string>
+	}
+
+	const text = textShade(L, C, H)
 	const shades = {
 		[`--color-${prefix}`]: formatOklch(L, primaryC, H),
 		[`--color-${prefix}-fg`]: fg,
 		[`--color-${prefix}-text`]: formatOklch(text.l, text.c, H),
 	} as Record<string, string>
 
-	for (const [label, t] of Object.entries(ROLE_T)) {
+	for (const [label, t] of Object.entries(LIGHT_ROLE_T)) {
 		const l = L + t * (1 - L)
 		const c = C * (1 - t)
 		const fittedC = fitChroma(l, c, H)

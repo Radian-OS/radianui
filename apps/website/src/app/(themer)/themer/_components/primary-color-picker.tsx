@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import { useTheme } from "next-themes"
 import { motion, useDragControls } from "motion/react"
 import { converter, formatHex, formatHsl, formatRgb, parse } from "culori"
 import {
@@ -98,7 +99,10 @@ function hexToHsv(hex: string, fallbackH = 0) {
 	}
 }
 
-function resolvePrimaryColorInfo(value = "#623DF5") {
+function resolvePrimaryColorInfo(
+	value = "#623DF5",
+	mode: "light" | "dark" = "light"
+) {
 	const preset = PRIMARY_COLORS.find(
 		(c) =>
 			c.value === value ||
@@ -109,14 +113,14 @@ function resolvePrimaryColorInfo(value = "#623DF5") {
 		return {
 			name: preset.value === "neutral" ? "Black" : preset.name,
 			hex:
-				formatHex(parse(preset.cssVars.light["--color-primary"])) || "#623DF5",
-			shades: preset.cssVars.light as Record<string, string>,
+				formatHex(parse(preset.cssVars[mode]["--color-primary"])) || "#623DF5",
+			shades: preset.cssVars[mode] as Record<string, string>,
 		}
 	}
 	return {
 		name: value.startsWith("#") ? ntc.name(value)[1] || "Custom" : "Custom",
 		hex: value,
-		shades: generateCustomColorShades(value, "primary"),
+		shades: generateCustomColorShades(value, "primary", mode),
 	}
 }
 
@@ -197,7 +201,13 @@ export default function PrimaryColorPicker({
 	const [copiedInput, setCopiedInput] = React.useState(false)
 	const [open, setOpen] = React.useState(false)
 
-	const colorInfo = React.useMemo(() => resolvePrimaryColorInfo(value), [value])
+	const { resolvedTheme } = useTheme()
+	const isDark = resolvedTheme === "dark"
+
+	const colorInfo = React.useMemo(
+		() => resolvePrimaryColorInfo(value, isDark ? "dark" : "light"),
+		[value, isDark]
+	)
 
 	const orderedPresets = React.useMemo(() => {
 		const orderMap = new Map<string, number>(

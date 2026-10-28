@@ -315,9 +315,12 @@ export function buildRegistryConfig(config: ThemerConfig): RegistryConfig {
 	let darkVars: Record<string, string> = {}
 
 	if (primaryColor.startsWith("#")) {
-		const generated = generateCustomColorShades(primaryColor)
-		lightVars = normalizePrimaryColorVars(generated)
-		darkVars = normalizePrimaryColorVars(generated)
+		lightVars = normalizePrimaryColorVars(
+			generateCustomColorShades(primaryColor, "primary", "light")
+		)
+		darkVars = normalizePrimaryColorVars(
+			generateCustomColorShades(primaryColor, "primary", "dark")
+		)
 	} else {
 		const colorEntry = PRIMARY_COLORS.find((c) => c.value === primaryColor)
 		lightVars = normalizePrimaryColorVars(colorEntry?.cssVars.light)
