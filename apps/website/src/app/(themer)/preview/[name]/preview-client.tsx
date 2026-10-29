@@ -177,6 +177,17 @@ export function PreviewClient({ children }: { children: React.ReactNode }) {
 			if (event.data.type === "control-radius-change") {
 				setParams({ controlRadius: event.data.controlRadius })
 			}
+			if (event.data.type === "button-padding-preset-change") {
+				setParams({ buttonPaddingPreset: event.data.buttonPaddingPreset })
+			}
+			if (event.data.type === "button-radius-preset-change") {
+				setParams({ buttonRadiusPreset: event.data.buttonRadiusPreset })
+			}
+			if (event.data.type === "compact-button-radius-preset-change") {
+				setParams({
+					compactButtonRadiusPreset: event.data.compactButtonRadiusPreset,
+				})
+			}
 			if (event.data.type === "template-change") {
 				setParams({ template: event.data.template })
 			}

@@ -615,24 +615,24 @@
 
 	/* MARK: Button */
 
-	/* Base size rounded tokens (extracted from size variant string) */
+	/* Component radius overrides fall back to the existing control radius. */
 	.cn-btn-size-xs {
-		@apply rounded-control-md;
+		@apply rounded-[var(--button-radius-xs,var(--radius-control-md))];
 	}
 	.cn-btn-size-sm {
-		@apply rounded-control-md;
+		@apply rounded-[var(--button-radius-sm,var(--radius-control-md))];
 	}
 	.cn-btn-size-md {
-		@apply rounded-control-lg;
+		@apply rounded-[var(--button-radius-md,var(--radius-control-lg))];
 	}
 	.cn-btn-size-lg {
-		@apply rounded-control-lg;
+		@apply rounded-[var(--button-radius-lg,var(--radius-control-lg))];
 	}
 	.cn-btn-size-xl {
-		@apply rounded-control-lg;
+		@apply rounded-[var(--button-radius-xl,var(--radius-control-lg))];
 	}
 	.cn-btn-size-2xl {
-		@apply rounded-control-lg;
+		@apply rounded-[var(--button-radius-2xl,var(--radius-control-lg))];
 	}
 
 	/* MARK: CompactButton */

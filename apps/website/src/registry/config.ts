@@ -8,11 +8,28 @@ import { RADIUS } from "./radius"
 import { STYLES } from "./styles"
 import { TEMPLATES } from "./templates"
 import { generateCustomColorShades } from "@/lib/shade-generator"
+import {
+	BUTTON_PADDING_PRESETS,
+	BUTTON_RADIUS_PRESETS,
+	COMPACT_BUTTON_RADIUS_PRESETS,
+	type ButtonPaddingPreset,
+	type ButtonRadiusPreset,
+	type CompactButtonRadiusPreset,
+} from "./component-presets/button-presets"
 
 const fontValues = FONTS.map((font) => font.value)
 const radiusValues = RADIUS.map((radius) => radius.value)
 const styleValues = STYLES.map((style) => style.value)
 const densityValues = DENSITIES.map((density) => density.value)
+const buttonPaddingPresetValues = Object.keys(
+	BUTTON_PADDING_PRESETS
+) as ButtonPaddingPreset[]
+const buttonRadiusPresetValues = Object.keys(
+	BUTTON_RADIUS_PRESETS
+) as ButtonRadiusPreset[]
+const compactButtonRadiusPresetValues = Object.keys(
+	COMPACT_BUTTON_RADIUS_PRESETS
+) as CompactButtonRadiusPreset[]
 
 const cssValueSchema = z.union([z.string(), z.record(z.string(), z.string())])
 
@@ -59,6 +76,9 @@ export const themerConfigSchema = z.object({
 	template: z.enum(TEMPLATES).default("next"),
 	radius: z.string().default("default"),
 	controlRadius: z.string().default("default"),
+	buttonPaddingPreset: z.enum(buttonPaddingPresetValues).optional(),
+	buttonRadiusPreset: z.enum(buttonRadiusPresetValues).optional(),
+	compactButtonRadiusPreset: z.enum(compactButtonRadiusPresetValues).optional(),
 	style: z
 		.enum(styleValues, {
 			error: "Invalid style valiue",
@@ -332,6 +352,28 @@ export function buildRegistryConfig(config: ThemerConfig): RegistryConfig {
 	const baseDarkVars = baseColorEntry?.cssVars.dark
 
 	const theme: Record<string, string> = {}
+	if (config.buttonPaddingPreset) {
+		const paddingValues = BUTTON_PADDING_PRESETS[config.buttonPaddingPreset]
+
+		for (const [size, padding] of Object.entries(paddingValues)) {
+			theme[`--button-padding-x-${size}`] = `${padding}px`
+		}
+	}
+	if (config.buttonRadiusPreset) {
+		const radiusValues = BUTTON_RADIUS_PRESETS[config.buttonRadiusPreset]
+
+		for (const [size, radius] of Object.entries(radiusValues)) {
+			theme[`--button-radius-${size}`] = `${radius}px`
+		}
+	}
+	if (config.compactButtonRadiusPreset) {
+		const radiusValues =
+			COMPACT_BUTTON_RADIUS_PRESETS[config.compactButtonRadiusPreset]
+
+		for (const [size, radius] of Object.entries(radiusValues)) {
+			theme[`--compact-button-radius-${size}`] = `${radius}px`
+		}
+	}
 
 	const headingFont = FONTS.find((font) => font.value === config.headingFont)
 	const bodyFont = FONTS.find((font) => font.value === config.bodyFont)

@@ -52,6 +52,21 @@ function ThemerPage() {
 			searchParams.set("density", params.density)
 		}
 
+		if (params.buttonPaddingPreset) {
+			searchParams.set("buttonPaddingPreset", params.buttonPaddingPreset)
+		}
+
+		if (params.buttonRadiusPreset) {
+			searchParams.set("buttonRadiusPreset", params.buttonRadiusPreset)
+		}
+
+		if (params.compactButtonRadiusPreset) {
+			searchParams.set(
+				"compactButtonRadiusPreset",
+				params.compactButtonRadiusPreset
+			)
+		}
+
 		return `/preview/${selectedComponent}?${searchParams.toString()}`
 	}, [selectedComponent])
 
@@ -112,6 +127,27 @@ function ThemerPage() {
 		})
 	}, [params.controlRadius, postToIframe])
 
+	useEffect(() => {
+		postToIframe({
+			type: "button-padding-preset-change",
+			buttonPaddingPreset: params.buttonPaddingPreset ?? null,
+		})
+	}, [params.buttonPaddingPreset, postToIframe])
+
+	useEffect(() => {
+		postToIframe({
+			type: "button-radius-preset-change",
+			buttonRadiusPreset: params.buttonRadiusPreset ?? null,
+		})
+	}, [params.buttonRadiusPreset, postToIframe])
+
+	useEffect(() => {
+		postToIframe({
+			type: "compact-button-radius-preset-change",
+			compactButtonRadiusPreset: params.compactButtonRadiusPreset ?? null,
+		})
+	}, [params.compactButtonRadiusPreset, postToIframe])
+
 	return (
 		<SidebarProvider
 			style={{ "--sidebar-width": "430px" } as React.CSSProperties}>
@@ -141,6 +177,21 @@ function ThemerPage() {
 						<iframe
 							ref={iframeRef}
 							src={iframeSrc}
+							onLoad={() => {
+								postToIframe({
+									type: "button-padding-preset-change",
+									buttonPaddingPreset: params.buttonPaddingPreset ?? null,
+								})
+								postToIframe({
+									type: "button-radius-preset-change",
+									buttonRadiusPreset: params.buttonRadiusPreset ?? null,
+								})
+								postToIframe({
+									type: "compact-button-radius-preset-change",
+									compactButtonRadiusPreset:
+										params.compactButtonRadiusPreset ?? null,
+								})
+							}}
 							className="h-full w-full border-0"
 							title="Preview"
 						/>

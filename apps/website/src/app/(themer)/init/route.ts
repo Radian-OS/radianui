@@ -11,6 +11,10 @@ export async function GET(request: NextRequest) {
 			bodyFont: searchParams.get("bodyFont") ?? undefined,
 			template: searchParams.get("template") ?? undefined,
 			radius: searchParams.get("radius") ?? undefined,
+			buttonPaddingPreset: searchParams.get("buttonPaddingPreset") ?? undefined,
+			buttonRadiusPreset: searchParams.get("buttonRadiusPreset") ?? undefined,
+			compactButtonRadiusPreset:
+				searchParams.get("compactButtonRadiusPreset") ?? undefined,
 			style: searchParams.get("style") ?? undefined,
 			useSrcDir:
 				searchParams.get("useSrcDir") === null

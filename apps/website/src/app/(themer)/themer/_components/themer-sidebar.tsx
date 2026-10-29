@@ -32,6 +32,8 @@ import CornerPicker from "./corner-picker"
 import DensityPicker from "./density-picker"
 import IconLibraryPicker from "./icons-library-picker"
 import AppearanceModePicker from "./appearance-mode-picker"
+import { ButtonSettings } from "./button-settings"
+import { ComponentSettingsPopover } from "./component-settings-popover"
 import { useThemerPreset } from "@/lib/themer-preset"
 import { FONTS, FontValue } from "@/registry/fonts"
 import { BaseColorValue } from "@/registry/base-colors"
@@ -39,7 +41,7 @@ import { BaseColorValue } from "@/registry/base-colors"
 const components = [...COMPONENTS_DATA].sort((a, b) => a.localeCompare(b))
 
 export function ThemerSidebar() {
-	const [selectedComponent, setSelectedComponent] = useState("Button")
+	const [selectedComponent, setSelectedComponent] = useState("Accordion")
 	const [params, setParams] = useThemerPreset()
 
 	const selectedHeadingFont = FONTS.find(
@@ -243,8 +245,8 @@ export function ThemerSidebar() {
 						<ScrollArea className="min-h-0 flex-1">
 							<SidebarGroup className="py-3">
 								<SidebarMenu>
-									{components.map((name) => (
-										<SidebarMenuItem key={name}>
+									{components.map((name) => {
+										const item = (
 											<SidebarMenuButton
 												type="button"
 												size="sm"
@@ -259,8 +261,19 @@ export function ThemerSidebar() {
 													aria-hidden="true"
 												/>
 											</SidebarMenuButton>
-										</SidebarMenuItem>
-									))}
+										)
+										return (
+											<SidebarMenuItem key={name}>
+												{name === "Button" ? (
+													<ButtonSettings>{item}</ButtonSettings>
+												) : (
+													<ComponentSettingsPopover name={name}>
+														{item}
+													</ComponentSettingsPopover>
+												)}
+											</SidebarMenuItem>
+										)
+									})}
 								</SidebarMenu>
 							</SidebarGroup>
 						</ScrollArea>

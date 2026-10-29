@@ -617,24 +617,24 @@
 
 	/* MARK: Button */
 
-	/* Size rounded tokens — all flat */
+	/* Sera stays flat unless a Button radius override is selected. */
 	.cn-btn-size-xs {
-		@apply rounded-none;
+		@apply rounded-[var(--button-radius-xs,0px)];
 	}
 	.cn-btn-size-sm {
-		@apply rounded-none;
+		@apply rounded-[var(--button-radius-sm,0px)];
 	}
 	.cn-btn-size-md {
-		@apply rounded-none;
+		@apply rounded-[var(--button-radius-md,0px)];
 	}
 	.cn-btn-size-lg {
-		@apply rounded-none;
+		@apply rounded-[var(--button-radius-lg,0px)];
 	}
 	.cn-btn-size-xl {
-		@apply rounded-none;
+		@apply rounded-[var(--button-radius-xl,0px)];
 	}
 	.cn-btn-size-2xl {
-		@apply rounded-none;
+		@apply rounded-[var(--button-radius-2xl,0px)];
 	}
 
 	/* CompactButton base */

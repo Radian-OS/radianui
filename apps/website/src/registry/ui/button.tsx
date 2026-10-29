@@ -94,12 +94,36 @@ export const buttonVariants = cva(
 		},
 		compoundVariants: [
 			// Default size styles (for buttons with text)
-			{ size: "xs", className: "h-7 gap-1 px-2 py-1.5" },
-			{ size: "sm", className: "h-8 gap-1.5 px-2 py-1.5" },
-			{ size: "md", className: "h-9 gap-2 px-3 py-2" },
-			{ size: "lg", className: "h-10 gap-2 px-3 py-2.5" },
-			{ size: "xl", className: "h-11 gap-2 px-3 py-2.5" },
-			{ size: "2xl", className: "h-12 gap-2 px-4 py-3" },
+			{
+				size: "xs",
+				className:
+					"h-7 gap-1 px-[var(--button-padding-x-xs,calc(var(--spacing)*2))] py-1.5",
+			},
+			{
+				size: "sm",
+				className:
+					"h-8 gap-1.5 px-[var(--button-padding-x-sm,calc(var(--spacing)*2))] py-1.5",
+			},
+			{
+				size: "md",
+				className:
+					"h-9 gap-2 px-[var(--button-padding-x-md,calc(var(--spacing)*3))] py-2",
+			},
+			{
+				size: "lg",
+				className:
+					"h-10 gap-2 px-[var(--button-padding-x-lg,calc(var(--spacing)*3))] py-2.5",
+			},
+			{
+				size: "xl",
+				className:
+					"h-11 gap-2 px-[var(--button-padding-x-xl,calc(var(--spacing)*3))] py-2.5",
+			},
+			{
+				size: "2xl",
+				className:
+					"h-12 gap-2 px-[var(--button-padding-x-2xl,calc(var(--spacing)*4))] py-3",
+			},
 
 			// Strong variant + colors
 			{
@@ -601,8 +625,8 @@ export const compactButtonVariants = cva(
 				"smooth-inverted": "",
 			},
 			size: {
-				sm: "h-5 w-5 p-0.5 [&>svg]:!h-4 [&>svg]:!w-4",
-				md: "h-6 w-6 p-1 [&>svg]:!h-4 [&>svg]:!w-4",
+				sm: "h-5 w-5 rounded-[var(--compact-button-radius-sm,var(--radius-md))] p-0.5 [&>svg]:!h-4 [&>svg]:!w-4",
+				md: "h-6 w-6 rounded-[var(--compact-button-radius-md,var(--radius-md))] p-1 [&>svg]:!h-4 [&>svg]:!w-4",
 			},
 			color: {
 				primary: "",

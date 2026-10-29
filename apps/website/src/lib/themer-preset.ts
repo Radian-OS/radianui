@@ -16,6 +16,14 @@ import { FONTS, FontValue } from "@/registry/fonts"
 import { ICON_LIBRARIES, IconLibrary } from "@/registry/icon/icon-libraries"
 import { STYLES, StyleValue } from "@/registry/styles"
 import { TEMPLATES, Template } from "@/registry/templates"
+import {
+	BUTTON_PADDING_PRESETS,
+	BUTTON_RADIUS_PRESETS,
+	COMPACT_BUTTON_RADIUS_PRESETS,
+	type ButtonPaddingPreset,
+	type ButtonRadiusPreset,
+	type CompactButtonRadiusPreset,
+} from "@/registry/component-presets/button-presets"
 
 const designSystemSearchParams = {
 	primaryColor: parseAsString.withDefault(DEFAULT_CONFIG.primaryColor),
@@ -30,6 +38,15 @@ const designSystemSearchParams = {
 	).withDefault(DEFAULT_CONFIG.bodyFont),
 	radius: parseAsString.withDefault(DEFAULT_CONFIG.radius),
 	controlRadius: parseAsString.withDefault(DEFAULT_CONFIG.controlRadius),
+	buttonPaddingPreset: parseAsStringLiteral<ButtonPaddingPreset>(
+		Object.keys(BUTTON_PADDING_PRESETS) as ButtonPaddingPreset[]
+	),
+	buttonRadiusPreset: parseAsStringLiteral<ButtonRadiusPreset>(
+		Object.keys(BUTTON_RADIUS_PRESETS) as ButtonRadiusPreset[]
+	),
+	compactButtonRadiusPreset: parseAsStringLiteral<CompactButtonRadiusPreset>(
+		Object.keys(COMPACT_BUTTON_RADIUS_PRESETS) as CompactButtonRadiusPreset[]
+	),
 	template: parseAsStringLiteral<Template>(TEMPLATES).withDefault(
 		DEFAULT_CONFIG.template
 	),
@@ -87,7 +104,12 @@ function resolvePresetParams(
 		customColors: rawParams.customColors,
 		componentOverrides: rawParams.componentOverrides,
 	} as DesignSystemSearchParams
-	return mergedParams
+	return {
+		...mergedParams,
+		buttonPaddingPreset: rawParams.buttonPaddingPreset ?? undefined,
+		buttonRadiusPreset: rawParams.buttonRadiusPreset ?? undefined,
+		compactButtonRadiusPreset: rawParams.compactButtonRadiusPreset ?? undefined,
+	}
 }
 
 export function useThemerPreset(options: Options = {}) {
