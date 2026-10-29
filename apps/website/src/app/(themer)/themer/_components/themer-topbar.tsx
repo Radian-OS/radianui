@@ -62,27 +62,36 @@ export function ThemerTopbar({
 				<Tabs
 					value={device}
 					onValueChange={(val) => onDeviceChange?.(val as DeviceSize)}>
-					<TabsList>
-						<TabsTrigger value="desktop" title="Desktop View">
-							<Monitor className="size-4" />
+					<TabsList className="p-0.5 data-[orientation=horizontal]:h-7">
+						<TabsTrigger
+							value="desktop"
+							title="Desktop View"
+							className="px-1.5 py-1 [&>svg]:size-4">
+							<Monitor />
 						</TabsTrigger>
-						<TabsTrigger value="tablet" title="Tablet View">
-							<Tablet className="size-4" />
+						<TabsTrigger
+							value="tablet"
+							title="Tablet View"
+							className="px-1.5 py-1 [&>svg]:size-4">
+							<Tablet />
 						</TabsTrigger>
-						<TabsTrigger value="mobile" title="Mobile View">
-							<Smartphone className="size-4" />
+						<TabsTrigger
+							value="mobile"
+							title="Mobile View"
+							className="px-1.5 py-1 [&>svg]:size-4">
+							<Smartphone />
 						</TabsTrigger>
 					</TabsList>
 				</Tabs>
 
 				<div className="bg-soft-alpha h-4 w-px" />
 				<Tabs defaultValue="preview">
-					<TabsList>
-						<TabsTrigger value="preview">
-							<Eye className="size-4" />
+					<TabsList className="p-0.5 data-[orientation=horizontal]:h-7">
+						<TabsTrigger value="preview" className="px-1.5 py-1 [&>svg]:size-4">
+							<Eye />
 						</TabsTrigger>
-						<TabsTrigger value="code">
-							<Code2 className="size-4" />
+						<TabsTrigger value="code" className="px-1.5 py-1 [&>svg]:size-4">
+							<Code2 />
 						</TabsTrigger>
 					</TabsList>
 				</Tabs>

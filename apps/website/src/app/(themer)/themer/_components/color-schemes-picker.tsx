@@ -86,9 +86,40 @@ function hexToHsv(hex: string, fallbackH = 0) {
 	}
 }
 
+function resolvePrefix(val: string, fallbackName?: string) {
+	const preset = PRIMARY_COLORS.find(
+		(c) =>
+			c.value === val ||
+			formatHex(parse(c.cssVars.light["--color-primary"]))?.toLowerCase() ===
+				val.toLowerCase()
+	)
+	if (preset) {
+		return preset.value === "neutral" ? "black" : preset.value
+	}
+	if (val.startsWith("#")) {
+		const n = ntc.name(val)[1]
+		if (n) {
+			const slug = n
+				.toLowerCase()
+				.replace(/[^a-z0-9]+/g, "-")
+				.replace(/^-|-$/g, "")
+			if (slug) return slug
+		}
+	}
+	if (fallbackName) {
+		const slug = fallbackName
+			.toLowerCase()
+			.replace(/[^a-z0-9]+/g, "-")
+			.replace(/^-|-$/g, "")
+		if (slug) return slug
+	}
+	return "custom"
+}
+
 function resolvePrimaryColorInfo(
 	value = "#623DF5",
-	mode: "light" | "dark" = "light"
+	mode: "light" | "dark" = "light",
+	prefix = "primary"
 ) {
 	const preset = PRIMARY_COLORS.find(
 		(c) =>
@@ -97,18 +128,80 @@ function resolvePrimaryColorInfo(
 				value.toLowerCase()
 	)
 	if (preset) {
+		const rawShades = preset.cssVars[mode] as Record<string, string>
+		const shades: Record<string, string> = {}
+		for (const [k, v] of Object.entries(rawShades)) {
+			const remappedKey = k.replace("--color-primary", `--color-${prefix}`)
+			shades[remappedKey] = v
+			shades[k] = v
+		}
 		return {
 			name: preset.value === "neutral" ? "Black" : preset.name,
 			hex:
 				formatHex(parse(preset.cssVars[mode]["--color-primary"])) || "#623DF5",
-			shades: preset.cssVars[mode] as Record<string, string>,
+			shades,
 		}
 	}
 	return {
 		name: value.startsWith("#") ? ntc.name(value)[1] || "Custom" : "Custom",
 		hex: value,
-		shades: generateCustomColorShades(value, "primary", mode),
+		shades: generateCustomColorShades(value, prefix, mode),
 	}
+}
+
+const SHADE_GROUPS = [
+	{
+		label: "Pastel",
+		suffixes: ["-fg", "-accent", "-focus"],
+	},
+	{
+		label: "Mid tones",
+		suffixes: ["", "-text", "-border", "-hover"],
+	},
+]
+
+function ShadeRow({
+	token,
+	value,
+	isBase,
+}: {
+	token: string
+	value: string
+	isBase?: boolean
+}) {
+	const [copied, setCopied] = React.useState(false)
+
+	return (
+		<div
+			onClick={() => {
+				navigator.clipboard.writeText(value)
+				setCopied(true)
+				setTimeout(() => setCopied(false), 1500)
+			}}
+			title={`Click to copy: ${value}`}
+			className="hover:bg-fill2 group -mx-1.5 flex cursor-pointer items-center justify-between rounded-md px-1.5 py-1 transition-colors">
+			<div className="flex items-center gap-2.5">
+				<div
+					className="border-border size-4 shrink-0 rounded-full border shadow-2xs"
+					style={{ backgroundColor: value }}
+				/>
+				<span className="text-fg-secondary group-hover:text-fg font-mono text-xs transition-colors">
+					{token}
+				</span>
+			</div>
+			{isBase ? (
+				<span className="rounded bg-emerald-500/15 px-1.5 py-0.5 text-[10px] font-medium text-emerald-700 dark:text-emerald-400">
+					Base
+				</span>
+			) : (
+				copied && (
+					<span className="text-fg-tertiary text-[10px] font-medium">
+						Copied!
+					</span>
+				)
+			)}
+		</div>
+	)
 }
 
 function formatColor(hex: string, format: ColorFormat): string {
@@ -130,7 +223,7 @@ function startDrag(onMove: (e: PointerEvent) => void) {
 
 function getCardLabel(index: number): string {
 	if (index === 0) return "Primary"
-	if (index === 1) return ""
+	if (index === 1) return "Secondary"
 	return `#${index + 1}`
 }
 
@@ -141,6 +234,7 @@ interface ColorPickerPopoverProps {
 	onChange: (value: string) => void
 	open: boolean
 	onOpenChange: (open: boolean) => void
+	prefix?: string
 	mode?: "edit" | "add"
 	onSelect?: (value: string) => void
 	children: React.ReactNode
@@ -151,6 +245,7 @@ function ColorPickerPopover({
 	onChange,
 	open,
 	onOpenChange,
+	prefix,
 	mode = "edit",
 	onSelect,
 	children,
@@ -163,9 +258,12 @@ function ColorPickerPopover({
 	const { resolvedTheme } = useTheme()
 	const isDark = resolvedTheme === "dark"
 
+	const currentPrefix = prefix || resolvePrefix(value)
+
 	const colorInfo = React.useMemo(
-		() => resolvePrimaryColorInfo(value, isDark ? "dark" : "light"),
-		[value, isDark]
+		() =>
+			resolvePrimaryColorInfo(value, isDark ? "dark" : "light", currentPrefix),
+		[value, isDark, currentPrefix]
 	)
 
 	const orderedPresets = React.useMemo(() => {
@@ -291,9 +389,19 @@ function ColorPickerPopover({
 								}
 							}}
 							className="flex cursor-grab items-center justify-between p-1 pb-2 active:cursor-grabbing">
-							<TabsList>
-								<TabsTrigger value="custom">Custom</TabsTrigger>
-								<TabsTrigger value="presets">Presets</TabsTrigger>
+							<TabsList
+								variant="ghost"
+								className="p-0.5 data-[orientation=horizontal]:h-7">
+								<TabsTrigger
+									value="custom"
+									className="data-[state=active]:text-fg-secondary">
+									Custom
+								</TabsTrigger>
+								<TabsTrigger
+									value="presets"
+									className="data-[state=active]:text-fg-secondary">
+									Presets
+								</TabsTrigger>
 							</TabsList>
 
 							<div className="flex items-center gap-2">
@@ -422,6 +530,34 @@ function ColorPickerPopover({
 								</InputWrapper>
 							</div>
 
+							{/* Shades breakdown */}
+							<div className="mt-4 flex flex-col gap-3">
+								{SHADE_GROUPS.map(({ label, suffixes }) => (
+									<div key={label}>
+										<span className="text-fg-tertiary text-xs font-medium">
+											{label}
+										</span>
+										<div className="mt-2 flex flex-col gap-1.5">
+											{suffixes.map((suffix) => {
+												const token = `--color-${currentPrefix}${suffix}`
+												const val =
+													colorInfo.shades[token] ||
+													colorInfo.shades[`--color-primary${suffix}`] ||
+													(suffix === "-fg" ? "#ffffff" : colorInfo.hex)
+												return (
+													<ShadeRow
+														key={token}
+														token={token}
+														value={val}
+														isBase={suffix === ""}
+													/>
+												)
+											})}
+										</div>
+									</div>
+								))}
+							</div>
+
 							{mode === "add" && onSelect && (
 								<Button
 									type="button"
@@ -438,7 +574,7 @@ function ColorPickerPopover({
 						</TabsContent>
 
 						<TabsContent value="presets">
-							<div className="text-fg-tertiary px-2 pt-2.5 pb-1.5 text-xs font-normal">
+							<div className="text-fg-tertiary px-2 pb-1.5 text-xs font-normal">
 								Select colors
 							</div>
 							<div className="no-scrollbar flex max-h-[500px] flex-col gap-0.5 overflow-y-auto">
@@ -498,7 +634,8 @@ interface ColorSchemeCardProps {
 	index: number
 	value: string
 	isPrimary: boolean
-	isTall: boolean
+	isCompact?: boolean
+	className?: string
 	onDelete?: () => void
 	onChange: (value: string) => void
 }
@@ -507,7 +644,8 @@ function ColorSchemeCard({
 	index,
 	value,
 	isPrimary,
-	isTall,
+	isCompact = false,
+	className,
 	onDelete,
 	onChange,
 }: ColorSchemeCardProps) {
@@ -522,9 +660,19 @@ function ColorSchemeCard({
 		[value, isDark]
 	)
 
+	const colorPrefix = isPrimary
+		? "primary"
+		: resolvePrefix(value, colorInfo.name)
+
 	const label = getCardLabel(index)
-	const bgColor = colorInfo.shades["--color-primary"] || colorInfo.hex
-	const textColor = colorInfo.shades["--color-primary-fg"]?.includes("0.2")
+	const bgColor =
+		colorInfo.shades[`--color-${colorPrefix}`] ||
+		colorInfo.shades["--color-primary"] ||
+		colorInfo.hex
+	const textColor = (
+		colorInfo.shades[`--color-${colorPrefix}-fg`] ||
+		colorInfo.shades["--color-primary-fg"]
+	)?.includes("0.2")
 		? "#18181b"
 		: "#ffffff"
 
@@ -533,20 +681,24 @@ function ColorSchemeCard({
 			value={value}
 			onChange={onChange}
 			open={open}
-			onOpenChange={setOpen}>
+			onOpenChange={setOpen}
+			prefix={colorPrefix}>
 			<button
 				type="button"
 				className={cn(
-					"focus-visible:ring-primary col-span-1 flex w-full cursor-pointer flex-col justify-between overflow-hidden rounded-lg p-2.5 text-left transition-transform outline-none select-none hover:scale-[1.01] focus-visible:ring-2 active:scale-[0.99]",
-					isTall ? "row-span-2 h-[136px]" : "row-span-1 h-[64px]"
+					"focus-visible:ring-primary flex w-full cursor-pointer flex-col justify-between overflow-hidden rounded-lg text-left transition-transform outline-none select-none hover:scale-[1.01] focus-visible:ring-2 active:scale-[0.99]",
+					isCompact ? "p-2" : "p-2.5",
+					className
 				)}
 				style={{ backgroundColor: bgColor, color: textColor }}>
 				<div className="flex w-full items-start justify-between">
-					{label ? (
-						<span className="text-xs font-medium">{label}</span>
-					) : (
-						<div />
-					)}
+					<span
+						className={cn(
+							"font-medium",
+							isCompact ? "text-[11px]" : "text-xs"
+						)}>
+						{label}
+					</span>
 					<div className="flex items-center gap-1">
 						{!isPrimary && (
 							<div
@@ -564,7 +716,7 @@ function ColorSchemeCard({
 								}}
 								className="p-0.5 opacity-70 transition-opacity hover:opacity-100"
 								title="Remove color scheme">
-								<Trash2 className="size-3.5" />
+								<Trash2 className="size-3" />
 							</div>
 						)}
 						<div
@@ -583,46 +735,38 @@ function ColorSchemeCard({
 							className="p-0.5 opacity-70 transition-opacity hover:opacity-100"
 							title={isLocked ? "Unlock color" : "Lock color"}>
 							{isLocked ? (
-								<Lock className="size-3.5" />
+								<Lock className="size-3" />
 							) : (
-								<Unlock className="size-3.5 opacity-60" />
+								<Unlock className="size-3 opacity-60" />
 							)}
 						</div>
 					</div>
 				</div>
 
-				{isTall && (
-					<div className="flex w-full flex-col gap-1.5">
-						{isPrimary && (
-							<Badge size="sm" color="neutral">
-								Main
-							</Badge>
-						)}
-						<span className="truncate text-xs font-medium">
-							{colorInfo.name}
-						</span>
-						<div className="mt-1 flex gap-0.25">
-							<div className="h-1 w-full rounded-l-full bg-current/30" />
-							<div className="h-1 w-full rounded-none bg-current/30" />
-							<div className="h-1 w-full rounded-none bg-current/30" />
-							<div className="h-1 w-full rounded-r-full bg-current" />
-						</div>
+				<div
+					className={cn(
+						"flex w-full flex-col",
+						isCompact ? "gap-0.5" : "gap-1.5"
+					)}>
+					{isPrimary && (
+						<Badge size="sm" color="neutral" className="w-fit">
+							Main
+						</Badge>
+					)}
+					<span
+						className={cn(
+							"truncate font-medium",
+							isCompact ? "text-[11px]" : "text-xs"
+						)}>
+						{colorInfo.name}
+					</span>
+					<div className="flex gap-0.25">
+						<div className="h-1 w-full rounded-l-full bg-current/30" />
+						<div className="h-1 w-full rounded-none bg-current/30" />
+						<div className="h-1 w-full rounded-none bg-current/30" />
+						<div className="h-1 w-full rounded-r-full bg-current" />
 					</div>
-				)}
-
-				{!isTall && (
-					<div className="flex w-full flex-col gap-1">
-						<span className="truncate text-xs font-medium">
-							{colorInfo.name}
-						</span>
-						<div className="flex gap-0.25">
-							<div className="h-1 w-full rounded-l-full bg-current/30" />
-							<div className="h-1 w-full rounded-none bg-current/30" />
-							<div className="h-1 w-full rounded-none bg-current/30" />
-							<div className="h-1 w-full rounded-r-full bg-current" />
-						</div>
-					</div>
-				)}
+				</div>
 			</button>
 		</ColorPickerPopover>
 	)
@@ -672,78 +816,120 @@ export function ColorSchemesPicker({
 		...extraColorSchemes.map((v, i) => ({ id: String(i), value: v })),
 	]
 
-	const canAdd = allColors.length < MAX_COLORS
+	const numColors = allColors.length
+	const canAdd = numColors < MAX_COLORS
+	const smallCards = allColors.slice(2) // indices 2..4 (#3, #4, #5)
 
-	// Layout:
-	// - col 1: primary (always tall, row-span-2)
-	// - col 2: second color if exists (tall, row-span-2), else "+"-card spans col 2
-	// - col 3: remaining small cards stacked + "+" if room
-	//
-	// We render a flat CSS grid-cols-3 with explicit row/col spans via className.
-
-	const hasSecondColor = allColors.length >= 2
-	const smallCards = allColors.slice(2) // indices 2..4
+	const renderPlusButton = (btnClass: string) => (
+		<ColorPickerPopover
+			value={newColorCandidate}
+			onChange={setNewColorCandidate}
+			open={addOpen}
+			onOpenChange={setAddOpen}
+			mode="add"
+			onSelect={(chosenColor) => {
+				onExtraColorSchemesChange([...extraColorSchemes, chosenColor])
+				setAddOpen(false)
+			}}>
+			<button
+				type="button"
+				aria-label="Add color scheme"
+				className={cn(
+					"bg-fill1 border-border text-sidebar-fg/50 hover:bg-fill2 focus-visible:ring-primary flex cursor-pointer items-center justify-center rounded-lg border border-dashed transition-colors outline-none focus-visible:ring-2",
+					btnClass
+				)}>
+				<Plus className="size-4" />
+			</button>
+		</ColorPickerPopover>
+	)
 
 	return (
-		<div className="grid grid-cols-3 gap-2">
-			{/* Primary – tall card, col 1 */}
-			<ColorSchemeCard
-				index={0}
-				value={allColors[0].value}
-				isPrimary={true}
-				isTall={true}
-				onChange={onPrimaryChange}
-			/>
-
-			{/* Second color scheme – tall card, col 2 (only when it exists) */}
-			{hasSecondColor && (
-				<ColorSchemeCard
-					index={1}
-					value={allColors[1].value}
-					isPrimary={false}
-					isTall={true}
-					onDelete={() => removeColor(0)}
-					onChange={(v) => updateColor(0, v)}
-				/>
+		<div>
+			{/* State 1: 1 color (Primary + Plus in 2 columns) */}
+			{numColors === 1 && (
+				<div className="grid grid-cols-2 gap-2">
+					<ColorSchemeCard
+						index={0}
+						value={allColors[0].value}
+						isPrimary={true}
+						className="h-[130px]"
+						onChange={onPrimaryChange}
+					/>
+					{renderPlusButton("h-[130px] w-full")}
+				</div>
 			)}
 
-			{/* Right column: small cards (#3, #4, #5) */}
-			{smallCards.map((scheme, i) => (
-				<ColorSchemeCard
-					key={scheme.id}
-					index={i + 2}
-					value={scheme.value}
-					isPrimary={false}
-					isTall={false}
-					onDelete={() => removeColor(i + 1)}
-					onChange={(v) => updateColor(i + 1, v)}
-				/>
-			))}
+			{/* State 2: 2 colors (Primary + Secondary + Plus in 3 columns) */}
+			{numColors === 2 && (
+				<div className="grid grid-cols-3 gap-2">
+					<ColorSchemeCard
+						index={0}
+						value={allColors[0].value}
+						isPrimary={true}
+						className="h-[130px]"
+						onChange={onPrimaryChange}
+					/>
+					<ColorSchemeCard
+						index={1}
+						value={allColors[1].value}
+						isPrimary={false}
+						className="h-[130px]"
+						onDelete={() => removeColor(0)}
+						onChange={(v) => updateColor(0, v)}
+					/>
+					{renderPlusButton("h-[130px] w-full")}
+				</div>
+			)}
 
-			{/* "+" add card — opens color picker popover to pick color */}
-			{canAdd && (
-				<ColorPickerPopover
-					value={newColorCandidate}
-					onChange={setNewColorCandidate}
-					open={addOpen}
-					onOpenChange={setAddOpen}
-					mode="add"
-					onSelect={(chosenColor) => {
-						onExtraColorSchemesChange([...extraColorSchemes, chosenColor])
-						setAddOpen(false)
-					}}>
-					<button
-						type="button"
-						aria-label="Add color scheme"
+			{/* States 3, 4, 5: 3 to 5 colors (Col 1 & 2 tall, Col 3 stacked) */}
+			{numColors >= 3 && (
+				<div className="grid grid-cols-3 items-stretch gap-2">
+					{/* Column 1: Primary (tall) */}
+					<ColorSchemeCard
+						index={0}
+						value={allColors[0].value}
+						isPrimary={true}
 						className={cn(
-							"bg-fill1 border-border text-sidebar-fg/50 hover:bg-fill2 focus-visible:ring-primary col-span-1 flex cursor-pointer items-center justify-center rounded-lg border border-dashed transition-colors outline-none focus-visible:ring-2",
-							// When no second color yet, the "+" sits in col 2 and should span 2 rows
-							// to match the height of the primary card
-							!hasSecondColor ? "row-span-2 h-[136px]" : "row-span-1 h-[64px]"
+							"col-span-1 h-full",
+							numColors <= 3 ? "min-h-[160px]" : "min-h-[244px]"
+						)}
+						onChange={onPrimaryChange}
+					/>
+
+					{/* Column 2: Secondary (tall) */}
+					<ColorSchemeCard
+						index={1}
+						value={allColors[1].value}
+						isPrimary={false}
+						className={cn(
+							"col-span-1 h-full",
+							numColors <= 3 ? "min-h-[160px]" : "min-h-[244px]"
+						)}
+						onDelete={() => removeColor(0)}
+						onChange={(v) => updateColor(0, v)}
+					/>
+
+					{/* Column 3: Stacked small cards + Plus */}
+					<div
+						className={cn(
+							"col-span-1 flex flex-col",
+							numColors === 3 ? "gap-2" : "gap-1.5"
 						)}>
-						<Plus className="size-4" />
-					</button>
-				</ColorPickerPopover>
+						{smallCards.map((scheme, i) => (
+							<ColorSchemeCard
+								key={scheme.id}
+								index={i + 2}
+								value={scheme.value}
+								isPrimary={false}
+								isCompact={true}
+								className="h-[76px]"
+								onDelete={() => removeColor(i + 1)}
+								onChange={(v) => updateColor(i + 1, v)}
+							/>
+						))}
+						{canAdd && renderPlusButton("h-[76px] w-full")}
+					</div>
+				</div>
 			)}
 		</div>
 	)
