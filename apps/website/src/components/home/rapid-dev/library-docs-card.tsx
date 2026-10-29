@@ -21,6 +21,7 @@ import {
 import Image from "next/image"
 import { FigmaIcon, ResourcesIcon } from "@/components/custom/icon"
 import { cn } from "@/lib/utils"
+import { Button } from "@/registry/ui/button"
 
 const ROTATE_MS = 5800
 
@@ -203,18 +204,12 @@ function IconButton({
 function ButtonPreview() {
 	return (
 		<div className="radian-docs-button-preview">
-			<button
-				className="radian-docs-button-primary"
-				tabIndex={-1}
-				type="button">
+			<Button size="sm" tabIndex={-1} type="button">
 				Save Changes
-			</button>
-			<button
-				className="radian-docs-button-outline"
-				tabIndex={-1}
-				type="button">
+			</Button>
+			<Button variant="outline" size="sm" tabIndex={-1} type="button">
 				Cancel
-			</button>
+			</Button>
 		</div>
 	)
 }
