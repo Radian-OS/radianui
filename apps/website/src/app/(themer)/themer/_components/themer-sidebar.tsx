@@ -38,7 +38,9 @@ import { useThemerPreset } from "@/lib/themer-preset"
 import { FONTS, FontValue } from "@/registry/fonts"
 import { BaseColorValue } from "@/registry/base-colors"
 
-const components = [...COMPONENTS_DATA].sort((a, b) => a.localeCompare(b))
+const components = [...new Set([...COMPONENTS_DATA, "Button Group"])].sort(
+	(a, b) => a.localeCompare(b)
+)
 
 export function ThemerSidebar() {
 	const [selectedComponent, setSelectedComponent] = useState("Accordion")
@@ -221,8 +223,10 @@ export function ThemerSidebar() {
 										)
 										return (
 											<SidebarMenuItem key={name}>
-												{name === "Button" ? (
-													<ButtonSettings>{item}</ButtonSettings>
+												{name === "Button" || name === "Button Group" ? (
+													<ButtonSettings group={name === "Button Group"}>
+														{item}
+													</ButtonSettings>
 												) : (
 													<ComponentSettingsPopover name={name}>
 														{item}

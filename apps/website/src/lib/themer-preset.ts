@@ -18,11 +18,11 @@ import { STYLES, StyleValue } from "@/registry/styles"
 import { TEMPLATES, Template } from "@/registry/templates"
 import {
 	BUTTON_PADDING_PRESETS,
+	BUTTON_SIZES,
+	BUTTON_APPEARANCES,
 	BUTTON_RADIUS_PRESETS,
-	COMPACT_BUTTON_RADIUS_PRESETS,
 	type ButtonPaddingPreset,
 	type ButtonRadiusPreset,
-	type CompactButtonRadiusPreset,
 } from "@/registry/component-presets/button-presets"
 
 const designSystemSearchParams = {
@@ -38,15 +38,19 @@ const designSystemSearchParams = {
 	).withDefault(DEFAULT_CONFIG.bodyFont),
 	radius: parseAsString.withDefault(DEFAULT_CONFIG.radius),
 	controlRadius: parseAsString.withDefault(DEFAULT_CONFIG.controlRadius),
+	buttonDefaultSize: parseAsStringLiteral(
+		BUTTON_SIZES.map((entry) => entry.value)
+	),
+	buttonAppearance: parseAsStringLiteral(
+		BUTTON_APPEARANCES.map((entry) => entry.value)
+	),
 	buttonPaddingPreset: parseAsStringLiteral<ButtonPaddingPreset>(
 		Object.keys(BUTTON_PADDING_PRESETS) as ButtonPaddingPreset[]
 	),
 	buttonRadiusPreset: parseAsStringLiteral<ButtonRadiusPreset>(
 		Object.keys(BUTTON_RADIUS_PRESETS) as ButtonRadiusPreset[]
 	),
-	compactButtonRadiusPreset: parseAsStringLiteral<CompactButtonRadiusPreset>(
-		Object.keys(COMPACT_BUTTON_RADIUS_PRESETS) as CompactButtonRadiusPreset[]
-	),
+
 	template: parseAsStringLiteral<Template>(TEMPLATES).withDefault(
 		DEFAULT_CONFIG.template
 	),
@@ -110,9 +114,10 @@ function resolvePresetParams(
 	} as DesignSystemSearchParams
 	return {
 		...mergedParams,
+		buttonDefaultSize: rawParams.buttonDefaultSize ?? undefined,
+		buttonAppearance: rawParams.buttonAppearance ?? undefined,
 		buttonPaddingPreset: rawParams.buttonPaddingPreset ?? undefined,
 		buttonRadiusPreset: rawParams.buttonRadiusPreset ?? undefined,
-		compactButtonRadiusPreset: rawParams.compactButtonRadiusPreset ?? undefined,
 	}
 }
 

@@ -28,10 +28,11 @@ export async function GET(request: NextRequest) {
 			controlRadius: searchParams.get("controlRadius") ?? undefined,
 			density: searchParams.get("density") ?? undefined,
 			iconLibrary: searchParams.get("iconLibrary") ?? undefined,
+			buttonDefaultSize: searchParams.get("buttonDefaultSize") ?? undefined,
+			buttonAppearance: searchParams.get("buttonAppearance") ?? undefined,
 			buttonPaddingPreset: searchParams.get("buttonPaddingPreset") ?? undefined,
 			buttonRadiusPreset: searchParams.get("buttonRadiusPreset") ?? undefined,
-			compactButtonRadiusPreset:
-				searchParams.get("compactButtonRadiusPreset") ?? undefined,
+
 			style: searchParams.get("style") ?? undefined,
 			useSrcDir:
 				searchParams.get("useSrcDir") === null

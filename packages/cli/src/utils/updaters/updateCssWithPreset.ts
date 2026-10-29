@@ -60,9 +60,13 @@ function updateThemeVars(
 /**
  * Appends Google Fonts import URLs from the preset that don't already exist.
  */
-function updateFontImports(root: Root, css: Record<string, Record<string, string> | string>): void {
+function updateFontImports(
+	root: Root,
+	css: Record<string, Record<string, string> | string>
+): void {
 	const fontImportKeys = Object.keys(css).filter(
-		(k) => k.startsWith("@import") && k.includes(CSS_CONSTANTS.GOOGLE_FONTS_DOMAIN)
+		(k) =>
+			k.startsWith("@import") && k.includes(CSS_CONSTANTS.GOOGLE_FONTS_DOMAIN)
 	)
 	if (fontImportKeys.length === 0) return
 
@@ -100,9 +104,7 @@ function updateFontImports(root: Root, css: Record<string, Record<string, string
  * PostCSS plugin that updates an existing CSS file with preset values
  * instead of overwriting the entire file.
  */
-const presetUpdatePlugin: PluginCreator<{ preset: Preset }> = (
-	options
-) => {
+const presetUpdatePlugin: PluginCreator<{ preset: Preset }> = (options) => {
 	const preset = options!.preset
 	const { cssVars, css } = preset.config
 
@@ -124,6 +126,30 @@ const presetUpdatePlugin: PluginCreator<{ preset: Preset }> = (
 					updateColorVars(rule, cssVars.dark)
 				}
 			})
+
+			// Replace only managed Button rules; preserve all unrelated project CSS.
+			root.walkRules((rule) => {
+				if (rule.selector.startsWith("[data-radian-button")) rule.remove()
+			})
+			for (const [selector, declarations] of Object.entries(css)) {
+				if (!selector.startsWith("[data-radian-button")) continue
+				if (typeof declarations === "string") {
+					root.append(postcss.parse(`${selector} {${declarations}}`).nodes)
+					continue
+				}
+				const rule = postcss.rule({ selector })
+				for (const [prop, value] of Object.entries(declarations)) {
+					const important = /\s*!important$/.test(value)
+					rule.append(
+						postcss.decl({
+							prop,
+							value: value.replace(/\s*!important$/, ""),
+							important,
+						})
+					)
+				}
+				root.append(rule)
+			}
 
 			// Append font imports from preset
 			updateFontImports(root, css)

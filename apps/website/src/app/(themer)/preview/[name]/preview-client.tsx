@@ -16,7 +16,11 @@ type RegistryThemeCssVars = NonNullable<
 	ReturnType<typeof buildRegistryConfig>["cssVars"]
 >
 
-const buildCssRule = (selector: string, cssVars?: Record<string, string>) => {
+const buildCssRule = (
+	selector: string,
+	cssVars?: Record<string, string> | string
+) => {
+	if (typeof cssVars === "string") return `${selector} {${cssVars}}\n`
 	const declarations = Object.entries(cssVars ?? {})
 		.filter(([, value]) => Boolean(value))
 		.map(([key, value]) => `  ${key}: ${value};`)
@@ -141,7 +145,17 @@ export function PreviewClient({ children }: { children: React.ReactNode }) {
 			document.head.appendChild(style)
 		}
 
-		style.textContent = buildThemerCssText(config?.cssVars, params.customColors)
+		style.textContent =
+			buildThemerCssText(config?.cssVars, params.customColors) +
+			Object.entries(config.css)
+				.filter(([key]) => !key.startsWith("@"))
+				.map(([selector, declarations]) =>
+					buildCssRule(
+						selector,
+						declarations as Record<string, string> | string
+					)
+				)
+				.join("\n")
 
 		removeManagedBodyClasses(document.body)
 		document.body.classList.add(`style-${params.style}`)
@@ -180,17 +194,19 @@ export function PreviewClient({ children }: { children: React.ReactNode }) {
 			if (event.data.type === "control-radius-change") {
 				setParams({ controlRadius: event.data.controlRadius })
 			}
+			if (event.data.type === "button-theme-change") {
+				setParams({
+					buttonDefaultSize: event.data.buttonDefaultSize,
+					buttonAppearance: event.data.buttonAppearance,
+				})
+			}
 			if (event.data.type === "button-padding-preset-change") {
 				setParams({ buttonPaddingPreset: event.data.buttonPaddingPreset })
 			}
 			if (event.data.type === "button-radius-preset-change") {
 				setParams({ buttonRadiusPreset: event.data.buttonRadiusPreset })
 			}
-			if (event.data.type === "compact-button-radius-preset-change") {
-				setParams({
-					compactButtonRadiusPreset: event.data.compactButtonRadiusPreset,
-				})
-			}
+
 			if (event.data.type === "template-change") {
 				setParams({ template: event.data.template })
 			}

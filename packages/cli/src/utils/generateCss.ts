@@ -77,6 +77,14 @@ function renderCssEntry(
 		return `${selector} {\n${indent(formatRawBody(body))}\n}`
 	}
 
+	// A selector object contains declarations; at-rule objects contain nested rules.
+	if (!selector.startsWith("@")) {
+		const declarations = Object.entries(body)
+			.map(([property, value]) => `${property}: ${value};`)
+			.join("\n")
+		return `${selector} {\n${indent(declarations)}\n}`
+	}
+
 	const inner = Object.entries(body)
 		.map(([sel, decl]) => {
 			if (typeof decl === "string") {

@@ -1,10 +1,16 @@
 "use client"
 
-import { type CSSProperties, type ReactNode, useMemo, useState } from "react"
+import {
+	type CSSProperties,
+	type ReactNode,
+	useMemo,
+	useState,
+	useId,
+} from "react"
 import { useTheme } from "next-themes"
-import { X } from "lucide-react"
-import { Button, CompactButton, type ButtonProps } from "@/registry/ui/button"
-import { Card, CardContent, CardHeader } from "@/styles/default/ui/card"
+import { CheckCircle2, ChevronLeft, ChevronRight } from "lucide-react"
+import { Button, ButtonGroup } from "@/registry/ui/button"
+import { Card, CardContent } from "@/styles/default/ui/card"
 import { Label } from "@/styles/default/ui/label"
 import {
 	Select,
@@ -18,34 +24,160 @@ import { useThemerPreset } from "@/lib/themer-preset"
 import { buildRegistryConfig } from "@/registry/config"
 import {
 	BUTTON_PADDING_PRESETS,
+	BUTTON_SIZES,
+	BUTTON_APPEARANCES,
+	buildButtonThemeCss,
+	type ButtonDefaultSize,
+	type ButtonAppearance,
 	type ButtonPaddingPreset,
 } from "@/registry/component-presets/button-presets"
+import { Button as ControlButton, IconButton } from "@/styles/default/ui/button"
+import {
+	Popover,
+	PopoverTrigger,
+	PopoverContent,
+} from "@/styles/default/ui/popover"
+import { ScrollArea } from "@/styles/default/ui/scroll-area"
 import { ComponentSettingsPopover } from "./component-settings-popover"
 
-type ButtonSize = NonNullable<ButtonProps["size"]>
-type ButtonVariant = NonNullable<ButtonProps["variant"]>
 const PRESET_NAMES = Object.keys(
 	BUTTON_PADDING_PRESETS
 ) as ButtonPaddingPreset[]
-const BUTTON_SIZES: { value: ButtonSize; height: number }[] = [
-	{ value: "xs", height: 28 },
-	{ value: "sm", height: 32 },
-	{ value: "md", height: 36 },
-	{ value: "lg", height: 40 },
-	{ value: "xl", height: 44 },
-	{ value: "2xl", height: 48 },
-]
-const BUTTON_VARIANTS: { value: ButtonVariant; label: string }[] = [
-	{ value: "strong", label: "Strong" },
-	{ value: "soft", label: "Soft" },
-	{ value: "outline", label: "Outline" },
-	{ value: "ghost", label: "Ghost" },
-	{ value: "link", label: "Link" },
-	{ value: "glossy", label: "Glossy" },
-	{ value: "glossy-inverted", label: "Glossy inverted" },
-	{ value: "smooth", label: "Smooth" },
-	{ value: "smooth-inverted", label: "Smooth inverted" },
-]
+
+function ButtonPreview({
+	appearance,
+	group = false,
+}: {
+	appearance?: ButtonAppearance
+	group?: boolean
+}) {
+	const [params] = useThemerPreset()
+	const { resolvedTheme } = useTheme()
+	const id = useId()
+	const config = useMemo(() => buildRegistryConfig(params), [params])
+	const rules = buildButtonThemeCss({
+		...params,
+		buttonAppearance: appearance ?? params.buttonAppearance,
+	})
+	const css = Object.entries(rules)
+		.map(
+			([selector, declarations]) =>
+				`${selector
+					.split(", ")
+					.map((part) => `[data-button-preview="${id}"] ${part}`)
+					.join(", ")} {${
+					typeof declarations === "string"
+						? declarations
+						: Object.entries(declarations)
+								.map(([key, value]) => `${key}:${value};`)
+								.join("")
+				}}`
+		)
+		.join("\n")
+	const style = {
+		...config.cssVars.light,
+		...(resolvedTheme === "dark" ? config.cssVars.dark : {}),
+		...config.cssVars.theme,
+	} as CSSProperties
+	const samples = (
+		<>
+			<Button type="button">Primary</Button>
+			<Button type="button" color="neutral" variant="outline">
+				Secondary
+			</Button>
+		</>
+	)
+	return (
+		<div
+			data-button-preview={id}
+			style={style}
+			className={`style-${params.style} border-soft bg-bg flex min-h-[104px] items-center justify-center gap-2 rounded-lg border p-4`}>
+			<style>{css}</style>
+			{group ? (
+				<ButtonGroup color="primary">
+					<Button>First</Button>
+					<Button>Second</Button>
+				</ButtonGroup>
+			) : (
+				samples
+			)}
+		</div>
+	)
+}
+
+function VariantPicker({ group }: { group: boolean }) {
+	const [params, setParams] = useThemerPreset()
+	const [open, setOpen] = useState(false)
+	return (
+		<Popover open={open} onOpenChange={setOpen}>
+			<PopoverTrigger asChild>
+				<ControlButton
+					variant="ghost"
+					color="neutral"
+					size="xs"
+					className="h-7 w-full justify-between px-1 text-xs"
+					aria-label="Choose default button variant">
+					<span>Default variant</span>
+					<span className="flex items-center gap-1">
+						{
+							BUTTON_APPEARANCES.find(
+								(entry) => entry.value === (params.buttonAppearance ?? "strong")
+							)?.label
+						}
+						<ChevronRight className="text-fg-tertiary" />
+					</span>
+				</ControlButton>
+			</PopoverTrigger>
+			<PopoverContent
+				side="right"
+				align="start"
+				sideOffset={16}
+				collisionPadding={12}
+				className="bg-bg w-[280px] rounded-xl p-0 shadow-lg"
+				aria-label="Default variant">
+				<div className="border-border flex h-9 items-center gap-1 border-b px-2">
+					<IconButton
+						size="xs"
+						variant="ghost"
+						color="neutral"
+						aria-label="Back to button settings"
+						onClick={() => setOpen(false)}>
+						<ChevronLeft />
+					</IconButton>
+					<span className="text-xs">Default variant</span>
+				</div>
+				<ScrollArea className="h-[430px] max-h-[60dvh]">
+					<div className="flex flex-col gap-2 p-2">
+						{BUTTON_APPEARANCES.map(({ value, label }) => (
+							<Card
+								key={value}
+								className="bg-fill1 relative gap-1 rounded-xl border-0 p-1 shadow-none">
+								<ControlButton
+									variant="ghost"
+									color="neutral"
+									className="absolute inset-0 z-10 h-full w-full rounded-xl hover:bg-transparent"
+									aria-label={`Use ${label} variant`}
+									aria-pressed={(params.buttonAppearance ?? "strong") === value}
+									onClick={() => setParams({ buttonAppearance: value })}>
+									{null}
+								</ControlButton>
+								<span className="flex items-center justify-between px-1 py-1 text-xs">
+									{label}
+									{(params.buttonAppearance ?? "strong") === value && (
+										<CheckCircle2 className="text-primary size-3.5" />
+									)}
+								</span>
+								<div className="pointer-events-none" inert>
+									<ButtonPreview appearance={value} group={group} />
+								</div>
+							</Card>
+						))}
+					</div>
+				</ScrollArea>
+			</PopoverContent>
+		</Popover>
+	)
+}
 
 function PresetSlider({
 	label,
@@ -60,7 +192,7 @@ function PresetSlider({
 		<div className="flex flex-col gap-1.5">
 			<div className="flex items-center justify-between text-[13px] leading-4">
 				<span className="text-fg-secondary">{label}</span>
-				<span className="text-fg font-medium">{value ?? "Theme"}</span>
+				<span className="text-fg font-medium">{value ?? "md"}</span>
 			</div>
 			<Slider
 				min={0}
@@ -78,7 +210,7 @@ function PresetSlider({
 				</span>
 				<SliderThumb
 					aria-label={`${label} preset`}
-					aria-valuetext={value ?? "Use theme defaults"}
+					aria-valuetext={value ?? "md"}
 					className="border-bg bg-primary focus-visible:ring-primary focus-visible:ring-offset-bg z-10 size-4 border-[3px] shadow-sm focus-visible:ring-2 focus-visible:ring-offset-2"
 				/>
 			</Slider>
@@ -86,27 +218,23 @@ function PresetSlider({
 	)
 }
 
-export function ButtonSettings({ children }: { children: ReactNode }) {
+export function ButtonSettings({
+	children,
+	group = false,
+}: {
+	children: ReactNode
+	group?: boolean
+}) {
 	const [params, setParams] = useThemerPreset()
-	const { resolvedTheme } = useTheme()
-	// Variant and size only configure these samples; theme presets persist in the URL.
-	const [size, setSize] = useState<ButtonSize>("md")
-	const [variant, setVariant] = useState<ButtonVariant>("strong")
-	const config = useMemo(() => buildRegistryConfig(params), [params])
-	const previewStyle = {
-		...config.cssVars.light,
-		...(resolvedTheme === "dark" ? config.cssVars.dark : {}),
-		...config.cssVars.theme,
-	} as CSSProperties
+	const size = params.buttonDefaultSize ?? "md"
 
 	const reset = () => {
 		setParams({
 			buttonPaddingPreset: null,
 			buttonRadiusPreset: null,
-			compactButtonRadiusPreset: null,
+			buttonDefaultSize: null,
+			buttonAppearance: null,
 		})
-		setSize("md")
-		setVariant("strong")
 	}
 	const shuffle = () => {
 		const pickPreset = () =>
@@ -114,52 +242,26 @@ export function ButtonSettings({ children }: { children: ReactNode }) {
 		setParams({
 			buttonPaddingPreset: pickPreset(),
 			buttonRadiusPreset: pickPreset(),
-			compactButtonRadiusPreset: pickPreset(),
+			buttonDefaultSize:
+				BUTTON_SIZES[Math.floor(Math.random() * BUTTON_SIZES.length)].value,
+			buttonAppearance:
+				BUTTON_APPEARANCES[
+					Math.floor(Math.random() * BUTTON_APPEARANCES.length)
+				].value,
 		})
-		setSize(BUTTON_SIZES[Math.floor(Math.random() * BUTTON_SIZES.length)].value)
-		setVariant(
-			BUTTON_VARIANTS[Math.floor(Math.random() * BUTTON_VARIANTS.length)].value
-		)
 	}
 
 	return (
 		<ComponentSettingsPopover
-			name="Button"
+			name={group ? "Button Group" : "Buttons"}
 			onReset={reset}
 			onShuffle={shuffle}
 			content={
 				<div className="flex flex-col gap-4 p-2.5">
 					<Card className="bg-fill1 gap-1 rounded-xl border-0 p-1 shadow-none">
-						<CardHeader className="flex flex-row items-center justify-between gap-2 px-1 py-0">
-							<Label
-								htmlFor="button-default-variant"
-								className="text-xs font-normal">
-								Default variant
-							</Label>
-							<Select
-								value={variant}
-								onValueChange={(value) => setVariant(value as ButtonVariant)}>
-								<SelectTrigger
-									id="button-default-variant"
-									size="xs"
-									className="h-6 w-auto gap-1 border-0 bg-transparent px-0 text-xs shadow-none [&>svg]:-rotate-90">
-									<SelectValue />
-								</SelectTrigger>
-								<SelectContent>
-									{BUTTON_VARIANTS.map(({ value, label }) => (
-										<SelectItem key={value} value={value}>
-											{label}
-										</SelectItem>
-									))}
-								</SelectContent>
-							</Select>
-						</CardHeader>
-						<CardContent
-							className={`style-${params.style} border-soft bg-bg flex min-h-[104px] flex-wrap items-center justify-center gap-2 rounded-lg border p-4`}
-							style={previewStyle}>
-							<Button variant={variant} size={size} type="button">
-								Primary
-							</Button>
+						<VariantPicker group={group} />
+						<CardContent className="p-0">
+							<ButtonPreview group={group} />
 						</CardContent>
 					</Card>
 
@@ -186,7 +288,9 @@ export function ButtonSettings({ children }: { children: ReactNode }) {
 							</Label>
 							<Select
 								value={size}
-								onValueChange={(value) => setSize(value as ButtonSize)}>
+								onValueChange={(value) =>
+									setParams({ buttonDefaultSize: value as ButtonDefaultSize })
+								}>
 								<SelectTrigger
 									id="button-default-size"
 									size="sm"
@@ -202,39 +306,6 @@ export function ButtonSettings({ children }: { children: ReactNode }) {
 								</SelectContent>
 							</Select>
 						</div>
-					</div>
-
-					<div className="border-border flex flex-col gap-3 border-t pt-3">
-						<Card className="bg-fill1 gap-1 rounded-xl border-0 p-1 shadow-none">
-							<CardHeader className="flex flex-row items-center px-1 py-1">
-								<span className="text-fg text-xs">Compact buttons</span>
-							</CardHeader>
-							<CardContent
-								className={`style-${params.style} border-soft bg-bg flex min-h-[104px] items-center justify-center gap-2 rounded-lg border p-4`}
-								style={previewStyle}>
-								<CompactButton
-									size="sm"
-									variant="outline"
-									color="neutral"
-									aria-label="Small compact button">
-									<X />
-								</CompactButton>
-								<CompactButton
-									size="md"
-									variant="outline"
-									color="neutral"
-									aria-label="Medium compact button">
-									<X />
-								</CompactButton>
-							</CardContent>
-						</Card>
-						<PresetSlider
-							label="Compact radius"
-							value={params.compactButtonRadiusPreset}
-							onValueChange={(compactButtonRadiusPreset) =>
-								setParams({ compactButtonRadiusPreset })
-							}
-						/>
 					</div>
 				</div>
 			}>

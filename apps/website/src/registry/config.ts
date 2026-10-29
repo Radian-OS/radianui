@@ -10,11 +10,13 @@ import { TEMPLATES } from "./templates"
 import { generateCustomColorShades } from "@/lib/shade-generator"
 import {
 	BUTTON_PADDING_PRESETS,
+	BUTTON_SIZES,
+	BUTTON_APPEARANCES,
+	buildButtonThemeCss,
 	BUTTON_RADIUS_PRESETS,
 	COMPACT_BUTTON_RADIUS_PRESETS,
 	type ButtonPaddingPreset,
 	type ButtonRadiusPreset,
-	type CompactButtonRadiusPreset,
 } from "./component-presets/button-presets"
 import ntc from "ntcjs"
 
@@ -28,9 +30,6 @@ const buttonPaddingPresetValues = Object.keys(
 const buttonRadiusPresetValues = Object.keys(
 	BUTTON_RADIUS_PRESETS
 ) as ButtonRadiusPreset[]
-const compactButtonRadiusPresetValues = Object.keys(
-	COMPACT_BUTTON_RADIUS_PRESETS
-) as CompactButtonRadiusPreset[]
 
 const cssValueSchema = z.union([z.string(), z.record(z.string(), z.string())])
 
@@ -77,9 +76,14 @@ export const themerConfigSchema = z.object({
 	template: z.enum(TEMPLATES).default("next"),
 	radius: z.string().default("default"),
 	controlRadius: z.string().default("default"),
+	buttonDefaultSize: z
+		.enum(BUTTON_SIZES.map((entry) => entry.value))
+		.optional(),
+	buttonAppearance: z
+		.enum(BUTTON_APPEARANCES.map((entry) => entry.value))
+		.optional(),
 	buttonPaddingPreset: z.enum(buttonPaddingPresetValues).optional(),
 	buttonRadiusPreset: z.enum(buttonRadiusPresetValues).optional(),
-	compactButtonRadiusPreset: z.enum(compactButtonRadiusPresetValues).optional(),
 	style: z
 		.enum(styleValues, {
 			error: "Invalid style valiue",
@@ -446,15 +450,10 @@ export function buildRegistryConfig(config: ThemerConfig): RegistryConfig {
 			theme[`--button-radius-${size}`] = `${radius}px`
 		}
 	}
-	if (config.compactButtonRadiusPreset) {
-		const radiusValues =
-			COMPACT_BUTTON_RADIUS_PRESETS[config.compactButtonRadiusPreset]
-
-		for (const [size, radius] of Object.entries(radiusValues)) {
-			theme[`--compact-button-radius-${size}`] = `${radius}px`
-		}
+	if (config.buttonRadiusPreset) {
+		theme["--compact-button-radius"] =
+			`${COMPACT_BUTTON_RADIUS_PRESETS[config.buttonRadiusPreset]}px`
 	}
-
 	const headingFont = FONTS.find((font) => font.value === config.headingFont)
 	const bodyFont = FONTS.find((font) => font.value === config.bodyFont)
 
@@ -514,6 +513,7 @@ export function buildRegistryConfig(config: ThemerConfig): RegistryConfig {
 			},
 		},
 		css: {
+			...buildButtonThemeCss(config),
 			...(headingFont?.font.googleFontsUrl && {
 				[`@import url('${headingFont.font.googleFontsUrl}')`]: {},
 			}),

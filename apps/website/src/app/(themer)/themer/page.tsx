@@ -59,19 +59,16 @@ function ThemerPage() {
 			searchParams.set("density", params.density)
 		}
 
+		for (const key of ["buttonDefaultSize", "buttonAppearance"] as const) {
+			if (params[key]) searchParams.set(key, params[key])
+		}
+
 		if (params.buttonPaddingPreset) {
 			searchParams.set("buttonPaddingPreset", params.buttonPaddingPreset)
 		}
 
 		if (params.buttonRadiusPreset) {
 			searchParams.set("buttonRadiusPreset", params.buttonRadiusPreset)
-		}
-
-		if (params.compactButtonRadiusPreset) {
-			searchParams.set(
-				"compactButtonRadiusPreset",
-				params.compactButtonRadiusPreset
-			)
 		}
 
 		return `/preview/${selectedComponent}?${searchParams.toString()}`
@@ -157,10 +154,11 @@ function ThemerPage() {
 
 	useEffect(() => {
 		postToIframe({
-			type: "compact-button-radius-preset-change",
-			compactButtonRadiusPreset: params.compactButtonRadiusPreset ?? null,
+			type: "button-theme-change",
+			buttonDefaultSize: params.buttonDefaultSize ?? null,
+			buttonAppearance: params.buttonAppearance ?? null,
 		})
-	}, [params.compactButtonRadiusPreset, postToIframe])
+	}, [params.buttonDefaultSize, params.buttonAppearance, postToIframe])
 
 	return (
 		<SidebarProvider
@@ -193,6 +191,11 @@ function ThemerPage() {
 							src={iframeSrc}
 							onLoad={() => {
 								postToIframe({
+									type: "button-theme-change",
+									buttonDefaultSize: params.buttonDefaultSize ?? null,
+									buttonAppearance: params.buttonAppearance ?? null,
+								})
+								postToIframe({
 									type: "extra-color-schemes-change",
 									extraColorSchemes: params.extraColorSchemes,
 								})
@@ -203,11 +206,6 @@ function ThemerPage() {
 								postToIframe({
 									type: "button-radius-preset-change",
 									buttonRadiusPreset: params.buttonRadiusPreset ?? null,
-								})
-								postToIframe({
-									type: "compact-button-radius-preset-change",
-									compactButtonRadiusPreset:
-										params.compactButtonRadiusPreset ?? null,
 								})
 							}}
 							className="h-full w-full border-0"
