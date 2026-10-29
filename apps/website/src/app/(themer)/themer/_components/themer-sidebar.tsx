@@ -14,7 +14,7 @@ import {
 	SidebarMenuItem,
 } from "@/styles/default/ui/sidebar"
 import { Button } from "@/styles/default/ui/button"
-import { ChevronRight, Component, Lock, Shuffle, Plus } from "lucide-react"
+import { ChevronRight, Component, Lock, Shuffle } from "lucide-react"
 import {
 	Tabs,
 	TabsContent,
@@ -23,7 +23,7 @@ import {
 } from "@/styles/default/ui/tabs"
 import { ScrollArea } from "@/styles/default/ui/scroll-area"
 import { COMPONENTS_DATA } from "@/config/navigation-config"
-import PrimaryColorPicker from "./primary-color-picker"
+import { ColorSchemesPicker } from "./color-schemes-picker"
 import BaseColorPicker from "./base-color-picker"
 import PresetPicker from "./preset-picker"
 import { GoogleIcon, RadianIcon } from "./icons"
@@ -88,57 +88,14 @@ export function ThemerSidebar() {
 								<SidebarGroupLabel className="text-fg-tertiary px-0 font-medium">
 									Colors
 								</SidebarGroupLabel>
-								<div className="grid grid-cols-3 gap-2">
-									{/* Primary */}
-									<PrimaryColorPicker
-										value={params.primaryColor}
-										onChange={handlePrimaryColorChange}
-									/>
-
-									{/* Secondary */}
-									<div className="col-span-1 flex h-[64px] flex-col justify-between overflow-hidden rounded-lg bg-[#f97316] p-2 text-white shadow-sm">
-										<div className="flex items-start justify-between">
-											<span className="mr-1 truncate text-xs font-semibold">
-												Secondary
-											</span>
-											<Lock className="size-3 shrink-0 opacity-70" />
-										</div>
-										<div className="mt-auto flex gap-1">
-											<div className="h-1 w-full rounded-full bg-white/30" />
-											<div className="h-1 w-full rounded-full bg-white/30" />
-											<div className="h-1 w-full rounded-full bg-white" />
-										</div>
-									</div>
-
-									{/* Tertiary */}
-									<div className="col-span-1 flex h-[64px] flex-col justify-between overflow-hidden rounded-lg bg-[#d946ef] p-2 text-white shadow-sm">
-										<div className="flex items-start justify-between">
-											<Lock className="size-3 shrink-0 opacity-70" />
-										</div>
-										<div className="mt-auto flex gap-1">
-											<div className="h-1 w-full rounded-full bg-white/30" />
-											<div className="h-1 w-full rounded-full bg-white" />
-											<div className="h-1 w-full rounded-full bg-white/30" />
-										</div>
-									</div>
-
-									{/* Quaternary */}
-									<div className="col-span-1 flex h-[64px] flex-col justify-between overflow-hidden rounded-lg bg-[#14b8a6] p-2 text-white shadow-sm">
-										<div className="flex items-start justify-between">
-											<Lock className="size-3 shrink-0 opacity-70" />
-										</div>
-										<div className="mt-auto flex gap-1">
-											<div className="h-1 w-full rounded-full bg-white/30" />
-											<div className="h-1 w-full rounded-full bg-white" />
-											<div className="h-1 w-full rounded-full bg-white/30" />
-										</div>
-									</div>
-
-									{/* Plus */}
-									<div className="bg-fill1 border-border text-sidebar-fg/50 hover:bg-fill2 col-span-1 flex h-[64px] cursor-pointer items-center justify-center rounded-lg border border-dashed transition-colors">
-										<Plus className="size-4" />
-									</div>
-								</div>
+								<ColorSchemesPicker
+									primaryColor={params.primaryColor}
+									onPrimaryChange={handlePrimaryColorChange}
+									extraColorSchemes={params.extraColorSchemes}
+									onExtraColorSchemesChange={(val) =>
+										setParams({ extraColorSchemes: val })
+									}
+								/>
 							</SidebarGroup>
 
 							{/* Neutral Base */}

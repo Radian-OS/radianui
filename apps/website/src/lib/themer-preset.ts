@@ -46,6 +46,9 @@ const designSystemSearchParams = {
 	customColors: parseAsJson<Record<string, string>>(
 		(v) => v as Record<string, string>
 	).withDefault(DEFAULT_CONFIG.customColors),
+	extraColorSchemes: parseAsJson<string[]>((v) => v as string[]).withDefault(
+		DEFAULT_CONFIG.extraColorSchemes
+	),
 	componentOverrides: parseAsJson<
 		Array<{
 			selector: string
@@ -85,6 +88,7 @@ function resolvePresetParams(
 		useSrcDir: searchParams.get("useSrcDir") ?? rawParams.useSrcDir,
 		iconLibrary: searchParams.get("iconLibrary") ?? rawParams.iconLibrary,
 		customColors: rawParams.customColors,
+		extraColorSchemes: rawParams.extraColorSchemes,
 		componentOverrides: rawParams.componentOverrides,
 	} as DesignSystemSearchParams
 	return mergedParams

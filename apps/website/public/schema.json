@@ -18,7 +18,10 @@
 			"type": "string",
 			"enum": [
 				"lucide",
-				"hugeicons"
+				"hugeicons",
+				"phosphor",
+				"tabler",
+				"heroicons"
 			],
 			"description": "Icon library used in the project"
 		},
