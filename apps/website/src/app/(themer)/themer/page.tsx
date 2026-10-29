@@ -44,6 +44,13 @@ function ThemerPage() {
 			searchParams.set("baseColor", params.baseColor)
 		}
 
+		if (params.extraColorSchemes.length) {
+			searchParams.set(
+				"extraColorSchemes",
+				JSON.stringify(params.extraColorSchemes)
+			)
+		}
+
 		if (params.iconLibrary) {
 			searchParams.set("iconLibrary", params.iconLibrary)
 		}
@@ -87,6 +94,13 @@ function ThemerPage() {
 			baseColor: params.baseColor,
 		})
 	}, [params.baseColor, postToIframe])
+
+	useEffect(() => {
+		postToIframe({
+			type: "extra-color-schemes-change",
+			extraColorSchemes: params.extraColorSchemes,
+		})
+	}, [params.extraColorSchemes, postToIframe])
 
 	useEffect(() => {
 		postToIframe({
@@ -178,6 +192,10 @@ function ThemerPage() {
 							ref={iframeRef}
 							src={iframeSrc}
 							onLoad={() => {
+								postToIframe({
+									type: "extra-color-schemes-change",
+									extraColorSchemes: params.extraColorSchemes,
+								})
 								postToIframe({
 									type: "button-padding-preset-change",
 									buttonPaddingPreset: params.buttonPaddingPreset ?? null,

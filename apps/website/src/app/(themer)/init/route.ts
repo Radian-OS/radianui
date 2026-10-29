@@ -4,13 +4,30 @@ import { buildRegistryConfig, themerConfigSchema } from "@/registry/config"
 export async function GET(request: NextRequest) {
 	try {
 		const { searchParams } = request.nextUrl
+		let extraColorSchemes: unknown
+		const extraColorSchemesParam = searchParams.get("extraColorSchemes")
+		if (extraColorSchemesParam !== null) {
+			try {
+				extraColorSchemes = JSON.parse(extraColorSchemesParam)
+			} catch {
+				return NextResponse.json(
+					{ error: "Invalid extraColorSchemes JSON" },
+					{ status: 400 }
+				)
+			}
+		}
 
 		const raw = {
 			primaryColor: searchParams.get("primaryColor") ?? undefined,
+			baseColor: searchParams.get("baseColor") ?? undefined,
+			extraColorSchemes,
 			headingFont: searchParams.get("headingFont") ?? undefined,
 			bodyFont: searchParams.get("bodyFont") ?? undefined,
 			template: searchParams.get("template") ?? undefined,
 			radius: searchParams.get("radius") ?? undefined,
+			controlRadius: searchParams.get("controlRadius") ?? undefined,
+			density: searchParams.get("density") ?? undefined,
+			iconLibrary: searchParams.get("iconLibrary") ?? undefined,
 			buttonPaddingPreset: searchParams.get("buttonPaddingPreset") ?? undefined,
 			buttonRadiusPreset: searchParams.get("buttonRadiusPreset") ?? undefined,
 			compactButtonRadiusPreset:

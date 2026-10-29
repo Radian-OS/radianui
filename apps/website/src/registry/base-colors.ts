@@ -95,75 +95,73 @@ export const BASE_COLORS = [
 		cssVars: {
 			light: {
 				"--color-bg": "oklch(1 0 0)",
-				"--color-fill1": "oklch(0.977 0 0)",
-				"--color-fill2": "oklch(0.954 0 0)",
-				"--color-fill3": "oklch(0.939 0 0)",
-				"--color-fill4": "oklch(0.908 0 0)",
+				"--color-fill1": "oklch(0.9761 0 0)",
+				"--color-fill2": "oklch(0.9551 0 0)",
+				"--color-fill3": "oklch(0.9401 0 0)",
+				"--color-fill4": "oklch(0.9067 0 0)",
 
-				"--color-fg": "oklch(0.28 0 0)",
-				"--color-fg-secondary": "oklch(0.474 0 0)",
-				"--color-fg-tertiary": "oklch(0.649 0 0)",
-				"--color-fg-disabled": "oklch(0.716 0 0)",
+				"--color-fg": "oklch(0.2809 0 0)",
+				"--color-fg-secondary": "oklch(0.5103 0 0)",
+				"--color-fg-tertiary": "oklch(0.683 0 0)",
+				"--color-fg-disabled": "oklch(0.7155 0 0)",
 				"--color-fg-inverse": "oklch(1 0 0)",
 
-				"--color-border": "oklch(0.908 0 0)",
-				"--color-soft": "oklch(0.939 0 0)",
-				"--color-alpha":
-					" color-mix(in srgb,oklch(0.302 0.038 263.737),transparent 88%)",
+				"--color-border": "oklch(0.9067 0 0)",
+				"--color-soft": "oklch(0.9401 0 0)",
+				"--color-alpha": "color-mix(in srgb, oklch(0 0 0), transparent 88%)",
 				"--color-soft-alpha":
-					"color-mix(in srgb,oklch(0.302 0.038 263.737),transparent 92%)",
+					"color-mix(in srgb, oklch(0 0 0), transparent 92%)",
 
-				"--color-elevation-negative": "oklch(0.977 0 0)",
+				"--color-elevation-negative": "oklch(0.9761 0 0)",
 				"--color-elevation-level1": "oklch(1 0 0)",
 				"--color-elevation-level2": "oklch(1 0 0)",
 
 				"--color-white-inverse": "oklch(1 0 0)",
-				"--color-black-inverse": "oklch(0.146 0 0)",
+				"--color-black-inverse": "oklch(0.1448 0 0)",
 
 				"--color-fill1-alpha":
-					"color-mix(in srgb,oklch(0.3 0.045 20.08),transparent 96%)",
+					"color-mix(in srgb, oklch(0 0 0), transparent 96%)",
 				"--color-fill2-alpha":
-					"color-mix(in srgb,oklch(0.3 0.045 20.08),transparent 92%)",
+					"color-mix(in srgb, oklch(0 0 0), transparent 92%)",
 				"--color-fill3-alpha":
-					"color-mix(in srgb,oklch(0.3 0.045 20.08),transparent 88%)",
+					"color-mix(in srgb, oklch(0 0 0), transparent 88%)",
 				"--color-fill4-alpha":
-					"color-mix(in srgb,oklch(0.3 0.045 20.08),transparent 84%)",
+					"color-mix(in srgb, oklch(0 0 0), transparent 84%)",
 			},
 			dark: {
-				"--color-bg": "oklch(0.146 0 0)",
-				"--color-fill1": "oklch(0.193 0 0)",
-				"--color-fill2": "oklch(0.238 0 0)",
-				"--color-fill3": "oklch(0.28 0 0)",
-				"--color-fill4": "oklch(0.321 0 0)",
+				"--color-bg": "oklch(0.1448 0 0)",
+				"--color-fill1": "oklch(0.1913 0 0)",
+				"--color-fill2": "oklch(0.2393 0 0)",
+				"--color-fill3": "oklch(0.2809 0 0)",
+				"--color-fill4": "oklch(0.3211 0 0)",
 
-				"--color-fg": "oklch(0.977 0 0)",
-				"--color-fg-secondary": "oklch(0.845 0 0)",
-				"--color-fg-tertiary": "oklch(0.716 0 0)",
-				"--color-fg-disabled": "oklch(0.51 0 0)",
-				"--color-fg-inverse": "oklch(0.238 0 0)",
+				"--color-fg": "oklch(0.9761 0 0)",
+				"--color-fg-secondary": "oklch(0.7155 0 0)",
+				"--color-fg-tertiary": "oklch(0.5795 0 0)",
+				"--color-fg-disabled": "oklch(0.5103 0 0)",
+				"--color-fg-inverse": "oklch(0.2393 0 0)",
 
-				"--color-border": "oklch(0.28 0 0)",
-				"--color-soft": "oklch(0.238 0 0)",
-				"--color-alpha":
-					"color-mix(in srgb, oklch(0.856 0.033 17.82), transparent 88%)",
+				"--color-border": "oklch(0.2809 0 0)",
+				"--color-soft": "oklch(0.2393 0 0)",
+				"--color-alpha": "color-mix(in srgb, oklch(1 0 0), transparent 84%)",
 				"--color-soft-alpha":
-					"color-mix(in srgb, oklch(0.856 0.033 17.82), transparent 92%)",
+					"color-mix(in srgb, oklch(1 0 0), transparent 88%)",
 
 				"--color-elevation-negative": "oklch(0 0 0)",
-				"--color-elevation-level1": "oklch(0.193 0 0)",
-				"--color-elevation-level2": "oklch(0.238 0 0)",
+				"--color-elevation-level1": "oklch(0.1913 0 0)",
+				"--color-elevation-level2": "oklch(0.2809 0 0)",
 
-				"--color-white-inverse": "oklch(0.146 0 0)",
+				"--color-white-inverse": "oklch(0.1448 0 0)",
 				"--color-black-inverse": "oklch(1 0 0)",
 
 				"--color-fill1-alpha":
-					"color-mix(in srgb,oklch(0.856 0.033 17.82 ),transparent 90%)",
+					"color-mix(in srgb, oklch(1 0 0), transparent 90%)",
 				"--color-fill2-alpha":
-					"color-mix(in srgb,oklch(0.856 0.033 17.82 ),transparent 88%)",
+					"color-mix(in srgb, oklch(1 0 0), transparent 88%)",
 				"--color-fill3-alpha":
-					"color-mix(in srgb,oklch(0.856 0.033 17.82 ),transparent 84%)",
+					"color-mix(in srgb, oklch(1 0 0), transparent 84%)",
 				"--color-fill4-alpha":
-					"color-mix(in srgb,oklch(0.856 0.033 17.82 ),transparent 80%)",
+					"color-mix(in srgb, oklch(1 0 0), transparent 80%)",
 			},
 		},
 	},

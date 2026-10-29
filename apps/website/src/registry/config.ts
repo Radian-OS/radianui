@@ -16,6 +16,7 @@ import {
 	type ButtonRadiusPreset,
 	type CompactButtonRadiusPreset,
 } from "./component-presets/button-presets"
+import ntc from "ntcjs"
 
 const fontValues = FONTS.map((font) => font.value)
 const radiusValues = RADIUS.map((radius) => radius.value)
@@ -87,6 +88,7 @@ export const themerConfigSchema = z.object({
 	density: z.enum(densityValues).default("default"),
 	useSrcDir: z.boolean().default(true),
 	iconLibrary: z.enum(ICON_LIBRARIES).default("lucide"),
+	extraColorSchemes: z.array(z.string()).default([]),
 	customColors: z.record(z.string(), z.string()).default({}),
 	componentOverrides: z
 		.array(
@@ -115,6 +117,7 @@ export const DEFAULT_CONFIG: ThemerConfig = {
 	useSrcDir: true,
 	iconLibrary: "lucide",
 	baseColor: "default",
+	extraColorSchemes: [],
 	customColors: {},
 	componentOverrides: [],
 }
@@ -141,6 +144,7 @@ export const PRESETS: Preset[] = [
 		useSrcDir: true,
 		iconLibrary: "lucide",
 		baseColor: "default",
+		extraColorSchemes: [],
 		customColors: {},
 		componentOverrides: [],
 	},
@@ -159,6 +163,7 @@ export const PRESETS: Preset[] = [
 		useSrcDir: true,
 		iconLibrary: "lucide",
 		baseColor: "default",
+		extraColorSchemes: [],
 		customColors: {},
 		componentOverrides: [],
 	},
@@ -328,6 +333,29 @@ function normalizePrimaryColorVars(
 	return result
 }
 
+function resolveColorPrefix(colorValue: string, fallbackIndex: number): string {
+	const preset = PRIMARY_COLORS.find(
+		(c) =>
+			c.value === colorValue ||
+			c.cssVars.light["--color-primary"]?.toLowerCase() ===
+				colorValue.toLowerCase()
+	)
+	if (preset) {
+		return preset.value === "neutral" ? "black" : preset.value
+	}
+	if (colorValue.startsWith("#")) {
+		const name = ntc.name(colorValue)[1]
+		if (name) {
+			const slug = name
+				.toLowerCase()
+				.replace(/[^a-z0-9]+/g, "-")
+				.replace(/^-|-$/g, "")
+			if (slug) return slug
+		}
+	}
+	return `color-${fallbackIndex}`
+}
+
 export function buildRegistryConfig(config: ThemerConfig): RegistryConfig {
 	const primaryColor = config.primaryColor ?? DEFAULT_CONFIG.primaryColor
 
@@ -350,6 +378,58 @@ export function buildRegistryConfig(config: ThemerConfig): RegistryConfig {
 	const baseColorEntry = BASE_COLORS.find((c) => c.value === config.baseColor)
 	const baseLightVars = baseColorEntry?.cssVars.light
 	const baseDarkVars = baseColorEntry?.cssVars.dark
+
+	// Extra color schemes named on their color (e.g. orange, fuchsia, teal)
+	const extraLightVars: Record<string, string> = {}
+	const extraDarkVars: Record<string, string> = {}
+	const usedPrefixes = new Set<string>(["primary"])
+
+	for (const [i, colorValue] of (config.extraColorSchemes ?? []).entries()) {
+		let prefix = resolveColorPrefix(colorValue, i + 2)
+		if (usedPrefixes.has(prefix)) {
+			prefix = `${prefix}-${i + 2}`
+		}
+		usedPrefixes.add(prefix)
+
+		if (colorValue.startsWith("#")) {
+			Object.assign(
+				extraLightVars,
+				normalizePrimaryColorVars(
+					generateCustomColorShades(colorValue, prefix, "light")
+				)
+			)
+			Object.assign(
+				extraDarkVars,
+				normalizePrimaryColorVars(
+					generateCustomColorShades(colorValue, prefix, "dark")
+				)
+			)
+		} else {
+			const entry = PRIMARY_COLORS.find((c) => c.value === colorValue)
+			if (entry) {
+				// Re-key the preset vars from "primary" prefix to the target color prefix
+				const remap = (vars: Record<string, string>) =>
+					Object.fromEntries(
+						Object.entries(vars).map(([k, v]) => [
+							k.replace(/--color-primary/, `--color-${prefix}`),
+							v,
+						])
+					)
+				Object.assign(
+					extraLightVars,
+					normalizePrimaryColorVars(
+						remap(entry.cssVars.light as Record<string, string>)
+					)
+				)
+				Object.assign(
+					extraDarkVars,
+					normalizePrimaryColorVars(
+						remap(entry.cssVars.dark as Record<string, string>)
+					)
+				)
+			}
+		}
+	}
 
 	const theme: Record<string, string> = {}
 	if (config.buttonPaddingPreset) {
@@ -421,11 +501,13 @@ export function buildRegistryConfig(config: ThemerConfig): RegistryConfig {
 				...BASE_THEME.light,
 				...(lightVars || {}),
 				...baseLightVars,
+				...extraLightVars,
 			},
 			dark: {
 				...BASE_THEME.dark,
 				...(darkVars || {}),
 				...baseDarkVars,
+				...extraDarkVars,
 			},
 			theme: {
 				...theme,

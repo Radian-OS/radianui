@@ -165,6 +165,9 @@ export function PreviewClient({ children }: { children: React.ReactNode }) {
 			if (event.data.type === "base-color-change") {
 				setParams({ baseColor: event.data.baseColor })
 			}
+			if (event.data.type === "extra-color-schemes-change") {
+				setParams({ extraColorSchemes: event.data.extraColorSchemes })
+			}
 			if (event.data.type === "heading-font-change") {
 				setParams({ headingFont: event.data.headingFont })
 			}
