@@ -13,6 +13,7 @@ import {
 } from "@/styles/default/ui/select"
 
 const COLORS = [
+	{ title: "Neutral (Default)", value: "neutral" },
 	{ title: "Red", value: "red" },
 	{ title: "Orange", value: "orange" },
 	{ title: "Amber", value: "amber" },
@@ -24,7 +25,7 @@ const COLORS = [
 	{ title: "Cyan", value: "cyan" },
 	{ title: "Light Blue", value: "light-blue" },
 	{ title: "Blue", value: "blue" },
-	{ title: "Violet Blue (Default)", value: "violet-blue" },
+	{ title: "Violet Blue", value: "violet-blue" },
 	{ title: "Purple", value: "purple" },
 	{ title: "Dark Orchid", value: "dark-orchid" },
 	{ title: "Fuchsia", value: "fuchsia" },
@@ -33,6 +34,7 @@ const COLORS = [
 ] as const
 
 const COLOR_CLASSES = {
+	neutral: "bg-neutral",
 	red: "bg-red",
 	orange: "bg-orange",
 	amber: "bg-amber",
@@ -128,7 +130,7 @@ function useTheme(colorName: string) {
 }
 
 export default function ColorPlayground() {
-	const [color, setColor] = useState("violet-blue")
+	const [color, setColor] = useState("neutral")
 	const { theme, loading, error } = useTheme(color)
 
 	const css = useMemo(() => {
