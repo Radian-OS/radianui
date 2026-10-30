@@ -92,6 +92,23 @@ export interface Preset {
 			template: string
 			useSrcDir: boolean
 			style: Style
+			components?: {
+				button?: {
+					defaultSize?: "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
+					defaultVariant?:
+						| "strong"
+						| "soft"
+						| "outline"
+						| "ghost"
+						| "link"
+						| "glossy"
+						| "glossy-inverted"
+						| "smooth"
+						| "smooth-inverted"
+					paddingPreset?: "xs" | "sm" | "md" | "lg" | "xl"
+					radiusPreset?: "xs" | "sm" | "md" | "lg" | "xl"
+				}
+			}
 		}
 	}
 }

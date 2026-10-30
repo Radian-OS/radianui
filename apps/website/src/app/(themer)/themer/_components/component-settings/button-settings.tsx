@@ -1,15 +1,9 @@
 "use client"
 
-import {
-	type CSSProperties,
-	type ReactNode,
-	useMemo,
-	useState,
-	useId,
-} from "react"
+import { type CSSProperties, type ReactNode, useMemo, useState } from "react"
 import { useTheme } from "next-themes"
 import { CheckCircle2, ChevronLeft, ChevronRight } from "lucide-react"
-import { Button, ButtonGroup } from "@/registry/ui/button"
+import { Button, ButtonGroup, ButtonThemeProvider } from "@/registry/ui/button"
 import { Card, CardContent } from "@/styles/default/ui/card"
 import { Label } from "@/styles/default/ui/label"
 import {
@@ -26,7 +20,6 @@ import {
 	BUTTON_PADDING_PRESETS,
 	BUTTON_SIZES,
 	BUTTON_APPEARANCES,
-	buildButtonThemeCss,
 	type ButtonDefaultSize,
 	type ButtonAppearance,
 	type ButtonPaddingPreset,
@@ -38,7 +31,7 @@ import {
 	PopoverContent,
 } from "@/styles/default/ui/popover"
 import { ScrollArea } from "@/styles/default/ui/scroll-area"
-import { ComponentSettingsPopover } from "./component-settings-popover"
+import { ComponentSettingsPopover } from "../component-settings-popover"
 
 const PRESET_NAMES = Object.keys(
 	BUTTON_PADDING_PRESETS
@@ -53,27 +46,7 @@ function ButtonPreview({
 }) {
 	const [params] = useThemerPreset()
 	const { resolvedTheme } = useTheme()
-	const id = useId()
 	const config = useMemo(() => buildRegistryConfig(params), [params])
-	const rules = buildButtonThemeCss({
-		...params,
-		buttonAppearance: appearance ?? params.buttonAppearance,
-	})
-	const css = Object.entries(rules)
-		.map(
-			([selector, declarations]) =>
-				`${selector
-					.split(", ")
-					.map((part) => `[data-button-preview="${id}"] ${part}`)
-					.join(", ")} {${
-					typeof declarations === "string"
-						? declarations
-						: Object.entries(declarations)
-								.map(([key, value]) => `${key}:${value};`)
-								.join("")
-				}}`
-		)
-		.join("\n")
 	const style = {
 		...config.cssVars.light,
 		...(resolvedTheme === "dark" ? config.cssVars.dark : {}),
@@ -89,18 +62,22 @@ function ButtonPreview({
 	)
 	return (
 		<div
-			data-button-preview={id}
 			style={style}
 			className={`style-${params.style} border-soft bg-bg flex min-h-[104px] items-center justify-center gap-2 rounded-lg border p-4`}>
-			<style>{css}</style>
-			{group ? (
-				<ButtonGroup color="primary">
-					<Button>First</Button>
-					<Button>Second</Button>
-				</ButtonGroup>
-			) : (
-				samples
-			)}
+			<ButtonThemeProvider
+				value={{
+					defaultSize: params.buttonDefaultSize,
+					defaultVariant: appearance ?? params.buttonAppearance,
+				}}>
+				{group ? (
+					<ButtonGroup color="primary">
+						<Button>First</Button>
+						<Button>Second</Button>
+					</ButtonGroup>
+				) : (
+					samples
+				)}
+			</ButtonThemeProvider>
 		</div>
 	)
 }
@@ -298,9 +275,9 @@ export function ButtonSettings({
 									<SelectValue />
 								</SelectTrigger>
 								<SelectContent>
-									{BUTTON_SIZES.map(({ value, height }) => (
+									{BUTTON_SIZES.map(({ value }) => (
 										<SelectItem key={value} value={value}>
-											{height} px
+											{value}
 										</SelectItem>
 									))}
 								</SelectContent>
