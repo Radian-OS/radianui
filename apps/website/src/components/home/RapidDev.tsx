@@ -34,7 +34,7 @@ const RapidDev = () => {
 							Everything you need to ship polished interfaces{" "}
 							<span className="heading-3 text-fg-secondary text-[24px] leading-[36px] font-medium md:text-[36px] md:leading-[44px] lg:text-[40px] lg:leading-[52px]">
 								Production ready React components,{" "}
-								<span className="bg-[linear-gradient(90deg,var(--primary-border,#9981F8)_72.12%,var(--utility-Fuchsia-border,#F881F8)_88.94%)] bg-clip-text text-transparent">
+								<span className="bg-[linear-gradient(90deg,var(--color-primary)_72.12%,color-mix(in_oklch,var(--color-primary),white_25%)_88.94%)] bg-clip-text text-transparent">
 									Figma UI Kit
 								</span>
 								, and reusable UI blocks.
