@@ -81,7 +81,7 @@ function CTASection() {
 							</Link>
 						</Button>
 						<Button
-							className="border-primary-hover w-full border bg-gradient-to-b from-[#6347EB] to-[#5133CF] shadow-lg ring-[1.5px] ring-[#5B3FE0] hover:from-[#6A52F2] hover:to-[#5B3FE0]"
+							className="border-primary-hover from-primary text-primary-fg w-full border bg-gradient-to-b to-[color-mix(in_oklch,var(--color-primary),black_20%)] shadow-lg ring-[1.5px] ring-[color-mix(in_oklch,var(--color-primary),black_10%)] hover:from-[color-mix(in_oklch,var(--color-primary),white_15%)] hover:to-[color-mix(in_oklch,var(--color-primary),black_10%)]"
 							size="lg"
 							asChild>
 							<Link href="/docs/installation/next">Start in Code Editor</Link>
