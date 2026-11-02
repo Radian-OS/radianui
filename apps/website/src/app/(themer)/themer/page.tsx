@@ -21,39 +21,7 @@ function ThemerPage() {
 	const [device, setDevice] = useState<DeviceSize>("desktop")
 	const iframeRef = useRef<HTMLIFrameElement>(null)
 
-	const iframeSrc = useMemo(() => {
-		const searchParams = new URLSearchParams({
-			component: selectedComponent,
-			primaryColor: params.primaryColor,
-			headingFont: params.headingFont,
-			bodyFont: params.bodyFont,
-			radius: params.radius,
-			controlRadius: params.controlRadius,
-			template: params.template,
-			style: params.style,
-			useSrcDir: String(params.useSrcDir),
-			iconLibrary: params.iconLibrary,
-			density: params.density,
-		})
-
-		if (params.primaryColor) {
-			searchParams.set("primaryColor", params.primaryColor)
-		}
-
-		if (params.baseColor) {
-			searchParams.set("baseColor", params.baseColor)
-		}
-
-		if (params.iconLibrary) {
-			searchParams.set("iconLibrary", params.iconLibrary)
-		}
-
-		if (params.density) {
-			searchParams.set("density", params.density)
-		}
-
-		return `/preview/${selectedComponent}?${searchParams.toString()}`
-	}, [selectedComponent])
+	const iframeSrc = `/preview/${selectedComponent}`
 
 	const postToIframe = useCallback((message: Record<string, unknown>) => {
 		iframeRef.current?.contentWindow?.postMessage(message, "*")

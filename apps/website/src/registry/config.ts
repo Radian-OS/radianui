@@ -47,6 +47,7 @@ export type RegistryConfig = z.infer<typeof registryConfigSchema>
 
 export const themerConfigSchema = z.object({
 	name: z.string().optional(),
+	// TODO: using a object might be better than string for primaryColor
 	primaryColor: z.string().default("violet-blue"),
 	baseColor: z.enum(BASE_COLORS.map((color) => color.value)).default("default"),
 	headingFont: z
