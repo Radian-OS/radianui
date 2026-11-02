@@ -26,7 +26,7 @@ const bannerVariants = cva(
 				warning: "",
 			},
 			variant: {
-				strong: "[&_[data-slot=banner-close]]:text-white",
+				strong: "[&_[data-slot=banner-close]]:text-[current]",
 				soft: "[&_[data-slot=banner-title]]:text-fg [&_[data-slot=banner-description]]:text-fg [&_[data-slot=banner-close]]:text-[current]",
 				outline:
 					"border-soft [&_[data-slot=banner-close]]:text-fg-secondary [&_[data-slot=banner-title]]:text-fg [&_[data-slot=banner-description]]:text-fg-secondary border border-t-0 border-r-0 border-l-0",
@@ -71,7 +71,7 @@ const bannerVariants = cva(
 			{
 				color: "primary",
 				variant: "strong",
-				className: "bg-primary text-white",
+				className: "bg-primary text-primary-fg",
 			},
 			{ color: "info", variant: "strong", className: "bg-info text-white" },
 			{

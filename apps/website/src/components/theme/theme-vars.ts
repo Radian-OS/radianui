@@ -366,11 +366,13 @@ export const lightThemeVars = {
 	...lightUtilityColorVars,
 
 	// Primary
-	"--color-primary": "oklch(0.528 0.2539 282.58)",
-	"--color-primary-accent": "oklch(0.94 0.0271 295.05)",
-	"--color-primary-focus": "oklch(0.9169 0.0383 295.46)",
-	"--color-primary-hover": "oklch(0.5768 0.2279 286.25)",
-	"--color-primary-text": "oklch(0.4304 0.202 282.82)",
+	"--color-primary": "oklch(0.144 0.0028 247.09)",
+	"--color-primary-fg": "oklch(0.9764 0.0013 286.38)",
+	"--color-primary-accent": "oklch(0.9764 0.0013 286.38)",
+	"--color-primary-focus": "oklch(0.9527 0.0027 286.35)",
+	"--color-primary-border": "oklch(0.906 0.0046 258.33)",
+	"--color-primary-hover": "oklch(0.191 0.004 264.466)",
+	"--color-primary-text": "oklch(0.276 0.008 264.438)",
 
 	// Success
 	"--color-success": "oklch(0.6334 0.171 148.65)",
@@ -446,11 +448,13 @@ export const darkThemeVars = {
 	...darkUtilityColorVars,
 
 	// Primary
-	"--color-primary": "oklch(0.528 0.2539 282.58)",
-	"--color-primary-accent": "oklch(0.2294 0.0753 289.19)",
-	"--color-primary-focus": "oklch(0.2538 0.1064 285.61)",
-	"--color-primary-hover": "oklch(0.5768 0.2279 286.25)",
-	"--color-primary-text": "oklch(0.7757 0.1162 292.43)",
+	"--color-primary": "oklch(1 0 0)",
+	"--color-primary-fg": "oklch(0.2764 0.0079 264.44)",
+	"--color-primary-accent": "oklch(0.191 0.004 264.466)",
+	"--color-primary-focus": "oklch(0.276 0.008 264.438)",
+	"--color-primary-border": "oklch(0.276 0.008 264.438)",
+	"--color-primary-hover": "oklch(0.976 0.001 286.375)",
+	"--color-primary-text": "oklch(0.976 0.001 286.375)",
 
 	// Success
 	"--color-success": "oklch(0.6334 0.171 148.65)",

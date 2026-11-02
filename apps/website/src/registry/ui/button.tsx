@@ -1,3 +1,5 @@
+"use client"
+
 import React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { type VariantProps, cva } from "class-variance-authority"
@@ -16,15 +18,7 @@ export type ButtonProps = React.ComponentProps<"button"> & {
 
 export type ButtonGroupProps = React.HTMLAttributes<HTMLDivElement> & {
 	children: React.ReactNode
-	variant?:
-		| "strong"
-		| "soft"
-		| "outline"
-		| "ghost"
-		| "glossy"
-		| "smooth"
-		| "glossy-inverted"
-		| "smooth-inverted"
+	variant?: VariantProps<typeof buttonVariants>["variant"]
 	size?: VariantProps<typeof buttonVariants>["size"]
 	color?: VariantProps<typeof buttonVariants>["color"]
 }
@@ -49,6 +43,17 @@ export type IconButtonProps = Omit<React.ComponentProps<"button">, "color"> & {
 	loading?: boolean
 	asChild?: boolean
 }
+
+export type ButtonThemeSettings = {
+	defaultSize?: NonNullable<ButtonProps["size"]>
+	defaultVariant?: NonNullable<ButtonProps["variant"]>
+}
+
+// The CLI fills this object with the selected defaults when installing Button.
+const buttonThemeDefaults: ButtonThemeSettings = {}
+const ButtonThemeContext =
+	React.createContext<ButtonThemeSettings>(buttonThemeDefaults)
+export const ButtonThemeProvider = ButtonThemeContext.Provider
 
 export const buttonVariants = cva(
 	"focus-visible:ring-offset-bg box-border inline-flex w-fit items-center justify-center whitespace-nowrap hover:cursor-pointer focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none",
@@ -490,15 +495,24 @@ const buttonSpinnerSizes: Record<string, number> = {
 
 function Button({
 	loading = false,
-	variant = "strong",
-	size = "md",
+	variant: variantProp,
+	size: sizeProp,
 	color = "primary",
 	className,
+	style,
 	children,
 	disabled,
 	asChild = false,
 	...props
 }: ButtonProps) {
+	const theme = React.useContext(ButtonThemeContext)
+	const variant = variantProp ?? theme.defaultVariant ?? "strong"
+	const size = sizeProp ?? theme.defaultSize ?? "md"
+	const buttonStyle = {
+		"--button-effective-radius": `var(--button-radius-${size},var(--radius-control-${size === "xs" || size === "sm" ? "md" : "lg"}))`,
+		...style,
+	} as React.CSSProperties
+
 	const combinedClass = cn(
 		buttonVariants({ variant, size, color, loading }),
 		disabled && "opacity-50",
@@ -521,6 +535,7 @@ function Button({
 			<Comp
 				data-radian-button=""
 				data-color={color}
+				style={buttonStyle}
 				className={combinedClass}
 				disabled={disabled}
 				{...validProps}>
@@ -533,6 +548,7 @@ function Button({
 		<Comp
 			data-radian-button=""
 			data-color={color}
+			style={buttonStyle}
 			type="button"
 			className={combinedClass}
 			disabled={disabled}
@@ -552,17 +568,22 @@ Button.displayName = "Button"
 function ButtonGroup({
 	className,
 	children,
-	variant = "outline",
-	size = "md",
+	variant: variantProp,
+	size: sizeProp,
 	color = "neutral",
 	style,
 	...props
 }: ButtonGroupProps) {
-	const modifiedChildren = React.Children.map(children, (child, index) => {
+	const theme = React.useContext(ButtonThemeContext)
+	const variant = variantProp ?? theme.defaultVariant ?? "outline"
+	const size = sizeProp ?? theme.defaultSize ?? "md"
+	const items = React.Children.toArray(children).filter(React.isValidElement)
+
+	const modifiedChildren = React.Children.map(items, (child, index) => {
 		if (!React.isValidElement(child)) return child
 
 		const isFirst = index === 0
-		const isLast = index === React.Children.count(children) - 1
+		const isLast = index === items.length - 1
 
 		const borderRadiusClass =
 			isFirst && isLast
@@ -591,9 +612,9 @@ function ButtonGroup({
 		) {
 			const innerChild = childProps.children as React.ReactElement<ButtonProps>
 			const patchedInner = React.cloneElement(innerChild, {
-				variant,
-				size,
-				color,
+				variant: innerChild.props.variant ?? variant,
+				size: innerChild.props.size ?? size,
+				color: innerChild.props.color ?? color,
 				className: cn(layoutClassName, innerChild.props.className),
 			})
 			return React.cloneElement(
@@ -606,9 +627,9 @@ function ButtonGroup({
 
 		// Normal button child — inject directly.
 		return React.cloneElement(child as React.ReactElement<ButtonProps>, {
-			variant,
-			size,
-			color,
+			variant: (child.props as ButtonProps).variant ?? variant,
+			size: (child.props as ButtonProps).size ?? size,
+			color: (child.props as ButtonProps).color ?? color,
 			className: cn(layoutClassName, (child.props as ButtonProps).className),
 		})
 	})
@@ -978,7 +999,7 @@ const compactButtonSpinnerSizes: Record<string, number> = {
 
 function CompactButton({
 	loading = false,
-	variant = "strong",
+	variant: variantProp,
 	size = "md",
 	color = "primary",
 	className,
@@ -987,6 +1008,13 @@ function CompactButton({
 	asChild = false,
 	...props
 }: CompactButtonProps) {
+	const theme = React.useContext(ButtonThemeContext)
+	// Link is a text Button variant; CompactButton retains its supported variants.
+	const variant =
+		variantProp ??
+		(theme.defaultVariant === "link" ? "strong" : theme.defaultVariant) ??
+		"strong"
+
 	const combinedClass = cn(
 		compactButtonVariants({ variant, size, color }),
 		disabled && "opacity-50",

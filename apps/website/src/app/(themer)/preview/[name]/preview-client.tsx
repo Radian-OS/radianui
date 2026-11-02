@@ -10,6 +10,10 @@ import { PRIMARY_COLORS } from "@/registry/primary-colors"
 import { generateCustomColorShades } from "@/lib/shade-generator"
 import { ScrollArea, ScrollBar } from "@/styles/default/ui/scroll-area"
 
+import { ButtonThemeProvider as RegistryButtonThemeProvider } from "@/registry/ui/button"
+import { ButtonThemeProvider as DefaultButtonThemeProvider } from "@/styles/default/ui/button"
+import { ButtonThemeProvider as SeraButtonThemeProvider } from "@/styles/sera/ui/button"
+
 const MANAGED_BODY_CLASS_PREFIXES = ["style-"] as const
 
 type RegistryThemeCssVars = NonNullable<
@@ -145,17 +149,7 @@ export function PreviewClient({ children }: { children: React.ReactNode }) {
 			document.head.appendChild(style)
 		}
 
-		style.textContent =
-			buildThemerCssText(config?.cssVars, params.customColors) +
-			Object.entries(config.css)
-				.filter(([key]) => !key.startsWith("@"))
-				.map(([selector, declarations]) =>
-					buildCssRule(
-						selector,
-						declarations as Record<string, string> | string
-					)
-				)
-				.join("\n")
+		style.textContent = buildThemerCssText(config.cssVars, params.customColors)
 
 		removeManagedBodyClasses(document.body)
 		document.body.classList.add(`style-${params.style}`)
@@ -230,12 +224,22 @@ export function PreviewClient({ children }: { children: React.ReactNode }) {
 
 	if (!isReady) return null
 
+	const buttonTheme = {
+		defaultSize: params.buttonDefaultSize,
+		defaultVariant: params.buttonAppearance,
+	}
 	return (
-		<IconLibraryProvider value={params.iconLibrary}>
-			<ScrollArea className="h-dvh w-full overflow-hidden" type="auto">
-				{children}
-				<ScrollBar orientation="horizontal" />
-			</ScrollArea>
-		</IconLibraryProvider>
+		<RegistryButtonThemeProvider value={buttonTheme}>
+			<DefaultButtonThemeProvider value={buttonTheme}>
+				<SeraButtonThemeProvider value={buttonTheme}>
+					<IconLibraryProvider value={params.iconLibrary}>
+						<ScrollArea className="h-dvh w-full overflow-hidden" type="auto">
+							{children}
+							<ScrollBar orientation="horizontal" />
+						</ScrollArea>
+					</IconLibraryProvider>
+				</SeraButtonThemeProvider>
+			</DefaultButtonThemeProvider>
+		</RegistryButtonThemeProvider>
 	)
 }

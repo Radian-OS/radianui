@@ -70,32 +70,24 @@ test("rejects malformed or incorrectly shaped color-scheme parameters", async ()
 	}
 })
 
-test("exports all six preserved Button heights and replacement appearances", async () => {
-	for (const [size, height] of [
-		["xs", 28],
-		["sm", 32],
-		["md", 36],
-		["lg", 40],
-		["xl", 44],
-		["2xl", 48],
-	] as const) {
+test("exports named Button defaults without global component overrides", async () => {
+	for (const size of ["xs", "sm", "md", "lg", "xl", "2xl"] as const) {
 		const response = await GET(
 			new NextRequest(
 				`https://example.com/init?buttonDefaultSize=${size}&buttonAppearance=glossy&buttonPaddingPreset=lg&buttonRadiusPreset=sm`
 			)
 		)
 		assert.equal(response.status, 200)
-		const { css } = await response.json()
-		assert.equal(css["[data-radian-button]"].height, `${height}px !important`)
-		assert.match(
-			css['[data-radian-button][data-color="primary"]'],
-			/box-shadow/
-		)
-		assert.ok(css["[data-radian-button-group] [data-radian-button]"])
+		const { css, config } = await response.json()
+		assert.deepEqual(config.components.button, {
+			defaultSize: size,
+			defaultVariant: "glossy",
+			paddingPreset: "lg",
+			radiusPreset: "sm",
+		})
 		assert.ok(
-			!Object.keys(css).some(
-				(selector) =>
-					selector.includes("compact") || selector.includes("icon-btn")
+			!Object.keys(css).some((selector) =>
+				selector.includes("data-radian-button")
 			)
 		)
 	}
@@ -110,7 +102,7 @@ test("rejects invalid Button sizes and appearances", async () => {
 	}
 })
 
-test("exports only existing Button variants, including their interaction styles", async () => {
+test("exports existing Button variant names as structured settings", async () => {
 	for (const variant of [
 		"strong",
 		"soft",
@@ -126,11 +118,8 @@ test("exports only existing Button variants, including their interaction styles"
 			new NextRequest(`https://example.com/init?buttonAppearance=${variant}`)
 		)
 		assert.equal(response.status, 200)
-		const { css } = await response.json()
-		const body = css['[data-radian-button][data-color="primary"]']
-		assert.equal(typeof body, "string")
-		assert.match(body, /focus-visible/)
-		assert.match(body, /!important/)
+		const { config } = await response.json()
+		assert.equal(config.components.button.defaultVariant, variant)
 	}
 	for (const variant of ["default", "fancy", "gradient"]) {
 		const response = await GET(
