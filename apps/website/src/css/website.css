@@ -1663,3 +1663,184 @@
 @utility font-emoji {
 	font-family: "Noto Color Emoji Flags", "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", var(--font-body, sans-serif);
 }
+
+/* Color themes: maps each utility color as primary across the entire website */
+:root[data-color="red"], html[data-color="red"] {
+  --color-primary: var(--color-red);
+  --color-primary-fg: var(--color-red-fg);
+  --color-primary-accent: var(--color-red-accent);
+  --color-primary-focus: var(--color-red-focus);
+  --color-primary-border: var(--color-red-border);
+  --color-primary-hover: var(--color-red-hover);
+  --color-primary-text: var(--color-red-text);
+}
+
+:root[data-color="orange"], html[data-color="orange"] {
+  --color-primary: var(--color-orange);
+  --color-primary-fg: var(--color-orange-fg);
+  --color-primary-accent: var(--color-orange-accent);
+  --color-primary-focus: var(--color-orange-focus);
+  --color-primary-border: var(--color-orange-border);
+  --color-primary-hover: var(--color-orange-hover);
+  --color-primary-text: var(--color-orange-text);
+}
+
+:root[data-color="amber"], html[data-color="amber"] {
+  --color-primary: var(--color-amber);
+  --color-primary-fg: var(--color-amber-fg);
+  --color-primary-accent: var(--color-amber-accent);
+  --color-primary-focus: var(--color-amber-focus);
+  --color-primary-border: var(--color-amber-border);
+  --color-primary-hover: var(--color-amber-hover);
+  --color-primary-text: var(--color-amber-text);
+}
+
+:root[data-color="yellow"], html[data-color="yellow"] {
+  --color-primary: var(--color-yellow);
+  --color-primary-fg: var(--color-yellow-fg);
+  --color-primary-accent: var(--color-yellow-accent);
+  --color-primary-focus: var(--color-yellow-focus);
+  --color-primary-border: var(--color-yellow-border);
+  --color-primary-hover: var(--color-yellow-hover);
+  --color-primary-text: var(--color-yellow-text);
+}
+
+:root[data-color="neon"], html[data-color="neon"] {
+  --color-primary: var(--color-neon);
+  --color-primary-fg: var(--color-neon-fg);
+  --color-primary-accent: var(--color-neon-accent);
+  --color-primary-focus: var(--color-neon-focus);
+  --color-primary-border: var(--color-neon-border);
+  --color-primary-hover: var(--color-neon-hover);
+  --color-primary-text: var(--color-neon-text);
+}
+
+:root[data-color="green"], html[data-color="green"] {
+  --color-primary: var(--color-green);
+  --color-primary-fg: var(--color-green-fg);
+  --color-primary-accent: var(--color-green-accent);
+  --color-primary-focus: var(--color-green-focus);
+  --color-primary-border: var(--color-green-border);
+  --color-primary-hover: var(--color-green-hover);
+  --color-primary-text: var(--color-green-text);
+}
+
+:root[data-color="emerald"], html[data-color="emerald"] {
+  --color-primary: var(--color-emerald);
+  --color-primary-fg: var(--color-emerald-fg);
+  --color-primary-accent: var(--color-emerald-accent);
+  --color-primary-focus: var(--color-emerald-focus);
+  --color-primary-border: var(--color-emerald-border);
+  --color-primary-hover: var(--color-emerald-hover);
+  --color-primary-text: var(--color-emerald-text);
+}
+
+:root[data-color="teal"], html[data-color="teal"] {
+  --color-primary: var(--color-teal);
+  --color-primary-fg: var(--color-teal-fg);
+  --color-primary-accent: var(--color-teal-accent);
+  --color-primary-focus: var(--color-teal-focus);
+  --color-primary-border: var(--color-teal-border);
+  --color-primary-hover: var(--color-teal-hover);
+  --color-primary-text: var(--color-teal-text);
+}
+
+:root[data-color="cyan"], html[data-color="cyan"] {
+  --color-primary: var(--color-cyan);
+  --color-primary-fg: var(--color-cyan-fg);
+  --color-primary-accent: var(--color-cyan-accent);
+  --color-primary-focus: var(--color-cyan-focus);
+  --color-primary-border: var(--color-cyan-border);
+  --color-primary-hover: var(--color-cyan-hover);
+  --color-primary-text: var(--color-cyan-text);
+}
+
+:root[data-color="light-blue"], html[data-color="light-blue"] {
+  --color-primary: var(--color-light-blue);
+  --color-primary-fg: var(--color-light-blue-fg);
+  --color-primary-accent: var(--color-light-blue-accent);
+  --color-primary-focus: var(--color-light-blue-focus);
+  --color-primary-border: var(--color-light-blue-border);
+  --color-primary-hover: var(--color-light-blue-hover);
+  --color-primary-text: var(--color-light-blue-text);
+}
+
+:root[data-color="blue"], html[data-color="blue"] {
+  --color-primary: var(--color-blue);
+  --color-primary-fg: var(--color-blue-fg);
+  --color-primary-accent: var(--color-blue-accent);
+  --color-primary-focus: var(--color-blue-focus);
+  --color-primary-border: var(--color-blue-border);
+  --color-primary-hover: var(--color-blue-hover);
+  --color-primary-text: var(--color-blue-text);
+}
+
+:root[data-color="violet-blue"], html[data-color="violet-blue"] {
+  --color-primary: var(--color-violet-blue);
+  --color-primary-fg: var(--color-violet-blue-fg);
+  --color-primary-accent: var(--color-violet-blue-accent);
+  --color-primary-focus: var(--color-violet-blue-focus);
+  --color-primary-border: var(--color-violet-blue-border);
+  --color-primary-hover: var(--color-violet-blue-hover);
+  --color-primary-text: var(--color-violet-blue-text);
+}
+
+:root[data-color="purple"], html[data-color="purple"] {
+  --color-primary: var(--color-purple);
+  --color-primary-fg: var(--color-purple-fg);
+  --color-primary-accent: var(--color-purple-accent);
+  --color-primary-focus: var(--color-purple-focus);
+  --color-primary-border: var(--color-purple-border);
+  --color-primary-hover: var(--color-purple-hover);
+  --color-primary-text: var(--color-purple-text);
+}
+
+:root[data-color="dark-orchid"], html[data-color="dark-orchid"] {
+  --color-primary: var(--color-dark-orchid);
+  --color-primary-fg: var(--color-dark-orchid-fg);
+  --color-primary-accent: var(--color-dark-orchid-accent);
+  --color-primary-focus: var(--color-dark-orchid-focus);
+  --color-primary-border: var(--color-dark-orchid-border);
+  --color-primary-hover: var(--color-dark-orchid-hover);
+  --color-primary-text: var(--color-dark-orchid-text);
+}
+
+:root[data-color="fuchsia"], html[data-color="fuchsia"] {
+  --color-primary: var(--color-fuchsia);
+  --color-primary-fg: var(--color-fuchsia-fg);
+  --color-primary-accent: var(--color-fuchsia-accent);
+  --color-primary-focus: var(--color-fuchsia-focus);
+  --color-primary-border: var(--color-fuchsia-border);
+  --color-primary-hover: var(--color-fuchsia-hover);
+  --color-primary-text: var(--color-fuchsia-text);
+}
+
+:root[data-color="magenta"], html[data-color="magenta"] {
+  --color-primary: var(--color-magenta);
+  --color-primary-fg: var(--color-magenta-fg);
+  --color-primary-accent: var(--color-magenta-accent);
+  --color-primary-focus: var(--color-magenta-focus);
+  --color-primary-border: var(--color-magenta-border);
+  --color-primary-hover: var(--color-magenta-hover);
+  --color-primary-text: var(--color-magenta-text);
+}
+
+:root[data-color="rose"], html[data-color="rose"] {
+  --color-primary: var(--color-rose);
+  --color-primary-fg: var(--color-rose-fg);
+  --color-primary-accent: var(--color-rose-accent);
+  --color-primary-focus: var(--color-rose-focus);
+  --color-primary-border: var(--color-rose-border);
+  --color-primary-hover: var(--color-rose-hover);
+  --color-primary-text: var(--color-rose-text);
+}
+
+:root[data-color="neutral"], html[data-color="neutral"] {
+  --color-primary: var(--color-neutral);
+  --color-primary-fg: var(--color-neutral-fg);
+  --color-primary-accent: var(--color-neutral-accent);
+  --color-primary-focus: var(--color-neutral-focus);
+  --color-primary-border: var(--color-neutral-border);
+  --color-primary-hover: var(--color-neutral-hover);
+  --color-primary-text: var(--color-neutral-text);
+}

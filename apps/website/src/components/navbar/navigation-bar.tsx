@@ -5,12 +5,14 @@ import { HamburgerMenuIcon } from "@radix-ui/react-icons"
 import dynamic from "next/dynamic"
 import { SearchDocs } from "@/components/navbar/search"
 import { DesktopThemeToggler } from "@/components/theme-toggler"
+import { ColorThemeDropdown } from "./color-theme-dropdown"
 import { cn } from "@/lib/utils"
 import { IconButton } from "@/styles/default/ui/button"
 import { DesktopNavigation } from "./desktop-navigation"
 import EarlyAccessButton from "./early-access-button"
 import FigmaPreviewButton from "./figma-preview-button"
 import { WebsiteLogo } from "./website-logo"
+import PlaygroundLogo from "../home/playground-logo"
 
 const MobileNavigation = dynamic(
 	() =>
@@ -42,7 +44,7 @@ export function NavigationBar({
 				)}>
 				<div className="mx-auto flex w-full max-w-368 items-center justify-between px-4 py-4 md:px-5 lg:gap-4">
 					<div className="flex h-9 flex-shrink-0 items-center">
-						<WebsiteLogo />
+						<PlaygroundLogo />
 					</div>
 
 					{/* Central navigation items */}
@@ -55,6 +57,8 @@ export function NavigationBar({
 						<FigmaPreviewButton className="not-xl:hidden" />
 
 						<EarlyAccessButton className="gap-1.5 not-xl:hidden" />
+
+						<ColorThemeDropdown />
 
 						<DesktopThemeToggler />
 

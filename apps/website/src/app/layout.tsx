@@ -86,6 +86,11 @@ export default async function RootLayout({
 	return (
 		<html lang="en" suppressHydrationWarning>
 			<head>
+				<script
+					dangerouslySetInnerHTML={{
+						__html: `try{var c=localStorage.getItem("radian-primary-color");if(c&&c!=="neutral"){document.documentElement.setAttribute("data-color",c);}}catch(e){}`,
+					}}
+				/>
 				<AhrefsAnalytics />
 			</head>
 			<body
