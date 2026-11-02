@@ -519,12 +519,7 @@ function Button({
 		}
 
 		return (
-			<Comp
-				data-radian-button=""
-				data-color={color}
-				className={combinedClass}
-				disabled={disabled}
-				{...validProps}>
+			<Comp className={combinedClass} disabled={disabled} {...validProps}>
 				{children}
 			</Comp>
 		)
@@ -532,8 +527,6 @@ function Button({
 
 	return (
 		<Comp
-			data-radian-button=""
-			data-color={color}
 			type="button"
 			className={combinedClass}
 			disabled={disabled}
@@ -556,7 +549,6 @@ function ButtonGroup({
 	variant = "outline",
 	size = "md",
 	color = "neutral",
-	style,
 	...props
 }: ButtonGroupProps) {
 	const modifiedChildren = React.Children.map(children, (child, index) => {
@@ -565,17 +557,14 @@ function ButtonGroup({
 		const isFirst = index === 0
 		const isLast = index === React.Children.count(children) - 1
 
-		const borderRadiusClass =
-			isFirst && isLast
-				? "rounded-[var(--button-effective-radius,var(--radius-lg))]!"
-				: isFirst
-					? "rounded-l-[var(--button-effective-radius,var(--radius-lg))]!"
-					: isLast
-						? "rounded-r-[var(--button-effective-radius,var(--radius-lg))]!"
-						: "rounded-none"
+		const borderRadiusClass = isFirst
+			? "rounded-l-lg"
+			: isLast
+				? "rounded-r-lg"
+				: "rounded-none"
 
 		const layoutClassName = cn(
-			"rounded-none!",
+			"rounded-none",
 			borderRadiusClass,
 			"-ml-[1px]",
 			!isLast ? "border-r-0" : ""
@@ -615,17 +604,7 @@ function ButtonGroup({
 	})
 
 	return (
-		<div
-			style={
-				{
-					"--button-effective-radius": `var(--button-radius-${size ?? "md"},var(--radius-lg))`,
-					...style,
-				} as React.CSSProperties
-			}
-			data-radian-button-group=""
-			className={cn("inline-flex", className)}
-			role="group"
-			{...props}>
+		<div className={cn("inline-flex", className)} role="group" {...props}>
 			{modifiedChildren}
 		</div>
 	)
@@ -647,8 +626,8 @@ export const compactButtonVariants = cva(
 				"smooth-inverted": "",
 			},
 			size: {
-				sm: "h-5 w-5 rounded-[var(--compact-button-radius,var(--radius-md))] p-0.5 [&>svg]:!h-4 [&>svg]:!w-4",
-				md: "h-6 w-6 rounded-[var(--compact-button-radius,var(--radius-md))] p-1 [&>svg]:!h-4 [&>svg]:!w-4",
+				sm: "h-5 w-5 rounded-[var(--compact-button-radius-sm,var(--radius-md))] p-0.5 [&>svg]:!h-4 [&>svg]:!w-4",
+				md: "h-6 w-6 rounded-[var(--compact-button-radius-md,var(--radius-md))] p-1 [&>svg]:!h-4 [&>svg]:!w-4",
 			},
 			color: {
 				primary: "",
