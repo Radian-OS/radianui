@@ -44,34 +44,12 @@ function ThemerPage() {
 			searchParams.set("baseColor", params.baseColor)
 		}
 
-		if (params.extraColorSchemes.length) {
-			searchParams.set(
-				"extraColorSchemes",
-				JSON.stringify(params.extraColorSchemes)
-			)
-		}
-
 		if (params.iconLibrary) {
 			searchParams.set("iconLibrary", params.iconLibrary)
 		}
 
 		if (params.density) {
 			searchParams.set("density", params.density)
-		}
-
-		if (params.buttonPaddingPreset) {
-			searchParams.set("buttonPaddingPreset", params.buttonPaddingPreset)
-		}
-
-		if (params.buttonRadiusPreset) {
-			searchParams.set("buttonRadiusPreset", params.buttonRadiusPreset)
-		}
-
-		if (params.compactButtonRadiusPreset) {
-			searchParams.set(
-				"compactButtonRadiusPreset",
-				params.compactButtonRadiusPreset
-			)
 		}
 
 		return `/preview/${selectedComponent}?${searchParams.toString()}`
@@ -94,13 +72,6 @@ function ThemerPage() {
 			baseColor: params.baseColor,
 		})
 	}, [params.baseColor, postToIframe])
-
-	useEffect(() => {
-		postToIframe({
-			type: "extra-color-schemes-change",
-			extraColorSchemes: params.extraColorSchemes,
-		})
-	}, [params.extraColorSchemes, postToIframe])
 
 	useEffect(() => {
 		postToIframe({
@@ -141,27 +112,6 @@ function ThemerPage() {
 		})
 	}, [params.controlRadius, postToIframe])
 
-	useEffect(() => {
-		postToIframe({
-			type: "button-padding-preset-change",
-			buttonPaddingPreset: params.buttonPaddingPreset ?? null,
-		})
-	}, [params.buttonPaddingPreset, postToIframe])
-
-	useEffect(() => {
-		postToIframe({
-			type: "button-radius-preset-change",
-			buttonRadiusPreset: params.buttonRadiusPreset ?? null,
-		})
-	}, [params.buttonRadiusPreset, postToIframe])
-
-	useEffect(() => {
-		postToIframe({
-			type: "compact-button-radius-preset-change",
-			compactButtonRadiusPreset: params.compactButtonRadiusPreset ?? null,
-		})
-	}, [params.compactButtonRadiusPreset, postToIframe])
-
 	return (
 		<SidebarProvider
 			style={{ "--sidebar-width": "430px" } as React.CSSProperties}>
@@ -191,25 +141,6 @@ function ThemerPage() {
 						<iframe
 							ref={iframeRef}
 							src={iframeSrc}
-							onLoad={() => {
-								postToIframe({
-									type: "extra-color-schemes-change",
-									extraColorSchemes: params.extraColorSchemes,
-								})
-								postToIframe({
-									type: "button-padding-preset-change",
-									buttonPaddingPreset: params.buttonPaddingPreset ?? null,
-								})
-								postToIframe({
-									type: "button-radius-preset-change",
-									buttonRadiusPreset: params.buttonRadiusPreset ?? null,
-								})
-								postToIframe({
-									type: "compact-button-radius-preset-change",
-									compactButtonRadiusPreset:
-										params.compactButtonRadiusPreset ?? null,
-								})
-							}}
 							className="h-full w-full border-0"
 							title="Preview"
 						/>
