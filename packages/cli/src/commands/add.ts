@@ -12,7 +12,6 @@ import { ProjectInfo, getProjectInfo } from "@/utils/getProjectInfo"
 import { handleError } from "@/utils/handleError"
 import { logger } from "@/utils/logger"
 import { promptForComponents } from "@/utils/prompts"
-import type { TransformContext } from "@/utils/transformers/types"
 import {
 	BlockAsset,
 	RegistryComponentFile,
@@ -147,8 +146,7 @@ const checkComponentsAvailability = async (
 export async function addComponentsToProject(
 	resolvedComponents: RegistryComponents,
 	options: AddOptions,
-	projectInfo: ProjectInfo,
-	componentSettings?: TransformContext["componentSettings"]
+	projectInfo: ProjectInfo
 ): Promise<void> {
 	await installComponentDependencies(resolvedComponents, options)
 
@@ -189,7 +187,7 @@ export async function addComponentsToProject(
 				continue
 			}
 
-			await createFile(filepath, projectInfo, file, config, componentSettings)
+			await createFile(filepath, projectInfo, file, config)
 
 			if (fileExists) {
 				filesUpdated.push(filepath)
@@ -251,8 +249,7 @@ const createFile = async (
 	filePath: string,
 	projectInfo: ProjectInfo,
 	file: RegistryComponentFile,
-	config: RawConfig,
-	componentSettings?: TransformContext["componentSettings"]
+	config: RawConfig
 ) => {
 	const dirPath = path.dirname(filePath)
 
@@ -265,8 +262,7 @@ const createFile = async (
 		projectInfo,
 		filePath,
 		file.content,
-		config,
-		componentSettings
+		config
 	)
 
 	await fs.writeFile(filePath, transformedContent)

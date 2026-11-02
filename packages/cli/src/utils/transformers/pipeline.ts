@@ -2,7 +2,6 @@ import { Project } from "ts-morph"
 import { transformImportTransformer } from "@/utils/transformers/transformImport"
 import { transformRscTransformer } from "@/utils/transformers/transformRsc"
 import type { TransformContext, Transformer } from "@/utils/transformers/types"
-import { transformComponentSettingsTransformer } from "./transformComponentSettings"
 import { transformIconTransformer } from "./transformIcon"
 
 export const createTransformPipeline = (transformers: Transformer[]) => {
@@ -46,7 +45,6 @@ export const createTransformPipeline = (transformers: Transformer[]) => {
 }
 
 export const defaultTransformers: Transformer[] = [
-	transformComponentSettingsTransformer,
 	transformImportTransformer,
 	transformRscTransformer,
 	transformIconTransformer,

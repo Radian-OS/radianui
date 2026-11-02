@@ -63,13 +63,13 @@ export async function executeInitFromConfig(config: InitConfig) {
 	const dependencies = config.preset?.config.dependencies?.length
 		? config.preset.config.dependencies
 		: [
-			"class-variance-authority",
-			"clsx",
-			"tailwind-merge",
-			"tw-animate-css",
-			"radix-ui",
-			...ICON_DEPENDENCIES[config.iconLibrary!],
-		]
+				"class-variance-authority",
+				"clsx",
+				"tailwind-merge",
+				"tw-animate-css",
+				"radix-ui",
+				...ICON_DEPENDENCIES[config.iconLibrary!],
+			]
 	await installDependencies(
 		projectPath,
 		dependencies,
@@ -213,12 +213,7 @@ async function installComponents(config: InitConfig, projectPath: string) {
 			const allComponents = (await getRegistryComponents(rawConfig)).filter(
 				(c) => c.type === "ui"
 			)
-			await addComponentsToProject(
-				allComponents,
-				addOpts,
-				projectInfo,
-				config.preset.config.config.components
-			)
+			await addComponentsToProject(allComponents, addOpts, projectInfo)
 		}
 	} else {
 		// No preset: install button and badge as starters
@@ -275,12 +270,7 @@ async function updateExistingComponents(
 		allRegistry,
 		allComponentNames
 	)
-	await addComponentsToProject(
-		resolvedComponents,
-		addOpts,
-		projectInfo,
-		config.preset?.config.config.components
-	)
+	await addComponentsToProject(resolvedComponents, addOpts, projectInfo)
 }
 
 // ── Helpers ───────────────────────────────────────────────────────────────

@@ -2,7 +2,6 @@ import { Project } from "ts-morph"
 import { RawConfig } from "@/utils/getConfig"
 import { ProjectInfo } from "@/utils/getProjectInfo"
 import { defaultTransformPipeline } from "@/utils/transformers/pipeline"
-import type { TransformContext } from "@/utils/transformers/types"
 
 const project = new Project({ useInMemoryFileSystem: true })
 
@@ -19,8 +18,7 @@ export const transform = async (
 	projectInfo: ProjectInfo,
 	filePath: string,
 	content: string,
-	config: RawConfig,
-	componentSettings?: TransformContext["componentSettings"]
+	config: RawConfig
 ): Promise<string> => {
 	if (!/\.(tsx?|jsx?)$/.test(filePath)) {
 		return content
@@ -34,7 +32,6 @@ export const transform = async (
 			projectInfo,
 			filePath,
 			config,
-			componentSettings,
 		})
 	} finally {
 		sourceFile.delete()

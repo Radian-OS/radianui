@@ -12,6 +12,7 @@ import {
 	BUTTON_PADDING_PRESETS,
 	BUTTON_SIZES,
 	BUTTON_APPEARANCES,
+	buildButtonThemeCss,
 	BUTTON_RADIUS_PRESETS,
 	COMPACT_BUTTON_RADIUS_PRESETS,
 	type ButtonPaddingPreset,
@@ -55,22 +56,6 @@ export const registryConfigSchema = z.object({
 		template: z.enum(TEMPLATES),
 		useSrcDir: z.boolean().default(true),
 		style: z.enum(styleValues).default("default"),
-		components: z
-			.object({
-				button: z
-					.object({
-						defaultSize: z
-							.enum(BUTTON_SIZES.map((entry) => entry.value))
-							.optional(),
-						defaultVariant: z
-							.enum(BUTTON_APPEARANCES.map((entry) => entry.value))
-							.optional(),
-						paddingPreset: z.enum(buttonPaddingPresetValues).optional(),
-						radiusPreset: z.enum(buttonRadiusPresetValues).optional(),
-					})
-					.optional(),
-			})
-			.optional(),
 	}),
 })
 
@@ -528,6 +513,7 @@ export function buildRegistryConfig(config: ThemerConfig): RegistryConfig {
 			},
 		},
 		css: {
+			...buildButtonThemeCss(config),
 			...(headingFont?.font.googleFontsUrl && {
 				[`@import url('${headingFont.font.googleFontsUrl}')`]: {},
 			}),
@@ -571,14 +557,6 @@ export function buildRegistryConfig(config: ThemerConfig): RegistryConfig {
 			template: config.template,
 			useSrcDir: config.useSrcDir,
 			style: config.style,
-			components: {
-				button: {
-					defaultSize: config.buttonDefaultSize,
-					defaultVariant: config.buttonAppearance,
-					paddingPreset: config.buttonPaddingPreset,
-					radiusPreset: config.buttonRadiusPreset,
-				},
-			},
 		},
 	}
 
