@@ -4,8 +4,22 @@ import { RawConfig } from "@/utils/getConfig"
 import { transformIcon } from "@/utils/transformers/transformIcon"
 
 const MOCK_ICON_MAPPINGS = [
-	{ slot: "down", lucideIcon: "ChevronDown", hugeiconsIcon: "ArrowDown01Icon" },
-	{ slot: "plus", lucideIcon: "Plus", hugeiconsIcon: "PlusSignIcon" },
+	{
+		slot: "down",
+		lucideIcon: "ChevronDown",
+		hugeiconsIcon: "ArrowDown01Icon",
+		tablerIcon: "IconChevronDown",
+		phosphorIcon: "CaretDownIcon",
+		heroiconsIcon: "ChevronDownIcon",
+	},
+	{
+		slot: "plus",
+		lucideIcon: "Plus",
+		hugeiconsIcon: "PlusSignIcon",
+		tablerIcon: "IconPlus",
+		phosphorIcon: "PlusIcon",
+		heroiconsIcon: "PlusIcon",
+	},
 ]
 
 const project = new Project({
@@ -296,6 +310,90 @@ function Component() {
 			const result = await transformIcon(sourceFile, baseConfig("hugeicons"))
 
 			expect(result).toBe(fileContent)
+			sourceFile.deleteImmediately()
+		})
+	})
+
+	describe("tabler", () => {
+		it("should replace IconSlot with tabler icons and import", async () => {
+			const fileContent = `import { IconSlot } from "../icon-library"
+
+function AccordionTrigger() {
+  return (
+    <IconSlot slot="down" className="AccordionChevron shrink-0" aria-hidden />
+  )
+}`
+			const sourceFile = project.createSourceFile(
+				"tabler-single.tsx",
+				fileContent
+			)
+
+			const result = await transformIcon(sourceFile, baseConfig("tabler"))
+
+			const expected = `import { IconChevronDown } from "@tabler/icons-react"
+
+function AccordionTrigger() {
+  return (
+    <IconChevronDown className="AccordionChevron shrink-0" aria-hidden />
+  )
+}`
+			expect(result).toBe(expected)
+			sourceFile.deleteImmediately()
+		})
+	})
+
+	describe("phosphor", () => {
+		it("should replace IconSlot with phosphor icons and import", async () => {
+			const fileContent = `import { IconSlot } from "../icon-library"
+
+function AccordionTrigger() {
+  return (
+    <IconSlot slot="down" className="AccordionChevron shrink-0" aria-hidden />
+  )
+}`
+			const sourceFile = project.createSourceFile(
+				"phosphor-single.tsx",
+				fileContent
+			)
+
+			const result = await transformIcon(sourceFile, baseConfig("phosphor"))
+
+			const expected = `import { CaretDownIcon } from "@phosphor-icons/react"
+
+function AccordionTrigger() {
+  return (
+    <CaretDownIcon className="AccordionChevron shrink-0" aria-hidden />
+  )
+}`
+			expect(result).toBe(expected)
+			sourceFile.deleteImmediately()
+		})
+	})
+
+	describe("heroicons", () => {
+		it("should replace IconSlot with heroicons icons and import", async () => {
+			const fileContent = `import { IconSlot } from "../icon-library"
+
+function AccordionTrigger() {
+  return (
+    <IconSlot slot="down" className="AccordionChevron shrink-0" aria-hidden />
+  )
+}`
+			const sourceFile = project.createSourceFile(
+				"heroicons-single.tsx",
+				fileContent
+			)
+
+			const result = await transformIcon(sourceFile, baseConfig("heroicons"))
+
+			const expected = `import { ChevronDownIcon } from "@heroicons/react/24/outline"
+
+function AccordionTrigger() {
+  return (
+    <ChevronDownIcon className="AccordionChevron shrink-0" aria-hidden />
+  )
+}`
+			expect(result).toBe(expected)
 			sourceFile.deleteImmediately()
 		})
 	})

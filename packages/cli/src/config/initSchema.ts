@@ -43,7 +43,12 @@ export const initConfigSchema = z.object({
 	isExistingProject: z.boolean(),
 	hasComponentsJson: z.boolean(),
 	style: z.enum(STYLES),
-	iconLibrary: z.enum(ICON_LIBRARIES.map((lib) => lib.value)),
+	iconLibrary: z.enum(
+		ICON_LIBRARIES.map((lib) => lib.value) as [
+			IconLibrary,
+			...IconLibrary[],
+		]
+	),
 })
 
 export type InitConfig = z.infer<typeof initConfigSchema>

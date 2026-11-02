@@ -20,6 +20,18 @@ describe("rawConfigSchema", () => {
 		expect(parsed.iconLibrary).toBe("lucide")
 	})
 
+	it("accepts all supported icon libraries (lucide, hugeicons, phosphor, tabler, heroicons)", () => {
+		for (const iconLibrary of ["lucide", "hugeicons", "phosphor", "tabler", "heroicons"]) {
+			const parsed = rawConfigSchema.parse({
+				$schema: "https://radianui.com/schema.json",
+				style: "default",
+				aliases: { components: "@/components", utils: "@/lib/utils" },
+				iconLibrary,
+			})
+			expect(parsed.iconLibrary).toBe(iconLibrary)
+		}
+	})
+
 	it("coerces hasSrcDir to a boolean", () => {
 		const parsed = rawConfigSchema.parse({
 			$schema: "https://radianui.com/schema.json",

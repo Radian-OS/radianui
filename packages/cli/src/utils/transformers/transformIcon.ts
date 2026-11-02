@@ -8,6 +8,9 @@ export interface IconMapping {
 	slot: string
 	lucideIcon: string
 	hugeiconsIcon: string
+	phosphorIcon: string
+	tablerIcon: string
+	heroiconsIcon: string
 }
 
 interface LibraryConfig {
@@ -40,11 +43,41 @@ const LIBRARY_CONFIG: Record<IconLibrary, LibraryConfig> = {
 			`import { ${iconNames.join(", ")} } from "@hugeicons/core-free-icons"`,
 		],
 	},
+
+	phosphor: {
+		renderJsx: (iconName, props) =>
+			props ? `<${iconName} ${props} />` : `<${iconName} />`,
+
+		buildImports: (iconNames) => [
+			`import { ${iconNames.join(", ")} } from "@phosphor-icons/react"`,
+		],
+	},
+
+	tabler: {
+		renderJsx: (iconName, props) =>
+			props ? `<${iconName} ${props} />` : `<${iconName} />`,
+
+		buildImports: (iconNames) => [
+			`import { ${iconNames.join(", ")} } from "@tabler/icons-react"`,
+		],
+	},
+
+	heroicons: {
+		renderJsx: (iconName, props) =>
+			props ? `<${iconName} ${props} />` : `<${iconName} />`,
+
+		buildImports: (iconNames) => [
+			`import { ${iconNames.join(", ")} } from "@heroicons/react/24/outline"`,
+		],
+	},
 }
 
-const MAPPING_KEYS = {
+const MAPPING_KEYS: Record<IconLibrary, keyof IconMapping> = {
 	lucide: "lucideIcon",
 	hugeicons: "hugeiconsIcon",
+	phosphor: "phosphorIcon",
+	tabler: "tablerIcon",
+	heroicons: "heroiconsIcon",
 }
 
 export const transformIconTransformer: Transformer = {

@@ -36,6 +36,9 @@ export const FONTS = [
 export const ICON_LIBRARIES = [
 	{ title: "Lucide (Default)", value: "lucide" },
 	{ title: "Hugeicons", value: "hugeicons" },
+	{ title: "Phosphor", value: "phosphor" },
+	{ title: "Tabler", value: "tabler" },
+	{ title: "Heroicons", value: "heroicons" },
 ] as const
 export type IconLibrary = (typeof ICON_LIBRARIES)[number]["value"]
 
@@ -68,4 +71,7 @@ export const RADIANUI_URL = REGISTRY_URL.replace(/\/r\/?$/, "")
 export const ICON_DEPENDENCIES: Record<IconLibrary, string[]> = {
 	lucide: ["lucide-react"],
 	hugeicons: ["@hugeicons/react", "@hugeicons/core-free-icons"],
+	phosphor: ["@phosphor-icons/react"],
+	tabler: ["@tabler/icons-react"],
+	heroicons: ["@heroicons/react"],
 }

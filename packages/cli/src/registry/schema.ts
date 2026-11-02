@@ -4,7 +4,12 @@ import { ICON_LIBRARIES, IconLibrary, STYLES, Style } from "./constants"
 export const rawConfigSchema = z.object({
 	$schema: z.string(),
 	style: z.enum(STYLES),
-	iconLibrary: z.enum(ICON_LIBRARIES.map((lib) => lib.value)),
+	iconLibrary: z.enum(
+		ICON_LIBRARIES.map((lib) => lib.value) as [
+			IconLibrary,
+			...IconLibrary[],
+		]
+	),
 	hasSrcDir: z.coerce.boolean().default(false).optional(),
 	aliases: z.object({
 		components: z.string(),

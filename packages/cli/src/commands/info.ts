@@ -3,7 +3,7 @@ import { Command } from "commander"
 import fs from "fs-extra"
 import z from "zod"
 import { txt } from "@/utils/colors"
-import { RawConfig, getConfig } from "@/utils/getConfig"
+import { RawConfig, getRawConfig } from "@/utils/getConfig"
 import { getProjectInfo, ProjectInfo } from "@/utils/getProjectInfo"
 import { handleError } from "@/utils/handleError"
 import { logger } from "@/utils/logger"
@@ -48,7 +48,7 @@ export type InfoOptions = z.infer<typeof infoOptionsSchema>
 
 export type ProjectInfoReport = {
 	projectInfo: ProjectInfo
-	config: RawConfig
+	config: RawConfig | null
 	installedComponents: string[]
 	docsUrl: string
 	llmsTxtUrl: string
@@ -122,7 +122,7 @@ export async function getInstalledComponentsDetails(
  * Aggregates all project information into a single report object.
  */
 export async function collectProjectInfo(cwd: string): Promise<ProjectInfoReport> {
-	const rawConfig = await getConfig(cwd)
+	const rawConfig = await getRawConfig(cwd)
 
 	const projectInfo = await getProjectInfo(cwd)
 	const installedComponents = await getInstalledComponentsDetails(cwd, rawConfig)
@@ -167,15 +167,22 @@ export function printProjectInfo(report: ProjectInfoReport): void {
 		printRow("Tailwind config", txt.light(report.projectInfo.tailwindConfigFile))
 	}
 	printRow("Import alias", txt.light(report.projectInfo.aliasPrefix ?? "None"))
-	if (report.config?.style) {
-		printRow("Style", txt.light(report.config.style))
-	}
-	if (report.config?.iconLibrary) {
-		printRow("Icon library", txt.light(report.config.iconLibrary))
-	}
-	printRow("RTL support", txt.dark("Disabled"))
-	if (report.config?.$schema) {
-		printRow("Config schema", txt.light(report.config.$schema))
+	if (report.config) {
+		if (report.config.style) {
+			printRow("Style", txt.light(report.config.style))
+		}
+		if (report.config.iconLibrary) {
+			printRow("Icon library", txt.light(report.config.iconLibrary))
+		}
+		printRow("RTL support", txt.dark("Disabled"))
+		if (report.config.$schema) {
+			printRow("Config schema", txt.light(report.config.$schema))
+		}
+	} else {
+		printRow(
+			"RadianUI config",
+			txt.warning("Not found (run 'npx radianui init' to initialize)")
+		)
 	}
 	printRow("Docs link", txt.info(report.docsUrl))
 	printRow("llms.txt link", txt.info(report.llmsTxtUrl))

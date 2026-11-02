@@ -223,7 +223,6 @@ function startDrag(onMove: (e: PointerEvent) => void) {
 
 function getCardLabel(index: number): string {
 	if (index === 0) return "Primary"
-	if (index === 1) return "Secondary"
 	return `#${index + 1}`
 }
 

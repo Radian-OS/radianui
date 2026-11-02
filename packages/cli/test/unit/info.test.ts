@@ -94,8 +94,8 @@ describe("info command helpers", () => {
 			expect(report.docsUrl).toBe(RADIAN_DOCS_URL)
 			expect(report.llmsTxtUrl).toBe(new URL("llms.txt", WEBSITE_URL).toString())
 			expect(report.projectInfo.hasSrcDir).toBe(true)
-			expect(report.config.style).toBe("default")
-			expect(report.config.iconLibrary).toBe("lucide")
+			expect(report.config?.style).toBe("default")
+			expect(report.config?.iconLibrary).toBe("lucide")
 			expect(Array.isArray(report.installedComponents)).toBe(true)
 		})
 
@@ -125,8 +125,8 @@ describe("info command helpers", () => {
 
 	describe("printProjectInfo", () => {
 		it("prints full formatted output without throwing", () => {
-			const logSpy = vi.spyOn(logger, "log").mockImplementation(() => {})
-			const breakSpy = vi.spyOn(logger, "break").mockImplementation(() => {})
+			const logSpy = vi.spyOn(logger, "log").mockImplementation(() => { })
+			const breakSpy = vi.spyOn(logger, "break").mockImplementation(() => { })
 
 			const mockReport: ProjectInfoReport = {
 				projectInfo: {
@@ -180,8 +180,8 @@ describe("info command helpers", () => {
 		})
 
 		it("handles missing optional fields and zero installed components", () => {
-			const logSpy = vi.spyOn(logger, "log").mockImplementation(() => {})
-			const breakSpy = vi.spyOn(logger, "break").mockImplementation(() => {})
+			const logSpy = vi.spyOn(logger, "log").mockImplementation(() => { })
+			const breakSpy = vi.spyOn(logger, "break").mockImplementation(() => { })
 
 			const mockReport: ProjectInfoReport = {
 				projectInfo: {
@@ -223,6 +223,44 @@ describe("info command helpers", () => {
 			const loggedText = logSpy.mock.calls.map((c) => c[0]).join("\n")
 			expect(loggedText).toContain("None")
 			expect(loggedText).toContain("Not found")
+
+			logSpy.mockRestore()
+			breakSpy.mockRestore()
+		})
+
+		it("displays warning row when config is null (no components.json)", () => {
+			const logSpy = vi.spyOn(logger, "log").mockImplementation(() => { })
+			const breakSpy = vi.spyOn(logger, "break").mockImplementation(() => { })
+
+			const mockReport: ProjectInfoReport = {
+				projectInfo: {
+					framework: {
+						name: "next-app",
+						label: "Next.js",
+						link: {
+							installation: "https://radianui.com",
+							tailwind: "https://tailwindcss.com",
+						},
+					},
+					hasSrcDir: true,
+					isRSC: true,
+					isTsx: true,
+					tailwindConfigFile: "tailwind.config.ts",
+					tailwindCssFile: "app/globals.css",
+					utilityCssFile: null,
+					aliasPrefix: "@",
+				},
+				config: null,
+				installedComponents: [],
+				docsUrl: RADIAN_DOCS_URL,
+				llmsTxtUrl: new URL("llms.txt", WEBSITE_URL).toString(),
+			}
+
+			printProjectInfo(mockReport)
+
+			const loggedText = logSpy.mock.calls.map((c) => c[0]).join("\n")
+			expect(loggedText).toContain("RadianUI config")
+			expect(loggedText).toContain("Not found (run 'npx radianui init' to initialize)")
 
 			logSpy.mockRestore()
 			breakSpy.mockRestore()

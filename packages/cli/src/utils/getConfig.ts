@@ -40,8 +40,16 @@ export async function getConfig(cwd = process.cwd()): Promise<RawConfig> {
 		}
 		return parsed
 	} catch (error) {
+		const reason =
+			error instanceof z.ZodError
+				? error.issues
+						.map((issue) => `${issue.path.join(".") || "config"}: ${issue.message}`)
+						.join(", ")
+				: error instanceof Error
+					? error.message
+					: ""
 		throw new Error(
-			`Error loading components.json configuration: Invalid components.json file`
+			`Error loading components.json configuration: Invalid components.json file${reason ? ` (${reason})` : ""}`
 		)
 	}
 }
