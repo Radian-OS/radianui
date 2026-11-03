@@ -8,6 +8,7 @@ import { Checkbox } from "@/styles/default/ui/checkbox"
 import { Divider } from "@/styles/default/ui/divider"
 import { Input } from "@/styles/default/ui/input"
 import { Label } from "@/styles/default/ui/label"
+import Logo from "@/components/home/playground-logo"
 
 interface SigninProps {
 	fullScreen?: boolean
@@ -22,27 +23,25 @@ export default function Page({ fullScreen = true }: SigninProps) {
 			})}>
 			<div className="flex h-full w-full">
 				<div className="relative hidden h-full flex-1 md:block">
-					<Image
-						fill
-						fetchPriority="high"
-						priority={true}
-						className="object-cover"
-						src="/media/background-2-homepage.jpg"
-						alt="Background Image"
-						sizes="(max-width: 768px) 100vw, 900px"
-						quality={80}
-					/>
+					<video
+						className={`size-full object-cover`}
+						poster="/media/background-2-homepage.jpg"
+						autoPlay
+						loop
+						muted
+						playsInline>
+						<source
+							src="https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/blocks/src/video/login-04.mp4"
+							type="video/mp4"
+						/>
+					</video>
+					<div className="bg-primary absolute inset-0 mix-blend-color" />
 				</div>
 				<div className="bg-bg flex h-full w-full flex-1 shrink-0 items-center justify-center p-5">
 					<div className="flex w-90 flex-col gap-8">
 						<div className="flex flex-1 flex-col gap-6">
 							<div>
-								<Image
-									src="/favicon-16x16.png"
-									height={32}
-									width={32}
-									alt="Logo"
-								/>
+								<Logo />
 							</div>
 							<div className="flex flex-col gap-2">
 								<span className="heading-5">Sign In</span>

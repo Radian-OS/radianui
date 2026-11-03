@@ -1,11 +1,11 @@
 "use client"
 
-import Image from "next/image"
 import { GoogleIcon } from "@/components/home/block/components/google-icon"
 import { OutlookIcon } from "@/components/home/outlook-icon"
 import { cn } from "@/lib/utils"
 import { Button } from "@/styles/default/ui/button"
 import { Divider } from "@/styles/default/ui/divider"
+import Logo from "@/components/home/playground-logo"
 
 interface VerificationProps {
 	fullScreen?: boolean
@@ -21,7 +21,7 @@ export default function Verification({ fullScreen = true }: VerificationProps) {
 			<div className="bg-bg flex w-100">
 				<div className="flex flex-1 flex-col gap-8">
 					<div className="text-fg flex items-center gap-2.5">
-						<Image src="/favicon-16x16.png" height={32} width={32} alt="Logo" />
+						<Logo />
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							width="92"

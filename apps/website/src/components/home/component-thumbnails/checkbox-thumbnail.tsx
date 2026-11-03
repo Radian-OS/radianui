@@ -19,15 +19,15 @@ const CheckboxThumbnail = (props: React.SVGProps<SVGSVGElement>) => (
 		<g filter="url(#filter0_d_3867_194015)">
 			<path
 				d="M132.5 118.5H140.5C143.538 118.5 146 120.962 146 124V132C146 135.038 143.538 137.5 140.5 137.5H132.5C129.462 137.5 127 135.038 127 132V124C127 120.962 129.462 118.5 132.5 118.5Z"
-				fill="#623DF5"
+				fill="var(--color-primary)"
 			/>
 			<path
 				d="M132.5 118.5H140.5C143.538 118.5 146 120.962 146 124V132C146 135.038 143.538 137.5 140.5 137.5H132.5C129.462 137.5 127 135.038 127 132V124C127 120.962 129.462 118.5 132.5 118.5Z"
-				stroke="#623DF5"
+				stroke="var(--color-primary)"
 			/>
 			<path
 				d="M141.834 124L134.5 131.333L131.167 128"
-				stroke="white"
+				stroke="var(--color-primary-fg)"
 				strokeWidth="1.5"
 				strokeLinecap="round"
 				strokeLinejoin="round"

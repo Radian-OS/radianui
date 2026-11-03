@@ -2,7 +2,6 @@
 
 import { useState } from "react"
 import { EyeIcon, EyeOffIcon } from "lucide-react"
-import Image from "next/image"
 import Link from "next/link"
 import { GithubIcon } from "@/components/home/block/components/github-icon"
 import { GoogleIcon } from "@/components/home/block/components/google-icon"
@@ -11,6 +10,7 @@ import { Button } from "@/styles/default/ui/button"
 import { Divider } from "@/styles/default/ui/divider"
 import { Input, InputWrapper } from "@/styles/default/ui/input"
 import { Label } from "@/styles/default/ui/label"
+import Logo from "@/components/home/playground-logo"
 
 interface SignupProps {
 	fullScreen?: boolean
@@ -36,7 +36,7 @@ export default function Signup({ fullScreen = true }: SignupProps) {
 			<div className="bg-bg border-border flex w-100 rounded-2xl border px-5 py-6 sm:p-6">
 				<div className="flex flex-1 flex-col gap-8">
 					<div>
-						<Image src="/favicon-16x16.png" height={32} width={32} alt="Logo" />
+						<Logo />
 					</div>
 					<div className="flex flex-col gap-2">
 						<span className="heading-5">Sign Up</span>

@@ -12,7 +12,6 @@ import { DesktopNavigation } from "./desktop-navigation"
 import EarlyAccessButton from "./early-access-button"
 import FigmaPreviewButton from "./figma-preview-button"
 import { WebsiteLogo } from "./website-logo"
-import PlaygroundLogo from "../home/playground-logo"
 
 const MobileNavigation = dynamic(
 	() =>
@@ -43,8 +42,8 @@ export function NavigationBar({
 					className
 				)}>
 				<div className="mx-auto flex w-full max-w-368 items-center justify-between px-4 py-4 md:px-5 lg:gap-4">
-					<div className="flex h-9 flex-shrink-0 items-center">
-						<PlaygroundLogo />
+					<div>
+						<WebsiteLogo />
 					</div>
 
 					{/* Central navigation items */}
