@@ -10,7 +10,7 @@ export const FLAG_CDN_ORIGIN = "https://cdn.jsdelivr.net"
 export const FLAGS_PAGE_PATH = "/resources/flags"
 
 const FLAG_CDN_ROOT =
-	"https://cdn.jsdelivr.net/gh/Radian-OS/radian-resources@main/packages/country-flags/src/flags"
+	"https://cdn.jsdelivr.net/npm/@radianui/flags@1.1.0/source/flags"
 
 export type FlagName = FlagMetadata["id"]
 export type FlagShape = "flat" | "round"
