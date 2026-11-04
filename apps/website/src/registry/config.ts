@@ -9,6 +9,7 @@ import { STYLES } from "./styles"
 import { TEMPLATES } from "./templates"
 import { generateCustomColorShades } from "@/lib/shade-generator"
 import ntc from "ntcjs"
+import { buttonConfigSchema } from "./component-presets/button-presets"
 
 const fontValues = FONTS.map((font) => font.value)
 const radiusValues = RADIUS.map((radius) => radius.value)
@@ -81,6 +82,12 @@ export const themerConfigSchema = z.object({
 			})
 		)
 		.default([]),
+	// Compnentwise customizations
+	components: z
+		.object({
+			Button: buttonConfigSchema.optional(),
+		})
+		.default({}),
 })
 
 export type ThemerConfig = z.infer<typeof themerConfigSchema>
@@ -101,6 +108,7 @@ export const DEFAULT_CONFIG: ThemerConfig = {
 	extraColorSchemes: [],
 	customColors: {},
 	componentOverrides: [],
+	components: {},
 }
 
 export type Preset = ThemerConfig & {
@@ -128,6 +136,7 @@ export const PRESETS: Preset[] = [
 		extraColorSchemes: [],
 		customColors: {},
 		componentOverrides: [],
+		components: {},
 	},
 	{
 		name: "sera",
@@ -147,6 +156,7 @@ export const PRESETS: Preset[] = [
 		extraColorSchemes: [],
 		customColors: {},
 		componentOverrides: [],
+		components: {},
 	},
 ]
 
