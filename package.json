@@ -44,7 +44,7 @@
 		"oxfmt": "^0.74.0",
 		"oxlint": "^1.89.0",
 		"turbo": "^2.11.10",
-		"typescript": "5.8.2"
+		"typescript": "7.0.2"
 	},
 	"packageManager": "pnpm@10.14.0",
 	"engines": {
