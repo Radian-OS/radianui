@@ -45,7 +45,8 @@ export async function executeInitFromConfig(config: InitConfig) {
 			projectPath,
 			config.useSrcDir,
 			config.style,
-			config.iconLibrary
+			config.iconLibrary,
+			config.preset?.id
 		)
 	}
 
@@ -60,8 +61,8 @@ export async function executeInitFromConfig(config: InitConfig) {
 	configSpinner.succeed()
 
 	// ── Step 4: Install dependencies ──────────────────────────────────────
-	const dependencies = config.preset?.config.dependencies?.length
-		? config.preset.config.dependencies
+	const dependencies = config.preset?.dependencies?.length
+		? config.preset.dependencies
 		: [
 			"class-variance-authority",
 			"clsx",
@@ -214,7 +215,7 @@ async function installComponents(config: InitConfig, projectPath: string) {
 			)
 			const uiNames = allRegistry.filter((c) => c.type === 'ui').map((c) => c.name)
 
-			const presetDeps = config.preset.config.registryDependencies ?? []
+			const presetDeps = config.preset.registryDependencies ?? []
 			const urlDeps = presetDeps.filter((dep) => /^https?:\/\//i.test(dep))
 
 			let finalComponents = await resolveComponents(allRegistry, [
@@ -255,7 +256,7 @@ async function updateExistingComponents(
 		}
 	}
 
-	const presetDeps = config.preset?.config.registryDependencies ?? []
+	const presetDeps = config.preset?.registryDependencies ?? []
 	const allComponentNames = [...new Set([...existingComponents, ...presetDeps])]
 
 	if (allComponentNames.length === 0) return

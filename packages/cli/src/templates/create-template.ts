@@ -9,7 +9,7 @@ import { spinner } from "@/utils/spinner"
 
 const GITHUB_REPO_URL = "https://github.com/Radian-os/radianui"
 
-const GITHUB_REPO_BRANCH = "dev"
+const GITHUB_REPO_BRANCH = "main"
 
 export interface TemplateOptions {
 	projectPath: string

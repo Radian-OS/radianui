@@ -22,7 +22,7 @@ export const RADIAN_DOCS_URL = "https://radianui.com/docs/getting-started/introd
 export const getRegistryComponentUrl = (style: Style) =>
 	`${WEBSITE_URL}/r/styles/${style}.json`
 export const REGISTRY_BLOCK_URL = `${BLOCKS_URL}/api/blocks`
-export const PRESET_API_URL = `${BLOCKS_URL}/api/config`
+export const PRESET_API_URL = `${BLOCKS_URL}/api/presets`
 
 export type AssetRegistryType = 'flag'
 
@@ -265,7 +265,8 @@ export const getFont = async (font: Font): Promise<FontData> => {
 export async function resolveComponents(
 	registryComponents: RegistryComponents,
 	componentNames: string[],
-	visited = new Set<string>()
+	visited = new Set<string>(),
+	presetId?: string
 ): Promise<RegistryComponents> {
 	const flattenedComponents: RegistryComponents = []
 
@@ -304,17 +305,34 @@ export async function resolveComponents(
 			}
 			continue
 		}
-		// 2. Standard registry lookup by component name
-		const componentEntry = registryComponents.find(
-			(entry) => entry.name === name
-		)
+
+		let componentEntry: RegistryComponent | undefined
+
+		if (presetId) {
+			try {
+				const response = await fetch(`${PRESET_API_URL}/${presetId}/${name}.json`)
+				if (response.ok) {
+					componentEntry = (await response.json()) as RegistryComponent
+				}
+			} catch { }
+		}
+
+		// Standard registry lookup by component name
+		if (!componentEntry) {
+			componentEntry = registryComponents.find(
+				(entry) => entry.name === name
+			)
+		}
+
 		if (!componentEntry) continue
+
 		flattenedComponents.push(componentEntry)
 		if (componentEntry.registryDependencies?.length) {
 			const dependencies = await resolveComponents(
 				registryComponents,
 				componentEntry.registryDependencies,
-				visited
+				visited,
+				presetId
 			)
 			flattenedComponents.push(...dependencies)
 		}

@@ -101,8 +101,8 @@ export function generateThemeCss(
 		darkSelector = ".dark",
 	} = options
 
-	const cssVars = preset.config?.cssVars ?? { light: {}, dark: {}, theme: {} }
-	const css = preset.config?.css ?? {}
+	const cssVars = preset.cssVars ?? { light: {}, dark: {}, theme: {} }
+	const css = preset.css ?? {}
 	const lines: string[] = []
 
 	// 1. Top-level at-rules first (@import, @custom-variant, …)
