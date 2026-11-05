@@ -40,8 +40,6 @@ const BrandLogoDetailsDialog = dynamic(() =>
 
 const BRAND_LOGO_VARIANT_STORAGE_KEY = "radian-brand-logos-variant"
 const BRAND_LOGO_COLORWAY_STORAGE_KEY = "radian-brand-logos-colorway"
-const INITIAL_LOGOS_LIMIT = 24
-const LOGOS_BATCH_SIZE = 24
 
 interface BrandLogosPlaygroundProps {
 	initialSelectedBrand?: BrandLogoId | null
@@ -74,7 +72,6 @@ export default function BrandLogosPlayground({
 	const [selectedBrand, setSelectedBrand] = useState<BrandLogoId | null>(
 		initialSelectedBrand
 	)
-	const [displayLimit, setDisplayLimit] = useState(INITIAL_LOGOS_LIMIT)
 	const ownsDialogHistoryEntryRef = useRef(false)
 	const sentinelRef = useRef<HTMLDivElement>(null)
 	const bottomSentinelRef = useRef<HTMLDivElement>(null)
@@ -169,14 +166,12 @@ export default function BrandLogosPlayground({
 	const handleCategoryChange = useCallback((nextCategory: string) => {
 		startTransition(() => {
 			setCategory(nextCategory)
-			setDisplayLimit(INITIAL_LOGOS_LIMIT)
 		})
 	}, [])
 
 	const handleVariantChange = useCallback((nextVariant: BrandLogoVariant) => {
 		startTransition(() => {
 			setVariant(nextVariant)
-			setDisplayLimit(INITIAL_LOGOS_LIMIT)
 		})
 		window.localStorage.setItem(BRAND_LOGO_VARIANT_STORAGE_KEY, nextVariant)
 	}, [])
@@ -185,7 +180,6 @@ export default function BrandLogosPlayground({
 		(nextColorway: BrandLogoColorway) => {
 			startTransition(() => {
 				setColorway(nextColorway)
-				setDisplayLimit(INITIAL_LOGOS_LIMIT)
 			})
 			window.localStorage.setItem(BRAND_LOGO_COLORWAY_STORAGE_KEY, nextColorway)
 		},
@@ -244,31 +238,6 @@ export default function BrandLogosPlayground({
 		)
 	}, [category, query, brandLogos, getBrandLogoSearchTerms])
 
-	const renderedLogos = useMemo(
-		() => visibleLogos.slice(0, displayLimit),
-		[visibleLogos, displayLimit]
-	)
-
-	useEffect(() => {
-		const bottomSentinel = bottomSentinelRef.current
-		if (!bottomSentinel) return
-
-		const observer = new IntersectionObserver(
-			([entry]) => {
-				if (entry.isIntersecting) {
-					setDisplayLimit((prev) => {
-						if (prev >= visibleLogos.length) return prev
-						return Math.min(prev + LOGOS_BATCH_SIZE, visibleLogos.length)
-					})
-				}
-			},
-			{ rootMargin: "1200px 0px" }
-		)
-
-		observer.observe(bottomSentinel)
-		return () => observer.disconnect()
-	}, [visibleLogos.length])
-
 	useLayoutEffect(() => {
 		const topSentinel = sentinelRef.current
 		const playground = topSentinel?.parentElement
@@ -304,7 +273,6 @@ export default function BrandLogosPlayground({
 							value={query}
 							onChange={(event) => {
 								setQuery(event.target.value)
-								setDisplayLimit(INITIAL_LOGOS_LIMIT)
 							}}
 							placeholder="Search brand logos (e.g. OpenAI, ChatGPT, React)..."
 							aria-label="Search brand logos"
@@ -315,7 +283,7 @@ export default function BrandLogosPlayground({
 
 			{visibleLogos.length ? (
 				<ul className="grid w-full list-none grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 lg:gap-5">
-					{renderedLogos.map((brand) => (
+					{visibleLogos.map((brand) => (
 						<BrandLogoTile
 							key={brand.id}
 							id={brand.id}
