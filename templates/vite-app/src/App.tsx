@@ -11,7 +11,7 @@ export default function App() {
 			</div>
 
 			<main className="flex w-full max-w-3xl flex-col items-center gap-8 text-center">
-				<Badge size="24">
+				<Badge size="md">
 					<span className="bg-success h-1.5 w-1.5 rounded-full" />
 					Generated with Radianos
 				</Badge>
@@ -27,11 +27,11 @@ export default function App() {
 				</p>
 
 				<div className="flex flex-wrap items-center justify-center gap-3 pt-2">
-					<Button size="44" variant="glossy" asChild>
+					<Button size="xl" variant="glossy" asChild>
 						<a href="https://radianui.com">Explore the docs</a>
 					</Button>
 					<Button
-						size="44"
+						size="xl"
 						variant="soft"
 						color="neutral"
 						asChild
