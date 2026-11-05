@@ -1,11 +1,12 @@
 "use client"
 
-import { memo, useCallback, useEffect, useRef, useState } from "react"
+import { memo, useCallback, useEffect, useState } from "react"
 import { toast } from "sonner"
 import { useTheme } from "next-themes"
 import { cn } from "@/lib/utils"
 import { Button } from "@/registry/ui/button"
 import { Skeleton } from "@/registry/ui/skeleton"
+import { brandLogoPreviewLoader } from "./brand-logo-preview-loader"
 import { BrandLogoTileMenu } from "./BrandLogoTileMenu"
 import { showBrandLogoToast } from "./BrandLogoToast"
 import type {
@@ -182,8 +183,7 @@ export const BrandLogoTile = memo(function BrandLogoTile({
 	)
 })
 
-// CSS backgrounds cannot report failures. Keep retrying transient CDN errors,
-// with a capped backoff, and cancel pending retries when filters remove a tile.
+// The shared queue bounds image requests; successful URLs survive filter changes.
 function BrandLogoPreview({
 	src,
 	alt,
@@ -193,52 +193,53 @@ function BrandLogoPreview({
 	alt: string
 	className: string
 }) {
-	const [attempt, setAttempt] = useState(0)
-	const [loaded, setLoaded] = useState(false)
-	const imageRef = useRef<HTMLImageElement>(null)
-	const timer = useRef<ReturnType<typeof setTimeout> | null>(null)
-	const retry = useCallback(() => {
-		setLoaded(false)
-		if (timer.current !== null) clearTimeout(timer.current)
-		timer.current = setTimeout(
-			() => {
-				setAttempt((value) => value + 1)
-			},
-			Math.min(1000 * 2 ** Math.min(attempt, 5), 30000)
-		)
-	}, [attempt])
+	const [loaded, setLoaded] = useState(() => brandLogoPreviewLoader.has(src))
+	const [recovery, setRecovery] = useState(0)
 	useEffect(() => {
-		// Cached images can finish before hydration attaches the load handler.
-		const image = imageRef.current
-		if (!image?.complete) return
-		if (image.naturalWidth > 0) setLoaded(true)
-		else retry()
-	}, [retry])
-	useEffect(
-		() => () => {
-			if (timer.current !== null) clearTimeout(timer.current)
-		},
-		[]
-	)
+		const controller = new AbortController()
+		let timer: ReturnType<typeof setTimeout> | undefined
+		let attempt = 0
+		const load = () => {
+			void brandLogoPreviewLoader
+				.load(src, controller.signal)
+				.then(() => {
+					if (!controller.signal.aborted) setLoaded(true)
+				})
+				.catch(() => {
+					if (controller.signal.aborted) return
+					timer = setTimeout(
+						load,
+						Math.min(1000 * 2 ** Math.min(attempt++, 5), 30000)
+					)
+				})
+		}
+		load()
+		return () => {
+			controller.abort()
+			clearTimeout(timer)
+		}
+	}, [src, recovery])
 
 	return (
 		<span className={cn("relative", className)} aria-busy={!loaded}>
-			{!loaded && (
+			{loaded ? (
+				<img
+					src={src}
+					alt={alt}
+					className="size-full object-contain"
+					decoding="async"
+					onError={() => {
+						brandLogoPreviewLoader.forget(src)
+						setLoaded(false)
+						setRecovery((value) => value + 1)
+					}}
+				/>
+			) : (
 				<Skeleton
-					aria-hidden="true"
+					aria-label={`Loading ${alt}`}
 					className="absolute inset-0 animate-none rounded-md"
 				/>
 			)}
-			<img
-				ref={imageRef}
-				src={attempt === 0 ? src : `${src}?retry=${attempt}`}
-				alt={alt}
-				className="relative size-full object-contain"
-				onLoad={() => setLoaded(true)}
-				loading="eager"
-				decoding="async"
-				onError={retry}
-			/>
 		</span>
 	)
 }

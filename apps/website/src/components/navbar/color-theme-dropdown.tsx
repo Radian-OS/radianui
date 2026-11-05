@@ -155,25 +155,25 @@ function syncColor(colorId: string) {
 		document.documentElement.setAttribute("data-color", colorId)
 	}
 
-	try {
-		const iframes = document.querySelectorAll("iframe")
-		iframes.forEach((iframe) => {
-			try {
-				if (isDefault) {
-					iframe.contentDocument?.documentElement.removeAttribute("data-color")
-				} else {
-					iframe.contentDocument?.documentElement.setAttribute(
-						"data-color",
-						colorId
-					)
-				}
-				iframe.contentWindow?.postMessage(
-					{ type: "radian-color-change", color: colorId },
-					"*"
-				)
-			} catch {}
-		})
-	} catch {}
+	// try {
+	// 	const iframes = document.querySelectorAll("iframe")
+	// 	iframes.forEach((iframe) => {
+	// 		try {
+	// 			if (isDefault) {
+	// 				iframe.contentDocument?.documentElement.removeAttribute("data-color")
+	// 			} else {
+	// 				iframe.contentDocument?.documentElement.setAttribute(
+	// 					"data-color",
+	// 					colorId
+	// 				)
+	// 			}
+	// 			iframe.contentWindow?.postMessage(
+	// 				{ type: "radian-color-change", color: colorId },
+	// 				"*"
+	// 			)
+	// 		} catch {}
+	// 	})
+	// } catch {}
 }
 
 export function ColorThemeDropdown() {

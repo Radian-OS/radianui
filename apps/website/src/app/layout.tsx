@@ -88,7 +88,15 @@ export default async function RootLayout({
 			<head>
 				<script
 					dangerouslySetInnerHTML={{
-						__html: `try{var c=localStorage.getItem("radian-primary-color");if(c&&c!=="neutral"){document.documentElement.setAttribute("data-color",c);}}catch(e){}`,
+						// __html: `try{var c=localStorage.getItem("radian-primary-color");if(c&&c!=="neutral"){document.documentElement.setAttribute("data-color",c);}}catch(e){}`,
+						__html: `try {
+  if (!window.location.pathname.startsWith("/preview/")) {
+    var c = localStorage.getItem("radian-primary-color");
+    if (c && c !== "neutral" && c !== "default") {
+      document.documentElement.setAttribute("data-color", c);
+    }
+  }
+} catch (e) {}`,
 					}}
 				/>
 				<AhrefsAnalytics />

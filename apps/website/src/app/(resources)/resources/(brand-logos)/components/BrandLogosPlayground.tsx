@@ -4,6 +4,7 @@ import {
 	startTransition,
 	useCallback,
 	useEffect,
+	useDeferredValue,
 	useLayoutEffect,
 	useMemo,
 	useRef,
@@ -20,7 +21,7 @@ import {
 } from "@/registry/ui/empty"
 import { Input, InputGroup, InputWrapper } from "@/registry/ui/input"
 import { BrandLogoCategoryDropdown } from "./BrandLogoCategoryDropdown"
-import { BrandLogoTile } from "./BrandLogoTile"
+import { BrandLogoGrid } from "./BrandLogoGrid"
 import type {
 	BrandLogoColorway,
 	BrandLogoId,
@@ -66,6 +67,7 @@ export default function BrandLogosPlayground({
 		getBrandLogoSearchTerms,
 	} = useBrandLogoCatalog()
 	const [query, setQuery] = useState("")
+	const deferredQuery = useDeferredValue(query)
 	const [category, setCategory] = useState(ALL_BRAND_LOGO_CATEGORY)
 	const [variant, setVariant] = useState<BrandLogoVariant>("icon")
 	const [colorway, setColorway] = useState<BrandLogoColorway>("colored")
@@ -225,7 +227,9 @@ export default function BrandLogosPlayground({
 			category === ALL_BRAND_LOGO_CATEGORY
 				? brandLogos
 				: brandLogos.filter((brand) => brand.category === category)
-		const normalizedQuery = query.toLowerCase().replace(/[^a-z0-9]/g, "")
+		const normalizedQuery = deferredQuery
+			.toLowerCase()
+			.replace(/[^a-z0-9]/g, "")
 		if (!normalizedQuery) return source
 
 		return source.filter((brand) =>
@@ -236,7 +240,7 @@ export default function BrandLogosPlayground({
 					.includes(normalizedQuery)
 			)
 		)
-	}, [category, query, brandLogos, getBrandLogoSearchTerms])
+	}, [category, deferredQuery, brandLogos, getBrandLogoSearchTerms])
 
 	useLayoutEffect(() => {
 		const topSentinel = sentinelRef.current
@@ -282,17 +286,13 @@ export default function BrandLogosPlayground({
 			</div>
 
 			{visibleLogos.length ? (
-				<ul className="grid w-full list-none grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 lg:gap-5">
-					{visibleLogos.map((brand) => (
-						<BrandLogoTile
-							key={brand.id}
-							id={brand.id}
-							variant={variant}
-							colorway={colorway}
-							onSelect={handleSelectBrand}
-						/>
-					))}
-				</ul>
+				<BrandLogoGrid
+					key={`${category}:${deferredQuery}:${variant}:${colorway}`}
+					logos={visibleLogos}
+					variant={variant}
+					colorway={colorway}
+					onSelect={handleSelectBrand}
+				/>
 			) : (
 				<div className="flex min-h-48 items-center justify-center">
 					<Empty>
