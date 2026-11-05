@@ -1,9 +1,12 @@
 "use client"
 
-import { memo, useCallback, useState, type CSSProperties } from "react"
+import { memo, useCallback, useEffect, useState } from "react"
 import { toast } from "sonner"
+import { useTheme } from "next-themes"
 import { cn } from "@/lib/utils"
 import { Button } from "@/registry/ui/button"
+import { Skeleton } from "@/registry/ui/skeleton"
+import { brandLogoPreviewLoader } from "./brand-logo-preview-loader"
 import { BrandLogoTileMenu } from "./BrandLogoTileMenu"
 import { showBrandLogoToast } from "./BrandLogoToast"
 import type {
@@ -40,12 +43,11 @@ export const BrandLogoTile = memo(function BrandLogoTile({
 		getBrandLogoNextImageMarkup,
 		getBrandLogoSvgUrl,
 	} = useBrandLogoCatalog()
+	const { resolvedTheme } = useTheme()
+	const activeTheme = resolvedTheme === "dark" ? "dark" : "light"
+	const previewUrl = getBrandLogoDisplayUrl(id, activeTheme, colorway, variant)
 	const [copied, setCopied] = useState(false)
 	const brand = getBrandLogo(id)
-	const previewStyle = {
-		"--logo-light": `url("${getBrandLogoDisplayUrl(id, "light", colorway, variant)}")`,
-		"--logo-dark": `url("${getBrandLogoDisplayUrl(id, "dark", colorway, variant)}")`,
-	} as CSSProperties
 
 	const showCopied = useCallback(
 		(format: string) => {
@@ -150,14 +152,13 @@ export const BrandLogoTile = memo(function BrandLogoTile({
 						event.preventDefault()
 						onSelect(id)
 					}}>
-					<span
-						role="img"
-						aria-label={`${brand.name} ${variant}`}
-						style={previewStyle}
-						className={cn(
-							"bg-[image:var(--logo-light)] bg-contain bg-center bg-no-repeat dark:bg-[image:var(--logo-dark)]",
+					<BrandLogoPreview
+						key={previewUrl}
+						src={previewUrl}
+						alt={`${brand.name} ${variant}`}
+						className={
 							variant === "icon" ? "size-12 shrink-0" : "h-[28%] w-full"
-						)}
+						}
 					/>
 				</a>
 			</Button>
@@ -181,3 +182,64 @@ export const BrandLogoTile = memo(function BrandLogoTile({
 		</li>
 	)
 })
+
+// The shared queue bounds image requests; successful URLs survive filter changes.
+function BrandLogoPreview({
+	src,
+	alt,
+	className,
+}: {
+	src: string
+	alt: string
+	className: string
+}) {
+	const [loaded, setLoaded] = useState(() => brandLogoPreviewLoader.has(src))
+	const [recovery, setRecovery] = useState(0)
+	useEffect(() => {
+		const controller = new AbortController()
+		let timer: ReturnType<typeof setTimeout> | undefined
+		let attempt = 0
+		const load = () => {
+			void brandLogoPreviewLoader
+				.load(src, controller.signal)
+				.then(() => {
+					if (!controller.signal.aborted) setLoaded(true)
+				})
+				.catch(() => {
+					if (controller.signal.aborted) return
+					timer = setTimeout(
+						load,
+						Math.min(1000 * 2 ** Math.min(attempt++, 5), 30000)
+					)
+				})
+		}
+		load()
+		return () => {
+			controller.abort()
+			clearTimeout(timer)
+		}
+	}, [src, recovery])
+
+	return (
+		<span className={cn("relative", className)} aria-busy={!loaded}>
+			{loaded ? (
+				<img
+					src={src}
+					alt={alt}
+					className="size-full object-contain"
+					decoding="async"
+					onError={() => {
+						brandLogoPreviewLoader.forget(src)
+						setLoaded(false)
+						setRecovery((value) => value + 1)
+					}}
+				/>
+			) : (
+				<Skeleton
+					aria-label={`Loading ${alt}`}
+					className="absolute inset-0 animate-none rounded-md"
+				/>
+			)}
+		</span>
+	)
+}

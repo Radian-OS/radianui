@@ -133,6 +133,7 @@ export function PreviewClient({ children }: { children: React.ReactNode }) {
 	const config = useMemo(() => buildRegistryConfig(params), [params])
 
 	useLayoutEffect(() => {
+		document.documentElement.removeAttribute("data-color")
 		let style = document.getElementById(THEMER_STYLE_ID) as HTMLStyleElement
 
 		if (!style) {
