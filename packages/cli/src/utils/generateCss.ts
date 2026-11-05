@@ -101,7 +101,8 @@ export function generateThemeCss(
 		darkSelector = ".dark",
 	} = options
 
-	const { cssVars, css } = preset.config
+	const cssVars = preset.config?.cssVars ?? { light: {}, dark: {}, theme: {} }
+	const css = preset.config?.css ?? {}
 	const lines: string[] = []
 
 	// 1. Top-level at-rules first (@import, @custom-variant, …)
@@ -114,8 +115,8 @@ export function generateThemeCss(
 	if (atRuleKeys.length) lines.push("")
 
 	lines.push("@theme {")
-	lines.push(indent(varsToDeclarations(cssVars.light, colorVarPrefix)))
-	if (cssVars.theme) {
+	lines.push(indent(varsToDeclarations(cssVars.light ?? {}, colorVarPrefix)))
+	if (cssVars.theme && Object.keys(cssVars.theme).length > 0) {
 		lines.push("")
 		lines.push(
 			indent(
@@ -130,7 +131,7 @@ export function generateThemeCss(
 
 	// 2. Dark mode
 	lines.push(`${darkSelector} {`)
-	lines.push(indent(varsToDeclarations(cssVars.dark, colorVarPrefix)))
+	lines.push(indent(varsToDeclarations(cssVars.dark ?? {}, colorVarPrefix)))
 	lines.push("}")
 	lines.push("")
 

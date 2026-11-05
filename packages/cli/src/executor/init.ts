@@ -63,13 +63,13 @@ export async function executeInitFromConfig(config: InitConfig) {
 	const dependencies = config.preset?.config.dependencies?.length
 		? config.preset.config.dependencies
 		: [
-				"class-variance-authority",
-				"clsx",
-				"tailwind-merge",
-				"tw-animate-css",
-				"radix-ui",
-				...ICON_DEPENDENCIES[config.iconLibrary!],
-			]
+			"class-variance-authority",
+			"clsx",
+			"tailwind-merge",
+			"tw-animate-css",
+			"radix-ui",
+			...ICON_DEPENDENCIES[config.iconLibrary!],
+		]
 	await installDependencies(
 		projectPath,
 		dependencies,
@@ -209,11 +209,19 @@ async function installComponents(config: InitConfig, projectPath: string) {
 			// with preset's registryDependencies, prompt user to update
 			await updateExistingComponents(config, projectPath, addOpts, projectInfo)
 		} else {
-			// New project with preset: install all UI components
-			const allComponents = (await getRegistryComponents(rawConfig)).filter(
+			const allRegistry = (await getRegistryComponents(rawConfig)).filter(
 				(c) => c.type === "ui"
 			)
-			await addComponentsToProject(allComponents, addOpts, projectInfo)
+			const uiNames = allRegistry.filter((c) => c.type === 'ui').map((c) => c.name)
+
+			const presetDeps = config.preset.config.registryDependencies ?? []
+			const urlDeps = presetDeps.filter((dep) => /^https?:\/\//i.test(dep))
+
+			let finalComponents = await resolveComponents(allRegistry, [
+				...urlDeps,
+				...uiNames
+			])
+			await addComponentsToProject(finalComponents, addOpts, projectInfo)
 		}
 	} else {
 		// No preset: install button and badge as starters
@@ -252,11 +260,19 @@ async function updateExistingComponents(
 
 	if (allComponentNames.length === 0) return
 
+	const displayNames = allComponentNames.map((name) => {
+		if (/^https?:\/\//i.test(name)) {
+			const filename = name.split("/").pop()?.replace(/\.json$/, "")
+			return filename ? `${filename} (custom)` : name
+		}
+		return name
+	})
+
 	const { updateComponents } = await prompts(
 		{
 			type: "confirm",
 			name: "updateComponents",
-			message: `Update ${txt.bold(String(allComponentNames.length))} UI components (${allComponentNames.join(", ")})?`,
+			message: `Update ${txt.bold(String(allComponentNames.length))} UI components (${displayNames.join(", ")})?`,
 			initial: true,
 		},
 		{ onCancel: () => handlePromptCancel() }
