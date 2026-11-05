@@ -27,6 +27,7 @@ import {
 	type ButtonVariant,
 	type ButtonPaddingPreset,
 	type ButtonRadiusPreset,
+	DEFAULT_BUTTON_CONFIG,
 } from "@/registry/component-presets/button-presets"
 import { Button as ControlButton, IconButton } from "@/styles/default/ui/button"
 import {
@@ -40,13 +41,6 @@ import { ComponentSettingsPopover } from "../components-settings-popover"
 const PRESET_NAMES = Object.keys(
 	BUTTON_PADDING_PRESETS
 ) as ButtonPaddingPreset[]
-
-const DEFAULT_BUTTON_CONFIG: ButtonConfig = {
-	padding: "md",
-	radius: "md",
-	size: "md",
-	variant: "strong",
-}
 
 export function updateButton(updates?: Partial<ButtonConfig> | null) {
 	const { params, setParams } = useThemerStore.getState()

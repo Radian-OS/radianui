@@ -143,3 +143,10 @@ export const buttonConfigSchema = z.object({
 })
 
 export type ButtonConfig = z.infer<typeof buttonConfigSchema>
+
+export const DEFAULT_BUTTON_CONFIG: ButtonConfig = {
+	padding: "md",
+	radius: "md",
+	size: "md",
+	variant: "strong",
+}

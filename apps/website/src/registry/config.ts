@@ -461,7 +461,7 @@ export function buildRegistryConfig(config: ThemerConfig): RegistryConfig {
 		...ICON_DEPENDENCIES[config.iconLibrary],
 	]
 
-	const registryDependencies = ["button"]
+	const registryDependencies: string[] = []
 
 	const projectConfig = {
 		name: config.name ?? DEFAULT_CONFIG.name!,

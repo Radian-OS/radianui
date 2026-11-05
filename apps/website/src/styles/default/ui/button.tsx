@@ -466,9 +466,9 @@ const buttonSpinnerSizes: Record<string, number> = {
 
 function Button({
 	loading = false,
-	variant = "strong",
-	size = "md",
-	color = "primary",
+	variant,
+	size,
+	color,
 	className,
 	children,
 	disabled,
@@ -933,9 +933,9 @@ const compactButtonSpinnerSizes: Record<string, number> = {
 
 function CompactButton({
 	loading = false,
-	variant = "strong",
-	size = "md",
-	color = "primary",
+	variant,
+	size,
+	color,
 	className,
 	children,
 	disabled,
@@ -982,6 +982,10 @@ export const iconButtonSizeVariants = cva("", {
 			default: "",
 		},
 	},
+	defaultVariants: {
+		size: "md",
+		variant: "default",
+	},
 	compoundVariants: [
 		// Adjusted padding for outline variant (accounting for border)
 		{ variant: "outline", size: "xs", className: "p-1.25" },
@@ -995,9 +999,9 @@ export const iconButtonSizeVariants = cva("", {
 
 function IconButton({
 	loading = false,
-	variant = "strong",
-	size = "md",
-	color = "primary",
+	variant,
+	size,
+	color,
 	className,
 	children,
 	disabled,

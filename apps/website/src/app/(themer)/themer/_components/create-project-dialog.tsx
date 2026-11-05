@@ -21,6 +21,7 @@ import { Input } from "@/styles/default/ui/input"
 import { Label } from "@/styles/default/ui/label"
 import { Switch } from "@/styles/default/ui/switch"
 import { Tabs, TabsList, TabsTrigger } from "@/styles/default/ui/tabs"
+import { createProjectAction } from "@/app/actions/themer/create-project"
 
 const PROJECT_NAME_REGEX = /^[a-z0-9][a-z0-9-]*$/
 
@@ -48,20 +49,6 @@ function validateProjectName(name: string) {
 	return null
 }
 
-async function saveConfig(config: ReturnType<typeof buildRegistryConfig>) {
-	const res = await fetch(`${process.env.NEXT_PUBLIC_BLOCKS_URL}/api/config`, {
-		method: "POST",
-		headers: { "Content-Type": "application/json" },
-		body: JSON.stringify(config),
-	})
-
-	if (!res.ok) {
-		throw new Error(`Failed to save config (${res.status})`)
-	}
-
-	return res.json() as Promise<{ id: string }>
-}
-
 export function CreateProjectDialog({
 	children,
 }: {
@@ -87,7 +74,7 @@ export function CreateProjectDialog({
 		error: mutationError,
 		reset,
 	} = useMutation({
-		mutationFn: saveConfig,
+		mutationFn: createProjectAction,
 	})
 
 	const handleOpenChange = (open: boolean) => {
@@ -105,15 +92,7 @@ export function CreateProjectDialog({
 		setTouched(true)
 		if (error) return
 
-		const isVite = selectedTemplate === "vite"
-		const config = buildRegistryConfig({
-			...params,
-			name: projectName,
-			template: selectedTemplate,
-			useSrcDir: isVite ? true : useSrcDir,
-		})
-
-		mutate(config)
+		mutate({ params })
 	}
 
 	const command = data?.id ? PM_COMMAND[packageManager](data.id) : ""
