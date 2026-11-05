@@ -146,6 +146,36 @@ export const RADIAN_COLORS: ThemeColorOption[] = [
 
 const COLOR_STORAGE_KEY = "radian-primary-color"
 
+function syncColor(colorId: string) {
+	const isDefault = colorId === "neutral" || colorId === "default"
+
+	if (isDefault) {
+		document.documentElement.removeAttribute("data-color")
+	} else {
+		document.documentElement.setAttribute("data-color", colorId)
+	}
+
+	try {
+		const iframes = document.querySelectorAll("iframe")
+		iframes.forEach((iframe) => {
+			try {
+				if (isDefault) {
+					iframe.contentDocument?.documentElement.removeAttribute("data-color")
+				} else {
+					iframe.contentDocument?.documentElement.setAttribute(
+						"data-color",
+						colorId
+					)
+				}
+				iframe.contentWindow?.postMessage(
+					{ type: "radian-color-change", color: colorId },
+					"*"
+				)
+			} catch {}
+		})
+	} catch {}
+}
+
 export function ColorThemeDropdown() {
 	const [activeId, setActiveId] = useState<string>("neutral")
 	const [isOpen, setIsOpen] = useState(false)
@@ -156,28 +186,37 @@ export function ColorThemeDropdown() {
 			saved || document.documentElement.getAttribute("data-color") || "neutral"
 
 		const matched = RADIAN_COLORS.find((c) => c.id === current)
-		if (matched) {
-			setActiveId(matched.id)
-		} else {
-			setActiveId("neutral")
+		const initialId = matched ? matched.id : "neutral"
+		setActiveId(initialId)
+		syncColor(initialId)
+
+		const handleIframeLoad = () => {
+			const active = localStorage.getItem(COLOR_STORAGE_KEY) || "neutral"
+			syncColor(active)
 		}
+
+		const iframes = document.querySelectorAll("iframe")
+		iframes.forEach((iframe) => {
+			iframe.addEventListener("load", handleIframeLoad)
+		})
 
 		const handleStorage = (e: StorageEvent) => {
 			if (e.key === COLOR_STORAGE_KEY && e.newValue) {
 				const updateMatch = RADIAN_COLORS.find((c) => c.id === e.newValue)
 				if (updateMatch) {
 					setActiveId(updateMatch.id)
-					if (updateMatch.id === "neutral") {
-						document.documentElement.removeAttribute("data-color")
-					} else {
-						document.documentElement.setAttribute("data-color", updateMatch.id)
-					}
+					syncColor(updateMatch.id)
 				}
 			}
 		}
 
 		window.addEventListener("storage", handleStorage)
-		return () => window.removeEventListener("storage", handleStorage)
+		return () => {
+			window.removeEventListener("storage", handleStorage)
+			iframes.forEach((iframe) => {
+				iframe.removeEventListener("load", handleIframeLoad)
+			})
+		}
 	}, [])
 
 	const handleSelect = (colorOption: ThemeColorOption) => {
@@ -186,11 +225,7 @@ export function ColorThemeDropdown() {
 			localStorage.setItem(COLOR_STORAGE_KEY, colorOption.id)
 		} catch {}
 
-		if (colorOption.id === "neutral") {
-			document.documentElement.removeAttribute("data-color")
-		} else {
-			document.documentElement.setAttribute("data-color", colorOption.id)
-		}
+		syncColor(colorOption.id)
 		setIsOpen(false)
 	}
 
