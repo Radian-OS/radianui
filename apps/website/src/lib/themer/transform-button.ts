@@ -146,44 +146,46 @@ export function transformButtonCode(
 		}
 	}
 
-	// Update horizontal padding in buttonVariants.compoundVariants
+	// Update horizontal padding in buttonVariants.variants.size
 	sourceFile
 		.getDescendantsOfKind(SyntaxKind.PropertyAssignment)
 		.forEach((prop) => {
-			if (prop.getName() === "compoundVariants") {
-				const arrayLit = prop.getInitializerIfKind(
-					SyntaxKind.ArrayLiteralExpression
+			const parent = prop.getParent()
+			const grandParent = parent?.getParent()
+			if (
+				prop.getName() === "size" &&
+				grandParent?.isKind(SyntaxKind.PropertyAssignment) &&
+				grandParent.getName() === "variants"
+			) {
+				const varDecl = prop.getFirstAncestorByKind(
+					SyntaxKind.VariableDeclaration
 				)
-				if (arrayLit) {
-					arrayLit.getElements().forEach((element) => {
-						if (element.isKind(SyntaxKind.ObjectLiteralExpression)) {
-							const sizeProp = element
-								.getProperty("size")
-								?.asKind(SyntaxKind.PropertyAssignment)
-							const classProp = element
-								.getProperty("className")
-								?.asKind(SyntaxKind.PropertyAssignment)
-							if (sizeProp && classProp) {
-								const sizeVal = sizeProp
-									.getInitializerIfKind(SyntaxKind.StringLiteral)
-									?.getLiteralValue() as ButtonSize | undefined
-								const classStrNode = classProp.getInitializerIfKind(
-									SyntaxKind.StringLiteral
-								)
-								if (sizeVal && classStrNode) {
-									const paddingPx =
-										BUTTON_PADDING_PRESETS[paddingPreset]?.[sizeVal]
-									if (paddingPx !== undefined) {
-										// Replaces px-2, px-3, etc., with exact preset pixels
-										const updated = classStrNode
+				if (varDecl?.getName() === "buttonVariants") {
+					const sizeObj = prop.getInitializerIfKind(
+						SyntaxKind.ObjectLiteralExpression
+					)
+					if (sizeObj) {
+						sizeObj.getProperties().forEach((sizeProp) => {
+							if (sizeProp.isKind(SyntaxKind.PropertyAssignment)) {
+								const sizeKey = sizeProp
+									.getName()
+									.replace(/^["']|["']$/g, "") as ButtonSize
+								const paddingPx =
+									BUTTON_PADDING_PRESETS[paddingPreset]?.[sizeKey]
+								if (paddingPx !== undefined) {
+									const strNode = sizeProp.getInitializerIfKind(
+										SyntaxKind.StringLiteral
+									)
+									if (strNode) {
+										const updated = strNode
 											.getLiteralValue()
 											.replace(/\bpx-(?:\d+|\[.*?\])/, `px-[${paddingPx}px]`)
-										classStrNode.setLiteralValue(updated)
+										strNode.setLiteralValue(updated)
 									}
 								}
 							}
-						}
-					})
+						})
+					}
 				}
 			}
 		})

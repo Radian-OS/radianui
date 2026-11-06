@@ -66,12 +66,12 @@ export const buttonVariants = cva(
 				"smooth-inverted": "",
 			},
 			size: {
-				xs: "cn-btn-size-xs px-1 text-[13px] leading-4.5 [&>svg]:size-4",
-				sm: "cn-btn-size-sm px-1 text-sm [&>svg]:size-4.5",
-				md: "cn-btn-size-md px-1 text-sm [&>svg]:size-5",
-				lg: "cn-btn-size-lg px-1 text-sm [&>svg]:size-5",
-				xl: "cn-btn-size-xl px-1 text-base [&>svg]:size-5",
-				"2xl": "cn-btn-size-2xl px-1 text-base [&>svg]:size-6",
+				xs: "cn-btn-size-xs h-7 gap-1 px-2 py-1.5 text-[13px] leading-4.5 [&>svg]:size-4",
+				sm: "cn-btn-size-sm h-8 gap-1.5 px-2 py-1.5 text-sm [&>svg]:size-4.5",
+				md: "cn-btn-size-md h-9 gap-2 px-3 py-2 text-sm [&>svg]:size-5",
+				lg: "cn-btn-size-lg h-10 gap-2 px-3 py-2.5 text-sm [&>svg]:size-5",
+				xl: "cn-btn-size-xl h-11 gap-2 px-3 py-2.5 text-base [&>svg]:size-5",
+				"2xl": "cn-btn-size-2xl h-12 gap-2 px-4 py-3 text-base [&>svg]:size-6",
 			},
 			loading: {
 				true: "",
@@ -93,14 +93,6 @@ export const buttonVariants = cva(
 			loading: false,
 		},
 		compoundVariants: [
-			// Default size styles (for buttons with text)
-			{ size: "xs", className: "h-7 gap-1 px-2 py-1.5" },
-			{ size: "sm", className: "h-8 gap-1.5 px-2 py-1.5" },
-			{ size: "md", className: "h-9 gap-2 px-3 py-2" },
-			{ size: "lg", className: "h-10 gap-2 px-3 py-2.5" },
-			{ size: "xl", className: "h-11 gap-2 px-3 py-2.5" },
-			{ size: "2xl", className: "h-12 gap-2 px-4 py-3" },
-
 			// Strong variant + colors
 			{
 				variant: "strong",
