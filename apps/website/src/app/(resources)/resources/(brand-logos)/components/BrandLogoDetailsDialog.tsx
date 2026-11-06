@@ -7,7 +7,7 @@ import {
 	Download,
 	Image as ImageIcon,
 } from "lucide-react"
-import { useTheme } from "next-themes"
+import { useBrandLogoTheme } from "./use-brand-logo-theme"
 import { toast } from "sonner"
 import { cn } from "@/lib/utils"
 import { Badge } from "@/registry/ui/badge"
@@ -77,8 +77,7 @@ export function BrandLogoDetailsDialog({
 		getBrandLogoNextImageMarkup,
 		getBrandLogoSvgUrl,
 	} = useBrandLogoCatalog()
-	const { resolvedTheme } = useTheme()
-	const activeTheme = resolvedTheme === "dark" ? "dark" : "light"
+	const activeTheme = useBrandLogoTheme() ?? "dark"
 	const [dialogVariant, setDialogVariant] = useState<BrandLogoVariant>(variant)
 	const [dialogColorway, setDialogColorway] =
 		useState<BrandLogoColorway>(colorway)
