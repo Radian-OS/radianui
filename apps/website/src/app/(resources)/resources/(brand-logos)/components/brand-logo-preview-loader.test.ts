@@ -1,82 +1,28 @@
 import assert from "node:assert/strict"
 import test from "node:test"
-import { createPreviewLoader } from "./brand-logo-preview-loader"
+import { getBrandLogoPreviewSource } from "./brand-logo-preview-loader"
 
-function setup(concurrency = 2, timeoutMs = 1000) {
-	const images: Array<{
-		src: string
-		onload: (() => void) | null
-		onerror: (() => void) | null
-	}> = []
-	const loader = createPreviewLoader({
-		concurrency,
-		timeoutMs,
-		createImage: () => {
-			const image = { src: "", onload: null, onerror: null }
-			images.push(image)
-			return image
-		},
-	})
-	return { images, loader }
-}
+const src =
+	"https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@main/packages/brand-logos/src/dark/colored/ai/icon/claude.svg"
 
-test("bounds concurrent requests and eventually loads every queued logo", async () => {
-	const { images, loader } = setup()
-	const promises = Array.from({ length: 30 }, (_, i) =>
-		loader.load(`logo-${i}`, new AbortController().signal)
-	)
-	assert.equal(images.length, 2)
-	for (let i = 0; i < 30; i++) {
-		assert.equal(images[i].src, `logo-${i}`)
-		images[i].onload!()
-		assert.equal(images.length, Math.min(i + 3, 30))
+test("initial previews use the canonical cacheable CDN asset", () => {
+	assert.equal(getBrandLogoPreviewSource(src, 0), src)
+})
+
+test("retries switch CDN edges without changing the logo variant", () => {
+	const original = new URL(src)
+	for (let attempt = 1; attempt < 10; attempt++) {
+		const url = new URL(getBrandLogoPreviewSource(src, attempt))
+		assert.equal(url.pathname, original.pathname)
+		assert.equal(url.protocol, "https:")
+		assert.notEqual(
+			url.hostname,
+			new URL(getBrandLogoPreviewSource(src, attempt - 1)).hostname
+		)
 	}
-	await Promise.all(promises)
-	await loader.load("logo-0", new AbortController().signal)
-	assert.equal(images.length, 30, "successful URLs are reused")
-})
-
-test("filter changes cancel active and queued requests and free the queue", async () => {
-	const { images, loader } = setup(1)
-	const active = new AbortController()
-	const queued = new AbortController()
-	const first = loader.load("old-active", active.signal)
-	const second = loader.load("old-queued", queued.signal)
-	const firstRejected = assert.rejects(first, /Aborted/)
-	const secondRejected = assert.rejects(second, /Aborted/)
-	queued.abort()
-	active.abort()
-	await Promise.all([firstRejected, secondRejected])
-	assert.equal(images.length, 1)
-	assert.equal(images[0].src, "")
-	const next = loader.load("new-filter", new AbortController().signal)
-	images[1].onload!()
-	await next
-})
-
-test("failures do not poison the cache or prevent queued logos loading", async () => {
-	const { images, loader } = setup(1)
-	const first = loader.load("failed", new AbortController().signal)
-	const rejected = assert.rejects(first, /Could not load/)
-	const second = loader.load("next", new AbortController().signal)
-	images[0].onerror!()
-	images[1].onload!()
-	await Promise.all([rejected, second])
-	assert.equal(loader.has("failed"), false)
-	const retry = loader.load("failed", new AbortController().signal)
-	images[2].onload!()
-	await retry
-	assert.equal(loader.has("failed"), true)
-})
-
-test("stalled requests time out and release their slot", async () => {
-	const { images, loader } = setup(1, 5)
-	await assert.rejects(
-		loader.load("stalled", new AbortController().signal),
-		/timed out/
+	assert.equal(new URL(getBrandLogoPreviewSource(src, 1)).search, "")
+	assert.equal(
+		new URL(getBrandLogoPreviewSource(src, 4)).searchParams.get("retry"),
+		"1"
 	)
-	assert.equal(images[0].src, "")
-	const next = loader.load("next", new AbortController().signal)
-	images[1].onload!()
-	await next
 })
