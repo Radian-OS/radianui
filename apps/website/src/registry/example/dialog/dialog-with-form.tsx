@@ -82,7 +82,7 @@ export default function DialogWithForm() {
 					Edit Profile
 				</Button>
 			</DialogTrigger>
-			<DialogContent className="w-125 p-0">
+			<DialogContent className="w-125">
 				<DialogHeader>
 					<DialogTitle>Edit Profile</DialogTitle>
 				</DialogHeader>
@@ -234,7 +234,7 @@ export default function DialogWithForm() {
 							/>
 						</DialogBody>
 
-						<DialogFooter>
+						<DialogFooter className="mt-3">
 							<DialogClose asChild>
 								<Button type="button" color="neutral" variant="outline">
 									Cancel

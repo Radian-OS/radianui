@@ -4,7 +4,7 @@ import * as React from "react"
 import { type ReactNode, isValidElement } from "react"
 import * as SelectPrimitive from "@radix-ui/react-select"
 import { type VariantProps, cva } from "class-variance-authority"
-import { Check, ChevronDown, ChevronUp } from "lucide-react"
+import { IconSlot } from "@/registry/icon/icon-library"
 import { cn } from "@/lib/utils"
 
 export type SelectContextType = {
@@ -119,7 +119,7 @@ function SelectTrigger({
 			{...props}>
 			{children}
 			<SelectPrimitive.Icon asChild>
-				<ChevronDown className="-me-0.5 ml-auto size-5 opacity-60" />
+				<IconSlot slot="down" className="-me-0.5 ml-auto size-5 opacity-60" />
 			</SelectPrimitive.Icon>
 		</SelectPrimitive.Trigger>
 	)
@@ -137,7 +137,7 @@ function SelectScrollUpButton({
 				className
 			)}
 			{...props}>
-			<ChevronUp className="h-4 w-4" />
+			<IconSlot slot="up" className="h-4 w-4" />
 		</SelectPrimitive.ScrollUpButton>
 	)
 }
@@ -154,7 +154,7 @@ function SelectScrollDownButton({
 				className
 			)}
 			{...props}>
-			<ChevronDown className="h-4 w-4" />
+			<IconSlot slot="down" className="h-4 w-4" />
 		</SelectPrimitive.ScrollDownButton>
 	)
 }
@@ -227,7 +227,7 @@ function SelectItem({ className, children, ...props }: SelectItemProps) {
 							indicatorPosition === "left" ? "start-2" : "end-2"
 						)}>
 						<SelectPrimitive.ItemIndicator>
-							<Check className="text-fg-secondary size-5" />
+							<IconSlot slot="check" className="text-fg-secondary size-5" />
 						</SelectPrimitive.ItemIndicator>
 					</span>
 				))}

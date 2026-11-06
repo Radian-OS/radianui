@@ -4,7 +4,7 @@ import * as React from "react"
 import useEmblaCarousel, {
 	type UseEmblaCarouselType,
 } from "embla-carousel-react"
-import { ChevronLeft, ChevronRight } from "lucide-react"
+import { IconSlot } from "@/registry/icon/icon-library"
 import { cn } from "@/lib/utils"
 import { IconButton } from "@/registry/ui/button"
 
@@ -196,7 +196,7 @@ function CarouselPrevious({
 			onClick={scrollPrev}
 			aria-label="Previous Button"
 			{...props}>
-			{children ?? <ChevronLeft />}
+			{children ?? <IconSlot className="rtl:rotate-180" slot="left" />}
 			<span className="sr-only">Previous slide</span>
 		</IconButton>
 	)
@@ -231,7 +231,8 @@ function CarouselNext({
 			disabled={!canScrollNext}
 			onClick={scrollNext}
 			{...props}>
-			{children ?? <ChevronRight />} <span className="sr-only">Next slide</span>
+			{children ?? <IconSlot className="rtl:rotate-180" slot="right" />}{" "}
+			<span className="sr-only">Next slide</span>
 		</IconButton>
 	)
 }

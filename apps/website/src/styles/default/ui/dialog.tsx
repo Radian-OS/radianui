@@ -3,7 +3,6 @@ import * as DialogPrimitive from "@radix-ui/react-dialog"
 import { type VariantProps, cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 import { IconSlot } from "@/registry/icon/icon-library"
-import { CompactButton } from "./button"
 
 type Backdrop = VariantProps<typeof dialogOverlayVariants>["backdrop"]
 
@@ -163,13 +162,12 @@ function DialogTitle({
 			<span className="self-center">{children}</span>
 			{closeButton === "visible" && (
 				<DialogPrimitive.Close asChild>
-					<CompactButton
+					<button
+						type="button"
 						aria-label="Close Button"
-						size="md"
-						variant="soft"
-						color="neutral">
+						className="focus-visible:ring-offset-bg bg-fill2 text-fg-secondary hover:bg-fill1-alpha focus-visible:bg-bg focus-visible:ring-border box-border inline-flex h-6 w-6 items-center justify-center rounded-md p-1 font-medium whitespace-nowrap hover:cursor-pointer focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none [&>svg]:!h-4 [&>svg]:!w-4">
 						<IconSlot slot="cross" />
-					</CompactButton>
+					</button>
 				</DialogPrimitive.Close>
 			)}
 		</DialogPrimitive.Title>
