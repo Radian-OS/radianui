@@ -75,6 +75,8 @@ export async function createProjectAction(
 	const headersList = await headers()
 	const userIp =
 		headersList.get("x-forwarded-for")?.split(",")[0].trim() ?? "unknown"
+	const origin =
+		headersList.get("origin") ?? process.env.NEXT_PUBLIC_WEBSITE_URL
 
 	const blocksUrl = process.env.NEXT_PUBLIC_BLOCKS_URL
 	if (!blocksUrl) {
@@ -88,6 +90,7 @@ export async function createProjectAction(
 		headers: {
 			"Content-Type": "application/json",
 			"x-client-ip": userIp,
+			...(origin ? { origin } : {}),
 		},
 		body: JSON.stringify({
 			projectConfig,
