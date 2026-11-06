@@ -77,7 +77,13 @@ export async function createProjectAction(
 		headersList.get("x-forwarded-for")?.split(",")[0].trim() ?? "unknown"
 
 	const blocksUrl = process.env.NEXT_PUBLIC_BLOCKS_URL
-	const res = await fetch(`${blocksUrl}/api/presets`, {
+	if (!blocksUrl) {
+		console.error("NEXT_PUBLIC_BLOCKS_URL environment variable is not defined")
+		throw new Error("Blocks service URL is not configured")
+	}
+
+	const endpoint = `${blocksUrl.replace(/\/+$/, "")}/api/presets`
+	const res = await fetch(endpoint, {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
@@ -89,12 +95,20 @@ export async function createProjectAction(
 		}),
 	})
 	if (!res.ok) {
+		const errorText = await res.text().catch(() => "")
+		console.error(
+			`[Preset Save Error] POST ${endpoint} returned ${res.status}:`,
+			errorText
+		)
+
 		if (res.status === 429) {
 			throw new Error(
 				"You've reached the limit of 5 presets per day. Try again tomorrow."
 			)
 		}
-		throw new Error(`Failed to save config (${res.status})`)
+		throw new Error(
+			`Failed to save config (${res.status}): ${errorText || res.statusText}`
+		)
 	}
 	return (await res.json()) as { id: string }
 }
