@@ -5,6 +5,7 @@ import {
 	type RegistryItem,
 } from "@/lib/themer/transformers"
 import { buildRegistryConfig, ThemerConfig } from "@/registry/config"
+import { headers } from "next/headers"
 import fs from "fs/promises"
 import path from "path"
 
@@ -27,7 +28,6 @@ export async function createProjectAction(
 		useSrcDir: isVite ? true : params.useSrcDir,
 	})
 
-	// 2. Read local style JSON
 	const styleJsonPath = path.join(
 		process.cwd(),
 		`public/r/styles/${style}.json`
@@ -72,17 +72,28 @@ export async function createProjectAction(
 		})
 	}
 
-	// Send payload to backend
+	const headersList = await headers()
+	const userIp =
+		headersList.get("x-forwarded-for")?.split(",")[0].trim() ?? "unknown"
+
 	const blocksUrl = process.env.NEXT_PUBLIC_BLOCKS_URL
 	const res = await fetch(`${blocksUrl}/api/presets`, {
 		method: "POST",
-		headers: { "Content-Type": "application/json" },
+		headers: {
+			"Content-Type": "application/json",
+			"x-client-ip": userIp,
+		},
 		body: JSON.stringify({
 			projectConfig,
 			components: customComponents,
 		}),
 	})
 	if (!res.ok) {
+		if (res.status === 429) {
+			throw new Error(
+				"You've reached the limit of 5 presets per day. Try again tomorrow."
+			)
+		}
 		throw new Error(`Failed to save config (${res.status})`)
 	}
 	return (await res.json()) as { id: string }

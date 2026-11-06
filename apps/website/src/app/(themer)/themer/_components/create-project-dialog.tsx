@@ -92,7 +92,14 @@ export function CreateProjectDialog({
 		setTouched(true)
 		if (error) return
 
-		mutate({ params })
+		mutate({
+			params: {
+				...params,
+				name: projectName,
+				template: selectedTemplate,
+				useSrcDir: selectedTemplate === "vite" ? true : useSrcDir,
+			},
+		})
 	}
 
 	const command = data?.id ? PM_COMMAND[packageManager](data.id) : ""
@@ -205,14 +212,16 @@ export function CreateProjectDialog({
 						</p>
 					)}
 
-					<Button
-						type="submit"
-						className="w-full"
-						disabled={!!error || isPending}
-						loading={isPending}>
-						{!isPending && <Rocket className="size-4" />}
-						{isPending ? "Creating Project..." : "Create Project"}
-					</Button>
+					{!command && (
+						<Button
+							type="submit"
+							className="w-full"
+							disabled={!!error || isPending}
+							loading={isPending}>
+							{!isPending && <Rocket className="size-4" />}
+							{isPending ? "Creating Project..." : "Create Project"}
+						</Button>
+					)}
 
 					{data?.id && (
 						<div className="border-border flex flex-col gap-2.5 border-t pt-4">
