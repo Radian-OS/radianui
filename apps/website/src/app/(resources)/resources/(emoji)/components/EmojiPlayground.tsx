@@ -9,6 +9,7 @@ import {
 	useState,
 } from "react"
 import { Search, SearchX } from "lucide-react"
+import { useRouter } from "next/navigation"
 import {
 	Empty,
 	EmptyDescription,
@@ -23,6 +24,7 @@ import { EmojiDetailsDialog } from "./EmojiDetailsDialog"
 import { EmojiTile } from "./EmojiTile"
 import type { EmojiData } from "./emoji-data"
 import {
+	formatEmojiName,
 	ALL_EMOJI_CATEGORY,
 	EMOJI_PAGE_PATH,
 	emojiGroups,
@@ -48,6 +50,7 @@ export default function EmojiPlayground({
 }: {
 	initialSelectedEmoji?: EmojiData | null
 }) {
+	const router = useRouter()
 	const [query, setQuery] = useState("")
 	const [category, setCategory] = useState(
 		initialSelectedEmoji?.group ?? ALL_EMOJI_CATEGORY
@@ -62,6 +65,19 @@ export default function EmojiPlayground({
 	const ownsDrawerHistoryEntryRef = useRef(false)
 	const sentinelRef = useRef<HTMLDivElement>(null)
 	const bottomSentinelRef = useRef<HTMLDivElement>(null)
+
+	// Next.js may preserve this component across emoji and collection routes.
+	useEffect(() => {
+		setSelectedEmoji(initialSelectedEmoji)
+		ownsDrawerHistoryEntryRef.current = false
+	}, [initialSelectedEmoji])
+
+	// Native history updates do not run Next.js metadata generation.
+	useEffect(() => {
+		document.title = selectedEmoji
+			? `${selectedEmoji.emoji} ${formatEmojiName(selectedEmoji.name)} Emoji — Meaning, Copy & Paste, Unicode`
+			: "Copy and Paste Emojis, PNG & SVG Downloads | Radian UI"
+	}, [selectedEmoji])
 
 	useEffect(() => {
 		let isCurrent = true
@@ -170,6 +186,13 @@ export default function EmojiPlayground({
 		if (open) return
 
 		setSelectedEmoji(null)
+		if (initialSelectedEmoji) {
+			// A direct emoji page has server-rendered hero content and metadata.
+			// Changing only browser history leaves those details on the collection.
+			ownsDrawerHistoryEntryRef.current = false
+			router.replace(EMOJI_PAGE_PATH, { scroll: false })
+			return
+		}
 		if (ownsDrawerHistoryEntryRef.current) {
 			ownsDrawerHistoryEntryRef.current = false
 			window.history.back()
