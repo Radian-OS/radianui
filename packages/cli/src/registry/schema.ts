@@ -19,6 +19,7 @@ export const rawConfigSchema = z.object({
 		lib: z.string().optional(),
 		hooks: z.string().optional(),
 	}),
+	presetId: z.string().optional(),
 })
 
 export const configSchema = rawConfigSchema.extend({
@@ -79,24 +80,30 @@ export const registryItemSchema = registryItemCommonSchema.extend({
 
 export type RegistryItem = z.infer<typeof registryItemSchema>
 
-export interface Preset {
-	id?: string
-	name?: string
-	config: {
-		name?: string
-		cssVars: {
-			light: Record<string, string>
-			dark: Record<string, string>
-			theme?: Record<string, string>
-		}
-		css: Record<string, Record<string, string> | string>
-		dependencies: string[]
-		registryDependencies: string[]
-		config: {
-			iconLibrary: IconLibrary
-			template: string
-			useSrcDir: boolean
-			style: Style
-		}
-	}
-}
+export const presetSchema = z.object({
+	id: z.string().optional(),
+	name: z.string(),
+	cssVars: z.object({
+		light: z.record(z.string(), z.string()).default({}),
+		dark: z.record(z.string(), z.string()).default({}),
+		theme: z.record(z.string(), z.string()).optional(),
+	}),
+	css: z
+		.record(z.string(), z.union([z.string(), z.record(z.string(), z.string())]))
+		.default({}),
+	dependencies: z.array(z.string()).default([]),
+	registryDependencies: z.array(z.string()).default([]),
+	config: z.object({
+		iconLibrary: z.enum(
+			ICON_LIBRARIES.map((lib) => lib.value) as [
+				IconLibrary,
+				...IconLibrary[],
+			]
+		),
+		template: z.string(),
+		useSrcDir: z.boolean().default(true),
+		style: z.enum(STYLES),
+	}),
+})
+
+export type Preset = z.infer<typeof presetSchema>

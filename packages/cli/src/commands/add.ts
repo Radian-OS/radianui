@@ -96,7 +96,9 @@ export const add = new Command()
 
 			const resolvedComponents = await resolveComponents(
 				await getRegistryComponents(rawConfig),
-				validComponents
+				validComponents,
+				new Set<string>(),
+				rawConfig.presetId
 			)
 
 			await addComponentsToProject(resolvedComponents, options, projectInfo)

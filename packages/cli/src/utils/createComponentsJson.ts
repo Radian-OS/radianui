@@ -6,7 +6,8 @@ export const createComponentsJson = async (
 	projectDir: string,
 	hasSrcDir: boolean,
 	style: Style,
-	iconLibrary: IconLibrary
+	iconLibrary: IconLibrary,
+	presetId?: string // Passed in the case where preset is used
 ) => {
 	const componentsJsonPath = path.join(projectDir, "components.json")
 	const componentsJson = {
@@ -23,6 +24,11 @@ export const createComponentsJson = async (
 		},
 		hasSrcDir,
 	}
+
+	if (presetId) {
+		componentsJson['presetId'] = presetId
+	}
+
 	await fs.writeFile(
 		componentsJsonPath,
 		JSON.stringify(componentsJson, null, 2) + "\n",

@@ -41,8 +41,8 @@ const dialogOverlayVariants = cva(
 			backdrop: {
 				whiteOverlay: "bg-white/50",
 				blackOverlay: "bg-black/50",
-				blur: "cn-dialog-overlay-backdrop-blur",
-				transparent: "cn-dialog-overlay-backdrop-transparent",
+				blur: "backdrop-blur-sm",
+				transparent: "bg-transparent",
 			},
 		},
 		defaultVariants: {
@@ -91,7 +91,7 @@ function DialogContent({
 			<DialogPrimitive.Content
 				data-slot="dialog-content"
 				className={cn(
-					"data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 cn-dialog-content group fixed top-1/2 left-1/2 z-50 flex w-full max-w-lg -translate-x-1/2 -translate-y-1/2 flex-col duration-200",
+					"data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 group bg-bg border-alpha fixed top-1/2 left-1/2 z-50 flex w-full max-w-lg -translate-x-1/2 -translate-y-1/2 flex-col gap-5 rounded-2xl border p-4 shadow-lg duration-200",
 					className
 				)}
 				{...props}>
@@ -101,8 +101,9 @@ function DialogContent({
 						<button
 							type="button"
 							className={cn(
-								"cn-dialog-close-button absolute top-3 right-3 box-border inline-flex h-6 w-6 items-center justify-center font-medium whitespace-nowrap hover:cursor-pointer focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none [&>svg]:!h-4 [&>svg]:!w-4",
-								closeButton === "hover" && "cn-dialog-close-button-hover"
+								"focus-visible:ring-offset-bg text-fg-tertiary hover:bg-fill2 focus-visible:ring-border absolute top-3 right-3 box-border inline-flex h-6 w-6 items-center justify-center rounded-md bg-transparent font-medium whitespace-nowrap hover:cursor-pointer focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none [&>svg]:!h-4 [&>svg]:!w-4",
+								closeButton === "hover" &&
+									"opacity-0 transition-opacity group-hover:opacity-100"
 							)}
 							aria-label="Close">
 							<IconSlot slot="cross" />
@@ -120,7 +121,7 @@ function DialogHeader({ className, ...props }: DialogHeaderProps) {
 		<div
 			data-slot="dialog-header"
 			className={cn(
-				"cn-dialog-header flex flex-col text-center sm:text-left",
+				"flex flex-col space-y-1 text-center sm:text-left",
 				className
 			)}
 			{...props}
@@ -133,9 +134,7 @@ function DialogBody({
 	className,
 	...props
 }: React.HTMLAttributes<HTMLDivElement>) {
-	return (
-		<div data-slot="dialog-body" className={cn("", className)} {...props} />
-	)
+	return <div data-slot="dialog-body" className={cn(className)} {...props} />
 }
 DialogBody.displayName = "DialogBody"
 
@@ -143,7 +142,7 @@ function DialogFooter({ className, ...props }: DialogFooterProps) {
 	return (
 		<div
 			data-slot="dialog-footer"
-			className={cn("cn-dialog-footer flex justify-end", className)}
+			className={cn("flex justify-end gap-2", className)}
 			{...props}
 		/>
 	)
@@ -159,7 +158,7 @@ function DialogTitle({
 	return (
 		<DialogPrimitive.Title
 			data-slot="dialog-title"
-			className={cn("cn-dialog-title", className)}
+			className={cn("text-lg font-semibold", className)}
 			{...props}>
 			<span className="self-center">{children}</span>
 			{closeButton === "visible" && (
@@ -182,7 +181,7 @@ function DialogDescription({ className, ...props }: DialogDescriptionProps) {
 	return (
 		<DialogPrimitive.Description
 			data-slot="dialog-description"
-			className={cn("cn-dialog-description", className)}
+			className={cn("text-fg-secondary text-sm/5 leading-tight", className)}
 			{...props}
 		/>
 	)

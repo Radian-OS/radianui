@@ -9,6 +9,7 @@ import { STYLES } from "./styles"
 import { TEMPLATES } from "./templates"
 import { generateCustomColorShades } from "@/lib/shade-generator"
 import ntc from "ntcjs"
+import { buttonConfigSchema } from "./component-presets/button-presets"
 
 const fontValues = FONTS.map((font) => font.value)
 const radiusValues = RADIUS.map((radius) => radius.value)
@@ -81,6 +82,12 @@ export const themerConfigSchema = z.object({
 			})
 		)
 		.default([]),
+	// Compnentwise customizations
+	components: z
+		.object({
+			Button: buttonConfigSchema.optional(),
+		})
+		.default({}),
 })
 
 export type ThemerConfig = z.infer<typeof themerConfigSchema>
@@ -101,6 +108,7 @@ export const DEFAULT_CONFIG: ThemerConfig = {
 	extraColorSchemes: [],
 	customColors: {},
 	componentOverrides: [],
+	components: {},
 }
 
 export type Preset = ThemerConfig & {
@@ -128,6 +136,7 @@ export const PRESETS: Preset[] = [
 		extraColorSchemes: [],
 		customColors: {},
 		componentOverrides: [],
+		components: {},
 	},
 	{
 		name: "sera",
@@ -147,6 +156,7 @@ export const PRESETS: Preset[] = [
 		extraColorSchemes: [],
 		customColors: {},
 		componentOverrides: [],
+		components: {},
 	},
 ]
 
@@ -439,6 +449,21 @@ export function buildRegistryConfig(config: ThemerConfig): RegistryConfig {
 			"control-radius-base"
 		)
 
+	// These radius variables should always be present
+	theme["--radius-control-md"] =
+		"round(down, calc(var(--control-radius-base) * 0.8), 1px)"
+	theme["--radius-control-lg"] = "var(--control-radius-base)"
+	theme["--radius-control-xl"] =
+		"round(down, calc(var(--control-radius-base) * 1.5), 1px)"
+	theme["--radius-xs"] = "round(down, calc(var(--radius-base) * 0.3), 1px)"
+	theme["--radius-sm"] = "round(down, calc(var(--radius-base) * 0.6), 1px)"
+	theme["--radius-md"] = "round(down, calc(var(--radius-base) * 0.8), 1px)"
+	theme["--radius-lg"] = "var(--radius-base)"
+	theme["--radius-xl"] = "round(down, calc(var(--radius-base) * 1.5), 1px)"
+	theme["--radius-2xl"] = "calc(var(--radius-base) * 2)"
+	theme["--radius-3xl"] = "calc(var(--radius-base) * 3)"
+	theme["--radius-4xl"] = "calc(var(--radius-base) * 4)"
+
 	const density = DENSITIES.find((d) => d.value === config.density)
 	if (density) {
 		theme["--spacing"] = density.density.spacing
@@ -451,7 +476,7 @@ export function buildRegistryConfig(config: ThemerConfig): RegistryConfig {
 		...ICON_DEPENDENCIES[config.iconLibrary],
 	]
 
-	const registryDependencies = ["button"]
+	const registryDependencies: string[] = []
 
 	const projectConfig = {
 		name: config.name ?? DEFAULT_CONFIG.name!,

@@ -35,6 +35,8 @@ import AppearanceModePicker from "./appearance-mode-picker"
 import { useThemerPreset } from "@/lib/themer-preset"
 import { FONTS, FontValue } from "@/registry/fonts"
 import { BaseColorValue } from "@/registry/base-colors"
+import { ButtonSettings } from "./component-settings/button-settings"
+import { ComponentSettingsPopover } from "./components-settings-popover"
 
 const components = [...COMPONENTS_DATA].sort((a, b) => a.localeCompare(b))
 
@@ -200,8 +202,8 @@ export function ThemerSidebar() {
 						<ScrollArea className="min-h-0 flex-1">
 							<SidebarGroup className="py-3">
 								<SidebarMenu>
-									{components.map((name) => (
-										<SidebarMenuItem key={name}>
+									{components.map((name) => {
+										const item = (
 											<SidebarMenuButton
 												type="button"
 												size="sm"
@@ -216,8 +218,19 @@ export function ThemerSidebar() {
 													aria-hidden="true"
 												/>
 											</SidebarMenuButton>
-										</SidebarMenuItem>
-									))}
+										)
+										return (
+											<SidebarMenuItem key={name}>
+												{name === "Button" ? (
+													<ButtonSettings>{item}</ButtonSettings>
+												) : (
+													<ComponentSettingsPopover name={name}>
+														{item}
+													</ComponentSettingsPopover>
+												)}
+											</SidebarMenuItem>
+										)
+									})}
 								</SidebarMenu>
 							</SidebarGroup>
 						</ScrollArea>
