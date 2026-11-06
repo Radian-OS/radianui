@@ -2,7 +2,6 @@
 
 import { memo, useCallback, useEffect, useRef, useState } from "react"
 import { toast } from "sonner"
-import { cn } from "@/lib/utils"
 import { Button } from "@/registry/ui/button"
 import { Skeleton } from "@/registry/ui/skeleton"
 import { getBrandLogoPreviewSource } from "./brand-logo-preview-loader"
@@ -143,7 +142,7 @@ export const BrandLogoTile = memo(function BrandLogoTile({
 				size="sm"
 				color="neutral"
 				variant="outline"
-				className="bg-bg hover:bg-bg size-full overflow-hidden rounded-2xl px-0 py-0"
+				className="bg-bg hover:bg-bg relative size-full overflow-hidden rounded-2xl px-0 py-0"
 				asChild>
 				<a
 					href={getBrandLogoPagePath(id)}
@@ -243,11 +242,11 @@ function BrandLogoPreview({
 	}, [source, retry])
 
 	return (
-		<span className={cn("relative", className)} aria-busy={!loaded}>
+		<span className={className} aria-busy={!loaded}>
 			{!loaded && (
 				<Skeleton
 					aria-hidden="true"
-					className="absolute inset-0 animate-none rounded-md"
+					className="absolute inset-0 animate-none rounded-2xl"
 				/>
 			)}
 			<img
