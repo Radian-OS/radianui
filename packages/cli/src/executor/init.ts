@@ -216,12 +216,13 @@ async function installComponents(config: InitConfig, projectPath: string) {
 			const uiNames = allRegistry.filter((c) => c.type === 'ui').map((c) => c.name)
 
 			const presetDeps = config.preset.registryDependencies ?? []
-			const urlDeps = presetDeps.filter((dep) => /^https?:\/\//i.test(dep))
 
-			let finalComponents = await resolveComponents(allRegistry, [
-				...urlDeps,
-				...uiNames
-			])
+			let finalComponents = await resolveComponents(
+				allRegistry,
+				[...presetDeps, ...uiNames],
+				new Set(),
+				config.preset?.id
+			)
 			await addComponentsToProject(finalComponents, addOpts, projectInfo)
 		}
 	} else {
@@ -285,7 +286,9 @@ async function updateExistingComponents(
 	const allRegistry = await getRegistryComponents(rawConfig)
 	const resolvedComponents = await resolveComponents(
 		allRegistry,
-		allComponentNames
+		allComponentNames,
+		new Set(),
+		config.preset?.id
 	)
 	await addComponentsToProject(resolvedComponents, addOpts, projectInfo)
 }

@@ -104,7 +104,10 @@ const presetUpdatePlugin: PluginCreator<{ preset: Preset }> = (
 	options
 ) => {
 	const preset = options!.preset
-	const { cssVars, css } = preset.config
+	const cssVars =
+		preset.cssVars ??
+		(preset as any).config?.cssVars ?? { light: {}, dark: {}, theme: {} }
+	const css = preset.css ?? (preset as any).config?.css ?? {}
 
 	return {
 		postcssPlugin: "preset-update",

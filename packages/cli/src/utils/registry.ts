@@ -60,8 +60,6 @@ export type BlockAsset = {
 	assetsDirectory: string
 }
 
-const isUrl = (s: string) => /^https?:\/\//i.test(s)
-
 export const getRegistryComponents = async (
 	config: RawConfig
 ): Promise<RegistryComponents> => {
@@ -256,11 +254,11 @@ export const getFont = async (font: Font): Promise<FontData> => {
 }
 
 /**
- * Resolves components and their registry dependencies recursively from the registry.
- * @param registryComponents
- * @param componentNames
- * @param visited
- * @returns flat list of the components with their dependencies also
+ * Resolves components and their registry dependencies recursively.
+ *
+ * Lookup strategy:
+ * 1. Preset Override: If presetId is present, check the preset API for a customized version.
+ * 2. Base Registry: Fall back to standard styled components from radianui.com.
  */
 export async function resolveComponents(
 	registryComponents: RegistryComponents,
@@ -270,44 +268,13 @@ export async function resolveComponents(
 ): Promise<RegistryComponents> {
 	const flattenedComponents: RegistryComponents = []
 
-	// Put URLs first so custom components are processed before standard names
-	const orderedNames = [
-		...componentNames.filter(isUrl),
-		...componentNames.filter((n) => !isUrl(n)),
-	]
-
-	for (const name of orderedNames) {
+	for (const name of componentNames) {
 		if (visited.has(name)) continue
 		visited.add(name)
-		// If name is a URL, fetch remote component JSON directly
-		if (isUrl(name)) {
-			try {
-				const response = await fetch(name)
-				if (!response.ok) {
-					throw new Error(
-						`Failed to fetch component from ${name}.\nStatus: ${response.status} - ${response.statusText}`
-					)
-				}
-				const componentEntry = (await response.json()) as RegistryComponent
-				flattenedComponents.push(componentEntry)
-
-				// Recursively resolve any sub-dependencies (e.g. "spinner")
-				if (componentEntry.registryDependencies?.length) {
-					const dependencies = await resolveComponents(
-						registryComponents,
-						componentEntry.registryDependencies,
-						visited
-					)
-					flattenedComponents.push(...dependencies)
-				}
-			} catch (error) {
-				handleError(error)
-			}
-			continue
-		}
 
 		let componentEntry: RegistryComponent | undefined
 
+		// Check preset first for customized component
 		if (presetId) {
 			try {
 				const response = await fetch(`${PRESET_API_URL}/${presetId}/${name}.json`)
@@ -317,7 +284,7 @@ export async function resolveComponents(
 			} catch { }
 		}
 
-		// Standard registry lookup by component name
+		// Fall back to standard base registry
 		if (!componentEntry) {
 			componentEntry = registryComponents.find(
 				(entry) => entry.name === name
@@ -327,6 +294,8 @@ export async function resolveComponents(
 		if (!componentEntry) continue
 
 		flattenedComponents.push(componentEntry)
+
+		// Recursively resolve sub-dependencies
 		if (componentEntry.registryDependencies?.length) {
 			const dependencies = await resolveComponents(
 				registryComponents,
@@ -337,11 +306,8 @@ export async function resolveComponents(
 			flattenedComponents.push(...dependencies)
 		}
 	}
-	// Ensure unique components by name (custom components take precedence)
-	return flattenedComponents.filter(
-		(component, index, self) =>
-			self.findIndex((c) => c.name === component.name) === index
-	)
+
+	return flattenedComponents
 }
 
 export async function fetchIconMappings(): Promise<IconMapping[]> {

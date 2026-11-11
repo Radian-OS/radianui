@@ -5,25 +5,22 @@ import { generateThemeCss } from "@/utils/generateCss"
 const preset: Preset = {
 	id: "test",
 	name: "Test Preset",
+	cssVars: {
+		light: { "--color-primary": "#000000", "--color-bg": "#ffffff" },
+		dark: { "--color-primary": "#ffffff", "--color-bg": "#000000" },
+		theme: { "--radius": "0.5rem" },
+	},
+	css: {
+		"@import 'tailwindcss'": {},
+		"@layer base": ":root { color-scheme: light dark; }",
+	},
+	dependencies: [],
+	registryDependencies: [],
 	config: {
-		name: "Test Preset",
-		cssVars: {
-			light: { "--color-primary": "#000000", "--color-bg": "#ffffff" },
-			dark: { "--color-primary": "#ffffff", "--color-bg": "#000000" },
-			theme: { "--radius": "0.5rem" },
-		},
-		css: {
-			"@import 'tailwindcss'": {},
-			"@layer base": ":root { color-scheme: light dark; }",
-		},
-		dependencies: [],
-		registryDependencies: [],
-		config: {
-			iconLibrary: "lucide",
-			template: "next",
-			style: "default",
-			useSrcDir: true,
-		},
+		iconLibrary: "lucide",
+		template: "next",
+		style: "default",
+		useSrcDir: true,
 	},
 }
 
