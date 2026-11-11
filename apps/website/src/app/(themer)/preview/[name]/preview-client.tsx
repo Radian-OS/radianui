@@ -6,8 +6,6 @@ import { useThemerPreset } from "@/lib/themer-preset"
 import { buildRegistryConfig } from "@/registry/config"
 import { FONTS, type Font } from "@/registry/fonts"
 import { IconLibraryProvider } from "@/registry/icon/icon-library"
-import { PRIMARY_COLORS } from "@/registry/primary-colors"
-import { generateCustomColorShades } from "@/lib/shade-generator"
 import { ScrollArea, ScrollBar } from "@/styles/default/ui/scroll-area"
 
 const MANAGED_BODY_CLASS_PREFIXES = ["style-"] as const
@@ -59,55 +57,9 @@ const useFontLoader = (font: Font | undefined, cssVar: string) => {
 
 const THEMER_STYLE_ID = "themer-style"
 
-const buildThemerCssText = (
-	cssVars: RegistryThemeCssVars | undefined,
-	customColors?: Record<string, string>
-) => {
-	const parts: string[] = []
-
-	if (cssVars) {
-		parts.push(buildStyleCssText(cssVars))
-	}
-
-	if (customColors) {
-		const customLightVars: Record<string, string> = {}
-		const customDarkVars: Record<string, string> = {}
-
-		for (const [id, val] of Object.entries(customColors)) {
-			if (val.startsWith("#")) {
-				Object.assign(
-					customLightVars,
-					generateCustomColorShades(val, id, "light")
-				)
-				Object.assign(
-					customDarkVars,
-					generateCustomColorShades(val, id, "dark")
-				)
-			} else {
-				const preset = PRIMARY_COLORS.find((c) => c.value === val)
-				if (preset) {
-					for (const [key, v] of Object.entries(preset.cssVars.light)) {
-						customLightVars[key.replace("--color-primary", `--color-${id}`)] = v
-					}
-					for (const [key, v] of Object.entries(preset.cssVars.dark)) {
-						customDarkVars[key.replace("--color-primary", `--color-${id}`)] = v
-					}
-				} else {
-					customLightVars[`--color-${id}`] = val
-					customDarkVars[`--color-${id}`] = val
-				}
-			}
-		}
-
-		if (Object.keys(customLightVars).length > 0) {
-			parts.push(buildCssRule(":root", customLightVars))
-		}
-		if (Object.keys(customDarkVars).length > 0) {
-			parts.push(buildCssRule(".dark", customDarkVars))
-		}
-	}
-
-	return parts.join("\n")
+const buildThemerCssText = (cssVars: RegistryThemeCssVars | undefined) => {
+	if (!cssVars) return ""
+	return buildStyleCssText(cssVars)
 }
 
 function removeManagedBodyClasses(body: Element) {
@@ -142,7 +94,7 @@ export function PreviewClient({ children }: { children: React.ReactNode }) {
 			document.head.appendChild(style)
 		}
 
-		style.textContent = buildThemerCssText(config?.cssVars, params.customColors)
+		style.textContent = buildThemerCssText(config?.cssVars)
 
 		removeManagedBodyClasses(document.body)
 		document.body.classList.add(`style-${params.style}`)
@@ -153,7 +105,7 @@ export function PreviewClient({ children }: { children: React.ReactNode }) {
 				document.head.removeChild(style)
 			}
 		}
-	}, [config, params.style, params.density, params.customColors])
+	}, [config, params.style, params.density])
 
 	useFontLoader(selectedHeadingFont, "--font-heading")
 	useFontLoader(selectedBodyFont, "--font-body")

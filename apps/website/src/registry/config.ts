@@ -71,7 +71,6 @@ export const themerConfigSchema = z.object({
 	useSrcDir: z.boolean().default(true),
 	iconLibrary: z.enum(ICON_LIBRARIES).default("lucide"),
 	extraColorSchemes: z.array(z.string()).default([]),
-	customColors: z.record(z.string(), z.string()).default({}),
 	componentOverrides: z
 		.array(
 			z.object({
@@ -106,7 +105,6 @@ export const DEFAULT_CONFIG: ThemerConfig = {
 	iconLibrary: "lucide",
 	baseColor: "default",
 	extraColorSchemes: [],
-	customColors: {},
 	componentOverrides: [],
 	components: {},
 }
@@ -134,7 +132,6 @@ export const PRESETS: Preset[] = [
 		iconLibrary: "lucide",
 		baseColor: "default",
 		extraColorSchemes: [],
-		customColors: {},
 		componentOverrides: [],
 		components: {},
 	},
@@ -154,7 +151,6 @@ export const PRESETS: Preset[] = [
 		iconLibrary: "lucide",
 		baseColor: "default",
 		extraColorSchemes: [],
-		customColors: {},
 		componentOverrides: [],
 		components: {},
 	},
