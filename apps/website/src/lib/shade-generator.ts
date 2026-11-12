@@ -146,7 +146,15 @@ export function generateCustomColorShades(
 	const primaryC = fitChroma(L, C, H)
 	const luminance = relLuminance(L, primaryC, H)
 	const isLight = luminance > 0.3
-	const fg = isLight ? "oklch(0.2 0 0)" : "oklch(1 0 0)"
+	const fgL = isLight ? 0.2 : 0.98
+	const fgC = fitChroma(
+		fgL,
+		isLight
+			? Math.min(0.03, primaryC * 0.15)
+			: Math.min(0.015, primaryC * 0.08),
+		H
+	)
+	const fg = formatOklch(fgL, fgC, H)
 
 	if (mode === "dark") {
 		const text = darkTextShade(L, C, H)
