@@ -22,6 +22,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
       - name: Log in to the Container registry
         uses: docker/login-action@v3
         with:
@@ -61,6 +64,7 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          provenance: false
           build-args: |
             NEXT_PUBLIC_DEPLOYMENT_ENV=${{ github.ref_name == 'main' && 'PROD' || 'DEV' }}
             NEXT_PUBLIC_WEBSITE_URL=${{ vars.NEXT_PUBLIC_WEBSITE_URL || 'https://radianui.com' }}
