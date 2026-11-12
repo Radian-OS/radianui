@@ -206,9 +206,9 @@ export function CreateProjectDialog({
 						/>
 					</div>
 
-					{mutationError && (
+					{(mutationError || data?.error) && (
 						<p className="text-error text-sm">
-							{mutationError.message || "Failed to save preset"}
+							{data?.error || mutationError?.message || "Failed to save preset"}
 						</p>
 					)}
 

@@ -25,7 +25,6 @@ interface DocPageProps {
 	params: Promise<{ slug: string[] }>
 }
 
-// Await `params` inside the function
 async function getDocFromParams({ params }: DocPageProps) {
 	const resolvedParams = await params
 	const slug = resolvedParams.slug || []
@@ -90,7 +89,6 @@ export async function generateMetadata({
 	}
 }
 
-// Await `params` in the page itself
 export default async function Page({ params }: DocPageProps) {
 	const resolvedParams = await params
 	const doc = await getDocFromParams({ params })
