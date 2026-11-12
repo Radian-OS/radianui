@@ -93,6 +93,7 @@ export const COMPONENTS_DATA = [
 	"Calendar",
 	"Card",
 	"Carousel",
+	"Chart",
 	"Code Area",
 	"Collapsible",
 	"Combobox",
@@ -146,6 +147,12 @@ const NEW_COMPONENTS = new Set([
 	"Stepper",
 	"Toggle",
 	"Toggle Group",
+	"Area Chart",
+	"Bar Chart",
+	"Donut Chart",
+	"Line Chart",
+	"Pie Chart",
+	"Radar Chart",
 ])
 
 // Map Components array to NavigationItem
@@ -309,17 +316,31 @@ const BLOCKS_ITEMS: NavigationItem[] = BLOCKS_DATA.map(
 	})
 )
 
-// ===== Animations Section =====
-const ANIMATIONS_ITEMS: NavigationItem[] = [
-	"Fade",
-	"Infinite Scroll",
-	"Pointer",
+// ===== Chart Section =====
+const CHART_ITEMS: NavigationItem[] = [
+	"Area Chart",
+	"Bar Chart",
+	"Donut Chart",
+	"Line Chart",
+	"Pie Chart",
+	"Radar Chart",
 ].map((title) => ({
 	title,
-	url: "#",
-	isComingSoon: true,
-	disabled: true,
+	url: `/docs/components/charts/${getComponentSlug(title)}`,
+	isNew: NEW_COMPONENTS.has(title),
 }))
+
+// ===== Animations Section =====
+// const ANIMATIONS_ITEMS: NavigationItem[] = [
+// 	"Fade",
+// 	"Infinite Scroll",
+// 	"Pointer",
+// ].map((title) => ({
+// 	title,
+// 	url: "#",
+// 	isComingSoon: true,
+// 	disabled: true,
+// }))
 
 // ===== Fundamentals Items Mapping =====
 const FUNDAMENTALS_ITEMS: NavigationItem[] = FUNDAMENTALS_DATA.map((item) => ({
@@ -363,15 +384,20 @@ export const navigationItems: NavigationSection[] = [
 		),
 	},
 	{
+		title: "Charts",
+		searchIcon: "/search-icons/search-components.svg",
+		items: CHART_ITEMS.sort((a, b) => a.title.localeCompare(b.title)),
+	},
+	{
 		title: "Blocks",
 		searchIcon: "/search-icons/search-ui-blocks.svg",
 		items: BLOCKS_ITEMS,
 	},
-	{
-		title: "Animations",
-		searchIcon: "/search-icons/search-components.svg",
-		items: ANIMATIONS_ITEMS.sort((a, b) => a.title.localeCompare(b.title)),
-	},
+	// {
+	// 	title: "Animations",
+	// 	searchIcon: "/search-icons/search-components.svg",
+	// 	items: ANIMATIONS_ITEMS.sort((a, b) => a.title.localeCompare(b.title)),
+	// },
 	{
 		title: "Miscellaneous",
 		searchIcon: "/search-icons/search-components.svg",
