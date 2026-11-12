@@ -58,6 +58,7 @@ import ColorTableThemeToggle from "./color/color-table-theme-toggle"
 import { CopyButton } from "./copy-button"
 import { RequestDesign } from "./request-design"
 import { ResourcesGrid } from "./resources-grid"
+import ChartList from "./chart-list"
 
 type ComponentDocListItem = {
 	title?: string
@@ -256,6 +257,7 @@ export const components = {
 	BodyFontSpecs,
 	DarkModePlayground,
 	CustomThemePlayground,
+	ChartList,
 	// Animation components
 	PackageManagerTabs,
 	InstallationTabs,

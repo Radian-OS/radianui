@@ -9,26 +9,22 @@ import {
 } from "@/registry/ui/chart"
 
 const chartData = [
-	{ month: "January", desktop: 186, mobile: 80 },
-	{ month: "February", desktop: 305, mobile: 200 },
-	{ month: "March", desktop: 237, mobile: 120 },
-	{ month: "April", desktop: 73, mobile: 190 },
-	{ month: "May", desktop: 209, mobile: 130 },
-	{ month: "June", desktop: 214, mobile: 140 },
+	{ month: "January", desktop: 186 },
+	{ month: "February", desktop: 310 },
+	{ month: "March", desktop: 237 },
+	{ month: "April", desktop: 73 },
+	{ month: "May", desktop: 209 },
+	{ month: "June", desktop: 214 },
 ]
 
 const chartConfig = {
 	desktop: {
 		label: "Desktop",
-		color: "var(--color-success)",
-	},
-	mobile: {
-		label: "Mobile",
 		color: "var(--color-primary)",
 	},
 } satisfies ChartConfig
 
-export default function ChartBarTooltip() {
+export default function BarChartPreview() {
 	return (
 		<ChartContainer config={chartConfig} className="min-h-[200px] w-full">
 			<BarChart accessibilityLayer data={chartData}>
@@ -40,9 +36,11 @@ export default function ChartBarTooltip() {
 					axisLine={false}
 					tickFormatter={(value) => value.slice(0, 3)}
 				/>
-				<ChartTooltip content={<ChartTooltipContent />} />
-				<Bar dataKey="desktop" fill="var(--color-desktop)" radius={4} />
-				<Bar dataKey="mobile" fill="var(--color-mobile)" radius={4} />
+				<ChartTooltip
+					cursor={false}
+					content={<ChartTooltipContent hideLabel />}
+				/>
+				<Bar dataKey="desktop" fill="var(--color-desktop)" radius={8} />
 			</BarChart>
 		</ChartContainer>
 	)
