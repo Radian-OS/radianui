@@ -190,15 +190,15 @@ export function ColorThemeDropdown() {
 		setActiveId(initialId)
 		syncColor(initialId)
 
-		const handleIframeLoad = () => {
-			const active = localStorage.getItem(COLOR_STORAGE_KEY) || "neutral"
-			syncColor(active)
-		}
+		// const handleIframeLoad = () => {
+		// 	const active = localStorage.getItem(COLOR_STORAGE_KEY) || "neutral"
+		// 	syncColor(active)
+		// }
 
-		const iframes = document.querySelectorAll("iframe")
-		iframes.forEach((iframe) => {
-			iframe.addEventListener("load", handleIframeLoad)
-		})
+		// const iframes = document.querySelectorAll("iframe")
+		// iframes.forEach((iframe) => {
+		// 	iframe.addEventListener("load", handleIframeLoad)
+		// })
 
 		const handleStorage = (e: StorageEvent) => {
 			if (e.key === COLOR_STORAGE_KEY && e.newValue) {
@@ -213,9 +213,9 @@ export function ColorThemeDropdown() {
 		window.addEventListener("storage", handleStorage)
 		return () => {
 			window.removeEventListener("storage", handleStorage)
-			iframes.forEach((iframe) => {
-				iframe.removeEventListener("load", handleIframeLoad)
-			})
+			// iframes.forEach((iframe) => {
+			// 	iframe.removeEventListener("load", handleIframeLoad)
+			// })
 		}
 	}, [])
 

@@ -27,6 +27,26 @@ function ThemerPage() {
 		iframeRef.current?.contentWindow?.postMessage(message, "*")
 	}, [])
 
+	const syncAllToIframe = useCallback(() => {
+		postToIframe({
+			type: "all-params-sync",
+			params,
+		})
+	}, [params, postToIframe])
+
+	useEffect(() => {
+		const handleMessage = (event: MessageEvent) => {
+			if (event.data?.type === "preview-ready") {
+				syncAllToIframe()
+			}
+		}
+
+		window.addEventListener("message", handleMessage)
+		return () => {
+			window.removeEventListener("message", handleMessage)
+		}
+	}, [syncAllToIframe])
+
 	useEffect(() => {
 		postToIframe({
 			type: "primary-color-change",
@@ -80,6 +100,20 @@ function ThemerPage() {
 		})
 	}, [params.controlRadius, postToIframe])
 
+	useEffect(() => {
+		postToIframe({
+			type: "style-change",
+			style: params.style,
+		})
+	}, [params.style, postToIframe])
+
+	useEffect(() => {
+		postToIframe({
+			type: "extra-color-schemes-change",
+			extraColorSchemes: params.extraColorSchemes,
+		})
+	}, [params.extraColorSchemes, postToIframe])
+
 	return (
 		<SidebarProvider
 			style={{ "--sidebar-width": "430px" } as React.CSSProperties}>
@@ -111,6 +145,7 @@ function ThemerPage() {
 							src={iframeSrc}
 							className="h-full w-full border-0"
 							title="Preview"
+							onLoad={syncAllToIframe}
 						/>
 					</div>
 				</div>

@@ -85,7 +85,6 @@ export function PreviewClient({ children }: { children: React.ReactNode }) {
 	const config = useMemo(() => buildRegistryConfig(params), [params])
 
 	useLayoutEffect(() => {
-		document.documentElement.removeAttribute("data-color")
 		let style = document.getElementById(THEMER_STYLE_ID) as HTMLStyleElement
 
 		if (!style) {
@@ -98,22 +97,24 @@ export function PreviewClient({ children }: { children: React.ReactNode }) {
 
 		removeManagedBodyClasses(document.body)
 		document.body.classList.add(`style-${params.style}`)
-		setIsReady(true)
-
-		return () => {
-			if (style && document.head.contains(style)) {
-				document.head.removeChild(style)
-			}
-		}
 	}, [config, params.style, params.density])
 
 	useFontLoader(selectedHeadingFont, "--font-heading")
 	useFontLoader(selectedBodyFont, "--font-body")
 
 	useEffect(() => {
+		if (window.parent === window) {
+			setIsReady(true)
+		}
+
 		const handleMessage = (event: MessageEvent) => {
+			if (event.data?.type === "all-params-sync" && event.data.params) {
+				setParams(event.data.params)
+				setIsReady(true)
+			}
 			if (event.data.type === "primary-color-change") {
 				setParams({ primaryColor: event.data.primaryColor })
+				setIsReady(true)
 			}
 			if (event.data.type === "base-color-change") {
 				setParams({ baseColor: event.data.baseColor })
@@ -148,6 +149,7 @@ export function PreviewClient({ children }: { children: React.ReactNode }) {
 		}
 
 		window.addEventListener("message", handleMessage)
+		window.parent?.postMessage({ type: "preview-ready" }, "*")
 
 		return () => {
 			window.removeEventListener("message", handleMessage)
