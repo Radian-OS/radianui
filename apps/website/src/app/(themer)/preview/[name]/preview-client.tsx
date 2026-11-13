@@ -28,11 +28,14 @@ const buildCssRule = (selector: string, cssVars?: Record<string, string>) => {
 }
 
 const buildStyleCssText = (cssVars: RegistryThemeCssVars) => {
-	const lightVars = buildCssRule(":root", {
+	const lightVars = buildCssRule(":root, :root[data-color], html[data-color]", {
 		...cssVars.light,
 		...cssVars.theme,
 	})
-	const darkVars = buildCssRule(".dark", cssVars.dark)
+	const darkVars = buildCssRule(
+		".dark, .dark[data-color], html.dark[data-color]",
+		cssVars.dark
+	)
 
 	return [lightVars, darkVars].join("\n")
 }
