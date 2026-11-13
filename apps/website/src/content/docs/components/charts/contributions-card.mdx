@@ -1,0 +1,104 @@
+---
+title: Contributions Card
+description: An interactive activity and contribution heatmap card displaying yearly metrics, task duration, streaks, and token volume over time.
+links:
+  github:
+    href: https://github.com/Radian-os/radianui/blob/main/apps/website/src/registry/example/contributions-card/contributions-card-preview.tsx
+  externalReference:
+    - label: react-calendar-heatmap
+      href: https://github.com/kevinsqi/react-calendar-heatmap
+      icon: npm.svg
+---
+
+<ComponentPreview path="contributions-card/contributions-card-preview" />
+
+---
+
+## Usage
+
+### Imports
+
+```tsx showLineNumbers title=" "
+import * as React from "react"
+import CalendarHeatmap from "react-calendar-heatmap"
+import "react-calendar-heatmap/dist/styles.css"
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipTrigger,
+} from "@/components/ui/tooltip"
+import { cn } from "@/lib/utils"
+```
+
+### Heatmap Setup
+
+Render the 52-week calendar with global CSS primary colors and Radian's canonical `Tooltip`:
+
+```tsx showLineNumbers title=" "
+<div className="w-full overflow-x-auto p-4">
+	<div className="min-w-[850px] [&_rect]:transition-all [&_rect]:duration-150 [&_rect:hover]:stroke-primary [&_rect:hover]:stroke-[0.8px] [&_rect:hover]:opacity-85 [&_text]:fill-fg-secondary [&_text]:text-[10px]">
+		<CalendarHeatmap
+			startDate={new Date("2026-01-01")}
+			endDate={new Date("2026-12-31")}
+			values={values}
+			gutterSize={2}
+			classForValue={(value) => {
+				if (!value || !value.count) {
+					return "fill-neutral-200 dark:fill-neutral-800"
+				}
+				switch (value.level) {
+					case 1:
+						return "fill-primary/20"
+					case 2:
+						return "fill-primary/40"
+					case 3:
+						return "fill-primary/65"
+					case 4:
+						return "fill-primary/85"
+					case 5:
+					default:
+						return "fill-primary"
+				}
+			}}
+			transformDayElement={(element: any, value, index) => {
+				return (
+					<Tooltip key={value?.date || index}>
+						<TooltipTrigger asChild>
+							{React.cloneElement(element, {
+								rx: 2.5,
+								ry: 2.5,
+								className: cn(
+									element.props.className,
+									"cursor-pointer focus:outline-none"
+								),
+							})}
+						</TooltipTrigger>
+						<TooltipContent
+							side="top"
+							sideOffset={6}
+							withArrow
+							className="text-xs">
+							<div className="flex flex-col gap-0.5">
+								<span className="font-semibold text-white-inverse">
+									{value?.count
+										? `${value.count} contributions`
+										: "No contributions"}
+								</span>
+								<span className="text-[11px] text-neutral-400">
+									{value?.date
+										? new Date(value.date).toLocaleDateString("en-US", {
+												month: "short",
+												day: "numeric",
+												year: "numeric",
+											})
+										: "No date"}
+								</span>
+							</div>
+						</TooltipContent>
+					</Tooltip>
+				)
+			}}
+		/>
+	</div>
+</div>
+```

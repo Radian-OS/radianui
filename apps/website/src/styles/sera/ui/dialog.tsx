@@ -3,7 +3,6 @@ import * as React from "react"
 import * as DialogPrimitive from "@radix-ui/react-dialog"
 import { type VariantProps, cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"
-import { CompactButton } from "./button"
 import { IconSlot } from "@/registry/icon/icon-library"
 
 type Backdrop = VariantProps<typeof dialogOverlayVariants>["backdrop"]

@@ -103,7 +103,7 @@ function DialogContent({
 							className={cn(
 								"focus-visible:ring-offset-bg text-fg-tertiary hover:bg-fill2 focus-visible:ring-border absolute top-3 right-3 box-border inline-flex h-6 w-6 items-center justify-center rounded-md bg-transparent font-medium whitespace-nowrap hover:cursor-pointer focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none [&>svg]:!h-4 [&>svg]:!w-4",
 								closeButton === "hover" &&
-								"opacity-0 transition-opacity group-hover:opacity-100"
+									"opacity-0 transition-opacity group-hover:opacity-100"
 							)}
 							aria-label="Close">
 							<X />
