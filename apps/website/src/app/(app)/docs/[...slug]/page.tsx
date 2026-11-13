@@ -112,7 +112,7 @@ export default async function Page({ params }: DocPageProps) {
 					url,
 				})}
 			/>
-			<div className="mx-auto w-full flex-1 overflow-y-visible py-10 lg:max-w-[720px]">
+			<div className="mx-auto w-full flex-1 overflow-y-visible py-10 lg:max-w-180">
 				<div className="flex items-center justify-between">
 					<span className="text-primary-text text-sm font-medium capitalize">
 						{category}

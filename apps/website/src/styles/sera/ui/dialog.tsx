@@ -3,7 +3,6 @@ import * as React from "react"
 import * as DialogPrimitive from "@radix-ui/react-dialog"
 import { type VariantProps, cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"
-import { CompactButton } from "./button"
 import { IconSlot } from "@/registry/icon/icon-library"
 
 type Backdrop = VariantProps<typeof dialogOverlayVariants>["backdrop"]
@@ -19,7 +18,6 @@ type DialogContentProps = React.ComponentPropsWithoutRef<
 > & {
 	backdrop?: Backdrop
 	closeButton?: "hidden" | "visible" | "hover"
-	closeButton?: "hidden" | "visible" | "hover"
 }
 
 type DialogHeaderProps = React.HTMLAttributes<HTMLDivElement>
@@ -29,7 +27,6 @@ type DialogFooterProps = React.HTMLAttributes<HTMLDivElement>
 type DialogTitleProps = React.ComponentPropsWithoutRef<
 	typeof DialogPrimitive.Title
 > & {
-	closeButton?: "hidden" | "visible"
 	closeButton?: "hidden" | "visible"
 }
 
@@ -42,7 +39,6 @@ const dialogOverlayVariants = cva(
 	{
 		variants: {
 			backdrop: {
-				whiteOverlay: "bg-white/50",
 				whiteOverlay: "bg-white/50",
 				blackOverlay: "bg-black/50",
 				blur: "backdrop-blur-sm",
@@ -87,7 +83,6 @@ function DialogContent({
 	children,
 	backdrop,
 	closeButton = "hidden",
-	closeButton = "hidden",
 	...props
 }: DialogContentProps) {
 	return (
@@ -109,7 +104,7 @@ function DialogContent({
 							className={cn(
 								"focus-visible:ring-offset-bg text-fg-tertiary hover:bg-fill2 focus-visible:ring-border absolute top-3 right-3 box-border inline-flex h-6 w-6 items-center justify-center rounded-none bg-transparent font-medium whitespace-nowrap hover:cursor-pointer focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none [&>svg]:!h-4 [&>svg]:!w-4",
 								closeButton === "hover" &&
-								"opacity-0 transition-opacity group-hover:opacity-100"
+									"opacity-0 transition-opacity group-hover:opacity-100"
 							)}
 							aria-label="Close">
 							<X />
@@ -126,10 +121,6 @@ function DialogHeader({ className, ...props }: DialogHeaderProps) {
 	return (
 		<div
 			data-slot="dialog-header"
-			className={cn(
-				"flex flex-col space-y-2 text-center sm:text-left",
-				className
-			)}
 			className={cn(
 				"flex flex-col space-y-2 text-center sm:text-left",
 				className
@@ -154,7 +145,6 @@ function DialogFooter({ className, ...props }: DialogFooterProps) {
 		<div
 			data-slot="dialog-footer"
 			className={cn("flex justify-end gap-3", className)}
-			className={cn("flex justify-end gap-3", className)}
 			{...props}
 		/>
 	)
@@ -164,7 +154,6 @@ DialogFooter.displayName = "DialogFooter"
 function DialogTitle({
 	className,
 	closeButton = "hidden",
-	closeButton = "hidden",
 	children,
 	...props
 }: DialogTitleProps) {
@@ -172,20 +161,18 @@ function DialogTitle({
 		<DialogPrimitive.Title
 			data-slot="dialog-title"
 			className={cn("text-xl font-semibold", className)}
-			className={cn("text-xl font-semibold", className)}
 			{...props}>
 			<span className="self-center">{children}</span>
 			{closeButton === "visible" && (
-				{ closeButton === "visible" && (
-					<DialogPrimitive.Close asChild>
-						<button
-							type="button"
-							aria-label="Close Button"
-							className="focus-visible:ring-offset-bg bg-fill2 text-fg-secondary hover:bg-fill1-alpha focus-visible:bg-bg focus-visible:ring-border box-border inline-flex h-6 w-6 items-center justify-center rounded-md p-1 font-medium whitespace-nowrap hover:cursor-pointer focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none [&>svg]:!h-4 [&>svg]:!w-4">
-							<IconSlot slot="cross" />
-						</button>
-					</DialogPrimitive.Close>
-				)}
+				<DialogPrimitive.Close asChild>
+					<button
+						type="button"
+						aria-label="Close Button"
+						className="focus-visible:ring-offset-bg bg-fill2 text-fg-secondary hover:bg-fill1-alpha focus-visible:bg-bg focus-visible:ring-border box-border inline-flex h-6 w-6 items-center justify-center rounded-md p-1 font-medium whitespace-nowrap hover:cursor-pointer focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none [&>svg]:!h-4 [&>svg]:!w-4">
+						<IconSlot slot="cross" />
+					</button>
+				</DialogPrimitive.Close>
+			)}
 		</DialogPrimitive.Title>
 	)
 }
