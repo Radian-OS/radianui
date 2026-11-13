@@ -22,16 +22,13 @@ import {
 	TrendingUp,
 	X,
 } from "lucide-react"
-import { Button } from "@/styles/default/ui/button"
-import { zodResolver } from "@hookform/resolvers/zod"
+import { Button, CompactButton } from "@/components/ui/button"
 import { useForm } from "react-hook-form"
-import { z } from "zod"
 import {
 	Form,
 	FormControl,
 	FormField,
 	FormItem,
-	FormMessage,
 } from "@/styles/default/ui/form"
 import { TextArea } from "@/styles/default/ui/text-area"
 import { cn } from "@/lib/utils"
@@ -103,7 +100,7 @@ export function AgentlabCtaBanner() {
 						className="flex flex-col items-start lg:col-span-6"
 						data-themer-id="auto-div-11">
 						<p
-							className="text-sm leading-relaxed text-white/70 sm:text-base"
+							className="text-fg-inverse/70 text-sm leading-relaxed sm:text-base"
 							data-themer-id="auto-p-12">
 							Deploy intelligent agents, eliminate repetitive manual steps,
 							reduce operational costs, and deliver results faster than ever
@@ -113,25 +110,12 @@ export function AgentlabCtaBanner() {
 						<div
 							className="mt-8 flex flex-wrap items-center gap-4"
 							data-themer-id="auto-div-13">
-							<Button
-								variant="strong"
-								color="neutral"
-								size="lg"
-								className="gap-2 rounded-md bg-white font-bold uppercase shadow-lg active:scale-95"
-								data-themer-id="auto-button-14">
-								<ArrowRight
-									className="size-4"
-									data-themer-id="auto-arrowright-15"
-								/>
-								<span data-themer-id="auto-span-16">TALK TO SALES</span>
+							<Button variant="outline" color="neutral">
+								<ArrowRight className="size-4" />
+								<span>TALK TO SALES</span>
 							</Button>
 
-							<Button
-								variant="outline"
-								color="neutral"
-								size="lg"
-								className="rounded-md border-white/30 bg-transparent text-xs font-bold tracking-wider text-white uppercase hover:bg-white/10"
-								data-themer-id="auto-button-17">
+							<Button variant="smooth" color="neutral">
 								<span data-themer-id="auto-span-18">VIEW PRICING</span>
 							</Button>
 						</div>
@@ -185,7 +169,7 @@ export function AgentlabFaqSection() {
 	return (
 		<section
 			id="faq"
-			className="border-border/60 bg-fill1/30 border-t py-24 md:py-32"
+			className="border-fg-inverse/60 bg-fill1/30 border-t py-24 md:py-32"
 			data-themer-id="auto-section-19">
 			<div
 				className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
@@ -325,7 +309,7 @@ export function AgentlabFooter() {
 	return (
 		<footer
 			id="footer"
-			className="bg-black-inverse text-white-inverse border-t border-white/10 py-16 md:py-24"
+			className="bg-fill1 border-fg-inverse/60 border-t py-16 md:py-24"
 			data-themer-id="auto-footer-37">
 			<div
 				className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
@@ -348,14 +332,14 @@ export function AgentlabFooter() {
 									<div data-themer-id="auto-image-44" />
 								</div>
 								<span
-									className="font-heading text-xl font-bold tracking-tight text-white"
+									className="font-heading text-fg text-xl font-bold tracking-tight"
 									data-themer-id="auto-span-45">
 									AgentLab
 								</span>
 							</Link>
 
 							<p
-								className="mt-4 max-w-xs text-xs leading-relaxed text-white/60 sm:text-sm"
+								className="text-fg/60 mt-4 max-w-xs text-xs leading-relaxed sm:text-sm"
 								data-themer-id="auto-p-46">
 								Building the future of intelligent automation with AI agents
 								that think, act, and deliver across enterprise operations.
@@ -363,11 +347,11 @@ export function AgentlabFooter() {
 						</div>
 
 						<p
-							className="mt-8 text-xs text-white/40 sm:mt-12"
+							className="text-fg/40 mt-8 text-xs sm:mt-12"
 							data-themer-id="auto-p-47">
 							&copy; {new Date().getFullYear()} Design &amp; Developed by{" "}
 							<span
-								className="font-medium text-white/70"
+								className="text-fg/70 font-medium"
 								data-themer-id="auto-span-48">
 								Amani Design
 							</span>
@@ -381,7 +365,7 @@ export function AgentlabFooter() {
 						{footerColumns.map((col) => (
 							<div key={col.title} data-themer-id="auto-div-50">
 								<p
-									className="text-xs font-bold tracking-wider text-white uppercase"
+									className="text-fg text-xs font-bold tracking-wider uppercase"
 									data-themer-id="auto-p-51">
 									{col.title}
 								</p>
@@ -390,7 +374,7 @@ export function AgentlabFooter() {
 										<li key={link.label} data-themer-id="auto-li-53">
 											<Link
 												href={link.href}
-												className="text-xs text-white/60 transition-colors hover:text-white hover:underline"
+												className="text-fg/60 hover:text-fg text-xs transition-colors hover:underline"
 												data-themer-id="auto-link-54">
 												{link.label}
 											</Link>
@@ -406,11 +390,9 @@ export function AgentlabFooter() {
 	)
 }
 
-const promptFormSchema = z.object({
-	prompt: z.string().min(2, "Please enter at least 2 characters."),
-})
-
-type PromptFormValues = z.infer<typeof promptFormSchema>
+interface PromptFormValues {
+	prompt: string
+}
 
 interface AgentActionItem {
 	id: string
@@ -430,7 +412,6 @@ export function AgentlabHeroSection() {
 	const [submittedPrompt, setSubmittedPrompt] = useState<string | null>(null)
 
 	const form = useForm<PromptFormValues>({
-		resolver: zodResolver(promptFormSchema),
 		defaultValues: {
 			prompt: "",
 		},
@@ -489,15 +470,10 @@ export function AgentlabHeroSection() {
 					<Button
 						variant="outline"
 						color="neutral"
-						size="lg"
 						data-themer-id="auto-button-64">
 						<span data-themer-id="auto-span-65">TALK TO SALES</span>
 					</Button>
-					<Button
-						variant="strong"
-						color="neutral"
-						size="lg"
-						data-themer-id="auto-button-66">
+					<Button data-themer-id="auto-button-66">
 						<ArrowRight
 							className="size-4"
 							data-themer-id="auto-arrowright-67"
@@ -535,7 +511,7 @@ export function AgentlabHeroSection() {
 								AUTOMATE TASKS WITH AI AGENT
 							</p>
 
-							{/* Interactive Prompt Form (Rules 2 & 3: Form with Zod validation) */}
+							{/* Interactive Prompt Form */}
 							<Form {...form} data-themer-id="auto-form-76">
 								<form
 									onSubmit={form.handleSubmit(onSubmit)}
@@ -556,26 +532,22 @@ export function AgentlabHeroSection() {
 															placeholder="How can I help you today?"
 															data-themer-id="auto-textarea-82"
 														/>
-														<Button
+														<CompactButton
 															type="submit"
 															variant="strong"
 															color="neutral"
-															size="lg"
-															className="absolute right-2.5 bottom-2.5 size-7 rounded-md p-0"
+															size="sm"
+															className="absolute right-1.5 bottom-2.5"
 															data-themer-id="auto-button-83">
-															<Send
-																className="size-3.5"
-																data-themer-id="auto-send-84"
-															/>
+															<Send data-themer-id="auto-send-84" />
 															<span
 																className="sr-only"
 																data-themer-id="auto-span-85">
 																Send prompt
 															</span>
-														</Button>
+														</CompactButton>
 													</div>
 												</FormControl>
-												<FormMessage data-themer-id="auto-formmessage-86" />
 											</FormItem>
 										)}
 										data-themer-id="auto-formfield-78"
@@ -830,12 +802,12 @@ export function AgentlabMultiModelSection() {
 					data-themer-id="auto-div-117">
 					<div data-themer-id="auto-div-118">
 						<h3
-							className="heading-3 font-serif text-white"
+							className="heading-3 text-fg-inverse font-serif"
 							data-themer-id="auto-h3-119">
 							Multi Model AI
 						</h3>
 						<p
-							className="mt-3 text-sm leading-relaxed text-white/60 sm:text-base"
+							className="text-fg-inverse/60 mt-3 text-sm leading-relaxed sm:text-base"
 							data-themer-id="auto-p-120">
 							Route tasks intelligently to the right AI model — GPT, Claude,
 							DALL-E, or ElevenLabs — based on task type, latency targets, and
@@ -845,12 +817,12 @@ export function AgentlabMultiModelSection() {
 
 					<div data-themer-id="auto-div-121">
 						<h3
-							className="heading-3 font-serif text-white"
+							className="heading-3 text-fg-inverse font-serif"
 							data-themer-id="auto-h3-122">
 							Integration
 						</h3>
 						<p
-							className="mt-3 text-sm leading-relaxed text-white/60 sm:text-base"
+							className="text-fg-inverse/60 mt-3 text-sm leading-relaxed sm:text-base"
 							data-themer-id="auto-p-123">
 							Connect AgentLab to the tools your team already uses — CRMs,
 							support desks, communication hubs, and databases — with native
@@ -869,7 +841,7 @@ export function AgentlabMultiModelSection() {
 						{tagRow1.map((tag, idx) => (
 							<span
 								key={`r1-${idx}`}
-								className="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-medium text-white/80 transition-colors hover:border-white/30 hover:bg-white/10"
+								className="border-fg/15 bg-bg/15 text-fg-inverse/60 hover:bg-bg/10 rounded-full border px-4 py-2 text-xs font-medium transition-colors hover:border-white/30"
 								data-themer-id="auto-span-126">
 								{tag}
 							</span>
@@ -882,7 +854,7 @@ export function AgentlabMultiModelSection() {
 						{tagRow2.map((tag, idx) => (
 							<span
 								key={`r2-${idx}`}
-								className="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-medium text-white/80 transition-colors hover:border-white/30 hover:bg-white/10"
+								className="border-fg/15 bg-bg/15 text-fg-inverse/60 hover:bg-bg/10 rounded-full border px-4 py-2 text-xs font-medium transition-colors hover:border-white/30"
 								data-themer-id="auto-span-128">
 								{tag}
 							</span>
@@ -1034,12 +1006,7 @@ export function AgentlabNavbar() {
 				<div
 					className="hidden items-center gap-3 sm:flex"
 					data-themer-id="auto-div-149">
-					<Button
-						variant="strong"
-						color="neutral"
-						size="md"
-						className="rounded-md px-4 text-xs font-bold tracking-wider uppercase transition-transform active:scale-95"
-						data-themer-id="auto-button-150">
+					<Button data-themer-id="auto-button-150">
 						<span data-themer-id="auto-span-151">GET STARTED</span>
 					</Button>
 				</div>
@@ -1135,7 +1102,7 @@ export function AgentlabProblemSection() {
 				{/* Category Badge */}
 				<div className="flex justify-center" data-themer-id="auto-div-165">
 					<div
-						className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3.5 py-1 text-xs font-semibold tracking-wider text-white/80 uppercase"
+						className="border-fg/10 bg-bg/15 text-fg-secondary inline-flex items-center gap-2 rounded-full border px-3.5 py-1 text-xs font-semibold tracking-wider uppercase"
 						data-themer-id="auto-div-166">
 						<span
 							className="text-primary font-bold"
@@ -1148,10 +1115,10 @@ export function AgentlabProblemSection() {
 
 				{/* Section Heading (Rule 13: heading-2) */}
 				<h2
-					className="heading-2 mx-auto mt-6 max-w-4xl text-center font-serif text-white"
+					className="heading-2 text-fg-inverse mx-auto mt-6 max-w-4xl text-center font-serif"
 					data-themer-id="auto-h2-169">
 					Most Organizations Operate with{" "}
-					<span className="text-white/50" data-themer-id="auto-span-170">
+					<span className="text-fg-tertiary" data-themer-id="auto-span-170">
 						Broken Data Pipelines, Siloed Teams, and Outdated Workflows.
 					</span>
 				</h2>
@@ -1163,7 +1130,7 @@ export function AgentlabProblemSection() {
 					{problemCards.map((item) => (
 						<div
 							key={item.title}
-							className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-8 transition-all duration-300 hover:border-white/20 hover:bg-white/[0.08]"
+							className="group border-soft-alpha bg-fill4-alpha hover:border-soft-alpha dark:bg-fill1 hover:bg-fill3-alpha relative flex flex-col justify-between overflow-hidden rounded-2xl border p-8 transition-all duration-300"
 							data-themer-id="auto-div-172">
 							{/* 3D Icon Graphic */}
 							<div
@@ -1866,7 +1833,7 @@ export function AgentlabTestimonialsSection() {
 					data-themer-id="auto-div-295">
 					<div data-themer-id="auto-div-296">
 						<div
-							className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3.5 py-1 text-xs font-semibold tracking-wider text-white/80 uppercase"
+							className="bg-bg/10 text-fg-inverse/60 inline-flex items-center gap-2 rounded-full border border-white/10 px-3.5 py-1 text-xs font-semibold tracking-wider uppercase"
 							data-themer-id="auto-div-297">
 							<span
 								className="text-primary font-bold"
@@ -1876,7 +1843,7 @@ export function AgentlabTestimonialsSection() {
 							<span data-themer-id="auto-span-299">TESTIMONIALS</span>
 						</div>
 						<h2
-							className="heading-2 mt-4 font-serif text-white"
+							className="heading-2 text-fg-inverse mt-4 font-serif"
 							data-themer-id="auto-h2-300">
 							What People Are Saying
 						</h2>
@@ -1886,7 +1853,7 @@ export function AgentlabTestimonialsSection() {
 						variant="outline"
 						color="neutral"
 						size="md"
-						className="gap-2 border-white/20 bg-transparent text-xs font-bold tracking-wider text-white uppercase hover:bg-white/10"
+						className="text-fg-inverse/60 hover:bg-bg/10 gap-2 border-white/20 bg-transparent text-xs font-semibold tracking-wider uppercase"
 						data-themer-id="auto-button-301">
 						<ArrowUpRight
 							className="size-4"
@@ -1909,12 +1876,12 @@ export function AgentlabTestimonialsSection() {
 								onClick={() => setActiveTab(item.id)}
 								className={`flex h-16 items-center justify-center border-b-2 px-4 transition-all ${
 									isSelected
-										? "border-primary bg-white/10"
-										: "border-transparent bg-white/5 opacity-60 hover:opacity-100"
+										? "border-primary bg-bg/15"
+										: "bg-bg/10 border-transparent opacity-60 hover:opacity-100"
 								}`}
 								data-themer-id="auto-button-305">
 								<span
-									className="font-heading text-sm font-semibold tracking-wide text-white"
+									className="font-heading text-fg-inverse text-sm font-semibold tracking-wide"
 									data-themer-id="auto-image-306">
 									{item.companyName}
 								</span>
@@ -1925,12 +1892,12 @@ export function AgentlabTestimonialsSection() {
 
 				{/* Active Testimonial Showcase */}
 				<div
-					className="mt-8 grid grid-cols-1 gap-8 rounded-2xl border border-white/10 bg-white/5 p-8 lg:grid-cols-12 lg:gap-12 lg:p-12"
+					className="bg-bg/10 mt-8 grid grid-cols-1 gap-8 rounded-2xl border border-white/10 p-8 lg:grid-cols-12 lg:gap-12 lg:p-12"
 					data-themer-id="auto-div-307">
 					{/* Left Quote Graphic */}
 					<div className="lg:col-span-7" data-themer-id="auto-div-308">
 						<h3
-							className="heading-3 font-serif text-white"
+							className="heading-3 text-fg-inverse font-serif"
 							data-themer-id="auto-h3-309">
 							&ldquo;{activeTestimonial.headline}&rdquo;
 						</h3>
@@ -1957,12 +1924,12 @@ export function AgentlabTestimonialsSection() {
 							</div>
 							<div data-themer-id="auto-div-314">
 								<div
-									className="text-sm font-bold text-white"
+									className="text-fg-inverse text-sm font-bold"
 									data-themer-id="auto-div-315">
 									{activeTestimonial.authorName}
 								</div>
 								<div
-									className="text-xs text-white/60"
+									className="text-fg-inverse/60 text-xs"
 									data-themer-id="auto-div-316">
 									{activeTestimonial.authorRole}
 								</div>
@@ -1970,7 +1937,7 @@ export function AgentlabTestimonialsSection() {
 						</div>
 
 						<p
-							className="mt-6 text-xs leading-relaxed text-white/70 sm:text-sm"
+							className="text-fg-inverse/70 mt-6 text-xs leading-relaxed sm:text-sm"
 							data-themer-id="auto-p-317">
 							{activeTestimonial.quote}
 						</p>

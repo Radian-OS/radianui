@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { IconSlot } from "@/registry/icon/icon-library"
 import { Badge, BadgeDot } from "@/registry/ui/badge"
-import { Button } from "@/registry/ui/button"
+import { Button } from "@/components/ui/button"
 import {
 	Card,
 	CardContent,
@@ -505,7 +505,7 @@ export function CheckboxShowcaseCard() {
 			</CardContent>
 
 			<CardFooter>
-				<Button size="lg" disabled={!agreed} className="w-full">
+				<Button disabled={!agreed} className="w-full">
 					Continue
 				</Button>
 			</CardFooter>
@@ -1020,9 +1020,7 @@ export function DividerShowcaseCard() {
 							</span>
 							<Divider className="flex-1" />
 						</div>
-						<Button variant="outline" className="w-full" size="lg">
-							Continue with Google
-						</Button>
+						<Button className="w-full">Continue with Google</Button>
 					</div>
 				</div>
 
@@ -1078,7 +1076,7 @@ export function DropdownShowcaseCard() {
 				<div className="flex justify-center py-6">
 					<DropdownMenu>
 						<DropdownMenuTrigger asChild>
-							<Button variant="smooth">
+							<Button variant="smooth" size="xs">
 								Open Menu <IconSlot slot="setting" className="ml-2 h-4 w-4" />
 							</Button>
 						</DropdownMenuTrigger>

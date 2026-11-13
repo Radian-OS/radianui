@@ -48,71 +48,8 @@ function ThemerPage() {
 	}, [syncAllToIframe])
 
 	useEffect(() => {
-		postToIframe({
-			type: "primary-color-change",
-			primaryColor: params.primaryColor,
-		})
-	}, [params.primaryColor, postToIframe])
-
-	useEffect(() => {
-		postToIframe({
-			type: "base-color-change",
-			baseColor: params.baseColor,
-		})
-	}, [params.baseColor, postToIframe])
-
-	useEffect(() => {
-		postToIframe({
-			type: "heading-font-change",
-			headingFont: params.headingFont,
-		})
-	}, [params.headingFont, postToIframe])
-
-	useEffect(() => {
-		postToIframe({ type: "body-font-change", bodyFont: params.bodyFont })
-	}, [params.bodyFont, postToIframe])
-
-	useEffect(() => {
-		postToIframe({
-			type: "icon-library-change",
-			iconLibrary: params.iconLibrary,
-		})
-	}, [params.iconLibrary, postToIframe])
-
-	useEffect(() => {
-		postToIframe({
-			type: "density-change",
-			density: params.density,
-		})
-	}, [params.density, postToIframe])
-
-	useEffect(() => {
-		postToIframe({
-			type: "radius-change",
-			radius: params.radius,
-		})
-	}, [params.radius, postToIframe])
-
-	useEffect(() => {
-		postToIframe({
-			type: "control-radius-change",
-			controlRadius: params.controlRadius,
-		})
-	}, [params.controlRadius, postToIframe])
-
-	useEffect(() => {
-		postToIframe({
-			type: "style-change",
-			style: params.style,
-		})
-	}, [params.style, postToIframe])
-
-	useEffect(() => {
-		postToIframe({
-			type: "extra-color-schemes-change",
-			extraColorSchemes: params.extraColorSchemes,
-		})
-	}, [params.extraColorSchemes, postToIframe])
+		syncAllToIframe()
+	}, [syncAllToIframe])
 
 	return (
 		<SidebarProvider

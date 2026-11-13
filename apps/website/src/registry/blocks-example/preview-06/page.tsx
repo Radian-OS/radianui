@@ -38,7 +38,7 @@ import {
 	Zap,
 } from "lucide-react"
 
-import { Button, IconButton } from "@/styles/default/ui/button"
+import { Button, IconButton } from "@/components/ui/button"
 import { Badge, BadgeDot } from "@/styles/default/ui/badge"
 import {
 	Card,
@@ -420,11 +420,11 @@ export default function Preview06Page() {
 					</div>
 
 					<div className="flex flex-wrap items-center gap-3">
-						<Button variant="outline" color="neutral" size="md">
+						<Button variant="outline" color="neutral">
 							<Sliders className="size-4" />
 							Cluster Config
 						</Button>
-						<Button color="primary" size="md">
+						<Button color="primary">
 							<Plus className="size-4" />
 							Deploy New Swarm
 						</Button>

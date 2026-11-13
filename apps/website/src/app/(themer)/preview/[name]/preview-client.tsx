@@ -112,40 +112,6 @@ export function PreviewClient({ children }: { children: React.ReactNode }) {
 				setParams(event.data.params)
 				setIsReady(true)
 			}
-			if (event.data.type === "primary-color-change") {
-				setParams({ primaryColor: event.data.primaryColor })
-				setIsReady(true)
-			}
-			if (event.data.type === "base-color-change") {
-				setParams({ baseColor: event.data.baseColor })
-			}
-			if (event.data.type === "extra-color-schemes-change") {
-				setParams({ extraColorSchemes: event.data.extraColorSchemes })
-			}
-			if (event.data.type === "heading-font-change") {
-				setParams({ headingFont: event.data.headingFont })
-			}
-			if (event.data.type === "body-font-change") {
-				setParams({ bodyFont: event.data.bodyFont })
-			}
-			if (event.data.type === "radius-change") {
-				setParams({ radius: event.data.radius })
-			}
-			if (event.data.type === "control-radius-change") {
-				setParams({ controlRadius: event.data.controlRadius })
-			}
-			if (event.data.type === "template-change") {
-				setParams({ template: event.data.template })
-			}
-			if (event.data.type === "style-change") {
-				setParams({ style: event.data.style })
-			}
-			if (event.data.type === "icon-library-change") {
-				setParams({ iconLibrary: event.data.iconLibrary })
-			}
-			if (event.data.type === "density-change") {
-				setParams({ density: event.data.density })
-			}
 		}
 
 		window.addEventListener("message", handleMessage)

@@ -1,5 +1,5 @@
 import React from "react"
-import { Button } from "@/registry/ui/button"
+import { Button } from "@/components/ui/button"
 import { Switch } from "@/registry/ui/switch"
 
 const CookieCard = () => {

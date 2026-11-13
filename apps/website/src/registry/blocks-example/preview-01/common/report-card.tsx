@@ -1,5 +1,5 @@
 import React from "react"
-import { Button } from "@/registry/ui/button"
+import { Button } from "@/components/ui/button"
 import { Input } from "@/registry/ui/input"
 import { Label } from "@/registry/ui/label"
 import { TextArea } from "@/registry/ui/text-area"

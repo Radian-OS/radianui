@@ -1,7 +1,7 @@
 import React from "react"
 import { ChevronDown } from "lucide-react"
 import { Avatar, AvatarFallback } from "@/registry/ui/avatar"
-import { Button } from "@/registry/ui/button"
+import { Button } from "@/components/ui/button"
 import { Divider } from "@/registry/ui/divider"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
