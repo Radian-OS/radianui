@@ -5,9 +5,123 @@ links:
   github:
     href: https://github.com/Radian-os/radianui/blob/main/apps/website/src/registry/example/heatmap/heatmap-preview.tsx
   externalReference:
-    - label: react-calendar-heatmap
-      href: https://github.com/kevinsqi/react-calendar-heatmap
+    - label: Recharts
+      href: https://recharts.github.io/
       icon: npm.svg
 ---
 
 <ComponentPreview path="heatmap/heatmap-preview" />
+
+---
+
+## Installation
+
+<InstallationTabs>
+	<InstallTabsList>
+		<InstallTabsTrigger value="cli">CLI</InstallTabsTrigger>
+		<InstallTabsTrigger value="manual">Manual</InstallTabsTrigger>
+	</InstallTabsList>
+	<InstallTabsContent value="cli">
+		```bash npx radianui@latest add chart ```
+	</InstallTabsContent>
+	<InstallTabsContent value="manual" className="p-0">
+		<Steps>
+			<Step>Install `recharts`:</Step>
+			```bash npm install recharts ```
+			<Step>Ensure you have Radian's `chart` component:</Step>
+			<ComponentSource
+				src="styles/default/ui/chart.tsx"
+				title="components/ui/chart.tsx"
+				collapsible
+			/>
+			<Step>
+				Copy and paste `heatmap-preview.tsx` into your components directory.
+			</Step>
+		</Steps>
+	</InstallTabsContent>
+</InstallationTabs>
+
+---
+
+## Usage
+
+### Imports
+
+```tsx showLineNumbers title=" "
+import * as React from "react"
+import { Scatter, ScatterChart, XAxis, YAxis } from "recharts"
+import {
+	type ChartConfig,
+	ChartContainer,
+	ChartTooltip,
+} from "@/components/ui/chart"
+import { cn } from "@/lib/utils"
+```
+
+### Chart Configuration
+
+Define your chart theme configuration binding directly to `--color-primary`:
+
+```tsx showLineNumbers title=" "
+const chartConfig = {
+	users: {
+		label: "Active Users",
+		color: "var(--color-primary)",
+	},
+} satisfies ChartConfig
+```
+
+### Heatmap Setup
+
+Render the 7x12 matrix using `ScatterChart` within `ChartContainer`:
+
+```tsx showLineNumbers title=" "
+<ChartContainer config={chartConfig} className="aspect-auto h-[260px] w-full">
+	<ScatterChart margin={{ top: 58, right: 10, bottom: 0, left: 0 }}>
+		<XAxis
+			type="number"
+			dataKey="hourIndex"
+			domain={[-0.5, 11.5]}
+			ticks={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]}
+			tickFormatter={(val) => HOURS[val] ?? ""}
+			interval={0}
+			tickLine={false}
+			axisLine={false}
+		/>
+		<YAxis
+			type="number"
+			dataKey="dayIndex"
+			domain={[-0.5, 6.5]}
+			ticks={[0, 1, 2, 3, 4, 5, 6]}
+			tickFormatter={(val) => DAYS[val] ?? ""}
+			width={36}
+			interval={0}
+			tickLine={false}
+			axisLine={false}
+			reversed
+		/>
+		<ChartTooltip
+			cursor={false}
+			offset={0}
+			isAnimationActive={false}
+			animationDuration={0}
+			allowEscapeViewBox={{ x: true, y: true }}
+			content={({ active, payload }) => {
+				if (!active || !payload?.length) return null
+				const item = payload[0]?.payload
+				return (
+					<div className="border-border bg-bg pointer-events-none -translate-x-1/2 -translate-y-[calc(100%+12px)] min-w-32 rounded-lg border px-2.5 py-1.5 text-xs shadow-xl">
+						<span className="font-semibold text-fg">
+							{item.users?.toLocaleString()} active users
+						</span>
+						<span className="text-fg-tertiary text-[11px]">
+							{item.day} at {item.hour}:00
+						</span>
+					</div>
+				)
+			}}
+		/>
+		<Scatter data={data} shape={renderHeatmapCell} isAnimationActive={false} />
+	</ScatterChart>
+</ChartContainer>
+```
