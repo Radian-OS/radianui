@@ -3,7 +3,7 @@ import path from "path"
 import prompts from "prompts"
 import { addComponentsToProject } from "@/commands/add"
 import { type InitConfig } from "@/config/initSchema"
-import { ICON_DEPENDENCIES } from "@/registry/constants"
+import { DEFAULT_THEME, ICON_DEPENDENCIES } from "@/registry/constants"
 import {
 	getTemplateForFramework,
 	resolveTemplate,
@@ -26,6 +26,7 @@ import { getRegistryComponents, resolveComponents } from "@/utils/registry"
 import { spinner } from "@/utils/spinner"
 import { updateCssWithTheme } from "@/utils/updaters/updateCss"
 import { updateCssWithPreset } from "@/utils/updaters/updateCssWithPreset"
+import { updateDefaultTheme } from "@/utils/updaters/updateDefaultTheme"
 
 /**
  * Executes init with a fully-resolved config.
@@ -148,6 +149,9 @@ async function scaffoldNewProject(config: InitConfig): Promise<string> {
 			)
 		}
 	}
+
+	const defaultTheme = config.preset?.config?.defaultTheme ?? DEFAULT_THEME
+	await updateDefaultTheme(projectPath, config.useSrcDir, defaultTheme)
 
 	return projectPath
 }

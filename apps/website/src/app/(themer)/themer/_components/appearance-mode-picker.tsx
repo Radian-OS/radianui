@@ -1,6 +1,4 @@
-import { useEffect, useState } from "react"
-import { useTheme } from "next-themes"
-import { Button } from "@/styles/default/ui/button"
+import { Button, CompactButton } from "@/styles/default/ui/button"
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -9,16 +7,23 @@ import {
 	DropdownMenuRadioItem,
 	DropdownMenuTrigger,
 } from "@/styles/default/ui/dropdown-menu"
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipTrigger,
+} from "@/styles/default/ui/tooltip"
+import { Info } from "lucide-react"
+import { useThemerPreset } from "@/lib/themer-preset"
+import { Theme } from "@/registry/themes"
+
+const THEME_LABELS: Record<Theme, string> = {
+	system: "System",
+	light: "Light",
+	dark: "Dark",
+}
 
 export default function AppearanceModePicker() {
-	const [mounted, setMounted] = useState(false)
-	const { resolvedTheme, setTheme } = useTheme()
-
-	useEffect(() => {
-		setMounted(true)
-	}, [])
-
-	const currentMode = mounted && resolvedTheme === "dark" ? "Dark" : "Light"
+	const [presetParams, setPresetParams] = useThemerPreset()
 
 	return (
 		<DropdownMenu>
@@ -28,7 +33,9 @@ export default function AppearanceModePicker() {
 					variant="soft"
 					color="neutral">
 					<span>Default Mode</span>{" "}
-					<span className="text-fg-tertiary font-medium">{currentMode}</span>
+					<span className="text-fg-tertiary font-medium">
+						{THEME_LABELS[presetParams.defaultTheme]}
+					</span>
 				</Button>
 			</DropdownMenuTrigger>
 			<DropdownMenuContent
@@ -36,14 +43,30 @@ export default function AppearanceModePicker() {
 				align="end"
 				sideOffset={20}
 				className="min-w-[280px] shadow-sm">
-				<DropdownMenuLabel className="text-fg-tertiary">
-					Appearance Mode
-				</DropdownMenuLabel>
+				<div className="flex items-center justify-between">
+					<DropdownMenuLabel className="text-fg-tertiary">
+						Appearance Mode
+					</DropdownMenuLabel>
+					<Tooltip>
+						<TooltipTrigger asChild>
+							<CompactButton variant="ghost" color="neutral" size="sm">
+								<Info />
+							</CompactButton>
+						</TooltipTrigger>
+						<TooltipContent className="max-w-xs text-center" withArrow>
+							Sets the default theme your project loads with (light, dark, or
+							system)
+						</TooltipContent>
+					</Tooltip>
+				</div>
 				<DropdownMenuRadioGroup
-					value={mounted && resolvedTheme ? resolvedTheme : "light"}
-					onValueChange={(val) => setTheme(val)}>
+					value={presetParams.defaultTheme}
+					onValueChange={(value) =>
+						setPresetParams({ defaultTheme: value as Theme })
+					}>
 					<DropdownMenuRadioItem value="light">Light</DropdownMenuRadioItem>
 					<DropdownMenuRadioItem value="dark">Dark</DropdownMenuRadioItem>
+					<DropdownMenuRadioItem value="system">System</DropdownMenuRadioItem>
 				</DropdownMenuRadioGroup>
 			</DropdownMenuContent>
 		</DropdownMenu>

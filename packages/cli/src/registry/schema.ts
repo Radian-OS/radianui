@@ -1,5 +1,5 @@
 import { z } from "zod"
-import { ICON_LIBRARIES, IconLibrary, STYLES, Style } from "./constants"
+import { DEFAULT_STYLE, DEFAULT_THEME, ICON_LIBRARIES, IconLibrary, STYLES, Style, THEMES } from "./constants"
 
 export const rawConfigSchema = z.object({
 	$schema: z.string(),
@@ -102,7 +102,8 @@ export const presetSchema = z.object({
 		),
 		template: z.string(),
 		useSrcDir: z.boolean().default(true),
-		style: z.enum(STYLES),
+		style: z.enum(STYLES).default(DEFAULT_STYLE),
+		defaultTheme: z.enum(THEMES).default(DEFAULT_THEME)
 	}),
 })
 

@@ -61,14 +61,14 @@ export async function promptForMissing(
 		const confirmation = opts.skipPrompts
 			? { confirmNewProject: true }
 			: await prompts(
-					{
-						type: "confirm",
-						name: "confirmNewProject",
-						message: `No package.json found at ${txt.bold(txt.info(partial.cwd))}. Create a new project?`,
-						initial: false,
-					},
-					{ onCancel: () => handlePromptCancel() }
-				)
+				{
+					type: "confirm",
+					name: "confirmNewProject",
+					message: `No package.json found at ${txt.bold(txt.info(partial.cwd))}. Create a new project?`,
+					initial: false,
+				},
+				{ onCancel: () => handlePromptCancel() }
+			)
 		if (!confirmation.confirmNewProject) process.exit()
 	}
 
@@ -97,16 +97,16 @@ export async function promptForMissing(
 			config.useSrcDir = opts.skipPrompts
 				? true
 				: (
-						await prompts(
-							{
-								type: "confirm",
-								name: "useSrcDir",
-								message: "Would you like to use /src directory?",
-								initial: true,
-							},
-							{ onCancel: () => handlePromptCancel() }
-						)
-					).useSrcDir
+					await prompts(
+						{
+							type: "confirm",
+							name: "useSrcDir",
+							message: "Would you like to use /src directory?",
+							initial: true,
+						},
+						{ onCancel: () => handlePromptCancel() }
+					)
+				).useSrcDir
 		} else {
 			config.useSrcDir = true
 		}
@@ -117,25 +117,25 @@ export async function promptForMissing(
 		config.brandColor = opts.skipPrompts
 			? DEFAULT_BRAND_COLOR
 			: (
-					await prompts(
-						{
-							type: "select",
-							name: "brandColor",
-							message: "Which color would you like to use as your brand color?",
-							choices: COLORS.map((color) => ({
-								title: chalk.hex(color.hex)(color.title),
-								value: color.value,
-							})),
-							initial: 11,
-						},
-						{ onCancel: () => handlePromptCancel() }
-					)
-				).brandColor
+				await prompts(
+					{
+						type: "select",
+						name: "brandColor",
+						message: "Which color would you like to use as your brand color?",
+						choices: COLORS.map((color) => ({
+							title: chalk.hex(color.hex)(color.title),
+							value: color.value,
+						})),
+						initial: 11,
+					},
+					{ onCancel: () => handlePromptCancel() }
+				)
+			).brandColor
 	}
 
 	// Style (default to "default" / DEFAULT_STYLE without prompting)
 	if (!config.style) {
-		config.style = partial.preset?.config?.config?.style ?? DEFAULT_STYLE
+		config.style = partial.preset?.config?.style ?? DEFAULT_STYLE
 	}
 
 	// Font (skip if preset provides theme)
@@ -143,30 +143,30 @@ export async function promptForMissing(
 		config.font = opts.skipPrompts
 			? DEFAULT_FONT
 			: (
-					await prompts(
-						{
-							type: "select",
-							name: "font",
-							message: "Which font would you like to use for your project?",
-							choices: (() => {
-								const defaultFont = FONTS.find((f) => f.value === DEFAULT_FONT)
-								const otherFonts = FONTS.filter((f) => f.value !== DEFAULT_FONT)
-								const sorted = otherFonts.sort((a, b) =>
-									a.title.localeCompare(b.title)
-								)
-								return defaultFont ? [defaultFont, ...sorted] : sorted
-							})().map((f) => ({ title: f.title, value: f.value })),
-							initial: 0,
-						},
-						{ onCancel: () => handlePromptCancel() }
-					)
-				).font
+				await prompts(
+					{
+						type: "select",
+						name: "font",
+						message: "Which font would you like to use for your project?",
+						choices: (() => {
+							const defaultFont = FONTS.find((f) => f.value === DEFAULT_FONT)
+							const otherFonts = FONTS.filter((f) => f.value !== DEFAULT_FONT)
+							const sorted = otherFonts.sort((a, b) =>
+								a.title.localeCompare(b.title)
+							)
+							return defaultFont ? [defaultFont, ...sorted] : sorted
+						})().map((f) => ({ title: f.title, value: f.value })),
+						initial: 0,
+					},
+					{ onCancel: () => handlePromptCancel() }
+				)
+			).font
 	}
 
 	// Icon Library (default to "lucide" / DEFAULT_ICON_LIBRARY without prompting)
 	if (!config.iconLibrary) {
 		config.iconLibrary =
-			partial.preset?.config?.config?.iconLibrary ?? DEFAULT_ICON_LIBRARY
+			partial.preset?.config?.iconLibrary ?? DEFAULT_ICON_LIBRARY
 	}
 
 	// Existing project CSS override warning (only when no preset)
@@ -174,14 +174,14 @@ export async function promptForMissing(
 		const confirmation = opts.skipPrompts
 			? { confirmContinue: true }
 			: await prompts(
-					{
-						type: "confirm",
-						name: "confirmContinue",
-						message: `${txt.warning(`${txt.bold("Warning:")} Your existing styles (CSS file) will be overridden.`)} Do you want to continue?`,
-						initial: false,
-					},
-					{ onCancel: () => handlePromptCancel() }
-				)
+				{
+					type: "confirm",
+					name: "confirmContinue",
+					message: `${txt.warning(`${txt.bold("Warning:")} Your existing styles (CSS file) will be overridden.`)} Do you want to continue?`,
+					initial: false,
+				},
+				{ onCancel: () => handlePromptCancel() }
+			)
 		if (!confirmation.confirmContinue) process.exit()
 	}
 

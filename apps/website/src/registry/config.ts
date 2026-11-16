@@ -10,6 +10,7 @@ import { TEMPLATES } from "./templates"
 import { generateCustomColorShades } from "@/lib/shade-generator"
 import ntc from "ntcjs"
 import { buttonConfigSchema } from "./component-presets/button-presets"
+import { DEFAULT_THEME, THEMES } from "./themes"
 
 const fontValues = FONTS.map((font) => font.value)
 const radiusValues = RADIUS.map((radius) => radius.value)
@@ -41,6 +42,7 @@ export const registryConfigSchema = z.object({
 		template: z.enum(TEMPLATES),
 		useSrcDir: z.boolean().default(true),
 		style: z.enum(styleValues).default("default"),
+		defaultTheme: z.enum(THEMES).default(DEFAULT_THEME),
 	}),
 })
 
@@ -81,6 +83,7 @@ export const themerConfigSchema = z.object({
 			})
 		)
 		.default([]),
+	defaultTheme: z.enum(THEMES).default(DEFAULT_THEME),
 	// Compnentwise customizations
 	components: z
 		.object({
@@ -104,6 +107,7 @@ export const DEFAULT_CONFIG: ThemerConfig = {
 	useSrcDir: true,
 	iconLibrary: "lucide",
 	baseColor: "default",
+	defaultTheme: DEFAULT_THEME,
 	extraColorSchemes: [],
 	componentOverrides: [],
 	components: {},
@@ -131,6 +135,7 @@ export const PRESETS: Preset[] = [
 		useSrcDir: true,
 		iconLibrary: "lucide",
 		baseColor: "default",
+		defaultTheme: "system",
 		extraColorSchemes: [],
 		componentOverrides: [],
 		components: {},
@@ -150,6 +155,7 @@ export const PRESETS: Preset[] = [
 		useSrcDir: true,
 		iconLibrary: "lucide",
 		baseColor: "default",
+		defaultTheme: "system",
 		extraColorSchemes: [],
 		componentOverrides: [],
 		components: {},
@@ -537,6 +543,7 @@ export function buildRegistryConfig(config: ThemerConfig): RegistryConfig {
 			template: config.template,
 			useSrcDir: config.useSrcDir,
 			style: config.style,
+			defaultTheme: config.defaultTheme,
 		},
 	}
 

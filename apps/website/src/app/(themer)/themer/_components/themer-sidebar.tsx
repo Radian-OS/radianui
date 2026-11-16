@@ -77,7 +77,7 @@ export function ThemerSidebar() {
 				</div>
 				<TabsContent value="fundamentals" className="flex min-h-0 flex-col">
 					<SidebarContent className="overflow-hidden">
-						<ScrollArea className="min-h-0 flex-1">
+						<ScrollArea className="min-h-0 flex-1 pb-2">
 							<SidebarGroup>
 								<SidebarGroupLabel className="text-fg-tertiary px-0 font-medium">
 									Presets
@@ -179,7 +179,7 @@ export function ThemerSidebar() {
 
 							{/* Icons */}
 							<SidebarGroup>
-								<SidebarGroupLabel className="text-fg-tertiary mb-2 px-0 font-normal">
+								<SidebarGroupLabel className="text-fg-tertiary px-0 font-normal">
 									Icons
 								</SidebarGroupLabel>
 								<IconLibraryPicker
@@ -189,8 +189,8 @@ export function ThemerSidebar() {
 							</SidebarGroup>
 
 							<SidebarGroup>
-								<SidebarGroupLabel className="text-fg-tertiary mb-2 px-0 font-normal">
-									Appearance Mode
+								<SidebarGroupLabel className="text-fg-tertiary px-0 font-normal">
+									Default Appearance Mode
 								</SidebarGroupLabel>
 								<AppearanceModePicker />
 							</SidebarGroup>

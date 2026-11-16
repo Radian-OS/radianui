@@ -1,4 +1,5 @@
 import { type PartialInitConfig } from "@/config/initSchema"
+import { DEFAULT_ICON_LIBRARY, DEFAULT_PROJECT_NAME, DEFAULT_STYLE } from "@/registry/constants"
 import { type Preset } from "@/registry/schema"
 import { fetchPreset } from "@/utils/preset"
 import { spinner } from "@/utils/spinner"
@@ -20,12 +21,12 @@ export async function resolvePreset(
 		return {
 			cwd: "",
 			preset,
-			projectName: preset.name ?? preset.config?.name,
+			projectName: preset.name ?? DEFAULT_PROJECT_NAME,
 			framework:
-				preset.config?.config?.template === "vite" ? "vite" : "next-app",
-			useSrcDir: preset.config?.config?.useSrcDir ?? true,
-			style: preset.config?.config?.style ?? "default",
-			iconLibrary: preset.config?.config?.iconLibrary ?? "lucide",
+				preset.config?.template === "vite" ? "vite" : "next-app",
+			useSrcDir: preset.config?.useSrcDir ?? true,
+			style: preset.config?.style ?? DEFAULT_STYLE,
+			iconLibrary: preset.config?.iconLibrary ?? DEFAULT_ICON_LIBRARY,
 		}
 	} catch (err) {
 		s.fail()
