@@ -1,9 +1,9 @@
 "use client"
 
+import { PanelLeft } from "lucide-react"
 import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { type VariantProps, cva } from "class-variance-authority"
-import { IconSlot } from "@/registry/icon/icon-library"
 import { cn } from "@/lib/utils"
 import { Badge } from "@/styles/sera/ui/badge"
 import { IconButton } from "@/styles/sera/ui/button"
@@ -624,7 +624,7 @@ function SidebarTrigger({
 				children
 			) : (
 				<>
-					<IconSlot slot="left-panel" />
+					<PanelLeft />
 					<span className="sr-only">Toggle Sidebar</span>
 				</>
 			)}

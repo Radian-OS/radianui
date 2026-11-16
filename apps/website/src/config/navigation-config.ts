@@ -153,8 +153,7 @@ const NEW_COMPONENTS = new Set([
 	"Line Chart",
 	"Pie Chart",
 	"Radar Chart",
-	"Contributions Card",
-	"Heatmap",
+	"Heatmap Chart",
 ])
 
 // Map Components array to NavigationItem
@@ -322,9 +321,8 @@ const BLOCKS_ITEMS: NavigationItem[] = BLOCKS_DATA.map(
 const CHART_ITEMS: NavigationItem[] = [
 	"Area Chart",
 	"Bar Chart",
-	"Contributions Card",
 	"Donut Chart",
-	"Heatmap",
+	"Heatmap Chart",
 	"Line Chart",
 	"Pie Chart",
 	"Radar Chart",

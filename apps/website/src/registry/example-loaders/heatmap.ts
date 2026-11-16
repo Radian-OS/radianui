@@ -5,6 +5,9 @@ const registry: Record<
 	string,
 	React.LazyExoticComponent<React.ComponentType>
 > = {
+	"contributions-card": React.lazy(
+		() => import("@/registry/example/heatmap/contributions-card")
+	),
 	"heatmap-preview": React.lazy(
 		() => import("@/registry/example/heatmap/heatmap-preview")
 	),

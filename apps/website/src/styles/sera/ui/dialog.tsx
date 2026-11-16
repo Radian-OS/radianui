@@ -3,7 +3,6 @@ import * as React from "react"
 import * as DialogPrimitive from "@radix-ui/react-dialog"
 import { type VariantProps, cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"
-import { IconSlot } from "@/registry/icon/icon-library"
 
 type Backdrop = VariantProps<typeof dialogOverlayVariants>["backdrop"]
 
@@ -92,7 +91,6 @@ function DialogContent({
 				data-slot="dialog-content"
 				className={cn(
 					"data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 group bg-bg border-alpha fixed top-1/2 left-1/2 z-50 flex w-full max-w-lg -translate-x-1/2 -translate-y-1/2 flex-col gap-6 rounded-none border p-6 shadow-none duration-200",
-					"data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 group bg-bg border-alpha fixed top-1/2 left-1/2 z-50 flex w-full max-w-lg -translate-x-1/2 -translate-y-1/2 flex-col gap-6 rounded-none border p-6 shadow-none duration-200",
 					className
 				)}
 				{...props}>
@@ -136,7 +134,6 @@ function DialogBody({
 	...props
 }: React.HTMLAttributes<HTMLDivElement>) {
 	return <div data-slot="dialog-body" className={cn(className)} {...props} />
-	return <div data-slot="dialog-body" className={cn(className)} {...props} />
 }
 DialogBody.displayName = "DialogBody"
 
@@ -169,7 +166,7 @@ function DialogTitle({
 						type="button"
 						aria-label="Close Button"
 						className="focus-visible:ring-offset-bg bg-fill2 text-fg-secondary hover:bg-fill1-alpha focus-visible:bg-bg focus-visible:ring-border box-border inline-flex h-6 w-6 items-center justify-center rounded-md p-1 font-medium whitespace-nowrap hover:cursor-pointer focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none [&>svg]:!h-4 [&>svg]:!w-4">
-						<IconSlot slot="cross" />
+						<X />
 					</button>
 				</DialogPrimitive.Close>
 			)}

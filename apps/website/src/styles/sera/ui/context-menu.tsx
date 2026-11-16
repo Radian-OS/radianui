@@ -1,5 +1,6 @@
 "use client"
 
+import { Check, Circle } from "lucide-react"
 import * as React from "react"
 import * as ContextMenuPrimitive from "@radix-ui/react-context-menu"
 import { IconSlot } from "@/registry/icon/icon-library"
@@ -180,7 +181,7 @@ function ContextMenuCheckboxItem({
 			{...props}>
 			<span className="pointer-events-none absolute start-2 flex size-3.5 items-center justify-center">
 				<ContextMenuPrimitive.ItemIndicator>
-					<IconSlot slot="check" className="text-primary size-4" />
+					<Check className="text-primary size-4" />
 				</ContextMenuPrimitive.ItemIndicator>
 			</span>
 			{children}
@@ -203,7 +204,7 @@ function ContextMenuRadioItem({
 			{...props}>
 			<span className="pointer-events-none absolute start-2 flex size-3.5 items-center justify-center">
 				<ContextMenuPrimitive.ItemIndicator>
-					<IconSlot slot="circle" className="fill-primary size-1.5" />
+					<Circle className="fill-primary size-1.5" />
 				</ContextMenuPrimitive.ItemIndicator>
 			</span>
 			{children}
