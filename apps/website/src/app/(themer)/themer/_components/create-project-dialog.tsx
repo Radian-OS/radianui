@@ -29,10 +29,10 @@ const PACKAGE_MANAGERS = ["pnpm", "npm", "yarn", "bun"] as const
 type PackageManager = (typeof PACKAGE_MANAGERS)[number]
 
 const PM_COMMAND: Record<PackageManager, (id: string) => string> = {
-	pnpm: (id) => `pnpm dlx radianui@latest init --preset ${id}`,
-	npm: (id) => `npx radianui@latest init --preset ${id}`,
-	yarn: (id) => `yarn dlx radianui@latest init --preset ${id}`,
-	bun: (id) => `bunx --bun radianui@latest init --preset ${id}`,
+	pnpm: (id) => `pnpm dlx radianui@alpha init --preset ${id}`,
+	npm: (id) => `npx radianui@alpha init --preset ${id}`,
+	yarn: (id) => `yarn dlx radianui@alpha init --preset ${id}`,
+	bun: (id) => `bunx --bun radianui@alpha init --preset ${id}`,
 }
 
 const TEMPLATES_INFO: Record<Template, { label: string; desc: string }> = {
