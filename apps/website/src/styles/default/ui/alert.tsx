@@ -1,6 +1,6 @@
+import { X } from "lucide-react"
 import * as React from "react"
 import { type VariantProps, cva } from "class-variance-authority"
-import { IconSlot } from "@/registry/icon/icon-library"
 import { cn } from "@/lib/utils"
 
 export type AlertProps = Omit<
@@ -188,10 +188,7 @@ function Alert({
 					className={cn(
 						"group flex size-5 shrink-0 cursor-pointer items-center justify-center"
 					)}>
-					<IconSlot
-						className="size-4 opacity-60 group-hover:opacity-100"
-						slot="cross"
-					/>
+					<X className="size-4 opacity-60 group-hover:opacity-100" />
 				</button>
 			)}
 		</div>

@@ -9,7 +9,11 @@ const slotToLucide = new Map<string, string>(
  * Lucide React icon components and updates/removes imports accordingly.
  */
 export function transformIconSlots(source: string): string {
-	if (!source || !source.includes("<IconSlot")) return source
+	if (
+		!source ||
+		(!source.includes("<IconSlot") && !source.includes("icon-library"))
+	)
+		return source
 
 	const neededLucideIcons = new Set<string>()
 
@@ -37,7 +41,7 @@ export function transformIconSlots(source: string): string {
 	// Clean up IconSlot from imports if no <IconSlot remains
 	if (!transformed.includes("<IconSlot")) {
 		transformed = transformed.replace(
-			/^import\s+\{([^}]*)\}\s+from\s+["']([^"']*\/icon-library)["'];?\n?/gm,
+			/^import\s+\{([^}]*)\}\s+from\s+["']([^"']*\/icon-library)["']\s*;?\s*\r?\n?/gm,
 			(_, imports: string, modulePath: string) => {
 				const remainingImports = imports
 					.split(",")

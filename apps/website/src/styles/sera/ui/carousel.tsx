@@ -1,10 +1,10 @@
 "use client"
 
+import { ChevronLeft, ChevronRight } from "lucide-react"
 import * as React from "react"
 import useEmblaCarousel, {
 	type UseEmblaCarouselType,
 } from "embla-carousel-react"
-import { IconSlot } from "@/registry/icon/icon-library"
 import { cn } from "@/lib/utils"
 import { IconButton } from "@/styles/sera/ui/button"
 
@@ -196,7 +196,7 @@ function CarouselPrevious({
 			onClick={scrollPrev}
 			aria-label="Previous Button"
 			{...props}>
-			{children ?? <IconSlot className="rtl:rotate-180" slot="left" />}
+			{children ?? <ChevronLeft className="rtl:rotate-180" />}
 			<span className="sr-only">Previous slide</span>
 		</IconButton>
 	)
@@ -231,7 +231,7 @@ function CarouselNext({
 			disabled={!canScrollNext}
 			onClick={scrollNext}
 			{...props}>
-			{children ?? <IconSlot className="rtl:rotate-180" slot="right" />}{" "}
+			{children ?? <ChevronRight className="rtl:rotate-180" />}{" "}
 			<span className="sr-only">Next slide</span>
 		</IconButton>
 	)

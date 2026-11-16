@@ -1,9 +1,8 @@
 "use client"
 
-import { Check, Circle } from "lucide-react"
+import { ChevronRight, Check, Circle } from "lucide-react"
 import * as React from "react"
 import * as ContextMenuPrimitive from "@radix-ui/react-context-menu"
-import { IconSlot } from "@/registry/icon/icon-library"
 import { cn } from "@/lib/utils"
 
 function ContextMenu({
@@ -94,7 +93,7 @@ function ContextMenuSubTrigger({
 			)}
 			{...props}>
 			{children}
-			<IconSlot className="ml-auto" slot="right" />
+			<ChevronRight className="ml-auto" />
 		</ContextMenuPrimitive.SubTrigger>
 	)
 }
