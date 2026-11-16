@@ -47,6 +47,18 @@ function ThemerPage() {
 		}
 	}, [syncAllToIframe])
 
+	// Iframe swallows pointer events, so Radix doesn't detect outside clicks through it.
+	// When focus moves to the iframe (window blur), close any open floating elements via Escape.
+	useEffect(() => {
+		const closeOnIframeFocus = () => {
+			document.dispatchEvent(
+				new KeyboardEvent("keydown", { key: "Escape", bubbles: true })
+			)
+		}
+		window.addEventListener("blur", closeOnIframeFocus)
+		return () => window.removeEventListener("blur", closeOnIframeFocus)
+	}, [])
+
 	useEffect(() => {
 		syncAllToIframe()
 	}, [syncAllToIframe])
