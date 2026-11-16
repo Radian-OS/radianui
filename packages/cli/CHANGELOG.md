@@ -1,5 +1,26 @@
 # radianui
 
+## 0.5.0-alpha.0
+
+### Minor Changes
+
+- 32561e5: - Support defaultTheme (light, dark, system) in preset configuration during init
+  - Update theme-provider.tsx with the preset's default theme when scaffolding new projects
+  - Add defaultTheme validation to presetSchema
+- 3696f48: - Support preset-specific component resolution and overrides during `add`
+  - Persist `presetId` in `components.json` on `init`
+  - Validate preset payloads with Zod and update preset API endpoint to `/api/presets/:id`
+  - Switch template source branch to `main`
+- 5d7746b: - Add normalizePreset to handle nested/inconsistent preset response payloads
+  - Support direct URL fetching for custom remote components in resolveComponents
+  - Include URL registry dependencies during preset init and clean up prompt display names
+  - Add null-safety guards for css and cssVars in generateThemeCss
+- de490ab: Support adding other icon libraries during components/blocks addition.
+
+### Patch Changes
+
+- 31a3ef0: Simplify component resolution and sync preset schema
+
 ## 0.4.0
 
 ### Minor Changes
