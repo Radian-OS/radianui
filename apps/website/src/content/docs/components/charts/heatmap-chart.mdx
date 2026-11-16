@@ -17,28 +17,28 @@ links:
 ## Installation
 
 <InstallationTabs>
-	<InstallTabsList>
-		<InstallTabsTrigger value="cli">CLI</InstallTabsTrigger>
-		<InstallTabsTrigger value="manual">Manual</InstallTabsTrigger>
-	</InstallTabsList>
-	<InstallTabsContent value="cli">
-		```bash npx radianui@latest add chart ```
-	</InstallTabsContent>
-	<InstallTabsContent value="manual" className="p-0">
-		<Steps>
-			<Step>Install `recharts`:</Step>
-			```bash npm install recharts ```
-			<Step>Ensure you have Radian's `chart` component:</Step>
-			<ComponentSource
-				src="styles/default/ui/chart.tsx"
-				title="components/ui/chart.tsx"
-				collapsible
-			/>
-			<Step>
-				Copy and paste `heatmap-preview.tsx` into your components directory.
-			</Step>
-		</Steps>
-	</InstallTabsContent>
+    <InstallTabsList>
+        <InstallTabsTrigger value="cli">CLI</InstallTabsTrigger>
+        <InstallTabsTrigger value="manual">Manual</InstallTabsTrigger>
+    </InstallTabsList>
+    <InstallTabsContent value="cli">
+        ```bash
+        npx radianui@latest add chart
+        ```
+    </InstallTabsContent>
+    <InstallTabsContent value="manual" className="p-0">
+    <Steps>
+        <Step>Install the following dependencies:</Step>
+        ```bash
+        npm install recharts
+        ```
+        <Step>Copy and paste the following code into your project.</Step>
+        <ComponentSource src="styles/default/ui/chart.tsx" title="components/ui/chart.tsx" collapsible />
+
+        <Step>Update the import paths as per your project structure.</Step>
+    </Steps>
+    </InstallTabsContent>
+
 </InstallationTabs>
 
 ---
@@ -58,22 +58,7 @@ import {
 import { cn } from "@/lib/utils"
 ```
 
-### Chart Configuration
-
-Define your chart theme configuration binding directly to `--color-primary`:
-
-```tsx showLineNumbers title=" "
-const chartConfig = {
-	users: {
-		label: "Active Users",
-		color: "var(--color-primary)",
-	},
-} satisfies ChartConfig
-```
-
-### Heatmap Setup
-
-Render the 7x12 matrix using `ScatterChart` within `ChartContainer`:
+### Code
 
 ```tsx showLineNumbers title=" "
 <ChartContainer config={chartConfig} className="aspect-auto h-[260px] w-full">
@@ -125,3 +110,11 @@ Render the 7x12 matrix using `ScatterChart` within `ChartContainer`:
 	</ScatterChart>
 </ChartContainer>
 ```
+
+---
+
+## Examples
+
+### Contribution Chart
+
+<ComponentPreview path="heatmap/contributions-card" />

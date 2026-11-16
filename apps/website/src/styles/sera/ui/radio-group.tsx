@@ -1,9 +1,9 @@
 "use client"
 
+import { Circle } from "lucide-react"
 import * as React from "react"
 import * as RadioGroupPrimitive from "@radix-ui/react-radio-group"
 import { type VariantProps, cva } from "class-variance-authority"
-import { IconSlot } from "@/registry/icon/icon-library"
 import { cn } from "@/lib/utils"
 
 type RadioGroupContextType = {
@@ -86,10 +86,7 @@ function RadioGroupItem({
 			<RadioGroupPrimitive.Indicator
 				data-slot="radio-group-indicator"
 				className="relative flex items-center justify-center">
-				<IconSlot
-					slot="circle"
-					className="fill-bg stroke-bg absolute top-1/2 left-1/2 size-2 -translate-x-1/2 -translate-y-1/2"
-				/>
+				<Circle className="fill-bg stroke-bg absolute top-1/2 left-1/2 size-2 -translate-x-1/2 -translate-y-1/2" />
 			</RadioGroupPrimitive.Indicator>
 		</RadioGroupPrimitive.Item>
 	)
