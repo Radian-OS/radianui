@@ -1,5 +1,11 @@
 # @radianui/flags
 
+## 1.1.0
+
+### Minor Changes
+
+- Replace all 257 country and regional flag SVGs with the refreshed Flat 24 artwork while preserving existing filenames, metadata IDs, and country codes.
+
 ## 1.0.0
 
 ### Major Changes

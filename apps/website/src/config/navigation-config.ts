@@ -266,6 +266,8 @@ export const RESOURCE_ITEMS: NavigationItem[] = [
 		description: "Popular company logos.",
 		url: "/resources/brand-logos",
 		resourceIcon: "brand-logo",
+		isComingSoon: true,
+		disabled: true,
 	},
 	{
 		title: "File Format Icons",
