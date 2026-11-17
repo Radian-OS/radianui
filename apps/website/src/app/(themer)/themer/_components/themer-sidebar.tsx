@@ -15,6 +15,7 @@ import {
 } from "@/styles/default/ui/sidebar"
 import { Button } from "@/styles/default/ui/button"
 import { ChevronRight, Component, Lock, Shuffle } from "lucide-react"
+import { BadgeSettings } from "./component-settings/badge-settings"
 import {
 	Tabs,
 	TabsContent,
@@ -223,6 +224,8 @@ export function ThemerSidebar() {
 											<SidebarMenuItem key={name}>
 												{name === "Button" ? (
 													<ButtonSettings>{item}</ButtonSettings>
+												) : name === "Badge" ? (
+													<BadgeSettings>{item}</BadgeSettings>
 												) : (
 													<ComponentSettingsPopover name={name}>
 														{item}

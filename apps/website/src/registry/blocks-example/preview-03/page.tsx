@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { IconSlot } from "@/registry/icon/icon-library"
-import { Badge, BadgeDot } from "@/registry/ui/badge"
+import { Badge, BadgeDot } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import {
 	Card,
