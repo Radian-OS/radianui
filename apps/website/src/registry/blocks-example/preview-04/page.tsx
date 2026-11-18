@@ -15,7 +15,7 @@ import {
 	BannerIcon,
 	BannerTitle,
 } from "@/registry/ui/banner"
-import { Button } from "@/registry/ui/button"
+import { Button } from "@/components/ui/button"
 
 export default function Page() {
 	return (

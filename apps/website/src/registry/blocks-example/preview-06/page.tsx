@@ -39,7 +39,7 @@ import {
 } from "lucide-react"
 
 import { Button, IconButton } from "@/components/ui/button"
-import { Badge, BadgeDot } from "@/styles/default/ui/badge"
+import { Badge, BadgeDot } from "@/components/ui/badge"
 import {
 	Card,
 	CardHeader,

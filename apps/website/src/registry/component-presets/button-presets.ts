@@ -128,12 +128,14 @@ export const buttonConfigSchema = z.object({
 			...ButtonPaddingPreset[],
 		]
 	),
-	radius: z.enum(
-		Object.keys(BUTTON_RADIUS_PRESETS) as [
-			ButtonRadiusPreset,
-			...ButtonRadiusPreset[],
-		]
-	),
+	radius: z
+		.enum(
+			Object.keys(BUTTON_RADIUS_PRESETS) as [
+				ButtonRadiusPreset,
+				...ButtonRadiusPreset[],
+			]
+		)
+		.optional(),
 	size: z.enum(
 		BUTTON_SIZES.map((s) => s.value) as [ButtonSize, ...ButtonSize[]]
 	),
@@ -146,7 +148,6 @@ export type ButtonConfig = z.infer<typeof buttonConfigSchema>
 
 export const DEFAULT_BUTTON_CONFIG: ButtonConfig = {
 	padding: "md",
-	radius: "md",
 	size: "md",
 	variant: "strong",
 }
