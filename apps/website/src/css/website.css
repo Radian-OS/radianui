@@ -1674,6 +1674,25 @@
     "Noto Color Emoji", var(--font-body, sans-serif);
 }
 
+.glass {
+  backdrop-filter: blur(4px) saturate(1.5);
+  box-shadow:
+    inset 2px 1px 1px -1px rgb(255 255 255 / 0.95),
+    inset -2px -2px 1px -1px rgb(255 255 255 / 0.2),
+    inset 0 0 14px rgb(255 255 255 / 0.12),
+    0 10px 30px rgb(0 0 0 / 0.25);
+  transition:
+    background 0.2s,
+    transform 0.2s;
+}
+
+/* Chromium only: adds the refraction */
+@supports (backdrop-filter: url(#glass)) {
+  .glass {
+    backdrop-filter: url(#glass) blur(4px) saturate(1.5);
+  }
+}
+
 /* Color themes: maps each utility color as primary across the entire website */
 :root[data-color="red"],
 html[data-color="red"] {

@@ -160,6 +160,18 @@ export const Index: Record<string, RegistryItem> = {
     ],
     component: React.lazy(() => import("@/registry/blocks-example/preview-06/page"))
   },
+  "preview-07": {
+    name: "preview-07",
+    type: "block",
+    files: [
+          {
+                "path": "registry/blocks-example/preview-07/page.tsx",
+                "name": "page.tsx",
+                "type": "page"
+          }
+    ],
+    component: React.lazy(() => import("@/registry/blocks-example/preview-07/page"))
+  },
   "reset-email": {
     name: "reset-email",
     type: "block",

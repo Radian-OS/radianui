@@ -13,6 +13,7 @@ interface PagePickerProps {
 }
 
 const PREVIEW_PAGES = [
+	{ id: "preview-07", label: "Preview 07: Brand & Themer Showcase" },
 	{ id: "preview-06", label: "Preview 06: AI Swarm & Intelligence" },
 	{ id: "preview-05", label: "Preview 05: AgentLab Landing" },
 	{ id: "preview-03", label: "Preview 03: Component Showcase" },
@@ -21,12 +22,12 @@ const PREVIEW_PAGES = [
 ]
 
 export default function PagePicker({
-	selectedComponent = "preview-06",
+	selectedComponent = "preview-07",
 	onSelect,
 }: PagePickerProps) {
 	const currentLabel =
 		PREVIEW_PAGES.find((p) => p.id === selectedComponent)?.label ||
-		"Showing: Preview 06"
+		"Showing: Preview 07"
 
 	return (
 		<DropdownMenu>

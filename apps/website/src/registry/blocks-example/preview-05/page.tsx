@@ -41,7 +41,6 @@ import {
 	NavigationMenuTrigger,
 	navigationMenuTriggerStyle,
 } from "@/registry/ui/navigation-menu"
-import { Merriweather } from "next/font/google"
 import {
 	Banner,
 	BannerDescription,
