@@ -86,7 +86,7 @@ export const PRIMARY_COLORS = [
 				"--color-primary-border": "oklch(0.8016 0.1705 73.27)",
 				"--color-primary-hover": "oklch(0.8342 0.1594 79.51)",
 				"--color-primary-text": "oklch(0.5461 0.1088 77.73)",
-				"--color-primary-fg": "okich(0.374 0.064 81.137)",
+				"--color-primary-fg": "oklch(0.374 0.064 81.137)",
 			},
 			dark: {
 				"--color-primary": "oklch(0.8016 0.1705 73.27)",
@@ -95,7 +95,7 @@ export const PRIMARY_COLORS = [
 				"--color-primary-border": "oklch(0.5461 0.1088 77.73)",
 				"--color-primary-hover": "oklch(0.8342 0.1594 79.51)",
 				"--color-primary-text": "oklch(0.8342 0.1594 79.51)",
-				"--color-primary-fg": "okich(0.374 0.064 81.137)",
+				"--color-primary-fg": "oklch(0.374 0.064 81.137)",
 			},
 		},
 	},
