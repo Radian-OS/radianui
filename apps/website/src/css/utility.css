@@ -206,7 +206,7 @@
   --color-neon-border: oklch(0.495 0.124 127.74);
   --color-neon-hover: oklch(0.825 0.217 129.074);
   --color-neon-text: oklch(0.919 0.23 127.758);
-  --color-neon-fg: oklch(0.495 0.123 127.468);
+  --color-neon-fg: oklch(0.353 0.076 126.25);
 
   /* green */
   --color-green: oklch(0.654 0.216 142.602);
