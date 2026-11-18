@@ -219,7 +219,7 @@ export function AgentlabFaqSection() {
 										className="text-fg hover:text-primary flex w-full items-start justify-between gap-4 text-left transition-colors"
 										data-themer-id="auto-button-31">
 										<span
-											className="heading-4 font-serif text-lg font-normal sm:text-xl"
+											className="heading-4 font-heading text-lg font-normal sm:text-xl"
 											data-themer-id="auto-span-32">
 											{faq.question}
 										</span>
@@ -448,7 +448,7 @@ export function AgentlabHeroSection() {
 
 				{/* Headline (Rule 13: heading-1) */}
 				<h1
-					className="heading-1 max-w-4xl text-center font-serif"
+					className="heading-1 font-heading max-w-4xl text-center"
 					data-themer-id="auto-h1-60">
 					Turn Your AI Product Into a
 					<br className="hidden sm:inline" data-themer-id="auto-br-61" />{" "}
@@ -681,7 +681,7 @@ export function AgentlabIndustrySection() {
 
 				{/* Section Heading (Rule 13: heading-2) */}
 				<h2
-					className="heading-2 text-fg mt-4 font-serif"
+					className="heading-2 text-fg font-heading mt-4"
 					data-themer-id="auto-h2-103">
 					Solutions Across Every Sector
 				</h2>
@@ -705,7 +705,7 @@ export function AgentlabIndustrySection() {
 							</div>
 
 							<h3
-								className="heading-4 text-fg font-serif"
+								className="heading-4 text-fg font-heading"
 								data-themer-id="auto-h3-108">
 								{item.title}
 							</h3>
@@ -802,7 +802,7 @@ export function AgentlabMultiModelSection() {
 					data-themer-id="auto-div-117">
 					<div data-themer-id="auto-div-118">
 						<h3
-							className="heading-3 text-fg-inverse font-serif"
+							className="heading-3 text-fg-inverse font-heading"
 							data-themer-id="auto-h3-119">
 							Multi Model AI
 						</h3>
@@ -817,7 +817,7 @@ export function AgentlabMultiModelSection() {
 
 					<div data-themer-id="auto-div-121">
 						<h3
-							className="heading-3 text-fg-inverse font-serif"
+							className="heading-3 text-fg-inverse font-heading"
 							data-themer-id="auto-h3-122">
 							Integration
 						</h3>
@@ -1115,7 +1115,7 @@ export function AgentlabProblemSection() {
 
 				{/* Section Heading (Rule 13: heading-2) */}
 				<h2
-					className="heading-2 text-fg-inverse mx-auto mt-6 max-w-4xl text-center font-serif"
+					className="heading-2 text-fg-inverse font-heading mx-auto mt-6 max-w-4xl text-center"
 					data-themer-id="auto-h2-169">
 					Most Organizations Operate with{" "}
 					<span className="text-fg-tertiary" data-themer-id="auto-span-170">
@@ -1142,7 +1142,7 @@ export function AgentlabProblemSection() {
 							{/* Card Content */}
 							<div data-themer-id="auto-div-175">
 								<h3
-									className="heading-4 font-serif text-white"
+									className="heading-4 font-heading text-white"
 									data-themer-id="auto-h3-176">
 									{item.title}
 								</h3>
@@ -1192,7 +1192,7 @@ export function AgentlabRoiSection() {
 							{leftMetrics.map((item) => (
 								<div key={item.label} data-themer-id="auto-div-183">
 									<div
-										className="text-fg font-serif text-4xl font-normal sm:text-5xl"
+										className="text-fg font-heading text-4xl font-normal sm:text-5xl"
 										data-themer-id="auto-div-184">
 										{item.value}
 									</div>
@@ -1219,7 +1219,7 @@ export function AgentlabRoiSection() {
 						data-themer-id="auto-div-188">
 						<div data-themer-id="auto-div-189">
 							<h3
-								className="heading-3 text-fg font-serif"
+								className="heading-3 text-fg font-heading"
 								data-themer-id="auto-h3-190">
 								Automate your most complex, high-impact multi-step workflows
 							</h3>
@@ -1236,7 +1236,7 @@ export function AgentlabRoiSection() {
 							className="border-border/60 mt-12 border-t pt-8"
 							data-themer-id="auto-div-192">
 							<div
-								className="text-fg font-serif text-4xl font-normal sm:text-5xl"
+								className="text-fg font-heading text-4xl font-normal sm:text-5xl"
 								data-themer-id="auto-div-193">
 								99.9%
 							</div>
@@ -1294,7 +1294,7 @@ export function AgentlabSecuritySection() {
 					{/* Left Title & Compliance Badges */}
 					<div className="lg:col-span-5" data-themer-id="auto-div-198">
 						<h2
-							className="heading-2 text-fg font-serif"
+							className="heading-2 text-fg font-heading"
 							data-themer-id="auto-h2-199">
 							Enterprise-Grade Security Standards
 						</h2>
@@ -1333,7 +1333,7 @@ export function AgentlabSecuritySection() {
 										/>
 									</div>
 									<h3
-										className="heading-4 text-fg font-serif"
+										className="heading-4 text-fg font-heading"
 										data-themer-id="auto-h3-206">
 										{item.title}
 									</h3>
@@ -1364,7 +1364,7 @@ export function AgentlabSolutionSection() {
 				{/* Top Section Headline (Rule 13: heading-2) */}
 				<div className="text-center" data-themer-id="auto-div-210">
 					<h2
-						className="heading-2 text-fg mx-auto max-w-4xl font-serif"
+						className="heading-2 text-fg font-heading mx-auto max-w-4xl"
 						data-themer-id="auto-h2-211">
 						Eliminate Operational Friction, Cut Manual Errors, and Increase
 						Deployment Speed by 10x with Enterprise-Grade AI Agent
@@ -1389,7 +1389,7 @@ export function AgentlabSolutionSection() {
 							<span data-themer-id="auto-span-216">AGENT BUILDER</span>
 						</div>
 						<h3
-							className="heading-3 text-fg mt-4 font-serif"
+							className="heading-3 text-fg font-heading mt-4"
 							data-themer-id="auto-h3-217">
 							Build and Deploy Agents in Minutes
 						</h3>
@@ -1569,7 +1569,7 @@ export function AgentlabSolutionSection() {
 							<span data-themer-id="auto-span-253">WORKFLOW AUTOMATION</span>
 						</div>
 						<h3
-							className="heading-3 text-fg mt-4 font-serif"
+							className="heading-3 text-fg font-heading mt-4"
 							data-themer-id="auto-h3-254">
 							Automate Complex Multi-Step Workflows
 						</h3>
@@ -1614,7 +1614,7 @@ export function AgentlabSolutionSection() {
 							</span>
 						</div>
 						<h3
-							className="heading-3 text-fg mt-4 font-serif"
+							className="heading-3 text-fg font-heading mt-4"
 							data-themer-id="auto-h3-264">
 							Monitor Agent Performance in Real Time
 						</h3>
@@ -1843,7 +1843,7 @@ export function AgentlabTestimonialsSection() {
 							<span data-themer-id="auto-span-299">TESTIMONIALS</span>
 						</div>
 						<h2
-							className="heading-2 text-fg-inverse mt-4 font-serif"
+							className="heading-2 text-fg-inverse font-heading mt-4"
 							data-themer-id="auto-h2-300">
 							What People Are Saying
 						</h2>
@@ -1897,7 +1897,7 @@ export function AgentlabTestimonialsSection() {
 					{/* Left Quote Graphic */}
 					<div className="lg:col-span-7" data-themer-id="auto-div-308">
 						<h3
-							className="heading-3 text-fg-inverse font-serif"
+							className="heading-3 text-fg-inverse font-heading"
 							data-themer-id="auto-h3-309">
 							&ldquo;{activeTestimonial.headline}&rdquo;
 						</h3>
@@ -1948,18 +1948,11 @@ export function AgentlabTestimonialsSection() {
 	)
 }
 
-const merriweather = Merriweather({
-	weight: ["300", "400", "700"],
-	subsets: ["latin"],
-	variable: "--font-merriweather",
-	display: "swap",
-})
-
 export default function LandingPage() {
 	return (
 		<div
 			id="page"
-			className={`${merriweather.variable} bg-bg text-fg min-h-screen font-sans antialiased`}
+			className="bg-bg text-fg font-body min-h-screen antialiased"
 			data-themer-id="auto-div-318">
 			<AgentlabAnnouncementBar data-themer-id="auto-agentlabannouncementbar-319" />
 			<AgentlabNavbar data-themer-id="auto-agentlabnavbar-320" />
