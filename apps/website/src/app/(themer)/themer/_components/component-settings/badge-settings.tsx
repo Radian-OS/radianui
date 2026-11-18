@@ -3,7 +3,7 @@
 import { type CSSProperties, type ReactNode, useMemo, useState } from "react"
 import { useTheme } from "next-themes"
 import { CheckCircle2, ChevronLeft, ChevronRight } from "lucide-react"
-import { Badge } from "@/registry/ui/badge"
+import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/styles/default/ui/card"
 import { Label } from "@/styles/default/ui/label"
 import {
@@ -13,20 +13,17 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "@/styles/default/ui/select"
-import { Slider, SliderThumb } from "@/styles/default/ui/slider"
 import { useThemerPreset } from "@/lib/themer-preset"
 import { useThemerStore } from "@/lib/themer-store"
 import { buildRegistryConfig } from "@/registry/config"
 import {
 	BADGE_PADDING_PRESETS,
-	BADGE_RADIUS_PRESETS,
 	BADGE_SIZES,
 	BADGE_VARIANTS,
 	type BadgeConfig,
 	type BadgeSize,
 	type BadgeVariant,
 	type BadgePaddingPreset,
-	type BadgeRadiusPreset,
 	DEFAULT_BADGE_CONFIG,
 } from "@/registry/component-presets/badge-presets"
 import { Button as ControlButton, IconButton } from "@/styles/default/ui/button"
@@ -37,6 +34,7 @@ import {
 } from "@/styles/default/ui/popover"
 import { ScrollArea } from "@/styles/default/ui/scroll-area"
 import { ComponentSettingsPopover } from "../components-settings-popover"
+import { PresetSlider } from "./preset-slider"
 
 const PRESET_NAMES = Object.keys(BADGE_PADDING_PRESETS) as BadgePaddingPreset[]
 
@@ -67,31 +65,13 @@ function BadgePreview({ variant }: { variant?: BadgeVariant }) {
 		...(resolvedTheme === "dark" ? config.cssVars.dark : {}),
 		...config.cssVars.theme,
 	} as CSSProperties
-	const badgeConfig = params.components.Badge
-	const effectiveVariant = variant ?? badgeConfig?.variant
-	const size = badgeConfig?.size
-	const effectiveSize = size ?? "md"
-	const paddingPreset = badgeConfig?.padding ?? "md"
-	const radiusPreset = badgeConfig?.radius ?? "md"
-
-	const paddingX = BADGE_PADDING_PRESETS[paddingPreset]?.[effectiveSize]
-	const radius = BADGE_RADIUS_PRESETS[radiusPreset]?.[effectiveSize]
-
-	const badgeStyle: CSSProperties = {
-		...(radius !== undefined ? { borderRadius: `${radius}px` } : {}),
-		...(paddingX !== undefined
-			? { paddingLeft: `${paddingX}px`, paddingRight: `${paddingX}px` }
-			: {}),
-	}
 
 	return (
 		<div
 			style={style}
 			className={`style-${params.style} border-soft bg-bg flex min-h-[104px] items-center justify-center gap-2 rounded-lg border p-4`}>
-			<Badge variant={effectiveVariant} size={size} style={badgeStyle}>
-				Primary
-			</Badge>
-			<Badge color="neutral" variant="outline" size={size} style={badgeStyle}>
+			<Badge variant={variant}>Primary</Badge>
+			<Badge color="neutral" variant="outline">
 				Secondary
 			</Badge>
 		</div>
@@ -175,45 +155,6 @@ function VariantPicker() {
 	)
 }
 
-function PresetSlider<T extends BadgePaddingPreset | BadgeRadiusPreset>({
-	label,
-	value,
-	onValueChange,
-}: {
-	label: string
-	value: T | undefined
-	onValueChange: (value: T) => void
-}) {
-	return (
-		<div className="flex flex-col gap-1.5">
-			<div className="flex items-center justify-between text-[13px] leading-4">
-				<span className="text-fg-secondary">{label}</span>
-				<span className="text-fg font-medium">{value ?? "md"}</span>
-			</div>
-			<Slider
-				min={0}
-				max={PRESET_NAMES.length - 1}
-				step={1}
-				value={[value ? PRESET_NAMES.indexOf(value as BadgePaddingPreset) : 2]}
-				onValueChange={([next]) => onValueChange(PRESET_NAMES[next] as T)}
-				classNames={{ sliderTrack: "border-border bg-fill2 h-4 border" }}>
-				<span
-					aria-hidden="true"
-					className="pointer-events-none absolute inset-x-2 top-1/2 flex -translate-y-1/2 justify-between">
-					{PRESET_NAMES.map((preset) => (
-						<span key={preset} className="bg-bg/60 h-1.5 w-px" />
-					))}
-				</span>
-				<SliderThumb
-					aria-label={`${label} preset`}
-					aria-valuetext={value ?? "md"}
-					className="border-bg bg-primary focus-visible:ring-primary focus-visible:ring-offset-bg z-10 size-4 border-[3px] shadow-sm focus-visible:ring-2 focus-visible:ring-offset-2"
-				/>
-			</Slider>
-		</div>
-	)
-}
-
 export function BadgeSettings({ children }: { children: ReactNode }) {
 	const [params] = useThemerPreset()
 	const badgeConfig = params.components.Badge
@@ -250,14 +191,18 @@ export function BadgeSettings({ children }: { children: ReactNode }) {
 
 					<div className="flex flex-col gap-4">
 						<PresetSlider
+							options={[undefined, ...PRESET_NAMES]}
 							label="Radius"
 							value={badgeConfig?.radius}
 							onValueChange={(radius) => updateBadge({ radius })}
 						/>
 						<PresetSlider
+							options={PRESET_NAMES}
 							label="Padding"
-							value={badgeConfig?.padding}
-							onValueChange={(padding) => updateBadge({ padding })}
+							value={badgeConfig?.padding ?? "md"}
+							onValueChange={(padding) =>
+								updateBadge({ padding: padding ?? "md" })
+							}
 						/>
 						<div className="flex flex-col gap-1.5">
 							<Label

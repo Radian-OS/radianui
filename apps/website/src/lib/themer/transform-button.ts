@@ -23,7 +23,7 @@ export function transformButtonCode(
 	const targetVariant = buttonConfig.variant ?? DEFAULT_BUTTON_CONFIG.variant
 	const targetSize = buttonConfig.size ?? DEFAULT_BUTTON_CONFIG.size
 	const paddingPreset = buttonConfig.padding ?? DEFAULT_BUTTON_CONFIG.padding
-	const radiusPreset = buttonConfig.radius ?? DEFAULT_BUTTON_CONFIG.radius
+	const radiusPreset = buttonConfig.radius
 
 	// Update defaultVariants in cva: { variant: "...", size: "..." }
 	sourceFile
@@ -90,7 +90,9 @@ export function transformButtonCode(
 							const sizeKey = sizeProp
 								.getName()
 								.replace(/^["']|["']$/g, "") as ButtonSize
-							const radiusPx = BUTTON_RADIUS_PRESETS[radiusPreset]?.[sizeKey]
+							const radiusPx = radiusPreset
+								? BUTTON_RADIUS_PRESETS[radiusPreset]?.[sizeKey]
+								: undefined
 							if (radiusPx !== undefined) {
 								const strNode = sizeProp.getInitializerIfKind(
 									SyntaxKind.StringLiteral
@@ -119,7 +121,9 @@ export function transformButtonCode(
 		})
 
 	// Update compactButtonVariants base radius
-	const compactRadiusPx = COMPACT_BUTTON_RADIUS_PRESETS[radiusPreset]
+	const compactRadiusPx = radiusPreset
+		? COMPACT_BUTTON_RADIUS_PRESETS[radiusPreset]
+		: undefined
 	if (compactRadiusPx !== undefined) {
 		const compactRadiusClass =
 			compactRadiusPx >= 999

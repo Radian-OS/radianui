@@ -14,7 +14,7 @@ export function Badge({ size, variant, style, ...props }: BadgeProps) {
 	const config = useThemerStore((state) => state.params.components.Badge)
 
 	const effectiveSize = size ?? config?.size ?? "md"
-	const effectiveRadius = config?.radius ?? "md"
+	const radiusPreset = config?.radius
 	const effectivePadding = config?.padding ?? "md"
 
 	return (
@@ -23,7 +23,9 @@ export function Badge({ size, variant, style, ...props }: BadgeProps) {
 			size={effectiveSize}
 			variant={variant ?? config?.variant ?? "soft"}
 			style={{
-				borderRadius: `${BADGE_RADIUS_PRESETS[effectiveRadius][effectiveSize]}px`,
+				borderRadius: radiusPreset
+					? `${BADGE_RADIUS_PRESETS[radiusPreset][effectiveSize]}px`
+					: undefined,
 				paddingInline: `${BADGE_PADDING_PRESETS[effectivePadding][effectiveSize]}px`,
 				...style,
 			}}

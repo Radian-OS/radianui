@@ -9,7 +9,7 @@ import {
 	Settings,
 } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
-import { Badge } from "@/registry/ui/badge"
+import { Badge } from "@/components/ui/badge"
 import { Divider } from "@/registry/ui/divider"
 
 const Dropdown = () => {

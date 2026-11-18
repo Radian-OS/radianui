@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { cn } from "@/lib/utils"
 import { IconSlot } from "@/registry/icon/icon-library"
-import { Badge, BadgeDot } from "@/registry/ui/badge"
+import { Badge, BadgeDot } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Calendar } from "@/registry/ui/calendar"
 import {
