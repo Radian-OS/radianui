@@ -1,7 +1,7 @@
 "use client"
 
 import { type ReactNode } from "react"
-import { Globe, Shuffle } from "lucide-react"
+import { RotateCcw, Shuffle } from "lucide-react"
 import { IconButton } from "@/styles/default/ui/button"
 import {
 	Popover,
@@ -41,10 +41,10 @@ export function ComponentSettingsPopover({
 							color="neutral"
 							size="xs"
 							aria-label={`Reset ${name} to theme defaults`}
-							title="Use theme defaults"
+							title="Reset to theme defaults"
 							onClick={onReset}
 							disabled={!onReset}>
-							<Globe />
+							<RotateCcw />
 						</IconButton>
 						<IconButton
 							variant="ghost"
