@@ -1,12 +1,7 @@
 "use client"
 
 import { useEffect, useMemo, useState } from "react"
-import {
-	ChevronDown,
-	CodeXml,
-	Download,
-	Image as ImageIcon,
-} from "lucide-react"
+import { ChevronDown, Download } from "lucide-react"
 import { useBrandLogoTheme } from "./use-brand-logo-theme"
 import { toast } from "sonner"
 import { cn } from "@/lib/utils"
@@ -22,6 +17,8 @@ import {
 	DropdownMenu,
 	DropdownMenuContent,
 	DropdownMenuItem,
+	DropdownMenuRadioGroup,
+	DropdownMenuRadioItem,
 	DropdownMenuTrigger,
 } from "@/registry/ui/dropdown-menu"
 import {
@@ -31,10 +28,11 @@ import {
 } from "./brand-logo-assets"
 import { BrandLogoOptions } from "./BrandLogoOptions"
 import { showBrandLogoToast } from "./BrandLogoToast"
-import type {
-	BrandLogoColorway,
-	BrandLogoId,
-	BrandLogoVariant,
+import {
+	type BrandLogoColorway,
+	type BrandLogoId,
+	type BrandLogoVariant,
+	getLogoDimensions,
 } from "./brand-logos-data"
 import { useBrandLogoCatalog } from "./BrandLogoCatalogProvider"
 
@@ -48,6 +46,7 @@ interface BrandLogoDetailsDialogProps {
 }
 
 const MORE_LOGOS_LIMIT = 12
+const PNG_SIZES = [16, 24, 32, 64, 128, 256, 512] as const
 
 function getMoreLogos(
 	brandLogos: readonly import("./brand-logos-data").BrandLogo[],
@@ -81,6 +80,7 @@ export function BrandLogoDetailsDialog({
 	const [dialogVariant, setDialogVariant] = useState<BrandLogoVariant>(variant)
 	const [dialogColorway, setDialogColorway] =
 		useState<BrandLogoColorway>(colorway)
+	const [pngExportWidth, setPngExportWidth] = useState(512)
 	const moreLogos = useMemo(
 		() => (id ? getMoreLogos(brandLogos, id) : []),
 		[brandLogos, id]
@@ -146,6 +146,13 @@ export function BrandLogoDetailsDialog({
 		}
 	}
 
+	const renderPng = () =>
+		renderBrandLogoPng(
+			activeSvgUrl,
+			dialogVariant,
+			pngExportWidth / getLogoDimensions(dialogVariant).width
+		)
+
 	const copyPng = async () => {
 		try {
 			if (!navigator.clipboard.write || !("ClipboardItem" in window)) {
@@ -153,9 +160,8 @@ export function BrandLogoDetailsDialog({
 				return
 			}
 
-			const blob = await renderBrandLogoPng(activeSvgUrl, dialogVariant)
 			await navigator.clipboard.write([
-				new ClipboardItem({ "image/png": blob }),
+				new ClipboardItem({ "image/png": renderPng() }),
 			])
 			showToast("PNG image has been copied to your clipboard.")
 		} catch {
@@ -165,13 +171,16 @@ export function BrandLogoDetailsDialog({
 
 	const downloadLogo = async (format: "png" | "svg") => {
 		try {
-			const filename = `${id}-${activeTheme}-${dialogColorway}-${dialogVariant}.${format}`
+			const filename = `${id}-${activeTheme}-${dialogColorway}-${dialogVariant}`
 			if (format === "svg") {
 				const svgMarkup = await fetchBrandLogoSvg(activeSvgUrl)
-				downloadBlob(new Blob([svgMarkup], { type: "image/svg+xml" }), filename)
+				downloadBlob(
+					new Blob([svgMarkup], { type: "image/svg+xml" }),
+					`${filename}.svg`
+				)
 			} else {
-				const blob = await renderBrandLogoPng(activeSvgUrl, dialogVariant)
-				downloadBlob(blob, filename)
+				const blob = await renderPng()
+				downloadBlob(blob, `${filename}-${pngExportWidth}px.png`)
 			}
 			showToast(
 				`${format.toUpperCase()} has been downloaded.`,
@@ -222,12 +231,31 @@ export function BrandLogoDetailsDialog({
 						</div>
 
 						<div className="flex flex-wrap items-center gap-2">
-							<Button size="lg" onClick={copyPng}>
-								<ImageIcon />
-								Copy PNG
-							</Button>
+							<DropdownMenu>
+								<ButtonGroup size="lg" color="primary" variant="strong">
+									<Button onClick={copyPng}>Copy PNG</Button>
+									<DropdownMenuTrigger asChild>
+										<Button
+											aria-label={`PNG width: ${pngExportWidth} pixels`}
+											className="border-alpha border-l">
+											{pngExportWidth} px
+											<ChevronDown />
+										</Button>
+									</DropdownMenuTrigger>
+								</ButtonGroup>
+								<DropdownMenuContent align="start">
+									<DropdownMenuRadioGroup
+										value={String(pngExportWidth)}
+										onValueChange={(value) => setPngExportWidth(Number(value))}>
+										{PNG_SIZES.map((size) => (
+											<DropdownMenuRadioItem key={size} value={String(size)}>
+												{size} px
+											</DropdownMenuRadioItem>
+										))}
+									</DropdownMenuRadioGroup>
+								</DropdownMenuContent>
+							</DropdownMenu>
 							<Button size="lg" onClick={copySvg}>
-								<CodeXml />
 								Copy SVG
 							</Button>
 
@@ -247,11 +275,9 @@ export function BrandLogoDetailsDialog({
 								</ButtonGroup>
 								<DropdownMenuContent align="end">
 									<DropdownMenuItem onSelect={() => downloadLogo("svg")}>
-										<Download />
 										Download SVG
 									</DropdownMenuItem>
 									<DropdownMenuItem onSelect={() => downloadLogo("png")}>
-										<ImageIcon />
 										Download PNG
 									</DropdownMenuItem>
 								</DropdownMenuContent>
@@ -311,26 +337,6 @@ export function BrandLogoDetailsDialog({
 									}>
 									HTML &lt;img&gt;
 								</Button>
-							</div>
-						</div>
-
-						<div className="flex flex-col gap-2">
-							<p className="text-fg-secondary text-xs font-medium">
-								Properties
-							</p>
-							<div className="grid grid-cols-2 gap-2 text-sm sm:grid-cols-3">
-								<div className="bg-bg border-soft rounded-lg border p-2.5">
-									<p className="text-fg-tertiary text-xs">Category</p>
-									<p className="font-medium">{brand.categoryLabel}</p>
-								</div>
-								<div className="bg-bg border-soft rounded-lg border p-2.5">
-									<p className="text-fg-tertiary text-xs">Variant</p>
-									<p className="font-medium capitalize">{dialogVariant}</p>
-								</div>
-								<div className="bg-bg border-soft rounded-lg border p-2.5">
-									<p className="text-fg-tertiary text-xs">Colorway</p>
-									<p className="font-medium capitalize">{dialogColorway}</p>
-								</div>
 							</div>
 						</div>
 
