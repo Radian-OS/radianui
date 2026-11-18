@@ -39,7 +39,8 @@ export const resources: ResourceItem[] = [
 		title: "Popular Brand Logos",
 		description:
 			"Brand icons and wordmarks in SVG, with PNG export and light and dark variants.",
-		comingSoon: true,
+		comingSoon: false,
+		link: "brand-logos",
 		lightUrl: "/media/assets-page/popular-brands-light.png",
 		darkUrl: "/media/assets-page/popular-brands-dark.png",
 	},

@@ -10,6 +10,7 @@ import { TEMPLATES } from "./templates"
 import { generateCustomColorShades } from "@/lib/shade-generator"
 import ntc from "ntcjs"
 import { buttonConfigSchema } from "./component-presets/button-presets"
+import { badgeConfigSchema } from "./component-presets/badge-presets"
 import { DEFAULT_THEME, THEMES } from "./themes"
 
 const fontValues = FONTS.map((font) => font.value)
@@ -88,6 +89,7 @@ export const themerConfigSchema = z.object({
 	components: z
 		.object({
 			Button: buttonConfigSchema.optional(),
+			Badge: badgeConfigSchema.optional(),
 		})
 		.default({}),
 })
