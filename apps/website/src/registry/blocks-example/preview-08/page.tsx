@@ -2,7 +2,16 @@
 
 import * as React from "react"
 import { useState } from "react"
-import { Bar, BarChart, Line, LineChart, Tooltip, XAxis, YAxis } from "recharts"
+import {
+	Bar,
+	BarChart,
+	CartesianGrid,
+	Line,
+	LineChart,
+	Tooltip,
+	XAxis,
+	YAxis,
+} from "recharts"
 import {
 	PanelLeft,
 	Search,
@@ -456,6 +465,7 @@ export default function Page() {
 									accessibilityLayer
 									data={salesData}
 									margin={{ top: 10, right: 10, left: -25, bottom: 0 }}>
+									<CartesianGrid vertical={false} />
 									<XAxis
 										dataKey="day"
 										tickLine={false}
@@ -553,6 +563,7 @@ export default function Page() {
 									accessibilityLayer
 									data={trafficData}
 									margin={{ top: 10, right: 10, left: -15, bottom: 0 }}>
+									<CartesianGrid vertical={false} />
 									<XAxis
 										dataKey="month"
 										tickLine={false}
@@ -564,7 +575,7 @@ export default function Page() {
 										tickLine={false}
 										axisLine={false}
 										tickMargin={10}
-										ticks={[0, 5000, 10000, 20000]}
+										ticks={[0, 5000, 10000, 15000, 20000]}
 										tickFormatter={(val) =>
 											val === 0 ? "0" : `${val / 1000}k`
 										}
