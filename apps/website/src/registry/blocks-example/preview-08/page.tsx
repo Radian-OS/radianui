@@ -32,13 +32,13 @@ import {
 	Trash2,
 } from "lucide-react"
 
-import { Button } from "@/styles/default/ui/button"
-import { Badge } from "@/components/ui/badge"
+import { Button, IconButton } from "@/components/ui/button"
+import { Badge } from "@/styles/default/ui/badge"
 import { Card, CardHeader, CardTitle } from "@/styles/default/ui/card"
 import { Avatar, AvatarFallback, AvatarImage } from "@/styles/default/ui/avatar"
 import { Checkbox } from "@/styles/default/ui/checkbox"
 import { Input } from "@/styles/default/ui/input"
-import { Tabs, TabsList, TabsTrigger } from "@/styles/default/ui/tabs"
+import { Tabs, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 import {
 	Table,
 	TableBody,
@@ -84,9 +84,9 @@ const trafficData = [
 	{ month: "Jun", organic: 7000, paid: 9000 },
 	{ month: "Jul", organic: 18000, paid: 12000 },
 	{ month: "Aug", organic: 19000, paid: 9500 },
-	{ month: "Sep", organic: 21000, paid: 5000 },
+	{ month: "Sep", organic: 20000, paid: 5000 },
 	{ month: "Oct", organic: 18500, paid: 12500 },
-	{ month: "Nov", organic: 22500, paid: 18500 },
+	{ month: "Nov", organic: 20000, paid: 18500 },
 	{ month: "Dec", organic: 17000, paid: 11000 },
 ]
 
@@ -232,34 +232,33 @@ export default function Page() {
         ══════════════════════════════════════════════ */}
 				<header className="flex items-center justify-between">
 					<div className="flex items-center gap-2.5">
-						<Button
+						<IconButton
 							variant="ghost"
 							color="neutral"
 							size="sm"
-							className="size-8 rounded-lg p-0"
 							aria-label="Toggle sidebar">
 							<PanelLeft className="size-5" />
-						</Button>
+						</IconButton>
 						<h1 className="heading-5 text-fg">Good morning, Kate</h1>
 					</div>
 
 					<div className="flex items-center gap-2">
-						<Button
+						<IconButton
 							variant="ghost"
 							color="neutral"
 							size="sm"
-							className="text-fg-secondary hover:text-fg size-8.5 rounded-full p-0"
+							className="rounded-full"
 							aria-label="Search">
 							<Search className="size-4" />
-						</Button>
-						<Button
+						</IconButton>
+						<IconButton
 							variant="ghost"
 							color="neutral"
 							size="sm"
-							className="text-fg-secondary hover:text-fg size-8.5 rounded-full p-0"
+							className="rounded-full"
 							aria-label="Notifications">
 							<Bell className="size-4" />
-						</Button>
+						</IconButton>
 						<Button
 							color="primary"
 							variant="strong"
@@ -280,37 +279,23 @@ export default function Page() {
 						value={activeTab}
 						onValueChange={(val) =>
 							setActiveTab(val as "Overview" | "Sales" | "Expenses")
-						}
-						className="gap-0">
-						<TabsList className="dark:bg-fill2/70 bg-fill2/70 h-auto gap-1 rounded-xl border-0 p-1">
-							<TabsTrigger
-								value="Overview"
-								className="data-[state=active]:bg-elevation-level1 data-[state=active]:text-fg data-[state=inactive]:text-fg-secondary hover:text-fg rounded-lg border-0 px-4 py-1.5 text-xs font-medium transition-all data-[state=active]:font-semibold data-[state=active]:shadow-xs">
-								Overview
-							</TabsTrigger>
-							<TabsTrigger
-								value="Sales"
-								className="data-[state=active]:bg-elevation-level1 data-[state=active]:text-fg data-[state=inactive]:text-fg-secondary hover:text-fg rounded-lg border-0 px-4 py-1.5 text-xs font-medium transition-all data-[state=active]:font-semibold data-[state=active]:shadow-xs">
-								Sales
-							</TabsTrigger>
-							<TabsTrigger
-								value="Expenses"
-								className="data-[state=active]:bg-elevation-level1 data-[state=active]:text-fg data-[state=inactive]:text-fg-secondary hover:text-fg rounded-lg border-0 px-4 py-1.5 text-xs font-medium transition-all data-[state=active]:font-semibold data-[state=active]:shadow-xs">
-								Expenses
-							</TabsTrigger>
+						}>
+						<TabsList>
+							<TabsTrigger value="Overview">Overview</TabsTrigger>
+							<TabsTrigger value="Sales">Sales</TabsTrigger>
+							<TabsTrigger value="Expenses">Expenses</TabsTrigger>
 						</TabsList>
 					</Tabs>
 
 					{/* Secondary actions */}
 					<div className="flex items-center gap-2">
-						<Button
+						<IconButton
 							variant="outline"
 							color="neutral"
 							size="sm"
-							className="border-border/60 bg-elevation-level1 text-fg-secondary hover:text-fg size-8.5 rounded-xl border p-0 shadow-2xs"
 							aria-label="Refresh data">
 							<RotateCw className="size-3.5" />
-						</Button>
+						</IconButton>
 						<Button
 							variant="outline"
 							color="neutral"
@@ -335,13 +320,13 @@ export default function Page() {
         ══════════════════════════════════════════════ */}
 				<div className="grid grid-cols-1 gap-x-3 gap-y-4 sm:grid-cols-2 lg:grid-cols-4">
 					{/* Revenue */}
-					<Card className="dark:bg-elevation-level1 rounded-xl border border-zinc-200/70 bg-white p-5 shadow-xs dark:border-zinc-800">
+					<Card className="dark:bg-elevation-level1 rounded-xl border border-zinc-200/70 bg-white p-6 shadow-xs dark:border-zinc-800">
 						<div className="flex flex-col gap-2">
 							<span className="text-fg-secondary text-[14px] font-medium">
 								Revenue
 							</span>
-							<div className="flex items-center justify-between">
-								<span className="text-fg text-[24px] leading-none font-bold tracking-tight">
+							<div className="flex items-end justify-between">
+								<span className="text-fg text-[20px] leading-none font-bold tracking-tight">
 									$228,441
 								</span>
 								<span className="inline-flex items-center justify-center gap-1 rounded-full bg-emerald-100 px-2.5 py-1 text-xs leading-none font-semibold text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-400">
@@ -352,13 +337,13 @@ export default function Page() {
 					</Card>
 
 					{/* Expenses */}
-					<Card className="dark:bg-elevation-level1 rounded-xl border border-zinc-200/70 bg-white p-5 shadow-xs dark:border-zinc-800">
+					<Card className="dark:bg-elevation-level1 rounded-xl border border-zinc-200/70 bg-white p-6 shadow-xs dark:border-zinc-800">
 						<div className="flex flex-col gap-2">
 							<span className="text-fg-secondary text-[14px] font-medium">
 								Expenses
 							</span>
-							<div className="flex items-center justify-between">
-								<span className="text-fg text-[24px] leading-none font-bold tracking-tight">
+							<div className="flex items-end justify-between">
+								<span className="text-fg text-[20px] leading-none font-bold tracking-tight">
 									$25,108
 								</span>
 								<span className="inline-flex items-center justify-center gap-1 rounded-full bg-rose-100 px-2.5 py-1 text-xs leading-none font-semibold text-rose-600 dark:bg-rose-950/40 dark:text-rose-400">
@@ -369,34 +354,34 @@ export default function Page() {
 					</Card>
 
 					{/* Sales */}
-					<Card className="dark:bg-elevation-level1 rounded-xl border border-zinc-200/70 bg-white p-5 shadow-xs dark:border-zinc-800">
+					<Card className="dark:bg-elevation-level1 rounded-xl border border-zinc-200/70 bg-white p-6 shadow-xs dark:border-zinc-800">
 						<div className="flex flex-col gap-2">
 							<span className="text-fg-secondary text-[14px] font-medium">
 								Sales
 							</span>
-							<div className="flex items-center justify-between">
-								<span className="text-fg text-[24px] leading-none font-bold tracking-tight">
+							<div className="flex items-end justify-between">
+								<span className="text-fg text-[20px] leading-none font-bold tracking-tight">
 									458
 								</span>
 								<span className="inline-flex items-center justify-center gap-1 rounded-full bg-emerald-100 px-2.5 py-1 text-xs leading-none font-semibold text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-400">
-									↑ 3.3%
+									↑ 4.1%
 								</span>
 							</div>
 						</div>
 					</Card>
 
 					{/* Profit */}
-					<Card className="dark:bg-elevation-level1 rounded-xl border border-zinc-200/70 bg-white p-5 shadow-xs dark:border-zinc-800">
+					<Card className="dark:bg-elevation-level1 rounded-xl border border-zinc-200/70 bg-white p-6 shadow-xs dark:border-zinc-800">
 						<div className="flex flex-col gap-2">
 							<span className="text-fg-secondary text-[14px] font-medium">
 								Profit
 							</span>
-							<div className="flex items-center justify-between">
-								<span className="text-fg text-[24px] leading-none font-bold tracking-tight">
+							<div className="flex items-end justify-between">
+								<span className="text-fg text-[20px] leading-none font-bold tracking-tight">
 									$203,133
 								</span>
 								<span className="inline-flex items-center justify-center gap-1 rounded-full bg-emerald-100 px-2.5 py-1 text-xs leading-none font-semibold text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-400">
-									↑ 4.1%
+									↑ 3.3%
 								</span>
 							</div>
 						</div>
@@ -408,7 +393,7 @@ export default function Page() {
         ══════════════════════════════════════════════ */}
 				<div className="grid grid-cols-1 items-start gap-x-3 gap-y-4 lg:grid-cols-2">
 					{/* Card A: Sales Performance */}
-					<Card className="border-border/60 bg-elevation-level1 flex flex-col gap-0 overflow-hidden rounded-2xl p-5 shadow-xs">
+					<Card className="border-border/60 bg-elevation-level1 flex flex-col gap-0 overflow-hidden rounded-2xl p-6 shadow-xs">
 						<CardHeader className="flex flex-row items-center justify-between p-0 pb-3">
 							<CardTitle className="heading-6 text-fg">
 								Sales Performance
@@ -427,7 +412,7 @@ export default function Page() {
 						<div className="flex items-center gap-8 pt-1 pb-4">
 							<div>
 								<div className="flex items-center gap-1.5">
-									<span className="text-fg text-[18px] font-bold">$28,441</span>
+									<span className="text-fg text-[16px] font-bold">$28,441</span>
 									<span className="text-xs font-semibold text-emerald-600 dark:text-emerald-400">
 										↑ 3.3%
 									</span>
@@ -439,7 +424,7 @@ export default function Page() {
 
 							<div>
 								<div className="flex items-center gap-1.5">
-									<span className="text-fg text-[18px] font-bold">$4,063</span>
+									<span className="text-fg text-[16px] font-bold">$4,063</span>
 									<span className="text-xs font-semibold text-emerald-600 dark:text-emerald-400">
 										↑ 3.3%
 									</span>
@@ -449,7 +434,7 @@ export default function Page() {
 
 							<div>
 								<div className="flex items-center gap-1.5">
-									<span className="text-fg text-[18px] font-bold">278</span>
+									<span className="text-fg text-[16px] font-bold">278</span>
 									<span className="text-xs font-semibold text-emerald-600 dark:text-emerald-400">
 										↑ 3.3%
 									</span>
@@ -464,14 +449,15 @@ export default function Page() {
 								<BarChart
 									accessibilityLayer
 									data={salesData}
-									margin={{ top: 10, right: 10, left: -25, bottom: 0 }}>
+									margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
 									<CartesianGrid vertical={false} />
 									<XAxis
 										dataKey="day"
 										tickLine={false}
 										axisLine={false}
 										tickMargin={10}
-										className="fill-fg-tertiary text-[11px]"
+										tick={{ fontSize: 14 }}
+										className="fill-fg-tertiary text-[14px]"
 									/>
 									<YAxis
 										tickLine={false}
@@ -479,7 +465,8 @@ export default function Page() {
 										tickMargin={10}
 										domain={[0, 80]}
 										ticks={[0, 20, 40, 60, 80]}
-										className="fill-fg-tertiary text-[11px]"
+										tick={{ fontSize: 14 }}
+										className="fill-fg-tertiary text-[14px]"
 									/>
 									<Tooltip
 										cursor={{ fill: "rgba(0, 0, 0, 0.04)" }}
@@ -515,7 +502,7 @@ export default function Page() {
 					</Card>
 
 					{/* Card B: Traffic Source with matching hover interaction */}
-					<Card className="border-border/60 bg-elevation-level1 flex flex-col gap-0 overflow-hidden rounded-2xl p-5 shadow-xs">
+					<Card className="border-border/60 bg-elevation-level1 flex flex-col gap-0 overflow-hidden rounded-2xl p-6 shadow-xs">
 						<CardHeader className="flex flex-row items-center justify-between p-0 pb-3">
 							<CardTitle className="heading-6 text-fg">
 								Traffic Source
@@ -524,31 +511,31 @@ export default function Page() {
 								<div className="flex items-center gap-2.5 text-xs">
 									<div className="flex items-center gap-1.5">
 										<span className="size-2 rounded-full bg-[var(--color-primary,#006FEE)]" />
-										<span className="text-fg-secondary text-[12px]">
+										<span className="text-fg-secondary text-[14px]">
 											Organic
 										</span>
 									</div>
 									<div className="flex items-center gap-1.5">
 										<span className="size-2 rounded-full bg-[var(--color-info,#00b8d9)]" />
-										<span className="text-fg-secondary text-[12px]">
+										<span className="text-fg-secondary text-[14px]">
 											Paid Ads
 										</span>
 									</div>
 								</div>
-								<Button
+								<IconButton
 									variant="ghost"
 									color="neutral"
-									size="sm"
-									className="text-fg-secondary hover:text-fg bg-fill2/50 size-7 rounded-full p-0"
+									size="xs"
+									className="text-fg-secondary hover:text-fg bg-fill2/50 rounded-full"
 									aria-label="More options">
 									<MoreVertical className="size-3.5" />
-								</Button>
+								</IconButton>
 							</div>
 						</CardHeader>
 
 						{/* Sub metric */}
 						<div className="pt-1 pb-4">
-							<div className="text-fg text-[18px] font-bold tracking-tight">
+							<div className="text-fg text-[16px] font-bold tracking-tight">
 								231,856
 							</div>
 							<div className="text-fg-secondary text-[14px]">Sessions</div>
@@ -562,24 +549,27 @@ export default function Page() {
 								<LineChart
 									accessibilityLayer
 									data={trafficData}
-									margin={{ top: 10, right: 10, left: -15, bottom: 0 }}>
+									margin={{ top: 10, right: 10, left: -10, bottom: 0 }}>
 									<CartesianGrid vertical={false} />
 									<XAxis
 										dataKey="month"
 										tickLine={false}
 										axisLine={false}
 										tickMargin={10}
-										className="fill-fg-tertiary text-[11px]"
+										tick={{ fontSize: 14 }}
+										className="fill-fg-tertiary text-[14px]"
 									/>
 									<YAxis
 										tickLine={false}
 										axisLine={false}
 										tickMargin={10}
+										domain={[0, 20000]}
 										ticks={[0, 5000, 10000, 15000, 20000]}
 										tickFormatter={(val) =>
 											val === 0 ? "0" : `${val / 1000}k`
 										}
-										className="fill-fg-tertiary text-[11px]"
+										tick={{ fontSize: 14 }}
+										className="fill-fg-tertiary text-[14px]"
 									/>
 									<Tooltip
 										cursor={{
@@ -662,8 +652,7 @@ export default function Page() {
 								color="neutral"
 								variant="soft"
 								size="sm"
-								style={{ borderRadius: "9999px" }}
-								className="text-fg-secondary rounded-full px-2 font-semibold">
+								className="rounded-full">
 								32
 							</Badge>
 						</div>
@@ -671,29 +660,17 @@ export default function Page() {
 						{/* Controls bar */}
 						<div className="flex flex-wrap items-center justify-between gap-3 px-1">
 							<div className="flex items-center gap-2">
-								<Button
-									variant="outline"
-									color="neutral"
-									size="sm"
-									className="border-border/60 bg-elevation-level1 text-fg hover:bg-fill1/40 h-8 gap-1.5 rounded-xl border px-3 text-xs font-medium shadow-2xs">
-									<SlidersHorizontal className="text-fg-secondary size-3.5" />
-									<span>Filter</span>
+								<Button variant="outline" color="neutral" size="sm">
+									<SlidersHorizontal className="size-4" />
+									Filter
 								</Button>
-								<Button
-									variant="outline"
-									color="neutral"
-									size="sm"
-									className="border-border/60 bg-elevation-level1 text-fg hover:bg-fill1/40 h-8 gap-1.5 rounded-xl border px-3 text-xs font-medium shadow-2xs">
-									<ArrowUpDown className="text-fg-secondary size-3.5" />
-									<span>Sort</span>
+								<Button variant="outline" color="neutral" size="sm">
+									<ArrowUpDown className="size-4" />
+									Sort
 								</Button>
-								<Button
-									variant="outline"
-									color="neutral"
-									size="sm"
-									className="border-border/60 bg-elevation-level1 text-fg hover:bg-fill1/40 h-8 gap-1.5 rounded-xl border px-3 text-xs font-medium shadow-2xs">
-									<Columns3 className="text-fg-secondary size-3.5" />
-									<span>Columns</span>
+								<Button variant="outline" color="neutral" size="sm">
+									<Columns3 className="size-4" />
+									Columns
 								</Button>
 							</div>
 
@@ -793,19 +770,19 @@ export default function Page() {
 												<TableCell className="px-4 font-mono text-[14px] text-zinc-800 dark:text-zinc-200">
 													<div className="flex items-center gap-2">
 														<span>{emp.id}</span>
-														<Button
+														<IconButton
 															variant="ghost"
 															color="neutral"
 															size="xs"
 															onClick={() => handleCopy(emp.id)}
-															className="hover:text-fg size-6 rounded p-0 text-zinc-400"
+															className="text-fg-tertiary hover:text-fg size-6 rounded"
 															title="Copy Worker ID">
 															{isCopied ? (
 																<Check className="size-3.5 text-emerald-600 dark:text-emerald-400" />
 															) : (
 																<Copy className="size-3.5" />
 															)}
-														</Button>
+														</IconButton>
 													</div>
 												</TableCell>
 
@@ -851,30 +828,30 @@ export default function Page() {
 												{/* Actions: Eye, Pencil, Trash */}
 												<TableCell className="pr-6 text-right">
 													<div className="flex items-center justify-end gap-2">
-														<Button
-															variant="ghost"
+														<IconButton
+															variant="soft"
 															color="neutral"
 															size="xs"
-															className="size-7.5 rounded-full p-0"
+															className="rounded-full"
 															aria-label="View employee">
 															<Eye className="size-3.5" />
-														</Button>
-														<Button
-															variant="ghost"
+														</IconButton>
+														<IconButton
+															variant="soft"
 															color="neutral"
 															size="xs"
-															className="size-7.5 rounded-full p-0"
+															className="rounded-full"
 															aria-label="Edit employee">
 															<Pencil className="size-3.5" />
-														</Button>
-														<Button
-															variant="ghost"
+														</IconButton>
+														<IconButton
+															variant="soft"
 															color="error"
 															size="xs"
-															className="size-7.5 rounded-full p-0"
+															className="rounded-full"
 															aria-label="Delete employee">
 															<Trash2 className="size-3.5" />
-														</Button>
+														</IconButton>
 													</div>
 												</TableCell>
 											</TableRow>
