@@ -31,6 +31,7 @@ import {
 	Trash2,
 	Clock,
 	CalendarDays,
+	CalendarRange,
 	CalendarCheck,
 	CalendarClock,
 	History,
@@ -185,11 +186,24 @@ const PERIOD_OPTIONS = [
 	{ label: "All time", value: "All time", icon: History },
 ]
 
+const SALES_RANGE_OPTIONS = [
+	{ label: "Today", value: "Today", icon: Clock },
+	{ label: "Yesterday", value: "Yesterday", icon: History },
+	{ label: "Last 7 days", value: "Last 7 days", icon: CalendarDays },
+	{ label: "Last 2 weeks", value: "Last 2 weeks", icon: CalendarRange },
+	{ label: "Last 30 days", value: "Last 30 days", icon: CalendarRange },
+	{ label: "Last 90 days", value: "Last 90 days", icon: CalendarCheck },
+	{ label: "This month", value: "This month", icon: Calendar },
+	{ label: "Last month", value: "Last month", icon: CalendarClock },
+	{ label: "Custom range", value: "Custom range", icon: SlidersHorizontal },
+]
+
 export default function Page() {
 	const [activeTab, setActiveTab] = useState<"Overview" | "Sales" | "Expenses">(
 		"Overview"
 	)
 	const [period, setPeriod] = useState("Monthly")
+	const [salesRange, setSalesRange] = useState("Last 2 weeks")
 	const [searchQuery, setSearchQuery] = useState("")
 	const [selectedEmployees, setSelectedEmployees] = useState<string[]>([])
 	const [sortColumn, setSortColumn] = useState<"id" | "name" | "role">("name")
@@ -445,14 +459,43 @@ export default function Page() {
 							<CardTitle className="heading-6 text-fg">
 								Sales Performance
 							</CardTitle>
-							<Button
-								variant="outline"
-								color="neutral"
-								size="sm"
-								className="border-border/60 bg-elevation-level1 text-fg-secondary hover:text-fg h-7 gap-1.5 rounded-lg border px-2.5 text-xs font-medium shadow-2xs">
-								<span>Last 2 weeks</span>
-								<ChevronDown className="text-fg-tertiary size-3.5" />
-							</Button>
+							<DropdownMenu>
+								<DropdownMenuTrigger asChild>
+									<Button
+										variant="outline"
+										color="neutral"
+										size="sm"
+										className="border-border/60 bg-elevation-level1 text-fg-secondary hover:text-fg h-7 cursor-pointer gap-1.5 rounded-lg border px-2.5 text-xs font-medium shadow-2xs">
+										<span>{salesRange}</span>
+										<ChevronDown className="text-fg-tertiary size-3.5" />
+									</Button>
+								</DropdownMenuTrigger>
+								<DropdownMenuContent
+									align="end"
+									className="border-border/80 w-52 rounded-2xl border p-1.5 shadow-lg">
+									{SALES_RANGE_OPTIONS.map((opt) => {
+										const Icon = opt.icon
+										const isSelected = salesRange === opt.value
+										return (
+											<DropdownMenuItem
+												key={opt.value}
+												onClick={() => setSalesRange(opt.value)}
+												className={cn(
+													"cursor-pointer justify-between gap-2.5 rounded-lg px-3 py-2 text-[14px]",
+													isSelected && "bg-fill1 text-fg font-medium"
+												)}>
+												<div className="flex items-center gap-2.5">
+													<Icon className="text-fg-secondary size-4 shrink-0" />
+													<span>{opt.label}</span>
+												</div>
+												{isSelected && (
+													<Check className="text-primary size-4 shrink-0" />
+												)}
+											</DropdownMenuItem>
+										)
+									})}
+								</DropdownMenuContent>
+							</DropdownMenu>
 						</CardHeader>
 
 						{/* Sub metrics */}
