@@ -26,9 +26,12 @@ import {
 	CircleDollarSign,
 	Layers,
 	ArrowUp,
+	TrendingUp,
+	TrendingDown,
+	GripHorizontal,
 } from "lucide-react"
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/styles/default/ui/button"
 import { Card } from "@/styles/default/ui/card"
 
 // ──────────────────────────────────────────────
@@ -130,37 +133,11 @@ function MiniBarChart({ bars }: { bars: number[] }) {
 }
 
 function WaveUp() {
-	return (
-		<svg
-			className="h-4 w-7 shrink-0 text-emerald-500"
-			viewBox="0 0 28 16"
-			fill="none">
-			<path
-				d="M1 12L5 8L9 11L14 3L18 8L23 2L27 4"
-				stroke="currentColor"
-				strokeWidth="1.75"
-				strokeLinecap="round"
-				strokeLinejoin="round"
-			/>
-		</svg>
-	)
+	return <TrendingUp className="size-4 shrink-0 text-emerald-500" />
 }
 
 function WaveDown() {
-	return (
-		<svg
-			className="h-4 w-7 shrink-0 text-rose-500"
-			viewBox="0 0 28 16"
-			fill="none">
-			<path
-				d="M1 4L5 8L9 5L14 13L18 8L23 14L27 12"
-				stroke="currentColor"
-				strokeWidth="1.75"
-				strokeLinecap="round"
-				strokeLinejoin="round"
-			/>
-		</svg>
-	)
+	return <TrendingDown className="size-4 shrink-0 text-rose-500" />
 }
 
 function DashFlat() {
@@ -174,7 +151,7 @@ export default function Page() {
 	const [timeRange] = useState("Last 30 days")
 
 	return (
-		<div className="dark:bg-bg text-fg min-h-screen w-full bg-[#f8f9fa] px-6 py-6 font-sans transition-colors md:px-10 md:py-8">
+		<div className="dark:bg-bg text-fg bg-bg-subtle min-h-screen w-full px-6 py-6 font-sans transition-colors md:px-10 md:py-8">
 			<div className="mx-auto flex max-w-7xl flex-col gap-4">
 				{/* ══════════════════════════════════════════════
             1. TOP NAVBAR / HEADER
@@ -184,14 +161,13 @@ export default function Page() {
 						<div className="text-fg-secondary dark:bg-fill2 flex size-7 items-center justify-center rounded-lg bg-zinc-100">
 							<BarChart3 className="size-4" />
 						</div>
-						<h1 className="text-fg text-[20px] font-bold tracking-tight">
-							Analytics
-						</h1>
+						<h1 className="heading-5 text-fg">Analytics</h1>
 					</div>
 
 					<div className="flex items-center gap-2">
 						<Button
 							variant="outline"
+							color="neutral"
 							size="sm"
 							className="border-border/60 bg-elevation-level1 text-fg hover:bg-fill1/40 h-8.5 gap-1.5 rounded-xl px-3 text-[14px] font-medium shadow-2xs">
 							<Sparkles className="text-fg-secondary size-3.5" />
@@ -199,6 +175,7 @@ export default function Page() {
 						</Button>
 						<Button
 							variant="outline"
+							color="neutral"
 							size="sm"
 							className="border-border/60 bg-elevation-level1 text-fg hover:bg-fill1/40 h-8.5 gap-1.5 rounded-xl px-3 text-[14px] font-medium shadow-2xs">
 							<RotateCw className="text-fg-secondary size-3.5" />
@@ -220,49 +197,59 @@ export default function Page() {
 				<div className="flex flex-wrap items-center justify-between gap-3">
 					<div className="flex flex-wrap items-center gap-2">
 						{/* Last 30 days */}
-						<button
-							type="button"
-							className="border-border/60 bg-elevation-level1 text-fg hover:bg-fill1/40 flex h-8 items-center gap-1.5 rounded-xl border px-3 text-[14px] font-medium shadow-2xs transition-colors">
+						<Button
+							variant="outline"
+							color="neutral"
+							size="sm"
+							className="border-border/60 bg-elevation-level1 text-fg hover:bg-fill1/40 h-8 gap-1.5 rounded-xl px-3 text-[14px] font-medium shadow-2xs">
 							<Calendar className="text-fg-secondary size-3.5" />
 							<span>{timeRange}</span>
 							<ChevronDown className="text-fg-tertiary size-3.5" />
-						</button>
+						</Button>
 
 						{/* Compare */}
-						<button
-							type="button"
-							className="border-border/60 bg-elevation-level1 text-fg hover:bg-fill1/40 flex h-8 items-center gap-1.5 rounded-xl border px-3 text-[14px] font-medium shadow-2xs transition-colors">
+						<Button
+							variant="outline"
+							color="neutral"
+							size="sm"
+							className="border-border/60 bg-elevation-level1 text-fg hover:bg-fill1/40 h-8 gap-1.5 rounded-xl px-3 text-[14px] font-medium shadow-2xs">
 							<Calendar className="text-fg-secondary size-3.5" />
 							<span>Compare</span>
 							<ChevronDown className="text-fg-tertiary size-3.5" />
-						</button>
+						</Button>
 
 						{/* USD */}
-						<button
-							type="button"
-							className="border-border/60 bg-elevation-level1 text-fg hover:bg-fill1/40 flex h-8 items-center gap-1.5 rounded-xl border px-3 text-[14px] font-medium shadow-2xs transition-colors">
+						<Button
+							variant="outline"
+							color="neutral"
+							size="sm"
+							className="border-border/60 bg-elevation-level1 text-fg hover:bg-fill1/40 h-8 gap-1.5 rounded-xl px-3 text-[14px] font-medium shadow-2xs">
 							<CircleDollarSign className="text-fg-secondary size-3.5" />
 							<span>USD</span>
 							<ChevronDown className="text-fg-tertiary size-3.5" />
-						</button>
+						</Button>
 
 						{/* All channels */}
-						<button
-							type="button"
-							className="border-border/60 bg-elevation-level1 text-fg hover:bg-fill1/40 flex h-8 items-center gap-1.5 rounded-xl border px-3 text-[14px] font-medium shadow-2xs transition-colors">
+						<Button
+							variant="outline"
+							color="neutral"
+							size="sm"
+							className="border-border/60 bg-elevation-level1 text-fg hover:bg-fill1/40 h-8 gap-1.5 rounded-xl px-3 text-[14px] font-medium shadow-2xs">
 							<Layers className="text-fg-secondary size-3.5" />
 							<span>{channel}</span>
 							<ChevronDown className="text-fg-tertiary size-3.5" />
-						</button>
+						</Button>
 					</div>
 
 					{/* Manage Metrics */}
-					<button
-						type="button"
-						className="border-border/60 bg-elevation-level1 text-fg hover:bg-fill1/40 flex h-8 items-center gap-1.5 rounded-xl border px-3 text-[14px] font-medium shadow-2xs transition-colors">
+					<Button
+						variant="outline"
+						color="neutral"
+						size="sm"
+						className="border-border/60 bg-elevation-level1 text-fg hover:bg-fill1/40 h-8 gap-1.5 rounded-xl px-3 text-[14px] font-medium shadow-2xs">
 						<SlidersHorizontal className="text-fg-secondary size-3.5" />
 						<span>Manage Metrics</span>
-					</button>
+					</Button>
 				</div>
 
 				{/* ══════════════════════════════════════════════
@@ -433,7 +420,7 @@ export default function Page() {
 															</div>
 															<div className="flex items-center justify-between gap-3 text-[12px]">
 																<div className="text-fg-secondary flex items-center gap-1.5 text-[12px]">
-																	<span className="size-2 rounded-full bg-[#64748b]" />
+																	<span className="size-2 rounded-full bg-zinc-500" />
 																	<span>Jun 1 – Jun 30, 2026</span>
 																</div>
 																<span className="text-fg text-[12px] font-bold">
@@ -448,7 +435,7 @@ export default function Page() {
 										<Line
 											dataKey="compare"
 											type="linear"
-											stroke="#64748b"
+											stroke="var(--color-fg-tertiary, #64748b)"
 											strokeWidth={1.25}
 											strokeDasharray="2 2"
 											dot={false}
@@ -462,7 +449,7 @@ export default function Page() {
 											activeDot={{
 												r: 4,
 												fill: "var(--color-primary, #006FEE)",
-												stroke: "#ffffff",
+												stroke: "var(--color-elevation-level1, #ffffff)",
 												strokeWidth: 1.5,
 											}}
 										/>
@@ -481,7 +468,7 @@ export default function Page() {
 								<span className="text-[12px]">Jul 1 – Jul 30, 2026</span>
 							</div>
 							<div className="flex items-center gap-2">
-								<span className="size-2 rounded-full bg-[#64748b]" />
+								<span className="size-2 rounded-full bg-zinc-500" />
 								<span className="text-[12px]">Jun 1 – Jun 30, 2026</span>
 							</div>
 						</div>
@@ -533,9 +520,7 @@ export default function Page() {
 							{/* Header */}
 							<div className="flex items-start justify-between">
 								<div className="flex flex-col">
-									<h2 className="text-fg text-[18px] font-bold tracking-tight">
-										Average Order Value
-									</h2>
+									<h2 className="heading-6 text-fg">Average Order Value</h2>
 									<span className="text-[12px] text-zinc-400 dark:text-zinc-500">
 										Jul 1 – Jul 30, 2026
 									</span>
@@ -643,9 +628,7 @@ export default function Page() {
 						{/* Header */}
 						<div className="flex items-start justify-between">
 							<div className="flex flex-col">
-								<h2 className="text-fg text-[18px] font-bold tracking-tight">
-									Sales by Channel
-								</h2>
+								<h2 className="heading-6 text-fg">Sales by Channel</h2>
 								<span className="text-[12px] text-zinc-400 dark:text-zinc-500">
 									Total sales broken down by channel
 								</span>
@@ -714,17 +697,7 @@ export default function Page() {
 
 						{/* Decorative Resize Grip */}
 						<div className="flex justify-end">
-							<svg
-								className="size-3 text-zinc-400 dark:text-zinc-600"
-								viewBox="0 0 12 12"
-								fill="none">
-								<path
-									d="M10 4L4 10M10 8L8 10"
-									stroke="currentColor"
-									strokeWidth="1.5"
-									strokeLinecap="round"
-								/>
-							</svg>
+							<GripHorizontal className="size-3 text-zinc-400 dark:text-zinc-600" />
 						</div>
 					</Card>
 				</div>

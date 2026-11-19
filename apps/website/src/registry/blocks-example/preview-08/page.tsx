@@ -23,9 +23,10 @@ import {
 	Trash2,
 } from "lucide-react"
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/styles/default/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardHeader, CardTitle } from "@/styles/default/ui/card"
+import { Avatar, AvatarFallback, AvatarImage } from "@/styles/default/ui/avatar"
 import { Checkbox } from "@/styles/default/ui/checkbox"
 import { Input } from "@/styles/default/ui/input"
 import { Tabs, TabsList, TabsTrigger } from "@/styles/default/ui/tabs"
@@ -87,7 +88,7 @@ const trafficConfig = {
 	},
 	paid: {
 		label: "Paid Ads",
-		color: "#00b8d9",
+		color: "var(--color-info, #00b8d9)",
 	},
 } satisfies ChartConfig
 
@@ -101,7 +102,7 @@ interface Employee {
 	email: string
 	role: string
 	type: string
-	gradient: string
+	avatarId: number
 }
 
 const employees: Employee[] = [
@@ -111,7 +112,7 @@ const employees: Employee[] = [
 		email: "alex@acme.com",
 		role: "Product Manager",
 		type: "Employee",
-		gradient: "from-[#3b82f6] via-[#6366f1] to-[#8b5cf6]",
+		avatarId: 1,
 	},
 	{
 		id: "#4586937",
@@ -119,7 +120,7 @@ const employees: Employee[] = [
 		email: "emma@acme.com",
 		role: "Senior Designer",
 		type: "Employee",
-		gradient: "from-[#ec4899] via-[#f43f5e] to-[#fb7185]",
+		avatarId: 2,
 	},
 	{
 		id: "#4586933",
@@ -127,7 +128,7 @@ const employees: Employee[] = [
 		email: "john@acme.com",
 		role: "Chief Technology Officer",
 		type: "Employee",
-		gradient: "from-[#06b6d4] via-[#0ea5e9] to-[#38bdf8]",
+		avatarId: 3,
 	},
 	{
 		id: "#4586932",
@@ -135,7 +136,7 @@ const employees: Employee[] = [
 		email: "kate@acme.com",
 		role: "Chief Executive Officer",
 		type: "Employee",
-		gradient: "from-[#93c5fd] via-[#a5b4fc] to-[#c4b5fd]",
+		avatarId: 4,
 	},
 	{
 		id: "#4586935",
@@ -143,7 +144,7 @@ const employees: Employee[] = [
 		email: "mike@acme.com",
 		role: "VP of Engineering",
 		type: "Employee",
-		gradient: "from-[#10b981] via-[#059669] to-[#34d399]",
+		avatarId: 5,
 	},
 	{
 		id: "#4586934",
@@ -151,7 +152,7 @@ const employees: Employee[] = [
 		email: "sara@acme.com",
 		role: "Chief Marketing Officer",
 		type: "Employee",
-		gradient: "from-[#2dd4bf] via-[#14b8a6] to-[#5eead4]",
+		avatarId: 8,
 	},
 ]
 
@@ -215,37 +216,41 @@ export default function Page() {
 		})
 
 	return (
-		<div className="dark:bg-bg text-fg min-h-screen w-full bg-[#f8f9fa] px-6 py-6 font-sans transition-colors md:px-10 md:py-8">
+		<div className="dark:bg-bg text-fg bg-bg-subtle min-h-screen w-full px-6 py-6 font-sans transition-colors md:px-10 md:py-8">
 			<div className="mx-auto flex max-w-7xl flex-col gap-4">
 				{/* ══════════════════════════════════════════════
             1. TOP NAVBAR / HEADER
         ══════════════════════════════════════════════ */}
 				<header className="flex items-center justify-between">
 					<div className="flex items-center gap-2.5">
-						<button
-							type="button"
-							className="text-fg hover:text-fg/80 rounded p-1 transition-colors"
+						<Button
+							variant="ghost"
+							color="neutral"
+							size="sm"
+							className="size-8 rounded-lg p-0"
 							aria-label="Toggle sidebar">
 							<PanelLeft className="size-5" />
-						</button>
-						<h1 className="text-fg text-[20px] font-bold tracking-tight">
-							Good morning, Kate
-						</h1>
+						</Button>
+						<h1 className="heading-5 text-fg">Good morning, Kate</h1>
 					</div>
 
 					<div className="flex items-center gap-2">
-						<button
-							type="button"
-							className="text-fg-secondary hover:text-fg hover:bg-fill2/60 flex size-8.5 items-center justify-center rounded-full transition-colors"
+						<Button
+							variant="ghost"
+							color="neutral"
+							size="sm"
+							className="text-fg-secondary hover:text-fg size-8.5 rounded-full p-0"
 							aria-label="Search">
 							<Search className="size-4" />
-						</button>
-						<button
-							type="button"
-							className="text-fg-secondary hover:text-fg hover:bg-fill2/60 flex size-8.5 items-center justify-center rounded-full transition-colors"
+						</Button>
+						<Button
+							variant="ghost"
+							color="neutral"
+							size="sm"
+							className="text-fg-secondary hover:text-fg size-8.5 rounded-full p-0"
 							aria-label="Notifications">
 							<Bell className="size-4" />
-						</button>
+						</Button>
 						<Button
 							color="primary"
 							variant="strong"
@@ -268,7 +273,7 @@ export default function Page() {
 							setActiveTab(val as "Overview" | "Sales" | "Expenses")
 						}
 						className="gap-0">
-						<TabsList className="dark:bg-fill2/70 h-auto gap-1 rounded-xl border-0 bg-[#e4e4e7]/70 p-1">
+						<TabsList className="dark:bg-fill2/70 bg-fill2/70 h-auto gap-1 rounded-xl border-0 p-1">
 							<TabsTrigger
 								value="Overview"
 								className="data-[state=active]:bg-elevation-level1 data-[state=active]:text-fg data-[state=inactive]:text-fg-secondary hover:text-fg rounded-lg border-0 px-4 py-1.5 text-xs font-medium transition-all data-[state=active]:font-semibold data-[state=active]:shadow-xs">
@@ -289,19 +294,23 @@ export default function Page() {
 
 					{/* Secondary actions */}
 					<div className="flex items-center gap-2">
-						<button
-							type="button"
-							className="border-border/60 bg-elevation-level1 text-fg-secondary hover:text-fg flex size-8.5 items-center justify-center rounded-xl border shadow-2xs transition-colors"
+						<Button
+							variant="outline"
+							color="neutral"
+							size="sm"
+							className="border-border/60 bg-elevation-level1 text-fg-secondary hover:text-fg size-8.5 rounded-xl border p-0 shadow-2xs"
 							aria-label="Refresh data">
 							<RotateCw className="size-3.5" />
-						</button>
-						<button
-							type="button"
-							className="border-border/60 bg-elevation-level1 text-fg hover:bg-fill1/40 flex h-8.5 items-center gap-2 rounded-xl border px-3 text-xs font-medium shadow-2xs transition-colors">
+						</Button>
+						<Button
+							variant="outline"
+							color="neutral"
+							size="sm"
+							className="border-border/60 bg-elevation-level1 text-fg hover:bg-fill1/40 h-8.5 gap-2 rounded-xl border px-3 text-xs font-medium shadow-2xs">
 							<Calendar className="text-fg-secondary size-3.5" />
 							<span>Monthly</span>
 							<ChevronDown className="text-fg-tertiary size-3.5" />
-						</button>
+						</Button>
 						<Button
 							color="primary"
 							variant="strong"
@@ -392,15 +401,17 @@ export default function Page() {
 					{/* Card A: Sales Performance */}
 					<Card className="border-border/60 bg-elevation-level1 flex flex-col gap-0 overflow-hidden rounded-2xl p-5 shadow-xs">
 						<CardHeader className="flex flex-row items-center justify-between p-0 pb-3">
-							<CardTitle className="text-fg text-[16px] font-bold">
+							<CardTitle className="heading-6 text-fg">
 								Sales Performance
 							</CardTitle>
-							<button
-								type="button"
-								className="border-border/60 bg-elevation-level1 text-fg-secondary hover:text-fg flex h-7 items-center gap-1.5 rounded-lg border px-2.5 text-xs font-medium shadow-2xs transition-colors">
+							<Button
+								variant="outline"
+								color="neutral"
+								size="sm"
+								className="border-border/60 bg-elevation-level1 text-fg-secondary hover:text-fg h-7 gap-1.5 rounded-lg border px-2.5 text-xs font-medium shadow-2xs">
 								<span>Last 2 weeks</span>
 								<ChevronDown className="text-fg-tertiary size-3.5" />
-							</button>
+							</Button>
 						</CardHeader>
 
 						{/* Sub metrics */}
@@ -471,7 +482,7 @@ export default function Page() {
 													</div>
 													<div className="flex items-center justify-between gap-3 text-[12px]">
 														<div className="text-fg-secondary flex items-center gap-1.5 text-[12px]">
-															<span className="size-2 rounded-full bg-[#006FEE]" />
+															<span className="size-2 rounded-full bg-[var(--color-primary,#006FEE)]" />
 															<span>sales</span>
 														</div>
 														<span className="text-fg text-[12px] font-bold">
@@ -496,30 +507,32 @@ export default function Page() {
 					{/* Card B: Traffic Source with matching hover interaction */}
 					<Card className="border-border/60 bg-elevation-level1 flex flex-col gap-0 overflow-hidden rounded-2xl p-5 shadow-xs">
 						<CardHeader className="flex flex-row items-center justify-between p-0 pb-3">
-							<CardTitle className="text-fg text-[16px] font-bold">
+							<CardTitle className="heading-6 text-fg">
 								Traffic Source
 							</CardTitle>
 							<div className="flex items-center gap-3">
 								<div className="flex items-center gap-2.5 text-xs">
 									<div className="flex items-center gap-1.5">
-										<span className="size-2 rounded-full bg-[#006FEE]" />
+										<span className="size-2 rounded-full bg-[var(--color-primary,#006FEE)]" />
 										<span className="text-fg-secondary text-[12px]">
 											Organic
 										</span>
 									</div>
 									<div className="flex items-center gap-1.5">
-										<span className="size-2 rounded-full bg-[#00b8d9]" />
+										<span className="size-2 rounded-full bg-[var(--color-info,#00b8d9)]" />
 										<span className="text-fg-secondary text-[12px]">
 											Paid Ads
 										</span>
 									</div>
 								</div>
-								<button
-									type="button"
-									className="text-fg-secondary hover:text-fg bg-fill2/50 flex size-7 items-center justify-center rounded-full transition-colors"
+								<Button
+									variant="ghost"
+									color="neutral"
+									size="sm"
+									className="text-fg-secondary hover:text-fg bg-fill2/50 size-7 rounded-full p-0"
 									aria-label="More options">
 									<MoreVertical className="size-3.5" />
-								</button>
+								</Button>
 							</div>
 						</CardHeader>
 
@@ -559,7 +572,7 @@ export default function Page() {
 									/>
 									<Tooltip
 										cursor={{
-											stroke: "#a1a1aa",
+											stroke: "var(--color-border, #a1a1aa)",
 											strokeWidth: 1,
 											strokeDasharray: "3 3",
 										}}
@@ -573,7 +586,7 @@ export default function Page() {
 													<div className="flex flex-col gap-1 text-[12px]">
 														<div className="flex items-center justify-between gap-3 text-[12px]">
 															<div className="text-fg-secondary flex items-center gap-1.5 text-[12px]">
-																<span className="size-2 rounded-full bg-[#006FEE]" />
+																<span className="size-2 rounded-full bg-[var(--color-primary,#006FEE)]" />
 																<span>Organic</span>
 															</div>
 															<span className="text-fg text-[12px] font-bold">
@@ -582,7 +595,7 @@ export default function Page() {
 														</div>
 														<div className="flex items-center justify-between gap-3 text-[12px]">
 															<div className="text-fg-secondary flex items-center gap-1.5 text-[12px]">
-																<span className="size-2 rounded-full bg-[#00b8d9]" />
+																<span className="size-2 rounded-full bg-[var(--color-info,#00b8d9)]" />
 																<span>Paid Ads</span>
 															</div>
 															<span className="text-fg text-[12px] font-bold">
@@ -602,21 +615,21 @@ export default function Page() {
 										dot={false}
 										activeDot={{
 											r: 4,
-											fill: "#006FEE",
-											stroke: "#ffffff",
+											fill: "var(--color-primary, #006FEE)",
+											stroke: "var(--color-elevation-level1, #ffffff)",
 											strokeWidth: 1.5,
 										}}
 									/>
 									<Line
 										dataKey="paid"
 										type="linear"
-										stroke="#00b8d9"
+										stroke="var(--color-info, #00b8d9)"
 										strokeWidth={2}
 										dot={false}
 										activeDot={{
 											r: 4,
-											fill: "#00b8d9",
-											stroke: "#ffffff",
+											fill: "var(--color-info, #00b8d9)",
+											stroke: "var(--color-elevation-level1, #ffffff)",
 											strokeWidth: 1.5,
 										}}
 									/>
@@ -633,7 +646,7 @@ export default function Page() {
 					<div className="flex flex-col gap-3">
 						{/* Section Header */}
 						<div className="flex items-center gap-2 px-1">
-							<h2 className="text-fg text-[16px] font-bold">All Employees</h2>
+							<h2 className="heading-6 text-fg">All Employees</h2>
 							<Badge
 								color="neutral"
 								variant="soft"
@@ -647,24 +660,30 @@ export default function Page() {
 						{/* Controls bar */}
 						<div className="flex flex-wrap items-center justify-between gap-3 px-1">
 							<div className="flex items-center gap-2">
-								<button
-									type="button"
-									className="border-border/60 bg-elevation-level1 text-fg hover:bg-fill1/40 flex h-8 items-center gap-1.5 rounded-xl border px-3 text-xs font-medium shadow-2xs transition-colors">
+								<Button
+									variant="outline"
+									color="neutral"
+									size="sm"
+									className="border-border/60 bg-elevation-level1 text-fg hover:bg-fill1/40 h-8 gap-1.5 rounded-xl border px-3 text-xs font-medium shadow-2xs">
 									<SlidersHorizontal className="text-fg-secondary size-3.5" />
 									<span>Filter</span>
-								</button>
-								<button
-									type="button"
-									className="border-border/60 bg-elevation-level1 text-fg hover:bg-fill1/40 flex h-8 items-center gap-1.5 rounded-xl border px-3 text-xs font-medium shadow-2xs transition-colors">
+								</Button>
+								<Button
+									variant="outline"
+									color="neutral"
+									size="sm"
+									className="border-border/60 bg-elevation-level1 text-fg hover:bg-fill1/40 h-8 gap-1.5 rounded-xl border px-3 text-xs font-medium shadow-2xs">
 									<ArrowUpDown className="text-fg-secondary size-3.5" />
 									<span>Sort</span>
-								</button>
-								<button
-									type="button"
-									className="border-border/60 bg-elevation-level1 text-fg hover:bg-fill1/40 flex h-8 items-center gap-1.5 rounded-xl border px-3 text-xs font-medium shadow-2xs transition-colors">
+								</Button>
+								<Button
+									variant="outline"
+									color="neutral"
+									size="sm"
+									className="border-border/60 bg-elevation-level1 text-fg hover:bg-fill1/40 h-8 gap-1.5 rounded-xl border px-3 text-xs font-medium shadow-2xs">
 									<Columns3 className="text-fg-secondary size-3.5" />
 									<span>Columns</span>
-								</button>
+								</Button>
 							</div>
 
 							<div className="relative w-full max-w-xs sm:w-60">
@@ -683,7 +702,7 @@ export default function Page() {
 					<Card className="border-border/60 bg-elevation-level1 gap-0 overflow-hidden rounded-2xl p-0 shadow-xs">
 						<Table>
 							<TableHeader className="border-border/60 border-b">
-								<TableRow className="border-border/60 dark:bg-fill1/40 border-b bg-[#f8f9fa] hover:bg-transparent">
+								<TableRow className="border-border/60 dark:bg-fill1/40 bg-bg-subtle border-b hover:bg-transparent">
 									<TableHead className="w-12 py-3.5 pr-2 pl-6">
 										<Checkbox
 											checked={
@@ -763,26 +782,40 @@ export default function Page() {
 												<TableCell className="px-4 font-mono text-[14px] text-zinc-800 dark:text-zinc-200">
 													<div className="flex items-center gap-2">
 														<span>{emp.id}</span>
-														<button
-															type="button"
+														<Button
+															variant="ghost"
+															color="neutral"
+															size="xs"
 															onClick={() => handleCopy(emp.id)}
-															className="hover:text-fg rounded p-0.5 text-zinc-400 transition-colors"
+															className="hover:text-fg size-6 rounded p-0 text-zinc-400"
 															title="Copy Worker ID">
 															{isCopied ? (
 																<Check className="size-3.5 text-emerald-600 dark:text-emerald-400" />
 															) : (
 																<Copy className="size-3.5" />
 															)}
-														</button>
+														</Button>
 													</div>
 												</TableCell>
 
-												{/* Member with Gradient Avatar */}
+												{/* Member with Avatar */}
 												<TableCell className="px-4">
 													<div className="flex items-center gap-3">
-														<div
-															className={`size-8.5 rounded-full bg-gradient-to-tr ${emp.gradient} shrink-0 shadow-2xs`}
-														/>
+														<Avatar
+															size="sm"
+															rounded="circle"
+															className="border-border shrink-0 border">
+															<AvatarImage
+																src={`https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@v1.0.2/packages/uncompressed-avatars/src/${emp.avatarId}.png`}
+																alt={emp.name}
+															/>
+															<AvatarFallback className="text-xs font-semibold">
+																{emp.name
+																	.split(" ")
+																	.map((n) => n[0])
+																	.join("")}
+															</AvatarFallback>
+														</Avatar>
 														<div className="flex flex-col">
 															<span className="text-[14px] leading-tight font-semibold text-zinc-800 dark:text-zinc-200">
 																{emp.name}
@@ -807,24 +840,30 @@ export default function Page() {
 												{/* Actions: Eye, Pencil, Trash */}
 												<TableCell className="pr-6 text-right">
 													<div className="flex items-center justify-end gap-2">
-														<button
-															type="button"
-															className="flex size-7.5 items-center justify-center rounded-full bg-zinc-100 text-zinc-600 transition-colors hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700"
+														<Button
+															variant="ghost"
+															color="neutral"
+															size="xs"
+															className="size-7.5 rounded-full p-0"
 															aria-label="View employee">
 															<Eye className="size-3.5" />
-														</button>
-														<button
-															type="button"
-															className="flex size-7.5 items-center justify-center rounded-full bg-zinc-100 text-zinc-600 transition-colors hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700"
+														</Button>
+														<Button
+															variant="ghost"
+															color="neutral"
+															size="xs"
+															className="size-7.5 rounded-full p-0"
 															aria-label="Edit employee">
 															<Pencil className="size-3.5" />
-														</button>
-														<button
-															type="button"
-															className="flex size-7.5 items-center justify-center rounded-full bg-rose-50 text-rose-500 transition-colors hover:bg-rose-100 dark:bg-rose-950/40 dark:hover:bg-rose-900/40"
+														</Button>
+														<Button
+															variant="ghost"
+															color="error"
+															size="xs"
+															className="size-7.5 rounded-full p-0"
 															aria-label="Delete employee">
 															<Trash2 className="size-3.5" />
-														</button>
+														</Button>
 													</div>
 												</TableCell>
 											</TableRow>
