@@ -13,7 +13,6 @@ import {
 	YAxis,
 } from "recharts"
 import {
-	PanelLeft,
 	Search,
 	Bell,
 	UserPlus,
@@ -30,6 +29,11 @@ import {
 	Eye,
 	Pencil,
 	Trash2,
+	Clock,
+	CalendarDays,
+	CalendarCheck,
+	CalendarClock,
+	History,
 } from "lucide-react"
 
 import { Button, IconButton } from "@/components/ui/button"
@@ -48,6 +52,13 @@ import {
 	TableRow,
 } from "@/styles/default/ui/table"
 import { type ChartConfig, ChartContainer } from "@/registry/ui/chart"
+import {
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuItem,
+	DropdownMenuTrigger,
+} from "@/styles/default/ui/dropdown-menu"
+import { cn } from "@/lib/utils"
 
 // ──────────────────────────────────────────────
 // Datasets matching the reference screenshot exactly
@@ -165,10 +176,20 @@ const employees: Employee[] = [
 	},
 ]
 
+const PERIOD_OPTIONS = [
+	{ label: "Daily", value: "Daily", icon: Clock },
+	{ label: "Weekly", value: "Weekly", icon: CalendarDays },
+	{ label: "Monthly", value: "Monthly", icon: Calendar },
+	{ label: "Quarterly", value: "Quarterly", icon: CalendarCheck },
+	{ label: "Yearly", value: "Yearly", icon: CalendarClock },
+	{ label: "All time", value: "All time", icon: History },
+]
+
 export default function Page() {
 	const [activeTab, setActiveTab] = useState<"Overview" | "Sales" | "Expenses">(
 		"Overview"
 	)
+	const [period, setPeriod] = useState("Monthly")
 	const [searchQuery, setSearchQuery] = useState("")
 	const [selectedEmployees, setSelectedEmployees] = useState<string[]>([])
 	const [sortColumn, setSortColumn] = useState<"id" | "name" | "role">("name")
@@ -224,6 +245,10 @@ export default function Page() {
 			return sortOrder === "asc" ? comp : -comp
 		})
 
+	const activePeriod =
+		PERIOD_OPTIONS.find((opt) => opt.value === period) || PERIOD_OPTIONS[2]
+	const PeriodIcon = activePeriod.icon
+
 	return (
 		<div className="dark:bg-bg text-fg bg-bg-subtle min-h-screen w-full px-6 py-6 font-sans transition-colors md:px-10 md:py-8">
 			<div className="mx-auto flex max-w-7xl flex-col gap-4">
@@ -232,13 +257,6 @@ export default function Page() {
         ══════════════════════════════════════════════ */}
 				<header className="flex items-center justify-between">
 					<div className="flex items-center gap-2.5">
-						<IconButton
-							variant="ghost"
-							color="neutral"
-							size="sm"
-							aria-label="Toggle sidebar">
-							<PanelLeft className="size-5" />
-						</IconButton>
 						<h1 className="heading-5 text-fg">Good morning, Kate</h1>
 					</div>
 
@@ -296,15 +314,44 @@ export default function Page() {
 							aria-label="Refresh data">
 							<RotateCw className="size-3.5" />
 						</IconButton>
-						<Button
-							variant="outline"
-							color="neutral"
-							size="sm"
-							className="border-border/60 bg-elevation-level1 text-fg hover:bg-fill1/40 h-8.5 gap-2 rounded-xl border px-3 text-xs font-medium shadow-2xs">
-							<Calendar className="text-fg-secondary size-3.5" />
-							<span>Monthly</span>
-							<ChevronDown className="text-fg-tertiary size-3.5" />
-						</Button>
+						<DropdownMenu>
+							<DropdownMenuTrigger asChild>
+								<Button
+									variant="outline"
+									color="neutral"
+									size="sm"
+									className="border-border/60 bg-elevation-level1 text-fg hover:bg-fill1/40 h-8.5 cursor-pointer gap-2 rounded-xl border px-3 text-xs font-medium shadow-2xs">
+									<PeriodIcon className="text-fg-secondary size-3.5" />
+									<span>{period}</span>
+									<ChevronDown className="text-fg-tertiary size-3.5" />
+								</Button>
+							</DropdownMenuTrigger>
+							<DropdownMenuContent
+								align="end"
+								className="border-border/80 w-44 rounded-2xl border p-1.5 shadow-lg">
+								{PERIOD_OPTIONS.map((opt) => {
+									const Icon = opt.icon
+									const isSelected = period === opt.value
+									return (
+										<DropdownMenuItem
+											key={opt.value}
+											onClick={() => setPeriod(opt.value)}
+											className={cn(
+												"cursor-pointer justify-between gap-2.5 rounded-lg px-3 py-2 text-[14px]",
+												isSelected && "bg-fill1 text-fg font-medium"
+											)}>
+											<div className="flex items-center gap-2.5">
+												<Icon className="text-fg-secondary size-4 shrink-0" />
+												<span>{opt.label}</span>
+											</div>
+											{isSelected && (
+												<Check className="text-primary size-4 shrink-0" />
+											)}
+										</DropdownMenuItem>
+									)
+								})}
+							</DropdownMenuContent>
+						</DropdownMenu>
 						<Button
 							color="primary"
 							variant="strong"
