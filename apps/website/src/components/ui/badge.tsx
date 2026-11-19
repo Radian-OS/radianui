@@ -15,7 +15,7 @@ export function Badge({ size, variant, style, ...props }: BadgeProps) {
 
 	const effectiveSize = size ?? config?.size ?? "md"
 	const radiusPreset = config?.radius
-	const effectivePadding = config?.padding ?? "md"
+	const paddingPreset = config?.padding
 
 	return (
 		<RealBadge
@@ -26,7 +26,9 @@ export function Badge({ size, variant, style, ...props }: BadgeProps) {
 				borderRadius: radiusPreset
 					? `${BADGE_RADIUS_PRESETS[radiusPreset][effectiveSize]}px`
 					: undefined,
-				paddingInline: `${BADGE_PADDING_PRESETS[effectivePadding][effectiveSize]}px`,
+				paddingInline: paddingPreset
+					? `${BADGE_PADDING_PRESETS[paddingPreset][effectiveSize]}px`
+					: undefined,
 				...style,
 			}}
 		/>

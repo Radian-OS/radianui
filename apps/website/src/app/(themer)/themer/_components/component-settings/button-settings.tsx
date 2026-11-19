@@ -200,18 +200,18 @@ export function ButtonSettings({
 
 					<div className="flex flex-col gap-4">
 						<PresetSlider
-							options={[undefined, ...PRESET_NAMES]}
+							options={PRESET_NAMES}
 							label="Radius"
 							value={buttonConfig?.radius}
+							inheritLabel="Themer Default"
 							onValueChange={(radius) => updateButton({ radius })}
 						/>
 						<PresetSlider
 							options={PRESET_NAMES}
 							label="Padding"
-							value={buttonConfig?.padding ?? "md"}
-							onValueChange={(padding) =>
-								updateButton({ padding: padding ?? "md" })
-							}
+							value={buttonConfig?.padding}
+							inheritLabel="Themer Default"
+							onValueChange={(padding) => updateButton({ padding })}
 						/>
 						<div className="flex flex-col gap-1.5">
 							<Label

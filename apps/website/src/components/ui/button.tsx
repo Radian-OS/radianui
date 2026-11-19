@@ -23,15 +23,17 @@ export function Button({ size, variant, style, ...props }: ButtonProps) {
 	const config = useThemerStore((s) => s.params.components?.Button)
 	const effectiveSize = size ?? config?.size ?? "md"
 	const radiusPreset = config?.radius
-	const effectivePadding = config?.padding ?? "md"
+	const paddingPreset = config?.padding
 
-	const paddingX = BUTTON_PADDING_PRESETS[effectivePadding][effectiveSize]
+	const paddingX = paddingPreset
+		? BUTTON_PADDING_PRESETS[paddingPreset][effectiveSize]
+		: undefined
 
 	const buttonStyle = {
 		borderRadius: radiusPreset
 			? `${BUTTON_RADIUS_PRESETS[radiusPreset][effectiveSize]}px`
 			: undefined,
-		paddingInline: `${paddingX}px`,
+		paddingInline: paddingX !== undefined ? `${paddingX}px` : undefined,
 		...style,
 	}
 

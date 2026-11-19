@@ -29,7 +29,7 @@ export const BADGE_VARIANTS = [
 ] as const
 
 export const badgeConfigSchema = z.object({
-	padding: z.enum(["xs", "sm", "md", "lg", "xl"]),
+	padding: z.enum(["xs", "sm", "md", "lg", "xl"]).optional(),
 	radius: z.enum(["xs", "sm", "md", "lg", "xl"]).optional(),
 	size: z.enum(["sm", "md", "lg"]),
 	variant: z.enum(["strong", "soft", "outline"]),
@@ -38,11 +38,10 @@ export const badgeConfigSchema = z.object({
 export type BadgeConfig = z.infer<typeof badgeConfigSchema>
 export type BadgeSize = BadgeConfig["size"]
 export type BadgeVariant = BadgeConfig["variant"]
-export type BadgePaddingPreset = BadgeConfig["padding"]
+export type BadgePaddingPreset = NonNullable<BadgeConfig["padding"]>
 export type BadgeRadiusPreset = NonNullable<BadgeConfig["radius"]>
 
 export const DEFAULT_BADGE_CONFIG: BadgeConfig = {
-	padding: "md",
 	size: "md",
 	variant: "soft",
 }

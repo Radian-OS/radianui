@@ -22,7 +22,7 @@ export function transformButtonCode(
 
 	const targetVariant = buttonConfig.variant ?? DEFAULT_BUTTON_CONFIG.variant
 	const targetSize = buttonConfig.size ?? DEFAULT_BUTTON_CONFIG.size
-	const paddingPreset = buttonConfig.padding ?? DEFAULT_BUTTON_CONFIG.padding
+	const paddingPreset = buttonConfig.padding
 	const radiusPreset = buttonConfig.radius
 
 	// Update defaultVariants in cva: { variant: "...", size: "..." }
@@ -174,8 +174,9 @@ export function transformButtonCode(
 								const sizeKey = sizeProp
 									.getName()
 									.replace(/^["']|["']$/g, "") as ButtonSize
-								const paddingPx =
-									BUTTON_PADDING_PRESETS[paddingPreset]?.[sizeKey]
+								const paddingPx = paddingPreset
+									? BUTTON_PADDING_PRESETS[paddingPreset]?.[sizeKey]
+									: undefined
 								if (paddingPx !== undefined) {
 									const strNode = sizeProp.getInitializerIfKind(
 										SyntaxKind.StringLiteral

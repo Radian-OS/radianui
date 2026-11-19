@@ -191,18 +191,18 @@ export function BadgeSettings({ children }: { children: ReactNode }) {
 
 					<div className="flex flex-col gap-4">
 						<PresetSlider
-							options={[undefined, ...PRESET_NAMES]}
+							options={PRESET_NAMES}
 							label="Radius"
 							value={badgeConfig?.radius}
+							inheritLabel="Themer Default"
 							onValueChange={(radius) => updateBadge({ radius })}
 						/>
 						<PresetSlider
 							options={PRESET_NAMES}
 							label="Padding"
-							value={badgeConfig?.padding ?? "md"}
-							onValueChange={(padding) =>
-								updateBadge({ padding: padding ?? "md" })
-							}
+							value={badgeConfig?.padding}
+							inheritLabel="Themer Default"
+							onValueChange={(padding) => updateBadge({ padding })}
 						/>
 						<div className="flex flex-col gap-1.5">
 							<Label
