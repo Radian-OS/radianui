@@ -16,43 +16,8 @@ import {
 	XAxis,
 	YAxis,
 } from "recharts"
-import {
-	BarChart3,
-	Sparkles,
-	RotateCw,
-	Calendar,
-	ChevronDown,
-	SlidersHorizontal,
-	CircleDollarSign,
-	Layers,
-	ArrowUp,
-	TrendingUp,
-	TrendingDown,
-	Clock,
-	History,
-	CalendarDays,
-	CalendarRange,
-	CalendarCheck,
-	CalendarClock,
-	Sliders,
-	ArrowLeftRight,
-	GitCompare,
-	Ban,
-	DollarSign,
-	Euro,
-	PoundSterling,
-	IndianRupee,
-	Coins,
-	Leaf,
-	Megaphone,
-	Share2,
-	Mail,
-	Link2,
-	Compass,
-	Check,
-} from "lucide-react"
-
-import { Button } from "@/styles/default/ui/button"
+import { IconSlot } from "@/registry/icon/icon-library"
+import { Button } from "@/components/ui/button"
 import { Card } from "@/styles/default/ui/card"
 import {
 	DropdownMenu,
@@ -161,11 +126,11 @@ function MiniBarChart({ bars }: { bars: number[] }) {
 }
 
 function WaveUp() {
-	return <TrendingUp className="size-4 shrink-0 text-emerald-500" />
+	return <IconSlot slot="up" className="size-4 shrink-0 text-emerald-500" />
 }
 
 function WaveDown() {
-	return <TrendingDown className="size-4 shrink-0 text-rose-500" />
+	return <IconSlot slot="down" className="size-4 shrink-0 text-rose-500" />
 }
 
 function DashFlat() {
@@ -175,43 +140,51 @@ function DashFlat() {
 }
 
 const DATE_RANGE_OPTIONS = [
-	{ label: "Today", value: "Today", icon: Clock },
-	{ label: "Yesterday", value: "Yesterday", icon: History },
-	{ label: "Last 7 days", value: "Last 7 days", icon: CalendarDays },
-	{ label: "Last 30 days", value: "Last 30 days", icon: CalendarRange },
-	{ label: "Last 90 days", value: "Last 90 days", icon: CalendarCheck },
-	{ label: "This month", value: "This month", icon: Calendar },
-	{ label: "Last month", value: "Last month", icon: CalendarClock },
-	{ label: "Custom range", value: "Custom range", icon: Sliders },
+	{ label: "Today", value: "Today", slot: "clock" as const },
+	{ label: "Yesterday", value: "Yesterday", slot: "clock" as const },
+	{ label: "Last 7 days", value: "Last 7 days", slot: "calendar" as const },
+	{ label: "Last 30 days", value: "Last 30 days", slot: "calendar" as const },
+	{
+		label: "Last 90 days",
+		value: "Last 90 days",
+		slot: "calendar-check" as const,
+	},
+	{ label: "This month", value: "This month", slot: "calendar" as const },
+	{ label: "Last month", value: "Last month", slot: "calendar-clock" as const },
+	{ label: "Custom range", value: "Custom range", slot: "settings-2" as const },
 ]
 
 const COMPARE_OPTIONS = [
-	{ label: "Previous period", value: "Previous period", icon: ArrowLeftRight },
-	{ label: "Previous year", value: "Previous year", icon: CalendarRange },
+	{
+		label: "Previous period",
+		value: "Previous period",
+		slot: "repeat" as const,
+	},
+	{ label: "Previous year", value: "Previous year", slot: "calendar" as const },
 	{
 		label: "Same period last year",
 		value: "Same period last year",
-		icon: GitCompare,
+		slot: "repeat" as const,
 	},
-	{ label: "No comparison", value: "No comparison", icon: Ban },
+	{ label: "No comparison", value: "No comparison", slot: "cross" as const },
 ]
 
 const CURRENCY_OPTIONS = [
-	{ label: "USD ($)", value: "USD", icon: DollarSign },
-	{ label: "EUR (€)", value: "EUR", icon: Euro },
-	{ label: "GBP (£)", value: "GBP", icon: PoundSterling },
-	{ label: "NPR (Rs)", value: "NPR", icon: Coins },
-	{ label: "INR (₹)", value: "INR", icon: IndianRupee },
+	{ label: "USD ($)", value: "USD", slot: "badge-percent" as const },
+	{ label: "EUR (€)", value: "EUR", slot: "card" as const },
+	{ label: "GBP (£)", value: "GBP", slot: "card" as const },
+	{ label: "NPR (Rs)", value: "NPR", slot: "card" as const },
+	{ label: "INR (₹)", value: "INR", slot: "card" as const },
 ]
 
 const CHANNEL_OPTIONS = [
-	{ label: "All channels", value: "All channels", icon: Layers },
-	{ label: "Organic", value: "Organic", icon: Leaf },
-	{ label: "Paid", value: "Paid", icon: Megaphone },
-	{ label: "Social", value: "Social", icon: Share2 },
-	{ label: "Email", value: "Email", icon: Mail },
-	{ label: "Referral", value: "Referral", icon: Link2 },
-	{ label: "Direct", value: "Direct", icon: Compass },
+	{ label: "All channels", value: "All channels", slot: "shapes" as const },
+	{ label: "Organic", value: "Organic", slot: "heart" as const },
+	{ label: "Paid", value: "Paid", slot: "megaphone" as const },
+	{ label: "Social", value: "Social", slot: "messages-square" as const },
+	{ label: "Email", value: "Email", slot: "mail" as const },
+	{ label: "Referral", value: "Referral", slot: "link" as const },
+	{ label: "Direct", value: "Direct", slot: "arrow-up-right" as const },
 ]
 
 export default function Page() {
@@ -223,24 +196,20 @@ export default function Page() {
 	const activeTimeRange =
 		DATE_RANGE_OPTIONS.find((opt) => opt.value === timeRange) ||
 		DATE_RANGE_OPTIONS[3]
-	const TimeRangeIcon = activeTimeRange.icon
 
 	const activeCompare =
 		COMPARE_OPTIONS.find((opt) => opt.value === compareOption) ||
 		COMPARE_OPTIONS[0]
-	const CompareIcon = activeCompare.icon
 
 	const activeCurrency =
 		CURRENCY_OPTIONS.find((opt) => opt.value === currency) ||
 		CURRENCY_OPTIONS[0]
-	const CurrencyIcon = activeCurrency.icon
 
 	const activeChannel =
 		CHANNEL_OPTIONS.find((opt) => opt.value === channel) || CHANNEL_OPTIONS[0]
-	const ChannelIcon = activeChannel.icon
 
 	return (
-		<div className="dark:bg-bg text-fg bg-bg-subtle min-h-screen w-full px-6 py-6 font-sans transition-colors md:px-10 md:py-8">
+		<div className="dark:bg-bg text-fg bg-bg-subtle font-body min-h-screen w-full px-6 py-6 transition-colors md:px-10 md:py-8">
 			<div className="mx-auto flex max-w-7xl flex-col gap-4">
 				{/* ══════════════════════════════════════════════
             1. TOP NAVBAR / HEADER & 2. TOOLBAR
@@ -248,8 +217,8 @@ export default function Page() {
 				<div className="flex flex-col gap-6">
 					<header className="flex flex-wrap items-center justify-between gap-x-3 gap-y-6">
 						<div className="flex items-center gap-2.5">
-							<div className="text-fg-secondary dark:bg-fill2 flex size-7 items-center justify-center rounded-lg bg-zinc-100">
-								<BarChart3 className="size-4" />
+							<div className="text-fg-secondary dark:bg-fill2 rounded-radius flex size-7 items-center justify-center bg-zinc-100">
+								<IconSlot slot="bar-chart" className="size-4" />
 							</div>
 							<h1 className="heading-5 text-fg">Analytics</h1>
 						</div>
@@ -259,23 +228,25 @@ export default function Page() {
 								variant="outline"
 								color="neutral"
 								size="sm"
-								className="border-border/60 bg-elevation-level1 text-fg hover:bg-fill1/40 h-8.5 gap-1.5 rounded-xl px-3 text-[14px] font-medium shadow-2xs">
-								<Sparkles className="text-fg-secondary size-3.5" />
+								className="gap-1.5">
+								<IconSlot
+									slot="sparkles"
+									className="text-fg-secondary size-3.5"
+								/>
 								<span>Accounts</span>
 							</Button>
 							<Button
 								variant="outline"
 								color="neutral"
 								size="sm"
-								className="border-border/60 bg-elevation-level1 text-fg hover:bg-fill1/40 h-8.5 gap-1.5 rounded-xl px-3 text-[14px] font-medium shadow-2xs">
-								<RotateCw className="text-fg-secondary size-3.5" />
+								className="gap-1.5">
+								<IconSlot
+									slot="repeat"
+									className="text-fg-secondary size-3.5"
+								/>
 								<span>Refresh</span>
 							</Button>
-							<Button
-								color="primary"
-								variant="strong"
-								size="sm"
-								className="h-8.5 rounded-xl px-4 text-[14px] font-semibold shadow-xs">
+							<Button color="primary" variant="strong" size="sm">
 								Save as report
 							</Button>
 						</div>
@@ -293,33 +264,44 @@ export default function Page() {
 										variant="outline"
 										color="neutral"
 										size="sm"
-										className="border-border/60 bg-elevation-level1 text-fg hover:bg-fill1/40 h-8 cursor-pointer gap-1.5 rounded-xl px-3 text-[14px] font-medium shadow-2xs">
-										<TimeRangeIcon className="text-fg-secondary size-3.5" />
+										className="gap-1.5">
+										<IconSlot
+											slot={activeTimeRange.slot}
+											className="text-fg-secondary size-3.5"
+										/>
 										<span>{timeRange}</span>
-										<ChevronDown className="text-fg-tertiary size-3.5" />
+										<IconSlot
+											slot="down"
+											className="text-fg-tertiary size-3.5"
+										/>
 									</Button>
 								</DropdownMenuTrigger>
 								<DropdownMenuContent
 									align="start"
 									sideOffset={4}
-									className="border-border/80 w-52 rounded-2xl border p-1.5 shadow-lg">
+									className="w-52 p-1.5 shadow-lg">
 									{DATE_RANGE_OPTIONS.map((opt) => {
-										const Icon = opt.icon
 										const isSelected = timeRange === opt.value
 										return (
 											<DropdownMenuItem
 												key={opt.value}
 												onClick={() => setTimeRange(opt.value)}
 												className={cn(
-													"cursor-pointer justify-between gap-2.5 rounded-lg px-3 py-2 text-[14px]",
+													"cursor-pointer justify-between gap-2.5 px-3 py-2 text-[14px]",
 													isSelected && "bg-fill1 text-fg font-medium"
 												)}>
 												<div className="flex items-center gap-2.5">
-													<Icon className="text-fg-secondary size-4 shrink-0" />
+													<IconSlot
+														slot={opt.slot}
+														className="text-fg-secondary size-4 shrink-0"
+													/>
 													<span>{opt.label}</span>
 												</div>
 												{isSelected && (
-													<Check className="text-primary size-4 shrink-0" />
+													<IconSlot
+														slot="check"
+														className="text-primary size-4 shrink-0"
+													/>
 												)}
 											</DropdownMenuItem>
 										)
@@ -334,33 +316,44 @@ export default function Page() {
 										variant="outline"
 										color="neutral"
 										size="sm"
-										className="border-border/60 bg-elevation-level1 text-fg hover:bg-fill1/40 h-8 cursor-pointer gap-1.5 rounded-xl px-3 text-[14px] font-medium shadow-2xs">
-										<CompareIcon className="text-fg-secondary size-3.5" />
+										className="gap-1.5">
+										<IconSlot
+											slot={activeCompare.slot}
+											className="text-fg-secondary size-3.5"
+										/>
 										<span>{compareOption}</span>
-										<ChevronDown className="text-fg-tertiary size-3.5" />
+										<IconSlot
+											slot="down"
+											className="text-fg-tertiary size-3.5"
+										/>
 									</Button>
 								</DropdownMenuTrigger>
 								<DropdownMenuContent
 									align="start"
 									sideOffset={4}
-									className="border-border/80 w-56 rounded-2xl border p-1.5 shadow-lg">
+									className="w-56 p-1.5 shadow-lg">
 									{COMPARE_OPTIONS.map((opt) => {
-										const Icon = opt.icon
 										const isSelected = compareOption === opt.value
 										return (
 											<DropdownMenuItem
 												key={opt.value}
 												onClick={() => setCompareOption(opt.value)}
 												className={cn(
-													"cursor-pointer justify-between gap-2.5 rounded-lg px-3 py-2 text-[14px]",
+													"cursor-pointer justify-between gap-2.5 px-3 py-2 text-[14px]",
 													isSelected && "bg-fill1 text-fg font-medium"
 												)}>
 												<div className="flex items-center gap-2.5">
-													<Icon className="text-fg-secondary size-4 shrink-0" />
+													<IconSlot
+														slot={opt.slot}
+														className="text-fg-secondary size-4 shrink-0"
+													/>
 													<span>{opt.label}</span>
 												</div>
 												{isSelected && (
-													<Check className="text-primary size-4 shrink-0" />
+													<IconSlot
+														slot="check"
+														className="text-primary size-4 shrink-0"
+													/>
 												)}
 											</DropdownMenuItem>
 										)
@@ -375,33 +368,44 @@ export default function Page() {
 										variant="outline"
 										color="neutral"
 										size="sm"
-										className="border-border/60 bg-elevation-level1 text-fg hover:bg-fill1/40 h-8 cursor-pointer gap-1.5 rounded-xl px-3 text-[14px] font-medium shadow-2xs">
-										<CurrencyIcon className="text-fg-secondary size-3.5" />
+										className="gap-1.5">
+										<IconSlot
+											slot={activeCurrency.slot}
+											className="text-fg-secondary size-3.5"
+										/>
 										<span>{currency}</span>
-										<ChevronDown className="text-fg-tertiary size-3.5" />
+										<IconSlot
+											slot="down"
+											className="text-fg-tertiary size-3.5"
+										/>
 									</Button>
 								</DropdownMenuTrigger>
 								<DropdownMenuContent
 									align="start"
 									sideOffset={4}
-									className="border-border/80 w-48 rounded-2xl border p-1.5 shadow-lg">
+									className="w-48 p-1.5 shadow-lg">
 									{CURRENCY_OPTIONS.map((opt) => {
-										const Icon = opt.icon
 										const isSelected = currency === opt.value
 										return (
 											<DropdownMenuItem
 												key={opt.value}
 												onClick={() => setCurrency(opt.value)}
 												className={cn(
-													"cursor-pointer justify-between gap-2.5 rounded-lg px-3 py-2 text-[14px]",
+													"cursor-pointer justify-between gap-2.5 px-3 py-2 text-[14px]",
 													isSelected && "bg-fill1 text-fg font-medium"
 												)}>
 												<div className="flex items-center gap-2.5">
-													<Icon className="text-fg-secondary size-4 shrink-0" />
+													<IconSlot
+														slot={opt.slot}
+														className="text-fg-secondary size-4 shrink-0"
+													/>
 													<span>{opt.label}</span>
 												</div>
 												{isSelected && (
-													<Check className="text-primary size-4 shrink-0" />
+													<IconSlot
+														slot="check"
+														className="text-primary size-4 shrink-0"
+													/>
 												)}
 											</DropdownMenuItem>
 										)
@@ -416,33 +420,44 @@ export default function Page() {
 										variant="outline"
 										color="neutral"
 										size="sm"
-										className="border-border/60 bg-elevation-level1 text-fg hover:bg-fill1/40 h-8 cursor-pointer gap-1.5 rounded-xl px-3 text-[14px] font-medium shadow-2xs">
-										<ChannelIcon className="text-fg-secondary size-3.5" />
+										className="gap-1.5">
+										<IconSlot
+											slot={activeChannel.slot}
+											className="text-fg-secondary size-3.5"
+										/>
 										<span>{channel}</span>
-										<ChevronDown className="text-fg-tertiary size-3.5" />
+										<IconSlot
+											slot="down"
+											className="text-fg-tertiary size-3.5"
+										/>
 									</Button>
 								</DropdownMenuTrigger>
 								<DropdownMenuContent
 									align="start"
 									sideOffset={4}
-									className="border-border/80 w-52 rounded-2xl border p-1.5 shadow-lg">
+									className="w-52 p-1.5 shadow-lg">
 									{CHANNEL_OPTIONS.map((opt) => {
-										const Icon = opt.icon
 										const isSelected = channel === opt.value
 										return (
 											<DropdownMenuItem
 												key={opt.value}
 												onClick={() => setChannel(opt.value)}
 												className={cn(
-													"cursor-pointer justify-between gap-2.5 rounded-lg px-3 py-2 text-[14px]",
+													"cursor-pointer justify-between gap-2.5 px-3 py-2 text-[14px]",
 													isSelected && "bg-fill1 text-fg font-medium"
 												)}>
 												<div className="flex items-center gap-2.5">
-													<Icon className="text-fg-secondary size-4 shrink-0" />
+													<IconSlot
+														slot={opt.slot}
+														className="text-fg-secondary size-4 shrink-0"
+													/>
 													<span>{opt.label}</span>
 												</div>
 												{isSelected && (
-													<Check className="text-primary size-4 shrink-0" />
+													<IconSlot
+														slot="check"
+														className="text-primary size-4 shrink-0"
+													/>
 												)}
 											</DropdownMenuItem>
 										)
@@ -456,8 +471,11 @@ export default function Page() {
 							variant="outline"
 							color="neutral"
 							size="sm"
-							className="border-border/60 bg-elevation-level1 text-fg hover:bg-fill1/40 h-8 gap-1.5 rounded-xl px-3 text-[14px] font-medium shadow-2xs">
-							<SlidersHorizontal className="text-fg-secondary size-3.5" />
+							className="gap-1.5">
+							<IconSlot
+								slot="settings-2"
+								className="text-fg-secondary size-3.5"
+							/>
 							<span>Manage Metrics</span>
 						</Button>
 					</div>
@@ -468,7 +486,7 @@ export default function Page() {
         ══════════════════════════════════════════════ */}
 				<div className="grid grid-cols-1 gap-x-3 gap-y-4 sm:grid-cols-2 lg:grid-cols-4">
 					{/* Card 1: Gross Sales */}
-					<Card className="border-border/60 dark:bg-elevation-level1 rounded-2xl border bg-white p-5 shadow-xs transition-colors">
+					<Card className="p-5">
 						<div className="flex flex-col gap-3">
 							<div className="flex items-center">
 								<span className="text-[14px] font-normal text-zinc-500 dark:text-zinc-400">
@@ -490,7 +508,7 @@ export default function Page() {
 					</Card>
 
 					{/* Card 2: Returning customer rate */}
-					<Card className="border-border/60 dark:bg-elevation-level1 rounded-2xl border bg-white p-5 shadow-xs transition-colors">
+					<Card className="p-5">
 						<div className="flex flex-col gap-3">
 							<div className="flex items-center">
 								<span className="text-[14px] font-normal text-zinc-500 dark:text-zinc-400">
@@ -512,7 +530,7 @@ export default function Page() {
 					</Card>
 
 					{/* Card 3: Order fulfilled */}
-					<Card className="border-border/60 dark:bg-elevation-level1 rounded-2xl border bg-white p-5 shadow-xs transition-colors">
+					<Card className="p-5">
 						<div className="flex flex-col gap-3">
 							<div className="flex items-center">
 								<span className="text-[14px] font-normal text-zinc-500 dark:text-zinc-400">
@@ -534,7 +552,7 @@ export default function Page() {
 					</Card>
 
 					{/* Card 4: Orders */}
-					<Card className="border-border/60 dark:bg-elevation-level1 rounded-2xl border bg-white p-5 shadow-xs transition-colors">
+					<Card className="p-5">
 						<div className="flex flex-col gap-3">
 							<div className="flex items-center">
 								<span className="text-[14px] font-normal text-zinc-500 dark:text-zinc-400">
@@ -561,7 +579,7 @@ export default function Page() {
         ══════════════════════════════════════════════ */}
 				<div className="grid grid-cols-1 items-stretch gap-x-3 gap-y-4 lg:grid-cols-12">
 					{/* Left: Total sales over time (2 lines: current + compare) */}
-					<Card className="border-border/60 dark:bg-elevation-level1 flex flex-col justify-between overflow-hidden rounded-2xl border bg-white p-6 shadow-xs lg:col-span-8">
+					<Card className="flex flex-col justify-between overflow-hidden p-6 lg:col-span-8">
 						<div className="flex flex-col gap-3.5">
 							<div>
 								<h2 className="text-[14px] font-normal text-zinc-500 dark:text-zinc-400">
@@ -635,7 +653,7 @@ export default function Page() {
 											content={({ active, payload, label }) => {
 												if (!active || !payload?.length) return null
 												return (
-													<div className="border-border/60 dark:bg-elevation-level1 flex min-w-[145px] flex-col gap-1.5 rounded-xl border bg-white p-2.5 text-[12px] shadow-md">
+													<div className="border-border/60 dark:bg-elevation-level1 rounded-radius flex min-w-[145px] flex-col gap-1.5 border bg-white p-2.5 text-[12px] shadow-md">
 														<div className="text-fg text-[12px] font-semibold">
 															{label}
 														</div>
@@ -712,7 +730,7 @@ export default function Page() {
 					</Card>
 
 					{/* Right: Total sales breakdown (Zebra Striped Rows matched to card height) */}
-					<Card className="border-border/60 dark:bg-elevation-level1 flex flex-col justify-between overflow-hidden rounded-2xl border bg-white p-6 shadow-xs lg:col-span-4">
+					<Card className="flex flex-col justify-between overflow-hidden p-6 lg:col-span-4">
 						<div className="pb-1">
 							<h2 className="text-[14px] font-normal text-zinc-500 dark:text-zinc-400">
 								Total sales breakdown
@@ -723,7 +741,7 @@ export default function Page() {
 							{salesBreakdown.map((item, index) => (
 								<div
 									key={index}
-									className={`flex items-center justify-between rounded-lg px-3 py-1.5 text-[14px] transition-colors ${
+									className={`rounded-radius flex items-center justify-between px-3 py-1.5 text-[14px] transition-colors ${
 										index % 2 === 1
 											? "bg-zinc-100/80 dark:bg-zinc-800/40"
 											: "bg-transparent"
@@ -752,7 +770,7 @@ export default function Page() {
         ══════════════════════════════════════════════ */}
 				<div className="grid grid-cols-1 items-stretch gap-x-3 gap-y-4 lg:grid-cols-12">
 					{/* Card 1: Average Order Value (Area Chart with Full Grid, Axis Labels, Tooltip) */}
-					<Card className="border-border/60 dark:bg-elevation-level1 flex flex-col justify-between overflow-hidden rounded-2xl border bg-white p-6 pb-4 shadow-xs lg:col-span-8">
+					<Card className="flex flex-col justify-between overflow-hidden p-6 pb-4 lg:col-span-8">
 						<div className="flex flex-col gap-2">
 							{/* Header */}
 							<div className="flex items-start justify-between">
@@ -767,7 +785,7 @@ export default function Page() {
 										$142.80
 									</span>
 									<span className="flex items-center gap-0.5 pt-1 text-[12px] font-medium text-emerald-600 dark:text-emerald-400">
-										<ArrowUp className="size-3" />
+										<IconSlot slot="up" className="size-3" />
 										4.2% vs last month
 									</span>
 								</div>
@@ -823,7 +841,7 @@ export default function Page() {
 												if (!active || !payload?.length) return null
 												const val = payload[0].value as number
 												return (
-													<div className="border-border/80 dark:bg-elevation-level2 rounded-xl border bg-white px-3 py-1.5 shadow-md">
+													<div className="border-border/80 dark:bg-elevation-level2 rounded-radius border bg-white px-3 py-1.5 shadow-md">
 														<div className="text-[11px] text-zinc-400 dark:text-zinc-500">
 															{label}
 														</div>
@@ -841,7 +859,7 @@ export default function Page() {
 																</span>
 															</div>
 															<span className="flex items-center text-[12px] font-semibold text-emerald-600 dark:text-emerald-400">
-																<ArrowUp className="size-3" /> 4.2%
+																<IconSlot slot="up" className="size-3" /> 4.2%
 															</span>
 														</div>
 													</div>
@@ -863,7 +881,7 @@ export default function Page() {
 					</Card>
 
 					{/* Card 2: Sales by Channel (Donut Chart + Legend) */}
-					<Card className="border-border/60 dark:bg-elevation-level1 flex flex-col justify-between overflow-hidden rounded-2xl border bg-white p-6 pb-4 shadow-xs lg:col-span-4">
+					<Card className="flex flex-col justify-between overflow-hidden p-6 pb-4 lg:col-span-4">
 						{/* Header */}
 						<div className="flex items-start justify-between">
 							<div className="flex flex-col">

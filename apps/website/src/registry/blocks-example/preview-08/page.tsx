@@ -12,30 +12,7 @@ import {
 	XAxis,
 	YAxis,
 } from "recharts"
-import {
-	Search,
-	Bell,
-	UserPlus,
-	RotateCw,
-	Calendar,
-	ChevronDown,
-	ChevronsUpDown,
-	Copy,
-	Check,
-	MoreVertical,
-	SlidersHorizontal,
-	ArrowUpDown,
-	Columns3,
-	Eye,
-	Pencil,
-	Trash2,
-	Clock,
-	CalendarDays,
-	CalendarRange,
-	CalendarCheck,
-	CalendarClock,
-	History,
-} from "lucide-react"
+import { IconSlot } from "@/registry/icon/icon-library"
 
 import { Button, IconButton } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -178,24 +155,28 @@ const employees: Employee[] = [
 ]
 
 const PERIOD_OPTIONS = [
-	{ label: "Daily", value: "Daily", icon: Clock },
-	{ label: "Weekly", value: "Weekly", icon: CalendarDays },
-	{ label: "Monthly", value: "Monthly", icon: Calendar },
-	{ label: "Quarterly", value: "Quarterly", icon: CalendarCheck },
-	{ label: "Yearly", value: "Yearly", icon: CalendarClock },
-	{ label: "All time", value: "All time", icon: History },
+	{ label: "Daily", value: "Daily", slot: "clock" as const },
+	{ label: "Weekly", value: "Weekly", slot: "calendar" as const },
+	{ label: "Monthly", value: "Monthly", slot: "calendar" as const },
+	{ label: "Quarterly", value: "Quarterly", slot: "calendar-check" as const },
+	{ label: "Yearly", value: "Yearly", slot: "calendar-clock" as const },
+	{ label: "All time", value: "All time", slot: "clock" as const },
 ]
 
 const SALES_RANGE_OPTIONS = [
-	{ label: "Today", value: "Today", icon: Clock },
-	{ label: "Yesterday", value: "Yesterday", icon: History },
-	{ label: "Last 7 days", value: "Last 7 days", icon: CalendarDays },
-	{ label: "Last 2 weeks", value: "Last 2 weeks", icon: CalendarRange },
-	{ label: "Last 30 days", value: "Last 30 days", icon: CalendarRange },
-	{ label: "Last 90 days", value: "Last 90 days", icon: CalendarCheck },
-	{ label: "This month", value: "This month", icon: Calendar },
-	{ label: "Last month", value: "Last month", icon: CalendarClock },
-	{ label: "Custom range", value: "Custom range", icon: SlidersHorizontal },
+	{ label: "Today", value: "Today", slot: "clock" as const },
+	{ label: "Yesterday", value: "Yesterday", slot: "clock" as const },
+	{ label: "Last 7 days", value: "Last 7 days", slot: "calendar" as const },
+	{ label: "Last 2 weeks", value: "Last 2 weeks", slot: "calendar" as const },
+	{ label: "Last 30 days", value: "Last 30 days", slot: "calendar" as const },
+	{
+		label: "Last 90 days",
+		value: "Last 90 days",
+		slot: "calendar-check" as const,
+	},
+	{ label: "This month", value: "This month", slot: "calendar" as const },
+	{ label: "Last month", value: "Last month", slot: "calendar-clock" as const },
+	{ label: "Custom range", value: "Custom range", slot: "settings-2" as const },
 ]
 
 export default function Page() {
@@ -261,7 +242,6 @@ export default function Page() {
 
 	const activePeriod =
 		PERIOD_OPTIONS.find((opt) => opt.value === period) || PERIOD_OPTIONS[2]
-	const PeriodIcon = activePeriod.icon
 
 	return (
 		<div className="dark:bg-bg text-fg bg-bg-subtle font-body min-h-screen w-full px-6 py-6 transition-colors md:px-10 md:py-8">
@@ -280,21 +260,21 @@ export default function Page() {
 							color="neutral"
 							size="sm"
 							aria-label="Search">
-							<Search className="size-4" />
+							<IconSlot slot="search" className="size-4" />
 						</IconButton>
 						<IconButton
 							variant="ghost"
 							color="neutral"
 							size="sm"
 							aria-label="Notifications">
-							<Bell className="size-4" />
+							<IconSlot slot="bell" className="size-4" />
 						</IconButton>
 						<Button
 							color="primary"
 							variant="strong"
 							size="sm"
 							className="gap-1.5">
-							<UserPlus className="size-4" />
+							<IconSlot slot="user" className="size-4" />
 							<span>Invite</span>
 						</Button>
 					</div>
@@ -324,7 +304,7 @@ export default function Page() {
 							color="neutral"
 							size="sm"
 							aria-label="Refresh data">
-							<RotateCw className="size-3.5" />
+							<IconSlot slot="repeat" className="size-3.5" />
 						</IconButton>
 						<DropdownMenu>
 							<DropdownMenuTrigger asChild>
@@ -333,9 +313,12 @@ export default function Page() {
 									color="neutral"
 									size="sm"
 									className="gap-2">
-									<PeriodIcon className="text-fg-secondary size-3.5" />
+									<IconSlot
+										slot={activePeriod.slot}
+										className="text-fg-secondary size-3.5"
+									/>
 									<span>{period}</span>
-									<ChevronDown className="text-fg-tertiary size-3.5" />
+									<IconSlot slot="down" className="text-fg-tertiary size-3.5" />
 								</Button>
 							</DropdownMenuTrigger>
 							<DropdownMenuContent
@@ -343,7 +326,6 @@ export default function Page() {
 								sideOffset={4}
 								className="w-44 p-1.5 shadow-lg">
 								{PERIOD_OPTIONS.map((opt) => {
-									const Icon = opt.icon
 									const isSelected = period === opt.value
 									return (
 										<DropdownMenuItem
@@ -354,11 +336,17 @@ export default function Page() {
 												isSelected && "bg-fill1 text-fg font-medium"
 											)}>
 											<div className="flex items-center gap-2.5">
-												<Icon className="text-fg-secondary size-4 shrink-0" />
+												<IconSlot
+													slot={opt.slot}
+													className="text-fg-secondary size-4 shrink-0"
+												/>
 												<span>{opt.label}</span>
 											</div>
 											{isSelected && (
-												<Check className="text-primary size-4 shrink-0" />
+												<IconSlot
+													slot="check"
+													className="text-primary size-4 shrink-0"
+												/>
 											)}
 										</DropdownMenuItem>
 									)
@@ -462,7 +450,10 @@ export default function Page() {
 										size="sm"
 										className="gap-1.5">
 										<span>{salesRange}</span>
-										<ChevronDown className="text-fg-tertiary size-3.5" />
+										<IconSlot
+											slot="down"
+											className="text-fg-tertiary size-3.5"
+										/>
 									</Button>
 								</DropdownMenuTrigger>
 								<DropdownMenuContent
@@ -470,7 +461,6 @@ export default function Page() {
 									sideOffset={4}
 									className="w-52 p-1.5 shadow-lg">
 									{SALES_RANGE_OPTIONS.map((opt) => {
-										const Icon = opt.icon
 										const isSelected = salesRange === opt.value
 										return (
 											<DropdownMenuItem
@@ -481,11 +471,17 @@ export default function Page() {
 													isSelected && "bg-fill1 text-fg font-medium"
 												)}>
 												<div className="flex items-center gap-2.5">
-													<Icon className="text-fg-secondary size-4 shrink-0" />
+													<IconSlot
+														slot={opt.slot}
+														className="text-fg-secondary size-4 shrink-0"
+													/>
 													<span>{opt.label}</span>
 												</div>
 												{isSelected && (
-													<Check className="text-primary size-4 shrink-0" />
+													<IconSlot
+														slot="check"
+														className="text-primary size-4 shrink-0"
+													/>
 												)}
 											</DropdownMenuItem>
 										)
@@ -613,7 +609,7 @@ export default function Page() {
 									color="neutral"
 									size="xs"
 									aria-label="More options">
-									<MoreVertical className="size-3.5" />
+									<IconSlot slot="ellipsis-vertical" className="size-3.5" />
 								</IconButton>
 							</div>
 						</CardHeader>
@@ -742,21 +738,24 @@ export default function Page() {
 						<div className="flex flex-wrap items-center justify-between gap-3 px-1">
 							<div className="flex items-center gap-2">
 								<Button variant="outline" color="neutral" size="sm">
-									<SlidersHorizontal className="size-4" />
+									<IconSlot slot="settings-2" className="size-4" />
 									Filter
 								</Button>
 								<Button variant="outline" color="neutral" size="sm">
-									<ArrowUpDown className="size-4" />
+									<IconSlot slot="chevrons-up-down" className="size-4" />
 									Sort
 								</Button>
 								<Button variant="outline" color="neutral" size="sm">
-									<Columns3 className="size-4" />
+									<IconSlot slot="shapes" className="size-4" />
 									Columns
 								</Button>
 							</div>
 
 							<div className="relative w-full max-w-xs sm:w-60">
-								<Search className="text-fg-tertiary absolute top-1/2 left-3 size-3.5 -translate-y-1/2" />
+								<IconSlot
+									slot="search"
+									className="text-fg-tertiary absolute top-1/2 left-3 size-3.5 -translate-y-1/2"
+								/>
 								<Input
 									value={searchQuery}
 									onChange={(e) => setSearchQuery(e.target.value)}
@@ -792,7 +791,10 @@ export default function Page() {
 										className="dark:text-fg-secondary hover:text-fg cursor-pointer px-4 py-3.5 text-[14px] font-medium text-zinc-500 transition-colors select-none">
 										<div className="flex items-center gap-1.5">
 											<span>Worker ID</span>
-											<ChevronsUpDown className="dark:text-fg-tertiary size-3.5 text-zinc-400" />
+											<IconSlot
+												slot="chevrons-up-down"
+												className="dark:text-fg-tertiary size-3.5 text-zinc-400"
+											/>
 										</div>
 									</TableHead>
 									<TableHead
@@ -800,7 +802,10 @@ export default function Page() {
 										className="dark:text-fg-secondary hover:text-fg cursor-pointer px-4 py-3.5 text-[14px] font-medium text-zinc-500 transition-colors select-none">
 										<div className="flex items-center gap-1.5">
 											<span>Member</span>
-											<ChevronsUpDown className="dark:text-fg-tertiary size-3.5 text-zinc-400" />
+											<IconSlot
+												slot="chevrons-up-down"
+												className="dark:text-fg-tertiary size-3.5 text-zinc-400"
+											/>
 										</div>
 									</TableHead>
 									<TableHead
@@ -808,7 +813,10 @@ export default function Page() {
 										className="dark:text-fg-secondary hover:text-fg cursor-pointer px-4 py-3.5 text-[14px] font-medium text-zinc-500 transition-colors select-none">
 										<div className="flex items-center gap-1.5">
 											<span>Role</span>
-											<ChevronsUpDown className="dark:text-fg-tertiary size-3.5 text-zinc-400" />
+											<IconSlot
+												slot="chevrons-up-down"
+												className="dark:text-fg-tertiary size-3.5 text-zinc-400"
+											/>
 										</div>
 									</TableHead>
 									<TableHead className="dark:text-fg-secondary px-4 py-3.5 text-[14px] font-medium text-zinc-500">
@@ -860,9 +868,15 @@ export default function Page() {
 															className="text-fg-tertiary hover:text-fg size-6"
 															title="Copy Worker ID">
 															{isCopied ? (
-																<Check className="size-3.5 text-emerald-600 dark:text-emerald-400" />
+																<IconSlot
+																	slot="check"
+																	className="size-3.5 text-emerald-600 dark:text-emerald-400"
+																/>
 															) : (
-																<Copy className="size-3.5" />
+																<IconSlot
+																	slot="file-text"
+																	className="size-3.5"
+																/>
 															)}
 														</IconButton>
 													</div>
@@ -915,21 +929,21 @@ export default function Page() {
 															color="neutral"
 															size="xs"
 															aria-label="View employee">
-															<Eye className="size-3.5" />
+															<IconSlot slot="eye" className="size-3.5" />
 														</IconButton>
 														<IconButton
 															variant="soft"
 															color="neutral"
 															size="xs"
 															aria-label="Edit employee">
-															<Pencil className="size-3.5" />
+															<IconSlot slot="pencil" className="size-3.5" />
 														</IconButton>
 														<IconButton
 															variant="soft"
 															color="error"
 															size="xs"
 															aria-label="Delete employee">
-															<Trash2 className="size-3.5" />
+															<IconSlot slot="trash" className="size-3.5" />
 														</IconButton>
 													</div>
 												</TableCell>
