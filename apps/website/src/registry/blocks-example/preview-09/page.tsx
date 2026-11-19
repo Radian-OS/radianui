@@ -28,10 +28,39 @@ import {
 	ArrowUp,
 	TrendingUp,
 	TrendingDown,
+	Clock,
+	History,
+	CalendarDays,
+	CalendarRange,
+	CalendarCheck,
+	CalendarClock,
+	Sliders,
+	ArrowLeftRight,
+	GitCompare,
+	Ban,
+	DollarSign,
+	Euro,
+	PoundSterling,
+	IndianRupee,
+	Coins,
+	Leaf,
+	Megaphone,
+	Share2,
+	Mail,
+	Link2,
+	Compass,
+	Check,
 } from "lucide-react"
 
 import { Button } from "@/styles/default/ui/button"
 import { Card } from "@/styles/default/ui/card"
+import {
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuItem,
+	DropdownMenuTrigger,
+} from "@/styles/default/ui/dropdown-menu"
+import { cn } from "@/lib/utils"
 
 // ──────────────────────────────────────────────
 // Datasets matching the reference screenshots
@@ -145,9 +174,70 @@ function DashFlat() {
 	)
 }
 
+const DATE_RANGE_OPTIONS = [
+	{ label: "Today", value: "Today", icon: Clock },
+	{ label: "Yesterday", value: "Yesterday", icon: History },
+	{ label: "Last 7 days", value: "Last 7 days", icon: CalendarDays },
+	{ label: "Last 30 days", value: "Last 30 days", icon: CalendarRange },
+	{ label: "Last 90 days", value: "Last 90 days", icon: CalendarCheck },
+	{ label: "This month", value: "This month", icon: Calendar },
+	{ label: "Last month", value: "Last month", icon: CalendarClock },
+	{ label: "Custom range", value: "Custom range", icon: Sliders },
+]
+
+const COMPARE_OPTIONS = [
+	{ label: "Previous period", value: "Previous period", icon: ArrowLeftRight },
+	{ label: "Previous year", value: "Previous year", icon: CalendarRange },
+	{
+		label: "Same period last year",
+		value: "Same period last year",
+		icon: GitCompare,
+	},
+	{ label: "No comparison", value: "No comparison", icon: Ban },
+]
+
+const CURRENCY_OPTIONS = [
+	{ label: "USD ($)", value: "USD", icon: DollarSign },
+	{ label: "EUR (€)", value: "EUR", icon: Euro },
+	{ label: "GBP (£)", value: "GBP", icon: PoundSterling },
+	{ label: "NPR (Rs)", value: "NPR", icon: Coins },
+	{ label: "INR (₹)", value: "INR", icon: IndianRupee },
+]
+
+const CHANNEL_OPTIONS = [
+	{ label: "All channels", value: "All channels", icon: Layers },
+	{ label: "Organic", value: "Organic", icon: Leaf },
+	{ label: "Paid", value: "Paid", icon: Megaphone },
+	{ label: "Social", value: "Social", icon: Share2 },
+	{ label: "Email", value: "Email", icon: Mail },
+	{ label: "Referral", value: "Referral", icon: Link2 },
+	{ label: "Direct", value: "Direct", icon: Compass },
+]
+
 export default function Page() {
-	const [channel] = useState("All channels")
-	const [timeRange] = useState("Last 30 days")
+	const [channel, setChannel] = useState("All channels")
+	const [timeRange, setTimeRange] = useState("Last 30 days")
+	const [compareOption, setCompareOption] = useState("Previous period")
+	const [currency, setCurrency] = useState("USD")
+
+	const activeTimeRange =
+		DATE_RANGE_OPTIONS.find((opt) => opt.value === timeRange) ||
+		DATE_RANGE_OPTIONS[3]
+	const TimeRangeIcon = activeTimeRange.icon
+
+	const activeCompare =
+		COMPARE_OPTIONS.find((opt) => opt.value === compareOption) ||
+		COMPARE_OPTIONS[0]
+	const CompareIcon = activeCompare.icon
+
+	const activeCurrency =
+		CURRENCY_OPTIONS.find((opt) => opt.value === currency) ||
+		CURRENCY_OPTIONS[0]
+	const CurrencyIcon = activeCurrency.icon
+
+	const activeChannel =
+		CHANNEL_OPTIONS.find((opt) => opt.value === channel) || CHANNEL_OPTIONS[0]
+	const ChannelIcon = activeChannel.icon
 
 	return (
 		<div className="dark:bg-bg text-fg bg-bg-subtle min-h-screen w-full px-6 py-6 font-sans transition-colors md:px-10 md:py-8">
@@ -196,49 +286,169 @@ export default function Page() {
         ══════════════════════════════════════════════ */}
 					<div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-6">
 						<div className="flex flex-wrap items-center gap-2">
-							{/* Last 30 days */}
-							<Button
-								variant="outline"
-								color="neutral"
-								size="sm"
-								className="border-border/60 bg-elevation-level1 text-fg hover:bg-fill1/40 h-8 gap-1.5 rounded-xl px-3 text-[14px] font-medium shadow-2xs">
-								<Calendar className="text-fg-secondary size-3.5" />
-								<span>{timeRange}</span>
-								<ChevronDown className="text-fg-tertiary size-3.5" />
-							</Button>
+							{/* Date range dropdown */}
+							<DropdownMenu>
+								<DropdownMenuTrigger asChild>
+									<Button
+										variant="outline"
+										color="neutral"
+										size="sm"
+										className="border-border/60 bg-elevation-level1 text-fg hover:bg-fill1/40 h-8 cursor-pointer gap-1.5 rounded-xl px-3 text-[14px] font-medium shadow-2xs">
+										<TimeRangeIcon className="text-fg-secondary size-3.5" />
+										<span>{timeRange}</span>
+										<ChevronDown className="text-fg-tertiary size-3.5" />
+									</Button>
+								</DropdownMenuTrigger>
+								<DropdownMenuContent
+									align="start"
+									sideOffset={4}
+									className="border-border/80 w-52 rounded-2xl border p-1.5 shadow-lg">
+									{DATE_RANGE_OPTIONS.map((opt) => {
+										const Icon = opt.icon
+										const isSelected = timeRange === opt.value
+										return (
+											<DropdownMenuItem
+												key={opt.value}
+												onClick={() => setTimeRange(opt.value)}
+												className={cn(
+													"cursor-pointer justify-between gap-2.5 rounded-lg px-3 py-2 text-[14px]",
+													isSelected && "bg-fill1 text-fg font-medium"
+												)}>
+												<div className="flex items-center gap-2.5">
+													<Icon className="text-fg-secondary size-4 shrink-0" />
+													<span>{opt.label}</span>
+												</div>
+												{isSelected && (
+													<Check className="text-primary size-4 shrink-0" />
+												)}
+											</DropdownMenuItem>
+										)
+									})}
+								</DropdownMenuContent>
+							</DropdownMenu>
 
-							{/* Compare */}
-							<Button
-								variant="outline"
-								color="neutral"
-								size="sm"
-								className="border-border/60 bg-elevation-level1 text-fg hover:bg-fill1/40 h-8 gap-1.5 rounded-xl px-3 text-[14px] font-medium shadow-2xs">
-								<Calendar className="text-fg-secondary size-3.5" />
-								<span>Compare</span>
-								<ChevronDown className="text-fg-tertiary size-3.5" />
-							</Button>
+							{/* Compare dropdown */}
+							<DropdownMenu>
+								<DropdownMenuTrigger asChild>
+									<Button
+										variant="outline"
+										color="neutral"
+										size="sm"
+										className="border-border/60 bg-elevation-level1 text-fg hover:bg-fill1/40 h-8 cursor-pointer gap-1.5 rounded-xl px-3 text-[14px] font-medium shadow-2xs">
+										<CompareIcon className="text-fg-secondary size-3.5" />
+										<span>{compareOption}</span>
+										<ChevronDown className="text-fg-tertiary size-3.5" />
+									</Button>
+								</DropdownMenuTrigger>
+								<DropdownMenuContent
+									align="start"
+									sideOffset={4}
+									className="border-border/80 w-56 rounded-2xl border p-1.5 shadow-lg">
+									{COMPARE_OPTIONS.map((opt) => {
+										const Icon = opt.icon
+										const isSelected = compareOption === opt.value
+										return (
+											<DropdownMenuItem
+												key={opt.value}
+												onClick={() => setCompareOption(opt.value)}
+												className={cn(
+													"cursor-pointer justify-between gap-2.5 rounded-lg px-3 py-2 text-[14px]",
+													isSelected && "bg-fill1 text-fg font-medium"
+												)}>
+												<div className="flex items-center gap-2.5">
+													<Icon className="text-fg-secondary size-4 shrink-0" />
+													<span>{opt.label}</span>
+												</div>
+												{isSelected && (
+													<Check className="text-primary size-4 shrink-0" />
+												)}
+											</DropdownMenuItem>
+										)
+									})}
+								</DropdownMenuContent>
+							</DropdownMenu>
 
-							{/* USD */}
-							<Button
-								variant="outline"
-								color="neutral"
-								size="sm"
-								className="border-border/60 bg-elevation-level1 text-fg hover:bg-fill1/40 h-8 gap-1.5 rounded-xl px-3 text-[14px] font-medium shadow-2xs">
-								<CircleDollarSign className="text-fg-secondary size-3.5" />
-								<span>USD</span>
-								<ChevronDown className="text-fg-tertiary size-3.5" />
-							</Button>
+							{/* Currency dropdown */}
+							<DropdownMenu>
+								<DropdownMenuTrigger asChild>
+									<Button
+										variant="outline"
+										color="neutral"
+										size="sm"
+										className="border-border/60 bg-elevation-level1 text-fg hover:bg-fill1/40 h-8 cursor-pointer gap-1.5 rounded-xl px-3 text-[14px] font-medium shadow-2xs">
+										<CurrencyIcon className="text-fg-secondary size-3.5" />
+										<span>{currency}</span>
+										<ChevronDown className="text-fg-tertiary size-3.5" />
+									</Button>
+								</DropdownMenuTrigger>
+								<DropdownMenuContent
+									align="start"
+									sideOffset={4}
+									className="border-border/80 w-48 rounded-2xl border p-1.5 shadow-lg">
+									{CURRENCY_OPTIONS.map((opt) => {
+										const Icon = opt.icon
+										const isSelected = currency === opt.value
+										return (
+											<DropdownMenuItem
+												key={opt.value}
+												onClick={() => setCurrency(opt.value)}
+												className={cn(
+													"cursor-pointer justify-between gap-2.5 rounded-lg px-3 py-2 text-[14px]",
+													isSelected && "bg-fill1 text-fg font-medium"
+												)}>
+												<div className="flex items-center gap-2.5">
+													<Icon className="text-fg-secondary size-4 shrink-0" />
+													<span>{opt.label}</span>
+												</div>
+												{isSelected && (
+													<Check className="text-primary size-4 shrink-0" />
+												)}
+											</DropdownMenuItem>
+										)
+									})}
+								</DropdownMenuContent>
+							</DropdownMenu>
 
-							{/* All channels */}
-							<Button
-								variant="outline"
-								color="neutral"
-								size="sm"
-								className="border-border/60 bg-elevation-level1 text-fg hover:bg-fill1/40 h-8 gap-1.5 rounded-xl px-3 text-[14px] font-medium shadow-2xs">
-								<Layers className="text-fg-secondary size-3.5" />
-								<span>{channel}</span>
-								<ChevronDown className="text-fg-tertiary size-3.5" />
-							</Button>
+							{/* Channels dropdown */}
+							<DropdownMenu>
+								<DropdownMenuTrigger asChild>
+									<Button
+										variant="outline"
+										color="neutral"
+										size="sm"
+										className="border-border/60 bg-elevation-level1 text-fg hover:bg-fill1/40 h-8 cursor-pointer gap-1.5 rounded-xl px-3 text-[14px] font-medium shadow-2xs">
+										<ChannelIcon className="text-fg-secondary size-3.5" />
+										<span>{channel}</span>
+										<ChevronDown className="text-fg-tertiary size-3.5" />
+									</Button>
+								</DropdownMenuTrigger>
+								<DropdownMenuContent
+									align="start"
+									sideOffset={4}
+									className="border-border/80 w-52 rounded-2xl border p-1.5 shadow-lg">
+									{CHANNEL_OPTIONS.map((opt) => {
+										const Icon = opt.icon
+										const isSelected = channel === opt.value
+										return (
+											<DropdownMenuItem
+												key={opt.value}
+												onClick={() => setChannel(opt.value)}
+												className={cn(
+													"cursor-pointer justify-between gap-2.5 rounded-lg px-3 py-2 text-[14px]",
+													isSelected && "bg-fill1 text-fg font-medium"
+												)}>
+												<div className="flex items-center gap-2.5">
+													<Icon className="text-fg-secondary size-4 shrink-0" />
+													<span>{opt.label}</span>
+												</div>
+												{isSelected && (
+													<Check className="text-primary size-4 shrink-0" />
+												)}
+											</DropdownMenuItem>
+										)
+									})}
+								</DropdownMenuContent>
+							</DropdownMenu>
 						</div>
 
 						{/* Manage Metrics */}
