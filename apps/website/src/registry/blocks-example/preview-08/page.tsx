@@ -555,7 +555,7 @@ export default function Page() {
 										content={({ active, payload, label }) => {
 											if (!active || !payload?.length) return null
 											return (
-												<div className="border-border/60 dark:bg-elevation-level1 rounded-radius min-w-[105px] border bg-white p-2.5 text-[12px] shadow-md">
+												<div className="border-border/60 dark:bg-elevation-level1 min-w-[105px] rounded-xl border bg-white p-2.5 text-[12px] shadow-md">
 													<div className="text-fg mb-1 text-[12px] font-semibold">
 														{label}
 													</div>
@@ -661,7 +661,7 @@ export default function Page() {
 										content={({ active, payload, label }) => {
 											if (!active || !payload?.length) return null
 											return (
-												<div className="border-border/60 dark:bg-elevation-level1 rounded-radius min-w-[125px] border bg-white p-2.5 text-[12px] shadow-md">
+												<div className="border-border/60 dark:bg-elevation-level1 min-w-[125px] rounded-xl border bg-white p-2.5 text-[12px] shadow-md">
 													<div className="text-fg mb-1.5 text-[12px] font-semibold">
 														{label}
 													</div>

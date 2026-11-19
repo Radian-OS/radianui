@@ -217,7 +217,7 @@ export default function Page() {
 				<div className="flex flex-col gap-6">
 					<header className="flex flex-wrap items-center justify-between gap-x-3 gap-y-6">
 						<div className="flex items-center gap-2.5">
-							<div className="text-fg-secondary dark:bg-fill2 rounded-radius flex size-7 items-center justify-center bg-zinc-100">
+							<div className="text-fg-secondary dark:bg-fill2 flex size-7 items-center justify-center rounded-md bg-zinc-100">
 								<IconSlot slot="bar-chart" className="size-4" />
 							</div>
 							<h1 className="heading-5 text-fg">Analytics</h1>
@@ -653,7 +653,7 @@ export default function Page() {
 											content={({ active, payload, label }) => {
 												if (!active || !payload?.length) return null
 												return (
-													<div className="border-border/60 dark:bg-elevation-level1 rounded-radius flex min-w-[145px] flex-col gap-1.5 border bg-white p-2.5 text-[12px] shadow-md">
+													<div className="border-border/60 dark:bg-elevation-level1 flex min-w-[145px] flex-col gap-1.5 rounded-xl border bg-white p-2.5 text-[12px] shadow-md">
 														<div className="text-fg text-[12px] font-semibold">
 															{label}
 														</div>
@@ -741,7 +741,7 @@ export default function Page() {
 							{salesBreakdown.map((item, index) => (
 								<div
 									key={index}
-									className={`rounded-radius flex items-center justify-between px-3 py-1.5 text-[14px] transition-colors ${
+									className={`flex items-center justify-between rounded-md px-3 py-1.5 text-[14px] transition-colors ${
 										index % 2 === 1
 											? "bg-zinc-100/80 dark:bg-zinc-800/40"
 											: "bg-transparent"
@@ -841,7 +841,7 @@ export default function Page() {
 												if (!active || !payload?.length) return null
 												const val = payload[0].value as number
 												return (
-													<div className="border-border/80 dark:bg-elevation-level2 rounded-radius border bg-white px-3 py-1.5 shadow-md">
+													<div className="border-border/80 dark:bg-elevation-level2 rounded-lg border bg-white px-3 py-1.5 shadow-md">
 														<div className="text-[11px] text-zinc-400 dark:text-zinc-500">
 															{label}
 														</div>

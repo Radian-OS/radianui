@@ -2,7 +2,6 @@
 
 import * as React from "react"
 import { useState, useRef, useEffect } from "react"
-import { ThumbsUp, ThumbsDown, Volume2 } from "lucide-react"
 import { IconSlot } from "@/registry/icon/icon-library"
 import { Button, IconButton } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/styles/default/ui/avatar"
@@ -76,7 +75,7 @@ function CollapsedLogoTrigger() {
 					size="md"
 					onClick={toggleSidebar}
 					aria-label="Toggle sidebar"
-					className="group/logo text-fg-secondary hover:text-fg size-9">
+					className="group/logo text-fg-secondary hover:text-fg size-9 rounded-lg">
 					<span className="group-hover/logo:hidden">
 						<RadianLogo className="size-[26px]" />
 					</span>
@@ -113,8 +112,10 @@ function ChatHeader({
 							<IconSlot slot="down" className="text-fg-tertiary size-4" />
 						</Button>
 					</DropdownMenuTrigger>
-					<DropdownMenuContent align="start" className="w-56 p-1.5 shadow-lg">
-						<DropdownMenuItem className="cursor-pointer gap-2.5 px-3 py-2 text-[14px]">
+					<DropdownMenuContent
+						align="start"
+						className="border-border/80 bg-elevation-level1 w-56 rounded-2xl border p-1.5 shadow-lg">
+						<DropdownMenuItem className="cursor-pointer gap-2.5 rounded-xl px-3 py-2 text-[14px]">
 							<IconSlot
 								slot="pencil"
 								className="text-fg-secondary size-4 shrink-0"
@@ -123,9 +124,9 @@ function ChatHeader({
 						</DropdownMenuItem>
 						<DropdownMenuItem
 							onClick={onTogglePin}
-							className="cursor-pointer gap-2.5 px-3 py-2 text-[14px]">
+							className="cursor-pointer gap-2.5 rounded-xl px-3 py-2 text-[14px]">
 							<IconSlot
-								slot="star"
+								slot="pin"
 								className={cn(
 									"size-4 shrink-0",
 									isPinned ? "text-primary fill-current" : "text-fg-secondary"
@@ -133,7 +134,7 @@ function ChatHeader({
 							/>
 							<span>{isPinned ? "Unpin chat" : "Pin chat"}</span>
 						</DropdownMenuItem>
-						<DropdownMenuItem className="cursor-pointer gap-2.5 px-3 py-2 text-[14px]">
+						<DropdownMenuItem className="cursor-pointer gap-2.5 rounded-xl px-3 py-2 text-[14px]">
 							<IconSlot
 								slot="lock"
 								className="text-fg-secondary size-4 shrink-0"
@@ -141,19 +142,19 @@ function ChatHeader({
 							<span>Lock chat</span>
 						</DropdownMenuItem>
 						<DropdownMenuDivider />
-						<DropdownMenuItem className="cursor-pointer gap-2.5 px-3 py-2 text-[14px]">
+						<DropdownMenuItem className="cursor-pointer gap-2.5 rounded-xl px-3 py-2 text-[14px]">
 							<IconSlot
 								slot="archive"
 								className="text-fg-secondary size-4 shrink-0"
 							/>
 							<span>Archive</span>
 						</DropdownMenuItem>
-						<DropdownMenuItem className="text-error focus:text-error focus:bg-error/10 cursor-pointer gap-2.5 px-3 py-2 text-[14px]">
+						<DropdownMenuItem className="text-error focus:text-error focus:bg-error/10 cursor-pointer gap-2.5 rounded-xl px-3 py-2 text-[14px]">
 							<IconSlot slot="trash" className="text-error size-4 shrink-0" />
 							<span>Delete</span>
 						</DropdownMenuItem>
 						<DropdownMenuDivider />
-						<DropdownMenuItem className="cursor-pointer justify-between gap-2.5 px-3 py-2 text-[14px]">
+						<DropdownMenuItem className="cursor-pointer justify-between gap-2.5 rounded-xl px-3 py-2 text-[14px]">
 							<div className="flex items-center gap-2.5">
 								<IconSlot
 									slot="file-box"
@@ -468,37 +469,47 @@ function ChatSidebar({
 												setActiveChat("new")
 												setMessages([])
 											}}
-											className="h-8.5 text-[14px]">
+											className="h-8.5 rounded-lg text-[14px]">
 											<IconSlot slot="pencil" className="size-4" />
 											<span>New chat</span>
 										</SidebarMenuButton>
 									</SidebarMenuItem>
 									<SidebarMenuItem>
-										<SidebarMenuButton size="sm" className="h-8.5 text-[14px]">
+										<SidebarMenuButton
+											size="sm"
+											className="h-8.5 rounded-lg text-[14px]">
 											<IconSlot slot="image" className="size-4" />
 											<span>Images</span>
 										</SidebarMenuButton>
 									</SidebarMenuItem>
 									<SidebarMenuItem>
-										<SidebarMenuButton size="sm" className="h-8.5 text-[14px]">
+										<SidebarMenuButton
+											size="sm"
+											className="h-8.5 rounded-lg text-[14px]">
 											<IconSlot slot="clock" className="size-4" />
 											<span>Scheduled</span>
 										</SidebarMenuButton>
 									</SidebarMenuItem>
 									<SidebarMenuItem>
-										<SidebarMenuButton size="sm" className="h-8.5 text-[14px]">
+										<SidebarMenuButton
+											size="sm"
+											className="h-8.5 rounded-lg text-[14px]">
 											<IconSlot slot="book" className="size-4" />
 											<span>Library</span>
 										</SidebarMenuButton>
 									</SidebarMenuItem>
 									<SidebarMenuItem>
-										<SidebarMenuButton size="sm" className="h-8.5 text-[14px]">
+										<SidebarMenuButton
+											size="sm"
+											className="h-8.5 rounded-lg text-[14px]">
 											<IconSlot slot="blocks" className="size-4" />
 											<span>Plugins</span>
 										</SidebarMenuButton>
 									</SidebarMenuItem>
 									<SidebarMenuItem>
-										<SidebarMenuButton size="sm" className="h-8.5 text-[14px]">
+										<SidebarMenuButton
+											size="sm"
+											className="h-8.5 rounded-lg text-[14px]">
 											<IconSlot slot="shapes" className="size-4" />
 											<span>Explore</span>
 										</SidebarMenuButton>
@@ -537,12 +548,12 @@ function ChatSidebar({
 															isActive={isActive}
 															onClick={() => setActiveChat(chat.id)}
 															className={cn(
-																"h-8.5 w-full pr-14 text-[14px] font-normal transition-colors",
+																"h-8.5 w-full rounded-lg pr-14 text-[14px] font-normal transition-colors",
 																isActive &&
 																	"bg-fill2 dark:bg-elevation-level2 font-medium"
 															)}>
 															<IconSlot
-																slot="star"
+																slot="pin"
 																className="text-primary size-3.5 shrink-0 fill-current"
 															/>
 															<span className="truncate">{chat.title}</span>
@@ -561,7 +572,7 @@ function ChatSidebar({
 																		className="text-fg-secondary hover:text-fg size-7 cursor-pointer"
 																		aria-label="Unpin chat">
 																		<IconSlot
-																			slot="star"
+																			slot="pin"
 																			className="text-primary size-3.5 fill-current"
 																		/>
 																	</IconButton>
@@ -569,7 +580,7 @@ function ChatSidebar({
 																<TooltipContent
 																	side="top"
 																	sideOffset={4}
-																	className="bg-fg text-bg dark:bg-elevation-level3 dark:text-fg rounded-radius border-0 px-2.5 py-1 text-xs font-medium shadow-md">
+																	className="bg-fg text-bg dark:bg-elevation-level3 dark:text-fg rounded-full border-0 px-2.5 py-1 text-xs font-medium shadow-md">
 																	Unpin chat
 																</TooltipContent>
 															</Tooltip>
@@ -611,7 +622,7 @@ function ChatSidebar({
 														isActive={isActive}
 														onClick={() => setActiveChat(chat.id)}
 														className={cn(
-															"h-8.5 w-full pr-14 text-[14px] font-normal transition-colors",
+															"h-8.5 w-full rounded-lg pr-14 text-[14px] font-normal transition-colors",
 															isActive &&
 																"bg-fill2 dark:bg-elevation-level2 font-medium"
 														)}>
@@ -630,13 +641,13 @@ function ChatSidebar({
 																	}}
 																	className="text-fg-secondary hover:text-fg size-7 cursor-pointer"
 																	aria-label="Pin chat">
-																	<IconSlot slot="star" className="size-3.5" />
+																	<IconSlot slot="pin" className="size-3.5" />
 																</IconButton>
 															</TooltipTrigger>
 															<TooltipContent
 																side="top"
 																sideOffset={4}
-																className="bg-fg text-bg dark:bg-elevation-level3 dark:text-fg rounded-radius border-0 px-2.5 py-1 text-xs font-medium shadow-md">
+																className="bg-fg text-bg dark:bg-elevation-level3 dark:text-fg rounded-full border-0 px-2.5 py-1 text-xs font-medium shadow-md">
 																Pin chat
 															</TooltipContent>
 														</Tooltip>
@@ -721,7 +732,7 @@ function ChatSidebar({
 								variant="outline"
 								color="neutral"
 								size="xs"
-								className="shrink-0 px-3 text-xs font-medium">
+								className="shrink-0 rounded-full px-3 text-xs font-medium">
 								Upgrade
 							</Button>
 						</motion.div>
@@ -849,7 +860,7 @@ export default function Page() {
 									<div
 										key={msg.id}
 										className="group/user-msg flex flex-col items-end gap-1">
-										<div className="bg-fill2 dark:bg-elevation-level2 text-fg rounded-radius max-w-[85%] px-5 py-2.5 text-[14px] leading-relaxed break-words shadow-2xs sm:max-w-xl">
+										<div className="bg-fill2 dark:bg-elevation-level2 text-fg max-w-[85%] rounded-2xl px-5 py-2.5 text-[14px] leading-relaxed break-words shadow-2xs sm:max-w-xl">
 											{msg.content}
 										</div>
 										{/* Action Icons Row for User Message */}
@@ -859,7 +870,7 @@ export default function Page() {
 												color="neutral"
 												size="xs"
 												onClick={() => handleCopy(msg.id, msg.content)}
-												className="hover:text-fg size-7"
+												className="hover:text-fg size-7 rounded-lg"
 												aria-label="Copy message">
 												{copiedId === msg.id ? (
 													<IconSlot
@@ -874,7 +885,7 @@ export default function Page() {
 												variant="ghost"
 												color="neutral"
 												size="xs"
-												className="hover:text-fg size-7"
+												className="hover:text-fg size-7 rounded-lg"
 												aria-label="Share message">
 												<IconSlot slot="external-link" className="size-3.5" />
 											</IconButton>
@@ -882,7 +893,7 @@ export default function Page() {
 												variant="ghost"
 												color="neutral"
 												size="xs"
-												className="hover:text-fg size-7"
+												className="hover:text-fg size-7 rounded-lg"
 												aria-label="Edit message">
 												<IconSlot slot="pencil" className="size-3.5" />
 											</IconButton>
@@ -906,7 +917,7 @@ export default function Page() {
 											color="neutral"
 											size="xs"
 											onClick={() => handleCopy(msg.id, msg.content)}
-											className="hover:text-fg size-7"
+											className="hover:text-fg size-7 rounded-lg"
 											aria-label="Copy response">
 											{copiedId === msg.id ? (
 												<IconSlot
@@ -924,7 +935,7 @@ export default function Page() {
 											onClick={() => {
 												handleSendMessage()
 											}}
-											className="hover:text-fg size-7"
+											className="hover:text-fg size-7 rounded-lg"
 											aria-label="Regenerate">
 											<IconSlot slot="repeat" className="size-3.5" />
 										</IconButton>
@@ -934,11 +945,11 @@ export default function Page() {
 											size="xs"
 											onClick={() => handleLike(msg.id)}
 											className={cn(
-												"hover:text-fg size-7",
+												"hover:text-fg size-7 rounded-lg",
 												msg.liked && "text-primary"
 											)}
 											aria-label="Good response">
-											<ThumbsUp className="size-3.5" />
+											<IconSlot slot="thumbs-up" className="size-3.5" />
 										</IconButton>
 										<IconButton
 											variant="ghost"
@@ -946,11 +957,11 @@ export default function Page() {
 											size="xs"
 											onClick={() => handleDislike(msg.id)}
 											className={cn(
-												"hover:text-fg size-7",
+												"hover:text-fg size-7 rounded-lg",
 												msg.disliked && "text-error"
 											)}
 											aria-label="Bad response">
-											<ThumbsDown className="size-3.5" />
+											<IconSlot slot="thumbs-down" className="size-3.5" />
 										</IconButton>
 										<IconButton
 											variant="ghost"
@@ -964,15 +975,15 @@ export default function Page() {
 													window.speechSynthesis.speak(utterance)
 												}
 											}}
-											className="hover:text-fg size-7"
+											className="hover:text-fg size-7 rounded-lg"
 											aria-label="Read aloud">
-											<Volume2 className="size-3.5" />
+											<IconSlot slot="volume" className="size-3.5" />
 										</IconButton>
 										<IconButton
 											variant="ghost"
 											color="neutral"
 											size="xs"
-											className="hover:text-fg size-7"
+											className="hover:text-fg size-7 rounded-lg"
 											aria-label="Share response">
 											<IconSlot slot="external-link" className="size-3.5" />
 										</IconButton>
@@ -980,7 +991,7 @@ export default function Page() {
 											variant="ghost"
 											color="neutral"
 											size="xs"
-											className="hover:text-fg size-7"
+											className="hover:text-fg size-7 rounded-lg"
 											aria-label="More options">
 											<IconSlot slot="threeDot" className="size-3.5" />
 										</IconButton>
@@ -996,7 +1007,7 @@ export default function Page() {
             3. FLOATING PROMPT INPUT CONTAINER
         ══════════════════════════════════════════════ */}
 				<div className="mx-auto w-full max-w-3xl px-4 pb-4">
-					<div className="border-border/80 bg-elevation-level1 focus-within:border-primary/60 focus-within:ring-primary/20 rounded-radius relative flex flex-col border p-3 shadow-xs transition-all focus-within:ring-2">
+					<div className="border-border/80 bg-elevation-level1 focus-within:border-primary/60 focus-within:ring-primary/20 relative flex flex-col rounded-2xl border p-3 shadow-xs transition-all focus-within:ring-2">
 						<textarea
 							value={inputPrompt}
 							onChange={(e) => setInputPrompt(e.target.value)}
@@ -1019,7 +1030,7 @@ export default function Page() {
 									variant="ghost"
 									color="neutral"
 									size="sm"
-									className="text-fg-secondary hover:text-fg size-8"
+									className="text-fg-secondary hover:text-fg size-8 rounded-full"
 									aria-label="Attach file">
 									<IconSlot slot="link" className="size-4" />
 								</IconButton>
@@ -1029,7 +1040,7 @@ export default function Page() {
 											variant="outline"
 											color="neutral"
 											size="xs"
-											className="gap-1.5 px-3 text-xs font-medium">
+											className="border-border/70 bg-fill1/40 hover:bg-fill2 data-[state=open]:bg-fill2 text-fg cursor-pointer gap-1.5 rounded-full px-3 text-xs font-medium">
 											<IconSlot
 												slot="globe"
 												className="text-fg-secondary size-3.5"
@@ -1045,14 +1056,14 @@ export default function Page() {
 										side="top"
 										align="start"
 										sideOffset={8}
-										className="border-border/80 bg-elevation-level1 w-52 border p-1.5 shadow-lg">
+										className="border-border/80 bg-elevation-level1 w-52 rounded-2xl border p-1.5 shadow-lg">
 										{AVAILABLE_MODELS.map((model) => {
 											const isSelected = activeModel === model
 											return (
 												<DropdownMenuItem
 													key={model}
 													onClick={() => setActiveModel(model)}
-													className="flex cursor-pointer items-center justify-between gap-2 px-3 py-2 text-[14px]">
+													className="flex cursor-pointer items-center justify-between gap-2 rounded-xl px-3 py-2 text-[14px]">
 													<span>{model}</span>
 													{isSelected && (
 														<IconSlot
@@ -1073,7 +1084,7 @@ export default function Page() {
 								size="sm"
 								disabled={!inputPrompt.trim()}
 								onClick={handleSendMessage}
-								className="size-8 shadow-2xs disabled:opacity-40"
+								className="size-8 rounded-full shadow-2xs disabled:opacity-40"
 								aria-label="Send message">
 								<IconSlot slot="up" className="size-4" />
 							</IconButton>
