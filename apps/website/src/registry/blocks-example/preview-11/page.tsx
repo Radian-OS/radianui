@@ -5,53 +5,57 @@ import { useState } from "react"
 import {
 	Area,
 	CartesianGrid,
+	Cell,
 	ComposedChart,
 	Line,
-	ResponsiveContainer,
+	Pie,
+	PieChart,
+	ReferenceLine,
 	Tooltip,
 	XAxis,
 	YAxis,
-	ReferenceLine,
 } from "recharts"
 import {
-	Home,
-	ClipboardCheck,
-	BarChart3,
-	CheckCircle2,
-	ShieldCheck,
 	AlertTriangle,
-	Building2,
-	FolderArchive,
-	Users,
-	Link2,
-	Terminal,
-	Headphones,
-	Settings,
-	Search,
-	Calendar,
-	SlidersHorizontal,
-	Share2,
+	BarChart3,
 	Bell,
-	Clock,
-	MoreHorizontal,
-	ChevronDown,
-	ChevronsUpDown,
-	ChevronRight,
-	FileSpreadsheet,
+	Building2,
+	Calendar,
 	Check,
+	CheckCircle2,
+	ChevronDown,
+	ChevronRight,
+	ChevronsUpDown,
+	ClipboardCheck,
+	Clock,
+	FileSpreadsheet,
+	FolderArchive,
+	Headphones,
+	Home,
+	Link2,
+	MoreHorizontal,
 	PanelLeftClose,
+	Search,
+	Settings,
+	Share2,
+	ShieldCheck,
+	SlidersHorizontal,
+	Terminal,
+	Users,
 } from "lucide-react"
 
-import { Button, IconButton } from "@/components/ui/button"
+import { Button, IconButton } from "@/styles/default/ui/button"
 import { Badge } from "@/styles/default/ui/badge"
 import {
 	Card,
+	CardContent,
 	CardHeader,
 	CardTitle,
-	CardContent,
 } from "@/styles/default/ui/card"
 import { Avatar, AvatarFallback, AvatarImage } from "@/styles/default/ui/avatar"
 import { Input } from "@/styles/default/ui/input"
+import { Tabs, TabsList, TabsTrigger } from "@/styles/default/ui/tabs"
+import { type ChartConfig, ChartContainer } from "@/styles/default/ui/chart"
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -63,7 +67,6 @@ import {
 	SidebarContent,
 	SidebarFooter,
 	SidebarGroup,
-	SidebarGroupContent,
 	SidebarHeader,
 	SidebarInset,
 	SidebarMenu,
@@ -86,113 +89,54 @@ import {
 import { cn } from "@/lib/utils"
 
 // ──────────────────────────────────────────────
-// Zippy Brand Logo Component
+// Chart Configurations
 // ──────────────────────────────────────────────
-function ZippyLogo({ className = "size-6" }: { className?: string }) {
-	return (
-		<svg
-			viewBox="0 0 32 32"
-			fill="none"
-			xmlns="http://www.w3.org/2000/svg"
-			className={className}>
-			<rect
-				width="32"
-				height="32"
-				rx="8"
-				fill="var(--color-primary, #4F46E5)"
-			/>
-			{/* Four pill petals intersecting */}
-			<rect x="8" y="12" width="16" height="8" rx="4" fill="white" />
-			<rect x="12" y="8" width="8" height="16" rx="4" fill="white" />
-		</svg>
-	)
-}
+const kpi1Config = {
+	completed: {
+		label: "Remediated by due date",
+		color: "var(--color-success, #10b981)",
+	},
+	remaining: {
+		label: "Remaining",
+		color: "var(--color-fill2, rgba(0,0,0,0.06))",
+	},
+} satisfies ChartConfig
 
-// ──────────────────────────────────────────────
-// Donut Progress Chart with Patterned Track
-// ──────────────────────────────────────────────
-interface DonutProgressProps {
-	percentage: number
-	color: string
-	id: string
-	size?: number
-	strokeWidth?: number
-}
+const kpi2Config = {
+	completed: {
+		label: "Remediated past due date",
+		color: "var(--color-warning, #f59e0b)",
+	},
+	remaining: {
+		label: "Remaining",
+		color: "var(--color-fill2, rgba(0,0,0,0.06))",
+	},
+} satisfies ChartConfig
 
-function DonutProgress({
-	percentage,
-	color,
-	id,
-	size = 80,
-	strokeWidth = 10,
-}: DonutProgressProps) {
-	const radius = (size - strokeWidth) / 2
-	const circumference = 2 * Math.PI * radius
-	const strokeDashoffset = circumference - (percentage / 100) * circumference
+const kpi3Config = {
+	completed: {
+		label: "Remediated without due date",
+		color: "var(--color-primary, #4F46E5)",
+	},
+	remaining: {
+		label: "Remaining",
+		color: "var(--color-fill2, rgba(0,0,0,0.06))",
+	},
+} satisfies ChartConfig
 
-	return (
-		<div className="relative shrink-0" style={{ width: size, height: size }}>
-			<svg className="size-full -rotate-90" viewBox={`0 0 ${size} ${size}`}>
-				<defs>
-					<pattern
-						id={`hatch-pattern-${id}`}
-						width="6"
-						height="6"
-						patternTransform="rotate(45 0 0)"
-						patternUnits="userSpaceOnUse">
-						<line
-							x1="0"
-							y1="0"
-							x2="0"
-							y2="6"
-							stroke="currentColor"
-							strokeWidth="1.5"
-							className="text-fill3 dark:text-fill2"
-						/>
-					</pattern>
-				</defs>
-
-				{/* Striped / hatched remainder track */}
-				<circle
-					cx={size / 2}
-					cy={size / 2}
-					r={radius}
-					fill="none"
-					stroke={`url(#hatch-pattern-${id})`}
-					strokeWidth={strokeWidth}
-				/>
-
-				{/* Smooth base ring */}
-				<circle
-					cx={size / 2}
-					cy={size / 2}
-					r={radius}
-					fill="none"
-					stroke="currentColor"
-					strokeWidth={strokeWidth}
-					className="text-fill2/40 dark:text-fill2/20"
-				/>
-
-				{/* Colored progress arc */}
-				<circle
-					cx={size / 2}
-					cy={size / 2}
-					r={radius}
-					fill="none"
-					stroke={color}
-					strokeWidth={strokeWidth}
-					strokeDasharray={circumference}
-					strokeDashoffset={strokeDashoffset}
-					strokeLinecap="round"
-					className="transition-all duration-700 ease-out"
-				/>
-			</svg>
-		</div>
-	)
-}
+const frameworkConfig = {
+	actual: {
+		label: "Actual Progress",
+		color: "var(--color-primary, #6366f1)",
+	},
+	projected: {
+		label: "Projected Progress",
+		color: "var(--color-primary, #6366f1)",
+	},
+} satisfies ChartConfig
 
 // ──────────────────────────────────────────────
-// Framework Progress Chart Dataset
+// Datasets
 // ──────────────────────────────────────────────
 const frameworkProgressData = [
 	{ date: "Feb 1", actual: 20, projected: 20 },
@@ -204,9 +148,6 @@ const frameworkProgressData = [
 	{ date: "Feb 28", actual: null, projected: 75 },
 ]
 
-// ──────────────────────────────────────────────
-// Audits Dataset
-// ──────────────────────────────────────────────
 interface AuditItem {
 	id: string
 	title: string
@@ -241,9 +182,6 @@ const auditItems: AuditItem[] = [
 	},
 ]
 
-// ──────────────────────────────────────────────
-// Reports Dataset
-// ──────────────────────────────────────────────
 interface ReportItem {
 	id: string
 	title: string
@@ -294,7 +232,7 @@ const DATE_RANGE_OPTIONS = [
 ]
 
 // ──────────────────────────────────────────────
-// Sidebar Navigation Component
+// Application Sidebar Component
 // ──────────────────────────────────────────────
 function AppSidebar({
 	activeNav,
@@ -311,11 +249,17 @@ function AppSidebar({
 			variant="sidebar"
 			collapsible="icon"
 			className="border-border/60 bg-elevation-level1 border-r transition-[width] duration-300">
-			{/* Brand Header */}
+			{/* Brand Header using Radian CDN / Favicon fallback per guidelines */}
 			<SidebarHeader className="border-border/40 flex h-14 items-center justify-between border-b px-3 py-2">
 				<div className="flex items-center gap-2.5 px-1">
-					<ZippyLogo className="size-6 shrink-0" />
-					<span className="font-heading text-fg text-base font-semibold tracking-tight group-data-[collapsible=icon]:hidden">
+					<img
+						src="https://www.google.com/s2/favicons?sz=32&domain=zippy.com"
+						alt="Zippy brand logo"
+						width={20}
+						height={20}
+						className="size-5 shrink-0 rounded-md"
+					/>
+					<span className="font-heading text-fg text-base tracking-tight group-data-[collapsible=icon]:hidden">
 						Zippy
 					</span>
 				</div>
@@ -338,12 +282,7 @@ function AppSidebar({
 							<SidebarMenuButton
 								size="sm"
 								isActive={activeNav === "Home"}
-								onClick={() => setActiveNav("Home")}
-								className={cn(
-									"h-8.5 rounded-lg text-[14px]",
-									activeNav === "Home" &&
-										"bg-fill2 dark:bg-elevation-level2 font-medium"
-								)}>
+								onClick={() => setActiveNav("Home")}>
 								<Home className="size-4" />
 								<span>Home</span>
 							</SidebarMenuButton>
@@ -352,12 +291,7 @@ function AppSidebar({
 							<SidebarMenuButton
 								size="sm"
 								isActive={activeNav === "Test"}
-								onClick={() => setActiveNav("Test")}
-								className={cn(
-									"h-8.5 rounded-lg text-[14px]",
-									activeNav === "Test" &&
-										"bg-fill2 dark:bg-elevation-level2 font-medium"
-								)}>
+								onClick={() => setActiveNav("Test")}>
 								<ClipboardCheck className="size-4" />
 								<span>Test</span>
 							</SidebarMenuButton>
@@ -366,12 +300,7 @@ function AppSidebar({
 							<SidebarMenuButton
 								size="sm"
 								isActive={activeNav === "Reports"}
-								onClick={() => setActiveNav("Reports")}
-								className={cn(
-									"h-8.5 rounded-lg text-[14px]",
-									activeNav === "Reports" &&
-										"bg-fill2 dark:bg-elevation-level2 text-fg font-medium"
-								)}>
+								onClick={() => setActiveNav("Reports")}>
 								<BarChart3 className="size-4" />
 								<span>Reports</span>
 							</SidebarMenuButton>
@@ -386,12 +315,7 @@ function AppSidebar({
 							<SidebarMenuButton
 								size="sm"
 								isActive={activeNav === "Compliance"}
-								onClick={() => setActiveNav("Compliance")}
-								className={cn(
-									"h-8.5 rounded-lg text-[14px]",
-									activeNav === "Compliance" &&
-										"bg-fill2 dark:bg-elevation-level2 font-medium"
-								)}>
+								onClick={() => setActiveNav("Compliance")}>
 								<CheckCircle2 className="size-4" />
 								<span>Compliance</span>
 							</SidebarMenuButton>
@@ -400,12 +324,7 @@ function AppSidebar({
 							<SidebarMenuButton
 								size="sm"
 								isActive={activeNav === "Trust center"}
-								onClick={() => setActiveNav("Trust center")}
-								className={cn(
-									"h-8.5 rounded-lg text-[14px]",
-									activeNav === "Trust center" &&
-										"bg-fill2 dark:bg-elevation-level2 font-medium"
-								)}>
+								onClick={() => setActiveNav("Trust center")}>
 								<ShieldCheck className="size-4" />
 								<span>Trust center</span>
 							</SidebarMenuButton>
@@ -414,12 +333,7 @@ function AppSidebar({
 							<SidebarMenuButton
 								size="sm"
 								isActive={activeNav === "Risk"}
-								onClick={() => setActiveNav("Risk")}
-								className={cn(
-									"h-8.5 rounded-lg text-[14px]",
-									activeNav === "Risk" &&
-										"bg-fill2 dark:bg-elevation-level2 font-medium"
-								)}>
+								onClick={() => setActiveNav("Risk")}>
 								<AlertTriangle className="size-4" />
 								<span>Risk</span>
 							</SidebarMenuButton>
@@ -428,12 +342,7 @@ function AppSidebar({
 							<SidebarMenuButton
 								size="sm"
 								isActive={activeNav === "Vendor"}
-								onClick={() => setActiveNav("Vendor")}
-								className={cn(
-									"h-8.5 rounded-lg text-[14px]",
-									activeNav === "Vendor" &&
-										"bg-fill2 dark:bg-elevation-level2 font-medium"
-								)}>
+								onClick={() => setActiveNav("Vendor")}>
 								<Building2 className="size-4" />
 								<span>Vendor</span>
 							</SidebarMenuButton>
@@ -442,12 +351,7 @@ function AppSidebar({
 							<SidebarMenuButton
 								size="sm"
 								isActive={activeNav === "Assets"}
-								onClick={() => setActiveNav("Assets")}
-								className={cn(
-									"h-8.5 rounded-lg text-[14px]",
-									activeNav === "Assets" &&
-										"bg-fill2 dark:bg-elevation-level2 font-medium"
-								)}>
+								onClick={() => setActiveNav("Assets")}>
 								<FolderArchive className="size-4" />
 								<span>Assets</span>
 							</SidebarMenuButton>
@@ -458,7 +362,7 @@ function AppSidebar({
 							<SidebarMenuButton
 								size="sm"
 								onClick={() => setTeamsExpanded(!teamsExpanded)}
-								className="h-8.5 justify-between rounded-lg text-[14px]">
+								className="justify-between">
 								<div className="flex items-center gap-2">
 									<Users className="size-4" />
 									<span>Teams</span>
@@ -496,12 +400,7 @@ function AppSidebar({
 							<SidebarMenuButton
 								size="sm"
 								isActive={activeNav === "Integrations"}
-								onClick={() => setActiveNav("Integrations")}
-								className={cn(
-									"h-8.5 rounded-lg text-[14px]",
-									activeNav === "Integrations" &&
-										"bg-fill2 dark:bg-elevation-level2 font-medium"
-								)}>
+								onClick={() => setActiveNav("Integrations")}>
 								<Link2 className="size-4" />
 								<span>Integrations</span>
 							</SidebarMenuButton>
@@ -517,8 +416,7 @@ function AppSidebar({
 						<SidebarMenuButton
 							size="sm"
 							isActive={activeNav === "API"}
-							onClick={() => setActiveNav("API")}
-							className="text-fg-secondary hover:text-fg h-8.5 rounded-lg text-[14px]">
+							onClick={() => setActiveNav("API")}>
 							<Terminal className="size-4" />
 							<span>API</span>
 						</SidebarMenuButton>
@@ -527,8 +425,7 @@ function AppSidebar({
 						<SidebarMenuButton
 							size="sm"
 							isActive={activeNav === "Help Center"}
-							onClick={() => setActiveNav("Help Center")}
-							className="text-fg-secondary hover:text-fg h-8.5 rounded-lg text-[14px]">
+							onClick={() => setActiveNav("Help Center")}>
 							<Headphones className="size-4" />
 							<span>Help Center</span>
 						</SidebarMenuButton>
@@ -537,8 +434,7 @@ function AppSidebar({
 						<SidebarMenuButton
 							size="sm"
 							isActive={activeNav === "Settings"}
-							onClick={() => setActiveNav("Settings")}
-							className="text-fg-secondary hover:text-fg h-8.5 rounded-lg text-[14px]">
+							onClick={() => setActiveNav("Settings")}>
 							<Settings className="size-4" />
 							<span>Settings</span>
 						</SidebarMenuButton>
@@ -588,7 +484,7 @@ export default function Preview11Page() {
 							/>
 						</div>
 
-						{/* Date Range Dropdown */}
+						{/* Date Range Dropdown with Radian Menu */}
 						<DropdownMenu>
 							<DropdownMenuTrigger asChild>
 								<Button
@@ -653,6 +549,7 @@ export default function Preview11Page() {
 							<Bell className="size-4" />
 						</IconButton>
 
+						{/* Canonical Radian OS Avatar */}
 						<Avatar
 							size="sm"
 							rounded="circle"
@@ -708,99 +605,160 @@ export default function Preview11Page() {
           ══════════════════════════════════════════════ */}
 					<div className="grid grid-cols-1 gap-4 md:grid-cols-3">
 						{/* Card 1: Remediated by due date */}
-						<Card className="border-border/60 bg-elevation-level1 flex flex-col justify-between rounded-2xl p-5 shadow-xs">
-							<div className="flex items-start justify-between gap-4">
-								<div className="flex flex-col gap-1">
-									<span className="text-fg-secondary text-sm font-medium">
-										Remediated by due date
-									</span>
-									<span className="text-fg mt-2 text-3xl font-bold tracking-tight">
-										93%
-									</span>
-									<p className="text-fg-tertiary mt-1 text-xs leading-relaxed">
-										36 of 521 task done by due date, +27% vs last month.
-									</p>
-								</div>
-								<DonutProgress
-									id="due-date"
-									percentage={93}
-									color="var(--color-success, #10b981)"
-								/>
-							</div>
+						<Card className="border-border/60 bg-elevation-level1 rounded-2xl shadow-xs">
+							<CardContent className="flex h-full flex-col justify-between p-5">
+								<div className="flex items-start justify-between gap-4">
+									<div className="flex flex-col gap-1">
+										<span className="text-fg-secondary text-sm font-medium">
+											Remediated by due date
+										</span>
+										<span className="text-fg mt-2 text-3xl font-bold tracking-tight">
+											93%
+										</span>
+										<p className="text-fg-tertiary mt-1 text-xs leading-relaxed">
+											36 of 521 task done by due date, +27% vs last month.
+										</p>
+									</div>
 
-							<div className="mt-4">
-								<Badge
-									color="success"
-									variant="soft"
-									size="sm"
-									className="rounded-md font-medium">
-									Exellent
-								</Badge>
-							</div>
+									{/* Recharts Pie Donut inside ChartContainer */}
+									<ChartContainer
+										config={kpi1Config}
+										className="size-20 shrink-0">
+										<PieChart>
+											<Pie
+												data={[
+													{ name: "completed", value: 93 },
+													{ name: "remaining", value: 7 },
+												]}
+												cx="50%"
+												cy="50%"
+												innerRadius={26}
+												outerRadius={36}
+												startAngle={90}
+												endAngle={-270}
+												dataKey="value"
+												stroke="none">
+												<Cell fill="var(--color-success, #10b981)" />
+												<Cell fill="var(--color-fill2, rgba(0,0,0,0.06))" />
+											</Pie>
+										</PieChart>
+									</ChartContainer>
+								</div>
+
+								<div className="mt-4">
+									<Badge
+										color="success"
+										variant="soft"
+										size="sm"
+										className="rounded-md">
+										Exellent
+									</Badge>
+								</div>
+							</CardContent>
 						</Card>
 
 						{/* Card 2: Remediated past due date */}
-						<Card className="border-border/60 bg-elevation-level1 flex flex-col justify-between rounded-2xl p-5 shadow-xs">
-							<div className="flex items-start justify-between gap-4">
-								<div className="flex flex-col gap-1">
-									<span className="text-fg-secondary text-sm font-medium">
-										Remediated past due date
-									</span>
-									<span className="text-fg mt-2 text-3xl font-bold tracking-tight">
-										14%
-									</span>
-									<p className="text-fg-tertiary mt-1 text-xs leading-relaxed">
-										36 of 521 task done past due date, -18% vs last month.
-									</p>
-								</div>
-								<DonutProgress
-									id="past-due"
-									percentage={14}
-									color="var(--color-warning, #f59e0b)"
-								/>
-							</div>
+						<Card className="border-border/60 bg-elevation-level1 rounded-2xl shadow-xs">
+							<CardContent className="flex h-full flex-col justify-between p-5">
+								<div className="flex items-start justify-between gap-4">
+									<div className="flex flex-col gap-1">
+										<span className="text-fg-secondary text-sm font-medium">
+											Remediated past due date
+										</span>
+										<span className="text-fg mt-2 text-3xl font-bold tracking-tight">
+											14%
+										</span>
+										<p className="text-fg-tertiary mt-1 text-xs leading-relaxed">
+											36 of 521 task done past due date, -18% vs last month.
+										</p>
+									</div>
 
-							<div className="mt-4">
-								<Badge
-									color="warning"
-									variant="soft"
-									size="sm"
-									className="rounded-md font-medium">
-									Average
-								</Badge>
-							</div>
+									<ChartContainer
+										config={kpi2Config}
+										className="size-20 shrink-0">
+										<PieChart>
+											<Pie
+												data={[
+													{ name: "completed", value: 14 },
+													{ name: "remaining", value: 86 },
+												]}
+												cx="50%"
+												cy="50%"
+												innerRadius={26}
+												outerRadius={36}
+												startAngle={90}
+												endAngle={-270}
+												dataKey="value"
+												stroke="none">
+												<Cell fill="var(--color-warning, #f59e0b)" />
+												<Cell fill="var(--color-fill2, rgba(0,0,0,0.06))" />
+											</Pie>
+										</PieChart>
+									</ChartContainer>
+								</div>
+
+								<div className="mt-4">
+									<Badge
+										color="warning"
+										variant="soft"
+										size="sm"
+										className="rounded-md">
+										Average
+									</Badge>
+								</div>
+							</CardContent>
 						</Card>
 
 						{/* Card 3: Remediated without due date */}
-						<Card className="border-border/60 bg-elevation-level1 flex flex-col justify-between rounded-2xl p-5 shadow-xs">
-							<div className="flex items-start justify-between gap-4">
-								<div className="flex flex-col gap-1">
-									<span className="text-fg-secondary text-sm font-medium">
-										Remediated without due date
-									</span>
-									<span className="text-fg mt-2 text-3xl font-bold tracking-tight">
-										3%
-									</span>
-									<p className="text-fg-tertiary mt-1 text-xs leading-relaxed">
-										483 of 521 task completed, +27% compared to last month.
-									</p>
-								</div>
-								<DonutProgress
-									id="without-due"
-									percentage={3}
-									color="var(--color-primary, #4F46E5)"
-								/>
-							</div>
+						<Card className="border-border/60 bg-elevation-level1 rounded-2xl shadow-xs">
+							<CardContent className="flex h-full flex-col justify-between p-5">
+								<div className="flex items-start justify-between gap-4">
+									<div className="flex flex-col gap-1">
+										<span className="text-fg-secondary text-sm font-medium">
+											Remediated without due date
+										</span>
+										<span className="text-fg mt-2 text-3xl font-bold tracking-tight">
+											3%
+										</span>
+										<p className="text-fg-tertiary mt-1 text-xs leading-relaxed">
+											483 of 521 task completed, +27% compared to last month.
+										</p>
+									</div>
 
-							<div className="mt-4">
-								<Badge
-									color="info"
-									variant="soft"
-									size="sm"
-									className="rounded-md font-medium">
-									Good
-								</Badge>
-							</div>
+									<ChartContainer
+										config={kpi3Config}
+										className="size-20 shrink-0">
+										<PieChart>
+											<Pie
+												data={[
+													{ name: "completed", value: 3 },
+													{ name: "remaining", value: 97 },
+												]}
+												cx="50%"
+												cy="50%"
+												innerRadius={26}
+												outerRadius={36}
+												startAngle={90}
+												endAngle={-270}
+												dataKey="value"
+												stroke="none">
+												<Cell fill="var(--color-primary, #4F46E5)" />
+												<Cell fill="var(--color-fill2, rgba(0,0,0,0.06))" />
+											</Pie>
+										</PieChart>
+									</ChartContainer>
+								</div>
+
+								<div className="mt-4">
+									<Badge
+										color="info"
+										variant="soft"
+										size="sm"
+										className="rounded-md">
+										Good
+									</Badge>
+								</div>
+							</CardContent>
 						</Card>
 					</div>
 
@@ -808,7 +766,7 @@ export default function Preview11Page() {
               SECTION 3: MIDDLE ROW (CHART & AUDITS)
           ══════════════════════════════════════════════ */}
 					<div className="grid grid-cols-1 gap-4 lg:grid-cols-12">
-						{/* Left: Framework progress Area/Line Chart */}
+						{/* Left: Framework progress Chart */}
 						<Card className="border-border/60 bg-elevation-level1 flex flex-col rounded-2xl p-6 shadow-xs lg:col-span-7">
 							<CardHeader className="flex flex-row items-center justify-between p-0 pb-4">
 								<CardTitle className="heading-6 text-fg">
@@ -825,114 +783,114 @@ export default function Preview11Page() {
 							</CardHeader>
 
 							<CardContent className="p-0 pt-2">
-								<div className="h-[280px] w-full">
-									<ResponsiveContainer width="100%" height="100%">
-										<ComposedChart
-											data={frameworkProgressData}
-											margin={{ top: 24, right: 16, left: -20, bottom: 0 }}>
-											<defs>
-												<linearGradient
-													id="frameworkGradient"
-													x1="0"
-													y1="0"
-													x2="0"
-													y2="1">
-													<stop
-														offset="5%"
-														stopColor="var(--color-primary, #6366f1)"
-														stopOpacity={0.25}
-													/>
-													<stop
-														offset="95%"
-														stopColor="var(--color-primary, #6366f1)"
-														stopOpacity={0.0}
-													/>
-												</linearGradient>
-											</defs>
+								<ChartContainer
+									config={frameworkConfig}
+									className="h-[280px] w-full">
+									<ComposedChart
+										data={frameworkProgressData}
+										margin={{ top: 24, right: 16, left: -20, bottom: 0 }}>
+										<defs>
+											<linearGradient
+												id="frameworkGradient"
+												x1="0"
+												y1="0"
+												x2="0"
+												y2="1">
+												<stop
+													offset="5%"
+													stopColor="var(--color-primary, #6366f1)"
+													stopOpacity={0.25}
+												/>
+												<stop
+													offset="95%"
+													stopColor="var(--color-primary, #6366f1)"
+													stopOpacity={0.0}
+												/>
+											</linearGradient>
+										</defs>
 
-											<CartesianGrid
-												vertical={false}
-												strokeDasharray="3 3"
-												className="stroke-border/40"
-											/>
+										<CartesianGrid
+											vertical={false}
+											strokeDasharray="3 3"
+											className="stroke-border/40"
+										/>
 
-											<XAxis
-												dataKey="date"
-												tickLine={false}
-												axisLine={false}
-												tickMargin={12}
-												className="fill-fg-tertiary text-[12px]"
-											/>
+										<XAxis
+											dataKey="date"
+											tickLine={false}
+											axisLine={false}
+											tickMargin={12}
+											className="fill-fg-tertiary text-[12px]"
+										/>
 
-											<YAxis
-												domain={[0, 100]}
-												ticks={[0, 20, 40, 60, 80, 100]}
-												tickFormatter={(val) => `${val}%`}
-												tickLine={false}
-												axisLine={false}
-												tickMargin={12}
-												className="fill-fg-tertiary text-[12px]"
-											/>
+										<YAxis
+											domain={[0, 100]}
+											ticks={[0, 20, 40, 60, 80, 100]}
+											tickFormatter={(val) => `${val}%`}
+											tickLine={false}
+											axisLine={false}
+											tickMargin={12}
+											className="fill-fg-tertiary text-[12px]"
+										/>
 
-											<Tooltip
-												content={({ active, payload }) => {
-													if (!active || !payload?.length) return null
-													const val = payload[0]?.value
-													return (
-														<div className="border-border/60 dark:bg-elevation-level2 rounded-xl border bg-white px-3 py-1.5 text-xs shadow-md">
-															<span className="text-fg font-semibold">
-																{val}% progress
-															</span>
-														</div>
-													)
-												}}
-											/>
+										<Tooltip
+											content={({ active, payload }) => {
+												if (!active || !payload?.length) return null
+												const val = payload[0]?.value
+												return (
+													<div className="border-border/60 dark:bg-elevation-level2 rounded-xl border bg-white px-3 py-1.5 text-xs shadow-md">
+														<span className="text-fg font-semibold">
+															{val}% progress
+														</span>
+													</div>
+												)
+											}}
+										/>
 
-											{/* Solid Area curve from Feb 1 to Feb 6 */}
-											<Area
-												type="monotone"
-												dataKey="actual"
-												stroke="var(--color-primary, #6366f1)"
-												strokeWidth={2.5}
-												fill="url(#frameworkGradient)"
-											/>
+										{/* Solid Area curve from Feb 1 to Feb 6 */}
+										<Area
+											type="monotone"
+											dataKey="actual"
+											stroke="var(--color-primary, #6366f1)"
+											strokeWidth={2.5}
+											fill="url(#frameworkGradient)"
+										/>
 
-											{/* Vertical guide line at Feb 6 */}
-											<ReferenceLine
-												x="Feb 6"
-												stroke="var(--color-primary, #6366f1)"
-												strokeDasharray="3 3"
-												label={{
-													value: "43%",
-													position: "top",
-													fill: "var(--color-primary, #6366f1)",
-													fontSize: 12,
-													fontWeight: 600,
-													className: "rounded-full bg-primary/10 px-2 py-0.5",
-												}}
-											/>
+										{/* Vertical guide line at Feb 6 */}
+										<ReferenceLine
+											x="Feb 6"
+											stroke="var(--color-primary, #6366f1)"
+											strokeDasharray="3 3"
+											label={{
+												value: "43%",
+												position: "top",
+												fill: "var(--color-primary, #6366f1)",
+												fontSize: 12,
+												fontWeight: 600,
+												className: "rounded-full bg-primary/10 px-2 py-0.5",
+											}}
+										/>
 
-											{/* Projected dashed line after Feb 6 */}
-											<Line
-												type="monotone"
-												dataKey="projected"
-												stroke="var(--color-primary, #6366f1)"
-												strokeWidth={2}
-												strokeDasharray="4 4"
-												dot={{
-													r: 4,
-													fill: "var(--color-primary, #6366f1)",
-													stroke: "var(--color-elevation-level1, #ffffff)",
-													strokeWidth: 2,
-												}}
-											/>
-										</ComposedChart>
-									</ResponsiveContainer>
-								</div>
+										{/* Projected dashed line after Feb 6 */}
+										<Line
+											type="monotone"
+											dataKey="projected"
+											stroke="var(--color-primary, #6366f1)"
+											strokeWidth={2}
+											strokeDasharray="4 4"
+											dot={{
+												r: 4,
+												fill: "var(--color-primary, #6366f1)",
+												stroke: "var(--color-elevation-level1, #ffffff)",
+												strokeWidth: 2,
+											}}
+										/>
+									</ComposedChart>
+								</ChartContainer>
 							</CardContent>
 						</Card>
 
-						{/* Right: Audits as of today List */}
+						{/* Right: Audits as of today */}
 						<Card className="border-border/60 bg-elevation-level1 flex flex-col rounded-2xl p-6 shadow-xs lg:col-span-5">
 							<CardHeader className="flex flex-row items-center justify-between p-0 pb-3">
 								<CardTitle className="heading-6 text-fg">
@@ -958,78 +916,78 @@ export default function Preview11Page() {
 								</div>
 							</CardHeader>
 
-							{/* Segmented Filter Tabs */}
-							<div className="bg-fill1/60 dark:bg-fill2/40 mb-4 flex flex-wrap items-center gap-1 rounded-xl p-1">
-								{(
-									[
-										"All",
-										"Upcoming",
-										"In Audits",
-										"Awaiting Report",
-										"Completed",
-									] as const
-								).map((tab) => (
-									<button
-										key={tab}
-										type="button"
-										onClick={() => setAuditFilter(tab)}
-										className={cn(
-											"cursor-pointer rounded-lg px-2.5 py-1 text-xs font-medium transition-colors",
-											auditFilter === tab
-												? "bg-elevation-level1 text-fg shadow-xs"
-												: "text-fg-secondary hover:text-fg"
-										)}>
-										{tab}
-									</button>
-								))}
-							</div>
+							{/* Canonical Radian OS Tabs Component */}
+							<Tabs
+								value={auditFilter}
+								onValueChange={setAuditFilter}
+								className="mb-4">
+								<TabsList className="h-8 max-w-full overflow-x-auto p-1">
+									<TabsTrigger value="All" className="h-6 px-2.5 text-xs">
+										All
+									</TabsTrigger>
+									<TabsTrigger value="Upcoming" className="h-6 px-2.5 text-xs">
+										Upcoming
+									</TabsTrigger>
+									<TabsTrigger value="In Audits" className="h-6 px-2.5 text-xs">
+										In Audits
+									</TabsTrigger>
+									<TabsTrigger
+										value="Awaiting Report"
+										className="h-6 px-2.5 text-xs">
+										Awaiting Report
+									</TabsTrigger>
+									<TabsTrigger value="Completed" className="h-6 px-2.5 text-xs">
+										Completed
+									</TabsTrigger>
+								</TabsList>
+							</Tabs>
 
-							{/* Audits Items List */}
+							{/* Audits Items using Radian OS Card */}
 							<div className="flex flex-col gap-2.5">
 								{filteredAudits.map((item) => (
-									<div
+									<Card
 										key={item.id}
-										className="border-border/50 hover:bg-fill1/40 flex cursor-pointer items-center justify-between rounded-xl border p-3 transition-colors">
-										<div className="flex items-center gap-3">
-											{/* Icon Container */}
-											<div className="bg-fill2/80 dark:bg-fill2/50 flex size-9 shrink-0 items-center justify-center rounded-lg">
-												<BarChart3 className="text-fg-secondary size-4" />
-											</div>
+										className="border-border/50 hover:bg-fill1/40 cursor-pointer rounded-xl shadow-none transition-colors">
+										<CardContent className="flex items-center justify-between p-3">
+											<div className="flex items-center gap-3">
+												<div className="bg-fill2/80 dark:bg-fill2/50 flex size-9 shrink-0 items-center justify-center rounded-lg">
+													<BarChart3 className="text-fg-secondary size-4" />
+												</div>
 
-											{/* Info */}
-											<div className="flex flex-col gap-1">
-												<span className="text-fg text-xs leading-tight font-semibold">
-													{item.title}
-												</span>
-												<div className="flex items-center gap-2 text-xs">
-													{item.status === "Upcoming" && (
-														<span className="flex items-center gap-1 font-medium text-sky-600 dark:text-sky-400">
-															<span className="size-1.5 rounded-full bg-sky-500" />
-															Upcoming
-														</span>
-													)}
-													{item.status === "In Audits" && (
-														<span className="flex items-center gap-1 font-medium text-amber-600 dark:text-amber-400">
-															<span className="size-1.5 rounded-full bg-amber-500" />
-															In Audits
-														</span>
-													)}
-													{item.status === "Completed" && (
-														<span className="flex items-center gap-1 font-medium text-emerald-600 dark:text-emerald-400">
-															<span className="size-1.5 rounded-full bg-emerald-500" />
-															Completed
-														</span>
-													)}
-													<span className="text-fg-tertiary flex items-center gap-1">
-														<Calendar className="size-3" />
-														{item.dateRange}
+												<div className="flex flex-col gap-1">
+													<span className="text-fg text-xs leading-tight font-semibold">
+														{item.title}
 													</span>
+													<div className="flex items-center gap-2 text-xs">
+														{item.status === "Upcoming" && (
+															<span className="flex items-center gap-1 font-medium text-sky-600 dark:text-sky-400">
+																<span className="size-1.5 rounded-full bg-sky-500" />
+																Upcoming
+															</span>
+														)}
+														{item.status === "In Audits" && (
+															<span className="flex items-center gap-1 font-medium text-amber-600 dark:text-amber-400">
+																<span className="size-1.5 rounded-full bg-amber-500" />
+																In Audits
+															</span>
+														)}
+														{item.status === "Completed" && (
+															<span className="flex items-center gap-1 font-medium text-emerald-600 dark:text-emerald-400">
+																<span className="size-1.5 rounded-full bg-emerald-500" />
+																Completed
+															</span>
+														)}
+														<span className="text-fg-tertiary flex items-center gap-1">
+															<Calendar className="size-3" />
+															{item.dateRange}
+														</span>
+													</div>
 												</div>
 											</div>
-										</div>
 
-										<ChevronRight className="text-fg-tertiary size-4 shrink-0" />
-									</div>
+											<ChevronRight className="text-fg-tertiary size-4 shrink-0" />
+										</CardContent>
+									</Card>
 								))}
 							</div>
 						</Card>
@@ -1094,7 +1052,13 @@ export default function Preview11Page() {
 											{/* Created By with Logo */}
 											<TableCell className="px-6 py-4">
 												<div className="flex items-center gap-2">
-													<ZippyLogo className="size-4.5 shrink-0" />
+													<img
+														src="https://www.google.com/s2/favicons?sz=32&domain=zippy.com"
+														alt="Zippy brand logo"
+														width={18}
+														height={18}
+														className="size-4.5 shrink-0 rounded-md"
+													/>
 													<span className="text-fg text-sm font-medium">
 														{report.createdBy}
 													</span>
@@ -1110,7 +1074,7 @@ export default function Preview11Page() {
 															color="neutral"
 															variant="soft"
 															size="sm"
-															className="rounded-md font-medium">
+															className="rounded-md">
 															{chart}
 														</Badge>
 													))}
