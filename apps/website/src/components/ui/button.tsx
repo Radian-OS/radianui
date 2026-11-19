@@ -25,15 +25,13 @@ export function Button({ size, variant, style, ...props }: ButtonProps) {
 	const radiusPreset = config?.radius
 	const paddingPreset = config?.padding
 
-	const paddingX = paddingPreset
-		? BUTTON_PADDING_PRESETS[paddingPreset][effectiveSize]
-		: undefined
-
 	const buttonStyle = {
 		borderRadius: radiusPreset
 			? `${BUTTON_RADIUS_PRESETS[radiusPreset][effectiveSize]}px`
 			: undefined,
-		paddingInline: paddingX !== undefined ? `${paddingX}px` : undefined,
+		paddingInline: paddingPreset
+			? `${BUTTON_PADDING_PRESETS[paddingPreset][effectiveSize]}px`
+			: undefined,
 		...style,
 	}
 

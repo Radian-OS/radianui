@@ -1,3 +1,4 @@
+import { transformBadgeCode } from "./transform-badge"
 import { transformButtonCode } from "./transform-button"
 
 export interface RegistryFile {
@@ -25,4 +26,5 @@ export const COMPONENT_TRANSFORMERS: Record<
 	ComponentTransformer<any>
 > = {
 	button: transformButtonCode,
+	badge: transformBadgeCode,
 }

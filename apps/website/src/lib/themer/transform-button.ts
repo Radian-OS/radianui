@@ -2,198 +2,59 @@ import {
 	BUTTON_PADDING_PRESETS,
 	BUTTON_RADIUS_PRESETS,
 	COMPACT_BUTTON_RADIUS_PRESETS,
-	ButtonConfig,
-	ButtonSize,
-	DEFAULT_BUTTON_CONFIG,
+	type ButtonConfig,
 } from "@/registry/component-presets/button-presets"
 import { Project, ScriptKind, SyntaxKind } from "ts-morph"
+import {
+	getVariantCall,
+	setRadiusClass,
+	setSizeStyles,
+	setVariantDefaults,
+} from "./transform-variants"
 
 export function transformButtonCode(
 	sourceCode: string,
-	buttonConfig?: Partial<ButtonConfig>
+	config?: Partial<ButtonConfig>
 ): string {
-	if (!buttonConfig) return sourceCode
+	if (!config) return sourceCode
 
-	const project = new Project({ useInMemoryFileSystem: true })
-	const sourceFile = project.createSourceFile("button.tsx", sourceCode, {
-		scriptKind: ScriptKind.TSX,
-		overwrite: true,
-	})
+	const source = new Project({ useInMemoryFileSystem: true }).createSourceFile(
+		"button.tsx",
+		sourceCode,
+		{ scriptKind: ScriptKind.TSX }
+	)
+	const button = getVariantCall(source, "buttonVariants")
+	const icon = getVariantCall(source, "iconButtonSizeVariants")
+	const compact = getVariantCall(source, "compactButtonVariants")
+	const { size, variant, radius, padding } = config
 
-	const targetVariant = buttonConfig.variant ?? DEFAULT_BUTTON_CONFIG.variant
-	const targetSize = buttonConfig.size ?? DEFAULT_BUTTON_CONFIG.size
-	const paddingPreset = buttonConfig.padding
-	const radiusPreset = buttonConfig.radius
+	setVariantDefaults(button, size, variant)
+	setVariantDefaults(icon, size)
+	setVariantDefaults(
+		compact,
+		size === "sm" || size === "md" ? size : undefined,
+		variant
+	)
 
-	// Update defaultVariants in cva: { variant: "...", size: "..." }
-	sourceFile
-		.getDescendantsOfKind(SyntaxKind.PropertyAssignment)
-		.forEach((prop) => {
-			if (prop.getName() === "defaultVariants") {
-				const obj = prop.getInitializerIfKind(
-					SyntaxKind.ObjectLiteralExpression
-				)
-				if (obj) {
-					const varDecl = prop.getFirstAncestorByKind(
-						SyntaxKind.VariableDeclaration
-					)
-					const varName = varDecl?.getName()
+	const radii = radius ? BUTTON_RADIUS_PRESETS[radius] : undefined
+	setSizeStyles(
+		button,
+		radii,
+		padding ? BUTTON_PADDING_PRESETS[padding] : undefined
+	)
+	setSizeStyles(icon, radii)
 
-					const variantProp = obj
-						.getProperty("variant")
-						?.asKind(SyntaxKind.PropertyAssignment)
-					if (
-						variantProp &&
-						(varName === "buttonVariants" ||
-							varName === "compactButtonVariants")
-					) {
-						variantProp.setInitializer(`"${targetVariant}"`)
-					}
-
-					const sizeProp = obj
-						.getProperty("size")
-						?.asKind(SyntaxKind.PropertyAssignment)
-					if (sizeProp) {
-						if (
-							varName === "buttonVariants" ||
-							varName === "iconButtonSizeVariants"
-						) {
-							sizeProp.setInitializer(`"${targetSize}"`)
-						} else if (
-							varName === "compactButtonVariants" &&
-							(targetSize === "sm" || targetSize === "md")
-						) {
-							sizeProp.setInitializer(`"${targetSize}"`)
-						}
-					}
-				}
-			}
-		})
-
-	// Update radius classes in buttonVariants.variants.size and iconButtonSizeVariants.variants.size
-	sourceFile
-		.getDescendantsOfKind(SyntaxKind.PropertyAssignment)
-		.forEach((prop) => {
-			const parent = prop.getParent()
-			const grandParent = parent?.getParent()
-			if (
-				prop.getName() === "size" &&
-				grandParent?.isKind(SyntaxKind.PropertyAssignment) &&
-				grandParent.getName() === "variants"
-			) {
-				const sizeObj = prop.getInitializerIfKind(
-					SyntaxKind.ObjectLiteralExpression
-				)
-				if (sizeObj) {
-					sizeObj.getProperties().forEach((sizeProp) => {
-						if (sizeProp.isKind(SyntaxKind.PropertyAssignment)) {
-							const sizeKey = sizeProp
-								.getName()
-								.replace(/^["']|["']$/g, "") as ButtonSize
-							const radiusPx = radiusPreset
-								? BUTTON_RADIUS_PRESETS[radiusPreset]?.[sizeKey]
-								: undefined
-							if (radiusPx !== undefined) {
-								const strNode = sizeProp.getInitializerIfKind(
-									SyntaxKind.StringLiteral
-								)
-								if (strNode) {
-									const radiusClass =
-										radiusPx >= 999
-											? "rounded-full"
-											: radiusPx === 0
-												? "rounded-none"
-												: `rounded-[${radiusPx}px]`
-									// Replaces rounded-control-*, rounded-[...], rounded-md, etc.
-									const updated = strNode
-										.getLiteralValue()
-										.replace(
-											/\brounded-(?:control-\w+|\[[^\]]+\]|\w+)\b/,
-											radiusClass
-										)
-									strNode.setLiteralValue(updated)
-								}
-							}
-						}
-					})
-				}
-			}
-		})
-
-	// Update compactButtonVariants base radius
-	const compactRadiusPx = radiusPreset
-		? COMPACT_BUTTON_RADIUS_PRESETS[radiusPreset]
-		: undefined
-	if (compactRadiusPx !== undefined) {
-		const compactRadiusClass =
-			compactRadiusPx >= 999
-				? "rounded-full"
-				: compactRadiusPx === 0
-					? "rounded-none"
-					: `rounded-[${compactRadiusPx}px]`
-
-		const compactVar = sourceFile.getVariableDeclaration(
-			"compactButtonVariants"
+	const compactClasses = compact
+		?.getArguments()[0]
+		?.asKind(SyntaxKind.StringLiteral)
+	if (radius && compactClasses) {
+		compactClasses.setLiteralValue(
+			setRadiusClass(
+				compactClasses.getLiteralValue(),
+				COMPACT_BUTTON_RADIUS_PRESETS[radius]
+			)
 		)
-		const callExpr = compactVar?.getInitializerIfKind(SyntaxKind.CallExpression)
-		const firstArg = callExpr
-			?.getArguments()[0]
-			?.asKind(SyntaxKind.StringLiteral)
-		if (firstArg) {
-			const updated = firstArg
-				.getLiteralValue()
-				.replace(
-					/\brounded-(?:control-\w+|\[[^\]]+\]|\w+)\b/,
-					compactRadiusClass
-				)
-			firstArg.setLiteralValue(updated)
-		}
 	}
 
-	// Update horizontal padding in buttonVariants.variants.size
-	sourceFile
-		.getDescendantsOfKind(SyntaxKind.PropertyAssignment)
-		.forEach((prop) => {
-			const parent = prop.getParent()
-			const grandParent = parent?.getParent()
-			if (
-				prop.getName() === "size" &&
-				grandParent?.isKind(SyntaxKind.PropertyAssignment) &&
-				grandParent.getName() === "variants"
-			) {
-				const varDecl = prop.getFirstAncestorByKind(
-					SyntaxKind.VariableDeclaration
-				)
-				if (varDecl?.getName() === "buttonVariants") {
-					const sizeObj = prop.getInitializerIfKind(
-						SyntaxKind.ObjectLiteralExpression
-					)
-					if (sizeObj) {
-						sizeObj.getProperties().forEach((sizeProp) => {
-							if (sizeProp.isKind(SyntaxKind.PropertyAssignment)) {
-								const sizeKey = sizeProp
-									.getName()
-									.replace(/^["']|["']$/g, "") as ButtonSize
-								const paddingPx = paddingPreset
-									? BUTTON_PADDING_PRESETS[paddingPreset]?.[sizeKey]
-									: undefined
-								if (paddingPx !== undefined) {
-									const strNode = sizeProp.getInitializerIfKind(
-										SyntaxKind.StringLiteral
-									)
-									if (strNode) {
-										const updated = strNode
-											.getLiteralValue()
-											.replace(/\bpx-(?:\d+|\[.*?\])/, `px-[${paddingPx}px]`)
-										strNode.setLiteralValue(updated)
-									}
-								}
-							}
-						})
-					}
-				}
-			}
-		})
-
-	return sourceFile.getText()
+	return source.getText()
 }
