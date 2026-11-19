@@ -2,16 +2,18 @@ import { Slider, SliderThumb } from "@/styles/default/ui/slider"
 
 export function PresetSlider<T extends string>({
 	label,
+	defaultLabel = "Fundamentals",
 	options,
 	value,
 	onValueChange,
 }: {
 	label: string
+	defaultLabel?: string
 	options: readonly (T | undefined)[]
 	value: T | undefined
 	onValueChange: (value: T | undefined) => void
 }) {
-	const valueLabel = value ?? "Fundamentals"
+	const valueLabel = value ?? defaultLabel
 	return (
 		<div className="flex flex-col gap-1.5">
 			<div className="flex items-center justify-between text-[13px] leading-4">
