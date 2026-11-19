@@ -643,22 +643,22 @@
 	/* MARK: IconButton */
 
 	.cn-icon-btn-size-xs {
-		@apply rounded-md;
+		@apply rounded-control-md;
 	}
 	.cn-icon-btn-size-sm {
-		@apply rounded-md;
+		@apply rounded-control-md;
 	}
 	.cn-icon-btn-size-md {
-		@apply rounded-lg;
+		@apply rounded-control-lg;
 	}
 	.cn-icon-btn-size-lg {
-		@apply rounded-lg;
+		@apply rounded-control-lg;
 	}
 	.cn-icon-btn-size-xl {
-		@apply rounded-lg;
+		@apply rounded-control-lg;
 	}
 	.cn-icon-btn-size-2xl {
-		@apply rounded-lg;
+		@apply rounded-control-lg;
 	}
 
 	/* MARK: Calendar */

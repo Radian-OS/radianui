@@ -75,7 +75,7 @@ function CollapsedLogoTrigger() {
 					size="md"
 					onClick={toggleSidebar}
 					aria-label="Toggle sidebar"
-					className="group/logo text-fg-secondary hover:text-fg size-9 rounded-lg">
+					className="group/logo text-fg-secondary hover:text-fg size-9">
 					<span className="group-hover/logo:hidden">
 						<RadianLogo className="size-[26px]" />
 					</span>
@@ -860,7 +860,7 @@ export default function Page() {
 									<div
 										key={msg.id}
 										className="group/user-msg flex flex-col items-end gap-1">
-										<div className="bg-fill2 dark:bg-elevation-level2 text-fg max-w-[85%] rounded-lg px-4 py-2.5 text-[14px] leading-relaxed break-words shadow-2xs sm:max-w-xl">
+										<div className="bg-fill2 dark:bg-elevation-level2 text-fg max-w-[85%] rounded-2xl px-5 py-2.5 text-[14px] leading-relaxed break-words shadow-2xs sm:max-w-xl">
 											{msg.content}
 										</div>
 										{/* Action Icons Row for User Message */}
@@ -870,7 +870,7 @@ export default function Page() {
 												color="neutral"
 												size="xs"
 												onClick={() => handleCopy(msg.id, msg.content)}
-												className="hover:text-fg size-7 rounded-lg"
+												className="hover:text-fg size-7"
 												aria-label="Copy message">
 												{copiedId === msg.id ? (
 													<IconSlot
@@ -885,7 +885,7 @@ export default function Page() {
 												variant="ghost"
 												color="neutral"
 												size="xs"
-												className="hover:text-fg size-7 rounded-lg"
+												className="hover:text-fg size-7"
 												aria-label="Share message">
 												<IconSlot slot="external-link" className="size-3.5" />
 											</IconButton>
@@ -893,7 +893,7 @@ export default function Page() {
 												variant="ghost"
 												color="neutral"
 												size="xs"
-												className="hover:text-fg size-7 rounded-lg"
+												className="hover:text-fg size-7"
 												aria-label="Edit message">
 												<IconSlot slot="pencil" className="size-3.5" />
 											</IconButton>
@@ -917,7 +917,7 @@ export default function Page() {
 											color="neutral"
 											size="xs"
 											onClick={() => handleCopy(msg.id, msg.content)}
-											className="hover:text-fg size-7 rounded-lg"
+											className="hover:text-fg size-7"
 											aria-label="Copy response">
 											{copiedId === msg.id ? (
 												<IconSlot
@@ -935,7 +935,7 @@ export default function Page() {
 											onClick={() => {
 												handleSendMessage()
 											}}
-											className="hover:text-fg size-7 rounded-lg"
+											className="hover:text-fg size-7"
 											aria-label="Regenerate">
 											<IconSlot slot="repeat" className="size-3.5" />
 										</IconButton>
@@ -945,7 +945,7 @@ export default function Page() {
 											size="xs"
 											onClick={() => handleLike(msg.id)}
 											className={cn(
-												"hover:text-fg size-7 rounded-lg",
+												"hover:text-fg size-7",
 												msg.liked && "text-primary"
 											)}
 											aria-label="Good response">
@@ -957,7 +957,7 @@ export default function Page() {
 											size="xs"
 											onClick={() => handleDislike(msg.id)}
 											className={cn(
-												"hover:text-fg size-7 rounded-lg",
+												"hover:text-fg size-7",
 												msg.disliked && "text-error"
 											)}
 											aria-label="Bad response">
@@ -975,7 +975,7 @@ export default function Page() {
 													window.speechSynthesis.speak(utterance)
 												}
 											}}
-											className="hover:text-fg size-7 rounded-lg"
+											className="hover:text-fg size-7"
 											aria-label="Read aloud">
 											<IconSlot slot="volume" className="size-3.5" />
 										</IconButton>
@@ -983,7 +983,7 @@ export default function Page() {
 											variant="ghost"
 											color="neutral"
 											size="xs"
-											className="hover:text-fg size-7 rounded-lg"
+											className="hover:text-fg size-7"
 											aria-label="Share response">
 											<IconSlot slot="external-link" className="size-3.5" />
 										</IconButton>
@@ -991,7 +991,7 @@ export default function Page() {
 											variant="ghost"
 											color="neutral"
 											size="xs"
-											className="hover:text-fg size-7 rounded-lg"
+											className="hover:text-fg size-7"
 											aria-label="More options">
 											<IconSlot slot="threeDot" className="size-3.5" />
 										</IconButton>
@@ -1007,7 +1007,7 @@ export default function Page() {
             3. FLOATING PROMPT INPUT CONTAINER
         ══════════════════════════════════════════════ */}
 				<div className="mx-auto w-full max-w-3xl px-4 pb-4">
-					<div className="border-border/80 bg-elevation-level1 focus-within:border-primary/60 focus-within:ring-primary/20 relative flex flex-col rounded-lg border p-3 shadow-xs transition-all focus-within:ring-2">
+					<div className="border-border/80 bg-elevation-level1 focus-within:border-primary/60 focus-within:ring-primary/20 relative flex flex-col rounded-2xl border p-3 shadow-xs transition-all focus-within:ring-2">
 						<textarea
 							value={inputPrompt}
 							onChange={(e) => setInputPrompt(e.target.value)}
