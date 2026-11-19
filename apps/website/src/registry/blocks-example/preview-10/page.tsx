@@ -62,12 +62,73 @@ import {
 	SidebarMenuItem,
 	SidebarProvider,
 	SidebarTrigger,
+	useSidebar,
 } from "@/styles/default/ui/sidebar"
 import { cn } from "@/lib/utils"
 
 // ──────────────────────────────────────────────
-// Datasets
+// Datasets & Helper Components
 // ──────────────────────────────────────────────
+
+function RadianLogo({ className = "size-[26px]" }: { className?: string }) {
+	return (
+		<svg
+			viewBox="0 0 48 48"
+			xmlns="http://www.w3.org/2000/svg"
+			className={cn("shrink-0", className)}>
+			<defs>
+				<linearGradient
+					id="radian-sidebar-logo"
+					x1="24"
+					y1="0"
+					x2="24"
+					y2="48"
+					gradientUnits="userSpaceOnUse">
+					<stop stopColor="var(--color-primary)" />
+					<stop offset="1" stopColor="var(--color-primary-border)" />
+				</linearGradient>
+				<clipPath id="radian-sidebar-clip">
+					<rect width="48" height="48" fill="white" />
+				</clipPath>
+			</defs>
+			<g clipPath="url(#radian-sidebar-clip)">
+				<path
+					d="M35.2 0H12.8C5.73075 0 0 5.73075 0 12.8V35.2C0 42.2692 5.73075 48 12.8 48H35.2C42.2692 48 48 42.2692 48 35.2V12.8C48 5.73075 42.2692 0 35.2 0Z"
+					fill="url(#radian-sidebar-logo)"
+				/>
+				<path
+					d="M41.5168 16.9408C41.8032 17.0048 41.7296 17.6544 41.5744 17.9024C41.3024 18.3328 40.3776 18.9408 38.4048 19.928C29.7776 23.9328 21.8896 26.7072 11.0432 29.6032C9.64159 29.9776 8.59999 30.072 7.82399 30.072C7.04799 30.072 5.68639 29.808 6.69119 29.1328C7.69599 28.4576 8.15039 28.192 8.47039 28.0048C12.3664 25.8368 12.1808 24.2832 13.5296 20.3104C15.4896 13.8592 23.1792 10.888 29.1872 13.6656C31.3696 14.64 32.7504 16.3664 35.0944 16.9536C36.4176 17.288 38.3152 17.2592 39.704 17.1136C40.256 17.12 40.968 16.8176 41.5152 16.9408H41.5168ZM20.3728 23.6928C22.7728 22.8336 25.6032 21.8848 27.608 21.1136C28.2272 20.8736 28.8048 20.6944 29.4448 20.3936C29.7264 20.2592 29.992 20.0544 30.28 19.7632C31.176 18.8 28.6704 17.3968 27.9504 17.0112C23.1024 14.4704 17.3808 17.688 16.712 23.0336C16.5936 24.16 17.0208 24.632 18.128 24.3856C18.896 24.2208 19.6832 23.9312 20.3584 23.696L20.3712 23.6912L20.3728 23.6928Z"
+					fill="white"
+				/>
+				<path
+					d="M34.6224 25.9056C35.0624 26.824 34.6752 27.968 34.3904 28.896C33.8496 30.4512 32.9232 31.8192 31.7088 32.92C31.1072 33.488 30.464 33.9856 29.7264 34.3792C26.7168 36.0592 22.712 36.0176 19.7424 34.2736C18.5168 33.5456 16.8512 32.4848 17.7968 30.8576C18.1488 30.3328 18.6544 29.7392 19.2912 29.816C19.7344 29.8768 20.112 30.344 20.4672 30.6368C21.3872 31.4272 22.4176 31.896 23.6928 32.136C25.6176 32.4784 27.68 31.9088 29.176 30.664C30.3568 29.6688 31.1504 28.32 31.4176 26.7792C31.5136 26.2496 31.5712 25.4976 32.0176 25.2048C32.7552 24.7424 34.1984 25.112 34.616 25.8928L34.6208 25.9024L34.6224 25.9056Z"
+					fill="white"
+				/>
+			</g>
+		</svg>
+	)
+}
+
+function CollapsedLogoTrigger() {
+	const { toggleSidebar } = useSidebar()
+	return (
+		<Tooltip>
+			<TooltipTrigger asChild>
+				<button
+					type="button"
+					onClick={toggleSidebar}
+					className="group/logo-btn hover:bg-fill2 relative flex size-9 cursor-pointer items-center justify-center rounded-lg transition-colors"
+					aria-label="Expand sidebar">
+					<div className="transition-opacity duration-150 group-hover/logo-btn:opacity-0">
+						<RadianLogo className="size-[26px]" />
+					</div>
+					<PanelLeft className="text-fg-secondary group-hover/logo-btn:text-fg absolute size-5 opacity-0 transition-opacity duration-150 group-hover/logo-btn:opacity-100" />
+				</button>
+			</TooltipTrigger>
+			<TooltipContent side="right">Expand sidebar</TooltipContent>
+		</Tooltip>
+	)
+}
 
 interface NavItem {
 	id: string
@@ -84,6 +145,15 @@ const mainNavItems: NavItem[] = [
 	{ id: "explore", title: "Explore", icon: LayoutGrid },
 ]
 
+interface PinnedChat {
+	id: string
+	title: string
+}
+
+const initialPinnedChats: PinnedChat[] = [
+	{ id: "design-slop", title: "Design Slop Replies" },
+]
+
 interface RecentChat {
 	id: string
 	title: string
@@ -91,12 +161,23 @@ interface RecentChat {
 
 const recentChats: RecentChat[] = [
 	{ id: "cat-behaviour", title: "Cat behaviour" },
+	{ id: "kpi-card-naming", title: "KPI Card Naming" },
+	{ id: "mix-dashboard", title: "Mix Dashboard Designs" },
+	{ id: "themer-preview", title: "Themer Preview Inspiration" },
+	{ id: "pm-design-conflict", title: "PM Design Conflict Advice" },
+	{ id: "reply-figma", title: "Reply to Figma Post" },
 	{ id: "saas-growth", title: "SaaS Growth Strategies Q3" },
 	{ id: "brand-architecture", title: "Brand Identity Architecture" },
-	{ id: "server-actions", title: "React 19 Server Actions Guide" },
+	{ id: "react-19-server", title: "React 19 Server Actions Guide" },
 	{ id: "design-tokens", title: "Design Tokens Migration Plan" },
 	{ id: "customer-personas", title: "Customer Persona Matrix" },
-	{ id: "executive-summary", title: "Quarterly Roadmap Summary" },
+	{ id: "quarterly-roadmap", title: "Quarterly Roadmap Summary" },
+	{ id: "onboarding-flows", title: "Onboarding Flow Wireframes" },
+	{ id: "tailwind-v4", title: "Tailwind v4 Variable Setup" },
+	{ id: "multi-tenant-auth", title: "Multi-tenant Auth Workflows" },
+	{ id: "perf-optimization", title: "Performance Optimization Tips" },
+	{ id: "weekly-standup", title: "Weekly Standup Notes" },
+	{ id: "competitive-matrix", title: "Competitive Analysis Matrix" },
 ]
 
 interface Message {
@@ -145,6 +226,12 @@ const initialMessages: Message[] = [
 		id: "m-7",
 		role: "user",
 		content: "I love cats anyways",
+	},
+	{
+		id: "m-8",
+		role: "assistant",
+		content:
+			"And honestly, they know that too — which is why they get away with running the entire household.",
 	},
 ]
 
@@ -229,60 +316,34 @@ export default function Page() {
 			{/* ══════════════════════════════════════════════
           1. CHATGPT SIDEBAR NAVIGATION
       ══════════════════════════════════════════════ */}
-			<Sidebar variant="sidebar" className="border-border/60 bg-bg border-r">
+			<Sidebar
+				variant="sidebar"
+				collapsible="icon"
+				className="border-border/60 bg-bg border-r">
 				{/* Top Branding & Search / Toggle Actions */}
-				<SidebarHeader className="flex flex-row items-center justify-between p-3">
-					<div className="flex items-center gap-2 px-1">
-						<svg
-							width={26}
-							height={26}
-							viewBox="0 0 48 48"
-							xmlns="http://www.w3.org/2000/svg"
-							className="shrink-0">
-							<defs>
-								<linearGradient
-									id="radian-sidebar-logo"
-									x1="24"
-									y1="0"
-									x2="24"
-									y2="48"
-									gradientUnits="userSpaceOnUse">
-									<stop stopColor="var(--color-primary)" />
-									<stop offset="1" stopColor="var(--color-primary-border)" />
-								</linearGradient>
-								<clipPath id="radian-sidebar-clip">
-									<rect width="48" height="48" fill="white" />
-								</clipPath>
-							</defs>
-							<g clipPath="url(#radian-sidebar-clip)">
-								<path
-									d="M35.2 0H12.8C5.73075 0 0 5.73075 0 12.8V35.2C0 42.2692 5.73075 48 12.8 48H35.2C42.2692 48 48 42.2692 48 35.2V12.8C48 5.73075 42.2692 0 35.2 0Z"
-									fill="url(#radian-sidebar-logo)"
-								/>
-								<path
-									d="M41.5168 16.9408C41.8032 17.0048 41.7296 17.6544 41.5744 17.9024C41.3024 18.3328 40.3776 18.9408 38.4048 19.928C29.7776 23.9328 21.8896 26.7072 11.0432 29.6032C9.64159 29.9776 8.59999 30.072 7.82399 30.072C7.04799 30.072 5.68639 29.808 6.69119 29.1328C7.69599 28.4576 8.15039 28.192 8.47039 28.0048C12.3664 25.8368 12.1808 24.2832 13.5296 20.3104C15.4896 13.8592 23.1792 10.888 29.1872 13.6656C31.3696 14.64 32.7504 16.3664 35.0944 16.9536C36.4176 17.288 38.3152 17.2592 39.704 17.1136C40.256 17.12 40.968 16.8176 41.5152 16.9408H41.5168ZM20.3728 23.6928C22.7728 22.8336 25.6032 21.8848 27.608 21.1136C28.2272 20.8736 28.8048 20.6944 29.4448 20.3936C29.7264 20.2592 29.992 20.0544 30.28 19.7632C31.176 18.8 28.6704 17.3968 27.9504 17.0112C23.1024 14.4704 17.3808 17.688 16.712 23.0336C16.5936 24.16 17.0208 24.632 18.128 24.3856C18.896 24.2208 19.6832 23.9312 20.3584 23.696L20.3712 23.6912L20.3728 23.6928Z"
-									fill="white"
-								/>
-								<path
-									d="M34.6224 25.9056C35.0624 26.824 34.6752 27.968 34.3904 28.896C33.8496 30.4512 32.9232 31.8192 31.7088 32.92C31.1072 33.488 30.464 33.9856 29.7264 34.3792C26.7168 36.0592 22.712 36.0176 19.7424 34.2736C18.5168 33.5456 16.8512 32.4848 17.7968 30.8576C18.1488 30.3328 18.6544 29.7392 19.2912 29.816C19.7344 29.8768 20.112 30.344 20.4672 30.6368C21.3872 31.4272 22.4176 31.896 23.6928 32.136C25.6176 32.4784 27.68 31.9088 29.176 30.664C30.3568 29.6688 31.1504 28.32 31.4176 26.7792C31.5136 26.2496 31.5712 25.4976 32.0176 25.2048C32.7552 24.7424 34.1984 25.112 34.616 25.8928L34.6208 25.9024L34.6224 25.9056Z"
-									fill="white"
-								/>
-							</g>
-						</svg>
+				<SidebarHeader className="flex flex-row items-center justify-between p-3 group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:p-2">
+					{/* Expanded Header View */}
+					<div className="flex items-center gap-2 px-1 group-data-[collapsible=icon]:hidden">
+						<RadianLogo />
 						<span className="font-heading text-fg text-base font-semibold tracking-tight">
 							Radian
 						</span>
 					</div>
-					<div className="flex items-center gap-1">
+					<div className="flex items-center gap-1 group-data-[collapsible=icon]:hidden">
 						<IconButton
 							variant="ghost"
 							color="neutral"
 							size="xs"
-							className="text-fg-secondary hover:text-fg size-7"
+							className="text-fg-secondary hover:text-fg size-7 cursor-pointer"
 							aria-label="Search chats">
 							<Search className="size-4" />
 						</IconButton>
-						<SidebarTrigger className="text-fg-secondary hover:text-fg size-7" />
+						<SidebarTrigger className="text-fg-secondary hover:text-fg size-7 cursor-pointer" />
+					</div>
+
+					{/* Collapsed Header View (Image 2 & Image 8) */}
+					<div className="hidden w-full items-center justify-center group-data-[collapsible=icon]:flex">
+						<CollapsedLogoTrigger />
 					</div>
 				</SidebarHeader>
 
@@ -296,6 +357,7 @@ export default function Page() {
 									<SidebarMenuItem key={item.id}>
 										<SidebarMenuButton
 											size="md"
+											tooltip={item.title}
 											className="text-sidebar-fg h-9 gap-3 text-[14px] font-medium [&>svg]:size-[18px]!">
 											<Icon className="size-[18px] shrink-0" />
 											<span className="text-[14px]">{item.title}</span>
@@ -306,8 +368,67 @@ export default function Page() {
 						</SidebarMenu>
 					</SidebarGroup>
 
+					{/* Pinned Group (Image 3) */}
+					<SidebarGroup className="p-0 pt-6 group-data-[collapsible=icon]:hidden">
+						<SidebarGroupLabel className="group/pinned text-fg-secondary flex h-7 items-center justify-between px-2 text-[14px] font-semibold">
+							<span className="text-fg-secondary text-[14px] font-semibold tracking-wide">
+								Pinned
+							</span>
+						</SidebarGroupLabel>
+						<SidebarGroupContent className="pt-1">
+							<SidebarMenu className="gap-0.5">
+								{initialPinnedChats.map((chat) => {
+									const isActive = activeChat === chat.id
+									return (
+										<SidebarMenuItem
+											key={chat.id}
+											className="group/chat-item relative">
+											<SidebarMenuButton
+												size="md"
+												isActive={isActive}
+												onClick={() => setActiveChat(chat.id)}
+												className="text-sidebar-fg h-9 truncate pr-14 text-[14px] font-medium [&>svg]:size-[18px]!">
+												<span className="truncate text-[14px]">
+													{chat.title}
+												</span>
+											</SidebarMenuButton>
+											<div className="absolute top-1/2 right-1 flex -translate-y-1/2 items-center gap-0.5 opacity-0 transition-opacity group-hover/chat-item:opacity-100">
+												<Tooltip>
+													<TooltipTrigger asChild>
+														<IconButton
+															variant="ghost"
+															color="neutral"
+															size="xs"
+															className="text-fg-secondary hover:text-fg size-7 cursor-pointer rounded-md"
+															aria-label="Unpin chat">
+															<Pin className="size-3.5 fill-current" />
+														</IconButton>
+													</TooltipTrigger>
+													<TooltipContent
+														side="top"
+														sideOffset={4}
+														className="bg-fg text-bg dark:bg-elevation-level3 dark:text-fg rounded-full border-0 px-2.5 py-1 text-xs font-medium shadow-md">
+														Unpin chat
+													</TooltipContent>
+												</Tooltip>
+												<IconButton
+													variant="ghost"
+													color="neutral"
+													size="xs"
+													className="text-fg-secondary hover:text-fg size-7 cursor-pointer rounded-md"
+													aria-label="More options">
+													<MoreHorizontal className="size-3.5" />
+												</IconButton>
+											</div>
+										</SidebarMenuItem>
+									)
+								})}
+							</SidebarMenu>
+						</SidebarGroupContent>
+					</SidebarGroup>
+
 					{/* Projects Group with Hover Actions */}
-					<SidebarGroup className="p-0 pt-6">
+					<SidebarGroup className="p-0 pt-6 group-data-[collapsible=icon]:hidden">
 						<SidebarGroupLabel className="group/projects text-fg-secondary flex h-7 items-center justify-between px-2 text-[14px] font-semibold">
 							<div className="flex cursor-pointer items-center gap-1">
 								<span className="text-fg-secondary text-[14px] font-semibold tracking-wide">
@@ -342,7 +463,7 @@ export default function Page() {
 					</SidebarGroup>
 
 					{/* Recents Group with Hover Actions */}
-					<SidebarGroup className="p-0 pt-6">
+					<SidebarGroup className="p-0 pt-6 group-data-[collapsible=icon]:hidden">
 						<SidebarGroupLabel className="group/recents text-fg-secondary flex h-7 items-center justify-between px-2 text-[14px] font-semibold">
 							<div className="flex cursor-pointer items-center gap-1">
 								<span className="text-fg-secondary text-[14px] font-semibold tracking-wide">
@@ -423,22 +544,27 @@ export default function Page() {
 				</SidebarContent>
 
 				{/* Sidebar Footer with Alex Morgan Profile */}
-				<SidebarFooter className="border-border/40 border-t p-3">
-					<div className="flex items-center justify-between gap-2">
+				<SidebarFooter className="border-border/40 border-t p-3 group-data-[collapsible=icon]:p-2">
+					<div className="flex items-center justify-between gap-2 group-data-[collapsible=icon]:justify-center">
 						<div className="flex min-w-0 items-center gap-2.5">
-							<Avatar
-								size="sm"
-								rounded="circle"
-								className="border-border shrink-0 border">
-								<AvatarImage
-									src="https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@v1.0.2/packages/uncompressed-avatars/src/8.png"
-									alt="Alex Morgan"
-								/>
-								<AvatarFallback className="text-xs font-semibold">
-									AM
-								</AvatarFallback>
-							</Avatar>
-							<div className="flex min-w-0 flex-col">
+							<Tooltip>
+								<TooltipTrigger asChild>
+									<Avatar
+										size="sm"
+										rounded="circle"
+										className="border-border shrink-0 cursor-pointer border">
+										<AvatarImage
+											src="https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@v1.0.2/packages/uncompressed-avatars/src/8.png"
+											alt="Alex Morgan"
+										/>
+										<AvatarFallback className="text-xs font-semibold">
+											AM
+										</AvatarFallback>
+									</Avatar>
+								</TooltipTrigger>
+								<TooltipContent side="right">Alex Morgan (Free)</TooltipContent>
+							</Tooltip>
+							<div className="flex min-w-0 flex-col group-data-[collapsible=icon]:hidden">
 								<span className="text-fg truncate text-sm font-semibold">
 									Alex Morgan
 								</span>
@@ -449,7 +575,7 @@ export default function Page() {
 							variant="outline"
 							color="neutral"
 							size="xs"
-							className="shrink-0 rounded-full px-3 text-xs font-medium">
+							className="shrink-0 rounded-full px-3 text-xs font-medium group-data-[collapsible=icon]:hidden">
 							Upgrade
 						</Button>
 					</div>
@@ -463,6 +589,7 @@ export default function Page() {
 				{/* Top Header Bar */}
 				<header className="bg-bg/80 flex h-14 shrink-0 items-center justify-between px-4 backdrop-blur-md">
 					<div className="flex items-center gap-1.5">
+						<SidebarTrigger className="text-fg-secondary hover:text-fg size-7 cursor-pointer" />
 						<DropdownMenu>
 							<DropdownMenuTrigger asChild>
 								<button
