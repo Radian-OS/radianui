@@ -114,8 +114,8 @@ function ChatHeader({
 					</DropdownMenuTrigger>
 					<DropdownMenuContent
 						align="start"
-						className="border-border/80 bg-elevation-level1 w-56 rounded-2xl border p-1.5 shadow-lg">
-						<DropdownMenuItem className="cursor-pointer gap-2.5 rounded-xl px-3 py-2 text-[14px]">
+						className="border-border/80 bg-elevation-level1 w-56 rounded-lg border p-1.5 shadow-lg">
+						<DropdownMenuItem className="cursor-pointer gap-2.5 rounded-sm px-3 py-2 text-[14px]">
 							<IconSlot
 								slot="pencil"
 								className="text-fg-secondary size-4 shrink-0"
@@ -124,7 +124,7 @@ function ChatHeader({
 						</DropdownMenuItem>
 						<DropdownMenuItem
 							onClick={onTogglePin}
-							className="cursor-pointer gap-2.5 rounded-xl px-3 py-2 text-[14px]">
+							className="cursor-pointer gap-2.5 rounded-sm px-3 py-2 text-[14px]">
 							<IconSlot
 								slot="pin"
 								className={cn(
@@ -134,7 +134,7 @@ function ChatHeader({
 							/>
 							<span>{isPinned ? "Unpin chat" : "Pin chat"}</span>
 						</DropdownMenuItem>
-						<DropdownMenuItem className="cursor-pointer gap-2.5 rounded-xl px-3 py-2 text-[14px]">
+						<DropdownMenuItem className="cursor-pointer gap-2.5 rounded-sm px-3 py-2 text-[14px]">
 							<IconSlot
 								slot="lock"
 								className="text-fg-secondary size-4 shrink-0"
@@ -142,19 +142,19 @@ function ChatHeader({
 							<span>Lock chat</span>
 						</DropdownMenuItem>
 						<DropdownMenuDivider />
-						<DropdownMenuItem className="cursor-pointer gap-2.5 rounded-xl px-3 py-2 text-[14px]">
+						<DropdownMenuItem className="cursor-pointer gap-2.5 rounded-sm px-3 py-2 text-[14px]">
 							<IconSlot
 								slot="archive"
 								className="text-fg-secondary size-4 shrink-0"
 							/>
 							<span>Archive</span>
 						</DropdownMenuItem>
-						<DropdownMenuItem className="text-error focus:text-error focus:bg-error/10 cursor-pointer gap-2.5 rounded-xl px-3 py-2 text-[14px]">
+						<DropdownMenuItem className="text-error focus:text-error focus:bg-error/10 cursor-pointer gap-2.5 rounded-sm px-3 py-2 text-[14px]">
 							<IconSlot slot="trash" className="text-error size-4 shrink-0" />
 							<span>Delete</span>
 						</DropdownMenuItem>
 						<DropdownMenuDivider />
-						<DropdownMenuItem className="cursor-pointer justify-between gap-2.5 rounded-xl px-3 py-2 text-[14px]">
+						<DropdownMenuItem className="cursor-pointer justify-between gap-2.5 rounded-sm px-3 py-2 text-[14px]">
 							<div className="flex items-center gap-2.5">
 								<IconSlot
 									slot="file-box"
@@ -580,7 +580,7 @@ function ChatSidebar({
 																<TooltipContent
 																	side="top"
 																	sideOffset={4}
-																	className="bg-fg text-bg dark:bg-elevation-level3 dark:text-fg rounded-full border-0 px-2.5 py-1 text-xs font-medium shadow-md">
+																	className="bg-fg text-bg dark:bg-elevation-level3 dark:text-fg rounded-md border-0 px-2.5 py-1 text-xs font-medium shadow-md">
 																	Unpin chat
 																</TooltipContent>
 															</Tooltip>
@@ -647,7 +647,7 @@ function ChatSidebar({
 															<TooltipContent
 																side="top"
 																sideOffset={4}
-																className="bg-fg text-bg dark:bg-elevation-level3 dark:text-fg rounded-full border-0 px-2.5 py-1 text-xs font-medium shadow-md">
+																className="bg-fg text-bg dark:bg-elevation-level3 dark:text-fg rounded-md border-0 px-2.5 py-1 text-xs font-medium shadow-md">
 																Pin chat
 															</TooltipContent>
 														</Tooltip>
@@ -732,7 +732,7 @@ function ChatSidebar({
 								variant="outline"
 								color="neutral"
 								size="xs"
-								className="shrink-0 rounded-full px-3 text-xs font-medium">
+								className="shrink-0 px-3 text-xs font-medium">
 								Upgrade
 							</Button>
 						</motion.div>
@@ -860,7 +860,7 @@ export default function Page() {
 									<div
 										key={msg.id}
 										className="group/user-msg flex flex-col items-end gap-1">
-										<div className="bg-fill2 dark:bg-elevation-level2 text-fg max-w-[85%] rounded-2xl px-5 py-2.5 text-[14px] leading-relaxed break-words shadow-2xs sm:max-w-xl">
+										<div className="bg-fill2 dark:bg-elevation-level2 text-fg max-w-[85%] rounded-lg px-4 py-2.5 text-[14px] leading-relaxed break-words shadow-2xs sm:max-w-xl">
 											{msg.content}
 										</div>
 										{/* Action Icons Row for User Message */}
@@ -1007,7 +1007,7 @@ export default function Page() {
             3. FLOATING PROMPT INPUT CONTAINER
         ══════════════════════════════════════════════ */}
 				<div className="mx-auto w-full max-w-3xl px-4 pb-4">
-					<div className="border-border/80 bg-elevation-level1 focus-within:border-primary/60 focus-within:ring-primary/20 relative flex flex-col rounded-2xl border p-3 shadow-xs transition-all focus-within:ring-2">
+					<div className="border-border/80 bg-elevation-level1 focus-within:border-primary/60 focus-within:ring-primary/20 relative flex flex-col rounded-lg border p-3 shadow-xs transition-all focus-within:ring-2">
 						<textarea
 							value={inputPrompt}
 							onChange={(e) => setInputPrompt(e.target.value)}
@@ -1030,7 +1030,7 @@ export default function Page() {
 									variant="ghost"
 									color="neutral"
 									size="sm"
-									className="text-fg-secondary hover:text-fg size-8 rounded-full"
+									className="text-fg-secondary hover:text-fg size-8"
 									aria-label="Attach file">
 									<IconSlot slot="link" className="size-4" />
 								</IconButton>
@@ -1040,7 +1040,7 @@ export default function Page() {
 											variant="outline"
 											color="neutral"
 											size="xs"
-											className="border-border/70 bg-fill1/40 hover:bg-fill2 data-[state=open]:bg-fill2 text-fg cursor-pointer gap-1.5 rounded-full px-3 text-xs font-medium">
+											className="gap-1.5 px-3 text-xs font-medium">
 											<IconSlot
 												slot="globe"
 												className="text-fg-secondary size-3.5"
@@ -1056,14 +1056,14 @@ export default function Page() {
 										side="top"
 										align="start"
 										sideOffset={8}
-										className="border-border/80 bg-elevation-level1 w-52 rounded-2xl border p-1.5 shadow-lg">
+										className="border-border/80 bg-elevation-level1 w-52 rounded-lg border p-1.5 shadow-lg">
 										{AVAILABLE_MODELS.map((model) => {
 											const isSelected = activeModel === model
 											return (
 												<DropdownMenuItem
 													key={model}
 													onClick={() => setActiveModel(model)}
-													className="flex cursor-pointer items-center justify-between gap-2 rounded-xl px-3 py-2 text-[14px]">
+													className="flex cursor-pointer items-center justify-between gap-2 rounded-sm px-3 py-2 text-[14px]">
 													<span>{model}</span>
 													{isSelected && (
 														<IconSlot
@@ -1084,7 +1084,7 @@ export default function Page() {
 								size="sm"
 								disabled={!inputPrompt.trim()}
 								onClick={handleSendMessage}
-								className="size-8 rounded-full shadow-2xs disabled:opacity-40"
+								className="size-8 shadow-2xs disabled:opacity-40"
 								aria-label="Send message">
 								<IconSlot slot="up" className="size-4" />
 							</IconButton>
