@@ -36,7 +36,7 @@ import {
 
 import { cn } from "@/lib/utils"
 import { Button, IconButton } from "@/components/ui/button"
-import { Badge } from "@/styles/default/ui/badge"
+import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/styles/default/ui/card"
 import {
 	Avatar,

@@ -52,7 +52,7 @@ import {
 	Check,
 } from "lucide-react"
 
-import { Button } from "@/styles/default/ui/button"
+import { Button } from "@/components/ui/button"
 import { Card } from "@/styles/default/ui/card"
 import {
 	DropdownMenu,
