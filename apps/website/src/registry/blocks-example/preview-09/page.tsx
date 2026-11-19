@@ -28,7 +28,6 @@ import {
 	ArrowUp,
 	TrendingUp,
 	TrendingDown,
-	GripHorizontal,
 } from "lucide-react"
 
 import { Button } from "@/styles/default/ui/button"
@@ -381,7 +380,32 @@ export default function Page() {
 											axisLine={false}
 											tickMargin={10}
 											ticks={["Jul 1", "Jul 7", "Jul 14", "Jul 21", "Jul 28"]}
-											className="fill-zinc-400 text-[12px] dark:fill-zinc-500"
+											tick={({
+												x,
+												y,
+												textAnchor,
+												payload,
+											}: {
+												x?: number | string
+												y?: number | string
+												textAnchor?: "inherit" | "start" | "middle" | "end"
+												payload?: { value?: string }
+											}) => {
+												const isJul1 = payload?.value === "Jul 1"
+												return (
+													<text
+														x={
+															typeof x === "number" ? x + (isJul1 ? 12 : 0) : x
+														}
+														y={y}
+														dy="0.71em"
+														textAnchor={textAnchor}
+														className="fill-zinc-400 text-[14px] dark:fill-zinc-500">
+														{payload?.value}
+													</text>
+												)
+											}}
+											className="fill-zinc-400 text-[14px] dark:fill-zinc-500"
 										/>
 										<YAxis
 											tickLine={false}
@@ -392,7 +416,8 @@ export default function Page() {
 											tickFormatter={(val) =>
 												val === 0 ? "0" : `${val / 1000}k`
 											}
-											className="fill-zinc-400 text-[12px] dark:fill-zinc-500"
+											tick={{ fontSize: 14 }}
+											className="fill-zinc-400 text-[14px] dark:fill-zinc-500"
 										/>
 										<Tooltip
 											content={({ active, payload, label }) => {
@@ -482,7 +507,7 @@ export default function Page() {
 							</h2>
 						</div>
 
-						<div className="-mx-3 flex flex-1 flex-col justify-between pt-1">
+						<div className="flex flex-1 flex-col justify-between pt-1">
 							{salesBreakdown.map((item, index) => (
 								<div
 									key={index}
@@ -521,7 +546,7 @@ export default function Page() {
 							<div className="flex items-start justify-between">
 								<div className="flex flex-col">
 									<h2 className="heading-6 text-fg">Average Order Value</h2>
-									<span className="text-[12px] text-zinc-400 dark:text-zinc-500">
+									<span className="text-[14px] text-zinc-400 dark:text-zinc-500">
 										Jul 1 – Jul 30, 2026
 									</span>
 								</div>
@@ -568,7 +593,8 @@ export default function Page() {
 											tickMargin={10}
 											ticks={["Jul 1", "Jul 30"]}
 											padding={{ left: 10, right: 10 }}
-											className="fill-zinc-400 text-[12px] dark:fill-zinc-500"
+											tick={{ fontSize: 14 }}
+											className="fill-zinc-400 text-[14px] dark:fill-zinc-500"
 										/>
 										<YAxis
 											tickLine={false}
@@ -577,7 +603,8 @@ export default function Page() {
 											domain={[100, 175]}
 											ticks={[100, 125, 150, 175]}
 											tickFormatter={(val) => `$${val}`}
-											className="fill-zinc-400 text-[12px] dark:fill-zinc-500"
+											tick={{ fontSize: 14 }}
+											className="fill-zinc-400 text-[14px] dark:fill-zinc-500"
 										/>
 										<Tooltip
 											content={({ active, payload, label }) => {
@@ -629,7 +656,7 @@ export default function Page() {
 						<div className="flex items-start justify-between">
 							<div className="flex flex-col">
 								<h2 className="heading-6 text-fg">Sales by Channel</h2>
-								<span className="text-[12px] text-zinc-400 dark:text-zinc-500">
+								<span className="text-[14px] text-zinc-400 dark:text-zinc-500">
 									Total sales broken down by channel
 								</span>
 							</div>
@@ -693,11 +720,6 @@ export default function Page() {
 									</div>
 								))}
 							</div>
-						</div>
-
-						{/* Decorative Resize Grip */}
-						<div className="flex justify-end">
-							<GripHorizontal className="size-3 text-zinc-400 dark:text-zinc-600" />
 						</div>
 					</Card>
 				</div>
