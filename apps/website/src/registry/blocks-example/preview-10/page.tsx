@@ -44,6 +44,11 @@ import {
 	DropdownMenuTrigger,
 } from "@/styles/default/ui/dropdown-menu"
 import {
+	Tooltip,
+	TooltipContent,
+	TooltipTrigger,
+} from "@/styles/default/ui/tooltip"
+import {
 	Sidebar,
 	SidebarContent,
 	SidebarFooter,
@@ -143,12 +148,19 @@ const initialMessages: Message[] = [
 	},
 ]
 
+const AVAILABLE_MODELS = [
+	"GPT-5.4",
+	"Claude 4.6 Opus",
+	"Claude 4.6 Sonnet",
+	"Gemini 3.1 Pro",
+]
+
 export default function Page() {
 	const [activeChat, setActiveChat] = useState<string>("cat-behaviour")
 	const [messages, setMessages] = useState<Message[]>(initialMessages)
 	const [inputPrompt, setInputPrompt] = useState("")
 	const [copiedId, setCopiedId] = useState<string | null>(null)
-	const [activeModel, setActiveModel] = useState("OPT-5.4")
+	const [activeModel, setActiveModel] = useState<string>("GPT-5.4")
 	const messagesEndRef = useRef<HTMLDivElement>(null)
 
 	const scrollToBottom = () => {
@@ -284,8 +296,8 @@ export default function Page() {
 									<SidebarMenuItem key={item.id}>
 										<SidebarMenuButton
 											size="md"
-											className="text-sidebar-fg gap-2.5 text-[14px] font-medium">
-											<Icon className="size-4 shrink-0" />
+											className="text-sidebar-fg h-9 gap-3 text-[14px] font-medium [&>svg]:size-[18px]!">
+											<Icon className="size-[18px] shrink-0" />
 											<span className="text-[14px]">{item.title}</span>
 										</SidebarMenuButton>
 									</SidebarMenuItem>
@@ -301,24 +313,24 @@ export default function Page() {
 								<span className="text-fg-secondary group-hover/projects:text-fg text-[14px] font-semibold tracking-wide transition-colors">
 									Projects
 								</span>
-								<ChevronDown className="text-fg-tertiary group-hover/projects:text-fg size-3.5 opacity-0 transition-opacity group-hover/projects:opacity-100" />
+								<ChevronDown className="text-fg-tertiary group-hover/projects:text-fg size-4 opacity-0 transition-opacity group-hover/projects:opacity-100" />
 							</div>
 							<div className="flex items-center gap-0.5 opacity-0 transition-opacity group-hover/projects:opacity-100">
 								<IconButton
 									variant="ghost"
 									color="neutral"
 									size="xs"
-									className="text-fg-secondary hover:text-fg size-6 rounded-md"
+									className="text-fg-secondary hover:text-fg size-7 cursor-pointer rounded-md"
 									aria-label="Project settings">
-									<SlidersHorizontal className="size-3.5" />
+									<SlidersHorizontal className="size-4" />
 								</IconButton>
 								<IconButton
 									variant="ghost"
 									color="neutral"
 									size="xs"
-									className="text-fg-secondary hover:text-fg size-6 rounded-md"
+									className="text-fg-secondary hover:text-fg size-7 cursor-pointer rounded-md"
 									aria-label="Add project">
-									<Plus className="size-3.5" />
+									<Plus className="size-4" />
 								</IconButton>
 							</div>
 						</SidebarGroupLabel>
@@ -336,24 +348,24 @@ export default function Page() {
 								<span className="text-fg-secondary group-hover/recents:text-fg text-[14px] font-semibold tracking-wide transition-colors">
 									Recents
 								</span>
-								<ChevronDown className="text-fg-tertiary group-hover/recents:text-fg size-3.5 opacity-0 transition-opacity group-hover/recents:opacity-100" />
+								<ChevronDown className="text-fg-tertiary group-hover/recents:text-fg size-4 opacity-0 transition-opacity group-hover/recents:opacity-100" />
 							</div>
 							<div className="flex items-center gap-0.5 opacity-0 transition-opacity group-hover/recents:opacity-100">
 								<IconButton
 									variant="ghost"
 									color="neutral"
 									size="xs"
-									className="text-fg-secondary hover:text-fg size-6 rounded-md"
+									className="text-fg-secondary hover:text-fg size-7 cursor-pointer rounded-md"
 									aria-label="Recents settings">
-									<SlidersHorizontal className="size-3.5" />
+									<SlidersHorizontal className="size-4" />
 								</IconButton>
 								<IconButton
 									variant="ghost"
 									color="neutral"
 									size="xs"
-									className="text-fg-secondary hover:text-fg size-6 rounded-md"
+									className="text-fg-secondary hover:text-fg size-7 cursor-pointer rounded-md"
 									aria-label="New chat">
-									<SquarePen className="size-3.5" />
+									<SquarePen className="size-4" />
 								</IconButton>
 							</div>
 						</SidebarGroupLabel>
@@ -362,16 +374,46 @@ export default function Page() {
 								{recentChats.map((chat) => {
 									const isActive = activeChat === chat.id
 									return (
-										<SidebarMenuItem key={chat.id}>
+										<SidebarMenuItem
+											key={chat.id}
+											className="group/chat-item relative">
 											<SidebarMenuButton
 												size="md"
 												isActive={isActive}
 												onClick={() => setActiveChat(chat.id)}
-												className="text-sidebar-fg truncate text-[14px] font-medium">
+												className="text-sidebar-fg h-9 truncate pr-14 text-[14px] font-medium [&>svg]:size-[18px]!">
 												<span className="truncate text-[14px]">
 													{chat.title}
 												</span>
 											</SidebarMenuButton>
+											<div className="absolute top-1/2 right-1 flex -translate-y-1/2 items-center gap-0.5 opacity-0 transition-opacity group-hover/chat-item:opacity-100">
+												<Tooltip>
+													<TooltipTrigger asChild>
+														<IconButton
+															variant="ghost"
+															color="neutral"
+															size="xs"
+															className="text-fg-secondary hover:text-fg size-7 cursor-pointer rounded-md"
+															aria-label="Pin chat">
+															<Pin className="size-3.5" />
+														</IconButton>
+													</TooltipTrigger>
+													<TooltipContent
+														side="top"
+														sideOffset={4}
+														className="bg-fg text-bg dark:bg-elevation-level3 dark:text-fg rounded-full border-0 px-2.5 py-1 text-xs font-medium shadow-md">
+														Pin chat
+													</TooltipContent>
+												</Tooltip>
+												<IconButton
+													variant="ghost"
+													color="neutral"
+													size="xs"
+													className="text-fg-secondary hover:text-fg size-7 cursor-pointer rounded-md"
+													aria-label="More options">
+													<MoreHorizontal className="size-3.5" />
+												</IconButton>
+											</div>
 										</SidebarMenuItem>
 									)
 								})}
@@ -496,7 +538,7 @@ export default function Page() {
 									<div
 										key={msg.id}
 										className="group/user-msg flex flex-col items-end gap-1">
-										<div className="bg-fill2 dark:bg-elevation-level2 text-fg max-w-[85%] rounded-2xl px-4.5 py-2.5 text-[14px] leading-relaxed break-words shadow-2xs sm:max-w-xl">
+										<div className="bg-fill2 dark:bg-elevation-level2 text-fg max-w-[85%] rounded-[22px] px-5 py-2.5 text-[14px] leading-relaxed break-words shadow-2xs sm:max-w-xl">
 											{msg.content}
 										</div>
 										{/* Action Icons Row for User Message (Image 4) */}
@@ -664,20 +706,39 @@ export default function Page() {
 									aria-label="Attach file">
 									<Paperclip className="size-4" />
 								</IconButton>
-								<Button
-									variant="outline"
-									color="neutral"
-									size="xs"
-									onClick={() =>
-										setActiveModel(
-											activeModel === "OPT-5.4" ? "GPT-4o" : "OPT-5.4"
-										)
-									}
-									className="border-border/70 bg-fill1/40 hover:bg-fill2 text-fg gap-1.5 rounded-full px-3 text-xs font-medium">
-									<Globe className="text-fg-secondary size-3.5" />
-									<span>{activeModel}</span>
-									<ChevronDown className="text-fg-tertiary size-3" />
-								</Button>
+								<DropdownMenu>
+									<DropdownMenuTrigger asChild>
+										<Button
+											variant="outline"
+											color="neutral"
+											size="xs"
+											className="border-border/70 bg-fill1/40 hover:bg-fill2 data-[state=open]:bg-fill2 text-fg cursor-pointer gap-1.5 rounded-full px-3 text-xs font-medium">
+											<Globe className="text-fg-secondary size-3.5" />
+											<span>{activeModel}</span>
+											<ChevronDown className="text-fg-tertiary size-3 transition-transform duration-200 data-[state=open]:rotate-180" />
+										</Button>
+									</DropdownMenuTrigger>
+									<DropdownMenuContent
+										side="top"
+										align="start"
+										sideOffset={8}
+										className="border-border/80 bg-elevation-level1 w-52 rounded-2xl border p-1.5 shadow-lg">
+										{AVAILABLE_MODELS.map((model) => {
+											const isSelected = activeModel === model
+											return (
+												<DropdownMenuItem
+													key={model}
+													onClick={() => setActiveModel(model)}
+													className="flex cursor-pointer items-center justify-between gap-2 rounded-xl px-3 py-2 text-[14px]">
+													<span>{model}</span>
+													{isSelected && (
+														<Check className="text-fg size-4 shrink-0" />
+													)}
+												</DropdownMenuItem>
+											)
+										})}
+									</DropdownMenuContent>
+								</DropdownMenu>
 							</div>
 
 							<IconButton
