@@ -23,6 +23,8 @@ import {
 	Globe,
 	ChevronDown,
 	ArrowUp,
+	SlidersHorizontal,
+	Plus,
 } from "lucide-react"
 
 import { Button, IconButton } from "@/components/ui/button"
@@ -203,10 +205,48 @@ export default function Page() {
       ══════════════════════════════════════════════ */}
 			<Sidebar variant="sidebar" className="border-border/60 bg-bg border-r">
 				{/* Top Branding & Search / Toggle Actions */}
-				<SidebarHeader className="border-border/40 flex flex-row items-center justify-between border-b p-3">
-					<h2 className="heading-6 text-fg px-1 font-semibold tracking-tight">
-						ChatGPT
-					</h2>
+				<SidebarHeader className="flex flex-row items-center justify-between p-3">
+					<div className="flex items-center gap-2 px-1">
+						<svg
+							width={26}
+							height={26}
+							viewBox="0 0 48 48"
+							xmlns="http://www.w3.org/2000/svg"
+							className="shrink-0">
+							<defs>
+								<linearGradient
+									id="radian-sidebar-logo"
+									x1="24"
+									y1="0"
+									x2="24"
+									y2="48"
+									gradientUnits="userSpaceOnUse">
+									<stop stopColor="var(--color-primary)" />
+									<stop offset="1" stopColor="var(--color-primary-border)" />
+								</linearGradient>
+								<clipPath id="radian-sidebar-clip">
+									<rect width="48" height="48" fill="white" />
+								</clipPath>
+							</defs>
+							<g clipPath="url(#radian-sidebar-clip)">
+								<path
+									d="M35.2 0H12.8C5.73075 0 0 5.73075 0 12.8V35.2C0 42.2692 5.73075 48 12.8 48H35.2C42.2692 48 48 42.2692 48 35.2V12.8C48 5.73075 42.2692 0 35.2 0Z"
+									fill="url(#radian-sidebar-logo)"
+								/>
+								<path
+									d="M41.5168 16.9408C41.8032 17.0048 41.7296 17.6544 41.5744 17.9024C41.3024 18.3328 40.3776 18.9408 38.4048 19.928C29.7776 23.9328 21.8896 26.7072 11.0432 29.6032C9.64159 29.9776 8.59999 30.072 7.82399 30.072C7.04799 30.072 5.68639 29.808 6.69119 29.1328C7.69599 28.4576 8.15039 28.192 8.47039 28.0048C12.3664 25.8368 12.1808 24.2832 13.5296 20.3104C15.4896 13.8592 23.1792 10.888 29.1872 13.6656C31.3696 14.64 32.7504 16.3664 35.0944 16.9536C36.4176 17.288 38.3152 17.2592 39.704 17.1136C40.256 17.12 40.968 16.8176 41.5152 16.9408H41.5168ZM20.3728 23.6928C22.7728 22.8336 25.6032 21.8848 27.608 21.1136C28.2272 20.8736 28.8048 20.6944 29.4448 20.3936C29.7264 20.2592 29.992 20.0544 30.28 19.7632C31.176 18.8 28.6704 17.3968 27.9504 17.0112C23.1024 14.4704 17.3808 17.688 16.712 23.0336C16.5936 24.16 17.0208 24.632 18.128 24.3856C18.896 24.2208 19.6832 23.9312 20.3584 23.696L20.3712 23.6912L20.3728 23.6928Z"
+									fill="white"
+								/>
+								<path
+									d="M34.6224 25.9056C35.0624 26.824 34.6752 27.968 34.3904 28.896C33.8496 30.4512 32.9232 31.8192 31.7088 32.92C31.1072 33.488 30.464 33.9856 29.7264 34.3792C26.7168 36.0592 22.712 36.0176 19.7424 34.2736C18.5168 33.5456 16.8512 32.4848 17.7968 30.8576C18.1488 30.3328 18.6544 29.7392 19.2912 29.816C19.7344 29.8768 20.112 30.344 20.4672 30.6368C21.3872 31.4272 22.4176 31.896 23.6928 32.136C25.6176 32.4784 27.68 31.9088 29.176 30.664C30.3568 29.6688 31.1504 28.32 31.4176 26.7792C31.5136 26.2496 31.5712 25.4976 32.0176 25.2048C32.7552 24.7424 34.1984 25.112 34.616 25.8928L34.6208 25.9024L34.6224 25.9056Z"
+									fill="white"
+								/>
+							</g>
+						</svg>
+						<span className="font-heading text-fg text-base font-semibold tracking-tight">
+							Radian
+						</span>
+					</div>
 					<div className="flex items-center gap-1">
 						<IconButton
 							variant="ghost"
@@ -240,22 +280,70 @@ export default function Page() {
 						</SidebarMenu>
 					</SidebarGroup>
 
-					{/* Projects Group */}
-					<SidebarGroup className="p-0 pt-4">
-						<SidebarGroupLabel className="text-fg-tertiary px-2 text-xs font-medium">
-							Projects
-						</SidebarGroupLabel>
-						<SidebarGroupContent className="px-2 py-1">
-							<span className="text-fg-tertiary text-xs">No projects</span>
+					{/* Projects Group with Hover Actions */}
+					<SidebarGroup className="p-0 pt-6">
+						<div className="group/projects flex items-center justify-between px-2 py-1 select-none">
+							<div className="flex cursor-pointer items-center gap-1">
+								<span className="text-fg-secondary group-hover/projects:text-fg text-xs font-semibold tracking-wide transition-colors">
+									Projects
+								</span>
+								<ChevronDown className="text-fg-tertiary group-hover/projects:text-fg size-3.5 opacity-0 transition-opacity group-hover/projects:opacity-100" />
+							</div>
+							<div className="flex items-center gap-0.5 opacity-0 transition-opacity group-hover/projects:opacity-100">
+								<IconButton
+									variant="ghost"
+									color="neutral"
+									size="xs"
+									className="text-fg-secondary hover:text-fg size-6 rounded-md"
+									aria-label="Project settings">
+									<SlidersHorizontal className="size-3.5" />
+								</IconButton>
+								<IconButton
+									variant="ghost"
+									color="neutral"
+									size="xs"
+									className="text-fg-secondary hover:text-fg size-6 rounded-md"
+									aria-label="Add project">
+									<Plus className="size-3.5" />
+								</IconButton>
+							</div>
+						</div>
+						<SidebarGroupContent className="px-2 pt-1.5 pb-1">
+							<span className="text-fg-tertiary/70 text-xs font-normal select-none">
+								No projects
+							</span>
 						</SidebarGroupContent>
 					</SidebarGroup>
 
-					{/* Recents Group */}
-					<SidebarGroup className="p-0 pt-4">
-						<SidebarGroupLabel className="text-fg-tertiary px-2 text-xs font-medium">
-							Recents
-						</SidebarGroupLabel>
-						<SidebarGroupContent>
+					{/* Recents Group with Hover Actions */}
+					<SidebarGroup className="p-0 pt-6">
+						<div className="group/recents flex items-center justify-between px-2 py-1 select-none">
+							<div className="flex cursor-pointer items-center gap-1">
+								<span className="text-fg-secondary group-hover/recents:text-fg text-xs font-semibold tracking-wide transition-colors">
+									Recents
+								</span>
+								<ChevronDown className="text-fg-tertiary group-hover/recents:text-fg size-3.5 opacity-0 transition-opacity group-hover/recents:opacity-100" />
+							</div>
+							<div className="flex items-center gap-0.5 opacity-0 transition-opacity group-hover/recents:opacity-100">
+								<IconButton
+									variant="ghost"
+									color="neutral"
+									size="xs"
+									className="text-fg-secondary hover:text-fg size-6 rounded-md"
+									aria-label="Recents settings">
+									<SlidersHorizontal className="size-3.5" />
+								</IconButton>
+								<IconButton
+									variant="ghost"
+									color="neutral"
+									size="xs"
+									className="text-fg-secondary hover:text-fg size-6 rounded-md"
+									aria-label="New chat">
+									<SquarePen className="size-3.5" />
+								</IconButton>
+							</div>
+						</div>
+						<SidebarGroupContent className="pt-1">
 							<SidebarMenu className="gap-0.5">
 								{recentChats.map((chat) => {
 									const isActive = activeChat === chat.id
@@ -315,17 +403,14 @@ export default function Page() {
       ══════════════════════════════════════════════ */}
 			<SidebarInset className="bg-bg flex h-screen flex-1 flex-col overflow-hidden">
 				{/* Top Header Bar */}
-				<header className="border-border/40 bg-bg/80 flex h-14 shrink-0 items-center justify-between border-b px-4 backdrop-blur-md">
-					<div className="flex items-center gap-2">
-						<SidebarTrigger className="text-fg-secondary hover:text-fg" />
-						<div className="flex items-center gap-1.5">
-							<button
-								type="button"
-								className="text-fg hover:bg-fill1 flex items-center gap-1.5 rounded-lg px-2.5 py-1 text-base font-semibold transition-colors">
-								<span>Cat behaviour</span>
-								<ChevronDown className="text-fg-tertiary size-4" />
-							</button>
-						</div>
+				<header className="bg-bg/80 flex h-14 shrink-0 items-center justify-between px-4 backdrop-blur-md">
+					<div className="flex items-center gap-1.5">
+						<button
+							type="button"
+							className="text-fg hover:bg-fill1 flex items-center gap-1.5 rounded-lg px-2.5 py-1 text-base font-semibold transition-colors">
+							<span>Cat behaviour</span>
+							<ChevronDown className="text-fg-tertiary size-4" />
+						</button>
 					</div>
 
 					<div className="flex items-center gap-2">
