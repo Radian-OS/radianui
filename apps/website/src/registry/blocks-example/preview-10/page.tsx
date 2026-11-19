@@ -380,7 +380,7 @@ function ChatSidebar({
 				</AnimatePresence>
 			</SidebarHeader>
 
-			<SidebarContent className="no-scrollbar overflow-hidden px-2 py-3">
+			<SidebarContent className="no-scrollbar overflow-x-hidden overflow-y-auto px-2 py-3">
 				<AnimatePresence mode="wait" initial={false}>
 					{isCollapsed ? (
 						<motion.div
