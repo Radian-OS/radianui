@@ -25,10 +25,24 @@ import {
 	ArrowUp,
 	SlidersHorizontal,
 	Plus,
+	Pencil,
+	Pin,
+	Lock,
+	Archive,
+	Trash2,
+	FolderInput,
+	ChevronRight,
 } from "lucide-react"
 
 import { Button, IconButton } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/styles/default/ui/avatar"
+import {
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuDivider,
+	DropdownMenuItem,
+	DropdownMenuTrigger,
+} from "@/styles/default/ui/dropdown-menu"
 import {
 	Sidebar,
 	SidebarContent,
@@ -270,9 +284,9 @@ export default function Page() {
 									<SidebarMenuItem key={item.id}>
 										<SidebarMenuButton
 											size="md"
-											className="text-sidebar-fg gap-2.5 font-medium">
+											className="text-sidebar-fg gap-2.5 text-[14px] font-medium">
 											<Icon className="size-4 shrink-0" />
-											<span>{item.title}</span>
+											<span className="text-[14px]">{item.title}</span>
 										</SidebarMenuButton>
 									</SidebarMenuItem>
 								)
@@ -282,9 +296,9 @@ export default function Page() {
 
 					{/* Projects Group with Hover Actions */}
 					<SidebarGroup className="p-0 pt-6">
-						<div className="group/projects flex items-center justify-between px-2 py-1 select-none">
+						<SidebarGroupLabel className="group/projects text-fg-secondary flex h-7 items-center justify-between px-2 text-[14px] font-semibold">
 							<div className="flex cursor-pointer items-center gap-1">
-								<span className="text-fg-secondary group-hover/projects:text-fg text-xs font-semibold tracking-wide transition-colors">
+								<span className="text-fg-secondary group-hover/projects:text-fg text-[14px] font-semibold tracking-wide transition-colors">
 									Projects
 								</span>
 								<ChevronDown className="text-fg-tertiary group-hover/projects:text-fg size-3.5 opacity-0 transition-opacity group-hover/projects:opacity-100" />
@@ -307,9 +321,9 @@ export default function Page() {
 									<Plus className="size-3.5" />
 								</IconButton>
 							</div>
-						</div>
+						</SidebarGroupLabel>
 						<SidebarGroupContent className="px-2 pt-1.5 pb-1">
-							<span className="text-fg-tertiary/70 text-xs font-normal select-none">
+							<span className="text-fg-tertiary/70 text-[14px] font-normal select-none">
 								No projects
 							</span>
 						</SidebarGroupContent>
@@ -317,9 +331,9 @@ export default function Page() {
 
 					{/* Recents Group with Hover Actions */}
 					<SidebarGroup className="p-0 pt-6">
-						<div className="group/recents flex items-center justify-between px-2 py-1 select-none">
+						<SidebarGroupLabel className="group/recents text-fg-secondary flex h-7 items-center justify-between px-2 text-[14px] font-semibold">
 							<div className="flex cursor-pointer items-center gap-1">
-								<span className="text-fg-secondary group-hover/recents:text-fg text-xs font-semibold tracking-wide transition-colors">
+								<span className="text-fg-secondary group-hover/recents:text-fg text-[14px] font-semibold tracking-wide transition-colors">
 									Recents
 								</span>
 								<ChevronDown className="text-fg-tertiary group-hover/recents:text-fg size-3.5 opacity-0 transition-opacity group-hover/recents:opacity-100" />
@@ -342,7 +356,7 @@ export default function Page() {
 									<SquarePen className="size-3.5" />
 								</IconButton>
 							</div>
-						</div>
+						</SidebarGroupLabel>
 						<SidebarGroupContent className="pt-1">
 							<SidebarMenu className="gap-0.5">
 								{recentChats.map((chat) => {
@@ -353,8 +367,10 @@ export default function Page() {
 												size="md"
 												isActive={isActive}
 												onClick={() => setActiveChat(chat.id)}
-												className="text-sidebar-fg truncate font-medium">
-												<span className="truncate">{chat.title}</span>
+												className="text-sidebar-fg truncate text-[14px] font-medium">
+												<span className="truncate text-[14px]">
+													{chat.title}
+												</span>
 											</SidebarMenuButton>
 										</SidebarMenuItem>
 									)
@@ -405,12 +421,49 @@ export default function Page() {
 				{/* Top Header Bar */}
 				<header className="bg-bg/80 flex h-14 shrink-0 items-center justify-between px-4 backdrop-blur-md">
 					<div className="flex items-center gap-1.5">
-						<button
-							type="button"
-							className="text-fg hover:bg-fill1 flex items-center gap-1.5 rounded-lg px-2.5 py-1 text-base font-semibold transition-colors">
-							<span>Cat behaviour</span>
-							<ChevronDown className="text-fg-tertiary size-4" />
-						</button>
+						<DropdownMenu>
+							<DropdownMenuTrigger asChild>
+								<button
+									type="button"
+									className="text-fg hover:bg-fill1 data-[state=open]:bg-fill1 flex cursor-pointer items-center gap-1.5 rounded-lg px-2.5 py-1 text-sm font-semibold outline-hidden transition-colors">
+									<span>Cat behaviour</span>
+									<ChevronDown className="text-fg-tertiary size-4" />
+								</button>
+							</DropdownMenuTrigger>
+							<DropdownMenuContent
+								align="start"
+								className="border-border/80 w-56 rounded-2xl border p-1.5 shadow-lg">
+								<DropdownMenuItem className="cursor-pointer gap-2.5 rounded-lg px-3 py-2 text-[14px]">
+									<Pencil className="text-fg-secondary size-4 shrink-0" />
+									<span>Rename</span>
+								</DropdownMenuItem>
+								<DropdownMenuItem className="cursor-pointer gap-2.5 rounded-lg px-3 py-2 text-[14px]">
+									<Pin className="text-fg-secondary size-4 shrink-0" />
+									<span>Pin chat</span>
+								</DropdownMenuItem>
+								<DropdownMenuItem className="cursor-pointer gap-2.5 rounded-lg px-3 py-2 text-[14px]">
+									<Lock className="text-fg-secondary size-4 shrink-0" />
+									<span>Lock chat</span>
+								</DropdownMenuItem>
+								<DropdownMenuDivider />
+								<DropdownMenuItem className="cursor-pointer gap-2.5 rounded-lg px-3 py-2 text-[14px]">
+									<Archive className="text-fg-secondary size-4 shrink-0" />
+									<span>Archive</span>
+								</DropdownMenuItem>
+								<DropdownMenuItem className="text-error focus:text-error focus:bg-error/10 cursor-pointer gap-2.5 rounded-lg px-3 py-2 text-[14px]">
+									<Trash2 className="text-error size-4 shrink-0" />
+									<span>Delete</span>
+								</DropdownMenuItem>
+								<DropdownMenuDivider />
+								<DropdownMenuItem className="cursor-pointer justify-between gap-2.5 rounded-lg px-3 py-2 text-[14px]">
+									<div className="flex items-center gap-2.5">
+										<FolderInput className="text-fg-secondary size-4 shrink-0" />
+										<span>Move to project</span>
+									</div>
+									<ChevronRight className="text-fg-tertiary size-4 shrink-0" />
+								</DropdownMenuItem>
+							</DropdownMenuContent>
+						</DropdownMenu>
 					</div>
 
 					<div className="flex items-center gap-2">
@@ -440,9 +493,43 @@ export default function Page() {
 
 							if (isUser) {
 								return (
-									<div key={msg.id} className="flex justify-end">
-										<div className="bg-fill2 dark:bg-elevation-level2 text-fg max-w-[85%] rounded-3xl rounded-tr-md px-4.5 py-2.5 text-[15px] leading-relaxed break-words shadow-2xs sm:max-w-xl">
+									<div
+										key={msg.id}
+										className="group/user-msg flex flex-col items-end gap-1">
+										<div className="bg-fill2 dark:bg-elevation-level2 text-fg max-w-[85%] rounded-2xl px-4.5 py-2.5 text-[14px] leading-relaxed break-words shadow-2xs sm:max-w-xl">
 											{msg.content}
+										</div>
+										{/* Action Icons Row for User Message (Image 4) */}
+										<div className="text-fg-tertiary flex items-center justify-end gap-1 pt-0.5 opacity-90 transition-opacity">
+											<IconButton
+												variant="ghost"
+												color="neutral"
+												size="xs"
+												onClick={() => handleCopy(msg.id, msg.content)}
+												className="hover:text-fg size-6 rounded-md"
+												aria-label="Copy message">
+												{copiedId === msg.id ? (
+													<Check className="text-success size-3.5" />
+												) : (
+													<Copy className="size-3.5" />
+												)}
+											</IconButton>
+											<IconButton
+												variant="ghost"
+												color="neutral"
+												size="xs"
+												className="hover:text-fg size-6 rounded-md"
+												aria-label="Share message">
+												<Share2 className="size-3.5" />
+											</IconButton>
+											<IconButton
+												variant="ghost"
+												color="neutral"
+												size="xs"
+												className="hover:text-fg size-6 rounded-md"
+												aria-label="Edit message">
+												<Pencil className="size-3.5" />
+											</IconButton>
 										</div>
 									</div>
 								)
@@ -452,7 +539,7 @@ export default function Page() {
 								<div
 									key={msg.id}
 									className="flex max-w-[95%] flex-col items-start gap-2 sm:max-w-2xl">
-									<div className="text-fg text-[15px] leading-relaxed break-words">
+									<div className="text-fg text-[14px] leading-relaxed break-words">
 										{msg.content}
 									</div>
 
@@ -557,7 +644,15 @@ export default function Page() {
 							onKeyDown={handleKeyDown}
 							placeholder="What do you want to know?"
 							rows={1}
-							className="placeholder:text-fg-tertiary text-fg max-h-36 min-h-[40px] w-full resize-none bg-transparent px-2 text-[15px] outline-none"
+							data-gramm="false"
+							data-enable-grammarly="false"
+							data-sider="false"
+							data-monica="false"
+							autoComplete="off"
+							autoCorrect="off"
+							autoCapitalize="off"
+							spellCheck={false}
+							className="placeholder:text-fg-tertiary text-fg max-h-36 min-h-[40px] w-full resize-none bg-transparent px-2 text-[14px] outline-none"
 						/>
 						<div className="flex items-center justify-between pt-2">
 							<div className="flex items-center gap-1.5">
