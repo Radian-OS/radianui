@@ -153,102 +153,104 @@ export default function Page() {
 		<div className="dark:bg-bg text-fg bg-bg-subtle min-h-screen w-full px-6 py-6 font-sans transition-colors md:px-10 md:py-8">
 			<div className="mx-auto flex max-w-7xl flex-col gap-4">
 				{/* ══════════════════════════════════════════════
-            1. TOP NAVBAR / HEADER
+            1. TOP NAVBAR / HEADER & 2. TOOLBAR
         ══════════════════════════════════════════════ */}
-				<header className="flex flex-wrap items-center justify-between gap-3">
-					<div className="flex items-center gap-2.5">
-						<div className="text-fg-secondary dark:bg-fill2 flex size-7 items-center justify-center rounded-lg bg-zinc-100">
-							<BarChart3 className="size-4" />
+				<div className="flex flex-col gap-6">
+					<header className="flex flex-wrap items-center justify-between gap-x-3 gap-y-6">
+						<div className="flex items-center gap-2.5">
+							<div className="text-fg-secondary dark:bg-fill2 flex size-7 items-center justify-center rounded-lg bg-zinc-100">
+								<BarChart3 className="size-4" />
+							</div>
+							<h1 className="heading-5 text-fg">Analytics</h1>
 						</div>
-						<h1 className="heading-5 text-fg">Analytics</h1>
-					</div>
 
-					<div className="flex items-center gap-2">
-						<Button
-							variant="outline"
-							color="neutral"
-							size="sm"
-							className="border-border/60 bg-elevation-level1 text-fg hover:bg-fill1/40 h-8.5 gap-1.5 rounded-xl px-3 text-[14px] font-medium shadow-2xs">
-							<Sparkles className="text-fg-secondary size-3.5" />
-							<span>Accounts</span>
-						</Button>
-						<Button
-							variant="outline"
-							color="neutral"
-							size="sm"
-							className="border-border/60 bg-elevation-level1 text-fg hover:bg-fill1/40 h-8.5 gap-1.5 rounded-xl px-3 text-[14px] font-medium shadow-2xs">
-							<RotateCw className="text-fg-secondary size-3.5" />
-							<span>Refresh</span>
-						</Button>
-						<Button
-							color="primary"
-							variant="strong"
-							size="sm"
-							className="h-8.5 rounded-xl px-4 text-[14px] font-semibold shadow-xs">
-							Save as report
-						</Button>
-					</div>
-				</header>
+						<div className="flex items-center gap-2">
+							<Button
+								variant="outline"
+								color="neutral"
+								size="sm"
+								className="border-border/60 bg-elevation-level1 text-fg hover:bg-fill1/40 h-8.5 gap-1.5 rounded-xl px-3 text-[14px] font-medium shadow-2xs">
+								<Sparkles className="text-fg-secondary size-3.5" />
+								<span>Accounts</span>
+							</Button>
+							<Button
+								variant="outline"
+								color="neutral"
+								size="sm"
+								className="border-border/60 bg-elevation-level1 text-fg hover:bg-fill1/40 h-8.5 gap-1.5 rounded-xl px-3 text-[14px] font-medium shadow-2xs">
+								<RotateCw className="text-fg-secondary size-3.5" />
+								<span>Refresh</span>
+							</Button>
+							<Button
+								color="primary"
+								variant="strong"
+								size="sm"
+								className="h-8.5 rounded-xl px-4 text-[14px] font-semibold shadow-xs">
+								Save as report
+							</Button>
+						</div>
+					</header>
 
-				{/* ══════════════════════════════════════════════
+					{/* ══════════════════════════════════════════════
             2. TOOLBAR / FILTER ROW
         ══════════════════════════════════════════════ */}
-				<div className="flex flex-wrap items-center justify-between gap-3">
-					<div className="flex flex-wrap items-center gap-2">
-						{/* Last 30 days */}
-						<Button
-							variant="outline"
-							color="neutral"
-							size="sm"
-							className="border-border/60 bg-elevation-level1 text-fg hover:bg-fill1/40 h-8 gap-1.5 rounded-xl px-3 text-[14px] font-medium shadow-2xs">
-							<Calendar className="text-fg-secondary size-3.5" />
-							<span>{timeRange}</span>
-							<ChevronDown className="text-fg-tertiary size-3.5" />
-						</Button>
+					<div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-6">
+						<div className="flex flex-wrap items-center gap-2">
+							{/* Last 30 days */}
+							<Button
+								variant="outline"
+								color="neutral"
+								size="sm"
+								className="border-border/60 bg-elevation-level1 text-fg hover:bg-fill1/40 h-8 gap-1.5 rounded-xl px-3 text-[14px] font-medium shadow-2xs">
+								<Calendar className="text-fg-secondary size-3.5" />
+								<span>{timeRange}</span>
+								<ChevronDown className="text-fg-tertiary size-3.5" />
+							</Button>
 
-						{/* Compare */}
-						<Button
-							variant="outline"
-							color="neutral"
-							size="sm"
-							className="border-border/60 bg-elevation-level1 text-fg hover:bg-fill1/40 h-8 gap-1.5 rounded-xl px-3 text-[14px] font-medium shadow-2xs">
-							<Calendar className="text-fg-secondary size-3.5" />
-							<span>Compare</span>
-							<ChevronDown className="text-fg-tertiary size-3.5" />
-						</Button>
+							{/* Compare */}
+							<Button
+								variant="outline"
+								color="neutral"
+								size="sm"
+								className="border-border/60 bg-elevation-level1 text-fg hover:bg-fill1/40 h-8 gap-1.5 rounded-xl px-3 text-[14px] font-medium shadow-2xs">
+								<Calendar className="text-fg-secondary size-3.5" />
+								<span>Compare</span>
+								<ChevronDown className="text-fg-tertiary size-3.5" />
+							</Button>
 
-						{/* USD */}
-						<Button
-							variant="outline"
-							color="neutral"
-							size="sm"
-							className="border-border/60 bg-elevation-level1 text-fg hover:bg-fill1/40 h-8 gap-1.5 rounded-xl px-3 text-[14px] font-medium shadow-2xs">
-							<CircleDollarSign className="text-fg-secondary size-3.5" />
-							<span>USD</span>
-							<ChevronDown className="text-fg-tertiary size-3.5" />
-						</Button>
+							{/* USD */}
+							<Button
+								variant="outline"
+								color="neutral"
+								size="sm"
+								className="border-border/60 bg-elevation-level1 text-fg hover:bg-fill1/40 h-8 gap-1.5 rounded-xl px-3 text-[14px] font-medium shadow-2xs">
+								<CircleDollarSign className="text-fg-secondary size-3.5" />
+								<span>USD</span>
+								<ChevronDown className="text-fg-tertiary size-3.5" />
+							</Button>
 
-						{/* All channels */}
+							{/* All channels */}
+							<Button
+								variant="outline"
+								color="neutral"
+								size="sm"
+								className="border-border/60 bg-elevation-level1 text-fg hover:bg-fill1/40 h-8 gap-1.5 rounded-xl px-3 text-[14px] font-medium shadow-2xs">
+								<Layers className="text-fg-secondary size-3.5" />
+								<span>{channel}</span>
+								<ChevronDown className="text-fg-tertiary size-3.5" />
+							</Button>
+						</div>
+
+						{/* Manage Metrics */}
 						<Button
 							variant="outline"
 							color="neutral"
 							size="sm"
 							className="border-border/60 bg-elevation-level1 text-fg hover:bg-fill1/40 h-8 gap-1.5 rounded-xl px-3 text-[14px] font-medium shadow-2xs">
-							<Layers className="text-fg-secondary size-3.5" />
-							<span>{channel}</span>
-							<ChevronDown className="text-fg-tertiary size-3.5" />
+							<SlidersHorizontal className="text-fg-secondary size-3.5" />
+							<span>Manage Metrics</span>
 						</Button>
 					</div>
-
-					{/* Manage Metrics */}
-					<Button
-						variant="outline"
-						color="neutral"
-						size="sm"
-						className="border-border/60 bg-elevation-level1 text-fg hover:bg-fill1/40 h-8 gap-1.5 rounded-xl px-3 text-[14px] font-medium shadow-2xs">
-						<SlidersHorizontal className="text-fg-secondary size-3.5" />
-						<span>Manage Metrics</span>
-					</Button>
 				</div>
 
 				{/* ══════════════════════════════════════════════
@@ -268,7 +270,7 @@ export default function Page() {
 									<span className="text-fg text-[24px] leading-none font-bold tracking-tight">
 										$168,920
 									</span>
-									<span className="inline-flex items-center text-[12px] leading-none font-semibold text-emerald-600 dark:text-emerald-400">
+									<span className="inline-flex items-center text-[12px] leading-none font-medium text-emerald-600 dark:text-emerald-400">
 										+47%
 									</span>
 								</div>
@@ -290,7 +292,7 @@ export default function Page() {
 									<span className="text-fg text-[24px] leading-none font-bold tracking-tight">
 										27%
 									</span>
-									<span className="inline-flex items-center text-[12px] leading-none font-semibold text-rose-500 dark:text-rose-400">
+									<span className="inline-flex items-center text-[12px] leading-none font-medium text-rose-500 dark:text-rose-400">
 										-23%
 									</span>
 								</div>
@@ -312,7 +314,7 @@ export default function Page() {
 									<span className="text-fg text-[24px] leading-none font-bold tracking-tight">
 										54
 									</span>
-									<span className="inline-flex items-center text-[12px] leading-none font-semibold text-emerald-600 dark:text-emerald-400">
+									<span className="inline-flex items-center text-[12px] leading-none font-medium text-emerald-600 dark:text-emerald-400">
 										+47%
 									</span>
 								</div>
@@ -334,7 +336,7 @@ export default function Page() {
 									<span className="text-fg text-[24px] leading-none font-bold tracking-tight">
 										62
 									</span>
-									<span className="inline-flex items-center text-[12px] leading-none font-semibold text-rose-500 dark:text-rose-400">
+									<span className="inline-flex items-center text-[12px] leading-none font-medium text-rose-500 dark:text-rose-400">
 										-23%
 									</span>
 								</div>
@@ -660,7 +662,7 @@ export default function Page() {
 									Total sales broken down by channel
 								</span>
 							</div>
-							<span className="text-[14px] font-semibold text-emerald-600 dark:text-emerald-400">
+							<span className="text-[12px] font-medium text-emerald-600 dark:text-emerald-400">
 								+ 42.7%
 							</span>
 						</div>
