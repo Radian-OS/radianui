@@ -301,6 +301,7 @@ export default function Page() {
 								</DropdownMenuTrigger>
 								<DropdownMenuContent
 									align="start"
+									sideOffset={4}
 									className="border-border/80 w-52 rounded-2xl border p-1.5 shadow-lg">
 									{DATE_RANGE_OPTIONS.map((opt) => {
 										const Icon = opt.icon
@@ -341,6 +342,7 @@ export default function Page() {
 								</DropdownMenuTrigger>
 								<DropdownMenuContent
 									align="start"
+									sideOffset={4}
 									className="border-border/80 w-56 rounded-2xl border p-1.5 shadow-lg">
 									{COMPARE_OPTIONS.map((opt) => {
 										const Icon = opt.icon
@@ -381,6 +383,7 @@ export default function Page() {
 								</DropdownMenuTrigger>
 								<DropdownMenuContent
 									align="start"
+									sideOffset={4}
 									className="border-border/80 w-48 rounded-2xl border p-1.5 shadow-lg">
 									{CURRENCY_OPTIONS.map((opt) => {
 										const Icon = opt.icon
@@ -421,6 +424,7 @@ export default function Page() {
 								</DropdownMenuTrigger>
 								<DropdownMenuContent
 									align="start"
+									sideOffset={4}
 									className="border-border/80 w-52 rounded-2xl border p-1.5 shadow-lg">
 									{CHANNEL_OPTIONS.map((opt) => {
 										const Icon = opt.icon

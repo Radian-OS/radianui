@@ -341,7 +341,8 @@ export default function Page() {
 								</Button>
 							</DropdownMenuTrigger>
 							<DropdownMenuContent
-								align="end"
+								align="start"
+								sideOffset={4}
 								className="border-border/80 w-44 rounded-2xl border p-1.5 shadow-lg">
 								{PERIOD_OPTIONS.map((opt) => {
 									const Icon = opt.icon
@@ -471,7 +472,8 @@ export default function Page() {
 									</Button>
 								</DropdownMenuTrigger>
 								<DropdownMenuContent
-									align="end"
+									align="start"
+									sideOffset={4}
 									className="border-border/80 w-52 rounded-2xl border p-1.5 shadow-lg">
 									{SALES_RANGE_OPTIONS.map((opt) => {
 										const Icon = opt.icon
