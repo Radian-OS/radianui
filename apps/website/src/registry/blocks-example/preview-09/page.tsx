@@ -352,21 +352,21 @@ export default function Page() {
 				<div className="grid grid-cols-1 items-stretch gap-x-3 gap-y-4 lg:grid-cols-12">
 					{/* Left: Total sales over time (2 lines: current + compare) */}
 					<Card className="border-border/60 dark:bg-elevation-level1 flex flex-col justify-between overflow-hidden rounded-2xl border bg-white p-6 shadow-xs lg:col-span-8">
-						<div className="flex flex-col gap-1">
-							<div className="pb-1">
+						<div className="flex flex-col gap-3.5">
+							<div>
 								<h2 className="text-[14px] font-normal text-zinc-500 dark:text-zinc-400">
 									Total sales over time
 								</h2>
 							</div>
 
-							<div className="pt-1 pb-2">
+							<div>
 								<span className="text-fg text-[24px] font-bold tracking-tight">
 									$168,920
 								</span>
 							</div>
 
 							{/* Main Chart */}
-							<div className="h-[250px] w-full pt-1">
+							<div className="h-[250px] w-full">
 								<ResponsiveContainer width="100%" height="100%">
 									<LineChart
 										data={salesOverTimeData}
