@@ -67,6 +67,7 @@ import {
 	SidebarTrigger,
 	useSidebar,
 } from "@/styles/default/ui/sidebar"
+import { motion, AnimatePresence } from "motion/react"
 import { cn } from "@/lib/utils"
 
 // ──────────────────────────────────────────────
@@ -311,6 +312,440 @@ const AVAILABLE_MODELS = [
 	"Gemini 3.1 Pro",
 ]
 
+interface ChatSidebarProps {
+	activeChat: string
+	setActiveChat: (id: string) => void
+	setMessages: React.Dispatch<React.SetStateAction<Message[]>>
+	pinnedChats: ChatItem[]
+	recentChats: ChatItem[]
+	handleTogglePin: (id: string) => void
+}
+
+function ChatSidebar({
+	activeChat,
+	setActiveChat,
+	setMessages,
+	pinnedChats,
+	recentChats,
+	handleTogglePin,
+}: ChatSidebarProps) {
+	const { state } = useSidebar()
+	const isCollapsed = state === "collapsed"
+
+	return (
+		<Sidebar
+			variant="sidebar"
+			collapsible="icon"
+			className="border-border/60 bg-bg overflow-hidden border-r transition-[width] duration-300 ease-in-out [&>[data-slot=sidebar-container]]:transition-[width] [&>[data-slot=sidebar-container]]:duration-300 [&>[data-slot=sidebar-container]]:ease-in-out [&>[data-slot=sidebar-gap]]:transition-[width] [&>[data-slot=sidebar-gap]]:duration-300 [&>[data-slot=sidebar-gap]]:ease-in-out">
+			{/* Top Branding & Search / Toggle Actions */}
+			<SidebarHeader className="relative h-14 overflow-hidden p-3 group-data-[collapsible=icon]:p-2">
+				<AnimatePresence mode="wait" initial={false}>
+					{isCollapsed ? (
+						<motion.div
+							key="collapsed-header"
+							initial={{ opacity: 0 }}
+							animate={{ opacity: 1 }}
+							exit={{ opacity: 0 }}
+							transition={{ duration: 0.15, ease: "easeInOut" }}
+							className="flex h-full w-full items-center justify-center">
+							<CollapsedLogoTrigger />
+						</motion.div>
+					) : (
+						<motion.div
+							key="expanded-header"
+							initial={{ opacity: 0 }}
+							animate={{ opacity: 1 }}
+							exit={{ opacity: 0 }}
+							transition={{ duration: 0.15, ease: "easeInOut" }}
+							className="flex h-full w-full items-center justify-between">
+							<div className="flex items-center gap-2 px-1">
+								<RadianLogo />
+								<span className="font-heading text-fg text-base font-semibold tracking-tight">
+									Radian
+								</span>
+							</div>
+							<div className="flex items-center gap-1">
+								<IconButton
+									variant="ghost"
+									color="neutral"
+									size="xs"
+									className="text-fg-secondary hover:text-fg size-7 cursor-pointer"
+									aria-label="Search chats">
+									<Search className="size-4" />
+								</IconButton>
+								<SidebarTrigger className="text-fg-secondary hover:text-fg size-7 cursor-pointer" />
+							</div>
+						</motion.div>
+					)}
+				</AnimatePresence>
+			</SidebarHeader>
+
+			<SidebarContent className="no-scrollbar overflow-hidden px-2 py-3">
+				<AnimatePresence mode="wait" initial={false}>
+					{isCollapsed ? (
+						<motion.div
+							key="collapsed-rail"
+							initial={{ opacity: 0 }}
+							animate={{ opacity: 1 }}
+							exit={{ opacity: 0 }}
+							transition={{ duration: 0.15, ease: "easeInOut" }}>
+							<SidebarGroup className="p-0">
+								<SidebarMenu className="items-center gap-1">
+									<SidebarMenuItem>
+										<SidebarMenuButton
+											size="md"
+											tooltip="New chat"
+											onClick={() => {
+												setActiveChat("new")
+												setMessages([])
+											}}
+											className="size-9 justify-center [&>svg]:size-[18px]!">
+											<SquarePen className="size-[18px]" />
+										</SidebarMenuButton>
+									</SidebarMenuItem>
+									<SidebarMenuItem>
+										<SidebarMenuButton
+											size="md"
+											tooltip="Search"
+											className="size-9 justify-center [&>svg]:size-[18px]!">
+											<Search className="size-[18px]" />
+										</SidebarMenuButton>
+									</SidebarMenuItem>
+									<SidebarMenuItem>
+										<SidebarMenuButton
+											size="md"
+											tooltip="Chats"
+											isActive={activeChat !== "new"}
+											onClick={() => setActiveChat("cat-behaviour")}
+											className="size-9 justify-center [&>svg]:size-[18px]!">
+											<MessageSquare className="size-[18px]" />
+										</SidebarMenuButton>
+									</SidebarMenuItem>
+									<SidebarMenuItem>
+										<SidebarMenuButton
+											size="md"
+											tooltip="Images"
+											className="size-9 justify-center [&>svg]:size-[18px]!">
+											<Images className="size-[18px]" />
+										</SidebarMenuButton>
+									</SidebarMenuItem>
+									<SidebarMenuItem>
+										<SidebarMenuButton
+											size="md"
+											tooltip="Scheduled"
+											className="size-9 justify-center [&>svg]:size-[18px]!">
+											<Clock className="size-[18px]" />
+										</SidebarMenuButton>
+									</SidebarMenuItem>
+									<SidebarMenuItem>
+										<SidebarMenuButton
+											size="md"
+											tooltip="Library"
+											className="size-9 justify-center [&>svg]:size-[18px]!">
+											<BookOpen className="size-[18px]" />
+										</SidebarMenuButton>
+									</SidebarMenuItem>
+									<SidebarMenuItem>
+										<SidebarMenuButton
+											size="md"
+											tooltip="Plugins"
+											className="size-9 justify-center [&>svg]:size-[18px]!">
+											<Blocks className="size-[18px]" />
+										</SidebarMenuButton>
+									</SidebarMenuItem>
+									<SidebarMenuItem>
+										<SidebarMenuButton
+											size="md"
+											tooltip="Explore"
+											className="size-9 justify-center [&>svg]:size-[18px]!">
+											<LayoutGrid className="size-[18px]" />
+										</SidebarMenuButton>
+									</SidebarMenuItem>
+								</SidebarMenu>
+							</SidebarGroup>
+						</motion.div>
+					) : (
+						<motion.div
+							key="expanded-menu"
+							initial={{ opacity: 0 }}
+							animate={{ opacity: 1 }}
+							exit={{ opacity: 0 }}
+							transition={{ duration: 0.15, ease: "easeInOut" }}>
+							{/* Actions List */}
+							<SidebarGroup className="p-0">
+								<SidebarMenu className="gap-1">
+									<SidebarMenuItem>
+										<SidebarMenuButton
+											size="sm"
+											onClick={() => {
+												setActiveChat("new")
+												setMessages([])
+											}}
+											className="h-8.5 rounded-lg text-[14px]">
+											<SquarePen className="size-4" />
+											<span>New chat</span>
+										</SidebarMenuButton>
+									</SidebarMenuItem>
+									<SidebarMenuItem>
+										<SidebarMenuButton
+											size="sm"
+											className="h-8.5 rounded-lg text-[14px]">
+											<Images className="size-4" />
+											<span>Images</span>
+										</SidebarMenuButton>
+									</SidebarMenuItem>
+									<SidebarMenuItem>
+										<SidebarMenuButton
+											size="sm"
+											className="h-8.5 rounded-lg text-[14px]">
+											<Clock className="size-4" />
+											<span>Scheduled</span>
+										</SidebarMenuButton>
+									</SidebarMenuItem>
+									<SidebarMenuItem>
+										<SidebarMenuButton
+											size="sm"
+											className="h-8.5 rounded-lg text-[14px]">
+											<BookOpen className="size-4" />
+											<span>Library</span>
+										</SidebarMenuButton>
+									</SidebarMenuItem>
+									<SidebarMenuItem>
+										<SidebarMenuButton
+											size="sm"
+											className="h-8.5 rounded-lg text-[14px]">
+											<Blocks className="size-4" />
+											<span>Plugins</span>
+										</SidebarMenuButton>
+									</SidebarMenuItem>
+									<SidebarMenuItem>
+										<SidebarMenuButton
+											size="sm"
+											className="h-8.5 rounded-lg text-[14px]">
+											<LayoutGrid className="size-4" />
+											<span>Explore</span>
+										</SidebarMenuButton>
+									</SidebarMenuItem>
+								</SidebarMenu>
+							</SidebarGroup>
+
+							{/* Projects Section */}
+							<SidebarGroup className="pt-4">
+								<SidebarGroupLabel className="text-fg-secondary text-xs font-medium">
+									Projects
+								</SidebarGroupLabel>
+								<SidebarGroupContent>
+									<div className="text-fg-tertiary px-2 py-1 text-xs">
+										No projects
+									</div>
+								</SidebarGroupContent>
+							</SidebarGroup>
+
+							{/* Pinned Section */}
+							{pinnedChats.length > 0 && (
+								<SidebarGroup className="pt-3">
+									<SidebarGroupLabel className="text-fg-secondary text-xs font-medium">
+										Pinned
+									</SidebarGroupLabel>
+									<SidebarGroupContent>
+										<SidebarMenu className="gap-0.5">
+											{pinnedChats.map((chat) => {
+												const isActive = activeChat === chat.id
+												return (
+													<SidebarMenuItem
+														key={chat.id}
+														className="group/chat-item relative">
+														<SidebarMenuButton
+															size="sm"
+															isActive={isActive}
+															onClick={() => setActiveChat(chat.id)}
+															className={cn(
+																"h-8.5 w-full rounded-lg pr-14 text-[14px] font-normal transition-colors",
+																isActive &&
+																	"bg-fill2 dark:bg-elevation-level2 font-medium"
+															)}>
+															<Pin className="text-primary size-3.5 shrink-0 fill-current" />
+															<span className="truncate">{chat.title}</span>
+														</SidebarMenuButton>
+														<div className="absolute top-1/2 right-1 flex -translate-y-1/2 items-center gap-0.5 opacity-0 transition-opacity group-hover/chat-item:opacity-100">
+															<Tooltip>
+																<TooltipTrigger asChild>
+																	<IconButton
+																		variant="ghost"
+																		color="neutral"
+																		size="xs"
+																		onClick={(e) => {
+																			e.stopPropagation()
+																			handleTogglePin(chat.id)
+																		}}
+																		className="text-fg-secondary hover:text-fg size-7 cursor-pointer rounded-md"
+																		aria-label="Unpin chat">
+																		<Pin className="text-primary size-3.5 fill-current" />
+																	</IconButton>
+																</TooltipTrigger>
+																<TooltipContent
+																	side="top"
+																	sideOffset={4}
+																	className="bg-fg text-bg dark:bg-elevation-level3 dark:text-fg rounded-full border-0 px-2.5 py-1 text-xs font-medium shadow-md">
+																	Unpin chat
+																</TooltipContent>
+															</Tooltip>
+															<IconButton
+																variant="ghost"
+																color="neutral"
+																size="xs"
+																className="text-fg-secondary hover:text-fg size-7 cursor-pointer rounded-md"
+																aria-label="More options">
+																<MoreHorizontal className="size-3.5" />
+															</IconButton>
+														</div>
+													</SidebarMenuItem>
+												)
+											})}
+										</SidebarMenu>
+									</SidebarGroupContent>
+								</SidebarGroup>
+							)}
+
+							{/* Recents Section */}
+							<SidebarGroup className="pt-3">
+								<SidebarGroupLabel className="text-fg-secondary text-xs font-medium">
+									Recents
+								</SidebarGroupLabel>
+								<SidebarGroupContent>
+									<SidebarMenu className="gap-0.5">
+										{recentChats.map((chat) => {
+											const isActive = activeChat === chat.id
+											return (
+												<SidebarMenuItem
+													key={chat.id}
+													className="group/chat-item relative">
+													<SidebarMenuButton
+														size="sm"
+														isActive={isActive}
+														onClick={() => setActiveChat(chat.id)}
+														className={cn(
+															"h-8.5 w-full rounded-lg pr-14 text-[14px] font-normal transition-colors",
+															isActive &&
+																"bg-fill2 dark:bg-elevation-level2 font-medium"
+														)}>
+														<span className="truncate">{chat.title}</span>
+													</SidebarMenuButton>
+													<div className="absolute top-1/2 right-1 flex -translate-y-1/2 items-center gap-0.5 opacity-0 transition-opacity group-hover/chat-item:opacity-100">
+														<Tooltip>
+															<TooltipTrigger asChild>
+																<IconButton
+																	variant="ghost"
+																	color="neutral"
+																	size="xs"
+																	onClick={(e) => {
+																		e.stopPropagation()
+																		handleTogglePin(chat.id)
+																	}}
+																	className="text-fg-secondary hover:text-fg size-7 cursor-pointer rounded-md"
+																	aria-label="Pin chat">
+																	<Pin className="size-3.5" />
+																</IconButton>
+															</TooltipTrigger>
+															<TooltipContent
+																side="top"
+																sideOffset={4}
+																className="bg-fg text-bg dark:bg-elevation-level3 dark:text-fg rounded-full border-0 px-2.5 py-1 text-xs font-medium shadow-md">
+																Pin chat
+															</TooltipContent>
+														</Tooltip>
+														<IconButton
+															variant="ghost"
+															color="neutral"
+															size="xs"
+															className="text-fg-secondary hover:text-fg size-7 cursor-pointer rounded-md"
+															aria-label="More options">
+															<MoreHorizontal className="size-3.5" />
+														</IconButton>
+													</div>
+												</SidebarMenuItem>
+											)
+										})}
+									</SidebarMenu>
+								</SidebarGroupContent>
+							</SidebarGroup>
+						</motion.div>
+					)}
+				</AnimatePresence>
+			</SidebarContent>
+
+			{/* Sidebar Footer with Alex Morgan Profile */}
+			<SidebarFooter className="border-border/40 overflow-hidden border-t p-3 group-data-[collapsible=icon]:p-2">
+				<AnimatePresence mode="wait" initial={false}>
+					{isCollapsed ? (
+						<motion.div
+							key="collapsed-footer"
+							initial={{ opacity: 0 }}
+							animate={{ opacity: 1 }}
+							exit={{ opacity: 0 }}
+							transition={{ duration: 0.15, ease: "easeInOut" }}
+							className="flex items-center justify-center">
+							<Tooltip>
+								<TooltipTrigger asChild>
+									<Avatar
+										size="sm"
+										rounded="circle"
+										className="border-border shrink-0 cursor-pointer border">
+										<AvatarImage
+											src="https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@v1.0.2/packages/uncompressed-avatars/src/8.png"
+											alt="Alex Morgan"
+										/>
+										<AvatarFallback className="text-xs font-semibold">
+											AM
+										</AvatarFallback>
+									</Avatar>
+								</TooltipTrigger>
+								<TooltipContent side="right">Alex Morgan (Free)</TooltipContent>
+							</Tooltip>
+						</motion.div>
+					) : (
+						<motion.div
+							key="expanded-footer"
+							initial={{ opacity: 0 }}
+							animate={{ opacity: 1 }}
+							exit={{ opacity: 0 }}
+							transition={{ duration: 0.15, ease: "easeInOut" }}
+							className="flex items-center justify-between gap-2">
+							<div className="flex min-w-0 items-center gap-2.5">
+								<Avatar
+									size="sm"
+									rounded="circle"
+									className="border-border shrink-0 cursor-pointer border">
+									<AvatarImage
+										src="https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@v1.0.2/packages/uncompressed-avatars/src/8.png"
+										alt="Alex Morgan"
+									/>
+									<AvatarFallback className="text-xs font-semibold">
+										AM
+									</AvatarFallback>
+								</Avatar>
+								<div className="flex min-w-0 flex-col">
+									<span className="text-fg truncate text-sm font-semibold">
+										Alex Morgan
+									</span>
+									<span className="text-fg-tertiary text-xs">Free</span>
+								</div>
+							</div>
+							<Button
+								variant="outline"
+								color="neutral"
+								size="xs"
+								className="shrink-0 rounded-full px-3 text-xs font-medium">
+								Upgrade
+							</Button>
+						</motion.div>
+					)}
+				</AnimatePresence>
+			</SidebarFooter>
+		</Sidebar>
+	)
+}
+
 export default function Page() {
 	const [activeChat, setActiveChat] = useState<string>("cat-behaviour")
 	const [pinnedIds, setPinnedIds] = useState<string[]>([])
@@ -398,325 +833,14 @@ export default function Page() {
 			{/* ══════════════════════════════════════════════
           1. RADIAN SIDEBAR NAVIGATION
       ══════════════════════════════════════════════ */}
-			<Sidebar
-				variant="sidebar"
-				collapsible="icon"
-				className="border-border/60 bg-bg border-r">
-				{/* Top Branding & Search / Toggle Actions */}
-				<SidebarHeader className="flex flex-row items-center justify-between p-3 group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:p-2">
-					<div className="flex items-center gap-2 px-1 group-data-[collapsible=icon]:hidden">
-						<RadianLogo />
-						<span className="font-heading text-fg text-base font-semibold tracking-tight">
-							Radian
-						</span>
-					</div>
-					<div className="flex items-center gap-1 group-data-[collapsible=icon]:hidden">
-						<IconButton
-							variant="ghost"
-							color="neutral"
-							size="xs"
-							className="text-fg-secondary hover:text-fg size-7 cursor-pointer"
-							aria-label="Search chats">
-							<Search className="size-4" />
-						</IconButton>
-						<SidebarTrigger className="text-fg-secondary hover:text-fg size-7 cursor-pointer" />
-					</div>
-					{/* Collapsed Rail Logo with hover-to-toggle icon */}
-					<div className="hidden group-data-[collapsible=icon]:flex group-data-[collapsible=icon]:items-center group-data-[collapsible=icon]:justify-center">
-						<CollapsedLogoTrigger />
-					</div>
-				</SidebarHeader>
-
-				<SidebarContent className="no-scrollbar px-2 py-3">
-					{/* 1. Collapsed Rail Icon Menu (Matches Image 4) */}
-					<SidebarGroup className="hidden p-0 group-data-[collapsible=icon]:block">
-						<SidebarMenu className="items-center gap-1">
-							<SidebarMenuItem>
-								<SidebarMenuButton
-									size="md"
-									tooltip="New chat"
-									onClick={() => {
-										setActiveChat("new")
-										setMessages([])
-									}}
-									className="size-9 justify-center [&>svg]:size-[18px]!">
-									<SquarePen className="size-[18px]" />
-								</SidebarMenuButton>
-							</SidebarMenuItem>
-							<SidebarMenuItem>
-								<SidebarMenuButton
-									size="md"
-									tooltip="Search"
-									className="size-9 justify-center [&>svg]:size-[18px]!">
-									<Search className="size-[18px]" />
-								</SidebarMenuButton>
-							</SidebarMenuItem>
-							<SidebarMenuItem>
-								<SidebarMenuButton
-									size="md"
-									tooltip="Chats"
-									isActive={activeChat !== "new"}
-									onClick={() => setActiveChat("cat-behaviour")}
-									className="size-9 justify-center [&>svg]:size-[18px]!">
-									<MessageSquare className="size-[18px]" />
-								</SidebarMenuButton>
-							</SidebarMenuItem>
-							<SidebarMenuItem>
-								<SidebarMenuButton
-									size="md"
-									tooltip="Library"
-									className="size-9 justify-center [&>svg]:size-[18px]!">
-									<BookOpen className="size-[18px]" />
-								</SidebarMenuButton>
-							</SidebarMenuItem>
-						</SidebarMenu>
-					</SidebarGroup>
-
-					{/* 2. Expanded Navigation Items (Hidden when collapsed) */}
-					<div className="flex flex-col group-data-[collapsible=icon]:hidden">
-						{/* Primary Menu Items */}
-						<SidebarGroup className="p-0">
-							<SidebarMenu className="gap-0.5">
-								{mainNavItems.map((item) => {
-									const Icon = item.icon
-									return (
-										<SidebarMenuItem key={item.id}>
-											<SidebarMenuButton
-												size="md"
-												className="text-sidebar-fg h-9 gap-3 text-[14px] font-medium [&>svg]:size-[18px]!">
-												<Icon className="size-[18px] shrink-0" />
-												<span className="text-[14px]">{item.title}</span>
-											</SidebarMenuButton>
-										</SidebarMenuItem>
-									)
-								})}
-							</SidebarMenu>
-						</SidebarGroup>
-
-						{/* Pinned Group (Only shown when user has pinned chats) */}
-						{pinnedChats.length > 0 && (
-							<SidebarGroup className="p-0 pt-6">
-								<SidebarGroupLabel className="group/pinned text-fg-secondary flex h-7 items-center justify-between px-2 text-[14px] font-semibold">
-									<span className="text-fg-secondary text-[14px] font-semibold tracking-wide">
-										Pinned
-									</span>
-								</SidebarGroupLabel>
-								<SidebarGroupContent className="pt-1">
-									<SidebarMenu className="gap-0.5">
-										{pinnedChats.map((chat) => {
-											const isActive = activeChat === chat.id
-											return (
-												<SidebarMenuItem
-													key={chat.id}
-													className="group/chat-item relative">
-													<SidebarMenuButton
-														size="md"
-														isActive={isActive}
-														onClick={() => setActiveChat(chat.id)}
-														className="text-sidebar-fg h-9 truncate pr-14 text-[14px] font-medium [&>svg]:size-[18px]!">
-														<span className="truncate text-[14px]">
-															{chat.title}
-														</span>
-													</SidebarMenuButton>
-													<div className="absolute top-1/2 right-1 flex -translate-y-1/2 items-center gap-0.5 opacity-0 transition-opacity group-hover/chat-item:opacity-100">
-														<Tooltip>
-															<TooltipTrigger asChild>
-																<IconButton
-																	variant="ghost"
-																	color="neutral"
-																	size="xs"
-																	onClick={(e) => {
-																		e.stopPropagation()
-																		handleTogglePin(chat.id)
-																	}}
-																	className="text-primary hover:text-primary size-7 cursor-pointer rounded-md"
-																	aria-label="Unpin chat">
-																	<Pin className="size-3.5 fill-current" />
-																</IconButton>
-															</TooltipTrigger>
-															<TooltipContent
-																side="top"
-																sideOffset={4}
-																className="bg-fg text-bg dark:bg-elevation-level3 dark:text-fg rounded-full border-0 px-2.5 py-1 text-xs font-medium shadow-md">
-																Unpin chat
-															</TooltipContent>
-														</Tooltip>
-														<IconButton
-															variant="ghost"
-															color="neutral"
-															size="xs"
-															className="text-fg-secondary hover:text-fg size-7 cursor-pointer rounded-md"
-															aria-label="More options">
-															<MoreHorizontal className="size-3.5" />
-														</IconButton>
-													</div>
-												</SidebarMenuItem>
-											)
-										})}
-									</SidebarMenu>
-								</SidebarGroupContent>
-							</SidebarGroup>
-						)}
-
-						{/* Projects Group with Hover Actions */}
-						<SidebarGroup className="p-0 pt-6">
-							<SidebarGroupLabel className="group/projects text-fg-secondary flex h-7 items-center justify-between px-2 text-[14px] font-semibold">
-								<div className="flex cursor-pointer items-center gap-1">
-									<span className="text-fg-secondary text-[14px] font-semibold tracking-wide">
-										Projects
-									</span>
-									<ChevronDown className="text-fg-secondary size-4 opacity-0 transition-opacity group-hover/projects:opacity-100" />
-								</div>
-								<div className="flex items-center gap-0.5 opacity-0 transition-opacity group-hover/projects:opacity-100">
-									<IconButton
-										variant="ghost"
-										color="neutral"
-										size="xs"
-										className="text-fg-secondary hover:text-fg size-7 cursor-pointer rounded-md"
-										aria-label="Project settings">
-										<SlidersHorizontal className="size-4" />
-									</IconButton>
-									<IconButton
-										variant="ghost"
-										color="neutral"
-										size="xs"
-										className="text-fg-secondary hover:text-fg size-7 cursor-pointer rounded-md"
-										aria-label="Add project">
-										<Plus className="size-4" />
-									</IconButton>
-								</div>
-							</SidebarGroupLabel>
-							<SidebarGroupContent className="px-2 pt-1.5 pb-1">
-								<span className="text-fg-tertiary/70 text-[14px] font-normal select-none">
-									No projects
-								</span>
-							</SidebarGroupContent>
-						</SidebarGroup>
-
-						{/* Recents Group with Hover Actions */}
-						<SidebarGroup className="p-0 pt-6">
-							<SidebarGroupLabel className="group/recents text-fg-secondary flex h-7 items-center justify-between px-2 text-[14px] font-semibold">
-								<div className="flex cursor-pointer items-center gap-1">
-									<span className="text-fg-secondary text-[14px] font-semibold tracking-wide">
-										Recents
-									</span>
-									<ChevronDown className="text-fg-secondary size-4 opacity-0 transition-opacity group-hover/recents:opacity-100" />
-								</div>
-								<div className="flex items-center gap-0.5 opacity-0 transition-opacity group-hover/recents:opacity-100">
-									<IconButton
-										variant="ghost"
-										color="neutral"
-										size="xs"
-										className="text-fg-secondary hover:text-fg size-7 cursor-pointer rounded-md"
-										aria-label="Recents settings">
-										<SlidersHorizontal className="size-4" />
-									</IconButton>
-									<IconButton
-										variant="ghost"
-										color="neutral"
-										size="xs"
-										className="text-fg-secondary hover:text-fg size-7 cursor-pointer rounded-md"
-										aria-label="New chat">
-										<SquarePen className="size-4" />
-									</IconButton>
-								</div>
-							</SidebarGroupLabel>
-							<SidebarGroupContent className="pt-1">
-								<SidebarMenu className="gap-0.5">
-									{recentChats.map((chat) => {
-										const isActive = activeChat === chat.id
-										return (
-											<SidebarMenuItem
-												key={chat.id}
-												className="group/chat-item relative">
-												<SidebarMenuButton
-													size="md"
-													isActive={isActive}
-													onClick={() => setActiveChat(chat.id)}
-													className="text-sidebar-fg h-9 truncate pr-14 text-[14px] font-medium [&>svg]:size-[18px]!">
-													<span className="truncate text-[14px]">
-														{chat.title}
-													</span>
-												</SidebarMenuButton>
-												<div className="absolute top-1/2 right-1 flex -translate-y-1/2 items-center gap-0.5 opacity-0 transition-opacity group-hover/chat-item:opacity-100">
-													<Tooltip>
-														<TooltipTrigger asChild>
-															<IconButton
-																variant="ghost"
-																color="neutral"
-																size="xs"
-																onClick={(e) => {
-																	e.stopPropagation()
-																	handleTogglePin(chat.id)
-																}}
-																className="text-fg-secondary hover:text-fg size-7 cursor-pointer rounded-md"
-																aria-label="Pin chat">
-																<Pin className="size-3.5" />
-															</IconButton>
-														</TooltipTrigger>
-														<TooltipContent
-															side="top"
-															sideOffset={4}
-															className="bg-fg text-bg dark:bg-elevation-level3 dark:text-fg rounded-full border-0 px-2.5 py-1 text-xs font-medium shadow-md">
-															Pin chat
-														</TooltipContent>
-													</Tooltip>
-													<IconButton
-														variant="ghost"
-														color="neutral"
-														size="xs"
-														className="text-fg-secondary hover:text-fg size-7 cursor-pointer rounded-md"
-														aria-label="More options">
-														<MoreHorizontal className="size-3.5" />
-													</IconButton>
-												</div>
-											</SidebarMenuItem>
-										)
-									})}
-								</SidebarMenu>
-							</SidebarGroupContent>
-						</SidebarGroup>
-					</div>
-				</SidebarContent>
-
-				{/* Sidebar Footer with Alex Morgan Profile */}
-				<SidebarFooter className="border-border/40 border-t p-3 group-data-[collapsible=icon]:p-2">
-					<div className="flex items-center justify-between gap-2 group-data-[collapsible=icon]:justify-center">
-						<div className="flex min-w-0 items-center gap-2.5">
-							<Tooltip>
-								<TooltipTrigger asChild>
-									<Avatar
-										size="sm"
-										rounded="circle"
-										className="border-border shrink-0 cursor-pointer border">
-										<AvatarImage
-											src="https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@v1.0.2/packages/uncompressed-avatars/src/8.png"
-											alt="Alex Morgan"
-										/>
-										<AvatarFallback className="text-xs font-semibold">
-											AM
-										</AvatarFallback>
-									</Avatar>
-								</TooltipTrigger>
-								<TooltipContent side="right">Alex Morgan (Free)</TooltipContent>
-							</Tooltip>
-							<div className="flex min-w-0 flex-col group-data-[collapsible=icon]:hidden">
-								<span className="text-fg truncate text-sm font-semibold">
-									Alex Morgan
-								</span>
-								<span className="text-fg-tertiary text-xs">Free</span>
-							</div>
-						</div>
-						<Button
-							variant="outline"
-							color="neutral"
-							size="xs"
-							className="shrink-0 rounded-full px-3 text-xs font-medium group-data-[collapsible=icon]:hidden">
-							Upgrade
-						</Button>
-					</div>
-				</SidebarFooter>
-			</Sidebar>
+			<ChatSidebar
+				activeChat={activeChat}
+				setActiveChat={setActiveChat}
+				setMessages={setMessages}
+				pinnedChats={pinnedChats}
+				recentChats={recentChats}
+				handleTogglePin={handleTogglePin}
+			/>
 
 			{/* ══════════════════════════════════════════════
           2. MAIN CHAT AREA
@@ -739,7 +863,7 @@ export default function Page() {
 									<div
 										key={msg.id}
 										className="group/user-msg flex flex-col items-end gap-1">
-										<div className="bg-fill2 dark:bg-elevation-level2 text-fg max-w-[85%] rounded-3xl px-5 py-2.5 text-[14px] leading-relaxed break-words shadow-2xs sm:max-w-xl">
+										<div className="bg-fill2 dark:bg-elevation-level2 text-fg max-w-[85%] rounded-2xl px-5 py-2.5 text-[14px] leading-relaxed break-words shadow-2xs sm:max-w-xl">
 											{msg.content}
 										</div>
 										{/* Action Icons Row for User Message */}
@@ -880,7 +1004,7 @@ export default function Page() {
             3. FLOATING PROMPT INPUT CONTAINER
         ══════════════════════════════════════════════ */}
 				<div className="mx-auto w-full max-w-3xl px-4 pb-4">
-					<div className="border-border/80 bg-elevation-level1 focus-within:border-primary/60 focus-within:ring-primary/20 relative flex flex-col rounded-3xl border p-3 shadow-xs transition-all focus-within:ring-2">
+					<div className="border-border/80 bg-elevation-level1 focus-within:border-primary/60 focus-within:ring-primary/20 relative flex flex-col rounded-2xl border p-3 shadow-xs transition-all focus-within:ring-2">
 						<textarea
 							value={inputPrompt}
 							onChange={(e) => setInputPrompt(e.target.value)}
