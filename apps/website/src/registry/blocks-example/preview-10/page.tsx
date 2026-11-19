@@ -531,11 +531,11 @@ function ChatSidebar({
 
 							{/* Projects Section */}
 							<SidebarGroup className="pt-4">
-								<SidebarGroupLabel className="text-fg-secondary text-xs font-medium">
+								<SidebarGroupLabel className="text-fg-secondary text-[14px] font-medium">
 									Projects
 								</SidebarGroupLabel>
 								<SidebarGroupContent>
-									<div className="text-fg-tertiary px-2 py-1 text-xs">
+									<div className="text-fg-tertiary px-2 py-1 text-[14px]">
 										No projects
 									</div>
 								</SidebarGroupContent>
@@ -544,7 +544,7 @@ function ChatSidebar({
 							{/* Pinned Section */}
 							{pinnedChats.length > 0 && (
 								<SidebarGroup className="pt-3">
-									<SidebarGroupLabel className="text-fg-secondary text-xs font-medium">
+									<SidebarGroupLabel className="text-fg-secondary text-[14px] font-medium">
 										Pinned
 									</SidebarGroupLabel>
 									<SidebarGroupContent>
@@ -609,7 +609,7 @@ function ChatSidebar({
 
 							{/* Recents Section */}
 							<SidebarGroup className="pt-3">
-								<SidebarGroupLabel className="text-fg-secondary text-xs font-medium">
+								<SidebarGroupLabel className="text-fg-secondary text-[14px] font-medium">
 									Recents
 								</SidebarGroupLabel>
 								<SidebarGroupContent>
