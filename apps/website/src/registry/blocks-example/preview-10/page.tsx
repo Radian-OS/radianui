@@ -91,12 +91,12 @@ interface RecentChat {
 
 const recentChats: RecentChat[] = [
 	{ id: "cat-behaviour", title: "Cat behaviour" },
-	{ id: "design-slop", title: "Design Slop Replies" },
-	{ id: "kpi-naming", title: "KPI Card Naming" },
-	{ id: "mix-dashboard", title: "Mix Dashboard Designs" },
-	{ id: "themer-preview", title: "Themer Preview Inspiration" },
-	{ id: "pm-design-conflict", title: "PM Design Conflict Advice" },
-	{ id: "reply-figma", title: "Reply to Figma Post" },
+	{ id: "saas-growth", title: "SaaS Growth Strategies Q3" },
+	{ id: "brand-architecture", title: "Brand Identity Architecture" },
+	{ id: "server-actions", title: "React 19 Server Actions Guide" },
+	{ id: "design-tokens", title: "Design Tokens Migration Plan" },
+	{ id: "customer-personas", title: "Customer Persona Matrix" },
+	{ id: "executive-summary", title: "Quarterly Roadmap Summary" },
 ]
 
 interface Message {
@@ -310,10 +310,10 @@ export default function Page() {
 					<SidebarGroup className="p-0 pt-6">
 						<SidebarGroupLabel className="group/projects text-fg-secondary flex h-7 items-center justify-between px-2 text-[14px] font-semibold">
 							<div className="flex cursor-pointer items-center gap-1">
-								<span className="text-fg-secondary group-hover/projects:text-fg text-[14px] font-semibold tracking-wide transition-colors">
+								<span className="text-fg-secondary text-[14px] font-semibold tracking-wide">
 									Projects
 								</span>
-								<ChevronDown className="text-fg-tertiary group-hover/projects:text-fg size-4 opacity-0 transition-opacity group-hover/projects:opacity-100" />
+								<ChevronDown className="text-fg-secondary size-4 opacity-0 transition-opacity group-hover/projects:opacity-100" />
 							</div>
 							<div className="flex items-center gap-0.5 opacity-0 transition-opacity group-hover/projects:opacity-100">
 								<IconButton
@@ -345,10 +345,10 @@ export default function Page() {
 					<SidebarGroup className="p-0 pt-6">
 						<SidebarGroupLabel className="group/recents text-fg-secondary flex h-7 items-center justify-between px-2 text-[14px] font-semibold">
 							<div className="flex cursor-pointer items-center gap-1">
-								<span className="text-fg-secondary group-hover/recents:text-fg text-[14px] font-semibold tracking-wide transition-colors">
+								<span className="text-fg-secondary text-[14px] font-semibold tracking-wide">
 									Recents
 								</span>
-								<ChevronDown className="text-fg-tertiary group-hover/recents:text-fg size-4 opacity-0 transition-opacity group-hover/recents:opacity-100" />
+								<ChevronDown className="text-fg-secondary size-4 opacity-0 transition-opacity group-hover/recents:opacity-100" />
 							</div>
 							<div className="flex items-center gap-0.5 opacity-0 transition-opacity group-hover/recents:opacity-100">
 								<IconButton
@@ -422,7 +422,7 @@ export default function Page() {
 					</SidebarGroup>
 				</SidebarContent>
 
-				{/* Sidebar Footer with Simran Singh Profile */}
+				{/* Sidebar Footer with Alex Morgan Profile */}
 				<SidebarFooter className="border-border/40 border-t p-3">
 					<div className="flex items-center justify-between gap-2">
 						<div className="flex min-w-0 items-center gap-2.5">
@@ -432,15 +432,15 @@ export default function Page() {
 								className="border-border shrink-0 border">
 								<AvatarImage
 									src="https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@v1.0.2/packages/uncompressed-avatars/src/8.png"
-									alt="Simran Singh"
+									alt="Alex Morgan"
 								/>
 								<AvatarFallback className="text-xs font-semibold">
-									SS
+									AM
 								</AvatarFallback>
 							</Avatar>
 							<div className="flex min-w-0 flex-col">
 								<span className="text-fg truncate text-sm font-semibold">
-									Simran Singh
+									Alex Morgan
 								</span>
 								<span className="text-fg-tertiary text-xs">Free</span>
 							</div>
@@ -542,13 +542,13 @@ export default function Page() {
 											{msg.content}
 										</div>
 										{/* Action Icons Row for User Message (Image 4) */}
-										<div className="text-fg-tertiary flex items-center justify-end gap-1 pt-0.5 opacity-90 transition-opacity">
+										<div className="text-fg-tertiary flex items-center justify-end gap-0.5 pt-0.5 opacity-0 transition-opacity group-hover/user-msg:opacity-100">
 											<IconButton
 												variant="ghost"
 												color="neutral"
 												size="xs"
 												onClick={() => handleCopy(msg.id, msg.content)}
-												className="hover:text-fg size-6 rounded-md"
+												className="hover:text-fg size-7 cursor-pointer rounded-lg"
 												aria-label="Copy message">
 												{copiedId === msg.id ? (
 													<Check className="text-success size-3.5" />
@@ -560,7 +560,7 @@ export default function Page() {
 												variant="ghost"
 												color="neutral"
 												size="xs"
-												className="hover:text-fg size-6 rounded-md"
+												className="hover:text-fg size-7 cursor-pointer rounded-lg"
 												aria-label="Share message">
 												<Share2 className="size-3.5" />
 											</IconButton>
@@ -568,7 +568,7 @@ export default function Page() {
 												variant="ghost"
 												color="neutral"
 												size="xs"
-												className="hover:text-fg size-6 rounded-md"
+												className="hover:text-fg size-7 cursor-pointer rounded-lg"
 												aria-label="Edit message">
 												<Pencil className="size-3.5" />
 											</IconButton>
