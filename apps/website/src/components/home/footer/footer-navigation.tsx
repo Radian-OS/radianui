@@ -85,9 +85,8 @@ const LINKS: Link[] = [
 				icon: <EmojiCollectionIcon />,
 			},
 			{
-				href: "#",
+				href: "/resources/brand-logos",
 				name: "Popular Brand Logos",
-				release: "coming-soon",
 				icon: <PopularBrandLogosIcon />,
 			},
 			{
