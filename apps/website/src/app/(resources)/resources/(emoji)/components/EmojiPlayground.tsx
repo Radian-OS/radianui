@@ -266,7 +266,7 @@ export default function EmojiPlayground({
 					: `${emojis.length} emojis in the collection.`}
 			</p>
 			<div ref={sentinelRef} className="pointer-events-none h-px w-full" />
-			<div className="bg-bg/95 sticky top-0 z-100 py-3 backdrop-blur-sm">
+			<div className="bg-bg/95 sticky top-0 z-40 py-3 backdrop-blur-sm sm:z-100">
 				<InputGroup className="w-full">
 					<EmojiCategoryDropdown
 						value={category}
