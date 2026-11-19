@@ -1,9 +1,9 @@
 "use client"
 
-import { type CSSProperties, type ReactNode, useMemo, useState } from "react"
-import { useTheme } from "next-themes"
+import { type ReactNode, useState } from "react"
 import { CheckCircle2, ChevronLeft, ChevronRight } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
+import { Badge as RegistryBadge } from "@/registry/ui/badge"
 import { Card, CardContent } from "@/styles/default/ui/card"
 import { Label } from "@/styles/default/ui/label"
 import {
@@ -15,9 +15,9 @@ import {
 } from "@/styles/default/ui/select"
 import { useThemerPreset } from "@/lib/themer-preset"
 import { useThemerStore } from "@/lib/themer-store"
-import { buildRegistryConfig } from "@/registry/config"
 import {
 	BADGE_PADDING_PRESETS,
+	BADGE_RADIUS_PRESETS,
 	BADGE_SIZES,
 	BADGE_VARIANTS,
 	type BadgeConfig,
@@ -34,6 +34,7 @@ import {
 } from "@/styles/default/ui/popover"
 import { ScrollArea } from "@/styles/default/ui/scroll-area"
 import { ComponentSettingsPopover } from "../components-settings-popover"
+import { ComponentPreview, type PreviewDimensions } from "./component-preview"
 import { PresetSlider } from "./preset-slider"
 
 const PRESET_NAMES = Object.keys(BADGE_PADDING_PRESETS) as BadgePaddingPreset[]
@@ -56,25 +57,33 @@ export function updateBadge(updates?: Partial<BadgeConfig> | null) {
 
 export const setBadgeConfig = updateBadge
 
-function BadgePreview({ variant }: { variant?: BadgeVariant }) {
-	const [params] = useThemerPreset()
-	const { resolvedTheme } = useTheme()
-	const config = useMemo(() => buildRegistryConfig(params), [params])
-	const style = {
-		...config.cssVars.light,
-		...(resolvedTheme === "dark" ? config.cssVars.dark : {}),
-		...config.cssVars.theme,
-	} as CSSProperties
-
+function BadgePreview({
+	variant,
+	componentConfig,
+	onMeasure,
+}: {
+	variant?: BadgeVariant
+	componentConfig?: BadgeConfig
+	onMeasure?: (dimensions: PreviewDimensions) => void
+}) {
 	return (
-		<div
-			style={style}
-			className={`style-${params.style} border-soft bg-bg flex min-h-[104px] items-center justify-center gap-2 rounded-lg border p-4`}>
+		<ComponentPreview
+			onMeasure={onMeasure}
+			defaultSample={
+				onMeasure && (
+					<RegistryBadge
+						size={componentConfig?.size}
+						variant={componentConfig?.variant}
+						className="transition-none">
+						Primary
+					</RegistryBadge>
+				)
+			}>
 			<Badge variant={variant}>Primary</Badge>
 			<Badge color="neutral" variant="outline">
 				Secondary
 			</Badge>
-		</div>
+		</ComponentPreview>
 	)
 }
 
@@ -158,9 +167,12 @@ function VariantPicker() {
 export function BadgeSettings({ children }: { children: ReactNode }) {
 	const [params] = useThemerPreset()
 	const badgeConfig = params.components.Badge
-	const size = badgeConfig?.size ?? "md"
+	const size = badgeConfig?.size ?? DEFAULT_BADGE_CONFIG.size
+	const [dimensions, setDimensions] = useState<PreviewDimensions>()
+	const [slidersActivated, setSlidersActivated] = useState(false)
 
 	const reset = () => {
+		setSlidersActivated(true)
 		updateBadge()
 	}
 	const shuffle = () => {
@@ -185,23 +197,36 @@ export function BadgeSettings({ children }: { children: ReactNode }) {
 					<Card className="bg-fill1 gap-1 rounded-xl border-0 p-1 shadow-none">
 						<VariantPicker />
 						<CardContent className="p-0">
-							<BadgePreview />
+							<BadgePreview
+								componentConfig={badgeConfig}
+								onMeasure={setDimensions}
+							/>
 						</CardContent>
 					</Card>
 
 					<div className="flex flex-col gap-4">
 						<PresetSlider
+							showActive={slidersActivated}
 							options={PRESET_NAMES}
 							label="Radius"
 							value={badgeConfig?.radius}
-							inheritLabel="Themer Default"
+							defaultLabel={
+								params.style === "default"
+									? "Themer default"
+									: "Component default"
+							}
+							defaultValue={dimensions?.radius}
+							presetValue={(preset) => BADGE_RADIUS_PRESETS[preset][size]}
 							onValueChange={(radius) => updateBadge({ radius })}
 						/>
 						<PresetSlider
+							showActive={slidersActivated}
 							options={PRESET_NAMES}
 							label="Padding"
 							value={badgeConfig?.padding}
-							inheritLabel="Themer Default"
+							defaultLabel="Component default"
+							defaultValue={dimensions?.padding}
+							presetValue={(preset) => BADGE_PADDING_PRESETS[preset][size]}
 							onValueChange={(padding) => updateBadge({ padding })}
 						/>
 						<div className="flex flex-col gap-1.5">

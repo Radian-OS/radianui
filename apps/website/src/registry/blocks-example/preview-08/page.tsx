@@ -33,7 +33,7 @@ import {
 } from "lucide-react"
 
 import { Button, IconButton } from "@/components/ui/button"
-import { Badge } from "@/styles/default/ui/badge"
+import { Badge } from "@/components/ui/badge"
 import { Card, CardHeader, CardTitle } from "@/styles/default/ui/card"
 import { Avatar, AvatarFallback, AvatarImage } from "@/styles/default/ui/avatar"
 import { Checkbox } from "@/styles/default/ui/checkbox"

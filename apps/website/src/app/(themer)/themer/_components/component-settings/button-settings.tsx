@@ -1,9 +1,9 @@
 "use client"
 
-import { type CSSProperties, type ReactNode, useMemo, useState } from "react"
-import { useTheme } from "next-themes"
+import { type ReactNode, useState } from "react"
 import { CheckCircle2, ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { Button as RegistryButton } from "@/registry/ui/button"
 import { Card, CardContent } from "@/styles/default/ui/card"
 import { Label } from "@/styles/default/ui/label"
 import {
@@ -15,9 +15,9 @@ import {
 } from "@/styles/default/ui/select"
 import { useThemerPreset } from "@/lib/themer-preset"
 import { useThemerStore } from "@/lib/themer-store"
-import { buildRegistryConfig } from "@/registry/config"
 import {
 	BUTTON_PADDING_PRESETS,
+	BUTTON_RADIUS_PRESETS,
 	BUTTON_SIZES,
 	BUTTON_VARIANTS,
 	type ButtonConfig,
@@ -34,6 +34,7 @@ import {
 } from "@/styles/default/ui/popover"
 import { ScrollArea } from "@/styles/default/ui/scroll-area"
 import { ComponentSettingsPopover } from "../components-settings-popover"
+import { ComponentPreview, type PreviewDimensions } from "./component-preview"
 import { PresetSlider } from "./preset-slider"
 
 const PRESET_NAMES = Object.keys(
@@ -58,25 +59,33 @@ export function updateButton(updates?: Partial<ButtonConfig> | null) {
 
 export const setButtonConfig = updateButton
 
-function ButtonPreview({ variant }: { variant?: ButtonVariant }) {
-	const [params] = useThemerPreset()
-	const { resolvedTheme } = useTheme()
-	const config = useMemo(() => buildRegistryConfig(params), [params])
-	const style = {
-		...config.cssVars.light,
-		...(resolvedTheme === "dark" ? config.cssVars.dark : {}),
-		...config.cssVars.theme,
-	} as CSSProperties
-
+function ButtonPreview({
+	variant,
+	componentConfig,
+	onMeasure,
+}: {
+	variant?: ButtonVariant
+	componentConfig?: ButtonConfig
+	onMeasure?: (dimensions: PreviewDimensions) => void
+}) {
 	return (
-		<div
-			style={style}
-			className={`style-${params.style} border-soft bg-bg flex min-h-[104px] items-center justify-center gap-2 rounded-lg border p-4`}>
+		<ComponentPreview
+			onMeasure={onMeasure}
+			defaultSample={
+				onMeasure && (
+					<RegistryButton
+						size={componentConfig?.size}
+						variant={componentConfig?.variant}
+						className="transition-none">
+						Primary
+					</RegistryButton>
+				)
+			}>
 			<Button variant={variant}>Primary</Button>
 			<Button color="neutral" variant="outline">
 				Secondary
 			</Button>
-		</div>
+		</ComponentPreview>
 	)
 }
 
@@ -166,9 +175,12 @@ export function ButtonSettings({
 }) {
 	const [params] = useThemerPreset()
 	const buttonConfig = params.components.Button
-	const size = buttonConfig?.size ?? "md"
+	const size = buttonConfig?.size ?? DEFAULT_BUTTON_CONFIG.size
+	const [dimensions, setDimensions] = useState<PreviewDimensions>()
+	const [slidersActivated, setSlidersActivated] = useState(false)
 
 	const reset = () => {
+		setSlidersActivated(true)
 		updateButton()
 	}
 	const shuffle = () => {
@@ -194,23 +206,36 @@ export function ButtonSettings({
 					<Card className="bg-fill1 gap-1 rounded-xl border-0 p-1 shadow-none">
 						<VariantPicker />
 						<CardContent className="p-0">
-							<ButtonPreview />
+							<ButtonPreview
+								componentConfig={buttonConfig}
+								onMeasure={setDimensions}
+							/>
 						</CardContent>
 					</Card>
 
 					<div className="flex flex-col gap-4">
 						<PresetSlider
+							showActive={slidersActivated}
 							options={PRESET_NAMES}
 							label="Radius"
 							value={buttonConfig?.radius}
-							inheritLabel="Themer Default"
+							defaultLabel={
+								params.style === "default"
+									? "Themer default"
+									: "Component default"
+							}
+							defaultValue={dimensions?.radius}
+							presetValue={(preset) => BUTTON_RADIUS_PRESETS[preset][size]}
 							onValueChange={(radius) => updateButton({ radius })}
 						/>
 						<PresetSlider
+							showActive={slidersActivated}
 							options={PRESET_NAMES}
 							label="Padding"
 							value={buttonConfig?.padding}
-							inheritLabel="Themer Default"
+							defaultLabel="Component default"
+							defaultValue={dimensions?.padding}
+							presetValue={(preset) => BUTTON_PADDING_PRESETS[preset][size]}
 							onValueChange={(padding) => updateButton({ padding })}
 						/>
 						<div className="flex flex-col gap-1.5">

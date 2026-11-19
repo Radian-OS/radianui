@@ -1,4 +1,3 @@
-import { RotateCcw } from "lucide-react"
 import { Slider, SliderThumb } from "@/styles/default/ui/slider"
 import { cn } from "@/lib/utils"
 
@@ -7,45 +6,53 @@ export function PresetSlider<T extends string>({
 	options,
 	value,
 	onValueChange,
-	inheritLabel,
+	defaultLabel,
+	defaultValue,
+	presetValue,
+	showActive = false,
 }: {
 	label: string
 	options: readonly T[]
 	value: T | undefined
-	onValueChange: (value: T | undefined) => void
-	inheritLabel?: string
+	onValueChange: (value: T) => void
+	defaultLabel: string
+	defaultValue: number | undefined
+	presetValue: (preset: T) => number
+	showActive?: boolean
 }) {
-	const isInherited = inheritLabel !== undefined && value === undefined
-	const valueLabel = isInherited ? inheritLabel : (value ?? options[0])
-	const currentIndex = isInherited
-		? -1
-		: Math.max(0, options.indexOf(value as T))
+	const isInherited = value === undefined
+	const isMuted = isInherited && !showActive
+	const measured = defaultValue !== undefined && !Number.isNaN(defaultValue)
+	const closestPreset = measured
+		? options.reduce((closest, preset) => {
+				const effectiveValue = Math.min(defaultValue, 999)
+				return Math.abs(presetValue(preset) - effectiveValue) <
+					Math.abs(presetValue(closest) - effectiveValue)
+					? preset
+					: closest
+			})
+		: options[0]
+	const selectedPreset = value ?? closestPreset
+	const currentIndex = options.indexOf(selectedPreset)
+	const valueLabel =
+		value ??
+		(measured
+			? defaultValue >= 999
+				? "Full"
+				: `${defaultValue}px`
+			: defaultLabel)
 
 	return (
 		<div className="flex flex-col gap-1.5">
 			<div className="flex items-center justify-between text-[13px] leading-4">
 				<span className="text-fg-secondary">{label}</span>
-				<div className="flex items-center gap-1.5">
-					<span
-						className={cn(
-							"text-[13px]",
-							isInherited
-								? "text-fg-secondary font-normal"
-								: "text-fg font-medium"
-						)}>
-						{valueLabel}
-					</span>
-					{inheritLabel && !isInherited && (
-						<button
-							type="button"
-							onClick={() => onValueChange(undefined)}
-							className="text-fg-tertiary hover:text-fg flex cursor-pointer items-center transition-colors"
-							title={`Reset to ${inheritLabel}`}
-							aria-label={`Reset ${label} to ${inheritLabel}`}>
-							<RotateCcw className="size-3" />
-						</button>
-					)}
-				</div>
+				<span
+					className={cn(
+						"text-[13px]",
+						isMuted ? "text-fg-secondary font-normal" : "text-fg font-medium"
+					)}>
+					{valueLabel}
+				</span>
 			</div>
 			<Slider
 				min={0}
@@ -53,9 +60,12 @@ export function PresetSlider<T extends string>({
 				step={1}
 				value={[currentIndex]}
 				onValueChange={([next]) => onValueChange(options[next])}
+				onPointerUp={(event) => {
+					if (isInherited && event.button === 0) onValueChange(selectedPreset)
+				}}
 				classNames={{
 					sliderTrack: "border-border bg-fill2 h-4 border",
-					sliderRange: isInherited ? "opacity-0" : undefined,
+					sliderRange: isMuted ? "bg-fg-tertiary/30" : undefined,
 				}}>
 				<span
 					aria-hidden="true"
@@ -66,10 +76,18 @@ export function PresetSlider<T extends string>({
 				</span>
 				<SliderThumb
 					aria-label={`${label} preset`}
-					aria-valuetext={valueLabel}
+					aria-valuetext={
+						isInherited ? `${valueLabel}, ${defaultLabel}` : valueLabel
+					}
+					onKeyDown={(event) => {
+						if (isInherited && (event.key === "Enter" || event.key === " ")) {
+							event.preventDefault()
+							onValueChange(selectedPreset)
+						}
+					}}
 					className={cn(
 						"border-bg z-10 size-4 border-[3px] shadow-sm transition-all focus-visible:ring-2 focus-visible:ring-offset-2",
-						isInherited
+						isMuted
 							? "border-border bg-fill3 hover:bg-primary/50"
 							: "bg-primary border-bg focus-visible:ring-primary focus-visible:ring-offset-bg"
 					)}
