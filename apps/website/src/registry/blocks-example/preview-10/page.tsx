@@ -530,7 +530,7 @@ function ChatSidebar({
 							</SidebarGroup>
 
 							{/* Projects Section */}
-							<SidebarGroup className="pt-4">
+							<SidebarGroup className="p-0 pt-4">
 								<SidebarGroupLabel className="text-fg-secondary text-[14px] font-medium">
 									Projects
 								</SidebarGroupLabel>
@@ -543,7 +543,7 @@ function ChatSidebar({
 
 							{/* Pinned Section */}
 							{pinnedChats.length > 0 && (
-								<SidebarGroup className="pt-3">
+								<SidebarGroup className="p-0 pt-3">
 									<SidebarGroupLabel className="text-fg-secondary text-[14px] font-medium">
 										Pinned
 									</SidebarGroupLabel>
@@ -608,7 +608,7 @@ function ChatSidebar({
 							)}
 
 							{/* Recents Section */}
-							<SidebarGroup className="pt-3">
+							<SidebarGroup className="p-0 pt-3">
 								<SidebarGroupLabel className="text-fg-secondary text-[14px] font-medium">
 									Recents
 								</SidebarGroupLabel>
@@ -711,7 +711,7 @@ function ChatSidebar({
 							exit={{ opacity: 0 }}
 							transition={{ duration: 0.15, ease: "easeInOut" }}
 							className="flex items-center justify-between gap-2">
-							<div className="flex min-w-0 items-center gap-2.5">
+							<div className="flex min-w-0 items-center gap-2.5 px-1">
 								<Avatar
 									size="sm"
 									rounded="circle"
