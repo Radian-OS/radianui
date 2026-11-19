@@ -38,7 +38,7 @@ import {
 } from "lucide-react"
 
 import { Button, IconButton } from "@/components/ui/button"
-import { Badge } from "@/styles/default/ui/badge"
+import { Badge } from "@/components/ui/badge"
 import { Card, CardHeader, CardTitle } from "@/styles/default/ui/card"
 import { Avatar, AvatarFallback, AvatarImage } from "@/styles/default/ui/avatar"
 import { Checkbox } from "@/styles/default/ui/checkbox"
@@ -264,7 +264,7 @@ export default function Page() {
 	const PeriodIcon = activePeriod.icon
 
 	return (
-		<div className="dark:bg-bg text-fg bg-bg-subtle min-h-screen w-full px-6 py-6 font-sans transition-colors md:px-10 md:py-8">
+		<div className="dark:bg-bg text-fg bg-bg-subtle font-body min-h-screen w-full px-6 py-6 transition-colors md:px-10 md:py-8">
 			<div className="mx-auto flex max-w-7xl flex-col gap-4">
 				{/* ══════════════════════════════════════════════
             1. TOP NAVBAR / HEADER
@@ -279,7 +279,6 @@ export default function Page() {
 							variant="ghost"
 							color="neutral"
 							size="sm"
-							className="rounded-full"
 							aria-label="Search">
 							<Search className="size-4" />
 						</IconButton>
@@ -287,7 +286,6 @@ export default function Page() {
 							variant="ghost"
 							color="neutral"
 							size="sm"
-							className="rounded-full"
 							aria-label="Notifications">
 							<Bell className="size-4" />
 						</IconButton>
@@ -295,7 +293,7 @@ export default function Page() {
 							color="primary"
 							variant="strong"
 							size="sm"
-							className="h-8.5 gap-1.5 rounded-xl px-4 text-xs font-semibold shadow-xs">
+							className="gap-1.5">
 							<UserPlus className="size-4" />
 							<span>Invite</span>
 						</Button>
@@ -334,7 +332,7 @@ export default function Page() {
 									variant="outline"
 									color="neutral"
 									size="sm"
-									className="border-border/60 bg-elevation-level1 text-fg hover:bg-fill1/40 h-8.5 cursor-pointer gap-2 rounded-xl border px-3 text-xs font-medium shadow-2xs">
+									className="gap-2">
 									<PeriodIcon className="text-fg-secondary size-3.5" />
 									<span>{period}</span>
 									<ChevronDown className="text-fg-tertiary size-3.5" />
@@ -343,7 +341,7 @@ export default function Page() {
 							<DropdownMenuContent
 								align="start"
 								sideOffset={4}
-								className="border-border/80 w-44 rounded-2xl border p-1.5 shadow-lg">
+								className="w-44 p-1.5 shadow-lg">
 								{PERIOD_OPTIONS.map((opt) => {
 									const Icon = opt.icon
 									const isSelected = period === opt.value
@@ -352,7 +350,7 @@ export default function Page() {
 											key={opt.value}
 											onClick={() => setPeriod(opt.value)}
 											className={cn(
-												"cursor-pointer justify-between gap-2.5 rounded-lg px-3 py-2 text-[14px]",
+												"cursor-pointer justify-between gap-2.5 px-3 py-2 text-[14px]",
 												isSelected && "bg-fill1 text-fg font-medium"
 											)}>
 											<div className="flex items-center gap-2.5">
@@ -367,11 +365,7 @@ export default function Page() {
 								})}
 							</DropdownMenuContent>
 						</DropdownMenu>
-						<Button
-							color="primary"
-							variant="strong"
-							size="sm"
-							className="h-8.5 rounded-xl px-4 text-xs font-semibold shadow-xs">
+						<Button color="primary" variant="strong" size="sm">
 							Download
 						</Button>
 					</div>
@@ -382,7 +376,7 @@ export default function Page() {
         ══════════════════════════════════════════════ */}
 				<div className="grid grid-cols-1 gap-x-3 gap-y-4 sm:grid-cols-2 lg:grid-cols-4">
 					{/* Revenue */}
-					<Card className="dark:bg-elevation-level1 rounded-xl border border-zinc-200/70 bg-white p-6 shadow-xs dark:border-zinc-800">
+					<Card className="p-6">
 						<div className="flex flex-col gap-2">
 							<span className="text-fg-secondary text-[14px] font-medium">
 								Revenue
@@ -391,15 +385,15 @@ export default function Page() {
 								<span className="text-fg text-[20px] leading-none font-bold tracking-tight">
 									$228,441
 								</span>
-								<span className="inline-flex items-center justify-center gap-1 rounded-full bg-emerald-100 px-2.5 py-1 text-xs leading-none font-semibold text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-400">
+								<Badge color="success" variant="soft" size="sm">
 									↑ 3.3%
-								</span>
+								</Badge>
 							</div>
 						</div>
 					</Card>
 
 					{/* Expenses */}
-					<Card className="dark:bg-elevation-level1 rounded-xl border border-zinc-200/70 bg-white p-6 shadow-xs dark:border-zinc-800">
+					<Card className="p-6">
 						<div className="flex flex-col gap-2">
 							<span className="text-fg-secondary text-[14px] font-medium">
 								Expenses
@@ -408,15 +402,15 @@ export default function Page() {
 								<span className="text-fg text-[20px] leading-none font-bold tracking-tight">
 									$25,108
 								</span>
-								<span className="inline-flex items-center justify-center gap-1 rounded-full bg-rose-100 px-2.5 py-1 text-xs leading-none font-semibold text-rose-600 dark:bg-rose-950/40 dark:text-rose-400">
+								<Badge color="error" variant="soft" size="sm">
 									↓ 3.3%
-								</span>
+								</Badge>
 							</div>
 						</div>
 					</Card>
 
 					{/* Sales */}
-					<Card className="dark:bg-elevation-level1 rounded-xl border border-zinc-200/70 bg-white p-6 shadow-xs dark:border-zinc-800">
+					<Card className="p-6">
 						<div className="flex flex-col gap-2">
 							<span className="text-fg-secondary text-[14px] font-medium">
 								Sales
@@ -425,15 +419,15 @@ export default function Page() {
 								<span className="text-fg text-[20px] leading-none font-bold tracking-tight">
 									458
 								</span>
-								<span className="inline-flex items-center justify-center gap-1 rounded-full bg-emerald-100 px-2.5 py-1 text-xs leading-none font-semibold text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-400">
+								<Badge color="success" variant="soft" size="sm">
 									↑ 4.1%
-								</span>
+								</Badge>
 							</div>
 						</div>
 					</Card>
 
 					{/* Profit */}
-					<Card className="dark:bg-elevation-level1 rounded-xl border border-zinc-200/70 bg-white p-6 shadow-xs dark:border-zinc-800">
+					<Card className="p-6">
 						<div className="flex flex-col gap-2">
 							<span className="text-fg-secondary text-[14px] font-medium">
 								Profit
@@ -442,9 +436,9 @@ export default function Page() {
 								<span className="text-fg text-[20px] leading-none font-bold tracking-tight">
 									$203,133
 								</span>
-								<span className="inline-flex items-center justify-center gap-1 rounded-full bg-emerald-100 px-2.5 py-1 text-xs leading-none font-semibold text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-400">
+								<Badge color="success" variant="soft" size="sm">
 									↑ 3.3%
-								</span>
+								</Badge>
 							</div>
 						</div>
 					</Card>
@@ -455,7 +449,7 @@ export default function Page() {
         ══════════════════════════════════════════════ */}
 				<div className="grid grid-cols-1 items-start gap-x-3 gap-y-4 lg:grid-cols-2">
 					{/* Card A: Sales Performance */}
-					<Card className="border-border/60 bg-elevation-level1 flex flex-col gap-0 overflow-hidden rounded-2xl p-6 shadow-xs">
+					<Card className="flex flex-col gap-0 overflow-hidden p-6">
 						<CardHeader className="flex flex-row items-center justify-between p-0 pb-3">
 							<CardTitle className="heading-6 text-fg">
 								Sales Performance
@@ -466,7 +460,7 @@ export default function Page() {
 										variant="outline"
 										color="neutral"
 										size="sm"
-										className="border-border/60 bg-elevation-level1 text-fg-secondary hover:text-fg h-7 cursor-pointer gap-1.5 rounded-lg border px-2.5 text-xs font-medium shadow-2xs">
+										className="gap-1.5">
 										<span>{salesRange}</span>
 										<ChevronDown className="text-fg-tertiary size-3.5" />
 									</Button>
@@ -474,7 +468,7 @@ export default function Page() {
 								<DropdownMenuContent
 									align="start"
 									sideOffset={4}
-									className="border-border/80 w-52 rounded-2xl border p-1.5 shadow-lg">
+									className="w-52 p-1.5 shadow-lg">
 									{SALES_RANGE_OPTIONS.map((opt) => {
 										const Icon = opt.icon
 										const isSelected = salesRange === opt.value
@@ -483,7 +477,7 @@ export default function Page() {
 												key={opt.value}
 												onClick={() => setSalesRange(opt.value)}
 												className={cn(
-													"cursor-pointer justify-between gap-2.5 rounded-lg px-3 py-2 text-[14px]",
+													"cursor-pointer justify-between gap-2.5 px-3 py-2 text-[14px]",
 													isSelected && "bg-fill1 text-fg font-medium"
 												)}>
 												<div className="flex items-center gap-2.5">
@@ -565,7 +559,7 @@ export default function Page() {
 										content={({ active, payload, label }) => {
 											if (!active || !payload?.length) return null
 											return (
-												<div className="border-border/60 dark:bg-elevation-level1 min-w-[105px] rounded-xl border bg-white p-2.5 text-[12px] shadow-md">
+												<div className="border-border/60 dark:bg-elevation-level1 rounded-radius min-w-[105px] border bg-white p-2.5 text-[12px] shadow-md">
 													<div className="text-fg mb-1 text-[12px] font-semibold">
 														{label}
 													</div>
@@ -594,7 +588,7 @@ export default function Page() {
 					</Card>
 
 					{/* Card B: Traffic Source with matching hover interaction */}
-					<Card className="border-border/60 bg-elevation-level1 flex flex-col gap-0 overflow-hidden rounded-2xl p-6 shadow-xs">
+					<Card className="flex flex-col gap-0 overflow-hidden p-6">
 						<CardHeader className="flex flex-row items-center justify-between p-0 pb-3">
 							<CardTitle className="heading-6 text-fg">
 								Traffic Source
@@ -618,7 +612,6 @@ export default function Page() {
 									variant="ghost"
 									color="neutral"
 									size="xs"
-									className="text-fg-secondary hover:text-fg bg-fill2/50 rounded-full"
 									aria-label="More options">
 									<MoreVertical className="size-3.5" />
 								</IconButton>
@@ -672,7 +665,7 @@ export default function Page() {
 										content={({ active, payload, label }) => {
 											if (!active || !payload?.length) return null
 											return (
-												<div className="border-border/60 dark:bg-elevation-level1 min-w-[125px] rounded-xl border bg-white p-2.5 text-[12px] shadow-md">
+												<div className="border-border/60 dark:bg-elevation-level1 rounded-radius min-w-[125px] border bg-white p-2.5 text-[12px] shadow-md">
 													<div className="text-fg mb-1.5 text-[12px] font-semibold">
 														{label}
 													</div>
@@ -740,11 +733,7 @@ export default function Page() {
 						{/* Section Header */}
 						<div className="flex items-center gap-2 px-1">
 							<h2 className="heading-6 text-fg">All Employees</h2>
-							<Badge
-								color="neutral"
-								variant="soft"
-								size="sm"
-								className="rounded-full">
+							<Badge color="neutral" variant="soft" size="sm">
 								32
 							</Badge>
 						</div>
@@ -772,14 +761,15 @@ export default function Page() {
 									value={searchQuery}
 									onChange={(e) => setSearchQuery(e.target.value)}
 									placeholder="Search..."
-									className="border-border/60 bg-elevation-level1 placeholder:text-fg-tertiary h-8 rounded-xl pr-3 pl-8.5 text-xs shadow-2xs"
+									size="sm"
+									className="pl-8.5"
 								/>
 							</div>
 						</div>
 					</div>
 
 					{/* Table Container */}
-					<Card className="border-border/60 bg-elevation-level1 gap-0 overflow-hidden rounded-2xl p-0 shadow-xs">
+					<Card className="gap-0 overflow-hidden p-0">
 						<Table>
 							<TableHeader className="border-border/60 border-b">
 								<TableRow className="border-border/60 dark:bg-fill1/40 bg-bg-subtle border-b hover:bg-transparent">
@@ -867,7 +857,7 @@ export default function Page() {
 															color="neutral"
 															size="xs"
 															onClick={() => handleCopy(emp.id)}
-															className="text-fg-tertiary hover:text-fg size-6 rounded"
+															className="text-fg-tertiary hover:text-fg size-6"
 															title="Copy Worker ID">
 															{isCopied ? (
 																<Check className="size-3.5 text-emerald-600 dark:text-emerald-400" />
@@ -924,7 +914,6 @@ export default function Page() {
 															variant="soft"
 															color="neutral"
 															size="xs"
-															className="rounded-full"
 															aria-label="View employee">
 															<Eye className="size-3.5" />
 														</IconButton>
@@ -932,7 +921,6 @@ export default function Page() {
 															variant="soft"
 															color="neutral"
 															size="xs"
-															className="rounded-full"
 															aria-label="Edit employee">
 															<Pencil className="size-3.5" />
 														</IconButton>
@@ -940,7 +928,6 @@ export default function Page() {
 															variant="soft"
 															color="error"
 															size="xs"
-															className="rounded-full"
 															aria-label="Delete employee">
 															<Trash2 className="size-3.5" />
 														</IconButton>
