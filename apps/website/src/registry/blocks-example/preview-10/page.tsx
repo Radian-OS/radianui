@@ -96,6 +96,30 @@ function RadianLogo({ className = "size-[26px]" }: { className?: string }) {
 	)
 }
 
+function CollapsedLogoTrigger() {
+	const { toggleSidebar } = useSidebar()
+
+	return (
+		<Tooltip>
+			<TooltipTrigger asChild>
+				<button
+					type="button"
+					onClick={toggleSidebar}
+					aria-label="Toggle sidebar"
+					className="group/logo text-fg-secondary hover:text-fg hover:bg-fill1 flex size-9 cursor-pointer items-center justify-center rounded-lg transition-colors">
+					<span className="group-hover/logo:hidden">
+						<RadianLogo className="size-[26px]" />
+					</span>
+					<span className="hidden group-hover/logo:flex group-hover/logo:items-center group-hover/logo:justify-center">
+						<PanelLeft className="size-[18px]" />
+					</span>
+				</button>
+			</TooltipTrigger>
+			<TooltipContent side="right">Toggle sidebar</TooltipContent>
+		</Tooltip>
+	)
+}
+
 function ChatHeader({
 	activeChatTitle,
 	isPinned,
@@ -105,16 +129,9 @@ function ChatHeader({
 	isPinned: boolean
 	onTogglePin: () => void
 }) {
-	const { state } = useSidebar()
-	const isCollapsed = state === "collapsed"
-
 	return (
 		<header className="bg-bg/80 flex h-14 shrink-0 items-center justify-between px-4 backdrop-blur-md">
 			<div className="flex items-center gap-1.5">
-				{/* Show collapse toggle next to title ONLY when sidebar is collapsed (Image 3) */}
-				{isCollapsed && (
-					<SidebarTrigger className="text-fg-secondary hover:text-fg size-7 cursor-pointer" />
-				)}
 				<DropdownMenu>
 					<DropdownMenuTrigger asChild>
 						<button
@@ -387,9 +404,9 @@ export default function Page() {
 				className="border-border/60 bg-bg border-r">
 				{/* Top Branding & Search / Toggle Actions */}
 				<SidebarHeader className="flex flex-row items-center justify-between p-3 group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:p-2">
-					<div className="flex items-center gap-2 px-1">
+					<div className="flex items-center gap-2 px-1 group-data-[collapsible=icon]:hidden">
 						<RadianLogo />
-						<span className="font-heading text-fg text-base font-semibold tracking-tight group-data-[collapsible=icon]:hidden">
+						<span className="font-heading text-fg text-base font-semibold tracking-tight">
 							Radian
 						</span>
 					</div>
@@ -403,6 +420,10 @@ export default function Page() {
 							<Search className="size-4" />
 						</IconButton>
 						<SidebarTrigger className="text-fg-secondary hover:text-fg size-7 cursor-pointer" />
+					</div>
+					{/* Collapsed Rail Logo with hover-to-toggle icon */}
+					<div className="hidden group-data-[collapsible=icon]:flex group-data-[collapsible=icon]:items-center group-data-[collapsible=icon]:justify-center">
+						<CollapsedLogoTrigger />
 					</div>
 				</SidebarHeader>
 
