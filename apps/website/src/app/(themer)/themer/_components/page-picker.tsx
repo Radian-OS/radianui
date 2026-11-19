@@ -13,6 +13,7 @@ interface PagePickerProps {
 }
 
 const PREVIEW_PAGES = [
+	{ id: "preview-11", label: "Preview 11: Compliance & SLA Dashboard" },
 	{ id: "preview-10", label: "Preview 10: AI Chat Interface" },
 	{ id: "preview-09", label: "Preview 09: E-Commerce Analytics Dashboard" },
 	{ id: "preview-08", label: "Preview 08: SaaS Analytics Dashboard" },
