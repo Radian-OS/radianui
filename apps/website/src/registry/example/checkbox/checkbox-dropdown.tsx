@@ -118,7 +118,7 @@ const CheckboxDropdown = () => {
 								onCheckedChange={() => toggle(item.id)}
 								onClick={(e) => e.stopPropagation()}
 								size="md"
-								className="[&_svg]:text-white"
+								className="[&_svg]:text-primary-fg"
 							/>
 							<span className="text-fg flex-1 text-sm font-normal">
 								{item.label}

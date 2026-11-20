@@ -131,8 +131,6 @@ export function darkTextShade(L: number, C: number, H: number) {
 	return { l, c: fitChroma(l, C * (1 - 0.3 * frac), H) }
 }
 
-const LIGHT_ROLE_T = { hover: 0.12, border: 0.24, focus: 0.81, accent: 0.9 }
-
 export function formatOklch(L: number, C: number, H: number) {
 	return `oklch(${L.toFixed(4)} ${C.toFixed(4)} ${H.toFixed(2)})`
 }
@@ -155,10 +153,11 @@ export function generateCustomColorShades(
 		H
 	)
 	const fg = formatOklch(fgL, fgC, H)
+	const hoverL = isLight ? L - 0.08 * L : L + 0.12 * (1 - L)
+	const hoverC = isLight ? C : C * 0.88
 
 	if (mode === "dark") {
 		const text = darkTextShade(L, C, H)
-		const hoverL = L + 0.12 * (1 - L)
 		const borderL = L <= 0.56 ? L : Math.min(L, 0.44 + luminance * 0.18)
 		const focusL = 0.26 + luminance * 0.22
 		const accentL = 0.24 + luminance * 0.06
@@ -169,7 +168,7 @@ export function generateCustomColorShades(
 			[`--color-${prefix}-text`]: formatOklch(text.l, text.c, H),
 			[`--color-${prefix}-hover`]: formatOklch(
 				hoverL,
-				fitChroma(hoverL, C * 0.88, H),
+				fitChroma(hoverL, hoverC, H),
 				H
 			),
 			[`--color-${prefix}-border`]: formatOklch(
@@ -191,18 +190,33 @@ export function generateCustomColorShades(
 	}
 
 	const text = textShade(L, C, H)
-	const shades = {
+	const borderL = Math.min(L + 0.24 * (1 - L), 0.8)
+	const focusL = Math.min(L + 0.81 * (1 - L), 0.88)
+	const accentL = Math.min(L + 0.9 * (1 - L), 0.95)
+
+	return {
 		[`--color-${prefix}`]: formatOklch(L, primaryC, H),
 		[`--color-${prefix}-fg`]: fg,
 		[`--color-${prefix}-text`]: formatOklch(text.l, text.c, H),
+		[`--color-${prefix}-hover`]: formatOklch(
+			hoverL,
+			fitChroma(hoverL, hoverC, H),
+			H
+		),
+		[`--color-${prefix}-border`]: formatOklch(
+			borderL,
+			fitChroma(borderL, C * 0.76, H),
+			H
+		),
+		[`--color-${prefix}-focus`]: formatOklch(
+			focusL,
+			fitChroma(focusL, C * 0.19, H),
+			H
+		),
+		[`--color-${prefix}-accent`]: formatOklch(
+			accentL,
+			fitChroma(accentL, C * 0.1, H),
+			H
+		),
 	} as Record<string, string>
-
-	for (const [label, t] of Object.entries(LIGHT_ROLE_T)) {
-		const l = L + t * (1 - L)
-		const c = C * (1 - t)
-		const fittedC = fitChroma(l, c, H)
-		shades[`--color-${prefix}-${label}`] = formatOklch(l, fittedC, H)
-	}
-
-	return shades
 }

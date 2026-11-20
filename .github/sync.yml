@@ -7,8 +7,6 @@ Radian-os/radianui-blocks@dev:
     dest: src/registry/animated/
   - source: apps/website/src/registry/styles/
     dest: src/registry/styles/
-  - source: apps/website/src/registry/config.ts
-    dest: src/registry/config.ts
   - source: apps/website/src/registry/fonts.ts
     dest: src/registry/fonts.ts
   - source: apps/website/src/registry/primary-colors.ts

@@ -69,7 +69,7 @@ export default function CardSigninExample() {
 				<Card className="w-full px-6">
 					<CardHeader className="flex flex-col gap-6 px-0 pb-2">
 						<Image
-							src="/favicon-16x16.png"
+							src="/favicon-96x96.png"
 							className="size-8"
 							alt="radian-logo"
 							width={112}

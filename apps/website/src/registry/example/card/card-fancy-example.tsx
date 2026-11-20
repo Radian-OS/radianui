@@ -16,7 +16,7 @@ export default function CardFancyExample() {
 			<Card className="w-full sm:w-97.5">
 				<CardHeader className="flex flex-row justify-between">
 					<span className="bg-primary flex w-fit items-center justify-center rounded-[10px] p-2.25">
-						<Leaf className="size-6 text-white" />
+						<Leaf className="text-primary-fg size-6" />
 					</span>
 					<span className="border-alpha flex items-center overflow-hidden rounded-md border">
 						<Badge

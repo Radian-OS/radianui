@@ -1,9 +1,9 @@
 "use client"
 
-import { ChevronDown, Plus } from "lucide-react"
 import React from "react"
 import * as AccordionPrimitive from "@radix-ui/react-accordion"
 import { type VariantProps, cva } from "class-variance-authority"
+import { IconSlot } from "@/registry/icon/icon-library"
 import { cn as classNames } from "@/lib/utils"
 
 // Defining the types for the accordion
@@ -199,10 +199,16 @@ function AccordionTrigger({
 				{...props}>
 				{children}
 				{indicator === "chevron" && (
-					<ChevronDown className="AccordionChevron text-fg-tertiary shrink-0 transition-transform duration-200" />
+					<IconSlot
+						className="AccordionChevron text-fg-tertiary shrink-0 transition-transform duration-200"
+						slot="down"
+					/>
 				)}
 				{indicator === "plus-minus" && (
-					<Plus className="AccordionPlus text-fg-tertiary shrink-0 transition-transform duration-200" />
+					<IconSlot
+						className="AccordionPlus text-fg-tertiary shrink-0 transition-transform duration-200"
+						slot="plus"
+					/>
 				)}
 			</AccordionPrimitive.Trigger>
 		</AccordionPrimitive.Header>

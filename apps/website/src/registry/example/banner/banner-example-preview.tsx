@@ -25,7 +25,7 @@ function BannerExamplePreview() {
 				</BannerDescription>
 				<div className="pl-1">
 					<Button
-						className="bg-white text-black hover:bg-white"
+						className="bg-bg text-fg hover:bg-bg/90"
 						color="neutral"
 						size="lg">
 						Talk to Sales

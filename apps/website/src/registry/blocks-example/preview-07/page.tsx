@@ -1,6 +1,6 @@
 "use client"
 
-import React from "react"
+import React, { CSSProperties, useId } from "react"
 import { motion } from "motion/react"
 import {
 	BookOpen,
@@ -49,6 +49,38 @@ import { IconSlot } from "@/registry/icon/icon-library"
 import { Divider } from "@/styles/default/ui/divider"
 
 const mask = "url(/themer/phone-mask.webp) 0 0/100% 100% no-repeat"
+
+function VerifiedBadge() {
+	return (
+		<svg
+			viewBox="197.8 211.5 23.7 23.8"
+			className="size-6 shrink-0 text-[var(--color-primary)]"
+			aria-label="Verified">
+			<path
+				fill="currentColor"
+				d="M221.31 222.38C221.156 222.072 220.929 221.805 220.649 221.604L219.109 220.445C219.029 220.39 218.971 220.308 218.946 220.214C218.912 220.12 218.912 220.018 218.946 219.924L219.584 218.036C219.686 217.698 219.71 217.342 219.653 216.993C219.6 216.639 219.456 216.304 219.236 216.02C219.024 215.737 218.746 215.51 218.425 215.36C218.119 215.213 217.78 215.145 217.441 215.163H215.703C215.6 215.162 215.501 215.127 215.419 215.065C215.338 215.002 215.279 214.915 215.251 214.816L214.753 213.078C214.657 212.725 214.474 212.403 214.22 212.14C213.967 211.883 213.658 211.688 213.317 211.572C212.972 211.466 212.607 211.442 212.251 211.503C211.898 211.571 211.568 211.727 211.29 211.954L209.969 212.997C209.896 213.063 209.801 213.1 209.702 213.101C209.614 213.11 209.524 213.089 209.448 213.043L208.139 212.001C207.87 211.781 207.552 211.63 207.212 211.56C206.877 211.479 206.527 211.479 206.192 211.56C205.857 211.654 205.547 211.824 205.289 212.059C205.025 212.314 204.823 212.628 204.698 212.974L204.2 214.723C204.175 214.826 204.113 214.917 204.026 214.978C203.935 215.04 203.824 215.069 203.714 215.059H202.069C201.713 215.045 201.36 215.116 201.038 215.267C200.711 215.412 200.427 215.64 200.215 215.928C200.002 216.211 199.859 216.54 199.798 216.889C199.739 217.23 199.763 217.579 199.868 217.908L200.435 219.866C200.464 219.961 200.464 220.061 200.435 220.156C200.406 220.248 200.349 220.328 200.273 220.387L198.732 221.546C198.452 221.754 198.222 222.024 198.061 222.334C197.908 222.642 197.829 222.98 197.829 223.324C197.829 223.668 197.908 224.006 198.061 224.314C198.222 224.624 198.452 224.894 198.732 225.102L200.273 226.261C200.349 226.32 200.406 226.4 200.435 226.492C200.464 226.587 200.464 226.687 200.435 226.782L199.798 228.67C199.69 229.01 199.662 229.371 199.717 229.724C199.776 230.07 199.919 230.397 200.134 230.674C200.346 230.965 200.63 231.196 200.957 231.346C201.263 231.492 201.602 231.56 201.941 231.543H203.667C203.772 231.538 203.874 231.571 203.957 231.636C204.04 231.693 204.098 231.78 204.119 231.879L204.617 233.628C204.72 233.974 204.903 234.292 205.15 234.555C205.528 234.948 206.039 235.186 206.583 235.223C207.127 235.259 207.665 235.091 208.092 234.752L209.424 233.698C209.505 233.633 209.605 233.597 209.708 233.597C209.812 233.597 209.912 233.633 209.992 233.698L211.301 234.74C211.579 234.975 211.915 235.131 212.274 235.192C212.405 235.203 212.537 235.203 212.668 235.192C212.896 235.193 213.123 235.158 213.34 235.088C213.684 234.979 213.995 234.787 214.246 234.528C214.497 234.269 214.679 233.952 214.776 233.605L215.286 231.844C215.307 231.745 215.365 231.658 215.448 231.601C215.538 231.533 215.649 231.5 215.761 231.508H217.417C217.772 231.522 218.124 231.455 218.448 231.311C218.768 231.159 219.046 230.932 219.26 230.65C219.474 230.368 219.616 230.038 219.676 229.689C219.736 229.333 219.709 228.967 219.595 228.624L218.97 226.747C218.935 226.654 218.935 226.551 218.97 226.458C218.994 226.363 219.052 226.281 219.132 226.226L220.672 225.067C220.953 224.862 221.179 224.591 221.333 224.28C221.495 223.973 221.578 223.63 221.576 223.284C221.554 222.966 221.463 222.658 221.31 222.38ZM215.008 221.5L209.888 226.62C209.69 226.814 209.458 226.971 209.204 227.083C208.947 227.189 208.672 227.244 208.393 227.245C208.11 227.247 207.83 227.188 207.571 227.071C207.311 226.964 207.075 226.806 206.876 226.608L204.351 224.071C204.161 223.85 204.062 223.565 204.073 223.273C204.084 222.981 204.205 222.705 204.411 222.499C204.618 222.292 204.894 222.171 205.186 222.16C205.477 222.149 205.762 222.248 205.984 222.438L208.393 224.847L213.375 219.855C213.592 219.639 213.885 219.518 214.191 219.518C214.497 219.518 214.791 219.639 215.008 219.855C215.124 219.963 215.216 220.094 215.279 220.239C215.342 220.385 215.375 220.542 215.375 220.7C215.375 220.859 215.342 221.016 215.279 221.161C215.216 221.307 215.124 221.437 215.008 221.546V221.5Z"
+			/>
+		</svg>
+	)
+}
+
+export function XavionMark() {
+	const id = useId().replace(/:/g, "")
+	return (
+		<svg viewBox="85.78 119.14 51.9 51.9" className="size-full" aria-hidden>
+			<defs>
+				<linearGradient id={id} x1="0" y1="0" x2="0" y2="1">
+					<stop stopColor="white" />
+					<stop offset="1" stopColor="white" stopOpacity=".5" />
+				</linearGradient>
+			</defs>
+			<path
+				fill={`url(#${id})`}
+				d="M119.833 154.817C119.833 163.774 112.572 171.034 103.615 171.034H101.994C93.0367 171.034 85.7759 163.774 85.7759 154.817H119.833ZM137.672 154.817C137.672 163.774 130.412 171.034 121.455 171.034V154.817H137.672ZM102.804 119.138C112.209 119.138 119.833 126.762 119.833 136.166C119.833 145.571 112.209 153.195 102.804 153.195C93.3998 153.195 85.7759 145.571 85.7759 136.166C85.7759 126.762 93.3998 119.138 102.804 119.138ZM121.455 119.138C130.412 119.138 137.672 126.399 137.672 135.356V136.977C137.672 145.934 130.412 153.195 121.455 153.195V119.138Z"
+			/>
+		</svg>
+	)
+}
 
 function BrandLogo({
 	size = 24,
@@ -156,6 +188,36 @@ function BrandAppIcon({
 	)
 }
 
+const dots = (size: number, x: number, y: number) =>
+	({
+		backgroundImage:
+			"radial-gradient(circle, rgb(36 46 66 / 0.04) 1px, transparent 1px)",
+		backgroundSize: `${size}px ${size}px`,
+		backgroundPosition: `${x}px ${y}px`,
+	}) satisfies CSSProperties
+
+function Logo({ color }: { color: string }) {
+	const style: CSSProperties = { backgroundColor: color }
+	return (
+		<span
+			style={style}
+			className="grid size-[24.12px] shrink-0 place-items-center rounded-[6.03px] bg-[linear-gradient(to_bottom,transparent,rgb(255_255_255/0.15))] shadow-[inset_0_0_0_0.5px_rgb(0_0_0/0.1),inset_0_1px_0.5px_rgb(255_255_255/0.1),inset_0_-1px_0.5px_rgb(0_0_0/0.1)]">
+			<svg
+				viewBox="0 0 14.07 14.07"
+				className="size-[14.07px] drop-shadow-[0_0.675px_0.675px_rgb(36_36_36/0.1)]"
+				fill="url(#logo-fade)">
+				<defs>
+					<linearGradient id="logo-fade" x1="0" y1="0" x2="0" y2="1">
+						<stop stopColor="#fff" />
+						<stop offset="1" stopColor="#fff" stopOpacity=".5" />
+					</linearGradient>
+				</defs>
+				<path d="M9.233 9.673 C9.233 12.101 7.265 14.07 4.836 14.07 H4.396 C1.968 14.07 0 12.101 0 9.673 H9.233ZM14.07 9.673 C14.07 12.101 12.101 14.07 9.673 14.07 V9.673 H14.07ZM4.616 0 C7.166 0 9.233 2.067 9.233 4.617 C9.233 7.166 7.166 9.233 4.616 9.233 C2.067 9.233 0 7.166 0 4.617 C0 2.067 2.067 0 4.616 0ZM9.673 0 C12.101 0 14.07 1.968 14.07 4.397 V4.837 C14.07 7.265 12.101 9.233 9.673 9.233 V0Z" />
+			</svg>
+		</span>
+	)
+}
+
 export default function Preview07() {
 	return (
 		<div className="bg-bg min-h-screen w-full p-4 sm:p-6 lg:p-8">
@@ -209,46 +271,58 @@ export default function Preview07() {
 					</Card>
 
 					{/* 1.3 Browser Mockup Card */}
-					<Card className="border-border/80 relative gap-0 overflow-hidden p-0 shadow-sm">
-						{/* Window Header */}
-						<div className="border-border/80 bg-fill1/80 flex items-center gap-2 border-b px-3 py-2">
-							<div className="flex items-center gap-1.5">
-								<span className="size-2.5 rounded-full bg-red-400/80" />
-								<span className="size-2.5 rounded-full bg-amber-400/80" />
-								<span className="size-2.5 rounded-full bg-emerald-400/80" />
-							</div>
-							<div className="border-border/80 bg-bg text-fg -mb-2 flex items-center gap-1.5 rounded-t-lg border-x border-t px-2.5 py-1 text-[11px] font-medium shadow-xs">
-								<BrandLogo
-									className="text-primary size-3"
-									fill="currentColor"
-								/>
-								<span className="">Xavion</span>
-							</div>
-						</div>
-
-						{/* Window Nav & Address Bar */}
-						<div className="border-border/60 bg-fill1/40 flex items-center gap-2 border-b px-3 py-1.5">
-							<div className="text-fg-secondary flex items-center gap-1">
-								<ArrowLeft className="size-3" />
-								<ArrowRight className="size-3" />
-								<RotateCw className="size-3" />
-							</div>
-							<div className="border-border/60 bg-bg text-fg flex flex-1 items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-[11px]">
-								<Lock className="text-primary size-2.5" />
-								<span className="text-fg-secondary">www.xavion.com</span>
-							</div>
-						</div>
-
-						{/* Browser Viewport Area with Dynamic Primary Wave */}
+					<div className="relative isolate h-[216px] w-full overflow-hidden rounded-[20px]">
+						{/* grayscale grain image, recolored by the blend layer below */}
+						<div className="absolute inset-0 bg-[url(/gradient-grain.webp)] bg-cover bg-center" />
 						<div
-							className="relative h-20 w-full overflow-hidden"
-							style={{
-								background:
-									"radial-gradient(circle at 65% 30%, color-mix(in srgb, var(--color-primary) 35%, transparent), transparent 75%), linear-gradient(180deg, var(--color-fill1), var(--color-fill2))",
-							}}>
-							<div className="absolute inset-0 bg-[radial-gradient(#ffffff0a_1px,transparent_1px)] [background-size:10px_10px]" />
+							className="absolute inset-0 mix-blend-color"
+							style={{ backgroundColor: "var(--color-primary)" }}
+						/>
+
+						{/* browser window (overflows the card on the right, clipped) */}
+						<div className="bg-elevation-level1 absolute top-[48px] left-[41px] h-[120px] w-[803px] overflow-hidden rounded-[16.74px]">
+							<div className="bg-fill4 relative h-[55.81px]">
+								<div className="absolute top-[21.07px] left-5 flex gap-[11.17px]">
+									{[0, 1, 2].map((i) => (
+										<span
+											key={i}
+											className="bg-fg-disabled/40 size-[15.74px] rounded-full"
+										/>
+									))}
+								</div>
+
+								{/* concave fillet where the tab meets the toolbar */}
+								<div className="absolute top-[39.07px] left-[96.81px] size-[16.74px] bg-[radial-gradient(circle_at_top_left,transparent_16.2px,var(--color-elevation-level1)_16.9px)]" />
+
+								<div className="bg-elevation-level1 absolute top-[8.37px] left-[113.56px] flex h-[47.44px] w-[306.98px] items-center gap-[10.62px] rounded-t-[22.3px] px-[11.16px]">
+									<Logo color="var(--color-primary)" />
+									<span className="text-fg w-[215px] overflow-hidden [mask-image:linear-gradient(to_right,#000_86%,transparent_98.5%)] text-[16.74px] font-medium whitespace-nowrap">
+										Xavion
+									</span>
+								</div>
+							</div>
+
+							<div className="flex h-[64.19px] items-center gap-3 px-[20.93px]">
+								<div className="flex items-center justify-center gap-2.5">
+									<IconSlot slot="arrow-left" size={16} />
+									<IconSlot
+										slot="arrow-right"
+										size={16}
+										className="text-fg-disabled"
+									/>
+									<IconSlot slot="repeat" size={16} />
+									{/* <Icon d="M4.003 9.419 H16.744 V7.326 H4.003 L9.863 1.465 L8.372 0 L0 8.372 L8.372 16.744 L9.863 15.279 L4.003 9.419Z" className="text-fg-secondary" /> */}
+									{/* <Icon d="M12.741 9.419 H0 V7.326 H12.741 L6.881 1.465 L8.372 0 L16.744 8.372 L8.372 16.744 L6.881 15.279 L12.741 9.419Z" className="text-fg-disabled" /> */}
+									{/* <Icon d="M8.372 16.744 C6.035 16.744 4.055 15.933 2.433 14.311 C0.811 12.689 0 10.71 0 8.372 C0 6.035 0.811 4.055 2.433 2.433 C4.055 0.811 6.035 0 8.372 0 C9.575 0 10.727 0.249 11.825 0.746 C12.924 1.243 13.866 1.954 14.651 2.878 V0 H16.744 V7.326 H9.419 V5.233 H13.814 C13.256 4.256 12.493 3.489 11.525 2.93 C10.557 2.372 9.506 2.093 8.372 2.093 C6.628 2.093 5.145 2.704 3.924 3.925 C2.703 5.146 2.093 6.628 2.093 8.372 C2.093 10.117 2.703 11.599 3.924 12.82 C5.145 14.041 6.628 14.651 8.372 14.651 C9.715 14.651 10.927 14.268 12.009 13.5 C13.09 12.733 13.849 11.721 14.285 10.465 H16.482 C15.994 12.314 15 13.823 13.5 14.992 C12 16.16 10.291 16.744 8.372 16.744Z" className="text-fg-secondary" /> */}
+								</div>
+								<div className="border-soft-alpha bg-fill2 text-fg-tertiary ml-[3px] flex h-[45.45px] w-[659.37px] shrink-0 items-center rounded-[13.16px] border px-[13.93px] text-lg">
+									www.xavion.com
+								</div>
+							</div>
 						</div>
-					</Card>
+
+						<div className="pointer-events-none absolute inset-0 rounded-[20px] ring-1 ring-[#242E42]/[0.08] ring-inset" />
+					</div>
 
 					{/* 1.4 Context Window Token Visualizer */}
 					<Card className="border-border/80 gap-3 p-4 shadow-sm">
@@ -429,49 +503,81 @@ export default function Preview07() {
 						</div>
 					</Card>
 
-					<Card className="border-border/80 gap-0 overflow-hidden p-0 shadow-sm">
-						{/* Top graphic wave */}
-						<div
-							className="h-14 w-full"
-							style={{
-								background:
-									"radial-gradient(circle at 50% 0%, color-mix(in srgb, var(--color-primary) 30%, transparent), transparent 70%), var(--color-fill2)",
-							}}
-						/>
-						<CardContent className="-mt-6 space-y-2 p-4 pt-0">
-							<div className="flex size-12 items-center justify-center">
-								<BrandAppIcon size={48} />
+					<div className="bg-primary-accent relative h-83 w-full overflow-hidden rounded-[20px]">
+						<div className="absolute inset-0" style={dots(10, 4, 2)} />
+
+						{/* card (intentionally larger than the frame so it's cropped) */}
+						<div className="bg-bg absolute top-[45px] left-[45px] h-[502.7px] w-[444.8px] overflow-hidden rounded-[16.7px] shadow-[0_15.5px_23.3px_-3.9px_rgb(24_24_27/0.12)]">
+							<div
+								className="absolute inset-0"
+								style={dots(17.44, 4.36, -1.58)}
+							/>
+
+							{/* header */}
+							<div className="border-soft bg-primary-border relative h-[97.3px] border-b-[1.4px]">
+								<svg
+									viewBox="45 45 444.8 97.3"
+									className="absolute inset-0 size-full">
+									<defs>
+										<linearGradient
+											id="hdr-shapes"
+											gradientUnits="userSpaceOnUse"
+											x1="121.8"
+											y1="54.1"
+											x2="295.7"
+											y2="228">
+											<stop stopColor="white" />
+											<stop offset="1" stopColor="white" stopOpacity=".5" />
+										</linearGradient>
+									</defs>
+									<path
+										opacity=".6"
+										fill="url(#hdr-shapes)"
+										d="M268.53 146.456C298.536 176.462 298.536 225.111 268.53 255.117L263.097 260.55C233.091 290.556 184.442 290.556 154.436 260.55L268.53 146.456ZM328.293 86.6931C358.299 116.699 358.299 165.348 328.293 195.354L273.963 141.023L328.293 86.6931ZM91.956 83.9766C123.462 52.4704 174.544 52.4704 206.05 83.9766C237.556 115.483 237.556 166.564 206.05 198.07C174.544 229.576 123.462 229.576 91.956 198.07C60.4499 166.564 60.4499 115.483 91.956 83.9766ZM154.436 21.4967C184.442 -8.50929 233.091 -8.5093 263.097 21.4967L268.53 26.9297C298.536 56.9357 298.536 105.584 268.53 135.59L154.436 21.4967Z"
+									/>
+								</svg>
 							</div>
 
-							<div>
-								<div className="text-fg flex items-center gap-1.5 text-sm font-bold">
-									<span>Xavion Corp</span>
-									<CheckCircle2 className="text-primary fill-primary/20 size-4" />
+							{/* logo tile */}
+							<div className="absolute top-[55.6px] left-[22.2px] grid size-[89px] place-items-center rounded-[34px] bg-[var(--color-primary)] bg-gradient-to-b from-transparent to-white/15 shadow-[0_0_0_3.7px_rgb(0_0_0/0.1),0_0_0_3.7px_rgb(255_255_255/0.28),inset_0_3.7px_1.9px_rgb(255_255_255/0.1),inset_0_-3.7px_1.9px_rgb(0_0_0/0.1),inset_0_0_0_1.9px_rgb(0_0_0/0.06)]">
+								<div className="size-[52px] drop-shadow-[0_2.5px_2.5px_rgb(36_36_36/0.1)]">
+									<XavionMark />
 								</div>
-								<a
-									href="https://xavion.com"
-									className="text-primary hover:text-primary-hover text-xs font-medium transition-colors">
-									https://xavion.com
-								</a>
 							</div>
 
-							<p className="text-fg-secondary text-xs leading-relaxed">
-								An open-source design library and foundational design system for
-								modern software products.
-							</p>
-						</CardContent>
-					</Card>
+							{/* text */}
+							<div className="relative px-[22px] pt-[69px]">
+								<div className="flex items-center gap-[7.5px]">
+									<h3 className="text-fg text-[22px] leading-7 font-medium tracking-tight">
+										Xavion Corp
+									</h3>
+									<VerifiedBadge />
+								</div>
+								<p className="text-fg-tertiary mt-0 text-[17px] leading-6">
+									xavion.com
+								</p>
+								<p className="text-fg-secondary mt-4 text-lg leading-[27px]">
+									An open-source design library and system built for
+									high-performance dashboard layouts.
+								</p>
+							</div>
+
+							<div className="pointer-events-none absolute inset-0 rounded-[inherit] border-[1.4px] border-[#242E42]/[.08]" />
+						</div>
+
+						<div className="pointer-events-none absolute inset-0 rounded-[inherit] border border-[#242E42]/[.08]" />
+					</div>
 
 					{/* 2.3 Color Palette Swatches Bar */}
-					<Card className="border-border/80 gap-0 p-2 shadow-sm">
-						<div className="border-border/60 grid h-8 grid-cols-5 overflow-hidden rounded-lg border shadow-inner">
+					<Card className="gap-0 border-none p-0 shadow-none">
+						<div className="border-soft grid h-20 grid-cols-5 overflow-hidden rounded-lg border shadow-inner">
 							<div
 								className="bg-primary flex items-center justify-center transition-colors"
 								title="Primary"
 							/>
 							<div
-								className="bg-primary/80 flex items-center justify-center transition-colors"
-								title="Primary 80%"
+								className="bg-primary-border flex items-center justify-center transition-colors"
+								title="Primary Border"
 							/>
 							<div
 								className="bg-primary-accent flex items-center justify-center transition-colors"
