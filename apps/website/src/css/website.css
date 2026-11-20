@@ -1891,3 +1891,74 @@ html[data-color="neutral"] {
   --color-primary-hover: var(--color-neutral-hover);
   --color-primary-text: var(--color-neutral-text);
 }
+
+/* MARK: Themer Preset Utilities */
+/* Prebuilt arbitrary utility classes for themer component presets (radius & padding) */
+/* Placed in @layer utilities so they override @layer base styles (like .cn-btn-size-*) */
+/* and can be merged with className overrides using twMerge / cn() without inline styles. */
+@layer utilities {
+  /* Radius Presets */
+  .rounded-\[2px\] {
+    border-radius: 2px;
+  }
+  .rounded-\[4px\] {
+    border-radius: 4px;
+  }
+  .rounded-\[6px\] {
+    border-radius: 6px;
+  }
+  .rounded-\[8px\] {
+    border-radius: 8px;
+  }
+  .rounded-\[10px\] {
+    border-radius: 10px;
+  }
+  .rounded-\[12px\] {
+    border-radius: 12px;
+  }
+  .rounded-\[14px\] {
+    border-radius: 14px;
+  }
+  .rounded-\[16px\] {
+    border-radius: 16px;
+  }
+  .rounded-\[20px\] {
+    border-radius: 20px;
+  }
+  .rounded-\[24px\] {
+    border-radius: 24px;
+  }
+
+  /* Padding Presets (Horizontal) */
+  .px-\[2px\] {
+    padding-inline: 2px;
+  }
+  .px-\[4px\] {
+    padding-inline: 4px;
+  }
+  .px-\[6px\] {
+    padding-inline: 6px;
+  }
+  .px-\[8px\] {
+    padding-inline: 8px;
+  }
+  .px-\[10px\] {
+    padding-inline: 10px;
+  }
+  .px-\[12px\] {
+    padding-inline: 12px;
+  }
+  .px-\[14px\] {
+    padding-inline: 14px;
+  }
+  .px-\[16px\] {
+    padding-inline: 16px;
+  }
+  .px-\[18px\] {
+    padding-inline: 18px;
+  }
+  .px-\[20px\] {
+    padding-inline: 20px;
+  }
+}
+

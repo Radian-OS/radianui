@@ -33,11 +33,7 @@ export function PresetSlider<T extends string>({
 	const currentIndex = options.indexOf(selectedPreset)
 	const valueLabel =
 		value ??
-		(measured
-			? defaultValue >= 999
-				? "Full"
-				: `${defaultValue}px`
-			: defaultLabel)
+		(measured ? (defaultValue >= 999 ? "Full" : `Default`) : defaultLabel)
 
 	return (
 		<div className="flex flex-col gap-1.5">
