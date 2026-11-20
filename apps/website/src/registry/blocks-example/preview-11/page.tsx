@@ -1,50 +1,808 @@
 "use client"
 
-import * as React from "react"
-import { useState } from "react"
+import { Metadata } from "next"
+import { SidebarInset, SidebarProvider } from "@/styles/default/ui/sidebar"
+import React, { useState } from "react"
 import {
-	Area,
-	CartesianGrid,
-	Cell,
-	ComposedChart,
-	Line,
-	Pie,
-	PieChart,
-	ReferenceLine,
-	Tooltip,
-	XAxis,
-	YAxis,
-} from "recharts"
-import {
-	AlertTriangle,
-	BarChart3,
-	Bell,
-	Building2,
-	Calendar,
-	Check,
+	AlertCircle,
+	ArrowLeftToLine,
+	Box,
 	CheckCircle2,
-	ChevronDown,
-	ChevronRight,
-	ChevronsUpDown,
-	ClipboardCheck,
-	Clock,
-	FileSpreadsheet,
-	FolderArchive,
+	Columns3,
 	Headphones,
 	Home,
 	Link2,
-	MoreHorizontal,
-	PanelLeftClose,
-	Search,
 	Settings,
-	Share2,
-	ShieldCheck,
-	SlidersHorizontal,
-	Terminal,
+	Shield,
+	Split,
+	Store,
 	Users,
+	Clock,
+	MoreHorizontal,
+	ChevronDown,
+	FileText,
 } from "lucide-react"
+import RadianLogo from "@/registry/blocks-example/signup/components/radian-logo"
+import {
+	Sidebar,
+	SidebarContent,
+	SidebarFooter,
+	SidebarGroup,
+	SidebarGroupContent,
+	SidebarHeader,
+	SidebarMenu,
+	SidebarMenuButton,
+	SidebarMenuItem,
+	SidebarMenuSub,
+	SidebarMenuSubButton,
+	SidebarMenuSubItem,
+	SidebarSeparator,
+} from "@/styles/default/ui/sidebar"
 
+import {
+	Bell,
+	Calendar,
+	ChevronsUpDown,
+	HelpCircle,
+	Search,
+	Share2,
+	SlidersHorizontal,
+} from "lucide-react"
+import { Avatar, AvatarFallback, AvatarImage } from "@/styles/default/ui/avatar"
 import { Button, IconButton } from "@/styles/default/ui/button"
+import { Input, InputWrapper } from "@/styles/default/ui/input"
+import { SidebarTrigger } from "@/styles/default/ui/sidebar"
+export type AuditStatus =
+	| "Upcoming"
+	| "In Audits"
+	| "Completed"
+	| "Awaiting Report"
+
+export interface SlaMetricItem {
+	id: string
+	title: string
+	value: number
+	chartValue?: number
+	displayValue: string
+	description: string
+	descriptionLines?: [string, string, string]
+	badgeLabel: string
+	badgeColor: "success" | "warning" | "info"
+	ringColor: string
+	trackColor?: string
+}
+
+export interface ProgressDataPoint {
+	date: string
+	rate?: number
+	projectedRate?: number
+}
+
+export interface AuditItem {
+	id: string
+	title: string
+	status: AuditStatus
+	statusColor: "info" | "warning" | "success" | "neutral"
+	dateRange: string
+}
+
+export interface ReportItem {
+	id: string
+	title: string
+	description: string
+	createdBy: string
+	charts: string[]
+	lastModified: string
+}
+
+export const SLA_METRICS: SlaMetricItem[] = [
+	{
+		id: "by-due-date",
+		title: "Remediated by due date",
+		value: 93,
+		chartValue: 62,
+		displayValue: "93%",
+		description: "36 of 521 task done by due date, +27% vs last month.",
+		badgeLabel: "Exellent",
+		badgeColor: "success",
+		ringColor: "var(--color-success)",
+	},
+	{
+		id: "past-due-date",
+		title: "Remediated past due date",
+		value: 14,
+		chartValue: 14,
+		displayValue: "14%",
+		description: "36 of 521 task done past due date, -18% vs last month.",
+		badgeLabel: "Average",
+		badgeColor: "warning",
+		ringColor: "var(--color-warning)",
+	},
+	{
+		id: "without-due-date",
+		title: "Remediated without due date",
+		value: 3,
+		chartValue: 4,
+		displayValue: "3%",
+		description: "483 of 521 task completed, +27% compared to last month.",
+		badgeLabel: "Good",
+		badgeColor: "info",
+		ringColor: "var(--color-info)",
+	},
+]
+
+export const PROGRESS_DATA: ProgressDataPoint[] = [
+	{ date: "Feb 1", rate: 11 },
+	{ date: "Feb 4", rate: 11 },
+	{ date: "Feb 5", rate: 35 },
+	{ date: "Feb 5.5", rate: 46 },
+	{ date: "Feb 6", rate: 43, projectedRate: 43 },
+	{ date: "Feb 10", projectedRate: 52 },
+	{ date: "Feb 14", projectedRate: 43 },
+	{ date: "Feb 20", projectedRate: 57 },
+	{ date: "Feb 22", projectedRate: 57 },
+	{ date: "Feb 24", projectedRate: 68 },
+	{ date: "Feb 28", projectedRate: 75 },
+]
+
+export const AUDIT_ITEMS: AuditItem[] = [
+	{
+		id: "audit-1",
+		title: "SOC 2 Type II - Infrastructure & Cloud Controls",
+		status: "Upcoming",
+		statusColor: "info",
+		dateRange: "Mar 21, 2026 - Apr 12, 2026",
+	},
+	{
+		id: "audit-2",
+		title: "SOC 2 Type II - Security & Access Review",
+		status: "In Audits",
+		statusColor: "warning",
+		dateRange: "Mar 21, 2026 - Apr 12, 2026",
+	},
+	{
+		id: "audit-3",
+		title: "SOC 2 Type II - Data Protection Assessment",
+		status: "Completed",
+		statusColor: "success",
+		dateRange: "Mar 21, 2026 - Apr 12, 2026",
+	},
+	{
+		id: "audit-4",
+		title: "SOC 2 Type II - Vendor Risk Evaluation",
+		status: "Upcoming",
+		statusColor: "info",
+		dateRange: "Mar 21, 2026 - Apr 12, 2026",
+	},
+]
+
+export const REPORT_ITEMS: ReportItem[] = [
+	{
+		id: "report-1",
+		title: "Project overview",
+		description:
+			"Gain a top level view of your compliance and security program.",
+		createdBy: "Radian",
+		charts: ["Tests", "Risk"],
+		lastModified: "January 12, 2026",
+	},
+	{
+		id: "report-2",
+		title: "Vendor risk evaluation",
+		description:
+			"Review security postures and risk assessments for all active vendors.",
+		createdBy: "Radian",
+		charts: ["Vendor", "Security"],
+		lastModified: "February 04, 2026",
+	},
+	{
+		id: "report-3",
+		title: "Access control audit",
+		description:
+			"Quarterly review of role-based permissions and privileged accounts.",
+		createdBy: "Radian",
+		charts: ["Audit", "IAM"],
+		lastModified: "February 18, 2026",
+	},
+	{
+		id: "report-4",
+		title: "Data protection assessment",
+		description:
+			"Comprehensive analysis of encrypted storage and backup retention policies.",
+		createdBy: "Radian",
+		charts: ["Risk", "Storage"],
+		lastModified: "March 01, 2026",
+	},
+]
+
+export const metadata: Metadata = {
+	title: "Radian — Program SLA & Compliance Dashboard",
+	description:
+		"Program task completion rate within SLA over the last 30 days and compliance framework progress.",
+}
+
+export default function Preview11Page() {
+	const [activeItem, setActiveItem] = useState("Reports")
+
+	return (
+		<div className="bg-bg text-fg h-screen w-full overflow-hidden">
+			<SidebarProvider
+				defaultOpen
+				defaultWidth="15rem"
+				className="flex h-screen w-full overflow-hidden">
+				<div className="flex h-screen w-full overflow-hidden">
+					<Sidebar
+						collapsible="none"
+						className="border-border/60 bg-fill1/40 w-60 shrink-0 border-r select-none"
+						style={
+							{
+								"--color-sidebar":
+									"color-mix(in srgb, var(--color-fill1) 40%, transparent)",
+							} as React.CSSProperties
+						}>
+						{/* Brand Header */}
+						<SidebarHeader className="flex h-14 flex-row items-center justify-between px-4">
+							<div className="flex items-center gap-2.5">
+								<RadianLogo width={22} height={22} />
+								<span className="text-sidebar-fg text-sm font-semibold tracking-tight">
+									Radian
+								</span>
+							</div>
+
+							{/* Collapse Icon Button */}
+							<IconButton
+								variant="outline"
+								color="neutral"
+								size="sm"
+								className="border-border/70 bg-bg text-fg-secondary hover:bg-fill1/60 hover:text-fg size-7 rounded-lg shadow-none"
+								aria-label="Collapse sidebar">
+								<ArrowLeftToLine className="size-3.5" />
+							</IconButton>
+						</SidebarHeader>
+
+						<SidebarContent className="space-y-1 px-2 py-2">
+							{/* Top Core Navigation */}
+							<SidebarGroup className="p-0">
+								<SidebarGroupContent>
+									<SidebarMenu>
+										<SidebarMenuItem>
+											<SidebarMenuButton
+												size="sm"
+												isActive={activeItem === "Home"}
+												onClick={() => setActiveItem("Home")}>
+												<Home className="size-4" />
+												<span>Home</span>
+											</SidebarMenuButton>
+										</SidebarMenuItem>
+
+										<SidebarMenuItem>
+											<SidebarMenuButton
+												size="sm"
+												isActive={activeItem === "Reports"}
+												onClick={() => setActiveItem("Reports")}>
+												<Columns3 className="size-4" />
+												<span>Reports</span>
+											</SidebarMenuButton>
+										</SidebarMenuItem>
+									</SidebarMenu>
+								</SidebarGroupContent>
+							</SidebarGroup>
+
+							{/* Subtle Divider Line */}
+							<SidebarSeparator className="my-2" />
+
+							{/* Compliance & Management Section */}
+							<SidebarGroup className="p-0">
+								<SidebarGroupContent>
+									<SidebarMenu>
+										<SidebarMenuItem>
+											<SidebarMenuButton
+												size="sm"
+												isActive={activeItem === "Compliance"}
+												onClick={() => setActiveItem("Compliance")}>
+												<CheckCircle2 className="size-4" />
+												<span>Compliance</span>
+											</SidebarMenuButton>
+										</SidebarMenuItem>
+
+										<SidebarMenuItem>
+											<SidebarMenuButton
+												size="sm"
+												isActive={activeItem === "Trust center"}
+												onClick={() => setActiveItem("Trust center")}>
+												<Shield className="size-4" />
+												<span>Trust center</span>
+											</SidebarMenuButton>
+										</SidebarMenuItem>
+
+										<SidebarMenuItem>
+											<SidebarMenuButton
+												size="sm"
+												isActive={activeItem === "Risk"}
+												onClick={() => setActiveItem("Risk")}>
+												<AlertCircle className="size-4" />
+												<span>Risk</span>
+											</SidebarMenuButton>
+										</SidebarMenuItem>
+
+										<SidebarMenuItem>
+											<SidebarMenuButton
+												size="sm"
+												isActive={activeItem === "Vendor"}
+												onClick={() => setActiveItem("Vendor")}>
+												<Store className="size-4" />
+												<span>Vendor</span>
+											</SidebarMenuButton>
+										</SidebarMenuItem>
+
+										<SidebarMenuItem>
+											<SidebarMenuButton
+												size="sm"
+												isActive={activeItem === "Assets"}
+												onClick={() => setActiveItem("Assets")}>
+												<Box className="size-4" />
+												<span>Assets</span>
+											</SidebarMenuButton>
+										</SidebarMenuItem>
+
+										<SidebarMenuItem>
+											<SidebarMenuButton
+												size="sm"
+												isActive={activeItem === "Teams"}
+												onClick={() => setActiveItem("Teams")}>
+												<Users className="size-4" />
+												<span>Teams</span>
+											</SidebarMenuButton>
+											<SidebarMenuSub className="border-border/60 my-1 ml-5 space-y-0.5 border-l pl-2">
+												<SidebarMenuSubItem>
+													<SidebarMenuSubButton
+														size="sm"
+														className="text-sm font-medium"
+														isActive={activeItem === "Project manager"}
+														onClick={() => setActiveItem("Project manager")}>
+														<span>Project manager</span>
+													</SidebarMenuSubButton>
+												</SidebarMenuSubItem>
+												<SidebarMenuSubItem>
+													<SidebarMenuSubButton
+														size="sm"
+														className="text-sm font-medium"
+														isActive={activeItem === "Developer"}
+														onClick={() => setActiveItem("Developer")}>
+														<span>Developer</span>
+													</SidebarMenuSubButton>
+												</SidebarMenuSubItem>
+												<SidebarMenuSubItem>
+													<SidebarMenuSubButton
+														size="sm"
+														className="text-sm font-medium"
+														isActive={activeItem === "Quality assurance"}
+														onClick={() => setActiveItem("Quality assurance")}>
+														<span>Quality assurance</span>
+													</SidebarMenuSubButton>
+												</SidebarMenuSubItem>
+											</SidebarMenuSub>
+										</SidebarMenuItem>
+
+										<SidebarMenuItem>
+											<SidebarMenuButton
+												size="sm"
+												isActive={activeItem === "Integrations"}
+												onClick={() => setActiveItem("Integrations")}>
+												<Link2 className="size-4" />
+												<span>Integrations</span>
+											</SidebarMenuButton>
+										</SidebarMenuItem>
+									</SidebarMenu>
+								</SidebarGroupContent>
+							</SidebarGroup>
+						</SidebarContent>
+
+						{/* Footer Utility Section */}
+						<SidebarFooter className="border-border/50 mt-auto border-t p-2">
+							<SidebarMenu>
+								<SidebarMenuItem>
+									<SidebarMenuButton
+										size="sm"
+										isActive={activeItem === "API"}
+										onClick={() => setActiveItem("API")}>
+										<Split className="size-4" />
+										<span>API</span>
+									</SidebarMenuButton>
+								</SidebarMenuItem>
+
+								<SidebarMenuItem>
+									<SidebarMenuButton
+										size="sm"
+										isActive={activeItem === "Help Center"}
+										onClick={() => setActiveItem("Help Center")}>
+										<Headphones className="size-4" />
+										<span>Help Center</span>
+									</SidebarMenuButton>
+								</SidebarMenuItem>
+
+								<SidebarMenuItem>
+									<SidebarMenuButton
+										size="sm"
+										isActive={activeItem === "Settings"}
+										onClick={() => setActiveItem("Settings")}>
+										<Settings className="size-4" />
+										<span>Settings</span>
+									</SidebarMenuButton>
+								</SidebarMenuItem>
+							</SidebarMenu>
+						</SidebarFooter>
+					</Sidebar>{" "}
+					<SidebarInset className="bg-bg flex h-screen min-w-0 flex-1 flex-col overflow-hidden">
+						<header className="border-border/60 bg-fill1/40 sticky top-0 z-20 flex w-full shrink-0 items-center justify-between border-b px-[24px] py-[12px] backdrop-blur-md">
+							{/* Left controls: Sidebar trigger on mobile, Search, Date Range Filter */}
+							<div className="flex items-center gap-2 sm:gap-3">
+								<SidebarTrigger
+									variant="ghost"
+									color="neutral"
+									size="sm"
+									className="md:hidden"
+								/>
+
+								<InputWrapper
+									size="sm"
+									className="border-border/80 bg-fill1/40 w-44 rounded-lg sm:w-64">
+									<Search className="text-fg-tertiary size-4" />
+									<Input placeholder="Search...." className="text-xs" />
+								</InputWrapper>
+
+								<Button
+									variant="outline"
+									color="neutral"
+									size="sm"
+									className="text-fg-secondary border-border/80 bg-bg hover:bg-fill1/60 hover:text-fg hidden h-8 gap-1.5 rounded-lg text-xs font-normal shadow-none sm:inline-flex">
+									<Calendar className="size-3.5" />
+									<span>Last 30 days</span>
+									<ChevronsUpDown className="text-fg-tertiary size-3" />
+								</Button>
+
+								<IconButton
+									variant="outline"
+									color="neutral"
+									size="sm"
+									className="border-border/80 bg-bg text-fg-secondary hover:bg-fill1/60 hover:text-fg size-8 rounded-lg shadow-none"
+									aria-label="Filter">
+									<SlidersHorizontal className="size-3.5" />
+								</IconButton>
+							</div>
+
+							{/* Right actions: Share, Notifications, Help, User Avatar */}
+							<div className="flex items-center gap-2">
+								<Button
+									variant="strong"
+									color="neutral"
+									size="sm"
+									className="bg-fg text-bg h-8 gap-1.5 rounded-lg px-3 text-xs font-medium hover:opacity-90">
+									<Share2 className="size-3.5" />
+									<span>Share</span>
+								</Button>
+
+								<IconButton
+									variant="ghost"
+									color="neutral"
+									size="sm"
+									className="text-fg-secondary relative size-8"
+									aria-label="Notifications">
+									<Bell className="size-4" />
+									<span className="bg-primary ring-bg absolute top-1.5 right-1.5 size-1.5 rounded-full ring-2" />
+								</IconButton>
+
+								<IconButton
+									variant="ghost"
+									color="neutral"
+									size="sm"
+									className="text-fg-secondary size-8"
+									aria-label="Help">
+									<HelpCircle className="size-4" />
+								</IconButton>
+
+								<div className="pl-1">
+									<Avatar
+										size="sm"
+										rounded="circle"
+										className="border-border size-8 shrink-0 overflow-hidden border">
+										<AvatarImage
+											src="https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@v1.0.2/packages/uncompressed-avatars/src/2.png"
+											alt="User avatar"
+											className="size-full object-cover"
+										/>
+										<AvatarFallback className="text-xs font-semibold">
+											JD
+										</AvatarFallback>
+									</Avatar>
+								</div>
+							</div>
+						</header>
+						<main className="bg-bg flex-1 overflow-y-auto px-[24px] pt-[12px] pb-[24px]">
+							<div className="flex w-full flex-col gap-[16px]">
+								{/* Top Metric Cards */}
+								<section className="flex flex-col gap-[24px]">
+									{/* Header title & actions */}
+									<div className="flex flex-col gap-0.5 sm:flex-row sm:items-center sm:justify-between">
+										<div>
+											<h2 className="text-fg text-[18px] leading-snug font-semibold">
+												Program task completion rate within SLA over the last 30
+												days
+											</h2>
+											<p className="text-fg-secondary text-[14px]">
+												How ofter you remediated items within SLA
+											</p>
+										</div>
+										<div className="flex items-center gap-1.5 self-start sm:self-auto">
+											<IconButton
+												variant="outline"
+												color="neutral"
+												size="sm"
+												className="border-border/70 bg-bg text-fg-secondary hover:bg-fill1/60 hover:text-fg size-7 rounded-lg shadow-none"
+												aria-label="History">
+												<Clock className="size-3.5" />
+											</IconButton>
+											<IconButton
+												variant="outline"
+												color="neutral"
+												size="sm"
+												className="border-border/70 bg-bg text-fg-secondary hover:bg-fill1/60 hover:text-fg size-7 rounded-lg shadow-none"
+												aria-label="More options">
+												<MoreHorizontal className="size-3.5" />
+											</IconButton>
+										</div>
+									</div>
+
+									{/* Metric cards grid: column gap 12px, row gap 16px */}
+									<div className="grid grid-cols-1 gap-x-[12px] gap-y-[16px] md:grid-cols-3">
+										{SLA_METRICS.map((metric) => (
+											<MetricDonutCard key={metric.id} metric={metric} />
+										))}
+									</div>
+								</section>
+								{/* Middle Row: Framework Progress Area Chart & Audits List (Equal 50% / 50% split) */}
+								<div className="grid grid-cols-1 gap-x-[12px] gap-y-[16px] lg:grid-cols-2">
+									<FrameworkProgressChart />
+									<AuditsCard />
+								</div>
+
+								{/* Bottom Row: Reports Overview Table */}
+								<ReportsCard />
+							</div>
+						</main>{" "}
+					</SidebarInset>
+				</div>
+			</SidebarProvider>
+		</div>
+	)
+}
+
+export function FrameworkProgressChart() {
+	// Y-axis grid coordinates spanning full chart height (0% to 100%)
+	// Total height = 300, 0% = 268, 100% = 28. (48px per 20% step)
+	const gridLines = [
+		{ label: "100%", y: 28 },
+		{ label: "80%", y: 76 },
+		{ label: "60%", y: 124 },
+		{ label: "40%", y: 172 },
+		{ label: "20%", y: 220 },
+		{ label: "0%", y: 268 },
+	]
+
+	// Key dates with rates and coordinates
+	const datePoints = [
+		{ label: "Feb 1", x: 45, y: 241.6, rate: 11 },
+		{ label: "Feb 6", x: 115, y: 164.8, rate: 43 },
+		{ label: "Feb 10", x: 180, y: 143.2, rate: 52 },
+		{ label: "Feb 14", x: 245, y: 164.8, rate: 43 },
+		{ label: "Feb 20", x: 325, y: 131.2, rate: 57 },
+		{ label: "Feb 24", x: 400, y: 104.8, rate: 68 },
+		{ label: "Feb 28", x: 475, y: 88.0, rate: 75 },
+	]
+
+	// Milestone dots on projection curve
+	const projectionDots = [
+		{ x: 180, y: 143.2 }, // Feb 10 (52%)
+		{ x: 245, y: 164.8 }, // Feb 14 (43%)
+		{ x: 325, y: 131.2 }, // Feb 20 (57%)
+		{ x: 360, y: 131.2 }, // Feb 23 (57%)
+		{ x: 400, y: 104.8 }, // Feb 24 (68%)
+		{ x: 475, y: 88.0 }, // Feb 28 (75%)
+	]
+
+	return (
+		<Card className="bg-fill1/40 border-border/70 flex h-full flex-col gap-0 overflow-hidden rounded-2xl p-0 py-0 shadow-none">
+			{/* Card Header: strictly 16px top/bottom and 20px sides padding with bottom border */}
+			<CardHeader
+				className="border-border/60 flex items-center justify-between gap-0 border-b px-[20px]! py-[16px]! pb-[16px]!"
+				style={{
+					paddingLeft: "20px",
+					paddingRight: "20px",
+					paddingTop: "16px",
+					paddingBottom: "16px",
+				}}>
+				<CardTitle className="text-fg text-[16px] leading-normal font-semibold">
+					Framework progress
+				</CardTitle>
+				<CardAction>
+					<IconButton
+						variant="outline"
+						color="neutral"
+						size="sm"
+						className="border-border/70 bg-bg text-fg-secondary hover:bg-fill1/60 hover:text-fg size-7 rounded-lg shadow-none"
+						aria-label="Expand options">
+						<ChevronDown className="size-3.5" />
+					</IconButton>
+				</CardAction>
+			</CardHeader>
+
+			{/* Card Content: Chart fills the height and width of the card */}
+			<CardContent className="flex flex-1 flex-col p-0 px-4 pt-3 pb-4">
+				<div className="relative flex h-full min-h-[300px] flex-1 select-none">
+					<svg
+						viewBox="0 0 500 300"
+						className="size-full overflow-visible"
+						preserveAspectRatio="none">
+						<defs>
+							<linearGradient
+								id="frameworkSolidFill"
+								x1="0"
+								y1="0"
+								x2="0"
+								y2="1">
+								<stop
+									offset="0%"
+									stopColor="var(--color-blue)"
+									stopOpacity={0.25}
+								/>
+								<stop
+									offset="100%"
+									stopColor="var(--color-blue)"
+									stopOpacity={0.01}
+								/>
+							</linearGradient>
+						</defs>
+
+						{/* Horizontal grid lines spanning full width */}
+						{gridLines.map((grid) => (
+							<g key={grid.label}>
+								<line
+									x1="32"
+									y1={grid.y}
+									x2="495"
+									y2={grid.y}
+									stroke="var(--color-border)"
+									strokeWidth="1"
+									strokeDasharray="3 3"
+									opacity={0.65}
+								/>
+								<text
+									x="26"
+									y={grid.y + 4}
+									textAnchor="end"
+									fill="var(--color-fg-secondary)"
+									fontSize="11"
+									fontWeight="400">
+									{grid.label}
+								</text>
+							</g>
+						))}
+
+						{/* X-axis date labels */}
+						{datePoints.map((date) => (
+							<text
+								key={date.label}
+								x={date.x}
+								y="290"
+								textAnchor="middle"
+								fill="var(--color-fg-secondary)"
+								fontSize="11"
+								fontWeight="400">
+								{date.label}
+							</text>
+						))}
+
+						{/* Shaded area under the entire curve */}
+						<path
+							d="M 45 268 L 45 241.6 L 90 241.6 C 98 241.6, 102 152.8, 106 152.8 C 110 152.8, 112 164.8, 115 164.8 L 150 164.8 C 162 164.8, 172 143.2, 180 143.2 C 205 143.2, 220 164.8, 245 164.8 C 272 164.8, 298 131.2, 325 131.2 L 360 131.2 C 375 131.2, 388 104.8, 400 104.8 C 420 104.8, 445 94, 458 92 C 465 90, 470 88, 475 88 C 482 88, 488 92, 495 92 L 495 268 Z"
+							fill="url(#frameworkSolidFill)"
+						/>
+
+						{/* Historical solid blue curve: flat start -> steep rise -> gentle dip to 43% */}
+						<path
+							d="M 45 241.6 L 90 241.6 C 98 241.6, 102 152.8, 106 152.8 C 110 152.8, 112 164.8, 115 164.8"
+							fill="none"
+							stroke="var(--color-blue)"
+							strokeWidth="2"
+							strokeLinecap="round"
+						/>
+
+						{/* Projected dashed blue line after Feb 6 */}
+						<path
+							d="M 115 164.8 L 150 164.8 C 162 164.8, 172 143.2, 180 143.2 C 205 143.2, 220 164.8, 245 164.8 C 272 164.8, 298 131.2, 325 131.2 L 360 131.2 C 375 131.2, 388 104.8, 400 104.8 C 420 104.8, 445 94, 458 92 C 465 90, 470 88, 475 88 C 482 88, 488 92, 495 92"
+							fill="none"
+							stroke="var(--color-blue)"
+							strokeWidth="2"
+							strokeDasharray="4 4"
+							strokeLinecap="round"
+						/>
+
+						{/* Milestone dots on the projection curve */}
+						{projectionDots.map((dot, index) => (
+							<circle
+								key={`proj-dot-${index}`}
+								cx={dot.x}
+								cy={dot.y}
+								r="4.5"
+								fill="var(--color-blue)"
+								stroke="var(--color-bg)"
+								strokeWidth="2"
+							/>
+						))}
+
+						{/* Feb 6 milestone indicator: fixed statically right here, non-interactive */}
+						<g>
+							{/* Vertical dashed line from 0% (y=268) up to milestone point (y=164.8) */}
+							<line
+								x1="115"
+								y1="268"
+								x2="115"
+								y2="164.8"
+								stroke="var(--color-blue)"
+								strokeWidth="1.5"
+								strokeDasharray="3 3"
+							/>
+
+							{/* Milestone Dot at Feb 6 */}
+							<circle
+								cx="115"
+								cy="164.8"
+								r="4.5"
+								fill="var(--color-blue)"
+								stroke="var(--color-bg)"
+								strokeWidth="2"
+							/>
+
+							{/* Vertical solid line from milestone point up to 43% badge */}
+							<line
+								x1="115"
+								y1="164.8"
+								x2="115"
+								y2="48"
+								stroke="var(--color-blue)"
+								strokeWidth="1.5"
+							/>
+
+							{/* Callout Pill Badge (43%) */}
+							<g transform="translate(115, 36)">
+								<rect
+									x="-18"
+									y="-11"
+									width="36"
+									height="22"
+									rx="6"
+									fill="var(--color-blue-accent)"
+									stroke="var(--color-blue-border)"
+									strokeWidth="1"
+								/>
+								<text
+									x="0"
+									y="3.5"
+									textAnchor="middle"
+									fill="var(--color-blue-text)"
+									fontSize="11"
+									fontWeight="600">
+									43%
+								</text>
+							</g>
+						</g>
+					</svg>
+				</div>
+			</CardContent>
+		</Card>
+	)
+}
+
 import { Badge } from "@/styles/default/ui/badge"
 import {
 	Card,
@@ -52,32 +810,252 @@ import {
 	CardHeader,
 	CardTitle,
 } from "@/styles/default/ui/card"
-import { Avatar, AvatarFallback, AvatarImage } from "@/styles/default/ui/avatar"
-import { Input } from "@/styles/default/ui/input"
-import { Tabs, TabsList, TabsTrigger } from "@/styles/default/ui/tabs"
-import { type ChartConfig, ChartContainer } from "@/styles/default/ui/chart"
-import {
-	DropdownMenu,
-	DropdownMenuContent,
-	DropdownMenuItem,
-	DropdownMenuTrigger,
-} from "@/styles/default/ui/dropdown-menu"
-import {
-	Sidebar,
-	SidebarContent,
-	SidebarFooter,
-	SidebarGroup,
-	SidebarHeader,
-	SidebarInset,
-	SidebarMenu,
-	SidebarMenuButton,
-	SidebarMenuItem,
-	SidebarMenuSub,
-	SidebarMenuSubButton,
-	SidebarMenuSubItem,
-	SidebarProvider,
-	useSidebar,
-} from "@/styles/default/ui/sidebar"
+import { CardAction } from "@/registry/ui/card"
+
+interface MetricDonutCardProps {
+	metric: SlaMetricItem
+}
+
+export function MetricDonutCard({ metric }: MetricDonutCardProps) {
+	const radius = 34
+	const circumference = 2 * Math.PI * radius
+	const chartValue = metric.chartValue ?? metric.value
+	const strokeDash = (chartValue / 100) * circumference
+	const patternId = `hatch-pattern-${metric.id}`
+
+	return (
+		<Card className="bg-fill1/40 border-border/70 flex flex-col gap-0 overflow-hidden rounded-2xl p-0 py-0 shadow-none">
+			{/* Card Header for "Remediated by due date": strictly 20px sides padding and 12px top/bottom padding */}
+			<CardHeader
+				className="border-border/60 gap-0 border-b px-[20px]! py-[12px]! pb-[12px]!"
+				style={{
+					paddingLeft: "20px",
+					paddingRight: "20px",
+					paddingTop: "12px",
+					paddingBottom: "12px",
+				}}>
+				<CardTitle className="text-fg text-[14px] leading-normal font-semibold">
+					{metric.title}
+				</CardTitle>
+			</CardHeader>
+
+			{/* Card Body: strictly 24px padding on all sides */}
+			<CardContent
+				className="flex flex-1 items-center justify-between gap-4 p-[24px]!"
+				style={{
+					padding: "24px",
+				}}>
+				<div className="flex min-w-0 flex-1 flex-col justify-between self-stretch py-0.5">
+					<div>
+						{/* Stat number 24px */}
+						<div className="text-fg text-[24px] leading-none font-bold tracking-tight">
+							{metric.displayValue}
+						</div>
+
+						{/* Description text - 14px */}
+						<p className="text-fg-secondary mt-2 text-[14px] leading-[19px]">
+							{metric.description}
+						</p>
+					</div>
+
+					{/* Soft status badge */}
+					<div className="mt-3.5">
+						<Badge
+							variant="soft"
+							color={metric.badgeColor}
+							size="sm"
+							className="rounded-md px-2.5 py-0.5 text-xs font-semibold">
+							{metric.badgeLabel}
+						</Badge>
+					</div>
+				</div>
+
+				{/* Chunky Donut Chart: 88px outer diameter */}
+				<div className="relative size-[88px] shrink-0">
+					<svg viewBox="0 0 88 88" className="size-full -rotate-90">
+						<defs>
+							<pattern
+								id={patternId}
+								width="6"
+								height="6"
+								patternUnits="userSpaceOnUse">
+								<path
+									d="M-1,1 l2,-2 M0,6 l6,-6 M5,7 l2,-2"
+									stroke="var(--color-fill3)"
+									strokeWidth="1.3"
+								/>
+							</pattern>
+						</defs>
+
+						{/* Hatched unfilled track */}
+						<circle
+							cx="44"
+							cy="44"
+							r={radius}
+							fill="none"
+							stroke={`url(#${patternId})`}
+							strokeWidth="14"
+						/>
+
+						{/* Completed metric colored arc starting at 12 o'clock */}
+						<circle
+							cx="44"
+							cy="44"
+							r={radius}
+							fill="none"
+							stroke={metric.ringColor}
+							strokeWidth="14"
+							strokeDasharray={`${strokeDash} ${circumference}`}
+							strokeDashoffset={0}
+						/>
+					</svg>
+				</div>
+			</CardContent>
+		</Card>
+	)
+}
+
+import { BarChart3, ChevronRight } from "lucide-react"
+
+const FILTER_TABS: (AuditStatus | "All")[] = [
+	"All",
+	"Upcoming",
+	"In Audits",
+	"Awaiting Report",
+	"Completed",
+]
+
+export function AuditsCard() {
+	const [activeTab, setActiveTab] = useState<AuditStatus | "All">("All")
+
+	const filteredAudits =
+		activeTab === "All"
+			? AUDIT_ITEMS
+			: AUDIT_ITEMS.filter((audit) => audit.status === activeTab)
+
+	return (
+		<Card className="bg-fill1/40 border-border/70 flex h-full flex-col gap-0 overflow-hidden rounded-2xl p-0 py-0 shadow-none">
+			{/* Card Header for Audits: strictly 16px top/bottom and 20px sides padding with bottom border */}
+			<CardHeader
+				className="border-border/60 flex items-center justify-between gap-0 border-b px-[20px]! py-[16px]! pb-[16px]!"
+				style={{
+					paddingLeft: "20px",
+					paddingRight: "20px",
+					paddingTop: "16px",
+					paddingBottom: "16px",
+				}}>
+				<CardTitle className="text-fg text-[16px] leading-normal font-semibold">
+					Audits as of today
+				</CardTitle>
+				<CardAction className="flex items-center gap-1.5">
+					<IconButton
+						variant="outline"
+						color="neutral"
+						size="sm"
+						className="border-border/70 bg-bg text-fg-secondary hover:bg-fill1/60 hover:text-fg size-7 rounded-lg shadow-none"
+						aria-label="Audit history">
+						<Clock className="size-3.5" />
+					</IconButton>
+					<IconButton
+						variant="outline"
+						color="neutral"
+						size="sm"
+						className="border-border/70 bg-bg text-fg-secondary hover:bg-fill1/60 hover:text-fg size-7 rounded-lg shadow-none"
+						aria-label="Audit filter">
+						<SlidersHorizontal className="size-3.5" />
+					</IconButton>
+				</CardAction>
+			</CardHeader>
+
+			<CardContent className="flex flex-1 flex-col justify-between gap-4 p-5 pt-3.5">
+				{/* Segmented Filter Pills */}
+				<div className="bg-fill1/80 border-border/60 flex w-full flex-wrap items-center gap-1 rounded-xl border p-1 sm:flex-nowrap">
+					{FILTER_TABS.map((tab) => {
+						const isActive = activeTab === tab
+						return (
+							<button
+								key={tab}
+								type="button"
+								onClick={() => setActiveTab(tab)}
+								className={`flex-1 rounded-lg px-2.5 py-1 text-center text-xs font-medium transition-all ${
+									isActive
+										? "bg-bg text-fg shadow-xs"
+										: "text-fg-secondary hover:text-fg hover:bg-fill2/50"
+								}`}>
+								{tab}
+							</button>
+						)
+					})}
+				</div>
+
+				{/* Audits Item List: dividers between items, filling the container height */}
+				<div className="divide-border/60 flex flex-1 flex-col justify-between divide-y">
+					{filteredAudits.map((audit) => {
+						const statusDotColor =
+							audit.status === "Upcoming"
+								? "bg-info"
+								: audit.status === "In Audits"
+									? "bg-warning"
+									: audit.status === "Completed"
+										? "bg-success"
+										: "bg-blue"
+
+						const statusTextColor =
+							audit.status === "Upcoming"
+								? "text-info-text"
+								: audit.status === "In Audits"
+									? "text-warning-text"
+									: audit.status === "Completed"
+										? "text-success-text"
+										: "text-blue-text"
+
+						return (
+							<div
+								key={audit.id}
+								className="hover:bg-fill1/30 flex flex-1 items-center justify-between py-4 transition-colors">
+								<div className="flex items-center gap-3">
+									<div className="border-border/60 bg-fill1/60 text-fg-secondary flex size-9 shrink-0 items-center justify-center rounded-lg border">
+										<BarChart3 className="size-4" />
+									</div>
+
+									<div className="flex flex-col gap-1">
+										<span className="text-fg text-xs font-semibold sm:text-sm">
+											{audit.title}
+										</span>
+										<div className="text-fg-secondary flex items-center gap-2 text-xs">
+											<div className="flex items-center gap-1.5 font-medium">
+												<span
+													className={`size-1.5 rounded-full ${statusDotColor}`}
+												/>
+												<span className={statusTextColor}>{audit.status}</span>
+											</div>
+											<span className="text-fg-tertiary">·</span>
+											<div className="text-fg-tertiary flex items-center gap-1">
+												<Calendar className="size-3" />
+												<span>{audit.dateRange}</span>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								{/* White button for row action chevron */}
+								<IconButton
+									variant="outline"
+									color="neutral"
+									size="sm"
+									className="border-border/60 bg-bg text-fg-secondary hover:bg-fill1/60 hover:text-fg size-7 rounded-lg shadow-none"
+									aria-label={`View ${audit.title}`}>
+									<ChevronRight className="size-3.5" />
+								</IconButton>
+							</div>
+						)
+					})}
+				</div>
+			</CardContent>
+		</Card>
+	)
+}
+
 import {
 	Table,
 	TableBody,
@@ -86,1013 +1064,98 @@ import {
 	TableHeader,
 	TableRow,
 } from "@/styles/default/ui/table"
-import { cn } from "@/lib/utils"
-
-// ──────────────────────────────────────────────
-// Chart Configurations
-// ──────────────────────────────────────────────
-const kpi1Config = {
-	completed: {
-		label: "Remediated by due date",
-		color: "var(--color-success, #10b981)",
-	},
-	remaining: {
-		label: "Remaining",
-		color: "var(--color-fill2, rgba(0,0,0,0.06))",
-	},
-} satisfies ChartConfig
-
-const kpi2Config = {
-	completed: {
-		label: "Remediated past due date",
-		color: "var(--color-warning, #f59e0b)",
-	},
-	remaining: {
-		label: "Remaining",
-		color: "var(--color-fill2, rgba(0,0,0,0.06))",
-	},
-} satisfies ChartConfig
-
-const kpi3Config = {
-	completed: {
-		label: "Remediated without due date",
-		color: "var(--color-primary, #4F46E5)",
-	},
-	remaining: {
-		label: "Remaining",
-		color: "var(--color-fill2, rgba(0,0,0,0.06))",
-	},
-} satisfies ChartConfig
-
-const frameworkConfig = {
-	actual: {
-		label: "Actual Progress",
-		color: "var(--color-primary, #6366f1)",
-	},
-	projected: {
-		label: "Projected Progress",
-		color: "var(--color-primary, #6366f1)",
-	},
-} satisfies ChartConfig
-
-// ──────────────────────────────────────────────
-// Datasets
-// ──────────────────────────────────────────────
-const frameworkProgressData = [
-	{ date: "Feb 1", actual: 20, projected: 20 },
-	{ date: "Feb 6", actual: 43, projected: 43 },
-	{ date: "Feb 10", actual: null, projected: 40 },
-	{ date: "Feb 14", actual: null, projected: 38 },
-	{ date: "Feb 20", actual: null, projected: 50 },
-	{ date: "Feb 24", actual: null, projected: 65 },
-	{ date: "Feb 28", actual: null, projected: 75 },
-]
-
-interface AuditItem {
-	id: string
-	title: string
-	status: "Upcoming" | "In Audits" | "Awaiting Report" | "Completed"
-	dateRange: string
-}
-
-const auditItems: AuditItem[] = [
-	{
-		id: "audit-1",
-		title: "SOC 2 Type II - Infrastructure & Cloud Controls",
-		status: "Upcoming",
-		dateRange: "Mar 21, 2026 - Apr 12, 2026",
-	},
-	{
-		id: "audit-2",
-		title: "SOC 2 Type II - Security & Access Review",
-		status: "In Audits",
-		dateRange: "Mar 21, 2026 - Apr 12, 2026",
-	},
-	{
-		id: "audit-3",
-		title: "SOC 2 Type II - Data Protection Assessment",
-		status: "Completed",
-		dateRange: "Mar 21, 2026 - Apr 12, 2026",
-	},
-	{
-		id: "audit-4",
-		title: "SOC 2 Type II - Vendor Risk Evaluation",
-		status: "Upcoming",
-		dateRange: "Mar 21, 2026 - Apr 12, 2026",
-	},
-]
-
-interface ReportItem {
-	id: string
-	title: string
-	subtitle: string
-	createdBy: string
-	charts: string[]
-	lastModified: string
-}
-
-const reportsData: ReportItem[] = [
-	{
-		id: "rep-1",
-		title: "Project overview",
-		subtitle: "Gain a top level view of your compliance and security program.",
-		createdBy: "Zippy",
-		charts: ["Tests", "Risk"],
-		lastModified: "January 12, 2026",
-	},
-	{
-		id: "rep-2",
-		title: "Annual SOC 2 Compliance Report",
-		subtitle:
-			"Annual assessment of infrastructure and internal security controls.",
-		createdBy: "Zippy",
-		charts: ["Compliance", "Audit"],
-		lastModified: "February 04, 2026",
-	},
-	{
-		id: "rep-3",
-		title: "Vendor Security Assessment",
-		subtitle:
-			"Quarterly evaluation of third-party vendors and critical dependencies.",
-		createdBy: "Zippy",
-		charts: ["Vendor", "Risk"],
-		lastModified: "March 10, 2026",
-	},
-]
-
-const DATE_RANGE_OPTIONS = [
-	"Today",
-	"Yesterday",
-	"Last 7 days",
-	"Last 30 days",
-	"Last 90 days",
-	"This month",
-	"Last month",
-	"Custom range",
-]
-
-// ──────────────────────────────────────────────
-// Application Sidebar Component
-// ──────────────────────────────────────────────
-function AppSidebar({
-	activeNav,
-	setActiveNav,
-}: {
-	activeNav: string
-	setActiveNav: (name: string) => void
-}) {
-	const { toggleSidebar } = useSidebar()
-	const [teamsExpanded, setTeamsExpanded] = useState(true)
-
+export function ReportsCard() {
 	return (
-		<Sidebar
-			variant="sidebar"
-			collapsible="icon"
-			className="border-border/60 bg-elevation-level1 border-r transition-[width] duration-300">
-			{/* Brand Header using Radian CDN / Favicon fallback per guidelines */}
-			<SidebarHeader className="border-border/40 flex h-14 items-center justify-between border-b px-3 py-2">
-				<div className="flex items-center gap-2.5 px-1">
-					<img
-						src="https://www.google.com/s2/favicons?sz=32&domain=zippy.com"
-						alt="Zippy brand logo"
-						width={20}
-						height={20}
-						className="size-5 shrink-0 rounded-md"
-					/>
-					<span className="font-heading text-fg text-base tracking-tight group-data-[collapsible=icon]:hidden">
-						Zippy
-					</span>
-				</div>
-				<IconButton
-					variant="ghost"
-					color="neutral"
-					size="xs"
-					onClick={toggleSidebar}
-					className="text-fg-secondary hover:text-fg size-7 cursor-pointer group-data-[collapsible=icon]:hidden"
-					aria-label="Toggle sidebar">
-					<PanelLeftClose className="size-4" />
-				</IconButton>
-			</SidebarHeader>
-
-			<SidebarContent className="no-scrollbar overflow-x-hidden overflow-y-auto px-2 py-3">
-				{/* Top Core Navigation */}
-				<SidebarGroup className="p-0">
-					<SidebarMenu className="gap-1">
-						<SidebarMenuItem>
-							<SidebarMenuButton
-								size="sm"
-								isActive={activeNav === "Home"}
-								onClick={() => setActiveNav("Home")}>
-								<Home className="size-4" />
-								<span>Home</span>
-							</SidebarMenuButton>
-						</SidebarMenuItem>
-						<SidebarMenuItem>
-							<SidebarMenuButton
-								size="sm"
-								isActive={activeNav === "Test"}
-								onClick={() => setActiveNav("Test")}>
-								<ClipboardCheck className="size-4" />
-								<span>Test</span>
-							</SidebarMenuButton>
-						</SidebarMenuItem>
-						<SidebarMenuItem>
-							<SidebarMenuButton
-								size="sm"
-								isActive={activeNav === "Reports"}
-								onClick={() => setActiveNav("Reports")}>
-								<BarChart3 className="size-4" />
-								<span>Reports</span>
-							</SidebarMenuButton>
-						</SidebarMenuItem>
-					</SidebarMenu>
-				</SidebarGroup>
-
-				{/* Compliance & Operations Group */}
-				<SidebarGroup className="p-0 pt-4">
-					<SidebarMenu className="gap-1">
-						<SidebarMenuItem>
-							<SidebarMenuButton
-								size="sm"
-								isActive={activeNav === "Compliance"}
-								onClick={() => setActiveNav("Compliance")}>
-								<CheckCircle2 className="size-4" />
-								<span>Compliance</span>
-							</SidebarMenuButton>
-						</SidebarMenuItem>
-						<SidebarMenuItem>
-							<SidebarMenuButton
-								size="sm"
-								isActive={activeNav === "Trust center"}
-								onClick={() => setActiveNav("Trust center")}>
-								<ShieldCheck className="size-4" />
-								<span>Trust center</span>
-							</SidebarMenuButton>
-						</SidebarMenuItem>
-						<SidebarMenuItem>
-							<SidebarMenuButton
-								size="sm"
-								isActive={activeNav === "Risk"}
-								onClick={() => setActiveNav("Risk")}>
-								<AlertTriangle className="size-4" />
-								<span>Risk</span>
-							</SidebarMenuButton>
-						</SidebarMenuItem>
-						<SidebarMenuItem>
-							<SidebarMenuButton
-								size="sm"
-								isActive={activeNav === "Vendor"}
-								onClick={() => setActiveNav("Vendor")}>
-								<Building2 className="size-4" />
-								<span>Vendor</span>
-							</SidebarMenuButton>
-						</SidebarMenuItem>
-						<SidebarMenuItem>
-							<SidebarMenuButton
-								size="sm"
-								isActive={activeNav === "Assets"}
-								onClick={() => setActiveNav("Assets")}>
-								<FolderArchive className="size-4" />
-								<span>Assets</span>
-							</SidebarMenuButton>
-						</SidebarMenuItem>
-
-						{/* Teams with Submenu */}
-						<SidebarMenuItem>
-							<SidebarMenuButton
-								size="sm"
-								onClick={() => setTeamsExpanded(!teamsExpanded)}
-								className="justify-between">
-								<div className="flex items-center gap-2">
-									<Users className="size-4" />
-									<span>Teams</span>
-								</div>
-								<ChevronDown
-									className={cn(
-										"size-3.5 transition-transform duration-200 group-data-[collapsible=icon]:hidden",
-										teamsExpanded && "rotate-180"
-									)}
-								/>
-							</SidebarMenuButton>
-
-							{teamsExpanded && (
-								<SidebarMenuSub className="border-border/60 ml-5.5 border-l pl-2 group-data-[collapsible=icon]:hidden">
-									<SidebarMenuSubItem>
-										<SidebarMenuSubButton className="text-fg-secondary hover:text-fg h-7 cursor-pointer rounded-md text-xs">
-											<span>Project manager</span>
-										</SidebarMenuSubButton>
-									</SidebarMenuSubItem>
-									<SidebarMenuSubItem>
-										<SidebarMenuSubButton className="text-fg-secondary hover:text-fg h-7 cursor-pointer rounded-md text-xs">
-											<span>Developer</span>
-										</SidebarMenuSubButton>
-									</SidebarMenuSubItem>
-									<SidebarMenuSubItem>
-										<SidebarMenuSubButton className="text-fg-secondary hover:text-fg h-7 cursor-pointer rounded-md text-xs">
-											<span>Quality assurance</span>
-										</SidebarMenuSubButton>
-									</SidebarMenuSubItem>
-								</SidebarMenuSub>
-							)}
-						</SidebarMenuItem>
-
-						<SidebarMenuItem>
-							<SidebarMenuButton
-								size="sm"
-								isActive={activeNav === "Integrations"}
-								onClick={() => setActiveNav("Integrations")}>
-								<Link2 className="size-4" />
-								<span>Integrations</span>
-							</SidebarMenuButton>
-						</SidebarMenuItem>
-					</SidebarMenu>
-				</SidebarGroup>
-			</SidebarContent>
-
-			{/* Sidebar Footer */}
-			<SidebarFooter className="border-border/40 border-t p-2">
-				<SidebarMenu className="gap-1">
-					<SidebarMenuItem>
-						<SidebarMenuButton
-							size="sm"
-							isActive={activeNav === "API"}
-							onClick={() => setActiveNav("API")}>
-							<Terminal className="size-4" />
-							<span>API</span>
-						</SidebarMenuButton>
-					</SidebarMenuItem>
-					<SidebarMenuItem>
-						<SidebarMenuButton
-							size="sm"
-							isActive={activeNav === "Help Center"}
-							onClick={() => setActiveNav("Help Center")}>
-							<Headphones className="size-4" />
-							<span>Help Center</span>
-						</SidebarMenuButton>
-					</SidebarMenuItem>
-					<SidebarMenuItem>
-						<SidebarMenuButton
-							size="sm"
-							isActive={activeNav === "Settings"}
-							onClick={() => setActiveNav("Settings")}>
-							<Settings className="size-4" />
-							<span>Settings</span>
-						</SidebarMenuButton>
-					</SidebarMenuItem>
-				</SidebarMenu>
-			</SidebarFooter>
-		</Sidebar>
-	)
-}
-
-// ──────────────────────────────────────────────
-// Main Dashboard Page Component
-// ──────────────────────────────────────────────
-export default function Preview11Page() {
-	const [activeNav, setActiveNav] = useState("Reports")
-	const [dateRange, setDateRange] = useState("Last 30 days")
-	const [searchQuery, setSearchQuery] = useState("")
-	const [auditFilter, setAuditFilter] = useState<string>("All")
-
-	const filteredAudits =
-		auditFilter === "All"
-			? auditItems
-			: auditItems.filter((item) => item.status === auditFilter)
-
-	return (
-		<SidebarProvider className="bg-bg text-fg min-h-screen w-full">
-			{/* ══════════════════════════════════════════════
-          1. APPLICATION SIDEBAR
-      ══════════════════════════════════════════════ */}
-			<AppSidebar activeNav={activeNav} setActiveNav={setActiveNav} />
-
-			{/* ══════════════════════════════════════════════
-          2. MAIN CONTENT INSET
-      ══════════════════════════════════════════════ */}
-			<SidebarInset className="bg-bg-subtle dark:bg-bg flex min-h-screen w-full flex-1 flex-col overflow-y-auto font-sans">
-				{/* Top Header Bar */}
-				<header className="bg-elevation-level1 border-border/60 sticky top-0 z-10 flex h-14 items-center justify-between border-b px-6 py-2">
-					{/* Search & Date Filter Controls */}
-					<div className="flex items-center gap-2.5">
-						<div className="relative w-48 sm:w-64">
-							<Search className="text-fg-tertiary absolute top-1/2 left-2.5 size-3.5 -translate-y-1/2" />
-							<Input
-								placeholder="Search...."
-								value={searchQuery}
-								onChange={(e) => setSearchQuery(e.target.value)}
-								className="border-border/60 bg-bg placeholder:text-fg-tertiary h-8.5 rounded-xl pr-3 pl-8 text-xs shadow-2xs"
-							/>
-						</div>
-
-						{/* Date Range Dropdown with Radian Menu */}
-						<DropdownMenu>
-							<DropdownMenuTrigger asChild>
-								<Button
-									variant="outline"
-									color="neutral"
-									size="sm"
-									className="border-border/60 bg-bg text-fg h-8.5 cursor-pointer gap-2 rounded-xl px-3 text-xs font-medium shadow-2xs">
-									<Calendar className="text-fg-secondary size-3.5" />
-									<span>{dateRange}</span>
-									<ChevronsUpDown className="text-fg-tertiary size-3.5" />
-								</Button>
-							</DropdownMenuTrigger>
-							<DropdownMenuContent
-								align="start"
-								sideOffset={4}
-								className="border-border/80 w-44 rounded-2xl border p-1.5 shadow-lg">
-								{DATE_RANGE_OPTIONS.map((range) => (
-									<DropdownMenuItem
-										key={range}
-										onClick={() => setDateRange(range)}
-										className={cn(
-											"cursor-pointer justify-between rounded-lg px-3 py-1.5 text-xs",
-											dateRange === range && "bg-fill1 text-fg font-medium"
-										)}>
-										<span>{range}</span>
-										{dateRange === range && (
-											<Check className="text-primary size-3.5" />
-										)}
-									</DropdownMenuItem>
-								))}
-							</DropdownMenuContent>
-						</DropdownMenu>
-
-						{/* Filter Icon Button */}
-						<IconButton
-							variant="outline"
-							color="neutral"
-							size="sm"
-							className="border-border/60 bg-bg h-8.5 w-8.5 rounded-xl"
-							aria-label="Filter">
-							<SlidersHorizontal className="size-3.5" />
-						</IconButton>
-					</div>
-
-					{/* Right Top Actions */}
-					<div className="flex items-center gap-3">
-						<Button
-							color="neutral"
-							variant="strong"
-							size="sm"
-							className="bg-fg text-bg hover:bg-fg/90 h-8.5 gap-1.5 rounded-xl px-3.5 text-xs font-medium shadow-xs">
-							<Share2 className="size-3.5" />
-							<span>Share</span>
-						</Button>
-
-						<IconButton
-							variant="ghost"
-							color="neutral"
-							size="sm"
-							className="rounded-full"
-							aria-label="Notifications">
-							<Bell className="size-4" />
-						</IconButton>
-
-						{/* Canonical Radian OS Avatar */}
-						<Avatar
-							size="sm"
-							rounded="circle"
-							className="border-border cursor-pointer border">
-							<AvatarImage
-								src="https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@v1.0.2/packages/uncompressed-avatars/src/8.png"
-								alt="User Avatar"
-							/>
-							<AvatarFallback className="text-xs font-semibold">
-								AM
-							</AvatarFallback>
-						</Avatar>
-					</div>
-				</header>
-
-				{/* Main Dashboard Body Container */}
-				<main className="mx-auto flex w-full max-w-7xl flex-col gap-6 p-6 md:p-8">
-					{/* ══════════════════════════════════════════════
-              SECTION 1: TITLE & TOP SLA HEADER
-          ══════════════════════════════════════════════ */}
-					<div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
-						<div>
-							<h1 className="heading-5 text-fg">
-								Program task completion rate within SLA over the last 30 days
-							</h1>
-							<p className="text-fg-secondary mt-1 text-sm">
-								How often you remediated items within SLA
-							</p>
-						</div>
-
-						<div className="flex items-center gap-2 pt-2 sm:pt-0">
-							<IconButton
-								variant="outline"
-								color="neutral"
-								size="sm"
-								className="border-border/60 bg-elevation-level1 h-8.5 w-8.5 rounded-xl"
-								aria-label="History">
-								<Clock className="size-3.5" />
-							</IconButton>
-							<IconButton
-								variant="outline"
-								color="neutral"
-								size="sm"
-								className="border-border/60 bg-elevation-level1 h-8.5 w-8.5 rounded-xl"
-								aria-label="More options">
-								<MoreHorizontal className="size-3.5" />
-							</IconButton>
-						</div>
-					</div>
-
-					{/* ══════════════════════════════════════════════
-              SECTION 2: 3 KPI DONUT CARDS
-          ══════════════════════════════════════════════ */}
-					<div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-						{/* Card 1: Remediated by due date */}
-						<Card className="border-border/60 bg-elevation-level1 rounded-2xl shadow-xs">
-							<CardContent className="flex h-full flex-col justify-between p-5">
-								<div className="flex items-start justify-between gap-4">
-									<div className="flex flex-col gap-1">
-										<span className="text-fg-secondary text-sm font-medium">
-											Remediated by due date
-										</span>
-										<span className="text-fg mt-2 text-3xl font-bold tracking-tight">
-											93%
-										</span>
-										<p className="text-fg-tertiary mt-1 text-xs leading-relaxed">
-											36 of 521 task done by due date, +27% vs last month.
-										</p>
+		<Card className="bg-bg border-border/70 gap-0 overflow-hidden rounded-2xl p-0 py-0 shadow-none">
+			{/* Card Header for Reports: strictly 12px top/bottom and 20px sides padding */}
+			<CardHeader
+				className="border-border/60 flex items-center justify-between gap-0 border-b px-[20px]! py-[12px]! pb-[12px]!"
+				style={{
+					paddingLeft: "20px",
+					paddingRight: "20px",
+					paddingTop: "12px",
+					paddingBottom: "12px",
+				}}>
+				<CardTitle className="text-fg text-[16px] leading-normal font-semibold">
+					Reports
+				</CardTitle>
+				<CardAction>
+					<IconButton
+						variant="outline"
+						color="neutral"
+						size="sm"
+						className="border-border/70 bg-bg text-fg-secondary hover:bg-fill1/60 hover:text-fg size-7 rounded-lg shadow-none"
+						aria-label="Filter reports">
+						<SlidersHorizontal className="size-3.5" />
+					</IconButton>
+				</CardAction>
+			</CardHeader>
+			<CardContent className="p-0">
+				<Table>
+					<TableHeader>
+						<TableRow className="border-border/60 border-b">
+							<TableHead className="text-fg-tertiary px-5 py-2.5 text-xs font-medium">
+								Reports
+							</TableHead>
+							<TableHead className="text-fg-tertiary px-5 py-2.5 text-xs font-medium">
+								Created by
+							</TableHead>
+							<TableHead className="text-fg-tertiary px-5 py-2.5 text-xs font-medium">
+								Charts
+							</TableHead>
+							<TableHead className="text-fg-tertiary px-5 py-2.5 text-xs font-medium">
+								Last modified
+							</TableHead>
+						</TableRow>
+					</TableHeader>
+					<TableBody className="divide-border/60 divide-y">
+						{REPORT_ITEMS.map((item) => (
+							<TableRow
+								key={item.id}
+								className="border-border/60 hover:bg-fill1/40 border-b transition-colors">
+								<TableCell className="px-5 py-3.5">
+									<div className="flex items-center gap-3">
+										<div className="bg-success-accent text-success-text flex size-9 shrink-0 items-center justify-center rounded-lg">
+											<FileText className="size-4" />
+										</div>
+										<div className="flex flex-col gap-0.5">
+											<span className="text-fg text-sm font-semibold">
+												{item.title}
+											</span>
+											<span className="text-fg-secondary text-xs">
+												{item.description}
+											</span>
+										</div>
 									</div>
-
-									{/* Recharts Pie Donut inside ChartContainer */}
-									<ChartContainer
-										config={kpi1Config}
-										className="size-20 shrink-0">
-										<PieChart>
-											<Pie
-												data={[
-													{ name: "completed", value: 93 },
-													{ name: "remaining", value: 7 },
-												]}
-												cx="50%"
-												cy="50%"
-												innerRadius={26}
-												outerRadius={36}
-												startAngle={90}
-												endAngle={-270}
-												dataKey="value"
-												stroke="none">
-												<Cell fill="var(--color-success, #10b981)" />
-												<Cell fill="var(--color-fill2, rgba(0,0,0,0.06))" />
-											</Pie>
-										</PieChart>
-									</ChartContainer>
-								</div>
-
-								<div className="mt-4">
-									<Badge
-										color="success"
-										variant="soft"
-										size="sm"
-										className="rounded-md">
-										Exellent
-									</Badge>
-								</div>
-							</CardContent>
-						</Card>
-
-						{/* Card 2: Remediated past due date */}
-						<Card className="border-border/60 bg-elevation-level1 rounded-2xl shadow-xs">
-							<CardContent className="flex h-full flex-col justify-between p-5">
-								<div className="flex items-start justify-between gap-4">
-									<div className="flex flex-col gap-1">
-										<span className="text-fg-secondary text-sm font-medium">
-											Remediated past due date
-										</span>
-										<span className="text-fg mt-2 text-3xl font-bold tracking-tight">
-											14%
-										</span>
-										<p className="text-fg-tertiary mt-1 text-xs leading-relaxed">
-											36 of 521 task done past due date, -18% vs last month.
-										</p>
+								</TableCell>
+								<TableCell className="px-5 py-3.5">
+									<div className="text-fg-secondary flex items-center gap-1.5 text-xs font-medium">
+										<RadianLogo width={14} height={14} />
+										<span>{item.createdBy}</span>
 									</div>
-
-									<ChartContainer
-										config={kpi2Config}
-										className="size-20 shrink-0">
-										<PieChart>
-											<Pie
-												data={[
-													{ name: "completed", value: 14 },
-													{ name: "remaining", value: 86 },
-												]}
-												cx="50%"
-												cy="50%"
-												innerRadius={26}
-												outerRadius={36}
-												startAngle={90}
-												endAngle={-270}
-												dataKey="value"
-												stroke="none">
-												<Cell fill="var(--color-warning, #f59e0b)" />
-												<Cell fill="var(--color-fill2, rgba(0,0,0,0.06))" />
-											</Pie>
-										</PieChart>
-									</ChartContainer>
-								</div>
-
-								<div className="mt-4">
-									<Badge
-										color="warning"
-										variant="soft"
-										size="sm"
-										className="rounded-md">
-										Average
-									</Badge>
-								</div>
-							</CardContent>
-						</Card>
-
-						{/* Card 3: Remediated without due date */}
-						<Card className="border-border/60 bg-elevation-level1 rounded-2xl shadow-xs">
-							<CardContent className="flex h-full flex-col justify-between p-5">
-								<div className="flex items-start justify-between gap-4">
-									<div className="flex flex-col gap-1">
-										<span className="text-fg-secondary text-sm font-medium">
-											Remediated without due date
-										</span>
-										<span className="text-fg mt-2 text-3xl font-bold tracking-tight">
-											3%
-										</span>
-										<p className="text-fg-tertiary mt-1 text-xs leading-relaxed">
-											483 of 521 task completed, +27% compared to last month.
-										</p>
+								</TableCell>
+								<TableCell className="px-5 py-3.5">
+									<div className="flex items-center gap-1.5">
+										{item.charts.map((chart) => (
+											<Badge
+												key={chart}
+												variant="outline"
+												color="neutral"
+												size="sm"
+												className="rounded-md px-2 py-0.5 text-xs font-normal">
+												{chart}
+											</Badge>
+										))}
 									</div>
-
-									<ChartContainer
-										config={kpi3Config}
-										className="size-20 shrink-0">
-										<PieChart>
-											<Pie
-												data={[
-													{ name: "completed", value: 3 },
-													{ name: "remaining", value: 97 },
-												]}
-												cx="50%"
-												cy="50%"
-												innerRadius={26}
-												outerRadius={36}
-												startAngle={90}
-												endAngle={-270}
-												dataKey="value"
-												stroke="none">
-												<Cell fill="var(--color-primary, #4F46E5)" />
-												<Cell fill="var(--color-fill2, rgba(0,0,0,0.06))" />
-											</Pie>
-										</PieChart>
-									</ChartContainer>
-								</div>
-
-								<div className="mt-4">
-									<Badge
-										color="info"
-										variant="soft"
-										size="sm"
-										className="rounded-md">
-										Good
-									</Badge>
-								</div>
-							</CardContent>
-						</Card>
-					</div>
-
-					{/* ══════════════════════════════════════════════
-              SECTION 3: MIDDLE ROW (CHART & AUDITS)
-          ══════════════════════════════════════════════ */}
-					<div className="grid grid-cols-1 gap-4 lg:grid-cols-12">
-						{/* Left: Framework progress Chart */}
-						<Card className="border-border/60 bg-elevation-level1 flex flex-col rounded-2xl p-6 shadow-xs lg:col-span-7">
-							<CardHeader className="flex flex-row items-center justify-between p-0 pb-4">
-								<CardTitle className="heading-6 text-fg">
-									Framework progress
-								</CardTitle>
-								<IconButton
-									variant="outline"
-									color="neutral"
-									size="xs"
-									className="border-border/60 bg-bg h-7 w-7 rounded-lg"
-									aria-label="Framework options">
-									<ChevronDown className="size-3.5" />
-								</IconButton>
-							</CardHeader>
-
-							<CardContent className="p-0 pt-2">
-								<ChartContainer
-									config={frameworkConfig}
-									className="h-[280px] w-full">
-									<ComposedChart
-										data={frameworkProgressData}
-										margin={{ top: 24, right: 16, left: -20, bottom: 0 }}>
-										<defs>
-											<linearGradient
-												id="frameworkGradient"
-												x1="0"
-												y1="0"
-												x2="0"
-												y2="1">
-												<stop
-													offset="5%"
-													stopColor="var(--color-primary, #6366f1)"
-													stopOpacity={0.25}
-												/>
-												<stop
-													offset="95%"
-													stopColor="var(--color-primary, #6366f1)"
-													stopOpacity={0.0}
-												/>
-											</linearGradient>
-										</defs>
-
-										<CartesianGrid
-											vertical={false}
-											strokeDasharray="3 3"
-											className="stroke-border/40"
-										/>
-
-										<XAxis
-											dataKey="date"
-											tickLine={false}
-											axisLine={false}
-											tickMargin={12}
-											className="fill-fg-tertiary text-[12px]"
-										/>
-
-										<YAxis
-											domain={[0, 100]}
-											ticks={[0, 20, 40, 60, 80, 100]}
-											tickFormatter={(val) => `${val}%`}
-											tickLine={false}
-											axisLine={false}
-											tickMargin={12}
-											className="fill-fg-tertiary text-[12px]"
-										/>
-
-										<Tooltip
-											content={({ active, payload }) => {
-												if (!active || !payload?.length) return null
-												const val = payload[0]?.value
-												return (
-													<div className="border-border/60 dark:bg-elevation-level2 rounded-xl border bg-white px-3 py-1.5 text-xs shadow-md">
-														<span className="text-fg font-semibold">
-															{val}% progress
-														</span>
-													</div>
-												)
-											}}
-										/>
-
-										{/* Solid Area curve from Feb 1 to Feb 6 */}
-										<Area
-											type="monotone"
-											dataKey="actual"
-											stroke="var(--color-primary, #6366f1)"
-											strokeWidth={2.5}
-											fill="url(#frameworkGradient)"
-										/>
-
-										{/* Vertical guide line at Feb 6 */}
-										<ReferenceLine
-											x="Feb 6"
-											stroke="var(--color-primary, #6366f1)"
-											strokeDasharray="3 3"
-											label={{
-												value: "43%",
-												position: "top",
-												fill: "var(--color-primary, #6366f1)",
-												fontSize: 12,
-												fontWeight: 600,
-												className: "rounded-full bg-primary/10 px-2 py-0.5",
-											}}
-										/>
-
-										{/* Projected dashed line after Feb 6 */}
-										<Line
-											type="monotone"
-											dataKey="projected"
-											stroke="var(--color-primary, #6366f1)"
-											strokeWidth={2}
-											strokeDasharray="4 4"
-											dot={{
-												r: 4,
-												fill: "var(--color-primary, #6366f1)",
-												stroke: "var(--color-elevation-level1, #ffffff)",
-												strokeWidth: 2,
-											}}
-										/>
-									</ComposedChart>
-								</ChartContainer>
-							</CardContent>
-						</Card>
-
-						{/* Right: Audits as of today */}
-						<Card className="border-border/60 bg-elevation-level1 flex flex-col rounded-2xl p-6 shadow-xs lg:col-span-5">
-							<CardHeader className="flex flex-row items-center justify-between p-0 pb-3">
-								<CardTitle className="heading-6 text-fg">
-									Audits as of today
-								</CardTitle>
-								<div className="flex items-center gap-1.5">
-									<IconButton
-										variant="outline"
-										color="neutral"
-										size="xs"
-										className="border-border/60 bg-bg h-7 w-7 rounded-lg"
-										aria-label="Audit history">
-										<Clock className="size-3.5" />
-									</IconButton>
-									<IconButton
-										variant="outline"
-										color="neutral"
-										size="xs"
-										className="border-border/60 bg-bg h-7 w-7 rounded-lg"
-										aria-label="Audit filter">
-										<SlidersHorizontal className="size-3.5" />
-									</IconButton>
-								</div>
-							</CardHeader>
-
-							{/* Canonical Radian OS Tabs Component */}
-							<Tabs
-								value={auditFilter}
-								onValueChange={setAuditFilter}
-								className="mb-4">
-								<TabsList className="h-8 max-w-full overflow-x-auto p-1">
-									<TabsTrigger value="All" className="h-6 px-2.5 text-xs">
-										All
-									</TabsTrigger>
-									<TabsTrigger value="Upcoming" className="h-6 px-2.5 text-xs">
-										Upcoming
-									</TabsTrigger>
-									<TabsTrigger value="In Audits" className="h-6 px-2.5 text-xs">
-										In Audits
-									</TabsTrigger>
-									<TabsTrigger
-										value="Awaiting Report"
-										className="h-6 px-2.5 text-xs">
-										Awaiting Report
-									</TabsTrigger>
-									<TabsTrigger value="Completed" className="h-6 px-2.5 text-xs">
-										Completed
-									</TabsTrigger>
-								</TabsList>
-							</Tabs>
-
-							{/* Audits Items using Radian OS Card */}
-							<div className="flex flex-col gap-2.5">
-								{filteredAudits.map((item) => (
-									<Card
-										key={item.id}
-										className="border-border/50 hover:bg-fill1/40 cursor-pointer rounded-xl shadow-none transition-colors">
-										<CardContent className="flex items-center justify-between p-3">
-											<div className="flex items-center gap-3">
-												<div className="bg-fill2/80 dark:bg-fill2/50 flex size-9 shrink-0 items-center justify-center rounded-lg">
-													<BarChart3 className="text-fg-secondary size-4" />
-												</div>
-
-												<div className="flex flex-col gap-1">
-													<span className="text-fg text-xs leading-tight font-semibold">
-														{item.title}
-													</span>
-													<div className="flex items-center gap-2 text-xs">
-														{item.status === "Upcoming" && (
-															<span className="flex items-center gap-1 font-medium text-sky-600 dark:text-sky-400">
-																<span className="size-1.5 rounded-full bg-sky-500" />
-																Upcoming
-															</span>
-														)}
-														{item.status === "In Audits" && (
-															<span className="flex items-center gap-1 font-medium text-amber-600 dark:text-amber-400">
-																<span className="size-1.5 rounded-full bg-amber-500" />
-																In Audits
-															</span>
-														)}
-														{item.status === "Completed" && (
-															<span className="flex items-center gap-1 font-medium text-emerald-600 dark:text-emerald-400">
-																<span className="size-1.5 rounded-full bg-emerald-500" />
-																Completed
-															</span>
-														)}
-														<span className="text-fg-tertiary flex items-center gap-1">
-															<Calendar className="size-3" />
-															{item.dateRange}
-														</span>
-													</div>
-												</div>
-											</div>
-
-											<ChevronRight className="text-fg-tertiary size-4 shrink-0" />
-										</CardContent>
-									</Card>
-								))}
-							</div>
-						</Card>
-					</div>
-
-					{/* ══════════════════════════════════════════════
-              SECTION 4: REPORTS TABLE
-          ══════════════════════════════════════════════ */}
-					<Card className="border-border/60 bg-elevation-level1 gap-0 overflow-hidden rounded-2xl p-0 shadow-xs">
-						<CardHeader className="border-border/60 flex flex-row items-center justify-between border-b px-6 py-4">
-							<CardTitle className="heading-6 text-fg">Reports</CardTitle>
-							<IconButton
-								variant="outline"
-								color="neutral"
-								size="sm"
-								className="border-border/60 bg-bg h-8 w-8 rounded-xl"
-								aria-label="Filter reports">
-								<SlidersHorizontal className="size-3.5" />
-							</IconButton>
-						</CardHeader>
-
-						<div className="overflow-x-auto">
-							<Table>
-								<TableHeader className="border-border/60 bg-bg-subtle/50 dark:bg-fill1/20 border-b">
-									<TableRow className="border-border/60 border-b hover:bg-transparent">
-										<TableHead className="text-fg-secondary px-6 py-3 text-xs font-medium">
-											Reports
-										</TableHead>
-										<TableHead className="text-fg-secondary px-6 py-3 text-xs font-medium">
-											Created by
-										</TableHead>
-										<TableHead className="text-fg-secondary px-6 py-3 text-xs font-medium">
-											Charts
-										</TableHead>
-										<TableHead className="text-fg-secondary px-6 py-3 text-xs font-medium">
-											Last modified
-										</TableHead>
-									</TableRow>
-								</TableHeader>
-								<TableBody>
-									{reportsData.map((report) => (
-										<TableRow
-											key={report.id}
-											className="border-border/60 hover:bg-fill1/30 border-b transition-colors">
-											{/* Report Title & Subtitle */}
-											<TableCell className="px-6 py-4">
-												<div className="flex items-center gap-3">
-													<div className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-400">
-														<FileSpreadsheet className="size-4.5" />
-													</div>
-													<div className="flex flex-col">
-														<span className="text-fg text-sm font-semibold">
-															{report.title}
-														</span>
-														<span className="text-fg-tertiary text-xs">
-															{report.subtitle}
-														</span>
-													</div>
-												</div>
-											</TableCell>
-
-											{/* Created By with Logo */}
-											<TableCell className="px-6 py-4">
-												<div className="flex items-center gap-2">
-													<img
-														src="https://www.google.com/s2/favicons?sz=32&domain=zippy.com"
-														alt="Zippy brand logo"
-														width={18}
-														height={18}
-														className="size-4.5 shrink-0 rounded-md"
-													/>
-													<span className="text-fg text-sm font-medium">
-														{report.createdBy}
-													</span>
-												</div>
-											</TableCell>
-
-											{/* Charts Badges */}
-											<TableCell className="px-6 py-4">
-												<div className="flex items-center gap-1.5">
-													{report.charts.map((chart) => (
-														<Badge
-															key={chart}
-															color="neutral"
-															variant="soft"
-															size="sm"
-															className="rounded-md">
-															{chart}
-														</Badge>
-													))}
-												</div>
-											</TableCell>
-
-											{/* Last Modified */}
-											<TableCell className="text-fg-secondary px-6 py-4 text-xs">
-												{report.lastModified}
-											</TableCell>
-										</TableRow>
-									))}
-								</TableBody>
-							</Table>
-						</div>
-					</Card>
-				</main>
-			</SidebarInset>
-		</SidebarProvider>
+								</TableCell>
+								<TableCell className="text-fg-secondary px-5 py-3.5 text-xs">
+									{item.lastModified}
+								</TableCell>
+							</TableRow>
+						))}
+					</TableBody>
+				</Table>
+			</CardContent>
+		</Card>
 	)
 }
