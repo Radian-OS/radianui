@@ -17,6 +17,7 @@ import {
 	YAxis,
 } from "recharts"
 import { IconSlot } from "@/registry/icon/icon-library"
+import RadianLogo from "@/registry/blocks-example/signup/components/radian-logo"
 import { Button, IconButton } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card } from "@/registry/ui/card"
@@ -248,19 +249,13 @@ export default function Page() {
 									"color-mix(in srgb, var(--color-fill1) 40%, transparent)",
 							} as React.CSSProperties
 						}>
-						{/* Workspace Header */}
-						<SidebarHeader className="flex flex-row items-center justify-between p-3 pb-2">
-							<div className="flex min-w-0 items-center gap-2">
-								<div className="flex size-6 shrink-0 items-center justify-center rounded-md bg-[#e2f952] text-black shadow-2xs">
-									<div className="size-2.5 rounded-full border-[2.5px] border-black/85" />
-								</div>
-								<span className="text-sidebar-fg truncate text-sm leading-tight font-semibold">
-									Ace Studio
+						{/* Brand Header */}
+						<SidebarHeader className="flex h-14 flex-row items-center justify-between px-4">
+							<div className="flex items-center gap-2.5">
+								<RadianLogo width={22} height={22} />
+								<span className="font-heading text-sidebar-fg text-sm font-semibold tracking-tight">
+									Radian
 								</span>
-								<IconSlot
-									slot="down"
-									className="text-fg-secondary size-3.5 shrink-0"
-								/>
 							</div>
 
 							<IconButton
@@ -274,16 +269,18 @@ export default function Page() {
 						</SidebarHeader>
 
 						{/* Quick Actions Search Trigger */}
-						<div className="px-3 pt-1 pb-1">
-							<button
-								type="button"
-								className="border-border/70 bg-elevation-level1 hover:bg-fill1/80 text-sidebar-fg flex h-8 w-full cursor-pointer items-center justify-between rounded-lg border px-2.5 text-sm font-medium shadow-2xs transition-colors select-none">
+						<div className="px-2 pb-1.5">
+							<Button
+								variant="outline"
+								color="neutral"
+								size="sm"
+								className="border-border/70 bg-elevation-level1 hover:bg-fill1/80 text-sidebar-fg h-8 w-full justify-between px-2 text-sm font-medium shadow-2xs">
 								<div className="flex items-center gap-2">
 									<span className="text-sidebar-fg font-medium">⌘</span>
 									<span>Quick actions</span>
 								</div>
 								<kbd className="text-fg-secondary font-mono text-xs">K</kbd>
-							</button>
+							</Button>
 						</div>
 
 						{/* Navigation Content */}
@@ -309,7 +306,7 @@ export default function Page() {
 												<IconSlot slot="bar-chart" className="size-4" />
 												<span>Analytics</span>
 											</SidebarMenuButton>
-											<SidebarMenuSub className="ml-5.5 border-none p-0 pl-2">
+											<SidebarMenuSub className="ml-6 space-y-0.5 border-none p-0">
 												<SidebarMenuSubItem>
 													<SidebarMenuSubButton
 														size="sm"
@@ -474,8 +471,8 @@ export default function Page() {
 						</SidebarContent>
 
 						{/* Footer with Getting Started and Plan details */}
-						<SidebarFooter className="space-y-2 p-3">
-							<div className="border-border/60 bg-elevation-level1 flex items-center justify-between rounded-xl border p-2.5 shadow-2xs">
+						<SidebarFooter className="space-y-2 p-2">
+							<Card className="border-border/60 bg-elevation-level1 flex flex-row items-center justify-between gap-0 p-2.5 shadow-2xs">
 								<div className="flex items-center gap-2">
 									<svg
 										className="size-3.5 shrink-0 -rotate-90"
@@ -506,9 +503,9 @@ export default function Page() {
 									</span>
 								</div>
 								<span className="text-fg-secondary text-xs">1 of 5</span>
-							</div>
+							</Card>
 
-							<div className="flex items-center justify-between pt-1">
+							<div className="flex items-center justify-between px-1 pt-1">
 								<div className="flex items-center gap-2">
 									<div className="flex size-5 items-center justify-center rounded-md bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900">
 										<IconSlot slot="zap" className="size-3" />
@@ -521,7 +518,7 @@ export default function Page() {
 									variant="strong"
 									color="neutral"
 									size="xs"
-									className="h-7 rounded-full bg-zinc-900 px-3 text-xs font-semibold text-white hover:bg-zinc-800 dark:bg-zinc-100 dark:text-zinc-900">
+									className="h-7 bg-zinc-900 px-3 text-xs font-semibold text-white hover:bg-zinc-800 dark:bg-zinc-100 dark:text-zinc-900">
 									Upgrade
 								</Button>
 							</div>
