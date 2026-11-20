@@ -25,7 +25,8 @@ import {
 	PanelLeft,
 	Inbox,
 	ChevronDown,
-	Layers,
+	LayoutGrid,
+	Home,
 } from "lucide-react"
 
 import { Button, IconButton } from "@/components/ui/button"
@@ -359,18 +360,18 @@ export default function Preview12Page() {
 	}
 
 	return (
-		<div className="dark:bg-bg text-fg bg-bg font-body h-screen w-full overflow-hidden">
+		<div className="text-fg font-body h-screen w-full overflow-hidden bg-[#f0f4f9] dark:bg-zinc-950">
 			<SidebarProvider
 				defaultOpen
 				defaultWidth="16rem"
-				className="flex h-screen w-full overflow-hidden">
-				<div className="flex h-screen w-full overflow-hidden">
+				className="flex h-screen w-full overflow-hidden bg-transparent">
+				<div className="flex h-screen w-full overflow-hidden bg-transparent">
 					{/* ══════════════════════════════════════════════
               SIDEBAR
           ══════════════════════════════════════════════ */}
 					<Sidebar
 						collapsible="none"
-						className="border-border/60 flex w-64 shrink-0 flex-col justify-between border-r bg-[#f0f4f9] p-3 select-none dark:bg-zinc-900/80"
+						className="flex w-64 shrink-0 flex-col justify-between border-0 bg-transparent p-3 select-none"
 						style={
 							{
 								"--color-sidebar": "var(--color-bg-subtle, #f0f4f9)",
@@ -434,10 +435,10 @@ export default function Preview12Page() {
 												className={cn(
 													"h-9 rounded-xl px-2.5 text-xs font-medium transition-all",
 													activeNav === "Dashboard"
-														? "text-fg dark:bg-elevation-level1 bg-white font-semibold shadow-2xs"
+														? "text-fg dark:bg-elevation-level1 border-border/50 border bg-white font-semibold shadow-2xs"
 														: "text-fg-secondary hover:text-fg dark:hover:bg-elevation-level1/60 hover:bg-white/60"
 												)}>
-												<Layers className="size-4" />
+												<LayoutGrid className="size-4" />
 												<span>Dashboard</span>
 											</SidebarMenuButton>
 										</SidebarMenuItem>
@@ -531,10 +532,10 @@ export default function Preview12Page() {
 												className={cn(
 													"h-9 rounded-xl px-2.5 text-xs font-medium transition-all",
 													activeNav === "Clients"
-														? "text-fg dark:bg-elevation-level1 bg-white font-semibold shadow-2xs"
+														? "text-fg dark:bg-elevation-level1 border-border/50 border bg-white font-semibold shadow-2xs"
 														: "text-fg-secondary hover:text-fg dark:hover:bg-elevation-level1/60 hover:bg-white/60"
 												)}>
-												<UserCheck className="size-4" />
+												<Home className="size-4" />
 												<span>Clients</span>
 											</SidebarMenuButton>
 										</SidebarMenuItem>
@@ -700,10 +701,10 @@ export default function Preview12Page() {
 					</Sidebar>
 
 					{/* ══════════════════════════════════════════════
-              MAIN DASHBOARD INSET
+              MAIN DASHBOARD INSET (FLOATING WHITE CARD PANEL)
           ══════════════════════════════════════════════ */}
-					<SidebarInset className="dark:bg-bg bg-bg-subtle/50 h-screen min-w-0 flex-1 overflow-y-auto px-6 py-5 transition-colors md:px-8 md:py-6">
-						<div className="flex w-full flex-col gap-5">
+					<SidebarInset className="h-screen min-w-0 flex-1 overflow-hidden bg-transparent p-2.5 pl-0 md:p-3 md:pl-0">
+						<div className="dark:bg-elevation-level1 border-border/50 flex h-full w-full flex-col gap-6 overflow-y-auto rounded-2xl border bg-white p-5 shadow-2xs md:p-7">
 							{/* ── Top Bar ── */}
 							<header className="flex flex-wrap items-center justify-between gap-3">
 								<div className="flex items-center gap-2">
