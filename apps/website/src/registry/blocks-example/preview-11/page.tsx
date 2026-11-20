@@ -914,7 +914,6 @@ export function MetricDonutCard({ metric }: MetricDonutCardProps) {
 		</Card>
 	)
 }
-;("use client")
 
 import { BarChart3, ChevronRight } from "lucide-react"
 
