@@ -13,7 +13,6 @@ import {
 	YAxis,
 } from "recharts"
 import {
-	PanelLeft,
 	Search,
 	Bell,
 	UserPlus,
@@ -30,6 +29,12 @@ import {
 	Eye,
 	Pencil,
 	Trash2,
+	Clock,
+	CalendarDays,
+	CalendarRange,
+	CalendarCheck,
+	CalendarClock,
+	History,
 } from "lucide-react"
 
 import { Button, IconButton } from "@/components/ui/button"
@@ -48,6 +53,13 @@ import {
 	TableRow,
 } from "@/styles/default/ui/table"
 import { type ChartConfig, ChartContainer } from "@/registry/ui/chart"
+import {
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuItem,
+	DropdownMenuTrigger,
+} from "@/styles/default/ui/dropdown-menu"
+import { cn } from "@/lib/utils"
 
 // ──────────────────────────────────────────────
 // Datasets matching the reference screenshot exactly
@@ -165,10 +177,33 @@ const employees: Employee[] = [
 	},
 ]
 
+const PERIOD_OPTIONS = [
+	{ label: "Daily", value: "Daily", icon: Clock },
+	{ label: "Weekly", value: "Weekly", icon: CalendarDays },
+	{ label: "Monthly", value: "Monthly", icon: Calendar },
+	{ label: "Quarterly", value: "Quarterly", icon: CalendarCheck },
+	{ label: "Yearly", value: "Yearly", icon: CalendarClock },
+	{ label: "All time", value: "All time", icon: History },
+]
+
+const SALES_RANGE_OPTIONS = [
+	{ label: "Today", value: "Today", icon: Clock },
+	{ label: "Yesterday", value: "Yesterday", icon: History },
+	{ label: "Last 7 days", value: "Last 7 days", icon: CalendarDays },
+	{ label: "Last 2 weeks", value: "Last 2 weeks", icon: CalendarRange },
+	{ label: "Last 30 days", value: "Last 30 days", icon: CalendarRange },
+	{ label: "Last 90 days", value: "Last 90 days", icon: CalendarCheck },
+	{ label: "This month", value: "This month", icon: Calendar },
+	{ label: "Last month", value: "Last month", icon: CalendarClock },
+	{ label: "Custom range", value: "Custom range", icon: SlidersHorizontal },
+]
+
 export default function Page() {
 	const [activeTab, setActiveTab] = useState<"Overview" | "Sales" | "Expenses">(
 		"Overview"
 	)
+	const [period, setPeriod] = useState("Monthly")
+	const [salesRange, setSalesRange] = useState("Last 2 weeks")
 	const [searchQuery, setSearchQuery] = useState("")
 	const [selectedEmployees, setSelectedEmployees] = useState<string[]>([])
 	const [sortColumn, setSortColumn] = useState<"id" | "name" | "role">("name")
@@ -224,6 +259,10 @@ export default function Page() {
 			return sortOrder === "asc" ? comp : -comp
 		})
 
+	const activePeriod =
+		PERIOD_OPTIONS.find((opt) => opt.value === period) || PERIOD_OPTIONS[2]
+	const PeriodIcon = activePeriod.icon
+
 	return (
 		<div className="dark:bg-bg text-fg bg-bg-subtle min-h-screen w-full px-6 py-6 font-sans transition-colors md:px-10 md:py-8">
 			<div className="mx-auto flex max-w-7xl flex-col gap-4">
@@ -232,13 +271,6 @@ export default function Page() {
         ══════════════════════════════════════════════ */}
 				<header className="flex items-center justify-between">
 					<div className="flex items-center gap-2.5">
-						<IconButton
-							variant="ghost"
-							color="neutral"
-							size="sm"
-							aria-label="Toggle sidebar">
-							<PanelLeft className="size-5" />
-						</IconButton>
 						<h1 className="heading-5 text-fg">Good morning, Kate</h1>
 					</div>
 
@@ -296,15 +328,45 @@ export default function Page() {
 							aria-label="Refresh data">
 							<RotateCw className="size-3.5" />
 						</IconButton>
-						<Button
-							variant="outline"
-							color="neutral"
-							size="sm"
-							className="border-border/60 bg-elevation-level1 text-fg hover:bg-fill1/40 h-8.5 gap-2 rounded-xl border px-3 text-xs font-medium shadow-2xs">
-							<Calendar className="text-fg-secondary size-3.5" />
-							<span>Monthly</span>
-							<ChevronDown className="text-fg-tertiary size-3.5" />
-						</Button>
+						<DropdownMenu>
+							<DropdownMenuTrigger asChild>
+								<Button
+									variant="outline"
+									color="neutral"
+									size="sm"
+									className="border-border/60 bg-elevation-level1 text-fg hover:bg-fill1/40 h-8.5 cursor-pointer gap-2 rounded-xl border px-3 text-xs font-medium shadow-2xs">
+									<PeriodIcon className="text-fg-secondary size-3.5" />
+									<span>{period}</span>
+									<ChevronDown className="text-fg-tertiary size-3.5" />
+								</Button>
+							</DropdownMenuTrigger>
+							<DropdownMenuContent
+								align="start"
+								sideOffset={4}
+								className="border-border/80 w-44 rounded-2xl border p-1.5 shadow-lg">
+								{PERIOD_OPTIONS.map((opt) => {
+									const Icon = opt.icon
+									const isSelected = period === opt.value
+									return (
+										<DropdownMenuItem
+											key={opt.value}
+											onClick={() => setPeriod(opt.value)}
+											className={cn(
+												"cursor-pointer justify-between gap-2.5 rounded-lg px-3 py-2 text-[14px]",
+												isSelected && "bg-fill1 text-fg font-medium"
+											)}>
+											<div className="flex items-center gap-2.5">
+												<Icon className="text-fg-secondary size-4 shrink-0" />
+												<span>{opt.label}</span>
+											</div>
+											{isSelected && (
+												<Check className="text-primary size-4 shrink-0" />
+											)}
+										</DropdownMenuItem>
+									)
+								})}
+							</DropdownMenuContent>
+						</DropdownMenu>
 						<Button
 							color="primary"
 							variant="strong"
@@ -398,14 +460,44 @@ export default function Page() {
 							<CardTitle className="heading-6 text-fg">
 								Sales Performance
 							</CardTitle>
-							<Button
-								variant="outline"
-								color="neutral"
-								size="sm"
-								className="border-border/60 bg-elevation-level1 text-fg-secondary hover:text-fg h-7 gap-1.5 rounded-lg border px-2.5 text-xs font-medium shadow-2xs">
-								<span>Last 2 weeks</span>
-								<ChevronDown className="text-fg-tertiary size-3.5" />
-							</Button>
+							<DropdownMenu>
+								<DropdownMenuTrigger asChild>
+									<Button
+										variant="outline"
+										color="neutral"
+										size="sm"
+										className="border-border/60 bg-elevation-level1 text-fg-secondary hover:text-fg h-7 cursor-pointer gap-1.5 rounded-lg border px-2.5 text-xs font-medium shadow-2xs">
+										<span>{salesRange}</span>
+										<ChevronDown className="text-fg-tertiary size-3.5" />
+									</Button>
+								</DropdownMenuTrigger>
+								<DropdownMenuContent
+									align="start"
+									sideOffset={4}
+									className="border-border/80 w-52 rounded-2xl border p-1.5 shadow-lg">
+									{SALES_RANGE_OPTIONS.map((opt) => {
+										const Icon = opt.icon
+										const isSelected = salesRange === opt.value
+										return (
+											<DropdownMenuItem
+												key={opt.value}
+												onClick={() => setSalesRange(opt.value)}
+												className={cn(
+													"cursor-pointer justify-between gap-2.5 rounded-lg px-3 py-2 text-[14px]",
+													isSelected && "bg-fill1 text-fg font-medium"
+												)}>
+												<div className="flex items-center gap-2.5">
+													<Icon className="text-fg-secondary size-4 shrink-0" />
+													<span>{opt.label}</span>
+												</div>
+												{isSelected && (
+													<Check className="text-primary size-4 shrink-0" />
+												)}
+											</DropdownMenuItem>
+										)
+									})}
+								</DropdownMenuContent>
+							</DropdownMenu>
 						</CardHeader>
 
 						{/* Sub metrics */}
@@ -643,7 +735,7 @@ export default function Page() {
 				{/* ══════════════════════════════════════════════
             5. ALL EMPLOYEES DATA TABLE
         ══════════════════════════════════════════════ */}
-				<div className="flex flex-col gap-4">
+				<div className="mt-2 flex flex-col gap-4">
 					<div className="flex flex-col gap-3">
 						{/* Section Header */}
 						<div className="flex items-center gap-2 px-1">
