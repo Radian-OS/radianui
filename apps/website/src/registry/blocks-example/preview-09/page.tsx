@@ -277,12 +277,12 @@ export default function Page() {
 						<div className="px-3 pt-1 pb-1">
 							<button
 								type="button"
-								className="border-border/70 bg-elevation-level1 hover:bg-fill1/80 text-fg-secondary flex w-full cursor-pointer items-center justify-between rounded-lg border px-2.5 py-1.5 text-xs shadow-2xs transition-colors select-none">
+								className="border-border/70 bg-elevation-level1 hover:bg-fill1/80 text-sidebar-fg flex h-8 w-full cursor-pointer items-center justify-between rounded-lg border px-2.5 text-sm font-medium shadow-2xs transition-colors select-none">
 								<div className="flex items-center gap-2">
-									<span className="text-fg-tertiary font-medium">⌘</span>
+									<span className="text-sidebar-fg font-medium">⌘</span>
 									<span>Quick actions</span>
 								</div>
-								<kbd className="text-fg-tertiary font-mono text-[11px]">K</kbd>
+								<kbd className="text-fg-secondary font-mono text-xs">K</kbd>
 							</button>
 						</div>
 
@@ -312,15 +312,15 @@ export default function Page() {
 											<SidebarMenuSub className="ml-5.5 border-none p-0 pl-2">
 												<SidebarMenuSubItem>
 													<SidebarMenuSubButton
-														size="xs"
-														className="text-fg-secondary hover:text-sidebar-fg h-6 cursor-pointer text-xs">
+														size="sm"
+														className="text-sidebar-fg h-8 cursor-pointer text-sm font-medium">
 														<span>Reports</span>
 													</SidebarMenuSubButton>
 												</SidebarMenuSubItem>
 												<SidebarMenuSubItem>
 													<SidebarMenuSubButton
-														size="xs"
-														className="text-fg-secondary hover:text-sidebar-fg h-6 cursor-pointer text-xs">
+														size="sm"
+														className="text-sidebar-fg h-8 cursor-pointer text-sm font-medium">
 														<span>Live view</span>
 													</SidebarMenuSubButton>
 												</SidebarMenuSubItem>
@@ -352,7 +352,7 @@ export default function Page() {
 
 							{/* Tools Group */}
 							<SidebarGroup className="p-0 pt-2.5">
-								<SidebarGroupLabel className="text-fg-tertiary px-2 py-1 text-xs font-medium">
+								<SidebarGroupLabel className="text-sidebar-fg px-2 py-1 text-xs font-semibold tracking-wider uppercase opacity-70">
 									Tools
 								</SidebarGroupLabel>
 								<SidebarGroupContent>
@@ -410,7 +410,7 @@ export default function Page() {
 
 							{/* Pinned Group */}
 							<SidebarGroup className="p-0 pt-2.5">
-								<SidebarGroupLabel className="text-fg-tertiary px-2 py-1 text-xs font-medium">
+								<SidebarGroupLabel className="text-sidebar-fg px-2 py-1 text-xs font-semibold tracking-wider uppercase opacity-70">
 									Pinned
 								</SidebarGroupLabel>
 								<SidebarGroupContent>
@@ -419,11 +419,10 @@ export default function Page() {
 											<SidebarMenuButton
 												size="sm"
 												isActive={activeNav === "Make a new creative"}
-												onClick={() => setActiveNav("Make a new creative")}
-												className="text-xs">
+												onClick={() => setActiveNav("Make a new creative")}>
 												<IconSlot
 													slot="messages-square"
-													className="text-fg-secondary size-3.5 shrink-0"
+													className="size-4 shrink-0"
 												/>
 												<span className="truncate">
 													Make a new creative for t...
@@ -435,11 +434,10 @@ export default function Page() {
 											<SidebarMenuButton
 												size="sm"
 												isActive={activeNav === "Campaign here"}
-												onClick={() => setActiveNav("Campaign here")}
-												className="text-xs">
+												onClick={() => setActiveNav("Campaign here")}>
 												<IconSlot
 													slot="megaphone"
-													className="text-fg-secondary size-3.5 shrink-0"
+													className="size-4 shrink-0"
 												/>
 												<span className="truncate">Campaign here</span>
 											</SidebarMenuButton>
@@ -450,7 +448,7 @@ export default function Page() {
 
 							{/* Chat Group */}
 							<SidebarGroup className="p-0 pt-2.5">
-								<SidebarGroupLabel className="text-fg-tertiary px-2 py-1 text-xs font-medium">
+								<SidebarGroupLabel className="text-sidebar-fg px-2 py-1 text-xs font-semibold tracking-wider uppercase opacity-70">
 									Chat
 								</SidebarGroupLabel>
 								<SidebarGroupContent>
@@ -465,8 +463,7 @@ export default function Page() {
 												<SidebarMenuButton
 													size="sm"
 													isActive={activeNav === chat}
-													onClick={() => setActiveNav(chat)}
-													className="text-fg-secondary hover:text-sidebar-fg h-7 text-xs">
+													onClick={() => setActiveNav(chat)}>
 													<span className="truncate">{chat}</span>
 												</SidebarMenuButton>
 											</SidebarMenuItem>
@@ -504,7 +501,7 @@ export default function Page() {
 											strokeLinecap="round"
 										/>
 									</svg>
-									<span className="text-sidebar-fg text-xs font-medium">
+									<span className="text-sidebar-fg text-sm font-medium">
 										Getting started
 									</span>
 								</div>
@@ -516,7 +513,7 @@ export default function Page() {
 									<div className="flex size-5 items-center justify-center rounded-md bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900">
 										<IconSlot slot="zap" className="size-3" />
 									</div>
-									<span className="text-sidebar-fg text-xs font-medium">
+									<span className="text-sidebar-fg text-sm font-medium">
 										14 days left
 									</span>
 								</div>
