@@ -370,71 +370,73 @@ export default function Preview12Page() {
           ══════════════════════════════════════════════ */}
 					<Sidebar
 						collapsible="none"
-						className="border-border/60 bg-fill1/40 w-64 shrink-0 border-r select-none"
+						className="border-border/60 flex w-64 shrink-0 flex-col justify-between border-r bg-[#f0f4f9] p-3 select-none dark:bg-zinc-900/80"
 						style={
 							{
-								"--color-sidebar":
-									"color-mix(in srgb, var(--color-fill1) 40%, transparent)",
+								"--color-sidebar": "var(--color-bg-subtle, #f0f4f9)",
 							} as React.CSSProperties
 						}>
-						{/* Workspace Brand Header */}
-						<SidebarHeader className="flex h-14 flex-row items-center justify-between px-4">
-							<div className="flex items-center gap-2.5">
-								<div className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-zinc-900 text-white shadow-xs dark:bg-zinc-100 dark:text-zinc-900">
-									<Check className="size-4 stroke-[3]" />
+						{/* Workspace Brand Header Card */}
+						<SidebarHeader className="space-y-2 p-0">
+							<Card className="border-border/50 dark:bg-elevation-level1 flex flex-row items-center justify-between gap-0 rounded-xl bg-white p-2.5 shadow-2xs">
+								<div className="flex min-w-0 items-center gap-2.5">
+									<div className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-[#162032] text-white shadow-xs">
+										<Check className="size-4 stroke-[3]" />
+									</div>
+									<div className="flex flex-col truncate text-left">
+										<span className="font-heading text-fg text-sm leading-tight font-bold tracking-tight">
+											Visitly
+										</span>
+										<span className="text-fg-secondary truncate text-[11px] leading-tight">
+											Thistledown Home Care
+										</span>
+									</div>
 								</div>
-								<div className="flex flex-col text-left">
-									<span className="font-heading text-sidebar-fg text-sm leading-tight font-semibold tracking-tight">
-										Visitly
-									</span>
-									<span className="text-fg-secondary text-[11px] leading-tight">
-										Thistledown Home Care
-									</span>
-								</div>
-							</div>
 
-							<IconButton
-								variant="ghost"
-								color="neutral"
-								size="xs"
-								className="text-fg-secondary size-7"
-								aria-label="Switch organization">
-								<ChevronsUpDown className="size-3.5" />
-							</IconButton>
-						</SidebarHeader>
+								<IconButton
+									variant="ghost"
+									color="neutral"
+									size="xs"
+									className="text-fg-secondary size-6 shrink-0"
+									aria-label="Switch organization">
+									<ChevronsUpDown className="size-3.5" />
+								</IconButton>
+							</Card>
 
-						{/* Quick Search */}
-						<div className="px-2 pb-1.5">
-							<Button
-								variant="outline"
-								color="neutral"
-								size="sm"
-								style={{ paddingInline: "8px" }}
-								className="border-border/70 bg-elevation-level1 hover:bg-fill1/80 text-sidebar-fg h-8 w-full justify-between text-xs font-normal shadow-2xs">
-								<div className="flex items-center gap-2">
-									<Search className="text-fg-secondary size-3.5 shrink-0" />
+							{/* Quick Search Card */}
+							<button
+								type="button"
+								className="border-border/50 dark:bg-elevation-level1 dark:hover:bg-elevation-level1/90 text-fg flex h-9 w-full cursor-pointer items-center justify-between rounded-xl border bg-white px-3 text-xs shadow-2xs transition-colors select-none hover:bg-white/90">
+								<div className="text-fg-tertiary flex items-center gap-2">
+									<Search className="size-3.5 shrink-0" />
 									<span>Search</span>
 								</div>
-								<kbd className="border-border/70 bg-fill2/60 text-fg-secondary rounded px-1.5 py-0.5 font-mono text-[10px]">
+								<kbd className="border-border/60 bg-fill2/70 text-fg-secondary rounded px-1.5 py-0.5 font-mono text-[10px]">
 									⌘K
 								</kbd>
-							</Button>
-						</div>
+							</button>
+						</SidebarHeader>
 
 						{/* Sidebar Navigation */}
-						<SidebarContent className="space-y-1 px-2 py-2">
+						<SidebarContent className="space-y-3 overflow-y-auto px-0 py-2">
 							{/* Operations Group */}
 							<SidebarGroup className="p-0">
-								<SidebarGroupLabel className="text-sidebar-fg px-2 text-[11px] font-semibold tracking-wider uppercase opacity-70">
+								<SidebarGroupLabel className="text-fg-tertiary px-2 text-[10px] font-semibold tracking-wider uppercase opacity-75">
 									Operations
 								</SidebarGroupLabel>
 								<SidebarGroupContent>
-									<SidebarMenu>
+									<SidebarMenu className="gap-0.5">
 										<SidebarMenuItem>
 											<SidebarMenuButton
 												size="sm"
 												isActive={activeNav === "Dashboard"}
-												onClick={() => setActiveNav("Dashboard")}>
+												onClick={() => setActiveNav("Dashboard")}
+												className={cn(
+													"h-9 rounded-xl px-2.5 text-xs font-medium transition-all",
+													activeNav === "Dashboard"
+														? "text-fg dark:bg-elevation-level1 bg-white font-semibold shadow-2xs"
+														: "text-fg-secondary hover:text-fg dark:hover:bg-elevation-level1/60 hover:bg-white/60"
+												)}>
 												<Layers className="size-4" />
 												<span>Dashboard</span>
 											</SidebarMenuButton>
@@ -444,7 +446,13 @@ export default function Preview12Page() {
 											<SidebarMenuButton
 												size="sm"
 												isActive={activeNav === "Schedule"}
-												onClick={() => setActiveNav("Schedule")}>
+												onClick={() => setActiveNav("Schedule")}
+												className={cn(
+													"h-9 rounded-xl px-2.5 text-xs font-medium transition-all",
+													activeNav === "Schedule"
+														? "text-fg dark:bg-elevation-level1 bg-white font-semibold shadow-2xs"
+														: "text-fg-secondary hover:text-fg dark:hover:bg-elevation-level1/60 hover:bg-white/60"
+												)}>
 												<Calendar className="size-4" />
 												<span>Schedule</span>
 											</SidebarMenuButton>
@@ -454,7 +462,13 @@ export default function Preview12Page() {
 											<SidebarMenuButton
 												size="sm"
 												isActive={activeNav === "Visits"}
-												onClick={() => setActiveNav("Visits")}>
+												onClick={() => setActiveNav("Visits")}
+												className={cn(
+													"h-9 rounded-xl px-2.5 text-xs font-medium transition-all",
+													activeNav === "Visits"
+														? "text-fg dark:bg-elevation-level1 bg-white font-semibold shadow-2xs"
+														: "text-fg-secondary hover:text-fg dark:hover:bg-elevation-level1/60 hover:bg-white/60"
+												)}>
 												<FileText className="size-4" />
 												<span>Visits</span>
 											</SidebarMenuButton>
@@ -464,15 +478,22 @@ export default function Preview12Page() {
 											<SidebarMenuButton
 												size="sm"
 												isActive={activeNav === "Alerts"}
-												onClick={() => setActiveNav("Alerts")}>
+												onClick={() => setActiveNav("Alerts")}
+												className={cn(
+													"h-9 rounded-xl px-2.5 text-xs font-medium transition-all",
+													activeNav === "Alerts"
+														? "text-fg dark:bg-elevation-level1 bg-white font-semibold shadow-2xs"
+														: "text-fg-secondary hover:text-fg dark:hover:bg-elevation-level1/60 hover:bg-white/60"
+												)}>
 												<Bell className="size-4" />
 												<span>Alerts</span>
-												<SidebarMenuBadge
+												<Badge
 													color="error"
 													variant="strong"
-													className="size-5 rounded-full p-0 text-[11px] font-bold">
+													size="sm"
+													className="ml-auto flex size-4.5 items-center justify-center rounded-full bg-[#f43f5e] p-0 text-[10px] font-bold text-white">
 													4
-												</SidebarMenuBadge>
+												</Badge>
 											</SidebarMenuButton>
 										</SidebarMenuItem>
 									</SidebarMenu>
@@ -480,17 +501,23 @@ export default function Preview12Page() {
 							</SidebarGroup>
 
 							{/* People Group */}
-							<SidebarGroup className="p-0 pt-2">
-								<SidebarGroupLabel className="text-sidebar-fg px-2 text-[11px] font-semibold tracking-wider uppercase opacity-70">
+							<SidebarGroup className="p-0">
+								<SidebarGroupLabel className="text-fg-tertiary px-2 text-[10px] font-semibold tracking-wider uppercase opacity-75">
 									People
 								</SidebarGroupLabel>
 								<SidebarGroupContent>
-									<SidebarMenu>
+									<SidebarMenu className="gap-0.5">
 										<SidebarMenuItem>
 											<SidebarMenuButton
 												size="sm"
 												isActive={activeNav === "Caregivers"}
-												onClick={() => setActiveNav("Caregivers")}>
+												onClick={() => setActiveNav("Caregivers")}
+												className={cn(
+													"h-9 rounded-xl px-2.5 text-xs font-medium transition-all",
+													activeNav === "Caregivers"
+														? "text-fg dark:bg-elevation-level1 bg-white font-semibold shadow-2xs"
+														: "text-fg-secondary hover:text-fg dark:hover:bg-elevation-level1/60 hover:bg-white/60"
+												)}>
 												<Users className="size-4" />
 												<span>Caregivers</span>
 											</SidebarMenuButton>
@@ -500,7 +527,13 @@ export default function Preview12Page() {
 											<SidebarMenuButton
 												size="sm"
 												isActive={activeNav === "Clients"}
-												onClick={() => setActiveNav("Clients")}>
+												onClick={() => setActiveNav("Clients")}
+												className={cn(
+													"h-9 rounded-xl px-2.5 text-xs font-medium transition-all",
+													activeNav === "Clients"
+														? "text-fg dark:bg-elevation-level1 bg-white font-semibold shadow-2xs"
+														: "text-fg-secondary hover:text-fg dark:hover:bg-elevation-level1/60 hover:bg-white/60"
+												)}>
 												<UserCheck className="size-4" />
 												<span>Clients</span>
 											</SidebarMenuButton>
@@ -510,17 +543,23 @@ export default function Preview12Page() {
 							</SidebarGroup>
 
 							{/* Compliance Group */}
-							<SidebarGroup className="p-0 pt-2">
-								<SidebarGroupLabel className="text-sidebar-fg px-2 text-[11px] font-semibold tracking-wider uppercase opacity-70">
+							<SidebarGroup className="p-0">
+								<SidebarGroupLabel className="text-fg-tertiary px-2 text-[10px] font-semibold tracking-wider uppercase opacity-75">
 									Compliance
 								</SidebarGroupLabel>
 								<SidebarGroupContent>
-									<SidebarMenu>
+									<SidebarMenu className="gap-0.5">
 										<SidebarMenuItem>
 											<SidebarMenuButton
 												size="sm"
 												isActive={activeNav === "EVV"}
-												onClick={() => setActiveNav("EVV")}>
+												onClick={() => setActiveNav("EVV")}
+												className={cn(
+													"h-9 rounded-xl px-2.5 text-xs font-medium transition-all",
+													activeNav === "EVV"
+														? "text-fg dark:bg-elevation-level1 bg-white font-semibold shadow-2xs"
+														: "text-fg-secondary hover:text-fg dark:hover:bg-elevation-level1/60 hover:bg-white/60"
+												)}>
 												<ShieldCheck className="size-4" />
 												<span>EVV</span>
 											</SidebarMenuButton>
@@ -530,7 +569,13 @@ export default function Preview12Page() {
 											<SidebarMenuButton
 												size="sm"
 												isActive={activeNav === "Reports"}
-												onClick={() => setActiveNav("Reports")}>
+												onClick={() => setActiveNav("Reports")}
+												className={cn(
+													"h-9 rounded-xl px-2.5 text-xs font-medium transition-all",
+													activeNav === "Reports"
+														? "text-fg dark:bg-elevation-level1 bg-white font-semibold shadow-2xs"
+														: "text-fg-secondary hover:text-fg dark:hover:bg-elevation-level1/60 hover:bg-white/60"
+												)}>
 												<BarChart3 className="size-4" />
 												<span>Reports</span>
 											</SidebarMenuButton>
@@ -540,25 +585,32 @@ export default function Preview12Page() {
 							</SidebarGroup>
 
 							{/* Service Areas Group */}
-							<SidebarGroup className="p-0 pt-2">
-								<div className="flex items-center justify-between px-2">
-									<SidebarGroupLabel className="text-sidebar-fg p-0 text-[11px] font-semibold tracking-wider uppercase opacity-70">
+							<SidebarGroup className="p-0">
+								<div className="flex items-center justify-between px-2 pb-0.5">
+									<span className="text-fg-tertiary text-[10px] font-semibold tracking-wider uppercase opacity-75">
 										Service Areas
-									</SidebarGroupLabel>
-									<SidebarGroupAction
-										className="relative static size-5"
+									</span>
+									<button
+										type="button"
+										className="text-fg-tertiary hover:text-fg transition-colors"
 										aria-label="Add service area">
 										<Plus className="size-3.5" />
-									</SidebarGroupAction>
+									</button>
 								</div>
 								<SidebarGroupContent>
-									<SidebarMenu>
+									<SidebarMenu className="gap-0.5">
 										{SERVICE_AREAS.map((area) => (
 											<SidebarMenuItem key={area.name}>
 												<SidebarMenuButton
 													size="sm"
 													isActive={activeNav === area.name}
-													onClick={() => setActiveNav(area.name)}>
+													onClick={() => setActiveNav(area.name)}
+													className={cn(
+														"h-9 rounded-xl px-2.5 text-xs font-medium transition-all",
+														activeNav === area.name
+															? "text-fg dark:bg-elevation-level1 bg-white font-semibold shadow-2xs"
+															: "text-fg-secondary hover:text-fg dark:hover:bg-elevation-level1/60 hover:bg-white/60"
+													)}>
 													<span
 														className={cn(
 															"size-2 shrink-0 rounded-xs",
@@ -566,12 +618,9 @@ export default function Preview12Page() {
 														)}
 													/>
 													<span className="truncate">{area.name}</span>
-													<SidebarMenuBadge
-														color="neutral"
-														variant="soft"
-														className="text-fg-secondary border-none bg-transparent font-medium">
+													<span className="text-fg-tertiary ml-auto text-xs font-normal">
 														{area.count}
-													</SidebarMenuBadge>
+													</span>
 												</SidebarMenuButton>
 											</SidebarMenuItem>
 										))}
@@ -581,13 +630,19 @@ export default function Preview12Page() {
 						</SidebarContent>
 
 						{/* Footer Section */}
-						<SidebarFooter className="border-border/50 mt-auto space-y-1.5 border-t p-2">
-							<SidebarMenu>
+						<SidebarFooter className="mt-auto space-y-2 p-0 pt-2">
+							<SidebarMenu className="gap-0.5">
 								<SidebarMenuItem>
 									<SidebarMenuButton
 										size="sm"
 										isActive={activeNav === "Help"}
-										onClick={() => setActiveNav("Help")}>
+										onClick={() => setActiveNav("Help")}
+										className={cn(
+											"h-9 rounded-xl px-2.5 text-xs font-medium transition-all",
+											activeNav === "Help"
+												? "text-fg dark:bg-elevation-level1 bg-white font-semibold shadow-2xs"
+												: "text-fg-secondary hover:text-fg dark:hover:bg-elevation-level1/60 hover:bg-white/60"
+										)}>
 										<HelpCircle className="size-4" />
 										<span>Help and support</span>
 									</SidebarMenuButton>
@@ -597,7 +652,13 @@ export default function Preview12Page() {
 									<SidebarMenuButton
 										size="sm"
 										isActive={activeNav === "Settings"}
-										onClick={() => setActiveNav("Settings")}>
+										onClick={() => setActiveNav("Settings")}
+										className={cn(
+											"h-9 rounded-xl px-2.5 text-xs font-medium transition-all",
+											activeNav === "Settings"
+												? "text-fg dark:bg-elevation-level1 bg-white font-semibold shadow-2xs"
+												: "text-fg-secondary hover:text-fg dark:hover:bg-elevation-level1/60 hover:bg-white/60"
+										)}>
 										<Settings className="size-4" />
 										<span>Settings</span>
 									</SidebarMenuButton>
@@ -605,12 +666,12 @@ export default function Preview12Page() {
 							</SidebarMenu>
 
 							{/* User Profile Card */}
-							<div className="border-border/60 bg-elevation-level1 flex items-center justify-between rounded-lg border p-2 shadow-2xs">
-								<div className="flex min-w-0 items-center gap-2">
+							<Card className="border-border/50 dark:bg-elevation-level1 flex flex-row items-center justify-between gap-0 rounded-xl bg-white p-2.5 shadow-2xs">
+								<div className="flex min-w-0 items-center gap-2.5">
 									<Avatar
 										size="sm"
 										rounded="circle"
-										className="border-border border">
+										className="border-border shrink-0 border">
 										<AvatarImage
 											src="https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@v1.0.2/packages/uncompressed-avatars/src/8.png"
 											alt="Nizam"
@@ -618,7 +679,7 @@ export default function Preview12Page() {
 										<AvatarFallback>NZ</AvatarFallback>
 									</Avatar>
 									<div className="flex flex-col truncate text-left">
-										<span className="text-sidebar-fg truncate text-xs leading-tight font-semibold">
+										<span className="font-heading text-fg truncate text-xs leading-tight font-semibold">
 											Nizam
 										</span>
 										<span className="text-fg-secondary truncate text-[11px] leading-tight">
@@ -632,9 +693,9 @@ export default function Preview12Page() {
 									size="xs"
 									className="text-fg-secondary size-6 shrink-0"
 									aria-label="User switch">
-									<ChevronsUpDown className="size-3" />
+									<ChevronsUpDown className="size-3.5" />
 								</IconButton>
-							</div>
+							</Card>
 						</SidebarFooter>
 					</Sidebar>
 
