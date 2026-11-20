@@ -259,18 +259,18 @@ export default function Page() {
 		PERIOD_OPTIONS.find((opt) => opt.value === period) || PERIOD_OPTIONS[2]
 
 	return (
-		<div className="dark:bg-bg text-fg bg-bg font-body min-h-screen w-full overflow-hidden">
+		<div className="dark:bg-bg text-fg bg-bg font-body h-screen w-full overflow-hidden">
 			<SidebarProvider
 				defaultOpen
 				defaultWidth="15rem"
-				className="flex min-h-screen w-full overflow-hidden">
-				<div className="flex min-h-screen w-full overflow-hidden">
+				className="flex h-screen w-full overflow-hidden">
+				<div className="flex h-screen w-full overflow-hidden">
 					{/* ══════════════════════════════════════════════
               SIDEBAR
           ══════════════════════════════════════════════ */}
 					<Sidebar
 						collapsible="none"
-						className="border-border/60 bg-fill1/40 w-60 shrink-0 border-r select-none"
+						className="border-border/60 bg-fill1/40 h-full w-60 shrink-0 border-r select-none"
 						style={
 							{
 								"--color-sidebar":
@@ -394,8 +394,8 @@ export default function Page() {
 					{/* ══════════════════════════════════════════════
               MAIN DASHBOARD INSET
           ══════════════════════════════════════════════ */}
-					<SidebarInset className="dark:bg-bg bg-bg-subtle flex-1 overflow-y-auto px-6 py-6 transition-colors md:px-10 md:py-8">
-						<div className="mx-auto flex max-w-7xl flex-col gap-4">
+					<SidebarInset className="dark:bg-bg bg-bg-subtle h-screen min-w-0 flex-1 overflow-y-auto px-6 py-6 transition-colors md:px-8 md:py-8">
+						<div className="flex w-full flex-col gap-4">
 							{/* ══════════════════════════════════════════════
             1. TOP NAVBAR / HEADER
         ══════════════════════════════════════════════ */}
