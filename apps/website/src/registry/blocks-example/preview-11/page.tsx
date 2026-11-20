@@ -1,3 +1,5 @@
+"use client"
+
 import { Metadata } from "next"
 import { SidebarInset, SidebarProvider } from "@/styles/default/ui/sidebar"
 import React, { useState } from "react"
@@ -912,7 +914,6 @@ export function MetricDonutCard({ metric }: MetricDonutCardProps) {
 		</Card>
 	)
 }
-
 ;("use client")
 
 import { BarChart3, ChevronRight } from "lucide-react"
