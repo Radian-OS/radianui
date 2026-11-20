@@ -276,9 +276,12 @@ export default function Page() {
 									variant="outline"
 									color="neutral"
 									size="sm"
-									className="border-border/70 bg-elevation-level1 hover:bg-fill1/80 text-sidebar-fg h-8 w-full justify-between px-2 text-sm font-medium shadow-2xs">
+									style={{ paddingInline: "8px" }}
+									className="border-border/70 bg-elevation-level1 hover:bg-fill1/80 text-sidebar-fg h-8 w-full justify-between text-sm font-medium shadow-2xs">
 									<div className="flex items-center gap-2">
-										<span className="text-sidebar-fg font-medium">⌘</span>
+										<span className="text-sidebar-fg flex size-4 shrink-0 items-center justify-center font-medium">
+											⌘
+										</span>
 										<span>Quick actions</span>
 									</div>
 									<kbd className="text-fg-secondary font-mono text-xs">K</kbd>
@@ -309,16 +312,22 @@ export default function Page() {
 											<SidebarMenuSub className="border-border/60 my-1 ml-5 space-y-0.5 border-l pl-2">
 												<SidebarMenuSubItem>
 													<SidebarMenuSubButton
+														asChild
 														size="sm"
 														className="text-sidebar-fg h-8 cursor-pointer text-sm font-medium">
-														<span>Reports</span>
+														<button type="button">
+															<span>Reports</span>
+														</button>
 													</SidebarMenuSubButton>
 												</SidebarMenuSubItem>
 												<SidebarMenuSubItem>
 													<SidebarMenuSubButton
+														asChild
 														size="sm"
 														className="text-sidebar-fg h-8 cursor-pointer text-sm font-medium">
-														<span>Live view</span>
+														<button type="button">
+															<span>Live view</span>
+														</button>
 													</SidebarMenuSubButton>
 												</SidebarMenuSubItem>
 											</SidebarMenuSub>
