@@ -34,6 +34,9 @@ import {
 	SidebarMenuBadge,
 	SidebarMenuButton,
 	SidebarMenuItem,
+	SidebarMenuSub,
+	SidebarMenuSubButton,
+	SidebarMenuSubItem,
 	SidebarProvider,
 } from "@/registry/ui/sidebar"
 import {
@@ -206,6 +209,7 @@ const CHANNEL_OPTIONS = [
 
 export default function Page() {
 	const [activeNav, setActiveNav] = useState("Analytics")
+	const [activeSubNav, setActiveSubNav] = useState("Reports")
 	const [channel, setChannel] = useState("All channels")
 	const [timeRange, setTimeRange] = useState("Last 30 days")
 	const [compareOption, setCompareOption] = useState("Previous period")
@@ -255,66 +259,32 @@ export default function Page() {
 									Ace Studio
 								</span>
 								<IconSlot
-									slot="chevrons-up-down"
+									slot="down"
 									className="text-fg-secondary size-3.5 shrink-0"
 								/>
 							</div>
 
-							<div className="flex items-center gap-0.5">
-								<IconButton
-									variant="ghost"
-									color="neutral"
-									size="xs"
-									className="text-fg-secondary size-7"
-									aria-label="Search">
-									<IconSlot slot="search" className="size-4" />
-								</IconButton>
-								<IconButton
-									variant="ghost"
-									color="neutral"
-									size="xs"
-									className="text-fg-secondary size-7"
-									aria-label="Toggle sidebar">
-									<IconSlot slot="left-panel" className="size-4" />
-								</IconButton>
-							</div>
+							<IconButton
+								variant="ghost"
+								color="neutral"
+								size="xs"
+								className="text-fg-secondary size-7"
+								aria-label="Toggle sidebar">
+								<IconSlot slot="left-panel" className="size-4" />
+							</IconButton>
 						</SidebarHeader>
 
-						{/* Quick Access: Home & Activity */}
-						<div className="flex items-center gap-1.5 px-3 py-1">
-							<Button
-								variant={activeNav === "Home" ? "soft" : "ghost"}
-								color="neutral"
-								size="xs"
-								onClick={() => setActiveNav("Home")}
-								className={cn(
-									"h-7 gap-1.5 rounded-md px-2.5 text-xs font-medium",
-									activeNav === "Home" &&
-										"bg-sidebar-accent text-sidebar-accent-fg"
-								)}>
-								<IconSlot slot="home" className="size-3.5" />
-								<span>Home</span>
-							</Button>
-							<Button
-								variant={activeNav === "Activity" ? "soft" : "ghost"}
-								color="neutral"
-								size="xs"
-								onClick={() => setActiveNav("Activity")}
-								className={cn(
-									"h-7 gap-1.5 rounded-md px-2.5 text-xs font-medium",
-									activeNav === "Activity" &&
-										"bg-sidebar-accent text-sidebar-accent-fg"
-								)}>
-								<IconSlot slot="sparkles" className="size-3.5" />
-								<span>Activity</span>
-								<Badge
-									variant="strong"
-									color="error"
-									size="sm"
-									className="ml-0.5 h-4 min-w-4 rounded-full px-1 text-[10px] leading-none font-bold">
-									3
-								</Badge>
-							</Button>
+						{/* Quick Actions Search Trigger */}
+						<div className="px-3 pt-1 pb-1">
+							<button
+								type="button"
+								className="border-border/70 bg-elevation-level1 hover:bg-fill1/80 text-fg-secondary flex w-full cursor-pointer items-center justify-between rounded-lg border px-2.5 py-1.5 text-xs shadow-2xs transition-colors select-none">
+								<div className="flex items-center gap-2">
+									<span className="text-fg-tertiary font-medium">⌘</span>
+									<span>Quick actions</span>
+								</div>
+								<kbd className="text-fg-tertiary font-mono text-[11px]">K</kbd>
+							</button>
 						</div>
 
 						{/* Navigation Content */}
@@ -325,10 +295,10 @@ export default function Page() {
 										<SidebarMenuItem>
 											<SidebarMenuButton
 												size="sm"
-												onClick={() => {}}
-												className="text-fg-secondary hover:text-sidebar-fg">
-												<IconSlot slot="plus" className="size-4" />
-												<span>New session</span>
+												isActive={activeNav === "Home"}
+												onClick={() => setActiveNav("Home")}>
+												<IconSlot slot="blocks" className="size-4" />
+												<span>Home</span>
 											</SidebarMenuButton>
 										</SidebarMenuItem>
 
@@ -340,6 +310,32 @@ export default function Page() {
 												<IconSlot slot="bar-chart" className="size-4" />
 												<span>Analytics</span>
 											</SidebarMenuButton>
+											<SidebarMenuSub className="ml-5.5 border-none p-0 pl-2">
+												<SidebarMenuSubItem>
+													<SidebarMenuSubButton
+														size="xs"
+														isActive={activeSubNav === "Reports"}
+														onClick={() => {
+															setActiveNav("Analytics")
+															setActiveSubNav("Reports")
+														}}
+														className="text-fg-secondary h-6 text-xs">
+														<span>Reports</span>
+													</SidebarMenuSubButton>
+												</SidebarMenuSubItem>
+												<SidebarMenuSubItem>
+													<SidebarMenuSubButton
+														size="xs"
+														isActive={activeSubNav === "Live view"}
+														onClick={() => {
+															setActiveNav("Analytics")
+															setActiveSubNav("Live view")
+														}}
+														className="text-fg-secondary h-6 text-xs">
+														<span>Live view</span>
+													</SidebarMenuSubButton>
+												</SidebarMenuSubItem>
+											</SidebarMenuSub>
 										</SidebarMenuItem>
 
 										<SidebarMenuItem>
@@ -355,38 +351,18 @@ export default function Page() {
 										<SidebarMenuItem>
 											<SidebarMenuButton
 												size="sm"
-												isActive={activeNav === "Deliverables"}
-												onClick={() => setActiveNav("Deliverables")}>
-												<IconSlot slot="box" className="size-4" />
-												<span>Deliverables</span>
+												isActive={activeNav === "Apps"}
+												onClick={() => setActiveNav("Apps")}>
+												<IconSlot slot="shapes" className="size-4" />
+												<span>Apps</span>
 											</SidebarMenuButton>
-										</SidebarMenuItem>
-
-										<SidebarMenuItem>
-											<SidebarMenuButton
-												size="sm"
-												isActive={activeNav === "On Slack"}
-												onClick={() => setActiveNav("On Slack")}>
-												<img
-													src="https://www.google.com/s2/favicons?sz=32&domain=slack.com"
-													alt="Slack"
-													className="size-4 shrink-0 rounded-xs"
-												/>
-												<span>On Slack</span>
-											</SidebarMenuButton>
-											<SidebarMenuAction>
-												<IconSlot
-													slot="arrow-up-right"
-													className="text-fg-secondary size-3.5"
-												/>
-											</SidebarMenuAction>
 										</SidebarMenuItem>
 									</SidebarMenu>
 								</SidebarGroupContent>
 							</SidebarGroup>
 
 							{/* Tools Group */}
-							<SidebarGroup className="p-0 pt-3">
+							<SidebarGroup className="p-0 pt-2.5">
 								<SidebarGroupLabel className="text-fg-tertiary px-2 py-1 text-xs font-medium">
 									Tools
 								</SidebarGroupLabel>
@@ -397,7 +373,9 @@ export default function Page() {
 												size="sm"
 												isActive={activeNav === "Campaign"}
 												onClick={() => setActiveNav("Campaign")}>
-												<span className="size-4 shrink-0 rounded-full bg-gradient-to-tr from-amber-500 to-orange-400" />
+												<span className="flex size-4 shrink-0 items-center justify-center rounded-full bg-amber-400/90 text-amber-950">
+													<IconSlot slot="megaphone" className="size-2.5" />
+												</span>
 												<span>Campaign</span>
 											</SidebarMenuButton>
 										</SidebarMenuItem>
@@ -407,7 +385,9 @@ export default function Page() {
 												size="sm"
 												isActive={activeNav === "Creatives"}
 												onClick={() => setActiveNav("Creatives")}>
-												<span className="size-4 shrink-0 rounded-full bg-gradient-to-tr from-cyan-400 to-blue-500" />
+												<span className="flex size-4 shrink-0 items-center justify-center rounded-full bg-sky-400/90 text-sky-950">
+													<IconSlot slot="palette" className="size-2.5" />
+												</span>
 												<span>Creatives</span>
 											</SidebarMenuButton>
 										</SidebarMenuItem>
@@ -417,7 +397,9 @@ export default function Page() {
 												size="sm"
 												isActive={activeNav === "Briefs"}
 												onClick={() => setActiveNav("Briefs")}>
-												<span className="size-4 shrink-0 rounded-full bg-gradient-to-tr from-emerald-400 to-teal-500" />
+												<span className="flex size-4 shrink-0 items-center justify-center rounded-full bg-blue-500/90 text-white">
+													<IconSlot slot="file-text" className="size-2.5" />
+												</span>
 												<span>Briefs</span>
 											</SidebarMenuButton>
 										</SidebarMenuItem>
@@ -427,7 +409,9 @@ export default function Page() {
 												size="sm"
 												isActive={activeNav === "Workflows"}
 												onClick={() => setActiveNav("Workflows")}>
-												<span className="size-4 shrink-0 rounded-full bg-gradient-to-tr from-purple-400 to-pink-500" />
+												<span className="flex size-4 shrink-0 items-center justify-center rounded-full bg-purple-500/90 text-white">
+													<IconSlot slot="sparkles" className="size-2.5" />
+												</span>
 												<span>Workflows</span>
 											</SidebarMenuButton>
 										</SidebarMenuItem>
@@ -435,22 +419,77 @@ export default function Page() {
 								</SidebarGroupContent>
 							</SidebarGroup>
 
+							{/* Pinned Group */}
+							<SidebarGroup className="p-0 pt-2.5">
+								<SidebarGroupLabel className="text-fg-tertiary px-2 py-1 text-xs font-medium">
+									Pinned
+								</SidebarGroupLabel>
+								<SidebarGroupContent>
+									<SidebarMenu>
+										<SidebarMenuItem>
+											<SidebarMenuButton
+												size="sm"
+												isActive={activeNav === "Make a new creative"}
+												onClick={() => setActiveNav("Make a new creative")}
+												className="text-xs">
+												<IconSlot
+													slot="messages-square"
+													className="text-fg-secondary size-3.5 shrink-0"
+												/>
+												<span className="truncate">
+													Make a new creative for t...
+												</span>
+											</SidebarMenuButton>
+										</SidebarMenuItem>
+
+										<SidebarMenuItem>
+											<SidebarMenuButton
+												size="sm"
+												isActive={activeNav === "Campaign here"}
+												onClick={() => setActiveNav("Campaign here")}
+												className="text-xs">
+												<IconSlot
+													slot="megaphone"
+													className="text-fg-secondary size-3.5 shrink-0"
+												/>
+												<span className="truncate">Campaign here</span>
+											</SidebarMenuButton>
+										</SidebarMenuItem>
+									</SidebarMenu>
+								</SidebarGroupContent>
+							</SidebarGroup>
+
 							{/* Chat Group */}
-							<SidebarGroup className="p-0 pt-3">
+							<SidebarGroup className="p-0 pt-2.5">
 								<SidebarGroupLabel className="text-fg-tertiary px-2 py-1 text-xs font-medium">
 									Chat
 								</SidebarGroupLabel>
 								<SidebarGroupContent>
-									<div className="text-fg-secondary px-2 py-1 text-xs">
-										No chat
-									</div>
+									<SidebarMenu>
+										{[
+											"Launch a marketing campaig...",
+											"Design a new user interface f...",
+											"Conduct a user research ses...",
+											"Create a presentation for sta...",
+										].map((chat) => (
+											<SidebarMenuItem key={chat}>
+												<SidebarMenuButton
+													size="sm"
+													isActive={activeNav === chat}
+													onClick={() => setActiveNav(chat)}
+													className="text-fg-secondary hover:text-sidebar-fg h-7 text-xs">
+													<span className="truncate">{chat}</span>
+												</SidebarMenuButton>
+											</SidebarMenuItem>
+										))}
+									</SidebarMenu>
 								</SidebarGroupContent>
 							</SidebarGroup>
 						</SidebarContent>
 
 						{/* Footer with Getting Started and Plan details */}
 						<SidebarFooter className="space-y-2 p-3">
-							<div className="border-border/60 bg-fill1/40 flex items-center justify-between rounded-xl border p-2.5">
+							<div className="border-border/60 bg-elevation-level1 flex items-center justify-between rounded-xl border p-2.5 shadow-2xs">
 								<div className="flex items-center gap-2">
 									<svg
 										className="size-3.5 shrink-0 -rotate-90"
@@ -485,7 +524,9 @@ export default function Page() {
 
 							<div className="flex items-center justify-between pt-1">
 								<div className="flex items-center gap-2">
-									<IconSlot slot="zap" className="text-fg-secondary size-4" />
+									<div className="flex size-5 items-center justify-center rounded-md bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900">
+										<IconSlot slot="zap" className="size-3" />
+									</div>
 									<span className="text-sidebar-fg text-xs font-medium">
 										14 days left
 									</span>
@@ -494,7 +535,7 @@ export default function Page() {
 									variant="strong"
 									color="neutral"
 									size="xs"
-									className="h-7 rounded-md px-3 text-xs font-semibold">
+									className="h-7 rounded-full bg-zinc-900 px-3 text-xs font-semibold text-white hover:bg-zinc-800 dark:bg-zinc-100 dark:text-zinc-900">
 									Upgrade
 								</Button>
 							</div>
