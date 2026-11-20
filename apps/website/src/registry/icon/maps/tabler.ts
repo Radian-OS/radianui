@@ -83,6 +83,7 @@ import {
 	IconPencil,
 	IconPercentage,
 	IconPhoto,
+	IconPin,
 	IconPlus,
 	IconQuote,
 	IconRadio,
@@ -101,6 +102,8 @@ import {
 	IconSpeakerphone,
 	IconStar,
 	IconStopwatch,
+	IconThumbDown,
+	IconThumbUp,
 	IconTicket,
 	IconTool,
 	IconTrash,
@@ -109,6 +112,7 @@ import {
 	IconUser,
 	IconUsers,
 	IconUsersGroup,
+	IconVolume2,
 	IconX,
 } from "@tabler/icons-react"
 
@@ -224,4 +228,8 @@ export const TABLER_ICON_MAP: Record<IconSlot, TablerIcon> = {
 	"arrow-left": IconArrowLeft,
 	quote: IconQuote,
 	trash: IconTrash,
+	pin: IconPin,
+	"thumbs-up": IconThumbUp,
+	"thumbs-down": IconThumbDown,
+	volume: IconVolume2,
 }

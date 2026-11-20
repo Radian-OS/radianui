@@ -894,5 +894,37 @@
     "phosphorIcon": "TrashIcon",
     "tablerIcon": "IconTrash",
     "heroiconsIcon": "TrashIcon"
+  },
+  {
+    "slot": "pin",
+    "lucideIcon": "Pin",
+    "hugeiconsIcon": "PinIcon",
+    "phosphorIcon": "PushPinIcon",
+    "tablerIcon": "IconPin",
+    "heroiconsIcon": "BookmarkIcon"
+  },
+  {
+    "slot": "thumbs-up",
+    "lucideIcon": "ThumbsUp",
+    "hugeiconsIcon": "ThumbsUpIcon",
+    "phosphorIcon": "ThumbsUpIcon",
+    "tablerIcon": "IconThumbUp",
+    "heroiconsIcon": "HandThumbUpIcon"
+  },
+  {
+    "slot": "thumbs-down",
+    "lucideIcon": "ThumbsDown",
+    "hugeiconsIcon": "ThumbsDownIcon",
+    "phosphorIcon": "ThumbsDownIcon",
+    "tablerIcon": "IconThumbDown",
+    "heroiconsIcon": "HandThumbDownIcon"
+  },
+  {
+    "slot": "volume",
+    "lucideIcon": "Volume2",
+    "hugeiconsIcon": "VolumeHighIcon",
+    "phosphorIcon": "SpeakerHighIcon",
+    "tablerIcon": "IconVolume2",
+    "heroiconsIcon": "SpeakerWaveIcon"
   }
 ]

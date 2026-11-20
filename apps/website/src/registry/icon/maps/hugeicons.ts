@@ -83,6 +83,7 @@ import {
 	PanelRightIcon,
 	PercentIcon,
 	PieChart01Icon,
+	PinIcon,
 	QuoteUpIcon,
 	RadioIcon,
 	RepeatIcon,
@@ -101,6 +102,8 @@ import {
 	Store01Icon,
 	Sun01Icon,
 	TaskDone01Icon,
+	ThumbsDownIcon,
+	ThumbsUpIcon,
 	Tick01Icon,
 	Ticket01Icon,
 	Timer01Icon,
@@ -108,6 +111,7 @@ import {
 	User02Icon,
 	UserGroupIcon,
 	ViewOffSlashIcon,
+	VolumeHighIcon,
 	WrenchIcon,
 } from "@hugeicons/core-free-icons"
 
@@ -223,4 +227,8 @@ export const HUGEICONS_ICON_MAP: Record<IconSlot, IconSvgElement> = {
 	"arrow-left": ArrowLeft01Icon,
 	quote: QuoteUpIcon,
 	trash: Delete01Icon,
+	pin: PinIcon,
+	"thumbs-up": ThumbsUpIcon,
+	"thumbs-down": ThumbsDownIcon,
+	volume: VolumeHighIcon,
 }
