@@ -258,7 +258,7 @@ export default function BrandLogosPlayground({
 	return (
 		<div id="brand-logo-collection" className="flex w-full flex-col gap-8 py-2">
 			<div ref={sentinelRef} className="pointer-events-none h-px w-full" />
-			<div className="bg-bg/95 sticky top-0 z-100 py-3 backdrop-blur-sm">
+			<div className="bg-bg/95 sticky top-0 z-40 py-3 backdrop-blur-sm sm:z-100">
 				<InputGroup className="w-full">
 					<BrandLogoCategoryDropdown
 						value={category}

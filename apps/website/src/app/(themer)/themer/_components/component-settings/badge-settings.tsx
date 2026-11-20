@@ -169,10 +169,8 @@ export function BadgeSettings({ children }: { children: ReactNode }) {
 	const badgeConfig = params.components.Badge
 	const size = badgeConfig?.size ?? DEFAULT_BADGE_CONFIG.size
 	const [dimensions, setDimensions] = useState<PreviewDimensions>()
-	const [slidersActivated, setSlidersActivated] = useState(false)
 
 	const reset = () => {
-		setSlidersActivated(true)
 		updateBadge()
 	}
 	const shuffle = () => {
@@ -206,7 +204,6 @@ export function BadgeSettings({ children }: { children: ReactNode }) {
 
 					<div className="flex flex-col gap-4">
 						<PresetSlider
-							showActive={slidersActivated}
 							options={PRESET_NAMES}
 							label="Radius"
 							value={badgeConfig?.radius}
@@ -220,7 +217,6 @@ export function BadgeSettings({ children }: { children: ReactNode }) {
 							onValueChange={(radius) => updateBadge({ radius })}
 						/>
 						<PresetSlider
-							showActive={slidersActivated}
 							options={PRESET_NAMES}
 							label="Padding"
 							value={badgeConfig?.padding}

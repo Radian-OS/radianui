@@ -177,10 +177,8 @@ export function ButtonSettings({
 	const buttonConfig = params.components.Button
 	const size = buttonConfig?.size ?? DEFAULT_BUTTON_CONFIG.size
 	const [dimensions, setDimensions] = useState<PreviewDimensions>()
-	const [slidersActivated, setSlidersActivated] = useState(false)
 
 	const reset = () => {
-		setSlidersActivated(true)
 		updateButton()
 	}
 	const shuffle = () => {
@@ -215,7 +213,6 @@ export function ButtonSettings({
 
 					<div className="flex flex-col gap-4">
 						<PresetSlider
-							showActive={slidersActivated}
 							options={PRESET_NAMES}
 							label="Radius"
 							value={buttonConfig?.radius}
@@ -229,7 +226,6 @@ export function ButtonSettings({
 							onValueChange={(radius) => updateButton({ radius })}
 						/>
 						<PresetSlider
-							showActive={slidersActivated}
 							options={PRESET_NAMES}
 							label="Padding"
 							value={buttonConfig?.padding}

@@ -40,8 +40,8 @@ export function ComponentSettingsPopover({
 							variant="ghost"
 							color="neutral"
 							size="xs"
-							aria-label={`Reset ${name} to component defaults`}
-							title="Reset to component defaults"
+							aria-label={`Reset ${name} to Themer defaults`}
+							title="Reset to Themer defaults"
 							onClick={onReset}
 							disabled={!onReset}>
 							<RotateCcw />

@@ -13,6 +13,12 @@ import {
 	DialogDescription,
 	DialogTitle,
 } from "@/registry/ui/dialog"
+import { DrawerDescription, DrawerTitle } from "@/registry/ui/drawer"
+import { ScrollArea } from "@/registry/ui/scroll-area"
+import {
+	ResourceDetailsDrawer,
+	useMobileResourceLayout,
+} from "../../components/ResourceDetailsDrawer"
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -68,6 +74,7 @@ export function BrandLogoDetailsDialog({
 	onOpenChange,
 	onSelectBrand,
 }: BrandLogoDetailsDialogProps) {
+	const mobile = useMobileResourceLayout()
 	const {
 		brandLogos,
 		getBrandLogo,
@@ -191,195 +198,230 @@ export function BrandLogoDetailsDialog({
 		}
 	}
 
-	return (
-		<Dialog open={open} onOpenChange={onOpenChange}>
-			<DialogContent className="no-scrollbar max-h-[calc(100dvh-8px)] w-[calc(100%-8px)] max-w-[1000px] gap-0 overflow-y-auto rounded-xl p-6 sm:max-w-[1000px]">
-				<DialogDescription className="sr-only">
-					Preview, copy, and download the {brand.name} logo.
-				</DialogDescription>
-
-				<div className="grid gap-5 md:grid-cols-[360px_minmax(0,1fr)]">
-					<div className="bg-bg border-soft relative flex h-60 items-center justify-center rounded-lg border p-6 md:h-auto md:min-h-80">
-						<div className="absolute top-3 right-3">
-							<BrandLogoOptions
-								variant={dialogVariant}
-								onVariantChange={setDialogVariant}
-								colorway={dialogColorway}
-								onColorwayChange={setDialogColorway}
-								compact
-							/>
-						</div>
-						<img
-							src={activeDisplayUrl}
-							alt={`${brand.name} ${dialogVariant}`}
-							width={dialogVariant === "icon" ? 96 : 270}
-							height={dialogVariant === "icon" ? 96 : 72}
-							className={cn(
-								"object-contain",
-								dialogVariant === "icon"
-									? "size-20 sm:size-24"
-									: "h-16 w-full max-w-67.5 sm:h-18"
-							)}
+	const title = `${brand.name} ${dialogVariant === "icon" ? "Icon" : "Wordmark"}`
+	const description = `Preview, copy, and download the ${brand.name} logo.`
+	const content = (
+		<>
+			<div className="grid gap-5 md:grid-cols-[360px_minmax(0,1fr)]">
+				<div className="bg-bg border-soft relative flex h-40 items-center justify-center rounded-lg border p-6 sm:h-60 md:h-auto md:min-h-80">
+					<div className="absolute top-3 right-3">
+						<BrandLogoOptions
+							variant={dialogVariant}
+							onVariantChange={setDialogVariant}
+							colorway={dialogColorway}
+							onColorwayChange={setDialogColorway}
+							compact
 						/>
 					</div>
-
-					<div className="flex min-w-0 flex-col gap-5">
-						<div className="flex items-center gap-3">
-							<DialogTitle className="min-w-0 flex-1 font-semibold">
-								{brand.name} {dialogVariant === "icon" ? "Icon" : "Wordmark"}
-							</DialogTitle>
-						</div>
-
-						<div className="flex flex-wrap items-center gap-2">
-							<DropdownMenu>
-								<ButtonGroup size="lg" color="primary" variant="strong">
-									<Button onClick={copyPng}>Copy PNG</Button>
-									<DropdownMenuTrigger asChild>
-										<Button
-											aria-label={`PNG width: ${pngExportWidth} pixels`}
-											className="border-alpha border-l">
-											{pngExportWidth} px
-											<ChevronDown />
-										</Button>
-									</DropdownMenuTrigger>
-								</ButtonGroup>
-								<DropdownMenuContent align="start">
-									<DropdownMenuRadioGroup
-										value={String(pngExportWidth)}
-										onValueChange={(value) => setPngExportWidth(Number(value))}>
-										{PNG_SIZES.map((size) => (
-											<DropdownMenuRadioItem key={size} value={String(size)}>
-												{size} px
-											</DropdownMenuRadioItem>
-										))}
-									</DropdownMenuRadioGroup>
-								</DropdownMenuContent>
-							</DropdownMenu>
-							<Button size="lg" onClick={copySvg}>
-								Copy SVG
-							</Button>
-
-							<DropdownMenu>
-								<ButtonGroup size="lg" color="neutral" variant="outline">
-									<Button onClick={() => downloadLogo("svg")}>
-										<Download />
-										Download
-									</Button>
-									<DropdownMenuTrigger asChild>
-										<IconButton
-											className="border-l"
-											aria-label="Choose download format">
-											<ChevronDown />
-										</IconButton>
-									</DropdownMenuTrigger>
-								</ButtonGroup>
-								<DropdownMenuContent align="end">
-									<DropdownMenuItem onSelect={() => downloadLogo("svg")}>
-										Download SVG
-									</DropdownMenuItem>
-									<DropdownMenuItem onSelect={() => downloadLogo("png")}>
-										Download PNG
-									</DropdownMenuItem>
-								</DropdownMenuContent>
-							</DropdownMenu>
-						</div>
-
-						<div className="flex flex-col gap-2">
-							<p className="text-fg-secondary text-xs font-medium">
-								Code snippets
-							</p>
-							<div className="flex flex-wrap gap-2">
-								<Button
-									size="sm"
-									color="neutral"
-									variant="outline"
-									onClick={() => copyText(activeSvgUrl, "CDN URL")}>
-									CDN URL
-								</Button>
-								<Button
-									size="sm"
-									color="neutral"
-									variant="outline"
-									onClick={copySvg}>
-									SVG Code
-								</Button>
-								<Button
-									size="sm"
-									color="neutral"
-									variant="outline"
-									onClick={() =>
-										copyText(
-											getBrandLogoNextImageMarkup(
-												id,
-												activeTheme,
-												dialogColorway,
-												dialogVariant
-											),
-											"Next.js markup"
-										)
-									}>
-									Next.js &lt;Image&gt;
-								</Button>
-								<Button
-									size="sm"
-									color="neutral"
-									variant="outline"
-									onClick={() =>
-										copyText(
-											getBrandLogoHtmlMarkup(
-												id,
-												activeTheme,
-												dialogColorway,
-												dialogVariant
-											),
-											"HTML markup"
-										)
-									}>
-									HTML &lt;img&gt;
-								</Button>
-							</div>
-						</div>
-
-						<div className="flex flex-col gap-2">
-							<p className="text-fg-secondary text-xs font-medium">Tags</p>
-							<div className="flex flex-wrap gap-1.5">
-								{searchTags.map((tag) => (
-									<Badge key={tag} color="neutral" variant="soft" size="md">
-										{tag}
-									</Badge>
-								))}
-							</div>
-						</div>
-					</div>
+					<img
+						src={activeDisplayUrl}
+						alt={`${brand.name} ${dialogVariant}`}
+						width={dialogVariant === "icon" ? 96 : 270}
+						height={dialogVariant === "icon" ? 96 : 72}
+						className={cn(
+							"object-contain",
+							dialogVariant === "icon"
+								? "size-20 sm:size-24"
+								: "h-16 w-full max-w-67.5 sm:h-18"
+						)}
+					/>
 				</div>
 
-				<div className="mt-8 flex flex-col gap-3">
-					<p className="text-fg font-medium">More brand logos</p>
-					<div className="grid grid-cols-3 gap-2 sm:grid-cols-6 md:grid-cols-12">
-						{moreLogos.map((item) => (
-							<Button
-								key={item.id}
-								size="md"
+				<div className="flex min-w-0 flex-col gap-5">
+					{!mobile && (
+						<DialogTitle className="font-semibold">{title}</DialogTitle>
+					)}
+
+					<div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center">
+						<DropdownMenu>
+							<ButtonGroup
+								size="lg"
+								color="primary"
+								variant="strong"
+								className="w-full sm:w-auto">
+								<Button className="flex-1 sm:flex-none" onClick={copyPng}>
+									Copy PNG
+								</Button>
+								<DropdownMenuTrigger asChild>
+									<Button
+										aria-label={`PNG width: ${pngExportWidth} pixels`}
+										className="border-alpha border-l">
+										{pngExportWidth} px
+										<ChevronDown />
+									</Button>
+								</DropdownMenuTrigger>
+							</ButtonGroup>
+							<DropdownMenuContent align="start">
+								<DropdownMenuRadioGroup
+									value={String(pngExportWidth)}
+									onValueChange={(value) => setPngExportWidth(Number(value))}>
+									{PNG_SIZES.map((size) => (
+										<DropdownMenuRadioItem key={size} value={String(size)}>
+											{size} px
+										</DropdownMenuRadioItem>
+									))}
+								</DropdownMenuRadioGroup>
+							</DropdownMenuContent>
+						</DropdownMenu>
+						<Button size="lg" className="w-full sm:w-fit" onClick={copySvg}>
+							Copy SVG
+						</Button>
+
+						<DropdownMenu>
+							<ButtonGroup
+								size="lg"
 								color="neutral"
 								variant="outline"
-								onClick={() => onSelectBrand(item.id)}
-								className="bg-bg hover:bg-bg aspect-square size-full p-2">
-								<img
-									src={getBrandLogoDisplayUrl(
-										item.id,
-										activeTheme,
-										dialogColorway,
-										"icon"
-									)}
-									alt={item.name}
-									width={24}
-									height={24}
-									className="size-7 object-contain"
-								/>
+								className="w-full sm:w-auto">
+								<Button
+									className="flex-1 sm:flex-none"
+									onClick={() => downloadLogo("svg")}>
+									<Download />
+									Download
+								</Button>
+								<DropdownMenuTrigger asChild>
+									<IconButton
+										className="border-l"
+										aria-label="Choose download format">
+										<ChevronDown />
+									</IconButton>
+								</DropdownMenuTrigger>
+							</ButtonGroup>
+							<DropdownMenuContent align="end">
+								<DropdownMenuItem onSelect={() => downloadLogo("svg")}>
+									Download SVG
+								</DropdownMenuItem>
+								<DropdownMenuItem onSelect={() => downloadLogo("png")}>
+									Download PNG
+								</DropdownMenuItem>
+							</DropdownMenuContent>
+						</DropdownMenu>
+					</div>
+
+					<div className="flex flex-col gap-2">
+						<p className="text-fg-secondary text-xs font-medium">
+							Code snippets
+						</p>
+						<div className="grid grid-cols-2 gap-2 sm:flex sm:flex-wrap [&>button]:w-full sm:[&>button]:w-fit">
+							<Button
+								size="sm"
+								color="neutral"
+								variant="outline"
+								onClick={() => copyText(activeSvgUrl, "CDN URL")}>
+								CDN URL
 							</Button>
-						))}
+							<Button
+								size="sm"
+								color="neutral"
+								variant="outline"
+								onClick={copySvg}>
+								SVG Code
+							</Button>
+							<Button
+								size="sm"
+								color="neutral"
+								variant="outline"
+								onClick={() =>
+									copyText(
+										getBrandLogoNextImageMarkup(
+											id,
+											activeTheme,
+											dialogColorway,
+											dialogVariant
+										),
+										"Next.js markup"
+									)
+								}>
+								Next.js &lt;Image&gt;
+							</Button>
+							<Button
+								size="sm"
+								color="neutral"
+								variant="outline"
+								onClick={() =>
+									copyText(
+										getBrandLogoHtmlMarkup(
+											id,
+											activeTheme,
+											dialogColorway,
+											dialogVariant
+										),
+										"HTML markup"
+									)
+								}>
+								HTML &lt;img&gt;
+							</Button>
+						</div>
+					</div>
+
+					<div className="flex flex-col gap-2">
+						<p className="text-fg-secondary text-xs font-medium">Tags</p>
+						<div className="flex flex-wrap gap-1.5">
+							{searchTags.map((tag) => (
+								<Badge key={tag} color="neutral" variant="soft" size="md">
+									{tag}
+								</Badge>
+							))}
+						</div>
 					</div>
 				</div>
+			</div>
+
+			<div className="mt-8 flex flex-col gap-3">
+				<p className="text-fg font-medium">More brand logos</p>
+				<div className="grid grid-cols-3 gap-2 sm:grid-cols-6 md:grid-cols-12">
+					{moreLogos.map((item) => (
+						<Button
+							key={item.id}
+							size="md"
+							color="neutral"
+							variant="outline"
+							onClick={() => onSelectBrand(item.id)}
+							className="bg-bg hover:bg-bg aspect-square size-full p-2">
+							<img
+								src={getBrandLogoDisplayUrl(
+									item.id,
+									activeTheme,
+									dialogColorway,
+									"icon"
+								)}
+								alt={item.name}
+								width={24}
+								height={24}
+								className="size-7 object-contain"
+							/>
+						</Button>
+					))}
+				</div>
+			</div>
+		</>
+	)
+
+	return mobile ? (
+		<ResourceDetailsDrawer
+			open={open}
+			onOpenChange={onOpenChange}
+			header={
+				<>
+					<DrawerTitle className="min-w-0 truncate">{title}</DrawerTitle>
+					<DrawerDescription className="sr-only">
+						{description}
+					</DrawerDescription>
+				</>
+			}>
+			<div className="p-4 pb-[max(16px,env(safe-area-inset-bottom))]">
+				{content}
+			</div>
+		</ResourceDetailsDrawer>
+	) : (
+		<Dialog open={open} onOpenChange={onOpenChange}>
+			<DialogContent className="max-h-[calc(100dvh-8px)] w-[calc(100%-8px)] max-w-[1000px] gap-0 overflow-hidden rounded-xl p-0 sm:max-w-[1000px]">
+				<DialogDescription className="sr-only">{description}</DialogDescription>
+				<ScrollArea
+					className="min-h-0 [&_[data-slot=scroll-area-viewport]]:max-h-[calc(100dvh-8px)]"
+					type="auto">
+					<div className="p-6">{content}</div>
+				</ScrollArea>
 			</DialogContent>
 		</Dialog>
 	)

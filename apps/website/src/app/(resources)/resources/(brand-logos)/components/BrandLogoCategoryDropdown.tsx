@@ -1,13 +1,15 @@
 "use client"
 
-import { useRef, useState } from "react"
+import { Fragment, useLayoutEffect, useRef, useState } from "react"
 import type { LucideIcon } from "lucide-react"
 import {
+	ArrowLeft,
 	BadgeIcon,
 	Bot,
 	Boxes,
 	BriefcaseBusiness,
 	ChevronDown,
+	ChevronRight,
 	Cloud,
 	Code2,
 	Cpu,
@@ -30,6 +32,7 @@ import {
 	DropdownMenuContent,
 	DropdownMenuDivider,
 	DropdownMenuLabel,
+	DropdownMenuItem,
 	DropdownMenuRadioGroup,
 	DropdownMenuRadioItem,
 	DropdownMenuSub,
@@ -37,6 +40,7 @@ import {
 	DropdownMenuSubTrigger,
 	DropdownMenuTrigger,
 } from "@/registry/ui/dropdown-menu"
+import { useMobileResourceLayout } from "../../components/ResourceDetailsDrawer"
 import type { BrandLogoColorway, BrandLogoVariant } from "./brand-logos-data"
 import { ALL_BRAND_LOGO_CATEGORY } from "./brand-logos-data"
 import { useBrandLogoCatalog } from "./BrandLogoCatalogProvider"
@@ -76,28 +80,174 @@ export function BrandLogoCategoryDropdown({
 	className,
 }: BrandLogoCategoryDropdownProps) {
 	const { brandLogoCategories, brandLogos } = useBrandLogoCatalog()
+	const mobile = useMobileResourceLayout()
 	const [open, setOpen] = useState(false)
-	const triggerRef = useRef<HTMLButtonElement>(null)
+	const [section, setSection] = useState<string | null>(null)
+	const focusedMenuItem = useRef<HTMLDivElement>(null)
+	const navigated = useRef(false)
+	const categoryChanged = useRef(false)
 
 	const activeCategory = brandLogoCategories.find(
 		(category) => category.slug === value
 	)
 	const label = activeCategory?.label ?? ALL_BRAND_LOGO_CATEGORY
-	const ActiveIcon = activeCategory
-		? (categoryIcons[activeCategory.slug] ?? LayoutGrid)
-		: LayoutGrid
-	const VariantIcon = variant === "wordmark" ? RectangleHorizontal : BadgeIcon
 
-	const handleValueChange = (nextValue: string) => {
-		onValueChange(nextValue)
-		setOpen(false)
+	const handleOpenChange = (nextOpen: boolean) => {
+		setOpen(nextOpen)
+		if (!nextOpen) {
+			setSection(null)
+			navigated.current = false
+		}
 	}
 
+	const handleValueChange = (nextValue: string) => {
+		categoryChanged.current = true
+		onValueChange(nextValue)
+		handleOpenChange(false)
+	}
+
+	useLayoutEffect(() => {
+		if (mobile && open && navigated.current) focusedMenuItem.current?.focus()
+	}, [mobile, open, section])
+
+	const categories = (
+		<ScrollArea className="w-full pr-1.5 [&_[data-slot=scroll-area-viewport]]:max-h-[min(18rem,calc(var(--radix-dropdown-menu-content-available-height)-3.5rem))]">
+			<DropdownMenuRadioGroup value={value} onValueChange={handleValueChange}>
+				<DropdownMenuRadioItem
+					value={ALL_BRAND_LOGO_CATEGORY}
+					className="h-8.5">
+					<LayoutGrid className="text-fg-secondary size-4 shrink-0" />
+					<span className="flex-1 text-sm font-medium whitespace-nowrap">
+						{ALL_BRAND_LOGO_CATEGORY}
+					</span>
+					<span className="text-fg-tertiary shrink-0 text-xs tabular-nums">
+						{brandLogos.length}
+					</span>
+				</DropdownMenuRadioItem>
+				<DropdownMenuDivider />
+				{brandLogoCategories.map((category) => {
+					const Icon = categoryIcons[category.slug] ?? LayoutGrid
+					return (
+						<DropdownMenuRadioItem
+							key={category.slug}
+							value={category.slug}
+							className="h-8.5">
+							<Icon className="text-fg-secondary size-4 shrink-0" />
+							<span className="flex-1 text-sm font-medium whitespace-nowrap">
+								{category.label}
+							</span>
+							<span className="text-fg-tertiary shrink-0 text-xs tabular-nums">
+								{category.count}
+							</span>
+						</DropdownMenuRadioItem>
+					)
+				})}
+			</DropdownMenuRadioGroup>
+		</ScrollArea>
+	)
+	const sections = [
+		{
+			label: "Category",
+			heading: "Categories",
+			selected: label,
+			icon: categoryIcons[activeCategory?.slug ?? ""] ?? LayoutGrid,
+			width: "w-76",
+			options: categories,
+		},
+		...(variant && onVariantChange
+			? [
+					{
+						label: "Variant",
+						heading: "Logo variant",
+						selected: variant,
+						icon: variant === "wordmark" ? RectangleHorizontal : BadgeIcon,
+						width: "w-60",
+						options: (
+							<DropdownMenuRadioGroup
+								value={variant}
+								onValueChange={(val) => {
+									onVariantChange(val as BrandLogoVariant)
+									handleOpenChange(false)
+								}}>
+								<DropdownMenuRadioItem value="icon" className="h-8.5">
+									<BadgeIcon className="text-fg-secondary size-4 shrink-0" />
+									<span className="flex-1 text-sm font-medium whitespace-nowrap">
+										Icon (24×24)
+									</span>
+								</DropdownMenuRadioItem>
+								<DropdownMenuRadioItem value="wordmark" className="h-8.5">
+									<RectangleHorizontal className="text-fg-secondary size-4 shrink-0" />
+									<span className="flex-1 text-sm font-medium whitespace-nowrap">
+										Wordmark (180×48)
+									</span>
+								</DropdownMenuRadioItem>
+							</DropdownMenuRadioGroup>
+						),
+					},
+				]
+			: []),
+		...(variant && onVariantChange && colorway && onColorwayChange
+			? [
+					{
+						label: "Colorway",
+						heading: "Colorway",
+						selected: colorway,
+						icon: colorway === "colored" ? Palette : SunMoon,
+						width: "w-52",
+						options: (
+							<DropdownMenuRadioGroup
+								value={colorway}
+								onValueChange={(val) => {
+									onColorwayChange(val as BrandLogoColorway)
+									handleOpenChange(false)
+								}}>
+								<DropdownMenuRadioItem value="colored" className="h-8.5">
+									<Palette className="text-fg-secondary size-4 shrink-0" />
+									<span className="flex-1 text-sm font-medium whitespace-nowrap">
+										Colored
+									</span>
+								</DropdownMenuRadioItem>
+								<DropdownMenuRadioItem value="neutral" className="h-8.5">
+									<SunMoon className="text-fg-secondary size-4 shrink-0" />
+									<span className="flex-1 text-sm font-medium whitespace-nowrap">
+										Neutral
+									</span>
+								</DropdownMenuRadioItem>
+							</DropdownMenuRadioGroup>
+						),
+					},
+				]
+			: []),
+	]
+	const activeSection = sections.find((item) => item.label === section)
+	const navigate = (nextSection: string | null) => (event: Event) => {
+		event.preventDefault()
+		navigated.current = true
+		setSection(nextSection)
+	}
+	const sectionRow = ({
+		icon: Icon,
+		label,
+		selected,
+	}: (typeof sections)[number]) => (
+		<>
+			<Icon className="text-fg-secondary size-4 shrink-0" />
+			<span className="flex-1 text-sm font-medium whitespace-nowrap">
+				{label}
+			</span>
+			<span className="text-fg-secondary max-w-32 truncate text-xs capitalize">
+				{selected}
+			</span>
+		</>
+	)
+
 	return (
-		<DropdownMenu open={open} onOpenChange={setOpen} indicatorPosition="right">
+		<DropdownMenu
+			open={open}
+			onOpenChange={handleOpenChange}
+			indicatorPosition="right">
 			<DropdownMenuTrigger asChild>
 				<Button
-					ref={triggerRef}
 					size="xl"
 					color="neutral"
 					variant="outline"
@@ -106,207 +256,65 @@ export function BrandLogoCategoryDropdown({
 						className
 					)}
 					aria-label="Filter brand logos">
-					<Filter className="size-4" />
+					<Filter />
 					<span>Filter</span>
 					<ChevronDown aria-hidden="true" />
 				</Button>
 			</DropdownMenuTrigger>
-
 			<DropdownMenuContent
-				className={cn(variant ? "w-68 p-1.5" : "w-76 p-1.5")}
-				onCloseAutoFocus={(event) => event.preventDefault()}
-				onPointerDownOutside={(event) => {
-					const originalTarget = (event.detail?.originalEvent?.target ??
-						event.target) as Node | null
-					if (originalTarget && triggerRef.current?.contains(originalTarget)) {
-						event.preventDefault()
-					}
+				className={
+					mobile || sections.length === 1
+						? "w-76 max-w-[calc(100vw-1rem)]"
+						: "w-68"
+				}
+				onCloseAutoFocus={(event) => {
+					if (categoryChanged.current) event.preventDefault()
+					categoryChanged.current = false
 				}}>
-				{variant && onVariantChange ? (
+				{sections.length === 1 ? (
 					<>
-						<DropdownMenuSub>
-							<DropdownMenuSubTrigger className="h-9 gap-2.5 px-2.5">
-								<ActiveIcon className="text-fg-secondary size-4 shrink-0" />
-								<span className="flex-1 text-sm font-medium whitespace-nowrap">
-									Category
-								</span>
-								<span className="text-fg-secondary max-w-32 truncate text-xs">
-									{label}
-								</span>
-							</DropdownMenuSubTrigger>
-							<DropdownMenuSubContent className="w-76 p-1.5">
-								<DropdownMenuLabel className="text-fg-tertiary px-2 py-1 text-xs font-medium">
-									Categories
-								</DropdownMenuLabel>
-								<DropdownMenuDivider />
-								<ScrollArea className="h-72 w-full pr-1.5">
-									<DropdownMenuRadioGroup
-										value={value}
-										onValueChange={handleValueChange}>
-										<DropdownMenuRadioItem
-											value={ALL_BRAND_LOGO_CATEGORY}
-											className="h-8.5">
-											<LayoutGrid className="text-fg-secondary size-4 shrink-0" />
-											<span className="flex-1 text-sm font-medium whitespace-nowrap">
-												{ALL_BRAND_LOGO_CATEGORY}
-											</span>
-											<span className="text-fg-tertiary shrink-0 text-xs tabular-nums">
-												{brandLogos.length}
-											</span>
-										</DropdownMenuRadioItem>
-										<DropdownMenuDivider />
-										{brandLogoCategories.map((category) => {
-											const Icon = categoryIcons[category.slug] ?? LayoutGrid
-											return (
-												<DropdownMenuRadioItem
-													key={category.slug}
-													value={category.slug}
-													className="h-8.5">
-													<Icon className="text-fg-secondary size-4 shrink-0" />
-													<span className="flex-1 text-sm font-medium whitespace-nowrap">
-														{category.label}
-													</span>
-													<span className="text-fg-tertiary shrink-0 text-xs tabular-nums">
-														{category.count}
-													</span>
-												</DropdownMenuRadioItem>
-											)
-										})}
-									</DropdownMenuRadioGroup>
-								</ScrollArea>
-							</DropdownMenuSubContent>
-						</DropdownMenuSub>
-
+						<DropdownMenuLabel>Categories</DropdownMenuLabel>
 						<DropdownMenuDivider />
-
-						<DropdownMenuSub>
-							<DropdownMenuSubTrigger className="h-9 gap-2.5 px-2.5">
-								<VariantIcon className="text-fg-secondary size-4 shrink-0" />
-								<span className="flex-1 text-sm font-medium whitespace-nowrap">
-									Variant
-								</span>
-								<span className="text-fg-secondary text-xs capitalize">
-									{variant}
-								</span>
-							</DropdownMenuSubTrigger>
-							<DropdownMenuSubContent className="w-60 p-1.5">
-								<DropdownMenuLabel className="text-fg-tertiary px-2 py-1 text-xs font-medium">
-									Logo variant
-								</DropdownMenuLabel>
-								<DropdownMenuDivider />
-								<DropdownMenuRadioGroup
-									value={variant}
-									onValueChange={(val) => {
-										onVariantChange(val as BrandLogoVariant)
-										setOpen(false)
-									}}>
-									<DropdownMenuRadioItem value="icon" className="h-8.5">
-										<BadgeIcon className="text-fg-secondary size-4 shrink-0" />
-										<span className="flex-1 text-sm font-medium whitespace-nowrap">
-											Icon (24×24)
-										</span>
-									</DropdownMenuRadioItem>
-									<DropdownMenuRadioItem value="wordmark" className="h-8.5">
-										<RectangleHorizontal className="text-fg-secondary size-4 shrink-0" />
-										<span className="flex-1 text-sm font-medium whitespace-nowrap">
-											Wordmark (180×48)
-										</span>
-									</DropdownMenuRadioItem>
-								</DropdownMenuRadioGroup>
-							</DropdownMenuSubContent>
-						</DropdownMenuSub>
-
-						{colorway && onColorwayChange && (
-							<>
-								<DropdownMenuDivider />
-								<DropdownMenuSub>
-									<DropdownMenuSubTrigger className="h-9 gap-2.5 px-2.5">
-										{colorway === "colored" ? (
-											<Palette className="text-fg-secondary size-4 shrink-0" />
-										) : (
-											<SunMoon className="text-fg-secondary size-4 shrink-0" />
-										)}
-										<span className="flex-1 text-sm font-medium whitespace-nowrap">
-											Colorway
-										</span>
-										<span className="text-fg-secondary text-xs capitalize">
-											{colorway}
-										</span>
-									</DropdownMenuSubTrigger>
-									<DropdownMenuSubContent className="w-52 p-1.5">
-										<DropdownMenuLabel className="text-fg-tertiary px-2 py-1 text-xs font-medium">
-											Colorway
-										</DropdownMenuLabel>
-										<DropdownMenuDivider />
-										<DropdownMenuRadioGroup
-											value={colorway}
-											onValueChange={(val) => {
-												onColorwayChange(val as BrandLogoColorway)
-												setOpen(false)
-											}}>
-											<DropdownMenuRadioItem value="colored" className="h-8.5">
-												<Palette className="text-fg-secondary size-4 shrink-0" />
-												<span className="flex-1 text-sm font-medium whitespace-nowrap">
-													Colored
-												</span>
-											</DropdownMenuRadioItem>
-											<DropdownMenuRadioItem value="neutral" className="h-8.5">
-												<SunMoon className="text-fg-secondary size-4 shrink-0" />
-												<span className="flex-1 text-sm font-medium whitespace-nowrap">
-													Neutral
-												</span>
-											</DropdownMenuRadioItem>
-										</DropdownMenuRadioGroup>
-									</DropdownMenuSubContent>
-								</DropdownMenuSub>
-							</>
-						)}
+						{categories}
+					</>
+				) : mobile && activeSection ? (
+					<>
+						<DropdownMenuItem
+							ref={focusedMenuItem}
+							onSelect={navigate(null)}
+							aria-label="Back to filters">
+							<ArrowLeft aria-hidden="true" />
+							{activeSection.heading}
+						</DropdownMenuItem>
+						<DropdownMenuDivider />
+						{activeSection.options}
 					</>
 				) : (
-					<>
-						<DropdownMenuLabel className="text-fg-tertiary px-2 py-1 text-xs font-medium">
-							Categories
-						</DropdownMenuLabel>
-						<DropdownMenuDivider />
-						<ScrollArea className="h-72 w-full pr-1.5">
-							<DropdownMenuRadioGroup
-								value={value}
-								onValueChange={handleValueChange}>
-								<DropdownMenuRadioItem
-									value={ALL_BRAND_LOGO_CATEGORY}
-									className="h-8.5"
-									onSelect={() => handleValueChange(ALL_BRAND_LOGO_CATEGORY)}>
-									<LayoutGrid className="text-fg-secondary size-4 shrink-0" />
-									<span className="flex-1 text-sm font-medium whitespace-nowrap">
-										{ALL_BRAND_LOGO_CATEGORY}
-									</span>
-									<span className="text-fg-tertiary shrink-0 text-xs tabular-nums">
-										{brandLogos.length}
-									</span>
-								</DropdownMenuRadioItem>
-								<DropdownMenuDivider />
-								{brandLogoCategories.map((category) => {
-									const Icon = categoryIcons[category.slug] ?? LayoutGrid
-
-									return (
-										<DropdownMenuRadioItem
-											key={category.slug}
-											value={category.slug}
-											className="h-8.5"
-											onSelect={() => handleValueChange(category.slug)}>
-											<Icon className="text-fg-secondary size-4 shrink-0" />
-											<span className="flex-1 text-sm font-medium whitespace-nowrap">
-												{category.label}
-											</span>
-											<span className="text-fg-tertiary shrink-0 text-xs tabular-nums">
-												{category.count}
-											</span>
-										</DropdownMenuRadioItem>
-									)
-								})}
-							</DropdownMenuRadioGroup>
-						</ScrollArea>
-					</>
+					sections.map((item, index) => (
+						<Fragment key={item.label}>
+							{index > 0 && <DropdownMenuDivider />}
+							{mobile ? (
+								<DropdownMenuItem
+									ref={index === 0 ? focusedMenuItem : undefined}
+									onSelect={navigate(item.label)}
+									className="h-9 gap-2.5 px-2.5">
+									{sectionRow(item)}
+									<ChevronRight aria-hidden="true" />
+								</DropdownMenuItem>
+							) : (
+								<DropdownMenuSub>
+									<DropdownMenuSubTrigger className="h-9 gap-2.5 px-2.5">
+										{sectionRow(item)}
+									</DropdownMenuSubTrigger>
+									<DropdownMenuSubContent className={item.width}>
+										<DropdownMenuLabel>{item.heading}</DropdownMenuLabel>
+										<DropdownMenuDivider />
+										{item.options}
+									</DropdownMenuSubContent>
+								</DropdownMenuSub>
+							)}
+						</Fragment>
+					))
 				)}
 			</DropdownMenuContent>
 		</DropdownMenu>

@@ -41,11 +41,6 @@ import { ComponentSettingsPopover } from "./components-settings-popover"
 
 const components = [...COMPONENTS_DATA].sort((a, b) => a.localeCompare(b))
 
-const inheritedSettings = {
-	Button: ["radius"],
-	Badge: ["radius"],
-} as const
-
 export function ThemerSidebar() {
 	const [selectedComponent, setSelectedComponent] = useState("Button")
 	const [params, setParams] = useThemerPreset()
@@ -209,13 +204,9 @@ export function ThemerSidebar() {
 							<SidebarGroup className="py-3">
 								<SidebarMenu>
 									{components.map((name) => {
-										const inheritsThemerSettings =
-											params.style === "default" &&
+										const hasOverrides =
 											(name === "Button" || name === "Badge") &&
-											inheritedSettings[name].some(
-												(setting) =>
-													params.components[name]?.[setting] === undefined
-											)
+											params.components[name] !== undefined
 										const item = (
 											<SidebarMenuButton
 												type="button"
@@ -227,14 +218,14 @@ export function ThemerSidebar() {
 												<Component className="size-4" aria-hidden="true" />
 												<span className="flex items-center gap-1">
 													{name}
-													{inheritsThemerSettings && (
+													{hasOverrides && (
 														<>
 															<span
 																aria-hidden="true"
 																className="bg-primary size-[5px] shrink-0 rounded-full"
 															/>
 															<span className="sr-only">
-																Uses Themer defaults
+																Has component overrides
 															</span>
 														</>
 													)}

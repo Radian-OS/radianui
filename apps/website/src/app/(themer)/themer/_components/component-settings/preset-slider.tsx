@@ -9,7 +9,6 @@ export function PresetSlider<T extends string>({
 	defaultLabel,
 	defaultValue,
 	presetValue,
-	showActive = false,
 }: {
 	label: string
 	options: readonly T[]
@@ -18,10 +17,8 @@ export function PresetSlider<T extends string>({
 	defaultLabel: string
 	defaultValue: number | undefined
 	presetValue: (preset: T) => number
-	showActive?: boolean
 }) {
 	const isInherited = value === undefined
-	const isMuted = isInherited && !showActive
 	const measured = defaultValue !== undefined && !Number.isNaN(defaultValue)
 	const closestPreset = measured
 		? options.reduce((closest, preset) => {
@@ -49,7 +46,9 @@ export function PresetSlider<T extends string>({
 				<span
 					className={cn(
 						"text-[13px]",
-						isMuted ? "text-fg-secondary font-normal" : "text-fg font-medium"
+						isInherited
+							? "text-fg-secondary font-normal"
+							: "text-fg font-medium"
 					)}>
 					{valueLabel}
 				</span>
@@ -65,7 +64,7 @@ export function PresetSlider<T extends string>({
 				}}
 				classNames={{
 					sliderTrack: "border-border bg-fill2 h-4 border",
-					sliderRange: isMuted ? "bg-fg-tertiary/30" : undefined,
+					sliderRange: isInherited ? "bg-fg-tertiary/30" : undefined,
 				}}>
 				<span
 					aria-hidden="true"
@@ -87,7 +86,7 @@ export function PresetSlider<T extends string>({
 					}}
 					className={cn(
 						"border-bg z-10 size-4 border-[3px] shadow-sm transition-all focus-visible:ring-2 focus-visible:ring-offset-2",
-						isMuted
+						isInherited
 							? "border-border bg-fill3 hover:bg-primary/50"
 							: "bg-primary border-bg focus-visible:ring-primary focus-visible:ring-offset-bg"
 					)}
