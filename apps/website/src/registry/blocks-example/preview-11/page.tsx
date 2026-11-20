@@ -1,6 +1,7 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useState, useRef } from "react"
+import { motion } from "motion/react"
 import { IconSlot } from "@/registry/icon/icon-library"
 import RadianLogo from "@/registry/blocks-example/signup/components/radian-logo"
 import {
@@ -570,6 +571,10 @@ export default function Preview11Page() {
 }
 
 export function FrameworkProgressChart() {
+	const svgRef = useRef<SVGSVGElement>(null)
+	const [activePointIndex, setActivePointIndex] = useState<number>(1) // Default to Feb 6 (43%)
+	const [isHovered, setIsHovered] = useState<boolean>(false)
+
 	// Y-axis grid coordinates spanning full chart height (0% to 100%)
 	const gridLines = [
 		{ label: "100%", y: 28 },
@@ -601,6 +606,30 @@ export function FrameworkProgressChart() {
 		{ x: 475, y: 88.0 },
 	]
 
+	const activePoint = datePoints[activePointIndex] ?? datePoints[1]
+
+	const handlePointerMove = (e: React.PointerEvent<SVGSVGElement>) => {
+		if (!svgRef.current) return
+		const rect = svgRef.current.getBoundingClientRect()
+		const mouseX = ((e.clientX - rect.left) / rect.width) * 500
+		let closestIndex = 0
+		let minDiff = Infinity
+		datePoints.forEach((pt, i) => {
+			const diff = Math.abs(pt.x - mouseX)
+			if (diff < minDiff) {
+				minDiff = diff
+				closestIndex = i
+			}
+		})
+		setActivePointIndex(closestIndex)
+		setIsHovered(true)
+	}
+
+	const handlePointerLeave = () => {
+		setIsHovered(false)
+		setActivePointIndex(1) // Return to Feb 6 milestone
+	}
+
 	return (
 		<Card className="bg-fill1/40 border-border/70 flex h-full flex-col gap-0 overflow-hidden rounded-xl p-0 py-0 shadow-none">
 			<CardHeader className="border-border/60 flex items-center justify-between gap-0 border-b px-5 py-4">
@@ -622,8 +651,11 @@ export function FrameworkProgressChart() {
 			<CardContent className="flex flex-1 flex-col p-0 px-4 pt-3 pb-4">
 				<div className="relative flex h-full min-h-[300px] flex-1 select-none">
 					<svg
+						ref={svgRef}
 						viewBox="0 0 500 300"
-						className="size-full overflow-visible"
+						onPointerMove={handlePointerMove}
+						onPointerLeave={handlePointerLeave}
+						className="size-full cursor-crosshair overflow-visible"
 						preserveAspectRatio="none">
 						<defs>
 							<linearGradient
@@ -671,18 +703,26 @@ export function FrameworkProgressChart() {
 						))}
 
 						{/* X-axis date labels */}
-						{datePoints.map((date) => (
-							<text
-								key={date.label}
-								x={date.x}
-								y="290"
-								textAnchor="middle"
-								fill="var(--color-fg-secondary)"
-								fontSize="11"
-								fontWeight="400">
-								{date.label}
-							</text>
-						))}
+						{datePoints.map((date, i) => {
+							const isCurrent = i === activePointIndex
+							return (
+								<text
+									key={date.label}
+									x={date.x}
+									y="290"
+									textAnchor="middle"
+									fill={
+										isCurrent
+											? "var(--color-primary)"
+											: "var(--color-fg-secondary)"
+									}
+									fontSize="11"
+									fontWeight={isCurrent ? "600" : "400"}
+									className="transition-colors duration-150">
+									{date.label}
+								</text>
+							)
+						})}
 
 						{/* Shaded area under the entire curve */}
 						<path
@@ -722,41 +762,76 @@ export function FrameworkProgressChart() {
 							/>
 						))}
 
-						{/* Milestone indicator at Feb 6 */}
-						<g>
-							<line
-								x1="115"
-								y1="268"
-								x2="115"
-								y2="164.8"
+						{/* Interactive active indicator line and callout */}
+						<g pointerEvents="none">
+							{/* Vertical dashed line from bottom (y=268) up to curve point */}
+							<motion.line
+								initial={false}
+								animate={{
+									x1: activePoint.x,
+									y1: 268,
+									x2: activePoint.x,
+									y2: activePoint.y,
+								}}
+								transition={{ type: "spring", stiffness: 450, damping: 35 }}
 								stroke="var(--color-primary)"
 								strokeWidth="1.5"
 								strokeDasharray="3 3"
 							/>
 
-							<circle
-								cx="115"
-								cy="164.8"
+							{/* Outer glowing halo ring on the active point */}
+							<motion.circle
+								initial={false}
+								animate={{
+									cx: activePoint.x,
+									cy: activePoint.y,
+									r: isHovered ? 9 : 6.5,
+								}}
+								transition={{ type: "spring", stiffness: 450, damping: 35 }}
+								fill="var(--color-primary)"
+								opacity="0.2"
+							/>
+
+							{/* Active milestone dot on the curve */}
+							<motion.circle
+								initial={false}
+								animate={{
+									cx: activePoint.x,
+									cy: activePoint.y,
+								}}
+								transition={{ type: "spring", stiffness: 450, damping: 35 }}
 								r="4.5"
 								fill="var(--color-primary)"
 								stroke="var(--color-bg)"
 								strokeWidth="2"
 							/>
 
-							<line
-								x1="115"
-								y1="164.8"
-								x2="115"
-								y2="48"
+							{/* Vertical solid line from milestone point up to callout badge */}
+							<motion.line
+								initial={false}
+								animate={{
+									x1: activePoint.x,
+									y1: activePoint.y,
+									x2: activePoint.x,
+									y2: 48,
+								}}
+								transition={{ type: "spring", stiffness: 450, damping: 35 }}
 								stroke="var(--color-primary)"
 								strokeWidth="1.5"
 							/>
 
-							<g transform="translate(115, 36)">
+							{/* Callout Pill Badge showing exact percentage */}
+							<motion.g
+								initial={false}
+								animate={{
+									x: activePoint.x,
+									y: 36,
+								}}
+								transition={{ type: "spring", stiffness: 450, damping: 35 }}>
 								<rect
-									x="-18"
+									x="-19"
 									y="-11"
-									width="36"
+									width="38"
 									height="22"
 									rx="6"
 									fill="var(--color-primary-accent)"
@@ -770,9 +845,9 @@ export function FrameworkProgressChart() {
 									fill="var(--color-primary-text)"
 									fontSize="11"
 									fontWeight="600">
-									43%
+									{activePoint.rate}%
 								</text>
-							</g>
+							</motion.g>
 						</g>
 					</svg>
 				</div>
