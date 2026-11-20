@@ -209,7 +209,6 @@ const CHANNEL_OPTIONS = [
 
 export default function Page() {
 	const [activeNav, setActiveNav] = useState("Analytics")
-	const [activeSubNav, setActiveSubNav] = useState("Reports")
 	const [channel, setChannel] = useState("All channels")
 	const [timeRange, setTimeRange] = useState("Last 30 days")
 	const [compareOption, setCompareOption] = useState("Previous period")
@@ -314,24 +313,14 @@ export default function Page() {
 												<SidebarMenuSubItem>
 													<SidebarMenuSubButton
 														size="xs"
-														isActive={activeSubNav === "Reports"}
-														onClick={() => {
-															setActiveNav("Analytics")
-															setActiveSubNav("Reports")
-														}}
-														className="text-fg-secondary h-6 text-xs">
+														className="text-fg-secondary hover:text-sidebar-fg h-6 cursor-pointer text-xs">
 														<span>Reports</span>
 													</SidebarMenuSubButton>
 												</SidebarMenuSubItem>
 												<SidebarMenuSubItem>
 													<SidebarMenuSubButton
 														size="xs"
-														isActive={activeSubNav === "Live view"}
-														onClick={() => {
-															setActiveNav("Analytics")
-															setActiveSubNav("Live view")
-														}}
-														className="text-fg-secondary h-6 text-xs">
+														className="text-fg-secondary hover:text-sidebar-fg h-6 cursor-pointer text-xs">
 														<span>Live view</span>
 													</SidebarMenuSubButton>
 												</SidebarMenuSubItem>
