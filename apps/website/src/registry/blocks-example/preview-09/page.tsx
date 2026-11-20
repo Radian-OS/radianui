@@ -268,23 +268,23 @@ export default function Page() {
 							</IconButton>
 						</SidebarHeader>
 
-						{/* Quick Actions Search Trigger */}
-						<div className="px-2 pb-1.5">
-							<Button
-								variant="outline"
-								color="neutral"
-								size="sm"
-								className="border-border/70 bg-elevation-level1 hover:bg-fill1/80 text-sidebar-fg h-8 w-full justify-between px-2 text-sm font-medium shadow-2xs">
-								<div className="flex items-center gap-2">
-									<span className="text-sidebar-fg font-medium">⌘</span>
-									<span>Quick actions</span>
-								</div>
-								<kbd className="text-fg-secondary font-mono text-xs">K</kbd>
-							</Button>
-						</div>
-
 						{/* Navigation Content */}
-						<SidebarContent className="px-2 py-1">
+						<SidebarContent className="space-y-1 px-2 py-2">
+							{/* Quick Actions Search Trigger */}
+							<div className="pb-1">
+								<Button
+									variant="outline"
+									color="neutral"
+									size="sm"
+									className="border-border/70 bg-elevation-level1 hover:bg-fill1/80 text-sidebar-fg h-8 w-full justify-between px-2 text-sm font-medium shadow-2xs">
+									<div className="flex items-center gap-2">
+										<span className="text-sidebar-fg font-medium">⌘</span>
+										<span>Quick actions</span>
+									</div>
+									<kbd className="text-fg-secondary font-mono text-xs">K</kbd>
+								</Button>
+							</div>
+
 							<SidebarGroup className="p-0">
 								<SidebarGroupContent>
 									<SidebarMenu>
@@ -306,7 +306,7 @@ export default function Page() {
 												<IconSlot slot="bar-chart" className="size-4" />
 												<span>Analytics</span>
 											</SidebarMenuButton>
-											<SidebarMenuSub className="ml-6 space-y-0.5 border-none p-0">
+											<SidebarMenuSub className="border-border/60 my-1 ml-5 space-y-0.5 border-l pl-2">
 												<SidebarMenuSubItem>
 													<SidebarMenuSubButton
 														size="sm"
@@ -471,8 +471,8 @@ export default function Page() {
 						</SidebarContent>
 
 						{/* Footer with Getting Started and Plan details */}
-						<SidebarFooter className="space-y-2 p-2">
-							<Card className="border-border/60 bg-elevation-level1 flex flex-row items-center justify-between gap-0 p-2.5 shadow-2xs">
+						<SidebarFooter className="border-border/50 mt-auto space-y-2 border-t p-2">
+							<Card className="border-border/60 bg-elevation-level1 flex flex-row items-center justify-between gap-0 p-2 shadow-2xs">
 								<div className="flex items-center gap-2">
 									<svg
 										className="size-3.5 shrink-0 -rotate-90"
@@ -505,7 +505,7 @@ export default function Page() {
 								<span className="text-fg-secondary text-xs">1 of 5</span>
 							</Card>
 
-							<div className="flex items-center justify-between px-1 pt-1">
+							<div className="flex items-center justify-between px-2 pt-1">
 								<div className="flex items-center gap-2">
 									<div className="flex size-5 items-center justify-center rounded-md bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900">
 										<IconSlot slot="zap" className="size-3" />
