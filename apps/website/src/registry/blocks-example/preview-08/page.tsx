@@ -16,8 +16,8 @@ import { IconSlot } from "@/registry/icon/icon-library"
 
 import { Button, IconButton } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Card, CardHeader, CardTitle } from "@/styles/default/ui/card"
-import { Avatar, AvatarFallback, AvatarImage } from "@/styles/default/ui/avatar"
+import { Card, CardHeader, CardTitle } from "@/registry/ui/card"
+import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
 import {
 	Sidebar,
 	SidebarContent,
@@ -31,9 +31,9 @@ import {
 	SidebarMenuButton,
 	SidebarMenuItem,
 	SidebarProvider,
-} from "@/styles/default/ui/sidebar"
-import { Checkbox } from "@/styles/default/ui/checkbox"
-import { Input } from "@/styles/default/ui/input"
+} from "@/registry/ui/sidebar"
+import { Checkbox } from "@/registry/ui/checkbox"
+import { Input } from "@/registry/ui/input"
 import { Tabs, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 import {
 	Table,
@@ -42,14 +42,14 @@ import {
 	TableHead,
 	TableHeader,
 	TableRow,
-} from "@/styles/default/ui/table"
+} from "@/registry/ui/table"
 import { type ChartConfig, ChartContainer } from "@/registry/ui/chart"
 import {
 	DropdownMenu,
 	DropdownMenuContent,
 	DropdownMenuItem,
 	DropdownMenuTrigger,
-} from "@/styles/default/ui/dropdown-menu"
+} from "@/registry/ui/dropdown-menu"
 import { cn } from "@/lib/utils"
 
 // ──────────────────────────────────────────────
