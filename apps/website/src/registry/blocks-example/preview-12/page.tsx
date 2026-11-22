@@ -256,7 +256,7 @@ const COVERAGE_DATA: HalfHourColumn[] = [
 			"covered",
 			"covered",
 			"covered",
-			null,
+			"atRisk",
 			null,
 			null,
 			null,
@@ -289,25 +289,6 @@ const COVERAGE_DATA: HalfHourColumn[] = [
 		id: "10:00",
 		time: "10:00 AM",
 		label: "10A",
-		covered: 6,
-		needsCover: 0,
-		cells: [
-			"covered",
-			"covered",
-			"covered",
-			"covered",
-			"covered",
-			"covered",
-			"atRisk",
-			null,
-			null,
-			null,
-		],
-	},
-	{
-		id: "10:30",
-		time: "10:00 AM",
-		label: "",
 		covered: 8,
 		needsCover: 1,
 		assignedName: "Marguerite Holloway",
@@ -322,6 +303,25 @@ const COVERAGE_DATA: HalfHourColumn[] = [
 			"covered",
 			"atRisk",
 			"needsCover",
+			null,
+		],
+	},
+	{
+		id: "10:30",
+		time: "10:30 AM",
+		label: "",
+		covered: 5,
+		needsCover: 1,
+		cells: [
+			"covered",
+			"covered",
+			"covered",
+			"covered",
+			"covered",
+			"needsCover",
+			null,
+			null,
+			null,
 			null,
 		],
 	},
@@ -742,7 +742,7 @@ export default function Preview12Page() {
 	const [activeNav, setActiveNav] = useState("Dashboard")
 	const [selectedArea, setSelectedArea] = useState("All service areas")
 	const [approvedVisits, setApprovedVisits] = useState<Set<string>>(new Set())
-	const [selectedColIndex, setSelectedColIndex] = useState<number>(7)
+	const [selectedColIndex, setSelectedColIndex] = useState<number>(6)
 
 	const toggleApprove = (id: string) => {
 		setApprovedVisits((prev) => {
@@ -1329,18 +1329,18 @@ export default function Preview12Page() {
 							</div>
 
 							{/* ── Lower Section (Coverage & Timeline + Right Alerts/Live) ── */}
-							<div className="grid grid-cols-1 gap-4 lg:grid-cols-12">
+							<div className="grid grid-cols-1 items-stretch gap-4 lg:grid-cols-12">
 								{/* Left: Coverage by Half Hour Timeline Grid (lg:col-span-7) */}
-								<Card className="border-border/60 flex flex-col justify-between rounded-2xl border bg-[#f0f4f9] p-2 shadow-2xs lg:col-span-7 dark:bg-zinc-900/60">
+								<Card className="border-border/60 flex h-full flex-col justify-between rounded-2xl border bg-[#f0f4f9] p-2.5 shadow-2xs lg:col-span-7 dark:bg-zinc-900/60">
 									{/* Top Header & Legend on tinted base */}
-									<div className="flex flex-wrap items-center justify-between gap-3 px-1.5 pt-0.5 pb-1">
-										<div className="text-fg-secondary flex items-center gap-1.5 text-[11px] font-semibold tracking-wider uppercase">
+									<div className="flex flex-wrap items-center justify-between gap-3 px-2 pt-1 pb-1.5">
+										<div className="text-fg-secondary flex items-center gap-1.5 text-xs font-semibold tracking-wider uppercase">
 											<Calendar className="size-3.5" />
 											<span>Coverage by Half Hour</span>
 										</div>
 
 										{/* Legend */}
-										<div className="text-fg-secondary flex flex-wrap items-center gap-3 text-[10px] font-semibold tracking-wider">
+										<div className="text-fg-secondary flex flex-wrap items-center gap-3 text-[10px] font-bold tracking-wider">
 											<div className="flex items-center gap-1.5">
 												<span className="size-2 rounded-xs bg-[#3b82f6]" />
 												<span>COVERED</span>
@@ -1361,16 +1361,18 @@ export default function Preview12Page() {
 									</div>
 
 									{/* Inner Elevated White Card */}
-									<div className="border-border/50 dark:bg-elevation-level1 flex flex-col rounded-xl border bg-white p-4 shadow-2xs">
+									<div className="border-border/50 dark:bg-elevation-level1 flex flex-1 flex-col justify-between rounded-xl border bg-white p-4 shadow-2xs">
 										{/* Sub-header with Metrics & Hint */}
 										<div className="flex flex-wrap items-baseline justify-between gap-2">
 											<div className="flex items-baseline gap-1.5">
-												<span className="heading-3 text-fg">45</span>
-												<span className="text-fg-secondary text-xs">
+												<span className="text-fg text-3xl font-bold tracking-tight">
+													45
+												</span>
+												<span className="text-fg-secondary text-xs font-medium">
 													of 48 visits covered
 												</span>
 											</div>
-											<span className="text-fg-tertiary text-xs">
+											<span className="text-fg-secondary text-xs font-medium">
 												Each square is one visit
 											</span>
 										</div>
@@ -1383,17 +1385,17 @@ export default function Preview12Page() {
 												style={{
 													left: "calc(1.5rem + (3.53 / 24) * (100% - 1.5rem))",
 												}}>
-												<div className="rounded-full bg-zinc-900 px-2 py-0.5 text-[10px] font-bold whitespace-nowrap text-white shadow-xs dark:bg-zinc-100 dark:text-zinc-900">
+												<div className="rounded-[4px] bg-[#0f172a] px-1.5 py-0.5 text-[9px] font-bold tracking-tight whitespace-nowrap text-white shadow-xs dark:bg-zinc-100 dark:text-zinc-900">
 													NOW 8:46
 												</div>
-												<div className="w-[1.5px] flex-1 bg-zinc-800/80 dark:bg-zinc-200/80" />
+												<div className="w-[1px] flex-1 bg-slate-800/90 dark:bg-zinc-200/90" />
 											</div>
 
 											{/* Grid with Y-axis + 24 Columns */}
 											<div className="flex min-w-[560px] items-stretch">
 												{/* Y-axis labels aligned with 10 rows */}
 												<div
-													className="text-fg-tertiary w-6 shrink-0 pr-2 text-right font-mono text-[10px] select-none"
+													className="text-fg-secondary w-6 shrink-0 pr-2 text-right font-mono text-[11px] font-medium select-none"
 													style={{
 														display: "grid",
 														gridTemplateRows: "repeat(10, minmax(0, 1fr))",
@@ -1544,7 +1546,7 @@ export default function Preview12Page() {
 											</div>
 
 											{/* Bottom X-axis Hour Labels */}
-											<div className="flex min-w-[560px] items-center pt-2">
+											<div className="flex min-w-[560px] items-center pt-2.5">
 												<div className="w-6 shrink-0" />
 												<div
 													className="flex-1"
@@ -1556,7 +1558,7 @@ export default function Preview12Page() {
 													{HOURS_LIST.map((hr) => (
 														<span
 															key={hr}
-															className="text-fg-secondary col-span-2 text-center text-[10px] font-medium select-none sm:text-[11px]">
+															className="text-fg-secondary col-span-2 text-center text-xs font-semibold select-none">
 															{hr}
 														</span>
 													))}
@@ -1566,33 +1568,33 @@ export default function Preview12Page() {
 									</div>
 
 									{/* Card Footer on tinted base */}
-									<div className="flex items-center justify-between px-1.5 pt-1.5 pb-0.5">
-										<span className="text-fg-secondary text-[10px] font-semibold tracking-wider uppercase">
+									<div className="flex items-center justify-between px-2 pt-2 pb-0.5">
+										<span className="text-fg-secondary text-xs font-semibold tracking-wider uppercase">
 											PEAK 10:00 AM · 9 VISITS AT ONCE
 										</span>
 										<Button
 											variant="ghost"
 											color="neutral"
 											size="xs"
-											className="text-fg-secondary hover:text-fg h-6 gap-1 px-1.5 text-xs font-medium">
+											className="text-primary hover:text-primary-hover h-6 gap-1 px-1 text-xs font-semibold">
 											<span>Open schedule</span>
-											<ChevronRight className="size-3" />
+											<ChevronRight className="size-3.5" />
 										</Button>
 									</div>
 								</Card>
 
 								{/* Right Column: Needs Attention + Live Visits (lg:col-span-5) */}
-								<div className="flex flex-col gap-4 lg:col-span-5">
+								<div className="flex h-full flex-col justify-between gap-4 lg:col-span-5">
 									{/* Needs Attention Card */}
-									<Card className="border-border/60 flex flex-col gap-2 rounded-2xl border bg-[#f0f4f9] p-2 shadow-2xs dark:bg-zinc-900/60">
+									<Card className="border-border/60 flex flex-1 flex-col justify-between rounded-2xl border bg-[#f0f4f9] p-2.5 shadow-2xs dark:bg-zinc-900/60">
 										{/* Header row on tinted base */}
-										<div className="flex items-center justify-between px-1.5 pt-0.5 pb-0.5">
+										<div className="flex items-center justify-between px-2 pt-0.5 pb-1">
 											<div className="flex items-center gap-1.5">
 												<Flag className="text-fg-secondary size-3.5" />
-												<span className="text-fg-secondary text-[11px] font-semibold tracking-wider uppercase">
+												<span className="text-fg-secondary text-xs font-semibold tracking-wider uppercase">
 													Needs Attention
 												</span>
-												<span className="flex size-4.5 items-center justify-center rounded-full bg-[#f43f5e] text-[10px] font-bold text-white">
+												<span className="flex size-5 items-center justify-center rounded-full bg-[#f43f5e] text-[10px] font-bold text-white">
 													3
 												</span>
 											</div>
@@ -1600,52 +1602,52 @@ export default function Preview12Page() {
 												variant="link"
 												color="neutral"
 												size="xs"
-												className="text-fg-secondary hover:text-fg h-auto p-0 text-xs font-medium">
+												className="text-fg-secondary hover:text-fg h-auto p-0 text-xs font-semibold">
 												All alerts &gt;
 											</Button>
 										</div>
 
 										{/* Inner Elevated White Card */}
-										<div className="border-border/50 dark:bg-elevation-level1 divide-border/40 divide-y overflow-hidden rounded-xl border bg-white shadow-2xs">
+										<div className="border-border/50 dark:bg-elevation-level1 divide-border/40 flex flex-1 flex-col justify-between divide-y overflow-hidden rounded-xl border bg-white shadow-2xs">
 											{NEEDS_ATTENTION.map((item) => {
 												const Icon = item.icon
 												return (
 													<div
 														key={item.id}
-														className="hover:bg-fill1/40 flex items-center justify-between p-3 transition-colors">
+														className="hover:bg-fill1/40 flex flex-1 items-center justify-between px-4 py-3.5 transition-colors">
 														<div className="flex min-w-0 items-center gap-3">
 															<div
 																className={cn(
-																	"flex size-8 shrink-0 items-center justify-center rounded-lg",
+																	"flex size-9 shrink-0 items-center justify-center rounded-xl",
 																	item.iconColor
 																)}>
-																<Icon className="size-4" />
+																<Icon className="size-4.5" />
 															</div>
 															<div className="flex flex-col truncate">
-																<span className="text-fg truncate text-xs font-semibold">
+																<span className="text-fg truncate text-[13px] leading-tight font-semibold">
 																	{item.title}
 																</span>
-																<span className="text-fg-secondary truncate text-[11px]">
+																<span className="text-fg-secondary mt-0.5 truncate text-xs leading-tight">
 																	{item.subtext}
 																</span>
 															</div>
 														</div>
 
-														<div className="flex shrink-0 items-center gap-1.5">
+														<div className="flex shrink-0 items-center gap-1.5 pl-2">
 															{item.hasPhone && (
 																<Button
 																	variant="outline"
 																	color="neutral"
-																	size="xs"
-																	className="size-7.5 shrink-0 p-0">
+																	size="sm"
+																	className="border-border/80 dark:bg-elevation-level1 size-8.5 shrink-0 rounded-lg bg-white p-0 shadow-2xs">
 																	<Phone className="size-3.5" />
 																</Button>
 															)}
 															<Button
 																variant="outline"
 																color="neutral"
-																size="xs"
-																className="h-7.5 px-3 text-xs font-medium">
+																size="sm"
+																className="border-border/80 dark:bg-elevation-level1 h-8.5 shrink-0 rounded-lg bg-white px-3.5 text-xs font-semibold shadow-2xs">
 																{item.action}
 															</Button>
 														</div>
@@ -1656,63 +1658,63 @@ export default function Preview12Page() {
 									</Card>
 
 									{/* Live Visits Card */}
-									<Card className="border-border/60 flex flex-col gap-2 rounded-2xl border bg-[#f0f4f9] p-2 shadow-2xs dark:bg-zinc-900/60">
+									<Card className="border-border/60 flex flex-1 flex-col justify-between rounded-2xl border bg-[#f0f4f9] p-2.5 shadow-2xs dark:bg-zinc-900/60">
 										{/* Header row on tinted base */}
-										<div className="flex items-center justify-between px-1.5 pt-0.5 pb-0.5">
+										<div className="flex items-center justify-between px-2 pt-0.5 pb-1">
 											<div className="flex items-center gap-1.5">
 												<Layers className="text-fg-secondary size-3.5" />
-												<span className="text-fg-secondary text-[11px] font-semibold tracking-wider uppercase">
+												<span className="text-fg-secondary text-xs font-semibold tracking-wider uppercase">
 													Live Visits
 												</span>
 											</div>
-											<div className="border-border/50 dark:bg-elevation-level1 text-fg-secondary flex items-center gap-1.5 rounded-full border bg-white px-2.5 py-0.5 text-[10px] font-semibold shadow-2xs">
+											<div className="border-border/60 dark:bg-elevation-level1 text-fg-secondary flex items-center gap-1.5 rounded-full border bg-white px-3 py-1 text-xs font-semibold shadow-2xs">
 												<span className="size-1.5 rounded-full bg-emerald-500" />
 												<span>3 in progress</span>
 											</div>
 										</div>
 
 										{/* Inner Elevated White Card */}
-										<div className="border-border/50 dark:bg-elevation-level1 divide-border/40 divide-y overflow-hidden rounded-xl border bg-white shadow-2xs">
+										<div className="border-border/50 dark:bg-elevation-level1 divide-border/40 flex flex-1 flex-col justify-between divide-y overflow-hidden rounded-xl border bg-white shadow-2xs">
 											{LIVE_VISITS.map((visit) => (
 												<div
 													key={visit.id}
-													className="hover:bg-fill1/40 flex items-center justify-between p-3 transition-colors">
+													className="hover:bg-fill1/40 flex flex-1 items-center justify-between px-4 py-3.5 transition-colors">
 													<div className="flex min-w-0 items-center gap-3">
 														<Avatar
 															size="sm"
 															rounded="circle"
-															className="border-border shrink-0 border">
+															className="border-border size-9 shrink-0 border">
 															<AvatarImage
 																src={`https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@v1.0.2/packages/uncompressed-avatars/src/${visit.avatar}.png`}
 																alt={visit.name}
 															/>
-															<AvatarFallback className="text-[10px] font-semibold">
+															<AvatarFallback className="text-xs font-semibold">
 																{visit.name.slice(0, 2)}
 															</AvatarFallback>
 														</Avatar>
 														<div className="flex flex-col truncate">
-															<span className="text-fg truncate text-xs font-semibold">
+															<span className="text-fg truncate text-[13px] leading-tight font-semibold">
 																{visit.name}
 															</span>
-															<span className="text-fg-secondary truncate text-[11px]">
+															<span className="text-fg-secondary mt-0.5 truncate text-xs leading-tight">
 																{visit.client}
 															</span>
 														</div>
 													</div>
 
 													<div className="flex shrink-0 flex-col items-end gap-1.5 pl-2">
-														<span className="text-fg-secondary font-mono text-[10px] font-semibold tracking-wider">
+														<span className="text-fg-secondary font-mono text-[11px] font-semibold tracking-wider">
 															{visit.ends}
 														</span>
-														<div className="flex items-center gap-1">
+														<div className="flex items-center gap-[3px]">
 															{Array.from({ length: 10 }).map((_, i) => (
 																<span
 																	key={i}
 																	className={cn(
-																		"size-1.5 rounded-[1.5px]",
+																		"h-2 w-2.5 rounded-[1.5px]",
 																		i < visit.progress
-																			? "bg-blue-500 dark:bg-blue-400"
-																			: "bg-slate-200 dark:bg-zinc-800"
+																			? "bg-[#3b82f6] dark:bg-blue-400"
+																			: "bg-slate-200/90 dark:bg-zinc-800"
 																	)}
 																/>
 															))}
