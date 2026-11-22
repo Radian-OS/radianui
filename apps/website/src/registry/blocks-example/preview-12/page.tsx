@@ -28,6 +28,7 @@ import {
 	Layers,
 	LayoutGrid,
 	Home,
+	Flag,
 } from "lucide-react"
 
 import { Button, IconButton } from "@/components/ui/button"
@@ -669,7 +670,8 @@ const NEEDS_ATTENTION: AlertItem[] = [
 		title: "Running 18 min late",
 		subtext: "Davi to Cornelius V. · ETA 9:18",
 		icon: Clock,
-		iconColor: "text-amber-500 bg-amber-500/10",
+		iconColor:
+			"text-amber-600 bg-amber-100 dark:bg-amber-950/60 dark:text-amber-300",
 		action: "Reassign",
 		hasPhone: true,
 	},
@@ -678,7 +680,8 @@ const NEEDS_ATTENTION: AlertItem[] = [
 		title: "EVV location not verified",
 		subtext: "Hiwot at Josephine Varga · 8:34 AM",
 		icon: MapPin,
-		iconColor: "text-rose-500 bg-rose-500/10",
+		iconColor:
+			"text-rose-600 bg-rose-100 dark:bg-rose-950/60 dark:text-rose-300",
 		action: "Review",
 	},
 	{
@@ -686,7 +689,8 @@ const NEEDS_ATTENTION: AlertItem[] = [
 		title: "Visit note overdue",
 		subtext: "Abena · Ignatius Rourke, ended 8:30",
 		icon: FileText,
-		iconColor: "text-blue-500 bg-blue-500/10",
+		iconColor:
+			"text-blue-600 bg-blue-100 dark:bg-blue-950/60 dark:text-blue-300",
 		action: "Remind",
 	},
 ]
@@ -706,7 +710,7 @@ const LIVE_VISITS: LiveVisitItem[] = [
 		name: "Marisol Quintanar",
 		client: "Thelma Radcliffe · arrived 7:27 AM",
 		ends: "ENDS 9:00",
-		progress: 4,
+		progress: 8,
 		avatar: 1,
 	},
 	{
@@ -714,7 +718,7 @@ const LIVE_VISITS: LiveVisitItem[] = [
 		name: "Noemi Castellano",
 		client: "Edmund Tolliver · arrived 7:58 AM",
 		ends: "ENDS 9:30",
-		progress: 3,
+		progress: 5,
 		avatar: 2,
 	},
 	{
@@ -1326,37 +1330,38 @@ export default function Preview12Page() {
 
 							{/* ── Lower Section (Coverage & Timeline + Right Alerts/Live) ── */}
 							<div className="grid grid-cols-1 gap-4 lg:grid-cols-12">
-								{/* Left: Coverage by Half Hour Timeline Grid (lg:col-span-8) */}
-								<Card className="border-border/60 bg-elevation-level1 flex flex-col justify-between p-5 shadow-2xs lg:col-span-8">
-									<div className="flex flex-col gap-4">
-										{/* Card Header & Legend */}
-										<div className="flex flex-wrap items-center justify-between gap-3">
-											<div className="text-fg-secondary flex items-center gap-1.5 text-[11px] font-semibold tracking-wider uppercase">
-												<Calendar className="size-3.5" />
-												<span>Coverage by Half Hour</span>
-											</div>
-
-											{/* Legend */}
-											<div className="text-fg-secondary flex flex-wrap items-center gap-3 text-[10px] font-semibold tracking-wider">
-												<div className="flex items-center gap-1.5">
-													<span className="size-2.5 rounded-xs bg-[#3b82f6]" />
-													<span>COVERED</span>
-												</div>
-												<div className="flex items-center gap-1.5">
-													<span className="size-2.5 rounded-xs bg-[#9eaeff]" />
-													<span>COMPLETED</span>
-												</div>
-												<div className="flex items-center gap-1.5">
-													<span className="size-2.5 rounded-xs bg-[#f43f5e]" />
-													<span>NEEDS COVER</span>
-												</div>
-												<div className="flex items-center gap-1.5">
-													<span className="size-2.5 rounded-xs bg-[#f59e0b]" />
-													<span>AT RISK</span>
-												</div>
-											</div>
+								{/* Left: Coverage by Half Hour Timeline Grid (lg:col-span-7) */}
+								<Card className="border-border/60 flex flex-col justify-between rounded-2xl border bg-[#f0f4f9] p-2 shadow-2xs lg:col-span-7 dark:bg-zinc-900/60">
+									{/* Top Header & Legend on tinted base */}
+									<div className="flex flex-wrap items-center justify-between gap-3 px-1.5 pt-0.5 pb-1">
+										<div className="text-fg-secondary flex items-center gap-1.5 text-[11px] font-semibold tracking-wider uppercase">
+											<Calendar className="size-3.5" />
+											<span>Coverage by Half Hour</span>
 										</div>
 
+										{/* Legend */}
+										<div className="text-fg-secondary flex flex-wrap items-center gap-3 text-[10px] font-semibold tracking-wider">
+											<div className="flex items-center gap-1.5">
+												<span className="size-2 rounded-xs bg-[#3b82f6]" />
+												<span>COVERED</span>
+											</div>
+											<div className="flex items-center gap-1.5">
+												<span className="size-2 rounded-xs bg-[#9eaeff]" />
+												<span>COMPLETED</span>
+											</div>
+											<div className="flex items-center gap-1.5">
+												<span className="size-2 rounded-xs bg-[#f43f5e]" />
+												<span>NEEDS COVER</span>
+											</div>
+											<div className="flex items-center gap-1.5">
+												<span className="size-2 rounded-xs bg-[#f59e0b]" />
+												<span>AT RISK</span>
+											</div>
+										</div>
+									</div>
+
+									{/* Inner Elevated White Card */}
+									<div className="border-border/50 dark:bg-elevation-level1 flex flex-col rounded-xl border bg-white p-4 shadow-2xs">
 										{/* Sub-header with Metrics & Hint */}
 										<div className="flex flex-wrap items-baseline justify-between gap-2">
 											<div className="flex items-baseline gap-1.5">
@@ -1560,81 +1565,90 @@ export default function Preview12Page() {
 										</div>
 									</div>
 
-									{/* Card Footer */}
-									<div className="border-border/60 mt-4 flex items-center justify-between border-t pt-3">
-										<span className="text-fg-tertiary text-[10px] font-semibold tracking-wider uppercase">
+									{/* Card Footer on tinted base */}
+									<div className="flex items-center justify-between px-1.5 pt-1.5 pb-0.5">
+										<span className="text-fg-secondary text-[10px] font-semibold tracking-wider uppercase">
 											PEAK 10:00 AM · 9 VISITS AT ONCE
 										</span>
 										<Button
 											variant="ghost"
 											color="neutral"
 											size="xs"
-											className="text-primary hover:text-primary-hover gap-1 font-semibold">
+											className="text-fg-secondary hover:text-fg h-6 gap-1 px-1.5 text-xs font-medium">
 											<span>Open schedule</span>
 											<ChevronRight className="size-3" />
 										</Button>
 									</div>
 								</Card>
 
-								{/* Right Column: Needs Attention + Live Visits (lg:col-span-4) */}
-								<div className="flex flex-col gap-4 lg:col-span-4">
+								{/* Right Column: Needs Attention + Live Visits (lg:col-span-5) */}
+								<div className="flex flex-col gap-4 lg:col-span-5">
 									{/* Needs Attention Card */}
-									<Card className="border-border/60 bg-elevation-level1 flex flex-col gap-3 p-4 shadow-2xs">
-										<div className="flex items-center justify-between">
+									<Card className="border-border/60 flex flex-col gap-2 rounded-2xl border bg-[#f0f4f9] p-2 shadow-2xs dark:bg-zinc-900/60">
+										{/* Header row on tinted base */}
+										<div className="flex items-center justify-between px-1.5 pt-0.5 pb-0.5">
 											<div className="flex items-center gap-1.5">
+												<Flag className="text-fg-secondary size-3.5" />
 												<span className="text-fg-secondary text-[11px] font-semibold tracking-wider uppercase">
 													Needs Attention
 												</span>
-												<Badge
-													color="error"
-													variant="strong"
-													size="sm"
-													className="size-4.5 rounded-full p-0 text-[10px] font-bold">
+												<span className="flex size-4.5 items-center justify-center rounded-full bg-[#f43f5e] text-[10px] font-bold text-white">
 													3
-												</Badge>
+												</span>
 											</div>
 											<Button
 												variant="link"
 												color="neutral"
 												size="xs"
-												className="text-fg-secondary hover:text-fg text-xs font-medium">
+												className="text-fg-secondary hover:text-fg h-auto p-0 text-xs font-medium">
 												All alerts &gt;
 											</Button>
 										</div>
 
-										<div className="flex flex-col gap-2.5">
+										{/* Inner Elevated White Card */}
+										<div className="border-border/50 dark:bg-elevation-level1 divide-border/40 divide-y overflow-hidden rounded-xl border bg-white shadow-2xs">
 											{NEEDS_ATTENTION.map((item) => {
 												const Icon = item.icon
 												return (
 													<div
 														key={item.id}
-														className="border-border/50 bg-fill1/40 hover:bg-fill1/70 flex items-center justify-between rounded-lg border p-2.5 transition-colors">
-														<div className="flex min-w-0 items-center gap-2.5">
+														className="hover:bg-fill1/40 flex items-center justify-between p-3 transition-colors">
+														<div className="flex min-w-0 items-center gap-3">
 															<div
 																className={cn(
-																	"flex size-7 shrink-0 items-center justify-center rounded-md",
+																	"flex size-8 shrink-0 items-center justify-center rounded-lg",
 																	item.iconColor
 																)}>
-																<Icon className="size-3.5" />
+																<Icon className="size-4" />
 															</div>
 															<div className="flex flex-col truncate">
-																<span className="text-fg truncate text-xs leading-tight font-semibold">
+																<span className="text-fg truncate text-xs font-semibold">
 																	{item.title}
 																</span>
-																<span className="text-fg-secondary truncate text-[11px] leading-tight">
+																<span className="text-fg-secondary truncate text-[11px]">
 																	{item.subtext}
 																</span>
 															</div>
 														</div>
 
-														<Button
-															variant="outline"
-															color="neutral"
-															size="xs"
-															className="border-border/70 bg-elevation-level1 hover:bg-fill1/80 h-7 shrink-0 gap-1 text-[11px] font-medium shadow-2xs">
-															{item.hasPhone && <Phone className="size-3" />}
-															<span>{item.action}</span>
-														</Button>
+														<div className="flex shrink-0 items-center gap-1.5">
+															{item.hasPhone && (
+																<Button
+																	variant="outline"
+																	color="neutral"
+																	size="xs"
+																	className="size-7.5 shrink-0 p-0">
+																	<Phone className="size-3.5" />
+																</Button>
+															)}
+															<Button
+																variant="outline"
+																color="neutral"
+																size="xs"
+																className="h-7.5 px-3 text-xs font-medium">
+																{item.action}
+															</Button>
+														</div>
 													</div>
 												)
 											})}
@@ -1642,62 +1656,63 @@ export default function Preview12Page() {
 									</Card>
 
 									{/* Live Visits Card */}
-									<Card className="border-border/60 bg-elevation-level1 flex flex-col gap-3 p-4 shadow-2xs">
-										<div className="flex items-center justify-between">
-											<span className="text-fg-secondary text-[11px] font-semibold tracking-wider uppercase">
-												Live Visits
-											</span>
-											<Badge
-												color="success"
-												variant="soft"
-												size="sm"
-												className="gap-1 text-[10px] font-semibold">
-												<span className="size-1.5 animate-pulse rounded-full bg-emerald-500" />
-												3 in progress
-											</Badge>
+									<Card className="border-border/60 flex flex-col gap-2 rounded-2xl border bg-[#f0f4f9] p-2 shadow-2xs dark:bg-zinc-900/60">
+										{/* Header row on tinted base */}
+										<div className="flex items-center justify-between px-1.5 pt-0.5 pb-0.5">
+											<div className="flex items-center gap-1.5">
+												<Layers className="text-fg-secondary size-3.5" />
+												<span className="text-fg-secondary text-[11px] font-semibold tracking-wider uppercase">
+													Live Visits
+												</span>
+											</div>
+											<div className="border-border/50 dark:bg-elevation-level1 text-fg-secondary flex items-center gap-1.5 rounded-full border bg-white px-2.5 py-0.5 text-[10px] font-semibold shadow-2xs">
+												<span className="size-1.5 rounded-full bg-emerald-500" />
+												<span>3 in progress</span>
+											</div>
 										</div>
 
-										<div className="flex flex-col gap-2.5">
+										{/* Inner Elevated White Card */}
+										<div className="border-border/50 dark:bg-elevation-level1 divide-border/40 divide-y overflow-hidden rounded-xl border bg-white shadow-2xs">
 											{LIVE_VISITS.map((visit) => (
 												<div
 													key={visit.id}
-													className="border-border/50 bg-fill1/40 hover:bg-fill1/70 flex items-center justify-between rounded-lg border p-2.5 transition-colors">
-													<div className="flex min-w-0 items-center gap-2.5">
+													className="hover:bg-fill1/40 flex items-center justify-between p-3 transition-colors">
+													<div className="flex min-w-0 items-center gap-3">
 														<Avatar
 															size="sm"
 															rounded="circle"
-															className="border-border border">
+															className="border-border shrink-0 border">
 															<AvatarImage
 																src={`https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@v1.0.2/packages/uncompressed-avatars/src/${visit.avatar}.png`}
 																alt={visit.name}
 															/>
-															<AvatarFallback>
+															<AvatarFallback className="text-[10px] font-semibold">
 																{visit.name.slice(0, 2)}
 															</AvatarFallback>
 														</Avatar>
 														<div className="flex flex-col truncate">
-															<span className="text-fg truncate text-xs leading-tight font-semibold">
+															<span className="text-fg truncate text-xs font-semibold">
 																{visit.name}
 															</span>
-															<span className="text-fg-secondary truncate text-[11px] leading-tight">
+															<span className="text-fg-secondary truncate text-[11px]">
 																{visit.client}
 															</span>
 														</div>
 													</div>
 
-													<div className="flex shrink-0 flex-col items-end gap-1">
-														<span className="text-fg-secondary font-mono text-[10px] font-medium">
+													<div className="flex shrink-0 flex-col items-end gap-1.5 pl-2">
+														<span className="text-fg-secondary font-mono text-[10px] font-semibold tracking-wider">
 															{visit.ends}
 														</span>
 														<div className="flex items-center gap-1">
-															{Array.from({ length: 5 }).map((_, i) => (
+															{Array.from({ length: 10 }).map((_, i) => (
 																<span
 																	key={i}
 																	className={cn(
-																		"h-1.5 w-2 rounded-xs",
+																		"size-1.5 rounded-[1.5px]",
 																		i < visit.progress
-																			? "bg-primary"
-																			: "bg-fill2"
+																			? "bg-blue-500 dark:bg-blue-400"
+																			: "bg-slate-200 dark:bg-zinc-800"
 																	)}
 																/>
 															))}
