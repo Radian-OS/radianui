@@ -1191,10 +1191,10 @@ export default function Preview12Page() {
 							<Card className="relative shrink-0 overflow-hidden rounded-2xl border-none bg-gradient-to-r from-[#172554] via-[#1e3a8a] to-[#2563eb] p-6 text-white shadow-md">
 								<div className="grid grid-cols-1 items-center gap-6 lg:grid-cols-12">
 									{/* Left Callout Details */}
-									<div className="flex flex-col gap-3.5 lg:col-span-6">
+									<div className="flex flex-col gap-3 lg:col-span-6">
 										<div>
-											<div className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/15 px-3 py-1 text-[10px] font-semibold tracking-wider text-white uppercase backdrop-blur-xs">
-												<Phone className="size-3 text-white/80" />
+											<div className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/15 px-2.5 py-0.5 text-[10px] font-semibold tracking-wider text-white uppercase backdrop-blur-xs">
+												<Phone className="size-3 text-white/90" />
 												<span>CALL-OUT · 8:31 AM</span>
 											</div>
 										</div>
@@ -1204,7 +1204,7 @@ export default function Preview12Page() {
 												Desmond Okonjo called out sick.
 												<br />3 visits need cover today.
 											</h2>
-											<p className="mt-1.5 text-xs leading-relaxed text-blue-100/85 sm:text-sm">
+											<p className="mt-1 text-xs leading-normal text-white/80">
 												Visitly matched a replacement for each visit. Approve
 												them and the day rebuilds itself.
 											</p>
@@ -1215,7 +1215,7 @@ export default function Preview12Page() {
 												variant="strong"
 												color="neutral"
 												size="sm"
-												className="gap-1.5 rounded-xl bg-white font-semibold text-zinc-900 shadow-xs hover:bg-zinc-100">
+												className="h-8.5 gap-1.5 rounded-xl bg-white px-3.5 text-xs font-semibold text-zinc-900 shadow-xs hover:bg-zinc-100">
 												<span>Review replacements</span>
 												<ChevronRight className="size-3.5 text-zinc-600" />
 											</Button>
@@ -1223,7 +1223,7 @@ export default function Preview12Page() {
 												variant="outline"
 												color="neutral"
 												size="sm"
-												className="rounded-xl border-white/20 bg-white/10 font-medium text-white shadow-none hover:bg-white/20">
+												className="h-8.5 rounded-xl border-white/20 bg-white/10 px-3.5 text-xs font-medium text-white shadow-none hover:bg-white/20">
 												See Desmond&apos;s day
 											</Button>
 										</div>
@@ -1231,7 +1231,7 @@ export default function Preview12Page() {
 
 									{/* Right Suggested Replacements */}
 									<div className="flex flex-col gap-2 lg:col-span-6">
-										<div className="mb-0.5 flex items-center gap-1.5 text-[10px] font-semibold tracking-wider text-blue-200 uppercase">
+										<div className="mb-0.5 flex items-center gap-1.5 text-[10px] font-semibold tracking-wider text-blue-200/90 uppercase">
 											<Sparkles className="size-3 text-blue-200" />
 											<span>SUGGESTED REPLACEMENTS</span>
 										</div>
@@ -1240,29 +1240,29 @@ export default function Preview12Page() {
 											{REPLACEMENTS.map((item) => (
 												<div
 													key={item.id}
-													className="flex items-center justify-between rounded-xl border border-white/15 bg-white/10 px-4 py-2.5 text-xs backdrop-blur-xs transition-colors hover:bg-white/15">
+													className="flex items-center justify-between rounded-xl border border-white/15 bg-white/10 px-3.5 py-2.5 text-xs backdrop-blur-xs transition-colors hover:bg-white/15">
 													<div className="flex min-w-0 items-center gap-2.5 sm:gap-3">
-														<span className="w-16 shrink-0 font-mono text-[11px] text-blue-200">
+														<span className="w-16 shrink-0 font-mono text-[11px] font-semibold text-blue-100">
 															{item.time}
 														</span>
-														<span className="truncate font-medium text-white/90">
+														<span className="truncate text-xs font-semibold text-white">
 															{item.original}
 														</span>
-														<ChevronRight className="size-3 shrink-0 text-white/40" />
+														<ChevronRight className="size-3 shrink-0 text-white/50" />
 														<div className="flex min-w-0 items-center gap-2">
 															<Avatar
 																size="2xs"
 																rounded="circle"
-																className="shrink-0 border border-white/30">
+																className="size-5 shrink-0 border border-white/30">
 																<AvatarImage
 																	src={`https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@v1.0.2/packages/uncompressed-avatars/src/${item.avatar}.png`}
 																	alt={item.replacement}
 																/>
-																<AvatarFallback>
+																<AvatarFallback className="text-[9px] font-semibold text-zinc-800">
 																	{item.replacement.slice(0, 2)}
 																</AvatarFallback>
 															</Avatar>
-															<span className="truncate font-medium text-white">
+															<span className="truncate text-xs font-medium text-white">
 																{item.replacement}
 															</span>
 														</div>
@@ -1286,7 +1286,7 @@ export default function Preview12Page() {
 										className="border-border/60 flex flex-col justify-between rounded-2xl border bg-[#f0f4f9] p-1.5 shadow-2xs dark:bg-zinc-900/60">
 										{/* Top Elevated White Panel */}
 										<div className="border-border/50 dark:bg-elevation-level1 flex flex-col justify-between gap-3 rounded-xl border bg-white p-3.5 shadow-2xs">
-											<span className="text-fg-tertiary text-[10px] font-semibold tracking-wider uppercase select-none">
+											<span className="text-fg-secondary text-[10px] font-semibold tracking-wider uppercase select-none">
 												{stat.label}
 											</span>
 											<div className="flex items-end justify-between gap-2">
@@ -1294,18 +1294,18 @@ export default function Preview12Page() {
 													<span className="font-heading text-fg text-2xl font-bold tracking-tight">
 														{stat.value}
 													</span>
-													<span className="text-fg-secondary text-xs font-normal">
+													<span className="text-fg-secondary text-xs font-medium">
 														{stat.unit}
 													</span>
 												</div>
 
-												{/* Mini Sparkline Chart */}
-												<div className="flex h-7 items-end gap-[3px] pb-0.5">
+												{/* Mini Sparkline Chart - Consistent width and spacing across all cards */}
+												<div className="flex h-8 items-end gap-[3.5px] pb-0.5">
 													{stat.bars.map((bar, i) => (
 														<div
 															key={i}
 															style={{ height: `${bar}%` }}
-															className="w-[3px] rounded-full bg-[#a5b4fc] transition-all hover:brightness-110 dark:bg-indigo-400/80"
+															className="w-[2.5px] rounded-full bg-[#9eaeff] transition-all hover:brightness-110 dark:bg-indigo-400/80"
 														/>
 													))}
 												</div>
