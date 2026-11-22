@@ -152,116 +152,505 @@ interface TimelineSlot {
 	assignedName?: string
 }
 
-const TIMELINE_DATA: TimelineSlot[] = [
+type BlockStatus = "covered" | "completed" | "needsCover" | "atRisk" | null
+
+interface HalfHourColumn {
+	id: string
+	time: string
+	label: string
+	covered: number
+	needsCover: number
+	assignedName?: string
+	isPeak?: boolean
+	cells: BlockStatus[]
+}
+
+const COVERAGE_DATA: HalfHourColumn[] = [
+	// 7A
 	{
-		time: "7A",
-		label: "7:00 AM",
-		completed: 4,
-		atRisk: 0,
-		needsCover: 0,
-		covered: 0,
-		total: 4,
-	},
-	{
-		time: "8A",
-		label: "8:00 AM",
-		completed: 5,
-		atRisk: 0,
-		needsCover: 0,
-		covered: 0,
-		total: 5,
-	},
-	{
-		time: "9A",
-		label: "9:00 AM",
-		completed: 3,
-		atRisk: 1,
-		needsCover: 0,
-		covered: 3,
-		total: 7,
-	},
-	{
-		time: "10A",
-		label: "10:00 AM",
-		completed: 0,
-		atRisk: 1,
-		needsCover: 1,
-		covered: 7,
-		total: 9,
-		assignedName: "Marguerite Holloway",
-	},
-	{
-		time: "11A",
-		label: "11:00 AM",
-		completed: 0,
-		atRisk: 0,
-		needsCover: 1,
-		covered: 5,
-		total: 6,
-	},
-	{
-		time: "12P",
-		label: "12:00 PM",
-		completed: 0,
-		atRisk: 0,
-		needsCover: 0,
-		covered: 5,
-		total: 5,
-	},
-	{
-		time: "1P",
-		label: "1:00 PM",
-		completed: 0,
-		atRisk: 0,
-		needsCover: 1,
-		covered: 4,
-		total: 5,
-	},
-	{
-		time: "2P",
-		label: "2:00 PM",
-		completed: 0,
-		atRisk: 0,
-		needsCover: 1,
-		covered: 5,
-		total: 6,
-	},
-	{
-		time: "3P",
-		label: "3:00 PM",
-		completed: 0,
-		atRisk: 0,
-		needsCover: 0,
+		id: "7:00",
+		time: "7:00 AM",
+		label: "7A",
 		covered: 6,
-		total: 6,
+		needsCover: 0,
+		cells: [
+			"completed",
+			"completed",
+			"completed",
+			"completed",
+			"completed",
+			"completed",
+			null,
+			null,
+			null,
+			null,
+		],
 	},
 	{
-		time: "4P",
-		label: "4:00 PM",
-		completed: 0,
-		atRisk: 0,
-		needsCover: 1,
+		id: "7:30",
+		time: "7:30 AM",
+		label: "",
+		covered: 6,
+		needsCover: 0,
+		cells: [
+			"completed",
+			"completed",
+			"completed",
+			"completed",
+			"completed",
+			"completed",
+			null,
+			null,
+			null,
+			null,
+		],
+	},
+	// 8A
+	{
+		id: "8:00",
+		time: "8:00 AM",
+		label: "8A",
+		covered: 7,
+		needsCover: 0,
+		cells: [
+			"completed",
+			"completed",
+			"completed",
+			"completed",
+			"completed",
+			"completed",
+			"completed",
+			null,
+			null,
+			null,
+		],
+	},
+	{
+		id: "8:30",
+		time: "8:30 AM",
+		label: "",
+		covered: 7,
+		needsCover: 0,
+		cells: [
+			"completed",
+			"completed",
+			"completed",
+			"completed",
+			"completed",
+			"completed",
+			"completed",
+			null,
+			null,
+			null,
+		],
+	},
+	// 9A
+	{
+		id: "9:00",
+		time: "9:00 AM",
+		label: "9A",
+		covered: 3,
+		needsCover: 0,
+		cells: [
+			"covered",
+			"covered",
+			"covered",
+			null,
+			null,
+			null,
+			null,
+			null,
+			null,
+			null,
+		],
+	},
+	{
+		id: "9:30",
+		time: "9:30 AM",
+		label: "",
 		covered: 5,
-		total: 6,
+		needsCover: 0,
+		cells: [
+			"covered",
+			"covered",
+			"covered",
+			"covered",
+			"covered",
+			"atRisk",
+			null,
+			null,
+			null,
+			null,
+		],
+	},
+	// 10A
+	{
+		id: "10:00",
+		time: "10:00 AM",
+		label: "10A",
+		covered: 6,
+		needsCover: 0,
+		cells: [
+			"covered",
+			"covered",
+			"covered",
+			"covered",
+			"covered",
+			"covered",
+			"atRisk",
+			null,
+			null,
+			null,
+		],
 	},
 	{
-		time: "5P",
-		label: "5:00 PM",
-		completed: 0,
-		atRisk: 0,
-		needsCover: 0,
-		covered: 9,
-		total: 9,
+		id: "10:30",
+		time: "10:00 AM",
+		label: "",
+		covered: 8,
+		needsCover: 1,
+		assignedName: "Marguerite Holloway",
+		isPeak: true,
+		cells: [
+			"covered",
+			"covered",
+			"covered",
+			"covered",
+			"covered",
+			"covered",
+			"covered",
+			"atRisk",
+			"needsCover",
+			null,
+		],
+	},
+	// 11A
+	{
+		id: "11:00",
+		time: "11:00 AM",
+		label: "11A",
+		covered: 5,
+		needsCover: 1,
+		cells: [
+			"covered",
+			"covered",
+			"covered",
+			"covered",
+			"covered",
+			"needsCover",
+			null,
+			null,
+			null,
+			null,
+		],
 	},
 	{
-		time: "6P",
-		label: "6:00 PM",
-		completed: 0,
-		atRisk: 0,
-		needsCover: 0,
+		id: "11:30",
+		time: "11:30 AM",
+		label: "",
 		covered: 4,
-		total: 4,
+		needsCover: 1,
+		cells: [
+			"covered",
+			"covered",
+			"covered",
+			"covered",
+			"needsCover",
+			null,
+			null,
+			null,
+			null,
+			null,
+		],
 	},
+	// 12P
+	{
+		id: "12:00",
+		time: "12:00 PM",
+		label: "12P",
+		covered: 5,
+		needsCover: 1,
+		cells: [
+			"covered",
+			"covered",
+			"covered",
+			"covered",
+			"covered",
+			"needsCover",
+			null,
+			null,
+			null,
+			null,
+		],
+	},
+	{
+		id: "12:30",
+		time: "12:30 PM",
+		label: "",
+		covered: 5,
+		needsCover: 0,
+		cells: [
+			"covered",
+			"covered",
+			"covered",
+			"covered",
+			"covered",
+			null,
+			null,
+			null,
+			null,
+			null,
+		],
+	},
+	// 1P
+	{
+		id: "1:00",
+		time: "1:00 PM",
+		label: "1P",
+		covered: 4,
+		needsCover: 1,
+		cells: [
+			"covered",
+			"covered",
+			"covered",
+			"needsCover",
+			"covered",
+			null,
+			null,
+			null,
+			null,
+			null,
+		],
+	},
+	{
+		id: "1:30",
+		time: "1:30 PM",
+		label: "",
+		covered: 4,
+		needsCover: 0,
+		cells: [
+			"covered",
+			"covered",
+			"covered",
+			"covered",
+			null,
+			null,
+			null,
+			null,
+			null,
+			null,
+		],
+	},
+	// 2P
+	{
+		id: "2:00",
+		time: "2:00 PM",
+		label: "2P",
+		covered: 5,
+		needsCover: 1,
+		cells: [
+			"covered",
+			"covered",
+			"covered",
+			"covered",
+			"covered",
+			"needsCover",
+			null,
+			null,
+			null,
+			null,
+		],
+	},
+	{
+		id: "2:30",
+		time: "2:30 PM",
+		label: "",
+		covered: 5,
+		needsCover: 0,
+		cells: [
+			"covered",
+			"covered",
+			"covered",
+			"covered",
+			"covered",
+			null,
+			null,
+			null,
+			null,
+			null,
+		],
+	},
+	// 3P
+	{
+		id: "3:00",
+		time: "3:00 PM",
+		label: "3P",
+		covered: 7,
+		needsCover: 0,
+		cells: [
+			"covered",
+			"covered",
+			"covered",
+			"covered",
+			"covered",
+			"covered",
+			"covered",
+			null,
+			null,
+			null,
+		],
+	},
+	{
+		id: "3:30",
+		time: "3:30 PM",
+		label: "",
+		covered: 7,
+		needsCover: 0,
+		cells: [
+			"covered",
+			"covered",
+			"covered",
+			"covered",
+			"covered",
+			"covered",
+			"covered",
+			null,
+			null,
+			null,
+		],
+	},
+	// 4P
+	{
+		id: "4:00",
+		time: "4:00 PM",
+		label: "4P",
+		covered: 7,
+		needsCover: 0,
+		cells: [
+			"covered",
+			"covered",
+			"covered",
+			"covered",
+			"covered",
+			"covered",
+			"covered",
+			null,
+			null,
+			null,
+		],
+	},
+	{
+		id: "4:30",
+		time: "4:30 PM",
+		label: "",
+		covered: 7,
+		needsCover: 0,
+		cells: [
+			"covered",
+			"covered",
+			"covered",
+			"covered",
+			"covered",
+			"covered",
+			"covered",
+			null,
+			null,
+			null,
+		],
+	},
+	// 5P
+	{
+		id: "5:00",
+		time: "5:00 PM",
+		label: "5P",
+		covered: 8,
+		needsCover: 1,
+		cells: [
+			"covered",
+			"covered",
+			"covered",
+			"covered",
+			"covered",
+			"covered",
+			"covered",
+			"covered",
+			"needsCover",
+			null,
+		],
+	},
+	{
+		id: "5:30",
+		time: "5:30 PM",
+		label: "",
+		covered: 4,
+		needsCover: 1,
+		cells: [
+			"covered",
+			"covered",
+			"covered",
+			"covered",
+			"needsCover",
+			null,
+			null,
+			null,
+			null,
+			null,
+		],
+	},
+	// 6P
+	{
+		id: "6:00",
+		time: "6:00 PM",
+		label: "6P",
+		covered: 4,
+		needsCover: 0,
+		cells: [
+			"covered",
+			"covered",
+			"covered",
+			"covered",
+			null,
+			null,
+			null,
+			null,
+			null,
+			null,
+		],
+	},
+	{
+		id: "6:30",
+		time: "6:30 PM",
+		label: "",
+		covered: 3,
+		needsCover: 0,
+		cells: [
+			"covered",
+			"covered",
+			"covered",
+			null,
+			null,
+			null,
+			null,
+			null,
+			null,
+			null,
+		],
+	},
+]
+
+const HOURS_LIST = [
+	"7A",
+	"8A",
+	"9A",
+	"10A",
+	"11A",
+	"12P",
+	"1P",
+	"2P",
+	"3P",
+	"4P",
+	"5P",
+	"6P",
 ]
 
 interface AlertItem {
@@ -349,7 +738,7 @@ export default function Preview12Page() {
 	const [activeNav, setActiveNav] = useState("Dashboard")
 	const [selectedArea, setSelectedArea] = useState("All service areas")
 	const [approvedVisits, setApprovedVisits] = useState<Set<string>>(new Set())
-	const [activeTooltip, setActiveTooltip] = useState<string>("10A")
+	const [selectedColIndex, setSelectedColIndex] = useState<number>(7)
 
 	const toggleApprove = (id: string) => {
 		setApprovedVisits((prev) => {
@@ -965,154 +1354,238 @@ export default function Preview12Page() {
 									<div className="flex flex-col gap-4">
 										{/* Card Header & Legend */}
 										<div className="flex flex-wrap items-center justify-between gap-3">
-											<div>
-												<span className="text-fg-secondary text-[11px] font-semibold tracking-wider uppercase">
-													Coverage by Half Hour
-												</span>
-												<div className="mt-1 flex items-baseline gap-1.5">
-													<span className="heading-3 text-fg">45</span>
-													<span className="text-fg-secondary text-xs">
-														of 48 visits covered
-													</span>
-												</div>
+											<div className="text-fg-secondary flex items-center gap-1.5 text-[11px] font-semibold tracking-wider uppercase">
+												<Calendar className="size-3.5" />
+												<span>Coverage by Half Hour</span>
 											</div>
 
-											{/* Legend & Hint */}
-											<div className="flex flex-col items-end gap-1.5">
-												<div className="text-fg-secondary flex flex-wrap items-center gap-3 text-xs">
-													<div className="flex items-center gap-1.5">
-														<span className="size-2.5 rounded-xs bg-blue-500" />
-														<span>COVERED</span>
-													</div>
-													<div className="flex items-center gap-1.5">
-														<span className="size-2.5 rounded-xs bg-indigo-400" />
-														<span>COMPLETED</span>
-													</div>
-													<div className="flex items-center gap-1.5">
-														<span className="size-2.5 rounded-xs bg-rose-500" />
-														<span>NEEDS COVER</span>
-													</div>
-													<div className="flex items-center gap-1.5">
-														<span className="size-2.5 rounded-xs bg-amber-400" />
-														<span>AT RISK</span>
-													</div>
+											{/* Legend */}
+											<div className="text-fg-secondary flex flex-wrap items-center gap-3 text-[10px] font-semibold tracking-wider">
+												<div className="flex items-center gap-1.5">
+													<span className="size-2.5 rounded-xs bg-[#3b82f6]" />
+													<span>COVERED</span>
 												</div>
-												<span className="text-fg-tertiary text-[11px]">
-													Each square is one visit
-												</span>
+												<div className="flex items-center gap-1.5">
+													<span className="size-2.5 rounded-xs bg-[#9eaeff]" />
+													<span>COMPLETED</span>
+												</div>
+												<div className="flex items-center gap-1.5">
+													<span className="size-2.5 rounded-xs bg-[#f43f5e]" />
+													<span>NEEDS COVER</span>
+												</div>
+												<div className="flex items-center gap-1.5">
+													<span className="size-2.5 rounded-xs bg-[#f59e0b]" />
+													<span>AT RISK</span>
+												</div>
 											</div>
 										</div>
 
+										{/* Sub-header with Metrics & Hint */}
+										<div className="flex flex-wrap items-baseline justify-between gap-2">
+											<div className="flex items-baseline gap-1.5">
+												<span className="heading-3 text-fg">45</span>
+												<span className="text-fg-secondary text-xs">
+													of 48 visits covered
+												</span>
+											</div>
+											<span className="text-fg-tertiary text-xs">
+												Each square is one visit
+											</span>
+										</div>
+
 										{/* Interactive Block Matrix Chart */}
-										<div className="relative overflow-x-auto pt-6 pb-2">
-											{/* Current Time Indicator Line */}
+										<div className="relative overflow-x-auto pt-7 pb-2 select-none">
+											{/* Current Time Indicator Line (NOW 8:46) */}
 											<div
-												className="pointer-events-none absolute top-0 bottom-8 z-10 flex flex-col items-center"
-												style={{ left: "28%" }}>
-												<Badge
-													variant="strong"
-													color="neutral"
-													size="sm"
-													className="rounded-xs bg-zinc-900 px-1.5 py-0 text-[10px] font-bold text-white shadow-xs dark:bg-zinc-100 dark:text-zinc-900">
+												className="pointer-events-none absolute top-0 bottom-6 z-20 flex flex-col items-center"
+												style={{
+													left: "calc(1.5rem + (3.53 / 24) * (100% - 1.5rem))",
+												}}>
+												<div className="rounded-full bg-zinc-900 px-2 py-0.5 text-[10px] font-bold whitespace-nowrap text-white shadow-xs dark:bg-zinc-100 dark:text-zinc-900">
 													NOW 8:46
-												</Badge>
-												<div className="w-[1.5px] flex-1 border-dashed bg-zinc-400/80 dark:bg-zinc-600/80" />
+												</div>
+												<div className="w-[1.5px] flex-1 bg-zinc-800/80 dark:bg-zinc-200/80" />
 											</div>
 
-											{/* Grid Columns */}
-											<div className="grid min-w-[540px] grid-cols-12 gap-2">
-												{TIMELINE_DATA.map((slot) => {
-													const isHovered = activeTooltip === slot.time
-													return (
-														<div
-															key={slot.time}
-															onMouseEnter={() => setActiveTooltip(slot.time)}
-															className={cn(
-																"flex cursor-pointer flex-col items-center rounded-md p-1 transition-all",
-																isHovered && "bg-fill1/80 ring-border/80 ring-1"
-															)}>
-															{/* Stacked Blocks */}
-															<div className="flex h-44 w-full flex-col-reverse justify-start gap-1 pb-2">
-																{/* Completed Blocks */}
-																{Array.from({ length: slot.completed }).map(
-																	(_, idx) => (
-																		<div
-																			key={`comp-${idx}`}
-																			className="h-3.5 w-full rounded-xs bg-indigo-400 shadow-2xs transition-colors hover:brightness-110"
-																		/>
-																	)
+											{/* Grid with Y-axis + 24 Columns */}
+											<div className="flex min-w-[560px] items-stretch">
+												{/* Y-axis labels aligned with 10 rows */}
+												<div
+													className="text-fg-tertiary w-6 shrink-0 pr-2 text-right font-mono text-[10px] select-none"
+													style={{
+														display: "grid",
+														gridTemplateRows: "repeat(10, minmax(0, 1fr))",
+														gap: "3px",
+													}}>
+													<div />
+													<div className="flex items-center justify-end leading-none">
+														9
+													</div>
+													<div />
+													<div />
+													<div className="flex items-center justify-end leading-none">
+														6
+													</div>
+													<div />
+													<div />
+													<div className="flex items-center justify-end leading-none">
+														3
+													</div>
+													<div />
+													<div />
+												</div>
+
+												{/* 24 Half-Hour Columns */}
+												<div
+													className="relative flex-1"
+													style={{
+														display: "grid",
+														gridTemplateColumns: "repeat(24, minmax(0, 1fr))",
+														gap: "3px",
+													}}>
+													{COVERAGE_DATA.map((col, colIdx) => {
+														const isSelected = selectedColIndex === colIdx
+														return (
+															<div
+																key={col.id}
+																onClick={() => setSelectedColIndex(colIdx)}
+																onMouseEnter={() => setSelectedColIndex(colIdx)}
+																className={cn(
+																	"relative flex cursor-pointer flex-col transition-all",
+																	isSelected && "z-20"
+																)}>
+																{/* Column selection outline */}
+																{isSelected && (
+																	<div className="pointer-events-none absolute -inset-[2px] z-10 rounded-md border-2 border-slate-700/80 shadow-xs dark:border-slate-300" />
 																)}
-																{/* Covered Blocks */}
-																{Array.from({ length: slot.covered }).map(
-																	(_, idx) => (
-																		<div
-																			key={`cov-${idx}`}
-																			className="h-3.5 w-full rounded-xs bg-blue-500 shadow-2xs transition-colors hover:brightness-110"
-																		/>
-																	)
-																)}
-																{/* Needs Cover Blocks */}
-																{Array.from({ length: slot.needsCover }).map(
-																	(_, idx) => (
-																		<div
-																			key={`nc-${idx}`}
-																			className="h-3.5 w-full animate-pulse rounded-xs bg-rose-500 shadow-2xs transition-colors hover:brightness-110"
-																		/>
-																	)
-																)}
-																{/* At Risk Blocks */}
-																{Array.from({ length: slot.atRisk }).map(
-																	(_, idx) => (
-																		<div
-																			key={`ar-${idx}`}
-																			className="h-3.5 w-full rounded-xs bg-amber-400 shadow-2xs transition-colors hover:brightness-110"
-																		/>
-																	)
-																)}
+
+																{/* 10 Vertical Cells: row 9 at top down to row 0 at bottom */}
+																<div
+																	className="w-full"
+																	style={{
+																		display: "grid",
+																		gridTemplateRows:
+																			"repeat(10, minmax(0, 1fr))",
+																		gap: "3px",
+																	}}>
+																	{Array.from({ length: 10 }).map((_, r) => {
+																		const rowIdx = 9 - r
+																		const status = col.cells[rowIdx]
+																		return (
+																			<div
+																				key={rowIdx}
+																				className={cn(
+																					"aspect-square w-full rounded-[3px] transition-colors",
+																					status === "completed" &&
+																						"bg-[#9eaeff] hover:brightness-110",
+																					status === "covered" &&
+																						"bg-[#3b82f6] hover:brightness-110",
+																					status === "atRisk" &&
+																						"bg-[#f59e0b] hover:brightness-110",
+																					status === "needsCover" &&
+																						"animate-pulse bg-[#f43f5e] hover:brightness-110",
+																					status === null &&
+																						"bg-[#eef2f6] dark:bg-zinc-800/40"
+																				)}
+																			/>
+																		)
+																	})}
+																</div>
 															</div>
+														)
+													})}
 
-															{/* Hour Label */}
-															<span className="text-fg-secondary text-[11px] font-medium">
-																{slot.time}
-															</span>
-
-															{/* Floating Tooltip Callout on active column */}
-															<AnimatePresence>
-																{isHovered && slot.needsCover > 0 && (
-																	<motion.div
-																		initial={{ opacity: 0, y: 5 }}
-																		animate={{ opacity: 1, y: 0 }}
-																		exit={{ opacity: 0, y: 5 }}
-																		className="border-border/80 bg-elevation-level1 text-fg pointer-events-none absolute -top-14 z-30 flex min-w-[170px] flex-col rounded-md border p-2 text-xs shadow-lg">
-																		<span className="text-fg text-[11px] font-semibold">
-																			{slot.label}
+													{/* Floating Tooltip Callout anchored to selected column */}
+													{selectedColIndex !== null && (
+														<AnimatePresence>
+															<motion.div
+																initial={{ opacity: 0, y: 4 }}
+																animate={{ opacity: 1, y: 0 }}
+																exit={{ opacity: 0, y: 4 }}
+																transition={{ duration: 0.15 }}
+																className="border-border/70 dark:bg-elevation-level2 text-fg pointer-events-none absolute z-30 min-w-[210px] rounded-xl border bg-white/95 p-3 text-xs shadow-lg backdrop-blur-xs"
+																style={{
+																	left: `calc((${selectedColIndex} / 24) * 100% + 14px)`,
+																	top: "16%",
+																	transform:
+																		selectedColIndex > 16
+																			? "translateX(-110%)"
+																			: "none",
+																}}>
+																<span className="text-fg text-xs font-semibold">
+																	{COVERAGE_DATA[selectedColIndex].time}
+																</span>
+																<div className="mt-1.5 flex items-center justify-between text-xs">
+																	<div className="flex items-center gap-1.5">
+																		<span className="size-2 rounded-xs bg-[#3b82f6]" />
+																		<span className="text-fg-secondary">
+																			Covered
 																		</span>
-																		<div className="text-fg-secondary mt-1 flex items-center gap-1.5 text-[11px]">
-																			<span className="size-2 rounded-xs bg-blue-500" />
-																			<span>
-																				Covered: {slot.covered + slot.completed}
+																	</div>
+																	<span className="text-fg font-semibold">
+																		{COVERAGE_DATA[selectedColIndex].covered}
+																	</span>
+																</div>
+																{COVERAGE_DATA[selectedColIndex].needsCover >
+																	0 && (
+																	<div className="mt-1 flex items-center justify-between text-xs">
+																		<div className="flex items-center gap-1.5">
+																			<span className="size-2 rounded-xs bg-[#f43f5e]" />
+																			<span className="font-medium text-[#f43f5e]">
+																				Needs cover
 																			</span>
 																		</div>
-																		<div className="flex items-center gap-1.5 text-[11px] font-medium text-rose-500">
-																			<span className="size-2 rounded-xs bg-rose-500" />
-																			<span>
-																				Needs cover: {slot.needsCover} ·{" "}
-																				{slot.assignedName || "Urgent"}
+																		<div className="flex items-center gap-1 text-xs">
+																			<span className="font-bold text-[#f43f5e]">
+																				{
+																					COVERAGE_DATA[selectedColIndex]
+																						.needsCover
+																				}
 																			</span>
+																			{COVERAGE_DATA[selectedColIndex]
+																				.assignedName && (
+																				<span className="text-fg-secondary">
+																					·{" "}
+																					{
+																						COVERAGE_DATA[selectedColIndex]
+																							.assignedName
+																					}
+																				</span>
+																			)}
 																		</div>
-																	</motion.div>
+																	</div>
 																)}
-															</AnimatePresence>
-														</div>
-													)
-												})}
+															</motion.div>
+														</AnimatePresence>
+													)}
+												</div>
+											</div>
+
+											{/* Bottom X-axis Hour Labels */}
+											<div className="flex min-w-[560px] items-center pt-2">
+												<div className="w-6 shrink-0" />
+												<div
+													className="flex-1"
+													style={{
+														display: "grid",
+														gridTemplateColumns: "repeat(24, minmax(0, 1fr))",
+														gap: "3px",
+													}}>
+													{HOURS_LIST.map((hr) => (
+														<span
+															key={hr}
+															className="text-fg-secondary col-span-2 text-center text-[10px] font-medium select-none sm:text-[11px]">
+															{hr}
+														</span>
+													))}
+												</div>
 											</div>
 										</div>
 									</div>
 
 									{/* Card Footer */}
 									<div className="border-border/60 mt-4 flex items-center justify-between border-t pt-3">
-										<span className="text-fg-secondary text-[11px] font-semibold tracking-wider uppercase">
+										<span className="text-fg-tertiary text-[10px] font-semibold tracking-wider uppercase">
 											PEAK 10:00 AM · 9 VISITS AT ONCE
 										</span>
 										<Button
