@@ -1183,117 +1183,92 @@ export default function Preview12Page() {
 								</p>
 							</div>
 
-							{/* ── Hero Call-out Replacement Banner (Unified, no center divider line) ── */}
-							<Card className="relative overflow-hidden border-none bg-gradient-to-r from-blue-900 via-indigo-900 to-blue-800 p-5 text-white shadow-md">
-								<div className="grid grid-cols-1 gap-6 lg:grid-cols-12 lg:items-center">
+							{/* ── Hero Call-out Replacement Banner (Unified, shrink-0 prevents flexbox collapse) ── */}
+							<Card className="relative shrink-0 overflow-hidden rounded-2xl border-none bg-gradient-to-r from-[#172554] via-[#1e3a8a] to-[#2563eb] p-6 text-white shadow-md">
+								<div className="grid grid-cols-1 items-center gap-6 lg:grid-cols-12">
 									{/* Left Callout Details */}
-									<div className="flex flex-col gap-3 lg:col-span-6">
+									<div className="flex flex-col gap-3.5 lg:col-span-6">
 										<div>
-											<Badge
-												variant="soft"
-												color="neutral"
-												size="sm"
-												className="border-white/20 bg-white/15 text-[10px] font-semibold tracking-wider text-white uppercase">
-												CALL-OUT · 8:31 AM
-											</Badge>
+											<div className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/15 px-3 py-1 text-[10px] font-semibold tracking-wider text-white uppercase backdrop-blur-xs">
+												<Phone className="size-3 text-white/80" />
+												<span>CALL-OUT · 8:31 AM</span>
+											</div>
 										</div>
 
 										<div>
-											<h2 className="heading-5 leading-snug text-white">
-												Desmond Okonjo called out sick. 3 visits need cover
-												today.
+											<h2 className="font-heading text-xl leading-snug font-bold tracking-tight text-white sm:text-2xl">
+												Desmond Okonjo called out sick.
+												<br />3 visits need cover today.
 											</h2>
-											<p className="mt-1 text-xs leading-relaxed text-blue-100/85 sm:text-sm">
+											<p className="mt-1.5 text-xs leading-relaxed text-blue-100/85 sm:text-sm">
 												Visitly matched a replacement for each visit. Approve
 												them and the day rebuilds itself.
 											</p>
 										</div>
 
-										<div className="flex flex-wrap items-center gap-2 pt-1">
+										<div className="flex flex-wrap items-center gap-2.5 pt-1">
 											<Button
 												variant="strong"
 												color="neutral"
 												size="sm"
-												className="gap-1.5 bg-white font-semibold text-zinc-900 shadow-xs hover:bg-zinc-100">
+												className="gap-1.5 rounded-xl bg-white font-semibold text-zinc-900 shadow-xs hover:bg-zinc-100">
 												<span>Review replacements</span>
-												<ChevronRight className="size-3.5" />
+												<ChevronRight className="size-3.5 text-zinc-600" />
 											</Button>
 											<Button
-												variant="ghost"
+												variant="outline"
 												color="neutral"
 												size="sm"
-												className="font-medium text-blue-100 hover:bg-white/10 hover:text-white">
+												className="rounded-xl border-white/20 bg-white/10 font-medium text-white shadow-none hover:bg-white/20">
 												See Desmond&apos;s day
 											</Button>
 										</div>
 									</div>
 
 									{/* Right Suggested Replacements */}
-									<div className="flex flex-col gap-2 rounded-xl border border-white/15 bg-white/10 p-3.5 backdrop-blur-xs lg:col-span-6">
-										<div className="flex items-center gap-1.5 text-[11px] font-semibold tracking-wider text-blue-200 uppercase">
-											<Sparkles className="size-3 text-amber-300" />
-											<span>Suggested Replacements</span>
+									<div className="flex flex-col gap-2 lg:col-span-6">
+										<div className="mb-0.5 flex items-center gap-1.5 text-[10px] font-semibold tracking-wider text-blue-200 uppercase">
+											<Sparkles className="size-3 text-blue-200" />
+											<span>SUGGESTED REPLACEMENTS</span>
 										</div>
 
 										<div className="flex flex-col gap-2">
-											{REPLACEMENTS.map((item) => {
-												const isApproved = approvedVisits.has(item.id)
-												return (
-													<motion.div
-														key={item.id}
-														whileHover={{ scale: 1.01 }}
-														className="flex items-center justify-between rounded-lg border border-white/10 bg-black/20 px-3 py-2 text-xs transition-colors hover:bg-black/30">
-														<div className="flex min-w-0 items-center gap-2.5">
-															<span className="shrink-0 font-mono text-[11px] text-blue-200">
-																{item.time}
+											{REPLACEMENTS.map((item) => (
+												<div
+													key={item.id}
+													className="flex items-center justify-between rounded-xl border border-white/15 bg-white/10 px-4 py-2.5 text-xs backdrop-blur-xs transition-colors hover:bg-white/15">
+													<div className="flex min-w-0 items-center gap-2.5 sm:gap-3">
+														<span className="w-16 shrink-0 font-mono text-[11px] text-blue-200">
+															{item.time}
+														</span>
+														<span className="truncate font-medium text-white/90">
+															{item.original}
+														</span>
+														<ChevronRight className="size-3 shrink-0 text-white/40" />
+														<div className="flex min-w-0 items-center gap-2">
+															<Avatar
+																size="2xs"
+																rounded="circle"
+																className="shrink-0 border border-white/30">
+																<AvatarImage
+																	src={`https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@v1.0.2/packages/uncompressed-avatars/src/${item.avatar}.png`}
+																	alt={item.replacement}
+																/>
+																<AvatarFallback>
+																	{item.replacement.slice(0, 2)}
+																</AvatarFallback>
+															</Avatar>
+															<span className="truncate font-medium text-white">
+																{item.replacement}
 															</span>
-															<span className="max-w-[110px] truncate text-white/80 sm:max-w-none">
-																{item.original}
-															</span>
-															<ChevronRight className="size-3 shrink-0 text-white/40" />
-															<div className="flex min-w-0 items-center gap-1.5">
-																<Avatar
-																	size="2xs"
-																	rounded="circle"
-																	className="border border-white/30">
-																	<AvatarImage
-																		src={`https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@v1.0.2/packages/uncompressed-avatars/src/${item.avatar}.png`}
-																		alt={item.replacement}
-																	/>
-																	<AvatarFallback>
-																		{item.replacement.slice(0, 2)}
-																	</AvatarFallback>
-																</Avatar>
-																<span className="truncate font-medium text-white">
-																	{item.replacement}
-																</span>
-															</div>
 														</div>
+													</div>
 
-														<div className="flex shrink-0 items-center gap-2">
-															<Badge
-																variant="soft"
-																color="info"
-																size="sm"
-																className="border-none bg-blue-400/20 text-[11px] font-bold text-blue-200">
-																{item.match}
-															</Badge>
-															<Button
-																variant={isApproved ? "strong" : "outline"}
-																color={isApproved ? "success" : "neutral"}
-																size="xs"
-																onClick={() => toggleApprove(item.id)}
-																className={cn(
-																	"h-6 rounded-md px-2 text-[10px] font-semibold",
-																	!isApproved &&
-																		"border-white/30 text-white hover:bg-white/20"
-																)}>
-																{isApproved ? "Approved" : "Approve"}
-															</Button>
-														</div>
-													</motion.div>
-												)
-											})}
+													<span className="shrink-0 pl-2 text-xs font-semibold text-blue-200">
+														{item.match}
+													</span>
+												</div>
+											))}
 										</div>
 									</div>
 								</div>
