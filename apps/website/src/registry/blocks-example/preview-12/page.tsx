@@ -1586,9 +1586,9 @@ export default function Preview12Page() {
 								{/* Right Column: Needs Attention + Live Visits (lg:col-span-5) */}
 								<div className="flex h-full flex-col justify-between gap-4 lg:col-span-5">
 									{/* Needs Attention Card */}
-									<Card className="border-border/60 flex flex-1 flex-col justify-between rounded-2xl border bg-[#f0f4f9] p-2.5 shadow-2xs dark:bg-zinc-900/60">
-										{/* Header row on tinted base */}
-										<div className="flex items-center justify-between px-2 pt-0.5 pb-1">
+									<Card className="border-border/60 flex flex-1 flex-col gap-2 rounded-2xl border bg-[#f0f4f9] p-2.5 shadow-2xs dark:bg-zinc-900/60">
+										{/* Header row on tinted base (tightened gap to white card) */}
+										<div className="flex items-center justify-between px-1.5 pt-0.5 pb-0.5">
 											<div className="flex items-center gap-1.5">
 												<Flag className="text-fg-secondary size-3.5" />
 												<span className="text-fg-secondary text-xs font-semibold tracking-wider uppercase">
@@ -1599,22 +1599,23 @@ export default function Preview12Page() {
 												</span>
 											</div>
 											<Button
-												variant="link"
+												variant="ghost"
 												color="neutral"
 												size="xs"
-												className="text-fg-secondary hover:text-fg h-auto p-0 text-xs font-semibold">
-												All alerts &gt;
+												className="text-fg-secondary hover:text-fg h-6 gap-0.5 px-1.5 text-xs font-semibold">
+												<span>All alerts</span>
+												<ChevronRight className="size-3" />
 											</Button>
 										</div>
 
-										{/* Inner Elevated White Card */}
+										{/* Inner Elevated White Card (generous row spacing) */}
 										<div className="border-border/50 dark:bg-elevation-level1 divide-border/40 flex flex-1 flex-col justify-between divide-y overflow-hidden rounded-xl border bg-white shadow-2xs">
 											{NEEDS_ATTENTION.map((item) => {
 												const Icon = item.icon
 												return (
 													<div
 														key={item.id}
-														className="hover:bg-fill1/40 flex flex-1 items-center justify-between px-4 py-3.5 transition-colors">
+														className="hover:bg-fill1/40 flex flex-1 items-center justify-between px-4 py-4 transition-colors sm:py-4.5">
 														<div className="flex min-w-0 items-center gap-3">
 															<div
 																className={cn(
@@ -1635,19 +1636,18 @@ export default function Preview12Page() {
 
 														<div className="flex shrink-0 items-center gap-1.5 pl-2">
 															{item.hasPhone && (
-																<Button
+																<IconButton
 																	variant="outline"
 																	color="neutral"
 																	size="sm"
-																	className="border-border/80 dark:bg-elevation-level1 size-8.5 shrink-0 rounded-lg bg-white p-0 shadow-2xs">
+																	aria-label="Call caregiver">
 																	<Phone className="size-3.5" />
-																</Button>
+																</IconButton>
 															)}
 															<Button
 																variant="outline"
 																color="neutral"
-																size="sm"
-																className="border-border/80 dark:bg-elevation-level1 h-8.5 shrink-0 rounded-lg bg-white px-3.5 text-xs font-semibold shadow-2xs">
+																size="sm">
 																{item.action}
 															</Button>
 														</div>
@@ -1658,27 +1658,27 @@ export default function Preview12Page() {
 									</Card>
 
 									{/* Live Visits Card */}
-									<Card className="border-border/60 flex flex-1 flex-col justify-between rounded-2xl border bg-[#f0f4f9] p-2.5 shadow-2xs dark:bg-zinc-900/60">
-										{/* Header row on tinted base */}
-										<div className="flex items-center justify-between px-2 pt-0.5 pb-1">
+									<Card className="border-border/60 flex flex-1 flex-col gap-2 rounded-2xl border bg-[#f0f4f9] p-2.5 shadow-2xs dark:bg-zinc-900/60">
+										{/* Header row on tinted base (tightened gap to white card) */}
+										<div className="flex items-center justify-between px-1.5 pt-0.5 pb-0.5">
 											<div className="flex items-center gap-1.5">
 												<Layers className="text-fg-secondary size-3.5" />
 												<span className="text-fg-secondary text-xs font-semibold tracking-wider uppercase">
 													Live Visits
 												</span>
 											</div>
-											<div className="border-border/60 dark:bg-elevation-level1 text-fg-secondary flex items-center gap-1.5 rounded-full border bg-white px-3 py-1 text-xs font-semibold shadow-2xs">
+											<div className="border-border/60 dark:bg-elevation-level1 text-fg-secondary flex items-center gap-1.5 rounded-full border bg-white px-2.5 py-0.5 text-xs font-semibold shadow-2xs">
 												<span className="size-1.5 rounded-full bg-emerald-500" />
 												<span>3 in progress</span>
 											</div>
 										</div>
 
-										{/* Inner Elevated White Card */}
+										{/* Inner Elevated White Card (generous row spacing) */}
 										<div className="border-border/50 dark:bg-elevation-level1 divide-border/40 flex flex-1 flex-col justify-between divide-y overflow-hidden rounded-xl border bg-white shadow-2xs">
 											{LIVE_VISITS.map((visit) => (
 												<div
 													key={visit.id}
-													className="hover:bg-fill1/40 flex flex-1 items-center justify-between px-4 py-3.5 transition-colors">
+													className="hover:bg-fill1/40 flex flex-1 items-center justify-between px-4 py-4 transition-colors sm:py-4.5">
 													<div className="flex min-w-0 items-center gap-3">
 														<Avatar
 															size="sm"
