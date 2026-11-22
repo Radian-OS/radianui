@@ -1304,35 +1304,37 @@ export default function Preview12Page() {
 								{STAT_METRICS.map((stat) => (
 									<Card
 										key={stat.label}
-										className="border-border/60 bg-elevation-level1 flex flex-col justify-between p-4 shadow-2xs">
-										<div className="flex items-start justify-between">
-											<div>
-												<span className="text-fg-secondary text-[11px] font-semibold tracking-wider uppercase">
-													{stat.label}
-												</span>
-												<div className="mt-1 flex items-baseline gap-1.5">
-													<span className="heading-3 text-fg">
+										className="border-border/60 flex flex-col justify-between rounded-2xl border bg-[#f0f4f9] p-1.5 shadow-2xs dark:bg-zinc-900/60">
+										{/* Top Elevated White Panel */}
+										<div className="border-border/50 dark:bg-elevation-level1 flex flex-col justify-between gap-3 rounded-xl border bg-white p-3.5 shadow-2xs">
+											<span className="text-fg-tertiary text-[10px] font-semibold tracking-wider uppercase select-none">
+												{stat.label}
+											</span>
+											<div className="flex items-end justify-between gap-2">
+												<div className="flex items-baseline gap-1.5">
+													<span className="font-heading text-fg text-2xl font-bold tracking-tight">
 														{stat.value}
 													</span>
-													<span className="text-fg-secondary text-xs">
+													<span className="text-fg-secondary text-xs font-normal">
 														{stat.unit}
 													</span>
 												</div>
-											</div>
 
-											{/* Mini Sparkline Chart */}
-											<div className="flex h-7 items-end gap-[3px] pt-1">
-												{stat.bars.map((bar, i) => (
-													<div
-														key={i}
-														style={{ height: `${bar}%` }}
-														className="bg-primary/70 hover:bg-primary w-[4px] rounded-xs transition-all"
-													/>
-												))}
+												{/* Mini Sparkline Chart */}
+												<div className="flex h-7 items-end gap-[3px] pb-0.5">
+													{stat.bars.map((bar, i) => (
+														<div
+															key={i}
+															style={{ height: `${bar}%` }}
+															className="w-[3px] rounded-full bg-[#a5b4fc] transition-all hover:brightness-110 dark:bg-indigo-400/80"
+														/>
+													))}
+												</div>
 											</div>
 										</div>
 
-										<div className="text-fg-secondary mt-3 flex items-center text-[11px]">
+										{/* Bottom Subtext Row on soft card base */}
+										<div className="text-fg-secondary flex items-center px-3 py-2 text-[11px] leading-none font-medium">
 											{stat.dotColor && (
 												<span
 													className={cn(
