@@ -25,6 +25,7 @@ import {
 	PanelLeft,
 	Inbox,
 	ChevronDown,
+	Layers,
 	LayoutGrid,
 	Home,
 } from "lucide-react"
