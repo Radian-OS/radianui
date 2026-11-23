@@ -1,3 +1,4 @@
+import { useThemerPickerPlacement } from "./themer-picker-placement"
 import { Button, CompactButton } from "@/styles/default/ui/button"
 import {
 	DropdownMenu,
@@ -23,6 +24,7 @@ const THEME_LABELS: Record<Theme, string> = {
 }
 
 export default function AppearanceModePicker() {
+	const placement = useThemerPickerPlacement("end", 12)
 	const [presetParams, setPresetParams] = useThemerPreset()
 
 	return (
@@ -39,10 +41,8 @@ export default function AppearanceModePicker() {
 				</Button>
 			</DropdownMenuTrigger>
 			<DropdownMenuContent
-				side="right"
-				align="end"
-				sideOffset={20}
-				className="min-w-[280px] shadow-sm">
+				{...placement}
+				className="w-70 max-w-[calc(100vw-1.5rem)] shadow-sm">
 				<div className="flex items-center justify-between">
 					<DropdownMenuLabel className="text-fg-tertiary">
 						Appearance Mode

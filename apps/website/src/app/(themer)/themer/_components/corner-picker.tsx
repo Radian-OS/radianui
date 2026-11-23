@@ -1,5 +1,6 @@
 "use client"
 
+import { useThemerPickerPlacement } from "./themer-picker-placement"
 import { useEffect, useState } from "react"
 import { useDebouncedCallback } from "use-debounce"
 import { Info, Shuffle } from "lucide-react"
@@ -107,6 +108,7 @@ function RadiusSlider({
 }
 
 export default function CornerPicker() {
+	const placement = useThemerPickerPlacement("start", 12)
 	const [params, setParams] = useThemerPreset()
 	const [isAdvanced, setIsAdvanced] = useState(false)
 
@@ -141,10 +143,8 @@ export default function CornerPicker() {
 			</DropdownMenuTrigger>
 
 			<DropdownMenuContent
-				side="right"
-				align="start"
-				sideOffset={20}
-				className="min-w-[280px] shadow-sm select-none">
+				{...placement}
+				className="w-70 max-w-[calc(100vw-1.5rem)] shadow-sm select-none">
 				<div className="flex items-center justify-between">
 					<DropdownMenuLabel className="text-fg-tertiary">
 						Radius

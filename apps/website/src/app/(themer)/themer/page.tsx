@@ -2,6 +2,12 @@
 
 import { SidebarProvider, SidebarInset } from "@/styles/default/ui/sidebar"
 import { ThemerSidebar } from "./_components/themer-sidebar"
+import {
+	ThemerMobileDrawer,
+	ThemerMobileShortcuts,
+	type MobileThemerPanel,
+	type MobileThemerShortcut,
+} from "./_components/themer-mobile-settings"
 import { DeviceSize, ThemerTopbar } from "./_components/themer-topbar"
 import { cn } from "@/lib/utils"
 import { Suspense, useCallback, useEffect, useRef, useState } from "react"
@@ -17,6 +23,30 @@ function ThemerPage() {
 	)
 	const [device, setDevice] = useState<DeviceSize>("desktop")
 	const iframeRef = useRef<HTMLIFrameElement>(null)
+	const [mobilePanel, setMobilePanel] = useState<MobileThemerPanel>("settings")
+	const [selectedShortcut, setSelectedShortcut] =
+		useState<MobileThemerShortcut>("preset")
+	const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false)
+	const mobileTriggerRef = useRef<HTMLButtonElement>(null)
+
+	const openMobilePanel = (
+		panel: MobileThemerPanel,
+		trigger: HTMLButtonElement
+	) => {
+		mobileTriggerRef.current = trigger
+		if (panel !== "settings") setSelectedShortcut(panel)
+		setMobilePanel(panel)
+		setMobileDrawerOpen(true)
+	}
+
+	useEffect(() => {
+		const desktop = window.matchMedia("(min-width: 640px)")
+		const closeOnDesktop = () => {
+			if (desktop.matches) setMobileDrawerOpen(false)
+		}
+		desktop.addEventListener("change", closeOnDesktop)
+		return () => desktop.removeEventListener("change", closeOnDesktop)
+	}, [])
 
 	useEffect(() => {
 		try {
@@ -78,18 +108,23 @@ function ThemerPage() {
 
 	return (
 		<SidebarProvider
-			style={{ "--sidebar-width": "430px" } as React.CSSProperties}>
+			className="h-dvh min-h-0 overflow-hidden"
+			style={{ "--sidebar-width": "min(50vw, 430px)" } as React.CSSProperties}>
 			<ThemerSidebar />
 
-			<SidebarInset className="bg-fill1">
+			<SidebarInset className="bg-fill1 min-h-0 min-w-0">
 				<ThemerTopbar
 					selectedComponent={selectedComponent ?? ""}
 					onSelectComponent={handleSelectComponent}
 					device={device}
 					onDeviceChange={setDevice}
+					mobileSettingsOpen={mobileDrawerOpen}
+					onOpenMobileSettings={(trigger) =>
+						openMobilePanel("settings", trigger)
+					}
 				/>
 				<div
-					className="relative flex flex-1 flex-col overflow-auto p-4 md:p-8"
+					className="relative flex min-h-0 flex-1 flex-col overflow-hidden px-2 pt-3 sm:p-4 lg:p-8"
 					style={{
 						backgroundImage:
 							"radial-gradient(var(--color-fill2-alpha) 1px, transparent 1px)",
@@ -97,10 +132,11 @@ function ThemerPage() {
 					}}>
 					<div
 						className={cn(
-							"border-border bg-bg mx-auto flex flex-1 overflow-hidden rounded-xl border shadow-sm transition-all duration-200",
+							"border-border bg-bg mx-auto flex min-h-0 max-w-full flex-1 overflow-hidden rounded-xl border shadow-sm transition-all duration-200",
 							device === "mobile" && "w-[375px]",
 							device === "tablet" && "w-[768px]",
-							device === "desktop" && "w-full"
+							device === "desktop" && "w-full",
+							"max-sm:w-full max-sm:rounded-b-none"
 						)}>
 						{iframeSrc && (
 							<iframe
@@ -113,14 +149,29 @@ function ThemerPage() {
 						)}
 					</div>
 				</div>
+				<ThemerMobileShortcuts
+					selectedShortcut={selectedShortcut}
+					openPanel={mobileDrawerOpen ? mobilePanel : null}
+					onSelect={openMobilePanel}
+				/>
 			</SidebarInset>
+			<ThemerMobileDrawer
+				panel={mobilePanel}
+				open={mobileDrawerOpen}
+				onOpenChange={setMobileDrawerOpen}
+				onOpenAllSettings={() => setMobilePanel("settings")}
+				onCloseAutoFocus={(event) => {
+					event.preventDefault()
+					mobileTriggerRef.current?.focus({ preventScroll: true })
+				}}
+			/>
 		</SidebarProvider>
 	)
 }
 
 export default function ThemerPageWrapper() {
 	return (
-		<Suspense fallback={<div className="bg-fill2 flex h-screen w-full" />}>
+		<Suspense fallback={<div className="bg-fill2 flex h-dvh w-full" />}>
 			<ThemerPage />
 		</Suspense>
 	)

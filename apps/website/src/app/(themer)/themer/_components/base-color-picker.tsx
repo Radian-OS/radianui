@@ -1,5 +1,6 @@
 "use client"
 
+import { useThemerPickerPlacement } from "./themer-picker-placement"
 import * as React from "react"
 import { Check, Info, Shuffle } from "lucide-react"
 import {
@@ -97,6 +98,7 @@ export default function BaseColorPicker({
 	primaryColor,
 	onBaseColorChange,
 }: BaseColorPickerProps) {
+	const placement = useThemerPickerPlacement("start", 16)
 	const [open, setOpen] = React.useState(false)
 
 	// Determine initial mode based on whether baseColor matches auto-derived base color
@@ -234,9 +236,7 @@ export default function BaseColorPicker({
 			</PopoverTrigger>
 
 			<PopoverContent
-				side="right"
-				align="start"
-				sideOffset={16}
+				{...placement}
 				collisionPadding={16}
 				onOpenAutoFocus={(e) => e.preventDefault()}
 				className="w-[280px] rounded-lg px-2.5 py-1.5 shadow-sm select-none">

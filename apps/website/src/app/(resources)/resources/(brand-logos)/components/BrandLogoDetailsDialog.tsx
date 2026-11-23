@@ -23,6 +23,7 @@ import {
 	DropdownMenu,
 	DropdownMenuContent,
 	DropdownMenuItem,
+	DropdownMenuLabel,
 	DropdownMenuRadioGroup,
 	DropdownMenuRadioItem,
 	DropdownMenuTrigger,
@@ -235,7 +236,7 @@ export function BrandLogoDetailsDialog({
 					<div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center">
 						<DropdownMenu>
 							<ButtonGroup
-								size="lg"
+								size="sm"
 								color="primary"
 								variant="strong"
 								className="w-full sm:w-auto">
@@ -252,6 +253,9 @@ export function BrandLogoDetailsDialog({
 								</DropdownMenuTrigger>
 							</ButtonGroup>
 							<DropdownMenuContent align="start">
+								<DropdownMenuLabel className="uppercase">
+									PNG width
+								</DropdownMenuLabel>
 								<DropdownMenuRadioGroup
 									value={String(pngExportWidth)}
 									onValueChange={(value) => setPngExportWidth(Number(value))}>
@@ -263,13 +267,13 @@ export function BrandLogoDetailsDialog({
 								</DropdownMenuRadioGroup>
 							</DropdownMenuContent>
 						</DropdownMenu>
-						<Button size="lg" className="w-full sm:w-fit" onClick={copySvg}>
+						<Button size="sm" className="w-full sm:w-fit" onClick={copySvg}>
 							Copy SVG
 						</Button>
 
 						<DropdownMenu>
 							<ButtonGroup
-								size="lg"
+								size="sm"
 								color="neutral"
 								variant="outline"
 								className="w-full sm:w-auto">
@@ -288,6 +292,9 @@ export function BrandLogoDetailsDialog({
 								</DropdownMenuTrigger>
 							</ButtonGroup>
 							<DropdownMenuContent align="end">
+								<DropdownMenuLabel className="uppercase">
+									Download format
+								</DropdownMenuLabel>
 								<DropdownMenuItem onSelect={() => downloadLogo("svg")}>
 									Download SVG
 								</DropdownMenuItem>

@@ -1,3 +1,5 @@
+import { Button } from "@/styles/default/ui/button"
+import { useThemerPickerPlacement } from "./themer-picker-placement"
 import {
 	Command,
 	CommandEmpty,
@@ -78,24 +80,27 @@ function CommandInput() {
 }
 
 export default function PresetPicker() {
+	const placement = useThemerPickerPlacement("start", 20)
 	return (
 		<Popover>
 			<PopoverTrigger asChild>
-				<div className="bg-fill1-alpha flex cursor-pointer items-center justify-between rounded-[10px] p-3 text-sm select-none">
-					<span className="font-medium">Choose a preset:</span>
+				<Button
+					size="lg"
+					variant="soft"
+					color="neutral"
+					className="bg-fill1-alpha w-full justify-between rounded-[10px] p-3 select-none">
+					<span className="font-medium">Theme</span>
 					<span className="text-fg-tertiary">None</span>
-				</div>
+				</Button>
 			</PopoverTrigger>
 			<PopoverContent
-				align="start"
-				side="right"
-				sideOffset={20}
-				className="w-[280px] rounded-lg p-0 shadow-sm">
+				{...placement}
+				className="w-[280px] max-w-[calc(100vw-1.5rem)] rounded-lg p-0 shadow-sm">
 				<Command className="border-0 p-0">
 					<CommandInput />
 					<CommandList className="max-h-none overflow-visible">
 						<CommandEmpty>No preset found.</CommandEmpty>
-						<ScrollArea className="h-120">
+						<ScrollArea className="h-[min(30rem,max(8rem,calc(var(--radix-popover-content-available-height)-3rem)))]">
 							{PRESETS.map((group) => (
 								<CommandGroup heading={group.group} key={group.group}>
 									{group.presets.map((preset) => (

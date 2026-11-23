@@ -1,5 +1,7 @@
 "use client"
 
+import { ScrollArea } from "@/styles/default/ui/scroll-area"
+import { useThemerPickerPlacement } from "./themer-picker-placement"
 import * as React from "react"
 import { useTheme } from "next-themes"
 import { motion, useDragControls } from "motion/react"
@@ -249,6 +251,7 @@ function ColorPickerPopover({
 	onSelect,
 	children,
 }: ColorPickerPopoverProps) {
+	const placement = useThemerPickerPlacement("start", 16)
 	const dragControls = useDragControls()
 	const [activeTab, setActiveTab] = React.useState("presets")
 	const [colorFormat, setColorFormat] = React.useState<ColorFormat>("Hex")
@@ -354,9 +357,7 @@ function ColorPickerPopover({
 		<Popover open={open} onOpenChange={onOpenChange}>
 			<PopoverTrigger asChild>{children}</PopoverTrigger>
 			<PopoverContent
-				align="start"
-				side="right"
-				sideOffset={16}
+				{...placement}
 				collisionPadding={16}
 				onOpenAutoFocus={(e) => e.preventDefault()}
 				className="w-auto border-none bg-transparent p-0 shadow-none">
@@ -379,7 +380,7 @@ function ColorPickerPopover({
 								el.style.pointerEvents = ""
 							})
 						}}
-						className="bg-popover border-border w-[300px] rounded-lg border px-2.5 py-1.5 shadow-sm will-change-transform select-none">
+						className="bg-popover border-border w-[300px] max-w-[calc(100vw-2rem)] rounded-lg border px-2.5 py-1.5 shadow-sm will-change-transform select-none">
 						{/* Header */}
 						<div
 							onPointerDown={(e) => {
@@ -576,7 +577,9 @@ function ColorPickerPopover({
 							<div className="text-fg-tertiary px-2 pb-1.5 text-xs font-normal">
 								Select colors
 							</div>
-							<div className="no-scrollbar flex max-h-[500px] flex-col gap-0.5 overflow-y-auto">
+							<ScrollArea
+								type="auto"
+								className="[&_[data-slot=scroll-area-viewport]]:max-h-[min(500px,max(6rem,calc(var(--radix-popover-content-available-height)-4rem)))]">
 								{orderedPresets.map((preset) => {
 									const isSelected =
 										value === preset.value ||
@@ -618,7 +621,7 @@ function ColorPickerPopover({
 										</button>
 									)
 								})}
-							</div>
+							</ScrollArea>
 						</TabsContent>
 					</motion.div>
 				</Tabs>
