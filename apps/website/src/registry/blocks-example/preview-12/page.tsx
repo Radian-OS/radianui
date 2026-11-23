@@ -6,6 +6,19 @@ import { motion, AnimatePresence } from "motion/react"
 import { IconSlot } from "@/registry/icon/icon-library"
 import type { IconSlot as IconSlotName } from "@/registry/icon/icon-libraries"
 
+import {
+	type ChartConfig,
+	ChartContainer,
+	ChartTooltip,
+} from "@/registry/ui/chart"
+import {
+	Scatter,
+	ScatterChart,
+	XAxis,
+	YAxis,
+	ReferenceLine,
+	ReferenceArea,
+} from "recharts"
 import { Button, IconButton } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardHeader, CardTitle, CardContent } from "@/registry/ui/card"
@@ -629,6 +642,35 @@ const HOURS_LIST = [
 	"6P",
 ]
 
+const coverageChartConfig = {
+	covered: {
+		label: "Covered",
+		color: "var(--color-primary)",
+	},
+	completed: {
+		label: "Completed",
+		color: "var(--color-primary)",
+	},
+	needsCover: {
+		label: "Needs Cover",
+		color: "var(--color-error)",
+	},
+	atRisk: {
+		label: "At Risk",
+		color: "var(--color-warning)",
+	},
+} satisfies ChartConfig
+
+interface CoveragePoint {
+	x: number
+	y: number
+	status: BlockStatus
+	time: string
+	covered: number
+	needsCover: number
+	assignedName?: string
+}
+
 interface AlertItem {
 	id: string
 	title: string
@@ -723,6 +765,62 @@ export default function Preview12Page() {
 			else next.add(id)
 			return next
 		})
+	}
+
+	const scatterData = React.useMemo(() => {
+		const points: CoveragePoint[] = []
+		COVERAGE_DATA.forEach((col, colIdx) => {
+			col.cells.forEach((status, rowIdx) => {
+				points.push({
+					x: colIdx,
+					y: rowIdx,
+					status,
+					time: col.time,
+					covered: col.covered,
+					needsCover: col.needsCover,
+					assignedName: col.assignedName,
+				})
+			})
+		})
+		return points
+	}, [])
+
+	const renderCoverageCell = (props: unknown) => {
+		const cellProps = props as {
+			cx?: number
+			cy?: number
+			payload?: CoveragePoint
+		}
+		const { cx, cy, payload } = cellProps
+		if (cx == null || cy == null || !payload) return null
+
+		const width = 17
+		const height = 13.5
+		const rx = 3
+		const status = payload.status
+
+		let fillClass = "fill-fill2 dark:fill-zinc-800/40"
+		if (status === "completed") fillClass = "fill-primary/40 hover:opacity-90"
+		else if (status === "covered") fillClass = "fill-primary hover:opacity-90"
+		else if (status === "atRisk") fillClass = "fill-warning hover:opacity-90"
+		else if (status === "needsCover")
+			fillClass = "fill-error hover:opacity-90 animate-pulse"
+
+		return (
+			<g
+				onClick={() => setSelectedColIndex(payload.x)}
+				className="cursor-pointer focus:outline-none">
+				<rect
+					x={cx - width / 2}
+					y={cy - height / 2}
+					width={width}
+					height={height}
+					rx={rx}
+					ry={rx}
+					className={cn(fillClass, "transition-colors")}
+				/>
+			</g>
+		)
 	}
 
 	return (
@@ -1367,192 +1465,150 @@ export default function Preview12Page() {
 											</span>
 										</div>
 
-										{/* Interactive Block Matrix Chart */}
-										<div className="relative overflow-x-auto pt-7 pb-2 select-none">
+										{/* Coverage Block Chart with Radian ChartContainer */}
+										<div className="relative w-full overflow-x-auto pt-7 pb-2 select-none">
 											{/* Current Time Indicator Line (NOW 8:46) */}
 											<div
-												className="pointer-events-none absolute top-0 bottom-6 z-20 flex flex-col items-center"
+												className="pointer-events-none absolute top-1 z-20 flex flex-col items-center"
 												style={{
-													left: "calc(1.5rem + (3.53 / 24) * (100% - 1.5rem))",
+													left: "calc(1.75rem + (3.53 / 24) * (100% - 1.75rem))",
 												}}>
 												<div className="bg-fg text-bg rounded-[4px] px-1.5 py-0.5 text-[9px] font-bold tracking-tight whitespace-nowrap shadow-xs">
 													NOW 8:46
 												</div>
-												<div className="bg-fg/80 w-[1px] flex-1" />
 											</div>
 
-											{/* Grid with Y-axis + 24 Columns */}
-											<div className="flex min-w-[560px] items-stretch">
-												{/* Y-axis labels aligned with 10 rows */}
-												<div
-													className="text-fg-secondary w-6 shrink-0 pr-2 text-right font-mono text-[11px] font-medium select-none"
-													style={{
-														display: "grid",
-														gridTemplateRows: "repeat(10, minmax(0, 1fr))",
-														gap: "3px",
-													}}>
-													<div />
-													<div className="flex items-center justify-end leading-none">
-														9
-													</div>
-													<div />
-													<div />
-													<div className="flex items-center justify-end leading-none">
-														6
-													</div>
-													<div />
-													<div />
-													<div className="flex items-center justify-end leading-none">
-														3
-													</div>
-													<div />
-													<div />
-												</div>
+											<div className="min-w-[560px]">
+												<ChartContainer
+													config={coverageChartConfig}
+													className="aspect-auto h-[230px] w-full">
+													<ScatterChart
+														margin={{
+															top: 12,
+															right: 10,
+															bottom: 0,
+															left: -14,
+														}}>
+														<XAxis
+															type="number"
+															dataKey="x"
+															domain={[-0.5, 23.5]}
+															ticks={[
+																0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22,
+															]}
+															tickFormatter={(val: number) =>
+																HOURS_LIST[val / 2] ?? ""
+															}
+															interval={0}
+															tickLine={false}
+															axisLine={false}
+															tick={{
+																fontSize: 12,
+																fill: "var(--color-fg-secondary)",
+																fontWeight: 600,
+															}}
+														/>
+														<YAxis
+															type="number"
+															dataKey="y"
+															domain={[-0.5, 9.5]}
+															ticks={[2, 5, 8]}
+															tickFormatter={(val: number) =>
+																val === 2
+																	? "3"
+																	: val === 5
+																		? "6"
+																		: val === 8
+																			? "9"
+																			: ""
+															}
+															width={28}
+															interval={0}
+															tickLine={false}
+															axisLine={false}
+															tick={{
+																fontSize: 11,
+																fill: "var(--color-fg-secondary)",
+																fontFamily: "monospace",
+																fontWeight: 500,
+															}}
+														/>
+														<ReferenceLine
+															x={3.53}
+															stroke="currentColor"
+															className="text-fg/80 pointer-events-none"
+															strokeWidth={1}
+														/>
+														{selectedColIndex !== null && (
+															<ReferenceArea
+																x1={selectedColIndex - 0.48}
+																x2={selectedColIndex + 0.48}
+																y1={-0.45}
+																y2={9.45}
+																rx={6}
+																className="stroke-fg/80 pointer-events-none fill-transparent stroke-2"
+															/>
+														)}
+														<ChartTooltip
+															cursor={false}
+															offset={12}
+															isAnimationActive={false}
+															animationDuration={0}
+															allowEscapeViewBox={{ x: true, y: true }}
+															content={({ active, payload }) => {
+																if (!active || !payload?.length) return null
+																const item = payload[0]?.payload as
+																	| CoveragePoint
+																	| undefined
+																if (!item) return null
 
-												{/* 24 Half-Hour Columns */}
-												<div
-													className="relative flex-1"
-													style={{
-														display: "grid",
-														gridTemplateColumns: "repeat(24, minmax(0, 1fr))",
-														gap: "3px",
-													}}>
-													{COVERAGE_DATA.map((col, colIdx) => {
-														const isSelected = selectedColIndex === colIdx
-														return (
-															<div
-																key={col.id}
-																onClick={() => setSelectedColIndex(colIdx)}
-																onMouseEnter={() => setSelectedColIndex(colIdx)}
-																className={cn(
-																	"relative flex cursor-pointer flex-col transition-all",
-																	isSelected && "z-20"
-																)}>
-																{/* Column selection outline */}
-																{isSelected && (
-																	<div className="border-fg/80 pointer-events-none absolute -inset-[2px] z-10 rounded-md border-2 shadow-xs" />
-																)}
-
-																{/* 10 Vertical Cells: row 9 at top down to row 0 at bottom */}
-																<div
-																	className="w-full"
-																	style={{
-																		display: "grid",
-																		gridTemplateRows:
-																			"repeat(10, minmax(0, 1fr))",
-																		gap: "3px",
-																	}}>
-																	{Array.from({ length: 10 }).map((_, r) => {
-																		const rowIdx = 9 - r
-																		const status = col.cells[rowIdx]
-																		return (
-																			<div
-																				key={rowIdx}
-																				className={cn(
-																					"aspect-square w-full rounded-[3px] transition-colors",
-																					status === "completed" &&
-																						"bg-primary/40 hover:brightness-110",
-																					status === "covered" &&
-																						"bg-primary hover:brightness-110",
-																					status === "atRisk" &&
-																						"bg-warning hover:brightness-110",
-																					status === "needsCover" &&
-																						"bg-error animate-pulse hover:brightness-110",
-																					status === null &&
-																						"bg-fill2 dark:bg-zinc-800/40"
-																				)}
-																			/>
-																		)
-																	})}
-																</div>
-															</div>
-														)
-													})}
-
-													{/* Floating Tooltip Callout anchored to selected column */}
-													{selectedColIndex !== null && (
-														<AnimatePresence>
-															<motion.div
-																initial={{ opacity: 0, y: 4 }}
-																animate={{ opacity: 1, y: 0 }}
-																exit={{ opacity: 0, y: 4 }}
-																transition={{ duration: 0.15 }}
-																className="border-border/70 bg-elevation-level1 text-fg pointer-events-none absolute z-30 min-w-[210px] rounded-lg border p-3 text-xs shadow-lg backdrop-blur-xs"
-																style={{
-																	left: `calc((${selectedColIndex} / 24) * 100% + 14px)`,
-																	top: "16%",
-																	transform:
-																		selectedColIndex > 16
-																			? "translateX(-110%)"
-																			: "none",
-																}}>
-																<span className="font-heading text-fg text-xs font-semibold">
-																	{COVERAGE_DATA[selectedColIndex].time}
-																</span>
-																<div className="mt-1.5 flex items-center justify-between text-xs">
-																	<div className="flex items-center gap-1.5">
-																		<span className="bg-primary size-2 rounded-xs" />
-																		<span className="text-fg-secondary">
-																			Covered
+																return (
+																	<div className="border-border/70 bg-elevation-level1 text-fg pointer-events-none min-w-[210px] -translate-x-1/2 -translate-y-[calc(100%+14px)] rounded-lg border p-3 text-xs shadow-lg backdrop-blur-xs">
+																		<span className="font-heading text-fg text-xs font-semibold">
+																			{item.time}
 																		</span>
-																	</div>
-																	<span className="text-fg font-semibold">
-																		{COVERAGE_DATA[selectedColIndex].covered}
-																	</span>
-																</div>
-																{COVERAGE_DATA[selectedColIndex].needsCover >
-																	0 && (
-																	<div className="mt-1 flex items-center justify-between text-xs">
-																		<div className="flex items-center gap-1.5">
-																			<span className="bg-error size-2 rounded-xs" />
-																			<span className="text-error font-medium">
-																				Needs cover
-																			</span>
-																		</div>
-																		<div className="flex items-center gap-1 text-xs">
-																			<span className="text-error font-bold">
-																				{
-																					COVERAGE_DATA[selectedColIndex]
-																						.needsCover
-																				}
-																			</span>
-																			{COVERAGE_DATA[selectedColIndex]
-																				.assignedName && (
+																		<div className="mt-1.5 flex items-center justify-between text-xs">
+																			<div className="flex items-center gap-1.5">
+																				<span className="bg-primary size-2 rounded-xs" />
 																				<span className="text-fg-secondary">
-																					·{" "}
-																					{
-																						COVERAGE_DATA[selectedColIndex]
-																							.assignedName
-																					}
+																					Covered
 																				</span>
-																			)}
+																			</div>
+																			<span className="text-fg font-semibold">
+																				{item.covered}
+																			</span>
 																		</div>
+																		{item.needsCover > 0 && (
+																			<div className="mt-1 flex items-center justify-between text-xs">
+																				<div className="flex items-center gap-1.5">
+																					<span className="bg-error size-2 rounded-xs" />
+																					<span className="text-error font-medium">
+																						Needs cover
+																					</span>
+																				</div>
+																				<div className="flex items-center gap-1 text-xs">
+																					<span className="text-error font-bold">
+																						{item.needsCover}
+																					</span>
+																					{item.assignedName && (
+																						<span className="text-fg-secondary">
+																							· {item.assignedName}
+																						</span>
+																					)}
+																				</div>
+																			</div>
+																		)}
 																	</div>
-																)}
-															</motion.div>
-														</AnimatePresence>
-													)}
-												</div>
-											</div>
-
-											{/* Bottom X-axis Hour Labels */}
-											<div className="flex min-w-[560px] items-center pt-2.5">
-												<div className="w-6 shrink-0" />
-												<div
-													className="flex-1"
-													style={{
-														display: "grid",
-														gridTemplateColumns: "repeat(24, minmax(0, 1fr))",
-														gap: "3px",
-													}}>
-													{HOURS_LIST.map((hr) => (
-														<span
-															key={hr}
-															className="text-fg-secondary col-span-2 text-center text-xs font-semibold select-none">
-															{hr}
-														</span>
-													))}
-												</div>
+																)
+															}}
+														/>
+														<Scatter
+															data={scatterData}
+															shape={renderCoverageCell}
+															isAnimationActive={false}
+														/>
+													</ScatterChart>
+												</ChartContainer>
 											</div>
 										</div>
 									</div>
