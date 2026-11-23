@@ -909,7 +909,7 @@ export default function Preview12Page() {
 									{STAT_METRICS.map((stat) => (
 										<Card
 											key={stat.label}
-											className="border-border bg-fill1 flex flex-col justify-between border p-1.5 shadow-2xs dark:bg-zinc-900/60">
+											className="border-border bg-fill2 flex flex-col justify-between border p-1.5 shadow-2xs dark:bg-zinc-900/60">
 											{/* Top Elevated White Panel */}
 											<div className="border-border bg-elevation-level1 flex flex-col justify-between gap-3 rounded-lg border p-3.5 shadow-2xs">
 												<span className="text-fg-secondary text-[10px] font-semibold tracking-wider uppercase select-none">
@@ -956,19 +956,56 @@ export default function Preview12Page() {
 
 								{/* ── Lower Section (Coverage & Timeline + Right Alerts/Live) ── */}
 								<div className="grid grid-cols-1 items-stretch gap-4 lg:grid-cols-12">
-									{/* Left: Heatmap Chart (lg:col-span-7) */}
-									<Card className="border-border bg-elevation-level1 flex h-full flex-col justify-between border shadow-2xs lg:col-span-7">
-										<CardHeader className="pb-3">
-											<CardTitle className="flex items-baseline gap-2">
-												<span className="font-heading text-fg text-2xl font-bold tracking-tight">
-													1,890
+									{/* Left: Heatmap Chart with Outer Container (lg:col-span-7) */}
+									<Card className="border-border bg-fill2 flex h-full flex-col justify-between border p-2.5 shadow-2xs lg:col-span-7 dark:bg-zinc-900/60">
+										{/* Top Header Row on tinted base */}
+										<div className="flex flex-wrap items-center justify-between gap-3 px-1.5 pt-0.5 pb-1.5">
+											<div className="flex items-center gap-1.5">
+												<IconSlot
+													slot="calendar"
+													className="text-fg-secondary size-3.5"
+												/>
+												<span className="text-fg-secondary text-xs font-semibold tracking-wider uppercase">
+													Coverage by Half Hour
 												</span>
-												<span className="inline-flex items-center rounded-full bg-emerald-500/10 px-2 py-0.5 text-xs font-semibold text-emerald-500">
-													+5.2%
-												</span>
-											</CardTitle>
-											<CardDescription>Active users</CardDescription>
-											<CardAction>
+											</div>
+											<div className="text-fg-secondary flex flex-wrap items-center gap-2.5 text-[11px] font-medium">
+												<div className="flex items-center gap-1">
+													<span className="bg-primary size-2 rounded-xs" />
+													<span>COVERED</span>
+												</div>
+												<div className="flex items-center gap-1">
+													<span className="bg-primary/40 size-2 rounded-xs" />
+													<span>COMPLETED</span>
+												</div>
+												<div className="flex items-center gap-1">
+													<span className="size-2 rounded-xs bg-rose-500" />
+													<span>NEEDS COVER</span>
+												</div>
+												<div className="flex items-center gap-1">
+													<span className="size-2 rounded-xs bg-amber-400" />
+													<span>AT RISK</span>
+												</div>
+											</div>
+										</div>
+
+										{/* Inner Elevated White Card */}
+										<div className="border-border bg-elevation-level1 flex flex-1 flex-col justify-between overflow-hidden rounded-lg border shadow-2xs">
+											{/* Inner Header: Active Users & Last 7 Days (tightened spacing) */}
+											<div className="flex items-center justify-between p-4 pb-0">
+												<div>
+													<div className="flex items-baseline gap-2">
+														<span className="font-heading text-fg text-2xl font-bold tracking-tight">
+															1,890
+														</span>
+														<span className="inline-flex items-center rounded-full bg-emerald-500/10 px-2 py-0.5 text-xs font-semibold text-emerald-500">
+															+5.2%
+														</span>
+													</div>
+													<p className="text-fg-secondary text-xs">
+														Active users
+													</p>
+												</div>
 												<div className="border-border bg-fill1 text-fg flex items-center gap-1.5 rounded-lg border px-2.5 py-1 text-xs font-medium">
 													<IconSlot
 														slot="calendar"
@@ -976,17 +1013,17 @@ export default function Preview12Page() {
 													/>
 													<span>Last 7 days</span>
 												</div>
-											</CardAction>
-										</CardHeader>
-										<CardContent className="p-0">
-											<div className="w-full overflow-x-auto pb-2">
+											</div>
+
+											{/* Inner Heatmap Chart (reduced top margin to eliminate gap) */}
+											<div className="w-full overflow-x-auto pb-1">
 												<div className="min-w-[500px] px-4">
 													<ChartContainer
 														config={chartConfig}
-														className="aspect-auto h-[260px] w-full">
+														className="aspect-auto h-[210px] w-full">
 														<ScatterChart
 															margin={{
-																top: 58,
+																top: 10,
 																right: 10,
 																bottom: 0,
 																left: 0,
@@ -1058,22 +1095,37 @@ export default function Preview12Page() {
 													</ChartContainer>
 												</div>
 											</div>
-										</CardContent>
-										<CardFooter className="text-fg-secondary justify-end gap-1.5 border-t py-3 text-xs">
-											<span>Less</span>
-											<span className="bg-fill2 size-3 rounded-[3px]" />
-											<span className="bg-primary/25 size-3 rounded-[3px]" />
-											<span className="bg-primary/50 size-3 rounded-[3px]" />
-											<span className="bg-primary/75 size-3 rounded-[3px]" />
-											<span className="bg-primary size-3 rounded-[3px]" />
-											<span>More</span>
-										</CardFooter>
+
+											{/* Inner Footer: Less / More Legend */}
+											<div className="text-fg-secondary flex items-center justify-end gap-1.5 border-t px-4 py-2 text-xs">
+												<span>Less</span>
+												<span className="bg-fill2 size-3 rounded-[3px]" />
+												<span className="bg-primary/25 size-3 rounded-[3px]" />
+												<span className="bg-primary/50 size-3 rounded-[3px]" />
+												<span className="bg-primary/75 size-3 rounded-[3px]" />
+												<span className="bg-primary size-3 rounded-[3px]" />
+												<span>More</span>
+											</div>
+										</div>
+
+										{/* Bottom Footer Row on tinted base */}
+										<div className="text-fg-secondary flex items-center justify-between px-1.5 pt-1.5 pb-0.5 text-[11px] font-medium">
+											<span>PEAK 10:00 AM · 9 VISITS AT ONCE</span>
+											<Button
+												variant="ghost"
+												color="neutral"
+												size="xs"
+												className="text-fg-secondary hover:text-fg h-6 gap-0.5 px-1 text-[11px] font-semibold">
+												<span>Open schedule</span>
+												<IconSlot slot="right" className="size-3" />
+											</Button>
+										</div>
 									</Card>
 
 									{/* Right Column: Needs Attention + Live Visits (lg:col-span-5) */}
 									<div className="flex h-full flex-col justify-between gap-4 lg:col-span-5">
 										{/* Needs Attention Card */}
-										<Card className="border-border bg-fill1 flex flex-1 flex-col gap-2 border p-2.5 shadow-2xs dark:bg-zinc-900/60">
+										<Card className="border-border bg-fill2 flex flex-1 flex-col gap-2 border p-2.5 shadow-2xs dark:bg-zinc-900/60">
 											{/* Header row on tinted base (tightened gap to white card) */}
 											<div className="flex items-center justify-between px-1.5 pt-0.5 pb-0.5">
 												<div className="flex items-center gap-1.5">
@@ -1151,7 +1203,7 @@ export default function Preview12Page() {
 										</Card>
 
 										{/* Live Visits Card */}
-										<Card className="border-border bg-fill1 flex flex-1 flex-col gap-2 border p-2.5 shadow-2xs dark:bg-zinc-900/60">
+										<Card className="border-border bg-fill2 flex flex-1 flex-col gap-2 border p-2.5 shadow-2xs dark:bg-zinc-900/60">
 											{/* Header row on tinted base (tightened gap to white card) */}
 											<div className="flex items-center justify-between px-1.5 pt-0.5 pb-0.5">
 												<div className="flex items-center gap-1.5">
