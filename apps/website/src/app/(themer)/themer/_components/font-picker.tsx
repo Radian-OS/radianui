@@ -1,4 +1,7 @@
-import { useThemerPickerPlacement } from "./themer-picker-placement"
+import {
+	ThemerDrawerContext,
+	useThemerPickerPlacement,
+} from "./themer-picker-placement"
 import React, { useRef } from "react"
 import {
 	Command,
@@ -149,6 +152,7 @@ function FontList({
 	const [search, setSearch] = React.useState("")
 	const [category, setCategory] = React.useState("all")
 	const ref = useRef<HTMLDivElement>(null)
+	const inDrawer = React.useContext(ThemerDrawerContext)
 
 	const filteredFonts = React.useMemo(() => {
 		const lower = search.toLowerCase()
@@ -207,7 +211,11 @@ function FontList({
 				)}
 				<ScrollArea
 					ref={ref}
-					className="h-[min(25rem,max(8rem,calc(var(--radix-popover-content-available-height)-6rem)))]">
+					className={
+						inDrawer
+							? "h-[min(25rem,max(8rem,calc(var(--radix-popover-content-available-height)-6rem)))]"
+							: "h-100"
+					}>
 					<div
 						style={{
 							height: virt.getTotalSize(),
@@ -253,12 +261,6 @@ export default function FontPicker(
 	props: React.ComponentProps<typeof FontCard>
 ) {
 	const placement = useThemerPickerPlacement("start", 20)
-	React.useEffect(() => {
-		FONTS.reduce(
-			(p, font) => p.then(() => loadPreview(font.name)),
-			Promise.resolve()
-		)
-	}, [])
 
 	return (
 		<Popover>
