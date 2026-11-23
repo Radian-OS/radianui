@@ -12,8 +12,16 @@ import {
 	ChartTooltip,
 } from "@/registry/ui/chart"
 import { Scatter, ScatterChart, XAxis, YAxis } from "recharts"
-import { Button, IconButton } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
+import { Button, IconButton } from "@/registry/ui/button"
+import { Badge } from "@/registry/ui/badge"
+import {
+	Breadcrumb,
+	BreadcrumbItem,
+	BreadcrumbLink,
+	BreadcrumbList,
+	BreadcrumbPage,
+	BreadcrumbSeparator,
+} from "@/registry/ui/breadcrumb"
 import {
 	Card,
 	CardAction,
@@ -38,6 +46,7 @@ import {
 	SidebarMenuButton,
 	SidebarMenuItem,
 	SidebarProvider,
+	SidebarTrigger,
 } from "@/registry/ui/sidebar"
 import {
 	DropdownMenu,
@@ -677,14 +686,20 @@ export default function Preview12Page() {
 							{/* ── Top Bar ── */}
 							<header className="flex flex-wrap items-center justify-between gap-3">
 								<div className="flex items-center gap-2">
-									<div className="text-fg-secondary hover:text-fg flex size-7 items-center justify-center rounded-md text-xs">
-										<IconSlot slot="left-panel" className="size-4" />
-									</div>
-									<div className="text-fg-secondary flex items-center gap-1.5 text-xs font-medium">
-										<span>Operations</span>
-										<IconSlot slot="right" className="size-3" />
-										<span className="text-fg font-semibold">Dashboard</span>
-									</div>
+									<SidebarTrigger className="text-fg-secondary hover:text-fg size-7" />
+									<Breadcrumb>
+										<BreadcrumbList className="text-xs">
+											<BreadcrumbItem>
+												<BreadcrumbLink href="#">Operations</BreadcrumbLink>
+											</BreadcrumbItem>
+											<BreadcrumbSeparator />
+											<BreadcrumbItem>
+												<BreadcrumbPage className="font-semibold">
+													Dashboard
+												</BreadcrumbPage>
+											</BreadcrumbItem>
+										</BreadcrumbList>
+									</Breadcrumb>
 								</div>
 
 								<div className="flex items-center gap-2 sm:gap-2.5">
@@ -773,13 +788,17 @@ export default function Preview12Page() {
 									{/* Left Callout Details */}
 									<div className="flex flex-col gap-3 lg:col-span-6">
 										<div>
-											<div className="border-primary-fg/20 bg-primary-fg/15 text-primary-fg inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-[10px] font-semibold tracking-wider uppercase backdrop-blur-xs">
+											<Badge
+												variant="outline"
+												color="neutral"
+												size="sm"
+												className="border-primary-fg/20 bg-primary-fg/15 text-primary-fg inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[10px] font-semibold tracking-wider uppercase backdrop-blur-xs">
 												<IconSlot
 													slot="smartphone"
 													className="text-primary-fg/90 size-3"
 												/>
 												<span>CALL-OUT · 8:31 AM</span>
-											</div>
+											</Badge>
 										</div>
 
 										<div>

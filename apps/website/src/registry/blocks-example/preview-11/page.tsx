@@ -868,7 +868,7 @@ export function MetricDonutCard({ metric }: MetricDonutCardProps) {
 
 	return (
 		<Card className="bg-fill1/40 border-border/70 flex flex-col gap-0 overflow-hidden rounded-xl p-0 py-0 shadow-none">
-			<CardHeader className="border-border/60 gap-0 border-b px-5 py-3">
+			<CardHeader className="border-border/60 gap-0 border-b px-5 pt-3 pb-3! [.border-b]:pb-3">
 				<CardTitle className="font-heading text-fg text-[14px] leading-normal font-semibold">
 					{metric.title}
 				</CardTitle>
