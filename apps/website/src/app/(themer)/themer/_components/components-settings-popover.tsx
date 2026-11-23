@@ -1,5 +1,6 @@
 "use client"
 
+import { useThemerPickerPlacement } from "./themer-picker-placement"
 import { type ReactNode } from "react"
 import { RotateCcw, Shuffle } from "lucide-react"
 import { IconButton } from "@/styles/default/ui/button"
@@ -22,14 +23,13 @@ export function ComponentSettingsPopover({
 	onReset?: () => void
 	onShuffle?: () => void
 }) {
+	const placement = useThemerPickerPlacement("start", 20)
 	return (
 		<Popover>
 			<PopoverTrigger asChild>{children}</PopoverTrigger>
 			<PopoverContent
-				side="right"
-				align="start"
+				{...placement}
 				alignOffset={-16}
-				sideOffset={20}
 				collisionPadding={12}
 				aria-label={`${name} settings`}
 				className="border-border bg-bg w-[280px] max-w-[calc(100vw-24px)] rounded-xl p-0 shadow-lg">

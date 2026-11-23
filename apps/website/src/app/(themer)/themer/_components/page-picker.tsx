@@ -30,8 +30,9 @@ export default function PagePicker({
 	onSelect,
 }: PagePickerProps) {
 	const currentLabel =
-		PREVIEW_PAGES.find((p) => p.id === selectedComponent)?.label ||
-		"Showing: Preview 09"
+		PREVIEW_PAGES.find((p) => p.id === selectedComponent)?.label.split(
+			": "
+		)[1] ?? "Choose a preview"
 
 	return (
 		<DropdownMenu>
@@ -40,14 +41,15 @@ export default function PagePicker({
 					size="xs"
 					variant="outline"
 					color="neutral"
-					className="select-none">
-					<span>{currentLabel}</span>{" "}
+					className="max-w-52 min-w-0 justify-between select-none"
+					title={currentLabel}>
+					<span className="truncate">{currentLabel}</span>{" "}
 					<ChevronDown className="text-fg-secondary" />
 				</Button>
 			</DropdownMenuTrigger>
-			<DropdownMenuContent>
+			<DropdownMenuContent className="max-w-[calc(100vw-1rem)]">
 				{PREVIEW_PAGES.map((page) => (
-					<DropdownMenuItem key={page.id} onClick={() => onSelect?.(page.id)}>
+					<DropdownMenuItem key={page.id} onSelect={() => onSelect?.(page.id)}>
 						{page.label}
 					</DropdownMenuItem>
 				))}

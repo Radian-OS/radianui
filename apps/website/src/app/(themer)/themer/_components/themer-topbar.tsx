@@ -12,10 +12,12 @@ import {
 	Sun,
 	Moon,
 	Plus,
+	Menu,
 } from "lucide-react"
 import PagePicker from "./page-picker"
 import { Tabs, TabsList, TabsTrigger } from "@/styles/default/ui/tabs"
 import { CreateProjectDialog } from "./create-project-dialog"
+import { MOBILE_THEMER_DRAWER_ID } from "./themer-mobile-settings"
 
 export type DeviceSize = "desktop" | "tablet" | "mobile"
 
@@ -24,6 +26,8 @@ interface ThemerTopbarProps {
 	onSelectComponent?: (value: string) => void
 	device?: DeviceSize
 	onDeviceChange?: (value: DeviceSize) => void
+	mobileSettingsOpen: boolean
+	onOpenMobileSettings: (trigger: HTMLButtonElement) => void
 }
 
 export function ThemerTopbar({
@@ -31,6 +35,8 @@ export function ThemerTopbar({
 	onSelectComponent,
 	device = "desktop",
 	onDeviceChange,
+	mobileSettingsOpen,
+	onOpenMobileSettings,
 }: ThemerTopbarProps) {
 	const [mounted, setMounted] = useState(false)
 	const { resolvedTheme, setTheme } = useTheme()
@@ -42,15 +48,16 @@ export function ThemerTopbar({
 	const toggleTheme = () => {
 		setTheme(resolvedTheme === "dark" ? "light" : "dark")
 	}
+
 	return (
-		<header className="border-border bg-bg flex h-12 shrink-0 items-center justify-between border-b px-3 py-3.5">
-			<div className="hidden items-center gap-2.5 md:flex">
+		<header className="border-border bg-bg flex h-11 shrink-0 items-center justify-between gap-2 border-b px-2 sm:px-3">
+			<div className="flex min-w-0 items-center gap-2.5">
 				<PagePicker
 					selectedComponent={selectedComponent}
 					onSelect={onSelectComponent}
 				/>
-				<span className="text-soft-alpha text-xs">|</span>
-				<span className="text-fg-secondary text-sm font-normal">
+				<span className="text-soft-alpha hidden text-xs 2xl:inline">|</span>
+				<span className="text-fg-secondary hidden text-sm font-normal 2xl:inline">
 					Want a full site?{" "}
 					<a href="#" className="text-fg hover:text-primary transition-colors">
 						Open Radian&apos;s builder
@@ -58,68 +65,94 @@ export function ThemerTopbar({
 				</span>
 			</div>
 
-			<div className="flex items-center gap-2.5">
+			<div className="flex shrink-0 items-center gap-2">
 				<Tabs
+					className="hidden sm:flex"
 					value={device}
 					onValueChange={(val) => onDeviceChange?.(val as DeviceSize)}>
-					<TabsList className="p-0.5 data-[orientation=horizontal]:h-7">
+					<TabsList
+						className="p-0.5 data-[orientation=horizontal]:h-7"
+						aria-label="Preview device">
 						<TabsTrigger
 							value="desktop"
-							title="Desktop View"
-							className="px-1.5 py-1 [&>svg]:size-4">
+							aria-label="Desktop view"
+							title="Desktop view"
+							className="px-1 py-0.5 [&>svg]:size-3.5">
 							<Monitor />
 						</TabsTrigger>
 						<TabsTrigger
 							value="tablet"
-							title="Tablet View"
-							className="px-1.5 py-1 [&>svg]:size-4">
+							aria-label="Tablet view"
+							title="Tablet view"
+							className="px-1 py-0.5 [&>svg]:size-3.5">
 							<Tablet />
 						</TabsTrigger>
 						<TabsTrigger
 							value="mobile"
-							title="Mobile View"
-							className="px-1.5 py-1 [&>svg]:size-4">
+							aria-label="Mobile view"
+							title="Mobile view"
+							className="px-1 py-0.5 [&>svg]:size-3.5">
 							<Smartphone />
 						</TabsTrigger>
 					</TabsList>
 				</Tabs>
 
-				<div className="bg-soft-alpha h-4 w-px" />
-				<Tabs defaultValue="preview">
-					<TabsList className="p-0.5 data-[orientation=horizontal]:h-7">
-						<TabsTrigger value="preview" className="px-1.5 py-1 [&>svg]:size-4">
+				<div className="bg-soft-alpha hidden h-4 w-px xl:block" />
+				<Tabs className="hidden xl:flex" defaultValue="preview">
+					<TabsList
+						className="p-0.5 data-[orientation=horizontal]:h-7"
+						aria-label="Preview display">
+						<TabsTrigger
+							value="preview"
+							aria-label="Preview"
+							className="px-1.5 py-1 [&>svg]:size-4">
 							<Eye />
 						</TabsTrigger>
-						<TabsTrigger value="code" className="px-1.5 py-1 [&>svg]:size-4">
+						<TabsTrigger
+							value="code"
+							aria-label="Code"
+							className="px-1.5 py-1 [&>svg]:size-4">
 							<Code2 />
 						</TabsTrigger>
 					</TabsList>
 				</Tabs>
+				<div className="bg-soft-alpha hidden h-4 w-px sm:block" />
 
-				<div className="bg-soft-alpha h-4 w-px" />
+				<CreateProjectDialog>
+					<Button
+						color="primary"
+						size="xs"
+						aria-label="Create Project"
+						className="max-xl:px-1.5 sm:order-2">
+						<Plus />
+						<span className="hidden xl:inline">Create Project</span>
+					</Button>
+				</CreateProjectDialog>
 
 				<IconButton
-					variant="ghost"
+					variant="outline"
 					size="xs"
 					color="neutral"
+					className="sm:border-transparent"
 					aria-label="Toggle theme"
 					title="Toggle theme"
 					onClick={toggleTheme}>
-					{mounted && resolvedTheme === "dark" ? (
-						<Sun className="text-fg-tertiary size-4" />
-					) : (
-						<Moon className="text-fg-tertiary size-4" />
-					)}
+					{mounted && resolvedTheme === "dark" ? <Sun /> : <Moon />}
 				</IconButton>
-
-				<div className="bg-soft-alpha h-4 w-px" />
-
-				<CreateProjectDialog>
-					<Button color="primary" size="xs">
-						<Plus />
-						Create Project
-					</Button>
-				</CreateProjectDialog>
+				<IconButton
+					variant="soft"
+					size="xs"
+					color="neutral"
+					className="sm:hidden"
+					aria-label="Open Themer settings"
+					aria-haspopup="dialog"
+					aria-expanded={mobileSettingsOpen}
+					aria-controls={
+						mobileSettingsOpen ? MOBILE_THEMER_DRAWER_ID : undefined
+					}
+					onClick={(event) => onOpenMobileSettings(event.currentTarget)}>
+					<Menu />
+				</IconButton>
 			</div>
 		</header>
 	)

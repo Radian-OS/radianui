@@ -1,3 +1,4 @@
+import { useThemerPickerPlacement } from "./themer-picker-placement"
 import React, { useRef } from "react"
 import {
 	Command,
@@ -204,7 +205,9 @@ function FontList({
 				{filteredFonts.length === 0 && (
 					<CommandEmpty>No font found.</CommandEmpty>
 				)}
-				<ScrollArea ref={ref} className="h-100">
+				<ScrollArea
+					ref={ref}
+					className="h-[min(25rem,max(8rem,calc(var(--radix-popover-content-available-height)-6rem)))]">
 					<div
 						style={{
 							height: virt.getTotalSize(),
@@ -249,6 +252,7 @@ function FontList({
 export default function FontPicker(
 	props: React.ComponentProps<typeof FontCard>
 ) {
+	const placement = useThemerPickerPlacement("start", 20)
 	React.useEffect(() => {
 		FONTS.reduce(
 			(p, font) => p.then(() => loadPreview(font.name)),
@@ -262,10 +266,8 @@ export default function FontPicker(
 				<FontCard {...props} />
 			</PopoverTrigger>
 			<PopoverContent
-				align="start"
-				side="right"
-				sideOffset={20}
-				className="w-[300px] rounded-lg p-0 shadow-sm">
+				{...placement}
+				className="w-[300px] max-w-[calc(100vw-1.5rem)] rounded-lg p-0 shadow-sm">
 				<FontList value={props.value} onValueChange={props.onValueChange} />
 			</PopoverContent>
 		</Popover>

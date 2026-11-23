@@ -35,6 +35,7 @@ import {
 import { ScrollArea } from "@/styles/default/ui/scroll-area"
 import { ComponentSettingsPopover } from "../components-settings-popover"
 import { ComponentPreview, type PreviewDimensions } from "./component-preview"
+import { useThemerPickerPlacement } from "../themer-picker-placement"
 import { PresetSlider } from "./preset-slider"
 
 const PRESET_NAMES = Object.keys(BADGE_PADDING_PRESETS) as BadgePaddingPreset[]
@@ -88,6 +89,7 @@ function BadgePreview({
 }
 
 function VariantPicker() {
+	const placement = useThemerPickerPlacement("start", 16)
 	const [params] = useThemerPreset()
 	const [open, setOpen] = useState(false)
 	return (
@@ -112,11 +114,9 @@ function VariantPicker() {
 				</ControlButton>
 			</PopoverTrigger>
 			<PopoverContent
-				side="right"
-				align="start"
-				sideOffset={16}
+				{...placement}
 				collisionPadding={12}
-				className="bg-bg w-[280px] rounded-xl p-0 shadow-lg"
+				className="bg-bg w-70 max-w-[calc(100vw-1.5rem)] rounded-xl p-0 shadow-lg"
 				aria-label="Default variant">
 				<div className="border-border flex h-9 items-center gap-1 border-b px-2">
 					<IconButton
@@ -129,7 +129,9 @@ function VariantPicker() {
 					</IconButton>
 					<span className="text-xs">Default variant</span>
 				</div>
-				<ScrollArea className="h-[430px] max-h-[60dvh]">
+				<ScrollArea
+					type="auto"
+					className="h-[min(430px,60dvh,max(7rem,calc(var(--radix-popover-content-available-height)-2.25rem)))]">
 					<div className="flex flex-col gap-2 p-2">
 						{BADGE_VARIANTS.map(({ value, label }) => (
 							<Card

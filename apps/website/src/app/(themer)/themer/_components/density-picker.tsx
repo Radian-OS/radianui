@@ -1,3 +1,4 @@
+import { useThemerPickerPlacement } from "./themer-picker-placement"
 import { Button, CompactButton } from "@/styles/default/ui/button"
 import {
 	DropdownMenu,
@@ -25,6 +26,7 @@ export default function DensityPicker({
 	value,
 	onValueChange,
 }: DensityPickerProps = {}) {
+	const placement = useThemerPickerPlacement("start", 12)
 	const [presetParams, setPresetParams] = useThemerPreset()
 	const currentValue = value ?? presetParams.density
 	const handleChange =
@@ -49,10 +51,8 @@ export default function DensityPicker({
 				</Button>
 			</DropdownMenuTrigger>
 			<DropdownMenuContent
-				side="right"
-				align="start"
-				sideOffset={20}
-				className="min-w-[280px] shadow-sm">
+				{...placement}
+				className="w-70 max-w-[calc(100vw-1.5rem)] shadow-sm">
 				<div className="flex items-center justify-between">
 					<DropdownMenuLabel className="text-fg-tertiary">
 						Density

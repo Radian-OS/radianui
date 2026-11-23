@@ -1,3 +1,4 @@
+import { useThemerPickerPlacement } from "./themer-picker-placement"
 import { Button } from "@/styles/default/ui/button"
 import {
 	DropdownMenu,
@@ -32,6 +33,7 @@ export default function IconLibraryPicker({
 	value: IconLibrary
 	onValueChange: (value: IconLibrary) => void
 }) {
+	const placement = useThemerPickerPlacement("end", 12)
 	const selectedIcon = ICONS.find((icon) => icon.value === value) ?? ICONS[0]
 
 	return (
@@ -48,10 +50,8 @@ export default function IconLibraryPicker({
 				</Button>
 			</DropdownMenuTrigger>
 			<DropdownMenuContent
-				side="right"
-				align="end"
-				sideOffset={20}
-				className="min-w-[280px] shadow-sm">
+				{...placement}
+				className="w-70 max-w-[calc(100vw-1.5rem)] shadow-sm">
 				<DropdownMenuLabel className="text-fg-tertiary">
 					Icons
 				</DropdownMenuLabel>
