@@ -1,7 +1,10 @@
 "use client"
 
 import { ScrollArea } from "@/styles/default/ui/scroll-area"
-import { useThemerPickerPlacement } from "./themer-picker-placement"
+import {
+	ThemerDrawerContext,
+	useThemerPickerPlacement,
+} from "./themer-picker-placement"
 import * as React from "react"
 import { useTheme } from "next-themes"
 import { motion, useDragControls } from "motion/react"
@@ -9,6 +12,7 @@ import { converter, formatHex, formatHsl, formatRgb, parse } from "culori"
 import {
 	Check,
 	ChevronDown,
+	ChevronLeft,
 	Copy,
 	Info,
 	Lock,
@@ -46,7 +50,14 @@ import {
 	TabsList,
 	TabsTrigger,
 } from "@/styles/default/ui/tabs"
-import { Button } from "@/styles/default/ui/button"
+import { Button, IconButton } from "@/styles/default/ui/button"
+import {
+	Drawer,
+	DrawerContent,
+	DrawerDescription,
+	DrawerTitle,
+	DrawerTrigger,
+} from "@/registry/ui/drawer"
 
 const toHsv = converter("hsv")
 
@@ -166,10 +177,12 @@ function ShadeRow({
 	token,
 	value,
 	isBase,
+	inDrawer,
 }: {
 	token: string
 	value: string
 	isBase?: boolean
+	inDrawer: boolean
 }) {
 	const [copied, setCopied] = React.useState(false)
 
@@ -181,13 +194,22 @@ function ShadeRow({
 				setTimeout(() => setCopied(false), 1500)
 			}}
 			title={`Click to copy: ${value}`}
-			className="hover:bg-fill2 group -mx-1.5 flex cursor-pointer items-center justify-between rounded-md px-1.5 py-1 transition-colors">
+			className={cn(
+				"hover:bg-fill2 group flex cursor-pointer items-center justify-between rounded-md transition-colors",
+				inDrawer ? "px-2.5 py-1.5" : "-mx-1.5 px-1.5 py-1"
+			)}>
 			<div className="flex items-center gap-2.5">
 				<div
 					className="border-border size-4 shrink-0 rounded-full border shadow-2xs"
 					style={{ backgroundColor: value }}
 				/>
-				<span className="text-fg-secondary group-hover:text-fg font-mono text-xs transition-colors">
+				<span
+					className={cn(
+						"group-hover:text-fg transition-colors",
+						inDrawer
+							? "text-fg text-sm font-normal"
+							: "text-fg-secondary font-mono text-xs"
+					)}>
 					{token}
 				</span>
 			</div>
@@ -251,9 +273,12 @@ function ColorPickerPopover({
 	onSelect,
 	children,
 }: ColorPickerPopoverProps) {
+	const inDrawer = React.useContext(ThemerDrawerContext)
 	const placement = useThemerPickerPlacement("start", 16)
 	const dragControls = useDragControls()
-	const [activeTab, setActiveTab] = React.useState("presets")
+	const [activeTab, setActiveTab] = React.useState(
+		inDrawer ? "custom" : "presets"
+	)
 	const [colorFormat, setColorFormat] = React.useState<ColorFormat>("Hex")
 	const [copiedInput, setCopiedInput] = React.useState(false)
 
@@ -353,278 +378,436 @@ function ColorPickerPopover({
 
 	const hueColor = `hsl(${hsvState.h} 100% 50%)`
 
+	const editor = (
+		<Tabs defaultValue="presets" value={activeTab} onValueChange={setActiveTab}>
+			<motion.div
+				drag={!inDrawer}
+				dragControls={dragControls}
+				dragListener={false}
+				dragMomentum={false}
+				onDragStart={() => {
+					document.querySelectorAll("iframe").forEach((el) => {
+						el.style.pointerEvents = "none"
+					})
+				}}
+				onDragEnd={() => {
+					document.querySelectorAll("iframe").forEach((el) => {
+						el.style.pointerEvents = ""
+					})
+				}}
+				className={cn(
+					"select-none",
+					inDrawer
+						? "w-full"
+						: "bg-popover border-border w-[300px] max-w-[calc(100vw-2rem)] rounded-lg border px-2.5 py-1.5 shadow-sm will-change-transform"
+				)}>
+				{inDrawer ? (
+					<div className="mb-3 flex touch-none items-center justify-between">
+						<div className="flex items-center gap-2">
+							<IconButton
+								size="xs"
+								variant="ghost"
+								color="neutral"
+								className="text-fg-secondary size-5 p-0 [&>svg]:size-5"
+								aria-label="Back to colors"
+								onClick={() => onOpenChange(false)}>
+								<ChevronLeft />
+							</IconButton>
+							<DrawerTitle className="text-fg text-base font-medium">
+								{mode === "add"
+									? "Generate Color Palette"
+									: prefix === "primary"
+										? "Primary Color"
+										: colorInfo.name}
+							</DrawerTitle>
+						</div>
+						<DrawerDescription className="sr-only">
+							Choose a color and view its generated shades.
+						</DrawerDescription>
+						<div className="flex items-center gap-2">
+							<Tooltip>
+								<TooltipTrigger asChild>
+									<IconButton
+										size="md"
+										variant="ghost"
+										color="neutral"
+										className="text-fg-secondary"
+										aria-label="Color information">
+										<Info />
+									</IconButton>
+								</TooltipTrigger>
+								<TooltipContent withArrow>
+									Shades are generated automatically from the selected color.
+								</TooltipContent>
+							</Tooltip>
+							<IconButton
+								size="md"
+								variant="ghost"
+								color="neutral"
+								className="text-fg-secondary"
+								aria-label="Randomize color"
+								onClick={handleShuffle}>
+								<Shuffle />
+							</IconButton>
+						</div>
+					</div>
+				) : (
+					<div
+						onPointerDown={(e) => {
+							if (!(e.target as HTMLElement).closest("button")) {
+								dragControls.start(e)
+							}
+						}}
+						className="flex cursor-grab items-center justify-between p-1 pb-2 active:cursor-grabbing">
+						<TabsList
+							variant="ghost"
+							className="p-0.5 data-[orientation=horizontal]:h-7">
+							<TabsTrigger
+								value="custom"
+								className="data-[state=active]:text-fg-secondary">
+								Custom
+							</TabsTrigger>
+							<TabsTrigger
+								value="presets"
+								className="data-[state=active]:text-fg-secondary">
+								Presets
+							</TabsTrigger>
+						</TabsList>
+
+						<div className="flex items-center gap-2">
+							<Tooltip>
+								<TooltipTrigger asChild>
+									<button
+										type="button"
+										className="text-fg-secondary hover:text-fg rounded-md p-1 transition-colors"
+										aria-label="Color information">
+										<Info className="size-4" />
+									</button>
+								</TooltipTrigger>
+								<TooltipContent withArrow>
+									The shades for the picked color are generated automatically
+								</TooltipContent>
+							</Tooltip>
+
+							<Tooltip>
+								<TooltipTrigger asChild>
+									<button
+										type="button"
+										onClick={handleShuffle}
+										className="text-fg-secondary hover:text-fg rounded-md p-1 transition-colors"
+										aria-label="Randomize color">
+										<Shuffle className="size-4" />
+									</button>
+								</TooltipTrigger>
+								<TooltipContent withArrow>Shuffle color</TooltipContent>
+							</Tooltip>
+
+							<button
+								type="button"
+								onClick={() => onOpenChange(false)}
+								className="text-fg-secondary hover:text-fg rounded-md p-1 transition-colors"
+								aria-label="Close color picker">
+								<X className="size-4" />
+							</button>
+						</div>
+					</div>
+				)}
+
+				<TabsContent value="custom">
+					{/* SV 2D Area */}
+					<div
+						onPointerDown={handleSvPointerDown}
+						data-vaul-no-drag
+						className={cn(
+							"relative w-full cursor-crosshair touch-none overflow-hidden border",
+							inDrawer
+								? "border-border h-[120px] rounded-sm"
+								: "border-fill4 h-44 rounded-lg"
+						)}
+						style={{ backgroundColor: hueColor }}>
+						<div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-white to-transparent" />
+						<div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black to-transparent" />
+						<div
+							className={cn(
+								"pointer-events-none absolute -translate-x-1/2 -translate-y-1/2 rounded-full border-white shadow-[0_1px_4px_rgba(0,0,0,0.35)] transition-none",
+								inDrawer ? "size-3.5 border-3" : "size-5 border-[2.5px]"
+							)}
+							style={{
+								left: `${hsvState.s * 100}%`,
+								top: `${(1 - hsvState.v) * 100}%`,
+							}}
+						/>
+					</div>
+
+					{/* Hue Slider */}
+					<div
+						onPointerDown={handleHuePointerDown}
+						data-vaul-no-drag
+						className="relative mt-3 flex h-4 w-full cursor-pointer touch-none items-center rounded-full"
+						style={{
+							background:
+								"linear-gradient(to right, #ff0000 0%, #ffff00 17%, #00ff00 33%, #00ffff 50%, #0000ff 67%, #ff00ff 83%, #ff0000 100%)",
+						}}>
+						<div
+							className={cn(
+								"pointer-events-none absolute -translate-x-1/2 rounded-full border-white shadow-[0_1px_3px_rgba(0,0,0,0.3)]",
+								inDrawer ? "size-3.5 border-3" : "size-4.5 border-2"
+							)}
+							style={{
+								left: `${(hsvState.h / 360) * 100}%`,
+								backgroundColor: hueColor,
+							}}
+						/>
+					</div>
+
+					{/* Format and Input Row */}
+					<div
+						className={cn(
+							"mt-3 flex items-center",
+							inDrawer ? "gap-3" : "gap-2"
+						)}>
+						<DropdownMenu>
+							<DropdownMenuTrigger asChild>
+								<button
+									type="button"
+									className={cn(
+										"border-border bg-fill1 hover:bg-fill2 text-fg flex shrink-0 cursor-pointer items-center gap-1 rounded-lg border px-2.5 text-xs font-medium transition-colors",
+										inDrawer ? "h-9" : "h-7"
+									)}>
+									<span>{colorFormat}</span>
+									<ChevronDown className="text-fg-tertiary size-3" />
+								</button>
+							</DropdownMenuTrigger>
+							<DropdownMenuContent align="start" className="min-w-[100px]">
+								{(["Hex", "RGB", "HSL"] as const).map((fmt) => (
+									<DropdownMenuItem
+										key={fmt}
+										onClick={() => {
+											setColorFormat(fmt)
+											setDisplayInput(formatColor(colorInfo.hex, fmt))
+										}}>
+										{fmt}
+									</DropdownMenuItem>
+								))}
+							</DropdownMenuContent>
+						</DropdownMenu>
+
+						<InputWrapper
+							size={inDrawer ? "md" : "xs"}
+							className={inDrawer ? "min-w-0 gap-3 pr-0" : undefined}>
+							<Input
+								type="text"
+								value={displayInput}
+								onChange={handleInputChange}
+								onBlur={() =>
+									setDisplayInput(formatColor(colorInfo.hex, colorFormat))
+								}
+								spellCheck={false}
+								className="text-xs"
+							/>
+							<button
+								type="button"
+								onClick={() => {
+									navigator.clipboard.writeText(displayInput)
+									setCopiedInput(true)
+									setTimeout(() => setCopiedInput(false), 1500)
+								}}
+								className={cn(
+									"text-fg-secondary hover:text-fg shrink-0 transition-colors",
+									inDrawer
+										? "grid size-9 cursor-pointer place-items-center"
+										: "p-0.5"
+								)}
+								aria-label="Copy color value">
+								{copiedInput ? (
+									<Check className="size-4" />
+								) : (
+									<Copy className="size-4" />
+								)}
+							</button>
+						</InputWrapper>
+					</div>
+
+					{inDrawer && mode === "add" && (
+						<div
+							className="mt-4 grid grid-cols-5 overflow-hidden rounded-lg"
+							aria-label="Generated color shades">
+							{["", "-text", "-border", "-hover", "-accent"].map((suffix) => {
+								const shade =
+									colorInfo.shades[`--color-${currentPrefix}${suffix}`] ||
+									colorInfo.shades[`--color-primary${suffix}`] ||
+									colorInfo.hex
+								const hex = formatHex(parse(shade)) ?? colorInfo.hex
+								const lightness = converter("oklch")(hex)?.l ?? 0
+								return (
+									<div
+										key={suffix}
+										className="flex h-27 min-w-0 items-end p-1.5 text-[10px] font-medium"
+										style={{
+											backgroundColor: shade,
+											color: lightness > 0.65 ? "var(--color-black)" : "white",
+										}}>
+										{hex.toUpperCase()}
+									</div>
+								)
+							})}
+						</div>
+					)}
+					{/* Shades breakdown */}
+					<div
+						className={cn(
+							"mt-4 flex flex-col gap-3",
+							inDrawer && "border-soft-alpha -mx-3 border-t px-3 pt-3"
+						)}>
+						{SHADE_GROUPS.map(({ label, suffixes }) => (
+							<div key={label}>
+								<span className="text-fg-tertiary text-xs font-medium">
+									{label}
+								</span>
+								<div
+									className={cn("mt-2 flex flex-col", !inDrawer && "gap-1.5")}>
+									{suffixes.map((suffix) => {
+										const token = `--color-${currentPrefix}${suffix}`
+										const val =
+											colorInfo.shades[token] ||
+											colorInfo.shades[`--color-primary${suffix}`] ||
+											(suffix === "-fg" ? "#ffffff" : colorInfo.hex)
+										return (
+											<ShadeRow
+												key={token}
+												token={token}
+												value={val}
+												isBase={suffix === ""}
+												inDrawer={inDrawer}
+											/>
+										)
+									})}
+								</div>
+							</div>
+						))}
+					</div>
+
+					{mode === "add" && onSelect && (
+						<Button
+							type="button"
+							size="sm"
+							className="mt-3 w-full"
+							onClick={() => {
+								const hex =
+									formatHex({ mode: "hsv", ...hsvState }) || colorInfo.hex
+								onSelect(hex)
+							}}>
+							Add color
+						</Button>
+					)}
+					{inDrawer && mode === "add" && (
+						<Button
+							size="sm"
+							variant="ghost"
+							color="neutral"
+							className="mt-3 w-full"
+							onClick={() => setActiveTab("presets")}>
+							Browse preset colors
+						</Button>
+					)}
+				</TabsContent>
+
+				<TabsContent value="presets">
+					{inDrawer && (
+						<Button
+							size="sm"
+							variant="ghost"
+							color="neutral"
+							className="mb-2 w-full"
+							onClick={() => setActiveTab("custom")}>
+							Edit custom color
+						</Button>
+					)}
+					<div className="text-fg-tertiary px-2 pb-1.5 text-xs font-normal">
+						Select colors
+					</div>
+					<ScrollArea
+						type="auto"
+						className="[&_[data-slot=scroll-area-viewport]]:max-h-[min(500px,max(6rem,calc(var(--radix-popover-content-available-height)-4rem)))]">
+						{orderedPresets.map((preset) => {
+							const isSelected =
+								value === preset.value ||
+								colorInfo.name.toLowerCase() === preset.name.toLowerCase() ||
+								(colorInfo.name.toLowerCase() === "black" &&
+									preset.value === "neutral")
+							const displayName =
+								preset.value === "neutral" ? "Black" : preset.name
+							const swatchColor = preset.cssVars.light["--color-primary"]
+
+							return (
+								<button
+									key={preset.value}
+									type="button"
+									onClick={() => {
+										if (mode === "add" && onSelect) {
+											onSelect(preset.value)
+										} else {
+											onChange(preset.value)
+										}
+									}}
+									className={cn(
+										"flex w-full cursor-pointer items-center justify-between rounded-md px-2 py-1.5 text-left transition-colors",
+										isSelected ? "bg-fill2" : "hover:bg-fill2"
+									)}>
+									<div className="flex items-center gap-2.5">
+										<div
+											className="size-4 shrink-0 rounded-[6px]"
+											style={{ backgroundColor: swatchColor }}
+										/>
+										<span className="text-fg text-xs font-normal">
+											{displayName}
+										</span>
+									</div>
+									{isSelected && (
+										<Check className="text-fg-secondary size-4 shrink-0" />
+									)}
+								</button>
+							)
+						})}
+					</ScrollArea>
+				</TabsContent>
+			</motion.div>
+		</Tabs>
+	)
+
+	if (inDrawer) {
+		return (
+			<Drawer
+				nested
+				open={open}
+				onOpenChange={onOpenChange}
+				direction="bottom"
+				variant="rounded"
+				handle
+				scrollLockTimeout={0}>
+				<DrawerTrigger asChild>{children}</DrawerTrigger>
+				<DrawerContent className="max-h-[82dvh] gap-0 rounded-b-none p-0 pt-7 after:hidden!">
+					<ScrollArea
+						type="auto"
+						className="min-h-0 [&_[data-slot=scroll-area-viewport]]:max-h-[calc(82dvh-28px)] [&_[data-slot=scroll-area-viewport]]:overscroll-y-none">
+						<div className="px-3 pb-[max(12px,env(safe-area-inset-bottom))]">
+							{editor}
+						</div>
+					</ScrollArea>
+				</DrawerContent>
+			</Drawer>
+		)
+	}
+
 	return (
 		<Popover open={open} onOpenChange={onOpenChange}>
 			<PopoverTrigger asChild>{children}</PopoverTrigger>
 			<PopoverContent
 				{...placement}
 				collisionPadding={16}
-				onOpenAutoFocus={(e) => e.preventDefault()}
+				onOpenAutoFocus={(event) => event.preventDefault()}
 				className="w-auto border-none bg-transparent p-0 shadow-none">
-				<Tabs
-					defaultValue="presets"
-					value={activeTab}
-					onValueChange={setActiveTab}>
-					<motion.div
-						drag
-						dragControls={dragControls}
-						dragListener={false}
-						dragMomentum={false}
-						onDragStart={() => {
-							document.querySelectorAll("iframe").forEach((el) => {
-								el.style.pointerEvents = "none"
-							})
-						}}
-						onDragEnd={() => {
-							document.querySelectorAll("iframe").forEach((el) => {
-								el.style.pointerEvents = ""
-							})
-						}}
-						className="bg-popover border-border w-[300px] max-w-[calc(100vw-2rem)] rounded-lg border px-2.5 py-1.5 shadow-sm will-change-transform select-none">
-						{/* Header */}
-						<div
-							onPointerDown={(e) => {
-								if (!(e.target as HTMLElement).closest("button")) {
-									dragControls.start(e)
-								}
-							}}
-							className="flex cursor-grab items-center justify-between p-1 pb-2 active:cursor-grabbing">
-							<TabsList
-								variant="ghost"
-								className="p-0.5 data-[orientation=horizontal]:h-7">
-								<TabsTrigger
-									value="custom"
-									className="data-[state=active]:text-fg-secondary">
-									Custom
-								</TabsTrigger>
-								<TabsTrigger
-									value="presets"
-									className="data-[state=active]:text-fg-secondary">
-									Presets
-								</TabsTrigger>
-							</TabsList>
-
-							<div className="flex items-center gap-2">
-								<Tooltip>
-									<TooltipTrigger asChild>
-										<button
-											type="button"
-											className="text-fg-tertiary hover:text-fg rounded-md p-1 transition-colors"
-											aria-label="Color information">
-											<Info className="size-4" />
-										</button>
-									</TooltipTrigger>
-									<TooltipContent withArrow>
-										The shades for the picked color are generated automatically
-									</TooltipContent>
-								</Tooltip>
-
-								<Tooltip>
-									<TooltipTrigger asChild>
-										<button
-											type="button"
-											onClick={handleShuffle}
-											className="text-fg-tertiary hover:text-fg rounded-md p-1 transition-colors"
-											aria-label="Randomize color">
-											<Shuffle className="size-4" />
-										</button>
-									</TooltipTrigger>
-									<TooltipContent withArrow>Shuffle color</TooltipContent>
-								</Tooltip>
-
-								<button
-									type="button"
-									onClick={() => onOpenChange(false)}
-									className="text-fg-tertiary hover:text-fg rounded-md p-1 transition-colors"
-									aria-label="Close color picker">
-									<X className="size-4" />
-								</button>
-							</div>
-						</div>
-
-						<TabsContent value="custom">
-							{/* SV 2D Area */}
-							<div
-								onPointerDown={handleSvPointerDown}
-								className="border-fill4 relative h-44 w-full cursor-crosshair touch-none overflow-hidden rounded-lg border"
-								style={{ backgroundColor: hueColor }}>
-								<div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-white to-transparent" />
-								<div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black to-transparent" />
-								<div
-									className="pointer-events-none absolute size-5 -translate-x-1/2 -translate-y-1/2 rounded-full border-[2.5px] border-white shadow-[0_1px_4px_rgba(0,0,0,0.35)] transition-none"
-									style={{
-										left: `${hsvState.s * 100}%`,
-										top: `${(1 - hsvState.v) * 100}%`,
-									}}
-								/>
-							</div>
-
-							{/* Hue Slider */}
-							<div
-								onPointerDown={handleHuePointerDown}
-								className="relative mt-3 flex h-4 w-full cursor-pointer touch-none items-center rounded-full"
-								style={{
-									background:
-										"linear-gradient(to right, #ff0000 0%, #ffff00 17%, #00ff00 33%, #00ffff 50%, #0000ff 67%, #ff00ff 83%, #ff0000 100%)",
-								}}>
-								<div
-									className="pointer-events-none absolute size-4.5 -translate-x-1/2 rounded-full border-2 border-white shadow-[0_1px_3px_rgba(0,0,0,0.3)]"
-									style={{
-										left: `${(hsvState.h / 360) * 100}%`,
-										backgroundColor: hueColor,
-									}}
-								/>
-							</div>
-
-							{/* Format and Input Row */}
-							<div className="mt-3 flex items-center gap-2">
-								<DropdownMenu>
-									<DropdownMenuTrigger asChild>
-										<button
-											type="button"
-											className="border-border bg-fill1 hover:bg-fill2 text-fg flex h-7 shrink-0 cursor-pointer items-center gap-1 rounded-lg border px-2.5 text-xs font-medium transition-colors">
-											<span>{colorFormat}</span>
-											<ChevronDown className="text-fg-tertiary size-3" />
-										</button>
-									</DropdownMenuTrigger>
-									<DropdownMenuContent align="start" className="min-w-[100px]">
-										{(["Hex", "RGB", "HSL"] as const).map((fmt) => (
-											<DropdownMenuItem
-												key={fmt}
-												onClick={() => {
-													setColorFormat(fmt)
-													setDisplayInput(formatColor(colorInfo.hex, fmt))
-												}}>
-												{fmt}
-											</DropdownMenuItem>
-										))}
-									</DropdownMenuContent>
-								</DropdownMenu>
-
-								<InputWrapper size="xs">
-									<Input
-										type="text"
-										value={displayInput}
-										onChange={handleInputChange}
-										onBlur={() =>
-											setDisplayInput(formatColor(colorInfo.hex, colorFormat))
-										}
-										spellCheck={false}
-										className="text-xs"
-									/>
-									<button
-										type="button"
-										onClick={() => {
-											navigator.clipboard.writeText(displayInput)
-											setCopiedInput(true)
-											setTimeout(() => setCopiedInput(false), 1500)
-										}}
-										className="text-fg-tertiary hover:text-fg shrink-0 p-0.5 transition-colors"
-										aria-label="Copy color value">
-										{copiedInput ? (
-											<Check className="size-4" />
-										) : (
-											<Copy className="size-4" />
-										)}
-									</button>
-								</InputWrapper>
-							</div>
-
-							{/* Shades breakdown */}
-							<div className="mt-4 flex flex-col gap-3">
-								{SHADE_GROUPS.map(({ label, suffixes }) => (
-									<div key={label}>
-										<span className="text-fg-tertiary text-xs font-medium">
-											{label}
-										</span>
-										<div className="mt-2 flex flex-col gap-1.5">
-											{suffixes.map((suffix) => {
-												const token = `--color-${currentPrefix}${suffix}`
-												const val =
-													colorInfo.shades[token] ||
-													colorInfo.shades[`--color-primary${suffix}`] ||
-													(suffix === "-fg" ? "#ffffff" : colorInfo.hex)
-												return (
-													<ShadeRow
-														key={token}
-														token={token}
-														value={val}
-														isBase={suffix === ""}
-													/>
-												)
-											})}
-										</div>
-									</div>
-								))}
-							</div>
-
-							{mode === "add" && onSelect && (
-								<Button
-									type="button"
-									size="sm"
-									className="mt-3 w-full"
-									onClick={() => {
-										const hex =
-											formatHex({ mode: "hsv", ...hsvState }) || colorInfo.hex
-										onSelect(hex)
-									}}>
-									Add color
-								</Button>
-							)}
-						</TabsContent>
-
-						<TabsContent value="presets">
-							<div className="text-fg-tertiary px-2 pb-1.5 text-xs font-normal">
-								Select colors
-							</div>
-							<ScrollArea
-								type="auto"
-								className="[&_[data-slot=scroll-area-viewport]]:max-h-[min(500px,max(6rem,calc(var(--radix-popover-content-available-height)-4rem)))]">
-								{orderedPresets.map((preset) => {
-									const isSelected =
-										value === preset.value ||
-										colorInfo.name.toLowerCase() ===
-											preset.name.toLowerCase() ||
-										(colorInfo.name.toLowerCase() === "black" &&
-											preset.value === "neutral")
-									const displayName =
-										preset.value === "neutral" ? "Black" : preset.name
-									const swatchColor = preset.cssVars.light["--color-primary"]
-
-									return (
-										<button
-											key={preset.value}
-											type="button"
-											onClick={() => {
-												if (mode === "add" && onSelect) {
-													onSelect(preset.value)
-												} else {
-													onChange(preset.value)
-												}
-											}}
-											className={cn(
-												"flex w-full cursor-pointer items-center justify-between rounded-md px-2 py-1.5 text-left transition-colors",
-												isSelected ? "bg-fill2" : "hover:bg-fill2"
-											)}>
-											<div className="flex items-center gap-2.5">
-												<div
-													className="size-4 shrink-0 rounded-[6px]"
-													style={{ backgroundColor: swatchColor }}
-												/>
-												<span className="text-fg text-xs font-normal">
-													{displayName}
-												</span>
-											</div>
-											{isSelected && (
-												<Check className="text-fg-secondary size-4 shrink-0" />
-											)}
-										</button>
-									)
-								})}
-							</ScrollArea>
-						</TabsContent>
-					</motion.div>
-				</Tabs>
+				{editor}
 			</PopoverContent>
 		</Popover>
 	)
@@ -651,6 +834,7 @@ function ColorSchemeCard({
 	onDelete,
 	onChange,
 }: ColorSchemeCardProps) {
+	const inDrawer = React.useContext(ThemerDrawerContext)
 	const [open, setOpen] = React.useState(false)
 	const [isLocked, setIsLocked] = React.useState(false)
 
@@ -666,7 +850,7 @@ function ColorSchemeCard({
 		? "primary"
 		: resolvePrefix(value, colorInfo.name)
 
-	const label = getCardLabel(index)
+	const label = inDrawer && index > 0 ? `#${index + 1}` : getCardLabel(index)
 	const bgColor =
 		colorInfo.shades[`--color-${colorPrefix}`] ||
 		colorInfo.shades["--color-primary"] ||
@@ -789,6 +973,7 @@ export function ColorSchemesPicker({
 	extraColorSchemes,
 	onExtraColorSchemesChange,
 }: ColorSchemesPickerProps) {
+	const inDrawer = React.useContext(ThemerDrawerContext)
 	const [addOpen, setAddOpen] = React.useState(false)
 
 	const used = new Set([primaryColor, ...extraColorSchemes])
@@ -844,6 +1029,47 @@ export function ColorSchemesPicker({
 			</button>
 		</ColorPickerPopover>
 	)
+
+	if (inDrawer) {
+		const compactRow = numColors >= 4
+
+		return (
+			<div className="grid grid-cols-6 gap-2">
+				{allColors.map(({ id, value }, index) => {
+					const compact = index > 1
+					return (
+						<ColorSchemeCard
+							key={id}
+							index={index}
+							value={value}
+							isPrimary={index === 0}
+							isCompact={compact}
+							className={cn(
+								compact && compactRow ? "col-span-2" : "col-span-3",
+								compact ? "h-[76px]" : "h-28"
+							)}
+							onChange={
+								index === 0
+									? onPrimaryChange
+									: (value) => updateColor(index - 1, value)
+							}
+							onDelete={index === 0 ? undefined : () => removeColor(index - 1)}
+						/>
+					)
+				})}
+				{canAdd &&
+					renderPlusButton(
+						numColors === 1
+							? "col-span-3 h-28"
+							: numColors === 2
+								? "col-span-6 h-[76px]"
+								: compactRow
+									? "col-span-2 h-[76px]"
+									: "col-span-3 h-[76px]"
+					)}
+			</div>
+		)
+	}
 
 	return (
 		<div>
