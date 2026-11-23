@@ -216,7 +216,7 @@ export default function Preview07() {
 					</Card>
 
 					{/* 1.2 App Icon Variants */}
-					<Card className="border-soft gap-0 p-6 shadow-none">
+					<Card className="border-soft gap-0 rounded-3xl p-6 shadow-none">
 						<div className="flex items-center justify-center gap-6">
 							{/* Solid Primary App Icon */}
 							<div className="transition-transform hover:scale-105">
@@ -312,7 +312,7 @@ export default function Preview07() {
 							<div className="flex items-center gap-3">
 								<div className="border-primary-accent bg-primary-accent flex size-9 shrink-0 items-center justify-center rounded-lg border">
 									<IconSlot
-										slot="zap"
+										slot="shield"
 										className="fill-primary stroke-primary"
 										size={20}
 									/>
@@ -341,10 +341,10 @@ export default function Preview07() {
 
 							<Divider className="bg-primary my-3.5" />
 
-							<div className="bg-primary flex items-center justify-between rounded-xl p-2.5">
+							<div className="bg-primary text-primary-fg flex items-center justify-between rounded-xl p-2.5">
 								<div className="flex items-center gap-2.5">
 									<div className="bg-primary-accent flex size-9 items-center justify-center rounded-lg">
-										<IconSlot slot="up" className="text-primary size-5" />
+										<IconSlot slot="pole" className="text-primary size-5" />
 									</div>
 									<div className="flex flex-col gap-1">
 										<div className="text-xs font-medium">Off Grid Chart</div>
@@ -357,7 +357,7 @@ export default function Preview07() {
 								</div>
 							</div>
 
-							<div className="bg-primary flex items-center justify-between rounded-xl p-2.5">
+							<div className="bg-primary text-primary-fg flex items-center justify-between rounded-xl p-2.5">
 								<div className="flex items-center gap-2.5">
 									<Avatar
 										rounded="square"
@@ -380,7 +380,7 @@ export default function Preview07() {
 								</div>
 							</div>
 
-							<div className="bg-primary flex items-center justify-between rounded-xl p-2.5">
+							<div className="bg-primary text-primary-fg flex items-center justify-between rounded-xl p-2.5">
 								<div className="flex items-center gap-2.5">
 									<div className="flex size-9 items-center justify-center rounded-lg bg-white/15">
 										<IconSlot slot="globe" className="size-5 text-white" />
@@ -435,7 +435,7 @@ export default function Preview07() {
 							</div>
 
 							{/* logo tile */}
-							<div className="absolute top-[55.6px] left-[22.2px] grid size-[89px] place-items-center rounded-[34px] bg-[var(--color-primary)] bg-gradient-to-b from-transparent to-white/15 shadow-[0_0_0_3.7px_rgb(0_0_0/0.1),0_0_0_3.7px_rgb(255_255_255/0.28),inset_0_3.7px_1.9px_rgb(255_255_255/0.1),inset_0_-3.7px_1.9px_rgb(0_0_0/0.1),inset_0_0_0_1.9px_rgb(0_0_0/0.06)]">
+							<div className="absolute top-[55.6px] left-[22.2px] grid size-[89px] place-items-center rounded-3xl bg-[var(--color-primary)] bg-gradient-to-b from-transparent to-white/15 shadow-[0_0_0_3.7px_rgb(0_0_0/0.1),0_0_0_3.7px_rgb(255_255_255/0.28),inset_0_3.7px_1.9px_rgb(255_255_255/0.1),inset_0_-3.7px_1.9px_rgb(0_0_0/0.1),inset_0_0_0_1.9px_rgb(0_0_0/0.06)]">
 								<div className="size-[52px] drop-shadow-[0_2.5px_2.5px_rgb(36_36_36/0.1)]">
 									<XavionMark />
 								</div>
@@ -656,7 +656,7 @@ export default function Preview07() {
 				{/* ---------------- COLUMN 4: Menu, Controls & Testimonial ---------------- */}
 				<div className="flex flex-col gap-4">
 					{/* 4.1 User Profile Dropdown Menu */}
-					<Card className="border-soft relative isolate flex max-h-89 items-center justify-center gap-0 overflow-hidden rounded-3xl p-8 pb-0 sm:px-5">
+					<Card className="border-soft relative isolate flex max-h-89 items-center justify-center gap-0 overflow-hidden rounded-3xl p-8 px-8 pb-0">
 						<img
 							src="/themer/pattern1.png"
 							className="absolute inset-0 h-full w-full object-cover"
@@ -665,7 +665,7 @@ export default function Preview07() {
 						<div className="bg-primary absolute inset-0 z-10 mix-blend-color" />
 
 						{/* Inset Profile Menu Card */}
-						<div className="bg-fill2 z-20 h-100 rounded-3xl rounded-b-none p-1.5">
+						<div className="bg-fill2 z-20 h-100 w-full rounded-3xl rounded-b-none p-1.5">
 							<div className="bg-elevation-level1 border-soft relative h-fit w-full overflow-hidden rounded-2xl border font-normal shadow-lg">
 								{/* User Info Header */}
 								<div className="flex items-center justify-between gap-3 p-3.5">
@@ -713,7 +713,7 @@ export default function Preview07() {
 									</div>
 									<div className="text-fg hover:bg-fill1 flex cursor-pointer items-center gap-3 rounded-lg px-2.5 py-1.5 text-sm transition-colors">
 										<IconSlot
-											slot="sparkles"
+											slot="keyboard"
 											className="text-fg-secondary size-4.5"
 										/>
 										<span>Keyboard shortcuts</span>
@@ -726,7 +726,7 @@ export default function Preview07() {
 								<div className="space-y-0.5 p-1.5">
 									<div className="text-fg hover:bg-fill1 flex cursor-pointer items-center gap-3 rounded-lg px-2.5 py-1.5 text-sm transition-colors">
 										<IconSlot
-											slot="settings-2"
+											slot="setting"
 											className="text-fg-secondary size-4.5"
 										/>
 										<span>Settings</span>
@@ -761,7 +761,7 @@ export default function Preview07() {
 					</Card>
 
 					{/* 4.2 Floating Control Bar */}
-					<div className="bg-primary relative flex items-center justify-center gap-2 overflow-clip rounded-2xl p-6">
+					<div className="bg-primary relative flex items-center justify-center gap-2 overflow-clip rounded-3xl p-6">
 						<img
 							src="/themer/grainypattern.png"
 							className="absolute inset-0 h-full w-full object-cover"
@@ -788,7 +788,7 @@ export default function Preview07() {
 
 								<div className="flex size-9 items-center justify-center rounded-full hover:bg-white/20">
 									<IconSlot
-										slot="box"
+										slot="laptop"
 										className="size-5 cursor-pointer text-white"
 									/>
 								</div>
@@ -806,7 +806,7 @@ export default function Preview07() {
 								variant="glossy"
 								size="sm"
 								className="rounded-full">
-								<IconSlot slot="sparkles" className="size-3" />
+								<IconSlot slot="fullscreen" className="size-3" />
 								<span>Full page</span>
 							</Button>
 						</div>

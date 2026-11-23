@@ -926,5 +926,45 @@
     "phosphorIcon": "SpeakerHighIcon",
     "tablerIcon": "IconVolume2",
     "heroiconsIcon": "SpeakerWaveIcon"
+  },
+  {
+    "slot": "pole",
+    "lucideIcon": "UtilityPole",
+    "hugeiconsIcon": "UtilityPoleIcon",
+    "phosphorIcon": "CellTowerIcon",
+    "tablerIcon": "IconBuildingBroadcastTower",
+    "heroiconsIcon": "SignalIcon"
+  },
+  {
+    "slot": "shield",
+    "lucideIcon": "Shield",
+    "hugeiconsIcon": "Shield01Icon",
+    "phosphorIcon": "ShieldIcon",
+    "tablerIcon": "IconShield",
+    "heroiconsIcon": "ShieldCheckIcon"
+  },
+  {
+    "slot": "keyboard",
+    "lucideIcon": "Keyboard",
+    "hugeiconsIcon": "KeyboardIcon",
+    "phosphorIcon": "KeyboardIcon",
+    "tablerIcon": "IconKeyboard",
+    "heroiconsIcon": "CommandLineIcon"
+  },
+  {
+    "slot": "laptop",
+    "lucideIcon": "Laptop",
+    "hugeiconsIcon": "LaptopIcon",
+    "phosphorIcon": "LaptopIcon",
+    "tablerIcon": "IconDeviceLaptop",
+    "heroiconsIcon": "ComputerDesktopIcon"
+  },
+  {
+    "slot": "fullscreen",
+    "lucideIcon": "Fullscreen",
+    "hugeiconsIcon": "FullScreenIcon",
+    "phosphorIcon": "CornersOutIcon",
+    "tablerIcon": "IconMaximize",
+    "heroiconsIcon": "ArrowsPointingOutIcon"
   }
 ]
