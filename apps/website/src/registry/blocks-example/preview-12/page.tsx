@@ -12,8 +12,8 @@ import {
 	ChartTooltip,
 } from "@/registry/ui/chart"
 import { Scatter, ScatterChart, XAxis, YAxis } from "recharts"
-import { Button, IconButton } from "@/registry/ui/button"
-import { Badge } from "@/registry/ui/badge"
+import { Button, IconButton } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
 import {
 	Breadcrumb,
 	BreadcrumbItem,
@@ -373,24 +373,26 @@ export default function Preview12Page() {
 									variant="ghost"
 									color="neutral"
 									size="xs"
-									className="text-fg-secondary size-6 shrink-0"
+									className="text-fg-secondary shrink-0"
 									aria-label="Switch organization">
 									<IconSlot slot="chevrons-up-down" className="size-3.5" />
 								</IconButton>
 							</Card>
 
 							{/* Quick Search Card */}
-							<button
-								type="button"
-								className="border-border/50 bg-elevation-level1 hover:bg-fill1/60 text-fg flex h-9 w-full cursor-pointer items-center justify-between rounded-lg border px-3 text-sm shadow-2xs transition-colors select-none">
-								<div className="text-fg-tertiary flex items-center gap-2">
+							<Button
+								variant="outline"
+								color="neutral"
+								size="sm"
+								className="border-border/50 bg-elevation-level1 hover:bg-fill1/60 text-fg-tertiary h-9 w-full justify-between font-normal shadow-2xs">
+								<div className="flex items-center gap-2">
 									<IconSlot slot="search" className="size-3.5 shrink-0" />
-									<span>Search</span>
+									<span className="text-sm">Search</span>
 								</div>
 								<kbd className="border-border/60 bg-fill2 text-fg-secondary rounded px-1.5 py-0.5 font-mono text-[10px]">
 									⌘K
 								</kbd>
-							</button>
+							</Button>
 						</SidebarHeader>
 
 						{/* Sidebar Navigation */}
@@ -566,12 +568,14 @@ export default function Preview12Page() {
 									<span className="text-fg-tertiary text-[10px] font-semibold tracking-wider uppercase opacity-75">
 										Service Areas
 									</span>
-									<button
-										type="button"
-										className="text-fg-tertiary hover:text-fg transition-colors"
+									<IconButton
+										variant="ghost"
+										color="neutral"
+										size="xs"
+										className="text-fg-tertiary hover:text-fg size-5 p-0"
 										aria-label="Add service area">
 										<IconSlot slot="plus" className="size-3.5" />
-									</button>
+									</IconButton>
 								</div>
 								<SidebarGroupContent>
 									<SidebarMenu className="gap-0.5">
@@ -667,7 +671,7 @@ export default function Preview12Page() {
 									variant="ghost"
 									color="neutral"
 									size="xs"
-									className="text-fg-secondary size-6 shrink-0"
+									className="text-fg-secondary shrink-0"
 									aria-label="User switch">
 									<IconSlot slot="chevrons-up-down" className="size-3.5" />
 								</IconButton>
@@ -715,7 +719,6 @@ export default function Preview12Page() {
 										variant="outline"
 										color="neutral"
 										size="sm"
-										className="border-border/70 bg-elevation-level1 size-8 shadow-2xs"
 										aria-label="Inbox">
 										<IconSlot slot="inbox" className="size-3.5" />
 									</IconButton>
@@ -724,7 +727,7 @@ export default function Preview12Page() {
 										variant="outline"
 										color="neutral"
 										size="sm"
-										className="border-border/70 bg-elevation-level1 relative size-8 shadow-2xs"
+										className="relative"
 										aria-label="Alerts">
 										<IconSlot slot="bell" className="size-3.5" />
 										<span className="bg-error ring-bg absolute top-1.5 right-1.5 size-1.5 rounded-full ring-2" />
@@ -737,7 +740,7 @@ export default function Preview12Page() {
 												variant="outline"
 												color="neutral"
 												size="sm"
-												className="border-border/70 bg-elevation-level1 h-8 gap-1.5 text-xs font-medium shadow-2xs">
+												className="gap-1.5 font-medium">
 												<span>{selectedArea}</span>
 												<IconSlot
 													slot="down"
@@ -765,7 +768,7 @@ export default function Preview12Page() {
 										variant="strong"
 										color="primary"
 										size="sm"
-										className="h-8 gap-1.5 text-xs font-semibold shadow-xs">
+										className="gap-1.5 font-semibold">
 										<IconSlot slot="plus" className="size-3.5" />
 										<span>New visit</span>
 									</Button>
@@ -824,7 +827,7 @@ export default function Preview12Page() {
 													variant="strong"
 													color="neutral"
 													size="sm"
-													className="bg-primary-fg text-primary hover:bg-primary-fg/90 h-8.5 gap-1.5 px-3.5 text-xs font-semibold shadow-xs">
+													className="bg-primary-fg text-primary hover:bg-primary-fg/90 gap-1.5 font-semibold">
 													<span>Review replacements</span>
 													<IconSlot
 														slot="right"
@@ -835,7 +838,7 @@ export default function Preview12Page() {
 													variant="outline"
 													color="neutral"
 													size="sm"
-													className="border-primary-fg/20 bg-primary-fg/10 text-primary-fg hover:bg-primary-fg/20 h-8.5 px-3.5 text-xs font-medium shadow-none">
+													className="border-primary-fg/20 bg-primary-fg/10 text-primary-fg hover:bg-primary-fg/20 font-medium">
 													See Desmond&apos;s day
 												</Button>
 											</div>
@@ -1084,7 +1087,7 @@ export default function Preview12Page() {
 													variant="ghost"
 													color="neutral"
 													size="xs"
-													className="text-fg-secondary hover:text-fg h-6 gap-0.5 px-1.5 text-xs font-semibold">
+													className="text-fg-secondary hover:text-fg font-semibold">
 													<span>All alerts</span>
 													<IconSlot slot="right" className="size-3" />
 												</Button>
