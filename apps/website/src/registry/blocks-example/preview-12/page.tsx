@@ -1176,7 +1176,7 @@ export default function Preview12Page() {
 																/>
 															</div>
 															<div className="flex flex-col truncate">
-																<span className="text-fg truncate text-[13px] leading-tight font-semibold">
+																<span className="text-fg truncate text-sm leading-tight font-semibold">
 																	{item.title}
 																</span>
 																<span className="text-fg-secondary mt-0.5 truncate text-xs leading-tight">
@@ -1253,7 +1253,7 @@ export default function Preview12Page() {
 																</AvatarFallback>
 															</Avatar>
 															<div className="flex flex-col truncate">
-																<span className="text-fg truncate text-[13px] leading-tight font-semibold">
+																<span className="text-fg truncate text-sm leading-tight font-semibold">
 																	{visit.name}
 																</span>
 																<span className="text-fg-secondary mt-0.5 truncate text-xs leading-tight">
