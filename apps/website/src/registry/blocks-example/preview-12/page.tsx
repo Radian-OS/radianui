@@ -55,6 +55,7 @@ import {
 	DropdownMenuTrigger,
 } from "@/registry/ui/dropdown-menu"
 import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
+import RadianLogo from "@/registry/blocks-example/signup/components/radian-logo"
 import { cn } from "@/lib/utils"
 
 // ──────────────────────────────────────────────
@@ -337,7 +338,7 @@ export default function Preview12Page() {
 	const heatmapData = React.useMemo(() => generateHeatmapData(), [])
 
 	return (
-		<div className="text-fg font-body bg-fill1/40 h-screen w-full overflow-hidden dark:bg-zinc-950">
+		<div className="text-fg font-body bg-sidebar h-screen w-full overflow-hidden">
 			<SidebarProvider
 				defaultOpen
 				defaultWidth="16rem"
@@ -348,20 +349,16 @@ export default function Preview12Page() {
           ══════════════════════════════════════════════ */}
 					<Sidebar
 						collapsible="none"
-						className="flex w-64 shrink-0 flex-col justify-between border-0 bg-transparent p-3 select-none"
-						style={
-							{
-								"--color-sidebar":
-									"var(--color-bg-subtle, var(--color-fill-1))",
-							} as React.CSSProperties
-						}>
+						className="flex w-64 shrink-0 flex-col justify-between border-0 bg-transparent p-3 select-none">
 						{/* Workspace Brand Header Card */}
 						<SidebarHeader className="space-y-2 p-0">
 							<Card className="border-border/50 bg-elevation-level1 flex flex-row items-center justify-between gap-0 p-2.5 shadow-2xs">
 								<div className="flex min-w-0 items-center gap-2.5">
-									<div className="bg-primary text-primary-fg flex size-8 shrink-0 items-center justify-center rounded-lg shadow-xs">
-										<IconSlot slot="check" className="size-4 stroke-[3]" />
-									</div>
+									<RadianLogo
+										width={32}
+										height={32}
+										className="size-8 shrink-0 shadow-xs"
+									/>
 									<div className="flex flex-col truncate text-left">
 										<span className="font-heading text-fg text-sm leading-tight font-bold tracking-tight">
 											Visitly
@@ -682,9 +679,9 @@ export default function Preview12Page() {
               MAIN DASHBOARD INSET (FLOATING WHITE CARD PANEL)
           ══════════════════════════════════════════════ */}
 					<SidebarInset className="h-screen min-w-0 flex-1 overflow-hidden bg-transparent p-2.5 pl-0 md:p-3 md:pl-0">
-						<div className="bg-elevation-level1 border-border/50 flex h-full w-full flex-col gap-6 overflow-y-auto rounded-xl border p-5 shadow-2xs md:p-7">
-							{/* ── Top Bar ── */}
-							<header className="flex flex-wrap items-center justify-between gap-3">
+						<div className="bg-elevation-level1 border-border/50 flex h-full w-full flex-col overflow-hidden rounded-xl border shadow-2xs">
+							{/* ── Top Bar (Fixed at top with bottom border) ── */}
+							<header className="border-border/60 flex h-14 shrink-0 items-center justify-between border-b px-5 md:px-7">
 								<div className="flex h-8 items-center gap-2">
 									<SidebarTrigger className="text-fg-secondary hover:text-fg size-8" />
 									<Breadcrumb className="flex items-center">
@@ -775,437 +772,447 @@ export default function Preview12Page() {
 								</div>
 							</header>
 
-							{/* ── Greeting Header ── */}
-							<div>
-								<h1 className="font-heading text-fg text-2xl font-bold tracking-tight">
-									Good morning, Nizam
-								</h1>
-								<p className="text-fg-secondary mt-0.5 text-sm">
-									Monday, Oct 5 · 45 of 48 visits are covered. 3 need a
-									caregiver, the first at 10:00 AM.
-								</p>
-							</div>
+							{/* ── Scrollable Dashboard Content ── */}
+							<div className="flex flex-1 flex-col gap-6 overflow-y-auto p-5 md:p-7">
+								{/* ── Greeting Header ── */}
+								<div>
+									<h1 className="font-heading text-fg text-2xl font-bold tracking-tight">
+										Good morning, Nizam
+									</h1>
+									<p className="text-fg-secondary mt-0.5 text-sm">
+										Monday, Oct 5 · 45 of 48 visits are covered. 3 need a
+										caregiver, the first at 10:00 AM.
+									</p>
+								</div>
 
-							{/* ── Hero Call-out Replacement Banner ── */}
-							<Card className="from-primary via-primary/95 to-primary/85 text-primary-fg relative shrink-0 overflow-hidden border-none bg-gradient-to-r p-6 shadow-md">
-								<div className="grid grid-cols-1 items-center gap-6 lg:grid-cols-12">
-									{/* Left Callout Details */}
-									<div className="flex flex-col gap-3 lg:col-span-6">
-										<div>
-											<Badge
-												variant="outline"
-												color="neutral"
-												size="sm"
-												className="border-primary-fg/20 bg-primary-fg/15 text-primary-fg inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[10px] font-semibold tracking-wider uppercase backdrop-blur-xs">
+								{/* ── Hero Call-out Replacement Banner ── */}
+								<Card className="from-primary via-primary to-primary-hover text-primary-fg relative shrink-0 overflow-hidden border-none bg-gradient-to-r p-6 shadow-md">
+									{/* Gradient highlight overlays connected to themer */}
+									<div className="bg-primary-hover/40 pointer-events-none absolute -top-20 -right-20 size-80 rounded-full blur-3xl" />
+									<div className="to-primary-fg/10 pointer-events-none absolute inset-0 bg-gradient-to-tr from-transparent via-transparent" />
+
+									<div className="relative z-10 grid grid-cols-1 items-center gap-6 lg:grid-cols-12">
+										{/* Left Callout Details */}
+										<div className="flex flex-col gap-3 lg:col-span-6">
+											<div>
+												<Badge
+													variant="outline"
+													color="neutral"
+													size="sm"
+													className="border-primary-fg/20 bg-primary-fg/15 text-primary-fg inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[10px] font-semibold tracking-wider uppercase backdrop-blur-xs">
+													<IconSlot
+														slot="smartphone"
+														className="text-primary-fg/90 size-3"
+													/>
+													<span>CALL-OUT · 8:31 AM</span>
+												</Badge>
+											</div>
+
+											<div>
+												<h2 className="font-heading text-primary-fg text-lg leading-snug font-bold tracking-tight">
+													Desmond Okonjo called out sick.
+													<br />3 visits need cover today.
+												</h2>
+												<p className="text-primary-fg/80 mt-1 text-sm leading-normal">
+													Visitly matched a replacement for each visit. Approve
+													them and the day rebuilds itself.
+												</p>
+											</div>
+
+											<div className="flex flex-wrap items-center gap-2.5 pt-1">
+												<Button
+													variant="strong"
+													color="neutral"
+													size="sm"
+													className="bg-primary-fg text-primary hover:bg-primary-fg/90 h-8.5 gap-1.5 px-3.5 text-xs font-semibold shadow-xs">
+													<span>Review replacements</span>
+													<IconSlot
+														slot="right"
+														className="text-primary size-3.5"
+													/>
+												</Button>
+												<Button
+													variant="outline"
+													color="neutral"
+													size="sm"
+													className="border-primary-fg/20 bg-primary-fg/10 text-primary-fg hover:bg-primary-fg/20 h-8.5 px-3.5 text-xs font-medium shadow-none">
+													See Desmond&apos;s day
+												</Button>
+											</div>
+										</div>
+
+										{/* Right Suggested Replacements */}
+										<div className="flex flex-col gap-2 lg:col-span-6">
+											<div className="text-primary-fg/90 mb-0.5 flex items-center gap-1.5 text-[10px] font-semibold tracking-wider uppercase">
 												<IconSlot
-													slot="smartphone"
+													slot="sparkles"
 													className="text-primary-fg/90 size-3"
 												/>
-												<span>CALL-OUT · 8:31 AM</span>
-											</Badge>
-										</div>
+												<span>SUGGESTED REPLACEMENTS</span>
+											</div>
 
-										<div>
-											<h2 className="font-heading text-primary-fg text-lg leading-snug font-bold tracking-tight">
-												Desmond Okonjo called out sick.
-												<br />3 visits need cover today.
-											</h2>
-											<p className="text-primary-fg/80 mt-1 text-sm leading-normal">
-												Visitly matched a replacement for each visit. Approve
-												them and the day rebuilds itself.
-											</p>
-										</div>
-
-										<div className="flex flex-wrap items-center gap-2.5 pt-1">
-											<Button
-												variant="strong"
-												color="neutral"
-												size="sm"
-												className="bg-primary-fg text-primary hover:bg-primary-fg/90 h-8.5 gap-1.5 px-3.5 text-xs font-semibold shadow-xs">
-												<span>Review replacements</span>
-												<IconSlot
-													slot="right"
-													className="text-primary size-3.5"
-												/>
-											</Button>
-											<Button
-												variant="outline"
-												color="neutral"
-												size="sm"
-												className="border-primary-fg/20 bg-primary-fg/10 text-primary-fg hover:bg-primary-fg/20 h-8.5 px-3.5 text-xs font-medium shadow-none">
-												See Desmond&apos;s day
-											</Button>
-										</div>
-									</div>
-
-									{/* Right Suggested Replacements */}
-									<div className="flex flex-col gap-2 lg:col-span-6">
-										<div className="text-primary-fg/90 mb-0.5 flex items-center gap-1.5 text-[10px] font-semibold tracking-wider uppercase">
-											<IconSlot
-												slot="sparkles"
-												className="text-primary-fg/90 size-3"
-											/>
-											<span>SUGGESTED REPLACEMENTS</span>
-										</div>
-
-										<div className="flex flex-col gap-2">
-											{REPLACEMENTS.map((item) => (
-												<div
-													key={item.id}
-													className="border-primary-fg/15 bg-primary-fg/10 hover:bg-primary-fg/15 flex items-center justify-between rounded-lg border px-3.5 py-2.5 text-xs backdrop-blur-xs transition-colors">
-													<div className="flex min-w-0 items-center gap-2.5 sm:gap-3">
-														<span className="text-primary-fg/90 w-16 shrink-0 font-mono text-[11px] font-semibold">
-															{item.time}
-														</span>
-														<span className="text-primary-fg truncate text-xs font-semibold">
-															{item.original}
-														</span>
-														<IconSlot
-															slot="right"
-															className="text-primary-fg/50 size-3 shrink-0"
-														/>
-														<div className="flex min-w-0 items-center gap-2">
-															<Avatar
-																size="2xs"
-																rounded="circle"
-																className="border-primary-fg/30 size-5 shrink-0 border">
-																<AvatarImage
-																	src={`https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@v1.0.2/packages/uncompressed-avatars/src/${item.avatar}.png`}
-																	alt={item.replacement}
-																/>
-																<AvatarFallback className="text-fg text-[9px] font-semibold">
-																	{item.replacement.slice(0, 2)}
-																</AvatarFallback>
-															</Avatar>
-															<span className="text-primary-fg truncate text-xs font-medium">
-																{item.replacement}
+											<div className="flex flex-col gap-2">
+												{REPLACEMENTS.map((item) => (
+													<div
+														key={item.id}
+														className="border-primary-fg/15 bg-primary-fg/10 hover:bg-primary-fg/15 flex items-center justify-between rounded-lg border px-3.5 py-2.5 text-xs backdrop-blur-xs transition-colors">
+														<div className="flex min-w-0 items-center gap-2.5 sm:gap-3">
+															<span className="text-primary-fg/90 w-16 shrink-0 font-mono text-[11px] font-semibold">
+																{item.time}
 															</span>
+															<span className="text-primary-fg truncate text-xs font-semibold">
+																{item.original}
+															</span>
+															<IconSlot
+																slot="right"
+																className="text-primary-fg/50 size-3 shrink-0"
+															/>
+															<div className="flex min-w-0 items-center gap-2">
+																<Avatar
+																	size="2xs"
+																	rounded="circle"
+																	className="border-primary-fg/30 size-5 shrink-0 border">
+																	<AvatarImage
+																		src={`https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@v1.0.2/packages/uncompressed-avatars/src/${item.avatar}.png`}
+																		alt={item.replacement}
+																	/>
+																	<AvatarFallback className="text-fg text-[9px] font-semibold">
+																		{item.replacement.slice(0, 2)}
+																	</AvatarFallback>
+																</Avatar>
+																<span className="text-primary-fg truncate text-xs font-medium">
+																	{item.replacement}
+																</span>
+															</div>
 														</div>
-													</div>
 
-													<span className="text-primary-fg/90 shrink-0 pl-2 text-xs font-semibold">
-														{item.match}
-													</span>
-												</div>
-											))}
+														<span className="text-primary-fg/90 shrink-0 pl-2 text-xs font-semibold">
+															{item.match}
+														</span>
+													</div>
+												))}
+											</div>
 										</div>
 									</div>
-								</div>
-							</Card>
-
-							{/* ── 4 Stat Cards Row ── */}
-							<div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
-								{STAT_METRICS.map((stat) => (
-									<Card
-										key={stat.label}
-										className="border-border/60 bg-fill1/60 flex flex-col justify-between border p-1.5 shadow-2xs dark:bg-zinc-900/60">
-										{/* Top Elevated White Panel */}
-										<div className="border-border/50 bg-elevation-level1 flex flex-col justify-between gap-3 rounded-lg border p-3.5 shadow-2xs">
-											<span className="text-fg-secondary text-[10px] font-semibold tracking-wider uppercase select-none">
-												{stat.label}
-											</span>
-											<div className="flex items-end justify-between gap-2">
-												<div className="flex items-baseline gap-1.5">
-													<span className="font-heading text-fg text-2xl font-bold tracking-tight">
-														{stat.value}
-													</span>
-													<span className="text-fg-secondary text-xs font-medium">
-														{stat.unit}
-													</span>
-												</div>
-
-												{/* Mini Sparkline Chart - Consistent width and spacing across all cards */}
-												<div className="flex h-8 items-end gap-[3.5px] pb-0.5">
-													{stat.bars.map((bar, i) => (
-														<div
-															key={i}
-															style={{ height: `${bar}%` }}
-															className="bg-primary/50 dark:bg-primary/70 hover:bg-primary w-[2.5px] rounded-full transition-all hover:brightness-110"
-														/>
-													))}
-												</div>
-											</div>
-										</div>
-
-										{/* Bottom Subtext Row on soft card base */}
-										<div className="text-fg-secondary flex items-center px-3 py-2 text-[11px] leading-none font-medium">
-											{stat.dotColor && (
-												<span
-													className={cn(
-														"mr-1.5 size-1.5 shrink-0 rounded-full",
-														stat.dotColor
-													)}
-												/>
-											)}
-											<span>{stat.subtext}</span>
-										</div>
-									</Card>
-								))}
-							</div>
-
-							{/* ── Lower Section (Coverage & Timeline + Right Alerts/Live) ── */}
-							<div className="grid grid-cols-1 items-stretch gap-4 lg:grid-cols-12">
-								{/* Left: Heatmap Chart (lg:col-span-7) */}
-								<Card className="border-border/60 bg-elevation-level1 flex h-full flex-col justify-between border shadow-2xs lg:col-span-7">
-									<CardHeader className="pb-3">
-										<CardTitle className="flex items-baseline gap-2">
-											<span className="font-heading text-fg text-2xl font-bold tracking-tight">
-												1,890
-											</span>
-											<span className="inline-flex items-center rounded-full bg-emerald-500/10 px-2 py-0.5 text-xs font-semibold text-emerald-500">
-												+5.2%
-											</span>
-										</CardTitle>
-										<CardDescription>Active users</CardDescription>
-										<CardAction>
-											<div className="border-border bg-fill1 text-fg flex items-center gap-1.5 rounded-lg border px-2.5 py-1 text-xs font-medium">
-												<IconSlot
-													slot="calendar"
-													className="text-fg-secondary size-3.5"
-												/>
-												<span>Last 7 days</span>
-											</div>
-										</CardAction>
-									</CardHeader>
-									<CardContent className="p-0">
-										<div className="w-full overflow-x-auto pb-2">
-											<div className="min-w-[500px] px-4">
-												<ChartContainer
-													config={chartConfig}
-													className="aspect-auto h-[260px] w-full">
-													<ScatterChart
-														margin={{
-															top: 58,
-															right: 10,
-															bottom: 0,
-															left: 0,
-														}}>
-														<XAxis
-															type="number"
-															dataKey="hourIndex"
-															domain={[-0.5, 11.5]}
-															ticks={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]}
-															tickFormatter={(val) => HOURS[val] ?? ""}
-															interval={0}
-															tickLine={false}
-															axisLine={false}
-															tick={{
-																fontSize: 11,
-																fill: "var(--color-fg-secondary)",
-															}}
-														/>
-														<YAxis
-															type="number"
-															dataKey="dayIndex"
-															domain={[-0.5, 6.5]}
-															ticks={[0, 1, 2, 3, 4, 5, 6]}
-															tickFormatter={(val) => DAYS[val] ?? ""}
-															width={36}
-															interval={0}
-															tickLine={false}
-															axisLine={false}
-															tick={{
-																fontSize: 11,
-																fill: "var(--color-fg-secondary)",
-															}}
-															reversed
-														/>
-														<ChartTooltip
-															cursor={false}
-															offset={0}
-															isAnimationActive={false}
-															animationDuration={0}
-															allowEscapeViewBox={{ x: true, y: true }}
-															content={({ active, payload }) => {
-																if (!active || !payload?.length) return null
-																const item = payload[0]?.payload as
-																	| HeatmapPoint
-																	| undefined
-																if (!item) return null
-
-																return (
-																	<div className="border-border bg-bg pointer-events-none min-w-32 -translate-x-1/2 -translate-y-[calc(100%+12px)] rounded-lg border px-2.5 py-1.5 text-xs shadow-xl">
-																		<div className="flex flex-col gap-0.5">
-																			<span className="text-fg font-semibold">
-																				{item.users.toLocaleString()} active
-																				users
-																			</span>
-																			<span className="text-fg-tertiary text-[11px]">
-																				{item.day} at {item.hour}:00
-																			</span>
-																		</div>
-																	</div>
-																)
-															}}
-														/>
-														<Scatter
-															data={heatmapData}
-															shape={renderHeatmapCell}
-															isAnimationActive={false}
-														/>
-													</ScatterChart>
-												</ChartContainer>
-											</div>
-										</div>
-									</CardContent>
-									<CardFooter className="text-fg-secondary justify-end gap-1.5 border-t py-3 text-xs">
-										<span>Less</span>
-										<span className="bg-fill2 size-3 rounded-[3px]" />
-										<span className="bg-primary/25 size-3 rounded-[3px]" />
-										<span className="bg-primary/50 size-3 rounded-[3px]" />
-										<span className="bg-primary/75 size-3 rounded-[3px]" />
-										<span className="bg-primary size-3 rounded-[3px]" />
-										<span>More</span>
-									</CardFooter>
 								</Card>
 
-								{/* Right Column: Needs Attention + Live Visits (lg:col-span-5) */}
-								<div className="flex h-full flex-col justify-between gap-4 lg:col-span-5">
-									{/* Needs Attention Card */}
-									<Card className="border-border/60 bg-fill1/60 flex flex-1 flex-col gap-2 border p-2.5 shadow-2xs dark:bg-zinc-900/60">
-										{/* Header row on tinted base (tightened gap to white card) */}
-										<div className="flex items-center justify-between px-1.5 pt-0.5 pb-0.5">
-											<div className="flex items-center gap-1.5">
-												<IconSlot
-													slot="alert"
-													className="text-fg-secondary size-3.5"
-												/>
-												<span className="text-fg-secondary text-xs font-semibold tracking-wider uppercase">
-													Needs Attention
+								{/* ── 4 Stat Cards Row ── */}
+								<div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+									{STAT_METRICS.map((stat) => (
+										<Card
+											key={stat.label}
+											className="border-border/60 bg-fill1/60 flex flex-col justify-between border p-1.5 shadow-2xs dark:bg-zinc-900/60">
+											{/* Top Elevated White Panel */}
+											<div className="border-border/50 bg-elevation-level1 flex flex-col justify-between gap-3 rounded-lg border p-3.5 shadow-2xs">
+												<span className="text-fg-secondary text-[10px] font-semibold tracking-wider uppercase select-none">
+													{stat.label}
 												</span>
-												<span className="bg-error text-error-fg flex size-5 items-center justify-center rounded-full text-[10px] font-bold">
-													3
-												</span>
-											</div>
-											<Button
-												variant="ghost"
-												color="neutral"
-												size="xs"
-												className="text-fg-secondary hover:text-fg h-6 gap-0.5 px-1.5 text-xs font-semibold">
-												<span>All alerts</span>
-												<IconSlot slot="right" className="size-3" />
-											</Button>
-										</div>
-
-										{/* Inner Elevated White Card (generous row spacing) */}
-										<div className="border-border/50 bg-elevation-level1 divide-border/40 flex flex-1 flex-col justify-between divide-y overflow-hidden rounded-lg border shadow-2xs">
-											{NEEDS_ATTENTION.map((item) => (
-												<div
-													key={item.id}
-													className="hover:bg-fill1/40 flex flex-1 items-center justify-between px-4 py-4 transition-colors sm:py-4.5">
-													<div className="flex min-w-0 items-center gap-3">
-														<div
-															className={cn(
-																"flex size-9 shrink-0 items-center justify-center rounded-lg",
-																item.iconColor
-															)}>
-															<IconSlot
-																slot={item.iconSlot}
-																className="size-4.5"
-															/>
-														</div>
-														<div className="flex flex-col truncate">
-															<span className="text-fg truncate text-[13px] leading-tight font-semibold">
-																{item.title}
-															</span>
-															<span className="text-fg-secondary mt-0.5 truncate text-xs leading-tight">
-																{item.subtext}
-															</span>
-														</div>
+												<div className="flex items-end justify-between gap-2">
+													<div className="flex items-baseline gap-1.5">
+														<span className="font-heading text-fg text-2xl font-bold tracking-tight">
+															{stat.value}
+														</span>
+														<span className="text-fg-secondary text-xs font-medium">
+															{stat.unit}
+														</span>
 													</div>
 
-													<div className="flex shrink-0 items-center gap-1.5 pl-2">
-														{item.hasPhone && (
-															<IconButton
+													{/* Mini Sparkline Chart - Consistent width and spacing across all cards */}
+													<div className="flex h-8 items-end gap-[3.5px] pb-0.5">
+														{stat.bars.map((bar, i) => (
+															<div
+																key={i}
+																style={{ height: `${bar}%` }}
+																className="bg-primary/50 dark:bg-primary/70 hover:bg-primary w-[2.5px] rounded-full transition-all hover:brightness-110"
+															/>
+														))}
+													</div>
+												</div>
+											</div>
+
+											{/* Bottom Subtext Row on soft card base */}
+											<div className="text-fg-secondary flex items-center px-3 py-2 text-[11px] leading-none font-medium">
+												{stat.dotColor && (
+													<span
+														className={cn(
+															"mr-1.5 size-1.5 shrink-0 rounded-full",
+															stat.dotColor
+														)}
+													/>
+												)}
+												<span>{stat.subtext}</span>
+											</div>
+										</Card>
+									))}
+								</div>
+
+								{/* ── Lower Section (Coverage & Timeline + Right Alerts/Live) ── */}
+								<div className="grid grid-cols-1 items-stretch gap-4 lg:grid-cols-12">
+									{/* Left: Heatmap Chart (lg:col-span-7) */}
+									<Card className="border-border/60 bg-elevation-level1 flex h-full flex-col justify-between border shadow-2xs lg:col-span-7">
+										<CardHeader className="pb-3">
+											<CardTitle className="flex items-baseline gap-2">
+												<span className="font-heading text-fg text-2xl font-bold tracking-tight">
+													1,890
+												</span>
+												<span className="inline-flex items-center rounded-full bg-emerald-500/10 px-2 py-0.5 text-xs font-semibold text-emerald-500">
+													+5.2%
+												</span>
+											</CardTitle>
+											<CardDescription>Active users</CardDescription>
+											<CardAction>
+												<div className="border-border bg-fill1 text-fg flex items-center gap-1.5 rounded-lg border px-2.5 py-1 text-xs font-medium">
+													<IconSlot
+														slot="calendar"
+														className="text-fg-secondary size-3.5"
+													/>
+													<span>Last 7 days</span>
+												</div>
+											</CardAction>
+										</CardHeader>
+										<CardContent className="p-0">
+											<div className="w-full overflow-x-auto pb-2">
+												<div className="min-w-[500px] px-4">
+													<ChartContainer
+														config={chartConfig}
+														className="aspect-auto h-[260px] w-full">
+														<ScatterChart
+															margin={{
+																top: 58,
+																right: 10,
+																bottom: 0,
+																left: 0,
+															}}>
+															<XAxis
+																type="number"
+																dataKey="hourIndex"
+																domain={[-0.5, 11.5]}
+																ticks={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]}
+																tickFormatter={(val) => HOURS[val] ?? ""}
+																interval={0}
+																tickLine={false}
+																axisLine={false}
+																tick={{
+																	fontSize: 11,
+																	fill: "var(--color-fg-secondary)",
+																}}
+															/>
+															<YAxis
+																type="number"
+																dataKey="dayIndex"
+																domain={[-0.5, 6.5]}
+																ticks={[0, 1, 2, 3, 4, 5, 6]}
+																tickFormatter={(val) => DAYS[val] ?? ""}
+																width={36}
+																interval={0}
+																tickLine={false}
+																axisLine={false}
+																tick={{
+																	fontSize: 11,
+																	fill: "var(--color-fg-secondary)",
+																}}
+																reversed
+															/>
+															<ChartTooltip
+																cursor={false}
+																offset={0}
+																isAnimationActive={false}
+																animationDuration={0}
+																allowEscapeViewBox={{ x: true, y: true }}
+																content={({ active, payload }) => {
+																	if (!active || !payload?.length) return null
+																	const item = payload[0]?.payload as
+																		| HeatmapPoint
+																		| undefined
+																	if (!item) return null
+
+																	return (
+																		<div className="border-border bg-bg pointer-events-none min-w-32 -translate-x-1/2 -translate-y-[calc(100%+12px)] rounded-lg border px-2.5 py-1.5 text-xs shadow-xl">
+																			<div className="flex flex-col gap-0.5">
+																				<span className="text-fg font-semibold">
+																					{item.users.toLocaleString()} active
+																					users
+																				</span>
+																				<span className="text-fg-tertiary text-[11px]">
+																					{item.day} at {item.hour}:00
+																				</span>
+																			</div>
+																		</div>
+																	)
+																}}
+															/>
+															<Scatter
+																data={heatmapData}
+																shape={renderHeatmapCell}
+																isAnimationActive={false}
+															/>
+														</ScatterChart>
+													</ChartContainer>
+												</div>
+											</div>
+										</CardContent>
+										<CardFooter className="text-fg-secondary justify-end gap-1.5 border-t py-3 text-xs">
+											<span>Less</span>
+											<span className="bg-fill2 size-3 rounded-[3px]" />
+											<span className="bg-primary/25 size-3 rounded-[3px]" />
+											<span className="bg-primary/50 size-3 rounded-[3px]" />
+											<span className="bg-primary/75 size-3 rounded-[3px]" />
+											<span className="bg-primary size-3 rounded-[3px]" />
+											<span>More</span>
+										</CardFooter>
+									</Card>
+
+									{/* Right Column: Needs Attention + Live Visits (lg:col-span-5) */}
+									<div className="flex h-full flex-col justify-between gap-4 lg:col-span-5">
+										{/* Needs Attention Card */}
+										<Card className="border-border/60 bg-fill1/60 flex flex-1 flex-col gap-2 border p-2.5 shadow-2xs dark:bg-zinc-900/60">
+											{/* Header row on tinted base (tightened gap to white card) */}
+											<div className="flex items-center justify-between px-1.5 pt-0.5 pb-0.5">
+												<div className="flex items-center gap-1.5">
+													<IconSlot
+														slot="alert"
+														className="text-fg-secondary size-3.5"
+													/>
+													<span className="text-fg-secondary text-xs font-semibold tracking-wider uppercase">
+														Needs Attention
+													</span>
+													<span className="bg-error text-error-fg flex size-5 items-center justify-center rounded-full text-[10px] font-bold">
+														3
+													</span>
+												</div>
+												<Button
+													variant="ghost"
+													color="neutral"
+													size="xs"
+													className="text-fg-secondary hover:text-fg h-6 gap-0.5 px-1.5 text-xs font-semibold">
+													<span>All alerts</span>
+													<IconSlot slot="right" className="size-3" />
+												</Button>
+											</div>
+
+											{/* Inner Elevated White Card (generous row spacing) */}
+											<div className="border-border/50 bg-elevation-level1 divide-border/40 flex flex-1 flex-col justify-between divide-y overflow-hidden rounded-lg border shadow-2xs">
+												{NEEDS_ATTENTION.map((item) => (
+													<div
+														key={item.id}
+														className="hover:bg-fill1/40 flex flex-1 items-center justify-between px-4 py-4 transition-colors sm:py-4.5">
+														<div className="flex min-w-0 items-center gap-3">
+															<div
+																className={cn(
+																	"flex size-9 shrink-0 items-center justify-center rounded-lg",
+																	item.iconColor
+																)}>
+																<IconSlot
+																	slot={item.iconSlot}
+																	className="size-4.5"
+																/>
+															</div>
+															<div className="flex flex-col truncate">
+																<span className="text-fg truncate text-[13px] leading-tight font-semibold">
+																	{item.title}
+																</span>
+																<span className="text-fg-secondary mt-0.5 truncate text-xs leading-tight">
+																	{item.subtext}
+																</span>
+															</div>
+														</div>
+
+														<div className="flex shrink-0 items-center gap-1.5 pl-2">
+															{item.hasPhone && (
+																<IconButton
+																	variant="outline"
+																	color="neutral"
+																	size="sm"
+																	aria-label="Call caregiver">
+																	<IconSlot
+																		slot="smartphone"
+																		className="size-3.5"
+																	/>
+																</IconButton>
+															)}
+															<Button
 																variant="outline"
 																color="neutral"
+																size="sm">
+																{item.action}
+															</Button>
+														</div>
+													</div>
+												))}
+											</div>
+										</Card>
+
+										{/* Live Visits Card */}
+										<Card className="border-border/60 bg-fill1/60 flex flex-1 flex-col gap-2 border p-2.5 shadow-2xs dark:bg-zinc-900/60">
+											{/* Header row on tinted base (tightened gap to white card) */}
+											<div className="flex items-center justify-between px-1.5 pt-0.5 pb-0.5">
+												<div className="flex items-center gap-1.5">
+													<IconSlot
+														slot="blocks"
+														className="text-fg-secondary size-3.5"
+													/>
+													<span className="text-fg-secondary text-xs font-semibold tracking-wider uppercase">
+														Live Visits
+													</span>
+												</div>
+												<div className="border-border/60 bg-elevation-level1 text-fg-secondary flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-xs font-semibold shadow-2xs">
+													<span className="bg-success size-1.5 rounded-full" />
+													<span>3 in progress</span>
+												</div>
+											</div>
+
+											{/* Inner Elevated White Card (generous row spacing) */}
+											<div className="border-border/50 bg-elevation-level1 divide-border/40 flex flex-1 flex-col justify-between divide-y overflow-hidden rounded-lg border shadow-2xs">
+												{LIVE_VISITS.map((visit) => (
+													<div
+														key={visit.id}
+														className="hover:bg-fill1/40 flex flex-1 items-center justify-between px-4 py-4 transition-colors sm:py-4.5">
+														<div className="flex min-w-0 items-center gap-3">
+															<Avatar
 																size="sm"
-																aria-label="Call caregiver">
-																<IconSlot
-																	slot="smartphone"
-																	className="size-3.5"
+																rounded="circle"
+																className="border-border size-9 shrink-0 border">
+																<AvatarImage
+																	src={`https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@v1.0.2/packages/uncompressed-avatars/src/${visit.avatar}.png`}
+																	alt={visit.name}
 																/>
-															</IconButton>
-														)}
-														<Button variant="outline" color="neutral" size="sm">
-															{item.action}
-														</Button>
-													</div>
-												</div>
-											))}
-										</div>
-									</Card>
+																<AvatarFallback className="text-xs font-semibold">
+																	{visit.name.slice(0, 2)}
+																</AvatarFallback>
+															</Avatar>
+															<div className="flex flex-col truncate">
+																<span className="text-fg truncate text-[13px] leading-tight font-semibold">
+																	{visit.name}
+																</span>
+																<span className="text-fg-secondary mt-0.5 truncate text-xs leading-tight">
+																	{visit.client}
+																</span>
+															</div>
+														</div>
 
-									{/* Live Visits Card */}
-									<Card className="border-border/60 bg-fill1/60 flex flex-1 flex-col gap-2 border p-2.5 shadow-2xs dark:bg-zinc-900/60">
-										{/* Header row on tinted base (tightened gap to white card) */}
-										<div className="flex items-center justify-between px-1.5 pt-0.5 pb-0.5">
-											<div className="flex items-center gap-1.5">
-												<IconSlot
-													slot="blocks"
-													className="text-fg-secondary size-3.5"
-												/>
-												<span className="text-fg-secondary text-xs font-semibold tracking-wider uppercase">
-													Live Visits
-												</span>
-											</div>
-											<div className="border-border/60 bg-elevation-level1 text-fg-secondary flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-xs font-semibold shadow-2xs">
-												<span className="bg-success size-1.5 rounded-full" />
-												<span>3 in progress</span>
-											</div>
-										</div>
-
-										{/* Inner Elevated White Card (generous row spacing) */}
-										<div className="border-border/50 bg-elevation-level1 divide-border/40 flex flex-1 flex-col justify-between divide-y overflow-hidden rounded-lg border shadow-2xs">
-											{LIVE_VISITS.map((visit) => (
-												<div
-													key={visit.id}
-													className="hover:bg-fill1/40 flex flex-1 items-center justify-between px-4 py-4 transition-colors sm:py-4.5">
-													<div className="flex min-w-0 items-center gap-3">
-														<Avatar
-															size="sm"
-															rounded="circle"
-															className="border-border size-9 shrink-0 border">
-															<AvatarImage
-																src={`https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@v1.0.2/packages/uncompressed-avatars/src/${visit.avatar}.png`}
-																alt={visit.name}
-															/>
-															<AvatarFallback className="text-xs font-semibold">
-																{visit.name.slice(0, 2)}
-															</AvatarFallback>
-														</Avatar>
-														<div className="flex flex-col truncate">
-															<span className="text-fg truncate text-[13px] leading-tight font-semibold">
-																{visit.name}
+														<div className="flex shrink-0 flex-col items-end gap-1.5 pl-2">
+															<span className="text-fg-secondary font-mono text-[11px] font-semibold tracking-wider">
+																{visit.ends}
 															</span>
-															<span className="text-fg-secondary mt-0.5 truncate text-xs leading-tight">
-																{visit.client}
-															</span>
+															<div className="flex items-center gap-[3px]">
+																{Array.from({ length: 10 }).map((_, i) => (
+																	<span
+																		key={i}
+																		className={cn(
+																			"h-2 w-2.5 rounded-[1.5px]",
+																			i < visit.progress
+																				? "bg-primary"
+																				: "bg-fill2"
+																		)}
+																	/>
+																))}
+															</div>
 														</div>
 													</div>
-
-													<div className="flex shrink-0 flex-col items-end gap-1.5 pl-2">
-														<span className="text-fg-secondary font-mono text-[11px] font-semibold tracking-wider">
-															{visit.ends}
-														</span>
-														<div className="flex items-center gap-[3px]">
-															{Array.from({ length: 10 }).map((_, i) => (
-																<span
-																	key={i}
-																	className={cn(
-																		"h-2 w-2.5 rounded-[1.5px]",
-																		i < visit.progress
-																			? "bg-primary"
-																			: "bg-fill2"
-																	)}
-																/>
-															))}
-														</div>
-													</div>
-												</div>
-											))}
-										</div>
-									</Card>
+												))}
+											</div>
+										</Card>
+									</div>
 								</div>
 							</div>
 						</div>
