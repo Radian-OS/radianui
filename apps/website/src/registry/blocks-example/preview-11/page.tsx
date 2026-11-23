@@ -21,10 +21,10 @@ import {
 	SidebarProvider,
 	SidebarSeparator,
 	SidebarTrigger,
-} from "@/styles/default/ui/sidebar"
-import { Avatar, AvatarFallback, AvatarImage } from "@/styles/default/ui/avatar"
+} from "@/registry/ui/sidebar"
+import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
 import { Button, IconButton } from "@/components/ui/button"
-import { Input, InputWrapper } from "@/styles/default/ui/input"
+import { Input, InputWrapper } from "@/registry/ui/input"
 import { Badge } from "@/components/ui/badge"
 import {
 	Card,
@@ -32,8 +32,8 @@ import {
 	CardContent,
 	CardHeader,
 	CardTitle,
-} from "@/styles/default/ui/card"
-import { Tabs, TabsList, TabsTrigger } from "@/styles/default/ui/tabs"
+} from "@/registry/ui/card"
+import { Tabs, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 import {
 	Table,
 	TableBody,
@@ -41,7 +41,7 @@ import {
 	TableHead,
 	TableHeader,
 	TableRow,
-} from "@/styles/default/ui/table"
+} from "@/registry/ui/table"
 
 export type AuditStatus =
 	| "Upcoming"
