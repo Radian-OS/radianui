@@ -120,7 +120,7 @@ const STAT_METRICS: StatMetric[] = [
 		value: "45",
 		unit: "of 48",
 		subtext: "3 need a caregiver",
-		dotColor: "bg-rose-500",
+		dotColor: "bg-error",
 		bars: [45, 60, 80, 100, 70, 50, 85],
 	},
 	{
@@ -128,7 +128,7 @@ const STAT_METRICS: StatMetric[] = [
 		value: "3",
 		unit: "live now",
 		subtext: "6 completed, EVV verified",
-		dotColor: "bg-emerald-500",
+		dotColor: "bg-success",
 		bars: [25, 35, 50, 70, 35, 25, 40],
 	},
 	{
@@ -136,7 +136,7 @@ const STAT_METRICS: StatMetric[] = [
 		value: "1",
 		unit: "running late",
 		subtext: "Davi Monteiro, ETA 9:18 AM",
-		dotColor: "bg-amber-500",
+		dotColor: "bg-warning",
 		bars: [15, 20, 25, 45, 20, 15, 20],
 	},
 ]
@@ -325,10 +325,10 @@ const LIVE_VISITS: LiveVisitItem[] = [
 ]
 
 const SERVICE_AREAS = [
-	{ name: "Wauwatosa", count: 14, color: "bg-indigo-500" },
-	{ name: "Bay View", count: 12, color: "bg-blue-500" },
-	{ name: "Shorewood", count: 9, color: "bg-sky-400" },
-	{ name: "West Allis", count: 13, color: "bg-violet-500" },
+	{ name: "Wauwatosa", count: 14, color: "bg-primary" },
+	{ name: "Bay View", count: 12, color: "bg-info" },
+	{ name: "Shorewood", count: 9, color: "bg-primary/60" },
+	{ name: "West Allis", count: 13, color: "bg-info/60" },
 ]
 
 export default function Preview12Page() {
@@ -338,7 +338,7 @@ export default function Preview12Page() {
 	const heatmapData = React.useMemo(() => generateHeatmapData(), [])
 
 	return (
-		<div className="text-fg font-body bg-fill2 h-screen w-full overflow-hidden dark:bg-zinc-950">
+		<div className="text-fg font-body bg-fill2 h-screen w-full overflow-hidden">
 			<SidebarProvider
 				defaultOpen
 				defaultWidth="16rem"
@@ -394,7 +394,7 @@ export default function Preview12Page() {
 									<IconSlot slot="search" className="size-3.5 shrink-0" />
 									<span className="text-sm">Search</span>
 								</div>
-								<kbd className="border-border bg-fill2 text-fg-secondary rounded px-1.5 py-0.5 font-mono text-[10px]">
+								<kbd className="border-border bg-fill2 text-fg-secondary rounded-control-md border px-1.5 py-0.5 font-mono text-[10px]">
 									⌘K
 								</kbd>
 							</Button>
@@ -811,7 +811,7 @@ export default function Preview12Page() {
 													variant="outline"
 													color="neutral"
 													size="sm"
-													className="border-primary-fg/20 bg-primary-fg/15 text-primary-fg inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[10px] font-semibold tracking-wider uppercase backdrop-blur-xs">
+													className="border-primary-fg/20 bg-primary-fg/15 text-primary-fg inline-flex items-center gap-1.5 px-2.5 py-0.5 text-[10px] font-semibold tracking-wider uppercase backdrop-blur-xs">
 													<IconSlot
 														slot="smartphone"
 														className="text-primary-fg/90 size-3"
@@ -913,7 +913,7 @@ export default function Preview12Page() {
 									{STAT_METRICS.map((stat) => (
 										<Card
 											key={stat.label}
-											className="border-border bg-fill2 flex flex-col justify-between gap-4 border p-1.5 shadow-2xs dark:bg-zinc-900/60">
+											className="border-border bg-fill2 flex flex-col justify-between gap-4 border p-1.5 shadow-2xs">
 											{/* Top Elevated White Panel */}
 											<div className="border-border bg-elevation-level1 flex flex-col justify-between gap-3 rounded-lg border p-3.5 shadow-2xs">
 												<span className="text-fg-secondary text-[10px] font-semibold tracking-wider uppercase select-none">
@@ -961,7 +961,7 @@ export default function Preview12Page() {
 								{/* ── Lower Section (Coverage & Timeline + Right Alerts/Live) ── */}
 								<div className="grid grid-cols-1 items-stretch gap-4 lg:grid-cols-12">
 									{/* Left: Heatmap Chart with Outer Container (lg:col-span-7) */}
-									<Card className="border-border bg-fill2 flex h-full flex-col justify-between gap-4 border p-3 shadow-2xs lg:col-span-7 dark:bg-zinc-900/60">
+									<Card className="border-border bg-fill2 flex h-full flex-col justify-between gap-4 border p-3 shadow-2xs lg:col-span-7">
 										{/* Top Header Row on tinted base */}
 										<div className="flex h-7 items-center justify-between gap-3 px-1.5">
 											<div className="flex items-center gap-1.5">
@@ -983,11 +983,11 @@ export default function Preview12Page() {
 													<span>COMPLETED</span>
 												</div>
 												<div className="flex items-center gap-1">
-													<span className="size-2 rounded-xs bg-rose-500" />
+													<span className="bg-error size-2 rounded-xs" />
 													<span>NEEDS COVER</span>
 												</div>
 												<div className="flex items-center gap-1">
-													<span className="size-2 rounded-xs bg-amber-400" />
+													<span className="bg-warning size-2 rounded-xs" />
 													<span>AT RISK</span>
 												</div>
 											</div>
@@ -1002,9 +1002,9 @@ export default function Preview12Page() {
 														<span className="font-heading text-fg text-2xl font-bold tracking-tight">
 															1,890
 														</span>
-														<span className="inline-flex items-center rounded-full bg-emerald-500/10 px-2 py-0.5 text-xs font-semibold text-emerald-500">
+														<Badge variant="soft" color="success" size="sm">
 															+5.2%
-														</span>
+														</Badge>
 													</div>
 													<p className="text-fg-secondary text-xs">
 														Active users
@@ -1107,11 +1107,11 @@ export default function Preview12Page() {
 											{/* Inner Footer: Less / More Legend (16px side padding, 12px top-down padding) */}
 											<div className="text-fg-secondary flex items-center justify-end gap-1.5 border-t px-4 py-3 text-xs">
 												<span>Less</span>
-												<span className="bg-fill2 size-3 rounded-[3px]" />
-												<span className="bg-primary/25 size-3 rounded-[3px]" />
-												<span className="bg-primary/50 size-3 rounded-[3px]" />
-												<span className="bg-primary/75 size-3 rounded-[3px]" />
-												<span className="bg-primary size-3 rounded-[3px]" />
+												<span className="bg-fill2 size-3 rounded-xs" />
+												<span className="bg-primary/25 size-3 rounded-xs" />
+												<span className="bg-primary/50 size-3 rounded-xs" />
+												<span className="bg-primary/75 size-3 rounded-xs" />
+												<span className="bg-primary size-3 rounded-xs" />
 												<span>More</span>
 											</div>
 										</div>
@@ -1133,7 +1133,7 @@ export default function Preview12Page() {
 									{/* Right Column: Needs Attention + Live Visits (lg:col-span-5) */}
 									<div className="flex h-full flex-col justify-between gap-4 lg:col-span-5">
 										{/* Needs Attention Card */}
-										<Card className="border-border bg-fill2 flex flex-1 flex-col gap-4 border p-3 shadow-2xs dark:bg-zinc-900/60">
+										<Card className="border-border bg-fill2 flex flex-1 flex-col gap-4 border p-3 shadow-2xs">
 											{/* Header row on tinted base (tightened gap to white card) */}
 											<div className="flex h-7 items-center justify-between px-1.5">
 												<div className="flex items-center gap-1.5">
@@ -1176,7 +1176,7 @@ export default function Preview12Page() {
 																/>
 															</div>
 															<div className="flex flex-col truncate">
-																<span className="text-fg truncate text-[13px] leading-tight font-semibold">
+																<span className="text-fg truncate text-sm leading-tight font-semibold">
 																	{item.title}
 																</span>
 																<span className="text-fg-secondary mt-0.5 truncate text-xs leading-tight">
@@ -1211,7 +1211,7 @@ export default function Preview12Page() {
 										</Card>
 
 										{/* Live Visits Card */}
-										<Card className="border-border bg-fill2 flex flex-1 flex-col gap-4 border p-3 shadow-2xs dark:bg-zinc-900/60">
+										<Card className="border-border bg-fill2 flex flex-1 flex-col gap-4 border p-3 shadow-2xs">
 											{/* Header row on tinted base (tightened gap to white card) */}
 											<div className="flex h-7 items-center justify-between px-1.5">
 												<div className="flex items-center gap-1.5">
@@ -1253,7 +1253,7 @@ export default function Preview12Page() {
 																</AvatarFallback>
 															</Avatar>
 															<div className="flex flex-col truncate">
-																<span className="text-fg truncate text-[13px] leading-tight font-semibold">
+																<span className="text-fg truncate text-sm leading-tight font-semibold">
 																	{visit.name}
 																</span>
 																<span className="text-fg-secondary mt-0.5 truncate text-xs leading-tight">
@@ -1271,7 +1271,7 @@ export default function Preview12Page() {
 																	<span
 																		key={i}
 																		className={cn(
-																			"h-2 w-2.5 rounded-[1.5px]",
+																			"h-2 w-2.5 rounded-xs",
 																			i < visit.progress
 																				? "bg-primary"
 																				: "bg-fill2"

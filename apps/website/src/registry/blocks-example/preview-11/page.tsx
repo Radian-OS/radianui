@@ -510,7 +510,7 @@ export default function Preview11Page() {
 							</div>
 						</header>
 
-						<main className="bg-bg flex-1 overflow-y-auto px-[24px] pt-[12px] pb-[24px]">
+						<main className="bg-bg flex-1 overflow-y-auto px-[24px] pt-[24px] pb-[24px]">
 							<div className="flex w-full flex-col gap-[16px]">
 								{/* Top Metric Cards */}
 								<section className="flex flex-col gap-[24px]">
@@ -1047,7 +1047,7 @@ export function AuditsCard() {
 export function ReportsCard() {
 	return (
 		<Card className="bg-bg border-border/70 gap-0 overflow-hidden rounded-xl p-0 py-0 shadow-none">
-			<CardHeader className="border-border/60 flex items-center justify-between gap-0 border-b px-5 py-3">
+			<CardHeader className="border-border/60 flex items-center justify-between gap-0 border-b px-5 pt-3 pb-3! [.border-b]:pb-3">
 				<CardTitle className="font-heading text-fg text-[16px] leading-normal font-semibold">
 					Reports
 				</CardTitle>
