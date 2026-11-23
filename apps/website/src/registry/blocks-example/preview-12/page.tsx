@@ -909,7 +909,7 @@ export default function Preview12Page() {
 									{STAT_METRICS.map((stat) => (
 										<Card
 											key={stat.label}
-											className="border-border bg-fill2 flex flex-col justify-between border p-1.5 shadow-2xs dark:bg-zinc-900/60">
+											className="border-border bg-fill2 flex flex-col justify-between gap-3 border p-1.5 shadow-2xs dark:bg-zinc-900/60">
 											{/* Top Elevated White Panel */}
 											<div className="border-border bg-elevation-level1 flex flex-col justify-between gap-3 rounded-lg border p-3.5 shadow-2xs">
 												<span className="text-fg-secondary text-[10px] font-semibold tracking-wider uppercase select-none">
@@ -938,12 +938,12 @@ export default function Preview12Page() {
 												</div>
 											</div>
 
-											{/* Bottom Subtext Row on soft card base */}
-											<div className="text-fg-secondary flex items-center px-3 py-2 text-[11px] leading-none font-medium">
+											{/* Bottom Subtext Row on soft card base (12px gap from white card, 14px font size) */}
+											<div className="text-fg-secondary flex items-center px-2.5 pt-0 pb-1 text-[14px] leading-none font-medium">
 												{stat.dotColor && (
 													<span
 														className={cn(
-															"mr-1.5 size-1.5 shrink-0 rounded-full",
+															"mr-1.5 size-2 shrink-0 rounded-full",
 															stat.dotColor
 														)}
 													/>
@@ -959,13 +959,13 @@ export default function Preview12Page() {
 									{/* Left: Heatmap Chart with Outer Container (lg:col-span-7) */}
 									<Card className="border-border bg-fill2 flex h-full flex-col justify-between border p-2.5 shadow-2xs lg:col-span-7 dark:bg-zinc-900/60">
 										{/* Top Header Row on tinted base */}
-										<div className="flex flex-wrap items-center justify-between gap-3 px-1.5 pt-0.5 pb-1.5">
+										<div className="flex h-7 items-center justify-between gap-3 px-1.5">
 											<div className="flex items-center gap-1.5">
 												<IconSlot
 													slot="calendar"
-													className="text-fg-secondary size-3.5"
+													className="text-fg-secondary size-3.5 shrink-0"
 												/>
-												<span className="text-fg-secondary text-xs font-semibold tracking-wider uppercase">
+												<span className="text-fg-secondary text-xs leading-none font-semibold tracking-wider uppercase">
 													Coverage by Half Hour
 												</span>
 											</div>
@@ -1127,16 +1127,16 @@ export default function Preview12Page() {
 										{/* Needs Attention Card */}
 										<Card className="border-border bg-fill2 flex flex-1 flex-col gap-2 border p-2.5 shadow-2xs dark:bg-zinc-900/60">
 											{/* Header row on tinted base (tightened gap to white card) */}
-											<div className="flex items-center justify-between px-1.5 pt-0.5 pb-0.5">
+											<div className="flex h-7 items-center justify-between px-1.5">
 												<div className="flex items-center gap-1.5">
 													<IconSlot
 														slot="alert"
-														className="text-fg-secondary size-3.5"
+														className="text-fg-secondary size-3.5 shrink-0"
 													/>
-													<span className="text-fg-secondary text-xs font-semibold tracking-wider uppercase">
+													<span className="text-fg-secondary text-xs leading-none font-semibold tracking-wider uppercase">
 														Needs Attention
 													</span>
-													<span className="bg-error text-error-fg flex size-5 items-center justify-center rounded-full text-[10px] font-bold">
+													<span className="bg-error text-error-fg flex size-4.5 items-center justify-center rounded-full text-[10px] leading-none font-bold">
 														3
 													</span>
 												</div>
@@ -1144,7 +1144,7 @@ export default function Preview12Page() {
 													variant="ghost"
 													color="neutral"
 													size="xs"
-													className="text-fg-secondary hover:text-fg font-semibold">
+													className="text-fg-secondary hover:text-fg h-6 gap-0.5 px-1 text-[11px] font-semibold">
 													<span>All alerts</span>
 													<IconSlot slot="right" className="size-3" />
 												</Button>
@@ -1205,17 +1205,17 @@ export default function Preview12Page() {
 										{/* Live Visits Card */}
 										<Card className="border-border bg-fill2 flex flex-1 flex-col gap-2 border p-2.5 shadow-2xs dark:bg-zinc-900/60">
 											{/* Header row on tinted base (tightened gap to white card) */}
-											<div className="flex items-center justify-between px-1.5 pt-0.5 pb-0.5">
+											<div className="flex h-7 items-center justify-between px-1.5">
 												<div className="flex items-center gap-1.5">
 													<IconSlot
 														slot="blocks"
-														className="text-fg-secondary size-3.5"
+														className="text-fg-secondary size-3.5 shrink-0"
 													/>
-													<span className="text-fg-secondary text-xs font-semibold tracking-wider uppercase">
+													<span className="text-fg-secondary text-xs leading-none font-semibold tracking-wider uppercase">
 														Live Visits
 													</span>
 												</div>
-												<div className="border-border bg-elevation-level1 text-fg-secondary flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-xs font-semibold shadow-2xs">
+												<div className="border-border bg-elevation-level1 text-fg-secondary flex h-6 items-center gap-1.5 rounded-full border px-2.5 text-[11px] font-semibold shadow-2xs">
 													<span className="bg-success size-1.5 rounded-full" />
 													<span>3 in progress</span>
 												</div>
