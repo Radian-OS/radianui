@@ -11,17 +11,18 @@ import {
 	ChartContainer,
 	ChartTooltip,
 } from "@/registry/ui/chart"
-import {
-	Scatter,
-	ScatterChart,
-	XAxis,
-	YAxis,
-	ReferenceLine,
-	ReferenceArea,
-} from "recharts"
+import { Scatter, ScatterChart, XAxis, YAxis } from "recharts"
 import { Button, IconButton } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Card, CardHeader, CardTitle, CardContent } from "@/registry/ui/card"
+import {
+	Card,
+	CardAction,
+	CardContent,
+	CardDescription,
+	CardFooter,
+	CardHeader,
+	CardTitle,
+} from "@/registry/ui/card"
 import {
 	Sidebar,
 	SidebarContent,
@@ -130,545 +131,113 @@ const STAT_METRICS: StatMetric[] = [
 	},
 ]
 
-interface TimelineSlot {
-	time: string
-	label: string
-	completed: number
-	atRisk: number
-	needsCover: number
-	covered: number
-	total: number
-	assignedName?: string
+type HeatmapPoint = {
+	day: string
+	dayIndex: number
+	hour: string
+	hourIndex: number
+	users: number
+	level: 0 | 1 | 2 | 3 | 4
 }
 
-type BlockStatus = "covered" | "completed" | "needsCover" | "atRisk" | null
+const DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+const HOURS = [
+	"00",
+	"02",
+	"04",
+	"06",
+	"08",
+	"10",
+	"12",
+	"14",
+	"16",
+	"18",
+	"20",
+	"22",
+]
 
-interface HalfHourColumn {
-	id: string
-	time: string
-	label: string
-	covered: number
-	needsCover: number
-	assignedName?: string
-	isPeak?: boolean
-	cells: BlockStatus[]
+function generateHeatmapData(): HeatmapPoint[] {
+	const pattern: (0 | 1 | 2 | 3 | 4)[][] = [
+		[0, 0, 0, 0, 1, 2, 2, 4, 3, 2, 1, 0],
+		[0, 0, 0, 0, 1, 2, 3, 4, 3, 2, 1, 0],
+		[0, 0, 0, 0, 1, 2, 3, 4, 3, 2, 1, 0],
+		[0, 0, 0, 0, 1, 2, 4, 4, 3, 2, 1, 0],
+		[0, 0, 0, 0, 1, 2, 3, 3, 2, 2, 1, 0],
+		[0, 0, 0, 0, 0, 1, 1, 2, 2, 1, 0, 0],
+		[0, 0, 0, 0, 0, 1, 1, 2, 2, 1, 0, 0],
+	]
+
+	const data: HeatmapPoint[] = []
+
+	for (let d = 0; d < DAYS.length; d++) {
+		for (let h = 0; h < HOURS.length; h++) {
+			const level = pattern[d][h]
+			let baseCount = 0
+			if (level === 4) baseCount = 138 + ((d * 7 + h * 3) % 19)
+			else if (level === 3) baseCount = 92 + ((d * 5 + h * 4) % 15)
+			else if (level === 2) baseCount = 54 + ((d * 4 + h * 2) % 12)
+			else if (level === 1) baseCount = 24 + ((d * 3 + h) % 8)
+			else baseCount = 4 + ((d + h) % 4)
+
+			data.push({
+				day: DAYS[d],
+				dayIndex: d,
+				hour: HOURS[h],
+				hourIndex: h,
+				users: baseCount,
+				level,
+			})
+		}
+	}
+
+	return data
 }
 
-const COVERAGE_DATA: HalfHourColumn[] = [
-	// 7A
-	{
-		id: "7:00",
-		time: "7:00 AM",
-		label: "7A",
-		covered: 6,
-		needsCover: 0,
-		cells: [
-			"completed",
-			"completed",
-			"completed",
-			"completed",
-			"completed",
-			"completed",
-			null,
-			null,
-			null,
-			null,
-		],
-	},
-	{
-		id: "7:30",
-		time: "7:30 AM",
-		label: "",
-		covered: 6,
-		needsCover: 0,
-		cells: [
-			"completed",
-			"completed",
-			"completed",
-			"completed",
-			"completed",
-			"completed",
-			null,
-			null,
-			null,
-			null,
-		],
-	},
-	// 8A
-	{
-		id: "8:00",
-		time: "8:00 AM",
-		label: "8A",
-		covered: 7,
-		needsCover: 0,
-		cells: [
-			"completed",
-			"completed",
-			"completed",
-			"completed",
-			"completed",
-			"completed",
-			"completed",
-			null,
-			null,
-			null,
-		],
-	},
-	{
-		id: "8:30",
-		time: "8:30 AM",
-		label: "",
-		covered: 7,
-		needsCover: 0,
-		cells: [
-			"completed",
-			"completed",
-			"completed",
-			"completed",
-			"completed",
-			"completed",
-			"completed",
-			null,
-			null,
-			null,
-		],
-	},
-	// 9A
-	{
-		id: "9:00",
-		time: "9:00 AM",
-		label: "9A",
-		covered: 3,
-		needsCover: 0,
-		cells: [
-			"covered",
-			"covered",
-			"covered",
-			"atRisk",
-			null,
-			null,
-			null,
-			null,
-			null,
-			null,
-		],
-	},
-	{
-		id: "9:30",
-		time: "9:30 AM",
-		label: "",
-		covered: 5,
-		needsCover: 0,
-		cells: [
-			"covered",
-			"covered",
-			"covered",
-			"covered",
-			"covered",
-			"atRisk",
-			null,
-			null,
-			null,
-			null,
-		],
-	},
-	// 10A
-	{
-		id: "10:00",
-		time: "10:00 AM",
-		label: "10A",
-		covered: 8,
-		needsCover: 1,
-		assignedName: "Marguerite Holloway",
-		isPeak: true,
-		cells: [
-			"covered",
-			"covered",
-			"covered",
-			"covered",
-			"covered",
-			"covered",
-			"covered",
-			"atRisk",
-			"needsCover",
-			null,
-		],
-	},
-	{
-		id: "10:30",
-		time: "10:30 AM",
-		label: "",
-		covered: 5,
-		needsCover: 1,
-		cells: [
-			"covered",
-			"covered",
-			"covered",
-			"covered",
-			"covered",
-			"needsCover",
-			null,
-			null,
-			null,
-			null,
-		],
-	},
-	// 11A
-	{
-		id: "11:00",
-		time: "11:00 AM",
-		label: "11A",
-		covered: 5,
-		needsCover: 1,
-		cells: [
-			"covered",
-			"covered",
-			"covered",
-			"covered",
-			"covered",
-			"needsCover",
-			null,
-			null,
-			null,
-			null,
-		],
-	},
-	{
-		id: "11:30",
-		time: "11:30 AM",
-		label: "",
-		covered: 4,
-		needsCover: 1,
-		cells: [
-			"covered",
-			"covered",
-			"covered",
-			"covered",
-			"needsCover",
-			null,
-			null,
-			null,
-			null,
-			null,
-		],
-	},
-	// 12P
-	{
-		id: "12:00",
-		time: "12:00 PM",
-		label: "12P",
-		covered: 5,
-		needsCover: 1,
-		cells: [
-			"covered",
-			"covered",
-			"covered",
-			"covered",
-			"covered",
-			"needsCover",
-			null,
-			null,
-			null,
-			null,
-		],
-	},
-	{
-		id: "12:30",
-		time: "12:30 PM",
-		label: "",
-		covered: 5,
-		needsCover: 0,
-		cells: [
-			"covered",
-			"covered",
-			"covered",
-			"covered",
-			"covered",
-			null,
-			null,
-			null,
-			null,
-			null,
-		],
-	},
-	// 1P
-	{
-		id: "1:00",
-		time: "1:00 PM",
-		label: "1P",
-		covered: 4,
-		needsCover: 1,
-		cells: [
-			"covered",
-			"covered",
-			"covered",
-			"needsCover",
-			"covered",
-			null,
-			null,
-			null,
-			null,
-			null,
-		],
-	},
-	{
-		id: "1:30",
-		time: "1:30 PM",
-		label: "",
-		covered: 4,
-		needsCover: 0,
-		cells: [
-			"covered",
-			"covered",
-			"covered",
-			"covered",
-			null,
-			null,
-			null,
-			null,
-			null,
-			null,
-		],
-	},
-	// 2P
-	{
-		id: "2:00",
-		time: "2:00 PM",
-		label: "2P",
-		covered: 5,
-		needsCover: 1,
-		cells: [
-			"covered",
-			"covered",
-			"covered",
-			"covered",
-			"covered",
-			"needsCover",
-			null,
-			null,
-			null,
-			null,
-		],
-	},
-	{
-		id: "2:30",
-		time: "2:30 PM",
-		label: "",
-		covered: 5,
-		needsCover: 0,
-		cells: [
-			"covered",
-			"covered",
-			"covered",
-			"covered",
-			"covered",
-			null,
-			null,
-			null,
-			null,
-			null,
-		],
-	},
-	// 3P
-	{
-		id: "3:00",
-		time: "3:00 PM",
-		label: "3P",
-		covered: 7,
-		needsCover: 0,
-		cells: [
-			"covered",
-			"covered",
-			"covered",
-			"covered",
-			"covered",
-			"covered",
-			"covered",
-			null,
-			null,
-			null,
-		],
-	},
-	{
-		id: "3:30",
-		time: "3:30 PM",
-		label: "",
-		covered: 7,
-		needsCover: 0,
-		cells: [
-			"covered",
-			"covered",
-			"covered",
-			"covered",
-			"covered",
-			"covered",
-			"covered",
-			null,
-			null,
-			null,
-		],
-	},
-	// 4P
-	{
-		id: "4:00",
-		time: "4:00 PM",
-		label: "4P",
-		covered: 7,
-		needsCover: 0,
-		cells: [
-			"covered",
-			"covered",
-			"covered",
-			"covered",
-			"covered",
-			"covered",
-			"covered",
-			null,
-			null,
-			null,
-		],
-	},
-	{
-		id: "4:30",
-		time: "4:30 PM",
-		label: "",
-		covered: 7,
-		needsCover: 0,
-		cells: [
-			"covered",
-			"covered",
-			"covered",
-			"covered",
-			"covered",
-			"covered",
-			"covered",
-			null,
-			null,
-			null,
-		],
-	},
-	// 5P
-	{
-		id: "5:00",
-		time: "5:00 PM",
-		label: "5P",
-		covered: 8,
-		needsCover: 1,
-		cells: [
-			"covered",
-			"covered",
-			"covered",
-			"covered",
-			"covered",
-			"covered",
-			"covered",
-			"covered",
-			"needsCover",
-			null,
-		],
-	},
-	{
-		id: "5:30",
-		time: "5:30 PM",
-		label: "",
-		covered: 4,
-		needsCover: 1,
-		cells: [
-			"covered",
-			"covered",
-			"covered",
-			"covered",
-			"needsCover",
-			null,
-			null,
-			null,
-			null,
-			null,
-		],
-	},
-	// 6P
-	{
-		id: "6:00",
-		time: "6:00 PM",
-		label: "6P",
-		covered: 4,
-		needsCover: 0,
-		cells: [
-			"covered",
-			"covered",
-			"covered",
-			"covered",
-			null,
-			null,
-			null,
-			null,
-			null,
-			null,
-		],
-	},
-	{
-		id: "6:30",
-		time: "6:30 PM",
-		label: "",
-		covered: 3,
-		needsCover: 0,
-		cells: [
-			"covered",
-			"covered",
-			"covered",
-			null,
-			null,
-			null,
-			null,
-			null,
-			null,
-			null,
-		],
-	},
-]
-
-const HOURS_LIST = [
-	"7A",
-	"8A",
-	"9A",
-	"10A",
-	"11A",
-	"12P",
-	"1P",
-	"2P",
-	"3P",
-	"4P",
-	"5P",
-	"6P",
-]
-
-const coverageChartConfig = {
-	covered: {
-		label: "Covered",
+const chartConfig = {
+	users: {
+		label: "Active Users",
 		color: "var(--color-primary)",
-	},
-	completed: {
-		label: "Completed",
-		color: "var(--color-primary)",
-	},
-	needsCover: {
-		label: "Needs Cover",
-		color: "var(--color-error)",
-	},
-	atRisk: {
-		label: "At Risk",
-		color: "var(--color-warning)",
 	},
 } satisfies ChartConfig
 
-interface CoveragePoint {
-	x: number
-	y: number
-	status: BlockStatus
-	time: string
-	covered: number
-	needsCover: number
-	assignedName?: string
+const renderHeatmapCell = (props: unknown) => {
+	const { cx, cy, payload } = props as {
+		cx?: number
+		cy?: number
+		payload?: HeatmapPoint
+	}
+	if (cx == null || cy == null) return null
+
+	const width = 32
+	const height = 20
+	const rx = 4
+	const level = payload?.level ?? 0
+
+	const fillClass =
+		level === 0
+			? "fill-fill2"
+			: level === 1
+				? "fill-primary/25"
+				: level === 2
+					? "fill-primary/50"
+					: level === 3
+						? "fill-primary/75"
+						: "fill-primary"
+
+	return (
+		<rect
+			x={cx - width / 2}
+			y={cy - height / 2}
+			width={width}
+			height={height}
+			rx={rx}
+			ry={rx}
+			className={cn(
+				fillClass,
+				"hover:stroke-primary cursor-pointer hover:stroke-[1.5px] hover:opacity-90 focus:outline-none"
+			)}
+		/>
+	)
 }
 
 interface AlertItem {
@@ -756,72 +325,7 @@ export default function Preview12Page() {
 	const [activeNav, setActiveNav] = useState("Dashboard")
 	const [selectedArea, setSelectedArea] = useState("All service areas")
 	const [approvedVisits, setApprovedVisits] = useState<Set<string>>(new Set())
-	const [selectedColIndex, setSelectedColIndex] = useState<number>(6)
-
-	const toggleApprove = (id: string) => {
-		setApprovedVisits((prev) => {
-			const next = new Set(prev)
-			if (next.has(id)) next.delete(id)
-			else next.add(id)
-			return next
-		})
-	}
-
-	const scatterData = React.useMemo(() => {
-		const points: CoveragePoint[] = []
-		COVERAGE_DATA.forEach((col, colIdx) => {
-			col.cells.forEach((status, rowIdx) => {
-				points.push({
-					x: colIdx,
-					y: rowIdx,
-					status,
-					time: col.time,
-					covered: col.covered,
-					needsCover: col.needsCover,
-					assignedName: col.assignedName,
-				})
-			})
-		})
-		return points
-	}, [])
-
-	const renderCoverageCell = (props: unknown) => {
-		const cellProps = props as {
-			cx?: number
-			cy?: number
-			payload?: CoveragePoint
-		}
-		const { cx, cy, payload } = cellProps
-		if (cx == null || cy == null || !payload) return null
-
-		const width = 17
-		const height = 13.5
-		const rx = 3
-		const status = payload.status
-
-		let fillClass = "fill-fill2 dark:fill-zinc-800/40"
-		if (status === "completed") fillClass = "fill-primary/40 hover:opacity-90"
-		else if (status === "covered") fillClass = "fill-primary hover:opacity-90"
-		else if (status === "atRisk") fillClass = "fill-warning hover:opacity-90"
-		else if (status === "needsCover")
-			fillClass = "fill-error hover:opacity-90 animate-pulse"
-
-		return (
-			<g
-				onClick={() => setSelectedColIndex(payload.x)}
-				className="cursor-pointer focus:outline-none">
-				<rect
-					x={cx - width / 2}
-					y={cy - height / 2}
-					width={width}
-					height={height}
-					rx={rx}
-					ry={rx}
-					className={cn(fillClass, "transition-colors")}
-				/>
-			</g>
-		)
-	}
+	const heatmapData = React.useMemo(() => generateHeatmapData(), [])
 
 	return (
 		<div className="text-fg font-body bg-fill1/40 h-screen w-full overflow-hidden dark:bg-zinc-950">
@@ -1418,215 +922,118 @@ export default function Preview12Page() {
 
 							{/* ── Lower Section (Coverage & Timeline + Right Alerts/Live) ── */}
 							<div className="grid grid-cols-1 items-stretch gap-4 lg:grid-cols-12">
-								{/* Left: Coverage by Half Hour Timeline Grid (lg:col-span-7) */}
-								<Card className="border-border/60 bg-fill1/60 flex h-full flex-col justify-between border p-2.5 shadow-2xs lg:col-span-7 dark:bg-zinc-900/60">
-									{/* Top Header & Legend on tinted base */}
-									<div className="flex flex-wrap items-center justify-between gap-3 px-2 pt-1 pb-1.5">
-										<div className="text-fg-secondary flex items-center gap-1.5 text-xs font-semibold tracking-wider uppercase">
-											<IconSlot slot="calendar" className="size-3.5" />
-											<span>Coverage by Half Hour</span>
-										</div>
-
-										{/* Legend */}
-										<div className="text-fg-secondary flex flex-wrap items-center gap-3 text-[10px] font-bold tracking-wider">
-											<div className="flex items-center gap-1.5">
-												<span className="bg-primary size-2 rounded-xs" />
-												<span>COVERED</span>
-											</div>
-											<div className="flex items-center gap-1.5">
-												<span className="bg-primary/40 size-2 rounded-xs" />
-												<span>COMPLETED</span>
-											</div>
-											<div className="flex items-center gap-1.5">
-												<span className="bg-error size-2 rounded-xs" />
-												<span>NEEDS COVER</span>
-											</div>
-											<div className="flex items-center gap-1.5">
-												<span className="bg-warning size-2 rounded-xs" />
-												<span>AT RISK</span>
-											</div>
-										</div>
-									</div>
-
-									{/* Inner Elevated White Card */}
-									<div className="border-border/50 bg-elevation-level1 flex flex-1 flex-col justify-between rounded-lg border p-4 shadow-2xs">
-										{/* Sub-header with Metrics & Hint */}
-										<div className="flex flex-wrap items-baseline justify-between gap-2">
-											<div className="flex items-baseline gap-1.5">
-												<span className="font-heading text-fg text-3xl font-bold tracking-tight">
-													45
-												</span>
-												<span className="text-fg-secondary text-xs font-medium">
-													of 48 visits covered
-												</span>
-											</div>
-											<span className="text-fg-secondary text-xs font-medium">
-												Each square is one visit
+								{/* Left: Heatmap Chart (lg:col-span-7) */}
+								<Card className="border-border/60 bg-elevation-level1 flex h-full flex-col justify-between border shadow-2xs lg:col-span-7">
+									<CardHeader className="pb-3">
+										<CardTitle className="flex items-baseline gap-2">
+											<span className="font-heading text-fg text-2xl font-bold tracking-tight">
+												1,890
 											</span>
-										</div>
-
-										{/* Coverage Block Chart with Radian ChartContainer */}
-										<div className="relative w-full overflow-x-auto pt-7 pb-2 select-none">
-											{/* Current Time Indicator Line (NOW 8:46) */}
-											<div
-												className="pointer-events-none absolute top-1 z-20 flex flex-col items-center"
-												style={{
-													left: "calc(1.75rem + (3.53 / 24) * (100% - 1.75rem))",
-												}}>
-												<div className="bg-fg text-bg rounded-[4px] px-1.5 py-0.5 text-[9px] font-bold tracking-tight whitespace-nowrap shadow-xs">
-													NOW 8:46
-												</div>
+											<span className="inline-flex items-center rounded-full bg-emerald-500/10 px-2 py-0.5 text-xs font-semibold text-emerald-500">
+												+5.2%
+											</span>
+										</CardTitle>
+										<CardDescription>Active users</CardDescription>
+										<CardAction>
+											<div className="border-border bg-fill1 text-fg flex items-center gap-1.5 rounded-lg border px-2.5 py-1 text-xs font-medium">
+												<IconSlot
+													slot="calendar"
+													className="text-fg-secondary size-3.5"
+												/>
+												<span>Last 7 days</span>
 											</div>
-
-											<div className="min-w-[560px]">
+										</CardAction>
+									</CardHeader>
+									<CardContent className="p-0">
+										<div className="w-full overflow-x-auto pb-2">
+											<div className="min-w-[500px] px-4">
 												<ChartContainer
-													config={coverageChartConfig}
-													className="aspect-auto h-[230px] w-full">
+													config={chartConfig}
+													className="aspect-auto h-[260px] w-full">
 													<ScatterChart
 														margin={{
-															top: 12,
+															top: 58,
 															right: 10,
 															bottom: 0,
-															left: -14,
+															left: 0,
 														}}>
 														<XAxis
 															type="number"
-															dataKey="x"
-															domain={[-0.5, 23.5]}
-															ticks={[
-																0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22,
-															]}
-															tickFormatter={(val: number) =>
-																HOURS_LIST[val / 2] ?? ""
-															}
-															interval={0}
-															tickLine={false}
-															axisLine={false}
-															tick={{
-																fontSize: 12,
-																fill: "var(--color-fg-secondary)",
-																fontWeight: 600,
-															}}
-														/>
-														<YAxis
-															type="number"
-															dataKey="y"
-															domain={[-0.5, 9.5]}
-															ticks={[2, 5, 8]}
-															tickFormatter={(val: number) =>
-																val === 2
-																	? "3"
-																	: val === 5
-																		? "6"
-																		: val === 8
-																			? "9"
-																			: ""
-															}
-															width={28}
+															dataKey="hourIndex"
+															domain={[-0.5, 11.5]}
+															ticks={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]}
+															tickFormatter={(val) => HOURS[val] ?? ""}
 															interval={0}
 															tickLine={false}
 															axisLine={false}
 															tick={{
 																fontSize: 11,
 																fill: "var(--color-fg-secondary)",
-																fontFamily: "monospace",
-																fontWeight: 500,
 															}}
 														/>
-														<ReferenceLine
-															x={3.53}
-															stroke="currentColor"
-															className="text-fg/80 pointer-events-none"
-															strokeWidth={1}
+														<YAxis
+															type="number"
+															dataKey="dayIndex"
+															domain={[-0.5, 6.5]}
+															ticks={[0, 1, 2, 3, 4, 5, 6]}
+															tickFormatter={(val) => DAYS[val] ?? ""}
+															width={36}
+															interval={0}
+															tickLine={false}
+															axisLine={false}
+															tick={{
+																fontSize: 11,
+																fill: "var(--color-fg-secondary)",
+															}}
+															reversed
 														/>
-														{selectedColIndex !== null && (
-															<ReferenceArea
-																x1={selectedColIndex - 0.48}
-																x2={selectedColIndex + 0.48}
-																y1={-0.45}
-																y2={9.45}
-																rx={6}
-																className="stroke-fg/80 pointer-events-none fill-transparent stroke-2"
-															/>
-														)}
 														<ChartTooltip
 															cursor={false}
-															offset={12}
+															offset={0}
 															isAnimationActive={false}
 															animationDuration={0}
 															allowEscapeViewBox={{ x: true, y: true }}
 															content={({ active, payload }) => {
 																if (!active || !payload?.length) return null
 																const item = payload[0]?.payload as
-																	| CoveragePoint
+																	| HeatmapPoint
 																	| undefined
 																if (!item) return null
 
 																return (
-																	<div className="border-border/70 bg-elevation-level1 text-fg pointer-events-none min-w-[210px] -translate-x-1/2 -translate-y-[calc(100%+14px)] rounded-lg border p-3 text-xs shadow-lg backdrop-blur-xs">
-																		<span className="font-heading text-fg text-xs font-semibold">
-																			{item.time}
-																		</span>
-																		<div className="mt-1.5 flex items-center justify-between text-xs">
-																			<div className="flex items-center gap-1.5">
-																				<span className="bg-primary size-2 rounded-xs" />
-																				<span className="text-fg-secondary">
-																					Covered
-																				</span>
-																			</div>
+																	<div className="border-border bg-bg pointer-events-none min-w-32 -translate-x-1/2 -translate-y-[calc(100%+12px)] rounded-lg border px-2.5 py-1.5 text-xs shadow-xl">
+																		<div className="flex flex-col gap-0.5">
 																			<span className="text-fg font-semibold">
-																				{item.covered}
+																				{item.users.toLocaleString()} active
+																				users
+																			</span>
+																			<span className="text-fg-tertiary text-[11px]">
+																				{item.day} at {item.hour}:00
 																			</span>
 																		</div>
-																		{item.needsCover > 0 && (
-																			<div className="mt-1 flex items-center justify-between text-xs">
-																				<div className="flex items-center gap-1.5">
-																					<span className="bg-error size-2 rounded-xs" />
-																					<span className="text-error font-medium">
-																						Needs cover
-																					</span>
-																				</div>
-																				<div className="flex items-center gap-1 text-xs">
-																					<span className="text-error font-bold">
-																						{item.needsCover}
-																					</span>
-																					{item.assignedName && (
-																						<span className="text-fg-secondary">
-																							· {item.assignedName}
-																						</span>
-																					)}
-																				</div>
-																			</div>
-																		)}
 																	</div>
 																)
 															}}
 														/>
 														<Scatter
-															data={scatterData}
-															shape={renderCoverageCell}
+															data={heatmapData}
+															shape={renderHeatmapCell}
 															isAnimationActive={false}
 														/>
 													</ScatterChart>
 												</ChartContainer>
 											</div>
 										</div>
-									</div>
-
-									{/* Card Footer on tinted base */}
-									<div className="flex items-center justify-between px-2 pt-2 pb-0.5">
-										<span className="text-fg-secondary text-xs font-semibold tracking-wider uppercase">
-											PEAK 10:00 AM · 9 VISITS AT ONCE
-										</span>
-										<Button
-											variant="ghost"
-											color="neutral"
-											size="xs"
-											className="text-primary hover:text-primary-hover h-6 gap-1 px-1 text-xs font-semibold">
-											<span>Open schedule</span>
-											<IconSlot slot="right" className="size-3.5" />
-										</Button>
-									</div>
+									</CardContent>
+									<CardFooter className="text-fg-secondary justify-end gap-1.5 border-t py-3 text-xs">
+										<span>Less</span>
+										<span className="bg-fill2 size-3 rounded-[3px]" />
+										<span className="bg-primary/25 size-3 rounded-[3px]" />
+										<span className="bg-primary/50 size-3 rounded-[3px]" />
+										<span className="bg-primary/75 size-3 rounded-[3px]" />
+										<span className="bg-primary size-3 rounded-[3px]" />
+										<span>More</span>
+									</CardFooter>
 								</Card>
 
 								{/* Right Column: Needs Attention + Live Visits (lg:col-span-5) */}
