@@ -4,24 +4,37 @@ import { SidebarProvider, SidebarInset } from "@/styles/default/ui/sidebar"
 import { ThemerSidebar } from "./_components/themer-sidebar"
 import { DeviceSize, ThemerTopbar } from "./_components/themer-topbar"
 import { cn } from "@/lib/utils"
-import {
-	Suspense,
-	useCallback,
-	useEffect,
-	useMemo,
-	useRef,
-	useState,
-} from "react"
+import { Suspense, useCallback, useEffect, useRef, useState } from "react"
 import { useThemerPreset } from "@/lib/themer-preset"
 
+const THEMER_PREVIEW_STORAGE_KEY = "radian-themer-preview"
+const DEFAULT_PREVIEW = "preview-07"
+
 function ThemerPage() {
-	const [params, setParams] = useThemerPreset()
-	const [selectedComponent, setSelectedComponent] =
-		useState<string>("preview-07")
+	const [params] = useThemerPreset()
+	const [selectedComponent, setSelectedComponent] = useState<string | null>(
+		null
+	)
 	const [device, setDevice] = useState<DeviceSize>("desktop")
 	const iframeRef = useRef<HTMLIFrameElement>(null)
 
-	const iframeSrc = `/preview/${selectedComponent}`
+	useEffect(() => {
+		try {
+			const saved = localStorage.getItem(THEMER_PREVIEW_STORAGE_KEY)
+			setSelectedComponent(saved || DEFAULT_PREVIEW)
+		} catch {
+			setSelectedComponent(DEFAULT_PREVIEW)
+		}
+	}, [])
+
+	const handleSelectComponent = useCallback((component: string) => {
+		setSelectedComponent(component)
+		try {
+			localStorage.setItem(THEMER_PREVIEW_STORAGE_KEY, component)
+		} catch {}
+	}, [])
+
+	const iframeSrc = selectedComponent ? `/preview/${selectedComponent}` : null
 
 	const postToIframe = useCallback((message: Record<string, unknown>) => {
 		iframeRef.current?.contentWindow?.postMessage(message, "*")
@@ -70,8 +83,8 @@ function ThemerPage() {
 
 			<SidebarInset className="bg-fill1">
 				<ThemerTopbar
-					selectedComponent={selectedComponent}
-					onSelectComponent={setSelectedComponent}
+					selectedComponent={selectedComponent ?? ""}
+					onSelectComponent={handleSelectComponent}
 					device={device}
 					onDeviceChange={setDevice}
 				/>
@@ -89,13 +102,15 @@ function ThemerPage() {
 							device === "tablet" && "w-[768px]",
 							device === "desktop" && "w-full"
 						)}>
-						<iframe
-							ref={iframeRef}
-							src={iframeSrc}
-							className="h-full w-full border-0"
-							title="Preview"
-							onLoad={syncAllToIframe}
-						/>
+						{iframeSrc && (
+							<iframe
+								ref={iframeRef}
+								src={iframeSrc}
+								className="h-full w-full border-0"
+								title="Preview"
+								onLoad={syncAllToIframe}
+							/>
+						)}
 					</div>
 				</div>
 			</SidebarInset>

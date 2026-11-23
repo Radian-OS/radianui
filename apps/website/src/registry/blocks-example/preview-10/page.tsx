@@ -2,41 +2,7 @@
 
 import * as React from "react"
 import { useState, useRef, useEffect } from "react"
-import {
-	PanelLeft,
-	Search,
-	Share2,
-	SquarePen,
-	Images,
-	Clock,
-	BookOpen,
-	Blocks,
-	LayoutGrid,
-	Copy,
-	Check,
-	RotateCw,
-	ThumbsUp,
-	ThumbsDown,
-	Volume2,
-	MoreHorizontal,
-	Paperclip,
-	Globe,
-	ChevronDown,
-	ArrowUp,
-	SlidersHorizontal,
-	Plus,
-	Pencil,
-	Pin,
-	Lock,
-	Archive,
-	Trash2,
-	FolderInput,
-	ChevronRight,
-	Sparkles,
-	Share,
-	MessageSquare,
-} from "lucide-react"
-
+import { IconSlot } from "@/registry/icon/icon-library"
 import { Button, IconButton } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/styles/default/ui/avatar"
 import {
@@ -103,18 +69,20 @@ function CollapsedLogoTrigger() {
 	return (
 		<Tooltip>
 			<TooltipTrigger asChild>
-				<button
-					type="button"
+				<IconButton
+					variant="ghost"
+					color="neutral"
+					size="md"
 					onClick={toggleSidebar}
 					aria-label="Toggle sidebar"
-					className="group/logo text-fg-secondary hover:text-fg hover:bg-fill1 flex size-9 cursor-pointer items-center justify-center rounded-lg transition-colors">
+					className="group/logo text-fg-secondary hover:text-fg size-9">
 					<span className="group-hover/logo:hidden">
 						<RadianLogo className="size-[26px]" />
 					</span>
 					<span className="hidden group-hover/logo:flex group-hover/logo:items-center group-hover/logo:justify-center">
-						<PanelLeft className="size-[18px]" />
+						<IconSlot slot="left-panel" className="size-[18px]" />
 					</span>
-				</button>
+				</IconButton>
 			</TooltipTrigger>
 			<TooltipContent side="right">Toggle sidebar</TooltipContent>
 		</Tooltip>
@@ -135,24 +103,30 @@ function ChatHeader({
 			<div className="flex items-center gap-1.5">
 				<DropdownMenu>
 					<DropdownMenuTrigger asChild>
-						<button
-							type="button"
-							className="text-fg hover:bg-fill1 data-[state=open]:bg-fill1 flex cursor-pointer items-center gap-1.5 rounded-lg px-2.5 py-1 text-sm font-semibold outline-hidden transition-colors">
+						<Button
+							variant="ghost"
+							color="neutral"
+							size="sm"
+							className="gap-1.5 font-semibold">
 							<span>{activeChatTitle}</span>
-							<ChevronDown className="text-fg-tertiary size-4" />
-						</button>
+							<IconSlot slot="down" className="text-fg-tertiary size-4" />
+						</Button>
 					</DropdownMenuTrigger>
 					<DropdownMenuContent
 						align="start"
-						className="border-border/80 w-56 rounded-2xl border p-1.5 shadow-lg">
-						<DropdownMenuItem className="cursor-pointer gap-2.5 rounded-lg px-3 py-2 text-[14px]">
-							<Pencil className="text-fg-secondary size-4 shrink-0" />
+						className="border-border/80 bg-elevation-level1 w-56 rounded-lg border p-1.5 shadow-lg">
+						<DropdownMenuItem className="cursor-pointer gap-2.5 rounded-sm px-3 py-2 text-[14px]">
+							<IconSlot
+								slot="pencil"
+								className="text-fg-secondary size-4 shrink-0"
+							/>
 							<span>Rename</span>
 						</DropdownMenuItem>
 						<DropdownMenuItem
 							onClick={onTogglePin}
-							className="cursor-pointer gap-2.5 rounded-lg px-3 py-2 text-[14px]">
-							<Pin
+							className="cursor-pointer gap-2.5 rounded-sm px-3 py-2 text-[14px]">
+							<IconSlot
+								slot="pin"
 								className={cn(
 									"size-4 shrink-0",
 									isPinned ? "text-primary fill-current" : "text-fg-secondary"
@@ -160,26 +134,38 @@ function ChatHeader({
 							/>
 							<span>{isPinned ? "Unpin chat" : "Pin chat"}</span>
 						</DropdownMenuItem>
-						<DropdownMenuItem className="cursor-pointer gap-2.5 rounded-lg px-3 py-2 text-[14px]">
-							<Lock className="text-fg-secondary size-4 shrink-0" />
+						<DropdownMenuItem className="cursor-pointer gap-2.5 rounded-sm px-3 py-2 text-[14px]">
+							<IconSlot
+								slot="lock"
+								className="text-fg-secondary size-4 shrink-0"
+							/>
 							<span>Lock chat</span>
 						</DropdownMenuItem>
 						<DropdownMenuDivider />
-						<DropdownMenuItem className="cursor-pointer gap-2.5 rounded-lg px-3 py-2 text-[14px]">
-							<Archive className="text-fg-secondary size-4 shrink-0" />
+						<DropdownMenuItem className="cursor-pointer gap-2.5 rounded-sm px-3 py-2 text-[14px]">
+							<IconSlot
+								slot="archive"
+								className="text-fg-secondary size-4 shrink-0"
+							/>
 							<span>Archive</span>
 						</DropdownMenuItem>
-						<DropdownMenuItem className="text-error focus:text-error focus:bg-error/10 cursor-pointer gap-2.5 rounded-lg px-3 py-2 text-[14px]">
-							<Trash2 className="text-error size-4 shrink-0" />
+						<DropdownMenuItem className="text-error focus:text-error focus:bg-error/10 cursor-pointer gap-2.5 rounded-sm px-3 py-2 text-[14px]">
+							<IconSlot slot="trash" className="text-error size-4 shrink-0" />
 							<span>Delete</span>
 						</DropdownMenuItem>
 						<DropdownMenuDivider />
-						<DropdownMenuItem className="cursor-pointer justify-between gap-2.5 rounded-lg px-3 py-2 text-[14px]">
+						<DropdownMenuItem className="cursor-pointer justify-between gap-2.5 rounded-sm px-3 py-2 text-[14px]">
 							<div className="flex items-center gap-2.5">
-								<FolderInput className="text-fg-secondary size-4 shrink-0" />
+								<IconSlot
+									slot="file-box"
+									className="text-fg-secondary size-4 shrink-0"
+								/>
 								<span>Move to project</span>
 							</div>
-							<ChevronRight className="text-fg-tertiary size-4 shrink-0" />
+							<IconSlot
+								slot="right"
+								className="text-fg-tertiary size-4 shrink-0"
+							/>
 						</DropdownMenuItem>
 					</DropdownMenuContent>
 				</DropdownMenu>
@@ -191,17 +177,16 @@ function ChatHeader({
 					variant="ghost"
 					color="neutral"
 					size="sm"
-					className="text-primary hover:text-primary hover:bg-fill1 cursor-pointer gap-1.5 rounded-lg px-2.5 py-1 text-sm font-medium">
-					<Sparkles className="text-primary fill-primary/20 size-4" />
+					className="text-primary hover:text-primary gap-1.5">
+					<IconSlot slot="sparkles" className="text-primary size-4" />
 					<span>Upgrade</span>
 				</Button>
 				<IconButton
 					variant="ghost"
 					color="neutral"
 					size="sm"
-					aria-label="Share"
-					className="text-fg-secondary hover:text-fg size-8 cursor-pointer rounded-lg">
-					<Share className="size-4" />
+					aria-label="Share">
+					<IconSlot slot="external-link" className="size-4" />
 				</IconButton>
 			</div>
 		</header>
@@ -211,16 +196,16 @@ function ChatHeader({
 interface NavItem {
 	id: string
 	title: string
-	icon: React.ComponentType<{ className?: string }>
+	slot: React.ComponentProps<typeof IconSlot>["slot"]
 }
 
 const mainNavItems: NavItem[] = [
-	{ id: "new-chat", title: "New chat", icon: SquarePen },
-	{ id: "images", title: "Images", icon: Images },
-	{ id: "scheduled", title: "Scheduled", icon: Clock },
-	{ id: "library", title: "Library", icon: BookOpen },
-	{ id: "plugins", title: "Plugins", icon: Blocks },
-	{ id: "explore", title: "Explore", icon: LayoutGrid },
+	{ id: "new-chat", title: "New chat", slot: "pencil" },
+	{ id: "images", title: "Images", slot: "image" },
+	{ id: "scheduled", title: "Scheduled", slot: "clock" },
+	{ id: "library", title: "Library", slot: "book" },
+	{ id: "plugins", title: "Plugins", slot: "blocks" },
+	{ id: "explore", title: "Explore", slot: "shapes" },
 ]
 
 interface ChatItem {
@@ -371,7 +356,7 @@ function ChatSidebar({
 									size="xs"
 									className="text-fg-secondary hover:text-fg size-7 cursor-pointer"
 									aria-label="Search chats">
-									<Search className="size-4" />
+									<IconSlot slot="search" className="size-4" />
 								</IconButton>
 								<SidebarTrigger className="text-fg-secondary hover:text-fg size-7 cursor-pointer" />
 							</div>
@@ -380,7 +365,7 @@ function ChatSidebar({
 				</AnimatePresence>
 			</SidebarHeader>
 
-			<SidebarContent className="no-scrollbar overflow-x-hidden overflow-y-auto px-2 py-3">
+			<SidebarContent className="px-2 py-3">
 				<AnimatePresence mode="wait" initial={false}>
 					{isCollapsed ? (
 						<motion.div
@@ -400,7 +385,7 @@ function ChatSidebar({
 												setMessages([])
 											}}
 											className="size-9 justify-center [&>svg]:size-[18px]!">
-											<SquarePen className="size-[18px]" />
+											<IconSlot slot="pencil" className="size-[18px]" />
 										</SidebarMenuButton>
 									</SidebarMenuItem>
 									<SidebarMenuItem>
@@ -408,7 +393,7 @@ function ChatSidebar({
 											size="md"
 											tooltip="Search"
 											className="size-9 justify-center [&>svg]:size-[18px]!">
-											<Search className="size-[18px]" />
+											<IconSlot slot="search" className="size-[18px]" />
 										</SidebarMenuButton>
 									</SidebarMenuItem>
 									<SidebarMenuItem>
@@ -418,7 +403,10 @@ function ChatSidebar({
 											isActive={activeChat !== "new"}
 											onClick={() => setActiveChat("cat-behaviour")}
 											className="size-9 justify-center [&>svg]:size-[18px]!">
-											<MessageSquare className="size-[18px]" />
+											<IconSlot
+												slot="messages-square"
+												className="size-[18px]"
+											/>
 										</SidebarMenuButton>
 									</SidebarMenuItem>
 									<SidebarMenuItem>
@@ -426,7 +414,7 @@ function ChatSidebar({
 											size="md"
 											tooltip="Images"
 											className="size-9 justify-center [&>svg]:size-[18px]!">
-											<Images className="size-[18px]" />
+											<IconSlot slot="image" className="size-[18px]" />
 										</SidebarMenuButton>
 									</SidebarMenuItem>
 									<SidebarMenuItem>
@@ -434,7 +422,7 @@ function ChatSidebar({
 											size="md"
 											tooltip="Scheduled"
 											className="size-9 justify-center [&>svg]:size-[18px]!">
-											<Clock className="size-[18px]" />
+											<IconSlot slot="clock" className="size-[18px]" />
 										</SidebarMenuButton>
 									</SidebarMenuItem>
 									<SidebarMenuItem>
@@ -442,7 +430,7 @@ function ChatSidebar({
 											size="md"
 											tooltip="Library"
 											className="size-9 justify-center [&>svg]:size-[18px]!">
-											<BookOpen className="size-[18px]" />
+											<IconSlot slot="book" className="size-[18px]" />
 										</SidebarMenuButton>
 									</SidebarMenuItem>
 									<SidebarMenuItem>
@@ -450,7 +438,7 @@ function ChatSidebar({
 											size="md"
 											tooltip="Plugins"
 											className="size-9 justify-center [&>svg]:size-[18px]!">
-											<Blocks className="size-[18px]" />
+											<IconSlot slot="blocks" className="size-[18px]" />
 										</SidebarMenuButton>
 									</SidebarMenuItem>
 									<SidebarMenuItem>
@@ -458,7 +446,7 @@ function ChatSidebar({
 											size="md"
 											tooltip="Explore"
 											className="size-9 justify-center [&>svg]:size-[18px]!">
-											<LayoutGrid className="size-[18px]" />
+											<IconSlot slot="shapes" className="size-[18px]" />
 										</SidebarMenuButton>
 									</SidebarMenuItem>
 								</SidebarMenu>
@@ -482,7 +470,7 @@ function ChatSidebar({
 												setMessages([])
 											}}
 											className="h-8.5 rounded-lg text-[14px]">
-											<SquarePen className="size-4" />
+											<IconSlot slot="pencil" className="size-4" />
 											<span>New chat</span>
 										</SidebarMenuButton>
 									</SidebarMenuItem>
@@ -490,7 +478,7 @@ function ChatSidebar({
 										<SidebarMenuButton
 											size="sm"
 											className="h-8.5 rounded-lg text-[14px]">
-											<Images className="size-4" />
+											<IconSlot slot="image" className="size-4" />
 											<span>Images</span>
 										</SidebarMenuButton>
 									</SidebarMenuItem>
@@ -498,7 +486,7 @@ function ChatSidebar({
 										<SidebarMenuButton
 											size="sm"
 											className="h-8.5 rounded-lg text-[14px]">
-											<Clock className="size-4" />
+											<IconSlot slot="clock" className="size-4" />
 											<span>Scheduled</span>
 										</SidebarMenuButton>
 									</SidebarMenuItem>
@@ -506,7 +494,7 @@ function ChatSidebar({
 										<SidebarMenuButton
 											size="sm"
 											className="h-8.5 rounded-lg text-[14px]">
-											<BookOpen className="size-4" />
+											<IconSlot slot="book" className="size-4" />
 											<span>Library</span>
 										</SidebarMenuButton>
 									</SidebarMenuItem>
@@ -514,7 +502,7 @@ function ChatSidebar({
 										<SidebarMenuButton
 											size="sm"
 											className="h-8.5 rounded-lg text-[14px]">
-											<Blocks className="size-4" />
+											<IconSlot slot="blocks" className="size-4" />
 											<span>Plugins</span>
 										</SidebarMenuButton>
 									</SidebarMenuItem>
@@ -522,7 +510,7 @@ function ChatSidebar({
 										<SidebarMenuButton
 											size="sm"
 											className="h-8.5 rounded-lg text-[14px]">
-											<LayoutGrid className="size-4" />
+											<IconSlot slot="shapes" className="size-4" />
 											<span>Explore</span>
 										</SidebarMenuButton>
 									</SidebarMenuItem>
@@ -530,7 +518,7 @@ function ChatSidebar({
 							</SidebarGroup>
 
 							{/* Projects Section */}
-							<SidebarGroup className="p-0 pt-4">
+							<SidebarGroup className="p-0 pt-4 group-data-[collapsible=icon]:hidden">
 								<SidebarGroupLabel className="text-fg-secondary text-[14px] font-medium">
 									Projects
 								</SidebarGroupLabel>
@@ -543,7 +531,7 @@ function ChatSidebar({
 
 							{/* Pinned Section */}
 							{pinnedChats.length > 0 && (
-								<SidebarGroup className="p-0 pt-3">
+								<SidebarGroup className="p-0 pt-3 group-data-[collapsible=icon]:hidden">
 									<SidebarGroupLabel className="text-fg-secondary text-[14px] font-medium">
 										Pinned
 									</SidebarGroupLabel>
@@ -564,7 +552,10 @@ function ChatSidebar({
 																isActive &&
 																	"bg-fill2 dark:bg-elevation-level2 font-medium"
 															)}>
-															<Pin className="text-primary size-3.5 shrink-0 fill-current" />
+															<IconSlot
+																slot="pin"
+																className="text-primary size-3.5 shrink-0 fill-current"
+															/>
 															<span className="truncate">{chat.title}</span>
 														</SidebarMenuButton>
 														<div className="absolute top-1/2 right-1 flex -translate-y-1/2 items-center gap-0.5 opacity-0 transition-opacity group-hover/chat-item:opacity-100">
@@ -578,15 +569,18 @@ function ChatSidebar({
 																			e.stopPropagation()
 																			handleTogglePin(chat.id)
 																		}}
-																		className="text-fg-secondary hover:text-fg size-7 cursor-pointer rounded-md"
+																		className="text-fg-secondary hover:text-fg size-7 cursor-pointer"
 																		aria-label="Unpin chat">
-																		<Pin className="text-primary size-3.5 fill-current" />
+																		<IconSlot
+																			slot="pin"
+																			className="text-primary size-3.5 fill-current"
+																		/>
 																	</IconButton>
 																</TooltipTrigger>
 																<TooltipContent
 																	side="top"
 																	sideOffset={4}
-																	className="bg-fg text-bg dark:bg-elevation-level3 dark:text-fg rounded-full border-0 px-2.5 py-1 text-xs font-medium shadow-md">
+																	className="bg-fg text-bg dark:bg-elevation-level3 dark:text-fg rounded-md border-0 px-2.5 py-1 text-xs font-medium shadow-md">
 																	Unpin chat
 																</TooltipContent>
 															</Tooltip>
@@ -594,9 +588,12 @@ function ChatSidebar({
 																variant="ghost"
 																color="neutral"
 																size="xs"
-																className="text-fg-secondary hover:text-fg size-7 cursor-pointer rounded-md"
+																className="text-fg-secondary hover:text-fg size-7 cursor-pointer"
 																aria-label="More options">
-																<MoreHorizontal className="size-3.5" />
+																<IconSlot
+																	slot="threeDot"
+																	className="size-3.5"
+																/>
 															</IconButton>
 														</div>
 													</SidebarMenuItem>
@@ -608,7 +605,7 @@ function ChatSidebar({
 							)}
 
 							{/* Recents Section */}
-							<SidebarGroup className="p-0 pt-3">
+							<SidebarGroup className="p-0 pt-3 group-data-[collapsible=icon]:hidden">
 								<SidebarGroupLabel className="text-fg-secondary text-[14px] font-medium">
 									Recents
 								</SidebarGroupLabel>
@@ -642,15 +639,15 @@ function ChatSidebar({
 																		e.stopPropagation()
 																		handleTogglePin(chat.id)
 																	}}
-																	className="text-fg-secondary hover:text-fg size-7 cursor-pointer rounded-md"
+																	className="text-fg-secondary hover:text-fg size-7 cursor-pointer"
 																	aria-label="Pin chat">
-																	<Pin className="size-3.5" />
+																	<IconSlot slot="pin" className="size-3.5" />
 																</IconButton>
 															</TooltipTrigger>
 															<TooltipContent
 																side="top"
 																sideOffset={4}
-																className="bg-fg text-bg dark:bg-elevation-level3 dark:text-fg rounded-full border-0 px-2.5 py-1 text-xs font-medium shadow-md">
+																className="bg-fg text-bg dark:bg-elevation-level3 dark:text-fg rounded-md border-0 px-2.5 py-1 text-xs font-medium shadow-md">
 																Pin chat
 															</TooltipContent>
 														</Tooltip>
@@ -658,9 +655,9 @@ function ChatSidebar({
 															variant="ghost"
 															color="neutral"
 															size="xs"
-															className="text-fg-secondary hover:text-fg size-7 cursor-pointer rounded-md"
+															className="text-fg-secondary hover:text-fg size-7 cursor-pointer"
 															aria-label="More options">
-															<MoreHorizontal className="size-3.5" />
+															<IconSlot slot="threeDot" className="size-3.5" />
 														</IconButton>
 													</div>
 												</SidebarMenuItem>
@@ -735,7 +732,7 @@ function ChatSidebar({
 								variant="outline"
 								color="neutral"
 								size="xs"
-								className="shrink-0 rounded-full px-3 text-xs font-medium">
+								className="shrink-0 px-3 text-xs font-medium">
 								Upgrade
 							</Button>
 						</motion.div>
@@ -829,7 +826,7 @@ export default function Page() {
 	const isCurrentChatPinned = pinnedIds.includes(activeChat)
 
 	return (
-		<SidebarProvider className="bg-bg text-fg h-screen w-full overflow-hidden">
+		<SidebarProvider className="font-body bg-bg text-fg h-screen w-full overflow-hidden">
 			{/* ══════════════════════════════════════════════
           1. RADIAN SIDEBAR NAVIGATION
       ══════════════════════════════════════════════ */}
@@ -873,29 +870,32 @@ export default function Page() {
 												color="neutral"
 												size="xs"
 												onClick={() => handleCopy(msg.id, msg.content)}
-												className="hover:text-fg size-7 cursor-pointer rounded-lg"
+												className="hover:text-fg size-7"
 												aria-label="Copy message">
 												{copiedId === msg.id ? (
-													<Check className="text-success size-3.5" />
+													<IconSlot
+														slot="check"
+														className="text-success size-3.5"
+													/>
 												) : (
-													<Copy className="size-3.5" />
+													<IconSlot slot="file-text" className="size-3.5" />
 												)}
 											</IconButton>
 											<IconButton
 												variant="ghost"
 												color="neutral"
 												size="xs"
-												className="hover:text-fg size-7 cursor-pointer rounded-lg"
+												className="hover:text-fg size-7"
 												aria-label="Share message">
-												<Share className="size-3.5" />
+												<IconSlot slot="external-link" className="size-3.5" />
 											</IconButton>
 											<IconButton
 												variant="ghost"
 												color="neutral"
 												size="xs"
-												className="hover:text-fg size-7 cursor-pointer rounded-lg"
+												className="hover:text-fg size-7"
 												aria-label="Edit message">
-												<Pencil className="size-3.5" />
+												<IconSlot slot="pencil" className="size-3.5" />
 											</IconButton>
 										</div>
 									</div>
@@ -917,12 +917,15 @@ export default function Page() {
 											color="neutral"
 											size="xs"
 											onClick={() => handleCopy(msg.id, msg.content)}
-											className="hover:text-fg size-7 rounded-lg"
+											className="hover:text-fg size-7"
 											aria-label="Copy response">
 											{copiedId === msg.id ? (
-												<Check className="text-success size-3.5" />
+												<IconSlot
+													slot="check"
+													className="text-success size-3.5"
+												/>
 											) : (
-												<Copy className="size-3.5" />
+												<IconSlot slot="file-text" className="size-3.5" />
 											)}
 										</IconButton>
 										<IconButton
@@ -932,9 +935,9 @@ export default function Page() {
 											onClick={() => {
 												handleSendMessage()
 											}}
-											className="hover:text-fg size-7 rounded-lg"
+											className="hover:text-fg size-7"
 											aria-label="Regenerate">
-											<RotateCw className="size-3.5" />
+											<IconSlot slot="repeat" className="size-3.5" />
 										</IconButton>
 										<IconButton
 											variant="ghost"
@@ -942,11 +945,11 @@ export default function Page() {
 											size="xs"
 											onClick={() => handleLike(msg.id)}
 											className={cn(
-												"hover:text-fg size-7 rounded-lg",
+												"hover:text-fg size-7",
 												msg.liked && "text-primary"
 											)}
 											aria-label="Good response">
-											<ThumbsUp className="size-3.5" />
+											<IconSlot slot="thumbs-up" className="size-3.5" />
 										</IconButton>
 										<IconButton
 											variant="ghost"
@@ -954,11 +957,11 @@ export default function Page() {
 											size="xs"
 											onClick={() => handleDislike(msg.id)}
 											className={cn(
-												"hover:text-fg size-7 rounded-lg",
+												"hover:text-fg size-7",
 												msg.disliked && "text-error"
 											)}
 											aria-label="Bad response">
-											<ThumbsDown className="size-3.5" />
+											<IconSlot slot="thumbs-down" className="size-3.5" />
 										</IconButton>
 										<IconButton
 											variant="ghost"
@@ -972,25 +975,25 @@ export default function Page() {
 													window.speechSynthesis.speak(utterance)
 												}
 											}}
-											className="hover:text-fg size-7 rounded-lg"
+											className="hover:text-fg size-7"
 											aria-label="Read aloud">
-											<Volume2 className="size-3.5" />
+											<IconSlot slot="volume" className="size-3.5" />
 										</IconButton>
 										<IconButton
 											variant="ghost"
 											color="neutral"
 											size="xs"
-											className="hover:text-fg size-7 rounded-lg"
+											className="hover:text-fg size-7"
 											aria-label="Share response">
-											<Share className="size-3.5" />
+											<IconSlot slot="external-link" className="size-3.5" />
 										</IconButton>
 										<IconButton
 											variant="ghost"
 											color="neutral"
 											size="xs"
-											className="hover:text-fg size-7 rounded-lg"
+											className="hover:text-fg size-7"
 											aria-label="More options">
-											<MoreHorizontal className="size-3.5" />
+											<IconSlot slot="threeDot" className="size-3.5" />
 										</IconButton>
 									</div>
 								</div>
@@ -1027,9 +1030,9 @@ export default function Page() {
 									variant="ghost"
 									color="neutral"
 									size="sm"
-									className="text-fg-secondary hover:text-fg size-8 rounded-full"
+									className="text-fg-secondary hover:text-fg size-8"
 									aria-label="Attach file">
-									<Paperclip className="size-4" />
+									<IconSlot slot="link" className="size-4" />
 								</IconButton>
 								<DropdownMenu>
 									<DropdownMenuTrigger asChild>
@@ -1037,27 +1040,36 @@ export default function Page() {
 											variant="outline"
 											color="neutral"
 											size="xs"
-											className="border-border/70 bg-fill1/40 hover:bg-fill2 data-[state=open]:bg-fill2 text-fg cursor-pointer gap-1.5 rounded-full px-3 text-xs font-medium">
-											<Globe className="text-fg-secondary size-3.5" />
+											className="gap-1.5 px-3 text-xs font-medium">
+											<IconSlot
+												slot="globe"
+												className="text-fg-secondary size-3.5"
+											/>
 											<span>{activeModel}</span>
-											<ChevronDown className="text-fg-tertiary size-3 transition-transform duration-200 data-[state=open]:rotate-180" />
+											<IconSlot
+												slot="down"
+												className="text-fg-tertiary size-3 transition-transform duration-200 data-[state=open]:rotate-180"
+											/>
 										</Button>
 									</DropdownMenuTrigger>
 									<DropdownMenuContent
 										side="top"
 										align="start"
 										sideOffset={8}
-										className="border-border/80 bg-elevation-level1 w-52 rounded-2xl border p-1.5 shadow-lg">
+										className="border-border/80 bg-elevation-level1 w-52 rounded-lg border p-1.5 shadow-lg">
 										{AVAILABLE_MODELS.map((model) => {
 											const isSelected = activeModel === model
 											return (
 												<DropdownMenuItem
 													key={model}
 													onClick={() => setActiveModel(model)}
-													className="flex cursor-pointer items-center justify-between gap-2 rounded-xl px-3 py-2 text-[14px]">
+													className="flex cursor-pointer items-center justify-between gap-2 rounded-sm px-3 py-2 text-[14px]">
 													<span>{model}</span>
 													{isSelected && (
-														<Check className="text-fg size-4 shrink-0" />
+														<IconSlot
+															slot="check"
+															className="text-fg size-4 shrink-0"
+														/>
 													)}
 												</DropdownMenuItem>
 											)
@@ -1072,9 +1084,9 @@ export default function Page() {
 								size="sm"
 								disabled={!inputPrompt.trim()}
 								onClick={handleSendMessage}
-								className="size-8 rounded-full shadow-2xs disabled:opacity-40"
+								className="size-8 shadow-2xs disabled:opacity-40"
 								aria-label="Send message">
-								<ArrowUp className="size-4" />
+								<IconSlot slot="up" className="size-4" />
 							</IconButton>
 						</div>
 					</div>

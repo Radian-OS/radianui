@@ -1,9 +1,9 @@
 "use client"
 
-import { Check, Minus } from "lucide-react"
 import * as React from "react"
 import * as CheckboxPrimitive from "@radix-ui/react-checkbox"
 import { type VariantProps, cva } from "class-variance-authority"
+import { IconSlot } from "@/registry/icon/icon-library"
 import { cn } from "@/lib/utils"
 
 type CheckboxProps = React.ComponentProps<typeof CheckboxPrimitive.Root> &
@@ -16,7 +16,7 @@ const checkboxVariants = cva(
 	cn(
 		"group peer bg-bg border-border ring-offset-bg shrink-0 border focus-visible:outline-none",
 		"focus-visible:ring-primary focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
-		"data-[state=checked]:bg-primary data-[state=checked]:border-primary data-[state=indeterminate]:bg-primary data-[state=indeterminate]:border-primary data-[state=checked]:text-white data-[state=indeterminate]:text-white",
+		"data-[state=checked]:bg-primary data-[state=checked]:border-primary data-[state=indeterminate]:bg-primary data-[state=indeterminate]:border-primary data-[state=checked]:text-fg data-[state=indeterminate]:text-fg",
 		"aria-invalid:border-error aria-invalid:ring-error",
 		"[[data-invalid=true]_&]:border-error [[data-invalid=true]_&]:ring-error"
 	),
@@ -44,9 +44,12 @@ function Checkbox({ className, size, icon, ...props }: CheckboxProps) {
 				data-slot="checkbox-indicator"
 				className="flex items-center justify-center text-current">
 				<div className="group-data-[state=indeterminate]:hidden">
-					{icon || <Check />}
+					{icon || <IconSlot slot="check" />}
 				</div>
-				<Minus className="hidden group-data-[state=indeterminate]:block" />
+				<IconSlot
+					className="hidden group-data-[state=indeterminate]:block"
+					slot="minus"
+				/>
 			</CheckboxPrimitive.Indicator>
 		</CheckboxPrimitive.Root>
 	)

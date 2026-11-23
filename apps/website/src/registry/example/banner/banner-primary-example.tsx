@@ -23,7 +23,7 @@ const BannerPrimaryExamples = () => {
 				</BannerDescription>
 				<div className="pl-1">
 					<Button
-						className="text-fg-secondary bg-white hover:bg-white"
+						className="text-fg-secondary bg-bg hover:bg-bg/90"
 						color="neutral"
 						size="lg">
 						Talk to Sales

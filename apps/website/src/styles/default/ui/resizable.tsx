@@ -1,7 +1,7 @@
 "use client"
 
-import { GripVertical } from "lucide-react"
 import * as React from "react"
+import { IconSlot } from "@/registry/icon/icon-library"
 import * as ResizablePrimitive from "react-resizable-panels"
 import { cn } from "@/lib/utils"
 
@@ -55,7 +55,7 @@ function ResizableSeparator({
 			{...props}>
 			{withHandle && (
 				<div className="bg-border z-10 flex h-4 w-3 items-center justify-center rounded-xs border">
-					<GripVertical className="size-2.5" />
+					<IconSlot slot="grip" className="size-2.5" />
 				</div>
 			)}
 		</ResizablePrimitive.Separator>
