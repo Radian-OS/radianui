@@ -13,7 +13,6 @@ import { Button } from "@/registry/ui/button"
 import {
 	DropdownMenu,
 	DropdownMenuContent,
-	DropdownMenuDivider,
 	DropdownMenuLabel,
 	DropdownMenuRadioGroup,
 	DropdownMenuRadioItem,
@@ -77,9 +76,9 @@ export function BrandLogoOptions({
 						event.preventDefault()
 					}
 				}}>
-				<DropdownMenuLabel>Logo variant</DropdownMenuLabel>
-				<DropdownMenuDivider />
+				<DropdownMenuLabel className="uppercase">Variant</DropdownMenuLabel>
 				<DropdownMenuRadioGroup
+					aria-label="Variant"
 					value={variant}
 					onValueChange={(value) => {
 						onVariantChange(value as BrandLogoVariant)
@@ -87,22 +86,19 @@ export function BrandLogoOptions({
 					}}>
 					<DropdownMenuRadioItem value="icon">
 						<BadgeIcon className="text-fg-secondary size-4" />
-						<span className="flex-1 text-sm font-medium">Icon (24×24)</span>
+						<span className="flex-1 text-sm font-medium">Icon</span>
 					</DropdownMenuRadioItem>
 					<DropdownMenuRadioItem value="wordmark">
 						<RectangleHorizontal className="text-fg-secondary size-4" />
-						<span className="flex-1 text-sm font-medium">
-							Wordmark (180×48)
-						</span>
+						<span className="flex-1 text-sm font-medium">Wordmark</span>
 					</DropdownMenuRadioItem>
 				</DropdownMenuRadioGroup>
 
 				{colorway && onColorwayChange && (
 					<>
-						<DropdownMenuDivider />
-						<DropdownMenuLabel>Colorway</DropdownMenuLabel>
-						<DropdownMenuDivider />
+						<DropdownMenuLabel className="uppercase">Color</DropdownMenuLabel>
 						<DropdownMenuRadioGroup
+							aria-label="Color"
 							value={colorway}
 							onValueChange={(value) => {
 								onColorwayChange(value as BrandLogoColorway)
