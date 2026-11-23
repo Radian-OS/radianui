@@ -11,7 +11,7 @@ export default function BrandLogosHeroActions() {
 				className="bg-elevation-level1/20 dark:hover:bg-fill2/40 hover:bg-fill2/40 w-full backdrop-blur-md sm:w-fit"
 				variant="outline"
 				color="neutral">
-				<Link href="#resource-showcase-heading">Browse logos</Link>
+				<Link href="/docs/getting-started/resources">View all resources</Link>
 			</Button>
 			<Button asChild variant="glossy" className="w-full sm:w-fit" size="lg">
 				<Link

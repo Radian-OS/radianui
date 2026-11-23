@@ -2,6 +2,7 @@
 
 import { memo, useCallback, useEffect, useRef, useState } from "react"
 import { toast } from "sonner"
+import { cn } from "@/lib/utils"
 import { Button } from "@/registry/ui/button"
 import { Skeleton } from "@/registry/ui/skeleton"
 import { getBrandLogoPreviewSource } from "./brand-logo-preview-loader"
@@ -164,6 +165,7 @@ export const BrandLogoTile = memo(function BrandLogoTile({
 						priority={priority}
 						src={previewUrl}
 						alt={`${brand.name} ${variant}`}
+						name={brand.name}
 						className={
 							variant === "icon" ? "size-12 shrink-0" : "h-[28%] w-full"
 						}
@@ -195,14 +197,18 @@ export const BrandLogoTile = memo(function BrandLogoTile({
 
 // Render the actual image immediately so browser caching, request priority,
 // and multiplexing work without a separate preload or global queue.
+const MAX_PREVIEW_ATTEMPTS = 4
+
 function BrandLogoPreview({
 	src,
 	alt,
+	name,
 	className,
 	priority,
 }: {
 	src: string | undefined
 	alt: string
+	name: string
 	className: string
 	priority: boolean
 }) {
@@ -210,60 +216,74 @@ function BrandLogoPreview({
 	const [loaded, setLoaded] = useState(false)
 	const imageRef = useRef<HTMLImageElement>(null)
 	const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
-	const source = src ? getBrandLogoPreviewSource(src, attempt) : undefined
-	const retry = useCallback(() => {
+	const unavailable = attempt >= MAX_PREVIEW_ATTEMPTS
+	const source =
+		src && !unavailable ? getBrandLogoPreviewSource(src, attempt) : undefined
+	const clearTimer = useCallback(() => {
 		if (timerRef.current !== null) clearTimeout(timerRef.current)
+		timerRef.current = null
+	}, [])
+	const retry = useCallback(() => {
+		clearTimer()
+		setLoaded(false)
+		if (attempt + 1 === MAX_PREVIEW_ATTEMPTS) {
+			setAttempt(MAX_PREVIEW_ATTEMPTS)
+			return
+		}
 		timerRef.current = setTimeout(
-			() => {
-				setLoaded(false)
-				setAttempt((value) => value + 1)
-			},
-			Math.min(250 * 2 ** Math.min(attempt, 6), 15000)
+			() => setAttempt(attempt + 1),
+			250 * 2 ** attempt
 		)
-	}, [attempt])
+	}, [attempt, clearTimer])
 
 	useEffect(() => {
 		if (!source) return
-		const clearTimer = () => {
-			if (timerRef.current !== null) clearTimeout(timerRef.current)
-			timerRef.current = null
-		}
 		clearTimer()
 		const image = imageRef.current
 		if (image?.complete && image.naturalWidth > 0) {
 			setLoaded(true)
 		} else if (image?.complete) {
 			retry()
-		} else {
-			// A stalled image retries independently of every other tile.
+		} else if (priority) {
+			// Lazy images may not have started loading yet.
 			timerRef.current = setTimeout(retry, 8000)
 		}
 		return clearTimer
-	}, [source, retry])
+	}, [source, priority, retry, clearTimer])
 
 	return (
-		<span className={className} aria-busy={!loaded}>
-			{!loaded && (
+		<span className={className} aria-busy={!loaded && !unavailable}>
+			{unavailable ? (
+				<span className="text-fg-secondary absolute inset-0 grid place-items-center px-2 text-center text-xs whitespace-normal">
+					{name}
+				</span>
+			) : !loaded ? (
 				<Skeleton
 					aria-hidden="true"
 					className="absolute inset-0 animate-none rounded-2xl"
 				/>
+			) : null}
+			{source && (
+				<img
+					key={source}
+					ref={imageRef}
+					src={source}
+					alt={alt}
+					aria-hidden={!loaded}
+					className={cn(
+						"relative size-full object-contain",
+						!loaded && "opacity-0"
+					)}
+					loading={priority ? "eager" : "lazy"}
+					fetchPriority={priority ? "high" : "low"}
+					decoding="async"
+					onLoad={() => {
+						clearTimer()
+						setLoaded(true)
+					}}
+					onError={retry}
+				/>
 			)}
-			<img
-				key={source}
-				ref={imageRef}
-				src={source}
-				alt={alt}
-				className="relative size-full object-contain"
-				loading="eager"
-				fetchPriority={priority ? "high" : "low"}
-				decoding="async"
-				onLoad={() => {
-					if (timerRef.current !== null) clearTimeout(timerRef.current)
-					setLoaded(true)
-				}}
-				onError={retry}
-			/>
 		</span>
 	)
 }

@@ -1,6 +1,6 @@
 "use client"
 
-import { Fragment, useLayoutEffect, useRef, useState } from "react"
+import { useLayoutEffect, useRef, useState } from "react"
 import type { LucideIcon } from "lucide-react"
 import {
 	ArrowLeft,
@@ -30,8 +30,6 @@ import { ScrollArea } from "@/registry/ui/scroll-area"
 import {
 	DropdownMenu,
 	DropdownMenuContent,
-	DropdownMenuDivider,
-	DropdownMenuLabel,
 	DropdownMenuItem,
 	DropdownMenuRadioGroup,
 	DropdownMenuRadioItem,
@@ -112,7 +110,10 @@ export function BrandLogoCategoryDropdown({
 
 	const categories = (
 		<ScrollArea className="w-full pr-1.5 [&_[data-slot=scroll-area-viewport]]:max-h-[min(18rem,calc(var(--radix-dropdown-menu-content-available-height)-3.5rem))]">
-			<DropdownMenuRadioGroup value={value} onValueChange={handleValueChange}>
+			<DropdownMenuRadioGroup
+				aria-label="Category"
+				value={value}
+				onValueChange={handleValueChange}>
 				<DropdownMenuRadioItem
 					value={ALL_BRAND_LOGO_CATEGORY}
 					className="h-8.5">
@@ -124,7 +125,6 @@ export function BrandLogoCategoryDropdown({
 						{brandLogos.length}
 					</span>
 				</DropdownMenuRadioItem>
-				<DropdownMenuDivider />
 				{brandLogoCategories.map((category) => {
 					const Icon = categoryIcons[category.slug] ?? LayoutGrid
 					return (
@@ -146,24 +146,16 @@ export function BrandLogoCategoryDropdown({
 		</ScrollArea>
 	)
 	const sections = [
-		{
-			label: "Category",
-			heading: "Categories",
-			selected: label,
-			icon: categoryIcons[activeCategory?.slug ?? ""] ?? LayoutGrid,
-			width: "w-76",
-			options: categories,
-		},
 		...(variant && onVariantChange
 			? [
 					{
 						label: "Variant",
-						heading: "Logo variant",
 						selected: variant,
 						icon: variant === "wordmark" ? RectangleHorizontal : BadgeIcon,
 						width: "w-60",
 						options: (
 							<DropdownMenuRadioGroup
+								aria-label="Variant"
 								value={variant}
 								onValueChange={(val) => {
 									onVariantChange(val as BrandLogoVariant)
@@ -172,13 +164,13 @@ export function BrandLogoCategoryDropdown({
 								<DropdownMenuRadioItem value="icon" className="h-8.5">
 									<BadgeIcon className="text-fg-secondary size-4 shrink-0" />
 									<span className="flex-1 text-sm font-medium whitespace-nowrap">
-										Icon (24×24)
+										Icon
 									</span>
 								</DropdownMenuRadioItem>
 								<DropdownMenuRadioItem value="wordmark" className="h-8.5">
 									<RectangleHorizontal className="text-fg-secondary size-4 shrink-0" />
 									<span className="flex-1 text-sm font-medium whitespace-nowrap">
-										Wordmark (180×48)
+										Wordmark
 									</span>
 								</DropdownMenuRadioItem>
 							</DropdownMenuRadioGroup>
@@ -189,13 +181,13 @@ export function BrandLogoCategoryDropdown({
 		...(variant && onVariantChange && colorway && onColorwayChange
 			? [
 					{
-						label: "Colorway",
-						heading: "Colorway",
+						label: "Color",
 						selected: colorway,
 						icon: colorway === "colored" ? Palette : SunMoon,
 						width: "w-52",
 						options: (
 							<DropdownMenuRadioGroup
+								aria-label="Color"
 								value={colorway}
 								onValueChange={(val) => {
 									onColorwayChange(val as BrandLogoColorway)
@@ -218,6 +210,13 @@ export function BrandLogoCategoryDropdown({
 					},
 				]
 			: []),
+		{
+			label: "Category",
+			selected: label,
+			icon: categoryIcons[activeCategory?.slug ?? ""] ?? LayoutGrid,
+			width: "w-76",
+			options: categories,
+		},
 	]
 	const activeSection = sections.find((item) => item.label === section)
 	const navigate = (nextSection: string | null) => (event: Event) => {
@@ -272,11 +271,7 @@ export function BrandLogoCategoryDropdown({
 					categoryChanged.current = false
 				}}>
 				{sections.length === 1 ? (
-					<>
-						<DropdownMenuLabel>Categories</DropdownMenuLabel>
-						<DropdownMenuDivider />
-						{categories}
-					</>
+					categories
 				) : mobile && activeSection ? (
 					<>
 						<DropdownMenuItem
@@ -284,37 +279,32 @@ export function BrandLogoCategoryDropdown({
 							onSelect={navigate(null)}
 							aria-label="Back to filters">
 							<ArrowLeft aria-hidden="true" />
-							{activeSection.heading}
+							Back
 						</DropdownMenuItem>
-						<DropdownMenuDivider />
 						{activeSection.options}
 					</>
 				) : (
-					sections.map((item, index) => (
-						<Fragment key={item.label}>
-							{index > 0 && <DropdownMenuDivider />}
-							{mobile ? (
-								<DropdownMenuItem
-									ref={index === 0 ? focusedMenuItem : undefined}
-									onSelect={navigate(item.label)}
-									className="h-9 gap-2.5 px-2.5">
+					sections.map((item, index) =>
+						mobile ? (
+							<DropdownMenuItem
+								key={item.label}
+								ref={index === 0 ? focusedMenuItem : undefined}
+								onSelect={navigate(item.label)}
+								className="h-9 gap-2.5 px-2.5">
+								{sectionRow(item)}
+								<ChevronRight aria-hidden="true" />
+							</DropdownMenuItem>
+						) : (
+							<DropdownMenuSub key={item.label}>
+								<DropdownMenuSubTrigger className="h-9 gap-2.5 px-2.5">
 									{sectionRow(item)}
-									<ChevronRight aria-hidden="true" />
-								</DropdownMenuItem>
-							) : (
-								<DropdownMenuSub>
-									<DropdownMenuSubTrigger className="h-9 gap-2.5 px-2.5">
-										{sectionRow(item)}
-									</DropdownMenuSubTrigger>
-									<DropdownMenuSubContent className={item.width}>
-										<DropdownMenuLabel>{item.heading}</DropdownMenuLabel>
-										<DropdownMenuDivider />
-										{item.options}
-									</DropdownMenuSubContent>
-								</DropdownMenuSub>
-							)}
-						</Fragment>
-					))
+								</DropdownMenuSubTrigger>
+								<DropdownMenuSubContent className={item.width}>
+									{item.options}
+								</DropdownMenuSubContent>
+							</DropdownMenuSub>
+						)
+					)
 				)}
 			</DropdownMenuContent>
 		</DropdownMenu>

@@ -9,7 +9,7 @@ export function getBrandLogoPreviewSource(src: string, attempt: number) {
 		"cdn.jsdelivr.net",
 	]
 	url.hostname = hosts[(attempt - 1) % hosts.length]
-	if (attempt > hosts.length)
+	if (attempt >= hosts.length)
 		url.searchParams.set("retry", String(Math.floor(attempt / hosts.length)))
 	return url.toString()
 }
