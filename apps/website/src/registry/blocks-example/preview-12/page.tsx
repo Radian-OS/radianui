@@ -12,8 +12,8 @@ import {
 	ChartTooltip,
 } from "@/registry/ui/chart"
 import { Scatter, ScatterChart, XAxis, YAxis } from "recharts"
-import { Button, IconButton } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
+import { Button, IconButton } from "@/registry/ui/button"
+import { Badge } from "@/registry/ui/badge"
 import {
 	Breadcrumb,
 	BreadcrumbItem,
@@ -713,11 +713,15 @@ export default function Preview12Page() {
 								</div>
 
 								<div className="flex h-8 items-center gap-2 sm:gap-2.5">
-									{/* Date Status Pill */}
-									<div className="border-border bg-fill1 text-fg-secondary flex h-8 items-center gap-1.5 rounded-full border px-3 text-[11px] font-semibold tracking-wider uppercase shadow-2xs">
+									{/* Date Status Button */}
+									<Button
+										variant="outline"
+										color="neutral"
+										size="sm"
+										className="text-fg-secondary h-8 gap-1.5 px-3 text-[11px] font-semibold tracking-wider uppercase shadow-2xs">
 										<span className="bg-success size-1.5 animate-pulse rounded-full" />
 										<span>MON, OCT 5 · 8:46 AM</span>
-									</div>
+									</Button>
 
 									{/* Action Icons */}
 									<IconButton
@@ -1006,13 +1010,17 @@ export default function Preview12Page() {
 														Active users
 													</p>
 												</div>
-												<div className="border-border bg-fill1 text-fg flex items-center gap-1.5 rounded-lg border px-2.5 py-1 text-xs font-medium">
+												<Button
+													variant="outline"
+													color="neutral"
+													size="xs"
+													className="gap-1.5 text-xs font-medium">
 													<IconSlot
 														slot="calendar"
 														className="text-fg-secondary size-3.5"
 													/>
 													<span>Last 7 days</span>
-												</div>
+												</Button>
 											</div>
 
 											{/* Inner Heatmap Chart (reduced top margin to eliminate gap) */}
@@ -1215,10 +1223,14 @@ export default function Preview12Page() {
 														Live Visits
 													</span>
 												</div>
-												<div className="border-border bg-elevation-level1 text-fg-secondary flex h-6 items-center gap-1.5 rounded-full border px-2.5 text-[11px] font-semibold shadow-2xs">
+												<Button
+													variant="outline"
+													color="neutral"
+													size="xs"
+													className="text-fg-secondary h-6 gap-1.5 px-2 text-[11px] font-semibold">
 													<span className="bg-success size-1.5 rounded-full" />
 													<span>3 in progress</span>
-												</div>
+												</Button>
 											</div>
 
 											{/* Inner Elevated White Card (generous row spacing) */}
