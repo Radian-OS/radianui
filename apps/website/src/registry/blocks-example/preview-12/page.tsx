@@ -961,7 +961,7 @@ export default function Preview12Page() {
 								{/* ── Lower Section (Coverage & Timeline + Right Alerts/Live) ── */}
 								<div className="grid grid-cols-1 items-stretch gap-4 lg:grid-cols-12">
 									{/* Left: Heatmap Chart with Outer Container (lg:col-span-7) */}
-									<Card className="border-border bg-fill2 flex h-full flex-col justify-between border p-2.5 shadow-2xs lg:col-span-7 dark:bg-zinc-900/60">
+									<Card className="border-border bg-fill2 flex h-full flex-col justify-between border p-3 shadow-2xs lg:col-span-7 dark:bg-zinc-900/60">
 										{/* Top Header Row on tinted base */}
 										<div className="flex h-7 items-center justify-between gap-3 px-1.5">
 											<div className="flex items-center gap-1.5">
@@ -1104,8 +1104,8 @@ export default function Preview12Page() {
 												</div>
 											</div>
 
-											{/* Inner Footer: Less / More Legend */}
-											<div className="text-fg-secondary flex items-center justify-end gap-1.5 border-t px-4 py-2 text-xs">
+											{/* Inner Footer: Less / More Legend (16px side padding, 12px top-down padding) */}
+											<div className="text-fg-secondary flex items-center justify-end gap-1.5 border-t px-4 py-3 text-xs">
 												<span>Less</span>
 												<span className="bg-fill2 size-3 rounded-[3px]" />
 												<span className="bg-primary/25 size-3 rounded-[3px]" />
@@ -1133,7 +1133,7 @@ export default function Preview12Page() {
 									{/* Right Column: Needs Attention + Live Visits (lg:col-span-5) */}
 									<div className="flex h-full flex-col justify-between gap-4 lg:col-span-5">
 										{/* Needs Attention Card */}
-										<Card className="border-border bg-fill2 flex flex-1 flex-col gap-2 border p-2.5 shadow-2xs dark:bg-zinc-900/60">
+										<Card className="border-border bg-fill2 flex flex-1 flex-col gap-2 border p-3 shadow-2xs dark:bg-zinc-900/60">
 											{/* Header row on tinted base (tightened gap to white card) */}
 											<div className="flex h-7 items-center justify-between px-1.5">
 												<div className="flex items-center gap-1.5">
@@ -1211,7 +1211,7 @@ export default function Preview12Page() {
 										</Card>
 
 										{/* Live Visits Card */}
-										<Card className="border-border bg-fill2 flex flex-1 flex-col gap-2 border p-2.5 shadow-2xs dark:bg-zinc-900/60">
+										<Card className="border-border bg-fill2 flex flex-1 flex-col gap-2 border p-3 shadow-2xs dark:bg-zinc-900/60">
 											{/* Header row on tinted base (tightened gap to white card) */}
 											<div className="flex h-7 items-center justify-between px-1.5">
 												<div className="flex items-center gap-1.5">
