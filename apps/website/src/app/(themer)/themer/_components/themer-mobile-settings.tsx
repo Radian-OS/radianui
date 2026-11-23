@@ -27,6 +27,8 @@ import {
 import { ThemerDrawerContext } from "./themer-picker-placement"
 import { ThemerSettings } from "./themer-sidebar"
 
+import { ThemerMobilePresets } from "./themer-mobile-presets"
+
 const shortcuts = [
 	{ section: "preset", label: "Preset", title: "Presets", icon: Star },
 	{ section: "color", label: "Color", title: "Colors", icon: Palette },
@@ -126,45 +128,57 @@ export function ThemerMobileDrawer({
 					"max-h-[85dvh] gap-0 rounded-b-none p-0 pt-7 before:pointer-events-none before:absolute before:top-full before:h-px before:w-px before:content-[''] after:hidden! sm:hidden",
 					allSettings && "h-[min(85dvh,42rem)]"
 				)}>
-				<div className="border-border flex h-11 shrink-0 touch-none items-center justify-between gap-2 border-b px-4">
-					<DrawerTitle className="text-base font-semibold">{title}</DrawerTitle>
-					<DrawerDescription className="sr-only">
-						Customize your theme and preview the changes.
-					</DrawerDescription>
-					<DrawerClose>
-						<IconButton
-							size="xs"
-							color="neutral"
-							variant="ghost"
-							aria-label="Close Themer settings">
-							<X aria-hidden="true" />
-						</IconButton>
-					</DrawerClose>
-				</div>
-				<ThemerDrawerContext value={true}>
-					{allSettings ? (
-						<div className="flex min-h-0 flex-1 flex-col pb-[env(safe-area-inset-bottom)]">
-							<ThemerSettings />
-						</div>
-					) : (
-						<ScrollArea
-							type="auto"
-							className="min-h-0 [&_[data-slot=scroll-area-viewport]]:max-h-[calc(85dvh-4.5rem)] [&_[data-slot=scroll-area-viewport]]:overscroll-y-none [&:not(:has([data-slot=scroll-area-scrollbar]))_[data-slot=scroll-area-viewport]]:touch-none [&:not(:has([data-slot=scroll-area-scrollbar]))_[data-slot=scroll-area-viewport]]:overflow-y-hidden!">
-							<div className="flex flex-col gap-3 px-4 pt-3 pb-[max(1rem,env(safe-area-inset-bottom))]">
-								<ThemerFundamentals section={panel} />
-								<Button
-									size="sm"
+				{panel === "preset" ? (
+					<ScrollArea
+						type="auto"
+						className="min-h-0 [&_[data-slot=scroll-area-viewport]]:max-h-[calc(85dvh-28px)] [&_[data-slot=scroll-area-viewport]]:overflow-y-auto!">
+						<ThemerMobilePresets />
+					</ScrollArea>
+				) : (
+					<>
+						<div className="border-border flex h-11 shrink-0 touch-none items-center justify-between gap-2 border-b px-4">
+							<DrawerTitle className="text-base font-semibold">
+								{title}
+							</DrawerTitle>
+							<DrawerDescription className="sr-only">
+								Customize your theme and preview the changes.
+							</DrawerDescription>
+							<DrawerClose>
+								<IconButton
+									size="xs"
 									color="neutral"
 									variant="ghost"
-									className="w-full justify-between"
-									onClick={onOpenAllSettings}>
-									All settings
-									<ChevronRight aria-hidden="true" />
-								</Button>
-							</div>
-						</ScrollArea>
-					)}
-				</ThemerDrawerContext>
+									aria-label="Close Themer settings">
+									<X aria-hidden="true" />
+								</IconButton>
+							</DrawerClose>
+						</div>
+						<ThemerDrawerContext value={true}>
+							{allSettings ? (
+								<div className="flex min-h-0 flex-1 flex-col pb-[env(safe-area-inset-bottom)]">
+									<ThemerSettings />
+								</div>
+							) : (
+								<ScrollArea
+									type="auto"
+									className="min-h-0 [&_[data-slot=scroll-area-viewport]]:max-h-[calc(85dvh-4.5rem)] [&_[data-slot=scroll-area-viewport]]:overscroll-y-none [&:not(:has([data-slot=scroll-area-scrollbar]))_[data-slot=scroll-area-viewport]]:touch-none [&:not(:has([data-slot=scroll-area-scrollbar]))_[data-slot=scroll-area-viewport]]:overflow-y-hidden!">
+									<div className="flex flex-col gap-3 px-4 pt-3 pb-[max(1rem,env(safe-area-inset-bottom))]">
+										<ThemerFundamentals section={panel} />
+										<Button
+											size="sm"
+											color="neutral"
+											variant="ghost"
+											className="w-full justify-between"
+											onClick={onOpenAllSettings}>
+											All settings
+											<ChevronRight aria-hidden="true" />
+										</Button>
+									</div>
+								</ScrollArea>
+							)}
+						</ThemerDrawerContext>
+					</>
+				)}
 			</DrawerContent>
 		</Drawer>
 	)

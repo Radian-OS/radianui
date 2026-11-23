@@ -17,7 +17,7 @@ import { ScrollArea } from "@/styles/default/ui/scroll-area"
 import { Info, Search } from "lucide-react"
 import { GoogleIcon, NotionIcon, SpotifyIcon, AppleIcon, XIcon } from "./icons"
 
-const PRESETS = [
+export const THEMER_PRESET_GROUPS = [
 	{
 		group: "Popular Brands",
 		presets: [
@@ -62,7 +62,7 @@ const PRESETS = [
 			{ icon: <Info />, title: "Coral", value: "coral" },
 		],
 	},
-]
+] as const
 
 function CommandInput() {
 	return (
@@ -101,7 +101,7 @@ export default function PresetPicker() {
 					<CommandList className="max-h-none overflow-visible">
 						<CommandEmpty>No preset found.</CommandEmpty>
 						<ScrollArea className="h-[min(30rem,max(8rem,calc(var(--radix-popover-content-available-height)-3rem)))]">
-							{PRESETS.map((group) => (
+							{THEMER_PRESET_GROUPS.map((group) => (
 								<CommandGroup heading={group.group} key={group.group}>
 									{group.presets.map((preset) => (
 										<CommandItem key={preset.value}>
