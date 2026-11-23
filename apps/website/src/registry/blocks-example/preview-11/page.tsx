@@ -510,7 +510,7 @@ export default function Preview11Page() {
 							</div>
 						</header>
 
-						<main className="bg-bg flex-1 overflow-y-auto px-[24px] pt-[12px] pb-[24px]">
+						<main className="bg-bg flex-1 overflow-y-auto px-[24px] pt-[24px] pb-[24px]">
 							<div className="flex w-full flex-col gap-[16px]">
 								{/* Top Metric Cards */}
 								<section className="flex flex-col gap-[24px]">
