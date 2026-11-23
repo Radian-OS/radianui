@@ -69,7 +69,7 @@ export default function BrandLogosPlayground({
 	const [query, setQuery] = useState("")
 	const deferredQuery = useDeferredValue(query)
 	const [category, setCategory] = useState(ALL_BRAND_LOGO_CATEGORY)
-	const [variant, setVariant] = useState<BrandLogoVariant>("icon")
+	const [variant, setVariant] = useState<BrandLogoVariant>("wordmark")
 	const [colorway, setColorway] = useState<BrandLogoColorway>("colored")
 	const [selectedBrand, setSelectedBrand] = useState<BrandLogoId | null>(
 		initialSelectedBrand

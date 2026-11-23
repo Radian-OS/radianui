@@ -22,7 +22,7 @@ test("retries switch CDN edges without changing the logo variant", () => {
 	}
 	assert.equal(new URL(getBrandLogoPreviewSource(src, 1)).search, "")
 	assert.equal(
-		new URL(getBrandLogoPreviewSource(src, 4)).searchParams.get("retry"),
+		new URL(getBrandLogoPreviewSource(src, 3)).searchParams.get("retry"),
 		"1"
 	)
 })
