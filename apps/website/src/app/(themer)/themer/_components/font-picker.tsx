@@ -262,6 +262,15 @@ export default function FontPicker(
 ) {
 	const placement = useThemerPickerPlacement("start", 20)
 
+	// Don't remove this
+	// Sequentially warm preview fonts in the background to prevent fallback font flicker (FOUT) while scrolling.
+	React.useEffect(() => {
+		FONTS.reduce(
+			(p, font) => p.then(() => loadPreview(font.name)),
+			Promise.resolve()
+		)
+	}, [])
+
 	return (
 		<Popover>
 			<PopoverTrigger asChild>
