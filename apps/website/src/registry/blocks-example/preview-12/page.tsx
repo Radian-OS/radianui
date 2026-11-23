@@ -338,7 +338,7 @@ export default function Preview12Page() {
 	const heatmapData = React.useMemo(() => generateHeatmapData(), [])
 
 	return (
-		<div className="text-fg font-body bg-sidebar h-screen w-full overflow-hidden">
+		<div className="text-fg font-body bg-fill2 h-screen w-full overflow-hidden dark:bg-zinc-950">
 			<SidebarProvider
 				defaultOpen
 				defaultWidth="16rem"
@@ -349,7 +349,12 @@ export default function Preview12Page() {
           ══════════════════════════════════════════════ */}
 					<Sidebar
 						collapsible="none"
-						className="flex w-64 shrink-0 flex-col justify-between border-0 bg-transparent p-3 select-none">
+						className="flex w-64 shrink-0 flex-col justify-between border-0 bg-transparent p-3 select-none"
+						style={
+							{
+								"--color-sidebar": "var(--color-fill2)",
+							} as React.CSSProperties
+						}>
 						{/* Workspace Brand Header Card */}
 						<SidebarHeader className="space-y-2 p-0">
 							<Card className="border-border/50 bg-elevation-level1 flex flex-row items-center justify-between gap-0 p-2.5 shadow-2xs">
