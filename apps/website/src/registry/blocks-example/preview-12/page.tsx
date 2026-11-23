@@ -774,7 +774,7 @@ export default function Preview12Page() {
 							{/* Quick Search Card */}
 							<button
 								type="button"
-								className="border-border/50 bg-elevation-level1 hover:bg-fill1/60 text-fg flex h-9 w-full cursor-pointer items-center justify-between rounded-lg border px-3 text-xs shadow-2xs transition-colors select-none">
+								className="border-border/50 bg-elevation-level1 hover:bg-fill1/60 text-fg flex h-9 w-full cursor-pointer items-center justify-between rounded-lg border px-3 text-sm shadow-2xs transition-colors select-none">
 								<div className="text-fg-tertiary flex items-center gap-2">
 									<IconSlot slot="search" className="size-3.5 shrink-0" />
 									<span>Search</span>
@@ -800,7 +800,7 @@ export default function Preview12Page() {
 												isActive={activeNav === "Dashboard"}
 												onClick={() => setActiveNav("Dashboard")}
 												className={cn(
-													"h-9 px-2.5 text-xs font-medium transition-all",
+													"h-9 px-2.5 text-sm font-medium transition-all",
 													activeNav === "Dashboard"
 														? "text-fg bg-elevation-level1 border-border/50 border font-semibold shadow-2xs"
 														: "text-fg-secondary hover:text-fg hover:bg-fill1/60"
@@ -816,7 +816,7 @@ export default function Preview12Page() {
 												isActive={activeNav === "Schedule"}
 												onClick={() => setActiveNav("Schedule")}
 												className={cn(
-													"h-9 px-2.5 text-xs font-medium transition-all",
+													"h-9 px-2.5 text-sm font-medium transition-all",
 													activeNav === "Schedule"
 														? "text-fg bg-elevation-level1 font-semibold shadow-2xs"
 														: "text-fg-secondary hover:text-fg hover:bg-fill1/60"
@@ -832,7 +832,7 @@ export default function Preview12Page() {
 												isActive={activeNav === "Visits"}
 												onClick={() => setActiveNav("Visits")}
 												className={cn(
-													"h-9 px-2.5 text-xs font-medium transition-all",
+													"h-9 px-2.5 text-sm font-medium transition-all",
 													activeNav === "Visits"
 														? "text-fg bg-elevation-level1 font-semibold shadow-2xs"
 														: "text-fg-secondary hover:text-fg hover:bg-fill1/60"
@@ -848,7 +848,7 @@ export default function Preview12Page() {
 												isActive={activeNav === "Alerts"}
 												onClick={() => setActiveNav("Alerts")}
 												className={cn(
-													"h-9 px-2.5 text-xs font-medium transition-all",
+													"h-9 px-2.5 text-sm font-medium transition-all",
 													activeNav === "Alerts"
 														? "text-fg bg-elevation-level1 font-semibold shadow-2xs"
 														: "text-fg-secondary hover:text-fg hover:bg-fill1/60"
@@ -881,7 +881,7 @@ export default function Preview12Page() {
 												isActive={activeNav === "Caregivers"}
 												onClick={() => setActiveNav("Caregivers")}
 												className={cn(
-													"h-9 px-2.5 text-xs font-medium transition-all",
+													"h-9 px-2.5 text-sm font-medium transition-all",
 													activeNav === "Caregivers"
 														? "text-fg bg-elevation-level1 font-semibold shadow-2xs"
 														: "text-fg-secondary hover:text-fg hover:bg-fill1/60"
@@ -897,7 +897,7 @@ export default function Preview12Page() {
 												isActive={activeNav === "Clients"}
 												onClick={() => setActiveNav("Clients")}
 												className={cn(
-													"h-9 px-2.5 text-xs font-medium transition-all",
+													"h-9 px-2.5 text-sm font-medium transition-all",
 													activeNav === "Clients"
 														? "text-fg bg-elevation-level1 border-border/50 border font-semibold shadow-2xs"
 														: "text-fg-secondary hover:text-fg hover:bg-fill1/60"
@@ -923,7 +923,7 @@ export default function Preview12Page() {
 												isActive={activeNav === "EVV"}
 												onClick={() => setActiveNav("EVV")}
 												className={cn(
-													"h-9 px-2.5 text-xs font-medium transition-all",
+													"h-9 px-2.5 text-sm font-medium transition-all",
 													activeNav === "EVV"
 														? "text-fg bg-elevation-level1 font-semibold shadow-2xs"
 														: "text-fg-secondary hover:text-fg hover:bg-fill1/60"
@@ -939,7 +939,7 @@ export default function Preview12Page() {
 												isActive={activeNav === "Reports"}
 												onClick={() => setActiveNav("Reports")}
 												className={cn(
-													"h-9 px-2.5 text-xs font-medium transition-all",
+													"h-9 px-2.5 text-sm font-medium transition-all",
 													activeNav === "Reports"
 														? "text-fg bg-elevation-level1 font-semibold shadow-2xs"
 														: "text-fg-secondary hover:text-fg hover:bg-fill1/60"
@@ -974,7 +974,7 @@ export default function Preview12Page() {
 													isActive={activeNav === area.name}
 													onClick={() => setActiveNav(area.name)}
 													className={cn(
-														"h-9 px-2.5 text-xs font-medium transition-all",
+														"h-9 px-2.5 text-sm font-medium transition-all",
 														activeNav === area.name
 															? "text-fg bg-elevation-level1 font-semibold shadow-2xs"
 															: "text-fg-secondary hover:text-fg hover:bg-fill1/60"
@@ -1006,7 +1006,7 @@ export default function Preview12Page() {
 										isActive={activeNav === "Help"}
 										onClick={() => setActiveNav("Help")}
 										className={cn(
-											"h-9 px-2.5 text-xs font-medium transition-all",
+											"h-9 px-2.5 text-sm font-medium transition-all",
 											activeNav === "Help"
 												? "text-fg bg-elevation-level1 font-semibold shadow-2xs"
 												: "text-fg-secondary hover:text-fg hover:bg-fill1/60"
@@ -1022,7 +1022,7 @@ export default function Preview12Page() {
 										isActive={activeNav === "Settings"}
 										onClick={() => setActiveNav("Settings")}
 										className={cn(
-											"h-9 px-2.5 text-xs font-medium transition-all",
+											"h-9 px-2.5 text-sm font-medium transition-all",
 											activeNav === "Settings"
 												? "text-fg bg-elevation-level1 font-semibold shadow-2xs"
 												: "text-fg-secondary hover:text-fg hover:bg-fill1/60"
@@ -1047,10 +1047,10 @@ export default function Preview12Page() {
 										<AvatarFallback>NZ</AvatarFallback>
 									</Avatar>
 									<div className="flex flex-col truncate text-left">
-										<span className="font-heading text-fg truncate text-xs leading-tight font-semibold">
+										<span className="font-heading text-fg truncate text-sm leading-tight font-semibold">
 											Nizam
 										</span>
-										<span className="text-fg-secondary truncate text-[11px] leading-tight">
+										<span className="text-fg-secondary truncate text-xs leading-tight">
 											Care coordinator
 										</span>
 									</div>
@@ -1156,8 +1156,10 @@ export default function Preview12Page() {
 
 							{/* ── Greeting Header ── */}
 							<div>
-								<h1 className="heading-4 text-fg">Good morning, Nizam</h1>
-								<p className="text-fg-secondary mt-0.5 text-xs sm:text-sm">
+								<h1 className="font-heading text-fg text-2xl font-bold tracking-tight">
+									Good morning, Nizam
+								</h1>
+								<p className="text-fg-secondary mt-0.5 text-sm">
 									Monday, Oct 5 · 45 of 48 visits are covered. 3 need a
 									caregiver, the first at 10:00 AM.
 								</p>
@@ -1179,11 +1181,11 @@ export default function Preview12Page() {
 										</div>
 
 										<div>
-											<h2 className="font-heading text-primary-fg text-xl leading-snug font-bold tracking-tight sm:text-2xl">
+											<h2 className="font-heading text-primary-fg text-lg leading-snug font-bold tracking-tight">
 												Desmond Okonjo called out sick.
 												<br />3 visits need cover today.
 											</h2>
-											<p className="text-primary-fg/80 mt-1 text-xs leading-normal">
+											<p className="text-primary-fg/80 mt-1 text-sm leading-normal">
 												Visitly matched a replacement for each visit. Approve
 												them and the day rebuilds itself.
 											</p>
