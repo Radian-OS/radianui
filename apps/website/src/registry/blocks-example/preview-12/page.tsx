@@ -685,16 +685,20 @@ export default function Preview12Page() {
 						<div className="bg-elevation-level1 border-border/50 flex h-full w-full flex-col gap-6 overflow-y-auto rounded-xl border p-5 shadow-2xs md:p-7">
 							{/* ── Top Bar ── */}
 							<header className="flex flex-wrap items-center justify-between gap-3">
-								<div className="flex items-center gap-2">
-									<SidebarTrigger className="text-fg-secondary hover:text-fg size-7" />
-									<Breadcrumb>
-										<BreadcrumbList className="text-xs">
-											<BreadcrumbItem>
-												<BreadcrumbLink href="#">Operations</BreadcrumbLink>
+								<div className="flex h-8 items-center gap-2">
+									<SidebarTrigger className="text-fg-secondary hover:text-fg size-8" />
+									<Breadcrumb className="flex items-center">
+										<BreadcrumbList className="flex items-center gap-1.5 text-xs">
+											<BreadcrumbItem className="inline-flex items-center">
+												<BreadcrumbLink
+													href="#"
+													className="text-fg-secondary hover:text-fg transition-colors">
+													Operations
+												</BreadcrumbLink>
 											</BreadcrumbItem>
-											<BreadcrumbSeparator />
-											<BreadcrumbItem>
-												<BreadcrumbPage className="font-semibold">
+											<BreadcrumbSeparator className="text-fg-tertiary inline-flex items-center [&>svg]:size-3" />
+											<BreadcrumbItem className="inline-flex items-center">
+												<BreadcrumbPage className="text-fg font-semibold">
 													Dashboard
 												</BreadcrumbPage>
 											</BreadcrumbItem>
@@ -702,7 +706,7 @@ export default function Preview12Page() {
 									</Breadcrumb>
 								</div>
 
-								<div className="flex items-center gap-2 sm:gap-2.5">
+								<div className="flex h-8 items-center gap-2 sm:gap-2.5">
 									{/* Date Status Pill */}
 									<div className="border-border/70 bg-fill1/70 text-fg-secondary flex h-8 items-center gap-1.5 rounded-full border px-3 text-[11px] font-semibold tracking-wider uppercase shadow-2xs">
 										<span className="bg-success size-1.5 animate-pulse rounded-full" />
