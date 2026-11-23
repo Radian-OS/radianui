@@ -3,33 +3,8 @@
 import * as React from "react"
 import { useState } from "react"
 import { motion, AnimatePresence } from "motion/react"
-import {
-	Calendar,
-	FileText,
-	Bell,
-	Users,
-	UserCheck,
-	ShieldCheck,
-	BarChart3,
-	HelpCircle,
-	Settings,
-	ChevronsUpDown,
-	Search,
-	Plus,
-	Check,
-	ChevronRight,
-	Clock,
-	MapPin,
-	Sparkles,
-	Phone,
-	PanelLeft,
-	Inbox,
-	ChevronDown,
-	Layers,
-	LayoutGrid,
-	Home,
-	Flag,
-} from "lucide-react"
+import { IconSlot } from "@/registry/icon/icon-library"
+import type { IconSlot as IconSlotName } from "@/registry/icon/icon-libraries"
 
 import { Button, IconButton } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -658,7 +633,7 @@ interface AlertItem {
 	id: string
 	title: string
 	subtext: string
-	icon: React.ElementType
+	iconSlot: IconSlotName
 	iconColor: string
 	action: string
 	hasPhone?: boolean
@@ -669,9 +644,8 @@ const NEEDS_ATTENTION: AlertItem[] = [
 		id: "na-1",
 		title: "Running 18 min late",
 		subtext: "Davi to Cornelius V. · ETA 9:18",
-		icon: Clock,
-		iconColor:
-			"text-amber-600 bg-amber-100 dark:bg-amber-950/60 dark:text-amber-300",
+		iconSlot: "clock",
+		iconColor: "text-warning bg-warning/15 dark:bg-warning/25",
 		action: "Reassign",
 		hasPhone: true,
 	},
@@ -679,18 +653,16 @@ const NEEDS_ATTENTION: AlertItem[] = [
 		id: "na-2",
 		title: "EVV location not verified",
 		subtext: "Hiwot at Josephine Varga · 8:34 AM",
-		icon: MapPin,
-		iconColor:
-			"text-rose-600 bg-rose-100 dark:bg-rose-950/60 dark:text-rose-300",
+		iconSlot: "pin",
+		iconColor: "text-error bg-error/15 dark:bg-error/25",
 		action: "Review",
 	},
 	{
 		id: "na-3",
 		title: "Visit note overdue",
 		subtext: "Abena · Ignatius Rourke, ended 8:30",
-		icon: FileText,
-		iconColor:
-			"text-blue-600 bg-blue-100 dark:bg-blue-950/60 dark:text-blue-300",
+		iconSlot: "file-text",
+		iconColor: "text-primary bg-primary/15 dark:bg-primary/25",
 		action: "Remind",
 	},
 ]
@@ -754,7 +726,7 @@ export default function Preview12Page() {
 	}
 
 	return (
-		<div className="text-fg font-body h-screen w-full overflow-hidden bg-[#f0f4f9] dark:bg-zinc-950">
+		<div className="text-fg font-body bg-fill1/40 h-screen w-full overflow-hidden dark:bg-zinc-950">
 			<SidebarProvider
 				defaultOpen
 				defaultWidth="16rem"
@@ -768,15 +740,16 @@ export default function Preview12Page() {
 						className="flex w-64 shrink-0 flex-col justify-between border-0 bg-transparent p-3 select-none"
 						style={
 							{
-								"--color-sidebar": "var(--color-bg-subtle, #f0f4f9)",
+								"--color-sidebar":
+									"var(--color-bg-subtle, var(--color-fill-1))",
 							} as React.CSSProperties
 						}>
 						{/* Workspace Brand Header Card */}
 						<SidebarHeader className="space-y-2 p-0">
-							<Card className="border-border/50 dark:bg-elevation-level1 flex flex-row items-center justify-between gap-0 rounded-xl bg-white p-2.5 shadow-2xs">
+							<Card className="border-border/50 bg-elevation-level1 flex flex-row items-center justify-between gap-0 p-2.5 shadow-2xs">
 								<div className="flex min-w-0 items-center gap-2.5">
-									<div className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-[#162032] text-white shadow-xs">
-										<Check className="size-4 stroke-[3]" />
+									<div className="bg-primary text-primary-fg flex size-8 shrink-0 items-center justify-center rounded-lg shadow-xs">
+										<IconSlot slot="check" className="size-4 stroke-[3]" />
 									</div>
 									<div className="flex flex-col truncate text-left">
 										<span className="font-heading text-fg text-sm leading-tight font-bold tracking-tight">
@@ -794,19 +767,19 @@ export default function Preview12Page() {
 									size="xs"
 									className="text-fg-secondary size-6 shrink-0"
 									aria-label="Switch organization">
-									<ChevronsUpDown className="size-3.5" />
+									<IconSlot slot="chevrons-up-down" className="size-3.5" />
 								</IconButton>
 							</Card>
 
 							{/* Quick Search Card */}
 							<button
 								type="button"
-								className="border-border/50 dark:bg-elevation-level1 dark:hover:bg-elevation-level1/90 text-fg flex h-9 w-full cursor-pointer items-center justify-between rounded-xl border bg-white px-3 text-xs shadow-2xs transition-colors select-none hover:bg-white/90">
+								className="border-border/50 bg-elevation-level1 hover:bg-fill1/60 text-fg flex h-9 w-full cursor-pointer items-center justify-between rounded-lg border px-3 text-xs shadow-2xs transition-colors select-none">
 								<div className="text-fg-tertiary flex items-center gap-2">
-									<Search className="size-3.5 shrink-0" />
+									<IconSlot slot="search" className="size-3.5 shrink-0" />
 									<span>Search</span>
 								</div>
-								<kbd className="border-border/60 bg-fill2/70 text-fg-secondary rounded px-1.5 py-0.5 font-mono text-[10px]">
+								<kbd className="border-border/60 bg-fill2 text-fg-secondary rounded px-1.5 py-0.5 font-mono text-[10px]">
 									⌘K
 								</kbd>
 							</button>
@@ -827,12 +800,12 @@ export default function Preview12Page() {
 												isActive={activeNav === "Dashboard"}
 												onClick={() => setActiveNav("Dashboard")}
 												className={cn(
-													"h-9 rounded-xl px-2.5 text-xs font-medium transition-all",
+													"h-9 px-2.5 text-xs font-medium transition-all",
 													activeNav === "Dashboard"
-														? "text-fg dark:bg-elevation-level1 border-border/50 border bg-white font-semibold shadow-2xs"
-														: "text-fg-secondary hover:text-fg dark:hover:bg-elevation-level1/60 hover:bg-white/60"
+														? "text-fg bg-elevation-level1 border-border/50 border font-semibold shadow-2xs"
+														: "text-fg-secondary hover:text-fg hover:bg-fill1/60"
 												)}>
-												<LayoutGrid className="size-4" />
+												<IconSlot slot="dashboard" className="size-4" />
 												<span>Dashboard</span>
 											</SidebarMenuButton>
 										</SidebarMenuItem>
@@ -843,12 +816,12 @@ export default function Preview12Page() {
 												isActive={activeNav === "Schedule"}
 												onClick={() => setActiveNav("Schedule")}
 												className={cn(
-													"h-9 rounded-xl px-2.5 text-xs font-medium transition-all",
+													"h-9 px-2.5 text-xs font-medium transition-all",
 													activeNav === "Schedule"
-														? "text-fg dark:bg-elevation-level1 bg-white font-semibold shadow-2xs"
-														: "text-fg-secondary hover:text-fg dark:hover:bg-elevation-level1/60 hover:bg-white/60"
+														? "text-fg bg-elevation-level1 font-semibold shadow-2xs"
+														: "text-fg-secondary hover:text-fg hover:bg-fill1/60"
 												)}>
-												<Calendar className="size-4" />
+												<IconSlot slot="calendar" className="size-4" />
 												<span>Schedule</span>
 											</SidebarMenuButton>
 										</SidebarMenuItem>
@@ -859,12 +832,12 @@ export default function Preview12Page() {
 												isActive={activeNav === "Visits"}
 												onClick={() => setActiveNav("Visits")}
 												className={cn(
-													"h-9 rounded-xl px-2.5 text-xs font-medium transition-all",
+													"h-9 px-2.5 text-xs font-medium transition-all",
 													activeNav === "Visits"
-														? "text-fg dark:bg-elevation-level1 bg-white font-semibold shadow-2xs"
-														: "text-fg-secondary hover:text-fg dark:hover:bg-elevation-level1/60 hover:bg-white/60"
+														? "text-fg bg-elevation-level1 font-semibold shadow-2xs"
+														: "text-fg-secondary hover:text-fg hover:bg-fill1/60"
 												)}>
-												<FileText className="size-4" />
+												<IconSlot slot="file-text" className="size-4" />
 												<span>Visits</span>
 											</SidebarMenuButton>
 										</SidebarMenuItem>
@@ -875,18 +848,18 @@ export default function Preview12Page() {
 												isActive={activeNav === "Alerts"}
 												onClick={() => setActiveNav("Alerts")}
 												className={cn(
-													"h-9 rounded-xl px-2.5 text-xs font-medium transition-all",
+													"h-9 px-2.5 text-xs font-medium transition-all",
 													activeNav === "Alerts"
-														? "text-fg dark:bg-elevation-level1 bg-white font-semibold shadow-2xs"
-														: "text-fg-secondary hover:text-fg dark:hover:bg-elevation-level1/60 hover:bg-white/60"
+														? "text-fg bg-elevation-level1 font-semibold shadow-2xs"
+														: "text-fg-secondary hover:text-fg hover:bg-fill1/60"
 												)}>
-												<Bell className="size-4" />
+												<IconSlot slot="bell" className="size-4" />
 												<span>Alerts</span>
 												<Badge
 													color="error"
 													variant="strong"
 													size="sm"
-													className="ml-auto flex size-4.5 items-center justify-center rounded-full bg-[#f43f5e] p-0 text-[10px] font-bold text-white">
+													className="bg-error text-error-fg ml-auto flex size-4.5 items-center justify-center rounded-full p-0 text-[10px] font-bold">
 													4
 												</Badge>
 											</SidebarMenuButton>
@@ -908,12 +881,12 @@ export default function Preview12Page() {
 												isActive={activeNav === "Caregivers"}
 												onClick={() => setActiveNav("Caregivers")}
 												className={cn(
-													"h-9 rounded-xl px-2.5 text-xs font-medium transition-all",
+													"h-9 px-2.5 text-xs font-medium transition-all",
 													activeNav === "Caregivers"
-														? "text-fg dark:bg-elevation-level1 bg-white font-semibold shadow-2xs"
-														: "text-fg-secondary hover:text-fg dark:hover:bg-elevation-level1/60 hover:bg-white/60"
+														? "text-fg bg-elevation-level1 font-semibold shadow-2xs"
+														: "text-fg-secondary hover:text-fg hover:bg-fill1/60"
 												)}>
-												<Users className="size-4" />
+												<IconSlot slot="users" className="size-4" />
 												<span>Caregivers</span>
 											</SidebarMenuButton>
 										</SidebarMenuItem>
@@ -924,12 +897,12 @@ export default function Preview12Page() {
 												isActive={activeNav === "Clients"}
 												onClick={() => setActiveNav("Clients")}
 												className={cn(
-													"h-9 rounded-xl px-2.5 text-xs font-medium transition-all",
+													"h-9 px-2.5 text-xs font-medium transition-all",
 													activeNav === "Clients"
-														? "text-fg dark:bg-elevation-level1 border-border/50 border bg-white font-semibold shadow-2xs"
-														: "text-fg-secondary hover:text-fg dark:hover:bg-elevation-level1/60 hover:bg-white/60"
+														? "text-fg bg-elevation-level1 border-border/50 border font-semibold shadow-2xs"
+														: "text-fg-secondary hover:text-fg hover:bg-fill1/60"
 												)}>
-												<Home className="size-4" />
+												<IconSlot slot="home" className="size-4" />
 												<span>Clients</span>
 											</SidebarMenuButton>
 										</SidebarMenuItem>
@@ -950,12 +923,12 @@ export default function Preview12Page() {
 												isActive={activeNav === "EVV"}
 												onClick={() => setActiveNav("EVV")}
 												className={cn(
-													"h-9 rounded-xl px-2.5 text-xs font-medium transition-all",
+													"h-9 px-2.5 text-xs font-medium transition-all",
 													activeNav === "EVV"
-														? "text-fg dark:bg-elevation-level1 bg-white font-semibold shadow-2xs"
-														: "text-fg-secondary hover:text-fg dark:hover:bg-elevation-level1/60 hover:bg-white/60"
+														? "text-fg bg-elevation-level1 font-semibold shadow-2xs"
+														: "text-fg-secondary hover:text-fg hover:bg-fill1/60"
 												)}>
-												<ShieldCheck className="size-4" />
+												<IconSlot slot="badge-check" className="size-4" />
 												<span>EVV</span>
 											</SidebarMenuButton>
 										</SidebarMenuItem>
@@ -966,12 +939,12 @@ export default function Preview12Page() {
 												isActive={activeNav === "Reports"}
 												onClick={() => setActiveNav("Reports")}
 												className={cn(
-													"h-9 rounded-xl px-2.5 text-xs font-medium transition-all",
+													"h-9 px-2.5 text-xs font-medium transition-all",
 													activeNav === "Reports"
-														? "text-fg dark:bg-elevation-level1 bg-white font-semibold shadow-2xs"
-														: "text-fg-secondary hover:text-fg dark:hover:bg-elevation-level1/60 hover:bg-white/60"
+														? "text-fg bg-elevation-level1 font-semibold shadow-2xs"
+														: "text-fg-secondary hover:text-fg hover:bg-fill1/60"
 												)}>
-												<BarChart3 className="size-4" />
+												<IconSlot slot="bar-chart" className="size-4" />
 												<span>Reports</span>
 											</SidebarMenuButton>
 										</SidebarMenuItem>
@@ -989,7 +962,7 @@ export default function Preview12Page() {
 										type="button"
 										className="text-fg-tertiary hover:text-fg transition-colors"
 										aria-label="Add service area">
-										<Plus className="size-3.5" />
+										<IconSlot slot="plus" className="size-3.5" />
 									</button>
 								</div>
 								<SidebarGroupContent>
@@ -1001,10 +974,10 @@ export default function Preview12Page() {
 													isActive={activeNav === area.name}
 													onClick={() => setActiveNav(area.name)}
 													className={cn(
-														"h-9 rounded-xl px-2.5 text-xs font-medium transition-all",
+														"h-9 px-2.5 text-xs font-medium transition-all",
 														activeNav === area.name
-															? "text-fg dark:bg-elevation-level1 bg-white font-semibold shadow-2xs"
-															: "text-fg-secondary hover:text-fg dark:hover:bg-elevation-level1/60 hover:bg-white/60"
+															? "text-fg bg-elevation-level1 font-semibold shadow-2xs"
+															: "text-fg-secondary hover:text-fg hover:bg-fill1/60"
 													)}>
 													<span
 														className={cn(
@@ -1033,12 +1006,12 @@ export default function Preview12Page() {
 										isActive={activeNav === "Help"}
 										onClick={() => setActiveNav("Help")}
 										className={cn(
-											"h-9 rounded-xl px-2.5 text-xs font-medium transition-all",
+											"h-9 px-2.5 text-xs font-medium transition-all",
 											activeNav === "Help"
-												? "text-fg dark:bg-elevation-level1 bg-white font-semibold shadow-2xs"
-												: "text-fg-secondary hover:text-fg dark:hover:bg-elevation-level1/60 hover:bg-white/60"
+												? "text-fg bg-elevation-level1 font-semibold shadow-2xs"
+												: "text-fg-secondary hover:text-fg hover:bg-fill1/60"
 										)}>
-										<HelpCircle className="size-4" />
+										<IconSlot slot="help-circle" className="size-4" />
 										<span>Help and support</span>
 									</SidebarMenuButton>
 								</SidebarMenuItem>
@@ -1049,19 +1022,19 @@ export default function Preview12Page() {
 										isActive={activeNav === "Settings"}
 										onClick={() => setActiveNav("Settings")}
 										className={cn(
-											"h-9 rounded-xl px-2.5 text-xs font-medium transition-all",
+											"h-9 px-2.5 text-xs font-medium transition-all",
 											activeNav === "Settings"
-												? "text-fg dark:bg-elevation-level1 bg-white font-semibold shadow-2xs"
-												: "text-fg-secondary hover:text-fg dark:hover:bg-elevation-level1/60 hover:bg-white/60"
+												? "text-fg bg-elevation-level1 font-semibold shadow-2xs"
+												: "text-fg-secondary hover:text-fg hover:bg-fill1/60"
 										)}>
-										<Settings className="size-4" />
+										<IconSlot slot="setting" className="size-4" />
 										<span>Settings</span>
 									</SidebarMenuButton>
 								</SidebarMenuItem>
 							</SidebarMenu>
 
 							{/* User Profile Card */}
-							<Card className="border-border/50 dark:bg-elevation-level1 flex flex-row items-center justify-between gap-0 rounded-xl bg-white p-2.5 shadow-2xs">
+							<Card className="border-border/50 bg-elevation-level1 flex flex-row items-center justify-between gap-0 p-2.5 shadow-2xs">
 								<div className="flex min-w-0 items-center gap-2.5">
 									<Avatar
 										size="sm"
@@ -1088,7 +1061,7 @@ export default function Preview12Page() {
 									size="xs"
 									className="text-fg-secondary size-6 shrink-0"
 									aria-label="User switch">
-									<ChevronsUpDown className="size-3.5" />
+									<IconSlot slot="chevrons-up-down" className="size-3.5" />
 								</IconButton>
 							</Card>
 						</SidebarFooter>
@@ -1098,24 +1071,24 @@ export default function Preview12Page() {
               MAIN DASHBOARD INSET (FLOATING WHITE CARD PANEL)
           ══════════════════════════════════════════════ */}
 					<SidebarInset className="h-screen min-w-0 flex-1 overflow-hidden bg-transparent p-2.5 pl-0 md:p-3 md:pl-0">
-						<div className="dark:bg-elevation-level1 border-border/50 flex h-full w-full flex-col gap-6 overflow-y-auto rounded-2xl border bg-white p-5 shadow-2xs md:p-7">
+						<div className="bg-elevation-level1 border-border/50 flex h-full w-full flex-col gap-6 overflow-y-auto rounded-xl border p-5 shadow-2xs md:p-7">
 							{/* ── Top Bar ── */}
 							<header className="flex flex-wrap items-center justify-between gap-3">
 								<div className="flex items-center gap-2">
 									<div className="text-fg-secondary hover:text-fg flex size-7 items-center justify-center rounded-md text-xs">
-										<PanelLeft className="size-4" />
+										<IconSlot slot="left-panel" className="size-4" />
 									</div>
 									<div className="text-fg-secondary flex items-center gap-1.5 text-xs font-medium">
 										<span>Operations</span>
-										<ChevronRight className="size-3" />
+										<IconSlot slot="right" className="size-3" />
 										<span className="text-fg font-semibold">Dashboard</span>
 									</div>
 								</div>
 
 								<div className="flex items-center gap-2 sm:gap-2.5">
 									{/* Date Status Pill */}
-									<div className="border-border/70 bg-elevation-level1 text-fg-secondary flex h-8 items-center gap-1.5 rounded-full border px-3 text-[11px] font-semibold tracking-wider uppercase shadow-2xs">
-										<span className="size-1.5 animate-pulse rounded-full bg-emerald-500" />
+									<div className="border-border/70 bg-fill1/70 text-fg-secondary flex h-8 items-center gap-1.5 rounded-full border px-3 text-[11px] font-semibold tracking-wider uppercase shadow-2xs">
+										<span className="bg-success size-1.5 animate-pulse rounded-full" />
 										<span>MON, OCT 5 · 8:46 AM</span>
 									</div>
 
@@ -1126,7 +1099,7 @@ export default function Preview12Page() {
 										size="sm"
 										className="border-border/70 bg-elevation-level1 size-8 shadow-2xs"
 										aria-label="Inbox">
-										<Inbox className="size-3.5" />
+										<IconSlot slot="inbox" className="size-3.5" />
 									</IconButton>
 
 									<IconButton
@@ -1135,7 +1108,7 @@ export default function Preview12Page() {
 										size="sm"
 										className="border-border/70 bg-elevation-level1 relative size-8 shadow-2xs"
 										aria-label="Alerts">
-										<Bell className="size-3.5" />
+										<IconSlot slot="bell" className="size-3.5" />
 										<span className="bg-error ring-bg absolute top-1.5 right-1.5 size-1.5 rounded-full ring-2" />
 									</IconButton>
 
@@ -1148,7 +1121,10 @@ export default function Preview12Page() {
 												size="sm"
 												className="border-border/70 bg-elevation-level1 h-8 gap-1.5 text-xs font-medium shadow-2xs">
 												<span>{selectedArea}</span>
-												<ChevronDown className="text-fg-secondary size-3.5" />
+												<IconSlot
+													slot="down"
+													className="text-fg-secondary size-3.5"
+												/>
 											</Button>
 										</DropdownMenuTrigger>
 										<DropdownMenuContent align="end" className="w-44">
@@ -1172,7 +1148,7 @@ export default function Preview12Page() {
 										color="primary"
 										size="sm"
 										className="h-8 gap-1.5 text-xs font-semibold shadow-xs">
-										<Plus className="size-3.5" />
+										<IconSlot slot="plus" className="size-3.5" />
 										<span>New visit</span>
 									</Button>
 								</div>
@@ -1187,24 +1163,27 @@ export default function Preview12Page() {
 								</p>
 							</div>
 
-							{/* ── Hero Call-out Replacement Banner (Unified, shrink-0 prevents flexbox collapse) ── */}
-							<Card className="relative shrink-0 overflow-hidden rounded-2xl border-none bg-gradient-to-r from-[#172554] via-[#1e3a8a] to-[#2563eb] p-6 text-white shadow-md">
+							{/* ── Hero Call-out Replacement Banner ── */}
+							<Card className="from-primary via-primary/95 to-primary/85 text-primary-fg relative shrink-0 overflow-hidden border-none bg-gradient-to-r p-6 shadow-md">
 								<div className="grid grid-cols-1 items-center gap-6 lg:grid-cols-12">
 									{/* Left Callout Details */}
 									<div className="flex flex-col gap-3 lg:col-span-6">
 										<div>
-											<div className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/15 px-2.5 py-0.5 text-[10px] font-semibold tracking-wider text-white uppercase backdrop-blur-xs">
-												<Phone className="size-3 text-white/90" />
+											<div className="border-primary-fg/20 bg-primary-fg/15 text-primary-fg inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-[10px] font-semibold tracking-wider uppercase backdrop-blur-xs">
+												<IconSlot
+													slot="smartphone"
+													className="text-primary-fg/90 size-3"
+												/>
 												<span>CALL-OUT · 8:31 AM</span>
 											</div>
 										</div>
 
 										<div>
-											<h2 className="font-heading text-xl leading-snug font-bold tracking-tight text-white sm:text-2xl">
+											<h2 className="font-heading text-primary-fg text-xl leading-snug font-bold tracking-tight sm:text-2xl">
 												Desmond Okonjo called out sick.
 												<br />3 visits need cover today.
 											</h2>
-											<p className="mt-1 text-xs leading-normal text-white/80">
+											<p className="text-primary-fg/80 mt-1 text-xs leading-normal">
 												Visitly matched a replacement for each visit. Approve
 												them and the day rebuilds itself.
 											</p>
@@ -1215,15 +1194,18 @@ export default function Preview12Page() {
 												variant="strong"
 												color="neutral"
 												size="sm"
-												className="h-8.5 gap-1.5 rounded-xl bg-white px-3.5 text-xs font-semibold text-zinc-900 shadow-xs hover:bg-zinc-100">
+												className="bg-primary-fg text-primary hover:bg-primary-fg/90 h-8.5 gap-1.5 px-3.5 text-xs font-semibold shadow-xs">
 												<span>Review replacements</span>
-												<ChevronRight className="size-3.5 text-zinc-600" />
+												<IconSlot
+													slot="right"
+													className="text-primary size-3.5"
+												/>
 											</Button>
 											<Button
 												variant="outline"
 												color="neutral"
 												size="sm"
-												className="h-8.5 rounded-xl border-white/20 bg-white/10 px-3.5 text-xs font-medium text-white shadow-none hover:bg-white/20">
+												className="border-primary-fg/20 bg-primary-fg/10 text-primary-fg hover:bg-primary-fg/20 h-8.5 px-3.5 text-xs font-medium shadow-none">
 												See Desmond&apos;s day
 											</Button>
 										</div>
@@ -1231,8 +1213,11 @@ export default function Preview12Page() {
 
 									{/* Right Suggested Replacements */}
 									<div className="flex flex-col gap-2 lg:col-span-6">
-										<div className="mb-0.5 flex items-center gap-1.5 text-[10px] font-semibold tracking-wider text-blue-200/90 uppercase">
-											<Sparkles className="size-3 text-blue-200" />
+										<div className="text-primary-fg/90 mb-0.5 flex items-center gap-1.5 text-[10px] font-semibold tracking-wider uppercase">
+											<IconSlot
+												slot="sparkles"
+												className="text-primary-fg/90 size-3"
+											/>
 											<span>SUGGESTED REPLACEMENTS</span>
 										</div>
 
@@ -1240,35 +1225,38 @@ export default function Preview12Page() {
 											{REPLACEMENTS.map((item) => (
 												<div
 													key={item.id}
-													className="flex items-center justify-between rounded-xl border border-white/15 bg-white/10 px-3.5 py-2.5 text-xs backdrop-blur-xs transition-colors hover:bg-white/15">
+													className="border-primary-fg/15 bg-primary-fg/10 hover:bg-primary-fg/15 flex items-center justify-between rounded-lg border px-3.5 py-2.5 text-xs backdrop-blur-xs transition-colors">
 													<div className="flex min-w-0 items-center gap-2.5 sm:gap-3">
-														<span className="w-16 shrink-0 font-mono text-[11px] font-semibold text-blue-100">
+														<span className="text-primary-fg/90 w-16 shrink-0 font-mono text-[11px] font-semibold">
 															{item.time}
 														</span>
-														<span className="truncate text-xs font-semibold text-white">
+														<span className="text-primary-fg truncate text-xs font-semibold">
 															{item.original}
 														</span>
-														<ChevronRight className="size-3 shrink-0 text-white/50" />
+														<IconSlot
+															slot="right"
+															className="text-primary-fg/50 size-3 shrink-0"
+														/>
 														<div className="flex min-w-0 items-center gap-2">
 															<Avatar
 																size="2xs"
 																rounded="circle"
-																className="size-5 shrink-0 border border-white/30">
+																className="border-primary-fg/30 size-5 shrink-0 border">
 																<AvatarImage
 																	src={`https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@v1.0.2/packages/uncompressed-avatars/src/${item.avatar}.png`}
 																	alt={item.replacement}
 																/>
-																<AvatarFallback className="text-[9px] font-semibold text-zinc-800">
+																<AvatarFallback className="text-fg text-[9px] font-semibold">
 																	{item.replacement.slice(0, 2)}
 																</AvatarFallback>
 															</Avatar>
-															<span className="truncate text-xs font-medium text-white">
+															<span className="text-primary-fg truncate text-xs font-medium">
 																{item.replacement}
 															</span>
 														</div>
 													</div>
 
-													<span className="shrink-0 pl-2 text-xs font-semibold text-blue-200">
+													<span className="text-primary-fg/90 shrink-0 pl-2 text-xs font-semibold">
 														{item.match}
 													</span>
 												</div>
@@ -1283,9 +1271,9 @@ export default function Preview12Page() {
 								{STAT_METRICS.map((stat) => (
 									<Card
 										key={stat.label}
-										className="border-border/60 flex flex-col justify-between rounded-2xl border bg-[#f0f4f9] p-1.5 shadow-2xs dark:bg-zinc-900/60">
+										className="border-border/60 bg-fill1/60 flex flex-col justify-between border p-1.5 shadow-2xs dark:bg-zinc-900/60">
 										{/* Top Elevated White Panel */}
-										<div className="border-border/50 dark:bg-elevation-level1 flex flex-col justify-between gap-3 rounded-xl border bg-white p-3.5 shadow-2xs">
+										<div className="border-border/50 bg-elevation-level1 flex flex-col justify-between gap-3 rounded-lg border p-3.5 shadow-2xs">
 											<span className="text-fg-secondary text-[10px] font-semibold tracking-wider uppercase select-none">
 												{stat.label}
 											</span>
@@ -1305,7 +1293,7 @@ export default function Preview12Page() {
 														<div
 															key={i}
 															style={{ height: `${bar}%` }}
-															className="w-[2.5px] rounded-full bg-[#9eaeff] transition-all hover:brightness-110 dark:bg-indigo-400/80"
+															className="bg-primary/50 dark:bg-primary/70 hover:bg-primary w-[2.5px] rounded-full transition-all hover:brightness-110"
 														/>
 													))}
 												</div>
@@ -1331,41 +1319,41 @@ export default function Preview12Page() {
 							{/* ── Lower Section (Coverage & Timeline + Right Alerts/Live) ── */}
 							<div className="grid grid-cols-1 items-stretch gap-4 lg:grid-cols-12">
 								{/* Left: Coverage by Half Hour Timeline Grid (lg:col-span-7) */}
-								<Card className="border-border/60 flex h-full flex-col justify-between rounded-2xl border bg-[#f0f4f9] p-2.5 shadow-2xs lg:col-span-7 dark:bg-zinc-900/60">
+								<Card className="border-border/60 bg-fill1/60 flex h-full flex-col justify-between border p-2.5 shadow-2xs lg:col-span-7 dark:bg-zinc-900/60">
 									{/* Top Header & Legend on tinted base */}
 									<div className="flex flex-wrap items-center justify-between gap-3 px-2 pt-1 pb-1.5">
 										<div className="text-fg-secondary flex items-center gap-1.5 text-xs font-semibold tracking-wider uppercase">
-											<Calendar className="size-3.5" />
+											<IconSlot slot="calendar" className="size-3.5" />
 											<span>Coverage by Half Hour</span>
 										</div>
 
 										{/* Legend */}
 										<div className="text-fg-secondary flex flex-wrap items-center gap-3 text-[10px] font-bold tracking-wider">
 											<div className="flex items-center gap-1.5">
-												<span className="size-2 rounded-xs bg-[#3b82f6]" />
+												<span className="bg-primary size-2 rounded-xs" />
 												<span>COVERED</span>
 											</div>
 											<div className="flex items-center gap-1.5">
-												<span className="size-2 rounded-xs bg-[#9eaeff]" />
+												<span className="bg-primary/40 size-2 rounded-xs" />
 												<span>COMPLETED</span>
 											</div>
 											<div className="flex items-center gap-1.5">
-												<span className="size-2 rounded-xs bg-[#f43f5e]" />
+												<span className="bg-error size-2 rounded-xs" />
 												<span>NEEDS COVER</span>
 											</div>
 											<div className="flex items-center gap-1.5">
-												<span className="size-2 rounded-xs bg-[#f59e0b]" />
+												<span className="bg-warning size-2 rounded-xs" />
 												<span>AT RISK</span>
 											</div>
 										</div>
 									</div>
 
 									{/* Inner Elevated White Card */}
-									<div className="border-border/50 dark:bg-elevation-level1 flex flex-1 flex-col justify-between rounded-xl border bg-white p-4 shadow-2xs">
+									<div className="border-border/50 bg-elevation-level1 flex flex-1 flex-col justify-between rounded-lg border p-4 shadow-2xs">
 										{/* Sub-header with Metrics & Hint */}
 										<div className="flex flex-wrap items-baseline justify-between gap-2">
 											<div className="flex items-baseline gap-1.5">
-												<span className="text-fg text-3xl font-bold tracking-tight">
+												<span className="font-heading text-fg text-3xl font-bold tracking-tight">
 													45
 												</span>
 												<span className="text-fg-secondary text-xs font-medium">
@@ -1385,10 +1373,10 @@ export default function Preview12Page() {
 												style={{
 													left: "calc(1.5rem + (3.53 / 24) * (100% - 1.5rem))",
 												}}>
-												<div className="rounded-[4px] bg-[#0f172a] px-1.5 py-0.5 text-[9px] font-bold tracking-tight whitespace-nowrap text-white shadow-xs dark:bg-zinc-100 dark:text-zinc-900">
+												<div className="bg-fg text-bg rounded-[4px] px-1.5 py-0.5 text-[9px] font-bold tracking-tight whitespace-nowrap shadow-xs">
 													NOW 8:46
 												</div>
-												<div className="w-[1px] flex-1 bg-slate-800/90 dark:bg-zinc-200/90" />
+												<div className="bg-fg/80 w-[1px] flex-1" />
 											</div>
 
 											{/* Grid with Y-axis + 24 Columns */}
@@ -1440,7 +1428,7 @@ export default function Preview12Page() {
 																)}>
 																{/* Column selection outline */}
 																{isSelected && (
-																	<div className="pointer-events-none absolute -inset-[2px] z-10 rounded-md border-2 border-slate-700/80 shadow-xs dark:border-slate-300" />
+																	<div className="border-fg/80 pointer-events-none absolute -inset-[2px] z-10 rounded-md border-2 shadow-xs" />
 																)}
 
 																{/* 10 Vertical Cells: row 9 at top down to row 0 at bottom */}
@@ -1461,15 +1449,15 @@ export default function Preview12Page() {
 																				className={cn(
 																					"aspect-square w-full rounded-[3px] transition-colors",
 																					status === "completed" &&
-																						"bg-[#9eaeff] hover:brightness-110",
+																						"bg-primary/40 hover:brightness-110",
 																					status === "covered" &&
-																						"bg-[#3b82f6] hover:brightness-110",
+																						"bg-primary hover:brightness-110",
 																					status === "atRisk" &&
-																						"bg-[#f59e0b] hover:brightness-110",
+																						"bg-warning hover:brightness-110",
 																					status === "needsCover" &&
-																						"animate-pulse bg-[#f43f5e] hover:brightness-110",
+																						"bg-error animate-pulse hover:brightness-110",
 																					status === null &&
-																						"bg-[#eef2f6] dark:bg-zinc-800/40"
+																						"bg-fill2 dark:bg-zinc-800/40"
 																				)}
 																			/>
 																		)
@@ -1487,7 +1475,7 @@ export default function Preview12Page() {
 																animate={{ opacity: 1, y: 0 }}
 																exit={{ opacity: 0, y: 4 }}
 																transition={{ duration: 0.15 }}
-																className="border-border/70 dark:bg-elevation-level2 text-fg pointer-events-none absolute z-30 min-w-[210px] rounded-xl border bg-white/95 p-3 text-xs shadow-lg backdrop-blur-xs"
+																className="border-border/70 bg-elevation-level1 text-fg pointer-events-none absolute z-30 min-w-[210px] rounded-lg border p-3 text-xs shadow-lg backdrop-blur-xs"
 																style={{
 																	left: `calc((${selectedColIndex} / 24) * 100% + 14px)`,
 																	top: "16%",
@@ -1496,12 +1484,12 @@ export default function Preview12Page() {
 																			? "translateX(-110%)"
 																			: "none",
 																}}>
-																<span className="text-fg text-xs font-semibold">
+																<span className="font-heading text-fg text-xs font-semibold">
 																	{COVERAGE_DATA[selectedColIndex].time}
 																</span>
 																<div className="mt-1.5 flex items-center justify-between text-xs">
 																	<div className="flex items-center gap-1.5">
-																		<span className="size-2 rounded-xs bg-[#3b82f6]" />
+																		<span className="bg-primary size-2 rounded-xs" />
 																		<span className="text-fg-secondary">
 																			Covered
 																		</span>
@@ -1514,13 +1502,13 @@ export default function Preview12Page() {
 																	0 && (
 																	<div className="mt-1 flex items-center justify-between text-xs">
 																		<div className="flex items-center gap-1.5">
-																			<span className="size-2 rounded-xs bg-[#f43f5e]" />
-																			<span className="font-medium text-[#f43f5e]">
+																			<span className="bg-error size-2 rounded-xs" />
+																			<span className="text-error font-medium">
 																				Needs cover
 																			</span>
 																		</div>
 																		<div className="flex items-center gap-1 text-xs">
-																			<span className="font-bold text-[#f43f5e]">
+																			<span className="text-error font-bold">
 																				{
 																					COVERAGE_DATA[selectedColIndex]
 																						.needsCover
@@ -1578,7 +1566,7 @@ export default function Preview12Page() {
 											size="xs"
 											className="text-primary hover:text-primary-hover h-6 gap-1 px-1 text-xs font-semibold">
 											<span>Open schedule</span>
-											<ChevronRight className="size-3.5" />
+											<IconSlot slot="right" className="size-3.5" />
 										</Button>
 									</div>
 								</Card>
@@ -1586,15 +1574,18 @@ export default function Preview12Page() {
 								{/* Right Column: Needs Attention + Live Visits (lg:col-span-5) */}
 								<div className="flex h-full flex-col justify-between gap-4 lg:col-span-5">
 									{/* Needs Attention Card */}
-									<Card className="border-border/60 flex flex-1 flex-col gap-2 rounded-2xl border bg-[#f0f4f9] p-2.5 shadow-2xs dark:bg-zinc-900/60">
+									<Card className="border-border/60 bg-fill1/60 flex flex-1 flex-col gap-2 border p-2.5 shadow-2xs dark:bg-zinc-900/60">
 										{/* Header row on tinted base (tightened gap to white card) */}
 										<div className="flex items-center justify-between px-1.5 pt-0.5 pb-0.5">
 											<div className="flex items-center gap-1.5">
-												<Flag className="text-fg-secondary size-3.5" />
+												<IconSlot
+													slot="alert"
+													className="text-fg-secondary size-3.5"
+												/>
 												<span className="text-fg-secondary text-xs font-semibold tracking-wider uppercase">
 													Needs Attention
 												</span>
-												<span className="flex size-5 items-center justify-center rounded-full bg-[#f43f5e] text-[10px] font-bold text-white">
+												<span className="bg-error text-error-fg flex size-5 items-center justify-center rounded-full text-[10px] font-bold">
 													3
 												</span>
 											</div>
@@ -1604,77 +1595,80 @@ export default function Preview12Page() {
 												size="xs"
 												className="text-fg-secondary hover:text-fg h-6 gap-0.5 px-1.5 text-xs font-semibold">
 												<span>All alerts</span>
-												<ChevronRight className="size-3" />
+												<IconSlot slot="right" className="size-3" />
 											</Button>
 										</div>
 
 										{/* Inner Elevated White Card (generous row spacing) */}
-										<div className="border-border/50 dark:bg-elevation-level1 divide-border/40 flex flex-1 flex-col justify-between divide-y overflow-hidden rounded-xl border bg-white shadow-2xs">
-											{NEEDS_ATTENTION.map((item) => {
-												const Icon = item.icon
-												return (
-													<div
-														key={item.id}
-														className="hover:bg-fill1/40 flex flex-1 items-center justify-between px-4 py-4 transition-colors sm:py-4.5">
-														<div className="flex min-w-0 items-center gap-3">
-															<div
-																className={cn(
-																	"flex size-9 shrink-0 items-center justify-center rounded-xl",
-																	item.iconColor
-																)}>
-																<Icon className="size-4.5" />
-															</div>
-															<div className="flex flex-col truncate">
-																<span className="text-fg truncate text-[13px] leading-tight font-semibold">
-																	{item.title}
-																</span>
-																<span className="text-fg-secondary mt-0.5 truncate text-xs leading-tight">
-																	{item.subtext}
-																</span>
-															</div>
+										<div className="border-border/50 bg-elevation-level1 divide-border/40 flex flex-1 flex-col justify-between divide-y overflow-hidden rounded-lg border shadow-2xs">
+											{NEEDS_ATTENTION.map((item) => (
+												<div
+													key={item.id}
+													className="hover:bg-fill1/40 flex flex-1 items-center justify-between px-4 py-4 transition-colors sm:py-4.5">
+													<div className="flex min-w-0 items-center gap-3">
+														<div
+															className={cn(
+																"flex size-9 shrink-0 items-center justify-center rounded-lg",
+																item.iconColor
+															)}>
+															<IconSlot
+																slot={item.iconSlot}
+																className="size-4.5"
+															/>
 														</div>
-
-														<div className="flex shrink-0 items-center gap-1.5 pl-2">
-															{item.hasPhone && (
-																<IconButton
-																	variant="outline"
-																	color="neutral"
-																	size="sm"
-																	aria-label="Call caregiver">
-																	<Phone className="size-3.5" />
-																</IconButton>
-															)}
-															<Button
-																variant="outline"
-																color="neutral"
-																size="sm">
-																{item.action}
-															</Button>
+														<div className="flex flex-col truncate">
+															<span className="text-fg truncate text-[13px] leading-tight font-semibold">
+																{item.title}
+															</span>
+															<span className="text-fg-secondary mt-0.5 truncate text-xs leading-tight">
+																{item.subtext}
+															</span>
 														</div>
 													</div>
-												)
-											})}
+
+													<div className="flex shrink-0 items-center gap-1.5 pl-2">
+														{item.hasPhone && (
+															<IconButton
+																variant="outline"
+																color="neutral"
+																size="sm"
+																aria-label="Call caregiver">
+																<IconSlot
+																	slot="smartphone"
+																	className="size-3.5"
+																/>
+															</IconButton>
+														)}
+														<Button variant="outline" color="neutral" size="sm">
+															{item.action}
+														</Button>
+													</div>
+												</div>
+											))}
 										</div>
 									</Card>
 
 									{/* Live Visits Card */}
-									<Card className="border-border/60 flex flex-1 flex-col gap-2 rounded-2xl border bg-[#f0f4f9] p-2.5 shadow-2xs dark:bg-zinc-900/60">
+									<Card className="border-border/60 bg-fill1/60 flex flex-1 flex-col gap-2 border p-2.5 shadow-2xs dark:bg-zinc-900/60">
 										{/* Header row on tinted base (tightened gap to white card) */}
 										<div className="flex items-center justify-between px-1.5 pt-0.5 pb-0.5">
 											<div className="flex items-center gap-1.5">
-												<Layers className="text-fg-secondary size-3.5" />
+												<IconSlot
+													slot="blocks"
+													className="text-fg-secondary size-3.5"
+												/>
 												<span className="text-fg-secondary text-xs font-semibold tracking-wider uppercase">
 													Live Visits
 												</span>
 											</div>
-											<div className="border-border/60 dark:bg-elevation-level1 text-fg-secondary flex items-center gap-1.5 rounded-full border bg-white px-2.5 py-0.5 text-xs font-semibold shadow-2xs">
-												<span className="size-1.5 rounded-full bg-emerald-500" />
+											<div className="border-border/60 bg-elevation-level1 text-fg-secondary flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-xs font-semibold shadow-2xs">
+												<span className="bg-success size-1.5 rounded-full" />
 												<span>3 in progress</span>
 											</div>
 										</div>
 
 										{/* Inner Elevated White Card (generous row spacing) */}
-										<div className="border-border/50 dark:bg-elevation-level1 divide-border/40 flex flex-1 flex-col justify-between divide-y overflow-hidden rounded-xl border bg-white shadow-2xs">
+										<div className="border-border/50 bg-elevation-level1 divide-border/40 flex flex-1 flex-col justify-between divide-y overflow-hidden rounded-lg border shadow-2xs">
 											{LIVE_VISITS.map((visit) => (
 												<div
 													key={visit.id}
@@ -1713,8 +1707,8 @@ export default function Preview12Page() {
 																	className={cn(
 																		"h-2 w-2.5 rounded-[1.5px]",
 																		i < visit.progress
-																			? "bg-[#3b82f6] dark:bg-blue-400"
-																			: "bg-slate-200/90 dark:bg-zinc-800"
+																			? "bg-primary"
+																			: "bg-fill2"
 																	)}
 																/>
 															))}
