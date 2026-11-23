@@ -357,7 +357,7 @@ export default function Preview12Page() {
 						}>
 						{/* Workspace Brand Header Card */}
 						<SidebarHeader className="space-y-2 p-0">
-							<Card className="border-border/50 bg-elevation-level1 flex flex-row items-center justify-between gap-0 p-2.5 shadow-2xs">
+							<Card className="border-border bg-elevation-level1 flex flex-row items-center justify-between gap-0 p-2.5 shadow-2xs">
 								<div className="flex min-w-0 items-center gap-2.5">
 									<RadianLogo
 										width={32}
@@ -389,12 +389,12 @@ export default function Preview12Page() {
 								variant="outline"
 								color="neutral"
 								size="sm"
-								className="border-border/50 bg-elevation-level1 hover:bg-fill1/60 text-fg-tertiary h-9 w-full justify-between font-normal shadow-2xs">
+								className="border-border bg-elevation-level1 hover:bg-fill1/60 text-fg-tertiary h-9 w-full justify-between font-normal shadow-2xs">
 								<div className="flex items-center gap-2">
 									<IconSlot slot="search" className="size-3.5 shrink-0" />
 									<span className="text-sm">Search</span>
 								</div>
-								<kbd className="border-border/60 bg-fill2 text-fg-secondary rounded px-1.5 py-0.5 font-mono text-[10px]">
+								<kbd className="border-border bg-fill2 text-fg-secondary rounded px-1.5 py-0.5 font-mono text-[10px]">
 									⌘K
 								</kbd>
 							</Button>
@@ -417,7 +417,7 @@ export default function Preview12Page() {
 												className={cn(
 													"h-9 px-2.5 text-sm font-medium transition-all",
 													activeNav === "Dashboard"
-														? "text-fg bg-elevation-level1 border-border/50 border font-semibold shadow-2xs"
+														? "text-fg bg-elevation-level1 border-border border font-semibold shadow-2xs"
 														: "text-fg-secondary hover:text-fg hover:bg-fill1/60"
 												)}>
 												<IconSlot slot="dashboard" className="size-4" />
@@ -514,7 +514,7 @@ export default function Preview12Page() {
 												className={cn(
 													"h-9 px-2.5 text-sm font-medium transition-all",
 													activeNav === "Clients"
-														? "text-fg bg-elevation-level1 border-border/50 border font-semibold shadow-2xs"
+														? "text-fg bg-elevation-level1 border-border border font-semibold shadow-2xs"
 														: "text-fg-secondary hover:text-fg hover:bg-fill1/60"
 												)}>
 												<IconSlot slot="home" className="size-4" />
@@ -651,7 +651,7 @@ export default function Preview12Page() {
 							</SidebarMenu>
 
 							{/* User Profile Card */}
-							<Card className="border-border/50 bg-elevation-level1 flex flex-row items-center justify-between gap-0 p-2.5 shadow-2xs">
+							<Card className="border-border bg-elevation-level1 flex flex-row items-center justify-between gap-0 p-2.5 shadow-2xs">
 								<div className="flex min-w-0 items-center gap-2.5">
 									<Avatar
 										size="sm"
@@ -688,9 +688,9 @@ export default function Preview12Page() {
               MAIN DASHBOARD INSET (FLOATING WHITE CARD PANEL)
           ══════════════════════════════════════════════ */}
 					<SidebarInset className="h-screen min-w-0 flex-1 overflow-hidden bg-transparent p-2.5 pl-0 md:p-3 md:pl-0">
-						<div className="bg-elevation-level1 border-border/50 flex h-full w-full flex-col overflow-hidden rounded-xl border shadow-2xs">
+						<div className="bg-elevation-level1 border-border flex h-full w-full flex-col overflow-hidden rounded-xl border shadow-2xs">
 							{/* ── Top Bar (Fixed at top with bottom border) ── */}
-							<header className="border-border/60 flex h-14 shrink-0 items-center justify-between border-b px-5 md:px-7">
+							<header className="border-border flex h-14 shrink-0 items-center justify-between border-b px-5 md:px-7">
 								<div className="flex h-8 items-center gap-2">
 									<SidebarTrigger className="text-fg-secondary hover:text-fg size-8" />
 									<Breadcrumb className="flex items-center">
@@ -714,7 +714,7 @@ export default function Preview12Page() {
 
 								<div className="flex h-8 items-center gap-2 sm:gap-2.5">
 									{/* Date Status Pill */}
-									<div className="border-border/70 bg-fill1/70 text-fg-secondary flex h-8 items-center gap-1.5 rounded-full border px-3 text-[11px] font-semibold tracking-wider uppercase shadow-2xs">
+									<div className="border-border bg-fill1 text-fg-secondary flex h-8 items-center gap-1.5 rounded-full border px-3 text-[11px] font-semibold tracking-wider uppercase shadow-2xs">
 										<span className="bg-success size-1.5 animate-pulse rounded-full" />
 										<span>MON, OCT 5 · 8:46 AM</span>
 									</div>
@@ -781,7 +781,7 @@ export default function Preview12Page() {
 							</header>
 
 							{/* ── Scrollable Dashboard Content ── */}
-							<div className="flex flex-1 flex-col gap-6 overflow-y-auto p-5 md:p-7">
+							<div className="flex flex-1 flex-col gap-3 overflow-y-auto p-5 md:p-7">
 								{/* ── Greeting Header ── */}
 								<div>
 									<h1 className="font-heading text-fg text-2xl font-bold tracking-tight">
@@ -909,9 +909,9 @@ export default function Preview12Page() {
 									{STAT_METRICS.map((stat) => (
 										<Card
 											key={stat.label}
-											className="border-border/60 bg-fill1/60 flex flex-col justify-between border p-1.5 shadow-2xs dark:bg-zinc-900/60">
+											className="border-border bg-fill1 flex flex-col justify-between border p-1.5 shadow-2xs dark:bg-zinc-900/60">
 											{/* Top Elevated White Panel */}
-											<div className="border-border/50 bg-elevation-level1 flex flex-col justify-between gap-3 rounded-lg border p-3.5 shadow-2xs">
+											<div className="border-border bg-elevation-level1 flex flex-col justify-between gap-3 rounded-lg border p-3.5 shadow-2xs">
 												<span className="text-fg-secondary text-[10px] font-semibold tracking-wider uppercase select-none">
 													{stat.label}
 												</span>
@@ -957,7 +957,7 @@ export default function Preview12Page() {
 								{/* ── Lower Section (Coverage & Timeline + Right Alerts/Live) ── */}
 								<div className="grid grid-cols-1 items-stretch gap-4 lg:grid-cols-12">
 									{/* Left: Heatmap Chart (lg:col-span-7) */}
-									<Card className="border-border/60 bg-elevation-level1 flex h-full flex-col justify-between border shadow-2xs lg:col-span-7">
+									<Card className="border-border bg-elevation-level1 flex h-full flex-col justify-between border shadow-2xs lg:col-span-7">
 										<CardHeader className="pb-3">
 											<CardTitle className="flex items-baseline gap-2">
 												<span className="font-heading text-fg text-2xl font-bold tracking-tight">
@@ -1073,7 +1073,7 @@ export default function Preview12Page() {
 									{/* Right Column: Needs Attention + Live Visits (lg:col-span-5) */}
 									<div className="flex h-full flex-col justify-between gap-4 lg:col-span-5">
 										{/* Needs Attention Card */}
-										<Card className="border-border/60 bg-fill1/60 flex flex-1 flex-col gap-2 border p-2.5 shadow-2xs dark:bg-zinc-900/60">
+										<Card className="border-border bg-fill1 flex flex-1 flex-col gap-2 border p-2.5 shadow-2xs dark:bg-zinc-900/60">
 											{/* Header row on tinted base (tightened gap to white card) */}
 											<div className="flex items-center justify-between px-1.5 pt-0.5 pb-0.5">
 												<div className="flex items-center gap-1.5">
@@ -1099,7 +1099,7 @@ export default function Preview12Page() {
 											</div>
 
 											{/* Inner Elevated White Card (generous row spacing) */}
-											<div className="border-border/50 bg-elevation-level1 divide-border/40 flex flex-1 flex-col justify-between divide-y overflow-hidden rounded-lg border shadow-2xs">
+											<div className="border-border bg-elevation-level1 divide-border flex flex-1 flex-col justify-between divide-y overflow-hidden rounded-lg border shadow-2xs">
 												{NEEDS_ATTENTION.map((item) => (
 													<div
 														key={item.id}
@@ -1151,7 +1151,7 @@ export default function Preview12Page() {
 										</Card>
 
 										{/* Live Visits Card */}
-										<Card className="border-border/60 bg-fill1/60 flex flex-1 flex-col gap-2 border p-2.5 shadow-2xs dark:bg-zinc-900/60">
+										<Card className="border-border bg-fill1 flex flex-1 flex-col gap-2 border p-2.5 shadow-2xs dark:bg-zinc-900/60">
 											{/* Header row on tinted base (tightened gap to white card) */}
 											<div className="flex items-center justify-between px-1.5 pt-0.5 pb-0.5">
 												<div className="flex items-center gap-1.5">
@@ -1163,14 +1163,14 @@ export default function Preview12Page() {
 														Live Visits
 													</span>
 												</div>
-												<div className="border-border/60 bg-elevation-level1 text-fg-secondary flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-xs font-semibold shadow-2xs">
+												<div className="border-border bg-elevation-level1 text-fg-secondary flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-xs font-semibold shadow-2xs">
 													<span className="bg-success size-1.5 rounded-full" />
 													<span>3 in progress</span>
 												</div>
 											</div>
 
 											{/* Inner Elevated White Card (generous row spacing) */}
-											<div className="border-border/50 bg-elevation-level1 divide-border/40 flex flex-1 flex-col justify-between divide-y overflow-hidden rounded-lg border shadow-2xs">
+											<div className="border-border bg-elevation-level1 divide-border flex flex-1 flex-col justify-between divide-y overflow-hidden rounded-lg border shadow-2xs">
 												{LIVE_VISITS.map((visit) => (
 													<div
 														key={visit.id}
