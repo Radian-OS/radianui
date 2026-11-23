@@ -1,52 +1,34 @@
 "use client"
 
 import React, { CSSProperties, useId } from "react"
-import { motion } from "motion/react"
-import {
-	BookOpen,
-	CheckCircle2,
-	CircleUser,
-	Clock,
-	Command,
-	FileText,
-	Globe,
-	Keyboard,
-	Lock,
-	Mail,
-	MailPlus,
-	Monitor,
-	RotateCw,
-	Settings,
-	ShieldCheck,
-	Smartphone,
-	Sparkles,
-	Tablet,
-	User,
-	UserPlus,
-	Users,
-	Video,
-	X,
-	Zap,
-	ArrowLeft,
-	ArrowRight,
-	Calendar as CalendarIcon,
-	Image as ImageIcon,
-	TrendingUp,
-} from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { Button, IconButton } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Card, CardContent } from "@/styles/default/ui/card"
+import { Card } from "@/registry/ui/card"
 import {
 	Avatar,
 	AvatarFallback,
 	AvatarImage,
 	AvatarIndicator,
 	AvatarStatus,
-} from "@/styles/default/ui/avatar"
+} from "@/registry/ui/avatar"
 import { IconSlot } from "@/registry/icon/icon-library"
-import { Divider } from "@/styles/default/ui/divider"
+import { Divider } from "@/registry/ui/divider"
+
+const COLS = 28
+const CELLS = COLS * 6
+
+const k = (n: number) => `${(n / 1000).toFixed(1)}K`
+
+type Props = {
+	model?: string
+	limit?: number
+	system?: number
+	files?: number
+	conversation?: number
+	className?: string
+}
 
 const mask = "url(/themer/phone-mask.webp) 0 0/100% 100% no-repeat"
 
@@ -224,7 +206,7 @@ export default function Preview07() {
 			<div className="mx-auto grid max-w-[1340px] grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
 				{/* ---------------- COLUMN 1: Brand Assets & Context Window ---------------- */}
 				<div className="flex flex-col gap-4">
-					<Card className="border-border/80 group relative aspect-[1.53/1] gap-0 overflow-hidden rounded-[26px] p-0 shadow-sm select-none">
+					<Card className="border-border/80 group relative aspect-[1.53/1] gap-0 overflow-hidden rounded-3xl p-0 shadow-sm select-none">
 						<img
 							src="/themer/card.png"
 							className="h-full w-full object-cover"
@@ -271,7 +253,7 @@ export default function Preview07() {
 					</Card>
 
 					{/* 1.3 Browser Mockup Card */}
-					<div className="relative isolate h-[216px] w-full overflow-hidden rounded-[20px]">
+					<Card className="relative isolate h-[216px] w-full overflow-hidden rounded-3xl shadow-none">
 						{/* grayscale grain image, recolored by the blend layer below */}
 						<div className="absolute inset-0 bg-[url(/gradient-grain.webp)] bg-cover bg-center" />
 						<div
@@ -280,7 +262,7 @@ export default function Preview07() {
 						/>
 
 						{/* browser window (overflows the card on the right, clipped) */}
-						<div className="bg-elevation-level1 absolute top-[48px] left-[41px] h-[120px] w-[803px] overflow-hidden rounded-[16.74px]">
+						<div className="bg-elevation-level1 absolute top-[48px] left-[41px] h-[120px] w-[803px] overflow-hidden rounded-2xl">
 							<div className="bg-fill4 relative h-[55.81px]">
 								<div className="absolute top-[21.07px] left-5 flex gap-[11.17px]">
 									{[0, 1, 2].map((i) => (
@@ -311,107 +293,21 @@ export default function Preview07() {
 										className="text-fg-disabled"
 									/>
 									<IconSlot slot="repeat" size={16} />
-									{/* <Icon d="M4.003 9.419 H16.744 V7.326 H4.003 L9.863 1.465 L8.372 0 L0 8.372 L8.372 16.744 L9.863 15.279 L4.003 9.419Z" className="text-fg-secondary" /> */}
-									{/* <Icon d="M12.741 9.419 H0 V7.326 H12.741 L6.881 1.465 L8.372 0 L16.744 8.372 L8.372 16.744 L6.881 15.279 L12.741 9.419Z" className="text-fg-disabled" /> */}
-									{/* <Icon d="M8.372 16.744 C6.035 16.744 4.055 15.933 2.433 14.311 C0.811 12.689 0 10.71 0 8.372 C0 6.035 0.811 4.055 2.433 2.433 C4.055 0.811 6.035 0 8.372 0 C9.575 0 10.727 0.249 11.825 0.746 C12.924 1.243 13.866 1.954 14.651 2.878 V0 H16.744 V7.326 H9.419 V5.233 H13.814 C13.256 4.256 12.493 3.489 11.525 2.93 C10.557 2.372 9.506 2.093 8.372 2.093 C6.628 2.093 5.145 2.704 3.924 3.925 C2.703 5.146 2.093 6.628 2.093 8.372 C2.093 10.117 2.703 11.599 3.924 12.82 C5.145 14.041 6.628 14.651 8.372 14.651 C9.715 14.651 10.927 14.268 12.009 13.5 C13.09 12.733 13.849 11.721 14.285 10.465 H16.482 C15.994 12.314 15 13.823 13.5 14.992 C12 16.16 10.291 16.744 8.372 16.744Z" className="text-fg-secondary" /> */}
 								</div>
-								<div className="border-soft-alpha bg-fill2 text-fg-tertiary ml-[3px] flex h-[45.45px] w-[659.37px] shrink-0 items-center rounded-[13.16px] border px-[13.93px] text-lg">
+								<div className="border-soft-alpha bg-fill2 text-fg-tertiary ml-[3px] flex h-[45.45px] w-[659.37px] shrink-0 items-center rounded-xl border px-[13.93px] text-lg">
 									www.xavion.com
 								</div>
 							</div>
 						</div>
 
 						<div className="pointer-events-none absolute inset-0 rounded-[20px] ring-1 ring-[#242E42]/[0.08] ring-inset" />
-					</div>
-
-					{/* 1.4 Context Window Token Visualizer */}
-					<Card className="border-border/80 gap-3 p-4 shadow-sm">
-						<div className="flex items-center justify-between">
-							<span className="text-fg text-sm font-semibold">
-								Context window
-							</span>
-							<div className="flex items-center gap-1.5">
-								<span className="border-border bg-fill2 text-fg-secondary rounded border px-1.5 py-0.5 text-[10px] font-medium">
-									gpt-4o
-								</span>
-								<Badge color="primary" variant="soft" size="sm">
-									88%
-								</Badge>
-							</div>
-						</div>
-
-						<div>
-							<span className="text-fg text-lg font-bold tracking-tight">
-								178.5K
-							</span>{" "}
-							<span className="text-fg-secondary text-xs">of 200K tokens</span>
-						</div>
-
-						{/* 70 Blocks Matrix (14 cols x 5 rows) */}
-						<div className="grid grid-cols-14 gap-1 py-1">
-							{Array.from({ length: 70 }).map((_, index) => {
-								let bgClass = "bg-fill3 border border-border/50"
-								if (index < 18) {
-									bgClass = "bg-primary"
-								} else if (index < 38) {
-									bgClass = "bg-primary/80"
-								} else if (index < 62) {
-									bgClass = "bg-primary/45"
-								}
-								return (
-									<div
-										key={index}
-										className={`aspect-square rounded-[2px] transition-colors duration-300 ${bgClass}`}
-									/>
-								)
-							})}
-						</div>
-
-						{/* Breakdown Legend */}
-						<div className="text-fg-secondary space-y-1.5 pt-1 text-xs">
-							<div className="flex items-center justify-between">
-								<div className="flex items-center gap-1.5">
-									<span className="bg-primary size-2 rounded-full" />
-									<span>System prompt</span>
-								</div>
-								<span className="text-fg font-medium">10</span>
-							</div>
-
-							<div className="flex items-center justify-between">
-								<div className="flex items-center gap-1.5">
-									<span className="bg-primary/80 size-2 rounded-full" />
-									<span>Files</span>
-								</div>
-								<span className="text-fg font-medium">4</span>
-							</div>
-
-							<div className="flex items-center justify-between">
-								<div className="flex items-center gap-1.5">
-									<span className="bg-primary/45 size-2 rounded-full" />
-									<span>Conversation</span>
-								</div>
-								<Button
-									size="xs"
-									variant="outline"
-									color="neutral"
-									className="h-5 px-1.5 text-[10px]">
-									Compact
-								</Button>
-							</div>
-
-							<div className="flex items-center justify-between">
-								<div className="flex items-center gap-1.5">
-									<span className="border-border bg-fill3 size-2 rounded-full border" />
-									<span>Token remaining</span>
-								</div>
-								<span className="text-fg-secondary text-[11px]">21.5K</span>
-							</div>
-						</div>
 					</Card>
+
+					<ContextWindowShowcase />
 				</div>
 
 				<div className="flex flex-col gap-4">
-					<Card className="text-primary-fg bg-primary-text relative max-w-118 gap-5.5 overflow-hidden rounded-[20px] p-6 shadow-none">
+					<Card className="text-primary-fg bg-primary-text relative max-w-118 gap-5.5 overflow-hidden rounded-3xl p-6 shadow-none">
 						<div className="relative z-10 flex flex-col items-start gap-3">
 							<div className="flex items-center gap-3">
 								<div className="border-primary-accent bg-primary-accent flex size-9 shrink-0 items-center justify-center rounded-lg border">
@@ -433,7 +329,7 @@ export default function Preview07() {
 							</div>
 						</div>
 
-						<div className="border-primary text-primary-accent relative z-10 space-y-2.5 rounded-[20px] border bg-white/8 p-4">
+						<div className="border-primary text-primary-accent relative z-10 space-y-2.5 rounded-3xl border bg-white/8 p-4">
 							<div className="flex items-center justify-between gap-3">
 								<span className="text-base font-medium">
 									Realtime Transaction Alert
@@ -448,7 +344,7 @@ export default function Preview07() {
 							<div className="bg-primary flex items-center justify-between rounded-xl p-2.5">
 								<div className="flex items-center gap-2.5">
 									<div className="bg-primary-accent flex size-9 items-center justify-center rounded-lg">
-										<TrendingUp className="text-primary size-5" />
+										<IconSlot slot="up" className="text-primary size-5" />
 									</div>
 									<div className="flex flex-col gap-1">
 										<div className="text-xs font-medium">Off Grid Chart</div>
@@ -487,7 +383,7 @@ export default function Preview07() {
 							<div className="bg-primary flex items-center justify-between rounded-xl p-2.5">
 								<div className="flex items-center gap-2.5">
 									<div className="flex size-9 items-center justify-center rounded-lg bg-white/15">
-										<Globe className="size-5 text-white" />
+										<IconSlot slot="globe" className="size-5 text-white" />
 									</div>
 									<div className="text-xs font-medium">Acme Inc.</div>
 								</div>
@@ -503,11 +399,11 @@ export default function Preview07() {
 						</div>
 					</Card>
 
-					<div className="bg-primary-accent relative h-83 w-full overflow-hidden rounded-[20px]">
+					<Card className="bg-primary-accent relative h-83 w-full overflow-hidden rounded-3xl shadow-none">
 						<div className="absolute inset-0" style={dots(10, 4, 2)} />
 
 						{/* card (intentionally larger than the frame so it's cropped) */}
-						<div className="bg-bg absolute top-[45px] left-[45px] h-[502.7px] w-[444.8px] overflow-hidden rounded-[16.7px] shadow-[0_15.5px_23.3px_-3.9px_rgb(24_24_27/0.12)]">
+						<div className="bg-bg absolute top-[45px] left-[45px] h-[502.7px] w-[444.8px] overflow-hidden rounded-2xl shadow-[0_15.5px_23.3px_-3.9px_rgb(24_24_27/0.12)]">
 							<div
 								className="absolute inset-0"
 								style={dots(17.44, 4.36, -1.58)}
@@ -566,7 +462,7 @@ export default function Preview07() {
 						</div>
 
 						<div className="pointer-events-none absolute inset-0 rounded-[inherit] border border-[#242E42]/[.08]" />
-					</div>
+					</Card>
 
 					{/* 2.3 Color Palette Swatches Bar */}
 					<Card className="gap-0 border-none p-0 shadow-none">
@@ -598,7 +494,7 @@ export default function Preview07() {
 				{/* ---------------- COLUMN 3: Hero Banner & Smartphone Mockup ---------------- */}
 				<div className="flex flex-col gap-4">
 					{/* 3.1 Brand Aurora Hero Banner */}
-					<Card className="border-soft relative flex h-52 items-center justify-center gap-0 overflow-hidden rounded-[20px] p-0">
+					<Card className="border-soft relative flex h-52 items-center justify-center gap-0 overflow-hidden rounded-3xl p-0 shadow-none">
 						<img
 							src="/themer/pattern1.png"
 							className="h-full w-full object-cover"
@@ -799,7 +695,8 @@ export default function Preview07() {
 										</div>
 									</div>
 									<Badge variant="strong">
-										<Zap className="size-3.5 fill-current" /> PRO
+										<IconSlot slot="zap" className="size-3.5 fill-current" />{" "}
+										PRO
 									</Badge>
 								</div>
 
@@ -808,11 +705,17 @@ export default function Preview07() {
 								{/* Group 1: Profile & Shortcuts */}
 								<div className="space-y-0.5 p-1.5 font-normal">
 									<div className="text-fg hover:bg-fill1 flex cursor-pointer items-center gap-3 rounded-lg px-2.5 py-1.5 text-sm transition-colors">
-										<CircleUser className="text-fg-secondary size-4.5" />
+										<IconSlot
+											slot="user"
+											className="text-fg-secondary size-4.5"
+										/>
 										<span>Profile</span>
 									</div>
 									<div className="text-fg hover:bg-fill1 flex cursor-pointer items-center gap-3 rounded-lg px-2.5 py-1.5 text-sm transition-colors">
-										<Keyboard className="text-fg-secondary size-4.5" />
+										<IconSlot
+											slot="sparkles"
+											className="text-fg-secondary size-4.5"
+										/>
 										<span>Keyboard shortcuts</span>
 									</div>
 								</div>
@@ -822,15 +725,21 @@ export default function Preview07() {
 								{/* Group 2: Settings, Invite & Team */}
 								<div className="space-y-0.5 p-1.5">
 									<div className="text-fg hover:bg-fill1 flex cursor-pointer items-center gap-3 rounded-lg px-2.5 py-1.5 text-sm transition-colors">
-										<Settings className="text-fg-secondary size-4.5" />
+										<IconSlot
+											slot="settings-2"
+											className="text-fg-secondary size-4.5"
+										/>
 										<span>Settings</span>
 									</div>
 									<div className="text-fg hover:bg-fill1 flex cursor-pointer items-center gap-3 rounded-lg px-2.5 py-1.5 text-sm transition-colors">
-										<MailPlus className="text-fg-secondary size-4.5" />
+										<IconSlot
+											slot="mail"
+											className="text-fg-secondary size-4.5"
+										/>
 										<span>Invite colleagues</span>
 									</div>
 									<div className="bg-fill1 text-fg flex cursor-pointer items-center gap-3 rounded-lg px-2.5 py-1.5 text-sm font-normal transition-colors">
-										<Users className="size-4.5" />
+										<IconSlot slot="users" className="size-4.5" />
 										<span>Team</span>
 									</div>
 								</div>
@@ -840,7 +749,10 @@ export default function Preview07() {
 								{/* Group 3: Change logs */}
 								<div className="p-1.5">
 									<div className="text-fg hover:bg-fill1 flex cursor-pointer items-center gap-3 rounded-lg px-2.5 py-1.5 text-sm transition-colors">
-										<BookOpen className="text-fg-secondary size-4.5" />
+										<IconSlot
+											slot="book"
+											className="text-fg-secondary size-4.5"
+										/>
 										<span>Change logs</span>
 									</div>
 								</div>
@@ -862,21 +774,30 @@ export default function Preview07() {
 							title="Close"
 							size="md"
 							className="rounded-full border border-white/40 bg-white/20 text-white backdrop-blur-md hover:bg-white/25">
-							<X className="size-5" />
+							<IconSlot slot="cross" className="size-5" />
 						</IconButton>
 
 						<div className="flex items-center gap-2 rounded-full border border-white/40 bg-white/20 p-1.5 text-white backdrop-blur-md">
 							<div className="flex items-center gap-1.5 text-neutral-300">
 								<div className="flex size-9 items-center justify-center rounded-full bg-white/20">
-									<Monitor className="size-5 cursor-pointer text-white" />
+									<IconSlot
+										slot="monitor"
+										className="size-5 cursor-pointer text-white"
+									/>
 								</div>
 
 								<div className="flex size-9 items-center justify-center rounded-full hover:bg-white/20">
-									<Tablet className="size-5 cursor-pointer text-white" />
+									<IconSlot
+										slot="box"
+										className="size-5 cursor-pointer text-white"
+									/>
 								</div>
 
 								<div className="flex size-9 items-center justify-center rounded-full hover:bg-white/20">
-									<Smartphone className="size-5 cursor-pointer text-white" />
+									<IconSlot
+										slot="smartphone"
+										className="size-5 cursor-pointer text-white"
+									/>
 								</div>
 							</div>
 
@@ -885,7 +806,7 @@ export default function Preview07() {
 								variant="glossy"
 								size="sm"
 								className="rounded-full">
-								<Sparkles className="size-3" />
+								<IconSlot slot="sparkles" className="size-3" />
 								<span>Full page</span>
 							</Button>
 						</div>
@@ -1267,3 +1188,149 @@ function VideoIcon({ size = 65, ...props }) {
 		</svg>
 	)
 }
+
+function ContextWindow({
+	model = "gpt-astra-1",
+	limit = 200_000,
+	system = 108_200,
+	files = 41_300,
+	conversation = 29_000,
+	className,
+}: Props) {
+	const used = system + files + conversation
+	const filled = Math.round((used / limit) * CELLS)
+	const dark = Math.round((system / limit) * CELLS)
+	const tone = {
+		dark: "bg-primary-text",
+		light: "bg-primary-border",
+		empty: "bg-fill2",
+	}
+
+	return (
+		<div className={cn("bg-fill2 w-[356px] rounded-2xl p-1.5", className)}>
+			<Card className="gap-0 rounded-2xl p-4.5 shadow-[0_4px_8px_rgb(25_24_27/0.08)]">
+				<div className="flex h-6 items-center justify-between">
+					<h3 className="text-sm font-medium">Context window</h3>
+					<Badge size="md" color="neutral">
+						<OpenAI className="fill-primary" />
+						{model}
+					</Badge>
+				</div>
+
+				<div className="mt-4 flex w-full items-baseline gap-2">
+					<span className="text-2xl font-semibold tracking-tighter">
+						{k(used)}
+					</span>
+					<span className="text-fg-tertiary text-sm font-normal">
+						of {k(limit).replace(".0", "")} tokens
+					</span>
+					<Badge
+						variant="soft"
+						color="primary"
+						className="border-soft-alpha ml-auto border">
+						{Math.floor((used / limit) * 100)}% used
+					</Badge>
+				</div>
+
+				<div className="mt-3.5 grid grid-cols-[repeat(28,minmax(0,1fr))] gap-0.75">
+					{Array.from({ length: CELLS }, (_, i) => (
+						<span
+							key={i}
+							className={cn(
+								"aspect-square rounded-[2px]",
+								tone[i < dark ? "dark" : i < filled ? "light" : "empty"]
+							)}
+						/>
+					))}
+				</div>
+
+				<ul className="mt-4 flex flex-col gap-2">
+					<Row swatch={tone.dark} label="System prompt" value={k(system)} />
+					<Row
+						swatch={tone.light}
+						label="Files"
+						value={k(files)}
+						extra={
+							<IconSlot slot="down" className="text-muted-foreground size-4" />
+						}
+					/>
+					<Row
+						swatch={tone.light}
+						label="Conversation"
+						value={k(conversation)}
+						action={
+							<Button
+								variant="ghost"
+								className="text-fg-tertiary mr-1.5 h-auto gap-1.5 p-0 text-xs font-normal hover:bg-transparent"
+								size="xs">
+								<CompactIcon />
+								Compact
+							</Button>
+						}
+					/>
+					<Row
+						swatch="bg-fill2 ring-1 ring-inset ring-soft"
+						label="Token remaining"
+						value={k(limit - used)}
+					/>
+				</ul>
+			</Card>
+		</div>
+	)
+}
+
+function ContextWindowShowcase({ ...props }: Props) {
+	return (
+		<Card className="border-soft-alpha relative h-[334px] w-full overflow-hidden rounded-3xl border shadow-none">
+			<div
+				className="absolute inset-0 bg-[length:100%_145.4%] bg-[position:0_-76px]"
+				style={{ backgroundImage: `url(/themer/halftone.webp)` }}
+			/>
+			<div className="bg-primary absolute inset-0 mix-blend-color" />
+			<ContextWindow className="absolute top-10 left-10" {...props} />
+		</Card>
+	)
+}
+
+type RowProps = {
+	swatch: string
+	label: string
+	value: string
+	extra?: React.ReactNode
+	action?: React.ReactNode
+}
+
+function Row({ swatch, label, value, extra, action }: RowProps) {
+	return (
+		<li className="flex h-5 items-center gap-2 px-0.5 text-sm">
+			<span className={cn("size-2.5 rounded-[3px]", swatch)} />
+			<span className="flex flex-1 items-center gap-1 text-sm font-normal">
+				{label}
+				{extra}
+			</span>
+			{action}
+			<span className="text-fg-secondary font-normal tabular-nums">
+				{value}
+			</span>
+		</li>
+	)
+}
+
+const CompactIcon = () => (
+	<svg
+		viewBox="0 0 12 12"
+		className="size-3"
+		fill="none"
+		stroke="currentColor"
+		strokeWidth=".94"
+		strokeLinecap="round"
+		strokeLinejoin="round">
+		<path d="M6 11V8M4.5 9.5 6 11l1.5-1.5M6 4V1M4.5 2.5 6 1l1.5 1.5M2 6H1M5 6H4M8 6H7M11 6h-1" />
+	</svg>
+)
+
+const OpenAI = ({ className }: { className?: string }) => (
+	<svg viewBox="276.2 71.2 11.6 11.6" className={className}>
+		<path d="M287.064 75.9418C287.332 75.1473 287.24 74.2771 286.811 73.5544C286.166 72.4461 284.869 71.8759 283.602 72.1442C283.039 71.5178 282.229 71.1616 281.38 71.1667C280.086 71.1638 278.937 71.9863 278.539 73.2019C277.707 73.37 276.989 73.8837 276.569 74.6118C275.919 75.7172 276.067 77.1107 276.935 78.0586C276.667 78.8531 276.76 79.7233 277.189 80.4459C277.834 81.5543 279.131 82.1245 280.397 81.8562C280.96 82.4826 281.77 82.8388 282.619 82.8333C283.914 82.8366 285.063 82.0133 285.462 80.7967C286.293 80.6286 287.011 80.1149 287.431 79.3868C288.081 78.2814 287.932 76.889 287.064 75.9411L287.064 75.9418ZM282.62 82.0709C282.101 82.0717 281.599 81.8926 281.201 81.5649C281.219 81.5554 281.251 81.5383 281.271 81.5259L283.625 80.1842C283.746 80.1167 283.82 79.9902 283.819 79.8535V76.5784L284.814 77.1453C284.825 77.1504 284.832 77.1606 284.833 77.1723V79.8845C284.832 81.0905 283.842 82.0684 282.62 82.0709ZM277.859 80.0646C277.599 79.622 277.506 79.1032 277.595 78.5997C277.612 78.6099 277.643 78.6285 277.665 78.6409L280.019 79.9826C280.139 80.0515 280.286 80.0515 280.406 79.9826L283.28 78.3448V79.4787C283.281 79.4904 283.275 79.5017 283.266 79.509L280.886 80.8649C279.826 81.4672 278.472 81.1091 277.86 80.0646H277.859ZM277.24 74.9935C277.498 74.5501 277.906 74.2111 278.393 74.035C278.393 74.055 278.392 74.0904 278.392 74.1152V76.7989C278.391 76.9353 278.465 77.0618 278.585 77.1293L281.459 78.7666L280.464 79.3336C280.454 79.3401 280.441 79.3412 280.43 79.3365L278.05 77.9795C276.992 77.375 276.629 76.0395 277.239 74.9939L277.24 74.9935ZM285.415 76.8708L282.541 75.233L283.536 74.6665C283.546 74.6599 283.558 74.6588 283.569 74.6635L285.949 76.0194C287.009 76.6236 287.372 77.9613 286.76 79.0069C286.501 79.4495 286.093 79.7886 285.607 79.9651V77.2011C285.608 77.0647 285.535 76.9386 285.415 76.8708H285.415ZM286.405 75.4C286.388 75.3894 286.357 75.3712 286.335 75.3588L283.981 74.0171C283.861 73.9482 283.714 73.9482 283.594 74.0171L280.72 75.6549V74.521C280.719 74.5093 280.725 74.498 280.734 74.4907L283.114 73.1359C284.174 72.5325 285.529 72.8916 286.14 73.938C286.398 74.3799 286.492 74.8972 286.404 75.4H286.405ZM280.179 77.4209L279.183 76.854C279.173 76.8489 279.166 76.8387 279.164 76.827V74.1148C279.165 72.9073 280.158 71.9287 281.381 71.9295C281.899 71.9295 282.4 72.1088 282.798 72.4355C282.78 72.445 282.749 72.4621 282.728 72.4745L280.374 73.8162C280.253 73.8837 280.18 74.0098 280.18 74.1465L280.179 77.4202V77.4209ZM280.719 76.271L282 75.5415L283.28 76.2707V77.7294L282 78.4586L280.719 77.7294V76.271Z" />
+	</svg>
+)
