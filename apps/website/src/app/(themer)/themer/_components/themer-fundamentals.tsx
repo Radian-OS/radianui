@@ -38,7 +38,7 @@ function FundamentalsGroup({
 
 	return (
 		<SidebarGroup className={selected ? "p-0" : undefined}>
-			{!selected && (
+			{(!selected || selected === "fonts") && (
 				<SidebarGroupLabel className="text-fg-tertiary h-6 px-0 font-medium">
 					{label}
 				</SidebarGroupLabel>
@@ -100,7 +100,12 @@ export function ThemerFundamentals({
 			</FundamentalsGroup>
 
 			<FundamentalsGroup section="fonts" selected={section} label="Typography">
-				<div className="flex flex-col gap-3">
+				<div
+					className={
+						section === "fonts"
+							? "grid grid-cols-2 gap-2"
+							: "flex flex-col gap-3"
+					}>
 					<FontPicker
 						label="Heading"
 						fontName={selectedHeadingFont?.name || "Geist"}

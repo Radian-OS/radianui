@@ -160,6 +160,14 @@ function ThemerPage() {
 				open={mobileDrawerOpen}
 				onOpenChange={setMobileDrawerOpen}
 				onOpenAllSettings={() => setMobilePanel("settings")}
+				onSelectShortcut={(panel) => {
+					if (panel === mobilePanel) {
+						setMobileDrawerOpen(false)
+					} else {
+						setSelectedShortcut(panel)
+						setMobilePanel(panel)
+					}
+				}}
 				onCloseAutoFocus={(event) => {
 					event.preventDefault()
 					mobileTriggerRef.current?.focus({ preventScroll: true })

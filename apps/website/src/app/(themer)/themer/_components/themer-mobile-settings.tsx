@@ -105,12 +105,17 @@ export function ThemerMobileDrawer({
 	onOpenChange,
 	onCloseAutoFocus,
 	onOpenAllSettings,
+	onSelectShortcut,
 }: {
 	panel: MobileThemerPanel
 	open: boolean
 	onOpenChange: (open: boolean) => void
 	onCloseAutoFocus: (event: Event) => void
 	onOpenAllSettings: () => void
+	onSelectShortcut: (
+		panel: MobileThemerShortcut,
+		trigger: HTMLButtonElement
+	) => void
 }) {
 	const allSettings = panel === "settings"
 	const title =
@@ -196,6 +201,25 @@ export function ThemerMobileDrawer({
 							</ThemerDrawerContext>
 						)}
 					</ScrollArea>
+				) : panel === "neutral" || panel === "fonts" ? (
+					<>
+						<DrawerTitle className="sr-only">
+							{panel === "fonts" ? "Typography" : "Neutral Base"}
+						</DrawerTitle>
+						<DrawerDescription className="sr-only">
+							Customize your theme and preview the changes.
+						</DrawerDescription>
+						<ThemerDrawerContext value={true}>
+							<div className="px-3 pb-2">
+								<ThemerFundamentals section={panel} />
+							</div>
+						</ThemerDrawerContext>
+						<ThemerMobileShortcuts
+							selectedShortcut={panel}
+							openPanel={panel}
+							onSelect={onSelectShortcut}
+						/>
+					</>
 				) : (
 					<>
 						<div className="border-border flex h-11 shrink-0 touch-none items-center justify-between gap-2 border-b px-4">
