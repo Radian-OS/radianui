@@ -293,6 +293,15 @@ export function getFlagImageStructuredData({
 				name: `${name} Flag`,
 				caption: `${name} flag icon available in SVG and PNG formats.`,
 				contentUrl: image,
+				// The resources README publishes the asset licensing policy.
+				// Credit distribution without claiming ownership of flag artwork.
+				license:
+					"https://github.com/Radian-os/radian-resources/blob/main/README.md",
+				acquireLicensePage:
+					"https://github.com/Radian-os/radian-resources/blob/main/packages/country-flags/README.md",
+				creditText: "Distributed by Radian OS",
+				copyrightNotice:
+					"Copyright remains with the respective rights holders. Distributed under the MIT License.",
 				url,
 				encodingFormat: "image/svg+xml",
 				representativeOfPage: true,
