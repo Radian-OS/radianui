@@ -861,15 +861,30 @@ interface MetricDonutCardProps {
 }
 
 export function MetricDonutCard({ metric }: MetricDonutCardProps) {
-	const radius = 34
+	const radius = 38
+	const strokeWidth = 15
 	const circumference = 2 * Math.PI * radius
+	const gapDeg = 8
+	const gapLength = (gapDeg / 360) * circumference
+	const availableDeg = 360 - 2 * gapDeg
+
+	// Fraction of the active arc (e.g. 62% for by-due-date)
 	const chartValue = metric.chartValue ?? metric.value
-	const strokeDash = (chartValue / 100) * circumference
+	const activeFraction = chartValue / 100
+	const colorDeg = activeFraction * availableDeg
+	const colorLength = (colorDeg / 360) * circumference
+
+	const stripeDeg = availableDeg - colorDeg
+	const stripeLength = (stripeDeg / 360) * circumference
+
+	// Rotations starting just after top gap (-90 + gapDeg / 2)
+	const colorRotate = -90 + gapDeg / 2
+	const stripeRotate = colorRotate + colorDeg + gapDeg
 
 	return (
-		<Card className="bg-fill1/40 border-border/70 flex flex-col gap-0 overflow-hidden rounded-xl p-0 py-0 shadow-none">
-			<CardHeader className="border-border/60 gap-0 border-b px-5 pt-3 pb-3! [.border-b]:pb-3">
-				<CardTitle className="font-heading text-fg text-[14px] leading-normal font-semibold">
+		<Card className="bg-elevation-level1 border-border/70 flex flex-col gap-0 overflow-hidden rounded-2xl p-0 shadow-2xs">
+			<CardHeader className="border-border/60 gap-0 border-b px-6 py-3.5">
+				<CardTitle className="font-heading text-fg text-[15px] leading-normal font-semibold">
 					{metric.title}
 				</CardTitle>
 			</CardHeader>
@@ -877,41 +892,71 @@ export function MetricDonutCard({ metric }: MetricDonutCardProps) {
 			<CardContent className="flex flex-1 items-center justify-between gap-4 p-6">
 				<div className="flex min-w-0 flex-1 flex-col justify-between self-stretch py-0.5">
 					<div>
-						<div className="font-heading text-fg text-[24px] leading-tight font-semibold">
+						<div className="font-heading text-fg text-[28px] leading-none font-bold tracking-tight">
 							{metric.displayValue}
 						</div>
-						<p className="text-fg-secondary mt-2 text-[14px] leading-[19px]">
+						<p className="text-fg-secondary mt-2 max-w-[210px] text-[13.5px] leading-[19px]">
 							{metric.description}
 						</p>
 					</div>
 
-					<div className="mt-3.5">
-						<Badge variant="soft" color={metric.badgeColor} size="sm">
+					<div className="mt-4">
+						<Badge
+							variant="soft"
+							color={metric.badgeColor}
+							size="sm"
+							className="rounded-md px-2.5 py-1 text-xs font-semibold">
 							{metric.badgeLabel}
 						</Badge>
 					</div>
 				</div>
 
-				{/* Chunky Donut Chart */}
-				<div className="relative size-[88px] shrink-0">
-					<svg viewBox="0 0 88 88" className="size-full -rotate-90">
+				{/* Striped Hatch + Colored Donut Chart */}
+				<div className="relative size-[100px] shrink-0">
+					<svg viewBox="0 0 100 100" className="size-full">
+						<defs>
+							<pattern
+								id={`diagonal-stripes-${metric.id}`}
+								width="7"
+								height="7"
+								patternTransform="rotate(45)"
+								patternUnits="userSpaceOnUse">
+								<rect width="7" height="7" fill="var(--color-fill2)" />
+								<line
+									x1="0"
+									y1="0"
+									x2="0"
+									y2="7"
+									stroke="var(--color-fill3)"
+									strokeWidth="2.5"
+								/>
+							</pattern>
+						</defs>
+
+						{/* Diagonal Striped Track Arc */}
 						<circle
-							cx="44"
-							cy="44"
+							cx="50"
+							cy="50"
 							r={radius}
 							fill="none"
-							stroke="var(--color-fill3)"
-							strokeWidth="14"
+							stroke={`url(#diagonal-stripes-${metric.id})`}
+							strokeWidth={strokeWidth}
+							strokeDasharray={`${stripeLength} ${circumference}`}
+							strokeDashoffset={0}
+							transform={`rotate(${stripeRotate} 50 50)`}
 						/>
+
+						{/* Colored Progress Arc */}
 						<circle
-							cx="44"
-							cy="44"
+							cx="50"
+							cy="50"
 							r={radius}
 							fill="none"
 							stroke={metric.ringColor}
-							strokeWidth="14"
-							strokeDasharray={`${strokeDash} ${circumference}`}
+							strokeWidth={strokeWidth}
+							strokeDasharray={`${colorLength} ${circumference}`}
 							strokeDashoffset={0}
+							transform={`rotate(${colorRotate} 50 50)`}
 						/>
 					</svg>
 				</div>

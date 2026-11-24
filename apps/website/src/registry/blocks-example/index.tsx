@@ -220,6 +220,72 @@ export const Index: Record<string, RegistryItem> = {
     ],
     component: React.lazy(() => import("@/registry/blocks-example/preview-12/page"))
   },
+  "preview-13": {
+    name: "preview-13",
+    type: "block",
+    files: [
+          {
+                "path": "registry/blocks-example/preview-13/components/dashboard-header.tsx",
+                "name": "dashboard-header.tsx",
+                "type": "components",
+                "target": ""
+          },
+          {
+                "path": "registry/blocks-example/preview-13/components/dashboard-sidebar.tsx",
+                "name": "dashboard-sidebar.tsx",
+                "type": "components",
+                "target": ""
+          },
+          {
+                "path": "registry/blocks-example/preview-13/components/data.ts",
+                "name": "data.ts",
+                "type": "components",
+                "target": ""
+          },
+          {
+                "path": "registry/blocks-example/preview-13/components/recent-transactions-table.tsx",
+                "name": "recent-transactions-table.tsx",
+                "type": "components",
+                "target": ""
+          },
+          {
+                "path": "registry/blocks-example/preview-13/components/revenue-breakdown-card.tsx",
+                "name": "revenue-breakdown-card.tsx",
+                "type": "components",
+                "target": ""
+          },
+          {
+                "path": "registry/blocks-example/preview-13/components/sales-trend-chart.tsx",
+                "name": "sales-trend-chart.tsx",
+                "type": "components",
+                "target": ""
+          },
+          {
+                "path": "registry/blocks-example/preview-13/components/stat-metrics.tsx",
+                "name": "stat-metrics.tsx",
+                "type": "components",
+                "target": ""
+          },
+          {
+                "path": "registry/blocks-example/preview-13/components/types.ts",
+                "name": "types.ts",
+                "type": "components",
+                "target": ""
+          },
+          {
+                "path": "registry/blocks-example/preview-13/components/welcome-header.tsx",
+                "name": "welcome-header.tsx",
+                "type": "components",
+                "target": ""
+          },
+          {
+                "path": "registry/blocks-example/preview-13/page.tsx",
+                "name": "page.tsx",
+                "type": "page"
+          }
+    ],
+    component: React.lazy(() => import("@/registry/blocks-example/preview-13/page"))
+  },
   "reset-email": {
     name: "reset-email",
     type: "block",

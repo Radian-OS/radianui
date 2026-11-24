@@ -13,6 +13,7 @@ interface PagePickerProps {
 }
 
 const PREVIEW_PAGES = [
+	{ id: "preview-13", label: "Preview 13: Spark Pixel Analytics Dashboard" },
 	{ id: "preview-12", label: "Preview 12: Home Care Operations Dashboard" },
 	{ id: "preview-11", label: "Preview 11: Compliance & SLA Dashboard" },
 	{ id: "preview-10", label: "Preview 10: AI Chat Interface" },
