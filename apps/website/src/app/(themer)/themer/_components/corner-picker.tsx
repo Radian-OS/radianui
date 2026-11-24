@@ -3,8 +3,8 @@
 import { useThemerPickerPlacement } from "./themer-picker-placement"
 import { useEffect, useState } from "react"
 import { useDebouncedCallback } from "use-debounce"
-import { Info, Shuffle } from "lucide-react"
-import { Button } from "@/styles/default/ui/button"
+import { Check, ChevronLeft, Info, RotateCcw, Shuffle } from "lucide-react"
+import { Button, IconButton } from "@/styles/default/ui/button"
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -13,6 +13,8 @@ import {
 	DropdownMenuRadioItem,
 	DropdownMenuTrigger,
 } from "@/styles/default/ui/dropdown-menu"
+import { DrawerTitle } from "@/styles/default/ui/drawer"
+import { ScrollArea } from "@/styles/default/ui/scroll-area"
 import { Slider, SliderThumb } from "@/styles/default/ui/slider"
 import { RADIUS } from "@/registry/radius"
 import { useThemerPreset } from "@/lib/themer-preset"
@@ -46,14 +48,16 @@ function RadiusSlider({
 	steps,
 	value,
 	onChange,
+	mobile,
 }: {
 	label: string
 	tooltipContent: string
 	steps: readonly number[]
 	value: number
 	onChange: (val: number) => void
+	mobile?: boolean
 }) {
-	const idx = Math.max(0, steps.indexOf(value as any))
+	const idx = Math.max(0, steps.indexOf(value))
 	const [localIdx, setLocalIdx] = useState(idx)
 
 	useEffect(() => {
@@ -68,7 +72,9 @@ function RadiusSlider({
 	}
 
 	return (
-		<div className="flex flex-col gap-2">
+		<div
+			className={cn("flex flex-col gap-2", mobile && "px-1 py-1.5")}
+			data-vaul-no-drag={mobile || undefined}>
 			<div className="text-fg flex items-center gap-1.5 text-xs">
 				<span>{label}</span>
 				<Tooltip>
@@ -85,7 +91,8 @@ function RadiusSlider({
 				max={steps.length - 1}
 				step={1}
 				value={[localIdx]}
-				onValueChange={([i]) => handleChange(i)}>
+				onValueChange={([i]) => handleChange(i)}
+				onValueCommit={() => debouncedOnChange.flush()}>
 				<SliderThumb />
 			</Slider>
 			<div className="text-fg-tertiary flex justify-between px-1 text-xs">
@@ -107,17 +114,23 @@ function RadiusSlider({
 	)
 }
 
-export default function CornerPicker() {
+export default function CornerPicker({ onBack }: { onBack?: () => void }) {
 	const placement = useThemerPickerPlacement("start", 12)
 	const [params, setParams] = useThemerPreset()
-	const [isAdvanced, setIsAdvanced] = useState(false)
+	const [advancedSelected, setIsAdvanced] = useState(false)
+	const isAdvanced =
+		advancedSelected ||
+		(params.radius ?? "default") !== (params.controlRadius ?? "default") ||
+		!RADIUS.some((preset) => preset.value === (params.radius ?? "default"))
+	const [showAdvanced, setShowAdvanced] = useState(false)
 
 	const selectedPreset = isAdvanced
 		? undefined
 		: RADIUS.find((r) => r.value === params.radius)
 
-	const handleShuffle = () => {
-		if (isAdvanced) {
+	const handleShuffle = (advanced = isAdvanced) => {
+		setIsAdvanced(advanced)
+		if (advanced) {
 			setParams({
 				controlRadius: toCss(SMALL[Math.floor(Math.random() * SMALL.length)]),
 				radius: toCss(CONTAINER[Math.floor(Math.random() * CONTAINER.length)]),
@@ -126,6 +139,116 @@ export default function CornerPicker() {
 			const r = RADIUS[Math.floor(Math.random() * RADIUS.length)].value
 			setParams({ radius: r, controlRadius: r })
 		}
+	}
+
+	const selectPreset = (value: string) => {
+		setIsAdvanced(value === "advanced")
+		if (value !== "advanced") setParams({ radius: value, controlRadius: value })
+	}
+	const sliders = (
+		<>
+			<RadiusSlider
+				label={onBack ? "Small contents" : "Controls"}
+				mobile={Boolean(onBack)}
+				tooltipContent="Changes the radius of controls like Button, Input, and Checkbox."
+				steps={SMALL}
+				value={toPxNumber(params.controlRadius, true)}
+				onChange={(v) => setParams({ controlRadius: toCss(v) })}
+			/>
+			<RadiusSlider
+				label={onBack ? "Bigger containers" : "Containers"}
+				mobile={Boolean(onBack)}
+				tooltipContent="Changes the radius of containers like Card, Dropdown, and Dialog."
+				steps={CONTAINER}
+				value={toPxNumber(params.radius, false)}
+				onChange={(v) => setParams({ radius: toCss(v) })}
+			/>
+		</>
+	)
+
+	if (onBack) {
+		return (
+			<div className="flex min-h-0 flex-col gap-2 px-3 pb-[max(12px,env(safe-area-inset-bottom))]">
+				<div className="flex shrink-0 touch-none items-center justify-between">
+					<div className="flex items-center gap-2">
+						<IconButton
+							size="xs"
+							variant="ghost"
+							color="neutral"
+							className="text-fg-secondary"
+							aria-label={
+								showAdvanced
+									? "Back to radius presets"
+									: "Close radius settings"
+							}
+							onClick={showAdvanced ? () => setShowAdvanced(false) : onBack}>
+							<ChevronLeft />
+						</IconButton>
+						<DrawerTitle className="text-fg text-base font-medium">
+							{showAdvanced ? "Advanced" : "Radius"}
+						</DrawerTitle>
+					</div>
+					<div className="flex items-center gap-2">
+						<IconButton
+							size="md"
+							variant="ghost"
+							color="neutral"
+							className="text-fg-secondary"
+							aria-label="Reset radius"
+							onClick={() => {
+								setParams({ radius: "default", controlRadius: "default" })
+								setIsAdvanced(showAdvanced)
+							}}>
+							<RotateCcw />
+						</IconButton>
+						<IconButton
+							size="md"
+							variant="ghost"
+							color="neutral"
+							className="text-fg-secondary"
+							aria-label="Randomize radius"
+							onClick={() => handleShuffle(showAdvanced)}>
+							<Shuffle />
+						</IconButton>
+					</div>
+				</div>
+				<ScrollArea
+					type="auto"
+					className="[&>[data-slot=scroll-area-viewport]]:max-h-[calc(85dvh-6rem)] [&>[data-slot=scroll-area-viewport]]:overscroll-y-contain">
+					{showAdvanced ? (
+						<div className="flex flex-col gap-1">{sliders}</div>
+					) : (
+						<div className="flex flex-col gap-0.5">
+							{[...RADIUS, { value: "advanced", name: "Advanced" }].map(
+								({ value, name }) => {
+									const selected =
+										value === (isAdvanced ? "advanced" : params.radius)
+									return (
+										<Button
+											key={value}
+											size="sm"
+											variant="ghost"
+											color="neutral"
+											className={cn(
+												"w-full justify-between px-2 text-sm font-normal",
+												selected && "bg-fill1-alpha"
+											)}
+											aria-pressed={selected}
+											onClick={() => {
+												selectPreset(value)
+												setShowAdvanced(value === "advanced")
+											}}>
+											{name}
+											{selected && <Check className="text-fg-tertiary" />}
+										</Button>
+									)
+								}
+							)}
+						</div>
+					)}
+				</ScrollArea>
+			</div>
+		)
 	}
 
 	return (
@@ -151,7 +274,7 @@ export default function CornerPicker() {
 					</DropdownMenuLabel>
 					<button
 						type="button"
-						onClick={handleShuffle}
+						onClick={() => handleShuffle()}
 						className="text-fg-tertiary hover:text-fg cursor-pointer rounded p-1 transition-colors"
 						aria-label="Randomize radius">
 						<Shuffle className="size-4" />
@@ -160,14 +283,7 @@ export default function CornerPicker() {
 
 				<DropdownMenuRadioGroup
 					value={isAdvanced ? "advanced" : params.radius}
-					onValueChange={(val) => {
-						if (val === "advanced") {
-							setIsAdvanced(true)
-						} else {
-							setIsAdvanced(false)
-							setParams({ radius: val, controlRadius: val })
-						}
-					}}>
+					onValueChange={selectPreset}>
 					{RADIUS.map((r) => (
 						<DropdownMenuRadioItem
 							key={r.value}
@@ -189,20 +305,7 @@ export default function CornerPicker() {
 					<div
 						className="mt-3 flex flex-col gap-4"
 						onKeyDown={(e) => e.stopPropagation()}>
-						<RadiusSlider
-							label="Controls"
-							tooltipContent="Changes the radius of controls like Button, Input, and Checkbox."
-							steps={SMALL}
-							value={toPxNumber(params.controlRadius, true)}
-							onChange={(v) => setParams({ controlRadius: toCss(v) })}
-						/>
-						<RadiusSlider
-							label="Containers"
-							tooltipContent="Changes the radius of containers like Card, Dropdown, and Dialog."
-							steps={CONTAINER}
-							value={toPxNumber(params.radius, false)}
-							onChange={(v) => setParams({ radius: toCss(v) })}
-						/>
+						{sliders}
 					</div>
 				)}
 			</DropdownMenuContent>

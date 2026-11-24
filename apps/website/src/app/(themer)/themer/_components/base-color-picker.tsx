@@ -1,8 +1,11 @@
 "use client"
 
-import { useThemerPickerPlacement } from "./themer-picker-placement"
+import {
+	ThemerDrawerContext,
+	useThemerPickerPlacement,
+} from "./themer-picker-placement"
 import * as React from "react"
-import { Check, Info, Shuffle } from "lucide-react"
+import { Check, ChevronLeft, Info, Shuffle } from "lucide-react"
 import {
 	Popover,
 	PopoverContent,
@@ -13,7 +16,16 @@ import {
 	TooltipContent,
 	TooltipTrigger,
 } from "@/styles/default/ui/tooltip"
-import { Button } from "@/styles/default/ui/button"
+import { Button, IconButton } from "@/styles/default/ui/button"
+import {
+	Drawer,
+	DrawerContent,
+	DrawerDescription,
+	DrawerTitle,
+	DrawerTrigger,
+} from "@/styles/default/ui/drawer"
+import { ScrollArea } from "@/styles/default/ui/scroll-area"
+import { cn } from "@/lib/utils"
 import { Badge } from "@/styles/default/ui/badge"
 import { BaseColorValue } from "@/registry/base-colors"
 import { PRIMARY_COLORS } from "@/registry/primary-colors"
@@ -98,6 +110,7 @@ export default function BaseColorPicker({
 	primaryColor,
 	onBaseColorChange,
 }: BaseColorPickerProps) {
+	const inDrawer = React.useContext(ThemerDrawerContext)
 	const placement = useThemerPickerPlacement("start", 16)
 	const [open, setOpen] = React.useState(false)
 
@@ -197,129 +210,195 @@ export default function BaseColorPicker({
 		},
 	]
 
+	const trigger = (
+		<button
+			type="button"
+			className="bg-fill2 hover:bg-fill3/60 focus-visible:ring-primary flex w-full cursor-pointer flex-col gap-3 rounded-lg p-2.5 text-left transition-colors outline-none select-none focus-visible:ring-2">
+			<div className="flex w-full justify-between text-xs">
+				<span className="text-fg font-medium">{displayName}</span>
+				<div className="flex items-center gap-1.5">
+					<span className="text-fg-tertiary font-normal">
+						{mode === "auto" ? "Tinted by primary" : "Manual preset"}
+					</span>
+					<Tooltip>
+						<TooltipTrigger asChild>
+							<span
+								onClick={(e) => e.stopPropagation()}
+								className="text-fg-tertiary hover:text-fg cursor-help p-0.5 transition-colors">
+								<Info className="size-3.5" />
+							</span>
+						</TooltipTrigger>
+						<TooltipContent withArrow>Change neutral base color</TooltipContent>
+					</Tooltip>
+				</div>
+			</div>
+			<div className="flex h-4 w-full gap-0.5 overflow-hidden rounded-sm">
+				{currentSwatches.map((color, idx) => (
+					<div
+						key={idx}
+						className="flex-1 transition-colors duration-200"
+						style={{ backgroundColor: color }}
+					/>
+				))}
+			</div>
+		</button>
+	)
+	const presets = (
+		<>
+			{/* Header */}
+			<div
+				className={cn(
+					"flex items-center justify-between",
+					inDrawer ? "touch-none" : "px-1 py-1.5"
+				)}>
+				{inDrawer ? (
+					<div className="flex items-center gap-2">
+						<IconButton
+							size="xs"
+							variant="ghost"
+							color="neutral"
+							aria-label="Back to neutral base"
+							onClick={() => setOpen(false)}>
+							<ChevronLeft />
+						</IconButton>
+						<DrawerTitle className="text-fg text-base font-medium">
+							Preset
+						</DrawerTitle>
+						<DrawerDescription className="sr-only">
+							Choose a neutral base color.
+						</DrawerDescription>
+					</div>
+				) : (
+					<span className="text-fg-secondary text-[13px] font-medium">
+						Preset
+					</span>
+				)}
+				<div className="flex items-center gap-1">
+					<Tooltip>
+						<TooltipTrigger asChild>
+							<IconButton
+								size={inDrawer ? "md" : "xs"}
+								variant="ghost"
+								color="neutral"
+								className={
+									inDrawer
+										? "text-fg-secondary"
+										: "text-fg-tertiary size-6 p-1 [&>svg]:size-4"
+								}
+								aria-label="Preset information">
+								<Info className="size-4" />
+							</IconButton>
+						</TooltipTrigger>
+						<TooltipContent withArrow>
+							Neutral base colors define the surface, border, and text scale
+						</TooltipContent>
+					</Tooltip>
+					<Tooltip>
+						<TooltipTrigger asChild>
+							<IconButton
+								size={inDrawer ? "md" : "xs"}
+								variant="ghost"
+								color="neutral"
+								onClick={handleShuffle}
+								className={
+									inDrawer
+										? "text-fg-secondary"
+										: "text-fg-tertiary size-6 p-1 [&>svg]:size-4"
+								}
+								aria-label="Cycle preset">
+								<Shuffle className="size-4" />
+							</IconButton>
+						</TooltipTrigger>
+						<TooltipContent withArrow>Cycle preset</TooltipContent>
+					</Tooltip>
+				</div>
+			</div>
+
+			{/* Preset list */}
+			<div className="flex flex-col gap-0.5">
+				{options.map((opt) => (
+					<button
+						key={opt.id}
+						type="button"
+						onClick={opt.onSelect}
+						aria-pressed={opt.isSelected}
+						className="hover:bg-fill2 flex w-full items-center justify-between rounded-lg px-2 py-2 text-left transition-colors">
+						<div className="flex items-center gap-2.5">
+							<div className="flex shrink-0 items-center -space-x-1.5">
+								{opt.dots.map((c, i) => (
+									<div
+										key={i}
+										className="size-3.5 rounded-full shadow-2xs"
+										style={{ backgroundColor: c }}
+									/>
+								))}
+							</div>
+							<span className="text-fg text-xs font-medium">{opt.label}</span>
+						</div>
+						<div className="flex items-center gap-2">
+							{opt.badge && (
+								<Badge
+									size="sm"
+									color="neutral"
+									variant="soft"
+									className="h-4.5 px-1.5 py-0 text-[10px] font-medium">
+									{opt.badge}
+								</Badge>
+							)}
+							{opt.isSelected && <Check className="text-fg size-4 shrink-0" />}
+						</div>
+					</button>
+				))}
+			</div>
+
+			{inDrawer && <div className="border-soft-alpha -mx-3 mt-2 border-t" />}
+			<Button
+				variant="outline"
+				size="sm"
+				color="neutral"
+				disabled={inDrawer}
+				className={cn(
+					"w-full text-xs font-medium",
+					inDrawer ? "mt-3" : "mt-2"
+				)}>
+				Custom
+			</Button>
+		</>
+	)
+
+	if (inDrawer) {
+		return (
+			<Drawer
+				nested
+				open={open}
+				onOpenChange={setOpen}
+				direction="bottom"
+				variant="rounded"
+				handle
+				scrollLockTimeout={0}>
+				<DrawerTrigger asChild>{trigger}</DrawerTrigger>
+				<DrawerContent className="max-h-[85dvh] gap-0 rounded-b-none p-0 pt-7 after:hidden!">
+					<ScrollArea
+						type="auto"
+						className="min-h-0 [&>[data-slot=scroll-area-viewport]]:max-h-[calc(85dvh-28px)]">
+						<div className="px-3 pb-[max(12px,env(safe-area-inset-bottom))]">
+							{presets}
+						</div>
+					</ScrollArea>
+				</DrawerContent>
+			</Drawer>
+		)
+	}
+
 	return (
 		<Popover open={open} onOpenChange={setOpen}>
-			<PopoverTrigger asChild>
-				<button
-					type="button"
-					className="bg-fill2 hover:bg-fill3/60 focus-visible:ring-primary flex w-full cursor-pointer flex-col gap-3 rounded-lg p-2.5 text-left transition-colors outline-none select-none focus-visible:ring-2">
-					<div className="flex w-full justify-between text-xs">
-						<span className="text-fg font-medium">{displayName}</span>
-						<div className="flex items-center gap-1.5">
-							<span className="text-fg-tertiary font-normal">
-								{mode === "auto" ? "Tinted by primary" : "Manual preset"}
-							</span>
-							<Tooltip>
-								<TooltipTrigger asChild>
-									<span
-										onClick={(e) => e.stopPropagation()}
-										className="text-fg-tertiary hover:text-fg cursor-help p-0.5 transition-colors">
-										<Info className="size-3.5" />
-									</span>
-								</TooltipTrigger>
-								<TooltipContent withArrow>
-									Change neutral base color
-								</TooltipContent>
-							</Tooltip>
-						</div>
-					</div>
-					<div className="flex h-4 w-full gap-0.5 overflow-hidden rounded-sm">
-						{currentSwatches.map((color, idx) => (
-							<div
-								key={idx}
-								className="flex-1 transition-colors duration-200"
-								style={{ backgroundColor: color }}
-							/>
-						))}
-					</div>
-				</button>
-			</PopoverTrigger>
-
+			<PopoverTrigger asChild>{trigger}</PopoverTrigger>
 			<PopoverContent
 				{...placement}
 				collisionPadding={16}
 				onOpenAutoFocus={(e) => e.preventDefault()}
 				className="w-[280px] rounded-lg px-2.5 py-1.5 shadow-sm select-none">
-				{/* Header */}
-				<div className="flex items-center justify-between px-1 py-1.5">
-					<span className="text-fg-secondary text-[13px] font-medium">
-						Preset
-					</span>
-					<div className="flex items-center gap-1">
-						<Tooltip>
-							<TooltipTrigger asChild>
-								<button
-									type="button"
-									className="text-fg-tertiary hover:text-fg rounded-md p-1 transition-colors"
-									aria-label="Preset information">
-									<Info className="size-4" />
-								</button>
-							</TooltipTrigger>
-							<TooltipContent withArrow>
-								Neutral base colors define the surface, border, and text scale
-							</TooltipContent>
-						</Tooltip>
-						<Tooltip>
-							<TooltipTrigger asChild>
-								<button
-									type="button"
-									onClick={handleShuffle}
-									className="text-fg-tertiary hover:text-fg rounded-md p-1 transition-colors"
-									aria-label="Cycle preset">
-									<Shuffle className="size-4" />
-								</button>
-							</TooltipTrigger>
-							<TooltipContent withArrow>Cycle preset</TooltipContent>
-						</Tooltip>
-					</div>
-				</div>
-
-				{/* Preset list */}
-				<div className="flex flex-col gap-0.5">
-					{options.map((opt) => (
-						<button
-							key={opt.id}
-							type="button"
-							onClick={opt.onSelect}
-							className="hover:bg-fill2 flex w-full items-center justify-between rounded-lg px-2 py-2 text-left transition-colors">
-							<div className="flex items-center gap-2.5">
-								<div className="flex shrink-0 items-center -space-x-1.5">
-									{opt.dots.map((c, i) => (
-										<div
-											key={i}
-											className="size-3.5 rounded-full shadow-2xs"
-											style={{ backgroundColor: c }}
-										/>
-									))}
-								</div>
-								<span className="text-fg text-xs font-medium">{opt.label}</span>
-							</div>
-							<div className="flex items-center gap-2">
-								{opt.badge && (
-									<Badge
-										size="sm"
-										color="neutral"
-										variant="soft"
-										className="h-4.5 px-1.5 py-0 text-[10px] font-medium">
-										{opt.badge}
-									</Badge>
-								)}
-								{opt.isSelected && (
-									<Check className="text-fg size-4 shrink-0" />
-								)}
-							</div>
-						</button>
-					))}
-				</div>
-
-				{/* Custom button */}
-				<Button
-					variant="outline"
-					size="sm"
-					color="neutral"
-					className="mt-2 w-full text-xs font-medium">
-					Custom
-				</Button>
+				{presets}
 			</PopoverContent>
 		</Popover>
 	)

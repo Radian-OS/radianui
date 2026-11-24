@@ -2,18 +2,24 @@
 
 import {
 	ChevronRight,
+	Component,
 	ChevronLeft,
 	Undo2,
+	RotateCcw,
 	Shuffle,
 	SwatchBook,
 	Layers2,
 	Palette,
-	Radius,
-	Scaling,
+	Spline,
+	FlipHorizontal2,
 	Star,
+	SunMoon,
 	Type,
 	X,
 } from "lucide-react"
+import CornerPicker from "./corner-picker"
+import AppearanceModePicker from "./appearance-mode-picker"
+import DensityPicker from "./density-picker"
 import { Button, IconButton } from "@/styles/default/ui/button"
 import {
 	Drawer,
@@ -22,6 +28,7 @@ import {
 	DrawerDescription,
 	DrawerTitle,
 } from "@/registry/ui/drawer"
+import { Divider } from "@/styles/default/ui/divider"
 import { ScrollArea } from "@/styles/default/ui/scroll-area"
 import { cn } from "@/lib/utils"
 import {
@@ -31,6 +38,7 @@ import {
 import { ThemerDrawerContext } from "./themer-picker-placement"
 import { ThemerSettings } from "./themer-sidebar"
 
+import { ThemerMobileComponents } from "./themer-mobile-components"
 import { ThemerMobilePresets } from "./themer-mobile-presets"
 
 const shortcuts = [
@@ -43,10 +51,22 @@ const shortcuts = [
 		icon: Layers2,
 	},
 	{ section: "fonts", label: "Fonts", title: "Fonts", icon: Type },
-	{ section: "radius", label: "Radius", title: "Radius", icon: Radius },
-	{ section: "spacing", label: "Spacing", title: "Spacing", icon: Scaling },
+	{ section: "radius", label: "Radius", title: "Radius", icon: Spline },
+	{
+		section: "spacing",
+		label: "Spacing",
+		title: "Spacing",
+		icon: FlipHorizontal2,
+	},
+	{ section: "appearance", label: "Mode", title: "Mode", icon: SunMoon },
+	{
+		section: "components",
+		label: "UI Bits",
+		title: "UI Bits",
+		icon: Component,
+	},
 ] as const satisfies readonly {
-	section: FundamentalsSection
+	section: FundamentalsSection | "components"
 	label: string
 	title: string
 	icon: typeof Star
@@ -56,6 +76,14 @@ export type MobileThemerShortcut = (typeof shortcuts)[number]["section"]
 export type MobileThemerPanel = MobileThemerShortcut | "settings"
 
 export const MOBILE_THEMER_DRAWER_ID = "themer-settings-drawer"
+
+const shortcutButtonClass =
+	"text-fg-secondary h-auto min-w-0 flex-1 flex-col gap-0.5 rounded-2xl! px-[11px] py-2.5 text-xs leading-tight font-medium"
+
+const shortcutActions = [
+	{ label: "Shuffle", icon: Shuffle },
+	{ label: "Reset", icon: RotateCcw },
+] as const
 
 export function ThemerMobileShortcuts({
 	selectedShortcut,
@@ -67,35 +95,57 @@ export function ThemerMobileShortcuts({
 	onSelect: (panel: MobileThemerShortcut, trigger: HTMLButtonElement) => void
 }) {
 	return (
-		<div
-			role="group"
-			aria-label="Themer shortcuts"
-			className="bg-bg grid shrink-0 grid-cols-6 gap-1 px-2 pt-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] sm:hidden">
-			{shortcuts.map(({ section, label, icon: Icon }) => {
-				const expanded = openPanel === section
-				const active = selectedShortcut === section
+		<ScrollArea
+			orientation="horizontal"
+			type="auto"
+			data-vaul-no-drag
+			className="bg-bg w-full min-w-0 shrink-0 sm:hidden [&>[data-slot=scroll-area-scrollbar]]:h-1 [&>[data-slot=scroll-area-viewport]]:touch-pan-x [&>[data-slot=scroll-area-viewport]]:overscroll-x-contain">
+			<div
+				role="group"
+				aria-label="Themer shortcuts"
+				className="flex min-w-max gap-1 px-2 pt-2 pb-[max(0.5rem,env(safe-area-inset-bottom))]">
+				{shortcuts.map(({ section, label, icon: Icon }) => {
+					const expanded = openPanel === section
+					const active = selectedShortcut === section
 
-				return (
+					return (
+						<Button
+							key={section}
+							size="sm"
+							variant="ghost"
+							color="neutral"
+							aria-haspopup="dialog"
+							aria-current={active || undefined}
+							aria-expanded={expanded}
+							aria-controls={expanded ? MOBILE_THEMER_DRAWER_ID : undefined}
+							className={cn(
+								shortcutButtonClass,
+								active && "bg-fill1-alpha hover:bg-fill1-alpha"
+							)}
+							onClick={(event) => onSelect(section, event.currentTarget)}>
+							<Icon aria-hidden="true" />
+							{label}
+						</Button>
+					)
+				})}
+				<Divider
+					orientation="vertical"
+					className="bg-alpha mx-1 self-center data-[orientation=vertical]:h-8"
+				/>
+				{shortcutActions.map(({ label, icon: Icon }) => (
 					<Button
-						key={section}
+						key={label}
 						size="sm"
 						variant="ghost"
 						color="neutral"
-						aria-haspopup="dialog"
-						aria-current={active || undefined}
-						aria-expanded={expanded}
-						aria-controls={expanded ? MOBILE_THEMER_DRAWER_ID : undefined}
-						className={cn(
-							"text-fg-secondary h-auto w-full min-w-0 flex-col gap-0.5 rounded-2xl! px-[11px] py-2.5 text-xs leading-tight font-medium",
-							active && "bg-fill1-alpha hover:bg-fill1-alpha"
-						)}
-						onClick={(event) => onSelect(section, event.currentTarget)}>
+						className={shortcutButtonClass}
+						disabled>
 						<Icon aria-hidden="true" />
 						{label}
 					</Button>
-				)
-			})}
-		</div>
+				))}
+			</div>
+		</ScrollArea>
 	)
 }
 
@@ -105,12 +155,17 @@ export function ThemerMobileDrawer({
 	onOpenChange,
 	onCloseAutoFocus,
 	onOpenAllSettings,
+	onSelectShortcut,
 }: {
 	panel: MobileThemerPanel
 	open: boolean
 	onOpenChange: (open: boolean) => void
 	onCloseAutoFocus: (event: Event) => void
 	onOpenAllSettings: () => void
+	onSelectShortcut: (
+		panel: MobileThemerShortcut,
+		trigger: HTMLButtonElement
+	) => void
 }) {
 	const allSettings = panel === "settings"
 	const title =
@@ -130,9 +185,11 @@ export function ThemerMobileDrawer({
 				onCloseAutoFocus={onCloseAutoFocus}
 				className={cn(
 					"max-h-[85dvh] gap-0 rounded-b-none p-0 pt-7 before:pointer-events-none before:absolute before:top-full before:h-px before:w-px before:content-[''] after:hidden! sm:hidden",
-					allSettings && "h-[min(85dvh,42rem)]"
+					(allSettings || panel === "components") && "h-[min(85dvh,42rem)]"
 				)}>
-				{panel === "preset" || panel === "color" ? (
+				{panel === "components" ? (
+					<ThemerMobileComponents />
+				) : panel === "preset" || panel === "color" ? (
 					<ScrollArea
 						type="auto"
 						className="min-h-0 [&_[data-slot=scroll-area-viewport]]:max-h-[calc(85dvh-28px)] [&_[data-slot=scroll-area-viewport]]:overflow-y-auto!">
@@ -196,6 +253,47 @@ export function ThemerMobileDrawer({
 							</ThemerDrawerContext>
 						)}
 					</ScrollArea>
+				) : panel === "appearance" ? (
+					<>
+						<DrawerDescription className="sr-only">
+							Choose the default appearance mode for your theme.
+						</DrawerDescription>
+						<AppearanceModePicker onBack={() => onOpenChange(false)} />
+					</>
+				) : panel === "spacing" ? (
+					<>
+						<DrawerDescription className="sr-only">
+							Choose the spacing scale for your theme.
+						</DrawerDescription>
+						<DensityPicker onBack={() => onOpenChange(false)} />
+					</>
+				) : panel === "radius" ? (
+					<>
+						<DrawerDescription className="sr-only">
+							Choose a corner radius preset or adjust controls and containers
+							individually.
+						</DrawerDescription>
+						<CornerPicker onBack={() => onOpenChange(false)} />
+					</>
+				) : panel === "neutral" || panel === "fonts" ? (
+					<>
+						<DrawerTitle className="sr-only">
+							{panel === "fonts" ? "Typography" : "Neutral Base"}
+						</DrawerTitle>
+						<DrawerDescription className="sr-only">
+							Customize your theme and preview the changes.
+						</DrawerDescription>
+						<ThemerDrawerContext value={true}>
+							<div className="px-3 pb-2">
+								<ThemerFundamentals section={panel} />
+							</div>
+						</ThemerDrawerContext>
+						<ThemerMobileShortcuts
+							selectedShortcut={panel}
+							openPanel={panel}
+							onSelect={onSelectShortcut}
+						/>
+					</>
 				) : (
 					<>
 						<div className="border-border flex h-11 shrink-0 touch-none items-center justify-between gap-2 border-b px-4">

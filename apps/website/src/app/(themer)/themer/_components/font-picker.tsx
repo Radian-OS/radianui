@@ -18,10 +18,19 @@ import {
 } from "@/styles/default/ui/popover"
 import { ScrollArea } from "@/styles/default/ui/scroll-area"
 import { CommandInput as CmdkInput } from "cmdk"
-import { Check, ChevronDown, Search } from "lucide-react"
+import {
+	Check,
+	ChevronDown,
+	ChevronLeft,
+	ListFilter,
+	RotateCcw,
+	Search,
+	Shuffle,
+	X,
+} from "lucide-react"
 import { FONTS } from "@/registry/fonts"
 import { useVirtualizer } from "@tanstack/react-virtual"
-import { Button } from "@/styles/default/ui/button"
+import { Button, IconButton } from "@/styles/default/ui/button"
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -29,6 +38,14 @@ import {
 	DropdownMenuRadioItem,
 	DropdownMenuTrigger,
 } from "@/styles/default/ui/dropdown-menu"
+import {
+	Drawer,
+	DrawerContent,
+	DrawerDescription,
+	DrawerTitle,
+	DrawerTrigger,
+} from "@/styles/default/ui/drawer"
+import { DEFAULT_CONFIG } from "@/registry/config"
 import { cn } from "@/lib/utils"
 
 const loaded = new Set<string>()
@@ -95,8 +112,9 @@ function FontCard({
 	icon: React.ReactNode
 	value: string
 	onValueChange: (value: string) => void
-	ref?: React.Ref<HTMLDivElement>
-} & React.HTMLAttributes<HTMLDivElement>) {
+	ref?: React.Ref<HTMLButtonElement>
+} & Omit<React.ComponentPropsWithoutRef<"button">, "type" | "color">) {
+	const inDrawer = React.useContext(ThemerDrawerContext)
 	const selectedFont = React.useMemo(
 		() => FONTS.find((f) => f.value === value || f.name === fontName),
 		[value, fontName]
@@ -110,12 +128,30 @@ function FontCard({
 	}, [selectedFont, fontName])
 
 	return (
-		<div ref={ref} className="flex flex-col gap-1 select-none" {...props}>
-			<div className="bg-fill1-alpha hover:bg-fill2 flex cursor-pointer flex-col gap-8 rounded-[10px] p-3 transition-colors">
+		<Button
+			ref={ref}
+			type="button"
+			variant="ghost"
+			color="neutral"
+			className="block h-auto w-full min-w-0 rounded-[10px] p-0 text-left whitespace-normal select-none"
+			{...props}>
+			<div
+				className={cn(
+					"bg-fill1-alpha hover:bg-fill2 flex cursor-pointer flex-col rounded-[10px] p-3 transition-colors",
+					inDrawer ? "gap-5" : "gap-8"
+				)}>
 				<span className="text-fg-secondary text-[13px]">{label}</span>
-				<div className="flex flex-col gap-3.5">
+				<div
+					className={cn(
+						"flex min-w-0 flex-col",
+						inDrawer ? "gap-1.5" : "gap-3.5"
+					)}>
 					<span
-						className={`text-xl font-medium ${fontClass}`}
+						className={cn(
+							"truncate font-medium",
+							inDrawer ? "text-base" : "text-xl",
+							fontClass
+						)}
 						style={{
 							fontFamily: `"preview-${selectedFont?.name || fontName}", ${selectedFont?.font.family || "sans-serif"}`,
 						}}>
@@ -129,7 +165,7 @@ function FontCard({
 					</div>
 				</div>
 			</div>
-		</div>
+		</Button>
 	)
 }
 
@@ -142,29 +178,62 @@ const CATEGORY_LABELS: Record<string, string> = {
 	handwriting: "Handwriting",
 }
 
+const POPULAR_FONTS = [
+	"inter",
+	"manrope",
+	"outfit",
+	"poppins",
+	"playfair-display",
+]
+
 function FontList({
 	value,
 	onValueChange,
+	label,
+	onBack,
 }: {
 	value: string
 	onValueChange: (value: string) => void
+	label: string
+	onBack?: () => void
 }) {
 	const [search, setSearch] = React.useState("")
 	const [category, setCategory] = React.useState("all")
+	const [searchOpen, setSearchOpen] = React.useState(false)
 	const ref = useRef<HTMLDivElement>(null)
 	const inDrawer = React.useContext(ThemerDrawerContext)
 
 	const filteredFonts = React.useMemo(() => {
 		const lower = search.toLowerCase()
-		return FONTS.filter(
+		const matches = FONTS.filter(
 			(f) =>
 				f.name.toLowerCase().includes(lower) &&
 				(category === "all" || f.category === category)
 		)
-	}, [search, category])
+		if (!inDrawer || lower || category !== "all") return matches
+		return [
+			...POPULAR_FONTS.flatMap((value) =>
+				matches.filter((font) => font.value === value)
+			),
+			...matches.filter((font) => !POPULAR_FONTS.includes(font.value)),
+		]
+	}, [search, category, inDrawer])
+
+	const showPopular = inDrawer && !search && category === "all"
+	const fontRows = React.useMemo(
+		() =>
+			showPopular
+				? [
+						...filteredFonts.slice(0, POPULAR_FONTS.length),
+						null,
+						...filteredFonts.slice(POPULAR_FONTS.length),
+					]
+				: filteredFonts,
+		[filteredFonts, showPopular]
+	)
 
 	const virt = useVirtualizer({
-		count: filteredFonts.length,
+		count: fontRows.length,
 		getScrollElement: () =>
 			ref.current?.querySelector('[data-slot="scroll-area-viewport"]') ?? null,
 		estimateSize: () => 32,
@@ -174,46 +243,170 @@ function FontList({
 	const rows = virt.getVirtualItems()
 
 	React.useEffect(() => {
-		rows.forEach((row) => loadPreview(filteredFonts[row.index].name))
-	}, [rows, filteredFonts])
+		rows.forEach((row) => {
+			const font = fontRows[row.index]
+			if (font) loadPreview(font.name)
+		})
+	}, [rows, fontRows])
+
+	React.useEffect(() => {
+		if (inDrawer) virt.scrollToOffset(0)
+	}, [inDrawer, search, category, virt])
+
+	const categoryMenu = (
+		<DropdownMenu>
+			<DropdownMenuTrigger asChild>
+				{inDrawer ? (
+					<IconButton
+						size="md"
+						color="neutral"
+						variant="ghost"
+						className="text-fg-secondary"
+						aria-label="Filter font category">
+						<ListFilter />
+					</IconButton>
+				) : (
+					<Button
+						color="neutral"
+						variant="soft"
+						className="w-full justify-start">
+						Style: {CATEGORY_LABELS[category]}{" "}
+						<ChevronDown className="text-fg-tertiary ml-auto" />
+					</Button>
+				)}
+			</DropdownMenuTrigger>
+			<DropdownMenuContent className="min-w-[130px]" align="end">
+				<DropdownMenuRadioGroup value={category} onValueChange={setCategory}>
+					{Object.entries(CATEGORY_LABELS).map(([value, label]) => (
+						<DropdownMenuRadioItem key={value} value={value}>
+							{label}
+						</DropdownMenuRadioItem>
+					))}
+				</DropdownMenuRadioGroup>
+			</DropdownMenuContent>
+		</DropdownMenu>
+	)
 
 	return (
 		<Command className="border-0 p-0" shouldFilter={false}>
-			<CommandInput value={search} onValueChange={setSearch} />
-			<CommandGroup className="p-1.5">
-				<DropdownMenu>
-					<DropdownMenuTrigger asChild>
-						<Button
-							color="neutral"
-							variant="soft"
-							className="w-full justify-start">
-							Style: {CATEGORY_LABELS[category]}{" "}
-							<ChevronDown className="text-fg-tertiary ml-auto" />
-						</Button>
-					</DropdownMenuTrigger>
-					<DropdownMenuContent className="min-w-[130px]" align="end">
-						<DropdownMenuRadioGroup
-							value={category}
-							onValueChange={setCategory}>
-							{Object.entries(CATEGORY_LABELS).map(([value, label]) => (
-								<DropdownMenuRadioItem key={value} value={value}>
-									{label}
-								</DropdownMenuRadioItem>
-							))}
-						</DropdownMenuRadioGroup>
-					</DropdownMenuContent>
-				</DropdownMenu>
-			</CommandGroup>
-			<CommandDivider />
+			{inDrawer ? (
+				<>
+					<DrawerTitle className="sr-only">{label} font</DrawerTitle>
+					<DrawerDescription className="sr-only">
+						Choose a theme font.
+					</DrawerDescription>
+					{searchOpen ? (
+						<div className="border-border focus-within:border-primary focus-within:ring-primary-accent mx-3 flex items-center gap-2 rounded-lg border px-2.5 focus-within:ring-2">
+							<Search className="text-fg-tertiary size-5 shrink-0" />
+							<CmdkInput
+								autoFocus
+								aria-label="Search fonts"
+								placeholder="Search fonts"
+								value={search}
+								onValueChange={setSearch}
+								className="h-9 min-w-0 flex-1 bg-transparent text-sm outline-none"
+							/>
+							<IconButton
+								size="xs"
+								variant="ghost"
+								color="neutral"
+								aria-label="Close search"
+								onClick={() => {
+									setSearch("")
+									setSearchOpen(false)
+								}}>
+								<X />
+							</IconButton>
+						</div>
+					) : (
+						<div className="flex touch-none items-center justify-between gap-1 px-2">
+							<div className="flex min-w-0 items-center gap-2">
+								<IconButton
+									size="sm"
+									variant="ghost"
+									color="neutral"
+									className="text-fg-secondary"
+									aria-label="Back to typography"
+									onClick={onBack}>
+									<ChevronLeft />
+								</IconButton>
+								<span className="text-fg truncate text-base font-medium">
+									{label} font
+								</span>
+							</div>
+							<div className="flex shrink-0 items-center gap-1">
+								<IconButton
+									size="md"
+									variant="ghost"
+									color="neutral"
+									className="text-fg-secondary"
+									aria-label="Search fonts"
+									onClick={() => setSearchOpen(true)}>
+									<Search />
+								</IconButton>
+								<IconButton
+									size="md"
+									variant="ghost"
+									color="neutral"
+									className="text-fg-secondary"
+									aria-label="Reset font"
+									onClick={() =>
+										onValueChange(
+											label === "Heading"
+												? DEFAULT_CONFIG.headingFont
+												: DEFAULT_CONFIG.bodyFont
+										)
+									}>
+									<RotateCcw />
+								</IconButton>
+								{categoryMenu}
+								<IconButton
+									size="md"
+									variant="ghost"
+									color="neutral"
+									className="text-fg-secondary"
+									aria-label="Shuffle font"
+									onClick={() => {
+										const choices = filteredFonts.filter(
+											(font) => font.value !== value
+										)
+										const next =
+											choices[Math.floor(Math.random() * choices.length)]
+										if (next) onValueChange(next.value)
+									}}>
+									<Shuffle />
+								</IconButton>
+							</div>
+						</div>
+					)}
+				</>
+			) : (
+				<>
+					<CommandInput value={search} onValueChange={setSearch} />
+					<CommandGroup className="p-1.5">{categoryMenu}</CommandGroup>
+					<CommandDivider />
+				</>
+			)}
 			<CommandList className="max-h-none overflow-visible py-1.5">
+				{inDrawer && (
+					<div className="text-fg-tertiary px-3.5 pt-3 pb-2 text-xs font-medium">
+						{search
+							? `Results (${filteredFonts.length})`
+							: category === "all"
+								? "Popular"
+								: "Available fonts"}
+					</div>
+				)}
 				{filteredFonts.length === 0 && (
 					<CommandEmpty>No font found.</CommandEmpty>
 				)}
 				<ScrollArea
 					ref={ref}
+					type="auto"
+					data-vaul-no-drag={inDrawer || undefined}
 					className={
 						inDrawer
-							? "h-[min(25rem,max(8rem,calc(var(--radix-popover-content-available-height)-6rem)))]"
+							? "h-[min(15rem,calc(65dvh-7rem))] [&>[data-slot=scroll-area-viewport]]:touch-pan-y [&>[data-slot=scroll-area-viewport]]:overscroll-y-contain"
 							: "h-100"
 					}>
 					<div
@@ -223,10 +416,24 @@ function FontList({
 							position: "relative",
 						}}>
 						{rows.map((row) => {
-							const font = filteredFonts[row.index]
+							const font = fontRows[row.index]
+							if (!font)
+								return (
+									<div
+										key={row.key}
+										className="text-fg-tertiary absolute inset-x-0 top-0 px-3.5 pt-2 text-xs font-medium"
+										style={{ transform: `translateY(${row.start}px)` }}>
+										Available fonts
+									</div>
+								)
 							return (
 								<CommandItem
 									key={row.key}
+									className={
+										inDrawer && value === font.value
+											? "bg-fill1-alpha"
+											: undefined
+									}
 									value={font.name}
 									style={{
 										position: "absolute",
@@ -261,6 +468,8 @@ export default function FontPicker(
 	props: React.ComponentProps<typeof FontCard>
 ) {
 	const placement = useThemerPickerPlacement("start", 20)
+	const inDrawer = React.useContext(ThemerDrawerContext)
+	const [open, setOpen] = React.useState(false)
 
 	// Don't remove this
 	// Sequentially warm preview fonts in the background to prevent fallback font flicker (FOUT) while scrolling.
@@ -271,6 +480,31 @@ export default function FontPicker(
 		)
 	}, [])
 
+	if (inDrawer) {
+		return (
+			<Drawer
+				nested
+				open={open}
+				onOpenChange={setOpen}
+				direction="bottom"
+				variant="rounded"
+				handle
+				scrollLockTimeout={0}>
+				<DrawerTrigger asChild>
+					<FontCard {...props} />
+				</DrawerTrigger>
+				<DrawerContent className="max-h-[85dvh] gap-0 rounded-b-none p-0 pt-7 pb-[env(safe-area-inset-bottom)] after:hidden!">
+					<FontList
+						label={props.label}
+						value={props.value}
+						onValueChange={props.onValueChange}
+						onBack={() => setOpen(false)}
+					/>
+				</DrawerContent>
+			</Drawer>
+		)
+	}
+
 	return (
 		<Popover>
 			<PopoverTrigger asChild>
@@ -279,7 +513,11 @@ export default function FontPicker(
 			<PopoverContent
 				{...placement}
 				className="w-[300px] max-w-[calc(100vw-1.5rem)] rounded-lg p-0 shadow-sm">
-				<FontList value={props.value} onValueChange={props.onValueChange} />
+				<FontList
+					label={props.label}
+					value={props.value}
+					onValueChange={props.onValueChange}
+				/>
 			</PopoverContent>
 		</Popover>
 	)

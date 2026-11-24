@@ -1,6 +1,6 @@
 "use client"
 
-import { type ReactNode, useState } from "react"
+import { type ReactNode, useId, useState } from "react"
 import { CheckCircle2, ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Button as RegistryButton } from "@/registry/ui/button"
@@ -32,10 +32,12 @@ import {
 	PopoverTrigger,
 	PopoverContent,
 } from "@/styles/default/ui/popover"
+import { cn } from "@/lib/utils"
 import { ScrollArea } from "@/styles/default/ui/scroll-area"
 import { ComponentSettingsPopover } from "../components-settings-popover"
 import { ComponentPreview, type PreviewDimensions } from "./component-preview"
 import { useThemerPickerPlacement } from "../themer-picker-placement"
+import { MobileComponentSettings } from "./mobile-component-settings"
 import { PresetSlider } from "./preset-slider"
 
 const PRESET_NAMES = Object.keys(
@@ -88,6 +90,15 @@ function ButtonPreview({
 			</Button>
 		</ComponentPreview>
 	)
+}
+
+const BUTTON_SIZE_PIXELS: Record<ButtonSize, number> = {
+	xs: 28,
+	sm: 32,
+	md: 36,
+	lg: 40,
+	xl: 44,
+	"2xl": 48,
 }
 
 function VariantPicker() {
@@ -171,14 +182,19 @@ function VariantPicker() {
 export function ButtonSettings({
 	children,
 	group = false,
+	mobile = false,
 }: {
 	children: ReactNode
 	group?: boolean
+	mobile?: boolean
 }) {
 	const [params] = useThemerPreset()
 	const buttonConfig = params.components.Button
 	const size = buttonConfig?.size ?? DEFAULT_BUTTON_CONFIG.size
 	const [dimensions, setDimensions] = useState<PreviewDimensions>()
+	const variant = buttonConfig?.variant ?? DEFAULT_BUTTON_CONFIG.variant
+	const name = group ? "Button Group" : "Buttons"
+	const sizeId = useId()
 
 	const reset = () => {
 		updateButton()
@@ -196,9 +212,86 @@ export function ButtonSettings({
 		})
 	}
 
+	const controls = (
+		<div className={cn("flex flex-col", mobile ? "gap-1.5" : "gap-4")}>
+			<PresetSlider
+				className={mobile ? "px-1 py-1.5" : undefined}
+				options={PRESET_NAMES}
+				label="Radius"
+				value={buttonConfig?.radius}
+				defaultLabel={
+					params.style === "default" ? "Themer default" : "Component default"
+				}
+				defaultValue={dimensions?.radius}
+				presetValue={(preset) => BUTTON_RADIUS_PRESETS[preset][size]}
+				onValueChange={(radius) => updateButton({ radius })}
+			/>
+			<PresetSlider
+				className={mobile ? "px-1 py-1.5" : undefined}
+				options={PRESET_NAMES}
+				label="Padding"
+				value={buttonConfig?.padding}
+				defaultLabel="Component default"
+				defaultValue={dimensions?.padding}
+				presetValue={(preset) => BUTTON_PADDING_PRESETS[preset][size]}
+				onValueChange={(padding) => updateButton({ padding })}
+			/>
+			<div className={cn("flex flex-col gap-1.5", mobile && "px-1 py-1.5")}>
+				<Label
+					htmlFor={sizeId}
+					className="text-fg-secondary text-[13px] leading-4 font-normal">
+					Default Size
+				</Label>
+				<Select
+					value={size}
+					onValueChange={(value) =>
+						updateButton({ size: value as ButtonSize })
+					}>
+					<SelectTrigger
+						id={sizeId}
+						size={mobile ? "md" : "sm"}
+						className="text-[13px]">
+						<SelectValue>
+							{mobile ? `${BUTTON_SIZE_PIXELS[size]} px` : undefined}
+						</SelectValue>
+					</SelectTrigger>
+					<SelectContent>
+						{BUTTON_SIZES.map(({ value }) => (
+							<SelectItem key={value} value={value}>
+								{mobile ? `${BUTTON_SIZE_PIXELS[value]} px` : value}
+							</SelectItem>
+						))}
+					</SelectContent>
+				</Select>
+			</div>
+		</div>
+	)
+
+	if (mobile) {
+		return (
+			<MobileComponentSettings
+				name={name}
+				variant={variant}
+				variants={BUTTON_VARIANTS}
+				onSelectVariant={(value) => updateButton({ variant: value })}
+				renderVariant={(value) => <ButtonPreview variant={value} />}
+				preview={
+					<ButtonPreview
+						componentConfig={buttonConfig}
+						onMeasure={setDimensions}
+					/>
+				}
+				controls={controls}
+				onReset={reset}
+				onShuffle={shuffle}>
+				{children}
+			</MobileComponentSettings>
+		)
+	}
+
 	return (
 		<ComponentSettingsPopover
-			name={group ? "Button Group" : "Buttons"}
+			name={name}
 			onReset={reset}
 			onShuffle={shuffle}
 			content={
@@ -213,56 +306,7 @@ export function ButtonSettings({
 						</CardContent>
 					</Card>
 
-					<div className="flex flex-col gap-4">
-						<PresetSlider
-							options={PRESET_NAMES}
-							label="Radius"
-							value={buttonConfig?.radius}
-							defaultLabel={
-								params.style === "default"
-									? "Themer default"
-									: "Component default"
-							}
-							defaultValue={dimensions?.radius}
-							presetValue={(preset) => BUTTON_RADIUS_PRESETS[preset][size]}
-							onValueChange={(radius) => updateButton({ radius })}
-						/>
-						<PresetSlider
-							options={PRESET_NAMES}
-							label="Padding"
-							value={buttonConfig?.padding}
-							defaultLabel="Component default"
-							defaultValue={dimensions?.padding}
-							presetValue={(preset) => BUTTON_PADDING_PRESETS[preset][size]}
-							onValueChange={(padding) => updateButton({ padding })}
-						/>
-						<div className="flex flex-col gap-1.5">
-							<Label
-								htmlFor="button-default-size"
-								className="text-fg-secondary text-[13px] leading-4 font-normal">
-								Default Size
-							</Label>
-							<Select
-								value={size}
-								onValueChange={(value) =>
-									updateButton({ size: value as ButtonSize })
-								}>
-								<SelectTrigger
-									id="button-default-size"
-									size="sm"
-									className="text-[13px]">
-									<SelectValue />
-								</SelectTrigger>
-								<SelectContent>
-									{BUTTON_SIZES.map(({ value }) => (
-										<SelectItem key={value} value={value}>
-											{value}
-										</SelectItem>
-									))}
-								</SelectContent>
-							</Select>
-						</div>
-					</div>
+					{controls}
 				</div>
 			}>
 			{children}

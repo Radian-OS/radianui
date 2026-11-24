@@ -1,6 +1,6 @@
 "use client"
 
-import { type ReactNode, useState } from "react"
+import { type ReactNode, useId, useState } from "react"
 import { CheckCircle2, ChevronLeft, ChevronRight } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Badge as RegistryBadge } from "@/registry/ui/badge"
@@ -36,6 +36,8 @@ import { ScrollArea } from "@/styles/default/ui/scroll-area"
 import { ComponentSettingsPopover } from "../components-settings-popover"
 import { ComponentPreview, type PreviewDimensions } from "./component-preview"
 import { useThemerPickerPlacement } from "../themer-picker-placement"
+import { cn } from "@/lib/utils"
+import { MobileComponentSettings } from "./mobile-component-settings"
 import { PresetSlider } from "./preset-slider"
 
 const PRESET_NAMES = Object.keys(BADGE_PADDING_PRESETS) as BadgePaddingPreset[]
@@ -166,11 +168,20 @@ function VariantPicker() {
 	)
 }
 
-export function BadgeSettings({ children }: { children: ReactNode }) {
+const BADGE_SIZE_PIXELS: Record<BadgeSize, number> = { sm: 20, md: 24, lg: 28 }
+
+export function BadgeSettings({
+	children,
+	mobile = false,
+}: {
+	children: ReactNode
+	mobile?: boolean
+}) {
 	const [params] = useThemerPreset()
 	const badgeConfig = params.components.Badge
 	const size = badgeConfig?.size ?? DEFAULT_BADGE_CONFIG.size
 	const [dimensions, setDimensions] = useState<PreviewDimensions>()
+	const sizeId = useId()
 
 	const reset = () => {
 		updateBadge()
@@ -185,6 +196,81 @@ export function BadgeSettings({ children }: { children: ReactNode }) {
 			variant:
 				BADGE_VARIANTS[Math.floor(Math.random() * BADGE_VARIANTS.length)].value,
 		})
+	}
+
+	const controls = (
+		<div className={cn("flex flex-col", mobile ? "gap-1.5" : "gap-4")}>
+			<PresetSlider
+				className={mobile ? "px-1 py-1.5" : undefined}
+				options={PRESET_NAMES}
+				label="Radius"
+				value={badgeConfig?.radius}
+				defaultLabel={
+					params.style === "default" ? "Themer default" : "Component default"
+				}
+				defaultValue={dimensions?.radius}
+				presetValue={(preset) => BADGE_RADIUS_PRESETS[preset][size]}
+				onValueChange={(radius) => updateBadge({ radius })}
+			/>
+			<PresetSlider
+				className={mobile ? "px-1 py-1.5" : undefined}
+				options={PRESET_NAMES}
+				label="Padding"
+				value={badgeConfig?.padding}
+				defaultLabel="Component default"
+				defaultValue={dimensions?.padding}
+				presetValue={(preset) => BADGE_PADDING_PRESETS[preset][size]}
+				onValueChange={(padding) => updateBadge({ padding })}
+			/>
+			<div className={cn("flex flex-col gap-1.5", mobile && "px-1 py-1.5")}>
+				<Label
+					htmlFor={sizeId}
+					className="text-fg-secondary text-[13px] leading-4 font-normal">
+					Default Size
+				</Label>
+				<Select
+					value={size}
+					onValueChange={(value) => updateBadge({ size: value as BadgeSize })}>
+					<SelectTrigger
+						id={sizeId}
+						size={mobile ? "md" : "sm"}
+						className="text-[13px]">
+						<SelectValue>
+							{mobile ? `${BADGE_SIZE_PIXELS[size]} px` : undefined}
+						</SelectValue>
+					</SelectTrigger>
+					<SelectContent>
+						{BADGE_SIZES.map(({ value }) => (
+							<SelectItem key={value} value={value}>
+								{mobile ? `${BADGE_SIZE_PIXELS[value]} px` : value}
+							</SelectItem>
+						))}
+					</SelectContent>
+				</Select>
+			</div>
+		</div>
+	)
+
+	if (mobile) {
+		return (
+			<MobileComponentSettings
+				name="Badges"
+				variant={badgeConfig?.variant ?? DEFAULT_BADGE_CONFIG.variant}
+				variants={BADGE_VARIANTS}
+				onSelectVariant={(variant) => updateBadge({ variant })}
+				renderVariant={(variant) => <BadgePreview variant={variant} />}
+				preview={
+					<BadgePreview
+						componentConfig={badgeConfig}
+						onMeasure={setDimensions}
+					/>
+				}
+				controls={controls}
+				onReset={reset}
+				onShuffle={shuffle}>
+				{children}
+			</MobileComponentSettings>
+		)
 	}
 
 	return (
@@ -204,56 +290,7 @@ export function BadgeSettings({ children }: { children: ReactNode }) {
 						</CardContent>
 					</Card>
 
-					<div className="flex flex-col gap-4">
-						<PresetSlider
-							options={PRESET_NAMES}
-							label="Radius"
-							value={badgeConfig?.radius}
-							defaultLabel={
-								params.style === "default"
-									? "Themer default"
-									: "Component default"
-							}
-							defaultValue={dimensions?.radius}
-							presetValue={(preset) => BADGE_RADIUS_PRESETS[preset][size]}
-							onValueChange={(radius) => updateBadge({ radius })}
-						/>
-						<PresetSlider
-							options={PRESET_NAMES}
-							label="Padding"
-							value={badgeConfig?.padding}
-							defaultLabel="Component default"
-							defaultValue={dimensions?.padding}
-							presetValue={(preset) => BADGE_PADDING_PRESETS[preset][size]}
-							onValueChange={(padding) => updateBadge({ padding })}
-						/>
-						<div className="flex flex-col gap-1.5">
-							<Label
-								htmlFor="badge-default-size"
-								className="text-fg-secondary text-[13px] leading-4 font-normal">
-								Default Size
-							</Label>
-							<Select
-								value={size}
-								onValueChange={(value) =>
-									updateBadge({ size: value as BadgeSize })
-								}>
-								<SelectTrigger
-									id="badge-default-size"
-									size="sm"
-									className="text-[13px]">
-									<SelectValue />
-								</SelectTrigger>
-								<SelectContent>
-									{BADGE_SIZES.map(({ value }) => (
-										<SelectItem key={value} value={value}>
-											{value}
-										</SelectItem>
-									))}
-								</SelectContent>
-							</Select>
-						</div>
-					</div>
+					{controls}
 				</div>
 			}>
 			{children}

@@ -9,11 +9,13 @@ export function PresetSlider<T extends string>({
 	defaultLabel,
 	defaultValue,
 	presetValue,
+	className,
 }: {
 	label: string
 	options: readonly T[]
 	value: T | undefined
 	onValueChange: (value: T) => void
+	className?: string
 	defaultLabel: string
 	defaultValue: number | undefined
 	presetValue: (preset: T) => number
@@ -36,7 +38,7 @@ export function PresetSlider<T extends string>({
 		(measured ? (defaultValue >= 999 ? "Full" : `Default`) : defaultLabel)
 
 	return (
-		<div className="flex flex-col gap-1.5">
+		<div className={cn("flex flex-col gap-1.5", className)}>
 			<div className="flex items-center justify-between text-[13px] leading-4">
 				<span className="text-fg-secondary">{label}</span>
 				<span
