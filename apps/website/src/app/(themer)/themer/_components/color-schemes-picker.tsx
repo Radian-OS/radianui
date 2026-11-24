@@ -596,7 +596,11 @@ function ColorPickerPopover({
 	)
 
 	const editor = (
-		<Tabs defaultValue="presets" value={activeTab} onValueChange={setActiveTab}>
+		<Tabs
+			defaultValue="presets"
+			value={activeTab}
+			onValueChange={setActiveTab}
+			className={inDrawer ? "h-full min-h-0" : undefined}>
 			<motion.div
 				drag={!inDrawer}
 				dragControls={dragControls}
@@ -615,7 +619,7 @@ function ColorPickerPopover({
 				className={cn(
 					"select-none",
 					inDrawer
-						? "flex min-h-0 w-full flex-col"
+						? "flex min-h-0 w-full flex-1 flex-col"
 						: "bg-popover border-border w-[300px] max-w-[calc(100vw-2rem)] rounded-lg border px-2.5 py-1.5 shadow-sm will-change-transform"
 				)}>
 				{inDrawer ? (
@@ -736,13 +740,15 @@ function ColorPickerPopover({
 
 				<TabsContent
 					value="custom"
-					className={inDrawer ? "min-h-0" : undefined}>
+					className={
+						inDrawer ? "min-h-0 flex-col data-[state=active]:flex" : undefined
+					}>
 					{inDrawer ? (
 						<ScrollArea
 							type="auto"
 							data-vaul-no-drag
-							className="-mx-3 [&>[data-slot=scroll-area-viewport]]:max-h-[calc(82dvh-4.75rem-max(12px,env(safe-area-inset-bottom)))] [&>[data-slot=scroll-area-viewport]]:touch-pan-y [&>[data-slot=scroll-area-viewport]]:overscroll-y-contain">
-							<div className="px-3">{customColorControls}</div>
+							className="-mx-3 min-h-0 flex-1 [&>[data-slot=scroll-area-viewport]]:absolute [&>[data-slot=scroll-area-viewport]]:inset-0 [&>[data-slot=scroll-area-viewport]]:touch-pan-y [&>[data-slot=scroll-area-viewport]]:overscroll-y-contain">
+							<div className="px-3 pb-3">{customColorControls}</div>
 						</ScrollArea>
 					) : (
 						customColorControls
@@ -753,14 +759,14 @@ function ColorPickerPopover({
 					value="presets"
 					className={
 						inDrawer
-							? "border-soft-alpha -mx-3 min-h-0 flex-col border-t px-2.5 pt-3 data-[state=active]:flex"
+							? "border-soft-alpha -mx-3 min-h-0 flex-col border-t pt-3 data-[state=active]:flex"
 							: undefined
 					}>
 					<div
 						className={cn(
 							"text-fg-tertiary text-xs",
 							inDrawer
-								? "shrink-0 px-1 pb-2 font-medium"
+								? "shrink-0 px-3.5 pb-2 font-medium"
 								: "px-2 pb-1.5 font-normal"
 						)}>
 						Select colors
@@ -770,7 +776,7 @@ function ColorPickerPopover({
 						data-vaul-no-drag={inDrawer || undefined}
 						className={
 							inDrawer
-								? "min-h-0 [&>[data-slot=scroll-area-viewport]]:max-h-[calc(82dvh-7rem-max(12px,env(safe-area-inset-bottom)))] [&>[data-slot=scroll-area-viewport]]:touch-pan-y [&>[data-slot=scroll-area-viewport]]:overscroll-y-contain"
+								? "min-h-0 flex-1 [&>[data-slot=scroll-area-viewport]]:absolute [&>[data-slot=scroll-area-viewport]]:inset-0 [&>[data-slot=scroll-area-viewport]]:touch-pan-y [&>[data-slot=scroll-area-viewport]]:overscroll-y-contain [&>[data-slot=scroll-area-viewport]]:px-3"
 								: "[&_[data-slot=scroll-area-viewport]]:max-h-[min(500px,max(6rem,calc(var(--radix-popover-content-available-height)-4rem)))]"
 						}>
 						{orderedPresets.map((preset) => {
@@ -840,8 +846,8 @@ function ColorPickerPopover({
 				handle
 				scrollLockTimeout={0}>
 				<DrawerTrigger asChild>{children}</DrawerTrigger>
-				<DrawerContent className="max-h-[82dvh] gap-0 rounded-b-none p-0 pt-7 after:hidden!">
-					<div className="min-h-0 px-3 pb-[max(12px,env(safe-area-inset-bottom))]">
+				<DrawerContent className="h-[82dvh] gap-0 rounded-b-none p-0 pt-7 after:hidden!">
+					<div className="min-h-0 flex-1 px-3 pb-[env(safe-area-inset-bottom)]">
 						{editor}
 					</div>
 				</DrawerContent>
