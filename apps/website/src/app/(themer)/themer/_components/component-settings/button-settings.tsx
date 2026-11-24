@@ -92,15 +92,6 @@ function ButtonPreview({
 	)
 }
 
-const BUTTON_SIZE_PIXELS: Record<ButtonSize, number> = {
-	xs: 28,
-	sm: 32,
-	md: 36,
-	lg: 40,
-	xl: 44,
-	"2xl": 48,
-}
-
 function VariantPicker() {
 	const placement = useThemerPickerPlacement("start", 16)
 	const [params] = useThemerPreset()
@@ -251,14 +242,12 @@ export function ButtonSettings({
 						id={sizeId}
 						size={mobile ? "md" : "sm"}
 						className="text-[13px]">
-						<SelectValue>
-							{mobile ? `${BUTTON_SIZE_PIXELS[size]} px` : undefined}
-						</SelectValue>
+						<SelectValue />
 					</SelectTrigger>
 					<SelectContent>
 						{BUTTON_SIZES.map(({ value }) => (
 							<SelectItem key={value} value={value}>
-								{mobile ? `${BUTTON_SIZE_PIXELS[value]} px` : value}
+								{value}
 							</SelectItem>
 						))}
 					</SelectContent>
