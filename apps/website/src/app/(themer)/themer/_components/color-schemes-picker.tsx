@@ -409,16 +409,194 @@ function ColorPickerPopover({
 
 	const hueColor = `hsl(${hsvState.h} 100% 50%)`
 
+	const customColorControls = (
+		<>
+			{/* SV 2D Area */}
+			<div
+				onPointerDown={handleSvPointerDown}
+				data-vaul-no-drag
+				className={cn(
+					"relative w-full cursor-crosshair touch-none overflow-hidden border",
+					inDrawer
+						? "border-border h-[120px] rounded-sm"
+						: "border-fill4 h-44 rounded-lg"
+				)}
+				style={{ backgroundColor: hueColor }}>
+				<div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-white to-transparent" />
+				<div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black to-transparent" />
+				<div
+					className={cn(
+						"pointer-events-none absolute -translate-x-1/2 -translate-y-1/2 rounded-full border-white shadow-[0_1px_4px_rgba(0,0,0,0.35)] transition-none",
+						inDrawer ? "size-3.5 border-3" : "size-5 border-[2.5px]"
+					)}
+					style={{
+						left: `${hsvState.s * 100}%`,
+						top: `${(1 - hsvState.v) * 100}%`,
+					}}
+				/>
+			</div>
+
+			{/* Hue Slider */}
+			<div
+				onPointerDown={handleHuePointerDown}
+				data-vaul-no-drag
+				className="relative mt-3 flex h-4 w-full cursor-pointer touch-none items-center rounded-full"
+				style={{
+					background:
+						"linear-gradient(to right, #ff0000 0%, #ffff00 17%, #00ff00 33%, #00ffff 50%, #0000ff 67%, #ff00ff 83%, #ff0000 100%)",
+				}}>
+				<div
+					className={cn(
+						"pointer-events-none absolute -translate-x-1/2 rounded-full border-white shadow-[0_1px_3px_rgba(0,0,0,0.3)]",
+						inDrawer ? "size-3.5 border-3" : "size-4.5 border-2"
+					)}
+					style={{
+						left: `${(hsvState.h / 360) * 100}%`,
+						backgroundColor: hueColor,
+					}}
+				/>
+			</div>
+
+			{/* Format and Input Row */}
+			<div
+				className={cn("mt-3 flex items-center", inDrawer ? "gap-3" : "gap-2")}>
+				<DropdownMenu>
+					<DropdownMenuTrigger asChild>
+						<button
+							type="button"
+							className={cn(
+								"border-border bg-fill1 hover:bg-fill2 text-fg flex shrink-0 cursor-pointer items-center gap-1 rounded-lg border px-2.5 text-xs font-medium transition-colors",
+								inDrawer ? "h-9" : "h-7"
+							)}>
+							<span>{colorFormat}</span>
+							<ChevronDown className="text-fg-tertiary size-3" />
+						</button>
+					</DropdownMenuTrigger>
+					<DropdownMenuContent align="start" className="min-w-[100px]">
+						{(["Hex", "RGB", "HSL"] as const).map((fmt) => (
+							<DropdownMenuItem
+								key={fmt}
+								onClick={() => {
+									setColorFormat(fmt)
+									setDisplayInput(formatColor(colorInfo.hex, fmt))
+								}}>
+								{fmt}
+							</DropdownMenuItem>
+						))}
+					</DropdownMenuContent>
+				</DropdownMenu>
+
+				<InputWrapper
+					size={inDrawer ? "md" : "xs"}
+					className={inDrawer ? "min-w-0 gap-3 pr-0" : undefined}>
+					<Input
+						type="text"
+						value={displayInput}
+						onChange={handleInputChange}
+						onBlur={() =>
+							setDisplayInput(formatColor(colorInfo.hex, colorFormat))
+						}
+						spellCheck={false}
+						className="text-xs"
+					/>
+					<button
+						type="button"
+						onClick={() => {
+							navigator.clipboard.writeText(displayInput)
+							setCopiedInput(true)
+							setTimeout(() => setCopiedInput(false), 1500)
+						}}
+						className={cn(
+							"text-fg-secondary hover:text-fg shrink-0 transition-colors",
+							inDrawer
+								? "grid size-9 cursor-pointer place-items-center"
+								: "p-0.5"
+						)}
+						aria-label="Copy color value">
+						{copiedInput ? (
+							<Check className="size-4" />
+						) : (
+							<Copy className="size-4" />
+						)}
+					</button>
+				</InputWrapper>
+			</div>
+
+			{inDrawer && mode === "add" && (
+				<div
+					className="mt-4 grid grid-cols-5 overflow-hidden rounded-lg"
+					aria-label="Generated color shades">
+					{["", "-text", "-border", "-hover", "-accent"].map((suffix) => {
+						const shade =
+							colorInfo.shades[`--color-${currentPrefix}${suffix}`] ||
+							colorInfo.shades[`--color-primary${suffix}`] ||
+							colorInfo.hex
+						const hex = formatHex(parse(shade)) ?? colorInfo.hex
+						const lightness = converter("oklch")(hex)?.l ?? 0
+						return (
+							<div
+								key={suffix}
+								className="flex h-27 min-w-0 items-end p-1.5 text-[10px] font-medium"
+								style={{
+									backgroundColor: shade,
+									color: lightness > 0.65 ? "var(--color-black)" : "white",
+								}}>
+								{hex.toUpperCase()}
+							</div>
+						)
+					})}
+				</div>
+			)}
+			{/* Shades breakdown */}
+			<div
+				className={cn(
+					"mt-4 flex flex-col gap-3",
+					inDrawer && "border-soft-alpha -mx-3 border-t px-3 pt-3"
+				)}>
+				{SHADE_GROUPS.map(({ label, suffixes }) => (
+					<div key={label}>
+						<span className="text-fg-tertiary text-xs font-medium">
+							{label}
+						</span>
+						<div className={cn("mt-2 flex flex-col", !inDrawer && "gap-1.5")}>
+							{suffixes.map((suffix) => {
+								const token = `--color-${currentPrefix}${suffix}`
+								const val =
+									colorInfo.shades[token] ||
+									colorInfo.shades[`--color-primary${suffix}`] ||
+									(suffix === "-fg" ? "#ffffff" : colorInfo.hex)
+								return (
+									<ShadeRow
+										key={token}
+										token={token}
+										value={val}
+										isBase={suffix === ""}
+										inDrawer={inDrawer}
+									/>
+								)
+							})}
+						</div>
+					</div>
+				))}
+			</div>
+
+			{mode === "add" && onSelect && (
+				<Button
+					type="button"
+					size="sm"
+					className="mt-3 w-full"
+					onClick={() => {
+						const hex = formatHex({ mode: "hsv", ...hsvState }) || colorInfo.hex
+						onSelect(hex)
+					}}>
+					Add color
+				</Button>
+			)}
+		</>
+	)
+
 	const editor = (
-		<Tabs
-			defaultValue="presets"
-			value={activeTab}
-			onValueChange={setActiveTab}
-			className={
-				inDrawer && activeTab === "presets"
-					? "max-h-[calc(82dvh-28px-max(12px,env(safe-area-inset-bottom)))]"
-					: undefined
-			}>
+		<Tabs defaultValue="presets" value={activeTab} onValueChange={setActiveTab}>
 			<motion.div
 				drag={!inDrawer}
 				dragControls={dragControls}
@@ -556,192 +734,18 @@ function ColorPickerPopover({
 					</div>
 				)}
 
-				<TabsContent value="custom">
-					{/* SV 2D Area */}
-					<div
-						onPointerDown={handleSvPointerDown}
-						data-vaul-no-drag
-						className={cn(
-							"relative w-full cursor-crosshair touch-none overflow-hidden border",
-							inDrawer
-								? "border-border h-[120px] rounded-sm"
-								: "border-fill4 h-44 rounded-lg"
-						)}
-						style={{ backgroundColor: hueColor }}>
-						<div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-white to-transparent" />
-						<div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black to-transparent" />
-						<div
-							className={cn(
-								"pointer-events-none absolute -translate-x-1/2 -translate-y-1/2 rounded-full border-white shadow-[0_1px_4px_rgba(0,0,0,0.35)] transition-none",
-								inDrawer ? "size-3.5 border-3" : "size-5 border-[2.5px]"
-							)}
-							style={{
-								left: `${hsvState.s * 100}%`,
-								top: `${(1 - hsvState.v) * 100}%`,
-							}}
-						/>
-					</div>
-
-					{/* Hue Slider */}
-					<div
-						onPointerDown={handleHuePointerDown}
-						data-vaul-no-drag
-						className="relative mt-3 flex h-4 w-full cursor-pointer touch-none items-center rounded-full"
-						style={{
-							background:
-								"linear-gradient(to right, #ff0000 0%, #ffff00 17%, #00ff00 33%, #00ffff 50%, #0000ff 67%, #ff00ff 83%, #ff0000 100%)",
-						}}>
-						<div
-							className={cn(
-								"pointer-events-none absolute -translate-x-1/2 rounded-full border-white shadow-[0_1px_3px_rgba(0,0,0,0.3)]",
-								inDrawer ? "size-3.5 border-3" : "size-4.5 border-2"
-							)}
-							style={{
-								left: `${(hsvState.h / 360) * 100}%`,
-								backgroundColor: hueColor,
-							}}
-						/>
-					</div>
-
-					{/* Format and Input Row */}
-					<div
-						className={cn(
-							"mt-3 flex items-center",
-							inDrawer ? "gap-3" : "gap-2"
-						)}>
-						<DropdownMenu>
-							<DropdownMenuTrigger asChild>
-								<button
-									type="button"
-									className={cn(
-										"border-border bg-fill1 hover:bg-fill2 text-fg flex shrink-0 cursor-pointer items-center gap-1 rounded-lg border px-2.5 text-xs font-medium transition-colors",
-										inDrawer ? "h-9" : "h-7"
-									)}>
-									<span>{colorFormat}</span>
-									<ChevronDown className="text-fg-tertiary size-3" />
-								</button>
-							</DropdownMenuTrigger>
-							<DropdownMenuContent align="start" className="min-w-[100px]">
-								{(["Hex", "RGB", "HSL"] as const).map((fmt) => (
-									<DropdownMenuItem
-										key={fmt}
-										onClick={() => {
-											setColorFormat(fmt)
-											setDisplayInput(formatColor(colorInfo.hex, fmt))
-										}}>
-										{fmt}
-									</DropdownMenuItem>
-								))}
-							</DropdownMenuContent>
-						</DropdownMenu>
-
-						<InputWrapper
-							size={inDrawer ? "md" : "xs"}
-							className={inDrawer ? "min-w-0 gap-3 pr-0" : undefined}>
-							<Input
-								type="text"
-								value={displayInput}
-								onChange={handleInputChange}
-								onBlur={() =>
-									setDisplayInput(formatColor(colorInfo.hex, colorFormat))
-								}
-								spellCheck={false}
-								className="text-xs"
-							/>
-							<button
-								type="button"
-								onClick={() => {
-									navigator.clipboard.writeText(displayInput)
-									setCopiedInput(true)
-									setTimeout(() => setCopiedInput(false), 1500)
-								}}
-								className={cn(
-									"text-fg-secondary hover:text-fg shrink-0 transition-colors",
-									inDrawer
-										? "grid size-9 cursor-pointer place-items-center"
-										: "p-0.5"
-								)}
-								aria-label="Copy color value">
-								{copiedInput ? (
-									<Check className="size-4" />
-								) : (
-									<Copy className="size-4" />
-								)}
-							</button>
-						</InputWrapper>
-					</div>
-
-					{inDrawer && mode === "add" && (
-						<div
-							className="mt-4 grid grid-cols-5 overflow-hidden rounded-lg"
-							aria-label="Generated color shades">
-							{["", "-text", "-border", "-hover", "-accent"].map((suffix) => {
-								const shade =
-									colorInfo.shades[`--color-${currentPrefix}${suffix}`] ||
-									colorInfo.shades[`--color-primary${suffix}`] ||
-									colorInfo.hex
-								const hex = formatHex(parse(shade)) ?? colorInfo.hex
-								const lightness = converter("oklch")(hex)?.l ?? 0
-								return (
-									<div
-										key={suffix}
-										className="flex h-27 min-w-0 items-end p-1.5 text-[10px] font-medium"
-										style={{
-											backgroundColor: shade,
-											color: lightness > 0.65 ? "var(--color-black)" : "white",
-										}}>
-										{hex.toUpperCase()}
-									</div>
-								)
-							})}
-						</div>
-					)}
-					{/* Shades breakdown */}
-					<div
-						className={cn(
-							"mt-4 flex flex-col gap-3",
-							inDrawer && "border-soft-alpha -mx-3 border-t px-3 pt-3"
-						)}>
-						{SHADE_GROUPS.map(({ label, suffixes }) => (
-							<div key={label}>
-								<span className="text-fg-tertiary text-xs font-medium">
-									{label}
-								</span>
-								<div
-									className={cn("mt-2 flex flex-col", !inDrawer && "gap-1.5")}>
-									{suffixes.map((suffix) => {
-										const token = `--color-${currentPrefix}${suffix}`
-										const val =
-											colorInfo.shades[token] ||
-											colorInfo.shades[`--color-primary${suffix}`] ||
-											(suffix === "-fg" ? "#ffffff" : colorInfo.hex)
-										return (
-											<ShadeRow
-												key={token}
-												token={token}
-												value={val}
-												isBase={suffix === ""}
-												inDrawer={inDrawer}
-											/>
-										)
-									})}
-								</div>
-							</div>
-						))}
-					</div>
-
-					{mode === "add" && onSelect && (
-						<Button
-							type="button"
-							size="sm"
-							className="mt-3 w-full"
-							onClick={() => {
-								const hex =
-									formatHex({ mode: "hsv", ...hsvState }) || colorInfo.hex
-								onSelect(hex)
-							}}>
-							Add color
-						</Button>
+				<TabsContent
+					value="custom"
+					className={inDrawer ? "min-h-0" : undefined}>
+					{inDrawer ? (
+						<ScrollArea
+							type="auto"
+							data-vaul-no-drag
+							className="-mx-3 [&>[data-slot=scroll-area-viewport]]:max-h-[calc(82dvh-4.75rem-max(12px,env(safe-area-inset-bottom)))] [&>[data-slot=scroll-area-viewport]]:touch-pan-y [&>[data-slot=scroll-area-viewport]]:overscroll-y-contain">
+							<div className="px-3">{customColorControls}</div>
+						</ScrollArea>
+					) : (
+						customColorControls
 					)}
 				</TabsContent>
 
@@ -763,9 +767,10 @@ function ColorPickerPopover({
 					</div>
 					<ScrollArea
 						type="auto"
+						data-vaul-no-drag={inDrawer || undefined}
 						className={
 							inDrawer
-								? "min-h-0 [&_[data-slot=scroll-area-viewport]]:overscroll-y-contain"
+								? "min-h-0 [&>[data-slot=scroll-area-viewport]]:max-h-[calc(82dvh-7rem-max(12px,env(safe-area-inset-bottom)))] [&>[data-slot=scroll-area-viewport]]:touch-pan-y [&>[data-slot=scroll-area-viewport]]:overscroll-y-contain"
 								: "[&_[data-slot=scroll-area-viewport]]:max-h-[min(500px,max(6rem,calc(var(--radix-popover-content-available-height)-4rem)))]"
 						}>
 						{orderedPresets.map((preset) => {
@@ -791,7 +796,7 @@ function ColorPickerPopover({
 									}}
 									className={cn(
 										"flex w-full cursor-pointer items-center justify-between rounded-md text-left transition-colors",
-										inDrawer ? "min-h-[34px] px-2.5 py-1.5" : "px-2 py-1.5",
+										inDrawer ? "min-h-10 px-2.5 py-2" : "px-2 py-1.5",
 										isSelected ? "bg-fill2" : "hover:bg-fill2"
 									)}>
 									<div className="flex items-center gap-2.5">
@@ -836,17 +841,9 @@ function ColorPickerPopover({
 				scrollLockTimeout={0}>
 				<DrawerTrigger asChild>{children}</DrawerTrigger>
 				<DrawerContent className="max-h-[82dvh] gap-0 rounded-b-none p-0 pt-7 after:hidden!">
-					<ScrollArea
-						type="auto"
-						className={cn(
-							"min-h-0 [&>[data-slot=scroll-area-viewport]]:max-h-[calc(82dvh-28px)] [&>[data-slot=scroll-area-viewport]]:overscroll-y-none",
-							activeTab === "presets" &&
-								"[&>[data-slot=scroll-area-viewport]]:overflow-y-hidden!"
-						)}>
-						<div className="px-3 pb-[max(12px,env(safe-area-inset-bottom))]">
-							{editor}
-						</div>
-					</ScrollArea>
+					<div className="min-h-0 px-3 pb-[max(12px,env(safe-area-inset-bottom))]">
+						{editor}
+					</div>
 				</DrawerContent>
 			</Drawer>
 		)
