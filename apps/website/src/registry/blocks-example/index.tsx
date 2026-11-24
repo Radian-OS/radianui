@@ -4,580 +4,646 @@
 import * as React from "react"
 
 export type RegistryItem = {
-  name: string
-  type: "block" | "components"
-  files: {
-    path: string
-    name: string
-    type: "page" | "components"
-    target?: string
-  }[]
-  component: React.LazyExoticComponent<React.ComponentType<any>>
+      name: string
+      type: "block" | "components"
+      files: {
+            path: string
+            name: string
+            type: "page" | "components"
+            target?: string
+      }[]
+      component: React.LazyExoticComponent<React.ComponentType<any>>
 }
 
 export const Index: Record<string, RegistryItem> = {
-  "new-password": {
-    name: "new-password",
-    type: "block",
-    files: [
-          {
-                "path": "registry/blocks-example/new-password/components/brand-logo.tsx",
-                "name": "brand-logo.tsx",
-                "type": "components",
-                "target": ""
-          },
-          {
-                "path": "registry/blocks-example/new-password/components/github-icon.tsx",
-                "name": "github-icon.tsx",
-                "type": "components",
-                "target": ""
-          },
-          {
-                "path": "registry/blocks-example/new-password/components/google-icon.tsx",
-                "name": "google-icon.tsx",
-                "type": "components",
-                "target": ""
-          },
-          {
-                "path": "registry/blocks-example/new-password/components/new-password-form.tsx",
-                "name": "new-password-form.tsx",
-                "type": "components",
-                "target": ""
-          },
-          {
-                "path": "registry/blocks-example/new-password/page.tsx",
-                "name": "page.tsx",
-                "type": "page"
-          }
-    ],
-    component: React.lazy(() => import("@/registry/blocks-example/new-password/page"))
-  },
-  "preview-01": {
-    name: "preview-01",
-    type: "block",
-    files: [
-          {
-                "path": "registry/blocks-example/preview-01/common/card-first.tsx",
-                "name": "card-first.tsx",
-                "type": "components",
-                "target": ""
-          },
-          {
-                "path": "registry/blocks-example/preview-01/common/common-card.tsx",
-                "name": "common-card.tsx",
-                "type": "components",
-                "target": ""
-          },
-          {
-                "path": "registry/blocks-example/preview-01/common/cookie-card.tsx",
-                "name": "cookie-card.tsx",
-                "type": "components",
-                "target": ""
-          },
-          {
-                "path": "registry/blocks-example/preview-01/common/dropdown.tsx",
-                "name": "dropdown.tsx",
-                "type": "components",
-                "target": ""
-          },
-          {
-                "path": "registry/blocks-example/preview-01/common/invite-card.tsx",
-                "name": "invite-card.tsx",
-                "type": "components",
-                "target": ""
-          },
-          {
-                "path": "registry/blocks-example/preview-01/common/report-card.tsx",
-                "name": "report-card.tsx",
-                "type": "components",
-                "target": ""
-          },
-          {
-                "path": "registry/blocks-example/preview-01/page.tsx",
-                "name": "page.tsx",
-                "type": "page"
-          }
-    ],
-    component: React.lazy(() => import("@/registry/blocks-example/preview-01/page"))
-  },
-  "preview-02": {
-    name: "preview-02",
-    type: "block",
-    files: [
-          {
-                "path": "registry/blocks-example/preview-02/page.tsx",
-                "name": "page.tsx",
-                "type": "page"
-          }
-    ],
-    component: React.lazy(() => import("@/registry/blocks-example/preview-02/page"))
-  },
-  "preview-03": {
-    name: "preview-03",
-    type: "block",
-    files: [
-          {
-                "path": "registry/blocks-example/preview-03/page.tsx",
-                "name": "page.tsx",
-                "type": "page"
-          }
-    ],
-    component: React.lazy(() => import("@/registry/blocks-example/preview-03/page"))
-  },
-  "preview-04": {
-    name: "preview-04",
-    type: "block",
-    files: [
-          {
-                "path": "registry/blocks-example/preview-04/page.tsx",
-                "name": "page.tsx",
-                "type": "page"
-          }
-    ],
-    component: React.lazy(() => import("@/registry/blocks-example/preview-04/page"))
-  },
-  "preview-05": {
-    name: "preview-05",
-    type: "block",
-    files: [
-          {
-                "path": "registry/blocks-example/preview-05/page.tsx",
-                "name": "page.tsx",
-                "type": "page"
-          }
-    ],
-    component: React.lazy(() => import("@/registry/blocks-example/preview-05/page"))
-  },
-  "preview-06": {
-    name: "preview-06",
-    type: "block",
-    files: [
-          {
-                "path": "registry/blocks-example/preview-06/page.tsx",
-                "name": "page.tsx",
-                "type": "page"
-          }
-    ],
-    component: React.lazy(() => import("@/registry/blocks-example/preview-06/page"))
-  },
-  "preview-07": {
-    name: "preview-07",
-    type: "block",
-    files: [
-          {
-                "path": "registry/blocks-example/preview-07/page.tsx",
-                "name": "page.tsx",
-                "type": "page"
-          }
-    ],
-    component: React.lazy(() => import("@/registry/blocks-example/preview-07/page"))
-  },
-  "preview-08": {
-    name: "preview-08",
-    type: "block",
-    files: [
-          {
-                "path": "registry/blocks-example/preview-08/page.tsx",
-                "name": "page.tsx",
-                "type": "page"
-          }
-    ],
-    component: React.lazy(() => import("@/registry/blocks-example/preview-08/page"))
-  },
-  "preview-09": {
-    name: "preview-09",
-    type: "block",
-    files: [
-          {
-                "path": "registry/blocks-example/preview-09/page.tsx",
-                "name": "page.tsx",
-                "type": "page"
-          }
-    ],
-    component: React.lazy(() => import("@/registry/blocks-example/preview-09/page"))
-  },
-  "preview-10": {
-    name: "preview-10",
-    type: "block",
-    files: [
-          {
-                "path": "registry/blocks-example/preview-10/page.tsx",
-                "name": "page.tsx",
-                "type": "page"
-          }
-    ],
-    component: React.lazy(() => import("@/registry/blocks-example/preview-10/page"))
-  },
-  "preview-11": {
-    name: "preview-11",
-    type: "block",
-    files: [
-          {
-                "path": "registry/blocks-example/preview-11/page.tsx",
-                "name": "page.tsx",
-                "type": "page"
-          }
-    ],
-    component: React.lazy(() => import("@/registry/blocks-example/preview-11/page"))
-  },
-  "reset-email": {
-    name: "reset-email",
-    type: "block",
-    files: [
-          {
-                "path": "registry/blocks-example/reset-email/components/brand-logo.tsx",
-                "name": "brand-logo.tsx",
-                "type": "components",
-                "target": ""
-          },
-          {
-                "path": "registry/blocks-example/reset-email/components/gmail-icon.tsx",
-                "name": "gmail-icon.tsx",
-                "type": "components",
-                "target": ""
-          },
-          {
-                "path": "registry/blocks-example/reset-email/components/mail-logo.tsx",
-                "name": "mail-logo.tsx",
-                "type": "components",
-                "target": ""
-          },
-          {
-                "path": "registry/blocks-example/reset-email/components/reset-email.tsx",
-                "name": "reset-email.tsx",
-                "type": "components",
-                "target": ""
-          },
-          {
-                "path": "registry/blocks-example/reset-email/page.tsx",
-                "name": "page.tsx",
-                "type": "page"
-          }
-    ],
-    component: React.lazy(() => import("@/registry/blocks-example/reset-email/page"))
-  },
-  "sidebar-dark": {
-    name: "sidebar-dark",
-    type: "block",
-    files: [
-          {
-                "path": "registry/blocks-example/sidebar-dark/components/app-sidebar.tsx",
-                "name": "app-sidebar.tsx",
-                "type": "components",
-                "target": ""
-          },
-          {
-                "path": "registry/blocks-example/sidebar-dark/components/info-card.tsx",
-                "name": "info-card.tsx",
-                "type": "components",
-                "target": ""
-          },
-          {
-                "path": "registry/blocks-example/sidebar-dark/components/logos.tsx",
-                "name": "logos.tsx",
-                "type": "components",
-                "target": ""
-          },
-          {
-                "path": "registry/blocks-example/sidebar-dark/components/sidebar-footer-user.tsx",
-                "name": "sidebar-footer-user.tsx",
-                "type": "components",
-                "target": ""
-          },
-          {
-                "path": "registry/blocks-example/sidebar-dark/page.tsx",
-                "name": "page.tsx",
-                "type": "page"
-          }
-    ],
-    component: React.lazy(() => import("@/registry/blocks-example/sidebar-dark/page"))
-  },
-  "sidebar-doc": {
-    name: "sidebar-doc",
-    type: "block",
-    files: [
-          {
-                "path": "registry/blocks-example/sidebar-doc/components/app-sidebar.tsx",
-                "name": "app-sidebar.tsx",
-                "type": "components",
-                "target": ""
-          },
-          {
-                "path": "registry/blocks-example/sidebar-doc/components/info-card.tsx",
-                "name": "info-card.tsx",
-                "type": "components",
-                "target": ""
-          },
-          {
-                "path": "registry/blocks-example/sidebar-doc/components/logos.tsx",
-                "name": "logos.tsx",
-                "type": "components",
-                "target": ""
-          },
-          {
-                "path": "registry/blocks-example/sidebar-doc/components/sidebar-footer-user.tsx",
-                "name": "sidebar-footer-user.tsx",
-                "type": "components",
-                "target": ""
-          },
-          {
-                "path": "registry/blocks-example/sidebar-doc/page.tsx",
-                "name": "page.tsx",
-                "type": "page"
-          }
-    ],
-    component: React.lazy(() => import("@/registry/blocks-example/sidebar-doc/page"))
-  },
-  "sidebar-floating": {
-    name: "sidebar-floating",
-    type: "block",
-    files: [
-          {
-                "path": "registry/blocks-example/sidebar-floating/components/app-sidebar.tsx",
-                "name": "app-sidebar.tsx",
-                "type": "components",
-                "target": ""
-          },
-          {
-                "path": "registry/blocks-example/sidebar-floating/components/info-card.tsx",
-                "name": "info-card.tsx",
-                "type": "components",
-                "target": ""
-          },
-          {
-                "path": "registry/blocks-example/sidebar-floating/components/logos.tsx",
-                "name": "logos.tsx",
-                "type": "components",
-                "target": ""
-          },
-          {
-                "path": "registry/blocks-example/sidebar-floating/components/sidebar-footer-user.tsx",
-                "name": "sidebar-footer-user.tsx",
-                "type": "components",
-                "target": ""
-          },
-          {
-                "path": "registry/blocks-example/sidebar-floating/page.tsx",
-                "name": "page.tsx",
-                "type": "page"
-          }
-    ],
-    component: React.lazy(() => import("@/registry/blocks-example/sidebar-floating/page"))
-  },
-  "sidebar-inset": {
-    name: "sidebar-inset",
-    type: "block",
-    files: [
-          {
-                "path": "registry/blocks-example/sidebar-inset/components/app-sidebar.tsx",
-                "name": "app-sidebar.tsx",
-                "type": "components",
-                "target": ""
-          },
-          {
-                "path": "registry/blocks-example/sidebar-inset/components/info-card.tsx",
-                "name": "info-card.tsx",
-                "type": "components",
-                "target": ""
-          },
-          {
-                "path": "registry/blocks-example/sidebar-inset/components/logos.tsx",
-                "name": "logos.tsx",
-                "type": "components",
-                "target": ""
-          },
-          {
-                "path": "registry/blocks-example/sidebar-inset/components/sidebar-footer-user.tsx",
-                "name": "sidebar-footer-user.tsx",
-                "type": "components",
-                "target": ""
-          },
-          {
-                "path": "registry/blocks-example/sidebar-inset/page.tsx",
-                "name": "page.tsx",
-                "type": "page"
-          }
-    ],
-    component: React.lazy(() => import("@/registry/blocks-example/sidebar-inset/page"))
-  },
-  "sidebar-offcanvas": {
-    name: "sidebar-offcanvas",
-    type: "block",
-    files: [
-          {
-                "path": "registry/blocks-example/sidebar-offcanvas/components/app-sidebar.tsx",
-                "name": "app-sidebar.tsx",
-                "type": "components",
-                "target": ""
-          },
-          {
-                "path": "registry/blocks-example/sidebar-offcanvas/components/info-card-expanded.tsx",
-                "name": "info-card-expanded.tsx",
-                "type": "components",
-                "target": ""
-          },
-          {
-                "path": "registry/blocks-example/sidebar-offcanvas/components/logos.tsx",
-                "name": "logos.tsx",
-                "type": "components",
-                "target": ""
-          },
-          {
-                "path": "registry/blocks-example/sidebar-offcanvas/components/sidebar-footer-user.tsx",
-                "name": "sidebar-footer-user.tsx",
-                "type": "components",
-                "target": ""
-          },
-          {
-                "path": "registry/blocks-example/sidebar-offcanvas/page.tsx",
-                "name": "page.tsx",
-                "type": "page"
-          }
-    ],
-    component: React.lazy(() => import("@/registry/blocks-example/sidebar-offcanvas/page"))
-  },
-  "sidebar-rail": {
-    name: "sidebar-rail",
-    type: "block",
-    files: [
-          {
-                "path": "registry/blocks-example/sidebar-rail/components/app-sidebar.tsx",
-                "name": "app-sidebar.tsx",
-                "type": "components",
-                "target": ""
-          },
-          {
-                "path": "registry/blocks-example/sidebar-rail/components/info-card.tsx",
-                "name": "info-card.tsx",
-                "type": "components",
-                "target": ""
-          },
-          {
-                "path": "registry/blocks-example/sidebar-rail/components/logos.tsx",
-                "name": "logos.tsx",
-                "type": "components",
-                "target": ""
-          },
-          {
-                "path": "registry/blocks-example/sidebar-rail/components/sidebar-footer-user.tsx",
-                "name": "sidebar-footer-user.tsx",
-                "type": "components",
-                "target": ""
-          },
-          {
-                "path": "registry/blocks-example/sidebar-rail/page.tsx",
-                "name": "page.tsx",
-                "type": "page"
-          }
-    ],
-    component: React.lazy(() => import("@/registry/blocks-example/sidebar-rail/page"))
-  },
-  "sidebar-resize": {
-    name: "sidebar-resize",
-    type: "block",
-    files: [
-          {
-                "path": "registry/blocks-example/sidebar-resize/components/app-sidebar.tsx",
-                "name": "app-sidebar.tsx",
-                "type": "components",
-                "target": ""
-          },
-          {
-                "path": "registry/blocks-example/sidebar-resize/components/info-card-expanded.tsx",
-                "name": "info-card-expanded.tsx",
-                "type": "components",
-                "target": ""
-          },
-          {
-                "path": "registry/blocks-example/sidebar-resize/components/logos.tsx",
-                "name": "logos.tsx",
-                "type": "components",
-                "target": ""
-          },
-          {
-                "path": "registry/blocks-example/sidebar-resize/components/sidebar-footer-user.tsx",
-                "name": "sidebar-footer-user.tsx",
-                "type": "components",
-                "target": ""
-          },
-          {
-                "path": "registry/blocks-example/sidebar-resize/page.tsx",
-                "name": "page.tsx",
-                "type": "page"
-          }
-    ],
-    component: React.lazy(() => import("@/registry/blocks-example/sidebar-resize/page"))
-  },
-  "signin": {
-    name: "signin",
-    type: "block",
-    files: [
-          {
-                "path": "registry/blocks-example/signin/components/brand-logo.tsx",
-                "name": "brand-logo.tsx",
-                "type": "components",
-                "target": ""
-          },
-          {
-                "path": "registry/blocks-example/signin/components/github-icon.tsx",
-                "name": "github-icon.tsx",
-                "type": "components",
-                "target": ""
-          },
-          {
-                "path": "registry/blocks-example/signin/components/google-icon.tsx",
-                "name": "google-icon.tsx",
-                "type": "components",
-                "target": ""
-          },
-          {
-                "path": "registry/blocks-example/signin/components/signin-form.tsx",
-                "name": "signin-form.tsx",
-                "type": "components",
-                "target": ""
-          },
-          {
-                "path": "registry/blocks-example/signin/page.tsx",
-                "name": "page.tsx",
-                "type": "page"
-          }
-    ],
-    component: React.lazy(() => import("@/registry/blocks-example/signin/page"))
-  },
-  "signup": {
-    name: "signup",
-    type: "block",
-    files: [
-          {
-                "path": "registry/blocks-example/signup/components/github-icon.tsx",
-                "name": "github-icon.tsx",
-                "type": "components",
-                "target": ""
-          },
-          {
-                "path": "registry/blocks-example/signup/components/google-icon.tsx",
-                "name": "google-icon.tsx",
-                "type": "components",
-                "target": ""
-          },
-          {
-                "path": "registry/blocks-example/signup/components/radian-logo.tsx",
-                "name": "radian-logo.tsx",
-                "type": "components",
-                "target": ""
-          },
-          {
-                "path": "registry/blocks-example/signup/components/sign-up-form.tsx",
-                "name": "sign-up-form.tsx",
-                "type": "components",
-                "target": ""
-          },
-          {
-                "path": "registry/blocks-example/signup/page.tsx",
-                "name": "page.tsx",
-                "type": "page"
-          }
-    ],
-    component: React.lazy(() => import("@/registry/blocks-example/signup/page"))
-  }
+      "new-password": {
+            name: "new-password",
+            type: "block",
+            files: [
+                  {
+                        "path": "registry/blocks-example/new-password/components/brand-logo.tsx",
+                        "name": "brand-logo.tsx",
+                        "type": "components",
+                        "target": ""
+                  },
+                  {
+                        "path": "registry/blocks-example/new-password/components/github-icon.tsx",
+                        "name": "github-icon.tsx",
+                        "type": "components",
+                        "target": ""
+                  },
+                  {
+                        "path": "registry/blocks-example/new-password/components/google-icon.tsx",
+                        "name": "google-icon.tsx",
+                        "type": "components",
+                        "target": ""
+                  },
+                  {
+                        "path": "registry/blocks-example/new-password/components/new-password-form.tsx",
+                        "name": "new-password-form.tsx",
+                        "type": "components",
+                        "target": ""
+                  },
+                  {
+                        "path": "registry/blocks-example/new-password/page.tsx",
+                        "name": "page.tsx",
+                        "type": "page"
+                  }
+            ],
+            component: React.lazy(() => import("@/registry/blocks-example/new-password/page"))
+      },
+      "preview-01": {
+            name: "preview-01",
+            type: "block",
+            files: [
+                  {
+                        "path": "registry/blocks-example/preview-01/common/card-first.tsx",
+                        "name": "card-first.tsx",
+                        "type": "components",
+                        "target": ""
+                  },
+                  {
+                        "path": "registry/blocks-example/preview-01/common/common-card.tsx",
+                        "name": "common-card.tsx",
+                        "type": "components",
+                        "target": ""
+                  },
+                  {
+                        "path": "registry/blocks-example/preview-01/common/cookie-card.tsx",
+                        "name": "cookie-card.tsx",
+                        "type": "components",
+                        "target": ""
+                  },
+                  {
+                        "path": "registry/blocks-example/preview-01/common/dropdown.tsx",
+                        "name": "dropdown.tsx",
+                        "type": "components",
+                        "target": ""
+                  },
+                  {
+                        "path": "registry/blocks-example/preview-01/common/invite-card.tsx",
+                        "name": "invite-card.tsx",
+                        "type": "components",
+                        "target": ""
+                  },
+                  {
+                        "path": "registry/blocks-example/preview-01/common/report-card.tsx",
+                        "name": "report-card.tsx",
+                        "type": "components",
+                        "target": ""
+                  },
+                  {
+                        "path": "registry/blocks-example/preview-01/page.tsx",
+                        "name": "page.tsx",
+                        "type": "page"
+                  }
+            ],
+            component: React.lazy(() => import("@/registry/blocks-example/preview-01/page"))
+      },
+      "preview-02": {
+            name: "preview-02",
+            type: "block",
+            files: [
+                  {
+                        "path": "registry/blocks-example/preview-02/page.tsx",
+                        "name": "page.tsx",
+                        "type": "page"
+                  }
+            ],
+            component: React.lazy(() => import("@/registry/blocks-example/preview-02/page"))
+      },
+      "preview-03": {
+            name: "preview-03",
+            type: "block",
+            files: [
+                  {
+                        "path": "registry/blocks-example/preview-03/page.tsx",
+                        "name": "page.tsx",
+                        "type": "page"
+                  }
+            ],
+            component: React.lazy(() => import("@/registry/blocks-example/preview-03/page"))
+      },
+      "preview-04": {
+            name: "preview-04",
+            type: "block",
+            files: [
+                  {
+                        "path": "registry/blocks-example/preview-04/page.tsx",
+                        "name": "page.tsx",
+                        "type": "page"
+                  }
+            ],
+            component: React.lazy(() => import("@/registry/blocks-example/preview-04/page"))
+      },
+      "preview-05": {
+            name: "preview-05",
+            type: "block",
+            files: [
+                  {
+                        "path": "registry/blocks-example/preview-05/page.tsx",
+                        "name": "page.tsx",
+                        "type": "page"
+                  }
+            ],
+            component: React.lazy(() => import("@/registry/blocks-example/preview-05/page"))
+      },
+      "preview-06": {
+            name: "preview-06",
+            type: "block",
+            files: [
+                  {
+                        "path": "registry/blocks-example/preview-06/page.tsx",
+                        "name": "page.tsx",
+                        "type": "page"
+                  }
+            ],
+            component: React.lazy(() => import("@/registry/blocks-example/preview-06/page"))
+      },
+      "preview-07": {
+            name: "preview-07",
+            type: "block",
+            files: [
+                  {
+                        "path": "registry/blocks-example/preview-07/page.tsx",
+                        "name": "page.tsx",
+                        "type": "page"
+                  }
+            ],
+            component: React.lazy(() => import("@/registry/blocks-example/preview-07/page"))
+      },
+      "preview-08": {
+            name: "preview-08",
+            type: "block",
+            files: [
+                  {
+                        "path": "registry/blocks-example/preview-08/page.tsx",
+                        "name": "page.tsx",
+                        "type": "page"
+                  }
+            ],
+            component: React.lazy(() => import("@/registry/blocks-example/preview-08/page"))
+      },
+      "preview-09": {
+            name: "preview-09",
+            type: "block",
+            files: [
+                  {
+                        "path": "registry/blocks-example/preview-09/page.tsx",
+                        "name": "page.tsx",
+                        "type": "page"
+                  }
+            ],
+            component: React.lazy(() => import("@/registry/blocks-example/preview-09/page"))
+      },
+      "preview-10": {
+            name: "preview-10",
+            type: "block",
+            files: [
+                  {
+                        "path": "registry/blocks-example/preview-10/page.tsx",
+                        "name": "page.tsx",
+                        "type": "page"
+                  }
+            ],
+            component: React.lazy(() => import("@/registry/blocks-example/preview-10/page"))
+      },
+      "preview-11": {
+            name: "preview-11",
+            type: "block",
+            files: [
+                  {
+                        "path": "registry/blocks-example/preview-11/page.tsx",
+                        "name": "page.tsx",
+                        "type": "page"
+                  }
+            ],
+            component: React.lazy(() => import("@/registry/blocks-example/preview-11/page"))
+      },
+      "preview-13": {
+            name: "preview-13",
+            type: "block",
+            files: [
+                  {
+                        "path": "registry/blocks-example/preview-13/components/dashboard-header.tsx",
+                        "name": "dashboard-header.tsx",
+                        "type": "components",
+                        "target": ""
+                  },
+                  {
+                        "path": "registry/blocks-example/preview-13/components/dashboard-sidebar.tsx",
+                        "name": "dashboard-sidebar.tsx",
+                        "type": "components",
+                        "target": ""
+                  },
+                  {
+                        "path": "registry/blocks-example/preview-13/components/data.ts",
+                        "name": "data.ts",
+                        "type": "components",
+                        "target": ""
+                  },
+                  {
+                        "path": "registry/blocks-example/preview-13/components/recent-transactions-table.tsx",
+                        "name": "recent-transactions-table.tsx",
+                        "type": "components",
+                        "target": ""
+                  },
+                  {
+                        "path": "registry/blocks-example/preview-13/components/revenue-breakdown-card.tsx",
+                        "name": "revenue-breakdown-card.tsx",
+                        "type": "components",
+                        "target": ""
+                  },
+                  {
+                        "path": "registry/blocks-example/preview-13/components/sales-trend-chart.tsx",
+                        "name": "sales-trend-chart.tsx",
+                        "type": "components",
+                        "target": ""
+                  },
+                  {
+                        "path": "registry/blocks-example/preview-13/components/stat-metrics.tsx",
+                        "name": "stat-metrics.tsx",
+                        "type": "components",
+                        "target": ""
+                  },
+                  {
+                        "path": "registry/blocks-example/preview-13/components/types.ts",
+                        "name": "types.ts",
+                        "type": "components",
+                        "target": ""
+                  },
+                  {
+                        "path": "registry/blocks-example/preview-13/components/welcome-header.tsx",
+                        "name": "welcome-header.tsx",
+                        "type": "components",
+                        "target": ""
+                  },
+                  {
+                        "path": "registry/blocks-example/preview-13/page.tsx",
+                        "name": "page.tsx",
+                        "type": "page"
+                  }
+            ],
+            component: React.lazy(() => import("@/registry/blocks-example/preview-13/page"))
+      },
+      "reset-email": {
+            name: "reset-email",
+            type: "block",
+            files: [
+                  {
+                        "path": "registry/blocks-example/reset-email/components/brand-logo.tsx",
+                        "name": "brand-logo.tsx",
+                        "type": "components",
+                        "target": ""
+                  },
+                  {
+                        "path": "registry/blocks-example/reset-email/components/gmail-icon.tsx",
+                        "name": "gmail-icon.tsx",
+                        "type": "components",
+                        "target": ""
+                  },
+                  {
+                        "path": "registry/blocks-example/reset-email/components/mail-logo.tsx",
+                        "name": "mail-logo.tsx",
+                        "type": "components",
+                        "target": ""
+                  },
+                  {
+                        "path": "registry/blocks-example/reset-email/components/reset-email.tsx",
+                        "name": "reset-email.tsx",
+                        "type": "components",
+                        "target": ""
+                  },
+                  {
+                        "path": "registry/blocks-example/reset-email/page.tsx",
+                        "name": "page.tsx",
+                        "type": "page"
+                  }
+            ],
+            component: React.lazy(() => import("@/registry/blocks-example/reset-email/page"))
+      },
+      "sidebar-dark": {
+            name: "sidebar-dark",
+            type: "block",
+            files: [
+                  {
+                        "path": "registry/blocks-example/sidebar-dark/components/app-sidebar.tsx",
+                        "name": "app-sidebar.tsx",
+                        "type": "components",
+                        "target": ""
+                  },
+                  {
+                        "path": "registry/blocks-example/sidebar-dark/components/info-card.tsx",
+                        "name": "info-card.tsx",
+                        "type": "components",
+                        "target": ""
+                  },
+                  {
+                        "path": "registry/blocks-example/sidebar-dark/components/logos.tsx",
+                        "name": "logos.tsx",
+                        "type": "components",
+                        "target": ""
+                  },
+                  {
+                        "path": "registry/blocks-example/sidebar-dark/components/sidebar-footer-user.tsx",
+                        "name": "sidebar-footer-user.tsx",
+                        "type": "components",
+                        "target": ""
+                  },
+                  {
+                        "path": "registry/blocks-example/sidebar-dark/page.tsx",
+                        "name": "page.tsx",
+                        "type": "page"
+                  }
+            ],
+            component: React.lazy(() => import("@/registry/blocks-example/sidebar-dark/page"))
+      },
+      "sidebar-doc": {
+            name: "sidebar-doc",
+            type: "block",
+            files: [
+                  {
+                        "path": "registry/blocks-example/sidebar-doc/components/app-sidebar.tsx",
+                        "name": "app-sidebar.tsx",
+                        "type": "components",
+                        "target": ""
+                  },
+                  {
+                        "path": "registry/blocks-example/sidebar-doc/components/info-card.tsx",
+                        "name": "info-card.tsx",
+                        "type": "components",
+                        "target": ""
+                  },
+                  {
+                        "path": "registry/blocks-example/sidebar-doc/components/logos.tsx",
+                        "name": "logos.tsx",
+                        "type": "components",
+                        "target": ""
+                  },
+                  {
+                        "path": "registry/blocks-example/sidebar-doc/components/sidebar-footer-user.tsx",
+                        "name": "sidebar-footer-user.tsx",
+                        "type": "components",
+                        "target": ""
+                  },
+                  {
+                        "path": "registry/blocks-example/sidebar-doc/page.tsx",
+                        "name": "page.tsx",
+                        "type": "page"
+                  }
+            ],
+            component: React.lazy(() => import("@/registry/blocks-example/sidebar-doc/page"))
+      },
+      "sidebar-floating": {
+            name: "sidebar-floating",
+            type: "block",
+            files: [
+                  {
+                        "path": "registry/blocks-example/sidebar-floating/components/app-sidebar.tsx",
+                        "name": "app-sidebar.tsx",
+                        "type": "components",
+                        "target": ""
+                  },
+                  {
+                        "path": "registry/blocks-example/sidebar-floating/components/info-card.tsx",
+                        "name": "info-card.tsx",
+                        "type": "components",
+                        "target": ""
+                  },
+                  {
+                        "path": "registry/blocks-example/sidebar-floating/components/logos.tsx",
+                        "name": "logos.tsx",
+                        "type": "components",
+                        "target": ""
+                  },
+                  {
+                        "path": "registry/blocks-example/sidebar-floating/components/sidebar-footer-user.tsx",
+                        "name": "sidebar-footer-user.tsx",
+                        "type": "components",
+                        "target": ""
+                  },
+                  {
+                        "path": "registry/blocks-example/sidebar-floating/page.tsx",
+                        "name": "page.tsx",
+                        "type": "page"
+                  }
+            ],
+            component: React.lazy(() => import("@/registry/blocks-example/sidebar-floating/page"))
+      },
+      "sidebar-inset": {
+            name: "sidebar-inset",
+            type: "block",
+            files: [
+                  {
+                        "path": "registry/blocks-example/sidebar-inset/components/app-sidebar.tsx",
+                        "name": "app-sidebar.tsx",
+                        "type": "components",
+                        "target": ""
+                  },
+                  {
+                        "path": "registry/blocks-example/sidebar-inset/components/info-card.tsx",
+                        "name": "info-card.tsx",
+                        "type": "components",
+                        "target": ""
+                  },
+                  {
+                        "path": "registry/blocks-example/sidebar-inset/components/logos.tsx",
+                        "name": "logos.tsx",
+                        "type": "components",
+                        "target": ""
+                  },
+                  {
+                        "path": "registry/blocks-example/sidebar-inset/components/sidebar-footer-user.tsx",
+                        "name": "sidebar-footer-user.tsx",
+                        "type": "components",
+                        "target": ""
+                  },
+                  {
+                        "path": "registry/blocks-example/sidebar-inset/page.tsx",
+                        "name": "page.tsx",
+                        "type": "page"
+                  }
+            ],
+            component: React.lazy(() => import("@/registry/blocks-example/sidebar-inset/page"))
+      },
+      "sidebar-offcanvas": {
+            name: "sidebar-offcanvas",
+            type: "block",
+            files: [
+                  {
+                        "path": "registry/blocks-example/sidebar-offcanvas/components/app-sidebar.tsx",
+                        "name": "app-sidebar.tsx",
+                        "type": "components",
+                        "target": ""
+                  },
+                  {
+                        "path": "registry/blocks-example/sidebar-offcanvas/components/info-card-expanded.tsx",
+                        "name": "info-card-expanded.tsx",
+                        "type": "components",
+                        "target": ""
+                  },
+                  {
+                        "path": "registry/blocks-example/sidebar-offcanvas/components/logos.tsx",
+                        "name": "logos.tsx",
+                        "type": "components",
+                        "target": ""
+                  },
+                  {
+                        "path": "registry/blocks-example/sidebar-offcanvas/components/sidebar-footer-user.tsx",
+                        "name": "sidebar-footer-user.tsx",
+                        "type": "components",
+                        "target": ""
+                  },
+                  {
+                        "path": "registry/blocks-example/sidebar-offcanvas/page.tsx",
+                        "name": "page.tsx",
+                        "type": "page"
+                  }
+            ],
+            component: React.lazy(() => import("@/registry/blocks-example/sidebar-offcanvas/page"))
+      },
+      "sidebar-rail": {
+            name: "sidebar-rail",
+            type: "block",
+            files: [
+                  {
+                        "path": "registry/blocks-example/sidebar-rail/components/app-sidebar.tsx",
+                        "name": "app-sidebar.tsx",
+                        "type": "components",
+                        "target": ""
+                  },
+                  {
+                        "path": "registry/blocks-example/sidebar-rail/components/info-card.tsx",
+                        "name": "info-card.tsx",
+                        "type": "components",
+                        "target": ""
+                  },
+                  {
+                        "path": "registry/blocks-example/sidebar-rail/components/logos.tsx",
+                        "name": "logos.tsx",
+                        "type": "components",
+                        "target": ""
+                  },
+                  {
+                        "path": "registry/blocks-example/sidebar-rail/components/sidebar-footer-user.tsx",
+                        "name": "sidebar-footer-user.tsx",
+                        "type": "components",
+                        "target": ""
+                  },
+                  {
+                        "path": "registry/blocks-example/sidebar-rail/page.tsx",
+                        "name": "page.tsx",
+                        "type": "page"
+                  }
+            ],
+            component: React.lazy(() => import("@/registry/blocks-example/sidebar-rail/page"))
+      },
+      "sidebar-resize": {
+            name: "sidebar-resize",
+            type: "block",
+            files: [
+                  {
+                        "path": "registry/blocks-example/sidebar-resize/components/app-sidebar.tsx",
+                        "name": "app-sidebar.tsx",
+                        "type": "components",
+                        "target": ""
+                  },
+                  {
+                        "path": "registry/blocks-example/sidebar-resize/components/info-card-expanded.tsx",
+                        "name": "info-card-expanded.tsx",
+                        "type": "components",
+                        "target": ""
+                  },
+                  {
+                        "path": "registry/blocks-example/sidebar-resize/components/logos.tsx",
+                        "name": "logos.tsx",
+                        "type": "components",
+                        "target": ""
+                  },
+                  {
+                        "path": "registry/blocks-example/sidebar-resize/components/sidebar-footer-user.tsx",
+                        "name": "sidebar-footer-user.tsx",
+                        "type": "components",
+                        "target": ""
+                  },
+                  {
+                        "path": "registry/blocks-example/sidebar-resize/page.tsx",
+                        "name": "page.tsx",
+                        "type": "page"
+                  }
+            ],
+            component: React.lazy(() => import("@/registry/blocks-example/sidebar-resize/page"))
+      },
+      "signin": {
+            name: "signin",
+            type: "block",
+            files: [
+                  {
+                        "path": "registry/blocks-example/signin/components/brand-logo.tsx",
+                        "name": "brand-logo.tsx",
+                        "type": "components",
+                        "target": ""
+                  },
+                  {
+                        "path": "registry/blocks-example/signin/components/github-icon.tsx",
+                        "name": "github-icon.tsx",
+                        "type": "components",
+                        "target": ""
+                  },
+                  {
+                        "path": "registry/blocks-example/signin/components/google-icon.tsx",
+                        "name": "google-icon.tsx",
+                        "type": "components",
+                        "target": ""
+                  },
+                  {
+                        "path": "registry/blocks-example/signin/components/signin-form.tsx",
+                        "name": "signin-form.tsx",
+                        "type": "components",
+                        "target": ""
+                  },
+                  {
+                        "path": "registry/blocks-example/signin/page.tsx",
+                        "name": "page.tsx",
+                        "type": "page"
+                  }
+            ],
+            component: React.lazy(() => import("@/registry/blocks-example/signin/page"))
+      },
+      "signup": {
+            name: "signup",
+            type: "block",
+            files: [
+                  {
+                        "path": "registry/blocks-example/signup/components/github-icon.tsx",
+                        "name": "github-icon.tsx",
+                        "type": "components",
+                        "target": ""
+                  },
+                  {
+                        "path": "registry/blocks-example/signup/components/google-icon.tsx",
+                        "name": "google-icon.tsx",
+                        "type": "components",
+                        "target": ""
+                  },
+                  {
+                        "path": "registry/blocks-example/signup/components/radian-logo.tsx",
+                        "name": "radian-logo.tsx",
+                        "type": "components",
+                        "target": ""
+                  },
+                  {
+                        "path": "registry/blocks-example/signup/components/sign-up-form.tsx",
+                        "name": "sign-up-form.tsx",
+                        "type": "components",
+                        "target": ""
+                  },
+                  {
+                        "path": "registry/blocks-example/signup/page.tsx",
+                        "name": "page.tsx",
+                        "type": "page"
+                  }
+            ],
+            component: React.lazy(() => import("@/registry/blocks-example/signup/page"))
+      }
 }
