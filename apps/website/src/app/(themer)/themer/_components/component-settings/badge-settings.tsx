@@ -168,8 +168,6 @@ function VariantPicker() {
 	)
 }
 
-const BADGE_SIZE_PIXELS: Record<BadgeSize, number> = { sm: 20, md: 24, lg: 28 }
-
 export function BadgeSettings({
 	children,
 	mobile = false,
@@ -235,14 +233,12 @@ export function BadgeSettings({
 						id={sizeId}
 						size={mobile ? "md" : "sm"}
 						className="text-[13px]">
-						<SelectValue>
-							{mobile ? `${BADGE_SIZE_PIXELS[size]} px` : undefined}
-						</SelectValue>
+						<SelectValue />
 					</SelectTrigger>
 					<SelectContent>
 						{BADGE_SIZES.map(({ value }) => (
 							<SelectItem key={value} value={value}>
-								{mobile ? `${BADGE_SIZE_PIXELS[value]} px` : value}
+								{value}
 							</SelectItem>
 						))}
 					</SelectContent>
