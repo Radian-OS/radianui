@@ -264,13 +264,9 @@ function BrowserMockupCard() {
 
 				<div className="flex h-[64.19px] items-center gap-3 px-[20.93px]">
 					<div className="flex items-center justify-center gap-2.5">
-						<IconSlot slot="arrow-left" size={16} />
-						<IconSlot
-							slot="arrow-right"
-							size={16}
-							className="text-fg-disabled"
-						/>
-						<IconSlot slot="repeat" size={16} />
+						<IconSlot slot="arrow-left" className="size-4" />
+						<IconSlot slot="arrow-right" className="text-fg-disabled size-4" />
+						<IconSlot slot="repeat" className="size-4" />
 					</div>
 					<div className="border-soft-alpha bg-fill2 text-fg-tertiary ml-[3px] flex h-[45.45px] w-[659.37px] shrink-0 items-center rounded-xl border px-[13.93px] text-lg">
 						www.xavion.com
@@ -480,8 +476,7 @@ function SecurityAlertCard() {
 					<div className="border-primary-accent bg-primary-accent flex size-9 shrink-0 items-center justify-center rounded-lg border">
 						<IconSlot
 							slot="shield"
-							className="fill-primary stroke-primary"
-							size={20}
+							className="fill-primary stroke-primary size-5"
 						/>
 					</div>
 					<h3 className="text-primary-accent text-xl font-medium tracking-tight">
@@ -499,7 +494,7 @@ function SecurityAlertCard() {
 						Realtime Transaction Alert
 					</span>
 					<div className="glass bg-white-inverse/20 flex size-8.5 items-center justify-center rounded-full">
-						<IconSlot slot="clock" size={16} />
+						<IconSlot slot="clock" className="size-4" />
 					</div>
 				</div>
 
