@@ -214,13 +214,33 @@ function formatColor(hex: string, format: ColorFormat): string {
 	return (formatHex(parsed) || hex).toUpperCase()
 }
 
+let cleanupDrag: (() => void) | null = null
+
 function startDrag(onMove: (e: PointerEvent) => void) {
+	cleanupDrag?.()
+
+	const iframes = document.querySelectorAll("iframe")
+	iframes.forEach((el) => {
+		el.style.pointerEvents = "none"
+	})
+
 	const onUp = () => {
 		window.removeEventListener("pointermove", onMove)
 		window.removeEventListener("pointerup", onUp)
+		window.removeEventListener("pointercancel", onUp)
+		window.removeEventListener("blur", onUp)
+		iframes.forEach((el) => {
+			el.style.pointerEvents = ""
+		})
+		cleanupDrag = null
 	}
+
 	window.addEventListener("pointermove", onMove)
 	window.addEventListener("pointerup", onUp)
+	window.addEventListener("pointercancel", onUp)
+	window.addEventListener("blur", onUp)
+
+	cleanupDrag = onUp
 }
 
 function getCardLabel(index: number): string {
@@ -292,6 +312,15 @@ function ColorPickerPopover({
 		}
 	}, [colorInfo.hex])
 
+	React.useEffect(() => {
+		if (!open) {
+			cleanupDrag?.()
+		}
+		return () => {
+			cleanupDrag?.()
+		}
+	}, [open])
+
 	const updateHsv = (next: { h: number; s: number; v: number }) => {
 		setHsvState(next)
 		const hex = formatHex({ mode: "hsv", ...next }) || "#000000"
@@ -300,6 +329,7 @@ function ColorPickerPopover({
 	}
 
 	const handleSvPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+		e.preventDefault()
 		const rect = e.currentTarget.getBoundingClientRect()
 		const h = hsvState.h
 		const update = (x: number, y: number) => {
@@ -313,6 +343,7 @@ function ColorPickerPopover({
 	}
 
 	const handleHuePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+		e.preventDefault()
 		const rect = e.currentTarget.getBoundingClientRect()
 		const { s, v } = hsvState
 		const update = (x: number) => {
