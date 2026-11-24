@@ -1,5 +1,5 @@
 import { useThemerPickerPlacement } from "./themer-picker-placement"
-import { Button, CompactButton } from "@/styles/default/ui/button"
+import { Button, CompactButton, IconButton } from "@/styles/default/ui/button"
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -13,18 +13,22 @@ import {
 	TooltipContent,
 	TooltipTrigger,
 } from "@/styles/default/ui/tooltip"
-import { Info } from "lucide-react"
+import { Check, ChevronLeft, Info } from "lucide-react"
+import { DrawerTitle } from "@/registry/ui/drawer"
+import { cn } from "@/lib/utils"
 import { DENSITIES, DensityValue } from "@/registry/density"
 import { useThemerPreset } from "@/lib/themer-preset"
 
 interface DensityPickerProps {
 	value?: DensityValue
 	onValueChange?: (value: DensityValue) => void
+	onBack?: () => void
 }
 
 export default function DensityPicker({
 	value,
 	onValueChange,
+	onBack,
 }: DensityPickerProps = {}) {
 	const placement = useThemerPickerPlacement("start", 12)
 	const [presetParams, setPresetParams] = useThemerPreset()
@@ -36,6 +40,73 @@ export default function DensityPicker({
 		DENSITIES.find((d) => d.value === currentValue) ??
 		DENSITIES.find((d) => d.value === "default") ??
 		DENSITIES[0]
+
+	if (onBack) {
+		return (
+			<div className="flex flex-col gap-2 px-3 pb-[max(12px,env(safe-area-inset-bottom))]">
+				<div className="flex touch-none items-center justify-between">
+					<div className="flex items-center gap-2">
+						<IconButton
+							size="xs"
+							variant="ghost"
+							color="neutral"
+							className="text-fg-secondary"
+							aria-label="Close density settings"
+							onClick={onBack}>
+							<ChevronLeft />
+						</IconButton>
+						<DrawerTitle className="text-fg text-base font-medium">
+							Density
+						</DrawerTitle>
+					</div>
+					<Tooltip>
+						<TooltipTrigger asChild>
+							<IconButton
+								size="md"
+								variant="ghost"
+								color="neutral"
+								className="text-fg-secondary"
+								aria-label="About density">
+								<Info />
+							</IconButton>
+						</TooltipTrigger>
+						<TooltipContent withArrow>
+							Changes the spacing scale across your interface
+						</TooltipContent>
+					</Tooltip>
+				</div>
+				<div
+					role="group"
+					aria-labelledby="mobile-density-label"
+					className="flex flex-col gap-0.5">
+					<span
+						id="mobile-density-label"
+						className="text-fg px-2 py-1.5 text-sm">
+						Density
+					</span>
+					{DENSITIES.map(({ value, name }) => {
+						const selected = selectedDensity.value === value
+						return (
+							<Button
+								key={value}
+								size="sm"
+								variant="ghost"
+								color="neutral"
+								className={cn(
+									"w-full justify-between px-2 text-sm font-normal",
+									selected && "bg-fill1-alpha"
+								)}
+								aria-pressed={selected}
+								onClick={() => handleChange(value)}>
+								{name}
+								{selected && <Check className="text-fg-tertiary" />}
+							</Button>
+						)
+					})}
+				</div>
+			</div>
+		)
+	}
 
 	return (
 		<DropdownMenu>

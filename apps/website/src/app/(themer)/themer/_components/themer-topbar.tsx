@@ -17,7 +17,7 @@ import {
 import PagePicker from "./page-picker"
 import { Tabs, TabsList, TabsTrigger } from "@/styles/default/ui/tabs"
 import { CreateProjectDialog } from "./create-project-dialog"
-import { MOBILE_THEMER_DRAWER_ID } from "./themer-mobile-settings"
+import { MobileNavigation } from "@/components/navbar/mobile-tablet-navigation"
 
 export type DeviceSize = "desktop" | "tablet" | "mobile"
 
@@ -26,8 +26,6 @@ interface ThemerTopbarProps {
 	onSelectComponent?: (value: string) => void
 	device?: DeviceSize
 	onDeviceChange?: (value: DeviceSize) => void
-	mobileSettingsOpen: boolean
-	onOpenMobileSettings: (trigger: HTMLButtonElement) => void
 }
 
 export function ThemerTopbar({
@@ -35,10 +33,9 @@ export function ThemerTopbar({
 	onSelectComponent,
 	device = "desktop",
 	onDeviceChange,
-	mobileSettingsOpen,
-	onOpenMobileSettings,
 }: ThemerTopbarProps) {
 	const [mounted, setMounted] = useState(false)
+	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 	const { resolvedTheme, setTheme } = useTheme()
 
 	useEffect(() => {
@@ -144,16 +141,18 @@ export function ThemerTopbar({
 					size="xs"
 					color="neutral"
 					className="sm:hidden"
-					aria-label="Open Themer settings"
-					aria-haspopup="dialog"
-					aria-expanded={mobileSettingsOpen}
-					aria-controls={
-						mobileSettingsOpen ? MOBILE_THEMER_DRAWER_ID : undefined
-					}
-					onClick={(event) => onOpenMobileSettings(event.currentTarget)}>
+					aria-label="Open mobile navigation"
+					aria-expanded={isMobileMenuOpen}
+					onClick={() => setIsMobileMenuOpen(true)}>
 					<Menu />
 				</IconButton>
 			</div>
+			{isMobileMenuOpen && (
+				<MobileNavigation
+					isMobileMenuOpen={isMobileMenuOpen}
+					setIsMobileMenuOpen={setIsMobileMenuOpen}
+				/>
+			)}
 		</header>
 	)
 }
