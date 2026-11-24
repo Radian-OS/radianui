@@ -16,50 +16,55 @@ import {
 import { IconSlot } from "@/registry/icon/icon-library"
 import { Divider } from "@/registry/ui/divider"
 
-const COLS = 28
-const CELLS = COLS * 6
+const XAVION_PATH =
+	"M44.375 37.25C44.375 42.0825 40.4575 46 35.625 46H34.75C29.9175 46 26 42.0825 26 37.25H44.375ZM54 37.25C54 42.0825 50.0825 46 45.25 46V37.25H54ZM35.1875 18C40.2616 18 44.375 22.1134 44.375 27.1875C44.375 32.2616 40.2616 36.375 35.1875 36.375C30.1134 36.375 26 32.2616 26 27.1875C26 22.1134 30.1134 18 35.1875 18ZM45.25 18C50.0825 18 54 21.9175 54 26.75V27.625C54 32.4575 50.0825 36.375 45.25 36.375V18Z"
 
-const k = (n: number) => `${(n / 1000).toFixed(1)}K`
+const SQUIRCLE_PATH =
+	"M16 20C16 13.3726 21.3726 8 28 8H52C58.6274 8 64 13.3726 64 20V44C64 50.6274 58.6274 56 52 56H28C21.3726 56 16 50.6274 16 44V20Z"
 
-type Props = {
-	model?: string
-	limit?: number
-	system?: number
-	files?: number
-	conversation?: number
-	className?: string
-}
-
-const mask = "url(/themer/phone-mask.webp) 0 0/100% 100% no-repeat"
-
-function VerifiedBadge() {
+function TintedBackdrop({
+	src,
+	alt = "",
+	imgClassName = "size-full object-cover",
+	tintClassName,
+}: {
+	src: string
+	alt?: string
+	imgClassName?: string
+	tintClassName?: string
+}) {
 	return (
-		<svg
-			viewBox="197.8 211.5 23.7 23.8"
-			className="size-6 shrink-0 text-[var(--color-primary)]"
-			aria-label="Verified">
-			<path
-				fill="currentColor"
-				d="M221.31 222.38C221.156 222.072 220.929 221.805 220.649 221.604L219.109 220.445C219.029 220.39 218.971 220.308 218.946 220.214C218.912 220.12 218.912 220.018 218.946 219.924L219.584 218.036C219.686 217.698 219.71 217.342 219.653 216.993C219.6 216.639 219.456 216.304 219.236 216.02C219.024 215.737 218.746 215.51 218.425 215.36C218.119 215.213 217.78 215.145 217.441 215.163H215.703C215.6 215.162 215.501 215.127 215.419 215.065C215.338 215.002 215.279 214.915 215.251 214.816L214.753 213.078C214.657 212.725 214.474 212.403 214.22 212.14C213.967 211.883 213.658 211.688 213.317 211.572C212.972 211.466 212.607 211.442 212.251 211.503C211.898 211.571 211.568 211.727 211.29 211.954L209.969 212.997C209.896 213.063 209.801 213.1 209.702 213.101C209.614 213.11 209.524 213.089 209.448 213.043L208.139 212.001C207.87 211.781 207.552 211.63 207.212 211.56C206.877 211.479 206.527 211.479 206.192 211.56C205.857 211.654 205.547 211.824 205.289 212.059C205.025 212.314 204.823 212.628 204.698 212.974L204.2 214.723C204.175 214.826 204.113 214.917 204.026 214.978C203.935 215.04 203.824 215.069 203.714 215.059H202.069C201.713 215.045 201.36 215.116 201.038 215.267C200.711 215.412 200.427 215.64 200.215 215.928C200.002 216.211 199.859 216.54 199.798 216.889C199.739 217.23 199.763 217.579 199.868 217.908L200.435 219.866C200.464 219.961 200.464 220.061 200.435 220.156C200.406 220.248 200.349 220.328 200.273 220.387L198.732 221.546C198.452 221.754 198.222 222.024 198.061 222.334C197.908 222.642 197.829 222.98 197.829 223.324C197.829 223.668 197.908 224.006 198.061 224.314C198.222 224.624 198.452 224.894 198.732 225.102L200.273 226.261C200.349 226.32 200.406 226.4 200.435 226.492C200.464 226.587 200.464 226.687 200.435 226.782L199.798 228.67C199.69 229.01 199.662 229.371 199.717 229.724C199.776 230.07 199.919 230.397 200.134 230.674C200.346 230.965 200.63 231.196 200.957 231.346C201.263 231.492 201.602 231.56 201.941 231.543H203.667C203.772 231.538 203.874 231.571 203.957 231.636C204.04 231.693 204.098 231.78 204.119 231.879L204.617 233.628C204.72 233.974 204.903 234.292 205.15 234.555C205.528 234.948 206.039 235.186 206.583 235.223C207.127 235.259 207.665 235.091 208.092 234.752L209.424 233.698C209.505 233.633 209.605 233.597 209.708 233.597C209.812 233.597 209.912 233.633 209.992 233.698L211.301 234.74C211.579 234.975 211.915 235.131 212.274 235.192C212.405 235.203 212.537 235.203 212.668 235.192C212.896 235.193 213.123 235.158 213.34 235.088C213.684 234.979 213.995 234.787 214.246 234.528C214.497 234.269 214.679 233.952 214.776 233.605L215.286 231.844C215.307 231.745 215.365 231.658 215.448 231.601C215.538 231.533 215.649 231.5 215.761 231.508H217.417C217.772 231.522 218.124 231.455 218.448 231.311C218.768 231.159 219.046 230.932 219.26 230.65C219.474 230.368 219.616 230.038 219.676 229.689C219.736 229.333 219.709 228.967 219.595 228.624L218.97 226.747C218.935 226.654 218.935 226.551 218.97 226.458C218.994 226.363 219.052 226.281 219.132 226.226L220.672 225.067C220.953 224.862 221.179 224.591 221.333 224.28C221.495 223.973 221.578 223.63 221.576 223.284C221.554 222.966 221.463 222.658 221.31 222.38ZM215.008 221.5L209.888 226.62C209.69 226.814 209.458 226.971 209.204 227.083C208.947 227.189 208.672 227.244 208.393 227.245C208.11 227.247 207.83 227.188 207.571 227.071C207.311 226.964 207.075 226.806 206.876 226.608L204.351 224.071C204.161 223.85 204.062 223.565 204.073 223.273C204.084 222.981 204.205 222.705 204.411 222.499C204.618 222.292 204.894 222.171 205.186 222.16C205.477 222.149 205.762 222.248 205.984 222.438L208.393 224.847L213.375 219.855C213.592 219.639 213.885 219.518 214.191 219.518C214.497 219.518 214.791 219.639 215.008 219.855C215.124 219.963 215.216 220.094 215.279 220.239C215.342 220.385 215.375 220.542 215.375 220.7C215.375 220.859 215.342 221.016 215.279 221.161C215.216 221.307 215.124 221.437 215.008 221.546V221.5Z"
+		<>
+			<img
+				src={src}
+				alt={alt}
+				className={cn("absolute inset-0", imgClassName)}
 			/>
-		</svg>
+			<div
+				className={cn(
+					"bg-primary absolute inset-0 mix-blend-color",
+					tintClassName
+				)}
+			/>
+		</>
 	)
 }
 
-export function XavionMark() {
+export function XavionMark({
+	className = "size-full",
+}: {
+	className?: string
+}) {
 	const id = useId().replace(/:/g, "")
 	return (
-		<svg viewBox="85.78 119.14 51.9 51.9" className="size-full" aria-hidden>
+		<svg viewBox="26 18 28 28" className={className} aria-hidden>
 			<defs>
 				<linearGradient id={id} x1="0" y1="0" x2="0" y2="1">
-					<stop stopColor="white" />
-					<stop offset="1" stopColor="white" stopOpacity=".5" />
+					<stop stopColor="#fff" />
+					<stop offset="1" stopColor="#fff" stopOpacity=".5" />
 				</linearGradient>
 			</defs>
-			<path
-				fill={`url(#${id})`}
-				d="M119.833 154.817C119.833 163.774 112.572 171.034 103.615 171.034H101.994C93.0367 171.034 85.7759 163.774 85.7759 154.817H119.833ZM137.672 154.817C137.672 163.774 130.412 171.034 121.455 171.034V154.817H137.672ZM102.804 119.138C112.209 119.138 119.833 126.762 119.833 136.166C119.833 145.571 112.209 153.195 102.804 153.195C93.3998 153.195 85.7759 145.571 85.7759 136.166C85.7759 126.762 93.3998 119.138 102.804 119.138ZM121.455 119.138C130.412 119.138 137.672 126.399 137.672 135.356V136.977C137.672 145.934 130.412 153.195 121.455 153.195V119.138Z"
-			/>
+			<path fill={`url(#${id})`} d={XAVION_PATH} />
 		</svg>
 	)
 }
@@ -80,14 +85,10 @@ function BrandLogo({
 			height={size}
 			viewBox="26 18 28 28"
 			fill="none"
-			xmlns="http://www.w3.org/2000/svg"
 			className={cn("shrink-0", className)}
 			shapeRendering="geometricPrecision"
 			{...props}>
-			<path
-				d="M44.375 37.25C44.375 42.0825 40.4575 46 35.625 46H34.75C29.9175 46 26 42.0825 26 37.25H44.375ZM54 37.25C54 42.0825 50.0825 46 45.25 46V37.25H54ZM35.1875 18C40.2616 18 44.375 22.1134 44.375 27.1875C44.375 32.2616 40.2616 36.375 35.1875 36.375C30.1134 36.375 26 32.2616 26 27.1875C26 22.1134 30.1134 18 35.1875 18ZM45.25 18C50.0825 18 54 21.9175 54 26.75V27.625C54 32.4575 50.0825 36.375 45.25 36.375V18Z"
-				fill={fill}
-			/>
+			<path d={XAVION_PATH} fill={fill} />
 		</svg>
 	)
 }
@@ -107,15 +108,13 @@ function BrandAppIcon({
 	stroke?: string
 	glyphFill?: string
 } & Omit<React.SVGProps<SVGSVGElement>, "fill" | "stroke">) {
-	const id = React.useId()
-
+	const id = useId()
 	return (
 		<svg
 			width={size}
 			height={size}
 			viewBox="16 8 48 48"
 			fill="none"
-			xmlns="http://www.w3.org/2000/svg"
 			className={cn("shrink-0", className)}
 			shapeRendering="geometricPrecision"
 			style={{
@@ -125,7 +124,7 @@ function BrandAppIcon({
 			{...props}>
 			<defs>
 				<linearGradient
-					id={`paint0_linear_${id}`}
+					id={`shine_${id}`}
 					x1="40"
 					y1="8"
 					x2="42"
@@ -135,7 +134,7 @@ function BrandAppIcon({
 					<stop offset="1" stopColor="white" stopOpacity="0.15" />
 				</linearGradient>
 				<linearGradient
-					id={`paint1_linear_${id}`}
+					id={`glyph_${id}`}
 					x1="40"
 					y1="18"
 					x2="40"
@@ -145,58 +144,15 @@ function BrandAppIcon({
 					<stop offset="1" stopColor="white" stopOpacity="0.75" />
 				</linearGradient>
 			</defs>
-			{/* Squircle base */}
-			<path
-				d="M16 20C16 13.3726 21.3726 8 28 8H52C58.6274 8 64 13.3726 64 20V44C64 50.6274 58.6274 56 52 56H28C21.3726 56 16 50.6274 16 44V20Z"
-				fill={fill}
-			/>
-			{/* Subtle linear shine */}
-			<path
-				d="M16 20C16 13.3726 21.3726 8 28 8H52C58.6274 8 64 13.3726 64 20V44C64 50.6274 58.6274 56 52 56H28C21.3726 56 16 50.6274 16 44V20Z"
-				fill={`url(#paint0_linear_${id})`}
-			/>
-			{/* Inner border stroke */}
+			<path d={SQUIRCLE_PATH} fill={fill} />
+			<path d={SQUIRCLE_PATH} fill={`url(#shine_${id})`} />
 			<path
 				d="M28 8.35352H52C58.4321 8.35352 63.6465 13.5679 63.6465 20V44C63.6465 50.4321 58.4321 55.6465 52 55.6465H28C21.5679 55.6465 16.3535 50.4321 16.3535 44V20C16.3535 13.5679 21.5679 8.35352 28 8.35352Z"
 				stroke={stroke}
 				strokeWidth="0.70713"
 			/>
-			{/* Logo Glyph */}
-			<path
-				d="M44.375 37.25C44.375 42.0825 40.4575 46 35.625 46H34.75C29.9175 46 26 42.0825 26 37.25H44.375ZM54 37.25C54 42.0825 50.0825 46 45.25 46V37.25H54ZM35.1875 18C40.2616 18 44.375 22.1134 44.375 27.1875C44.375 32.2616 40.2616 36.375 35.1875 36.375C30.1134 36.375 26 32.2616 26 27.1875C26 22.1134 30.1134 18 35.1875 18ZM45.25 18C50.0825 18 54 21.9175 54 26.75V27.625C54 32.4575 50.0825 36.375 45.25 36.375V18Z"
-				fill={glyphFill ?? `url(#paint1_linear_${id})`}
-			/>
+			<path d={XAVION_PATH} fill={glyphFill ?? `url(#glyph_${id})`} />
 		</svg>
-	)
-}
-
-const dots = (size: number, x: number, y: number) =>
-	({
-		backgroundImage:
-			"radial-gradient(circle, rgb(36 46 66 / 0.04) 1px, transparent 1px)",
-		backgroundSize: `${size}px ${size}px`,
-		backgroundPosition: `${x}px ${y}px`,
-	}) satisfies CSSProperties
-
-function Logo({ color }: { color: string }) {
-	const style: CSSProperties = { backgroundColor: color }
-	return (
-		<span
-			style={style}
-			className="grid size-[24.12px] shrink-0 place-items-center rounded-[6.03px] bg-[linear-gradient(to_bottom,transparent,rgb(255_255_255/0.15))] shadow-[inset_0_0_0_0.5px_rgb(0_0_0/0.1),inset_0_1px_0.5px_rgb(255_255_255/0.1),inset_0_-1px_0.5px_rgb(0_0_0/0.1)]">
-			<svg
-				viewBox="0 0 14.07 14.07"
-				className="size-[14.07px] drop-shadow-[0_0.675px_0.675px_rgb(36_36_36/0.1)]"
-				fill="url(#logo-fade)">
-				<defs>
-					<linearGradient id="logo-fade" x1="0" y1="0" x2="0" y2="1">
-						<stop stopColor="#fff" />
-						<stop offset="1" stopColor="#fff" stopOpacity=".5" />
-					</linearGradient>
-				</defs>
-				<path d="M9.233 9.673 C9.233 12.101 7.265 14.07 4.836 14.07 H4.396 C1.968 14.07 0 12.101 0 9.673 H9.233ZM14.07 9.673 C14.07 12.101 12.101 14.07 9.673 14.07 V9.673 H14.07ZM4.616 0 C7.166 0 9.233 2.067 9.233 4.617 C9.233 7.166 7.166 9.233 4.616 9.233 C2.067 9.233 0 7.166 0 4.617 C0 2.067 2.067 0 4.616 0ZM9.673 0 C12.101 0 14.07 1.968 14.07 4.397 V4.837 C14.07 7.265 12.101 9.233 9.673 9.233 V0Z" />
-			</svg>
-		</span>
 	)
 }
 
@@ -204,665 +160,891 @@ export default function Preview07() {
 	return (
 		<div className="bg-bg min-h-screen w-full p-4 sm:p-6 lg:p-8">
 			<div className="mx-auto grid max-w-[1340px] grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
-				{/* ---------------- COLUMN 1: Brand Assets & Context Window ---------------- */}
+				{/* Column 1: Brand Assets & Context Window */}
 				<div className="flex flex-col gap-4">
 					<Card className="border-border/80 group relative aspect-[1.53/1] gap-0 overflow-hidden rounded-3xl p-0 shadow-sm select-none">
-						<img
-							src="/themer/card.png"
-							className="h-full w-full object-cover"
-							alt="Card"
-						/>
-						<div className="bg-primary absolute inset-0 mix-blend-color"></div>
+						<TintedBackdrop src="/themer/card.png" alt="Card" />
 					</Card>
-
-					{/* 1.2 App Icon Variants */}
-					<Card className="border-soft gap-0 rounded-3xl p-6 shadow-none">
-						<div className="flex items-center justify-center gap-6">
-							{/* Solid Primary App Icon */}
-							<div className="transition-transform hover:scale-105">
-								<BrandAppIcon size={48} />
-							</div>
-							{/* Tinted Accent App Icon */}
-							<div className="transition-transform hover:scale-105">
-								<BrandAppIcon
-									size={48}
-									fill="var(--color-fg-tertiary)"
-									stroke="var(--color-fg-tertiary)"
-									glyphFill="var(--color-fg-inverse)"
-								/>
-							</div>
-							{/* Elevated Outline App Icon */}
-							<div className="transition-transform hover:scale-105">
-								<BrandAppIcon
-									size={48}
-									fill="none"
-									stroke="var(--color-soft)"
-									glyphFill="var(--color-primary)"
-								/>
-							</div>
-							{/* Neutral Muted App Icon */}
-							<div className="transition-transform hover:scale-105">
-								<BrandAppIcon
-									size={48}
-									fill="none"
-									stroke="var(--color-soft)"
-									glyphFill="var(--color-fg-tertiary)"
-								/>
-							</div>
-						</div>
-					</Card>
-
-					{/* 1.3 Browser Mockup Card */}
-					<Card className="relative isolate h-[216px] w-full overflow-hidden rounded-3xl shadow-none">
-						{/* grayscale grain image, recolored by the blend layer below */}
-						<div className="absolute inset-0 bg-[url(/gradient-grain.webp)] bg-cover bg-center" />
-						<div
-							className="absolute inset-0 mix-blend-color"
-							style={{ backgroundColor: "var(--color-primary)" }}
-						/>
-
-						{/* browser window (overflows the card on the right, clipped) */}
-						<div className="bg-elevation-level1 absolute top-[48px] left-[41px] h-[120px] w-[803px] overflow-hidden rounded-2xl">
-							<div className="bg-fill4 relative h-[55.81px]">
-								<div className="absolute top-[21.07px] left-5 flex gap-[11.17px]">
-									{[0, 1, 2].map((i) => (
-										<span
-											key={i}
-											className="bg-fg-disabled/40 size-[15.74px] rounded-full"
-										/>
-									))}
-								</div>
-
-								{/* concave fillet where the tab meets the toolbar */}
-								<div className="absolute top-[39.07px] left-[96.81px] size-[16.74px] bg-[radial-gradient(circle_at_top_left,transparent_16.2px,var(--color-elevation-level1)_16.9px)]" />
-
-								<div className="bg-elevation-level1 absolute top-[8.37px] left-[113.56px] flex h-[47.44px] w-[306.98px] items-center gap-[10.62px] rounded-t-[22.3px] px-[11.16px]">
-									<Logo color="var(--color-primary)" />
-									<span className="text-fg w-[215px] overflow-hidden [mask-image:linear-gradient(to_right,#000_86%,transparent_98.5%)] text-[16.74px] font-medium whitespace-nowrap">
-										Xavion
-									</span>
-								</div>
-							</div>
-
-							<div className="flex h-[64.19px] items-center gap-3 px-[20.93px]">
-								<div className="flex items-center justify-center gap-2.5">
-									<IconSlot slot="arrow-left" size={16} />
-									<IconSlot
-										slot="arrow-right"
-										size={16}
-										className="text-fg-disabled"
-									/>
-									<IconSlot slot="repeat" size={16} />
-								</div>
-								<div className="border-soft-alpha bg-fill2 text-fg-tertiary ml-[3px] flex h-[45.45px] w-[659.37px] shrink-0 items-center rounded-xl border px-[13.93px] text-lg">
-									www.xavion.com
-								</div>
-							</div>
-						</div>
-
-						<div className="pointer-events-none absolute inset-0 rounded-[20px] ring-1 ring-[#242E42]/[0.08] ring-inset" />
-					</Card>
-
+					<AppIconsCard />
+					<BrowserMockupCard />
 					<ContextWindowShowcase />
 				</div>
 
+				{/* Column 2: Security Card, Profile Card & Swatches */}
 				<div className="flex flex-col gap-4">
-					<Card className="text-primary-fg bg-primary-text relative max-w-118 gap-5.5 overflow-hidden rounded-3xl p-6 shadow-none">
-						<div className="relative z-10 flex flex-col items-start gap-3">
-							<div className="flex items-center gap-3">
-								<div className="border-primary-accent bg-primary-accent flex size-9 shrink-0 items-center justify-center rounded-lg border">
-									<IconSlot
-										slot="shield"
-										className="fill-primary stroke-primary"
-										size={20}
-									/>
-								</div>
-								<h3 className="text-primary-accent text-xl font-medium tracking-tight">
-									Bank level security
-								</h3>
-							</div>
-							<div>
-								<p className="text-primary-accent text-sm font-normal">
-									Security you can trust. Your financial safety is our highest
-									priority.
-								</p>
-							</div>
-						</div>
-
-						<div className="border-primary text-primary-accent relative z-10 space-y-2.5 rounded-3xl border bg-white/8 p-4">
-							<div className="flex items-center justify-between gap-3">
-								<span className="text-base font-medium">
-									Realtime Transaction Alert
-								</span>
-								<div className="glass bg-white-inverse/20 flex size-8.5 items-center justify-center rounded-full">
-									<IconSlot slot="clock" size={16} />
-								</div>
-							</div>
-
-							<Divider className="bg-primary my-3.5" />
-
-							<div className="bg-primary text-primary-fg flex items-center justify-between rounded-xl p-2.5">
-								<div className="flex items-center gap-2.5">
-									<div className="bg-primary-accent flex size-9 items-center justify-center rounded-lg">
-										<IconSlot slot="pole" className="text-primary size-5" />
-									</div>
-									<div className="flex flex-col gap-1">
-										<div className="text-xs font-medium">Off Grid Chart</div>
-										<div className="text-xs font-normal">Tue, 1:30</div>
-									</div>
-								</div>
-								<div className="flex flex-col gap-1 text-right">
-									<div className="text-xs font-medium">$409.00</div>
-									<div className="text-xs font-normal">$0 Fee</div>
-								</div>
-							</div>
-
-							<div className="bg-primary text-primary-fg flex items-center justify-between rounded-xl p-2.5">
-								<div className="flex items-center gap-2.5">
-									<Avatar
-										rounded="square"
-										className="bg-primary-accent"
-										size="md">
-										<AvatarImage
-											src="https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@v1.0.2/packages/uncompressed-avatars/src/2.png"
-											alt="Michaela Stone"
-										/>
-										<AvatarFallback className="text-[9px]">MS</AvatarFallback>
-									</Avatar>
-									<div className="flex flex-col gap-1">
-										<div className="text-xs font-medium">Michaela Stone</div>
-										<div className="text-xs font-normal">Member</div>
-									</div>
-								</div>
-								<div className="flex flex-col gap-1 text-right">
-									<div className="text-xs font-medium">$129.42</div>
-									<div className="text-xs font-normal">$0 Fee</div>
-								</div>
-							</div>
-
-							<div className="bg-primary text-primary-fg flex items-center justify-between rounded-xl p-2.5">
-								<div className="flex items-center gap-2.5">
-									<div className="flex size-9 items-center justify-center rounded-lg bg-white/15">
-										<IconSlot slot="globe" className="size-5 text-white" />
-									</div>
-									<div className="text-xs font-medium">Acme Inc.</div>
-								</div>
-								<div className="text-right text-xs font-normal">$129.42</div>
-							</div>
-						</div>
-
-						<div className="flex items-center justify-center gap-1.5 pt-1">
-							<span className="size-1.5 rounded-full bg-white/40" />
-							<span className="size-1.5 rounded-full bg-white/40" />
-							<span className="h-1.5 w-4 rounded-full bg-white" />
-							<span className="size-1.5 rounded-full bg-white/40" />
-						</div>
-					</Card>
-
-					<Card className="bg-primary-accent relative h-83 w-full overflow-hidden rounded-3xl shadow-none">
-						<div className="absolute inset-0" style={dots(10, 4, 2)} />
-
-						{/* card (intentionally larger than the frame so it's cropped) */}
-						<div className="bg-bg absolute top-[45px] left-[45px] h-[502.7px] w-[444.8px] overflow-hidden rounded-2xl shadow-[0_15.5px_23.3px_-3.9px_rgb(24_24_27/0.12)]">
-							<div
-								className="absolute inset-0"
-								style={dots(17.44, 4.36, -1.58)}
-							/>
-
-							{/* header */}
-							<div className="border-soft bg-primary-border relative h-[97.3px] border-b-[1.4px]">
-								<svg
-									viewBox="45 45 444.8 97.3"
-									className="absolute inset-0 size-full">
-									<defs>
-										<linearGradient
-											id="hdr-shapes"
-											gradientUnits="userSpaceOnUse"
-											x1="121.8"
-											y1="54.1"
-											x2="295.7"
-											y2="228">
-											<stop stopColor="white" />
-											<stop offset="1" stopColor="white" stopOpacity=".5" />
-										</linearGradient>
-									</defs>
-									<path
-										opacity=".6"
-										fill="url(#hdr-shapes)"
-										d="M268.53 146.456C298.536 176.462 298.536 225.111 268.53 255.117L263.097 260.55C233.091 290.556 184.442 290.556 154.436 260.55L268.53 146.456ZM328.293 86.6931C358.299 116.699 358.299 165.348 328.293 195.354L273.963 141.023L328.293 86.6931ZM91.956 83.9766C123.462 52.4704 174.544 52.4704 206.05 83.9766C237.556 115.483 237.556 166.564 206.05 198.07C174.544 229.576 123.462 229.576 91.956 198.07C60.4499 166.564 60.4499 115.483 91.956 83.9766ZM154.436 21.4967C184.442 -8.50929 233.091 -8.5093 263.097 21.4967L268.53 26.9297C298.536 56.9357 298.536 105.584 268.53 135.59L154.436 21.4967Z"
-									/>
-								</svg>
-							</div>
-
-							{/* logo tile */}
-							<div className="absolute top-[55.6px] left-[22.2px] grid size-[89px] place-items-center rounded-3xl bg-[var(--color-primary)] bg-gradient-to-b from-transparent to-white/15 shadow-[0_0_0_3.7px_rgb(0_0_0/0.1),0_0_0_3.7px_rgb(255_255_255/0.28),inset_0_3.7px_1.9px_rgb(255_255_255/0.1),inset_0_-3.7px_1.9px_rgb(0_0_0/0.1),inset_0_0_0_1.9px_rgb(0_0_0/0.06)]">
-								<div className="size-[52px] drop-shadow-[0_2.5px_2.5px_rgb(36_36_36/0.1)]">
-									<XavionMark />
-								</div>
-							</div>
-
-							{/* text */}
-							<div className="relative px-[22px] pt-[69px]">
-								<div className="flex items-center gap-[7.5px]">
-									<h3 className="text-fg text-[22px] leading-7 font-medium tracking-tight">
-										Xavion Corp
-									</h3>
-									<VerifiedBadge />
-								</div>
-								<p className="text-fg-tertiary mt-0 text-[17px] leading-6">
-									xavion.com
-								</p>
-								<p className="text-fg-secondary mt-4 text-lg leading-[27px]">
-									An open-source design library and system built for
-									high-performance dashboard layouts.
-								</p>
-							</div>
-
-							<div className="pointer-events-none absolute inset-0 rounded-[inherit] border-[1.4px] border-[#242E42]/[.08]" />
-						</div>
-
-						<div className="pointer-events-none absolute inset-0 rounded-[inherit] border border-[#242E42]/[.08]" />
-					</Card>
-
-					{/* 2.3 Color Palette Swatches Bar */}
-					<Card className="gap-0 border-none p-0 shadow-none">
-						<div className="border-soft grid h-20 grid-cols-5 overflow-hidden rounded-lg border shadow-inner">
-							<div
-								className="bg-primary flex items-center justify-center transition-colors"
-								title="Primary"
-							/>
-							<div
-								className="bg-primary-border flex items-center justify-center transition-colors"
-								title="Primary Border"
-							/>
-							<div
-								className="bg-primary-accent flex items-center justify-center transition-colors"
-								title="Primary Accent"
-							/>
-							<div
-								className="bg-primary-focus flex items-center justify-center transition-colors"
-								title="Primary Focus"
-							/>
-							<div
-								className="bg-fg flex items-center justify-center transition-colors"
-								title="Foreground"
-							/>
-						</div>
-					</Card>
+					<SecurityAlertCard />
+					<CompanyProfileCard />
+					<ColorSwatchesCard />
 				</div>
 
-				{/* ---------------- COLUMN 3: Hero Banner & Smartphone Mockup ---------------- */}
+				{/* Column 3: Hero Banner, Smartphone Mockup & Dock */}
 				<div className="flex flex-col gap-4">
-					{/* 3.1 Brand Aurora Hero Banner */}
-					<Card className="border-soft relative flex h-52 items-center justify-center gap-0 overflow-hidden rounded-3xl p-0 shadow-none">
-						<img
-							src="/themer/pattern1.png"
-							className="h-full w-full object-cover"
-							alt="Card"
-						/>
-						<div className="bg-primary absolute inset-0 z-10 mix-blend-color"></div>
-						<div className="absolute z-20 flex items-center gap-4 mix-blend-overlay">
-							<BrandLogo className="size-12 text-white" fill="currentColor" />
-							<span className="text-4xl font-bold tracking-tight text-white">
-								Xavion
-							</span>
-						</div>
-					</Card>
-
-					{/* 3.2 Smartphone Mockup */}
-					<Card className="relative flex aspect-338/452 items-center justify-center gap-0 overflow-hidden rounded-3xl p-3 shadow-none">
-						<img
-							src="/themer/bg.webp"
-							alt=""
-							className="absolute inset-0 size-full"
-						/>
-						<div className="absolute inset-0 bg-[color-mix(in_srgb,var(--color-primary)_70%,#808080)] mix-blend-color" />
-						<div className="absolute inset-0 [background:conic-gradient(at_2px_2px,transparent_270deg,rgb(36_46_66/.04)_0)_8px_5px/10px_10px]" />
-
-						<div className="absolute inset-0 blur-[.5px]">
-							<img
-								src="/themer/phone.webp"
-								alt=""
-								className="absolute inset-0 size-full"
-							/>
-							<div
-								className="absolute inset-0"
-								style={{ mask, WebkitMask: mask }}>
-								<img
-									src="/themer/screen.webp"
-									alt=""
-									className="absolute top-[15.05%] left-[24.6%] h-[84.95%] w-[75.4%]"
-								/>
-								<div className="absolute inset-0 bg-[color-mix(in_srgb,var(--color-primary)_80%,transparent)] mix-blend-color [clip-path:polygon(24.6%_19.9%,135.5%_15.1%,198.8%_226.4%,87.5%_233.3%)]" />
-							</div>
-							<svg
-								viewBox="0 0 338 452"
-								className="absolute inset-0 size-full overflow-visible">
-								<defs>
-									<filter
-										id="f1"
-										x="108.294"
-										y="165.647"
-										width="120.689"
-										height="114.927"
-										filterUnits="userSpaceOnUse"
-										colorInterpolationFilters="sRGB">
-										<feFlood floodOpacity="0" result="b" />
-										<feColorMatrix
-											in="SourceAlpha"
-											values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-											result="a"
-										/>
-										<feOffset dy="11.353" />
-										<feGaussianBlur stdDeviation="11.353" />
-										<feComposite in2="a" operator="out" />
-										<feColorMatrix values="0 0 0 0 .098 0 0 0 0 .094 0 0 0 0 .106 0 0 0 .08 0" />
-										<feBlend in2="b" result="e" />
-										<feBlend in="SourceGraphic" in2="e" />
-									</filter>
-									<filter
-										id="f2"
-										x="146.701"
-										y="191.406"
-										width="43.9957"
-										height="44.5167"
-										filterUnits="userSpaceOnUse"
-										colorInterpolationFilters="sRGB">
-										<feFlood floodOpacity="0" result="b" />
-										<feColorMatrix
-											in="SourceAlpha"
-											values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-											result="a"
-										/>
-										<feMorphology
-											radius="1.27114"
-											operator="erode"
-											in="SourceAlpha"
-										/>
-										<feOffset dy="1.9067" />
-										<feGaussianBlur stdDeviation="1.9067" />
-										<feComposite in2="a" operator="out" />
-										<feColorMatrix values="0 0 0 0 .141 0 0 0 0 .141 0 0 0 0 .141 0 0 0 .1 0" />
-										<feBlend in2="b" result="e" />
-										<feBlend in="SourceGraphic" in2="e" />
-									</filter>
-									<linearGradient
-										id="g1"
-										x1="160.977"
-										y1="178.571"
-										x2="167.684"
-										y2="245.919"
-										gradientUnits="userSpaceOnUse">
-										<stop stopColor="#fff" stopOpacity="0" />
-										<stop offset="1" stopColor="#fff" stopOpacity=".15" />
-									</linearGradient>
-									<linearGradient
-										id="g2"
-										x1="164.169"
-										y1="192.399"
-										x2="166.217"
-										y2="231.477"
-										gradientUnits="userSpaceOnUse">
-										<stop stopColor="#fff" />
-										<stop offset="1" stopColor="#fff" stopOpacity=".5" />
-									</linearGradient>
-								</defs>
-								<g filter="url(#f1)">
-									<path
-										d="M134.831 196.735C132.715 187.571 138.614 179.743 148.006 179.251L173.947 177.891C183.34 177.399 192.669 184.429 194.784 193.593L202.446 226.779C204.562 235.943 198.663 243.771 189.271 244.264L163.33 245.623C153.937 246.115 144.608 239.085 142.492 229.921L134.831 196.735Z"
-										className="fill-[var(--color-primary)]"
-									/>
-									<path
-										d="M134.831 196.735C132.715 187.571 138.614 179.743 148.006 179.251L173.947 177.891C183.34 177.399 192.669 184.429 194.784 193.593L202.446 226.779C204.562 235.943 198.663 243.771 189.271 244.264L163.33 245.623C153.937 246.115 144.608 239.085 142.492 229.921L134.831 196.735Z"
-										fill="url(#g1)"
-									/>
-									<path
-										d="M148.119 179.74L174.06 178.38C183.175 177.903 192.23 184.725 194.283 193.619L201.945 226.806C203.998 235.7 198.273 243.297 189.157 243.774L163.216 245.134C154.101 245.612 145.047 238.789 142.994 229.895L135.332 196.709C133.279 187.815 139.004 180.218 148.119 179.74Z"
-										strokeWidth="1"
-										className="fill-none [stroke:color-mix(in_srgb,var(--color-primary),white_25%)]"
-									/>
-									<g filter="url(#f2)">
-										<path
-											d="M175.779 218.73C177.322 225.412 173.679 231.086 167.643 231.402L166.55 231.459C160.514 231.776 154.371 226.615 152.828 219.933L175.779 218.73ZM187.801 218.1C189.343 224.782 185.701 230.456 179.665 230.772L176.872 218.673L187.801 218.1ZM158.158 192.714C164.496 192.381 170.947 197.8 172.567 204.816C174.186 211.833 170.362 217.79 164.024 218.122C157.686 218.454 151.235 213.035 149.616 206.019C147.996 199.003 151.82 193.046 158.158 192.714ZM170.726 192.055C176.762 191.739 182.906 196.899 184.449 203.581L184.728 204.791C186.271 211.473 182.628 217.147 176.592 217.463L170.726 192.055Z"
-											fill="url(#g2)"
-										/>
-									</g>
-								</g>
-							</svg>
-						</div>
-
-						<div className="absolute inset-0 rounded-[20px] ring-1 ring-[#242e42]/[.08] ring-inset" />
-					</Card>
-
-					{/* 3.3 Glassmorphic Dock */}
-					<Card className="border-border/80 relative flex h-40 items-center justify-center gap-0 overflow-hidden p-0 shadow-sm">
-						<img
-							src="/themer/pattern2.png"
-							className="absolute inset-0 object-cover"
-							alt="Pattern"
-						/>
-
-						<div className="bg-primary absolute inset-0 mix-blend-color"></div>
-
-						{/* Frosted Dock Pill */}
-						<div className="relative z-10 flex items-center justify-center gap-2.5 rounded-2xl border border-white/40 bg-white/20 p-3 backdrop-blur-md">
-							<SettingsIcon size={50} />
-							<BrandAppIcon size={64} />
-							<VideoIcon size={50} />
-						</div>
-					</Card>
+					<AuroraBannerCard />
+					<SmartphoneMockupCard />
+					<DockCard />
 				</div>
 
-				{/* ---------------- COLUMN 4: Menu, Controls & Testimonial ---------------- */}
+				{/* Column 4: Profile Menu, Control Bar & Testimonial */}
 				<div className="flex flex-col gap-4">
-					{/* 4.1 User Profile Dropdown Menu */}
-					<Card className="border-soft relative isolate flex max-h-89 items-center justify-center gap-0 overflow-hidden rounded-3xl p-8 px-8 pb-0">
-						<img
-							src="/themer/pattern1.png"
-							className="absolute inset-0 h-full w-full object-cover"
-							alt="Pattern"
-						/>
-						<div className="bg-primary absolute inset-0 z-10 mix-blend-color" />
-
-						{/* Inset Profile Menu Card */}
-						<div className="bg-fill2 z-20 h-100 w-full rounded-3xl rounded-b-none p-1.5">
-							<div className="bg-elevation-level1 border-soft relative h-fit w-full overflow-hidden rounded-2xl border font-normal shadow-lg">
-								{/* User Info Header */}
-								<div className="flex items-center justify-between gap-3 p-3.5">
-									<div className="flex items-center gap-2.5 overflow-hidden">
-										<Avatar
-											size="md"
-											rounded="square"
-											className="bg-primary-accent">
-											<AvatarImage
-												src="https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@v1.0.2/packages/uncompressed-avatars/src/13.png"
-												alt="Laura Morga"
-											/>
-											<AvatarFallback className="text-xs font-semibold">
-												LM
-											</AvatarFallback>
-											<AvatarIndicator className="right-1 bottom-1">
-												<AvatarStatus size="lg" variant={"online"} />
-											</AvatarIndicator>
-										</Avatar>
-										<div className="truncate">
-											<div className="text-fg text-sm leading-tight font-medium">
-												Laura Morga
-											</div>
-											<div className="text-fg-secondary truncate text-xs leading-normal font-normal">
-												morga@radian.com
-											</div>
-										</div>
-									</div>
-									<Badge variant="strong">
-										<IconSlot slot="zap" className="size-3.5 fill-current" />{" "}
-										PRO
-									</Badge>
-								</div>
-
-								<div className="border-soft border-b" />
-
-								{/* Group 1: Profile & Shortcuts */}
-								<div className="space-y-0.5 p-1.5 font-normal">
-									<div className="text-fg hover:bg-fill1 flex cursor-pointer items-center gap-3 rounded-lg px-2.5 py-1.5 text-sm transition-colors">
-										<IconSlot
-											slot="user"
-											className="text-fg-secondary size-4.5"
-										/>
-										<span>Profile</span>
-									</div>
-									<div className="text-fg hover:bg-fill1 flex cursor-pointer items-center gap-3 rounded-lg px-2.5 py-1.5 text-sm transition-colors">
-										<IconSlot
-											slot="keyboard"
-											className="text-fg-secondary size-4.5"
-										/>
-										<span>Keyboard shortcuts</span>
-									</div>
-								</div>
-
-								<div className="border-soft border-b" />
-
-								{/* Group 2: Settings, Invite & Team */}
-								<div className="space-y-0.5 p-1.5">
-									<div className="text-fg hover:bg-fill1 flex cursor-pointer items-center gap-3 rounded-lg px-2.5 py-1.5 text-sm transition-colors">
-										<IconSlot
-											slot="setting"
-											className="text-fg-secondary size-4.5"
-										/>
-										<span>Settings</span>
-									</div>
-									<div className="text-fg hover:bg-fill1 flex cursor-pointer items-center gap-3 rounded-lg px-2.5 py-1.5 text-sm transition-colors">
-										<IconSlot
-											slot="mail"
-											className="text-fg-secondary size-4.5"
-										/>
-										<span>Invite colleagues</span>
-									</div>
-									<div className="bg-fill1 text-fg flex cursor-pointer items-center gap-3 rounded-lg px-2.5 py-1.5 text-sm font-normal transition-colors">
-										<IconSlot slot="users" className="size-4.5" />
-										<span>Team</span>
-									</div>
-								</div>
-
-								<div className="border-soft border-b" />
-
-								{/* Group 3: Change logs */}
-								<div className="p-1.5">
-									<div className="text-fg hover:bg-fill1 flex cursor-pointer items-center gap-3 rounded-lg px-2.5 py-1.5 text-sm transition-colors">
-										<IconSlot
-											slot="book"
-											className="text-fg-secondary size-4.5"
-										/>
-										<span>Change logs</span>
-									</div>
-								</div>
-							</div>
-						</div>
-					</Card>
-
-					{/* 4.2 Floating Control Bar */}
-					<div className="bg-primary relative flex items-center justify-center gap-2 overflow-clip rounded-3xl p-6">
-						<img
-							src="/themer/grainypattern.png"
-							className="absolute inset-0 h-full w-full object-cover"
-						/>
-
-						<div className="bg-primary absolute inset-0 mix-blend-color"></div>
-
-						<IconButton
-							variant="ghost"
-							title="Close"
-							size="md"
-							className="rounded-full border border-white/40 bg-white/20 text-white backdrop-blur-md hover:bg-white/25">
-							<IconSlot slot="cross" className="size-5" />
-						</IconButton>
-
-						<div className="flex items-center gap-2 rounded-full border border-white/40 bg-white/20 p-1.5 text-white backdrop-blur-md">
-							<div className="flex items-center gap-1.5 text-neutral-300">
-								<div className="flex size-9 items-center justify-center rounded-full bg-white/20">
-									<IconSlot
-										slot="monitor"
-										className="size-5 cursor-pointer text-white"
-									/>
-								</div>
-
-								<div className="flex size-9 items-center justify-center rounded-full hover:bg-white/20">
-									<IconSlot
-										slot="laptop"
-										className="size-5 cursor-pointer text-white"
-									/>
-								</div>
-
-								<div className="flex size-9 items-center justify-center rounded-full hover:bg-white/20">
-									<IconSlot
-										slot="smartphone"
-										className="size-5 cursor-pointer text-white"
-									/>
-								</div>
-							</div>
-
-							<Button
-								type="button"
-								variant="glossy"
-								size="sm"
-								className="rounded-full">
-								<IconSlot slot="fullscreen" className="size-3" />
-								<span>Full page</span>
-							</Button>
-						</div>
-					</div>
-
-					{/* 4.3 10M+ Stat & Testimonial Card */}
-					<Card className="border-soft bg-bg gap-4 rounded-3xl p-6 shadow-none">
-						<div className="flex flex-col gap-2">
-							<div className="flex items-center justify-between">
-								<h3 className="heading-3 text-primary-text text-5xl font-bold">
-									10M+
-								</h3>
-								<div className="bg-primary text-primary flex size-10 items-center justify-center rounded-full">
-									<IconSlot slot="users-2" className="size-6 text-white" />
-								</div>
-							</div>
-							<p className="text-fg-tertiary text-lg font-normal">
-								Active happy users in over 20+ countries worldwide
-							</p>
-						</div>
-
-						{/* Testimonial Portrait Card with Dynamic Primary Graphic */}
-						<div className="relative aspect-[576/516] overflow-hidden rounded-2xl bg-[linear-gradient(165deg,color-mix(in_oklab,var(--color-primary),white_10%),var(--color-primary))]">
-							<svg
-								viewBox="0 0 250 250"
-								className="absolute top-[8%] left-[7%] w-[85%] text-white/25">
-								<path
-									fill="currentColor"
-									stroke="white"
-									strokeOpacity=".1"
-									strokeWidth="2"
-									d="M163.144 169.484C163.144 211.919 128.744 246.319 86.3096 246.319H78.6261C36.1912 246.319 1.79138 211.919 1.79138 169.484H163.144ZM247.662 169.484C247.662 211.919 213.263 246.319 170.828 246.319V169.484H247.662ZM82.4678 0.447876C127.024 0.447876 163.144 36.5679 163.144 81.1243C163.144 125.681 127.024 161.801 82.4678 161.801C37.9114 161.801 1.79138 125.681 1.79138 81.1243C1.79138 36.5679 37.9114 0.447876 82.4678 0.447876ZM170.828 0.447876C213.263 0.447876 247.662 34.8477 247.662 77.2826V84.9661C247.662 127.401 213.263 161.801 170.828 161.801V0.447876Z"
-								/>
-							</svg>
-
-							<div className="absolute top-[5%] left-[7%] isolate aspect-square w-[87%]">
-								<img src="/themer/person.png" alt="" className="size-full" />
-								<div
-									className="bg-primary absolute bottom-0 left-0 aspect-[492/217] w-[98%] mix-blend-color"
-									style={{
-										maskImage: `url(/themer/suit.png)`,
-										WebkitMaskImage: `url(/themer/suit.png)`,
-										maskSize: "100% 100%",
-										WebkitMaskSize: "100% 100%",
-									}}
-								/>
-							</div>
-						</div>
-					</Card>
+					<ProfileMenuCard />
+					<ControlBar />
+					<TestimonialCard />
 				</div>
 			</div>
 		</div>
 	)
 }
 
-function SettingsIcon({ size = 65, ...props }) {
+// ---------------------------------------------------------------------------
+// Column 1 Cards
+// ---------------------------------------------------------------------------
+
+const APP_ICON_VARIANTS = [
+	{},
+	{
+		fill: "var(--color-fg-tertiary)",
+		stroke: "var(--color-fg-tertiary)",
+		glyphFill: "var(--color-fg-inverse)",
+	},
+	{
+		fill: "none",
+		stroke: "var(--color-soft)",
+		glyphFill: "var(--color-primary)",
+	},
+	{
+		fill: "none",
+		stroke: "var(--color-soft)",
+		glyphFill: "var(--color-fg-tertiary)",
+	},
+]
+
+function AppIconsCard() {
+	return (
+		<Card className="border-soft gap-0 rounded-3xl p-6 shadow-none">
+			<div className="flex items-center justify-center gap-6">
+				{APP_ICON_VARIANTS.map((variant, i) => (
+					<div key={i} className="transition-transform hover:scale-105">
+						<BrandAppIcon size={48} {...variant} />
+					</div>
+				))}
+			</div>
+		</Card>
+	)
+}
+
+function BrowserMockupCard() {
+	return (
+		<Card className="relative isolate h-[216px] w-full overflow-hidden rounded-3xl shadow-none">
+			<div className="absolute inset-0 bg-[url(/gradient-grain.webp)] bg-cover bg-center" />
+			<div className="bg-primary absolute inset-0 mix-blend-color" />
+
+			<div className="bg-elevation-level1 absolute top-[48px] left-[41px] h-[120px] w-[803px] overflow-hidden rounded-2xl">
+				<div className="bg-fill4 relative h-[55.81px]">
+					<div className="absolute top-[21.07px] left-5 flex gap-[11.17px]">
+						{[0, 1, 2].map((i) => (
+							<span
+								key={i}
+								className="bg-fg-disabled/40 size-[15.74px] rounded-full"
+							/>
+						))}
+					</div>
+
+					{/* concave fillet where the tab meets the toolbar */}
+					<div className="absolute top-[39.07px] left-[96.81px] size-[16.74px] bg-[radial-gradient(circle_at_top_left,transparent_16.2px,var(--color-elevation-level1)_16.9px)]" />
+
+					<div className="bg-elevation-level1 absolute top-[8.37px] left-[113.56px] flex h-[47.44px] w-[306.98px] items-center gap-[10.62px] rounded-t-[22.3px] px-[11.16px]">
+						<span className="bg-primary grid size-[24.12px] shrink-0 place-items-center rounded-[6.03px] bg-[linear-gradient(to_bottom,transparent,rgb(255_255_255/0.15))] shadow-[inset_0_0_0_0.5px_rgb(0_0_0/0.1),inset_0_1px_0.5px_rgb(255_255_255/0.1),inset_0_-1px_0.5px_rgb(0_0_0/0.1)]">
+							<XavionMark className="size-[14.07px] drop-shadow-[0_0.675px_0.675px_rgb(36_36_36/0.1)]" />
+						</span>
+						<span className="text-fg w-[215px] overflow-hidden [mask-image:linear-gradient(to_right,#000_86%,transparent_98.5%)] text-[16.74px] font-medium whitespace-nowrap">
+							Xavion
+						</span>
+					</div>
+				</div>
+
+				<div className="flex h-[64.19px] items-center gap-3 px-[20.93px]">
+					<div className="flex items-center justify-center gap-2.5">
+						<IconSlot slot="arrow-left" size={16} />
+						<IconSlot
+							slot="arrow-right"
+							size={16}
+							className="text-fg-disabled"
+						/>
+						<IconSlot slot="repeat" size={16} />
+					</div>
+					<div className="border-soft-alpha bg-fill2 text-fg-tertiary ml-[3px] flex h-[45.45px] w-[659.37px] shrink-0 items-center rounded-xl border px-[13.93px] text-lg">
+						www.xavion.com
+					</div>
+				</div>
+			</div>
+
+			<div className="pointer-events-none absolute inset-0 rounded-[20px] ring-1 ring-[#242E42]/[0.08] ring-inset" />
+		</Card>
+	)
+}
+
+type ContextWindowProps = {
+	model?: string
+	limit?: number
+	system?: number
+	files?: number
+	conversation?: number
+	className?: string
+}
+
+const CONTEXT_CELLS = 28 * 6
+const formatK = (n: number) => `${(n / 1000).toFixed(1)}K`
+
+function ContextWindowShowcase(props: ContextWindowProps) {
+	return (
+		<Card className="border-soft-alpha relative h-[334px] w-full overflow-hidden rounded-3xl border shadow-none">
+			<div
+				className="absolute inset-0 bg-[length:100%_145.4%] bg-[position:0_-76px]"
+				style={{ backgroundImage: "url(/themer/halftone.webp)" }}
+			/>
+			<div className="bg-primary absolute inset-0 mix-blend-color" />
+			<ContextWindow className="absolute top-10 left-10" {...props} />
+		</Card>
+	)
+}
+
+function ContextWindow({
+	model = "gpt-astra-1",
+	limit = 200_000,
+	system = 108_200,
+	files = 41_300,
+	conversation = 29_000,
+	className,
+}: ContextWindowProps) {
+	const used = system + files + conversation
+	const filled = Math.round((used / limit) * CONTEXT_CELLS)
+	const dark = Math.round((system / limit) * CONTEXT_CELLS)
+	const tone = {
+		dark: "bg-primary-text",
+		light: "bg-primary-border",
+		empty: "bg-fill2",
+	}
+
+	return (
+		<div className={cn("bg-fill2 w-[356px] rounded-2xl p-1.5", className)}>
+			<Card className="gap-0 rounded-2xl p-4.5 shadow-[0_4px_8px_rgb(25_24_27/0.08)]">
+				<div className="flex h-6 items-center justify-between">
+					<h3 className="text-sm font-medium">Context window</h3>
+					<Badge size="md" color="neutral">
+						<OpenAI className="fill-primary" />
+						{model}
+					</Badge>
+				</div>
+
+				<div className="mt-4 flex w-full items-baseline gap-2">
+					<span className="text-2xl font-semibold tracking-tighter">
+						{formatK(used)}
+					</span>
+					<span className="text-fg-tertiary text-sm font-normal">
+						of {formatK(limit).replace(".0", "")} tokens
+					</span>
+					<Badge
+						variant="soft"
+						color="primary"
+						className="border-soft-alpha ml-auto border">
+						{Math.floor((used / limit) * 100)}% used
+					</Badge>
+				</div>
+
+				<div className="mt-3.5 grid grid-cols-[repeat(28,minmax(0,1fr))] gap-0.75">
+					{Array.from({ length: CONTEXT_CELLS }, (_, i) => (
+						<span
+							key={i}
+							className={cn(
+								"aspect-square rounded-[2px]",
+								tone[i < dark ? "dark" : i < filled ? "light" : "empty"]
+							)}
+						/>
+					))}
+				</div>
+
+				<ul className="mt-4 flex flex-col gap-2">
+					<ContextRow
+						swatch={tone.dark}
+						label="System prompt"
+						value={formatK(system)}
+					/>
+					<ContextRow
+						swatch={tone.light}
+						label="Files"
+						value={formatK(files)}
+						extra={
+							<IconSlot slot="down" className="text-muted-foreground size-4" />
+						}
+					/>
+					<ContextRow
+						swatch={tone.light}
+						label="Conversation"
+						value={formatK(conversation)}
+						action={
+							<Button
+								variant="ghost"
+								className="text-fg-tertiary mr-1.5 h-auto gap-1.5 p-0 text-xs font-normal hover:bg-transparent"
+								size="xs">
+								<CompactIcon />
+								Compact
+							</Button>
+						}
+					/>
+					<ContextRow
+						swatch="bg-fill2 ring-1 ring-inset ring-soft"
+						label="Token remaining"
+						value={formatK(limit - used)}
+					/>
+				</ul>
+			</Card>
+		</div>
+	)
+}
+
+function ContextRow({
+	swatch,
+	label,
+	value,
+	extra,
+	action,
+}: {
+	swatch: string
+	label: string
+	value: string
+	extra?: React.ReactNode
+	action?: React.ReactNode
+}) {
+	return (
+		<li className="flex h-5 items-center gap-2 px-0.5 text-sm">
+			<span className={cn("size-2.5 rounded-[3px]", swatch)} />
+			<span className="flex flex-1 items-center gap-1 text-sm font-normal">
+				{label}
+				{extra}
+			</span>
+			{action}
+			<span className="text-fg-secondary font-normal tabular-nums">
+				{value}
+			</span>
+		</li>
+	)
+}
+
+// ---------------------------------------------------------------------------
+// Column 2 Cards
+// ---------------------------------------------------------------------------
+
+function TransactionRow({
+	leading,
+	title,
+	subtitle,
+	amount,
+	fee,
+}: {
+	leading: React.ReactNode
+	title: string
+	subtitle?: string
+	amount: string
+	fee?: string
+}) {
+	return (
+		<div className="bg-primary text-primary-fg flex items-center justify-between rounded-xl p-2.5">
+			<div className="flex items-center gap-2.5">
+				{leading}
+				<div className="flex flex-col gap-1">
+					<div className="text-xs font-medium">{title}</div>
+					{subtitle && <div className="text-xs font-normal">{subtitle}</div>}
+				</div>
+			</div>
+			{fee ? (
+				<div className="flex flex-col gap-1 text-right">
+					<div className="text-xs font-medium">{amount}</div>
+					<div className="text-xs font-normal">{fee}</div>
+				</div>
+			) : (
+				<div className="text-right text-xs font-normal">{amount}</div>
+			)}
+		</div>
+	)
+}
+
+function SecurityAlertCard() {
+	return (
+		<Card className="text-primary-fg bg-primary-text relative max-w-118 gap-5.5 overflow-hidden rounded-3xl p-6 shadow-none">
+			<div className="relative z-10 flex flex-col items-start gap-3">
+				<div className="flex items-center gap-3">
+					<div className="border-primary-accent bg-primary-accent flex size-9 shrink-0 items-center justify-center rounded-lg border">
+						<IconSlot
+							slot="shield"
+							className="fill-primary stroke-primary"
+							size={20}
+						/>
+					</div>
+					<h3 className="text-primary-accent text-xl font-medium tracking-tight">
+						Bank level security
+					</h3>
+				</div>
+				<p className="text-primary-accent text-sm font-normal">
+					Security you can trust. Your financial safety is our highest priority.
+				</p>
+			</div>
+
+			<div className="border-primary text-primary-accent relative z-10 space-y-2.5 rounded-3xl border bg-white/8 p-4">
+				<div className="flex items-center justify-between gap-3">
+					<span className="text-base font-medium">
+						Realtime Transaction Alert
+					</span>
+					<div className="glass bg-white-inverse/20 flex size-8.5 items-center justify-center rounded-full">
+						<IconSlot slot="clock" size={16} />
+					</div>
+				</div>
+
+				<Divider className="bg-primary my-3.5" />
+
+				<TransactionRow
+					leading={
+						<div className="bg-primary-accent flex size-9 items-center justify-center rounded-lg">
+							<IconSlot slot="pole" className="text-primary size-5" />
+						</div>
+					}
+					title="Off Grid Chart"
+					subtitle="Tue, 1:30"
+					amount="$409.00"
+					fee="$0 Fee"
+				/>
+
+				<TransactionRow
+					leading={
+						<Avatar rounded="square" className="bg-primary-accent" size="md">
+							<AvatarImage
+								src="https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@v1.0.2/packages/uncompressed-avatars/src/2.png"
+								alt="Michaela Stone"
+							/>
+							<AvatarFallback className="text-[9px]">MS</AvatarFallback>
+						</Avatar>
+					}
+					title="Michaela Stone"
+					subtitle="Member"
+					amount="$129.42"
+					fee="$0 Fee"
+				/>
+
+				<TransactionRow
+					leading={
+						<div className="flex size-9 items-center justify-center rounded-lg bg-white/15">
+							<IconSlot slot="globe" className="size-5 text-white" />
+						</div>
+					}
+					title="Acme Inc."
+					amount="$129.42"
+				/>
+			</div>
+
+			<div className="flex items-center justify-center gap-1.5 pt-1">
+				{[0, 1, 2, 3].map((i) => (
+					<span
+						key={i}
+						className={cn(
+							"h-1.5 rounded-full",
+							i === 2 ? "w-4 bg-white" : "w-1.5 bg-white/40"
+						)}
+					/>
+				))}
+			</div>
+		</Card>
+	)
+}
+
+const dotPattern = (size: number, x: number, y: number): CSSProperties => ({
+	backgroundImage:
+		"radial-gradient(circle, rgb(36 46 66 / 0.04) 1px, transparent 1px)",
+	backgroundSize: `${size}px ${size}px`,
+	backgroundPosition: `${x}px ${y}px`,
+})
+
+function CompanyProfileCard() {
+	const id = useId().replace(/:/g, "")
+	return (
+		<Card className="bg-primary-accent relative h-83 w-full overflow-hidden rounded-3xl shadow-none">
+			<div className="absolute inset-0" style={dotPattern(10, 4, 2)} />
+
+			<div className="bg-bg absolute top-[45px] left-[45px] h-[502.7px] w-[444.8px] overflow-hidden rounded-2xl shadow-[0_15.5px_23.3px_-3.9px_rgb(24_24_27/0.12)]">
+				<div
+					className="absolute inset-0"
+					style={dotPattern(17.44, 4.36, -1.58)}
+				/>
+
+				<div className="border-soft bg-primary-border relative h-[97.3px] border-b-[1.4px]">
+					<svg
+						viewBox="45 45 444.8 97.3"
+						className="absolute inset-0 size-full">
+						<defs>
+							<linearGradient
+								id={`hdr_${id}`}
+								gradientUnits="userSpaceOnUse"
+								x1="121.8"
+								y1="54.1"
+								x2="295.7"
+								y2="228">
+								<stop stopColor="white" />
+								<stop offset="1" stopColor="white" stopOpacity=".5" />
+							</linearGradient>
+						</defs>
+						<path
+							opacity=".6"
+							fill={`url(#hdr_${id})`}
+							d="M268.53 146.456C298.536 176.462 298.536 225.111 268.53 255.117L263.097 260.55C233.091 290.556 184.442 290.556 154.436 260.55L268.53 146.456ZM328.293 86.6931C358.299 116.699 358.299 165.348 328.293 195.354L273.963 141.023L328.293 86.6931ZM91.956 83.9766C123.462 52.4704 174.544 52.4704 206.05 83.9766C237.556 115.483 237.556 166.564 206.05 198.07C174.544 229.576 123.462 229.576 91.956 198.07C60.4499 166.564 60.4499 115.483 91.956 83.9766ZM154.436 21.4967C184.442 -8.50929 233.091 -8.5093 263.097 21.4967L268.53 26.9297C298.536 56.9357 298.536 105.584 268.53 135.59L154.436 21.4967Z"
+						/>
+					</svg>
+				</div>
+
+				<div className="bg-primary absolute top-[55.6px] left-[22.2px] grid size-[89px] place-items-center rounded-3xl bg-gradient-to-b from-transparent to-white/15 shadow-[0_0_0_3.7px_rgb(0_0_0/0.1),0_0_0_3.7px_rgb(255_255_255/0.28),inset_0_3.7px_1.9px_rgb(255_255_255/0.1),inset_0_-3.7px_1.9px_rgb(0_0_0/0.1),inset_0_0_0_1.9px_rgb(0_0_0/0.06)]">
+					<div className="size-[52px] drop-shadow-[0_2.5px_2.5px_rgb(36_36_36/0.1)]">
+						<XavionMark />
+					</div>
+				</div>
+
+				<div className="relative px-[22px] pt-[69px]">
+					<div className="flex items-center gap-[7.5px]">
+						<h3 className="text-fg text-[22px] leading-7 font-medium tracking-tight">
+							Xavion Corp
+						</h3>
+						<VerifiedBadge />
+					</div>
+					<p className="text-fg-tertiary text-[17px] leading-6">xavion.com</p>
+					<p className="text-fg-secondary mt-4 text-lg leading-[27px]">
+						An open-source design library and system built for high-performance
+						dashboard layouts.
+					</p>
+				</div>
+
+				<div className="pointer-events-none absolute inset-0 rounded-[inherit] border-[1.4px] border-[#242E42]/[.08]" />
+			</div>
+
+			<div className="pointer-events-none absolute inset-0 rounded-[inherit] border border-[#242E42]/[.08]" />
+		</Card>
+	)
+}
+
+const SWATCHES = [
+	{ className: "bg-primary", title: "Primary" },
+	{ className: "bg-primary-border", title: "Primary Border" },
+	{ className: "bg-primary-accent", title: "Primary Accent" },
+	{ className: "bg-primary-focus", title: "Primary Focus" },
+	{ className: "bg-fg", title: "Foreground" },
+]
+
+function ColorSwatchesCard() {
+	return (
+		<Card className="gap-0 border-none p-0 shadow-none">
+			<div className="border-soft grid h-20 grid-cols-5 overflow-hidden rounded-lg border shadow-inner">
+				{SWATCHES.map(({ className, title }) => (
+					<div
+						key={title}
+						className={cn("transition-colors", className)}
+						title={title}
+					/>
+				))}
+			</div>
+		</Card>
+	)
+}
+
+// ---------------------------------------------------------------------------
+// Column 3 Cards
+// ---------------------------------------------------------------------------
+
+function AuroraBannerCard() {
+	return (
+		<Card className="border-soft relative flex h-52 items-center justify-center gap-0 overflow-hidden rounded-3xl p-0 shadow-none">
+			<TintedBackdrop
+				src="/themer/pattern1.png"
+				alt="Card"
+				tintClassName="z-10"
+			/>
+			<div className="absolute z-20 flex items-center gap-4 mix-blend-overlay">
+				<BrandLogo className="size-12 text-white" />
+				<span className="text-4xl font-bold tracking-tight text-white">
+					Xavion
+				</span>
+			</div>
+		</Card>
+	)
+}
+
+const PHONE_MASK = "url(/themer/phone-mask.webp) 0 0/100% 100% no-repeat"
+
+function SmartphoneMockupCard() {
+	return (
+		<Card className="relative flex aspect-338/452 items-center justify-center gap-0 overflow-hidden rounded-3xl p-3 shadow-none">
+			<img
+				src="/themer/bg.webp"
+				alt=""
+				className="absolute inset-0 size-full"
+			/>
+			<div className="absolute inset-0 bg-[color-mix(in_srgb,var(--color-primary)_70%,#808080)] mix-blend-color" />
+			<div className="absolute inset-0 [background:conic-gradient(at_2px_2px,transparent_270deg,rgb(36_46_66/.04)_0)_8px_5px/10px_10px]" />
+
+			<div className="absolute inset-0 blur-[.5px]">
+				<img
+					src="/themer/phone.webp"
+					alt=""
+					className="absolute inset-0 size-full"
+				/>
+				<div
+					className="absolute inset-0"
+					style={{ mask: PHONE_MASK, WebkitMask: PHONE_MASK }}>
+					<img
+						src="/themer/screen.webp"
+						alt=""
+						className="absolute top-[15.05%] left-[24.6%] h-[84.95%] w-[75.4%]"
+					/>
+					<div className="absolute inset-0 bg-[color-mix(in_srgb,var(--color-primary)_80%,transparent)] mix-blend-color [clip-path:polygon(24.6%_19.9%,135.5%_15.1%,198.8%_226.4%,87.5%_233.3%)]" />
+				</div>
+				<svg
+					viewBox="0 0 338 452"
+					className="absolute inset-0 size-full overflow-visible">
+					<defs>
+						<filter
+							id="f1"
+							x="108.294"
+							y="165.647"
+							width="120.689"
+							height="114.927"
+							filterUnits="userSpaceOnUse"
+							colorInterpolationFilters="sRGB">
+							<feFlood floodOpacity="0" result="b" />
+							<feColorMatrix
+								in="SourceAlpha"
+								values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+								result="a"
+							/>
+							<feOffset dy="11.353" />
+							<feGaussianBlur stdDeviation="11.353" />
+							<feComposite in2="a" operator="out" />
+							<feColorMatrix values="0 0 0 0 .098 0 0 0 0 .094 0 0 0 0 .106 0 0 0 .08 0" />
+							<feBlend in2="b" result="e" />
+							<feBlend in="SourceGraphic" in2="e" />
+						</filter>
+						<filter
+							id="f2"
+							x="146.701"
+							y="191.406"
+							width="43.9957"
+							height="44.5167"
+							filterUnits="userSpaceOnUse"
+							colorInterpolationFilters="sRGB">
+							<feFlood floodOpacity="0" result="b" />
+							<feColorMatrix
+								in="SourceAlpha"
+								values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+								result="a"
+							/>
+							<feMorphology
+								radius="1.27114"
+								operator="erode"
+								in="SourceAlpha"
+							/>
+							<feOffset dy="1.9067" />
+							<feGaussianBlur stdDeviation="1.9067" />
+							<feComposite in2="a" operator="out" />
+							<feColorMatrix values="0 0 0 0 .141 0 0 0 0 .141 0 0 0 0 .141 0 0 0 .1 0" />
+							<feBlend in2="b" result="e" />
+							<feBlend in="SourceGraphic" in2="e" />
+						</filter>
+						<linearGradient
+							id="g1"
+							x1="160.977"
+							y1="178.571"
+							x2="167.684"
+							y2="245.919"
+							gradientUnits="userSpaceOnUse">
+							<stop stopColor="#fff" stopOpacity="0" />
+							<stop offset="1" stopColor="#fff" stopOpacity=".15" />
+						</linearGradient>
+						<linearGradient
+							id="g2"
+							x1="164.169"
+							y1="192.399"
+							x2="166.217"
+							y2="231.477"
+							gradientUnits="userSpaceOnUse">
+							<stop stopColor="#fff" />
+							<stop offset="1" stopColor="#fff" stopOpacity=".5" />
+						</linearGradient>
+					</defs>
+					<g filter="url(#f1)">
+						<path
+							d="M134.831 196.735C132.715 187.571 138.614 179.743 148.006 179.251L173.947 177.891C183.34 177.399 192.669 184.429 194.784 193.593L202.446 226.779C204.562 235.943 198.663 243.771 189.271 244.264L163.33 245.623C153.937 246.115 144.608 239.085 142.492 229.921L134.831 196.735Z"
+							className="fill-[var(--color-primary)]"
+						/>
+						<path
+							d="M134.831 196.735C132.715 187.571 138.614 179.743 148.006 179.251L173.947 177.891C183.34 177.399 192.669 184.429 194.784 193.593L202.446 226.779C204.562 235.943 198.663 243.771 189.271 244.264L163.33 245.623C153.937 246.115 144.608 239.085 142.492 229.921L134.831 196.735Z"
+							fill="url(#g1)"
+						/>
+						<path
+							d="M148.119 179.74L174.06 178.38C183.175 177.903 192.23 184.725 194.283 193.619L201.945 226.806C203.998 235.7 198.273 243.297 189.157 243.774L163.216 245.134C154.101 245.612 145.047 238.789 142.994 229.895L135.332 196.709C133.279 187.815 139.004 180.218 148.119 179.74Z"
+							strokeWidth="1"
+							className="fill-none [stroke:color-mix(in_srgb,var(--color-primary),white_25%)]"
+						/>
+						<g filter="url(#f2)">
+							<path
+								d="M175.779 218.73C177.322 225.412 173.679 231.086 167.643 231.402L166.55 231.459C160.514 231.776 154.371 226.615 152.828 219.933L175.779 218.73ZM187.801 218.1C189.343 224.782 185.701 230.456 179.665 230.772L176.872 218.673L187.801 218.1ZM158.158 192.714C164.496 192.381 170.947 197.8 172.567 204.816C174.186 211.833 170.362 217.79 164.024 218.122C157.686 218.454 151.235 213.035 149.616 206.019C147.996 199.003 151.82 193.046 158.158 192.714ZM170.726 192.055C176.762 191.739 182.906 196.899 184.449 203.581L184.728 204.791C186.271 211.473 182.628 217.147 176.592 217.463L170.726 192.055Z"
+								fill="url(#g2)"
+							/>
+						</g>
+					</g>
+				</svg>
+			</div>
+
+			<div className="absolute inset-0 rounded-[20px] ring-1 ring-[#242e42]/[.08] ring-inset" />
+		</Card>
+	)
+}
+
+function DockCard() {
+	return (
+		<Card className="border-border/80 relative flex h-40 items-center justify-center gap-0 overflow-hidden p-0 shadow-sm">
+			<TintedBackdrop
+				src="/themer/pattern2.png"
+				alt="Pattern"
+				imgClassName="object-cover"
+			/>
+			<div className="relative z-10 flex items-center justify-center gap-2.5 rounded-2xl border border-white/40 bg-white/20 p-3 backdrop-blur-md">
+				<SettingsIcon size={50} />
+				<BrandAppIcon size={64} />
+				<VideoIcon size={50} />
+			</div>
+		</Card>
+	)
+}
+
+// ---------------------------------------------------------------------------
+// Column 4 Cards
+// ---------------------------------------------------------------------------
+
+const PROFILE_MENU_GROUPS = [
+	[
+		{ slot: "user", label: "Profile" },
+		{ slot: "keyboard", label: "Keyboard shortcuts" },
+	],
+	[
+		{ slot: "setting", label: "Settings" },
+		{ slot: "mail", label: "Invite colleagues" },
+		{ slot: "users", label: "Team", active: true },
+	],
+	[{ slot: "book", label: "Change logs" }],
+] as const
+
+function ProfileMenuCard() {
+	return (
+		<Card className="border-soft relative isolate flex max-h-89 items-center justify-center gap-0 overflow-hidden rounded-3xl p-8 pb-0">
+			<TintedBackdrop
+				src="/themer/pattern1.png"
+				alt="Pattern"
+				tintClassName="z-10"
+			/>
+
+			<div className="bg-fill2 z-20 h-100 w-full rounded-3xl rounded-b-none p-1.5">
+				<div className="bg-elevation-level1 border-soft relative h-fit w-full overflow-hidden rounded-2xl border font-normal shadow-lg">
+					<div className="flex items-center justify-between gap-3 p-3.5">
+						<div className="flex items-center gap-2.5 overflow-hidden">
+							<Avatar size="md" rounded="square" className="bg-primary-accent">
+								<AvatarImage
+									src="https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@v1.0.2/packages/uncompressed-avatars/src/13.png"
+									alt="Laura Morga"
+								/>
+								<AvatarFallback className="text-xs font-semibold">
+									LM
+								</AvatarFallback>
+								<AvatarIndicator className="right-1 bottom-1">
+									<AvatarStatus size="lg" variant="online" />
+								</AvatarIndicator>
+							</Avatar>
+							<div className="truncate">
+								<div className="text-fg text-sm leading-tight font-medium">
+									Laura Morga
+								</div>
+								<div className="text-fg-secondary truncate text-xs leading-normal font-normal">
+									morga@radian.com
+								</div>
+							</div>
+						</div>
+						<Badge variant="strong">
+							<IconSlot slot="zap" className="size-3.5 fill-current" /> PRO
+						</Badge>
+					</div>
+
+					{PROFILE_MENU_GROUPS.map((group, groupIndex) => (
+						<React.Fragment key={groupIndex}>
+							<div className="border-soft border-b" />
+							<div className="space-y-0.5 p-1.5 font-normal">
+								{group.map((item) => {
+									const isActive = "active" in item && item.active
+									return (
+										<div
+											key={item.label}
+											className={cn(
+												"text-fg flex cursor-pointer items-center gap-3 rounded-lg px-2.5 py-1.5 text-sm transition-colors",
+												isActive ? "bg-fill1" : "hover:bg-fill1"
+											)}>
+											<IconSlot
+												slot={item.slot}
+												className={cn(
+													"size-4.5",
+													!isActive && "text-fg-secondary"
+												)}
+											/>
+											<span>{item.label}</span>
+										</div>
+									)
+								})}
+							</div>
+						</React.Fragment>
+					))}
+				</div>
+			</div>
+		</Card>
+	)
+}
+
+const DEVICE_CONTROLS = ["monitor", "laptop", "smartphone"] as const
+
+function ControlBar() {
+	return (
+		<div className="bg-primary relative flex items-center justify-center gap-2 overflow-clip rounded-3xl p-6">
+			<TintedBackdrop src="/themer/grainypattern.png" />
+
+			<IconButton
+				variant="ghost"
+				title="Close"
+				size="md"
+				className="rounded-full border border-white/40 bg-white/20 text-white backdrop-blur-md hover:bg-white/25">
+				<IconSlot slot="cross" className="size-5" />
+			</IconButton>
+
+			<div className="flex items-center gap-2 rounded-full border border-white/40 bg-white/20 p-1.5 text-white backdrop-blur-md">
+				<div className="flex items-center gap-1.5 text-neutral-300">
+					{DEVICE_CONTROLS.map((slot, i) => (
+						<div
+							key={slot}
+							className={cn(
+								"flex size-9 items-center justify-center rounded-full",
+								i === 0 ? "bg-white/20" : "hover:bg-white/20"
+							)}>
+							<IconSlot
+								slot={slot}
+								className="size-5 cursor-pointer text-white"
+							/>
+						</div>
+					))}
+				</div>
+
+				<Button
+					type="button"
+					variant="glossy"
+					size="sm"
+					className="rounded-full">
+					<IconSlot slot="fullscreen" className="size-3" />
+					<span>Full page</span>
+				</Button>
+			</div>
+		</div>
+	)
+}
+
+function TestimonialCard() {
+	return (
+		<Card className="border-soft bg-bg gap-4 rounded-3xl p-6 shadow-none">
+			<div className="flex flex-col gap-2">
+				<div className="flex items-center justify-between">
+					<h3 className="heading-3 text-primary-text text-5xl font-bold">
+						10M+
+					</h3>
+					<div className="bg-primary flex size-10 items-center justify-center rounded-full">
+						<IconSlot slot="users-2" className="size-6 text-white" />
+					</div>
+				</div>
+				<p className="text-fg-tertiary text-lg font-normal">
+					Active happy users in over 20+ countries worldwide
+				</p>
+			</div>
+
+			<div className="relative aspect-[576/516] overflow-hidden rounded-2xl bg-[linear-gradient(165deg,color-mix(in_oklab,var(--color-primary),white_10%),var(--color-primary))]">
+				<svg
+					viewBox="25.8 17.95 28.47 28.47"
+					className="absolute top-[8%] left-[7%] w-[85%] text-white/25">
+					<path
+						fill="currentColor"
+						stroke="white"
+						strokeOpacity=".1"
+						strokeWidth="0.23"
+						d={XAVION_PATH}
+					/>
+				</svg>
+
+				<div className="absolute top-[5%] left-[7%] isolate aspect-square w-[87%]">
+					<img src="/themer/person.png" alt="" className="size-full" />
+					<div
+						className="bg-primary absolute bottom-0 left-0 aspect-[492/217] w-[98%] mix-blend-color"
+						style={{
+							maskImage: "url(/themer/suit.png)",
+							WebkitMaskImage: "url(/themer/suit.png)",
+							maskSize: "100% 100%",
+							WebkitMaskSize: "100% 100%",
+						}}
+					/>
+				</div>
+			</div>
+		</Card>
+	)
+}
+
+// ---------------------------------------------------------------------------
+// Inline SVG Assets (optional: move to a separate icons file)
+// ---------------------------------------------------------------------------
+
+function VerifiedBadge() {
+	return (
+		<svg
+			viewBox="197.8 211.5 23.7 23.8"
+			className="text-primary size-6 shrink-0"
+			aria-label="Verified">
+			<path
+				fill="currentColor"
+				d="M221.31 222.38C221.156 222.072 220.929 221.805 220.649 221.604L219.109 220.445C219.029 220.39 218.971 220.308 218.946 220.214C218.912 220.12 218.912 220.018 218.946 219.924L219.584 218.036C219.686 217.698 219.71 217.342 219.653 216.993C219.6 216.639 219.456 216.304 219.236 216.02C219.024 215.737 218.746 215.51 218.425 215.36C218.119 215.213 217.78 215.145 217.441 215.163H215.703C215.6 215.162 215.501 215.127 215.419 215.065C215.338 215.002 215.279 214.915 215.251 214.816L214.753 213.078C214.657 212.725 214.474 212.403 214.22 212.14C213.967 211.883 213.658 211.688 213.317 211.572C212.972 211.466 212.607 211.442 212.251 211.503C211.898 211.571 211.568 211.727 211.29 211.954L209.969 212.997C209.896 213.063 209.801 213.1 209.702 213.101C209.614 213.11 209.524 213.089 209.448 213.043L208.139 212.001C207.87 211.781 207.552 211.63 207.212 211.56C206.877 211.479 206.527 211.479 206.192 211.56C205.857 211.654 205.547 211.824 205.289 212.059C205.025 212.314 204.823 212.628 204.698 212.974L204.2 214.723C204.175 214.826 204.113 214.917 204.026 214.978C203.935 215.04 203.824 215.069 203.714 215.059H202.069C201.713 215.045 201.36 215.116 201.038 215.267C200.711 215.412 200.427 215.64 200.215 215.928C200.002 216.211 199.859 216.54 199.798 216.889C199.739 217.23 199.763 217.579 199.868 217.908L200.435 219.866C200.464 219.961 200.464 220.061 200.435 220.156C200.406 220.248 200.349 220.328 200.273 220.387L198.732 221.546C198.452 221.754 198.222 222.024 198.061 222.334C197.908 222.642 197.829 222.98 197.829 223.324C197.829 223.668 197.908 224.006 198.061 224.314C198.222 224.624 198.452 224.894 198.732 225.102L200.273 226.261C200.349 226.32 200.406 226.4 200.435 226.492C200.464 226.587 200.464 226.687 200.435 226.782L199.798 228.67C199.69 229.01 199.662 229.371 199.717 229.724C199.776 230.07 199.919 230.397 200.134 230.674C200.346 230.965 200.63 231.196 200.957 231.346C201.263 231.492 201.602 231.56 201.941 231.543H203.667C203.772 231.538 203.874 231.571 203.957 231.636C204.04 231.693 204.098 231.78 204.119 231.879L204.617 233.628C204.72 233.974 204.903 234.292 205.15 234.555C205.528 234.948 206.039 235.186 206.583 235.223C207.127 235.259 207.665 235.091 208.092 234.752L209.424 233.698C209.505 233.633 209.605 233.597 209.708 233.597C209.812 233.597 209.912 233.633 209.992 233.698L211.301 234.74C211.579 234.975 211.915 235.131 212.274 235.192C212.405 235.203 212.537 235.203 212.668 235.192C212.896 235.193 213.123 235.158 213.34 235.088C213.684 234.979 213.995 234.787 214.246 234.528C214.497 234.269 214.679 233.952 214.776 233.605L215.286 231.844C215.307 231.745 215.365 231.658 215.448 231.601C215.538 231.533 215.649 231.5 215.761 231.508H217.417C217.772 231.522 218.124 231.455 218.448 231.311C218.768 231.159 219.046 230.932 219.26 230.65C219.474 230.368 219.616 230.038 219.676 229.689C219.736 229.333 219.709 228.967 219.595 228.624L218.97 226.747C218.935 226.654 218.935 226.551 218.97 226.458C218.994 226.363 219.052 226.281 219.132 226.226L220.672 225.067C220.953 224.862 221.179 224.591 221.333 224.28C221.495 223.973 221.578 223.63 221.576 223.284C221.554 222.966 221.463 222.658 221.31 222.38ZM215.008 221.5L209.888 226.62C209.69 226.814 209.458 226.971 209.204 227.083C208.947 227.189 208.672 227.244 208.393 227.245C208.11 227.247 207.83 227.188 207.571 227.071C207.311 226.964 207.075 226.806 206.876 226.608L204.351 224.071C204.161 223.85 204.062 223.565 204.073 223.273C204.084 222.981 204.205 222.705 204.411 222.499C204.618 222.292 204.894 222.171 205.186 222.16C205.477 222.149 205.762 222.248 205.984 222.438L208.393 224.847L213.375 219.855C213.592 219.639 213.885 219.518 214.191 219.518C214.497 219.518 214.791 219.639 215.008 219.855C215.124 219.963 215.216 220.094 215.279 220.239C215.342 220.385 215.375 220.542 215.375 220.7C215.375 220.859 215.342 221.016 215.279 221.161C215.216 221.307 215.124 221.437 215.008 221.546V221.5Z"
+			/>
+		</svg>
+	)
+}
+
+function CompactIcon() {
+	return (
+		<svg
+			viewBox="0 0 12 12"
+			className="size-3"
+			fill="none"
+			stroke="currentColor"
+			strokeWidth=".94"
+			strokeLinecap="round"
+			strokeLinejoin="round">
+			<path d="M6 11V8M4.5 9.5 6 11l1.5-1.5M6 4V1M4.5 2.5 6 1l1.5 1.5M2 6H1M5 6H4M8 6H7M11 6h-1" />
+		</svg>
+	)
+}
+
+function OpenAI({ className }: { className?: string }) {
+	return (
+		<svg viewBox="276.2 71.2 11.6 11.6" className={className}>
+			<path d="M287.064 75.9418C287.332 75.1473 287.24 74.2771 286.811 73.5544C286.166 72.4461 284.869 71.8759 283.602 72.1442C283.039 71.5178 282.229 71.1616 281.38 71.1667C280.086 71.1638 278.937 71.9863 278.539 73.2019C277.707 73.37 276.989 73.8837 276.569 74.6118C275.919 75.7172 276.067 77.1107 276.935 78.0586C276.667 78.8531 276.76 79.7233 277.189 80.4459C277.834 81.5543 279.131 82.1245 280.397 81.8562C280.96 82.4826 281.77 82.8388 282.619 82.8333C283.914 82.8366 285.063 82.0133 285.462 80.7967C286.293 80.6286 287.011 80.1149 287.431 79.3868C288.081 78.2814 287.932 76.889 287.064 75.9411L287.064 75.9418ZM282.62 82.0709C282.101 82.0717 281.599 81.8926 281.201 81.5649C281.219 81.5554 281.251 81.5383 281.271 81.5259L283.625 80.1842C283.746 80.1167 283.82 79.9902 283.819 79.8535V76.5784L284.814 77.1453C284.825 77.1504 284.832 77.1606 284.833 77.1723V79.8845C284.832 81.0905 283.842 82.0684 282.62 82.0709ZM277.859 80.0646C277.599 79.622 277.506 79.1032 277.595 78.5997C277.612 78.6099 277.643 78.6285 277.665 78.6409L280.019 79.9826C280.139 80.0515 280.286 80.0515 280.406 79.9826L283.28 78.3448V79.4787C283.281 79.4904 283.275 79.5017 283.266 79.509L280.886 80.8649C279.826 81.4672 278.472 81.1091 277.86 80.0646H277.859ZM277.24 74.9935C277.498 74.5501 277.906 74.2111 278.393 74.035C278.393 74.055 278.392 74.0904 278.392 74.1152V76.7989C278.391 76.9353 278.465 77.0618 278.585 77.1293L281.459 78.7666L280.464 79.3336C280.454 79.3401 280.441 79.3412 280.43 79.3365L278.05 77.9795C276.992 77.375 276.629 76.0395 277.239 74.9939L277.24 74.9935ZM285.415 76.8708L282.541 75.233L283.536 74.6665C283.546 74.6599 283.558 74.6588 283.569 74.6635L285.949 76.0194C287.009 76.6236 287.372 77.9613 286.76 79.0069C286.501 79.4495 286.093 79.7886 285.607 79.9651V77.2011C285.608 77.0647 285.535 76.9386 285.415 76.8708H285.415ZM286.405 75.4C286.388 75.3894 286.357 75.3712 286.335 75.3588L283.981 74.0171C283.861 73.9482 283.714 73.9482 283.594 74.0171L280.72 75.6549V74.521C280.719 74.5093 280.725 74.498 280.734 74.4907L283.114 73.1359C284.174 72.5325 285.529 72.8916 286.14 73.938C286.398 74.3799 286.492 74.8972 286.404 75.4H286.405ZM280.179 77.4209L279.183 76.854C279.173 76.8489 279.166 76.8387 279.164 76.827V74.1148C279.165 72.9073 280.158 71.9287 281.381 71.9295C281.899 71.9295 282.4 72.1088 282.798 72.4355C282.78 72.445 282.749 72.4621 282.728 72.4745L280.374 73.8162C280.253 73.8837 280.18 74.0098 280.18 74.1465L280.179 77.4202V77.4209ZM280.719 76.271L282 75.5415L283.28 76.2707V77.7294L282 78.4586L280.719 77.7294V76.271Z" />
+		</svg>
+	)
+}
+
+function SettingsIcon({
+	size = 65,
+	...props
+}: { size?: number } & React.SVGProps<SVGSVGElement>) {
 	return (
 		<svg
 			width={size}
@@ -884,7 +1066,10 @@ function SettingsIcon({ size = 65, ...props }) {
 	)
 }
 
-function VideoIcon({ size = 65, ...props }) {
+function VideoIcon({
+	size = 65,
+	...props
+}: { size?: number } & React.SVGProps<SVGSVGElement>) {
 	return (
 		<svg
 			width={size}
@@ -1188,149 +1373,3 @@ function VideoIcon({ size = 65, ...props }) {
 		</svg>
 	)
 }
-
-function ContextWindow({
-	model = "gpt-astra-1",
-	limit = 200_000,
-	system = 108_200,
-	files = 41_300,
-	conversation = 29_000,
-	className,
-}: Props) {
-	const used = system + files + conversation
-	const filled = Math.round((used / limit) * CELLS)
-	const dark = Math.round((system / limit) * CELLS)
-	const tone = {
-		dark: "bg-primary-text",
-		light: "bg-primary-border",
-		empty: "bg-fill2",
-	}
-
-	return (
-		<div className={cn("bg-fill2 w-[356px] rounded-2xl p-1.5", className)}>
-			<Card className="gap-0 rounded-2xl p-4.5 shadow-[0_4px_8px_rgb(25_24_27/0.08)]">
-				<div className="flex h-6 items-center justify-between">
-					<h3 className="text-sm font-medium">Context window</h3>
-					<Badge size="md" color="neutral">
-						<OpenAI className="fill-primary" />
-						{model}
-					</Badge>
-				</div>
-
-				<div className="mt-4 flex w-full items-baseline gap-2">
-					<span className="text-2xl font-semibold tracking-tighter">
-						{k(used)}
-					</span>
-					<span className="text-fg-tertiary text-sm font-normal">
-						of {k(limit).replace(".0", "")} tokens
-					</span>
-					<Badge
-						variant="soft"
-						color="primary"
-						className="border-soft-alpha ml-auto border">
-						{Math.floor((used / limit) * 100)}% used
-					</Badge>
-				</div>
-
-				<div className="mt-3.5 grid grid-cols-[repeat(28,minmax(0,1fr))] gap-0.75">
-					{Array.from({ length: CELLS }, (_, i) => (
-						<span
-							key={i}
-							className={cn(
-								"aspect-square rounded-[2px]",
-								tone[i < dark ? "dark" : i < filled ? "light" : "empty"]
-							)}
-						/>
-					))}
-				</div>
-
-				<ul className="mt-4 flex flex-col gap-2">
-					<Row swatch={tone.dark} label="System prompt" value={k(system)} />
-					<Row
-						swatch={tone.light}
-						label="Files"
-						value={k(files)}
-						extra={
-							<IconSlot slot="down" className="text-muted-foreground size-4" />
-						}
-					/>
-					<Row
-						swatch={tone.light}
-						label="Conversation"
-						value={k(conversation)}
-						action={
-							<Button
-								variant="ghost"
-								className="text-fg-tertiary mr-1.5 h-auto gap-1.5 p-0 text-xs font-normal hover:bg-transparent"
-								size="xs">
-								<CompactIcon />
-								Compact
-							</Button>
-						}
-					/>
-					<Row
-						swatch="bg-fill2 ring-1 ring-inset ring-soft"
-						label="Token remaining"
-						value={k(limit - used)}
-					/>
-				</ul>
-			</Card>
-		</div>
-	)
-}
-
-function ContextWindowShowcase({ ...props }: Props) {
-	return (
-		<Card className="border-soft-alpha relative h-[334px] w-full overflow-hidden rounded-3xl border shadow-none">
-			<div
-				className="absolute inset-0 bg-[length:100%_145.4%] bg-[position:0_-76px]"
-				style={{ backgroundImage: `url(/themer/halftone.webp)` }}
-			/>
-			<div className="bg-primary absolute inset-0 mix-blend-color" />
-			<ContextWindow className="absolute top-10 left-10" {...props} />
-		</Card>
-	)
-}
-
-type RowProps = {
-	swatch: string
-	label: string
-	value: string
-	extra?: React.ReactNode
-	action?: React.ReactNode
-}
-
-function Row({ swatch, label, value, extra, action }: RowProps) {
-	return (
-		<li className="flex h-5 items-center gap-2 px-0.5 text-sm">
-			<span className={cn("size-2.5 rounded-[3px]", swatch)} />
-			<span className="flex flex-1 items-center gap-1 text-sm font-normal">
-				{label}
-				{extra}
-			</span>
-			{action}
-			<span className="text-fg-secondary font-normal tabular-nums">
-				{value}
-			</span>
-		</li>
-	)
-}
-
-const CompactIcon = () => (
-	<svg
-		viewBox="0 0 12 12"
-		className="size-3"
-		fill="none"
-		stroke="currentColor"
-		strokeWidth=".94"
-		strokeLinecap="round"
-		strokeLinejoin="round">
-		<path d="M6 11V8M4.5 9.5 6 11l1.5-1.5M6 4V1M4.5 2.5 6 1l1.5 1.5M2 6H1M5 6H4M8 6H7M11 6h-1" />
-	</svg>
-)
-
-const OpenAI = ({ className }: { className?: string }) => (
-	<svg viewBox="276.2 71.2 11.6 11.6" className={className}>
-		<path d="M287.064 75.9418C287.332 75.1473 287.24 74.2771 286.811 73.5544C286.166 72.4461 284.869 71.8759 283.602 72.1442C283.039 71.5178 282.229 71.1616 281.38 71.1667C280.086 71.1638 278.937 71.9863 278.539 73.2019C277.707 73.37 276.989 73.8837 276.569 74.6118C275.919 75.7172 276.067 77.1107 276.935 78.0586C276.667 78.8531 276.76 79.7233 277.189 80.4459C277.834 81.5543 279.131 82.1245 280.397 81.8562C280.96 82.4826 281.77 82.8388 282.619 82.8333C283.914 82.8366 285.063 82.0133 285.462 80.7967C286.293 80.6286 287.011 80.1149 287.431 79.3868C288.081 78.2814 287.932 76.889 287.064 75.9411L287.064 75.9418ZM282.62 82.0709C282.101 82.0717 281.599 81.8926 281.201 81.5649C281.219 81.5554 281.251 81.5383 281.271 81.5259L283.625 80.1842C283.746 80.1167 283.82 79.9902 283.819 79.8535V76.5784L284.814 77.1453C284.825 77.1504 284.832 77.1606 284.833 77.1723V79.8845C284.832 81.0905 283.842 82.0684 282.62 82.0709ZM277.859 80.0646C277.599 79.622 277.506 79.1032 277.595 78.5997C277.612 78.6099 277.643 78.6285 277.665 78.6409L280.019 79.9826C280.139 80.0515 280.286 80.0515 280.406 79.9826L283.28 78.3448V79.4787C283.281 79.4904 283.275 79.5017 283.266 79.509L280.886 80.8649C279.826 81.4672 278.472 81.1091 277.86 80.0646H277.859ZM277.24 74.9935C277.498 74.5501 277.906 74.2111 278.393 74.035C278.393 74.055 278.392 74.0904 278.392 74.1152V76.7989C278.391 76.9353 278.465 77.0618 278.585 77.1293L281.459 78.7666L280.464 79.3336C280.454 79.3401 280.441 79.3412 280.43 79.3365L278.05 77.9795C276.992 77.375 276.629 76.0395 277.239 74.9939L277.24 74.9935ZM285.415 76.8708L282.541 75.233L283.536 74.6665C283.546 74.6599 283.558 74.6588 283.569 74.6635L285.949 76.0194C287.009 76.6236 287.372 77.9613 286.76 79.0069C286.501 79.4495 286.093 79.7886 285.607 79.9651V77.2011C285.608 77.0647 285.535 76.9386 285.415 76.8708H285.415ZM286.405 75.4C286.388 75.3894 286.357 75.3712 286.335 75.3588L283.981 74.0171C283.861 73.9482 283.714 73.9482 283.594 74.0171L280.72 75.6549V74.521C280.719 74.5093 280.725 74.498 280.734 74.4907L283.114 73.1359C284.174 72.5325 285.529 72.8916 286.14 73.938C286.398 74.3799 286.492 74.8972 286.404 75.4H286.405ZM280.179 77.4209L279.183 76.854C279.173 76.8489 279.166 76.8387 279.164 76.827V74.1148C279.165 72.9073 280.158 71.9287 281.381 71.9295C281.899 71.9295 282.4 72.1088 282.798 72.4355C282.78 72.445 282.749 72.4621 282.728 72.4745L280.374 73.8162C280.253 73.8837 280.18 74.0098 280.18 74.1465L280.179 77.4202V77.4209ZM280.719 76.271L282 75.5415L283.28 76.2707V77.7294L282 78.4586L280.719 77.7294V76.271Z" />
-	</svg>
-)
