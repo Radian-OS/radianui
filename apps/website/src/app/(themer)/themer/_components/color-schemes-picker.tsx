@@ -379,7 +379,15 @@ function ColorPickerPopover({
 	const hueColor = `hsl(${hsvState.h} 100% 50%)`
 
 	const editor = (
-		<Tabs defaultValue="presets" value={activeTab} onValueChange={setActiveTab}>
+		<Tabs
+			defaultValue="presets"
+			value={activeTab}
+			onValueChange={setActiveTab}
+			className={
+				inDrawer && activeTab === "presets"
+					? "max-h-[calc(82dvh-28px-max(12px,env(safe-area-inset-bottom)))]"
+					: undefined
+			}>
 			<motion.div
 				drag={!inDrawer}
 				dragControls={dragControls}
@@ -398,11 +406,11 @@ function ColorPickerPopover({
 				className={cn(
 					"select-none",
 					inDrawer
-						? "w-full"
+						? "flex min-h-0 w-full flex-col"
 						: "bg-popover border-border w-[300px] max-w-[calc(100vw-2rem)] rounded-lg border px-2.5 py-1.5 shadow-sm will-change-transform"
 				)}>
 				{inDrawer ? (
-					<div className="mb-3 flex touch-none items-center justify-between">
+					<div className="mb-3 flex shrink-0 touch-none items-center justify-between">
 						<div className="flex items-center gap-2">
 							<IconButton
 								size="xs"
@@ -413,13 +421,17 @@ function ColorPickerPopover({
 								onClick={() => onOpenChange(false)}>
 								<ChevronLeft />
 							</IconButton>
-							<DrawerTitle className="text-fg text-base font-medium">
+							<DrawerTitle className="sr-only">
 								{mode === "add"
 									? "Generate Color Palette"
 									: prefix === "primary"
 										? "Primary Color"
 										: colorInfo.name}
 							</DrawerTitle>
+							<TabsList aria-label="Color source">
+								<TabsTrigger value="custom">Custom</TabsTrigger>
+								<TabsTrigger value="presets">Presets</TabsTrigger>
+							</TabsList>
 						</div>
 						<DrawerDescription className="sr-only">
 							Choose a color and view its generated shades.
@@ -700,35 +712,31 @@ function ColorPickerPopover({
 							Add color
 						</Button>
 					)}
-					{inDrawer && mode === "add" && (
-						<Button
-							size="sm"
-							variant="ghost"
-							color="neutral"
-							className="mt-3 w-full"
-							onClick={() => setActiveTab("presets")}>
-							Browse preset colors
-						</Button>
-					)}
 				</TabsContent>
 
-				<TabsContent value="presets">
-					{inDrawer && (
-						<Button
-							size="sm"
-							variant="ghost"
-							color="neutral"
-							className="mb-2 w-full"
-							onClick={() => setActiveTab("custom")}>
-							Edit custom color
-						</Button>
-					)}
-					<div className="text-fg-tertiary px-2 pb-1.5 text-xs font-normal">
+				<TabsContent
+					value="presets"
+					className={
+						inDrawer
+							? "border-soft-alpha -mx-3 min-h-0 flex-col border-t px-2.5 pt-3 data-[state=active]:flex"
+							: undefined
+					}>
+					<div
+						className={cn(
+							"text-fg-tertiary text-xs",
+							inDrawer
+								? "shrink-0 px-1 pb-2 font-medium"
+								: "px-2 pb-1.5 font-normal"
+						)}>
 						Select colors
 					</div>
 					<ScrollArea
 						type="auto"
-						className="[&_[data-slot=scroll-area-viewport]]:max-h-[min(500px,max(6rem,calc(var(--radix-popover-content-available-height)-4rem)))]">
+						className={
+							inDrawer
+								? "min-h-0 [&_[data-slot=scroll-area-viewport]]:overscroll-y-contain"
+								: "[&_[data-slot=scroll-area-viewport]]:max-h-[min(500px,max(6rem,calc(var(--radix-popover-content-available-height)-4rem)))]"
+						}>
 						{orderedPresets.map((preset) => {
 							const isSelected =
 								value === preset.value ||
@@ -751,7 +759,8 @@ function ColorPickerPopover({
 										}
 									}}
 									className={cn(
-										"flex w-full cursor-pointer items-center justify-between rounded-md px-2 py-1.5 text-left transition-colors",
+										"flex w-full cursor-pointer items-center justify-between rounded-md text-left transition-colors",
+										inDrawer ? "min-h-[34px] px-2.5 py-1.5" : "px-2 py-1.5",
 										isSelected ? "bg-fill2" : "hover:bg-fill2"
 									)}>
 									<div className="flex items-center gap-2.5">
@@ -759,12 +768,21 @@ function ColorPickerPopover({
 											className="size-4 shrink-0 rounded-[6px]"
 											style={{ backgroundColor: swatchColor }}
 										/>
-										<span className="text-fg text-xs font-normal">
+										<span
+											className={cn(
+												"text-fg font-normal",
+												inDrawer ? "text-sm" : "text-xs"
+											)}>
 											{displayName}
 										</span>
 									</div>
 									{isSelected && (
-										<Check className="text-fg-secondary size-4 shrink-0" />
+										<Check
+											className={cn(
+												"size-4 shrink-0",
+												inDrawer ? "text-fg-tertiary" : "text-fg-secondary"
+											)}
+										/>
 									)}
 								</button>
 							)
@@ -789,7 +807,11 @@ function ColorPickerPopover({
 				<DrawerContent className="max-h-[82dvh] gap-0 rounded-b-none p-0 pt-7 after:hidden!">
 					<ScrollArea
 						type="auto"
-						className="min-h-0 [&_[data-slot=scroll-area-viewport]]:max-h-[calc(82dvh-28px)] [&_[data-slot=scroll-area-viewport]]:overscroll-y-none">
+						className={cn(
+							"min-h-0 [&>[data-slot=scroll-area-viewport]]:max-h-[calc(82dvh-28px)] [&>[data-slot=scroll-area-viewport]]:overscroll-y-none",
+							activeTab === "presets" &&
+								"[&>[data-slot=scroll-area-viewport]]:overflow-y-hidden!"
+						)}>
 						<div className="px-3 pb-[max(12px,env(safe-area-inset-bottom))]">
 							{editor}
 						</div>
