@@ -2,6 +2,10 @@
 
 import {
 	ChevronRight,
+	ChevronLeft,
+	Undo2,
+	Shuffle,
+	SwatchBook,
 	Layers2,
 	Palette,
 	Radius,
@@ -128,11 +132,69 @@ export function ThemerMobileDrawer({
 					"max-h-[85dvh] gap-0 rounded-b-none p-0 pt-7 before:pointer-events-none before:absolute before:top-full before:h-px before:w-px before:content-[''] after:hidden! sm:hidden",
 					allSettings && "h-[min(85dvh,42rem)]"
 				)}>
-				{panel === "preset" ? (
+				{panel === "preset" || panel === "color" ? (
 					<ScrollArea
 						type="auto"
 						className="min-h-0 [&_[data-slot=scroll-area-viewport]]:max-h-[calc(85dvh-28px)] [&_[data-slot=scroll-area-viewport]]:overflow-y-auto!">
-						<ThemerMobilePresets />
+						{panel === "preset" ? (
+							<ThemerMobilePresets />
+						) : (
+							<ThemerDrawerContext value={true}>
+								<div className="flex flex-col gap-2 px-3 pb-[max(12px,env(safe-area-inset-bottom))]">
+									<div className="flex touch-none items-center justify-between">
+										<div className="flex items-center gap-2">
+											<DrawerClose>
+												<IconButton
+													size="xs"
+													variant="ghost"
+													color="neutral"
+													aria-label="Close Colors drawer"
+													className="text-fg-secondary size-5 p-0 [&>svg]:size-5">
+													<ChevronLeft />
+												</IconButton>
+											</DrawerClose>
+											<DrawerTitle className="text-fg text-base font-medium">
+												Colors
+											</DrawerTitle>
+										</div>
+										<DrawerDescription className="sr-only">
+											Edit the primary color and additional color schemes.
+										</DrawerDescription>
+										<div className="flex items-center gap-2">
+											<IconButton
+												size="md"
+												variant="ghost"
+												color="neutral"
+												className="text-fg-secondary"
+												disabled
+												aria-label="Undo colors">
+												<Undo2 />
+											</IconButton>
+											<IconButton
+												size="md"
+												variant="ghost"
+												color="neutral"
+												className="text-fg-secondary"
+												disabled
+												aria-label="Shuffle all colors">
+												<Shuffle />
+											</IconButton>
+											<span className="bg-border h-4 w-px" aria-hidden="true" />
+											<IconButton
+												size="md"
+												variant="ghost"
+												color="neutral"
+												className="text-fg-secondary"
+												disabled
+												aria-label="Color library">
+												<SwatchBook />
+											</IconButton>
+										</div>
+									</div>
+									<ThemerFundamentals section="color" />
+								</div>
+							</ThemerDrawerContext>
+						)}
 					</ScrollArea>
 				) : (
 					<>
