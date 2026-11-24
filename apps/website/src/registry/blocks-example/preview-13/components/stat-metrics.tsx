@@ -10,20 +10,20 @@ import { STAT_METRICS } from "./data"
 
 export function StatMetrics() {
 	return (
-		<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+		<div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
 			{STAT_METRICS.map((metric) => (
 				<Card
 					key={metric.title}
 					className="bg-fill2 dark:bg-fill1 border-border/70 flex flex-col justify-between gap-0 p-0.5 pb-2 shadow-2xs">
 					{/* Inner White Container Box */}
-					<Card className="bg-elevation-level1 dark:bg-elevation-level2 border-border/60 flex flex-col justify-between border px-3 pt-3.5 pb-3 shadow-2xs">
+					<Card className="bg-elevation-level1 dark:bg-elevation-level2 border-border/60 flex flex-col justify-between gap-3 border px-3 pt-3.5 pb-3 shadow-2xs">
 						{/* Header Label */}
 						<div className="font-heading text-fg-tertiary text-xs leading-none font-semibold tracking-wider uppercase">
 							{metric.title}
 						</div>
 
 						{/* Metric Value & Sparklines */}
-						<div className="mt-4 flex items-end justify-between">
+						<div className="flex items-end justify-between">
 							<div className="flex items-baseline gap-1.5">
 								<span className="font-heading text-fg text-xl leading-none font-bold tracking-tight">
 									{metric.value}
