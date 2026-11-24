@@ -25,7 +25,7 @@ const SQUIRCLE_PATH =
 function TintedBackdrop({
 	src,
 	alt = "",
-	imgClassName = "size-full object-cover",
+	imgClassName,
 	tintClassName,
 }: {
 	src: string
@@ -38,7 +38,7 @@ function TintedBackdrop({
 			<img
 				src={src}
 				alt={alt}
-				className={cn("absolute inset-0", imgClassName)}
+				className={cn("absolute inset-0 size-full object-cover", imgClassName)}
 			/>
 			<div
 				className={cn(
@@ -159,21 +159,21 @@ function BrandAppIcon({
 export default function Preview07() {
 	return (
 		<div className="bg-bg min-h-screen w-full p-4 sm:p-6 lg:p-8">
-			<div className="mx-auto grid max-w-[1340px] grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
+			<div className="mx-auto grid max-w-[1340px] grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
 				{/* Column 1: Brand Assets & Context Window */}
 				<div className="flex flex-col gap-4">
-					<Card className="border-border/80 group relative aspect-[1.53/1] gap-0 overflow-hidden rounded-3xl p-0 shadow-sm select-none">
+					<Card className="border-border/80 group relative aspect-[1.53/1] gap-0 overflow-hidden rounded-3xl p-0 shadow-none select-none">
 						<TintedBackdrop src="/themer/card.png" alt="Card" />
 					</Card>
 					<AppIconsCard />
 					<BrowserMockupCard />
-					<ContextWindowShowcase />
+					<ContextWindowShowcase className="flex-1" />
 				</div>
 
 				{/* Column 2: Security Card, Profile Card & Swatches */}
 				<div className="flex flex-col gap-4">
 					<SecurityAlertCard />
-					<CompanyProfileCard />
+					<CompanyProfileCard className="flex-1" />
 					<ColorSwatchesCard />
 				</div>
 
@@ -181,14 +181,14 @@ export default function Preview07() {
 				<div className="flex flex-col gap-4">
 					<AuroraBannerCard />
 					<SmartphoneMockupCard />
-					<DockCard />
+					<DockCard className="flex-1" />
 				</div>
 
 				{/* Column 4: Profile Menu, Control Bar & Testimonial */}
 				<div className="flex flex-col gap-4">
 					<ProfileMenuCard />
 					<ControlBar />
-					<TestimonialCard />
+					<TestimonialCard className="flex-1" />
 				</div>
 			</div>
 		</div>
@@ -234,11 +234,11 @@ function AppIconsCard() {
 
 function BrowserMockupCard() {
 	return (
-		<Card className="relative isolate h-[216px] w-full overflow-hidden rounded-3xl shadow-none">
+		<Card className="relative isolate h-[230px] w-full overflow-hidden rounded-3xl shadow-none">
 			<div className="absolute inset-0 bg-[url(/gradient-grain.webp)] bg-cover bg-center" />
 			<div className="bg-primary absolute inset-0 mix-blend-color" />
 
-			<div className="bg-elevation-level1 absolute top-[48px] left-[41px] h-[120px] w-[803px] overflow-hidden rounded-2xl">
+			<div className="bg-elevation-level1 absolute top-1/2 left-[55px] h-[120px] w-[803px] -translate-y-1/2 overflow-hidden rounded-2xl">
 				<div className="bg-fill4 relative h-[55.81px]">
 					<div className="absolute top-[21.07px] left-5 flex gap-[11.17px]">
 						{[0, 1, 2].map((i) => (
@@ -295,9 +295,13 @@ type ContextWindowProps = {
 const CONTEXT_CELLS = 28 * 6
 const formatK = (n: number) => `${(n / 1000).toFixed(1)}K`
 
-function ContextWindowShowcase(props: ContextWindowProps) {
+function ContextWindowShowcase({ className, ...props }: ContextWindowProps) {
 	return (
-		<Card className="border-soft-alpha relative h-[334px] w-full overflow-hidden rounded-3xl border shadow-none">
+		<Card
+			className={cn(
+				"border-soft-alpha relative min-h-[300px] w-full flex-1 overflow-hidden rounded-3xl border shadow-none",
+				className
+			)}>
 			<div
 				className="absolute inset-0 bg-[length:100%_145.4%] bg-[position:0_-76px]"
 				style={{ backgroundImage: "url(/themer/halftone.webp)" }}
@@ -470,7 +474,7 @@ function TransactionRow({
 
 function SecurityAlertCard() {
 	return (
-		<Card className="text-primary-fg bg-primary-text relative max-w-118 gap-5.5 overflow-hidden rounded-3xl p-6 shadow-none">
+		<Card className="text-primary-fg bg-primary-text relative w-full gap-5.5 overflow-hidden rounded-3xl p-6 shadow-none">
 			<div className="relative z-10 flex flex-col items-start gap-3">
 				<div className="flex items-center gap-3">
 					<div className="border-primary-accent bg-primary-accent flex size-9 shrink-0 items-center justify-center rounded-lg border">
@@ -562,13 +566,17 @@ const dotPattern = (size: number, x: number, y: number): CSSProperties => ({
 	backgroundPosition: `${x}px ${y}px`,
 })
 
-function CompanyProfileCard() {
+function CompanyProfileCard({ className }: { className?: string } = {}) {
 	const id = useId().replace(/:/g, "")
 	return (
-		<Card className="bg-primary-accent relative h-83 w-full overflow-hidden rounded-3xl shadow-none">
+		<Card
+			className={cn(
+				"bg-primary-accent border-soft-alpha relative min-h-83 w-full flex-1 overflow-hidden rounded-3xl border shadow-none",
+				className
+			)}>
 			<div className="absolute inset-0" style={dotPattern(10, 4, 2)} />
 
-			<div className="bg-bg absolute top-[45px] left-[45px] h-[502.7px] w-[444.8px] overflow-hidden rounded-2xl shadow-[0_15.5px_23.3px_-3.9px_rgb(24_24_27/0.12)]">
+			<div className="bg-bg absolute top-[45px] left-[45px] h-[502.7px] w-[444.8px] overflow-hidden rounded-2xl shadow-none">
 				<div
 					className="absolute inset-0"
 					style={dotPattern(17.44, 4.36, -1.58)}
@@ -637,7 +645,7 @@ const SWATCHES = [
 function ColorSwatchesCard() {
 	return (
 		<Card className="gap-0 border-none p-0 shadow-none">
-			<div className="border-soft grid h-20 grid-cols-5 overflow-hidden rounded-lg border shadow-inner">
+			<div className="border-soft grid h-20 grid-cols-5 overflow-hidden rounded-2xl border shadow-inner">
 				{SWATCHES.map(({ className, title }) => (
 					<div
 						key={title}
@@ -656,7 +664,7 @@ function ColorSwatchesCard() {
 
 function AuroraBannerCard() {
 	return (
-		<Card className="border-soft relative flex h-52 items-center justify-center gap-0 overflow-hidden rounded-3xl p-0 shadow-none">
+		<Card className="border-soft relative flex h-54 items-center justify-center gap-0 overflow-hidden rounded-3xl p-0 shadow-none">
 			<TintedBackdrop
 				src="/themer/pattern1.png"
 				alt="Card"
@@ -676,7 +684,7 @@ const PHONE_MASK = "url(/themer/phone-mask.webp) 0 0/100% 100% no-repeat"
 
 function SmartphoneMockupCard() {
 	return (
-		<Card className="relative flex aspect-338/452 items-center justify-center gap-0 overflow-hidden rounded-3xl p-3 shadow-none">
+		<Card className="relative flex aspect-338/520 items-center justify-center gap-0 overflow-hidden rounded-3xl p-3 shadow-none">
 			<img
 				src="/themer/bg.webp"
 				alt=""
@@ -703,6 +711,7 @@ function SmartphoneMockupCard() {
 				</div>
 				<svg
 					viewBox="0 0 338 452"
+					preserveAspectRatio="none"
 					className="absolute inset-0 size-full overflow-visible">
 					<defs>
 						<filter
@@ -802,14 +811,14 @@ function SmartphoneMockupCard() {
 	)
 }
 
-function DockCard() {
+function DockCard({ className }: { className?: string } = {}) {
 	return (
-		<Card className="border-border/80 relative flex h-40 items-center justify-center gap-0 overflow-hidden p-0 shadow-sm">
-			<TintedBackdrop
-				src="/themer/pattern2.png"
-				alt="Pattern"
-				imgClassName="object-cover"
-			/>
+		<Card
+			className={cn(
+				"border-border/80 relative flex min-h-40 flex-1 items-center justify-center gap-0 overflow-hidden rounded-3xl p-0 shadow-none",
+				className
+			)}>
+			<TintedBackdrop src="/themer/pattern2.png" alt="Pattern" />
 			<div className="relative z-10 flex items-center justify-center gap-2.5 rounded-2xl border border-white/40 bg-white/20 p-3 backdrop-blur-md">
 				<SettingsIcon size={50} />
 				<BrandAppIcon size={64} />
@@ -912,7 +921,7 @@ const DEVICE_CONTROLS = ["monitor", "laptop", "smartphone"] as const
 
 function ControlBar() {
 	return (
-		<div className="bg-primary relative flex items-center justify-center gap-2 overflow-clip rounded-3xl p-6">
+		<div className="bg-primary relative flex h-fit items-center justify-center gap-2 overflow-clip rounded-3xl p-6">
 			<TintedBackdrop src="/themer/grainypattern.png" />
 
 			<IconButton
@@ -945,7 +954,7 @@ function ControlBar() {
 					variant="glossy"
 					size="sm"
 					className="rounded-full">
-					<IconSlot slot="fullscreen" className="size-3" />
+					<IconSlot slot="fullscreen" />
 					<span>Full page</span>
 				</Button>
 			</div>
@@ -953,9 +962,13 @@ function ControlBar() {
 	)
 }
 
-function TestimonialCard() {
+function TestimonialCard({ className }: { className?: string } = {}) {
 	return (
-		<Card className="border-soft bg-bg gap-4 rounded-3xl p-6 shadow-none">
+		<Card
+			className={cn(
+				"border-soft bg-bg flex min-h-0 flex-1 flex-col justify-between gap-4 rounded-3xl p-6 shadow-none",
+				className
+			)}>
 			<div className="flex flex-col gap-2">
 				<div className="flex items-center justify-between">
 					<h3 className="heading-3 text-primary-text text-5xl font-bold">
