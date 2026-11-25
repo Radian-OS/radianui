@@ -172,7 +172,7 @@ export default function CornerPicker({ onBack }: { onBack?: () => void }) {
 				<div className="flex shrink-0 touch-none items-center justify-between">
 					<div className="flex items-center gap-2">
 						<IconButton
-							size="xs"
+							size="md"
 							variant="ghost"
 							color="neutral"
 							className="text-fg-secondary"
@@ -182,7 +182,7 @@ export default function CornerPicker({ onBack }: { onBack?: () => void }) {
 									: "Close radius settings"
 							}
 							onClick={showAdvanced ? () => setShowAdvanced(false) : onBack}>
-							<ChevronLeft className="size-5!" />
+							<ChevronLeft />
 						</IconButton>
 						<DrawerTitle className="text-fg text-base font-medium">
 							{showAdvanced ? "Advanced" : "Radius"}

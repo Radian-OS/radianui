@@ -52,7 +52,7 @@ export function MobileComponentSettings<T extends string>({
 			<div className="flex shrink-0 touch-none items-center justify-between px-3 pb-3">
 				<div className="flex items-center gap-2">
 					<IconButton
-						size="xs"
+						size="md"
 						color="neutral"
 						variant="ghost"
 						className="text-fg-secondary"
@@ -65,7 +65,7 @@ export function MobileComponentSettings<T extends string>({
 							if (choosingVariant) setChoosingVariant(false)
 							else setOpen(false)
 						}}>
-						<ChevronLeft className="size-5!" />
+						<ChevronLeft />
 					</IconButton>
 					<h2 className="text-fg text-base font-medium">
 						{choosingVariant ? "Default Variant" : name}

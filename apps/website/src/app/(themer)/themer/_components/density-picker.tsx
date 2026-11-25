@@ -47,13 +47,13 @@ export default function DensityPicker({
 				<div className="flex touch-none items-center justify-between">
 					<div className="flex items-center gap-2">
 						<IconButton
-							size="xs"
+							size="md"
 							variant="ghost"
 							color="neutral"
 							className="text-fg-secondary"
 							aria-label="Close density settings"
 							onClick={onBack}>
-							<ChevronLeft className="size-5!" />
+							<ChevronLeft />
 						</IconButton>
 						<DrawerTitle className="text-fg text-base font-medium">
 							Density

@@ -248,12 +248,12 @@ export default function BaseColorPicker({
 				{inDrawer ? (
 					<div className="flex items-center gap-2">
 						<IconButton
-							size="xs"
+							size="md"
 							variant="ghost"
 							color="neutral"
 							aria-label="Back to neutral base"
 							onClick={() => setOpen(false)}>
-							<ChevronLeft className="size-5!" />
+							<ChevronLeft />
 						</IconButton>
 						<h2 className="text-fg text-base font-medium">Preset</h2>
 						<p className="sr-only">Choose a neutral base color.</p>

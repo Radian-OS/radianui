@@ -38,12 +38,12 @@ export function ThemerMobileComponents() {
 				<div className="flex items-center gap-2">
 					<DrawerClose>
 						<IconButton
-							size="xs"
+							size="md"
 							variant="ghost"
 							color="neutral"
 							className="text-fg-secondary"
 							aria-label="Close UI Bits">
-							<ChevronLeft className="size-5!" />
+							<ChevronLeft />
 						</IconButton>
 					</DrawerClose>
 					<DrawerTitle className="text-fg text-base font-medium">

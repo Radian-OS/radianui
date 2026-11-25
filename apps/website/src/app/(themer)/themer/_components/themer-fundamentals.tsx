@@ -37,9 +37,17 @@ function FundamentalsGroup({
 	if (selected && section !== selected) return null
 
 	return (
-		<SidebarGroup className={selected ? "p-0" : undefined}>
+		<SidebarGroup
+			className={
+				selected === "fonts" ? "gap-2 p-0" : selected ? "p-0" : undefined
+			}>
 			{(!selected || selected === "fonts") && (
-				<SidebarGroupLabel className="text-fg-tertiary h-6 px-0 font-medium">
+				<SidebarGroupLabel
+					className={
+						selected === "fonts"
+							? "text-fg-tertiary h-auto px-0 font-medium"
+							: "text-fg-tertiary h-6 px-0 font-medium"
+					}>
 					{label}
 				</SidebarGroupLabel>
 			)}

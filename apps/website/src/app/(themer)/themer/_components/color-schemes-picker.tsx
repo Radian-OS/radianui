@@ -603,13 +603,13 @@ function ColorPickerPopover({
 					<div className="mb-3 flex shrink-0 touch-none items-center justify-between">
 						<div className="flex items-center gap-2">
 							<IconButton
-								size="xs"
+								size="md"
 								variant="ghost"
 								color="neutral"
-								className="text-fg-secondary size-5 p-0 [&>svg]:size-5"
+								className="text-fg-secondary"
 								aria-label="Back to colors"
 								onClick={() => onOpenChange(false)}>
-								<ChevronLeft className="size-5!" />
+								<ChevronLeft />
 							</IconButton>
 							<h2 className="sr-only">
 								{mode === "add"

@@ -319,13 +319,13 @@ function FontList({
 						<div className="flex touch-none items-center justify-between gap-1 px-2">
 							<div className="flex min-w-0 items-center gap-2">
 								<IconButton
-									size="sm"
+									size="md"
 									variant="ghost"
 									color="neutral"
 									className="text-fg-secondary"
 									aria-label="Back to typography"
 									onClick={onBack}>
-									<ChevronLeft className="size-5!" />
+									<ChevronLeft />
 								</IconButton>
 								<span className="text-fg truncate text-base font-medium">
 									{label} font

@@ -122,12 +122,12 @@ export function ThemerMobilePresets() {
 				<div className="flex items-center gap-2">
 					<DrawerClose>
 						<IconButton
-							size="xs"
+							size="md"
 							variant="ghost"
 							color="neutral"
 							aria-label="Close preset drawer"
-							className="text-fg-secondary size-5 p-0 [&>svg]:size-5">
-							<ChevronLeft className="size-5!" />
+							className="text-fg-secondary">
+							<ChevronLeft />
 						</IconButton>
 					</DrawerClose>
 					<DrawerTitle className="text-fg text-base font-medium">
