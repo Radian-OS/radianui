@@ -16,7 +16,14 @@ import { IconButton } from "@/components/ui/button"
 import { IconSlot } from "@/registry/icon/icon-library"
 import { Card } from "@/registry/ui/card"
 import { type ChartConfig, ChartContainer } from "@/registry/ui/chart"
+import {
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuItem,
+	DropdownMenuTrigger,
+} from "@/registry/ui/dropdown-menu"
 import { Tabs, TabsList, TabsTrigger } from "@/registry/ui/tabs"
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/registry/ui/tooltip"
 
 type AcquisitionTab = "Sessions" | "Signups"
 
@@ -91,11 +98,40 @@ export function RevenueBreakdownCard() {
 			<div className="flex items-center justify-between gap-2 px-3 pt-1.5 pb-1.5">
 				<div className="font-heading text-fg-secondary flex items-center gap-1.5 text-xs font-semibold tracking-wider uppercase">
 					<span>ACQUISITION OVERVIEW</span>
-					<IconSlot slot="info" className="text-fg-secondary size-4" />
+					<Tooltip>
+						<TooltipTrigger asChild>
+							<button
+								type="button"
+								className="text-fg-secondary hover:text-fg inline-flex cursor-pointer items-center transition-colors"
+								aria-label="Acquisition overview info">
+								<IconSlot slot="info" className="size-4" />
+							</button>
+						</TooltipTrigger>
+						<TooltipContent withArrow>
+							Total sessions and signups across organic and paid channels
+						</TooltipContent>
+					</Tooltip>
 				</div>
-				<IconButton variant="ghost" color="neutral" aria-label="More options">
-					<IconSlot slot="threeDot" />
-				</IconButton>
+				<DropdownMenu>
+					<DropdownMenuTrigger asChild>
+						<IconButton
+							variant="ghost"
+							color="neutral"
+							aria-label="More options">
+							<IconSlot slot="threeDot" />
+						</IconButton>
+					</DropdownMenuTrigger>
+					<DropdownMenuContent align="center" className="w-40">
+						<DropdownMenuItem>
+							<IconSlot slot="file-text" />
+							Export report
+						</DropdownMenuItem>
+						<DropdownMenuItem>
+							<IconSlot slot="setting" />
+							Chart settings
+						</DropdownMenuItem>
+					</DropdownMenuContent>
+				</DropdownMenu>
 			</div>
 
 			{/* Inner White Box Container */}
