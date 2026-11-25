@@ -1,98 +1,218 @@
 "use client"
 
 import * as React from "react"
+import {
+	Area,
+	AreaChart,
+	CartesianGrid,
+	ReferenceDot,
+	ReferenceLine,
+	XAxis,
+	YAxis,
+} from "recharts"
 
+import { Badge } from "@/components/ui/badge"
+import { IconButton } from "@/components/ui/button"
 import { IconSlot } from "@/registry/icon/icon-library"
-import { IconButton } from "@/registry/ui/button"
 import { Card } from "@/registry/ui/card"
+import { type ChartConfig, ChartContainer } from "@/registry/ui/chart"
+import { Tabs, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
-import { REVENUE_BARS } from "./data"
-import { DateRangePopover } from "./date-range-popover"
+type AcquisitionTab = "Sessions" | "Signups"
+
+const ACQUISITION_DATA: Record<
+	AcquisitionTab,
+	{
+		headline: string
+		change: string
+		tooltipDate: string
+		tooltipValue: string
+		highlightDate: string
+		highlightY: number
+		organic: string
+		paid: string
+		points: { date: string; value: number }[]
+	}
+> = {
+	Sessions: {
+		headline: "110,400",
+		change: "+14.2%",
+		tooltipDate: "Nov 15, 2025",
+		tooltipValue: "4,120 sessions",
+		highlightDate: "Nov 15",
+		highlightY: 4120,
+		organic: "72,760",
+		paid: "37,640",
+		points: [
+			{ date: "Nov 1", value: 3650 },
+			{ date: "Nov 5", value: 5200 },
+			{ date: "Nov 10", value: 5450 },
+			{ date: "Nov 15", value: 4120 },
+			{ date: "Nov 20", value: 4280 },
+			{ date: "Nov 25", value: 4460 },
+			{ date: "Nov 30", value: 4320 },
+		],
+	},
+	Signups: {
+		headline: "18,920",
+		change: "+9.8%",
+		tooltipDate: "Nov 15, 2025",
+		tooltipValue: "684 signups",
+		highlightDate: "Nov 15",
+		highlightY: 684,
+		organic: "12,480",
+		paid: "6,440",
+		points: [
+			{ date: "Nov 1", value: 540 },
+			{ date: "Nov 5", value: 790 },
+			{ date: "Nov 10", value: 860 },
+			{ date: "Nov 15", value: 684 },
+			{ date: "Nov 20", value: 730 },
+			{ date: "Nov 25", value: 760 },
+			{ date: "Nov 30", value: 745 },
+		],
+	},
+}
+
+const chartConfig = {
+	value: {
+		label: "Sessions",
+		color: "var(--color-primary)",
+	},
+} satisfies ChartConfig
 
 export function RevenueBreakdownCard() {
+	const [activeTab, setActiveTab] = React.useState<AcquisitionTab>("Sessions")
+	const data = ACQUISITION_DATA[activeTab]
+
 	return (
 		<Card className="bg-fill1 border-border/70 flex flex-1 flex-col justify-between gap-0 p-0.5 pb-1 shadow-2xs">
 			{/* Outer Card Top Header */}
-			<div className="flex items-center justify-between px-3 pt-1.5 pb-1.5">
+			<div className="flex items-center justify-between gap-2 px-3 pt-1.5 pb-1.5">
 				<div className="font-heading text-fg-secondary flex items-center gap-1.5 text-xs font-semibold tracking-wider uppercase">
-					<span>REVENUE BREAKDOWN</span>
+					<span>ACQUISITION OVERVIEW</span>
 					<IconSlot slot="info" className="text-fg-secondary size-4" />
 				</div>
-				<IconButton
-					variant="ghost"
-					color="neutral"
-					size="xs"
-					className="text-fg-secondary hover:text-fg size-7"
-					aria-label="More options">
-					<IconSlot slot="threeDot" className="text-fg-secondary size-4" />
+				<IconButton variant="ghost" color="neutral" aria-label="More options">
+					<IconSlot slot="threeDot" />
 				</IconButton>
 			</div>
 
 			{/* Inner White Box Container */}
-			<Card className="bg-elevation-level1 border-border/60 flex flex-1 flex-col justify-between border p-4 shadow-2xs">
-				{/* Subheader: Revenue by Category & Date Dropdown */}
-				<div className="my-1 flex items-start justify-between">
-					<div>
-						<span className="text-fg-tertiary text-sm">
-							Revenue by Category
-						</span>
-						<div className="font-heading text-fg text-xl font-bold tracking-tight">
-							$20,320
+			<Card className="bg-elevation-level1 border-border/60 flex flex-1 flex-col justify-between gap-5 border p-4 shadow-2xs">
+				{/* Headline Metric & Badge */}
+				<div className="flex items-center gap-2">
+					<span className="font-heading text-fg text-lg leading-none font-bold tracking-tight tabular-nums">
+						{data.headline}
+					</span>
+					<Badge color="success" className="leading-none">
+						{data.change}
+					</Badge>
+				</div>
+
+				{/* Sessions / Signups Toggle Tabs */}
+				<Tabs
+					value={activeTab}
+					onValueChange={(val) => setActiveTab(val as AcquisitionTab)}>
+					<TabsList variant="default" className="w-full">
+						{(["Sessions", "Signups"] as const).map((tab) => (
+							<TabsTrigger key={tab} value={tab} className="flex-1">
+								{tab}
+							</TabsTrigger>
+						))}
+					</TabsList>
+				</Tabs>
+
+				{/* Smooth Area Chart with Reference Callout */}
+				<div className="relative mt-3 flex min-h-[200px] flex-1 flex-col">
+					<ChartContainer
+						config={chartConfig}
+						className="min-h-[200px] w-full flex-1">
+						<AreaChart
+							accessibilityLayer
+							data={data.points}
+							margin={{ top: 18, right: 0, left: 0, bottom: 0 }}>
+							<defs>
+								<linearGradient id="acqGradient" x1="0" y1="0" x2="0" y2="1">
+									<stop
+										offset="0%"
+										stopColor="var(--color-primary)"
+										stopOpacity={0.18}
+									/>
+									<stop
+										offset="100%"
+										stopColor="var(--color-primary)"
+										stopOpacity={0.03}
+									/>
+								</linearGradient>
+							</defs>
+							<CartesianGrid vertical={false} />
+							<XAxis
+								dataKey="date"
+								ticks={["Nov 1", "Nov 15", "Nov 30"]}
+								interval={0}
+								padding={{ left: 0, right: 0 }}
+								tickLine={false}
+								axisLine={false}
+								tickMargin={10}
+								fontSize={12}
+							/>
+							<YAxis hide domain={[0, "dataMax + 2200"]} />
+							<ReferenceLine
+								x={data.highlightDate}
+								stroke="var(--color-border)"
+								strokeWidth={1}
+							/>
+							<Area
+								dataKey="value"
+								type="monotone"
+								stroke="var(--color-primary)"
+								strokeWidth={1.75}
+								fill="url(#acqGradient)"
+							/>
+							<ReferenceDot
+								x={data.highlightDate}
+								y={data.highlightY}
+								r={4.5}
+								fill="var(--color-elevation-level1)"
+								stroke="var(--color-primary)"
+								strokeWidth={2}
+							/>
+						</AreaChart>
+					</ChartContainer>
+
+					{/* Floating Tooltip Callout above and to the right of active point */}
+					<div className="border-border bg-elevation-level1 pointer-events-none absolute top-[26%] left-[53%] rounded-md border px-2.5 py-1.5 shadow-md">
+						<div className="text-fg-tertiary text-xs leading-tight">
+							{data.tooltipDate}
+						</div>
+						<div className="text-fg mt-0.5 text-xs font-semibold tabular-nums">
+							{data.tooltipValue}
 						</div>
 					</div>
-
-					<DateRangePopover
-						initialText="Jan 1 - Aug 30"
-						initialRange={{
-							from: new Date(2025, 0, 1),
-							to: new Date(2025, 7, 30),
-						}}
-						size="xs"
-						className="border-border/70 bg-elevation-level1 text-fg-secondary hover:bg-fill1 h-7 gap-1.5 px-2.5 text-xs font-medium shadow-2xs"
-						align="end"
-					/>
 				</div>
 
-				{/* Chart Area with Horizontal Dashed Gridlines & 13 Stacked Bars */}
-				<div className="relative my-4 flex min-h-[220px] w-full flex-1 flex-col justify-between">
-					{/* 8 Horizontal Dashed Grid Lines */}
-					<div className="pointer-events-none absolute inset-0 flex flex-col justify-between">
-						{Array.from({ length: 8 }).map((_, i) => (
-							<div
-								key={i}
-								className="border-border/60 dark:border-border/30 w-full border-b border-dashed"
-							/>
-						))}
+				{/* Clean Bottom Summary Bar */}
+				<div className="flex items-center gap-3 pt-3 text-sm">
+					<div className="text-fg-secondary flex items-center gap-1.5">
+						<span className="bg-primary size-2.5 rounded-xs" />
+						<span>
+							Organic:{" "}
+							<span className="text-fg font-semibold tabular-nums">
+								{data.organic}
+							</span>
+						</span>
 					</div>
-
-					{/* 13 Stacked Bars */}
-					<div className="relative z-10 flex h-full items-end justify-between px-2 pt-2">
-						{REVENUE_BARS.map((bar) => (
-							<div
-								key={bar.id}
-								className="group relative flex h-full w-1 flex-col items-center justify-end sm:w-1.5">
-								{/* Top Grey Segment */}
-								<div
-									className="bg-fg-tertiary/60 w-full rounded-t-[1.5px] transition-all group-hover:opacity-90"
-									style={{ height: `${bar.grey}%` }}
-								/>
-								{/* Bottom Orange Segment */}
-								<div
-									className="bg-primary w-full transition-all group-hover:brightness-105"
-									style={{ height: `${bar.orange}%` }}
-								/>
-							</div>
-						))}
+					<span className="text-border">|</span>
+					<div className="text-fg-secondary flex items-center gap-1.5">
+						<span className="bg-fg-tertiary/60 size-2.5 rounded-xs" />
+						<span>
+							Paid:{" "}
+							<span className="text-fg font-semibold tabular-nums">
+								{data.paid}
+							</span>
+						</span>
 					</div>
-				</div>
-
-				{/* X-Axis Footer with Dotted Line */}
-				<div className="text-fg-tertiary font-body mt-2 flex items-center justify-between text-[14px] leading-none select-none">
-					<span>1 JAN</span>
-					<span className="text-fg-tertiary/40">·</span>
-					<div className="border-border/60 dark:border-border/40 mx-2 flex-1 border-b border-dashed" />
-					<span className="text-fg-tertiary/40">·</span>
-					<span>30 JAN 2025</span>
 				</div>
 			</Card>
 		</Card>

@@ -25,7 +25,7 @@ export function StatMetrics() {
 						{/* Metric Value & Sparklines */}
 						<div className="flex items-end justify-between">
 							<div className="flex items-baseline gap-1.5">
-								<span className="font-heading text-fg text-xl leading-none font-bold tracking-tight">
+								<span className="font-heading text-fg text-lg leading-none font-bold tracking-tight">
 									{metric.value}
 								</span>
 								{metric.unit && (
@@ -35,22 +35,25 @@ export function StatMetrics() {
 								)}
 							</div>
 
-							{/* Sparkline Bars: exactly 7 bars with 4th bar highlighted orange */}
-							<div className="flex items-end gap-1.5 pb-0.5">
-								{metric.bars.map((height, i) => {
-									const isHighlighted = i === 3
+							{/* Sparkline Bars: highlight peak bar */}
+							<div className="flex shrink-0 items-end gap-1.5 pb-0.5">
+								{(() => {
+									const peak = Math.max(...metric.bars)
+									return metric.bars.map((height, i) => {
+										const isHighlighted = height === peak
 
-									return (
-										<div
-											key={i}
-											className={cn(
-												"w-[3px] transition-colors",
-												isHighlighted ? "bg-primary" : "bg-fill2"
-											)}
-											style={{ height: `${(height / 100) * 32}px` }}
-										/>
-									)
-								})}
+										return (
+											<div
+												key={i}
+												className={cn(
+													"w-1 shrink-0 transition-colors",
+													isHighlighted ? "bg-primary" : "bg-fill2"
+												)}
+												style={{ height: `${(height / 100) * 32}px` }}
+											/>
+										)
+									})
+								})()}
 							</div>
 						</div>
 					</Card>
@@ -60,8 +63,12 @@ export function StatMetrics() {
 						<div className="text-fg-tertiary flex items-center">
 							<IconSlot slot="info" className="size-4 opacity-60" />
 						</div>
-						<div className="flex items-center gap-1 font-mono text-xs leading-none">
-							<span className="text-success font-semibold">
+						<div className="flex items-center gap-1 text-xs leading-none tabular-nums">
+							<span
+								className={cn(
+									"font-semibold",
+									metric.change.startsWith("-") ? "text-error" : "text-success"
+								)}>
 								{metric.change}
 							</span>
 							<span className="text-fg-tertiary">{metric.changeText}</span>

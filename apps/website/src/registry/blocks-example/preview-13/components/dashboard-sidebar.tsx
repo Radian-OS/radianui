@@ -1,15 +1,6 @@
 "use client"
 
 import * as React from "react"
-import {
-	Building2,
-	CreditCard,
-	LogOut,
-	Plus,
-	Settings,
-	User,
-	Users,
-} from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import RadianLogo from "@/registry/blocks-example/signup/components/radian-logo"
@@ -20,7 +11,7 @@ import {
 	AvatarImage,
 	AvatarIndicator,
 } from "@/registry/ui/avatar"
-import { Badge } from "@/registry/ui/badge"
+import { Badge } from "@/components/ui/badge"
 import { Card } from "@/registry/ui/card"
 import {
 	DropdownMenu,
@@ -44,6 +35,7 @@ import {
 	SidebarMenu,
 	SidebarMenuButton,
 	SidebarMenuItem,
+	SidebarSeparator,
 } from "@/registry/ui/sidebar"
 
 interface DashboardSidebarProps {
@@ -107,11 +99,11 @@ const NAV_GROUPS: NavGroup[] = [
 
 const WORKSPACES = [
 	{
-		id: "debcon",
-		name: "Debcon Inc.",
+		id: "spark-pixel",
+		name: "Spark Pixel Team",
 		members: "14 members",
-		avatar: "/media/debcon.png",
-		fallback: "DC",
+		avatar: null,
+		fallback: "SP",
 	},
 	{
 		id: "xavion",
@@ -129,22 +121,32 @@ const WORKSPACES = [
 	},
 ] as const
 
-const ACCOUNT_ITEMS = [
-	{ id: "profile", label: "View Profile", icon: User, shortcut: null },
-	{ id: "settings", label: "Settings", icon: Settings, shortcut: "⌘+K" },
-	{ id: "billing", label: "Billing", icon: CreditCard, shortcut: null },
-] as const
+const ACCOUNT_ITEMS: {
+	id: string
+	label: string
+	icon: React.ComponentProps<typeof IconSlot>["slot"]
+	shortcut: string | null
+}[] = [
+	{ id: "profile", label: "View Profile", icon: "user", shortcut: null },
+	{ id: "settings", label: "Settings", icon: "setting", shortcut: "⌘+K" },
+	{ id: "billing", label: "Billing", icon: "card", shortcut: null },
+]
 
-const ORG_ITEMS = [
-	{ id: "company", label: "Company Profile", icon: Building2 },
-	{ id: "team", label: "Team", icon: Users },
-] as const
+const ORG_ITEMS: {
+	id: string
+	label: string
+	icon: React.ComponentProps<typeof IconSlot>["slot"]
+}[] = [
+	{ id: "company", label: "Company Profile", icon: "building" },
+	{ id: "team", label: "Team", icon: "users" },
+]
 
 export function DashboardSidebar({
 	activeNav,
 	onSelectNav,
 }: DashboardSidebarProps) {
-	const [selectedWorkspace, setSelectedWorkspace] = React.useState("debcon")
+	const [selectedWorkspace, setSelectedWorkspace] =
+		React.useState("spark-pixel")
 
 	return (
 		<Sidebar
@@ -168,7 +170,7 @@ export function DashboardSidebar({
 									<span className="text-fg-tertiary text-xs leading-tight font-medium">
 										Agency
 									</span>
-									<span className="font-heading text-fg truncate text-sm leading-tight font-semibold">
+									<span className="text-fg truncate text-sm leading-tight font-semibold">
 										Spark Pixel Team
 									</span>
 								</div>
@@ -180,10 +182,7 @@ export function DashboardSidebar({
 							</span>
 						</Card>
 					</DropdownMenuTrigger>
-					<DropdownMenuContent
-						align="center"
-						sideOffset={4}
-						className="w-[var(--radix-dropdown-menu-trigger-width)]">
+					<DropdownMenuContent align="start" sideOffset={4} className="w-68">
 						<DropdownMenuLabel className="text-xs uppercase">
 							Switch Workspace
 						</DropdownMenuLabel>
@@ -195,12 +194,21 @@ export function DashboardSidebar({
 									key={workspace.id}
 									value={workspace.id}
 									className="data-[state=checked]:bg-fill1-alpha py-2">
-									<Avatar size="sm" rounded="square">
-										<AvatarImage src={workspace.avatar} alt={workspace.name} />
-										<AvatarFallback className="text-xs">
-											{workspace.fallback}
-										</AvatarFallback>
-									</Avatar>
+									{workspace.avatar ? (
+										<Avatar size="sm" rounded="square" className="bg-fill2">
+											<AvatarImage
+												src={workspace.avatar}
+												alt={workspace.name}
+											/>
+											<AvatarFallback className="text-xs">
+												{workspace.fallback}
+											</AvatarFallback>
+										</Avatar>
+									) : (
+										<div className="flex size-8 shrink-0 items-center justify-center [&>svg]:size-8!">
+											<RadianLogo width={32} height={32} />
+										</div>
+									)}
 									<div className="flex flex-1 flex-col gap-0.5">
 										<span className="text-sm font-medium">
 											{workspace.name}
@@ -215,7 +223,7 @@ export function DashboardSidebar({
 						<DropdownMenuDivider />
 						<DropdownMenuItem className="text-sm">
 							<span className="border-border flex size-4 items-center justify-center rounded-sm border">
-								<Plus className="size-3" />
+								<IconSlot slot="plus" className="size-3" />
 							</span>
 							Create workspace
 						</DropdownMenuItem>
@@ -224,38 +232,39 @@ export function DashboardSidebar({
 			</SidebarHeader>
 
 			{/* Sidebar Navigation */}
-			<SidebarContent className="[scrollbar-width:none] space-y-4 overflow-y-auto px-0 py-3 [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
-				{NAV_GROUPS.map((group) => (
-					<SidebarGroup key={group.label} className="p-0">
-						<SidebarGroupLabel className="font-heading text-fg-tertiary px-2.5 py-1 text-xs font-semibold">
-							{group.label}
-						</SidebarGroupLabel>
-						<SidebarGroupContent>
-							<SidebarMenu className="gap-0.5">
-								{group.items.map((item) => {
-									const isActive = activeNav === item.id
+			<SidebarContent className="[scrollbar-width:none] space-y-3 overflow-y-auto px-0 py-3 [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+				{NAV_GROUPS.map((group, idx) => (
+					<React.Fragment key={group.label}>
+						{idx > 0 && <SidebarSeparator className="mx-0" />}
+						<SidebarGroup className="p-0">
+							<SidebarGroupLabel className="text-fg-tertiary px-0 py-1 text-xs font-semibold">
+								{group.label}
+							</SidebarGroupLabel>
+							<SidebarGroupContent>
+								<SidebarMenu className="gap-0.5">
+									{group.items.map((item) => {
+										const isActive = activeNav === item.id
 
-									return (
-										<SidebarMenuItem key={item.id}>
-											<SidebarMenuButton
-												size="sm"
-												isActive={isActive}
-												onClick={() => onSelectNav(item.id)}
-												className={cn(
-													"h-8.5 px-2.5 text-sm font-medium transition-colors",
-													isActive
-														? "bg-primary/10 text-primary hover:bg-primary/15 hover:text-primary data-[active=true]:bg-primary/10 data-[active=true]:text-primary [&>svg]:text-primary font-semibold"
-														: "text-fg-secondary hover:text-fg"
-												)}>
-												<IconSlot slot={item.icon} className="size-4" />
-												<span>{item.label}</span>
-											</SidebarMenuButton>
-										</SidebarMenuItem>
-									)
-								})}
-							</SidebarMenu>
-						</SidebarGroupContent>
-					</SidebarGroup>
+										return (
+											<SidebarMenuItem key={item.id}>
+												<SidebarMenuButton
+													size="sm"
+													isActive={isActive}
+													onClick={() => onSelectNav(item.id)}
+													className={cn(
+														"h-8.5 px-2.5 text-sm font-medium transition-colors",
+														isActive ? "font-semibold" : "text-fg-secondary"
+													)}>
+													<IconSlot slot={item.icon} className="size-4" />
+													<span>{item.label}</span>
+												</SidebarMenuButton>
+											</SidebarMenuItem>
+										)
+									})}
+								</SidebarMenu>
+							</SidebarGroupContent>
+						</SidebarGroup>
+					</React.Fragment>
 				))}
 			</SidebarContent>
 
@@ -268,7 +277,7 @@ export function DashboardSidebar({
 								<Avatar
 									size="sm"
 									rounded="square"
-									className="border-border/60 shrink-0 border">
+									className="border-border/60 bg-fill2 shrink-0 border">
 									<AvatarImage
 										src="https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@v1.0.2/packages/uncompressed-avatars/src/2.png"
 										alt="Ari"
@@ -279,7 +288,7 @@ export function DashboardSidebar({
 									<AvatarIndicator className="bg-success ring-bg -right-0.5 -bottom-0.5 size-2 rounded-full ring-2" />
 								</Avatar>
 								<div className="flex flex-col truncate text-left">
-									<span className="font-heading text-fg truncate text-sm leading-tight font-semibold">
+									<span className="text-fg truncate text-sm leading-tight font-semibold">
 										Ari
 									</span>
 									<span className="text-fg-secondary truncate text-xs leading-tight">
@@ -295,12 +304,12 @@ export function DashboardSidebar({
 						</Card>
 					</DropdownMenuTrigger>
 					<DropdownMenuContent
-						align="center"
-						side="top"
-						sideOffset={4}
-						className="w-[var(--radix-dropdown-menu-trigger-width)]">
+						align="end"
+						side="right"
+						sideOffset={8}
+						className="w-68">
 						<div className="flex w-full items-center gap-2.5 p-2">
-							<Avatar size="md" rounded="square">
+							<Avatar size="md" rounded="square" className="bg-fill2">
 								<AvatarImage
 									src="https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@v1.0.2/packages/uncompressed-avatars/src/2.png"
 									alt="Ari"
@@ -313,22 +322,19 @@ export function DashboardSidebar({
 									ari@radian.com
 								</span>
 							</div>
-							<Badge variant="soft" color="primary" size="sm">
-								PRO
-							</Badge>
+							<Badge color="primary">PRO</Badge>
 						</div>
 						<DropdownMenuDivider />
 						<DropdownMenuLabel className="text-xs uppercase">
 							Account
 						</DropdownMenuLabel>
-						{ACCOUNT_ITEMS.map(({ id, label, icon: Icon, shortcut }) => (
+						{ACCOUNT_ITEMS.map(({ id, label, icon, shortcut }) => (
 							<DropdownMenuItem key={id} className="text-sm">
-								<Icon className="size-4" />
+								<IconSlot slot={icon} className="size-4" />
 								{label}
 								{shortcut && (
 									<DropdownMenuShortcut>
 										<Badge
-											size="sm"
 											variant="outline"
 											color="neutral"
 											className="text-xs">
@@ -342,15 +348,15 @@ export function DashboardSidebar({
 						<DropdownMenuLabel className="text-xs uppercase">
 							Account
 						</DropdownMenuLabel>
-						{ORG_ITEMS.map(({ id, label, icon: Icon }) => (
+						{ORG_ITEMS.map(({ id, label, icon }) => (
 							<DropdownMenuItem key={id} className="text-sm">
-								<Icon className="size-4" />
+								<IconSlot slot={icon} className="size-4" />
 								{label}
 							</DropdownMenuItem>
 						))}
 						<DropdownMenuDivider />
 						<DropdownMenuItem className="text-sm">
-							<LogOut className="size-4" />
+							<IconSlot slot="logout" className="size-4" />
 							Log out
 							<span className="text-fg-tertiary ml-auto text-xs">v2.3.16</span>
 						</DropdownMenuItem>

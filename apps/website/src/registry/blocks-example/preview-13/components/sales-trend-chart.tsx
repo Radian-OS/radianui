@@ -5,7 +5,7 @@ import { useState } from "react"
 
 import { cn } from "@/lib/utils"
 import { IconSlot } from "@/registry/icon/icon-library"
-import { Button, IconButton } from "@/registry/ui/button"
+import { Button, IconButton } from "@/components/ui/button"
 import { Card } from "@/registry/ui/card"
 import { Tabs, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
@@ -75,13 +75,8 @@ export function SalesTrendChart() {
 					<span>SALES TREND</span>
 					<IconSlot slot="info" className="text-fg-secondary size-4" />
 				</div>
-				<IconButton
-					variant="ghost"
-					color="neutral"
-					size="xs"
-					className="text-fg-secondary hover:text-fg size-7"
-					aria-label="More options">
-					<IconSlot slot="threeDot" className="text-fg-secondary size-4" />
+				<IconButton variant="ghost" color="neutral" aria-label="More options">
+					<IconSlot slot="threeDot" />
 				</IconButton>
 			</div>
 
@@ -92,7 +87,7 @@ export function SalesTrendChart() {
 					{/* Left: Total Revenue */}
 					<div className="flex items-baseline gap-2">
 						<span className="text-fg-tertiary text-sm">Total Revenue :</span>
-						<span className="font-heading text-fg text-xl font-bold tracking-tight">
+						<span className="font-heading text-fg text-lg font-bold tracking-tight">
 							$20,320
 						</span>
 					</div>
@@ -119,12 +114,9 @@ export function SalesTrendChart() {
 						onValueChange={(val) =>
 							setActiveTab(val as "Weekly" | "Monthly" | "Yearly")
 						}>
-						<TabsList variant="default" className="h-7.5">
+						<TabsList variant="default">
 							{(["Weekly", "Monthly", "Yearly"] as const).map((tab) => (
-								<TabsTrigger
-									key={tab}
-									value={tab}
-									className="px-2.5 py-1 text-xs">
+								<TabsTrigger key={tab} value={tab}>
 									{tab}
 								</TabsTrigger>
 							))}
@@ -139,18 +131,20 @@ export function SalesTrendChart() {
 							viewBox="0 0 535 220"
 							className="aspect-[535/220] h-auto w-full overflow-visible select-none"
 							onMouseLeave={() => setHoveredCol(null)}>
-							{/* Y-Axis Tick Lines */}
+							{/* Y-Axis Tick Dots & Dotted Lines */}
 							{yTicks.map((tick) => (
-								<line
-									key={tick.label}
-									x1="33"
-									y1={tick.y}
-									x2="39"
-									y2={tick.y}
-									stroke="currentColor"
-									strokeWidth="1"
-									className="text-fg-tertiary opacity-60"
-								/>
+								<g key={tick.label} className="text-fg-tertiary opacity-70">
+									<circle cx="31" cy={tick.y} r="1.5" fill="currentColor" />
+									<line
+										x1="32"
+										y1={tick.y}
+										x2="43"
+										y2={tick.y}
+										stroke="currentColor"
+										strokeWidth="1"
+										strokeDasharray="1.5 1.5"
+									/>
+								</g>
 							))}
 
 							{/* 58 Columns x 23 Rows Waffle Grid */}
@@ -243,26 +237,26 @@ export function SalesTrendChart() {
 							/>
 						</svg>
 
-						{/* Y-Axis HTML Labels (strictly 14px, unaffected by SVG scaling/stretching) */}
+						{/* Y-Axis HTML Labels (strictly 12px, left-aligned with Total Revenue) */}
 						{yTicks.map((tick) => (
 							<span
 								key={tick.label}
-								className="text-fg-tertiary pointer-events-none absolute text-[14px] leading-none font-normal select-none"
+								className="text-fg-tertiary pointer-events-none absolute text-[12px] leading-none font-normal select-none"
 								style={{
-									left: `${(30 / 535) * 100}%`,
+									left: "0%",
 									top: `${(tick.y / 220) * 100}%`,
-									transform: "translate(-100%, -50%)",
+									transform: "translate(0, -15%)",
 								}}>
 								{tick.label}
 							</span>
 						))}
 
-						{/* X-Axis HTML Month Labels (strictly 14px, unaffected by SVG scaling/stretching) */}
+						{/* X-Axis HTML Month Labels (strictly 12px, unaffected by SVG scaling/stretching) */}
 						{months.map((m) => (
 							<span
 								key={m.name}
 								className={cn(
-									"pointer-events-none absolute text-[14px] leading-none transition-colors select-none",
+									"pointer-events-none absolute text-[12px] leading-none transition-colors select-none",
 									m.name === activeCol.month
 										? "text-fg font-bold"
 										: "text-fg-tertiary font-normal"
@@ -278,19 +272,19 @@ export function SalesTrendChart() {
 						{monthDots.map((d) => (
 							<span
 								key={d.id}
-								className="text-fg-tertiary/40 pointer-events-none absolute text-[14px] leading-none font-normal select-none"
+								className="text-fg-tertiary/70 pointer-events-none absolute text-[12px] leading-none font-normal select-none"
 								style={{
 									left: `${(d.x / 535) * 100}%`,
 									top: `${(210 / 220) * 100}%`,
 									transform: "translate(-50%, -50%)",
 								}}>
-								·
+								•
 							</span>
 						))}
 
 						{/* Interactive Tooltip Card at Active Column */}
 						<div
-							className="border-border/80 bg-elevation-level2/95 pointer-events-none absolute z-20 min-w-36 rounded-md border p-2.5 text-xs shadow-xl backdrop-blur-md transition-all duration-75"
+							className="border-border/80 bg-elevation-level2/95 pointer-events-none absolute z-20 min-w-44 rounded-lg border p-1 text-xs shadow-xl backdrop-blur-md transition-all duration-75"
 							style={{
 								left: `${(activeX / 535) * 100}%`,
 								top: `${(activeY / 220) * 100}%`,
@@ -298,29 +292,29 @@ export function SalesTrendChart() {
 									? "translate(-108%, -50%)"
 									: "translate(12px, -50%)",
 							}}>
-							<div className="font-heading text-fg font-semibold">
+							<div className="border-border/70 bg-fill1/60 text-fg-secondary rounded-md border px-2.5 py-1.5 font-medium">
 								{activeCol.month.charAt(0) +
 									activeCol.month.slice(1).toLowerCase()}{" "}
 								2025
 							</div>
-							<div className="mt-1.5 flex flex-col gap-1 text-[11px]">
-								<div className="text-fg-secondary flex items-center justify-between">
+							<div className="flex flex-col gap-2 px-2.5 py-2 text-xs">
+								<div className="text-fg-secondary flex items-center justify-between gap-4">
 									<span className="flex items-center gap-1.5">
-										<span className="bg-fg-tertiary/60 size-2 rounded-xs" />
+										<span className="bg-fg-tertiary/60 size-1.5 rounded-full" />
 										<span>New User</span>
 									</span>
-									<span className="text-fg font-semibold">
+									<span className="text-fg font-semibold tabular-nums">
 										{activeColIndex === 27
 											? "38k"
 											: `${Math.round(activeCol.newUsers * 3.5)}k`}
 									</span>
 								</div>
-								<div className="text-fg-secondary flex items-center justify-between">
+								<div className="text-fg-secondary flex items-center justify-between gap-4">
 									<span className="flex items-center gap-1.5">
-										<span className="bg-primary size-2 rounded-xs" />
+										<span className="bg-primary size-1.5 rounded-full" />
 										<span>Existing User</span>
 									</span>
-									<span className="text-fg font-semibold">
+									<span className="text-fg font-semibold tabular-nums">
 										{activeColIndex === 27
 											? "18k"
 											: `${Math.round(activeCol.existing * 4)}k`}

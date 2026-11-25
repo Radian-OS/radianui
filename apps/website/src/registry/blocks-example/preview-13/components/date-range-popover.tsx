@@ -2,11 +2,10 @@
 
 import * as React from "react"
 import { format, subDays, subMonths } from "date-fns"
-import { Check } from "lucide-react"
 import type { DateRange } from "react-day-picker"
 
 import { IconSlot } from "@/registry/icon/icon-library"
-import { Button } from "@/registry/ui/button"
+import { Button } from "@/components/ui/button"
 import { Calendar } from "@/registry/ui/calendar"
 import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
 
@@ -55,7 +54,7 @@ interface DateRangePopoverProps {
 export function DateRangePopover({
 	initialText,
 	initialRange,
-	size = "sm",
+	size,
 	className,
 	align = "end",
 }: DateRangePopoverProps) {
@@ -105,7 +104,7 @@ export function DateRangePopover({
 					color="neutral"
 					size={size}
 					className={className}>
-					<IconSlot slot="calendar" className="size-3.5 opacity-70" />
+					<IconSlot slot="calendar" />
 					<span>{displayText}</span>
 				</Button>
 			</PopoverTrigger>
@@ -124,7 +123,7 @@ export function DateRangePopover({
 								className="hover:bg-fill1 text-fg-secondary hover:text-fg group flex cursor-pointer flex-nowrap items-center justify-between gap-2 rounded-sm p-2 text-sm leading-5 font-normal select-none">
 								{label}
 								{selectedShortcut === value ? (
-									<Check className="text-primary size-4" />
+									<IconSlot slot="check" className="text-primary size-4" />
 								) : (
 									<span className="size-4" />
 								)}
