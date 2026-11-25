@@ -30,7 +30,7 @@ export const PRIMARY_COLORS = [
 		type: "registry:color",
 		cssVars: {
 			light: {
-				"--color-primary": "oklch(63.994 0.22 26.022)",
+				"--color-primary": "oklch(0.64 0.22 26.017)",
 				"--color-primary-accent": "oklch(0.956 0.02 17.516)",
 				"--color-primary-focus": "oklch(0.914 0.041 17.928)",
 				"--color-primary-border": "oklch(0.719 0.175 22.489)",
@@ -68,8 +68,8 @@ export const PRIMARY_COLORS = [
 				"--color-primary-accent": "oklch(0.264 0.043 48.474)",
 				"--color-primary-focus": "oklch(0.331 0.07 45.801)",
 				"--color-primary-border": "oklch(0.5 0.127 44.136)",
-				"--color-primary-hover": "oklch(0.685 0.186 43.133)",
-				"--color-primary-text": "oklch(0.736 0.151 45.93)",
+				"--color-primary-hover": "oklch(0.737 0.151 45.945)",
+				"--color-primary-text": "oklch(0.806 0.12 47.581)",
 				"--color-primary-fg": "oklch(1 0 0)",
 			},
 		},
