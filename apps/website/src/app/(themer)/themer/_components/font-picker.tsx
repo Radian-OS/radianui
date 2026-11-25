@@ -283,7 +283,10 @@ function FontList({
 
 	return (
 		<Command
-			className={cn("border-0 p-0", inDrawer && "rounded-none bg-transparent")}
+			className={cn(
+				"border-0 p-0",
+				inDrawer && "min-h-0 rounded-none bg-transparent"
+			)}
 			shouldFilter={false}>
 			{inDrawer ? (
 				<>
@@ -322,7 +325,7 @@ function FontList({
 									className="text-fg-secondary"
 									aria-label="Back to typography"
 									onClick={onBack}>
-									<ChevronLeft />
+									<ChevronLeft className="size-5!" />
 								</IconButton>
 								<span className="text-fg truncate text-base font-medium">
 									{label} font
@@ -381,9 +384,14 @@ function FontList({
 					<CommandDivider />
 				</>
 			)}
-			<CommandList className="max-h-none overflow-visible py-1.5">
+			<CommandList
+				className={cn(
+					"max-h-none overflow-visible py-1.5",
+					inDrawer &&
+						"flex min-h-0 flex-1 flex-col [&>[cmdk-list-sizer]]:flex [&>[cmdk-list-sizer]]:min-h-0 [&>[cmdk-list-sizer]]:flex-1 [&>[cmdk-list-sizer]]:flex-col"
+				)}>
 				{inDrawer && (
-					<div className="text-fg-tertiary px-3.5 pt-3 pb-2 text-xs font-medium">
+					<div className="text-fg-tertiary shrink-0 px-3.5 pt-3 pb-2 text-xs font-medium">
 						{search
 							? `Results (${filteredFonts.length})`
 							: category === "all"
@@ -400,7 +408,7 @@ function FontList({
 					data-vaul-no-drag={inDrawer || undefined}
 					className={
 						inDrawer
-							? "h-[min(15rem,calc(65dvh-7rem))] [&>[data-slot=scroll-area-viewport]]:touch-pan-y [&>[data-slot=scroll-area-viewport]]:overscroll-y-contain"
+							? "min-h-0 flex-1 [&>[data-slot=scroll-area-viewport]]:absolute [&>[data-slot=scroll-area-viewport]]:inset-0 [&>[data-slot=scroll-area-viewport]]:touch-pan-y [&>[data-slot=scroll-area-viewport]]:overscroll-y-contain"
 							: "h-100"
 					}>
 					<div
@@ -442,12 +450,15 @@ function FontList({
 										onValueChange(font.value)
 									}}>
 									{font.name}
-									<Check
-										className={cn(
-											"ml-auto",
-											value === font.value ? "opacity-100" : "opacity-0"
-										)}
-									/>
+									{value === font.value && (
+										<Check
+											aria-label="Current font"
+											className={cn(
+												"ml-auto",
+												inDrawer && "text-fg-tertiary size-5!"
+											)}
+										/>
+									)}
 								</CommandItem>
 							)
 						})}
@@ -481,7 +492,7 @@ export default function FontPicker(
 				open={open}
 				onOpenChange={setOpen}
 				label={`${props.label} font`}
-				className="min-h-0 pb-[env(safe-area-inset-bottom)] outline-none">
+				className="flex h-[calc(min(85dvh,42rem)-28px)] min-h-0 flex-col pb-[env(safe-area-inset-bottom)] outline-none">
 				<FontList
 					label={props.label}
 					value={props.value}

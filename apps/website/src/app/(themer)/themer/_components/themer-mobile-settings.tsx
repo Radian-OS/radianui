@@ -228,7 +228,7 @@ export function ThemerMobileDrawer({
 															color="neutral"
 															aria-label="Close Colors drawer"
 															className="text-fg-secondary size-5 p-0 [&>svg]:size-5">
-															<ChevronLeft />
+															<ChevronLeft className="size-5!" />
 														</IconButton>
 													</DrawerClose>
 													<DrawerTitle className="text-fg text-base font-medium">
@@ -355,7 +355,10 @@ export function ThemerMobileDrawer({
 													className="w-full justify-between"
 													onClick={onOpenAllSettings}>
 													All settings
-													<ChevronRight aria-hidden="true" />
+													<ChevronRight
+														className="size-5!"
+														aria-hidden="true"
+													/>
 												</Button>
 											</div>
 										</ScrollArea>

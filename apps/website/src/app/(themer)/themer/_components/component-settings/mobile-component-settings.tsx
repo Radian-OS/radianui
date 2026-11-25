@@ -65,7 +65,7 @@ export function MobileComponentSettings<T extends string>({
 							if (choosingVariant) setChoosingVariant(false)
 							else setOpen(false)
 						}}>
-						<ChevronLeft />
+						<ChevronLeft className="size-5!" />
 					</IconButton>
 					<h2 className="text-fg text-base font-medium">
 						{choosingVariant ? "Default Variant" : name}
@@ -151,7 +151,7 @@ export function MobileComponentSettings<T extends string>({
 									Default variant
 									<span className="flex items-center gap-1">
 										{variants.find(({ value }) => value === variant)?.label}
-										<ChevronRight className="text-fg-tertiary size-3.5" />
+										<ChevronRight className="text-fg-tertiary size-5!" />
 									</span>
 								</ControlButton>
 								<CardContent className="p-0">{preview}</CardContent>

@@ -43,7 +43,7 @@ export function ThemerMobileComponents() {
 							color="neutral"
 							className="text-fg-secondary"
 							aria-label="Close UI Bits">
-							<ChevronLeft />
+							<ChevronLeft className="size-5!" />
 						</IconButton>
 					</DrawerClose>
 					<DrawerTitle className="text-fg text-base font-medium">
@@ -102,7 +102,7 @@ export function ThemerMobileComponents() {
 									)}
 								</span>
 								<ChevronRight
-									className="text-fg-tertiary ml-auto"
+									className="text-fg-tertiary ml-auto size-5!"
 									aria-hidden="true"
 								/>
 							</Button>

@@ -253,7 +253,7 @@ export default function BaseColorPicker({
 							color="neutral"
 							aria-label="Back to neutral base"
 							onClick={() => setOpen(false)}>
-							<ChevronLeft />
+							<ChevronLeft className="size-5!" />
 						</IconButton>
 						<h2 className="text-fg text-base font-medium">Preset</h2>
 						<p className="sr-only">Choose a neutral base color.</p>

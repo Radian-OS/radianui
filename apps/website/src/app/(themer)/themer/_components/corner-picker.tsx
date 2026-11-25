@@ -182,7 +182,7 @@ export default function CornerPicker({ onBack }: { onBack?: () => void }) {
 									: "Close radius settings"
 							}
 							onClick={showAdvanced ? () => setShowAdvanced(false) : onBack}>
-							<ChevronLeft />
+							<ChevronLeft className="size-5!" />
 						</IconButton>
 						<DrawerTitle className="text-fg text-base font-medium">
 							{showAdvanced ? "Advanced" : "Radius"}

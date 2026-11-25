@@ -50,7 +50,7 @@ export default function AppearanceModePicker({
 							className="text-fg-secondary"
 							aria-label="Close mode settings"
 							onClick={onBack}>
-							<ChevronLeft />
+							<ChevronLeft className="size-5!" />
 						</IconButton>
 						<DrawerTitle className="text-fg text-base font-medium">
 							Mode

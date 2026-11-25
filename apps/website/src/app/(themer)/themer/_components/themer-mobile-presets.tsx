@@ -127,7 +127,7 @@ export function ThemerMobilePresets() {
 							color="neutral"
 							aria-label="Close preset drawer"
 							className="text-fg-secondary size-5 p-0 [&>svg]:size-5">
-							<ChevronLeft />
+							<ChevronLeft className="size-5!" />
 						</IconButton>
 					</DrawerClose>
 					<DrawerTitle className="text-fg text-base font-medium">

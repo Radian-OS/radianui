@@ -182,15 +182,21 @@ function ShadeRow({
 
 	return (
 		<div
-			onClick={() => {
-				navigator.clipboard.writeText(value)
-				setCopied(true)
-				setTimeout(() => setCopied(false), 1500)
-			}}
-			title={`Click to copy: ${value}`}
+			onClick={
+				inDrawer
+					? undefined
+					: () => {
+							navigator.clipboard.writeText(value)
+							setCopied(true)
+							setTimeout(() => setCopied(false), 1500)
+						}
+			}
+			title={inDrawer ? undefined : `Click to copy: ${value}`}
 			className={cn(
-				"hover:bg-fill2 group flex cursor-pointer items-center justify-between rounded-md transition-colors",
-				inDrawer ? "px-2.5 py-1.5" : "-mx-1.5 px-1.5 py-1"
+				"group flex items-center justify-between rounded-md",
+				inDrawer
+					? "px-2.5 py-1.5"
+					: "hover:bg-fill2 -mx-1.5 cursor-pointer px-1.5 py-1 transition-colors"
 			)}>
 			<div className="flex items-center gap-2.5">
 				<div
@@ -463,7 +469,12 @@ function ColorPickerPopover({
 								inDrawer ? "h-9" : "h-7"
 							)}>
 							<span>{colorFormat}</span>
-							<ChevronDown className="text-fg-tertiary size-3" />
+							<ChevronDown
+								className={cn(
+									"text-fg-tertiary",
+									inDrawer ? "size-5" : "size-3"
+								)}
+							/>
 						</button>
 					</DropdownMenuTrigger>
 					<DropdownMenuContent align="start" className="min-w-[100px]">
@@ -482,7 +493,7 @@ function ColorPickerPopover({
 
 				<InputWrapper
 					size={inDrawer ? "md" : "xs"}
-					className={inDrawer ? "min-w-0 gap-3 pr-0" : undefined}>
+					className={inDrawer ? "min-w-0" : undefined}>
 					<Input
 						type="text"
 						value={displayInput}
@@ -493,54 +504,26 @@ function ColorPickerPopover({
 						spellCheck={false}
 						className="text-xs"
 					/>
-					<button
-						type="button"
-						onClick={() => {
-							navigator.clipboard.writeText(displayInput)
-							setCopiedInput(true)
-							setTimeout(() => setCopiedInput(false), 1500)
-						}}
-						className={cn(
-							"text-fg-secondary hover:text-fg shrink-0 transition-colors",
-							inDrawer
-								? "grid size-9 cursor-pointer place-items-center"
-								: "p-0.5"
-						)}
-						aria-label="Copy color value">
-						{copiedInput ? (
-							<Check className="size-4" />
-						) : (
-							<Copy className="size-4" />
-						)}
-					</button>
+					{!inDrawer && (
+						<button
+							type="button"
+							onClick={() => {
+								navigator.clipboard.writeText(displayInput)
+								setCopiedInput(true)
+								setTimeout(() => setCopiedInput(false), 1500)
+							}}
+							className="text-fg-secondary hover:text-fg shrink-0 p-0.5 transition-colors"
+							aria-label="Copy color value">
+							{copiedInput ? (
+								<Check className="size-4" />
+							) : (
+								<Copy className="size-4" />
+							)}
+						</button>
+					)}
 				</InputWrapper>
 			</div>
 
-			{inDrawer && mode === "add" && (
-				<div
-					className="mt-4 grid grid-cols-5 overflow-hidden rounded-lg"
-					aria-label="Generated color shades">
-					{["", "-text", "-border", "-hover", "-accent"].map((suffix) => {
-						const shade =
-							colorInfo.shades[`--color-${currentPrefix}${suffix}`] ||
-							colorInfo.shades[`--color-primary${suffix}`] ||
-							colorInfo.hex
-						const hex = formatHex(parse(shade)) ?? colorInfo.hex
-						const lightness = converter("oklch")(hex)?.l ?? 0
-						return (
-							<div
-								key={suffix}
-								className="flex h-27 min-w-0 items-end p-1.5 text-[10px] font-medium"
-								style={{
-									backgroundColor: shade,
-									color: lightness > 0.65 ? "var(--color-black)" : "white",
-								}}>
-								{hex.toUpperCase()}
-							</div>
-						)
-					})}
-				</div>
-			)}
 			{/* Shades breakdown */}
 			<div
 				className={cn(
@@ -626,7 +609,7 @@ function ColorPickerPopover({
 								className="text-fg-secondary size-5 p-0 [&>svg]:size-5"
 								aria-label="Back to colors"
 								onClick={() => onOpenChange(false)}>
-								<ChevronLeft />
+								<ChevronLeft className="size-5!" />
 							</IconButton>
 							<h2 className="sr-only">
 								{mode === "add"
