@@ -3,7 +3,7 @@
 import * as React from "react"
 
 import { IconSlot } from "@/registry/icon/icon-library"
-import { Button } from "@/registry/ui/button"
+import { Button } from "@/components/ui/button"
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -11,28 +11,24 @@ import {
 	DropdownMenuTrigger,
 } from "@/registry/ui/dropdown-menu"
 
+import { DateRangePopover } from "./date-range-popover"
+
 export function WelcomeHeader() {
 	const [timeframe, setTimeframe] = React.useState("Daily")
 
 	return (
 		<div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
 			<div>
-				<h1 className="font-heading text-fg text-[20px] font-semibold tracking-tight">
-					Welcome back, Ari
-				</h1>
+				<h1 className="heading-6 text-fg">Welcome back, Ari</h1>
 			</div>
 
 			<div className="flex flex-wrap items-center gap-2">
 				{/* Timeframe Dropdown */}
 				<DropdownMenu>
 					<DropdownMenuTrigger asChild>
-						<Button
-							variant="outline"
-							color="neutral"
-							size="sm"
-							className="border-border/70 text-fg-secondary h-8 gap-1 text-xs font-medium shadow-2xs">
+						<Button variant="outline" color="neutral">
 							<span>{timeframe}</span>
-							<IconSlot slot="down" className="size-3.5 opacity-60" />
+							<IconSlot slot="down" />
 						</Button>
 					</DropdownMenuTrigger>
 					<DropdownMenuContent align="end" className="w-32">
@@ -44,23 +40,19 @@ export function WelcomeHeader() {
 					</DropdownMenuContent>
 				</DropdownMenu>
 
-				{/* Date Picker Button */}
-				<Button
-					variant="outline"
-					color="neutral"
-					size="sm"
-					className="border-border/70 text-fg-secondary h-8 gap-1.5 text-xs font-medium shadow-2xs">
-					<IconSlot slot="calendar" className="size-4 opacity-60" />
-					<span>6 Nov 2025</span>
-				</Button>
+				{/* Date Picker Popover */}
+				<DateRangePopover
+					initialText="6 Nov 2025"
+					initialRange={{
+						from: new Date(2025, 10, 6),
+						to: new Date(2025, 10, 6),
+					}}
+					align="end"
+				/>
 
 				{/* Primary Export CSV Button */}
-				<Button
-					variant="strong"
-					color="primary"
-					size="sm"
-					className="h-8 gap-1.5 px-3 text-xs font-semibold shadow-xs">
-					<IconSlot slot="file-text" className="size-4" />
+				<Button color="primary">
+					<IconSlot slot="file-text" />
 					<span>Export CSV</span>
 				</Button>
 			</div>

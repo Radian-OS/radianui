@@ -2,11 +2,12 @@
 
 import * as React from "react"
 import { useState } from "react"
-import { ArrowUpDown } from "lucide-react"
+
+import { cn } from "@/lib/utils"
 
 import { IconSlot } from "@/registry/icon/icon-library"
-import { Badge, BadgeDot } from "@/registry/ui/badge"
-import { Button, IconButton } from "@/registry/ui/button"
+import { Badge, BadgeDot } from "@/components/ui/badge"
+import { Button, IconButton } from "@/components/ui/button"
 import { Card } from "@/registry/ui/card"
 import { Checkbox } from "@/registry/ui/checkbox"
 import { Input, InputWrapper } from "@/registry/ui/input"
@@ -20,11 +21,51 @@ import {
 } from "@/registry/ui/table"
 
 import { RECENT_TRANSACTIONS } from "./data"
-import type { TransactionStatus } from "./types"
+import type { TransactionItem, TransactionStatus } from "./types"
+
+type SortKey = keyof TransactionItem
+type SortDir = "asc" | "desc"
+
+const SORTABLE_COLUMNS: { key: SortKey; label: string }[] = [
+	{ key: "id", label: "ID" },
+	{ key: "customer", label: "CUSTOMER" },
+	{ key: "product", label: "PRODUCT" },
+	{ key: "status", label: "STATUS" },
+	{ key: "qty", label: "QTY" },
+	{ key: "unitPrice", label: "UNIT PRICE" },
+	{ key: "totalRevenue", label: "TOTAL REVENUE" },
+]
+
+function parseSortableValue(
+	item: TransactionItem,
+	key: SortKey
+): number | string {
+	const value = item[key]
+	if (typeof value === "number") return value
+	if (key === "unitPrice" || key === "totalRevenue") {
+		return Number(value.replace(/[^0-9.-]+/g, ""))
+	}
+	return value
+}
 
 export function RecentTransactionsTable() {
 	const [selectedRows, setSelectedRows] = useState<Set<string>>(new Set())
 	const [searchQuery, setSearchQuery] = useState("")
+	const [sortKey, setSortKey] = useState<SortKey | null>(null)
+	const [sortDir, setSortDir] = useState<SortDir>("asc")
+
+	const handleSort = (key: SortKey) => {
+		if (sortKey === key) {
+			if (sortDir === "asc") {
+				setSortDir("desc")
+			} else {
+				setSortKey(null)
+			}
+		} else {
+			setSortKey(key)
+			setSortDir("asc")
+		}
+	}
 
 	const handleSelectAll = (checked: boolean) => {
 		if (checked) {
@@ -50,46 +91,47 @@ export function RecentTransactionsTable() {
 			t.id.toLowerCase().includes(searchQuery.toLowerCase())
 	)
 
+	const sortedTransactions = React.useMemo(() => {
+		if (!sortKey) return filteredTransactions
+		return [...filteredTransactions].sort((a, b) => {
+			const aVal = parseSortableValue(a, sortKey)
+			const bVal = parseSortableValue(b, sortKey)
+			const cmp =
+				typeof aVal === "number" && typeof bVal === "number"
+					? aVal - bVal
+					: String(aVal).localeCompare(String(bVal))
+			return sortDir === "asc" ? cmp : -cmp
+		})
+	}, [filteredTransactions, sortKey, sortDir])
+
 	const getStatusBadge = (status: TransactionStatus) => {
 		switch (status) {
 			case "Success":
 				return (
-					<Badge
-						variant="soft"
-						color="success"
-						size="sm"
-						className="gap-1 px-2.5 py-0.5 text-xs font-medium">
+					<Badge color="success">
 						<BadgeDot className="bg-success" />
-						<span>Success</span>
+						Success
 					</Badge>
 				)
 			case "Pending":
 				return (
-					<Badge
-						variant="soft"
-						color="warning"
-						size="sm"
-						className="gap-1 px-2.5 py-0.5 text-xs font-medium">
+					<Badge color="warning">
 						<BadgeDot className="bg-warning" />
-						<span>Pending</span>
+						Pending
 					</Badge>
 				)
 			case "Refunded":
 				return (
-					<Badge
-						variant="soft"
-						color="neutral"
-						size="sm"
-						className="gap-1 px-2.5 py-0.5 text-xs font-medium">
+					<Badge color="neutral">
 						<BadgeDot className="bg-fg-tertiary" />
-						<span>Refunded</span>
+						Refunded
 					</Badge>
 				)
 		}
 	}
 
 	return (
-		<Card className="bg-fill2 dark:bg-fill1 border-border/70 flex flex-col justify-between gap-0 p-0.5 pb-1 shadow-2xs">
+		<Card className="bg-fill1 border-border/70 flex flex-col justify-between gap-0 p-0.5 pb-1 shadow-2xs">
 			{/* Outer Card Top Header */}
 			<div className="flex flex-col gap-3 px-3 pt-1.5 pb-1.5 sm:flex-row sm:items-center sm:justify-between">
 				<div className="font-heading text-fg-secondary flex items-center gap-1.5 text-xs font-semibold tracking-wider uppercase">
@@ -99,26 +141,19 @@ export function RecentTransactionsTable() {
 
 				<div className="flex items-center gap-2">
 					{/* Search Transactions Input using registry InputWrapper & Input */}
-					<InputWrapper
-						size="sm"
-						className="border-border/70 bg-elevation-level1 dark:bg-elevation-level2 h-8 w-52 shadow-2xs">
-						<IconSlot slot="search" className="size-4 shrink-0 opacity-60" />
+					<InputWrapper className="w-60">
+						<IconSlot slot="search" className="text-fg-tertiary size-4" />
 						<Input
-							type="text"
+							type="search"
 							value={searchQuery}
 							onChange={(e) => setSearchQuery(e.target.value)}
 							placeholder="Search transactions..."
-							className="min-w-0 flex-1 text-xs"
 						/>
 					</InputWrapper>
 
 					{/* Add Transaction CTA */}
-					<Button
-						variant="strong"
-						color="primary"
-						size="sm"
-						className="h-8 gap-1.5 px-3 text-xs font-semibold shadow-xs">
-						<IconSlot slot="plus" className="size-4" />
+					<Button color="primary">
+						<IconSlot slot="plus" />
 						<span>Add Transaction</span>
 					</Button>
 
@@ -126,20 +161,18 @@ export function RecentTransactionsTable() {
 					<IconButton
 						variant="outline"
 						color="neutral"
-						size="sm"
-						className="border-border/70 bg-elevation-level1 dark:bg-elevation-level2 text-fg-secondary size-8 shadow-2xs"
 						aria-label="More options">
-						<IconSlot slot="threeDot" className="size-4 opacity-70" />
+						<IconSlot slot="threeDot" />
 					</IconButton>
 				</div>
 			</div>
 
 			{/* Inner White Box Table Container */}
-			<Card className="bg-elevation-level1 dark:bg-elevation-level2 border-border/60 [scrollbar-width:none] overflow-x-auto border p-1 shadow-2xs [-ms-overflow-style:none] sm:p-1.5 [&::-webkit-scrollbar]:hidden">
+			<Card className="bg-elevation-level1 border-border/60 [scrollbar-width:none] overflow-x-auto border p-1 shadow-2xs [-ms-overflow-style:none] sm:p-1.5 [&::-webkit-scrollbar]:hidden">
 				<Table>
-					<TableHeader className="[&_tr]:border-none">
-						<TableRow className="border-none hover:bg-transparent">
-							<TableHead className="w-10 bg-transparent px-3 text-center">
+					<TableHeader>
+						<TableRow className="border-border/60 border-b hover:bg-transparent">
+							<TableHead className="w-10 bg-transparent text-center">
 								<Checkbox
 									size="sm"
 									checked={
@@ -152,62 +185,40 @@ export function RecentTransactionsTable() {
 									aria-label="Select all"
 								/>
 							</TableHead>
-							<TableHead className="font-heading text-fg-secondary bg-transparent px-3 text-xs font-semibold tracking-wider uppercase">
-								<div className="flex items-center gap-1.5">
-									<span>ID</span>
-									<ArrowUpDown className="text-fg-secondary size-3 shrink-0 opacity-80" />
-								</div>
-							</TableHead>
-							<TableHead className="font-heading text-fg-secondary bg-transparent px-3 text-xs font-semibold tracking-wider uppercase">
-								<div className="flex items-center gap-1.5">
-									<span>CUSTOMER</span>
-									<ArrowUpDown className="text-fg-secondary size-3 shrink-0 opacity-80" />
-								</div>
-							</TableHead>
-							<TableHead className="font-heading text-fg-secondary bg-transparent px-3 text-xs font-semibold tracking-wider uppercase">
-								<div className="flex items-center gap-1.5">
-									<span>PRODUCT</span>
-									<ArrowUpDown className="text-fg-secondary size-3 shrink-0 opacity-80" />
-								</div>
-							</TableHead>
-							<TableHead className="font-heading text-fg-secondary bg-transparent px-3 text-xs font-semibold tracking-wider uppercase">
-								<div className="flex items-center gap-1.5">
-									<span>STATUS</span>
-									<ArrowUpDown className="text-fg-secondary size-3 shrink-0 opacity-80" />
-								</div>
-							</TableHead>
-							<TableHead className="font-heading text-fg-secondary bg-transparent px-3 text-xs font-semibold tracking-wider uppercase">
-								<div className="flex items-center gap-1.5">
-									<span>QTY</span>
-									<ArrowUpDown className="text-fg-secondary size-3 shrink-0 opacity-80" />
-								</div>
-							</TableHead>
-							<TableHead className="font-heading text-fg-secondary bg-transparent px-3 text-xs font-semibold tracking-wider uppercase">
-								<div className="flex items-center gap-1.5">
-									<span>UNIT PRICE</span>
-									<ArrowUpDown className="text-fg-secondary size-3 shrink-0 opacity-80" />
-								</div>
-							</TableHead>
-							<TableHead className="font-heading text-fg-secondary bg-transparent px-3 text-xs font-semibold tracking-wider uppercase">
-								<div className="flex items-center gap-1.5">
-									<span>TOTAL REVENUE</span>
-									<ArrowUpDown className="text-fg-secondary size-3 shrink-0 opacity-80" />
-								</div>
-							</TableHead>
-							<TableHead className="font-heading text-fg-secondary bg-transparent px-3 pr-4 text-right text-xs font-semibold tracking-wider uppercase">
+							{SORTABLE_COLUMNS.map((col) => {
+								const isSorted = sortKey === col.key
+
+								return (
+									<TableHead
+										key={col.key}
+										className="text-fg-secondary bg-transparent font-semibold tracking-wider uppercase">
+										<button
+											type="button"
+											onClick={() => handleSort(col.key)}
+											className="group hover:text-fg flex cursor-pointer items-center gap-1.5 transition-colors select-none">
+											<span>{col.label}</span>
+											<IconSlot
+												slot="chevrons-up-down"
+												className="text-fg-secondary group-hover:text-fg size-4 shrink-0 opacity-80 transition-colors group-hover:opacity-100"
+											/>
+										</button>
+									</TableHead>
+								)
+							})}
+							<TableHead className="text-fg-secondary bg-transparent pr-4 text-right font-semibold tracking-wider uppercase">
 								ACTIONS
 							</TableHead>
 						</TableRow>
 					</TableHeader>
 					<TableBody className="[&_tr]:border-none">
-						{filteredTransactions.map((tx) => {
+						{sortedTransactions.map((tx) => {
 							const isChecked = selectedRows.has(tx.id)
 
 							return (
 								<TableRow
 									key={tx.id}
-									className="hover:bg-fill2/40 dark:hover:bg-fill1/40 h-11 border-none transition-colors">
-									<TableCell className="px-3 text-center">
+									className="hover:bg-fill1/60 border-none transition-colors">
+									<TableCell className="text-center">
 										<Checkbox
 											size="sm"
 											checked={isChecked}
@@ -217,35 +228,31 @@ export function RecentTransactionsTable() {
 											aria-label={`Select ${tx.id}`}
 										/>
 									</TableCell>
-									<TableCell className="text-fg-secondary px-3 font-mono text-sm">
+									<TableCell className="text-fg-secondary text-sm tabular-nums">
 										{tx.id}
 									</TableCell>
-									<TableCell className="text-fg px-3 text-sm font-semibold whitespace-nowrap">
+									<TableCell className="text-fg text-sm font-semibold whitespace-nowrap">
 										{tx.customer}
 									</TableCell>
-									<TableCell className="text-fg-secondary px-3 text-sm whitespace-nowrap">
+									<TableCell className="text-fg-secondary text-sm whitespace-nowrap">
 										{tx.product}
 									</TableCell>
-									<TableCell className="px-3">
-										{getStatusBadge(tx.status)}
-									</TableCell>
-									<TableCell className="text-fg-secondary px-3 font-mono text-sm">
+									<TableCell>{getStatusBadge(tx.status)}</TableCell>
+									<TableCell className="text-fg-secondary text-sm tabular-nums">
 										{tx.qty}
 									</TableCell>
-									<TableCell className="text-fg-secondary px-3 font-mono text-sm">
+									<TableCell className="text-fg-secondary text-sm tabular-nums">
 										{tx.unitPrice}
 									</TableCell>
-									<TableCell className="font-heading text-fg px-3 font-mono text-sm font-semibold">
+									<TableCell className="text-fg text-sm font-semibold tabular-nums">
 										{tx.totalRevenue}
 									</TableCell>
-									<TableCell className="px-3 pr-4 text-right">
+									<TableCell className="pr-4 text-right">
 										<IconButton
 											variant="outline"
 											color="neutral"
-											size="xs"
-											className="border-border/50 bg-fill2/70 dark:bg-fill1/80 text-fg-secondary hover:text-fg size-7 shadow-2xs"
 											aria-label="Actions">
-											<IconSlot slot="threeDot" className="size-4 opacity-70" />
+											<IconSlot slot="threeDot" />
 										</IconButton>
 									</TableCell>
 								</TableRow>
