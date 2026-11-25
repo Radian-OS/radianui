@@ -11,21 +11,21 @@ import { STAT_METRICS } from "./data"
 
 export function StatMetrics() {
 	return (
-		<div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+		<div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-4">
 			{STAT_METRICS.map((metric) => (
 				<Card
 					key={metric.title}
-					className="bg-fill1 border-border/70 flex flex-col justify-between gap-0 p-0.5 pb-2 shadow-2xs">
+					className="bg-fill1 border-border/70 flex min-w-0 flex-col justify-between gap-0 p-0.5 pb-2 shadow-2xs">
 					{/* Inner White Container Box */}
-					<Card className="bg-elevation-level1 border-border/60 flex flex-col justify-between gap-3 border px-3 pt-3.5 pb-3 shadow-2xs">
+					<Card className="bg-elevation-level1 border-border/60 flex min-w-0 flex-col justify-between gap-3 border px-3 pt-3.5 pb-3 shadow-2xs">
 						{/* Header Label */}
 						<div className="font-heading text-fg-tertiary text-xs leading-none font-semibold tracking-wider uppercase">
 							{metric.title}
 						</div>
 
 						{/* Metric Value & Sparklines */}
-						<div className="flex items-end justify-between">
-							<div className="flex items-baseline gap-1.5">
+						<div className="flex items-end justify-between gap-2">
+							<div className="flex min-w-0 items-baseline gap-1.5">
 								<span className="font-heading text-fg text-lg leading-none font-bold tracking-tight">
 									{metric.value}
 								</span>
@@ -37,7 +37,7 @@ export function StatMetrics() {
 							</div>
 
 							{/* Sparkline Bars: highlight peak bar */}
-							<div className="flex shrink-0 items-end gap-1.5 pb-0.5">
+							<div className="flex shrink-0 items-end gap-[3px] pb-0.5 sm:gap-1">
 								{(() => {
 									const peak = Math.max(...metric.bars)
 									return metric.bars.map((height, i) => {

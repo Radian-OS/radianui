@@ -22,11 +22,14 @@ export function WelcomeHeader() {
 				<h1 className="heading-6 text-fg">Welcome back, Ari</h1>
 			</div>
 
-			<div className="flex flex-wrap items-center gap-2">
+			<div className="grid grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:items-center">
 				{/* Timeframe Dropdown */}
 				<DropdownMenu>
 					<DropdownMenuTrigger asChild>
-						<Button variant="outline" color="neutral">
+						<Button
+							variant="outline"
+							color="neutral"
+							className="w-full justify-between sm:w-auto">
 							<span>{timeframe}</span>
 							<IconSlot slot="down" />
 						</Button>
@@ -48,10 +51,11 @@ export function WelcomeHeader() {
 						to: new Date(2025, 10, 6),
 					}}
 					align="end"
+					className="w-full justify-center sm:w-auto"
 				/>
 
 				{/* Primary Export CSV Button */}
-				<Button color="primary">
+				<Button color="primary" className="col-span-2 w-full sm:w-auto">
 					<IconSlot slot="file-text" />
 					<span>Export CSV</span>
 				</Button>

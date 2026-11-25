@@ -93,7 +93,7 @@ export function RevenueBreakdownCard() {
 	const data = ACQUISITION_DATA[activeTab]
 
 	return (
-		<Card className="bg-fill1 border-border/70 flex flex-1 flex-col justify-between gap-0 p-0.5 pb-1 shadow-2xs">
+		<Card className="bg-fill1 border-border/70 flex min-w-0 flex-1 flex-col justify-between gap-0 overflow-hidden p-0.5 pb-1 shadow-2xs">
 			{/* Outer Card Top Header */}
 			<div className="flex items-center justify-between gap-2 px-3 pt-1.5 pb-1.5">
 				<div className="font-heading text-fg-secondary flex items-center gap-1.5 text-xs font-semibold tracking-wider uppercase">
@@ -135,7 +135,7 @@ export function RevenueBreakdownCard() {
 			</div>
 
 			{/* Inner White Box Container */}
-			<Card className="bg-elevation-level1 border-border/60 flex flex-1 flex-col justify-between gap-5 border p-4 shadow-2xs">
+			<Card className="bg-elevation-level1 border-border/60 flex min-w-0 flex-1 flex-col justify-between gap-5 border p-4 shadow-2xs">
 				{/* Headline Metric & Badge */}
 				<div className="flex items-center gap-2">
 					<span className="font-heading text-fg text-lg leading-none font-bold tracking-tight tabular-nums">
@@ -241,7 +241,7 @@ export function RevenueBreakdownCard() {
 					</ChartContainer>
 
 					{/* Floating Tooltip Callout above and to the right of active point */}
-					<div className="border-border bg-elevation-level1 pointer-events-none absolute top-[26%] left-[53%] rounded-md border px-2.5 py-1.5 shadow-md">
+					<div className="border-border bg-elevation-level1 pointer-events-none absolute top-[26%] left-[53%] rounded-md border px-2.5 py-1.5 whitespace-nowrap shadow-md">
 						<div className="text-fg-tertiary text-xs leading-tight">
 							{data.tooltipDate}
 						</div>
@@ -252,7 +252,7 @@ export function RevenueBreakdownCard() {
 				</div>
 
 				{/* Clean Bottom Summary Bar */}
-				<div className="flex items-center gap-3 pt-3 text-sm">
+				<div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 pt-3 text-sm">
 					<div className="text-fg-secondary flex items-center gap-1.5">
 						<span className="bg-primary size-2.5 rounded-xs" />
 						<span>
