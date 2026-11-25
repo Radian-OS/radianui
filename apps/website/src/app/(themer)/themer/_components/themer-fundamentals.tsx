@@ -39,7 +39,7 @@ function FundamentalsGroup({
 	return (
 		<SidebarGroup
 			className={
-				selected === "fonts" ? "gap-2 p-0" : selected ? "p-0" : undefined
+				selected === "fonts" ? "gap-3 p-0" : selected ? "p-0" : undefined
 			}>
 			{(!selected || selected === "fonts") && (
 				<SidebarGroupLabel
