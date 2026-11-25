@@ -155,7 +155,30 @@ export function RevenueBreakdownCard() {
 								tickLine={false}
 								axisLine={false}
 								tickMargin={10}
-								fontSize={12}
+								tick={(props: {
+									x?: number | string
+									y?: number | string
+									payload?: { value?: string }
+								}) => {
+									const value = props.payload?.value ?? ""
+									const anchor =
+										value === "Nov 1"
+											? "start"
+											: value === "Nov 30"
+												? "end"
+												: "middle"
+									return (
+										<text
+											x={props.x}
+											y={Number(props.y ?? 0) + 10}
+											textAnchor={anchor}
+											fill="currentColor"
+											fontSize={12}
+											className="fill-fg-tertiary">
+											{value}
+										</text>
+									)
+								}}
 							/>
 							<YAxis hide domain={[0, "dataMax + 2200"]} />
 							<ReferenceLine
