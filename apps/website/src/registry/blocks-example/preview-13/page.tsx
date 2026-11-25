@@ -17,7 +17,7 @@ export default function Preview13Page() {
 	const [activeNav, setActiveNav] = useState("Dashboard")
 
 	return (
-		<div className="text-fg font-body bg-fill2 h-screen w-full overflow-hidden">
+		<div className="text-fg font-body bg-fill1 h-screen w-full overflow-hidden">
 			<SidebarProvider
 				defaultOpen
 				defaultWidth="15rem"

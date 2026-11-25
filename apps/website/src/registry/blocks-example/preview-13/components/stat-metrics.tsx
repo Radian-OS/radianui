@@ -14,9 +14,9 @@ export function StatMetrics() {
 			{STAT_METRICS.map((metric) => (
 				<Card
 					key={metric.title}
-					className="bg-fill2 dark:bg-fill1 border-border/70 flex flex-col justify-between gap-0 p-0.5 pb-2 shadow-2xs">
+					className="bg-fill1 border-border/70 flex flex-col justify-between gap-0 p-0.5 pb-2 shadow-2xs">
 					{/* Inner White Container Box */}
-					<Card className="bg-elevation-level1 dark:bg-elevation-level2 border-border/60 flex flex-col justify-between gap-3 border px-3 pt-3.5 pb-3 shadow-2xs">
+					<Card className="bg-elevation-level1 border-border/60 flex flex-col justify-between gap-3 border px-3 pt-3.5 pb-3 shadow-2xs">
 						{/* Header Label */}
 						<div className="font-heading text-fg-tertiary text-xs leading-none font-semibold tracking-wider uppercase">
 							{metric.title}
@@ -45,9 +45,7 @@ export function StatMetrics() {
 											key={i}
 											className={cn(
 												"w-[3px] transition-colors",
-												isHighlighted
-													? "bg-primary"
-													: "bg-fill3 dark:bg-fill3/60"
+												isHighlighted ? "bg-primary" : "bg-fill2"
 											)}
 											style={{ height: `${(height / 100) * 32}px` }}
 										/>

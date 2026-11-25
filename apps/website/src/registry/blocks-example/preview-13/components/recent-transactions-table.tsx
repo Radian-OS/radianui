@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { useState } from "react"
-import { ArrowUpDown } from "lucide-react"
+import { ArrowUpDown, Search } from "lucide-react"
 
 import { IconSlot } from "@/registry/icon/icon-library"
 import { Badge, BadgeDot } from "@/registry/ui/badge"
@@ -89,7 +89,7 @@ export function RecentTransactionsTable() {
 	}
 
 	return (
-		<Card className="bg-fill2 dark:bg-fill1 border-border/70 flex flex-col justify-between gap-0 p-0.5 pb-1 shadow-2xs">
+		<Card className="bg-fill1 border-border/70 flex flex-col justify-between gap-0 p-0.5 pb-1 shadow-2xs">
 			{/* Outer Card Top Header */}
 			<div className="flex flex-col gap-3 px-3 pt-1.5 pb-1.5 sm:flex-row sm:items-center sm:justify-between">
 				<div className="font-heading text-fg-secondary flex items-center gap-1.5 text-xs font-semibold tracking-wider uppercase">
@@ -101,10 +101,10 @@ export function RecentTransactionsTable() {
 					{/* Search Transactions Input using registry InputWrapper & Input */}
 					<InputWrapper
 						size="sm"
-						className="border-border/70 bg-elevation-level1 dark:bg-elevation-level2 h-8 w-52 shadow-2xs">
-						<IconSlot slot="search" className="size-4 shrink-0 opacity-60" />
+						className="border-border/70 bg-elevation-level1 h-8 w-60 shadow-2xs">
+						<Search className="text-fg-tertiary size-4 shrink-0" />
 						<Input
-							type="text"
+							type="search"
 							value={searchQuery}
 							onChange={(e) => setSearchQuery(e.target.value)}
 							placeholder="Search transactions..."
@@ -127,7 +127,7 @@ export function RecentTransactionsTable() {
 						variant="outline"
 						color="neutral"
 						size="sm"
-						className="border-border/70 bg-elevation-level1 dark:bg-elevation-level2 text-fg-secondary size-8 shadow-2xs"
+						className="border-border/70 bg-elevation-level1 text-fg-secondary size-8 shadow-2xs"
 						aria-label="More options">
 						<IconSlot slot="threeDot" className="size-4 opacity-70" />
 					</IconButton>
@@ -135,7 +135,7 @@ export function RecentTransactionsTable() {
 			</div>
 
 			{/* Inner White Box Table Container */}
-			<Card className="bg-elevation-level1 dark:bg-elevation-level2 border-border/60 [scrollbar-width:none] overflow-x-auto border p-1 shadow-2xs [-ms-overflow-style:none] sm:p-1.5 [&::-webkit-scrollbar]:hidden">
+			<Card className="bg-elevation-level1 border-border/60 [scrollbar-width:none] overflow-x-auto border p-1 shadow-2xs [-ms-overflow-style:none] sm:p-1.5 [&::-webkit-scrollbar]:hidden">
 				<Table>
 					<TableHeader className="[&_tr]:border-none">
 						<TableRow className="border-none hover:bg-transparent">
@@ -155,43 +155,64 @@ export function RecentTransactionsTable() {
 							<TableHead className="font-heading text-fg-secondary bg-transparent px-3 text-xs font-semibold tracking-wider uppercase">
 								<div className="flex items-center gap-1.5">
 									<span>ID</span>
-									<ArrowUpDown className="text-fg-secondary size-3 shrink-0 opacity-80" />
+									<ArrowUpDown
+										size={16}
+										className="text-fg-secondary size-4 shrink-0 opacity-80"
+									/>
 								</div>
 							</TableHead>
 							<TableHead className="font-heading text-fg-secondary bg-transparent px-3 text-xs font-semibold tracking-wider uppercase">
 								<div className="flex items-center gap-1.5">
 									<span>CUSTOMER</span>
-									<ArrowUpDown className="text-fg-secondary size-3 shrink-0 opacity-80" />
+									<ArrowUpDown
+										size={16}
+										className="text-fg-secondary size-4 shrink-0 opacity-80"
+									/>
 								</div>
 							</TableHead>
 							<TableHead className="font-heading text-fg-secondary bg-transparent px-3 text-xs font-semibold tracking-wider uppercase">
 								<div className="flex items-center gap-1.5">
 									<span>PRODUCT</span>
-									<ArrowUpDown className="text-fg-secondary size-3 shrink-0 opacity-80" />
+									<ArrowUpDown
+										size={16}
+										className="text-fg-secondary size-4 shrink-0 opacity-80"
+									/>
 								</div>
 							</TableHead>
 							<TableHead className="font-heading text-fg-secondary bg-transparent px-3 text-xs font-semibold tracking-wider uppercase">
 								<div className="flex items-center gap-1.5">
 									<span>STATUS</span>
-									<ArrowUpDown className="text-fg-secondary size-3 shrink-0 opacity-80" />
+									<ArrowUpDown
+										size={16}
+										className="text-fg-secondary size-4 shrink-0 opacity-80"
+									/>
 								</div>
 							</TableHead>
 							<TableHead className="font-heading text-fg-secondary bg-transparent px-3 text-xs font-semibold tracking-wider uppercase">
 								<div className="flex items-center gap-1.5">
 									<span>QTY</span>
-									<ArrowUpDown className="text-fg-secondary size-3 shrink-0 opacity-80" />
+									<ArrowUpDown
+										size={16}
+										className="text-fg-secondary size-4 shrink-0 opacity-80"
+									/>
 								</div>
 							</TableHead>
 							<TableHead className="font-heading text-fg-secondary bg-transparent px-3 text-xs font-semibold tracking-wider uppercase">
 								<div className="flex items-center gap-1.5">
 									<span>UNIT PRICE</span>
-									<ArrowUpDown className="text-fg-secondary size-3 shrink-0 opacity-80" />
+									<ArrowUpDown
+										size={16}
+										className="text-fg-secondary size-4 shrink-0 opacity-80"
+									/>
 								</div>
 							</TableHead>
 							<TableHead className="font-heading text-fg-secondary bg-transparent px-3 text-xs font-semibold tracking-wider uppercase">
 								<div className="flex items-center gap-1.5">
 									<span>TOTAL REVENUE</span>
-									<ArrowUpDown className="text-fg-secondary size-3 shrink-0 opacity-80" />
+									<ArrowUpDown
+										size={16}
+										className="text-fg-secondary size-4 shrink-0 opacity-80"
+									/>
 								</div>
 							</TableHead>
 							<TableHead className="font-heading text-fg-secondary bg-transparent px-3 pr-4 text-right text-xs font-semibold tracking-wider uppercase">
@@ -206,7 +227,7 @@ export function RecentTransactionsTable() {
 							return (
 								<TableRow
 									key={tx.id}
-									className="hover:bg-fill2/40 dark:hover:bg-fill1/40 h-11 border-none transition-colors">
+									className="hover:bg-fill1/60 h-11 border-none transition-colors">
 									<TableCell className="px-3 text-center">
 										<Checkbox
 											size="sm"
@@ -243,7 +264,7 @@ export function RecentTransactionsTable() {
 											variant="outline"
 											color="neutral"
 											size="xs"
-											className="border-border/50 bg-fill2/70 dark:bg-fill1/80 text-fg-secondary hover:text-fg size-7 shadow-2xs"
+											className="border-border/50 bg-fill1/80 text-fg-secondary hover:text-fg size-7 shadow-2xs"
 											aria-label="Actions">
 											<IconSlot slot="threeDot" className="size-4 opacity-70" />
 										</IconButton>

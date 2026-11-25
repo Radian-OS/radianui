@@ -68,7 +68,7 @@ export function SalesTrendChart() {
 	}))
 
 	return (
-		<Card className="bg-fill2 dark:bg-fill1 border-border/70 flex flex-1 flex-col justify-between gap-0 p-0.5 pb-1 shadow-2xs">
+		<Card className="bg-fill1 border-border/70 flex flex-1 flex-col justify-between gap-0 p-0.5 pb-1 shadow-2xs">
 			{/* Outer Card Top Header */}
 			<div className="flex items-center justify-between px-3 pt-1.5 pb-1.5">
 				<div className="font-heading text-fg-secondary flex items-center gap-1.5 text-xs font-semibold tracking-wider uppercase">
@@ -86,7 +86,7 @@ export function SalesTrendChart() {
 			</div>
 
 			{/* Inner White Box Container */}
-			<Card className="bg-elevation-level1 dark:bg-elevation-level2 border-border/60 flex flex-1 flex-col justify-between border p-4 shadow-2xs">
+			<Card className="bg-elevation-level1 border-border/60 flex flex-1 flex-col justify-between border p-4 shadow-2xs">
 				{/* Subheader: Revenue, Legend & Capsule Tabs */}
 				<div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
 					{/* Left: Total Revenue */}
@@ -98,16 +98,16 @@ export function SalesTrendChart() {
 					</div>
 
 					{/* Middle: Legend */}
-					<div className="text-fg-secondary font-body flex items-center gap-4 text-[11px] font-medium">
+					<div className="text-fg-secondary font-body flex items-center gap-4 text-xs font-medium">
 						<div className="flex items-center gap-1.5">
-							<span className="bg-fg-tertiary/60 dark:bg-fill4 size-2 rounded-xs" />
-							<span className="text-[10px] tracking-wider uppercase">
+							<span className="bg-fg-tertiary/60 size-2 rounded-xs" />
+							<span className="text-[12px] tracking-wider uppercase">
 								NEW USER
 							</span>
 						</div>
 						<div className="flex items-center gap-1.5">
 							<span className="bg-primary size-2 rounded-xs" />
-							<span className="text-[10px] tracking-wider uppercase">
+							<span className="text-[12px] tracking-wider uppercase">
 								EXISTING USER
 							</span>
 						</div>
@@ -134,31 +134,23 @@ export function SalesTrendChart() {
 
 				{/* ── Main Chart Area with Waffle Grid ── */}
 				<div className="relative mt-3 w-full [scrollbar-width:none] overflow-x-auto py-1 [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
-					<div className="relative min-w-[530px]">
+					<div className="relative min-w-[530px] pb-2">
 						<svg
 							viewBox="0 0 535 220"
-							className="size-full overflow-visible select-none"
+							className="aspect-[535/220] h-auto w-full overflow-visible select-none"
 							onMouseLeave={() => setHoveredCol(null)}>
-							{/* Y-Axis Ticks */}
+							{/* Y-Axis Tick Lines */}
 							{yTicks.map((tick) => (
-								<g key={tick.label} className="text-fg-tertiary">
-									<text
-										x="30"
-										y={tick.y + 3}
-										textAnchor="end"
-										className="font-body fill-current text-[9px] opacity-80">
-										{tick.label}
-									</text>
-									<line
-										x1="33"
-										y1={tick.y}
-										x2="39"
-										y2={tick.y}
-										stroke="currentColor"
-										strokeWidth="1"
-										className="opacity-60"
-									/>
-								</g>
+								<line
+									key={tick.label}
+									x1="33"
+									y1={tick.y}
+									x2="39"
+									y2={tick.y}
+									stroke="currentColor"
+									strokeWidth="1"
+									className="text-fg-tertiary opacity-60"
+								/>
 							))}
 
 							{/* 58 Columns x 23 Rows Waffle Grid */}
@@ -176,14 +168,14 @@ export function SalesTrendChart() {
 											const isNewUser =
 												!isExisting && rIdx < col.existing + col.newUsers
 
-											let fillClass = "fill-fill2/70 dark:fill-fill1/40"
+											let fillClass = "fill-fill1/80"
 											let fillStyle: React.CSSProperties | undefined
 
 											if (isExisting) {
 												fillClass = "fill-primary"
 												fillStyle = { fill: "var(--color-primary)" }
 											} else if (isNewUser) {
-												fillClass = "fill-fg-tertiary/60 dark:fill-fill4"
+												fillClass = "fill-fg-tertiary/60"
 											}
 
 											return (
@@ -249,38 +241,56 @@ export function SalesTrendChart() {
 								fill="currentColor"
 								className="text-fg pointer-events-none"
 							/>
-
-							{/* X-Axis Month Labels directly aligned under columns */}
-							{months.map((m) => (
-								<text
-									key={m.name}
-									x={m.x}
-									y="214"
-									textAnchor="middle"
-									className={cn(
-										"font-body text-[9px] transition-colors select-none",
-										m.name === activeCol.month
-											? "fill-fg font-bold"
-											: "fill-fg-tertiary"
-									)}>
-									{m.name}
-								</text>
-							))}
-							{monthDots.map((d) => (
-								<text
-									key={d.id}
-									x={d.x}
-									y="213"
-									textAnchor="middle"
-									className="fill-fg-tertiary/40 font-body text-[8px] select-none">
-									·
-								</text>
-							))}
 						</svg>
+
+						{/* Y-Axis HTML Labels (strictly 14px, unaffected by SVG scaling/stretching) */}
+						{yTicks.map((tick) => (
+							<span
+								key={tick.label}
+								className="text-fg-tertiary pointer-events-none absolute text-[14px] leading-none font-normal select-none"
+								style={{
+									left: `${(30 / 535) * 100}%`,
+									top: `${(tick.y / 220) * 100}%`,
+									transform: "translate(-100%, -50%)",
+								}}>
+								{tick.label}
+							</span>
+						))}
+
+						{/* X-Axis HTML Month Labels (strictly 14px, unaffected by SVG scaling/stretching) */}
+						{months.map((m) => (
+							<span
+								key={m.name}
+								className={cn(
+									"pointer-events-none absolute text-[14px] leading-none transition-colors select-none",
+									m.name === activeCol.month
+										? "text-fg font-bold"
+										: "text-fg-tertiary font-normal"
+								)}
+								style={{
+									left: `${(m.x / 535) * 100}%`,
+									top: `${(210 / 220) * 100}%`,
+									transform: "translate(-50%, -50%)",
+								}}>
+								{m.name}
+							</span>
+						))}
+						{monthDots.map((d) => (
+							<span
+								key={d.id}
+								className="text-fg-tertiary/40 pointer-events-none absolute text-[14px] leading-none font-normal select-none"
+								style={{
+									left: `${(d.x / 535) * 100}%`,
+									top: `${(210 / 220) * 100}%`,
+									transform: "translate(-50%, -50%)",
+								}}>
+								·
+							</span>
+						))}
 
 						{/* Interactive Tooltip Card at Active Column */}
 						<div
-							className="border-border/80 bg-elevation-level2/95 dark:bg-elevation-level3/95 pointer-events-none absolute z-20 min-w-36 rounded-md border p-2.5 text-xs shadow-xl backdrop-blur-md transition-all duration-75"
+							className="border-border/80 bg-elevation-level2/95 pointer-events-none absolute z-20 min-w-36 rounded-md border p-2.5 text-xs shadow-xl backdrop-blur-md transition-all duration-75"
 							style={{
 								left: `${(activeX / 535) * 100}%`,
 								top: `${(activeY / 220) * 100}%`,
@@ -296,7 +306,7 @@ export function SalesTrendChart() {
 							<div className="mt-1.5 flex flex-col gap-1 text-[11px]">
 								<div className="text-fg-secondary flex items-center justify-between">
 									<span className="flex items-center gap-1.5">
-										<span className="bg-fg-tertiary/60 dark:bg-fill4 size-2 rounded-xs" />
+										<span className="bg-fg-tertiary/60 size-2 rounded-xs" />
 										<span>New User</span>
 									</span>
 									<span className="text-fg font-semibold">

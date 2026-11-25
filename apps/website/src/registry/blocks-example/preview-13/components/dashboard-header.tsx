@@ -1,10 +1,10 @@
 "use client"
 
 import * as React from "react"
+import { Search } from "lucide-react"
 
 import { IconSlot } from "@/registry/icon/icon-library"
 import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
-import { Badge } from "@/registry/ui/badge"
 import {
 	Breadcrumb,
 	BreadcrumbItem,
@@ -43,16 +43,13 @@ export function DashboardHeader() {
 				{/* Search Bar Input using registry InputWrapper & Input */}
 				<InputWrapper
 					size="sm"
-					className="border-border/70 bg-elevation-level1 hidden h-8 w-60 sm:flex">
-					<IconSlot slot="search" className="size-4 shrink-0 opacity-60" />
-					<Input placeholder="Search..." className="min-w-0 flex-1 text-xs" />
-					<Badge
-						variant="soft"
-						color="neutral"
-						size="sm"
-						className="border-border/60 text-fg-secondary h-5 shrink-0 px-1.5 py-0 font-mono text-[10px] leading-none select-none">
-						⌘K
-					</Badge>
+					className="border-border/70 bg-elevation-level1 hidden h-8 w-60 shadow-2xs sm:flex">
+					<Search className="text-fg-tertiary size-4 shrink-0" />
+					<Input
+						type="search"
+						placeholder="Search..."
+						className="min-w-0 flex-1 text-xs"
+					/>
 				</InputWrapper>
 
 				{/* Header Actions */}

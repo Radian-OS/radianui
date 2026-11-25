@@ -11,6 +11,8 @@ import {
 	DropdownMenuTrigger,
 } from "@/registry/ui/dropdown-menu"
 
+import { DateRangePopover } from "./date-range-popover"
+
 export function WelcomeHeader() {
 	const [timeframe, setTimeframe] = React.useState("Daily")
 
@@ -44,15 +46,17 @@ export function WelcomeHeader() {
 					</DropdownMenuContent>
 				</DropdownMenu>
 
-				{/* Date Picker Button */}
-				<Button
-					variant="outline"
-					color="neutral"
+				{/* Date Picker Popover */}
+				<DateRangePopover
+					initialText="6 Nov 2025"
+					initialRange={{
+						from: new Date(2025, 10, 6),
+						to: new Date(2025, 10, 6),
+					}}
 					size="sm"
-					className="border-border/70 text-fg-secondary h-8 gap-1.5 text-xs font-medium shadow-2xs">
-					<IconSlot slot="calendar" className="size-4 opacity-60" />
-					<span>6 Nov 2025</span>
-				</Button>
+					className="border-border/70 text-fg-secondary bg-elevation-level1 hover:bg-fill1 h-8 gap-1.5 text-xs font-medium shadow-2xs"
+					align="end"
+				/>
 
 				{/* Primary Export CSV Button */}
 				<Button
