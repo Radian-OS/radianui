@@ -1,5 +1,6 @@
 "use client"
 
+import { ThemerMobilePicker } from "./themer-mobile-picker"
 import { ScrollArea } from "@/styles/default/ui/scroll-area"
 import {
 	ThemerDrawerContext,
@@ -51,13 +52,6 @@ import {
 	TabsTrigger,
 } from "@/styles/default/ui/tabs"
 import { Button, IconButton } from "@/styles/default/ui/button"
-import {
-	Drawer,
-	DrawerContent,
-	DrawerDescription,
-	DrawerTitle,
-	DrawerTrigger,
-} from "@/registry/ui/drawer"
 
 const toHsv = converter("hsv")
 
@@ -634,21 +628,21 @@ function ColorPickerPopover({
 								onClick={() => onOpenChange(false)}>
 								<ChevronLeft />
 							</IconButton>
-							<DrawerTitle className="sr-only">
+							<h2 className="sr-only">
 								{mode === "add"
 									? "Generate Color Palette"
 									: prefix === "primary"
 										? "Primary Color"
 										: colorInfo.name}
-							</DrawerTitle>
+							</h2>
 							<TabsList aria-label="Color source">
 								<TabsTrigger value="custom">Custom</TabsTrigger>
 								<TabsTrigger value="presets">Presets</TabsTrigger>
 							</TabsList>
 						</div>
-						<DrawerDescription className="sr-only">
+						<p className="sr-only">
 							Choose a color and view its generated shades.
-						</DrawerDescription>
+						</p>
 						<div className="flex items-center gap-2">
 							<Tooltip>
 								<TooltipTrigger asChild>
@@ -837,21 +831,16 @@ function ColorPickerPopover({
 
 	if (inDrawer) {
 		return (
-			<Drawer
-				nested
+			<ThemerMobilePicker
+				trigger={children}
 				open={open}
 				onOpenChange={onOpenChange}
-				direction="bottom"
-				variant="rounded"
-				handle
-				scrollLockTimeout={0}>
-				<DrawerTrigger asChild>{children}</DrawerTrigger>
-				<DrawerContent className="h-[82dvh] gap-0 rounded-b-none p-0 pt-7 after:hidden!">
-					<div className="min-h-0 flex-1 px-3 pb-[env(safe-area-inset-bottom)]">
-						{editor}
-					</div>
-				</DrawerContent>
-			</Drawer>
+				label={mode === "add" ? "Generate Color Palette" : "Color settings"}
+				className="flex h-[calc(82dvh-28px)] min-h-0 flex-col outline-none">
+				<div className="min-h-0 flex-1 px-3 pb-[env(safe-area-inset-bottom)]">
+					{editor}
+				</div>
+			</ThemerMobilePicker>
 		)
 	}
 

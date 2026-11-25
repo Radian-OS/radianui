@@ -1,5 +1,10 @@
 "use client"
 
+import { useState } from "react"
+import {
+	MobilePickerContext,
+	type MobilePickerView,
+} from "./themer-mobile-picker"
 import {
 	ChevronRight,
 	Component,
@@ -168,6 +173,8 @@ export function ThemerMobileDrawer({
 	) => void
 }) {
 	const allSettings = panel === "settings"
+	const [active, setActive] = useState<MobilePickerView | null>(null)
+	const [target, setTarget] = useState<HTMLDivElement | null>(null)
 	const title =
 		shortcuts.find(({ section }) => section === panel)?.title ??
 		"Themer settings"
@@ -183,162 +190,182 @@ export function ThemerMobileDrawer({
 			<DrawerContent
 				id={MOBILE_THEMER_DRAWER_ID}
 				onCloseAutoFocus={onCloseAutoFocus}
+				{...(active && {
+					"aria-label": active.label,
+					"aria-labelledby": undefined,
+					"aria-describedby": undefined,
+				})}
+				onEscapeKeyDown={(event) => {
+					if (!active) return
+					event.preventDefault()
+					active.back()
+				}}
 				className={cn(
 					"max-h-[85dvh] gap-0 rounded-b-none p-0 pt-7 before:pointer-events-none before:absolute before:top-full before:h-px before:w-px before:content-[''] after:hidden! sm:hidden",
-					(allSettings || panel === "components") && "h-[min(85dvh,42rem)]"
+					!active &&
+						(allSettings || panel === "components") &&
+						"h-[min(85dvh,42rem)]"
 				)}>
-				{panel === "components" ? (
-					<ThemerMobileComponents />
-				) : panel === "preset" || panel === "color" ? (
-					<ScrollArea
-						type="auto"
-						className="min-h-0 [&_[data-slot=scroll-area-viewport]]:max-h-[calc(85dvh-28px)] [&_[data-slot=scroll-area-viewport]]:overflow-y-auto!">
-						{panel === "preset" ? (
-							<ThemerMobilePresets />
-						) : (
-							<ThemerDrawerContext value={true}>
-								<div className="flex flex-col gap-2 px-3 pb-[max(12px,env(safe-area-inset-bottom))]">
-									<div className="flex touch-none items-center justify-between">
-										<div className="flex items-center gap-2">
-											<DrawerClose>
-												<IconButton
-													size="xs"
-													variant="ghost"
-													color="neutral"
-													aria-label="Close Colors drawer"
-													className="text-fg-secondary size-5 p-0 [&>svg]:size-5">
-													<ChevronLeft />
-												</IconButton>
-											</DrawerClose>
-											<DrawerTitle className="text-fg text-base font-medium">
-												Colors
-											</DrawerTitle>
+				<MobilePickerContext value={{ target, active, setActive }}>
+					<div className={active ? "hidden" : "contents"}>
+						{panel === "components" ? (
+							<ThemerMobileComponents />
+						) : panel === "preset" || panel === "color" ? (
+							<ScrollArea
+								type="auto"
+								className="min-h-0 [&_[data-slot=scroll-area-viewport]]:max-h-[calc(85dvh-28px)] [&_[data-slot=scroll-area-viewport]]:overflow-y-auto!">
+								{panel === "preset" ? (
+									<ThemerMobilePresets />
+								) : (
+									<ThemerDrawerContext value={true}>
+										<div className="flex flex-col gap-2 px-3 pb-[max(12px,env(safe-area-inset-bottom))]">
+											<div className="flex touch-none items-center justify-between">
+												<div className="flex items-center gap-2">
+													<DrawerClose>
+														<IconButton
+															size="xs"
+															variant="ghost"
+															color="neutral"
+															aria-label="Close Colors drawer"
+															className="text-fg-secondary size-5 p-0 [&>svg]:size-5">
+															<ChevronLeft />
+														</IconButton>
+													</DrawerClose>
+													<DrawerTitle className="text-fg text-base font-medium">
+														Colors
+													</DrawerTitle>
+												</div>
+												<DrawerDescription className="sr-only">
+													Edit the primary color and additional color schemes.
+												</DrawerDescription>
+												<div className="flex items-center gap-2">
+													<IconButton
+														size="md"
+														variant="ghost"
+														color="neutral"
+														className="text-fg-secondary"
+														disabled
+														aria-label="Undo colors">
+														<Undo2 />
+													</IconButton>
+													<IconButton
+														size="md"
+														variant="ghost"
+														color="neutral"
+														className="text-fg-secondary"
+														disabled
+														aria-label="Shuffle all colors">
+														<Shuffle />
+													</IconButton>
+													<span
+														className="bg-border h-4 w-px"
+														aria-hidden="true"
+													/>
+													<IconButton
+														size="md"
+														variant="ghost"
+														color="neutral"
+														className="text-fg-secondary"
+														disabled
+														aria-label="Color library">
+														<SwatchBook />
+													</IconButton>
+												</div>
+											</div>
+											<ThemerFundamentals section="color" />
 										</div>
-										<DrawerDescription className="sr-only">
-											Edit the primary color and additional color schemes.
-										</DrawerDescription>
-										<div className="flex items-center gap-2">
-											<IconButton
-												size="md"
-												variant="ghost"
-												color="neutral"
-												className="text-fg-secondary"
-												disabled
-												aria-label="Undo colors">
-												<Undo2 />
-											</IconButton>
-											<IconButton
-												size="md"
-												variant="ghost"
-												color="neutral"
-												className="text-fg-secondary"
-												disabled
-												aria-label="Shuffle all colors">
-												<Shuffle />
-											</IconButton>
-											<span className="bg-border h-4 w-px" aria-hidden="true" />
-											<IconButton
-												size="md"
-												variant="ghost"
-												color="neutral"
-												className="text-fg-secondary"
-												disabled
-												aria-label="Color library">
-												<SwatchBook />
-											</IconButton>
-										</div>
-									</div>
-									<ThemerFundamentals section="color" />
-								</div>
-							</ThemerDrawerContext>
-						)}
-					</ScrollArea>
-				) : panel === "appearance" ? (
-					<>
-						<DrawerDescription className="sr-only">
-							Choose the default appearance mode for your theme.
-						</DrawerDescription>
-						<AppearanceModePicker onBack={() => onOpenChange(false)} />
-					</>
-				) : panel === "spacing" ? (
-					<>
-						<DrawerDescription className="sr-only">
-							Choose the spacing scale for your theme.
-						</DrawerDescription>
-						<DensityPicker onBack={() => onOpenChange(false)} />
-					</>
-				) : panel === "radius" ? (
-					<>
-						<DrawerDescription className="sr-only">
-							Choose a corner radius preset or adjust controls and containers
-							individually.
-						</DrawerDescription>
-						<CornerPicker onBack={() => onOpenChange(false)} />
-					</>
-				) : panel === "neutral" || panel === "fonts" ? (
-					<>
-						<DrawerTitle className="sr-only">
-							{panel === "fonts" ? "Typography" : "Neutral Base"}
-						</DrawerTitle>
-						<DrawerDescription className="sr-only">
-							Customize your theme and preview the changes.
-						</DrawerDescription>
-						<ThemerDrawerContext value={true}>
-							<div className="px-3 pb-2">
-								<ThemerFundamentals section={panel} />
-							</div>
-						</ThemerDrawerContext>
-						<ThemerMobileShortcuts
-							selectedShortcut={panel}
-							openPanel={panel}
-							onSelect={onSelectShortcut}
-						/>
-					</>
-				) : (
-					<>
-						<div className="border-border flex h-11 shrink-0 touch-none items-center justify-between gap-2 border-b px-4">
-							<DrawerTitle className="text-base font-semibold">
-								{title}
-							</DrawerTitle>
-							<DrawerDescription className="sr-only">
-								Customize your theme and preview the changes.
-							</DrawerDescription>
-							<DrawerClose>
-								<IconButton
-									size="xs"
-									color="neutral"
-									variant="ghost"
-									aria-label="Close Themer settings">
-									<X aria-hidden="true" />
-								</IconButton>
-							</DrawerClose>
-						</div>
-						<ThemerDrawerContext value={true}>
-							{allSettings ? (
-								<div className="flex min-h-0 flex-1 flex-col pb-[env(safe-area-inset-bottom)]">
-									<ThemerSettings />
-								</div>
-							) : (
-								<ScrollArea
-									type="auto"
-									className="min-h-0 [&_[data-slot=scroll-area-viewport]]:max-h-[calc(85dvh-4.5rem)] [&_[data-slot=scroll-area-viewport]]:overscroll-y-none [&:not(:has([data-slot=scroll-area-scrollbar]))_[data-slot=scroll-area-viewport]]:touch-none [&:not(:has([data-slot=scroll-area-scrollbar]))_[data-slot=scroll-area-viewport]]:overflow-y-hidden!">
-									<div className="flex flex-col gap-3 px-4 pt-3 pb-[max(1rem,env(safe-area-inset-bottom))]">
+									</ThemerDrawerContext>
+								)}
+							</ScrollArea>
+						) : panel === "appearance" ? (
+							<>
+								<DrawerDescription className="sr-only">
+									Choose the default appearance mode for your theme.
+								</DrawerDescription>
+								<AppearanceModePicker onBack={() => onOpenChange(false)} />
+							</>
+						) : panel === "spacing" ? (
+							<>
+								<DrawerDescription className="sr-only">
+									Choose the spacing scale for your theme.
+								</DrawerDescription>
+								<DensityPicker onBack={() => onOpenChange(false)} />
+							</>
+						) : panel === "radius" ? (
+							<>
+								<DrawerDescription className="sr-only">
+									Choose a corner radius preset or adjust controls and
+									containers individually.
+								</DrawerDescription>
+								<CornerPicker onBack={() => onOpenChange(false)} />
+							</>
+						) : panel === "neutral" || panel === "fonts" ? (
+							<>
+								<DrawerTitle className="sr-only">
+									{panel === "fonts" ? "Typography" : "Neutral Base"}
+								</DrawerTitle>
+								<DrawerDescription className="sr-only">
+									Customize your theme and preview the changes.
+								</DrawerDescription>
+								<ThemerDrawerContext value={true}>
+									<div className="px-3 pb-2">
 										<ThemerFundamentals section={panel} />
-										<Button
-											size="sm"
+									</div>
+								</ThemerDrawerContext>
+								<ThemerMobileShortcuts
+									selectedShortcut={panel}
+									openPanel={panel}
+									onSelect={onSelectShortcut}
+								/>
+							</>
+						) : (
+							<>
+								<div className="border-border flex h-11 shrink-0 touch-none items-center justify-between gap-2 border-b px-4">
+									<DrawerTitle className="text-base font-semibold">
+										{title}
+									</DrawerTitle>
+									<DrawerDescription className="sr-only">
+										Customize your theme and preview the changes.
+									</DrawerDescription>
+									<DrawerClose>
+										<IconButton
+											size="xs"
 											color="neutral"
 											variant="ghost"
-											className="w-full justify-between"
-											onClick={onOpenAllSettings}>
-											All settings
-											<ChevronRight aria-hidden="true" />
-										</Button>
-									</div>
-								</ScrollArea>
-							)}
-						</ThemerDrawerContext>
-					</>
-				)}
+											aria-label="Close Themer settings">
+											<X aria-hidden="true" />
+										</IconButton>
+									</DrawerClose>
+								</div>
+								<ThemerDrawerContext value={true}>
+									{allSettings ? (
+										<div className="flex min-h-0 flex-1 flex-col pb-[env(safe-area-inset-bottom)]">
+											<ThemerSettings />
+										</div>
+									) : (
+										<ScrollArea
+											type="auto"
+											className="min-h-0 [&_[data-slot=scroll-area-viewport]]:max-h-[calc(85dvh-4.5rem)] [&_[data-slot=scroll-area-viewport]]:overscroll-y-none [&:not(:has([data-slot=scroll-area-scrollbar]))_[data-slot=scroll-area-viewport]]:touch-none [&:not(:has([data-slot=scroll-area-scrollbar]))_[data-slot=scroll-area-viewport]]:overflow-y-hidden!">
+											<div className="flex flex-col gap-3 px-4 pt-3 pb-[max(1rem,env(safe-area-inset-bottom))]">
+												<ThemerFundamentals section={panel} />
+												<Button
+													size="sm"
+													color="neutral"
+													variant="ghost"
+													className="w-full justify-between"
+													onClick={onOpenAllSettings}>
+													All settings
+													<ChevronRight aria-hidden="true" />
+												</Button>
+											</div>
+										</ScrollArea>
+									)}
+								</ThemerDrawerContext>
+							</>
+						)}
+					</div>
+					<div ref={setTarget} className="contents" />
+				</MobilePickerContext>
 			</DrawerContent>
 		</Drawer>
 	)

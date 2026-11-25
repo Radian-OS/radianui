@@ -1,3 +1,4 @@
+import { ThemerMobilePicker } from "./themer-mobile-picker"
 import {
 	ThemerDrawerContext,
 	useThemerPickerPlacement,
@@ -38,13 +39,6 @@ import {
 	DropdownMenuRadioItem,
 	DropdownMenuTrigger,
 } from "@/styles/default/ui/dropdown-menu"
-import {
-	Drawer,
-	DrawerContent,
-	DrawerDescription,
-	DrawerTitle,
-	DrawerTrigger,
-} from "@/styles/default/ui/drawer"
 import { DEFAULT_CONFIG } from "@/registry/config"
 import { cn } from "@/lib/utils"
 
@@ -288,13 +282,13 @@ function FontList({
 	)
 
 	return (
-		<Command className="border-0 p-0" shouldFilter={false}>
+		<Command
+			className={cn("border-0 p-0", inDrawer && "rounded-none bg-transparent")}
+			shouldFilter={false}>
 			{inDrawer ? (
 				<>
-					<DrawerTitle className="sr-only">{label} font</DrawerTitle>
-					<DrawerDescription className="sr-only">
-						Choose a theme font.
-					</DrawerDescription>
+					<h2 className="sr-only">{label} font</h2>
+					<p className="sr-only">Choose a theme font.</p>
 					{searchOpen ? (
 						<div className="border-border focus-within:border-primary focus-within:ring-primary-accent mx-3 flex items-center gap-2 rounded-lg border px-2.5 focus-within:ring-2">
 							<Search className="text-fg-tertiary size-5 shrink-0" />
@@ -482,26 +476,19 @@ export default function FontPicker(
 
 	if (inDrawer) {
 		return (
-			<Drawer
-				nested
+			<ThemerMobilePicker
+				trigger={<FontCard {...props} />}
 				open={open}
 				onOpenChange={setOpen}
-				direction="bottom"
-				variant="rounded"
-				handle
-				scrollLockTimeout={0}>
-				<DrawerTrigger asChild>
-					<FontCard {...props} />
-				</DrawerTrigger>
-				<DrawerContent className="max-h-[85dvh] gap-0 rounded-b-none p-0 pt-7 pb-[env(safe-area-inset-bottom)] after:hidden!">
-					<FontList
-						label={props.label}
-						value={props.value}
-						onValueChange={props.onValueChange}
-						onBack={() => setOpen(false)}
-					/>
-				</DrawerContent>
-			</Drawer>
+				label={`${props.label} font`}
+				className="min-h-0 pb-[env(safe-area-inset-bottom)] outline-none">
+				<FontList
+					label={props.label}
+					value={props.value}
+					onValueChange={props.onValueChange}
+					onBack={() => setOpen(false)}
+				/>
+			</ThemerMobilePicker>
 		)
 	}
 

@@ -1,5 +1,6 @@
 "use client"
 
+import { ThemerMobilePicker } from "./themer-mobile-picker"
 import {
 	ThemerDrawerContext,
 	useThemerPickerPlacement,
@@ -17,13 +18,6 @@ import {
 	TooltipTrigger,
 } from "@/styles/default/ui/tooltip"
 import { Button, IconButton } from "@/styles/default/ui/button"
-import {
-	Drawer,
-	DrawerContent,
-	DrawerDescription,
-	DrawerTitle,
-	DrawerTrigger,
-} from "@/styles/default/ui/drawer"
 import { ScrollArea } from "@/styles/default/ui/scroll-area"
 import { cn } from "@/lib/utils"
 import { Badge } from "@/styles/default/ui/badge"
@@ -261,12 +255,8 @@ export default function BaseColorPicker({
 							onClick={() => setOpen(false)}>
 							<ChevronLeft />
 						</IconButton>
-						<DrawerTitle className="text-fg text-base font-medium">
-							Preset
-						</DrawerTitle>
-						<DrawerDescription className="sr-only">
-							Choose a neutral base color.
-						</DrawerDescription>
+						<h2 className="text-fg text-base font-medium">Preset</h2>
+						<p className="sr-only">Choose a neutral base color.</p>
 					</div>
 				) : (
 					<span className="text-fg-secondary text-[13px] font-medium">
@@ -368,25 +358,20 @@ export default function BaseColorPicker({
 
 	if (inDrawer) {
 		return (
-			<Drawer
-				nested
+			<ThemerMobilePicker
+				trigger={trigger}
 				open={open}
 				onOpenChange={setOpen}
-				direction="bottom"
-				variant="rounded"
-				handle
-				scrollLockTimeout={0}>
-				<DrawerTrigger asChild>{trigger}</DrawerTrigger>
-				<DrawerContent className="max-h-[85dvh] gap-0 rounded-b-none p-0 pt-7 after:hidden!">
-					<ScrollArea
-						type="auto"
-						className="min-h-0 [&>[data-slot=scroll-area-viewport]]:max-h-[calc(85dvh-28px)]">
-						<div className="px-3 pb-[max(12px,env(safe-area-inset-bottom))]">
-							{presets}
-						</div>
-					</ScrollArea>
-				</DrawerContent>
-			</Drawer>
+				label="Neutral base preset"
+				className="min-h-0 outline-none">
+				<ScrollArea
+					type="auto"
+					className="min-h-0 [&>[data-slot=scroll-area-viewport]]:max-h-[calc(85dvh-28px)]">
+					<div className="px-3 pb-[max(12px,env(safe-area-inset-bottom))]">
+						{presets}
+					</div>
+				</ScrollArea>
+			</ThemerMobilePicker>
 		)
 	}
 

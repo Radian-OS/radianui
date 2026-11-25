@@ -17,6 +17,7 @@ import { Button, IconButton } from "@/styles/default/ui/button"
 import { ScrollArea } from "@/styles/default/ui/scroll-area"
 import { BadgeSettings } from "./component-settings/badge-settings"
 import { ButtonSettings } from "./component-settings/button-settings"
+import { useThemerPreset } from "@/lib/themer-preset"
 import { cn } from "@/lib/utils"
 
 const components = [...COMPONENTS_DATA].sort((a, b) => a.localeCompare(b))
@@ -29,6 +30,7 @@ const actions = [
 
 export function ThemerMobileComponents() {
 	const [selectedComponent, setSelectedComponent] = useState("Button")
+	const [params] = useThemerPreset()
 
 	return (
 		<div className="flex min-h-0 flex-1 flex-col pb-[env(safe-area-inset-bottom)]">
@@ -72,6 +74,9 @@ export function ThemerMobileComponents() {
 				className="min-h-0 flex-1 [&>[data-slot=scroll-area-viewport]]:absolute [&>[data-slot=scroll-area-viewport]]:inset-0 [&>[data-slot=scroll-area-viewport]]:touch-pan-y [&>[data-slot=scroll-area-viewport]]:overscroll-y-contain">
 				<ul className="flex flex-col gap-0.5 px-3 pb-3">
 					{components.map((name) => {
+						const hasOverrides =
+							(name === "Button" || name === "Badge") &&
+							params.components[name] !== undefined
 						const row = (
 							<Button
 								size="md"
@@ -84,7 +89,18 @@ export function ThemerMobileComponents() {
 								)}
 								onClick={() => setSelectedComponent(name)}>
 								<Component className="text-fg-secondary" aria-hidden="true" />
-								<span>{name}</span>
+								<span className="flex items-center gap-1">
+									{name}
+									{hasOverrides && (
+										<>
+											<span
+												aria-hidden="true"
+												className="bg-primary size-[5px] shrink-0 rounded-full"
+											/>
+											<span className="sr-only">Has component overrides</span>
+										</>
+									)}
+								</span>
 								<ChevronRight
 									className="text-fg-tertiary ml-auto"
 									aria-hidden="true"
