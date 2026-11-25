@@ -466,7 +466,7 @@ function ColorPickerPopover({
 							type="button"
 							className={cn(
 								"border-border bg-fill1 hover:bg-fill2 text-fg flex shrink-0 cursor-pointer items-center gap-1 rounded-lg border px-2.5 text-xs font-medium transition-colors",
-								inDrawer ? "h-9" : "h-7"
+								inDrawer ? "h-9 w-[100px] justify-between text-sm" : "h-7"
 							)}>
 							<span>{colorFormat}</span>
 							<ChevronDown
@@ -493,7 +493,7 @@ function ColorPickerPopover({
 
 				<InputWrapper
 					size={inDrawer ? "md" : "xs"}
-					className={inDrawer ? "min-w-0" : undefined}>
+					className={inDrawer ? "w-[298px] min-w-0" : undefined}>
 					<Input
 						type="text"
 						value={displayInput}
