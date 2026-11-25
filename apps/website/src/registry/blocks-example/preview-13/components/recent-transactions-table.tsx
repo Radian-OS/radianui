@@ -10,6 +10,12 @@ import { Badge, BadgeDot } from "@/components/ui/badge"
 import { Button, IconButton } from "@/components/ui/button"
 import { Card } from "@/registry/ui/card"
 import { Checkbox } from "@/registry/ui/checkbox"
+import {
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuItem,
+	DropdownMenuTrigger,
+} from "@/registry/ui/dropdown-menu"
 import { Input, InputWrapper } from "@/registry/ui/input"
 import {
 	Table,
@@ -19,6 +25,7 @@ import {
 	TableHeader,
 	TableRow,
 } from "@/registry/ui/table"
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/registry/ui/tooltip"
 
 import { RECENT_TRANSACTIONS } from "./data"
 import type { TransactionItem, TransactionStatus } from "./types"
@@ -136,7 +143,19 @@ export function RecentTransactionsTable() {
 			<div className="flex flex-col gap-3 px-3 pt-1.5 pb-1.5 sm:flex-row sm:items-center sm:justify-between">
 				<div className="font-heading text-fg-secondary flex items-center gap-1.5 text-xs font-semibold tracking-wider uppercase">
 					<span>RECENT TRANSACTIONS</span>
-					<IconSlot slot="info" className="text-fg-secondary size-4" />
+					<Tooltip>
+						<TooltipTrigger asChild>
+							<button
+								type="button"
+								className="text-fg-secondary hover:text-fg inline-flex cursor-pointer items-center transition-colors"
+								aria-label="Recent transactions info">
+								<IconSlot slot="info" className="size-4" />
+							</button>
+						</TooltipTrigger>
+						<TooltipContent withArrow>
+							Latest customer orders and payment statuses
+						</TooltipContent>
+					</Tooltip>
 				</div>
 
 				<div className="flex items-center gap-2">
@@ -158,12 +177,26 @@ export function RecentTransactionsTable() {
 					</Button>
 
 					{/* More Options */}
-					<IconButton
-						variant="outline"
-						color="neutral"
-						aria-label="More options">
-						<IconSlot slot="threeDot" />
-					</IconButton>
+					<DropdownMenu>
+						<DropdownMenuTrigger asChild>
+							<IconButton
+								variant="ghost"
+								color="neutral"
+								aria-label="More options">
+								<IconSlot slot="threeDot" />
+							</IconButton>
+						</DropdownMenuTrigger>
+						<DropdownMenuContent align="center" className="w-40">
+							<DropdownMenuItem>
+								<IconSlot slot="file-text" />
+								Export CSV
+							</DropdownMenuItem>
+							<DropdownMenuItem>
+								<IconSlot slot="setting" />
+								Table settings
+							</DropdownMenuItem>
+						</DropdownMenuContent>
+					</DropdownMenu>
 				</div>
 			</div>
 
@@ -248,12 +281,26 @@ export function RecentTransactionsTable() {
 										{tx.totalRevenue}
 									</TableCell>
 									<TableCell className="pr-4 text-right">
-										<IconButton
-											variant="outline"
-											color="neutral"
-											aria-label="Actions">
-											<IconSlot slot="threeDot" />
-										</IconButton>
+										<DropdownMenu>
+											<DropdownMenuTrigger asChild>
+												<IconButton
+													variant="outline"
+													color="neutral"
+													aria-label="Actions">
+													<IconSlot slot="threeDot" />
+												</IconButton>
+											</DropdownMenuTrigger>
+											<DropdownMenuContent align="center" className="w-40">
+												<DropdownMenuItem>
+													<IconSlot slot="file-text" />
+													View details
+												</DropdownMenuItem>
+												<DropdownMenuItem>
+													<IconSlot slot="receipt" />
+													Download receipt
+												</DropdownMenuItem>
+											</DropdownMenuContent>
+										</DropdownMenu>
 									</TableCell>
 								</TableRow>
 							)

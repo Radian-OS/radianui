@@ -5,6 +5,7 @@ import * as React from "react"
 import { cn } from "@/lib/utils"
 import { IconSlot } from "@/registry/icon/icon-library"
 import { Card } from "@/registry/ui/card"
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/registry/ui/tooltip"
 
 import { STAT_METRICS } from "./data"
 
@@ -60,9 +61,20 @@ export function StatMetrics() {
 
 					{/* Bottom Info Row outside inner box, aligned with inner content */}
 					<div className="flex items-center justify-between px-2.5 pt-1.5 pb-0.5 text-xs">
-						<div className="text-fg-tertiary flex items-center">
-							<IconSlot slot="info" className="size-4 opacity-60" />
-						</div>
+						<Tooltip>
+							<TooltipTrigger asChild>
+								<button
+									type="button"
+									className="text-fg-secondary hover:text-fg inline-flex cursor-pointer items-center transition-colors"
+									aria-label={`${metric.title} info`}>
+									<IconSlot slot="info" className="size-4" />
+								</button>
+							</TooltipTrigger>
+							<TooltipContent withArrow>
+								{metric.title}: {metric.value} ({metric.change}{" "}
+								{metric.changeText})
+							</TooltipContent>
+						</Tooltip>
 						<div className="flex items-center gap-1 text-xs leading-none tabular-nums">
 							<span
 								className={cn(
