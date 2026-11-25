@@ -47,7 +47,7 @@ export function ThemerTopbar({
 	}
 
 	return (
-		<header className="border-border bg-bg flex h-11 shrink-0 items-center justify-between gap-2 border-b px-2 sm:px-3">
+		<header className="border-border bg-bg flex h-12 shrink-0 items-center justify-between gap-2 border-b px-2 sm:px-3">
 			<div className="flex min-w-0 items-center gap-2.5">
 				<PagePicker
 					selectedComponent={selectedComponent}
@@ -68,27 +68,27 @@ export function ThemerTopbar({
 					value={device}
 					onValueChange={(val) => onDeviceChange?.(val as DeviceSize)}>
 					<TabsList
-						className="p-0.5 data-[orientation=horizontal]:h-7"
+						className="p-0.5 data-[orientation=horizontal]:h-10"
 						aria-label="Preview device">
 						<TabsTrigger
 							value="desktop"
 							aria-label="Desktop view"
 							title="Desktop view"
-							className="px-1 py-0.5 [&>svg]:size-3.5">
+							className="size-9 p-0">
 							<Monitor />
 						</TabsTrigger>
 						<TabsTrigger
 							value="tablet"
 							aria-label="Tablet view"
 							title="Tablet view"
-							className="px-1 py-0.5 [&>svg]:size-3.5">
+							className="size-9 p-0">
 							<Tablet />
 						</TabsTrigger>
 						<TabsTrigger
 							value="mobile"
 							aria-label="Mobile view"
 							title="Mobile view"
-							className="px-1 py-0.5 [&>svg]:size-3.5">
+							className="size-9 p-0">
 							<Smartphone />
 						</TabsTrigger>
 					</TabsList>
@@ -97,18 +97,15 @@ export function ThemerTopbar({
 				<div className="bg-soft-alpha hidden h-4 w-px xl:block" />
 				<Tabs className="hidden xl:flex" defaultValue="preview">
 					<TabsList
-						className="p-0.5 data-[orientation=horizontal]:h-7"
+						className="p-0.5 data-[orientation=horizontal]:h-10"
 						aria-label="Preview display">
 						<TabsTrigger
 							value="preview"
 							aria-label="Preview"
-							className="px-1.5 py-1 [&>svg]:size-4">
+							className="size-9 p-0">
 							<Eye />
 						</TabsTrigger>
-						<TabsTrigger
-							value="code"
-							aria-label="Code"
-							className="px-1.5 py-1 [&>svg]:size-4">
+						<TabsTrigger value="code" aria-label="Code" className="size-9 p-0">
 							<Code2 />
 						</TabsTrigger>
 					</TabsList>
@@ -118,9 +115,9 @@ export function ThemerTopbar({
 				<CreateProjectDialog>
 					<Button
 						color="primary"
-						size="xs"
+						size="md"
 						aria-label="Create Project"
-						className="max-xl:px-1.5 sm:order-2">
+						className="max-xl:size-9 max-xl:p-0 sm:order-2">
 						<Plus />
 						<span className="hidden xl:inline">Create Project</span>
 					</Button>
@@ -128,7 +125,7 @@ export function ThemerTopbar({
 
 				<IconButton
 					variant="outline"
-					size="xs"
+					size="md"
 					color="neutral"
 					className="sm:border-transparent"
 					aria-label="Toggle theme"
@@ -138,7 +135,7 @@ export function ThemerTopbar({
 				</IconButton>
 				<IconButton
 					variant="soft"
-					size="xs"
+					size="md"
 					color="neutral"
 					className="sm:hidden"
 					aria-label="Open mobile navigation"

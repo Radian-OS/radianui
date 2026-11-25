@@ -39,13 +39,13 @@ export default function PagePicker({
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
 				<Button
-					size="xs"
+					size="md"
 					variant="outline"
 					color="neutral"
 					className="max-w-52 min-w-0 justify-between select-none"
 					title={currentLabel}>
 					<span className="truncate">{currentLabel}</span>{" "}
-					<ChevronDown className="text-fg-secondary max-sm:size-5!" />
+					<ChevronDown className="text-fg-secondary shrink-0" />
 				</Button>
 			</DropdownMenuTrigger>
 			<DropdownMenuContent className="max-w-[calc(100vw-1rem)]">
