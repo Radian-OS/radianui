@@ -688,7 +688,7 @@ function SmartphoneMockupCard() {
 			<div className="absolute inset-0 bg-[color-mix(in_srgb,var(--color-primary)_70%,#808080)] mix-blend-color" />
 			<div className="absolute inset-0 [background:conic-gradient(at_2px_2px,transparent_270deg,rgb(36_46_66/.04)_0)_8px_5px/10px_10px]" />
 
-			<div className="absolute inset-0 blur-[.5px]">
+			<div className="absolute inset-0">
 				<img
 					src="/themer/phone.webp"
 					alt=""
@@ -978,7 +978,7 @@ function TestimonialCard({ className }: { className?: string } = {}) {
 				</p>
 			</div>
 
-			<div className="relative aspect-[576/516] overflow-hidden rounded-2xl bg-[linear-gradient(165deg,color-mix(in_oklab,var(--color-primary),white_10%),var(--color-primary))]">
+			<div className="relative aspect-[576/516] shrink-0 overflow-hidden rounded-2xl bg-[linear-gradient(165deg,color-mix(in_oklab,var(--color-primary),white_10%),var(--color-primary))]">
 				<svg
 					viewBox="25.8 17.95 28.47 28.47"
 					className="absolute top-[8%] left-[7%] w-[85%] text-white/25">
@@ -992,7 +992,13 @@ function TestimonialCard({ className }: { className?: string } = {}) {
 				</svg>
 
 				<div className="absolute top-[5%] left-[7%] isolate aspect-square w-[87%]">
-					<img src="/themer/person.png" alt="" className="size-full" />
+					<img
+						src="/themer/person.png"
+						alt=""
+						width={376}
+						height={376}
+						className="block h-auto w-full"
+					/>
 					<div
 						className="bg-primary absolute bottom-0 left-0 aspect-[492/217] w-[98%] mix-blend-color"
 						style={{
