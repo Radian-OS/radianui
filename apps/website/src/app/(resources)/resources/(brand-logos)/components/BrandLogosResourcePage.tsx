@@ -75,11 +75,7 @@ export async function BrandLogosResourcePage({
 					})}
 				</div>
 			}
-			title={
-				selectedBrand
-					? `${selectedBrand.name} Logo SVG & PNG`
-					: "Brand & Tech Company Logos"
-			}
+			title="Brand & Tech Company Logos"
 			description={
 				selectedBrand
 					? getBrandLogoMetadataDescription(selectedBrand.id)
