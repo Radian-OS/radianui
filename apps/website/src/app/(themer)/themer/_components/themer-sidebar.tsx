@@ -13,7 +13,7 @@ import {
 	SidebarMenuItem,
 } from "@/styles/default/ui/sidebar"
 import { Button } from "@/styles/default/ui/button"
-import { ChevronRight, Component, Lock, Shuffle } from "lucide-react"
+import { ChevronRight, Component, RotateCcw, Shuffle } from "lucide-react"
 import { BadgeSettings } from "./component-settings/badge-settings"
 import {
 	Tabs,
@@ -119,6 +119,7 @@ export function ThemerSidebar() {
 	const shuffleFundamentals = useThemerStore(
 		(state) => state.shuffleFundamentals
 	)
+	const resetParams = useThemerStore((state) => state.resetParams)
 
 	return (
 		<Sidebar
@@ -140,9 +141,15 @@ export function ThemerSidebar() {
 					<Shuffle className="text-fg-secondary size-4" />
 					Shuffle all
 				</Button>
-				<Button size="sm" variant="outline" className="w-fit" color="neutral">
-					<Lock className="text-fg-secondary size-4" />
-					Lock all
+				<Button
+					type="button"
+					size="sm"
+					variant="outline"
+					className="w-fit"
+					color="neutral"
+					onClick={resetParams}>
+					<RotateCcw className="text-fg-secondary size-4" />
+					Reset
 				</Button>
 			</SidebarFooter>
 		</Sidebar>
