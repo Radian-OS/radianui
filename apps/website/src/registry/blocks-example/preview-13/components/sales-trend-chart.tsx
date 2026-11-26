@@ -75,7 +75,7 @@ export function SalesTrendChart() {
 	}))
 
 	return (
-		<Card className="bg-fill1 border-border/70 flex flex-1 flex-col justify-between gap-0 p-0.5 pb-1 shadow-2xs">
+		<Card className="bg-fill1 border-border/70 flex min-w-0 flex-1 flex-col justify-between gap-0 overflow-hidden p-0.5 pb-1 shadow-2xs">
 			{/* Outer Card Top Header */}
 			<div className="flex items-center justify-between px-3 pt-1.5 pb-1.5">
 				<div className="font-heading text-fg-secondary flex items-center gap-1.5 text-xs font-semibold tracking-wider uppercase">
@@ -117,9 +117,9 @@ export function SalesTrendChart() {
 			</div>
 
 			{/* Inner White Box Container */}
-			<Card className="bg-elevation-level1 border-border/60 flex flex-1 flex-col justify-between border p-4 shadow-2xs">
+			<Card className="bg-elevation-level1 border-border/60 flex min-w-0 flex-1 flex-col justify-between border p-4 shadow-2xs">
 				{/* Subheader: Revenue, Legend & Capsule Tabs */}
-				<div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+				<div className="flex flex-wrap items-center justify-between gap-3">
 					{/* Left: Total Revenue */}
 					<div className="flex items-baseline gap-2">
 						<span className="text-fg-tertiary text-sm">Total Revenue :</span>
@@ -161,7 +161,7 @@ export function SalesTrendChart() {
 				</div>
 
 				{/* ── Main Chart Area with Waffle Grid ── */}
-				<div className="relative mt-3 w-full [scrollbar-width:none] overflow-x-auto py-1 [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+				<div className="relative mt-3 w-full min-w-0 [scrollbar-width:none] overflow-x-auto py-1 [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
 					<div className="relative min-w-[530px] pb-2">
 						<svg
 							viewBox="0 0 535 220"

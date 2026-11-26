@@ -109,7 +109,7 @@ export function DateRangePopover({
 				</Button>
 			</PopoverTrigger>
 			<PopoverContent
-				className="border-border w-auto overflow-hidden rounded-xl p-0 shadow-lg"
+				className="border-border w-auto max-w-[calc(100vw-2rem)] overflow-hidden rounded-xl p-0 shadow-lg"
 				align={align}>
 				<div className="flex flex-col-reverse sm:flex-row">
 					<div className="border-border text-fg flex w-full flex-col border-t px-1 py-2 sm:w-48 sm:border-t-0 sm:border-r">

@@ -13,6 +13,7 @@ import {
 } from "@/registry/ui/avatar"
 import { Badge } from "@/components/ui/badge"
 import { Card } from "@/registry/ui/card"
+import { Input, InputWrapper } from "@/registry/ui/input"
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -36,6 +37,7 @@ import {
 	SidebarMenuButton,
 	SidebarMenuItem,
 	SidebarSeparator,
+	useSidebar,
 } from "@/registry/ui/sidebar"
 
 interface DashboardSidebarProps {
@@ -147,11 +149,12 @@ export function DashboardSidebar({
 }: DashboardSidebarProps) {
 	const [selectedWorkspace, setSelectedWorkspace] =
 		React.useState("spark-pixel")
+	const { isMobile, setOpen, setOpenMobile } = useSidebar()
 
 	return (
 		<Sidebar
-			collapsible="none"
-			className="bg-fill1 sticky top-0 flex h-screen w-60 shrink-0 flex-col justify-between border-0 p-3 select-none"
+			collapsible="offcanvas"
+			className="bg-fill1 border-0 p-3 select-none"
 			style={
 				{
 					"--color-sidebar": "var(--color-fill1)",
@@ -182,7 +185,10 @@ export function DashboardSidebar({
 							</span>
 						</Card>
 					</DropdownMenuTrigger>
-					<DropdownMenuContent align="start" sideOffset={4} className="w-68">
+					<DropdownMenuContent
+						align="start"
+						sideOffset={4}
+						className="w-60 sm:w-68">
 						<DropdownMenuLabel className="text-xs uppercase">
 							Switch Workspace
 						</DropdownMenuLabel>
@@ -229,6 +235,12 @@ export function DashboardSidebar({
 						</DropdownMenuItem>
 					</DropdownMenuContent>
 				</DropdownMenu>
+
+				{/* Mobile search moved out of cramped top header into sidebar menu */}
+				<InputWrapper className="mt-2.5 w-full sm:hidden">
+					<IconSlot slot="search" className="text-fg-tertiary size-4" />
+					<Input type="search" placeholder="Search..." />
+				</InputWrapper>
 			</SidebarHeader>
 
 			{/* Sidebar Navigation */}
@@ -250,7 +262,11 @@ export function DashboardSidebar({
 												<SidebarMenuButton
 													size="sm"
 													isActive={isActive}
-													onClick={() => onSelectNav(item.id)}
+													onClick={() => {
+														onSelectNav(item.id)
+														if (isMobile) setOpenMobile(false)
+														else if (window.innerWidth < 1024) setOpen(false)
+													}}
 													className={cn(
 														"h-8.5 px-2.5 text-sm font-medium transition-colors",
 														isActive ? "font-semibold" : "text-fg-secondary"
@@ -304,10 +320,10 @@ export function DashboardSidebar({
 						</Card>
 					</DropdownMenuTrigger>
 					<DropdownMenuContent
-						align="end"
-						side="right"
+						align={isMobile ? "center" : "end"}
+						side={isMobile ? "top" : "right"}
 						sideOffset={8}
-						className="w-68">
+						className="w-60 sm:w-68">
 						<div className="flex w-full items-center gap-2.5 p-2">
 							<Avatar size="md" rounded="square" className="bg-fill2">
 								<AvatarImage
