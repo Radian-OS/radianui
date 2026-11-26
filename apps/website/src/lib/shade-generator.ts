@@ -135,12 +135,43 @@ export function formatOklch(L: number, C: number, H: number) {
 	return `oklch(${L.toFixed(4)} ${C.toFixed(4)} ${H.toFixed(2)})`
 }
 
+/**
+ * Resolves an adaptive OKLCH key for near-white and near-black neutrals so
+ * interactive elements stay legible across light and dark modes while
+ * preserving the original hue and chroma.
+ */
+export function resolveAdaptiveKey(
+	L: number,
+	C: number,
+	H: number,
+	mode: "light" | "dark" = "light"
+): [number, number, number] {
+	const isNeutral = C <= 0.04
+	const isNearWhite = L >= 0.9 && isNeutral
+	// 0.22 covers near-black neutrals like #171717 (0.2046) and #18181B (0.2103)
+	const isNearBlack = L <= 0.22 && isNeutral
+
+	if (!isNearWhite && !isNearBlack) {
+		return [L, C, H]
+	}
+
+	let lightness = L
+	if (isNearWhite && mode === "light") {
+		lightness = 0.17 + (1 - L) * 0.8
+	} else if (isNearBlack && mode === "dark") {
+		lightness = 1 - L * 0.25
+	}
+
+	return [lightness, fitChroma(lightness, C, H), H]
+}
+
 export function generateCustomColorShades(
 	hex: string,
 	prefix: string = "primary",
 	mode: "light" | "dark" = "light"
 ) {
-	const [L, C, H] = toOklch(rgbToOklab(hexToRgb(hex)))
+	const [rawL, rawC, H] = toOklch(rgbToOklab(hexToRgb(hex)))
+	const [L, C] = resolveAdaptiveKey(rawL, fitChroma(rawL, rawC, H), H, mode)
 	const primaryC = fitChroma(L, C, H)
 	const luminance = relLuminance(L, primaryC, H)
 	const isLight = luminance > 0.3
