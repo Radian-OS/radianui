@@ -25,20 +25,18 @@ export function StatMetrics() {
 			{STAT_METRICS.map((metric) => (
 				<Card
 					key={metric.title}
-					className="bg-fill1 border-border/70 flex min-w-0 flex-col justify-between gap-0 p-0.5 pb-2 shadow-2xs">
+					className="bg-elevation-negative flex min-w-0 flex-col justify-between gap-0 border-0 p-0.5 shadow-none">
 					{/* Inner White Container Box */}
-					<Card className="bg-elevation-level1 border-border/60 flex min-w-0 flex-col justify-between gap-3 border px-3 pt-3.5 pb-3 shadow-2xs">
+					<Card className="bg-elevation-level1 border-border/60 flex min-w-0 flex-col justify-between gap-3 border p-4 shadow-none">
 						{/* Header Label */}
-						<div className="font-heading text-fg-tertiary text-xs leading-none font-semibold tracking-wider uppercase">
+						<div className="font-heading text-fg-tertiary text-sm leading-none font-semibold tracking-wider uppercase">
 							{metric.title}
 						</div>
 
 						{/* Metric Value & Sparklines */}
 						<div className="flex items-end justify-between gap-2">
 							<div className="flex min-w-0 items-baseline gap-1.5">
-								<span className="font-heading text-fg text-lg leading-none font-bold tracking-tight">
-									{metric.value}
-								</span>
+								<span className="heading-5 text-fg">{metric.value}</span>
 								{metric.unit && (
 									<span className="text-fg-secondary text-xs font-normal">
 										{metric.unit}
@@ -58,7 +56,7 @@ export function StatMetrics() {
 									return (
 										<ChartContainer
 											config={sparklineConfig}
-											className="aspect-auto h-8 w-14">
+											className="aspect-auto h-10 w-16">
 											<BarChart
 												data={barData}
 												margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
@@ -66,7 +64,8 @@ export function StatMetrics() {
 												<YAxis hide domain={[0, 100]} />
 												<Bar
 													dataKey="value"
-													barSize={4}
+													barSize={5}
+													radius={2}
 													isAnimationActive={false}>
 													{barData.map((entry) => (
 														<Cell
@@ -88,7 +87,7 @@ export function StatMetrics() {
 					</Card>
 
 					{/* Bottom Info Row outside inner box, aligned with inner content */}
-					<div className="flex items-center justify-between px-2.5 pt-1.5 pb-0.5 text-xs">
+					<div className="flex items-center justify-between px-2.5 py-2 text-xs">
 						<Tooltip>
 							<TooltipTrigger asChild>
 								<button

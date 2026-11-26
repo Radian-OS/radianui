@@ -138,10 +138,10 @@ export function RecentTransactionsTable() {
 	}
 
 	return (
-		<Card className="bg-fill1 border-border/70 flex min-w-0 flex-col justify-between gap-0 overflow-hidden p-0.5 shadow-2xs">
+		<Card className="bg-elevation-negative flex min-w-0 flex-col justify-between gap-0 overflow-hidden border-0 p-0.5 shadow-none">
 			{/* Outer Card Top Header */}
 			<div className="flex flex-col gap-3 px-3 pt-1.5 pb-1.5 lg:flex-row lg:items-center lg:justify-between">
-				<div className="font-heading text-fg-secondary flex items-center gap-1.5 text-xs font-semibold tracking-wider uppercase">
+				<div className="font-heading text-fg-secondary flex items-center gap-1.5 text-sm font-semibold tracking-wider uppercase">
 					<span>RECENT TRANSACTIONS</span>
 					<Tooltip>
 						<TooltipTrigger asChild>
@@ -201,7 +201,7 @@ export function RecentTransactionsTable() {
 			</div>
 
 			{/* Inner White Box Table Container */}
-			<Card className="bg-elevation-level1 border-border/60 min-w-0 [scrollbar-width:none] overflow-x-auto border p-1 shadow-2xs [-ms-overflow-style:none] sm:p-1.5 [&::-webkit-scrollbar]:hidden">
+			<Card className="bg-elevation-level1 border-border/60 min-w-0 [scrollbar-width:none] overflow-x-auto border p-1 shadow-none [-ms-overflow-style:none] sm:p-1.5 [&::-webkit-scrollbar]:hidden">
 				<Table>
 					<TableHeader>
 						<TableRow className="border-border/60 border-b hover:bg-transparent">
