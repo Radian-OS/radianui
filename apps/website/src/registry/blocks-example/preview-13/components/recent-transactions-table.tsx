@@ -35,12 +35,12 @@ type SortDir = "asc" | "desc"
 
 const SORTABLE_COLUMNS: { key: SortKey; label: string }[] = [
 	{ key: "id", label: "ID" },
-	{ key: "customer", label: "CUSTOMER" },
-	{ key: "product", label: "PRODUCT" },
-	{ key: "status", label: "STATUS" },
-	{ key: "qty", label: "QTY" },
-	{ key: "unitPrice", label: "UNIT PRICE" },
-	{ key: "totalRevenue", label: "TOTAL REVENUE" },
+	{ key: "customer", label: "Customer" },
+	{ key: "product", label: "Product" },
+	{ key: "status", label: "Status" },
+	{ key: "qty", label: "Qty" },
+	{ key: "unitPrice", label: "Unit Price" },
+	{ key: "totalRevenue", label: "Total Revenue" },
 ]
 
 function parseSortableValue(
@@ -138,7 +138,7 @@ export function RecentTransactionsTable() {
 	}
 
 	return (
-		<Card className="bg-fill1 border-border/70 flex min-w-0 flex-col justify-between gap-0 overflow-hidden p-0.5 pb-1 shadow-2xs">
+		<Card className="bg-fill1 border-border/70 flex min-w-0 flex-col justify-between gap-0 overflow-hidden p-0.5 shadow-2xs">
 			{/* Outer Card Top Header */}
 			<div className="flex flex-col gap-3 px-3 pt-1.5 pb-1.5 lg:flex-row lg:items-center lg:justify-between">
 				<div className="font-heading text-fg-secondary flex items-center gap-1.5 text-xs font-semibold tracking-wider uppercase">
@@ -224,7 +224,7 @@ export function RecentTransactionsTable() {
 								return (
 									<TableHead
 										key={col.key}
-										className="text-fg-secondary bg-transparent font-semibold tracking-wider uppercase">
+										className="text-fg-secondary bg-transparent font-semibold">
 										<button
 											type="button"
 											onClick={() => handleSort(col.key)}
@@ -238,8 +238,8 @@ export function RecentTransactionsTable() {
 									</TableHead>
 								)
 							})}
-							<TableHead className="text-fg-secondary bg-transparent pr-4 text-right font-semibold tracking-wider uppercase">
-								ACTIONS
+							<TableHead className="text-fg-secondary bg-transparent pr-4 text-right font-semibold">
+								Actions
 							</TableHead>
 						</TableRow>
 					</TableHeader>

@@ -1,21 +1,17 @@
 "use client"
 
 import * as React from "react"
-import {
-	Area,
-	AreaChart,
-	CartesianGrid,
-	ReferenceDot,
-	ReferenceLine,
-	XAxis,
-	YAxis,
-} from "recharts"
+import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts"
 
 import { Badge } from "@/components/ui/badge"
 import { IconButton } from "@/components/ui/button"
 import { IconSlot } from "@/registry/icon/icon-library"
 import { Card } from "@/registry/ui/card"
-import { type ChartConfig, ChartContainer } from "@/registry/ui/chart"
+import {
+	type ChartConfig,
+	ChartContainer,
+	ChartTooltip,
+} from "@/registry/ui/chart"
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -32,10 +28,6 @@ const ACQUISITION_DATA: Record<
 	{
 		headline: string
 		change: string
-		tooltipDate: string
-		tooltipValue: string
-		highlightDate: string
-		highlightY: number
 		organic: string
 		paid: string
 		points: { date: string; value: number }[]
@@ -44,10 +36,6 @@ const ACQUISITION_DATA: Record<
 	Sessions: {
 		headline: "110,400",
 		change: "+14.2%",
-		tooltipDate: "Nov 15, 2025",
-		tooltipValue: "4,120 sessions",
-		highlightDate: "Nov 15",
-		highlightY: 4120,
 		organic: "72,760",
 		paid: "37,640",
 		points: [
@@ -63,10 +51,6 @@ const ACQUISITION_DATA: Record<
 	Signups: {
 		headline: "18,920",
 		change: "+9.8%",
-		tooltipDate: "Nov 15, 2025",
-		tooltipValue: "684 signups",
-		highlightDate: "Nov 15",
-		highlightY: 684,
 		organic: "12,480",
 		paid: "6,440",
 		points: [
@@ -93,7 +77,7 @@ export function RevenueBreakdownCard() {
 	const data = ACQUISITION_DATA[activeTab]
 
 	return (
-		<Card className="bg-fill1 border-border/70 flex min-w-0 flex-1 flex-col justify-between gap-0 overflow-hidden p-0.5 pb-1 shadow-2xs">
+		<Card className="bg-fill1 border-border/70 flex min-w-0 flex-1 flex-col justify-between gap-0 overflow-hidden p-0.5 shadow-2xs">
 			{/* Outer Card Top Header */}
 			<div className="flex items-center justify-between gap-2 px-3 pt-1.5 pb-1.5">
 				<div className="font-heading text-fg-secondary flex items-center gap-1.5 text-xs font-semibold tracking-wider uppercase">
@@ -167,7 +151,7 @@ export function RevenueBreakdownCard() {
 						<AreaChart
 							accessibilityLayer
 							data={data.points}
-							margin={{ top: 18, right: 0, left: 0, bottom: 0 }}>
+							margin={{ top: 18, right: 8, left: 8, bottom: 0 }}>
 							<defs>
 								<linearGradient id="acqGradient" x1="0" y1="0" x2="0" y2="1">
 									<stop
@@ -217,10 +201,27 @@ export function RevenueBreakdownCard() {
 								}}
 							/>
 							<YAxis hide domain={[0, "dataMax + 2200"]} />
-							<ReferenceLine
-								x={data.highlightDate}
-								stroke="var(--color-border)"
-								strokeWidth={1}
+							<ChartTooltip
+								cursor={{ stroke: "var(--color-border)", strokeWidth: 1 }}
+								content={({ active, payload }) => {
+									if (!active || !payload?.length) return null
+									const point = payload[0]?.payload as
+										| { date: string; value: number }
+										| undefined
+									if (!point) return null
+
+									return (
+										<div className="border-border bg-elevation-level1 pointer-events-none rounded-md border px-2.5 py-1.5 whitespace-nowrap shadow-md">
+											<div className="text-fg-tertiary text-xs leading-tight">
+												{point.date}, 2025
+											</div>
+											<div className="text-fg mt-0.5 text-xs font-semibold tabular-nums">
+												{point.value.toLocaleString()}{" "}
+												{activeTab === "Sessions" ? "sessions" : "signups"}
+											</div>
+										</div>
+									)
+								}}
 							/>
 							<Area
 								dataKey="value"
@@ -228,27 +229,16 @@ export function RevenueBreakdownCard() {
 								stroke="var(--color-primary)"
 								strokeWidth={1.75}
 								fill="url(#acqGradient)"
-							/>
-							<ReferenceDot
-								x={data.highlightDate}
-								y={data.highlightY}
-								r={4.5}
-								fill="var(--color-elevation-level1)"
-								stroke="var(--color-primary)"
-								strokeWidth={2}
+								dot={false}
+								activeDot={{
+									r: 4.5,
+									fill: "var(--color-elevation-level1)",
+									stroke: "var(--color-primary)",
+									strokeWidth: 2,
+								}}
 							/>
 						</AreaChart>
 					</ChartContainer>
-
-					{/* Floating Tooltip Callout above and to the right of active point */}
-					<div className="border-border bg-elevation-level1 pointer-events-none absolute top-[26%] left-[53%] rounded-md border px-2.5 py-1.5 whitespace-nowrap shadow-md">
-						<div className="text-fg-tertiary text-xs leading-tight">
-							{data.tooltipDate}
-						</div>
-						<div className="text-fg mt-0.5 text-xs font-semibold tabular-nums">
-							{data.tooltipValue}
-						</div>
-					</div>
 				</div>
 
 				{/* Clean Bottom Summary Bar */}

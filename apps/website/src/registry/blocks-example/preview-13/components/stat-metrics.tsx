@@ -2,12 +2,22 @@
 
 import * as React from "react"
 
+import { Bar, BarChart, Cell, YAxis } from "recharts"
+
 import { cn } from "@/lib/utils"
 import { IconSlot } from "@/registry/icon/icon-library"
 import { Card } from "@/registry/ui/card"
+import { type ChartConfig, ChartContainer } from "@/registry/ui/chart"
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/registry/ui/tooltip"
 
 import { STAT_METRICS } from "./data"
+
+const sparklineConfig = {
+	value: {
+		label: "Value",
+		color: "var(--color-primary)",
+	},
+} satisfies ChartConfig
 
 export function StatMetrics() {
 	return (
@@ -36,24 +46,42 @@ export function StatMetrics() {
 								)}
 							</div>
 
-							{/* Sparkline Bars: highlight peak bar */}
-							<div className="flex shrink-0 items-end gap-[3px] pb-0.5 sm:gap-1">
+							{/* Sparkline Bar Graph (Radian ChartContainer): highlight peak bar */}
+							<div className="shrink-0 pb-0.5">
 								{(() => {
 									const peak = Math.max(...metric.bars)
-									return metric.bars.map((height, i) => {
-										const isHighlighted = height === peak
+									const barData = metric.bars.map((value, idx) => ({
+										idx,
+										value,
+									}))
 
-										return (
-											<div
-												key={i}
-												className={cn(
-													"w-1 shrink-0 transition-colors",
-													isHighlighted ? "bg-primary" : "bg-fill2"
-												)}
-												style={{ height: `${(height / 100) * 32}px` }}
-											/>
-										)
-									})
+									return (
+										<ChartContainer
+											config={sparklineConfig}
+											className="aspect-auto h-8 w-14">
+											<BarChart
+												data={barData}
+												margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
+												barCategoryGap={3}>
+												<YAxis hide domain={[0, 100]} />
+												<Bar
+													dataKey="value"
+													barSize={4}
+													isAnimationActive={false}>
+													{barData.map((entry) => (
+														<Cell
+															key={entry.idx}
+															fill={
+																entry.value === peak
+																	? "var(--color-primary)"
+																	: "var(--color-fill2)"
+															}
+														/>
+													))}
+												</Bar>
+											</BarChart>
+										</ChartContainer>
+									)
 								})()}
 							</div>
 						</div>
