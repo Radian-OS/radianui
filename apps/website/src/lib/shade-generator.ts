@@ -146,8 +146,8 @@ export function resolveAdaptiveKey(
 	H: number,
 	mode: "light" | "dark" = "light"
 ): [number, number, number] {
-	const isNeutral = C <= 0.04
-	const isNearWhite = L >= 0.9 && isNeutral
+	const isNeutral = C <= 0.06
+	const isNearWhite = L >= 0.7 && isNeutral
 	// 0.22 covers near-black neutrals like #171717 (0.2046) and #18181B (0.2103)
 	const isNearBlack = L <= 0.22 && isNeutral
 
