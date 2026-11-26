@@ -138,7 +138,7 @@ export function RecentTransactionsTable() {
 	}
 
 	return (
-		<Card className="bg-fill1 border-border/70 flex min-w-0 flex-col justify-between gap-0 overflow-hidden p-0.5 pb-1 shadow-2xs">
+		<Card className="bg-fill1 border-border/70 flex min-w-0 flex-col justify-between gap-0 overflow-hidden p-0.5 shadow-2xs">
 			{/* Outer Card Top Header */}
 			<div className="flex flex-col gap-3 px-3 pt-1.5 pb-1.5 lg:flex-row lg:items-center lg:justify-between">
 				<div className="font-heading text-fg-secondary flex items-center gap-1.5 text-xs font-semibold tracking-wider uppercase">
