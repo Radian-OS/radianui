@@ -327,7 +327,7 @@ function ContextWindow({
 
 	return (
 		<div className={cn("bg-fill2 w-[356px] rounded-2xl p-1.5", className)}>
-			<Card className="gap-0 rounded-2xl p-4.5 shadow-[0_4px_8px_rgb(25_24_27/0.08)]">
+			<Card className="gap-0 rounded-2xl p-4.5">
 				<div className="flex h-6 items-center justify-between">
 					<h3 className="text-sm font-medium">Context window</h3>
 					<Badge size="md" color="neutral">
@@ -470,7 +470,7 @@ function TransactionRow({
 
 function SecurityAlertCard() {
 	return (
-		<Card className="text-primary-fg bg-primary-text relative w-full gap-5.5 overflow-hidden rounded-3xl p-6 shadow-none">
+		<Card className="text-primary-fg bg-primary-text border-soft-alpha relative w-full gap-5.5 overflow-hidden rounded-3xl p-6 shadow-none">
 			<div className="relative z-10 flex flex-col items-start gap-3">
 				<div className="flex items-center gap-3">
 					<div className="border-primary-accent bg-primary-accent flex size-9 shrink-0 items-center justify-center rounded-lg border">
@@ -621,10 +621,10 @@ function CompanyProfileCard({ className }: { className?: string } = {}) {
 					</p>
 				</div>
 
-				<div className="pointer-events-none absolute inset-0 rounded-[inherit] border-[1.4px] border-[#242E42]/[.08]" />
+				<div className="border-soft-alpha pointer-events-none absolute inset-0 rounded-[inherit] border-[1.4px]" />
 			</div>
 
-			<div className="pointer-events-none absolute inset-0 rounded-[inherit] border border-[#242E42]/[.08]" />
+			<div className="pointer-events-none absolute inset-0 rounded-[inherit]" />
 		</Card>
 	)
 }
@@ -842,7 +842,7 @@ const PROFILE_MENU_GROUPS = [
 
 function ProfileMenuCard() {
 	return (
-		<Card className="border-soft relative isolate flex max-h-89 items-center justify-center gap-0 overflow-hidden rounded-3xl p-8 pb-0">
+		<Card className="border-soft relative isolate flex max-h-89 items-center justify-center gap-0 overflow-hidden rounded-3xl p-8 pb-0 shadow-none">
 			<TintedBackdrop
 				src="/themer/pattern1.png"
 				alt="Pattern"
@@ -916,7 +916,7 @@ const DEVICE_CONTROLS = ["monitor", "laptop", "smartphone"] as const
 
 function ControlBar() {
 	return (
-		<div className="bg-primary relative flex h-fit items-center justify-center gap-2 overflow-clip rounded-3xl p-6">
+		<div className="bg-primary relative flex h-fit items-center justify-center gap-2 overflow-clip rounded-3xl p-6 shadow-none">
 			<TintedBackdrop src="/themer/grainypattern.png" />
 
 			<IconButton
