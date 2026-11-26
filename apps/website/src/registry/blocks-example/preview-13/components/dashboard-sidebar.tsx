@@ -175,11 +175,11 @@ const NAV_GROUPS: NavGroup[] = [
 
 const WORKSPACES = [
 	{
-		id: "spark-pixel",
-		name: "Spark Pixel Team",
+		id: "radian-ui",
+		name: "Radian UI",
 		members: "14 members",
 		avatar: null,
-		fallback: "SP",
+		fallback: "RU",
 	},
 	{
 		id: "xavion",
@@ -221,8 +221,7 @@ export function DashboardSidebar({
 	activeNav,
 	onSelectNav,
 }: DashboardSidebarProps) {
-	const [selectedWorkspace, setSelectedWorkspace] =
-		React.useState("spark-pixel")
+	const [selectedWorkspace, setSelectedWorkspace] = React.useState("radian-ui")
 	const { isMobile, setOpen, setOpenMobile } = useSidebar()
 
 	return (
@@ -238,17 +237,21 @@ export function DashboardSidebar({
 			<SidebarHeader className="p-0">
 				<DropdownMenu indicatorPosition="right">
 					<DropdownMenuTrigger asChild>
-						<Card className="border-border/70 bg-elevation-level1 flex cursor-pointer flex-row items-center justify-between gap-0 p-2.5 shadow-2xs">
+						<Card className="border-border/70 bg-elevation-level1 flex cursor-pointer flex-row items-center justify-between gap-0 rounded-xl p-2.5 shadow-none">
 							<div className="flex min-w-0 items-center gap-2.5">
-								<div className="flex size-8 shrink-0 items-center justify-center">
-									<RadianLogo width={30} height={30} />
+								<div className="flex size-9 shrink-0 items-center justify-center">
+									<RadianLogo
+										width={36}
+										height={36}
+										className="block shrink-0"
+									/>
 								</div>
-								<div className="flex flex-col truncate text-left">
+								<div className="flex flex-col gap-1 truncate text-left">
 									<span className="text-fg-tertiary text-xs leading-tight font-medium">
 										Agency
 									</span>
 									<span className="text-fg truncate text-sm leading-tight font-semibold">
-										Spark Pixel Team
+										Radian UI
 									</span>
 								</div>
 							</div>
@@ -342,8 +345,10 @@ export function DashboardSidebar({
 														else if (window.innerWidth < 1024) setOpen(false)
 													}}
 													className={cn(
-														"h-8.5 px-2.5 text-sm font-medium transition-colors",
-														isActive ? "font-semibold" : "text-fg-secondary"
+														"h-8 px-2.5 text-sm font-medium transition-colors",
+														isActive
+															? "text-fg font-medium"
+															: "text-fg-secondary"
 													)}>
 													<IconSlot slot={item.icon} className="size-4" />
 													<span>{item.label}</span>
@@ -362,24 +367,24 @@ export function DashboardSidebar({
 			<SidebarFooter className="p-0 pt-2">
 				<DropdownMenu>
 					<DropdownMenuTrigger asChild>
-						<Card className="border-border/70 bg-elevation-level1 flex cursor-pointer flex-row items-center justify-between gap-0 p-2.5 shadow-2xs">
+						<Card className="border-border/70 bg-elevation-level1 flex cursor-pointer flex-row items-center justify-between gap-0 rounded-xl p-2.5 shadow-none">
 							<div className="flex min-w-0 items-center gap-2.5">
 								<Avatar
-									size="sm"
+									size="md"
 									rounded="square"
 									className="border-border/60 bg-fill2 shrink-0 border">
 									<AvatarImage
 										src="https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@v1.0.2/packages/uncompressed-avatars/src/2.png"
-										alt="Ari"
+										alt="Alex Rivera"
 									/>
 									<AvatarFallback className="text-xs font-semibold">
 										AR
 									</AvatarFallback>
 									<AvatarIndicator className="bg-success ring-bg -right-0.5 -bottom-0.5 size-2 rounded-full ring-2" />
 								</Avatar>
-								<div className="flex flex-col truncate text-left">
+								<div className="flex flex-col gap-1 truncate text-left">
 									<span className="text-fg truncate text-sm leading-tight font-semibold">
-										Ari
+										Alex Rivera
 									</span>
 									<span className="text-fg-secondary truncate text-xs leading-tight">
 										Pro Plan
@@ -402,14 +407,14 @@ export function DashboardSidebar({
 							<Avatar size="md" rounded="square" className="bg-fill2">
 								<AvatarImage
 									src="https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@v1.0.2/packages/uncompressed-avatars/src/2.png"
-									alt="Ari"
+									alt="Alex Rivera"
 								/>
 								<AvatarFallback className="text-xs">AR</AvatarFallback>
 							</Avatar>
 							<div className="flex flex-1 flex-col">
-								<span className="text-sm font-medium">Ari</span>
+								<span className="text-sm font-medium">Alex Rivera</span>
 								<span className="text-fg-tertiary text-xs font-normal">
-									ari@radian.com
+									alex@radian.com
 								</span>
 							</div>
 							<Badge color="primary">PRO</Badge>

@@ -19,7 +19,7 @@ export function WelcomeHeader() {
 	return (
 		<div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
 			<div>
-				<h1 className="heading-6 text-fg">Welcome back, Ari</h1>
+				<h1 className="heading-5 text-fg">Welcome back, Alex Rivera</h1>
 			</div>
 
 			<div className="grid grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:items-center">

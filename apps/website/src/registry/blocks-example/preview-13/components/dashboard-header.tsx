@@ -35,7 +35,7 @@ export function DashboardHeader() {
 						</BreadcrumbItem>
 						<BreadcrumbSeparator className="text-fg-tertiary hidden items-center sm:inline-flex [&>svg]:size-3.5" />
 						<BreadcrumbItem className="inline-flex items-center">
-							<BreadcrumbPage className="text-primary font-semibold">
+							<BreadcrumbPage className="text-fg font-semibold">
 								Overview
 							</BreadcrumbPage>
 						</BreadcrumbItem>
@@ -67,12 +67,12 @@ export function DashboardHeader() {
 				</IconButton>
 
 				<Avatar
-					size="sm"
+					size="md"
 					rounded="square"
 					className="border-border/70 bg-fill2 shrink-0 border sm:ml-1">
 					<AvatarImage
 						src="https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@v1.0.2/packages/uncompressed-avatars/src/2.png"
-						alt="Ari"
+						alt="Alex Rivera"
 					/>
 					<AvatarFallback className="text-xs font-semibold">AR</AvatarFallback>
 				</Avatar>

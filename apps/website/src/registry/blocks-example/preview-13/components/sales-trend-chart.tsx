@@ -280,10 +280,10 @@ export function SalesTrendChart() {
 	}))
 
 	return (
-		<Card className="bg-fill1 border-border/70 flex min-w-0 flex-1 flex-col justify-between gap-0 overflow-hidden p-0.5 shadow-2xs">
+		<Card className="bg-elevation-negative flex min-w-0 flex-1 flex-col justify-between gap-0 overflow-hidden border-0 p-0.5 shadow-none">
 			{/* Outer Card Top Header */}
 			<div className="flex items-center justify-between px-3 pt-1.5 pb-1.5">
-				<div className="font-heading text-fg-secondary flex items-center gap-1.5 text-xs font-semibold tracking-wider uppercase">
+				<div className="font-heading text-fg-secondary flex items-center gap-1.5 text-sm font-semibold tracking-wider uppercase">
 					<span>SALES TREND</span>
 					<Tooltip>
 						<TooltipTrigger asChild>
@@ -322,21 +322,19 @@ export function SalesTrendChart() {
 			</div>
 
 			{/* Inner White Box Container */}
-			<Card className="bg-elevation-level1 border-border/60 flex min-w-0 flex-1 flex-col justify-between border p-4 shadow-2xs">
+			<Card className="bg-elevation-level1 border-border/60 flex min-w-0 flex-1 flex-col justify-between border p-4 shadow-none">
 				{/* Subheader: Revenue, Legend & Capsule Tabs */}
 				<div className="flex flex-wrap items-center justify-between gap-3">
 					{/* Left: Total Revenue */}
 					<div className="flex items-baseline gap-2">
 						<span className="text-fg-tertiary text-sm">Total Revenue :</span>
-						<span className="font-heading text-fg text-lg font-bold tracking-tight">
-							{view.totalRevenue}
-						</span>
+						<span className="heading-5 text-fg">{view.totalRevenue}</span>
 					</div>
 
 					{/* Middle: Legend */}
 					<div className="text-fg-secondary font-body flex items-center gap-4 text-xs font-medium">
 						<div className="flex items-center gap-1.5">
-							<span className="bg-fg-tertiary/60 size-2 rounded-xs" />
+							<span className="bg-fill2 size-2 rounded-xs" />
 							<span className="text-[12px] tracking-wider uppercase">
 								NEW USER
 							</span>
@@ -404,14 +402,14 @@ export function SalesTrendChart() {
 											const isNewUser =
 												!isExisting && rIdx < col.existing + col.newUsers
 
-											let fillClass = "fill-fill1/80"
+											let fillClass = "fill-fill1-alpha"
 											let fillStyle: React.CSSProperties | undefined
 
 											if (isExisting) {
 												fillClass = "fill-primary"
 												fillStyle = { fill: "var(--color-primary)" }
 											} else if (isNewUser) {
-												fillClass = "fill-fg-tertiary/60"
+												fillClass = "fill-fill2"
 											}
 
 											return (
@@ -540,7 +538,7 @@ export function SalesTrendChart() {
 							<div className="flex flex-col gap-2 px-2.5 py-2 text-xs">
 								<div className="text-fg-secondary flex items-center justify-between gap-4">
 									<span className="flex items-center gap-1.5">
-										<span className="bg-fg-tertiary/60 size-1.5 rounded-full" />
+										<span className="bg-fill2 size-1.5 rounded-full" />
 										<span>New User</span>
 									</span>
 									<span className="text-fg font-semibold tabular-nums">

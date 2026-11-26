@@ -77,10 +77,10 @@ export function RevenueBreakdownCard() {
 	const data = ACQUISITION_DATA[activeTab]
 
 	return (
-		<Card className="bg-fill1 border-border/70 flex min-w-0 flex-1 flex-col justify-between gap-0 overflow-hidden p-0.5 shadow-2xs">
+		<Card className="bg-elevation-negative flex min-w-0 flex-1 flex-col justify-between gap-0 overflow-hidden border-0 p-0.5 shadow-none">
 			{/* Outer Card Top Header */}
 			<div className="flex items-center justify-between gap-2 px-3 pt-1.5 pb-1.5">
-				<div className="font-heading text-fg-secondary flex items-center gap-1.5 text-xs font-semibold tracking-wider uppercase">
+				<div className="font-heading text-fg-secondary flex items-center gap-1.5 text-sm font-semibold tracking-wider uppercase">
 					<span>ACQUISITION OVERVIEW</span>
 					<Tooltip>
 						<TooltipTrigger asChild>
@@ -119,10 +119,10 @@ export function RevenueBreakdownCard() {
 			</div>
 
 			{/* Inner White Box Container */}
-			<Card className="bg-elevation-level1 border-border/60 flex min-w-0 flex-1 flex-col justify-between gap-5 border p-4 shadow-2xs">
+			<Card className="bg-elevation-level1 border-border/60 flex min-w-0 flex-1 flex-col justify-between gap-5 border p-4 shadow-none">
 				{/* Headline Metric & Badge */}
 				<div className="flex items-center gap-2">
-					<span className="font-heading text-fg text-lg leading-none font-bold tracking-tight tabular-nums">
+					<span className="heading-5 text-fg tabular-nums">
 						{data.headline}
 					</span>
 					<Badge color="success" className="leading-none">
