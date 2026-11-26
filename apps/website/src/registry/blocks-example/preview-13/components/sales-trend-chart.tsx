@@ -237,8 +237,6 @@ const SALES_TREND_VIEWS: Record<SalesPeriod, PeriodViewConfig> = {
 	},
 }
 
-const Y_POSITIONS = [14, 44, 74, 104, 134, 164, 197]
-
 export function SalesTrendChart() {
 	const [activeTab, setActiveTab] = useState<SalesPeriod>("Monthly")
 	const [hoveredCol, setHoveredCol] = useState<number | null>(null)
@@ -246,19 +244,22 @@ export function SalesTrendChart() {
 	const view = SALES_TREND_VIEWS[activeTab]
 	const columns = view.columns
 
-	const yTicks = view.yLabels.map((label, idx) => ({
-		label,
-		y: Y_POSITIONS[idx],
-	}))
-
 	// Grid layout constants
-	const totalRows = 23
+	const totalRows = 25
 	const gridStartX = 46
 	const colStep = 8.15
 	const cellW = 6.6
-	const cellH = 6.6
-	const rowStep = 8.1
+	const cellH = 6.1
+	const rowStep = 7.5
 	const baselineY = 194 // row 0 y-position
+
+	const yTicks = view.yLabels.map((label, idx) => {
+		const rowIdx = (view.yLabels.length - 1 - idx) * 4
+		return {
+			label,
+			y: baselineY - rowIdx * rowStep + cellH / 2,
+		}
+	})
 
 	// Active column position and tooltip coordinates
 	const activeColIndex = hoveredCol ?? view.defaultColIndex
@@ -272,11 +273,6 @@ export function SalesTrendChart() {
 	const months = view.axisLabels.map((item) => ({
 		name: item.name,
 		x: gridStartX + item.colIndex * colStep + cellW / 2,
-	}))
-
-	const monthDots = months.slice(0, -1).map((m, idx) => ({
-		id: `dot-${idx}`,
-		x: (m.x + months[idx + 1].x) / 2,
 	}))
 
 	return (
@@ -365,28 +361,12 @@ export function SalesTrendChart() {
 				</div>
 
 				{/* ── Main Chart Area with Waffle Grid ── */}
-				<div className="relative mt-3 w-full min-w-0 [scrollbar-width:none] overflow-x-auto py-1 [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
-					<div className="relative min-w-[530px] pb-2">
+				<div className="relative mt-3 w-full min-w-0 [scrollbar-width:none] overflow-x-auto pt-1 pb-3 [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+					<div className="relative min-w-[530px]">
 						<svg
 							viewBox="0 0 535 220"
 							className="aspect-[535/220] h-auto w-full overflow-visible select-none"
 							onMouseLeave={() => setHoveredCol(null)}>
-							{/* Y-Axis Tick Dots & Dotted Lines */}
-							{yTicks.map((tick) => (
-								<g key={tick.label} className="text-fg-tertiary opacity-70">
-									<circle cx="31" cy={tick.y} r="1.5" fill="currentColor" />
-									<line
-										x1="32"
-										y1={tick.y}
-										x2="43"
-										y2={tick.y}
-										stroke="currentColor"
-										strokeWidth="1"
-										strokeDasharray="1.5 1.5"
-									/>
-								</g>
-							))}
-
 							{/* 58 Columns x 23 Rows Waffle Grid */}
 							{columns.map((col, cIdx) => {
 								const colX = gridStartX + cIdx * colStep
@@ -403,13 +383,16 @@ export function SalesTrendChart() {
 												!isExisting && rIdx < col.existing + col.newUsers
 
 											let fillClass = "fill-fill1-alpha"
-											let fillStyle: React.CSSProperties | undefined
+											let fillStyle: React.CSSProperties = {
+												fill: "var(--color-fill1-alpha)",
+											}
 
 											if (isExisting) {
 												fillClass = "fill-primary"
 												fillStyle = { fill: "var(--color-primary)" }
 											} else if (isNewUser) {
 												fillClass = "fill-fill2"
+												fillStyle = { fill: "var(--color-fill2)" }
 											}
 
 											return (
@@ -477,29 +460,27 @@ export function SalesTrendChart() {
 							/>
 						</svg>
 
-						{/* Y-Axis HTML Labels (strictly 12px, left-aligned with Total Revenue) */}
+						{/* Y-Axis HTML Labels (strictly 12px medium, vertically centered on grid lines) */}
 						{yTicks.map((tick) => (
 							<span
 								key={tick.label}
-								className="text-fg-tertiary pointer-events-none absolute text-[12px] leading-none font-normal select-none"
+								className="text-fg-tertiary pointer-events-none absolute w-6 text-right text-xs leading-none font-medium tabular-nums select-none"
 								style={{
 									left: "0%",
 									top: `${(tick.y / 220) * 100}%`,
-									transform: "translate(0, -15%)",
+									transform: "translate(0, -50%)",
 								}}>
 								{tick.label}
 							</span>
 						))}
 
-						{/* X-Axis HTML Month Labels (strictly 12px, unaffected by SVG scaling/stretching) */}
+						{/* X-Axis HTML Month Labels (strictly 12px medium, unaffected by SVG scaling/stretching) */}
 						{months.map((m) => (
 							<span
 								key={m.name}
 								className={cn(
-									"pointer-events-none absolute text-[12px] leading-none transition-colors select-none",
-									m.name === activeCol.month
-										? "text-fg font-bold"
-										: "text-fg-tertiary font-normal"
+									"pointer-events-none absolute text-xs leading-none font-medium transition-colors select-none",
+									m.name === activeCol.month ? "text-fg" : "text-fg-tertiary"
 								)}
 								style={{
 									left: `${(m.x / 535) * 100}%`,
@@ -507,18 +488,6 @@ export function SalesTrendChart() {
 									transform: "translate(-50%, -50%)",
 								}}>
 								{m.name}
-							</span>
-						))}
-						{monthDots.map((d) => (
-							<span
-								key={d.id}
-								className="text-fg-tertiary/70 pointer-events-none absolute text-[12px] leading-none font-normal select-none"
-								style={{
-									left: `${(d.x / 535) * 100}%`,
-									top: `${(210 / 220) * 100}%`,
-									transform: "translate(-50%, -50%)",
-								}}>
-								•
 							</span>
 						))}
 
