@@ -39,10 +39,10 @@ export default function PagePicker({
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
 				<Button
-					size="md"
+					size="xs"
 					variant="outline"
 					color="neutral"
-					className="max-w-52 min-w-0 justify-between select-none"
+					className="max-w-52 min-w-0 justify-between select-none max-sm:h-9 max-sm:px-3 max-sm:text-sm max-sm:[&>svg]:size-5"
 					title={currentLabel}>
 					<span className="truncate">{currentLabel}</span>{" "}
 					<ChevronDown className="text-fg-secondary shrink-0" />
