@@ -35,12 +35,12 @@ type SortDir = "asc" | "desc"
 
 const SORTABLE_COLUMNS: { key: SortKey; label: string }[] = [
 	{ key: "id", label: "ID" },
-	{ key: "customer", label: "CUSTOMER" },
-	{ key: "product", label: "PRODUCT" },
-	{ key: "status", label: "STATUS" },
-	{ key: "qty", label: "QTY" },
-	{ key: "unitPrice", label: "UNIT PRICE" },
-	{ key: "totalRevenue", label: "TOTAL REVENUE" },
+	{ key: "customer", label: "Customer" },
+	{ key: "product", label: "Product" },
+	{ key: "status", label: "Status" },
+	{ key: "qty", label: "Qty" },
+	{ key: "unitPrice", label: "Unit Price" },
+	{ key: "totalRevenue", label: "Total Revenue" },
 ]
 
 function parseSortableValue(
@@ -224,7 +224,7 @@ export function RecentTransactionsTable() {
 								return (
 									<TableHead
 										key={col.key}
-										className="text-fg-secondary bg-transparent font-semibold tracking-wider uppercase">
+										className="text-fg-secondary bg-transparent font-semibold">
 										<button
 											type="button"
 											onClick={() => handleSort(col.key)}
@@ -238,8 +238,8 @@ export function RecentTransactionsTable() {
 									</TableHead>
 								)
 							})}
-							<TableHead className="text-fg-secondary bg-transparent pr-4 text-right font-semibold tracking-wider uppercase">
-								ACTIONS
+							<TableHead className="text-fg-secondary bg-transparent pr-4 text-right font-semibold">
+								Actions
 							</TableHead>
 						</TableRow>
 					</TableHeader>
