@@ -124,6 +124,15 @@ export default function CornerPicker({ onBack }: { onBack?: () => void }) {
 		!RADIUS.some((preset) => preset.value === (params.radius ?? "default"))
 	const [showAdvanced, setShowAdvanced] = useState(false)
 
+	useEffect(() => {
+		if (
+			params.radius === params.controlRadius &&
+			RADIUS.some((preset) => preset.value === params.radius)
+		) {
+			setIsAdvanced(false)
+		}
+	}, [params.radius, params.controlRadius])
+
 	const selectedPreset = isAdvanced
 		? undefined
 		: RADIUS.find((r) => r.value === params.radius)

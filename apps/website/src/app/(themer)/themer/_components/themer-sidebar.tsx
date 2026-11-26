@@ -27,6 +27,7 @@ import { ButtonSettings } from "./component-settings/button-settings"
 import { ComponentSettingsPopover } from "./components-settings-popover"
 
 import { useThemerPreset } from "@/lib/themer-preset"
+import { useThemerStore } from "@/lib/themer-store"
 import { RadianIcon } from "./icons"
 import { ThemerFundamentals } from "./themer-fundamentals"
 
@@ -115,6 +116,10 @@ export function ThemerSettings() {
 }
 
 export function ThemerSidebar() {
+	const shuffleFundamentals = useThemerStore(
+		(state) => state.shuffleFundamentals
+	)
+
 	return (
 		<Sidebar
 			collapsible="none"
@@ -125,7 +130,13 @@ export function ThemerSidebar() {
 			</SidebarHeader>
 			<ThemerSettings />
 			<SidebarFooter className="border-border flex flex-row gap-2 border-t px-3 py-2">
-				<Button size="sm" variant="outline" className="flex-1" color="neutral">
+				<Button
+					type="button"
+					size="sm"
+					variant="outline"
+					className="flex-1"
+					color="neutral"
+					onClick={shuffleFundamentals}>
 					<Shuffle className="text-fg-secondary size-4" />
 					Shuffle all
 				</Button>

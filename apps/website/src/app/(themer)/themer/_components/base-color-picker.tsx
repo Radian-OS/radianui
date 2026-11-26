@@ -99,6 +99,18 @@ interface BaseColorPickerProps {
 
 type BaseMode = "auto" | "cool" | "neutral" | "warm"
 
+const MODE_TO_BASE: Record<Exclude<BaseMode, "auto">, BaseColorValue> = {
+	cool: "default",
+	neutral: "neutral-gray",
+	warm: "warm-gray",
+}
+
+const BASE_TO_MODE: Record<BaseColorValue, Exclude<BaseMode, "auto">> = {
+	default: "cool",
+	"neutral-gray": "neutral",
+	"warm-gray": "warm",
+}
+
 export default function BaseColorPicker({
 	baseColor = "default",
 	primaryColor,
@@ -108,43 +120,35 @@ export default function BaseColorPicker({
 	const placement = useThemerPickerPlacement("start", 16)
 	const [open, setOpen] = React.useState(false)
 
-	// Determine initial mode based on whether baseColor matches auto-derived base color
-	const autoColor = React.useMemo(
-		() => getAutoBaseColor(primaryColor),
-		[primaryColor]
+	const autoColor = getAutoBaseColor(primaryColor)
+	const [mode, setMode] = React.useState<BaseMode>(() =>
+		baseColor === autoColor ? "auto" : (BASE_TO_MODE[baseColor] ?? "cool")
 	)
+	const [prevBase, setPrevBase] = React.useState(baseColor)
 
-	const [mode, setMode] = React.useState<BaseMode>(() => {
-		if (baseColor === autoColor) return "auto"
-		if (baseColor === "warm-gray") return "warm"
-		if (baseColor === "neutral-gray") return "neutral"
-		return "cool"
-	})
+	if (baseColor !== prevBase) {
+		setPrevBase(baseColor)
+		setMode(
+			baseColor === autoColor ? "auto" : (BASE_TO_MODE[baseColor] ?? "cool")
+		)
+	}
 
 	const onBaseColorChangeRef = React.useRef(onBaseColorChange)
 	onBaseColorChangeRef.current = onBaseColorChange
 
 	// When primaryColor changes and in auto mode, update base color
 	React.useEffect(() => {
-		if (mode === "auto") {
-			const nextAuto = getAutoBaseColor(primaryColor)
-			if (nextAuto !== baseColor) {
-				onBaseColorChangeRef.current(nextAuto)
-			}
+		if (mode === "auto" && autoColor !== baseColor) {
+			onBaseColorChangeRef.current(autoColor)
 		}
-	}, [primaryColor, mode, baseColor])
+	}, [autoColor, mode, baseColor])
 
 	const handleSelect = (selectedMode: BaseMode) => {
+		const nextBase =
+			selectedMode === "auto" ? autoColor : MODE_TO_BASE[selectedMode]
 		setMode(selectedMode)
-		if (selectedMode === "auto") {
-			onBaseColorChange(getAutoBaseColor(primaryColor))
-		} else if (selectedMode === "cool") {
-			onBaseColorChange("default")
-		} else if (selectedMode === "neutral") {
-			onBaseColorChange("neutral-gray")
-		} else if (selectedMode === "warm") {
-			onBaseColorChange("warm-gray")
-		}
+		setPrevBase(nextBase)
+		onBaseColorChange(nextBase)
 	}
 
 	const handleShuffle = () => {
