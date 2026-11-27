@@ -328,7 +328,7 @@ function StepperIndicator({
 			data-slot="stepper-indicator"
 			data-state={state}
 			className={cn(
-				"border-border bg-fill1-alpha text-fg-secondary data-[state=completed]:bg-primary data-[state=active]:bg-primary relative flex size-6 shrink-0 items-center justify-center overflow-hidden data-[state=active]:text-white data-[state=completed]:text-white",
+				"border-border bg-fill1-alpha text-fg-secondary data-[state=completed]:bg-primary data-[state=active]:bg-primary data-[state=active]:text-primary-fg data-[state=completed]:text-primary-fg relative flex size-6 shrink-0 items-center justify-center overflow-hidden",
 				"rounded-full text-xs",
 				className
 			)}>

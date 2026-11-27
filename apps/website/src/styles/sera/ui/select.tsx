@@ -58,7 +58,7 @@ export type SelectDividerProps = React.ComponentProps<
 const SelectContext = React.createContext<SelectContextType | null>(null)
 
 const selectTriggerVariants = cva(
-	`bg-bg border-border text-fg data-placeholder:text-fg-tertiary focus-visible:ring-primary-focus focus-visible:border-primary aria-invalid:border-error aria-invalid:ring-error [[data-invalid=true]_&]:border-error [[data-invalid=true]_&]:ring-error flex w-full items-center border shadow-xs shadow-black/5 transition-shadow outline-none focus-visible:ring-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1`,
+	`bg-bg border-border text-fg data-placeholder:text-fg-tertiary focus-visible:border-fg-tertiary focus-visible:ring-fg-tertiary/30 aria-invalid:border-error aria-invalid:ring-error [[data-invalid=true]_&]:border-error [[data-invalid=true]_&]:ring-error flex w-full items-center border shadow-xs shadow-black/5 transition-colors outline-none focus-visible:ring-3 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1`,
 	{
 		variants: {
 			size: {

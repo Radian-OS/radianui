@@ -16,7 +16,7 @@ const checkboxVariants = cva(
 	cn(
 		"group peer bg-bg border-border ring-offset-bg shrink-0 border focus-visible:outline-none",
 		"focus-visible:ring-primary focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
-		"data-[state=checked]:bg-primary data-[state=checked]:border-primary data-[state=indeterminate]:bg-primary data-[state=indeterminate]:border-primary data-[state=checked]:text-fg data-[state=indeterminate]:text-fg",
+		"data-[state=checked]:bg-primary data-[state=checked]:border-primary data-[state=indeterminate]:bg-primary data-[state=indeterminate]:border-primary data-[state=checked]:text-primary-fg data-[state=indeterminate]:text-primary-fg",
 		"aria-invalid:border-error aria-invalid:ring-error",
 		"[[data-invalid=true]_&]:border-error [[data-invalid=true]_&]:ring-error"
 	),
