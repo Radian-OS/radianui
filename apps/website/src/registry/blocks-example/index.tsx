@@ -243,6 +243,12 @@ export const Index: Record<string, RegistryItem> = {
                 "target": ""
           },
           {
+                "path": "registry/blocks-example/preview-13/components/date-range-popover.tsx",
+                "name": "date-range-popover.tsx",
+                "type": "components",
+                "target": ""
+          },
+          {
                 "path": "registry/blocks-example/preview-13/components/recent-transactions-table.tsx",
                 "name": "recent-transactions-table.tsx",
                 "type": "components",
@@ -285,6 +291,18 @@ export const Index: Record<string, RegistryItem> = {
           }
     ],
     component: React.lazy(() => import("@/registry/blocks-example/preview-13/page"))
+  },
+  "preview-14": {
+    name: "preview-14",
+    type: "block",
+    files: [
+          {
+                "path": "registry/blocks-example/preview-14/page.tsx",
+                "name": "page.tsx",
+                "type": "page"
+          }
+    ],
+    component: React.lazy(() => import("@/registry/blocks-example/preview-14/page"))
   },
   "reset-email": {
     name: "reset-email",

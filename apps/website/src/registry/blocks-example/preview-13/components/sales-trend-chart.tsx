@@ -6,7 +6,13 @@ import { useState } from "react"
 import { cn } from "@/lib/utils"
 import { Button, IconButton } from "@/components/ui/button"
 import { IconSlot } from "@/registry/icon/icon-library"
-import { Card } from "@/registry/ui/card"
+import {
+	Card,
+	CardAction,
+	CardContent,
+	CardHeader,
+	CardTitle,
+} from "@/registry/ui/card"
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -278,8 +284,8 @@ export function SalesTrendChart() {
 	return (
 		<Card className="bg-elevation-negative flex min-w-0 flex-1 flex-col justify-between gap-0 overflow-hidden border-0 p-0.5 shadow-none">
 			{/* Outer Card Top Header */}
-			<div className="flex items-center justify-between px-3 pt-1.5 pb-1.5">
-				<div className="font-heading text-fg-secondary flex items-center gap-1.5 text-sm font-semibold tracking-wider uppercase">
+			<CardHeader className="flex flex-row items-center justify-between gap-0 px-3 pt-1.5 pb-1.5">
+				<CardTitle className="font-heading text-fg-secondary flex items-center gap-1.5 text-sm leading-normal font-semibold tracking-wider uppercase">
 					<span>SALES TREND</span>
 					<Tooltip>
 						<TooltipTrigger asChild>
@@ -294,240 +300,244 @@ export function SalesTrendChart() {
 							Monthly comparison of new vs. existing user revenue
 						</TooltipContent>
 					</Tooltip>
-				</div>
-				<DropdownMenu>
-					<DropdownMenuTrigger asChild>
-						<IconButton
-							variant="ghost"
-							color="neutral"
-							aria-label="More options">
-							<IconSlot slot="threeDot" />
-						</IconButton>
-					</DropdownMenuTrigger>
-					<DropdownMenuContent align="center" className="w-40">
-						<DropdownMenuItem>
-							<IconSlot slot="file-text" />
-							Export report
-						</DropdownMenuItem>
-						<DropdownMenuItem>
-							<IconSlot slot="setting" />
-							Chart settings
-						</DropdownMenuItem>
-					</DropdownMenuContent>
-				</DropdownMenu>
-			</div>
+				</CardTitle>
+				<CardAction className="self-center">
+					<DropdownMenu>
+						<DropdownMenuTrigger asChild>
+							<IconButton
+								variant="ghost"
+								color="neutral"
+								aria-label="More options">
+								<IconSlot slot="threeDot" />
+							</IconButton>
+						</DropdownMenuTrigger>
+						<DropdownMenuContent align="center" className="w-40">
+							<DropdownMenuItem>
+								<IconSlot slot="file-text" />
+								Export report
+							</DropdownMenuItem>
+							<DropdownMenuItem>
+								<IconSlot slot="setting" />
+								Chart settings
+							</DropdownMenuItem>
+						</DropdownMenuContent>
+					</DropdownMenu>
+				</CardAction>
+			</CardHeader>
 
 			{/* Inner White Box Container */}
-			<Card className="bg-elevation-level1 border-border/60 flex min-w-0 flex-1 flex-col justify-between border p-4 shadow-none">
-				{/* Subheader: Revenue, Legend & Capsule Tabs */}
-				<div className="flex flex-wrap items-center justify-between gap-3">
-					{/* Left: Total Revenue */}
-					<div className="flex items-baseline gap-2">
-						<span className="text-fg-tertiary text-sm">Total Revenue :</span>
-						<span className="heading-5 text-fg">{view.totalRevenue}</span>
-					</div>
-
-					{/* Middle: Legend */}
-					<div className="text-fg-secondary font-body flex items-center gap-4 text-xs font-medium">
-						<div className="flex items-center gap-1.5">
-							<span className="bg-fill2 size-2 rounded-xs" />
-							<span className="text-[12px] tracking-wider uppercase">
-								NEW USER
-							</span>
+			<CardContent className="flex min-w-0 flex-1 flex-col p-0">
+				<Card className="bg-elevation-level1 border-border/60 flex min-w-0 flex-1 flex-col justify-between border p-4 shadow-none">
+					{/* Subheader: Revenue, Legend & Capsule Tabs */}
+					<CardHeader className="flex flex-wrap items-center justify-between gap-3 p-0">
+						{/* Left: Total Revenue */}
+						<div className="flex items-baseline gap-2">
+							<span className="text-fg-tertiary text-sm">Total Revenue :</span>
+							<span className="heading-5 text-fg">{view.totalRevenue}</span>
 						</div>
-						<div className="flex items-center gap-1.5">
-							<span className="bg-primary size-2 rounded-xs" />
-							<span className="text-[12px] tracking-wider uppercase">
-								EXISTING USER
-							</span>
+
+						{/* Middle: Legend */}
+						<div className="text-fg-secondary font-body flex items-center gap-4 text-xs font-medium">
+							<div className="flex items-center gap-1.5">
+								<span className="bg-fill2 size-2 rounded-xs" />
+								<span className="text-[12px] tracking-wider uppercase">
+									NEW USER
+								</span>
+							</div>
+							<div className="flex items-center gap-1.5">
+								<span className="bg-primary size-2 rounded-xs" />
+								<span className="text-[12px] tracking-wider uppercase">
+									EXISTING USER
+								</span>
+							</div>
 						</div>
-					</div>
 
-					{/* Right: Radian Segmented Tabs Component */}
-					<Tabs
-						value={activeTab}
-						onValueChange={(val) => {
-							setActiveTab(val as SalesPeriod)
-							setHoveredCol(null)
-						}}>
-						<TabsList variant="default">
-							{(["Weekly", "Monthly", "Yearly"] as const).map((tab) => (
-								<TabsTrigger key={tab} value={tab}>
-									{tab}
-								</TabsTrigger>
-							))}
-						</TabsList>
-					</Tabs>
-				</div>
-
-				{/* ── Main Chart Area with Waffle Grid ── */}
-				<div className="relative mt-3 w-full min-w-0 [scrollbar-width:none] overflow-x-auto pt-1 pb-3 [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
-					<div className="relative min-w-[530px]">
-						<svg
-							viewBox="0 0 535 220"
-							className="aspect-[535/220] h-auto w-full overflow-visible select-none"
-							onMouseLeave={() => setHoveredCol(null)}>
-							{/* 58 Columns x 23 Rows Waffle Grid */}
-							{columns.map((col, cIdx) => {
-								const colX = gridStartX + cIdx * colStep
-
-								return (
-									<g
-										key={cIdx}
-										className="cursor-pointer"
-										onMouseEnter={() => setHoveredCol(cIdx)}>
-										{Array.from({ length: totalRows }).map((_, rIdx) => {
-											const cellY = baselineY - rIdx * rowStep
-											const isExisting = rIdx < col.existing
-											const isNewUser =
-												!isExisting && rIdx < col.existing + col.newUsers
-
-											let fillClass = "fill-fill1-alpha"
-											let fillStyle: React.CSSProperties = {
-												fill: "var(--color-fill1-alpha)",
-											}
-
-											if (isExisting) {
-												fillClass = "fill-primary"
-												fillStyle = { fill: "var(--color-primary)" }
-											} else if (isNewUser) {
-												fillClass = "fill-fill2"
-												fillStyle = { fill: "var(--color-fill2)" }
-											}
-
-											return (
-												<rect
-													key={rIdx}
-													x={colX}
-													y={cellY}
-													width={cellW}
-													height={cellH}
-													rx="1.2"
-													className={cn(
-														fillClass,
-														"transition-opacity hover:opacity-100"
-													)}
-													style={fillStyle}
-												/>
-											)
-										})}
-									</g>
-								)
-							})}
-
-							{/* Full-height invisible hover zones for seamless scrubbing */}
-							{columns.map((_, cIdx) => (
-								<rect
-									key={`hit-${cIdx}`}
-									x={gridStartX + cIdx * colStep - (colStep - cellW) / 2}
-									y="10"
-									width={colStep}
-									height="188"
-									fill="transparent"
-									className="cursor-pointer"
-									onMouseEnter={() => setHoveredCol(cIdx)}
-								/>
-							))}
-
-							{/* Vertical Dashed Guideline at active column */}
-							<line
-								x1={activeX}
-								y1="10"
-								x2={activeX}
-								y2="197"
-								stroke="currentColor"
-								strokeWidth="1"
-								strokeDasharray="2.5 2.5"
-								className="text-fg-secondary/50 pointer-events-none"
-							/>
-
-							{/* Target Crosshair Marker */}
-							<circle
-								cx={activeX}
-								cy={activeY}
-								r="3.5"
-								fill="var(--color-elevation-level1)"
-								stroke="currentColor"
-								strokeWidth="1.5"
-								className="text-fg pointer-events-none"
-							/>
-							<circle
-								cx={activeX}
-								cy={activeY}
-								r="1.2"
-								fill="currentColor"
-								className="text-fg pointer-events-none"
-							/>
-						</svg>
-
-						{/* Y-Axis HTML Labels (strictly 12px medium, vertically centered on grid lines) */}
-						{yTicks.map((tick) => (
-							<span
-								key={tick.label}
-								className="text-fg-tertiary pointer-events-none absolute w-6 text-right text-xs leading-none font-medium tabular-nums select-none"
-								style={{
-									left: "0%",
-									top: `${(tick.y / 220) * 100}%`,
-									transform: "translate(0, -50%)",
-								}}>
-								{tick.label}
-							</span>
-						))}
-
-						{/* X-Axis HTML Month Labels (strictly 12px medium, unaffected by SVG scaling/stretching) */}
-						{months.map((m) => (
-							<span
-								key={m.name}
-								className={cn(
-									"pointer-events-none absolute text-xs leading-none font-medium transition-colors select-none",
-									m.name === activeCol.month ? "text-fg" : "text-fg-tertiary"
-								)}
-								style={{
-									left: `${(m.x / 535) * 100}%`,
-									top: `${(210 / 220) * 100}%`,
-									transform: "translate(-50%, -50%)",
-								}}>
-								{m.name}
-							</span>
-						))}
-
-						{/* Interactive Tooltip Card at Active Column */}
-						<div
-							className="border-border/80 bg-elevation-level2/95 pointer-events-none absolute z-20 min-w-44 rounded-lg border p-1 text-xs shadow-xl backdrop-blur-md transition-all duration-75"
-							style={{
-								left: `${(activeX / 535) * 100}%`,
-								top: `${(activeY / 220) * 100}%`,
-								transform: isRightSide
-									? "translate(-108%, -50%)"
-									: "translate(12px, -50%)",
+						{/* Right: Radian Segmented Tabs Component */}
+						<Tabs
+							value={activeTab}
+							onValueChange={(val) => {
+								setActiveTab(val as SalesPeriod)
+								setHoveredCol(null)
 							}}>
-							<div className="border-border/70 bg-fill1/60 text-fg-secondary rounded-md border px-2.5 py-1.5 font-medium">
-								{view.formatTooltipTitle(activeCol.month)}
-							</div>
-							<div className="flex flex-col gap-2 px-2.5 py-2 text-xs">
-								<div className="text-fg-secondary flex items-center justify-between gap-4">
-									<span className="flex items-center gap-1.5">
-										<span className="bg-fill2 size-1.5 rounded-full" />
-										<span>New User</span>
-									</span>
-									<span className="text-fg font-semibold tabular-nums">
-										{view.formatNewUser(activeCol, activeColIndex)}
-									</span>
+							<TabsList variant="default">
+								{(["Weekly", "Monthly", "Yearly"] as const).map((tab) => (
+									<TabsTrigger key={tab} value={tab}>
+										{tab}
+									</TabsTrigger>
+								))}
+							</TabsList>
+						</Tabs>
+					</CardHeader>
+
+					{/* ── Main Chart Area with Waffle Grid ── */}
+					<CardContent className="relative mt-3 w-full min-w-0 [scrollbar-width:none] overflow-x-auto px-0 pt-1 pb-3 [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+						<div className="relative min-w-[530px]">
+							<svg
+								viewBox="0 0 535 220"
+								className="aspect-[535/220] h-auto w-full overflow-visible select-none"
+								onMouseLeave={() => setHoveredCol(null)}>
+								{/* 58 Columns x 23 Rows Waffle Grid */}
+								{columns.map((col, cIdx) => {
+									const colX = gridStartX + cIdx * colStep
+
+									return (
+										<g
+											key={cIdx}
+											className="cursor-pointer"
+											onMouseEnter={() => setHoveredCol(cIdx)}>
+											{Array.from({ length: totalRows }).map((_, rIdx) => {
+												const cellY = baselineY - rIdx * rowStep
+												const isExisting = rIdx < col.existing
+												const isNewUser =
+													!isExisting && rIdx < col.existing + col.newUsers
+
+												let fillClass = "fill-fill1-alpha"
+												let fillStyle: React.CSSProperties = {
+													fill: "var(--color-fill1-alpha)",
+												}
+
+												if (isExisting) {
+													fillClass = "fill-primary"
+													fillStyle = { fill: "var(--color-primary)" }
+												} else if (isNewUser) {
+													fillClass = "fill-fill2"
+													fillStyle = { fill: "var(--color-fill2)" }
+												}
+
+												return (
+													<rect
+														key={rIdx}
+														x={colX}
+														y={cellY}
+														width={cellW}
+														height={cellH}
+														rx="1.2"
+														className={cn(
+															fillClass,
+															"transition-opacity hover:opacity-100"
+														)}
+														style={fillStyle}
+													/>
+												)
+											})}
+										</g>
+									)
+								})}
+
+								{/* Full-height invisible hover zones for seamless scrubbing */}
+								{columns.map((_, cIdx) => (
+									<rect
+										key={`hit-${cIdx}`}
+										x={gridStartX + cIdx * colStep - (colStep - cellW) / 2}
+										y="10"
+										width={colStep}
+										height="188"
+										fill="transparent"
+										className="cursor-pointer"
+										onMouseEnter={() => setHoveredCol(cIdx)}
+									/>
+								))}
+
+								{/* Vertical Dashed Guideline at active column */}
+								<line
+									x1={activeX}
+									y1="10"
+									x2={activeX}
+									y2="197"
+									stroke="currentColor"
+									strokeWidth="1"
+									strokeDasharray="2.5 2.5"
+									className="text-fg-secondary/50 pointer-events-none"
+								/>
+
+								{/* Target Crosshair Marker */}
+								<circle
+									cx={activeX}
+									cy={activeY}
+									r="3.5"
+									fill="var(--color-elevation-level1)"
+									stroke="currentColor"
+									strokeWidth="1.5"
+									className="text-fg pointer-events-none"
+								/>
+								<circle
+									cx={activeX}
+									cy={activeY}
+									r="1.2"
+									fill="currentColor"
+									className="text-fg pointer-events-none"
+								/>
+							</svg>
+
+							{/* Y-Axis HTML Labels (strictly 12px medium, vertically centered on grid lines) */}
+							{yTicks.map((tick) => (
+								<span
+									key={tick.label}
+									className="text-fg-tertiary pointer-events-none absolute w-6 text-right text-xs leading-none font-medium tabular-nums select-none"
+									style={{
+										left: "0%",
+										top: `${(tick.y / 220) * 100}%`,
+										transform: "translate(0, -50%)",
+									}}>
+									{tick.label}
+								</span>
+							))}
+
+							{/* X-Axis HTML Month Labels (strictly 12px medium, unaffected by SVG scaling/stretching) */}
+							{months.map((m) => (
+								<span
+									key={m.name}
+									className={cn(
+										"pointer-events-none absolute text-xs leading-none font-medium transition-colors select-none",
+										m.name === activeCol.month ? "text-fg" : "text-fg-tertiary"
+									)}
+									style={{
+										left: `${(m.x / 535) * 100}%`,
+										top: `${(210 / 220) * 100}%`,
+										transform: "translate(-50%, -50%)",
+									}}>
+									{m.name}
+								</span>
+							))}
+
+							{/* Interactive Tooltip Card at Active Column */}
+							<div
+								className="border-border/80 bg-elevation-level2/95 pointer-events-none absolute z-20 min-w-44 rounded-lg border p-1 text-xs shadow-xl backdrop-blur-md transition-all duration-75"
+								style={{
+									left: `${(activeX / 535) * 100}%`,
+									top: `${(activeY / 220) * 100}%`,
+									transform: isRightSide
+										? "translate(-108%, -50%)"
+										: "translate(12px, -50%)",
+								}}>
+								<div className="border-border/70 bg-fill1/60 text-fg-secondary rounded-md border px-2.5 py-1.5 font-medium">
+									{view.formatTooltipTitle(activeCol.month)}
 								</div>
-								<div className="text-fg-secondary flex items-center justify-between gap-4">
-									<span className="flex items-center gap-1.5">
-										<span className="bg-primary size-1.5 rounded-full" />
-										<span>Existing User</span>
-									</span>
-									<span className="text-fg font-semibold tabular-nums">
-										{view.formatExistingUser(activeCol, activeColIndex)}
-									</span>
+								<div className="flex flex-col gap-2 px-2.5 py-2 text-xs">
+									<div className="text-fg-secondary flex items-center justify-between gap-4">
+										<span className="flex items-center gap-1.5">
+											<span className="bg-fill2 size-1.5 rounded-full" />
+											<span>New User</span>
+										</span>
+										<span className="text-fg font-semibold tabular-nums">
+											{view.formatNewUser(activeCol, activeColIndex)}
+										</span>
+									</div>
+									<div className="text-fg-secondary flex items-center justify-between gap-4">
+										<span className="flex items-center gap-1.5">
+											<span className="bg-primary size-1.5 rounded-full" />
+											<span>Existing User</span>
+										</span>
+										<span className="text-fg font-semibold tabular-nums">
+											{view.formatExistingUser(activeCol, activeColIndex)}
+										</span>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-				</div>
-			</Card>
+					</CardContent>
+				</Card>
+			</CardContent>
 		</Card>
 	)
 }

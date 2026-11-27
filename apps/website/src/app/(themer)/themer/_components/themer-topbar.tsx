@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import { flushSync } from "react-dom"
 import { useTheme } from "next-themes"
 import { Button, IconButton } from "@/styles/default/ui/button"
 import {
@@ -40,7 +41,21 @@ export function ThemerTopbar({
 	}, [])
 
 	const toggleTheme = () => {
-		setTheme(resolvedTheme === "dark" ? "light" : "dark")
+		const next = resolvedTheme === "dark" ? "light" : "dark"
+		const doc = document as Document & {
+			startViewTransition?: (cb: () => void) => unknown
+		}
+		if (!doc.startViewTransition) {
+			setTheme(next)
+			return
+		}
+
+		doc.startViewTransition(() => {
+			flushSync(() => {
+				setTheme(next)
+			})
+			document.documentElement.classList.toggle("dark", next === "dark")
+		})
 	}
 	return (
 		<header className="border-border bg-bg flex h-12 shrink-0 items-center justify-between border-b px-3 py-3.5">
