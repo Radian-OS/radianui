@@ -36,6 +36,7 @@ import {
 import { Divider } from "@/styles/default/ui/divider"
 import { ScrollArea } from "@/styles/default/ui/scroll-area"
 import { cn } from "@/lib/utils"
+import { useThemerStore } from "@/lib/themer-store"
 import {
 	ThemerFundamentals,
 	type FundamentalsSection,
@@ -86,8 +87,8 @@ const shortcutButtonClass =
 	"text-fg-secondary h-auto min-w-0 flex-1 flex-col gap-0.5 rounded-2xl! px-[11px] py-2.5 text-xs leading-tight font-medium"
 
 const shortcutActions = [
-	{ label: "Shuffle", icon: Shuffle },
-	{ label: "Reset", icon: RotateCcw },
+	{ action: "shuffle", label: "Shuffle", icon: Shuffle },
+	{ action: "reset", label: "Reset", icon: RotateCcw },
 ] as const
 
 export function ThemerMobileShortcuts({
@@ -99,6 +100,15 @@ export function ThemerMobileShortcuts({
 	openPanel: MobileThemerPanel | null
 	onSelect: (panel: MobileThemerShortcut, trigger: HTMLButtonElement) => void
 }) {
+	const shuffleFundamentals = useThemerStore(
+		(state) => state.shuffleFundamentals
+	)
+	const resetParams = useThemerStore((state) => state.resetParams)
+	const actions = {
+		shuffle: shuffleFundamentals,
+		reset: resetParams,
+	} as const
+
 	return (
 		<ScrollArea
 			orientation="horizontal"
@@ -137,13 +147,15 @@ export function ThemerMobileShortcuts({
 					orientation="vertical"
 					className="bg-alpha mx-1 self-center data-[orientation=vertical]:h-8"
 				/>
-				{shortcutActions.map(({ label, icon: Icon }) => (
+				{shortcutActions.map(({ action, label, icon: Icon }) => (
 					<Button
-						key={label}
+						key={action}
+						type="button"
 						size="sm"
 						variant="ghost"
 						color="neutral"
-						className={shortcutButtonClass}>
+						className={shortcutButtonClass}
+						onClick={actions[action]}>
 						<Icon aria-hidden="true" />
 						{label}
 					</Button>
