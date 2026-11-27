@@ -13,8 +13,11 @@ import {
 	BreadcrumbSeparator,
 } from "@/registry/ui/breadcrumb"
 import { IconButton } from "@/components/ui/button"
+import { DropdownMenu, DropdownMenuTrigger } from "@/registry/ui/dropdown-menu"
 import { Input, InputWrapper } from "@/registry/ui/input"
 import { SidebarTrigger } from "@/registry/ui/sidebar"
+
+import { UserAccountMenuContent } from "./dashboard-sidebar"
 
 export function DashboardHeader() {
 	return (
@@ -66,16 +69,28 @@ export function DashboardHeader() {
 					<IconSlot slot="mail" />
 				</IconButton>
 
-				<Avatar
-					size="md"
-					rounded="square"
-					className="border-border/70 bg-fill2 shrink-0 border sm:ml-1">
-					<AvatarImage
-						src="https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@v1.0.2/packages/uncompressed-avatars/src/2.png"
-						alt="Alex Rivera"
-					/>
-					<AvatarFallback className="text-xs font-semibold">AR</AvatarFallback>
-				</Avatar>
+				<DropdownMenu>
+					<DropdownMenuTrigger asChild>
+						<button
+							type="button"
+							aria-label="Account menu"
+							className="focus-visible:ring-primary cursor-pointer rounded-md focus-visible:ring-2 focus-visible:outline-none sm:ml-1">
+							<Avatar
+								size="md"
+								rounded="square"
+								className="border-border/70 bg-fill2 shrink-0 border">
+								<AvatarImage
+									src="https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@v1.0.2/packages/uncompressed-avatars/src/2.png"
+									alt="Alex Rivera"
+								/>
+								<AvatarFallback className="text-xs font-semibold">
+									AR
+								</AvatarFallback>
+							</Avatar>
+						</button>
+					</DropdownMenuTrigger>
+					<UserAccountMenuContent align="end" side="bottom" sideOffset={8} />
+				</DropdownMenu>
 			</div>
 		</header>
 	)
