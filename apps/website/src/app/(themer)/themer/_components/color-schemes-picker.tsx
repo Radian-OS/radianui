@@ -24,6 +24,7 @@ import {
 	X,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { useThemerStore } from "@/lib/themer-store"
 import {
 	Popover,
 	PopoverContent,
@@ -847,9 +848,11 @@ interface ColorSchemeCardProps {
 	index: number
 	value: string
 	isPrimary: boolean
+	isLocked: boolean
 	isCompact?: boolean
 	className?: string
 	onDelete?: () => void
+	onToggleLock: () => void
 	onChange: (value: string) => void
 }
 
@@ -857,14 +860,15 @@ function ColorSchemeCard({
 	index,
 	value,
 	isPrimary,
+	isLocked,
 	isCompact = false,
 	className,
 	onDelete,
+	onToggleLock,
 	onChange,
 }: ColorSchemeCardProps) {
 	const inDrawer = React.useContext(ThemerDrawerContext)
 	const [open, setOpen] = React.useState(false)
-	const [isLocked, setIsLocked] = React.useState(false)
 
 	const { resolvedTheme } = useTheme()
 	const isDark = resolvedTheme === "dark"
@@ -936,14 +940,17 @@ function ColorSchemeCard({
 						<div
 							role="button"
 							tabIndex={0}
+							aria-label={isLocked ? "Unlock color" : "Lock color"}
+							aria-pressed={isLocked}
 							onClick={(e) => {
 								e.stopPropagation()
-								setIsLocked(!isLocked)
+								onToggleLock()
 							}}
 							onKeyDown={(e) => {
 								if (e.key === "Enter" || e.key === " ") {
+									e.preventDefault()
 									e.stopPropagation()
-									setIsLocked(!isLocked)
+									onToggleLock()
 								}
 							}}
 							className="p-0.5 opacity-70 transition-opacity hover:opacity-100"
@@ -1003,6 +1010,13 @@ export function ColorSchemesPicker({
 }: ColorSchemesPickerProps) {
 	const inDrawer = React.useContext(ThemerDrawerContext)
 	const [addOpen, setAddOpen] = React.useState(false)
+	const primaryLocked = useThemerStore((state) => state.locked.primaryColor)
+	const lockedExtraColors = useThemerStore((state) => state.lockedExtraColors)
+	const toggleLock = useThemerStore((state) => state.toggleLock)
+	const toggleExtraColorLock = useThemerStore(
+		(state) => state.toggleExtraColorLock
+	)
+	const removeExtraColor = useThemerStore((state) => state.removeExtraColor)
 
 	const used = new Set([primaryColor, ...extraColorSchemes])
 	const nextSuggestion = PRESET_ORDER.find((p) => !used.has(p)) ?? "orange"
@@ -1016,8 +1030,19 @@ export function ColorSchemesPicker({
 	}, [addOpen, nextSuggestion])
 
 	const removeColor = (index: number) => {
-		onExtraColorSchemesChange(extraColorSchemes.filter((_, i) => i !== index))
+		removeExtraColor(index)
 	}
+
+	const lockProps = (index: number) =>
+		index === 0
+			? {
+					isLocked: primaryLocked,
+					onToggleLock: () => toggleLock("primaryColor"),
+				}
+			: {
+					isLocked: Boolean(lockedExtraColors[index - 1]),
+					onToggleLock: () => toggleExtraColorLock(index - 1),
+				}
 
 	const updateColor = (index: number, value: string) => {
 		const next = [...extraColorSchemes]
@@ -1071,6 +1096,7 @@ export function ColorSchemesPicker({
 							index={index}
 							value={value}
 							isPrimary={index === 0}
+							{...lockProps(index)}
 							isCompact={compact}
 							className={cn(
 								compact && compactRow ? "col-span-2" : "col-span-3",
@@ -1108,6 +1134,7 @@ export function ColorSchemesPicker({
 						index={0}
 						value={allColors[0].value}
 						isPrimary={true}
+						{...lockProps(0)}
 						className="h-[130px]"
 						onChange={onPrimaryChange}
 					/>
@@ -1122,6 +1149,7 @@ export function ColorSchemesPicker({
 						index={0}
 						value={allColors[0].value}
 						isPrimary={true}
+						{...lockProps(0)}
 						className="h-[130px]"
 						onChange={onPrimaryChange}
 					/>
@@ -1129,6 +1157,7 @@ export function ColorSchemesPicker({
 						index={1}
 						value={allColors[1].value}
 						isPrimary={false}
+						{...lockProps(1)}
 						className="h-[130px]"
 						onDelete={() => removeColor(0)}
 						onChange={(v) => updateColor(0, v)}
@@ -1145,6 +1174,7 @@ export function ColorSchemesPicker({
 						index={0}
 						value={allColors[0].value}
 						isPrimary={true}
+						{...lockProps(0)}
 						className={cn(
 							"col-span-1 h-full",
 							numColors <= 3 ? "min-h-[160px]" : "min-h-[244px]"
@@ -1157,6 +1187,7 @@ export function ColorSchemesPicker({
 						index={1}
 						value={allColors[1].value}
 						isPrimary={false}
+						{...lockProps(1)}
 						className={cn(
 							"col-span-1 h-full",
 							numColors <= 3 ? "min-h-[160px]" : "min-h-[244px]"
@@ -1177,6 +1208,7 @@ export function ColorSchemesPicker({
 								index={i + 2}
 								value={scheme.value}
 								isPrimary={false}
+								{...lockProps(i + 2)}
 								isCompact={true}
 								className="h-[76px]"
 								onDelete={() => removeColor(i + 1)}

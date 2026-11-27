@@ -143,8 +143,7 @@ export function ThemerMobileShortcuts({
 						size="sm"
 						variant="ghost"
 						color="neutral"
-						className={shortcutButtonClass}
-						disabled>
+						className={shortcutButtonClass}>
 						<Icon aria-hidden="true" />
 						{label}
 					</Button>
