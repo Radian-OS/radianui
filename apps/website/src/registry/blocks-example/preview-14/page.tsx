@@ -3,24 +3,12 @@
 import * as React from "react"
 import { useState } from "react"
 import { flushSync } from "react-dom"
-import {
-	MoonIcon as HeroMoonIcon,
-	SunIcon as HeroSunIcon,
-} from "@heroicons/react/24/outline"
-import { Moon02Icon, Sun01Icon } from "@hugeicons/core-free-icons"
-import { HugeiconsIcon } from "@hugeicons/react"
-import {
-	MoonIcon as PhosphorMoonIcon,
-	SunIcon as PhosphorSunIcon,
-} from "@phosphor-icons/react"
-import { IconMoon, IconSun } from "@tabler/icons-react"
-import { Moon, Sun } from "lucide-react"
 import { AnimatePresence, motion } from "motion/react"
 
 import { cn } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
 import { Button, IconButton } from "@/components/ui/button"
-import { IconSlot, useIconLibrary } from "@/registry/icon/icon-library"
+import { IconSlot } from "@/registry/icon/icon-library"
 import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
 import {
 	Breadcrumb,
@@ -700,38 +688,6 @@ function UserAccountMenuContent({
 	)
 }
 
-function ThemedThemeIcon({
-	kind,
-	className,
-}: {
-	kind: "sun" | "moon"
-	className?: string
-}) {
-	const iconLibrary = useIconLibrary()
-	if (iconLibrary === "hugeicons") {
-		return (
-			<HugeiconsIcon
-				icon={kind === "sun" ? Sun01Icon : Moon02Icon}
-				className={className}
-			/>
-		)
-	}
-	if (iconLibrary === "phosphor") {
-		const Icon = kind === "sun" ? PhosphorSunIcon : PhosphorMoonIcon
-		return <Icon className={className} />
-	}
-	if (iconLibrary === "tabler") {
-		const Icon = kind === "sun" ? IconSun : IconMoon
-		return <Icon className={className} />
-	}
-	if (iconLibrary === "heroicons") {
-		const Icon = kind === "sun" ? HeroSunIcon : HeroMoonIcon
-		return <Icon className={className} />
-	}
-	const Icon = kind === "sun" ? Sun : Moon
-	return <Icon className={className} />
-}
-
 function RadianLogo({ className = "size-7" }: { className?: string }) {
 	return (
 		<svg
@@ -1050,7 +1006,7 @@ function AgentSidebar({
 								onClick={(e) => {
 									lastClickRef.current = { x: e.clientX, y: e.clientY }
 								}}>
-								<ThemedThemeIcon kind="sun" className="size-4" />
+								<IconSlot slot="sun" className="size-4" />
 							</TabsTrigger>
 							<TabsTrigger
 								value="dark"
@@ -1059,7 +1015,7 @@ function AgentSidebar({
 								onClick={(e) => {
 									lastClickRef.current = { x: e.clientX, y: e.clientY }
 								}}>
-								<ThemedThemeIcon kind="moon" className="size-4" />
+								<IconSlot slot="moon" className="size-4" />
 							</TabsTrigger>
 						</TabsList>
 					</Tabs>

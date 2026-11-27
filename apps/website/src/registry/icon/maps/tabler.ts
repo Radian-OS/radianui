@@ -78,6 +78,7 @@ import {
 	IconMail,
 	IconMessages,
 	IconMinus,
+	IconMoon,
 	IconNotebook,
 	IconPalette,
 	IconPencil,
@@ -102,6 +103,7 @@ import {
 	IconSpeakerphone,
 	IconStar,
 	IconStopwatch,
+	IconSun,
 	IconThumbDown,
 	IconThumbUp,
 	IconTicket,
@@ -232,4 +234,6 @@ export const TABLER_ICON_MAP: Record<IconSlot, TablerIcon> = {
 	"thumbs-up": IconThumbUp,
 	"thumbs-down": IconThumbDown,
 	volume: IconVolume2,
+	sun: IconSun,
+	moon: IconMoon,
 }

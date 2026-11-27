@@ -927,4 +927,20 @@ export const ICON_SLOT_REPLACEMENTS = [
 		tablerIcon: "IconVolume2",
 		heroiconsIcon: "SpeakerWaveIcon",
 	},
+	{
+		slot: "sun",
+		lucideIcon: "Sun",
+		hugeiconsIcon: "Sun01Icon",
+		phosphorIcon: "SunIcon",
+		tablerIcon: "IconSun",
+		heroiconsIcon: "SunIcon",
+	},
+	{
+		slot: "moon",
+		lucideIcon: "Moon",
+		hugeiconsIcon: "Moon02Icon",
+		phosphorIcon: "MoonIcon",
+		tablerIcon: "IconMoon",
+		heroiconsIcon: "MoonIcon",
+	},
 ] as const

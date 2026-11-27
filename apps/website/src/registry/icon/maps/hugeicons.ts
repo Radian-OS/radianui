@@ -71,6 +71,7 @@ import {
 	Message01Icon,
 	MinusSignIcon,
 	MonitorDotIcon,
+	Moon02Icon,
 	More01Icon,
 	MoreHorizontalIcon,
 	MoreVerticalIcon,
@@ -231,4 +232,6 @@ export const HUGEICONS_ICON_MAP: Record<IconSlot, IconSvgElement> = {
 	"thumbs-up": ThumbsUpIcon,
 	"thumbs-down": ThumbsDownIcon,
 	volume: VolumeHighIcon,
+	sun: Sun01Icon,
+	moon: Moon02Icon,
 }

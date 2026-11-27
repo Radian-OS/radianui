@@ -73,6 +73,7 @@ import {
 	MagnifyingGlassIcon,
 	MegaphoneIcon,
 	MinusIcon,
+	MoonIcon,
 	MusicalNoteIcon,
 	PaintBrushIcon,
 	PaperAirplaneIcon,
@@ -221,4 +222,6 @@ export const HEROICONS_ICON_MAP: Record<IconSlot, Heroicon> = {
 	"thumbs-up": HandThumbUpIcon,
 	"thumbs-down": HandThumbDownIcon,
 	volume: SpeakerWaveIcon,
+	sun: SunIcon,
+	moon: MoonIcon,
 }
