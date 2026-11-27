@@ -21,6 +21,21 @@ function pickOther<T>(items: readonly T[], current: T): T {
 	return choices[Math.floor(Math.random() * choices.length)]!
 }
 
+function randomRgbHex(current: string): string {
+	let hex = current
+	while (hex.toLowerCase() === current.toLowerCase()) {
+		const n = Math.floor(Math.random() * 0x1000000)
+		hex = `#${n.toString(16).padStart(6, "0")}`
+	}
+	return hex
+}
+
+function pickPrimaryColor(current: string): string {
+	return Math.random() < 0.6
+		? pickOther(PRIMARY_COLOR_VALUES, current)
+		: randomRgbHex(current)
+}
+
 export type ThemerLockKey =
 	| "primaryColor"
 	| "baseColor"
@@ -126,11 +141,9 @@ export const useThemerStore = create<ThemerStoreState>()((set) => ({
 			return {
 				params: {
 					...state.params,
-					primaryColor: pick(
-						"primaryColor",
-						PRIMARY_COLOR_VALUES,
-						state.params.primaryColor
-					),
+					primaryColor: state.locked.primaryColor
+						? state.params.primaryColor
+						: pickPrimaryColor(state.params.primaryColor),
 					baseColor: pick(
 						"baseColor",
 						BASE_COLOR_VALUES,
