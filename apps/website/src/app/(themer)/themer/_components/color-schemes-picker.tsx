@@ -54,6 +54,11 @@ import {
 } from "@/styles/default/ui/tabs"
 import { Button, IconButton } from "@/styles/default/ui/button"
 
+// Keep the 14 px mobile picker handle inside the gradient at both endpoints.
+function mobileHandlePosition(fraction: number) {
+	return `calc(${fraction * 100}% + ${7 - fraction * 14}px)`
+}
+
 const toHsv = converter("hsv")
 
 type ColorFormat = "Hex" | "RGB" | "HSL"
@@ -431,8 +436,12 @@ function ColorPickerPopover({
 						inDrawer ? "size-3.5 border-3" : "size-5 border-[2.5px]"
 					)}
 					style={{
-						left: `${hsvState.s * 100}%`,
-						top: `${(1 - hsvState.v) * 100}%`,
+						left: inDrawer
+							? mobileHandlePosition(hsvState.s)
+							: `${hsvState.s * 100}%`,
+						top: inDrawer
+							? mobileHandlePosition(1 - hsvState.v)
+							: `${(1 - hsvState.v) * 100}%`,
 					}}
 				/>
 			</div>
@@ -452,7 +461,9 @@ function ColorPickerPopover({
 						inDrawer ? "size-3.5 border-3" : "size-4.5 border-2"
 					)}
 					style={{
-						left: `${(hsvState.h / 360) * 100}%`,
+						left: inDrawer
+							? mobileHandlePosition(hsvState.h / 360)
+							: `${(hsvState.h / 360) * 100}%`,
 						backgroundColor: hueColor,
 					}}
 				/>
@@ -725,8 +736,8 @@ function ColorPickerPopover({
 						<ScrollArea
 							type="auto"
 							data-vaul-no-drag
-							className="-mx-3 min-h-0 flex-1 [&>[data-slot=scroll-area-viewport]]:absolute [&>[data-slot=scroll-area-viewport]]:inset-0 [&>[data-slot=scroll-area-viewport]]:touch-pan-y [&>[data-slot=scroll-area-viewport]]:overscroll-y-contain">
-							<div className="px-3 pb-3">{customColorControls}</div>
+							className="-mx-3 min-h-0 flex-1 [&>[data-slot=scroll-area-viewport]]:absolute [&>[data-slot=scroll-area-viewport]]:inset-0 [&>[data-slot=scroll-area-viewport]]:touch-pan-y [&>[data-slot=scroll-area-viewport]]:overscroll-y-contain [&>[data-slot=scroll-area-viewport]>div]:block!">
+							<div className="w-full px-3 pb-3">{customColorControls}</div>
 						</ScrollArea>
 					) : (
 						customColorControls
