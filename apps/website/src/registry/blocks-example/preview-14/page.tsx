@@ -1055,7 +1055,8 @@ function AgentSidebar({
 								</DropdownMenuLabel>
 								<DropdownMenuRadioGroup
 									value={selectedSwitchWorkspace}
-									onValueChange={setSelectedSwitchWorkspace}>
+									onValueChange={setSelectedSwitchWorkspace}
+									className="flex flex-col gap-1">
 									{SWITCH_WORKSPACES.map((workspace) => (
 										<DropdownMenuRadioItem
 											key={workspace.id}
