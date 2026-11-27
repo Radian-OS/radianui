@@ -76,6 +76,7 @@ import {
 	MagnifyingGlassIcon,
 	MegaphoneIcon,
 	MinusIcon,
+	MoonIcon,
 	NotebookIcon,
 	PackageIcon,
 	PaletteIcon,
@@ -101,6 +102,7 @@ import {
 	SquaresFourIcon,
 	StarIcon,
 	StorefrontIcon,
+	SunIcon,
 	TelevisionIcon,
 	ThumbsDownIcon,
 	ThumbsUpIcon,
@@ -240,4 +242,6 @@ export const PHOSPHOR_ICON_MAP: Record<IconSlot, PhosphorIcon> = {
 	keyboard: KeyboardIcon,
 	laptop: LaptopIcon,
 	fullscreen: CornersOutIcon,
+	sun: SunIcon,
+	moon: MoonIcon,
 }

@@ -81,6 +81,7 @@ import {
 	MessagesSquare,
 	Minus,
 	Monitor,
+	Moon,
 	MoreHorizontal,
 	NotebookPen,
 	Palette,
@@ -108,6 +109,7 @@ import {
 	SquareCheck,
 	Star,
 	Store,
+	Sun,
 	ThumbsDown,
 	ThumbsUp,
 	TicketCheck,
@@ -248,4 +250,6 @@ export const LUCIDE_ICON_MAP: Record<IconSlot, LucideIcon> = {
 	keyboard: Keyboard,
 	laptop: Laptop,
 	fullscreen: Fullscreen,
+	sun: Sun,
+	moon: Moon,
 }

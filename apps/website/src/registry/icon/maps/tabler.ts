@@ -82,6 +82,7 @@ import {
 	IconMaximize,
 	IconMessages,
 	IconMinus,
+	IconMoon,
 	IconNotebook,
 	IconPalette,
 	IconPencil,
@@ -107,6 +108,7 @@ import {
 	IconSpeakerphone,
 	IconStar,
 	IconStopwatch,
+	IconSun,
 	IconThumbDown,
 	IconThumbUp,
 	IconTicket,
@@ -242,4 +244,6 @@ export const TABLER_ICON_MAP: Record<IconSlot, TablerIcon> = {
 	keyboard: IconKeyboard,
 	laptop: IconDeviceLaptop,
 	fullscreen: IconMaximize,
+	sun: IconSun,
+	moon: IconMoon,
 }

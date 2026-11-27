@@ -75,6 +75,7 @@ import {
 	MagnifyingGlassIcon,
 	MegaphoneIcon,
 	MinusIcon,
+	MoonIcon,
 	MusicalNoteIcon,
 	PaintBrushIcon,
 	PaperAirplaneIcon,
@@ -230,4 +231,6 @@ export const HEROICONS_ICON_MAP: Record<IconSlot, Heroicon> = {
 	keyboard: CommandLineIcon,
 	laptop: ComputerDesktopIcon,
 	fullscreen: ArrowsPointingOutIcon,
+	sun: SunIcon,
+	moon: MoonIcon,
 }
