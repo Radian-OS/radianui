@@ -295,14 +295,14 @@ export function DashboardSidebar({
 	return (
 		<Sidebar
 			collapsible="offcanvas"
-			className="bg-fill1 border-0 p-3 select-none"
+			className="bg-fill1 border-0 p-0 select-none"
 			style={
 				{
 					"--color-sidebar": "var(--color-fill1)",
 				} as React.CSSProperties
 			}>
 			{/* Top Brand Header Card */}
-			<SidebarHeader className="p-0">
+			<SidebarHeader className="p-2">
 				<DropdownMenu indicatorPosition="right">
 					<DropdownMenuTrigger asChild>
 						<Card className="border-border/70 bg-elevation-level1 flex cursor-pointer flex-row items-center justify-between gap-0 rounded-xl p-2.5 shadow-none">
@@ -390,12 +390,12 @@ export function DashboardSidebar({
 			</SidebarHeader>
 
 			{/* Sidebar Navigation */}
-			<SidebarContent className="[scrollbar-width:none] space-y-3 overflow-y-auto px-0 py-3 [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+			<SidebarContent className="[scrollbar-width:none] overflow-y-auto [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
 				{NAV_GROUPS.map((group, idx) => (
 					<React.Fragment key={group.label}>
 						{idx > 0 && <SidebarSeparator className="mx-0" />}
-						<SidebarGroup className="p-0">
-							<SidebarGroupLabel className="text-fg-tertiary px-0 py-1 text-xs font-semibold">
+						<SidebarGroup className="p-2">
+							<SidebarGroupLabel className="text-fg-tertiary px-2 py-1 text-xs font-semibold">
 								{group.label}
 							</SidebarGroupLabel>
 							<SidebarGroupContent>
@@ -414,7 +414,7 @@ export function DashboardSidebar({
 														else if (window.innerWidth < 1024) setOpen(false)
 													}}
 													className={cn(
-														"h-8 px-2.5 text-sm font-medium transition-colors",
+														"h-8 px-2 text-sm font-medium transition-colors",
 														isActive
 															? "text-fg font-medium"
 															: "text-fg-secondary"
@@ -433,7 +433,7 @@ export function DashboardSidebar({
 			</SidebarContent>
 
 			{/* Sidebar Footer User Profile */}
-			<SidebarFooter className="p-0 pt-2">
+			<SidebarFooter className="p-2">
 				<DropdownMenu>
 					<DropdownMenuTrigger asChild>
 						<Card className="border-border/70 bg-elevation-level1 flex cursor-pointer flex-row items-center justify-between gap-0 rounded-xl p-2.5 shadow-none">
