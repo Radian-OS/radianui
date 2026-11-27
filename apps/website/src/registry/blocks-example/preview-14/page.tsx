@@ -803,7 +803,6 @@ function AgentSidebar({
 
 	const closeMobileSidebar = () => {
 		if (isMobile) setOpenMobile(false)
-		else if (window.innerWidth < 1024) setOpen(false)
 	}
 
 	const lastClickRef = React.useRef<{ x: number; y: number } | null>(null)
@@ -870,7 +869,7 @@ function AgentSidebar({
 								</span>
 								<IconSlot
 									slot="chevrons-up-down"
-									className="text-fg-tertiary size-4 shrink-0"
+									className="text-fg-tertiary size-4! shrink-0"
 								/>
 							</Button>
 						</DropdownMenuTrigger>
@@ -1192,32 +1191,18 @@ function InspectorPanelContent({
 							</TooltipContent>
 						</Tooltip>
 
-						<DropdownMenu>
-							<DropdownMenuTrigger asChild>
+						<Tooltip>
+							<TooltipTrigger asChild>
 								<IconButton
 									variant="ghost"
 									color="neutral"
 									size="xs"
-									aria-label="Inspector options">
+									aria-label="Toggle inspector">
 									<IconSlot slot="left-panel" className="size-4" />
 								</IconButton>
-							</DropdownMenuTrigger>
-							<DropdownMenuContent align="end" className="w-44">
-								<DropdownMenuItem>
-									<IconSlot slot="check" />
-									Stage all changes
-								</DropdownMenuItem>
-								<DropdownMenuItem>
-									<IconSlot slot="repeat" />
-									Refresh diff
-								</DropdownMenuItem>
-								<DropdownMenuDivider />
-								<DropdownMenuItem>
-									<IconSlot slot="trash" />
-									Discard uncommitted
-								</DropdownMenuItem>
-							</DropdownMenuContent>
-						</DropdownMenu>
+							</TooltipTrigger>
+							<TooltipContent withArrow>Toggle inspector</TooltipContent>
+						</Tooltip>
 					</div>
 				</div>
 			</div>
@@ -1298,8 +1283,6 @@ function InspectorPanelContent({
 										</DropdownMenuRadioGroup>
 									</DropdownMenuContent>
 								</DropdownMenu>
-
-								<Badge color="neutral">{activeFile.status}</Badge>
 							</div>
 						</div>
 
@@ -1336,71 +1319,10 @@ function InspectorPanelContent({
 						animate={{ opacity: 1, y: 0 }}
 						exit={{ opacity: 0, y: -6 }}
 						transition={{ duration: 0.16 }}
-						className="flex min-h-0 flex-1 flex-col">
-						{/* Browser Address Bar */}
-						<div className="border-border bg-fill1 flex shrink-0 items-center gap-2 border-b px-3 py-2">
-							<InputWrapper className="bg-elevation-level1 flex-1">
-								<IconSlot slot="globe" className="text-fg-tertiary size-3.5" />
-								<Input
-									readOnly
-									value="localhost:3000/dashboard"
-									aria-label="Preview URL"
-								/>
-							</InputWrapper>
-							<Tooltip>
-								<TooltipTrigger asChild>
-									<IconButton
-										variant="outline"
-										color="neutral"
-										size="xs"
-										aria-label="Reload preview">
-										<IconSlot slot="repeat" />
-									</IconButton>
-								</TooltipTrigger>
-								<TooltipContent withArrow>Reload preview</TooltipContent>
-							</Tooltip>
-						</div>
-
-						{/* Mini Dashboard Preview inside Browser Tab */}
-						<ScrollArea className="min-h-0 flex-1 p-3">
-							<Card className="border-border bg-fill1 gap-3 border p-3 shadow-none">
-								<div className="flex items-center justify-between gap-2">
-									<div className="flex items-center gap-2">
-										<RadianLogo className="size-6" />
-										<span className="text-fg text-xs font-semibold">
-											DashboardShell Preview
-										</span>
-									</div>
-									<Badge color="primary">Live</Badge>
-								</div>
-								<Divider />
-								<div className="grid grid-cols-2 gap-2">
-									<Card className="border-border bg-elevation-level1 gap-1 border p-2.5 shadow-none">
-										<span className="text-fg-tertiary text-xs">Tokens</span>
-										<span className="text-fg text-sm font-semibold tabular-nums">
-											48 synced
-										</span>
-									</Card>
-									<Card className="border-border bg-elevation-level1 gap-1 border p-2.5 shadow-none">
-										<span className="text-fg-tertiary text-xs">Build</span>
-										<span className="text-success text-sm font-semibold">
-											Passing
-										</span>
-									</Card>
-								</div>
-								<Card className="border-border bg-elevation-level1 gap-2 border p-2.5 shadow-none">
-									<div className="flex items-center justify-between text-xs">
-										<span className="text-fg-secondary font-medium">
-											Production check
-										</span>
-										<span className="text-fg font-semibold tabular-nums">
-											100%
-										</span>
-									</div>
-									<Progress value={100} />
-								</Card>
-							</Card>
-						</ScrollArea>
+						className="flex min-h-0 flex-1 flex-col px-3 pb-3">
+						<Card className="bg-fill1 flex min-h-0 flex-1 items-center justify-center border-0 p-6 shadow-none">
+							<span className="text-fg-tertiary text-sm">Browser preview</span>
+						</Card>
 					</motion.div>
 				)}
 			</AnimatePresence>
@@ -1484,7 +1406,7 @@ function AgentThinkingBlock({
 											delay: showSteps ? idx * 0.08 : 0,
 										}}
 										className={cn(
-											"relative flex h-8 items-center gap-2 rounded-full pr-[13px] pl-[9px] text-sm transition-all",
+											"relative flex h-8 items-center gap-2 rounded-lg pr-[13px] pl-[9px] text-sm transition-all",
 											isBlurred && "blur-[1px]"
 										)}>
 										{isCurrent && (
@@ -1495,7 +1417,7 @@ function AgentThinkingBlock({
 													stiffness: 380,
 													damping: 32,
 												}}
-												className="border-border bg-elevation-level1 pointer-events-none absolute inset-0 rounded-full border shadow-2xs"
+												className="border-border bg-elevation-level1 pointer-events-none absolute inset-0 rounded-lg border shadow-2xs"
 											/>
 										)}
 										<span className="relative z-10 inline-flex items-center">
@@ -1733,12 +1655,28 @@ export default function Preview14Page() {
 	}
 
 	return (
-		<div className="text-fg font-body bg-bg h-screen w-full max-w-dvw overflow-hidden">
+		<div className="text-fg font-body bg-bg h-dvh w-full max-w-dvw overflow-hidden">
+			<style>{`
+				@keyframes theme-reveal-circle {
+					from { clip-path: circle(0px at 0% 100%); }
+					to { clip-path: circle(150vmax at 0% 100%); }
+				}
+				::view-transition-old(root),
+				::view-transition-new(root) {
+					animation: none;
+					mix-blend-mode: normal;
+				}
+				::view-transition-old(root) { z-index: 1; }
+				::view-transition-new(root) {
+					z-index: 9999;
+					animation: theme-reveal-circle 550ms cubic-bezier(0.22, 1, 0.36, 1) both;
+				}
+			`}</style>
 			<SidebarProvider
-				open={sidebarOpen}
-				onOpenChange={setSidebarOpen}
+				open={true}
+				onOpenChange={() => {}}
 				defaultWidth="16.25rem"
-				className="flex h-screen w-full max-w-full overflow-hidden bg-transparent">
+				className="flex h-dvh w-full max-w-full overflow-hidden bg-transparent">
 				{/* Left Agent Sidebar */}
 				<AgentSidebar
 					activeThreadId={activeThread.id}
@@ -1747,7 +1685,7 @@ export default function Preview14Page() {
 				/>
 
 				{/* Main Workspace Split Container */}
-				<SidebarInset className="bg-bg flex h-screen min-w-0 flex-1 flex-row gap-2 overflow-hidden py-2 pr-2 pl-2 lg:pl-0">
+				<SidebarInset className="bg-bg flex h-dvh min-w-0 flex-1 flex-row gap-2 overflow-hidden py-2 pr-2 pl-2 lg:pl-0">
 					{/* Center Chat Panel */}
 					<Card className="border-border/60 bg-elevation-negative flex min-w-0 flex-1 flex-col gap-0 overflow-hidden border p-0 shadow-none">
 						{/* Chat Header Bar */}
@@ -1806,7 +1744,7 @@ export default function Preview14Page() {
 											<IconSlot slot="threeDot" />
 										</IconButton>
 									</DropdownMenuTrigger>
-									<DropdownMenuContent align="end" className="w-44">
+									<DropdownMenuContent align="center" className="w-44">
 										<DropdownMenuItem onClick={handleNewAgent}>
 											<IconSlot slot="plus" />
 											New session
@@ -1825,10 +1763,10 @@ export default function Preview14Page() {
 							</div>
 						</header>
 
-						{/* Scrollable Conversation Area (bottom-aligned above composer) */}
-						<div className="flex min-h-0 flex-1 flex-col justify-end overflow-hidden">
-							<ScrollArea className="max-h-full">
-								<div className="flex w-full flex-col gap-3 px-4 pt-4 pb-2 sm:px-5">
+						{/* Scrollable Conversation Area (bottom-aligned above composer without clipping top) */}
+						<div className="min-h-0 flex-1 [scrollbar-width:none] overflow-y-auto [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+							<div className="flex min-h-full w-full flex-col gap-3 px-3 pt-4 pb-2 sm:px-5">
+								<div className="mt-auto flex w-full flex-col gap-3">
 									{/* User Prompt Card (Right Aligned) */}
 									<AnimatePresence mode="wait">
 										<motion.div
@@ -1838,7 +1776,7 @@ export default function Preview14Page() {
 											exit={{ opacity: 0, y: -4 }}
 											transition={{ duration: 0.18 }}
 											className="flex justify-end">
-											<Card className="border-border bg-elevation-level1 ms-auto -me-1.5 w-fit max-w-[calc(50%+6px)] border px-3 py-[11px] text-sm leading-relaxed shadow-xs">
+											<Card className="border-border bg-elevation-level1 ms-auto me-0 w-fit max-w-[85%] border px-3 py-[11px] text-sm leading-relaxed shadow-xs sm:max-w-[70%] lg:-me-1.5 lg:max-w-[calc(50%+6px)]">
 												<span className="text-fg">{activeThread.prompt}</span>
 											</Card>
 										</motion.div>
@@ -1867,7 +1805,7 @@ export default function Preview14Page() {
 													{activeThread.reply}
 												</p>
 
-												<Card className="border-border bg-elevation-level1 gap-0 overflow-hidden border p-0 shadow-xs">
+												<Card className="border-border bg-elevation-level1 w-full min-w-0 gap-0 overflow-hidden border p-0 shadow-xs">
 													{/* File Card Header */}
 													<div className="border-border flex h-9 items-center justify-between gap-3 border-b px-2.5">
 														<div className="flex min-w-0 items-center gap-2">
@@ -1923,7 +1861,7 @@ export default function Preview14Page() {
 
 													{/* Numbered Code Block */}
 													<ScrollArea className="w-full">
-														<div className="px-3 py-2.5 font-mono text-xs leading-[18px]">
+														<div className="px-3 py-2.5 font-mono text-xs leading-4.5">
 															{activeThread.codeLines.map((line, index) => (
 																<div
 																	key={index}
@@ -2061,7 +1999,7 @@ export default function Preview14Page() {
 										)}
 									</AnimatePresence>
 								</div>
-							</ScrollArea>
+							</div>
 						</div>
 
 						{/* Bottom Composer & Repo Status Strip */}
@@ -2265,7 +2203,7 @@ export default function Preview14Page() {
 											}
 										}}
 										placeholder="Ask me anything"
-										className="min-h-8 flex-1 border-0 bg-transparent px-1 py-1.5 shadow-none focus:ring-0"
+										className="min-h-8 min-w-[120px] flex-1 border-0 bg-transparent px-1 py-1.5 shadow-none focus:ring-0"
 									/>
 
 									<div className="ml-auto flex shrink-0 items-center gap-1">
@@ -2343,27 +2281,10 @@ export default function Preview14Page() {
 							{/* Git Branch, Project, Mode & Context Progress */}
 							<div className="flex flex-wrap items-center justify-between gap-2 px-1 pt-2">
 								<div className="flex items-center gap-1">
-									<DropdownMenu>
-										<DropdownMenuTrigger asChild>
-											<Button variant="ghost" color="neutral" size="xs">
-												<IconSlot slot="git-branch" />
-												<span>{selectedBranch}</span>
-											</Button>
-										</DropdownMenuTrigger>
-										<DropdownMenuContent align="start" className="w-44">
-											<DropdownMenuRadioGroup
-												value={selectedBranch}
-												onValueChange={(val) =>
-													setSelectedBranch(val as (typeof BRANCHES)[number])
-												}>
-												{BRANCHES.map((branch) => (
-													<DropdownMenuRadioItem key={branch} value={branch}>
-														{branch}
-													</DropdownMenuRadioItem>
-												))}
-											</DropdownMenuRadioGroup>
-										</DropdownMenuContent>
-									</DropdownMenu>
+									<Button variant="ghost" color="neutral" size="xs">
+										<IconSlot slot="git-branch" />
+										<span>{selectedBranch}</span>
+									</Button>
 
 									<DropdownMenu>
 										<DropdownMenuTrigger asChild>

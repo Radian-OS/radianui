@@ -45,24 +45,16 @@ export function Button({ size, variant, style, ...props }: ButtonProps) {
 	)
 }
 
-export function IconButton({
-	size,
-	variant,
-	style,
-	...props
-}: IconButtonProps) {
-	const config = useThemerStore((s) => s.params.components?.Button)
-	const effectiveSize = size ?? config?.size ?? "md"
-	const radiusPreset = config?.radius
+export function IconButton({ size, style, ...props }: IconButtonProps) {
+	const radiusPreset = useThemerStore((s) => s.params.components.Button?.radius)
 
 	return (
 		<RealIconButton
 			{...props}
-			size={size ?? config?.size}
-			variant={variant ?? config?.variant}
+			size={size}
 			style={{
 				borderRadius: radiusPreset
-					? `${BUTTON_RADIUS_PRESETS[radiusPreset][effectiveSize]}px`
+					? `${BUTTON_RADIUS_PRESETS[radiusPreset][size ?? "md"]}px`
 					: undefined,
 				...style,
 			}}
