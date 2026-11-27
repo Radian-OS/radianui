@@ -804,25 +804,58 @@ function AgentSidebar({
 	const lastClickRef = React.useRef<{ x: number; y: number } | null>(null)
 
 	const handleThemeChange = (next: "light" | "dark") => {
+		const root = document.documentElement
 		const applyTheme = () => {
+			root.classList.add("theme-switching")
 			setThemeMode(next)
-			document.documentElement.classList.toggle("dark", next === "dark")
+			root.classList.toggle("dark", next === "dark")
+			void root.offsetHeight
+			requestAnimationFrame(() => {
+				root.classList.remove("theme-switching")
+			})
 		}
 
 		const doc = document as Document & {
-			startViewTransition?: (cb: () => void) => unknown
+			startViewTransition?: (cb: () => void) => {
+				ready?: Promise<void>
+				finished?: Promise<void>
+			}
 		}
 		if (!doc.startViewTransition) {
 			applyTheme()
 			return
 		}
 
-		doc.startViewTransition(() => {
+		const transition = doc.startViewTransition(() => {
+			root.classList.add("theme-switching")
 			flushSync(() => {
 				setThemeMode(next)
 			})
-			document.documentElement.classList.toggle("dark", next === "dark")
+			root.classList.toggle("dark", next === "dark")
+			void root.offsetHeight
 		})
+
+		transition?.ready
+			?.then(() => {
+				document.documentElement.animate(
+					{
+						opacity: [0, 1],
+					},
+					{
+						duration: 450,
+						easing: "cubic-bezier(0.4, 0, 0.2, 1)",
+						fill: "both",
+						pseudoElement: "::view-transition-new(root)",
+					}
+				)
+			})
+			.catch(() => {})
+
+		transition?.finished
+			?.finally(() => {
+				root.classList.remove("theme-switching")
+			})
+			.catch(() => {})
 	}
 
 	return (
@@ -1652,9 +1685,10 @@ export default function Preview14Page() {
 	return (
 		<div className="text-fg font-body bg-bg h-dvh w-full max-w-dvw overflow-hidden">
 			<style>{`
-				@keyframes theme-reveal-circle {
-					from { clip-path: circle(0px at 0% 100%); }
-					to { clip-path: circle(150vmax at 0% 100%); }
+				html.theme-switching *,
+				html.theme-switching *::before,
+				html.theme-switching *::after {
+					transition: none !important;
 				}
 				::view-transition-old(root),
 				::view-transition-new(root) {
@@ -1662,10 +1696,7 @@ export default function Preview14Page() {
 					mix-blend-mode: normal;
 				}
 				::view-transition-old(root) { z-index: 1; }
-				::view-transition-new(root) {
-					z-index: 9999;
-					animation: theme-reveal-circle 550ms cubic-bezier(0.22, 1, 0.36, 1) both;
-				}
+				::view-transition-new(root) { z-index: 9999; }
 			`}</style>
 			<SidebarProvider
 				open={true}
@@ -2042,18 +2073,18 @@ export default function Preview14Page() {
 												rx="12"
 												fill="none"
 												stroke="url(#composer-border-gradient)"
-												strokeWidth="12"
+												strokeWidth="6"
 												strokeLinecap="round"
 												pathLength={100}
-												strokeDasharray="36 64"
-												initial={{ strokeDashoffset: 0 }}
-												animate={{ strokeDashoffset: -100 }}
+												strokeDasharray="30 70"
+												initial={{ strokeDashoffset: -3 }}
+												animate={{ strokeDashoffset: -103 }}
 												transition={{
 													repeat: Infinity,
 													duration: 2.4,
 													ease: "linear",
 												}}
-												style={{ filter: "blur(8px)", opacity: 0.45 }}
+												style={{ filter: "blur(4px)", opacity: 0.4 }}
 											/>
 											<motion.rect
 												x="0"
@@ -2076,45 +2107,6 @@ export default function Preview14Page() {
 												}}
 											/>
 										</motion.svg>
-									)}
-								</AnimatePresence>
-								<AnimatePresence>
-									{isThinking && (
-										<motion.div
-											key="composer-aurora"
-											initial={{ opacity: 0 }}
-											animate={{ opacity: 1 }}
-											exit={{ opacity: 0, transition: { duration: 0.15 } }}
-											transition={{ duration: 0.2 }}
-											className="pointer-events-none absolute inset-0 overflow-hidden rounded-[inherit]">
-											<motion.div
-												animate={{
-													opacity: [0.7, 1, 0.7],
-													x: ["-6%", "10%", "-6%"],
-												}}
-												transition={{
-													opacity: {
-														repeat: Infinity,
-														duration: 2.6,
-														ease: "easeInOut",
-													},
-													x: {
-														repeat: Infinity,
-														duration: 2.6,
-														ease: "easeInOut",
-													},
-												}}
-												style={{
-													background:
-														"linear-gradient(90deg, var(--color-info-accent) 0%, var(--color-info-focus) 45%, var(--color-error-accent) 82%, transparent 100%)",
-													maskImage:
-														"radial-gradient(ellipse 90% 105% at 18% 95%, black 0%, transparent 75%)",
-													WebkitMaskImage:
-														"radial-gradient(ellipse 90% 105% at 18% 95%, black 0%, transparent 75%)",
-												}}
-												className="absolute inset-y-0 left-0 w-3/4 blur-md"
-											/>
-										</motion.div>
 									)}
 								</AnimatePresence>
 								<div className="relative z-10 flex flex-wrap items-center gap-2 sm:flex-nowrap">
