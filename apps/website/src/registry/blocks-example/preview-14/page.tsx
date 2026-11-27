@@ -843,7 +843,7 @@ function AgentSidebar({
 						<DropdownMenuTrigger asChild>
 							<SidebarMenuButton
 								size="lg"
-								className="h-auto min-w-0 flex-1 justify-between gap-2 px-1.5 py-1">
+								className="h-auto min-w-0 flex-1 justify-between gap-1.5 px-1 py-1">
 								<span className="flex min-w-0 items-center gap-2">
 									<Avatar
 										size="md"
