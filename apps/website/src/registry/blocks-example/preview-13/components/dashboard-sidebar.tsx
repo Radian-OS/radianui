@@ -217,6 +217,74 @@ const ORG_ITEMS: {
 	{ id: "team", label: "Team", icon: "users" },
 ]
 
+export function UserAccountMenuContent({
+	align = "end",
+	side = "right",
+	sideOffset = 8,
+}: {
+	align?: "start" | "center" | "end"
+	side?: "top" | "right" | "bottom" | "left"
+	sideOffset?: number
+}) {
+	return (
+		<DropdownMenuContent
+			align={align}
+			side={side}
+			sideOffset={sideOffset}
+			className="w-60 p-1.5 sm:w-68">
+			<div className="flex w-full items-center gap-2.5 p-2">
+				<Avatar size="md" rounded="square" className="bg-fill2">
+					<AvatarImage
+						src="https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@v1.0.2/packages/uncompressed-avatars/src/2.png"
+						alt="Alex Rivera"
+					/>
+					<AvatarFallback className="text-xs">AR</AvatarFallback>
+				</Avatar>
+				<div className="flex flex-1 flex-col">
+					<span className="text-sm font-medium">Alex Rivera</span>
+					<span className="text-fg-tertiary text-xs font-normal">
+						alex@radian.com
+					</span>
+				</div>
+				<Badge color="primary">PRO</Badge>
+			</div>
+			<DropdownMenuDivider />
+			<DropdownMenuLabel className="text-xs uppercase">
+				Account
+			</DropdownMenuLabel>
+			{ACCOUNT_ITEMS.map(({ id, label, icon, shortcut }) => (
+				<DropdownMenuItem key={id} className="text-sm">
+					<IconSlot slot={icon} className="size-4" />
+					{label}
+					{shortcut && (
+						<DropdownMenuShortcut>
+							<Badge variant="outline" color="neutral" className="text-xs">
+								{shortcut}
+							</Badge>
+						</DropdownMenuShortcut>
+					)}
+				</DropdownMenuItem>
+			))}
+			<DropdownMenuDivider />
+			<DropdownMenuLabel className="text-xs uppercase">
+				Account
+			</DropdownMenuLabel>
+			{ORG_ITEMS.map(({ id, label, icon }) => (
+				<DropdownMenuItem key={id} className="text-sm">
+					<IconSlot slot={icon} className="size-4" />
+					{label}
+				</DropdownMenuItem>
+			))}
+			<DropdownMenuDivider />
+			<DropdownMenuItem className="text-sm">
+				<IconSlot slot="logout" className="size-4" />
+				Log out
+				<span className="text-fg-tertiary ml-auto text-xs">v2.3.16</span>
+			</DropdownMenuItem>
+		</DropdownMenuContent>
+	)
+}
+
 export function DashboardSidebar({
 	activeNav,
 	onSelectNav,
@@ -265,18 +333,19 @@ export function DashboardSidebar({
 					<DropdownMenuContent
 						align="start"
 						sideOffset={4}
-						className="w-60 sm:w-68">
-						<DropdownMenuLabel className="text-xs uppercase">
+						className="w-60 p-1.5 sm:w-68">
+						<DropdownMenuLabel className="px-2 py-1.5 text-xs uppercase">
 							Switch Workspace
 						</DropdownMenuLabel>
 						<DropdownMenuRadioGroup
 							value={selectedWorkspace}
-							onValueChange={setSelectedWorkspace}>
+							onValueChange={setSelectedWorkspace}
+							className="flex flex-col gap-1">
 							{WORKSPACES.map((workspace) => (
 								<DropdownMenuRadioItem
 									key={workspace.id}
 									value={workspace.id}
-									className="data-[state=checked]:bg-fill1-alpha py-2">
+									className="data-[state=checked]:bg-fill1-alpha py-2 ps-2 pe-8">
 									{workspace.avatar ? (
 										<Avatar size="sm" rounded="square" className="bg-fill2">
 											<AvatarImage
@@ -398,64 +467,11 @@ export function DashboardSidebar({
 							</span>
 						</Card>
 					</DropdownMenuTrigger>
-					<DropdownMenuContent
+					<UserAccountMenuContent
 						align={isMobile ? "center" : "end"}
 						side={isMobile ? "top" : "right"}
 						sideOffset={8}
-						className="w-60 sm:w-68">
-						<div className="flex w-full items-center gap-2.5 p-2">
-							<Avatar size="md" rounded="square" className="bg-fill2">
-								<AvatarImage
-									src="https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@v1.0.2/packages/uncompressed-avatars/src/2.png"
-									alt="Alex Rivera"
-								/>
-								<AvatarFallback className="text-xs">AR</AvatarFallback>
-							</Avatar>
-							<div className="flex flex-1 flex-col">
-								<span className="text-sm font-medium">Alex Rivera</span>
-								<span className="text-fg-tertiary text-xs font-normal">
-									alex@radian.com
-								</span>
-							</div>
-							<Badge color="primary">PRO</Badge>
-						</div>
-						<DropdownMenuDivider />
-						<DropdownMenuLabel className="text-xs uppercase">
-							Account
-						</DropdownMenuLabel>
-						{ACCOUNT_ITEMS.map(({ id, label, icon, shortcut }) => (
-							<DropdownMenuItem key={id} className="text-sm">
-								<IconSlot slot={icon} className="size-4" />
-								{label}
-								{shortcut && (
-									<DropdownMenuShortcut>
-										<Badge
-											variant="outline"
-											color="neutral"
-											className="text-xs">
-											{shortcut}
-										</Badge>
-									</DropdownMenuShortcut>
-								)}
-							</DropdownMenuItem>
-						))}
-						<DropdownMenuDivider />
-						<DropdownMenuLabel className="text-xs uppercase">
-							Account
-						</DropdownMenuLabel>
-						{ORG_ITEMS.map(({ id, label, icon }) => (
-							<DropdownMenuItem key={id} className="text-sm">
-								<IconSlot slot={icon} className="size-4" />
-								{label}
-							</DropdownMenuItem>
-						))}
-						<DropdownMenuDivider />
-						<DropdownMenuItem className="text-sm">
-							<IconSlot slot="logout" className="size-4" />
-							Log out
-							<span className="text-fg-tertiary ml-auto text-xs">v2.3.16</span>
-						</DropdownMenuItem>
-					</DropdownMenuContent>
+					/>
 				</DropdownMenu>
 			</SidebarFooter>
 		</Sidebar>
