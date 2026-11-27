@@ -6,7 +6,6 @@ import { flushSync } from "react-dom"
 import {
 	Code2,
 	Copy,
-	FileText,
 	Folder,
 	ListTodo,
 	Maximize2,
@@ -550,7 +549,7 @@ const PLUGIN_MENU_ITEMS = [
 		id: "documents",
 		label: "Documents",
 		description: "Create and edit documents",
-		icon: FileText,
+		slot: "file-text" as const,
 		iconClass: "text-fg-secondary",
 	},
 	{
@@ -1924,7 +1923,7 @@ export default function Preview14Page() {
 
 													{/* Numbered Code Block */}
 													<ScrollArea className="w-full">
-														<div className="px-3 py-2.5 font-mono text-[11px] leading-[18px]">
+														<div className="px-3 py-2.5 font-mono text-xs leading-[18px]">
 															{activeThread.codeLines.map((line, index) => (
 																<div
 																	key={index}
@@ -2222,12 +2221,24 @@ export default function Preview14Page() {
 												Plugins
 											</DropdownMenuLabel>
 											{PLUGIN_MENU_ITEMS.map((item) => {
-												const PluginIcon = item.icon
 												return (
 													<DropdownMenuItem key={item.id} className="gap-2">
-														<PluginIcon
-															className={cn("size-4 shrink-0", item.iconClass)}
-														/>
+														{"slot" in item ? (
+															<IconSlot
+																slot={item.slot}
+																className={cn(
+																	"size-4 shrink-0",
+																	item.iconClass
+																)}
+															/>
+														) : (
+															<item.icon
+																className={cn(
+																	"size-4 shrink-0",
+																	item.iconClass
+																)}
+															/>
+														)}
 														<span className="truncate">
 															<span className="text-fg font-medium">
 																{item.label}
@@ -2290,7 +2301,7 @@ export default function Preview14Page() {
 															{EFFORT_LEVELS[effortLevel[0] ?? 1]}
 														</span>
 													</div>
-													<div className="text-fg-tertiary flex items-center justify-between text-[11px]">
+													<div className="text-fg-tertiary flex items-center justify-between text-xs">
 														<span>Faster</span>
 														<span>Smarter</span>
 													</div>

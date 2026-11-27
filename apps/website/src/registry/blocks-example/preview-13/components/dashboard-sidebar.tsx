@@ -231,7 +231,7 @@ export function UserAccountMenuContent({
 			align={align}
 			side={side}
 			sideOffset={sideOffset}
-			className="w-60 sm:w-68">
+			className="w-60 p-1.5 sm:w-68">
 			<div className="flex w-full items-center gap-2.5 p-2">
 				<Avatar size="md" rounded="square" className="bg-fill2">
 					<AvatarImage
@@ -333,18 +333,19 @@ export function DashboardSidebar({
 					<DropdownMenuContent
 						align="start"
 						sideOffset={4}
-						className="w-60 sm:w-68">
-						<DropdownMenuLabel className="text-xs uppercase">
+						className="w-60 p-1.5 sm:w-68">
+						<DropdownMenuLabel className="px-2 py-1.5 text-xs uppercase">
 							Switch Workspace
 						</DropdownMenuLabel>
 						<DropdownMenuRadioGroup
 							value={selectedWorkspace}
-							onValueChange={setSelectedWorkspace}>
+							onValueChange={setSelectedWorkspace}
+							className="flex flex-col gap-1">
 							{WORKSPACES.map((workspace) => (
 								<DropdownMenuRadioItem
 									key={workspace.id}
 									value={workspace.id}
-									className="data-[state=checked]:bg-fill1-alpha py-2">
+									className="data-[state=checked]:bg-fill1-alpha py-2 ps-2 pe-8">
 									{workspace.avatar ? (
 										<Avatar size="sm" rounded="square" className="bg-fill2">
 											<AvatarImage
