@@ -1274,7 +1274,7 @@
 
 	/* MARK: Select */
 	.cn-select-trigger {
-		@apply border-border text-fg data-placeholder:text-fg-tertiary focus-visible:ring-primary-focus focus-visible:border-primary aria-invalid:border-error aria-invalid:ring-error [[data-invalid=true]_&]:border-error [[data-invalid=true]_&]:ring-error border-b bg-transparent shadow-none focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50;
+		@apply border-border text-fg data-placeholder:text-fg-tertiary focus-visible:border-fg-tertiary focus-visible:ring-fg-tertiary/30 aria-invalid:border-error aria-invalid:ring-error [[data-invalid=true]_&]:border-error [[data-invalid=true]_&]:ring-error border-b bg-transparent shadow-none focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50;
 	}
 
 	.cn-select-trigger-xs {
