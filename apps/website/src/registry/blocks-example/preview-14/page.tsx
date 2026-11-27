@@ -4,26 +4,23 @@ import * as React from "react"
 import { useState } from "react"
 import { flushSync } from "react-dom"
 import {
-	Code2,
-	Copy,
-	Folder,
-	ListTodo,
-	Maximize2,
-	Mic,
-	Moon,
-	Paperclip,
-	Presentation,
-	Sun,
-	Table2,
-	Target,
-	Terminal,
-} from "lucide-react"
+	MoonIcon as HeroMoonIcon,
+	SunIcon as HeroSunIcon,
+} from "@heroicons/react/24/outline"
+import { Moon02Icon, Sun01Icon } from "@hugeicons/core-free-icons"
+import { HugeiconsIcon } from "@hugeicons/react"
+import {
+	MoonIcon as PhosphorMoonIcon,
+	SunIcon as PhosphorSunIcon,
+} from "@phosphor-icons/react"
+import { IconMoon, IconSun } from "@tabler/icons-react"
+import { Moon, Sun } from "lucide-react"
 import { AnimatePresence, motion } from "motion/react"
 
 import { cn } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
 import { Button, IconButton } from "@/components/ui/button"
-import { IconSlot } from "@/registry/icon/icon-library"
+import { IconSlot, useIconLibrary } from "@/registry/icon/icon-library"
 import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
 import {
 	Breadcrumb,
@@ -523,57 +520,68 @@ const PROJECTS = [
 	{ id: "boardui", prefix: "users/documents/", name: "boardui" },
 ] as const
 
-const ADD_MENU_ITEMS = [
+const ADD_MENU_ITEMS: {
+	id: string
+	label: string
+	description: string | null
+	slot: React.ComponentProps<typeof IconSlot>["slot"]
+}[] = [
 	{
 		id: "files",
 		label: "Files and folders",
 		description: null,
-		icon: Paperclip,
+		slot: "link",
 	},
 	{
 		id: "goal",
 		label: "Goal",
 		description: "Set a goal for faster results",
-		icon: Target,
+		slot: "gauge",
 	},
 	{
 		id: "plan",
 		label: "Plan mode",
 		description: "Manage complex tasks",
-		icon: ListTodo,
+		slot: "check-square",
 	},
-] as const
+]
 
-const PLUGIN_MENU_ITEMS = [
+const PLUGIN_MENU_ITEMS: {
+	id: string
+	label: string
+	description: string
+	slot: React.ComponentProps<typeof IconSlot>["slot"]
+	iconClass: string
+}[] = [
 	{
 		id: "documents",
 		label: "Documents",
 		description: "Create and edit documents",
-		slot: "file-text" as const,
+		slot: "file-text",
 		iconClass: "text-fg-secondary",
 	},
 	{
 		id: "spreadsheets",
 		label: "Spreadsheets",
 		description: "Generate spreadsheets",
-		icon: Table2,
+		slot: "blocks",
 		iconClass: "text-info",
 	},
 	{
 		id: "presentations",
 		label: "Presentations",
 		description: "Create marketing assets",
-		icon: Presentation,
+		slot: "monitor",
 		iconClass: "text-primary",
 	},
 	{
 		id: "code-blocks",
 		label: "Code blocks",
 		description: "Write and edit existing code",
-		icon: Code2,
+		slot: "file-code",
 		iconClass: "text-success",
 	},
-] as const
+]
 const MODES = ["Agent", "Plan", "Ask"] as const
 
 // ──────────────────────────────────────────────
@@ -690,6 +698,38 @@ function UserAccountMenuContent({
 			</DropdownMenuItem>
 		</DropdownMenuContent>
 	)
+}
+
+function ThemedThemeIcon({
+	kind,
+	className,
+}: {
+	kind: "sun" | "moon"
+	className?: string
+}) {
+	const iconLibrary = useIconLibrary()
+	if (iconLibrary === "hugeicons") {
+		return (
+			<HugeiconsIcon
+				icon={kind === "sun" ? Sun01Icon : Moon02Icon}
+				className={className}
+			/>
+		)
+	}
+	if (iconLibrary === "phosphor") {
+		const Icon = kind === "sun" ? PhosphorSunIcon : PhosphorMoonIcon
+		return <Icon className={className} />
+	}
+	if (iconLibrary === "tabler") {
+		const Icon = kind === "sun" ? IconSun : IconMoon
+		return <Icon className={className} />
+	}
+	if (iconLibrary === "heroicons") {
+		const Icon = kind === "sun" ? HeroSunIcon : HeroMoonIcon
+		return <Icon className={className} />
+	}
+	const Icon = kind === "sun" ? Sun : Moon
+	return <Icon className={className} />
 }
 
 function RadianLogo({ className = "size-7" }: { className?: string }) {
@@ -853,7 +893,7 @@ function AgentSidebar({
 								<span className="flex min-w-0 items-center gap-2">
 									<Avatar
 										size="md"
-										rounded="circle"
+										rounded="square"
 										className="bg-fill2 shrink-0">
 										<AvatarImage
 											src="https://cdn.jsdelivr.net/gh/Radian-os/radian-resources@v1.0.2/packages/uncompressed-avatars/src/8.png"
@@ -1010,7 +1050,7 @@ function AgentSidebar({
 								onClick={(e) => {
 									lastClickRef.current = { x: e.clientX, y: e.clientY }
 								}}>
-								<Sun className="size-4" />
+								<ThemedThemeIcon kind="sun" className="size-4" />
 							</TabsTrigger>
 							<TabsTrigger
 								value="dark"
@@ -1019,7 +1059,7 @@ function AgentSidebar({
 								onClick={(e) => {
 									lastClickRef.current = { x: e.clientX, y: e.clientY }
 								}}>
-								<Moon className="size-4" />
+								<ThemedThemeIcon kind="moon" className="size-4" />
 							</TabsTrigger>
 						</TabsList>
 					</Tabs>
@@ -1169,7 +1209,7 @@ function InspectorPanelContent({
 									color="neutral"
 									size="xs"
 									aria-label="Open terminal">
-									<Terminal className="size-4" />
+									<IconSlot slot="file-code" className="size-4" />
 								</IconButton>
 							</TooltipTrigger>
 							<TooltipContent withArrow>Console output</TooltipContent>
@@ -1183,7 +1223,7 @@ function InspectorPanelContent({
 									size="xs"
 									onClick={() => setIsExpanded((prev) => !prev)}
 									aria-label="Toggle expand view">
-									<Maximize2 className="size-4" />
+									<IconSlot slot="arrow-up-right" className="size-4" />
 								</IconButton>
 							</TooltipTrigger>
 							<TooltipContent withArrow>
@@ -1295,7 +1335,7 @@ function InspectorPanelContent({
 									animate={{ opacity: 1, y: 0 }}
 									exit={{ opacity: 0, y: -4 }}
 									transition={{ duration: 0.14 }}
-									className="py-2 font-mono text-xs leading-6">
+									className="font-body py-2 text-xs leading-6">
 									{activeFile.lines.map((line) => (
 										<div
 											key={line.lineNumber}
@@ -1812,7 +1852,7 @@ export default function Preview14Page() {
 															<Badge color="primary" size="sm">
 																{activeThread.fileLang}
 															</Badge>
-															<span className="text-fg truncate font-mono text-xs font-medium">
+															<span className="text-fg font-body truncate text-xs font-medium">
 																{activeThread.fileName}
 															</span>
 														</div>
@@ -1840,14 +1880,14 @@ export default function Preview14Page() {
 																				exit={{ opacity: 0, scale: 0.75 }}
 																				transition={{ duration: 0.14 }}
 																				className="inline-flex">
-																				{copiedCode ? (
-																					<IconSlot
-																						slot="check"
-																						className="size-3.5"
-																					/>
-																				) : (
-																					<Copy className="size-3.5" />
-																				)}
+																				<IconSlot
+																					slot={
+																						copiedCode
+																							? "check"
+																							: "clipboard-check"
+																					}
+																					className="size-3.5"
+																				/>
 																			</motion.span>
 																		</AnimatePresence>
 																	</IconButton>
@@ -1861,7 +1901,7 @@ export default function Preview14Page() {
 
 													{/* Numbered Code Block */}
 													<ScrollArea className="w-full">
-														<div className="px-3 py-2.5 font-mono text-xs leading-4.5">
+														<div className="font-body px-3 py-2.5 text-xs leading-4.5">
 															{activeThread.codeLines.map((line, index) => (
 																<div
 																	key={index}
@@ -2136,58 +2176,44 @@ export default function Preview14Page() {
 											<DropdownMenuLabel className="text-fg-tertiary text-xs">
 												Add
 											</DropdownMenuLabel>
-											{ADD_MENU_ITEMS.map((item) => {
-												const ItemIcon = item.icon
-												return (
-													<DropdownMenuItem key={item.id} className="gap-2">
-														<ItemIcon className="text-fg-secondary size-4 shrink-0" />
-														<span className="truncate">
-															<span className="text-fg font-medium">
-																{item.label}
-															</span>
-															{item.description && (
-																<span className="text-fg-tertiary ml-1.5 text-xs">
-																	{item.description}
-																</span>
-															)}
+											{ADD_MENU_ITEMS.map((item) => (
+												<DropdownMenuItem key={item.id} className="gap-2">
+													<IconSlot
+														slot={item.slot}
+														className="text-fg-secondary size-4 shrink-0"
+													/>
+													<span className="truncate">
+														<span className="text-fg font-medium">
+															{item.label}
 														</span>
-													</DropdownMenuItem>
-												)
-											})}
+														{item.description && (
+															<span className="text-fg-tertiary ml-1.5 text-xs">
+																{item.description}
+															</span>
+														)}
+													</span>
+												</DropdownMenuItem>
+											))}
 											<DropdownMenuDivider />
 											<DropdownMenuLabel className="text-fg-tertiary text-xs">
 												Plugins
 											</DropdownMenuLabel>
-											{PLUGIN_MENU_ITEMS.map((item) => {
-												return (
-													<DropdownMenuItem key={item.id} className="gap-2">
-														{"slot" in item ? (
-															<IconSlot
-																slot={item.slot}
-																className={cn(
-																	"size-4 shrink-0",
-																	item.iconClass
-																)}
-															/>
-														) : (
-															<item.icon
-																className={cn(
-																	"size-4 shrink-0",
-																	item.iconClass
-																)}
-															/>
-														)}
-														<span className="truncate">
-															<span className="text-fg font-medium">
-																{item.label}
-															</span>
-															<span className="text-fg-tertiary ml-1.5 text-xs">
-																{item.description}
-															</span>
+											{PLUGIN_MENU_ITEMS.map((item) => (
+												<DropdownMenuItem key={item.id} className="gap-2">
+													<IconSlot
+														slot={item.slot}
+														className={cn("size-4 shrink-0", item.iconClass)}
+													/>
+													<span className="truncate">
+														<span className="text-fg font-medium">
+															{item.label}
 														</span>
-													</DropdownMenuItem>
-												)
-											})}
+														<span className="text-fg-tertiary ml-1.5 text-xs">
+															{item.description}
+														</span>
+													</span>
+												</DropdownMenuItem>
+											))}
 										</DropdownMenuContent>
 									</DropdownMenu>
 
@@ -2262,7 +2288,7 @@ export default function Preview14Page() {
 													variant="soft"
 													color="neutral"
 													aria-label="Voice input">
-													<Mic className="size-4" />
+													<IconSlot slot="volume" className="size-4" />
 												</IconButton>
 											</TooltipTrigger>
 											<TooltipContent withArrow>Voice input</TooltipContent>
@@ -2310,7 +2336,10 @@ export default function Preview14Page() {
 														key={project.id}
 														value={project.id}
 														className="gap-2">
-														<Folder className="text-fg-tertiary size-4 shrink-0" />
+														<IconSlot
+															slot="archive"
+															className="text-fg-tertiary size-4 shrink-0"
+														/>
 														<span className="truncate">
 															<span className="text-fg-tertiary">
 																{project.prefix}
