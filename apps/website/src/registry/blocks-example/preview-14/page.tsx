@@ -841,11 +841,9 @@ function AgentSidebar({
 				<div className="flex items-center justify-between gap-1">
 					<DropdownMenu>
 						<DropdownMenuTrigger asChild>
-							<Button
-								variant="ghost"
-								color="neutral"
-								size="sm"
-								className="hover:bg-fill2 h-auto min-w-0 flex-1 justify-between gap-2 px-1.5 py-1">
+							<SidebarMenuButton
+								size="lg"
+								className="h-auto min-w-0 flex-1 justify-between gap-2 px-1.5 py-1">
 								<span className="flex min-w-0 items-center gap-2">
 									<Avatar
 										size="md"
@@ -867,7 +865,7 @@ function AgentSidebar({
 									slot="chevrons-up-down"
 									className="text-fg-tertiary size-4! shrink-0"
 								/>
-							</Button>
+							</SidebarMenuButton>
 						</DropdownMenuTrigger>
 						<UserAccountMenuContent
 							align="start"
